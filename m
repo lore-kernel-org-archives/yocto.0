@@ -1,19 +1,41 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 908E4E014DE
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 07:33:03 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 24 Jan 2013 07:33:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,530,1355126400"; d="scan'208";a="251809637"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.62])
-	by orsmga001.jf.intel.com with ESMTP; 24 Jan 2013 07:33:01 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 24 Jan 2013 17:19:30 +0200
-Message-Id: <1359040770-11262-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH v5] Fix race conditions for reading output from local processes
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5B4DE014E5
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 08:18:43 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3YsT7f5dVvz3hhlx;
+	Thu, 24 Jan 2013 17:18:38 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3YsT7f3MNtzbbgW;
+	Thu, 24 Jan 2013 17:18:38 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id N8JzpXh3eN4l; Thu, 24 Jan 2013 17:17:59 +0100 (CET)
+X-Auth-Info: C93phdYekpc/auc1+MgHFSSecmIajiQbaqCsWJenp6Y=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Thu, 24 Jan 2013 17:18:36 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 1BE711A14D1;
+	Thu, 24 Jan 2013 17:18:36 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 0CCB92005FC;
+	Thu, 24 Jan 2013 17:18:36 +0100 (CET)
+To: Saul Wold <sgw@linux.intel.com>
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+In-reply-to: <51007091.1030609@linux.intel.com>
+References: <CAPhnLPAm17JHdDE=abqjaEEvZebxMQmuSKWSEj8C+qU-TwPs=w@mail.gmail.com>
+	<51007091.1030609@linux.intel.com>
+Comments: In-reply-to Saul Wold <sgw@linux.intel.com>
+	message dated "Wed, 23 Jan 2013 15:21:53 -0800."
+Date: Thu, 24 Jan 2013 17:18:36 +0100
+Message-Id: <20130124161836.0CCB92005FC@gemini.denx.de>
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>, yocto@yoctoproject.org
+Subject: Re: M2/M3.rc1 availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,425 +47,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 15:33:03 -0000
+X-List-Received-Date: Thu, 24 Jan 2013 16:18:44 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-When running a command using RSE Api, using a Local connection from a linux host a new LocalHostShell is created.
-When this is created, a new LocalHostThread is launched, along side with two LocalShellOutputReaders (output and error). The constructors for the OutputReaders will receive a reference to the reader created by the LocalHostThread.
+Dear Saul Wold,
 
-When calling runCommandRemote, the newly creared IHostShell is returned, making it possible to create an adapter(IHostShellProcessAdapter) that  will then be used to read all available output from the readers.
-When the LocalHostThread finishes running its run() method, it will perform a cleanup causing both readers (output and error) to be closed. If at this point, there are any readers, or handlers to the readers that are still trying to read data (using internalReadLine or read on handlers), obviously, an error will be thrown saying that the the pipe to the stream is closed ("Ensure open stream"/ "Pipe closed" errors).
-After inspecting the internalReadLine, it seems that it expects a null reference of the reader in order to consider that the reading is done. In order to ensure that this will happen once the LocalHostThread closes the stream(s), we will make sure that the reference to the readers is set to null, and that LocalShellOutputReaders use the same reference. For this to happen, a reference of the thread must be kept in the reader, in order to retrieve the correct reference of the underlying reader.
-Since there can still be race conditions in this solution, all operations that involve the reference to now the only reader, must be performed under mutual exclusion using a shared lock between the LocalShellOutputReader and LocalHostThread.
+In message <51007091.1030609@linux.intel.com> you wrote:
+> 
+> Please continue to test the rc1 of M3.  The Meta-Intel bits might come a 
+> little later this time due to some issues which are being worked on.
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../dstore/shells/DStoreShellOutputReader.java     |   14 +++++-
- .../services/local/shells/LocalHostShell.java      |    6 +--
- .../local/shells/LocalShellOutputReader.java       |   46 ++++++++++++++------
- .../services/local/shells/LocalShellThread.java    |   18 ++++++++
- .../.settings/.api_filters                         |   38 ++++++++++++----
- .../shells/TerminalServiceShellOutputReader.java   |   13 ++++++
- .../services/shells/IHostShellOutputReader.java    |   11 +++++
- 7 files changed, 121 insertions(+), 25 deletions(-)
+I see two issues so far (all with a armv7a based configuration):
 
-diff --git a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-index 84c9bb9..281e240 100644
---- a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreShellOutputReader.java
-@@ -17,6 +17,9 @@
- 
- package org.eclipse.rse.internal.services.dstore.shells;
- 
-+import java.io.BufferedReader;
-+import java.util.concurrent.locks.Lock;
-+
- import org.eclipse.dstore.core.model.DataElement;
- import org.eclipse.dstore.extra.DomainEvent;
- import org.eclipse.dstore.extra.IDomainListener;
-@@ -167,7 +170,16 @@ public class DStoreShellOutputReader extends AbstractHostShellOutputReader imple
- 		super.finish();
- 		notifyResponse();
- 	}
--	
-+
-+	public BufferedReader getReader() {
-+		// TODO Auto-generated method stub
-+		return null;
-+	}
-+
-+	public Lock getReaderLock() {
-+		return null;
-+	}
-+
- 	/*
- 	private void handleInput()
- 	{
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-index 250a904..3179bab 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalHostShell.java
-@@ -36,9 +36,9 @@ public class LocalHostShell extends AbstractHostShell implements IHostShell
- 	
- 	public LocalHostShell(String initialWorkingDirectory, String invocation, String encoding, String[] environment)
- 	{
--		_shellThread = new LocalShellThread(initialWorkingDirectory, invocation, encoding, environment);	
--		_stdoutHandler = new LocalShellOutputReader(this, _shellThread.getOutputStream(), false);
--		_stderrHandler = new LocalShellOutputReader(this, _shellThread.getErrorStream(),true);
-+		_shellThread = new LocalShellThread(initialWorkingDirectory, invocation, encoding, environment);
-+		_stdoutHandler = new LocalShellOutputReader(this, _shellThread.getOutputStream(), _shellThread, false);
-+		_stderrHandler = new LocalShellOutputReader(this, _shellThread.getErrorStream(), _shellThread, true);
- 	}
- 	
- 	protected void run(IProgressMonitor monitor)
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-index ab8ff5c..8dd91a3 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellOutputReader.java
-@@ -19,6 +19,7 @@ package org.eclipse.rse.internal.services.local.shells;
- 
- import java.io.BufferedReader;
- import java.io.IOException;
-+import java.util.concurrent.locks.Lock;
- 
- import org.eclipse.rse.internal.services.local.Activator;
- import org.eclipse.rse.services.shells.AbstractHostShellOutputReader;
-@@ -33,14 +34,16 @@ import org.eclipse.rse.services.shells.SimpleHostOutput;
-  */
- public class LocalShellOutputReader extends AbstractHostShellOutputReader implements IHostShellOutputReader
- {
--	protected BufferedReader _reader;
-+//	protected BufferedReader _reader;
-+	private LocalShellThread _shellThread;
- 	private String fPromptChars = ">$%#]"; //Characters we accept as the end of a prompt //$NON-NLS-1$;
- 
--	
--	public LocalShellOutputReader(IHostShell hostShell, BufferedReader reader, boolean isErrorReader)
-+
-+	public LocalShellOutputReader(IHostShell hostShell, BufferedReader reader, LocalShellThread shellThread, boolean isErrorReader)
- 	{
- 		super(hostShell, isErrorReader);
--		_reader = reader;
-+//		_reader = reader;
-+		_shellThread = shellThread;
- 	}
- 	/*
- 	protected Object internalReadLine()
-@@ -137,9 +140,11 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 	}
- */
- 	protected IHostOutput internalReadLine() {
--		if (_reader == null) {
-+		getLock().lock();
-+		if (getReader() == null) {
- 			//Our workaround sets the stderr reader to null, so we never give any stderr output.
- 			//TODO Check if ssh supports some method of having separate stdout and stderr streams
-+			getLock().unlock();
- 			return null;
- 		}
- 		StringBuffer theLine = new StringBuffer();
-@@ -149,12 +154,14 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 		boolean done = false;
- 		while (!done && !isFinished()) {
- 			try {
--				ch = _reader.read();
-+				ch = getReader().read();
- 				switch (ch) {
- 				case -1:
- 				case 65535:
--					if (theLine.length() == 0) // End of Reader
-+					if (theLine.length() == 0) {// End of Reader
-+						getLock().unlock();
- 						return null;
-+					}
- 					done = true;
- 					break;
- 				case '\b': //backspace
-@@ -185,13 +192,13 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 						theLine.append(tch); // Any other character
- 					} else if (ch == 27) {
- 						// Escape: ignore next char too
--						int nch = _reader.read();
-+						int nch = getReader().read();
- 						if (theDebugLine!=null) theDebugLine.append((char)nch);
- 						if (nch == 91) {
- 							//vt100 escape sequence: read until end-of-command (skip digits and semicolon)
- 							//e.g. \x1b;13;m --> ignore the entire command, including the trailing m
- 							do {
--								nch = _reader.read();
-+								nch = getReader().read();
- 								if (theDebugLine!=null) theDebugLine.append((char)nch);
- 							} while (Character.isDigit((char)nch) || nch == ';');
- 						}
-@@ -202,9 +209,9 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 				// there are more characters
- 				// in the Buffer...If not, then we assume it is waiting for
- 				// input.
--				if (!done && !_reader.ready()) {
--					// wait to make sure -- max. 500 msec to wait for new chars 
--					// if we are not at a CRLF seems to be appropriate for the 
-+				if (!done && !getReader().ready()) {
-+					// wait to make sure -- max. 500 msec to wait for new chars
-+					// if we are not at a CRLF seems to be appropriate for the
- 					// Pipes and Threads in ssh.
- 					long waitIncrement = 500;
- 					// Check if we think we are at a prompt
-@@ -219,7 +226,7 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 						Thread.sleep(waitIncrement);
- 					} catch (InterruptedException e) {
- 					}
--					if (!_reader.ready()) {
-+					if (!getReader().ready()) {
- 						done = true;
- 					}
- 				}
-@@ -228,6 +235,7 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 				//our reader thread completely... the exception could just be
- 				//temporary, and we should keep running!
- 				Activator.getDefault().logException(e);
-+				getLock().unlock();
- 				return null;
- 			}
- 		}
-@@ -235,8 +243,20 @@ public class LocalShellOutputReader extends AbstractHostShellOutputReader implem
- 			String debugLine = theDebugLine.toString();
- 			debugLine.compareTo(""); //$NON-NLS-1$
- 		}
-+		getLock().unlock();
- 		return new SimpleHostOutput(theLine.toString());
- 	}
-+	private Lock getLock() {
-+		return _shellThread.getLock();
-+	}
-+	public BufferedReader getReader() {
-+		if (isErrorReader())
-+			return _shellThread.getErrorStream();
-+		return _shellThread.getOutputStream();
-+	}
-+	public Lock getReaderLock() {
-+		return _shellThread.getLock();
-+	}
- 
- 
- }
-diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-index 0a33ad4..18f1373 100644
---- a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-+++ b/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse/internal/services/local/shells/LocalShellThread.java
-@@ -29,6 +29,8 @@ import java.io.InputStreamReader;
- import java.io.OutputStream;
- import java.io.OutputStreamWriter;
- import java.net.URL;
-+import java.util.concurrent.locks.Lock;
-+import java.util.concurrent.locks.ReentrantLock;
- 
- import org.eclipse.core.runtime.FileLocator;
- 
-@@ -62,6 +64,7 @@ public class LocalShellThread extends Thread
- 	private BufferedReader _stdInput;
- 	private BufferedReader _stdError;
- 
-+	private Lock _lock;
- 	/**
- 	 * constructor for local command shell monitor
- 	 * 
-@@ -260,6 +263,7 @@ public class LocalShellThread extends Thread
- 
- 			_stdError = new BufferedReader(new InputStreamReader(_theProcess.getErrorStream()));
- 
-+			_lock = new ReentrantLock();
- 		}
- 		catch (IOException e)
- 		{
-@@ -438,9 +442,14 @@ public class LocalShellThread extends Thread
- 		_isDone = true;
- 		try
- 		{
-+			_lock.lock();
- 			_stdInput.close();
- 			_stdError.close();
- 
-+			_stdInput = null;
-+			_stdError = null;
-+
-+			_lock.unlock();
- 			if (_theProcess != null)
- 			{
- 
-@@ -511,4 +520,13 @@ public class LocalShellThread extends Thread
- 	}
- 
- 
-+	public Lock getLock() {
-+		return _lock;
-+	}
-+
-+
-+	public void setLock(Lock _lock) {
-+		this._lock = _lock;
-+	}
-+
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/.settings/.api_filters b/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-index 19273c2..da9417a 100644
---- a/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-+++ b/rse/plugins/org.eclipse.rse.services/.settings/.api_filters
-@@ -1,5 +1,13 @@
- <?xml version="1.0" encoding="UTF-8" standalone="no"?>
- <component id="org.eclipse.rse.services" version="2">
-+    <resource path="META-INF/MANIFEST.MF">
-+        <filter id="923795461">
-+            <message_arguments>
-+                <message_argument value="3.2.200"/>
-+                <message_argument value="3.2.200"/>
-+            </message_arguments>
-+        </filter>
-+    </resource>
-     <resource path="META-INF/MANIFEST.MF" type="org.eclipse.rse.internal.services.terminals.AbstractTerminalService">
-         <filter id="305324134">
-             <message_arguments>
-@@ -32,13 +40,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.BaseShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.BaseShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -46,13 +54,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.IBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.IBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -88,13 +96,13 @@
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.TerminalShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305324134">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.TerminalShellDecorator"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-             </message_arguments>
-         </filter>
-     </resource>
-@@ -109,13 +117,27 @@
-         <filter id="305365105">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.ProcessBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-             </message_arguments>
-         </filter>
-         <filter id="305365105">
-             <message_arguments>
-                 <message_argument value="org.eclipse.rse.internal.services.terminals.ProcessBaseShell"/>
--                <message_argument value="org.eclipse.rse.services_3.1.0"/>
-+                <message_argument value="org.eclipse.rse.services_3.1.1"/>
-+            </message_arguments>
-+        </filter>
-+    </resource>
-+    <resource path="src/org/eclipse/rse/services/shells/IHostShellOutputReader.java" type="org.eclipse.rse.services.shells.IHostShellOutputReader">
-+        <filter id="403804204">
-+            <message_arguments>
-+                <message_argument value="org.eclipse.rse.services.shells.IHostShellOutputReader"/>
-+                <message_argument value="getReader()"/>
-+            </message_arguments>
-+        </filter>
-+        <filter id="403804204">
-+            <message_arguments>
-+                <message_argument value="org.eclipse.rse.services.shells.IHostShellOutputReader"/>
-+                <message_argument value="getReaderLock()"/>
-             </message_arguments>
-         </filter>
-     </resource>
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-index 16364e1..0edcc35 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceShellOutputReader.java
-@@ -23,6 +23,8 @@ package org.eclipse.rse.internal.services.shells;
- 
- import java.io.BufferedReader;
- import java.io.IOException;
-+import java.util.concurrent.locks.Lock;
-+import java.util.concurrent.locks.ReentrantLock;
- 
- import org.eclipse.rse.internal.services.Activator;
- import org.eclipse.rse.services.shells.AbstractHostShellOutputReader;
-@@ -36,6 +38,7 @@ import org.eclipse.rse.services.shells.SimpleHostOutput;
- public class TerminalServiceShellOutputReader extends
- 		AbstractHostShellOutputReader {
- 	protected BufferedReader fReader;
-+	protected Lock lock;
- 	private volatile Thread fReaderThread = null;
- 	private volatile boolean isCanceled = false;
- 	private String fPromptChars = ">$%#]"; //Characters we accept as the end of a prompt //$NON-NLS-1$;
-@@ -174,4 +177,14 @@ public class TerminalServiceShellOutputReader extends
- 			fReaderThread.interrupt();
- 		}
- 	}
-+
-+	public BufferedReader getReader() {
-+		return fReader;
-+	}
-+
-+	public Lock getReaderLock() {
-+		if (lock == null)
-+			lock = new ReentrantLock();
-+		return lock;
-+	}
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-index 103c31f..5f8bf78 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShellOutputReader.java
-@@ -16,6 +16,9 @@
- 
- package org.eclipse.rse.services.shells;
- 
-+import java.io.BufferedReader;
-+import java.util.concurrent.locks.Lock;
-+
- public interface IHostShellOutputReader extends IHostShellOutputNotifier
- {
- 	public IHostOutput readLine();
-@@ -23,4 +26,12 @@ public interface IHostShellOutputReader extends IHostShellOutputNotifier
- 	public void addOutputListener(IHostShellOutputListener listener);
- 	public boolean isErrorReader();
- 	public void finish();
-+	/**
-+	 * @since 3.2
-+	 */
-+	public BufferedReader getReader();
-+	/**
-+	 * @since 3.2
-+	 */
-+	public Lock getReaderLock();
- }
-\ No newline at end of file
+1) Building of core-image-lsb-dev and core-image-lsb-sdk fail with
+   errors like this:
+
+|  * check_data_file_clashes: Package font-alias wants to install file /opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/work/generic_armv7a-linux-gnueabi/core-image-lsb-dev/1.0-r0/rootfs/usr/share/fonts/X11/misc/fonts.alias
+|       But that file is already provided by package  * xorg-minimal-fonts
+|  * opkg_install_cmd: Cannot install package mkfontdir-dev.
+
+   This is a known issue, and the patch provided by [1] fixes the
+   problem for me (however, I don't see it in Yocto yet).
+
+   [1] http://article.gmane.org/gmane.comp.handhelds.openembedded.core/32245
+
+2) Building of meta-toolchain-sdk fails in nativesdk-e2fsprogs with
+   errors like this:
+
+checking for pkg-config... /opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/sysroots/x86_64-linux/usr/bin/pkg-config
+configure: WARNING: using cross tools not prefixed with host triplet
+checking pkg-config is at least version 0.9.0... yes
+checking for uuid_generate in -luuid... no
+configure: error: external uuid library not found
+Configure failed. The contents of all config.log files follows to aid debugging
+
+
+configure:3168: i686-eldk-linux-gcc -march=i686 --sysroot=/opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/sysroots/i686-nativesdk-eldk-linux -V >&5
+i686-eldk-linux-gcc: error: unrecognized command line option '-V'
+i686-eldk-linux-gcc: fatal error: no input files
+
+
+configure:3168: i686-eldk-linux-gcc -march=i686 --sysroot=/opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/sysroots/i686-nativesdk-eldk-linux -qversion >&5
+i686-eldk-linux-gcc: error: unrecognized command line option '-qversion'
+i686-eldk-linux-gcc: fatal error: no input files
+
+
+
+Are these known issues?
+
+Best regards,
+
+Wolfgang Denk
+
 -- 
-1.7.9.5
-
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+The more we disagree, the more chance there is that at least  one  of
+us is right.
 
