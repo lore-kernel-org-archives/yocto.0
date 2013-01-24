@@ -1,41 +1,34 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5B4DE014E5
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 08:18:43 -0800 (PST)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3YsT7f5dVvz3hhlx;
-	Thu, 24 Jan 2013 17:18:38 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3YsT7f3MNtzbbgW;
-	Thu, 24 Jan 2013 17:18:38 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id N8JzpXh3eN4l; Thu, 24 Jan 2013 17:17:59 +0100 (CET)
-X-Auth-Info: C93phdYekpc/auc1+MgHFSSecmIajiQbaqCsWJenp6Y=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Thu, 24 Jan 2013 17:18:36 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 1BE711A14D1;
-	Thu, 24 Jan 2013 17:18:36 +0100 (CET)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 0CCB92005FC;
-	Thu, 24 Jan 2013 17:18:36 +0100 (CET)
-To: Saul Wold <sgw@linux.intel.com>
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f173.google.com (mail-we0-f173.google.com
+	[74.125.82.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26733E014FD
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 09:12:23 -0800 (PST)
+Received: by mail-we0-f173.google.com with SMTP id r5so899069wey.18
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 09:12:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=l5UM9JSAJcgFY4RwZJzApzPq8+x4oE4BcdvkugQ1jl8=;
+	b=lYpdzn+u/8NaXMKgR4tjc13o+JT91Ix5epXBAFBEkmF9IWIQ+c8KZsk3dC/RwvEjNu
+	N1u2iJ33DJPbX/KlzbQn9lbHB+pq9AY7Jy8T2GkIwh+5jiLmQlEAIVZzQCOruD4+Autc
+	bCaaeUFbpbqZtgYM8ouu0/g1bhk1op7s4DH9VsY0Q6LK7jEWQ79vOhGMr2AKI7eeEdkc
+	pwVgEr2RucYORrSj7N7zPaL+3vnXIuKjktYRi5kEyvbvTKwPFBsykKks0rjslaXNX+Lz
+	VRvgDRh1oTRXaOQ+tfdyViodR+pyd7BSm/j+HKyKwn54r/i/iTdwCw8gHm1E4W2/If1h
+	G29w==
 MIME-Version: 1.0
-In-reply-to: <51007091.1030609@linux.intel.com>
-References: <CAPhnLPAm17JHdDE=abqjaEEvZebxMQmuSKWSEj8C+qU-TwPs=w@mail.gmail.com>
-	<51007091.1030609@linux.intel.com>
-Comments: In-reply-to Saul Wold <sgw@linux.intel.com>
-	message dated "Wed, 23 Jan 2013 15:21:53 -0800."
-Date: Thu, 24 Jan 2013 17:18:36 +0100
-Message-Id: <20130124161836.0CCB92005FC@gemini.denx.de>
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>, yocto@yoctoproject.org
-Subject: Re: M2/M3.rc1 availability
+X-Received: by 10.180.97.68 with SMTP id dy4mr4379741wib.7.1359047542269; Thu,
+	24 Jan 2013 09:12:22 -0800 (PST)
+Received: by 10.194.80.135 with HTTP; Thu, 24 Jan 2013 09:12:22 -0800 (PST)
+In-Reply-To: <51013BCB.8080208@gmail.com>
+References: <CAHUNapRAcCu=82B3JX0WQweEhz0-m+5sYhdR8gtX+U3UyiKnkg@mail.gmail.com>
+	<CAJTo0LZGXAgvCMDD4B+12JTSb_tjNS3xn0mrabFb5DSob8AJnw@mail.gmail.com>
+	<510092A1.6050009@windriver.com> <51013BCB.8080208@gmail.com>
+Date: Thu, 24 Jan 2013 12:12:22 -0500
+Message-ID: <CAHUNapRWoA5q_vpaZarV2keT6wfMWj8U1J7YAzbZ=zbRGfiSSg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Eddy Lai GMail <eddy.lai.tw@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: install and use "bitbake -c populate_sdk"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,63 +40,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 16:18:44 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Thu, 24 Jan 2013 17:12:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Dear Saul Wold,
-
-In message <51007091.1030609@linux.intel.com> you wrote:
-> 
-> Please continue to test the rc1 of M3.  The Meta-Intel bits might come a 
-> little later this time due to some issues which are being worked on.
-
-I see two issues so far (all with a armv7a based configuration):
-
-1) Building of core-image-lsb-dev and core-image-lsb-sdk fail with
-   errors like this:
-
-|  * check_data_file_clashes: Package font-alias wants to install file /opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/work/generic_armv7a-linux-gnueabi/core-image-lsb-dev/1.0-r0/rootfs/usr/share/fonts/X11/misc/fonts.alias
-|       But that file is already provided by package  * xorg-minimal-fonts
-|  * opkg_install_cmd: Cannot install package mkfontdir-dev.
-
-   This is a known issue, and the patch provided by [1] fixes the
-   problem for me (however, I don't see it in Yocto yet).
-
-   [1] http://article.gmane.org/gmane.comp.handhelds.openembedded.core/32245
-
-2) Building of meta-toolchain-sdk fails in nativesdk-e2fsprogs with
-   errors like this:
-
-checking for pkg-config... /opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/sysroots/x86_64-linux/usr/bin/pkg-config
-configure: WARNING: using cross tools not prefixed with host triplet
-checking pkg-config is at least version 0.9.0... yes
-checking for uuid_generate in -luuid... no
-configure: error: external uuid library not found
-Configure failed. The contents of all config.log files follows to aid debugging
+On Thu, Jan 24, 2013 at 8:48 AM, Eddy Lai GMail <eddy.lai.tw@gmail.com> wrote:
+> how can I "extend" the
+> target system to use the rest USB disk space? ( it's FAT file system)
+>     or how to modify configuration to force build the .hddimg create ~"8GB"
 
 
-configure:3168: i686-eldk-linux-gcc -march=i686 --sysroot=/opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/sysroots/i686-nativesdk-eldk-linux -V >&5
-i686-eldk-linux-gcc: error: unrecognized command line option '-V'
-i686-eldk-linux-gcc: fatal error: no input files
+By default a certain amount of overhead is applied to the final image.
+So the scripts figure out the size of your image and add a certain
+overhead.
 
+In your conf/local.conf you can specify "IMAGE_ROOTFS_SIZE" which you
+can set to the size, in kB, you want your image to have. But if you
+image (plus overhead) would have been larger than this size, then
+you'll get the larger + overhead size you would have received had you
+not specified IMAGE_ROOTFS_SIZE.
 
-configure:3168: i686-eldk-linux-gcc -march=i686 --sysroot=/opt/eldk/build/eldk-rel-v5.4-M3.rc1-2013-01-24-618361c-armv7a/tmp/sysroots/i686-nativesdk-eldk-linux -qversion >&5
-i686-eldk-linux-gcc: error: unrecognized command line option '-qversion'
-i686-eldk-linux-gcc: fatal error: no input files
+You can adjust the overhead by playing with the IMAGE_OVERHEAD_FACTOR variable.
 
-
-
-Are these known issues?
-
-Best regards,
-
-Wolfgang Denk
-
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-The more we disagree, the more chance there is that at least  one  of
-us is right.
+These calculations are performed by code from meta/classes/image_types.bbclass
 
