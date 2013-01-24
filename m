@@ -1,37 +1,43 @@
-Return-Path: <schnitzeltony@googlemail.com>
-Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
-	[209.85.215.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C085E01509
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:58:01 -0800 (PST)
-Received: by mail-ea0-f170.google.com with SMTP id a11so4248367eaa.29
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:58:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references:mime-version:content-type:content-transfer-encoding;
-	bh=/LpMLUFAY/8NDDXaYEwgpsjMEhckyr4CJkPx/EaS2ww=;
-	b=K8KNPgsyv4imsPXQY+zK7+QrslQrYgxGBKcYX9FIEG8/8xO+h5MhBEuDV8UUS/yuC8
-	VJHGjklkp2ky5zZHuSxBKa1F2bkaRMR/X/xuNJY4HsAg4lUJb9TgRJOkWpwTwtQo7S8V
-	GpPKfK4TUr30Y7GVmMKRCCRAArESbAnJfF3yjYhprG7CKeOSFk07k2e55E39sgBOSIus
-	bQVJ8E7y0P0STtRzBiap5YhPSx1XX2R59zOlkmkg1PRw4ejTPswIhZ7fxc1a2YsnV95Z
-	iPX9TzTprwymU9Jc/9Ewp8Ke6irAHYOYuNQyNNBudUYqpiS5IsmSfUNdccf2Ahc+hAoj
-	pkKg==
-X-Received: by 10.14.1.195 with SMTP id 43mr10572499eed.31.1359064680818;
-	Thu, 24 Jan 2013 13:58:00 -0800 (PST)
-Received: from localhost.localdomain (p5B0A316D.dip.t-dialin.net.
-	[91.10.49.109])
-	by mx.google.com with ESMTPS id b2sm37011988eep.9.2013.01.24.13.57.59
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 24 Jan 2013 13:58:00 -0800 (PST)
-From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 24 Jan 2013 22:57:42 +0100
-Message-Id: <1359064662-17052-3-git-send-email-schnitzeltony@googlemail.com>
-X-Mailer: git-send-email 1.7.4.4
-In-Reply-To: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
-References: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga101.fm.intel.com (mga05.intel.com [192.55.52.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DB24E006D2
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 14:23:10 -0800 (PST)
+Received: from mail-vb0-f70.google.com ([209.85.212.70])
+	by mga01.intel.com with ESMTP/TLS/RC4-SHA; 24 Jan 2013 14:23:09 -0800
+Received: by mail-vb0-f70.google.com with SMTP id s24so12182901vbi.9
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 14:23:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:x-received:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=7MHdfGjUPQTzO2LKUuweUssS200EcTUjDa+7zRl9fUI=;
+	b=JzGnswGeltbZKcHZR87QzrYy3zrLa3apa+IN84gMsMaNMGT24crcPmlKKuJMQRpHDH
+	PfAcTw1DnwDi3uo7ufVWBjmgtkTZpmEoKXdf1LXwq36B95y6MJ8XKSX4Srltuw4+Itmj
+	NUrWB7Ds1FLEuqVoiv0iik9hlU1uoR4QikpM50dc3xIwdY0fK7IDr2q8iPQpp7CR7j7Q
+	ek1IVwE2sd+8jIAckXeL67NQ54Zwkx7785iaYtYtFIFfD+IvJHlXWQ0vCR9WYUHSLYRr
+	tsrE3L74MUXmxCuIsolXMAgRVW7q7MvKWjWDv+zc/0NSW3sE088guzhdKXJqHW5bM9LK
+	SstQ==
+X-Received: by 10.220.209.74 with SMTP id gf10mr3812861vcb.10.1359066188945;
+	Thu, 24 Jan 2013 14:23:08 -0800 (PST)
+X-Received: by 10.220.209.74 with SMTP id gf10mr3812852vcb.10.1359066188754;
+	Thu, 24 Jan 2013 14:23:08 -0800 (PST)
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH 2/2] xserver-xf86-config: fix do_install
+Received: by 10.58.151.207 with HTTP; Thu, 24 Jan 2013 14:22:47 -0800 (PST)
+In-Reply-To: <CAK18fxFGEU0scchTNAA7i0MZTPdBvqQYSK8is9o1XTbkHNqD2g@mail.gmail.com>
+References: <1358094195-23815-1-git-send-email-andrei@gherzan.ro>
+	<1358094195-23815-2-git-send-email-andrei@gherzan.ro>
+	<211E2BEE5356446CB425C4E2514B1285@intel.com>
+	<CAK18fxEkr4fhymhMDx7CGYTX7PGe1C57pw0iGYQaYNO9a1UFhw@mail.gmail.com>
+	<B2E17B5564364905A4A31F70FC62F9E0@intel.com>
+	<CAK18fxHFBP7RLotsXD50ETttAEjJn4ttiOJw6QMwCcu23C5cAA@mail.gmail.com>
+	<CAK18fxFGEU0scchTNAA7i0MZTPdBvqQYSK8is9o1XTbkHNqD2g@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 24 Jan 2013 22:22:47 +0000
+Message-ID: <CAJTo0LaYpjzj+dRGPXXda1txRNez=03b-xD+_BeSHB-bYZeoLw@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+X-Gm-Message-State: ALoCoQkplHu+HUBql3UE4d24z7xEg6/jxJvlyCgFj3srTPBIfnqMiBb29dXxrsJh/TIAvFdwV+pAopO9gjDsN5x/HW5L6/NdL7QpBtJndsahMK8yDQeOR5G5zpUs8YurlRmcig4SMs/U8DnD53BbJqR3+RLNg5w/iw==
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-intel][PATCH 2/2] fri2.conf: mesa-dri was updated to 9.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,42 +49,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 21:58:02 -0000
+X-List-Received-Date: Thu, 24 Jan 2013 22:23:10 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-for some reason wildcards don't work in current head. Error message was:
+On 24 January 2013 19:06, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> Ping.
 
-| DEBUG: Executing shell function do_install
-| install: cannot stat `/home/Superandy/tmp/oe-core-eglibc/work/raspberrypi-angstrom-linux-gnueabi/xserver-xf86-config/0.1-r18/xorg.conf.d/*': No such file or directory
+Your pings are misdirected - the meta-intel patches should now be
+going to meta-intel@yoctoproject.org.
 
-Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
----
- .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    6 ++++--
- 1 files changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-index 65931e2..a8b8e8c 100644
---- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-+++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-@@ -1,12 +1,14 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
- # Don't forget to bump PRINC if you update the extra files.
--PRINC := "${@int(PRINC) + 5}"
-+PRINC := "${@int(PRINC) + 6}"
- 
- THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
- FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
- 
--SRC_URI_append_raspberrypi = " file://xorg.conf.d/* "
-+SRC_URI_append_raspberrypi = " \
-+	file://xorg.conf.d/10-evdev.conf \
-+"
- 
- do_install_append_raspberrypi () {
- 	install -d ${D}/${sysconfdir}/X11/xorg.conf.d/
--- 
-1.7.4.4
-
+Ross
 
