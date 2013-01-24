@@ -1,40 +1,29 @@
-Return-Path: <ross.burton@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 447EFE014E0
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 10:05:52 -0800 (PST)
-Received: from mail-vc0-f199.google.com ([209.85.220.199])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 24 Jan 2013 10:05:48 -0800
-Received: by mail-vc0-f199.google.com with SMTP id fo13so6942110vcb.10
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 10:05:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:x-received:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=/tLieCNwqtYx5VNCwnAGHUvOE7E2QoBKmqyTsAVP8hI=;
-	b=BLvyMnhoBYyuZveu0hO7x6jTBAMsuhFHC0BnrRI9EN4Et6w+EscS++xC8I9nMPVIR+
-	tdH0vV/Vqzvqvft4ps+q/JdjOvAWCCeMldJUsfeo5o8/7WKVA4gxEiDOSBBAl1Qzxpu3
-	68jL3UBD/1vnTPY7dozPRE8prHx5H0g05fQLzJVPyF8TNRzhp/cuQ8PK4oMNLRUTyRTz
-	Qeyzm31XDVDGBBJmIME0IjMNT3anZ/gK9u6CCd3u4RuzFt83UfXZ2HlhJfgo1UbYyHY7
-	fyZ9N0Dub8ZyiGQFYQhJF8YSBGZRSoQ69G5pqJwDH8ZLu0ecg38f1yHu21VEbx0GPCSV
-	1LEQ==
-X-Received: by 10.52.76.7 with SMTP id g7mr2535813vdw.95.1359050746483;
-	Thu, 24 Jan 2013 10:05:46 -0800 (PST)
-X-Received: by 10.52.76.7 with SMTP id g7mr2535801vdw.95.1359050746377; Thu,
-	24 Jan 2013 10:05:46 -0800 (PST)
+Return-Path: <daniel.schnel.extern@ifm.com>
+Received: from eu3sys201aog101.obsmtp.com (eu3sys201aog101.obsmtp.com
+	[207.126.148.87])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 938D1E014EF
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 08:04:59 -0800 (PST)
+Received: from deesdmz226.dmz.es.de.ifm ([194.156.152.226]) (using TLSv1) by
+	eu3sys201aob101.postini.com ([207.126.154.11]) with SMTP
+	ID DSNKUQFbqdz+dtirjLapG/nnK/GcVErK9Z1w@postini.com;
+	Thu, 24 Jan 2013 16:04:59 UTC
+Received: from deesdmz226.dmz.es.de.ifm (localhost.localdomain [127.0.0.1])
+	by deesdmz226.dmz.es.de.ifm (Postfix) with ESMTP id 5900419F36F
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 17:04:57 +0100 (CET)
+X-KeepSent: BE0EFB03:95C8CD96-C1257AFD:00580557;
+ type=4; name=$KeepSent
+To: yocto@yoctoproject.org
+X-Mailer: Lotus Notes Release 8.5.2FP3 July 11, 2011
+From: daniel.schnel.extern@ifm.com
+Message-ID: <OFBE0EFB03.95C8CD96-ONC1257AFD.00580557-C1257AFD.00584DE3@ifm-electronic.com>
+Date: Thu, 24 Jan 2013 17:04:31 +0100
+X-MIMETrack: Serialize by Router on deesifmweb04/ifmwww(Release 8.5.2HF17 |
+	August 31, 2010) at 24.01.2013 17:04:57
 MIME-Version: 1.0
-Received: by 10.58.151.207 with HTTP; Thu, 24 Jan 2013 10:05:26 -0800 (PST)
-In-Reply-To: <CAHUNapRWoA5q_vpaZarV2keT6wfMWj8U1J7YAzbZ=zbRGfiSSg@mail.gmail.com>
-References: <CAHUNapRAcCu=82B3JX0WQweEhz0-m+5sYhdR8gtX+U3UyiKnkg@mail.gmail.com>
-	<CAJTo0LZGXAgvCMDD4B+12JTSb_tjNS3xn0mrabFb5DSob8AJnw@mail.gmail.com>
-	<510092A1.6050009@windriver.com> <51013BCB.8080208@gmail.com>
-	<CAHUNapRWoA5q_vpaZarV2keT6wfMWj8U1J7YAzbZ=zbRGfiSSg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 24 Jan 2013 18:05:26 +0000
-Message-ID: <CAJTo0LYuSXZvhuGGY57SEy92-NuS1_y2QAJp9hTGaiMt+1LQWg@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Gm-Message-State: ALoCoQlNR+S8WFHewTkX7WdbCj+Ks83NTnvWaevG4xfROIWVOm0e4CKvmRdlkszPOBnL9AwUdfqNgJ8DFam5/rdAasVtO4rYdt6PFAv1sUZHjavy6rJxuCwbzfPJ2WeOqBKd1MSzbKDm/2AsSuBL9PD2xE+3DDBj3g==
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: install and use "bitbake -c populate_sdk"
+X-SafeGuard_MailGateway: Version: 5.80.2.12968 SGMG_SOPHOS Date:
+	20130124160457Z
+X-Mailman-Approved-At: Thu, 24 Jan 2013 10:12:19 -0800
+Subject: PREMIRRORS_prepend & friends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,26 +35,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 18:05:52 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 24 Jan 2013 16:05:00 -0000
+Content-type: text/plain; charset=US-ASCII
 
-On 24 January 2013 17:12, Trevor Woerner <twoerner@gmail.com> wrote:
->> how can I "extend" the
->> target system to use the rest USB disk space? ( it's FAT file system)
->>     or how to modify configuration to force build the .hddimg create ~"8GB"
->
-> By default a certain amount of overhead is applied to the final image.
-> So the scripts figure out the size of your image and add a certain
-> overhead.
->
-> In your conf/local.conf you can specify "IMAGE_ROOTFS_SIZE" which you
-> can set to the size, in kB, you want your image to have. But if you
-> image (plus overhead) would have been larger than this size, then
-> you'll get the larger + overhead size you would have received had you
-> not specified IMAGE_ROOTFS_SIZE.
 
-Or just set IMAGE_ROOTFS_EXTRA_SPACE, in kb.  I always add half a gig
-to my images.
+Hi,
 
-Ross
+after hours of trying and googling I finally make my first coming out here
+on this list to get some help with PREMIRRORS_prepend & friends.So please
+be friendly ;)
+
+I want to setup local mirrors for our yocto build for reproducability
+purposes. I am using ELDK-5.2.1 which is based on yocto-1.2
+
+I have made the following settings in my local.conf:
+
+PREMIRRORS_prepend = "\
+     git://.*/.*   git://git@dettlx79: \n \
+     ftp://.*/.* http://dettlx79/sources \n \
+     http://.*/.* http://dettlx79/sources \n \
+     https://.*/.* http://dettlx79/sources \n \"
+
+
+BB_FETCH_PREMIRRORONLY = "1"
+
+The host dettlx79 is a local server in our LAN.
+
+I was reading that you could use http:// or file:// as premirror protocols
+but I'd like to access local git mirrors with the git:// protocol as well.
+However this doesn't seem to work as the PREMIRROR appends some file
+archive to the git URL:
+
+$ bitbake u-boot
+
+Parsing recipes: 100% |
+################################################################################################################|
+ Time: 00:00:18
+Parsing of 874 .bb files complete (0 cached, 874 parsed). 1156 targets, 39
+skipped, 0 masked, 0 errors.
+
+OE Build Configuration:
+BB_VERSION        = "1.15.1"
+TARGET_ARCH       = "arm"
+TARGET_OS         = "linux-gnueabi"
+MACHINE           = "nitrogen"
+DISTRO            = "eldk"
+DISTRO_VERSION    = "5.2.1"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto
+meta-eldk
+meta-goldeneye
+meta-goldeneyeesw =
+"goldeneye-esw-test:ea2f7c40c7da6e0d6494cb83813a94d35c730e4d"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: Running task 440 of 728 (ID:
+4, /data/eswadmin/eldk-dzu/meta/recipes-bsp/u-boot/u-boot_2011.06.bb,
+do_fetch)
+NOTE: package u-boot-v2011.06+git58
++b1af6f532e0d348b153d5c148369229d24af361a-r1: task do_fetch: Started
+ERROR: Function failed: Network access disabled through BB_NO_NETWORK but
+access rquested with command git clone --bare --mirror
+git://git.denx.de/u-boot.git /data/eswadmin/eldk-dzu/build/downloads/git2/git.denx.de.u-boot.git
+ (for url None)
+ERROR: Logfile of failure stored
+in: /data/eswadmin/eldk-dzu/build/tmp/work/nitrogen-linux-gnueabi/u-boot-v2011.06
++git58+b1af6f532e0d348b153d5c148369229d24af361a-r1/temp/log.do_fetch.10681
+Log data follows:
+| DEBUG: Trying PREMIRRORS
+| DEBUG: For url ['git', 'git.denx.de', '/u-boot.git', '', '', {'protocol':
+'git', 'branch': 'master'}] comparing ['git', '.*', '/.*', '', '', {}] to
+['git', '', 'dettlx79:', 'git', '', {}]
+| DEBUG: For url git://git.denx.de/u-boot.git;branch=master;protocol=git
+returning
+git://git@dettlx79:/git2_git.denx.de.u-boot.git.tar.gz;protocol=git;branch=master
+| DEBUG: Fetcher accessed the network with the command git clone --bare
+--mirror
+git://git@dettlx79:/git2_git.denx.de.u-boot.git.tar.gz /data/eswadmin/eldk-dzu/build/downloads/git2/dettlx79..git2_git.denx.de.u-boot.git.tar.gz
+
+
+So how can I say that it should just access git://git@dettlx79:u-boot.git
+and not append /git2_git.denx.de.u-boot.git.tar.gz to my base URI ?
+
+Best regards,
+Daniel Schnell.
+
+
 
