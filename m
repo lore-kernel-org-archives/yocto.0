@@ -1,29 +1,40 @@
-Return-Path: <daniel.schnel.extern@ifm.com>
-Received: from eu3sys201aog101.obsmtp.com (eu3sys201aog101.obsmtp.com
-	[207.126.148.87])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 938D1E014EF
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 08:04:59 -0800 (PST)
-Received: from deesdmz226.dmz.es.de.ifm ([194.156.152.226]) (using TLSv1) by
-	eu3sys201aob101.postini.com ([207.126.154.11]) with SMTP
-	ID DSNKUQFbqdz+dtirjLapG/nnK/GcVErK9Z1w@postini.com;
-	Thu, 24 Jan 2013 16:04:59 UTC
-Received: from deesdmz226.dmz.es.de.ifm (localhost.localdomain [127.0.0.1])
-	by deesdmz226.dmz.es.de.ifm (Postfix) with ESMTP id 5900419F36F
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 17:04:57 +0100 (CET)
-X-KeepSent: BE0EFB03:95C8CD96-C1257AFD:00580557;
- type=4; name=$KeepSent
-To: yocto@yoctoproject.org
-X-Mailer: Lotus Notes Release 8.5.2FP3 July 11, 2011
-From: daniel.schnel.extern@ifm.com
-Message-ID: <OFBE0EFB03.95C8CD96-ONC1257AFD.00580557-C1257AFD.00584DE3@ifm-electronic.com>
-Date: Thu, 24 Jan 2013 17:04:31 +0100
-X-MIMETrack: Serialize by Router on deesifmweb04/ifmwww(Release 8.5.2HF17 |
-	August 31, 2010) at 24.01.2013 17:04:57
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D01BE014F3
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:07:08 -0800 (PST)
+Received: by mail-ve0-f177.google.com with SMTP id m1so449579ves.8
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:07:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:x-originating-ip:in-reply-to:references
+	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=+0fsZMrb840bZyZPwVIL+eeTEStpZ69L90rXJWt53D8=;
+	b=GnRD4fLoIEzjHOMtGuzZh2eyHxuycRiMf3ZIYoKtM33F6HyjAcRJO7pHmaKZGlmcqD
+	wNfmYuj4MYYFvof7RyjhuoBIiEuWmFFBuSx1VyuVQWCKOUCtuh8ggNG9pOa0U0FZmpcG
+	5UF3jvk1Jn0JoRGmZYqV5lPfzLBqZBiJ3XnTAy1Me3IKh4S4W0Dr+7caq3IfnxDE5Ptw
+	I6pXegDKpnJW/r60zMJ4rIdcoOE/boBLIIRLYDzaqdq3FJ9s8M8mFce09l0TfcD1VqSA
+	h2dGa0UPZugdBalTZ8Qq+bKw4sOZv0GQIZ0yrVZjCHW7hQFD7xt66VkEw23CDrcSKQ7X
+	RWOQ==
+X-Received: by 10.220.219.77 with SMTP id ht13mr3080703vcb.66.1359054427746;
+	Thu, 24 Jan 2013 11:07:07 -0800 (PST)
 MIME-Version: 1.0
-X-SafeGuard_MailGateway: Version: 5.80.2.12968 SGMG_SOPHOS Date:
-	20130124160457Z
-X-Mailman-Approved-At: Thu, 24 Jan 2013 10:12:19 -0800
-Subject: PREMIRRORS_prepend & friends
+Received: by 10.58.153.163 with HTTP; Thu, 24 Jan 2013 11:06:47 -0800 (PST)
+X-Originating-IP: [89.121.200.106]
+In-Reply-To: <CAK18fxHFBP7RLotsXD50ETttAEjJn4ttiOJw6QMwCcu23C5cAA@mail.gmail.com>
+References: <1358094195-23815-1-git-send-email-andrei@gherzan.ro>
+	<1358094195-23815-2-git-send-email-andrei@gherzan.ro>
+	<211E2BEE5356446CB425C4E2514B1285@intel.com>
+	<CAK18fxEkr4fhymhMDx7CGYTX7PGe1C57pw0iGYQaYNO9a1UFhw@mail.gmail.com>
+	<B2E17B5564364905A4A31F70FC62F9E0@intel.com>
+	<CAK18fxHFBP7RLotsXD50ETttAEjJn4ttiOJw6QMwCcu23C5cAA@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Thu, 24 Jan 2013 21:06:47 +0200
+Message-ID: <CAK18fxFGEU0scchTNAA7i0MZTPdBvqQYSK8is9o1XTbkHNqD2g@mail.gmail.com>
+To: Ross Burton <ross.burton@intel.com>
+X-Gm-Message-State: ALoCoQm/Cg40bTzbWB/ahzchIY7qtlZaRILnfOZEbehk2ADvcq35DSWQabIv13oqhkN/sncCjGc4
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-intel][PATCH 2/2] fri2.conf: mesa-dri was updated to 9.0.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,95 +46,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 16:05:00 -0000
-Content-type: text/plain; charset=US-ASCII
+X-List-Received-Date: Thu, 24 Jan 2013 19:07:08 -0000
+Content-Type: multipart/alternative; boundary=14dae9cfc8a865705304d40d8405
 
+--14dae9cfc8a865705304d40d8405
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+On Sun, Jan 13, 2013 at 11:06 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
 
-after hours of trying and googling I finally make my first coming out here
-on this list to get some help with PREMIRRORS_prepend & friends.So please
-be friendly ;)
+> On Sun, Jan 13, 2013 at 10:03 PM, Ross Burton <ross.burton@intel.com>wrote:
+>
+>> On Sunday, 13 January 2013 at 19:39, Andrei Gherzan wrote:
+>> > Tested with a new sato build on master. Everything seems to be OK.
+>>
+>> glxinfo/glxgears or something that actually uses the hardware?
+>>
+>
+> Yes. That too.
+>
 
-I want to setup local mirrors for our yocto build for reproducability
-purposes. I am using ELDK-5.2.1 which is based on yocto-1.2
+Ping.
 
-I have made the following settings in my local.conf:
+-- 
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
 
-PREMIRRORS_prepend = "\
-     git://.*/.*   git://git@dettlx79: \n \
-     ftp://.*/.* http://dettlx79/sources \n \
-     http://.*/.* http://dettlx79/sources \n \
-     https://.*/.* http://dettlx79/sources \n \"
+--14dae9cfc8a865705304d40d8405
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra">On Sun, Jan 13, 2013 at 11:06 P=
+M, Andrei Gherzan <span dir=3D"ltr">&lt;<a href=3D"mailto:andrei@gherzan.ro=
+" target=3D"_blank">andrei@gherzan.ro</a>&gt;</span> wrote:<br><div class=
+=3D"gmail_quote">
 
-BB_FETCH_PREMIRRORONLY = "1"
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div class=3D"h5">On S=
+un, Jan 13, 2013 at 10:03 PM, Ross Burton <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&g=
+t;</span> wrote:<br>
 
-The host dettlx79 is a local server in our LAN.
+</div></div><div class=3D"gmail_extra"><div class=3D"gmail_quote"><div><div=
+ class=3D"h5">
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>On Sunday, 13 January 2013 at 19:39, An=
+drei Gherzan wrote:<br>
+&gt; Tested with a new sato build on master. Everything seems to be OK.<br>
+<br>
+</div>glxinfo/glxgears or something that actually uses the hardware?<br></b=
+lockquote><div><br></div></div></div><div>Yes. That too.=A0</div></div></di=
+v></div>
+</blockquote></div><br>Ping.<br clear=3D"all"><div><br></div>-- <br><div di=
+r=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"text-align:c=
+enter"><div align=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;f=
+ont-size:medium">
 
-I was reading that you could use http:// or file:// as premirror protocols
-but I'd like to access local git mirrors with the git:// protocol as well.
-However this doesn't seem to work as the PREMIRROR appends some file
-archive to the git URL:
+<b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
+n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
+-1"><br></font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.74=
+4.478.414 | =A0f: +40.31.816.28.12</font><br>
 
-$ bitbake u-boot
+</div></div></div>
+</div></div>
 
-Parsing recipes: 100% |
-################################################################################################################|
- Time: 00:00:18
-Parsing of 874 .bb files complete (0 cached, 874 parsed). 1156 targets, 39
-skipped, 0 masked, 0 errors.
-
-OE Build Configuration:
-BB_VERSION        = "1.15.1"
-TARGET_ARCH       = "arm"
-TARGET_OS         = "linux-gnueabi"
-MACHINE           = "nitrogen"
-DISTRO            = "eldk"
-DISTRO_VERSION    = "5.2.1"
-TUNE_FEATURES     = "armv7a vfp neon"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto
-meta-eldk
-meta-goldeneye
-meta-goldeneyeesw =
-"goldeneye-esw-test:ea2f7c40c7da6e0d6494cb83813a94d35c730e4d"
-
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Running task 440 of 728 (ID:
-4, /data/eswadmin/eldk-dzu/meta/recipes-bsp/u-boot/u-boot_2011.06.bb,
-do_fetch)
-NOTE: package u-boot-v2011.06+git58
-+b1af6f532e0d348b153d5c148369229d24af361a-r1: task do_fetch: Started
-ERROR: Function failed: Network access disabled through BB_NO_NETWORK but
-access rquested with command git clone --bare --mirror
-git://git.denx.de/u-boot.git /data/eswadmin/eldk-dzu/build/downloads/git2/git.denx.de.u-boot.git
- (for url None)
-ERROR: Logfile of failure stored
-in: /data/eswadmin/eldk-dzu/build/tmp/work/nitrogen-linux-gnueabi/u-boot-v2011.06
-+git58+b1af6f532e0d348b153d5c148369229d24af361a-r1/temp/log.do_fetch.10681
-Log data follows:
-| DEBUG: Trying PREMIRRORS
-| DEBUG: For url ['git', 'git.denx.de', '/u-boot.git', '', '', {'protocol':
-'git', 'branch': 'master'}] comparing ['git', '.*', '/.*', '', '', {}] to
-['git', '', 'dettlx79:', 'git', '', {}]
-| DEBUG: For url git://git.denx.de/u-boot.git;branch=master;protocol=git
-returning
-git://git@dettlx79:/git2_git.denx.de.u-boot.git.tar.gz;protocol=git;branch=master
-| DEBUG: Fetcher accessed the network with the command git clone --bare
---mirror
-git://git@dettlx79:/git2_git.denx.de.u-boot.git.tar.gz /data/eswadmin/eldk-dzu/build/downloads/git2/dettlx79..git2_git.denx.de.u-boot.git.tar.gz
-
-
-So how can I say that it should just access git://git@dettlx79:u-boot.git
-and not append /git2_git.denx.de.u-boot.git.tar.gz to my base URI ?
-
-Best regards,
-Daniel Schnell.
-
-
-
+--14dae9cfc8a865705304d40d8405--
