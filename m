@@ -1,33 +1,30 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 419C1E002AB
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:14:57 -0800 (PST)
-Received: from cpebcc81008dd2c-cmbcc81008dd29.cpe.net.cable.rogers.com
-	([99.253.156.71]:33579 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1TySGG-00082Q-8V; Thu, 24 Jan 2013 14:14:56 -0500
-Date: Thu, 24 Jan 2013 14:14:45 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: daniel.schnel.extern@ifm.com
-In-Reply-To: <OFBE0EFB03.95C8CD96-ONC1257AFD.00580557-C1257AFD.00584DE3@ifm-electronic.com>
-Message-ID: <alpine.DEB.2.02.1301241412340.6204@oneiric>
-References: <OFBE0EFB03.95C8CD96-ONC1257AFD.00580557-C1257AFD.00584DE3@ifm-electronic.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: PREMIRRORS_prepend & friends
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70E2DE006C3
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 11:24:55 -0800 (PST)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1TySQ4-0003Wa-Ii
+	for yocto@yoctoproject.org; Thu, 24 Jan 2013 20:25:05 +0100
+Received: from c-98-250-201-60.hsd1.mi.comcast.net ([98.250.201.60])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 20:25:04 +0100
+Received: from brubor2005 by c-98-250-201-60.hsd1.mi.comcast.net with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 20:25:04 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Bruce <brubor2005@yahoo.com>
+Date: Thu, 24 Jan 2013 19:15:56 +0000 (UTC)
+Message-ID: <loom.20130124T201459-642@post.gmane.org>
+References: <50DB2E67.4090602@dynamicdevices.co.uk>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 98.250.201.60 (Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.17
+	(KHTML, like Gecko) Chrome/24.0.1312.56 Safari/537.17)
+Subject: Re: [meta-mono] Support for Visual Studio debugging on Yocto/OE targets (e.g. RPi)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,51 +36,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 19:14:57 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 24 Jan 2013 19:24:55 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On Thu, 24 Jan 2013, daniel.schnel.extern@ifm.com wrote:
+Alex J Lennon <ajlennon@...> writes:
 
->
-> Hi,
->
-> after hours of trying and googling I finally make my first coming out here
-> on this list to get some help with PREMIRRORS_prepend & friends.So please
-> be friendly ;)
->
-> I want to setup local mirrors for our yocto build for reproducability
-> purposes. I am using ELDK-5.2.1 which is based on yocto-1.2
->
-> I have made the following settings in my local.conf:
->
-> PREMIRRORS_prepend = "\
->      git://.*/.*   git://git@dettlx79: \n \
->      ftp://.*/.* http://dettlx79/sources \n \
->      http://.*/.* http://dettlx79/sources \n \
->      https://.*/.* http://dettlx79/sources \n \"
->
->
-> BB_FETCH_PREMIRRORONLY = "1"
+> 
+> Hi all, Autif,
+> 
+> I've been working to support .NET development on Linux
+> over the past few days.
+> 
+> There is a Visual Studio plugin, MonoTools for Visual Studio
+> which provides support for local and remote debugging of
+> .NET applications with Mono.
+> 
+> This requires a remote stub to be running on the target
+> platform, monotools-server.
+> 
+> I've created a recipe to build monotools-server, which in
+> turn required me to pull in Openembedded Legacy recipes
+> for mono-xsp and gtk-sharp.
+> 
+> As it stands I'm now able to build an X enabled image for
+> the Raspberry Pi and remote-debug some simple Windows
+> Forms .NET applications within the Visual Studio IDE.
+> 
+> Recipes are hosted here in 'recipes-mono'
+> 
+> git@...:ciseco-eve.meta-eve.git
+> 
+> If there is interest in migrating these recipes into meta-mono
+> and  somebody will review them then I'll be pleased to make
+> whatever changes are needed to comply with relevant
+> Yocto policies.
+> 
+> Best Regards, (& Happy Holidays)
+> 
+> Alex
+> 
+> 
+Hello,
 
-  ... snip ...
+I stumbled on to this site and would like to know if you can tell me how to get 
+monotools-server installed and how to run it on Raspberry Pi?
 
-i documented how i set up my own local mirror here:
+I tried following the instructions at this site:
+http://mono-project.com/GettingStartedWithMonoVS
 
-http://www.crashcourse.ca/wiki/index.php/OE_Creating_your_%22own_mirror%22
+and got the Visual Studio side to work but can't figure out how to get 
+monotools-server to run on Pi.  Specifically this part tripped me up:
 
-it's all based on eventually storing tarballs of the sources, no
-matter how you fetched the original sources.  is that what you're
-after for reproducibility?
+    Download Servers for Linux and Mac to Run/Debug Remotely
 
-rday
+    Linux:
 
--- 
+    Use the openSUSE 1click from your existing Linux system:
+              http://mono-project.com/files/2/2b/Monovs-1click.png
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+    Note: After installing on Linux, launch the "MonoTool GUI Server" from the 
+application menu to start the server.
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+I tried clicking on the above link in Medora and it just hangs.  Is your version 
+of Monotools-server available somewhere?  I would greatly appreciate any help 
+you can offer.  Thanks,
+
+Bruce
+
+
 
