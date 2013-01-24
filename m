@@ -1,39 +1,25 @@
-Return-Path: <emilia.maria.silvia.ciobanu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 418F3E0147F
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 06:16:07 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 24 Jan 2013 06:14:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,529,1355126400"; d="scan'208";a="276106677"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga002.jf.intel.com with ESMTP; 24 Jan 2013 06:16:03 -0800
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 24 Jan 2013 14:16:02 +0000
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.82]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.144]) with mapi id
-	14.01.0355.002; Thu, 24 Jan 2013 14:16:02 +0000
-From: "Ciobanu, Emilia Maria Silvia" <emilia.maria.silvia.ciobanu@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>, Philip Balister
-	<philip@balister.org>
-Thread-Topic: [OE-core] [yocto] Meta-web-kiosk Layer
-Thread-Index: AQHN+jp6CuaT40LkAEWLRfVss8dAoZhYhhVX
-Date: Thu, 24 Jan 2013 14:16:01 +0000
-Message-ID: <985E5BBDA0968D48ABDF343456A521B3F130DF@IRSMSX102.ger.corp.intel.com>
-References: <985E5BBDA0968D48ABDF343456A521B3F1300F@IRSMSX102.ger.corp.intel.com>
-	<CAJTo0Lbjvedo-1YPQmM2uEv_44aUh9eoo45BCpXg6U=rH+f0mw@mail.gmail.com>
-	<51012AE1.7060905@balister.org>,
-	<CAJTo0LbtvKV3V5sKTbZ5j9GDu5xFfLgVicd6o74aW2NT0OArKw@mail.gmail.com>
-In-Reply-To: <CAJTo0LbtvKV3V5sKTbZ5j9GDu5xFfLgVicd6o74aW2NT0OArKw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.86.135]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OE-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Meta-web-kiosk Layer
+Return-Path: <timo.mueller@oss.bmw-carit.de>
+Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5109AE014DD
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 07:12:44 -0800 (PST)
+Received: from localhost (mysterion.bmw-carit.intra [192.168.101.47])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 29D9B400E4;
+	Thu, 24 Jan 2013 15:33:24 +0100 (CET)
+From: Timo Mueller <mail@timomueller.eu>
+To: yocto@yoctoproject.org
+Date: Thu, 24 Jan 2013 16:12:26 +0100
+Message-Id: <75fe8c916aee186365c6b4eff31c1bca37a2b444.1358931353.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.7.11.7
+In-Reply-To: <da3b87a039d43a6cf16603b46437c36d4d9635e5.1358931353.git.timo.mueller@bmw-carit.de>
+References: <cover.1358931353.git.timo.mueller@bmw-carit.de>
+	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1358931353.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1358931353.git.timo.mueller@bmw-carit.de>
+References: <cover.1358931353.git.timo.mueller@bmw-carit.de>
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: [RFC 02/17] plugins/sdk.ide: Extract labels to private members
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,47 +31,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 14:16:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 24 Jan 2013 15:12:44 -0000
 
-Hi,=0A=
-=0A=
-I've updated the wiki.=0A=
-=0A=
-Ema=0A=
-________________________________________=0A=
-From: openembedded-core-bounces@lists.openembedded.org [openembedded-core-b=
-ounces@lists.openembedded.org] on behalf of Burton, Ross [ross.burton@intel=
-.com]=0A=
-Sent: Thursday, January 24, 2013 3:54 PM=0A=
-To: Philip Balister=0A=
-Cc: yocto@yoctoproject.org; OE-core=0A=
-Subject: Re: [OE-core] [yocto] Meta-web-kiosk Layer=0A=
-=0A=
-On 24 January 2013 12:36, Philip Balister <philip@balister.org> wrote:=0A=
-> On 01/24/2013 07:12 AM, Burton, Ross wrote:=0A=
->> On 24 January 2013 12:03, Ciobanu, Emilia Maria Silvia=0A=
->> <emilia.maria.silvia.ciobanu@intel.com> wrote:=0A=
->>> I've created a new layer that can be used for kiosk devices.=0A=
->>> You can check it out at:=0A=
->>>     http://git.yoctoproject.org/cgit/cgit.cgi/meta-web-kiosk/=0A=
->>=0A=
->> Excellent, good to see it not hidden away!=0A=
->=0A=
-> It is hidden until it appears on the Layer index :)=0A=
->=0A=
-> http://www.openembedded.org/wiki/LayerIndex=0A=
->=0A=
-> Please add it there.=0A=
-=0A=
-Yes, it should be on the layer index.  Emelia, can you update the wiki?=0A=
-=0A=
-Ross=0A=
-=0A=
-_______________________________________________=0A=
-Openembedded-core mailing list=0A=
-Openembedded-core@lists.openembedded.org=0A=
-http://lists.linuxtogo.org/cgi-bin/mailman/listinfo/openembedded-core=0A=
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+
+Extracting the labels as private members allows the modification of
+the label settings after creation. This is will allow disabling and
+enabling the labels after creation of the form.
+
+Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
+---
+ .../src/org/yocto/sdk/ide/YoctoUISetting.java             | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
+index 0fbfde0..a4a3c09 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
+@@ -63,6 +63,12 @@ public class YoctoUISetting {
+ 	private Text textRootLoc;
+ 	private Combo targetArchCombo;
+ 
++	private Label root_label;
++	private Label sysroot_label;
++	private Label targetArchLabel;
++	private Label kernel_label;
++	private Label option_label;
++
+ 	public YoctoUISetting(YoctoUIElement elem)
+ 	{
+ 		yoctoUIElement = elem;
+@@ -140,10 +146,6 @@ public class YoctoUISetting {
+ 
+ 	private void createQemuSetup(final Group targetGroup) throws YoctoGeneralException
+ 	{
+-		Label kernel_label;
+-		Label option_label;
+-		
+-		
+ 		//QEMU Setup
+ 		kernel_label= new Label(targetGroup, SWT.NONE);
+ 		kernel_label.setText("Kernel: ");
+@@ -180,8 +182,7 @@ public class YoctoUISetting {
+ 	}
+ 	public void createComposite(Composite composite) throws YoctoGeneralException
+ 	{
+-		Label root_label, sysroot_label;
+-		
++
+ 		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+ 		GridLayout layout = new GridLayout(2, false);
+ 		composite.setLayout(layout);
+@@ -224,7 +225,7 @@ public class YoctoUISetting {
+ 		btnSysrootLoc = addFileSelectButton(textContainer, textSysrootLoc, PreferenceConstants.SYSROOT);
+ 
+ 		updateSDKControlState();
+-		Label targetArchLabel= new Label(crossCompilerGroup, SWT.NONE);
++		targetArchLabel = new Label(crossCompilerGroup, SWT.NONE);
+ 		targetArchLabel.setText("Target Architecture: ");
+ 
+ 		targetArchCombo= new Combo(crossCompilerGroup, SWT.READ_ONLY);
+-- 
+1.7.11.7
+
 
