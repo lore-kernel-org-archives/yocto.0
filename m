@@ -1,30 +1,40 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0F4EE011C0
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 17:47:13 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r0O1lEAj024942
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 23 Jan 2013 17:47:14 -0800 (PST)
-Received: from Marks-MacBook-Pro.local (147.11.117.44) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.318.4; Wed, 23 Jan 2013 17:47:13 -0800
-Message-ID: <510092A1.6050009@windriver.com>
-Date: Wed, 23 Jan 2013 19:47:13 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+Return-Path: <daniel.kenji.morgan@gmail.com>
+Received: from mail-da0-f47.google.com (mail-da0-f47.google.com
+	[209.85.210.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E552E006D2
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 03:29:29 -0800 (PST)
+Received: by mail-da0-f47.google.com with SMTP id s35so4200787dak.20
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 03:29:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:message-id:date:from:reply-to:organization:user-agent
+	:mime-version:to:subject:content-type:content-transfer-encoding;
+	bh=jTw74jfvd/lG/pQxAKnCugUdCOEnKo4unvN3nwgxYKI=;
+	b=GIKQpkiRL/vY9NjfCfzxQ5aIGG1WTrFPfCQnjM7CqrlirppZe/G8PV3Bjx8t+ksc28
+	KtMEg2txnmn+Oi03HARKjxegI6BhzHZH9ax07JUcFYlifSWhe7O0qO4/SEgFC0sk7PFV
+	/OGZJt+7UKRX4HNYZeU5M41WnKW6foGhzjYPH6ry7Sm36Wd5Ciq1A0JiKx8ZjunN2xrn
+	i5AyAQlD/mZ47PNBkVzWYRr3BFxzfIyBltfcfL7yNnJLer98xY8VwOwICwma2I6DBU4p
+	d9hLeYx37t7SaQoqz7wfcbAYHJcJMge2gqYvgogLWt9E2LR3v4FwAlF6yaBKo9ooYH74
+	3K4Q==
+X-Received: by 10.68.222.232 with SMTP id qp8mr3863240pbc.99.1359026969217;
+	Thu, 24 Jan 2013 03:29:29 -0800 (PST)
+Received: from [210.170.220.194] (PPPbm2.fukushima-ip.dti.ne.jp.
+	[210.170.220.194])
+	by mx.google.com with ESMTPS id ov4sm14724083pbb.45.2013.01.24.03.29.27
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 24 Jan 2013 03:29:28 -0800 (PST)
+Message-ID: <51011B18.2070105@gmail.com>
+Date: Thu, 24 Jan 2013 20:29:28 +0900
+From: Daniel Kenji Morgan <daniel.kenji.morgan@gmail.com>
+Organization: Daniel Kenji Morgan
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
 	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAHUNapRAcCu=82B3JX0WQweEhz0-m+5sYhdR8gtX+U3UyiKnkg@mail.gmail.com>
-	<CAJTo0LZGXAgvCMDD4B+12JTSb_tjNS3xn0mrabFb5DSob8AJnw@mail.gmail.com>
-In-Reply-To: <CAJTo0LZGXAgvCMDD4B+12JTSb_tjNS3xn0mrabFb5DSob8AJnw@mail.gmail.com>
-Subject: Re: are separate -sdk image targets necessary Was: Build external module against Yocto kernel
+To: yocto@yoctoproject.org
+Subject: do_package task of the kernel takes extremely long
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: daniel.kenji.morgan@gmail.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -33,57 +43,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 01:47:14 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 24 Jan 2013 11:29:29 -0000
+Content-Type: text/plain; charset=ISO-2022-JP
 Content-Transfer-Encoding: 7bit
 
-On 1/23/13 10:56 AM, Burton, Ross wrote:
-> On 23 January 2013 16:51, Trevor Woerner <twoerner@gmail.com> wrote:
->> On Tue, Jan 15, 2013 at 2:16 PM, Zhang, Jessica <jessica.zhang@intel.com> wrote:
->>> According to bug 1614, the kernel dev packages should be
->>> included in sdk images. Please generate your toolchain using
->>> "bitbake core-image-sato-sdk -c populate_sdk" which will
->>> make the toolchain target sysroot matching your image's
->>> sysroot (this is a new feature of 1.3) as long as your image
->>> is a sdk image.
->>
->> I am a bit confused by the above email. To me it appears as if Jessica
->> is saying: "add '-c populate_sdk' to the build of an -sdk image".
->>
->> But if we look at this email from Mark Hatle:
->> http://www.mail-archive.com/yocto@yoctoproject.org/msg10636.html
->>
->> I get the impression that Mark is saying: "now that '-c populate_sdk'
->> is available, there no longer is any need for separate -sdk images".
->>
->> Am I confusing two different things with each other?
->
-> My understanding was that populate_sdk will take the package set from
-> an image, add compilers and all development packages, and produce a
-> SDK.  So all you need is your production image, and then you can
-> generate a SDK from that.
+Hello,
 
-That is correct.  Just like everything else in OE, there are multiple ways to do 
-things.
+I'm still fairly new to Yocto, and having some trouble with kernel
+packaging taking an extremely long time.
+I will try and keep details as simple as possible to explain my situation.
 
-When it comes to the SDK there are two main ways, an SDK specific recipe, such 
-as meta-toolchain, or use an existing image and produce an SDK for that image. 
-The former is better for targeted SDKs that you want to allow something to 
-produce software with a known set of limitations/capabilities.  The later is 
-useful when your SDK has to match the image -exactly-.
+I am building images for the machine "imx6qsabrelite" in the
+"meta-fsl-arm" BSP layer using Poky 1.3 (danny).
+To make it easier to test out changes to the linux kernel source, I have
+a copy of the source in a local subversion repository, which is checked
+out to a local working copy.
 
-The kernel components/headers is a separate issue.  The SDKs are currently 
-configured to be focused on application development tasks.  Jessica and I were 
-talking this morning, and it may be possible to enable kernel module compilation 
-as well -- but this isn't the existing use-case.
+I have created a kernel recipe to inherit "externalsrc" and set "S" to
+the local working copy directory.
+I have added a "configure_prepend" task to stage the build directory.
+I use "bitbake core-image-minimal" to build the image.
 
---Mark
+Here is what I have found from checking the "do_package" task duration
+of the kernel in the build stats:
 
-> Ross
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+1. Using a local working copy directory (subversion 1.6), the duration
+exceeds 4000 seconds.
+
+2. Using a local working copy directory (subversion 1.7), the duration
+takes approximately 800 seconds.
+
+3. Using the original kernel recipe which obtains the kernel source off
+a Git repository from the internet, the duration takes approximately 400
+seconds.
+
+Checking the "do_package" task, it seems like all directories and
+sub-directorys of the source are checked recursively in the process.
+I think it's safe to say that the number of subversion administrative
+directorys is affecting the "do_package" task duration.
+
+Is there any way to make the "do_package" task ignore .svn
+administrative directories?
 
 
