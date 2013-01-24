@@ -1,27 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38776E0151B;
-	Thu, 24 Jan 2013 13:27:08 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r0OLQpSQ012332
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 24 Jan 2013 13:26:51 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.318.4;
-	Thu, 24 Jan 2013 13:26:50 -0800
-Message-ID: <5101A719.8030801@windriver.com>
-Date: Thu, 24 Jan 2013 16:26:49 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <schnitzeltony@googlemail.com>
+Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0BFBE01505
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:57:57 -0800 (PST)
+Received: by mail-ea0-f176.google.com with SMTP id a13so3920480eaa.21
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:57:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=x-received:from:to:subject:date:message-id:x-mailer:mime-version
+	:content-type:content-transfer-encoding;
+	bh=q434mVDGSjlnBE9lg8fZZCEdoFY1JvTJmyVNAut3oQY=;
+	b=WXbQY2t5HMme8IgSmKgvjgLe5J4lXcPOFrlAPt8IVkfSVnzchlY+r3RG8iVTrc1tuN
+	lsSJJSZ7S5J66L17JmjR5iD4rBKGQjpuF/H9eJpzuMEJ5doR0SLYUiXyQQz/HiZfCb/i
+	GqYCgxxDueORTaNlUs5jN/gUYDcY/LAQDq/WIkGCLu3EOrgdiJsEoqnM3v9zGxzrhmQs
+	DSCwcXTRBzVPt/LgK/KVlYEcJv0FIcw+XbMyM5GD4t2DdfLn7jvoyteFXH+fTXmt+Gay
+	+XlB18aqXJhIO04oGoVd8hRLvUnxOXGz8IHA0hlVagc7wJW1NeBXgyksijkYcAeqQMY6
+	jGig==
+X-Received: by 10.14.225.72 with SMTP id y48mr10347262eep.46.1359064676318;
+	Thu, 24 Jan 2013 13:57:56 -0800 (PST)
+Received: from localhost.localdomain (p5B0A316D.dip.t-dialin.net.
+	[91.10.49.109])
+	by mx.google.com with ESMTPS id b2sm37011988eep.9.2013.01.24.13.57.54
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Thu, 24 Jan 2013 13:57:55 -0800 (PST)
+From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 24 Jan 2013 22:57:40 +0100
+Message-Id: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
+X-Mailer: git-send-email 1.7.4.4
 MIME-Version: 1.0
-To: Development list for the linux-yocto repositories
-	<linux-yocto@yoctoproject.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: FYI: new linux-yocto contrib option
+Subject: [meta-raspberrypi][PATCH 0/2] minor fixes for current HEADs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,36 +41,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 21:27:08 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 Jan 2013 21:57:58 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi all,
+The following changes since commit e3e92fe9035f872e619f56426414dd93e917f3cc:
 
-We now have a more up to date kernel repository for contributions to
-the linux-yocto kernel or linux-yocto meta data (configs, patches).
+  README: Refactor (2013-01-24 21:34:48 +0200)
 
-(Michael indulged me and help set this up really quickly, so he gets
-all the credit for the work on this).
+are available in the git repository at:
+  git://github.com/schnitzeltony/meta-raspberrypi.git work
 
-Enough rambling, and onto the link:
+Andreas Müller (2):
+      layer.conf: fix parse
+      xserver-xf86-config: fix do_install
 
-   git://git.yoctoproject.org/linux-yocto-contrib
-   http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-contrib/
+ conf/layer.conf                                    |    2 +-
+ .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    6 ++++--
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
-This is just like the old contrib repository (linux-yocto-2.6.37-contrib),
-except that it is up to date with the mainline kernel, and doesn't
-have a version number stuck in the middle. There's a cron job that
-will ensure that it stays up to date, saving bandwith on pushes
-and pulls from the repo.
+-- 
+1.7.4.4
 
-Anyone sending kernel pull requests should switch to using this repository.
-
-We'll hide the old linux-yocto-2.6.37-contrib repository from the main
-cgit page to reduce clutter, but the repo will still be present and
-accessible.
-
-Cheers,
-
-Bruce
 
