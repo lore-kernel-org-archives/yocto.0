@@ -1,35 +1,36 @@
 Return-Path: <schnitzeltony@googlemail.com>
-Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0BFBE01505
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:57:57 -0800 (PST)
-Received: by mail-ea0-f176.google.com with SMTP id a13so3920480eaa.21
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:57:56 -0800 (PST)
+Received: from mail-ee0-f53.google.com (mail-ee0-f53.google.com [74.125.83.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3644EE01508
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:58:00 -0800 (PST)
+Received: by mail-ee0-f53.google.com with SMTP id e53so4761161eek.26
+	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 13:57:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:x-mailer:mime-version
-	:content-type:content-transfer-encoding;
-	bh=q434mVDGSjlnBE9lg8fZZCEdoFY1JvTJmyVNAut3oQY=;
-	b=WXbQY2t5HMme8IgSmKgvjgLe5J4lXcPOFrlAPt8IVkfSVnzchlY+r3RG8iVTrc1tuN
-	lsSJJSZ7S5J66L17JmjR5iD4rBKGQjpuF/H9eJpzuMEJ5doR0SLYUiXyQQz/HiZfCb/i
-	GqYCgxxDueORTaNlUs5jN/gUYDcY/LAQDq/WIkGCLu3EOrgdiJsEoqnM3v9zGxzrhmQs
-	DSCwcXTRBzVPt/LgK/KVlYEcJv0FIcw+XbMyM5GD4t2DdfLn7jvoyteFXH+fTXmt+Gay
-	+XlB18aqXJhIO04oGoVd8hRLvUnxOXGz8IHA0hlVagc7wJW1NeBXgyksijkYcAeqQMY6
-	jGig==
-X-Received: by 10.14.225.72 with SMTP id y48mr10347262eep.46.1359064676318;
-	Thu, 24 Jan 2013 13:57:56 -0800 (PST)
+	h=x-received:from:to:subject:date:message-id:x-mailer:in-reply-to
+	:references:mime-version:content-type:content-transfer-encoding;
+	bh=mTAR7b84LGgIhL6yFspILhPoKld18mEQ//ZyaGiEGCU=;
+	b=YcSCOFh2IAUrJu3SKCseY8Eoo0Udrt/bW4LvTr6ozIjNi7+2IYW3JAlzkC9vEkS6nm
+	Iq+D6retVa0uzdv+4Ihwh1Rn+GqBdO1rLbkje4zTdvJ8kaFi+dWdBV5YYPrjk8TjLpPr
+	w3MBBKWGTycOLZXf0RK9319aGtdRZmO5/lUxsy+zC1vNgNZ7L2Aq9b8uH/4vgADuGvGc
+	ewZffagJLc1Be5jTNIJCGCqitvC2PrYvokyb+fFOG7mRHs9rkH63nGuPpSkkpu2MYRJY
+	sEatFusd0USLh6Ie3DNGx453ANsXVMWOHwMJHwWtKz+1v+wMm6qrgkrDcN1++ZW7mtGh
+	rU/w==
+X-Received: by 10.14.173.65 with SMTP id u41mr10530313eel.13.1359064679348;
+	Thu, 24 Jan 2013 13:57:59 -0800 (PST)
 Received: from localhost.localdomain (p5B0A316D.dip.t-dialin.net.
 	[91.10.49.109])
-	by mx.google.com with ESMTPS id b2sm37011988eep.9.2013.01.24.13.57.54
+	by mx.google.com with ESMTPS id b2sm37011988eep.9.2013.01.24.13.57.56
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 24 Jan 2013 13:57:55 -0800 (PST)
+	Thu, 24 Jan 2013 13:57:56 -0800 (PST)
 From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 24 Jan 2013 22:57:40 +0100
-Message-Id: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
+Date: Thu, 24 Jan 2013 22:57:41 +0100
+Message-Id: <1359064662-17052-2-git-send-email-schnitzeltony@googlemail.com>
 X-Mailer: git-send-email 1.7.4.4
+In-Reply-To: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
+References: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH 0/2] minor fixes for current HEADs
+Subject: [meta-raspberrypi][PATCH 1/2] layer.conf: fix parse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,25 +42,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jan 2013 21:57:58 -0000
+X-List-Received-Date: Thu, 24 Jan 2013 21:58:00 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-The following changes since commit e3e92fe9035f872e619f56426414dd93e917f3cc:
+after meta-systemd commit [1] the following error was thrown during parsing:
 
-  README: Refactor (2013-01-24 21:34:48 +0200)
+ERROR: Unable to parse /home/Superandy/data/oe-core/sources/meta-raspberrypi/conf/layer.conf:
+Failure expanding variable BBFILES, expression was
+...
+/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/recipes-*/*/*.bb
+/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/oe-core/recipes-*/*/*.bbappend
+/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-oe/recipes-*/*/*.bbappend
+${@base_contains('BBFILE_COLLECTIONS', 'systemd-layer','', '/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/invalid.bb', d)}
+${@base_contains('BBFILE_COLLECTIONS', 'gnome-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-gnome/recipes-*/*/*.bbappend', '', d)}
+${@base_contains('BBFILE_COLLECTIONS', 'efl-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-efl/recipes-*/*/*.bbappend', '', d)}
+${@base_contains('BBFILE_COLLECTIONS', 'multimedia-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-multimedia/recipes-*/*/*.bbappend', '', d)}
+${@base_contains('BBFILE_COLLECTIONS', 'networking','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-networking/recipes-*/*/*.bbappend', '', d)}
+${@base_contains('BBFILE_COLLECTIONS', 'xfce-layer','/home/Superandy/data/oe-core/sources/meta-openembedded/meta-systemd/meta-xfce/recipes-*/*/*.bbappend', '', d)}
+...
+which triggered exception NameError: name 'base_contains' is not defined
 
-are available in the git repository at:
-  git://github.com/schnitzeltony/meta-raspberrypi.git work
+[1] http://cgit.openembedded.org/meta-openembedded/commit/?id=3c21a46020bd0816579648f684c41dbd6333583e
 
-Andreas Müller (2):
-      layer.conf: fix parse
-      xserver-xf86-config: fix do_install
+Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+---
+ conf/layer.conf |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
- conf/layer.conf                                    |    2 +-
- .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    6 ++++--
- 2 files changed, 5 insertions(+), 3 deletions(-)
-
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 32e1827..e8b87b2 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -2,7 +2,7 @@
+ BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory containing .bb and .bbappend files, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes*/*/*.bb \ 
++BBFILES += "${LAYERDIR}/recipes*/*/*.bb \
+             ${LAYERDIR}/recipes*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "raspberrypi"
 -- 
 1.7.4.4
 
