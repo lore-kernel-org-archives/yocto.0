@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBE9BE014EA
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E317AE014E2
 	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 07:12:45 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.47])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 24FDF400AC;
-	Thu, 24 Jan 2013 15:33:26 +0100 (CET)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E0CA3402D6;
+	Thu, 24 Jan 2013 15:33:25 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Thu, 24 Jan 2013 16:12:41 +0100
-Message-Id: <6512daa1c5f8f8f86f94761d3bad81d265e81e1f.1358931353.git.timo.mueller@bmw-carit.de>
+Date: Thu, 24 Jan 2013 16:12:39 +0100
+Message-Id: <f13030b325bb0aa49cae4e760b0baf5cd0907158.1358931353.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <ad91291c6658bba7fa7d233c6fbce28bfcf71afe.1358931353.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <73bc9788ec61bbc519d7580f5aeee0fe08ba08a2.1358931353.git.timo.mueller@bmw-carit.de>
 References: <cover.1358931353.git.timo.mueller@bmw-carit.de>
 	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1358931353.git.timo.mueller@bmw-carit.de>
 	<75fe8c916aee186365c6b4eff31c1bca37a2b444.1358931353.git.timo.mueller@bmw-carit.de>
@@ -29,12 +29,10 @@ References: <cover.1358931353.git.timo.mueller@bmw-carit.de>
 	<b2642813c55f55b1c93477516eb66cffb9782a94.1358931353.git.timo.mueller@bmw-carit.de>
 	<df2928081fc2f0bd17539f6d184b162bcde49b60.1358931353.git.timo.mueller@bmw-carit.de>
 	<73bc9788ec61bbc519d7580f5aeee0fe08ba08a2.1358931353.git.timo.mueller@bmw-carit.de>
-	<f13030b325bb0aa49cae4e760b0baf5cd0907158.1358931353.git.timo.mueller@bmw-carit.de>
-	<ad91291c6658bba7fa7d233c6fbce28bfcf71afe.1358931353.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1358931353.git.timo.mueller@bmw-carit.de>
 References: <cover.1358931353.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC 17/17] plugins/sdk.ide: Added profile UI to the preference page
+Subject: [RFC 15/17] plugins/sdk.ide: Add method to delete a profile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,29 +48,44 @@ X-List-Received-Date: Thu, 24 Jan 2013 15:12:46 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Adds the UI elements that allow managing profiles to the preference
+Deletion of a profile currently has no effects on the preference
 page.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java     | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java | 4 ++++
+ .../src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java    | 5 +++++
+ 2 files changed, 9 insertions(+)
 
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
+index 47916c7..5ae3ab6 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
+@@ -166,6 +166,10 @@ public class YoctoProfileSetting {
+ 				sdkConfigsCombo.select(0);
+ 				sdkConfigsCombo.remove(selectionIndex);
+ 				profileElement.remove(selectedItem);
++
++				if (preferencePage instanceof YoctoSDKPreferencePage) {
++					((YoctoSDKPreferencePage) preferencePage).deleteProfile(selectedItem);
++				}
+ 			}
+ 		});
+ 	}
 diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-index eb7a393..a4d6ce5 100644
+index 0c5928e..8f6111b 100644
 --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
 +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-@@ -61,7 +61,9 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 	protected Control createContents(Composite parent) {
- 		initializeDialogUnits(parent);
- 		final Composite result= new Composite(parent, SWT.NONE);
--		
+@@ -95,4 +95,9 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
+ 		YoctoUIElement oldProfileElement = YoctoSDKUtils.getElemFromStore(YoctoSDKPlugin.getProfilePreferenceStore(oldProfileName));
+ 		YoctoSDKUtils.saveElemToStore(oldProfileElement, YoctoSDKPlugin.getProfilePreferenceStore(newProfileName));
+ 	}
 +
-+		yoctoProfileSetting.createComposite(result);
-+
- 		try {
- 			yoctoUISetting.createComposite(result);
- 			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, false);
++	public void deleteProfile(String selectedProfile)
++	{
++		// do nothing
++	}
+ }
 -- 
 1.7.11.7
 
