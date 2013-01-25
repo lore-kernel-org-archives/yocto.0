@@ -1,42 +1,26 @@
-Return-Path: <tb@travelping.com>
-Received: from mail.tpip.net (mail.tpip.net [92.43.49.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DDBAE006CB
-	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 09:14:29 -0800 (PST)
-Received: from office.tpip.net (port-87-193-171-186.static.qsc.de
-	[87.193.171.186])
-	by mail.tpip.net (Postfix) with ESMTP id 322164F64B;
-	Fri, 25 Jan 2013 17:14:28 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by office.tpip.net (Postfix) with ESMTP id 8BE7B478A4;
-	Fri, 25 Jan 2013 18:14:27 +0100 (CET)
-X-Virus-Scanned: amavisd-new at tpip.net
-Received: from office.tpip.net ([127.0.0.1])
-	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id l4L11B_0Nsvj; Fri, 25 Jan 2013 18:14:27 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by office.tpip.net (Postfix) with ESMTP id 22E85478A8;
-	Fri, 25 Jan 2013 18:14:27 +0100 (CET)
-X-Virus-Scanned: amavisd-new at tpip.net
-Received: from office.tpip.net ([127.0.0.1])
-	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id wrGXM0v0FDcF; Fri, 25 Jan 2013 18:14:25 +0100 (CET)
-Received: from [192.168.14.111] (p4FEA4865.dip.t-dialin.net [79.234.72.101])
-	by office.tpip.net (Postfix) with ESMTPSA id AD459478A4;
-	Fri, 25 Jan 2013 18:14:24 +0100 (CET)
-Message-ID: <5102BD6F.4000104@travelping.com>
-Date: Fri, 25 Jan 2013 18:14:23 +0100
-From: Tino Breddin <tb@travelping.com>
-Organization: Travelping GmbH
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130109 Thunderbird/17.0.2
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CD77E006CB
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 10:02:49 -0800 (PST)
+Received: from cpc8-live22-2-0-cust106.know.cable.virginmedia.com
+	([82.42.168.107] helo=[127.0.0.1])
+	by www.dynamicdevices.co.uk with esmtpsa
+	(TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32) (Exim 4.69)
+	(envelope-from <ajlennon@dynamicdevices.co.uk>)
+	id 1TynXi-0001jx-L0; Fri, 25 Jan 2013 17:58:22 +0000
+Message-ID: <5102C8BC.6030708@dynamicdevices.co.uk>
+Date: Fri, 25 Jan 2013 18:02:36 +0000
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
 MIME-Version: 1.0
-To: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
-References: <51026D40.6000201@travelping.com>
-	<33115ABC4887814E8A92A08FBC93416B08DC5EDF@IRSMSX103.ger.corp.intel.com>
-In-Reply-To: <33115ABC4887814E8A92A08FBC93416B08DC5EDF@IRSMSX103.ger.corp.intel.com>
-X-Enigmail-Version: 1.5
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: How to build the build appliance?
+To: brubor2005@yahoo.com
+References: <50DB2E67.4090602@dynamicdevices.co.uk>
+	<loom.20130124T201459-642@post.gmane.org>
+In-Reply-To: <loom.20130124T201459-642@post.gmane.org>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-mono] Support for Visual Studio debugging on Yocto/OE targets (e.g. RPi)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,45 +32,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 17:14:30 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 25 Jan 2013 18:02:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Great, building and testing it now.
-
-Thanks for the pointer!
-
-On 01/25/2013 04:17 PM, Stoicescu, CorneliuX wrote:
-> Hello Tino,
-> 
-> Here is what I know on the matter: 
-> 1) you need to set MACHINE = "qemux86-64" in local.conf
-> 2) run "bitbake build-appliance-image"
-> 3) check the tmp/deploy/images folder for the output
-> 
-> Regards,
-> Cornel
-> 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Tino Breddin
-> Sent: Friday, January 25, 2013 1:32 PM
-> To: yocto
-> Subject: [yocto] How to build the build appliance?
-> 
-> Hi there,
-> 
-> I've seen some work already went into building a Yocto build appliance which runs on VMware [1]. I think that's a great tool to get started.
-> Has the appliance been built by hand or is the process somewhat automated? I couldn't find any references in Poky.
-> 
-> Cheers,
-> Tino
-> 
-> [1] https://www.yoctoproject.org/documentation/build-appliance-manual
+On 24/01/2013 19:15, Bruce wrote:
+> Alex J Lennon <ajlennon@...> writes:
+>
+>> Hi all, Autif,
+>>
+>> I've been working to support .NET development on Linux
+>> over the past few days.
+>>
+>> There is a Visual Studio plugin, MonoTools for Visual Studio
+>> which provides support for local and remote debugging of
+>> .NET applications with Mono.
+>>
+>> This requires a remote stub to be running on the target
+>> platform, monotools-server.
+>>
+>> I've created a recipe to build monotools-server, which in
+>> turn required me to pull in Openembedded Legacy recipes
+>> for mono-xsp and gtk-sharp.
+>>
+>> As it stands I'm now able to build an X enabled image for
+>> the Raspberry Pi and remote-debug some simple Windows
+>> Forms .NET applications within the Visual Studio IDE.
+>>
+>> Recipes are hosted here in 'recipes-mono'
+>>
+>> git@...:ciseco-eve.meta-eve.git
+>>
+>> If there is interest in migrating these recipes into meta-mono
+>> and  somebody will review them then I'll be pleased to make
+>> whatever changes are needed to comply with relevant
+>> Yocto policies.
+>>
+>> Best Regards, (& Happy Holidays)
+>>
+>> Alex
+>>
+>>
+> Hello,
+>
+> I stumbled on to this site and would like to know if you can tell me how to get
+> monotools-server installed and how to run it on Raspberry Pi?
+>
+> I tried following the instructions at this site:
+> http://mono-project.com/GettingStartedWithMonoVS
+>
+> and got the Visual Studio side to work but can't figure out how to get
+> monotools-server to run on Pi.  Specifically this part tripped me up:
+>
+>      Download Servers for Linux and Mac to Run/Debug Remotely
+>
+>      Linux:
+>
+>      Use the openSUSE 1click from your existing Linux system:
+>                http://mono-project.com/files/2/2b/Monovs-1click.png
+>
+>      Note: After installing on Linux, launch the "MonoTool GUI Server" from the
+> application menu to start the server.
+>
+> I tried clicking on the above link in Medora and it just hangs.  Is your version
+> of Monotools-server available somewhere?  I would greatly appreciate any help
+> you can offer.  Thanks,
+>
+> Bruce
+>
+>
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
-> 
 
+Hi Bruce,
+
+You might try the instructions I left here. These images should have the 
+monotools server in.
+I did see a problem building GTK# the other day though which I still 
+might need to look into:
+
+https://www.assembla.com/spaces/ciseco-eve/wiki/Getting_Started
+
+If you do look at this I'd be grateful if you feed back to me on how it 
+goes for you.
+
+NB. Another point is that the activation code request on the MonoTools 
+site appears not to work.
+        If you contact Xamarin directly they seem happy to give you a 
+code though.
+
+Cheers,
+
+Alex
 
 
