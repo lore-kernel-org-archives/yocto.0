@@ -1,19 +1,20 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03399E014E8
-	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 04:22:39 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 25 Jan 2013 04:22:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,538,1355126400"; d="scan'208";a="248337503"
-Received: from ideapad (HELO localhost.localdomain) ([10.237.105.62])
-	by azsmga001.ch.intel.com with ESMTP; 25 Jan 2013 04:22:38 -0800
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 25 Jan 2013 14:08:52 +0200
-Message-Id: <1359115732-20806-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] Capture and display bitbake errors
+Return-Path: <tim+yoctoproject.org@coote.org>
+Received: from mercury.coote.org (mail.coote.org [46.65.100.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 353A6E0151F
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 04:43:26 -0800 (PST)
+Received: by mercury.coote.org (Postfix, from userid 500)
+	id 6953448CE; Fri, 25 Jan 2013 12:43:24 +0000 (GMT)
+Received: from [127.0.0.1] (fw.coote.org [172.17.1.1])
+	by mercury.coote.org (Postfix) with ESMTP id 00E1243BE
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 12:43:23 +0000 (GMT)
+From: Tim Coote <tim+yoctoproject.org@coote.org>
+Message-Id: <4A019838-F11E-4257-90BF-08A93B096E15@coote.org>
+Date: Fri, 25 Jan 2013 12:43:30 +0000
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+X-Mailer: Apple Mail (2.1499)
+X-Spambayes-Classification: ham; 0.00
+Subject: help sought with migrating oe-classic recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,223 +26,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 12:22:40 -0000
+X-List-Received-Date: Fri, 25 Jan 2013 12:43:26 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-- if an error has occured when trying to initializes the bitbake session, this should be display appropriately
-- when creating a new Bitbake project, if an error occured while initializing bitbake environment (bitbake -e), we should:
-	- display the error in the wizard
-	- prevent the new project creation
-	- recreate the console command handler
+Hullo
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../src/org/yocto/bc/bitbake/BBSession.java        |   21 ++++++++++++++++++-
- .../src/org/yocto/bc/bitbake/ShellSession.java     |    4 ++++
- .../yocto/bc/ui/wizards/install/InstallWizard.java |   22 +++++++++++++-------
- .../BBConfigurationInitializeOperation.java        |   22 +++++++++++++++++++-
- .../newproject/CreateBBCProjectOperation.java      |    5 +++++
- 5 files changed, 65 insertions(+), 9 deletions(-)
+I'm trying to put an amqp client into a yocto build. My preferred choice =
+is rabbitmq, which requires getting Erlang into the build. I'm starting =
+with an old recipe, which is based on openembedded classic =
+(http://bit.ly/UpGACX, which is based on http://bit.ly/UpGFGB, with =
+updates for newer releases.)
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java
-index 8a8de22..892bcc8 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/BBSession.java
-@@ -76,12 +76,14 @@ public class BBSession implements IBBSessionListener, IModelElement, Map {
- 	protected Map<?,?> properties = null;
- 	protected List <URI> depends = null;
- 	protected boolean initialized = false;
-+	protected boolean errorOccured = false;
- 	protected MessageConsole sessionConsole;
- 	private final ReentrantReadWriteLock rwlock = new ReentrantReadWriteLock();
- 	private final Lock rlock = rwlock.readLock();
- 	private final Lock wlock = rwlock.writeLock();
- 	protected String parsingCmd;
- 	private boolean silent = false;
-+	private String errorLines = "";
- 
- 	public BBSession(ShellSession ssession, URI projectRoot) throws IOException {
- 		shell = ssession;
-@@ -398,7 +400,15 @@ public class BBSession implements IBBSessionListener, IModelElement, Map {
- 					//FIXME : wait for bitbake to finish
- 					properties = parseBBEnvironment(result);
- 
--					initialized = true;
-+					if (properties.size() == 0) { // there was an error in sourcing bitbake environment
-+						shell.printError(errorLines);
-+						errorOccured = true;
-+					} else {
-+						errorLines = "";
-+						errorOccured = false;
-+						initialized = true;
-+					}
-+					
- 					//FIXME: cleanup BB env file
- 				}
- 			} finally {
-@@ -468,6 +478,7 @@ public class BBSession implements IBBSessionListener, IModelElement, Map {
- 		Stack blockStack = new Stack();
- 
- 		while ((line = reader.readLine()) != null) {
-+			errorLines += line;
- 			String trimmed = line.trim();
- 			if (trimmed.length() == 0 || line.startsWith("#")) {
- 				// weed out the blank and comment lines
-@@ -781,4 +792,12 @@ public class BBSession implements IBBSessionListener, IModelElement, Map {
- 		return pinfo;
- 	}
- 
-+	public boolean errorOccured() {
-+		return errorOccured;
-+	}
-+
-+	public String getErrorLines() {
-+		return errorLines;
-+	}
-+
- }
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-index 6603bfb..365c832 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
-@@ -218,4 +218,8 @@ synchronized
- 		interrupt = true;
- 	}
- 
-+	public void printError(String errorLines) {
-+		RemoteHelper.getCommandHandler(projectInfo.getConnection()).response(errorLines, true);
-+	}
-+
- }
-\ No newline at end of file
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
-index 100eee3..624cd11 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
-@@ -7,6 +7,7 @@ import java.util.Map;
- 
- import org.eclipse.core.runtime.IStatus;
- import org.eclipse.core.runtime.Status;
-+import org.eclipse.dstore.core.model.CommandHandler;
- import org.eclipse.jface.viewers.IStructuredSelection;
- import org.eclipse.jface.wizard.IWizardContainer;
- import org.eclipse.jface.wizard.WizardPage;
-@@ -57,6 +58,7 @@ public class InstallWizard extends FiniteStateWizard implements IWorkbenchWizard
- 
- 	private Map<String, Object> model;
- 	private MessageConsole console;
-+	private OptionsPage optionsPage;
- 
- 	public InstallWizard() {
- 		this.model = new Hashtable<String, Object>();
-@@ -89,7 +91,8 @@ public class InstallWizard extends FiniteStateWizard implements IWorkbenchWizard
- 	 */
- 	@Override
- 	public void addPages() {
--		addPage(new OptionsPage(model));
-+		optionsPage = new OptionsPage(model);
-+		addPage(optionsPage);
- 	}
- 
- 	@Override
-@@ -110,9 +113,9 @@ public class InstallWizard extends FiniteStateWizard implements IWorkbenchWizard
- 			}
- 			IRemoteConnection remoteConnection = ((IRemoteConnection)model.get(InstallWizard.SELECTED_CONNECTION));
- 			IRemoteServices remoteServices = ((IRemoteServices)model.get(InstallWizard.SELECTED_REMOTE_SERVICE));
--			final IHost connection = RemoteHelper.getRemoteConnectionByName(remoteConnection.getName());
--			final CommandResponseHandler cmdHandler = RemoteHelper.getCommandHandler(connection);
--			final IWizardContainer container = this.getContainer();
-+			IHost connection = RemoteHelper.getRemoteConnectionByName(remoteConnection.getName());
-+			CommandResponseHandler cmdHandler = new CommandResponseHandler(RemoteHelper.getConsole(connection));
-+			IWizardContainer container = this.getContainer();
- 			if (((Boolean)options.get(GIT_CLONE)).booleanValue()) {
- 				String cmd = "/usr/bin/git clone --progress";
- 				String args = "git://git.yoctoproject.org/poky.git " + uri.getPath();
-@@ -147,11 +150,16 @@ public class InstallWizard extends FiniteStateWizard implements IWorkbenchWizard
- 				pinfo.setRemoteServices(remoteServices);
- 
- 				final ConsoleWriter cw = new ConsoleWriter();
--//				final ProjectInfo pInfoFinal = pinfo;
--				container.run(false, false, new BBConfigurationInitializeOperation(pinfo, null));
-+				BBConfigurationInitializeOperation configInitOp = new BBConfigurationInitializeOperation(pinfo, null);
-+				container.run(false, false, configInitOp);
- 				console = RemoteHelper.getConsole(connection);
- 				console.newMessageStream().println(cw.getContents());
--
-+				
-+				if (configInitOp.isErrorOccured()) {
-+					optionsPage.setErrorMessage(configInitOp.getErrorMessage());
-+					return false;
-+				}
-+				
- 				model.put(InstallWizard.KEY_PINFO, pinfo);
- 				Activator.putProjInfo(pinfo.getOEFSURI(), pinfo);
- 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/BBConfigurationInitializeOperation.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/BBConfigurationInitializeOperation.java
-index 5dd8944..8ced7a6 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/BBConfigurationInitializeOperation.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/BBConfigurationInitializeOperation.java
-@@ -25,6 +25,16 @@ public class BBConfigurationInitializeOperation implements IRunnableWithProgress
- 
- 	private final ProjectInfo pinfo;
- 	private final Writer writer;
-+	private boolean errorOccured = false;
-+	private String errorMessage = "";
-+
-+	public boolean isErrorOccured() {
-+		return errorOccured;
-+	}
-+
-+	public void setErrorOccured(boolean errorOccured) {
-+		this.errorOccured = errorOccured;
-+	}
- 
- 	public BBConfigurationInitializeOperation(ProjectInfo pinfo) {
- 		this.pinfo = pinfo;
-@@ -47,9 +57,19 @@ public class BBConfigurationInitializeOperation implements IRunnableWithProgress
- 			session.initialize();
- 			monitor.worked(90);
- 			monitor.done();
--			System.out.println("Bitbake session initialized successfully.");
-+			errorOccured = session.errorOccured();
-+			errorMessage = session.getErrorLines();
-+			if (!errorOccured) {
-+				System.out.println("Bitbake session initialized successfully.");
-+				errorMessage = "";
-+			} else 
-+				System.out.println("An error occured and Bitbake session was not initialized.");
- 		} catch (Exception e) {
- 			throw new InvocationTargetException(e);
- 		}
- 	}
-+
-+	public String getErrorMessage() {
-+		return errorMessage;
-+	}
- }
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java
-index 338c2e6..e265e23 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/newproject/CreateBBCProjectOperation.java
-@@ -44,6 +44,7 @@ public class CreateBBCProjectOperation extends WorkspaceModifyOperation {
- 
- 	public static final QualifiedName BBC_PROJECT_INIT = new QualifiedName(null, "BBC_PROJECT_INIT");
- 	public static void addNatureToProject(IProject proj, String nature_id, IProgressMonitor monitor) throws CoreException {
-+		try {
- 		IProjectDescription desc = proj.getDescription();
- 		Vector<String> natureIds = new Vector<String>();
- 
-@@ -52,6 +53,10 @@ public class CreateBBCProjectOperation extends WorkspaceModifyOperation {
- 		desc.setNatureIds(natureIds.toArray(new String[natureIds.size()]));
- 
- 		proj.setDescription(desc, monitor);
-+		} catch (Exception e) {
-+			//this should not happen
-+			e.printStackTrace();
-+		}
- 	}
- 
- 	private ProjectInfo projInfo;
--- 
-1.7.9.5
+I've added in the oe-core migrations from here: http://bit.ly/XEI9u6
 
+I'm running into what I believe are incomplete cross-compile problems:
+[code]
+bitbake -v -b =
+../meta-openembedded/meta-oe/recipes-extended/erlang/erlang_R15B.bb 2>&1 =
+|less
+[/code]
+
+to just build the package. Fails when the python script checks for =
+unsafe cross compile error messages (around line 777 of =
+danny-8.0/meta/classes/insane.bbclass):
+[code]
+         statement =3D "grep -e 'CROSS COMPILE Badness:' -e 'is unsafe =
+for cross-compilation' %s > /dev/null" % \
+                     os.path.join(root,"config.log")
+         if "config.log" in files:
+             if subprocess.call(statement, shell=3DTrue) =3D=3D 0:
+[/code]
+the grep finds:
+
+[code]
+=
+/opt/poky/mybuilds/tmp/sysroots/i686-linux/usr/libexec/armv5te-poky-linux-=
+gnueabi/gcc/arm-poky-linux-gnueabi/4.7.2/ld: warning: library search =
+path "/lib" is unsafe for cross-compilation
+
+[/code]
+
+
+. The bad message occurs just after this in the log:
+[code]
+configure:11485: result: no
+configure:11518: Extending the search to include /lib
+configure:11520: checking for dlpi_open in -ldlpi
+[/code]
+
+and seems to me to be due to something adding /lib into the library =
+search path. I'm not clear what's the source of this problem, nor how to =
+narrow it down. I'd guess that somehow, /lib should be scoped out of =
+library searches for the autoconf tools.
+
+Any ideas and any pointers on where I can find relevant documentation?
+
+cheers
+
+Tim=20=
 
