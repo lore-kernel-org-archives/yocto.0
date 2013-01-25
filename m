@@ -1,24 +1,32 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AE6FE006D2
-	for <yocto@yoctoproject.org>; Thu, 24 Jan 2013 21:36:48 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 24 Jan 2013 21:36:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,535,1355126400"; d="scan'208";a="248230189"
-Received: from unknown (HELO [10.255.14.235]) ([10.255.14.235])
-	by azsmga001.ch.intel.com with ESMTP; 24 Jan 2013 21:36:46 -0800
-Message-ID: <1359092206.1544.28.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 24 Jan 2013 23:36:46 -0600
-In-Reply-To: <CAK18fxFNKEToVa0Y20YjhaFj59uxuCfoq6SfvtEqx=73uggOSA@mail.gmail.com>
-References: <1358094195-23815-1-git-send-email-andrei@gherzan.ro>
-	<CAK18fxFNKEToVa0Y20YjhaFj59uxuCfoq6SfvtEqx=73uggOSA@mail.gmail.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-intel][PATCH 1/2] ffmpeg: Remove package as nobody depends on it anymore
+Return-Path: <daniel.schnel.extern@ifm.com>
+Received: from eu3sys201aog102.obsmtp.com (eu3sys201aog102.obsmtp.com
+	[207.126.148.90])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 35C04E014F1
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 00:48:58 -0800 (PST)
+Received: from deesdmz226.dmz.es.de.ifm ([194.156.152.226]) (using TLSv1) by
+	eu3sys201aob102.postini.com ([207.126.154.11]) with SMTP
+	ID DSNKUQJG+VBrXfJl8ceNDT9DxRuY47dI/TMp@postini.com;
+	Fri, 25 Jan 2013 08:48:59 UTC
+Received: from deesdmz226.dmz.es.de.ifm (localhost.localdomain [127.0.0.1])
+	by deesdmz226.dmz.es.de.ifm (Postfix) with ESMTP id 647A519F381
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 09:48:57 +0100 (CET)
+In-Reply-To: <alpine.DEB.2.02.1301241412340.6204@oneiric>
+References: <OFBE0EFB03.95C8CD96-ONC1257AFD.00580557-C1257AFD.00584DE3@ifm-electronic.com>
+	<alpine.DEB.2.02.1301241412340.6204@oneiric>
+X-KeepSent: 78A692B9:437116F7-C1257AFE:00288F32;
+ type=4; name=$KeepSent
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-Mailer: Lotus Notes Release 8.5.2FP3 July 11, 2011
+From: daniel.schnel.extern@ifm.com
+Message-ID: <OF78A692B9.437116F7-ONC1257AFE.00288F32-C1257AFE.0030603B@ifm-electronic.com>
+Date: Fri, 25 Jan 2013 09:48:23 +0100
+X-MIMETrack: Serialize by Router on deesifmweb04/ifmwww(Release 8.5.2HF17 |
+	August 31, 2010) at 25.01.2013 09:48:56
+MIME-Version: 1.0
+X-SafeGuard_MailGateway: Version: 5.80.2.12968 SGMG_SOPHOS Date:
+	20130125084857Z
+Cc: yocto@yoctoproject.org
+Subject: Antwort: Re: PREMIRRORS_prepend & friends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,239 +38,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 05:36:48 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 25 Jan 2013 08:48:59 -0000
+Content-type: text/plain; charset=US-ASCII
 
-On Thu, 2013-01-24 at 21:10 +0200, Andrei Gherzan wrote:
-> Ping
-> 
+Hi,
 
-Pulled into meta-intel/master.
 
-Thanks,
 
-Tom
 
-> 
-> On Sun, Jan 13, 2013 at 6:23 PM, Andrei Gherzan <andrei@gherzan.ro>
-> wrote:
->         Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
->         ---
->          common/recipes-multimedia/ffmpeg/ffmpeg.inc       |  110
->         ---------------------
->          common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb |   44
->         ---------
->          2 files changed, 154 deletions(-)
->          delete mode 100644
->         common/recipes-multimedia/ffmpeg/ffmpeg.inc
->          delete mode 100644
->         common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
->         
->         diff --git a/common/recipes-multimedia/ffmpeg/ffmpeg.inc
->         b/common/recipes-multimedia/ffmpeg/ffmpeg.inc
->         deleted file mode 100644
->         index 3ce950e..0000000
->         --- a/common/recipes-multimedia/ffmpeg/ffmpeg.inc
->         +++ /dev/null
->         @@ -1,110 +0,0 @@
->         -DESCRIPTION = "FFmpeg is a complete solution to record,
->         convert and stream audio and video"
->         -HOMEPAGE = "http://ffmpeg.mplayerhq.hu/"
->         -AUTHOR = "Fabrice Bellard ffmpeg-devel@mplayerhq.hu"
->         -SECTION = "libs"
->         -PRIORITY = "optional"
->         -LICENSE = "GPLv2+ & LGPLv2.1+"
->         -
->         -LICENSE_FLAGS = "commercial"
->         -
->         -ARM_INSTRUCTION_SET = "arm"
->         -
->         -DEPENDS = "zlib libogg libvorbis libtheora liba52 libva
->         yasm-native"
->         -
->         -INC_PR = "r0"
->         -
->         -inherit autotools pkgconfig
->         -
->         -LEAD_SONAME = "libavcodec.so"
->         -
->         -EXTRA_OECONF = "\
->         -        \
->         -        --enable-pp \
->         -        --enable-shared \
->         -        --enable-pthreads \
->         -        --enable-gpl \
->         -        \
->         -        --cross-prefix=${TARGET_PREFIX} \
->         -        --disable-debug \
->         -        --disable-ffserver \
->         -        --disable-ffplay \
->         -        \
->         -"
->         -
->         -EXTRA_OECONF_append_powerpc +=
->         "--${@['disable-altivec','enable-altivec'][bb.data.getVar('BASE_PACKAGE_ARCH',d,1) in ['ppce600']]}"
->         -
->         -FFMPEG_LIBS = "libavcodec libavdevice libavformat \
->         -               libavutil libpostproc libswscale libavfilter"
->         -
->         -SYSROOT_PREPROCESS_FUNCS = " \
->         -  ffmpeg_stage_cleanup \
->         -  ffmpeg_create_compat_links"
->         -
->         -ffmpeg_create_compat_links() {
->         -        rm -rf ${SYSROOT_DESTDIR}${includedir}/ffmpeg
->         -        mkdir -m 0755 ${SYSROOT_DESTDIR}${includedir}/ffmpeg
->         -        cd ${SYSROOT_DESTDIR}${includedir}/ffmpeg
->         -
->         -        for lib in ${FFMPEG_LIBS}; do
->         -                ln -s ../$lib/*.h '.' || true
->         -        done
->         -}
->         -
->         -ffmpeg_stage_cleanup() {
->         -        rm -rf ${SYSROOT_DESTDIR}${libdir}/vhook \
->         -        ${SYSROOT_DESTDIR}${datadir}
->         -}
->         -
->         -PACKAGES += "${PN}-vhook-dbg ${PN}-vhook"
->         -
->         -FILES_${PN} = "${bindir}"
->         -FILES_${PN}-dev = "${includedir}/${PN}"
->         -
->         -FILES_${PN}-vhook = "${libdir}/vhook"
->         -FILES_${PN}-vhook-dbg += "${libdir}/vhook/.debug"
->         -
->         -PACKAGES += "ffmpeg-x264-presets \
->         -             libavcodec  libavcodec-dev  libavcodec-dbg \
->         -             libavdevice libavdevice-dev libavdevice-dbg \
->         -             libavformat libavformat-dev libavformat-dbg \
->         -             libavutil   libavutil-dev   libavutil-dbg \
->         -             libpostproc libpostproc-dev libpostproc-dbg \
->         -             libswscale  libswscale-dev  libswscale-dbg \
->         -             libavfilter libavfilter-dev libavfilter-dbg \
->         -             libavcore   libavcore-dev   libavcore-dbg \
->         -            "
->         -
->         -FILES_ffmpeg-x264-presets = "${datadir}/*.ffpreset"
->         -
->         -FILES_${PN}-dev = "${includedir}"
->         -FILES_libavcodec = "${libdir}/libavcodec*.so.*"
->         -FILES_libavcodec-dev = "${libdir}/libavcodec*.so
->         ${libdir}/pkgconfig/libavcodec.pc ${libdir}/libavcodec*.a"
->         -FILES_libavcodec-dbg += "${libdir}/.debug/libavcodec*"
->         -
->         -FILES_libavdevice = "${libdir}/libavdevice*.so.*"
->         -FILES_libavdevice-dev = "${libdir}/libavdevice*.so
->         ${libdir}/pkgconfig/libavdevice.pc ${libdir}/libavdevice*.a"
->         -FILES_libavdevice-dbg += "${libdir}/.debug/libavdevice*"
->         -
->         -FILES_libavformat = "${libdir}/libavformat*.so.*"
->         -FILES_libavformat-dev = "${libdir}/libavformat*.so
->         ${libdir}/pkgconfig/libavformat.pc ${libdir}/libavformat*.a"
->         -FILES_libavformat-dbg += "${libdir}/.debug/libavformat*"
->         -
->         -FILES_libavutil = "${libdir}/libavutil*.so.*"
->         -FILES_libavutil-dev = "${libdir}/libavutil*.so
->         ${libdir}/pkgconfig/libavutil.pc ${libdir}/libavutil*.a"
->         -FILES_libavutil-dbg += "${libdir}/.debug/libavutil*"
->         -
->         -FILES_libpostproc = "${libdir}/libpostproc*.so.*"
->         -FILES_libpostproc-dev = "${libdir}/libpostproc*.so
->          ${libdir}/pkgconfig/libpostproc.pc ${libdir}/libpostproc*.a
->         ${includedir}/postproc"
->         -FILES_libpostproc-dbg += "${libdir}/.debug/libpostproc*"
->         -
->         -FILES_libswscale = "${libdir}/libswscale*.so.*"
->         -FILES_libswscale-dev = "${libdir}/libswscale*.so
->         ${libdir}/pkgconfig/libswscale.pc ${libdir}/libswscale*.a"
->         -FILES_libswscale-dbg += "${libdir}/.debug/libswscale*"
->         -
->         -FILES_libavfilter = "${libdir}/libavfilter*.so.*"
->         -FILES_libavfilter-dev = "${libdir}/libavfilter*.so
->         ${libdir}/pkgconfig/libavfilter.pc ${libdir}/libavfilter*.a"
->         -FILES_libavfilter-dbg += "${libdir}/.debug/libavfilter*"
->         -
->         -FILES_libavcore = "${libdir}/libavcore*.so.*"
->         -FILES_libavcore-dev = "${libdir}/libavcore*.so
->         ${libdir}/pkgconfig/libavcore.pc ${libdir}/libavcore*.a"
->         -FILES_libavcore-dbg += "${libdir}/.debug/libavcore*"
->         diff --git a/common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
->         b/common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
->         deleted file mode 100644
->         index cf97a19..0000000
->         --- a/common/recipes-multimedia/ffmpeg/ffmpeg_0.7.12.bb
->         +++ /dev/null
->         @@ -1,44 +0,0 @@
->         -require ffmpeg.inc
->         -
->         -LICENSE = "LGPLv2.1+ & GPLv2+"
->         -PR = "${INC_PR}.2"
->         -
->         -SRC_URI = "http://ffmpeg.org/releases/ffmpeg-${PV}.tar.bz2"
->         -SRC_URI[md5sum] = "b4e3653b2dd930cfa2a80722f8b03182"
->         -SRC_URI[sha256sum] =
->         "786511d75e5a1f95ec16ed9f0b4a3f49f145e134b8f2ccdfa9ecd2d35ff36000"
->         -
->         -LIC_FILES_CHKSUM =
->         "file://COPYING.GPLv2;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
->         -
->          file://libpostproc/postprocess.c;beginline=8;endline=21;md5=3163771dd725805aeda961a4e05173b5 \
->         -
->          file://COPYING.LGPLv2.1;md5=e344c8fa836c3a41c4cbd79d7bd3a379
->         \
->         -
->          file://ffmpeg.c;beginline=7;endline=20;md5=9dee9cc51a9da6c3254d39ebf4d5aa03"
->         -
->         -EXTRA_FFCONF_armv7a = "--cpu=cortex-a8"
->         -EXTRA_FFCONF_mipsel = "--arch=mips"
->         -
->         -EXTRA_OECONF = " \
->         -        --arch=${TARGET_ARCH} \
->         -        --cross-prefix=${TARGET_PREFIX} \
->         -        --disable-stripping \
->         -        --enable-cross-compile \
->         -        --enable-libtheora  \
->         -        --enable-libvorbis \
->         -        --enable-pthreads \
->         -        --enable-shared \
->         -        --enable-swscale \
->         -        --enable-vaapi \
->         -        --enable-gpl \
->         -        --enable-yasm \
->         -        --extra-cflags="${TARGET_CFLAGS}
->         ${HOST_CC_ARCH}${TOOLCHAIN_OPTIONS}" \
->         -        --extra-ldflags="${TARGET_LDFLAGS}" \
->         -        --sysroot="${STAGING_DIR_TARGET}" \
->         -        --prefix=${prefix}/ \
->         -        --target-os=linux \
->         -        ${EXTRA_FFCONF} \
->         -"
->         -
->         -do_configure() {
->         -        ./configure ${EXTRA_OECONF}
->         -}
->         -
->         -FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations
->          -ftree-vectorize -fomit-frame-pointer -O4 -ffast-math"
->         -BUILD_OPTIMIZATION = "${FULL_OPTIMIZATION}"
->         --
->         1.7.10.4
->         
-> 
-> 
-> 
-> 
-> -- 
-> 
-> Andrei Gherzan
-> m: +40.744.478.414 |  f: +40.31.816.28.12
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Von:	"Robert P. J. Day" <rpjday@crashcourse.ca>
+An:	daniel.schnel.extern@ifm.com
+Kopie:	yocto@yoctoproject.org
+Datum:	24.01.2013 21:47
+Betreff:	Re: [yocto] PREMIRRORS_prepend & friends
+Gesendet von:	yocto-bounces@yoctoproject.org
+
+
+
+On Thu, 24 Jan 2013, daniel.schnel.extern@ifm.com wrote:
+
+>
+> Hi,
+>
+> after hours of trying and googling I finally make my first coming out
+here
+> on this list to get some help with PREMIRRORS_prepend & friends.So please
+> be friendly ;)
+>
+> I want to setup local mirrors for our yocto build for reproducability
+> purposes. I am using ELDK-5.2.1 which is based on yocto-1.2
+>
+> I have made the following settings in my local.conf:
+>
+> PREMIRRORS_prepend = "\
+>      git://.*/.*   git://git@dettlx79: \n \
+>      ftp://.*/.* http://dettlx79/sources \n \
+>      http://.*/.* http://dettlx79/sources \n \
+>      https://.*/.* http://dettlx79/sources \n \"
+>
+>
+> BB_FETCH_PREMIRRORONLY = "1"
+
+  ... snip ...
+
+i documented how i set up my own local mirror here:
+
+http://www.crashcourse.ca/wiki/index.php/OE_Creating_your_%22own_mirror%22
+
+it's all based on eventually storing tarballs of the sources, no
+matter how you fetched the original sources.  is that what you're
+after for reproducibility?
+
+
+
+We want to guarantee even after +5 years or so that the bits of our
+binaries are the same whenever we hit the build trigger. In my eyes this
+can only be achieved if the sources are archived via revision control
+system, because otherwise we would be dependent on archives and their
+filename always staying unmodified over time. This is a policy outside of
+our realm and so a revision control system would get this straight.
+
+I could now use a naive approach and do
+
+cd downloads/ && git init && git commit -a -m "all files committed"
+
+But this isn't optimal as there are already git repositories inside
+download2/git2/ which seems to originate from downloads/git2_*.tar.gz
+archives, no ?
+
+So far I have successfully built my image via downloading the sources via
+internet.
+
+From here these are the steps I want to try for the PREMIRRORS:
+
+1.) provide the exact downloads/ directory via http:// only (not via
+files://)
+2.) provide archives only via http but git repositories via in-house
+mirrored git repositories and git:// protocol (don't use git archives like
+git2_...tar.gz from the http:// mirror)
+
+The latter I have not been able to manage. Any ideas if this scenario can
+be achieved ? And can you shed some light into the yocto approach of
+archiving external git repos as tar.gz archives ?
+
+Regards,
+Daniel Schnell.
 
 
 
