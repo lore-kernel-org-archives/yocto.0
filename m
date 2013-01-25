@@ -1,21 +1,42 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 924B6E014E4
-	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 01:43:38 -0800 (PST)
-Message-ID: <510253C7.4030807@communistcode.co.uk>
-Date: Fri, 25 Jan 2013 09:43:35 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
+Return-Path: <tb@travelping.com>
+Received: from mail.tpip.net (mail.tpip.net [92.43.49.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43E57E01505
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 03:32:22 -0800 (PST)
+Received: from office.tpip.net (port-87-193-171-186.static.qsc.de
+	[87.193.171.186]) by mail.tpip.net (Postfix) with ESMTP id D7BCB4F63F
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 11:32:19 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by office.tpip.net (Postfix) with ESMTP id 73FA9478DA
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 12:32:19 +0100 (CET)
+X-Virus-Scanned: amavisd-new at tpip.net
+Received: from office.tpip.net ([127.0.0.1])
+	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1ENYUGMe0f3y for <yocto@yoctoproject.org>;
+	Fri, 25 Jan 2013 12:32:18 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by office.tpip.net (Postfix) with ESMTP id E4076478DB
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 12:32:18 +0100 (CET)
+X-Virus-Scanned: amavisd-new at tpip.net
+Received: from office.tpip.net ([127.0.0.1])
+	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id gNIvAEpZ7UOM for <yocto@yoctoproject.org>;
+	Fri, 25 Jan 2013 12:32:18 +0100 (CET)
+Received: from [192.168.2.104] (p4FEA4865.dip.t-dialin.net [79.234.72.101])
+	by office.tpip.net (Postfix) with ESMTPSA id 87325478D9
+	for <yocto@yoctoproject.org>; Fri, 25 Jan 2013 12:32:17 +0100 (CET)
+Message-ID: <51026D40.6000201@travelping.com>
+Date: Fri, 25 Jan 2013 12:32:16 +0100
+From: Tino Breddin <tb@travelping.com>
+Organization: Travelping GmbH
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130109 Thunderbird/17.0.2
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAK18fxHAWADFz53eLP8JsURSgxNM0G+fbG3MiM6z4KmDbo3p6Q@mail.gmail.com>
-In-Reply-To: <CAK18fxHAWADFz53eLP8JsURSgxNM0G+fbG3MiM6z4KmDbo3p6Q@mail.gmail.com>
-Subject: Re: meta-raspberrypi has a new home - yocto
+To: yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.5
+Subject: How to build the build appliance?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -24,57 +45,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jan 2013 09:43:38 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 25 Jan 2013 11:32:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 24/01/13 19:45, Andrei Gherzan wrote:
-> Hello raspberrypi owners,
->
-> I am happy to announce that yoctoproject hosts now the 
-> meta-raspberrypi BSP layer.
-> The web interface is now up and running: 
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/ and we 
-> will use the yocto mailing list for meta-raspberrypi specific 
-> discussions. Please don't forget to add "[meta-raspberrypi]" in subject.
->
-> For more information check the included README in the layer.
->
-> In the end i want to thank the group who added value to this layer:
->
-> Aurelian Zanoschi
-> David-John Willis
-> Gary Thomas
-> Jack Mitchell
-> Julian Scheel
-> Koen Kooi
-> Paul Eggleton
-> Sander van Grieken
-> Tomas Frydrych
-> Tyler Hall
->
-> Special thanks to David-John Willis. He's actually the owner. :)
->
-> Keep up the good work guys!
->
-> -- 
-> *Andrei Gherzan*
-> m: +40.744.478.414 |  f: +40.31.816.28.12
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hi there,
 
-Will the github layer be kept in sync or should we update our git origins?
+I've seen some work already went into building a Yocto build appliance
+which runs on VMware [1]. I think that's a great tool to get started.
+Has the appliance been built by hand or is the process somewhat
+automated? I couldn't find any references in Poky.
 
--- 
+Cheers,
+Tino
 
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
-
---
-
+[1] https://www.yoctoproject.org/documentation/build-appliance-manual
 
