@@ -1,26 +1,39 @@
-Return-Path: <thaytan@noraisin.net>
-Received: from noraisin.net (198.23.233.220.static.exetel.com.au
-	[220.233.23.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70864E006DC
-	for <yocto@yoctoproject.org>; Sat, 26 Jan 2013 03:18:36 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by noraisin.net (Postfix) with ESMTP id 6B5BD33804F4;
-	Sat, 26 Jan 2013 22:18:35 +1100 (EST)
-X-Virus-Scanned: Debian amavisd-new at decorama.com.au
-Received: from noraisin.net ([127.0.0.1])
-	by localhost (mail.decorama.com.au [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id gOYF5R8wTUyD; Sat, 26 Jan 2013 22:18:30 +1100 (EST)
-Received: from shorty.home. (113.94.233.220.static.exetel.com.au
-	[220.233.94.113])
-	by noraisin.net (Postfix) with ESMTPA id 3AE5733804EF;
-	Sat, 26 Jan 2013 22:18:30 +1100 (EST)
-From: Jan Schmidt <thaytan@noraisin.net>
-To: yocto@yoctoproject.org
-Date: Sat, 26 Jan 2013 22:18:24 +1100
-Message-Id: <1359199104-10713-1-git-send-email-thaytan@noraisin.net>
-X-Mailer: git-send-email 1.7.10.4
-Subject: [meta-raspberrypi][PATCH 3/3] sdcard-image: Use the size of the generated rootfs
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 868E7E00724
+	for <yocto@yoctoproject.org>; Sat, 26 Jan 2013 14:58:37 -0800 (PST)
+Received: by mail-ee0-f46.google.com with SMTP id e49so737263eek.19
+	for <yocto@yoctoproject.org>; Sat, 26 Jan 2013 14:58:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent:x-gm-message-state;
+	bh=WQp7hNzp/H0uRsQwfsYdQEDQ19j41Hlw4kOUKB8etvU=;
+	b=HbxqNtbyPJvqBSF8dNPwhhfC5n3a9gw9x1Jnfq0aS/hNwNACaJIYWR2jU1lpqvh1Ph
+	dNX9tRj4B6Erqjg049E/Whl+lJ76X7Wu3l8qfj1m7cXccSJqIQaF0nelktakg4n2II5N
+	EsG/G2hQR2vj8Usdt0b9OsQOMsWALnpzlc/xhiBMryt1kSYzESrJm14sVql/GrPtCCtS
+	YxEK+IcDqBfj1tcuo0r4WWq0qxNcYrDkyxaJCkcePFcjmbbHhLKm4qaGD/5nmB/Eew14
+	36AcXFdjIt4KK53moivJhLRnWT9lOhb/cMFBRAxo2FZD1FKNwj2uuclsYGmrSFDitlRu
+	iaRA==
+X-Received: by 10.14.177.1 with SMTP id c1mr34397696eem.8.1359241115845;
+	Sat, 26 Jan 2013 14:58:35 -0800 (PST)
+Received: from gmail.com (5-13-203-15.residential.rdsnet.ro. [5.13.203.15])
+	by mx.google.com with ESMTPS id q5sm8575587eep.11.2013.01.26.14.58.34
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Sat, 26 Jan 2013 14:58:34 -0800 (PST)
+Date: Sun, 27 Jan 2013 00:58:37 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Andreas =?iso-8859-1?Q?M=FCller?= <schnitzeltony@googlemail.com>
+Message-ID: <20130126225837.GA30017@gmail.com>
+References: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
+	<1359064662-17052-3-git-send-email-schnitzeltony@googlemail.com>
+MIME-Version: 1.0
+In-Reply-To: <1359064662-17052-3-git-send-email-schnitzeltony@googlemail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQnl7K8disAd/0ISqY90n3RLg0lPLtBVx5xoWjepKC45r6PED/28biWN4vgslUMrDW1StexK
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 2/2] xserver-xf86-config: fix do_install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,81 +45,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Jan 2013 11:18:37 -0000
+X-List-Received-Date: Sat, 26 Jan 2013 22:58:37 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-When constructing the SD card image, the code was using
-the inherited ROOTFS_SIZE, which is the size of the
-rootfs contents. When building (for example) a compressed
-rootfs, this allocates a partition much larger than necessary.
+On Thu, Jan 24, 2013 at 10:57:42PM +0100, Andreas Müller wrote:
+> for some reason wildcards don't work in current head. Error message was:
+>
+> | DEBUG: Executing shell function do_install
+> | install: cannot stat `/home/Superandy/tmp/oe-core-eglibc/work/raspberrypi-angstrom-linux-gnueabi/xserver-xf86-config/0.1-r18/xorg.conf.d/*': No such file or directory
+>
 
-Instead, take the size of the generated rootfs file that is
-about to be written into the generated image.
+I can't reproduce your error. For me this works. Maybe was something broken in
+oe-core? Anyway it seems to be fixed now. Would you retest it please
 
-Also remove the extra ${IMAGE_ROOTFS_ALIGNMENT} padding at
-the end of the image, as it isn't needed now.
+> Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+> ---
+>  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    6 ++++--
+>  1 files changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> index 65931e2..a8b8e8c 100644
+> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> @@ -1,12 +1,14 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>
+>  # Don't forget to bump PRINC if you update the extra files.
+> -PRINC := "${@int(PRINC) + 5}"
+> +PRINC := "${@int(PRINC) + 6}"
+>
+>  THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+>  FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+>
+> -SRC_URI_append_raspberrypi = " file://xorg.conf.d/* "
+> +SRC_URI_append_raspberrypi = " \
+> +	file://xorg.conf.d/10-evdev.conf \
+> +"
+>
+I don't find this lin ebreak necesssary here. And if it was, don't combine
+formating commits with other fixes.
 
-Signed-off-by: Jan Schmidt <thaytan@noraisin.net>
----
- classes/sdcard_image-rpi.bbclass |   23 +++++++++++++----------
- 1 file changed, 13 insertions(+), 10 deletions(-)
+Thanks,
 
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 421f561..fdac3b2 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -13,14 +13,16 @@ inherit image_types
- #                                                     Default Free space = 1.3x
- #                                                     Use IMAGE_OVERHEAD_FACTOR to add more space
- #                                                     <--------->
--#            4KiB              20MiB           SDIMG_ROOTFS
-+#            4KiB             ~20MiB           SDIMG_ROOTFS
- # <-----------------------> <----------> <---------------------->
--#  ------------------------ ------------ ------------------------ -------------------------------
--# | IMAGE_ROOTFS_ALIGNMENT | BOOT_SPACE | ROOTFS_SIZE            |     IMAGE_ROOTFS_ALIGNMENT    |
--#  ------------------------ ------------ ------------------------ -------------------------------
--# ^                        ^            ^                        ^                               ^
--# |                        |            |                        |                               |
--# 0                      4096     4KiB + 20MiB       4KiB + 20Mib + SDIMG_ROOTFS   4KiB + 20MiB + SDIMG_ROOTFS + 4KiB
-+#  ------------------------ ------------ ------------------------
-+# | IMAGE_ROOTFS_ALIGNMENT | BOOT_SPACE | ROOTFS_SIZE            |
-+#  ------------------------ ------------ ------------------------
-+# ^                        ^            ^                        ^
-+# |                        |            |                        |
-+# 0                      4096     4KiB + ~20MiB      4KiB + ~20Mib + SDIMG_ROOTFS
-+#                                 rounded up to
-+#                              IMAGE_ROOTFS_ALIGNMENT
- 
- 
- # Set kernel and boot loader
-@@ -29,7 +31,7 @@ IMAGE_BOOTLOADER ?= "bcm2835-bootfiles"
- # Boot partition volume id
- BOOTDD_VOLUME_ID ?= "${MACHINE}"
- 
--# Boot partition size [in KiB]
-+# Boot partition size [in KiB] (will be rounded up to IMAGE_ROOTFS_ALIGNMENT)
- BOOT_SPACE ?= "20480"
- 
- # Set alignment to 4MB [in KiB]
-@@ -60,7 +62,8 @@ IMAGE_CMD_rpi-sdimg () {
- 	# Align partitions
- 	BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE} + ${IMAGE_ROOTFS_ALIGNMENT} - 1)
- 	BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE_ALIGNED} - ${BOOT_SPACE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})
--	SDIMG_SIZE=$(expr ${IMAGE_ROOTFS_ALIGNMENT} + ${BOOT_SPACE_ALIGNED} + $ROOTFS_SIZE + ${IMAGE_ROOTFS_ALIGNMENT})
-+	ROOTFS_SIZE=`du -ks ${SDIMG_ROOTFS} | awk '{print $1}'`
-+	SDIMG_SIZE=$(expr ${IMAGE_ROOTFS_ALIGNMENT} + ${BOOT_SPACE_ALIGNED} + ${ROOTFS_SIZE})
- 
- 	# Initialize sdcard image file
- 	dd if=/dev/zero of=${SDIMG} bs=1 count=0 seek=$(expr 1024 \* ${SDIMG_SIZE})
-@@ -71,7 +74,7 @@ IMAGE_CMD_rpi-sdimg () {
- 	parted -s ${SDIMG} unit KiB mkpart primary fat32 ${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT})
- 	parted -s ${SDIMG} set 1 boot on
- 	# Create rootfs partition
--	parted -s ${SDIMG} unit KiB mkpart primary ext2 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT} \+ ${ROOTFS_SIZE})
-+	parted -s ${SDIMG} unit KiB mkpart primary ext2 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) $(expr ${SDIMG_SIZE} - 1)
- 	parted ${SDIMG} print
- 
- 	# Create a vfat image with boot files
--- 
-1.7.10.4
+--
+Andrei Gherzan
+m: +40.744.478.414 | f: +40.31.816.28.12
 
 
