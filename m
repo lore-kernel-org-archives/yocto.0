@@ -1,39 +1,35 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DB27E00743
-	for <yocto@yoctoproject.org>; Sun, 27 Jan 2013 05:31:48 -0800 (PST)
-Received: by mail-ee0-f42.google.com with SMTP id b47so917284eek.29
-	for <yocto@yoctoproject.org>; Sun, 27 Jan 2013 05:31:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent:x-gm-message-state;
-	bh=gZo0MME4/EKtMns2R+/HqFSEwwv/RyMOevgNJxl7pBk=;
-	b=ZozUwnwNh+SoVfU2xFsqUMY5VQvgkl1k3ZDS/V/ikoJG9NaJZbBPDI85dRIzrYURfe
-	CHFSpwIu5nWTR+VYCP1W7bHihwBRT+6utzYlUX5f3MgOOeQYIOLoanf1N+W3ARbhxOD9
-	wijAfJ0oTAmcEgWcfA2BCw3Mw+YtfLgAbwzjgxb0niO9C/LQtKZFG393H+WQJ4R5U/Pa
-	ln6PWBhQjRNYDGwqC73K1i5KqkxEtyBY8nwtT7IvXRDe/ikkl//Jx39bv02MvDwaUKXX
-	C4fgUr5EUrB9VbWQKgqgxHioKOJD4au8yqmrn/tdSS7IUt8taG6qW6aCTdmVY7bajBbO
-	VvZg==
-X-Received: by 10.14.203.3 with SMTP id e3mr41233300eeo.9.1359293507937;
-	Sun, 27 Jan 2013 05:31:47 -0800 (PST)
-Received: from gmail.com (5-13-203-15.residential.rdsnet.ro. [5.13.203.15])
-	by mx.google.com with ESMTPS id 6sm11346380eea.3.2013.01.27.05.31.46
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Sun, 27 Jan 2013 05:31:47 -0800 (PST)
-Date: Sun, 27 Jan 2013 15:31:52 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Jan Schmidt <thaytan@noraisin.net>
-Message-ID: <20130127133152.GB5781@gmail.com>
-References: <1359120805-25408-1-git-send-email-thaytan@noraisin.net>
-	<1359120805-25408-2-git-send-email-thaytan@noraisin.net>
+Return-Path: <schnitzeltony@googlemail.com>
+Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
+	[209.85.128.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7502E00743
+	for <yocto@yoctoproject.org>; Sun, 27 Jan 2013 06:35:47 -0800 (PST)
+Received: by mail-ve0-f172.google.com with SMTP id 15so878697vea.17
+	for <yocto@yoctoproject.org>; Sun, 27 Jan 2013 06:35:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:content-transfer-encoding;
+	bh=/TaIVWzHKwRXGeeTtVGglDi/Xvbmo88w2NiiE6MfFMY=;
+	b=MU9DXD6ixh5Zn9EDl8dYPXdFpQfksZaAewe0HZ/y7xKDnBr2UleDQU2wix2F1ENhXE
+	TNnuT67wRAljDw/EZ0MyQ6ZQ+QDGAnd4HD0oL9gEGX7iS2rSkgoGtKjTNH6evgwfVGxm
+	ioWu+M25o15DwiFsTetLcFJu9CruwUr4DK+YPS0bbQ3w1CgJyLcoYH9hiGLJ9ZIgel6T
+	LrijGAm0iIF+Vw8bdkSmp2HRmHnO45N+J1APqEj1vbEhVg8a8Yz/XekmgmnoRmKYP0pW
+	xku2L5YUU/leB5uEU1HSZ9E/t7O1m+WaUjnP/EFoBQJJiItD1tVGVf6w5VNUR44k9x67
+	OG0A==
 MIME-Version: 1.0
-In-Reply-To: <1359120805-25408-2-git-send-email-thaytan@noraisin.net>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Gm-Message-State: ALoCoQlB10OEBPymo9kskDGBY02FnXOm/jkLoehgj/fQ4FbntcXatfp4yRArOnhQXKspJUCYNOu/
+X-Received: by 10.220.219.73 with SMTP id ht9mr11924226vcb.47.1359297346931;
+	Sun, 27 Jan 2013 06:35:46 -0800 (PST)
+Received: by 10.52.95.243 with HTTP; Sun, 27 Jan 2013 06:35:46 -0800 (PST)
+In-Reply-To: <20130126225837.GA30017@gmail.com>
+References: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
+	<1359064662-17052-3-git-send-email-schnitzeltony@googlemail.com>
+	<20130126225837.GA30017@gmail.com>
+Date: Sun, 27 Jan 2013 15:35:46 +0100
+Message-ID: <CALbNGRSwHQs-O8dy-MoB2E26jYLXS0UWLHZYSi-0nZtE9Liisg@mail.gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 2/3] bcm2835-bootfiles: Bump the firmware revision
+Subject: Re: [meta-raspberrypi][PATCH 2/2] xserver-xf86-config: fix do_install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,26 +41,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Jan 2013 13:31:49 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sun, 27 Jan 2013 14:35:47 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 26, 2013 at 12:33:24AM +1100, Jan Schmidt wrote:
-> * Pull in a newer firmware revision (0ac68c 7th Jan 2013) from
->   https://github.com/raspberrypi/firmware for various fixes and
->   improvements
+On Sat, Jan 26, 2013 at 11:58 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Thu, Jan 24, 2013 at 10:57:42PM +0100, Andreas M=C3=BCller wrote:
+>> for some reason wildcards don't work in current head. Error message was:
+>>
+>> | DEBUG: Executing shell function do_install
+>> | install: cannot stat `/home/Superandy/tmp/oe-core-eglibc/work/raspberr=
+ypi-angstrom-linux-gnueabi/xserver-xf86-config/0.1-r18/xorg.conf.d/*': No s=
+uch file or directory
+>>
 >
-> Signed-off-by: Jan Schmidt <thaytan@noraisin.net>
-> ---
->  recipes-bcm/common/firmware.inc |    6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> I can't reproduce your error. For me this works. Maybe was something brok=
+en in
+> oe-core? Anyway it seems to be fixed now. Would you retest it please
+Will do that
+>
+>> Signed-off-by: Andreas M=C3=BCller <schnitzeltony@googlemail.com>
+>> ---
+>>  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    6 ++++--
+>>  1 files changed, 4 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbapp=
+end b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>> index 65931e2..a8b8e8c 100644
+>> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>> @@ -1,12 +1,14 @@
+>>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>>
+>>  # Don't forget to bump PRINC if you update the extra files.
+>> -PRINC :=3D "${@int(PRINC) + 5}"
+>> +PRINC :=3D "${@int(PRINC) + 6}"
+>>
+>>  THISDIR :=3D "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+>>  FILESPATH =3D. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+>>
+>> -SRC_URI_append_raspberrypi =3D " file://xorg.conf.d/* "
+>> +SRC_URI_append_raspberrypi =3D " \
+>> +     file://xorg.conf.d/10-evdev.conf \
+>> +"
+>>
+> I don't find this lin ebreak necesssary here. And if it was, don't combin=
+e
+> formating commits with other fixes.
+>
+Oops this was left over from some testing.
 
-Merged.
-
-Thank you,
-
---
-Andrei Gherzan
-m: +40.744.478.414 | f: +40.31.816.28.12
-
+Andreas
 
