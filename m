@@ -1,33 +1,32 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60411E011AB
-	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:12:10 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 29 Jan 2013 13:12:09 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54768E0072F
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 15:50:13 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 29 Jan 2013 15:50:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,561,1355126400"; 
-	d="scan'208,217";a="283793528"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by fmsmga002.fm.intel.com with ESMTP; 29 Jan 2013 13:12:02 -0800
+X-IronPort-AV: E=Sophos;i="4.84,562,1355126400"; d="scan'208";a="249973223"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by azsmga001.ch.intel.com with ESMTP; 29 Jan 2013 15:50:11 -0800
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Tue, 29 Jan 2013 15:50:10 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.62]) with mapi id
-	14.01.0355.002; Tue, 29 Jan 2013 13:12:02 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Chris Larson <clarson@kergoth.com>
-Thread-Topic: [yocto] BB_DANGLINGAPPENDS_WARNONLY
-Thread-Index: Ac3+Y10iDWh9RcpZQVGAa2Yq9Rdx6QARKP2AABCyVvA=
-Date: Tue, 29 Jan 2013 21:12:02 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8@ORSMSX101.amr.corp.intel.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FAF@ORSMSX101.amr.corp.intel.com>
-	<CABcZAN=mOTnFvBVM3ZV1Zownr=+s4bLvi-db9jQXSzFXc2dTyg@mail.gmail.com>
-In-Reply-To: <CABcZAN=mOTnFvBVM3ZV1Zownr=+s4bLvi-db9jQXSzFXc2dTyg@mail.gmail.com>
+	ORSMSX107.amr.corp.intel.com ([169.254.10.112]) with mapi id
+	14.01.0421.002; Tue, 29 Jan 2013 15:50:10 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	January 29, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac3+ezrI6PTQbTIbQ3CLEIZOG06ctwAABCLQ
+Date: Tue, 29 Jan 2013 23:50:09 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A598AAEF1@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: BB_DANGLINGAPPENDS_WARNONLY
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, January 29, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,117 +38,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jan 2013 21:12:10 -0000
+X-List-Received-Date: Tue, 29 Jan 2013 23:50:13 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Attendees:=20
+Illeana, Nitin, Amit, Richard, ScottR, Belen, BruceA, TomZ, LaurentiuP, Cor=
+neliu, Mark, Bj=F6rn, Kevin, Saul, Ross, AlexG, JessicaZ, BogdanM, DarrenH,=
+ SongL.  =20
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+  - Ross: nothing new. We should be doing a build (will work with Saul), th=
+en send the build to QA.
+  - ScottR: doc changes pulled in? Ross: they are merged.
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+  - M2/M3: All high features are in (LTSI is merged too even though it's be=
+en approved by the CCB to be rescheduled to M4. Thanks, Bruce!). Close to g=
+et the full pass report on RC1. AlexG: report will be out tomorrow. No high=
+ bugs so far, but triage team will do a quick round today, so you may get s=
+ome new bugs coming your way. If it's high, please make sure we fix them as=
+ap. If you cannot get M3 high done, please do let me know today. Send email=
+ to me or the mailing list and CC me. Saul: is it possible to have the repo=
+rt before the meeting. AlexG: there was some issue so it's delayed a little=
+ today. will try in the future.
+ - Bug fixing: a little better than last week. But still high on # of open =
+bugs. Fixed 41, Richard (7), Nitin (5). Good work, team!
+  - M4: Thanks to the team. planning is pretty much complete. Cristian, Mih=
+ai need to move some M3 features, Saul/ScottG have M3 medium+ too.
+  - Nitin, what are the M4 dates? feature cutoff: 2/17/2013, RC1: 2/20/2013
+  - Milestone planning is our opportunity to look at features on schedule c=
+loser, and adjust estimation if necessary. We want the estimation to reflec=
+t our current view on features.
+=20
+* SWAT team rotation: Bogdan Marinescu -> Laurentiu Palcu
+=A0
+* Opens - 10 min=20
+  - Bjorn: kernel configuration. I have been working with a couple of meta =
+layers, many of them have their own kernels. With the recent kernel manual =
+out, wondering if we can create some unified kernel configuration, make som=
+ething that can be migrated to other layers. Anyone has been thinking about=
+ this?
+  . Bruce: There are some existing things we can use. I have some changes f=
+or 1.4 coming up, could be the next step for this unified kernel config. Da=
+rren: please send email to the mailing list and CC darren and bruce. There =
+are 2 config options we can choose from: traditional linux config and linux=
+-yocto tooling.
+  . This can be discussed in the mailing list.
+  - Corneliu: 2821:Saul: it's related to proxy, we thought it was resolved.=
+ We should work with Michael on this. Corneliu: What's the procedure we sho=
+uld follow before we resolve it, can we disable the error in the testcase?.=
+ Song: It's medium bug, no others seem to be able to chime in. Take offline=
+ with Saul please.
+=A0
+* Team Sharing - 20 min
+  - RP: Doing some performance work, looking at package build again. Someti=
+me pretty slow. Particular on large packages. large number of packages from=
+ some recipes. Kernel packaging in particular: a number of kernel modules a=
+nd large number of packages. Profiling tasks. Digging through output, where=
+ is the bottleneck and what is low hanging fruit. One case: code is working=
+, but calling something inefficiently. We need ideas how to improve the pac=
+kaging. There are definitely some optimization we can do. Wondering if we c=
+an parallel the packaging. Open to ideas. Will speak on the mailing list on=
+ this.
+  - Bjorn: this is something I'm interested.
 
-VGhhbmtzLiAgU291bmRzIGxpa2UgaXQgd291bGQgYmUgdXNlZnVsIHRvIGRvY3VtZW50IHRoaXMg
-dmFyaWFibGUuDQoNCkZyb206IGtlcmdvdGhAZ21haWwuY29tIFttYWlsdG86a2VyZ290aEBnbWFp
-bC5jb21dIE9uIEJlaGFsZiBPZiBDaHJpcyBMYXJzb24NClNlbnQ6IFR1ZXNkYXksIEphbnVhcnkg
-MjksIDIwMTMgMToxMCBQTQ0KVG86IFJpZmVuYmFyaywgU2NvdHQgTQ0KQ2M6IHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIEJCX0RBTkdMSU5HQVBQRU5EU19XQVJO
-T05MWQ0KDQoNCk9uIFR1ZSwgSmFuIDI5LCAyMDEzIGF0IDE6NTggUE0sIFJpZmVuYmFyaywgU2Nv
-dHQgTSA8c2NvdHQubS5yaWZlbmJhcmtAaW50ZWwuY29tPG1haWx0bzpzY290dC5tLnJpZmVuYmFy
-a0BpbnRlbC5jb20+PiB3cm90ZToNCkkgY2FuJ3Qgc2VlbSB0byBmaW5kIGFueSBpbmZvcm1hdGlv
-biBvbiB0aGlzIHZhcmlhYmxlIG90aGVyIHRoYW4gd2hhdCB3YXMgb2ZmZXJlZCBpbiBhIGJ1ZyAo
-aHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0zNjYyKSBm
-aWxlZCBhZ2FpbnN0IHNvbWUgc3R1ZmYgaW4gdGhlIGdsb3NzYXJ5IGluIGdlbmVyYWwuICBUaGUg
-aW5mb3JtYXRpb24gcHJvdmlkZWQgdGhlcmUgYnkgUm9iZXJ0IFAuIEouIERheSBzYXlzIGl0IGlz
-IGhhbmR5IHdoZW4gbGF5ZXJzIGdldCBvdXQgb2Ygc3luYy4NCg0KQ2FuIGFueW9uZSBvdXQgdGhl
-cmUgb2ZmZXIgbW9yZSBpbmZvcm1hdGlvbiBvbiB0aGlzIHZhcmlhYmxlPyAgV29uZGVyaW5nIHdo
-ZXRoZXIgdGhpcyBzaG91bGQgYmUgZG9jdW1lbnRlZCBpbiB0aGUgZ2xvc3NhcnkuDQoNCk5vcm1h
-bGx5LCBpZiBiaXRiYWtlIGVuY291bnRlcnMgYSBiYmFwcGVuZCB3aG9zZSByZWNpcGUgbm8gbG9u
-Z2VyIGV4aXN0cywgaXQgdHJlYXRzIHRoaXMgY29uZGl0aW9uIGFzIGZhdGFsLiBUaGlzLCBhcyBS
-b2JlcnQgc2F5cywgb2Z0ZW4gb2NjdXJzIGlmIGxheWVycyBnZXQgb3V0IG9mIHN5bmMuIEZvciBl
-eGFtcGxlLCBpZiBvZS1jb3JlIGJ1bXBzIGEgcmVjaXBlIHZlcnNpb24gYW5kIHRoZSBvbGQgb25l
-IG5vIGxvbmdlciBleGlzdHMsIGJ1dCB0aGUgb3RoZXIgbGF5ZXIgaGFzbid0IHVwZGF0ZWQgdG8g
-dGhlIG5ldyB2ZXJzaW9uIHlldC4gSXQgYmVpbmcgZmF0YWwgaXMgYSBzYW5lIGRlZmF1bHQsIGFz
-IGl0J3MgaW1wb3J0YW50IHRvIHJlYWxpemUgd2hlbiB5b3VyIGNoYW5nZXMgYXJlIG5vIGxvbmdl
-ciBiZWluZyBhcHBsaWVkLiBUaGUgdmFyaWFibGUgeW91IG1lbnRpb24gY2hhbmdlcyB0aGUgYmVo
-YXZpb3IgdG8gYSB3YXJuaW5nIGluc3RlYWQuDQotLQ0KQ2hyaXN0b3BoZXIgTGFyc29uDQo=
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2
-IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBs
-aS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9t
-Oi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
-bWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
-OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
-Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4u
-RW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVm
-YXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
-Cgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30N
-CmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0t
-W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRt
-YXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
-CjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRh
-PSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJv
-ZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0i
-V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3MuJm5ic3A7IFNvdW5kcyBsaWtlIGl0IHdvdWxk
-IGJlIHVzZWZ1bCB0byBkb2N1bWVudCB0aGlzIHZhcmlhYmxlLjxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
-cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3Jk
-ZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4g
-NC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQg
-I0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7
-LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBrZXJnb3RoQGdtYWlsLmNvbSBbbWFpbHRvOmtlcmdv
-dGhAZ21haWwuY29tXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5DaHJpcyBMYXJzb248YnI+DQo8Yj5T
-ZW50OjwvYj4gVHVlc2RheSwgSmFudWFyeSAyOSwgMjAxMyAxOjEwIFBNPGJyPg0KPGI+VG86PC9i
-PiBSaWZlbmJhcmssIFNjb3R0IE08YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5v
-cmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gQkJfREFOR0xJTkdBUFBFTkRTX1dB
-Uk5PTkxZPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5PbiBUdWUsIEphbiAyOSwgMjAxMyBhdCAxOjU4IFBNLCBSaWZlbmJhcmssIFNjb3R0IE0g
-Jmx0OzxhIGhyZWY9Im1haWx0bzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20iIHRhcmdldD0i
-X2JsYW5rIj5zY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwv
-bzpwPjwvcD4NCjxkaXYgaWQ9Ijo1NCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGNhbid0IHNl
-ZW0gdG8gZmluZCBhbnkgaW5mb3JtYXRpb24gb24gdGhpcyB2YXJpYWJsZSBvdGhlciB0aGFuIHdo
-YXQgd2FzIG9mZmVyZWQgaW4gYSBidWcgKDxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9jdG9w
-cm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzY2MiIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8v
-YnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzY2MjwvYT4pIGZpbGVk
-DQogYWdhaW5zdCBzb21lIHN0dWZmIGluIHRoZSBnbG9zc2FyeSBpbiBnZW5lcmFsLiAmbmJzcDtU
-aGUgaW5mb3JtYXRpb24gcHJvdmlkZWQgdGhlcmUgYnkgUm9iZXJ0IFAuIEouIERheSBzYXlzIGl0
-IGlzIGhhbmR5IHdoZW4gbGF5ZXJzIGdldCBvdXQgb2Ygc3luYy48YnI+DQo8YnI+DQpDYW4gYW55
-b25lIG91dCB0aGVyZSBvZmZlciBtb3JlIGluZm9ybWF0aW9uIG9uIHRoaXMgdmFyaWFibGU/ICZu
-YnNwO1dvbmRlcmluZyB3aGV0aGVyIHRoaXMgc2hvdWxkIGJlIGRvY3VtZW50ZWQgaW4gdGhlIGds
-b3NzYXJ5LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxicj4NCk5vcm1hbGx5LCBpZiBiaXRiYWtlIGVuY291bnRlcnMgYSBiYmFwcGVuZCB3aG9z
-ZSByZWNpcGUgbm8gbG9uZ2VyIGV4aXN0cywgaXQgdHJlYXRzIHRoaXMgY29uZGl0aW9uIGFzIGZh
-dGFsLiBUaGlzLCBhcyBSb2JlcnQgc2F5cywgb2Z0ZW4gb2NjdXJzIGlmIGxheWVycyBnZXQgb3V0
-IG9mIHN5bmMuIEZvciBleGFtcGxlLCBpZiBvZS1jb3JlIGJ1bXBzIGEgcmVjaXBlIHZlcnNpb24g
-YW5kIHRoZSBvbGQgb25lIG5vIGxvbmdlciBleGlzdHMsIGJ1dCB0aGUNCiBvdGhlciBsYXllciBo
-YXNuJ3QgdXBkYXRlZCB0byB0aGUgbmV3IHZlcnNpb24geWV0LiBJdCBiZWluZyBmYXRhbCBpcyBh
-IHNhbmUgZGVmYXVsdCwgYXMgaXQncyBpbXBvcnRhbnQgdG8gcmVhbGl6ZSB3aGVuIHlvdXIgY2hh
-bmdlcyBhcmUgbm8gbG9uZ2VyIGJlaW5nIGFwcGxpZWQuIFRoZSB2YXJpYWJsZSB5b3UgbWVudGlv
-biBjaGFuZ2VzIHRoZSBiZWhhdmlvciB0byBhIHdhcm5pbmcgaW5zdGVhZC48YnI+DQotLSA8YnI+
-DQpDaHJpc3RvcGhlciBMYXJzb248bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_--
