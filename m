@@ -1,32 +1,31 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
-	[209.85.217.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31998E011AB
-	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:10:00 -0800 (PST)
-Received: by mail-lb0-f171.google.com with SMTP id gg13so1303857lbb.16
-	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:09:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=izYfjNHAAEvASI1k00gKcsiU7OJt9Sr9sZKeLft0r1s=;
-	b=FsaHOiyvsO+zheVq3e3V/lDRwNtvop/vaJNk4rcnKSFyxdcbH02MAWsiIL6ONbPYzQ
-	bPZz+Eh4ZqmdU/Tq1psLKdS/8Vsy0Ak2kwhrxGeHxI+9rs979tImVtm+vLDyqXI4NZgZ
-	e3lHyIuQ1EMCWtHnJ8f6EB4pMhLBgPBWd95QrqWIRI9WWkGt0gKAZPoE9VtwkT6sQGKM
-	Wx7bMj5GUTY6tWBGpy4CfRNwhxXpCZfUBXhqyo5MUqTpd74Y8pcIAz+CunOaRwysGqCP
-	47Lnqu+A+r6xTwImR1ybs9Z+uBjp7+oMX1W6PlXVagrJApKCJAsVPcA92EWZg3zgyB6M
-	Bo4g==
-X-Received: by 10.112.87.194 with SMTP id ba2mr1037211lbb.84.1359493799608;
-	Tue, 29 Jan 2013 13:09:59 -0800 (PST)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.34.10 with HTTP; Tue, 29 Jan 2013 13:09:39 -0800 (PST)
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FAF@ORSMSX101.amr.corp.intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60411E011AB
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:12:10 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 29 Jan 2013 13:12:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,561,1355126400"; 
+	d="scan'208,217";a="283793528"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by fmsmga002.fm.intel.com with ESMTP; 29 Jan 2013 13:12:02 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.62]) with mapi id
+	14.01.0355.002; Tue, 29 Jan 2013 13:12:02 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Chris Larson <clarson@kergoth.com>
+Thread-Topic: [yocto] BB_DANGLINGAPPENDS_WARNONLY
+Thread-Index: Ac3+Y10iDWh9RcpZQVGAa2Yq9Rdx6QARKP2AABCyVvA=
+Date: Tue, 29 Jan 2013 21:12:02 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8@ORSMSX101.amr.corp.intel.com>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FAF@ORSMSX101.amr.corp.intel.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Tue, 29 Jan 2013 14:09:39 -0700
-X-Google-Sender-Auth: n9P6DhCaRQ6sqSr_oEeDTQ_CbPA
-Message-ID: <CABcZAN=mOTnFvBVM3ZV1Zownr=+s4bLvi-db9jQXSzFXc2dTyg@mail.gmail.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+	<CABcZAN=mOTnFvBVM3ZV1Zownr=+s4bLvi-db9jQXSzFXc2dTyg@mail.gmail.com>
+In-Reply-To: <CABcZAN=mOTnFvBVM3ZV1Zownr=+s4bLvi-db9jQXSzFXc2dTyg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: BB_DANGLINGAPPENDS_WARNONLY
 X-BeenThere: yocto@yoctoproject.org
@@ -40,65 +39,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jan 2013 21:10:01 -0000
-Content-Type: multipart/alternative; boundary=f46d0401fdff0003e604d473d147
+X-List-Received-Date: Tue, 29 Jan 2013 21:12:10 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_"
 
---f46d0401fdff0003e604d473d147
-Content-Type: text/plain; charset=UTF-8
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, Jan 29, 2013 at 1:58 PM, Rifenbark, Scott M <
-scott.m.rifenbark@intel.com> wrote:
+VGhhbmtzLiAgU291bmRzIGxpa2UgaXQgd291bGQgYmUgdXNlZnVsIHRvIGRvY3VtZW50IHRoaXMg
+dmFyaWFibGUuDQoNCkZyb206IGtlcmdvdGhAZ21haWwuY29tIFttYWlsdG86a2VyZ290aEBnbWFp
+bC5jb21dIE9uIEJlaGFsZiBPZiBDaHJpcyBMYXJzb24NClNlbnQ6IFR1ZXNkYXksIEphbnVhcnkg
+MjksIDIwMTMgMToxMCBQTQ0KVG86IFJpZmVuYmFyaywgU2NvdHQgTQ0KQ2M6IHlvY3RvQHlvY3Rv
+cHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIEJCX0RBTkdMSU5HQVBQRU5EU19XQVJO
+T05MWQ0KDQoNCk9uIFR1ZSwgSmFuIDI5LCAyMDEzIGF0IDE6NTggUE0sIFJpZmVuYmFyaywgU2Nv
+dHQgTSA8c2NvdHQubS5yaWZlbmJhcmtAaW50ZWwuY29tPG1haWx0bzpzY290dC5tLnJpZmVuYmFy
+a0BpbnRlbC5jb20+PiB3cm90ZToNCkkgY2FuJ3Qgc2VlbSB0byBmaW5kIGFueSBpbmZvcm1hdGlv
+biBvbiB0aGlzIHZhcmlhYmxlIG90aGVyIHRoYW4gd2hhdCB3YXMgb2ZmZXJlZCBpbiBhIGJ1ZyAo
+aHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0zNjYyKSBm
+aWxlZCBhZ2FpbnN0IHNvbWUgc3R1ZmYgaW4gdGhlIGdsb3NzYXJ5IGluIGdlbmVyYWwuICBUaGUg
+aW5mb3JtYXRpb24gcHJvdmlkZWQgdGhlcmUgYnkgUm9iZXJ0IFAuIEouIERheSBzYXlzIGl0IGlz
+IGhhbmR5IHdoZW4gbGF5ZXJzIGdldCBvdXQgb2Ygc3luYy4NCg0KQ2FuIGFueW9uZSBvdXQgdGhl
+cmUgb2ZmZXIgbW9yZSBpbmZvcm1hdGlvbiBvbiB0aGlzIHZhcmlhYmxlPyAgV29uZGVyaW5nIHdo
+ZXRoZXIgdGhpcyBzaG91bGQgYmUgZG9jdW1lbnRlZCBpbiB0aGUgZ2xvc3NhcnkuDQoNCk5vcm1h
+bGx5LCBpZiBiaXRiYWtlIGVuY291bnRlcnMgYSBiYmFwcGVuZCB3aG9zZSByZWNpcGUgbm8gbG9u
+Z2VyIGV4aXN0cywgaXQgdHJlYXRzIHRoaXMgY29uZGl0aW9uIGFzIGZhdGFsLiBUaGlzLCBhcyBS
+b2JlcnQgc2F5cywgb2Z0ZW4gb2NjdXJzIGlmIGxheWVycyBnZXQgb3V0IG9mIHN5bmMuIEZvciBl
+eGFtcGxlLCBpZiBvZS1jb3JlIGJ1bXBzIGEgcmVjaXBlIHZlcnNpb24gYW5kIHRoZSBvbGQgb25l
+IG5vIGxvbmdlciBleGlzdHMsIGJ1dCB0aGUgb3RoZXIgbGF5ZXIgaGFzbid0IHVwZGF0ZWQgdG8g
+dGhlIG5ldyB2ZXJzaW9uIHlldC4gSXQgYmVpbmcgZmF0YWwgaXMgYSBzYW5lIGRlZmF1bHQsIGFz
+IGl0J3MgaW1wb3J0YW50IHRvIHJlYWxpemUgd2hlbiB5b3VyIGNoYW5nZXMgYXJlIG5vIGxvbmdl
+ciBiZWluZyBhcHBsaWVkLiBUaGUgdmFyaWFibGUgeW91IG1lbnRpb24gY2hhbmdlcyB0aGUgYmVo
+YXZpb3IgdG8gYSB3YXJuaW5nIGluc3RlYWQuDQotLQ0KQ2hyaXN0b3BoZXIgTGFyc29uDQo=
 
-> I can't seem to find any information on this variable other than what was
-> offered in a bug (https://bugzilla.yoctoproject.org/show_bug.cgi?id=3662)
-> filed against some stuff in the glossary in general.  The information
-> provided there by Robert P. J. Day says it is handy when layers get out of
-> sync.
->
-> Can anyone out there offer more information on this variable?  Wondering
-> whether this should be documented in the glossary.
->
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Normally, if bitbake encounters a bbappend whose recipe no longer exists,
-it treats this condition as fatal. This, as Robert says, often occurs if
-layers get out of sync. For example, if oe-core bumps a recipe version and
-the old one no longer exists, but the other layer hasn't updated to the new
-version yet. It being fatal is a sane default, as it's important to realize
-when your changes are no longer being applied. The variable you mention
-changes the behavior to a warning instead.
--- 
-Christopher Larson
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2
+IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBs
+aS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9t
+Oi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
+bWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4u
+RW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVm
+YXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
+Cgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30N
+CmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0t
+W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRt
+YXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
+CjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRh
+PSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJv
+ZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0i
+V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
+ZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3MuJm5ic3A7IFNvdW5kcyBsaWtlIGl0IHdvdWxk
+IGJlIHVzZWZ1bCB0byBkb2N1bWVudCB0aGlzIHZhcmlhYmxlLjxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
+cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3Jk
+ZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4g
+NC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQg
+I0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7
+LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBrZXJnb3RoQGdtYWlsLmNvbSBbbWFpbHRvOmtlcmdv
+dGhAZ21haWwuY29tXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5DaHJpcyBMYXJzb248YnI+DQo8Yj5T
+ZW50OjwvYj4gVHVlc2RheSwgSmFudWFyeSAyOSwgMjAxMyAxOjEwIFBNPGJyPg0KPGI+VG86PC9i
+PiBSaWZlbmJhcmssIFNjb3R0IE08YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5v
+cmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gQkJfREFOR0xJTkdBUFBFTkRTX1dB
+Uk5PTkxZPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5PbiBUdWUsIEphbiAyOSwgMjAxMyBhdCAxOjU4IFBNLCBSaWZlbmJhcmssIFNjb3R0IE0g
+Jmx0OzxhIGhyZWY9Im1haWx0bzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20iIHRhcmdldD0i
+X2JsYW5rIj5zY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwv
+bzpwPjwvcD4NCjxkaXYgaWQ9Ijo1NCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGNhbid0IHNl
+ZW0gdG8gZmluZCBhbnkgaW5mb3JtYXRpb24gb24gdGhpcyB2YXJpYWJsZSBvdGhlciB0aGFuIHdo
+YXQgd2FzIG9mZmVyZWQgaW4gYSBidWcgKDxhIGhyZWY9Imh0dHBzOi8vYnVnemlsbGEueW9jdG9w
+cm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzY2MiIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8v
+YnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MzY2MjwvYT4pIGZpbGVk
+DQogYWdhaW5zdCBzb21lIHN0dWZmIGluIHRoZSBnbG9zc2FyeSBpbiBnZW5lcmFsLiAmbmJzcDtU
+aGUgaW5mb3JtYXRpb24gcHJvdmlkZWQgdGhlcmUgYnkgUm9iZXJ0IFAuIEouIERheSBzYXlzIGl0
+IGlzIGhhbmR5IHdoZW4gbGF5ZXJzIGdldCBvdXQgb2Ygc3luYy48YnI+DQo8YnI+DQpDYW4gYW55
+b25lIG91dCB0aGVyZSBvZmZlciBtb3JlIGluZm9ybWF0aW9uIG9uIHRoaXMgdmFyaWFibGU/ICZu
+YnNwO1dvbmRlcmluZyB3aGV0aGVyIHRoaXMgc2hvdWxkIGJlIGRvY3VtZW50ZWQgaW4gdGhlIGds
+b3NzYXJ5LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxicj4NCk5vcm1hbGx5LCBpZiBiaXRiYWtlIGVuY291bnRlcnMgYSBiYmFwcGVuZCB3aG9z
+ZSByZWNpcGUgbm8gbG9uZ2VyIGV4aXN0cywgaXQgdHJlYXRzIHRoaXMgY29uZGl0aW9uIGFzIGZh
+dGFsLiBUaGlzLCBhcyBSb2JlcnQgc2F5cywgb2Z0ZW4gb2NjdXJzIGlmIGxheWVycyBnZXQgb3V0
+IG9mIHN5bmMuIEZvciBleGFtcGxlLCBpZiBvZS1jb3JlIGJ1bXBzIGEgcmVjaXBlIHZlcnNpb24g
+YW5kIHRoZSBvbGQgb25lIG5vIGxvbmdlciBleGlzdHMsIGJ1dCB0aGUNCiBvdGhlciBsYXllciBo
+YXNuJ3QgdXBkYXRlZCB0byB0aGUgbmV3IHZlcnNpb24geWV0LiBJdCBiZWluZyBmYXRhbCBpcyBh
+IHNhbmUgZGVmYXVsdCwgYXMgaXQncyBpbXBvcnRhbnQgdG8gcmVhbGl6ZSB3aGVuIHlvdXIgY2hh
+bmdlcyBhcmUgbm8gbG9uZ2VyIGJlaW5nIGFwcGxpZWQuIFRoZSB2YXJpYWJsZSB5b3UgbWVudGlv
+biBjaGFuZ2VzIHRoZSBiZWhhdmlvciB0byBhIHdhcm5pbmcgaW5zdGVhZC48YnI+DQotLSA8YnI+
+DQpDaHJpc3RvcGhlciBMYXJzb248bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---f46d0401fdff0003e604d473d147
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Jan 29, 2013 at 1:58 PM, Rifenbark, Scott M <span dir=3D"ltr">&lt;<=
-a href=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott.m.rif=
-enbark@intel.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":54">I can&#39;t seem to find any=
- information on this variable other than what was offered in a bug (<a href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3662" target=3D"_bl=
-ank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3662</a>) filed ag=
-ainst some stuff in the glossary in general. =C2=A0The information provided=
- there by Robert P. J. Day says it is handy when layers get out of sync.<br=
->
-
-
-<br>
-Can anyone out there offer more information on this variable? =C2=A0Wonderi=
-ng whether this should be documented in the glossary.</div></blockquote></d=
-iv><br>Normally, if bitbake encounters a bbappend whose recipe no longer ex=
-ists, it treats this condition as fatal. This, as Robert says, often occurs=
- if layers get out of sync. For example, if oe-core bumps a recipe version =
-and the old one no longer exists, but the other layer hasn&#39;t updated to=
- the new version yet. It being fatal is a sane default, as it&#39;s importa=
-nt to realize when your changes are no longer being applied. The variable y=
-ou mention changes the behavior to a warning instead.<br>
-
--- <br>Christopher Larson</div></div>
-
---f46d0401fdff0003e604d473d147--
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237957D28FE8ORSMSX101amrcor_--
