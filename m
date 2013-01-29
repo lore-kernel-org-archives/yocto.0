@@ -1,50 +1,34 @@
-Return-Path: <stephen.lawrence@renesas.com>
-Received: from relmlor1.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EED0E01400
-	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 03:24:55 -0800 (PST)
-Received: from relmlir4.idc.renesas.com ([10.200.68.154])
-	by relmlor1.idc.renesas.com ( SJSMS)
-	with ESMTP id <0MHD00HAEX1ICO10@relmlor1.idc.renesas.com> for
-	yocto@yoctoproject.org; Tue, 29 Jan 2013 20:24:54 +0900 (JST)
-Received: from relmlac2.idc.renesas.com ([10.200.69.22])
-	by relmlir4.idc.renesas.com ( SJSMS)
-	with ESMTP id <0MHD005WGX1IOX10@relmlir4.idc.renesas.com> for
-	yocto@yoctoproject.org; Tue, 29 Jan 2013 20:24:54 +0900 (JST)
-Received: by relmlac2.idc.renesas.com (Postfix, from userid 0)
-	id 3988A280A4; Tue, 29 Jan 2013 20:24:54 +0900 (JST)
-Received: from relmlac2.idc.renesas.com (localhost [127.0.0.1])
-	by relmlac2.idc.renesas.com (Postfix) with ESMTP id 349C5280A0; Tue,
-	29 Jan 2013 20:24:54 +0900 (JST)
-Received: from relmlii1.idc.renesas.com [10.200.68.65]	by
-	relmlac2.idc.renesas.com with ESMTP id WAB23494; Tue,
-	29 Jan 2013 20:24:54 +0900
-X-IronPort-AV: E=Sophos;i="4.84,559,1355065200";   d="scan'208";a="115039945"
-Received: from unknown (HELO relay51.aps.necel.com) ([10.29.19.60])
-	by relmlii1.idc.renesas.com with ESMTP; Tue, 29 Jan 2013 20:24:54 +0900
-Received: from julia (du2com5.eu.necel.com [172.29.24.35] (may be forged))
-	by relay51.aps.necel.com (8.14.4+Sun/8.14.4) with ESMTP id
-	r0TBOpZn018196; Tue, 29 Jan 2013 20:24:51 +0900 (JST)
-Received: by julia (Postfix, from userid 2)	id 1E5F54E892; Tue,
-	29 Jan 2013 12:24:51 +0100 (CET)
-Received: from du0smtp.eu.necel.com (unknown [172.29.24.86]) by julia (Postfix)
-	with ESMTP id 013744E87F; Tue, 29 Jan 2013 12:24:51 +0100 (CET)
-In-reply-to: <5106C9C2.5020702@windriver.com>
-References: <OF44D69492.16138F01-ON80257B01.005DC646-80257B01.0061C0AD@eu.necel.com>
-	<5106BD15.8010504@windriver.com>
-	<OF5C39E5C7.FA7C53BE-ON80257B01.0064A12F-80257B01.00660446@eu.necel.com>
-	<5106C50F.3010008@windriver.com> <5106C9C2.5020702@windriver.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-MIME-version: 1.0
-X-KeepSent: 2CE81789:0964AE31-80257B02:003C686D; type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
-From: stephen.lawrence@renesas.com
-Message-id: <OF2CE81789.0964AE31-ON80257B02.003C686D-80257B02.003EAB89@eu.necel.com>
-Date: Tue, 29 Jan 2013 11:24:31 +0000
-X-MIMETrack: Serialize by Router on DU0SMTP/EE/NECEE(Release 8.5.3 HF466|March
-	09, 2012) at 29.01.2013 12:24:50,
-	Serialize complete at 29.01.2013 12:24:50
-Cc: yocto@yoctoproject.org
-Subject: Re: SRC_URI scope and kernel fragments in non-yocto kernel recipes
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F162E002AB
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 04:42:04 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3YwS5Q6Spqz3hhqL
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:42:02 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3YwS5Q2fY4zbbhP
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:42:02 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id Rwr_Rf6r2PLu for <yocto@yoctoproject.org>;
+	Tue, 29 Jan 2013 13:41:12 +0100 (CET)
+X-Auth-Info: LmJ/UiznUOnPJG9UTvDai+Bl+0SN4zdh4YL+zAPtYUo=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:42:01 +0100 (CET)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 0274A1A14E5
+	for <yocto@yoctoproject.org>; Tue, 29 Jan 2013 13:42:00 +0100 (CET)
+Received: by gemini.denx.de (Postfix, from userid 500)
+	id 17CBC2A064F; Tue, 29 Jan 2013 13:42:00 +0100 (CET)
+From: Wolfgang Denk <wd@denx.de>
+To: yocto@yoctoproject.org
+Date: Tue, 29 Jan 2013 13:41:56 +0100
+Message-Id: <1359463316-21376-1-git-send-email-wd@denx.de>
+X-Mailer: git-send-email 1.7.11.7
+Subject: [PATCH] Add sbindir_nativesdk to environment setup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,87 +40,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jan 2013 11:24:55 -0000
-Content-type: text/plain; charset=utf-8
-Content-transfer-encoding: quoted-printable
+X-List-Received-Date: Tue, 29 Jan 2013 12:42:05 -0000
 
-Bruce Ashfield <bruce.ashfield@windriver.com> wrote on 28/01/2013=20
-18:56:02:
+When adding for example file system generating tools like
+"mkfs.cramfs" or "mkfs.ubifs" to the SDK, these will be installed into
+the "${prefix_nativesdk}/sbin" directory, but the generated
+environment-setup script sets a PATH that includes /bin only.
+Add a new definition of "sbindir_nativesdk" and include this into the
+PATH setting.
 
-> >>>> Why is the SRC_URI containing the additional patches applied when
-> >>>> referenced directly in the bb file,
-> >>>> but not when referenced in an include or scc file?
-> >>>
-> >>> Keeping the question isolated to just the patch on the SRC_URI is a
-> >>> good idea to make sure we are talking about the simplest case.
-> >>>
-> >>> Which type of recipe isn't having the patch applied, the mainline=20
-one ?
-> >>> The linux-yocto one, or both ?
-> >>
-> >> Currently I've only tried the mainline one.
-> >>
-> >> I would need to revert and try again tomorrow, but when the SRC_URI
-> >> containing the additional patches was in an include, I recall the=20
-patch
-> >> files were not listed in the build prep logs such as do_fetch.
-> >> Not surprising in that case, but they were also not copied over into=20
-the
-> >> git tree of the work area.
-> >>
-> >> So it was as if the include was parsed but the SRC_URI was ignored.
-> >
-> > I'll try a test here and see what happens in the mean time.
->=20
-> I can confirm that in my simple test, I can have a kernel recipe
-> linux-<your recipe name>.bbappend in a layer that includes .inc file,
-> who's only contents are:
->=20
-> SRC_URI +=3D "file://0001-makefile-add-comment.patch"
->=20
-> And I get the patch applied to the tree. Am I understanding correctly ?
-> or is that different from what you are trying to do?
->=20
+Signed-off-by: Wolfgang Denk <wd@denx.de>
+---
+ meta/classes/toolchain-scripts.bbclass | 2 +-
+ meta/conf/bitbake.conf                 | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-Thank you for taking the time Bruce. Yes, that is essentially what I was=20
-trying to do. Two SRC_URI +=3D in a .inc, one listing the patches, the othe=
-r=20
-just listing a cfg file. The only difference is that as it was a mainline=20
-kernel recipe I included it from a .bb, not a .bbappend. The .bb inherits=20
-'kernel'.
+diff --git a/meta/classes/toolchain-scripts.bbclass b/meta/classes/toolchain-scripts.bbclass
+index 6d8623c..86581cb 100644
+--- a/meta/classes/toolchain-scripts.bbclass
++++ b/meta/classes/toolchain-scripts.bbclass
+@@ -10,7 +10,7 @@ toolchain_create_sdk_env_script () {
+ 	script=${1:-${SDK_OUTPUT}/${SDKPATH}/environment-setup-${REAL_MULTIMACH_TARGET_SYS}}
+ 	rm -f $script
+ 	touch $script
+-	echo 'export PATH=${SDKPATHNATIVE}${bindir_nativesdk}:${SDKPATHNATIVE}${bindir_nativesdk}/${REAL_MULTIMACH_TARGET_SYS}:$PATH' >> $script
++	echo 'export PATH=${SDKPATHNATIVE}${bindir_nativesdk}:${SDKPATHNATIVE}${bindir_nativesdk}/${REAL_MULTIMACH_TARGET_SYS}:${SDKPATHNATIVE}${sbindir_nativesdk}:${SDKPATHNATIVE}${sbindir_nativesdk}/${REAL_MULTIMACH_TARGET_SYS}:$PATH' >> $script
+ 	echo 'export PKG_CONFIG_SYSROOT_DIR=${SDKTARGETSYSROOT}' >> $script
+ 	echo 'export PKG_CONFIG_PATH=${SDKTARGETSYSROOT}${libdir}/pkgconfig' >> $script
+ 	echo 'export CONFIG_SITE=${SDKPATH}/site-config-${REAL_MULTIMACH_TARGET_SYS}' >> $script
+diff --git a/meta/conf/bitbake.conf b/meta/conf/bitbake.conf
+index 2dc50ca..62cf439 100644
+--- a/meta/conf/bitbake.conf
++++ b/meta/conf/bitbake.conf
+@@ -59,6 +59,7 @@ bindir_cross = "/bin"
+ bindir_crossscripts = "${bindir}/crossscripts"
+ prefix_nativesdk = "/usr"
+ bindir_nativesdk = "${prefix_nativesdk}/bin"
++sbindir_nativesdk = "${prefix_nativesdk}/sbin"
+ includedir_nativesdk = "${prefix_nativesdk}/include"
+ libdir_nativesdk = "${prefix_nativesdk}/lib"
+ base_libdir_nativesdk = "/lib"
+-- 
+1.7.11.7
 
-I originally had the additional patches in a subdirectory to separate them=
-=20
-out, but to eliminate file paths as a cause, I moved them in with the main=
-=20
-patches with no luck. I'll revert the changes and try again so I can=20
-provide some specific log results.
-
-Steve
-
-
-Stephen  Lawrence, Senior Engineer, Systems, Linux/SDK, Renesas Electronics=
- Europe Ltd, Dukes Meadow, Millboard Road, SL8 5FH, Bourne End, UK,  Phone:=
-+44 1628 651-789, Fax:+44 1628 651-804, mailto:Stephen.Lawrence@renesas.com=
-, http://www.renesas.eu
-
-This message is intended only for the use of the addressee(s) and may conta=
-in confidential and/or legally privileged information. If you are not the i=
-ntended recipient, you are hereby notified that any dissemination of this e=
-mail (including any attachments thereto) is strictly prohibited. If you hav=
-e received this email in error, please notify the sender immediately by tel=
-ephone or email  and permanently destroy the original without making any co=
-py. Please note that any material and advice from this mail is provided fre=
-e of charge and shall be used as an example for demonstration purposes only=
-.=20
-RENESAS MAKES NO WARRANTIES THAT THE USAGE OF INFORMATION OR ADVICE FROM TH=
-IS E-MAIL WILL NOT INFRINGE ANY INTELLECTUAL PROPERTY RIGHTS (E.G. PATENTS,=
- COPYRIGHTS). RENESAS CANNOT GUARANTEE BUG FREE OPERATION AND THE RECIPIENT=
- WILL USE AND/OR DISTRIBUTE IT ONLY AT HIS OWN RISK. IN NO EVENT SHALL RENE=
-SAS BE LIABLE FOR ANY DAMAGE.  The communication with Renesas Electronics E=
-urope Ltd does not amend any written agreement in place.=20
-=20
-Renesas Electronics Europe Ltd, Dukes Meadow, Millboard Road, Bourne End, B=
-uckinghamshire, SL8 5FH, UK.=C2=A0 Registered in England & Wales under Regi=
-stered No. 04586709.
 
