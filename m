@@ -1,36 +1,24 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7A81E006CC
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:01:36 -0800 (PST)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 8DC3640164;
-	Wed, 30 Jan 2013 14:21:49 +0100 (CET)
-From: Timo Mueller <mail@timomueller.eu>
-To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 15:01:33 +0100
-Message-Id: <461a6da937514cbab8527b6bd340c2feaa46c8d6.1359476560.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <a95e46a53364c364f900d15631e366785f1239a5.1359476560.git.timo.mueller@bmw-carit.de>
-References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
-	<d8ee0c11e8def36416453669cc11dcaf9a53d282.1359476560.git.timo.mueller@bmw-carit.de>
-	<95c2be703c8568993b9ed156ac5c6f3f55f5f5ac.1359476560.git.timo.mueller@bmw-carit.de>
-	<162236628ecd020d007df425c5e92d560154c856.1359476560.git.timo.mueller@bmw-carit.de>
-	<401cffb10bb37b8c09cc619aa964195c7f86a53a.1359476560.git.timo.mueller@bmw-carit.de>
-	<6b6e68cb4b9d938918456b1089a3218fb5d1306b.1359476560.git.timo.mueller@bmw-carit.de>
-	<7cf27bee15d63bef3f80921b5d3cb7cad3ee0a3d.1359476560.git.timo.mueller@bmw-carit.de>
-	<d8794536b470d26adb1215bca4bdc548ee0d24bc.1359476560.git.timo.mueller@bmw-carit.de>
-	<e5e95b1a6e34bcbe11925e66a470d270a9b3bed1.1359476560.git.timo.mueller@bmw-carit.de>
-	<3fb57ad9e8ce5450d7b7a776c69c3671a8ae4775.1359476560.git.timo.mueller@bmw-carit.de>
-	<f32e349409af888deef5a4c52073827da64d41f9.1359476560.git.timo.mueller@bmw-carit.de>
-	<8b070e88f4f43f1385f5ce1ff018be977e8bd3e4.1359476560.git.timo.mueller@bmw-carit.de>
-	<a95e46a53364c364f900d15631e366785f1239a5.1359476560.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359476560.git.timo.mueller@bmw-carit.de>
-References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 13/13] (TEMPORARY): Use origin/timo branch of yocto docs project
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 4EF67E01404
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:31:14 -0800 (PST)
+Received: (qmail 18440 invoked by uid 1003); 30 Jan 2013 14:31:13 -0000
+Received: from unknown (HELO ?192.168.1.107?)
+	(philip@opensdr.com@96.240.188.95)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	30 Jan 2013 14:31:12 -0000
+Message-ID: <51092EAF.1000206@balister.org>
+Date: Wed, 30 Jan 2013 09:31:11 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+References: <CA+YB3rbgWYcfo586d3WJfaCqnGMaw0+Z-JVdWVgj6STPFi7bvQ@mail.gmail.com>
+In-Reply-To: <CA+YB3rbgWYcfo586d3WJfaCqnGMaw0+Z-JVdWVgj6STPFi7bvQ@mail.gmail.com>
+X-Enigmail-Version: 1.5
+Subject: Re: Yocto Project Developer at Embedded Linux Conference US
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,38 +30,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jan 2013 14:01:37 -0000
+X-List-Received-Date: Wed, 30 Jan 2013 14:31:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-As the eclipse generation is currently not part of the master the
-generation is always using the origin/timo branch to generate the
-eclipse help. This patch is added for testing purposes only.
 
-DO NOT MERGE THIS PATCH UPSTREAM - ONLY APPLY LOCALLY FOR TESTING
+On 01/22/2013 08:09 PM, Jeff Osier-Mixon wrote:
+> Hi all & happy new year
+> 
+> The conference season starts early this year with several open source
+> conferences worldwide, including FOSDEM in Brussels, linux.conf.au in
+> Canberra, several regional Linux conferences including SCaLE in southern
+> California, and of course the Embedded Linux Conference (ELC), February
+> 20-22 in San Francisco, CA.
 
-Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
----
- scripts/generate-doc.sh | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/scripts/generate-doc.sh b/scripts/generate-doc.sh
-index edbacae..a49a089 100755
---- a/scripts/generate-doc.sh
-+++ b/scripts/generate-doc.sh
-@@ -48,6 +48,11 @@ else
- fi
- PLUGIN_FOLDER=`readlink -f $2`
- 
-+# ====================================================================
-+# TODO remove this section if eclipse generation is merged into master
-+REFERENCE=origin/timo
-+# ====================================================================
-+
- TOP=`pwd`
- 
- DOC_DIR=${PLUGIN_FOLDER}/docs
--- 
-1.7.11.7
+OpenEmbedded has a stand at FOSDEM. If you will be there stop by and say
+hi, or better yet, help man the stand for a while.
 
+http://www.openembedded.org/wiki/FOSDEM_2013
+
+Philip
+
+
+> 
+> This year the Yocto Project is focusing once again on ELC and will again be
+> hosting a Developer Day (
+> http://events.linuxfoundation.org/events/embedded-linux-conference/yocto-project-developer-day)
+> on Tuesday, February 19.
+> 
+> Developer Day features talks and demos from Yocto Project engineers as well
+> as an opportunity to connect one-on-one with those engineers to discuss
+> issues you may be having with your own development process.
+> 
+> The Yocto Project is also pleased to participate in ELC. We are preparing a
+> booth and a BoF, and there are several talks on the schedule which mention
+> the Yocto Project. If you are coming to the conference, please stop by and
+> say hello, and consider joining us for Developer Day.
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
