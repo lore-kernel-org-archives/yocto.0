@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67172E0141C
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32E78E01465
 	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:01:36 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 72F5A400A5;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 360164029F;
 	Wed, 30 Jan 2013 14:21:49 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 15:01:32 +0100
-Message-Id: <a95e46a53364c364f900d15631e366785f1239a5.1359476560.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 15:01:30 +0100
+Message-Id: <f32e349409af888deef5a4c52073827da64d41f9.1359476560.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <8b070e88f4f43f1385f5ce1ff018be977e8bd3e4.1359476560.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <3fb57ad9e8ce5450d7b7a776c69c3671a8ae4775.1359476560.git.timo.mueller@bmw-carit.de>
 References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 	<d8ee0c11e8def36416453669cc11dcaf9a53d282.1359476560.git.timo.mueller@bmw-carit.de>
 	<95c2be703c8568993b9ed156ac5c6f3f55f5f5ac.1359476560.git.timo.mueller@bmw-carit.de>
@@ -24,12 +24,11 @@ References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 	<d8794536b470d26adb1215bca4bdc548ee0d24bc.1359476560.git.timo.mueller@bmw-carit.de>
 	<e5e95b1a6e34bcbe11925e66a470d270a9b3bed1.1359476560.git.timo.mueller@bmw-carit.de>
 	<3fb57ad9e8ce5450d7b7a776c69c3671a8ae4775.1359476560.git.timo.mueller@bmw-carit.de>
-	<f32e349409af888deef5a4c52073827da64d41f9.1359476560.git.timo.mueller@bmw-carit.de>
-	<8b070e88f4f43f1385f5ce1ff018be977e8bd3e4.1359476560.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
+MIME-Version: 1.0
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 12/13] scripts/build.sh: Add documentation generation to the default build
+Subject: [RFC v4 10/13] plugins/sdk.ide.doc.user: Add yocto documentation to the table of contents
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,35 +41,80 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 30 Jan 2013 14:01:36 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-When building the plugin the matching documentation is automatically
-generated and added to the user.doc plugin prior to the plugin build.
+The separate yocto manuals are added to the table of contents to
+prepare their inclusion into the plugin.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- scripts/build.sh | 7 +++++++
- 1 file changed, 7 insertions(+)
+ plugins/org.yocto.doc.user/plugin.xml | 24 ++++++++++++++++++++++++
+ plugins/org.yocto.doc.user/toc.xml    | 18 ++++++++++++++++++
+ 2 files changed, 42 insertions(+)
 
-diff --git a/scripts/build.sh b/scripts/build.sh
-index 66973e9..41e6793 100755
---- a/scripts/build.sh
-+++ b/scripts/build.sh
-@@ -130,6 +130,13 @@ git checkout origin/${BRANCH} || fail $? "git checkout origin/${BRANCH}"
- git checkout ${TAG} || fail $? "git checkout ${TAG}"
- cd ${TOP}
- 
-+# generate and add documentation
-+if [ "${TAG}" = "HEAD" ]; then
-+	${GIT_DIR}/scripts/generate-doc.sh ${BRANCH} ${GIT_DIR}
-+else
-+	${GIT_DIR}/scripts/generate-doc.sh -t ${TAG} ${GIT_DIR}
-+fi
-+
- #build 
- java -jar ${LAUNCHER} -application org.eclipse.ant.core.antRunner -buildfile ${BUILDFILE} -DbaseLocation=${ECLIPSE_BASE} -Dbuilder=${GIT_DIR}/features/org.yocto.bc.headless.build -DbuildDirectory=${BUILD_DIR} -DotherSrcDirectory=${GIT_DIR} -DbuildId=${RELEASE} || fail $? "normal build"
- java -jar ${LAUNCHER} -application org.eclipse.ant.core.antRunner -buildfile ${BUILDFILE} -DbaseLocation=${ECLIPSE_BASE} -Dbuilder=${GIT_DIR}/features/org.yocto.doc.headless.build -DbuildDirectory=${BUILD_DIR} -DotherSrcDirectory=${GIT_DIR} -DbuildId=${RELEASE} || fail $? "normal build"
+diff --git a/plugins/org.yocto.doc.user/plugin.xml b/plugins/org.yocto.doc.user/plugin.xml
+index 8353cd1..69fb625 100644
+--- a/plugins/org.yocto.doc.user/plugin.xml
++++ b/plugins/org.yocto.doc.user/plugin.xml
+@@ -7,5 +7,29 @@
+ 			file="toc.xml"
+ 			primary="true">
+ 		</toc>
++		<toc
++			file="html/adt-manual-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/yocto-project-qs-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/dev-manual-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/poky-ref-manual-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/bsp-guide-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/kernel-manual-toc.xml"
++			primary="false">
++		</toc>
+ 	</extension>
+ </plugin>
+diff --git a/plugins/org.yocto.doc.user/toc.xml b/plugins/org.yocto.doc.user/toc.xml
+index 4998ef3..ea039f4 100644
+--- a/plugins/org.yocto.doc.user/toc.xml
++++ b/plugins/org.yocto.doc.user/toc.xml
+@@ -1,3 +1,21 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+  <toc label="Yocto Project Documentation">
++   <topic label="Yocto Project Quick Start">
++      <link toc="html/yocto-project-qs-toc.xml"/>
++   </topic>
++   <topic label="Yocto·Project·Application·Developer&apos;s·Guide">
++      <link toc="html/adt-manual-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Development Manual">
++      <link toc="html/dev-manual-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Reference Manual">
++      <link toc="html/poky-ref-manual-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Board Support Package Developer&apos;s Guide">
++      <link toc="html/bsp-guide-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Kernel Architecture and Use Manual">
++      <link toc="html/kernel-manual-toc.xml"/>
++   </topic>
+  </toc>
 -- 
 1.7.11.7
 
