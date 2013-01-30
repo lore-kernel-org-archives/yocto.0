@@ -1,26 +1,20 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2301FE0141C
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:01:35 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC1AFE006CC
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:01:34 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 5A7D240164;
-	Wed, 30 Jan 2013 14:21:48 +0100 (CET)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E2CDC40072;
+	Wed, 30 Jan 2013 14:21:47 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 15:01:23 +0100
-Message-Id: <162236628ecd020d007df425c5e92d560154c856.1359476560.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 15:01:20 +0100
+Message-Id: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <95c2be703c8568993b9ed156ac5c6f3f55f5f5ac.1359476560.git.timo.mueller@bmw-carit.de>
-References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
-	<d8ee0c11e8def36416453669cc11dcaf9a53d282.1359476560.git.timo.mueller@bmw-carit.de>
-	<95c2be703c8568993b9ed156ac5c6f3f55f5f5ac.1359476560.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359476560.git.timo.mueller@bmw-carit.de>
-References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 03/13] plugins/sdk.ide.doc.user: Add empty eclipse help
+Subject: [RFC v4 00/13][eclipse-poky] Integrate yocto documentation into eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,144 +30,106 @@ X-List-Received-Date: Wed, 30 Jan 2013 14:01:35 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Adds yocto specific eclipse help to the plugin. The help is currently
-empty but will contain the official yocto documentation later.
+Hi,
 
-Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
----
- plugins/org.yocto.doc.user/.classpath              |  6 +++++
- plugins/org.yocto.doc.user/.project                | 28 ++++++++++++++++++++++
- plugins/org.yocto.doc.user/META-INF/MANIFEST.MF    |  8 +++++++
- .../OSGI-INF/l10n/bundle.properties                |  3 +++
- plugins/org.yocto.doc.user/build.properties        |  7 ++++++
- plugins/org.yocto.doc.user/html/book.css           |  1 +
- plugins/org.yocto.doc.user/plugin.xml              | 11 +++++++++
- plugins/org.yocto.doc.user/toc.xml                 |  3 +++
- 8 files changed, 67 insertions(+)
+the last proposal integrated the yocto documentation into the existing
+doc plugin of the yocto ADT feature. As Jessica pointed out is does
+not make sense to bundle all parts of the yocto documentation with the
+ADT feature. As some parts of the documentation could also be helpful
+with the BitBake Commander feature, we agreed to encapsulate the yocto
+documentation into its own feature.
+
+01..02: Fixing typos in build and site scripts
+03..12: Adding the yocto documentation as a new feature
+13: Temporary patch to use timo branch of docs project - DO NOT MERGE
+
+From the last propsal:
+<snip>
+One major change in this patch series is that I
+extended the plugin build system to integrate the generation into the
+build process. Thus keeping the eclipse help and the official
+documentation in sync is now automated.
+</snip>
+
+<snip>
+the documentation of the yocto project can currently be viewed online
+or as a separate pdf. When using the eclipse ide to develop software
+on base of a yocto sysroot and toolchain it would be convenient to
+access the relevant parts of the documentation from within the ide.
+</snip>
+
+<snip>
+I have intergrated this
+documentation in the ide and it can now be accessed through the
+eclipse help center (Help -> Help Contents).
+</snip>
+
+Best regards
+Timo
+
+Timo Mueller (13):
+  features/sdk.site: Fixed typo in category name
+  Fixed typo in version variable name
+  plugins/sdk.ide.doc.user: Add empty eclipse help
+  plugins/sdk.ide.doc.user: Add about.html to prepare addition of yocto
+    documentation
+  features/org.yocto.doc: Add new feature containing yocto project
+    documentation
+  features/doc.headless.build: Added headless build for yocto.doc
+    feature
+  features/sdk.site: Added yocto.doc feature to update site
+  scripts/build.sh: Added yocto.doc feature to build
+  scripts/generate-doc.sh: Add script to handle eclipse help generation
+  plugins/sdk.ide.doc.user: Add yocto documentation to the table of
+    contents
+  scripts/generate-doc.sh: Copy generated eclipse help into the
+    user.doc plugin
+  scripts/build.sh: Add documentation generation to the default build
+  (TEMPORARY): Use origin/timo branch of yocto docs project
+
+ .../org.yocto.bc.headless.build/customTargets.xml  |   4 +-
+ features/org.yocto.doc.headless.build/.project     |  11 +
+ .../org.yocto.doc.headless.build/build.properties  | 262 +++++++++++++++++++++
+ .../org.yocto.doc.headless.build/customTargets.xml | 212 +++++++++++++++++
+ features/org.yocto.doc/.project                    |  17 ++
+ features/org.yocto.doc/build.properties            |   3 +
+ features/org.yocto.doc/feature.properties          | 163 +++++++++++++
+ features/org.yocto.doc/feature.xml                 |  35 +++
+ features/org.yocto.doc/license.html                | 107 +++++++++
+ .../org.yocto.sdk.headless.build/customTargets.xml |   4 +-
+ features/org.yocto.sdk.site/category.xml           |  10 +-
+ features/org.yocto.sdk.site/site.xml               |  10 +-
+ plugins/org.yocto.doc.user/.classpath              |   6 +
+ plugins/org.yocto.doc.user/.project                |  28 +++
+ plugins/org.yocto.doc.user/META-INF/MANIFEST.MF    |   8 +
+ .../OSGI-INF/l10n/bundle.properties                |   3 +
+ plugins/org.yocto.doc.user/about.html.in           | 166 +++++++++++++
+ plugins/org.yocto.doc.user/build.properties        |   9 +
+ plugins/org.yocto.doc.user/html/book.css           |   1 +
+ plugins/org.yocto.doc.user/plugin.xml              |  35 +++
+ plugins/org.yocto.doc.user/toc.xml                 |  21 ++
+ scripts/build.sh                                   |  18 +-
+ scripts/generate-doc.sh                            |  91 +++++++
+ 23 files changed, 1212 insertions(+), 12 deletions(-)
+ create mode 100644 features/org.yocto.doc.headless.build/.project
+ create mode 100644 features/org.yocto.doc.headless.build/build.properties
+ create mode 100644 features/org.yocto.doc.headless.build/customTargets.xml
+ create mode 100644 features/org.yocto.doc/.project
+ create mode 100644 features/org.yocto.doc/build.properties
+ create mode 100644 features/org.yocto.doc/feature.properties
+ create mode 100644 features/org.yocto.doc/feature.xml
+ create mode 100644 features/org.yocto.doc/license.html
  create mode 100644 plugins/org.yocto.doc.user/.classpath
  create mode 100644 plugins/org.yocto.doc.user/.project
  create mode 100644 plugins/org.yocto.doc.user/META-INF/MANIFEST.MF
  create mode 100644 plugins/org.yocto.doc.user/OSGI-INF/l10n/bundle.properties
+ create mode 100644 plugins/org.yocto.doc.user/about.html.in
  create mode 100644 plugins/org.yocto.doc.user/build.properties
  create mode 100644 plugins/org.yocto.doc.user/html/book.css
  create mode 100644 plugins/org.yocto.doc.user/plugin.xml
  create mode 100644 plugins/org.yocto.doc.user/toc.xml
+ create mode 100755 scripts/generate-doc.sh
 
-diff --git a/plugins/org.yocto.doc.user/.classpath b/plugins/org.yocto.doc.user/.classpath
-new file mode 100644
-index 0000000..67e2a52
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/.classpath
-@@ -0,0 +1,6 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+<classpath>
-+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-+	<classpathentry kind="output" path="bin"/>
-+</classpath>
-diff --git a/plugins/org.yocto.doc.user/.project b/plugins/org.yocto.doc.user/.project
-new file mode 100644
-index 0000000..d46bf21
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/.project
-@@ -0,0 +1,28 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+<projectDescription>
-+	<name>org.yocto.doc.user</name>
-+	<comment></comment>
-+	<projects>
-+	</projects>
-+	<buildSpec>
-+		<buildCommand>
-+			<name>org.eclipse.jdt.core.javabuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+		<buildCommand>
-+			<name>org.eclipse.pde.ManifestBuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+		<buildCommand>
-+			<name>org.eclipse.pde.SchemaBuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+	</buildSpec>
-+	<natures>
-+		<nature>org.eclipse.pde.PluginNature</nature>
-+		<nature>org.eclipse.jdt.core.javanature</nature>
-+	</natures>
-+</projectDescription>
-diff --git a/plugins/org.yocto.doc.user/META-INF/MANIFEST.MF b/plugins/org.yocto.doc.user/META-INF/MANIFEST.MF
-new file mode 100644
-index 0000000..4a89341
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/META-INF/MANIFEST.MF
-@@ -0,0 +1,8 @@
-+XFManifest-Version: 1.0
-+Bundle-ManifestVersion: 2
-+Bundle-Name: %Bundle-Name
-+Bundle-SymbolicName: org.yocto.doc.user;singleton:=true
-+Bundle-Version: 1.0.0.qualifier
-+Bundle-Vendor: %Bundle-Vendor
-+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-+Require-Bundle: org.eclipse.help
-diff --git a/plugins/org.yocto.doc.user/OSGI-INF/l10n/bundle.properties b/plugins/org.yocto.doc.user/OSGI-INF/l10n/bundle.properties
-new file mode 100644
-index 0000000..b602cbd
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/OSGI-INF/l10n/bundle.properties
-@@ -0,0 +1,3 @@
-+#Properties file for org.yocto.doc.user
-+Bundle-Vendor = yoctoproject.org
-+Bundle-Name = Yocto Project Documentation
-diff --git a/plugins/org.yocto.doc.user/build.properties b/plugins/org.yocto.doc.user/build.properties
-new file mode 100644
-index 0000000..525a366
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/build.properties
-@@ -0,0 +1,7 @@
-+bin.includes = plugin.xml,\
-+               .,\
-+               META-INF/,\
-+               OSGI-INF/,\
-+               html/,\
-+               toc.xml
-+src.includes = html/
-diff --git a/plugins/org.yocto.doc.user/html/book.css b/plugins/org.yocto.doc.user/html/book.css
-new file mode 100644
-index 0000000..e248f5a
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/html/book.css
-@@ -0,0 +1 @@
-+@import "PLUGINS_ROOT/PRODUCT_PLUGIN/book.css";
-diff --git a/plugins/org.yocto.doc.user/plugin.xml b/plugins/org.yocto.doc.user/plugin.xml
-new file mode 100644
-index 0000000..8353cd1
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/plugin.xml
-@@ -0,0 +1,11 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+<?eclipse version="3.4"?>
-+<plugin>
-+	<extension
-+		point="org.eclipse.help.toc">
-+		<toc
-+			file="toc.xml"
-+			primary="true">
-+		</toc>
-+	</extension>
-+</plugin>
-diff --git a/plugins/org.yocto.doc.user/toc.xml b/plugins/org.yocto.doc.user/toc.xml
-new file mode 100644
-index 0000000..4998ef3
---- /dev/null
-+++ b/plugins/org.yocto.doc.user/toc.xml
-@@ -0,0 +1,3 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+ <toc label="Yocto Project Documentation">
-+ </toc>
 -- 
 1.7.11.7
 
