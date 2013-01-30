@@ -1,27 +1,29 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA913E006CC
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B56D5E0141C
 	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:01:35 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 7E941401B4;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id B445740295;
 	Wed, 30 Jan 2013 14:21:48 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 15:01:24 +0100
-Message-Id: <401cffb10bb37b8c09cc619aa964195c7f86a53a.1359476560.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 15:01:26 +0100
+Message-Id: <7cf27bee15d63bef3f80921b5d3cb7cad3ee0a3d.1359476560.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <162236628ecd020d007df425c5e92d560154c856.1359476560.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <6b6e68cb4b9d938918456b1089a3218fb5d1306b.1359476560.git.timo.mueller@bmw-carit.de>
 References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 	<d8ee0c11e8def36416453669cc11dcaf9a53d282.1359476560.git.timo.mueller@bmw-carit.de>
 	<95c2be703c8568993b9ed156ac5c6f3f55f5f5ac.1359476560.git.timo.mueller@bmw-carit.de>
 	<162236628ecd020d007df425c5e92d560154c856.1359476560.git.timo.mueller@bmw-carit.de>
+	<401cffb10bb37b8c09cc619aa964195c7f86a53a.1359476560.git.timo.mueller@bmw-carit.de>
+	<6b6e68cb4b9d938918456b1089a3218fb5d1306b.1359476560.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 04/13] plugins/sdk.ide.doc.user: Add about.html to prepare addition of yocto documentation
+Subject: [RFC v4 06/13] features/doc.headless.build: Added headless build for yocto.doc feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,203 +39,520 @@ X-List-Received-Date: Wed, 30 Jan 2013 14:01:36 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-As documentation is licensed under CCA-SA 2.0 UK and the plugin itself
-is licensed under EPL v1.0 an about file needs to be added to the
-plugin identifying the third party content.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- plugins/org.yocto.doc.user/about.html.in    | 166 ++++++++++++++++++++++++++++
- plugins/org.yocto.doc.user/build.properties |   6 +-
- 2 files changed, 170 insertions(+), 2 deletions(-)
- create mode 100644 plugins/org.yocto.doc.user/about.html.in
+ features/org.yocto.doc.headless.build/.project     |  11 +
+ .../org.yocto.doc.headless.build/build.properties  | 262 +++++++++++++++++++++
+ .../org.yocto.doc.headless.build/customTargets.xml | 212 +++++++++++++++++
+ 3 files changed, 485 insertions(+)
+ create mode 100644 features/org.yocto.doc.headless.build/.project
+ create mode 100644 features/org.yocto.doc.headless.build/build.properties
+ create mode 100644 features/org.yocto.doc.headless.build/customTargets.xml
 
-diff --git a/plugins/org.yocto.doc.user/about.html.in b/plugins/org.yocto.doc.user/about.html.in
+diff --git a/features/org.yocto.doc.headless.build/.project b/features/org.yocto.doc.headless.build/.project
 new file mode 100644
-index 0000000..4a3fa75
+index 0000000..106c772
 --- /dev/null
-+++ b/plugins/org.yocto.doc.user/about.html.in
-@@ -0,0 +1,166 @@
-+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-+<html xmlns="http://www.w3.org/1999/xhtml">
-+<head>
-+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-+<title>About</title>
-+</head>
-+<body lang="EN-US">
-+	<h2>About This Content</h2>
++++ b/features/org.yocto.doc.headless.build/.project
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<projectDescription>
++	<name>org.yocto.doc.headless.build</name>
++	<comment></comment>
++	<projects>
++	</projects>
++	<buildSpec>
++	</buildSpec>
++	<natures>
++	</natures>
++</projectDescription>
+diff --git a/features/org.yocto.doc.headless.build/build.properties b/features/org.yocto.doc.headless.build/build.properties
+new file mode 100644
+index 0000000..6a857f8
+--- /dev/null
++++ b/features/org.yocto.doc.headless.build/build.properties
+@@ -0,0 +1,262 @@
++###############################################################################
++# Copyright (c) 2003, 2009 IBM Corporation and others.
++# All rights reserved. This program and the accompanying materials
++# are made available under the terms of the Eclipse Public License v1.0
++# which accompanies this distribution, and is available at
++# http://www.eclipse.org/legal/epl-v10.html
++#
++# Contributors:
++#     IBM Corporation - initial API and implementation
++###############################################################################
++#####################
++# Parameters describing how and where to execute the build.
++# Typical users need only update the following properties:
++#    baseLocation - where things you are building against are installed
++#    bootclasspath - The base jars to compile against (typicaly rt.jar)
++#    configs - the list of {os, ws, arch} configurations to build.
++#
++# Of course any of the settings here can be overridden by spec'ing
++# them on the command line (e.g., -DbaseLocation=d:/eclipse
 +
-+	<p>
-+		<em>December, 2012</em>
-+	</p>
-+	<h3>License</h3>
++#The type of the top level element we are building,  generally "feature"
++topLevelElementType = feature
++#The id of the top level element we are building
++topLevelElementId = org.yocto.doc
 +
-+	<p>
-+		Copyright (c) 2010 Intel, Inc. and others.
-+		All rights reserved. This program and the accompanying materials
-+		are made available under the terms of the Eclipse Public License v1.0
-+		which accompanies this distribution, and is available at <br />
-+		<a href="http://www.eclipse.org/legal/epl-v10.html">
-+			http://www.eclipse.org/legal/epl-v10.html
-+		</a>
-+	</p>
++############# PRODUCT/PACKAGING CONTROL #############
++product=/plugin or feature id/path/to/.product
++runPackager=true
 +
-+	<h3>Third Party Content</h3>
-+	<p>The Content includes items that have been sourced from the Yocto project
-+		as set out below. If you did not receive this Content directly
-+		from the Linux Foundation, the following is provided for
-+		informational purposes only, and you should look to the
-+		Redistributor's license for terms and conditions of use.</p>
-+	<p>
-+		<strong>
-+			Yocto Project Quick Start
-+		</strong>
-+		<br />
-+		<br />
-+			This short document lets you get started with the Yocto Project
-+			quickly and start building an image.
-+		<br />
-+		<br />
-+			<em>License:</em>
-+			<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode">
-+				http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode
-+			</a>
-+		<br />
-+			<em>Source Code Repository:</em>
-+			<a href="git://git.yoctoproject.org/yocto-docs">
-+				git://git.yoctoproject.org/yocto-docs
-+			</a>
-+		<br />
-+			<em>Commit:</em> @COMMIT_ID-yocto-project-qs@
-+		<br />
-+		<br />
-+		<strong>
-+			The Yocto Project Application Developer's Guide:
-+		</strong>
-+		<br />
-+		<br />
-+			This manual shows you how to setup and use the Application Development
-+			Toolkit (ADT) and stand-alone cross-development toolchains so you can
-+			develop user-space applications.
-+		<br />
-+		<br />
-+			<em>License:</em>
-+			<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode">
-+				http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode
-+			</a>
-+		<br />
-+			<em>Source Code Repository:</em>
-+			<a href="git://git.yoctoproject.org/yocto-docs">
-+				git://git.yoctoproject.org/yocto-docs
-+			</a>
-+		<br />
-+			<em>Commit:</em> @COMMIT_ID-adt-manual@
-+		<br />
-+		<br />
-+		<strong>
-+			The Yocto Project Development Manual:
-+		</strong>
-+		<br />
-+		<br />
-+			This manual describes how to use the Yocto Project to develop
-+			embedded Linux images and user-space applications to run on
-+			targeted devices.
-+		<br />
-+		<br />
-+			<em>License:</em>
-+			<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode">
-+				http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode
-+			</a>
-+		<br />
-+			<em>Source Code Repository:</em>
-+			<a href="git://git.yoctoproject.org/yocto-docs">
-+				git://git.yoctoproject.org/yocto-docs
-+			</a>
-+		<br />
-+			<em>Commit:</em> @COMMIT_ID-dev-manual@
-+		<br />
-+		<br />
-+		<strong>
-+			The Yocto Project Reference Manual:
-+		</strong>
-+		<br />
-+		<br />
-+			This manual is the complete reference guide to the Poky component.
-+			It also contains a chapter on Board Support Package (BSP) development.
-+		<br />
-+		<br />
-+			<em>License:</em>
-+			<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode">
-+				http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode
-+			</a>
-+		<br />
-+			<em>Source Code Repository:</em>
-+			<a href="git://git.yoctoproject.org/yocto-docs">
-+				git://git.yoctoproject.org/yocto-docs
-+			</a>
-+		<br />
-+			<em>Commit:</em> @COMMIT_ID-poky-ref-manual@
-+		<br />
-+		<br />
-+		<strong>
-+			The Yocto Project Board Support Package (BSP) Developer's Guide:
-+		</strong>
-+		<br />
-+		<br />
-+			This brief document defines a structure for BSP components.
-+			Having a commonly understood layout encourages standardization.
-+		<br />
-+		<br />
-+			<em>License:</em>
-+			<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode">
-+				http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode
-+			</a>
-+		<br />
-+			<em>Source Code Repository:</em>
-+			<a href="git://git.yoctoproject.org/yocto-docs">
-+				git://git.yoctoproject.org/yocto-docs
-+			</a>
-+		<br />
-+			<em>Commit:</em> @COMMIT_ID-bsp-guide@
-+		<br />
-+		<br />
-+		<strong>
-+			Yocto Project Kernel Architecture and Use Manual:
-+		</strong>
-+		<br />
-+		<br />
-+			  This document describes the architecture of the Yocto Project
-+			  kernel and provides some work flow examples.
-+		<br />
-+		<br />
-+			<em>License:</em>
-+			<a href="http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode">
-+				http://creativecommons.org/licenses/by-sa/2.0/uk/legalcode
-+			</a>
-+		<br />
-+			<em>Source Code Repository:</em>
-+			<a href="git://git.yoctoproject.org/yocto-docs">
-+				git://git.yoctoproject.org/yocto-docs
-+			</a>
-+		<br />
-+			<em>Commit:</em> @COMMIT_ID-kernel-manual@
-+	</p>
-+</body>
-diff --git a/plugins/org.yocto.doc.user/build.properties b/plugins/org.yocto.doc.user/build.properties
-index 525a366..cbceb14 100644
---- a/plugins/org.yocto.doc.user/build.properties
-+++ b/plugins/org.yocto.doc.user/build.properties
-@@ -3,5 +3,7 @@ bin.includes = plugin.xml,\
-                META-INF/,\
-                OSGI-INF/,\
-                html/,\
--               toc.xml
--src.includes = html/
-+               toc.xml,\
-+               about.html
-+src.includes = html/,\
-+               about.html
++#Set the name of the archive that will result from the product build.
++#archiveNamePrefix=
++
++# The prefix that will be used in the generated archive.
++archivePrefix=eclipse
++
++# The location underwhich all of the build output will be collected.
++collectingFolder=${archivePrefix}
++
++# The list of {os, ws, arch} configurations to build.  This
++# value is a '&' separated list of ',' separate triples.  For example,
++#     configs=win32,win32,x86 & linux,motif,x86
++# By default the value is *,*,*
++configs = *, *, *
++#configs=win32, win32, x86 & \
++#	win32,win32,x86_64 & \
++#	win32,win32,wpf & \
++#	linux, gtk, ppc & \
++#	linux, gtk, x86 & \
++#	linux, gtk, x86_64 & \
++#	linux, motif, x86 & \
++#	solaris, motif, sparc & \
++#	solaris, gtk, sparc & \
++#	aix, motif, ppc & \
++#	hpux, motif, ia64_32 & \
++#	macosx, carbon, ppc & \
++#	macosx, carbon, x86 & \
++#	macosx, cocoa, ppc & \
++#	macosx, cocoa, x86 & \
++#	macosx, cocoa, x86_64
++
++# By default PDE creates one archive (result) per entry listed in the configs property.
++# Setting this value to true will cause PDE to only create one output containing all
++# artifacts for all the platforms listed in the configs property.
++# To control the output format for the group, add a "group, group, group - <format>" entry to the
++# archivesFormat.
++#groupConfigurations=true
++
++#The format of the archive. By default a zip is created using antZip.
++#The list can only contain the configuration for which the desired format is different than zip.
++#archivesFormat=win32, win32, x86 - antZip& \
++#	linux, gtk, ppc - antZip &\
++#    linux, gtk, x86 - antZip& \
++#	linux, gtk, x86_64 - antZip& \
++# linux, motif, x86 - antZip& \
++#	solaris, motif, sparc - antZip& \
++#	solaris, gtk, sparc - antZip& \
++#	aix, motif, ppc - antZip& \
++#	hpux, motif, PA_RISC - antZip& \
++#	macosx, carbon, ppc - antZip
++
++#Allow cycles involving at most one bundle that needs to be compiled with the rest being binary bundles.
++allowBinaryCycles = true
++
++#Sort bundles depenedencies across all features instead of just within a given feature.
++#flattenDependencies = true
++
++#Parallel compilation, requires flattenedDependencies=true
++#parallelCompilation=true
++#parallelThreadCount=
++#parallelThreadsPerProcessor=
++
++#Set to true if you want the output to be ready for an update jar (no site.xml generated)
++outputUpdateJars = true
++
++#Set to true for Jnlp generation
++#codebase should be a URL that will be used as the root of all relative URLs in the output.
++#generateJnlp=false
++#jnlp.codebase=<codebase url>
++#jnlp.j2se=<j2se version>
++#jnlp.locale=<a locale>
++#jnlp.generateOfflineAllowed=true or false generate <offlineAllowed/> attribute in the generated features
++#jnlp.configs=${configs}			#uncomment to filter the content of the generated jnlp files based on the configuration being built
++
++#Set to true if you want to sign jars
++#signJars=false
++#sign.alias=<alias>
++#sign.keystore=<keystore location>
++#sign.storepass=<keystore password>
++#sign.keypass=<key password>
++
++#Arguments to send to the zip executable
++zipargs=
++
++#Arguments to send to the tar executable
++tarargs=
++
++#Control the creation of a file containing the version included in each configuration - on by default
++#generateVersionsLists=false
++
++############## BUILD NAMING CONTROL ################
++# The directory into which the build elements are fetched and where
++# the build takes place.
++#buildDirectory=
++
++# Type of build.  Used in naming the build output.  Typically this value is
++# one of I, N, M, S, ...
++buildType=I
++
++# ID of the build.  Used in naming the build output.
++buildId=TestBuild
++
++# Label for the build.  Used in naming the build output
++buildLabel=${buildType}.${buildId}
++
++# Timestamp for the build.  Used in naming the build output
++timestamp=007
++
++#The value to be used for the qualifier of a plugin or feature when you want to override the value computed by pde.
++#The value will only be applied to plugin or features indicating build.properties, qualifier = context
++#forceContextQualifier=<the value for the qualifier>
++
++#Enable / disable the generation of a suffix for the features that use .qualifier.
++#The generated suffix is computed according to the content of the feature
++#generateFeatureVersionSuffix=true
++
++############# BASE CONTROL #############
++# Settings for the base Eclipse components and Java class libraries
++# against which you are building.
++# Base location for anything the build needs to compile against.  For example,
++# in most RCP app or a plug-in,  the baseLocation should be the location of a previously
++# installed Eclipse against which the application or plug-in code will be compiled and the RCP delta pack.
++
++#base=<path/to/parent/of/eclipse>
++#baseLocation=${base}/eclipse
++
++#Folder containing repositories whose content is needed to compile against
++#repoBaseLocation=${base}/repos
++#Folder where the content of the repositories from ${repoBaseLocation} will be made available as a form suitable to be compiled against
++#transformedRepoLocation=${base}/transformedRepos
++
++#Os/Ws/Arch/nl of the eclipse specified by baseLocation
++#baseos=win32
++#basews=win32
++#basearch=x86
++
++#this property indicates whether you want the set of plug-ins and features to be considered during the build to be limited to the ones reachable from the features / plugins being built
++filteredDependencyCheck=false
++
++#this property indicates whether the resolution should be done in development mode (i.e. ignore multiple bundles with singletons)
++resolution.devMode=false
++
++#pluginPath is a list of locations in which to find plugins and features.  This list is separated by the platform file separator (; or :)
++#a location is one of:
++#- the location of the jar or folder that is the plugin or feature : /path/to/foo.jar or /path/to/foo
++#- a directory that contains a /plugins or /features subdirectory
++#- the location of a feature.xml, or for 2.1 style plugins, the plugin.xml or fragment.xml
++#pluginPath=
++
++skipBase=true
++eclipseURL=<url for eclipse download site>
++eclipseBuildId=<Id of Eclipse build to get>
++eclipseBaseURL=${eclipseURL}/eclipse-platform-${eclipseBuildId}-win32.zip
++
++
++############# MAP FILE CONTROL ################
++# This section defines CVS tags to use when fetching the map files from the repository.
++# If you want to fetch the map file from repository / location, change the getMapFiles target in the customTargets.xml
++
++skipMaps=true
++mapsRepo=:pserver:anonymous@example.com/path/to/repo
++mapsRoot=path/to/maps
++mapsCheckoutTag=HEAD
++
++#tagMaps=true
++mapsTagTag=v${buildId}
++
++
++############ REPOSITORY CONTROL ###############
++# This section defines properties parameterizing the repositories where plugins, fragments
++# bundles and features are being obtained from.
++
++# The tags to use when fetching elements to build.
++# By default thebuilder will use whatever is in the maps.
++# This value takes the form of a comma separated list of repository identifier (like used in the map files) and the
++# overriding value
++# For example fetchTag=CVS=HEAD, SVN=v20050101
++# fetchTag=HEAD
++skipFetch=true
++
++
++############# JAVA COMPILER OPTIONS ##############
++# The location of the Java jars to compile against.  Typically the rt.jar for your JDK/JRE
++#bootclasspath=${java.home}/lib/rt.jar
++
++# specific JRE locations to compile against. These values are used to compile bundles specifying a
++# Bundle-RequiredExecutionEnvironment. Uncomment and set values for environments that you support
++#CDC-1.0/Foundation-1.0= /path/to/rt.jar
++#CDC-1.1/Foundation-1.1=
++#OSGi/Minimum-1.0=
++#OSGi/Minimum-1.1=
++#JRE-1.1=
++#J2SE-1.2=
++#J2SE-1.3=
++#J2SE-1.4=
++#J2SE-1.5=
++#JavaSE-1.6=
++#PersonalJava-1.1=
++#PersonalJava-1.2=
++#CDC-1.0/PersonalBasis-1.0=
++#CDC-1.0/PersonalJava-1.0=
++#CDC-1.1/PersonalBasis-1.1=
++#CDC-1.1/PersonalJava-1.1=
++
++# Specify the output format of the compiler log when eclipse jdt is used
++logExtension=.log
++
++# Whether or not to include debug info in the output jars
++javacDebugInfo=false
++
++# Whether or not to fail the build if there are compiler errors
++javacFailOnError=true
++
++# Enable or disable verbose mode of the compiler
++javacVerbose=true
++
++# Extra arguments for the compiler. These are specific to the java compiler being used.
++#compilerArg=
++
++# Default value for the version of the source code. This value is used when compiling plug-ins that do not set the Bundle-RequiredExecutionEnvironment or set javacSource in build.properties
++javacSource=1.6
++
++# Default value for the version of the byte code targeted. This value is used when compiling plug-ins that do not set the Bundle-RequiredExecutionEnvironment or set javacTarget in build.properties.
++javacTarget=1.6
++
++#individualSourceBundles=true
++
++#p2.gathering=true
++p2.compress=true
++#p2.category.site=file:${buildDirectory}/site.xml
++p2.category.definition=file:${buildDirectory}/category.xml
++p2.metadata.repo.name=Yocto Project Update Site
++p2.artifact.repo.name=Yocto Project Update Site
+diff --git a/features/org.yocto.doc.headless.build/customTargets.xml b/features/org.yocto.doc.headless.build/customTargets.xml
+new file mode 100644
+index 0000000..8cb505e
+--- /dev/null
++++ b/features/org.yocto.doc.headless.build/customTargets.xml
+@@ -0,0 +1,212 @@
++<project name="Build specific targets and properties" default="noDefault">
++
++	<!-- ===================================================================== -->
++	<!-- Run a given ${target} on all elements being built -->
++	<!-- Add on <ant> task for each top level element being built. -->
++	<!-- ===================================================================== -->
++	<available property="allElementsFile" file="${builder}/allElements.xml" value="${builder}/allElements.xml"/>
++	<property name="allElementsFile" location="${eclipse.pdebuild.templates}/headless-build/allElements.xml"/>
++
++	<import file="${allElementsFile}" />
++	<target name="allElements">
++		<antcall target="allElementsDelegator" />
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- ===================================================================== -->
++	<target name="getBaseComponents" depends="checkLocalBase" unless="skipBase">
++		<get src="${eclipseBaseURL}" dest="${buildDirectory}/../temp-base.zip" />
++		<unzip dest="${base}" overwrite="true" src="${buildDirectory}/../temp-base.zip" />
++	</target>
++
++	<target name="checkLocalBase">
++		<available file="${base}" property="skipBase" />
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Check out map files from correct repository -->
++	<!-- Replace values for mapsCheckoutTag as desired. -->
++	<!-- ===================================================================== -->
++	<target name="getMapFiles" depends="checkLocalMaps" unless="skipMaps">
++		<property name="mapsCheckoutTag" value="HEAD" />
++		<cvs cvsRoot="${mapsRepo}" package="${mapsRoot}" dest="${buildDirectory}/maps" tag="${mapsCheckoutTag}" />
++	</target>
++
++	<target name="checkLocalMaps">
++		<available property="skipMaps" file="${buildDirectory}/maps" />
++	</target>
++
++	<target name="tagMapFiles" if="tagMaps">
++		<cvs dest="${buildDirectory}/maps/${mapsRoot}" command="tag ${mapsTagTag}" />
++	</target>
++
++	<!-- ===================================================================== -->
++
++	<target name="clean" unless="noclean">
++		<antcall target="allElements">
++			<param name="target" value="cleanElement" />
++		</antcall>
++	</target>
++
++	<target name="gatherLogs">
++		<mkdir dir="${buildDirectory}/${buildLabel}/compilelogs" />
++		<antcall target="allElements">
++			<param name="target" value="gatherLogs" />
++		</antcall>
++		<unzip dest="${buildDirectory}/${buildLabel}/compilelogs" overwrite="true">
++			<fileset dir="${buildDirectory}/features">
++				<include name="**/*.log.zip" />
++			</fileset>
++		</unzip>
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do before setup -->
++	<!-- ===================================================================== -->
++	<target name="preSetup">
++		<delete dir="${buildDirectory}/plugins"/>
++		<mkdir dir="${buildDirectory}/plugins"/>
++		<copy todir="${buildDirectory}/plugins" failonerror="true">
++			<fileset dir="${otherSrcDirectory}/plugins"/>
++		</copy>
++		<delete dir="${buildDirectory}/features"/>
++		<copy todir="${buildDirectory}/features" failonerror="true" >
++			<fileset dir="${otherSrcDirectory}/features"/>
++		</copy>
++		<antcall target="prepareForP2" />
++	</target>
++
++	<target name="prepareForP2" if="p2.gathering">
++		<copy file="${otherSrcDirectory}/features/org.yocto.sdk.site/site.xml" todir="${buildDirectory}" />
++		<copy file="${otherSrcDirectory}/features/org.yocto.sdk.site/category.xml" todir="${buildDirectory}" />
++		<xmlproperty file="${otherSrcDirectory}/features/org.yocto.doc/feature.xml" />
++		<replace file="${buildDirectory}/category.xml">
++			<replacefilter token="@docFeatureVersion@" value="${feature(version)}"/>
++		</replace>
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after setup but before starting the build proper -->
++	<!-- ===================================================================== -->
++	<target name="postSetup">
++		<antcall target="getBaseComponents" />
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do before fetching the build elements -->
++	<!-- ===================================================================== -->
++	<target name="preFetch">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after fetching the build elements -->
++	<!-- ===================================================================== -->
++	<target name="postFetch">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do before the repositories are being processed -->
++	<!-- ===================================================================== -->
++	<target name="preProcessRepos">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after the repositories have been processed -->
++	<!-- ===================================================================== -->
++	<target name="postProcessRepos">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do before generating the build scripts. -->
++	<!-- ===================================================================== -->
++	<target name="preGenerate">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after generating the build scripts. -->
++	<!-- ===================================================================== -->
++	<target name="postGenerate">
++		<antcall target="clean" />
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do before running the build.xmls for the elements being built. -->
++	<!-- ===================================================================== -->
++	<target name="preProcess">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after running the build.xmls for the elements being built. -->
++	<!-- ===================================================================== -->
++	<target name="postProcess">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do before running assemble. -->
++	<!-- ===================================================================== -->
++	<target name="preAssemble">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after  running assemble. -->
++	<!-- ===================================================================== -->
++	<target name="postAssemble">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do before running package. -->
++	<!-- ===================================================================== -->
++	<target name="prePackage">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after  running package. -->
++	<!-- ===================================================================== -->
++	<target name="postPackage">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do after the build is done. -->
++	<!-- ===================================================================== -->
++	<target name="postBuild">
++		<antcall target="gatherLogs" />
++		<antcall target="updateSiteContent" />
++	</target>
++
++	<target name="updateSiteContent" if="p2.gathering">
++		<property file="${buildDirectory}/finalFeaturesVersions.properties" />
++		<copy file="${otherSrcDirectory}/features/org.yocto.sdk.site/site.xml" todir="${buildDirectory}" />
++		<replace file="${buildDirectory}/site.xml">
++			<replacefilter token="@docGenVersion@" value="${org.yocto.doc}"/>
++		</replace>
++		<zip destfile="${buildDirectory}/${buildLabel}/org.yocto.doc-${buildId}-group.group.group.zip" update="true">
++			<zipfileset dir="${buildDirectory}">
++				<include name="site.xml"/>
++			</zipfileset>
++			<zipfileset dir="${otherSrcDirectory}/features/org.yocto.sdk.site">
++				 <include name="index.html"/>
++			</zipfileset>
++			<zipfileset dir="${otherSrcDirectory}/features/org.yocto.sdk.site/web" prefix="web"/>
++		</zip>
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do to test the build results -->
++	<!-- ===================================================================== -->
++	<target name="test">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Steps to do to publish the build results -->
++	<!-- ===================================================================== -->
++	<target name="publish">
++	</target>
++
++	<!-- ===================================================================== -->
++	<!-- Default target                                                        -->
++	<!-- ===================================================================== -->
++	<target name="noDefault">
++		<echo message="You must specify a target when invoking this file" />
++	</target>
++
++</project>
 -- 
 1.7.11.7
 
