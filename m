@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A725AE01463
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB0F4E01404
 	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 05:56:47 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 77CE7402DF;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id BEBB640295;
 	Wed, 30 Jan 2013 14:17:00 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 14:56:33 +0100
-Message-Id: <c4d328e95717425d908e3dfeaba67e90af2f4069.1359466765.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 14:56:35 +0100
+Message-Id: <c4ad24be2ad72e9006e4a9c71297f84d8ed22546.1359468548.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <07f738ec0e99006772601a592b6bf3ebd2799965.1359468548.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <7b5fe60bd9f28f769bb1926c37f8dec3b8c89694.1359466765.git.timo.mueller@bmw-carit.de>
 References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1359468548.git.timo.mueller@bmw-carit.de>
 	<940419f475a4c076dd2ead78f93f8b3f510d97d6.1359468548.git.timo.mueller@bmw-carit.de>
@@ -31,10 +31,12 @@ References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 	<884e02683abe31869bc2437d04db8b305ec8abfc.1359466765.git.timo.mueller@bmw-carit.de>
 	<0d7a3bd991f07008b9a5e1271800352342070410.1359468548.git.timo.mueller@bmw-carit.de>
 	<07f738ec0e99006772601a592b6bf3ebd2799965.1359468548.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359466765.git.timo.mueller@bmw-carit.de>
-References: <cover.1359466765.git.timo.mueller@bmw-carit.de>
+	<c4d328e95717425d908e3dfeaba67e90af2f4069.1359466765.git.timo.mueller@bmw-carit.de>
+	<7b5fe60bd9f28f769bb1926c37f8dec3b8c89694.1359466765.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1359468548.git.timo.mueller@bmw-carit.de>
+References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v2 13/17] plugins/sdk.ide: Add method to rename a profile and its preference store
+Subject: [RFC v2 14/18] plugins/sdk.ide: Add method to rename a profile and its preference store
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,7 +48,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jan 2013 13:56:47 -0000
+X-List-Received-Date: Wed, 30 Jan 2013 13:56:48 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
