@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33CF9E0146A
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A9C9E01465
 	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 05:56:48 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 773CC4029F;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 9D21240072;
 	Wed, 30 Jan 2013 14:17:01 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 14:56:41 +0100
-Message-Id: <2a56aa9621ba0e3f60a7a40b13923b82f99ad260.1359466765.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 14:56:42 +0100
+Message-Id: <22a31fcfe49f0b609e827519742eac9a7475c729.1359468548.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <5ae9bf1ea8a142a93f83bc6c24821692e73c40bb.1359468548.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <2a56aa9621ba0e3f60a7a40b13923b82f99ad260.1359466765.git.timo.mueller@bmw-carit.de>
 References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1359468548.git.timo.mueller@bmw-carit.de>
 	<940419f475a4c076dd2ead78f93f8b3f510d97d6.1359468548.git.timo.mueller@bmw-carit.de>
@@ -39,10 +39,11 @@ References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 	<ed5023548a3992439f72616350eaf9d1eec471a4.1359466765.git.timo.mueller@bmw-carit.de>
 	<60005fbb87b899a1900c0f07426a1fb95a39b9f2.1359468548.git.timo.mueller@bmw-carit.de>
 	<5ae9bf1ea8a142a93f83bc6c24821692e73c40bb.1359468548.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359466765.git.timo.mueller@bmw-carit.de>
-References: <cover.1359466765.git.timo.mueller@bmw-carit.de>
+	<2a56aa9621ba0e3f60a7a40b13923b82f99ad260.1359466765.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1359468548.git.timo.mueller@bmw-carit.de>
+References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v2 17/17] plugins/sdk.ide: Moved save as button to bottom of preference page
+Subject: [RFC v2 18/18] plugins/sdk.ide: Moved save as button to bottom of preference page
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,7 +55,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jan 2013 13:56:48 -0000
+X-List-Received-Date: Wed, 30 Jan 2013 13:56:49 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
