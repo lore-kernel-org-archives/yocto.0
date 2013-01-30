@@ -1,29 +1,28 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B56D5E0141C
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6F96E0144A
 	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:01:35 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id B445740295;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 9959940283;
 	Wed, 30 Jan 2013 14:21:48 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 15:01:26 +0100
-Message-Id: <7cf27bee15d63bef3f80921b5d3cb7cad3ee0a3d.1359476560.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 15:01:25 +0100
+Message-Id: <6b6e68cb4b9d938918456b1089a3218fb5d1306b.1359476560.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <6b6e68cb4b9d938918456b1089a3218fb5d1306b.1359476560.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <401cffb10bb37b8c09cc619aa964195c7f86a53a.1359476560.git.timo.mueller@bmw-carit.de>
 References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 	<d8ee0c11e8def36416453669cc11dcaf9a53d282.1359476560.git.timo.mueller@bmw-carit.de>
 	<95c2be703c8568993b9ed156ac5c6f3f55f5f5ac.1359476560.git.timo.mueller@bmw-carit.de>
 	<162236628ecd020d007df425c5e92d560154c856.1359476560.git.timo.mueller@bmw-carit.de>
 	<401cffb10bb37b8c09cc619aa964195c7f86a53a.1359476560.git.timo.mueller@bmw-carit.de>
-	<6b6e68cb4b9d938918456b1089a3218fb5d1306b.1359476560.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 06/13] features/doc.headless.build: Added headless build for yocto.doc feature
+Subject: [RFC v4 05/13] features/org.yocto.doc: Add new feature containing yocto project documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,517 +41,373 @@ From: Timo Mueller <timo.mueller@bmw-carit.de>
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- features/org.yocto.doc.headless.build/.project     |  11 +
- .../org.yocto.doc.headless.build/build.properties  | 262 +++++++++++++++++++++
- .../org.yocto.doc.headless.build/customTargets.xml | 212 +++++++++++++++++
- 3 files changed, 485 insertions(+)
- create mode 100644 features/org.yocto.doc.headless.build/.project
- create mode 100644 features/org.yocto.doc.headless.build/build.properties
- create mode 100644 features/org.yocto.doc.headless.build/customTargets.xml
+ features/org.yocto.doc/.project           |  17 ++++
+ features/org.yocto.doc/build.properties   |   3 +
+ features/org.yocto.doc/feature.properties | 163 ++++++++++++++++++++++++++++++
+ features/org.yocto.doc/feature.xml        |  35 +++++++
+ features/org.yocto.doc/license.html       | 107 ++++++++++++++++++++
+ 5 files changed, 325 insertions(+)
+ create mode 100644 features/org.yocto.doc/.project
+ create mode 100644 features/org.yocto.doc/build.properties
+ create mode 100644 features/org.yocto.doc/feature.properties
+ create mode 100644 features/org.yocto.doc/feature.xml
+ create mode 100644 features/org.yocto.doc/license.html
 
-diff --git a/features/org.yocto.doc.headless.build/.project b/features/org.yocto.doc.headless.build/.project
+diff --git a/features/org.yocto.doc/.project b/features/org.yocto.doc/.project
 new file mode 100644
-index 0000000..106c772
+index 0000000..2ad46a8
 --- /dev/null
-+++ b/features/org.yocto.doc.headless.build/.project
-@@ -0,0 +1,11 @@
++++ b/features/org.yocto.doc/.project
+@@ -0,0 +1,17 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<projectDescription>
-+	<name>org.yocto.doc.headless.build</name>
++	<name>org.yocto.doc</name>
 +	<comment></comment>
 +	<projects>
 +	</projects>
 +	<buildSpec>
++		<buildCommand>
++			<name>org.eclipse.pde.FeatureBuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
 +	</buildSpec>
 +	<natures>
++		<nature>org.eclipse.pde.FeatureNature</nature>
 +	</natures>
 +</projectDescription>
-diff --git a/features/org.yocto.doc.headless.build/build.properties b/features/org.yocto.doc.headless.build/build.properties
+diff --git a/features/org.yocto.doc/build.properties b/features/org.yocto.doc/build.properties
 new file mode 100644
-index 0000000..6a857f8
+index 0000000..52c3cfc
 --- /dev/null
-+++ b/features/org.yocto.doc.headless.build/build.properties
-@@ -0,0 +1,262 @@
++++ b/features/org.yocto.doc/build.properties
+@@ -0,0 +1,3 @@
++bin.includes = feature.xml,\
++               license.html,\
++               feature.properties
+diff --git a/features/org.yocto.doc/feature.properties b/features/org.yocto.doc/feature.properties
+new file mode 100644
+index 0000000..46883e8
+--- /dev/null
++++ b/features/org.yocto.doc/feature.properties
+@@ -0,0 +1,163 @@
 +###############################################################################
-+# Copyright (c) 2003, 2009 IBM Corporation and others.
++# Copyright (c) 2010 Intel, Inc. and others.
 +# All rights reserved. This program and the accompanying materials
 +# are made available under the terms of the Eclipse Public License v1.0
 +# which accompanies this distribution, and is available at
 +# http://www.eclipse.org/legal/epl-v10.html
 +#
 +# Contributors:
-+#     IBM Corporation - initial API and implementation
++#     Intel - initial implementation
 +###############################################################################
-+#####################
-+# Parameters describing how and where to execute the build.
-+# Typical users need only update the following properties:
-+#    baseLocation - where things you are building against are installed
-+#    bootclasspath - The base jars to compile against (typicaly rt.jar)
-+#    configs - the list of {os, ws, arch} configurations to build.
-+#
-+# Of course any of the settings here can be overridden by spec'ing
-+# them on the command line (e.g., -DbaseLocation=d:/eclipse
 +
-+#The type of the top level element we are building,  generally "feature"
-+topLevelElementType = feature
-+#The id of the top level element we are building
-+topLevelElementId = org.yocto.doc
++# "featureName" property - name of the feature
++featureName=Yocto Project Documentation Plug-in
 +
-+############# PRODUCT/PACKAGING CONTROL #############
-+product=/plugin or feature id/path/to/.product
-+runPackager=true
++# "providerName" property - name of the company that provides the feature
++providerName=yoctoproject.org
 +
-+#Set the name of the archive that will result from the product build.
-+#archiveNamePrefix=
++# "updateSiteName" property - label for the update site
++updateSiteName=Yocto Project Update Site
 +
-+# The prefix that will be used in the generated archive.
-+archivePrefix=eclipse
++# "description" property - description of the feature
++description=\
++Eclipse plug-in containing the documentation of the Yocto Project
 +
-+# The location underwhich all of the build output will be collected.
-+collectingFolder=${archivePrefix}
++# copyright
++copyright=\
++Copyright (c) 2013 Intel, Inc. and others. \
++All rights reserved. This program and the accompanying materials \
++are made available under the terms of the Eclipse Public License v1.0 \
++which accompanies this distribution, and is available at \
++http://www.eclipse.org/legal/epl-v10.html
++################ end of copyright property ####################################
 +
-+# The list of {os, ws, arch} configurations to build.  This
-+# value is a '&' separated list of ',' separate triples.  For example,
-+#     configs=win32,win32,x86 & linux,motif,x86
-+# By default the value is *,*,*
-+configs = *, *, *
-+#configs=win32, win32, x86 & \
-+#	win32,win32,x86_64 & \
-+#	win32,win32,wpf & \
-+#	linux, gtk, ppc & \
-+#	linux, gtk, x86 & \
-+#	linux, gtk, x86_64 & \
-+#	linux, motif, x86 & \
-+#	solaris, motif, sparc & \
-+#	solaris, gtk, sparc & \
-+#	aix, motif, ppc & \
-+#	hpux, motif, ia64_32 & \
-+#	macosx, carbon, ppc & \
-+#	macosx, carbon, x86 & \
-+#	macosx, cocoa, ppc & \
-+#	macosx, cocoa, x86 & \
-+#	macosx, cocoa, x86_64
++# "licenseURL" property - URL of the "Feature License"
++# do not translate value - just change to point to a locale-specific HTML page
++licenseURL=license.html
 +
-+# By default PDE creates one archive (result) per entry listed in the configs property.
-+# Setting this value to true will cause PDE to only create one output containing all
-+# artifacts for all the platforms listed in the configs property.
-+# To control the output format for the group, add a "group, group, group - <format>" entry to the
-+# archivesFormat.
-+#groupConfigurations=true
-+
-+#The format of the archive. By default a zip is created using antZip.
-+#The list can only contain the configuration for which the desired format is different than zip.
-+#archivesFormat=win32, win32, x86 - antZip& \
-+#	linux, gtk, ppc - antZip &\
-+#    linux, gtk, x86 - antZip& \
-+#	linux, gtk, x86_64 - antZip& \
-+# linux, motif, x86 - antZip& \
-+#	solaris, motif, sparc - antZip& \
-+#	solaris, gtk, sparc - antZip& \
-+#	aix, motif, ppc - antZip& \
-+#	hpux, motif, PA_RISC - antZip& \
-+#	macosx, carbon, ppc - antZip
-+
-+#Allow cycles involving at most one bundle that needs to be compiled with the rest being binary bundles.
-+allowBinaryCycles = true
-+
-+#Sort bundles depenedencies across all features instead of just within a given feature.
-+#flattenDependencies = true
-+
-+#Parallel compilation, requires flattenedDependencies=true
-+#parallelCompilation=true
-+#parallelThreadCount=
-+#parallelThreadsPerProcessor=
-+
-+#Set to true if you want the output to be ready for an update jar (no site.xml generated)
-+outputUpdateJars = true
-+
-+#Set to true for Jnlp generation
-+#codebase should be a URL that will be used as the root of all relative URLs in the output.
-+#generateJnlp=false
-+#jnlp.codebase=<codebase url>
-+#jnlp.j2se=<j2se version>
-+#jnlp.locale=<a locale>
-+#jnlp.generateOfflineAllowed=true or false generate <offlineAllowed/> attribute in the generated features
-+#jnlp.configs=${configs}			#uncomment to filter the content of the generated jnlp files based on the configuration being built
-+
-+#Set to true if you want to sign jars
-+#signJars=false
-+#sign.alias=<alias>
-+#sign.keystore=<keystore location>
-+#sign.storepass=<keystore password>
-+#sign.keypass=<key password>
-+
-+#Arguments to send to the zip executable
-+zipargs=
-+
-+#Arguments to send to the tar executable
-+tarargs=
-+
-+#Control the creation of a file containing the version included in each configuration - on by default
-+#generateVersionsLists=false
-+
-+############## BUILD NAMING CONTROL ################
-+# The directory into which the build elements are fetched and where
-+# the build takes place.
-+#buildDirectory=
-+
-+# Type of build.  Used in naming the build output.  Typically this value is
-+# one of I, N, M, S, ...
-+buildType=I
-+
-+# ID of the build.  Used in naming the build output.
-+buildId=TestBuild
-+
-+# Label for the build.  Used in naming the build output
-+buildLabel=${buildType}.${buildId}
-+
-+# Timestamp for the build.  Used in naming the build output
-+timestamp=007
-+
-+#The value to be used for the qualifier of a plugin or feature when you want to override the value computed by pde.
-+#The value will only be applied to plugin or features indicating build.properties, qualifier = context
-+#forceContextQualifier=<the value for the qualifier>
-+
-+#Enable / disable the generation of a suffix for the features that use .qualifier.
-+#The generated suffix is computed according to the content of the feature
-+#generateFeatureVersionSuffix=true
-+
-+############# BASE CONTROL #############
-+# Settings for the base Eclipse components and Java class libraries
-+# against which you are building.
-+# Base location for anything the build needs to compile against.  For example,
-+# in most RCP app or a plug-in,  the baseLocation should be the location of a previously
-+# installed Eclipse against which the application or plug-in code will be compiled and the RCP delta pack.
-+
-+#base=<path/to/parent/of/eclipse>
-+#baseLocation=${base}/eclipse
-+
-+#Folder containing repositories whose content is needed to compile against
-+#repoBaseLocation=${base}/repos
-+#Folder where the content of the repositories from ${repoBaseLocation} will be made available as a form suitable to be compiled against
-+#transformedRepoLocation=${base}/transformedRepos
-+
-+#Os/Ws/Arch/nl of the eclipse specified by baseLocation
-+#baseos=win32
-+#basews=win32
-+#basearch=x86
-+
-+#this property indicates whether you want the set of plug-ins and features to be considered during the build to be limited to the ones reachable from the features / plugins being built
-+filteredDependencyCheck=false
-+
-+#this property indicates whether the resolution should be done in development mode (i.e. ignore multiple bundles with singletons)
-+resolution.devMode=false
-+
-+#pluginPath is a list of locations in which to find plugins and features.  This list is separated by the platform file separator (; or :)
-+#a location is one of:
-+#- the location of the jar or folder that is the plugin or feature : /path/to/foo.jar or /path/to/foo
-+#- a directory that contains a /plugins or /features subdirectory
-+#- the location of a feature.xml, or for 2.1 style plugins, the plugin.xml or fragment.xml
-+#pluginPath=
-+
-+skipBase=true
-+eclipseURL=<url for eclipse download site>
-+eclipseBuildId=<Id of Eclipse build to get>
-+eclipseBaseURL=${eclipseURL}/eclipse-platform-${eclipseBuildId}-win32.zip
-+
-+
-+############# MAP FILE CONTROL ################
-+# This section defines CVS tags to use when fetching the map files from the repository.
-+# If you want to fetch the map file from repository / location, change the getMapFiles target in the customTargets.xml
-+
-+skipMaps=true
-+mapsRepo=:pserver:anonymous@example.com/path/to/repo
-+mapsRoot=path/to/maps
-+mapsCheckoutTag=HEAD
-+
-+#tagMaps=true
-+mapsTagTag=v${buildId}
-+
-+
-+############ REPOSITORY CONTROL ###############
-+# This section defines properties parameterizing the repositories where plugins, fragments
-+# bundles and features are being obtained from.
-+
-+# The tags to use when fetching elements to build.
-+# By default thebuilder will use whatever is in the maps.
-+# This value takes the form of a comma separated list of repository identifier (like used in the map files) and the
-+# overriding value
-+# For example fetchTag=CVS=HEAD, SVN=v20050101
-+# fetchTag=HEAD
-+skipFetch=true
-+
-+
-+############# JAVA COMPILER OPTIONS ##############
-+# The location of the Java jars to compile against.  Typically the rt.jar for your JDK/JRE
-+#bootclasspath=${java.home}/lib/rt.jar
-+
-+# specific JRE locations to compile against. These values are used to compile bundles specifying a
-+# Bundle-RequiredExecutionEnvironment. Uncomment and set values for environments that you support
-+#CDC-1.0/Foundation-1.0= /path/to/rt.jar
-+#CDC-1.1/Foundation-1.1=
-+#OSGi/Minimum-1.0=
-+#OSGi/Minimum-1.1=
-+#JRE-1.1=
-+#J2SE-1.2=
-+#J2SE-1.3=
-+#J2SE-1.4=
-+#J2SE-1.5=
-+#JavaSE-1.6=
-+#PersonalJava-1.1=
-+#PersonalJava-1.2=
-+#CDC-1.0/PersonalBasis-1.0=
-+#CDC-1.0/PersonalJava-1.0=
-+#CDC-1.1/PersonalBasis-1.1=
-+#CDC-1.1/PersonalJava-1.1=
-+
-+# Specify the output format of the compiler log when eclipse jdt is used
-+logExtension=.log
-+
-+# Whether or not to include debug info in the output jars
-+javacDebugInfo=false
-+
-+# Whether or not to fail the build if there are compiler errors
-+javacFailOnError=true
-+
-+# Enable or disable verbose mode of the compiler
-+javacVerbose=true
-+
-+# Extra arguments for the compiler. These are specific to the java compiler being used.
-+#compilerArg=
-+
-+# Default value for the version of the source code. This value is used when compiling plug-ins that do not set the Bundle-RequiredExecutionEnvironment or set javacSource in build.properties
-+javacSource=1.6
-+
-+# Default value for the version of the byte code targeted. This value is used when compiling plug-ins that do not set the Bundle-RequiredExecutionEnvironment or set javacTarget in build.properties.
-+javacTarget=1.6
-+
-+#individualSourceBundles=true
-+
-+#p2.gathering=true
-+p2.compress=true
-+#p2.category.site=file:${buildDirectory}/site.xml
-+p2.category.definition=file:${buildDirectory}/category.xml
-+p2.metadata.repo.name=Yocto Project Update Site
-+p2.artifact.repo.name=Yocto Project Update Site
-diff --git a/features/org.yocto.doc.headless.build/customTargets.xml b/features/org.yocto.doc.headless.build/customTargets.xml
++# "license" property - text of the "Feature Update License"
++# should be plain text version of license agreement pointed to be "licenseURL"
++license=\
++Eclipse Foundation Software User Agreement\n\
++April 14, 2010\n\
++\n\
++Usage Of Content\n\
++\n\
++THE ECLIPSE FOUNDATION MAKES AVAILABLE SOFTWARE, DOCUMENTATION, INFORMATION AND/OR\n\
++OTHER MATERIALS FOR OPEN SOURCE PROJECTS (COLLECTIVELY "CONTENT").\n\
++USE OF THE CONTENT IS GOVERNED BY THE TERMS AND CONDITIONS OF THIS\n\
++AGREEMENT AND/OR THE TERMS AND CONDITIONS OF LICENSE AGREEMENTS OR\n\
++NOTICES INDICATED OR REFERENCED BELOW.  BY USING THE CONTENT, YOU\n\
++AGREE THAT YOUR USE OF THE CONTENT IS GOVERNED BY THIS AGREEMENT\n\
++AND/OR THE TERMS AND CONDITIONS OF ANY APPLICABLE LICENSE AGREEMENTS\n\
++OR NOTICES INDICATED OR REFERENCED BELOW.  IF YOU DO NOT AGREE TO THE\n\
++TERMS AND CONDITIONS OF THIS AGREEMENT AND THE TERMS AND CONDITIONS\n\
++OF ANY APPLICABLE LICENSE AGREEMENTS OR NOTICES INDICATED OR REFERENCED\n\
++BELOW, THEN YOU MAY NOT USE THE CONTENT.\n\
++\n\
++Applicable Licenses\n\
++\n\
++Unless otherwise indicated, all Content made available by the\n\
++Eclipse Foundation is provided to you under the terms and conditions of\n\
++the Eclipse Public License Version 1.0 ("EPL"). A copy of the EPL is\n\
++provided with this Content and is also available at http://www.eclipse.org/legal/epl-v10.html.\n\
++For purposes of the EPL, "Program" will mean the Content.\n\
++\n\
++Content includes, but is not limited to, source code, object code,\n\
++documentation and other files maintained in the Eclipse Foundation source code\n\
++repository ("Repository") in software modules ("Modules") and made available\n\
++as downloadable archives ("Downloads").\n\
++\n\
++       - Content may be structured and packaged into modules to facilitate delivering,\n\
++         extending, and upgrading the Content. Typical modules may include plug-ins ("Plug-ins"),\n\
++         plug-in fragments ("Fragments"), and features ("Features").\n\
++       - Each Plug-in or Fragment may be packaged as a sub-directory or JAR (Java(TM) ARchive)\n\
++         in a directory named "plugins".\n\
++       - A Feature is a bundle of one or more Plug-ins and/or Fragments and associated material.\n\
++         Each Feature may be packaged as a sub-directory in a directory named "features".\n\
++         Within a Feature, files named "feature.xml" may contain a list of the names and version\n\
++         numbers of the Plug-ins and/or Fragments associated with that Feature.\n\
++       - Features may also include other Features ("Included Features"). Within a Feature, files\n\
++         named "feature.xml" may contain a list of the names and version numbers of Included Features.\n\
++\n\
++The terms and conditions governing Plug-ins and Fragments should be\n\
++contained in files named "about.html" ("Abouts"). The terms and\n\
++conditions governing Features and Included Features should be contained\n\
++in files named "license.html" ("Feature Licenses"). Abouts and Feature\n\
++Licenses may be located in any directory of a Download or Module\n\
++including, but not limited to the following locations:\n\
++\n\
++       - The top-level (root) directory\n\
++       - Plug-in and Fragment directories\n\
++       - Inside Plug-ins and Fragments packaged as JARs\n\
++       - Sub-directories of the directory named "src" of certain Plug-ins\n\
++       - Feature directories\n\
++\n\
++Note: if a Feature made available by the Eclipse Foundation is installed using the\n\
++Provisioning Technology (as defined below), you must agree to a license ("Feature \n\
++Update License") during the installation process. If the Feature contains\n\
++Included Features, the Feature Update License should either provide you\n\
++with the terms and conditions governing the Included Features or inform\n\
++you where you can locate them. Feature Update Licenses may be found in\n\
++the "license" property of files named "feature.properties" found within a Feature.\n\
++Such Abouts, Feature Licenses, and Feature Update Licenses contain the\n\
++terms and conditions (or references to such terms and conditions) that\n\
++govern your use of the associated Content in that directory.\n\
++\n\
++THE ABOUTS, FEATURE LICENSES, AND FEATURE UPDATE LICENSES MAY REFER\n\
++TO THE EPL OR OTHER LICENSE AGREEMENTS, NOTICES OR TERMS AND CONDITIONS.\n\
++SOME OF THESE OTHER LICENSE AGREEMENTS MAY INCLUDE (BUT ARE NOT LIMITED TO):\n\
++\n\
++       - Common Public License Version 1.0 (available at http://www.eclipse.org/legal/cpl-v10.html)\n\
++       - Apache Software License 1.1 (available at http://www.apache.org/licenses/LICENSE)\n\
++       - Apache Software License 2.0 (available at http://www.apache.org/licenses/LICENSE-2.0)\n\
++       - Metro Link Public License 1.00 (available at http://www.opengroup.org/openmotif/supporters/metrolink/license.html)\n\
++       - Mozilla Public License Version 1.1 (available at http://www.mozilla.org/MPL/MPL-1.1.html)\n\
++\n\
++IT IS YOUR OBLIGATION TO READ AND ACCEPT ALL SUCH TERMS AND CONDITIONS PRIOR\n\
++TO USE OF THE CONTENT. If no About, Feature License, or Feature Update License\n\
++is provided, please contact the Eclipse Foundation to determine what terms and conditions\n\
++govern that particular Content.\n\
++\n\
++\n\Use of Provisioning Technology\n\
++\n\
++The Eclipse Foundation makes available provisioning software, examples of which include,\n\
++but are not limited to, p2 and the Eclipse Update Manager ("Provisioning Technology") for\n\
++the purpose of allowing users to install software, documentation, information and/or\n\
++other materials (collectively "Installable Software"). This capability is provided with\n\
++the intent of allowing such users to install, extend and update Eclipse-based products.\n\
++Information about packaging Installable Software is available at\n\
++http://eclipse.org/equinox/p2/repository_packaging.html ("Specification").\n\
++\n\
++You may use Provisioning Technology to allow other parties to install Installable Software.\n\
++You shall be responsible for enabling the applicable license agreements relating to the\n\
++Installable Software to be presented to, and accepted by, the users of the Provisioning Technology\n\
++in accordance with the Specification. By using Provisioning Technology in such a manner and\n\
++making it available in accordance with the Specification, you further acknowledge your\n\
++agreement to, and the acquisition of all necessary rights to permit the following:\n\
++\n\
++       1. A series of actions may occur ("Provisioning Process") in which a user may execute\n\
++          the Provisioning Technology on a machine ("Target Machine") with the intent of installing,\n\
++          extending or updating the functionality of an Eclipse-based product.\n\
++       2. During the Provisioning Process, the Provisioning Technology may cause third party\n\
++          Installable Software or a portion thereof to be accessed and copied to the Target Machine.\n\
++       3. Pursuant to the Specification, you will provide to the user the terms and conditions that\n\
++          govern the use of the Installable Software ("Installable Software Agreement") and such\n\
++          Installable Software Agreement shall be accessed from the Target Machine in accordance\n\
++          with the Specification. Such Installable Software Agreement must inform the user of the\n\
++          terms and conditions that govern the Installable Software and must solicit acceptance by\n\
++          the end user in the manner prescribed in such Installable Software Agreement. Upon such\n\
++          indication of agreement by the user, the provisioning Technology will complete installation\n\
++          of the Installable Software.\n\
++\n\
++Cryptography\n\
++\n\
++Content may contain encryption software. The country in which you are\n\
++currently may have restrictions on the import, possession, and use,\n\
++and/or re-export to another country, of encryption software. BEFORE\n\
++using any encryption software, please check the country's laws,\n\
++regulations and policies concerning the import, possession, or use, and\n\
++re-export of encryption software, to see if this is permitted.\n\
++\n\
++Java and all Java-based trademarks are trademarks of Oracle Corporation in the United States, other countries, or both.\n
++########### end of license property ##########################################
+diff --git a/features/org.yocto.doc/feature.xml b/features/org.yocto.doc/feature.xml
 new file mode 100644
-index 0000000..8cb505e
+index 0000000..ed8687e
 --- /dev/null
-+++ b/features/org.yocto.doc.headless.build/customTargets.xml
-@@ -0,0 +1,212 @@
-+<project name="Build specific targets and properties" default="noDefault">
++++ b/features/org.yocto.doc/feature.xml
+@@ -0,0 +1,35 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<feature
++      id="org.yocto.doc"
++      label="%featureName"
++      version="1.4.0.qualifier"
++      provider-name="%providerName">
 +
-+	<!-- ===================================================================== -->
-+	<!-- Run a given ${target} on all elements being built -->
-+	<!-- Add on <ant> task for each top level element being built. -->
-+	<!-- ===================================================================== -->
-+	<available property="allElementsFile" file="${builder}/allElements.xml" value="${builder}/allElements.xml"/>
-+	<property name="allElementsFile" location="${eclipse.pdebuild.templates}/headless-build/allElements.xml"/>
++   <description>
++      %description
++   </description>
 +
-+	<import file="${allElementsFile}" />
-+	<target name="allElements">
-+		<antcall target="allElementsDelegator" />
-+	</target>
++   <copyright>
++      %copyright
++   </copyright>
 +
-+	<!-- ===================================================================== -->
-+	<!-- ===================================================================== -->
-+	<target name="getBaseComponents" depends="checkLocalBase" unless="skipBase">
-+		<get src="${eclipseBaseURL}" dest="${buildDirectory}/../temp-base.zip" />
-+		<unzip dest="${base}" overwrite="true" src="${buildDirectory}/../temp-base.zip" />
-+	</target>
++   <license url="%licenseURL">
++      %license
++   </license>
 +
-+	<target name="checkLocalBase">
-+		<available file="${base}" property="skipBase" />
-+	</target>
++   <url>
++      <update label="%updateSiteName" url="http://yoctoproject.org/downloads/eclipse-plugin/"/>
++   </url>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Check out map files from correct repository -->
-+	<!-- Replace values for mapsCheckoutTag as desired. -->
-+	<!-- ===================================================================== -->
-+	<target name="getMapFiles" depends="checkLocalMaps" unless="skipMaps">
-+		<property name="mapsCheckoutTag" value="HEAD" />
-+		<cvs cvsRoot="${mapsRepo}" package="${mapsRoot}" dest="${buildDirectory}/maps" tag="${mapsCheckoutTag}" />
-+	</target>
++   <requires>
++      <import plugin="org.eclipse.help"/>
++   </requires>
 +
-+	<target name="checkLocalMaps">
-+		<available property="skipMaps" file="${buildDirectory}/maps" />
-+	</target>
++   <plugin
++         id="org.yocto.doc.user"
++         download-size="0"
++         install-size="0"
++         version="0.0.0"
++         unpack="false"/>
 +
-+	<target name="tagMapFiles" if="tagMaps">
-+		<cvs dest="${buildDirectory}/maps/${mapsRoot}" command="tag ${mapsTagTag}" />
-+	</target>
++</feature>
+diff --git a/features/org.yocto.doc/license.html b/features/org.yocto.doc/license.html
+new file mode 100644
+index 0000000..c184ca3
+--- /dev/null
++++ b/features/org.yocto.doc/license.html
+@@ -0,0 +1,107 @@
++<?xml version="1.0" encoding="ISO-8859-1" ?>
++<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
++<html xmlns="http://www.w3.org/1999/xhtml">
++<head>
++<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
++<title>Eclipse Foundation Software User Agreement</title>
++</head>
 +
-+	<!-- ===================================================================== -->
++<body lang="EN-US">
++<h2>Eclipse Foundation Software User Agreement</h2>
++<p>April 14, 2010</p>
 +
-+	<target name="clean" unless="noclean">
-+		<antcall target="allElements">
-+			<param name="target" value="cleanElement" />
-+		</antcall>
-+	</target>
++<h3>Usage Of Content</h3>
 +
-+	<target name="gatherLogs">
-+		<mkdir dir="${buildDirectory}/${buildLabel}/compilelogs" />
-+		<antcall target="allElements">
-+			<param name="target" value="gatherLogs" />
-+		</antcall>
-+		<unzip dest="${buildDirectory}/${buildLabel}/compilelogs" overwrite="true">
-+			<fileset dir="${buildDirectory}/features">
-+				<include name="**/*.log.zip" />
-+			</fileset>
-+		</unzip>
-+	</target>
++<p>THE ECLIPSE FOUNDATION MAKES AVAILABLE SOFTWARE, DOCUMENTATION, INFORMATION AND/OR OTHER MATERIALS FOR OPEN SOURCE PROJECTS
++   (COLLECTIVELY &quot;CONTENT&quot;).  USE OF THE CONTENT IS GOVERNED BY THE TERMS AND CONDITIONS OF THIS AGREEMENT AND/OR THE TERMS AND
++   CONDITIONS OF LICENSE AGREEMENTS OR NOTICES INDICATED OR REFERENCED BELOW.  BY USING THE CONTENT, YOU AGREE THAT YOUR USE
++   OF THE CONTENT IS GOVERNED BY THIS AGREEMENT AND/OR THE TERMS AND CONDITIONS OF ANY APPLICABLE LICENSE AGREEMENTS OR
++   NOTICES INDICATED OR REFERENCED BELOW.  IF YOU DO NOT AGREE TO THE TERMS AND CONDITIONS OF THIS AGREEMENT AND THE TERMS AND
++   CONDITIONS OF ANY APPLICABLE LICENSE AGREEMENTS OR NOTICES INDICATED OR REFERENCED BELOW, THEN YOU MAY NOT USE THE CONTENT.</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do before setup -->
-+	<!-- ===================================================================== -->
-+	<target name="preSetup">
-+		<delete dir="${buildDirectory}/plugins"/>
-+		<mkdir dir="${buildDirectory}/plugins"/>
-+		<copy todir="${buildDirectory}/plugins" failonerror="true">
-+			<fileset dir="${otherSrcDirectory}/plugins"/>
-+		</copy>
-+		<delete dir="${buildDirectory}/features"/>
-+		<copy todir="${buildDirectory}/features" failonerror="true" >
-+			<fileset dir="${otherSrcDirectory}/features"/>
-+		</copy>
-+		<antcall target="prepareForP2" />
-+	</target>
++<h3>Applicable Licenses</h3>
 +
-+	<target name="prepareForP2" if="p2.gathering">
-+		<copy file="${otherSrcDirectory}/features/org.yocto.sdk.site/site.xml" todir="${buildDirectory}" />
-+		<copy file="${otherSrcDirectory}/features/org.yocto.sdk.site/category.xml" todir="${buildDirectory}" />
-+		<xmlproperty file="${otherSrcDirectory}/features/org.yocto.doc/feature.xml" />
-+		<replace file="${buildDirectory}/category.xml">
-+			<replacefilter token="@docFeatureVersion@" value="${feature(version)}"/>
-+		</replace>
-+	</target>
++<p>Unless otherwise indicated, all Content made available by the Eclipse Foundation is provided to you under the terms and conditions of the Eclipse Public License Version 1.0
++   (&quot;EPL&quot;).  A copy of the EPL is provided with this Content and is also available at <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
++   For purposes of the EPL, &quot;Program&quot; will mean the Content.</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after setup but before starting the build proper -->
-+	<!-- ===================================================================== -->
-+	<target name="postSetup">
-+		<antcall target="getBaseComponents" />
-+	</target>
++<p>Content includes, but is not limited to, source code, object code, documentation and other files maintained in the Eclipse Foundation source code
++   repository (&quot;Repository&quot;) in software modules (&quot;Modules&quot;) and made available as downloadable archives (&quot;Downloads&quot;).</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do before fetching the build elements -->
-+	<!-- ===================================================================== -->
-+	<target name="preFetch">
-+	</target>
++<ul>
++       <li>Content may be structured and packaged into modules to facilitate delivering, extending, and upgrading the Content.  Typical modules may include plug-ins (&quot;Plug-ins&quot;), plug-in fragments (&quot;Fragments&quot;), and features (&quot;Features&quot;).</li>
++       <li>Each Plug-in or Fragment may be packaged as a sub-directory or JAR (Java&trade; ARchive) in a directory named &quot;plugins&quot;.</li>
++       <li>A Feature is a bundle of one or more Plug-ins and/or Fragments and associated material.  Each Feature may be packaged as a sub-directory in a directory named &quot;features&quot;.  Within a Feature, files named &quot;feature.xml&quot; may contain a list of the names and version numbers of the Plug-ins
++      and/or Fragments associated with that Feature.</li>
++       <li>Features may also include other Features (&quot;Included Features&quot;). Within a Feature, files named &quot;feature.xml&quot; may contain a list of the names and version numbers of Included Features.</li>
++</ul>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after fetching the build elements -->
-+	<!-- ===================================================================== -->
-+	<target name="postFetch">
-+	</target>
++<p>The terms and conditions governing Plug-ins and Fragments should be contained in files named &quot;about.html&quot; (&quot;Abouts&quot;). The terms and conditions governing Features and
++Included Features should be contained in files named &quot;license.html&quot; (&quot;Feature Licenses&quot;).  Abouts and Feature Licenses may be located in any directory of a Download or Module
++including, but not limited to the following locations:</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do before the repositories are being processed -->
-+	<!-- ===================================================================== -->
-+	<target name="preProcessRepos">
-+	</target>
++<ul>
++       <li>The top-level (root) directory</li>
++       <li>Plug-in and Fragment directories</li>
++       <li>Inside Plug-ins and Fragments packaged as JARs</li>
++       <li>Sub-directories of the directory named &quot;src&quot; of certain Plug-ins</li>
++       <li>Feature directories</li>
++</ul>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after the repositories have been processed -->
-+	<!-- ===================================================================== -->
-+	<target name="postProcessRepos">
-+	</target>
++<p>Note: if a Feature made available by the Eclipse Foundation is installed using the Provisioning Technology (as defined below), you must agree to a license (&quot;Feature Update License&quot;) during the
++installation process.  If the Feature contains Included Features, the Feature Update License should either provide you with the terms and conditions governing the Included Features or
++inform you where you can locate them.  Feature Update Licenses may be found in the &quot;license&quot; property of files named &quot;feature.properties&quot; found within a Feature.
++Such Abouts, Feature Licenses, and Feature Update Licenses contain the terms and conditions (or references to such terms and conditions) that govern your use of the associated Content in
++that directory.</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do before generating the build scripts. -->
-+	<!-- ===================================================================== -->
-+	<target name="preGenerate">
-+	</target>
++<p>THE ABOUTS, FEATURE LICENSES, AND FEATURE UPDATE LICENSES MAY REFER TO THE EPL OR OTHER LICENSE AGREEMENTS, NOTICES OR TERMS AND CONDITIONS.  SOME OF THESE
++OTHER LICENSE AGREEMENTS MAY INCLUDE (BUT ARE NOT LIMITED TO):</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after generating the build scripts. -->
-+	<!-- ===================================================================== -->
-+	<target name="postGenerate">
-+		<antcall target="clean" />
-+	</target>
++<ul>
++       <li>Common Public License Version 1.0 (available at <a href="http://www.eclipse.org/legal/cpl-v10.html">http://www.eclipse.org/legal/cpl-v10.html</a>)</li>
++       <li>Apache Software License 1.1 (available at <a href="http://www.apache.org/licenses/LICENSE">http://www.apache.org/licenses/LICENSE</a>)</li>
++       <li>Apache Software License 2.0 (available at <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>)</li>
++       <li>Metro Link Public License 1.00 (available at <a href="http://www.opengroup.org/openmotif/supporters/metrolink/license.html">http://www.opengroup.org/openmotif/supporters/metrolink/license.html</a>)</li>
++       <li>Mozilla Public License Version 1.1 (available at <a href="http://www.mozilla.org/MPL/MPL-1.1.html">http://www.mozilla.org/MPL/MPL-1.1.html</a>)</li>
++</ul>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do before running the build.xmls for the elements being built. -->
-+	<!-- ===================================================================== -->
-+	<target name="preProcess">
-+	</target>
++<p>IT IS YOUR OBLIGATION TO READ AND ACCEPT ALL SUCH TERMS AND CONDITIONS PRIOR TO USE OF THE CONTENT.  If no About, Feature License, or Feature Update License is provided, please
++contact the Eclipse Foundation to determine what terms and conditions govern that particular Content.</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after running the build.xmls for the elements being built. -->
-+	<!-- ===================================================================== -->
-+	<target name="postProcess">
-+	</target>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do before running assemble. -->
-+	<!-- ===================================================================== -->
-+	<target name="preAssemble">
-+	</target>
++<h3>Use of Provisioning Technology</h3>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after  running assemble. -->
-+	<!-- ===================================================================== -->
-+	<target name="postAssemble">
-+	</target>
++<p>The Eclipse Foundation makes available provisioning software, examples of which include, but are not limited to, p2 and the Eclipse
++   Update Manager (&quot;Provisioning Technology&quot;) for the purpose of allowing users to install software, documentation, information and/or
++   other materials (collectively &quot;Installable Software&quot;). This capability is provided with the intent of allowing such users to
++   install, extend and update Eclipse-based products. Information about packaging Installable Software is available at <a
++       href="http://eclipse.org/equinox/p2/repository_packaging.html">http://eclipse.org/equinox/p2/repository_packaging.html</a>
++   (&quot;Specification&quot;).</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do before running package. -->
-+	<!-- ===================================================================== -->
-+	<target name="prePackage">
-+	</target>
++<p>You may use Provisioning Technology to allow other parties to install Installable Software. You shall be responsible for enabling the
++   applicable license agreements relating to the Installable Software to be presented to, and accepted by, the users of the Provisioning Technology
++   in accordance with the Specification. By using Provisioning Technology in such a manner and making it available in accordance with the
++   Specification, you further acknowledge your agreement to, and the acquisition of all necessary rights to permit the following:</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after  running package. -->
-+	<!-- ===================================================================== -->
-+	<target name="postPackage">
-+	</target>
++<ol>
++       <li>A series of actions may occur (&quot;Provisioning Process&quot;) in which a user may execute the Provisioning Technology
++       on a machine (&quot;Target Machine&quot;) with the intent of installing, extending or updating the functionality of an Eclipse-based
++       product.</li>
++       <li>During the Provisioning Process, the Provisioning Technology may cause third party Installable Software or a portion thereof to be
++       accessed and copied to the Target Machine.</li>
++       <li>Pursuant to the Specification, you will provide to the user the terms and conditions that govern the use of the Installable
++       Software (&quot;Installable Software Agreement&quot;) and such Installable Software Agreement shall be accessed from the Target
++       Machine in accordance with the Specification. Such Installable Software Agreement must inform the user of the terms and conditions that govern
++       the Installable Software and must solicit acceptance by the end user in the manner prescribed in such Installable Software Agreement. Upon such
++       indication of agreement by the user, the provisioning Technology will complete installation of the Installable Software.</li>
++</ol>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do after the build is done. -->
-+	<!-- ===================================================================== -->
-+	<target name="postBuild">
-+		<antcall target="gatherLogs" />
-+		<antcall target="updateSiteContent" />
-+	</target>
++<h3>Cryptography</h3>
 +
-+	<target name="updateSiteContent" if="p2.gathering">
-+		<property file="${buildDirectory}/finalFeaturesVersions.properties" />
-+		<copy file="${otherSrcDirectory}/features/org.yocto.sdk.site/site.xml" todir="${buildDirectory}" />
-+		<replace file="${buildDirectory}/site.xml">
-+			<replacefilter token="@docGenVersion@" value="${org.yocto.doc}"/>
-+		</replace>
-+		<zip destfile="${buildDirectory}/${buildLabel}/org.yocto.doc-${buildId}-group.group.group.zip" update="true">
-+			<zipfileset dir="${buildDirectory}">
-+				<include name="site.xml"/>
-+			</zipfileset>
-+			<zipfileset dir="${otherSrcDirectory}/features/org.yocto.sdk.site">
-+				 <include name="index.html"/>
-+			</zipfileset>
-+			<zipfileset dir="${otherSrcDirectory}/features/org.yocto.sdk.site/web" prefix="web"/>
-+		</zip>
-+	</target>
++<p>Content may contain encryption software. The country in which you are currently may have restrictions on the import, possession, and use, and/or re-export to
++   another country, of encryption software. BEFORE using any encryption software, please check the country's laws, regulations and policies concerning the import,
++   possession, or use, and re-export of encryption software, to see if this is permitted.</p>
 +
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do to test the build results -->
-+	<!-- ===================================================================== -->
-+	<target name="test">
-+	</target>
-+
-+	<!-- ===================================================================== -->
-+	<!-- Steps to do to publish the build results -->
-+	<!-- ===================================================================== -->
-+	<target name="publish">
-+	</target>
-+
-+	<!-- ===================================================================== -->
-+	<!-- Default target                                                        -->
-+	<!-- ===================================================================== -->
-+	<target name="noDefault">
-+		<echo message="You must specify a target when invoking this file" />
-+	</target>
-+
-+</project>
++<p><small>Java and all Java-based trademarks are trademarks of Oracle Corporation in the United States, other countries, or both.</small></p>
++</body>
++</html>
 -- 
 1.7.11.7
 
