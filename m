@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 922B5E01453
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4D54E01462
 	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 05:56:47 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 517D2401B4;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 0A04B400A5;
 	Wed, 30 Jan 2013 14:17:00 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 14:56:32 +0100
-Message-Id: <07f738ec0e99006772601a592b6bf3ebd2799965.1359468548.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 14:56:30 +0100
+Message-Id: <884e02683abe31869bc2437d04db8b305ec8abfc.1359466765.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <0d7a3bd991f07008b9a5e1271800352342070410.1359468548.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <26825d2d35aab2ecf72c049fabea26fd4c8b90f7.1359466765.git.timo.mueller@bmw-carit.de>
 References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1359468548.git.timo.mueller@bmw-carit.de>
 	<940419f475a4c076dd2ead78f93f8b3f510d97d6.1359468548.git.timo.mueller@bmw-carit.de>
@@ -28,12 +28,10 @@ References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 	<3bf56fea609743f90d8a6576ab45fc9221859c93.1359466765.git.timo.mueller@bmw-carit.de>
 	<a30248904660352ac16ed0179a50f259df16cb0a.1359468548.git.timo.mueller@bmw-carit.de>
 	<26825d2d35aab2ecf72c049fabea26fd4c8b90f7.1359466765.git.timo.mueller@bmw-carit.de>
-	<884e02683abe31869bc2437d04db8b305ec8abfc.1359466765.git.timo.mueller@bmw-carit.de>
-	<0d7a3bd991f07008b9a5e1271800352342070410.1359468548.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359468548.git.timo.mueller@bmw-carit.de>
-References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1359466765.git.timo.mueller@bmw-carit.de>
+References: <cover.1359466765.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v2 13/18] plugins/sdk.ide: Add method to change values of the preference page
+Subject: [RFC v2 12/17] plugins/sdk.ide: Add method to change values of the preference page
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
