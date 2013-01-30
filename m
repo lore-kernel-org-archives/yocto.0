@@ -1,42 +1,28 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB0F4E01404
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E18D4E01461
 	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 05:56:47 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id BEBB640295;
-	Wed, 30 Jan 2013 14:17:00 +0100 (CET)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id D1C9D40283;
+	Wed, 30 Jan 2013 14:16:58 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Wed, 30 Jan 2013 14:56:35 +0100
-Message-Id: <c4ad24be2ad72e9006e4a9c71297f84d8ed22546.1359468548.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 14:56:21 +0100
+Message-Id: <f7cfefba2277cefdc676af13088b56b2ae56569f.1359468548.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <7b5fe60bd9f28f769bb1926c37f8dec3b8c89694.1359466765.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <f0bbdb07271d4c096067ac640627f26a735c7699.1359468548.git.timo.mueller@bmw-carit.de>
 References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1359468548.git.timo.mueller@bmw-carit.de>
 	<940419f475a4c076dd2ead78f93f8b3f510d97d6.1359468548.git.timo.mueller@bmw-carit.de>
 	<07b72866269a6dca38c8b4624027ebe246103501.1359468548.git.timo.mueller@bmw-carit.de>
 	<f0bbdb07271d4c096067ac640627f26a735c7699.1359468548.git.timo.mueller@bmw-carit.de>
-	<f7cfefba2277cefdc676af13088b56b2ae56569f.1359468548.git.timo.mueller@bmw-carit.de>
-	<8e152bb34c7e9e61263bc119d4d70e8d911c5265.1359468548.git.timo.mueller@bmw-carit.de>
-	<e2166216a995ac252a788b2a0aaa2f36a4f89701.1359468548.git.timo.mueller@bmw-carit.de>
-	<cea3e5f07d1bc7cb7cb52e165d5d414f00097565.1359468548.git.timo.mueller@bmw-carit.de>
-	<1fdde3693253efc9d8bf731be11d5280ace9cd03.1359468548.git.timo.mueller@bmw-carit.de>
-	<c2c1a361604bdc0c7f05a05247a39f49f08b36d5.1359468548.git.timo.mueller@bmw-carit.de>
-	<3bf56fea609743f90d8a6576ab45fc9221859c93.1359466765.git.timo.mueller@bmw-carit.de>
-	<a30248904660352ac16ed0179a50f259df16cb0a.1359468548.git.timo.mueller@bmw-carit.de>
-	<26825d2d35aab2ecf72c049fabea26fd4c8b90f7.1359466765.git.timo.mueller@bmw-carit.de>
-	<884e02683abe31869bc2437d04db8b305ec8abfc.1359466765.git.timo.mueller@bmw-carit.de>
-	<0d7a3bd991f07008b9a5e1271800352342070410.1359468548.git.timo.mueller@bmw-carit.de>
-	<07f738ec0e99006772601a592b6bf3ebd2799965.1359468548.git.timo.mueller@bmw-carit.de>
-	<c4d328e95717425d908e3dfeaba67e90af2f4069.1359466765.git.timo.mueller@bmw-carit.de>
-	<7b5fe60bd9f28f769bb1926c37f8dec3b8c89694.1359466765.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v2 14/18] plugins/sdk.ide: Add method to rename a profile and its preference store
+Subject: [RFC v2 05/18] plugins/sdk.ide: Changed method signature to be more consistent
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,29 +38,41 @@ X-List-Received-Date: Wed, 30 Jan 2013 13:56:48 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-When renaming a profile the current values are stored in the profile's
-new preference store.
+YoctoUIElement should always be the first element, e.g. as in
+saveElemToStore().
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java  | 4 ++++
- 1 file changed, 4 insertions(+)
+ plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java      | 2 +-
+ .../src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-index 105fd9c..2767d7a 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-@@ -182,6 +182,10 @@ public class YoctoProfileSetting {
- 				String newProfileName = profileNameDialog.getValue();
- 				profileElement.rename(selectedItem, profileNameDialog.getValue());
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
+index 7ea4262..ab969ea 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
+@@ -423,7 +423,7 @@ public class YoctoSDKUtils {
+ 	}
+ 	
+ 	/* Save YoctoUIElement to project settings */
+-	public static void saveElemToProjectEnv(IProject project, YoctoUIElement elem)
++	public static void saveElemToProjectEnv(YoctoUIElement elem, IProject project)
+ 	{
+ 		ConsoleOutputStream consoleOutStream = null;
+ 		
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+index 92d476a..f2247ca 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+@@ -99,7 +99,7 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+ 			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, true);
  
-+				if (preferencePage instanceof YoctoSDKPreferencePage) {
-+					((YoctoSDKPreferencePage) preferencePage).renameProfile(selectedItem, newProfileName);
-+				}
-+
- 				sdkConfigsCombo.setItem(selectedIndex, newProfileName);
- 				sdkConfigsCombo.select(selectedIndex);
- 			}
+ 			YoctoUIElement elem = yoctoUISetting.getCurrentInput();
+-			YoctoSDKUtils.saveElemToProjectEnv(getProject(), elem);
++			YoctoSDKUtils.saveElemToProjectEnv(elem, getProject());
+ 
+ 			return super.performOk();
+ 		} catch (YoctoGeneralException e) {
 -- 
 1.7.11.7
 
