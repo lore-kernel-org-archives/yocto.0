@@ -1,26 +1,23 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F2BCE006AD
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 08:43:12 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 30 Jan 2013 08:43:11 -0800
+Return-Path: <sgw@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5171E006C2
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 11:31:13 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 30 Jan 2013 11:30:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,569,1355126400"; d="scan'208";a="280414661"
-Received: from unknown (HELO envy.home) ([10.255.12.120])
-	by fmsmga001.fm.intel.com with ESMTP; 30 Jan 2013 08:43:07 -0800
-Message-ID: <51094D9B.2070507@linux.intel.com>
-Date: Wed, 30 Jan 2013 08:43:07 -0800
-From: Darren Hart <dvhart@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="4.84,569,1355126400"; d="scan'208";a="250414791"
+Received: from unknown (HELO [10.255.12.123]) ([10.255.12.123])
+	by azsmga001.ch.intel.com with ESMTP; 30 Jan 2013 11:30:44 -0800
+Message-ID: <510974E4.4010107@linux.intel.com>
+Date: Wed, 30 Jan 2013 11:30:44 -0800
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-To: koansoftware@gmail.com
-References: <CAKL3bWW5ieSi9g9G9QRx7u2rEkoOCqSF6kzLevOdG7LjYxc6=A@mail.gmail.com>
-	<50A1F05E.5080602@intel.com> <51093130.7090401@gmail.com>
-In-Reply-To: <51093130.7090401@gmail.com>
-X-Enigmail-Version: 1.5
-Cc: yocto@yoctoproject.org
-Subject: Re: Slides from the Yocto Developer Day
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Cc: Matthew McClintock <msm@freescale.com>,
+	Otavio Salvador <otavio@ossystems.com.br>
+Subject: Status of 1.4 M3 rc2 - slightly delayed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,39 +29,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jan 2013 16:43:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 30 Jan 2013 19:31:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 01/30/2013 06:41 AM, Marco wrote:
-> Il 13/11/2012 08:01, Scott Garman ha scritto:
->> On 11/12/2012 11:52 AM, Anna Dushistova wrote:
->>> Hi All,
->>>
->>> Are the slides available somewhere?
->>>
->>> Thanks!
->>> Anna.
->>
->> Hi Anna,
->>
->> Attached are the slides and lab packet I used for the intro hands-on lab
->> in PDF format.
-> 
-> 
-> Hi all,
-> would be available slides and worksheet for the other YDD-2012 labs?
-> 
-> - "Hands on kernel lab" by Darren & Tom
 
-We're working on making the kernel lab available online. Until then, the
-materials would not be of much use as they were just specific enough to
-the lab machines we set up, that they would frustrate more than
-enlighten someone trying to use them on their own. Once they are up,
-you'll be able to download them and do the labs on your own machines.
+Folks,
+
+We would normally start the Milestone Build in the morning, so that it 
+would be available by the afternoon and next day in Asia and Europe, at 
+this point the release is ready, we are waiting for the autobuilder to 
+complete the current master build.
+
+We expect the build to start sometime this afternoon with the build 
+completing later this evening (after 22:00).  Michael Halstead will send 
+an email with the build details when it completes.
+
+If testing can be started with the source tests, Poky has been branched 
+to 1.4_M3 (git hash: b47d0b23d99a9f72c035c03883b36258da357426)
+
+Thanks for your patience.
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+     Sau!
+
+Saul Wold
+Yocto Component Wrangler @ Intel
+Yocto Project / Poky Build System
+
 
