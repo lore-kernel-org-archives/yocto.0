@@ -1,23 +1,30 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5171E006C2
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 11:31:13 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 30 Jan 2013 11:30:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,569,1355126400"; d="scan'208";a="250414791"
-Received: from unknown (HELO [10.255.12.123]) ([10.255.12.123])
-	by azsmga001.ch.intel.com with ESMTP; 30 Jan 2013 11:30:44 -0800
-Message-ID: <510974E4.4010107@linux.intel.com>
-Date: Wed, 30 Jan 2013 11:30:44 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
-MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Cc: Matthew McClintock <msm@freescale.com>,
-	Otavio Salvador <otavio@ossystems.com.br>
-Subject: Status of 1.4 M3 rc2 - slightly delayed
+Return-Path: <lists@philipp-wagner.com>
+Received: from turboconrad.planet-school.de (mail.planet-school.de
+	[194.116.187.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 369FDE006C2
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 13:52:10 -0800 (PST)
+Received: from turboconrad.planet-school.de (srv004.service.ps-server.net
+	[194.116.186.79])
+	by turboconrad.planet-school.de (Postfix) with ESMTP id A9FA0B6A085;
+	Wed, 30 Jan 2013 22:52:07 +0100 (CET)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	srv004.service.ps-server.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-100.6 required=5.0 tests=ALL_TRUSTED,AWL,
+	LOCAL_USER_RULE autolearn=unavailable version=3.3.2
+Received: from philipp.lis.ei.tum.de (philipp.lis.ei.tum.de [129.187.155.160])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lists@philipp-wagner.com)
+	by turboconrad.planet-school.de (Postfix) with ESMTPSA id 89117B6A063; 
+	Wed, 30 Jan 2013 22:52:07 +0100 (CET)
+From: Philipp Wagner <lists@philipp-wagner.com>
+To: yocto@yoctoproject.org
+Date: Wed, 30 Jan 2013 22:51:36 +0100
+Message-Id: <1359582698-24226-1-git-send-email-lists@philipp-wagner.com>
+X-Mailer: git-send-email 1.7.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
+Subject: [meta-raspberrypi][PATCH 0/2] Binary graphics library fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +36,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jan 2013 19:31:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Jan 2013 21:52:11 -0000
 
+Hi,
 
-Folks,
+I'm working on an application that needs the graphics libraries. Right now
+I'm still using the binary libraries (which are still default in 
+meta-raspberrypi). Unfortunately, the current default configuration has
+two problems:
+a) It chooses the wrong ABI version (hardfp instead of softfp). To reduce
+   the possibility for error here I changed the recipe to automatically
+   select the right version.
+b) Many applications dlopen the OpenGL libraries. For that to work, they
+   need to be listed in the RPROVIDES list. The second patch does that.
 
-We would normally start the Milestone Build in the morning, so that it 
-would be available by the afternoon and next day in Asia and Europe, at 
-this point the release is ready, we are waiting for the autobuilder to 
-complete the current master build.
+I'm aware of the fact that those binary graphics libraries will be 
+replaced with the new "userland" libraries, but until this is all ready
+I'd be grat if those patches could be accepted to have a working-by-default
+configuration in the meta-raspberrypi tree.
 
-We expect the build to start sometime this afternoon with the build 
-completing later this evening (after 22:00).  Michael Halstead will send 
-an email with the build details when it completes.
+Philipp
 
-If testing can be started with the source tests, Poky has been branched 
-to 1.4_M3 (git hash: b47d0b23d99a9f72c035c03883b36258da357426)
+Philipp Wagner (2):
+  Choose correct ABI version of graphics binaries
+  Add RPROVIDES for OpenGL libraries
 
-Thanks for your patience.
+ conf/machine/include/rpi-default-providers.inc |   10 +++++++---
+ recipes-bcm/vc-graphics/vc-graphics.inc        |    1 +
+ 2 files changed, 8 insertions(+), 3 deletions(-)
 
 -- 
-     Sau!
-
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
-
+1.7.9.5
 
