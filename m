@@ -1,36 +1,24 @@
-Return-Path: <mail@timomueller.eu>
-Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
-	[85.214.246.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D3D9E006CC
-	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 05:59:46 -0800 (PST)
-Received: from [192.168.101.53] (mail.bmw-carit.de [62.245.222.98])
-	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
+Return-Path: <timo.mueller@oss.bmw-carit.de>
+Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0BF1E0141C
+	for <yocto@yoctoproject.org>; Wed, 30 Jan 2013 06:01:34 -0800 (PST)
+Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
-	(Authenticated sender: mail@timomueller.eu)
-	by h1954115.stratoserver.net (mailserver) with ESMTPSA id E15606E940A8; 
-	Wed, 30 Jan 2013 14:59:43 +0100 (CET)
-Message-ID: <5109274E.3050409@timomueller.eu>
-Date: Wed, 30 Jan 2013 14:59:42 +0100
-From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130110 Thunderbird/17.0.2
-MIME-Version: 1.0
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 131B7400A1;
+	Wed, 30 Jan 2013 14:21:48 +0100 (CET)
+From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
-	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1359468548.git.timo.mueller@bmw-carit.de>
-	<940419f475a4c076dd2ead78f93f8b3f510d97d6.1359468548.git.timo.mueller@bmw-carit.de>
-	<07b72866269a6dca38c8b4624027ebe246103501.1359468548.git.timo.mueller@bmw-carit.de>
-	<f0bbdb07271d4c096067ac640627f26a735c7699.1359468548.git.timo.mueller@bmw-carit.de>
-	<f7cfefba2277cefdc676af13088b56b2ae56569f.1359468548.git.timo.mueller@bmw-carit.de>
-	<8e152bb34c7e9e61263bc119d4d70e8d911c5265.1359468548.git.timo.mueller@bmw-carit.de>
-	<e2166216a995ac252a788b2a0aaa2f36a4f89701.1359468548.git.timo.mueller@bmw-carit.de>
-	<cea3e5f07d1bc7cb7cb52e165d5d414f00097565.1359468548.git.timo.mueller@bmw-carit.de>
-	<1fdde3693253efc9d8bf731be11d5280ace9cd03.1359468548.git.timo.mueller@bmw-carit.de>
-	<c2c1a361604bdc0c7f05a05247a39f49f08b36d5.1359468548.git.timo.mueller@bmw-carit.de>
-	<3bf56fea609743f90d8a6576ab45fc9221859c93.1359466765.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <3bf56fea609743f90d8a6576ab45fc9221859c93.1359466765.git.timo.mueller@bmw-carit.de>
+Date: Wed, 30 Jan 2013 15:01:21 +0100
+Message-Id: <d8ee0c11e8def36416453669cc11dcaf9a53d282.1359476560.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.7.11.7
+In-Reply-To: <cover.1359476560.git.timo.mueller@bmw-carit.de>
+References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1359476560.git.timo.mueller@bmw-carit.de>
+References: <cover.1359476560.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFC v2 10/17] plugins/sdk.ide: Add UI method to delete a profile
+Subject: [RFC v4 01/13] features/sdk.site: Fixed typo in category name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,106 +30,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jan 2013 13:59:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Jan 2013 14:01:35 -0000
 
-Sorry, this one is already obsolete.
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Timo Mueller wrote, On 30.01.2013 14:56:
-> From: Timo Mueller <timo.mueller@bmw-carit.de>
->
-> A profile is removed from the list, when the delete button is
-> clicked. The deletion has to be confirmed by the user. Deleting the
-> standard profile is not allowed.
->
-> Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
-> ---
->   .../src/org/yocto/sdk/ide/YoctoProfileSetting.java | 34 ++++++++++++++++++++++
->   .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |  4 +++
->   2 files changed, 38 insertions(+)
->
-> diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-> index 633eb67..aa6f4b2 100644
-> --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-> +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-> @@ -10,6 +10,7 @@
->    *******************************************************************************/
->   package org.yocto.sdk.ide;
->
-> +import org.eclipse.jface.dialogs.MessageDialog;
->   import org.eclipse.jface.preference.PreferencePage;
->   import org.eclipse.swt.SWT;
->   import org.eclipse.swt.events.MouseAdapter;
-> @@ -22,6 +23,7 @@ import org.eclipse.swt.widgets.Composite;
->   import org.eclipse.swt.widgets.Event;
->   import org.eclipse.swt.widgets.Group;
->   import org.eclipse.swt.widgets.Listener;
-> +import org.yocto.sdk.ide.preferences.PreferenceConstants;
->   import org.yocto.sdk.ide.preferences.YoctoSDKPreferencePage;
->
->   public class YoctoProfileSetting {
-> @@ -29,6 +31,10 @@ public class YoctoProfileSetting {
->   	private static final String NEW_PROFILE_TITLE = "Preferences.Profile.New.Title";
->   	private static final String RENAME_PROFILE_TITLE = "Preferences.Profile.Rename.Title";
->   	private static final String REMOVE_PROFILE_TITLE = "Preferences.Profile.Remove.Title";
-> +	private static final String REMOVE_DIALOG_TITLE = "Preferences.Profile.Remove.Dialog.Title";
-> +	private static final String REMOVE_DIALOG_MESSAGE = "Preferences.Profile.Remove.Dialog.Message";
-> +	private static final String MODIFY_STANDARD_TITLE = "Preferences.Profile.Standard.Modification.Title";
-> +	private static final String MODIFY_STANDARD_MESSAGE = "Preferences.Profile.Standard.Modification.Message";
->
->   	private Combo sdkConfigsCombo;
->   	private Button btnConfigRename;
-> @@ -105,6 +111,34 @@ public class YoctoProfileSetting {
->   		btnConfigRemove = new Button(storeYoctoConfigurationsGroup, SWT.PUSH | SWT.LEAD);
->   		btnConfigRemove.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, true, false, 3, 1));
->   		btnConfigRemove.setText(YoctoSDKMessages.getString(REMOVE_PROFILE_TITLE));
-> +		btnConfigRemove.addMouseListener(new MouseAdapter() {
-> +			@Override
-> +			public void mouseDown(MouseEvent e) {
-> +				saveChangesOnCurrentProfile();
-> +				int selectionIndex = sdkConfigsCombo.getSelectionIndex();
-> +				String selectedItem = sdkConfigsCombo.getItem(selectionIndex);
-> +
-> +				if (selectedItem.equals(PreferenceConstants.STANDARD_PROFILE_NAME)) {
-> +					MessageDialog.openInformation(null,
-> +													YoctoSDKMessages.getString(MODIFY_STANDARD_TITLE),
-> +													YoctoSDKMessages.getString(MODIFY_STANDARD_MESSAGE));
-> +					return;
-> +				}
-> +
-> +				boolean deleteConfirmed =
-> +						MessageDialog.openConfirm(null,
-> +													YoctoSDKMessages.getString(REMOVE_DIALOG_TITLE),
-> +													YoctoSDKMessages.getFormattedString(REMOVE_DIALOG_MESSAGE, selectedItem));
-> +
-> +				if (!deleteConfirmed) {
-> +					return;
-> +				}
-> +
-> +				sdkConfigsCombo.select(0);
-> +				sdkConfigsCombo.remove(selectionIndex);
-> +				profileElement.remove(selectedItem);
-> +			}
-> +		});
->   	}
->
->   	private void createRenameButton(Group storeYoctoConfigurationsGroup) {
-> diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-> index 14b7846..1a413fa 100644
-> --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-> +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-> @@ -57,6 +57,10 @@ Preferences.Profile.New.Dialog.Title = Save as new target profile
->   Preferences.Profile.New.Dialog.Message = Please input a profile name.
->   Preferences.Profile.Rename.Title = Rename
->   Preferences.Profile.Remove.Title = Remove
-> +Preferences.Profile.Remove.Dialog.Title = Remove target profile
-> +Preferences.Profile.Remove.Dialog.Message = Do you really want to the remove the target profile "{0}"?\nProjects using this target profile will be reconfigured to use the standard profile.
-> +Preferences.Profile.Standard.Modification.Title = Modify standard target profile
-> +Preferences.Profile.Standard.Modification.Message = Standard target profile cannot be removed or renamed.
->
->   Console.SDK.Name = Yocto Project Console
->
->
+
+Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
+---
+ features/org.yocto.sdk.site/site.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/features/org.yocto.sdk.site/site.xml b/features/org.yocto.sdk.site/site.xml
+index 824fa49..c2af2bd 100644
+--- a/features/org.yocto.sdk.site/site.xml
++++ b/features/org.yocto.sdk.site/site.xml
+@@ -10,5 +10,5 @@
+    <feature url="features/org.yocto.bc_@bcgenVerion@.jar" id="org.yocto.bc" version="@bcgenVerion@">
+       <category name="Yocto Project Bitbake Commander"/>
+    </feature>
+-   <category-def name="Yocto Project Bitbake Commander Plug-in" label="Yocto Project Bitbake Commander plug-in"/>
++   <category-def name="Yocto Project Bitbake Commander" label="Yocto Project Bitbake Commander plug-in"/>
+ </site>
+-- 
+1.7.11.7
 
 
