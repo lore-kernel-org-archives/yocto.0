@@ -1,40 +1,31 @@
-Return-Path: <daniel.kenji.morgan@gmail.com>
-Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
-	[209.85.220.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75B9DE0045D
-	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 08:32:48 -0800 (PST)
-Received: by mail-pa0-f50.google.com with SMTP id hz10so1807519pad.23
-	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 08:32:48 -0800 (PST)
+Return-Path: <r10kindsofpeople@gmail.com>
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F4CBE00294
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 11:03:38 -0800 (PST)
+Received: by mail-wi0-f169.google.com with SMTP id hq12so974609wib.0
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 11:03:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:message-id:date:from:reply-to:organization:user-agent
-	:mime-version:to:subject:content-type:content-transfer-encoding;
-	bh=xeGWDnwtDNcOYXD6Jx9dHOIBYNFaLPbrVTVZIUMctqY=;
-	b=hE1SO27XoBBrpRlZhL7s1zUeyFYQEklRmoIv11LTTzxTe/Fl4bH2WyI9BGVvelXXdc
-	Q6J7JUl4OEZc3nRXeVMMCbpbISNZgNrtjaISyFhkn6jEzqT5MOmdsDv3r+tC8bT0HHU2
-	FxGG5erJnf/1TNo/8as6eBBb9rePCt4kKAdEbk/brTh8GnW64LTpNSeD+ZfLbsEgFBKo
-	+EBD+5ZNfvqu/Cqw6lasTw4R1b22z9wCHMCcqp+lnac7pMdpxihOFNtMyj2U/gqwWuNe
-	ONDItAbwjgFv7K9Y2aRFwP668cvGZAYrtW/XCIrIgF91GSgQbgI89Z1oQdX6ZeA3ycJj
-	T8xQ==
-X-Received: by 10.68.189.34 with SMTP id gf2mr17627244pbc.83.1359649968174;
-	Thu, 31 Jan 2013 08:32:48 -0800 (PST)
-Received: from [210.170.220.194] (PPPbm2.fukushima-ip.dti.ne.jp.
-	[210.170.220.194])
-	by mx.google.com with ESMTPS id ot3sm5438430pbb.38.2013.01.31.08.32.46
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 31 Jan 2013 08:32:47 -0800 (PST)
-Message-ID: <510A9CB1.9090904@gmail.com>
-Date: Fri, 01 Feb 2013 01:32:49 +0900
-From: Daniel Kenji Morgan <daniel.kenji.morgan@gmail.com>
-Organization: Daniel Kenji Morgan
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=DSEDC2EAvLlaF41ZHEFaV7iYZ9m2dUUWTCilAIZXf70=;
+	b=hyBN6VjeO5HO1tTfrf7javOGx9juBDdRWdF71j33f6u0l3/w/bGKxdrbrDbOOXjooZ
+	Qn+w61axPE4iLsW0e9O/ayemVt7sn019LfLAXulAgeIDgj7sz8HNtYiRWY3fToHUgmVM
+	TWlwlvKvmtQw8IBkI0BepzwnR2AE2Hyp9tn3KlK9k000QACvEXBsmWF8Xlnr+Zn1Qhqy
+	XwiV4xCFGpZlwkpJOdy6fvrmbxiy87qGoBtaki5VmxCy/xU7bAMuHnHZvSVnC85eHOqj
+	NRkkmOFm9dBVpsgS8s5qTv0hSQEzJN0xXlQ7Pl79Z3tMyM0ydDxzDmFdlXKsjDzA9Smi
+	SDhw==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: menuconfig fails using SSTATE_MIRRORS and SOURCE_MIRROR_URL
+X-Received: by 10.194.216.66 with SMTP id oo2mr17210623wjc.4.1359659016857;
+	Thu, 31 Jan 2013 11:03:36 -0800 (PST)
+Received: by 10.194.169.5 with HTTP; Thu, 31 Jan 2013 11:03:36 -0800 (PST)
+Date: Thu, 31 Jan 2013 14:03:36 -0500
+Message-ID: <CAE8H0+XKiAGXzTTbLd67CqC32rYBK4iNaDTkoJyjUx8xzkBj+w@mail.gmail.com>
+From: r10kindsofpeople <r10kindsofpeople@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: lmsensors-apps builds, but not in final image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: daniel.kenji.morgan@gmail.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -43,33 +34,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jan 2013 16:32:48 -0000
-Content-Type: text/plain; charset=ISO-2022-JP
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 31 Jan 2013 19:03:38 -0000
+Content-Type: multipart/alternative; boundary=089e013d1634b7278c04d49a480a
 
-To explain my environment:
+--089e013d1634b7278c04d49a480a
+Content-Type: text/plain; charset=ISO-8859-1
 
-I am building images for the machine "imx6qsabrelite" in the "meta-fsl-arm" BSP layer using Poky 1.3 (danny).
-The kernel recipe is linux-imx which is fetched from Freescale's git repository.
- 
-On host machine A, I build an image and copy all the sstate cache and download files into a different directory.
-I've setup this directory as a Samba share so it can be accessed via the local network.
+I'm hoping someone can quickly spot my mistake.  I'm attempting to use this
+recipe:
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/recipes-extended/lm_sensors/lmsensors-apps_3.3.2.bb
 
-On host machine B, I have local.conf set to use the shared sstate cache and source download mirror (SSTATE_MIRRORS and SOURCE_MIRROR_URL
-).
-They are both utilized without any problems when I build an image.
-However, when I "bitbake -c menuconfig virtual/kernel", I get the following error in the kconfig terminal:
+with my meta-intel/crownbay build under denzil 7.0.1.
 
-scripts/kconfig/mconf Kconfig
-Error opening terminal: xterm.
-make[1]: *** [menuconfig] Error 1
-make: *** [menuconfig] Error 2
-Command failed.
-Press any key to continue...
+I put the recipe in my layer, and added "lmsensors-apps" to my
+IMAGE_INSTALL_append in my layer's layer.conf.
 
-The same "bitbake -c menuconfig virtual/kernel" on host machine A works.
-It also works on host machine B when I disable using the shared sstate cache and source download mirror.
+The software builds, and I can see the files in
+tmp/work/crownbay-poky-linux/lmsensors-apps-3.3.2-r2.
 
-Is anyone aware of such issues?
+But it doesn't make it into tmp/work/core-image-minimal-1.0-r0/rootfs or
+the .hddimage file.
 
+Help, please?
 
+John
+
+--089e013d1634b7278c04d49a480a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;m hoping someone can quickly spot my mistake. =A0I&#=
+39;m attempting to use this recipe:<div><a href=3D"http://git.yoctoproject.=
+org/cgit/cgit.cgi/meta-fsl-ppc/tree/recipes-extended/lm_sensors/lmsensors-a=
+pps_3.3.2.bb">http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/r=
+ecipes-extended/lm_sensors/lmsensors-apps_3.3.2.bb</a><br>
+</div><div><br></div><div style>with my meta-intel/crownbay build under den=
+zil 7.0.1. =A0</div><div style><br></div><div style>I put the recipe in my =
+layer, and added &quot;lmsensors-apps&quot; to my IMAGE_INSTALL_append in m=
+y layer&#39;s layer.conf. =A0</div>
+<div style><br></div><div style>The software builds, and I can see the file=
+s in tmp/work/crownbay-poky-linux/lmsensors-apps-3.3.2-r2.</div><div style>=
+<br></div><div style>But it doesn&#39;t make it into tmp/work/core-image-mi=
+nimal-1.0-r0/rootfs or the .hddimage file.</div>
+<div style><br></div><div style>Help, please?</div><div style><br></div><di=
+v style>John</div></div>
+
+--089e013d1634b7278c04d49a480a--
