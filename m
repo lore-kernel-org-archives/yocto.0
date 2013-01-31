@@ -1,36 +1,32 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B31A8E00294
-	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 11:28:35 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 31 Jan 2013 11:28:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,579,1355126400"; d="scan'208";a="279201973"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 31 Jan 2013 11:28:28 -0800
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 31 Jan 2013 11:28:24 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.13.17]) with mapi id
-	14.01.0355.002; Thu, 31 Jan 2013 11:28:24 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [RFC v2 00/18][eclipse-poky] Storing yocto settings as
-	target profiles
-Thread-Index: AQHN/vGwbwjkhEnFuUm3vvfeAgcG3Jhj0yHQ
-Date: Thu, 31 Jan 2013 19:28:23 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C57DDCD3B@ORSMSX101.amr.corp.intel.com>
-References: <cover.1359468548.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359468548.git.timo.mueller@bmw-carit.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <r10kindsofpeople@gmail.com>
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFFC0E00294
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 12:59:31 -0800 (PST)
+Received: by mail-wg0-f51.google.com with SMTP id 8so2324408wgl.6
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 12:59:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=E44GBD+J12XIyMYYxi1Krd0HrvWCm8petmeZbnGCeec=;
+	b=gGUBy+tVM+W9cGmMwPVpa+to65QGCNcjN/gYOXSuWUrm1FmTz/k/zLYXUcwLs61sls
+	ON3KrFXBaASxEoz4OMCPljQgO3VGwwQlbUb87V8qSSKeDUmaN27m7+0+C+poBEw+4gs8
+	R44rzdmtnInjp5qSRiHABWupQTQRv//9Bb7nvThsaHRP0seqdQNuJERgd5TRGBxJ7GdK
+	tPwh+kisvQAV311YViz6HL/yVsnUEZyu+1AafkLVXTRTozYn+GYiABMQ3KOM7vekdNE3
+	1VKYIEHKheVxphs31c+x7t3CMmb6NTzXUajUJpMuN6V3lURcA3sXKy/xkA7x79Dq6hni
+	LnAQ==
 MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFC v2 00/18][eclipse-poky] Storing yocto settings as	target profiles
+X-Received: by 10.180.108.236 with SMTP id hn12mr17610501wib.6.1359665889354; 
+	Thu, 31 Jan 2013 12:58:09 -0800 (PST)
+Received: by 10.194.169.5 with HTTP; Thu, 31 Jan 2013 12:58:09 -0800 (PST)
+In-Reply-To: <87halxb1mt.fsf@sonatest.com>
+References: <CAE8H0+XKiAGXzTTbLd67CqC32rYBK4iNaDTkoJyjUx8xzkBj+w@mail.gmail.com>
+	<87halxb1mt.fsf@sonatest.com>
+Date: Thu, 31 Jan 2013 15:58:09 -0500
+Message-ID: <CAE8H0+UNaOBQp1nBuU4tRMXXcSyrtFxuPnQE+Ez4Z9atbpYXmQ@mail.gmail.com>
+From: r10kindsofpeople <r10kindsofpeople@gmail.com>
+To: Marc Ferland <ferlandm@sonatest.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: lmsensors-apps builds, but not in final image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,127 +38,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jan 2013 19:28:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 31 Jan 2013 20:59:32 -0000
+Content-Type: multipart/alternative; boundary=e89a8f3ba7715924c604d49be2d5
+
+--e89a8f3ba7715924c604d49be2d5
+Content-Type: text/plain; charset=ISO-8859-1
+
+Thanks, Marc, that's got me moving forward.  However, it may not be
+strictly true that lmsensors-apps is empty or at least has no effect.  So
+far, I'm up to "lmsensors lmsensors-scripts lmsensors-apps" with the last
+being needed {sufficient?} to get strict.pm, needed to do "sensors-detect".
+
+
+Now I'm off to find module cpuid.  Thanks again,
+
+John
+
+
+On Thu, Jan 31, 2013 at 2:20 PM, Marc Ferland <ferlandm@sonatest.com> wrote:
+
+> r10kindsofpeople <r10kindsofpeople@gmail.com> writes:
+>
+> > I'm hoping someone can quickly spot my mistake.  I'm attempting to use
+> > this recipe:
+> >
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/recipes-extended/lm_
+> > sensors/lmsensors-apps_3.3.2.bb
+> >
+> > with my meta-intel/crownbay build under denzil 7.0.1.
+> >
+> > I put the recipe in my layer, and added "lmsensors-apps" to my
+> > IMAGE_INSTALL_append in my layer's layer.conf.
+> >
+> > The software builds, and I can see the files in
+> > tmp/work/crownbay-poky-linux/lmsensors-apps-3.3.2-r2.
+> >
+> > But it doesn't make it into tmp/work/core-image-minimal-1.0-r0/rootfs
+> > or the .hddimage file.
+> >
+>
+> You have to use one of the packages specified in the recipe. Like
+> 'libsensors' or 'lmsensors-sensors'. lmsensors-apps is empty.
+>
+> Marc
+>
+
+--e89a8f3ba7715924c604d49be2d5
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Timo,
+<div dir=3D"ltr">Thanks, Marc, that&#39;s got me moving forward. =A0However=
+, it may not be strictly true that lmsensors-apps is empty or at least has =
+no effect. =A0So far, I&#39;m up to &quot;lmsensors lmsensors-scripts lmsen=
+sors-apps&quot; with the last being needed {sufficient?} to get <a href=3D"=
+http://strict.pm">strict.pm</a>, needed to do &quot;sensors-detect&quot;. =
+=A0<div>
+<br></div><div style>Now I&#39;m off to find module cpuid. =A0Thanks again,=
+</div><div style><br></div><div style>John</div></div><div class=3D"gmail_e=
+xtra"><br><br><div class=3D"gmail_quote">On Thu, Jan 31, 2013 at 2:20 PM, M=
+arc Ferland <span dir=3D"ltr">&lt;<a href=3D"mailto:ferlandm@sonatest.com" =
+target=3D"_blank">ferlandm@sonatest.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">r10k=
+indsofpeople &lt;<a href=3D"mailto:r10kindsofpeople@gmail.com">r10kindsofpe=
+ople@gmail.com</a>&gt; writes:<br>
 
-I'm having a hard time figuring out the sequence of this patch series.  You=
- have 01/18-09/18, then 10/17 is obsolete, then you have things like 12/18 =
-and 12/17 and some have XX/18 and some have XX/17.  Can you do some cleanup=
- and resend?
+<br>
+&gt; I&#39;m hoping someone can quickly spot my mistake. =A0I&#39;m attempt=
+ing to use<br>
+&gt; this recipe:<br>
+&gt; <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree=
+/recipes-extended/lm_" target=3D"_blank">http://git.yoctoproject.org/cgit/c=
+git.cgi/meta-fsl-ppc/tree/recipes-extended/lm_</a><br>
+&gt; sensors/<a href=3D"http://lmsensors-apps_3.3.2.bb" target=3D"_blank">l=
+msensors-apps_3.3.2.bb</a><br>
+&gt;<br>
+&gt; with my meta-intel/crownbay build under denzil 7.0.1. =A0<br>
+&gt;<br>
+&gt; I put the recipe in my layer, and added &quot;lmsensors-apps&quot; to =
+my<br>
+&gt; IMAGE_INSTALL_append in my layer&#39;s layer.conf. =A0<br>
+&gt;<br>
+&gt; The software builds, and I can see the files in<br>
+&gt; tmp/work/crownbay-poky-linux/lmsensors-apps-3.3.2-r2.<br>
+&gt;<br>
+&gt; But it doesn&#39;t make it into tmp/work/core-image-minimal-1.0-r0/roo=
+tfs<br>
+&gt; or the .hddimage file.<br>
+&gt;<br>
+<br>
+</div></div>You have to use one of the packages specified in the recipe. Li=
+ke<br>
+&#39;libsensors&#39; or &#39;lmsensors-sensors&#39;. lmsensors-apps is empt=
+y.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Marc<br>
+</font></span></blockquote></div><br></div>
 
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Timo Mueller
-Sent: Wednesday, January 30, 2013 5:56 AM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [RFC v2 00/18][eclipse-poky] Storing yocto settings as tar=
-get profiles
-
-From: Timo Mueller <timo.mueller@bmw-carit.de>
-
-Hi,
-
-thanks for the feedback, I did some changes to the patch series accordingly=
-.
-
-First of all I've fixed the issues with the patches (duplicate method, miss=
-ing fix for NewYoctoCProjectTemplate.java).
-
-I also changed the functionality of the "new" button according to Jessica's=
- feedback. The logic is changed to a "Save as ..."
-approach. If the button is clicked the current values of the form are check=
-ed. If these are valid, the user can enter a name to store them as a new pr=
-ofile.
-
-The last patch moves the "Save as ..." button to the bottom of the preferen=
-ce page alongside with the "perform defaults" and the "apply"
-button. I created this patch as a proof of concept because I thought it wou=
-ld be a good idea to move it.
-I used the contributeButtons hook of the preference page to achieve this, b=
-ut this only allows adding the "Save as ..." button left to the "perform de=
-faults" button. So the order of the buttons is a bit confusing.
-I further checked several other preference pages of eclipse and it seems li=
-ke none of them is using this hook to add new buttons. Instead all have a n=
-ew button next to the comboboxes (e.g. Formatter for CDT and JDT).
-So I would plead against moving it to the bottom to have a more consistent =
-and less confusing ui.
-
-From the original cover letter:
-<snip>
-currently the yocto settings can be changed globally through eclipse's pref=
-erences or locally in the project properties. But the standard configuratio=
-n stored in the global preferences sometimes changes, e.g. if a new version=
- of the toolchain or the sysroot is released.
-If you change the global settings to the updated toolchain or sysroot your =
-old working configuration is gone. If you want to reuse this configuration =
-at a later point in time you have to (remember and) re-enter everthing.
-This patch set introduces the possiblity to store a configuration under a u=
-nique name, a so called target profile, and be able to select the default t=
-arget profile that is used for new projects.
-Building upon this change the target profiles could later also be used in t=
-he project settings and be able to quickly build and debug your software fo=
-r different hard- and software combinations.
-</snip>
-
-Best regards,
-Timo
-
-Atanas Gegov (4):
-  plugins/sdk.ide: Extract labels to private members
-  plugins/sdk.ide: Add method to enable and disable form
-  plugins/sdk.ide: Set value of target array on input change
-  plugins/sdk.ide: Create UI element for managing target profiles.
-
-Timo Mueller (14):
-  plugins/sdk.ide: Removed unused message
-  plugins/sdk.ide: Changed method signature to be more consistent
-  plugins/sdk.ide: Modified preferences storage to support profiles.
-  plugins/sdk.ide: Set profile on selection change
-  plugins/sdk.ide: Add method to allow storing the current settings
-  plugins/sdk.ide: Add UI method to create a new profile
-  plugins/sdk.ide: Add UI method to delete a profile
-  plugins/sdk.ide: Add UI method to rename a profile
-  plugins/sdk.ide: Add method to change values of the preference page
-  plugins/sdk.ide: Add method to rename a profile and its preference
-    store
-  plugins/sdk.ide: Add method to delete a profile
-  plugins/sdk.ide: Use profiles for the preference page
-  plugins/sdk.ide: Added profile UI to the preference page
-  plugins/sdk.ide: Moved save as button to bottom of preference page
-
- .../src/org/yocto/sdk/ide/YoctoProfileElement.java | 104 ++++++++++  .../s=
-rc/org/yocto/sdk/ide/YoctoProfileSetting.java | 211 +++++++++++++++++++++  =
-.../org/yocto/sdk/ide/YoctoSDKMessages.properties  |  19 +-
- .../src/org/yocto/sdk/ide/YoctoSDKPlugin.java      |   9 +
- .../org/yocto/sdk/ide/YoctoSDKProjectNature.java   |  10 +-
- .../src/org/yocto/sdk/ide/YoctoSDKUtils.java       |  62 ++++--
- .../src/org/yocto/sdk/ide/YoctoUISetting.java      |  60 +++++-
- .../sdk/ide/preferences/PreferenceConstants.java   |   5 +
- .../sdk/ide/preferences/PreferenceInitializer.java |  22 ++-  .../ide/pref=
-erences/ProfileNameInputValidator.java |  63 ++++++
- .../ide/preferences/YoctoSDKPreferencePage.java    | 133 ++++++++++---
- .../preferences/YoctoSDKProjectPropertyPage.java   |   6 +-
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   7 +-
- 13 files changed, 646 insertions(+), 65 deletions(-)  create mode 100644 p=
-lugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileElement.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoPr=
-ofileSetting.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/prefere=
-nces/ProfileNameInputValidator.java
-
---
-1.7.11.7
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--e89a8f3ba7715924c604d49be2d5--
