@@ -1,41 +1,40 @@
-Return-Path: <ross.burton@intel.com>
-Received: from orsmga101.jf.intel.com (mga06.intel.com [134.134.136.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8748E011AB
-	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 04:11:55 -0800 (PST)
-Received: from mail-gh0-f199.google.com ([209.85.160.199])
-	by mga02.intel.com with ESMTP/TLS/RC4-SHA; 31 Jan 2013 04:11:55 -0800
-Received: by mail-gh0-f199.google.com with SMTP id r16so3646938ghr.2
-	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 04:11:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:x-received:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=aeYSFzknoC1jgN9DJ5JYEYjjF8tKp1KrhKF/0dZX5u0=;
-	b=eHDMy7DfLW9VcwK3AHRooV58FoEuF2mrGMp3c5k5C7+De3oaS5LcQsLrb4Gpgbutlf
-	KYtWAc6xTBqvtXirKJoofqmWNW4lBi5Gq9cls16UCuAS3ylNvKz7u2qCttsCTkc4DTWZ
-	cgwoIvhdejLOkY+u+2rRRKQjKNJHtwzf+lxglwPXXMjRrwOfSakznbibtt1feuVIq5FO
-	ECRmTdU6mUZ2AYC8DqeaSknhPh+fC3vXNTPD4ur/Nu3fk9ybH/TATJJDfw3bwKfUl26R
-	/t3FhTNFyA6t0UgAuOBpsJ5SMG/5tGgU1cBoDS3cpjvX3AsMD6HRwMSe2V1KdzJoPgbW
-	6myQ==
-X-Received: by 10.220.115.72 with SMTP id h8mr7746121vcq.43.1359634314580;
-	Thu, 31 Jan 2013 04:11:54 -0800 (PST)
-X-Received: by 10.220.115.72 with SMTP id h8mr7746112vcq.43.1359634314345;
-	Thu, 31 Jan 2013 04:11:54 -0800 (PST)
+Return-Path: <daniel.kenji.morgan@gmail.com>
+Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
+	[209.85.220.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75B9DE0045D
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 08:32:48 -0800 (PST)
+Received: by mail-pa0-f50.google.com with SMTP id hz10so1807519pad.23
+	for <yocto@yoctoproject.org>; Thu, 31 Jan 2013 08:32:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:message-id:date:from:reply-to:organization:user-agent
+	:mime-version:to:subject:content-type:content-transfer-encoding;
+	bh=xeGWDnwtDNcOYXD6Jx9dHOIBYNFaLPbrVTVZIUMctqY=;
+	b=hE1SO27XoBBrpRlZhL7s1zUeyFYQEklRmoIv11LTTzxTe/Fl4bH2WyI9BGVvelXXdc
+	Q6J7JUl4OEZc3nRXeVMMCbpbISNZgNrtjaISyFhkn6jEzqT5MOmdsDv3r+tC8bT0HHU2
+	FxGG5erJnf/1TNo/8as6eBBb9rePCt4kKAdEbk/brTh8GnW64LTpNSeD+ZfLbsEgFBKo
+	+EBD+5ZNfvqu/Cqw6lasTw4R1b22z9wCHMCcqp+lnac7pMdpxihOFNtMyj2U/gqwWuNe
+	ONDItAbwjgFv7K9Y2aRFwP668cvGZAYrtW/XCIrIgF91GSgQbgI89Z1oQdX6ZeA3ycJj
+	T8xQ==
+X-Received: by 10.68.189.34 with SMTP id gf2mr17627244pbc.83.1359649968174;
+	Thu, 31 Jan 2013 08:32:48 -0800 (PST)
+Received: from [210.170.220.194] (PPPbm2.fukushima-ip.dti.ne.jp.
+	[210.170.220.194])
+	by mx.google.com with ESMTPS id ot3sm5438430pbb.38.2013.01.31.08.32.46
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 31 Jan 2013 08:32:47 -0800 (PST)
+Message-ID: <510A9CB1.9090904@gmail.com>
+Date: Fri, 01 Feb 2013 01:32:49 +0900
+From: Daniel Kenji Morgan <daniel.kenji.morgan@gmail.com>
+Organization: Daniel Kenji Morgan
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
 MIME-Version: 1.0
-Received: by 10.58.95.131 with HTTP; Thu, 31 Jan 2013 04:11:34 -0800 (PST)
-In-Reply-To: <586A6A48-0617-481E-8879-1AB5EC55F3DA@coote.org>
-References: <586A6A48-0617-481E-8879-1AB5EC55F3DA@coote.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 31 Jan 2013 12:11:34 +0000
-Message-ID: <CAJTo0LaQGuEbsFN2kF47VEvCEJUE3CL5xBkyTz=5iKO=PQTw9A@mail.gmail.com>
-To: Tim Coote <tim+yoctoproject.org@coote.org>
-X-Gm-Message-State: ALoCoQkNJVqEcr6HJC1G7wdQFwb9xRf50dhJt1UCY8UVJicq7pzoVUTwiMxOI0sYWrSglLh89ZNer2SXb4hpuT0xGNVBAq33UvrQ8N1ycZ6fL/e/A31GJQxKXtEoM11fEbBP0qAv8HhTCL3LiFLd+C6GYM+MyAZIxA==
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: what's the best distro to pick for adding packages to yocto
+To: yocto@yoctoproject.org
+Subject: menuconfig fails using SSTATE_MIRRORS and SOURCE_MIRROR_URL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: daniel.kenji.morgan@gmail.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -44,25 +43,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jan 2013 12:11:56 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 31 Jan 2013 16:32:48 -0000
+Content-Type: text/plain; charset=ISO-2022-JP
+Content-Transfer-Encoding: 7bit
 
-On 31 January 2013 11:16, Tim Coote <tim+yoctoproject.org@coote.org> wrote:
-> Hullo
-> I'm trying to add a package to yocto (an AMQP implementation). There are =
-various packaged versions, so I started with the one that I'm most familiar=
- (RH). However, it's pretty clear that yocto's not based on that as the ini=
-tscripts are totally different and missing the framework (there isn't even =
-a /etc/rc.d/init.d, although it looks like there used to be).
->
-> What's the best starting point for picking a prepackaged version for a di=
-stro? debian? suse?
+To explain my environment:
 
-Historically Debian is fairly close, but these days that isn't really
-true.  It's probably best to look at an existing init script to see
-*what* needs to be done, and then copy the style of existing scripts
-in Yocto for *how* to do it.
+I am building images for the machine "imx6qsabrelite" in the "meta-fsl-arm" BSP layer using Poky 1.3 (danny).
+The kernel recipe is linux-imx which is fetched from Freescale's git repository.
+ 
+On host machine A, I build an image and copy all the sstate cache and download files into a different directory.
+I've setup this directory as a Samba share so it can be accessed via the local network.
 
-Ross
+On host machine B, I have local.conf set to use the shared sstate cache and source download mirror (SSTATE_MIRRORS and SOURCE_MIRROR_URL
+).
+They are both utilized without any problems when I build an image.
+However, when I "bitbake -c menuconfig virtual/kernel", I get the following error in the kconfig terminal:
+
+scripts/kconfig/mconf Kconfig
+Error opening terminal: xterm.
+make[1]: *** [menuconfig] Error 1
+make: *** [menuconfig] Error 2
+Command failed.
+Press any key to continue...
+
+The same "bitbake -c menuconfig virtual/kernel" on host machine A works.
+It also works on host machine B when I disable using the shared sstate cache and source download mirror.
+
+Is anyone aware of such issues?
+
 
