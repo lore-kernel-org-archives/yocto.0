@@ -1,30 +1,34 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20DBCE006EB
-	for <yocto@yoctoproject.org>; Fri,  1 Feb 2013 07:34:20 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 01 Feb 2013 07:34:19 -0800
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99D23E006EB
+	for <yocto@yoctoproject.org>; Fri,  1 Feb 2013 09:10:45 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Feb 2013 09:10:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,579,1355126400"; d="scan'208";a="256271818"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga001.jf.intel.com with ESMTP; 01 Feb 2013 07:34:19 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.83]) with mapi id
-	14.01.0355.002; Fri, 1 Feb 2013 07:34:19 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-IronPort-AV: E=Sophos;i="4.84,579,1355126400"; d="scan'208";a="285489379"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Feb 2013 09:10:29 -0800
+Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Fri, 1 Feb 2013 17:06:32 +0000
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.60]) by
+	IRSMSX151.ger.corp.intel.com ([169.254.4.144]) with mapi id
+	14.01.0355.002; Fri, 1 Feb 2013 17:06:31 +0000
+From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
 Thread-Topic: [yocto] [PATCH v7] [399231] Fix race conditions when reading
 	using	LocalShellOutputReader(s)
-Thread-Index: AQHOAGsutK8gQ33hiEy/qwqJr4lfjJhlIPBQ
-Date: Fri, 1 Feb 2013 15:34:18 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C57DDD2D8@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AQHOAJGbuAk3NGmWzkyknpz444vy5ZhlOUeA
+Date: Fri, 1 Feb 2013 17:06:31 +0000
+Message-ID: <3E179CF0D7162B4AA4E2B324209A4639AE0C24@IRSMSX101.ger.corp.intel.com>
 References: <1359715463-19614-1-git-send-email-ioanax.grigoropol@intel.com>
-In-Reply-To: <1359715463-19614-1-git-send-email-ioanax.grigoropol@intel.com>
+	<C6510F6D410BB64A8C15398EDC6B847C57DDD2D8@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C57DDD2D8@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
 Subject: Re: [PATCH v7] [399231] Fix race conditions when reading using	LocalShellOutputReader(s)
 X-BeenThere: yocto@yoctoproject.org
@@ -38,10 +42,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Feb 2013 15:34:20 -0000
+X-List-Received-Date: Fri, 01 Feb 2013 17:10:46 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Jessica,
+
+Indeed, the patch adds two methods to IHostShell  :
+	- getLock()
+	- getReader(Boolean isErrorReader)
+These changes are necessary in order for our implementation to work. =20
+The only other alternative that I have tested today, which only adds getLoc=
+k to the IHostShell interface, requires us to create a new BufferedReader f=
+rom an InputStream of the hostShell process. This is the way that the remot=
+e tools plugin works. This implementation however fails to read from the er=
+ror stream on Windows implementation, due to BufferedReader ready() method =
+not being reliable.
+Another thing I have thought of is to put some default implementation for t=
+hese two methods in AbstractHostShell, but I am not sure if this is feasibl=
+e.
+Please let me know, if you have any other suggestions.
+
+Thanks,
+Ioana
+-----Original Message-----
+From: Zhang, Jessica=20
+Sent: Friday, February 01, 2013 5:34 PM
+To: Grigoropol, IoanaX; yocto@yoctoproject.org
+Subject: RE: [yocto] [PATCH v7] [399231] Fix race conditions when reading u=
+sing LocalShellOutputReader(s)
 
 Hi Ioana,
 
@@ -119,13 +149,13 @@ nal/services/dstore/shells/DStoreHostShell.java
 ned up on disconnect
   * David McKnight   (IBM)  [244070] [dstore] DStoreHostShell#exit() does n=
 ot terminate child processes
-+ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when
++ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when=20
 + trying to read from local processes using LocalShellOutputReader
   *************************************************************************=
 ******/
-
+=20
  package org.eclipse.rse.internal.services.dstore.shells;
-
+=20
 +import java.io.BufferedReader;
 +import java.util.concurrent.locks.Lock;
  import org.eclipse.dstore.core.model.DE;  import org.eclipse.dstore.core.m=
@@ -133,17 +163,17 @@ odel.DataElement;
  import org.eclipse.dstore.core.model.DataStore;
 @@ -92,5 +95,12 @@ public class DStoreHostShell extends AbstractHostShell i=
 mplements IHostShell
-
-        }
-
-+       public Lock getLock() {
-+               return null;
-+       }
+ 	=09
+ 	}
+=20
++	public Lock getLock() {
++		return null;
++	}
 +
-+       public BufferedReader getReader(boolean isErrorReader) {
-+               return null;
-+       }
-
++	public BufferedReader getReader(boolean isErrorReader) {
++		return null;
++	}
+ =09
  }
 diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse=
 /internal/services/local/shells/LocalHostShell.java b/rse/plugins/org.eclip=
@@ -159,13 +189,13 @@ al/services/local/shells/LocalHostShell.java
   * Contributors:
   * Martin Oberhuber (Wind River) - [161838] local shell reports isActive()=
  wrong
-+ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when
++ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when=20
 + trying to read from local processes using LocalShellOutputReader
   *************************************************************************=
 ******/
-
+=20
  package org.eclipse.rse.internal.services.local.shells;
-
+=20
 +import java.io.BufferedReader;
 +import java.util.concurrent.locks.Lock;
  import org.eclipse.core.runtime.IProgressMonitor;
@@ -174,33 +204,33 @@ er;
  import org.eclipse.rse.internal.services.local.shells.LocalShellThread;
 @@ -38,7 +41,7 @@ public class LocalHostShell extends AbstractHostShell imp=
 lements IHostShell
-        {
-                _shellThread =3D new LocalShellThread(initialWorkingDirecto=
-ry, invocation, encoding, environment);
-                _stdoutHandler =3D new LocalShellOutputReader(this, _shellT=
-hread.getOutputStream(), false);
--               _stderrHandler =3D new LocalShellOutputReader(this, _shellT=
-hread.getErrorStream(),true);
-+               _stderrHandler =3D new LocalShellOutputReader(this,
+ 	{
+ 		_shellThread =3D new LocalShellThread(initialWorkingDirectory, invocatio=
+n, encoding, environment);=09
+ 		_stdoutHandler =3D new LocalShellOutputReader(this, _shellThread.getOutp=
+utStream(), false);
+-		_stderrHandler =3D new LocalShellOutputReader(this, _shellThread.getErro=
+rStream(),true);
++		_stderrHandler =3D new LocalShellOutputReader(this,=20
 +_shellThread.getErrorStream(), true);
-        }
-
-        protected void run(IProgressMonitor monitor) @@ -84,5 +87,15 @@ pub=
-lic class LocalHostShell extends AbstractHostShell implements IHostShell
-                writeToShell("exit"); //$NON-NLS-1$
-        }
-
-+       public Lock getLock() {
-+               return _shellThread.getLock();
-+       }
+ 	}
+ =09
+ 	protected void run(IProgressMonitor monitor) @@ -84,5 +87,15 @@ public cl=
+ass LocalHostShell extends AbstractHostShell implements IHostShell
+ 		writeToShell("exit"); //$NON-NLS-1$
+ 	}
+=20
++	public Lock getLock() {
++		return _shellThread.getLock();
++	}
 +
-+       public BufferedReader getReader(boolean isErrorReader) {
-+               if (isErrorReader)
-+                       return _shellThread.getErrorStream();
-+               else
-+                       return _shellThread.getOutputStream();
-+       }
-
++	public BufferedReader getReader(boolean isErrorReader) {
++		if (isErrorReader)
++			return _shellThread.getErrorStream();
++		else
++			return _shellThread.getOutputStream();
++	}
+=20
  }
 diff --git a/rse/plugins/org.eclipse.rse.services.local/src/org/eclipse/rse=
 /internal/services/local/shells/LocalShellThread.java b/rse/plugins/org.ecl=
@@ -217,63 +247,63 @@ ll output
   * Martin Oberhuber (Wind River) - [161838] local shell reports isActive()=
  wrong
   * Anna Dushistova  (MontaVsita) - [249354] Incorrect behaviour of local s=
-hells subsystem runCommand method
-+ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when
+hells subsystem runCommand method=20
++ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when=20
 + trying to read from local processes using LocalShellOutputReader
   *************************************************************************=
 ******/
-
+=20
  package org.eclipse.rse.internal.services.local.shells;
 @@ -29,6 +30,8 @@ import java.io.InputStreamReader;  import java.io.OutputS=
 tream;  import java.io.OutputStreamWriter;  import java.net.URL;
-+import java.util.concurrent.locks.Lock; import
++import java.util.concurrent.locks.Lock; import=20
 +java.util.concurrent.locks.ReentrantLock;
-
+=20
  import org.eclipse.core.runtime.FileLocator;
-
+=20
 @@ -62,6 +65,7 @@ public class LocalShellThread extends Thread
-        private BufferedReader _stdInput;
-        private BufferedReader _stdError;
-
-+       private Lock _lock;
-        /**
-         * constructor for local command shell monitor
-         *
+ 	private BufferedReader _stdInput;
+ 	private BufferedReader _stdError;
+=20
++	private Lock _lock;
+ 	/**
+ 	 * constructor for local command shell monitor
+ 	 *
 @@ -260,6 +264,7 @@ public class LocalShellThread extends Thread
-
-                        _stdError =3D new BufferedReader(new InputStreamRea=
-der(_theProcess.getErrorStream()));
-
-+                       _lock =3D new ReentrantLock();
-                }
-                catch (IOException e)
-                {
+=20
+ 			_stdError =3D new BufferedReader(new InputStreamReader(_theProcess.getE=
+rrorStream()));
+=20
++			_lock =3D new ReentrantLock();
+ 		}
+ 		catch (IOException e)
+ 		{
 @@ -438,9 +443,14 @@ public class LocalShellThread extends Thread
-                _isDone =3D true;
-                try
-                {
-+                       _lock.lock();
-                        _stdInput.close();
-                        _stdError.close();
-
-+                       _stdInput =3D null;
-+                       _stdError =3D null;
+ 		_isDone =3D true;
+ 		try
+ 		{
++			_lock.lock();
+ 			_stdInput.close();
+ 			_stdError.close();
+=20
++			_stdInput =3D null;
++			_stdError =3D null;
 +
-+                       _lock.unlock();
-                        if (_theProcess !=3D null)
-                        {
-
++			_lock.unlock();
+ 			if (_theProcess !=3D null)
+ 			{
+=20
 @@ -511,4 +521,12 @@ public class LocalShellThread extends Thread
-        }
-
-
-+       public Lock getLock() {
-+               return _lock;
-+       }
+ 	}
+=20
+=20
++	public Lock getLock() {
++		return _lock;
++	}
 +
-+       public void setLock(Lock _lock) {
-+               this._lock =3D _lock;
-+       }
++	public void setLock(Lock _lock) {
++		this._lock =3D _lock;
++	}
 +
  }
 diff --git a/rse/plugins/org.eclipse.rse.services/.settings/.api_filters b/=
@@ -333,82 +363,73 @@ and if initialWorkingDirectory supplied
   * Rob Stryker (JBoss) - [335059] TerminalServiceShellOutputReader logs er=
 ror when hostShell.exit() is called
   * Martin Oberhuber (Wind River) - [356132] wait for initial output
-+ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when
++ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when=20
 + trying to read from local processes using LocalShellOutputReader
   *************************************************************************=
 ******/
-
+=20
  package org.eclipse.rse.internal.services.shells;
 @@ -32,6 +33,8 @@ import java.io.OutputStream;  import java.io.OutputStream=
 Writer;  import java.io.PrintWriter;  import java.nio.charset.Charset;
-+import java.util.concurrent.locks.Lock; import
++import java.util.concurrent.locks.Lock; import=20
 +java.util.concurrent.locks.ReentrantLock;
  import java.util.regex.Pattern;
-
+=20
  import org.eclipse.rse.services.clientserver.PathUtility;
 @@ -54,27 +57,27 @@ public class TerminalServiceHostShell extends AbstractH=
 ostShell {
-
-        private TerminalServiceShellWriterThread fShellWriter;
-
-+       private BufferedReader fBufReader;
-        public TerminalServiceHostShell(ITerminalShell terminalShell,
-                        String initialWorkingDirectory, String commandToRun=
-,
-                        String[] environment) {
-                try {
-                        fTerminalShell =3D terminalShell;
-                        String encoding =3D fTerminalShell.getDefaultEncodi=
-ng();
--                       BufferedReader bufReader;
-                        if (encoding !=3D null) {
--                               bufReader =3D new BufferedReader(new InputS=
-treamReader(fTerminalShell
-+                               fBufReader =3D new BufferedReader(new
+ =09
+ 	private TerminalServiceShellWriterThread fShellWriter;
+=20
++	private BufferedReader fBufReader;
+ 	public TerminalServiceHostShell(ITerminalShell terminalShell,
+ 			String initialWorkingDirectory, String commandToRun,
+ 			String[] environment) {
+ 		try {
+ 			fTerminalShell =3D terminalShell;
+ 			String encoding =3D fTerminalShell.getDefaultEncoding();
+-			BufferedReader bufReader;
+ 			if (encoding !=3D null) {
+-				bufReader =3D new BufferedReader(new InputStreamReader(fTerminalShell
++				fBufReader =3D new BufferedReader(new=20
 +InputStreamReader(fTerminalShell
-                                                .getInputStream(), encoding=
-));
-                        } else {
--                               bufReader =3D new BufferedReader(new InputS=
-treamReader(fTerminalShell
-+                               fBufReader =3D new BufferedReader(new
+ 						.getInputStream(), encoding));=20
+ 			} else {
+-				bufReader =3D new BufferedReader(new InputStreamReader(fTerminalShell
++				fBufReader =3D new BufferedReader(new=20
 +InputStreamReader(fTerminalShell
-                                                                .getInputSt=
-ream()));
-                        }
-                        //bug 356132: wait for initial output before sendin=
-g any command
-                        //FIXME this should likely move into the TerminalSe=
-rviceShellWriterThread, so wait can be canceled
--                       bufReader.mark(1);
--                       bufReader.read();
--                       bufReader.reset();
-+                       fBufReader.mark(1);
-+                       fBufReader.read();
-+                       fBufReader.reset();
-
--                       fStdoutHandler =3D new TerminalServiceShellOutputRe=
-ader(this, bufReader, false);
-+                       fStdoutHandler =3D new TerminalServiceShellOutputRe=
-ader(this,
+ 								.getInputStream()));
+ 			}
+ 			//bug 356132: wait for initial output before sending any command
+ 			//FIXME this should likely move into the TerminalServiceShellWriterThre=
+ad, so wait can be canceled
+-			bufReader.mark(1);
+-			bufReader.read();
+-			bufReader.reset();
++			fBufReader.mark(1);
++			fBufReader.read();
++			fBufReader.reset();
+ 		=09
+-			fStdoutHandler =3D new TerminalServiceShellOutputReader(this, bufReader=
+, false);
++			fStdoutHandler =3D new TerminalServiceShellOutputReader(this,
 +fBufReader, false);
-                        fStderrHandler =3D new TerminalServiceShellOutputRe=
-ader(this, null, true);
-                        OutputStream outputStream =3D fTerminalShell.getOut=
-putStream();
-                        if (encoding !=3D null) {
+ 			fStderrHandler =3D new TerminalServiceShellOutputReader(this, null, tru=
+e);
+ 			OutputStream outputStream =3D fTerminalShell.getOutputStream();
+ 			if (encoding !=3D null) {
 @@ -170,4 +173,11 @@ public class TerminalServiceHostShell extends Abstract=
 HostShell {
-                return "echo $PWD'>'"; //$NON-NLS-1$
-        }
-
-+       public Lock getLock() {
-+               return new ReentrantLock();
-+       }
+ 		return "echo $PWD'>'"; //$NON-NLS-1$
+ 	}
+=20
++	public Lock getLock() {
++		return new ReentrantLock();
++	}
 +
-+       public BufferedReader getReader(boolean isErrorReader) {
-+               return fBufReader;
-+       }
++	public BufferedReader getReader(boolean isErrorReader) {
++		return fBufReader;
++	}
  }
 diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/servi=
 ces/shells/IHostShell.java b/rse/plugins/org.eclipse.rse.services/src/org/e=
@@ -424,31 +445,31 @@ lls/IHostShell.java
   *
   * Contributors:
 - * {Name} (company) - description of contribution.
-+ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when
++ * Ioana Grigoropol (Intel) - [399231] Race conditions occur when=20
 + trying to read from local processes using LocalShellOutputReader
   *************************************************************************=
 *******/
-
+=20
  package org.eclipse.rse.services.shells;
-
+=20
 +import java.io.BufferedReader;
 +import java.util.concurrent.locks.Lock;
-
+=20
  public interface IHostShell
  {
 @@ -28,5 +30,13 @@ public interface IHostShell
-        public IHostShellOutputReader getStandardErrorReader();
-
-        public void exit();
-+       /**
-+        * @since 3.2
-+        */
-+       public Lock getLock();
-+       /**
-+        * @since 3.2
-+        */
-+       public BufferedReader getReader(boolean isErrorReader);
-
+ 	public IHostShellOutputReader getStandardErrorReader();
+ =09
+ 	public void exit();
++	/**
++	 * @since 3.2
++	 */
++	public Lock getLock();
++	/**
++	 * @since 3.2
++	 */
++	public BufferedReader getReader(boolean isErrorReader);
+ =09
 -}
 \ No newline at end of file
 +}
