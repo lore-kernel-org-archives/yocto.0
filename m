@@ -1,33 +1,33 @@
-Return-Path: <cazfi74@gmail.com>
-Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
-	[209.85.128.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8724E006D2
-	for <yocto@yoctoproject.org>; Mon,  4 Feb 2013 02:34:40 -0800 (PST)
-Received: by mail-ve0-f172.google.com with SMTP id cz11so3027658veb.17
-	for <yocto@yoctoproject.org>; Mon, 04 Feb 2013 02:34:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=/NgnKUiQxOfOxwwf9HwIlDDIwUpF77ft5fxeO2M7Nss=;
-	b=aqFX2NJQNnhwYTKDbMy3CI0Cf21GFSUE/v+UxAnnRwoAwLYVvyRu/G7uw6nb5XJy3x
-	mF73+/mmI1UmHgUPZTM8qLNRIxrMyXNhxKOEW0o0q2PTyEHZqKxyPHxGVOyIv6K2/mD+
-	jHuIb04FGWI9P0+5zclj5+eVWHOivtTu7l94ZW3qZreJRWFgbxTy3F58uFeCfYI47yBc
-	vuQmUCeCmkmjctzkQuBql0XHcwGKfA42j2J2ijz0NmtnMLq858BspCfh+Nx3QWpZKHAt
-	YRZHCApbbld2RV1+JvsKxYBezOCQkzW2hrLfWpITa6B09uHBlX7+ZhvGdDZjbfPGt1um
-	9brw==
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73410E0027C
+	for <yocto@yoctoproject.org>; Mon,  4 Feb 2013 12:50:04 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 04 Feb 2013 12:48:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,602,1355126400"; d="scan'208";a="280839774"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga002.jf.intel.com with ESMTP; 04 Feb 2013 12:50:03 -0800
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 4 Feb 2013 12:50:03 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.45]) with mapi id
+	14.01.0355.002; Mon, 4 Feb 2013 12:50:03 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	February 05,
+	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac4DGR7TOeLEDWguSo6xv95JBlw2owAAAZzA
+Date: Mon, 4 Feb 2013 20:50:02 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A598AF108@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.52.98.134 with SMTP id ei6mr18780010vdb.114.1359974080173;
-	Mon, 04 Feb 2013 02:34:40 -0800 (PST)
-Received: by 10.58.80.2 with HTTP; Mon, 4 Feb 2013 02:34:40 -0800 (PST)
-In-Reply-To: <CAJTo0LawPggogja+26bcns3bBxa_1xpYXM8bk2iog1Bu6urDjw@mail.gmail.com>
-References: <1359856736-25568-1-git-send-email-cazfi74@gmail.com>
-	<CAJTo0LawPggogja+26bcns3bBxa_1xpYXM8bk2iog1Bu6urDjw@mail.gmail.com>
-Date: Mon, 4 Feb 2013 12:34:40 +0200
-Message-ID: <CAF6bG8fMw4Qkz5V_cskf2byYa476ZTYz95Lr3kptWTJ47FXgdw@mail.gmail.com>
-From: Marko Lindqvist <cazfi74@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Matchbox-terminal fixes
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, February 05, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,23 +39,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Feb 2013 10:34:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 04 Feb 2013 20:50:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 4 February 2013 12:16, Burton, Ross <ross.burton@intel.com> wrote:
-> Hi Marko,
->
-> On 3 February 2013 01:58, Marko Lindqvist <cazfi74@gmail.com> wrote:
->>   INSTALL in git repo is a symlink outside the repository, to
->>   file installed as part of automake-1.10 (and only when automake-1.10
->>   installed to default location) It was dangling in my system without
->>   automake-1.10. Such a link should not be under version control
->
-> Well spotted - fixed in git. Does this cause any problems with
-> automake 1.13, or was it purely cosmetic?
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+* SWAT team rotation: Laurentiu Palcu -> Nitin Kamble
+* Opens - 10 min=20
+* Team Sharing - 20 min
+=A0
+=A0
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+=A0
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+=A0
+Conference details=20
+=A0
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+=A0
+Local and Global Access Numbers=20
+=A0
+=A0
+=A0
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
 
- Cosmetic.
+=A0
+Recurring conferences=20
+=A0
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
 
 
- - ML
+
+
 
