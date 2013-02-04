@@ -1,39 +1,37 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3656E0147B
-	for <yocto@yoctoproject.org>; Sun,  3 Feb 2013 23:35:58 -0800 (PST)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 5352840073;
-	Mon,  4 Feb 2013 07:55:50 +0100 (CET)
-From: Timo Mueller <mail@timomueller.eu>
-To: yocto@yoctoproject.org
-Date: Mon,  4 Feb 2013 08:35:51 +0100
-Message-Id: <60005fbb87b899a1900c0f07426a1fb95a39b9f2.1359962724.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <6f02c0673e649b05fc0759b1f26631b103788997.1359962724.git.timo.mueller@bmw-carit.de>
-References: <cover.1359962724.git.timo.mueller@bmw-carit.de>
-	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1359962724.git.timo.mueller@bmw-carit.de>
-	<940419f475a4c076dd2ead78f93f8b3f510d97d6.1359962724.git.timo.mueller@bmw-carit.de>
-	<07b72866269a6dca38c8b4624027ebe246103501.1359962724.git.timo.mueller@bmw-carit.de>
-	<f0bbdb07271d4c096067ac640627f26a735c7699.1359962724.git.timo.mueller@bmw-carit.de>
-	<f7cfefba2277cefdc676af13088b56b2ae56569f.1359962724.git.timo.mueller@bmw-carit.de>
-	<8e152bb34c7e9e61263bc119d4d70e8d911c5265.1359962724.git.timo.mueller@bmw-carit.de>
-	<e2166216a995ac252a788b2a0aaa2f36a4f89701.1359962724.git.timo.mueller@bmw-carit.de>
-	<cea3e5f07d1bc7cb7cb52e165d5d414f00097565.1359962724.git.timo.mueller@bmw-carit.de>
-	<1fdde3693253efc9d8bf731be11d5280ace9cd03.1359962724.git.timo.mueller@bmw-carit.de>
-	<c2c1a361604bdc0c7f05a05247a39f49f08b36d5.1359962724.git.timo.mueller@bmw-carit.de>
-	<a30248904660352ac16ed0179a50f259df16cb0a.1359962724.git.timo.mueller@bmw-carit.de>
-	<0d7a3bd991f07008b9a5e1271800352342070410.1359962724.git.timo.mueller@bmw-carit.de>
-	<07f738ec0e99006772601a592b6bf3ebd2799965.1359962724.git.timo.mueller@bmw-carit.de>
-	<c4ad24be2ad72e9006e4a9c71297f84d8ed22546.1359962724.git.timo.mueller@bmw-carit.de>
-	<6f02c0673e649b05fc0759b1f26631b103788997.1359962724.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359962724.git.timo.mueller@bmw-carit.de>
-References: <cover.1359962724.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v3 16/18] plugins/sdk.ide: Use profiles for the preference page
+Return-Path: <ross.burton@intel.com>
+Received: from fmsmga102.fm.intel.com (mga10.intel.com [192.55.52.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB1C4E006D2
+	for <yocto@yoctoproject.org>; Mon,  4 Feb 2013 02:16:36 -0800 (PST)
+Received: from mail-ye0-f198.google.com ([209.85.213.198])
+	by mga11.intel.com with ESMTP/TLS/RC4-SHA; 04 Feb 2013 02:16:36 -0800
+Received: by mail-ye0-f198.google.com with SMTP id l11so8855584yen.5
+	for <yocto@yoctoproject.org>; Mon, 04 Feb 2013 02:16:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:x-received:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=cjscsa9vwgMI9S7wW2mjQ1KeeGDcMjGxm43q38WvqN4=;
+	b=nmpNhhY0JpTKPYPZgMBBA0R1dNf2IGEmmsqSFXY0Q522oG5m3woT97uT3nAR17rd7n
+	9yAO3EIfJupA4Qy72Bv7xyYuhLKRfm8xtiGkqD7Dvm5EoEPjZtRly9M5vVuQ7BeIE5IW
+	Gajugg2i5ZgLqK2nzbQB1rzxrtFPbLeZmkEnTt9zMSunlYse6xnlwnfy3LaJgbF7zXnb
+	278Kfn0LCHqbv4KNgcGZ92FQ+JaR2EKZo8Fa8xVagyminUwCrmxXQCPLQAMRdlEo4xza
+	lSuVQKjGtFMRfGwMka9EmkFZpE+mLMJWJtdaJH1OldT79PVWMtqc3u/m6o3zFIu6+VPk
+	vq+Q==
+X-Received: by 10.52.24.98 with SMTP id t2mr15470794vdf.69.1359972995611;
+	Mon, 04 Feb 2013 02:16:35 -0800 (PST)
+X-Received: by 10.52.24.98 with SMTP id t2mr15470783vdf.69.1359972995389; Mon,
+	04 Feb 2013 02:16:35 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.58.95.131 with HTTP; Mon, 4 Feb 2013 02:16:15 -0800 (PST)
+In-Reply-To: <1359856736-25568-1-git-send-email-cazfi74@gmail.com>
+References: <1359856736-25568-1-git-send-email-cazfi74@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 4 Feb 2013 10:16:15 +0000
+Message-ID: <CAJTo0LawPggogja+26bcns3bBxa_1xpYXM8bk2iog1Bu6urDjw@mail.gmail.com>
+To: Marko Lindqvist <cazfi74@gmail.com>
+X-Gm-Message-State: ALoCoQnbWYfulEMni3ZIwt9KnLeqY7fjum73oKlzFaoixhntY7p74K5L9R5zOJsNLO2tmLS5Dcpbv5W3qwN7A47W8HL0LBVLmugZFEjsAkBrfLb9xwAW217XNG9sja41rKaUfE5F9hfEdTk7OERc9H3zyUZW97k4xQ==
+Cc: yocto@yoctoproject.org
+Subject: Re: Matchbox-terminal fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,75 +43,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Feb 2013 07:35:59 -0000
+X-List-Received-Date: Mon, 04 Feb 2013 10:16:37 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+Hi Marko,
 
-The preference page is now aware of profiles. By default the standard
-profile is used and the values are stored to its preference store. If
-a different profile is selected it's preferences store is used
-instead.
+On 3 February 2013 01:58, Marko Lindqvist <cazfi74@gmail.com> wrote:
+>   INSTALL in git repo is a symlink outside the repository, to
+>   file installed as part of automake-1.10 (and only when automake-1.10
+>   installed to default location) It was dangling in my system without
+>   automake-1.10. Such a link should not be under version control
 
-Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
----
- .../ide/preferences/YoctoSDKPreferencePage.java    | 28 +++++++++++++++++-----
- 1 file changed, 22 insertions(+), 6 deletions(-)
+Well spotted - fixed in git. Does this cause any problems with
+automake 1.13, or was it purely cosmetic?
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-index 276e366..8dc089b 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-@@ -13,6 +13,7 @@ package org.yocto.sdk.ide.preferences;
- import org.eclipse.jface.dialogs.Dialog;
- import org.eclipse.jface.dialogs.IDialogConstants;
- import org.eclipse.jface.dialogs.InputDialog;
-+import org.eclipse.jface.preference.IPreferenceStore;
- import org.eclipse.jface.preference.PreferencePage;
- import org.eclipse.swt.SWT;
- import org.eclipse.swt.widgets.Composite;
-@@ -39,12 +40,24 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 
- 	public YoctoSDKPreferencePage() {
- 		//super(GRID);
--        setPreferenceStore(YoctoSDKPlugin.getDefault().getPreferenceStore());
--        //setDescription(YoctoSDKMessages.getString(PREFERENCES_Yocto_CONFIG));
--		YoctoUIElement elem = YoctoSDKUtils.getElemFromDefaultStore();
--        this.yoctoUISetting = new YoctoUISetting(elem);
-+		IPreferenceStore defaultStore = YoctoSDKPlugin.getDefault().getPreferenceStore();
-+		String profiles = defaultStore.getString(PreferenceConstants.PROFILES);
-+		String selectedProfile = defaultStore.getString(PreferenceConstants.SELECTED_PROFILE);
-+
-+		if (profiles.isEmpty()) {
-+			profiles = defaultStore.getDefaultString(PreferenceConstants.PROFILES);
-+			selectedProfile = defaultStore.getDefaultString(PreferenceConstants.SELECTED_PROFILE);
-+		}
-+
-+		setPreferenceStore(YoctoSDKPlugin.getProfilePreferenceStore(selectedProfile));
-+		//setDescription(YoctoSDKMessages.getString(PREFERENCES_Yocto_CONFIG));
-+		YoctoUIElement elem = YoctoSDKUtils.getElemFromStore(getPreferenceStore());
-+		this.yoctoUISetting = new YoctoUISetting(elem);
-+
-+		YoctoProfileElement profileElement = new YoctoProfileElement(profiles, selectedProfile);
-+		this.yoctoProfileSetting = new YoctoProfileSetting(profileElement, this);
- 	}
--	
-+
- 	/*
- 	 * @see IWorkbenchPreferencePage#init(IWorkbench)
- 	 */
-@@ -75,7 +88,10 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, true);
- 
- 			YoctoUIElement elem = yoctoUISetting.getCurrentInput();
--			YoctoSDKUtils.saveElemToDefaultStore(elem);
-+			YoctoSDKUtils.saveElemToStore(elem, getPreferenceStore());
-+
-+			YoctoProfileElement profileElement = yoctoProfileSetting.getCurrentInput();
-+			YoctoSDKUtils.saveProfilesToDefaultStore(profileElement);
- 
- 			return super.performOk();
- 		} catch (YoctoGeneralException e) {
--- 
-1.7.11.7
-
+Ross
 
