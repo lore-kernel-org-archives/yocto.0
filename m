@@ -1,19 +1,19 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81544E0146A
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5C13E0147C
 	for <yocto@yoctoproject.org>; Sun,  3 Feb 2013 23:35:58 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 8D698401B4;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 6FFDF40164;
 	Mon,  4 Feb 2013 07:55:50 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Mon,  4 Feb 2013 08:35:53 +0100
-Message-Id: <22a31fcfe49f0b609e827519742eac9a7475c729.1359962724.git.timo.mueller@bmw-carit.de>
+Date: Mon,  4 Feb 2013 08:35:52 +0100
+Message-Id: <5ae9bf1ea8a142a93f83bc6c24821692e73c40bb.1359962724.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <5ae9bf1ea8a142a93f83bc6c24821692e73c40bb.1359962724.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <60005fbb87b899a1900c0f07426a1fb95a39b9f2.1359962724.git.timo.mueller@bmw-carit.de>
 References: <cover.1359962724.git.timo.mueller@bmw-carit.de>
 	<da3b87a039d43a6cf16603b46437c36d4d9635e5.1359962724.git.timo.mueller@bmw-carit.de>
 	<940419f475a4c076dd2ead78f93f8b3f510d97d6.1359962724.git.timo.mueller@bmw-carit.de>
@@ -31,11 +31,10 @@ References: <cover.1359962724.git.timo.mueller@bmw-carit.de>
 	<c4ad24be2ad72e9006e4a9c71297f84d8ed22546.1359962724.git.timo.mueller@bmw-carit.de>
 	<6f02c0673e649b05fc0759b1f26631b103788997.1359962724.git.timo.mueller@bmw-carit.de>
 	<60005fbb87b899a1900c0f07426a1fb95a39b9f2.1359962724.git.timo.mueller@bmw-carit.de>
-	<5ae9bf1ea8a142a93f83bc6c24821692e73c40bb.1359962724.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1359962724.git.timo.mueller@bmw-carit.de>
 References: <cover.1359962724.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v3 18/18] plugins/sdk.ide: Moved save as button to bottom of preference page
+Subject: [RFC v3 17/18] plugins/sdk.ide: Added profile UI to the preference page
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,125 +46,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Feb 2013 07:35:58 -0000
+X-List-Received-Date: Mon, 04 Feb 2013 07:35:59 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
+Adds the UI elements that allow managing profiles to the preference
+page.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../src/org/yocto/sdk/ide/YoctoProfileSetting.java  | 18 ------------------
- .../sdk/ide/preferences/YoctoSDKPreferencePage.java | 21 +++++++++++++++++++++
- 2 files changed, 21 insertions(+), 18 deletions(-)
+ .../src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java     | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-index 738dba7..c9c8f4e 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-@@ -31,7 +31,6 @@ import org.yocto.sdk.ide.preferences.YoctoSDKPreferencePage;
- 
- public class YoctoProfileSetting {
- 	private static final String PROFILES_TITLE = "Preferences.Profiles.Title";
--	private static final String NEW_PROFILE_TITLE = "Preferences.Profile.New.Title";
- 	private static final String RENAME_PROFILE_TITLE = "Preferences.Profile.Rename.Title";
- 	private static final String RENAME_DIALOG_TITLE = "Preferences.Profile.Rename.Dialog.Title";
- 	private static final String RENAME_DIALOG_MESSAGE = "Preferences.Profile.Rename.Dialog.Message";
-@@ -44,7 +43,6 @@ public class YoctoProfileSetting {
- 	private Combo sdkConfigsCombo;
- 	private Button btnConfigRename;
- 	private Button btnConfigRemove;
--	private Button btnConfigSaveAs;
- 
- 	private YoctoProfileElement profileElement;
- 	private PreferencePage preferencePage;
-@@ -98,27 +96,12 @@ public class YoctoProfileSetting {
- 		sdkConfigsCombo.addListener(SWT.Selection, selectionListener);
- 		sdkConfigsCombo.addListener(SWT.Modify, selectionListener);
- 
--		createSaveAsProfileButton(storeYoctoConfigurationsGroup);
- 		createRenameButton(storeYoctoConfigurationsGroup);
- 		createRemoveButton(storeYoctoConfigurationsGroup);
- 	}
- 
--	private void createSaveAsProfileButton(Group storeYoctoConfigurationsGroup) {
--		btnConfigSaveAs = new Button(storeYoctoConfigurationsGroup, SWT.PUSH | SWT.LEAD);
--		btnConfigSaveAs.setText(YoctoSDKMessages.getString(NEW_PROFILE_TITLE));
--		btnConfigSaveAs.addMouseListener(new MouseAdapter() {
--			@Override
--			public void mouseDown(MouseEvent e) {
--				if (preferencePage instanceof YoctoSDKPreferencePage) {
--					((YoctoSDKPreferencePage) preferencePage).performSaveAs();
--				}
--			}
--		});
--	}
--
- 	private void createRemoveButton(Group storeYoctoConfigurationsGroup) {
- 		btnConfigRemove = new Button(storeYoctoConfigurationsGroup, SWT.PUSH | SWT.LEAD);
--		btnConfigRemove.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, true, false, 3, 1));
- 		btnConfigRemove.setText(YoctoSDKMessages.getString(REMOVE_PROFILE_TITLE));
- 		btnConfigRemove.addMouseListener(new MouseAdapter() {
- 			@Override
-@@ -224,6 +207,5 @@ public class YoctoProfileSetting {
- 	public void setButtonsEnabledState(boolean isEnabled) {
- 		btnConfigRename.setEnabled(isEnabled);
- 		btnConfigRemove.setEnabled(isEnabled);
--		btnConfigSaveAs.setEnabled(isEnabled);
- 	}
- }
 diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-index fb015ab..1d6188b 100644
+index 8dc089b..fb015ab 100644
 --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
 +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-@@ -16,6 +16,10 @@ import org.eclipse.jface.dialogs.InputDialog;
- import org.eclipse.jface.preference.IPreferenceStore;
- import org.eclipse.jface.preference.PreferencePage;
- import org.eclipse.swt.SWT;
-+import org.eclipse.swt.events.MouseAdapter;
-+import org.eclipse.swt.events.MouseEvent;
-+import org.eclipse.swt.layout.GridLayout;
-+import org.eclipse.swt.widgets.Button;
- import org.eclipse.swt.widgets.Composite;
- import org.eclipse.swt.widgets.Control;
- import org.eclipse.ui.IWorkbench;
-@@ -32,11 +36,13 @@ import org.yocto.sdk.ide.YoctoUISetting;
- 
- public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbenchPreferencePage {
- 
-+	private static final String NEW_PROFILE_TITLE = "Preferences.Profile.New.Title";
- 	private static final String NEW_DIALOG_TITLE = "Preferences.Profile.New.Dialog.Title";
- 	private static final String NEW_DIALOG_MESSAGE = "Preferences.Profile.New.Dialog.Message";
- 
- 	private YoctoProfileSetting yoctoProfileSetting;
- 	private YoctoUISetting yoctoUISetting;
-+	private Button btnConfigSaveAs;
- 
- 	public YoctoSDKPreferencePage() {
- 		//super(GRID);
-@@ -80,8 +86,23 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 			System.out.println(e.getMessage());
- 			return result;
- 		}
-+	}
- 
-+	@Override
-+	protected void contributeButtons(Composite parent) {
-+		((GridLayout) parent.getLayout()).numColumns++;
+@@ -67,7 +67,9 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
+ 	protected Control createContents(Composite parent) {
+ 		initializeDialogUnits(parent);
+ 		final Composite result= new Composite(parent, SWT.NONE);
+-		
 +
-+		btnConfigSaveAs = new Button(parent, SWT.PUSH);
-+		btnConfigSaveAs.setText(YoctoSDKMessages.getString(NEW_PROFILE_TITLE));
-+		setButtonLayoutData(btnConfigSaveAs);
-+		btnConfigSaveAs.addMouseListener(new MouseAdapter() {
-+			@Override
-+			public void mouseDown(MouseEvent event) {
-+				performSaveAs();
-+			}
-+		});
- 	}
++		yoctoProfileSetting.createComposite(result);
 +
- 	/*
- 	 * @see IPreferencePage#performOk()
- 	 */
+ 		try {
+ 			yoctoUISetting.createComposite(result);
+ 			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, false);
 -- 
 1.7.11.7
 
