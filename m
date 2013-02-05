@@ -1,34 +1,25 @@
-Return-Path: <cazfi74@gmail.com>
-Received: from mail-bk0-f50.google.com (mail-bk0-f50.google.com
-	[209.85.214.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2830E0146B
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2013 04:36:44 -0800 (PST)
-Received: by mail-bk0-f50.google.com with SMTP id jg9so45635bkc.9
-	for <yocto@yoctoproject.org>; Tue, 05 Feb 2013 04:36:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:x-mailer;
-	bh=Qk1sjujELgZiQt30UtCUMOuwsnLUdGHZzmXFgHD/A40=;
-	b=cjv+TOlx04RXiVqwKDUBXx6zpiFkRNUhMjTQtoNTIOeySo36xjE6S4nqndScf6zlJd
-	6SZZVVZPbI1dMz5s73/uyL/N575GjLTBdwOfawMV6zxJ/lkfyYk2dafaOm7GSdJeZYKx
-	QhfbiySgV3vPn/7wTJcs1T6FylRNVMJnGpvTNJfQanLKBcP0sBa7whqPvZAg3kIGh/U8
-	1zZCSZUN4aMpoEckMFo6Z/JXMstofl5ZcA/AQNbhzRim5kZ7e7Q/dGBZOGIaeBuSq4yd
-	CQJl3D+9An4VYCkKbTQvPSlM1BOvWRU0+yJZbZZ+USHdlrBFh63U1ClvELMpWSucZRAV
-	j3cg==
-X-Received: by 10.204.149.87 with SMTP id s23mr6658762bkv.33.1360067803509;
-	Tue, 05 Feb 2013 04:36:43 -0800 (PST)
-Received: from prime (a91-153-5-47.elisa-laajakaista.fi. [91.153.5.47])
-	by mx.google.com with ESMTPS id hc16sm6437234bkc.2.2013.02.05.04.36.34
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Tue, 05 Feb 2013 04:36:42 -0800 (PST)
-Received: from cazfi by prime with local (Exim 4.80)
-	(envelope-from <cazfi74@gmail.com>) id 1U2hlJ-0007Oo-Ek
-	for yocto@yoctoproject.org; Tue, 05 Feb 2013 14:36:33 +0200
-From: Marko Lindqvist <cazfi74@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue,  5 Feb 2013 14:36:28 +0200
-Message-Id: <1360067789-28404-1-git-send-email-cazfi74@gmail.com>
-X-Mailer: git-send-email 1.7.10.4
-Subject: matchbox-terminal automake-1.13 fix (retry)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCB3BE0146D
+	for <yocto@yoctoproject.org>; Tue,  5 Feb 2013 04:44:55 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id C91E0F811F4; Tue,  5 Feb 2013 05:44:54 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 10030F811F3;
+	Tue,  5 Feb 2013 05:44:54 -0700 (MST)
+Message-ID: <5110FEC9.5070100@mlbassoc.com>
+Date: Tue, 05 Feb 2013 05:44:57 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: pulseaudio madness
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,13 +31,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Feb 2013 12:36:45 -0000
+X-List-Received-Date: Tue, 05 Feb 2013 12:44:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-[PATCH 1/2] configure.ac: fix autoreconf with automake-1.13
+I have a multi-media application/system (built with Poky/Yocto of course)
+that is currently using ALSA for the sound.  This works great but now
+I'd like to be able to share some of the sound resources, in particular
+the audio output (speakers).  To satisfy this, I looked at pulseaudio,
+but I'm overwhelmed by the package choices (there are 120 packages),
+not to mention what to do about configuration.
 
-Seems that this bounced.
-(2/2 was INSTALL removal already committed)
+I don't see any examples (images, etc) that use pulseaudio.
 
+Does anyone have any recommendations on what I might need to install,
+how to configure it, etc, to take over from my simple ALSA setup?
 
- - ML
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
