@@ -1,33 +1,40 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E8DDE00527
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 07:48:35 -0800 (PST)
-Received: by mail-vc0-f170.google.com with SMTP id p16so947573vcq.15
-	for <yocto@yoctoproject.org>; Wed, 06 Feb 2013 07:48:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=o3XvsXTsLtv/dKycgtdie71HfmmI3Xup700w7nF/a+M=;
-	b=dcLSUr49XRyuJkLKyAowX5gp21MpuqZ24wtPdjN11TtFRZ+dSAM3WqwOuAxo1MEjyY
-	H+qfYo/TbIEcdrFB1FISKfbFgs8Uf49JSJ13p0L4ezmBsq98gw7ibLEt0M6fOZPQgtVL
-	/wROe093e6eynyY7SX+KrCt+k4gYgoQqXJtfdyrpOjVegvZWU8HomzterlPh2+R1hNbN
-	T4I0IUOPg6bIJacbjRuaOp/Bj0lK4dMYZXs087C5fg2DFe0l0ugAYxSuDcq6a/U15GQP
-	VsjEi+wQGpa6eRU4c0bXLQbedYAqYymIf3wYtDE+11ju57ULjkU9Z9eXBjXTBIFKz51Z
-	eblQ==
-X-Received: by 10.52.90.243 with SMTP id bz19mr24978877vdb.112.1360165714682; 
-	Wed, 06 Feb 2013 07:48:34 -0800 (PST)
+Return-Path: <Javier.Viguera@digi.com>
+Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
+	[216.82.243.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31BD1E00527
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 07:55:42 -0800 (PST)
+Received: from [216.82.241.196:50305] by server-16.bemta-8.messagelabs.com id
+	C6/A3-23722-EFC72115; Wed, 06 Feb 2013 15:55:42 +0000
+X-Env-Sender: Javier.Viguera@digi.com
+X-Msg-Ref: server-14.tower-46.messagelabs.com!1360166141!30502113!1
+X-Originating-IP: [66.77.174.13]
+X-StarScan-Received: 
+X-StarScan-Version: 6.7; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 28379 invoked from network); 6 Feb 2013 15:55:42 -0000
+Received: from mail.mx3.digi.com (HELO mcl-sms-ns1.digi.com) (66.77.174.13)
+	by server-14.tower-46.messagelabs.com with RC4-SHA encrypted SMTP;
+	6 Feb 2013 15:55:42 -0000
+Received: from mcl-sms-exch01.digi.com (10.5.8.50) by mail.mx1.digi.com
+	(172.16.1.13) with Microsoft SMTP Server (TLS) id 8.3.297.1;
+	Wed, 6 Feb 2013 09:55:37 -0600
+Received: from dor-sms-exch01.digi.com (10.49.8.100) by
+	mcl-sms-exch01.digi.com (10.5.8.50) with Microsoft SMTP Server (TLS) id
+	8.3.297.1; Wed, 6 Feb 2013 09:55:41 -0600
+Received: from [10.101.1.79] (10.101.1.79) by dor-sms-exch01.digi.com
+	(10.49.8.100) with Microsoft SMTP Server (TLS) id 8.3.297.1;
+	Wed, 6 Feb 2013 16:55:39 +0100
+Message-ID: <51127CFA.9060403@digi.com>
+Date: Wed, 6 Feb 2013 16:55:38 +0100
+From: Javier Viguera <javier.viguera@digi.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-Received: by 10.58.95.131 with HTTP; Wed, 6 Feb 2013 07:48:14 -0800 (PST)
-In-Reply-To: <5112797E.9010504@digi.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 References: <5112797E.9010504@digi.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 6 Feb 2013 15:48:14 +0000
-Message-ID: <CAJTo0LYeNK8eEVX5_GV_s9AC40o9cbXdsEHh_M1h8-ZEhqBF-Q@mail.gmail.com>
-To: Javier Viguera <javier.viguera@digi.com>
-X-Gm-Message-State: ALoCoQm8BLEa9TEjB8itivy/Ay1pkmJnZBhzJLYwoN/iQR1kB2qceb6Mnf8hfWKQWLgCWR0Isav4
-Cc: yocto@yoctoproject.org
+	<CAJTo0LYeNK8eEVX5_GV_s9AC40o9cbXdsEHh_M1h8-ZEhqBF-Q@mail.gmail.com>
+In-Reply-To: <CAJTo0LYeNK8eEVX5_GV_s9AC40o9cbXdsEHh_M1h8-ZEhqBF-Q@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: systemtap fetch failure on 'danny' (cherry-pick fix from master)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,23 +47,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 15:48:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 06 Feb 2013 15:55:43 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 6 February 2013 15:40, Javier Viguera <javier.viguera@digi.com> wrote:
-> This seems to be fixed in 'master' branch:
->
-> commit f3f4ac33ee7fa9cd35d06821fc3e26077303998a
-> Author: Maxin B. John <Maxin.John@enea.com>
-> Date:   Fri Dec 14 13:00:28 2012 +0100
->
->     Update the SRC_URI in systemtap recipe
->
->
-> Could that commit be cherry-picked to 'danny'?
 
-You'll be pleased to know it's in danny-next already, so should be
-hitting danny in the next day or so.
 
-Ross
+On 02/06/2013 04:48 PM, Burton, Ross wrote:
+> You'll be pleased to know it's in danny-next already, so should be
+> hitting danny in the next day or so.
+
+Good to know. Thanks.
+
+-
+Javier Viguera
+Software Engineer
+Digi International® Spain S.A.U.
 
