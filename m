@@ -1,22 +1,37 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30168E0070F
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 06:55:16 -0800 (PST)
-Received: from [192.168.0.2] (host86-137-74-187.range86-137.btcentralplus.com
-	[86.137.74.187]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 786329BF8
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 14:55:15 +0000 (GMT)
-Message-ID: <51126ED3.8040503@r-finger.com>
-Date: Wed, 06 Feb 2013 14:55:15 +0000
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Return-Path: <Javier.Viguera@digi.com>
+Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
+	[216.82.243.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 008D9E00527
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 07:40:58 -0800 (PST)
+Received: from [216.82.241.196:9705] by server-11.bemta-8.messagelabs.com id
+	61/40-04159-98972115; Wed, 06 Feb 2013 15:40:57 +0000
+X-Env-Sender: Javier.Viguera@digi.com
+X-Msg-Ref: server-10.tower-46.messagelabs.com!1360165255!30426976!1
+X-Originating-IP: [66.77.174.14]
+X-StarScan-Received: 
+X-StarScan-Version: 6.7; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 22184 invoked from network); 6 Feb 2013 15:40:55 -0000
+Received: from mail.mx2.digi.com (HELO mcl-sms-ns2.DIGI.COM) (66.77.174.14)
+	by server-10.tower-46.messagelabs.com with RC4-SHA encrypted SMTP;
+	6 Feb 2013 15:40:55 -0000
+Received: from mcl-sms-exch01.digi.com (10.5.8.50) by mail.mx2.digi.com
+	(172.16.1.14) with Microsoft SMTP Server (TLS) id 8.3.297.1;
+	Wed, 6 Feb 2013 09:41:06 -0600
+Received: from dor-sms-exch01.digi.com (10.49.8.100) by
+	mcl-sms-exch01.digi.com (10.5.8.50) with Microsoft SMTP Server (TLS) id
+	8.3.297.1; Wed, 6 Feb 2013 09:40:54 -0600
+Received: from [10.101.1.79] (10.101.1.79) by dor-sms-exch01.digi.com
+	(10.49.8.100) with Microsoft SMTP Server (TLS) id 8.3.297.1;
+	Wed, 6 Feb 2013 16:40:52 +0100
+Message-ID: <5112797E.9010504@digi.com>
+Date: Wed, 6 Feb 2013 16:40:46 +0100
+From: Javier Viguera <javier.viguera@digi.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <51126B76.1060108@mlbassoc.com>
-In-Reply-To: <51126B76.1060108@mlbassoc.com>
-Subject: Re: Running Sato/X11 as non-root
+To: <yocto@yoctoproject.org>
+Subject: systemtap fetch failure on 'danny' (cherry-pick fix from master)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,58 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 14:55:16 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 06 Feb 2013 15:40:59 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 06/02/13 14:40, Gary Thomas wrote:
-> In my attempt to get pulseaudio running, I need to bring up
-> my X11 session with a user that is not root.  The default
-> (core-image-sato) always starts X11 as root.  This yields
-> these errors when starting (with pulseaudio installed):
->   W: [pulseaudio] main.c: This program is not intended to be run as root
-> (unless --system is specified).
->   E: [autospawn] core-util.c: Home directory /home/root not ours.
->   W: [autospawn] lock-autospawn.c: Cannot access autospawn lock.
->   E: [pulseaudio] main.c: Failed to acquire autospawn lock
->   W: [pulseaudio] main.c: This program is not intended to be run as root
-> (unless --system is specified).
->   E: [autospawn] core-util.c: Home directory /home/root not ours.
->   W: [autospawn] lock-autospawn.c: Cannot access autospawn lock.
->   E: [pulseaudio] main.c: Failed to acquire autospawn lock
-> 
-> So, I tried to make X run as user 'demo', which I created, by
-> putting 'demo' in /etc/X11/Xusername.  Now it seems to try
-> and run as 'demo', but falls over quite quickly:
->   Fatal server error:
->   [2951371.651] xf86OpenConsole: Cannot open /dev/tty0 (No such file or
-> directory)
->   [2951371.651]
->   [2951371.651] (EE)
->   Please consult the The X.Org Foundation support
->          at http://wiki.x.org for help.
->   [2951371.651] (EE) Please also check the log file at
-> "/var/log/Xorg.0.log" for additional information.
->   [2951371.651] (EE)
->   [2951371.652] (WW) xf86CloseConsole: KDSETMODE failed: Bad file
-> descriptor
->   [2951371.652] (WW) xf86CloseConsole: VT_GETMODE failed: Bad file
-> descriptor
->   [2951371.652] Server terminated with error (1). Closing log file.
-> 
-> Any ideas how I get this going?
-> 
-> n.b. not only do I want to get this going for myself, but I think
-> the discussion (and maybe subsequent documentation) is useful since
-> this functionality is in OE-core (or is it only Poky/Yocto - hard
-> to tell)...
+Hi all,
 
-The user that the rootless X in Poky is expecting is called xuser; if
-you use your own, you need to make sure that it's in all the appropriate
-groups the server needs it to be in, etc.; see the xserver-nodm-init recipe.
+Using 'danny' branch to build a rootfs image i sometimes get a 
+'systemtap' fetch failure:
 
-Tomas
+> ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
+> Cloning into bare repository '.../downloads/git2/sources.redhat.com.git.systemtap.git'...
+>
+> fatal: unable to connect to sources.redhat.com:
+> sources.redhat.com[0: 209.132.183.64]: errno=Connection timed out
 
--- 
-http://sleepfive.com
+This seems to be fixed in 'master' branch:
+
+commit f3f4ac33ee7fa9cd35d06821fc3e26077303998a
+Author: Maxin B. John <Maxin.John@enea.com>
+Date:   Fri Dec 14 13:00:28 2012 +0100
+
+     Update the SRC_URI in systemtap recipe
+
+
+Could that commit be cherry-picked to 'danny'?
+
+It doesn't seem to be very dangerous as it's only a SRC_URI change.
+
+-
+Javier Viguera
+Software Engineer
+Digi International® Spain S.A.U.
 
