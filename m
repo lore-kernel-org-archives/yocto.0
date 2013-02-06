@@ -1,33 +1,32 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9005E002AB
-	for <yocto@yoctoproject.org>; Tue,  5 Feb 2013 16:22:06 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 05 Feb 2013 16:22:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,610,1355126400"; d="scan'208";a="253095244"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by azsmga001.ch.intel.com with ESMTP; 05 Feb 2013 16:22:05 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.83]) with mapi id
-	14.01.0355.002; Tue, 5 Feb 2013 16:22:05 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [RFC v3 00/18][eclipse-poky] Storing yocto settings as
-	target profiles
-Thread-Index: AQHOAqpj/jtZZu1iQE6Qpi/xnYXbvZhr8kog
-Date: Wed, 6 Feb 2013 00:22:05 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C57DE03DC@ORSMSX101.amr.corp.intel.com>
-References: <cover.1359962724.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1359962724.git.timo.mueller@bmw-carit.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFC v3 00/18][eclipse-poky] Storing yocto settings as	target profiles
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-da0-f49.google.com (mail-da0-f49.google.com
+	[209.85.210.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA689E0034C
+	for <yocto@yoctoproject.org>; Tue,  5 Feb 2013 21:39:20 -0800 (PST)
+Received: by mail-da0-f49.google.com with SMTP id t11so448552daj.36
+	for <yocto@yoctoproject.org>; Tue, 05 Feb 2013 21:39:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=HZ3Bd2+eRBCxKeUBzI6O9hrJrnYa1T5+hShJJp10PEU=;
+	b=LukxHY7QY8atU0LeuiOmQQlA0DB9WdbVtbEo9df44W7aox4r6BIItL2yUMWSmg9myX
+	+rzChnrnQjylzI9SMB4Kog2oC+mesrGdIM8NRy4bDvBdG9G4uPlHyFlyiNDqcOMJgwEV
+	mNXzNZ/A1YkT82HQmcEz7bPruM7DpSAYAEkyVAweJxDpzOu1nJVtsw9OMAoL/J+dg6OM
+	Tw3dRmGnm9gQCZDaDCIjMVzyDT0Sk8u3MaAijs85cMl15ZKkIucA9tLCMWVRr+YbQMhM
+	RwvAOdH4VoLtT6AjyX3TOa/Pi0t+Nl4f16pQ7dr8qOKkkiJcH/I+bYCYtohbPmCR67dC
+	Ljqw==
+X-Received: by 10.66.85.161 with SMTP id i1mr5468337paz.67.1360129160229;
+	Tue, 05 Feb 2013 21:39:20 -0800 (PST)
+Received: from isis.gateway.2wire.net
+	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
+	by mx.google.com with ESMTPS id d8sm34915669pax.23.2013.02.05.21.39.18
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 05 Feb 2013 21:39:19 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  5 Feb 2013 21:38:53 -0800
+Message-Id: <1360129133-7778-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-yocto][PATCH] poky.conf: Add Ubuntu 12.04.2 to sanity tested distros
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,147 +38,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 00:22:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Feb 2013 05:39:20 -0000
 
-Hi Timo,
+I have been running poky master on this distro for some time
+now, this fix will avoid the warning about validated distros
+during bitbake parse phase.
 
-The patch series looks much better.  Here're few things we probably need to=
- refine or explore a little bit more:
-1. when I remove a profile, I'll get the following warning "Do you really w=
-ant to the remove the target profile "profile-ide"?Projects using this targ=
-et profile will be reconfigured to use the standard profile".  But the real=
-ity is the project that is configured using the deleted profile won't be af=
-fected at all.  You can go to the project->properties->Yocto Project Settin=
-g to check.  So the message really should be: The standard profile will be =
-used for Yocto Project ADT preference.
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ meta-yocto/conf/distro/poky.conf |    1 +
+ 1 file changed, 1 insertion(+)
 
-2.  As to the "Save as.." button style consistency concern, yeah I can see =
-it's a little bit unconventional.  But my issue with new button is it gives=
- the impression a separate wizard will show up to guide through the creatio=
-n instead of just using the content on the page.  Probably an "Add" button =
-is less confusing and I've seen it's used on some pages and put it up besid=
-es the combobox?
+diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+index 1d4e6f2..cb54d3f 100644
+--- a/meta-yocto/conf/distro/poky.conf
++++ b/meta-yocto/conf/distro/poky.conf
+@@ -76,6 +76,7 @@ SANITY_TESTED_DISTROS ?= " \
+             Ubuntu 10.04.4 LTS \n \
+             Ubuntu 11.10 \n \
+             Ubuntu 12.04 LTS \n \
++            Ubuntu 12.04.2 LTS \n \
+             Ubuntu 12.04.1 LTS \n \
+             Ubuntu 12.10 \n \
+             Fedora release 16 (Verne) \n \
+-- 
+1.7.9.5
 
-3. The whole profile idea is applicable to per project ADT setting as well.=
- By default it inherits what is set for the whole ADT plug-in in the prefer=
-ence window.  But it can be something different aka. A different profile.  =
-Any plan to extend the capability here?
-
-Any further thoughts?
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Timo Mueller
-Sent: Sunday, February 03, 2013 11:36 PM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [RFC v3 00/18][eclipse-poky] Storing yocto settings as tar=
-get profiles
-
-From: Timo Mueller <timo.mueller@bmw-carit.de>
-
-Hi,
-
-thanks for the feedback, I did some changes to the patch series accordingly=
-.
-
-First of all I've fixed the issues with the patches (duplicate method, miss=
-ing fix for NewYoctoCProjectTemplate.java).
-
-I also changed the functionality of the "new" button according to Jessica's=
- feedback. The logic is changed to a "Save as ..."
-approach. If the button is clicked the current values of the form are check=
-ed. If these are valid, the user can enter a name to store them as a new pr=
-ofile.
-
-The last patch moves the "Save as ..." button to the bottom of the preferen=
-ce page alongside with the "perform defaults" and the "apply"
-button. I created this patch as a proof of concept because I thought it wou=
-ld be a good idea to move it.
-I used the contributeButtons hook of the preference page to achieve this, b=
-ut this only allows adding the "Save as ..." button left to the "perform de=
-faults" button. So the order of the buttons is a bit confusing.
-I further checked several other preference pages of eclipse and it seems li=
-ke none of them is using this hook to add new buttons. Instead all have a n=
-ew button next to the comboboxes (e.g. Formatter for CDT and JDT).
-So I would plead against moving it to the bottom to have a more consistent =
-and less confusing ui.
-
-From the original cover letter:
-<snip>
-currently the yocto settings can be changed globally through eclipse's pref=
-erences or locally in the project properties. But the standard configuratio=
-n stored in the global preferences sometimes changes, e.g. if a new version=
- of the toolchain or the sysroot is released.
-If you change the global settings to the updated toolchain or sysroot your =
-old working configuration is gone. If you want to reuse this configuration =
-at a later point in time you have to (remember and) re-enter everthing.
-This patch set introduces the possiblity to store a configuration under a u=
-nique name, a so called target profile, and be able to select the default t=
-arget profile that is used for new projects.
-Building upon this change the target profiles could later also be used in t=
-he project settings and be able to quickly build and debug your software fo=
-r different hard- and software combinations.
-</snip>
-
-Best regards,
-Timo
-
-
-Atanas Gegov (4):
-  plugins/sdk.ide: Extract labels to private members
-  plugins/sdk.ide: Add method to enable and disable form
-  plugins/sdk.ide: Set value of target array on input change
-  plugins/sdk.ide: Create UI element for managing target profiles.
-
-Timo Mueller (14):
-  plugins/sdk.ide: Removed unused message
-  plugins/sdk.ide: Changed method signature to be more consistent
-  plugins/sdk.ide: Modified preferences storage to support profiles.
-  plugins/sdk.ide: Set profile on selection change
-  plugins/sdk.ide: Add method to allow storing the current settings
-  plugins/sdk.ide: Add UI method to create a new profile
-  plugins/sdk.ide: Add UI method to delete a profile
-  plugins/sdk.ide: Add UI method to rename a profile
-  plugins/sdk.ide: Add method to change values of the preference page
-  plugins/sdk.ide: Add method to rename a profile and its preference
-    store
-  plugins/sdk.ide: Add method to delete a profile
-  plugins/sdk.ide: Use profiles for the preference page
-  plugins/sdk.ide: Added profile UI to the preference page
-  plugins/sdk.ide: Moved save as button to bottom of preference page
-
- .../src/org/yocto/sdk/ide/YoctoProfileElement.java | 104 ++++++++++  .../s=
-rc/org/yocto/sdk/ide/YoctoProfileSetting.java | 211 +++++++++++++++++++++  =
-.../org/yocto/sdk/ide/YoctoSDKMessages.properties  |  19 +-
- .../src/org/yocto/sdk/ide/YoctoSDKPlugin.java      |   9 +
- .../org/yocto/sdk/ide/YoctoSDKProjectNature.java   |  10 +-
- .../src/org/yocto/sdk/ide/YoctoSDKUtils.java       |  62 ++++--
- .../src/org/yocto/sdk/ide/YoctoUISetting.java      |  60 +++++-
- .../sdk/ide/preferences/PreferenceConstants.java   |   5 +
- .../sdk/ide/preferences/PreferenceInitializer.java |  22 ++-  .../ide/pref=
-erences/ProfileNameInputValidator.java |  63 ++++++
- .../ide/preferences/YoctoSDKPreferencePage.java    | 133 ++++++++++---
- .../preferences/YoctoSDKProjectPropertyPage.java   |   6 +-
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   7 +-
- 13 files changed, 646 insertions(+), 65 deletions(-)  create mode 100644 p=
-lugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileElement.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoPr=
-ofileSetting.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/prefere=
-nces/ProfileNameInputValidator.java
-
---
-1.7.11.7
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
