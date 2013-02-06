@@ -1,37 +1,34 @@
-Return-Path: <Javier.Viguera@digi.com>
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 008D9E00527
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 07:40:58 -0800 (PST)
-Received: from [216.82.241.196:9705] by server-11.bemta-8.messagelabs.com id
-	61/40-04159-98972115; Wed, 06 Feb 2013 15:40:57 +0000
-X-Env-Sender: Javier.Viguera@digi.com
-X-Msg-Ref: server-10.tower-46.messagelabs.com!1360165255!30426976!1
-X-Originating-IP: [66.77.174.14]
-X-StarScan-Received: 
-X-StarScan-Version: 6.7; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 22184 invoked from network); 6 Feb 2013 15:40:55 -0000
-Received: from mail.mx2.digi.com (HELO mcl-sms-ns2.DIGI.COM) (66.77.174.14)
-	by server-10.tower-46.messagelabs.com with RC4-SHA encrypted SMTP;
-	6 Feb 2013 15:40:55 -0000
-Received: from mcl-sms-exch01.digi.com (10.5.8.50) by mail.mx2.digi.com
-	(172.16.1.14) with Microsoft SMTP Server (TLS) id 8.3.297.1;
-	Wed, 6 Feb 2013 09:41:06 -0600
-Received: from dor-sms-exch01.digi.com (10.49.8.100) by
-	mcl-sms-exch01.digi.com (10.5.8.50) with Microsoft SMTP Server (TLS) id
-	8.3.297.1; Wed, 6 Feb 2013 09:40:54 -0600
-Received: from [10.101.1.79] (10.101.1.79) by dor-sms-exch01.digi.com
-	(10.49.8.100) with Microsoft SMTP Server (TLS) id 8.3.297.1;
-	Wed, 6 Feb 2013 16:40:52 +0100
-Message-ID: <5112797E.9010504@digi.com>
-Date: Wed, 6 Feb 2013 16:40:46 +0100
-From: Javier Viguera <javier.viguera@digi.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E8DDE00527
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 07:48:35 -0800 (PST)
+Received: by mail-vc0-f170.google.com with SMTP id p16so947573vcq.15
+	for <yocto@yoctoproject.org>; Wed, 06 Feb 2013 07:48:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=o3XvsXTsLtv/dKycgtdie71HfmmI3Xup700w7nF/a+M=;
+	b=dcLSUr49XRyuJkLKyAowX5gp21MpuqZ24wtPdjN11TtFRZ+dSAM3WqwOuAxo1MEjyY
+	H+qfYo/TbIEcdrFB1FISKfbFgs8Uf49JSJ13p0L4ezmBsq98gw7ibLEt0M6fOZPQgtVL
+	/wROe093e6eynyY7SX+KrCt+k4gYgoQqXJtfdyrpOjVegvZWU8HomzterlPh2+R1hNbN
+	T4I0IUOPg6bIJacbjRuaOp/Bj0lK4dMYZXs087C5fg2DFe0l0ugAYxSuDcq6a/U15GQP
+	VsjEi+wQGpa6eRU4c0bXLQbedYAqYymIf3wYtDE+11ju57ULjkU9Z9eXBjXTBIFKz51Z
+	eblQ==
+X-Received: by 10.52.90.243 with SMTP id bz19mr24978877vdb.112.1360165714682; 
+	Wed, 06 Feb 2013 07:48:34 -0800 (PST)
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-Subject: systemtap fetch failure on 'danny' (cherry-pick fix from master)
+Received: by 10.58.95.131 with HTTP; Wed, 6 Feb 2013 07:48:14 -0800 (PST)
+In-Reply-To: <5112797E.9010504@digi.com>
+References: <5112797E.9010504@digi.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 6 Feb 2013 15:48:14 +0000
+Message-ID: <CAJTo0LYeNK8eEVX5_GV_s9AC40o9cbXdsEHh_M1h8-ZEhqBF-Q@mail.gmail.com>
+To: Javier Viguera <javier.viguera@digi.com>
+X-Gm-Message-State: ALoCoQm8BLEa9TEjB8itivy/Ay1pkmJnZBhzJLYwoN/iQR1kB2qceb6Mnf8hfWKQWLgCWR0Isav4
+Cc: yocto@yoctoproject.org
+Subject: Re: systemtap fetch failure on 'danny' (cherry-pick fix from master)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,36 +40,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 15:40:59 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 06 Feb 2013 15:48:35 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi all,
-
-Using 'danny' branch to build a rootfs image i sometimes get a 
-'systemtap' fetch failure:
-
-> ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
-> Cloning into bare repository '.../downloads/git2/sources.redhat.com.git.systemtap.git'...
+On 6 February 2013 15:40, Javier Viguera <javier.viguera@digi.com> wrote:
+> This seems to be fixed in 'master' branch:
 >
-> fatal: unable to connect to sources.redhat.com:
-> sources.redhat.com[0: 209.132.183.64]: errno=Connection timed out
+> commit f3f4ac33ee7fa9cd35d06821fc3e26077303998a
+> Author: Maxin B. John <Maxin.John@enea.com>
+> Date:   Fri Dec 14 13:00:28 2012 +0100
+>
+>     Update the SRC_URI in systemtap recipe
+>
+>
+> Could that commit be cherry-picked to 'danny'?
 
-This seems to be fixed in 'master' branch:
+You'll be pleased to know it's in danny-next already, so should be
+hitting danny in the next day or so.
 
-commit f3f4ac33ee7fa9cd35d06821fc3e26077303998a
-Author: Maxin B. John <Maxin.John@enea.com>
-Date:   Fri Dec 14 13:00:28 2012 +0100
-
-     Update the SRC_URI in systemtap recipe
-
-
-Could that commit be cherry-picked to 'danny'?
-
-It doesn't seem to be very dangerous as it's only a SRC_URI change.
-
--
-Javier Viguera
-Software Engineer
-Digi International® Spain S.A.U.
+Ross
 
