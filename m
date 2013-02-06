@@ -1,24 +1,22 @@
 Return-Path: <tf+lists.yocto@r-finger.com>
 Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0434BE00527
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 06:44:57 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30168E0070F
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 06:55:16 -0800 (PST)
 Received: from [192.168.0.2] (host86-137-74-187.range86-137.btcentralplus.com
 	[86.137.74.187]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 4B9619BF8
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 14:44:56 +0000 (GMT)
-Message-ID: <51126C68.3020107@r-finger.com>
-Date: Wed, 06 Feb 2013 14:44:56 +0000
+	by r-finger.com (Postfix) with ESMTPSA id 786329BF8
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 14:55:15 +0000 (GMT)
+Message-ID: <51126ED3.8040503@r-finger.com>
+Date: Wed, 06 Feb 2013 14:55:15 +0000
 From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <5110FEC9.5070100@mlbassoc.com>
-	<CAJTo0La9XGj6kvHG68orgj=sUz3xHfEbPBkzUxqSbAoBtstzKQ@mail.gmail.com>
-	<51125FBC.2090905@mlbassoc.com>
-In-Reply-To: <51125FBC.2090905@mlbassoc.com>
-Subject: Re: pulseaudio madness
+References: <51126B76.1060108@mlbassoc.com>
+In-Reply-To: <51126B76.1060108@mlbassoc.com>
+Subject: Re: Running Sato/X11 as non-root
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,44 +28,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 14:44:57 -0000
+X-List-Received-Date: Wed, 06 Feb 2013 14:55:16 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/02/13 13:50, Gary Thomas wrote:
-> On 2013-02-05 06:52, Burton, Ross wrote:
->> Hi Gary,
->>
->> On 5 February 2013 12:44, Gary Thomas <gary@mlbassoc.com> wrote:
->>> I have a multi-media application/system (built with Poky/Yocto of
->>> course)
->>> that is currently using ALSA for the sound.  This works great but now
->>> I'd like to be able to share some of the sound resources, in particular
->>> the audio output (speakers).  To satisfy this, I looked at pulseaudio,
->>> but I'm overwhelmed by the package choices (there are 120 packages),
->>> not to mention what to do about configuration.
->>>
->>> I don't see any examples (images, etc) that use pulseaudio.
->>>
->>> Does anyone have any recommendations on what I might need to install,
->>> how to configure it, etc, to take over from my simple ALSA setup?
->>
->> The top tip is the PulseAudio documentation on the web site, that
->> lists all the plugins and what they do.  The pulseaudio-server package
->> depends on all of the important plugins, so that gives you a working
->> PA setup once you've started it.
->>
->> You might want to have a look at Guacamayo's use of PA, that uses it
->> and will automatically switch output when new speakers are plugged in
->> too.    https://github.com/Guacamayo
+On 06/02/13 14:40, Gary Thomas wrote:
+> In my attempt to get pulseaudio running, I need to bring up
+> my X11 session with a user that is not root.  The default
+> (core-image-sato) always starts X11 as root.  This yields
+> these errors when starting (with pulseaudio installed):
+>   W: [pulseaudio] main.c: This program is not intended to be run as root
+> (unless --system is specified).
+>   E: [autospawn] core-util.c: Home directory /home/root not ours.
+>   W: [autospawn] lock-autospawn.c: Cannot access autospawn lock.
+>   E: [pulseaudio] main.c: Failed to acquire autospawn lock
+>   W: [pulseaudio] main.c: This program is not intended to be run as root
+> (unless --system is specified).
+>   E: [autospawn] core-util.c: Home directory /home/root not ours.
+>   W: [autospawn] lock-autospawn.c: Cannot access autospawn lock.
+>   E: [pulseaudio] main.c: Failed to acquire autospawn lock
 > 
-> Thanks, that helped.  I've built Guacamayo for my RaspberryPi and
-> can see how it's set up.
+> So, I tried to make X run as user 'demo', which I created, by
+> putting 'demo' in /etc/X11/Xusername.  Now it seems to try
+> and run as 'demo', but falls over quite quickly:
+>   Fatal server error:
+>   [2951371.651] xf86OpenConsole: Cannot open /dev/tty0 (No such file or
+> directory)
+>   [2951371.651]
+>   [2951371.651] (EE)
+>   Please consult the The X.Org Foundation support
+>          at http://wiki.x.org for help.
+>   [2951371.651] (EE) Please also check the log file at
+> "/var/log/Xorg.0.log" for additional information.
+>   [2951371.651] (EE)
+>   [2951371.652] (WW) xf86CloseConsole: KDSETMODE failed: Bad file
+> descriptor
+>   [2951371.652] (WW) xf86CloseConsole: VT_GETMODE failed: Bad file
+> descriptor
+>   [2951371.652] Server terminated with error (1). Closing log file.
 > 
-> One thing I'm missing is how the pulseaudio server gets started?
+> Any ideas how I get this going?
+> 
+> n.b. not only do I want to get this going for myself, but I think
+> the discussion (and maybe subsequent documentation) is useful since
+> this functionality is in OE-core (or is it only Poky/Yocto - hard
+> to tell)...
 
-Depends on the image type, either from /eta/xdg/autostart, or for the
-audiplayer image from the /etc/init.d/guacamayo-session-* script.
+The user that the rootless X in Poky is expecting is called xuser; if
+you use your own, you need to make sure that it's in all the appropriate
+groups the server needs it to be in, etc.; see the xserver-nodm-init recipe.
 
 Tomas
+
+-- 
+http://sleepfive.com
 
