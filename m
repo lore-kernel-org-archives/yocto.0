@@ -1,41 +1,25 @@
-Return-Path: <Javier.Viguera@digi.com>
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31BD1E00527
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 07:55:42 -0800 (PST)
-Received: from [216.82.241.196:50305] by server-16.bemta-8.messagelabs.com id
-	C6/A3-23722-EFC72115; Wed, 06 Feb 2013 15:55:42 +0000
-X-Env-Sender: Javier.Viguera@digi.com
-X-Msg-Ref: server-14.tower-46.messagelabs.com!1360166141!30502113!1
-X-Originating-IP: [66.77.174.13]
-X-StarScan-Received: 
-X-StarScan-Version: 6.7; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 28379 invoked from network); 6 Feb 2013 15:55:42 -0000
-Received: from mail.mx3.digi.com (HELO mcl-sms-ns1.digi.com) (66.77.174.13)
-	by server-14.tower-46.messagelabs.com with RC4-SHA encrypted SMTP;
-	6 Feb 2013 15:55:42 -0000
-Received: from mcl-sms-exch01.digi.com (10.5.8.50) by mail.mx1.digi.com
-	(172.16.1.13) with Microsoft SMTP Server (TLS) id 8.3.297.1;
-	Wed, 6 Feb 2013 09:55:37 -0600
-Received: from dor-sms-exch01.digi.com (10.49.8.100) by
-	mcl-sms-exch01.digi.com (10.5.8.50) with Microsoft SMTP Server (TLS) id
-	8.3.297.1; Wed, 6 Feb 2013 09:55:41 -0600
-Received: from [10.101.1.79] (10.101.1.79) by dor-sms-exch01.digi.com
-	(10.49.8.100) with Microsoft SMTP Server (TLS) id 8.3.297.1;
-	Wed, 6 Feb 2013 16:55:39 +0100
-Message-ID: <51127CFA.9060403@digi.com>
-Date: Wed, 6 Feb 2013 16:55:38 +0100
-From: Javier Viguera <javier.viguera@digi.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22E4DE00527
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 08:40:33 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id C8CEFF8123D; Wed,  6 Feb 2013 09:40:32 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id B389AF8122A;
+	Wed,  6 Feb 2013 09:40:31 -0700 (MST)
+Message-ID: <51128785.5060206@mlbassoc.com>
+Date: Wed, 06 Feb 2013 09:40:37 -0700
+From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <5112797E.9010504@digi.com>
-	<CAJTo0LYeNK8eEVX5_GV_s9AC40o9cbXdsEHh_M1h8-ZEhqBF-Q@mail.gmail.com>
-In-Reply-To: <CAJTo0LYeNK8eEVX5_GV_s9AC40o9cbXdsEHh_M1h8-ZEhqBF-Q@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: systemtap fetch failure on 'danny' (cherry-pick fix from master)
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: User id/group not quite right?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,20 +31,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 15:55:43 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 06 Feb 2013 16:40:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Just checking on the X11 user 'xuser' which should be created
+with a bunch of groups via this recipe snippet:
+   USERADD_PARAM_${PN} = "--create-home \
+                          --groups video,tty,audio \
+                          --user-group xuser"
 
+However, when I log in as 'xuser', I don't see them?
+   login: xuser
+   $ id
+   uid=1001(xuser) gid=1001(xuser) groups=1001(xuser)
+   $ grep xuser /etc/group
+   tty:x:5:demo,xuser
+   audio:x:29:demo,xuser,pulse
+   video:x:44:demo,xuser
+   xuser:x:1001:
 
-On 02/06/2013 04:48 PM, Burton, Ross wrote:
-> You'll be pleased to know it's in danny-next already, so should be
-> hitting danny in the next day or so.
+They do seem to be set though:
+   $ python
+   Python 2.7.3 (default, Jan 15 2013, 10:27:28)
+   [GCC 4.7.2] on linux2
+T  ype "help", "copyright", "credits" or "license" for more information.
+   >>> import os
+   >>> os.getgroups()
+   [5, 29, 44, 1001]
 
-Good to know. Thanks.
+Looks like the busybox 'id' applet is broken?
 
--
-Javier Viguera
-Software Engineer
-Digi International® Spain S.A.U.
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
