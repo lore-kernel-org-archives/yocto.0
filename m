@@ -1,30 +1,30 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B82CCE00527
-	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 14:43:29 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 351AFF8122A; Wed,  6 Feb 2013 15:43:29 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id B1671F81210;
-	Wed,  6 Feb 2013 15:43:27 -0700 (MST)
-Message-ID: <5112DC95.3040702@mlbassoc.com>
-Date: Wed, 06 Feb 2013 15:43:33 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <kazuya.nishimura@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 5611BE006EF
+	for <yocto@yoctoproject.org>; Wed,  6 Feb 2013 22:03:36 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r1763ZIs017542
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 6 Feb 2013 22:03:35 -0800 (PST)
+Received: from ALA-MBB.corp.ad.wrs.com ([169.254.1.63]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.02.0318.004;
+	Wed, 6 Feb 2013 22:03:33 -0800
+From: "Nishimura, Kazuya" <kazuya.nishimura@windriver.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Build issue on dlt-daemon
+Thread-Index: Ac4E+MzPnjZWqmpgQyG7eI9rSWMJxA==
+Date: Thu, 7 Feb 2013 06:03:34 +0000
+Message-ID: <11C819E15EE73E4496F190898E9A0BFE6638E336@ALA-MBB.corp.ad.wrs.com>
+Accept-Language: ja-JP, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ccmail-original-to: yocto@yoctoproject.org
+x-originating-ip: [147.11.60.224]
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <5110FEC9.5070100@mlbassoc.com>
-	<CAJTo0La9XGj6kvHG68orgj=sUz3xHfEbPBkzUxqSbAoBtstzKQ@mail.gmail.com>
-	<51125FBC.2090905@mlbassoc.com>
-In-Reply-To: <51125FBC.2090905@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: pulseaudio madness
+Subject: Build issue on dlt-daemon
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,56 +36,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Feb 2013 22:43:29 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 07 Feb 2013 06:03:36 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2013-02-06 06:50, Gary Thomas wrote:
-> On 2013-02-05 06:52, Burton, Ross wrote:
->> Hi Gary,
->>
->> On 5 February 2013 12:44, Gary Thomas <gary@mlbassoc.com> wrote:
->>> I have a multi-media application/system (built with Poky/Yocto of course)
->>> that is currently using ALSA for the sound.  This works great but now
->>> I'd like to be able to share some of the sound resources, in particular
->>> the audio output (speakers).  To satisfy this, I looked at pulseaudio,
->>> but I'm overwhelmed by the package choices (there are 120 packages),
->>> not to mention what to do about configuration.
->>>
->>> I don't see any examples (images, etc) that use pulseaudio.
->>>
->>> Does anyone have any recommendations on what I might need to install,
->>> how to configure it, etc, to take over from my simple ALSA setup?
->>
->> The top tip is the PulseAudio documentation on the web site, that
->> lists all the plugins and what they do.  The pulseaudio-server package
->> depends on all of the important plugins, so that gives you a working
->> PA setup once you've started it.
->>
->> You might want to have a look at Guacamayo's use of PA, that uses it
->> and will automatically switch output when new speakers are plugged in
->> too.    https://github.com/Guacamayo
->
-> Thanks, that helped.  I've built Guacamayo for my RaspberryPi and
-> can see how it's set up.
+Dear dlt-daemon developer,
 
-That said, I've not had much luck actually getting anything out of the
-audio :-(  I tried the guacamayo-image-mex-raspberrypi.rpi-sdimg which
-came up and gave me a nice display but it wasn't obvious how to import
-media and/or make it play.  I tried copying some files manually to the
-SD card, but they wouldn't play either.
+I came across a build error while building Excalibur image.
 
-Then I tried guacamayo-image-audioplayer-raspberrypi.rpi-sdimg and it
-was even less intuitive.
+The exact error log is attached below.
+The situation of the issue is that at first I built Excalibur image with MA=
+CHINE=3Dvexpressa9, then next time, change it to MACHINE=3Ddm814x-evm and b=
+uilt it, then the error happened. It seems dlt-daemon's Makefile still refe=
+rred previous sysroot.
+For a workaround, just clean the dlt-daemon, and rebuild again.
 
-Can you give me some guidance?  All I'd like to do is play a simple
-(.wav) file on y RaspberryPi using pulseaudio.
+I am not sure this is bug or not, but please check the clean sequence of dl=
+t-daemon if MACHINE value changes.
 
-Thanks
+Sincerely,
+Kaz Nishimura=20
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--- Error log ---
+| /home/knishimu/working/excalibur/genivi-baseline/build/tmp-eglibc-eglibc/=
+sysroots/i686-linux/usr/bin/armv7a-vfp-neon-oe-linux-gnueabi/arm-oe-linux-g=
+nueabi-gcc   -march=3Darmv7-a     -mthumb-interwork -mfloat-abi=3Dsoftfp -m=
+fpu=3Dneon -mtune=3Dcortex-a9  --sysroot=3D/home/knishimu/working/excalibur=
+/genivi-baseline/build/tmp-eglibc-eglibc/sysroots/vexpressa9  -O2 -g  -marc=
+h=3Darmv7-a     -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon -mtune=
+=3Dcortex-a9  --sysroot=3D/home/knishimu/working/excalibur/genivi-baseline/=
+build/tmp-eglibc-eglibc/sysroots/vexpressa9  -Wl,-O1 -Wl,--hash-style=3Dgnu=
+ -Wl,--as-needed -Wl,--as-needed  -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-n=
+eeded -Wl,--as-needed   -o dlt-convert -rdynamic ../lib/libdlt.so.2.9.0 -lr=
+t -lpthread -Wl,-rpath,/home/knishimu/working/excalibur/genivi-baseline/bui=
+ld/tmp-eglibc-eglibc/work/armv7a-vfp-neon-oe-linux-gnueabi/dlt-daemon-2.9.0=
+-r0/git/src/lib:
+| /home/knishimu/working/excalibur/genivi-baseline/build/tmp-eglibc-eglibc/=
+sysroots/vexpressa9/usr/lib/crt1.o: In function `_start':
+| init.c:(.text+0x34): undefined reference to `main'
+| collect2: error: ld returned 1 exit status
+| make[2]: *** [src/console/dlt-convert] Error 1
+---
 
