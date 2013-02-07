@@ -1,30 +1,32 @@
-Return-Path: <munoz0raul@gmail.com>
-Received: from mail-ia0-f177.google.com (mail-ia0-f177.google.com
-	[209.85.210.177]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id D8960E002AB;
-	Thu,  7 Feb 2013 12:26:47 -0800 (PST)
-Received: by mail-ia0-f177.google.com with SMTP id h8so3373782iaa.22
-	for <multiple recipients>; Thu, 07 Feb 2013 12:26:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=hdgBnGQ25okWCxm2rV+bHkV/ku6g6cKDrfYvDqYRQ9Q=;
-	b=c0U2kkywgnVYncFvRgSwspa0YGly3GGOXCFzefy8vzYh9E7kCmIm4+LkkgwMJnUaYu
-	vexFVcwuwPfdwT9YLLbtJQuC4dzwGWDxlKePYnpK11wfQW1k5CIc3NQ1VKVA+6Vy8oSH
-	itJJS6lOpN4URPoomMun/PmJJ5i7aol+hwFMpx01ztMtIaL74KT5An1HfIe8mLWuPLx2
-	DzCzUOZFCS2G4ZGLIiPiMwFiUy6JTVP3Ig0+NVJnAcq2gG8XCGtvHYPeGFLunNe9sXGT
-	uKZzWJ1Va9QkT5/WEjlPz9M+8LZMmosPaRrXNJmTSjr6n20k+UN6j0FA5Gxiavvi9fxS
-	uAow==
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A0BCE002AB
+	for <yocto@yoctoproject.org>; Thu,  7 Feb 2013 13:19:55 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 07 Feb 2013 13:19:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,623,1355126400"; 
+	d="scan'208,217";a="253975633"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by azsmga001.ch.intel.com with ESMTP; 07 Feb 2013 13:19:42 -0800
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 7 Feb 2013 13:19:41 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.209]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.13.17]) with mapi id
+	14.01.0355.002; Thu, 7 Feb 2013 13:19:42 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project 1.4 M3 release readiness meeting
+Thread-Index: Ac4FeM+6A6jLeSc/RJ2+Tf74/VPuOAAAAQPw
+Date: Thu, 7 Feb 2013 21:19:41 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A598B0DD4@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Received: by 10.50.237.5 with SMTP id uy5mr5936203igc.12.1360268806819; Thu,
-	07 Feb 2013 12:26:46 -0800 (PST)
-Received: by 10.64.147.40 with HTTP; Thu, 7 Feb 2013 12:26:46 -0800 (PST)
-Date: Thu, 7 Feb 2013 18:26:46 -0200
-Message-ID: <CANmViriV1_tAO+j_nTkpZjcSRD8dh2ALXwHVs1QC-9_dDmrfFA@mail.gmail.com>
-From: Raul Rosetto Munoz <munoz0raul@gmail.com>
-To: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Wifi Module + udev configs
+Subject: FW: Yocto Project 1.4 M3 release readiness meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,167 +38,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Feb 2013 20:26:48 -0000
-Content-Type: multipart/alternative; boundary=f46d044787fb078e9c04d528434e
+X-List-Received-Date: Thu, 07 Feb 2013 21:19:56 -0000
+X-Groupsio-MsgNum: 11944
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A598B0DD4ORSMSX101amrcor_"
 
---f46d044787fb078e9c04d528434e
-Content-Type: text/plain; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A598B0DD4ORSMSX101amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
-I need to configure my yocto project to work with wifi dongle realteck
-rtl8192cu.
-
-I'm using this building configuration:
-
-Build Configuration:
-BB_VERSION        =3D "1.16.0"
-TARGET_ARCH       =3D "arm"
-TARGET_OS         =3D "linux-gnueabi"
-MACHINE           =3D "beaglebone"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.3"
-TUNE_FEATURES     =3D "armv7a vfp neon cortexa8"
-TARGET_FPU        =3D "vfp-neon"
-meta
-meta-yocto        =3D "danny:47b0864fbd65746558d8186450c182d98bac78ca"
-meta-ti           =3D "danny:1e898d9b619545dadf2ececad81cd58cdf37c8cd"
-meta-oe
 
 
-First, I built all the modules needed for the wifi dongle and installed in
-Angstron standard distro.
+-----Original Appointment-----
+From: Liu, Song
+Sent: Thursday, February 07, 2013 1:19 PM
+To: Liu, Song; Petrisor, Ileana; Damian, Alexandru; Patel, Keyur R; Szankin=
+, Maciej; Moisan, Radu; 'Anders Darander'; Barros Pena, Belen; Bodke, Kisho=
+re K; 'Bruce Ashfield'; 'Daniel Cauchy'; 'deVries, Alex'; 'Dixon, Brad'; Dm=
+ytriyenko, Denys; Erway, Tracey M; Flanagan, Elizabeth; Hart, Darren; 'Hatl=
+e, Mark'; 'Jeremy Puhlman'; Kridner, Jason; 'Lieu.Ta@windriver.com'; Lock, =
+Joshua; 'McCombe, Kevin'; Moeller, Thorsten; 'Sanjay Raina'; Osier-mixon, J=
+effrey; 'Polk, Jeffrey'; Purdie, Richard; 'Ranslam, Rob'; Saxena, Rahul; St=
+ewart, David C; Wold, Saul; Zanussi, Tom; Zhang, Jessica; Rifenbark, Scott =
+M; 'Hudson, Sean'; Serban, Laurentiu; Burton, Ross; Mueller, Robert; Arce M=
+oreno, Abraham; 'Ravi Vompolu'; 'Sadiq, Irfan'; Santana Lopez, Mario A; Cal=
+les Palacios, Osvaldo; 'achaudha@mvista.com'; Popa, Valentin; Moses, Fred; =
+Iorga, Cristian; SSD-OTC Romania Yocto QA; Palalau, AlexandruX; 'Butler, Pa=
+ul'; Mirea, Viorel; Kamble, Nitin A; Grigoropol, IoanaX; Olivia Salisbury; =
+'Chris Kaminski'; Lindner, MihaiX; Burton, Ross; Maupin, Chase; Darren Hart
+Subject: Yocto Project 1.4 M3 release readiness meeting
+When: Friday, February 08, 2013 8:30 AM-9:00 AM (UTC-08:00) Pacific Time (U=
+S & Canada).
+Where: Bridge Info Enclosed
 
-This worked well and I had the following lsmod:
 
-Module                  Size  Used by
-arc4                    1183  2
-rtl8192cu              73042  0
-rtl8192c_common        52118  1 rtl8192cu
-rtlwifi                57197  1 rtl8192cu
-mac80211              149274  3 rtl8192cu,rtl8192c_common,rtlwifi
-cfg80211              122225  2 rtlwifi,mac80211
-rfkill                 14659  1 cfg80211
-g_mass_storage         24014  0
-ipv6                  209407  14
+Friday, February 08, 2013, 08:30 AM US Pacific Time
+916-356-2663, 8-356-2663, Bridge: 2, Passcode: 5524251
+Speed dialer: inteldialer://2,5524251 | Learn more<http://it.intel.com/prod=
+ucts/handhelds/speeddial.htm>
 
-Then I tried to do the same for my project and installed the following
-packages:
-packages:
 
-IMAGE_INSTALL_append =3D " \
-        libxml2 \
-        gnupg \
-        curl \
-        gdb \
-        curl-dev \
-        minicom \
-        lrzsz \
-        libcap \
-        ppp \
-        ppp-dialin \
-        usbutils \
-        mtd-utils \
-        openssh \
-        dhcp-server \
-        dhcp-client \
-        kernel-modules \
-        udev-extraconf \
-        wpa-supplicant \
-        i2c-tools \
-        update-modules \
-        modutils-initscripts \
-        zeroconf \
-        wireless-tools \
-        openssl \
-        net-tools \
-        busybox \
-        linux-firmware \
-        systemd \
-        connman"
 
-My first problem is that the module does not go up automatically rtl8192cu
-different than Angstron distro that when I plug the dongle all modules rise=
-.
-
-Another important difference is that on Angstron distro I have on /lib/udev
-the "firmware" binary file.  I really was not able to install this
-functionality in udev.
-
-Please some one can Help me to configure this device?
-
-And How to make this firmware binary go to /lib/udev?
-
-I have not found the way to configure the udev features.
-
-Thanks all for help.
-
---=20
-*Raul Rosetto Mu=F1oz*
-
---f46d044787fb078e9c04d528434e
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A598B0DD4ORSMSX101amrcor_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello All,</div><div>I need to configure my yocto pro=
-ject to work with wifi dongle realteck rtl8192cu.</div><div><br></div><div>=
-I&#39;m using this building configuration:</div><div><br></div><div>Build C=
-onfiguration:</div>
-<div>BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.16.0&quot;</div><div>TARGET_ARCH=
- =A0 =A0 =A0 =3D &quot;arm&quot;</div><div>TARGET_OS =A0 =A0 =A0 =A0 =3D &q=
-uot;linux-gnueabi&quot;</div><div>MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;bea=
-glebone&quot;</div><div>DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<=
-/div>
-<div>DISTRO_VERSION =A0 =A0=3D &quot;1.3&quot;</div><div>TUNE_FEATURES =A0 =
-=A0 =3D &quot;armv7a vfp neon cortexa8&quot;</div><div>TARGET_FPU =A0 =A0 =
-=A0 =A0=3D &quot;vfp-neon&quot;</div><div>meta =A0 =A0 =A0 =A0 =A0 =A0 =A0<=
-/div><div>meta-yocto =A0 =A0 =A0 =A0=3D &quot;danny:47b0864fbd65746558d8186=
-450c182d98bac78ca&quot;</div>
-<div>meta-ti =A0 =A0 =A0 =A0 =A0 =3D &quot;danny:1e898d9b619545dadf2ececad8=
-1cd58cdf37c8cd&quot;</div><div>meta-oe =A0 =A0 =A0 =A0 =A0=A0</div><div><br=
-></div><div><br></div><div>First, I built all the modules needed for the wi=
-fi dongle and installed in Angstron standard distro.</div>
-<div><br></div><div>This worked well and I had the following lsmod:</div><d=
-iv><br></div><div>Module =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0Size =A0Used by=
-</div><div>arc4 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A01183 =A02=A0</div><d=
-iv>rtl8192cu =A0 =A0 =A0 =A0 =A0 =A0 =A073042 =A00=A0</div>
-<div>rtl8192c_common =A0 =A0 =A0 =A052118 =A01 rtl8192cu</div><div>rtlwifi =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A057197 =A01 rtl8192cu</div><div>mac80211 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0149274 =A03 rtl8192cu,rtl8192c_common,rtlwifi</div><=
-div>cfg80211 =A0 =A0 =A0 =A0 =A0 =A0 =A0122225 =A02 rtlwifi,mac80211</div>
-<div>rfkill =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 14659 =A01 cfg80211</div><div>g=
-_mass_storage =A0 =A0 =A0 =A0 24014 =A00=A0</div><div>ipv6 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0209407 =A014=A0</div><div><br></div><div>Then I tried to=
- do the same for my project and installed the following packages:</div>
-<div>packages:</div><div><br></div><div>IMAGE_INSTALL_append =3D &quot; \</=
-div><div>=A0 =A0 =A0 =A0 libxml2 \</div><div>=A0 =A0 =A0 =A0 gnupg \</div><=
-div>=A0 =A0 =A0 =A0 curl \</div><div>=A0 =A0 =A0 =A0 gdb \</div><div>=A0 =
-=A0 =A0 =A0 curl-dev \</div><div>=A0 =A0 =A0 =A0 minicom \</div>
-<div>=A0 =A0 =A0 =A0 lrzsz \</div><div>=A0 =A0 =A0 =A0 libcap \</div><div>=
-=A0 =A0 =A0 =A0 ppp \</div><div>=A0 =A0 =A0 =A0 ppp-dialin \</div><div>=A0 =
-=A0 =A0 =A0 usbutils \</div><div>=A0 =A0 =A0 =A0 mtd-utils \</div><div>=A0 =
-=A0 =A0 =A0 openssh \</div><div>=A0 =A0 =A0 =A0 dhcp-server \</div>
-<div>=A0 =A0 =A0 =A0 dhcp-client \</div><div>=A0 =A0 =A0 =A0 kernel-modules=
- \</div><div>=A0 =A0 =A0 =A0 udev-extraconf \</div><div>=A0 =A0 =A0 =A0 wpa=
--supplicant \</div><div>=A0 =A0 =A0 =A0 i2c-tools \</div><div>=A0 =A0 =A0 =
-=A0 update-modules \</div><div>=A0 =A0 =A0 =A0 modutils-initscripts \</div>
-<div>=A0 =A0 =A0 =A0 zeroconf \</div><div>=A0 =A0 =A0 =A0 wireless-tools \<=
-/div><div>=A0 =A0 =A0 =A0 openssl \</div><div>=A0 =A0 =A0 =A0 net-tools \</=
-div><div>=A0 =A0 =A0 =A0 busybox \</div><div>=A0 =A0 =A0 =A0 linux-firmware=
- \</div><div>=A0 =A0 =A0 =A0 systemd \</div><div>=A0 =A0 =A0 =A0 connman&qu=
-ot;</div>
-<div><br></div><div>My first problem is that the module does not go up auto=
-matically rtl8192cu different than Angstron distro that when I plug the don=
-gle all modules rise.</div><div><br></div><div>Another important difference=
- is that on Angstron distro I have on /lib/udev the &quot;firmware&quot; bi=
-nary file. =A0I really was not able to install this functionality in udev.<=
-/div>
-<div><br></div><div>Please some one can Help me to configure this device?</=
-div><div><br></div><div>And How to make this firmware binary go to /lib/ude=
-v?</div><div><br></div><div>I have not found the way to configure the udev =
-features.</div>
-<div><br></div><div>Thanks all for help.</div><div><br></div>-- <br><b>Raul=
- Rosetto Mu=F1oz</b>
-</div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div><font color=3D"#1F497D">&nbsp;</font></div>
+<div><font color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
+Original Appointment-----<br>
 
---f46d044787fb078e9c04d528434e--
+<b>From:</b> Liu, Song <br>
+
+<b>Sent:</b> Thursday, February 07, 2013 1:19 PM<br>
+
+<b>To:</b> Liu, Song; Petrisor, Ileana; Damian, Alexandru; Patel, Keyur R; =
+Szankin, Maciej; Moisan, Radu; 'Anders Darander'; Barros Pena, Belen; Bodke=
+, Kishore K; 'Bruce Ashfield'; 'Daniel Cauchy'; 'deVries, Alex'; 'Dixon, Br=
+ad'; Dmytriyenko, Denys; Erway,
+Tracey M; Flanagan, Elizabeth; Hart, Darren; 'Hatle, Mark'; 'Jeremy Puhlman=
+'; Kridner, Jason; 'Lieu.Ta@windriver.com'; Lock, Joshua; 'McCombe, Kevin';=
+ Moeller, Thorsten; 'Sanjay Raina'; Osier-mixon, Jeffrey; 'Polk, Jeffrey'; =
+Purdie, Richard; 'Ranslam, Rob';
+Saxena, Rahul; Stewart, David C; Wold, Saul; Zanussi, Tom; Zhang, Jessica; =
+Rifenbark, Scott M; 'Hudson, Sean'; Serban, Laurentiu; Burton, Ross; Muelle=
+r, Robert; Arce Moreno, Abraham; 'Ravi Vompolu'; 'Sadiq, Irfan'; Santana Lo=
+pez, Mario A; Calles Palacios, Osvaldo;
+'achaudha@mvista.com'; Popa, Valentin; Moses, Fred; Iorga, Cristian; SSD-OT=
+C Romania Yocto QA; Palalau, AlexandruX; 'Butler, Paul'; Mirea, Viorel; Kam=
+ble, Nitin A; Grigoropol, IoanaX; Olivia Salisbury; 'Chris Kaminski'; Lindn=
+er, MihaiX; Burton, Ross; Maupin,
+Chase; Darren Hart<br>
+
+<b>Subject:</b> Yocto Project 1.4 M3 release readiness meeting<br>
+
+<b>When:</b> Friday, February 08, 2013 8:30 AM-9:00 AM (UTC-08:00) Pacific =
+Time (US &amp; Canada).<br>
+
+<b>Where:</b> Bridge Info Enclosed</span></font></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
+t-size:8.5pt;"><b>Friday, February 08, 2013, 08:30 AM US Pacific Time</b><b=
+>&nbsp;<br>
+
+</b>916-356-2663, 8-356-2663, Bridge: 2, Passcode: 5524251<br>
+
+Speed dialer: inteldialer://2,5524251 |&nbsp;<a href=3D"http://it.intel.com=
+/products/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></=
+font></a></span></font></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A598B0DD4ORSMSX101amrcor_
+Content-Type: text/calendar; charset="utf-8"; method=REQUEST
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
+ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
+IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
+VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
+TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
+R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
+VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
+PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
+Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
+b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
+VElPTjtMQU5HVUFHRT1lbi1VUzpcblxuLS0tLS1PcmlnaW5hbCBBcHBvaW50bWVudC0tLS0tXG5G
+cm9tOiBMaXVcLCANCiBTb25nXG5TZW50OiBUaHVyc2RheVwsIEZlYnJ1YXJ5IDA3XCwgMjAxMyAx
+OjE5IFBNXG5UbzogTGl1XCwgU29uZ1w7IFBldHJpcw0KIG9yXCwgSWxlYW5hXDsgRGFtaWFuXCwg
+QWxleGFuZHJ1XDsgUGF0ZWxcLCBLZXl1ciBSXDsgU3phbmtpblwsIE1hY2llalw7IE1vDQogaXNh
+blwsIFJhZHVcOyAnQW5kZXJzIERhcmFuZGVyJ1w7IEJhcnJvcyBQZW5hXCwgQmVsZW5cOyBCb2Rr
+ZVwsIEtpc2hvcmUgS1wNCiA7ICdCcnVjZSBBc2hmaWVsZCdcOyAnRGFuaWVsIENhdWNoeSdcOyAn
+ZGVWcmllc1wsIEFsZXgnXDsgJ0RpeG9uXCwgQnJhZCdcOw0KICBEbXl0cml5ZW5rb1wsIERlbnlz
+XDsgRXJ3YXlcLCBUcmFjZXkgTVw7IEZsYW5hZ2FuXCwgRWxpemFiZXRoXDsgSGFydFwsIERhDQog
+cnJlblw7ICdIYXRsZVwsIE1hcmsnXDsgJ0plcmVteSBQdWhsbWFuJ1w7IEtyaWRuZXJcLCBKYXNv
+blw7ICdMaWV1LlRhQHdpbmQNCiByaXZlci5jb20nXDsgTG9ja1wsIEpvc2h1YVw7ICdNY0NvbWJl
+XCwgS2V2aW4nXDsgTW9lbGxlclwsIFRob3JzdGVuXDsgJ1Nhbg0KIGpheSBSYWluYSdcOyBPc2ll
+ci1taXhvblwsIEplZmZyZXlcOyAnUG9sa1wsIEplZmZyZXknXDsgUHVyZGllXCwgUmljaGFyZFw7
+DQogICdSYW5zbGFtXCwgUm9iJ1w7IFNheGVuYVwsIFJhaHVsXDsgU3Rld2FydFwsIERhdmlkIENc
+OyBXb2xkXCwgU2F1bFw7IFphbnUNCiBzc2lcLCBUb21cOyBaaGFuZ1wsIEplc3NpY2FcOyBSaWZl
+bmJhcmtcLCBTY290dCBNXDsgJ0h1ZHNvblwsIFNlYW4nXDsgU2VyYg0KIGFuXCwgTGF1cmVudGl1
+XDsgQnVydG9uXCwgUm9zc1w7IE11ZWxsZXJcLCBSb2JlcnRcOyBBcmNlIE1vcmVub1wsIEFicmFo
+YW1cDQogOyAnUmF2aSBWb21wb2x1J1w7ICdTYWRpcVwsIElyZmFuJ1w7IFNhbnRhbmEgTG9wZXpc
+LCBNYXJpbyBBXDsgQ2FsbGVzIFBhbGENCiBjaW9zXCwgT3N2YWxkb1w7ICdhY2hhdWRoYUBtdmlz
+dGEuY29tJ1w7IFBvcGFcLCBWYWxlbnRpblw7IE1vc2VzXCwgRnJlZFw7IA0KIElvcmdhXCwgQ3Jp
+c3RpYW5cOyBTU0QtT1RDIFJvbWFuaWEgWW9jdG8gUUFcOyBQYWxhbGF1XCwgQWxleGFuZHJ1WFw7
+ICdCdXRsDQogZXJcLCBQYXVsJ1w7IE1pcmVhXCwgVmlvcmVsXDsgS2FtYmxlXCwgTml0aW4gQVw7
+IEdyaWdvcm9wb2xcLCBJb2FuYVhcOyBPbGkNCiB2aWEgU2FsaXNidXJ5XDsgJ0NocmlzIEthbWlu
+c2tpJ1w7IExpbmRuZXJcLCBNaWhhaVhcOyBCdXJ0b25cLCBSb3NzXDsgTWF1cA0KIGluXCwgQ2hh
+c2VcOyBEYXJyZW4gSGFydFxuU3ViamVjdDogWW9jdG8gUHJvamVjdCAxLjQgTTMgcmVsZWFzZSBy
+ZWFkaW5lc3MgDQogbWVldGluZ1xuV2hlbjogRnJpZGF5XCwgRmVicnVhcnkgMDhcLCAyMDEzIDg6
+MzAgQU0tOTowMCBBTSAoVVRDLTA4OjAwKSBQYWMNCiBpZmljIFRpbWUgKFVTICYgQ2FuYWRhKS5c
+bldoZXJlOiBCcmlkZ2UgSW5mbyBFbmNsb3NlZFxuXG5cbkZyaWRheVwsIEZlYnJ1YQ0KIHJ5IDA4
+XCwgMjAxM1wsIDA4OjMwIEFNIFVTIFBhY2lmaWMgVGltZVxuOTE2LTM1Ni0yNjYzXCwgOC0zNTYt
+MjY2M1wsIEJyaWRnDQogZTogMlwsIFBhc3Njb2RlOiA1NTI0MjUxXG5TcGVlZCBkaWFsZXI6IGlu
+dGVsZGlhbGVyOi8vMlwsNTUyNDI1MSB8IExlYXJuIG0NCiBvcmU8aHR0cDovL2l0LmludGVsLmNv
+bS9wcm9kdWN0cy9oYW5kaGVsZHMvc3BlZWRkaWFsLmh0bT5cblxuXG4NClNVTU1BUlk7TEFOR1VB
+R0U9ZW4tVVM6Rlc6IFlvY3RvIFByb2plY3QgMS40IE0zIHJlbGVhc2UgcmVhZGluZXNzIG1lZXRp
+bmcNCkRUU1RBUlQ7VFpJRD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxMzAyMDhUMDgzMDAwDQpE
+VEVORDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEzMDIwOFQwOTAwMDANClVJRDowNDAw
+MDAwMDgyMDBFMDAwNzRDNUI3MTAxQTgyRTAwODAwMDAwMDAwQjBGMTMyRkQyQjA1Q0UwMTAwMDAw
+MDAwMDAwMDAwMA0KIDAxMDAwMDAwMEQzODY3Mzk0NzUyRDI2NENCMUE5Qjk5ODY5NkJDOTU1DQpD
+TEFTUzpQVUJMSUMNClBSSU9SSVRZOjUNCkRUU1RBTVA6MjAxMzAyMDdUMjExOTI3Wg0KVFJBTlNQ
+Ok9QQVFVRQ0KU1RBVFVTOkNPTkZJUk1FRA0KU0VRVUVOQ0U6MQ0KTE9DQVRJT047TEFOR1VBR0U9
+ZW4tVVM6QnJpZGdlIEluZm8gRW5jbG9zZWQNClgtTUlDUk9TT0ZULUNETy1BUFBULVNFUVVFTkNF
+OjENClgtTUlDUk9TT0ZULUNETy1PV05FUkFQUFRJRDotMTQ3ODAyMzIwMw0KWC1NSUNST1NPRlQt
+Q0RPLUJVU1lTVEFUVVM6VEVOVEFUSVZFDQpYLU1JQ1JPU09GVC1DRE8tSU5URU5ERURTVEFUVVM6
+QlVTWQ0KWC1NSUNST1NPRlQtQ0RPLUFMTERBWUVWRU5UOkZBTFNFDQpYLU1JQ1JPU09GVC1DRE8t
+SU1QT1JUQU5DRToxDQpYLU1JQ1JPU09GVC1DRE8tSU5TVFRZUEU6MA0KWC1NSUNST1NPRlQtRElT
+QUxMT1ctQ09VTlRFUjpGQUxTRQ0KQkVHSU46VkFMQVJNDQpBQ1RJT046RElTUExBWQ0KREVTQ1JJ
+UFRJT046UkVNSU5ERVINClRSSUdHRVI7UkVMQVRFRD1TVEFSVDotUFQ1TQ0KRU5EOlZBTEFSTQ0K
+RU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRBUg0K
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A598B0DD4ORSMSX101amrcor_--
