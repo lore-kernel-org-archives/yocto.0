@@ -2,20 +2,20 @@ Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
 	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 82280E0146F
-	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 05:26:19 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 5A09AE014A3
+	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 05:26:20 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id BE0FA402DF;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id E2CC34009D;
 	Fri,  8 Feb 2013 13:45:50 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri,  8 Feb 2013 14:26:11 +0100
-Message-Id: <62b81d56c39d69e23e438986bf151c2aa4389371.1360326346.git.timo.mueller@bmw-carit.de>
+Date: Fri,  8 Feb 2013 14:26:12 +0100
+Message-Id: <322e2e98dc047a05cf61ee6c259db06d4b7e7671.1360326346.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <8bfea163404050b0be38624f822e9838343fc53d.1360326346.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <62b81d56c39d69e23e438986bf151c2aa4389371.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 	<e70ea91624d01d512b1bec5ad97d9ba47f588771.1360326346.git.timo.mueller@bmw-carit.de>
 	<3fec00c8d8c2c4894854c78b4033359aead5409f.1360326346.git.timo.mueller@bmw-carit.de>
@@ -30,10 +30,11 @@ References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 	<8d4a09888c692cca0947f6d010a116034afa9525.1360326346.git.timo.mueller@bmw-carit.de>
 	<2866b7e5be8b3c8ced44bb215a2402ef0881587b.1360326346.git.timo.mueller@bmw-carit.de>
 	<8bfea163404050b0be38624f822e9838343fc53d.1360326346.git.timo.mueller@bmw-carit.de>
+	<62b81d56c39d69e23e438986bf151c2aa4389371.1360326346.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 14/17] plugins/sdk.ide: Add method to rename a profile and its preference store
+Subject: [RFC v4 15/17] plugins/sdk.ide: Add method to delete a profile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,12 +46,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Feb 2013 13:26:19 -0000
+X-List-Received-Date: Fri, 08 Feb 2013 13:26:20 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-When renaming a profile the current values are stored in the profile's
-new preference store.
+Deletion of a profile currently has no effects on the preference
+page.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
@@ -58,20 +59,20 @@ Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
  1 file changed, 4 insertions(+)
 
 diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-index 105fd9c..2767d7a 100644
+index 2767d7a..738dba7 100644
 --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
 +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-@@ -182,6 +182,10 @@ public class YoctoProfileSetting {
- 				String newProfileName = profileNameDialog.getValue();
- 				profileElement.rename(selectedItem, profileNameDialog.getValue());
- 
-+				if (preferencePage instanceof YoctoSDKPreferencePage) {
-+					((YoctoSDKPreferencePage) preferencePage).renameProfile(selectedItem, newProfileName);
-+				}
+@@ -146,6 +146,10 @@ public class YoctoProfileSetting {
+ 				sdkConfigsCombo.select(0);
+ 				sdkConfigsCombo.remove(selectionIndex);
+ 				profileElement.remove(selectedItem);
 +
- 				sdkConfigsCombo.setItem(selectedIndex, newProfileName);
- 				sdkConfigsCombo.select(selectedIndex);
++				if (preferencePage instanceof YoctoSDKPreferencePage) {
++					((YoctoSDKPreferencePage) preferencePage).deleteProfile(selectedItem);
++				}
  			}
+ 		});
+ 	}
 -- 
 1.7.11.7
 
