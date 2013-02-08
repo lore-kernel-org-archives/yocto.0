@@ -2,20 +2,20 @@ Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
 	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 140E1E0047F
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 1F140E0146F
 	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 05:24:47 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 55AB0402B1;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 7CC17402B3;
 	Fri,  8 Feb 2013 13:44:18 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri,  8 Feb 2013 14:24:39 +0100
-Message-Id: <3d62d994c01a6fbdc3baf0ee2de7e89c1ddbaaf7.1360320932.git.timo.mueller@bmw-carit.de>
+Date: Fri,  8 Feb 2013 14:24:40 +0100
+Message-Id: <ff35d573a922d6da65722546453f598a8c119103.1360320932.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <16b4f90332e22cf61937a70a8469f78a58d1790b.1360320932.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <3d62d994c01a6fbdc3baf0ee2de7e89c1ddbaaf7.1360320932.git.timo.mueller@bmw-carit.de>
 References: <cover.1360320932.git.timo.mueller@bmw-carit.de>
 	<a6e4255f26d3e1023c2f1b5cefab155606051238.1360320932.git.timo.mueller@bmw-carit.de>
 	<5ea21b7fbee999dedbd9e17f8e1f7202fa526204.1360320932.git.timo.mueller@bmw-carit.de>
@@ -25,10 +25,12 @@ References: <cover.1360320932.git.timo.mueller@bmw-carit.de>
 	<305fd42ed6500d248ef6a0662e68fbad6f7b2fe4.1360320932.git.timo.mueller@bmw-carit.de>
 	<56fd294cb47b29fcea6f3006b9dcd360866d7d68.1360320932.git.timo.mueller@bmw-carit.de>
 	<16b4f90332e22cf61937a70a8469f78a58d1790b.1360320932.git.timo.mueller@bmw-carit.de>
+	<3d62d994c01a6fbdc3baf0ee2de7e89c1ddbaaf7.1360320932.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1360320932.git.timo.mueller@bmw-carit.de>
 References: <cover.1360320932.git.timo.mueller@bmw-carit.de>
+MIME-Version: 1.0
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v5 09/12] scripts/generate-doc.sh: Add script to handle eclipse help generation
+Subject: [RFC v5 10/12] plugins/sdk.ide.doc.user: Add yocto documentation to the table of contents
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,111 +43,87 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 08 Feb 2013 13:24:47 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-This script will checkout the yocto-docs project containing the
-official yocto documentation. After successful checkout the eclipse
-help is generated and the about.html file of the doc.user plugin is
-created.
+The separate yocto manuals are added to the table of contents to
+prepare their inclusion into the plugin.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- scripts/generate-doc.sh | 85 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
- create mode 100755 scripts/generate-doc.sh
+ plugins/org.yocto.doc.user/plugin.xml | 28 ++++++++++++++++++++++++++++
+ plugins/org.yocto.doc.user/toc.xml    | 21 +++++++++++++++++++++
+ 2 files changed, 49 insertions(+)
 
-diff --git a/scripts/generate-doc.sh b/scripts/generate-doc.sh
-new file mode 100755
-index 0000000..7152d6f
---- /dev/null
-+++ b/scripts/generate-doc.sh
-@@ -0,0 +1,85 @@
-+#!/bin/sh
-+
-+help()
-+{
-+	echo "Generate and add eclipse help from yocto's documentation"
-+	echo "Usage: $0 BRANCH_NAME PLUGIN_FOLDER"
-+	echo "       $0 -t TAG_NAME PLUGIN_FOLDER"
-+	echo ""
-+	echo "Options:"
-+	echo "-h - display this help and exit"
-+	echo "-t TAG_NAME - tag to build the documentation upon"
-+	echo "BRANCH_NAME - branch to build the documentation upon"
-+	echo "PLUGIN_FOLDER - root folder of the eclipse-poky project"
-+	exit 1
-+}
-+
-+fail ()
-+{
-+  local retval=$1
-+  shift $1
-+  echo "[Fail $retval]: $*"
-+  echo "BUILD_TOP=${BUILD_TOP}"
-+  cd ${TOP}
-+  exit ${retval}
-+}
-+
-+CHECKOUT_TAG=0
-+while getopts ":ht" opt; do
-+	case $opt in
-+		h)
-+			help
-+			;;
-+		t)
-+			CHECKOUT_TAG=1
-+			;;
-+	esac
-+done
-+shift $(($OPTIND - 1))
-+
-+if [ $# -ne 2 ]; then
-+	help
-+fi
-+
-+if [ $CHECKOUT_TAG -eq 0 ]; then
-+	REFERENCE=origin/$1
-+else
-+	REFERENCE=$1
-+fi
-+PLUGIN_FOLDER=`readlink -f $2`
-+
-+TOP=`pwd`
-+
-+DOC_DIR=${PLUGIN_FOLDER}/docs
-+rm -rf ${DOC_DIR}
-+DOC_PLUGIN_DIR=${PLUGIN_FOLDER}/plugins/org.yocto.doc.user
-+DOC_HTML_DIR=${DOC_PLUGIN_DIR}/html/
-+
-+# git clone
-+#DOC_GIT=git://git.yoctoproject.org/yocto-docs.git
-+DOC_GIT=file:///home/timo/_dev/oss/yocto/yocto-docs
-+git clone ${DOC_GIT} ${DOC_DIR} || fail $? "git clone ${DOC_GIT}"
-+cd ${DOC_DIR}
-+git checkout ${REFERENCE} || fail $? "git checkout ${REFERENCE}"
-+COMMIT_ID=`git rev-parse HEAD`
-+
-+# build and copy
-+DOCS="yocto-project-qs adt-manual kernel-dev \
-+      bsp-guide ref-manual dev-manual profile-manual"
-+
-+cd documentation
-+ECLIPSE_TARGET_AVAILABLE=`make -q eclipse &> /dev/null; echo $?`
-+if [ ${ECLIPSE_TARGET_AVAILABLE} -ne 1 ]; then
-+	echo "WARNING:"
-+	echo "This version does not support generating eclipse help"
-+	echo "Documentation will not be available in eclipse"
-+	exit 1
-+fi
-+
-+for DOC in ${DOCS}; do
-+	make DOC=${DOC} eclipse
-+done
-+
-+sed -e "s/@.*@/${COMMIT_ID}/" < ${DOC_PLUGIN_DIR}/about.html.in > ${DOC_PLUGIN_DIR}/about.html
-+
-+cd ${TOP}
+diff --git a/plugins/org.yocto.doc.user/plugin.xml b/plugins/org.yocto.doc.user/plugin.xml
+index 8353cd1..8e87ce7 100644
+--- a/plugins/org.yocto.doc.user/plugin.xml
++++ b/plugins/org.yocto.doc.user/plugin.xml
+@@ -7,5 +7,33 @@
+ 			file="toc.xml"
+ 			primary="true">
+ 		</toc>
++		<toc
++			file="html/adt-manual-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/yocto-project-qs-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/dev-manual-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/ref-manual-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/bsp-guide-toc.xml"
++			primary="false">
++		</toc>
++		<toc
++			file="html/kernel-dev-toc.xml"
++			primary="false">
++		</toc>
++  <toc
++        file="html/profile-manual-toc.xml"
++        primary="false">
++  </toc>
+ 	</extension>
+ </plugin>
+diff --git a/plugins/org.yocto.doc.user/toc.xml b/plugins/org.yocto.doc.user/toc.xml
+index 4998ef3..86fbe29 100644
+--- a/plugins/org.yocto.doc.user/toc.xml
++++ b/plugins/org.yocto.doc.user/toc.xml
+@@ -1,3 +1,24 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+  <toc label="Yocto Project Documentation">
++   <topic label="Yocto Project Quick Start">
++      <link toc="html/yocto-project-qs-toc.xml"/>
++   </topic>
++   <topic label="Yocto·Project·Application·Developer&apos;s·Guide">
++      <link toc="html/adt-manual-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Development Manual">
++      <link toc="html/dev-manual-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Reference Manual">
++      <link toc="html/ref-manual-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Board Support Package Developer&apos;s Guide">
++      <link toc="html/bsp-guide-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Linux Kernel Development Manual">
++      <link toc="html/kernel-dev-toc.xml"/>
++   </topic>
++   <topic label="Yocto Project Tracing and Profiling Manual">
++      <link toc="html/profile-manual-toc.xml"/>
++   </topic>
+  </toc>
 -- 
 1.7.11.7
 
