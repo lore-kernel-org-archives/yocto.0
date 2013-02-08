@@ -2,30 +2,33 @@ Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
 	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 907E7E0146D
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id BB020E01471
 	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 05:26:18 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id C5F654029C;
-	Fri,  8 Feb 2013 13:45:49 +0100 (CET)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 2EA36402B1;
+	Fri,  8 Feb 2013 13:45:50 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri,  8 Feb 2013 14:26:03 +0100
-Message-Id: <b028abd6861fc1db486627617ab17419dbf7cf58.1360326346.git.timo.mueller@bmw-carit.de>
+Date: Fri,  8 Feb 2013 14:26:06 +0100
+Message-Id: <2e551dabad2d725a813c40575628e662cfca15ba.1360326346.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <d3cfcdee95efc3d46c0561823849afb858f3096c.1360326346.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <b42a923a5c10d5b8194f93614abc02b359dbf00b.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 	<e70ea91624d01d512b1bec5ad97d9ba47f588771.1360326346.git.timo.mueller@bmw-carit.de>
 	<3fec00c8d8c2c4894854c78b4033359aead5409f.1360326346.git.timo.mueller@bmw-carit.de>
 	<55bbacc9719bafa4fba381ca4f8f161adb163269.1360326346.git.timo.mueller@bmw-carit.de>
 	<71a8d6fe7cb972095795a24d7405682e52ae88a2.1360326346.git.timo.mueller@bmw-carit.de>
 	<d3cfcdee95efc3d46c0561823849afb858f3096c.1360326346.git.timo.mueller@bmw-carit.de>
+	<b028abd6861fc1db486627617ab17419dbf7cf58.1360326346.git.timo.mueller@bmw-carit.de>
+	<ddb9c6bed6d09559850e4c5d141ae72452c0cab7.1360326346.git.timo.mueller@bmw-carit.de>
+	<b42a923a5c10d5b8194f93614abc02b359dbf00b.1360326346.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 06/17] plugins/sdk.ide: Create UI element for managing target profiles.
+Subject: [RFC v4 09/17] plugins/sdk.ide: Add method to allow storing the current settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,269 +42,55 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 08 Feb 2013 13:26:19 -0000
 
-From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-A target profile is a combination of yocto settings identified by a
-user-defined name. This UI element allows the user to add new profiles
-and to rename or delete existing ones.
+The added method calls the performOK method on the provided preference
+page to store the current content of the page.
+
+This callback is needed so the profile UI is able to propagate changes
+to the preference page it is part of.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../src/org/yocto/sdk/ide/YoctoProfileElement.java | 104 +++++++++++++++++++++
- .../src/org/yocto/sdk/ide/YoctoProfileSetting.java |  98 +++++++++++++++++++
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |   5 +
- .../sdk/ide/preferences/PreferenceConstants.java   |   1 +
- 4 files changed, 208 insertions(+)
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileElement.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
+ .../src/org/yocto/sdk/ide/YoctoProfileSetting.java               | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileElement.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileElement.java
-new file mode 100644
-index 0000000..02626ad
---- /dev/null
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileElement.java
-@@ -0,0 +1,104 @@
-+/*******************************************************************************
-+ * Copyright (c) 2012 BMW Car IT GmbH.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * BMW Car IT - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.sdk.ide;
-+
-+import java.util.Comparator;
-+import java.util.StringTokenizer;
-+import java.util.TreeSet;
-+
-+import org.yocto.sdk.ide.preferences.PreferenceConstants;
-+
-+public class YoctoProfileElement {
-+	private TreeSet<String> profiles = new TreeSet<String>(new Comparator<String>() {
-+
-+		@Override
-+		public int compare(String o1, String o2) {
-+			int strcompare = o1.compareTo(o2);
-+
-+			if (strcompare == 0) {
-+				return strcompare;
-+			}
-+
-+			// Standard profile always less than anything else
-+			if (o1.equals(PreferenceConstants.STANDARD_PROFILE_NAME)) {
-+				return -1;
-+			}
-+
-+			if (o2.equals(PreferenceConstants.STANDARD_PROFILE_NAME)) {
-+				return 1;
-+			}
-+
-+			return strcompare;
-+		}
-+	});
-+
-+	private String selectedProfile;
-+
-+	public YoctoProfileElement(String profilesString, String selectedProfile) {
-+		setProfilesFromString(profilesString);
-+		this.selectedProfile = selectedProfile;
-+	}
-+
-+	public void addProfile(String profile) {
-+		this.profiles.add(profile);
-+	}
-+
-+	public boolean contains(String newText) {
-+		return profiles.contains(newText);
-+	}
-+
-+	public TreeSet<String> getProfiles() {
-+		return profiles;
-+	}
-+
-+	public String getProfilesAsString() {
-+		String profileString = "";
-+
-+		for (String profile : profiles) {
-+			profileString += "\"" + profile + "\",";
-+		}
-+		return profileString.substring(0, profileString.length() - 1);
-+	}
-+
-+	public String getSelectedProfile() {
-+		return selectedProfile;
-+	}
-+
-+	public void remove(String profile) {
-+		this.profiles.remove(profile);
-+	}
-+
-+	public void rename(String oldProfileName, String newProfileName) {
-+		this.remove(oldProfileName);
-+		this.addProfile(newProfileName);
-+
-+		if (selectedProfile.equals(oldProfileName)) {
-+			selectedProfile = newProfileName;
-+		}
-+	}
-+
-+	public void setProfiles(TreeSet<String> profiles) {
-+		this.profiles = profiles;
-+	}
-+
-+	public void setProfilesFromString(String profilesString) {
-+		StringTokenizer tokenizer = new StringTokenizer(profilesString, ",");
-+
-+		while (tokenizer.hasMoreElements()) {
-+			String config = (String) tokenizer.nextElement();
-+			profiles.add(config.replace("\"", ""));
-+		}
-+	}
-+
-+	public void setSelectedProfile(String selectedProfile) {
-+		this.selectedProfile = selectedProfile;
-+	}
-+}
 diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-new file mode 100644
-index 0000000..7476bd3
---- /dev/null
+index b35a167..7949cdf 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
 +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoProfileSetting.java
-@@ -0,0 +1,98 @@
-+/*******************************************************************************
-+ * Copyright (c) 2012 BMW Car IT GmbH.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * BMW Car IT - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.sdk.ide;
-+
-+import org.eclipse.swt.SWT;
-+import org.eclipse.swt.layout.GridData;
-+import org.eclipse.swt.layout.GridLayout;
-+import org.eclipse.swt.widgets.Button;
-+import org.eclipse.swt.widgets.Combo;
-+import org.eclipse.swt.widgets.Composite;
-+import org.eclipse.swt.widgets.Group;
-+
-+public class YoctoProfileSetting {
-+	private static final String PROFILES_TITLE = "Preferences.Profiles.Title";
-+	private static final String NEW_PROFILE_TITLE = "Preferences.Profile.New.Title";
-+	private static final String RENAME_PROFILE_TITLE = "Preferences.Profile.Rename.Title";
-+	private static final String REMOVE_PROFILE_TITLE = "Preferences.Profile.Remove.Title";
-+
-+	private Combo sdkConfigsCombo;
-+	private Button btnConfigRename;
-+	private Button btnConfigRemove;
-+	private Button btnConfigSaveAs;
-+
-+	private YoctoProfileElement profileElement;
-+
-+	public YoctoProfileSetting(YoctoProfileElement profileElement) {
-+		this.profileElement = profileElement;
-+	}
-+
-+	public void createComposite(Composite composite) {
-+		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-+		GridLayout layout = new GridLayout(2, false);
-+		composite.setLayout(layout);
-+
-+		Group storeYoctoConfigurationsGroup = new Group (composite, SWT.NONE);
-+		layout = new GridLayout(3, false);
-+		storeYoctoConfigurationsGroup.setLayout(layout);
-+		gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
-+		gd.horizontalSpan = 2;
-+		storeYoctoConfigurationsGroup.setLayoutData(gd);
-+		storeYoctoConfigurationsGroup.setText(YoctoSDKMessages.getString(PROFILES_TITLE));
-+
-+		sdkConfigsCombo = new Combo(storeYoctoConfigurationsGroup, SWT.READ_ONLY);
-+		addConfigs(sdkConfigsCombo);
-+		sdkConfigsCombo.select(sdkConfigsCombo.indexOf(profileElement.getSelectedProfile()));
-+		sdkConfigsCombo.setLayout(new GridLayout(2, false));
-+		sdkConfigsCombo.setLayoutData(new GridData(SWT.FILL, SWT.LEFT, true, false));
-+
-+		createSaveAsProfileButton(storeYoctoConfigurationsGroup);
-+		createRenameButton(storeYoctoConfigurationsGroup);
-+		createRemoveButton(storeYoctoConfigurationsGroup);
-+	}
-+
-+	private void createSaveAsProfileButton(Group storeYoctoConfigurationsGroup) {
-+		btnConfigSaveAs = new Button(storeYoctoConfigurationsGroup, SWT.PUSH | SWT.LEAD);
-+		btnConfigSaveAs.setText(YoctoSDKMessages.getString(NEW_PROFILE_TITLE));
-+	}
-+
-+	private void createRemoveButton(Group storeYoctoConfigurationsGroup) {
-+		btnConfigRemove = new Button(storeYoctoConfigurationsGroup, SWT.PUSH | SWT.LEAD);
-+		btnConfigRemove.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, true, false, 3, 1));
-+		btnConfigRemove.setText(YoctoSDKMessages.getString(REMOVE_PROFILE_TITLE));
-+	}
-+
-+	private void createRenameButton(Group storeYoctoConfigurationsGroup) {
-+		btnConfigRename = new Button(storeYoctoConfigurationsGroup, SWT.PUSH | SWT.LEAD);
-+		btnConfigRename.setText(YoctoSDKMessages.getString(RENAME_PROFILE_TITLE));
-+	}
-+
-+	private void addConfigs(Combo combo) {
-+		for (String profile : profileElement.getProfiles()) {
-+			combo.add(profile);
-+		}
-+	}
-+
-+	public void setUIFormEnabledState(boolean isEnabled) {
-+		setButtonsEnabledState(isEnabled);
-+		sdkConfigsCombo.setEnabled(isEnabled);
-+	}
-+
-+	public YoctoProfileElement getCurrentInput() {
-+		return profileElement;
-+	}
-+
-+	public void setButtonsEnabledState(boolean isEnabled) {
-+		btnConfigRename.setEnabled(isEnabled);
-+		btnConfigRemove.setEnabled(isEnabled);
-+		btnConfigSaveAs.setEnabled(isEnabled);
-+	}
-+}
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-index 17240e9..7200741 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-@@ -7,6 +7,7 @@
-  *
-  * Contributors:
-  * Intel - initial API and implementation
-+ * BMW Car IT - added keys for target profiles
+@@ -10,6 +10,7 @@
   *******************************************************************************/
- Wizard.SDK.Warning.Title = Invalid Yocto Project ADT Location
+ package org.yocto.sdk.ide;
  
-@@ -45,6 +46,10 @@ Preferences.SDK.Target.name = Target Preferences:
- Preferences.SDK.Informing.Title   = Yocto Project ADT has been successfully set up. 
- Preferences.SDK.Informing.Message = You might need to reconfigure your existing Yocto Project Autotools Projects to use the Yocto Project ADT. Do this from Project > Reconfigure Project!
++import org.eclipse.jface.preference.PreferencePage;
+ import org.eclipse.swt.SWT;
+ import org.eclipse.swt.layout.GridData;
+ import org.eclipse.swt.layout.GridLayout;
+@@ -32,9 +33,11 @@ public class YoctoProfileSetting {
+ 	private Button btnConfigSaveAs;
  
-+Preferences.Profiles.Title = Target profiles:
-+Preferences.Profile.New.Title = Save as ...
-+Preferences.Profile.Rename.Title = Rename
-+Preferences.Profile.Remove.Title = Remove
+ 	private YoctoProfileElement profileElement;
++	private PreferencePage preferencePage;
  
- Console.SDK.Name = Yocto Project Console
+-	public YoctoProfileSetting(YoctoProfileElement profileElement) {
++	public YoctoProfileSetting(YoctoProfileElement profileElement, PreferencePage preferencePage) {
+ 		this.profileElement = profileElement;
++		this.preferencePage = preferencePage;
+ 	}
  
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/PreferenceConstants.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/PreferenceConstants.java
-index cf79578..d6ca41f 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/PreferenceConstants.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/PreferenceConstants.java
-@@ -33,4 +33,5 @@ public class PreferenceConstants {
- 		
- 	public static final String IP_ADDR = "IPAddr";
+ 	public void createComposite(Composite composite) {
+@@ -98,6 +101,10 @@ public class YoctoProfileSetting {
+ 		btnConfigRename.setText(YoctoSDKMessages.getString(RENAME_PROFILE_TITLE));
+ 	}
  
-+	public static final String STANDARD_PROFILE_NAME = "Standard Profile";
- }
++	private void saveChangesOnCurrentProfile() {
++		preferencePage.performOk();
++	}
++
+ 	private void addConfigs(Combo combo) {
+ 		for (String profile : profileElement.getProfiles()) {
+ 			combo.add(profile);
 -- 
 1.7.11.7
 
