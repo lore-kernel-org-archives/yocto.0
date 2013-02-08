@@ -2,26 +2,25 @@ Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
 	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 854A9E0047F
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 87CA2E00502
 	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 05:21:39 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 4B4CD400A2;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 21C884009D;
 	Fri,  8 Feb 2013 13:41:10 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri,  8 Feb 2013 14:21:19 +0100
-Message-Id: <184ca006bc27634a3b6ae74e7c1cd8e6d8b420f2.1360314086.git.timo.mueller@bmw-carit.de>
+Date: Fri,  8 Feb 2013 14:21:18 +0100
+Message-Id: <7393f8a857c5434755f958d7c558debc904634a5.1360314086.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <7393f8a857c5434755f958d7c558debc904634a5.1360314086.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1360314086.git.timo.mueller@bmw-carit.de>
 References: <cover.1360314086.git.timo.mueller@bmw-carit.de>
-	<7393f8a857c5434755f958d7c558debc904634a5.1360314086.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1360314086.git.timo.mueller@bmw-carit.de>
 References: <cover.1360314086.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 02/18] Makefile: Modify DOC filter for eclipse-generate target
+Subject: [PATCH 01/18] documentation: Remove 'the' from title tags
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,38 +36,81 @@ X-List-Received-Date: Fri, 08 Feb 2013 13:21:39 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Filter now explicitely lists the doc parts from which eclipse help can
-be generated.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- documentation/Makefile | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ documentation/adt-manual/adt-manual.xml             | 2 +-
+ documentation/bsp-guide/bsp-guide.xml               | 2 +-
+ documentation/dev-manual/dev-manual.xml             | 2 +-
+ documentation/ref-manual/ref-manual.xml             | 2 +-
+ documentation/yocto-project-qs/yocto-project-qs.xml | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/documentation/Makefile b/documentation/Makefile
-index fac2c85..773c41f 100644
---- a/documentation/Makefile
-+++ b/documentation/Makefile
-@@ -332,9 +332,17 @@ eclipse: eclipse-generate eclipse-resolve-links
- .PHONY : eclipse-generate eclipse-resolve-links
+diff --git a/documentation/adt-manual/adt-manual.xml b/documentation/adt-manual/adt-manual.xml
+index 479a492..fc1bc80 100644
+--- a/documentation/adt-manual/adt-manual.xml
++++ b/documentation/adt-manual/adt-manual.xml
+@@ -17,7 +17,7 @@
+         </mediaobject>
  
- eclipse-generate:
--ifeq ($(DOC),mega-manual)
-+ifeq ($(filter $(DOC), adt-manual bsp-guide dev-manual kernel-dev profile-manual ref-manual yocto-project-qs),)
- 	@echo " "
--	@echo "ERROR: You cannot generate eclipse documentation for the mega-manual"
-+	@echo "ERROR: You can only create eclipse documentation"
-+	@echo "       of the following documentation parts:"
-+	@echo "       - adt-manual"
-+	@echo "       - bsp-guide"
-+	@echo "       - dev-manual"
-+	@echo "       - kernel-dev"
-+	@echo "       - profile-manual"
-+	@echo "       - ref-manual"
-+	@echo "       - yocto-project-qs"
- 	@echo " "
- else
- 	@echo " "
+         <title>
+-            The Yocto Project Application Developer's Guide
++            Yocto Project Application Developer's Guide
+         </title>
+ 
+         <authorgroup>
+diff --git a/documentation/bsp-guide/bsp-guide.xml b/documentation/bsp-guide/bsp-guide.xml
+index 1cb2001..57c8458 100644
+--- a/documentation/bsp-guide/bsp-guide.xml
++++ b/documentation/bsp-guide/bsp-guide.xml
+@@ -17,7 +17,7 @@
+         </mediaobject>
+ 
+         <title>
+-            The Yocto Project Board Support Package Developer's Guide
++            Yocto Project Board Support Package Developer's Guide
+         </title>
+ 
+         <authorgroup>
+diff --git a/documentation/dev-manual/dev-manual.xml b/documentation/dev-manual/dev-manual.xml
+index b902aaa..1a1c5e1 100644
+--- a/documentation/dev-manual/dev-manual.xml
++++ b/documentation/dev-manual/dev-manual.xml
+@@ -17,7 +17,7 @@
+         </mediaobject>
+ 
+         <title>
+-            The Yocto Project Development Manual
++            Yocto Project Development Manual
+         </title>
+ 
+         <authorgroup>
+diff --git a/documentation/ref-manual/ref-manual.xml b/documentation/ref-manual/ref-manual.xml
+index ba7019e..d93710b 100644
+--- a/documentation/ref-manual/ref-manual.xml
++++ b/documentation/ref-manual/ref-manual.xml
+@@ -17,7 +17,7 @@
+         </mediaobject>
+ 
+         <title>
+-            The Yocto Project Reference Manual
++            Yocto Project Reference Manual
+         </title>
+ 
+         <authorgroup>
+diff --git a/documentation/yocto-project-qs/yocto-project-qs.xml b/documentation/yocto-project-qs/yocto-project-qs.xml
+index a1c714e..6825e2c 100644
+--- a/documentation/yocto-project-qs/yocto-project-qs.xml
++++ b/documentation/yocto-project-qs/yocto-project-qs.xml
+@@ -4,7 +4,7 @@
+ 
+ <article id='intro'>
+     <articleinfo>
+-        <title>The Yocto Project Quick Start</title>
++        <title>Yocto Project Quick Start</title>
+ 
+         <copyright>
+             <year>&COPYRIGHT_YEAR;</year>
 -- 
 1.7.11.7
 
