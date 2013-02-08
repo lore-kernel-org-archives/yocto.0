@@ -2,20 +2,20 @@ Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
 	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 869DDE014B0
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 5ABDBE014A5
 	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 05:26:20 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 25266400A2;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 0957640037;
 	Fri,  8 Feb 2013 13:45:51 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri,  8 Feb 2013 14:26:14 +0100
-Message-Id: <6a3483cbc433494d94f52bfed2ff32797b54bb84.1360326346.git.timo.mueller@bmw-carit.de>
+Date: Fri,  8 Feb 2013 14:26:13 +0100
+Message-Id: <d7cdd7e0ce1a0d9acace7304b5e97b28e04f303e.1360326346.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <d7cdd7e0ce1a0d9acace7304b5e97b28e04f303e.1360326346.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <322e2e98dc047a05cf61ee6c259db06d4b7e7671.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 	<e70ea91624d01d512b1bec5ad97d9ba47f588771.1360326346.git.timo.mueller@bmw-carit.de>
 	<3fec00c8d8c2c4894854c78b4033359aead5409f.1360326346.git.timo.mueller@bmw-carit.de>
@@ -32,11 +32,10 @@ References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 	<8bfea163404050b0be38624f822e9838343fc53d.1360326346.git.timo.mueller@bmw-carit.de>
 	<62b81d56c39d69e23e438986bf151c2aa4389371.1360326346.git.timo.mueller@bmw-carit.de>
 	<322e2e98dc047a05cf61ee6c259db06d4b7e7671.1360326346.git.timo.mueller@bmw-carit.de>
-	<d7cdd7e0ce1a0d9acace7304b5e97b28e04f303e.1360326346.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 17/17] plugins/sdk.ide: Added profile UI to the preference page
+Subject: [RFC v4 16/17] plugins/sdk.ide: Use profiles for the preference page
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,29 +51,70 @@ X-List-Received-Date: Fri, 08 Feb 2013 13:26:20 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Adds the UI elements that allow managing profiles to the preference
-page.
+The preference page is now aware of profiles. By default the standard
+profile is used and the values are stored to its preference store. If
+a different profile is selected it's preferences store is used
+instead.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java     | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../ide/preferences/YoctoSDKPreferencePage.java    | 28 +++++++++++++++++-----
+ 1 file changed, 22 insertions(+), 6 deletions(-)
 
 diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-index 8dc089b..fb015ab 100644
+index 276e366..8dc089b 100644
 --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
 +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-@@ -67,7 +67,9 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 	protected Control createContents(Composite parent) {
- 		initializeDialogUnits(parent);
- 		final Composite result= new Composite(parent, SWT.NONE);
--		
+@@ -13,6 +13,7 @@ package org.yocto.sdk.ide.preferences;
+ import org.eclipse.jface.dialogs.Dialog;
+ import org.eclipse.jface.dialogs.IDialogConstants;
+ import org.eclipse.jface.dialogs.InputDialog;
++import org.eclipse.jface.preference.IPreferenceStore;
+ import org.eclipse.jface.preference.PreferencePage;
+ import org.eclipse.swt.SWT;
+ import org.eclipse.swt.widgets.Composite;
+@@ -39,12 +40,24 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
+ 
+ 	public YoctoSDKPreferencePage() {
+ 		//super(GRID);
+-        setPreferenceStore(YoctoSDKPlugin.getDefault().getPreferenceStore());
+-        //setDescription(YoctoSDKMessages.getString(PREFERENCES_Yocto_CONFIG));
+-		YoctoUIElement elem = YoctoSDKUtils.getElemFromDefaultStore();
+-        this.yoctoUISetting = new YoctoUISetting(elem);
++		IPreferenceStore defaultStore = YoctoSDKPlugin.getDefault().getPreferenceStore();
++		String profiles = defaultStore.getString(PreferenceConstants.PROFILES);
++		String selectedProfile = defaultStore.getString(PreferenceConstants.SELECTED_PROFILE);
 +
-+		yoctoProfileSetting.createComposite(result);
++		if (profiles.isEmpty()) {
++			profiles = defaultStore.getDefaultString(PreferenceConstants.PROFILES);
++			selectedProfile = defaultStore.getDefaultString(PreferenceConstants.SELECTED_PROFILE);
++		}
 +
- 		try {
- 			yoctoUISetting.createComposite(result);
- 			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, false);
++		setPreferenceStore(YoctoSDKPlugin.getProfilePreferenceStore(selectedProfile));
++		//setDescription(YoctoSDKMessages.getString(PREFERENCES_Yocto_CONFIG));
++		YoctoUIElement elem = YoctoSDKUtils.getElemFromStore(getPreferenceStore());
++		this.yoctoUISetting = new YoctoUISetting(elem);
++
++		YoctoProfileElement profileElement = new YoctoProfileElement(profiles, selectedProfile);
++		this.yoctoProfileSetting = new YoctoProfileSetting(profileElement, this);
+ 	}
+-	
++
+ 	/*
+ 	 * @see IWorkbenchPreferencePage#init(IWorkbench)
+ 	 */
+@@ -75,7 +88,10 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
+ 			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, true);
+ 
+ 			YoctoUIElement elem = yoctoUISetting.getCurrentInput();
+-			YoctoSDKUtils.saveElemToDefaultStore(elem);
++			YoctoSDKUtils.saveElemToStore(elem, getPreferenceStore());
++
++			YoctoProfileElement profileElement = yoctoProfileSetting.getCurrentInput();
++			YoctoSDKUtils.saveProfilesToDefaultStore(profileElement);
+ 
+ 			return super.performOk();
+ 		} catch (YoctoGeneralException e) {
 -- 
 1.7.11.7
 
