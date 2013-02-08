@@ -2,25 +2,26 @@ Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
 	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 05C9FE0047F
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 20BE6E00527
 	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 05:26:17 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.53])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 22AE14009D;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 46806400A2;
 	Fri,  8 Feb 2013 13:45:49 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri,  8 Feb 2013 14:25:58 +0100
-Message-Id: <e70ea91624d01d512b1bec5ad97d9ba47f588771.1360326346.git.timo.mueller@bmw-carit.de>
+Date: Fri,  8 Feb 2013 14:25:59 +0100
+Message-Id: <3fec00c8d8c2c4894854c78b4033359aead5409f.1360326346.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <cover.1360326346.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <e70ea91624d01d512b1bec5ad97d9ba47f588771.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
+	<e70ea91624d01d512b1bec5ad97d9ba47f588771.1360326346.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 References: <cover.1360326346.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [RFC v4 01/17] plugins/sdk.ide: Removed unused message
+Subject: [RFC v4 02/17] plugins/sdk.ide: Extract labels to private members
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +35,63 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 08 Feb 2013 13:26:17 -0000
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-The dialog has been merged with the project settings. Therefor the
-message is no longer needed.
+Extracting the labels as private members allows the modification of
+the label settings after creation. This is will allow disabling and
+enabling the labels after creation of the form.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties  | 1 -
- 1 file changed, 1 deletion(-)
+ .../src/org/yocto/sdk/ide/YoctoUISetting.java              | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-index b302524..17240e9 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-@@ -22,7 +22,6 @@ Poky.Env.Script.Nonexist = Specified Build Tree Toolchain Root does not contain
- Poky.ADT.Sysroot.Wrongversion = OECORE related items are not found in envrionement setup files.\nThe ADT version you're using is too old.\n Please upgrade to our latest ADT Version!
- Poky.Toolchain.Host.Mismatch = Toolchain and host arch mismatch.\n Make sure you use 32bit toolchain for 32bit host and same for 64bit machines!
- Poky.Toolchain.No.Sysroot = There's no sysroots directory under your toolchain directory under /opt/poky!
--Menu.SDK.Dialog.Title       = Yocto Project Settings
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
+index 0fbfde0..9ec0d85 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
+@@ -63,6 +63,12 @@ public class YoctoUISetting {
+ 	private Text textRootLoc;
+ 	private Combo targetArchCombo;
  
++	private Label root_label;
++	private Label sysroot_label;
++	private Label targetArchLabel;
++	private Label kernel_label;
++	private Label option_label;
++
+ 	public YoctoUISetting(YoctoUIElement elem)
+ 	{
+ 		yoctoUIElement = elem;
+@@ -140,10 +146,6 @@ public class YoctoUISetting {
  
- Menu.SDK.Console.Configure.Message    = The Yocto Project ADT has been successfully set up for this project.\nTo see the environment variables created during setup,\ngo to Project > Properties > C/C++ Build > Environment. 
+ 	private void createQemuSetup(final Group targetGroup) throws YoctoGeneralException
+ 	{
+-		Label kernel_label;
+-		Label option_label;
+-		
+-		
+ 		//QEMU Setup
+ 		kernel_label= new Label(targetGroup, SWT.NONE);
+ 		kernel_label.setText("Kernel: ");
+@@ -180,8 +182,6 @@ public class YoctoUISetting {
+ 	}
+ 	public void createComposite(Composite composite) throws YoctoGeneralException
+ 	{
+-		Label root_label, sysroot_label;
+-		
+ 		GridData gd = new GridData(SWT.FILL, SWT.CENTER, true, false);
+ 		GridLayout layout = new GridLayout(2, false);
+ 		composite.setLayout(layout);
+@@ -224,7 +224,7 @@ public class YoctoUISetting {
+ 		btnSysrootLoc = addFileSelectButton(textContainer, textSysrootLoc, PreferenceConstants.SYSROOT);
+ 
+ 		updateSDKControlState();
+-		Label targetArchLabel= new Label(crossCompilerGroup, SWT.NONE);
++		targetArchLabel = new Label(crossCompilerGroup, SWT.NONE);
+ 		targetArchLabel.setText("Target Architecture: ");
+ 
+ 		targetArchCombo= new Combo(crossCompilerGroup, SWT.READ_ONLY);
 -- 
 1.7.11.7
 
