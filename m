@@ -1,29 +1,45 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ea0-f173.google.com (mail-ea0-f173.google.com
+	[209.85.215.173]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 91258E00312
-	for <yocto@yoctoproject.org>; Sat,  9 Feb 2013 07:59:24 -0800 (PST)
-Received: by mail-ee0-f52.google.com with SMTP id b15so2470006eek.39
-	for <yocto@yoctoproject.org>; Sat, 09 Feb 2013 07:59:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=PsVG7DuDl7K+y3m1oYO0MzAH7UFozU8wN8S8Wn3etZA=;
-	b=n/uNSr/kTZQ9CnYtVuteZt26MerLUXta7YUhxuzcvKpIxf2ydI9jmaUBKEFROEM7Ev
-	fDCDSxch+MElfOQPx6fI8cCFlR/D3WqW7D8kwA/ocJdgRZ2GxTH0qPxVGZU3haqrRVPh
-	Ly9qQ91V6jDgFiHvryXmAZnO3tq1XM3B3CBjYvrppAYw8QEJi8Q1MyakwVdlXlT0RsO5
-	C2s+4H4ENo+pMpTiRup7BrogQb4ByP4F13hizZkboKXN3ApxEBs3cnuNR5O/JzJLd7Lm
-	+v+ZQNGTu5wfPdUQQXjX4PuaQrajFp8hdbWW6VxTJ3VsX8oHetT70cAJJlVh3ctj/Q9w
-	COpg==
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 891B1E00312
+	for <yocto@yoctoproject.org>; Sat,  9 Feb 2013 09:19:41 -0800 (PST)
+Received: by mail-ea0-f173.google.com with SMTP id i1so2102769eaa.18
+	for <yocto@yoctoproject.org>; Sat, 09 Feb 2013 09:19:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=bTmXucWIJFK6zo6axpSMWKv/GhbGN2vTdv2jnkdg22c=;
+	b=DZJw9vLgxY1JaAbdW2mQnyPvUo4Io5KNlyPCYnmdcA04eWKXf1U3O4hRfue05wctQc
+	AeVpdH0uxVD6Nt7KN5+EbUiBgLqfkeD79mZF/jsmDTBk4koQLlxJEKYfrGjHvt5YbO8v
+	0sNKeSwKcysOM0vhSm/bDCpQ89zl/o+CTFyq8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=bTmXucWIJFK6zo6axpSMWKv/GhbGN2vTdv2jnkdg22c=;
+	b=ITgu64Jzi8hCcly/GP5bhPJYCXmCv/TK2Smx8LNbW3QV1/Kj/fxMUrUKfbFAq8vr+4
+	luxdFnoEP+oovFtdJrUuTok/8Ah0nHgvNnXp0qyPmt4NiT+A0GC9r++8ycIStb19RQcN
+	kwCZrp3gMr4bhjNt+tvZwpXyHnJuSbAmXArmKDh06fypfoFehpdBx6BKr6GRCIU7x5u4
+	kdKRWLb+AT2rndseiJDUVrFSnJWFIWOV/OhA9haXu9dJrTlV86HVcKa6Bb6kkw4nwJvU
+	XbSISA8J0IX/I3FoFpW55cyUJQ5tNfGXf0wIS/WilHT1U76LjhrsXCMOeTmtowlqmSzo
+	HU4Q==
 MIME-Version: 1.0
-X-Received: by 10.14.1.65 with SMTP id 41mr12235571eec.35.1360425562545; Sat,
-	09 Feb 2013 07:59:22 -0800 (PST)
-Received: by 10.223.159.129 with HTTP; Sat, 9 Feb 2013 07:59:22 -0800 (PST)
-Date: Sat, 9 Feb 2013 08:59:22 -0700
-Message-ID: <CANwz6nwFHrudB-MBOFhbqq9LufwQoyiLUp9S_5B5U7CrhM9gPA@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: yocto@yoctoproject.org
-Subject: mouse issue qemuarm
+X-Received: by 10.14.177.1 with SMTP id c1mr29403043eem.8.1360430379049; Sat,
+	09 Feb 2013 09:19:39 -0800 (PST)
+Received: by 10.223.133.193 with HTTP; Sat, 9 Feb 2013 09:19:38 -0800 (PST)
+Received: by 10.223.133.193 with HTTP; Sat, 9 Feb 2013 09:19:38 -0800 (PST)
+In-Reply-To: <2254268.7tk7KJuRaj@helios>
+References: <CA+gsK-oajsnY7o0BZbXvn_Yh70o5fwUnVOU+HCr6qGqXZXPPow@mail.gmail.com>
+	<2254268.7tk7KJuRaj@helios>
+Date: Sat, 9 Feb 2013 09:19:38 -0800
+Message-ID: <CA+gsK-qAD49kkTScEAjKWs5zvsSyskKqumFqzj2j7LfHs43VJQ@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Gm-Message-State: ALoCoQmSIHBYinNjmFldRBS75LFm4HWWmGCq/Sk/fHq36ilsC3ayZ2is7f5jVqXG3La/WCxBdVk9
+Cc: yocto@yoctoproject.org
+Subject: Re: [danny] core-image-minimal-dev is missing dev packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,222 +51,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Feb 2013 15:59:25 -0000
-Content-Type: multipart/alternative; boundary=047d7b66f67d661e4b04d54cc21e
+X-List-Received-Date: Sat, 09 Feb 2013 17:19:41 -0000
+Content-Type: multipart/alternative; boundary=047d7b621e0c7c23f704d54de1c5
 
---047d7b66f67d661e4b04d54cc21e
+--047d7b621e0c7c23f704d54de1c5
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hello,
+Thanks, Paul. Not sure however. I should have included that I used plain
+old i586 architecture. There should be no dashes/underscore issues there.
 
-Version of qemuarm built on 01/30/13 works okay but the version built on
-02/08/13 exhibits the following problem:
+:rjs
+On Feb 9, 2013 6:30 AM, "Paul Eggleton" <paul.eggleton@linux.intel.com>
+wrote:
 
-When clicking the mouse to switch between panels nothing happens. See the
-details of 2 builds below.
+> On Friday 08 February 2013 19:17:35 Rudolf Streif wrote:
+> > This is weird and I do not have an explanation for it. For Danny:
+> >
+> > core-image-minimal-dev is missing the dev packages (pkg-dev)
+> >
+> > I build it but the packages are not there. The cause does not seem to be
+> my
+> > setup because the core-image-minimal on the ADT download site is missing
+> > them too.
+>
+> I can't tell but it could be this bug, for which I have sent a patch:
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3792
+>
+> (Although this doesn't prevent *all* dev packages from being included, just
+> some.)
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+>
 
-How would you use git to bisect what caused the issue.
-
-Any help will be appreciated.
-
-Thanks
-
-Created a clean build 013013 with the command MACHINE=qemuarm bitbake
-core-image-sato-sdk -vDD This version appears okay below are the details of
-the build.
-
-
-
- runqemu qemuarm
-
-uname -a
-
-Linux qemuarm 3.4.26-yocto-standard #1 PREEMPT Thu Jan 31 14:38:44 MST 2013
-armv5tejl GNU/Linux
-
-
- Build Configuration:
-
-BB_VERSION = "1.17.0"
-
-BUILD_SYS = "x86_64-linux"
-
-NATIVELSBSTRING = "Unknown"
-
-TARGET_SYS = "arm-poky-linux-gnueabi"
-
-MACHINE = "qemuarm"
-
-DISTRO = "poky"
-
-DISTRO_VERSION = "1.3+snapshot-20130131"
-
-TUNE_FEATURES = "armv5 thumb dsp"
-
-TARGET_FPU = "soft"
-
-meta
-
-meta-yocto
-
-meta-yocto-bsp = "master:d82eac804134028ece749928aa2d83096b7aec96"
-
-
- Created a clean build 020813 with the command MACHINE=qemuarm bitbake
-core-image-sato-sdk -vDD This version appears exhibits the following
-problem:
-
-When clicking the mouse to switch between panels nothing happens.
-
-
- uname -a
-
-Linux qemuarm 3.4.28-yocto-standard #1 PREEMPT Fri Feb 8 15:46:09 MST 2013
-armv5tejl GNU/Linux
-
-
- Build Configuration:
-
-BB_VERSION = "1.17.1"
-
-BUILD_SYS = "x86_64-linux"
-
-NATIVELSBSTRING = "Unknown"
-
-TARGET_SYS = "arm-poky-linux-gnueabi"
-
-MACHINE = "qemuarm"
-
-DISTRO = "poky"
-
-DISTRO_VERSION = "1.3+snapshot-20130208"
-
-TUNE_FEATURES = "armv5 thumb dsp"
-
-TARGET_FPU = "soft"
-
-meta
-
-meta-yocto
-
-meta-yocto-bsp = "master:20b4dcace222d6b1d659a8813b4affad075ec0c6"
-
---047d7b66f67d661e4b04d54cc21e
+--047d7b621e0c7c23f704d54de1c5
 Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hello,<br>
-
-
-	
-	
-	
-	<style type="text/css">
-	<!--
-		@page { margin: 0.79in }
-		P { margin-bottom: 0.08in }
-	-->
-	</style>
-
-
-<p style="margin-bottom:0in">Version of qemuarm built on 01/30/13
-works okay but the version built on 02/08/13 exhibits the following
-problem:</p>
-<p style="margin-bottom:0in">When clicking the mouse to switch
-between panels nothing happens.  See the details of 2 builds below.</p>
-<p style="margin-bottom:0in">How would you use git to bisect what caused the issue.<br>
-</p>
-<p style="margin-bottom:0in">Any help will be appreciated.</p><p style="margin-bottom:0in">Thanks<br>
-</p>
-<p style="margin-bottom:0in">Created a clean build 013013 with the
-command MACHINE=qemuarm bitbake core-image-sato-sdk -vDD  This
-version appears okay below are the details of the build.</p>
-<p style="margin-bottom:0in"><br>
-</p>
-<p style="margin-bottom:0in"><br>
-</p>
-<p style="margin-bottom:0in">runqemu  qemuarm</p>
-<p style="margin-bottom:0in">uname -a
-</p>
-<p style="margin-bottom:0in">Linux qemuarm 3.4.26-yocto-standard #1
-PREEMPT Thu Jan 31 14:38:44 MST 2013 armv5tejl GNU/Linux
-</p>
-<p style="margin-bottom:0in"><br>
-</p>
-<p style="margin-bottom:0in">Build Configuration:
-</p>
-<p style="margin-bottom:0in">BB_VERSION        = &quot;1.17.0&quot;
-</p>
-<p style="margin-bottom:0in">BUILD_SYS         = &quot;x86_64-linux&quot;
-</p>
-<p style="margin-bottom:0in">NATIVELSBSTRING   = &quot;Unknown&quot;
-</p>
-<p style="margin-bottom:0in">TARGET_SYS        =
-&quot;arm-poky-linux-gnueabi&quot;
-</p>
-<p style="margin-bottom:0in">MACHINE           = &quot;qemuarm&quot;
-</p>
-<p style="margin-bottom:0in">DISTRO            = &quot;poky&quot;
-</p>
-<p style="margin-bottom:0in">DISTRO_VERSION    =
-&quot;1.3+snapshot-20130131&quot;
-</p>
-<p style="margin-bottom:0in">TUNE_FEATURES     = &quot;armv5 thumb
-dsp&quot;
-</p>
-<p style="margin-bottom:0in">TARGET_FPU        = &quot;soft&quot;
-</p>
-<p style="margin-bottom:0in">meta              
-</p>
-<p style="margin-bottom:0in">meta-yocto        
-</p>
-<p style="margin-bottom:0in">meta-yocto-bsp    =
-&quot;master:d82eac804134028ece749928aa2d83096b7aec96&quot;
-</p>
-<p style="margin-bottom:0in"><br>
-</p>
-<p style="margin-bottom:0in">Created a clean build 020813 with the
-command MACHINE=qemuarm bitbake core-image-sato-sdk -vDD  This
-version appears exhibits the following problem:</p>
-<p style="margin-bottom:0in">When clicking the mouse to switch
-between panels nothing happens.</p>
-<p style="margin-bottom:0in"><br>
-</p>
-<p style="margin-bottom:0in">uname -a
-</p>
-<p style="margin-bottom:0in">Linux qemuarm 3.4.28-yocto-standard #1
-PREEMPT Fri Feb 8 15:46:09 MST 2013 armv5tejl GNU/Linux</p>
-<p style="margin-bottom:0in"><br>
-</p>
-<p style="margin-bottom:0in">Build Configuration:
-</p>
-<p style="margin-bottom:0in">BB_VERSION        = &quot;1.17.1&quot;
-</p>
-<p style="margin-bottom:0in">BUILD_SYS         = &quot;x86_64-linux&quot;
-</p>
-<p style="margin-bottom:0in">NATIVELSBSTRING   = &quot;Unknown&quot;
-</p>
-<p style="margin-bottom:0in">TARGET_SYS        =
-&quot;arm-poky-linux-gnueabi&quot;
-</p>
-<p style="margin-bottom:0in">MACHINE           = &quot;qemuarm&quot;
-</p>
-<p style="margin-bottom:0in">DISTRO            = &quot;poky&quot;
-</p>
-<p style="margin-bottom:0in">DISTRO_VERSION    =
-&quot;1.3+snapshot-20130208&quot;
-</p>
-<p style="margin-bottom:0in">TUNE_FEATURES     = &quot;armv5 thumb
-dsp&quot;
-</p>
-<p style="margin-bottom:0in">TARGET_FPU        = &quot;soft&quot;
-</p>
-<p style="margin-bottom:0in">meta              
-</p>
-<p style="margin-bottom:0in">meta-yocto        
-</p>
-<p style="margin-bottom:0in">meta-yocto-bsp    =
-&quot;master:20b4dcace222d6b1d659a8813b4affad075ec0c6&quot;</p>
-
+<p dir=3D"ltr">Thanks, Paul. Not sure however. I should have included that =
+I used plain old i586 architecture. There should be no dashes/underscore is=
+sues there.</p>
+<p dir=3D"ltr">:rjs</p>
+<div class=3D"gmail_quote">On Feb 9, 2013 6:30 AM, &quot;Paul Eggleton&quot=
+; &lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.=
+intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex">
+On Friday 08 February 2013 19:17:35 Rudolf Streif wrote:<br>
+&gt; This is weird and I do not have an explanation for it. For Danny:<br>
+&gt;<br>
+&gt; core-image-minimal-dev is missing the dev packages (pkg-dev)<br>
+&gt;<br>
+&gt; I build it but the packages are not there. The cause does not seem to =
+be my<br>
+&gt; setup because the core-image-minimal on the ADT download site is missi=
+ng<br>
+&gt; them too.<br>
 <br>
+I can&#39;t tell but it could be this bug, for which I have sent a patch:<b=
+r>
+<br>
+<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3792" target=
+=3D"_blank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3792</a><br=
+>
+<br>
+(Although this doesn&#39;t prevent *all* dev packages from being included, =
+just<br>
+some.)<br>
+<br>
+Cheers,<br>
+Paul<br>
+<br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</blockquote></div>
 
---047d7b66f67d661e4b04d54cc21e--
+--047d7b621e0c7c23f704d54de1c5--
