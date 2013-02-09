@@ -1,40 +1,24 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id D6556E0034C;
-	Sat,  9 Feb 2013 01:33:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=UL9OuxVJpEt0F87lVfgczw4OfTXlYAWj+qUVLembd2o=; 
-	b=oUZj4hgjwEd6DJpknz3MTuXc/lhlo+U8WzB9XVBppPTqo9g/dd+Vn+jvUS92Iof07R7XCH30qzZbsAJwYjUUWoXqoXJvoWBSbT+M+/mKGNva+XekF67OYKiYevPR/zUU;
-Received: from [109.224.129.17] (port=44772
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1U46oE-0043tT-3o; Sat, 09 Feb 2013 09:33:22 +0000
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <cover.1360365190.git.kishore.k.bodke@intel.com>
-Date: Sat, 9 Feb 2013 09:33:22 +0000
-Message-Id: <719480A2-D38E-4B74-B815-352C17223899@keylevel.com>
-References: <cover.1360365190.git.kishore.k.bodke@intel.com>
-To: kishore.k.bodke@intel.com
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: linux-yocto@yoctoproject.org, dvhart@linux.intel.com,
-	yocto@yoctoproject.org
-Subject: Re: [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 296B1E0034C
+	for <yocto@yoctoproject.org>; Sat,  9 Feb 2013 06:30:42 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 09 Feb 2013 06:29:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,634,1355126400"; d="scan'208";a="283396595"
+Received: from unknown (HELO helios.localnet) ([10.252.120.57])
+	by orsmga002.jf.intel.com with ESMTP; 09 Feb 2013 06:30:21 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+Date: Sat, 09 Feb 2013 14:30:19 +0000
+Message-ID: <2254268.7tk7KJuRaj@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10 (Linux/3.5.0-23-generic; KDE/4.10.0; i686; ; )
+In-Reply-To: <CA+gsK-oajsnY7o0BZbXvn_Yh70o5fwUnVOU+HCr6qGqXZXPPow@mail.gmail.com>
+References: <CA+gsK-oajsnY7o0BZbXvn_Yh70o5fwUnVOU+HCr6qGqXZXPPow@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [danny] core-image-minimal-dev is missing dev packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,75 +30,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Feb 2013 09:33:27 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 09 Feb 2013 14:30:42 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Friday 08 February 2013 19:17:35 Rudolf Streif wrote:
+> This is weird and I do not have an explanation for it. For Danny:
+> 
+> core-image-minimal-dev is missing the dev packages (pkg-dev)
+> 
+> I build it but the packages are not there. The cause does not seem to be my
+> setup because the core-image-minimal on the ADT download site is missing
+> them too.
 
-On 8 Feb 2013, at 23:18, kishore.k.bodke@intel.com wrote:
+I can't tell but it could be this bug, for which I have sent a patch:
 
-> From: Kishore Bodke <kishore.k.bodke@intel.com>
->=20
->=20
-> Hi,
->=20
-> This patch set is to remove the Cedartail Machine from=20
-> Linux-yocto-3.4 Kernel.
-> Cedartrail BSP will not be supported for Yocto 1.4 Release.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3792
 
-Hi Kishore,
+(Although this doesn't prevent *all* dev packages from being included, just 
+some.)
 
-Are there any plans to bring support back in? We recently committed a =
-project to using this BSP for the Intel DN2800MT...
+Cheers,
+Paul
 
-> Also Please remove the standard/cedartrail branch.
->=20
-> Please pull into linux-yocto-3.4/meta branch.
->=20
-> Thanks
-> Kishore.
->=20
-> The following changes since commit =
-f697e099bc76d5df3a307a5bc0cc25021dd6dfe0:
->=20
->  meta: bump to v3.4.28, rt-40 (2013-02-04 00:14:21 -0500)
->=20
-> are available in the git repository at:
->=20
->  git://git.pokylinux.org/linux-yocto-contrib kishore/cedartrail_remove
->  =
-http://git.pokylinux.org/cgit.cgi/linux-yocto-contrib/log/?h=3Dkishore/ced=
-artrail_remove
->=20
-> Kishore Bodke (1):
->  meta: Remove Cedartrail Machine
->=20
-> .../bsp/cedartrail/cedartrail-preempt-rt.scc       |   13 ------
-> .../bsp/cedartrail/cedartrail-standard.scc         |    8 ----
-> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   46 =
---------------------
-> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.scc |   15 -------
-> 4 files changed, 82 deletions(-)
-> delete mode 100755 =
-meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
-> delete mode 100755 =
-meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
-> delete mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
-> delete mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
->=20
-> --=20
-> 1.7.9.5
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
