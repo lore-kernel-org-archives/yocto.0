@@ -1,39 +1,40 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ee0-f54.google.com (mail-ee0-f54.google.com [74.125.83.54])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id C9871E00724
-	for <yocto@yoctoproject.org>; Fri,  8 Feb 2013 19:17:37 -0800 (PST)
-Received: by mail-ee0-f54.google.com with SMTP id c41so2423516eek.13
-	for <yocto@yoctoproject.org>; Fri, 08 Feb 2013 19:17:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=Y0zuSI4MhBBP/d7mqkEZdlljY5jgLgkUuwdJsODfE0A=;
-	b=IJ8hwy+sVqnufyKjQeZkgd4S5tmso61lHdQEksMKwV77PIoJunG9FhDDTJwYLZ4NbY
-	penl46WkbLCdUrOXzrhkOjz7uz0GwqCLjIb6G8B39vzZg1ItCn6slS9h/hzhKVXYLfMl
-	f5h9FuIQtqULL75iKMOrgRCbrMBtjqjeIFBb8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type:x-gm-message-state;
-	bh=Y0zuSI4MhBBP/d7mqkEZdlljY5jgLgkUuwdJsODfE0A=;
-	b=bYO0ALxT0Y143AcfaGt0OxPlkdPPUaeYI3sjx8vZUrDVXpCik36ZrNho0FA0KMDgJ6
-	GYs1EQb6sumLuCDU+a+CLvr5QieLh60OHQGyVXVvRiWwHUf/iGiAVM3zlhQ8WJs1GjuV
-	BJLi6QYHHLSuZ/LrMg0Tdgnhfv0eoFOqEybtxqZAByx1qCB55iYeuPhyXzLajVpWtv9i
-	2j/vmXwpjMtqrUnyO6RZIWn5x6qWQUMJADg+DtKSddZArgUx6BKMZQ/L7nAo+IY7tLLS
-	wmd/35lQLgPSuHegRZ/qlqYb4C0MC9Wg5mLHo5GIHAtKqTiYBtwUCA6Hg6YfSSpZS4XC
-	4i/Q==
-MIME-Version: 1.0
-X-Received: by 10.14.176.133 with SMTP id b5mr22956245eem.37.1360379855571;
-	Fri, 08 Feb 2013 19:17:35 -0800 (PST)
-Received: by 10.223.133.193 with HTTP; Fri, 8 Feb 2013 19:17:35 -0800 (PST)
-Date: Fri, 8 Feb 2013 19:17:35 -0800
-Message-ID: <CA+gsK-oajsnY7o0BZbXvn_Yh70o5fwUnVOU+HCr6qGqXZXPPow@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQnhK8seylc8ePg18V7QR2iREuuLwxBtCH9P41sPikSWtsTfOAbidR6pDChR4UX4TrvUeO1+
-Subject: [danny] core-image-minimal-dev is missing dev packages
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id D6556E0034C;
+	Sat,  9 Feb 2013 01:33:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=UL9OuxVJpEt0F87lVfgczw4OfTXlYAWj+qUVLembd2o=; 
+	b=oUZj4hgjwEd6DJpknz3MTuXc/lhlo+U8WzB9XVBppPTqo9g/dd+Vn+jvUS92Iof07R7XCH30qzZbsAJwYjUUWoXqoXJvoWBSbT+M+/mKGNva+XekF67OYKiYevPR/zUU;
+Received: from [109.224.129.17] (port=44772
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>)
+	id 1U46oE-0043tT-3o; Sat, 09 Feb 2013 09:33:22 +0000
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <cover.1360365190.git.kishore.k.bodke@intel.com>
+Date: Sat, 9 Feb 2013 09:33:22 +0000
+Message-Id: <719480A2-D38E-4B74-B815-352C17223899@keylevel.com>
+References: <cover.1360365190.git.kishore.k.bodke@intel.com>
+To: kishore.k.bodke@intel.com
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: linux-yocto@yoctoproject.org, dvhart@linux.intel.com,
+	yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,64 +46,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Feb 2013 03:17:38 -0000
-Content-Type: multipart/alternative; boundary=047d7b603c020d0c5104d5421e60
-
---047d7b603c020d0c5104d5421e60
-Content-Type: text/plain; charset=ISO-8859-1
-
-This is weird and I do not have an explanation for it. For Danny:
-
-core-image-minimal-dev is missing the dev packages (pkg-dev)
-
-I build it but the packages are not there. The cause does not seem to be my
-setup because the core-image-minimal on the ADT download site is missing
-them too.
-
-The recipe looks ok.
-
-However, core-image-sato-dev has the dev packages included.
-
-:rjs
-
---047d7b603c020d0c5104d5421e60
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Sat, 09 Feb 2013 09:33:27 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div style><font face=3D"garamond, serif"><span style=3D"b=
-order-collapse:collapse;color:rgb(102,102,102);font-family:arial,sans-serif=
-;font-size:13px">This is weird and I do not have an explanation for it. For=
- Danny:</span></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font face=3D"garamond, serif"><span sty=
-le=3D"border-collapse:collapse;color:rgb(102,102,102);font-family:arial,san=
-s-serif;font-size:13px">core-image-minimal-dev is missing the dev packages =
-(pkg-dev)</span></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font face=3D"garamond, serif"><span sty=
-le=3D"border-collapse:collapse;color:rgb(102,102,102);font-family:arial,san=
-s-serif;font-size:13px">I build it but the packages are not there. The caus=
-e does not seem to be my setup because the core-image-minimal on the ADT do=
-wnload site is missing them too.</span></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font face=3D"garamond, serif"><span sty=
-le=3D"border-collapse:collapse;color:rgb(102,102,102);font-family:arial,san=
-s-serif;font-size:13px">The recipe looks ok.</span></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font face=3D"garamond, serif"><span sty=
-le=3D"border-collapse:collapse;color:rgb(102,102,102);font-family:arial,san=
-s-serif;font-size:13px">However, core-image-sato-dev has the dev packages i=
-ncluded.</span></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font face=3D"garamond, serif"><span sty=
-le=3D"border-collapse:collapse;color:rgb(102,102,102);font-family:arial,san=
-s-serif;font-size:13px">:rjs</span></font></div>
 
-</div>
+On 8 Feb 2013, at 23:18, kishore.k.bodke@intel.com wrote:
 
---047d7b603c020d0c5104d5421e60--
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>=20
+>=20
+> Hi,
+>=20
+> This patch set is to remove the Cedartail Machine from=20
+> Linux-yocto-3.4 Kernel.
+> Cedartrail BSP will not be supported for Yocto 1.4 Release.
+
+Hi Kishore,
+
+Are there any plans to bring support back in? We recently committed a =
+project to using this BSP for the Intel DN2800MT...
+
+> Also Please remove the standard/cedartrail branch.
+>=20
+> Please pull into linux-yocto-3.4/meta branch.
+>=20
+> Thanks
+> Kishore.
+>=20
+> The following changes since commit =
+f697e099bc76d5df3a307a5bc0cc25021dd6dfe0:
+>=20
+>  meta: bump to v3.4.28, rt-40 (2013-02-04 00:14:21 -0500)
+>=20
+> are available in the git repository at:
+>=20
+>  git://git.pokylinux.org/linux-yocto-contrib kishore/cedartrail_remove
+>  =
+http://git.pokylinux.org/cgit.cgi/linux-yocto-contrib/log/?h=3Dkishore/ced=
+artrail_remove
+>=20
+> Kishore Bodke (1):
+>  meta: Remove Cedartrail Machine
+>=20
+> .../bsp/cedartrail/cedartrail-preempt-rt.scc       |   13 ------
+> .../bsp/cedartrail/cedartrail-standard.scc         |    8 ----
+> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   46 =
+--------------------
+> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.scc |   15 -------
+> 4 files changed, 82 deletions(-)
+> delete mode 100755 =
+meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
+> delete mode 100755 =
+meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
+> delete mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
+> delete mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
+>=20
+> --=20
+> 1.7.9.5
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
+
