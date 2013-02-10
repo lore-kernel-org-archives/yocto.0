@@ -1,17 +1,33 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B267E0140A
-	for <yocto@yoctoproject.org>; Sat,  9 Feb 2013 18:11:46 -0800 (PST)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 057F5428BD; Sun, 10 Feb 2013 02:11:45 +0000 (UTC)
-Date: Sun, 10 Feb 2013 02:11:45 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20130210021145.GA7962@ab01.i.yoctoproject.org>
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f180.google.com (mail-we0-f180.google.com
+	[74.125.82.180]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id EFCCDE00498
+	for <yocto@yoctoproject.org>; Sun, 10 Feb 2013 07:38:49 -0800 (PST)
+Received: by mail-we0-f180.google.com with SMTP id k14so4131288wer.25
+	for <yocto@yoctoproject.org>; Sun, 10 Feb 2013 07:38:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=o7hxOuUgcAu74Q6zA46PBQjjS2T/GG2YBHf9YL1lJMQ=;
+	b=wA7xw0VNcwE8DJuTguiPNIQn5tD8p6jnZUCVbwlgFtLQYuadpkP/a3GOB6dARlMYEY
+	Di0J3EF0AgjgdGJU07UEC9qEtlgzn6+Cpojaqi9OrtGRvTAU8b4GIUN+D6TJtKA0vXzJ
+	6LseDHmtpJc1OZmtjdHHXEXUk0lR7aMAdwxsFjZYiun2weMIvTuRAQXjoDEtv2ZaCFLc
+	fRMiuzVVEHCUMdnl0QlWzJMWslyZ9b3LPMpiI5g2jM5ONfdvuE9gL5RjJ9X7C0KfezhY
+	RolN7Opcm1P8OStYEnS5e5cR9XeMyGAs2cOXeTzzpmbbQiOl1DHh0hiuquRIjV9rJ/c1
+	293A==
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+X-Received: by 10.180.79.37 with SMTP id g5mr11429462wix.8.1360510727536; Sun,
+	10 Feb 2013 07:38:47 -0800 (PST)
+Received: by 10.194.36.228 with HTTP; Sun, 10 Feb 2013 07:38:47 -0800 (PST)
+In-Reply-To: <CACW_hTbnHePNOS6Zw7dyBi860Gy0FGBzjnPSWFBNWpBLJkcnHg@mail.gmail.com>
+References: <CACW_hTbnHePNOS6Zw7dyBi860Gy0FGBzjnPSWFBNWpBLJkcnHg@mail.gmail.com>
+Date: Sun, 10 Feb 2013 10:38:47 -0500
+Message-ID: <CAHUNapQa2yiyCJq+YVsxnwfrSvEM6Oaxcz0gSTd85ozRNrMBDg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Frans Meulenbroeks <fransmeulenbroeks@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Danny: default base_do_compile but no default base_do_install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,28 +39,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Feb 2013 02:11:46 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sun, 10 Feb 2013 15:38:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Hi Frans,
 
+On Fri, Feb 8, 2013 at 9:24 AM, Frans Meulenbroeks
+<fransmeulenbroeks@gmail.com> wrote:
+> There is also a default base_do_install() that is empty.
+> Wouldn't it be more logical if the base_do_install would read:
+>
+> Currently people using only base, need to add a do_install to their recipe
+> but no do_compile (which is somewhat odd; if there is a makefile it seems
+> logical to use it for install too).
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-opkg                     0.1.8+svnr649...    0.1.8               163 day                  Radu Moisan <radu.moisan@inte...        No data                       
-kmod                     9                   9                   198 day                  Radu Moisan <radu.moisan@inte...        No data                       
-ubootchart               0.0+r12             0.0+r12             152 day                  Radu Moisan <radu.moisan@inte...        No data                       
-tinylogin                1.4                 1.4                 160 day                  Radu Moisan <radu.moisan@inte...        TinyLogin was merged into Busy...
-libpfm4                  4.3.0               N/A                 41313 d                  No Maintainer information               No data                       
-gtk+3                    3.4.4               N/A                 41313 d                  No Maintainer information               No data                       
-prelink                  1.0+gitAUTOIN...    1.0+git1+9552...    163 day                  Mark Hatle <mark.hatle@windri...        No data                       
-adt-installer            0.1.8+svnr596...    1.1                 152 day                  Jessica Zhang <jessica.zhang@...        No data                       
-tremor                   20120314            20120122            94 days                  Cristian Iorga <cristian.iorg...        No data                       
-minicom                  2.6.1               2.6.1               163 day                  Cristian Iorga <cristian.iorg...        No data                       
-gtkhtml2                 2.11.0+svnr11...    2.11.1              165 day                  Constantin Musca <constantinx...        No data                       
-Manual Check Count: 11
-Manual Need Check Count: 11
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+In my experience when someone manually generates a Makefile for their
+project by hand it always includes an 'all' or default target but
+almost never includes a 'check', 'uninstall', or 'install' target;
+there's a 50/50 chance of it having a 'clean' target of some sort. So
+I don't think it's a stretch for the Yocto system to assume a Makefile
+doesn't contain an 'install' target. But even if you get lucky and it
+does include an 'install' target, what are the chances it has been
+designed to properly handle a 'PREFIX' or 'DESTDIR'?
+
+So you're starting with a low probability that a hand-generated
+Makefile includes an 'install' target, then coupling that with an even
+lower probability that it can flexibly install somewhere other than
+/usr/bin or /bin. Yocto's behaviour seems reasonable to me :-)
+
+Best regards,
+    Trevor
 
