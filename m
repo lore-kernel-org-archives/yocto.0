@@ -1,29 +1,37 @@
-Return-Path: <mail@timomueller.eu>
-Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
-	[85.214.246.27])
-	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
+	[209.85.128.178]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 05436E01482
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2013 02:01:31 -0800 (PST)
-Received: from [192.168.101.53] (mail.bmw-carit.de [62.245.222.98])
-	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: mail@timomueller.eu)
-	by h1954115.stratoserver.net (mailserver) with ESMTPSA id A31266E940ED; 
-	Mon, 11 Feb 2013 11:01:27 +0100 (CET)
-Message-ID: <5118C175.303@timomueller.eu>
-Date: Mon, 11 Feb 2013 11:01:25 +0100
-From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130110 Thunderbird/17.0.2
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 74C4CE01482
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2013 02:20:25 -0800 (PST)
+Received: by mail-ve0-f178.google.com with SMTP id db10so4933274veb.23
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2013 02:20:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=ta6maOzJPivEya21rVsK0d0FQ2hsSVEumnuOJRwo6pE=;
+	b=c7TjXDSNDIHq6fnZMubFCdT3L49vGFzfnjzES4Ai0U4SoLtwx/Yi3VRNqoKdQinte5
+	ksyE1j0loclKAzoGyL/HWEArz5aDTj4YrUYgS8iyZdRK2UWBjnz2PpMnQzzpaGsW3Qo2
+	dfP/zYzxM4N7k0mmehQycXrGPMqpHHAI5SteDoZbFfu+1ml+1NkNlWubWZkH6mzbx5zr
+	L5kzUAGFuLo0XAFVb/EmAJfrqzh0EByknIfqCDrFqhnPD3HdjajCpmjqnCcq26W+8GIE
+	7lVoqo84yO03ZFoW3FDnGM2336TYLV5LVdgmEAnnuvFhL8ozspmxk++XhEXC0dm0ELpg
+	UBhA==
+X-Received: by 10.52.23.18 with SMTP id i18mr15531836vdf.46.1360578024444;
+	Mon, 11 Feb 2013 02:20:24 -0800 (PST)
 MIME-Version: 1.0
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-References: <cover.1360326418.git.timo.mueller@bmw-carit.de>
-	<C6510F6D410BB64A8C15398EDC6B847C57DE28B9@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C57DE28B9@ORSMSX101.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [RFC v1 0/5][eclipse-poky] Enable target profiles for projects
+Received: by 10.58.95.131 with HTTP; Mon, 11 Feb 2013 02:20:04 -0800 (PST)
+In-Reply-To: <CAF6bG8cQYitDLGaura3GMNuEfAFBSE228tvYqr-b=yQNMB6YsA@mail.gmail.com>
+References: <1360357684-14259-1-git-send-email-cazfi74@gmail.com>
+	<51156CA8.4080601@mlbassoc.com>
+	<CAF6bG8cQYitDLGaura3GMNuEfAFBSE228tvYqr-b=yQNMB6YsA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 11 Feb 2013 10:20:04 +0000
+Message-ID: <CAJTo0LaxO59VZxKfTkugSsE6gxyMAtsJ+B29kLpjMcz0TcghVA@mail.gmail.com>
+To: Marko Lindqvist <cazfi74@gmail.com>
+X-Gm-Message-State: ALoCoQl3DuMFE3DBL7jgbD3MFys0TjIHpcMUHM5G+K+SyBDNDV+sv2xLVRljtp/rA7jOo60CNG1U
+Cc: yocto@yoctoproject.org
+Subject: Re: Fix gtk-sato-engine build with automake-1.13
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,85 +43,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Feb 2013 10:01:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 11 Feb 2013 10:20:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Jessica,
+On 8 February 2013 21:49, Marko Lindqvist <cazfi74@gmail.com> wrote:
+> On 8 February 2013 23:22, Gary Thomas <gary@mlbassoc.com> wrote:
+>> On 2013-02-08 14:08, Marko Lindqvist wrote:
+>>>
+>>> [PATCH] configure.ac: fix build with automake-1.13
+>>
+>> Patch seems to be missing
+>
+>  This time inlining it to this email. Hope it makes through this way.
 
-Zhang, Jessica wrote, On 08.02.2013 23:56:
-> Hi Timo,
->
-> Couple comments:
->
-> 1.  I really like the way that the global profile and project profile
-> are linked together.  But it also introduce an out of sync issue.
-> Say I use a profile compiled my project with one set of toolchain and
-> sysroot setup.  Then I change the  toolchain and sysroot settings for
-> the profile.  But unless we inform/enforce the user to rebuild the
-> project with the new profile settings.  The built out in the project
-> directory is using one set of setting, but by looking at the project
-> profile setting is another set.  So, I think we need to add a
-> notification to user like we're doing for "remove".  When user change
-> a profile and if there're projects using the profile, we need to
-> prompt the user  with something like: "The profile settings have been
-> changed and there're projects using this profile which will be
-> impacted.  If you want to pursue the changes, please rebuild those
-> projects with the new profile settings".  And in those projects, we
-> need a sign the inform the user that the underline profile has
-> changed, they need to rebuild to resync.  Make sense?
+Pushed to master of gtk-sato-engine.
 
-Yes, makes sense. I haven't thought about this. Maybe I can also set the 
-"dirty" flag on those projects, so they're automatically reconfigured 
-when the build is started.
-
->
-> 2. Seems we only allow user to choose profiles in project settings,
-> can eliminate those grayed out "save as...", "remove", etc buttons?
-
-The idea was to reuse the code from the global settings, but you're 
-right, it would make sense to get rid of these button here as they are 
-never activated.
-
->
-> 3.  Also since the profile are really cross development setting
-> profiles.  Can we change "Target profile" to "Cross development
-> profile"?
-
-Sure, this should be an easy one. I'll make the changes in the next 
-version of the patch set.
-
->
-> Thanks, Jessica
->
-> -----Original Message----- From: yocto-bounces@yoctoproject.org
-> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Timo Mueller
-> Sent: Friday, February 08, 2013 5:28 AM To: yocto@yoctoproject.org
-> Cc: Timo Mueller Subject: [yocto] [RFC v1 0/5][eclipse-poky] Enable
-> target profiles for projects
->
-> From: Timo Mueller <timo.mueller@bmw-carit.de>
->
-> Hi,
->
-> this patch set enables projects to make use of the target profiles
-> proposed in "[RFC v4 00/17][eclipse-poky] Storing yocto settings as
-> target profiles".
->
-> Currently the target profiles are only used to determine the default
-> settings when creating a new project. Changing the used profile on an
-> already created projects is not possible, also if the target profile
-> is changed the projects are not affected. This patch set enables the
-> use of target profiles in the projects. You can select the used
-> global profile within the projet properties or use a project specific
-> configuration. If a global target profile is used and its values are
-> changed in the eclipse preferences, the projects using this profile
-> are updated accordingly.
->
-> Best regards Timo
-
-Thanks for the comments,
-Timo
-
-
+Ross
 
