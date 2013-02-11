@@ -1,37 +1,35 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 74C4CE01482
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2013 02:20:25 -0800 (PST)
-Received: by mail-ve0-f178.google.com with SMTP id db10so4933274veb.23
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2013 02:20:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=ta6maOzJPivEya21rVsK0d0FQ2hsSVEumnuOJRwo6pE=;
-	b=c7TjXDSNDIHq6fnZMubFCdT3L49vGFzfnjzES4Ai0U4SoLtwx/Yi3VRNqoKdQinte5
-	ksyE1j0loclKAzoGyL/HWEArz5aDTj4YrUYgS8iyZdRK2UWBjnz2PpMnQzzpaGsW3Qo2
-	dfP/zYzxM4N7k0mmehQycXrGPMqpHHAI5SteDoZbFfu+1ml+1NkNlWubWZkH6mzbx5zr
-	L5kzUAGFuLo0XAFVb/EmAJfrqzh0EByknIfqCDrFqhnPD3HdjajCpmjqnCcq26W+8GIE
-	7lVoqo84yO03ZFoW3FDnGM2336TYLV5LVdgmEAnnuvFhL8ozspmxk++XhEXC0dm0ELpg
-	UBhA==
-X-Received: by 10.52.23.18 with SMTP id i18mr15531836vdf.46.1360578024444;
-	Mon, 11 Feb 2013 02:20:24 -0800 (PST)
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45F1FE0027C;
+	Mon, 11 Feb 2013 10:47:29 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 11 Feb 2013 10:47:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,644,1355126400"; d="scan'208";a="255544517"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by azsmga001.ch.intel.com with ESMTP; 11 Feb 2013 10:47:24 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.227]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.248]) with mapi id
+	14.01.0355.002; Mon, 11 Feb 2013 10:47:24 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: Chris Tapp <opensource@keylevel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>
+Thread-Topic: [yocto] [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
+Thread-Index: AQHOBlJClScDYA+yUUqdQoLATqmcYZhxyngAgAM4WvA=
+Date: Mon, 11 Feb 2013 18:47:23 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A6A717A89@ORSMSX101.amr.corp.intel.com>
+References: <cover.1360365190.git.kishore.k.bodke@intel.com>
+	<719480A2-D38E-4B74-B815-352C17223899@keylevel.com>
+In-Reply-To: <719480A2-D38E-4B74-B815-352C17223899@keylevel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.58.95.131 with HTTP; Mon, 11 Feb 2013 02:20:04 -0800 (PST)
-In-Reply-To: <CAF6bG8cQYitDLGaura3GMNuEfAFBSE228tvYqr-b=yQNMB6YsA@mail.gmail.com>
-References: <1360357684-14259-1-git-send-email-cazfi74@gmail.com>
-	<51156CA8.4080601@mlbassoc.com>
-	<CAF6bG8cQYitDLGaura3GMNuEfAFBSE228tvYqr-b=yQNMB6YsA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 11 Feb 2013 10:20:04 +0000
-Message-ID: <CAJTo0LaxO59VZxKfTkugSsE6gxyMAtsJ+B29kLpjMcz0TcghVA@mail.gmail.com>
-To: Marko Lindqvist <cazfi74@gmail.com>
-X-Gm-Message-State: ALoCoQl3DuMFE3DBL7jgbD3MFys0TjIHpcMUHM5G+K+SyBDNDV+sv2xLVRljtp/rA7jOo60CNG1U
-Cc: yocto@yoctoproject.org
-Subject: Re: Fix gtk-sato-engine build with automake-1.13
+Cc: "linux-yocto@yoctoproject.org" <linux-yocto@yoctoproject.org>,
+	"dvhart@linux.intel.com" <dvhart@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,20 +41,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Feb 2013 10:20:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 11 Feb 2013 18:47:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 8 February 2013 21:49, Marko Lindqvist <cazfi74@gmail.com> wrote:
-> On 8 February 2013 23:22, Gary Thomas <gary@mlbassoc.com> wrote:
->> On 2013-02-08 14:08, Marko Lindqvist wrote:
->>>
->>> [PATCH] configure.ac: fix build with automake-1.13
->>
->> Patch seems to be missing
->
->  This time inlining it to this email. Hope it makes through this way.
+Hi Chris,
 
-Pushed to master of gtk-sato-engine.
+Intel is still supporting critical fixes for the Cedar Trail BSP on Yocto P=
+roject 1.3 release. If you need additional support for your project, I can =
+connect you with some Intel sales/support people who can help. At the same =
+time, would you be able to share more information about your project with m=
+e? It will help when I ask them for additional support.
 
-Ross
+Song
+
+-----Original Message-----
+From: Chris Tapp [mailto:opensource@keylevel.com]=20
+Sent: Saturday, February 09, 2013 1:33 AM
+To: Bodke, Kishore K
+Cc: bruce.ashfield@windriver.com; dvhart@linux.intel.com; Saxena, Rahul; Li=
+u, Song; Zanussi, Tom; linux-yocto@yoctoproject.org; yocto@yoctoproject.org
+Subject: Re: [yocto] [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
+
+
+On 8 Feb 2013, at 23:18, kishore.k.bodke@intel.com wrote:
+
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+>=20
+>=20
+> Hi,
+>=20
+> This patch set is to remove the Cedartail Machine from
+> Linux-yocto-3.4 Kernel.
+> Cedartrail BSP will not be supported for Yocto 1.4 Release.
+
+Hi Kishore,
+
+Are there any plans to bring support back in? We recently committed a proje=
+ct to using this BSP for the Intel DN2800MT...
+
+> Also Please remove the standard/cedartrail branch.
+>=20
+> Please pull into linux-yocto-3.4/meta branch.
+>=20
+> Thanks
+> Kishore.
+>=20
+> The following changes since commit f697e099bc76d5df3a307a5bc0cc25021dd6df=
+e0:
+>=20
+>  meta: bump to v3.4.28, rt-40 (2013-02-04 00:14:21 -0500)
+>=20
+> are available in the git repository at:
+>=20
+>  git://git.pokylinux.org/linux-yocto-contrib kishore/cedartrail_remove =20
+> http://git.pokylinux.org/cgit.cgi/linux-yocto-contrib/log/?h=3Dkishore/c
+> edartrail_remove
+>=20
+> Kishore Bodke (1):
+>  meta: Remove Cedartrail Machine
+>=20
+> .../bsp/cedartrail/cedartrail-preempt-rt.scc       |   13 ------
+> .../bsp/cedartrail/cedartrail-standard.scc         |    8 ----
+> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   46 ---------------=
+-----
+> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.scc |   15 -------
+> 4 files changed, 82 deletions(-)
+> delete mode 100755=20
+> meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
+> delete mode 100755=20
+> meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
+> delete mode 100755 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
+> delete mode 100644 meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
+>=20
+> --
+> 1.7.9.5
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
