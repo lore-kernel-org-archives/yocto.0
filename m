@@ -1,38 +1,33 @@
 Return-Path: <song.liu@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 668CCE0027C
-	for <yocto@yoctoproject.org>; Mon, 11 Feb 2013 13:25:11 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 11 Feb 2013 13:25:10 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79FD1E00498
+	for <yocto@yoctoproject.org>; Mon, 11 Feb 2013 15:03:27 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Feb 2013 15:03:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,644,1355126400"; d="scan'208";a="285871217"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga001.fm.intel.com with ESMTP; 11 Feb 2013 13:25:10 -0800
-Received: from orsmsx108.amr.corp.intel.com (10.22.225.40) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 11 Feb 2013 13:25:10 -0800
+X-IronPort-AV: E=Sophos;i="4.84,646,1355126400"; d="scan'208";a="289830936"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Feb 2013 15:03:26 -0800
+Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 11 Feb 2013 15:03:26 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.227]) by
-	ORSMSX108.amr.corp.intel.com ([169.254.9.196]) with mapi id
-	14.01.0355.002; Mon, 11 Feb 2013 13:25:09 -0800
+	ORSMSX107.amr.corp.intel.com ([169.254.10.44]) with mapi id
+	14.01.0438.000; Mon, 11 Feb 2013 15:03:26 -0800
 From: "Liu, Song" <song.liu@intel.com>
-To: Chris Tapp <opensource@keylevel.com>
-Thread-Topic: [yocto] [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
-Thread-Index: AQHOBlJClScDYA+yUUqdQoLATqmcYZhxyngAgAM4WvCAALDrgP//e9LQ
-Date: Mon, 11 Feb 2013 21:25:09 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A6A718D1C@ORSMSX101.amr.corp.intel.com>
-References: <cover.1360365190.git.kishore.k.bodke@intel.com>
-	<719480A2-D38E-4B74-B815-352C17223899@keylevel.com>
-	<7E680CB2A76BB8438D08CF13C09FC53A6A717A89@ORSMSX101.amr.corp.intel.com>
-	<E89AA40D-0FA6-4BC2-99D2-9548F06BDA5D@keylevel.com>
-In-Reply-To: <E89AA40D-0FA6-4BC2-99D2-9548F06BDA5D@keylevel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	February 12,
+	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac4Iq9yB8Bc82ZHeRbaSIVyEUpNPdAAABBJg
+Date: Mon, 11 Feb 2013 23:03:25 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A6A718DEC@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: Darren Hart <dvhart@linux.intel.com>,
-	Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, February 12, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,130 +39,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Feb 2013 21:25:11 -0000
+X-List-Received-Date: Mon, 11 Feb 2013 23:03:27 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks for the reply, Chris! Feel free to let us know if you have any quest=
-ions. Hope your project will go well.
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+* SWAT team rotation: Nitin Kamble -> Elizabeth Flanagan
+* Opens - 10 min=20
+* Team Sharing - 20 min
+=A0
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+=A0
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+=A0
+Conference details=20
+=A0
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+=A0
+Local and Global Access Numbers=20
+=A0
+=A0
+=A0
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
 
-Song
-
------Original Message-----
-From: Chris Tapp [mailto:opensource@keylevel.com]=20
-Sent: Monday, February 11, 2013 1:17 PM
-To: Liu, Song
-Cc: Bodke, Kishore K; Bruce Ashfield; Darren Hart; Saxena, Rahul; Zanussi, =
-Tom; Yocto Discussion Mailing List
-Subject: Re: [yocto] [PATCH 0/1][linux-yocto] Remove Cedartrail Machine
-
-Hi Song / Kishore,
-
-On 11 Feb 2013, at 18:47, Liu, Song wrote:
-
-> Hi Chris,
->=20
-> Intel is still supporting critical fixes for the Cedar Trail BSP on Yocto=
- Project 1.3 release. If you need additional support for your project, I ca=
-n connect you with some Intel sales/support people who can help. At the sam=
-e time, would you be able to share more information about your project with=
- me? It will help when I ask them for additional support.
-
-Thanks, that's good news.
-
-The only slight down side from my perspective is we won't get the benefits =
-from 1.4 (and future) improvements. However, it will give me an excuse to m=
-ove the hardware on as new platforms become available ;-)
-
-
-> Song
->=20
-> -----Original Message-----
-> From: Chris Tapp [mailto:opensource@keylevel.com]
-> Sent: Saturday, February 09, 2013 1:33 AM
-> To: Bodke, Kishore K
-> Cc: bruce.ashfield@windriver.com; dvhart@linux.intel.com; Saxena,=20
-> Rahul; Liu, Song; Zanussi, Tom; linux-yocto@yoctoproject.org;=20
-> yocto@yoctoproject.org
-> Subject: Re: [yocto] [PATCH 0/1][linux-yocto] Remove Cedartrail=20
-> Machine
->=20
->=20
-> On 8 Feb 2013, at 23:18, kishore.k.bodke@intel.com wrote:
->=20
->> From: Kishore Bodke <kishore.k.bodke@intel.com>
->>=20
->>=20
->> Hi,
->>=20
->> This patch set is to remove the Cedartail Machine from
->> Linux-yocto-3.4 Kernel.
->> Cedartrail BSP will not be supported for Yocto 1.4 Release.
->=20
-> Hi Kishore,
->=20
-> Are there any plans to bring support back in? We recently committed a pro=
-ject to using this BSP for the Intel DN2800MT...
->=20
->> Also Please remove the standard/cedartrail branch.
->>=20
->> Please pull into linux-yocto-3.4/meta branch.
->>=20
->> Thanks
->> Kishore.
->>=20
->> The following changes since commit f697e099bc76d5df3a307a5bc0cc25021dd6d=
-fe0:
->>=20
->> meta: bump to v3.4.28, rt-40 (2013-02-04 00:14:21 -0500)
->>=20
->> are available in the git repository at:
->>=20
->> git://git.pokylinux.org/linux-yocto-contrib kishore/cedartrail_remove=20
->> http://git.pokylinux.org/cgit.cgi/linux-yocto-contrib/log/?h=3Dkishore/
->> c
->> edartrail_remove
->>=20
->> Kishore Bodke (1):
->> meta: Remove Cedartrail Machine
->>=20
->> .../bsp/cedartrail/cedartrail-preempt-rt.scc       |   13 ------
->> .../bsp/cedartrail/cedartrail-standard.scc         |    8 ----
->> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg |   46 --------------=
-------
->> .../cfg/kernel-cache/bsp/cedartrail/cedartrail.scc |   15 -------
->> 4 files changed, 82 deletions(-)
->> delete mode 100755
->> meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-preempt-rt.scc
->> delete mode 100755
->> meta/cfg/kernel-cache/bsp/cedartrail/cedartrail-standard.scc
->> delete mode 100755=20
->> meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.cfg
->> delete mode 100644=20
->> meta/cfg/kernel-cache/bsp/cedartrail/cedartrail.scc
->>=20
->> --
->> 1.7.9.5
->>=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
-> Chris Tapp
->=20
-> opensource@keylevel.com
-> www.keylevel.com
->=20
->=20
->=20
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+=A0
+Recurring conferences=20
+=A0
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
 
 
