@@ -1,26 +1,28 @@
-Return-Path: <Andrei.Gherzan@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 08B5BE01400
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 05:09:02 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r1CD903Z014923
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 05:09:01 -0800 (PST)
-Received: from localhost.localdomain (128.224.171.81) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.2.318.4; Tue, 12 Feb 2013 05:08:59 -0800
-From: Andrei Gherzan <andrei.gherzan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 12 Feb 2013 15:08:47 +0200
-Message-ID: <1360674527-16285-1-git-send-email-andrei.gherzan@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
+Return-Path: <jukka.rissanen@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8231E01400
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 05:17:52 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Feb 2013 05:17:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,650,1355126400"; d="scan'208";a="286142945"
+Received: from sorvi.fi.intel.com (HELO [10.237.72.58]) ([10.237.72.58])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Feb 2013 05:17:51 -0800
+Message-ID: <511A40FE.107@linux.intel.com>
+Date: Tue, 12 Feb 2013 15:17:50 +0200
+From: Jukka Rissanen <jukka.rissanen@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:14.0) Gecko/20120801 Thunderbird/14.0
 MIME-Version: 1.0
-X-Originating-IP: [128.224.171.81]
-Cc: florin.sarbu@windriver.com, Andrei Gherzan <andrei.gherzan@windriver.com>
-Subject: [PATCH 1/1] poky-ivi-systemd.conf: Add yoctoproject mirrors
+To: Ross Burton <ross.burton@intel.com>
+References: <511A0810.4080305@linux.intel.com>
+	<F3FDA2B8A266452C8CB34AFC4B256702@intel.com>
+	<511A1617.7010403@linux.intel.com>
+	<CAJTo0LYcFw_yg7_v24+VQTtHNiXzh6Uq_WEVzwfVoFzCXxNd2g@mail.gmail.com>
+	<8646FD9BE034499C9DBF00E03F139C65@intel.com>
+In-Reply-To: <8646FD9BE034499C9DBF00E03F139C65@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Initramfs and systemd problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,27 +34,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 13:09:02 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 12 Feb 2013 13:17:52 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Andrei Gherzan <andrei.gherzan@windriver.com>
----
- conf/distro/poky-ivi-systemd.conf |    4 ++++
- 1 files changed, 4 insertions(+), 0 deletions(-)
+On 12.02.2013 13:50, Ross Burton wrote:
+> On Tuesday, 12 February 2013 at 10:30, Burton, Ross wrote:
+>> On 12 February 2013 10:14, Jukka Rissanen
+>> <jukka.rissanen@linux.intel.com (mailto:jukka.rissanen@linux.intel.com)> wrote:
+>>> At least the systemd version in initramfs is missing
+>>>
+>>> /etc/udev/rules.d/automount.rules
+>>> /etc/udev/scripts/mount.sh (http://mount.sh)
+>>>
+>>> that seem to be related to this issue.
+>>
+>> Yeah, that would do it. :) That saved thirty minutes of debugging, thanks.
+> I can't test an image right now, but try adding a RRECOMMENDS to the udev in the systemd recipe to udev-extraconf, as that's the package which contains the mount script.
+>
+> Ross
+>
 
-diff --git a/conf/distro/poky-ivi-systemd.conf b/conf/distro/poky-ivi-systemd.conf
-index 0f65a4b..1fd13d4 100644
---- a/conf/distro/poky-ivi-systemd.conf
-+++ b/conf/distro/poky-ivi-systemd.conf
-@@ -9,3 +9,7 @@ include conf/distro/include/default-providers-ivi.inc
- 
- DISTRO_FEATURES += " bluetooth systemd "
- 
-+MIRRORS =+ "\
-+ftp://.*/.*      http://downloads.yoctoproject.org/mirror/sources/ \n \
-+http://.*/.*     http://downloads.yoctoproject.org/mirror/sources/ \n \
-+https://.*/.*    http://downloads.yoctoproject.org/mirror/sources/ \n"
--- 
-1.7.5.4
+Thanks Ross!
+
+Adding
+
+RRECOMMENDS_${PN} = "udev-extraconf"
+
+to my systemd_git.bbappend allowed the device to boot.
+
+Probably unrelated but I cannot input anything in the console anymore, 
+console output is ok thou. I have to figure out why.
+
+I noticed one path issue in init-live.sh, will send a patch about it to ml.
+
+
+Cheers,
+Jukka
 
 
