@@ -1,38 +1,27 @@
-Return-Path: <lists@philipp-wagner.com>
-Received: from turboconrad.planet-school.de (mail.planet-school.de
-	[194.116.187.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5F36E00312
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 09:36:10 -0800 (PST)
-Received: from turboconrad.planet-school.de (srv004.service.ps-server.net
-	[194.116.186.79])
-	by turboconrad.planet-school.de (Postfix) with ESMTP id A794DB6A016;
-	Tue, 12 Feb 2013 18:36:07 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	srv004.service.ps-server.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-101.0 required=5.0 tests=ALL_TRUSTED, LOCAL_USER_RULE
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.178.21] (ppp-188-174-163-122.dynamic.mnet-online.de
-	[188.174.163.122])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: mail@philipp-wagner.com)
-	by turboconrad.planet-school.de (Postfix) with ESMTPSA id 61F32B6A020; 
-	Tue, 12 Feb 2013 18:36:07 +0100 (CET)
-Message-ID: <511A7D86.1040703@philipp-wagner.com>
-Date: Tue, 12 Feb 2013 18:36:06 +0100
-From: Philipp Wagner <lists@philipp-wagner.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130105 Thunderbird/17.0.2
-MIME-Version: 1.0
-To: Andrei Gherzan <andrei@gherzan.ro>
-References: <1359582698-24226-1-git-send-email-lists@philipp-wagner.com>
-	<1359582698-24226-2-git-send-email-lists@philipp-wagner.com>
-	<CAK18fxFWNxYDkoJi1jzkeMsmNpN+3QDvWcxfVJqqPb=HKumChA@mail.gmail.com>
-In-Reply-To: <CAK18fxFWNxYDkoJi1jzkeMsmNpN+3QDvWcxfVJqqPb=HKumChA@mail.gmail.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] Choose correct ABI version of graphics binaries
+Return-Path: <denis@denix.org>
+Received: from vms173015pub.verizon.net (vms173015pub.verizon.net
+	[206.46.173.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08BEDE004AB;
+	Tue, 12 Feb 2013 11:16:30 -0800 (PST)
+Received: from gandalf.denix.org ([unknown] [71.191.205.12])
+	by vms173015.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009))
+	with ESMTPA id <0MI40088PG6H2LL5@vms173015.mailsrvcs.net>; Tue,
+	12 Feb 2013 13:16:09 -0600 (CST)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 9E48D2008D; Tue,
+	12 Feb 2013 14:15:53 -0500 (EST)
+Date: Tue, 12 Feb 2013 14:15:53 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Raul Rosetto Munoz <munoz0raul@gmail.com>
+Message-id: <20130212191553.GA1858@denix.org>
+References: <CANmViriV1_tAO+j_nTkpZjcSRD8dh2ALXwHVs1QC-9_dDmrfFA@mail.gmail.com>
+MIME-version: 1.0
+In-reply-to: <CANmViriV1_tAO+j_nTkpZjcSRD8dh2ALXwHVs1QC-9_dDmrfFA@mail.gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-ti] Wifi Module + udev configs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,17 +33,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 17:36:11 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Feb 2013 19:16:31 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-Am 09.02.2013 23:59, Andrei Gherzan wrote:
-> I like this change but I think the best way would be to switch to
-> userland. So we can compile our own libraries. I sent some patches so
-> please give them a try. 
+On Thu, Feb 07, 2013 at 06:26:46PM -0200, Raul Rosetto Munoz wrote:
+> Hello All,
+> I need to configure my yocto project to work with wifi dongle realteck
+> rtl8192cu.
+> 
+> My first problem is that the module does not go up automatically rtl8192cu
+> different than Angstron distro that when I plug the dongle all modules rise.
+> 
+> Another important difference is that on Angstron distro I have on /lib/udev
+> the "firmware" binary file.  I really was not able to install this
+> functionality in udev.
 
-I agree that switching to userland is the best solution. I'll give it a
-try in the next couple days and report back.
+Have you looked at linux-firmware package? rtl8192* should be well supported.
 
-Philipp
+
+> And How to make this firmware binary go to /lib/udev?
+
+By default, firmware files go into /lib/firmware
+
+-- 
+Denys
 
