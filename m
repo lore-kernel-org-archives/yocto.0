@@ -1,23 +1,35 @@
-Return-Path: <jukka.rissanen@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 918EAE006DC
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 02:14:49 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 12 Feb 2013 02:14:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,648,1355126400"; d="scan'208";a="201410977"
-Received: from sorvi.fi.intel.com (HELO [10.237.72.58]) ([10.237.72.58])
-	by AZSMGA002.ch.intel.com with ESMTP; 12 Feb 2013 02:14:48 -0800
-Message-ID: <511A1617.7010403@linux.intel.com>
-Date: Tue, 12 Feb 2013 12:14:47 +0200
-From: Jukka Rissanen <jukka.rissanen@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120801 Thunderbird/14.0
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 55F92E006DC
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 02:30:45 -0800 (PST)
+Received: by mail-vb0-f48.google.com with SMTP id fc21so81009vbb.7
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 02:30:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=zjf0dtezYQxgvK68eOfBlxVZIdTQdEGgeES1j9ogCLI=;
+	b=GBD47ECW+EcyzuO8M6R3VAsMJWVLgztoxsl/Ioe6/aWA/QhaEco7AjT7xj0rLpszx7
+	kUE/RFYZwIuU2GtPo6w7CPAzBk4x0MO8mo6E4MYko6XLQ/6asig7xdc1UismASSU6Qdd
+	/qNaMaswUmd/DIhxg4t3J1QhnJH6JEf7jczb8v3XY+Ft8dZxwTJ+20R6IUM/dFUCFTdt
+	gmhECpCNnkfjmfTTSSqwQu4V4nheyjDxLPb9De4tpzNOGMfH9Qr/ttDNbKo7UxAv4oit
+	JgD6U/FSnZEZdwle0dQbyKhc3Q+WM2kTskboec2GP4zjR5tKhEPKJJRXvwuIWR0bfj18
+	H8QQ==
+X-Received: by 10.58.18.201 with SMTP id y9mr2405966ved.36.1360665044376; Tue,
+	12 Feb 2013 02:30:44 -0800 (PST)
 MIME-Version: 1.0
-To: Ross Burton <ross.burton@intel.com>
+Received: by 10.58.95.131 with HTTP; Tue, 12 Feb 2013 02:30:24 -0800 (PST)
+In-Reply-To: <511A1617.7010403@linux.intel.com>
 References: <511A0810.4080305@linux.intel.com>
 	<F3FDA2B8A266452C8CB34AFC4B256702@intel.com>
-In-Reply-To: <F3FDA2B8A266452C8CB34AFC4B256702@intel.com>
+	<511A1617.7010403@linux.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 12 Feb 2013 10:30:24 +0000
+Message-ID: <CAJTo0LYcFw_yg7_v24+VQTtHNiXzh6Uq_WEVzwfVoFzCXxNd2g@mail.gmail.com>
+To: Jukka Rissanen <jukka.rissanen@linux.intel.com>
+X-Gm-Message-State: ALoCoQmHjStr4pMueDiFN+ZJTv5G++bkr69tqhlmGY/wKckjgewrxmah3PmGbJqNCEQaLJng43ZG
 Cc: yocto@yoctoproject.org
 Subject: Re: Initramfs and systemd problems
 X-BeenThere: yocto@yoctoproject.org
@@ -31,55 +43,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 10:14:49 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Feb 2013 10:30:45 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Ross,
-
-On 12.02.2013 11:35, Ross Burton wrote:
-> On Tuesday, 12 February 2013 at 09:14, Jukka Rissanen wrote:
->> I am building a small network appliance for tethering purposes.
->> I do not need graphics so I removed X support, also added
->> systemd from meta-ivi and upgraded connman into latest
->> 1.11 version, and also did some minor tweaks here and there.
->>
->> In beagleboard, my setup works just fine.
->> In Intel NUC device, the system refuses to boot properly.
->> The reason is the init-live.sh (http://init-live.sh) script in initramfs image,
->> it expects the USB stick to be present in /media/xxx directory.
->>
->> Because the base system uses systemd, the initramfs is
->> also using systemd but there is some things missing and
->> system will not automount the USB stick into /media.
->>
->> Is there any possibility to avoid using systemd in initramfs
->> i.e., use the udev package only, or is the only option to
->> tweak systemd setup in initramfs? Or any other suggestion
->> how to fix this?
+On 12 February 2013 10:14, Jukka Rissanen
+<jukka.rissanen@linux.intel.com> wrote:
+> At least the systemd version in initramfs is missing
 >
+> /etc/udev/rules.d/automount.rules
+> /etc/udev/scripts/mount.sh
 >
-> I'd noticed that systemd's udev is failing to live-boot too in oe-core master (which now has integrated systemd).
->
-> I don't think its possible to build a second udev for the initramfs, and this is clearly a bug so we should figure out why it doesn't work.  Do you have any hints in your debugging as to what is broken?
->
-> Ross
+> that seem to be related to this issue.
 
-At least the systemd version in initramfs is missing
+Yeah, that would do it.  :)  That saved thirty minutes of debugging, thanks.
 
-/etc/udev/rules.d/automount.rules
-/etc/udev/scripts/mount.sh
-
-that seem to be related to this issue.
-
-Also the initializations found in /etc/init.d/udev
-in the standard poky are missing in systemd version
-(not sure if these are needed).
-
-
-Cheers,
-Jukka
-
-
-
+Ross
 
