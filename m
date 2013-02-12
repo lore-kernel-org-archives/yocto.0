@@ -1,28 +1,19 @@
 Return-Path: <jukka.rissanen@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8231E01400
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 05:17:52 -0800 (PST)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80AD6E01439
+	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 05:23:18 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Feb 2013 05:17:52 -0800
+	by fmsmga102.fm.intel.com with ESMTP; 12 Feb 2013 05:23:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,650,1355126400"; d="scan'208";a="286142945"
-Received: from sorvi.fi.intel.com (HELO [10.237.72.58]) ([10.237.72.58])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Feb 2013 05:17:51 -0800
-Message-ID: <511A40FE.107@linux.intel.com>
-Date: Tue, 12 Feb 2013 15:17:50 +0200
+X-IronPort-AV: E=Sophos;i="4.84,650,1355126400"; d="scan'208";a="286145345"
+Received: from sorvi.fi.intel.com ([10.237.72.58])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Feb 2013 05:23:17 -0800
 From: Jukka Rissanen <jukka.rissanen@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:14.0) Gecko/20120801 Thunderbird/14.0
-MIME-Version: 1.0
-To: Ross Burton <ross.burton@intel.com>
-References: <511A0810.4080305@linux.intel.com>
-	<F3FDA2B8A266452C8CB34AFC4B256702@intel.com>
-	<511A1617.7010403@linux.intel.com>
-	<CAJTo0LYcFw_yg7_v24+VQTtHNiXzh6Uq_WEVzwfVoFzCXxNd2g@mail.gmail.com>
-	<8646FD9BE034499C9DBF00E03F139C65@intel.com>
-In-Reply-To: <8646FD9BE034499C9DBF00E03F139C65@intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Initramfs and systemd problems
+To: yocto@yoctoproject.org
+Date: Tue, 12 Feb 2013 15:23:16 +0200
+Message-Id: <1360675396-24351-1-git-send-email-jukka.rissanen@linux.intel.com>
+X-Mailer: git-send-email 1.7.11.4
+Subject: [PATCH] initramfs: udevd can be located in /sbin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,42 +25,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Feb 2013 13:17:52 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Feb 2013 13:23:18 -0000
 
-On 12.02.2013 13:50, Ross Burton wrote:
-> On Tuesday, 12 February 2013 at 10:30, Burton, Ross wrote:
->> On 12 February 2013 10:14, Jukka Rissanen
->> <jukka.rissanen@linux.intel.com (mailto:jukka.rissanen@linux.intel.com)> wrote:
->>> At least the systemd version in initramfs is missing
->>>
->>> /etc/udev/rules.d/automount.rules
->>> /etc/udev/scripts/mount.sh (http://mount.sh)
->>>
->>> that seem to be related to this issue.
->>
->> Yeah, that would do it. :) That saved thirty minutes of debugging, thanks.
-> I can't test an image right now, but try adding a RRECOMMENDS to the udev in the systemd recipe to udev-extraconf, as that's the package which contains the mount script.
->
-> Ross
->
+Do not hard code the udevd path.
 
-Thanks Ross!
+Signed-off-by: Jukka Rissanen <jukka.rissanen@linux.intel.com>
+---
+ meta/recipes-core/initrdscripts/files/init-live.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Adding
-
-RRECOMMENDS_${PN} = "udev-extraconf"
-
-to my systemd_git.bbappend allowed the device to boot.
-
-Probably unrelated but I cannot input anything in the console anymore, 
-console output is ok thou. I have to figure out why.
-
-I noticed one path issue in init-live.sh, will send a patch about it to ml.
-
-
-Cheers,
-Jukka
+diff --git a/meta/recipes-core/initrdscripts/files/init-live.sh b/meta/recipes-core/initrdscripts/files/init-live.sh
+index 0ae359d..0524737 100644
+--- a/meta/recipes-core/initrdscripts/files/init-live.sh
++++ b/meta/recipes-core/initrdscripts/files/init-live.sh
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ 
+-PATH=/sbin:/bin:/usr/sbin:/usr/bin
++PATH=/sbin:/bin:/usr/sbin:/usr/bin:/lib/udev
+ 
+ ROOT_MOUNT="/rootfs/"
+ ROOT_IMAGE="rootfs.img"
+@@ -21,7 +21,7 @@ early_setup() {
+ 
+     mkdir -p /run
+     mkdir -p /var/run
+-    /lib/udev/udevd --daemon
++    udevd --daemon
+     udevadm trigger --action=add
+ }
+ 
+-- 
+1.7.11.4
 
 
