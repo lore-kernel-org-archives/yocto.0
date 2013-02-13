@@ -1,28 +1,29 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id CE446E006C3
-	for <yocto@yoctoproject.org>; Tue, 12 Feb 2013 17:43:46 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r1D1hhjE008726
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 12 Feb 2013 17:43:43 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.21.22) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.318.4; Tue, 12 Feb 2013 17:43:42 -0800
-Message-ID: <511AEFCD.10600@windriver.com>
-Date: Tue, 12 Feb 2013 20:43:41 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <pierre.ficheux@openwide.fr>
+Received: from zimbra3.corp.accelance.fr (zimbra3.corp.accelance.fr
+	[213.162.49.233])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40E8BE006DE
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2013 02:09:10 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra3.corp.accelance.fr (Postfix) with ESMTP id 290DD28050
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2013 11:09:08 +0100 (CET)
+X-Virus-Scanned: amavisd-new at zimbra3.corp.accelance.fr
+Received: from zimbra3.corp.accelance.fr ([127.0.0.1])
+	by localhost (zimbra3.corp.accelance.fr [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id 0MRyv3wiCmB5 for <yocto@yoctoproject.org>;
+	Wed, 13 Feb 2013 11:09:07 +0100 (CET)
+Received: from [10.5.20.63] (unknown [193.56.60.161])
+	by zimbra3.corp.accelance.fr (Postfix) with ESMTPSA id 20D1E28049
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2013 11:09:06 +0100 (CET)
+Message-ID: <511B663E.7010403@openwide.fr>
+Date: Wed, 13 Feb 2013 11:09:02 +0100
+From: Pierre Ficheux <pierre.ficheux@openwide.fr>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
 MIME-Version: 1.0
-To: David Mulder <dmulder@lasx.com>
-References: <19F0379280417C4A8FE3BD23AA7298E501346EB2@EXMBX202A.mmeprod.cbeyond>
-In-Reply-To: <19F0379280417C4A8FE3BD23AA7298E501346EB2@EXMBX202A.mmeprod.cbeyond>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building uio-pci-generic into core-image-minimal
+To: yocto@yoctoproject.org
+References: <CAHUNapSm1V6thRmYzNX-Z7PwohFUs=R6ruqiWYFCdhHtdMJ3cA@mail.gmail.com>
+In-Reply-To: <CAHUNapSm1V6thRmYzNX-Z7PwohFUs=R6ruqiWYFCdhHtdMJ3cA@mail.gmail.com>
+Subject: Re: package list for image build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,50 +35,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Feb 2013 01:43:46 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Wed, 13 Feb 2013 10:09:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 13-02-12 6:47 PM, David Mulder wrote:
-> I need to use the uio-pci-generic kernel module, but I don’t know how to
-> make it available in my image.
+Le 13/02/2013 02:01, Trevor Woerner a écrit :
+> Hi everyone,
 >
-> Yocto 1.3, core-image-minimal, did ‘bitbake linux-yocto –c menuconfig’
-> and added “Generic driver for PCI 2.3”. It took a while to bitbake
-> core-image-minimal after that change, and I saw uio-pci-generic.o, so I
-> assume it rebuilt the kernel and built the module, but I don’t see any
-> traces of the module in my image (‘find / -name *uio*’, /sys/class/uio
-> or /sys/bus/pci/drivers/uio-pci-generic).
+> I've looked at Tim's cheat sheet and Robert's FAQ but I can't seem to
+> figure out if there is a simple way to get bitbake to list the
+> packages that will be included in the build of a given image.
 >
-> I added uio and uio-pci-generic to a recipe’s RDEPENDS, but it can’t
-> find a provider. I added them to IMAGE_FEATURES in local.conf, but that
-
-You need to add the modules to IMAGE_INSTALL via their individual package
-name, or if you just want all modules, use the virtual package 
-"kernel-modules"
-
-You can also get it in the image via MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS.
-
-Cheers,
-
-Bruce
-
-
-> didn’t seem to do anything. I set ‘module_autoload_uio = “uio”’ in
-> local.conf, which also seemed to do nothing. Same for setting it in
-> linux-yocto_3.4.bbappend (some patches indicate that it used to be set
-> in that file). I don’t know what else to try.
+> $ bitbake <magic> core-image-minimal
+> <list of packages included in core-image-minimal image including
+> anything added in local.conf>
 >
-> What might I be missing? Where could I look to see if that module has
-> been built and copied to my image?
+> Am I overlooking something obvious?
 >
-> Thanks!
->
->
->
+> Best regards,
+>      Trevor
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
+
+$ bitbake -g core-image-minimal
+
+result in pn-buildlist.
+
+-- 
+Pierre FICHEUX  -/- CTO OWI, France -\- pierre.ficheux@openwide.fr
+                                          http://ingenierie.openwide.fr
+                                          http://www.linuxembedded.fr
+I would love to change the world, but they won't give me the source code
+
 
 
