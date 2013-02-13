@@ -1,47 +1,43 @@
-Return-Path: <scancool@yahoo.com>
-Received: from nm40-vm6.bullet.mail.bf1.yahoo.com
-	(nm40-vm6.bullet.mail.bf1.yahoo.com [72.30.239.214])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ee0-f51.google.com (mail-ee0-f51.google.com [74.125.83.51])
+	(using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id E5F43E01305
-	for <yocto@yoctoproject.org>; Wed, 13 Feb 2013 10:55:44 -0800 (PST)
-Received: from [98.139.215.142] by nm40.bullet.mail.bf1.yahoo.com with NNFMP;
-	13 Feb 2013 18:55:42 -0000
-Received: from [98.139.215.249] by tm13.bullet.mail.bf1.yahoo.com with NNFMP;
-	13 Feb 2013 18:55:42 -0000
-Received: from [127.0.0.1] by omp1062.mail.bf1.yahoo.com with NNFMP;
-	13 Feb 2013 18:55:42 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 635519.33349.bm@omp1062.mail.bf1.yahoo.com
-Received: (qmail 1600 invoked by uid 60001); 13 Feb 2013 18:55:42 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1360781742; bh=0hJMJdQ3UmEFIIok+1FKwHGokqocNcYEmKXp5HjxuEI=;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:MIME-Version:Content-Type;
-	b=V31sLjRLVMefeVJhcCjKfDvTxf8do4kjCh0om7hAjq8V4qm65yud6SKaUWG/CV/d5mBM71f1mlihnBZ6gbg+3Vcc5v0E2XpjeehFFP16cHIRp9Pw26g4ROnYgUGBMz4rQZhsOt0KtGmCdFhm4Y9fZqp6bUqdlJ9hPBoLzALyg2E=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:MIME-Version:Content-Type;
-	b=nxpPKEDeqDsULKqW5dC/Fya90bXxleP269QjnqoQlvbGzCN8UAVyhAWRDANwCZwwHLcadsPK4Q1WlIwyWGj56m67WzIC6duYUF8b91TCwWpJLNNBWva6ghXMpwpWsfisKNNkUjHHrPKMCijv466tcYNNJguhq72AUYJyawdE/A0=;
-X-YMail-OSG: 4.L31iIVM1l1spE7k0Vr1Z5FeRsYD3y8HuKvTXlM37iKPkF
-	43IWq7jVSe9ORerYmNmXeSsbcxoAEJ0lrKWXzUCWV0yv7rG1VQNxcP4CzkQk
-	ZIOmNe1Pq5zQ9eentEWUgz52JsZXKDPdr6aALlMwNK1E7wihRFR0zY53yywP
-	T0abKVpvF2apfXEVXBmSoVd0qr4G8kCYt7nOhvLhdVzLdTnxtxvRAt07jdo4
-	IzR1wP4WdLfXmFiCM50K9PguKOxsN5__4LluznDftqTQzyelYIISu_PUljsJ
-	3deijeg1I52QVDMqeBD6hsWqjrsB5AXogMg_2h0SvdGgqMWyZlhToIpecQHf
-	n9yLw7BuNGwbF4Uy7faImfZa4h1kRbgJbVxAn.8R0K9.VCq1J7KaVHS_fWX4
-	36OBBA7WwBeh8L8WR_lTKm8XQq0mEbChawURdqsQs_Ozi76ZQVwA6qMYcjqa
-	7ShJFC6iniobpd27v5G2N7gg9P.Z.lAdBH9F.5q_d2ufn6s3P_8Z3BbOueTy
-	Pi76sYg--
-Received: from [64.62.111.10] by web140005.mail.bf1.yahoo.com via HTTP;
-	Wed, 13 Feb 2013 10:55:41 PST
-X-Rocket-MIMEInfo: 001.001,
-	SGVsbG8sDQpJJ20gZ2V0dGluZyB0aGlzIGVycm9yIHdoZW4gSSBydW4gaG9iLCANCg0KRXJyb3INClVuYWJsZSB0byBwYXJzZSAvaG9tZS9hbmRyZS9mc2wtY29tbXVuaXR5LWJzZC9zb3VyY2VzL21ldGEtZnNsLWFybS1leHRyYS9jb25mL2xheWVyLmNvbmY6RmFpbHR1cmUgZXhwYW5kaW5nIHZhcmlhYmxlIEJCUEFUSCwgZXhwcmVzc2lvbiB3YXMgJHtCQlBBVEh9Oi9ob21lL2FuZHJlL2ZzbC1jb21tdW5pdHktYnNwL3NvdWNlcnMvbWV0YS1mc2wtYXJtIHdoaWNoIHRyaWdnZXJlZCBleGNlcHRpb24gRXhjZXABMAEBAQE-
-X-Mailer: YahooMailClassic/15.1.2 YahooMailWebService/0.8.133.508
-Message-ID: <1360781741.1460.YahooMailClassic@web140005.mail.bf1.yahoo.com>
-Date: Wed, 13 Feb 2013 10:55:41 -0800 (PST)
-From: Andre Bella <scancool@yahoo.com>
-To: yocto@yoctoproject.org
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id F2F51E01305
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2013 13:21:30 -0800 (PST)
+Received: by mail-ee0-f51.google.com with SMTP id d17so923948eek.10
+	for <yocto@yoctoproject.org>; Wed, 13 Feb 2013 13:21:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=WvegoE2mYcCtnrRWEMIdWda9jVoUagpfxPBZjv5XimY=;
+	b=EM4kcax2e+4Gapxc8ugssnf2hNGt5+3fLNRChb89A5D+DaAwAfJQPtRi7X7CHbpVL/
+	PxC5PcY01Wgqin5+ubulvpWwqN3BHTrbsX/juCQeHXkcNiYMvb1AYfoGwiVz8P9iaPGs
+	z7nSH8X4hVS7ElBTHITHWEjb5dKs85HuiY4XY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=WvegoE2mYcCtnrRWEMIdWda9jVoUagpfxPBZjv5XimY=;
+	b=BM+Wf4/d94HvILS9CQ4E75JsX7MJjlxU0ZK+vFKdLnxDT67kfJ4l//UIX/A84T71qF
+	lwVZFjbVB6h2ePgm9mwv+/LraU4NiaozEQJbJpDkcTk9N96abc1jtr0gYd/WMLikHpsE
+	G9jWv+Z160aHyt5SbkT0H3ZacSCMBWRlp/RQz8sAh5fdAnVagL/KOGX1eogMHaf+KHNl
+	fWDOoTUgmIyyYObQqt/ZMYW1c3SVx28MEMtpW1igtJn80WwXO88BcaaGqGa0y/kqXTx/
+	sL+G2w924BOfikIuzTpGzwKXjH/a/S0NPf6Vsw2Jz0G1fW/oiglLeaJzp9U6ytOfXcmK
+	/DyA==
 MIME-Version: 1.0
-Subject: hob error
+X-Received: by 10.14.207.200 with SMTP id n48mr8796096eeo.4.1360790488912;
+	Wed, 13 Feb 2013 13:21:28 -0800 (PST)
+Received: by 10.223.197.195 with HTTP; Wed, 13 Feb 2013 13:21:28 -0800 (PST)
+In-Reply-To: <1360781741.1460.YahooMailClassic@web140005.mail.bf1.yahoo.com>
+References: <1360781741.1460.YahooMailClassic@web140005.mail.bf1.yahoo.com>
+Date: Wed, 13 Feb 2013 13:21:28 -0800
+Message-ID: <CA+gsK-rXpPD5YEPer-eObj7Kr4wuwP79mthG8hSHi2+=1X_G_w@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: Andre Bella <scancool@yahoo.com>
+X-Gm-Message-State: ALoCoQkNhyAlUZK3FwtG/Ute3IWFnshOM9YJ8mGnyStTR1nhykEEMLS1bliCMjTlC6yuofJUyYKH
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: hob error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,25 +49,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Feb 2013 18:55:45 -0000
-Content-Type: multipart/alternative;
-	boundary="967802534-1934042798-1360781741=:1460"
+X-List-Received-Date: Wed, 13 Feb 2013 21:21:31 -0000
+Content-Type: multipart/alternative; boundary=047d7b343b1cb492f104d5a1b9ff
 
---967802534-1934042798-1360781741=:1460
-Content-Type: text/plain; charset=us-ascii
+--047d7b343b1cb492f104d5a1b9ff
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hello,
-I'm getting this error when I run hob, 
+Hi Andre,
 
-Error
-Unable to parse /home/andre/fsl-community-bsd/sources/meta-fsl-arm-extra/conf/layer.conf:Failture expanding variable BBPATH, expression was ${BBPATH}:/home/andre/fsl-community-bsp/soucers/meta-fsl-arm which triggered exception Exception: variable BBPATH reference itself!
+You may want to send the content for layer.conf and bblayers.conf.
 
-what I'm trying to do is is add nano, vlc and gstreamer to the rootfs.
+However, you may have a typo if you copied and pasted the error message:
+
+${BBPATH}:/home/andre/fsl-community-bsp/soucers/meta-fsl-arm which
+triggered exception Exception: variable BBPATH reference itself!
+
+It says "soucers" where it should be "sources", I suppose.
+
+Rudi
 
 
---967802534-1934042798-1360781741=:1460
-Content-Type: text/html; charset=us-ascii
+On Wed, Feb 13, 2013 at 10:55 AM, Andre Bella <scancool@yahoo.com> wrote:
 
-<table cellspacing="0" cellpadding="0" border="0" ><tr><td valign="top" style="font: inherit;">Hello,<br>I'm getting this error when I run hob, <br><br>Error<br>Unable to parse /home/andre/fsl-community-bsd/sources/meta-fsl-arm-extra/conf/layer.conf:Failture expanding variable BBPATH, expression was ${BBPATH}:/home/andre/fsl-community-bsp/soucers/meta-fsl-arm which triggered exception Exception: variable BBPATH reference itself!<br><br>what I'm trying to do is is add nano, vlc and gstreamer to the rootfs.<br><br></td></tr></table>
+> Hello,
+> I'm getting this error when I run hob,
+>
+> Error
+> Unable to parse
+> /home/andre/fsl-community-bsd/sources/meta-fsl-arm-extra/conf/layer.conf:Failture
+> expanding variable BBPATH, expression was
+> ${BBPATH}:/home/andre/fsl-community-bsp/soucers/meta-fsl-arm which
+> triggered exception Exception: variable BBPATH reference itself!
+>
+> what I'm trying to do is is add nano, vlc and gstreamer to the rootfs.
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
---967802534-1934042798-1360781741=:1460--
+
+-- 
+-- 
+*Rudolf J. Streif*
+Director of Embedded Solutions
+The Linux Foundation
+
+rudolf.streif@linux.com
+Phone: +1.619.631.5383
+Skype: rudolfstreif
+PGP: RSA 2048/2048 D6E7D28B
+
+Linux Foundation Events Schedule:  events.linuxfoundation.org
+Linux Foundation Training Schedule: training.linuxfoundation.org
+
+--047d7b343b1cb492f104d5a1b9ff
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Andre,<div><br></div><div style>You may want to send th=
+e content for layer.conf and bblayers.conf.</div><div style><br></div><div =
+style>However, you may have a typo if you copied and pasted the error messa=
+ge:</div>
+<div style><br></div><div style><span style=3D"font-family:arial,sans-serif=
+;font-size:13px">${BBPATH}:/home/andre/fsl-</span><span style=3D"font-famil=
+y:arial,sans-serif;font-size:13px">community-bsp/soucers/meta-</span><span =
+style=3D"font-family:arial,sans-serif;font-size:13px">fsl-arm which trigger=
+ed exception Exception: variable BBPATH reference itself!</span><br>
+</div><div style><span style=3D"font-family:arial,sans-serif;font-size:13px=
+"><br></span></div><div style><span style=3D"font-family:arial,sans-serif;f=
+ont-size:13px">It says &quot;soucers&quot; where it should be &quot;sources=
+&quot;, I suppose.</span></div>
+<div style><span style=3D"font-family:arial,sans-serif;font-size:13px"><br>=
+</span></div><div style><span style=3D"font-family:arial,sans-serif;font-si=
+ze:13px">Rudi</span></div></div><div class=3D"gmail_extra"><br><br><div cla=
+ss=3D"gmail_quote">
+On Wed, Feb 13, 2013 at 10:55 AM, Andre Bella <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:scancool@yahoo.com" target=3D"_blank">scancool@yahoo.com</a>&gt;=
+</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex">
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td vali=
+gn=3D"top" style=3D"font:inherit">Hello,<br>I&#39;m getting this error when=
+ I run hob, <br><br>Error<br>Unable to parse /home/andre/fsl-community-bsd/=
+sources/meta-fsl-arm-extra/conf/layer.conf:Failture expanding variable BBPA=
+TH, expression was ${BBPATH}:/home/andre/fsl-community-bsp/soucers/meta-fsl=
+-arm which triggered exception Exception: variable BBPATH reference itself!=
+<br>
+<br>what I&#39;m trying to do is is add nano, vlc and gstreamer to the root=
+fs.<br><br></td></tr></tbody></table><br>__________________________________=
+_____________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>--=A0<br=
+><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font>=
+<div><font face=3D"arial, helvetica, sans-serif">Director of Embedded Solut=
+ions</font></div>
+<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
+></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
+iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
+=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
+<div><font face=3D"arial, helvetica, sans-serif">Phone: +1.619.631.5383</fo=
+nt></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolfstre=
+if</font></div><div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 20=
+48/2048 D6E7D28B</font></div>
+<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
+amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
+);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
+se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
+linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
+nts.linuxfoundation.org</a><br>
+Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
+ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
+xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
+nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
+ont-family:arial,sans-serif;font-size:13px"><br>
+</span></font></div>
+</div>
+
+--047d7b343b1cb492f104d5a1b9ff--
