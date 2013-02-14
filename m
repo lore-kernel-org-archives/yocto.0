@@ -1,44 +1,37 @@
-Return-Path: <scancool@yahoo.com>
-Received: from nm3.bullet.mail.bf1.yahoo.com (nm3.bullet.mail.bf1.yahoo.com
-	[98.139.212.162])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id EB686E006C2
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:02:42 -0800 (PST)
-Received: from [98.139.215.141] by nm3.bullet.mail.bf1.yahoo.com with NNFMP;
-	14 Feb 2013 16:02:42 -0000
-Received: from [98.139.212.204] by tm12.bullet.mail.bf1.yahoo.com with NNFMP;
-	14 Feb 2013 16:02:42 -0000
-Received: from [127.0.0.1] by omp1013.mail.bf1.yahoo.com with NNFMP;
-	14 Feb 2013 16:02:42 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 250138.87478.bm@omp1013.mail.bf1.yahoo.com
-Received: (qmail 70311 invoked by uid 60001); 14 Feb 2013 16:02:42 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1360857762; bh=MjzuOP3yHZYQssFOax8jbF9DRf73GacVGN/DPDqKVho=;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:MIME-Version:Content-Type;
-	b=hemoyl8awjlnXojo4+1XcrSQ02E3QLrr38I2AKoPXQ5ECSnuQCzZrOofDQX9zrm6UBG+EiWZfkE4PxCpaV6voPlLT6cbjHJ6QToXY2tmoiLOjWH1xwy+lO0KJtE68VkgNEBj0gIvPYu2o83rjCve0ypxeAw+wZwBEZbsR1S/1sw=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:MIME-Version:Content-Type;
-	b=uyRQ1z22bWfTa34VPrTW7RyyC104uoTizu66ZbzSSjp7aBfMx+uZXh3NiwmWKQGRxsV3lQqhEAMiU79Po6fk8atro/sQmEQmKA/ANaEIpbwqlv3t1/hRVXJYrYcmsP5UgLsNhmp9VQk2JSd3+gdVb6OuX7w5FV5jMf8f0hkuLJs=;
-X-YMail-OSG: 3Z6dmyoVM1kUCMDOQ2oC1WJy0TzMNOXRYtpliGKhLMLE5Tq
-	_j7o.j2WJApEaRCcT.AYXjEFWei1mfJuEfMQy2jCzmb2jrfac7sVCnAZsq6Q
-	P1SiZOZhB2LthPc7yBGoqDnKZOR2k6P7avPwbcN_t_UTXLVHm4jI67gKPK4P
-	n55bjMjYYbqEkvFNJtdKrPfOYLjd4hQAyhuWXqcSbTKzZJXAUw9TIrmP9P3g
-	Vu1nsd_yl5hCuD44sHX6u1.dIL.M0Tt10srJpR24llzf4K.XWgFn59YMVfpK
-	7XdqtUquBftfq.jEAnElcdGKXu5xHLf2gLWWRWU5qnxkj6nHN8yxi4VWd097
-	NPpdi6Q_6p0bTtKHxU4sf38ey.QdJ1AmslhgjfSo66e1Y0in6QRaDycwTrxO
-	I.TuIPLlIk9OUUZndXwVKVjtJVyNujCIz4TF82PjO5xy20OQrkzYhmWBfRiY
-	VxLZacjjSq9AsuLdY_CW0JnnFLUYGqL45lkJOpQZnS6jn75Sl6w--
-Received: from [64.62.111.10] by web140003.mail.bf1.yahoo.com via HTTP;
-	Thu, 14 Feb 2013 08:02:42 PST
-X-Rocket-MIMEInfo: 001.001,
-	SGVsbG8gDQrCoEkgaGFkIHVzZWQgYnVpbGRyb290IGluIHRoZSBwYXNzIGFuZCBJIGxpa2UgaXQgY2F1c2UgaXMgdmVyeSBlYXN5IHRvIHVzZSwgYnV0IEknbSBtb3ZpbmcgdG8geW9jdG8gY2F1c2UgaXQgaGFzIG1vcmUgYXBwbGljYXRpb25zIHRoYW4gYnVpbGRyb290LCBpbiBidWlsZHJvb3QgeW91IGNhbiBzZWxlY3QgdGhlIHBhY2thZ2VzIHlvdSB3YW50IHRvIGFkZCBieSBnb2luZyB0byBtZW51Y29uZmlnLCBob3cgZG8gSSBzZWxlY3QgdGhlIHBhY2thZ2VzIEkgd2FuIHRvIGFkZCBpbiB5b2N0bywgZm8BMAEBAQE-
-X-Mailer: YahooMailClassic/15.1.2 YahooMailWebService/0.8.133.508
-Message-ID: <1360857762.68234.YahooMailClassic@web140003.mail.bf1.yahoo.com>
-Date: Thu, 14 Feb 2013 08:02:42 -0800 (PST)
-From: Andre Bella <scancool@yahoo.com>
-To: yocto@yoctoproject.org
+Return-Path: <munoz0raul@gmail.com>
+Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
+	[209.85.223.169]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id C6308E003BC;
+	Thu, 14 Feb 2013 08:23:26 -0800 (PST)
+Received: by mail-ie0-f169.google.com with SMTP id 13so3563404iea.0
+	for <multiple recipients>; Thu, 14 Feb 2013 08:23:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=7ohoRAlz5OX347V2WNQHY5u2FZ2ZhrafoEpRf0H2YzY=;
+	b=V3ZeJJuMb+z79AlvVsHJdbAyAJ4AP0m4sEcAtMClug+mAu/i1iTL3tTTAj7Ku9E9k+
+	fi4NLOitURcdpz3aMOJmTAztLPVhcM6qfHXolgT3OSyFnHxrVRDSrx8kRfkunzhoarPg
+	mMcR3edaonKV0rQqaLRhXMD9t6vjngQZ7I9o53sd2CTSOnVKbWRZoQbtELA+/9oU4+Sx
+	DorMZB4fIxUsnw6GQ8WLU80N8znPHa49pOzGzgVsPhwg0l7t4XRqxqJvdbMDQbKzqdpl
+	i/23ueL3PJRcIzXp0NpFIzzVXTeq/EvKxrndIQzkegMZS1HSixPqQrCWk8LzB9+ZTND6
+	iPpg==
 MIME-Version: 1.0
-Subject: select installation packages
+X-Received: by 10.42.140.72 with SMTP id j8mr35259082icu.37.1360858995073;
+	Thu, 14 Feb 2013 08:23:15 -0800 (PST)
+Received: by 10.64.147.40 with HTTP; Thu, 14 Feb 2013 08:23:14 -0800 (PST)
+In-Reply-To: <20130214160030.GD2539@edge>
+References: <CANmViriV1_tAO+j_nTkpZjcSRD8dh2ALXwHVs1QC-9_dDmrfFA@mail.gmail.com>
+	<20130212191553.GA1858@denix.org>
+	<CANmViriOFXRsW10XWXk8vJpCEQgTgq2VGr4A+Roa0SYVz9Z2DQ@mail.gmail.com>
+	<20130214160030.GD2539@edge>
+Date: Thu, 14 Feb 2013 14:23:14 -0200
+Message-ID: <CANmVirgL6Fte5cP+VTdK4aTb4sBB1AXQOq=02DtaiNnRePfwPw@mail.gmail.com>
+From: Raul Rosetto Munoz <munoz0raul@gmail.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-ti] Wifi Module + udev configs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,36 +43,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 16:02:43 -0000
-Content-Type: multipart/alternative;
-	boundary="-230932972-1210837894-1360857762=:68234"
+X-List-Received-Date: Thu, 14 Feb 2013 16:23:27 -0000
+Content-Type: multipart/alternative; boundary=90e6ba6e8be8fda41404d5b1ac20
 
----230932972-1210837894-1360857762=:68234
-Content-Type: text/plain; charset=iso-8859-1
+--90e6ba6e8be8fda41404d5b1ac20
+Content-Type: text/plain; charset=ISO-8859-1
+
+Denys,
+There are something strange,
+
+First there are no  linux-firmware-{rtl8192cu,rtl8192ce,rtl8192su}
+installed at rfs.
+
+raul@phi04:.../tmp/deploy/images$ find
+/media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/ -name "*8192*"
+/media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/RTL8192E
+/media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/rtlwifi/rtl8192sefw.bin
+/media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/rtlwifi/rtl8192defw.bin
+
+Another problem is that "/lib/udev/firmware" are not installed to.
+
+raul@phi04:.../tmp/deploy/images$ find
+/media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/udev/ -name "*firmware*"
+raul@phi04:.../tmp/deploy/images$
+
+But I can see theses files at my "tmp/sysroots/beaglebone"
+
+raul@phi04:.../tmp/sysroots/beaglebone$ find lib/firmware/ -name "*8192*"
+lib/firmware/RTL8192E
+lib/firmware/rtlwifi/rtl8192sefw.bin
+lib/firmware/rtlwifi/rtl8192defw.bin
+lib/firmware/rtlwifi/rtl8192cfw.bin
+lib/firmware/rtlwifi/rtl8192cufw.bin
+
+raul@phi04:.../tmp/sysroots/beaglebone$ find lib/udev/ -name "*firmware*"
+lib/udev/firmware
+lib/udev/rules.d/50-firmware.rules
+
+I tryed copy this files for the sdcard but doesnt work.
+
+Do you have any suggest?
+
+Thanks for all help.
+
+--90e6ba6e8be8fda41404d5b1ac20
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hello=20
-=A0I had used buildroot in the pass and I like it cause is very easy to use=
-, but I'm moving to yocto cause it has more applications than buildroot, in=
- buildroot you can select the packages you want to add by going to menuconf=
-ig, how do I select the packages I wan to add in yocto, for example if I wa=
-n to add nano or gstreamer, from the guide I seen you just type bitbake -b =
-nano, but is there a menuconfig on yocto where you can select the package y=
-ou want to add before you build the image?
-thanks,
+<div dir=3D"ltr"><div>Denys,</div><div>There are something strange,</div><d=
+iv><br></div><div>First there are no =A0linux-firmware-{rtl8192cu,rtl8192ce=
+,rtl8192su} installed at rfs.</div><div><br></div><div><font face=3D"&#39;c=
+ourier new&#39;, monospace">raul@phi04:.../tmp/deploy/images$ find /media/e=
+d86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/ -name &quot;*8192*&quot;<=
+/font></div>
+<div><font face=3D"&#39;courier new&#39;, monospace">/media/ed86e6a2-20c2-4=
+64e-a2f3-f28ff48983ef/lib/firmware/RTL8192E</font></div><div><font face=3D"=
+&#39;courier new&#39;, monospace">/media/ed86e6a2-20c2-464e-a2f3-f28ff48983=
+ef/lib/firmware/rtlwifi/rtl8192sefw.bin</font></div>
+<div><font face=3D"&#39;courier new&#39;, monospace">/media/ed86e6a2-20c2-4=
+64e-a2f3-f28ff48983ef/lib/firmware/rtlwifi/rtl8192defw.bin</font></div><div=
+><br></div><div>Another problem is that &quot;/lib/udev/firmware&quot; are =
+not installed to.</div>
+<div><br></div><div><font face=3D"&#39;courier new&#39;, monospace">raul@ph=
+i04:.../tmp/deploy/images$ find /media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef=
+/lib/udev/ -name &quot;*firmware*&quot;</font></div><div><font face=3D"&#39=
+;courier new&#39;, monospace">raul@phi04:.../tmp/deploy/images$=A0</font></=
+div>
+<div><br></div><div>But I can see theses files at my &quot;tmp/sysroots/bea=
+glebone&quot;</div><div><br></div><div><font face=3D"&#39;courier new&#39;,=
+ monospace">raul@phi04:.../tmp/sysroots/beaglebone$ find lib/firmware/ -nam=
+e &quot;*8192*&quot;</font></div>
+<div><font face=3D"&#39;courier new&#39;, monospace">lib/firmware/RTL8192E<=
+/font></div><div><font face=3D"&#39;courier new&#39;, monospace">lib/firmwa=
+re/rtlwifi/rtl8192sefw.bin</font></div><div><font face=3D"&#39;courier new&=
+#39;, monospace">lib/firmware/rtlwifi/rtl8192defw.bin</font></div>
+<div><font face=3D"&#39;courier new&#39;, monospace">lib/firmware/rtlwifi/r=
+tl8192cfw.bin</font></div><div><font face=3D"&#39;courier new&#39;, monospa=
+ce">lib/firmware/rtlwifi/rtl8192cufw.bin</font></div><div><font face=3D"&#3=
+9;courier new&#39;, monospace"><br>
+</font></div><div><font face=3D"&#39;courier new&#39;, monospace">raul@phi0=
+4:.../tmp/sysroots/beaglebone$ find lib/udev/ -name &quot;*firmware*&quot;<=
+/font></div><div><font face=3D"&#39;courier new&#39;, monospace">lib/udev/f=
+irmware</font></div>
+<div><font face=3D"&#39;courier new&#39;, monospace">lib/udev/rules.d/50-fi=
+rmware.rules</font></div><div><br></div><div>I tryed copy this files for th=
+e sdcard but doesnt work.</div><div><br></div><div>Do you have any suggest?=
+</div>
+<div><br></div><div>Thanks for all help.</div><div><br></div><div><br></div=
+><div><br></div></div>
 
----230932972-1210837894-1360857762=:68234
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" ><tr><td valign=3D"=
-top" style=3D"font: inherit;">Hello <br>&nbsp;I had used buildroot in the p=
-ass and I like it cause is very easy to use, but I'm moving to yocto cause =
-it has more applications than buildroot, in buildroot you can select the pa=
-ckages you want to add by going to menuconfig, how do I select the packages=
- I wan to add in yocto, for example if I wan to add nano or gstreamer, from=
- the guide I seen you just type bitbake -b nano, but is there a menuconfig =
-on yocto where you can select the package you want to add before you build =
-the image?<br>thanks,<br></td></tr></table>
-
----230932972-1210837894-1360857762=:68234--
+--90e6ba6e8be8fda41404d5b1ac20--
