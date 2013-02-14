@@ -1,24 +1,27 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83D05E0047F
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:48:11 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 37A77F81232; Thu, 14 Feb 2013 08:48:11 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 06F45F811F7;
-	Thu, 14 Feb 2013 08:48:10 -0700 (MST)
-Message-ID: <511D074E.7020402@mlbassoc.com>
-Date: Thu, 14 Feb 2013 08:48:30 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f53.google.com (mail-vb0-f53.google.com
+	[209.85.212.53]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 05F77E004FE
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:54:06 -0800 (PST)
+Received: by mail-vb0-f53.google.com with SMTP id fj18so1527225vbb.26
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:54:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=ohsaIVY/4alCRHQZqUH7+lpi0U3Z4iURqkyLwvSJc5c=;
+	b=l80h14YdJD8YsfsP6/eGBkxwu+v/kfa6M5OQ8OO4KvexMH6am0pHPxS0JBc5mrFyp2
+	ZR26GZ3YhWkaE3Rz8WqgkB0TgbHPAYj0Hq061DFY4SdAKHijakuyTDavQQm3u88jd5Ju
+	0uNv/MOQdyH2t/OERWylkdTlblSCzPOS2O5iBvmaVVdjXIr4q+shdWRC8Y3azJEk3Yqp
+	tfYQunULvXbn091dlXN5yh5zppsB7HzV5kHa/rRkEd0fVlnIlsukAJS6/Yvvwt9ET9up
+	Tp2lFBn4alD2CoahURgmzitHk/E23p2ZYhYNGESYgv+2uU6fKyH2toR13FhU5jWiSnmb
+	I+0g==
+X-Received: by 10.220.154.199 with SMTP id p7mr35816760vcw.48.1360857246068;
+	Thu, 14 Feb 2013 07:54:06 -0800 (PST)
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
+Received: by 10.221.10.202 with HTTP; Thu, 14 Feb 2013 07:53:45 -0800 (PST)
+In-Reply-To: <511D074E.7020402@mlbassoc.com>
 References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
 	<511CE592.7000402@mlbassoc.com>
@@ -27,7 +30,12 @@ References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0LZQFUF07XwgBkdFBRE6T+mj5iRCqPOQt7XF_X6PE5pmWA@mail.gmail.com>
 	<511D02FA.609@mlbassoc.com>
 	<CAJTo0LZ5_tN0e_E9AHBDBLzKgNU9tuuV2TGgHrrPsYVtsuG-iQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LZ5_tN0e_E9AHBDBLzKgNU9tuuV2TGgHrrPsYVtsuG-iQ@mail.gmail.com>
+	<511D074E.7020402@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 14 Feb 2013 15:53:45 +0000
+Message-ID: <CAJTo0LbKsTACcGn2+F4ZeVftaGpTnhB=tNCOCa3qUzkac9XKyQ@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQnf5Z+ckASB/aKafmcRLcRE6ZWegARM6cYtuGlpKPp2bUUYHJ0jct5+Ksfmquh/mUjQDvGp
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
@@ -41,40 +49,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 15:48:11 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Feb 2013 15:54:07 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2013-02-14 08:38, Burton, Ross wrote:
-> On 14 February 2013 15:30, Gary Thomas <gary@mlbassoc.com> wrote:
->> I didn't find any mention of Sato in the matchbox-desktop-sato package,
->> but I did in matchbox-session-sato.  It was mentioned in
->> /etc/matchbox/session:
->>    exec matchbox-window-manager -theme Sato -use_desktop_mode decorated
->> -use_cursor $SHOWCURSOR $@
+On 14 February 2013 15:48, Gary Thomas <gary@mlbassoc.com> wrote:
+> I'm using 1.3+ (master from about a month ago) and there is such a file
 >
-> Right, that's the window manager theme, not the widget theme.
+> meta/recipes-sato/matchbox-sato/matchbox-session-sato/matchbox-session-sato.schemas
 >
-> I typo'd, sorry, I meant matchbox-session-sato.  In master, there's a
-> matchbox-session-sato/matchbox-session-sato.schemas which sets the
-> default theme.  If you're using 1.3 or earlier, there's explicit
-> gconftool calls you'll need to change.
+> How do I change this file to use the new theme?
+> Can I just change the file that becomes
+> (/etc/gconf/schemas/matchbox-session-sato.schemas)
+> in order to test the changes?
 
-I'm using 1.3+ (master from about a month ago) and there is such a file
-   meta/recipes-sato/matchbox-sato/matchbox-session-sato/matchbox-session-sato.schemas
+Not without re-registering the schemas and rebooting - it's probably
+quicker to change that file in your overlay and re-build an image.
 
-How do I change this file to use the new theme?
-Can I just change the file that becomes (/etc/gconf/schemas/matchbox-session-sato.schemas)
-in order to test the changes?
+If you've installed the theme already you can use gconftool on the
+device to make a one-off change:
 
-Are these processes documented somewhere (even out of band, e.g. on some
-GNOME site, etc)?
+$ gconftool-2 --set --type string /desktop/poky/interface/theme
+Clearlooks-DarkOrange
 
-Thanks for your time with this.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
