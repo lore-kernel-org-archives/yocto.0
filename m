@@ -1,34 +1,39 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-qe0-f50.google.com (mail-qe0-f50.google.com
-	[209.85.128.50]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 1B90AE00515
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:58:40 -0800 (PST)
-Received: by mail-qe0-f50.google.com with SMTP id 7so1164457qea.37
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:58:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to:cc
-	:content-type:x-gm-message-state;
-	bh=xSVr0thV3kpa5q1mp9eCfYj4R6U8dAgLEGv8CKkMd9g=;
-	b=RXEoaWt2oSp7V3n5t2c6LnTD3np5pEnlGylqUp04ZWMdKZjx8GYNeSDTBCFwJsiMKy
-	bOoFU1Ksjby1UW4EhrNDF4wU+5lPcDUhAIHIhS5oMoG6wC73W+NnJ7FCzgy+jmIBk7UU
-	GvYpdkM1tPJwP21Ynh0HBcFHfscZlS37noSTo8Vh2QHx7P6RgTI/t6uOIHrkPzI+zazM
-	/m65fOn3TXvJDyaCohpeVpyIEfhwh7UV30BigbphjTi7zNjAmVMBYjmkyYP+Wx5xlzLU
-	4kszCQoyCbyxSMeqSH0auewLrBOms2OEi66u3lQAI5ijOqFDWMBYROpBGFmoBuaO3YzZ
-	YtPQ==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3886E003BC
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 09:07:16 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 588E5F81236; Thu, 14 Feb 2013 10:07:16 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 5C296F81234;
+	Thu, 14 Feb 2013 10:07:15 -0700 (MST)
+Message-ID: <511D19D7.8020706@mlbassoc.com>
+Date: Thu, 14 Feb 2013 10:07:35 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-X-Received: by 10.224.216.65 with SMTP id hh1mr839698qab.43.1360861120137;
-	Thu, 14 Feb 2013 08:58:40 -0800 (PST)
-Received: by 10.49.62.168 with HTTP; Thu, 14 Feb 2013 08:58:39 -0800 (PST)
-Date: Thu, 14 Feb 2013 08:58:39 -0800
-Message-ID: <CAPhnLPAxb7MyM7jqTaUJnCLw4HYUGPYpddM78yxgZjhiD7SKOA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQnk59D7FXBDANwjdvUgI8o+4VrDj3WcUXV8s1qJJaIcDdNb0IvD7a5rzTvNwEBWvjrIAF3d
-Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
-	Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly build availability
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <511ACDE5.9090704@mlbassoc.com>
+	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
+	<511CE592.7000402@mlbassoc.com>
+	<CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
+	<511CFDF8.9000005@mlbassoc.com>
+	<CAJTo0LZQFUF07XwgBkdFBRE6T+mj5iRCqPOQt7XF_X6PE5pmWA@mail.gmail.com>
+	<511D02FA.609@mlbassoc.com>
+	<CAJTo0LZ5_tN0e_E9AHBDBLzKgNU9tuuV2TGgHrrPsYVtsuG-iQ@mail.gmail.com>
+	<511D074E.7020402@mlbassoc.com>
+	<CAJTo0LbKsTACcGn2+F4ZeVftaGpTnhB=tNCOCa3qUzkac9XKyQ@mail.gmail.com>
+	<511D155A.4060304@mlbassoc.com>
+	<CAJTo0Lacok_G7hbBXptLM5easV_9t+pwjX+4S8js2XtmLmfX=Q@mail.gmail.com>
+In-Reply-To: <CAJTo0Lacok_G7hbBXptLM5easV_9t+pwjX+4S8js2XtmLmfX=Q@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,22 +45,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 16:58:41 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 14 Feb 2013 17:07:16 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The weekly build is now available at:
+On 2013-02-14 09:50, Burton, Ross wrote:
+> On 14 February 2013 16:48, Gary Thomas <gary@mlbassoc.com> wrote:
+>> Much closer.  Now the theme is being used (and it does suit me!)
+>> but I'm also getting a lot of warnings:
+>>
+>>    matchbox-wm: unable to open theme:
+>> /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
+>>    (matchbox-panel:29173): Gtk-WARNING **: Unable to locate theme engine in
+>> module_path: "clearlooks",
+>>    (matchbox-desktop:29172): Gtk-WARNING **: Unable to locate theme engine in
+>> module_path: "clearlooks",
+>>    ./client_gui.py:219: GtkWarning: Unable to locate theme engine in
+>> module_path: "clearlooks",
+>>
+>> Can I get rid of these?  Should I bother?
+>
+> Yes and yes, it can look a *lot* better. Add a runtime dependency on
+> your theme package to gtk-engine-clearlooks (part of the gtk-engines
+> recipe).
 
-http://autobuilder.yoctoproject.org/pub/nightly/20130213-3
+Thanks, that does look [mostly] better, but I'm still getting some warnings/errors:
 
-Known issues:
----------------------
-- adt-installer failed to build due to a macro error in configuring of
-kconfig-frontends-native
-- build appliance failed due to genext2fs error during rootfs
-- nightly-fsl-arm* both failed due to  no recipes for mesa-dri
+matchbox-wm: unable to open theme: /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
 
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+/usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:58: Clearlooks configuration option "sunkenmenu" is not supported and will be ignored.
+/usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:59: Clearlooks configuration option "menuitemstyle" is not supported and will be ignored.
+/usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:60: Clearlooks configuration option "listviewitemstyle" is not supported and will be ignored.
+/usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:61: Clearlooks configuration option "progressbarstyle" is not supported and will be ignored.
+
+Maybe these are GTK-3 elements?
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
