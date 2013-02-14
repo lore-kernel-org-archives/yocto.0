@@ -1,37 +1,31 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f53.google.com (mail-vb0-f53.google.com
-	[209.85.212.53]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id ED375E004FE
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:14:26 -0800 (PST)
-Received: by mail-vb0-f53.google.com with SMTP id fj18so1557867vbb.12
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:14:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=5mMdvx/4zUMODrRvEuyHuAzAx3hg4bpRU4wj/z7arqA=;
-	b=cJiD6eEUhKNrQzcyWQOpezNfe/6vvW5CKTOAZBqRwYFvQezJCZOrIl0p45Fn5UWW11
-	I4NgORz4kA39ysPUMiJ7pB+JRocG2+Pw6AvyfWlLXKSEE5ta9BjMyvZDhDDZvUnZtreo
-	E5hiAqHDyZUFfj4I5Y/5LYRSgEACaOg7MK3kzGU+6fyUxAh19jjVdfwNrYzL8Lx974Ca
-	zooSblzPmjdfP3uZQHFCp5RUd3ZG5EWzfv+9nHCFeBGZhb0pFLrwvTwIPC7K0BSbuzPf
-	iheWT6FEFTPVNeb3dBxnaNVvAAuowzmERJpPyvrpa6PqRdAJ5jySYwlwei8cXVcM1g45
-	eQ+A==
-X-Received: by 10.220.153.143 with SMTP id k15mr36093509vcw.13.1360854846623; 
-	Thu, 14 Feb 2013 07:14:06 -0800 (PST)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65CF2E00515
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:29:43 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 1CC89F81235; Thu, 14 Feb 2013 08:29:43 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 0B052F81232;
+	Thu, 14 Feb 2013 08:29:42 -0700 (MST)
+Message-ID: <511D02FA.609@mlbassoc.com>
+Date: Thu, 14 Feb 2013 08:30:02 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-Received: by 10.221.10.202 with HTTP; Thu, 14 Feb 2013 07:13:46 -0800 (PST)
-In-Reply-To: <511CFDF8.9000005@mlbassoc.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
 	<511CE592.7000402@mlbassoc.com>
 	<CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
 	<511CFDF8.9000005@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 14 Feb 2013 15:13:46 +0000
-Message-ID: <CAJTo0LZQFUF07XwgBkdFBRE6T+mj5iRCqPOQt7XF_X6PE5pmWA@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Gm-Message-State: ALoCoQmfV8zFF/hQ4awWeDA1aK6T67+9SsbcqeUVr2dNBPdIGKHQrMAEX09x5qXeLYCocGLGIaV7
+	<CAJTo0LZQFUF07XwgBkdFBRE6T+mj5iRCqPOQt7XF_X6PE5pmWA@mail.gmail.com>
+In-Reply-To: <CAJTo0LZQFUF07XwgBkdFBRE6T+mj5iRCqPOQt7XF_X6PE5pmWA@mail.gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
@@ -45,25 +39,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 15:14:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 14 Feb 2013 15:29:43 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 14 February 2013 15:08, Gary Thomas <gary@mlbassoc.com> wrote:
-> What's the best way to install/use one of these? (while I may have been
-> using X since version 10.2, I seldom mess with such things and don't
-> really know the best starting point)
+On 2013-02-14 08:13, Burton, Ross wrote:
+> On 14 February 2013 15:08, Gary Thomas <gary@mlbassoc.com> wrote:
+>> What's the best way to install/use one of these? (while I may have been
+>> using X since version 10.2, I seldom mess with such things and don't
+>> really know the best starting point)
+>>
+>> For example, I downloaded 'ClearLooks Dark Orange' which gave me a single
+>> file "Clearlooks-DarkOrange/gtk-2.0/gtkrc".  How do I install this and
+>> make it stick on my target?
 >
-> For example, I downloaded 'ClearLooks Dark Orange' which gave me a single
-> file "Clearlooks-DarkOrange/gtk-2.0/gtkrc".  How do I install this and
-> make it stick on my target?
+> Good choice, I used that for many years.  :)
+>
+> Package it up so it installs into
+> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc.
+>
+> Then you'll want to override matchbox-desktop-sato which sets the
+> default theme name, change Sato to Clearlooks-DarkOrange.
 
-Good choice, I used that for many years.  :)
+Sorry to be dense, but I'm unclear what you mean here.
 
-Package it up so it installs into
-/usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc.
+I didn't find any mention of Sato in the matchbox-desktop-sato package,
+but I did in matchbox-session-sato.  It was mentioned in /etc/matchbox/session:
+   exec matchbox-window-manager -theme Sato -use_desktop_mode decorated -use_cursor $SHOWCURSOR $@
 
-Then you'll want to override matchbox-desktop-sato which sets the
-default theme name, change Sato to Clearlooks-DarkOrange.
+I tried changing that line to be
+   exec matchbox-window-manager -theme Clearlooks-DarkOrange -use_desktop_mode decorated -use_cursor $SHOWCURSOR $@
+but I got this error:
+   unable to open theme: /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
 
-Ross
+None of the themes that I've downloaded include a theme.xml file.
+Where do they come from?  generated by some process?
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
