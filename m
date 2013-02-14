@@ -1,35 +1,29 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f175.google.com (mail-ve0-f175.google.com
-	[209.85.128.175]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 943A6E003BC
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:00:39 -0800 (PST)
-Received: by mail-ve0-f175.google.com with SMTP id cy12so2169715veb.6
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:00:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=5N+sO3rparF9ZsNVd/5z4FjhYO2KmWIK1PJqNPOGb7E=;
-	b=HVy95yDZ5fUxvY8LCRIMU0i9/gynKfDYUg6VnRZppXMdW0OTVErQ+Gym5wyY8hCocF
-	xVD4QvSz3NCILe2apCxMw7Ki9o+pLnMUfnQEPCkD7H7H9xVO3xFEgDEKMXskE/0POthW
-	ZmykaBThac3QMyR93w65yNE33/zgJ6WJecWB92o/SrhEww8Q0km+2jsJ1NGGxOb7ppI/
-	OPfVrrpxrF2iIQoKb4BlgH6cPRl+JayUgmB6z3LBhqkD/NAyt0uwGuHJneGCF2oJOr4C
-	e6pk+4B64N273OYdWTISC02EhnCk76MVDEyAFpnNbVJ7I7P85w/Lt3ZkKlOPZS4h3N/T
-	XUHg==
-X-Received: by 10.52.37.166 with SMTP id z6mr18863620vdj.55.1360854038327;
-	Thu, 14 Feb 2013 07:00:38 -0800 (PST)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1359AE003BC
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:08:22 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 7CFD9F81232; Thu, 14 Feb 2013 08:08:22 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 961EBF811E8;
+	Thu, 14 Feb 2013 08:08:20 -0700 (MST)
+Message-ID: <511CFDF8.9000005@mlbassoc.com>
+Date: Thu, 14 Feb 2013 08:08:40 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-Received: by 10.221.10.202 with HTTP; Thu, 14 Feb 2013 07:00:18 -0800 (PST)
-In-Reply-To: <511CE592.7000402@mlbassoc.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
 	<511CE592.7000402@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 14 Feb 2013 15:00:18 +0000
-Message-ID: <CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Gm-Message-State: ALoCoQloTmtjq6gndZZX5LM5OKUrSqYQxfo7Z3/Q4y+8/jgBBscnX4QV6jrrdL4e5QvUzMlTBn9s
+	<CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
+In-Reply-To: <CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
@@ -43,25 +37,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 15:00:39 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 14 Feb 2013 15:08:23 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 14 February 2013 13:24, Gary Thomas <gary@mlbassoc.com> wrote:
-> My system has a single GUI program and I'd like to change the "feel"
-> (aka theme).  For example, I'd like to change the colors around (black
-> backgrounds, light foregrounds, etc), as well as things like the size
-> and color of sliders, etc (it's a very restricted environment and I want
-> the feel to reflect that).
+On 2013-02-14 08:00, Burton, Ross wrote:
+> On 14 February 2013 13:24, Gary Thomas <gary@mlbassoc.com> wrote:
+>> My system has a single GUI program and I'd like to change the "feel"
+>> (aka theme).  For example, I'd like to change the colors around (black
+>> backgrounds, light foregrounds, etc), as well as things like the size
+>> and color of sliders, etc (it's a very restricted environment and I want
+>> the feel to reflect that).
+>>
+>> I think I still need the Sato basics as I need some minimal window manager
+>> services like popup keyboards, etc.
 >
-> I think I still need the Sato basics as I need some minimal window manager
-> services like popup keyboards, etc.
+> Messing with the gtk+ theme is the right thing to do, and you can
+> change the theme whilst still using the rest of the Sato environment.
+>
+> Either dig into the Sato theme more, or there's a lot of GTK+ 2 themes
+> at http://art.gnome.org/themes/gtk2 (and other locations) that will
+> work just fine.
 
-Messing with the gtk+ theme is the right thing to do, and you can
-change the theme whilst still using the rest of the Sato environment.
+This is a great resource and many of them look perfect for my needs.
 
-Either dig into the Sato theme more, or there's a lot of GTK+ 2 themes
-at http://art.gnome.org/themes/gtk2 (and other locations) that will
-work just fine.
+What's the best way to install/use one of these? (while I may have been
+using X since version 10.2, I seldom mess with such things and don't
+really know the best starting point)
 
-Ross
+For example, I downloaded 'ClearLooks Dark Orange' which gave me a single
+file "Clearlooks-DarkOrange/gtk-2.0/gtkrc".  How do I install this and
+make it stick on my target?
+
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
