@@ -1,24 +1,27 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6632BE003BC
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:48:07 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 207C2F81234; Thu, 14 Feb 2013 09:48:07 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 0E842F811DA;
-	Thu, 14 Feb 2013 09:48:06 -0700 (MST)
-Message-ID: <511D155A.4060304@mlbassoc.com>
-Date: Thu, 14 Feb 2013 09:48:26 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f47.google.com (mail-vb0-f47.google.com
+	[209.85.212.47]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 3424EE00515
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:50:32 -0800 (PST)
+Received: by mail-vb0-f47.google.com with SMTP id e21so1607090vbm.6
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:50:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=oi8BJNWUAAoQzbRt0lZVjbL67SyiFn5kBOy2X9cKXaE=;
+	b=n4Liia+33l0eTOlWmyRlsnyzzBH1fZIEqeYKgpOVUg3xDNduv11SigX5Cl0ImMiMXu
+	pG2TgI3nLd0vm1baqzVoHGBIgJox+0VUWMB0YkdIdy10WnlzMJvfS5oLnoak9WnqDwHc
+	lQn77CR8v25GIfX0kPmOR6IAd+edr3E7y3GXKFwvvP0ySotXWxtSysg8EkNWBfG2rtNb
+	bf6RINe76wZ4sP+vvuAAf4ktrab/gmhs1diCTZJUELBAfans0IUjSmPR0NHvO7aS6rO8
+	N/pdctpiG6tqJ4yYWWUuWu+KpPULYsJMUdC1w2U45NDz1J9M/JlMzmCiyT92OzWHFC1Y
+	GeXw==
+X-Received: by 10.220.39.69 with SMTP id f5mr36634056vce.45.1360860629979;
+	Thu, 14 Feb 2013 08:50:29 -0800 (PST)
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
+Received: by 10.221.10.202 with HTTP; Thu, 14 Feb 2013 08:50:09 -0800 (PST)
+In-Reply-To: <511D155A.4060304@mlbassoc.com>
 References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
 	<511CE592.7000402@mlbassoc.com>
@@ -29,7 +32,12 @@ References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0LZ5_tN0e_E9AHBDBLzKgNU9tuuV2TGgHrrPsYVtsuG-iQ@mail.gmail.com>
 	<511D074E.7020402@mlbassoc.com>
 	<CAJTo0LbKsTACcGn2+F4ZeVftaGpTnhB=tNCOCa3qUzkac9XKyQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LbKsTACcGn2+F4ZeVftaGpTnhB=tNCOCa3qUzkac9XKyQ@mail.gmail.com>
+	<511D155A.4060304@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 14 Feb 2013 16:50:09 +0000
+Message-ID: <CAJTo0Lacok_G7hbBXptLM5easV_9t+pwjX+4S8js2XtmLmfX=Q@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQkp48Pwb2CXBHmFHFansEhmzpfHQE3jayrbF0fE5hJdExgk5FCDe59A7mSLTy9t+NIRsX7n
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
@@ -43,47 +51,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 16:48:07 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Feb 2013 16:50:32 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2013-02-14 08:53, Burton, Ross wrote:
-> On 14 February 2013 15:48, Gary Thomas <gary@mlbassoc.com> wrote:
->> I'm using 1.3+ (master from about a month ago) and there is such a file
->>
->> meta/recipes-sato/matchbox-sato/matchbox-session-sato/matchbox-session-sato.schemas
->>
->> How do I change this file to use the new theme?
->> Can I just change the file that becomes
->> (/etc/gconf/schemas/matchbox-session-sato.schemas)
->> in order to test the changes?
+On 14 February 2013 16:48, Gary Thomas <gary@mlbassoc.com> wrote:
+> Much closer.  Now the theme is being used (and it does suit me!)
+> but I'm also getting a lot of warnings:
 >
-> Not without re-registering the schemas and rebooting - it's probably
-> quicker to change that file in your overlay and re-build an image.
+>   matchbox-wm: unable to open theme:
+> /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
+>   (matchbox-panel:29173): Gtk-WARNING **: Unable to locate theme engine in
+> module_path: "clearlooks",
+>   (matchbox-desktop:29172): Gtk-WARNING **: Unable to locate theme engine in
+> module_path: "clearlooks",
+>   ./client_gui.py:219: GtkWarning: Unable to locate theme engine in
+> module_path: "clearlooks",
 >
-> If you've installed the theme already you can use gconftool on the
-> device to make a one-off change:
->
-> $ gconftool-2 --set --type string /desktop/poky/interface/theme
-> Clearlooks-DarkOrange
+> Can I get rid of these?  Should I bother?
 
-OK, I've installed the theme into /usr/share/themes and changed the
-one line in /etc/gconf/schemas/matchbox-session-sato.schemas from Sato
-to Clearlooks-DarkOrange
+Yes and yes, it can look a *lot* better. Add a runtime dependency on
+your theme package to gtk-engine-clearlooks (part of the gtk-engines
+recipe).
 
-Much closer.  Now the theme is being used (and it does suit me!)
-but I'm also getting a lot of warnings:
-
-   matchbox-wm: unable to open theme: /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
-   (matchbox-panel:29173): Gtk-WARNING **: Unable to locate theme engine in module_path: "clearlooks",
-   (matchbox-desktop:29172): Gtk-WARNING **: Unable to locate theme engine in module_path: "clearlooks",
-   ./client_gui.py:219: GtkWarning: Unable to locate theme engine in module_path: "clearlooks",
-
-Can I get rid of these?  Should I bother?
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
