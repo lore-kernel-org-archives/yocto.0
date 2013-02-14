@@ -1,34 +1,30 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7DF7E003BC
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 11:39:48 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 14 Feb 2013 11:39:35 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E3AAE006C3
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 13:15:19 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Feb 2013 13:15:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,666,1355126400"; d="scan'208";a="202483220"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by AZSMGA002.ch.intel.com with ESMTP; 14 Feb 2013 11:39:25 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 14 Feb 2013 11:39:04 -0800
+X-IronPort-AV: E=Sophos;i="4.84,666,1355126400"; d="scan'208";a="291306040"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by fmsmga002.fm.intel.com with ESMTP; 14 Feb 2013 13:15:18 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.227]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.163]) with mapi id
-	14.01.0355.002; Thu, 14 Feb 2013 11:39:05 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Atanas Gegov <atanas.gegov.oss@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/3][eclipse-poky] Small cleanup patch set
-Thread-Index: AQHOCQZ+8M1LSph8lEaObP92gaQCN5h5w8Dg
-Date: Thu, 14 Feb 2013 19:39:04 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C68C3C634@ORSMSX101.amr.corp.intel.com>
-References: <cover.1360661504.git.atanas.gegov@bmw-carit.de>
-In-Reply-To: <cover.1360661504.git.atanas.gegov@bmw-carit.de>
+	ORSMSX106.amr.corp.intel.com ([169.254.5.248]) with mapi id
+	14.01.0355.002; Thu, 14 Feb 2013 13:15:18 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	February 12,
+	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac4K+ERui9FHbVeIQKuK/q97CsNqcAAABBDQ
+Date: Thu, 14 Feb 2013 21:15:18 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A6A71BA0D@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/3][eclipse-poky] Small cleanup patch set
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, February 12, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,49 +36,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 19:39:49 -0000
+X-List-Received-Date: Thu, 14 Feb 2013 21:15:19 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Merged to eclipse-poky master.
+Sorry for the late.
 
-Thanks,
-Jessica
+Attendees:
+Belen, ScottR, LaurentiuP, KevinS, Richard, TomZ, Amit, CristanI, BruceA, N=
+itin, JessicaZ, MichaelH, Ross, Denys, Saul, ChrisL, Corneliu, Fahad, Bj=F6=
+rn, DaveST, AlexG, Song
+=A0
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+  - Ross: Tried a build last night, hopefully we can get a proper build on =
+everything. tonight.=20
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+  - Feature development: no issues. More features are getting validated in =
+the past week. Thanks to QA team.
+  - Bug fixing: Not much change on total # of bugs. Fixed 35, LaurentiuP (7=
+), BogdanM (5), thank you! WDD is about the same as the week before. WDD+ i=
+s coming down because we have less number of high's.
+  - Schedule reminder: M4 feature cutoff is coming this Sunday. RC1 could b=
+e at risk due to the travel of some key team members. If that happens we wi=
+ll target RC2 timeframe for M4 and use next week for 1.3.1 testing. Otherwi=
+se, follow the existing schedule.
+  - Master status (Richard): did a build last night, a few small failures. =
+Features pulled in. Last week, trying hard to get green build. We dealt wit=
+h long standing ones. Frustrated on freescale arm build issues.=20
+=A0
+* SWAT team rotation: Nitin Kamble -> Elizabeth Flanagan
+* Opens - 10 min=20
+* Team Sharing - 20 min
+  - Corneliu: we have the final version of our QA report on testing. https:=
+//wiki.ctest.yoctodev.org/wiki/Sample_Summary_Report, https://wiki.ctest.yo=
+ctodev.org/wiki/Sample_Extended_Report. Would like feedback. RP/Song: Still=
+ need email for the summary of the report.=20
+  - Ross: systemd has more patches in, it should just work now in master. C=
+ore-image-sato.=20
+  - RP: recent changes: spend a lot of time on do_package. Email discussion=
+ on mailing list. There is some changes going in. Be aware of that. Python =
+issue, work around at bitbake level now. PR server changes. Beware of those=
+ issues. Please let us know if you see problems. Interested to see the over=
+all build time figure.
+  - Michael: got M3 out, helped with that, upgraded autobuilder 5 and 6. On=
+ce they fully tested will get 4 upgraded. Still tracking some bugs on 5 now=
+. Applied changes for new security policies.=20
+  - LaurentiuP: continued work on postinstall. Put the patches on the maili=
+ng list. With this patch, I'm pretty much done. Will work on SDK bugs.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Atanas Gegov
-Sent: Tuesday, February 12, 2013 1:50 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH 0/3][eclipse-poky] Small cleanup patch set
 
-From: Atanas Gegov <atanas.gegov@bmw-carit.de>
-
-Hi,
-
-this patch series correct some minor mistakes in our code. It does not add =
-new functionality.
-
-Cheers,
-Atanas
-
-Atanas Gegov (3):
-  Unified JRE_CONTAINER setting for all plugins
-  Unified Bundle-Version setting for all plugins
-  Fixed a typo in manifest
-
- plugins/org.yocto.bc.ui/.classpath                 |    2 +-
- plugins/org.yocto.doc.user/.classpath              |    2 +-
- plugins/org.yocto.doc.user/META-INF/MANIFEST.MF    |    4 ++--
- .../META-INF/MANIFEST.MF                           |    2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
-
---
-1.7.5.4
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
