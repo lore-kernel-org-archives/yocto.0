@@ -1,29 +1,37 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1359AE003BC
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:08:22 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 7CFD9F81232; Thu, 14 Feb 2013 08:08:22 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 961EBF811E8;
-	Thu, 14 Feb 2013 08:08:20 -0700 (MST)
-Message-ID: <511CFDF8.9000005@mlbassoc.com>
-Date: Thu, 14 Feb 2013 08:08:40 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f53.google.com (mail-vb0-f53.google.com
+	[209.85.212.53]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id ED375E004FE
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:14:26 -0800 (PST)
+Received: by mail-vb0-f53.google.com with SMTP id fj18so1557867vbb.12
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 07:14:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=5mMdvx/4zUMODrRvEuyHuAzAx3hg4bpRU4wj/z7arqA=;
+	b=cJiD6eEUhKNrQzcyWQOpezNfe/6vvW5CKTOAZBqRwYFvQezJCZOrIl0p45Fn5UWW11
+	I4NgORz4kA39ysPUMiJ7pB+JRocG2+Pw6AvyfWlLXKSEE5ta9BjMyvZDhDDZvUnZtreo
+	E5hiAqHDyZUFfj4I5Y/5LYRSgEACaOg7MK3kzGU+6fyUxAh19jjVdfwNrYzL8Lx974Ca
+	zooSblzPmjdfP3uZQHFCp5RUd3ZG5EWzfv+9nHCFeBGZhb0pFLrwvTwIPC7K0BSbuzPf
+	iheWT6FEFTPVNeb3dBxnaNVvAAuowzmERJpPyvrpa6PqRdAJ5jySYwlwei8cXVcM1g45
+	eQ+A==
+X-Received: by 10.220.153.143 with SMTP id k15mr36093509vcw.13.1360854846623; 
+	Thu, 14 Feb 2013 07:14:06 -0800 (PST)
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
+Received: by 10.221.10.202 with HTTP; Thu, 14 Feb 2013 07:13:46 -0800 (PST)
+In-Reply-To: <511CFDF8.9000005@mlbassoc.com>
 References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
 	<511CE592.7000402@mlbassoc.com>
 	<CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
-In-Reply-To: <CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
+	<511CFDF8.9000005@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 14 Feb 2013 15:13:46 +0000
+Message-ID: <CAJTo0LZQFUF07XwgBkdFBRE6T+mj5iRCqPOQt7XF_X6PE5pmWA@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQmfV8zFF/hQ4awWeDA1aK6T67+9SsbcqeUVr2dNBPdIGKHQrMAEX09x5qXeLYCocGLGIaV7
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
@@ -37,43 +45,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 15:08:23 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Feb 2013 15:14:27 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2013-02-14 08:00, Burton, Ross wrote:
-> On 14 February 2013 13:24, Gary Thomas <gary@mlbassoc.com> wrote:
->> My system has a single GUI program and I'd like to change the "feel"
->> (aka theme).  For example, I'd like to change the colors around (black
->> backgrounds, light foregrounds, etc), as well as things like the size
->> and color of sliders, etc (it's a very restricted environment and I want
->> the feel to reflect that).
->>
->> I think I still need the Sato basics as I need some minimal window manager
->> services like popup keyboards, etc.
+On 14 February 2013 15:08, Gary Thomas <gary@mlbassoc.com> wrote:
+> What's the best way to install/use one of these? (while I may have been
+> using X since version 10.2, I seldom mess with such things and don't
+> really know the best starting point)
 >
-> Messing with the gtk+ theme is the right thing to do, and you can
-> change the theme whilst still using the rest of the Sato environment.
->
-> Either dig into the Sato theme more, or there's a lot of GTK+ 2 themes
-> at http://art.gnome.org/themes/gtk2 (and other locations) that will
-> work just fine.
+> For example, I downloaded 'ClearLooks Dark Orange' which gave me a single
+> file "Clearlooks-DarkOrange/gtk-2.0/gtkrc".  How do I install this and
+> make it stick on my target?
 
-This is a great resource and many of them look perfect for my needs.
+Good choice, I used that for many years.  :)
 
-What's the best way to install/use one of these? (while I may have been
-using X since version 10.2, I seldom mess with such things and don't
-really know the best starting point)
+Package it up so it installs into
+/usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc.
 
-For example, I downloaded 'ClearLooks Dark Orange' which gave me a single
-file "Clearlooks-DarkOrange/gtk-2.0/gtkrc".  How do I install this and
-make it stick on my target?
+Then you'll want to override matchbox-desktop-sato which sets the
+default theme name, change Sato to Clearlooks-DarkOrange.
 
-Thanks
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
