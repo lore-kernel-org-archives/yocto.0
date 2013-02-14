@@ -1,44 +1,37 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ea0-f172.google.com (mail-ea0-f172.google.com
-	[209.85.215.172]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 6A872E00515
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:39:29 -0800 (PST)
-Received: by mail-ea0-f172.google.com with SMTP id f13so1063863eaa.31
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:39:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=gUEwbRvgNYZxkmKAUylBNeG2S1ENb7iEmiJ3OUJkRRw=;
-	b=ETiISNHMhqtXy3Nh+xrp/wNVGG+psbydIkBgRaRqhBXU47R2TazUroZRt1gGp/jOh1
-	Sim4PsklkzviYkgjzHVfTKB2W1aNWz0MKX72vSVMrmA59tcnXyUPwKRWyv67tnSY5+L4
-	mkCuK4M6oi4DAspuRTIJ/9+vtYxMsBTphyeDI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=gUEwbRvgNYZxkmKAUylBNeG2S1ENb7iEmiJ3OUJkRRw=;
-	b=CwEMuTEBvfSNiiwxKU2UJ6L02IYauVSNCB6kBkVsl+lQmI+33jjN/Qdz67aLgX47jU
-	MIvJ7GLv6QT6J0kVhd72ignS0rVuTZkoIf1jj9bFUxDWD8jY7mM6I3lVH9bPuaL31bbr
-	KC2thCn+tK+ewMau5QuaCRQMAPiQRoj3Yr+EdqhHtC/mA3ztZwe8DYZ2Fet6/u4QYWu2
-	kgPTu9kD7ktzdl/zWTuGJaVJ2dSVHOZwqitJjXNUJNXguzOOvTcXu5jO6nMLYOJ8vVK4
-	RB9H2nbfl1OwRiJ68rGUHkX8A9A3L+lFyELCinPPzQfJ+C0r/S2t7ADCUUFERLSJKFqT
-	HXfg==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6632BE003BC
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 08:48:07 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 207C2F81234; Thu, 14 Feb 2013 09:48:07 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 0E842F811DA;
+	Thu, 14 Feb 2013 09:48:06 -0700 (MST)
+Message-ID: <511D155A.4060304@mlbassoc.com>
+Date: Thu, 14 Feb 2013 09:48:26 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-X-Received: by 10.14.3.133 with SMTP id 5mr56705830eeh.43.1360859967276; Thu,
-	14 Feb 2013 08:39:27 -0800 (PST)
-Received: by 10.223.197.195 with HTTP; Thu, 14 Feb 2013 08:39:26 -0800 (PST)
-In-Reply-To: <CAGOhT_e+50tWt5jd4BydNdbe5gqgab9GWBaaPmWbDJq1=TFskA@mail.gmail.com>
-References: <CA+YB3rZ6dj1MZBEk1taj6moeTj63qjm2LjDJb=DprYK3_=BjoA@mail.gmail.com>
-	<CAGOhT_e+50tWt5jd4BydNdbe5gqgab9GWBaaPmWbDJq1=TFskA@mail.gmail.com>
-Date: Thu, 14 Feb 2013 08:39:26 -0800
-Message-ID: <CA+gsK-ozM16oO4tHhjRupAdsqbPZah4a=ESOSGPte8gAUPUEmA@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: John Mehaffey <mehaf@gedanken.com>
-X-Gm-Message-State: ALoCoQn2vdv1ImlVovOQPFXoyrjlIXHeIzAPqEFeQ7hFDM7Tjpunj9Nfjd69fd5/2BaNMUGnQCd+
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <511ACDE5.9090704@mlbassoc.com>
+	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
+	<511CE592.7000402@mlbassoc.com>
+	<CAJTo0LaNdTP3Lg3xsSCH=cZY=_LPATyT7NrW+RC-_CHKvwAUSg@mail.gmail.com>
+	<511CFDF8.9000005@mlbassoc.com>
+	<CAJTo0LZQFUF07XwgBkdFBRE6T+mj5iRCqPOQt7XF_X6PE5pmWA@mail.gmail.com>
+	<511D02FA.609@mlbassoc.com>
+	<CAJTo0LZ5_tN0e_E9AHBDBLzKgNU9tuuV2TGgHrrPsYVtsuG-iQ@mail.gmail.com>
+	<511D074E.7020402@mlbassoc.com>
+	<CAJTo0LbKsTACcGn2+F4ZeVftaGpTnhB=tNCOCa3qUzkac9XKyQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LbKsTACcGn2+F4ZeVftaGpTnhB=tNCOCa3qUzkac9XKyQ@mail.gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: The Yocto Project at upcoming conferences
+Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,61 +43,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 16:39:29 -0000
-Content-Type: multipart/alternative; boundary=047d7b6226a4f0475304d5b1e682
+X-List-Received-Date: Thu, 14 Feb 2013 16:48:07 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7b6226a4f0475304d5b1e682
-Content-Type: text/plain; charset=ISO-8859-1
-
-> It appears that there will be a 2-day training session following the
-> conference as well (Sat-Sun):
+On 2013-02-14 08:53, Burton, Ross wrote:
+> On 14 February 2013 15:48, Gary Thomas <gary@mlbassoc.com> wrote:
+>> I'm using 1.3+ (master from about a month ago) and there is such a file
+>>
+>> meta/recipes-sato/matchbox-sato/matchbox-session-sato/matchbox-session-sato.schemas
+>>
+>> How do I change this file to use the new theme?
+>> Can I just change the file that becomes
+>> (/etc/gconf/schemas/matchbox-session-sato.schemas)
+>> in order to test the changes?
 >
-> See
-> http://events.linuxfoundation.org/events/embedded-linux-conference/schedule
-> :
->  [Add-On] Building Embedded Linux with the Yocto Project Crash Course
-> (LF404)<http://embeddedlinuxconference2013.sched.org/event/e537dca881b6ba52f103be1e10f3bbc6?iframe=yes&w=900&sidebar=yes&bg=no>
+> Not without re-registering the schemas and rebooting - it's probably
+> quicker to change that file in your overlay and re-build an image.
 >
+> If you've installed the theme already you can use gconftool on the
+> device to make a one-off change:
+>
+> $ gconftool-2 --set --type string /desktop/poky/interface/theme
+> Clearlooks-DarkOrange
 
-Yes, that is right. It's a Linux Foundation offering. It is a condensed
-version of our 5-day class in 2-days of action. That's why it's called a
-crash course. :) The class covers pretty much everything from the Yocto
-Project basics to ADT and Eclipse. And you will get a Beaglebone (yours to
-keep) and learn how to make a YP BSP for it.
+OK, I've installed the theme into /usr/share/themes and changed the
+one line in /etc/gconf/schemas/matchbox-session-sato.schemas from Sato
+to Clearlooks-DarkOrange
 
-How would I know? I developed the class material and will teaching the
-class.
+Much closer.  Now the theme is being used (and it does suit me!)
+but I'm also getting a lot of warnings:
 
-Cheers,
-Rudi
+   matchbox-wm: unable to open theme: /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
+   (matchbox-panel:29173): Gtk-WARNING **: Unable to locate theme engine in module_path: "clearlooks",
+   (matchbox-desktop:29172): Gtk-WARNING **: Unable to locate theme engine in module_path: "clearlooks",
+   ./client_gui.py:219: GtkWarning: Unable to locate theme engine in module_path: "clearlooks",
 
---047d7b6226a4f0475304d5b1e682
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Can I get rid of these?  Should I bother?
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><div class=3D"gmail_quote">=
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"gmail_quote"><div>It appears t=
-hat there will be a 2-day training session following the conference as well=
- (Sat-Sun):<br>
-<br>See <a href=3D"http://events.linuxfoundation.org/events/embedded-linux-=
-conference/schedule" target=3D"_blank">http://events.linuxfoundation.org/ev=
-ents/embedded-linux-conference/schedule</a>:<br>
-<span><span title=3D"Bernhard_Hoos@mentor.com"></span></span><span><span ti=
-tle=3D"John_Cherry@mentor.com"></span></span><span><span title=3D"Sean_Huds=
-on@mentor.com"></span></span> <span><a href=3D"http://embeddedlinuxconferen=
-ce2013.sched.org/event/e537dca881b6ba52f103be1e10f3bbc6?iframe=3Dyes&amp;w=
-=3D900&amp;sidebar=3Dyes&amp;bg=3Dno" target=3D"_blank">[Add-On] Building E=
-mbedded Linux with the Yocto Project Crash Course (LF404)</a></span></div>
-</div></blockquote><div><br></div><div style>Yes, that is right. It&#39;s a=
- Linux Foundation offering. It is a condensed version of our 5-day class in=
- 2-days of action. That&#39;s why it&#39;s called a crash course. :) The cl=
-ass covers pretty much everything from the Yocto Project basics to ADT and =
-Eclipse. And you will get a Beaglebone (yours to keep) and learn how to mak=
-e a YP BSP for it.</div>
-<div style><br></div><div style>How would I know? I developed the class mat=
-erial and will teaching the class.</div><div style><br></div><div style>Che=
-ers,</div><div style>Rudi</div></div>
-</div></div>
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---047d7b6226a4f0475304d5b1e682--
