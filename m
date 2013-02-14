@@ -1,27 +1,24 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
-	[209.85.128.172]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id D86ACE003BC
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 09:16:43 -0800 (PST)
-Received: by mail-ve0-f172.google.com with SMTP id cz11so2381857veb.3
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 09:16:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=nVBTPPG2kW0VMAvnE2gSGaKDUULMatAxlsq48efX8A4=;
-	b=l5N/+LOrOBRwphG1hnHPwehukSbZuUMIpXN8tk0Lid5T0S4wGigRTge9gYyiR8cxPG
-	RwXw32XwrDbVjoJrgbblXkZfzSYrUfDdEbK7SKWdwP5i18USIFUzR17dpqaIDFuD8z5c
-	zaxUXvz4lXbLuwHsywTscOI0ZgnJq6vzRCbgpZZZomevot2xUb7Gp+7u+qAbFnRRuF8j
-	uKSsaXBqcUvRS2CYI6SOSBQSRO+nPGwyw2IiAG6vEEqzHMCRks6B2nGidh3oWIwrs4RA
-	AJOhREXWi2Lq7Jw2U7uJmKLXu67gQdhHZHB8Hcqer1fwSzHA198PweGTNPX5ZJlooZQG
-	CsyA==
-X-Received: by 10.220.108.2 with SMTP id d2mr36395056vcp.60.1360862202650;
-	Thu, 14 Feb 2013 09:16:42 -0800 (PST)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DCF5E00515
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 09:28:38 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 699B7F81237; Thu, 14 Feb 2013 10:28:38 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 5768EF81235;
+	Thu, 14 Feb 2013 10:28:37 -0700 (MST)
+Message-ID: <511D1ED9.4020609@mlbassoc.com>
+Date: Thu, 14 Feb 2013 10:28:57 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-Received: by 10.221.10.202 with HTTP; Thu, 14 Feb 2013 09:16:22 -0800 (PST)
-In-Reply-To: <511D19D7.8020706@mlbassoc.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 References: <511ACDE5.9090704@mlbassoc.com>
 	<CAJTo0Lby7D+M2WiVmWMB1Sm9HAO+6SAw17hWp2cjuy=FBb_2pg@mail.gmail.com>
 	<511CE592.7000402@mlbassoc.com>
@@ -35,11 +32,8 @@ References: <511ACDE5.9090704@mlbassoc.com>
 	<511D155A.4060304@mlbassoc.com>
 	<CAJTo0Lacok_G7hbBXptLM5easV_9t+pwjX+4S8js2XtmLmfX=Q@mail.gmail.com>
 	<511D19D7.8020706@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 14 Feb 2013 17:16:22 +0000
-Message-ID: <CAJTo0LbdXMeryivrYXYDJ-KPgL7ortMZucMB5bq_boSnSVw5dg@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Gm-Message-State: ALoCoQmxhm8GZl3VgiqogvWgGeOXLspuAEbczcn6GD6uNCpJN2reFOs8BByWZ/CXCIE55SnCz5v9
+	<CAJTo0LbdXMeryivrYXYDJ-KPgL7ortMZucMB5bq_boSnSVw5dg@mail.gmail.com>
+In-Reply-To: <CAJTo0LbdXMeryivrYXYDJ-KPgL7ortMZucMB5bq_boSnSVw5dg@mail.gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Control over Sato theme
 X-BeenThere: yocto@yoctoproject.org
@@ -53,37 +47,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 17:16:44 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 14 Feb 2013 17:28:39 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 14 February 2013 17:07, Gary Thomas <gary@mlbassoc.com> wrote:
-> Thanks, that does look [mostly] better, but I'm still getting some
-> warnings/errors:
+On 2013-02-14 10:16, Burton, Ross wrote:
+> On 14 February 2013 17:07, Gary Thomas <gary@mlbassoc.com> wrote:
+>> Thanks, that does look [mostly] better, but I'm still getting some
+>> warnings/errors:
+>>
+>> matchbox-wm: unable to open theme:
+>> /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
 >
-> matchbox-wm: unable to open theme:
-> /usr/share/themes/Clearlooks-DarkOrange/matchbox/theme.xml
-
-Did you revert the other change you made that modified the matchbox theme?
-
-> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:58: Clearlooks
-> configuration option "sunkenmenu" is not supported and will be ignored.
-> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:59: Clearlooks
-> configuration option "menuitemstyle" is not supported and will be ignored.
-> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:60: Clearlooks
-> configuration option "listviewitemstyle" is not supported and will be
-> ignored.
-> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:61: Clearlooks
-> configuration option "progressbarstyle" is not supported and will be
-> ignored.
+> Did you revert the other change you made that modified the matchbox theme?
 >
-> Maybe these are GTK-3 elements?
+>> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:58: Clearlooks
+>> configuration option "sunkenmenu" is not supported and will be ignored.
+>> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:59: Clearlooks
+>> configuration option "menuitemstyle" is not supported and will be ignored.
+>> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:60: Clearlooks
+>> configuration option "listviewitemstyle" is not supported and will be
+>> ignored.
+>> /usr/share/themes/Clearlooks-DarkOrange/gtk-2.0/gtkrc:61: Clearlooks
+>> configuration option "progressbarstyle" is not supported and will be
+>> ignored.
+>>
+>> Maybe these are GTK-3 elements?
+>
+> That's a gtk+2 theme, but it's possible that it targets an older or
+> newer version of the clearlooks engine.  And people said that GTK+2
+> theming was great...  If it looks acceptable you could ignore it, as
+> chasing this could be less than trivial and quite dull - theme engines
+> are not versioned so unless the theme has some documentation, you'll
+> be searching through the clearlooks commit log.
 
-That's a gtk+2 theme, but it's possible that it targets an older or
-newer version of the clearlooks engine.  And people said that GTK+2
-theming was great...  If it looks acceptable you could ignore it, as
-chasing this could be less than trivial and quite dull - theme engines
-are not versioned so unless the theme has some documentation, you'll
-be searching through the clearlooks commit log.
+For the moment, I'll just ignore these.  I'm pretty happy with how it
+looks and I now understand a bit more about how to experiment with these.
 
-Ross
+Thanks again
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
