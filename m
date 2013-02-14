@@ -1,32 +1,46 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wg0-f48.google.com (mail-wg0-f48.google.com [74.125.82.48])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id A2A01E00515
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 09:44:44 -0800 (PST)
-Received: by mail-wg0-f48.google.com with SMTP id 16so2057289wgi.15
-	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 09:44:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=fHCr0nsVBNvz05jLTpJnm8VzfchQVRgD0WbEuKDew4k=;
-	b=WLQNJ4Jw5OxuDwH4sr6uXVjCl0QOeIPYapY8WLiTg/4uvu0pMq6ETnkuLOiXp7LISF
-	JtOmhFgOz4kIJ+PvNs0Xp030yKcoMvC4uZIaxx33Wzg3p7G5xk7pcU7paGRNGzWE+K0G
-	C1kdxvRjL50qvJb6GdHaiHuAUQjnTh4ZHBqAbjH72BXA0SVhcRHBM+Ur6YqJN1C3BDsJ
-	whcWNyuoJPfHR6YxbiQxxoQFdrm39hpnLvLYKca5TfODltSHTvssBig1eYpP9JaXg6ds
-	b9IDZfyWAFJ7MWpSJaxPc/hxO2uXfD56wByTJDq2tAoxSq5LgVZ/kH58dpU3un8eFpVF
-	R9kA==
+Return-Path: <scancool@yahoo.com>
+Received: from nm5.bullet.mail.bf1.yahoo.com (nm5.bullet.mail.bf1.yahoo.com
+	[98.139.212.164])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 56EF1E00515
+	for <yocto@yoctoproject.org>; Thu, 14 Feb 2013 09:44:56 -0800 (PST)
+Received: from [98.139.215.143] by nm5.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 Feb 2013 17:44:55 -0000
+Received: from [98.139.212.221] by tm14.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 Feb 2013 17:44:55 -0000
+Received: from [127.0.0.1] by omp1030.mail.bf1.yahoo.com with NNFMP;
+	14 Feb 2013 17:44:55 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 712918.55129.bm@omp1030.mail.bf1.yahoo.com
+Received: (qmail 85352 invoked by uid 60001); 14 Feb 2013 17:44:55 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1360863895; bh=o3YIwU3i2oDgVSiTknpmigkq6oQdJC/IKAa+TSViUHI=;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=HQIURcb4l3+Kgr2CnaY/AG2h8jLNwhu/6Oa0g0boTbHlfwUboSeLvrfAiBpiALyGbx46xo3jRVwVdETApAioH/rBQjoxLAfda/lDg0TqUakOqBhkh16kbtIrPgjQFDtXI9jINDzao1iIJnor8agW27uw4Sw8wh1v1qrlNiRPQKI=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=u0XF1XjNpelZ6hLiC3INSoaU2N7af3idnV+NnmBfQ4dYasyEjvtTVvLT9P2BbViPsr1XC+q7hfrOm9yhE38K9jXPXtRrGxOhqAk5NvPTdZgbtp2F9gb4yLMRFFwK6KWDj13jlNHEvDhoboj1JNoZyDcWCofEazoA0fTMJKC5uuo=;
+X-YMail-OSG: fSoLs4EVM1lbbp8Q7RyP4LZ5dx3VGYGYRn9pjmGOxejYoD7
+	BrqGKxiurrt7pXNmi6KwtM2dxCD5vLsJAhejTtvgL26hFnzOXCF_8RhZhE41
+	gAjecacBITdask9j0crvrDiyRTVOQZwNEuEveFUw885Bb9Sy7VZV9RvGEZ6X
+	EqxDPfxYlZjiUQBQx1LbqIVcnf_rs4kmdLjZEpSh3sgZNADMdor.gsiniwof
+	kr0ynxW__Y2sZQCidgGyAnnoJnT11oCPvuvmAk6JGI2B66mCU3I7jgrIqF80
+	guHFjxnrPogRO__K3zUDWKVfH5X8U5gQGeAe7s9oWhubgJpkbKA1oQiqbB3L
+	T3WrJUQZ1.yqBJ5_x8rkFT5nmiZW51ynETmF9kB5vnh3SJj3Rx9QBjg3qM0a
+	bRUJCGzmAYq.3L3FC4RH.yNG9D2lcJmQS07NPh6cB72SQItQTLOM1vZoCKRP
+	Ei9sBZypa9RKBLWBkPUF0ZFVJvgS9uKilUaQOynJWBgK13QJuCY7mzTC3ZMY
+	YEAcnLe4tXLD3
+Received: from [64.62.111.10] by web140004.mail.bf1.yahoo.com via HTTP;
+	Thu, 14 Feb 2013 09:44:55 PST
+X-Rocket-MIMEInfo: 001.001,
+	VGhhbmtzIGJ1dCBJJ20gbm90IHN1cmUgaWYgeW91IHVuZGVyc3Rvb2QsIHdpdGggaG9iIHlvdSBjYW4gb25seSB1bmluc3RhbGwNCmFmdGVyIHRoZSBpbWFnZSBoYXMgYmVlbiBidWlsZCAsIHdlcmUgeW91IGFibGUgdG8gc2VsZWN0IHdoYXQgdG8gaW5zdGFsbCBiZWZvcmUgYnVpbGRpbmcgdGhlIGltYWdlPyBzYW1lIGFzIGJ1aWxkcm9vdD8NCg0KLS0tIE9uIFRodSwgMi8xNC8xMywgQnVydG9uLCBSb3NzIDxyb3NzLmJ1cnRvbkBpbnRlbC5jb20.IHdyb3RlOg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgPHJvc3MBMAEBAQE-
+X-Mailer: YahooMailClassic/15.1.2 YahooMailWebService/0.8.133.508
+Message-ID: <1360863895.79323.YahooMailClassic@web140004.mail.bf1.yahoo.com>
+Date: Thu, 14 Feb 2013 09:44:55 -0800 (PST)
+From: Andre Bella <scancool@yahoo.com>
+To: RossBurton <ross.burton@intel.com>
+In-Reply-To: <CAJTo0LboEa_ZWSbSqt5Bb0wtRhG-wdmGt=Tv5SEUgi=7rgCKtg@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.194.60.5 with SMTP id d5mr30613587wjr.4.1360863882805; Thu,
-	14 Feb 2013 09:44:42 -0800 (PST)
-Received: by 10.194.36.228 with HTTP; Thu, 14 Feb 2013 09:44:42 -0800 (PST)
-In-Reply-To: <1360857762.68234.YahooMailClassic@web140003.mail.bf1.yahoo.com>
-References: <1360857762.68234.YahooMailClassic@web140003.mail.bf1.yahoo.com>
-Date: Thu, 14 Feb 2013 12:44:42 -0500
-Message-ID: <CAHUNapSu3oGwmy5DaJc4YBek4OBLOi+rbFEJ0L7fooKqDfXMRw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Andre Bella <scancool@yahoo.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org, Rudolf Streif <rstreif@linuxfoundation.org>
 Subject: Re: select installation packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,20 +53,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Feb 2013 17:44:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 14 Feb 2013 17:44:56 -0000
+Content-Type: multipart/alternative;
+	boundary="-1563750066-1138006404-1360863895=:79323"
 
-On Thu, Feb 14, 2013 at 11:02 AM, Andre Bella <scancool@yahoo.com> wrote:
-> is there a menuconfig on yocto where you can select the package you want to add before you build the image?
+---1563750066-1138006404-1360863895=:79323
+Content-Type: text/plain; charset=us-ascii
 
-I would suggest giving hob a try:
+Thanks but I'm not sure if you understood, with hob you can only uninstall
+after the image has been build , were you able to select what to install before building the image? same as buildroot?
 
-<checkout the yocto project from git>
-$ source poky/oe-init-build-env
-$ bitbake -u hob
+--- On Thu, 2/14/13, Burton, Ross <ross.burton@intel.com> wrote:
 
-Bitbake will compile need to download and compile up a bunch of stuff
-(just like menuconfig) but it'll take a bit longer. Eventually a UI
-will come up from which you can start selecting things like your
-machine, packages, etc.
+From: Burton, Ross <ross.burton@intel.com>
+Subject: Re: [yocto] select installation packages
+To: "Andre Bella" <scancool@yahoo.com>
+Cc: "Rudolf Streif" <rstreif@linuxfoundation.org>, yocto@yoctoproject.org
+Date: Thursday, February 14, 2013, 10:39 AM
 
+On 14 February 2013 17:31, Andre Bella <scancool@yahoo.com> wrote:
+
+
+but my question is there a menuconfig to select what to build like in buildroot?
+
+Hob has a UI, but if you're using the commandline bitbake then you'll have to edit packagegroups, images, or your local.conf manually.
+
+
+Ross
+
+---1563750066-1138006404-1360863895=:79323
+Content-Type: text/html; charset=us-ascii
+
+<table cellspacing="0" cellpadding="0" border="0" ><tr><td valign="top" style="font: inherit;">Thanks but I'm not sure if you understood, with hob you can only uninstall<br>after the image has been build , were you able to select what to install before building the image? same as buildroot?<br><br>--- On <b>Thu, 2/14/13, Burton, Ross <i>&lt;ross.burton@intel.com&gt;</i></b> wrote:<br><blockquote style="border-left: 2px solid rgb(16, 16, 255); margin-left: 5px; padding-left: 5px;"><br>From: Burton, Ross &lt;ross.burton@intel.com&gt;<br>Subject: Re: [yocto] select installation packages<br>To: "Andre Bella" &lt;scancool@yahoo.com&gt;<br>Cc: "Rudolf Streif" &lt;rstreif@linuxfoundation.org&gt;, yocto@yoctoproject.org<br>Date: Thursday, February 14, 2013, 10:39 AM<br><br><div id="yiv1546130687">On 14 February 2013 17:31, Andre Bella <span dir="ltr">&lt;<a rel="nofollow" ymailto="mailto:scancool@yahoo.com" target="_blank"
+ href="/mc/compose?to=scancool@yahoo.com">scancool@yahoo.com</a>&gt;</span> wrote:<br><div class="yiv1546130687gmail_quote"><blockquote class="yiv1546130687gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex;">
+
+but my question is there a menuconfig to select what to build like in buildroot?<br></blockquote></div><br>Hob has a UI, but if you're using the commandline bitbake then you'll have to edit packagegroups, images, or your local.conf manually.<div>
+
+<br></div><div>Ross</div>
+</div></blockquote></td></tr></table>
+
+---1563750066-1138006404-1360863895=:79323--
