@@ -1,35 +1,46 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39E98E01275
-	for <yocto@yoctoproject.org>; Fri, 15 Feb 2013 18:54:40 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 15 Feb 2013 18:53:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,676,1355126400"; d="scan'208";a="286490418"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga002.jf.intel.com with ESMTP; 15 Feb 2013 18:54:39 -0800
-Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.1.438.0; Fri, 15 Feb 2013 18:54:39 -0800
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.65]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.10.44]) with mapi id
-	14.01.0438.000; Fri, 15 Feb 2013 18:54:39 -0800
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: "Zanussi, Tom" <tom.zanussi@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Updated Yocto Hands-on Kernel Lab available
-Thread-Index: AQHOC+2ByGOcCjO60Ua7kGOzI97g45h7yhAA
-Date: Sat, 16 Feb 2013 02:54:38 +0000
-Message-ID: <CD4434D7.27D5A%david.c.stewart@intel.com>
-In-Reply-To: <1360981747.1691.29.camel@empanada>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.2.3.120616
-x-originating-ip: [10.252.133.123]
+Return-Path: <scancool@yahoo.com>
+Received: from nm9.bullet.mail.bf1.yahoo.com (nm9.bullet.mail.bf1.yahoo.com
+	[98.139.212.168])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id CE52CE00550
+	for <yocto@yoctoproject.org>; Sat, 16 Feb 2013 08:01:44 -0800 (PST)
+Received: from [98.139.212.148] by nm9.bullet.mail.bf1.yahoo.com with NNFMP;
+	16 Feb 2013 16:01:43 -0000
+Received: from [98.139.212.238] by tm5.bullet.mail.bf1.yahoo.com with NNFMP;
+	16 Feb 2013 16:01:43 -0000
+Received: from [127.0.0.1] by omp1047.mail.bf1.yahoo.com with NNFMP;
+	16 Feb 2013 16:01:43 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 808526.75420.bm@omp1047.mail.bf1.yahoo.com
+Received: (qmail 17412 invoked by uid 60001); 16 Feb 2013 16:01:43 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1361030503; bh=SMUbMoxf/+EIDOfoOoP9WwH126BROi7981agDGvDMPg=;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:In-Reply-To:MIME-Version:Content-Type;
+	b=MO/5QOA5eaYDPV4qfLM8XxfJORkoXlwXbNxid8GZNDb/mb5MdBJevjUIOaaKeBOyJoIwj+5p3hnayO0YAY2eYtCeOSZx94X60/uc1x0vdrT+UW4l9ekJlWAQ0uVUCRzJBI344DSpKNgxAgcla8xsebhu8Ll6mm3gLaDwUZWNfgw=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:In-Reply-To:MIME-Version:Content-Type;
+	b=HinY3Wwf6yrbC+cLgXjTIlAHWWWvBdw1Hns+ij/eolMKUncjpp4VtIEnxlZiX7V9RbSFoFw7w4VZwNr2hTlEF6NauuWy+rxK/TNcKONwLTVyw5/5UXaGVSEzL+N83QwMuKv+gYJ3GH6HWYNJKqnNI9xR8+/eE5Ezp7LfU9fEhZ8=;
+X-YMail-OSG: JovlOskVM1m6tGzvF_X_T2_EqaBWdOVSrSY9K5GjZ7F01KU
+	YharxgNFpO7KV7OL4IauN3GjQKql42X4NvMbYHkkHsw2t_4HE5Z3au9T.1kL
+	IQdoTsZxyfOUVAxVdHsEqOJl6zc01XZiNl0J3FjK1DO1OfdBeOjM4lZLxx.K
+	MI1PAVQ.RR6GpJBTvW2v.LgfYCn3voS70YWxqiRIhgxIwv1Pe7QhlcMP_xsF
+	phFZwlXTN.C9KMtfd7aEAmTInmiDwMQRV8.nG5cVaj.8tDny8XRRJOC5o.Ri
+	fgqvKPl0zfSQ5n3XgQCbdKY4xxfTIKgzUUMM.0LfZ8MzrOs_kSXwb5V8NUct
+	Xv5oHQW9Ri5ikW4JnK4diqF2XsfqjNkCQ2Ox0tC2Tx5ZF1fU_w41g9C.lzIy
+	6T7MkUuMZltKQSxT8olvkR6skq_TiP5utxJQwoAH04RkzZoP6jT29huw6LF3
+	ixuRwRvQeBo04kghbGIT_VxNAFgANn8hIzPF1hOTzqwdYyQr_jSyFSAqzNN.
+	U87xZ3lM_Cx0VxQ--
+Received: from [68.226.113.30] by web140005.mail.bf1.yahoo.com via HTTP;
+	Sat, 16 Feb 2013 08:01:43 PST
+X-Rocket-MIMEInfo: 001.001,
+	DQpJJ20gdXNpbmcgeW9jdG8gdG8gY3JlYXRlIGEgKi5zZGNhcmQgaW1hZ2UsIGFuZCB3aGVuIEkgdHJhbnNmZXIgdG8gdGhlIHNkIGNhcmQgaXQgY3JlYXRlcyBhIHBhcnRpdGlvbiBjYWxsIE9uVHJhY2sgRE02IEF1eDMsIHdoYXQgaXMgdGhhdD8gYW5kIGhvdyBpdCBjYW4gYmUgcmVhZD8NCg0KwqDCoCBEZXZpY2UgQm9vdMKgwqDCoMKgwqAgU3RhcnTCoMKgwqDCoMKgwqDCoMKgIEVuZMKgwqDCoMKgwqAgQmxvY2tzwqDCoCBJZMKgIFN5c3RlbQ0KL2Rldi9zZGIxwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAyMDQBMAEBAQE-
+X-Mailer: YahooMailClassic/15.1.2 YahooMailWebService/0.8.133.508
+Message-ID: <1361030503.17218.YahooMailClassic@web140005.mail.bf1.yahoo.com>
+Date: Sat, 16 Feb 2013 08:01:43 -0800 (PST)
+From: Andre Bella <scancool@yahoo.com>
+To: yocto@yoctoproject.org
+In-Reply-To: <1360893779.9004.YahooMailClassic@web140006.mail.bf1.yahoo.com>
 MIME-Version: 1.0
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Updated Yocto Hands-on Kernel Lab available
+Subject: What's OnTrack DM6 Aux3 partition?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,88 +52,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Feb 2013 02:54:40 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <73170A86A3990A45A927F975A777381A@intel.com>
+X-List-Received-Date: Sat, 16 Feb 2013 16:01:45 -0000
+Content-Type: multipart/alternative;
+	boundary="967802534-1743525445-1361030503=:17218"
+
+--967802534-1743525445-1361030503=:17218
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
 
+I'm using yocto to create a *.sdcard image, and when I transfer to the sd c=
+ard it creates a partition call OnTrack DM6 Aux3, what is that? and how it =
+can be read?
 
-On 2/15/13 6:29 PM, "Tom Zanussi" <tom.zanussi@intel.com> wrote:
+=A0=A0 Device Boot=A0=A0=A0=A0=A0 Start=A0=A0=A0=A0=A0=A0=A0=A0 End=A0=A0=
+=A0=A0=A0 Blocks=A0=A0 Id=A0 System
+/dev/sdb1=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2048=A0=A0=A0=A0=A0=A0 10239=A0=
+=A0=A0=A0=A0=A0=A0 4096=A0=A0 53=A0 OnTrack DM6 Aux3
+/dev/sdb2=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 10240=A0=A0=A0=A0 6639615=A0=A0=A0=
+=A0 3314688=A0=A0 83=A0 Linux
 
->Hi,
->
->I'm happy to announce that an updated version of the Yocto 'Hands-on
->Kernel Lab' has been released and is available here:
->
->https://www.yoctoproject.org/sites/yoctoproject.org/files/elc2013-kernel-l
->ab.pdf
->
->The above document contains all the instructions you need to get started
->from scratch.
-Pretty frickin' awesome. Great job!
+I'm asking cause I will like to put a new uImage there,=20
 
->
->You can always get to the lab and associated content by visiting the
->Yocto home page (https://www.yoctoproject.org/) and selecting 'Read
->presentations about the project' from the drop-down list you get by
->clicking on the 'Start Here to learn more' box on the left-hand side and
->clicking on the 'Working with the Kernel' presentation link.
->
->The 'Hands-on Kernel Lab' has been updated to Yocto 1.3 ('danny') and
->has been substantially expanded from three to five labs, with completely
->new sections covering custom kernels, loadable modules and getting them
->into (and autoloaded into) images, external modules, local clones, bare
->local clones, and enabling LTSI features.
->
->See below for a more complete listing of what's covered along with the
->lab number covering those topics.
->
->I've run through the lab twice, once on Fedora 17 and once on Ubuntu
->12.04, so it should be pretty solid at this point, but if you find
->problems, please let me know...
->
->* Creating and using a traditional kernel recipe (lab1)
->* Using 'bitbake -c menuconfig' to modify the kernel configuration and
->replace the defconfig with the new configuration (lab1)
->* Adding a kernel module to the kernel source and configuring it as a
->built-in module by adding options to the kernel defconfig (lab1)
->* Creating and using a linux-yocto-based kernel (lab2)
->* Adding a kernel module to the kernel source and configuring it as a
->built-in module using linux-yocto 'config fragments' (lab2)
->* Using the linux-yocto kernel as an LTSI kernel (configuring in an item
->added by the LTSI kernel which is merged into linux-yocto) (lab2)
->* Using an arbitrary git-based kernel via the linux-yocto-custom kernel
->recipe (lab3)
->* Adding a kernel module to the kernel source of an arbitrary git-based
->kernel and configuring it as a loadable module using 'config fragments'
->(lab3)
->* Actually getting the module into the image and autoloading it on boot
->(lab3)
->* Using a local clone of an arbitrary git-based kernel via the
->linux-yocto-custom kernel recipe to demonstrate a typical development
->workflow (lab4)
->* Modifying the locally cloned custom kernel source and verifying the
->changes in the new image (lab4)
->* Using a local clone of a linux-yocto- kernel recipe to demonstrate a
->typical development workflow (lab4)
->* Modifying the locally cloned linux-yocto kernel source and verifying
->the changes in the new image (lab4)
->* Using a 'bare' local clone of a linux-yocto- kernel recipe to
->demonstrate a typical development workflow (lab4)
->* Modifying the locally cloned 'bare' linux-yocto kernel source and
->verifying the changes in the new image (lab4)
->* Adding and using an external kernel module via a module recipe (lab4)
->* Using the 'Yocto BSP Tools' yocto-bsp tool generate a new Yocto BSP
->(lab5)
->* Using the 'Yocto BSP Tools' yocto-kernel tool to add kernel patches and
->config fragments (lab5)
->
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+--967802534-1743525445-1361030503=:17218
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" ><tr><td valign=3D"=
+top" style=3D"font: inherit;"><br>I'm using yocto to create a *.sdcard imag=
+e, and when I transfer to the sd card it creates a partition call OnTrack D=
+M6 Aux3, what is that? and how it can be read?<br><br>&nbsp;&nbsp; Device B=
+oot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blocks&nbsp;&nbsp; Id&nbsp; =
+System<br>/dev/sdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 2048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10239&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; 4096&nbsp;&nbsp; 53&nbsp; OnTrack DM6 Aux3<br>/dev=
+/sdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10240&nbs=
+p;&nbsp;&nbsp;&nbsp; 6639615&nbsp;&nbsp;&nbsp;&nbsp; 3314688&nbsp;&nbsp; 83=
+&nbsp; Linux<br><br>I'm asking cause I will like to put a new uImage there,=
+ <br></td></tr></table>
 
+--967802534-1743525445-1361030503=:17218--
