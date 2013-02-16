@@ -1,46 +1,23 @@
-Return-Path: <scancool@yahoo.com>
-Received: from nm9.bullet.mail.bf1.yahoo.com (nm9.bullet.mail.bf1.yahoo.com
-	[98.139.212.168])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id CE52CE00550
-	for <yocto@yoctoproject.org>; Sat, 16 Feb 2013 08:01:44 -0800 (PST)
-Received: from [98.139.212.148] by nm9.bullet.mail.bf1.yahoo.com with NNFMP;
-	16 Feb 2013 16:01:43 -0000
-Received: from [98.139.212.238] by tm5.bullet.mail.bf1.yahoo.com with NNFMP;
-	16 Feb 2013 16:01:43 -0000
-Received: from [127.0.0.1] by omp1047.mail.bf1.yahoo.com with NNFMP;
-	16 Feb 2013 16:01:43 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 808526.75420.bm@omp1047.mail.bf1.yahoo.com
-Received: (qmail 17412 invoked by uid 60001); 16 Feb 2013 16:01:43 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1361030503; bh=SMUbMoxf/+EIDOfoOoP9WwH126BROi7981agDGvDMPg=;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:In-Reply-To:MIME-Version:Content-Type;
-	b=MO/5QOA5eaYDPV4qfLM8XxfJORkoXlwXbNxid8GZNDb/mb5MdBJevjUIOaaKeBOyJoIwj+5p3hnayO0YAY2eYtCeOSZx94X60/uc1x0vdrT+UW4l9ekJlWAQ0uVUCRzJBI344DSpKNgxAgcla8xsebhu8Ll6mm3gLaDwUZWNfgw=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Subject:To:In-Reply-To:MIME-Version:Content-Type;
-	b=HinY3Wwf6yrbC+cLgXjTIlAHWWWvBdw1Hns+ij/eolMKUncjpp4VtIEnxlZiX7V9RbSFoFw7w4VZwNr2hTlEF6NauuWy+rxK/TNcKONwLTVyw5/5UXaGVSEzL+N83QwMuKv+gYJ3GH6HWYNJKqnNI9xR8+/eE5Ezp7LfU9fEhZ8=;
-X-YMail-OSG: JovlOskVM1m6tGzvF_X_T2_EqaBWdOVSrSY9K5GjZ7F01KU
-	YharxgNFpO7KV7OL4IauN3GjQKql42X4NvMbYHkkHsw2t_4HE5Z3au9T.1kL
-	IQdoTsZxyfOUVAxVdHsEqOJl6zc01XZiNl0J3FjK1DO1OfdBeOjM4lZLxx.K
-	MI1PAVQ.RR6GpJBTvW2v.LgfYCn3voS70YWxqiRIhgxIwv1Pe7QhlcMP_xsF
-	phFZwlXTN.C9KMtfd7aEAmTInmiDwMQRV8.nG5cVaj.8tDny8XRRJOC5o.Ri
-	fgqvKPl0zfSQ5n3XgQCbdKY4xxfTIKgzUUMM.0LfZ8MzrOs_kSXwb5V8NUct
-	Xv5oHQW9Ri5ikW4JnK4diqF2XsfqjNkCQ2Ox0tC2Tx5ZF1fU_w41g9C.lzIy
-	6T7MkUuMZltKQSxT8olvkR6skq_TiP5utxJQwoAH04RkzZoP6jT29huw6LF3
-	ixuRwRvQeBo04kghbGIT_VxNAFgANn8hIzPF1hOTzqwdYyQr_jSyFSAqzNN.
-	U87xZ3lM_Cx0VxQ--
-Received: from [68.226.113.30] by web140005.mail.bf1.yahoo.com via HTTP;
-	Sat, 16 Feb 2013 08:01:43 PST
-X-Rocket-MIMEInfo: 001.001,
-	DQpJJ20gdXNpbmcgeW9jdG8gdG8gY3JlYXRlIGEgKi5zZGNhcmQgaW1hZ2UsIGFuZCB3aGVuIEkgdHJhbnNmZXIgdG8gdGhlIHNkIGNhcmQgaXQgY3JlYXRlcyBhIHBhcnRpdGlvbiBjYWxsIE9uVHJhY2sgRE02IEF1eDMsIHdoYXQgaXMgdGhhdD8gYW5kIGhvdyBpdCBjYW4gYmUgcmVhZD8NCg0KwqDCoCBEZXZpY2UgQm9vdMKgwqDCoMKgwqAgU3RhcnTCoMKgwqDCoMKgwqDCoMKgIEVuZMKgwqDCoMKgwqAgQmxvY2tzwqDCoCBJZMKgIFN5c3RlbQ0KL2Rldi9zZGIxwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAyMDQBMAEBAQE-
-X-Mailer: YahooMailClassic/15.1.2 YahooMailWebService/0.8.133.508
-Message-ID: <1361030503.17218.YahooMailClassic@web140005.mail.bf1.yahoo.com>
-Date: Sat, 16 Feb 2013 08:01:43 -0800 (PST)
-From: Andre Bella <scancool@yahoo.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <1360893779.9004.YahooMailClassic@web140006.mail.bf1.yahoo.com>
-MIME-Version: 1.0
-Subject: What's OnTrack DM6 Aux3 partition?
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B86FE00550;
+	Sat, 16 Feb 2013 08:04:08 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 16 Feb 2013 08:03:49 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,678,1355126400"; d="scan'208";a="286606261"
+Received: from unknown (HELO [10.255.13.17]) ([10.255.13.17])
+	by orsmga002.jf.intel.com with ESMTP; 16 Feb 2013 08:03:48 -0800
+Message-ID: <1361030627.1691.34.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: kishore.k.bodke@intel.com
+Date: Sat, 16 Feb 2013 10:03:47 -0600
+In-Reply-To: <cover.1360362497.git.kishore.k.bodke@intel.com>
+References: <cover.1360362497.git.kishore.k.bodke@intel.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com, meta-intel@yoctoproject.org
+Subject: Re: [PATCH 0/2][meta-intel] Remove Cedartrail BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,44 +29,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Feb 2013 16:01:45 -0000
-Content-Type: multipart/alternative;
-	boundary="967802534-1743525445-1361030503=:17218"
+X-List-Received-Date: Sat, 16 Feb 2013 16:04:08 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---967802534-1743525445-1361030503=:17218
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2013-02-08 at 14:34 -0800, kishore.k.bodke@intel.com wrote:
+> From: Kishore Bodke <kishore.k.bodke@intel.com>
+> 
+> Hi All,
+> 
+> This patch set is to remove Cedartrail BSP from
+> meta-intel/master.
+> Cedartrail BSP will be no longer supported in Yocto 
+> from 1.4 release.
+> 
+> Please pull these patches into meta-intel/master.
+> 
+
+Pulled into meta-intel/master.
+
+> Thanks
+> Kishore.
+> 
+> The following changes since commit 575f93dd4ba1fb9aca8a58dc66e9066eca0a3925:
+> 
+>   meta-intel: remove kernel AUTOREVs (2013-02-04 10:39:06 -0600)
+> 
+> are available in the git repository at:
+> 
+>   git://git.pokylinux.org/meta-intel-contrib kishore/cedartrail_remove
+>   http://git.pokylinux.org/cgit.cgi/meta-intel-contrib/log/?h=kishore/cedartrail_remove
+> 
+> Kishore Bodke (2):
+>   Cedartrail: Remove Cedartrail BSP
+>   meta-intel: Update the MAINTAINERS list.
+> 
+>  MAINTAINERS                                        |    4 -
+>  meta-cedartrail/COPYING.MIT                        |   17 --
+>  meta-cedartrail/README                             |  199 --------------------
+>  meta-cedartrail/README.sources                     |   17 --
+>  meta-cedartrail/conf/layer.conf                    |   12 --
+>  meta-cedartrail/conf/machine/cedartrail-nopvr.conf |   21 ---
+>  meta-cedartrail/conf/machine/cedartrail.conf       |   29 ---
+>  .../formfactor/cedartrail-nopvr/machconfig         |    3 -
+>  .../formfactor/formfactor/cedartrail/machconfig    |    3 -
+>  .../recipes-bsp/formfactor/formfactor_0.0.bbappend |    3 -
+>  .../images/core-image-cdv-media-sdk.bb             |   12 --
+>  .../images/core-image-cdv-media.bb                 |   13 --
+>  .../xorg-driver/cdv-pvr-driver_1.0.3.bb            |  197 -------------------
+>  .../xserver-xf86-config/cedartrail-nopvr/xorg.conf |   26 ---
+>  .../xserver-xf86-config/cedartrail/xorg.conf       |   19 --
+>  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    1 -
+>  .../linux/linux-yocto-rt_3.0.bbappend              |   18 --
+>  .../recipes-kernel/linux/linux-yocto_3.0.bbappend  |   23 ---
+>  .../ogg-CC-BY-3.0-music-samples_0.1.bb             |   21 ---
+>  .../video-samples/bigbuckbunny-ogg.bb              |   22 ---
+>  20 files changed, 660 deletions(-)
+>  delete mode 100755 meta-cedartrail/COPYING.MIT
+>  delete mode 100755 meta-cedartrail/README
+>  delete mode 100755 meta-cedartrail/README.sources
+>  delete mode 100644 meta-cedartrail/binary/.gitignore
+>  delete mode 100644 meta-cedartrail/conf/layer.conf
+>  delete mode 100644 meta-cedartrail/conf/machine/cedartrail-nopvr.conf
+>  delete mode 100644 meta-cedartrail/conf/machine/cedartrail.conf
+>  delete mode 100644 meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail-nopvr/machconfig
+>  delete mode 100644 meta-cedartrail/recipes-bsp/formfactor/formfactor/cedartrail/machconfig
+>  delete mode 100644 meta-cedartrail/recipes-bsp/formfactor/formfactor_0.0.bbappend
+>  delete mode 100644 meta-cedartrail/recipes-cdv-media/images/core-image-cdv-media-sdk.bb
+>  delete mode 100644 meta-cedartrail/recipes-cdv-media/images/core-image-cdv-media.bb
+>  delete mode 100644 meta-cedartrail/recipes-graphics/xorg-driver/cdv-pvr-driver_1.0.3.bb
+>  delete mode 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail-nopvr/xorg.conf
+>  delete mode 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config/cedartrail/xorg.conf
+>  delete mode 100644 meta-cedartrail/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+>  delete mode 100644 meta-cedartrail/recipes-kernel/linux/linux-yocto-rt_3.0.bbappend
+>  delete mode 100644 meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend
+>  delete mode 100644 meta-cedartrail/recipes-mediasamples/music-samples/ogg-CC-BY-3.0-music-samples_0.1.bb
+>  delete mode 100644 meta-cedartrail/recipes-mediasamples/video-samples/bigbuckbunny-ogg.bb
+> 
 
 
-I'm using yocto to create a *.sdcard image, and when I transfer to the sd c=
-ard it creates a partition call OnTrack DM6 Aux3, what is that? and how it =
-can be read?
 
-=A0=A0 Device Boot=A0=A0=A0=A0=A0 Start=A0=A0=A0=A0=A0=A0=A0=A0 End=A0=A0=
-=A0=A0=A0 Blocks=A0=A0 Id=A0 System
-/dev/sdb1=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2048=A0=A0=A0=A0=A0=A0 10239=A0=
-=A0=A0=A0=A0=A0=A0 4096=A0=A0 53=A0 OnTrack DM6 Aux3
-/dev/sdb2=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 10240=A0=A0=A0=A0 6639615=A0=A0=A0=
-=A0 3314688=A0=A0 83=A0 Linux
-
-I'm asking cause I will like to put a new uImage there,=20
-
---967802534-1743525445-1361030503=:17218
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" ><tr><td valign=3D"=
-top" style=3D"font: inherit;"><br>I'm using yocto to create a *.sdcard imag=
-e, and when I transfer to the sd card it creates a partition call OnTrack D=
-M6 Aux3, what is that? and how it can be read?<br><br>&nbsp;&nbsp; Device B=
-oot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Start&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; End&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Blocks&nbsp;&nbsp; Id&nbsp; =
-System<br>/dev/sdb1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; 2048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10239&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp; 4096&nbsp;&nbsp; 53&nbsp; OnTrack DM6 Aux3<br>/dev=
-/sdb2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10240&nbs=
-p;&nbsp;&nbsp;&nbsp; 6639615&nbsp;&nbsp;&nbsp;&nbsp; 3314688&nbsp;&nbsp; 83=
-&nbsp; Linux<br><br>I'm asking cause I will like to put a new uImage there,=
- <br></td></tr></table>
-
---967802534-1743525445-1361030503=:17218--
