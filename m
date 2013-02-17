@@ -1,29 +1,23 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
-	[74.125.82.181]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 56E47E0144A
-	for <yocto@yoctoproject.org>; Sun, 17 Feb 2013 13:22:50 -0800 (PST)
-Received: by mail-we0-f181.google.com with SMTP id t44so4171482wey.12
-	for <yocto@yoctoproject.org>; Sun, 17 Feb 2013 13:22:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=3H1h4ar/QUIShyEqRcpS0Yy/ItuesSf+WmRnldqE/dw=;
-	b=hS54G2iR9Ibs8faAkU3g5VKCx5j+uTrjcavk/KgPI04dPJIqRZyZ23ORL9WcLfD4/A
-	auLAEXRigkIII2W5cKfXHa4ABfwloykIZJbNWIo8BeRYJqyhNdVOv3jtH2Z2QS+OipIY
-	jxa8lOo0PlhDdaIEN+ByqLojgyMQ/0FqE4Nc1tr2IM//WnsEsHF5C9CywS+a3ov5Szwl
-	rbCMlfOEcWyh0RzvDAzNyZEwVMIgOd8pAAuJuqOaos8XzWq1NJjYTSq2IApxgQbQpQ/F
-	BN78OhkmPavd2xH8pxXTSKIbdvINlnx/cupWW0l1kiQYMmMfDs+dNegT2WL3V903R576
-	5xwA==
-MIME-Version: 1.0
-X-Received: by 10.194.58.202 with SMTP id t10mr6672562wjq.4.1361136168332;
-	Sun, 17 Feb 2013 13:22:48 -0800 (PST)
-Received: by 10.194.36.228 with HTTP; Sun, 17 Feb 2013 13:22:48 -0800 (PST)
-Date: Sun, 17 Feb 2013 16:22:48 -0500
-Message-ID: <CAHUNapQTq1wsLtJ94dH9n8W40gi4hYwbsLDRDyAZBMtiT5jvQA@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: kernel menuconfig unusable Was: Updated Yocto Hands-on Kernel Lab available
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1BE7E0144A
+	for <yocto@yoctoproject.org>; Sun, 17 Feb 2013 15:15:34 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 17 Feb 2013 15:15:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,683,1355126400"; d="scan'208";a="258129604"
+Received: from unknown (HELO [10.255.13.17]) ([10.255.13.17])
+	by azsmga001.ch.intel.com with ESMTP; 17 Feb 2013 15:15:33 -0800
+Message-ID: <1361142932.1691.55.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Date: Sun, 17 Feb 2013 17:15:32 -0600
+In-Reply-To: <CAHUNapQTq1wsLtJ94dH9n8W40gi4hYwbsLDRDyAZBMtiT5jvQA@mail.gmail.com>
+References: <CAHUNapQTq1wsLtJ94dH9n8W40gi4hYwbsLDRDyAZBMtiT5jvQA@mail.gmail.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: kernel menuconfig unusable Was: Updated Yocto Hands-on Kernel Lab available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,27 +29,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Feb 2013 21:22:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sun, 17 Feb 2013 23:15:35 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Fri, Feb 15, 2013 at 9:29 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
-> I'm happy to announce that an updated version of the Yocto 'Hands-on
-> Kernel Lab' has been released and is available here:
+On Sun, 2013-02-17 at 16:22 -0500, Trevor Woerner wrote:
+> On Fri, Feb 15, 2013 at 9:29 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> > I'm happy to announce that an updated version of the Yocto 'Hands-on
+> > Kernel Lab' has been released and is available here:
+> 
+> This is awesome, and much appreciated (especially by those of us who
+> can't make it out to these events).
+> 
+> Following the lab, however, I very quickly ran into the dreaded
+> "kernel menuconfig unusable" issue. Is there any way Liang Li's
+> suggested fix[1] could make it into mainline and the danny branch
+> which is used for these labs? Is there a better fix? Is there another
+> way around this issue, perhaps with a pure conf/local.conf setting?
+> 
 
-This is awesome, and much appreciated (especially by those of us who
-can't make it out to these events).
+Yeah, I ran into this too on Fedora 17, but not Ubuntu.  I thought it
+was a local thing and basically 'powered through it' and changed the
+settings, knowing I was seeing double.
 
-Following the lab, however, I very quickly ran into the dreaded
-"kernel menuconfig unusable" issue. Is there any way Liang Li's
-suggested fix[1] could make it into mainline and the danny branch
-which is used for these labs? Is there a better fix? Is there another
-way around this issue, perhaps with a pure conf/local.conf setting?
+I don't know what the proper fix for this is - if it's the patch you
+pointed to, I'm not sure why it wasn't pulled in.  If not, I guess a bug
+should be opened for it.
 
-Thanks and best regards,
-    Trevor
+Tom
 
-[1] http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/027130.html
+> Thanks and best regards,
+>     Trevor
+> 
+> [1] http://lists.linuxtogo.org/pipermail/openembedded-core/2012-August/027130.html
+> 
+> NOTE: simply setting OE_TERMINAL to "xterm" doesn't fix the problem,
+> it only changes the terminal :-)
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-NOTE: simply setting OE_TERMINAL to "xterm" doesn't fix the problem,
-it only changes the terminal :-)
+
 
