@@ -1,34 +1,33 @@
 Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
-	[74.125.82.175]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id ACD99E0144A
-	for <yocto@yoctoproject.org>; Sun, 17 Feb 2013 17:54:24 -0800 (PST)
-Received: by mail-we0-f175.google.com with SMTP id x8so4414300wey.34
-	for <yocto@yoctoproject.org>; Sun, 17 Feb 2013 17:54:22 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id D85E4E0144A
+	for <yocto@yoctoproject.org>; Sun, 17 Feb 2013 18:16:08 -0800 (PST)
+Received: by mail-we0-f171.google.com with SMTP id u54so4240402wey.2
+	for <yocto@yoctoproject.org>; Sun, 17 Feb 2013 18:16:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=QIh0+fNZOdKVQgxXPVFMZvAPNS+rpVgkwRim0pGk69Y=;
-	b=LFFmT9f8yK/DutE39jbLpQtkrdc+KHSW3IrKoFHBz4WGl/fnJjGdGelcUoiOy3EMzx
-	ZrxuntFgbz4QMxJK29zPZyV9lRSvVrsuvvq0OAVmMt7MPgBg6rqEtYJO39vlKdi0DI6F
-	gq7vCKwUv0tCJCAOVGGIsGwKDFHzU3AeKJrhlO4SQI4xfFZ16y1ydRd1StDhPm89hVjD
-	lTwXssDL0bqS2KWhXZ0dNKIrXBaZz7htt76u8pxSSU9hw155WgPfRuqKJuyN8WFaBINU
-	j82Bpa8SsJwVHwpj9A7Hn+fAQSa01JxZAKivqpCbi11Sf1/yjnzQoofCV8FeJEr9s2CK
-	n9sw==
+	:subject:from:to:content-type;
+	bh=VeS9Uchtg8hN6kiMYbisy6nHWhrZEbrTSb14QfqDDWY=;
+	b=WIHxPUOBOwo/wfCdkLjfsWFB2WeTNJ6Dui00MDK7mk6h8dcVweoKUy9r/MaOxotkZB
+	2IB+8bwRDoiTBDPBTwaYKzyiU0+7RWr+wMK/GTIyu0NYOzlwwBsH4iQJn5w9QDmnIGgb
+	Z3vYZHSkfnRrkkkSZG2UFbgb9YjJQMTgPlZVW9yozKIhkRCQZH5FGb1e7qmcvjaS3AMk
+	s2Kqw6ASM/JOsY7p2+YY1zqlJvcsIu8ls70/9/YuCkehh9YOq+hZMsClCdOJ4xzVmu+d
+	6TG8pbFf+i5VKiAtxO0pMnXhCq51A6qqZ4ICnZCKi/Xs1pu3tQ1duiEBBZkBJqhh6WW9
+	TvrQ==
 MIME-Version: 1.0
-X-Received: by 10.180.75.177 with SMTP id d17mr15486212wiw.16.1361152462646;
-	Sun, 17 Feb 2013 17:54:22 -0800 (PST)
-Received: by 10.194.36.228 with HTTP; Sun, 17 Feb 2013 17:54:22 -0800 (PST)
-In-Reply-To: <1361142932.1691.55.camel@empanada>
-References: <CAHUNapQTq1wsLtJ94dH9n8W40gi4hYwbsLDRDyAZBMtiT5jvQA@mail.gmail.com>
-	<1361142932.1691.55.camel@empanada>
-Date: Sun, 17 Feb 2013 20:54:22 -0500
-Message-ID: <CAHUNapSjmPOsPzWHcjv3O+FPi0_8KV5WzN=gvx4F01oY-QGgvw@mail.gmail.com>
+X-Received: by 10.180.77.9 with SMTP id o9mr17393309wiw.16.1361153766894; Sun,
+	17 Feb 2013 18:16:06 -0800 (PST)
+Received: by 10.194.36.228 with HTTP; Sun, 17 Feb 2013 18:16:06 -0800 (PST)
+In-Reply-To: <CAHUNapRsL+R2+inZztqdTBfVM9EZNtgTWayjLWXE_6tQnd+6Mw@mail.gmail.com>
+References: <1360981747.1691.29.camel@empanada>
+	<CAHUNapRsL+R2+inZztqdTBfVM9EZNtgTWayjLWXE_6tQnd+6Mw@mail.gmail.com>
+Date: Sun, 17 Feb 2013 21:16:06 -0500
+Message-ID: <CAHUNapRj7r+u500hA4WSc3TMMo85E9yJSrUinfcR7P+6WgU-tA@mail.gmail.com>
 From: Trevor Woerner <twoerner@gmail.com>
-To: Tom Zanussi <tom.zanussi@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: kernel menuconfig unusable Was: Updated Yocto Hands-on Kernel Lab available
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Updated Yocto Hands-on Kernel Lab available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,13 +39,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Feb 2013 01:54:25 -0000
+X-List-Received-Date: Mon, 18 Feb 2013 02:16:09 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Sun, Feb 17, 2013 at 6:15 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
-> I guess a bug
-> should be opened for it.
+...sorry, I meant to CC the list too
 
-I have created https://bugzilla.yoctoproject.org/show_bug.cgi?id=3898
-in the hope it doesn't get dropped again.
+
+---------- Forwarded message ----------
+From: Trevor Woerner <twoerner@gmail.com>
+Date: Sun, Feb 17, 2013 at 9:15 PM
+Subject: Re: [yocto] Updated Yocto Hands-on Kernel Lab available
+To: Tom Zanussi <tom.zanussi@intel.com>
+
+
+Hi Tom,
+
+I can see how the kernel *.bb files get pulled in due to the following
+line in each lab's layer configuration (${LAYERDIR}/conf/layer.conf):
+
+    BBFILES := "... ${LAYERDIR}/recipes-*/*/*.bb ..."
+
+Since the *.bb files are located under
+${LAYERDIR}/recipes-kernel/linux/<kernel>.bb this matched the above
+pattern.
+
+What I can't figure out is why, for example, in lab1 are the kernel
+patch files located in
+
+    ${LAYERDIR}/recipes-kernel/linux/linux
+
+while the kernel patch files for lab2 are in
+
+    ${LAYERDIR}/recipes-kernel/linux/files
+
+Does bitbake find the patch files for lab1 in a subdirectory called
+"linux" because the recipe's name is linux_3.0.18.bb? Because I don't
+see anything in that particular recipe which would suggest it
+(bitbake) should look there (linux). And when I go to lab2 and rename
+the "files" directory to "linux-yocto" the build doesn't work, so this
+behaviour would seem to discount the belief that a patch directory
+name can take on the recipe name and be found.
+
+Best regards,
+    Trevor
 
