@@ -1,25 +1,35 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A60D4E003BC
-	for <yocto@yoctoproject.org>; Mon, 18 Feb 2013 21:31:27 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 18 Feb 2013 21:31:26 -0800
+Return-Path: <cristian.iorga@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C8ECE003BC
+	for <yocto@yoctoproject.org>; Mon, 18 Feb 2013 23:22:07 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 18 Feb 2013 23:22:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,692,1355126400"; d="scan'208";a="288909429"
-Received: from unknown (HELO [10.255.12.105]) ([10.255.12.105])
-	by fmsmga001.fm.intel.com with ESMTP; 18 Feb 2013 21:30:58 -0800
-Message-ID: <1361251862.1868.3.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Date: Mon, 18 Feb 2013 23:31:02 -0600
-In-Reply-To: <CAHUNapT64nNKXw5Hb0NFMn2BOxV60qTZZLszgFgDD20-RpiTNw@mail.gmail.com>
-References: <1360981747.1691.29.camel@empanada>
-	<CAHUNapT64nNKXw5Hb0NFMn2BOxV60qTZZLszgFgDD20-RpiTNw@mail.gmail.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Updated Yocto Hands-on Kernel Lab available
+X-IronPort-AV: E=Sophos;i="4.84,692,1355126400"; 
+	d="scan'208,217";a="258687060"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by azsmga001.ch.intel.com with ESMTP; 18 Feb 2013 23:22:05 -0800
+Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Tue, 19 Feb 2013 07:22:04 +0000
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.108]) by
+	IRSMSX151.ger.corp.intel.com ([169.254.4.144]) with mapi id
+	14.01.0355.002; Tue, 19 Feb 2013 07:22:04 +0000
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: Andre Bella <scancool@yahoo.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] clear hob error
+Thread-Index: AQHODkodQKij+2naoESlKkUToHo3eJiAxN1Q
+Date: Tue, 19 Feb 2013 07:22:03 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB162049CB@IRSMSX102.ger.corp.intel.com>
+References: <1361241435.59645.YahooMailClassic@web140006.mail.bf1.yahoo.com>
+In-Reply-To: <1361241435.59645.YahooMailClassic@web140006.mail.bf1.yahoo.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
+MIME-Version: 1.0
+Subject: Re: clear hob error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,70 +41,178 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 05:31:27 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Feb 2013 07:22:07 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_"
 
-On Mon, 2013-02-18 at 18:50 -0500, Trevor Woerner wrote:
-> I can't figure out what I'm doing wrong, but I can't get lab3 to work.
-> 
-> Following the instructions in the pdf I first tried doing lab3
-> incrementally (build/test, build/test, build/test) and it didn't work.
-> Then I tried deleting (tmp, sstate, etc), trying again, and it still
-> didn't work.
-> 
-> Build Configuration:
-> BB_VERSION        = "1.16.0"
-> TARGET_ARCH       = "i586"
-> TARGET_OS         = "linux"
-> MACHINE           = "lab3-qemux86"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.3"
-> TUNE_FEATURES     = "m32 i586"
-> TARGET_FPU        = ""
-> meta
-> meta-yocto
-> meta-yocto-bsp
-> meta-lab3-qemux86 = "danny:45f95b5f3381097672dd43077f267aa716a02b4c"
-> 
-> I then copied the meta-lab3-qemux86 layer to where I was working with
-> the master branch of poky (hmm... I guess I could have just edited
-> bblayers.conf without needing the hassle of the copy), retried the
-> exercise, and it worked.
-> 
-> Build Configuration:
-> BB_VERSION        = "1.17.1"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "SUSE-LINUX-12.2"
-> TARGET_SYS        = "i586-poky-linux"
-> MACHINE           = "lab3-qemux86"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.3+snapshot-20130218"
-> TUNE_FEATURES     = "m32 i586"
-> TARGET_FPU        = ""
-> meta
-> meta-yocto
-> meta-yocto-bsp
-> meta-lab3-qemux86 = "master:c7b23ab68aafc04d9830ef318015912e5d4f0672"
-> 
-> Note that the above information is a bit misleading.
-> "meta-lab3-qemux86" is just a plain directory without any .git so
-> there is no "master" or "danny" of "meta-lab3-qemux86". The "master"
-> and "danny" branches are of the enclosing poky repository.
-> 
-> In the case where it doesn't work, the module is built and included in
-> the image, but it isn't loaded automatically during boot. Working off
-> master, the module is loaded during boot automatically.
+--_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-So when you say it doesn't work, you mean the module autoload didn't
-work, but everything else did?  Did you do the 'bump the PR' step after
-you uncommmented the module autoload statement?
+Hello Andre,
 
-If that's not it, then I don't know what you say - I tested it with
-danny and it worked fine for me.  I can try running through it again to
-verify again, but it really should work...
+This is not a Hob error, but a bitbake one.
+It seems that BBPATH variable is not set properly.
+Follow documentation/dev-manual/dev-manual-common-tasks.xml to set it out c=
+orrectly.
+Also, state your version of poky.
+There were some changes to the way BBPATH is defined, so it's important to =
+know the version of poky.
 
-Tom
+Regards,
+Cristian
+
+Cristian Iorga
+Linux Software Engineer
+Open Source Technology Center
+Intel
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Andre Bella
+Sent: Tuesday, February 19, 2013 4:37 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] clear hob error
+
+does anyone know how can I clear up this error, it happen after hob crash, =
+:(
 
 
 
+--_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hello Andre,<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">This is not a Hob error, =
+but a bitbake one.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">It seems that BBPATH vari=
+able is not set properly.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Follow documentation/dev-=
+manual/dev-manual-common-tasks.xml to set it out correctly.<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Also, state your version =
+of poky.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">There were some changes t=
+o the way BBPATH is defined, so it&#8217;s important to know the version of=
+ poky.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regards,<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cristian<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cristian Iorga<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Linux Software Engineer<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Open Source Technology Ce=
+nter<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Intel<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Andre Bella<br>
+<b>Sent:</b> Tuesday, February 19, 2013 4:37 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] clear hob error<o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"padding:0in 0in 0in 0in">
+<p class=3D"MsoNormal">does anyone know how can I clear up this error, it h=
+appen after hob crash, :(<o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_--
