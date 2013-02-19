@@ -1,35 +1,35 @@
-Return-Path: <cristian.iorga@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C8ECE003BC
-	for <yocto@yoctoproject.org>; Mon, 18 Feb 2013 23:22:07 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 18 Feb 2013 23:22:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,692,1355126400"; 
-	d="scan'208,217";a="258687060"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by azsmga001.ch.intel.com with ESMTP; 18 Feb 2013 23:22:05 -0800
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 19 Feb 2013 07:22:04 +0000
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.108]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.144]) with mapi id
-	14.01.0355.002; Tue, 19 Feb 2013 07:22:04 +0000
-From: "Iorga, Cristian" <cristian.iorga@intel.com>
-To: Andre Bella <scancool@yahoo.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] clear hob error
-Thread-Index: AQHODkodQKij+2naoESlKkUToHo3eJiAxN1Q
-Date: Tue, 19 Feb 2013 07:22:03 +0000
-Message-ID: <969F26A8BAB325438E7EB80D3C3134FB162049CB@IRSMSX102.ger.corp.intel.com>
-References: <1361241435.59645.YahooMailClassic@web140006.mail.bf1.yahoo.com>
-In-Reply-To: <1361241435.59645.YahooMailClassic@web140006.mail.bf1.yahoo.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 7AEE0E00515
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 02:06:49 -0800 (PST)
+Received: by mail-ve0-f177.google.com with SMTP id m1so5607054ves.22
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 02:06:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=5ha2eVD1H1SM8J1VEYQs2i2YA5CzO6AzOfqquGosp5g=;
+	b=Id8c4KuXf4S+z15iKdFv1ocarlPOePzz5/rpjy6YAN26KqR2pYz134/UD40m50UdND
+	Kr6VrVpWFJ5fOpd52J3JWebugb0cdHQ8uGtdi4n9ZNhBgbxognTnu80ob+1Y5a5CJpn0
+	xPVWelb8rZvMiJFKiaSEpRdDlqAOLTwuOxIfqW2EtPSAgs/TMXOl+/iTNX2l/yjWhxXm
+	ffyYLizmus5MJ8UM25rXNrQwyHoJOPC9snk8OLQEgDEjGeuEpV24HoTIPLvr5kbf1cuj
+	Cq3YFr/d0tg+JsaqRT88XmM1AXt+ej1tBc7f0kQuetnhWDWhDi1/GOxHGteNvfaXXMJ9
+	IMBw==
+X-Received: by 10.52.23.38 with SMTP id j6mr583829vdf.121.1361268408263; Tue,
+	19 Feb 2013 02:06:48 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: clear hob error
+Received: by 10.58.85.36 with HTTP; Tue, 19 Feb 2013 02:06:27 -0800 (PST)
+In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A70EC31C3@ORSMSX101.amr.corp.intel.com>
+References: <7E680CB2A76BB8438D08CF13C09FC53A70EC31C3@ORSMSX101.amr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 19 Feb 2013 10:06:27 +0000
+Message-ID: <CAJTo0LYA-XmN185GPpo4_OH37_VgTSmob-ar+oms7DaMu6Z8aQ@mail.gmail.com>
+To: "Liu, Song" <song.liu@intel.com>
+X-Gm-Message-State: ALoCoQnmGLqyqHvs/f1YvpzwVe35PTZfg5Oj0qzW5eG87nkr35weerUOJEaN9ao36TurUD9ATyBM
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Agenda: Yocto Project Technical Team Meeting - Tuesday, February 19, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,178 +41,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 07:22:07 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_"
+X-List-Received-Date: Tue, 19 Feb 2013 10:06:49 -0000
+Content-Type: multipart/alternative; boundary=20cf3079bfe2eb24e904d610ff23
 
---_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--20cf3079bfe2eb24e904d610ff23
+Content-Type: text/plain; charset=UTF-8
 
-Hello Andre,
+On 19 February 2013 04:32, Liu, Song <song.liu@intel.com> wrote:
 
-This is not a Hob error, but a bitbake one.
-It seems that BBPATH variable is not set properly.
-Follow documentation/dev-manual/dev-manual-common-tasks.xml to set it out c=
-orrectly.
-Also, state your version of poky.
-There were some changes to the way BBPATH is defined, so it's important to =
-know the version of poky.
-
-Regards,
-Cristian
-
-Cristian Iorga
-Linux Software Engineer
-Open Source Technology Center
-Intel
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Andre Bella
-Sent: Tuesday, February 19, 2013 4:37 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] clear hob error
-
-does anyone know how can I clear up this error, it happen after hob crash, =
-:(
-
-
-
---_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>  Agenda:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hello Andre,<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">This is not a Hob error, =
-but a bitbake one.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">It seems that BBPATH vari=
-able is not set properly.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Follow documentation/dev-=
-manual/dev-manual-common-tasks.xml to set it out correctly.<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Also, state your version =
-of poky.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">There were some changes t=
-o the way BBPATH is defined, so it&#8217;s important to know the version of=
- poky.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regards,<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cristian<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cristian Iorga<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Linux Software Engineer<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Open Source Technology Ce=
-nter<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Intel<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Andre Bella<br>
-<b>Sent:</b> Tuesday, February 19, 2013 4:37 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] clear hob error<o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0">
-<tbody>
-<tr>
-<td valign=3D"top" style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal">does anyone know how can I clear up this error, it h=
-appen after hob crash, :(<o:p></o:p></p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
+> * Opens collection - 5 min (Song)
+> * Yocto Project 1.3.1 status - 10 min (Ross)
+>
 
---_000_969F26A8BAB325438E7EB80D3C3134FB162049CBIRSMSX102gercor_--
+I've got a conflicting meeting so can't attend this call.  The state is
+that the autobuilder appeared to go well so we'll be passing the output to
+QA shortly.
+
+Ross
+
+--20cf3079bfe2eb24e904d610ff23
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On 19 February 2013 04:32, Liu, Song <span dir=3D"ltr">&lt;<a href=3D"mailt=
+o:song.liu@intel.com" target=3D"_blank">song.liu@intel.com</a>&gt;</span> w=
+rote:<br><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+
+
+
+<div>
+<font face=3D"Consolas"><span style=3D"font-size:11pt"><div class=3D"im">
+<div>Agenda:</div>
+<div>=C2=A0</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto Project 1.3.1 status - 10 min (Ross)</div></div></span></font>=
+</div></blockquote><div><br></div><div>I&#39;ve got a conflicting meeting s=
+o can&#39;t attend this call. =C2=A0The state is that the autobuilder appea=
+red to go well so we&#39;ll be passing the output to QA shortly.</div>
+
+<div><br></div><div>Ross</div></div>
+
+--20cf3079bfe2eb24e904d610ff23--
