@@ -1,32 +1,33 @@
-Return-Path: <corneliux.stoicescu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3020E006F6
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 07:31:33 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Feb 2013 07:30:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,696,1355126400"; 
-	d="scan'208,217";a="287689769"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by orsmga002.jf.intel.com with ESMTP; 19 Feb 2013 07:31:32 -0800
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 19 Feb 2013 15:31:31 +0000
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.15]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.144]) with mapi id
-	14.01.0355.002; Tue, 19 Feb 2013 15:31:31 +0000
-From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Weekly Test Status for Yocto 1.4 20130213 Build
-Thread-Index: Ac4OtK0AFdD7mR0NSQKW6Ez6jU288AAAVi5g
-Date: Tue, 19 Feb 2013 15:31:30 +0000
-Message-ID: <33115ABC4887814E8A92A08FBC93416B08DD99DA@IRSMSX103.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+Return-Path: <swaroop.damarla@gmail.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id DE7B4E00721
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 08:03:02 -0800 (PST)
+Received: by mail-vc0-f182.google.com with SMTP id fl17so4411750vcb.41
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 08:03:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=6uIgehHoP6GVRZldn/KXnU1IM+u6zwID6FqhzORKe0E=;
+	b=LkRvxhBzrMtk0xHmpVnrcVWEiYrjQDO7zapzoLnKHUT+BbE1OKhWvrALDGoR9a8ytP
+	F3TSGZAp2k/mqEpb+IVrqut52sPAczWYrgmkSo+lX6fWU0qMs5B9YJfleDIfrE0E79fn
+	UYXISrjG4XjghXqoE5qdPbJDP/fVguSY/9GtOSQlUDTW3C9NLW3jGipXxKtRNmpNvHZj
+	CTJvg6chUEGOhjzEj5nJ1tvxEQjTkAX+jaO1rnbAlwGYV6i5sFYHa1JCHL6EgQKgWcS+
+	UHGVU/Y+M52YT2EbCcUQYqnJGa4Bhq0UVAzfcIiskYvh6hQUdiB4ff/SCziyP2ZiaU4j
+	d8XA==
 MIME-Version: 1.0
-Subject: FW: Weekly Test Status for Yocto 1.4 20130213 Build
+X-Received: by 10.220.149.198 with SMTP id u6mr20852987vcv.52.1361289773413;
+	Tue, 19 Feb 2013 08:02:53 -0800 (PST)
+Received: by 10.58.155.102 with HTTP; Tue, 19 Feb 2013 08:02:53 -0800 (PST)
+In-Reply-To: <51239308.1010404@mlbassoc.com>
+References: <CABTzgQ4oa8AOZRxAUOQKH0r_gA-28LbT3ZO-MeM0TKcedhufMQ@mail.gmail.com>
+	<51239308.1010404@mlbassoc.com>
+Date: Tue, 19 Feb 2013 17:02:53 +0100
+Message-ID: <CABTzgQ5awWZeW+WeLBG-MAPn5650MbqoJ_UFtZ6eo6vRrMnViw@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>, yocto@yoctoproject.org
+Subject: Re: Avionic Tamonten Board - Uboot problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,175 +39,229 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 15:31:33 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_33115ABC4887814E8A92A08FBC93416B08DD99DAIRSMSX103gercor_"
+X-List-Received-Date: Tue, 19 Feb 2013 16:03:03 -0000
+Content-Type: multipart/alternative; boundary=f46d043c816c6174ec04d615f955
 
---_000_33115ABC4887814E8A92A08FBC93416B08DD99DAIRSMSX103gercor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--f46d043c816c6174ec04d615f955
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hello,
+Unfortunately "tec_config" didnot work. Here is the error message
 
-Here is a real-time status report for the current weekly build: https://wik=
-i.yoctoproject.org/wiki/1.4_QA_Status
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 8 CROSS_COMPILE=arm-poky-linux-gnueabi-
+CC=arm-poky-linux-gnueabi-gcc
+ --sysroot=/home/build/yocto/poky/buildTamonten/tmp/sysroots/skidata-tamonten
+tec_config
+| make: *** No rule to make target `tec_config'.  Stop.
+| make: *** [tec_config] Error 1
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (see
+/home/build/yocto/poky/buildTamonten/tmp/work/skidata_tamonten-poky-linux-gnueabi/u-boot-v2012.04.01+git3+415d386877df49eb051b85ef74fa59a16dc17c7d-r2/temp/log.do_compile.21665
+for further information)
+ERROR: Task 69 (/home/build/yocto/poky/meta/recipes-bsp/u-boot/
+u-boot_2012.04.01.bb, do_compile) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3421 tasks of which 319 didn't need to be
+rerun and 1 failed.
 
-We are working towards implementing an automated reporting system and this =
-is what we have so far.
 
-We analyzed the previous report style and all the information, in one form =
-or another, is contained in this report as well (it might require some digg=
-ing but we hope that if you know what you are looking for, you can get the =
-information much faster and with much more detail)
 
-Please look around as much as possible and send us some feedback on what mo=
-re you would like to see, what you think could be changed and anything else=
- that pops up.
 
-PS: I am sorry for the previous email, I did not add the link :)
+On Tue, Feb 19, 2013 at 3:58 PM, Gary Thomas <gary@mlbassoc.com> wrote:
 
-Thank you for the support,
-Stoicescu Corneliu
-Romania Yocto QA
-
---_000_33115ABC4887814E8A92A08FBC93416B08DD99DAIRSMSX103gercor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> On 2013-02-19 06:28, Satya Swaroop Damarla wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:SimSun;
-	color:black;
-	mso-fareast-language:ZH-CN;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hello,<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Here is a real-time statu=
-s report for the current weekly build</span><span style=3D"font-size:11.0pt=
-;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D">:</s=
-pan>
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D"><a href=3D"https://wiki.yoctoproject.org/wiki/1.=
-4_QA_Status">https://wiki.yoctoproject.org/wiki/1.4_QA_Status</a><o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">We are working towards im=
-plementing an automated reporting system and this is what we have so far.
-</span><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
-t;sans-serif&quot;;color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">We analyzed the previous =
-report style and all the information, in one form or another, is contained =
-in this report as well (it might require some digging but
- we hope that if you know what you are looking for, you can get the informa=
-tion much faster and with much more detail) &nbsp;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Please look around as muc=
-h as possible and send us some feedback on what more you would like to see,=
- what you think could be changed and anything else that
- pops up. <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">PS: I am sorry for the pr=
-evious email, I did not add the link
-</span><span style=3D"font-size:11.0pt;font-family:Wingdings;color:#1F497D"=
->J</span><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thank you for the support=
-,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Stoicescu Corneliu<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Romania Yocto QA<o:p></o:=
-p></span></p>
-</div>
-</body>
-</html>
+>> Hi,
+>>
+>> I want to build a basic image for the Avionic Tamonten board using Yocto.
+>> SO, I created a skidata-tamonten.conf in the list of machines based on the
+>> beagleboard.conf but I dont
+>> know what to add for the UBOOT_MACHINE= . I tried my best to use the same
+>> "omap_beagle_conf" but it doesnot boot properly. Here is the
+>> skidata-tamonten.conf file description
+>>
+>>
+> Try 'tec_config'
+>
+>  #@TYPE: Machine
+>> #@NAME: skidata-tamonten machine
+>> #@DESCRIPTION: Machine configuration for the Tamonten board
+>>
+>> PREFERRED_PROVIDER_virtual/**xserver ?= "xserver-xorg"
+>> XSERVER ?= "xserver-xorg \
+>>             xf86-input-evdev \
+>>             xf86-input-mouse \
+>>             xf86-video-omapfb \
+>>             xf86-input-keyboard"
+>>
+>> # Ship all kernel modules by default
+>> MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
+>>
+>> # Allow for MMC booting ()
+>> EXTRA_IMAGEDEPENDS += "u-boot"
+>>
+>> # Uncomment the following line to enable the hard floating point abi.
+>> Note that
+>> # this breaks some binary libraries and 3D (neither of which ship with
+>> # meta-yocto). For maximum compatibility, leave this disabled.
+>> DEFAULTTUNE ?= "cortexa9thf"
+>> include conf/machine/include/tune-**cortexa9.inc
+>>
+>> IMAGE_FSTYPES += "tar.bz2 ext2 ext3"
+>>
+>> SERIAL_CONSOLE = "115200 ttyO2"
+>>
+>> PREFERRED_PROVIDER_virtual/**kernel ?= "linux-yocto"
+>> PREFERRED_VERSION_linux-yocto ?= "3.2%"
+>>
+>> KERNEL_IMAGETYPE = "uImage"
+>>
+>> PREFERRED_VERSION_u-boot ?= "v2012.04%"
+>>
+>> UBOOT_MACHINE = "???????????????????"
+>>
+>> UBOOT_ENTRYPOINT = "0x00008000"
+>> UBOOT_LOADADDRESS = "0x00008000"
+>>
+>> MACHINE_FEATURES = "usbgadget usbhost vfat alsa screen touchscreen
+>> keyboard"
+>>
+>>
+>> Greetings & Regards,
+>> Swaroop
+>>
+>>
+>>
+>> ______________________________**_________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
+>>
+>>
+> --
+> ------------------------------**------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------**------------------------------
+> ______________________________**_________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
+>
 
---_000_33115ABC4887814E8A92A08FBC93416B08DD99DAIRSMSX103gercor_--
+--f46d043c816c6174ec04d615f955
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Unfortunately &quot;tec_config&quot; didnot work. Here is =
+the error message<div><br></div><div><div>Log data follows:</div><div>| DEB=
+UG: Executing shell function do_compile</div><div>| NOTE: make -j 8 CROSS_C=
+OMPILE=3Darm-poky-linux-gnueabi- CC=3Darm-poky-linux-gnueabi-gcc =A0--sysro=
+ot=3D/home/build/yocto/poky/buildTamonten/tmp/sysroots/skidata-tamonten tec=
+_config</div>
+<div>| make: *** No rule to make target `tec_config&#39;. =A0Stop.</div><di=
+v>| make: *** [tec_config] Error 1</div><div>| ERROR: oe_runmake failed</di=
+v><div>| ERROR: Function failed: do_compile (see /home/build/yocto/poky/bui=
+ldTamonten/tmp/work/skidata_tamonten-poky-linux-gnueabi/u-boot-v2012.04.01+=
+git3+415d386877df49eb051b85ef74fa59a16dc17c7d-r2/temp/log.do_compile.21665 =
+for further information)</div>
+<div>ERROR: Task 69 (/home/build/yocto/poky/meta/recipes-bsp/u-boot/<a href=
+=3D"http://u-boot_2012.04.01.bb">u-boot_2012.04.01.bb</a>, do_compile) fail=
+ed with exit code &#39;1&#39;</div><div>NOTE: Tasks Summary: Attempted 3421=
+ tasks of which 319 didn&#39;t need to be rerun and 1 failed.</div>
+</div><div><br></div><div style><br></div></div><div class=3D"gmail_extra">=
+<br><br><div class=3D"gmail_quote">On Tue, Feb 19, 2013 at 3:58 PM, Gary Th=
+omas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" target=3D"_=
+blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 2013-02-19 06:28, Satya=
+ Swaroop Damarla wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi,<br>
+<br>
+I want to build a basic image for the Avionic Tamonten board using Yocto. S=
+O, I created a skidata-tamonten.conf in the list of machines based on the b=
+eagleboard.conf but I dont<br>
+know what to add for the UBOOT_MACHINE=3D . I tried my best to use the same=
+ &quot;omap_beagle_conf&quot; but it doesnot boot properly. Here is the ski=
+data-tamonten.conf file description<br>
+<br>
+</blockquote>
+<br></div>
+Try &#39;tec_config&#39;<br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div><div class=3D"h5">
+#@TYPE: Machine<br>
+#@NAME: skidata-tamonten machine<br>
+#@DESCRIPTION: Machine configuration for the Tamonten board<br>
+<br>
+PREFERRED_PROVIDER_virtual/<u></u>xserver ?=3D &quot;xserver-xorg&quot;<br>
+XSERVER ?=3D &quot;xserver-xorg \<br>
+=A0 =A0 =A0 =A0 =A0 =A0 xf86-input-evdev \<br>
+=A0 =A0 =A0 =A0 =A0 =A0 xf86-input-mouse \<br>
+=A0 =A0 =A0 =A0 =A0 =A0 xf86-video-omapfb \<br>
+=A0 =A0 =A0 =A0 =A0 =A0 xf86-input-keyboard&quot;<br>
+<br>
+# Ship all kernel modules by default<br>
+MACHINE_EXTRA_RRECOMMENDS =3D &quot; kernel-modules&quot;<br>
+<br>
+# Allow for MMC booting ()<br>
+EXTRA_IMAGEDEPENDS +=3D &quot;u-boot&quot;<br>
+<br>
+# Uncomment the following line to enable the hard floating point abi. Note =
+that<br>
+# this breaks some binary libraries and 3D (neither of which ship with<br>
+# meta-yocto). For maximum compatibility, leave this disabled.<br>
+DEFAULTTUNE ?=3D &quot;cortexa9thf&quot;<br>
+include conf/machine/include/tune-<u></u>cortexa9.inc<br>
+<br>
+IMAGE_FSTYPES +=3D &quot;tar.bz2 ext2 ext3&quot;<br>
+<br>
+SERIAL_CONSOLE =3D &quot;115200 ttyO2&quot;<br>
+<br>
+PREFERRED_PROVIDER_virtual/<u></u>kernel ?=3D &quot;linux-yocto&quot;<br>
+PREFERRED_VERSION_linux-yocto ?=3D &quot;3.2%&quot;<br>
+<br>
+KERNEL_IMAGETYPE =3D &quot;uImage&quot;<br>
+<br>
+PREFERRED_VERSION_u-boot ?=3D &quot;v2012.04%&quot;<br>
+<br>
+UBOOT_MACHINE =3D &quot;???????????????????&quot;<br>
+<br>
+UBOOT_ENTRYPOINT =3D &quot;0x00008000&quot;<br>
+UBOOT_LOADADDRESS =3D &quot;0x00008000&quot;<br>
+<br>
+MACHINE_FEATURES =3D &quot;usbgadget usbhost vfat alsa screen touchscreen k=
+eyboard&quot;<br>
+<br>
+<br>
+Greetings &amp; Regards,<br>
+Swaroop<br>
+<br>
+<br>
+<br></div></div>
+______________________________<u></u>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
+<br><span class=3D"HOEnZb"><font color=3D"#888888">
+</font></span></blockquote><span class=3D"HOEnZb"><font color=3D"#888888">
+<br>
+-- <br>
+------------------------------<u></u>------------------------------<br>
+Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the<br>
+MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world<br>
+------------------------------<u></u>------------------------------<br>
+______________________________<u></u>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
+
+--f46d043c816c6174ec04d615f955--
