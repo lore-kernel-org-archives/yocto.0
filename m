@@ -1,29 +1,29 @@
-Return-Path: <pierre.ficheux@openwide.fr>
-Received: from zimbra3.corp.accelance.fr (zimbra3.corp.accelance.fr
-	[213.162.49.233])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02DC1E006F5
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 11:14:24 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra3.corp.accelance.fr (Postfix) with ESMTP id 91BDE28066
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 20:14:22 +0100 (CET)
-X-Virus-Scanned: amavisd-new at zimbra3.corp.accelance.fr
-Received: from zimbra3.corp.accelance.fr ([127.0.0.1])
-	by localhost (zimbra3.corp.accelance.fr [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id kWTPN+SFNf+q for <yocto@yoctoproject.org>;
-	Tue, 19 Feb 2013 20:14:22 +0100 (CET)
-Received: from zimbra2.corp.accelance.fr (zimbra2.corp.accelance.fr
-	[213.162.49.232])
-	by zimbra3.corp.accelance.fr (Postfix) with ESMTP id 39F0328063
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 20:14:22 +0100 (CET)
-Date: Tue, 19 Feb 2013 20:14:22 +0100 (CET)
-From: Pierre Ficheux <pierre.ficheux@openwide.fr>
-To: yocto@yoctoproject.org
-Message-ID: <7ca09268-8696-4643-87d9-33308da50dee@zimbra2.corp.accelance.fr>
-In-Reply-To: <14bba8b5-a545-48ea-80a9-5c4e10de8c33@zimbra2.corp.accelance.fr>
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qe0-f43.google.com (mail-qe0-f43.google.com
+	[209.85.128.43]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id ADE9AE00721
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 13:02:31 -0800 (PST)
+Received: by mail-qe0-f43.google.com with SMTP id 3so3298717qeb.16
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 13:02:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=SMmfMG4dTAmj0iKebaD5VXFA8q9xu/tK7+naNapbhFA=;
+	b=sIYH9+2TQpuSBn/2z+9mCxRAnXHcCBSMoXS0an8QWDUHz+spGmJhR0Qq4IzFq2ZRxM
+	CNtlDCU6pb2qruCSono/rZ76RjjC2+lHqjdPRCtOuakXY3h9qLWjT47mcySWK5GJeZD2
+	tTQV4/ZPhJqM9Y8vRQ5tQ1rGZeNomA53rWde64d/P6FM8o5/7EtLvfRNTACyaS9I5xxt
+	8b9u6rHblCYvrO5JsBwIEgiSzn67hnnRRptzBIFa+IWQk6MgdWhfkN9y+S38FO8WmqZu
+	lhtHvewWwduYDuWG5mXi9SamAX3jeSBT/cIIb6jEdRptNpDOCM8B6m4S+rM0++I1Bywm
+	CMhg==
 MIME-Version: 1.0
-X-Originating-IP: [78.227.34.107]
-X-Mailer: Zimbra 7.1.3_GA_3346 (ZimbraWebClient - GC24 (Mac)/7.1.3_GA_3346)
-Subject: Always removing status files in case of IPK
+X-Received: by 10.224.58.201 with SMTP id i9mr8295423qah.81.1361307750693;
+	Tue, 19 Feb 2013 13:02:30 -0800 (PST)
+Received: by 10.49.60.39 with HTTP; Tue, 19 Feb 2013 13:02:30 -0800 (PST)
+Date: Tue, 19 Feb 2013 22:02:30 +0100
+Message-ID: <CAFyqS9qOfZ1m_nUMCF8qK+kxOvXF5XPBb_ZuQFGvSoRMdOCGwQ@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: yocto@yoctoproject.org
+Subject: bitbake: how to resolve a dependency to kernel-devicetree when building rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,36 +35,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 19:14:24 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Feb 2013 21:02:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+First of all, I am a total noob when it comes to bitbake, but I am
+struggling and slowly getting there ( I think).
+So, I am sorry if my questions seems stupid, but this one I just can
+not seem to figure out on my own.
+What I am trying to do is to build a custom ARM based rootfs image
+using the ELDK toolchain that should include all the modules from my
+kernel build. But the rootfs build stage fails! If I exclude the
+kernel modules everything work just fine.
 
-I've noticed a problem in rootfs_ipk.bbclass as status files are always removed in case of using IPK (works fine with
-RPM). Here is the small patch which fix it.
+The bitbake error I get is
 
-regards
-
-diff --git a/meta/classes/rootfs_ipk.bbclass b/meta/classes/rootfs_ipk.bbclass
-index fadec4d..89c3128 100644
---- a/meta/classes/rootfs_ipk.bbclass
-+++ b/meta/classes/rootfs_ipk.bbclass
-@@ -109,9 +109,6 @@ fakeroot rootfs_ipk_do_rootfs () {
-                        if $remove_run_postinsts; then
-                                update-rc.d -f -r ${IMAGE_ROOTFS} run-postinsts remove
-                        fi
--
--                       # Also delete the status files
--                       remove_packaging_data_files
-                fi
-        fi
-        set +x
+| Collected errors:
+|  * satisfy_dependencies_for: Cannot satisfy the following
+dependencies for kernel-modules:
+|  *    kernel-devicetree *
+|  * opkg_install_cmd: Cannot install package kernel-modules.
 
 
--- 
-Pierre FICHEUX -/- CTO OW/OS4I, France -\- pierre.ficheux@openwide.fr
-                                         http://www.os4i.com
-                                         http://www.linuxembedded.fr
-I would love to change the world, but they won't give me the source code
+My simple rootfs.bb looks like this
+
+require recipes-core/images/core-image-minimal.bb
+
+# The list of packages used to build images.
+IMAGE_INSTALL += "kernel-modules"
+
+# Formats of root filesystem images that you want to have created.
+IMAGE_FSTYPES = "jffs2"
+
+
+The device tree blob was built successfully and is located in the
+kernel deploy image folder.
+I can see that I have the following files under the kernel work path
+
+./packages-split/kernel-devicetree
+./pkgdata/runtime/kernel-devicetree
+./pkgdata/runtime-reverse/kernel-devicetree
+
+Any advice on what I have missed?
+
+Hans
 
