@@ -1,35 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
-	[209.85.128.177]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
+	[209.85.212.178]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 7AEE0E00515
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 02:06:49 -0800 (PST)
-Received: by mail-ve0-f177.google.com with SMTP id m1so5607054ves.22
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 02:06:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=5ha2eVD1H1SM8J1VEYQs2i2YA5CzO6AzOfqquGosp5g=;
-	b=Id8c4KuXf4S+z15iKdFv1ocarlPOePzz5/rpjy6YAN26KqR2pYz134/UD40m50UdND
-	Kr6VrVpWFJ5fOpd52J3JWebugb0cdHQ8uGtdi4n9ZNhBgbxognTnu80ob+1Y5a5CJpn0
-	xPVWelb8rZvMiJFKiaSEpRdDlqAOLTwuOxIfqW2EtPSAgs/TMXOl+/iTNX2l/yjWhxXm
-	ffyYLizmus5MJ8UM25rXNrQwyHoJOPC9snk8OLQEgDEjGeuEpV24HoTIPLvr5kbf1cuj
-	Cq3YFr/d0tg+JsaqRT88XmM1AXt+ej1tBc7f0kQuetnhWDWhDi1/GOxHGteNvfaXXMJ9
-	IMBw==
-X-Received: by 10.52.23.38 with SMTP id j6mr583829vdf.121.1361268408263; Tue,
-	19 Feb 2013 02:06:48 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id E3A3BE00515
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 02:31:55 -0800 (PST)
+Received: by mail-wi0-f178.google.com with SMTP id o1so4589174wic.11
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 02:31:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=HeeJFponXg/c+mMGi6rR61a23oDVRqpZ5MlXSSSBbts=;
+	b=l8N8Mu7nAMDilnwWu+0f9gsbA9r5wb+odVRbv7byO1EFOMHa8FrYhi9XbiHhQ58oSM
+	5d3APYDb4ojoWeocpQf77epxFAMumEObS+P9rUUE8EMm7vino2uEZkqDSyRpHh/+Rloz
+	PwcYPgbyc3LK/HwhcHakbLq1mdJHP8+pdBjYEM3asnt0CF64NMHdnpfI0VJZVrCfJCqr
+	aPGzRSxukY/lwDxSHxTKyy6xKIW56nndHmseUTSQndO+Ku+Z51sE/NUjG7yk4WaB7rr5
+	5fTCoX9sFO2Upqd4rRuZjwj5CJjyOyiI/VtvjJBJhb9d83Tt1cu/cOHfOGtHuXmUFV2a
+	/k6Q==
 MIME-Version: 1.0
-Received: by 10.58.85.36 with HTTP; Tue, 19 Feb 2013 02:06:27 -0800 (PST)
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A70EC31C3@ORSMSX101.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A70EC31C3@ORSMSX101.amr.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 19 Feb 2013 10:06:27 +0000
-Message-ID: <CAJTo0LYA-XmN185GPpo4_OH37_VgTSmob-ar+oms7DaMu6Z8aQ@mail.gmail.com>
-To: "Liu, Song" <song.liu@intel.com>
-X-Gm-Message-State: ALoCoQnmGLqyqHvs/f1YvpzwVe35PTZfg5Oj0qzW5eG87nkr35weerUOJEaN9ao36TurUD9ATyBM
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Agenda: Yocto Project Technical Team Meeting - Tuesday, February 19, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.180.77.9 with SMTP id o9mr26284658wiw.16.1361269903022; Tue,
+	19 Feb 2013 02:31:43 -0800 (PST)
+Received: by 10.194.32.70 with HTTP; Tue, 19 Feb 2013 02:31:42 -0800 (PST)
+In-Reply-To: <1361251862.1868.3.camel@empanada>
+References: <1360981747.1691.29.camel@empanada>
+	<CAHUNapT64nNKXw5Hb0NFMn2BOxV60qTZZLszgFgDD20-RpiTNw@mail.gmail.com>
+	<1361251862.1868.3.camel@empanada>
+Date: Tue, 19 Feb 2013 05:31:42 -0500
+Message-ID: <CAHUNapT3DsWwPDJC9mthNRjA0idDLHBUJxM6AGV41QaNVOodHw@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Updated Yocto Hands-on Kernel Lab available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,52 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 10:06:49 -0000
-Content-Type: multipart/alternative; boundary=20cf3079bfe2eb24e904d610ff23
+X-List-Received-Date: Tue, 19 Feb 2013 10:31:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---20cf3079bfe2eb24e904d610ff23
-Content-Type: text/plain; charset=UTF-8
+On Tue, Feb 19, 2013 at 12:31 AM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> So when you say it doesn't work, you mean the module autoload didn't
+> work, but everything else did?
 
-On 19 February 2013 04:32, Liu, Song <song.liu@intel.com> wrote:
+Yes, exactly.
 
->  Agenda:
->
-> * Opens collection - 5 min (Song)
-> * Yocto Project 1.3.1 status - 10 min (Ross)
->
+> Did you do the 'bump the PR' step after
+> you uncommmented the module autoload statement?
 
-I've got a conflicting meeting so can't attend this call.  The state is
-that the autobuilder appeared to go well so we'll be passing the output to
-QA shortly.
+Yes, I even bumped it twice :-) But even if I forgot to bump the PR
+number, when I deleted tmp/sstate/etc and started a fresh build, it
+should have worked then?
 
-Ross
+> If that's not it, then I don't know what you say - I tested it with
+> danny and it worked fine for me.  I can try running through it again to
+> verify again, but it really should work...
 
---20cf3079bfe2eb24e904d610ff23
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Thanks for your comments. I'll guess I'll have to try it all again.
+Maybe I somehow checked out the wrong version. Like I said, performing
+the same steps against yesterday's master worked completely as
+expected.
 
-On 19 February 2013 04:32, Liu, Song <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:song.liu@intel.com" target=3D"_blank">song.liu@intel.com</a>&gt;</span> w=
-rote:<br><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-
-
-
-
-
-
-<div>
-<font face=3D"Consolas"><span style=3D"font-size:11pt"><div class=3D"im">
-<div>Agenda:</div>
-<div>=C2=A0</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto Project 1.3.1 status - 10 min (Ross)</div></div></span></font>=
-</div></blockquote><div><br></div><div>I&#39;ve got a conflicting meeting s=
-o can&#39;t attend this call. =C2=A0The state is that the autobuilder appea=
-red to go well so we&#39;ll be passing the output to QA shortly.</div>
-
-<div><br></div><div>Ross</div></div>
-
---20cf3079bfe2eb24e904d610ff23--
