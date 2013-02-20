@@ -1,41 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f51.google.com (mail-pb0-f51.google.com
-	[209.85.160.51]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 47C1CE00721
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 23:05:37 -0800 (PST)
-Received: by mail-pb0-f51.google.com with SMTP id un15so2688657pbc.38
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 23:05:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:date:from:to:cc:subject:message-id:mail-followup-to
-	:references:mime-version:content-type:content-disposition
-	:in-reply-to:user-agent;
-	bh=00hwKrxcNk0dBVef8VDFdyJ1G6X0g6jy2ApMsNV7fsg=;
-	b=amP67QTQPOMuI/YJR+DRDLD5ohKNmp7U+RlnzzKqW0jVSNu/mixqKAo+/HsCLwhfVC
-	edmgN6rp6dhg+umCh0XTb6GD2C3yreNaFiQ9/cKS12RaaUQZpBMgsAG0T2wTGvy6pKP8
-	iT2JTNMllagfE077BmDrQNqIMMnajoLMHxDca+HILpQ7Oec7ccHpn/P71GLzE1jbJhb8
-	13sQVk2FgDPrdjKrVJa6CWGAzClR8QwqKJQ6BonsOsGu5ycsIuWsev85VT26uZwOJ2x9
-	Gptx6/1iZXWxk1x1dIGxa+sVFbj8AnX3ZQyd6eXb0Jm3hdEfJ1AMkXyTxL8SrG9+NU2k
-	KW8g==
-X-Received: by 10.66.251.227 with SMTP id zn3mr882673pac.178.1361343936955;
-	Tue, 19 Feb 2013 23:05:36 -0800 (PST)
-Received: from sakrah.homelinux.org
-	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
-	by mx.google.com with ESMTPS id c3sm66480568pax.9.2013.02.19.23.05.27
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Tue, 19 Feb 2013 23:05:36 -0800 (PST)
-Date: Tue, 19 Feb 2013 23:05:10 -0800
-From: Khem Raj <raj.khem@gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Message-ID: <20130220070508.GA23580@sakrah.homelinux.org>
-Mail-Followup-To: Edward Vidal <vidal.develone@gmail.com>,
-	yocto@yoctoproject.org
-References: <CANwz6nz5QUDFeSZR62uncFEsr-4=ehGUpn3AtZpW-4k4reX49A@mail.gmail.com>
+Return-Path: <pierre.ficheux@openwide.fr>
+Received: from zimbra3.corp.accelance.fr (zimbra3.corp.accelance.fr
+	[213.162.49.233])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C419E00721
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 23:20:26 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra3.corp.accelance.fr (Postfix) with ESMTP id 6DACC28066
+	for <yocto@yoctoproject.org>; Wed, 20 Feb 2013 08:20:25 +0100 (CET)
+X-Virus-Scanned: amavisd-new at zimbra3.corp.accelance.fr
+Received: from zimbra3.corp.accelance.fr ([127.0.0.1])
+	by localhost (zimbra3.corp.accelance.fr [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id v6AhnCCE+7wG for <yocto@yoctoproject.org>;
+	Wed, 20 Feb 2013 08:20:24 +0100 (CET)
+Received: from zimbra2.corp.accelance.fr (zimbra2.corp.accelance.fr
+	[213.162.49.232])
+	by zimbra3.corp.accelance.fr (Postfix) with ESMTP id 49A3428064
+	for <yocto@yoctoproject.org>; Wed, 20 Feb 2013 08:20:24 +0100 (CET)
+Date: Wed, 20 Feb 2013 08:20:24 +0100 (CET)
+From: Pierre Ficheux <pierre.ficheux@openwide.fr>
+To: yocto@yoctoproject.org
+Message-ID: <6628e091-f6c4-4f97-a116-bf2e31679d0f@zimbra2.corp.accelance.fr>
+In-Reply-To: <20130219220611.GV3300@jama>
 MIME-Version: 1.0
-In-Reply-To: <CANwz6nz5QUDFeSZR62uncFEsr-4=ehGUpn3AtZpW-4k4reX49A@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: adt-manual.pdf
+X-Originating-IP: [90.24.174.108]
+X-Mailer: Zimbra 7.1.3_GA_3346 (ZimbraWebClient - GC24 (Linux)/7.1.3_GA_3346)
+Subject: Re: Always removing status files in case of IPK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,20 +35,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Feb 2013 07:05:37 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 20 Feb 2013 07:20:26 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On (09/01/13 16:59), Edward Vidal wrote:
-> Hello,
-> I was testing the example  4.1 Autotools-Based Projects
-> should the file "configure".in be "configure.ac"
-> this is the error that I get when I execute aclocal
-> aclocal
-> aclocal: warning: autoconf input should be named 'configure.ac', not '
-> configure.in'
-> Any help will be appreciated.
+Yes, better with
 
-yes configure.ac is right naming. Have you filed a bug for it in
-bugzilla ? if not I would suggest to file one
+IMAGE_FEATURES +=3D "package-management"
+
+sorry.
+
+----- Mail original -----
+> De: "Martin Jansa" <martin.jansa@gmail.com>
+> =C3=80: "Pierre Ficheux" <pierre.ficheux@openwide.fr>
+> Cc: yocto@yoctoproject.org
+> Envoy=C3=A9: Mardi 19 F=C3=A9vrier 2013 23:06:11
+> Objet: Re: [yocto] Always removing status files in case of IPK
+> 
+> On Tue, Feb 19, 2013 at 08:14:22PM +0100, Pierre Ficheux wrote:
+> > Hi,
+> > 
+> > I've noticed a problem in rootfs_ipk.bbclass as status files are
+> > always removed in case of using IPK (works fine with
+> > RPM). Here is the small patch which fix it.
+> > 
+> 
+> This is expected, see if in which this is:
+> 
+> if ${@base_contains("IMAGE_FEATURES", "package-management", "false",
+> "true", d)}; then
+> 
+> > regards
+> > 
+> > diff --git a/meta/classes/rootfs_ipk.bbclass
+> > b/meta/classes/rootfs_ipk.bbclass
+> > index fadec4d..89c3128 100644
+> > --- a/meta/classes/rootfs_ipk.bbclass
+> > +++ b/meta/classes/rootfs_ipk.bbclass
+> > @@ -109,9 +109,6 @@ fakeroot rootfs_ipk_do_rootfs () {
+> >                         if $remove_run_postinsts; then
+> >                                 update-rc.d -f -r ${IMAGE_ROOTFS}
+> >                                 run-postinsts remove
+> >                         fi
+> > -
+> > -                       # Also delete the status files
+> > -                       remove_packaging_data_files
+> >                 fi
+> >         fi
+> >         set +x
+> > 
+> > 
+> > --
+> > Pierre FICHEUX -/- CTO OW/OS4I, France -\-
+> > pierre.ficheux@openwide.fr
+> >                                          http://www.os4i.com
+> >                                          http://www.linuxembedded.fr
+> > I would love to change the world, but they won't give me the source
+> > code
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> 
+> --
+> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> 
+
+-- 
+Pierre FICHEUX -/- CTO OW/OS4I, France -\- pierre.ficheux@openwide.fr
+                                         http://www.os4i.com
+                                         http://www.linuxembedded.fr
+I would love to change the world, but they won't give me the source code
 
