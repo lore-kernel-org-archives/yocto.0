@@ -1,38 +1,38 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
+	(using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id F300EE0144E
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 14:06:10 -0800 (PST)
-Received: by mail-pa0-f42.google.com with SMTP id kq12so3626644pab.1
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 14:06:10 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id AA7D3E006C3
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 19:34:02 -0800 (PST)
+Received: by mail-wg0-f42.google.com with SMTP id 12so4189532wgh.5
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 19:34:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent; bh=Gv4fwZimLnqto+Q4cGf4vKgk0ZGfI01LnRdbQoNLQEk=;
-	b=u6k7OEKt7AGPwFAudmdFBQwyo6Z2ZMxSxEkIalDAGMLuTbTL1Dw4tOELnhUHF0TRA0
-	Z8eGwH3ZYch5zgn6ZsjtQXrUS9zoQeYLNXtxWOvx2v62nUZBZRdi3NRMnLGLdSbFC5gz
-	pboVfB6SiGC/ohAFRWOhHVpJV7vREzpM4WISitkE4vk/OMRNp4loTzMkbeJQjzB1aVsH
-	RcqUonwN7E6ulRowWqXHzqoyi57breGa6n/RqQ5M5GdqDbdeDWfeHBQrbPPULrocugOL
-	HG/PCBtWYkH2Z4VE20n8Amq/+Ay8S61H9lOrr3J9A3zpr2KsiH27PR9mM05OUP6kBdPP
-	NfeA==
-X-Received: by 10.66.226.71 with SMTP id rq7mr49271497pac.80.1361311570693;
-	Tue, 19 Feb 2013 14:06:10 -0800 (PST)
-Received: from localhost (ip-62-24-80-7.net.upcbroadband.cz. [62.24.80.7])
-	by mx.google.com with ESMTPS id rr14sm9084821pbb.34.2013.02.19.14.06.07
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Tue, 19 Feb 2013 14:06:09 -0800 (PST)
-Date: Tue, 19 Feb 2013 23:06:11 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Pierre Ficheux <pierre.ficheux@openwide.fr>
-Message-ID: <20130219220611.GV3300@jama>
-References: <14bba8b5-a545-48ea-80a9-5c4e10de8c33@zimbra2.corp.accelance.fr>
-	<7ca09268-8696-4643-87d9-33308da50dee@zimbra2.corp.accelance.fr>
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=KHxe7WNs1qguj7nOcy13whrL0A5CukPOFiNKNR/ICuI=;
+	b=aEy92Hh1q5RZm5sAX3cUvm5tOCcsAbD9q2uqyfYxtZgOw8ILiq+hPIwGqqDQUMTsFM
+	EjMe4jhKJzlpAyQ5E/oB3J0Yiguz9Oi08MBno5jm/wJIu2smgbpzJXgtxUrYYhWTyjIr
+	YtnM81Gbu2fkMOxo+cntCTyMXVsdMZ3vnRzF1ifM0qao0qRJjMtyTQRFOq500WhOmMZF
+	4FxpTd0e5VfdmIwsrVj883954y8RZv27+Tlrl1CWUhmYJ8hXGHnYJC2XPrAtdfWHZGaf
+	v2LNiLp15rA8r0F0FMaXq2dLHg3DBaMIly5oZH77PrQsLaNoYZhn+QBqVoHRkQ6OCEnM
+	7FfQ==
 MIME-Version: 1.0
-In-Reply-To: <7ca09268-8696-4643-87d9-33308da50dee@zimbra2.corp.accelance.fr>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: Always removing status files in case of IPK
+X-Received: by 10.180.75.177 with SMTP id d17mr29783958wiw.16.1361331240480;
+	Tue, 19 Feb 2013 19:34:00 -0800 (PST)
+Received: by 10.194.32.70 with HTTP; Tue, 19 Feb 2013 19:34:00 -0800 (PST)
+In-Reply-To: <1361295925.1868.5.camel@empanada>
+References: <1360981747.1691.29.camel@empanada>
+	<CAHUNapT64nNKXw5Hb0NFMn2BOxV60qTZZLszgFgDD20-RpiTNw@mail.gmail.com>
+	<1361251862.1868.3.camel@empanada>
+	<CAHUNapT3DsWwPDJC9mthNRjA0idDLHBUJxM6AGV41QaNVOodHw@mail.gmail.com>
+	<1361295925.1868.5.camel@empanada>
+Date: Tue, 19 Feb 2013 22:34:00 -0500
+Message-ID: <CAHUNapRg64VDHP-7ncGLCHA1zB=tRgvduX2e=8HLUe6P67Hx7w@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Updated Yocto Hands-on Kernel Lab available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,73 +44,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Feb 2013 22:06:11 -0000
-X-Groupsio-MsgNum: 12177
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="oMMpwnf3aH5m/bW8"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 20 Feb 2013 03:34:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---oMMpwnf3aH5m/bW8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Following up on a hunch, after reading Pierre Ficheux's email from
+earlier today, I realized that by default I always switch my build's
+PACKAGE_CLASSES to ipk simply because this packaging takes the least
+amount of build time. Sure enough, when working on lab3 I had switched
+to ipk and it didn't work. Switching PACKAGE_CLASSES to rpm and doing
+nothing else but rebuilding, everything worked. I tried twice more
+switching between ipk and rpm and anytime ipk is used the module is
+not automatically installed, but with rpm it is.
 
-On Tue, Feb 19, 2013 at 08:14:22PM +0100, Pierre Ficheux wrote:
-> Hi,
->=20
-> I've noticed a problem in rootfs_ipk.bbclass as status files are always r=
-emoved in case of using IPK (works fine with
-> RPM). Here is the small patch which fix it.
->=20
-
-This is expected, see if in which this is:
-
-if ${@base_contains("IMAGE_FEATURES", "package-management", "false", "true"=
-, d)}; then
-
-> regards
->=20
-> diff --git a/meta/classes/rootfs_ipk.bbclass b/meta/classes/rootfs_ipk.bb=
-class
-> index fadec4d..89c3128 100644
-> --- a/meta/classes/rootfs_ipk.bbclass
-> +++ b/meta/classes/rootfs_ipk.bbclass
-> @@ -109,9 +109,6 @@ fakeroot rootfs_ipk_do_rootfs () {
->                         if $remove_run_postinsts; then
->                                 update-rc.d -f -r ${IMAGE_ROOTFS} run-pos=
-tinsts remove
->                         fi
-> -
-> -                       # Also delete the status files
-> -                       remove_packaging_data_files
->                 fi
->         fi
->         set +x
->=20
->=20
-> --=20
-> Pierre FICHEUX -/- CTO OW/OS4I, France -\- pierre.ficheux@openwide.fr
->                                          http://www.os4i.com
->                                          http://www.linuxembedded.fr
-> I would love to change the world, but they won't give me the source code
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---oMMpwnf3aH5m/bW8
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.19 (GNU/Linux)
-
-iEYEARECAAYFAlEj91MACgkQN1Ujt2V2gBxo/ACdH9TkAMT0mq280DE12dTMiQKO
-5UQAn3Oqj8jTKvd2ZIeclwLIrGuEqMD4
-=Ky4v
------END PGP SIGNATURE-----
-
---oMMpwnf3aH5m/bW8--
