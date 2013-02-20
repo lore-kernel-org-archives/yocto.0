@@ -1,38 +1,34 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
+	[209.85.216.53]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id AA7D3E006C3
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 19:34:02 -0800 (PST)
-Received: by mail-wg0-f42.google.com with SMTP id 12so4189532wgh.5
-	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 19:34:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=KHxe7WNs1qguj7nOcy13whrL0A5CukPOFiNKNR/ICuI=;
-	b=aEy92Hh1q5RZm5sAX3cUvm5tOCcsAbD9q2uqyfYxtZgOw8ILiq+hPIwGqqDQUMTsFM
-	EjMe4jhKJzlpAyQ5E/oB3J0Yiguz9Oi08MBno5jm/wJIu2smgbpzJXgtxUrYYhWTyjIr
-	YtnM81Gbu2fkMOxo+cntCTyMXVsdMZ3vnRzF1ifM0qao0qRJjMtyTQRFOq500WhOmMZF
-	4FxpTd0e5VfdmIwsrVj883954y8RZv27+Tlrl1CWUhmYJ8hXGHnYJC2XPrAtdfWHZGaf
-	v2LNiLp15rA8r0F0FMaXq2dLHg3DBaMIly5oZH77PrQsLaNoYZhn+QBqVoHRkQ6OCEnM
-	7FfQ==
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 569BAE006C3
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 21:01:13 -0800 (PST)
+Received: by mail-qa0-f53.google.com with SMTP id z4so2226855qan.19
+	for <yocto@yoctoproject.org>; Tue, 19 Feb 2013 21:01:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to:cc
+	:content-type:x-gm-message-state;
+	bh=o8FA1tYdaZ1Y2vIur6PlBod1ISPSW2qVqzyZefDVlJ4=;
+	b=lNtO+23V9qnLMZR+qZ0bM2aZ4F2yCMjb7dXeeK7X0F/t4Pq1KmROQ/AamYdmQ3oUmN
+	bp8w0FNYMZ9HXdwGDNfwtylIHVrtp4JzgRuIovW2FSP6tSHSZ7HVeLu0BF5s4xpmLUni
+	EWfumvCJhIXlnn3bL+0CX+FZFJ7PRfy3yX9PBUSXHZ5m8tvb8gPgkLtlsHqKrnkMPmbp
+	iiRcsk1DcWt0a8UWNoPB2lc0HOzjWQRVnXG65XoAvtEz5g52gNgU9y1nWtPb1yutxPxb
+	dfbbOLR0asXpoMAFMKmBxmRoeNQ6hKtDTmbEREuP6fL1IRuk+pw4EQsmJa+dkVkSNLNj
+	rKYA==
 MIME-Version: 1.0
-X-Received: by 10.180.75.177 with SMTP id d17mr29783958wiw.16.1361331240480;
-	Tue, 19 Feb 2013 19:34:00 -0800 (PST)
-Received: by 10.194.32.70 with HTTP; Tue, 19 Feb 2013 19:34:00 -0800 (PST)
-In-Reply-To: <1361295925.1868.5.camel@empanada>
-References: <1360981747.1691.29.camel@empanada>
-	<CAHUNapT64nNKXw5Hb0NFMn2BOxV60qTZZLszgFgDD20-RpiTNw@mail.gmail.com>
-	<1361251862.1868.3.camel@empanada>
-	<CAHUNapT3DsWwPDJC9mthNRjA0idDLHBUJxM6AGV41QaNVOodHw@mail.gmail.com>
-	<1361295925.1868.5.camel@empanada>
-Date: Tue, 19 Feb 2013 22:34:00 -0500
-Message-ID: <CAHUNapRg64VDHP-7ncGLCHA1zB=tRgvduX2e=8HLUe6P67Hx7w@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Tom Zanussi <tom.zanussi@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: Updated Yocto Hands-on Kernel Lab available
+X-Received: by 10.49.24.132 with SMTP id u4mr8722413qef.55.1361336471951; Tue,
+	19 Feb 2013 21:01:11 -0800 (PST)
+Received: by 10.49.85.167 with HTTP; Tue, 19 Feb 2013 21:01:11 -0800 (PST)
+Date: Tue, 19 Feb 2013 21:01:11 -0800
+Message-ID: <CAPhnLPDViQzWOD2kHQ7g=omLutmNdBJ1eqzCzMnS6kBNo87+UA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQl9VAmJnBwcafP5Wrhmc1dYoGeqiV/hJxud3zPE8lNXKfioC5wdVCd+YezMwN/ZfqUE30xP
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	Otavio Salvador <otavio@ossystems.com.br>
+Subject: Weekly build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,15 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Feb 2013 03:34:03 -0000
+X-List-Received-Date: Wed, 20 Feb 2013 05:01:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Following up on a hunch, after reading Pierre Ficheux's email from
-earlier today, I realized that by default I always switch my build's
-PACKAGE_CLASSES to ipk simply because this packaging takes the least
-amount of build time. Sure enough, when working on lab3 I had switched
-to ipk and it didn't work. Switching PACKAGE_CLASSES to rpm and doing
-nothing else but rebuilding, everything worked. I tried twice more
-switching between ipk and rpm and anytime ipk is used the module is
-not automatically installed, but with rpm it is.
+All,
+
+I'm currently at ELC and am going to be a little slow with email.
+However, tonight I will be building M4 rc1. We are looking pretty
+green and had been hoping to use the last build for rc1, but we want
+to get it a little closer as to have it all green. I will be building
+it from current master head and will branch/tag in the morning. If you
+maintain a layer that I don't have branch access for, please create
+the milestone branch for it from the git hashes I send out in the
+morning. Thanks.
+
+-b
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
