@@ -1,32 +1,29 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59953E006CC
-	for <yocto@yoctoproject.org>; Wed, 20 Feb 2013 05:16:01 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 0EEA7F8122B; Wed, 20 Feb 2013 06:16:01 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id B2ED4F81226;
-	Wed, 20 Feb 2013 06:15:59 -0700 (MST)
-Message-ID: <5124CC97.5010105@mlbassoc.com>
-Date: Wed, 20 Feb 2013 06:16:07 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <swaroop.damarla@gmail.com>
+Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
+	[209.85.220.174]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id D500DE012F3
+	for <yocto@yoctoproject.org>; Wed, 20 Feb 2013 05:17:39 -0800 (PST)
+Received: by mail-vc0-f174.google.com with SMTP id n11so4913528vch.19
+	for <yocto@yoctoproject.org>; Wed, 20 Feb 2013 05:17:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=wKozF0j8Pl6/UBKhFxvKNSLwVz2i9UwBf57Hd8HXoc8=;
+	b=HoAcvI7UYvPe83EKZOK/ygrVZsHhoPKQ5MDiZLV87zTNtBW1V9SCmrRJCmXoC8DKQS
+	Ab/ImTnP5MnQKR5ipo8jJJEtBN6oy2navIyW8+BYlfE5T/ivucihcU5O+sfph6p/h7OB
+	2UnG2n95Ox2vifBO4WM5/bfp1tYyvk/9BTJ7QOlpzV0w5G7xrvPLtJdlSb22AU9W57k8
+	YUvkLdAkIXdxKt7kLs8tWP8j11vcH+7L4QXL9Gz4ZB/nwrQPKXiaaErTVExrQ01ToYfr
+	7aa1hx87nSTju/i1eP8tuogIgy0eOadjKphfxiUQlZKeydNzxZ9l4iYgM2lyu9iZwr0R
+	bFiA==
 MIME-Version: 1.0
-To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-References: <CABTzgQ4oa8AOZRxAUOQKH0r_gA-28LbT3ZO-MeM0TKcedhufMQ@mail.gmail.com>
-	<51239308.1010404@mlbassoc.com>
-	<CABTzgQ5awWZeW+WeLBG-MAPn5650MbqoJ_UFtZ6eo6vRrMnViw@mail.gmail.com>
-	<5123C63A.8080806@mlbassoc.com>
-	<CABTzgQ4EAdhgKh5uD8BnHsdbXFPbxubm5G_1TQ4dUhLgPOOOYQ@mail.gmail.com>
-In-Reply-To: <CABTzgQ4EAdhgKh5uD8BnHsdbXFPbxubm5G_1TQ4dUhLgPOOOYQ@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Avionic Tamonten Board - Uboot problem
+X-Received: by 10.58.214.231 with SMTP id od7mr26425448vec.44.1361366258788;
+	Wed, 20 Feb 2013 05:17:38 -0800 (PST)
+Received: by 10.58.155.102 with HTTP; Wed, 20 Feb 2013 05:17:38 -0800 (PST)
+Date: Wed, 20 Feb 2013 14:17:38 +0100
+Message-ID: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Updating uboot to v2013.01
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,162 +35,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Feb 2013 13:16:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Feb 2013 13:17:40 -0000
+Content-Type: multipart/alternative; boundary=089e0118319843a78c04d627c883
 
-On 2013-02-20 00:21, Satya Swaroop Damarla wrote:
-> Hi Gary,
->
-> I think you are right that we need may be the new uboot version but it is not available in the uboot directory of the poky and i get the follwoing warning and the simulation is
-> ending like previously....
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: preferred version v2013.01% of u-boot not available (for item u-boot)
-> NOTE: versions of u-boot available: v2011.03+git26+19b54a701811220221fc4d5089a2bb18892018ca v2011.06+git27+b1af6f532e0d348b153d5c148369229d24af361a
-> v2012.04.01+git25+415d386877df49eb051b85ef74fa59a16dc17c7d
-> NOTE: preferred version v2013.01% of u-boot not available (for item u-boot)
-> NOTE: versions of u-boot available: v2011.03+git26+19b54a701811220221fc4d5089a2bb18892018ca v2011.06+git27+b1af6f532e0d348b153d5c148369229d24af361a
-> v2012.04.01+git25+415d386877df49eb051b85ef74fa59a16dc17c7d
-> NOTE: preferred version v2013.01% of u-boot not available (for item u-boot-dev)
-> NOTE: versions of u-boot available: v2011.03+git26+19b54a701811220221fc4d5089a2bb18892018ca v2011.06+git27+b1af6f532e0d348b153d5c148369229d24af361a
-> v2012.04.01+git25+415d386877df49eb051b85ef74fa59a16dc17c7d
->
-> May be you can tell me how to add the new uboot file
+--089e0118319843a78c04d627c883
+Content-Type: text/plain; charset=ISO-8859-1
 
-The easiest way is to just add the meta-ti layer - they have
-a recipe for 2013.01.
+Hi Guys,
 
-n.b. It's common courtesy to keep such discussions on the mailing list so
-that everyone benefits from the answers.
+I need support for uboot on Tamonten board but the version on it is
+v2012.04 but I came to know that v2012.10 or v2013.01 supports the
+Tamontenboard through some guys here..
 
+It would be great if you can tell me how can I accomplish v2013.01 or
+v2012.10 into the build system and make it available so that I can compile
+the and get uImage
 
-> On Tue, Feb 19, 2013 at 7:36 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     On 2013-02-19 09:02, Satya Swaroop Damarla wrote:
->
->         Unfortunately "tec_config" didnot work. Here is the error message
->
->
->     I think you need a newer U-Boot to get the support for this board.
->     Try
->        PREFERRED_VERSION_u-boot ?= "v2012.10%"
->     or even
->        PREFERRED_VERSION_u-boot ?= "v2013.01%"
->
->         Log data follows:
->         | DEBUG: Executing shell function do_compile
->         | NOTE: make -j 8 CROSS_COMPILE=arm-poky-linux-__gnueabi- CC=arm-poky-linux-gnueabi-gcc  --sysroot=/home/build/yocto/__poky/buildTamonten/tmp/__sysroots/skidata-tamonten
->         tec_config
->         | make: *** No rule to make target `tec_config'.  Stop.
->         | make: *** [tec_config] Error 1
->         | ERROR: oe_runmake failed
->         | ERROR: Function failed: do_compile (see
->         /home/build/yocto/poky/__buildTamonten/tmp/work/__skidata_tamonten-poky-linux-__gnueabi/u-boot-v2012.04.01+__git3+__415d386877df49eb051b85ef74fa59__a16dc17c7d-r2/temp/log.do___compile.21665
->         for
->         further information)
->         ERROR: Task 69 (/home/build/yocto/poky/meta/__recipes-bsp/u-boot/u-boot___2012.04.01.bb <http://u-boot_2012.04.01.bb> <http://u-boot_2012.04.01.bb>, do_compile) failed with
->         exit code '1'
->
->         NOTE: Tasks Summary: Attempted 3421 tasks of which 319 didn't need to be rerun and 1 failed.
->
->
->
->
->         On Tue, Feb 19, 2013 at 3:58 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>> wrote:
->
->              On 2013-02-19 06:28, Satya Swaroop Damarla wrote:
->
->                  Hi,
->
->                  I want to build a basic image for the Avionic Tamonten board using Yocto. SO, I created a skidata-tamonten.conf in the list of machines based on the
->         beagleboard.conf but I dont
->                  know what to add for the UBOOT_MACHINE= . I tried my best to use the same "omap_beagle_conf" but it doesnot boot properly. Here is the skidata-tamonten.conf file
->         description
->
->
->              Try 'tec_config'
->
->                  #@TYPE: Machine
->                  #@NAME: skidata-tamonten machine
->                  #@DESCRIPTION: Machine configuration for the Tamonten board
->
->                  PREFERRED_PROVIDER_virtual/____xserver ?= "xserver-xorg"
->
->                  XSERVER ?= "xserver-xorg \
->                               xf86-input-evdev \
->                               xf86-input-mouse \
->                               xf86-video-omapfb \
->                               xf86-input-keyboard"
->
->                  # Ship all kernel modules by default
->                  MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
->
->                  # Allow for MMC booting ()
->                  EXTRA_IMAGEDEPENDS += "u-boot"
->
->                  # Uncomment the following line to enable the hard floating point abi. Note that
->                  # this breaks some binary libraries and 3D (neither of which ship with
->                  # meta-yocto). For maximum compatibility, leave this disabled.
->                  DEFAULTTUNE ?= "cortexa9thf"
->                  include conf/machine/include/tune-____cortexa9.inc
->
->
->                  IMAGE_FSTYPES += "tar.bz2 ext2 ext3"
->
->                  SERIAL_CONSOLE = "115200 ttyO2"
->
->                  PREFERRED_PROVIDER_virtual/____kernel ?= "linux-yocto"
->
->                  PREFERRED_VERSION_linux-yocto ?= "3.2%"
->
->                  KERNEL_IMAGETYPE = "uImage"
->
->                  PREFERRED_VERSION_u-boot ?= "v2012.04%"
->
->                  UBOOT_MACHINE = "???????????????????"
->
->                  UBOOT_ENTRYPOINT = "0x00008000"
->                  UBOOT_LOADADDRESS = "0x00008000"
->
->                  MACHINE_FEATURES = "usbgadget usbhost vfat alsa screen touchscreen keyboard"
->
->
->                  Greetings & Regards,
->                  Swaroop
->
->
->
->                  ___________________________________________________
->                  yocto mailing list
->         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>__>
->         https://lists.yoctoproject.____org/listinfo/yocto <https://lists.yoctoproject.__org/listinfo/yocto <https://lists.yoctoproject.org/listinfo/yocto>>
->
->
->              --
->              ------------------------------____----------------------------__--
->
->              Gary Thomas                 |  Consulting for the
->              MLB Associates              |    Embedded world
->              ------------------------------____----------------------------__--
->              ___________________________________________________
->              yocto mailing list
->         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>__>
->         https://lists.yoctoproject.____org/listinfo/yocto <https://lists.yoctoproject.__org/listinfo/yocto <https://lists.yoctoproject.org/listinfo/yocto>>
->
->
->
->     --
->     ------------------------------__------------------------------
->     Gary Thomas                 |  Consulting for the
->     MLB Associates              |    Embedded world
->     ------------------------------__------------------------------
->
->
+(Tamonten board is a derivative of harmony board with some changes and has
+arm cortexa9 processor without neon extentions )
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+I am kind of new to add new .bb files and help is really appreciated as I
+am not able to figure out how to add
 
+Greetings & Regards,
+Swaroop
+
+--089e0118319843a78c04d627c883
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Guys,<div><br></div><div style>I need support for uboot=
+ on Tamonten board but the version on it is v2012.04 but I came to know tha=
+t v2012.10 or v2013.01 supports the Tamontenboard through some guys here..<=
+/div>
+<div style><br></div><div style>It would be great if you can tell me how ca=
+n I accomplish v2013.01 or v2012.10 into the build system and make it avail=
+able so that I can compile the and get uImage</div><div style><br></div>
+<div style>(Tamonten board is a derivative of harmony board with some chang=
+es and has arm cortexa9 processor without neon extentions )</div><div style=
+><br></div><div style>I am kind of new to add new .bb files and help is rea=
+lly appreciated as I am not able to figure out how to add</div>
+<div style><br></div><div style>Greetings &amp; Regards,</div><div style>Sw=
+aroop</div></div>
+
+--089e0118319843a78c04d627c883--
