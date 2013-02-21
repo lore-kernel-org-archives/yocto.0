@@ -1,43 +1,45 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ea0-f173.google.com (mail-ea0-f173.google.com
-	[209.85.215.173]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
+	[209.85.217.173]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 8F676E0047F
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 10:45:01 -0800 (PST)
-Received: by mail-ea0-f173.google.com with SMTP id i1so3928077eaa.4
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 10:44:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=JinZtJvBYNh3lcosRVDDWG6deZ24GkV/eYqKwwox0OA=;
-	b=Mqu7nRxuw+OiZ+dYUtGut0sGCZhztI9ulN5p4rysNDUb3hHGQw9H/jCR1G49Ouy7xo
-	ZApXys5VryawspKk0NV6aBMxy1E96BO5MBNs0cQihh+pObH9rJtBdjlVnyiVXiq/xq3S
-	CSwa2/aeD2BUHcaXKnAtK89izTa4aARWCnorQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=JinZtJvBYNh3lcosRVDDWG6deZ24GkV/eYqKwwox0OA=;
-	b=b6W2MsiH75AvyKK0zzOE5YUPG5xx0FCuBES+WTVQCEsX1MxYGa3O4aucWgkgBqQp8O
-	8gqdNfs/F78QDHAPMRkcEL/n5FYECreEK9rlrYFwXjJ1Qi0l/zwlPlTDkBoANy45oWZi
-	YaEEpoTTpRfMtLaxH62nehHKGztqqGTL/QIQFo+3bHdCTFTFbb5ktdgojRz3C1I8dAPV
-	/bSPWcPLJnR5AYyw2KYVg2HVdT/S2QNIZU48DUXeJ8oZwz7VChvkebXcCGa49knuRii7
-	k0tFS0K0tRDYEG5ov3Jt+5GjXEW2IgnBgpgVn/MGBQeh6ybY51DPw3W2txJTeijp8nDQ
-	ZoPw==
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 26212E003BC
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 11:03:20 -0800 (PST)
+Received: by mail-lb0-f173.google.com with SMTP id gf7so7135266lbb.18
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 11:03:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=ohz6KyivVe9b1avaKSxeacyllHaDebg548YjuReNUn4=;
+	b=LkF/NwO1E/qL7RAgK+5KIHLIVimY1/R76bjqGEbGT10ccshN/XSNYKmlc4kkPc5wUY
+	7k6uWahJg8BidAFr607BVbcfecbVGCtJJNtRGL2cwPWCYtrXGSwZap8MQkXDyYeocmDc
+	otHSosdnIBunEH+XPNgnlTgNbOqKUzKcG7Jf2hfoO/rTIMnYIuDT+Gg3u5nZwJdT5+Ge
+	m5Y/NpsoROm2CedKRp26PxmabNKxA4p7qmHtwY9NX1M1xWmSOcFNstEzQaWRqm1nfbbs
+	5oSsaY6+yT6rs5aLQtqr3CEteLKtNSnLEgbSaChtbtu3+4q44PrGeYxtcN8hgAD73YY3
+	7QPg==
+X-Received: by 10.112.42.134 with SMTP id o6mr5394786lbl.77.1361473398541;
+	Thu, 21 Feb 2013 11:03:18 -0800 (PST)
+Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
+	[217.209.54.135])
+	by mx.google.com with ESMTPS id oy10sm41502809lab.8.2013.02.21.11.03.17
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 21 Feb 2013 11:03:17 -0800 (PST)
+Message-ID: <51266F72.4040300@gmail.com>
+Date: Thu, 21 Feb 2013 20:03:14 +0100
+From: Hans Beckerus <hans.beckerus@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.2;
+	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
 MIME-Version: 1.0
-X-Received: by 10.14.3.70 with SMTP id 46mr83966027eeg.2.1361472299515; Thu,
-	21 Feb 2013 10:44:59 -0800 (PST)
-Received: by 10.223.127.70 with HTTP; Thu, 21 Feb 2013 10:44:59 -0800 (PST)
-In-Reply-To: <91388EAC-6853-45D6-82E8-9FBC88995E53@vitalograph.ie>
-References: <91388EAC-6853-45D6-82E8-9FBC88995E53@vitalograph.ie>
-Date: Thu, 21 Feb 2013 10:44:59 -0800
-Message-ID: <CA+gsK-q-1z6RqRtDDPi2XMg=z-LkK08iCSOz7Hq-+bigOTHQvw@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: Micheal Donohue <Micheal.Donohue@vitalograph.ie>
-X-Gm-Message-State: ALoCoQkG0tNfL6YMMMeaQxppBMtvB/dRsr/ysMnv1pBC6tGxQTESkG6hSNAy64E1hZP7I8cqxFHP
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issue with Quick Start Guide and Bitbake
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
+	<CA+gsK-r_Oq3DvdoC1aT5gErTkKXYJ+gewMZDouusE+4oHicdtQ@mail.gmail.com>
+	<CAFyqS9pgGgZcacwqxiHGM2WSSH8xZea-tRjBWcNwqCr=DDhWsw@mail.gmail.com>
+	<CABTzgQ5RL+Gu4T5my_NPxSJ+Qm8MeDuJPYoZgGQ9=nD0yPcqmw@mail.gmail.com>
+	<CAFyqS9q3q+Ep2z2Ygk4oN5pS13DHnV0abQ3BvzV3-mq=HqBrJw@mail.gmail.com>
+	<CABTzgQ6WrhzcQ4KKBG7Q3bMsgf8-uijzshHSv2FyCajHpiy-5Q@mail.gmail.com>
+	<CABTzgQ7tS7+_64urm7NRBmXN+KT8M7W+8QOareJxOtXwfWt0Og@mail.gmail.com>
+	<CABTzgQ54dEyDrbND5Kfy6M4mAGMoyU236V1dOZvW8oLVBWFyzg@mail.gmail.com>
+In-Reply-To: <CABTzgQ54dEyDrbND5Kfy6M4mAGMoyU236V1dOZvW8oLVBWFyzg@mail.gmail.com>
+Subject: How to make a recipe doing mkimage on a initrd image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,158 +51,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Feb 2013 18:45:02 -0000
-Content-Type: multipart/alternative; boundary=047d7b66f619c8bfb104d64078f5
+X-List-Received-Date: Thu, 21 Feb 2013 19:03:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7b66f619c8bfb104d64078f5
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+I have created a cpio type rootfs image and are trying to load it as a 
+initrd ramdisk.
+After several boot failures  (U-Boot complains it is not a valid image) 
+I finally realized that the U-Boot version being used on this system 
+requires that the ramdisk image is also prepended with a mkimage header. 
+The standard image .bbclass that I am using in my simple recipe does not 
+seem to have this functionality. Has anyone done a recipe (or image 
+class?) that is calling mkimage in the do_deploy stage that could help 
+me on the way here?
+I wish to have it work similar to the kernel uImage build for which I 
+guess the u-boot-native-mkimage is being used.
 
-Hi Michael,
+Hans
 
-You have most likely forgotten to source your build environment:
-
-source <pokydir>/oe-init-build-env <buildenv>
-
-Poky includes BitBake but from the error message it look as if you are
-calling a BitBake that is installed on your system in /usr/bin.
-
-Rudi
-
-
-On Thu, Feb 21, 2013 at 4:29 AM, Micheal Donohue <
-Micheal.Donohue@vitalograph.ie> wrote:
-
->   Hi Guys,****
->
-> ** **
->
-> I=92m trying to get to grips with Yocto and have been working my way thro=
-ugh
-> the quick start guide to get an image to run in the QEMU emulator. When I
-> get to the run the bitbake command($ bitbake =96k core-image-sato ) I get=
- a
-> Python error, I=92ve included a link to a pastebin of the error ****
->
-> ** **
->
-> *http://pastebin.com/kf3nQ2z6*
->
-> ** **
->
-> I=92ve tried Goggling around and  can=92t find any similar errors. Any he=
-lp
-> would be much appreciated.****
->
-> ** **
->
-> Thanks****
->
-> Micheal****
->
-> ** **
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
-
---=20
---=20
-*Rudolf J. Streif*
-Director of Embedded Solutions
-The Linux Foundation
-
-rudolf.streif@linux.com
-Phone: +1.619.631.5383
-Skype: rudolfstreif
-PGP: RSA 2048/2048 D6E7D28B
-
-Linux Foundation Events Schedule:  events.linuxfoundation.org
-Linux Foundation Training Schedule: training.linuxfoundation.org
-
---047d7b66f619c8bfb104d64078f5
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Michael,<div><br></div><div style>You have most likely =
-forgotten to source your build environment:</div><div style><br></div><div =
-style>source &lt;pokydir&gt;/oe-init-build-env &lt;buildenv&gt;</div><div s=
-tyle>
-<br></div><div style>Poky includes BitBake but from the error message it lo=
-ok as if you are calling a BitBake that is installed on your system in /usr=
-/bin.</div><div style><br></div><div style>Rudi</div></div><div class=3D"gm=
-ail_extra">
-<br><br><div class=3D"gmail_quote">On Thu, Feb 21, 2013 at 4:29 AM, Micheal=
- Donohue <span dir=3D"ltr">&lt;<a href=3D"mailto:Micheal.Donohue@vitalograp=
-h.ie" target=3D"_blank">Micheal.Donohue@vitalograph.ie</a>&gt;</span> wrote=
-:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-
-
-
-<div dir=3D"auto">
-<div><span></span></div>
-<div>
-
-
-<div>
-<p class=3D"MsoNormal">Hi Guys,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">I=92m trying to get to grips with Yocto and have bee=
-n working my way through the quick start guide to get an image to run in th=
-e QEMU emulator. When I get to the run the bitbake command($ bitbake =96k c=
-ore-image-sato ) I get a Python error,
- I=92ve included a link to a pastebin of the error <u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal"><b><a href=3D"http://pastebin.com/kf3nQ2z6" target=
-=3D"_blank">http://pastebin.com/kf3nQ2z6</a><u></u><u></u></b></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">I=92ve tried Goggling around and=A0 can=92t find any=
- similar errors. Any help would be much appreciated.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks<span class=3D"HOEnZb"><font color=3D"#888888"=
-><u></u><u></u></font></span></p><span class=3D"HOEnZb"><font color=3D"#888=
-888">
-<p class=3D"MsoNormal">Micheal<span><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</font></span></div>
-</div>
-</div>
-
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>--=A0<br=
-><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font>=
-<div><font face=3D"arial, helvetica, sans-serif">Director of Embedded Solut=
-ions</font></div>
-<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
-></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
-iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
-=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
-<div><font face=3D"arial, helvetica, sans-serif">Phone: +1.619.631.5383</fo=
-nt></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolfstre=
-if</font></div><div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 20=
-48/2048 D6E7D28B</font></div>
-<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
-amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
-);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
-se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
-linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
-nts.linuxfoundation.org</a><br>
-Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
-ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
-xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
-nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
-ont-family:arial,sans-serif;font-size:13px"><br>
-</span></font></div>
-</div>
-
---047d7b66f619c8bfb104d64078f5--
