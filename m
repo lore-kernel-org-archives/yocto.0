@@ -1,24 +1,43 @@
-Return-Path: <Micheal.Donohue@vitalograph.ie>
-Received: from mail.vitalograph.ie (mail.vitalograph.ie [178.250.116.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0405E006C9
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 04:29:33 -0800 (PST)
-Received: from VITALMSE1.vital-ennis.local ([::1]) by
-	VitalMSE1.vital-ennis.local ([::1]) with mapi id 14.02.0247.003;
-	Thu, 21 Feb 2013 12:29:28 +0000
-From: Micheal Donohue <Micheal.Donohue@vitalograph.ie>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Issue with Quick Start Guide and Bitbake
-Thread-Index: Ac4QHFu4LnMvNKYlRVuX5nNyju3V0g==
-Date: Thu, 21 Feb 2013 12:29:27 +0000
-Message-ID: <91388EAC-6853-45D6-82E8-9FBC88995E53@vitalograph.ie>
-Accept-Language: en-IE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-esetresult: clean, is OK
-x-esetid: 366BCC3CEC660E33662E93
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ea0-f173.google.com (mail-ea0-f173.google.com
+	[209.85.215.173]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 8F676E0047F
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 10:45:01 -0800 (PST)
+Received: by mail-ea0-f173.google.com with SMTP id i1so3928077eaa.4
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 10:44:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=JinZtJvBYNh3lcosRVDDWG6deZ24GkV/eYqKwwox0OA=;
+	b=Mqu7nRxuw+OiZ+dYUtGut0sGCZhztI9ulN5p4rysNDUb3hHGQw9H/jCR1G49Ouy7xo
+	ZApXys5VryawspKk0NV6aBMxy1E96BO5MBNs0cQihh+pObH9rJtBdjlVnyiVXiq/xq3S
+	CSwa2/aeD2BUHcaXKnAtK89izTa4aARWCnorQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=JinZtJvBYNh3lcosRVDDWG6deZ24GkV/eYqKwwox0OA=;
+	b=b6W2MsiH75AvyKK0zzOE5YUPG5xx0FCuBES+WTVQCEsX1MxYGa3O4aucWgkgBqQp8O
+	8gqdNfs/F78QDHAPMRkcEL/n5FYECreEK9rlrYFwXjJ1Qi0l/zwlPlTDkBoANy45oWZi
+	YaEEpoTTpRfMtLaxH62nehHKGztqqGTL/QIQFo+3bHdCTFTFbb5ktdgojRz3C1I8dAPV
+	/bSPWcPLJnR5AYyw2KYVg2HVdT/S2QNIZU48DUXeJ8oZwz7VChvkebXcCGa49knuRii7
+	k0tFS0K0tRDYEG5ov3Jt+5GjXEW2IgnBgpgVn/MGBQeh6ybY51DPw3W2txJTeijp8nDQ
+	ZoPw==
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 21 Feb 2013 10:37:36 -0800
-Subject: Issue with Quick Start Guide and Bitbake
+X-Received: by 10.14.3.70 with SMTP id 46mr83966027eeg.2.1361472299515; Thu,
+	21 Feb 2013 10:44:59 -0800 (PST)
+Received: by 10.223.127.70 with HTTP; Thu, 21 Feb 2013 10:44:59 -0800 (PST)
+In-Reply-To: <91388EAC-6853-45D6-82E8-9FBC88995E53@vitalograph.ie>
+References: <91388EAC-6853-45D6-82E8-9FBC88995E53@vitalograph.ie>
+Date: Thu, 21 Feb 2013 10:44:59 -0800
+Message-ID: <CA+gsK-q-1z6RqRtDDPi2XMg=z-LkK08iCSOz7Hq-+bigOTHQvw@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: Micheal Donohue <Micheal.Donohue@vitalograph.ie>
+X-Gm-Message-State: ALoCoQkG0tNfL6YMMMeaQxppBMtvB/dRsr/ysMnv1pBC6tGxQTESkG6hSNAy64E1hZP7I8cqxFHP
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Issue with Quick Start Guide and Bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,71 +49,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Feb 2013 12:29:35 -0000
-Content-Language: en-GB
-Content-Type: multipart/alternative;
-	boundary="_000_91388EAC685345D682E89FBC88995E53vitalographie_"
+X-List-Received-Date: Thu, 21 Feb 2013 18:45:02 -0000
+Content-Type: multipart/alternative; boundary=047d7b66f619c8bfb104d64078f5
 
---_000_91388EAC685345D682E89FBC88995E53vitalographie_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--047d7b66f619c8bfb104d64078f5
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-SGkgR3V5cywNCg0KSeKAmW0gdHJ5aW5nIHRvIGdldCB0byBncmlwcyB3aXRoIFlvY3RvIGFuZCBo
-YXZlIGJlZW4gd29ya2luZyBteSB3YXkgdGhyb3VnaCB0aGUgcXVpY2sgc3RhcnQgZ3VpZGUgdG8g
-Z2V0IGFuIGltYWdlIHRvIHJ1biBpbiB0aGUgUUVNVSBlbXVsYXRvci4gV2hlbiBJIGdldCB0byB0
-aGUgcnVuIHRoZSBiaXRiYWtlIGNvbW1hbmQoJCBiaXRiYWtlIOKAk2sgY29yZS1pbWFnZS1zYXRv
-ICkgSSBnZXQgYSBQeXRob24gZXJyb3IsIEnigJl2ZSBpbmNsdWRlZCBhIGxpbmsgdG8gYSBwYXN0
-ZWJpbiBvZiB0aGUgZXJyb3INCg0KaHR0cDovL3Bhc3RlYmluLmNvbS9rZjNuUTJ6Ng0KDQpJ4oCZ
-dmUgdHJpZWQgR29nZ2xpbmcgYXJvdW5kIGFuZCAgY2Fu4oCZdCBmaW5kIGFueSBzaW1pbGFyIGVy
-cm9ycy4gQW55IGhlbHAgd291bGQgYmUgbXVjaCBhcHByZWNpYXRlZC4NCg0KVGhhbmtzDQpNaWNo
-ZWFsDQoNCg==
+Hi Michael,
 
---_000_91388EAC685345D682E89FBC88995E53vitalographie_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <6859AF1E5CB19E408D3B019E871B7508@vitalograph.ie>
-Content-Transfer-Encoding: base64
+You have most likely forgotten to source your build environment:
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IGRpcj0iYXV0byI+DQo8
-ZGl2PjxzcGFuPjwvc3Bhbj48L2Rpdj4NCjxkaXY+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3IiIGNv
-bnRlbnQ9Ik1pY3Jvc29mdCBXb3JkIDE0IChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT48IS0t
-DQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGli
-cmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlv
-bnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2lu
-OjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250
-LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVO
-LVVTO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5
-Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQs
-IHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNv
-bG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHls
-ZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLWNvbXBvc2U7DQoJZm9udC1mYW1pbHk6IkNh
-bGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0
-DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9u
-dC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpF
-Ti1VUzt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFy
-Z2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3Bh
-Z2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8
-bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFb
-ZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0i
-ZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91
-dD48L3htbD48IVtlbmRpZl0tLT4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5IaSBHdXlzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J4oCZbSB0cnlp
-bmcgdG8gZ2V0IHRvIGdyaXBzIHdpdGggWW9jdG8gYW5kIGhhdmUgYmVlbiB3b3JraW5nIG15IHdh
-eSB0aHJvdWdoIHRoZSBxdWljayBzdGFydCBndWlkZSB0byBnZXQgYW4gaW1hZ2UgdG8gcnVuIGlu
-IHRoZSBRRU1VIGVtdWxhdG9yLiBXaGVuIEkgZ2V0IHRvIHRoZSBydW4gdGhlIGJpdGJha2UgY29t
-bWFuZCgkIGJpdGJha2Ug4oCTayBjb3JlLWltYWdlLXNhdG8gKSBJIGdldCBhIFB5dGhvbiBlcnJv
-ciwNCiBJ4oCZdmUgaW5jbHVkZWQgYSBsaW5rIHRvIGEgcGFzdGViaW4gb2YgdGhlIGVycm9yIDxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48YSBocmVmPSJodHRwOi8vcGFzdGViaW4uY29tL2tm
-M25RMno2Ij5odHRwOi8vcGFzdGViaW4uY29tL2tmM25RMno2PC9hPjxvOnA+PC9vOnA+PC9iPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+SeKAmXZlIHRyaWVkIEdvZ2dsaW5nIGFyb3VuZCBhbmQmbmJzcDsgY2Fu4oCZ
-dCBmaW5kIGFueSBzaW1pbGFyIGVycm9ycy4gQW55IGhlbHAgd291bGQgYmUgbXVjaCBhcHByZWNp
-YXRlZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzPG86cD48L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj5NaWNoZWFsPHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdl
-OkVOLUlFIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+source <pokydir>/oe-init-build-env <buildenv>
 
---_000_91388EAC685345D682E89FBC88995E53vitalographie_--
+Poky includes BitBake but from the error message it look as if you are
+calling a BitBake that is installed on your system in /usr/bin.
+
+Rudi
+
+
+On Thu, Feb 21, 2013 at 4:29 AM, Micheal Donohue <
+Micheal.Donohue@vitalograph.ie> wrote:
+
+>   Hi Guys,****
+>
+> ** **
+>
+> I=92m trying to get to grips with Yocto and have been working my way thro=
+ugh
+> the quick start guide to get an image to run in the QEMU emulator. When I
+> get to the run the bitbake command($ bitbake =96k core-image-sato ) I get=
+ a
+> Python error, I=92ve included a link to a pastebin of the error ****
+>
+> ** **
+>
+> *http://pastebin.com/kf3nQ2z6*
+>
+> ** **
+>
+> I=92ve tried Goggling around and  can=92t find any similar errors. Any he=
+lp
+> would be much appreciated.****
+>
+> ** **
+>
+> Thanks****
+>
+> Micheal****
+>
+> ** **
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+
+--=20
+--=20
+*Rudolf J. Streif*
+Director of Embedded Solutions
+The Linux Foundation
+
+rudolf.streif@linux.com
+Phone: +1.619.631.5383
+Skype: rudolfstreif
+PGP: RSA 2048/2048 D6E7D28B
+
+Linux Foundation Events Schedule:  events.linuxfoundation.org
+Linux Foundation Training Schedule: training.linuxfoundation.org
+
+--047d7b66f619c8bfb104d64078f5
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Michael,<div><br></div><div style>You have most likely =
+forgotten to source your build environment:</div><div style><br></div><div =
+style>source &lt;pokydir&gt;/oe-init-build-env &lt;buildenv&gt;</div><div s=
+tyle>
+<br></div><div style>Poky includes BitBake but from the error message it lo=
+ok as if you are calling a BitBake that is installed on your system in /usr=
+/bin.</div><div style><br></div><div style>Rudi</div></div><div class=3D"gm=
+ail_extra">
+<br><br><div class=3D"gmail_quote">On Thu, Feb 21, 2013 at 4:29 AM, Micheal=
+ Donohue <span dir=3D"ltr">&lt;<a href=3D"mailto:Micheal.Donohue@vitalograp=
+h.ie" target=3D"_blank">Micheal.Donohue@vitalograph.ie</a>&gt;</span> wrote=
+:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+
+
+
+<div dir=3D"auto">
+<div><span></span></div>
+<div>
+
+
+<div>
+<p class=3D"MsoNormal">Hi Guys,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal">I=92m trying to get to grips with Yocto and have bee=
+n working my way through the quick start guide to get an image to run in th=
+e QEMU emulator. When I get to the run the bitbake command($ bitbake =96k c=
+ore-image-sato ) I get a Python error,
+ I=92ve included a link to a pastebin of the error <u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal"><b><a href=3D"http://pastebin.com/kf3nQ2z6" target=
+=3D"_blank">http://pastebin.com/kf3nQ2z6</a><u></u><u></u></b></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal">I=92ve tried Goggling around and=A0 can=92t find any=
+ similar errors. Any help would be much appreciated.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks<span class=3D"HOEnZb"><font color=3D"#888888"=
+><u></u><u></u></font></span></p><span class=3D"HOEnZb"><font color=3D"#888=
+888">
+<p class=3D"MsoNormal">Micheal<span><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</font></span></div>
+</div>
+</div>
+
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>--=A0<br=
+><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font>=
+<div><font face=3D"arial, helvetica, sans-serif">Director of Embedded Solut=
+ions</font></div>
+<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
+></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
+iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
+=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
+<div><font face=3D"arial, helvetica, sans-serif">Phone: +1.619.631.5383</fo=
+nt></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolfstre=
+if</font></div><div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 20=
+48/2048 D6E7D28B</font></div>
+<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
+amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
+);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
+se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
+linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
+nts.linuxfoundation.org</a><br>
+Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
+ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
+xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
+nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
+ont-family:arial,sans-serif;font-size:13px"><br>
+</span></font></div>
+</div>
+
+--047d7b66f619c8bfb104d64078f5--
