@@ -1,32 +1,32 @@
-Return-Path: <edward.ekelund@axis.com>
-Received: from anubis.se.axis.com (anubis.se.axis.com [195.60.68.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52007E006C9
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 04:05:10 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by anubis.se.axis.com (Postfix) with ESMTP id 8C73919E87
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 13:05:07 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at anubis.se.axis.com
-Received: from anubis.se.axis.com ([127.0.0.1])
-	by localhost (anubis.se.axis.com [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id XUeZJo-g9PZ7 for <yocto@yoctoproject.org>;
-	Thu, 21 Feb 2013 13:05:06 +0100 (CET)
-Received: from seth.se.axis.com (seth.se.axis.com [10.0.2.172])
-	by anubis.se.axis.com (Postfix) with ESMTP id 9CBE219E7D
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 13:05:06 +0100 (CET)
-Received: from xmail2.se.axis.com (xmail2.se.axis.com [10.0.5.74])
-	by seth.se.axis.com (Postfix) with ESMTP id 5F04A3E31C
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 13:05:06 +0100 (CET)
-Received: from [10.92.58.1] (10.92.58.1) by xmail2.se.axis.com (10.0.5.74)
-	with Microsoft SMTP Server (TLS) id 8.2.176.0; Thu, 21 Feb 2013 13:05:06
-	+0100
-Message-ID: <51260DE2.6060902@axis.com>
-Date: Thu, 21 Feb 2013 13:06:58 +0100
-From: Edward Ekelund <edward.ekelund@axis.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75978E0070F
+	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 06:03:04 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 21 Feb 2013 06:03:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,709,1355126400"; d="scan'208";a="288793442"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga002.jf.intel.com with ESMTP; 21 Feb 2013 06:02:49 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.110]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.124]) with mapi id
+	14.01.0355.002; Thu, 21 Feb 2013 06:02:48 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Khem Raj <raj.khem@gmail.com>, Edward Vidal <vidal.develone@gmail.com>
+Thread-Topic: [yocto] adt-manual.pdf
+Thread-Index: AQHODzkQ0Qrs/xHNEkCy78mTZHbLLZiEWa8Q
+Date: Thu, 21 Feb 2013 14:02:47 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123796F33C36A@ORSMSX101.amr.corp.intel.com>
+References: <CANwz6nz5QUDFeSZR62uncFEsr-4=ehGUpn3AtZpW-4k4reX49A@mail.gmail.com>
+	<20130220070508.GA23580@sakrah.homelinux.org>
+In-Reply-To: <20130220070508.GA23580@sakrah.homelinux.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-Subject: Eclipse "Error creating session, Could not find platform independent libraries <prefix>"
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: adt-manual.pdf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,27 +38,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Feb 2013 12:05:10 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Feb 2013 14:03:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Thanks for getting back on this.  I will check it out. =20
 
-I encounter the error
-"
-Error creating session
-Could not find platform independent libraries <prefix>
-Could not find platform independent libraries <prefix>
-Could not find platform independent libraries <prefix>
-"
+Scott
 
-in a pop up-window when attempting cross degugging following the lab 
-found here: 
-https://www.yoctoproject.org/tools-resources/presentations/using-eclipse-yocto-project
-
-Does anyone know what the problem might be?
-
--- 
-mvh
-Eddie
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Khem Raj
+>Sent: Tuesday, February 19, 2013 11:05 PM
+>To: Edward Vidal
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] adt-manual.pdf
+>
+>On (09/01/13 16:59), Edward Vidal wrote:
+>> Hello,
+>> I was testing the example  4.1 Autotools-Based Projects
+>> should the file "configure".in be "configure.ac"
+>> this is the error that I get when I execute aclocal
+>> aclocal
+>> aclocal: warning: autoconf input should be named 'configure.ac', not '
+>> configure.in'
+>> Any help will be appreciated.
+>
+>yes configure.ac is right naming. Have you filed a bug for it in
+>bugzilla ? if not I would suggest to file one
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
