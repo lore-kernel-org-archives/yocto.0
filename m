@@ -1,47 +1,32 @@
-Return-Path: <koansoftware@gmail.com>
-Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
-	[209.85.215.176]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qe0-f42.google.com (mail-qe0-f42.google.com
+	[209.85.128.42]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id DD15BE004AB
-	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 07:32:13 -0800 (PST)
-Received: by mail-ea0-f176.google.com with SMTP id a13so336959eaa.35
-	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 07:32:12 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 0D774E004AB
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 07:50:17 -0800 (PST)
+Received: by mail-qe0-f42.google.com with SMTP id f6so43715qej.15
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 07:50:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:message-id:date:from:reply-to:organization:user-agent
-	:mime-version:to:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=K7GTwyLyoXepWNesqCXIvKBhTkJYrqvkBTpFqAzC28I=;
-	b=tUk0vWy/fXK2MtzL9fLobNJIs7Ae6RSyvufJqobPkBCt/1ba2m/SiEL2Dx2e+KZnG0
-	HZ/oqnq6cjGKvVadzkXIYoUA/TiktQ0UH4zWGBKZi42BesBWmBGWKhjd0TBewPVp6VkI
-	K5gfzo/1V8ZbVvoREzlKkO6g6ji3zSFLRfoPYNdQVlAK6SuUnL13qVBFUuaOO9YX3LA5
-	1wBWbbGZVGoqfp8muMiXyY1RSkzzgytEV4prCxwxN7n4xjkC+g7SI15N3FUJmpSNdnbz
-	taiUAW/gqDLr3ansMKXDoEh10zozFKSob1dWFvTftc80qs0BHFIZ/l7EA5ln4yqLRXno
-	Zq1g==
-X-Received: by 10.14.179.5 with SMTP id g5mr7330686eem.41.1361547131641;
-	Fri, 22 Feb 2013 07:32:11 -0800 (PST)
-Received: from [192.168.0.5]
-	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
-	by mx.google.com with ESMTPS id q42sm4165130eem.14.2013.02.22.07.32.09
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 22 Feb 2013 07:32:10 -0800 (PST)
-Message-ID: <51278F77.4050605@gmail.com>
-Date: Fri, 22 Feb 2013 16:32:07 +0100
-From: Marco <koansoftware@gmail.com>
-Organization: MC
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=HxysCDi/FjNJFDzkLjBi3W05dx+3G6cBIh44/TMWyVI=;
+	b=lInhStTkDtexWSKDs8O0lFCcfEyja3Yova4i0Exgzkqsz9zD+XpRxolcUjUSNN5VMW
+	Ii+Vgbd8qOgxLekOCKHYt+HMC1d/qHf3T9P9201ZEYMGe2+lWU22+5lIRIrItcFhCdSU
+	ZTPifG2ZvrYw9dPn5AhMoRO8hWSq9WaE+436oTxrpbdAX0TzJqpDluckvaupOWP2i52F
+	i43Bb2V6fEUalG15vXdtBUOu8FKgeCNPIXhd200M2DMVFqKS+MetexBzm++1N1sNYys6
+	39whRxv+AGPzJhwnLk2y6FD6KymDnrTx97gt6AyNC8scAQlKQwgl+tXBWO+KIa3wnaw6
+	N2yQ==
 MIME-Version: 1.0
+X-Received: by 10.224.58.201 with SMTP id i9mr1243642qah.81.1361548216954;
+	Fri, 22 Feb 2013 07:50:16 -0800 (PST)
+Received: by 10.49.26.102 with HTTP; Fri, 22 Feb 2013 07:50:16 -0800 (PST)
+Date: Fri, 22 Feb 2013 16:50:16 +0100
+Message-ID: <CAFyqS9ojF7ivNqUhZ5EcD1TGTeuMTju20LHksQe4-pWj3+wM=g@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
 To: yocto@yoctoproject.org
-References: <CAKL3bWW5ieSi9g9G9QRx7u2rEkoOCqSF6kzLevOdG7LjYxc6=A@mail.gmail.com>
-	<50A1F05E.5080602@intel.com> <51093130.7090401@gmail.com>
-	<51094D9B.2070507@linux.intel.com>
-	<1360983207.1691.33.camel@empanada>
-In-Reply-To: <1360983207.1691.33.camel@empanada>
-Subject: Re: Slides from the Yocto Developer Day
+Subject: bootlogd error at startup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: koansoftware@gmail.com
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,60 +35,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Feb 2013 15:32:14 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Feb 2013 15:50:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Il 16/02/2013 03:53, Tom Zanussi ha scritto:
-> On Wed, 2013-01-30 at 08:43 -0800, Darren Hart wrote:
->> On 01/30/2013 06:41 AM, Marco wrote:
->>> Il 13/11/2012 08:01, Scott Garman ha scritto:
->>>> On 11/12/2012 11:52 AM, Anna Dushistova wrote:
->>>>> Hi All,
->>>>>
->>>>> Are the slides available somewhere?
->>>>>
->>>>> Thanks!
->>>>> Anna.
->>>>
->>>> Hi Anna,
->>>>
->>>> Attached are the slides and lab packet I used for the intro hands-on lab
->>>> in PDF format.
->>>
->>>
->>> Hi all,
->>> would be available slides and worksheet for the other YDD-2012 labs?
->>>
->>> - "Hands on kernel lab" by Darren & Tom
->>
->> We're working on making the kernel lab available online. Until then, the
->> materials would not be of much use as they were just specific enough to
->> the lab machines we set up, that they would frustrate more than
->> enlighten someone trying to use them on their own. Once they are up,
->> you'll be able to download them and do the labs on your own machines.
->>
->
-> Hi,
->
-> The 'Hands-on Kernel Lab' has now been updated, and the instructions now
-> assume you'll be starting from scratch on your own machine - anything
-> related to the lab environment is now gone, and there's actually a lot
-> more material now (5 labs instead of 3).  See here for details:
->
-> https://lists.yoctoproject.org/pipermail/yocto/2013-February/014408.html
->
-> Tom
->
+I am running the default minimal image on an ARM based board and get
+the followig error from bootlogd at startup
+
+<...>
+INIT: version 2.88 booting
+Starting udev
+udev[661]: starting version 164
+Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such
+file or directory
+bootlogd.
+Configuring network interfaces... udhcpc (v1.20.2) started
+Sending discover...
+Sending discover...
+Sending discover...
+No lease, failing
+Running postinst /etc/rpm-postinsts/100...
+INIT: Entering runlevel: 5
+Starting syslogd/klogd: done
+Stopping Bootlog daemon: bootlogd.
+<...>
+
+After login and checking /dev there *is* a /dev/tty. Also, if starting
+bootlogd manually using '/etc/init.d/bootlogd start' there is no
+error.
+So my guess is that /dev was not yet populated properly when bootlogd
+was started by the init process. IIRC is this not that something that
+udev should do when started?
+
+Is this a known bug or is there something I have missed in my configuration?
+
+Here is my /etc/inittab (default except from SERIAL_DEVICE)
+
+# /etc/inittab: init(8) configuration.
+# $Id: inittab,v 1.91 2002/01/25 13:35:21 miquels Exp $
+
+# The default runlevel.
+id:5:initdefault:
+
+# Boot-time system configuration/initialization script.
+# This is run first except when booting in emergency (-b) mode.
+si::sysinit:/etc/init.d/rcS
+
+# What to do in single-user mode.
+~~:S:wait:/sbin/sulogin
+
+# /etc/init.d executes the S and K scripts upon change
+# of runlevel.
+#
+# Runlevel 0 is halt.
+# Runlevel 1 is single-user.
+# Runlevels 2-5 are multi-user.
+# Runlevel 6 is reboot.
+
+l0:0:wait:/etc/init.d/rc 0
+l1:1:wait:/etc/init.d/rc 1
+l2:2:wait:/etc/init.d/rc 2
+l3:3:wait:/etc/init.d/rc 3
+l4:4:wait:/etc/init.d/rc 4
+l5:5:wait:/etc/init.d/rc 5
+l6:6:wait:/etc/init.d/rc 6
+# Normally not reached, but fallthrough in case of emergency.
+z6:6:respawn:/sbin/sulogin
+S:2345:respawn:/sbin/getty 115200 ttyPS0
+# /sbin/getty invocations for the runlevels.
+#
+# The "id" field MUST be the same as the last
+# characters of the device (after "tty").
+#
+# Format:
+#  <id>:<runlevels>:<action>:<process>
+#
+
+1:2345:respawn:/sbin/getty 38400 tty1
 
 
-Thank you.
-
-
--- 
-Marco Cavallini | KOAN sas | Bergamo - Italia
-  embedded and real-time software engineering
-           Yocto Project Participant
-Phone:+39-035-255.235 - Fax:+39-178-22.39.748
-       http://www.KoanSoftware.com
+Hans
 
