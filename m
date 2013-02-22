@@ -1,45 +1,40 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
-	[209.85.217.173]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <davide.soldan@kynetics.it>
+Received: from mail-bk0-f51.google.com (mail-bk0-f51.google.com
+	[209.85.214.51]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 26212E003BC
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 11:03:20 -0800 (PST)
-Received: by mail-lb0-f173.google.com with SMTP id gf7so7135266lbb.18
-	for <yocto@yoctoproject.org>; Thu, 21 Feb 2013 11:03:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=ohz6KyivVe9b1avaKSxeacyllHaDebg548YjuReNUn4=;
-	b=LkF/NwO1E/qL7RAgK+5KIHLIVimY1/R76bjqGEbGT10ccshN/XSNYKmlc4kkPc5wUY
-	7k6uWahJg8BidAFr607BVbcfecbVGCtJJNtRGL2cwPWCYtrXGSwZap8MQkXDyYeocmDc
-	otHSosdnIBunEH+XPNgnlTgNbOqKUzKcG7Jf2hfoO/rTIMnYIuDT+Gg3u5nZwJdT5+Ge
-	m5Y/NpsoROm2CedKRp26PxmabNKxA4p7qmHtwY9NX1M1xWmSOcFNstEzQaWRqm1nfbbs
-	5oSsaY6+yT6rs5aLQtqr3CEteLKtNSnLEgbSaChtbtu3+4q44PrGeYxtcN8hgAD73YY3
-	7QPg==
-X-Received: by 10.112.42.134 with SMTP id o6mr5394786lbl.77.1361473398541;
-	Thu, 21 Feb 2013 11:03:18 -0800 (PST)
-Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
-	[217.209.54.135])
-	by mx.google.com with ESMTPS id oy10sm41502809lab.8.2013.02.21.11.03.17
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 21 Feb 2013 11:03:17 -0800 (PST)
-Message-ID: <51266F72.4040300@gmail.com>
-Date: Thu, 21 Feb 2013 20:03:14 +0100
-From: Hans Beckerus <hans.beckerus@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.2;
-	rv:17.0) Gecko/20130107 Thunderbird/17.0.2
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 3AE0CE01466
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 02:10:55 -0800 (PST)
+Received: by mail-bk0-f51.google.com with SMTP id ik5so209791bkc.38
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 02:10:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:from:to:subject:date:message-id:user-agent:in-reply-to
+	:references:mime-version:content-transfer-encoding:content-type
+	:x-gm-message-state;
+	bh=/WiFSTevwJT68UMyvKi8LoKLGQ0diA9ZPT6DrvqSbdM=;
+	b=erVTtHu+pTjLgng81mI3cn/ZObRVCShnyiYX2R57QnCXPheztJJ1v4GFMkzeZipfjT
+	k7yhs9xejq/kBiNE0zH0zu1QICGF6tR26w6X6kEQ+B9apExl7/SeD+JeCT5DEaPsuJ42
+	K36mI0wEUc20VDbBz5DBs0DwOg5mXvoEJBSF5Z2u875I+asZKwemtbVXva7RmNEOD1IC
+	sxlHET1kJmn5mpNZ5ihXDejStF41f3I5P7oCoThroSpD3tRYxGppw5wZ/f/5lgW9ixkz
+	pbZotpFp1TE3mBcI//VRyT5vVYxjYzcmRQeyDuGehKQJKUJtdOIK0BvYu9GB+nsJYu9n
+	wFng==
+X-Received: by 10.205.136.205 with SMTP id il13mr642488bkc.93.1361527853188;
+	Fri, 22 Feb 2013 02:10:53 -0800 (PST)
+Received: from fedora-fisso.localnet
+	(static-217-133-170-65.clienti.tiscali.it. [217.133.170.65])
+	by mx.google.com with ESMTPS id x10sm428195bkv.13.2013.02.22.02.10.51
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Fri, 22 Feb 2013 02:10:52 -0800 (PST)
+From: Davide Soldan <davide.soldan@kynetics.it>
+To: yocto@yoctoproject.org
+Date: Fri, 22 Feb 2013 11:10:48 +0100
+Message-ID: <3061185.qjNdBeNxOi@fedora-fisso>
+User-Agent: KMail/4.9.5 (Linux/3.7.6-102.fc17.x86_64; KDE/4.9.5; x86_64; ; )
+In-Reply-To: <51263B0E.6020209@mlbassoc.com>
+References: <1711946.6ebLgJzAjK@fedora-fisso> <51263B0E.6020209@mlbassoc.com>
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
-	<CA+gsK-r_Oq3DvdoC1aT5gErTkKXYJ+gewMZDouusE+4oHicdtQ@mail.gmail.com>
-	<CAFyqS9pgGgZcacwqxiHGM2WSSH8xZea-tRjBWcNwqCr=DDhWsw@mail.gmail.com>
-	<CABTzgQ5RL+Gu4T5my_NPxSJ+Qm8MeDuJPYoZgGQ9=nD0yPcqmw@mail.gmail.com>
-	<CAFyqS9q3q+Ep2z2Ygk4oN5pS13DHnV0abQ3BvzV3-mq=HqBrJw@mail.gmail.com>
-	<CABTzgQ6WrhzcQ4KKBG7Q3bMsgf8-uijzshHSv2FyCajHpiy-5Q@mail.gmail.com>
-	<CABTzgQ7tS7+_64urm7NRBmXN+KT8M7W+8QOareJxOtXwfWt0Og@mail.gmail.com>
-	<CABTzgQ54dEyDrbND5Kfy6M4mAGMoyU236V1dOZvW8oLVBWFyzg@mail.gmail.com>
-In-Reply-To: <CABTzgQ54dEyDrbND5Kfy6M4mAGMoyU236V1dOZvW8oLVBWFyzg@mail.gmail.com>
-Subject: How to make a recipe doing mkimage on a initrd image?
+X-Gm-Message-State: ALoCoQn/yMyzIYOwn/BUGONq9rj14njPlPTI/kow0wq9/5y7LXQ618CIgzKx2axSQonMPBGWVqIb
+Subject: Re: core-image-sato + firefox for pandaboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,21 +46,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Feb 2013 19:03:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Feb 2013 10:10:56 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-I have created a cpio type rootfs image and are trying to load it as a 
-initrd ramdisk.
-After several boot failures  (U-Boot complains it is not a valid image) 
-I finally realized that the U-Boot version being used on this system 
-requires that the ramdisk image is also prepended with a mkimage header. 
-The standard image .bbclass that I am using in my simple recipe does not 
-seem to have this functionality. Has anyone done a recipe (or image 
-class?) that is calling mkimage in the do_deploy stage that could help 
-me on the way here?
-I wish to have it work similar to the kernel uImage build for which I 
-guess the u-boot-native-mkimage is being used.
+In data gioved=EC 21 febbraio 2013 08:19:42, Gary Thomas ha scritto:
+> On 2013-02-21 07:52, Davide Soldan wrote:
+> > Hi to all!
+> > I'm new in building images with yocto for my pandaboard. Trying to =
+build core-image-sato (http://maniacbug.wordpress.com/2012/08/03/panday=
+octo/) all works fine, but now I want to add some packages to this imag=
+e.
+> > So proceeding like mentioned here https://lists.yoctoproject.org/pi=
+permail/yocto/2012-May/009175.html, downloading meta-browser layer and =
+adding this layer to build/conf/bblayers.conf and adding the package fi=
+refox to conf/build/local.conf I've got this error:
+> >
+> > ERROR: No recipes available for:
+> >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-gnome/gn=
+ome-settings-daemon/gnome-settings-daemon_2.32.1.bbappend
+> >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-graphics=
+/libxi/libxi_1.6.1.bbappend
+> >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-support/=
+nspr/nspr_4.9.4.bbappend
+> >
+> > So I found, for example, gnome-settings-daemon under meta-openebedd=
+ed (dependency declared in the README file of meta-browser). Adding the=
+ layer "meta-openembedded/meta-gnome" to build/conf/bblayers.conf to sa=
+tisfy the gnome-settings-daemon dependency I've got the following diffe=
+rent error:
+> >
+> > NOTE: Error expanding variable populate_packages
+> > NOTE: Error during finalise of /home/davide/yocto/poky-denzil-7.0/m=
+eta-openembedded/meta-gnome/recipes-support/goffice/goffice_0.8.17.bb
+> > ERROR: Unable to parse /home/davide/yocto/poky-denzil-7.0/meta-open=
+embedded/meta-gnome/recipes-support/goffice/goffice_0.8.17.bb
+>=20
+> I was able to build this combo (master, not denzil) by only importing=
 
-Hans
+> the necessary recipes, not all of meta-gnome.  I just put them in a
+> local layer.
+>=20
+> n.b. FireFox runs OK, but IMO [Google] Chromium is much snappier on t=
+he PandaBoard.
+> You should be able to build it using the same setup.
+>=20
+>=20
+Solved the problem: I downloaded the yocto denzil release from the webs=
+ite (tar.gz file) but the layers meta-browser/openembedded-come/meta-op=
+enembedded was from git...so the branch of this latest layers was maste=
+r and not denzil. checking out the correct branch solved the problem!
+Thanks!
 
