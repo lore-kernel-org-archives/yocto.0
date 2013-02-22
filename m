@@ -1,40 +1,34 @@
-Return-Path: <davide.soldan@kynetics.it>
-Received: from mail-bk0-f51.google.com (mail-bk0-f51.google.com
-	[209.85.214.51]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 3AE0CE01466
-	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 02:10:55 -0800 (PST)
-Received: by mail-bk0-f51.google.com with SMTP id ik5so209791bkc.38
-	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 02:10:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:user-agent:in-reply-to
-	:references:mime-version:content-transfer-encoding:content-type
-	:x-gm-message-state;
-	bh=/WiFSTevwJT68UMyvKi8LoKLGQ0diA9ZPT6DrvqSbdM=;
-	b=erVTtHu+pTjLgng81mI3cn/ZObRVCShnyiYX2R57QnCXPheztJJ1v4GFMkzeZipfjT
-	k7yhs9xejq/kBiNE0zH0zu1QICGF6tR26w6X6kEQ+B9apExl7/SeD+JeCT5DEaPsuJ42
-	K36mI0wEUc20VDbBz5DBs0DwOg5mXvoEJBSF5Z2u875I+asZKwemtbVXva7RmNEOD1IC
-	sxlHET1kJmn5mpNZ5ihXDejStF41f3I5P7oCoThroSpD3tRYxGppw5wZ/f/5lgW9ixkz
-	pbZotpFp1TE3mBcI//VRyT5vVYxjYzcmRQeyDuGehKQJKUJtdOIK0BvYu9GB+nsJYu9n
-	wFng==
-X-Received: by 10.205.136.205 with SMTP id il13mr642488bkc.93.1361527853188;
-	Fri, 22 Feb 2013 02:10:53 -0800 (PST)
-Received: from fedora-fisso.localnet
-	(static-217-133-170-65.clienti.tiscali.it. [217.133.170.65])
-	by mx.google.com with ESMTPS id x10sm428195bkv.13.2013.02.22.02.10.51
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Fri, 22 Feb 2013 02:10:52 -0800 (PST)
-From: Davide Soldan <davide.soldan@kynetics.it>
-To: yocto@yoctoproject.org
-Date: Fri, 22 Feb 2013 11:10:48 +0100
-Message-ID: <3061185.qjNdBeNxOi@fedora-fisso>
-User-Agent: KMail/4.9.5 (Linux/3.7.6-102.fc17.x86_64; KDE/4.9.5; x86_64; ; )
-In-Reply-To: <51263B0E.6020209@mlbassoc.com>
-References: <1711946.6ebLgJzAjK@fedora-fisso> <51263B0E.6020209@mlbassoc.com>
+Return-Path: <edward.ekelund@axis.com>
+Received: from anubis.se.axis.com (anubis.se.axis.com [195.60.68.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86649E0071E
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 05:05:35 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by anubis.se.axis.com (Postfix) with ESMTP id 6786819D8F
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 14:05:31 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at anubis.se.axis.com
+Received: from anubis.se.axis.com ([127.0.0.1])
+	by localhost (anubis.se.axis.com [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id vTOiB3CHdrB3 for <yocto@yoctoproject.org>;
+	Fri, 22 Feb 2013 14:05:30 +0100 (CET)
+Received: from seth.se.axis.com (seth.se.axis.com [10.0.2.172])
+	by anubis.se.axis.com (Postfix) with ESMTP id 9565D19D1D
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 14:05:30 +0100 (CET)
+Received: from xmail2.se.axis.com (xmail2.se.axis.com [10.0.5.74])
+	by seth.se.axis.com (Postfix) with ESMTP id 4939C3E312
+	for <yocto@yoctoproject.org>; Fri, 22 Feb 2013 14:05:30 +0100 (CET)
+Received: from [10.92.58.1] (10.92.58.1) by xmail2.se.axis.com (10.0.5.74)
+	with Microsoft SMTP Server (TLS) id 8.2.176.0; Fri, 22 Feb 2013 14:05:30
+	+0100
+Message-ID: <51276D8B.1050908@axis.com>
+Date: Fri, 22 Feb 2013 14:07:23 +0100
+From: Edward Ekelund <edward.ekelund@axis.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-X-Gm-Message-State: ALoCoQn/yMyzIYOwn/BUGONq9rj14njPlPTI/kow0wq9/5y7LXQ618CIgzKx2axSQonMPBGWVqIb
-Subject: Re: core-image-sato + firefox for pandaboard
+To: <yocto@yoctoproject.org>
+References: <51260DE2.6060902@axis.com>
+In-Reply-To: <51260DE2.6060902@axis.com>
+Subject: Re: Eclipse "Error creating session, Could not find platform independent libraries <prefix>"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,55 +40,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Feb 2013 10:10:56 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 22 Feb 2013 13:05:35 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-In data gioved=EC 21 febbraio 2013 08:19:42, Gary Thomas ha scritto:
-> On 2013-02-21 07:52, Davide Soldan wrote:
-> > Hi to all!
-> > I'm new in building images with yocto for my pandaboard. Trying to =
-build core-image-sato (http://maniacbug.wordpress.com/2012/08/03/panday=
-octo/) all works fine, but now I want to add some packages to this imag=
-e.
-> > So proceeding like mentioned here https://lists.yoctoproject.org/pi=
-permail/yocto/2012-May/009175.html, downloading meta-browser layer and =
-adding this layer to build/conf/bblayers.conf and adding the package fi=
-refox to conf/build/local.conf I've got this error:
-> >
-> > ERROR: No recipes available for:
-> >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-gnome/gn=
-ome-settings-daemon/gnome-settings-daemon_2.32.1.bbappend
-> >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-graphics=
-/libxi/libxi_1.6.1.bbappend
-> >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-support/=
-nspr/nspr_4.9.4.bbappend
-> >
-> > So I found, for example, gnome-settings-daemon under meta-openebedd=
-ed (dependency declared in the README file of meta-browser). Adding the=
- layer "meta-openembedded/meta-gnome" to build/conf/bblayers.conf to sa=
-tisfy the gnome-settings-daemon dependency I've got the following diffe=
-rent error:
-> >
-> > NOTE: Error expanding variable populate_packages
-> > NOTE: Error during finalise of /home/davide/yocto/poky-denzil-7.0/m=
-eta-openembedded/meta-gnome/recipes-support/goffice/goffice_0.8.17.bb
-> > ERROR: Unable to parse /home/davide/yocto/poky-denzil-7.0/meta-open=
-embedded/meta-gnome/recipes-support/goffice/goffice_0.8.17.bb
->=20
-> I was able to build this combo (master, not denzil) by only importing=
+I found that the cause of this is in the debugger settings.
 
-> the necessary recipes, not all of meta-gnome.  I just put them in a
-> local layer.
->=20
-> n.b. FireFox runs OK, but IMO [Google] Chromium is much snappier on t=
-he PandaBoard.
-> You should be able to build it using the same setup.
->=20
->=20
-Solved the problem: I downloaded the yocto denzil release from the webs=
-ite (tar.gz file) but the layers meta-browser/openembedded-come/meta-op=
-enembedded was from git...so the branch of this latest layers was maste=
-r and not denzil. checking out the correct branch solved the problem!
-Thanks!
+To remedy this go Run->Debug Configurations->C/C++ Remote 
+Application->YWHC_GDB_i586-poky-linux
+Then select the Debugger-tab, and click on the pull-down menu with 
+remote gdb/mi in it. The "GDB debugger" field will change from something 
+similar to "<tool-chain 
+root>/sysroots/x86_64-pokysdk-linux/usr/bin/i586-poky-linux/i586-poky-linux-gdb" 
+into simply "gdb". The "GDB command file"-field will change in a similar 
+manner to ".gdbinit". Running the debugger should now work.
+
+On 02/21/2013 01:06 PM, Edward Ekelund wrote:
+> Hi,
+>
+> I encounter the error
+> "
+> Error creating session
+> Could not find platform independent libraries <prefix>
+> Could not find platform independent libraries <prefix>
+> Could not find platform independent libraries <prefix>
+> "
+>
+> in a pop up-window when attempting cross degugging following the lab
+> found here:
+> https://www.yoctoproject.org/tools-resources/presentations/using-eclipse-yocto-project
+>
+> Does anyone know what the problem might be?
+>
 
