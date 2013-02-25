@@ -1,28 +1,28 @@
 Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
-	[209.85.217.180]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Received: from mail-la0-f53.google.com (mail-la0-f53.google.com
+	[209.85.215.53]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id B2A61E006E9
-	for <yocto@yoctoproject.org>; Mon, 25 Feb 2013 08:02:35 -0800 (PST)
-Received: by mail-lb0-f180.google.com with SMTP id q12so2335208lbc.39
-	for <yocto@yoctoproject.org>; Mon, 25 Feb 2013 08:02:33 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 5418AE01473
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2013 08:05:56 -0800 (PST)
+Received: by mail-la0-f53.google.com with SMTP id fr10so2789869lab.26
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2013 08:05:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:references:mime-version:in-reply-to:content-type
 	:content-transfer-encoding:message-id:cc:x-mailer:from:subject:date
-	:to; bh=GIwTknyknL0DEmSuXSvlMzZTzbFfWdbU51uL7a4Z9Zw=;
-	b=xmVLjW+5Vy1HVaYGiea9oIpCUajqM36NHpp9qk12L5UssIsc9oLpRDI13rhBxEdFk3
-	z1LJp/vaGWxxsQ4xLzOew8NJRNWikaC5Lb+utxFhkG5/SXM7U7vYwxR+JvlcL8Uc1kC2
-	bm2zVk8gwgBHhbjaL7aEOe12hZkD+IMgCJ96dwTOr4ojK1okJnlM1HQT8lfbRat4JKFr
-	JXMQfPbqZC42XNootrE9EmsEs1ajOffw0J93iWFH6qQ4av6Mkvq7Rr2vFv2G+WPRXy1V
-	yqneDC9PS+PASdYwBsBWnwkgsT/A/dRzEQ1GdizhcPGRSowXl+Q/SsEKMe4NX1a0wzTH
-	nXAg==
-X-Received: by 10.112.17.41 with SMTP id l9mr4480448lbd.91.1361808153469;
-	Mon, 25 Feb 2013 08:02:33 -0800 (PST)
+	:to; bh=nXP8adikfFtbcOpbrCz0h4KfzR0LHj75YusTUD6kLz0=;
+	b=ZyrqpOR0gk9PSEEaNGH8lhZaRosupPwvglSVywHP8ijXAp94eqhffm+AiTPBpeFa3e
+	7fdRnftH5qsLHPHIw2g1GX2qNcbhDsqD+AN16g7hTNqKnj4frqF+7VI6Gs0qqG4+oGyy
+	X3rziCCh2ZuGdlqdC3sleABP/lzOY08KDfIq4WETT6mov/JTTC/PF2fNIC2cKKoQqZdM
+	zD1zeyvQdnGMg33Xtf+Z16NUqV2eA8DbPzAgZKNFikIVm6FPDdl4H9Ae2Z6e6QusRsEq
+	1yUeUEmkesHaLLfei7zgtBh9a6IEG2S1CPMX7zr07+45GLGKLeKQxvV944yuaqhXQARz
+	FDZQ==
+X-Received: by 10.152.123.34 with SMTP id lx2mr10374408lab.52.1361808354027;
+	Mon, 25 Feb 2013 08:05:54 -0800 (PST)
 Received: from [10.242.112.187] (c-5eeaaa76-74736162.cust.telenor.se.
 	[94.234.170.118])
-	by mx.google.com with ESMTPS id gm20sm7153290lab.7.2013.02.25.08.02.31
+	by mx.google.com with ESMTPS id xw14sm7157642lab.6.2013.02.25.08.05.51
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 25 Feb 2013 08:02:32 -0800 (PST)
+	Mon, 25 Feb 2013 08:05:53 -0800 (PST)
 References: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
 	<CA+gsK-r_Oq3DvdoC1aT5gErTkKXYJ+gewMZDouusE+4oHicdtQ@mail.gmail.com>
 	<CAFyqS9pgGgZcacwqxiHGM2WSSH8xZea-tRjBWcNwqCr=DDhWsw@mail.gmail.com>
@@ -33,14 +33,13 @@ References: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
 	<CABTzgQ54dEyDrbND5Kfy6M4mAGMoyU236V1dOZvW8oLVBWFyzg@mail.gmail.com>
 	<CA+gsK-rGDzbKJjpgV7-DRQm826ErVoWNp6RsOS8eqx4m-FNDAQ@mail.gmail.com>
 	<CABTzgQ4XWPOzDzM_dK6ja+3K1z=Z1M997UcWjxAZ_pkoRR6Xyg@mail.gmail.com>
-	<CABTzgQ4gfaA+30UCG0ZfA2w1=en6QVf7_-mxR4Zmr33-dazo2w@mail.gmail.com>
 Mime-Version: 1.0 (1.0)
-In-Reply-To: <CABTzgQ4gfaA+30UCG0ZfA2w1=en6QVf7_-mxR4Zmr33-dazo2w@mail.gmail.com>
-Message-Id: <0A6CADCB-85FF-4392-8D09-BAF570C7D43C@gmail.com>
+In-Reply-To: <CABTzgQ4XWPOzDzM_dK6ja+3K1z=Z1M997UcWjxAZ_pkoRR6Xyg@mail.gmail.com>
+Message-Id: <272E9DB8-D097-42EC-A40F-ACD81E5051AD@gmail.com>
 X-Mailer: iPhone Mail (10B146)
 From: =?utf-8?Q?Hans_Beck=C3=A9rus?= <hans.beckerus@gmail.com>
-Date: Mon, 25 Feb 2013 17:02:27 +0100
-To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+Date: Mon, 25 Feb 2013 17:05:48 +0100
+To: Satya Swaroop DAMARLA <swaroop@weisser.at>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Rudolf Streif <rstreif@linuxfoundation.org>
 Subject: Re: Updating uboot to v2013.01
@@ -55,306 +54,283 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2013 16:02:36 -0000
+X-List-Received-Date: Mon, 25 Feb 2013 16:05:57 -0000
 Content-Type: multipart/alternative;
-	boundary=Apple-Mail-1B6A736B-B3B9-444E-8120-0AFC1F411954
+	boundary=Apple-Mail-E503F1AF-1D89-4AC5-B4C0-65EAC6DD6443
 Content-Transfer-Encoding: 7bit
 
---Apple-Mail-1B6A736B-B3B9-444E-8120-0AFC1F411954
+--Apple-Mail-E503F1AF-1D89-4AC5-B4C0-65EAC6DD6443
 Content-Type: text/plain;
 	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
 
 
-25 feb 2013 kl. 16:56 skrev Satya Swaroop Damarla <swaroop.damarla@gmail.com=
->:
+25 feb 2013 kl. 15:58 skrev Satya Swaroop DAMARLA <swaroop@weisser.at>:
 
-> Another important package that has to be installed in  the "apt-get instal=
-l device-tree-compiler" package. This was adviced by the Thierry Reding, wh w=
-rote the uboot config for Tamonten board.. Rudolf, may I ask you how did you=
- find the SRCREV values for the uboot packages ... It would be great to know=
- as there is not sufficient literature avilable to explain this on the inter=
-net...
+> Guys. I found the solution to this problem....
 >=20
-I do not get this. Why should you want to install this package? The dts comp=
-iler should be part of any complete kernel! I think it is the wrong solution=
- to use the one from the host distro. You should use the one the specific ke=
-rnel version provides.
+> I think if you already install uboot-tools or uboot-mkimage packes from Ub=
+untu repository then it is used instead of the one that is downloaded and we=
+ should uninstall the packages and then rerun the build,,... Then IT WORKS..=
+. So, thank you for the time and enegry... I assume this thread is closed an=
+d this is the solution and if this doesnot work for some then please post it=
+ and we may discuss the situation depending on the problem,
+>=20
+> Greetings & Regards,
+> Satya
+>=20
+Same comment here as for the device tree compiler. You should use the uboot t=
+ools/version as they come with the package. Not the one used by the host dis=
+tro. To me this is not a proper solution.
+
 
 >=20
-> On Mon, Feb 25, 2013 at 3:58 PM, Satya Swaroop DAMARLA <swaroop@weisser.at=
-> wrote:
->> Guys. I found the solution to this problem....
+> On Thu, Feb 21, 2013 at 5:28 PM, Rudolf Streif <rstreif@linuxfoundation.or=
+g> wrote:
+>> Satya,
 >>=20
->> I think if you already install uboot-tools or uboot-mkimage packes from U=
-buntu repository then it is used instead of the one that is downloaded and w=
-e should uninstall the packages and then rerun the build,,... Then IT WORKS.=
-.. So, thank you for the time and enegry... I assume this thread is closed a=
-nd this is the solution and if this doesnot work for some then please post i=
-t and we may discuss the situation depending on the problem,
+>> I will look into it later today. I am currently at the Linux Foundation's=
+ Embedded Linux Conference.
 >>=20
->> Greetings & Regards,
->> Satya
+>> Rudi
 >>=20
 >>=20
->> On Thu, Feb 21, 2013 at 5:28 PM, Rudolf Streif <rstreif@linuxfoundation.o=
-rg> wrote:
->>> Satya,
+>> On Thu, Feb 21, 2013 at 2:10 AM, Satya Swaroop DAMARLA <swaroop@weisser.a=
+t> wrote:
+>>> Hello Guys,
 >>>=20
->>> I will look into it later today. I am currently at the Linux Foundation'=
-s Embedded Linux Conference.
+>>> I have not received any reply from you. If you can help me to figure out=
+ what the errors mean when adding a new .bb or recipe file then I can learn t=
+he mistake and take care in the new recipes.... I request your time=20
 >>>=20
->>> Rudi
 >>>=20
->>>=20
->>> On Thu, Feb 21, 2013 at 2:10 AM, Satya Swaroop DAMARLA <swaroop@weisser.=
-at> wrote:
->>>> Hello Guys,
->>>>=20
->>>> I have not received any reply from you. If you can help me to figure ou=
-t what the errors mean when adding a new .bb or recipe file then I can learn=
- the mistake and take care in the new recipes.... I request your time=20
+>>> On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop Damarla <swaroop.damarla@=
+gmail.com> wrote:
+>>>> hey Guys... I get the following error... which I attached.. Its complet=
+ely greek and latin to me.. Can you please help me..
 >>>>=20
 >>>>=20
->>>> On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop Damarla <swaroop.damarla=
-@gmail.com> wrote:
+>>>> On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop DAMARLA <swaroop@weisser=
+.at> wrote:
 >>>>> hey Guys... I get the following error... which I attached.. Its comple=
 tely greek and latin to me.. Can you please help me..
 >>>>>=20
 >>>>>=20
->>>>> On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop DAMARLA <swaroop@weisse=
-r.at> wrote:
->>>>>> hey Guys... I get the following error... which I attached.. Its compl=
-etely greek and latin to me.. Can you please help me..
->>>>>>=20
->>>>>>=20
->>>>>> On Wed, Feb 20, 2013 at 6:46 PM, Hans Beck=C3=A9rus <hans.beckerus@gm=
-ail.com> wrote:
->>>>>>> On Wed, Feb 20, 2013 at 6:12 PM, Satya Swaroop Damarla
->>>>>>> <swaroop.damarla@gmail.com> wrote:
->>>>>>> > Hey hans, this is what he meant,
->>>>>>> >
->>>>>>> > In the machine config file add the following
->>>>>>> >
->>>>>>> > PREFERRED_VERSION_u-boot ?=3D "v2013.01%"  or PREFERRED_VERSION_u-=
-boot ?=3D
->>>>>>> > "v2013.01.01%"
->>>>>>> >
->>>>>>> > By the way did you already complete the first part... There is als=
-o other
->>>>>>> > file called "u-boot-fw-utils_2012.04.01.bb" ... I think we should d=
+>>>>> On Wed, Feb 20, 2013 at 6:46 PM, Hans Beck=C3=A9rus <hans.beckerus@gma=
+il.com> wrote:
+>>>>>> On Wed, Feb 20, 2013 at 6:12 PM, Satya Swaroop Damarla
+>>>>>> <swaroop.damarla@gmail.com> wrote:
+>>>>>> > Hey hans, this is what he meant,
+>>>>>> >
+>>>>>> > In the machine config file add the following
+>>>>>> >
+>>>>>> > PREFERRED_VERSION_u-boot ?=3D "v2013.01%"  or PREFERRED_VERSION_u-b=
+oot ?=3D
+>>>>>> > "v2013.01.01%"
+>>>>>> >
+>>>>>> > By the way did you already complete the first part... There is also=
+ other
+>>>>>> > file called "u-boot-fw-utils_2012.04.01.bb" ... I think we should d=
 o the
->>>>>>> > same...
->>>>>>> >
->>>>>>> > Hans bytheway,  are you also working on the same board or difffere=
-nt board
->>>>>>> > with same problem?
->>>>>>> >
->>>>>>>=20
->>>>>>> Different board, same core, similar problem ;)
->>>>>>> Now I get it. Thanks. But still question remains how in earth I
->>>>>>> managed to build the kernel if not also having copied/renamed the
->>>>>>> mkimage .bb?
->>>>>>> Is the PREFERRED_VERSION_u-boot used to determine what mkimage and f=
-w
->>>>>>> utils it picks up?
->>>>>>> Then it might be that since I/we build u-boot as a separate package,=
+>>>>>> > same...
+>>>>>> >
+>>>>>> > Hans bytheway,  are you also working on the same board or diffferen=
+t board
+>>>>>> > with same problem?
+>>>>>> >
+>>>>>>=20
+>>>>>> Different board, same core, similar problem ;)
+>>>>>> Now I get it. Thanks. But still question remains how in earth I
+>>>>>> managed to build the kernel if not also having copied/renamed the
+>>>>>> mkimage .bb?
+>>>>>> Is the PREFERRED_VERSION_u-boot used to determine what mkimage and fw=
 
->>>>>>> but kernel lifts in the mkimage stuff, it works but the wrong packag=
-e
->>>>>>> was used.
->>>>>>> In my case obviously compatible, but not recommended I guess. Also, I=
+>>>>>> utils it picks up?
+>>>>>> Then it might be that since I/we build u-boot as a separate package,
+>>>>>> but kernel lifts in the mkimage stuff, it works but the wrong package=
 
->>>>>>> agree that the fw utils should probably be in sync similar to mkimag=
-e.
->>>>>>>=20
->>>>>>> Hans
->>>>>>>=20
->>>>>>> >
->>>>>>> >
->>>>>>> >
->>>>>>> >
->>>>>>> >
->>>>>>> > On Wed, Feb 20, 2013 at 6:01 PM, Hans Beck=C3=A9rus <hans.beckerus=
-@gmail.com>
->>>>>>> > wrote:
->>>>>>> >>
->>>>>>> >> On Wed, Feb 20, 2013 at 5:16 PM, Rudolf Streif
->>>>>>> >> <rstreif@linuxfoundation.org> wrote:
->>>>>>> >> > Satya,
->>>>>>> >> >
->>>>>>> >> > Simply look at the u-boot recipes in meta/recipes-bsp/u-boot su=
-ch as
->>>>>>> >> > u-boot_2012.04.01.bb. You can simply copy it and name it
->>>>>>> >> > u-boot_2013.01.bb
->>>>>>> >> > and then modify SRCREV to the revision that corresponds to the t=
+>>>>>> was used.
+>>>>>> In my case obviously compatible, but not recommended I guess. Also, I=
+
+>>>>>> agree that the fw utils should probably be in sync similar to mkimage=
+.
+>>>>>>=20
+>>>>>> Hans
+>>>>>>=20
+>>>>>> >
+>>>>>> >
+>>>>>> >
+>>>>>> >
+>>>>>> >
+>>>>>> > On Wed, Feb 20, 2013 at 6:01 PM, Hans Beck=C3=A9rus <hans.beckerus@=
+gmail.com>
+>>>>>> > wrote:
+>>>>>> >>
+>>>>>> >> On Wed, Feb 20, 2013 at 5:16 PM, Rudolf Streif
+>>>>>> >> <rstreif@linuxfoundation.org> wrote:
+>>>>>> >> > Satya,
+>>>>>> >> >
+>>>>>> >> > Simply look at the u-boot recipes in meta/recipes-bsp/u-boot suc=
+h as
+>>>>>> >> > u-boot_2012.04.01.bb. You can simply copy it and name it
+>>>>>> >> > u-boot_2013.01.bb
+>>>>>> >> > and then modify SRCREV to the revision that corresponds to the t=
 ag
->>>>>>> >> > 2013.01
->>>>>>> >> > or 2013.01.01 in git.denx.de:
->>>>>>> >> >
->>>>>>> >> > for 2013.01: 3a9d879f6f64585b819af728b53be0a05037fe0d
->>>>>>> >> > for 2013.01.01: e8ae0fa5edd152b2b29c470b88429be4cdcd2c46
->>>>>>> >> >
->>>>>>> >> > Do the same for u-boot-mkimage and include the u-boot version w=
-ith your
->>>>>>> >> > bsp.
->>>>>>> >> >
->>>>>>> >> > Rudi
->>>>>>> >> >
->>>>>>> >> >
->>>>>>> >> Hi Rudi, sorry to chime in , but I have a similar problem but do n=
+>>>>>> >> > 2013.01
+>>>>>> >> > or 2013.01.01 in git.denx.de:
+>>>>>> >> >
+>>>>>> >> > for 2013.01: 3a9d879f6f64585b819af728b53be0a05037fe0d
+>>>>>> >> > for 2013.01.01: e8ae0fa5edd152b2b29c470b88429be4cdcd2c46
+>>>>>> >> >
+>>>>>> >> > Do the same for u-boot-mkimage and include the u-boot version wi=
+th your
+>>>>>> >> > bsp.
+>>>>>> >> >
+>>>>>> >> > Rudi
+>>>>>> >> >
+>>>>>> >> >
+>>>>>> >> Hi Rudi, sorry to chime in , but I have a similar problem but do n=
 ot
->>>>>>> >> really get the last thing you said.
->>>>>>> >> What do you mean by including the u-boot version in the bsp? Also=
- is
->>>>>>> >> it a must to also copy the mkimage .bb or will the system find a
->>>>>>> >> suitable one automatically?
->>>>>>> >> The thing is that I only copied/edited the u-boot .bb but never t=
-he
->>>>>>> >> mkimage. Still my kernel successfully builds the kernel uImage!?
->>>>>>> >> Some magic that I have missed :)
->>>>>>> >>
->>>>>>> >> Hans
->>>>>>> >>
->>>>>>> >>
->>>>>>> >> > On Wed, Feb 20, 2013 at 5:17 AM, Satya Swaroop Damarla
->>>>>>> >> > <swaroop.damarla@gmail.com> wrote:
->>>>>>> >> >>
->>>>>>> >> >> Hi Guys,
->>>>>>> >> >>
->>>>>>> >> >> I need support for uboot on Tamonten board but the version on i=
+>>>>>> >> really get the last thing you said.
+>>>>>> >> What do you mean by including the u-boot version in the bsp? Also i=
+s
+>>>>>> >> it a must to also copy the mkimage .bb or will the system find a
+>>>>>> >> suitable one automatically?
+>>>>>> >> The thing is that I only copied/edited the u-boot .bb but never th=
+e
+>>>>>> >> mkimage. Still my kernel successfully builds the kernel uImage!?
+>>>>>> >> Some magic that I have missed :)
+>>>>>> >>
+>>>>>> >> Hans
+>>>>>> >>
+>>>>>> >>
+>>>>>> >> > On Wed, Feb 20, 2013 at 5:17 AM, Satya Swaroop Damarla
+>>>>>> >> > <swaroop.damarla@gmail.com> wrote:
+>>>>>> >> >>
+>>>>>> >> >> Hi Guys,
+>>>>>> >> >>
+>>>>>> >> >> I need support for uboot on Tamonten board but the version on i=
 t is
->>>>>>> >> >> v2012.04 but I came to know that v2012.10 or v2013.01 supports=
- the
->>>>>>> >> >> Tamontenboard through some guys here..
->>>>>>> >> >>
->>>>>>> >> >> It would be great if you can tell me how can I accomplish v201=
-3.01 or
->>>>>>> >> >> v2012.10 into the build system and make it available so that I=
- can
->>>>>>> >> >> compile
->>>>>>> >> >> the and get uImage
->>>>>>> >> >>
->>>>>>> >> >> (Tamonten board is a derivative of harmony board with some cha=
-nges and
->>>>>>> >> >> has
->>>>>>> >> >> arm cortexa9 processor without neon extentions )
->>>>>>> >> >>
->>>>>>> >> >> I am kind of new to add new .bb files and help is really appre=
-ciated as
->>>>>>> >> >> I
->>>>>>> >> >> am not able to figure out how to add
->>>>>>> >> >>
->>>>>>> >> >> Greetings & Regards,
->>>>>>> >> >> Swaroop
->>>>>>> >> >>
->>>>>>> >> >> _______________________________________________
->>>>>>> >> >> yocto mailing list
->>>>>>> >> >> yocto@yoctoproject.org
->>>>>>> >> >> https://lists.yoctoproject.org/listinfo/yocto
->>>>>>> >> >>
->>>>>>> >> >
->>>>>>> >> >
->>>>>>> >> >
->>>>>>> >> > --
->>>>>>> >> > --
->>>>>>> >> > Rudolf J. Streif
->>>>>>> >> > Director of Embedded Solutions
->>>>>>> >> > The Linux Foundation
->>>>>>> >> >
->>>>>>> >> > rudolf.streif@linux.com
->>>>>>> >> > Phone: +1.619.631.5383
->>>>>>> >> > Skype: rudolfstreif
->>>>>>> >> > PGP: RSA 2048/2048 D6E7D28B
->>>>>>> >> >
->>>>>>> >> > Linux Foundation Events Schedule:  events.linuxfoundation.org
->>>>>>> >> > Linux Foundation Training Schedule: training.linuxfoundation.or=
-g
->>>>>>> >> >
->>>>>>> >> >
->>>>>>> >> > _______________________________________________
->>>>>>> >> > yocto mailing list
->>>>>>> >> > yocto@yoctoproject.org
->>>>>>> >> > https://lists.yoctoproject.org/listinfo/yocto
->>>>>>> >> >
->>>>>>> >
->>>>>>> >
->>>=20
->>>=20
->>>=20
->>> --=20
->>> --=20
->>> Rudolf J. Streif
->>> Director of Embedded Solutions
->>> The Linux Foundation
->>>=20
->>> rudolf.streif@linux.com
->>> Phone: +1.619.631.5383
->>> Skype: rudolfstreif
->>> PGP: RSA 2048/2048 D6E7D28B
->>>=20
->>> Linux Foundation Events Schedule:  events.linuxfoundation.org
->>> Linux Foundation Training Schedule: training.linuxfoundation.org
->>>=20
->>>=20
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->=20
+>>>>>> >> >> v2012.04 but I came to know that v2012.10 or v2013.01 supports t=
+he
+>>>>>> >> >> Tamontenboard through some guys here..
+>>>>>> >> >>
+>>>>>> >> >> It would be great if you can tell me how can I accomplish v2013=
+.01 or
+>>>>>> >> >> v2012.10 into the build system and make it available so that I c=
+an
+>>>>>> >> >> compile
+>>>>>> >> >> the and get uImage
+>>>>>> >> >>
+>>>>>> >> >> (Tamonten board is a derivative of harmony board with some chan=
+ges and
+>>>>>> >> >> has
+>>>>>> >> >> arm cortexa9 processor without neon extentions )
+>>>>>> >> >>
+>>>>>> >> >> I am kind of new to add new .bb files and help is really apprec=
+iated as
+>>>>>> >> >> I
+>>>>>> >> >> am not able to figure out how to add
+>>>>>> >> >>
+>>>>>> >> >> Greetings & Regards,
+>>>>>> >> >> Swaroop
+>>>>>> >> >>
+>>>>>> >> >> _______________________________________________
+>>>>>> >> >> yocto mailing list
+>>>>>> >> >> yocto@yoctoproject.org
+>>>>>> >> >> https://lists.yoctoproject.org/listinfo/yocto
+>>>>>> >> >>
+>>>>>> >> >
+>>>>>> >> >
+>>>>>> >> >
+>>>>>> >> > --
+>>>>>> >> > --
+>>>>>> >> > Rudolf J. Streif
+>>>>>> >> > Director of Embedded Solutions
+>>>>>> >> > The Linux Foundation
+>>>>>> >> >
+>>>>>> >> > rudolf.streif@linux.com
+>>>>>> >> > Phone: +1.619.631.5383
+>>>>>> >> > Skype: rudolfstreif
+>>>>>> >> > PGP: RSA 2048/2048 D6E7D28B
+>>>>>> >> >
+>>>>>> >> > Linux Foundation Events Schedule:  events.linuxfoundation.org
+>>>>>> >> > Linux Foundation Training Schedule: training.linuxfoundation.org=
 
---Apple-Mail-1B6A736B-B3B9-444E-8120-0AFC1F411954
+>>>>>> >> >
+>>>>>> >> >
+>>>>>> >> > _______________________________________________
+>>>>>> >> > yocto mailing list
+>>>>>> >> > yocto@yoctoproject.org
+>>>>>> >> > https://lists.yoctoproject.org/listinfo/yocto
+>>>>>> >> >
+>>>>>> >
+>>>>>> >
+>>=20
+>>=20
+>>=20
+>> --=20
+>> --=20
+>> Rudolf J. Streif
+>> Director of Embedded Solutions
+>> The Linux Foundation
+>>=20
+>> rudolf.streif@linux.com
+>> Phone: +1.619.631.5383
+>> Skype: rudolfstreif
+>> PGP: RSA 2048/2048 D6E7D28B
+>>=20
+>> Linux Foundation Events Schedule:  events.linuxfoundation.org
+>> Linux Foundation Training Schedule: training.linuxfoundation.org
+>>=20
+>>=20
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--Apple-Mail-E503F1AF-1D89-4AC5-B4C0-65EAC6DD6443
 Content-Type: text/html;
 	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
 <html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><div><br></div><div><br>25 feb 2013 kl. 16:=
-56 skrev Satya Swaroop Damarla &lt;<a href=3D"mailto:swaroop.damarla@gmail.c=
-om">swaroop.damarla@gmail.com</a>&gt;:<br><br></div><blockquote type=3D"cite=
-"><div><div dir=3D"ltr">Another important package that has to be installed i=
-n &nbsp;the "apt-get install device-tree-compiler" package. This was adviced=
- by the Thierry Reding, wh wrote the uboot config for Tamonten board.. Rudol=
-f, may I ask you how did you find the SRCREV values for the uboot packages .=
-.. It would be great to know as there is not sufficient literature avilable t=
-o explain this on the internet...</div>
-<div class=3D"gmail_extra"><br></div></div></blockquote>I do not get this. W=
-hy should you want to install this package? The dts compiler should be part o=
-f any complete kernel! I think it is the wrong solution to use the one from t=
-he host distro. You should use the one the specific kernel version provides.=
-<div><br><blockquote type=3D"cite"><div><div class=3D"gmail_extra"><br><div c=
-lass=3D"gmail_quote">On Mon, Feb 25, 2013 at 3:58 PM, Satya Swaroop DAMARLA <=
-span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop@weisser.at" target=3D"_blank"=
->swaroop@weisser.at</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
- #ccc solid;padding-left:1ex"><div dir=3D"ltr">Guys. I found the solution to=
- this problem....<div><br></div><div>I think if you already install uboot-to=
-ols or uboot-mkimage packes from Ubuntu repository then it is used instead o=
-f the one that is downloaded and we should uninstall the packages and then r=
-erun the build,,... Then IT WORKS... So, thank you for the time and enegry..=
-. I assume this thread is closed and this is the solution and if this doesno=
-t work for some then please post it and we may discuss the situation dependi=
-ng on the problem,</div>
-
-<div><br></div><div>Greetings &amp; Regards,</div><div>Satya</div></div><div=
- class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><br><div c=
-lass=3D"gmail_quote">On Thu, Feb 21, 2013 at 5:28 PM, Rudolf Streif <span di=
-r=3D"ltr">&lt;<a href=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blan=
-k">rstreif@linuxfoundation.org</a>&gt;</span> wrote:<br>
-
+utf-8"></head><body dir=3D"auto"><div><br></div><div><br>25 feb 2013 kl. 15:=
+58 skrev Satya Swaroop DAMARLA &lt;<a href=3D"mailto:swaroop@weisser.at">swa=
+roop@weisser.at</a>&gt;:<br><br></div><blockquote type=3D"cite"><div><div di=
+r=3D"ltr">Guys. I found the solution to this problem....<div><br></div><div s=
+tyle=3D"">I think if you already install uboot-tools or uboot-mkimage packes=
+ from Ubuntu repository then it is used instead of the one that is downloade=
+d and we should uninstall the packages and then rerun the build,,... Then IT=
+ WORKS... So, thank you for the time and enegry... I assume this thread is c=
+losed and this is the solution and if this doesnot work for some then please=
+ post it and we may discuss the situation depending on the problem,</div>
+<div style=3D""><br></div><div style=3D"">Greetings &amp; Regards,</div><div=
+ style=3D"">Satya</div></div><div class=3D"gmail_extra"><br></div></div></bl=
+ockquote>Same comment here as for the device tree compiler. You should use t=
+he uboot tools/version as they come with the package. Not the one used by th=
+e host distro. To me this is not a proper solution.<div><br><div><div><br><b=
+lockquote type=3D"cite"><div><div class=3D"gmail_extra"><br><div class=3D"gm=
+ail_quote">On Thu, Feb 21, 2013 at 5:28 PM, Rudolf Streif <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blank">rstreif=
+@linuxfoundation.org</a>&gt;</span> wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
  #ccc solid;padding-left:1ex"><div dir=3D"ltr">Satya,<div><br></div><div>I w=
 ill look into it later today. I am currently at the Linux Foundation's Embed=
 ded Linux Conference.</div>
-
-<div><br></div><div>Rudi</div></div><div><div><div class=3D"gmail_extra">
+<div><br></div><div>Rudi</div></div><div class=3D"HOEnZb"><div class=3D"h5">=
+<div class=3D"gmail_extra">
 <br><br><div class=3D"gmail_quote">On Thu, Feb 21, 2013 at 2:10 AM, Satya Sw=
 aroop DAMARLA <span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop@weisser.at" ta=
 rget=3D"_blank">swaroop@weisser.at</a>&gt;</span> wrote:<br><blockquote clas=
 s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
 ing-left:1ex">
-
 
 <div dir=3D"ltr">Hello Guys,<div><br></div><div>I have not received any repl=
 y from you. If you can help me to figure out what the errors mean when addin=
@@ -362,12 +338,10 @@ g a new .bb or recipe file then I can learn the mistake and take care in the=
  new recipes.... I request your time&nbsp;</div>
 
 
-
 </div><div><div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote=
 ">On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop Damarla <span dir=3D"ltr">&=
 lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blank">swaroop.da=
 marla@gmail.com</a>&gt;</span> wrote:<br>
-
 
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
@@ -377,14 +351,12 @@ ly:arial,sans-serif;font-size:13px">hey Guys... I get the following error...=
 lp me..</span><br>
 
 
-
 </div></div><div><div><div class=3D"gmail_extra">
 <br><br><div class=3D"gmail_quote">On Wed, Feb 20, 2013 at 7:19 PM, Satya Sw=
 aroop DAMARLA <span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop@weisser.at" ta=
 rget=3D"_blank">swaroop@weisser.at</a>&gt;</span> wrote:<br><blockquote clas=
 s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
 ing-left:1ex">
-
 
 
 
@@ -567,18 +539,15 @@ et=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 b></font><div><font face=3D"arial, helvetica, sans-serif">Director of Embedd=
 ed Solutions</font></div>
 
-
 <div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font>=
 </div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><div=
 ><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=3D"=
 arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
 
-
 <div><font face=3D"arial, helvetica, sans-serif">Phone: <a href=3D"tel:%2B1.=
 619.631.5383" value=3D"+16196315383" target=3D"_blank">+1.619.631.5383</a></=
 font></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolfstr=
 eif</font></div>
-
 <div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 2048/2048 D6E7D28B=
 </font></div>
 <div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gara=
@@ -588,24 +557,25 @@ collapse">Linux Foundation Events Schedule: &nbsp;<a href=3D"http://events.l=
 inuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">event=
 s.linuxfoundation.org</a><br>
 
-
 Linux Foundation Training Schedule:&nbsp;<a href=3D"http://training.linuxfou=
 ndation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.lin=
 uxfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
 nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);fo=
 nt-family:arial,sans-serif;font-size:13px"><br>
 
-
 </span></font></div>
 </div>
 </div></div><br>_______________________________________________<br>
 yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproje=
-ct.org</a><br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">=
 https://lists.yoctoproject.org/listinfo/yocto</a><br>
 <br></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></blockquote></div></body></html>=
+</div></blockquote><blockquote type=3D"cite"><div><span>____________________=
+___________________________</span><br><span>yocto mailing list</span><br><sp=
+an><a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a></spa=
+n><br><span><a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https:=
+//lists.yoctoproject.org/listinfo/yocto</a></span><br></div></blockquote></d=
+iv></div></div></body></html>=
 
---Apple-Mail-1B6A736B-B3B9-444E-8120-0AFC1F411954--
+--Apple-Mail-E503F1AF-1D89-4AC5-B4C0-65EAC6DD6443--
