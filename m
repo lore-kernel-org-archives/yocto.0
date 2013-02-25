@@ -1,35 +1,30 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9615E0027C;
-	Mon, 25 Feb 2013 12:25:13 -0800 (PST)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173019.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009))
-	with ESMTPA id <0MIS000LDM13ZA10@vms173019.mailsrvcs.net>; Mon,
-	25 Feb 2013 14:24:55 -0600 (CST)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 59456200BD; Mon,
-	25 Feb 2013 15:24:39 -0500 (EST)
-Date: Mon, 25 Feb 2013 15:24:39 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Raul Rosetto Munoz <munoz0raul@gmail.com>
-Message-id: <20130225202439.GD6725@denix.org>
-References: <CANmViriV1_tAO+j_nTkpZjcSRD8dh2ALXwHVs1QC-9_dDmrfFA@mail.gmail.com>
-	<20130212191553.GA1858@denix.org>
-	<CANmViriOFXRsW10XWXk8vJpCEQgTgq2VGr4A+Roa0SYVz9Z2DQ@mail.gmail.com>
-	<20130214160030.GD2539@edge>
-	<CANmVirgL6Fte5cP+VTdK4aTb4sBB1AXQOq=02DtaiNnRePfwPw@mail.gmail.com>
-	<20130214162854.GF2539@edge>
-	<CANmVirhviFJ8c8RKTLwgmvuwHp4KWkWt3+2dZozE+iemUSztQw@mail.gmail.com>
-	<CANmViri6ZGaY1+_a06Zu+CXgJVNhfc8-5UQ23RFgC2fn-MNCiw@mail.gmail.com>
-MIME-version: 1.0
-In-reply-to: <CANmViri6ZGaY1+_a06Zu+CXgJVNhfc8-5UQ23RFgC2fn-MNCiw@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Denys Dmytriyenko <denys@ti.com>
-Subject: Re: [meta-ti] Wifi Module + udev configs
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FCCBE0027C
+	for <yocto@yoctoproject.org>; Mon, 25 Feb 2013 14:51:34 -0800 (PST)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 25 Feb 2013 14:51:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,736,1355126400"; d="scan'208";a="261292303"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by azsmga001.ch.intel.com with ESMTP; 25 Feb 2013 14:51:31 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.110]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.248]) with mapi id
+	14.01.0355.002; Mon, 25 Feb 2013 14:51:30 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	February 26,
+	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac4TqlBXetyqY/hcQNKNLF3A+1tWmAAAEqtw
+Date: Mon, 25 Feb 2013 22:51:29 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70EEE5A4@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, February 26, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,106 +36,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2013 20:25:13 -0000
-Content-type: text/plain; charset=iso-8859-1
-Content-disposition: inline
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Mon, 25 Feb 2013 22:51:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 18, 2013 at 08:56:06AM -0300, Raul Rosetto Munoz wrote:
-> Any suggestions?
-> 
-> I really do not know what to do, the file "/lib/udev/firmware" never appear.
-
-FYI, starting with 176, udev handles loading firmware images internally, hence 
-dropping the /lib/udev/firmware binary. But there were some bugs related to 
-that functionality, which got fixed in version 178...
-
-http://git.kernel.org/?p=linux/hotplug/udev.git;a=blob;f=ChangeLog;hb=HEAD
-http://upstream-tracker.org/changelogs/libudev/181/changelog.html
-
-As I said before, if you are using Danny branch, then you should stick to the 
-proven udev-164 that is in oe-core, unless you really want to have systemd, in 
-which case you look into meta-openembedded...
-
--- 
-Denys
+Agenda:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+* SWAT team rotation: Paul Eggleton->Jessica Zhang
+* Opens - 10 min=20
+* Team Sharing - 20 min
 
 
-> 2013/2/14 Raul Rosetto Munoz <munoz0raul@gmail.com>
-> 
-> > Now Im with 173 from meta-fsl bbapend, but I tryed with many others from
-> > meta-oe and poky.
-> >
-> >
-> >
-> >
-> >
-> >
-> > 2013/2/14 Denys Dmytriyenko <denys@ti.com>
-> >
-> >> On Thu, Feb 14, 2013 at 02:23:14PM -0200, Raul Rosetto Munoz wrote:
-> >> > Denys,
-> >> > There are something strange,
-> >> >
-> >> > First there are no  linux-firmware-{rtl8192cu,rtl8192ce,rtl8192su}
-> >> > installed at rfs.
-> >>
-> >> I was talking about packages, looks like you have them already installed.
-> >>
-> >>
-> >> > raul@phi04:.../tmp/deploy/images$ find
-> >> > /media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/ -name "*8192*"
-> >> > /media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/RTL8192E
-> >> >
-> >> /media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/rtlwifi/rtl8192sefw.bin
-> >> >
-> >> /media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/firmware/rtlwifi/rtl8192defw.bin
-> >> >
-> >> > Another problem is that "/lib/udev/firmware" are not installed to.
-> >> >
-> >> > raul@phi04:.../tmp/deploy/images$ find
-> >> > /media/ed86e6a2-20c2-464e-a2f3-f28ff48983ef/lib/udev/ -name "*firmware*"
-> >> > raul@phi04:.../tmp/deploy/images$
-> >>
-> >> What is your udev version?
-> >>
-> >>
-> >> > But I can see theses files at my "tmp/sysroots/beaglebone"
-> >> >
-> >> > raul@phi04:.../tmp/sysroots/beaglebone$ find lib/firmware/ -name
-> >> "*8192*"
-> >> > lib/firmware/RTL8192E
-> >> > lib/firmware/rtlwifi/rtl8192sefw.bin
-> >> > lib/firmware/rtlwifi/rtl8192defw.bin
-> >> > lib/firmware/rtlwifi/rtl8192cfw.bin
-> >> > lib/firmware/rtlwifi/rtl8192cufw.bin
-> >> >
-> >> > raul@phi04:.../tmp/sysroots/beaglebone$ find lib/udev/ -name
-> >> "*firmware*"
-> >> > lib/udev/firmware
-> >> > lib/udev/rules.d/50-firmware.rules
-> >> >
-> >> > I tryed copy this files for the sdcard but doesnt work.
-> >> >
-> >> > Do you have any suggest?
-> >> >
-> >> > Thanks for all help.
-> >>
-> >
-> >
-> >
-> > --
-> > *Raul Rosetto Muñoz*
-> >
-> 
-> 
-> 
-> -- 
-> *Raul Rosetto Muñoz*
+-----Original Appointment-----
 
-> _______________________________________________
-> meta-ti mailing list
-> meta-ti@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-ti
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference details=20
+Conference name:=20
+Yocto Technical Team
+Conference date/start time:=20
+Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
+Participants:=20
+30
+Duration:=20
+60 minutes=20
+Participant passcode:=20
+76994298
+Dial-in number:=20
+1.972.995.7777=20
+US Toll Free number:=20
+1.877.561.6828=20
+BlackBerry users, click this link to join your conference as a participant:
+1.972.995.7777x76994298#
+=A0
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+Local and Global Access Numbers=20
+
+
+Country=20
+Dial-in number
+Australia:=20
+1800 636 843
+Czech Republic:=20
+242 430 350
+China (Beijing):=20
+From office dial 8-9957777 or 8784277=20
+Beijing Out of Office dial 5878 4277
+China (Shanghai):=20
+From office dial 8-9957777 or 3073322=20
+Shanghai Out of Office dial 2307 3322
+China (Shenzen):=20
+From office dial 8-9957777 or 6007877=20
+Shenzen Out of Office dial 2600 7877
+China (Other Cities):=20
+From IP phone dial 8-9957777=20
+Other cities - Non IP phone dial 021-23073322
+Denmark:=20
+8060 1400
+Finland:=20
+09 41333477
+France:=20
+0497 275888
+Germany:=20
+08161 803232
+Holland:=20
+030 2417490
+India:=20
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+Israel:=20
+09 790 6715
+Italy:=20
+039 69061234 (039 is local city code not country code)
+Japan:=20
+From TI Campus use 8 995 7777=20
+Outside TI use 03 4331 3777
+Malaysia:=20
+From IP phone dial 2643799=20
+From Kuala Lumpur dial 4264 3799=20
+Outside Kuala Lumpur dial (03)4264 3799
+Norway:=20
+2 295 8744
+Philippines:=20
+From Baguio City use 4471177=20
+From Metro Manila area use 8702477
+Singapore:=20
+From IP phone dial 3894777=20
+Outside TI use 6389 4777
+South Korea:=20
+From IP phone dial 5606998=20
+From Seoul dial 5606998=20
+Outside Seoul dial (02)5606998
+Sweden:=20
+08 58755577
+Taiwan:=20
+From IP phone dial 1363=20
+From Taipei dial 2241 1363=20
+Outside Taipei dial (02)2241 1363
+Turkey:=20
+Landline Only dial 0811 288 0001=20
+then enter 877 633 1123=20
+UK:=20
+01604 663003
+US:=20
+972 995 7777 or 1877 561 6828
+
+Recurring conferences=20
+First scheduled conference:=20
+Tue Jun 26, 2012
+Recurrence frequency:=20
+Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:=20
+End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
 
 
