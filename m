@@ -1,35 +1,35 @@
 Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
+Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
 	(using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 62F0AE002AB
-	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 09:19:57 -0800 (PST)
-Received: by mail-ee0-f52.google.com with SMTP id b15so2509760eek.11
-	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 09:19:55 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 07BB9E002AB
+	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 09:21:43 -0800 (PST)
+Received: by mail-ee0-f42.google.com with SMTP id b47so2638004eek.29
+	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 09:21:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linuxfoundation.org; s=google;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
 	:subject:from:to:cc:content-type;
-	bh=z0ah8cnWYKGrGPhE5kBdhsR6Yz7+8BbP+RxzW9tBwU0=;
-	b=Tfsd25qA2IGjovtb64nCsbqnsZKudozP4L6LkJOw2uqQOs+i0ZeTuo2cqaG+TUDmx6
-	ySaaG87irLjHP33Dl8wUGFwUTuvzgNcLV9D4i+Lr+q8SxOIRhIaBa8/3xsexClnLNxRl
-	zKdfelgGBe779wkiV5iXp+itqGvVeOSxgcb5I=
+	bh=8yMOUUfkEbVjdgYnN1ynai2JaCk9o1LAnh5P/CpUaBw=;
+	b=LPC2kqCk9PrcIB4uh0ZjjJ7OYS3rJqrIjIWB6xN/8uY8dhJ8FWIMzC6aW1AKQC14eb
+	TCCsUBrZWovvCKkCmhiSk3IOFpkJuhtl4mEzH5g4pQGokr4MtBdVX/Aiw6bIydaYO8ry
+	O35ispr0W6QPEjhFwP7NaVd6fBhVOeqGxUkIo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
 	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=z0ah8cnWYKGrGPhE5kBdhsR6Yz7+8BbP+RxzW9tBwU0=;
-	b=Ffbn+I0u77MS8DBrm6YgllfraxlTMLtIYYRz1uc3r8irx40i6v5aDxy1c6reLmCd4G
-	w4MqISu+9U+tpAzPwTHOgnd2RLbuBOmyzNvULhFf41WgM2zQbv8BInsilMKTqKHmgCJY
-	gTXalNAkZkFBOpGjmSAajW76GnOKeL8MG81yK6r9zNFIBfdfd3FnrtrO+oeoZcpShSgB
-	y+te/QSU4DJtpLe8M1TzxjBNCyHrgStCWxQFqcRRYQk/WMvOuUyyVSiYdHOYAo7Fm4XB
-	94z7w/6ns0u3hO3PrZrEenqeCPKROxosvsfplEU2Pa9tI5FmfjFRx980d4sH7+D6GhV+
-	tJig==
+	bh=8yMOUUfkEbVjdgYnN1ynai2JaCk9o1LAnh5P/CpUaBw=;
+	b=L95XFy5wFhisi6CtSPghMJbMcaOLhoUj7KD2DrPGBKxC4+FABHOl0JEoqAlo7zM1JO
+	VnkZfhGD4S9p6D7N5nb0Du7qhcFeEbJ5djm0fw61dzaTHggGCiyPPgZOy0yTJgRO+NsM
+	GFny514LeONePb8XSShVGi62gITaOOGziRd/bc0SIzc8zy6W+JWN+h28z+j/iOw9+Bcq
+	wSPU3IRRllRAWMq+kyyqVtWaj4F+BqdjRm3+gCSZWSJg1PV88Zhz3RZ9kB8o7GAzGOBI
+	E891J0uOYWDaS0ZjKJ/cd4XCKtqXnAFQ/QbV8lnWsOaJIywEdnpmXUJm2sUYUnAQGI4K
+	JhZg==
 MIME-Version: 1.0
-X-Received: by 10.14.0.135 with SMTP id 7mr51556601eeb.5.1361899194827; Tue,
-	26 Feb 2013 09:19:54 -0800 (PST)
-Received: by 10.223.127.70 with HTTP; Tue, 26 Feb 2013 09:19:54 -0800 (PST)
-In-Reply-To: <CABTzgQ4gfaA+30UCG0ZfA2w1=en6QVf7_-mxR4Zmr33-dazo2w@mail.gmail.com>
+X-Received: by 10.14.183.67 with SMTP id p43mr51559849eem.10.1361899302395;
+	Tue, 26 Feb 2013 09:21:42 -0800 (PST)
+Received: by 10.223.127.70 with HTTP; Tue, 26 Feb 2013 09:21:42 -0800 (PST)
+In-Reply-To: <CABTzgQ41VHB5YmB2qicTS7YzL32gmj7TSzNLqmGc=zXFZEDeqQ@mail.gmail.com>
 References: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
 	<CA+gsK-r_Oq3DvdoC1aT5gErTkKXYJ+gewMZDouusE+4oHicdtQ@mail.gmail.com>
 	<CAFyqS9pgGgZcacwqxiHGM2WSSH8xZea-tRjBWcNwqCr=DDhWsw@mail.gmail.com>
@@ -40,12 +40,13 @@ References: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
 	<CABTzgQ54dEyDrbND5Kfy6M4mAGMoyU236V1dOZvW8oLVBWFyzg@mail.gmail.com>
 	<CA+gsK-rGDzbKJjpgV7-DRQm826ErVoWNp6RsOS8eqx4m-FNDAQ@mail.gmail.com>
 	<CABTzgQ4XWPOzDzM_dK6ja+3K1z=Z1M997UcWjxAZ_pkoRR6Xyg@mail.gmail.com>
-	<CABTzgQ4gfaA+30UCG0ZfA2w1=en6QVf7_-mxR4Zmr33-dazo2w@mail.gmail.com>
-Date: Tue, 26 Feb 2013 09:19:54 -0800
-Message-ID: <CA+gsK-oLm+=Wsvx8U1rU=KD9djrdFZS4n0=8axCm66tfGnFw5Q@mail.gmail.com>
+	<272E9DB8-D097-42EC-A40F-ACD81E5051AD@gmail.com>
+	<CABTzgQ41VHB5YmB2qicTS7YzL32gmj7TSzNLqmGc=zXFZEDeqQ@mail.gmail.com>
+Date: Tue, 26 Feb 2013 09:21:42 -0800
+Message-ID: <CA+gsK-ohTc6psxC-MaaaEaLBTa18OaQVxP4BhToBY3arWMQ46Q@mail.gmail.com>
 From: Rudolf Streif <rstreif@linuxfoundation.org>
 To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-X-Gm-Message-State: ALoCoQngU2Ki6559kZvtpf2rvGMZrc+CMdVPuIlb5Yx/m9xuOofoaJOnNWb6t9Vs+JaqSZtnNaCD
+X-Gm-Message-State: ALoCoQklrFCClQim/qdluC331CINIIK6T+uSsMT0JH2egM3LpXFQyoAc6LzH7+MRP39YaIOHrfJ3
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Updating uboot to v2013.01
 X-BeenThere: yocto@yoctoproject.org
@@ -59,39 +60,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Feb 2013 17:19:58 -0000
-Content-Type: multipart/alternative; boundary=047d7b6050deba8be004d6a3ddf5
+X-List-Received-Date: Tue, 26 Feb 2013 17:21:44 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a805e23dbe504d6a3e4d6
 
---047d7b6050deba8be004d6a3ddf5
+--047d7b3a805e23dbe504d6a3e4d6
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-As Hans said, you should not need to install any of these host packages
-since Yocto is for most part all self-contained. If you think that you need
-to install host packages then there may be something wrong with building a
-particular tool for the development host. That is typically done with
-BBCLASSEXTENDS =3D "native" or BBCLASSETENDS =3D "native native-sdk".
+Satya,
+
+So what exactly do you get when building the kernel? No image at all in
+tmp/deploy/images? What do the logs for the kernel recipes say?
 
 Rudi
 
 
-On Mon, Feb 25, 2013 at 7:56 AM, Satya Swaroop Damarla <
+On Mon, Feb 25, 2013 at 11:36 PM, Satya Swaroop Damarla <
 swaroop.damarla@gmail.com> wrote:
 
-> Another important package that has to be installed in  the "apt-get
-> install device-tree-compiler" package. This was adviced by the Thierry
-> Reding, wh wrote the uboot config for Tamonten board.. Rudolf, may I ask
-> you how did you find the SRCREV values for the uboot packages ... It woul=
-d
-> be great to know as there is not sufficient literature avilable to explai=
-n
-> this on the internet...
+> hey hans,
+>
+> I think you are right about the kernel device tree.. I think it should
+> come with the kernel but I have no idea why it works.. Only an expert
+> should say why it works.. I think my work is not complete. I can generate
+> the rootfs and the uboot.bin file but not the uImage... I have no idea...
+> Diid you complete generating the image for the board?
+>
+> Greets,
+> Satya
 >
 >
-> On Mon, Feb 25, 2013 at 3:58 PM, Satya Swaroop DAMARLA <swaroop@weisser.a=
-t
-> > wrote:
+> On Mon, Feb 25, 2013 at 5:05 PM, Hans Beck=E9rus <hans.beckerus@gmail.com=
+>wrote:
 >
+>>
+>>
+>> 25 feb 2013 kl. 15:58 skrev Satya Swaroop DAMARLA <swaroop@weisser.at>:
+>>
 >> Guys. I found the solution to this problem....
 >>
 >> I think if you already install uboot-tools or uboot-mkimage packes from
@@ -106,6 +111,12 @@ s
 >>
 >> Greetings & Regards,
 >> Satya
+>>
+>> Same comment here as for the device tree compiler. You should use the
+>> uboot tools/version as they come with the package. Not the one used by t=
+he
+>> host distro. To me this is not a proper solution.
+>>
 >>
 >>
 >> On Thu, Feb 21, 2013 at 5:28 PM, Rudolf Streif <
@@ -328,7 +339,24 @@ I
 >>> https://lists.yoctoproject.org/listinfo/yocto
 >>>
 >>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 >
 
 
@@ -346,50 +374,58 @@ PGP: RSA 2048/2048 D6E7D28B
 Linux Foundation Events Schedule:  events.linuxfoundation.org
 Linux Foundation Training Schedule: training.linuxfoundation.org
 
---047d7b6050deba8be004d6a3ddf5
+--047d7b3a805e23dbe504d6a3e4d6
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>As Hans said, you should not need to install any of t=
-hese host packages since Yocto is for most part all self-contained. If you =
-think that you need to install host packages then there may be something wr=
-ong with building a particular tool for the development host. That is typic=
-ally done with BBCLASSEXTENDS =3D &quot;native&quot; or BBCLASSETENDS =3D &=
-quot;native native-sdk&quot;.<br>
-<br></div>Rudi<br></div><div class=3D"gmail_extra"><br><br><div class=3D"gm=
-ail_quote">On Mon, Feb 25, 2013 at 7:56 AM, Satya Swaroop Damarla <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blank"=
->swaroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Another important package t=
-hat has to be installed in =A0the &quot;apt-get install device-tree-compile=
-r&quot; package. This was adviced by the Thierry Reding, wh wrote the uboot=
- config for Tamonten board.. Rudolf, may I ask you how did you find the SRC=
-REV values for the uboot packages ... It would be great to know as there is=
- not sufficient literature avilable to explain this on the internet...</div=
->
-<div class=3D"HOEnZb"><div class=3D"h5">
-<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon, Feb 2=
-5, 2013 at 3:58 PM, Satya Swaroop DAMARLA <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:swaroop@weisser.at" target=3D"_blank">swaroop@weisser.at</a>&gt;</sp=
-an> wrote:<br>
+<div dir=3D"ltr"><div><div>Satya,<br><br></div>So what exactly do you get w=
+hen building the kernel? No image at all in tmp/deploy/images? What do the =
+logs for the kernel recipes say?<br><br></div>Rudi<br></div><div class=3D"g=
+mail_extra">
+<br><br><div class=3D"gmail_quote">On Mon, Feb 25, 2013 at 11:36 PM, Satya =
+Swaroop Damarla <span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop.damarla@gma=
+il.com" target=3D"_blank">swaroop.damarla@gmail.com</a>&gt;</span> wrote:<b=
+r><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
+1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr">hey hans,<div><br></div><div>I think you are right about t=
+he kernel device tree.. I think it should come with the kernel but I have n=
+o idea why it works.. Only an expert should say why it works.. I think my w=
+ork is not complete. I can generate the rootfs and the uboot.bin file but n=
+ot the uImage... I have no idea... Diid you complete generating the image f=
+or the board?</div>
+
+<div><br></div><div>Greets,</div><div>Satya</div></div><div class=3D"HOEnZb=
+"><div class=3D"h5"><div class=3D"gmail_extra"><br><br><div class=3D"gmail_=
+quote">On Mon, Feb 25, 2013 at 5:05 PM, Hans Beck=E9rus <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:hans.beckerus@gmail.com" target=3D"_blank">hans.becker=
+us@gmail.com</a>&gt;</span> wrote:<br>
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Guys. I found the solution =
-to this problem....<div><br></div><div>I think if you already install uboot=
--tools or uboot-mkimage packes from Ubuntu repository then it is used inste=
-ad of the one that is downloaded and we should uninstall the packages and t=
-hen rerun the build,,... Then IT WORKS... So, thank you for the time and en=
-egry... I assume this thread is closed and this is the solution and if this=
- doesnot work for some then please post it and we may discuss the situation=
- depending on the problem,</div>
+x #ccc solid;padding-left:1ex"><div dir=3D"auto"><div><br></div><div><br>25=
+ feb 2013 kl. 15:58 skrev Satya Swaroop DAMARLA &lt;<a href=3D"mailto:swaro=
+op@weisser.at" target=3D"_blank">swaroop@weisser.at</a>&gt;:<br>
+
+<br></div><div><blockquote type=3D"cite"><div><div dir=3D"ltr">Guys. I foun=
+d the solution to this problem....<div><br></div><div>I think if you alread=
+y install uboot-tools or uboot-mkimage packes from Ubuntu repository then i=
+t is used instead of the one that is downloaded and we should uninstall the=
+ packages and then rerun the build,,... Then IT WORKS... So, thank you for =
+the time and enegry... I assume this thread is closed and this is the solut=
+ion and if this doesnot work for some then please post it and we may discus=
+s the situation depending on the problem,</div>
 
 
 <div><br></div><div>Greetings &amp; Regards,</div><div>Satya</div></div><di=
-v><div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu=
-, Feb 21, 2013 at 5:28 PM, Rudolf Streif <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:rstreif@linuxfoundation.org" target=3D"_blank">rstreif@linuxfoundatio=
-n.org</a>&gt;</span> wrote:<br>
+v class=3D"gmail_extra"><br></div></div></blockquote></div>Same comment her=
+e as for the device tree compiler. You should use the uboot tools/version a=
+s they come with the package. Not the one used by the host distro. To me th=
+is is not a proper solution.<div>
+
+<div><div><br><div><div><br><blockquote type=3D"cite"><div><div class=3D"gm=
+ail_extra"><br><div class=3D"gmail_quote">On Thu, Feb 21, 2013 at 5:28 PM, =
+Rudolf Streif <span dir=3D"ltr">&lt;<a href=3D"mailto:rstreif@linuxfoundati=
+on.org" target=3D"_blank">rstreif@linuxfoundation.org</a>&gt;</span> wrote:=
+<br>
 
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
@@ -664,11 +700,32 @@ ect.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
 >https://lists.yoctoproject.org/listinfo/yocto</a><br>
 <br></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br>--=A0<br><f=
-ont face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font><di=
-v><font face=3D"arial, helvetica, sans-serif">Director of Embedded Solution=
-s</font></div>
+</div></blockquote><blockquote type=3D"cite"><div><span>___________________=
+____________________________</span><br><span>yocto mailing list</span><br><=
+span><a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a></span><br>
+
+<span><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_=
+blank">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></div></=
+blockquote></div></div></div></div></div></div><br>________________________=
+_______________________<br>
+
+
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+</div></div><br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><br>-- <br>--=A0<br><font face=
+=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font><div><font =
+face=3D"arial, helvetica, sans-serif">Director of Embedded Solutions</font>=
+</div>
 <div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
 ></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
 iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
@@ -691,4 +748,4 @@ ont-family:arial,sans-serif;font-size:13px"><br>
 </span></font></div>
 </div>
 
---047d7b6050deba8be004d6a3ddf5--
+--047d7b3a805e23dbe504d6a3e4d6--
