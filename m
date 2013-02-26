@@ -1,30 +1,25 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 5DBD7E004AB
-	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 05:49:27 -0800 (PST)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.79])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id F1571401B3;
-	Tue, 26 Feb 2013 14:07:35 +0100 (CET)
-From: Timo Mueller <mail@timomueller.eu>
-To: yocto@yoctoproject.org
-Date: Tue, 26 Feb 2013 14:49:22 +0100
-Message-Id: <86f268402f54102ad2d1c0c485fffebd938d4687.1361867924.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <cf432b8aa5a8e376447eff09990b1ce364aa48d8.1361867924.git.timo.mueller@bmw-carit.de>
-References: <cover.1361867924.git.timo.mueller@bmw-carit.de>
-	<25b0cc70b24171a329c3a29139970bfacec9e080.1361867924.git.timo.mueller@bmw-carit.de>
-	<c6a14985367e7e7d057250b89bd07552302e03af.1361867924.git.timo.mueller@bmw-carit.de>
-	<38b600dfa83b4468462690eb67675ee05c8d0c7a.1361867924.git.timo.mueller@bmw-carit.de>
-	<cf432b8aa5a8e376447eff09990b1ce364aa48d8.1361867924.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1361867924.git.timo.mueller@bmw-carit.de>
-References: <cover.1361867924.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 5/5] plugin/sdk.ide: Update projects on profile update
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D668E002AB
+	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 08:39:17 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 46A06F811FA; Tue, 26 Feb 2013 09:39:17 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id D5BCEF81199;
+	Tue, 26 Feb 2013 09:39:16 -0700 (MST)
+Message-ID: <512CE547.10600@mlbassoc.com>
+Date: Tue, 26 Feb 2013 09:39:35 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: X video extensions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,105 +31,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Feb 2013 13:49:27 -0000
+X-List-Received-Date: Tue, 26 Feb 2013 16:39:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+How can I enable X video extensions in my X server?
+I'm using the default server: xserver-xorg/2_1.13.1-r8
 
-If a cross development profile is changed that is used by projects,
-the user will be warned that these projects will also be changed. If
-the user accepts the affected projects are updated and are marked
-"dirty". Next time the projects are built a reconfigure will also be
-triggered.
-
-Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
----
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |  2 ++
- .../ide/preferences/YoctoSDKPreferencePage.java    | 32 +++++++++++++++++-----
- 2 files changed, 27 insertions(+), 7 deletions(-)
-
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-index 0323d1c..e5748f7 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-@@ -61,6 +61,8 @@ Preferences.Profile.Rename.Dialog.Message = Please input a new profile name.
- Preferences.Profile.Remove.Title = Remove
- Preferences.Profile.Remove.Dialog.Title = Remove cross development profile
- Preferences.Profile.Remove.Dialog.Message = Do you really want to the remove the cross development profile "{0}"?\nProjects using this cross development profile will be reconfigured to use the standard profile.
-+Preferences.Profile.Update.Dialog.Title = Update cross development profile
-+Preferences.Profile.Update.Dialog.Message = Do you really want to the update the cross development profile "{0}"?\nProjects using this cross development profile will be reconfigured.
- Preferences.Profile.Standard.Modification.Title = Modify standard cross development profile
- Preferences.Profile.Standard.Modification.Message = Standard cross development profile cannot be removed or renamed.
- 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-index b5963cf..4d57b45 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
-@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.CoreException;
- import org.eclipse.jface.dialogs.Dialog;
- import org.eclipse.jface.dialogs.IDialogConstants;
- import org.eclipse.jface.dialogs.InputDialog;
-+import org.eclipse.jface.dialogs.MessageDialog;
- import org.eclipse.jface.preference.IPreferenceStore;
- import org.eclipse.jface.preference.PreferencePage;
- import org.eclipse.swt.SWT;
-@@ -40,6 +41,8 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 
- 	private static final String NEW_DIALOG_TITLE = "Preferences.Profile.New.Dialog.Title";
- 	private static final String NEW_DIALOG_MESSAGE = "Preferences.Profile.New.Dialog.Message";
-+	private static final String UPDATE_DIALOG_TITLE = "Preferences.Profile.Update.Dialog.Title";
-+	private static final String UPDATE_DIALOG_MESSAGE = "Preferences.Profile.Update.Dialog.Message";
- 
- 	private YoctoProfileSetting yoctoProfileSetting;
- 	private YoctoUISetting yoctoUISetting;
-@@ -93,15 +96,32 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 	 */
- 	public boolean performOk() {
- 		try {
--			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, true);
-+			yoctoUISetting.validateInput(SDKCheckRequestFrom.Preferences, false);
-+
-+			YoctoUIElement savedElement = YoctoSDKUtils.getElemFromStore(getPreferenceStore());
-+			YoctoUIElement modifiedElement = yoctoUISetting.getCurrentInput();
- 
--			YoctoUIElement elem = yoctoUISetting.getCurrentInput();
--			YoctoSDKUtils.saveElemToStore(elem, getPreferenceStore());
-+			if (savedElement.equals(modifiedElement)) {
-+				return true;
-+			}
- 
- 			YoctoProfileElement profileElement = yoctoProfileSetting.getCurrentInput();
-+			HashSet<IProject> yoctoProjects = getAffectedProjects(profileElement.getSelectedProfile());
-+
-+			if (!yoctoProjects.isEmpty()) {
-+				boolean deleteConfirmed =
-+						MessageDialog.openConfirm(null, YoctoSDKMessages.getString(UPDATE_DIALOG_TITLE),
-+								YoctoSDKMessages.getFormattedString(UPDATE_DIALOG_MESSAGE, profileElement.getSelectedProfile()));
-+
-+				if (!deleteConfirmed) {
-+					return false;
-+				}
-+			}
-+
-+			YoctoSDKUtils.saveElemToStore(modifiedElement, getPreferenceStore());
- 			YoctoSDKUtils.saveProfilesToDefaultStore(profileElement);
- 
--			updateAffectedProjects(profileElement.getSelectedProfile(), elem);
-+			updateProjects(yoctoProjects, modifiedElement);
- 
- 			return super.performOk();
- 		} catch (YoctoGeneralException e) {
-@@ -194,9 +214,7 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
- 		}
- 	}
- 
--	private void updateAffectedProjects(String usedProfile, YoctoUIElement elem) {
--		HashSet<IProject> yoctoProjects = getAffectedProjects(usedProfile);
--
-+	private void updateProjects(HashSet<IProject> yoctoProjects, YoctoUIElement elem) {
- 		for (IProject project : yoctoProjects)
- 		{
- 			YoctoSDKUtils.saveElemToProjectEnv(elem, project);
 -- 
-1.7.11.7
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
