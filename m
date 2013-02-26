@@ -1,29 +1,37 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EA5DE0027C
-	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 12:30:55 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id B1209F811E1; Tue, 26 Feb 2013 13:30:54 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 8B2F6F81188;
-	Tue, 26 Feb 2013 13:30:53 -0700 (MST)
-Message-ID: <512D1B8F.7060705@mlbassoc.com>
-Date: Tue, 26 Feb 2013 13:31:11 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
+	[209.85.128.178]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 2F505E0027C
+	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 12:47:08 -0800 (PST)
+Received: by mail-ve0-f178.google.com with SMTP id db10so4290015veb.37
+	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 12:47:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=pLJBITr47Wb/Og0cokXsRqp3y5SeYbeswsW+oM3x1zo=;
+	b=h8+ETK/0xKiMeW5d3btMzUbLvGKT8WBOe4Ij8OnGaVB23MZGRkEU1mplL07Bd2LVv3
+	yYZKoWddO5TRQVgr4ro7DZH6xSX6jOGc9PQfnjwcJYrxfj1QUf+aI2Pn3wYgYocv1FMA
+	vs/Jq7n98WtQpQYs6TnKJv+D5ovI01MQwAylzOjha8GP25L+Aky7Bg6TC18DCbU3D4cr
+	CeNV6xKILxWhNnrDuxOq/aS83xNA8d7FaCQBAnc+F1zaHcg4DMXQzE/1GumjQtnlYSip
+	tlZQiiFp8r8ewuzLraDevWuK9UB8yvtWZFuk4wwAaGFnz/7b9RO97N9ds+6rrEdV7nc4
+	2VoQ==
+X-Received: by 10.52.89.83 with SMTP id bm19mr10748312vdb.123.1361911627066;
+	Tue, 26 Feb 2013 12:47:07 -0800 (PST)
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
+Received: by 10.58.77.105 with HTTP; Tue, 26 Feb 2013 12:46:42 -0800 (PST)
+In-Reply-To: <512D1B8F.7060705@mlbassoc.com>
 References: <512CE547.10600@mlbassoc.com>
 	<CAJTo0LZaoP5i=Zf2UnX2435DeDmgSO0Zb4FZ7PnzQ9v1257Hfw@mail.gmail.com>
 	<512CF9FC.9060303@mlbassoc.com>
 	<CAJTo0LadNQ1DEhKg6sHKt8M5-76xiijndMiDwY4E6Ratbw8OMA@mail.gmail.com>
-In-Reply-To: <CAJTo0LadNQ1DEhKg6sHKt8M5-76xiijndMiDwY4E6Ratbw8OMA@mail.gmail.com>
+	<512D1B8F.7060705@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 26 Feb 2013 20:46:42 +0000
+Message-ID: <CAJTo0LZdy+2WuOGbLDra-zLm8kTpAzWuUucGfcr89wpj0y502A@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQmIgTtomNuYR2mWq66fUNe2nevzl5Jn2JR3Mzo/u02afqJihea/8dVfqqSBtmM0Phox4kIa
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: X video extensions
 X-BeenThere: yocto@yoctoproject.org
@@ -37,27 +45,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Feb 2013 20:30:55 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Feb 2013 20:47:08 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2013-02-26 11:30, Burton, Ross wrote:
-> On 26 February 2013 18:07, Gary Thomas <gary@mlbassoc.com> wrote:
->> Here's what I get from xvinfo:
->>    X-Video Extension version 2.2
->>    screen #0
->>    no adaptors present
->>
->> So I guess the extension is there but my display doesn't support it?
->> How would I go about making that work?
->
-> XVideo has to be implemented by the drivers, what X video driver are you using?
+On 26 February 2013 20:31, Gary Thomas <gary@mlbassoc.com> wrote:
+> xf86-video-omap on OMAP4430
 
-xf86-video-omap on OMAP4430
+Honestly, no idea.  If no-one else knows, speak to TI to see if you
+need specific runtime options/hardware support/something else.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
