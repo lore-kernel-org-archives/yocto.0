@@ -1,33 +1,34 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59514E00348
-	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 16:37:41 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 26 Feb 2013 16:37:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,744,1355126400"; d="scan'208";a="296326473"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Feb 2013 16:37:40 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.110]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.248]) with mapi id
-	14.01.0355.002; Tue, 26 Feb 2013 16:37:40 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/5][eclipse-poky] Rename target profiles and
-	handle	global changes
-Thread-Index: AQHOFCg43xWHLu476USMLhuPHxpxE5iM3OOg
-Date: Wed, 27 Feb 2013 00:37:39 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6F3FAB91@ORSMSX101.amr.corp.intel.com>
-References: <cover.1361867924.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1361867924.git.timo.mueller@bmw-carit.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-qe0-f49.google.com (mail-qe0-f49.google.com
+	[209.85.128.49]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 37C5FE00550
+	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 23:26:09 -0800 (PST)
+Received: by mail-qe0-f49.google.com with SMTP id 1so192354qec.8
+	for <yocto@yoctoproject.org>; Tue, 26 Feb 2013 23:26:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to:cc
+	:content-type:x-gm-message-state;
+	bh=JqmxG6uB2PH7iXYUITKk/jpxMcwaM+tSgdXPzQG3BxM=;
+	b=NJmspAM9JEE9Zx5s9n4Xg4SAx8GEFrvL89tt24dUs2wsfEYLR1tNgOl8LnLLFSY9gb
+	TWkpfgE67EnscgR6Xb3ra4foJSmkw9yuNq7AORQa6QUlNHay+2cCjqv83vEUFvQvftTC
+	C5tCuTrfB5ERN6w10ibhBhH5XbYYdaV570PNQ8jHVPAQQ+meXC+0IYz14lhebASdZrf2
+	EZh0ZQBDMafgItBIH3+vCPwLNiNB8wCBWrqWB9iwL7z34tyOYjTRV92zraakprEJpCJv
+	haAs2SFTQlWdIF1CIShDl2HrfvCJIf8zuKVKd3D5JhrCEifdbUS241bOAvQTjbm44T0q
+	F2cw==
 MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [PATCH 0/5][eclipse-poky] Rename target profiles and handle	global changes
+X-Received: by 10.224.213.134 with SMTP id gw6mr6415504qab.72.1361949968176;
+	Tue, 26 Feb 2013 23:26:08 -0800 (PST)
+Received: by 10.49.71.163 with HTTP; Tue, 26 Feb 2013 23:26:08 -0800 (PST)
+Date: Tue, 26 Feb 2013 23:26:08 -0800
+Message-ID: <CAPhnLPAEFU97iT06eoDy=OkyXAtE_o2wp3EX7bY_Z_7z=zg9VQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQlWhdrsYjNGe8wxgmutdjN27t00NFfzQHyWebzCuYysSq6hF4Q9xxxHOEFWu8h4KY86BRKG
+Cc: McClintock Matthew-B29882 <B29882@freescale.com>,
+	Otavio Salvador <otavio@ossystems.com.br>
+Subject: 1.3.1 rc1 available for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,63 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2013 00:37:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 27 Feb 2013 07:26:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Merged to eclipse-poky master.
+A release candidate for 1.3.1 is available for testing at:
 
-Thanks,
-Jessica
+http://autobuilder.yoctoproject.org/pub/nightly/20130226-2
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Timo Mueller
-Sent: Tuesday, February 26, 2013 5:49 AM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [PATCH 0/5][eclipse-poky] Rename target profiles and handl=
-e global changes
+branch: danny
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+poky: 98292d1ef1cb44cf96f0a28fbca6439eda55ce1b
+meta-qt3: c86fb1727ae09526c442ec29fffde3f010aa70eb
+eclipse-plugin: cb8a0eff776d2cbd1b5f596a94dce825860574ab
+meta-intel: d38b102cb9f3c269391d026d2022f10a6e1b1f11
 
-Hi,
 
-this implements two of Jessica's comments regarding the target profiles tha=
-t have been introduced recently.
+Known Issues:
+--------------------
+- meta-fsl-arm targets initially failed due to a missing BBMASK. These
+are currently regenerating. Once regeneration is complete we will
+deploy as well as regenerate the adt pkg index.
 
-01..02: Small cleanup work
-03:     Changes the name of target profiles to cross development
-        profiles
-04..05: If a global profile is updated this will also update affected
-        projects. Also a warning is shown to the user.
 
-Best regards,
-Timo
-
-Timo Mueller (5):
-  Added eclipse bin folders to gitignore
-  plugins/sdk.ide: Remove exception that is never thrown
-  plugin/sdk.ide: Change name of target profiles to cross development
-    profiles
-  plugin/sdk.ide: Added methods for comparing UIElements
-  plugin/sdk.ide: Update projects on profile update
-
- .gitignore                                         |  1 +
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  | 16 +++---
- .../src/org/yocto/sdk/ide/YoctoUIElement.java      | 58 ++++++++++++++++++=
-++++
- .../src/org/yocto/sdk/ide/YoctoUISetting.java      |  4 +-
- .../ide/preferences/YoctoSDKPreferencePage.java    | 32 +++++++++---
- 5 files changed, 95 insertions(+), 16 deletions(-)  create mode 100644 .gi=
-tignore
-
---
-1.7.11.7
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
