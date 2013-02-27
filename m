@@ -1,33 +1,32 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7229CE006F6
-	for <yocto@yoctoproject.org>; Wed, 27 Feb 2013 14:04:30 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 27 Feb 2013 14:04:29 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7654E006F6
+	for <yocto@yoctoproject.org>; Wed, 27 Feb 2013 15:03:30 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 27 Feb 2013 15:03:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,750,1355126400"; d="scan'208";a="207053759"
+X-IronPort-AV: E=Sophos;i="4.84,751,1355126400"; 
+	d="scan'208,217";a="291516268"
 Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by AZSMGA002.ch.intel.com with ESMTP; 27 Feb 2013 14:04:29 -0800
+	by orsmga002.jf.intel.com with ESMTP; 27 Feb 2013 15:03:09 -0800
+Received: from orsmsx108.amr.corp.intel.com (10.22.225.40) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 27 Feb 2013 15:03:08 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.110]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.65]) with mapi id
-	14.01.0355.002; Wed, 27 Feb 2013 14:04:28 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/5][eclipse-poky] Refactor handling of SDK
-	check	errors
-Thread-Index: AQHOFPgFOLC1FHR9VEayblOUksnMHpiOPzpA
-Date: Wed, 27 Feb 2013 22:04:28 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6F3FB213@ORSMSX101.amr.corp.intel.com>
-References: <cover.1361954280.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1361954280.git.timo.mueller@bmw-carit.de>
+	ORSMSX108.amr.corp.intel.com ([169.254.9.196]) with mapi id
+	14.01.0355.002; Wed, 27 Feb 2013 15:03:08 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project 1.4 M4 release readiness discussion
+Thread-Index: Ac4VPpt3HgmQMrpQSDCz1kiyNGa+QgAAAAAw
+Date: Wed, 27 Feb 2013 23:03:08 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70EEFC70@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [PATCH 0/5][eclipse-poky] Refactor handling of SDK check	errors
+Subject: Yocto Project 1.4 M4 release readiness discussion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,102 +38,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2013 22:04:30 -0000
+X-List-Received-Date: Wed, 27 Feb 2013 23:03:30 -0000
+X-Groupsio-MsgNum: 12273
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A70EEFC70ORSMSX101amrcor_"
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70EEFC70ORSMSX101amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Timo,
+Friday, March 01, 2013, 08:00 AM US Pacific Time
+916-356-2663, 8-356-2663, Bridge: 1, Passcode: 3177908
+Speed dialer: inteldialer://1,3177908 | Learn more<http://it.intel.com/prod=
+ucts/handhelds/speeddial.htm>
 
-Thanks for initiating the cleanup in this area that I agree definitely need=
- some work.  There're couple issues I'm seeing with your patch set that pro=
-bably need some refinements:
 
-1. After seeing the error message, if I go into the field correct the error=
-, I have to explicit click on "Apply" to make it revalidate, probably we sh=
-ould track the fields change and do automatic re-validation
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70EEFC70ORSMSX101amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-2. For a scenario that I have 2 toolchains (for different arch, e.g. arm an=
-d x86) installed under same directory, which means there're 2 environment s=
-etup scripts under the same directory.  In this case, the Target Architectu=
-re drop down list will contain 2 entries for the arches.  In this case, I'm=
- getting an error message for missing environment script file which is not =
-true.  By looking at the code, the logic basically checking the elem's targ=
-et architecture setting, if there's none, report missing environment script=
-.  I think for this case, we do need to check the size of the target arch o=
-ption list to see whether it's empty or not.
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;">
+<div><font color=3D"#444444"><b>Friday, March 01, 2013, 08:00 AM US Pacific=
+ Time <br>
 
-3. For the case of Poky.Env.Script.Nonexist, there's Poky.Env.ScriptNoexist=
-.Advise which is more meaningful to user what to do if running into the err=
-or.  But I don't see that Advice is posted and by looking at code, it seems=
- it's not being used as well?
+</b>916-356-2663, 8-356-2663, Bridge: 1, Passcode: 3177908<br>
 
-Thanks,
-Jessica
+Speed dialer: inteldialer://1,3177908 | <a href=3D"http://it.intel.com/prod=
+ucts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font>=
+</a></font></div>
+<div><font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">&nbs=
+p;</span></font></div>
+</span></font>
+</body>
+</html>
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Timo Mueller
-Sent: Wednesday, February 27, 2013 6:37 AM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [PATCH 0/5][eclipse-poky] Refactor handling of SDK check e=
-rrors
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70EEFC70ORSMSX101amrcor_
+Content-Type: text/calendar; charset="utf-8"; method=REQUEST
+Content-Transfer-Encoding: base64
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
+ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
+IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
+VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
+TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
+R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
+VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
+PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
+Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
+b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
+VElPTjtMQU5HVUFHRT1lbi1VUzpGcmlkYXlcLCBNYXJjaCAwMVwsIDIwMTNcLCAwODowMCBBTSBV
+UyBQYWNpZmljIFQNCiBpbWVcbjkxNi0zNTYtMjY2M1wsIDgtMzU2LTI2NjNcLCBCcmlkZ2U6IDFc
+LCBQYXNzY29kZTogMzE3NzkwOFxuU3BlZWQgZGlhbA0KIGVyOiBpbnRlbGRpYWxlcjovLzFcLDMx
+Nzc5MDggfCBMZWFybiBtb3JlPGh0dHA6Ly9pdC5pbnRlbC5jb20vcHJvZHVjdHMvaGFuDQogZGhl
+bGRzL3NwZWVkZGlhbC5odG0+XG5cbg0KU1VNTUFSWTtMQU5HVUFHRT1lbi1VUzpZb2N0byBQcm9q
+ZWN0IDEuNCBNNCByZWxlYXNlIHJlYWRpbmVzcyBkaXNjdXNzaW9uDQpEVFNUQVJUO1RaSUQ9UGFj
+aWZpYyBTdGFuZGFyZCBUaW1lOjIwMTMwMzAxVDA4MDAwMA0KRFRFTkQ7VFpJRD1QYWNpZmljIFN0
+YW5kYXJkIFRpbWU6MjAxMzAzMDFUMDgzMDAwDQpVSUQ6MDQwMDAwMDA4MjAwRTAwMDc0QzVCNzEw
+MUE4MkUwMDgwMDAwMDAwMDgwQ0I1NThERkIxNENFMDEwMDAwMDAwMDAwMDAwMDANCiAwMTAwMDAw
+MDA5RDBGNzQ5MzFFNzE3NzQ5QUJCNzkyRTdEQTFEQURGQQ0KQ0xBU1M6UFVCTElDDQpQUklPUklU
+WTo1DQpEVFNUQU1QOjIwMTMwMjI3VDIzMDMwOFoNClRSQU5TUDpPUEFRVUUNClNUQVRVUzpDT05G
+SVJNRUQNClNFUVVFTkNFOjANCkxPQ0FUSU9OO0xBTkdVQUdFPWVuLVVTOkJyaWRnZSBJbmZvIEVu
+Y2xvc2VkDQpYLU1JQ1JPU09GVC1DRE8tQVBQVC1TRVFVRU5DRTowDQpYLU1JQ1JPU09GVC1DRE8t
+T1dORVJBUFBUSUQ6LTk5MDE3MzIxOQ0KWC1NSUNST1NPRlQtQ0RPLUJVU1lTVEFUVVM6VEVOVEFU
+SVZFDQpYLU1JQ1JPU09GVC1DRE8tSU5URU5ERURTVEFUVVM6QlVTWQ0KWC1NSUNST1NPRlQtQ0RP
+LUFMTERBWUVWRU5UOkZBTFNFDQpYLU1JQ1JPU09GVC1DRE8tSU1QT1JUQU5DRToxDQpYLU1JQ1JP
+U09GVC1DRE8tSU5TVFRZUEU6MA0KWC1NSUNST1NPRlQtRElTQUxMT1ctQ09VTlRFUjpGQUxTRQ0K
+QkVHSU46VkFMQVJNDQpBQ1RJT046RElTUExBWQ0KREVTQ1JJUFRJT046UkVNSU5ERVINClRSSUdH
+RVI7UkVMQVRFRD1TVEFSVDotUFQxNU0NCkVORDpWQUxBUk0NCkVORDpWRVZFTlQNCkVORDpWQ0FM
+RU5EQVINCg==
 
-Hi,
-
-I tried to display the messages resulting from validating the YoctoUISettin=
-gs in the message area of the properties/preference pages instead of showin=
-g a dialog. This led to some refactoring of the validation functionality an=
-d also the messages.
-
-If for example the user entered a SDK toolchain directory that doesn't exis=
-t in the global preferences a dialog will show up showing the error and tel=
-ling him how he can do "IDE-wide settings". As he is currently trying to do=
- "IDE-wide settings" this advice is not really necessary and the dialog can=
- be really annoying.
-
-I split up the messages into a one line error message and an advice. This m=
-essage can be shown in the page's message area instead of opening a dialog =
-with every configuration error. The advice can still be used when we want t=
-o show a dialog to help the user, e.g. when creating a new project.
-
-On a side note I reactivated the YoctoSDKChecker class and moved all the va=
-lidation code from the utils, getting rid of some duplicated and inconsiste=
-nt code.
-
-Best regards,
-Timo
-
-PS: This patch set is based on "plugins/sdk.ide: Remove profile edit button=
-s from property page"
-
-Timo Mueller (5):
-  plugins/sdk.ide: Move SDK check functionality to separate class
-  plugins/sdk.ide: Refactored the construction of mesages with
-    SDKCheckResults
-  plugins/sdk.ide: Show SDK check errors in message area
-  plugins/sdk.ide: Removed validation from setCurrentInput
-  plugins/sdk.ide: Use standard error dialog to show SDK check errors
-
- .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     | 372 +++++++++++------=
-----
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |  42 ++-
- .../org/yocto/sdk/ide/YoctoSDKProjectNature.java   |   9 +-
- .../src/org/yocto/sdk/ide/YoctoSDKUtils.java       | 255 --------------
- .../src/org/yocto/sdk/ide/YoctoUISetting.java      |  47 +--
- .../ide/preferences/YoctoSDKPreferencePage.java    |  84 +++--
- .../preferences/YoctoSDKProjectPropertyPage.java   |  87 +++--
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |  18 +-
- 8 files changed, 344 insertions(+), 570 deletions(-)
-
---
-1.7.11.7
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70EEFC70ORSMSX101amrcor_--
