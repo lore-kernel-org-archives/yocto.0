@@ -1,56 +1,43 @@
 Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ee0-f50.google.com (mail-ee0-f50.google.com [74.125.83.50])
+Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
 	(using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 515AAE002AB
-	for <yocto@yoctoproject.org>; Thu, 28 Feb 2013 10:13:18 -0800 (PST)
-Received: by mail-ee0-f50.google.com with SMTP id e51so1774881eek.37
-	for <yocto@yoctoproject.org>; Thu, 28 Feb 2013 10:13:16 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 4F251E002AB
+	for <yocto@yoctoproject.org>; Thu, 28 Feb 2013 11:17:17 -0800 (PST)
+Received: by mail-ee0-f42.google.com with SMTP id b47so1836018eek.29
+	for <yocto@yoctoproject.org>; Thu, 28 Feb 2013 11:17:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linuxfoundation.org; s=google;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
 	:subject:from:to:cc:content-type;
-	bh=85BgrTYkm3Ky+/wuXLmhqw0wrBp7RotUmzcpZMWCZs0=;
-	b=aRLaXx7fUxhXTIVdnrybyw5tCmTwMUwjXKsw4gseGj8qSCettf/DoqZhH1MKdUDfD8
-	k45VHRbXU8onV9NR5I3d43c6TZjv1EPpILTnh0ClsAJdvnRa6O6q2JwIvaOlexq8HUvd
-	NuVdARQmQl15Pf9uCqyWE5xi9Mz6C2+3lCoMA=
+	bh=zZqSak44oHqYrEgrFk9jXY/4QkbgD1I2qYQnio5G2zU=;
+	b=O5bp1XuVPb0u1vYP9wSZNW6GNGkfbVu9eEOU6swhnJD7As4IevD06gyAvcLzywzesr
+	08w+RminbIPe0n6GSLRsvZxSFhq6NXi1F8G13xd2JrmWnH1Pyxa8c1Z6ORVQSigC7mjy
+	HZ3IllkT9efsRQpIk2KhMB8At2Bn29QQhU25A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
 	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=85BgrTYkm3Ky+/wuXLmhqw0wrBp7RotUmzcpZMWCZs0=;
-	b=nGrZGpfzw91eQA8kXQvSn83dtxrJbieWQ8tuxz0ypjI0G0cAaC0124/uqP7NxF6Cg0
-	3QR80Bcf+y9EXt/YhjBiwUsVIbYJXeYyTrSQTwrRnZ7Zmp3jkMm6UnoWV1uqGLRXdXmU
-	J6vYN7ERzBazJn8eMlbqM3H1o7oe5ov0hRJEFhcNjBNzhHR8D0G8KZg2juD5CA1HqdlO
-	B9q1OHV6Jfj3Rp3ZoP7hYeuY8Y5k69/shee8AGaN/icLgOen2699uyK6JItPXmRdRmwD
-	SkFHlcZHvKI27ZR/BfJvAbTcFanqa9X/YwnVqmwYMzgEBSiUdUn3a7iJvY751UwReJZu
-	v8tA==
+	bh=zZqSak44oHqYrEgrFk9jXY/4QkbgD1I2qYQnio5G2zU=;
+	b=JBmEp0d7EppGoSkultLvlaiPasiFmfER+ftG1K/IW5F+zTgHLlQUnUzHmNNcbjq6Kq
+	5OuD82KJpSzNJOhZ2x/m9c17mkm2xHFzpJaZKL/JELj7NJgaC7PZmbM9kcysjqbYh3O0
+	r1Tuj8vOpwFwg8M0yvU8qYsQZkMdIntiaC6fFFdI/ojleCkqnKYtC8lBj26VGQax93fx
+	VtPxrFRcpyzZtKPRRtVgPKABOpr3Kgw5XkkC+PtitR0dvO43XoGmHjHnWNGTvEFFjbeu
+	AMw3RaJs3BIHOjClIl5rkDbZQ0hLdMW4E9jQOfigs67xCj9zWr8fx3o9lRHM+UTYSmCu
+	LwVw==
 MIME-Version: 1.0
-X-Received: by 10.14.216.2 with SMTP id f2mr19126772eep.44.1362075196363; Thu,
-	28 Feb 2013 10:13:16 -0800 (PST)
-Received: by 10.223.43.200 with HTTP; Thu, 28 Feb 2013 10:13:16 -0800 (PST)
-In-Reply-To: <CABTzgQ7HBV++G29qqgf7_Eg+iRoVpndGuBy7HSk+5LfkwTF3CA@mail.gmail.com>
-References: <CABTzgQ6QXaw6YY1gF7FQrXaG8cD8P-zUMJvSEianzLz-FJJWJQ@mail.gmail.com>
-	<CA+gsK-r_Oq3DvdoC1aT5gErTkKXYJ+gewMZDouusE+4oHicdtQ@mail.gmail.com>
-	<CAFyqS9pgGgZcacwqxiHGM2WSSH8xZea-tRjBWcNwqCr=DDhWsw@mail.gmail.com>
-	<CABTzgQ5RL+Gu4T5my_NPxSJ+Qm8MeDuJPYoZgGQ9=nD0yPcqmw@mail.gmail.com>
-	<CAFyqS9q3q+Ep2z2Ygk4oN5pS13DHnV0abQ3BvzV3-mq=HqBrJw@mail.gmail.com>
-	<CABTzgQ6WrhzcQ4KKBG7Q3bMsgf8-uijzshHSv2FyCajHpiy-5Q@mail.gmail.com>
-	<CABTzgQ7tS7+_64urm7NRBmXN+KT8M7W+8QOareJxOtXwfWt0Og@mail.gmail.com>
-	<CABTzgQ54dEyDrbND5Kfy6M4mAGMoyU236V1dOZvW8oLVBWFyzg@mail.gmail.com>
-	<CA+gsK-rGDzbKJjpgV7-DRQm826ErVoWNp6RsOS8eqx4m-FNDAQ@mail.gmail.com>
-	<CABTzgQ4XWPOzDzM_dK6ja+3K1z=Z1M997UcWjxAZ_pkoRR6Xyg@mail.gmail.com>
-	<272E9DB8-D097-42EC-A40F-ACD81E5051AD@gmail.com>
-	<CABTzgQ41VHB5YmB2qicTS7YzL32gmj7TSzNLqmGc=zXFZEDeqQ@mail.gmail.com>
-	<CA+gsK-ohTc6psxC-MaaaEaLBTa18OaQVxP4BhToBY3arWMQ46Q@mail.gmail.com>
-	<CABTzgQ7HBV++G29qqgf7_Eg+iRoVpndGuBy7HSk+5LfkwTF3CA@mail.gmail.com>
-Date: Thu, 28 Feb 2013 10:13:16 -0800
-Message-ID: <CA+gsK-qBE9ObyMnOSav+LB6trP2e4DyafrQ6YDJ2sgd3C+ZGmA@mail.gmail.com>
+X-Received: by 10.14.173.196 with SMTP id v44mr19586555eel.29.1362079035525;
+	Thu, 28 Feb 2013 11:17:15 -0800 (PST)
+Received: by 10.223.43.200 with HTTP; Thu, 28 Feb 2013 11:17:15 -0800 (PST)
+In-Reply-To: <CABTzgQ4aGxsRgpFMBZf0t7KVfmBYihePSbkD_D8azAGdCpTgiA@mail.gmail.com>
+References: <CABTzgQ4aGxsRgpFMBZf0t7KVfmBYihePSbkD_D8azAGdCpTgiA@mail.gmail.com>
+Date: Thu, 28 Feb 2013 11:17:15 -0800
+Message-ID: <CA+gsK-osjB9NK4gdMBuJU98d3RZiZqJ6yZBh9jR21hJrkx3gkQ@mail.gmail.com>
 From: Rudolf Streif <rstreif@linuxfoundation.org>
 To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-X-Gm-Message-State: ALoCoQmsQcIcCIwHwBK/4rBnECg091u6yN1vJycuuhIuc/sqsqF89smcJQb41T7d0xqg2DL979VA
+X-Gm-Message-State: ALoCoQku7ZEAzfPh4epRFxqf/B14SrksWixjs1dFW0sQXO00YfbCo5i+o1IyKJUDODTM3dwdFHpf
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Updating uboot to v2013.01
+Subject: Re: uboot.bin and rootfs but not uImage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,396 +49,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Feb 2013 18:13:19 -0000
-Content-Type: multipart/alternative; boundary=e89a8f22c4db3cd5a204d6ccd84f
+X-List-Received-Date: Thu, 28 Feb 2013 19:17:17 -0000
+Content-Type: multipart/alternative; boundary=047d7b60436811c3f504d6cdbd05
 
---e89a8f22c4db3cd5a204d6ccd84f
+--047d7b60436811c3f504d6cdbd05
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-Hey Satya,
+Satya,
 
-Sorry for the delayed response.
+your machine configuration file looks ok as far as I can tell. Did you get
+an error message when building the kernel? Did you try to build just the
+kernel e.g. bitbake linux-yocto?
 
-Well, it should create the kernel image and wrap it for u-boot. At least
-that is my experience and what I just did during a YP class on the weekend
-for the BeagleBone.
-
-What is linux-dummy? Is that a kernel recipe that you created?
-
-I second what Khem said that you may be missing the BSP or have incorrect
-entries in your machine configuration file. That file ties machine-specific
-stuff such as kernel, bootloader etc. together.
-
-I am not sure about the device tree compiler. YP builds dtc as a native
-package. The only reason I can imagine is that it was not built when you
-are trying to build u-boot.
-
-The SRCREV tags for u-boot I got from git.denx.de:
-
-2013.01.01:
-http://git.denx.de/?p=3Du-boot.git;a=3Dtag;h=3D8512592e47cc968d2d6eb788acde=
-761ebc3acbf6
-
-2013.01:
-http://git.denx.de/?p=3Du-boot.git;a=3Dtag;h=3D35c192cf449860aec8766e20a51b=
-f2052a1dc968
-
-They are the git commit tags.
-
-Cheers,
-Rudi
+:rjs
 
 
-On Tue, Feb 26, 2013 at 11:44 PM, Satya Swaroop Damarla <
+On Mon, Feb 25, 2013 at 11:31 PM, Satya Swaroop Damarla <
 swaroop.damarla@gmail.com> wrote:
 
-> Hey Rudy,
+> Hello Guys... I think uImage is important but it is not being generated by
+> the yocto project. It only generated the rootfs and uboot.bin. Is there any
+> variable that has to be introduced in the machine.conf (in my case it is
+> skidata-tamonten.conf)....
 >
-> I think, it doesnot automatically take a kernel but we have to choose the
-> kernel and I chose it v3.2 but seems it doesnot support my board and so I
-> should take a kernel from the original and configure it to my need.... He=
-re
-> is the only error message I see about linux kernel
+> Here is the configuration file
 >
-> WARNING: linux-dummy: No generic license file exists for: GPL in any
-> provider
+> #@TYPE: Machine
+> #@NAME: skidata-tamonten machine
+> #@DESCRIPTION: Machine configuration for the Tamonten board
 >
-> my board is Avionic Tamonten Carrier, based on NVIDIA harmony board.
-> Suggestions are very much appreciated but I am also currently trying to
-> solve it.. I just downloaded a git kernel from the avionic site and can y=
-ou
-> please tell me how to configure it to so that the build system takes this
-> as kernel and build it
+> PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
+>
+> IMAGE_FEATURES += "package-management"
+> EXTRA_IMAGEDEPENDS += " u-boot"
+>
+> # Uncomment the following line to enable the hard floating point abi. Note
+> that
+> # this breaks some binary libraries and 3D (neither of which ship with
+> # meta-yocto). For maximum compatibility, leave this disabled.
+> DEFAULTTUNE ?= "cortexa9t"
+> include conf/machine/include/tune-cortexa9.inc
+>
+> IMAGE_FSTYPES += "tar.bz2 ext2"
+>
+> SERIAL_CONSOLE = "115200 ttyS0"
+>
+> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+> PREFERRED_VERSION_linux-yocto ?= "3.2%"
+>
+> KERNEL_IMAGETYPE = " uImage"
+>
+> PREFERRED_VERSION_u-boot ?= "v2013.01.01%"
+>
+> UBOOT_MACHINE = "tec_config"
+> UBOOT_ENTRYPOINT = "0x17000000"
+> UBOOT_LOADADDRESS = "0x17000000"
+>
+> MACHINE_FEATURES = "usbgadget usbhost vfat screen touchscreen keyboard"
+>
 >
 > Greets,
 > Satya
 >
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
-> On Tue, Feb 26, 2013 at 6:21 PM, Rudolf Streif <
-> rstreif@linuxfoundation.org> wrote:
->
->> Satya,
->>
->> So what exactly do you get when building the kernel? No image at all in
->> tmp/deploy/images? What do the logs for the kernel recipes say?
->>
->> Rudi
->>
->>
->> On Mon, Feb 25, 2013 at 11:36 PM, Satya Swaroop Damarla <
->> swaroop.damarla@gmail.com> wrote:
->>
->>> hey hans,
->>>
->>> I think you are right about the kernel device tree.. I think it should
->>> come with the kernel but I have no idea why it works.. Only an expert
->>> should say why it works.. I think my work is not complete. I can genera=
-te
->>> the rootfs and the uboot.bin file but not the uImage... I have no idea.=
-..
->>> Diid you complete generating the image for the board?
->>>
->>> Greets,
->>> Satya
->>>
->>>
->>> On Mon, Feb 25, 2013 at 5:05 PM, Hans Beck=E9rus <hans.beckerus@gmail.c=
-om>wrote:
->>>
->>>>
->>>>
->>>> 25 feb 2013 kl. 15:58 skrev Satya Swaroop DAMARLA <swaroop@weisser.at>=
-:
->>>>
->>>> Guys. I found the solution to this problem....
->>>>
->>>> I think if you already install uboot-tools or uboot-mkimage packes fro=
-m
->>>> Ubuntu repository then it is used instead of the one that is downloade=
-d and
->>>> we should uninstall the packages and then rerun the build,,... Then IT
->>>> WORKS... So, thank you for the time and enegry... I assume this thread=
- is
->>>> closed and this is the solution and if this doesnot work for some then
->>>> please post it and we may discuss the situation depending on the probl=
-em,
->>>>
->>>> Greetings & Regards,
->>>> Satya
->>>>
->>>> Same comment here as for the device tree compiler. You should use the
->>>> uboot tools/version as they come with the package. Not the one used by=
- the
->>>> host distro. To me this is not a proper solution.
->>>>
->>>>
->>>>
->>>> On Thu, Feb 21, 2013 at 5:28 PM, Rudolf Streif <
->>>> rstreif@linuxfoundation.org> wrote:
->>>>
->>>>> Satya,
->>>>>
->>>>> I will look into it later today. I am currently at the Linux
->>>>> Foundation's Embedded Linux Conference.
->>>>>
->>>>> Rudi
->>>>>
->>>>>
->>>>> On Thu, Feb 21, 2013 at 2:10 AM, Satya Swaroop DAMARLA <
->>>>> swaroop@weisser.at> wrote:
->>>>>
->>>>>> Hello Guys,
->>>>>>
->>>>>> I have not received any reply from you. If you can help me to figure
->>>>>> out what the errors mean when adding a new .bb or recipe file then I=
- can
->>>>>> learn the mistake and take care in the new recipes.... I request you=
-r time
->>>>>>
->>>>>>
->>>>>> On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop Damarla <
->>>>>> swaroop.damarla@gmail.com> wrote:
->>>>>>
->>>>>>> hey Guys... I get the following error... which I attached.. Its
->>>>>>> completely greek and latin to me.. Can you please help me..
->>>>>>>
->>>>>>>
->>>>>>> On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop DAMARLA <
->>>>>>> swaroop@weisser.at> wrote:
->>>>>>>
->>>>>>>> hey Guys... I get the following error... which I attached.. Its
->>>>>>>> completely greek and latin to me.. Can you please help me..
->>>>>>>>
->>>>>>>>
->>>>>>>> On Wed, Feb 20, 2013 at 6:46 PM, Hans Beck=E9rus <
->>>>>>>> hans.beckerus@gmail.com> wrote:
->>>>>>>>
->>>>>>>>> On Wed, Feb 20, 2013 at 6:12 PM, Satya Swaroop Damarla
->>>>>>>>> <swaroop.damarla@gmail.com> wrote:
->>>>>>>>> > Hey hans, this is what he meant,
->>>>>>>>> >
->>>>>>>>> > In the machine config file add the following
->>>>>>>>> >
->>>>>>>>> > PREFERRED_VERSION_u-boot ?=3D "v2013.01%"  or
->>>>>>>>> PREFERRED_VERSION_u-boot ?=3D
->>>>>>>>> > "v2013.01.01%"
->>>>>>>>> >
->>>>>>>>> > By the way did you already complete the first part... There is
->>>>>>>>> also other
->>>>>>>>> > file called "u-boot-fw-utils_2012.04.01.bb" ... I think we
->>>>>>>>> should do the
->>>>>>>>> > same...
->>>>>>>>> >
->>>>>>>>> > Hans bytheway,  are you also working on the same board or
->>>>>>>>> diffferent board
->>>>>>>>> > with same problem?
->>>>>>>>> >
->>>>>>>>>
->>>>>>>>> Different board, same core, similar problem ;)
->>>>>>>>> Now I get it. Thanks. But still question remains how in earth I
->>>>>>>>> managed to build the kernel if not also having copied/renamed the
->>>>>>>>> mkimage .bb?
->>>>>>>>> Is the PREFERRED_VERSION_u-boot used to determine what mkimage an=
-d
->>>>>>>>> fw
->>>>>>>>> utils it picks up?
->>>>>>>>> Then it might be that since I/we build u-boot as a separate
->>>>>>>>> package,
->>>>>>>>> but kernel lifts in the mkimage stuff, it works but the wrong
->>>>>>>>> package
->>>>>>>>> was used.
->>>>>>>>> In my case obviously compatible, but not recommended I guess.
->>>>>>>>> Also, I
->>>>>>>>> agree that the fw utils should probably be in sync similar to
->>>>>>>>> mkimage.
->>>>>>>>>
->>>>>>>>> Hans
->>>>>>>>>
->>>>>>>>> >
->>>>>>>>> >
->>>>>>>>> >
->>>>>>>>> >
->>>>>>>>> >
->>>>>>>>> > On Wed, Feb 20, 2013 at 6:01 PM, Hans Beck=E9rus <
->>>>>>>>> hans.beckerus@gmail.com>
->>>>>>>>> > wrote:
->>>>>>>>> >>
->>>>>>>>> >> On Wed, Feb 20, 2013 at 5:16 PM, Rudolf Streif
->>>>>>>>> >> <rstreif@linuxfoundation.org> wrote:
->>>>>>>>> >> > Satya,
->>>>>>>>> >> >
->>>>>>>>> >> > Simply look at the u-boot recipes in meta/recipes-bsp/u-boot
->>>>>>>>> such as
->>>>>>>>> >> > u-boot_2012.04.01.bb. You can simply copy it and name it
->>>>>>>>> >> > u-boot_2013.01.bb
->>>>>>>>> >> > and then modify SRCREV to the revision that corresponds to
->>>>>>>>> the tag
->>>>>>>>> >> > 2013.01
->>>>>>>>> >> > or 2013.01.01 in git.denx.de:
->>>>>>>>> >> >
->>>>>>>>> >> > for 2013.01: 3a9d879f6f64585b819af728b53be0a05037fe0d
->>>>>>>>> >> > for 2013.01.01: e8ae0fa5edd152b2b29c470b88429be4cdcd2c46
->>>>>>>>> >> >
->>>>>>>>> >> > Do the same for u-boot-mkimage and include the u-boot versio=
-n
->>>>>>>>> with your
->>>>>>>>> >> > bsp.
->>>>>>>>> >> >
->>>>>>>>> >> > Rudi
->>>>>>>>> >> >
->>>>>>>>> >> >
->>>>>>>>> >> Hi Rudi, sorry to chime in , but I have a similar problem but
->>>>>>>>> do not
->>>>>>>>> >> really get the last thing you said.
->>>>>>>>> >> What do you mean by including the u-boot version in the bsp?
->>>>>>>>> Also is
->>>>>>>>> >> it a must to also copy the mkimage .bb or will the system find=
- a
->>>>>>>>> >> suitable one automatically?
->>>>>>>>> >> The thing is that I only copied/edited the u-boot .bb but neve=
-r
->>>>>>>>> the
->>>>>>>>> >> mkimage. Still my kernel successfully builds the kernel uImage=
-!?
->>>>>>>>> >> Some magic that I have missed :)
->>>>>>>>> >>
->>>>>>>>> >> Hans
->>>>>>>>> >>
->>>>>>>>> >>
->>>>>>>>> >> > On Wed, Feb 20, 2013 at 5:17 AM, Satya Swaroop Damarla
->>>>>>>>> >> > <swaroop.damarla@gmail.com> wrote:
->>>>>>>>> >> >>
->>>>>>>>> >> >> Hi Guys,
->>>>>>>>> >> >>
->>>>>>>>> >> >> I need support for uboot on Tamonten board but the version
->>>>>>>>> on it is
->>>>>>>>> >> >> v2012.04 but I came to know that v2012.10 or v2013.01
->>>>>>>>> supports the
->>>>>>>>> >> >> Tamontenboard through some guys here..
->>>>>>>>> >> >>
->>>>>>>>> >> >> It would be great if you can tell me how can I accomplish
->>>>>>>>> v2013.01 or
->>>>>>>>> >> >> v2012.10 into the build system and make it available so tha=
-t
->>>>>>>>> I can
->>>>>>>>> >> >> compile
->>>>>>>>> >> >> the and get uImage
->>>>>>>>> >> >>
->>>>>>>>> >> >> (Tamonten board is a derivative of harmony board with some
->>>>>>>>> changes and
->>>>>>>>> >> >> has
->>>>>>>>> >> >> arm cortexa9 processor without neon extentions )
->>>>>>>>> >> >>
->>>>>>>>> >> >> I am kind of new to add new .bb files and help is really
->>>>>>>>> appreciated as
->>>>>>>>> >> >> I
->>>>>>>>> >> >> am not able to figure out how to add
->>>>>>>>> >> >>
->>>>>>>>> >> >> Greetings & Regards,
->>>>>>>>> >> >> Swaroop
->>>>>>>>> >> >>
->>>>>>>>> >> >> _______________________________________________
->>>>>>>>> >> >> yocto mailing list
->>>>>>>>> >> >> yocto@yoctoproject.org
->>>>>>>>> >> >> https://lists.yoctoproject.org/listinfo/yocto
->>>>>>>>> >> >>
->>>>>>>>> >> >
->>>>>>>>> >> >
->>>>>>>>> >> >
->>>>>>>>> >> > --
->>>>>>>>> >> > --
->>>>>>>>> >> > Rudolf J. Streif
->>>>>>>>> >> > Director of Embedded Solutions
->>>>>>>>> >> > The Linux Foundation
->>>>>>>>> >> >
->>>>>>>>> >> > rudolf.streif@linux.com
->>>>>>>>> >> > Phone: +1.619.631.5383
->>>>>>>>> >> > Skype: rudolfstreif
->>>>>>>>> >> > PGP: RSA 2048/2048 D6E7D28B
->>>>>>>>> >> >
->>>>>>>>> >> > Linux Foundation Events Schedule:  events.linuxfoundation.or=
-g
->>>>>>>>> >> > Linux Foundation Training Schedule:
->>>>>>>>> training.linuxfoundation.org
->>>>>>>>> >> >
->>>>>>>>> >> >
->>>>>>>>> >> > _______________________________________________
->>>>>>>>> >> > yocto mailing list
->>>>>>>>> >> > yocto@yoctoproject.org
->>>>>>>>> >> > https://lists.yoctoproject.org/listinfo/yocto
->>>>>>>>> >> >
->>>>>>>>> >
->>>>>>>>> >
->>>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>
->>>>>>
->>>>>
->>>>>
->>>>> --
->>>>> --
->>>>> *Rudolf J. Streif*
->>>>> Director of Embedded Solutions
->>>>> The Linux Foundation
->>>>>
->>>>> rudolf.streif@linux.com
->>>>> Phone: +1.619.631.5383
->>>>> Skype: rudolfstreif
->>>>> PGP: RSA 2048/2048 D6E7D28B
->>>>>
->>>>> Linux Foundation Events Schedule:  events.linuxfoundation.org
->>>>> Linux Foundation Training Schedule: training.linuxfoundation.org
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>
->>>>>
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>>
->>
->>
->> --
->> --
->> *Rudolf J. Streif*
->> Director of Embedded Solutions
->> The Linux Foundation
->>
->> rudolf.streif@linux.com
->> Phone: +1.619.631.5383
->> Skype: rudolfstreif
->> PGP: RSA 2048/2048 D6E7D28B
->>
->> Linux Foundation Events Schedule:  events.linuxfoundation.org
->> Linux Foundation Training Schedule: training.linuxfoundation.org
->>
->>
 >
 
 
---=20
---=20
+-- 
+-- 
 *Rudolf J. Streif*
 Director of Embedded Solutions
 The Linux Foundation
@@ -464,485 +133,66 @@ PGP: RSA 2048/2048 D6E7D28B
 Linux Foundation Events Schedule:  events.linuxfoundation.org
 Linux Foundation Training Schedule: training.linuxfoundation.org
 
---e89a8f22c4db3cd5a204d6ccd84f
+--047d7b60436811c3f504d6cdbd05
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hey Satya,<div><br></div><div>Sorry for the delayed respon=
-se.<br><div><br></div><div style>Well, it should create the kernel image an=
-d wrap it for u-boot. At least that is my experience and what I just did du=
-ring a YP class on the weekend for the BeagleBone.</div>
-<div style><br></div><div style>What is linux-dummy? Is that a kernel recip=
-e that you created?</div><div style><br></div><div style>I second what Khem=
- said that you may be missing the BSP or have incorrect entries in your mac=
-hine configuration file. That file ties machine-specific stuff such as kern=
-el, bootloader etc. together.</div>
-<div style><br></div><div style>I am not sure about the device tree compile=
-r. YP builds dtc as a native package. The only reason I can imagine is that=
- it was not built when you are trying to build u-boot.</div><div style>
-<br></div><div style>The SRCREV tags for u-boot I got from <a href=3D"http:=
-//git.denx.de">git.denx.de</a>:</div></div><div style><br></div><div style>=
-2013.01.01:=A0<a href=3D"http://git.denx.de/?p=3Du-boot.git;a=3Dtag;h=3D851=
-2592e47cc968d2d6eb788acde761ebc3acbf6">http://git.denx.de/?p=3Du-boot.git;a=
-=3Dtag;h=3D8512592e47cc968d2d6eb788acde761ebc3acbf6</a></div>
-<div style><br></div><div style>2013.01:=A0<a href=3D"http://git.denx.de/?p=
-=3Du-boot.git;a=3Dtag;h=3D35c192cf449860aec8766e20a51bf2052a1dc968">http://=
-git.denx.de/?p=3Du-boot.git;a=3Dtag;h=3D35c192cf449860aec8766e20a51bf2052a1=
-dc968</a></div>
-<div style><br></div><div style>They are the git commit tags.</div><div sty=
-le><br></div><div style>Cheers,</div><div style>Rudi</div></div><div class=
-=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tue, Feb 26, 2013 at=
- 11:44 PM, Satya Swaroop Damarla <span dir=3D"ltr">&lt;<a href=3D"mailto:sw=
-aroop.damarla@gmail.com" target=3D"_blank">swaroop.damarla@gmail.com</a>&gt=
-;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hey Rudy,<div><br></div><di=
-v>I think, it doesnot automatically take a kernel but we have to choose the=
- kernel and I chose it v3.2 but seems it doesnot support my board and so I =
-should take a kernel from the original and configure it to my need.... Here=
- is the only error message I see about linux kernel</div>
-
-<div><br></div><div><div>WARNING: linux-dummy: No generic license file exis=
-ts for: GPL in any provider</div><div><br></div><div>my board is Avionic Ta=
-monten Carrier, based on NVIDIA harmony board. Suggestions are very much ap=
-preciated but I am also currently trying to solve it.. I just downloaded a =
-git kernel from the avionic site and can you please tell me how to configur=
-e it to so that the build system takes this as kernel and build it</div>
-
-<div><br></div><div>Greets,</div><div>Satya</div></div></div><div class=3D"=
-HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><br><div class=3D"=
-gmail_quote">On Tue, Feb 26, 2013 at 6:21 PM, Rudolf Streif <span dir=3D"lt=
-r">&lt;<a href=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blank">rst=
-reif@linuxfoundation.org</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div>Satya,<br><br></d=
-iv>So what exactly do you get when building the kernel? No image at all in =
-tmp/deploy/images? What do the logs for the kernel recipes say?<br>
-
-<br></div>Rudi<br></div><div><div><div class=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">On Mon, Feb 25, 2013 at 11:36 PM, Satya =
+<div dir=3D"ltr">Satya,<div><br></div><div style>your machine configuration=
+ file looks ok as far as I can tell. Did you get an error message when buil=
+ding the kernel? Did you try to build just the kernel e.g. bitbake linux-yo=
+cto?</div>
+<div style><br></div><div style>:rjs</div></div><div class=3D"gmail_extra">=
+<br><br><div class=3D"gmail_quote">On Mon, Feb 25, 2013 at 11:31 PM, Satya =
 Swaroop Damarla <span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop.damarla@gma=
 il.com" target=3D"_blank">swaroop.damarla@gmail.com</a>&gt;</span> wrote:<b=
-r><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
-1px #ccc solid;padding-left:1ex">
-
-
-<div dir=3D"ltr">hey hans,<div><br></div><div>I think you are right about t=
-he kernel device tree.. I think it should come with the kernel but I have n=
-o idea why it works.. Only an expert should say why it works.. I think my w=
-ork is not complete. I can generate the rootfs and the uboot.bin file but n=
-ot the uImage... I have no idea... Diid you complete generating the image f=
-or the board?</div>
-
-
-
-<div><br></div><div>Greets,</div><div>Satya</div></div><div><div><div class=
-=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon, Feb 25, 2013 at=
- 5:05 PM, Hans Beck=E9rus <span dir=3D"ltr">&lt;<a href=3D"mailto:hans.beck=
-erus@gmail.com" target=3D"_blank">hans.beckerus@gmail.com</a>&gt;</span> wr=
-ote:<br>
-
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"auto"><div><br></div><div><br>25=
- feb 2013 kl. 15:58 skrev Satya Swaroop DAMARLA &lt;<a href=3D"mailto:swaro=
-op@weisser.at" target=3D"_blank">swaroop@weisser.at</a>&gt;:<br>
-
-
-
-<br></div><div><blockquote type=3D"cite"><div><div dir=3D"ltr">Guys. I foun=
-d the solution to this problem....<div><br></div><div>I think if you alread=
-y install uboot-tools or uboot-mkimage packes from Ubuntu repository then i=
-t is used instead of the one that is downloaded and we should uninstall the=
- packages and then rerun the build,,... Then IT WORKS... So, thank you for =
-the time and enegry... I assume this thread is closed and this is the solut=
-ion and if this doesnot work for some then please post it and we may discus=
-s the situation depending on the problem,</div>
-
-
-
-
-<div><br></div><div>Greetings &amp; Regards,</div><div>Satya</div></div><di=
-v class=3D"gmail_extra"><br></div></div></blockquote></div>Same comment her=
-e as for the device tree compiler. You should use the uboot tools/version a=
-s they come with the package. Not the one used by the host distro. To me th=
-is is not a proper solution.<div>
-
-
-
-<div><div><br><div><div><br><blockquote type=3D"cite"><div><div class=3D"gm=
-ail_extra"><br><div class=3D"gmail_quote">On Thu, Feb 21, 2013 at 5:28 PM, =
-Rudolf Streif <span dir=3D"ltr">&lt;<a href=3D"mailto:rstreif@linuxfoundati=
-on.org" target=3D"_blank">rstreif@linuxfoundation.org</a>&gt;</span> wrote:=
-<br>
-
-
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Satya,<div><br></div><div>I=
- will look into it later today. I am currently at the Linux Foundation&#39;=
-s Embedded Linux Conference.</div>
-
-
-
-
-<div><br></div><div>Rudi</div></div><div><div><div class=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">On Thu, Feb 21, 2013 at 2:10 AM, Satya S=
-waroop DAMARLA <span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop@weisser.at" =
-target=3D"_blank">swaroop@weisser.at</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
-
-
-
-
-
-<div dir=3D"ltr">Hello Guys,<div><br></div><div>I have not received any rep=
-ly from you. If you can help me to figure out what the errors mean when add=
-ing a new .bb or recipe file then I can learn the mistake and take care in =
-the new recipes.... I request your time=A0</div>
-
-
-
-
-
-
-</div><div><div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quot=
-e">On Wed, Feb 20, 2013 at 7:19 PM, Satya Swaroop Damarla <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blank">swaroop=
-.damarla@gmail.com</a>&gt;</span> wrote:<br>
-
-
-
-
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><div dir=3D"ltr"><span style=3D"font-fa=
-mily:arial,sans-serif;font-size:13px">hey Guys... I get the following error=
-... which I attached.. Its completely greek and latin to me.. Can you pleas=
-e help me..</span><br>
-
-
-
-
-
-
-</div></div><div><div><div class=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">On Wed, Feb 20, 2013 at 7:19 PM, Satya S=
-waroop DAMARLA <span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop@weisser.at" =
-target=3D"_blank">swaroop@weisser.at</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
-
-
-
-
-
-
-
-<div dir=3D"ltr">hey Guys... I get the following error... which I attached.=
-. Its completely greek and latin to me.. Can you please help me..</div><div=
-><div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">
-On Wed, Feb 20, 2013 at 6:46 PM, Hans Beck=E9rus <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:hans.beckerus@gmail.com" target=3D"_blank">hans.beckerus@gmai=
-l.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>On Wed, Feb 20, 2013 at 6:12 PM, Satya =
-Swaroop Damarla<br>
-&lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blank">swaroop.=
-damarla@gmail.com</a>&gt; wrote:<br>
-&gt; Hey hans, this is what he meant,<br>
-&gt;<br>
-&gt; In the machine config file add the following<br>
-&gt;<br>
-&gt; PREFERRED_VERSION_u-boot ?=3D &quot;v2013.01%&quot; =A0or PREFERRED_VE=
-RSION_u-boot ?=3D<br>
-&gt; &quot;v2013.01.01%&quot;<br>
-&gt;<br>
-&gt; By the way did you already complete the first part... There is also ot=
-her<br>
-&gt; file called &quot;<a href=3D"http://u-boot-fw-utils_2012.04.01.bb" tar=
-get=3D"_blank">u-boot-fw-utils_2012.04.01.bb</a>&quot; ... I think we shoul=
-d do the<br>
-&gt; same...<br>
-&gt;<br>
-&gt; Hans bytheway, =A0are you also working on the same board or diffferent=
- board<br>
-&gt; with same problem?<br>
-&gt;<br>
-<br>
-</div>Different board, same core, similar problem ;)<br>
-Now I get it. Thanks. But still question remains how in earth I<br>
-managed to build the kernel if not also having copied/renamed the<br>
-mkimage .bb?<br>
-Is the PREFERRED_VERSION_u-boot used to determine what mkimage and fw<br>
-utils it picks up?<br>
-Then it might be that since I/we build u-boot as a separate package,<br>
-but kernel lifts in the mkimage stuff, it works but the wrong package<br>
-was used.<br>
-In my case obviously compatible, but not recommended I guess. Also, I<br>
-agree that the fw utils should probably be in sync similar to mkimage.<br>
-<div><div><br>
-Hans<br>
-<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; On Wed, Feb 20, 2013 at 6:01 PM, Hans Beck=E9rus &lt;<a href=3D"mailto=
-:hans.beckerus@gmail.com" target=3D"_blank">hans.beckerus@gmail.com</a>&gt;=
-<br>
-&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, Feb 20, 2013 at 5:16 PM, Rudolf Streif<br>
-&gt;&gt; &lt;<a href=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blan=
-k">rstreif@linuxfoundation.org</a>&gt; wrote:<br>
-&gt;&gt; &gt; Satya,<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Simply look at the u-boot recipes in meta/recipes-bsp/u-boot =
-such as<br>
-&gt;&gt; &gt; <a href=3D"http://u-boot_2012.04.01.bb" target=3D"_blank">u-b=
-oot_2012.04.01.bb</a>. You can simply copy it and name it<br>
-&gt;&gt; &gt; <a href=3D"http://u-boot_2013.01.bb" target=3D"_blank">u-boot=
-_2013.01.bb</a><br>
-&gt;&gt; &gt; and then modify SRCREV to the revision that corresponds to th=
-e tag<br>
-&gt;&gt; &gt; 2013.01<br>
-&gt;&gt; &gt; or 2013.01.01 in <a href=3D"http://git.denx.de" target=3D"_bl=
-ank">git.denx.de</a>:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; for 2013.01: 3a9d879f6f64585b819af728b53be0a05037fe0d<br>
-&gt;&gt; &gt; for 2013.01.01: e8ae0fa5edd152b2b29c470b88429be4cdcd2c46<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Do the same for u-boot-mkimage and include the u-boot version=
- with your<br>
-&gt;&gt; &gt; bsp.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Rudi<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; Hi Rudi, sorry to chime in , but I have a similar problem but do n=
-ot<br>
-&gt;&gt; really get the last thing you said.<br>
-&gt;&gt; What do you mean by including the u-boot version in the bsp? Also =
-is<br>
-&gt;&gt; it a must to also copy the mkimage .bb or will the system find a<b=
 r>
-&gt;&gt; suitable one automatically?<br>
-&gt;&gt; The thing is that I only copied/edited the u-boot .bb but never th=
-e<br>
-&gt;&gt; mkimage. Still my kernel successfully builds the kernel uImage!?<b=
-r>
-&gt;&gt; Some magic that I have missed :)<br>
-&gt;&gt;<br>
-&gt;&gt; Hans<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; &gt; On Wed, Feb 20, 2013 at 5:17 AM, Satya Swaroop Damarla<br>
-&gt;&gt; &gt; &lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_b=
-lank">swaroop.damarla@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Hi Guys,<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; I need support for uboot on Tamonten board but the versio=
-n on it is<br>
-&gt;&gt; &gt;&gt; v2012.04 but I came to know that v2012.10 or v2013.01 sup=
-ports the<br>
-&gt;&gt; &gt;&gt; Tamontenboard through some guys here..<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; It would be great if you can tell me how can I accomplish=
- v2013.01 or<br>
-&gt;&gt; &gt;&gt; v2012.10 into the build system and make it available so t=
-hat I can<br>
-&gt;&gt; &gt;&gt; compile<br>
-&gt;&gt; &gt;&gt; the and get uImage<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; (Tamonten board is a derivative of harmony board with som=
-e changes and<br>
-&gt;&gt; &gt;&gt; has<br>
-&gt;&gt; &gt;&gt; arm cortexa9 processor without neon extentions )<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; I am kind of new to add new .bb files and help is really =
-appreciated as<br>
-&gt;&gt; &gt;&gt; I<br>
-&gt;&gt; &gt;&gt; am not able to figure out how to add<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Greetings &amp; Regards,<br>
-&gt;&gt; &gt;&gt; Swaroop<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; _______________________________________________<br>
-&gt;&gt; &gt;&gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blan=
-k">yocto@yoctoproject.org</a><br>
-&gt;&gt; &gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto"=
- target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; --<br>
-&gt;&gt; &gt; Rudolf J. Streif<br>
-&gt;&gt; &gt; Director of Embedded Solutions<br>
-&gt;&gt; &gt; The Linux Foundation<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; <a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank">=
-rudolf.streif@linux.com</a><br>
-&gt;&gt; &gt; Phone: <a href=3D"tel:%2B1.619.631.5383" value=3D"+1619631538=
-3" target=3D"_blank">+1.619.631.5383</a><br>
-&gt;&gt; &gt; Skype: rudolfstreif<br>
-&gt;&gt; &gt; PGP: RSA 2048/2048 D6E7D28B<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Linux Foundation Events Schedule: =A0<a href=3D"http://events=
-.linuxfoundation.org" target=3D"_blank">events.linuxfoundation.org</a><br>
-&gt;&gt; &gt; Linux Foundation Training Schedule: <a href=3D"http://trainin=
-g.linuxfoundation.org" target=3D"_blank">training.linuxfoundation.org</a><b=
-r>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">y=
-octo@yoctoproject.org</a><br>
-&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" tar=
-get=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
---=A0<br><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b=
-></font><div><font face=3D"arial, helvetica, sans-serif">Director of Embedd=
-ed Solutions</font></div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hello Guys... I think uImag=
+e is important but it is not being generated by the yocto project. It only =
+generated the rootfs and uboot.bin. Is there any variable that has to be in=
+troduced in the machine.conf (in my case it is skidata-tamonten.conf)....<d=
+iv>
 
+<br></div><div>Here is the configuration file=A0</div><div><br></div><div><=
+div>#@TYPE: Machine</div><div>#@NAME: skidata-tamonten machine</div><div>#@=
+DESCRIPTION: Machine configuration for the Tamonten board</div>
+<div><br></div><div>PREFERRED_PROVIDER_virtual/xserver ?=3D &quot;xserver-x=
+org&quot;</div><div><br></div><div>IMAGE_FEATURES +=3D &quot;package-manage=
+ment&quot;</div><div>EXTRA_IMAGEDEPENDS +=3D &quot; u-boot&quot;</div><div>=
+<br>
 
+</div><div># Uncomment the following line to enable the hard floating point=
+ abi. Note that</div><div># this breaks some binary libraries and 3D (neith=
+er of which ship with</div><div># meta-yocto). For maximum compatibility, l=
+eave this disabled.</div>
 
+<div>DEFAULTTUNE ?=3D &quot;cortexa9t&quot;</div><div>include conf/machine/=
+include/tune-cortexa9.inc</div><div><br></div><div>IMAGE_FSTYPES +=3D &quot=
+;tar.bz2 ext2&quot;</div><div><br></div><div>SERIAL_CONSOLE =3D &quot;11520=
+0 ttyS0&quot;</div>
 
-
-<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
-></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
-iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
-=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
-
-
-
-
-
-<div><font face=3D"arial, helvetica, sans-serif">Phone: <a href=3D"tel:%2B1=
-.619.631.5383" value=3D"+16196315383" target=3D"_blank">+1.619.631.5383</a>=
-</font></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolf=
-streif</font></div>
-
-
-
-
-<div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 2048/2048 D6E7D28=
-B</font></div>
-<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
-amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
-);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
-se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
-linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
-nts.linuxfoundation.org</a><br>
-
-
-
-
-
-Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
-ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
-xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
-nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
-ont-family:arial,sans-serif;font-size:13px"><br>
-
-
-
-
-
-</span></font></div>
-</div>
-</div></div><br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-</div></blockquote><blockquote type=3D"cite"><div><span>___________________=
-____________________________</span><br><span>yocto mailing list</span><br><=
-span><a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a></span><br>
-
-
-
-<span><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_=
-blank">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></div></=
-blockquote></div></div></div></div></div></div><br>________________________=
-_______________________<br>
-
-
-
-
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-</div></div><br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><br>-- <br>--=A0<br><font face=
-=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font><div><font =
-face=3D"arial, helvetica, sans-serif">Director of Embedded Solutions</font>=
+<div><br></div><div>PREFERRED_PROVIDER_virtual/kernel ?=3D &quot;linux-yoct=
+o&quot;</div><div>PREFERRED_VERSION_linux-yocto ?=3D &quot;3.2%&quot;</div>=
+<div><br></div><div>KERNEL_IMAGETYPE =3D &quot; uImage&quot;</div><div><br>=
 </div>
 
+<div>PREFERRED_VERSION_u-boot ?=3D &quot;v2013.01.01%&quot;</div><div><br><=
+/div><div>UBOOT_MACHINE =3D &quot;tec_config&quot;</div><div>UBOOT_ENTRYPOI=
+NT =3D &quot;0x17000000&quot;</div><div>UBOOT_LOADADDRESS =3D &quot;0x17000=
+000&quot;</div>
 
-<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
-></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
-iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
-=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
-
-
-<div><font face=3D"arial, helvetica, sans-serif">Phone: <a href=3D"tel:%2B1=
-.619.631.5383" value=3D"+16196315383" target=3D"_blank">+1.619.631.5383</a>=
-</font></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolf=
-streif</font></div>
-
-<div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 2048/2048 D6E7D28=
-B</font></div>
-<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
-amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
-);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
-se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
-linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
-nts.linuxfoundation.org</a><br>
-
-
-Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
-ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
-xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
-nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
-ont-family:arial,sans-serif;font-size:13px"><br>
-
-
-</span></font></div>
-</div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
---=A0<br><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b=
-></font><div><font face=3D"arial, helvetica, sans-serif">Director of Embedd=
-ed Solutions</font></div>
+<div><br></div><div>MACHINE_FEATURES =3D &quot;usbgadget usbhost vfat scree=
+n touchscreen keyboard&quot;</div><div><br></div><div><br></div><div>Greets=
+,</div><div>Satya</div></div></div>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>--=A0<br=
+><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b></font>=
+<div><font face=3D"arial, helvetica, sans-serif">Director of Embedded Solut=
+ions</font></div>
 <div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
 ></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
 iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
@@ -965,4 +215,4 @@ ont-family:arial,sans-serif;font-size:13px"><br>
 </span></font></div>
 </div>
 
---e89a8f22c4db3cd5a204d6ccd84f--
+--047d7b60436811c3f504d6cdbd05--
