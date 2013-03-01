@@ -1,33 +1,28 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id C7C7FE01484
-	for <yocto@yoctoproject.org>; Fri,  1 Mar 2013 09:04:26 -0800 (PST)
-Received: by mail-we0-f172.google.com with SMTP id x10so2758535wey.3
-	for <yocto@yoctoproject.org>; Fri, 01 Mar 2013 09:04:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=Rz1HeKl2Re5AIhTqoNJTWOXu8qs/gWLum9u0Zpdul58=;
-	b=XOH/bHoenEnhUzFL30fgbieeCWPVGSRZNdNq2DZibah+jAgkNUK18UEE+CCPT3doYE
-	AuLUkP156jbSmR7D7MBHuiKFW+27IRT7JKvqh3Wb9wwbwXO29zjAy/4r7Cvp3OTZ1al6
-	R4HpAwQtGm/cHmD4JhRVlN8uWdb1XSdOmMpS5/LzStNUz8z1accYVfSfppx5pdO3ONQP
-	9BQWOrLe8OriSOPTszKWdejaMScByZVToakPdTF1V0reSP2gXbNHI3S9s9g5EF/dkY7/
-	y3bmJreQSRHnpcQe5hi4o8F5FP5tWAkyGhOZ2TX8hKp5JrvDnFBE1R6jTXk6nT7OrF2o
-	1aVw==
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 298CFE00429
+	for <yocto@yoctoproject.org>; Fri,  1 Mar 2013 09:29:44 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r21HTg15028821
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 1 Mar 2013 09:29:42 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.328.9;
+	Fri, 1 Mar 2013 09:29:42 -0800
+Message-ID: <5130E57C.5090802@windriver.com>
+Date: Fri, 1 Mar 2013 12:29:32 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-X-Received: by 10.180.77.9 with SMTP id o9mr40985331wiw.16.1362157465121; Fri,
-	01 Mar 2013 09:04:25 -0800 (PST)
-Received: by 10.194.45.100 with HTTP; Fri, 1 Mar 2013 09:04:25 -0800 (PST)
-In-Reply-To: <D5D8A4D8397140AB98A5568853482737@PAULD>
-References: <D5D8A4D8397140AB98A5568853482737@PAULD>
-Date: Fri, 1 Mar 2013 12:04:25 -0500
-Message-ID: <CAHUNapToOXjYXmxe7WpABdTub-P5nivAEkbxZyDAyZp7Lwo0kQ@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: Trevor Woerner <twoerner@gmail.com>
+References: <CAHUNapRBgEjmtJNCsY+t59uJ8p1+HzJuQKaJxNExbPx_fJKZZQ@mail.gmail.com>
+In-Reply-To: <CAHUNapRBgEjmtJNCsY+t59uJ8p1+HzJuQKaJxNExbPx_fJKZZQ@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Newbie trying to get started
+Subject: Re: linux 3.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,46 +34,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Mar 2013 17:04:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 01 Mar 2013 17:29:44 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Paul,
+On 13-03-01 11:42 AM, Trevor Woerner wrote:
+> Given that Greg KH has publicly stated linux-3.8 is not a long term
+> stable kernel, is it worth the effort to support it in Yocto?
 
-I saw your email on the gumstix list but forgot to "star" it, and
-therefore didn't get back to it as I would have liked, sorry about
-that.
+We don't need LTSI to make a kernel worth supporting. We pick our
+kernels based on the timing of the Yocto release schedule (the
+time and criteria are documented on the yoctoproject wiki IIRC).
 
-I too play around with a gumstix from time to time, as well as other
-boards. In my (still learning) opinion, the gumstix stable build is
-based on really old stuff (i.e. from last... September? October?) So
-in my case I tend to have two completely separate "yocto" areas: one
-for gumstix, and another for everything else, and I don't mix anything
-between the two except the download location. For example, the gumstix
-build is sort of based on Danny, but not really, if you check, the
-repositories are checked out at random points in time (detached HEAD
-state) instead of actually using or tracking Danny.
+But note, Greg is talking specifically about LTSI, we don't
+expect more than one LTSI per year, and we are already locked into
+the LTSI 3.4. We've known Greg's strategy and plans for a while, so
+this isn't a surprise. He'll do his normal -stable releases for
+3.8 and drop them once 3.9 arrives, which is also expected.
 
-Working with a gumstix is sort of like having to work with a vendor
-branch: for best results you have to use their stuff, but their stuff
-isn't really upstream or tracking upstream very closely. So it's best
-not to confuse the "real" Yocto, for gumstix's Yocto-based build. For
-example their instructions have you use the "repo" utility (instead of
-just using git) and start your project with:
+Cheers,
 
-    $ TEMPLATECONF=meta-gumstix/conf source ./poky/oe-init-build-env
+Bruce
 
-instead of the "regular" template file and a regular git checkout of
-the yocto project.
 
-For best results I would recommend that you be sure to use a separate,
-new terminal when you start your Intel work. That way various
-environment variables (PATH, etc) don't interfere with each other.
 
-As I mentioned above, you might get some savings if you open the
-conf/local.conf of both projects and point the DL_DIR variable to the
-same directory. But how much savings you'll get from that isn't
-obvious (you might not get any).
+>
+> http://www.kroah.com/log/linux/3.8-is_not_longterm_stable.html
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Best regards,
-    Trevor
 
