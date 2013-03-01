@@ -1,30 +1,29 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 90804E0148A
-	for <yocto@yoctoproject.org>; Fri,  1 Mar 2013 11:19:56 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r21JJraY014943
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 1 Mar 2013 11:19:53 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.328.9;
-	Fri, 1 Mar 2013 11:19:53 -0800
-Message-ID: <5130FF50.6070401@windriver.com>
-Date: Fri, 1 Mar 2013 14:19:44 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A012E0072C
+	for <yocto@yoctoproject.org>; Fri,  1 Mar 2013 12:01:39 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 01 Mar 2013 12:01:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,762,1355126400"; 
+	d="scan'208,217";a="207872405"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by AZSMGA002.ch.intel.com with ESMTP; 01 Mar 2013 12:01:20 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.110]) by
+	ORSMSX103.amr.corp.intel.com ([169.254.2.117]) with mapi id
+	14.01.0355.002; Fri, 1 Mar 2013 12:01:18 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project 1.4 M4 release readiness discussion
+Thread-Index: Ac4Wt3IG0ZPfmR4dScWMDjE46t8FswAAAlfw
+Date: Fri, 1 Mar 2013 20:01:17 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70EF1ED1@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-References: <CAHUNapRBgEjmtJNCsY+t59uJ8p1+HzJuQKaJxNExbPx_fJKZZQ@mail.gmail.com>
-	<5130E57C.5090802@windriver.com>
-	<CA+gsK-qsTjhRnH26Oc5YD++jcgGda4f4kV+CJ3aAJCdkqV=Kng@mail.gmail.com>
-In-Reply-To: <CA+gsK-qsTjhRnH26Oc5YD++jcgGda4f4kV+CJ3aAJCdkqV=Kng@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: linux 3.8
+Subject: Minutes: Yocto Project 1.4 M4 release readiness discussion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,45 +35,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Mar 2013 19:19:56 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Mar 2013 20:01:40 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A70EF1ED1ORSMSX101amrcor_"
 
-On 13-03-01 02:15 PM, Rudolf Streif wrote:
-> Bruce,
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70EF1ED1ORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Attendees:
+AlexG, ThaddeusL, Cristian, Dave, Richard, Jessica, Nitin, Song
+
+
+Release criteria review:
+Please see the wiki page:  https://wiki.yoctoproject.org/wiki/Yocto_Project=
+_v1.4_Status#Milestone_4<https://wiki.yoctoproject.org/wiki/Yocto_Project_v=
+1.4_Status>
+
+1.      All release criteria has been reviewed. M4 met all the criteria.
+2.      Highlights:
+a.      12% performance increase on overall build time. Cut the rootfs buil=
+d time with sstate on by half.
+3.      Issues:
+a.      The # of bugs seems high. Plan: Bug triage team is doing a round of=
+ triage for all medium+ and medium bugs to focus the team on fixing the rig=
+ht set of bugs. The team will focus more on bugs for the rest of the releas=
+e.
+b.      Dave: not enough CCB members present in this meeting. Cannot approv=
+e the release.
+
+Decision: Song will follow up with Dave and the CCB to get approval for the=
+ release.
+
+
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70EF1ED1ORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> On Fri, Mar 1, 2013 at 9:29 AM, Bruce Ashfield
-> <bruce.ashfield@windriver.com <mailto:bruce.ashfield@windriver.com>> wrote:
->
->     But note, Greg is talking specifically about LTSI, we don't
->     expect more than one LTSI per year, and we are already locked into
->     the LTSI 3.4.
->
-> However, as far as I understand it the 3.4 snapshot in
-> git.yoctoproject.org <http://git.yoctoproject.org> is from kernel.org
-> <http://kernel.org> and not from
-> http://git.linuxfoundation.org/ltsi-kernel.git. GregKH has been merging
-> patches into the LTSI kernel, such as AF_BUS, that have not been
-> accepted by upstream. I do not think that those patches are being merged
-> into the YP kernel tree. But please correct me if I am wrong.
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>AlexG, ThaddeusL, Cristian, Dave, Richard, Jessica, Nitin, Song</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>Release criteria review:</div>
+<div>Please see the wiki page:&nbsp; <a href=3D"https://wiki.yoctoproject.o=
+rg/wiki/Yocto_Project_v1.4_Status"><font color=3D"blue"><u>https://wiki.yoc=
+toproject.org/wiki/Yocto_Project_v1.4_Status#Milestone_4</u></font></a></di=
+v>
+<div>&nbsp;</div>
+<ol style=3D"margin:0;padding-left:27pt;">
+<li>All release criteria has been reviewed. M4 met all the criteria.</li></=
+ol>
+<ol style=3D"margin:0;padding-left:27pt;">
+<li>Highlights:</li></ol>
+<ol type=3D"a" style=3D"margin:0;padding-left:54pt;">
+<li>12% performance increase on overall build time. Cut the rootfs build ti=
+me with sstate on by half.</li></ol>
+<ol style=3D"margin:0;padding-left:27pt;">
+<li>Issues:</li></ol>
+<ol type=3D"a" style=3D"margin:0;padding-left:54pt;">
+<li>The # of bugs seems high. Plan: Bug triage team is doing a round of tri=
+age for all medium&#43; and medium bugs to focus the team on fixing the rig=
+ht set of bugs. The team will focus more on bugs for the rest of the releas=
+e.</li><li>Dave: not enough CCB members present in this meeting. Cannot app=
+rove the release.</li></ol>
+<div>&nbsp;</div>
+<div>Decision: Song will follow up with Dave and the CCB to get approval fo=
+r the release.</div>
+<div><font color=3D"#1F497D">&nbsp;</font></div>
+<div><font color=3D"#1F497D">&nbsp;</font></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
 
-The 3.4 LTSI patches are all present on the 3.4 kernel tree, directly
-from Greg's patch queue.
-
-http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.4/log/?h=ltsi
-
-And that branch is merged into each and every other branch in the
-linux-yocto tree.
-
-We've been involved with Greg and LTSI for quite a while now, and are
-tracking it via our tree as we discussed with the interested parties.
-
-Cheers,
-
-Bruce
-
->
-> Cheers,
-> Rudi
-
-
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70EF1ED1ORSMSX101amrcor_--
