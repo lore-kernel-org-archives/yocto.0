@@ -1,33 +1,29 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ee0-f53.google.com (mail-ee0-f53.google.com [74.125.83.53])
+	(using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 9A91EE0070F
-	for <yocto@yoctoproject.org>; Fri,  1 Mar 2013 05:49:43 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r21DnfAe000708
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 1 Mar 2013 05:49:41 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.328.9;
-	Fri, 1 Mar 2013 05:49:40 -0800
-Message-ID: <5130B1EA.4040004@windriver.com>
-Date: Fri, 1 Mar 2013 08:49:30 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 24824E0072C
+	for <yocto@yoctoproject.org>; Fri,  1 Mar 2013 08:12:36 -0800 (PST)
+Received: by mail-ee0-f53.google.com with SMTP id e53so2445966eek.26
+	for <yocto@yoctoproject.org>; Fri, 01 Mar 2013 08:12:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=vOYBrnN4JKX+wpoNfVekMOS12fwQuVIV1+tF2hgrXcg=;
+	b=YPDXJ5oVZhx0UEJrEInncXwzp2uMRPJPGDEJj9lgLQfWRWrsbvg9RT5GgGSg30q63D
+	ZzXzP6cfBTT3aZBkYlqvf02zHJ0Dbu3yzGh7nfh7lJHk2QBEkJSAdJxqTofVT2YQzeTr
+	apW6w+Acb5qyB1KFffIqNxZYSSiGaqWsijTsoRZ2tbeIM5GgjzwSNPigIm1ebylA/VEk
+	PmCAliClu+6vywIVUTlTAdnMaDp2IZIRPvgKFaqELcKQnMPul8XAGbslnkamLNWpfA23
+	dqxSwvC6y7ca9ityegDuJuVIBAez7nQLevqKVzAUkk6oBVxC3GZERmmAu1cjSacH2uJn
+	9Qeg==
 MIME-Version: 1.0
-To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-References: <CABTzgQ4aGxsRgpFMBZf0t7KVfmBYihePSbkD_D8azAGdCpTgiA@mail.gmail.com>
-	<CA+gsK-osjB9NK4gdMBuJU98d3RZiZqJ6yZBh9jR21hJrkx3gkQ@mail.gmail.com>
-	<CABTzgQ6pWQD8Rs=NRCvemTy1WWfeH_Rvb2+XaeSLVx_urXkw5A@mail.gmail.com>
-	<CA+gsK-rp8LOrmJ6k+3Xja-j4Acu559g9BE1-eJT5-kZOi7457Q@mail.gmail.com>
-	<CABTzgQ6MuY=+-63b5jwxQzaFa3F8pV-jXWyKqLCtwb7oBd2BAw@mail.gmail.com>
-In-Reply-To: <CABTzgQ6MuY=+-63b5jwxQzaFa3F8pV-jXWyKqLCtwb7oBd2BAw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Rudolf Streif <rstreif@linuxfoundation.org>
-Subject: Re: uboot.bin and rootfs but not uImage
+X-Received: by 10.15.100.202 with SMTP id bn50mr29150876eeb.36.1362154355204; 
+	Fri, 01 Mar 2013 08:12:35 -0800 (PST)
+Received: by 10.223.89.133 with HTTP; Fri, 1 Mar 2013 08:12:35 -0800 (PST)
+Date: Fri, 1 Mar 2013 09:12:35 -0700
+Message-ID: <CANwz6nzk6ZvQ-XRQLw5A2yFCx4-Y7UtgORcjeD3FHVe0jd48FA@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: yocto@yoctoproject.org
+Subject: yocto beaglebone build no uImage on DOS partition.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,248 +35,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Mar 2013 13:49:43 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Mar 2013 16:12:37 -0000
+Content-Type: multipart/alternative; boundary=089e0163521278d14d04d6df46c0
 
-On 13-03-01 03:53 AM, Satya Swaroop Damarla wrote:
-> Hi Rudy,
->
-> Thank you for the basic file... I have a question here... The git
-> directory is already saved on my work pc. What is the necessity to
-> download it again? The reason behind my asking this question is, it is
-> secured and so password is required. So, in order to avoid confusion I
-> already downloaded it to a directory called
-> "/home/damarla/linux-skidata.git". So can I just write
->
-> SRC_URI = "dir://home/damarla/linux-skidata.git"
->
-> I think in the above way I can just simply remove the KSRC and KBRANCH
-> variables from the linux-skidata.bb <http://linux-skidata.bb> file. The
-> revision tag is also not required in this cases as we are using the
-> kernel provided by the company itself, I mean for the first basic build.
+--089e0163521278d14d04d6df46c0
+Content-Type: text/plain; charset=ISO-8859-1
 
-The example code that was posted, already does this. KSRC points to
-a git repository on your local machine:
+Hello,
+Any and all help will be appreciated.
 
-    KSRC ?= "<path to>/linux-skidata.git"
+yocto beaglebone build no uImage to DOS partition.
+My questions are do you need the a uImage on DOS partition and should you
+use core-image-sato-sdk with the beaglebone since it has no display on
+board, but you want the SDK?  My beaglebone booted okay but I did see that
+the xserver failed.  My pandaboard build is failing currently but I have
+had successful builds in the past in early Jan with same process outlined
+below.
 
-And the protocol is set to "file" in the SRC_URI
+Downloaded both poky and meta-ti
 
-    SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel \
-        file://defconfig"
+cd /home/vidal/POKY/build022813_panda
+git clone  git://git.yoctoproject.org/poky.git
+cd /home/vidal/POKY/build022813_panda/poky
+git log
+commit d7b248e715d99766bf8602ff9f038f8b0afa5e78
+Author: Constantin Musca <constantinx.musca@intel.com>
+Date:   Mon Feb 25 17:29:15 2013 +0200
 
-There's nothing more that you need to do.
+cd /home/vidal/POKY/build022813_panda/poky
+git clone git://git.yoctoproject.org/meta-ti
+git log
+commit 4d99e63181c6f58b5bb41eb830c7af75b097e10e
+Author: Franklin S. Cooper Jr <fcooper@ti.com>
+Date:   Mon Feb 18 22:45:16 2013 -0600
 
->
-> One more thing is the skidata-carrier_defconfig is already in the
-> directory git I mentioned above at
-> "/home/damarla/linux-skidata.git/arch/arm/configs/skidata-carrier_defconfig"
-> ... When compiling the kernel how can we tell the build system to build
-> the kernel using that specific defconfig file?
+Modifications to file
+/home/vidal/POKY/build022813/poky/build/conf/local.conf
+Added the following three lines at the beginning of the file.
+MACHINE ?= "beaglebone"
+MACHINE ?= "pandaboard"
+BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/"
+Mofified the following 3 lines as shown below.
+#BB_NUMBER_THREADS = "4" --> BB_NUMBER_THREADS = "8"
+#PARALLEL_MAKE = "-j 4" --> PARALLEL_MAKE = "-j 8"
+#DL_DIR ?= "${TOPDIR}/downloads" --> DL_DIR ?=
+"/home/vidal/POKY/linux_src_dnloads_panda/downloads"
 
-Putting the defconfig on the SRC_URI is all that you have to do.
+Modification done to
+/home/vidal/POKY/build022813/poky/build/conf/bblayers.conf
+Added the line
+  /home/vidal/POKY/build022813_panda/poky/meta-ti \
+After the line
+  /home/vidal/POKY/build022813_panda/poky/meta-yocto \
 
-This information is also covered in the quickstart and development
-guides .. have you had a look at them ? If you have a look, you'll
-see that more options are available with linux-yocto based recipes
-(custom or the ones part of oe-core), which will allow you some more
-flexibility in handling modifications to the kernel.
+Built on Fedora 18 x86_64 system.
 
-Cheers,
+MACHINE=beaglebone bitbake core-image-sato-sdk -vDD
+NOTE: recipe core-image-sato-sdk-1.0-r0: task do_rootfs: Succeeded
+DEBUG: Marking task 12
+(/home/vidal/POKY/build022813_panda/poky/meta/recipes-sato/images/
+core-image-sato-sdk.bb, do_build) as buildable
+DEBUG: Stampfile
+/home/vidal/POKY/build022813_panda/poky/build/tmp/stamps/beaglebone-poky-linux-gnueabi/core-image-sato-sdk/1.0-r0.do_build.43a176d7b0f28fabd0275a4afba65cd3
+not available
+NOTE: Running noexec task 6534 of 6534 (ID: 12,
+/home/vidal/POKY/build022813_panda/poky/meta/recipes-sato/images/
+core-image-sato-sdk.bb, do_build)
+NOTE: Tasks Summary: Attempted 6534 tasks of which 543 didn't need to be
+rerun and all succeeded.
 
-Bruce
+Build Configuration:
+BB_VERSION        = "1.17.1"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Unknown"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.3+snapshot-20130228"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "master:d7b248e715d99766bf8602ff9f038f8b0afa5e78"
+meta-ti           = "master:4d99e63181c6f58b5bb41eb830c7af75b097e10e"
+meta-yocto-bsp    = "master:d7b248e715d99766bf8602ff9f038f8b0afa5e78"
 
+Transferred the following files to boot partition from
+/home/vidal/POKY/build022813_panda/poky/build/tmp/deploy/images/
+MLO-beaglebone-2011.09+git* --> MLO
+u-boot.img -> u-boot-beaglebone-2011.09+git-r30.img* --> u-boot.img
+Untarred the file
+/home/vidal/POKY/build022813_panda/poky/build/tmp/deploy/images/core-image-sato-sdk-beaglebone-20130228230414.rootfs.tar.bz2
+to /run/media/vidal/Angstrom
 
+If anyone wants any additional information feel free to ask at
+vidal.develone@gmail.com or develone@sbcglobal.net.
 
->
-> Thanks Rudy in advance,
-> Satya
->
->
->
->
->
->
-> On Thu, Feb 28, 2013 at 9:31 PM, Rudolf Streif
-> <rstreif@linuxfoundation.org <mailto:rstreif@linuxfoundation.org>> wrote:
->
->     Hi Satya,
->
->     You will first need a kernel recipe, let's call it linux-skidata.bb
->     <http://linux-skidata.bb>. It can look like this:
->
->     DESCRIPTION = "Skidata Linux Kernel"
->     SECTION = "kernel"
->     LICENSE = "GPLv2"
->
->     LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
->
->     PV = "3.2"
->
->     inherit kernel
->
->     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:${THISDIR}/${PN}/patches:"
->
->     # GIT repository location
->     KSRC ?= "<path to>/linux-skidata.git"
->
->     # Branch to check out
->     KBRANCH ?= "<branch>"
->
->     # Revision tag or AUTOREV
->     SRCREV ?= "${AUTOREV}"
->
->     SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel \
->        file://defconfig \
->         "
->
->     S = "${WORKDIR}/git"
->
->
->     You will need to provide a defconfig file next to your recipe
->     containing the kernel configuration settings. Your kernel GIT repo
->     may contain a .config that is good for your hardware. In that case
->     you do not need a defconfig but is still a good practice and will
->     allow you to easily change the settings.
->
->     Then you need to adjust your machine configuration file:
->
->     PREFERRED_PROVIDER_virtual/kernel ?= "linux-skidata"
->     PREFERRED_VERSION_skidata ?= "3.2%"
->
->
->     That should do it.
->
->     :rjs
->
->
->     On Thu, Feb 28, 2013 at 11:21 AM, Satya Swaroop Damarla
->     <swaroop.damarla@gmail.com <mailto:swaroop.damarla@gmail.com>> wrote:
->
->         Yes I got an error message when I was building the kernel...
->           Actuallly I have a kernel git given by the company.... I
->         downloaded it and is in my work pc.. How can I tell the build
->         system to use that kernel?
->
->
->         On Thu, Feb 28, 2013 at 8:17 PM, Rudolf Streif
->         <rstreif@linuxfoundation.org
->         <mailto:rstreif@linuxfoundation.org>> wrote:
->
->             Satya,
->
->             your machine configuration file looks ok as far as I can
->             tell. Did you get an error message when building the kernel?
->             Did you try to build just the kernel e.g. bitbake linux-yocto?
->
->             :rjs
->
->
->             On Mon, Feb 25, 2013 at 11:31 PM, Satya Swaroop Damarla
->             <swaroop.damarla@gmail.com
->             <mailto:swaroop.damarla@gmail.com>> wrote:
->
->                 Hello Guys... I think uImage is important but it is not
->                 being generated by the yocto project. It only generated
->                 the rootfs and uboot.bin. Is there any variable that has
->                 to be introduced in the machine.conf (in my case it is
->                 skidata-tamonten.conf)....
->
->                 Here is the configuration file
->
->                 #@TYPE: Machine
->                 #@NAME: skidata-tamonten machine
->                 #@DESCRIPTION: Machine configuration for the Tamonten board
->
->                 PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
->
->                 IMAGE_FEATURES += "package-management"
->                 EXTRA_IMAGEDEPENDS += " u-boot"
->
->                 # Uncomment the following line to enable the hard
->                 floating point abi. Note that
->                 # this breaks some binary libraries and 3D (neither of
->                 which ship with
->                 # meta-yocto). For maximum compatibility, leave this
->                 disabled.
->                 DEFAULTTUNE ?= "cortexa9t"
->                 include conf/machine/include/tune-cortexa9.inc
->
->                 IMAGE_FSTYPES += "tar.bz2 ext2"
->
->                 SERIAL_CONSOLE = "115200 ttyS0"
->
->                 PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
->                 PREFERRED_VERSION_linux-yocto ?= "3.2%"
->
->                 KERNEL_IMAGETYPE = " uImage"
->
->                 PREFERRED_VERSION_u-boot ?= "v2013.01.01%"
->
->                 UBOOT_MACHINE = "tec_config"
->                 UBOOT_ENTRYPOINT = "0x17000000"
->                 UBOOT_LOADADDRESS = "0x17000000"
->
->                 MACHINE_FEATURES = "usbgadget usbhost vfat screen
->                 touchscreen keyboard"
->
->
->                 Greets,
->                 Satya
->
->                 _______________________________________________
->                 yocto mailing list
->                 yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->                 https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->
->             --
->             --
->             *Rudolf J. Streif*
->             Director of Embedded Solutions
->             The Linux Foundation
->
->             rudolf.streif@linux.com <mailto:rudolf.streif@linux.com>
->             Phone: +1.619.631.5383 <tel:%2B1.619.631.5383>
->             Skype: rudolfstreif
->             PGP: RSA 2048/2048 D6E7D28B
->
->             Linux Foundation Events Schedule: events.linuxfoundation.org
->             <http://events.linuxfoundation.org/>
->             Linux Foundation Training Schedule:
->             training.linuxfoundation.org
->             <http://training.linuxfoundation.org/>
->
->
->
->
->
->     --
->     --
->     *Rudolf J. Streif*
->     Director of Embedded Solutions
->     The Linux Foundation
->
->     rudolf.streif@linux.com <mailto:rudolf.streif@linux.com>
->     Phone: +1.619.631.5383 <tel:%2B1.619.631.5383>
->     Skype: rudolfstreif
->     PGP: RSA 2048/2048 D6E7D28B
->
->     Linux Foundation Events Schedule: events.linuxfoundation.org
->     <http://events.linuxfoundation.org/>
->     Linux Foundation Training Schedule: training.linuxfoundation.org
->     <http://training.linuxfoundation.org/>
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+--089e0163521278d14d04d6df46c0
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+Hello,<br>Any and all help will be appreciated.<br><br>yocto beaglebone bui=
+ld no uImage to DOS partition.<br>My questions are do you need the a uImage=
+ on DOS partition and should you use core-image-sato-sdk with the beaglebon=
+e since it has no display on board, but you want the SDK?=A0 My beaglebone =
+booted okay but I did see that the xserver failed.=A0 My pandaboard build i=
+s failing currently but I have had successful builds in the past in early J=
+an with same process outlined below.=A0 <br>
+<br>Downloaded both poky and meta-ti<br><br>cd /home/vidal/POKY/build022813=
+_panda<br>git clone=A0 git://<a href=3D"http://git.yoctoproject.org/poky.gi=
+t">git.yoctoproject.org/poky.git</a><br>cd /home/vidal/POKY/build022813_pan=
+da/poky<br>
+git log<br>commit d7b248e715d99766bf8602ff9f038f8b0afa5e78<br>Author: Const=
+antin Musca &lt;<a href=3D"mailto:constantinx.musca@intel.com">constantinx.=
+musca@intel.com</a>&gt;<br>Date:=A0=A0 Mon Feb 25 17:29:15 2013 +0200<br><b=
+r>
+cd /home/vidal/POKY/build022813_panda/poky<br>git clone git://<a href=3D"ht=
+tp://git.yoctoproject.org/meta-ti">git.yoctoproject.org/meta-ti</a><br>git =
+log<br>commit 4d99e63181c6f58b5bb41eb830c7af75b097e10e<br>Author: Franklin =
+S. Cooper Jr &lt;<a href=3D"mailto:fcooper@ti.com">fcooper@ti.com</a>&gt;<b=
+r>
+Date:=A0=A0 Mon Feb 18 22:45:16 2013 -0600<br><br>Modifications to file=A0 =
+/home/vidal/POKY/build022813/poky/build/conf/local.conf<br>Added the follow=
+ing three lines at the beginning of the file. <br>MACHINE ?=3D &quot;beagle=
+bone&quot;<br>
+MACHINE ?=3D &quot;pandaboard&quot;<br>BBMASK ?=3D &quot;.*/meta-ti/recipes=
+-(misc|bsp/formfactor|graphics/mesa)/&quot;<br>Mofified the following 3 lin=
+es as shown below.<br>#BB_NUMBER_THREADS =3D &quot;4&quot; --&gt; BB_NUMBER=
+_THREADS =3D &quot;8&quot;<br>
+#PARALLEL_MAKE =3D &quot;-j 4&quot; --&gt; PARALLEL_MAKE =3D &quot;-j 8&quo=
+t;<br>#DL_DIR ?=3D &quot;${TOPDIR}/downloads&quot; --&gt; DL_DIR ?=3D &quot=
+;/home/vidal/POKY/linux_src_dnloads_panda/downloads&quot;<br><br>Modificati=
+on done to /home/vidal/POKY/build022813/poky/build/conf/bblayers.conf<br>
+Added the line<br>=A0 /home/vidal/POKY/build022813_panda/poky/meta-ti \<br>=
+After the line<br>=A0 /home/vidal/POKY/build022813_panda/poky/meta-yocto \<=
+br><br>Built on Fedora 18 x86_64 system.<br><br>MACHINE=3Dbeaglebone bitbak=
+e core-image-sato-sdk -vDD<br>
+NOTE: recipe core-image-sato-sdk-1.0-r0: task do_rootfs: Succeeded<br>DEBUG=
+: Marking task 12 (/home/vidal/POKY/build022813_panda/poky/meta/recipes-sat=
+o/images/<a href=3D"http://core-image-sato-sdk.bb">core-image-sato-sdk.bb</=
+a>, do_build) as buildable<br>
+DEBUG: Stampfile /home/vidal/POKY/build022813_panda/poky/build/tmp/stamps/b=
+eaglebone-poky-linux-gnueabi/core-image-sato-sdk/1.0-r0.do_build.43a176d7b0=
+f28fabd0275a4afba65cd3 not available<br>NOTE: Running noexec task 6534 of 6=
+534 (ID: 12, /home/vidal/POKY/build022813_panda/poky/meta/recipes-sato/imag=
+es/<a href=3D"http://core-image-sato-sdk.bb">core-image-sato-sdk.bb</a>, do=
+_build)<br>
+NOTE: Tasks Summary: Attempted 6534 tasks of which 543 didn&#39;t need to b=
+e rerun and all succeeded.<br><br>Build Configuration:<br>BB_VERSION=A0=A0=
+=A0=A0=A0=A0=A0 =3D &quot;1.17.1&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0=
+ =3D &quot;x86_64-linux&quot;<br>
+NATIVELSBSTRING=A0=A0 =3D &quot;Unknown&quot;<br>TARGET_SYS=A0=A0=A0=A0=A0=
+=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 =3D &quot;beaglebone&quot;<br>DISTRO=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=A0=A0 =3D &quot;1.3+sna=
+pshot-20130228&quot;<br>
+TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a vfp neon&quot;<br>TARGET_FPU=A0=
+=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:d7b248=
+e715d99766bf8602ff9f038f8b0afa5e78&quot;<br>meta-ti=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 =3D &quot;master:4d99e63181c6f58b5bb41eb830c7af75b097e10e&quot;<br>
+meta-yocto-bsp=A0=A0=A0 =3D &quot;master:d7b248e715d99766bf8602ff9f038f8b0a=
+fa5e78&quot;<br><br>Transferred the following files to boot partition from =
+<br>/home/vidal/POKY/build022813_panda/poky/build/tmp/deploy/images/<br>MLO=
+-beaglebone-2011.09+git* --&gt; MLO<br>
+u-boot.img -&gt; u-boot-beaglebone-2011.09+git-r30.img* --&gt; u-boot.img<b=
+r>Untarred the file /home/vidal/POKY/build022813_panda/poky/build/tmp/deplo=
+y/images/core-image-sato-sdk-beaglebone-20130228230414.rootfs.tar.bz2 to /r=
+un/media/vidal/Angstrom<br>
+<br>If anyone wants any additional information feel free to ask at <a href=
+=3D"mailto:vidal.develone@gmail.com">vidal.develone@gmail.com</a> or <a hre=
+f=3D"mailto:develone@sbcglobal.net">develone@sbcglobal.net</a>.<br>
 
+--089e0163521278d14d04d6df46c0--
