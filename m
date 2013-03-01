@@ -1,32 +1,40 @@
-Return-Path: <s-uPxo_hC3XdBzjwmPSNNXsUUZcpBQJuOAWyfOsvC3UVBHHF8PnXuobd@bounce.linkedin.com>
-Received: from mailb-ec.linkedin.com (mailb-ec.linkedin.com [199.101.162.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6E10E00348
-	for <yocto@yoctoproject.org>; Thu, 28 Feb 2013 23:33:57 -0800 (PST)
-DomainKey-Signature: q=dns; a=rsa-sha1; c=nofws; s=prod; d=linkedin.com;
-	h=DKIM-Signature:Sender:Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:X-LinkedIn-Template:X-LinkedIn-Class:X-LinkedIn-fbl;
-	b=MeKtCStdRbME2mNA4sAiWVAZfgoBy0otPcnNFBtTFF0KaQrstzQlMKYvgcnqWa/P
-	ZK11vm6kDEUmmFoUvGJMVHGz8AX6RjdSNZrWKNd5fkf7rahM+5cG5UnRHnuLOWk9
-DKIM-Signature: v=1; a=rsa-sha1; d=linkedin.com; s=proddkim1024;
-	c=relaxed/relaxed; q=dns/txt; i=@linkedin.com; t=1362123237;
-	h=From:Subject:Date:To:MIME-Version:Content-Type:X-LinkedIn-Class:X-LinkedIn-fbl:
-	X-LinkedIn-Template; bh=/wZEPDVYXOhQYHIU1+OYbpVcasE=;
-	b=ocBWiC126GavsPDug0yBsIBld89/8B5DmUERJs46jvCsiEDLPCJhkRs7hZbAnJHQ
-	ZQjuFMb2+ZNDhkPotRceUCi/ODwNgFKtZC7WYBolRo+F2t9w4cpSuvao/Dsgmfdx
-	ExWp3qiLwxf3+8UphL5I/V0siCZ/lrnUhj8IAho9YfY=;
-Sender: messages-noreply@bounce.linkedin.com
-Date: Fri, 1 Mar 2013 07:33:56 +0000 (UTC)
-From: Desheng Li via LinkedIn <member@linkedin.com>
-To: "Ni Q." <yocto@yoctoproject.org>
-Message-ID: <1302898504.1021044.1362123237109.JavaMail.app@ela4-app2310.prod>
+Return-Path: <swaroop.damarla@gmail.com>
+Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
+	[209.85.128.180]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 561B9E00348
+	for <yocto@yoctoproject.org>; Fri,  1 Mar 2013 00:53:37 -0800 (PST)
+Received: by mail-ve0-f180.google.com with SMTP id jx10so2632479veb.39
+	for <yocto@yoctoproject.org>; Fri, 01 Mar 2013 00:53:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=PC1QzuXEik9qFJ7C4JrUv8ngH9eN3MubSQhkwhYzBVA=;
+	b=gEDlgP0c0shW/PtkuiBDxpDUNOfWCBRYo4Btk8zfTBAgxY8v8yFyvpqIYT+lJ2tJtQ
+	QP4Oo9rnczG7eu/iqUkKS8vekozJ2nNZvwdvQCD6dfVbg7C5AoZIt7IAkIIGbwO91uzh
+	ZLAHwAAeqtQthcCvTxi7TyrqSajpJ0+ljlPcbbCGqgw9jRVROmz/uLznMcAsfbuFrkyO
+	FNK0fUwh25T4/K0hq7EnGfKkVBCAHupNpT7vq+C+7oQFpk3MXEkOsI5WvIcWc5/23k1f
+	pjkRhSg7cjk1ITprONmjW1xiUWH+r8CVqfmuc0AOdAfUL8ahajEOx/tQJlEmXNYDNl8W
+	4hRA==
 MIME-Version: 1.0
-X-LinkedIn-Template: invite_member_28
-X-LinkedIn-Class: INVITE-MBR
-X-LinkedIn-fbl: s-uPxo_hC3XdBzjwmPSNNXsUUZcpBQJuOAWyfOsvC3UVBHHF8PnXuobd
-Subject: Invitation to connect on LinkedIn
+X-Received: by 10.220.149.198 with SMTP id u6mr3675174vcv.52.1362128016159;
+	Fri, 01 Mar 2013 00:53:36 -0800 (PST)
+Received: by 10.58.187.42 with HTTP; Fri, 1 Mar 2013 00:53:36 -0800 (PST)
+In-Reply-To: <CA+gsK-rp8LOrmJ6k+3Xja-j4Acu559g9BE1-eJT5-kZOi7457Q@mail.gmail.com>
+References: <CABTzgQ4aGxsRgpFMBZf0t7KVfmBYihePSbkD_D8azAGdCpTgiA@mail.gmail.com>
+	<CA+gsK-osjB9NK4gdMBuJU98d3RZiZqJ6yZBh9jR21hJrkx3gkQ@mail.gmail.com>
+	<CABTzgQ6pWQD8Rs=NRCvemTy1WWfeH_Rvb2+XaeSLVx_urXkw5A@mail.gmail.com>
+	<CA+gsK-rp8LOrmJ6k+3Xja-j4Acu559g9BE1-eJT5-kZOi7457Q@mail.gmail.com>
+Date: Fri, 1 Mar 2013 09:53:36 +0100
+Message-ID: <CABTzgQ6MuY=+-63b5jwxQzaFa3F8pV-jXWyKqLCtwb7oBd2BAw@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	=?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+Subject: Re: uboot.bin and rootfs but not uImage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Desheng Li <woailinux@hotmail.com>
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -35,450 +43,437 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Mar 2013 07:33:58 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1021042_1366133551.1362123236758"
+X-List-Received-Date: Fri, 01 Mar 2013 08:53:37 -0000
+Content-Type: multipart/alternative; boundary=f46d043c816c8d3d6204d6d924ed
 
-------=_Part_1021042_1366133551.1362123236758
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+--f46d043c816c8d3d6204d6d924ed
+Content-Type: text/plain; charset=ISO-8859-1
 
-LinkedIn
-------------
+Hi Rudy,
 
+Thank you for the basic file... I have a question here... The git directory
+is already saved on my work pc. What is the necessity to download it again?
+The reason behind my asking this question is, it is secured and so password
+is required. So, in order to avoid confusion I already downloaded it to a
+directory called "/home/damarla/linux-skidata.git". So can I just write
 
+SRC_URI = "dir://home/damarla/linux-skidata.git"
 
+I think in the above way I can just simply remove the KSRC and KBRANCH
+variables from the linux-skidata.bb file. The revision tag is also not
+required in this cases as we are using the kernel provided by the company
+itself, I mean for the first basic build.
 
-    Desheng Li requested to add you as a connection on LinkedIn:
-  
+One more thing is the skidata-carrier_defconfig is already in the directory
+git I mentioned above at
+"/home/damarla/linux-skidata.git/arch/arm/configs/skidata-carrier_defconfig"
+... When compiling the kernel how can we tell the build system to build the
+kernel using that specific defconfig file?
 
-------------------------------------------
-
-Ni,
-
-I'd like to add you to my professional network on LinkedIn.
-
-- Desheng
-
-Accept invitation from Desheng Li
-http://www.linkedin.com/e/nd2fjz-hdr107qw-32/vGbzErNZNH9pQ6uemd-zK7w298WpQgsb6vy/blk/I334213279_125/e39SrCAJoS5vrCAJoyRJtCVFnSRJrScJr6RBfnhv9ClRsDgZp6lQs6lzoQ5AomZIpn8_dj8NnPATczcNczgPcQALoQpegCJzh44Lej4NdPkRcjsPcj4LrCBxbOYWrSlI/eml-comm_invm-b-in_ac-inv28/?hs=false&tok=3WxgavDBjBpRE1
-
-View profile of Desheng Li
-http://www.linkedin.com/e/nd2fjz-hdr107qw-32/rso/235624382/YbNk/name/125977031_I334213279_125/?hs=false&tok=3QAddPW03BpRE1
-------------------------------------------
-You are receiving Invitation emails.
+Thanks Rudy in advance,
+Satya
 
 
-This email was intended for Ni Qingliang.
-Learn why this is included: http://www.linkedin.com/e/nd2fjz-hdr107qw-32/plh/http%3A%2F%2Fhelp%2Elinkedin%2Ecom%2Fapp%2Fanswers%2Fdetail%2Fa_id%2F4788/-GXI/?hs=false&tok=2FgtJSya_BpRE1
-
-(c) 2012, LinkedIn Corporation. 2029 Stierlin Ct, Mountain View, CA 94043, USA.
 
 
-  
 
-------=_Part_1021042_1366133551.1362123236758
-Content-Type: text/html; charset=UTF-8
+
+On Thu, Feb 28, 2013 at 9:31 PM, Rudolf Streif
+<rstreif@linuxfoundation.org>wrote:
+
+> Hi Satya,
+>
+> You will first need a kernel recipe, let's call it linux-skidata.bb. It
+> can look like this:
+>
+> DESCRIPTION = "Skidata Linux Kernel"
+> SECTION = "kernel"
+> LICENSE = "GPLv2"
+>
+> LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+>
+> PV = "3.2"
+>
+> inherit kernel
+>
+> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:${THISDIR}/${PN}/patches:"
+>
+> # GIT repository location
+> KSRC ?= "<path to>/linux-skidata.git"
+>
+> # Branch to check out
+> KBRANCH ?= "<branch>"
+>
+> # Revision tag or AUTOREV
+> SRCREV ?= "${AUTOREV}"
+>
+> SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel \
+>    file://defconfig \
+>     "
+>
+> S = "${WORKDIR}/git"
+>
+>
+> You will need to provide a defconfig file next to your recipe containing
+> the kernel configuration settings. Your kernel GIT repo may contain a
+> .config that is good for your hardware. In that case you do not need a
+> defconfig but is still a good practice and will allow you to easily change
+> the settings.
+>
+> Then you need to adjust your machine configuration file:
+>
+> PREFERRED_PROVIDER_virtual/kernel ?= "linux-skidata"
+> PREFERRED_VERSION_skidata ?= "3.2%"
+>
+>
+> That should do it.
+>
+> :rjs
+>
+>
+> On Thu, Feb 28, 2013 at 11:21 AM, Satya Swaroop Damarla <
+> swaroop.damarla@gmail.com> wrote:
+>
+>> Yes I got an error message when I was building the kernel...  Actuallly I
+>> have a kernel git given by the company.... I downloaded it and is in my
+>> work pc.. How can I tell the build system to use that kernel?
+>>
+>>
+>> On Thu, Feb 28, 2013 at 8:17 PM, Rudolf Streif <
+>> rstreif@linuxfoundation.org> wrote:
+>>
+>>> Satya,
+>>>
+>>> your machine configuration file looks ok as far as I can tell. Did you
+>>> get an error message when building the kernel? Did you try to build just
+>>> the kernel e.g. bitbake linux-yocto?
+>>>
+>>> :rjs
+>>>
+>>>
+>>> On Mon, Feb 25, 2013 at 11:31 PM, Satya Swaroop Damarla <
+>>> swaroop.damarla@gmail.com> wrote:
+>>>
+>>>> Hello Guys... I think uImage is important but it is not being generated
+>>>> by the yocto project. It only generated the rootfs and uboot.bin. Is there
+>>>> any variable that has to be introduced in the machine.conf (in my case it
+>>>> is skidata-tamonten.conf)....
+>>>>
+>>>> Here is the configuration file
+>>>>
+>>>> #@TYPE: Machine
+>>>> #@NAME: skidata-tamonten machine
+>>>> #@DESCRIPTION: Machine configuration for the Tamonten board
+>>>>
+>>>> PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
+>>>>
+>>>> IMAGE_FEATURES += "package-management"
+>>>> EXTRA_IMAGEDEPENDS += " u-boot"
+>>>>
+>>>> # Uncomment the following line to enable the hard floating point abi.
+>>>> Note that
+>>>> # this breaks some binary libraries and 3D (neither of which ship with
+>>>> # meta-yocto). For maximum compatibility, leave this disabled.
+>>>> DEFAULTTUNE ?= "cortexa9t"
+>>>> include conf/machine/include/tune-cortexa9.inc
+>>>>
+>>>> IMAGE_FSTYPES += "tar.bz2 ext2"
+>>>>
+>>>> SERIAL_CONSOLE = "115200 ttyS0"
+>>>>
+>>>> PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+>>>> PREFERRED_VERSION_linux-yocto ?= "3.2%"
+>>>>
+>>>> KERNEL_IMAGETYPE = " uImage"
+>>>>
+>>>> PREFERRED_VERSION_u-boot ?= "v2013.01.01%"
+>>>>
+>>>> UBOOT_MACHINE = "tec_config"
+>>>> UBOOT_ENTRYPOINT = "0x17000000"
+>>>> UBOOT_LOADADDRESS = "0x17000000"
+>>>>
+>>>> MACHINE_FEATURES = "usbgadget usbhost vfat screen touchscreen keyboard"
+>>>>
+>>>>
+>>>> Greets,
+>>>> Satya
+>>>>
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>>
+>>>
+>>>
+>>> --
+>>> --
+>>> *Rudolf J. Streif*
+>>> Director of Embedded Solutions
+>>> The Linux Foundation
+>>>
+>>> rudolf.streif@linux.com
+>>> Phone: +1.619.631.5383
+>>> Skype: rudolfstreif
+>>> PGP: RSA 2048/2048 D6E7D28B
+>>>
+>>> Linux Foundation Events Schedule:  events.linuxfoundation.org
+>>> Linux Foundation Training Schedule: training.linuxfoundation.org
+>>>
+>>>
+>>
+>
+>
+> --
+> --
+> *Rudolf J. Streif*
+> Director of Embedded Solutions
+> The Linux Foundation
+>
+> rudolf.streif@linux.com
+> Phone: +1.619.631.5383
+> Skype: rudolfstreif
+> PGP: RSA 2048/2048 D6E7D28B
+>
+> Linux Foundation Events Schedule:  events.linuxfoundation.org
+> Linux Foundation Training Schedule: training.linuxfoundation.org
+>
+>
+
+--f46d043c816c8d3d6204d6d924ed
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi Rudy,<div><br></div><div style>Thank you for the basic =
+file... I have a question here... The git directory is already saved on my =
+work pc. What is the necessity to download it again? The reason behind my a=
+sking this question is, it is secured and so password is required. So, in o=
+rder to avoid confusion I already downloaded it to a directory called &quot=
+;/home/damarla/linux-skidata.git&quot;. So can I just write=A0</div>
+<div style><br></div><div style>SRC_URI =3D &quot;dir://home/damarla/linux-=
+skidata.git&quot;</div><div style><br></div><div style>I think in the above=
+ way I can just simply remove the KSRC and KBRANCH variables from the <a hr=
+ef=3D"http://linux-skidata.bb">linux-skidata.bb</a> file. The revision tag =
+is also not required in this cases as we are using the kernel provided by t=
+he company itself, I mean for the first basic build.</div>
+<div style><br></div><div style>One more thing is the skidata-carrier_defco=
+nfig is already in the directory git I mentioned above at &quot;/home/damar=
+la/linux-skidata.git/arch/arm/configs/skidata-carrier_defconfig&quot; ... W=
+hen compiling the kernel how can we tell the build system to build the kern=
+el using that specific defconfig file?</div>
+<div style><br></div><div style>Thanks Rudy in advance,</div><div style>Sat=
+ya</div><div style><br></div><div style><br></div><div style><br></div><div=
+ style><br></div></div><div class=3D"gmail_extra"><br><br><div class=3D"gma=
+il_quote">
+On Thu, Feb 28, 2013 at 9:31 PM, Rudolf Streif <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blank">rstreif@linuxfou=
+ndation.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr">Hi Satya,<div><br></div><div>You will first need a kernel =
+recipe, let&#39;s call it <a href=3D"http://linux-skidata.bb" target=3D"_bl=
+ank">linux-skidata.bb</a>. It can look like this:</div><div><br></div><div>=
+<div>
 
-      <html>
-        <head>
-          <style type=3D"text/css">
-            html {-webkit-text-size-adjust:none;}
-            body {background-color: #F4F4F4; padding:0; margin:0; width:100=
-%; margin:0 auto;}
-            *[class].tdwrap{display: inline-block !important;}
-            *[class].vspacer{ margin-left: 50px; }
-            *[class].responsive-50per{ width: 50% !important; }
-            *[class].responsive-75per{ width: 75% !important; }
-            @media all and (max-width: 590px){
-              *[class].responsive{width:320px !important;}
-              *[class].responsive-spacer table{width: 20px !important; }
-              *[class].vspacer{ margin-top: 10px !important; margin-bottom:=
- 15px !important; margin-left: 0 !important; }
-              *[class].res-font16{font-size:16px !important;}
-              *[class].res-font12{font-size:12px !important;}
-              *[class].res-font18{font-size:18px !important;}
-              *[class].res-font18 span{font-size: 18px !important;}
-              *[class].responsive-50per{ width: 100% !important;}
-              *[class].responsive-spacer70{ width: 70px !important; }
-              *[class].hideIMG{ height: 0px !important; width: 0px !importa=
-nt; }
-              *[class].res-height20{ height: 20px !important; }
-              *[class].res-height20 div{ height: 20px !important; }
-              *[class].res-height10{ height: 10px !important; }
-              *[class].res-height10 div{ height: 10px !important; }
-              *[class].res-height0 { height: 0px !important; }
-              *[class].res-height0 div{ height: 0px !important; }
-              *[class].res-width280{ width: 280px !important; }
-              *[class].res-width25{ width: 25px !important; }
-              *[class].res-width10{ width: 10px !important; }
-              *[class].res-width10 table{ width: 10px !important; }
-              *[class].res-width60{width: 60px !important;}
-              *[class].res-padding{ width: 0 !important; }
-              *[class].res-padding table{ width: 0 !important; }
-              *[class].cellpadding-none{ width: 0px !important; }
-              *[class].cellpadding-none table{ border: collapse !important;=
- }
-              *[class].cellpadding-none table td{ padding: 0 !important; }
-              *[class].display-none{ display: none !important; }
-              *[class].remove-margin{ margin: 0 !important; }
-              *[class].remove-border{ border: none !important; }
-              *[class].res-img60{width: 60px !important; height: 60px !impo=
-rtant;}
-              *[class].res-img100{ width: 100px !important; height: 100px !=
-important; }
-              *[class].res-img320{width: 320px !important; height: auto !im=
-portant; position: relative;}
-              *[class].res-border{border-top: 1px solid #E1E1E1 !important;=
-}
-              *[class].mobile-hidden{ display: none !important; height: 0px=
- !important; width:0px !important; }
-              *[class].full-width{ width:100% !important; }
-              *[class].mobile-capitalize{ text-transform: capitalize !impor=
-tant; }
-            }
-            @media only screen and (max-device-width: 480px) {
-              p[class=3Danet-digest-activity],
-              span[class=3Danet-digest-count],
-              td[class=3Danet-digest-right-rail] {
-                display:none;
-              }
-            }
-           =20
-          </style>
-        </head>
-        <body >
- =20
+DESCRIPTION =3D &quot;Skidata Linux Kernel&quot;</div><div>SECTION =3D &quo=
+t;kernel&quot;</div><div>LICENSE =3D &quot;GPLv2&quot;</div><div><br></div>=
+<div>LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3Dd7810fab7487fb0aad327b=
+76f1be7cd7&quot;</div>
 
+<div><br></div><div>PV =3D &quot;3.2&quot;</div><div><br></div><div>inherit=
+ kernel</div><div><br></div><div>FILESEXTRAPATHS_prepend :=3D &quot;${THISD=
+IR}/${PN}:${THISDIR}/${PN}/patches:&quot;</div><div><br></div><div># GIT re=
+pository location</div>
 
+<div>KSRC ?=3D &quot;&lt;path to&gt;/linux-skidata.git&quot;</div><div><br>=
+</div><div># Branch to check out</div><div>KBRANCH ?=3D &quot;&lt;branch&gt=
+;&quot;</div><div><br></div><div># Revision tag or AUTOREV</div>
+<div>SRCREV ?=3D &quot;${AUTOREV}&quot;</div><div><br></div><div>SRC_URI =
+=3D &quot;git://${KSRC};protocol=3Dfile;branch=3D${KBRANCH};name=3Dkernel \=
+</div><div><span style=3D"white-space:pre-wrap">	</span> =A0 file://defconf=
+ig \</div>
+<div><span style=3D"white-space:pre-wrap">	</span>=A0 =A0&quot;</div><div><=
+br></div><div>S =3D &quot;${WORKDIR}/git&quot;<br></div><div><br></div><div=
+><br></div><div>You will need to provide a defconfig file next to your reci=
+pe containing the kernel configuration settings. Your kernel GIT repo may c=
+ontain a .config that is good for your hardware. In that case you do not ne=
+ed a defconfig but is still a good practice and will allow you to easily ch=
+ange the settings.</div>
 
- =20
- =20
- =20
-    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-f=
-amily:Arial;" width=3D"100%" bgcolor=3D"#F4F4F4"><tr><td align=3D"center">
+<div><br></div><div>Then you need to adjust your machine configuration file=
+:</div><div><br></div><div><div>PREFERRED_PROVIDER_virtual/kernel ?=3D &quo=
+t;linux-skidata&quot;</div><div>PREFERRED_VERSION_skidata ?=3D &quot;3.2%&q=
+uot;</div>
 
+<div><br></div><div><br></div><div>That should do it.</div><div><br></div><=
+div>:rjs</div></div></div></div><div class=3D"HOEnZb"><div class=3D"h5"><di=
+v class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu, Feb 28, =
+2013 at 11:21 AM, Satya Swaroop Damarla <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:swaroop.damarla@gmail.com" target=3D"_blank">swaroop.damarla@gmail.com=
+</a>&gt;</span> wrote:<br>
 
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Yes I got an error message =
+when I was building the kernel... =A0Actuallly I have a kernel git given by=
+ the company.... I downloaded it and is in my work pc.. How can I tell the =
+build system to use that kernel?</div>
+
+<div><div>
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu, Feb 2=
+8, 2013 at 8:17 PM, Rudolf Streif <span dir=3D"ltr">&lt;<a href=3D"mailto:r=
+streif@linuxfoundation.org" target=3D"_blank">rstreif@linuxfoundation.org</=
+a>&gt;</span> wrote:<br>
 
 
-<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-famil=
-y:Arial;border:solid 1px none;-moz-border-radius:0px;-webkit-border-radius:=
-0px;border-radius:0px;" bgcolor=3D"#f4f4f4" width=3D"100%" class=3D""><tr><=
-td width=3D"98%" valign=3D"top" align=3D"center">
-  <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-fam=
-ily:Arial;border:solid 1px none;-moz-border-radius:0px;-webkit-border-radiu=
-s:0px;border-radius:0px;" bgcolor=3D"#FFFFFF" width=3D"590" class=3D"respon=
-sive"><tr><td width=3D"98%" valign=3D"top" align=3D"">
-    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-f=
-amily:Arial;" width=3D"100%" bgcolor=3D"#f4f4f4" class=3D"responsive">
-      <tr>
-        <td align=3D"right" width=3D"590" class=3D"responsive">
-          <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
-            <tbody>
-              <tr>
-                <td height=3D"15"></td>
-              </tr>
-            </tbody>
-          </table>
-          <div style=3D"margin-bottom: 10px;">
-            <a href=3D"http://www.linkedin.com/">
-              <img src=3D"http://www.linkedin.com/scds/common/u/img/logos/l=
-ogo_emails_trans_98x24.png" height=3D"24" width=3D"98" alt=3D"LinkedIn Logo=
-" border=3D"0">
-            </a>
-          </div>
-        </td>
-      </tr>
-    </table>
-
-      <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font=
--family:Arial;" width=3D"100%" class=3D"responsive">
-        <tr>
-          <td bgcolor=3D"#ffffff" class=3D"responsive" align=3D"left">
-            <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-size:10px;line-hei=
-ght:10px;">&nbsp;</div></td></tr></table>
-            <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=
-=3D"font-family:Arial;" bgcolor=3D"#ffffff" width=3D"100%">
-              <tr>
-                <td width=3D"15"><table width=3D"15" border=3D"0" cellspaci=
-ng=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font=
--size:0px;line-height:0px;">&nbsp;</div></td></tr></table></td>
-                <td style=3D"color: rgb(51, 51, 51); font-family: Arial,san=
-s-serif; font-size: 18px; margin-bottom: 0; text-align: left;">
-                  Ni,
-                </td>
-                <td width=3D"15"><table width=3D"15" border=3D"0" cellspaci=
-ng=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font=
--size:0px;line-height:0px;">&nbsp;</div></td></tr></table></td>
-              </tr>
-            </table>
-              <emai:table bgcolor=3D"#f2faff" width=3D"100%">
-                <tr>
-                  <td height=3D"15">
-                    <table width=3D"1" border=3D"0" cellspacing=3D"0" cellp=
-adding=3D"0" class=3D""><tr><td><div style=3D"height:15px;font-size:15px;li=
-ne-height:15px;">&nbsp;</div></td></tr></table>
-                  </td>
-                  <td height=3D"15">
-                    <table width=3D"1" border=3D"0" cellspacing=3D"0" cellp=
-adding=3D"0" class=3D""><tr><td><div style=3D"height:15px;font-size:15px;li=
-ne-height:15px;">&nbsp;</div></td></tr></table>
-                  </td>
-                  <td height=3D"15">
-                    <table width=3D"1" border=3D"0" cellspacing=3D"0" cellp=
-adding=3D"0" class=3D""><tr><td><div style=3D"height:15px;font-size:15px;li=
-ne-height:15px;">&nbsp;</div></td></tr></table>
-                  </td>
-                  <td height=3D"15">
-                    <table width=3D"1" border=3D"0" cellspacing=3D"0" cellp=
-adding=3D"0" class=3D""><tr><td><div style=3D"height:15px;font-size:15px;li=
-ne-height:15px;">&nbsp;</div></td></tr></table>
-                  </td>
-                </tr>
-                <tr>
-                  <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" s=
-tyle=3D"font-family:Arial;" width=3D"100%">
-                    <tr>
-                      <td width=3D"15">
-                        <table width=3D"15" border=3D"0" cellspacing=3D"0" =
-cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font-size:0px=
-;line-height:0px;">&nbsp;</div></td></tr></table>
-                      </td>
-                      <td>
-                        <table border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" style=3D"font-family:Arial;border-top: 1px dotted #DDD; border-botto=
-m: 1px dotted #DDD;" width=3D"100%" bgcolor=3D"#f2faff">
-                          <tr>
-                            <td height=3D"10">
-                              <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-=
-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>                =
-         =20
-                            </td>
-                            <td height=3D"10">
-                              <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-=
-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>                =
-         =20
-                            </td>
-                            <td height=3D"10">
-                              <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-=
-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>                =
-         =20
-                            </td>
-                            <td height=3D"10">
-                              <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-=
-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>                =
-         =20
-                            </td>
-                            <td height=3D"10">
-                              <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-=
-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>                =
-         =20
-                            </td>
-                          </tr>
-                          <tr>
-                            <td width=3D"10">
-                              <table width=3D"10" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font-s=
-ize:0px;line-height:0px;">&nbsp;</div></td></tr></table>
-                            </td>
-                              <td valign=3D"top" width=3D"60">
-                                  <img src=3D"http://m3.licdn.com/mpr/mpr/s=
-hrink_80_80/p/3/000/212/20a/33b41c7.jpg" width=3D"60" height=3D"60" border=
-=3D"0" style=3D"display: block;">
-                              </td>
-                              <td width=3D"10">
-                                <table width=3D"10" border=3D"0" cellspacin=
-g=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font-=
-size:0px;line-height:0px;">&nbsp;</div></td></tr></table>
-                              </td>
-                            <td valign=3D"top" style=3D"font-family: Arial;=
- color: rgb(51, 51, 51);">
-                              <div style=3D"font-size: 16px; text-align: le=
-ft;">
-                                Desheng Li wants to connect with you on Lin=
-kedIn.
-                              </div>
-                              <div style=3D"font-size: 12px; text-align: le=
-ft;">
-                                <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:3px;font-s=
-ize:3px;line-height:3px;">&nbsp;</div></td></tr></table>
-                              </div>
-                              <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:15px;font-=
-size:15px;line-height:15px;">&nbsp;</div></td></tr></table>
-                              <div style=3D"font-weight: bold; font-size: 1=
-2px; text-align: left;">Desheng Li</div>
-                              <table border=3D"0" cellspacing=3D"0" cellpad=
-ding=3D"0" style=3D"font-family:Arial;" width=3D"100%">
-                                <tr>
-                                  <td>
-                                    <table border=3D"0" cellspacing=3D"0" c=
-ellpadding=3D"0" style=3D"font-family:Arial;" width=3D"50%" class=3D"respon=
-sive-50per" align=3D"left">
-                                      <tr>
-                                        <td style=3D"font-family: Arial; co=
-lor: rgb(51, 51, 51); text-align: left; font-size: 12px;">Student at Beijin=
-g University of Technology</td>
-                                        <td style=3D"font-family: Arial; co=
-lor: rgb(51, 51, 51); font-size: 12px;">
-                                          <a href=3D"http://www.linkedin.co=
-m/e/nd2fjz-hdr107qw-32/rso/235624382/YbNk/name/125977031_I334213279_125/eml=
--comm_invm-b-pro_txt-inv28/?hs=3Dfalse&amp;tok=3D1HL_4oKxTBpRE1" style=3D"t=
-ext-decoration: none; text-align: left;">
-                                            <span style=3D"font-family:Aria=
-l;font-size:11px;color:#006699;">
-                                              View Profile &#187;
-                                            </span>
-                                          </a>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                            <td width=3D"10">
-                              <table width=3D"10" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font-s=
-ize:0px;line-height:0px;">&nbsp;</div></td></tr></table>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td height=3D"10">
-                              <table width=3D"1" border=3D"0" cellspacing=
-=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-=
-size:10px;line-height:10px;">&nbsp;</div></td></tr></table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                      <td width=3D"15">
-                        <table width=3D"15" border=3D"0" cellspacing=3D"0" =
-cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font-size:0px=
-;line-height:0px;">&nbsp;</div></td></tr></table>
-                      </td>
-                    </tr>
-                  </table>
-                </tr>
-                <tr>
-                  <td>
-                    <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
- style=3D"font-family:Arial;" width=3D"100%">
-                      <tr>
-                        <td height=3D"10">
-                          <table width=3D"1" border=3D"0" cellspacing=3D"0"=
- cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-size:1=
-0px;line-height:10px;">&nbsp;</div></td></tr></table>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div>
-                            <table border=3D"0" cellspacing=3D"1" cellpaddi=
-ng=3D"3" style=3D"font-family:Arial;" align=3D"left">
-                              <tr>
-                                <td width=3D"5">
-                                  <table width=3D"5" border=3D"0" cellspaci=
-ng=3D"0" cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:0px;font=
--size:0px;line-height:0px;">&nbsp;</div></td></tr></table>
-                                </td>
-                                <td colspan=3D"3" align=3D"left">
-                                    <table border=3D"0" cellpadding=3D"6" c=
-ellspacing=3D"1" align=3D""><tr><td align=3D"center" valign=3D"middle" bgco=
-lor=3D"#FFE86C" background=3D"http://www.linkedin.com/scds/common/u/img/bg/=
-yellow_button_back.png" style=3D"background:url(http://www.linkedin.com/scd=
-s/common/u/img/bg/yellow_button_back.png) repeat-x scroll 100% 0 #FFE86C;ba=
-ckground-color:#FFE86C;border:1px solid #E8B463;-moz-border-radius:4px;-web=
-kit-border-radius:4px;border-radius:4px;"><div style=3D"padding-right:10px;=
-padding-left:10px;"><a href=3D"http://www.linkedin.com/e/nd2fjz-hdr107qw-32=
-/vGbzErNZNH9pQ6uemd-zK7w298WpQgsb6vy/blk/I334213279_125/e39SrCAJoS5vrCAJoyR=
-JtCVFnSRJrScJr6RBfnhv9ClRsDgZp6lQs6lzoQ5AomZIpn8_dj8NnPATczcNczgPcQALoQpegC=
-Jzh44Lej4NdPkRcjsPcj4LrCBxbOYWrSlI/eml-comm_invm-b-in_ac-inv28/?hs=3Dfalse&=
-amp;tok=3D3WxgavDBjBpRE1" style=3D"text-decoration:none;"><span style=3D"fo=
-nt-size:12px;font-family:Arial;font-weight:bold;color:#333333;white-space:n=
-owrap;display:block;">Accept</span></a></div></td></tr></table>
-                                </td>
-                              </tr>
-                            </table>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td height=3D"10">
-                          <table width=3D"1" border=3D"0" cellspacing=3D"0"=
- cellpadding=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-size:1=
-0px;line-height:10px;">&nbsp;</div></td></tr></table>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </emai:table>
-              <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" class=3D""><tr><td><div style=3D"height:10px;font-size:10px;line-hei=
-ght:10px;">&nbsp;</div></td></tr></table>
-            </div>
-          </td>
-        </tr>
-      </table>
-
-    </td></tr></table>
-  </td></tr></table>
-        <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"fo=
-nt-family:Arial;border:solid 1px none;-moz-border-radius:0px;-webkit-border=
--radius:0px;border-radius:0px;" bgcolor=3D"#f4f4f4" width=3D"100%" class=3D=
-""><tr><td width=3D"98%" valign=3D"top" align=3D"center">
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Satya,<div><br></div><div>y=
+our machine configuration file looks ok as far as I can tell. Did you get a=
+n error message when building the kernel? Did you try to build just the ker=
+nel e.g. bitbake linux-yocto?</div>
 
 
 
-<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"font-famil=
-y:Arial;" width=3D"580" class=3D"responsive">
-  <tr><td><table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
-0" class=3D""><tr><td><div style=3D"height:10px;font-size:10px;line-height:=
-10px;">&nbsp;</div></td></tr></table></td></tr>
-  <tr>
-    <td align=3D"left" style=3D"font-size:11px; font-family:Arial,sans-seri=
-f; color:#999999;">
-            You are receiving Invitation emails. <a style=3D"color:#006699;=
-text-decoration:underline;" href=3D"https://www.linkedin.com/e/nd2fjz-hdr10=
-7qw-32/vGbzErNZNH9pQ6uemd-zK7w298WpQgsb6vy/uns/20008/125977031/m0ub7qhepgdo=
-opk/yocto%40yoctoproject%2Eorg/nd2fjz-hdr107qw-32/eml-comm_invm-f-unsub-inv=
-28/?hs=3Dfalse&tok=3D2Mt6cETYrBpRE1">Unsubscribe</a>.
-        <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
- class=3D""><tr><td><div style=3D"height:10px;font-size:10px;line-height:10=
-px;">&nbsp;</div></td></tr></table>
+<div><br></div><div>:rjs</div></div><div class=3D"gmail_extra"><br><br><div=
+ class=3D"gmail_quote"><div><div>On Mon, Feb 25, 2013 at 11:31 PM, Satya Sw=
+aroop Damarla <span dir=3D"ltr">&lt;<a href=3D"mailto:swaroop.damarla@gmail=
+.com" target=3D"_blank">swaroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
 
-                This email was intended for Ni Qingliang (Software Engineer=
- at Insigma). <a style=3D"color: #006699" href=3D"http://www.linkedin.com/e=
-/nd2fjz-hdr107qw-32/plh/http%3A%2F%2Fhelp%2Elinkedin%2Ecom%2Fapp%2Fanswers%=
-2Fdetail%2Fa_id%2F4788/-GXI/?hs=3Dfalse&tok=3D2FgtJSya_BpRE1">Learn why we =
-included this</a>. &copy; 2013, LinkedIn Corporation. 2029 Stierlin Ct. Mou=
-ntain View, CA 94043, USA
-    </td>
-  </tr>
-  <tr><td><table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
-0" class=3D""><tr><td><div style=3D"height:10px;font-size:10px;line-height:=
-10px;">&nbsp;</div></td></tr></table></td></tr>
-</table>
 
-        </td></tr></table>
 
-    </td></tr></table>
+</div></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><div><div><div dir=3D"ltr">Hello=
+ Guys... I think uImage is important but it is not being generated by the y=
+octo project. It only generated the rootfs and uboot.bin. Is there any vari=
+able that has to be introduced in the machine.conf (in my case it is skidat=
+a-tamonten.conf)....<div>
 
 
 
 
- =20
-</body>
-      </html>
+<br></div><div>Here is the configuration file=A0</div><div><br></div><div><=
+div>#@TYPE: Machine</div><div>#@NAME: skidata-tamonten machine</div><div>#@=
+DESCRIPTION: Machine configuration for the Tamonten board</div>
+<div><br></div><div>PREFERRED_PROVIDER_virtual/xserver ?=3D &quot;xserver-x=
+org&quot;</div><div><br></div><div>IMAGE_FEATURES +=3D &quot;package-manage=
+ment&quot;</div><div>EXTRA_IMAGEDEPENDS +=3D &quot; u-boot&quot;</div><div>=
+<br>
 
-------=_Part_1021042_1366133551.1362123236758--
+
+
+
+</div><div># Uncomment the following line to enable the hard floating point=
+ abi. Note that</div><div># this breaks some binary libraries and 3D (neith=
+er of which ship with</div><div># meta-yocto). For maximum compatibility, l=
+eave this disabled.</div>
+
+
+
+
+<div>DEFAULTTUNE ?=3D &quot;cortexa9t&quot;</div><div>include conf/machine/=
+include/tune-cortexa9.inc</div><div><br></div><div>IMAGE_FSTYPES +=3D &quot=
+;tar.bz2 ext2&quot;</div><div><br></div><div>SERIAL_CONSOLE =3D &quot;11520=
+0 ttyS0&quot;</div>
+
+
+
+
+<div><br></div><div>PREFERRED_PROVIDER_virtual/kernel ?=3D &quot;linux-yoct=
+o&quot;</div><div>PREFERRED_VERSION_linux-yocto ?=3D &quot;3.2%&quot;</div>=
+<div><br></div><div>KERNEL_IMAGETYPE =3D &quot; uImage&quot;</div><div><br>=
+</div>
+
+
+
+
+<div>PREFERRED_VERSION_u-boot ?=3D &quot;v2013.01.01%&quot;</div><div><br><=
+/div><div>UBOOT_MACHINE =3D &quot;tec_config&quot;</div><div>UBOOT_ENTRYPOI=
+NT =3D &quot;0x17000000&quot;</div><div>UBOOT_LOADADDRESS =3D &quot;0x17000=
+000&quot;</div>
+
+
+
+
+<div><br></div><div>MACHINE_FEATURES =3D &quot;usbgadget usbhost vfat scree=
+n touchscreen keyboard&quot;</div><div><br></div><div><br></div><div>Greets=
+,</div><div>Satya</div></div></div>
+<br></div></div>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><span><font color=3D"#888888"><br><br clear=3D"all">=
+<div><br></div>-- <br>--=A0<br><font face=3D"arial, helvetica, sans-serif">=
+<b>Rudolf J. Streif</b></font><div><font face=3D"arial, helvetica, sans-ser=
+if">Director of Embedded Solutions</font></div>
+
+
+
+<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
+></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
+iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
+=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
+
+
+
+<div><font face=3D"arial, helvetica, sans-serif">Phone: <a href=3D"tel:%2B1=
+.619.631.5383" value=3D"+16196315383" target=3D"_blank">+1.619.631.5383</a>=
+</font></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolf=
+streif</font></div>
+
+
+<div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 2048/2048 D6E7D28=
+B</font></div>
+<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
+amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
+);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
+se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
+linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
+nts.linuxfoundation.org</a><br>
+
+
+
+Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
+ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
+xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
+nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
+ont-family:arial,sans-serif;font-size:13px"><br>
+
+
+
+</span></font></div>
+</font></span></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
+--=A0<br><font face=3D"arial, helvetica, sans-serif"><b>Rudolf J. Streif</b=
+></font><div><font face=3D"arial, helvetica, sans-serif">Director of Embedd=
+ed Solutions</font></div>
+
+<div><font face=3D"arial, helvetica, sans-serif">The Linux Foundation</font=
+></div><div><font face=3D"arial, helvetica, sans-serif"><br></font></div><d=
+iv><a href=3D"mailto:rudolf.streif@linux.com" target=3D"_blank"><font face=
+=3D"arial, helvetica, sans-serif">rudolf.streif@linux.com</font></a></div>
+
+<div><font face=3D"arial, helvetica, sans-serif">Phone: <a href=3D"tel:%2B1=
+.619.631.5383" value=3D"+16196315383" target=3D"_blank">+1.619.631.5383</a>=
+</font></div><div><font face=3D"arial, helvetica, sans-serif">Skype: rudolf=
+streif</font></div>
+<div><font face=3D"arial, helvetica, sans-serif">PGP: RSA 2048/2048 D6E7D28=
+B</font></div>
+<div><font face=3D"garamond, serif"><br></font></div><div><font face=3D"gar=
+amond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102=
+);font-family:arial,sans-serif;font-size:13px"><span style=3D"border-collap=
+se:collapse">Linux Foundation Events Schedule: =A0<a href=3D"http://events.=
+linuxfoundation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">eve=
+nts.linuxfoundation.org</a><br>
+
+Linux Foundation Training Schedule:=A0<a href=3D"http://training.linuxfound=
+ation.org/" style=3D"color:rgb(64,100,128)" target=3D"_blank">training.linu=
+xfoundation.org</a></span><br></span></font></div><div><font face=3D"garamo=
+nd, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,102);f=
+ont-family:arial,sans-serif;font-size:13px"><br>
+
+</span></font></div>
+</div>
+</div></div></blockquote></div><br></div>
+
+--f46d043c816c8d3d6204d6d924ed--
