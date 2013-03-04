@@ -1,23 +1,32 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from eumx.net (eumx.net [91.82.101.43])
-	(using TLSv1 with cipher AES256-SHA (256/256 bits))
+Return-Path: <swaroop.damarla@gmail.com>
+Received: from mail-vb0-f43.google.com (mail-vb0-f43.google.com
+	[209.85.212.43]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 886F3E0070E
-	for <yocto@yoctoproject.org>; Sun,  3 Mar 2013 14:24:46 -0800 (PST)
-Message-ID: <5133CBD7.5020903@communistcode.co.uk>
-Date: Sun, 03 Mar 2013 22:16:55 +0000
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 504B8E014CC
+	for <yocto@yoctoproject.org>; Sun,  3 Mar 2013 22:59:39 -0800 (PST)
+Received: by mail-vb0-f43.google.com with SMTP id fs19so798347vbb.2
+	for <yocto@yoctoproject.org>; Sun, 03 Mar 2013 22:59:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=U3wKPK2ux6MRhLYYsNwsq+LilsKPrP3DGRa08jvz80o=;
+	b=PyMRpithDBMyH4rbkhqg/Y0xCbwnWIIHX0WE5o8UfrF828m+j2xY1Ls31NNmrGWtJy
+	WkLeann+c2dKrz+1lX79pPe28q9Hp3y6aYXIT+9E+1Dz/bio7/vtkdX8HSDn4rQrytQv
+	DQjA5vqmDv3PcGpuOeJb1b70ITZq8eEsOy9NF3ROYZ5MKBvc3lhJFKZf9CrU/tm56TtI
+	NgEx02tnrsB8di8NUY50uvN8d2SOMhxrv8K0lreNpXNPXUSZJhgv/BKNxIxILfx96Ibm
+	kCtyra5BMnRkkl+QB0Jn9oTaABlpAL83dX8cyp33Nss1R+RiSwYcKMQHy6VkurfBuAdo
+	DaYg==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAFD161nCzH4RB-1dsa2Gy7wYgq0ytsFM-TqiwMCrOxLxKor7-A@mail.gmail.com>
-In-Reply-To: <CAFD161nCzH4RB-1dsa2Gy7wYgq0ytsFM-TqiwMCrOxLxKor7-A@mail.gmail.com>
-Subject: Re: Trying to bitbake core-image-minimal on Archlinux
+X-Received: by 10.58.28.169 with SMTP id c9mr7404071veh.5.1362380378117; Sun,
+	03 Mar 2013 22:59:38 -0800 (PST)
+Received: by 10.58.187.42 with HTTP; Sun, 3 Mar 2013 22:59:38 -0800 (PST)
+Date: Mon, 4 Mar 2013 07:59:38 +0100
+Message-ID: <CABTzgQ4=MKSjzty95SoF71LDTqFW8si=Z32XkingURRk3qCWFA@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Kernel compiled using linux-yocto-3.2 not Starting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -26,228 +35,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 Mar 2013 22:24:47 -0000
-Content-Type: multipart/alternative;
-	boundary="------------030404030706020708070807"
+X-List-Received-Date: Mon, 04 Mar 2013 06:59:39 -0000
+Content-Type: multipart/alternative; boundary=047d7b6da95a7c9ea104d713e638
 
---------------030404030706020708070807
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+--047d7b6da95a7c9ea104d713e638
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 03/03/13 18:02, Ismael Barros² wrote:
-> Hi there,
->
-> I'm new to Yocto, and I keep finding errors that prevent me from 
-> building a minimal image.
->
-> I've just installed poky-danny-8.0, sourced oe-init-build-env, and 
-> bitbaked core-image-minimal. The first error is that bitbake sanity 
-> checks fail to detect the network access, while my network 
-> connectivity is perfect, and downloading packages seem to work if I 
-> disable this checks. Full log: http://pastebin.com/6jJCC1qp. I 
-> couldn't find any log that told me which piece of code was failing, so 
-> I jut disabled this check on ../meta-yocto/conf/distro/poky.conf
->
-> Upon trying again, building started fine, but it started failing to 
-> build the documentation for some packages, i.e. binutils-cross. First 
-> off, I want to build a single mission appliance, I don't really want 
-> to build any documentation, is there any way I can disable it? Anyway, 
-> this is the build log: http://pastebin.com/n9U4GfjG. Looks like there 
-> are some texinfo commands my machine (texinfo 5.0) doesn't recognice. 
-> According to http://sourceware.org/bugzilla/show_bug.cgi?id=15183, 
-> it's a known bug on binuilts-2.22 and it's fixed on binuilts-2.23.
->
-> Poking around, looks like "updating" to binutils-2.23 got it kind of 
-> working:
->
-> mv ./meta/recipes-devtools/binutils/binutils-2.22.inc 
-> ./meta/recipes-devtools/binutils/binutils-2.23.1.inc
-> mv ./meta/recipes-devtools/binutils/binutils-cross-canadian_2.22.bb 
-> <http://binutils-cross-canadian_2.22.bb> 
-> ./meta/recipes-devtools/binutils/binutils-cross-canadian_2.23.1.bb 
-> <http://binutils-cross-canadian_2.23.1.bb>
-> mv ./meta/recipes-devtools/binutils/binutils_2.22.bb 
-> <http://binutils_2.22.bb> 
-> ./meta/recipes-devtools/binutils/binutils_2.23.1.bb 
-> <http://binutils_2.23.1.bb>
-> mv ./meta/recipes-devtools/binutils/binutils-crosssdk_2.22.bb 
-> <http://binutils-crosssdk_2.22.bb> 
-> ./meta/recipes-devtools/binutils/binutils-crosssdk_2.23.1.bb 
-> <http://binutils-crosssdk_2.23.1.bb>
-> mv ./meta/recipes-devtools/binutils/binutils-cross_2.22.bb 
-> <http://binutils-cross_2.22.bb> 
-> ./meta/recipes-devtools/binutils/binutils-cross_2.23.1.bb 
-> <http://binutils-cross_2.23.1.bb>
->
-> I also had to update the md5 and sha1 
-> on ./meta/recipes-devtools/binutils/binutils-2.23.1.inc. After that, 
-> some patches failed to apply: 
-> libtool-2.4-update.patch, binutils-2.19.1-ld-sysroot.patch, binutils-poison.patch, 
-> libtool-rpath-fix.patch, clone-shadow.patch... so gave up
-> What would be the appropiate way to workaround this issue, besides not 
-> using Archlinux?
->
-> Btw, if the bitbake core-image-minimal fails because there's not 
-> enough disk space, and the free disk in the partition is left to 0, 
-> after that even the bitbake clean command fails :\
->
->
-> Anyway, thank you guys for what seems to be an excellent BSP factory, 
-> I'm really looking forward to start using it at our company :)
->
-> Kind regards,
-> Ismael
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+My kernel is not starting.. I compiled it fora modified version of Avionic
+Tamonten board... May I know the potential reasons
 
-Hi Ismael,
 
-Archlinux currently has texinfo5 in it's core repo which breaks a 
-significant amount of packages. I would suggest downgrading to 
-textinfo4.x (can't remember the exact version) and then things should at 
-least start to get going again. I'm afraid however if you insist on 
-using a rolling release distro you are going to hit these problems more 
-often than most, if you want a stable build environment then I would 
-suggest using a sanity tested distro. If you do with to persist with 
-Archlinux I suggest you follow oe-core/yocto master and update regulary.
+
+
+
+U-Boot 2009.11.1-dirty (Nov 03 2011 - 10:04:17)
+
+
+TEGRA2
+Board:   Tegra2 Harmony board
+DRAM:  512 MB
+NAND:  Chip Id: 0x20 (Handheld SOC) Major: 0x1 Minor: 0x3 SKU: 0x8
+512 MiB
+MMC:  Sdmmc dev 0... not found
+Sdmmc dev 1... detected card
+EMMC Probed Successfully. Detected 1 card(s).
+*** Warning - bad CRC or NAND, using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   No ethernet found.
+(Re)start USB...
+USB:   Tegra ehci init hccr c5008100 and hcor c5008140 hc_length 64
+Register 10011 NbrPorts 1
+USB EHCI 1.00
+scanning bus for devices... 3 USB Device(s) found
+       scanning bus for storage devices... 0 Storage Device(s) found
+       scanning bus for ethernet devices... 1 Ethernet Device(s) found
+
+Hit any key to stop autoboot:  0
+Loading file "/boot/uImage" from mmc device 1:1 (xxb1)
+4021264 bytes read
+## Booting kernel from Legacy Image at 17000000 ...
+   Image Name:   Linux-3.2.32-yocto-standard
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    4021200 Bytes =  3.8 MB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+   Loading Kernel Image ... OK
+OK
+replacing commandline [mem=384M@0M nvmem=128M@384M vmalloc=384M
+video=tegrafb console=ttyS0,115200n8 tegraboot=nand
+mtdparts=tegra_nand:358400K@29952K(system) usbcore.old_scheme_first=1 rw
+root=/dev/disk/by-]
+  adding initrd tag 0x00000000, 0x00000000
+ tag: size=0x00000002 tag=0x54410001 (ATAG_CORE)
+ tag: size=0x00000004 tag=0x54410006 (ATAG_SERIAL)
+ tag: size=0x00000102 tag=0x54410009 (ATAG_CMDLINE)
+
+Starting kernel ...
 
 Cheers,
-Jack.
+Satya
 
---------------030404030706020708070807
+--047d7b6da95a7c9ea104d713e638
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 03/03/13 18:02, Ismael Barros&sup2;
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAFD161nCzH4RB-1dsa2Gy7wYgq0ytsFM-TqiwMCrOxLxKor7-A@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Hi there,
-        <div><br>
-        </div>
-        <div style="">I'm new to Yocto, and I keep finding errors that
-          prevent me from building a minimal image.</div>
-        <div style=""><br>
-        </div>
-        <div style="">I've just installed&nbsp;poky-danny-8.0,
-          sourced&nbsp;oe-init-build-env, and bitbaked&nbsp;core-image-minimal.
-          The first error is that bitbake sanity checks fail to detect
-          the network access, while my network connectivity is perfect,
-          and downloading packages seem to work if I disable this
-          checks. Full log:&nbsp;<a moz-do-not-send="true"
-            href="http://pastebin.com/6jJCC1qp">http://pastebin.com/6jJCC1qp</a>.
-          I couldn't find any log that told me which piece of code was
-          failing, so I jut disabled this check
-          on&nbsp;../meta-yocto/conf/distro/poky.conf</div>
-        <div style=""><br>
-        </div>
-        <div style="">Upon trying again, building started fine, but it
-          started failing to build the documentation for some packages,
-          i.e. binutils-cross. First off, I want to build a single
-          mission appliance, I don't really want to build any
-          documentation, is there any way I can disable it? Anyway, this
-          is the build log:&nbsp;<a moz-do-not-send="true"
-            href="http://pastebin.com/n9U4GfjG">http://pastebin.com/n9U4GfjG</a>.
-          Looks like there are some texinfo commands my machine (texinfo
-          5.0) doesn't recognice. According to&nbsp;<a moz-do-not-send="true"
-            href="http://sourceware.org/bugzilla/show_bug.cgi?id=15183">http://sourceware.org/bugzilla/show_bug.cgi?id=15183</a>,
-          it's a known bug on&nbsp;binuilts-2.22 and it's fixed
-          on&nbsp;binuilts-2.23.</div>
-        <div style=""><br>
-        </div>
-        <div style="">Poking around, looks like "updating" to
-          binutils-2.23 got it kind of working:</div>
-        <div style=""><br>
-        </div>
-        <div style="">
-          <div>mv ./meta/recipes-devtools/binutils/binutils-2.22.inc
-            ./meta/recipes-devtools/binutils/binutils-2.23.1.inc</div>
-          <div>mv ./meta/recipes-devtools/binutils/<a
-              moz-do-not-send="true"
-              href="http://binutils-cross-canadian_2.22.bb">binutils-cross-canadian_2.22.bb</a>
-            ./meta/recipes-devtools/binutils/<a moz-do-not-send="true"
-              href="http://binutils-cross-canadian_2.23.1.bb">binutils-cross-canadian_2.23.1.bb</a></div>
-          <div>mv ./meta/recipes-devtools/binutils/<a
-              moz-do-not-send="true" href="http://binutils_2.22.bb">binutils_2.22.bb</a>
-            ./meta/recipes-devtools/binutils/<a moz-do-not-send="true"
-              href="http://binutils_2.23.1.bb">binutils_2.23.1.bb</a></div>
-          <div>mv ./meta/recipes-devtools/binutils/<a
-              moz-do-not-send="true"
-              href="http://binutils-crosssdk_2.22.bb">binutils-crosssdk_2.22.bb</a>
-            ./meta/recipes-devtools/binutils/<a moz-do-not-send="true"
-              href="http://binutils-crosssdk_2.23.1.bb">binutils-crosssdk_2.23.1.bb</a></div>
-          <div>mv ./meta/recipes-devtools/binutils/<a
-              moz-do-not-send="true"
-              href="http://binutils-cross_2.22.bb">binutils-cross_2.22.bb</a>
-            ./meta/recipes-devtools/binutils/<a moz-do-not-send="true"
-              href="http://binutils-cross_2.23.1.bb">binutils-cross_2.23.1.bb</a></div>
-          <div>
-            <br>
-          </div>
-          <div style="">I also had to update the md5 and sha1
-            on&nbsp;./meta/recipes-devtools/binutils/binutils-2.23.1.inc.
-            After that, some patches failed to apply:
-            libtool-2.4-update.patch,&nbsp;binutils-2.19.1-ld-sysroot.patch,&nbsp;binutils-poison.patch,
-            libtool-rpath-fix.patch,&nbsp;clone-shadow.patch... so gave up</div>
-          <div style="">What would be the appropiate way to workaround
-            this issue, besides not using Archlinux?</div>
-        </div>
-        <div style=""><br>
-        </div>
-        <div style="">Btw, if the bitbake core-image-minimal fails
-          because there's not enough disk space, and the free disk in
-          the partition is left to 0, after that even the bitbake clean
-          command fails :\</div>
-        <div style=""><br>
-        </div>
-        <div style=""><br>
-        </div>
-        <div style="">Anyway, thank you guys for what seems to be an
-          excellent BSP factory, I'm really looking forward to start
-          using it at our company :)</div>
-        <div style=""><br>
-        </div>
-        <div style="">
-          Kind regards,</div>
-        <div style="">Ismael</div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-    </blockquote>
-    <br>
-    Hi Ismael,<br>
-    <br>
-    Archlinux currently has texinfo5 in it's core repo which breaks a
-    significant amount of packages. I would suggest downgrading to
-    textinfo4.x (can't remember the exact version) and then things
-    should at least start to get going again. I'm afraid however if you
-    insist on using a rolling release distro you are going to hit these
-    problems more often than most, if you want a stable build
-    environment then I would suggest using a sanity tested distro. If
-    you do with to persist with Archlinux I suggest you follow
-    oe-core/yocto master and update regulary.<br>
-    <br>
-    Cheers,<br>
-    Jack.<br>
-  </body>
-</html>
+<div dir=3D"ltr">My kernel is not starting.. I compiled it fora modified ve=
+rsion of Avionic Tamonten board... May I know the potential reasons<div><br=
+></div><div><div>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0</div>
+<div>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0</div><div>U-Boot 2009.11.1-dirty (Nov 03 2011 - 10:04:1=
+7) =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0</div>
+<div><br></div><div>TEGRA2=A0</div><div>Board: =A0 Tegra2 Harmony board</di=
+v><div>DRAM: =A0512 MB</div><div>NAND: =A0Chip Id: 0x20 (Handheld SOC) Majo=
+r: 0x1 Minor: 0x3 SKU: 0x8</div><div>512 MiB</div><div>MMC: =A0Sdmmc dev 0.=
+.. not found</div>
+<div>Sdmmc dev 1... detected card</div><div>EMMC Probed Successfully. Detec=
+ted 1 card(s).</div><div>*** Warning - bad CRC or NAND, using default envir=
+onment</div><div><br></div><div>In: =A0 =A0serial</div><div>Out: =A0 serial=
+</div>
+<div>Err: =A0 serial</div><div>Net: =A0 No ethernet found.</div><div>(Re)st=
+art USB...</div><div>USB: =A0 Tegra ehci init hccr c5008100 and hcor c50081=
+40 hc_length 64</div><div>Register 10011 NbrPorts 1</div><div>USB EHCI 1.00=
+</div>
+<div>scanning bus for devices... 3 USB Device(s) found</div><div>=A0 =A0 =
+=A0 =A0scanning bus for storage devices... 0 Storage Device(s) found</div><=
+div>=A0 =A0 =A0 =A0scanning bus for ethernet devices... 1 Ethernet Device(s=
+) found</div><div>
+<br></div><div>Hit any key to stop autoboot: =A00=A0</div><div>Loading file=
+ &quot;/boot/uImage&quot; from mmc device 1:1 (xxb1)</div><div>4021264 byte=
+s read</div><div>## Booting kernel from Legacy Image at 17000000 ...</div><=
+div>
+=A0 =A0Image Name: =A0 Linux-3.2.32-yocto-standard</div><div>=A0 =A0Image T=
+ype: =A0 ARM Linux Kernel Image (uncompressed)</div><div>=A0 =A0Data Size: =
+=A0 =A04021200 Bytes =3D =A03.8 MB</div><div>=A0 =A0Load Address: 00008000<=
+/div><div>=A0 =A0Entry Point: =A000008000</div>
+<div>=A0 =A0Verifying Checksum ... OK</div><div>=A0 =A0Loading Kernel Image=
+ ... OK</div><div>OK</div><div>replacing commandline [mem=3D384M@0M nvmem=
+=3D128M@384M vmalloc=3D384M video=3Dtegrafb console=3DttyS0,115200n8 tegrab=
+oot=3Dnand mtdparts=3Dtegra_nand:358400K@29952K(system) usbcore.old_scheme_=
+first=3D1 rw root=3D/dev/disk/by-]</div>
+<div>=A0 adding initrd tag 0x00000000, 0x00000000</div><div>=A0tag: size=3D=
+0x00000002 tag=3D0x54410001 (ATAG_CORE)</div><div>=A0tag: size=3D0x00000004=
+ tag=3D0x54410006 (ATAG_SERIAL)</div><div>=A0tag: size=3D0x00000102 tag=3D0=
+x54410009 (ATAG_CMDLINE)</div>
+<div><br></div><div>Starting kernel ...</div></div><div><br></div><div styl=
+e>Cheers,</div><div style>Satya</div><div style><br></div></div>
 
---------------030404030706020708070807--
+--047d7b6da95a7c9ea104d713e638--
