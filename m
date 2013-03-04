@@ -1,29 +1,35 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
-	[209.85.216.45]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id C15A7E004FE
-	for <yocto@yoctoproject.org>; Mon,  4 Mar 2013 09:53:52 -0800 (PST)
-Received: by mail-qa0-f45.google.com with SMTP id g10so1345279qah.11
-	for <yocto@yoctoproject.org>; Mon, 04 Mar 2013 09:53:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=4trt4vav633iKtjY6hhfhA4o6weao0Ig4O2g0+G7ouk=;
-	b=BjCjj+qg6hsIq9QLihKjQ02g3MpMRVA+2rm8+Z9gPFcVcn3n2BbkhfJQ02Q5sZ3vZ0
-	nCheGxdbrQ++npIKj7UHWOfoIE2Ke0sForIfQPswBHVPZIYsCGJeI2Ivib0MjCxBowIc
-	CmQ5KJSISaXOZwqe5ysW6yJk1kPCkrI/8nMtjn63mPu8wG2p3snglA4mkZnasnTH7CfW
-	KjHP3+A9apT6b9AUWKzcBLia1nS1rArc11V0h1KhuAh1M5IfmPg9DVo7Ua8KqtG9jjmJ
-	rNg4ij3Mf9ZD8TxSFqoRzFxp+lF78hyH0U6a49Prkl+0r+OEFHUOdoOrO/vKfF60Swku
-	nx5w==
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3EECE014A7
+	for <yocto@yoctoproject.org>; Mon,  4 Mar 2013 11:55:59 -0800 (PST)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 04 Mar 2013 11:55:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,781,1355126400"; d="scan'208";a="208690349"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by AZSMGA002.ch.intel.com with ESMTP; 04 Mar 2013 11:55:55 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.197]) with mapi id
+	14.01.0355.002; Mon, 4 Mar 2013 11:55:54 -0800
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: =?iso-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
+Thread-Topic: [yocto] [PATCH 0/5][eclipse-poky] Refactor handling of SDK
+	check errors
+Thread-Index: AQHOFmBjoQUvlxSOs0ij83FybqWGcZiV9wkQ
+Date: Mon, 4 Mar 2013 19:55:54 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6F40373A@ORSMSX101.amr.corp.intel.com>
+References: <cover.1361954280.git.timo.mueller@bmw-carit.de>
+	<C6510F6D410BB64A8C15398EDC6B847C6F3FB213@ORSMSX101.amr.corp.intel.com>
+	<513076C3.1060700@timomueller.eu>
+In-Reply-To: <513076C3.1060700@timomueller.eu>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Received: by 10.224.58.201 with SMTP id i9mr35308640qah.81.1362419631926;
-	Mon, 04 Mar 2013 09:53:51 -0800 (PST)
-Received: by 10.49.67.98 with HTTP; Mon, 4 Mar 2013 09:53:51 -0800 (PST)
-Date: Mon, 4 Mar 2013 18:53:51 +0100
-Message-ID: <CAFyqS9qxQsDao+_4Wot6vaimrY-hN=nDQgRqWOBk2YBcF1cszQ@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: yocto@yoctoproject.org
-Subject: how to handle a source tree with both user-space and kernel module sources
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: Re: [PATCH 0/5][eclipse-poky] Refactor handling of SDK check errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,23 +41,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Mar 2013 17:53:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 04 Mar 2013 19:56:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-How could a package that is part of one single git repo but contains
-both user-space libraries and several kernel modules be built?
-Is there some existing "best praxis" that could be applied?
-Currently what we have done is to split this into two recipes, one
-that inherits from autotools and the other that inherit from module.
-This works fine, but... The problem now is that there will be two
-copies of the source repo, one in each package. Is there some way that
-a recipe can
-inherit from both autotools and module and thus use two different S
-targets? Or is our current approach the only way to easily do this,
-and thus having two copies
-of the repo is just a side-effect that we simply need to accept?
-Splitting the source repo is almost out of the questions since they
-are heavily dependent on shared header files etc.
+Comments below...
 
-Hans
+Thanks,
+Jessica
+
+-----Original Message-----
+From: Timo M=FCller [mailto:mail@timomueller.eu]
+Sent: Friday, March 01, 2013 1:37 AM
+To: Zhang, Jessica
+Cc: yocto@yoctoproject.org; Timo Mueller
+Subject: Re: [yocto] [PATCH 0/5][eclipse-poky] Refactor handling of SDK che=
+ck errors
+
+Hi Jessica,
+
+Zhang, Jessica wrote, On 27.02.2013 23:04:
+> Hi Timo,
+>
+> Thanks for initiating the cleanup in this area that I agree definitely
+> need some work.  There're couple issues I'm seeing with your patch set
+> that probably need some refinements:
+>
+> 1. After seeing the error message, if I go into the field correct the
+> error, I have to explicit click on "Apply" to make it revalidate,
+> probably we should track the fields change and do automatic
+> re-validation
+
+Yes, I agree it can be confusing. I already played around with enabling Lis=
+teners on the YoctoUISetting element but stopped because I thought that rec=
+hecking the SDK everytime you type in a new character will slow down the ui=
+ to much.
+[JZ] yeah that's my concern too....
+
+One idea I have in mind is, if the settings are changed (on type) we delete=
+ the error message and show a message telling the user that the new setting=
+s have to be revalidated again. Do you think that would be sufficient?
+[JZ] this sounds reasonable
+
+Nevertheless I will extend the YoctoUISetting to be able to notify register=
+ed listeners on change. Then we can decide on how we want to react to this =
+change.
+
+>
+> 2. For a scenario that I have 2 toolchains (for different arch, e.g.
+> arm and x86) installed under same directory, which means there're 2
+> environment setup scripts under the same directory.  In this case,
+> the Target Architecture drop down list will contain 2 entries for the
+> arches.  In this case, I'm getting an error message for missing
+> environment script file which is not true.  By looking at the code,
+> the logic basically checking the elem's target architecture setting,
+> if there's none, report missing environment script.  I think for this
+> case, we do need to check the size of the target arch option list to
+> see whether it's empty or not.
+
+True, this calls for a separate error message.
+
+>
+> 3. For the case of Poky.Env.Script.Nonexist, there's
+> Poky.Env.ScriptNoexist.Advise which is more meaningful to user what
+> to do if running into the error.  But I don't see that Advice is
+> posted and by looking at code, it seems it's not being used as well?
+
+I'll try to rephrase the error message.
+
+Regarding the advice I'm not quite sure if I follow correctly. If you
+choose "Build system derived toolchain" and the location doesn't contain
+a toolchain (so the drop-down is empty) the SDK check fails with
+ENV_SETUP_SCRIPT_NONEXIST. If a dialog pops up showing the error, the
+advice will also be used and added to the message.
+
+[JZ] Yes, only for build tree derived toolchain, the mechanism for build th=
+e toolchain thus having the environment setup script is via "bitbake meta-i=
+de-support" so we need to explicitly tell people what to do if they run int=
+o this error.
+
+>
+> Thanks, Jessica
+>
+> -----Original Message----- From: yocto-bounces@yoctoproject.org
+> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Timo Mueller
+> Sent: Wednesday, February 27, 2013 6:37 AM To:
+> yocto@yoctoproject.org Cc: Timo Mueller Subject: [yocto] [PATCH
+> 0/5][eclipse-poky] Refactor handling of SDK check errors
+>
+> From: Timo Mueller <timo.mueller@bmw-carit.de>
+>
+> Hi,
+>
+> I tried to display the messages resulting from validating the
+> YoctoUISettings in the message area of the properties/preference
+> pages instead of showing a dialog. This led to some refactoring of
+> the validation functionality and also the messages.
+>
+> If for example the user entered a SDK toolchain directory that
+> doesn't exist in the global preferences a dialog will show up showing
+> the error and telling him how he can do "IDE-wide settings". As he is
+> currently trying to do "IDE-wide settings" this advice is not really
+> necessary and the dialog can be really annoying.
+>
+> I split up the messages into a one line error message and an advice.
+> This message can be shown in the page's message area instead of
+> opening a dialog with every configuration error. The advice can still
+> be used when we want to show a dialog to help the user, e.g. when
+> creating a new project.
+>
+> On a side note I reactivated the YoctoSDKChecker class and moved all
+> the validation code from the utils, getting rid of some duplicated
+> and inconsistent code.
+>
+> Best regards, Timo
+>
+> PS: This patch set is based on "plugins/sdk.ide: Remove profile edit
+> buttons from property page"
+
+Best regards
+Timo
+
+
 
