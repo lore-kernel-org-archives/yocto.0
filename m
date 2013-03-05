@@ -2,25 +2,21 @@ Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
 	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 3B754E014F0
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 3CB3DE014F1
 	for <yocto@yoctoproject.org>; Tue,  5 Mar 2013 00:29:29 -0800 (PST)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.79])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 52AB0401B4;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 338A440074;
 	Tue,  5 Mar 2013 08:47:08 +0100 (CET)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Tue,  5 Mar 2013 09:29:20 +0100
-Message-Id: <326c88b1356a7902bd617989dd71fbf51c4dd018.1362414084.git.timo.mueller@bmw-carit.de>
+Date: Tue,  5 Mar 2013 09:29:19 +0100
+Message-Id: <cover.1362414084.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.7.11.7
-In-Reply-To: <cover.1362414084.git.timo.mueller@bmw-carit.de>
-References: <cover.1362414084.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1362414084.git.timo.mueller@bmw-carit.de>
-References: <cover.1362414084.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCH 1/5] plugins/sdk.ide: Rephrase error messages
+Subject: [PATCH 0/5][eclipse-poky] Improve SDK check error messages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,33 +32,40 @@ X-List-Received-Date: Tue, 05 Mar 2013 08:29:29 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
+Hi,
 
-Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
----
- .../src/org/yocto/sdk/ide/YoctoSDKMessages.properties                 | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+these are some minor changes to improve the display of the SDK check
+error messages on the property and preference pages.
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-index 4a4fb60..f3ba7e2 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-@@ -20,14 +20,14 @@ Poky.SDK.Target.Empty.Advice = You need specify Target Architecture before build
- Poky.Sysroot.Empty = Specified Sysroot Location is empty.
- Poky.Sysroot.Empty.Advice = You need specify Sysroot Location before building any project.
- Poky.Sysroot.Nonexist = Specified Sysroot Location does not exist.
--Poky.Qemu.Kernel.Empty.Advice = You need specify a valid Sysroot Location before building any project.
-+Poky.Sysroot.Nonexist.Advice = You need specify a valid Sysroot Location before building any project.
- Poky.Qemu.Kernel.Empty =  Specified QEMU kernel location is emtpy.
- Poky.Qemu.Kernel.Empty.Advice = You need specify QEMU kernel image file Location before building any project.
- Poky.Qemu.Kernel.Nonexist = Specified QEMU kernel image file does not exist.
- Poky.Qemu.Kernel.Empty.Advice = You need specify a valid QEMU kernel image file before building any project.
- Poky.ADT.Sysroot.Wrongversion = The ADT version you're using is too old.
- Poky.ADT.Sysroot.Wrongversion.Advice = OECORE related items are not found in environment setup files.\nPlease upgrade to our latest ADT Version!
--Poky.Env.Script.Nonexist = Specified Build Tree Toolchain Root does not contain any toolchain yet.
-+Poky.Env.Script.Nonexist = Specified toolchain directory does not contain a toolchain generated with meta-ide-support.
- Poky.Env.Script.Nonexist.Advice = Please run "bitbake meta-ide-support" to build the toolchain.
- Poky.Toolchain.No.Sysroot = Specified Toolchain Root Location does not contain a sysroot directory.
- Poky.Toolchain.No.Sysroot.Advice = Please install a valid toolchain sysroot.
+The 'lifetime' of the error messages has been changed slightly. If an
+SDK check failed the error message will now only be shown until the
+user changes the settings (typing, selecting). If he does so a new
+message is shown asking him to revalidate changes by clicking apply
+again.
+
+01..02: Refining error messages
+03..05: Clear error message when user changes the settings
+
+Best regards,
+Timo
+
+Timo Mueller (5):
+  plugins/sdk.ide: Rephrase error messages
+  plugins/sdk.ide: Add new error message for unselected target arch
+  plugins/sdk.ide: Fix setting layout of parent composite
+  plugins/sdk.ide: Relay events from child widgets to the parent
+    composite
+  plugins/sdk.ide: Inform user that the settings have to revalidated
+
+ .../src/org/yocto/sdk/ide/YoctoProfileSetting.java |  1 -
+ .../yocto/sdk/ide/YoctoProjectSpecificSetting.java |  1 -
+ .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |  6 ++++
+ .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |  7 ++--
+ .../src/org/yocto/sdk/ide/YoctoUISetting.java      | 40 +++++++++++++++++++---
+ .../ide/preferences/YoctoSDKPreferencePage.java    | 28 ++++++++++++++-
+ .../preferences/YoctoSDKProjectPropertyPage.java   | 32 ++++++++++++++++-
+ 7 files changed, 104 insertions(+), 11 deletions(-)
+
 -- 
 1.7.11.7
 
