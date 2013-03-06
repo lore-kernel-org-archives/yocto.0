@@ -1,35 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ia0-f173.google.com (mail-ia0-f173.google.com
-	[209.85.210.173]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
+	(using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 9740DE0148E
-	for <yocto@yoctoproject.org>; Tue,  5 Mar 2013 21:09:26 -0800 (PST)
-Received: by mail-ia0-f173.google.com with SMTP id h37so7055733iak.18
-	for <yocto@yoctoproject.org>; Tue, 05 Mar 2013 21:09:26 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 2ED4BE014B3
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2013 21:10:43 -0800 (PST)
+Received: by mail-wg0-f52.google.com with SMTP id 12so7009354wgh.7
+	for <yocto@yoctoproject.org>; Tue, 05 Mar 2013 21:10:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=t5TieoisbZEJFCCiWYJnfJqOfdw8Gx5c+QeEY7Z7VoI=;
-	b=X8VPyCTusf4qpTCV3NLiGC0MBWYwuoaA3tGmD+c0jt2TB3Tiggk/K19DWH4G64aBXF
-	gwVh/UhKhPMMOa79aaBV9AzleBqaLlJKxpl0oAHrxV7wlnH9UJTaXFxK9SHCDdqOPy2A
-	id4TTFniysVit1kwklGTEGGH3RK70xbW8wZTUu/pO+vIU0anPJ+EH0YdoNu/UrUuJtiH
-	etu3+2t6b2BniRSJv1ECq6ae9rjj0xJxb23wlJUo38oC+s5QdXddQZsmxmu8BX2KfpUf
-	ZI8epaT79KuUwY7dSQnbdddKby4QGDSz8qEn06tfg625kEVfDhZOjNgM61MF/U6PdUSe
-	PBsw==
-X-Received: by 10.50.17.131 with SMTP id o3mr9445815igd.112.1362546566092;
-	Tue, 05 Mar 2013 21:09:26 -0800 (PST)
+	h=x-received:mime-version:from:date:message-id:subject:to
+	:content-type; bh=5Adrq+3Pk4yYVu2DD3QCuXYj3rcmejjXb+eZBcmt3gA=;
+	b=HiLY2u+htNuBiMZ3kISgjPcGRtbEjPdSXLcUeLuPbmuJExiZiRwnJ/YK8tJoO+z7R8
+	aE0ZsWnEp8cIv9ubG5uhG4uV/XozFG2C2QaGzxfGdy2n9fJsQ5BA7aKV+wdzjLMTspad
+	ifCMzT1HvYPfaHpR7ob9sxe0b54ABDKu9DPykrfAdtI8inQ7/LnrmGOZran0oiFS0suQ
+	g5wFgwcZhwuGj9GS6TiAikLT5FaOUn+CdVtP+6iIZNBtjRnL2G6dZ7oG5yboaWaZf5Bl
+	U+j6RodDMo67yOBBwzOZPi/IYn+nLVVXhQYNlqgBK9qaxKbLNgn6By6I5Jbh4LFjvDzq
+	9LMQ==
+X-Received: by 10.194.84.8 with SMTP id u8mr44115877wjy.29.1362546641200; Tue,
+	05 Mar 2013 21:10:41 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.50.74.163 with HTTP; Tue, 5 Mar 2013 21:08:56 -0800 (PST)
-In-Reply-To: <D06F52BA-6DC2-4C8D-8F1D-EB71A8EB83EB@gmail.com>
-References: <B4F9B2A0-7231-4DC8-90D1-D7F291818791@gmail.com>
-	<CAMKF1sr+xH7Nb0-cG-Wky-A6842wwSPT8wWm2CDh583_BgdjOg@mail.gmail.com>
-	<D06F52BA-6DC2-4C8D-8F1D-EB71A8EB83EB@gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 5 Mar 2013 21:08:56 -0800
-Message-ID: <CAMKF1sqmNf9hfjC4BWF3eF=4iENxVkaFEFtqaroM6cGQDFOtbw@mail.gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Patching gcc-4.7.2 to add support for Xilinx MicroBlaze
+Received: by 10.194.235.41 with HTTP; Tue, 5 Mar 2013 21:10:21 -0800 (PST)
+From: Insop Song <insop.song@gmail.com>
+Date: Tue, 5 Mar 2013 21:10:21 -0800
+Message-ID: <CACzyEJ-DRarP=jMBngPLAMQJFLWsJFWrhqS0rxoWuog2vMjFOg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: qemu not getting dhcp question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,35 +35,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2013 05:09:26 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 06 Mar 2013 05:10:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Mar 5, 2013 at 7:58 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
-> Hi Khem,
->
-> On Mar 6, 2013, at 6:58 AM, Khem Raj <raj.khem@gmail.com> wrote:
->
->> I dont have a public repo for gcc its too big to host. You can just do
->> a normal patch
->> process on gcc in work-shared using quilt That should work
->
-> I've already started doing this. If I get the compiler support for
-> MicroBlaze built and tested, I'll send across the patches for
-> inclusion.
+Hi all,
 
-nice. I will look forward for them
+I've built a new meta layer image based on core-image-minimal and
+core-image-sato.
 
->
-> The Xilinx Series -7 FPGAs without an ARM core will require
-> a MicroBlaze processor (Artix-7, Kintex-7 and Virtex-7).
->
-> The Xilinx mb-gcc toolchain was built using crosstool-ng, but
-> I'd like to build it using Yocto.
->
+After the successful build, whey I run "runqemu" with the image, my
+qemu image won't get a dhcp IP.
+I can manually assign IP after the boot up.
 
-yes I dont see any reason that should not work
+Does anyone know why or which log to look at?
 
-> Best regards,
->
-> Elvis Dowson
+Here is the message from qemu
+---------
+Configuring network interfaces... udhcpc (v1.20.2) started
+Sending discover...
+Sending discover...
+Sending discover...
+No lease, failing
+[   20.280668] rc (824) used greatest stack depth: 5632 bytes left
+INIT: Entering runlevel: 5
+Starting syslogd/klogd: done
+Stopping Bootlog daemon: bootlogd.
+----------
+
+Here is the host side message
+----------
+ $ runqemu tmp/deploy/images/bzImage-3.8-dl7-dl-qemux86-20130303034712.bin
+tmp/deploy/images/core-image-minimal-dev-dl-qemux86-20130306045344.rootfs.ext3
+Set MACHINE to [qemux86] based on kernel
+[tmp/deploy/images/bzImage-3.8-dl7-dl-qemux86-20130303034712.bin]
+
+Continuing with the following parameters:
+KERNEL: [tmp/deploy/images/bzImage-3.8-dl7-dl-qemux86-20130303034712.bin]
+ROOTFS: [tmp/deploy/images/core-image-minimal-dev-dl-qemux86-20130306045344.rootfs.ext3]
+FSTYPE: [ext3]
+Setting up tap interface under sudo
+Acquiring lockfile for tap0...
+WARNING: distccd not present, no distcc support loaded.
+Running qemu-system-i386...
+/home/insop/mybuilds/dl/tmp/sysroots/x86_64-linux/usr/bin/qemu-system-i386
+-kernel tmp/deploy/images/bzImage-3.8-dl7-dl-qemux86-20130303034712.bin
+-net nic,vlan=0 -net tap,vlan=0,ifname=tap0,script=no,downscript=no
+-hda tmp/deploy/images/core-image-minimal-dev-dl-qemux86-20130306045344.rootfs.ext3
+-show-cursor -usb -usbdevice wacom-tablet -vga vmware -no-reboot -m
+128 --append "vga=0 root=/dev/hda rw mem=128M
+ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1 "
+-------------
+
+Thank you,
+
+Insop
 
