@@ -1,34 +1,35 @@
-Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ia0-f176.google.com (mail-ia0-f176.google.com
+	[209.85.210.176]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id AEE7CE0154D
-	for <yocto@yoctoproject.org>; Wed,  6 Mar 2013 08:12:17 -0800 (PST)
-Received: by mail-we0-f176.google.com with SMTP id s43so8447079wey.35
-	for <yocto@yoctoproject.org>; Wed, 06 Mar 2013 08:12:16 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 253F9E0155B
+	for <yocto@yoctoproject.org>; Wed,  6 Mar 2013 08:35:25 -0800 (PST)
+Received: by mail-ia0-f176.google.com with SMTP id i18so7508851iac.35
+	for <yocto@yoctoproject.org>; Wed, 06 Mar 2013 08:35:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=5TfDx9iF4erL9ffK8RpW5QNDYOQoy9C71scdl0QSAM0=;
-	b=P9Xsw3pgPT1YlLq486lg1SkYQEGUqkCzP53+83cP3o9xRBjdCh5cJHCYamdgUHnzEy
-	xcRjf15QEKu53xjG2b9GZ2sm5HcvDNrlfcKvwvwezJY0ETGx7BYjnBZtlVv2VsaElz+P
-	uFVC+hm2IItkasnz0ZB7RxJ/9oXhYLXRB0olvT7jFqTumqtso+yuBsj/E3KRu6wrugXy
-	86fESMPC01kZcFTdDLOxDLfq8KTU+t6K+eeDAUzc2foxqNBL/D6PVhOriWsGjaPDNC8z
-	MPnvRYWdKgVFEppDP4Uf5TnFVnOlqdtPC88Brwcx48l9vZlu04qIjA3e3t+AprsE17Ra
-	uZ2g==
-X-Received: by 10.204.136.197 with SMTP id s5mr11565531bkt.125.1362586336176; 
-	Wed, 06 Mar 2013 08:12:16 -0800 (PST)
-Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPS id n1sm8513456bkv.14.2013.03.06.08.12.15
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 06 Mar 2013 08:12:15 -0800 (PST)
-From: Atanas Gegov <atanas.gegov.oss@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed,  6 Mar 2013 17:11:56 +0100
-Message-Id: <1362586316-9655-6-git-send-email-atanas.gegov.oss@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1362586316-9655-1-git-send-email-atanas.gegov.oss@gmail.com>
-References: <1362586316-9655-1-git-send-email-atanas.gegov.oss@gmail.com>
-Subject: [PATCHv2 5/5] Export the new subpackages of org.yocto.sdk.ide
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=WZnpn+bdOLgK4YfLHk9Itu4Nn5xeRmFm71L2/b7YYuE=;
+	b=Vo47kFwUM943vHnKvlpl5F2XlpmYrv3CiRIPr+xv3tWaPLpxQedH2G1SpuO/9wmpdr
+	c6dVJeTefuKoCZC+cEp/i28LwmgQ0UIQhb38WKk8WuP7cZ6/+Ed/ioHvLVQ0j/GaMnJs
+	1fD1+gxgOYCEYK4uoFmsom8aid3yae28pVZ08vdQzQ3lPPsUKwPEQ8p4MpW/TOLDAxaa
+	a//voWXSq/Md1au2AfLq8r8ayEAbhwCwijLots+Gqabg27lPkxKKUm7ehwmhBVvxRpPk
+	WS9kSWPp4H1U5V0i1jn0LgCpXtvuFpqjOMS1xaBqDWy9VDl8tCztef1NgwN6ezSBUMUv
+	5Euw==
+X-Received: by 10.50.45.136 with SMTP id n8mr11509268igm.34.1362587724392;
+	Wed, 06 Mar 2013 08:35:24 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.50.74.163 with HTTP; Wed, 6 Mar 2013 08:34:54 -0800 (PST)
+In-Reply-To: <CAHUNapToOXjYXmxe7WpABdTub-P5nivAEkbxZyDAyZp7Lwo0kQ@mail.gmail.com>
+References: <D5D8A4D8397140AB98A5568853482737@PAULD>
+	<CAHUNapToOXjYXmxe7WpABdTub-P5nivAEkbxZyDAyZp7Lwo0kQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 6 Mar 2013 08:34:54 -0800
+Message-ID: <CAMKF1soN2p1GYXw5yxzGvAOrq18TKnuR7-dz566yDrQVpg3_Cg@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"Paul D. DeRocco" <pderocco@ix.netcom.com>
+Subject: Re: Newbie trying to get started
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,28 +41,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2013 16:12:18 -0000
+X-List-Received-Date: Wed, 06 Mar 2013 16:35:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+On Fri, Mar 1, 2013 at 9:04 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+> Working with a gumstix is sort of like having to work with a vendor
+> branch: for best results you have to use their stuff, but their stuff
+> isn't really upstream or tracking upstream very closely. So it's best
+> not to confuse the "real" Yocto, for gumstix's Yocto-based build. For
+> example their instructions have you use the "repo" utility (instead of
+> just using git) and start your project with:
 
----
- plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF |    2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF b/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF
-index b09abb3..0bdaa85 100644
---- a/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF
-@@ -29,6 +29,8 @@ Require-Bundle: org.eclipse.ui,
- Bundle-RequiredExecutionEnvironment: JavaSE-1.6
- Bundle-ActivationPolicy: lazy
- Export-Package: org.yocto.sdk.ide,
-+ org.yocto.sdk.ide.natures,
-+ org.yocto.sdk.ide.utils,
-  org.yocto.sdk.ide.actions,
-  org.yocto.sdk.ide.preferences,
-  org.yocto.sdk.ide.wizard
--- 
-1.7.9.5
-
+https://github.com/adam-lee/Gumstix-YoctoProject-Repo/blob/danny/default.xml
+shows that its using danny branch. The detached head is an artifact
+of repo it does not mean its using a random revision. You should
+start a topic branch with repo and the detached head state should disappear.
 
