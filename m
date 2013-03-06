@@ -1,36 +1,28 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 472B3E014CC
-	for <yocto@yoctoproject.org>; Tue,  5 Mar 2013 15:21:51 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Mar 2013 15:21:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,791,1355126400"; d="scan'208";a="264890971"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by azsmga001.ch.intel.com with ESMTP; 05 Mar 2013 15:21:22 -0800
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 5 Mar 2013 15:21:00 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.185]) with mapi id
-	14.01.0355.002; Tue, 5 Mar 2013 15:21:00 -0800
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/5][eclipse-poky] Improve SDK check error
-	messages
-Thread-Index: AQHOGZHi1sofo+nF6EGxnGeXN6SmFpiXvMfQ
-Date: Tue, 5 Mar 2013 23:20:59 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6F404028@ORSMSX101.amr.corp.intel.com>
-References: <cover.1362414084.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1362414084.git.timo.mueller@bmw-carit.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <mail@timomueller.eu>
+Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
+	[85.214.246.27])
+	(using TLSv1 with cipher ADH-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id C2762E00719
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2013 16:23:08 -0800 (PST)
+Received: from [192.168.188.66] (109.125.110.50.dynamic.cablesurf.de
+	[109.125.110.50])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: mail@timomueller.eu)
+	by h1954115.stratoserver.net (mailserver) with ESMTPSA id 714B76E9411B; 
+	Wed,  6 Mar 2013 01:23:04 +0100 (CET)
+Message-ID: <51368C63.2050701@timomueller.eu>
+Date: Wed, 06 Mar 2013 01:22:59 +0100
+From: Timo Mueller <mail@timomueller.eu>
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64;
+	rv:17.0) Gecko/20130215 Thunderbird/17.0.3
 MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [PATCH 0/5][eclipse-poky] Improve SDK check error messages
+To: Atanas Gegov <atanas.gegov.oss@gmail.com>
+References: <1362502308-7622-1-git-send-email-atanas.gegov.oss@gmail.com>
+In-Reply-To: <1362502308-7622-1-git-send-email-atanas.gegov.oss@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [eclipse-poky][PATCH 0/4] Refactorings in org.yocto.sdk.ide plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,65 +34,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2013 23:21:51 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Mar 2013 00:23:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Merged to eclipse-poky master.
+Hi Atanas,
 
-Thanks,
-Jessica
+Am 05.03.2013 17:51, schrieb Atanas Gegov:
+> From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+>
+> Hi,
+>
+> This patch series does some refactoring in the org.yocto.sdk.ide plugin.
+> The natures and the utils get their own packages. Some methods and members were
+> also moved to suitable classes.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Timo Mueller
-Sent: Tuesday, March 05, 2013 12:29 AM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [PATCH 0/5][eclipse-poky] Improve SDK check error messages
+What are you trying to improve? What is the idea of moving all these 
+classes around?
+Please provide some more detail of what you are trying to accomplish 
+with this patch set.
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
-
-Hi,
-
-these are some minor changes to improve the display of the SDK check error =
-messages on the property and preference pages.
-
-The 'lifetime' of the error messages has been changed slightly. If an SDK c=
-heck failed the error message will now only be shown until the user changes=
- the settings (typing, selecting). If he does so a new message is shown ask=
-ing him to revalidate changes by clicking apply again.
-
-01..02: Refining error messages
-03..05: Clear error message when user changes the settings
-
+>
+> Cheers,
+> Atanas
+>
 Best regards,
 Timo
-
-Timo Mueller (5):
-  plugins/sdk.ide: Rephrase error messages
-  plugins/sdk.ide: Add new error message for unselected target arch
-  plugins/sdk.ide: Fix setting layout of parent composite
-  plugins/sdk.ide: Relay events from child widgets to the parent
-    composite
-  plugins/sdk.ide: Inform user that the settings have to revalidated
-
- .../src/org/yocto/sdk/ide/YoctoProfileSetting.java |  1 -  .../yocto/sdk/i=
-de/YoctoProjectSpecificSetting.java |  1 -
- .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |  6 ++++
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |  7 ++--
- .../src/org/yocto/sdk/ide/YoctoUISetting.java      | 40 ++++++++++++++++++=
-+---
- .../ide/preferences/YoctoSDKPreferencePage.java    | 28 ++++++++++++++-
- .../preferences/YoctoSDKProjectPropertyPage.java   | 32 ++++++++++++++++-
- 7 files changed, 104 insertions(+), 11 deletions(-)
-
---
-1.7.11.7
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
