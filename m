@@ -1,32 +1,38 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-qc0-f170.google.com (mail-qc0-f170.google.com
-	[209.85.216.170]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f41.google.com (mail-pb0-f41.google.com
+	[209.85.160.41]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 3B1D2E014AD
-	for <yocto@yoctoproject.org>; Tue,  5 Mar 2013 19:21:10 -0800 (PST)
-Received: by mail-qc0-f170.google.com with SMTP id d42so1343991qca.15
-	for <yocto@yoctoproject.org>; Tue, 05 Mar 2013 19:21:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type:x-gm-message-state;
-	bh=POcfEMIGXi7L2GGmD0eLtgxC929ft1nXf8VxGR3eOVY=;
-	b=HMFeluUyNxiW5ZhANyr4NxtMkY+htzeR9DV9FoozuTShrZRbQ+xmw6fnn7b6zYg1Ge
-	PL4WBbUqFGobtrj9BE9hCCFTSuRbN59yNUKTmG4thqBEWSWn5fO1sLxvPN/nENfGjOdL
-	BEhW9rWIgf852iNHDgeN5RipAcg3g4yFtEvmDCAkLXDvil4wqFdY9JnQsLTfNNJabFSh
-	W0DSwCLsHyTGNQk+C2SLHGjeKn093d0+Z3rl7RhJbPjT2K4YA9kWK5mOZuSolAPIG49g
-	AQ9tWGt7X8RN0tTytufxMSnbAwLA/8Fv6ytkenalWaWJhNFz7RT8jDyHZUo2ezpnB3f4
-	FuRA==
-MIME-Version: 1.0
-X-Received: by 10.49.24.135 with SMTP id u7mr46178264qef.4.1362540069159; Tue,
-	05 Mar 2013 19:21:09 -0800 (PST)
-Received: by 10.49.95.166 with HTTP; Tue, 5 Mar 2013 19:21:09 -0800 (PST)
-Date: Tue, 5 Mar 2013 19:21:09 -0800
-Message-ID: <CAPhnLPDbt1AsnKJ2XJd9bQSG2aBWZk4A0-cVn1w-_N5QmerQQw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmT7N8vuq98F+NzHXoQb6O+icjdDR0A73+EaXy9s1hQ1JTZf6M0y4s+CTqaH3xrsMheGC+E
-Subject: Weekly build availability
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 47C45E014FE
+	for <yocto@yoctoproject.org>; Tue,  5 Mar 2013 19:58:20 -0800 (PST)
+Received: by mail-pb0-f41.google.com with SMTP id um15so5438910pbc.28
+	for <yocto@yoctoproject.org>; Tue, 05 Mar 2013 19:58:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=noKEPXXWTgFnMsi2+gt90X0S//1vF7NpOhhBCe7U3qE=;
+	b=QW6ZyYRP20zfkCtUIHCSu2fR4FDPxAlP6MABNy4SZEFGLP126iecxL6LXsarkfMNTQ
+	zG9pxzJFmh5g6XfKOd2Vgfexk2yOlLVN1T+Efzzlgr151df/7GCcxPkK2ZiO3hwU/mQ5
+	o3vv7RIKYSTzTMXvNDRUDYzR8eVuZJblORl9Zg45QmbB4eDl8gArPVkcCbGytbzDjNj5
+	V+6IhXa44hTpmlG6oFJUnQ1Xr+m6j52kLeiDK3U3Ktm0c3s649jN7lkm3iScMvBn0bpQ
+	oEMu/z8UxSjH1eQmz5aW5vQFrCk2ABGpPnchtoV5MPaHETAroeO6hA3rCSpk/NHi6hbv
+	WAHQ==
+X-Received: by 10.68.229.104 with SMTP id sp8mr43086585pbc.68.1362542299775;
+	Tue, 05 Mar 2013 19:58:19 -0800 (PST)
+Received: from [192.168.1.100] ([94.205.106.4])
+	by mx.google.com with ESMTPS id ab1sm29397729pbd.37.2013.03.05.19.58.16
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 05 Mar 2013 19:58:17 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <CAMKF1sr+xH7Nb0-cG-Wky-A6842wwSPT8wWm2CDh583_BgdjOg@mail.gmail.com>
+Date: Wed, 6 Mar 2013 07:58:11 +0400
+Message-Id: <D06F52BA-6DC2-4C8D-8F1D-EB71A8EB83EB@gmail.com>
+References: <B4F9B2A0-7231-4DC8-90D1-D7F291818791@gmail.com>
+	<CAMKF1sr+xH7Nb0-cG-Wky-A6842wwSPT8wWm2CDh583_BgdjOg@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.1499)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Patching gcc-4.7.2 to add support for Xilinx MicroBlaze
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,19 +44,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2013 03:21:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 06 Mar 2013 03:58:20 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-This weeks build is partially available. I should be complete in a few
-hours at http://autobuilder.yoctoproject.org/pub/nightly/20130305-2
+Hi Khem,
 
-So far, the only failures I'm seeing are sanity tests (boot issue in
-qemuarm core-image-minimal and smart_query failure in qemumips)
+On Mar 6, 2013, at 6:58 AM, Khem Raj <raj.khem@gmail.com> wrote:
 
-Please begin testing.
+> I dont have a public repo for gcc its too big to host. You can just do
+> a normal patch
+> process on gcc in work-shared using quilt That should work
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+I've already started doing this. If I get the compiler support for 
+MicroBlaze built and tested, I'll send across the patches for
+inclusion.
+
+The Xilinx Series -7 FPGAs without an ARM core will require
+a MicroBlaze processor (Artix-7, Kintex-7 and Virtex-7).
+
+The Xilinx mb-gcc toolchain was built using crosstool-ng, but
+I'd like to build it using Yocto.
+
+Best regards,
+
+Elvis Dowson
 
