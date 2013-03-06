@@ -1,31 +1,33 @@
-Return-Path: <swaroop.damarla@gmail.com>
-Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
-	[209.85.220.182]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <autif.mlist@gmail.com>
+Received: from mail-la0-f44.google.com (mail-la0-f44.google.com
+	[209.85.215.44]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 80C9FE014F8
-	for <yocto@yoctoproject.org>; Wed,  6 Mar 2013 07:32:35 -0800 (PST)
-Received: by mail-vc0-f182.google.com with SMTP id fl17so4947609vcb.27
-	for <yocto@yoctoproject.org>; Wed, 06 Mar 2013 07:32:34 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 6A7EAE0070E
+	for <yocto@yoctoproject.org>; Wed,  6 Mar 2013 08:11:06 -0800 (PST)
+Received: by mail-la0-f44.google.com with SMTP id eb20so7638708lab.17
+	for <yocto@yoctoproject.org>; Wed, 06 Mar 2013 08:11:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=8plFB1kTe6iDzNWmV+Z0nC9p5H6d74C3CWpZTjt3UQI=;
-	b=PZnni0+YzcosDhJ636OMNcnpEIVuqmy89Caf6mnTYLWqJpDn3g4vODg1xDuSrTFIfS
-	ZIPpFpXptwjWMVB7GKdYjfiu8oYua2SRj32F3Kt4Sv9KWSK+12oDJLL04VP3IaoCAk3M
-	im7wtPbUmHOEjt5UHX79lVj4c42ucTmVLRRZWsoUimSO00dcWiiA5EcCUeICpHlHGGx8
-	YEkIYtDFAeKFPAoppkHiPwFnvAaUmkstdBxNuKg0hoyLVO6q8dWznlQiFZC72RN5exvb
-	0dMazL1ejvbZhcJvXZiV4p4H+SdDY2ie5jufRImTt3W4rOJeoZLrhbx/313wdh6OXf0P
-	uzww==
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=kWkRq/4bqqEf0ZnfQmH2nrs8rPxgPv6Tr7kb2+l63pg=;
+	b=zatY/M1FytaEthk9vRiwVh0KYVI7QAigGNP3wPOyumTyJRPZhnhDDQQKW3YF67qRV2
+	B57Euz+DP5wxfuAkysrV7dEQTC6XFcWjA07jGHDX9g6s9Mv3JqzsGORa9EWwEoOnmAIz
+	l7Or/yAOcOY9M+cdaLADKZDxMwA4vM8/WtElDM3+nVX4hFqtr6yiTAFg0Xh+BG1yIKkA
+	dXcXgiTcNxRvSNBnHyP0o7beqHgvOH203ypXd4xFQVPA3f3XKaICcMq6YKyNk633mK0e
+	dkcUaH+E0GJIpC3+osU8kzW3flAr3lMFGekTQ6Hds29zL9T2yhf53aedS2xQaQ0j1ixJ
+	c3IQ==
 MIME-Version: 1.0
-X-Received: by 10.220.205.195 with SMTP id fr3mr11356541vcb.6.1362583954223;
-	Wed, 06 Mar 2013 07:32:34 -0800 (PST)
-Received: by 10.58.187.42 with HTTP; Wed, 6 Mar 2013 07:32:34 -0800 (PST)
-Date: Wed, 6 Mar 2013 16:32:34 +0100
-Message-ID: <CABTzgQ6bgSFJ2nu2PcW37sfb=YiibDqOPZyc9m5u_w8RE=GJuA@mail.gmail.com>
-From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-To: Rudolf Streif <rstreif@linuxfoundation.org>,
-	=?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Problem with core-image-sato at init
+X-Received: by 10.112.17.166 with SMTP id p6mr7725939lbd.41.1362586263714;
+	Wed, 06 Mar 2013 08:11:03 -0800 (PST)
+Received: by 10.112.8.37 with HTTP; Wed, 6 Mar 2013 08:11:03 -0800 (PST)
+In-Reply-To: <80BEC9F1B32C495FA608D0DAF85DF5FB@PAULD>
+References: <80BEC9F1B32C495FA608D0DAF85DF5FB@PAULD>
+Date: Wed, 6 Mar 2013 11:11:03 -0500
+Message-ID: <CADzUK1JEe3J15_m7CUTRu2Mh+PvKEXL46f4wfqh440SaVuPG1w@mail.gmail.com>
+From: Autif Khan <autif.mlist@gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Question about file systems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,85 +39,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Mar 2013 15:32:35 -0000
-Content-Type: multipart/alternative; boundary=14dae9cdc485917d3b04d7434cea
-
---14dae9cdc485917d3b04d7434cea
+X-List-Received-Date: Wed, 06 Mar 2013 16:11:06 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hey Guys, Hi Rudy, Hi Hans
+On Tue, Mar 5, 2013 at 9:20 PM, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
+> This is really a Linux question, but since it is specifically about embedded
+> systems, I'm hoping this group is a good place to ask.
+>
+> My application is based on an Atom, with a small USB flash drive (SLC) for
+> its storage. I'm trying to decide what file system to use. The application
+> doesn't do a lot of file accesses, and of course I'll mount the partition(s)
+> with "noatime" since I don't care about recording access times. But I'm
+> concerned that if someone yanks the plug, rather than pushing the button for
+> an orderly shutdown, the next boot will do a long "fsck", and the user will
+> think the system is broken.
+>
+> So I guess the questions are these: Are ext2, ext3 and ext4 all equally
+> likely to need to do an "fsck" after a disorderly shutdown? Do they
+> typically take different amounts of time to do an "fsck"? Or is the
+> journaling of ext3 and ext4 something that should be avoided on a flash
+> drive at all costs, even though my app won't be doing much file access?
+>
+> Also, my app stores its own data in a directory tree of typically a few
+> hundred small files. Would it be a win or a lose to break this off into a
+> separate small partition? I was actually thinking of making this a FAT32
+> partition, so that I could yank the drive and access those files in any
+> other machine.
+>
+> Any insights would be appreciated.
+>
+> --
+>
+> Ciao,               Paul D. DeRocco
+> Paul                mailto:pderocco@ix.netcom.com
+>
 
-As promised I am coming with the problem again.. I successfully made
-core-image-minimal working and boot after chnaging the boot parameters...
-but my core-image-sato is hanging at the boot.
+We have a somewhat similar situation here. We have a device which is
+not battery backed. And to top it off, the SOP to power off the
+machine is to yank its power cable.
 
-I looked in the init files of core-image minimal and core-image-sato and
-they are the same. Here is the output where it logs.... I tried to find the
-error with my little yocto experience but so far no success. I would
-request your professional suggestions in this problem
+Here is what I have come up with and it seems to be working for us for
+our requirements. All partitions are ext4.
 
-[    2.722016] Waiting for root device /dev/mmcblk0p1...
-[    2.751141] usb 1-1.1: New USB device found, idVendor=0424,
-idProduct=ec00
-[    2.758007] usb 1-1.1: New USB device strings: Mfr=1, Product=2,
-SerialNumber=3
-[    2.765318] usb 1-1.1: Product: LAN9514
-[    2.769216] usb 1-1.1: Manufacturer: SMSC
-[    2.773246] usb 1-1.1: SerialNumber: 12345678
-[    2.786684] smsc95xx v1.0.4
-[    2.853796] smsc95xx 1-1.1:1.0: eth0: register 'smsc95xx' at
-usb-tegra-ehci.2-1.1, smsc95xx USB 2.0 Ethernet, 00:0c:32:0c:07:02
-[    2.873340] mmc2: new high speed SD card at address 13f1
-[    2.879294] mmcblk0: mmc2:13f1 SD02G 1.83 GiB
-[    2.885877]  mmcblk0: p1
-[    2.940181] EXT4-fs (mmcblk0p1): mounting ext2 file system using the
-ext4 subsystem
-[    2.975889] EXT4-fs (mmcblk0p1): warning: mounting unchecked fs, running
-e2fsck is recommended
-[    3.232853] EXT4-fs (mmcblk0p1): mounted filesystem without journal.
-Opts: (null)
-[    3.240408] VFS: Mounted root (ext2 filesystem) on device 179:1.
-[    3.273397] devtmpfs: mounted
-[    3.276615] Freeing init memory: 236K
-INIT: version 2.88 booting
+We have one root partition that is always mounted read-only (except
+when we are upgrading).  /var and /tmp (amongst a few others) are
+tmpfs
 
-Cheers,
-Satya
+We have a separate apps partition that is mounted read-only (again
+except when we are upgrading). In addition to apps, we also store
+configuration like calibration etc in this partition.
 
---14dae9cdc485917d3b04d7434cea
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+We have another scratch partition which is mounted with
+"rw,sync,barrier=1" options where we store temporary files that need
+to survive a reboot - log files for example. However, if/when we
+detect filesystem corruption, we just format the partition during
+normal boot. In this case the files will of course not survive and
+that is acceptable.
 
-<div dir=3D"ltr">Hey Guys, Hi Rudy, Hi Hans<div><br></div><div style>As pro=
-mised I am coming with the problem again.. I successfully made core-image-m=
-inimal working and boot after chnaging the boot parameters... but my core-i=
-mage-sato is hanging at the boot.</div>
-<div style><br></div><div style>I looked in the init files of core-image mi=
-nimal and core-image-sato and they are the same. Here is the output where i=
-t logs.... I tried to find the error with my little yocto experience but so=
- far no success. I would request your professional suggestions in this prob=
-lem</div>
-<div style><br></div><div style><div>[ =A0 =A02.722016] Waiting for root de=
-vice /dev/mmcblk0p1...</div><div>[ =A0 =A02.751141] usb 1-1.1: New USB devi=
-ce found, idVendor=3D0424, idProduct=3Dec00</div><div>[ =A0 =A02.758007] us=
-b 1-1.1: New USB device strings: Mfr=3D1, Product=3D2, SerialNumber=3D3</di=
-v>
-<div>[ =A0 =A02.765318] usb 1-1.1: Product: LAN9514</div><div>[ =A0 =A02.76=
-9216] usb 1-1.1: Manufacturer: SMSC</div><div>[ =A0 =A02.773246] usb 1-1.1:=
- SerialNumber: 12345678</div><div>[ =A0 =A02.786684] smsc95xx v1.0.4</div><=
-div>[ =A0 =A02.853796] smsc95xx 1-1.1:1.0: eth0: register &#39;smsc95xx&#39=
-; at usb-tegra-ehci.2-1.1, smsc95xx USB 2.0 Ethernet, 00:0c:32:0c:07:02</di=
-v>
-<div>[ =A0 =A02.873340] mmc2: new high speed SD card at address 13f1</div><=
-div>[ =A0 =A02.879294] mmcblk0: mmc2:13f1 SD02G 1.83 GiB=A0</div><div>[ =A0=
- =A02.885877] =A0mmcblk0: p1</div><div>[ =A0 =A02.940181] EXT4-fs (mmcblk0p=
-1): mounting ext2 file system using the ext4 subsystem</div>
-<div>[ =A0 =A02.975889] EXT4-fs (mmcblk0p1): warning: mounting unchecked fs=
-, running e2fsck is recommended</div><div>[ =A0 =A03.232853] EXT4-fs (mmcbl=
-k0p1): mounted filesystem without journal. Opts: (null)</div><div>[ =A0 =A0=
-3.240408] VFS: Mounted root (ext2 filesystem) on device 179:1.</div>
-<div>[ =A0 =A03.273397] devtmpfs: mounted</div><div>[ =A0 =A03.276615] Free=
-ing init memory: 236K</div><div>INIT: version 2.88 booting</div><div><br></=
-div><div style>Cheers,</div><div style>Satya</div></div></div>
+The acceptable risk is that while we are upgrading apps or the OS
+image, the device should not be powered down. If it is - then we have
+a way to re-image the device in the field. But that is a separate
+discussion.
 
---14dae9cdc485917d3b04d7434cea--
+When we want to upgrade, we show a message that upgrade is underway on
+the UI. Remount the partition with "rw,barrier=1" (no need for sync),
+perform the upgrade, then remount with "ro" options.
+
+The difference between root and apps partition is that while upgrades
+to apps will be frequent - multiple times a week - the upgrades to
+root will be rare - once in 2 years or even less - it is a very high
+bar to call for an OS upgrade. And we have built in stuff in our meta
+layers to recover from bad app partitions and bad scratch partitions.
+We did not want to club apps and root together and risk bricking the
+device during normal app upgrades.
+
+We do not (using automation) try to recover data from partition, we
+(as a rule) format the partition and repopulate it. That works for us
+:-)
+
+By no means am I an expert - this is based on help from a lot of folks
+over at the ext4 mailing list and of course here on the
+Yocto-Project's mailing list and IRC channel. We have invested some
+time in testing and making sure that we have a solution that works for
+us and does not surprise us.
+
+I hope this helps. Please let me know if you want me to elaborate on
+something specific.
+
+Autif
+
