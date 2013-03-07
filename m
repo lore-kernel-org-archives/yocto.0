@@ -1,29 +1,34 @@
-Return-Path: <corneliux.stoicescu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0E76E01457
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 07:18:09 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 07 Mar 2013 07:18:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,803,1355126400"; 
-	d="scan'208,217";a="210502693"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 Mar 2013 07:18:08 -0800
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.198]) by
-	IRSMSX101.ger.corp.intel.com ([169.254.1.99]) with mapi id
-	14.01.0355.002; Thu, 7 Mar 2013 15:17:26 +0000
-From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
-To: yocto <yocto@yoctoproject.org>
-Thread-Topic: Full Pass Test Report for Yocto 1.3.1 RC1 201302262 Build
-Thread-Index: Ac4bRcT2pN82aAOAQtCC+YdR+9LZhw==
-Date: Thu, 7 Mar 2013 15:17:25 +0000
-Message-ID: <33115ABC4887814E8A92A08FBC93416B08DEDD12@IRSMSX103.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+Return-Path: <huanmateme@163.com>
+Received: from m13-77.163.com (unknown [220.181.13.77])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7510E014AD
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 07:23:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Received:Date:From:To:Cc:Subject:In-Reply-To:
+	References:Content-Type:MIME-Version:Message-ID; bh=01Tiupw7bUnA
+	x3RWZ6SvnQQ1DRC9ebya5u+M7cwegiY=; b=EWwzTQIx3JIiod9a3m2lZwB2n2UP
+	0IeYMBDNxGMKbWe+mlum+i0YamvfG7VZ0x8mA772BxBRY7X4V1mtKtBPl0PrUmtN
+	c9aFPAJd4IWTmPrCaoOBwuF6tHLjqJpk0Jc6JfjhYD2KhpfuY2PwBSlFRn8O7Kp1
+	ahI2tDGD3RujP9I=
+Received: from huanmateme$163.com ( [111.192.255.18] ) by
+	ajax-webmail-wmsvr77 (Coremail) ; Thu, 7 Mar 2013 23:22:20 +0800 (CST)
+X-Originating-IP: [111.192.255.18]
+Date: Thu, 7 Mar 2013 23:22:20 +0800 (CST)
+From: Biao  <huanmateme@163.com>
+To: ml@communistcode.co.uk
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version SP_ntes V3.5 build
+	20130201(21528.5249.5248) Copyright (c) 2002-2013 www.mailtech.cn
+	163com
+In-Reply-To: <5133CBD7.5020903@communistcode.co.uk>
+References: <CAFD161nCzH4RB-1dsa2Gy7wYgq0ytsFM-TqiwMCrOxLxKor7-A@mail.gmail.com>
+	<5133CBD7.5020903@communistcode.co.uk>
 MIME-Version: 1.0
-Subject: Full Pass Test Report for Yocto 1.3.1 RC1 201302262 Build
+Message-ID: <38dd620e.10d77.13d457220af.Coremail.huanmateme@163.com>
+X-CM-TRANSID: TcGowEAJcUGtsDhRx7AHAA--.845W
+X-CM-SenderInfo: xkxd0z5dwhzvi6rwjhhfrp/xtbB0ADYgFEABBUE8QADs+
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Cc: yocto@yoctoproject.org
+Subject: Re: Trying to bitbake core-image-minimal on Archlinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,177 +40,196 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2013 15:18:11 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_33115ABC4887814E8A92A08FBC93416B08DEDD12IRSMSX103gercor_"
+X-List-Received-Date: Thu, 07 Mar 2013 15:23:06 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_254506_1453864841.1362669740207"
 
---_000_33115ABC4887814E8A92A08FBC93416B08DEDD12IRSMSX103gercor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_254506_1453864841.1362669740207
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
+CgoKCgoKCuWcqCAyMDEzLTAzLTA0IDA2OjE2OjU177yMIkphY2sgTWl0Y2hlbGwiIDxtbEBjb21t
+dW5pc3Rjb2RlLmNvLnVrPiDlhpnpgZPvvJoKCk9uIDAzLzAzLzEzIDE4OjAyLCBJc21hZWwgQmFy
+cm9zwrIgd3JvdGU6CgpIaSB0aGVyZSwKCgpJJ20gbmV3IHRvIFlvY3RvLCBhbmQgSSBrZWVwIGZp
+bmRpbmcgZXJyb3JzIHRoYXQgcHJldmVudCBtZSBmcm9tIGJ1aWxkaW5nIGEgbWluaW1hbCBpbWFn
+ZS4KCgpJJ3ZlIGp1c3QgaW5zdGFsbGVkIHBva3ktZGFubnktOC4wLCBzb3VyY2VkIG9lLWluaXQt
+YnVpbGQtZW52LCBhbmQgYml0YmFrZWQgY29yZS1pbWFnZS1taW5pbWFsLiBUaGUgZmlyc3QgZXJy
+b3IgaXMgdGhhdCBiaXRiYWtlIHNhbml0eSBjaGVja3MgZmFpbCB0byBkZXRlY3QgdGhlIG5ldHdv
+cmsgYWNjZXNzLCB3aGlsZSBteSBuZXR3b3JrIGNvbm5lY3Rpdml0eSBpcyBwZXJmZWN0LCBhbmQg
+ZG93bmxvYWRpbmcgcGFja2FnZXMgc2VlbSB0byB3b3JrIGlmIEkgZGlzYWJsZSB0aGlzIGNoZWNr
+cy4gRnVsbCBsb2c6IGh0dHA6Ly9wYXN0ZWJpbi5jb20vNmpKQ0MxcXAuIEkgY291bGRuJ3QgZmlu
+ZCBhbnkgbG9nIHRoYXQgdG9sZCBtZSB3aGljaCBwaWVjZSBvZiBjb2RlIHdhcyBmYWlsaW5nLCBz
+byBJIGp1dCBkaXNhYmxlZCB0aGlzIGNoZWNrIG9uIC4uL21ldGEteW9jdG8vY29uZi9kaXN0cm8v
+cG9reS5jb25mCgoKVXBvbiB0cnlpbmcgYWdhaW4sIGJ1aWxkaW5nIHN0YXJ0ZWQgZmluZSwgYnV0
+IGl0IHN0YXJ0ZWQgZmFpbGluZyB0byBidWlsZCB0aGUgZG9jdW1lbnRhdGlvbiBmb3Igc29tZSBw
+YWNrYWdlcywgaS5lLiBiaW51dGlscy1jcm9zcy4gRmlyc3Qgb2ZmLCBJIHdhbnQgdG8gYnVpbGQg
+YSBzaW5nbGUgbWlzc2lvbiBhcHBsaWFuY2UsIEkgZG9uJ3QgcmVhbGx5IHdhbnQgdG8gYnVpbGQg
+YW55IGRvY3VtZW50YXRpb24sIGlzIHRoZXJlIGFueSB3YXkgSSBjYW4gZGlzYWJsZSBpdD8gQW55
+d2F5LCB0aGlzIGlzIHRoZSBidWlsZCBsb2c6IGh0dHA6Ly9wYXN0ZWJpbi5jb20vbjlVNEdmakcu
+IExvb2tzIGxpa2UgdGhlcmUgYXJlIHNvbWUgdGV4aW5mbyBjb21tYW5kcyBteSBtYWNoaW5lICh0
+ZXhpbmZvIDUuMCkgZG9lc24ndCByZWNvZ25pY2UuIEFjY29yZGluZyB0byBodHRwOi8vc291cmNl
+d2FyZS5vcmcvYnVnemlsbGEvc2hvd19idWcuY2dpP2lkPTE1MTgzLCBpdCdzIGEga25vd24gYnVn
+IG9uIGJpbnVpbHRzLTIuMjIgYW5kIGl0J3MgZml4ZWQgb24gYmludWlsdHMtMi4yMy4KCgpQb2tp
+bmcgYXJvdW5kLCBsb29rcyBsaWtlICJ1cGRhdGluZyIgdG8gYmludXRpbHMtMi4yMyBnb3QgaXQg
+a2luZCBvZiB3b3JraW5nOgoKCm12IC4vbWV0YS9yZWNpcGVzLWRldnRvb2xzL2JpbnV0aWxzL2Jp
+bnV0aWxzLTIuMjIuaW5jIC4vbWV0YS9yZWNpcGVzLWRldnRvb2xzL2JpbnV0aWxzL2JpbnV0aWxz
+LTIuMjMuMS5pbmMKbXYgLi9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvYmludXRpbHMvYmludXRpbHMt
+Y3Jvc3MtY2FuYWRpYW5fMi4yMi5iYiAuL21ldGEvcmVjaXBlcy1kZXZ0b29scy9iaW51dGlscy9i
+aW51dGlscy1jcm9zcy1jYW5hZGlhbl8yLjIzLjEuYmIKbXYgLi9tZXRhL3JlY2lwZXMtZGV2dG9v
+bHMvYmludXRpbHMvYmludXRpbHNfMi4yMi5iYiAuL21ldGEvcmVjaXBlcy1kZXZ0b29scy9iaW51
+dGlscy9iaW51dGlsc18yLjIzLjEuYmIKbXYgLi9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvYmludXRp
+bHMvYmludXRpbHMtY3Jvc3NzZGtfMi4yMi5iYiAuL21ldGEvcmVjaXBlcy1kZXZ0b29scy9iaW51
+dGlscy9iaW51dGlscy1jcm9zc3Nka18yLjIzLjEuYmIKbXYgLi9tZXRhL3JlY2lwZXMtZGV2dG9v
+bHMvYmludXRpbHMvYmludXRpbHMtY3Jvc3NfMi4yMi5iYiAuL21ldGEvcmVjaXBlcy1kZXZ0b29s
+cy9iaW51dGlscy9iaW51dGlscy1jcm9zc18yLjIzLjEuYmIKCgpJIGFsc28gaGFkIHRvIHVwZGF0
+ZSB0aGUgbWQ1IGFuZCBzaGExIG9uIC4vbWV0YS9yZWNpcGVzLWRldnRvb2xzL2JpbnV0aWxzL2Jp
+bnV0aWxzLTIuMjMuMS5pbmMuIEFmdGVyIHRoYXQsIHNvbWUgcGF0Y2hlcyBmYWlsZWQgdG8gYXBw
+bHk6IGxpYnRvb2wtMi40LXVwZGF0ZS5wYXRjaCwgYmludXRpbHMtMi4xOS4xLWxkLXN5c3Jvb3Qu
+cGF0Y2gsIGJpbnV0aWxzLXBvaXNvbi5wYXRjaCwgbGlidG9vbC1ycGF0aC1maXgucGF0Y2gsIGNs
+b25lLXNoYWRvdy5wYXRjaC4uLiBzbyBnYXZlIHVwCldoYXQgd291bGQgYmUgdGhlIGFwcHJvcGlh
+dGUgd2F5IHRvIHdvcmthcm91bmQgdGhpcyBpc3N1ZSwgYmVzaWRlcyBub3QgdXNpbmcgQXJjaGxp
+bnV4PwoKCkJ0dywgaWYgdGhlIGJpdGJha2UgY29yZS1pbWFnZS1taW5pbWFsIGZhaWxzIGJlY2F1
+c2UgdGhlcmUncyBub3QgZW5vdWdoIGRpc2sgc3BhY2UsIGFuZCB0aGUgZnJlZSBkaXNrIGluIHRo
+ZSBwYXJ0aXRpb24gaXMgbGVmdCB0byAwLCBhZnRlciB0aGF0IGV2ZW4gdGhlIGJpdGJha2UgY2xl
+YW4gY29tbWFuZCBmYWlscyA6XAoKCgoKQW55d2F5LCB0aGFuayB5b3UgZ3V5cyBmb3Igd2hhdCBz
+ZWVtcyB0byBiZSBhbiBleGNlbGxlbnQgQlNQIGZhY3RvcnksIEknbSByZWFsbHkgbG9va2luZyBm
+b3J3YXJkIHRvIHN0YXJ0IHVzaW5nIGl0IGF0IG91ciBjb21wYW55IDopCgoKS2luZCByZWdhcmRz
+LApJc21hZWwKCgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KeW9jdG8gbWFpbGluZyBsaXN0CnlvY3RvQHlvY3RvcHJvamVjdC5vcmdodHRwczovL2xpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8KCkhpIElzbWFlbCwKCkFyY2hsaW51eCBj
+dXJyZW50bHkgaGFzIHRleGluZm81IGluIGl0J3MgY29yZSByZXBvIHdoaWNoIGJyZWFrcyBhIHNp
+Z25pZmljYW50IGFtb3VudCBvZiBwYWNrYWdlcy4gSSB3b3VsZCBzdWdnZXN0IGRvd25ncmFkaW5n
+IHRvIHRleHRpbmZvNC54IChjYW4ndCByZW1lbWJlciB0aGUgZXhhY3QgdmVyc2lvbikgYW5kIHRo
+ZW4gdGhpbmdzIHNob3VsZCBhdCBsZWFzdCBzdGFydCB0byBnZXQgZ29pbmcgYWdhaW4uIEknbSBh
+ZnJhaWQgaG93ZXZlciBpZiB5b3UgaW5zaXN0IG9uIHVzaW5nIGEgcm9sbGluZyByZWxlYXNlIGRp
+c3RybyB5b3UgYXJlIGdvaW5nIHRvIGhpdCB0aGVzZSBwcm9ibGVtcyBtb3JlIG9mdGVuIHRoYW4g
+bW9zdCwgaWYgeW91IHdhbnQgYSBzdGFibGUgYnVpbGQgZW52aXJvbm1lbnQgdGhlbiBJIHdvdWxk
+IHN1Z2dlc3QgdXNpbmcgYSBzYW5pdHkgdGVzdGVkIGRpc3Ryby4gSWYgeW91IGRvIHdpdGggdG8g
+cGVyc2lzdCB3aXRoIEFyY2hsaW51eCBJIHN1Z2dlc3QgeW91IGZvbGxvdyBvZS1jb3JlL3lvY3Rv
+IG1hc3RlciBhbmQgdXBkYXRlIHJlZ3VsYXJ5LgoKCk9uZSBkdW1teSBxdWVzdGlvbiwgaG93IHRv
+IGZpbmQgb3V0IHRoZSBsaXN0IG9mIGFsbCAic2FuaXR5IHRlc3RlZCBkaXN0cm8iLCBpIGp1c3Qg
+c2F3IGEgbG9uZyBsaXN0IGZyb20gdGhlIG91dHB1dCBvZiAiZ2l0IHRhZyIuIAoKClRoYW5rcywK
+QmlhbwoKCkNoZWVycywKSmFjay4K
 
+------=_Part_254506_1453864841.1362669740207
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-From: Stoicescu, CorneliuX
-Sent: Thursday, February 21, 2013 11:48 AM
-To: yocto
-Subject: Weekly Test Report for Yocto 1.4 20130213 Build
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6YXJpYWwiPjxicj48YnI+PGJyPjxicj48YnI+PGRpdj48L2Rpdj48ZGl2IGlk
+PSJkaXZOZXRlYXNlTWFpbENhcmQiPjwvZGl2Pjxicj7lnKggMjAxMy0wMy0wNCAwNjoxNjo1Ne+8
+jCJKYWNrJm5ic3A7TWl0Y2hlbGwiJm5ic3A7Jmx0O21sQGNvbW11bmlzdGNvZGUuY28udWsmZ3Q7
+IOWGmemBk++8mjxicj4gPGJsb2NrcXVvdGUgaWQ9ImlzUmVwbHlDb250ZW50IiBzdHlsZT0iUEFE
+RElORy1MRUZUOiAxZXg7IE1BUkdJTjogMHB4IDBweCAwcHggMC44ZXg7IEJPUkRFUi1MRUZUOiAj
+Y2NjIDFweCBzb2xpZCI+CiAgCiAgICAKICAKICAKICAgIDxkaXYgY2xhc3M9Im1vei1jaXRlLXBy
+ZWZpeCI+T24gMDMvMDMvMTMgMTg6MDIsIElzbWFlbCBCYXJyb3PCsgogICAgICB3cm90ZTo8YnI+
+CiAgICA8L2Rpdj4KICAgIDxibG9ja3F1b3RlIGNpdGU9Im1pZDpDQUZEMTYxbkN6SDRSQi0xZHNh
+Mkd5N3dZZ3EweXRzRk0tVHFpd01Dck94THhLb3I3LUFAbWFpbC5nbWFpbC5jb20iIHR5cGU9ImNp
+dGUiPgogICAgICA8ZGl2IGRpcj0ibHRyIj5IaSB0aGVyZSwKICAgICAgICA8ZGl2Pjxicj4KICAg
+ICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IHN0eWxlPSIiPkknbSBuZXcgdG8gWW9jdG8sIGFuZCBJ
+IGtlZXAgZmluZGluZyBlcnJvcnMgdGhhdAogICAgICAgICAgcHJldmVudCBtZSBmcm9tIGJ1aWxk
+aW5nIGEgbWluaW1hbCBpbWFnZS48L2Rpdj4KICAgICAgICA8ZGl2IHN0eWxlPSIiPjxicj4KICAg
+ICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IHN0eWxlPSIiPkkndmUganVzdCBpbnN0YWxsZWQmbmJz
+cDtwb2t5LWRhbm55LTguMCwKICAgICAgICAgIHNvdXJjZWQmbmJzcDtvZS1pbml0LWJ1aWxkLWVu
+diwgYW5kIGJpdGJha2VkJm5ic3A7Y29yZS1pbWFnZS1taW5pbWFsLgogICAgICAgICAgVGhlIGZp
+cnN0IGVycm9yIGlzIHRoYXQgYml0YmFrZSBzYW5pdHkgY2hlY2tzIGZhaWwgdG8gZGV0ZWN0CiAg
+ICAgICAgICB0aGUgbmV0d29yayBhY2Nlc3MsIHdoaWxlIG15IG5ldHdvcmsgY29ubmVjdGl2aXR5
+IGlzIHBlcmZlY3QsCiAgICAgICAgICBhbmQgZG93bmxvYWRpbmcgcGFja2FnZXMgc2VlbSB0byB3
+b3JrIGlmIEkgZGlzYWJsZSB0aGlzCiAgICAgICAgICBjaGVja3MuIEZ1bGwgbG9nOiZuYnNwOzxh
+IG1vei1kby1ub3Qtc2VuZD0idHJ1ZSIgaHJlZj0iaHR0cDovL3Bhc3RlYmluLmNvbS82akpDQzFx
+cCI+aHR0cDovL3Bhc3RlYmluLmNvbS82akpDQzFxcDwvYT4uCiAgICAgICAgICBJIGNvdWxkbid0
+IGZpbmQgYW55IGxvZyB0aGF0IHRvbGQgbWUgd2hpY2ggcGllY2Ugb2YgY29kZSB3YXMKICAgICAg
+ICAgIGZhaWxpbmcsIHNvIEkganV0IGRpc2FibGVkIHRoaXMgY2hlY2sKICAgICAgICAgIG9uJm5i
+c3A7Li4vbWV0YS15b2N0by9jb25mL2Rpc3Ryby9wb2t5LmNvbmY8L2Rpdj4KICAgICAgICA8ZGl2
+IHN0eWxlPSIiPjxicj4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IHN0eWxlPSIiPlVwb24g
+dHJ5aW5nIGFnYWluLCBidWlsZGluZyBzdGFydGVkIGZpbmUsIGJ1dCBpdAogICAgICAgICAgc3Rh
+cnRlZCBmYWlsaW5nIHRvIGJ1aWxkIHRoZSBkb2N1bWVudGF0aW9uIGZvciBzb21lIHBhY2thZ2Vz
+LAogICAgICAgICAgaS5lLiBiaW51dGlscy1jcm9zcy4gRmlyc3Qgb2ZmLCBJIHdhbnQgdG8gYnVp
+bGQgYSBzaW5nbGUKICAgICAgICAgIG1pc3Npb24gYXBwbGlhbmNlLCBJIGRvbid0IHJlYWxseSB3
+YW50IHRvIGJ1aWxkIGFueQogICAgICAgICAgZG9jdW1lbnRhdGlvbiwgaXMgdGhlcmUgYW55IHdh
+eSBJIGNhbiBkaXNhYmxlIGl0PyBBbnl3YXksIHRoaXMKICAgICAgICAgIGlzIHRoZSBidWlsZCBs
+b2c6Jm5ic3A7PGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJodHRwOi8vcGFzdGViaW4u
+Y29tL245VTRHZmpHIj5odHRwOi8vcGFzdGViaW4uY29tL245VTRHZmpHPC9hPi4KICAgICAgICAg
+IExvb2tzIGxpa2UgdGhlcmUgYXJlIHNvbWUgdGV4aW5mbyBjb21tYW5kcyBteSBtYWNoaW5lICh0
+ZXhpbmZvCiAgICAgICAgICA1LjApIGRvZXNuJ3QgcmVjb2duaWNlLiBBY2NvcmRpbmcgdG8mbmJz
+cDs8YSBtb3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Imh0dHA6Ly9zb3VyY2V3YXJlLm9yZy9i
+dWd6aWxsYS9zaG93X2J1Zy5jZ2k/aWQ9MTUxODMiPmh0dHA6Ly9zb3VyY2V3YXJlLm9yZy9idWd6
+aWxsYS9zaG93X2J1Zy5jZ2k/aWQ9MTUxODM8L2E+LAogICAgICAgICAgaXQncyBhIGtub3duIGJ1
+ZyBvbiZuYnNwO2JpbnVpbHRzLTIuMjIgYW5kIGl0J3MgZml4ZWQKICAgICAgICAgIG9uJm5ic3A7
+YmludWlsdHMtMi4yMy48L2Rpdj4KICAgICAgICA8ZGl2IHN0eWxlPSIiPjxicj4KICAgICAgICA8
+L2Rpdj4KICAgICAgICA8ZGl2IHN0eWxlPSIiPlBva2luZyBhcm91bmQsIGxvb2tzIGxpa2UgInVw
+ZGF0aW5nIiB0bwogICAgICAgICAgYmludXRpbHMtMi4yMyBnb3QgaXQga2luZCBvZiB3b3JraW5n
+OjwvZGl2PgogICAgICAgIDxkaXYgc3R5bGU9IiI+PGJyPgogICAgICAgIDwvZGl2PgogICAgICAg
+IDxkaXYgc3R5bGU9IiI+CiAgICAgICAgICA8ZGl2Pm12IC4vbWV0YS9yZWNpcGVzLWRldnRvb2xz
+L2JpbnV0aWxzL2JpbnV0aWxzLTIuMjIuaW5jCiAgICAgICAgICAgIC4vbWV0YS9yZWNpcGVzLWRl
+dnRvb2xzL2JpbnV0aWxzL2JpbnV0aWxzLTIuMjMuMS5pbmM8L2Rpdj4KICAgICAgICAgIDxkaXY+
+bXYgLi9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvYmludXRpbHMvPGEgbW96LWRvLW5vdC1zZW5kPSJ0
+cnVlIiBocmVmPSJodHRwOi8vYmludXRpbHMtY3Jvc3MtY2FuYWRpYW5fMi4yMi5iYiI+YmludXRp
+bHMtY3Jvc3MtY2FuYWRpYW5fMi4yMi5iYjwvYT4KICAgICAgICAgICAgLi9tZXRhL3JlY2lwZXMt
+ZGV2dG9vbHMvYmludXRpbHMvPGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJodHRwOi8v
+YmludXRpbHMtY3Jvc3MtY2FuYWRpYW5fMi4yMy4xLmJiIj5iaW51dGlscy1jcm9zcy1jYW5hZGlh
+bl8yLjIzLjEuYmI8L2E+PC9kaXY+CiAgICAgICAgICA8ZGl2Pm12IC4vbWV0YS9yZWNpcGVzLWRl
+dnRvb2xzL2JpbnV0aWxzLzxhIG1vei1kby1ub3Qtc2VuZD0idHJ1ZSIgaHJlZj0iaHR0cDovL2Jp
+bnV0aWxzXzIuMjIuYmIiPmJpbnV0aWxzXzIuMjIuYmI8L2E+CiAgICAgICAgICAgIC4vbWV0YS9y
+ZWNpcGVzLWRldnRvb2xzL2JpbnV0aWxzLzxhIG1vei1kby1ub3Qtc2VuZD0idHJ1ZSIgaHJlZj0i
+aHR0cDovL2JpbnV0aWxzXzIuMjMuMS5iYiI+YmludXRpbHNfMi4yMy4xLmJiPC9hPjwvZGl2Pgog
+ICAgICAgICAgPGRpdj5tdiAuL21ldGEvcmVjaXBlcy1kZXZ0b29scy9iaW51dGlscy88YSBtb3ot
+ZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Imh0dHA6Ly9iaW51dGlscy1jcm9zc3Nka18yLjIyLmJi
+Ij5iaW51dGlscy1jcm9zc3Nka18yLjIyLmJiPC9hPgogICAgICAgICAgICAuL21ldGEvcmVjaXBl
+cy1kZXZ0b29scy9iaW51dGlscy88YSBtb3otZG8tbm90LXNlbmQ9InRydWUiIGhyZWY9Imh0dHA6
+Ly9iaW51dGlscy1jcm9zc3Nka18yLjIzLjEuYmIiPmJpbnV0aWxzLWNyb3Nzc2RrXzIuMjMuMS5i
+YjwvYT48L2Rpdj4KICAgICAgICAgIDxkaXY+bXYgLi9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvYmlu
+dXRpbHMvPGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVmPSJodHRwOi8vYmludXRpbHMtY3Jv
+c3NfMi4yMi5iYiI+YmludXRpbHMtY3Jvc3NfMi4yMi5iYjwvYT4KICAgICAgICAgICAgLi9tZXRh
+L3JlY2lwZXMtZGV2dG9vbHMvYmludXRpbHMvPGEgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIiBocmVm
+PSJodHRwOi8vYmludXRpbHMtY3Jvc3NfMi4yMy4xLmJiIj5iaW51dGlscy1jcm9zc18yLjIzLjEu
+YmI8L2E+PC9kaXY+CiAgICAgICAgICA8ZGl2PgogICAgICAgICAgICA8YnI+CiAgICAgICAgICA8
+L2Rpdj4KICAgICAgICAgIDxkaXYgc3R5bGU9IiI+SSBhbHNvIGhhZCB0byB1cGRhdGUgdGhlIG1k
+NSBhbmQgc2hhMQogICAgICAgICAgICBvbiZuYnNwOy4vbWV0YS9yZWNpcGVzLWRldnRvb2xzL2Jp
+bnV0aWxzL2JpbnV0aWxzLTIuMjMuMS5pbmMuCiAgICAgICAgICAgIEFmdGVyIHRoYXQsIHNvbWUg
+cGF0Y2hlcyBmYWlsZWQgdG8gYXBwbHk6CiAgICAgICAgICAgIGxpYnRvb2wtMi40LXVwZGF0ZS5w
+YXRjaCwmbmJzcDtiaW51dGlscy0yLjE5LjEtbGQtc3lzcm9vdC5wYXRjaCwmbmJzcDtiaW51dGls
+cy1wb2lzb24ucGF0Y2gsCiAgICAgICAgICAgIGxpYnRvb2wtcnBhdGgtZml4LnBhdGNoLCZuYnNw
+O2Nsb25lLXNoYWRvdy5wYXRjaC4uLiBzbyBnYXZlIHVwPC9kaXY+CiAgICAgICAgICA8ZGl2IHN0
+eWxlPSIiPldoYXQgd291bGQgYmUgdGhlIGFwcHJvcGlhdGUgd2F5IHRvIHdvcmthcm91bmQKICAg
+ICAgICAgICAgdGhpcyBpc3N1ZSwgYmVzaWRlcyBub3QgdXNpbmcgQXJjaGxpbnV4PzwvZGl2Pgog
+ICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgc3R5bGU9IiI+PGJyPgogICAgICAgIDwvZGl2Pgog
+ICAgICAgIDxkaXYgc3R5bGU9IiI+QnR3LCBpZiB0aGUgYml0YmFrZSBjb3JlLWltYWdlLW1pbmlt
+YWwgZmFpbHMKICAgICAgICAgIGJlY2F1c2UgdGhlcmUncyBub3QgZW5vdWdoIGRpc2sgc3BhY2Us
+IGFuZCB0aGUgZnJlZSBkaXNrIGluCiAgICAgICAgICB0aGUgcGFydGl0aW9uIGlzIGxlZnQgdG8g
+MCwgYWZ0ZXIgdGhhdCBldmVuIHRoZSBiaXRiYWtlIGNsZWFuCiAgICAgICAgICBjb21tYW5kIGZh
+aWxzIDpcPC9kaXY+CiAgICAgICAgPGRpdiBzdHlsZT0iIj48YnI+CiAgICAgICAgPC9kaXY+CiAg
+ICAgICAgPGRpdiBzdHlsZT0iIj48YnI+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBzdHls
+ZT0iIj5Bbnl3YXksIHRoYW5rIHlvdSBndXlzIGZvciB3aGF0IHNlZW1zIHRvIGJlIGFuCiAgICAg
+ICAgICBleGNlbGxlbnQgQlNQIGZhY3RvcnksIEknbSByZWFsbHkgbG9va2luZyBmb3J3YXJkIHRv
+IHN0YXJ0CiAgICAgICAgICB1c2luZyBpdCBhdCBvdXIgY29tcGFueSA6KTwvZGl2PgogICAgICAg
+IDxkaXYgc3R5bGU9IiI+PGJyPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgc3R5bGU9IiI+
+CiAgICAgICAgICBLaW5kIHJlZ2FyZHMsPC9kaXY+CiAgICAgICAgPGRpdiBzdHlsZT0iIj5Jc21h
+ZWw8L2Rpdj4KICAgICAgPC9kaXY+CiAgICAgIDxicj4KICAgICAgPGZpZWxkc2V0IGNsYXNzPSJt
+aW1lQXR0YWNobWVudEhlYWRlciI+PC9maWVsZHNldD4KICAgICAgPGJyPgogICAgICA8cHJlIHdy
+YXA9IiI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KeW9j
+dG8gbWFpbGluZyBsaXN0CjxhIGNsYXNzPSJtb3otdHh0LWxpbmstYWJicmV2aWF0ZWQiIGhyZWY9
+Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9h
+Pgo8YSBjbGFzcz0ibW96LXR4dC1saW5rLWZyZWV0ZXh0IiBocmVmPSJodHRwczovL2xpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8iPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0
+Lm9yZy9saXN0aW5mby95b2N0bzwvYT4KPC9wcmU+CiAgICA8L2Jsb2NrcXVvdGU+CiAgICA8YnI+
+CiAgICBIaSBJc21hZWwsPGJyPgogICAgPGJyPgogICAgQXJjaGxpbnV4IGN1cnJlbnRseSBoYXMg
+dGV4aW5mbzUgaW4gaXQncyBjb3JlIHJlcG8gd2hpY2ggYnJlYWtzIGEKICAgIHNpZ25pZmljYW50
+IGFtb3VudCBvZiBwYWNrYWdlcy4gSSB3b3VsZCBzdWdnZXN0IGRvd25ncmFkaW5nIHRvCiAgICB0
+ZXh0aW5mbzQueCAoY2FuJ3QgcmVtZW1iZXIgdGhlIGV4YWN0IHZlcnNpb24pIGFuZCB0aGVuIHRo
+aW5ncwogICAgc2hvdWxkIGF0IGxlYXN0IHN0YXJ0IHRvIGdldCBnb2luZyBhZ2Fpbi4gSSdtIGFm
+cmFpZCBob3dldmVyIGlmIHlvdQogICAgaW5zaXN0IG9uIHVzaW5nIGEgcm9sbGluZyByZWxlYXNl
+IGRpc3RybyB5b3UgYXJlIGdvaW5nIHRvIGhpdCB0aGVzZQogICAgcHJvYmxlbXMgbW9yZSBvZnRl
+biB0aGFuIG1vc3QsIGlmIHlvdSB3YW50IGEgc3RhYmxlIGJ1aWxkCiAgICBlbnZpcm9ubWVudCB0
+aGVuIEkgd291bGQgc3VnZ2VzdCB1c2luZyBhIHNhbml0eSB0ZXN0ZWQgZGlzdHJvLiBJZgogICAg
+eW91IGRvIHdpdGggdG8gcGVyc2lzdCB3aXRoIEFyY2hsaW51eCBJIHN1Z2dlc3QgeW91IGZvbGxv
+dwogICAgb2UtY29yZS95b2N0byBtYXN0ZXIgYW5kIHVwZGF0ZSByZWd1bGFyeS48L2Jsb2NrcXVv
+dGU+PGRpdj48YnI+PC9kaXY+PGRpdj5PbmUgZHVtbXkgcXVlc3Rpb24sIGhvdyB0byBmaW5kIG91
+dCB0aGUgbGlzdCBvZiBhbGwgInNhbml0eSB0ZXN0ZWQgZGlzdHJvIiwgaSBqdXN0IHNhdyBhIGxv
+bmcgbGlzdCBmcm9tIHRoZSBvdXRwdXQgb2YgImdpdCB0YWciLiZuYnNwOzwvZGl2PjxkaXY+PGJy
+PjwvZGl2PjxkaXY+VGhhbmtzLDwvZGl2PjxkaXY+QmlhbzwvZGl2Pjxicj48YmxvY2txdW90ZSBp
+ZD0iaXNSZXBseUNvbnRlbnQiIHN0eWxlPSJQQURESU5HLUxFRlQ6IDFleDsgTUFSR0lOOiAwcHgg
+MHB4IDBweCAwLjhleDsgQk9SREVSLUxFRlQ6ICNjY2MgMXB4IHNvbGlkIj4KICAgIDxicj4KICAg
+IENoZWVycyw8YnI+CiAgICBKYWNrLjxicj4KICAKCjwvYmxvY2txdW90ZT48L2Rpdj4=
 
-Hello,
-
-Here is this the report for the 1.3.1 RC1 danny build:
-https://wiki.yoctoproject.org/wiki/Full_Pass_Test_Report_for_Yocto_1.3.1_RC=
-1_201302262_Build
-
-NOTE: A follow-up full pass was started for danny 1.3.1 . It should be read=
-y by next week's YPTM.
-
-Please send us feedback regarding what you like/don't like in this new repo=
-rting style.
-
-The current status of the real-time reporting tool:
--The template used for each build is located at: https://wiki.yoctoproject.=
-org/wiki/QA_Status_TEMPLATE
--The report is generated from the template, replacing the template (placeho=
-lder) test runs with actual test run numbers from Testopia (https://wiki.yo=
-ctoproject.org/wiki/Testopia )
--NEW: a new summary report is in the works all will be ready this week. Thi=
-s will be used in the milestone reporting page: https://wiki.yoctoproject.o=
-rg/wiki/Yocto_1.4_Milestone_Test_Report
-
-Thank you for the support ! If you have any questions or concerns, please c=
-ontact me or my team.
-Regards,
-Cornel
-
-
---_000_33115ABC4887814E8A92A08FBC93416B08DEDD12IRSMSX103gercor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Stoicesc=
-u, CorneliuX
-<br>
-<b>Sent:</b> Thursday, February 21, 2013 11:48 AM<br>
-<b>To:</b> yocto<br>
-<b>Subject:</b> Weekly Test Report for Yocto 1.4 20130213 Build<o:p></o:p><=
-/span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">H</span>ere is this th=
-e report for the
-<span style=3D"color:#1F497D">1.3.1 RC1 danny</span> build:<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><a href=3D"https://wik=
-i.yoctoproject.org/wiki/Full_Pass_Test_Report_for_Yocto_1.3.1_RC1_201302262=
-_Build">https://wiki.yoctoproject.org/wiki/Full_Pass_Test_Report_for_Yocto_=
-1.3.1_RC1_201302262_Build</a></span>
-<span style=3D"color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: A follow-up full=
- pass was started for danny 1.3.1 . It should be ready by next week&#8217;s=
- YPTM.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Please send us feedbac=
-k regarding what you like/don&#8217;t like in this new reporting style.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">The current status of =
-the real-time reporting tool:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-The template used for=
- each build is located at</span>:
-<a href=3D"https://wiki.yoctoproject.org/wiki/QA_Status_TEMPLATE">https://w=
-iki.yoctoproject.org/wiki/QA_Status_TEMPLATE</a><o:p></o:p></p>
-<p class=3D"MsoNormal">-The report is generated from the template, replacin=
-g the template (placeholder) test runs with actual test run numbers from Te=
-stopia (<a href=3D"https://wiki.yoctoproject.org/wiki/Testopia">https://wik=
-i.yoctoproject.org/wiki/Testopia</a>
- )<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-NEW: a new summary re=
-port is in the works all will be ready this week. This will be used in the =
-milestone reporting page:
-<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_1.4_Milestone_Test_Repo=
-rt">https://wiki.yoctoproject.org/wiki/Yocto_1.4_Milestone_Test_Report</a><=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">Thank you for the support ! If you have any question=
-s or concerns, please contact me<span style=3D"color:#1F497D"> or my team</=
-span>.<o:p></o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Cornel <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_33115ABC4887814E8A92A08FBC93416B08DEDD12IRSMSX103gercor_--
+------=_Part_254506_1453864841.1362669740207--
