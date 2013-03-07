@@ -1,35 +1,29 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qe0-f50.google.com (mail-qe0-f50.google.com
+	[209.85.128.50]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id E4127E01469
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 00:26:56 -0800 (PST)
-Received: by mail-wg0-f52.google.com with SMTP id 12so234527wgh.7
-	for <yocto@yoctoproject.org>; Thu, 07 Mar 2013 00:26:55 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id BE2C8E0072F
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 00:52:51 -0800 (PST)
+Received: by mail-qe0-f50.google.com with SMTP id k5so115119qej.23
+	for <yocto@yoctoproject.org>; Thu, 07 Mar 2013 00:52:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:content-type;
-	bh=DANjvl5ttQ81U9CPNQM+xizf0cvU9Bnlle9NLnnE9eo=;
-	b=ruOhXDmnGR/d1Wn40IVStDpnk6NkFGqlNWtoOaCrTz7ytj4TKhSnv6PujkqZKhB0cO
-	5LkvIC0QkRU+tnL9+mzRmXq9MGkhclZg8pgwFn18s52QRDM0+19xIHH6abFSpOkVitpr
-	EKAtiqkPjjiiltLY1HOLQffr8T22sbpYK+TvOSujKnM0WmOnB1hn06SaFaEJUCAdYlg8
-	gObnTI/aZ56cy5DOpwbGi6LMeiO0Cb0p4zShgfvjHx5A9EJCpbWdzQgp7TrYVJhJwzxv
-	ZK+Uhyo2Ik/Si+UnkSb6Bqt6VVA7FlZQu48Azbe46AKYni9cpfXn+qr10E8y1suVe30h
-	/gHQ==
-X-Received: by 10.180.77.9 with SMTP id o9mr31537356wiw.16.1362644815147; Thu,
-	07 Mar 2013 00:26:55 -0800 (PST)
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=9ggUB5kRdxwXt5DAJmq9m2sLaL5JUkp48A8s2zSZcaI=;
+	b=lhJEgtANyN1A8bTh8aWNKIf40x3Tz8cJdXYZ7iQa8LaxE5OIk15CFjqofFXYrC+pRN
+	D3EKwueXtUJQ+Ij5DeipHeujYX9B11GP9K66uoqx+6cREay1pPpdv0usL0PDXL+LXTRA
+	pbNvM3vBfE7PoVpJiurw/BPDeijucF3yEBzJfdaPDB+qhUOBgj5R6eYHEg7h2GGTp20V
+	2ltvSKUVcAtga0OlyEElXNbu4wpfMqg/yVu8ksIxBMK4DxJO8OezuXIriPqMflBpOO6M
+	xUaji+Xd87tR1Rb63mA/touAMVVYMcpbBKzZm1EIv6aww8B1nG5r8QOd2X6erNjuNHuZ
+	7fRg==
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Thu, 7 Mar 2013 00:26:35 -0800 (PST)
-In-Reply-To: <CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
-References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
-	<CACzyEJ_uHp7JQQG=Ufec5ipXdb5aEyWrp38jJFhF+qofsGkZ+Q@mail.gmail.com>
-	<513810E4.2040506@windriver.com>
-	<CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Thu, 7 Mar 2013 00:26:35 -0800
-Message-ID: <CACzyEJ9H=4JR9bXzjMH+EQFogJw1=kBQJnuAYaOq0xtCRctfog@mail.gmail.com>
-To: Juri Lelli <j.lelli@sssup.it>, yocto@yoctoproject.org
-Subject: Re: A question on adding a new program to a new meta layer
+X-Received: by 10.224.173.147 with SMTP id p19mr49589717qaz.78.1362646370693; 
+	Thu, 07 Mar 2013 00:52:50 -0800 (PST)
+Received: by 10.49.67.98 with HTTP; Thu, 7 Mar 2013 00:52:50 -0800 (PST)
+Date: Thu, 7 Mar 2013 09:52:50 +0100
+Message-ID: <CAFyqS9qLnG1xA5b25iJK9vehuYHhm9WTR3MMTk1LbbJ3N7_F3w@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: yocto@yoctoproject.org
+Subject: nested meta layers, how can/should it be done?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,195 +35,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2013 08:26:57 -0000
+X-List-Received-Date: Thu, 07 Mar 2013 08:52:52 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Bruce,
+Hi. I wish to write a custom meta layer that should add on-top of an
+existing bsp for eg. kernel and u-boot builds.
+But I want the custom layer to use .bbappend for some standard
+packages and also add some custom packages.
+My guess is that it might cause problems for the standard packages
+(since they are not unique) due to the MACHINE will be pointed out as
+the base bsp machine config, and the custom bsp will not define a
+machine on its own. Does this mean that I will have to define this new
+custom layer as a distro? I am worried that .bbappend stuff will never
+be executed since nothing will actually point to my custom layer for
+package recipes unless they are unique. What is the correct way to
+handle this use-case?
 
-One more question on 3.8 kernel.
-Is "meta/recipes-kernel/linux/linux-yocto_3.8.bb" added soon as well in 1.4?
-
-I am using 1.4_M4.final now.
-
-Thank you.
-
-Insop
-
-On Wed, Mar 6, 2013 at 9:05 PM, Insop Song <insop.song@gmail.com> wrote:
-> Bruce,
->
-> That's very good. I will bring linux-yocto-3.8 kernel to meta-dl.
-> (https://github.com/insop/meta-dl/tree/linux-yocto-3.8)
->
-> The purposes of meta-dl are the following three:
-> 1. easy to use sched_deadline by providing recipes-kernel that includes
-> - git url including github and from yocto-kernel
->
-> 2. easy to test and validate sched_deadline with automated
-> reproducible test suits
-> - currently, rt-app and schedtool are included in meta-dl
-> - will add test scripts
->
-> 3. provide and test on different targets/bsps
-> - will prepare and test on different targets (bsp)
->
-> #1 is done as I've tested with kernel from github from Juri and
-> yocto-kernel-3.8 that you've merged.
-> #2 and #3 are in-progress.
->
-> I've talked Juri the other day and gather information on testing
-> methods and scripts so I will include this to meta-dl.
->
-> I agree that it's good to coordinate the effort, so please feel free
-> to let me know if you have any suggestion.
->
-> Regards,
->
-> Insop
->
-> * updated kernel recipes
-> @ -9,12 +9,15 @@ inherit kernel
->
->  #SRCREV ="031d31cfaa1e0c00122bf52639e340353d3b8360"
->  SRCREV ="${AUTOREV}"
-> -KBRANCH = "sched-dl-V7"
-> -SRC_URI = "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
-> \
-> +#KBRANCH = "sched-dl-V7"
-> +#SRC_URI = "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
-> \
-> +#           file://defconfig "
-> +KBRANCH = "standard/edf"
-> +SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.8;protocol=git;branch=${KBRANCH}
-> \
->             file://defconfig "
->
->  PV = "3.8"
-> -PR = "dl7"
-> +PR = "dl"
->
->  KSRC ?= ""
->  S = '${@base_conditional("KSRC", "", "${WORKDIR}/git", "${KSRC}", d)}'
->
-> Thank you.
->
-> Insop
->
-> On Wed, Mar 6, 2013 at 8:00 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->> On 13-03-05 1:54 AM, Insop Song wrote:
->>>
->>> Hi,
->>>
->>> I am preparing a new meta layer for testing and promoting a
->>> sched_deadline scheduler, called "meta-dl". I am planning to add
->>> scheduler testing tools and different kernel versions as well.
->>> - http://insop.github.com/meta-dl/
->>
->>
->> FYI: I've already merged and staged sched_dl in linux-yocto_3.8:
->>
->> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.8/log/?h=standard/edf
->>
->> I'll be supporting it there as well, so it makes sense to coordinate
->> our efforts around kernels, configurations and benchmarks.
->>
->> Juri and I talked about this @ ELC a few weeks ago (I've added
->> him to the cc as well), and rather than hiding sched_deadline
->> kernel support in a custom kernel layer, I'd like to try and get
->> more eyes on it via linux-yocto .. so if we can all coordinate our
->> efforts here, that would be much better.
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> With the help of hands-on kernel lab (thank you Tom and Darren), I am
->>> able to make kernel with sched_deadline enabled.
->>>
->>>
->>> Now, I am having some trouble of adding testing tools to this meta-dl,
->>> and hope I can get some help from you.
->>>
->>> - problem: adding a new software into my meta-dl layer
->>>
->>> - symtom and questions?
->>> 1. bitbake core-image-minimal (normal image build) won't include the
->>> additional program that I listed in .bb file below
->>> 2. If I do "bitbake schedtool-dl -c install" it builds and install,
->>> but at "i586" location instead of my machine staging rootfs
->>> (dl-qemux86)
->>>
->>>
->>>
->>> - Here is my .bb file that pulls an additional program.
->>>
->>> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-tools/schedtool-dl/schedtool-dl.bb
->>> ===
->>> DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
->>> HOMEPAGE = "https://github.com/insop/schedtool-dl"
->>> SECTION = "base"
->>> LICENSE = "GPLv2"
->>> LIC_FILES_CHKSUM =
->>> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
->>> PR = "r1"
->>>
->>> SRC_URI = "git://github.com/insop/schedtool-dl.git;protocol=git"
->>> SRCREV = "${AUTOREV}"
->>>
->>> S = "${WORKDIR}/git"
->>>
->>> do_compile() {
->>>          oe_runmake
->>> }
->>>
->>> do_install() {
->>>          oe_runmake install DESTDIR=${D}
->>> }
->>>
->>> PARALLEL_MAKE = ""
->>>
->>> BBCLASSEXTEND = "native"
->>>
->>> COMPATIBLE_MACHINE_dl-qemux86 = "dl-qemux86"
->>> ====
->>>
->>>
->>> - I've updated my conf/layer.conf file to include above file
->>> https://github.com/insop/meta-dl/blob/sched-dl-V7/conf/layer.conf
->>> ====
->>> # We have a conf and classes directory, add to BBPATH
->>> BBPATH := "${BBPATH}:${LAYERDIR}"
->>>
->>> # We have a recipes directory, add to BBFILES
->>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
->>>          ${LAYERDIR}/recipes-*/*/*.bbappend"
->>>
->>> BBFILE_COLLECTIONS += "dl-qemux86"
->>> BBFILE_PATTERN_dl-qemux86 := "^${LAYERDIR}/"
->>> BBFILE_PRIORITY_dl-qemux86 = "6"
->>> =====
->>>
->>>
->>>
->>> Thank you.
->>>
->>> Regards,
->>>
->>> Insop
->>>
->>>
->>> - ref:
->>> 1. sched_deadline:
->>> https://events.linuxfoundation.org/events/linuxcon-europe/song
->>> 2. sched_deadline:
->>>
->>> http://events.linuxfoundation.org/images/stories/slides/elc2013_kobayashi.pdf?a
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
+Hans
 
