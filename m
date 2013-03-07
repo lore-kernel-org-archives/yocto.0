@@ -1,28 +1,37 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-masked.atl.sa.earthlink.net
-	(elasmtp-masked.atl.sa.earthlink.net [209.86.89.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A069E014D2
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 10:23:07 -0800 (PST)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=iyUz++xW9T8MBeKgGQ1hIBaSvcyT7L6zpq7+5JVLw56eRnEotP3D2rQBjEOcgpTQ;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-masked.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UDfT8-0003mg-NK; Thu, 07 Mar 2013 13:23:06 -0500
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Martin Jansa'" <martin.jansa@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 022DAE01480
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 10:29:39 -0800 (PST)
+Received: by mail-pa0-f54.google.com with SMTP id fa10so659762pad.13
+	for <yocto@yoctoproject.org>; Thu, 07 Mar 2013 10:29:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=M5sAr6M3ZhF+LOllznDALGaKoeV9CF5VUjCz6JkMJm8=;
+	b=NnATAl93OHw+VexzhmQzSEVfgfFfLPiUqGxsq8VPhZ2hDsWFmeOaP2khHAPVuwHESi
+	ThERc9mE0Zl36alROn03VmnPPO4AShDLjX1xRfR1I222LvZvWrblaE4m3sWdKgazov10
+	NKwbya9ATHDN3hzwymwj6kBak/mqSKmIA/c49nYVdvJ56wv0s+9UTa9lXUJ2IELLPdcJ
+	q/jWK7hJrFaV0tPKQSQ3jczY1mjlA5a/RVE12s5NFfPaWDpzKOpPy8WwtI/SJ2tsyHU6
+	Gomx6k6JW/OT0LAw6KG/QnZtIohnQu7HvvB2IVhk3CuQrOsA6XAGx6TJn6thoIz2JcEP
+	XcGQ==
+X-Received: by 10.68.63.194 with SMTP id i2mr56605753pbs.4.1362680979828;
+	Thu, 07 Mar 2013 10:29:39 -0800 (PST)
+Received: from localhost (ip-62-24-80-7.net.upcbroadband.cz. [62.24.80.7])
+	by mx.google.com with ESMTPS id hu2sm2484176pbc.38.2013.03.07.10.29.36
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Thu, 07 Mar 2013 10:29:38 -0800 (PST)
+Date: Thu, 7 Mar 2013 19:29:33 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Message-ID: <20130307182933.GS32228@jama.dyndns-home.com>
 References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD>
 	<20130307104051.GH32228@jama.dyndns-home.com>
-In-Reply-To: <20130307104051.GH32228@jama.dyndns-home.com>
-Date: Thu, 7 Mar 2013 10:22:54 -0800
-Message-ID: <96E98E10F7094D32B371FD84AFF0FFFC@PAULD>
+	<96E98E10F7094D32B371FD84AFF0FFFC@PAULD>
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-Thread-Index: Ac4bQtSpRmN8KTuSSDGbk8r6v01doAAHDZRg
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688bb545a020bf2b7e5c6f52a1a835597f2350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
+In-Reply-To: <96E98E10F7094D32B371FD84AFF0FFFC@PAULD>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
 Subject: Re: Samba server?
 X-BeenThere: yocto@yoctoproject.org
@@ -36,46 +45,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2013 18:23:07 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 07 Mar 2013 18:29:40 -0000
+X-Groupsio-MsgNum: 12409
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="f0Ums9VvOMUG7syy"
+Content-Disposition: inline
 
-> From: Martin Jansa
-> 
-> Are you talking about openembedded as openembedded-classic or
-> meta-openembedded?
-> 
-> Use samba from meta-openembedded.
+--f0Ums9VvOMUG7syy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That's what I tried first. It's not a layer, but a collection of layers, and
-the layer that contains samba is called meta-oe. So I tried to include
-meta-openembedded/meta-oe, and it barfed due to the absence of
-fontcache.bbclass. But fontcache.bbclass is nowhere to be found in
-meta-openembedded; it's contained in openembedded-core/meta. So I included
-openembedded-core/meta, and got some other error message containing about a
-dozen lines of Python script that had raised an exception. I tried including
-openembedded instead/too, and got other error messages.
+On Thu, Mar 07, 2013 at 10:22:54AM -0800, Paul D. DeRocco wrote:
+> Or maybe I should just build the system without samba, run it, manually
+> install samba just like any other user, and then use dd to save the modif=
+ied
+> image for production use. Does that sound like a good idea?
 
-To someone who understands the shape of the universe, this is probably easy
-to figure out. I might feel the trunk, or the tail, but I don't know it's an
-elephant yet.
+No, adding extra layer is pretty basic operation and should be properly
+documented. Can you send some pointers what have you read about adding a
+layer and what wasn't easy to understand?
 
-Since samba is a fairly common, standard module, I was hoping someone here
-had already done this, and could tell me what buttons to push. I've read the
-scant docs on bitbake, and pretty much the entire Yocto docs and
-Openembedded docs, and my head is spinning. I don't mind learning some
-stuff, but if I have to spend six months becoming an expert on something
-just to get it to work, then this is an economically unviable project for
-me.
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-Or maybe I should just build the system without samba, run it, manually
-install samba just like any other user, and then use dd to save the modified
-image for production use. Does that sound like a good idea?
+--f0Ums9VvOMUG7syy
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
--- 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+iEYEARECAAYFAlE43I0ACgkQN1Ujt2V2gBxM5QCghh4JBGw8rbdlWcPhK8Co9gXz
+WGgAmwTwMwAW0bLzPUC/NjfliZKfzzRi
+=SIQJ
+-----END PGP SIGNATURE-----
 
-
+--f0Ums9VvOMUG7syy--
