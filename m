@@ -1,36 +1,40 @@
-Return-Path: <varun292006@gmail.com>
-Received: from mail-pb0-f51.google.com (mail-pb0-f51.google.com
-	[209.85.160.51]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
+	[209.85.160.49]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id C1E0EE014E9
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 08:16:30 -0800 (PST)
-Received: by mail-pb0-f51.google.com with SMTP id un15so474043pbc.24
-	for <yocto@yoctoproject.org>; Thu, 07 Mar 2013 08:16:30 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 1C828E0153E
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 08:20:30 -0800 (PST)
+Received: by mail-pb0-f49.google.com with SMTP id xa12so480996pbc.36
+	for <yocto@yoctoproject.org>; Thu, 07 Mar 2013 08:20:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:content-type;
-	bh=fYS6fe92U0tv/ngcM+u8uizqB8TNIZF4GUYH1++g/mM=;
-	b=J1ZA6v1ldyvb43UB1cXvAPfA4MlPrG84hqs88CfjHWZrauZ5VvaAxkSIex3xHukbsk
-	sauDBL0pKJo35iId1BEphKVm6JPgkVYgIk4+QqTVGcdVWuSwcJ1XRGrdqEogj32nmNLJ
-	2rxJvYjtm6sBVV4fUwT3hlHc50aFcJpSwnMHV7I9gDUeajJ2erRuoad0N4RtkkSV6sA6
-	d+g7IorUmkY5LILquwAIHotnHm8ysYpxoRLNNDfSk6qf6lKQGw9si/dZ5I66lwkv850w
-	jwGV6xDuoBgeJJ2+dBDUQP+OVxoye8m8r1PpoUoIl8NplnPfWRctisDkFcoAYuDpic9g
-	swtg==
-MIME-Version: 1.0
-X-Received: by 10.68.221.9 with SMTP id qa9mr15109742pbc.118.1362672990367;
-	Thu, 07 Mar 2013 08:16:30 -0800 (PST)
-Received: by 10.68.11.228 with HTTP; Thu, 7 Mar 2013 08:16:30 -0800 (PST)
-In-Reply-To: <CAHUNapQ8qJp0PvNQfGtdyg=DW9Eoy9bnxdSd+B7bjgFHmmV9Ew@mail.gmail.com>
-References: <CAGxOggE12nhCd7Yohz7Rakr48qyqJ9bhPLBQwWp4KTjv9BkEvQ@mail.gmail.com>
-	<CAHUNapTir2grjiC7Fgz6mtt1uh1s0wpVxF0N4f4F+BxCfDwKVw@mail.gmail.com>
-	<CAGxOggHYVaUugWborwmwYFsA3cRDKN6mv+04jzMRMW+70DU_HQ@mail.gmail.com>
-	<CAHUNapQ8qJp0PvNQfGtdyg=DW9Eoy9bnxdSd+B7bjgFHmmV9Ew@mail.gmail.com>
-Date: Thu, 7 Mar 2013 21:46:30 +0530
-Message-ID: <CAGxOggELcBYjX+8NbWxjh6O5XFHpX8XwqzruVfnMpJMhKYHB7Q@mail.gmail.com>
-From: varun bhatnagar <varun292006@gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hob terminal is getting terminated
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=kB1NJ5eT9eDsZZfd6g7SnFER1ugXft2d3qz/86Da7jc=;
+	b=DY1lzlHBnlOPct4Tb3e3q3RGd8z8Jyvkn6y6orA+/9afvCRIQMZpMisBdkX3/Ls17F
+	2Buw6cayha/bwwH5mCQdAICpfkmlt9MqPIbEpvdNHoZNZu+5xIb5rrhHKlFG6u6eaMGI
+	LJUiuJLr0QI2vFLGgYTVSzRyE3rJhpZZUy3rMZWkke7klBZspV/0Jl56M4vXVhCUhWne
+	0EQz7UzrV21YGgwwmbj7PF/TKMWVwfWa4wvkX2u5fjECJBxMJ7gdYmSrzkmXzwevyKT6
+	OjM9iYzyI2cywJOjbDtppYuyPPun6ertfvu8FxIswWqTPK//nA8bAJtQk32l92ydNQZz
+	Siyg==
+X-Received: by 10.68.238.103 with SMTP id vj7mr54299491pbc.181.1362673229930; 
+	Thu, 07 Mar 2013 08:20:29 -0800 (PST)
+Received: from [192.168.1.100] ([94.205.106.4])
+	by mx.google.com with ESMTPS id i10sm2186042pbd.1.2013.03.07.08.20.26
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 07 Mar 2013 08:20:27 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Elvis Dowson <elvis.dowson@gmail.com>
+In-Reply-To: <CAMKF1sqmNf9hfjC4BWF3eF=4iENxVkaFEFtqaroM6cGQDFOtbw@mail.gmail.com>
+Date: Thu, 7 Mar 2013 20:20:22 +0400
+Message-Id: <61562AF7-3671-408C-AD77-E638C8535263@gmail.com>
+References: <B4F9B2A0-7231-4DC8-90D1-D7F291818791@gmail.com>
+	<CAMKF1sr+xH7Nb0-cG-Wky-A6842wwSPT8wWm2CDh583_BgdjOg@mail.gmail.com>
+	<D06F52BA-6DC2-4C8D-8F1D-EB71A8EB83EB@gmail.com>
+	<CAMKF1sqmNf9hfjC4BWF3eF=4iENxVkaFEFtqaroM6cGQDFOtbw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+X-Mailer: Apple Mail (2.1499)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Patching gcc-4.7.2 to add support for Xilinx MicroBlaze
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,69 +46,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2013 16:16:30 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff2457189377404d75807fa
+X-List-Received-Date: Thu, 07 Mar 2013 16:20:30 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
---e89a8ff2457189377404d75807fa
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Khem,
+                  Any plans on moving to gcc-4.7.3 or 4.8.0 anytime =
+soon?=20
 
-Hi,
+Nearly all the microblaze gcc patches are for gcc-4.8.0 on the trunk, =
+several of them in fact.
 
-I tried putting the tar files in the "download" folder but that did not
-work. I tried extracting the files too. But no luck.... :(
-What shall I do to make this work...???
+I've re-applied and ported all the existing patches that you've created =
+for gcc-4.7.2 to gcc-4.7.3 (not yet tested).
 
+So, I was wondering if you'd like me to try to get gcc-4.7.3 or =
+gcc-4.8.0 built against the current poky master branch?
 
-On Thu, Mar 7, 2013 at 5:13 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+I can test ARM Cortex A9, ARM Cortex A8 and Microblaze at my end.
 
-> I don't see any reason this conversation can't be on the public
-> mailing list. That way others can help and/or learn from the
-> discussion. I hope you don't mind be bringing it back to the mailing
-> list.
->
-> On Wed, Mar 6, 2013 at 11:32 AM, varun bhatnagar <varun292006@gmail.com>
-> wrote:
-> > Yes....I have...I tried running bitbake today....it also checked for the
-> > dependencies and it was trying to download quilt-0.60.tar.gz from
-> > http://savannah.gnu.org and from many other mirror sites....but
-> connection
-> > was not getting established. Is there any way through which I can
-> manually
-> > install these dependencies and then run bitbake?
->
-> If you have look at your conf/local.conf file you'll see a variable
-> called DL_DIR. If it is commented out, then your download directory
-> will be a directory named "downloads" based wherever your build it
-> taking place (if it is set to something, that something becomes your
-> download directory). If you are having network issues, you can
-> download the necessary files yourself. If you place them in this
-> DL_DIR directory they will be found and used by your build.
->
+Do let me know!
 
---e89a8ff2457189377404d75807fa
-Content-Type: text/html; charset=ISO-8859-1
+Best regards,
 
-<div dir="ltr">Hi,<div><br></div><div style>I tried putting the tar files in the &quot;download&quot; folder but that did not work. I tried extracting the files too. But no luck.... :(</div><div style>What shall I do to make this work...???</div>
-</div><div class="gmail_extra"><br><br><div class="gmail_quote">On Thu, Mar 7, 2013 at 5:13 AM, Trevor Woerner <span dir="ltr">&lt;<a href="mailto:twoerner@gmail.com" target="_blank">twoerner@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">I don&#39;t see any reason this conversation can&#39;t be on the public<br>
-mailing list. That way others can help and/or learn from the<br>
-discussion. I hope you don&#39;t mind be bringing it back to the mailing<br>
-list.<br>
-<div class="im"><br>
-On Wed, Mar 6, 2013 at 11:32 AM, varun bhatnagar &lt;<a href="mailto:varun292006@gmail.com">varun292006@gmail.com</a>&gt; wrote:<br>
-&gt; Yes....I have...I tried running bitbake today....it also checked for the<br>
-&gt; dependencies and it was trying to download quilt-0.60.tar.gz from<br>
-&gt; <a href="http://savannah.gnu.org" target="_blank">http://savannah.gnu.org</a> and from many other mirror sites....but connection<br>
-&gt; was not getting established. Is there any way through which I can manually<br>
-&gt; install these dependencies and then run bitbake?<br>
-<br>
-</div>If you have look at your conf/local.conf file you&#39;ll see a variable<br>
-called DL_DIR. If it is commented out, then your download directory<br>
-will be a directory named &quot;downloads&quot; based wherever your build it<br>
-taking place (if it is set to something, that something becomes your<br>
-download directory). If you are having network issues, you can<br>
-download the necessary files yourself. If you place them in this<br>
-DL_DIR directory they will be found and used by your build.<br>
-</blockquote></div><br></div>
+Elvis Dowson=
 
---e89a8ff2457189377404d75807fa--
