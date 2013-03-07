@@ -1,31 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Return-Path: <atanas.gegov.oss@gmail.com>
+Received: from mail-fa0-f53.google.com (mail-fa0-f53.google.com
+	[209.85.161.53]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 5EB40E014AA
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 06:08:30 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r27E8QoP028299
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 7 Mar 2013 06:08:26 -0800 (PST)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 7 Mar 2013 06:08:26 -0800
-Message-ID: <51389F4E.8070204@windriver.com>
-Date: Thu, 7 Mar 2013 09:08:14 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
-MIME-Version: 1.0
-To: Insop Song <insop.song@gmail.com>
-References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
-	<CACzyEJ_uHp7JQQG=Ufec5ipXdb5aEyWrp38jJFhF+qofsGkZ+Q@mail.gmail.com>
-	<513810E4.2040506@windriver.com>
-	<CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
-In-Reply-To: <CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
-Cc: Juri Lelli <j.lelli@sssup.it>, yocto@yoctoproject.org
-Subject: Re: A question on adding a new program to a new meta layer
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 2251CE01503
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 06:09:22 -0800 (PST)
+Received: by mail-fa0-f53.google.com with SMTP id w1so16216fad.26
+	for <yocto@yoctoproject.org>; Thu, 07 Mar 2013 06:09:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=1MNdQZg3YjKoCCigN0TqWZkVdCLiHua/oKKWrKawnNY=;
+	b=ZEh5ECwogsilOk2XMawi7R8rBm8x1Xd80Pk5lENliPH0spHfu1Xft8ARX/8/ZkR3vX
+	7IRK0hVZw5e9MsdxGTVh/TpNq3uIJTW3PhMnukg+fCFiv6bYnsfK6GGtW0t7CwYeQCfX
+	T/Xo9NrcP6vjE9De666AkquqRoPVYgcWgWmOhAO5GYzKUGujZGWTt3tYgXAdrGiu3fDB
+	CTn/bmia445D/OCC6pEs3/MkLNxMnhiNoYQZCclTdLWHm3+7A72gvGOfuk7JBZBgJnd6
+	OHYbxfU7iYXh5N/NrQ1zRIYMxIYiZBTy9Nb9SareIsCyDv3VJ1qBxsN4S6Whxnf+0oc+
+	RwiA==
+X-Received: by 10.204.147.136 with SMTP id l8mr13097759bkv.138.1362665360843; 
+	Thu, 07 Mar 2013 06:09:20 -0800 (PST)
+Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
+	by mx.google.com with ESMTPS id v2sm742337bkw.5.2013.03.07.06.09.19
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 07 Mar 2013 06:09:19 -0800 (PST)
+From: Atanas Gegov <atanas.gegov.oss@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu,  7 Mar 2013 15:09:06 +0100
+Message-Id: <1362665352-8259-1-git-send-email-atanas.gegov.oss@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [eclipse-poky][PATCHv3 0/6] Refactorings in org.yocto.sdk.ide plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,204 +38,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2013 14:08:30 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 07 Mar 2013 14:09:23 -0000
 
-On 13-03-07 12:05 AM, Insop Song wrote:
-> Bruce,
->
-> That's very good. I will bring linux-yocto-3.8 kernel to meta-dl.
-> (https://github.com/insop/meta-dl/tree/linux-yocto-3.8)
->
-> The purposes of meta-dl are the following three:
-> 1. easy to use sched_deadline by providing recipes-kernel that includes
-> - git url including github and from yocto-kernel
->
-> 2. easy to test and validate sched_deadline with automated
-> reproducible test suits
-> - currently, rt-app and schedtool are included in meta-dl
-> - will add test scripts
->
-> 3. provide and test on different targets/bsps
-> - will prepare and test on different targets (bsp)
->
-> #1 is done as I've tested with kernel from github from Juri and
-> yocto-kernel-3.8 that you've merged.
-> #2 and #3 are in-progress.
->
-> I've talked Juri the other day and gather information on testing
-> methods and scripts so I will include this to meta-dl.
->
-> I agree that it's good to coordinate the effort, so please feel free
-> to let me know if you have any suggestion.
->
-> Regards,
->
-> Insop
->
-> * updated kernel recipes
-> @ -9,12 +9,15 @@ inherit kernel
->
->   #SRCREV ="031d31cfaa1e0c00122bf52639e340353d3b8360"
->   SRCREV ="${AUTOREV}"
-> -KBRANCH = "sched-dl-V7"
-> -SRC_URI = "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
-> \
-> +#KBRANCH = "sched-dl-V7"
-> +#SRC_URI = "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
-> \
-> +#           file://defconfig "
-> +KBRANCH = "standard/edf"
-> +SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.8;protocol=git;branch=${KBRANCH}
-> \
->              file://defconfig "
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-What do you have in your "defconfig" ? I'm about to push patches that
-will make enabling sched_dealine a KERNEL_FEATURE option, which makes
-it even easier to use.
+Hi,
 
-But in the meantime, if you want to enable the support on a yocto BSP,
-you can change your "defconfig" to be "sched-deadline.cfg" and only
-put the kernel options required to enable the feature.
+Currently the org.yocto.sdk.ide plugin has the YoctoSDKEmptyProjectNature and
+the YoctoSDKProjectNature. The latter is strongly coupled with the Autotools nature
+since this is by now the only supported build system. It would be nice if it
+is possible to introduce other Yocto IDE projects,e.g. projects using CMake
+for building.
+
+This patch series does some refactoring in the org.yocto.sdk.ide plugin.
+This allows a simplified addition of further natures and enables the decoupling
+between YoctoSDKProjectNature and the Autotools nature.
+
+The natures and the utils get their own packages.
+Some methods and members were also moved to suitable classes.
 
 Cheers,
+Atanas
 
-Bruce
+Atanas Gegov (6):
+  Moved YoctoSDK natures to their own package
+  Moved functionality that does not belong to YoctoSDKProjectNature
+  Moved utils to their own package
+  Moved nature-related utils in own class
+  Export the new subpackages of org.yocto.sdk.ide
+  Performed a whitespaces cleanup
 
->
->   PV = "3.8"
-> -PR = "dl7"
-> +PR = "dl"
->
->   KSRC ?= ""
->   S = '${@base_conditional("KSRC", "", "${WORKDIR}/git", "${KSRC}", d)}'
->
-> Thank you.
->
-> Insop
->
-> On Wed, Mar 6, 2013 at 8:00 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->> On 13-03-05 1:54 AM, Insop Song wrote:
->>>
->>> Hi,
->>>
->>> I am preparing a new meta layer for testing and promoting a
->>> sched_deadline scheduler, called "meta-dl". I am planning to add
->>> scheduler testing tools and different kernel versions as well.
->>> - http://insop.github.com/meta-dl/
->>
->>
->> FYI: I've already merged and staged sched_dl in linux-yocto_3.8:
->>
->> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.8/log/?h=standard/edf
->>
->> I'll be supporting it there as well, so it makes sense to coordinate
->> our efforts around kernels, configurations and benchmarks.
->>
->> Juri and I talked about this @ ELC a few weeks ago (I've added
->> him to the cc as well), and rather than hiding sched_deadline
->> kernel support in a custom kernel layer, I'd like to try and get
->> more eyes on it via linux-yocto .. so if we can all coordinate our
->> efforts here, that would be much better.
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> With the help of hands-on kernel lab (thank you Tom and Darren), I am
->>> able to make kernel with sched_deadline enabled.
->>>
->>>
->>> Now, I am having some trouble of adding testing tools to this meta-dl,
->>> and hope I can get some help from you.
->>>
->>> - problem: adding a new software into my meta-dl layer
->>>
->>> - symtom and questions?
->>> 1. bitbake core-image-minimal (normal image build) won't include the
->>> additional program that I listed in .bb file below
->>> 2. If I do "bitbake schedtool-dl -c install" it builds and install,
->>> but at "i586" location instead of my machine staging rootfs
->>> (dl-qemux86)
->>>
->>>
->>>
->>> - Here is my .bb file that pulls an additional program.
->>>
->>> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-tools/schedtool-dl/schedtool-dl.bb
->>> ===
->>> DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
->>> HOMEPAGE = "https://github.com/insop/schedtool-dl"
->>> SECTION = "base"
->>> LICENSE = "GPLv2"
->>> LIC_FILES_CHKSUM =
->>> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
->>> PR = "r1"
->>>
->>> SRC_URI = "git://github.com/insop/schedtool-dl.git;protocol=git"
->>> SRCREV = "${AUTOREV}"
->>>
->>> S = "${WORKDIR}/git"
->>>
->>> do_compile() {
->>>           oe_runmake
->>> }
->>>
->>> do_install() {
->>>           oe_runmake install DESTDIR=${D}
->>> }
->>>
->>> PARALLEL_MAKE = ""
->>>
->>> BBCLASSEXTEND = "native"
->>>
->>> COMPATIBLE_MACHINE_dl-qemux86 = "dl-qemux86"
->>> ====
->>>
->>>
->>> - I've updated my conf/layer.conf file to include above file
->>> https://github.com/insop/meta-dl/blob/sched-dl-V7/conf/layer.conf
->>> ====
->>> # We have a conf and classes directory, add to BBPATH
->>> BBPATH := "${BBPATH}:${LAYERDIR}"
->>>
->>> # We have a recipes directory, add to BBFILES
->>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
->>>           ${LAYERDIR}/recipes-*/*/*.bbappend"
->>>
->>> BBFILE_COLLECTIONS += "dl-qemux86"
->>> BBFILE_PATTERN_dl-qemux86 := "^${LAYERDIR}/"
->>> BBFILE_PRIORITY_dl-qemux86 = "6"
->>> =====
->>>
->>>
->>>
->>> Thank you.
->>>
->>> Regards,
->>>
->>> Insop
->>>
->>>
->>> - ref:
->>> 1. sched_deadline:
->>> https://events.linuxfoundation.org/events/linuxcon-europe/song
->>> 2. sched_deadline:
->>>
->>> http://events.linuxfoundation.org/images/stories/slides/elc2013_kobayashi.pdf?a
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+ plugins/org.yocto.sdk.ide/META-INF/MANIFEST.MF     |    2 +
+ plugins/org.yocto.sdk.ide/plugin.xml               |    4 +-
+ .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |   12 +-
+ .../yocto/sdk/ide/YoctoSDKEmptyProjectNature.java  |   38 -
+ .../org/yocto/sdk/ide/YoctoSDKProjectNature.java   |  267 -------
+ .../src/org/yocto/sdk/ide/YoctoSDKUtils.java       |  607 ----------------
+ .../ide/natures/YoctoSDKEmptyProjectNature.java    |   39 +
+ .../yocto/sdk/ide/natures/YoctoSDKNatureUtils.java |   39 +
+ .../sdk/ide/natures/YoctoSDKProjectNature.java     |  111 +++
+ .../ide/preferences/YoctoSDKPreferencePage.java    |    4 +-
+ .../preferences/YoctoSDKProjectPropertyPage.java   |    2 +-
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |  743 ++++++++++++++++++++
+ .../sdk/ide/utils/YoctoSDKUtilsConstants.java      |   18 +
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |    6 +-
+ 14 files changed, 969 insertions(+), 923 deletions(-)
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKEmptyProjectNature.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKProjectNature.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKUtils.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKEmptyProjectNature.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKNatureUtils.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKProjectNature.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtilsConstants.java
+
+-- 
+1.7.9.5
 
 
