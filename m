@@ -1,38 +1,32 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id B4CF5E014E4
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 14:03:18 -0800 (PST)
-Received: by mail-wg0-f50.google.com with SMTP id es5so1808489wgb.5
-	for <yocto@yoctoproject.org>; Thu, 07 Mar 2013 14:03:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=dCfYWDzPO4salE67dKe8xVasfEkm9uf/HdEn5RShXQ4=;
-	b=CmuRwsr5iPl7pp5Hh8/vQQy5wJ2TETZQ6dZ/dSiNOlNAEYthaAM/jrgBnI+ymAlDsA
-	il4G2C0qEcGsBRPJa7IrbJ1+WPx+YIGhJBdJ7bQiiIOhQp96bjhsL4S6AijvSAzHL3rH
-	jr6OXfHGHTvRQKQuFXQwC7D9pwIzLEMIKphD073j5sv7ygqq6ts+KZSaQumT6sDv9g7R
-	Ht4tcFrnSOakmNORpgFf9XjX8mdk6G4Dj4Nq46LaaBQaNDEypVaCMK7gcRCyEVYZRlar
-	fZ446NDcQEg0n5vF/Kq+kmhIPmcma70VAUyQU3YWEfBxiyS2QCJOM58d7NT9+hxkFbXX
-	m27A==
-X-Received: by 10.194.84.8 with SMTP id u8mr57927692wjy.29.1362693797251; Thu,
-	07 Mar 2013 14:03:17 -0800 (PST)
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-scoter.atl.sa.earthlink.net
+	(elasmtp-scoter.atl.sa.earthlink.net [209.86.89.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3159EE00741
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 14:29:21 -0800 (PST)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=aSNhI9hOrtYkJI/iPqvv9R3X8jWAup2ANInoTljRTIyMoEnG6pONu/R6wNO2U59P;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-scoter.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UDjJQ-0007RM-9V; Thu, 07 Mar 2013 17:29:20 -0500
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Martin Jansa'" <martin.jansa@gmail.com>
+References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD>
+	<20130307104051.GH32228@jama.dyndns-home.com>
+	<96E98E10F7094D32B371FD84AFF0FFFC@PAULD>
+	<20130307182933.GS32228@jama.dyndns-home.com>
+In-Reply-To: <20130307182933.GS32228@jama.dyndns-home.com>
+Date: Thu, 7 Mar 2013 14:29:08 -0800
+Message-ID: <50BB56BA2C44400C9B6A31B0C2641BD2@PAULD>
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Thu, 7 Mar 2013 14:02:57 -0800 (PST)
-In-Reply-To: <51389E9D.8030608@windriver.com>
-References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
-	<CACzyEJ_uHp7JQQG=Ufec5ipXdb5aEyWrp38jJFhF+qofsGkZ+Q@mail.gmail.com>
-	<513810E4.2040506@windriver.com>
-	<CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
-	<CACzyEJ9H=4JR9bXzjMH+EQFogJw1=kBQJnuAYaOq0xtCRctfog@mail.gmail.com>
-	<51389E9D.8030608@windriver.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Thu, 7 Mar 2013 14:02:57 -0800
-Message-ID: <CACzyEJ-6YXhmicnx=AmYt9c6493_1NTk2xWrjg1DDfGi2b=v1A@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Juri Lelli <j.lelli@sssup.it>, yocto@yoctoproject.org
-Subject: Re: A question on adding a new program to a new meta layer
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac4bYbrL/NWrgxs0QgqhrTnnW0KolgAHONMg
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688a409ddb7f0178573e94ca129271c4952350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org
+Subject: Re: Samba server?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,248 +38,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Mar 2013 22:03:19 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 07 Mar 2013 22:29:21 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-One observation and question:
+> From: Martin Jansa [mailto:martin.jansa@gmail.com] 
+> 
+> No, adding extra layer is pretty basic operation and should 
+> be properly
+> documented. Can you send some pointers what have you read 
+> about adding a
+> layer and what wasn't easy to understand?
 
-1. I can build core-image-minimal/sato with meta-dl (with github 3.8
-or yocto-3.8 kernel) with yocto on "danny-8.0" tag
-2. I cannot build a successfully bootable core-image-minimal (with
-meta-dl) with yocto on "1.4_M4" tag,
-the image was stuck during booting..
+How to theoretically add a layer was easy enough to understand, but when it
+failed to work, I came to a dead end.
 
-My build machine is Ubuntu 12.04 LTS.
+I'm trying to make a basic non-GUI image based on the Atom cedartrail-nopvr
+machine, plus Samba, so I began with the following items in BBLAYERS:
 
-Before I debug more, I want to check with you to see if there is any
-thing that you can think of.
-Since I am planning to move to the yocto's master, so that I can pick
-up "linux-yocto_3.8.bb".
+  meta
+  meta-yocto
+  meta-yocto-bsp
+  meta-intel
+  meta-intel/meta-cedartrail
 
-Thank you,
+and I built core-image-base. That worked fine, but of course it had no Samba
+in it, nor is Samba anywhere to be found within the Yocto stuff. So I
+downloaded meta-openembedded from their GIT server, which I know from my
+Gumstix experience contains Samba in its meta-oe layer, added
+meta-openembedded/meta-oe to the end of BBLAYERS, and tried bitbaking both
+core-image-base and samba. I quickly got the following error:
 
-Insop
+
+ERROR: ParseError at
+/home/pauld/yocto-atom/poky-danny-8.0/meta-openembedded/meta-oe/recipes-grap
+hics/ttf-fonts/ttf.inc:12: Could not inherit file classes/fontcache.bbclass
 
 
-On Thu, Mar 7, 2013 at 6:05 AM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 13-03-07 03:26 AM, Insop Song wrote:
->>
->> Hi Bruce,
->>
->> One more question on 3.8 kernel.
->> Is "meta/recipes-kernel/linux/linux-yocto_3.8.bb" added soon as well in
->> 1.4?
->
->
-> It's in master as of a few days ago. So it's available and
-> ready for use.
->
-> Cheers,
->
-> Bruce
->
->
->>
->> I am using 1.4_M4.final now.
->>
->> Thank you.
->>
->> Insop
->>
->> On Wed, Mar 6, 2013 at 9:05 PM, Insop Song <insop.song@gmail.com> wrote:
->>>
->>> Bruce,
->>>
->>> That's very good. I will bring linux-yocto-3.8 kernel to meta-dl.
->>> (https://github.com/insop/meta-dl/tree/linux-yocto-3.8)
->>>
->>> The purposes of meta-dl are the following three:
->>> 1. easy to use sched_deadline by providing recipes-kernel that includes
->>> - git url including github and from yocto-kernel
->>>
->>> 2. easy to test and validate sched_deadline with automated
->>> reproducible test suits
->>> - currently, rt-app and schedtool are included in meta-dl
->>> - will add test scripts
->>>
->>> 3. provide and test on different targets/bsps
->>> - will prepare and test on different targets (bsp)
->>>
->>> #1 is done as I've tested with kernel from github from Juri and
->>> yocto-kernel-3.8 that you've merged.
->>> #2 and #3 are in-progress.
->>>
->>> I've talked Juri the other day and gather information on testing
->>> methods and scripts so I will include this to meta-dl.
->>>
->>> I agree that it's good to coordinate the effort, so please feel free
->>> to let me know if you have any suggestion.
->>>
->>> Regards,
->>>
->>> Insop
->>>
->>> * updated kernel recipes
->>> @ -9,12 +9,15 @@ inherit kernel
->>>
->>>   #SRCREV ="031d31cfaa1e0c00122bf52639e340353d3b8360"
->>>   SRCREV ="${AUTOREV}"
->>> -KBRANCH = "sched-dl-V7"
->>> -SRC_URI =
->>> "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
->>> \
->>> +#KBRANCH = "sched-dl-V7"
->>> +#SRC_URI =
->>> "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
->>> \
->>> +#           file://defconfig "
->>> +KBRANCH = "standard/edf"
->>> +SRC_URI =
->>> "git://git.yoctoproject.org/linux-yocto-3.8;protocol=git;branch=${KBRANCH}
->>> \
->>>              file://defconfig "
->>>
->>>   PV = "3.8"
->>> -PR = "dl7"
->>> +PR = "dl"
->>>
->>>   KSRC ?= ""
->>>   S = '${@base_conditional("KSRC", "", "${WORKDIR}/git", "${KSRC}", d)}'
->>>
->>> Thank you.
->>>
->>> Insop
->>>
->>> On Wed, Mar 6, 2013 at 8:00 PM, Bruce Ashfield
->>> <bruce.ashfield@windriver.com> wrote:
->>>>
->>>> On 13-03-05 1:54 AM, Insop Song wrote:
->>>>>
->>>>>
->>>>> Hi,
->>>>>
->>>>> I am preparing a new meta layer for testing and promoting a
->>>>> sched_deadline scheduler, called "meta-dl". I am planning to add
->>>>> scheduler testing tools and different kernel versions as well.
->>>>> - http://insop.github.com/meta-dl/
->>>>
->>>>
->>>>
->>>> FYI: I've already merged and staged sched_dl in linux-yocto_3.8:
->>>>
->>>>
->>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.8/log/?h=standard/edf
->>>>
->>>> I'll be supporting it there as well, so it makes sense to coordinate
->>>> our efforts around kernels, configurations and benchmarks.
->>>>
->>>> Juri and I talked about this @ ELC a few weeks ago (I've added
->>>> him to the cc as well), and rather than hiding sched_deadline
->>>> kernel support in a custom kernel layer, I'd like to try and get
->>>> more eyes on it via linux-yocto .. so if we can all coordinate our
->>>> efforts here, that would be much better.
->>>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>> With the help of hands-on kernel lab (thank you Tom and Darren), I am
->>>>> able to make kernel with sched_deadline enabled.
->>>>>
->>>>>
->>>>> Now, I am having some trouble of adding testing tools to this meta-dl,
->>>>> and hope I can get some help from you.
->>>>>
->>>>> - problem: adding a new software into my meta-dl layer
->>>>>
->>>>> - symtom and questions?
->>>>> 1. bitbake core-image-minimal (normal image build) won't include the
->>>>> additional program that I listed in .bb file below
->>>>> 2. If I do "bitbake schedtool-dl -c install" it builds and install,
->>>>> but at "i586" location instead of my machine staging rootfs
->>>>> (dl-qemux86)
->>>>>
->>>>>
->>>>>
->>>>> - Here is my .bb file that pulls an additional program.
->>>>>
->>>>>
->>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-tools/schedtool-dl/schedtool-dl.bb
->>>>> ===
->>>>> DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline
->>>>> scheduler"
->>>>> HOMEPAGE = "https://github.com/insop/schedtool-dl"
->>>>> SECTION = "base"
->>>>> LICENSE = "GPLv2"
->>>>> LIC_FILES_CHKSUM =
->>>>> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
->>>>> PR = "r1"
->>>>>
->>>>> SRC_URI = "git://github.com/insop/schedtool-dl.git;protocol=git"
->>>>> SRCREV = "${AUTOREV}"
->>>>>
->>>>> S = "${WORKDIR}/git"
->>>>>
->>>>> do_compile() {
->>>>>           oe_runmake
->>>>> }
->>>>>
->>>>> do_install() {
->>>>>           oe_runmake install DESTDIR=${D}
->>>>> }
->>>>>
->>>>> PARALLEL_MAKE = ""
->>>>>
->>>>> BBCLASSEXTEND = "native"
->>>>>
->>>>> COMPATIBLE_MACHINE_dl-qemux86 = "dl-qemux86"
->>>>> ====
->>>>>
->>>>>
->>>>> - I've updated my conf/layer.conf file to include above file
->>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/conf/layer.conf
->>>>> ====
->>>>> # We have a conf and classes directory, add to BBPATH
->>>>> BBPATH := "${BBPATH}:${LAYERDIR}"
->>>>>
->>>>> # We have a recipes directory, add to BBFILES
->>>>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
->>>>>           ${LAYERDIR}/recipes-*/*/*.bbappend"
->>>>>
->>>>> BBFILE_COLLECTIONS += "dl-qemux86"
->>>>> BBFILE_PATTERN_dl-qemux86 := "^${LAYERDIR}/"
->>>>> BBFILE_PRIORITY_dl-qemux86 = "6"
->>>>> =====
->>>>>
->>>>>
->>>>>
->>>>> Thank you.
->>>>>
->>>>> Regards,
->>>>>
->>>>> Insop
->>>>>
->>>>>
->>>>> - ref:
->>>>> 1. sched_deadline:
->>>>> https://events.linuxfoundation.org/events/linuxcon-europe/song
->>>>> 2. sched_deadline:
->>>>>
->>>>>
->>>>> http://events.linuxfoundation.org/images/stories/slides/elc2013_kobayashi.pdf?a
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
+There is no fontcache.bbclass anywhere within meta-openembedded, or the
+Yocto stuff, but looking through their GIT repository I found it exists
+within openembedded-core, in the meta layer. So I downloaded that, and added
+openembedded-core/meta to BBLAYERS before meta-openembedded/meta-oe and
+tried again. It got past the above error, but this time I got the following
+shell script error:
+
+
+ERROR: ExpansionError during parsing
+/home/pauld/yocto-atom/poky-danny-8.0/meta-openembedded/meta-oe/recipes-supp
+ort/maliit/maliit-framework_git.bb: Failure expanding variable
+gtk_immodule_cache_postinst: ExpansionError: Failure expanding variable
+gtk_immodule_cache_postinst, expression was if [ "x$D" != "x" ]; then
+    for maj_ver in 2 3; do
+        if [ -x $D/usr/bin/gtk-query-immodules-$maj_ver.0 ]; then
+            IMFILES=$(ls $D/usr/lib/gtk-$maj_ver.0/*/immodules/*.so)
+            ${@qemu_run_binary(d, '$D',
+'/usr/bin/gtk-query-immodules-$maj_ver.0')} \
+                $IMFILES > $D/etc/gtk-$maj_ver.0/gtk.immodules 2>/dev/null
+&&
+                sed -i -e "s:$D::" $D/etc/gtk-$maj_ver.0/gtk.immodules
+
+            [ $? -ne 0 ] && exit 1
+        fi
+    done
+
+    exit 0
+fi
+if [ ! -z `which gtk-query-immodules-2.0` ]; then
+    gtk-query-immodules-2.0 > /etc/gtk-2.0/gtk.immodules
+fi
+if [ ! -z `which gtk-query-immodules-3.0` ]; then
+    gtk-query-immodules-3.0 > /etc/gtk-3.0/gtk.immodules
+fi
+ which triggered exception NameError: name 'qemu_run_binary' is not defined
+
+
+I'm sure this e-mail mangled the above due to line wrapping, but I doubt
+anyone really needs to know what's going on in that shell script, and the
+final line is the only meaningful one. I suspect that the meta-oe layer is
+dependent on yet another layer that defines this 'qemu_run_binary' function,
+and that even though I've got all of openmbedded-core and meta-openembedded
+under my poky-danny-8.0 directory, bitbake only parses those parts that are
+mentioned in BBLAYERS, relying upon the user to deal with inter-layer
+dependencies.
+
+Perhaps I could grep a bazillion files looking for qemu_run_binary, but I'm
+worried that I'm wasting my time down a blind alley. Is pulling in somebody
+else's layer (in this case an OpenEmbedded layer into a Yocto system)
+something that's supposed to work, or does it only work if it's been tried
+and debugged by the experts who create these things in the first place?
+
+(And why doesn't Yocto include Samba anyway? It seems more of a common
+standard package than a lot of the stuff I see included.)
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
