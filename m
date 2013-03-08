@@ -1,37 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f42.google.com (mail-pb0-f42.google.com
-	[209.85.160.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F279DE003AB
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 13:35:15 -0800 (PST)
-Received: by mail-pb0-f42.google.com with SMTP id xb4so1622172pbc.1
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 13:35:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
-	:cc:message-id:references:to:x-mailer;
-	bh=Ib+NwQynvc+UD+ONX/88AwmefuwbxqT+a40EednovzQ=;
-	b=w9JntF7v26VHSqoLyrZKEMl3PoePikQRqysOereN9jZJzsKvqGJMOP0cG5lvJwq38q
-	eJ5LjCOksYKnMvbte1/8tmASi19mj/qD4A3UIEAWUmw96J1acRPQ9Mx6KEbxSAZT0eMF
-	jzWx6XJsQavVmbGi7hmXmfHN6AmKLfjyZZDwH1TUsNHzgZZWBd5gm9h9lECco4syUNjj
-	ap110S0jNfmIbCH2tXKmJfG+UPwrd4C4B+modkbPAld3ZT7wXzu6t1lLM4xhfk89VkEX
-	byYwhbmhDhlVzKoX4+5cJIpRqJYnmVzS4qVknQA9HGuFRDlwjQOIN9TVhKTYrVRoI/To
-	o9VA==
-X-Received: by 10.68.211.194 with SMTP id ne2mr5695105pbc.201.1362778515566;
-	Fri, 08 Mar 2013 13:35:15 -0800 (PST)
-Received: from sa-nc-apg-191.static.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPS id in5sm6826478pbc.20.2013.03.08.13.35.13
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 08 Mar 2013 13:35:14 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAFyqS9pKMm6HikCU4cdGEE0KBpNOQHCsZaO=4ccWRNfZ7++4uA@mail.gmail.com>
-Date: Fri, 8 Mar 2013 13:35:11 -0800
-Message-Id: <19BB3D1D-3EDE-45A5-A9D8-97CF27A387C5@gmail.com>
-References: <CAFyqS9pKMm6HikCU4cdGEE0KBpNOQHCsZaO=4ccWRNfZ7++4uA@mail.gmail.com>
-To: =?iso-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-X-Mailer: Apple Mail (2.1499)
-Cc: yocto@yoctoproject.org
-Subject: Re: ERROR: Nothing RPROVIDES 'mdev'
+Return-Path: <dmulder@lasx.com>
+Received: from omx.cbeyond.com (omx.cbeyond.com [50.20.30.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C41EE014A9
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 14:37:09 -0800 (PST)
+X-SBRS: 5.3
+X-HAT: Sender Group CBEYOND_SYSTEMS, Policy $CBEYOND_RELAY applied.
+X-Hostname: omx02bay.sys.cbeyond.net
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AuIAADVnOlEyFB4LmWdsb2JhbABDhBUjwBiBcw4BAQEBAQgLCwcUIQeCLgUtXgEqViYBBBuICwGbAaEKjluDF2EDqk+CJw
+X-IronPort-AV: E=Sophos;i="4.84,810,1355115600"; d="scan'208,217";a="13237445"
+Received: from mts.cbeyond.com (HELO EXHUB101.mmeprod.cbeyond) ([50.20.30.11])
+	by omx.cbeyond.com with ESMTP; 08 Mar 2013 17:37:07 -0500
+Received: from EXHUB104.mmeprod.cbeyond (10.128.38.103) by
+	EXHUB101.mmeprod.cbeyond (10.128.38.100) with Microsoft SMTP Server
+	(TLS) id 14.2.298.4; Fri, 8 Mar 2013 17:36:37 -0500
+Received: from EXMBX202A.mmeprod.cbeyond ([fe80::b0ca:4d9b:ba7c:8227]) by
+	EXHUB104.mmeprod.cbeyond ([::1]) with mapi id 14.02.0298.004;
+	Fri, 8 Mar 2013 17:36:37 -0500
+From: David Mulder <dmulder@lasx.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Can I disable RT throttling?
+Thread-Index: Ac4cTWBMCcKVjca/TdSAdJObHV69ZQ==
+Date: Fri, 8 Mar 2013 22:36:36 +0000
+Message-ID: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [69.198.178.141]
+MIME-Version: 1.0
+Subject: Can I disable RT throttling?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,97 +39,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 21:35:16 -0000
+X-List-Received-Date: Fri, 08 Mar 2013 22:37:09 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_806574C3-9324-4315-9B5C-A813DC7E1E53"
+	boundary="_000_19F0379280417C4A8FE3BD23AA7298E501347DE7EXMBX202Ammepro_"
 
---Apple-Mail=_806574C3-9324-4315-9B5C-A813DC7E1E53
+--_000_19F0379280417C4A8FE3BD23AA7298E501347DE7EXMBX202Ammepro_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=windows-1252
+
+Hi.
+
+I'm running a 10us control loop by (under vxWorks) setting one thread's pri=
+ority to max and not yielding ever (letting other tasks run on other cores)=
+, but Linux seems to thwart that capability: Ubuntu swaps out my thread occ=
+asionally for hundreds of microseconds; Yocto prints a "[sched_delayed] sch=
+ed: RT throttling activated" message as soon as I start my thread, so it se=
+ems likely that it will swap out my thread periodically (I'm not quite able=
+ to confirm that yet), and even the fastest thread swap that I've heard of =
+is too slow.
+
+I tried changing the kernel's Preemption Model to "No Forced Preemption (Se=
+rver)", but that didn't remove the RT throttling message.  I browsed the re=
+st of menuconfig but nothing looked related.  I read an article from 2008 t=
+hat talked about the kernel reserving 5% of the CPU for non-SCHED_FIFO task=
+s, so that's the direction and terminology I looked for in menuconfig.
+
+So maybe disabling RT throttling is all I need to do, maybe some other appr=
+oach is needed.  Hopefully someone will know more than I do.
+
+Thanks!
+Dave Mulder
 
 
-On Mar 8, 2013, at 7:02 AM, Hans Beck=E9rus <hans.beckerus@gmail.com> =
-wrote:
-
-> Hi. I get his error when trying to override udev with mdev
->=20
-> ERROR: Nothing RPROVIDES 'mdev' (but =
-/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb RDEPENDS =
-on or otherwise requires it)
->=20
-> is it not possible to replace udev with mdev?
->=20
-> What I have done is adding the following to the distro/mydistro.conf
->=20
-> VIRTUAL-RUNTIME_dev_manager =3D "mdev"
->=20
-> In packagegroup-core-boot.bb it looks like it should be possible, but =
-then how to do it?
->=20
-> packagegroup-core-boot.bb:
-> ...
-> # Distro can override the following VIRTUAL-RUNTIME providers:
-> VIRTUAL-RUNTIME_dev_manager ?=3D "udev"
-> VIRTUAL-RUNTIME_login_manager ?=3D "tinylogin"
-> VIRTUAL-RUNTIME_init_manager ?=3D "sysvinit"
-> VIRTUAL-RUNTIME_initscripts ?=3D "initscripts"
-> VIRTUAL-RUNTIME_keymaps ?=3D "keymaps"
-> =85
->=20
-
-Look ar poky-tiny.conf distro
-
-
-> Hans
->=20
->=20
->=20
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_806574C3-9324-4315-9B5C-A813DC7E1E53
+--_000_19F0379280417C4A8FE3BD23AA7298E501347DE7EXMBX202Ammepro_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=windows-1252
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><br><div><div>On Mar 8, 2013, at 7:02 AM, Hans Beck=E9rus &lt;<a =
-href=3D"mailto:hans.beckerus@gmail.com">hans.beckerus@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite">Hi. I get his error when trying to override udev with =
-mdev<br><br>ERROR: Nothing RPROVIDES 'mdev' (but =
-/poky/meta/recipes-core/packagegroups/<a =
-href=3D"http://packagegroup-core-boot.bb/">packagegroup-core-boot.bb</a> =
-RDEPENDS on or otherwise requires it)<br>
-<br>is it not possible to replace udev with mdev?<br><br>What I have =
-done is adding the following to the =
-distro/mydistro.conf<br><br><i>VIRTUAL-RUNTIME_dev_manager =3D =
-"mdev"</i><br><br>In <a =
-href=3D"http://packagegroup-core-boot.bb/">packagegroup-core-boot.bb</a> =
-it looks like it should be possible, but then how to do it?<br>
-<br><a =
-href=3D"http://packagegroup-core-boot.bb/">packagegroup-core-boot.bb</a>:<=
-br>...<br><i># Distro can override the following VIRTUAL-RUNTIME =
-providers:<br>VIRTUAL-RUNTIME_dev_manager ?=3D =
-"udev"<br>VIRTUAL-RUNTIME_login_manager ?=3D "tinylogin"<br>
-VIRTUAL-RUNTIME_init_manager ?=3D =
-"sysvinit"<br>VIRTUAL-RUNTIME_initscripts ?=3D =
-"initscripts"<br>VIRTUAL-RUNTIME_keymaps ?=3D =
-"keymaps"</i><br>=85<br><br></blockquote><div><br></div><div>Look ar =
-poky-tiny.conf distro</div><br><br><blockquote =
-type=3D"cite">Hans<br><br><br><br><br><br>
-_______________________________________________<br>yocto mailing =
-list<br><a =
-href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>https=
-://lists.yoctoproject.org/listinfo/yocto<br></blockquote></div><br></body>=
-</html>=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m running a 10us control loop by (under vxWo=
+rks) setting one thread&#8217;s priority to max and not yielding ever (lett=
+ing other tasks run on other cores), but Linux seems to thwart that capabil=
+ity: Ubuntu swaps out my thread occasionally for
+ hundreds of microseconds; Yocto prints a &#8220;[sched_delayed] sched: RT =
+throttling activated&#8221; message as soon as I start my thread, so it see=
+ms likely that it will swap out my thread periodically (I&#8217;m not quite=
+ able to confirm that yet), and even the fastest thread
+ swap that I&#8217;ve heard of is too slow.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I tried changing the kernel&#8217;s Preemption Model=
+ to &#8220;No Forced Preemption (Server)&#8221;, but that didn&#8217;t remo=
+ve the RT throttling message.&nbsp; I browsed the rest of menuconfig but no=
+thing looked related. &nbsp;I read an article from 2008 that talked
+ about the kernel reserving 5% of the CPU for non-SCHED_FIFO tasks, so that=
+&#8217;s the direction and terminology I looked for in menuconfig.<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So maybe disabling RT throttling is all I need to do=
+, maybe some other approach is needed.&nbsp; Hopefully someone will know mo=
+re than I do.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks!<o:p></o:p></p>
+<p class=3D"MsoNormal">Dave Mulder<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---Apple-Mail=_806574C3-9324-4315-9B5C-A813DC7E1E53--
+--_000_19F0379280417C4A8FE3BD23AA7298E501347DE7EXMBX202Ammepro_--
