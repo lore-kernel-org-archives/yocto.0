@@ -1,38 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f43.google.com (mail-pb0-f43.google.com
-	[209.85.160.43]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <gmshastri@gmail.com>
+Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
+	[209.85.217.170]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 52F7FE014E3
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 01:15:39 -0800 (PST)
-Received: by mail-pb0-f43.google.com with SMTP id md12so1064980pbc.2
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 01:15:39 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 771D5E00496
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 01:21:24 -0800 (PST)
+Received: by mail-lb0-f170.google.com with SMTP id ge1so1182097lbb.29
+	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 01:21:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
-	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=fU89eMFtE8hTnau7FbM+TrwGwledtwVFAkEu4sgzE+E=;
-	b=VehfOG+Nm4urC/toAG4PLeCAmd5cpSOp9uTkTJt8eSjPZ7WF+BRJcUBlefDp3GNqd6
-	HrTe3vb3nOScIlVZU7nevJkhqEKy0byXS7RkjVyVZqrGrRJfTKn5d1mUPXY/EoFMttxg
-	YuThH6iNCEOO1Olky4iEhRyH/FlmBV7MqGETyhMCY3xGZrdQg3n20V17UHj1UGg3MPCO
-	DJNvOoSbbVyOw5N12OUrp0hLEUAeN95PBUQx1aKHpoeMm4k43iLTMbaFbbij7wd8L31S
-	EwthT7hqGDMjHsJrJ8IpcyyOs7Q4O5bvzXipAkJbDhgDeX1QwN+YSLw+SGsAd1LqV6D/
-	fcmA==
-X-Received: by 10.66.169.71 with SMTP id ac7mr3067010pac.3.1362734139159;
-	Fri, 08 Mar 2013 01:15:39 -0800 (PST)
-Received: from [192.168.1.91] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209])
-	by mx.google.com with ESMTPS id eg1sm4929688pbb.33.2013.03.08.01.15.37
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 08 Mar 2013 01:15:38 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAFyqS9qxQsDao+_4Wot6vaimrY-hN=nDQgRqWOBk2YBcF1cszQ@mail.gmail.com>
-Date: Fri, 8 Mar 2013 01:15:37 -0800
-Message-Id: <30DACACB-1130-426B-B905-E5475A977930@gmail.com>
-References: <CAFyqS9qxQsDao+_4Wot6vaimrY-hN=nDQgRqWOBk2YBcF1cszQ@mail.gmail.com>
-To: =?iso-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-X-Mailer: Apple Mail (2.1499)
-Cc: yocto@yoctoproject.org
-Subject: Re: how to handle a source tree with both user-space and kernel module sources
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=wTafwsSjwpcCTXBx+ebEExXaABiA5wmqdg0YHFsTOC0=;
+	b=0zgWi0eVu+NlejVNgUOLnYwvPf2Y6KDWYS1WZHFYIyCtGbFblBBw74MHRkY6nTow5y
+	GXjT3Dpul0ezd0qM1kG8ms43kP/5kqKTqKO4vz+k4aAL0FNdXM8A1qhspDn1DIzEBw/b
+	i1Q+BK1zGW/6W1od2koSZTz1GP3KhiD63QvuSpU1NRdK5mNo0OhiM5trnQEiHaoZXvX+
+	vLv4QC1EEb9VMTvJ0doAW0NFniOJs4yNjaUQiyxUVyLzm9/AQ2ATbxVtxLGwG21eSm18
+	Xs6B/JiJG2KXEuSKYc3Ws57OfTJOfQ8Y2Xu9pR3WFGrloU/o58rcV1CJDKCBlSA76ol5
+	um1g==
+MIME-Version: 1.0
+X-Received: by 10.152.128.98 with SMTP id nn2mr1386513lab.17.1362734482046;
+	Fri, 08 Mar 2013 01:21:22 -0800 (PST)
+Received: by 10.114.98.66 with HTTP; Fri, 8 Mar 2013 01:21:21 -0800 (PST)
+Date: Fri, 8 Mar 2013 14:51:21 +0530
+Message-ID: <CAE_REAuOnhUG7GOgJHzSbGjrEyjKj8ApZ3J6W1=PtwZd2TM1Mg@mail.gmail.com>
+From: Gaurang Shastri <gmshastri@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Regarding Licensing of "mbsalign.c" available in util-linux-2.21.2 version (Yocto-1.3-Danny)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,39 +35,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 09:15:39 -0000
-Content-Type: text/plain; charset=iso-8859-1
+X-List-Received-Date: Fri, 08 Mar 2013 09:21:24 -0000
+Content-Type: multipart/alternative; boundary=f46d042c6423b9c53d04d7665884
+
+--f46d042c6423b9c53d04d7665884
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi All,
+
+I have some concerns regarding util-linux-2.21.2 version . As per Yocto-1.3
+(danny) recipe,
+{{{
+
+LICENSE_${PN}-lscpu = "GPLv3+"  <-- util-linux_2.21.2.bb
+
+LICENSE = "GPLv2+ & LGPLv2.1+ & BSD"   <-- util-linux.inc
+
+}}}
+
+So as per the above description, only lscpu is GPLv3.
+
+But while looking into the source of util-linux-2.21.2, I found out that
+"util-linux-2.21.2/lib/mbsalign.c" is GPLv3 and it is used by following
+binaries while building:
+{{{
+  -  fdisk
+  -  partx
+}}}
+
+So does it mean that the above binaries should also be GPLv3 and need to
+take care in util-linux.{bb,inc} ???
+
+Regards,
+Gaurang Shastri
+
+--f46d042c6423b9c53d04d7665884
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
+Hi All,<br><br>I have some concerns regarding util-linux-2.21.2 version . A=
+s per Yocto-1.3 (danny) recipe,<br>{{{<br><br>LICENSE_${PN}-lscpu =3D &quot=
+;GPLv3+&quot;=A0 &lt;-- <a href=3D"http://util-linux_2.21.2.bb">util-linux_=
+2.21.2.bb</a><br>
+<br>LICENSE =3D &quot;GPLv2+ &amp; LGPLv2.1+ &amp; BSD&quot;=A0=A0 &lt;-- u=
+til-linux.inc<br><br>}}}<br><br>So as per the above description, only lscpu=
+ is GPLv3. <br><br>But while looking into the source of util-linux-2.21.2, =
+I found out that &quot;util-linux-2.21.2/lib/mbsalign.c&quot; is GPLv3 and =
+it is used by following binaries while building:<br>
+{{{<br>=A0 -=A0 fdisk <br>=A0 -=A0 partx<br>}}}<br><br>So does it mean that=
+ the above binaries should also be GPLv3 and need to take care in util-linu=
+x.{bb,inc} ???<br><br>Regards,<br>Gaurang Shastri<br>
 
-On Mar 4, 2013, at 9:53 AM, Hans Beck=E9rus <hans.beckerus@gmail.com> =
-wrote:
-
-> How could a package that is part of one single git repo but contains
-> both user-space libraries and several kernel modules be built?
-> Is there some existing "best praxis" that could be applied?
-> Currently what we have done is to split this into two recipes, one
-> that inherits from autotools and the other that inherit from module.
-> This works fine, but... The problem now is that there will be two
-> copies of the source repo, one in each package. Is there some way that
-> a recipe can
-> inherit from both autotools and module and thus use two different S
-> targets? Or is our current approach the only way to easily do this,
-> and thus having two copies
-> of the repo is just a side-effect that we simply need to accept?
-> Splitting the source repo is almost out of the questions since they
-> are heavily dependent on shared header files etc.
->=20
-
-having two recipes is a good approach.  You can beat app and module
-builds into same recipe but recipe becomes quite cluttered so its your =
-priority
-what you would prefer.=20
-
-> Hans
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--f46d042c6423b9c53d04d7665884--
