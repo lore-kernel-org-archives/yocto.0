@@ -1,40 +1,36 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
-	[209.85.217.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA555E0146D
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 11:00:44 -0800 (PST)
-Received: by mail-lb0-f173.google.com with SMTP id gf7so1556346lbb.4
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 11:00:42 -0800 (PST)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-ob0-f182.google.com (mail-ob0-f182.google.com
+	[209.85.214.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04656E01465
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 11:11:29 -0800 (PST)
+Received: by mail-ob0-f182.google.com with SMTP id va7so1574309obc.27
+	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 11:11:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:message-id:date:from:user-agent:mime-version:to:cc
-	:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=RoeJzWyA9j85LUrttFViLZki7VNBDIrNoFHR6om+oHQ=;
-	b=YCsYASG7QBD1V7/zSm/XT6e+KI59AUs7B1yRmLewT7mKi0CJ2n4d8sCUeQQu9K+4v1
-	6H/P6cVlnMXP5AxaP2Kqw29+4o3GDZf6w/GCNrjnS9vy7O+5RyAnLYSRiEWkek4cESM3
-	DVGtNYpTOqGQEUyemG5YNMtXo9jt91EI1wdswsgDEqJ7CkXRz6sH7DWIriumbZ4WNVhx
-	tJqqgmu2c/yAH+xTsXTa2f4QPSw10x4PnygRibEsm9Jj3+IF6GbRsV729/0pllGfq6/E
-	jRMUy5aSfIaTXNFUeF+DLmKeZrmTiJ3XUw5eW1buOrdFoQy6QZUsnQe2BZqFdbYeLHaZ
-	KH9A==
-X-Received: by 10.112.9.10 with SMTP id v10mr1488099lba.47.1362769241981;
-	Fri, 08 Mar 2013 11:00:41 -0800 (PST)
-Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
-	[217.209.54.135])
-	by mx.google.com with ESMTPS id fm8sm1942825lbb.17.2013.03.08.11.00.40
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 08 Mar 2013 11:00:41 -0800 (PST)
-Message-ID: <513A3557.10405@gmail.com>
-Date: Fri, 08 Mar 2013 20:00:39 +0100
-From: Hans Beckerus <hans.beckerus@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.2;
-	rv:17.0) Gecko/20130215 Thunderbird/17.0.3
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=3Nt375gZS4qgX8zJV6j3Gcl8TQ/SQkGhLNcPc5fujws=;
+	b=RuzbWyauHw9dQcMY6mjp9mewvNj284J/VG2Jgq7BOdf9UPzvdEtMCavipYW4vSg2IB
+	dckGBqPkBNjifSF94ILtjRWBYLLFDFIsnlKPr9Mg2zoK9BEKJZg3ikt+h3IJFwcvVMRe
+	PxbmyGdMQ0OkpWk5JSL1ihrL8z3W5huHdqCPvzrXoe7O5lgQ5DPXnj3oUbQdRc+WWaPZ
+	8DatEuB4w5cc5FLN2SaMQgytnqlAnjTrke6v/FJw1ml5WZooK2IF3bNY+R9kIRfuFyiJ
+	yOyHva6iPA+/DivqQYTF23yO854laJbusF8KyWIUx6hHG+0WUCB7V78hGGr6M1Rrnp/V
+	P7rQ==
 MIME-Version: 1.0
-To: =?UTF-8?B?RXJpYyBCw6luYXJk?= <eric@eukrea.com>
-References: <CAFyqS9qFQ+kHrjmDAw4mCKop6RMzH7Ws1V6tt0_A2gM2a5UmYg@mail.gmail.com>
-	<20130308191213.102258ca@e6520eb>
-In-Reply-To: <20130308191213.102258ca@e6520eb>
-Cc: yocto@yoctoproject.org
-Subject: Re: How do I control what kernel modules are being loaded?
+X-Received: by 10.60.24.72 with SMTP id s8mr2766525oef.68.1362769888628; Fri,
+	08 Mar 2013 11:11:28 -0800 (PST)
+Received: by 10.76.173.138 with HTTP; Fri, 8 Mar 2013 11:11:28 -0800 (PST)
+In-Reply-To: <CAMKF1spG1x5Ne_RiSoHV-Fp46YRo+o_2NovctR9RrVH9UfeA6w@mail.gmail.com>
+References: <B4F9B2A0-7231-4DC8-90D1-D7F291818791@gmail.com>
+	<CAMKF1sr+xH7Nb0-cG-Wky-A6842wwSPT8wWm2CDh583_BgdjOg@mail.gmail.com>
+	<D06F52BA-6DC2-4C8D-8F1D-EB71A8EB83EB@gmail.com>
+	<CAMKF1sqmNf9hfjC4BWF3eF=4iENxVkaFEFtqaroM6cGQDFOtbw@mail.gmail.com>
+	<61562AF7-3671-408C-AD77-E638C8535263@gmail.com>
+	<CAMKF1spG1x5Ne_RiSoHV-Fp46YRo+o_2NovctR9RrVH9UfeA6w@mail.gmail.com>
+Date: Fri, 8 Mar 2013 14:11:28 -0500
+Message-ID: <CAHUNapSrU-h6udfGRdNtfraj2zNeNmrN+U9wSt8rm17ovO3h6g@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Patching gcc-4.7.2 to add support for Xilinx MicroBlaze
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,62 +42,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 19:00:45 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 08 Mar 2013 19:11:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2013-03-08 7:12, Eric Bénard wrote:
-> Hi Hans,
->
-> Le Fri, 8 Mar 2013 13:08:21 +0100,
-> Hans Beckérus <hans.beckerus@gmail.com> a écrit :
->
->> Hi. I have built some custom kernel modules (.ko) using a .bb that
->> inherits from the module.bbclass. There is one main kernel module and
->> the rest are dependent on the first. Building and installing the
->> modules to the rootfs works fine. Next question is how do I control
->> what actual modules are loaded at boot, or actually how do I control
->> this through Yocto? To my surprise one of the kernel module loaded
->> automatically!? How could this happen? I did not have an entry for it
->> in /etc/modules. And what do I need to do to actually add entries to
->> /etc/modules? Or is there some other mechanism that I should use. I
->> tried going through the module.bbclass but must admit I lost it
->> somewhere in the middle ;) Any guidance would be appreciated.
->>
-> when the module is built by the kernel recipe you can use :
-> module_autoload and you can see somme usage examples here :
-> http://cgit.openembedded.org/meta-handheld/tree/conf/machine/palmtx.conf
-> http://cgit.openembedded.org/meta-handheld/tree/conf/machine/include/palm.inc
->
-> maybe you could get inspiration from kernel.bbclass to do the same
-> thing in your recipe.
->
-> Eric
-Thanks guys for your quick feedback. I can see that using 
-module_autoload_${PN} seems like a good approach, if a package maps 1:1 
-to a module.
-In my case that is not so. The package/recipe builds six (or even more) 
-.ko files using one makefile.
-I guess one option could be to split each module build in its own 
-recipe, but that is not supported by the makefile and thus would require 
-patching from my side in the source tree. I think the only option I have 
-left is to try to use /etc/modules and add the modules there in a 
-do_install_append().
-But the problem then is, what happens if some other package also add a  
-/etc/modules.conf to the image folder? Will it be merged or only copied? 
-In the latter case last package wins which would not work out very well :(
+On Fri, Mar 8, 2013 at 2:07 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> We have moved away
+> from snapshots for gcc since git repo for gcc is in terabytes and
 
-Out of curiosity, what will module_autoload do? Will it add the .ko to 
-/etc/modules or does it implement some other mechanism to make a module 
-load automatically at boot?
+It sure would be nice if git had a feature whereby one could grab just
+a specific snapshot without any history, or meta-information etc...
+just the code of one specific hash.
 
-I do not think that the mandatory module that is loaded originates from 
-udev. This is a network CM driver that basically hooks into the Linux 
-network stack. I do not think that udev will ever make this driver load 
-automatically. But I can not say for sure of course.
-
-Hans
-
-
-
+(btw, I'm aware of shallow clones, they don't do what I'm asking for)
 
