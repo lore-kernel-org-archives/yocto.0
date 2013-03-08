@@ -1,25 +1,26 @@
-Return-Path: <dlazzari@leapfrog.com>
-Received: from mx3.leapfrog.com (mx3.leapfrog.com [63.114.26.253])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2108E014CF
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 17:49:39 -0800 (PST)
-Received: from NAEMCASHT02.na.leapfrog.com (unknown [10.12.2.36])
-	by mx3.leapfrog.com (Postfix) with ESMTP id A467E6020
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 17:49:26 -0800 (PST)
-Received: from naemmail03.na.leapfrog.com ([fe80::491e:453:9918:658c]) by
-	NAEMCASHT02.na.leapfrog.com ([::1]) with mapi id 14.01.0379.000;
-	Thu, 7 Mar 2013 17:49:26 -0800
-From: Daniel Lazzari <dlazzari@leapfrog.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Problem with applying a patch using default -pnum
-Thread-Index: Ac4bnrjSDJs55Y5DTQycFtQiP+IP2A==
-Date: Fri, 8 Mar 2013 01:49:24 +0000
-Message-ID: <E7A9054A5ACABE48B0E540E46E862B0FE6C81D53@NAEMMAIL03.na.leapfrog.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.100.2.5]
+Return-Path: <j.lelli@sssup.it>
+Received: from sssup.it (ms01.sssup.it [193.205.80.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A324FE0147E
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 20:02:55 -0800 (PST)
+Received: from [50.131.243.51] (account j.lelli@sssup.it HELO [192.168.1.33])
+	by sssup.it (CommuniGate Pro SMTP 5.3.14)
+	with ESMTPSA id 79547198; Fri, 08 Mar 2013 05:02:53 +0100
+Message-ID: <513962E9.4000804@sssup.it>
+Date: Thu, 07 Mar 2013 20:02:49 -0800
+From: Juri Lelli <j.lelli@sssup.it>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
 MIME-Version: 1.0
-Subject: Re: Problem with applying a patch using default -pnum
+To: Insop Song <insop.song@gmail.com>
+References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
+	<CACzyEJ_uHp7JQQG=Ufec5ipXdb5aEyWrp38jJFhF+qofsGkZ+Q@mail.gmail.com>
+	<513810E4.2040506@windriver.com>
+	<CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
+	<51389F4E.8070204@windriver.com>
+	<CACzyEJ9LrrX7iNP+WWUQOts8D31zWD+0NoHq12ROTB5_tQCWrw@mail.gmail.com>
+In-Reply-To: <CACzyEJ9LrrX7iNP+WWUQOts8D31zWD+0NoHq12ROTB5_tQCWrw@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: A question on adding a new program to a new meta layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,130 +32,216 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 01:49:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 08 Mar 2013 04:02:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-> On 2013-03-07 8:11, Jerrod Peach wrote:
-> > Hans,
-> >
-> > Are you sure you're seeing the patch system use $WORKDIR instead of $S
-> > as the root for patching?  I've had to do a lot of patching in our own
-> > layers recently and I've always seen $S used as the root for the
-> > patch.  Are you explicitly setting S =3D "${WORKDIR}/git"?  That's what
-> > we do for our git recipes.  That's how you get the system to recognize
-> > the source somewhere other than just $WORKDIR.
-> >
-> > As for specifying a different -pnum, you absolutely can do that like so=
-:
-> >
-> > /SRC_URI +=3D "file://my-change.patch*;striplevel=3DX*"/
-> >
-> > X is the pnum that you want.  Its default value is 1.
-> >
-> > You may also find this page useful -- it contains all sorts of hints
-> > for setting up your recipes in a Yocto-standard way:
-> >
-> > https://wiki.yoctoproject.org/wiki/Recipe_&_Patch_Style_Guide
-> >
-> > That's where I learned about striplevel and the preference for it over
-> > the deprecated pnum parameter.
-> >
-> > Kind regards,
-> >
-> > Jerrod
-> >
-> >
-> Hi Jarod. Thanks, the pointer you gave will most certainly be of great ai=
-d. I will
-> try the striplevel approach instead of writing my own do_patch() override=
-.
-> Regarding how certain I am that the root folder is ${WORKDIR} when
-> patching, not at all ;) In my do_patch() function is simply did `pwd` and=
- it was
-> not set to ${S} as I set it to.
-> That does not mean that the built-in patch system is using ${WORKDIR}, I =
-am
-> aware of that.
-> Things here is, even though my patch is placed in ${W} and I set ${S} to =
-eg.
-> ${W}/git/some/folder, why would it not work? In another package I set ${S=
-}
-> to ${WORKDIR}/git and it works just fine. I can not understand why settin=
-g
-> ${S} to something else breaks the logic?
-> It's not that bitbake can not find the patch file, it definitely does tha=
-t, but the
-> -pnum seems to get messed up. But maybe that is the whole point of having
-> the striplevel=3DX in the first place.
->=20
-> Hans
->=20
->=20
-> >
-> >
-> >
-> >
-> > On Thu, Mar 7, 2013 at 7:33 AM, Hans Beck?rus <hans.beckerus@gmail.com
-> > <mailto:hans.beckerus@gmail.com>> wrote:
-> >
-> >     On Thu, Mar 7, 2013 at 1:12 PM, Hans Beck?rus
-> >     <hans.beckerus@gmail.com <mailto:hans.beckerus@gmail.com>>
-> wrote:
-> >     > Hi. More problems ;)
-> >     > I have a patch file that needs to be applied to a source tree
-> >     and the
-> >     > patch file is copied properly to the ${WORKDIR} directory.
-> >     > So far so good. But, the problem with this source tree is that it=
- is
-> >     > not built from the traditional root folder of the repo.
-> >     > This means I need to change ${S} to point somewhere else. This al=
-so
-> >     > causes the patch system to fail!
-> >     > I did an override of do_patch() in my .bb and that seems to
-> >     work, but
-> >     > I do not like to use overrides unless I really have to.
-> >     > So basically, is there some way to tell the built-in patch system=
- to
-> >     > use a different -pnum value?
-> >     > If there is, I could stick with the do_patch() as provided by
-> >     default.
-> >     >
-> >     > Hans
-> >
-> >     Hmm, ok a correction from my side. Forget parts of what I said ;)
-> >     The patch system does not seem to use the value of ${S}, it is usin=
-g
-> >     ${WORKDIR} as the root for patching, this is also where the patch f=
-ile
-> >     is placed. The problem in my case does not seem to be that is built
-> >     from a non-standard path. The reason why it fails seems to be becau=
-se
-> >     the actual source is not in ${WORKDIR}, it is in ${WORKDIR}/git. Th=
-e
-> >     patch file does include git as part of the source path for obvious
-> >     reasons. What am I doing wrong? Having actual source code in
-> >     ${WORKDIR}/git I assume is very common for git based downloads.
-> >
-> >     Hans
-> >     _______________________________________________
-> >     yocto mailing list
-> >     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> >     https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
+Hi,
 
-I also found another useful patch param called patchdir that sets the direc=
-tory from which the patch is applied. This is useful when ${S} is set to a =
-directory deeper than you want to patch from but don't want to mess with se=
-tting ${S}. I needed it to apply a patch to wpa_supplicant's src directory.
+On 03/07/2013 01:43 PM, Insop Song wrote:
+> Hi Bruce,
+>
+>
+>> What do you have in your "defconfig" ? I'm about to push patches that
+>> will make enabling sched_dealine a KERNEL_FEATURE option, which makes
+>> it even easier to use.
+>>
+>
+> Here is my defconfg
+> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-kernel/linux/linux/defconfig
+>
+> I've asked this to Juri, too. So this is for the config for sched_deadline
+> "Every defconfig kernel should compile and work
+> fine (given HZ=1000, NO_HZ not set and HRTIMERS=y)"
+>
+> And here are the CONFIG that should set  (Juri, please let us know if
+> I miss anything)
+> ------
+> CONFIG_EXPERIMENTAL = y
+> CONFIG_CGROUPS = y
+> CONFIG_CGROUP_SCHED = n
+> CONFIG_HIGH_RES_TIMERS = y
+> CONFIG_PREEMPT = y
+> CONFIG_PREEMPT_RT = y
+> CONFIG_HZ_1000 = y
+>
+> # CONFIG_NO_HZ is not set
+>
 
-Ex.
-file://gpio-sysfs-power-onoff-change.patch;patchdir=3D${WORKDIR}/wpa_suppli=
-cant-${PV}
+I actually have:
 
-Daniel Lazzari Jr.
-Firmware Engineer
-dlazzari@leapfrog.com
+CONFIG_HIGH_RES_TIMERS = y
+CONFIG_PREEMPT = y
+CONFIG_HZ_1000 = y
+# CONFIG_NO_HZ is not set
+
+all the other options are not required (anymore, as the PREEMPT_RT,
+since SCHED_DEADLINE is currently based on 3.8-rc7).
+
+Thanks,
+
+- Juri
+
+> ------
+>
+>> But in the meantime, if you want to enable the support on a yocto BSP,
+>> you can change your "defconfig" to be "sched-deadline.cfg" and only
+>> put the kernel options required to enable the feature.
+>
+> I will pick up yocto-3.8 bb file from "master" branch and will try
+> this way shortly.
+>
+> Regards,
+>
+> Insop
+>
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>
+>>>
+>>>    PV = "3.8"
+>>> -PR = "dl7"
+>>> +PR = "dl"
+>>>
+>>>    KSRC ?= ""
+>>>    S = '${@base_conditional("KSRC", "", "${WORKDIR}/git", "${KSRC}", d)}'
+>>>
+>>> Thank you.
+>>>
+>>> Insop
+>>>
+>>> On Wed, Mar 6, 2013 at 8:00 PM, Bruce Ashfield
+>>> <bruce.ashfield@windriver.com> wrote:
+>>>>
+>>>> On 13-03-05 1:54 AM, Insop Song wrote:
+>>>>>
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>> I am preparing a new meta layer for testing and promoting a
+>>>>> sched_deadline scheduler, called "meta-dl". I am planning to add
+>>>>> scheduler testing tools and different kernel versions as well.
+>>>>> - http://insop.github.com/meta-dl/
+>>>>
+>>>>
+>>>>
+>>>> FYI: I've already merged and staged sched_dl in linux-yocto_3.8:
+>>>>
+>>>>
+>>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.8/log/?h=standard/edf
+>>>>
+>>>> I'll be supporting it there as well, so it makes sense to coordinate
+>>>> our efforts around kernels, configurations and benchmarks.
+>>>>
+>>>> Juri and I talked about this @ ELC a few weeks ago (I've added
+>>>> him to the cc as well), and rather than hiding sched_deadline
+>>>> kernel support in a custom kernel layer, I'd like to try and get
+>>>> more eyes on it via linux-yocto .. so if we can all coordinate our
+>>>> efforts here, that would be much better.
+>>>>
+>>>> Cheers,
+>>>>
+>>>> Bruce
+>>>>
+>>>>>
+>>>>> With the help of hands-on kernel lab (thank you Tom and Darren), I am
+>>>>> able to make kernel with sched_deadline enabled.
+>>>>>
+>>>>>
+>>>>> Now, I am having some trouble of adding testing tools to this meta-dl,
+>>>>> and hope I can get some help from you.
+>>>>>
+>>>>> - problem: adding a new software into my meta-dl layer
+>>>>>
+>>>>> - symtom and questions?
+>>>>> 1. bitbake core-image-minimal (normal image build) won't include the
+>>>>> additional program that I listed in .bb file below
+>>>>> 2. If I do "bitbake schedtool-dl -c install" it builds and install,
+>>>>> but at "i586" location instead of my machine staging rootfs
+>>>>> (dl-qemux86)
+>>>>>
+>>>>>
+>>>>>
+>>>>> - Here is my .bb file that pulls an additional program.
+>>>>>
+>>>>>
+>>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-tools/schedtool-dl/schedtool-dl.bb
+>>>>> ===
+>>>>> DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline
+>>>>> scheduler"
+>>>>> HOMEPAGE = "https://github.com/insop/schedtool-dl"
+>>>>> SECTION = "base"
+>>>>> LICENSE = "GPLv2"
+>>>>> LIC_FILES_CHKSUM =
+>>>>> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
+>>>>> PR = "r1"
+>>>>>
+>>>>> SRC_URI = "git://github.com/insop/schedtool-dl.git;protocol=git"
+>>>>> SRCREV = "${AUTOREV}"
+>>>>>
+>>>>> S = "${WORKDIR}/git"
+>>>>>
+>>>>> do_compile() {
+>>>>>            oe_runmake
+>>>>> }
+>>>>>
+>>>>> do_install() {
+>>>>>            oe_runmake install DESTDIR=${D}
+>>>>> }
+>>>>>
+>>>>> PARALLEL_MAKE = ""
+>>>>>
+>>>>> BBCLASSEXTEND = "native"
+>>>>>
+>>>>> COMPATIBLE_MACHINE_dl-qemux86 = "dl-qemux86"
+>>>>> ====
+>>>>>
+>>>>>
+>>>>> - I've updated my conf/layer.conf file to include above file
+>>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/conf/layer.conf
+>>>>> ====
+>>>>> # We have a conf and classes directory, add to BBPATH
+>>>>> BBPATH := "${BBPATH}:${LAYERDIR}"
+>>>>>
+>>>>> # We have a recipes directory, add to BBFILES
+>>>>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>>>>>            ${LAYERDIR}/recipes-*/*/*.bbappend"
+>>>>>
+>>>>> BBFILE_COLLECTIONS += "dl-qemux86"
+>>>>> BBFILE_PATTERN_dl-qemux86 := "^${LAYERDIR}/"
+>>>>> BBFILE_PRIORITY_dl-qemux86 = "6"
+>>>>> =====
+>>>>>
+>>>>>
+>>>>>
+>>>>> Thank you.
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Insop
+>>>>>
+>>>>>
+>>>>> - ref:
+>>>>> 1. sched_deadline:
+>>>>> https://events.linuxfoundation.org/events/linuxcon-europe/song
+>>>>> 2. sched_deadline:
+>>>>>
+>>>>>
+>>>>> http://events.linuxfoundation.org/images/stories/slides/elc2013_kobayashi.pdf?a
+>>>>> _______________________________________________
+>>>>> yocto mailing list
+>>>>> yocto@yoctoproject.org
+>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>>
+>>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
 
