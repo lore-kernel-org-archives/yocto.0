@@ -2,18 +2,18 @@ Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 48D35E014AE
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 17:45:17 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id D0658E006CB;
+	Thu,  7 Mar 2013 17:47:00 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r281jAeJ012783
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r281kuUD012799
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 7 Mar 2013 17:45:11 -0800 (PST)
+	Thu, 7 Mar 2013 17:46:56 -0800 (PST)
 Received: from bruce-ashfields-macbook.local (128.224.22.11) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Thu, 7 Mar 2013 17:45:10 -0800
-Message-ID: <513942A5.1040907@windriver.com>
-Date: Thu, 7 Mar 2013 20:45:09 -0500
+	14.2.342.3; Thu, 7 Mar 2013 17:46:56 -0800
+Message-ID: <5139430F.40403@windriver.com>
+Date: Thu, 7 Mar 2013 20:46:55 -0500
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
@@ -21,12 +21,13 @@ MIME-Version: 1.0
 To: Insop Song <insop.song@gmail.com>
 References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
 	<CACzyEJ_uHp7JQQG=Ufec5ipXdb5aEyWrp38jJFhF+qofsGkZ+Q@mail.gmail.com>
-	<513810E4.2040506@windriver.com>
-	<CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
-	<51389F4E.8070204@windriver.com>
-	<CACzyEJ9LrrX7iNP+WWUQOts8D31zWD+0NoHq12ROTB5_tQCWrw@mail.gmail.com>
-In-Reply-To: <CACzyEJ9LrrX7iNP+WWUQOts8D31zWD+0NoHq12ROTB5_tQCWrw@mail.gmail.com>
-Cc: Juri Lelli <j.lelli@sssup.it>, yocto@yoctoproject.org
+	<513810E4.2040506@windriver.com> <51381691.2020605@sssup.it>
+	<51389BCB.4000100@windriver.com>
+	<CACzyEJ_gBWMYyjcy2PaYuswviK4SoQn=W06vQet+LmOdjZBm1w@mail.gmail.com>
+In-Reply-To: <CACzyEJ_gBWMYyjcy2PaYuswviK4SoQn=W06vQet+LmOdjZBm1w@mail.gmail.com>
+Cc: Juri Lelli <j.lelli@sssup.it>, "Development list
+	for the linux-yocto*.git Linux kernel repositories"
+	<linux-yocto@yoctoproject.org>, yocto@yoctoproject.org
 Subject: Re: A question on adding a new program to a new meta layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,225 +40,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 01:45:17 -0000
+X-List-Received-Date: Fri, 08 Mar 2013 01:47:01 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 13-03-07 4:43 PM, Insop Song wrote:
-> Hi Bruce,
->
->
->> What do you have in your "defconfig" ? I'm about to push patches that
->> will make enabling sched_dealine a KERNEL_FEATURE option, which makes
->> it even easier to use.
+On 13-03-07 4:49 PM, Insop Song wrote:
+>>
+>> Thanks Juri, I was going to add you to my linux-yocto-3.8 announcement
+>> email and due to some last minute debug activities .. it slipped my
+>> mind. So I'm using this thread to let you, and anyone else that is
+>> interested know that sched_deadline support is available to try out
+>> in linux-yocto-3.8.
 >>
 >
-> Here is my defconfg
-> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-kernel/linux/linux/defconfig
->
-> I've asked this to Juri, too. So this is for the config for sched_deadline
-> "Every defconfig kernel should compile and work
-> fine (given HZ=1000, NO_HZ not set and HRTIMERS=y)"
->
-> And here are the CONFIG that should set  (Juri, please let us know if
-> I miss anything)
-> ------
-> CONFIG_EXPERIMENTAL = y
-> CONFIG_CGROUPS = y
-> CONFIG_CGROUP_SCHED = n
-> CONFIG_HIGH_RES_TIMERS = y
-> CONFIG_PREEMPT = y
-> CONFIG_PREEMPT_RT = y
-> CONFIG_HZ_1000 = y
+> Could you also add me in the announcement list?
 
-So this is all that you should have in your configuration fragment addon.
-We are trying to get people to separate BSP configuration from policy
-with feature addons being incremental blocks of CONFIG_ items aded
-at the end.
+I can definitely do that.
 
-There's a base policy in place for every linux-yocto based BSP, all
-you need to do is turn on the options that you want for your feature.
-
-That way, as we migrate through kernel versions, tweak performance
-options, etc, there is a central policy fragment that is changed and
-all BSPs are updated. Versus hunting down hundreds of defconfigs, in
-various layers and attempting to get them all synchronized and updated.
-
-For non linux-yocto BSPs, as of 1.4 we can share the out of tree
-kernel configuration fragments, and implement a similar policy. If we
-are seeking to synchronize efforts, trying to use the configuration
-extensions that are available makes a lot of sense to me!
+Also if you sign up for the linux-yocto@yoctoproject.org
+mailing list, that's where announcements and kernel feature discussions
+happen around linux-yocto. It would be a great place (versus this
+main yocto mailing list) to talk about sched_deadline in particular.
 
 >
-> # CONFIG_NO_HZ is not set
+>>
+>>>
+>>> As I already told to Insop, I don't have any automated test for the
+>>> patchset, but I usually run different scenarios using basically this
+>>> two tools (and giving a look at simple cases through kernelshark):
+>>>
+>>> 1- schedtool-dl: https://github.com/jlelli/schedtool-dl
+>>>      the idea here is to let a 'yes' run through SCHED_DEADLINE and
+>>>      check through kernelshark that the bandwidth enforcement
+>>>      mechanism works.
+>>>
+>>> 2- rt-app: https://github.com/gbagnoli/rt-app
+>>>      with this I usually let some tasksets run for several hours on
+>>>      a 48-cores machine we have in our lab, I can provide the tasksets
+>>>      (json files) and the script to run them.
+>>>
+>>> Please let me know how I can help further.
+>>
+>>
+>> This is a good start. I have some old references to tests that I'll
+>> dig up as well.
+>>
 >
-> ------
+> You can check this recipes-tool to find out the above programs
+> (configuration and installation) in here,
+> https://github.com/insop/meta-dl/tree/sched-dl-V7/recipes-tools
 >
->> But in the meantime, if you want to enable the support on a yocto BSP,
->> you can change your "defconfig" to be "sched-deadline.cfg" and only
->> put the kernel options required to enable the feature.
 >
-> I will pick up yocto-3.8 bb file from "master" branch and will try
-> this way shortly.
+>> I'm looking to develop some "real world" examples of the scheduler
+>> class in action, since as we've been saying .. getting those examples
+>> will both help the approach and perhaps help get it merged into the
+>> mainline kernel.
+>>
+>
+> I've been looking application descriptions when I was in Ericsson, and
+> provided cases to Thomas and Juri.
+> I am interested in this as well, and include them in easy-to test/validate form.
 
-
-Sounds good!
+Great!
 
 Bruce
 
 >
+> I will also reply to your other mail shortly.
+>
 > Regards,
 >
 > Insop
->
->>
->> Cheers,
->>
->> Bruce
->>
->>
->>>
->>>    PV = "3.8"
->>> -PR = "dl7"
->>> +PR = "dl"
->>>
->>>    KSRC ?= ""
->>>    S = '${@base_conditional("KSRC", "", "${WORKDIR}/git", "${KSRC}", d)}'
->>>
->>> Thank you.
->>>
->>> Insop
->>>
->>> On Wed, Mar 6, 2013 at 8:00 PM, Bruce Ashfield
->>> <bruce.ashfield@windriver.com>  wrote:
->>>>
->>>> On 13-03-05 1:54 AM, Insop Song wrote:
->>>>>
->>>>>
->>>>> Hi,
->>>>>
->>>>> I am preparing a new meta layer for testing and promoting a
->>>>> sched_deadline scheduler, called "meta-dl". I am planning to add
->>>>> scheduler testing tools and different kernel versions as well.
->>>>> - http://insop.github.com/meta-dl/
->>>>
->>>>
->>>>
->>>> FYI: I've already merged and staged sched_dl in linux-yocto_3.8:
->>>>
->>>>
->>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.8/log/?h=standard/edf
->>>>
->>>> I'll be supporting it there as well, so it makes sense to coordinate
->>>> our efforts around kernels, configurations and benchmarks.
->>>>
->>>> Juri and I talked about this @ ELC a few weeks ago (I've added
->>>> him to the cc as well), and rather than hiding sched_deadline
->>>> kernel support in a custom kernel layer, I'd like to try and get
->>>> more eyes on it via linux-yocto .. so if we can all coordinate our
->>>> efforts here, that would be much better.
->>>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>> With the help of hands-on kernel lab (thank you Tom and Darren), I am
->>>>> able to make kernel with sched_deadline enabled.
->>>>>
->>>>>
->>>>> Now, I am having some trouble of adding testing tools to this meta-dl,
->>>>> and hope I can get some help from you.
->>>>>
->>>>> - problem: adding a new software into my meta-dl layer
->>>>>
->>>>> - symtom and questions?
->>>>> 1. bitbake core-image-minimal (normal image build) won't include the
->>>>> additional program that I listed in .bb file below
->>>>> 2. If I do "bitbake schedtool-dl -c install" it builds and install,
->>>>> but at "i586" location instead of my machine staging rootfs
->>>>> (dl-qemux86)
->>>>>
->>>>>
->>>>>
->>>>> - Here is my .bb file that pulls an additional program.
->>>>>
->>>>>
->>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-tools/schedtool-dl/schedtool-dl.bb
->>>>> ===
->>>>> DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline
->>>>> scheduler"
->>>>> HOMEPAGE = "https://github.com/insop/schedtool-dl"
->>>>> SECTION = "base"
->>>>> LICENSE = "GPLv2"
->>>>> LIC_FILES_CHKSUM =
->>>>> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
->>>>> PR = "r1"
->>>>>
->>>>> SRC_URI = "git://github.com/insop/schedtool-dl.git;protocol=git"
->>>>> SRCREV = "${AUTOREV}"
->>>>>
->>>>> S = "${WORKDIR}/git"
->>>>>
->>>>> do_compile() {
->>>>>            oe_runmake
->>>>> }
->>>>>
->>>>> do_install() {
->>>>>            oe_runmake install DESTDIR=${D}
->>>>> }
->>>>>
->>>>> PARALLEL_MAKE = ""
->>>>>
->>>>> BBCLASSEXTEND = "native"
->>>>>
->>>>> COMPATIBLE_MACHINE_dl-qemux86 = "dl-qemux86"
->>>>> ====
->>>>>
->>>>>
->>>>> - I've updated my conf/layer.conf file to include above file
->>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/conf/layer.conf
->>>>> ====
->>>>> # We have a conf and classes directory, add to BBPATH
->>>>> BBPATH := "${BBPATH}:${LAYERDIR}"
->>>>>
->>>>> # We have a recipes directory, add to BBFILES
->>>>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
->>>>>            ${LAYERDIR}/recipes-*/*/*.bbappend"
->>>>>
->>>>> BBFILE_COLLECTIONS += "dl-qemux86"
->>>>> BBFILE_PATTERN_dl-qemux86 := "^${LAYERDIR}/"
->>>>> BBFILE_PRIORITY_dl-qemux86 = "6"
->>>>> =====
->>>>>
->>>>>
->>>>>
->>>>> Thank you.
->>>>>
->>>>> Regards,
->>>>>
->>>>> Insop
->>>>>
->>>>>
->>>>> - ref:
->>>>> 1. sched_deadline:
->>>>> https://events.linuxfoundation.org/events/linuxcon-europe/song
->>>>> 2. sched_deadline:
->>>>>
->>>>>
->>>>> http://events.linuxfoundation.org/images/stories/slides/elc2013_kobayashi.pdf?a
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
 
 
