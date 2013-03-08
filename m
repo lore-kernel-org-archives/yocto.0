@@ -1,29 +1,33 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f54.google.com (mail-oa0-f54.google.com
-	[209.85.219.54]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id B330FE01483
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 07:02:13 -0800 (PST)
-Received: by mail-oa0-f54.google.com with SMTP id n12so2038517oag.27
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 07:02:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=hHJn4dWdOPAEXid+4nyudcqb9RzGz1RVC0w2hgfr8IY=;
-	b=uJQg716bn8F+G/ut6jey9ohWR3tPe5p2yaun6K+rcNj0QdeS+TGORJOmXMq8UqMqFR
-	ybQkqS9gaQxcZV+DtyCUAur9lWisg1li8jq0PaOu0mR1RuZ0CTIDHUAoO+L0T/EHIZUW
-	taSxjAqkDGwVaQSdsykjaCfgj6ST6w1ZAjelEf8sZoJ7hzqtVxmG0zA8lOO5iBDIZClN
-	4fUFmVQSaQ0+SOzeGKdzp3m1g7/lAzmHJdalWGQiTKYouHkgtujR5Acew3eZ0J9Ucp95
-	PQiUTn2ANAZDApTJaqqTmrk9kOP/ZJfSDSrlZebeYoT7F5TYX9ur/4vIcGqcAoi5J+97
-	ZKCA==
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 67FFEE012F1
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 08:32:59 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r28GWpat016894
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 8 Mar 2013 08:32:51 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Fri, 8 Mar 2013 08:32:51 -0800
+Message-ID: <513A12A7.7040401@windriver.com>
+Date: Fri, 8 Mar 2013 11:32:39 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-X-Received: by 10.60.30.131 with SMTP id s3mr1722359oeh.106.1362754932677;
-	Fri, 08 Mar 2013 07:02:12 -0800 (PST)
-Received: by 10.182.141.73 with HTTP; Fri, 8 Mar 2013 07:02:12 -0800 (PST)
-Date: Fri, 8 Mar 2013 16:02:12 +0100
-Message-ID: <CAFyqS9pKMm6HikCU4cdGEE0KBpNOQHCsZaO=4ccWRNfZ7++4uA@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: yocto@yoctoproject.org
-Subject: ERROR: Nothing RPROVIDES 'mdev'
+To: Insop Song <insop.song@gmail.com>
+References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
+	<CACzyEJ_uHp7JQQG=Ufec5ipXdb5aEyWrp38jJFhF+qofsGkZ+Q@mail.gmail.com>
+	<513810E4.2040506@windriver.com>
+	<CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
+	<51389E52.2000109@windriver.com>
+	<CACzyEJ9nXL0E_HggNbYcv5gO7zzXFZj1pLBwkH248DVB3BWRyg@mail.gmail.com>
+In-Reply-To: <CACzyEJ9nXL0E_HggNbYcv5gO7zzXFZj1pLBwkH248DVB3BWRyg@mail.gmail.com>
+Cc: Darren Hart <dvhart@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: A question on adding a new program to a new meta layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,57 +39,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 15:02:13 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff1c036ada12104d76b1bdd
+X-List-Received-Date: Fri, 08 Mar 2013 16:32:59 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---e89a8ff1c036ada12104d76b1bdd
-Content-Type: text/plain; charset=ISO-8859-1
+On 13-03-08 08:27 AM, Insop Song wrote:
+> On Thu, Mar 7, 2013 at 6:04 AM, Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+>> On 13-03-07 12:05 AM, Insop Song wrote:
+>>>
+>>> Bruce,
+>>>
+>>> That's very good. I will bring linux-yocto-3.8 kernel to meta-dl.
+>>> (https://github.com/insop/meta-dl/tree/linux-yocto-3.8)
+>>
+>>
+>> I have another suggestion to offer here, one I've been wanting to
+>> do for a bit.
+>>
+>> I've added Darren Hart to the thread, since I'd like to hear from
+>> him on this as well.
+>>
+>> I have a use for the scheduling tools and benchmark cases for some
+>> virtualization usecases (meta-virtualization on git.yoctoproject.org).
+>>
+>> We already have "recipes-rt" in oe-core, and the preempt-rt kernel
+>> available from linux-yocto, and as we've been discussing I've added
+>> support for EDF/sched_dealine in linux-yocto-3.8.
+>>
+>> I'm not a fan of having to many layers, but rather than putting these
+>> efforts in github layers, hiding them in meta-virtualiation and they
+>> aren't yet "core" enough to go in oe-core .. I'd rather see them
+>> conslidated in a "meta-realtime" (or whatever name we decide on)
+>> layer on git.yoctoproject.org.
+>>
+>
+> meta-realtime sounds good to me, and this can include schedulers
+> real-time application and testing suits.
+>
+>> There are also ideas around interrupt management, AMP, and alternative
+>> system partitioning that I'd like to drive into such a layer.
+>>
+>
+> Good idea to add these continuously to the "meta-realtime"
+>
+>
+>> A quick scan of the layer index, doesn't show anything that matches
+>> this description. So I'm suggesting that we create a new layer
+>> to consolidate these approaches, and a layer that can be consumed by
+>> some of the other layers that are currently in progress.
+>>
+>> Comments ? In particular, point out a layer that already does this that
+>> I've missed.
+>>
+>>
+>
+> I've took out machine related from my previous meta-dl-qemux86 and put
+> together meta-realtime as a starting point. It has two sched_deadline
+> testing program.
+> It's on github for now for your reference, but I am willing to move or
+> merge to git.yocto.
+>
+> https://github.com/insop/meta-realtime
 
-Hi. I get his error when trying to override udev with mdev
+Thanks. I'll have a look, I have my own local meta-realtime as well,
+so I can consolidate the two and see about getting them hosted on
+git.yoctoproject.org.
 
-ERROR: Nothing RPROVIDES 'mdev' (but /poky/meta/recipes-core/packagegroups/
-packagegroup-core-boot.bb RDEPENDS on or otherwise requires it)
+Cheers,
 
-is it not possible to replace udev with mdev?
+Bruce
 
-What I have done is adding the following to the distro/mydistro.conf
+>
+> Thank you,
+>
+> Insop
+>
 
-*VIRTUAL-RUNTIME_dev_manager = "mdev"*
 
-In packagegroup-core-boot.bb it looks like it should be possible, but then
-how to do it?
-
-packagegroup-core-boot.bb:
-...
-*# Distro can override the following VIRTUAL-RUNTIME providers:
-VIRTUAL-RUNTIME_dev_manager ?= "udev"
-VIRTUAL-RUNTIME_login_manager ?= "tinylogin"
-VIRTUAL-RUNTIME_init_manager ?= "sysvinit"
-VIRTUAL-RUNTIME_initscripts ?= "initscripts"
-VIRTUAL-RUNTIME_keymaps ?= "keymaps"*
-...
-
-Hans
-
---e89a8ff1c036ada12104d76b1bdd
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi. I get his error when trying to override udev with mdev<br><br>ERROR: No=
-thing RPROVIDES &#39;mdev&#39; (but /poky/meta/recipes-core/packagegroups/<=
-a href=3D"http://packagegroup-core-boot.bb">packagegroup-core-boot.bb</a> R=
-DEPENDS on or otherwise requires it)<br>
-<br>is it not possible to replace udev with mdev?<br><br>What I have done i=
-s adding the following to the distro/mydistro.conf<br><br><i>VIRTUAL-RUNTIM=
-E_dev_manager =3D &quot;mdev&quot;</i><br><br>In <a href=3D"http://packageg=
-roup-core-boot.bb">packagegroup-core-boot.bb</a> it looks like it should be=
- possible, but then how to do it?<br>
-<br><a href=3D"http://packagegroup-core-boot.bb">packagegroup-core-boot.bb<=
-/a>:<br>...<br><i># Distro can override the following VIRTUAL-RUNTIME provi=
-ders:<br>VIRTUAL-RUNTIME_dev_manager ?=3D &quot;udev&quot;<br>VIRTUAL-RUNTI=
-ME_login_manager ?=3D &quot;tinylogin&quot;<br>
-VIRTUAL-RUNTIME_init_manager ?=3D &quot;sysvinit&quot;<br>VIRTUAL-RUNTIME_i=
-nitscripts ?=3D &quot;initscripts&quot;<br>VIRTUAL-RUNTIME_keymaps ?=3D &qu=
-ot;keymaps&quot;</i><br>...<br><br>Hans<br><br><br><br><br><br>
-
---e89a8ff1c036ada12104d76b1bdd--
