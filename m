@@ -1,34 +1,25 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id C6732E0121B
-	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 17:48:04 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r281m0ti012805
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 7 Mar 2013 17:48:01 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.22.11) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Thu, 7 Mar 2013 17:48:00 -0800
-Message-ID: <5139434F.4010306@windriver.com>
-Date: Thu, 7 Mar 2013 20:47:59 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <dlazzari@leapfrog.com>
+Received: from mx3.leapfrog.com (mx3.leapfrog.com [63.114.26.253])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2108E014CF
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 17:49:39 -0800 (PST)
+Received: from NAEMCASHT02.na.leapfrog.com (unknown [10.12.2.36])
+	by mx3.leapfrog.com (Postfix) with ESMTP id A467E6020
+	for <yocto@yoctoproject.org>; Thu,  7 Mar 2013 17:49:26 -0800 (PST)
+Received: from naemmail03.na.leapfrog.com ([fe80::491e:453:9918:658c]) by
+	NAEMCASHT02.na.leapfrog.com ([::1]) with mapi id 14.01.0379.000;
+	Thu, 7 Mar 2013 17:49:26 -0800
+From: Daniel Lazzari <dlazzari@leapfrog.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Problem with applying a patch using default -pnum
+Thread-Index: Ac4bnrjSDJs55Y5DTQycFtQiP+IP2A==
+Date: Fri, 8 Mar 2013 01:49:24 +0000
+Message-ID: <E7A9054A5ACABE48B0E540E46E862B0FE6C81D53@NAEMMAIL03.na.leapfrog.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.100.2.5]
 MIME-Version: 1.0
-To: Insop Song <insop.song@gmail.com>
-References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
-	<CACzyEJ_uHp7JQQG=Ufec5ipXdb5aEyWrp38jJFhF+qofsGkZ+Q@mail.gmail.com>
-	<513810E4.2040506@windriver.com>
-	<CACzyEJ-Nzq1YMH7pDmWhnoco8Xsrm1R9zHDYLO4eM4XKM1a-SA@mail.gmail.com>
-	<CACzyEJ9H=4JR9bXzjMH+EQFogJw1=kBQJnuAYaOq0xtCRctfog@mail.gmail.com>
-	<51389E9D.8030608@windriver.com>
-	<CACzyEJ-6YXhmicnx=AmYt9c6493_1NTk2xWrjg1DDfGi2b=v1A@mail.gmail.com>
-In-Reply-To: <CACzyEJ-6YXhmicnx=AmYt9c6493_1NTk2xWrjg1DDfGi2b=v1A@mail.gmail.com>
-Cc: Juri Lelli <j.lelli@sssup.it>, yocto@yoctoproject.org
-Subject: Re: A question on adding a new program to a new meta layer
+Subject: Re: Problem with applying a patch using default -pnum
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,258 +31,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 01:48:04 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 08 Mar 2013 01:49:39 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 13-03-07 5:02 PM, Insop Song wrote:
-> One observation and question:
->
-> 1. I can build core-image-minimal/sato with meta-dl (with github 3.8
-> or yocto-3.8 kernel) with yocto on "danny-8.0" tag
-> 2. I cannot build a successfully bootable core-image-minimal (with
-> meta-dl) with yocto on "1.4_M4" tag,
-> the image was stuck during booting..
->
-> My build machine is Ubuntu 12.04 LTS.
->
-> Before I debug more, I want to check with you to see if there is any
-> thing that you can think of.
-> Since I am planning to move to the yocto's master, so that I can pick
-> up "linux-yocto_3.8.bb".
+> On 2013-03-07 8:11, Jerrod Peach wrote:
+> > Hans,
+> >
+> > Are you sure you're seeing the patch system use $WORKDIR instead of $S
+> > as the root for patching?  I've had to do a lot of patching in our own
+> > layers recently and I've always seen $S used as the root for the
+> > patch.  Are you explicitly setting S =3D "${WORKDIR}/git"?  That's what
+> > we do for our git recipes.  That's how you get the system to recognize
+> > the source somewhere other than just $WORKDIR.
+> >
+> > As for specifying a different -pnum, you absolutely can do that like so=
+:
+> >
+> > /SRC_URI +=3D "file://my-change.patch*;striplevel=3DX*"/
+> >
+> > X is the pnum that you want.  Its default value is 1.
+> >
+> > You may also find this page useful -- it contains all sorts of hints
+> > for setting up your recipes in a Yocto-standard way:
+> >
+> > https://wiki.yoctoproject.org/wiki/Recipe_&_Patch_Style_Guide
+> >
+> > That's where I learned about striplevel and the preference for it over
+> > the deprecated pnum parameter.
+> >
+> > Kind regards,
+> >
+> > Jerrod
+> >
+> >
+> Hi Jarod. Thanks, the pointer you gave will most certainly be of great ai=
+d. I will
+> try the striplevel approach instead of writing my own do_patch() override=
+.
+> Regarding how certain I am that the root folder is ${WORKDIR} when
+> patching, not at all ;) In my do_patch() function is simply did `pwd` and=
+ it was
+> not set to ${S} as I set it to.
+> That does not mean that the built-in patch system is using ${WORKDIR}, I =
+am
+> aware of that.
+> Things here is, even though my patch is placed in ${W} and I set ${S} to =
+eg.
+> ${W}/git/some/folder, why would it not work? In another package I set ${S=
+}
+> to ${WORKDIR}/git and it works just fine. I can not understand why settin=
+g
+> ${S} to something else breaks the logic?
+> It's not that bitbake can not find the patch file, it definitely does tha=
+t, but the
+> -pnum seems to get messed up. But maybe that is the whole point of having
+> the striplevel=3DX in the first place.
+>=20
+> Hans
+>=20
+>=20
+> >
+> >
+> >
+> >
+> > On Thu, Mar 7, 2013 at 7:33 AM, Hans Beck?rus <hans.beckerus@gmail.com
+> > <mailto:hans.beckerus@gmail.com>> wrote:
+> >
+> >     On Thu, Mar 7, 2013 at 1:12 PM, Hans Beck?rus
+> >     <hans.beckerus@gmail.com <mailto:hans.beckerus@gmail.com>>
+> wrote:
+> >     > Hi. More problems ;)
+> >     > I have a patch file that needs to be applied to a source tree
+> >     and the
+> >     > patch file is copied properly to the ${WORKDIR} directory.
+> >     > So far so good. But, the problem with this source tree is that it=
+ is
+> >     > not built from the traditional root folder of the repo.
+> >     > This means I need to change ${S} to point somewhere else. This al=
+so
+> >     > causes the patch system to fail!
+> >     > I did an override of do_patch() in my .bb and that seems to
+> >     work, but
+> >     > I do not like to use overrides unless I really have to.
+> >     > So basically, is there some way to tell the built-in patch system=
+ to
+> >     > use a different -pnum value?
+> >     > If there is, I could stick with the do_patch() as provided by
+> >     default.
+> >     >
+> >     > Hans
+> >
+> >     Hmm, ok a correction from my side. Forget parts of what I said ;)
+> >     The patch system does not seem to use the value of ${S}, it is usin=
+g
+> >     ${WORKDIR} as the root for patching, this is also where the patch f=
+ile
+> >     is placed. The problem in my case does not seem to be that is built
+> >     from a non-standard path. The reason why it fails seems to be becau=
+se
+> >     the actual source is not in ${WORKDIR}, it is in ${WORKDIR}/git. Th=
+e
+> >     patch file does include git as part of the source path for obvious
+> >     reasons. What am I doing wrong? Having actual source code in
+> >     ${WORKDIR}/git I assume is very common for git based downloads.
+> >
+> >     Hans
+> >     _______________________________________________
+> >     yocto mailing list
+> >     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> >     https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
 
-Nothing comes to mind. It all depends on what target you are using, and
-if you are using the 'defconfig' that you mentioned earlier. Switching
-to the linux-yocto policy and BSP fragments will likely fix your problem.
+I also found another useful patch param called patchdir that sets the direc=
+tory from which the patch is applied. This is useful when ${S} is set to a =
+directory deeper than you want to patch from but don't want to mess with se=
+tting ${S}. I needed it to apply a patch to wpa_supplicant's src directory.
 
-Bruce
+Ex.
+file://gpio-sysfs-power-onoff-change.patch;patchdir=3D${WORKDIR}/wpa_suppli=
+cant-${PV}
 
->
-> Thank you,
->
-> Insop
->
->
-> On Thu, Mar 7, 2013 at 6:05 AM, Bruce Ashfield
-> <bruce.ashfield@windriver.com>  wrote:
->> On 13-03-07 03:26 AM, Insop Song wrote:
->>>
->>> Hi Bruce,
->>>
->>> One more question on 3.8 kernel.
->>> Is "meta/recipes-kernel/linux/linux-yocto_3.8.bb" added soon as well in
->>> 1.4?
->>
->>
->> It's in master as of a few days ago. So it's available and
->> ready for use.
->>
->> Cheers,
->>
->> Bruce
->>
->>
->>>
->>> I am using 1.4_M4.final now.
->>>
->>> Thank you.
->>>
->>> Insop
->>>
->>> On Wed, Mar 6, 2013 at 9:05 PM, Insop Song<insop.song@gmail.com>  wrote:
->>>>
->>>> Bruce,
->>>>
->>>> That's very good. I will bring linux-yocto-3.8 kernel to meta-dl.
->>>> (https://github.com/insop/meta-dl/tree/linux-yocto-3.8)
->>>>
->>>> The purposes of meta-dl are the following three:
->>>> 1. easy to use sched_deadline by providing recipes-kernel that includes
->>>> - git url including github and from yocto-kernel
->>>>
->>>> 2. easy to test and validate sched_deadline with automated
->>>> reproducible test suits
->>>> - currently, rt-app and schedtool are included in meta-dl
->>>> - will add test scripts
->>>>
->>>> 3. provide and test on different targets/bsps
->>>> - will prepare and test on different targets (bsp)
->>>>
->>>> #1 is done as I've tested with kernel from github from Juri and
->>>> yocto-kernel-3.8 that you've merged.
->>>> #2 and #3 are in-progress.
->>>>
->>>> I've talked Juri the other day and gather information on testing
->>>> methods and scripts so I will include this to meta-dl.
->>>>
->>>> I agree that it's good to coordinate the effort, so please feel free
->>>> to let me know if you have any suggestion.
->>>>
->>>> Regards,
->>>>
->>>> Insop
->>>>
->>>> * updated kernel recipes
->>>> @ -9,12 +9,15 @@ inherit kernel
->>>>
->>>>    #SRCREV ="031d31cfaa1e0c00122bf52639e340353d3b8360"
->>>>    SRCREV ="${AUTOREV}"
->>>> -KBRANCH = "sched-dl-V7"
->>>> -SRC_URI =
->>>> "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
->>>> \
->>>> +#KBRANCH = "sched-dl-V7"
->>>> +#SRC_URI =
->>>> "git://github.com/insop/sched-deadline;protocol=git;branch=${KBRANCH}
->>>> \
->>>> +#           file://defconfig "
->>>> +KBRANCH = "standard/edf"
->>>> +SRC_URI =
->>>> "git://git.yoctoproject.org/linux-yocto-3.8;protocol=git;branch=${KBRANCH}
->>>> \
->>>>               file://defconfig "
->>>>
->>>>    PV = "3.8"
->>>> -PR = "dl7"
->>>> +PR = "dl"
->>>>
->>>>    KSRC ?= ""
->>>>    S = '${@base_conditional("KSRC", "", "${WORKDIR}/git", "${KSRC}", d)}'
->>>>
->>>> Thank you.
->>>>
->>>> Insop
->>>>
->>>> On Wed, Mar 6, 2013 at 8:00 PM, Bruce Ashfield
->>>> <bruce.ashfield@windriver.com>  wrote:
->>>>>
->>>>> On 13-03-05 1:54 AM, Insop Song wrote:
->>>>>>
->>>>>>
->>>>>> Hi,
->>>>>>
->>>>>> I am preparing a new meta layer for testing and promoting a
->>>>>> sched_deadline scheduler, called "meta-dl". I am planning to add
->>>>>> scheduler testing tools and different kernel versions as well.
->>>>>> - http://insop.github.com/meta-dl/
->>>>>
->>>>>
->>>>>
->>>>> FYI: I've already merged and staged sched_dl in linux-yocto_3.8:
->>>>>
->>>>>
->>>>> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.8/log/?h=standard/edf
->>>>>
->>>>> I'll be supporting it there as well, so it makes sense to coordinate
->>>>> our efforts around kernels, configurations and benchmarks.
->>>>>
->>>>> Juri and I talked about this @ ELC a few weeks ago (I've added
->>>>> him to the cc as well), and rather than hiding sched_deadline
->>>>> kernel support in a custom kernel layer, I'd like to try and get
->>>>> more eyes on it via linux-yocto .. so if we can all coordinate our
->>>>> efforts here, that would be much better.
->>>>>
->>>>> Cheers,
->>>>>
->>>>> Bruce
->>>>>
->>>>>>
->>>>>> With the help of hands-on kernel lab (thank you Tom and Darren), I am
->>>>>> able to make kernel with sched_deadline enabled.
->>>>>>
->>>>>>
->>>>>> Now, I am having some trouble of adding testing tools to this meta-dl,
->>>>>> and hope I can get some help from you.
->>>>>>
->>>>>> - problem: adding a new software into my meta-dl layer
->>>>>>
->>>>>> - symtom and questions?
->>>>>> 1. bitbake core-image-minimal (normal image build) won't include the
->>>>>> additional program that I listed in .bb file below
->>>>>> 2. If I do "bitbake schedtool-dl -c install" it builds and install,
->>>>>> but at "i586" location instead of my machine staging rootfs
->>>>>> (dl-qemux86)
->>>>>>
->>>>>>
->>>>>>
->>>>>> - Here is my .bb file that pulls an additional program.
->>>>>>
->>>>>>
->>>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-tools/schedtool-dl/schedtool-dl.bb
->>>>>> ===
->>>>>> DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline
->>>>>> scheduler"
->>>>>> HOMEPAGE = "https://github.com/insop/schedtool-dl"
->>>>>> SECTION = "base"
->>>>>> LICENSE = "GPLv2"
->>>>>> LIC_FILES_CHKSUM =
->>>>>> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
->>>>>> PR = "r1"
->>>>>>
->>>>>> SRC_URI = "git://github.com/insop/schedtool-dl.git;protocol=git"
->>>>>> SRCREV = "${AUTOREV}"
->>>>>>
->>>>>> S = "${WORKDIR}/git"
->>>>>>
->>>>>> do_compile() {
->>>>>>            oe_runmake
->>>>>> }
->>>>>>
->>>>>> do_install() {
->>>>>>            oe_runmake install DESTDIR=${D}
->>>>>> }
->>>>>>
->>>>>> PARALLEL_MAKE = ""
->>>>>>
->>>>>> BBCLASSEXTEND = "native"
->>>>>>
->>>>>> COMPATIBLE_MACHINE_dl-qemux86 = "dl-qemux86"
->>>>>> ====
->>>>>>
->>>>>>
->>>>>> - I've updated my conf/layer.conf file to include above file
->>>>>> https://github.com/insop/meta-dl/blob/sched-dl-V7/conf/layer.conf
->>>>>> ====
->>>>>> # We have a conf and classes directory, add to BBPATH
->>>>>> BBPATH := "${BBPATH}:${LAYERDIR}"
->>>>>>
->>>>>> # We have a recipes directory, add to BBFILES
->>>>>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
->>>>>>            ${LAYERDIR}/recipes-*/*/*.bbappend"
->>>>>>
->>>>>> BBFILE_COLLECTIONS += "dl-qemux86"
->>>>>> BBFILE_PATTERN_dl-qemux86 := "^${LAYERDIR}/"
->>>>>> BBFILE_PRIORITY_dl-qemux86 = "6"
->>>>>> =====
->>>>>>
->>>>>>
->>>>>>
->>>>>> Thank you.
->>>>>>
->>>>>> Regards,
->>>>>>
->>>>>> Insop
->>>>>>
->>>>>>
->>>>>> - ref:
->>>>>> 1. sched_deadline:
->>>>>> https://events.linuxfoundation.org/events/linuxcon-europe/song
->>>>>> 2. sched_deadline:
->>>>>>
->>>>>>
->>>>>> http://events.linuxfoundation.org/images/stories/slides/elc2013_kobayashi.pdf?a
->>>>>> _______________________________________________
->>>>>> yocto mailing list
->>>>>> yocto@yoctoproject.org
->>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>
->>>>>
->>>>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
-
+Daniel Lazzari Jr.
+Firmware Engineer
+dlazzari@leapfrog.com
 
