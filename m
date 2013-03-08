@@ -1,33 +1,27 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f177.google.com (mail-we0-f177.google.com
-	[74.125.82.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9734E01509
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 14:42:35 -0800 (PST)
-Received: by mail-we0-f177.google.com with SMTP id d7so1592986wer.8
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 14:42:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=mYR3NLM0ad3FSV5s0/BZso2y0uNDjoPxB0p3vNmGZHM=;
-	b=Z6d2EmDtq7MgKxn4T0MSqkrlEfmrp4OOG6FeWuVBIFfdTBZbBQT2J424u9YKWzjd/x
-	8+SaT5zkmfNWMGaFow4jWfHnPrlRNtZDtpNqKG4oXsDO1nOtwTor+BDo/3+zkBhMA2MY
-	YuatAfwNdgLCvjvPJpQe3Bn+V0aaKWhGXiMP8bHvVX9IDo7afbh7UQ9LoC+rFQz0OIKu
-	EBl1E/2wdT3yOmD+szFI2jJqletdvOKaQY2OvG62GauiV5CZn7q6T41GOrgBQSPay4Xp
-	l/con17QAKFqMURqLOMmb9dZAE/WEiMxwi76Vl4XvawlTZWVe/mnXUfJBcpjSqQUFfck
-	8KvA==
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59F4DE0155A
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 15:35:43 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r28NZflm004105
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 8 Mar 2013 15:35:41 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.21.250) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.342.3; Fri, 8 Mar 2013 15:35:40 -0800
+Message-ID: <513A75CB.3050308@windriver.com>
+Date: Fri, 8 Mar 2013 18:35:39 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-X-Received: by 10.194.58.202 with SMTP id t10mr7236199wjq.4.1362782554110;
-	Fri, 08 Mar 2013 14:42:34 -0800 (PST)
-Received: by 10.194.45.100 with HTTP; Fri, 8 Mar 2013 14:42:34 -0800 (PST)
-In-Reply-To: <37B64E86-CD79-4B99-89B6-BF6848454438@keylevel.com>
-References: <BAFC5E37-753E-49F7-833C-5ED17D4662FD@keylevel.com>
-	<37B64E86-CD79-4B99-89B6-BF6848454438@keylevel.com>
-Date: Fri, 8 Mar 2013 17:42:34 -0500
-Message-ID: <CAHUNapRsOVwyNMHv9xgD4ctooVZwQd839+bUYK_FCvcVEsrMVw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Licencing OpenSource fonts
+To: Darren Hart <dvhart@linux.intel.com>
+References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
+	<513A195A.5040505@linux.intel.com>
+In-Reply-To: <513A195A.5040505@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: A question on adding a new program to a new meta layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,13 +33,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 22:42:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 08 Mar 2013 23:35:43 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Mar 8, 2013 at 12:15 PM, Chris Tapp <opensource@keylevel.com> wrote:
-> In the 7 hours it's taken this to get to the list (no ideas where it got stuck!)
+On 13-03-08 12:01 PM, Darren Hart wrote:
+>
+>
+> On 03/04/2013 08:04 PM, Insop Song wrote:
+>> Hi,
+>>
+>> I am preparing a new meta layer for testing and promoting a
+>> sched_deadline scheduler, called "meta-dl". I am planning to add
+>> scheduler testing tools and different kernel versions as well.
+>> - http://insop.github.com/meta-dl/
+>
+> Note that qemux86 doesn't support the EMGD graphics driver. You mention
+> this and its license in the README, but it isn't necessary. If you are
+> pulling that in, there is a problem with your recipes.
 
-I'm seeing emails arrive hours after their date-stamps too. In fact
-this email just arrived in my inbox, but according to the date stamp,
-you sent it 5 hours ago!
+wow. mailing list delays are making this conversation *extremely*
+painful and disjointed.
+
+>
+> I highly recommend you do not use USB keys for real-time storage. I
+> would also suggest avoiding the hddimg as a test vehicle as it consumes
+> memory and other resources for the live image. If anything, use the live
+> image as an installer only.
+>
+> For some added safety, consider using poky/contrib/ddimage instead of
+> dd. It is a simple wrapper script around DD which offers a device
+> blacklist and uses sysfs to present the user with some helpful
+> information to confirm the operation.
+>
+> So you are using the sched_deadline patches, but not PREEMPT_RT, is that
+> right? I had always assumed sched_deadline ran on top of PREEMPT_RT (but
+> I haven't every tried building it myself).
+
+sched_deadline applies to mainline, right on top of CFS as a scheduler
+class. So in fact, I wouldn't suggest it with preempt-rt at all at the
+moment.
+
+>
+> What you have here is a good experimental layer. Looking forward, please
+> consider:
+>
+> o Incorporating sched_deadline as a kernel feature into the
+> linux-yocto_3.8 kernel. We can easily add recipes to build a
+> linux-yocto-deadline kernel and you will get all the benefits of the
+> yocto tooling, testing, bugfixing, and free forward porting.
+
+Already done. I've had it in linux-yocto-3.8 since I first introduced
+it. We just need the supporting userspace to easily change the
+scheduler class for a process.
+
+>
+> o Incorporating your tests into (poky|oe-core)/meta/recipes-rt
+
+Or if they aren't fully 'core', our new meta-realtime that I'd like
+to have created shortly.
+
+Cheers,
+
+Bruce
+
+>
+>>
+>> With the help of hands-on kernel lab (thank you Tom and Darren), I am
+>> able to make kernel with sched_deadline enabled.
+>>
+>>
+>> Now, I am having some trouble of adding testing tools to this meta-dl,
+>> and hope I can get some help from you.
+>>
+>> - problem: adding a new software into my meta-dl layer
+>>
+>> - symtom and questions?
+>> 1. bitbake core-image-minimal (normal image build) won't include the
+>> additional program that I listed in .bb file below
+>> 2. If I do "bitbake schedtool-dl -c install" it builds and install,
+>> but at "i586" location instead of my machine staging rootfs
+>> (dl-qemux86)
+>>
+>>
+>>
+>> - Here is my .bb file that pulls an additional program.
+>> https://github.com/insop/meta-dl/blob/sched-dl-V7/recipes-tools/schedtool-dl/schedtool-dl.bb
+>> ===
+>> DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
+>> HOMEPAGE = "https://github.com/insop/schedtool-dl"
+>> SECTION = "base"
+>> LICENSE = "GPLv2"
+>> LIC_FILES_CHKSUM =
+>> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
+>> PR = "r1"
+>>
+>> SRC_URI = "git://github.com/insop/schedtool-dl.git;protocol=git"
+>> SRCREV = "${AUTOREV}"
+>>
+>> S = "${WORKDIR}/git"
+>>
+>> do_compile() {
+>> 	oe_runmake
+>> }
+>>
+>> do_install() {
+>> 	oe_runmake install DESTDIR=${D}
+>> }
+>>
+>> PARALLEL_MAKE = ""
+>
+>
+> Hopefully you can find the missing dependency in your makefile that
+> makes this necessary. This slows the build down and cumulatively, this
+> becomes a problem. This setting should always be considered a band-aid
+> and should have a comment starting with "FIXME: " ;-)
+>
+>
+>>
+>> BBCLASSEXTEND = "native"
+>>
+>> COMPATIBLE_MACHINE_dl-qemux86 = "dl-qemux86"
+>> ====
+>>
+>>
+>> - I've updated my conf/layer.conf file to include above file
+>> https://github.com/insop/meta-dl/blob/sched-dl-V7/conf/layer.conf
+>> ====
+>> # We have a conf and classes directory, add to BBPATH
+>> BBPATH := "${BBPATH}:${LAYERDIR}"
+>>
+>> # We have a recipes directory, add to BBFILES
+>> BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
+>> 	${LAYERDIR}/recipes-*/*/*.bbappend"
+>>
+>> BBFILE_COLLECTIONS += "dl-qemux86"
+>> BBFILE_PATTERN_dl-qemux86 := "^${LAYERDIR}/"
+>> BBFILE_PRIORITY_dl-qemux86 = "6"
+>> =====
+>>
+>>
+>>
+>> Thank you.
+>>
+>> Regards,
+>>
+>> Insop
+>>
+>>
+>> - ref:
+>> 1. sched_deadline:
+>> https://events.linuxfoundation.org/events/linuxcon-europe/song
+>> 2. sched_deadline:
+>> http://events.linuxfoundation.org/images/stories/slides/elc2013_kobayashi.pdf?a
+>>
+>
+
 
