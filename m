@@ -1,35 +1,34 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 9A5E1E006CC
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 02:19:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=OuGkbWTsUKgeXW+VvmnrszxIVS06WKN+g14sSGue4yI=; 
-	b=kUsInmUN9PuwWAkC9OhJovseY6ndTkRUfsWKuorwDNz44RMhazR3S3M+AZk8+d3u9F16Zu3Jhu173b6R7GKT+kYBy3Jk3NV9nHZxIDnc7ciG8RbDzBQwiI3DPS6kje6O;
-Received: from [109.224.129.17] (port=55418 helo=[192.168.1.40])
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>) id 1UDuOA-000QOh-1C
-	for yocto@yoctoproject.org; Fri, 08 Mar 2013 10:18:58 +0000
-From: Chris Tapp <opensource@keylevel.com>
-Date: Fri, 8 Mar 2013 10:18:58 +0000
-Message-Id: <BAFC5E37-753E-49F7-833C-5ED17D4662FD@keylevel.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1283)
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Subject: Licencing OpenSource fonts
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 12D9AE0070E
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 02:21:58 -0800 (PST)
+Received: by mail-wi0-f169.google.com with SMTP id l13so4135438wie.4
+	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 02:21:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=4xA2vhLNLFYaWZGtfwz9j6dapXtKWicy/mbKfp0n+FE=;
+	b=iai0yatisSQXBbcLgThYd9ow53mRiKGkOp+2drn+pGr+wYl8MRqPreY/8De7MoMSay
+	mqS5EV6ZVHuXA9H0bs00DM4sB/x8AEqgNL//ZdhYmfqpnclxYiOwMu2MZ8OAeWhYwUp+
+	3s+PpX6a2d76Ij8kYCDZQZx5QXCK2PRNoYIEndNUjj8sRRJOb1VC+TVmNQq2JgFlNTmX
+	HYJCcfp7bWaR+9pQVIQcRtlqGBwQ9CYKilplaomV4lRU9Oi2BKEWrGgOZ166Rqw7Ti8e
+	RBOF9c5EOAnPIQO/W8GkUUQAJWtEPcke9ErllDPZpP6v7ViXZaIo/TTqD66IB5f2d1ho
+	HCow==
+X-Received: by 10.194.76.37 with SMTP id h5mr2763623wjw.21.1362738116875; Fri,
+	08 Mar 2013 02:21:56 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.194.235.41 with HTTP; Fri, 8 Mar 2013 02:21:36 -0800 (PST)
+In-Reply-To: <A7CC4928-BE8C-43ED-98F4-EA6FD5BB8322@gmail.com>
+References: <CACzyEJ-DRarP=jMBngPLAMQJFLWsJFWrhqS0rxoWuog2vMjFOg@mail.gmail.com>
+	<A7CC4928-BE8C-43ED-98F4-EA6FD5BB8322@gmail.com>
+From: Insop Song <insop.song@gmail.com>
+Date: Fri, 8 Mar 2013 02:21:36 -0800
+Message-ID: <CACzyEJ9HGYquu8dM85y9iLwFHiJz13VZ+diZ1Koew=XSqKK6gA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: qemu not getting dhcp question.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,31 +40,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 10:19:00 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 08 Mar 2013 10:21:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Sorry if this is off-topic for this list, but I'm hoping that someone on =
-here may be able to help with a licensing question.
+Hi Khem,
 
-I am working on a document which is to be published using the Google =
-'Open Sans' font. This is licensed under an Apache Licence.
+>
+> runqemu already assigns a static IP to instance and it does not use bridging
+> so dhcp from a server which is not the machine on which qemu is running will not work
+>
+>
 
-The licence lists all the 'usual' things to do when distributing / =
-modifying the font, but it doesn't say what to do if the font is used.
+Right, this testing was from my own meta-dl-qemux86 (custom kernel and recipes).
+https://github.com/insop/meta-dl
 
-We plan to add something like "This document was typeset using OpenSans; =
-this font is distributed under the terms of the Apache licence =97 see =
-www.apache.org/licenses/LICENSE-2.0.html" to the acknowledgements =
-section of the document. Would we need to go further than this?
+The image that I've created did not use static IP but attempted to get
+dhcp, so that' was the issue.
+I still have to look at what was the issue within my image (meta
+layer), but now I've moved to latest yocto-kernel-3.8 and the image
+uses the static IP.
 
-Any pointers would be greatly appreciated!
+Thank you.
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Insop
 
