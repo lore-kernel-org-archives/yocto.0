@@ -1,37 +1,36 @@
 Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f173.google.com (mail-ve0-f173.google.com
-	[209.85.128.173]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48]) (using TLSv1 with cipher RC4-SHA (128/128 bits))
 	(No client certificate requested)
-	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id 1AAEAE0146E
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 00:55:28 -0800 (PST)
-Received: by mail-ve0-f173.google.com with SMTP id oz10so1074156veb.18
-	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 00:55:28 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTPS id AF975E01556
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 00:57:51 -0800 (PST)
+Received: by mail-vb0-f48.google.com with SMTP id fc21so542027vbb.21
+	for <yocto@yoctoproject.org>; Fri, 08 Mar 2013 00:57:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=x-received:mime-version:in-reply-to:references:from:date:message-id
 	:subject:to:cc:content-type:x-gm-message-state;
-	bh=SmimlW5/9g006Db5ZgFik5FNQ8r+usg7xzyXiEtDe0Q=;
-	b=IC2HusCwSjpOMUnacKpil5XtjP+oNSmeRNacv1zbRoi0Kd546fCh0SdMCiqG5aD8/G
-	I75CNBymcXh4M8dh+14dxD3nQWIUba/Vk1sBZKSFieCkb4drFBhnnUl/FH3WUYqkOMH7
-	eC5hQ1eA2gWTQpex3CFk8+F6ZOB6UJxUA205mcjWQFCzkGGa8+Q6cHxizQ/FbqItDzB9
-	G7M3M9ex7Y+8EfTZ6QuvTg4KJ9GvDvcLV583l9MD+rgh8+LvHBEBvuuQBcwKja3Qh3M1
-	roubh3IvXGTkzT7ll5/HO4RhbQ7V1KzXYbpGumhyIl4gYhpD2ZYcE1GAHm0x9JU0Wmgp
-	oPag==
-X-Received: by 10.52.92.225 with SMTP id cp1mr543002vdb.41.1362732927781; Fri,
-	08 Mar 2013 00:55:27 -0800 (PST)
+	bh=biqFq0omyhjNdyfo8omM6G0CnpZ06IxWG8HwlPjQE80=;
+	b=aizLXNB+ASwn6rzd3cpz6FfrxnDUS2qIGyr0JwTb8vjhOfyyhznsTzmjeNZNSfs39Y
+	Uf1r6SaM8smjD8+OXuTlSdj82rg3fzzHsjc+uN1m4Z9biduYIOAOWwGdmgrZS00vFVGv
+	9xnDPCXltWhwT6w5t2tvUjzA/3/4Z3uiB9w/ht340WnZ6GiyJ5DQ5PH1MYCraimActEo
+	3cY7LkdYMxAqPUGl++gy7JWxBwKBvkxJMZO+S2Fm2rMbiGA7TMDNvSVna/iLinooq3A8
+	h9ndCx9IWrllWrR3yG4QmvtBSpsTn9zcqJZWuats+ur3fGZv4JSeIuVvGZcTSRYI3Qse
+	6fhg==
+X-Received: by 10.52.72.40 with SMTP id a8mr560062vdv.20.1362733070566; Fri,
+	08 Mar 2013 00:57:50 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.58.219.195 with HTTP; Fri, 8 Mar 2013 00:55:07 -0800 (PST)
-In-Reply-To: <38dd620e.10d77.13d457220af.Coremail.huanmateme@163.com>
-References: <CAFD161nCzH4RB-1dsa2Gy7wYgq0ytsFM-TqiwMCrOxLxKor7-A@mail.gmail.com>
-	<5133CBD7.5020903@communistcode.co.uk>
-	<38dd620e.10d77.13d457220af.Coremail.huanmateme@163.com>
+Received: by 10.58.219.195 with HTTP; Fri, 8 Mar 2013 00:57:30 -0800 (PST)
+In-Reply-To: <CABTzgQ5nZSRSxnmUMjUVfT1B6UijNTrU-zc5MRHBNmGPMuhUPA@mail.gmail.com>
+References: <CABTzgQ5nZSRSxnmUMjUVfT1B6UijNTrU-zc5MRHBNmGPMuhUPA@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 8 Mar 2013 08:55:07 +0000
-Message-ID: <CAJTo0LYLUK+QiLa7V8iOnAGKshB5XHMab-58wcxu2mkkcP-DQQ@mail.gmail.com>
-To: Biao <huanmateme@163.com>
-X-Gm-Message-State: ALoCoQljQqUb7EHRaMv+Nr/gheh5sh5fc7X3lhf8PGEQfc6krGnb7OtFq8tO1j5QOuAKgmsCmD9K
-Cc: yocto@yoctoproject.org
-Subject: Re: Trying to bitbake core-image-minimal on Archlinux
+Date: Fri, 8 Mar 2013 08:57:30 +0000
+Message-ID: <CAJTo0LaY_gqduXzAPRZMH2DKttya7raAC1zbx5+C5SX+KQqqqQ@mail.gmail.com>
+To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+X-Gm-Message-State: ALoCoQmEgqiwsnxPNz8IQIhbDTRHln/5LYtB9CXSYvptTiYXj+zWk11Z3ZSO37YOa+J54dF5wcf/
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rudolf Streif <rstreif@linuxfoundation.org>
+Subject: Re: Problem with Xserver freezing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,19 +42,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 08:55:29 -0000
+X-List-Received-Date: Fri, 08 Mar 2013 08:57:51 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 7 March 2013 15:22, Biao <huanmateme@163.com> wrote:
-> One dummy question, how to find out the list of all "sanity tested distro",
-> i just saw a long list from the output of "git tag".
+On 7 March 2013 20:49, Satya Swaroop Damarla <swaroop.damarla@gmail.com> wrote:
+> I created a X11 image and I found that the init is freezing. Advice
+> regarding configuring Xorg is very much appreciated. If I remove
+> Xinitialization from init then its properly starting. my board is a
+> specialized version of Nvidia Tegra Harmony board.
 
-Have a look in meta-yocto/conf/distro/poky.conf, specifically
-SANITY_TESTED_DISTROS.
-
-Related: if you get the warning but your system is fine, then you can
-set that variable to "" in your local.conf.  I do this as I run Debian
-Unstable, which for obvious reasons isn't certified.
+That X log doesn't contain any information that's useful, you'll have
+to dig around the other logs in /var or alternatively disable X from
+the startup and then start it manually with options like --verbose.
 
 Ross
 
