@@ -1,27 +1,26 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 944D7E004AB
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 15:46:03 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9C75E014CF
+	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 19:28:41 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r28Nk0HF004333
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r293Sc4O012734
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 8 Mar 2013 15:46:00 -0800 (PST)
+	Fri, 8 Mar 2013 19:28:38 -0800 (PST)
 Received: from bruce-ashfields-macbook.local (128.224.21.250) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Fri, 8 Mar 2013 15:45:59 -0800
-Message-ID: <513A7836.2050908@windriver.com>
-Date: Fri, 8 Mar 2013 18:45:58 -0500
+	14.2.342.3; Fri, 8 Mar 2013 19:28:38 -0800
+Message-ID: <513AAC65.1050002@windriver.com>
+Date: Fri, 8 Mar 2013 22:28:37 -0500
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
 	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-To: Hans Beckerus <hans.beckerus@gmail.com>
-References: <CAFyqS9qFQ+kHrjmDAw4mCKop6RMzH7Ws1V6tt0_A2gM2a5UmYg@mail.gmail.com>
-	<20130308191213.102258ca@e6520eb> <513A3557.10405@gmail.com>
-In-Reply-To: <513A3557.10405@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: How do I control what kernel modules are being loaded?
+To: David Mulder <dmulder@lasx.com>
+References: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
+In-Reply-To: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can I disable RT throttling?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,98 +32,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2013 23:46:03 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Sat, 09 Mar 2013 03:28:42 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 13-03-08 2:00 PM, Hans Beckerus wrote:
-> On 2013-03-08 7:12, Eric B√©nard wrote:
->> Hi Hans,
->>
->> Le Fri, 8 Mar 2013 13:08:21 +0100,
->> Hans Beck√©rus <hans.beckerus@gmail.com> a √©crit :
->>
->>> Hi. I have built some custom kernel modules (.ko) using a .bb that
->>> inherits from the module.bbclass. There is one main kernel module and
->>> the rest are dependent on the first. Building and installing the
->>> modules to the rootfs works fine. Next question is how do I control
->>> what actual modules are loaded at boot, or actually how do I control
->>> this through Yocto? To my surprise one of the kernel module loaded
->>> automatically!? How could this happen? I did not have an entry for it
->>> in /etc/modules. And what do I need to do to actually add entries to
->>> /etc/modules? Or is there some other mechanism that I should use. I
->>> tried going through the module.bbclass but must admit I lost it
->>> somewhere in the middle ;) Any guidance would be appreciated.
->>>
->> when the module is built by the kernel recipe you can use :
->> module_autoload and you can see somme usage examples here :
->> http://cgit.openembedded.org/meta-handheld/tree/conf/machine/palmtx.conf
->> http://cgit.openembedded.org/meta-handheld/tree/conf/machine/include/palm.inc
->>
->>
->> maybe you could get inspiration from kernel.bbclass to do the same
->> thing in your recipe.
->>
->> Eric
-> Thanks guys for your quick feedback. I can see that using
-> module_autoload_${PN} seems like a good approach, if a package maps 1:1
-> to a module.
-> In my case that is not so. The package/recipe builds six (or even more)
-> .ko files using one makefile.
-> I guess one option could be to split each module build in its own
-> recipe, but that is not supported by the makefile and thus would require
-> patching from my side in the source tree. I think the only option I have
-> left is to try to use /etc/modules and add the modules there in a
-> do_install_append().
-> But the problem then is, what happens if some other package also add a
-> /etc/modules.conf to the image folder? Will it be merged or only copied?
-> In the latter case last package wins which would not work out very well :(
+On 13-03-08 5:36 PM, David Mulder wrote:
+> Hi.
 >
-> Out of curiosity, what will module_autoload do? Will it add the .ko to
-> /etc/modules or does it implement some other mechanism to make a module
-> load automatically at boot?
+> Iím running a 10us control loop by (under vxWorks) setting one threadís
+> priority to max and not yielding ever (letting other tasks run on other
+> cores), but Linux seems to thwart that capability: Ubuntu swaps out my
+> thread occasionally for hundreds of microseconds; Yocto prints a
+> ì[sched_delayed] sched: RT throttling activatedî message as soon as I
+> start my thread, so it seems likely that it will swap out my thread
+> periodically (Iím not quite able to confirm that yet), and even the
+> fastest thread swap that Iíve heard of is too slow.
 
-It depends on what release you are using. In yocto 1.3 and before the
-autoload variables translated to mod-util loading, using just what you'd
-think. In yocto 1.4 and kmod in the picture:
+You are looking for kernel functionality that doesn't exist yet. In
+any SMP system there are sources of cross cpu interference that can't
+be removed, if you do, the global state machines of the kernel will
+break and the system will eventually come to a halt.
 
-         # If autoloading is requested, output 
-/etc/modules-load.d/<name>.conf and append
-         # appropriate modprobe commands to the postinst
-         autoload = d.getVar('module_autoload_%s' % basename, True)
-         if autoload:
-             name = '%s/etc/modules-load.d/%s.conf' % (dvar, basename)
-             f = open(name, 'w')
-             for m in autoload.split():
-                 f.write('%s\n' % m)
-             f.close()
-             postinst = d.getVar('pkg_postinst_%s' % pkg, True)
-             if not postinst:
-                 bb.fatal("pkg_postinst_%s not defined" % pkg)
-             postinst += d.getVar('autoload_postinst_fragment', True) % 
-autoload
-             d.setVar('pkg_postinst_%s' % pkg, postinst)
+The system is trying to save you from yourself, by throttling the
+RT task from taking the entire system down.
 
-         # Write out any modconf fragment
-         modconf = d.getVar('module_conf_%s' % basename, True)
-         if modconf:
-             name = '%s/etc/modprobe.d/%s.conf' % (dvar, basename)
-             f = open(name, 'w')
-             f.write("%s\n" % modconf)
-             f.close()
+There is work in the mainline kernel and -rt communities around cpu
+and cpu isolation (some of which we'll try and make available via
+the yocto meta-virtualization or meta-realtime layer, when they are
+ready), it goes by names such as task_nohz or adaptive_nohz. It's
+a complex problem to solve (interrupts, rcu, lapic), and there's not
+likely to be anything available in the short term.
+
+That's the mainline/scalable point of view, there are plenty of "custom"
+and one off solutions to the problem, such as hotplugging the cpu out
+of the system and running in an AMP configuration where a bare metal,
+or RTOS can monopolize a CPU since the global state machines don't
+interfere. These have their advantages and disadvantages, but if you
+are coming from an existing RTOS application, they might be the
+closest options to get you the performance you are looking for.
+
+Alternatively, there's the preempt-rt kernel (that we make available
+in linux-yocto, if that suits) that if your control loop is
+interrupt driven, you'll be closer to your needs since the kernel
+is far more preemptible and deterministic and might be able to meet
+your deadlines.
+
+There are experimental patches like sched_deadline (EDF) that might
+also be applicable, depending on your application architecture.
+
+Searching for "making Linux hard realtime", you'll find plenty of
+talks and research over the years for yet more custom ways to get
+things done.
+
+So that's my summary, as you can see, it's a long standing, evolving
+and complex story .. and not something that likely has an 'out of the
+box' solution at the moment.
 
 Cheers,
 
 Bruce
 
-
 >
-> I do not think that the mandatory module that is loaded originates from
-> udev. This is a network CM driver that basically hooks into the Linux
-> network stack. I do not think that udev will ever make this driver load
-> automatically. But I can not say for sure of course.
+> I 0tried changing the kernelís Preemption Model to ìNo Forced Preemption
+> (Server)î, but that didnít remove the RT throttling message. I browsed
+> the rest of menuconfig but nothing looked related. I read an article
+> from 2008 that talked about the kernel reserving 5% of the CPU for
+> non-SCHED_FIFO tasks, so thatís the direction and terminology I looked
+> for in menuconfig.
 >
-> Hans
+> So maybe disabling RT throttling is all I need to do, maybe some other
+> approach is needed. Hopefully someone will know more than I do.
+>
+> Thanks!
+>
+> Dave Mulder
 >
 >
 >
