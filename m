@@ -1,26 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9C75E014CF
-	for <yocto@yoctoproject.org>; Fri,  8 Mar 2013 19:28:41 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r293Sc4O012734
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 8 Mar 2013 19:28:38 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.21.250) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Fri, 8 Mar 2013 19:28:38 -0800
-Message-ID: <513AAC65.1050002@windriver.com>
-Date: Fri, 8 Mar 2013 22:28:37 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wg0-f53.google.com (mail-wg0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F3AAE0048C
+	for <yocto@yoctoproject.org>; Sat,  9 Mar 2013 02:33:20 -0800 (PST)
+Received: by mail-wg0-f53.google.com with SMTP id fn15so3456403wgb.20
+	for <yocto@yoctoproject.org>; Sat, 09 Mar 2013 02:33:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=AbshkH7dI3T82bh3zKfdUmLjk8m1/LvrP+dNKrvWtuA=;
+	b=wt5gZ4AbK27v46Wf/lEBb45TG3jGYuYfg21WFZPwQWcbG3vGQXtACRX7aemutQM/Mq
+	iqrhmDBBrzee/1cNbJKbAjBUIUhESmDcoaFojonTSXP0z+x9U3KoDq0CNiucggPLKTs5
+	MzJBuodfb0ZQVoFXpiWR4efeHpRMwDe+N9MMFmHmwCtXcs4NuKcqmCXpNHMd+nuBD6xv
+	wSglMZxUnSpvymcC2lYzTGkgFb6fjnniTM0x1R9OygwmcBKyQ4dQhE4xXmiWY/YsLoW9
+	nRCAR3//U4gO2gj33WyBq0b5r4p7LbJjLo2kmN54FRL3ZRrYvY9SNdV4kXg9Oj91kyKq
+	Cx/A==
+X-Received: by 10.180.75.177 with SMTP id d17mr3085889wiw.16.1362825199579;
+	Sat, 09 Mar 2013 02:33:19 -0800 (PST)
 MIME-Version: 1.0
-To: David Mulder <dmulder@lasx.com>
-References: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
-In-Reply-To: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can I disable RT throttling?
+Received: by 10.194.235.41 with HTTP; Sat, 9 Mar 2013 02:32:58 -0800 (PST)
+In-Reply-To: <513A75CB.3050308@windriver.com>
+References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
+	<513A195A.5040505@linux.intel.com> <513A75CB.3050308@windriver.com>
+From: Insop Song <insop.song@gmail.com>
+Date: Sat, 9 Mar 2013 02:32:58 -0800
+Message-ID: <CACzyEJ9MHVD8GyVEwXkdndmQy7DQ_Tt-M0n6-0dWG7LOHgVR5w@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
+Subject: Re: A question on adding a new program to a new meta layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,86 +38,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Mar 2013 03:28:42 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 09 Mar 2013 10:33:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 13-03-08 5:36 PM, David Mulder wrote:
-> Hi.
->
-> I’m running a 10us control loop by (under vxWorks) setting one thread’s
-> priority to max and not yielding ever (letting other tasks run on other
-> cores), but Linux seems to thwart that capability: Ubuntu swaps out my
-> thread occasionally for hundreds of microseconds; Yocto prints a
-> “[sched_delayed] sched: RT throttling activated” message as soon as I
-> start my thread, so it seems likely that it will swap out my thread
-> periodically (I’m not quite able to confirm that yet), and even the
-> fastest thread swap that I’ve heard of is too slow.
-
-You are looking for kernel functionality that doesn't exist yet. In
-any SMP system there are sources of cross cpu interference that can't
-be removed, if you do, the global state machines of the kernel will
-break and the system will eventually come to a halt.
-
-The system is trying to save you from yourself, by throttling the
-RT task from taking the entire system down.
-
-There is work in the mainline kernel and -rt communities around cpu
-and cpu isolation (some of which we'll try and make available via
-the yocto meta-virtualization or meta-realtime layer, when they are
-ready), it goes by names such as task_nohz or adaptive_nohz. It's
-a complex problem to solve (interrupts, rcu, lapic), and there's not
-likely to be anything available in the short term.
-
-That's the mainline/scalable point of view, there are plenty of "custom"
-and one off solutions to the problem, such as hotplugging the cpu out
-of the system and running in an AMP configuration where a bare metal,
-or RTOS can monopolize a CPU since the global state machines don't
-interfere. These have their advantages and disadvantages, but if you
-are coming from an existing RTOS application, they might be the
-closest options to get you the performance you are looking for.
-
-Alternatively, there's the preempt-rt kernel (that we make available
-in linux-yocto, if that suits) that if your control loop is
-interrupt driven, you'll be closer to your needs since the kernel
-is far more preemptible and deterministic and might be able to meet
-your deadlines.
-
-There are experimental patches like sched_deadline (EDF) that might
-also be applicable, depending on your application architecture.
-
-Searching for "making Linux hard realtime", you'll find plenty of
-talks and research over the years for yet more custom ways to get
-things done.
-
-So that's my summary, as you can see, it's a long standing, evolving
-and complex story .. and not something that likely has an 'out of the
-box' solution at the moment.
-
-Cheers,
-
-Bruce
-
->
-> I 0tried changing the kernel’s Preemption Model to “No Forced Preemption
-> (Server)”, but that didn’t remove the RT throttling message. I browsed
-> the rest of menuconfig but nothing looked related. I read an article
-> from 2008 that talked about the kernel reserving 5% of the CPU for
-> non-SCHED_FIFO tasks, so that’s the direction and terminology I looked
-> for in menuconfig.
->
-> So maybe disabling RT throttling is all I need to do, maybe some other
-> approach is needed. Hopefully someone will know more than I do.
->
-> Thanks!
->
-> Dave Mulder
+On Fri, Mar 8, 2013 at 3:35 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 13-03-08 12:01 PM, Darren Hart wrote:
+>>
+>>
+>>
+>> On 03/04/2013 08:04 PM, Insop Song wrote:
+>>>
+>>> Hi,
+>>>
+>>> I am preparing a new meta layer for testing and promoting a
+>>> sched_deadline scheduler, called "meta-dl". I am planning to add
+>>> scheduler testing tools and different kernel versions as well.
+>>> - http://insop.github.com/meta-dl/
+>>
+>>
+>> Note that qemux86 doesn't support the EMGD graphics driver. You mention
+>> this and its license in the README, but it isn't necessary. If you are
+>> pulling that in, there is a problem with your recipes.
 >
 >
+> wow. mailing list delays are making this conversation *extremely*
+> painful and disjointed.
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>
+Darren,
+Those that you've mentioned were from yocto kernel lab examples.
+I went over and cleaned them up. https://github.com/insop/meta-dl
 
+However, at this point, I am more looking at meta-realtime that uses
+yocto-linux-3.8 instead as Bruce's suggestion.
+https://github.com/insop/meta-realtime
+
+
+>>
+>> So you are using the sched_deadline patches, but not PREEMPT_RT, is that
+>> right? I had always assumed sched_deadline ran on top of PREEMPT_RT (but
+>> I haven't every tried building it myself).
+>
+>
+> sched_deadline applies to mainline, right on top of CFS as a scheduler
+> class. So in fact, I wouldn't suggest it with preempt-rt at all at the
+> moment.
+>
+>
+
+Right, previously, Juri maintained sched_deadline on top of
+preempt-rt, but not any more.
+
+>>
+>> What you have here is a good experimental layer. Looking forward, please
+>> consider:
+>>
+>> o Incorporating sched_deadline as a kernel feature into the
+>> linux-yocto_3.8 kernel. We can easily add recipes to build a
+>> linux-yocto-deadline kernel and you will get all the benefits of the
+>> yocto tooling, testing, bugfixing, and free forward porting.
+>
+>
+> Already done. I've had it in linux-yocto-3.8 since I first introduced
+> it. We just need the supporting userspace to easily change the
+> scheduler class for a process.
+>
+>
+
+Yup, two apps that can test sched_deadline is at meta-realtime now.
+I will prepare some script to make it easier as well.
+
+>>
+>> o Incorporating your tests into (poky|oe-core)/meta/recipes-rt
+>
+>
+> Or if they aren't fully 'core', our new meta-realtime that I'd like
+> to have created shortly.
+>
+
+I will be playing with meta-realtime at github until you create one.
+Please let me know if you have any other requested program on this layer.
+
+Regards,
+
+Insop
 
