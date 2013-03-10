@@ -1,34 +1,38 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
-	[209.85.217.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24D30E01488
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 11:00:39 -0700 (PDT)
-Received: by mail-lb0-f175.google.com with SMTP id n3so2578167lbo.34
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 11:00:38 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f47.google.com (mail-pb0-f47.google.com
+	[209.85.160.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EBFAE0048C
+	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 13:12:18 -0700 (PDT)
+Received: by mail-pb0-f47.google.com with SMTP id rp2so2981695pbb.34
+	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 13:12:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:content-transfer-encoding;
-	bh=qFBc3O1/DD85/IWrCksf3+n9ky3z82/qD8TEsZd9pJM=;
-	b=JsIvlxr/1pFTqgpQsXLiFSM7JW1xQ5z0L54ArdgQKKssP9R1v3Y8dplN+B/Neu1G8d
-	aRwbjt2XPbO4IFKA1ugYwJlMAuWMxaNyMo259jZJv4z0ikPnnZ6hiT6vy4D7/wExiwnw
-	qE2dWqseFRKXt8cWBPLnXFelB2EklnVXMZKhXsMVkaFrQt+ohZBtOMse7l+bqS0BIoF9
-	fPqnecOvCk2SSDIVVxLWt+ANQzg/QnC8FPEfid9cdxuuBAEHwH6nF/l8/r7FgM7XqcHh
-	e/OZpQmlsNs4nfjms9K0fMZvssy4EopV/NQt4L8Ty8GmrncLWWJTzruyO+dkhpODm2lT
-	rc7A==
-MIME-Version: 1.0
-X-Received: by 10.112.8.9 with SMTP id n9mr3530577lba.71.1362938438385; Sun,
-	10 Mar 2013 11:00:38 -0700 (PDT)
-Received: by 10.112.61.3 with HTTP; Sun, 10 Mar 2013 11:00:38 -0700 (PDT)
-In-Reply-To: <CAKdL+dTL=d2LPEV7mLzaNQ1tLiffpP6+SpHBruXFdXLV0NKgYQ@mail.gmail.com>
-References: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
-	<CAKdL+dTL=d2LPEV7mLzaNQ1tLiffpP6+SpHBruXFdXLV0NKgYQ@mail.gmail.com>
-Date: Sun, 10 Mar 2013 14:00:38 -0400
-Message-ID: <CADkTA4NYAu_xxGvmbVAYa1eJBJTFRj9USi1do5rs69J4qvdBfA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: =?ISO-8859-1?Q?Fredrik_Markstr=F6m?= <fredrik.markstrom@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	David Mulder <dmulder@lasx.com>
-Subject: Re: Can I disable RT throttling?
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=xbkRpMFCmdMZjGw87KD9a2vvjjRAofkZSVx9Q4K+gtk=;
+	b=oHRZLrY+oI0LM9vK8l069VPZH7Kxo2a1AC8W9Zmqh83YuXI/IBoCLcL8pOfxZwkDUO
+	CeQHMN24muKM89MSTTMn5LHOpk2KfAWNx3t4rCOImwNGZ6bOvja/hq5aKOfdBcg3AYNY
+	4wbfsMO6HkmyKSPMgrPCvtR+rqjG1KPARUSBCzVUWyRXH8VJtV2lh3SyeRaBT5+0OLQr
+	qyHimqBUBGz9YRVx6jdBezxlFHpd/d4oZ7Jmu3Adg3IoQthb95F0vzOPURURZI8x17bl
+	QowLDUtb5iO2qo0F3QiKeXG0p7ulpJn1Mc70A6n5t2IAm2I4Wqpla/TCyou5nbulXspW
+	a8Mg==
+X-Received: by 10.68.231.164 with SMTP id th4mr21547084pbc.198.1362946337796; 
+	Sun, 10 Mar 2013 13:12:17 -0700 (PDT)
+Received: from sa-nc-apg-191.static.jnpr.net (natint3.juniper.net.
+	[66.129.224.36])
+	by mx.google.com with ESMTPS id 1sm16784297pba.32.2013.03.10.13.12.15
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sun, 10 Mar 2013 13:12:16 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <513C850A.3070208@gmail.com>
+Date: Sun, 10 Mar 2013 13:12:14 -0700
+Message-Id: <8F70DAE7-02FD-40C9-AAE5-63E53A37763B@gmail.com>
+References: <513B9F69.5010109@gmail.com> <513BDA2B.1010704@balister.org>
+	<513C850A.3070208@gmail.com>
+To: Hans Beckerus <hans.beckerus@gmail.com>
+X-Mailer: Apple Mail (2.1499)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: FUSE user-space library
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +44,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Mar 2013 18:00:40 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sun, 10 Mar 2013 20:12:18 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Mar 10, 2013 at 7:42 AM, Fredrik Markstr=F6m
-<fredrik.markstrom@gmail.com> wrote:
-> The RT-throttling can be disabled with:
->
-> echo -1 >/proc/sys/kernel/sched_rt_runtime_us
-> echo -1 >/proc/sys/kernel/sched_rt_period_us
->
-> But as mentioned in the other answers things like the system tick, ipi:s
-> etc. will interfere. But significantly less then the rt-throttling :)
 
-Absolutely! And as long as you really know what you are doing, you
-won't kill the
-system .. turning off the throttling definitely gives a bit more rope
-to that end as
-well :P
+On Mar 10, 2013, at 6:05 AM, Hans Beckerus <hans.beckerus@gmail.com> =
+wrote:
 
-Cheers,
+> On 2013-03-10 1:56, Philip Balister wrote:
+>> On 03/09/2013 03:45 PM, Hans Beckerus wrote:
+>>> Hi. Anyone started to look at including the FUSE user-space library =
+as
+>>> part of Yocto?
+>> There are some fuse related recipes in meta-oe.
+>>=20
+>> Philip
+> Ok, I will take a look. Is the meta-oe 100% compatible with a Yocto =
+reference system?
+>=20
 
-Bruce
+it s a well maintained layer over oe-core and yocto uses oe-core too so =
+I don't see much
+problem with it being compatible. Time to time metadata changes in =
+oe-core affect this layer like any other layers but as long they are =
+resolved thats normal.
 
->
-> /Fredrik
->
+> Hans
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
-
-
---=20
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
 
