@@ -1,17 +1,25 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8CD5E0121B
-	for <yocto@yoctoproject.org>; Sat,  9 Mar 2013 16:24:00 -0800 (PST)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id CFED3428C5; Sun, 10 Mar 2013 00:24:00 +0000 (UTC)
-Date: Sun, 10 Mar 2013 00:24:00 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20130310002400.GA24031@ab01.i.yoctoproject.org>
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 6A775E00429
+	for <yocto@yoctoproject.org>; Sat,  9 Mar 2013 16:56:13 -0800 (PST)
+Received: (qmail 27436 invoked by uid 1003); 10 Mar 2013 00:56:12 -0000
+Received: from unknown (HELO ?192.168.1.125?)
+	(philip@opensdr.com@96.240.188.95)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	10 Mar 2013 00:56:12 -0000
+Message-ID: <513BDA2B.1010704@balister.org>
+Date: Sat, 09 Mar 2013 19:56:11 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130219 Thunderbird/17.0.3
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+To: Hans Beckerus <hans.beckerus@gmail.com>
+References: <513B9F69.5010109@gmail.com>
+In-Reply-To: <513B9F69.5010109@gmail.com>
+X-Enigmail-Version: 1.5.1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: FUSE user-space library
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,21 +31,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Mar 2013 00:24:00 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sun, 10 Mar 2013 00:56:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+On 03/09/2013 03:45 PM, Hans Beckerus wrote:
+> Hi. Anyone started to look at including the FUSE user-space library as
+> part of Yocto?
 
+There are some fuse related recipes in meta-oe.
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-tinylogin                1.4                 1.4                 188 day                  Radu Moisan <radu.moisan@inte...        TinyLogin was merged into Busy...
-prelink                  1.0+gitAUTOIN...    1.0+git1+9552...    191 day                  Mark Hatle <mark.hatle@windri...        No data                       
-minicom                  2.6.2               2.6.2               18 days                  Cristian Iorga <cristian.iorg...        No data                       
-ttf-bitstream-vera       1.10                N/A                 41341 d                  Constantin Musca <constantinx...        No data                       
-Manual Check Count: 4
-Manual Need Check Count: 3
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+Philip
+
+> 
+> Hans
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
 
