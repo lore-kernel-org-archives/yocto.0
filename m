@@ -1,31 +1,28 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11889E0154E
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 20:10:03 -0700 (PDT)
-Received: by mail-wi0-f170.google.com with SMTP id hm11so715835wib.5
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 20:10:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:content-type;
-	bh=4oBVDPYfY8q4I8itEA9u+Mc6hleksDbH/TSXufplYKM=;
-	b=YWEDhyQtKbztDI0n0w+R99ehHRpbo68h/pZWDySceG+4HjQ4msg7ME3ktcuh/aiano
-	ta3xtNN7Bc88YQvFesb5qKAcaUnAD/5BhsrhJQFI5x6swuIx/Aqe4/Cs7u5vSrlVtn3S
-	UVDzgyPAWfL8Co7HZfGphkQyWtw39vobxZqyVmsy/v1gS/Owbwnd0sf5CmouneH1by3O
-	KPVIAugEPAoKyBS8iQKj5g391PkrUVGN9hA7WQl0KcTU+yqd1UYppopEofVcKY9TOj9P
-	cZ562Us/bGjh5iItFwrbCOwiSktkqWXej6PlsEa7Fw0cxGztjLYixvgktSq1r7JDvAP4
-	IsVA==
-X-Received: by 10.194.76.37 with SMTP id h5mr16292962wjw.21.1362971402729;
-	Sun, 10 Mar 2013 20:10:02 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17D38E006C3
+	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 20:29:00 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2B3SvPY028742
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 10 Mar 2013 20:28:58 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.22.12) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.342.3; Sun, 10 Mar 2013 20:28:57 -0700
+Message-ID: <513D4F78.9010307@windriver.com>
+Date: Sun, 10 Mar 2013 23:28:56 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Sun, 10 Mar 2013 20:09:41 -0700 (PDT)
-In-Reply-To: <CACzyEJ_9EjNYwy=uy-h-wAyfFXfFQqiHKdavMPaTS8Fcso1H1w@mail.gmail.com>
-References: <CACzyEJ_9EjNYwy=uy-h-wAyfFXfFQqiHKdavMPaTS8Fcso1H1w@mail.gmail.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Sun, 10 Mar 2013 20:09:41 -0700
-Message-ID: <CACzyEJ9yOdiz6f_1nK_JP1a7K4tSFYdNq4_18xpjBC28Cbp=7Q@mail.gmail.com>
-To: yocto@yoctoproject.org, scott.a.garman@intel.com
-Subject: Re: Loading a new yocto image to Intel Fri2 board
+To: Insop Song <insop.song@gmail.com>
+References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
+	<513A195A.5040505@linux.intel.com> <513A75CB.3050308@windriver.com>
+	<CACzyEJ9MHVD8GyVEwXkdndmQy7DQ_Tt-M0n6-0dWG7LOHgVR5w@mail.gmail.com>
+In-Reply-To: <CACzyEJ9MHVD8GyVEwXkdndmQy7DQ_Tt-M0n6-0dWG7LOHgVR5w@mail.gmail.com>
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
+Subject: Re: A question on adding a new program to a new meta layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,48 +34,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 03:10:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 11 Mar 2013 03:29:00 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Adding Scott, as I've followed the same procedure as described in
-"Hands-on Intro Lab on Barcelona 2012" by Scott.
+On 13-03-09 5:32 AM, Insop Song wrote:
+> On Fri, Mar 8, 2013 at 3:35 PM, Bruce Ashfield
+> <bruce.ashfield@windriver.com>  wrote:
+>> On 13-03-08 12:01 PM, Darren Hart wrote:
+>>>
+>>>
+>>>
+>>> On 03/04/2013 08:04 PM, Insop Song wrote:
+>>>>
+>>>> Hi,
+>>>>
+>>>> I am preparing a new meta layer for testing and promoting a
+>>>> sched_deadline scheduler, called "meta-dl". I am planning to add
+>>>> scheduler testing tools and different kernel versions as well.
+>>>> - http://insop.github.com/meta-dl/
+>>>
+>>>
+>>> Note that qemux86 doesn't support the EMGD graphics driver. You mention
+>>> this and its license in the README, but it isn't necessary. If you are
+>>> pulling that in, there is a problem with your recipes.
+>>
+>>
+>> wow. mailing list delays are making this conversation *extremely*
+>> painful and disjointed.
+>>
+>>
+> Darren,
+> Those that you've mentioned were from yocto kernel lab examples.
+> I went over and cleaned them up. https://github.com/insop/meta-dl
+>
+> However, at this point, I am more looking at meta-realtime that uses
+> yocto-linux-3.8 instead as Bruce's suggestion.
+> https://github.com/insop/meta-realtime
 
 
+Expect that the yocto project hosted meta-realtime will appear in a
+week or so. I'm doing the legwork at the moment, but with some travel
+in the upcoming week, the initial push will be delayed by a few days.
 
-On Sun, Mar 10, 2013 at 4:16 AM, Insop Song <insop.song@gmail.com> wrote:
-> Hi,
+Cheers,
+
+Bruce
+
 >
-> I have a question on loading a new yocto image to Intel Fri2 board.
 >
-> 1. Board: Intel Fri2
-> --------------------------
+>>>
+>>> So you are using the sched_deadline patches, but not PREEMPT_RT, is that
+>>> right? I had always assumed sched_deadline ran on top of PREEMPT_RT (but
+>>> I haven't every tried building it myself).
+>>
+>>
+>> sched_deadline applies to mainline, right on top of CFS as a scheduler
+>> class. So in fact, I wouldn't suggest it with preempt-rt at all at the
+>> moment.
+>>
+>>
 >
-> 2. Image: self built sato image with meta-fri2
-> --------------------------
-> I've followed an instruction from
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/meta-fri2/README
-> so do dd image of my sato image to usb as described
-> - "dd if=core-image-sato-fri2-20101207053738.hddimg of=/dev/sdf"
+> Right, previously, Juri maintained sched_deadline on top of
+> preempt-rt, but not any more.
 >
-> 3. Sympton: stuck during boot and no ttyusb access
-> --------------------------
-> And connect it to the host USB port.
-> Then I can see the new grub menu that has "boot" and "install", so
-> selected "boot"
+>>>
+>>> What you have here is a good experimental layer. Looking forward, please
+>>> consider:
+>>>
+>>> o Incorporating sched_deadline as a kernel feature into the
+>>> linux-yocto_3.8 kernel. We can easily add recipes to build a
+>>> linux-yocto-deadline kernel and you will get all the benefits of the
+>>> yocto tooling, testing, bugfixing, and free forward porting.
+>>
+>>
+>> Already done. I've had it in linux-yocto-3.8 since I first introduced
+>> it. We just need the supporting userspace to easily change the
+>> scheduler class for a process.
+>>
+>>
 >
-> However, booting was stuck at around this line,
-> - "0000:03:0a.2: ttyPCH1 at I/O 0x2050 (irq = 41) is a pch_uart"
+> Yup, two apps that can test sched_deadline is at meta-realtime now.
+> I will prepare some script to make it easier as well.
 >
-> And I am not able to get the ttyUSB console working either.
+>>>
+>>> o Incorporating your tests into (poky|oe-core)/meta/recipes-rt
+>>
+>>
+>> Or if they aren't fully 'core', our new meta-realtime that I'd like
+>> to have created shortly.
+>>
 >
-> 4. Others: official sato image for Fri2 is not working either
-> --------------------------
-> Also just to make sure I "dd" the image from the official hdd img, but
-> the result is the same as my own image.
+> I will be playing with meta-realtime at github until you create one.
+> Please let me know if you have any other requested program on this layer.
 >
-> Anyone has tried the same? please let me know.
->
-> Thank you very much,
+> Regards,
 >
 > Insop
+
 
