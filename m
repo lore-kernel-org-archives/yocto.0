@@ -1,41 +1,31 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
-	[209.85.215.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84BB4E0157C
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 15:11:09 -0700 (PDT)
-Received: by mail-la0-f41.google.com with SMTP id fo12so3290633lab.28
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 15:11:07 -0700 (PDT)
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11889E0154E
+	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 20:10:03 -0700 (PDT)
+Received: by mail-wi0-f170.google.com with SMTP id hm11so715835wib.5
+	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 20:10:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:message-id:date:from:user-agent:mime-version:to:cc
-	:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=RCY5uRkpbIB+LLbR7E+H9UXYFRMqEdJVLXElCvzuVuo=;
-	b=vrxlOnFVK0ey8ht9ckLsN+HKB7uhX4YqJQfK4hRTshcjvb6XSFxa+V0vUI0tz4fOzx
-	BOn5bAQS9SkAlizDs+JaZ585FojdhigUTqj39yLELOPny4qenD0073CerGm1Mc3GhHFQ
-	kuhuDQYreHcAXlHX1MQOQLSBAhVLdbnftmIFL/WsC0SJof0+52h1eHmm72J9ZAGK9Bms
-	nMtkVHLvFrLnGQRWW2aW3m7DZinRZc9cvTpERFaQ/UiMpqjijM0IVQ4pVH5+5i/qNBuC
-	yP2BD/Pf+eUOO16rskGP1AwCCS9wWRUBA62Blwt43GoyVznpGcNpKpkjlUYzQRNkLPd0
-	6R+w==
-X-Received: by 10.152.105.109 with SMTP id gl13mr8183556lab.40.1362953467560; 
-	Sun, 10 Mar 2013 15:11:07 -0700 (PDT)
-Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
-	[217.209.54.135])
-	by mx.google.com with ESMTPS id mq7sm6270101lab.1.2013.03.10.15.11.05
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 10 Mar 2013 15:11:06 -0700 (PDT)
-Message-ID: <513D04F9.5070301@gmail.com>
-Date: Sun, 10 Mar 2013 23:11:05 +0100
-From: Hans Beckerus <hans.beckerus@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.2;
-	rv:17.0) Gecko/20130215 Thunderbird/17.0.3
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:content-type;
+	bh=4oBVDPYfY8q4I8itEA9u+Mc6hleksDbH/TSXufplYKM=;
+	b=YWEDhyQtKbztDI0n0w+R99ehHRpbo68h/pZWDySceG+4HjQ4msg7ME3ktcuh/aiano
+	ta3xtNN7Bc88YQvFesb5qKAcaUnAD/5BhsrhJQFI5x6swuIx/Aqe4/Cs7u5vSrlVtn3S
+	UVDzgyPAWfL8Co7HZfGphkQyWtw39vobxZqyVmsy/v1gS/Owbwnd0sf5CmouneH1by3O
+	KPVIAugEPAoKyBS8iQKj5g391PkrUVGN9hA7WQl0KcTU+yqd1UYppopEofVcKY9TOj9P
+	cZ562Us/bGjh5iItFwrbCOwiSktkqWXej6PlsEa7Fw0cxGztjLYixvgktSq1r7JDvAP4
+	IsVA==
+X-Received: by 10.194.76.37 with SMTP id h5mr16292962wjw.21.1362971402729;
+	Sun, 10 Mar 2013 20:10:02 -0700 (PDT)
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <513B9F69.5010109@gmail.com> <513BDA2B.1010704@balister.org>
-	<513C850A.3070208@gmail.com>
-	<8F70DAE7-02FD-40C9-AAE5-63E53A37763B@gmail.com>
-In-Reply-To: <8F70DAE7-02FD-40C9-AAE5-63E53A37763B@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: FUSE user-space library
+Received: by 10.194.235.41 with HTTP; Sun, 10 Mar 2013 20:09:41 -0700 (PDT)
+In-Reply-To: <CACzyEJ_9EjNYwy=uy-h-wAyfFXfFQqiHKdavMPaTS8Fcso1H1w@mail.gmail.com>
+References: <CACzyEJ_9EjNYwy=uy-h-wAyfFXfFQqiHKdavMPaTS8Fcso1H1w@mail.gmail.com>
+From: Insop Song <insop.song@gmail.com>
+Date: Sun, 10 Mar 2013 20:09:41 -0700
+Message-ID: <CACzyEJ9yOdiz6f_1nK_JP1a7K4tSFYdNq4_18xpjBC28Cbp=7Q@mail.gmail.com>
+To: yocto@yoctoproject.org, scott.a.garman@intel.com
+Subject: Re: Loading a new yocto image to Intel Fri2 board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,30 +37,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 10 Mar 2013 22:11:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 11 Mar 2013 03:10:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2013-03-10 9:12, Khem Raj wrote:
-> On Mar 10, 2013, at 6:05 AM, Hans Beckerus <hans.beckerus@gmail.com> wrote:
->
->> On 2013-03-10 1:56, Philip Balister wrote:
->>> On 03/09/2013 03:45 PM, Hans Beckerus wrote:
->>>> Hi. Anyone started to look at including the FUSE user-space library as
->>>> part of Yocto?
->>> There are some fuse related recipes in meta-oe.
->>>
->>> Philip
->> Ok, I will take a look. Is the meta-oe 100% compatible with a Yocto reference system?
->>
-> it s a well maintained layer over oe-core and yocto uses oe-core too so I don't see much
-> problem with it being compatible. Time to time metadata changes in oe-core affect this layer like any other layers but as long they are resolved thats normal.
->
->
-Thanks for the info. I found the FUSE user-space library as part of 
-oe-meta, together with eg. sshfs.
-I see no issues using that also in my poky based build.
+Adding Scott, as I've followed the same procedure as described in
+"Hands-on Intro Lab on Barcelona 2012" by Scott.
 
-Hans
 
+
+On Sun, Mar 10, 2013 at 4:16 AM, Insop Song <insop.song@gmail.com> wrote:
+> Hi,
+>
+> I have a question on loading a new yocto image to Intel Fri2 board.
+>
+> 1. Board: Intel Fri2
+> --------------------------
+>
+> 2. Image: self built sato image with meta-fri2
+> --------------------------
+> I've followed an instruction from
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/meta-fri2/README
+> so do dd image of my sato image to usb as described
+> - "dd if=core-image-sato-fri2-20101207053738.hddimg of=/dev/sdf"
+>
+> 3. Sympton: stuck during boot and no ttyusb access
+> --------------------------
+> And connect it to the host USB port.
+> Then I can see the new grub menu that has "boot" and "install", so
+> selected "boot"
+>
+> However, booting was stuck at around this line,
+> - "0000:03:0a.2: ttyPCH1 at I/O 0x2050 (irq = 41) is a pch_uart"
+>
+> And I am not able to get the ttyUSB console working either.
+>
+> 4. Others: official sato image for Fri2 is not working either
+> --------------------------
+> Also just to make sure I "dd" the image from the official hdd img, but
+> the result is the same as my own image.
+>
+> Anyone has tried the same? please let me know.
+>
+> Thank you very much,
+>
+> Insop
 
