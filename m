@@ -1,15 +1,15 @@
 Return-Path: <eric@eukrea.com>
 Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3BE4E00709
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 06:47:03 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC4C4E006E9
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 06:49:09 -0700 (PDT)
 Received: from e6520eb (pac33-2-82-240-38-71.fbx.proxad.net [82.240.38.71])
 	(Authenticated sender: eukrea)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id D56834B00C1;
-	Mon, 11 Mar 2013 14:46:53 +0100 (CET)
-Date: Mon, 11 Mar 2013 14:46:52 +0100
+	by smtp2-g21.free.fr (Postfix) with ESMTPSA id CBF574B00C1;
+	Mon, 11 Mar 2013 14:49:01 +0100 (CET)
+Date: Mon, 11 Mar 2013 14:49:00 +0100
 From: Eric =?UTF-8?B?QsOpbmFyZA==?= <eric@eukrea.com>
 To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <20130311144652.44107972@e6520eb>
+Message-ID: <20130311144900.59a31a00@e6520eb>
 In-Reply-To: <513DDE28.4050004@windriver.com>
 References: <CAFyqS9qFQ+kHrjmDAw4mCKop6RMzH7Ws1V6tt0_A2gM2a5UmYg@mail.gmail.com>
 	<20130308191213.102258ca@e6520eb> <513A3557.10405@gmail.com>
@@ -33,7 +33,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 13:47:05 -0000
+X-List-Received-Date: Mon, 11 Mar 2013 13:49:11 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -62,6 +62,11 @@ kernel (module_autoload is handled in kernel.bbclass), but not when
 building a module with its own recipe (using module.bbclass) as Hans
 is doing, that's why I previously told him to "get inspiration from
 kernel.bbclass to do the same thing in your recipe".
+
+Thinking again to this (after pressing send of course ;-) : Or maybe he
+needs to build again its kernel after setting module_autoload_hismodule
+=3D "hismodule" so that the module name gets handled by the kernel
+recipe ?
 
 Eric
 
