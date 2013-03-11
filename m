@@ -1,41 +1,36 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 689F6E00709;
-	Mon, 11 Mar 2013 10:20:54 -0700 (PDT)
-Received: by mail-wg0-f47.google.com with SMTP id dr13so5061696wgb.2
-	for <multiple recipients>; Mon, 11 Mar 2013 10:20:53 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f50.google.com (mail-pb0-f50.google.com
+	[209.85.160.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4E10E0070E
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 10:24:46 -0700 (PDT)
+Received: by mail-pb0-f50.google.com with SMTP id up1so3997993pbc.37
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 10:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=nQ95a1shL5jejZJ0EK1+FaYupCwRFRvP7nhYkktqur4=;
-	b=nImzBIWalQP3d9NyJN+qAAIBCbdkO3IuSzaXyW2AZOpWzSoiIpS10MKxxXlOdhbMYt
-	U7TswMGYN2HiIMfNZX44itCh++J661Podyky00fkCLHO0/fT+iNAdShmjWG45K4BgIe3
-	KK3KOuKW1WechxbkUNvqf33zxq+djrS9vLFg3YOFp8fkelZ8yTGYQ7+gDTcfcTroAeTm
-	uMDDmQnDzvMMQ6bRrC/QethQFcQAnz/4WZTl2AZHs2P8DP5RFQxTLfPty4OekwRnImBK
-	L64KYnyKlDBpYp+Frd/vr+L9mI9y7iRcsQfIqblqmmrH0EYkDzAWKQ3mUmIFmXDINjXD
-	taZA==
-X-Received: by 10.180.183.4 with SMTP id ei4mr13902745wic.21.1363022453370;
-	Mon, 11 Mar 2013 10:20:53 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Mon, 11 Mar 2013 10:20:33 -0700 (PDT)
-In-Reply-To: <CADkTA4Np=SJitdsDh=K8VApgoZGR8E6d-bPO-DxkS7oPw+mMaw@mail.gmail.com>
-References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
-	<513A195A.5040505@linux.intel.com> <513A75CB.3050308@windriver.com>
-	<CACzyEJ9MHVD8GyVEwXkdndmQy7DQ_Tt-M0n6-0dWG7LOHgVR5w@mail.gmail.com>
-	<513D4F78.9010307@windriver.com>
-	<CACzyEJ-YObwTGoOcLGXGiXeoLia+RdtcLmSt9gDLXJG5hBHeoA@mail.gmail.com>
-	<513DEB6C.7050903@windriver.com>
-	<CACzyEJ8cw3Ve8LdUVEqFse0yBuUC6_9-2brB4c4ZUYitqCVSeQ@mail.gmail.com>
-	<CADkTA4Np=SJitdsDh=K8VApgoZGR8E6d-bPO-DxkS7oPw+mMaw@mail.gmail.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Mon, 11 Mar 2013 10:20:33 -0700
-Message-ID: <CACzyEJ9L22Ds194QyhVgMXCGR8wkX1ZWZJxEv-kWh864PY3c6w@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>,
-	Development list for the linux-yocto repositories
-	<linux-yocto@yoctoproject.org>
-Subject: Re: A question on adding a new program to a new meta layer
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=Satt7BpyYGNW4MBQCZ/mm/YncqRa3RPinPMbG03YbRA=;
+	b=aQcInMVsq3aQVkz0lahWVDJumjpcJ28TfPgkDcm6vLV9sAD1wm6zgbSdiTGkqaGavS
+	6muQhTyMjg7vEVTA8ie0PALH2MTNJzkhF/a4QK6TdTGmahTZpCim1cWxMmOJrmRBCpv0
+	3RBrz1n+B/Q//Qr6CpwtOl/jaRk9vFpuQLeutSJ9MRTfpPBDgvvM5O6fD08OIFCLtKlw
+	2U0+2XxG6xFGyNYAX8mmuwDg+0xzlr3WrvWSoA4/EyEwtP69CKvuTKNy95oI4J/P8BPf
+	Im3QpKQ0GtMFPEnYd4TkMXhWJ1yqvNS9F2dXKYbL9gbg2w4YP2iWI6uKJEOgJrUhO55U
+	269w==
+X-Received: by 10.68.235.36 with SMTP id uj4mr29726627pbc.54.1363022686282;
+	Mon, 11 Mar 2013 10:24:46 -0700 (PDT)
+Received: from [172.23.7.5] (natint3.juniper.net. [66.129.224.36])
+	by mx.google.com with ESMTPS id ti8sm21227898pbc.12.2013.03.11.10.24.44
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 11 Mar 2013 10:24:45 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CA+QkY1DUokStaTCxB_OD0oSa97VqKWXdQwym5bZ0=AuCRB+0ow@mail.gmail.com>
+Date: Mon, 11 Mar 2013 10:24:43 -0700
+Message-Id: <D51C1972-C97B-4728-8C89-BE50C37EEF02@gmail.com>
+References: <CA+QkY1DUokStaTCxB_OD0oSa97VqKWXdQwym5bZ0=AuCRB+0ow@mail.gmail.com>
+To: Jerrod Peach <peachj@lexmark.com>
+X-Mailer: Apple Mail (2.1499)
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Building Android within Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,22 +42,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 17:20:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 11 Mar 2013 17:24:46 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 11, 2013 at 10:03 AM, Bruce Ashfield
-<bruce.ashfield@gmail.com> wrote:
 
->
-> If you are looking for push access, we'll wait on that for a bit. I'd like
-> to throttle changes into the new layer by sending them to the linux-yocto
-> mailing list first, have some review and then we can do a pull request
-> and merge model.
->
+On Mar 11, 2013, at 9:41 AM, Jerrod Peach <peachj@lexmark.com> wrote:
 
-I see, that sounds fine for me. I just wasn't sure ways of working here.
+> Has anyone tried building Android within Yocto?  It may sound kind of =
+crazy (I'm not convinced it's not), but I find myself in a situation =
+where it might be beneficial for me to build Android within Yocto. Does =
+a recipe or layer exist for this purpose already?  If so, where may I =
+find it?
+>=20
 
-Thank you,
+There is no official layer that exists but there is some interest around =
+it. Android would need
+some extra plumbing since it uses its own C library and even autconf =
+triplets are different=20
 
-Insop
+> Kind regards,
+>=20
+> Jerrod
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
