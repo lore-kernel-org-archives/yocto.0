@@ -1,35 +1,31 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
-	[209.85.212.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5078E014BC
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 20:33:20 -0700 (PDT)
-Received: by mail-wi0-f172.google.com with SMTP id ez12so659642wid.5
-	for <yocto@yoctoproject.org>; Sun, 10 Mar 2013 20:33:20 -0700 (PDT)
+Return-Path: <gmshastri@gmail.com>
+Received: from mail-la0-f53.google.com (mail-la0-f53.google.com
+	[209.85.215.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75CDAE006E9
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 03:45:30 -0700 (PDT)
+Received: by mail-la0-f53.google.com with SMTP id fr10so3636127lab.26
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 03:45:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=At5H0tWoCnAepdcVEPFki17r35xpX5WsAHlcU0/BMxo=;
-	b=cuWW/2/owzbEJccFLrjNXh5XBkVuYcuuhzskOqoyjPslRiuC/sdaCe8Olye2OdraJ2
-	F2/w2lFG2Ikxxf4GDOMubekovs0K/GwOlEAqObaSbgZS0Peph01CN3kA2rRh1Sbupws1
-	xm2ul8HrlAUkh8shmC8Q2Qj0sGskXbzbmb/vhTKnE9Xve08mxGU4BdHVIgyAUgocqtke
-	KBSjqlIaweAhGriaVUsWHjx0yl6l6dqqKlV1Q7foFOa5fZlHLra7iVDZckNz4yywDiEZ
-	qbhVJ6guecHFxbiBLsaGhtklMQ30e+cIsQ7Hg3/3pJyE/ZDNscOuUSICbTClYi81zw7H
-	xsdg==
-X-Received: by 10.194.84.8 with SMTP id u8mr16223884wjy.29.1362972799976; Sun,
-	10 Mar 2013 20:33:19 -0700 (PDT)
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=xO/s/x99k/bhee4VpQ7sWMlK1JhpjvAutWGXs/yb3lc=;
+	b=xjzcFuAg3iFP8yke7AOtp8mrMAjncMHpw6YleeeZw1aS5+RhCjNIslnLuxlcYzyI+M
+	DXWYJuebiM5+0qBJnSPTLSN9EhoCSVjH89y8ZnQO8QAuBbz1eoZDBQ1vUR2CbCt+qRZe
+	Kjo5GW4ic6MsDD0+OsQ7MjM4FHHOcjEwaAMcGnjbrzKXrrtp/phYQdVJug06npgv7FUi
+	eRA/e2AyVAf8eEHvaHN7JS4lCa9TBY5NJ235FW9Kv50PooyGZ1o8ln94hNaaeCGLdynY
+	qHKc5ptiwzESI3n0klKxESmSajElT9/D00oW0HuFhVy7mPyayBIZG6QRDsjlBue9bOP4
+	5RUg==
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Sun, 10 Mar 2013 20:32:59 -0700 (PDT)
-In-Reply-To: <513D4F78.9010307@windriver.com>
-References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
-	<513A195A.5040505@linux.intel.com> <513A75CB.3050308@windriver.com>
-	<CACzyEJ9MHVD8GyVEwXkdndmQy7DQ_Tt-M0n6-0dWG7LOHgVR5w@mail.gmail.com>
-	<513D4F78.9010307@windriver.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Sun, 10 Mar 2013 20:32:59 -0700
-Message-ID: <CACzyEJ-YObwTGoOcLGXGiXeoLia+RdtcLmSt9gDLXJG5hBHeoA@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>
-Subject: Re: A question on adding a new program to a new meta layer
+X-Received: by 10.152.135.205 with SMTP id pu13mr9653214lab.48.1362998728563; 
+	Mon, 11 Mar 2013 03:45:28 -0700 (PDT)
+Received: by 10.114.98.66 with HTTP; Mon, 11 Mar 2013 03:45:28 -0700 (PDT)
+In-Reply-To: <CAE_REAuOnhUG7GOgJHzSbGjrEyjKj8ApZ3J6W1=PtwZd2TM1Mg@mail.gmail.com>
+References: <CAE_REAuOnhUG7GOgJHzSbGjrEyjKj8ApZ3J6W1=PtwZd2TM1Mg@mail.gmail.com>
+Date: Mon, 11 Mar 2013 16:15:28 +0530
+Message-ID: <CAE_REAuMoVX4RPkVN4UFKX0XvVPK5-b07M-53ueVeKtzWBCFWQ@mail.gmail.com>
+From: Gaurang Shastri <gmshastri@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: Regarding Licensing of "mbsalign.c" available in util-linux-2.21.2 version (Yocto-1.3-Danny)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,26 +37,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 03:33:21 -0000
+X-List-Received-Date: Mon, 11 Mar 2013 10:45:30 -0000
+Content-Type: multipart/alternative; boundary=f46d044284f80ba20704d7a3df4d
+
+--f46d044284f80ba20704d7a3df4d
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Sun, Mar 10, 2013 at 8:28 PM, Bruce Ashfield
+Hi All,
+
+Any shades of light for below query ???
+
+//Gaurang Shastri
+
+On Fri, Mar 8, 2013 at 2:51 PM, Gaurang Shastri <gmshastri@gmail.com> wrote:
+
+> Hi All,
 >
-> Expect that the yocto project hosted meta-realtime will appear in a
-> week or so. I'm doing the legwork at the moment, but with some travel
-> in the upcoming week, the initial push will be delayed by a few days.
+> I have some concerns regarding util-linux-2.21.2 version . As per
+> Yocto-1.3 (danny) recipe,
+> {{{
 >
-> Cheers,
+> LICENSE_${PN}-lscpu = "GPLv3+"  <-- util-linux_2.21.2.bb
 >
-> Bruce
+> LICENSE = "GPLv2+ & LGPLv2.1+ & BSD"   <-- util-linux.inc
 >
+> }}}
+>
+> So as per the above description, only lscpu is GPLv3.
+>
+> But while looking into the source of util-linux-2.21.2, I found out that
+> "util-linux-2.21.2/lib/mbsalign.c" is GPLv3 and it is used by following
+> binaries while building:
+> {{{
+>   -  fdisk
+>   -  partx
+> }}}
+>
+> So does it mean that the above binaries should also be GPLv3 and need to
+> take care in util-linux.{bb,inc} ???
+>
+> Regards,
+> Gaurang Shastri
 >
 
-That's great!
-I saw the place holder on the git.yoctoproject this morning.
-Please let me know if you need anything for me to do or test.
+--f46d044284f80ba20704d7a3df4d
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
+Hi All,<br><br>Any shades of light for below query ???<br><br>//Gaurang Sha=
+stri<br><br><div class=3D"gmail_quote">On Fri, Mar 8, 2013 at 2:51 PM, Gaur=
+ang Shastri <span dir=3D"ltr">&lt;<a href=3D"mailto:gmshastri@gmail.com" ta=
+rget=3D"_blank">gmshastri@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi All,<br><br>I have some concerns regardin=
+g util-linux-2.21.2 version . As per Yocto-1.3 (danny) recipe,<br>{{{<br><b=
+r>
+LICENSE_${PN}-lscpu =3D &quot;GPLv3+&quot;=A0 &lt;-- <a href=3D"http://util=
+-linux_2.21.2.bb" target=3D"_blank">util-linux_2.21.2.bb</a><br>
+<br>LICENSE =3D &quot;GPLv2+ &amp; LGPLv2.1+ &amp; BSD&quot;=A0=A0 &lt;-- u=
+til-linux.inc<br><br>}}}<br><br>So as per the above description, only lscpu=
+ is GPLv3. <br><br>But while looking into the source of util-linux-2.21.2, =
+I found out that &quot;util-linux-2.21.2/lib/mbsalign.c&quot; is GPLv3 and =
+it is used by following binaries while building:<br>
 
-Insop
+{{{<br>=A0 -=A0 fdisk <br>=A0 -=A0 partx<br>}}}<br><br>So does it mean that=
+ the above binaries should also be GPLv3 and need to take care in util-linu=
+x.{bb,inc} ???<br><br>Regards,<br>Gaurang Shastri<br>
+</blockquote></div><br>
 
+--f46d044284f80ba20704d7a3df4d--
