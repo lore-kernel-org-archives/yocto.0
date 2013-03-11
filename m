@@ -1,31 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33F51E00709
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 06:49:49 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2BDnkqC008198
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 11 Mar 2013 06:49:46 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 11 Mar 2013 06:49:45 -0700
-Message-ID: <513DE0EC.2090008@windriver.com>
-Date: Mon, 11 Mar 2013 09:49:32 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <cristian.iorga@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB84CE006E9
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 07:07:55 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 11 Mar 2013 07:07:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,822,1355126400"; d="scan'208";a="212741912"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by AZSMGA002.ch.intel.com with ESMTP; 11 Mar 2013 07:07:35 -0700
+Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 11 Mar 2013 14:06:28 +0000
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.244]) by
+	IRSMSX151.ger.corp.intel.com ([169.254.4.245]) with mapi id
+	14.01.0355.002; Mon, 11 Mar 2013 14:06:28 +0000
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: "Iorga, Cristian" <cristian.iorga@intel.com>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: [PATCH 0/2] BlueZ 5.3 new package
+Thread-Index: AQHOHmBPxmF3sv3n502RhR1dOW67dpigg+9A
+Date: Mon, 11 Mar 2013 14:06:28 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB162157B8@IRSMSX102.ger.corp.intel.com>
+References: <1363010209-18220-1-git-send-email-cristian.iorga@intel.com>
+In-Reply-To: <1363010209-18220-1-git-send-email-cristian.iorga@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-To: =?UTF-8?B?RXJpYyBCw6luYXJk?= <eric@eukrea.com>
-References: <CAFyqS9qFQ+kHrjmDAw4mCKop6RMzH7Ws1V6tt0_A2gM2a5UmYg@mail.gmail.com>
-	<20130308191213.102258ca@e6520eb> <513A3557.10405@gmail.com>
-	<513A7836.2050908@windriver.com>
-	<CAFyqS9rT=amDBNTO_awzXL3zNS-vCx1+0ERCspXTps8u_VpHwA@mail.gmail.com>
-	<CAFyqS9q5aDSUiGFOsOz4CWN7oV8kAiAuzA5mK4HbsEaReqQzHA@mail.gmail.com>
-	<513DDE28.4050004@windriver.com> <20130311144652.44107972@e6520eb>
-In-Reply-To: <20130311144652.44107972@e6520eb>
-Cc: yocto@yoctoproject.org
-Subject: Re: How do I control what kernel modules are being loaded?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/2] BlueZ 5.3 new package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,53 +42,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 13:49:49 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 11 Mar 2013 14:07:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 13-03-11 09:46 AM, Eric Bénard wrote:
-> Hi Bruce,
->
-> Le Mon, 11 Mar 2013 09:37:44 -0400,
-> Bruce Ashfield <bruce.ashfield@windriver.com> a écrit :
->> Can you post your exact changes where we can see them ? You need to put
->> the module_autload variable in a .conf file, whether that be your
->> local.conf, your machine.conf or you distro configuration file (which
->> it appears that you are doing), but you also must have the name of
->> the module package correct, and the module needs to be part of your
->> IMAGE_INSTALL, since the code fragment I pasted above is from the
->> post installation fragment created for the various module packages
->> as they are created.
->>
->> i.e. I have this in a .conf file:
->>
->>      module_autoload_nfsd = "nfsd"
->>
->> To ensure that the nfsd .ko is loaded on boot, when the module is built
->> and present on the rootfs.
->>
-> I think the problem is that this works when building modules inside the
-> kernel (module_autoload is handled in kernel.bbclass), but not when
+Hello all,
 
-Not in master anymore, but agreed, we are talking Danny here IIRC.
+This is an EXPERIMENTAL bluez5 new package.
+This will not replace bluez4 and it is not an upgrade path from bluez4.
 
-> building a module with its own recipe (using module.bbclass) as Hans
-> is doing, that's why I previously told him to "get inspiration from
-> kernel.bbclass to do the same thing in your recipe".
+Given the fact that not a lot of components has been updated to work with b=
+luez5, this package is largely untested.
+It has been provided in the hope that for YP 1.5 release, the entire Blueto=
+oth stack and related/dependent components will get updated.
 
-Ah yes. I do recall a nuance of a package with mixed kernel modules and
-userspace code.
+Most probably bugs related to this package and/or related/dependent compone=
+nts will be fixed in 1.5 release, not in 1.4 timeframe.
 
-The new module-split class from master would handle this nicely, so
-taking inspiration from master's would would probably be an even
-shorter route to getting something working.
+The scope with this PU is to provide developers the needed tools/technologi=
+es in order to upgrade software to BlueZ5 BT stack.
+This stack has support for BT4.0 with the appropriate Linux kernel.
 
-Cheers,
+Feedback for this upgrade is much appreciated.
 
-Bruce
+Regards,
+Cristian
 
->
-> Eric
->
+
+Cristian Iorga
+Linux Software Engineer
+Open Source Technology Center
+Intel
+
+
+-----Original Message-----
+From: Iorga, Cristian=20
+Sent: Monday, March 11, 2013 3:57 PM
+To: openembedded-core@lists.openembedded.org
+Cc: Iorga, Cristian
+Subject: [PATCH 0/2] BlueZ 5.3 new package
+
+- BlueZ 5 v5.3 experimental new package;
+- bluez5 package does not replace bluez4 package,
+  as a lot of components that interact with bluez
+  are not prepared to work correctly with bluez5;
+- libical is added back, as it is a requirement for
+  bluez OBEX feature.
+
+Cristian Iorga (2):
+  libical: add recipe back in oe-core
+  bluez5: new package for v5.3
+
+ .../bluez5/bluez5-5.3/bluetooth.conf               |   16 ++++++
+ .../bluez5/bluez5-5.3/fix-udev-paths.patch         |   35 +++++++++++++
+ meta/recipes-connectivity/bluez5/bluez5.inc        |   45 ++++++++++++++++=
++
+ meta/recipes-connectivity/bluez5/bluez5_5.3.bb     |   35 +++++++++++++
+ .../libical/files/pthread-fix.patch                |   52 ++++++++++++++++=
+++++
+ meta/recipes-support/libical/libical_0.48.bb       |   17 +++++++
+ 6 files changed, 200 insertions(+)
+ create mode 100644 meta/recipes-connectivity/bluez5/bluez5-5.3/bluetooth.c=
+onf
+ create mode 100644 meta/recipes-connectivity/bluez5/bluez5-5.3/fix-udev-pa=
+ths.patch
+ create mode 100644 meta/recipes-connectivity/bluez5/bluez5.inc
+ create mode 100644 meta/recipes-connectivity/bluez5/bluez5_5.3.bb
+ create mode 100644 meta/recipes-support/libical/files/pthread-fix.patch
+ create mode 100644 meta/recipes-support/libical/libical_0.48.bb
+
+--=20
+1.7.10.4
 
 
