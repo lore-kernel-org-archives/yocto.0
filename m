@@ -1,41 +1,44 @@
-Return-Path: <dmulder@lasx.com>
-Received: from omx.cbeyond.com (omx.cbeyond.com [50.20.30.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85266E003AB
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 11:13:49 -0700 (PDT)
-X-SBRS: 3.9
-X-HAT: Sender Group CBEYOND_SYSTEMS, Policy $CBEYOND_RELAY applied.
-X-Hostname: omx05bay.sys.cbeyond.net
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: Aq0BACwePlEyFB4Li2dsb2JhbABDhD7AJIF1DgEBARULGyiCKQEBAQMBOj8QAgEIIhQQMiUCBA4NiAUGAb5ljl0xB4JfYQOqVIIo
-X-IronPort-AV: E=Sophos;i="4.84,825,1355115600"; d="scan'208";a="12795061"
-Received: from mts.cbeyond.com (HELO EXHUB102.mmeprod.cbeyond) ([50.20.30.11])
-	by omx.cbeyond.com with ESMTP; 11 Mar 2013 14:13:48 -0400
-Received: from EXHUB104.mmeprod.cbeyond (10.128.38.103) by
-	EXHUB102.mmeprod.cbeyond (10.128.38.101) with Microsoft SMTP Server
-	(TLS) id 14.2.298.4; Mon, 11 Mar 2013 14:13:47 -0400
-Received: from EXMBX202A.mmeprod.cbeyond ([fe80::b0ca:4d9b:ba7c:8227]) by
-	EXHUB104.mmeprod.cbeyond ([::1]) with mapi id 14.02.0298.004;
-	Mon, 11 Mar 2013 14:13:47 -0400
-From: David Mulder <dmulder@lasx.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Thread-Topic: [yocto] Can I disable RT throttling?
-Thread-Index: Ac4cTWBMCcKVjca/TdSAdJObHV69ZQAUrgaAAHMmm5AADNILAAAITIEg///BMICAAEI7cA==
-Date: Mon, 11 Mar 2013 18:13:46 +0000
-Message-ID: <19F0379280417C4A8FE3BD23AA7298E501347F87@EXMBX202A.mmeprod.cbeyond>
-References: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
-	<513AAC65.1050002@windriver.com>
-	<19F0379280417C4A8FE3BD23AA7298E501347F1C@EXMBX202A.mmeprod.cbeyond>
-	<CAHUNapTCYUy5GML7N4xaAH=HsV5wHf5k8kJJGGntS+AoMvFq6w@mail.gmail.com>
-	<19F0379280417C4A8FE3BD23AA7298E501347F52@EXMBX202A.mmeprod.cbeyond>
-	<513E1843.3070604@windriver.com>
-In-Reply-To: <513E1843.3070604@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [69.198.178.141]
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A9A8E003AB
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 11:36:57 -0700 (PDT)
+Received: by mail-la0-f42.google.com with SMTP id fe20so4318821lab.15
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 11:36:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:message-id:date:from:user-agent:mime-version:to:cc
+	:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=DZpdoJTyFbRoUg6EwROjzmOwqDTzpdhstc2R/Uf+M7o=;
+	b=KVa7fRbKMw7k1RYdVQ4yPz5fQu7lNVkU1ChOjQXAVvrB/n/E4h64FU3KZZd9IIC8rw
+	Odufy0S9oNhgrDYyTdeMNGE2dyuYs63w00M2UeVuUy2zYSw5QdEoZfSFXYwGDpTy0Cet
+	Nw0WlREJ6JDmUysDHkhz4BzPxSPndRJ2hxh9jWwOXtgAqaivedfDuoD2dBLDKGpg93Ir
+	8o/WwjNk+e7gCT1R8OxDAlsOqll921AqQU0mfT/gq6R21cUKHfxSUvV3UoqBquTG48bt
+	oqiqoHYhBZw/b7pNmB7y+v+jNBNWLblzrfgnOQJJHX/tN989Q43hO4/oFxWV4SjdBAfM
+	mLLQ==
+X-Received: by 10.152.110.6 with SMTP id hw6mr11242192lab.43.1363027015858;
+	Mon, 11 Mar 2013 11:36:55 -0700 (PDT)
+Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
+	[217.209.54.135])
+	by mx.google.com with ESMTPS id b13sm4783121lbd.10.2013.03.11.11.36.49
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 11 Mar 2013 11:36:54 -0700 (PDT)
+Message-ID: <513E2440.9040407@gmail.com>
+Date: Mon, 11 Mar 2013 19:36:48 +0100
+From: Hans Beckerus <hans.beckerus@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.2;
+	rv:17.0) Gecko/20130215 Thunderbird/17.0.3
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can I disable RT throttling?
+To: =?UTF-8?B?RXJpYyBCw6luYXJk?= <eric@eukrea.com>
+References: <CAFyqS9qFQ+kHrjmDAw4mCKop6RMzH7Ws1V6tt0_A2gM2a5UmYg@mail.gmail.com>
+	<20130308191213.102258ca@e6520eb> <513A3557.10405@gmail.com>
+	<513A7836.2050908@windriver.com>
+	<CAFyqS9rT=amDBNTO_awzXL3zNS-vCx1+0ERCspXTps8u_VpHwA@mail.gmail.com>
+	<CAFyqS9q5aDSUiGFOsOz4CWN7oV8kAiAuzA5mK4HbsEaReqQzHA@mail.gmail.com>
+	<513DDE28.4050004@windriver.com> <20130311144900.59a31a00@e6520eb>
+In-Reply-To: <20130311144900.59a31a00@e6520eb>
+Cc: yocto@yoctoproject.org
+Subject: Re: How do I control what kernel modules are being loaded?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,42 +50,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 18:13:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Mar 2013 18:36:57 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> > Will that work on a core that's offline?
->=20
-> Nope. Only with an online core controlled by the Linux scheduler.
-> If you do end up trying to get AMP working, you need to plumbing
-> to load the other OS/kernel in a reserved memory location, set the
-> program counter and start the OS.
->=20
-> But that secondary OS has to know how to behave in a system that
-> it doesn't control, and you'll need ways to communicate with it
-> from Linux.
->=20
-> remoteproc/rpmsg can solve some of the issues that I mention, but
-> it is far from out of the box.
->=20
-> That's why there's more interest in running a single task with
-> exclusive CPU in userspace. The work and scaffolding required to
-> get an AMP system up and running is non trivial.
+On 2013-03-11 2:49, Eric Bénard wrote:
+> Hi Bruce,
+>
+> Le Mon, 11 Mar 2013 09:37:44 -0400,
+> Bruce Ashfield <bruce.ashfield@windriver.com> a écrit :
+>> Can you post your exact changes where we can see them ? You need to put
+>> the module_autload variable in a .conf file, whether that be your
+>> local.conf, your machine.conf or you distro configuration file (which
+>> it appears that you are doing), but you also must have the name of
+>> the module package correct, and the module needs to be part of your
+>> IMAGE_INSTALL, since the code fragment I pasted above is from the
+>> post installation fragment created for the various module packages
+>> as they are created.
+>>
+>> i.e. I have this in a .conf file:
+>>
+>>      module_autoload_nfsd = "nfsd"
+>>
+>> To ensure that the nfsd .ko is loaded on boot, when the module is built
+>> and present on the rootfs.
+>>
+> I think the problem is that this works when building modules inside the
+> kernel (module_autoload is handled in kernel.bbclass), but not when
+> building a module with its own recipe (using module.bbclass) as Hans
+> is doing, that's why I previously told him to "get inspiration from
+> kernel.bbclass to do the same thing in your recipe".
+>
+> Thinking again to this (after pressing send of course ;-) : Or maybe he
+> needs to build again its kernel after setting module_autoload_hismodule
+> = "hismodule" so that the module name gets handled by the kernel
+> recipe ?
+>
+> Eric
+>
+Bringing in the split kernel module support (by looking at the .bbclass) 
+from master should do the trick.
+But, after adding more functionality to my system, I suddenly realized 
+this was in fact never needed :(
+Since the kernel is built with "Kernel Module Loader" support, the 
+modules I needed was automatically
+modprobed. I now also understand why the mandatory module was loaded 
+automatically.
+I will still test the split module functionality since it is probably 
+interesting to know if it works as expected or not.
+Again, thanks for all the help.
 
-I kinda thought so, but I was hopeful.
+Hans
 
-After speaking with some co-workers, I have a new perspective on these dela=
-ys:  yes, we are trying to do a 10us control loop, but if we miss a step or=
- two occasionally we can accept that.  And looking online I see people indi=
-cating context switch times well below 10us (Core-i cpus), which is better =
-than I had anticipated, and should be workable.  So I'm going to approach t=
-his problem by just trying to squeeze the kernel as much as I can.  Some th=
-ings that I see to squeeze are /dev/cpu_dma_latency (should be 0) or max_cs=
-tate (should be as low as possible (0, maybe 1)), possibly idle=3Dpoll.  Ar=
-e there other kernel parameters that can minimize kernel interference/time?=
-  And perhaps hints about how to set them in Yocto or menuconfig?
 
-Thanks!
-Dave
+
+
 
