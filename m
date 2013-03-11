@@ -1,33 +1,36 @@
-Return-Path: <dmulder@lasx.com>
-Received: from omx.cbeyond.com (omx.cbeyond.com [50.20.30.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4974AE00709
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 09:15:47 -0700 (PDT)
-X-SBRS: 3.9
-X-HAT: Sender Group CBEYOND_SYSTEMS, Policy $CBEYOND_RELAY applied.
-X-Hostname: omx02bay.sys.cbeyond.net
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqwBAPsBPlEyFB4Li2dsb2JhbABDhDrAG4FxDgEBARULGyEHgikBAQEDATpPAgEIGAoUECERJQEBBBMIE4dmAwkGAbMtDYlEF4xGghc4gl9hA5R1jTyII4Io
-X-IronPort-AV: E=Sophos;i="4.84,824,1355115600"; d="scan'208";a="13490548"
-Received: from mts.cbeyond.com (HELO EXHUB102.mmeprod.cbeyond) ([50.20.30.11])
-	by omx.cbeyond.com with ESMTP; 11 Mar 2013 12:15:46 -0400
-Received: from EXMBX202A.mmeprod.cbeyond ([fe80::b0ca:4d9b:ba7c:8227]) by
-	EXHUB102.mmeprod.cbeyond ([::1]) with mapi id 14.02.0298.004;
-	Mon, 11 Mar 2013 12:15:45 -0400
-From: David Mulder <dmulder@lasx.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Can I disable RT throttling?
-Thread-Index: Ac4cTWBMCcKVjca/TdSAdJObHV69ZQAUrgaAAHMmm5A=
-Date: Mon, 11 Mar 2013 16:15:45 +0000
-Message-ID: <19F0379280417C4A8FE3BD23AA7298E501347F1C@EXMBX202A.mmeprod.cbeyond>
-References: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
-	<513AAC65.1050002@windriver.com>
-In-Reply-To: <513AAC65.1050002@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [69.198.178.141]
+Return-Path: <peachj@lexmark.com>
+Received: from exprod8og108.obsmtp.com (exprod8og108.obsmtp.com [64.18.3.96])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5EA9E00709
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 09:41:28 -0700 (PDT)
+Received: from mail-yh0-f70.google.com ([209.85.213.70]) (using TLSv1) by
+	exprod8ob108.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKUT4JOO2weZkn3hKUDeoAVM5B/ONFioOc@postini.com;
+	Mon, 11 Mar 2013 09:41:28 PDT
+Received: by mail-yh0-f70.google.com with SMTP id z20so6204418yhz.9
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 09:41:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:x-received:date:message-id:subject:from:to
+	:content-type:x-gm-message-state;
+	bh=cYfKl4MMTMmNsAmQCW1QMqiMCd7sdzJDraqVhdigRR0=;
+	b=W6N7GI4pKqvzlz2HJ5sCZ2HDIW4wEJCcITNCbwOe/g10IuM/Nh87zgKR31ZpjTpN2S
+	Ng8Zz9ERBl8me5Vej7Ziod9qmOvzHarR/1cbUmwJyAcvE0a1df2HGhWsrhIbM1NbukAq
+	BS3kcSBvKHxMWwl1/Tvz18m5iTpXGSFKBaUjZt2E/wZ2H5N0zR2tENx3f2BBkJAM3M9g
+	wmjul3ds/1XUIZW3qFMZbCo8+XpLr5L4JcJAS08g6cCvFmzd1o/OmC0AxXkvxEIktQxf
+	grdwbGCitcKO2HL7NcHhKUvxHcbO3whuzrEDIBP304JkfEyLAN2RbhtSxLeBWieSHDna
+	atcw==
+X-Received: by 10.49.42.3 with SMTP id j3mr19922932qel.55.1363020087590;
+	Mon, 11 Mar 2013 09:41:27 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Can I disable RT throttling?
+X-Received: by 10.49.42.3 with SMTP id j3mr19922922qel.55.1363020087487; Mon,
+	11 Mar 2013 09:41:27 -0700 (PDT)
+Received: by 10.49.47.112 with HTTP; Mon, 11 Mar 2013 09:41:27 -0700 (PDT)
+Date: Mon, 11 Mar 2013 12:41:27 -0400
+Message-ID: <CA+QkY1DUokStaTCxB_OD0oSa97VqKWXdQwym5bZ0=AuCRB+0ow@mail.gmail.com>
+From: Jerrod Peach <peachj@lexmark.com>
+To: yocto <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQkv1hCtoGRqBU4b+vsVfeWmuCAXOYaw12xbqW6oiv1k0RJtx+/geDgIqcl9Z/6rO2/7vrDcJISH5DQE2BsoMMmEfWy84ZUi33OPdVohMAc9WAcjyM8J0X28nohr/3vp6iDqafH5LFAdmnNqEaQJr9162n0cQQ==
+Subject: Building Android within Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,53 +42,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 16:15:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 11 Mar 2013 16:41:28 -0000
+Content-Type: multipart/alternative; boundary=047d7bd76e2423058704d7a8d847
+
+--047d7bd76e2423058704d7a8d847
+Content-Type: text/plain; charset=ISO-8859-1
+
+Has anyone tried building Android within Yocto?  It may sound kind of crazy
+(I'm not convinced it's not), but I find myself in a situation where it
+might be beneficial for me to build Android within Yocto. Does a recipe or
+layer exist for this purpose already?  If so, where may I find it?
+
+Kind regards,
+
+Jerrod
+
+--047d7bd76e2423058704d7a8d847
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Wow! Thanks, Bruce, Fredrik, and everyone, for all this useful info!
+<div dir=3D"ltr">Has anyone tried building Android within Yocto? =A0It may =
+sound kind of crazy (I&#39;m not convinced it&#39;s not), but I find myself=
+ in a situation where it might be beneficial for me to build Android within=
+ Yocto. Does a recipe or layer exist for this purpose already? =A0If so, wh=
+ere may I find it?<div>
+<br></div><div>Kind regards,</div><div><br></div><div style>Jerrod</div></d=
+iv>
 
-> > I'm running a 10us control loop by (under vxWorks) setting one thread's
-> > priority to max and not yielding ever
->=20
-> <bruce.ashfield@windriver.com> wrote:
-> You are looking for kernel functionality that doesn't exist yet. In
-> any SMP system there are sources of cross cpu interference that can't
-> be removed, if you do, the global state machines of the kernel will
-> break and the system will eventually come to a halt.
->=20
-> That's the mainline/scalable point of view, there are plenty of "custom"
-> and one off solutions to the problem, such as hotplugging the cpu out
-> of the system and running in an AMP configuration where a bare metal,
-> or RTOS can monopolize a CPU since the global state machines don't
-> interfere. These have their advantages and disadvantages, but if you
-> are coming from an existing RTOS application, they might be the
-> closest options to get you the performance you are looking for.
-
-An AMP configuration does seem like the closest thing to what the RTOS gave=
- me.  Do you have more info about that?  Specifically, I see that I can rem=
-ove a core from the scheduler ($ echo 0 > /sys/devices/system/cpu/<core num=
-ber>/online), but how can I make my run my code on that core?  Do I get the=
- code running on that core first and then remove the core, or vice-versa, o=
-r some other concept?  I do PCIe reads/writes - are those affected?  I use =
-atomic read-write-modify locks for critical sections - will those still fun=
-ction correctly (I can't imagine they would break, but I thought I'd ask)?
-
-> > So maybe disabling RT throttling is all I need to do, maybe some other
-> > approach is needed. Hopefully someone will know more than I do.
-> >
-
-> <fredrik.markstrom@gmail.com> wrote:
-> The RT-throttling can be disabled with:
->
-> echo -1 >/proc/sys/kernel/sched_rt_runtime_us
-> echo -1 >/proc/sys/kernel/sched_rt_period_us
->
-> But as mentioned in the other answers things like the system tick, ipi:s
-> etc. will interfere. But significantly less then the rt-throttling :)
-
-Thanks, Fredrick!  I will try this.
-
-Dave Mulder
-
+--047d7bd76e2423058704d7a8d847--
