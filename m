@@ -1,36 +1,32 @@
-Return-Path: <cristian.iorga@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB84CE006E9
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 07:07:55 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 11 Mar 2013 07:07:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,822,1355126400"; d="scan'208";a="212741912"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by AZSMGA002.ch.intel.com with ESMTP; 11 Mar 2013 07:07:35 -0700
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 11 Mar 2013 14:06:28 +0000
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.244]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.245]) with mapi id
-	14.01.0355.002; Mon, 11 Mar 2013 14:06:28 +0000
-From: "Iorga, Cristian" <cristian.iorga@intel.com>
-To: "Iorga, Cristian" <cristian.iorga@intel.com>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: [PATCH 0/2] BlueZ 5.3 new package
-Thread-Index: AQHOHmBPxmF3sv3n502RhR1dOW67dpigg+9A
-Date: Mon, 11 Mar 2013 14:06:28 +0000
-Message-ID: <969F26A8BAB325438E7EB80D3C3134FB162157B8@IRSMSX102.ger.corp.intel.com>
-References: <1363010209-18220-1-git-send-email-cristian.iorga@intel.com>
-In-Reply-To: <1363010209-18220-1-git-send-email-cristian.iorga@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6A8DE006E9;
+	Mon, 11 Mar 2013 07:34:35 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r2BEYX9H019860
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 11 Mar 2013 07:34:34 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 11 Mar 2013 07:34:33 -0700
+Message-ID: <513DEB6C.7050903@windriver.com>
+Date: Mon, 11 Mar 2013 10:34:20 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 0/2] BlueZ 5.3 new package
+To: Insop Song <insop.song@gmail.com>
+References: <CACzyEJ_3BRjn4s7ADey9uuQpGhgWKeuuyxGVL09HuLAzJ3LqTQ@mail.gmail.com>
+	<513A195A.5040505@linux.intel.com> <513A75CB.3050308@windriver.com>
+	<CACzyEJ9MHVD8GyVEwXkdndmQy7DQ_Tt-M0n6-0dWG7LOHgVR5w@mail.gmail.com>
+	<513D4F78.9010307@windriver.com>
+	<CACzyEJ-YObwTGoOcLGXGiXeoLia+RdtcLmSt9gDLXJG5hBHeoA@mail.gmail.com>
+In-Reply-To: <CACzyEJ-YObwTGoOcLGXGiXeoLia+RdtcLmSt9gDLXJG5hBHeoA@mail.gmail.com>
+Cc: yocto@yoctoproject.org, Darren Hart <dvhart@linux.intel.com>,
+	Development list for the linux-yocto repositories
+	<linux-yocto@yoctoproject.org>
+Subject: Re: A question on adding a new program to a new meta layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,77 +38,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 14:07:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Mar 2013 14:34:36 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello all,
+On 13-03-10 11:32 PM, Insop Song wrote:
+> On Sun, Mar 10, 2013 at 8:28 PM, Bruce Ashfield
+>>
+>> Expect that the yocto project hosted meta-realtime will appear in a
+>> week or so. I'm doing the legwork at the moment, but with some travel
+>> in the upcoming week, the initial push will be delayed by a few days.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>
+>
+> That's great!
+> I saw the place holder on the git.yoctoproject this morning.
+> Please let me know if you need anything for me to do or test.
+>
 
-This is an EXPERIMENTAL bluez5 new package.
-This will not replace bluez4 and it is not an upgrade path from bluez4.
+I've pushed a bit more of the initial layer structure to the repository.
+I'm not rationalizing a few items from your existing layers, and similar
+repositories into the single meta-realtime.
 
-Given the fact that not a lot of components has been updated to work with b=
-luez5, this package is largely untested.
-It has been provided in the hope that for YP 1.5 release, the entire Blueto=
-oth stack and related/dependent components will get updated.
+As an example, I have a schedtool recipe that uses the 
+git://gitorious.org/sched_deadline/schedtool-dl.git
+repository with a 4 patch series to enable full sched_deadline/EDF
+support versus the custom repository that you created on github.
+We'll work to unify the edf and other -rt support in the upstream
+projects, so we want to reference those trees whenever possible (unless
+we get so much development, that a tracking tree makes sense).
 
-Most probably bugs related to this package and/or related/dependent compone=
-nts will be fixed in 1.5 release, not in 1.4 timeframe.
+Also, don't be concerned that I show up as the only maintainer in the
+meta-realtime layer, as I merge parts from your existing layer, credit
+will be given and if it is ok with you, I'll have you down as a maintainer
+or co-maintainer where it makes sense.
 
-The scope with this PU is to provide developers the needed tools/technologi=
-es in order to upgrade software to BlueZ5 BT stack.
-This stack has support for BT4.0 with the appropriate Linux kernel.
+Since I'm going to be out of the office for the next few days, I may
+push out my initial merges without much testing, so if you have a
+chance to test, and send patches .. that would be a great help.
 
-Feedback for this upgrade is much appreciated.
+Cheers,
 
-Regards,
-Cristian
+Bruce
 
-
-Cristian Iorga
-Linux Software Engineer
-Open Source Technology Center
-Intel
-
-
------Original Message-----
-From: Iorga, Cristian=20
-Sent: Monday, March 11, 2013 3:57 PM
-To: openembedded-core@lists.openembedded.org
-Cc: Iorga, Cristian
-Subject: [PATCH 0/2] BlueZ 5.3 new package
-
-- BlueZ 5 v5.3 experimental new package;
-- bluez5 package does not replace bluez4 package,
-  as a lot of components that interact with bluez
-  are not prepared to work correctly with bluez5;
-- libical is added back, as it is a requirement for
-  bluez OBEX feature.
-
-Cristian Iorga (2):
-  libical: add recipe back in oe-core
-  bluez5: new package for v5.3
-
- .../bluez5/bluez5-5.3/bluetooth.conf               |   16 ++++++
- .../bluez5/bluez5-5.3/fix-udev-paths.patch         |   35 +++++++++++++
- meta/recipes-connectivity/bluez5/bluez5.inc        |   45 ++++++++++++++++=
-+
- meta/recipes-connectivity/bluez5/bluez5_5.3.bb     |   35 +++++++++++++
- .../libical/files/pthread-fix.patch                |   52 ++++++++++++++++=
-++++
- meta/recipes-support/libical/libical_0.48.bb       |   17 +++++++
- 6 files changed, 200 insertions(+)
- create mode 100644 meta/recipes-connectivity/bluez5/bluez5-5.3/bluetooth.c=
-onf
- create mode 100644 meta/recipes-connectivity/bluez5/bluez5-5.3/fix-udev-pa=
-ths.patch
- create mode 100644 meta/recipes-connectivity/bluez5/bluez5.inc
- create mode 100644 meta/recipes-connectivity/bluez5/bluez5_5.3.bb
- create mode 100644 meta/recipes-support/libical/files/pthread-fix.patch
- create mode 100644 meta/recipes-support/libical/libical_0.48.bb
-
---=20
-1.7.10.4
+> Regards,
+>
+> Insop
+>
 
 
