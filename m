@@ -1,25 +1,29 @@
-Return-Path: <eric@eukrea.com>
-Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC4C4E006E9
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 06:49:09 -0700 (PDT)
-Received: from e6520eb (pac33-2-82-240-38-71.fbx.proxad.net [82.240.38.71])
-	(Authenticated sender: eukrea)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id CBF574B00C1;
-	Mon, 11 Mar 2013 14:49:01 +0100 (CET)
-Date: Mon, 11 Mar 2013 14:49:00 +0100
-From: Eric =?UTF-8?B?QsOpbmFyZA==?= <eric@eukrea.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <20130311144900.59a31a00@e6520eb>
-In-Reply-To: <513DDE28.4050004@windriver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33F51E00709
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 06:49:49 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2BDnkqC008198
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 11 Mar 2013 06:49:46 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 11 Mar 2013 06:49:45 -0700
+Message-ID: <513DE0EC.2090008@windriver.com>
+Date: Mon, 11 Mar 2013 09:49:32 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+MIME-Version: 1.0
+To: =?UTF-8?B?RXJpYyBCw6luYXJk?= <eric@eukrea.com>
 References: <CAFyqS9qFQ+kHrjmDAw4mCKop6RMzH7Ws1V6tt0_A2gM2a5UmYg@mail.gmail.com>
 	<20130308191213.102258ca@e6520eb> <513A3557.10405@gmail.com>
 	<513A7836.2050908@windriver.com>
 	<CAFyqS9rT=amDBNTO_awzXL3zNS-vCx1+0ERCspXTps8u_VpHwA@mail.gmail.com>
 	<CAFyqS9q5aDSUiGFOsOz4CWN7oV8kAiAuzA5mK4HbsEaReqQzHA@mail.gmail.com>
-	<513DDE28.4050004@windriver.com>
-Organization: =?UTF-8?B?RXVrcsOpYQ==?= Electromatique
-X-Mailer: Claws Mail 3.9.0 (GTK+ 2.24.13; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
+	<513DDE28.4050004@windriver.com> <20130311144652.44107972@e6520eb>
+In-Reply-To: <20130311144652.44107972@e6520eb>
 Cc: yocto@yoctoproject.org
 Subject: Re: How do I control what kernel modules are being loaded?
 X-BeenThere: yocto@yoctoproject.org
@@ -33,40 +37,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 13:49:11 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Mar 2013 13:49:49 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Bruce,
+On 13-03-11 09:46 AM, Eric Bénard wrote:
+> Hi Bruce,
+>
+> Le Mon, 11 Mar 2013 09:37:44 -0400,
+> Bruce Ashfield <bruce.ashfield@windriver.com> a écrit :
+>> Can you post your exact changes where we can see them ? You need to put
+>> the module_autload variable in a .conf file, whether that be your
+>> local.conf, your machine.conf or you distro configuration file (which
+>> it appears that you are doing), but you also must have the name of
+>> the module package correct, and the module needs to be part of your
+>> IMAGE_INSTALL, since the code fragment I pasted above is from the
+>> post installation fragment created for the various module packages
+>> as they are created.
+>>
+>> i.e. I have this in a .conf file:
+>>
+>>      module_autoload_nfsd = "nfsd"
+>>
+>> To ensure that the nfsd .ko is loaded on boot, when the module is built
+>> and present on the rootfs.
+>>
+> I think the problem is that this works when building modules inside the
+> kernel (module_autoload is handled in kernel.bbclass), but not when
 
-Le Mon, 11 Mar 2013 09:37:44 -0400,
-Bruce Ashfield <bruce.ashfield@windriver.com> a =C3=A9crit :
-> Can you post your exact changes where we can see them ? You need to put
-> the module_autload variable in a .conf file, whether that be your
-> local.conf, your machine.conf or you distro configuration file (which
-> it appears that you are doing), but you also must have the name of
-> the module package correct, and the module needs to be part of your
-> IMAGE_INSTALL, since the code fragment I pasted above is from the
-> post installation fragment created for the various module packages
-> as they are created.
->=20
-> i.e. I have this in a .conf file:
->=20
->     module_autoload_nfsd =3D "nfsd"
->=20
-> To ensure that the nfsd .ko is loaded on boot, when the module is built
-> and present on the rootfs.
->=20
-I think the problem is that this works when building modules inside the
-kernel (module_autoload is handled in kernel.bbclass), but not when
-building a module with its own recipe (using module.bbclass) as Hans
-is doing, that's why I previously told him to "get inspiration from
-kernel.bbclass to do the same thing in your recipe".
+Not in master anymore, but agreed, we are talking Danny here IIRC.
 
-Thinking again to this (after pressing send of course ;-) : Or maybe he
-needs to build again its kernel after setting module_autoload_hismodule
-=3D "hismodule" so that the module name gets handled by the kernel
-recipe ?
+> building a module with its own recipe (using module.bbclass) as Hans
+> is doing, that's why I previously told him to "get inspiration from
+> kernel.bbclass to do the same thing in your recipe".
 
-Eric
+Ah yes. I do recall a nuance of a package with mixed kernel modules and
+userspace code.
+
+The new module-split class from master would handle this nicely, so
+taking inspiration from master's would would probably be an even
+shorter route to getting something working.
+
+Cheers,
+
+Bruce
+
+>
+> Eric
+>
+
 
