@@ -1,24 +1,17 @@
-Return-Path: <V.Vogelhuber@DigitalEndoscopy.de>
-Received: from SRV-MSX01.digitendos.local
-	(host-80-81-19-29.customer.m-online.net [80.81.19.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE73DE003AB
-	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 09:34:07 -0700 (PDT)
-Received: from [192.168.10.111] (192.168.10.111) by SRV-MSX01.digitendos.local
-	(192.168.10.14) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Tue, 12 Mar 2013 17:33:17 +0100
-Message-ID: <513F58FA.3080808@digitalendoscopy.de>
-Date: Tue, 12 Mar 2013 17:34:02 +0100
-From: Volker Vogelhuber <v.vogelhuber@digitalendoscopy.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
+Return-Path: <eric@eukrea.com>
+Received: from smtp3-g21.free.fr (smtp3-g21.free.fr [212.27.42.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A343DE0071D
+	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 13:56:56 -0700 (PDT)
+Received: from localhost.localdomain (unknown [82.233.81.124])
+	by smtp3-g21.free.fr (Postfix) with ESMTP id 84FEFA61C4;
+	Tue, 12 Mar 2013 21:56:49 +0100 (CET)
+From: =?UTF-8?q?Eric=20B=C3=A9nard?= <eric@eukrea.com>
+To: yocto@yoctoproject.org
+Date: Tue, 12 Mar 2013 21:56:47 +0100
+Message-Id: <1363121807-15304-1-git-send-email-eric@eukrea.com>
+X-Mailer: git-send-email 1.7.11.7
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-X-Originating-IP: [192.168.10.111]
-X-TM-AS-Product-Ver: SMEX-10.1.0.2244-7.000.1014-19710.006
-X-TM-AS-Result: No--15.525600-0.000000-31
-X-TM-AS-User-Approved-Sender: Yes
-X-TM-AS-User-Blocked-Sender: No
-Subject: building yocto image from git always switches branch
+Subject: [meta-raspberrypi][PATCH] rpi-first-run-wizard: fix QA Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,44 +23,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Mar 2013 16:34:08 -0000
-Content-Type: text/plain; charset="ISO-8859-15"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 12 Mar 2013 20:56:58 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-I currently try to create a kernel and rootfs image based on yocto 1.3.
-I cloned the poky git repository and switched to danny branch.
+ERROR: QA Issue: .../meta-raspberrypi/recipes-extra/startup/rpi-first-run-wizard.bb:
+Variable RDEPENDS is set as not being package specific, please fix this.
 
-For some reason during the bitbake run for creating the image the branch 
-of my local git repository is always switched to master, which of course 
-won't match with the other layers I checked out for danny.
+Signed-off-by: Eric Bénard <eric@eukrea.com>
+---
+ recipes-extra/startup/rpi-first-run-wizard.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Currently I do the following:
+diff --git a/recipes-extra/startup/rpi-first-run-wizard.bb b/recipes-extra/startup/rpi-first-run-wizard.bb
+index c5cef7c..f3ac8b4 100644
+--- a/recipes-extra/startup/rpi-first-run-wizard.bb
++++ b/recipes-extra/startup/rpi-first-run-wizard.bb
+@@ -3,7 +3,7 @@ LICENSE = "GPLV2"
+ LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+ DEPENDS = "zenity dbus"
+-RDEPENDS = "slim sudo zenity dbus"
++RDEPENDS_${PN} = "slim sudo zenity dbus"
+ 
+ COMPATIBLE_MACHINE = "raspberrypi"
+ 
+-- 
+1.7.11.7
 
-#!/bin/bash
-
-if [ ! -e poky ]; then
-   git clone git://git.yoctoproject.org/poky.git
-   cd poky
-   git checkout -b danny remotes/origin/danny
-   cd ..
-fi
-if [ ! -e poky/meta-ti ]; then
-   git clone -b danny git://git.yoctoproject.org/meta-ti poky/meta-ti
-fi
-
-After the checkout I copy some configuration files to the build/conf 
-directory within the poky directory (bblayers.conf, local.conf) and an 
-additional layer for our specific hardware module.
-
-When I change to the build directory and start building the image using 
-bitbake, there seems to be a git call somewhere in the recipes that 
-switches the branch of the poky git checkout back to master. Of course 
-that results in a total misbehaviour of the build process, as the 
-underlaying recipes changes during the build.
-
-Can someone explain that behaviour? Is that a bug or is there something 
-I'm doing wrong.
-
-Kind regards,
-     Volker
 
