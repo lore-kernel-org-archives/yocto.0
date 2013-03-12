@@ -1,32 +1,32 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B030FE00738
-	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 15:32:53 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Mar 2013 15:32:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,825,1355126400"; d="scan'208";a="300340603"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by fmsmga001.fm.intel.com with ESMTP; 11 Mar 2013 15:32:52 -0700
-Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 11 Mar 2013 15:32:52 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
-	ORSMSX154.amr.corp.intel.com ([10.22.226.12]) with mapi id
-	14.01.0355.002; Mon, 11 Mar 2013 15:32:52 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, March
-	12, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac4eqERfZZ/eHaN2QEKotHYVJdMyAAAAAb2A
-Date: Mon, 11 Mar 2013 22:32:51 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70F0BFCE@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0ED2CE00738
+	for <yocto@yoctoproject.org>; Mon, 11 Mar 2013 17:14:23 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r2C0EIFh017399
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 11 Mar 2013 17:14:18 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.22.23) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.2.342.3; Mon, 11 Mar 2013 17:14:18 -0700
+Message-ID: <513E7359.6060205@windriver.com>
+Date: Mon, 11 Mar 2013 20:14:17 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, March 12, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: David Mulder <dmulder@lasx.com>
+References: <19F0379280417C4A8FE3BD23AA7298E501347DE7@EXMBX202A.mmeprod.cbeyond>
+	<513AAC65.1050002@windriver.com>
+	<19F0379280417C4A8FE3BD23AA7298E501347F1C@EXMBX202A.mmeprod.cbeyond>
+	<CAHUNapTCYUy5GML7N4xaAH=HsV5wHf5k8kJJGGntS+AoMvFq6w@mail.gmail.com>
+	<19F0379280417C4A8FE3BD23AA7298E501347F52@EXMBX202A.mmeprod.cbeyond>
+	<513E1843.3070604@windriver.com>
+	<19F0379280417C4A8FE3BD23AA7298E501347F87@EXMBX202A.mmeprod.cbeyond>
+In-Reply-To: <19F0379280417C4A8FE3BD23AA7298E501347F87@EXMBX202A.mmeprod.cbeyond>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can I disable RT throttling?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,137 +38,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2013 22:32:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 12 Mar 2013 00:14:23 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto Project 1.3.1 status - 10 min (Ross)
-* Yocto 1.4 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
-* SWAT team rotation: Bogdan Marinescu -> Laurentiu Palcu
-* Opens - 10 min=20
-  - 1.5 planning
-* Team Sharing - 20 min
+On 13-03-11 2:13 PM, David Mulder wrote:
+>>> Will that work on a core that's offline?
+>>
+>> Nope. Only with an online core controlled by the Linux scheduler.
+>> If you do end up trying to get AMP working, you need to plumbing
+>> to load the other OS/kernel in a reserved memory location, set the
+>> program counter and start the OS.
+>>
+>> But that secondary OS has to know how to behave in a system that
+>> it doesn't control, and you'll need ways to communicate with it
+>> from Linux.
+>>
+>> remoteproc/rpmsg can solve some of the issues that I mention, but
+>> it is far from out of the box.
+>>
+>> That's why there's more interest in running a single task with
+>> exclusive CPU in userspace. The work and scaffolding required to
+>> get an AMP system up and running is non trivial.
+>
+> I kinda thought so, but I was hopeful.
+>
+> After speaking with some co-workers, I have a new perspective on these delays:  yes, we are trying to do a 10us control loop, but if we miss a step or two occasionally we can accept that.  And looking online I see people indicating context switch times well below 10us (Core-i cpus), which is better than I had anticipated, and should be workable.  So I'm going to approach this problem by just trying to squeeze the kernel as much as I can.  Some things that I see to squeeze are /dev/cpu_dma_latency (should be 0) or max_cstate (should be as low as possible (0, maybe 1)), possibly idle=poll.  Are there other kernel parameters that can minimize kernel interference/time?  And perhaps hints about how to set them in Yocto or menuconfig?
 
+There's nothing "out of the box" that I can recommend, outside of saying
+"it depends on your platform". It's a matter of knowing your devices,
+their interrupts, and the configuration of your kernel. Using things
+like CONFIG_NOHZ will remove the timer tick, and hence ticks that you
+may not need, you want to move device interrupts off your core, except
+for the one that you want. Use cgroups/cpusets to control resources and
+the scheduler off your core with "other" tasks. pin/lock memory to
+avoid page faults, etc.
 
------Original Appointment-----
+If you check out the preempt-rt wiki page on kernel.org, a lot of the
+information there applies to making sure that your prioritized thread
+gets the most run time that it can.
 
+As we progress with the meta-realtime layer, scripts for the above,
+system configuration, services and will be part of the layer and might
+be of use.
 
+Cheers,
 
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
-
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-76994298
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x76994298#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
-
-Local and Global Access Numbers=20
+Bruce
 
 
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
-
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 26, 2012
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 21, 2013, 10:40 AM CDT
-
-
+>
+> Thanks!
+> Dave
 
 
