@@ -1,34 +1,29 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f43.google.com (mail-vb0-f43.google.com
-	[209.85.212.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72978E01342
-	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 08:17:27 -0700 (PDT)
-Received: by mail-vb0-f43.google.com with SMTP id fs19so2332999vbb.30
-	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 08:17:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=WHScM1uxvsE/Qpt9jO3MscA/igqLlsomSFci7Wd6CkU=;
-	b=WJ+pXiNpkLXrq+BeFaGNpVYoEt/j5AmS4U+jD7tV9ZP/2aP4Z13jvOZKZ6ECyR8Gsd
-	kCZyRMTkTD9TeSjvo8EV+kXlP+yIiIvmGzOVnKCvvInSauxy4b0030BiIOowrNrK41bU
-	LKZQflPey7Cxh4I1eOUdvEXUwDDFQXtZROVFq+OOPnqPEppxAZUAG3jIV6X2izf3+Oiu
-	qsY3IeM8Qxt4gRApsH+X99CpEP9zgPJ4t1ufZbP1C2RWmvL9rosYNj/HE9Y1617IQLDM
-	OxYGFaF2oL4knw8SpOn3tWJA3tT4Xlpv1m7f/Lu/XwHgTz+o6dfssVPQvwmrLXkLaV99
-	BYaQ==
-X-Received: by 10.52.230.197 with SMTP id ta5mr3579812vdc.103.1363101446756;
-	Tue, 12 Mar 2013 08:17:26 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC6C0E012F1
+	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 08:41:55 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 12 Mar 2013 08:40:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,831,1355126400"; d="scan'208";a="277420732"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga001.jf.intel.com with ESMTP; 12 Mar 2013 08:41:11 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.124]) with mapi id
+	14.01.0355.002; Tue, 12 Mar 2013 08:41:11 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, March
+	12, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac4fN+xiWWaQ92WhSASGDFXF6SdPJwAAA2HA
+Date: Tue, 12 Mar 2013 15:41:10 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70F0C855@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Received: by 10.58.232.226 with HTTP; Tue, 12 Mar 2013 08:17:06 -0700 (PDT)
-In-Reply-To: <20130312150751.17B58E01466@yocto-www.yoctoproject.org>
-References: <20130312150751.17B58E01466@yocto-www.yoctoproject.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 12 Mar 2013 08:17:06 -0700
-Message-ID: <CAJTo0LbX-o5C5HMKPPLjYyqnQoHUy+cW+ySYjE7ad5jRtAxbnQ@mail.gmail.com>
-To: "Saridakis, Dean (US SSA)" <dean.saridakis@baesystems.com>
-X-Gm-Message-State: ALoCoQmuz2I09b4ZA5fn47sEzR+YgPu8QM+iYSIwG6d2bvSF+HCZvK8Iuk5WmAX/RA0y/kM2KeWj
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Makefile package missing
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, March 12, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,25 +35,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Mar 2013 15:17:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 12 Mar 2013 15:41:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 12 March 2013 08:07, Saridakis, Dean   (US SSA)
-<dean.saridakis@baesystems.com> wrote:
-> I have a recipe for a set of simple user applications I need on the rootfs.
-> However, my application package was only built w/ -dev & -dbg suffixes
-> (whereas it looks like everything else also has a 3rd package w/o any
-> suffix).
+Attendees:=20
+AlexD, Cristian, Michael, Jessica, LaurentiuP, JeffP, ScottR, PaulE, RossB,=
+ Nitin, Corneliu, SeanH, Song
+=A0
+Minutes:
+=A0
+* Opens collection - 5 min (Song)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+  - RC1 QA report is good. RC2 QA report is out, will look at it. coule be =
+releasing this week.=20
+  - Song: will have a release readiness meeting this week if most of the fo=
+lks can make it.
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+  - Feature development: Everything is moving along. No issues. Feature fre=
+eze is coming this Sunday. Please get the code in if you would like to feat=
+ure to make 1.4. Last reminder.=20
+  - Bug fixing: record week last week. Fixed 49, Darren (6), Richard (5). N=
+ow we have 269, about the same as when we started 1.4.
+=A0
+* SWAT team rotation: Ross -> Andrei Dinu
+* Opens - 10 min=20
+  - 1.5 planning is starting. If you have any features or ideas, please put=
+ them in Bugzilla as enhancement bugs.
+* Team Sharing - 20 min
+  - AlexD: debugging qemu program with vmware emulation, Any input, feedbac=
+k please let me know.
+  - Cristian: worked on build appliance. Noticed a problem, if the user run=
+s in vmware and using a proxy, the NAT will not connect the internet. Fix i=
+s to modify the configuration. Sent experimental patches for bluz5. the int=
+egration of bluz5 could be good for 1.5.
+  - MichaelH: looked at mailing list issue. Some people receiving emails 7 =
+hours after. Done some changes how plc(?) handshake is done, DNS changes, e=
+tc. having better response now. Thinking moving the mail server to a dedica=
+ted machine. If you are still seeing slowdown for emails, let me know. Work=
+ing on charts generation this week. Will be working with Laurentiu. Could b=
+e replacing the bug trend charts. AB upgrade is happening. The code is gett=
+ing close to be functional. Will do some test this weekend. Will be some ou=
+tage this Friday to Sunday. Will be separating Intel build AB from YP AB. T=
+hey will be decoupled. That means if other companies want AB to be there th=
+ey won't need to be tightly coupled. Added a new server for OE to run the l=
+ayer index web app done by PaulE.
+=A0
 
-You're installing into /usr/local/bin but not adding those files into
-the package using FILES_${PN}.  The default value of that will pick up
-most relevant files in the prefix, but you're not installing into the
-prefix (if you uncommented the my_bindir=${bindir} line, this should
-work).
-
-It's best to always respect the distro policy and use the variables
-such as bindir, datadir, libdir.  You're files will go to the right
-places and the default FILES_* variables will be used.
-
-Ross
 
