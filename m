@@ -1,25 +1,35 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC5A5E00709
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:03:20 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Mar 2013 10:03:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,838,1355126400"; d="scan'208";a="305675248"
-Received: from unknown (HELO envy.home) ([10.255.13.88])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Mar 2013 10:03:14 -0700
-Message-ID: <5140B150.7050606@linux.intel.com>
-Date: Wed, 13 Mar 2013 10:03:12 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130110 Thunderbird/17.0.2
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD60FE0071D
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:44:24 -0700 (PDT)
+Received: by mail-ve0-f177.google.com with SMTP id m1so971255ves.36
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:44:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:x-originating-ip:in-reply-to:references
+	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=qkkTHJg3FAGmibzTOoz61spNKKy7CnBCIDVh+kb+Whc=;
+	b=F7cfQiF6mKU3E3pvbahLg2stoTf+h14JcXepJAm8jI0FADuEOMzmztNx1QfBNHHgXK
+	X86A7qjd/ikmDT255eduqL1JcCcAsk/N9deeQcfD9MuzPjCn1C/3RC9oRCsJU2tkrBN1
+	7szKhmAjCyFutzTtv9twz1kLkswlU5befEOIJYszwlF02GZSpfP9hBQ8VR0mAmTs84vV
+	SrOV2oZwAysFIgluw+3it6LR2sUwQkjtmBZNMfOXbfNgVJRRnQtIZIOv5sYHbEkcTJD0
+	xuPTntn6iAi+dEQIaeEbW6I5X5mwBWRZmSpxWPDmnKb1YZftlcL4VI+km2J0AmhtGKfo
+	IhnQ==
+X-Received: by 10.220.248.134 with SMTP id mg6mr4407360vcb.2.1363196663865;
+	Wed, 13 Mar 2013 10:44:23 -0700 (PDT)
 MIME-Version: 1.0
-To: Insop Song <insop.song@gmail.com>
-References: <CACzyEJ_9EjNYwy=uy-h-wAyfFXfFQqiHKdavMPaTS8Fcso1H1w@mail.gmail.com>
-In-Reply-To: <CACzyEJ_9EjNYwy=uy-h-wAyfFXfFQqiHKdavMPaTS8Fcso1H1w@mail.gmail.com>
-X-Enigmail-Version: 1.5.1
-Cc: yocto@yoctoproject.org
-Subject: Re: Loading a new yocto image to Intel Fri2 board
+Received: by 10.58.106.97 with HTTP; Wed, 13 Mar 2013 10:44:02 -0700 (PDT)
+X-Originating-IP: [89.121.200.106]
+In-Reply-To: <1360447871-10982-2-git-send-email-andrei@gherzan.ro>
+References: <1360447871-10982-1-git-send-email-andrei@gherzan.ro>
+	<1360447871-10982-2-git-send-email-andrei@gherzan.ro>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 13 Mar 2013 19:44:02 +0200
+Message-ID: <CAK18fxGuvXS6eOt0w5u_L9SZpwwOtWdRRqh1kU8StvFf8kwCAA@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQl328J8Jf3QbIiurYJucH1InpbZSO8+53GtFSFbSz6fDlyWCAiucqcXQ905zgA/5+SSj3Vm
+Subject: Re: [meta-raspberrypi][PATCH 2/7] rpi-default-providers: Use userland as provider for egl and gles2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,64 +41,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Mar 2013 17:03:20 -0000
+X-List-Received-Date: Wed, 13 Mar 2013 17:44:25 -0000
+Content-Type: multipart/alternative; boundary=089e013c6e8ce8e70404d7d1f4ae
+
+--089e013c6e8ce8e70404d7d1f4ae
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 03/10/2013 04:16 AM, Insop Song wrote:
-> Hi,
-> 
-> I have a question on loading a new yocto image to Intel Fri2 board.
-> 
-> 1. Board: Intel Fri2
-> --------------------------
-> 
-> 2. Image: self built sato image with meta-fri2
-> --------------------------
-> I've followed an instruction from
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/meta-fri2/README
-> so do dd image of my sato image to usb as described
-> - "dd if=core-image-sato-fri2-20101207053738.hddimg of=/dev/sdf"
+Merged.
 
 
-Assuming you have the Intel provided UEFI fastboot firmware, I would
-suggest using scripts/contrib/mkefidisk.sh rather than dd'ing the
-hddimg. The hddimg is not in a format that is well supported by EFI.
+On Sun, Feb 10, 2013 at 12:11 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
 
-mkefidisk.sh partitions the target device and creates a proper EFI
-partition and a root partition.
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>  conf/machine/include/rpi-default-providers.inc |    4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/conf/machine/include/rpi-default-providers.inc
+> b/conf/machine/include/rpi-default-providers.inc
+> index 6abab60..86330e8 100644
+> --- a/conf/machine/include/rpi-default-providers.inc
+> +++ b/conf/machine/include/rpi-default-providers.inc
+> @@ -2,6 +2,6 @@
+>
+>  PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
+>  PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
+> -PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
+> -PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"
+> +PREFERRED_PROVIDER_virtual/egl ?= "userland"
+> +PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
+>  PREFERRED_PROVIDER_linux-libc-headers ?= "linux-libc-headers-raspberrypi"
+> --
+> 1.7.9.5
+>
+>
 
-
-> 
-> 3. Sympton: stuck during boot and no ttyusb access
-> --------------------------
-> And connect it to the host USB port.
-> Then I can see the new grub menu that has "boot" and "install", so
-> selected "boot"
-> 
-> However, booting was stuck at around this line,
-> - "0000:03:0a.2: ttyPCH1 at I/O 0x2050 (irq = 41) is a pch_uart"
-> 
-> And I am not able to get the ttyUSB console working either.
-
-
-You don't see GRUB over the serial port? Do you see the UEFI shell on
-the serial port. Does the ttyUSB* device appear on your host machine?
-Are you configured at 115200 8n1?
-
-
-> 4. Others: official sato image for Fri2 is not working either
-> --------------------------
-> Also just to make sure I "dd" the image from the official hdd img, but
-> the result is the same as my own image.
-> 
-> Anyone has tried the same? please let me know.
-
-
-Try mkefidisk.sh and let us know the result.
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
 
+--089e013c6e8ce8e70404d7d1f4ae
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Merged.</div><div class=3D"gmail_extra"><br><br><div class=
+=3D"gmail_quote">On Sun, Feb 10, 2013 at 12:11 AM, Andrei Gherzan <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@=
+gherzan.ro</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Signed-off-by: Andrei Gherzan &lt;<a href=3D=
+"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt;<br>
+---<br>
+=A0conf/machine/include/rpi-default-providers.inc | =A0 =A04 ++--<br>
+=A01 file changed, 2 insertions(+), 2 deletions(-)<br>
+<br>
+diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/=
+include/rpi-default-providers.inc<br>
+index 6abab60..86330e8 100644<br>
+--- a/conf/machine/include/rpi-default-providers.inc<br>
++++ b/conf/machine/include/rpi-default-providers.inc<br>
+@@ -2,6 +2,6 @@<br>
+<br>
+=A0PREFERRED_PROVIDER_virtual/kernel =3D &quot;linux-raspberrypi&quot;<br>
+=A0PREFERRED_PROVIDER_virtual/xserver =3D &quot;xserver-xorg&quot;<br>
+-PREFERRED_PROVIDER_virtual/egl ?=3D &quot;vc-graphics-hardfp&quot;<br>
+-PREFERRED_PROVIDER_virtual/libgles2 ?=3D &quot;vc-graphics-hardfp&quot;<br=
+>
++PREFERRED_PROVIDER_virtual/egl ?=3D &quot;userland&quot;<br>
++PREFERRED_PROVIDER_virtual/libgles2 ?=3D &quot;userland&quot;<br>
+=A0PREFERRED_PROVIDER_linux-libc-headers ?=3D &quot;linux-libc-headers-rasp=
+berrypi&quot;<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+1.7.9.5<br>
+<br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"tex=
+t-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Rom=
+an&#39;;font-size:medium">
+
+<b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
+n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
+-1"><br></font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.74=
+4.478.414 | =A0f: +40.31.816.28.12</font><br>
+
+</div></div></div>
+</div>
+
+--089e013c6e8ce8e70404d7d1f4ae--
