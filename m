@@ -1,28 +1,26 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qe0-f47.google.com (mail-qe0-f47.google.com
-	[209.85.128.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3DF9E0042B
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 12:34:32 -0700 (PDT)
-Received: by mail-qe0-f47.google.com with SMTP id q19so823275qeb.20
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 12:34:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=wp5rY7UQc+IAcbBa9anPSbMdWX/M+ekLIR7KVUfStPA=;
-	b=JPwUsof+1iN3+usqF8O1HzVptaqdrBDO2OGVWgRK5Hkh7iqfcPh/vdpSUTiwc3xDAw
-	aK3lNdOpdXJ78VCIboLHMB+p5d0bMVwxKWlKTbqN7wdeLHivHW2hnQyRKgYB2wnHCjH7
-	9nifV2N6NJYZwgjViJRsm+onE8RjFN5vr3yYErmIt3zd1mzkKL8AqZwcVCpufTvEs9sy
-	m/7fmodqt/QprQfPShKV1GZrSJrjm/VJy6xIszCm7CoUSZ0OUcm6v8OD64kr8BjOVizm
-	P6tZWt1LiqdBkhx7KK8lASkMI/thqZBLLQQa0F9kMJiJYvtu3vXgJy2OQ2EoLEtc8NE8
-	coCQ==
-MIME-Version: 1.0
-X-Received: by 10.229.106.203 with SMTP id y11mr5860365qco.47.1363203272276;
-	Wed, 13 Mar 2013 12:34:32 -0700 (PDT)
-Received: by 10.49.67.98 with HTTP; Wed, 13 Mar 2013 12:34:32 -0700 (PDT)
-Date: Wed, 13 Mar 2013 20:34:32 +0100
-Message-ID: <CAFyqS9pPywJFkh+60oOqse0oUjrp3qJuOqNZ4dXH3cbb40UXbQ@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Problem compiling util-linux-native
+Return-Path: <thaytan@noraisin.net>
+Received: from noraisin.net (198.23.233.220.static.exetel.com.au
+	[220.233.23.198])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8468CE0073A
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 13:58:18 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by noraisin.net (Postfix) with ESMTP id 4E2F83380E11;
+	Thu, 14 Mar 2013 07:58:16 +1100 (EST)
+X-Virus-Scanned: Debian amavisd-new at decorama.com.au
+Received: from noraisin.net ([127.0.0.1])
+	by localhost (mail.decorama.com.au [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id uQ0yf2tGK2dA; Thu, 14 Mar 2013 07:58:11 +1100 (EST)
+Received: from shorty.home. (113.94.233.220.static.exetel.com.au
+	[220.233.94.113])
+	by noraisin.net (Postfix) with ESMTPA id 1DCA33380E03;
+	Thu, 14 Mar 2013 07:58:11 +1100 (EST)
+From: Jan Schmidt <thaytan@noraisin.net>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Thu, 14 Mar 2013 07:57:59 +1100
+Message-Id: <1363208280-32663-1-git-send-email-thaytan@noraisin.net>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [PATCH] sdcard-image: Use the size of the generated rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,91 +32,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Mar 2013 19:34:33 -0000
-Content-Type: multipart/alternative; boundary=0023544701dccd071b04d7d37e33
+X-List-Received-Date: Wed, 13 Mar 2013 20:58:20 -0000
 
---0023544701dccd071b04d7d37e33
-Content-Type: text/plain; charset=ISO-8859-1
+When constructing the SD card image, the code was using
+the inherited ROOTFS_SIZE, which is the size of the
+rootfs contents. When building (for example) a compressed
+rootfs, this allocates a partition much larger than necessary.
 
-Hi. I just moved from a x86 Ubuntu host to SuSE x86_64. Now I have issues
-getting my ARM image to build due to compilation errors in util-linux?
-It seems it is the util-linux-native that fails even though I get this in
-the end:
+Instead, take the size of the generated rootfs file that is
+about to be written into the generated image, and round it
+up to the IMAGE_ROOTFS_ALIGNMENT size.
 
-*  ERROR: Task 432 (virtual:native:/home/poky/meta/recipes-core/util-linux/
-util-linux_2.22.2.bb, do_compile) failed with exit code '1'*
+Fix some comments - the alignment is 4MiB, not 4KiB.
+
+Signed-off-by: Jan Schmidt <thaytan@noraisin.net>
+---
+ classes/sdcard_image-rpi.bbclass |   30 ++++++++++++++++++------------
+ 1 file changed, 18 insertions(+), 12 deletions(-)
+
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 421f561..3f0a16e 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -13,14 +13,14 @@ inherit image_types
+ #                                                     Default Free space = 1.3x
+ #                                                     Use IMAGE_OVERHEAD_FACTOR to add more space
+ #                                                     <--------->
+-#            4KiB              20MiB           SDIMG_ROOTFS
++#            4MiB              20MiB           SDIMG_ROOTFS
+ # <-----------------------> <----------> <---------------------->
+-#  ------------------------ ------------ ------------------------ -------------------------------
+-# | IMAGE_ROOTFS_ALIGNMENT | BOOT_SPACE | ROOTFS_SIZE            |     IMAGE_ROOTFS_ALIGNMENT    |
+-#  ------------------------ ------------ ------------------------ -------------------------------
+-# ^                        ^            ^                        ^                               ^
+-# |                        |            |                        |                               |
+-# 0                      4096     4KiB + 20MiB       4KiB + 20Mib + SDIMG_ROOTFS   4KiB + 20MiB + SDIMG_ROOTFS + 4KiB
++#  ------------------------ ------------ ------------------------
++# | IMAGE_ROOTFS_ALIGNMENT | BOOT_SPACE | ROOTFS_SIZE            |
++#  ------------------------ ------------ ------------------------
++# ^                        ^            ^                        ^
++# |                        |            |                        |
++# 0                      4MiB     4MiB + 20MiB       4MiB + 20Mib + SDIMG_ROOTFS
+ 
+ 
+ # Set kernel and boot loader
+@@ -29,7 +29,7 @@ IMAGE_BOOTLOADER ?= "bcm2835-bootfiles"
+ # Boot partition volume id
+ BOOTDD_VOLUME_ID ?= "${MACHINE}"
+ 
+-# Boot partition size [in KiB]
++# Boot partition size [in KiB] (will be rounded up to IMAGE_ROOTFS_ALIGNMENT)
+ BOOT_SPACE ?= "20480"
+ 
+ # Set alignment to 4MB [in KiB]
+@@ -60,18 +60,24 @@ IMAGE_CMD_rpi-sdimg () {
+ 	# Align partitions
+ 	BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE} + ${IMAGE_ROOTFS_ALIGNMENT} - 1)
+ 	BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE_ALIGNED} - ${BOOT_SPACE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})
+-	SDIMG_SIZE=$(expr ${IMAGE_ROOTFS_ALIGNMENT} + ${BOOT_SPACE_ALIGNED} + $ROOTFS_SIZE + ${IMAGE_ROOTFS_ALIGNMENT})
++	ROOTFS_SIZE=`du -bks ${SDIMG_ROOTFS} | awk '{print $1}'`
++        # Round up RootFS size to the alignment size as well
++	ROOTFS_SIZE_ALIGNED=$(expr ${ROOTFS_SIZE} + ${IMAGE_ROOTFS_ALIGNMENT} - 1)
++	ROOTFS_SIZE_ALIGNED=$(expr ${ROOTFS_SIZE_ALIGNED} - ${ROOTFS_SIZE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})
++	SDIMG_SIZE=$(expr ${IMAGE_ROOTFS_ALIGNMENT} + ${BOOT_SPACE_ALIGNED} + ${ROOTFS_SIZE_ALIGNED})
++
++	echo "Creating filesystem with Boot partition ${BOOT_SPACE_ALIGNED} KiB and RootFS ${ROOTFS_SIZE_ALIGNED} KiB"
+ 
+ 	# Initialize sdcard image file
+-	dd if=/dev/zero of=${SDIMG} bs=1 count=0 seek=$(expr 1024 \* ${SDIMG_SIZE})
++	dd if=/dev/zero of=${SDIMG} bs=1024 count=0 seek=${SDIMG_SIZE}
+ 
+ 	# Create partition table
+ 	parted -s ${SDIMG} mklabel msdos
+ 	# Create boot partition and mark it as bootable
+ 	parted -s ${SDIMG} unit KiB mkpart primary fat32 ${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT})
+ 	parted -s ${SDIMG} set 1 boot on
+-	# Create rootfs partition
+-	parted -s ${SDIMG} unit KiB mkpart primary ext2 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT} \+ ${ROOTFS_SIZE})
++	# Create rootfs partition to the end of disk
++	parted -s ${SDIMG} -- unit KiB mkpart primary ext2 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) -1s
+ 	parted ${SDIMG} print
+ 
+ 	# Create a vfat image with boot files
+-- 
+1.7.10.4
 
 
-Here is the actual error reported from the log:
-
-   | *gcc -std=gnu99 -DHAVE_CONFIG_H -I.  -include config.h -I./include
--DLOCALEDIR=\"/home/poky/build/tmp/sysroots/x86_64-linux/usr/share/locale\"
--D_PATH_LOCALSTATEDIR=\"/home/poky/build/tmp/sysroots/x86_64-linux/var\"
--isystem/home/poky/build/tmp/sysroots/x86_64-linux/usr/include
--fsigned-char -fno-common -Wall -Werror=sequence-point -Wextra
--Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes
--Wno-missing-field-initializers -Wredundant-decls -Wsign-compare
--Wtype-limits -Wuninitialized -Wunused-parameter -Wunused-result
--Wunused-variable
--isystem/home/poky/build/tmp/sysroots/x86_64-linux/usr/include -O2 -pipe -c
--o misc-utils/procs.o misc-utils/procs.c
-| In file included from misc-utils/lsblk.c:46:0:
-| /usr/include/libudev.h:28:2: error: #error "#define
-LIBUDEV_I_KNOW_THE_API_IS_SUBJECT_TO_CHANGE is needed to use this
-experimental library version"*
-
-
-I dit not get this error on the Ubuntu host. In fact /usr/include/libudev.h
-does not even exist and I dont think util-linux-native is even built.
-Why is it built on the SuSE host? Trying to define
-LIBUDEV_I_KNOW_THE_API_IS_SUBJECT_TO_CHANGE only made be pass the first
-error, then I got into issues with unresolved udev symbols instead. Is a
-no-go to try to use the Yocto environment on this SuSE host? It does warn
-about it :(
-
-*WARNING: Host distribution "SUSE-LINUX-11" has not been validated with
-this version of the build system; you may possibly experience unexpected
-failures. It is recommended that you use a tested distribution.*
-
-I am currently on branch:master
-
-Hans
-
---0023544701dccd071b04d7d37e33
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi. I just moved from a x86 Ubuntu host to SuSE x86_64. Now I have issues g=
-etting my ARM image to build due to compilation errors in util-linux?<br>It=
- seems it is the util-linux-native that fails even though I get this in the=
- end:<br>
-<br><i>=A0 ERROR: Task 432 (virtual:native:/home/poky/meta/recipes-core/uti=
-l-linux/<a href=3D"http://util-linux_2.22.2.bb">util-linux_2.22.2.bb</a>, d=
-o_compile) failed with exit code &#39;1&#39;</i><br><br><br>Here is the act=
-ual error reported from the log:<br>
-<br>=A0=A0 | <i>gcc -std=3Dgnu99 -DHAVE_CONFIG_H -I.=A0 -include config.h -=
-I./include -DLOCALEDIR=3D\&quot;/home/poky/build/tmp/sysroots/x86_64-linux/=
-usr/share/locale\&quot; -D_PATH_LOCALSTATEDIR=3D\&quot;/home/poky/build/tmp=
-/sysroots/x86_64-linux/var\&quot; -isystem/home/poky/build/tmp/sysroots/x86=
-_64-linux/usr/include -fsigned-char -fno-common -Wall -Werror=3Dsequence-po=
-int -Wextra -Wmissing-declarations -Wmissing-parameter-type -Wmissing-proto=
-types -Wno-missing-field-initializers -Wredundant-decls -Wsign-compare -Wty=
-pe-limits -Wuninitialized -Wunused-parameter -Wunused-result -Wunused-varia=
-ble -isystem/home/poky/build/tmp/sysroots/x86_64-linux/usr/include -O2 -pip=
-e -c -o misc-utils/procs.o misc-utils/procs.c<br>
-| In file included from misc-utils/lsblk.c:46:0:<br>| /usr/include/libudev.=
-h:28:2: error: #error &quot;#define LIBUDEV_I_KNOW_THE_API_IS_SUBJECT_TO_CH=
-ANGE is needed to use this experimental library version&quot;</i><br><br>
-<br>I dit not get this error on the Ubuntu host. In fact /usr/include/libud=
-ev.h does not even exist and I dont think util-linux-native is even built. =
-<br>Why is it built on the SuSE host? Trying to define LIBUDEV_I_KNOW_THE_A=
-PI_IS_SUBJECT_TO_CHANGE only made be pass the first error, then I got into =
-issues with unresolved udev symbols instead. Is a no-go to try to use the Y=
-octo environment on this SuSE host? It does warn about it :(<br>
-<br><i>WARNING: Host distribution &quot;SUSE-LINUX-11&quot; has not been va=
-lidated with this version of the build system; you may possibly experience =
-unexpected failures. It is recommended that you use a tested distribution.<=
-/i><br>
-<br>I am currently on branch:master<br><br>Hans<br><br><br>
-
---0023544701dccd071b04d7d37e33--
