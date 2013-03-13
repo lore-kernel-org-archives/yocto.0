@@ -1,32 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f45.google.com (mail-vb0-f45.google.com
-	[209.85.212.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84109E0071D
-	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 14:20:50 -0700 (PDT)
-Received: by mail-vb0-f45.google.com with SMTP id p1so134634vbi.32
-	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 14:20:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=3xyIzRBu/aBokJ9BNOXIkL1NeAhYX2nfK5RvDWUnqOE=;
-	b=SvYL2FnLQ4F6xR5QkzVHAjO8M2bSg/5M+o0O+rcUsuKLrkyRJRQhBMQMX0Bp3mdC9M
-	5Q/N1kNJykUVctIUV4kJZ2jCpBqFc7BvG1VtXf7ZdqlcvIb4EN7VmmU8qy+8fIMp6KSz
-	/aNFYOZW8QCxEpTuLd5/mB5EJX9viR+4UaM/MqoVmfgPszRK/BhHcJe+gk8xqCGj5uq/
-	ywbWfDpVyumRxaLjnbSZEk5dt+93atEq12ZF1tf2eyeT5lWy3evgN1Zgs2erTkvgkBmj
-	RS6FikUE48g3zgGG/9s8wTbvc3ec1U/rNsXDOgYFrYJpr7UVSnrjHSkuGVnQv9dAJtGS
-	IWxw==
-X-Received: by 10.58.198.79 with SMTP id ja15mr7386148vec.15.1363123249574;
-	Tue, 12 Mar 2013 14:20:49 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.58.232.226 with HTTP; Tue, 12 Mar 2013 14:20:28 -0700 (PDT)
-In-Reply-To: <F1069DB4DED5494AA1DC65CB388B29EA@PAULD>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-kukur.atl.sa.earthlink.net
+	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4166EE0121B
+	for <yocto@yoctoproject.org>; Tue, 12 Mar 2013 18:20:44 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=COpO35Kgbdk12RVXNoO3oG6/Igh+MIdlCFBwOjVU5bUoXcViLvCgPLyTwhYTCRIJ;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UFaN1-0004Ax-0j; Tue, 12 Mar 2013 21:20:43 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>
 References: <F1069DB4DED5494AA1DC65CB388B29EA@PAULD>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 12 Mar 2013 14:20:28 -0700
-Message-ID: <CAJTo0LYzZvQZ1CvXGtO2Sj8nLrzPgtb8M61gRwz+Y_p_HhPuYw@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-X-Gm-Message-State: ALoCoQm57kB440Hp7RVrBj3Jlmf6uoLW0noFz7hmzRfyAkBIXJWO7jSVUvluCXbrVYHghzmO9X5T
+	<CAJTo0LYzZvQZ1CvXGtO2Sj8nLrzPgtb8M61gRwz+Y_p_HhPuYw@mail.gmail.com>
+In-Reply-To: <CAJTo0LYzZvQZ1CvXGtO2Sj8nLrzPgtb8M61gRwz+Y_p_HhPuYw@mail.gmail.com>
+Date: Tue, 12 Mar 2013 18:20:32 -0700
+Message-ID: <3C8645632D634EAC903E8930B57F4777@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4fZ3xulNSkT/s8RbCjYi6/anm3ZAAH9syg
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688f41626e27beb0b085d88632c57eb5ff7350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
 Subject: Re: Can't find guile-2.0
 X-BeenThere: yocto@yoctoproject.org
@@ -40,20 +36,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Mar 2013 21:20:50 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 13 Mar 2013 01:20:44 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On 12 March 2013 02:28, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
-> I'm bitbaking a console image for an Atom, which worked when I did a plain
-> vanilla version. Now I've added the OpenEmbedded layer containing Samba, and
-> it's failing on one thing. The error message points me to a 5000-line log
-> file called
-> build/tmp/work/i686-linux/autogen-native-5.12-r3/temp/log.do_configure.5923,
-> and it seems to be getting errors looking for Guile. The configure script
-> says this:
+> From: Burton, Ross
+> 
+> autogen-native should be building guile-native, you won't need the
+> host guile.  Can you confirm that by running "bitbake guile-native"?
 
-autogen-native should be building guile-native, you won't need the
-host guile.  Can you confirm that by running "bitbake guile-native"?
+It says "attempted 145 tasks of which 145 didn't need to be rerun". So it
+thinks it's already there.
 
-Ross
+Or is it now confused by the fact that I installed a version with apt-get? I
+had gotten the same error message about the missing guile both before and
+after installing it with apt-get, yet apt-get did in fact download and
+install something.
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
