@@ -1,38 +1,35 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAAD3E0073E
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:50:51 -0700 (PDT)
-Received: by mail-vc0-f175.google.com with SMTP id p1so702057vcq.34
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:50:51 -0700 (PDT)
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 318F0E00738
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:55:35 -0700 (PDT)
+Received: by mail-vb0-f48.google.com with SMTP id fc21so643139vbb.7
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:55:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=x-received:mime-version:x-originating-ip:in-reply-to:references
 	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=JotynKu8pPOrsW6NsV6RV/R2hgJ25vmB708daJxLarA=;
-	b=O/+sn6r9F121IniBvsCle7S73/2+ushuFg8jpVACNhKe6u43pOD9Ir88AccwT+AlRr
-	NWDbyzmdZMRbATXWxJen4L6+daUvXbuGJthVJnmToUMC8AV/9fdnL/KdHDYWMcKx/CcA
-	Yxr1+n91sjpWszLbcvKH7+STQLOb7eP9V/8CbLTyiRgE/0WO4X72t3QnIP6or+ttkfXD
-	c5pgA/ROtyMIq+naN64+pMegg6g93Skrg597zFNZF97GV0djcluenpMNux3PPomcvlDW
-	dzYRClAp07AfcT9zQGdfBeYau/s7xtUXH2WYskLUfPQU59xW5R8/ncWnnRfO2kpM+SUR
-	LdvQ==
-X-Received: by 10.221.11.16 with SMTP id pc16mr6560951vcb.48.1363197051343;
-	Wed, 13 Mar 2013 10:50:51 -0700 (PDT)
+	bh=GYkLwXjhw1OSnDmBq3K5vp0+SciF3r/5iFTawTZyHgA=;
+	b=OGQUeMnlsGyS5AojGS3muaaeU6qwNswkXspdb35AKzdH2Fg5KBIBRpdVKYK1Z1qoVs
+	QZTBShaQ6fdU3a2r42mA8BocER/TUDJq7H7N4/fS+xlioJY0XYMB3M8xemOe6nXJS5+d
+	r+fPWujcVI9ufp60euiP5wkSVQINJ1FGml4BIUi5nwCsk966hZJV21N3QlP1aPae4lFk
+	C44oAnxcbL/dWOGQ/C838pYxROD6o7Dpq2t+A5iOL320BrfJaoXpepxD9/FJpThT0p+G
+	l2Mp9AjLDHmS5zPk2iYmCl5N2xfE8MpNNgGUXmjlco17w8qrDuRMdM8mKjblX8gHoRBf
+	szAw==
+X-Received: by 10.52.177.161 with SMTP id cr1mr7380983vdc.64.1363197334655;
+	Wed, 13 Mar 2013 10:55:34 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.58.106.97 with HTTP; Wed, 13 Mar 2013 10:50:31 -0700 (PDT)
+Received: by 10.58.106.97 with HTTP; Wed, 13 Mar 2013 10:55:14 -0700 (PDT)
 X-Originating-IP: [89.121.200.106]
-In-Reply-To: <511A7D86.1040703@philipp-wagner.com>
-References: <1359582698-24226-1-git-send-email-lists@philipp-wagner.com>
-	<1359582698-24226-2-git-send-email-lists@philipp-wagner.com>
-	<CAK18fxFWNxYDkoJi1jzkeMsmNpN+3QDvWcxfVJqqPb=HKumChA@mail.gmail.com>
-	<511A7D86.1040703@philipp-wagner.com>
+In-Reply-To: <1363121807-15304-1-git-send-email-eric@eukrea.com>
+References: <1363121807-15304-1-git-send-email-eric@eukrea.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 13 Mar 2013 19:50:31 +0200
-Message-ID: <CAK18fxHR30=v6XmhYiNoQe3Uh_C0yum31hyaUhXhajDy5KAO3A@mail.gmail.com>
-To: Philipp Wagner <lists@philipp-wagner.com>
-X-Gm-Message-State: ALoCoQn+M0SxtPGgvDlu8CAAmVB0Z/d/sLcRIv1iqF+pSLXfDAtTkq5VSwlO0QUPY0jFX4rLS8he
+Date: Wed, 13 Mar 2013 19:55:14 +0200
+Message-ID: <CAK18fxF=mToJ+oHpQA1-=zEGUx7dDtR+aweBMTQ6H0+UNuLueA@mail.gmail.com>
+To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>
+X-Gm-Message-State: ALoCoQmgz5LkFn+pwM/5lHJ/denGOolnRcrzHwkoW7dklt1VaV2GUFoQiDA19s/ovwsobjHIoDBP
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] Choose correct ABI version of graphics binaries
+Subject: Re: [meta-raspberrypi][PATCH] rpi-first-run-wizard: fix QA Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,59 +41,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Mar 2013 17:50:52 -0000
-Content-Type: multipart/alternative; boundary=bcaec54eee8001191a04d7d20ce3
+X-List-Received-Date: Wed, 13 Mar 2013 17:55:35 -0000
+Content-Type: multipart/alternative; boundary=20cf3071ceace4252904d7d21cf3
 
---bcaec54eee8001191a04d7d20ce3
+--20cf3071ceace4252904d7d21cf3
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-I will drop this patch as we use useland now as default provider.
+Hello,
 
-Thank you.
+There was already a patch in queue. Thank you and fix was merged in master.
 
 
-On Tue, Feb 12, 2013 at 7:36 PM, Philipp Wagner <lists@philipp-wagner.com>wrote:
+On Tue, Mar 12, 2013 at 10:56 PM, Eric B=E9nard <eric@eukrea.com> wrote:
 
-> Am 09.02.2013 23:59, Andrei Gherzan wrote:
-> > I like this change but I think the best way would be to switch to
-> > userland. So we can compile our own libraries. I sent some patches so
-> > please give them a try.
+> ERROR: QA Issue: .../meta-raspberrypi/recipes-extra/startup/
+> rpi-first-run-wizard.bb:
+> Variable RDEPENDS is set as not being package specific, please fix this.
 >
-> I agree that switching to userland is the best solution. I'll give it a
-> try in the next couple days and report back.
+> Signed-off-by: Eric B=E9nard <eric@eukrea.com>
+> ---
+>  recipes-extra/startup/rpi-first-run-wizard.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> Philipp
+> diff --git a/recipes-extra/startup/rpi-first-run-wizard.bbb/recipes-extra=
+/startup/
+> rpi-first-run-wizard.bb
+> index c5cef7c..f3ac8b4 100644
+> --- a/recipes-extra/startup/rpi-first-run-wizard.bb
+> +++ b/recipes-extra/startup/rpi-first-run-wizard.bb
+> @@ -3,7 +3,7 @@ LICENSE =3D "GPLV2"
+>  LIC_FILES_CHKSUM =3D
+> "file://${WORKDIR}/LICENSE;md5=3Db234ee4d69f5fce4486a80fdaf4a4263"
+>
+>  DEPENDS =3D "zenity dbus"
+> -RDEPENDS =3D "slim sudo zenity dbus"
+> +RDEPENDS_${PN} =3D "slim sudo zenity dbus"
+>
+>  COMPATIBLE_MACHINE =3D "raspberrypi"
+>
+> --
+> 1.7.11.7
+>
 >
 
 
-
--- 
+--=20
 *Andrei Gherzan*
 m: +40.744.478.414 |  f: +40.31.816.28.12
 
---bcaec54eee8001191a04d7d20ce3
+--20cf3071ceace4252904d7d21cf3
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I will drop this patch as we use useland now as default pr=
-ovider.<div><br></div><div style>Thank you.</div></div><div class=3D"gmail_=
-extra"><br><br><div class=3D"gmail_quote">On Tue, Feb 12, 2013 at 7:36 PM, =
-Philipp Wagner <span dir=3D"ltr">&lt;<a href=3D"mailto:lists@philipp-wagner=
-.com" target=3D"_blank">lists@philipp-wagner.com</a>&gt;</span> wrote:<br>
+<div dir=3D"ltr"><div style>Hello,</div><div><br></div>There was already a =
+patch in queue. Thank you and fix was merged in master.</div><div class=3D"=
+gmail_extra"><br><br><div class=3D"gmail_quote">On Tue, Mar 12, 2013 at 10:=
+56 PM, Eric B=E9nard <span dir=3D"ltr">&lt;<a href=3D"mailto:eric@eukrea.co=
+m" target=3D"_blank">eric@eukrea.com</a>&gt;</span> wrote:<br>
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">Am 09.02.2013 23:59, Andre=
-i Gherzan wrote:<br>
-&gt; I like this change but I think the best way would be to switch to<br>
-&gt; userland. So we can compile our own libraries. I sent some patches so<=
-br>
-&gt; please give them a try.<br>
+x #ccc solid;padding-left:1ex">ERROR: QA Issue: .../meta-raspberrypi/recipe=
+s-extra/startup/<a href=3D"http://rpi-first-run-wizard.bb" target=3D"_blank=
+">rpi-first-run-wizard.bb</a>:<br>
+
+
+Variable RDEPENDS is set as not being package specific, please fix this.<br=
+>
 <br>
-</div>I agree that switching to userland is the best solution. I&#39;ll giv=
-e it a<br>
-try in the next couple days and report back.<br>
+Signed-off-by: Eric B=E9nard &lt;<a href=3D"mailto:eric@eukrea.com">eric@eu=
+krea.com</a>&gt;<br>
+---<br>
+=A0recipes-extra/startup/<a href=3D"http://rpi-first-run-wizard.bb" target=
+=3D"_blank">rpi-first-run-wizard.bb</a> | 2 +-<br>
+=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/recipes-extra/startup/<a href=3D"http://rpi-first-run-wizard.b=
+b" target=3D"_blank">rpi-first-run-wizard.bb</a> b/recipes-extra/startup/<a=
+ href=3D"http://rpi-first-run-wizard.bb" target=3D"_blank">rpi-first-run-wi=
+zard.bb</a><br>
+
+
+index c5cef7c..f3ac8b4 100644<br>
+--- a/recipes-extra/startup/<a href=3D"http://rpi-first-run-wizard.bb" targ=
+et=3D"_blank">rpi-first-run-wizard.bb</a><br>
++++ b/recipes-extra/startup/<a href=3D"http://rpi-first-run-wizard.bb" targ=
+et=3D"_blank">rpi-first-run-wizard.bb</a><br>
+@@ -3,7 +3,7 @@ LICENSE =3D &quot;GPLV2&quot;<br>
+=A0LIC_FILES_CHKSUM =3D &quot;file://${WORKDIR}/LICENSE;md5=3Db234ee4d69f5f=
+ce4486a80fdaf4a4263&quot;<br>
+<br>
+=A0DEPENDS =3D &quot;zenity dbus&quot;<br>
+-RDEPENDS =3D &quot;slim sudo zenity dbus&quot;<br>
++RDEPENDS_${PN} =3D &quot;slim sudo zenity dbus&quot;<br>
+<br>
+=A0COMPATIBLE_MACHINE =3D &quot;raspberrypi&quot;<br>
 <span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Philipp<br>
+--<br>
+1.7.11.7<br>
+<br>
 </font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
 r><div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"tex=
 t-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Rom=
@@ -110,4 +153,4 @@ n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
 </div></div></div>
 </div>
 
---bcaec54eee8001191a04d7d20ce3--
+--20cf3071ceace4252904d7d21cf3--
