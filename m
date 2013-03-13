@@ -1,39 +1,38 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A795E0073E
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:46:49 -0700 (PDT)
-Received: by mail-vc0-f179.google.com with SMTP id k1so684959vck.38
-	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:46:48 -0700 (PDT)
+Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
+	[209.85.128.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A67C0E0073E
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:47:39 -0700 (PDT)
+Received: by mail-ve0-f178.google.com with SMTP id db10so963937veb.23
+	for <yocto@yoctoproject.org>; Wed, 13 Mar 2013 10:47:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=x-received:mime-version:x-originating-ip:in-reply-to:references
 	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=hpsFmz9bR4G/8NHZk7XlWiPdZTuqJHHvnQgtDh7TyJ4=;
-	b=YrMJk6b6K85okOSiY/iLOp5RhqQI7lOTwf6nT7gqx1+LM2QRuBKFWjH8Oz+tEtWkqW
-	14/2DfX/dYnYscXh8Yopshi9BDHITmJvVu0D4Het13KpIxbUN3Jg6xykxXIWkjvPcNEm
-	ZhZA0ScyQ8erDnVUey7I1em7stHxsw7ivdwnzMB4ZiO+BeL2wlHM1WCcxDr4LI8lCqHF
-	BoGKo7Ed0ZAFC0oT9ASR5mOpxy2+jYE8tUpT3KjczhRyuAR/tXdvIf+N22dJLD+B9hA0
-	y74EuPiEbbxf2fmx3bR9IPK3tc+fQCdbfg76S8SgreSjahC9p7I4jNrlqBJ5NUMPNVcC
-	abdQ==
-X-Received: by 10.52.177.161 with SMTP id cr1mr7369972vdc.64.1363196808435;
-	Wed, 13 Mar 2013 10:46:48 -0700 (PDT)
+	bh=kFevJPp5DiVZIHxL965K1qpwma/U7+lyoxi1sddlWHc=;
+	b=nlcENV42ZkmfQhc6bFO+d0Bl7HPZDU1xZ3L5pXHCT3ylB6aF1dM7Dru6AeuqKCXoip
+	T7rDkHrQ8/gWjFCFz4eY646kLzXwFg/0QOsQVxrvhsnT+frnqpDPUDUxnmEad/KdeavX
+	pAFpYj2qRj/TjEN9QutZColvJBeV23Afqs9iRVPSTZXqRfYiAhkIR4VERihHiinGaTnT
+	Hu6vkqXUxX3p5TaQt+XWzEmgQQNvU+cs9j4/vdGFTOSffukKpEFBKVtCUxx+LdZw0h8l
+	LDXIXbeJQeZxA4z2QxRjKj2c1Ihh6AMGlpIo9QwQuyEtBZfjbtS0T8l3YBYEJzrH+TDK
+	3APQ==
+X-Received: by 10.52.91.212 with SMTP id cg20mr7628515vdb.63.1363196859155;
+	Wed, 13 Mar 2013 10:47:39 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.58.106.97 with HTTP; Wed, 13 Mar 2013 10:46:28 -0700 (PDT)
+Received: by 10.58.106.97 with HTTP; Wed, 13 Mar 2013 10:47:19 -0700 (PDT)
 X-Originating-IP: [89.121.200.106]
-In-Reply-To: <510517ec.8752420a.75af.fffffe36SMTPIN_ADDED_BROKEN@mx.google.com>
-References: <1359199104-10713-1-git-send-email-thaytan@noraisin.net>
-	<20130126224705.GA17428@gmail.com>
-	<51050cf0.a952420a.022b.5f25SMTPIN_ADDED_BROKEN@mx.google.com>
-	<20130127113217.GB25275@gmail.com>
-	<510517ec.8752420a.75af.fffffe36SMTPIN_ADDED_BROKEN@mx.google.com>
+In-Reply-To: <CALbNGRSwHQs-O8dy-MoB2E26jYLXS0UWLHZYSi-0nZtE9Liisg@mail.gmail.com>
+References: <1359064662-17052-1-git-send-email-schnitzeltony@googlemail.com>
+	<1359064662-17052-3-git-send-email-schnitzeltony@googlemail.com>
+	<20130126225837.GA30017@gmail.com>
+	<CALbNGRSwHQs-O8dy-MoB2E26jYLXS0UWLHZYSi-0nZtE9Liisg@mail.gmail.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 13 Mar 2013 19:46:28 +0200
-Message-ID: <CAK18fxES6OVGjCu7n+85KK9iR-hBQdZH6Mtwpg8XUYmi1_VgLg@mail.gmail.com>
-To: Jan Schmidt <thaytan@noraisin.net>
-X-Gm-Message-State: ALoCoQmhuEP3c1cDiiju33YAHRiSjDAeV8KQf07sBX8EagNeHPyjKVCcWWLA/biNl3+ZRw1AOomp
+Date: Wed, 13 Mar 2013 19:47:19 +0200
+Message-ID: <CAK18fxH926QynOx4UwReiKs08f=o2dGxnhMRHHqSqmWcMyVOYw@mail.gmail.com>
+To: =?ISO-8859-1?Q?Andreas_M=FCller?= <schnitzeltony@googlemail.com>
+X-Gm-Message-State: ALoCoQmN/oGWaSnLTGwzw1U5nGtqeLQ6R/ONTHmUBh68L5mc0PzsOtChth25gHDKjW7Y8T8BAYNU
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 3/3] sdcard-image: Use the size of the generated rootfs
+Subject: Re: [meta-raspberrypi][PATCH 2/2] xserver-xf86-config: fix do_install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,385 +44,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Mar 2013 17:46:49 -0000
-Content-Type: multipart/alternative; boundary=20cf3071ceac86a01f04d7d1fd6d
+X-List-Received-Date: Wed, 13 Mar 2013 17:47:39 -0000
+Content-Type: multipart/alternative; boundary=20cf307c9dee8ca53d04d7d2004e
 
---20cf3071ceac86a01f04d7d1fd6d
+--20cf307c9dee8ca53d04d7d2004e
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Any news on this. Still waiting for patches :)
+Hey Andreas,
+
+Is this sill needed? Did you test this lately?
 
 
-On Sun, Jan 27, 2013 at 2:04 PM, Jan Schmidt <thaytan@noraisin.net> wrote:
+On Sun, Jan 27, 2013 at 4:35 PM, Andreas M=FCller <
+schnitzeltony@googlemail.com> wrote:
 
-> On Sun, 2013-01-27 at 13:32 +0200, Andrei Gherzan wrote:
-> > On Sun, Jan 27, 2013 at 10:17:57PM +1100, Jan Schmidt wrote:
-> > > On Sun, 2013-01-27 at 00:47 +0200, Andrei Gherzan wrote:
-> > > > On Sat, Jan 26, 2013 at 10:18:24PM +1100, Jan Schmidt wrote:
-> > > > > When constructing the SD card image, the code was using
-> > > > > the inherited ROOTFS_SIZE, which is the size of the
->
-> *snip*
->
-> > > > > --- a/classes/sdcard_image-rpi.bbclass
-> > > > > +++ b/classes/sdcard_image-rpi.bbclass
-> > > > > @@ -13,14 +13,16 @@ inherit image_types
-> > > > >  #                                                     Default
-> Free space = 1.3x
-> > > > >  #                                                     Use
-> IMAGE_OVERHEAD_FACTOR to add more space
-> > > > >  #                                                     <--------->
-> > > > > -#            4KiB              20MiB           SDIMG_ROOTFS
-> > > > > +#            4KiB             ~20MiB           SDIMG_ROOTFS
-> > > >
-> > > > Why ~20M? As you see in the class BOOT_SPACE ?= "20480". So that is
-> 20MiB.
-> > >
-> > > I was trying to make it clear in the comment that if the user changes
-> > > the BOOT_SPACE size, it will always be rounded up to the nearest 4MB. I
-> > > couldn't think of a great way. Also, I didn't pay enough attention -
-> the
-> > > comment is saying IMAGE_ROOTFS_ALIGNMENT is 4kB, but it should be MiB.
-> > >
+> On Sat, Jan 26, 2013 at 11:58 PM, Andrei Gherzan <andrei@gherzan.ro>
+> wrote:
+> > On Thu, Jan 24, 2013 at 10:57:42PM +0100, Andreas M=FCller wrote:
+> >> for some reason wildcards don't work in current head. Error message wa=
+s:
+> >>
+> >> | DEBUG: Executing shell function do_install
+> >> | install: cannot stat
+> `/home/Superandy/tmp/oe-core-eglibc/work/raspberrypi-angstrom-linux-gnuea=
+bi/xserver-xf86-config/0.1-r18/xorg.conf.d/*':
+> No such file or directory
+> >>
 > >
-> > Uh, I understand now your point here. Well, I don't think that user
-> needs to
-> > know that if he wants 20470 as BOOT_SPACE, he's partition will end up
-> 20480.
-> > Because this is something related to performance and it's in his benefit
-> after
-> > all. So let's drop this for now.
->
-> OK.
->
-> > About the 4kB thing - yes. Needs fix.
->
-> OK.
->
-> *snip*
->
-> > > > >         BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE_ALIGNED} -
-> ${BOOT_SPACE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})
-> > > > > -       SDIMG_SIZE=$(expr ${IMAGE_ROOTFS_ALIGNMENT} +
-> ${BOOT_SPACE_ALIGNED} + $ROOTFS_SIZE + ${IMAGE_ROOTFS_ALIGNMENT})
-> > > > > +       ROOTFS_SIZE=`du -ks ${SDIMG_ROOTFS} | awk '{print $1}'`
-> > > >
-> > > > Are you sure `du -ks ${ROOTFS_SIZE} | awk '{print $1}'` is aligned to
-> > > > IMAGE_ROOTFS_ALIGNMENT? I'm not so sure about this. So you might
-> need to align
-> > > > it the way BOOT_SPACE is aligned.
-> > >
-> > > No, the ROOTFS_SIZE will be whatever the base recipe creates. I don't
-> > > think it will have any particular alignment, except by accident - in
-> the
-> > > sense that it's probably stored on an ext3 filesystem that has 4kB
-> > > allocation blocks and therefore 'du -sk' will round it up to that. We
-> > > would need to explicitly round up to 4MiB, but I'm not sure why to do
-> > > that -
-> > >
+> > I can't reproduce your error. For me this works. Maybe was something
+> broken in
+> > oe-core? Anyway it seems to be fixed now. Would you retest it please
+> Will do that
 > >
-> > Check this out:
-> > http://android.bytearrays.com/android/what-means-sd-card-alignment/
->
-> Sure, but the largst cluster sizes I've seen are 32KB (do they come
-> bigger yet?) 4MiB seems like a large amount for anticipation of future
-> cluster sizes.
->
-> > > > > +       SDIMG_SIZE=$(expr ${IMAGE_ROOTFS_ALIGNMENT} +
-> ${BOOT_SPACE_ALIGNED} + ${ROOTFS_SIZE})
-> > > > >
-> > > > >         # Initialize sdcard image file
-> > > > >         dd if=/dev/zero of=${SDIMG} bs=1 count=0 seek=$(expr 1024
-> \* ${SDIMG_SIZE})
-> > > > > @@ -71,7 +74,7 @@ IMAGE_CMD_rpi-sdimg () {
-> > > > >         parted -s ${SDIMG} unit KiB mkpart primary fat32
-> ${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BOOT_SPACE_ALIGNED} \+
-> ${IMAGE_ROOTFS_ALIGNMENT})
-> > > > >         parted -s ${SDIMG} set 1 boot on
-> > > > >         # Create rootfs partition
-> > > > > -       parted -s ${SDIMG} unit KiB mkpart primary ext2 $(expr
-> ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) $(expr
-> ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT} \+ ${ROOTFS_SIZE})
-> > > > > +       parted -s ${SDIMG} unit KiB mkpart primary ext2 $(expr
-> ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) $(expr ${SDIMG_SIZE} -
-> 1)
-> > > > >         parted ${SDIMG} print
-> > > >
-> > > > Don't think that -1 is needed here.
-> > >
-> > > No, you're right - it shouldn't be. I got a weird error where parted
-> > > failed to create the partition in the image file, saying it ran past
-> the
-> > > end. Possibly related to the error you mentioned you saw that made you
-> > > pad with IMAGE_ROOTFS_ALIGNMENT in the first place. I think I'll
-> > > investigate more.
-> > >
-> > > There's a couple of things to check and fix here, so I think I'll
-> > > withdraw this patch and re-send it later after more testing. The first
-> 2
-> > > patches still should be OK though.
-> > >
+> >> Signed-off-by: Andreas M=FCller <schnitzeltony@googlemail.com>
+> >> ---
+> >>  .../xorg-xserver/xserver-xf86-config_0.1.bbappend  |    6 ++++--
+> >>  1 files changed, 4 insertions(+), 2 deletions(-)
+> >>
+> >> diff --git
+> a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> >> index 65931e2..a8b8e8c 100644
+> >> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> >> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> >> @@ -1,12 +1,14 @@
+> >>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> >>
+> >>  # Don't forget to bump PRINC if you update the extra files.
+> >> -PRINC :=3D "${@int(PRINC) + 5}"
+> >> +PRINC :=3D "${@int(PRINC) + 6}"
+> >>
+> >>  THISDIR :=3D "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+> >>  FILESPATH =3D. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+> >>
+> >> -SRC_URI_append_raspberrypi =3D " file://xorg.conf.d/* "
+> >> +SRC_URI_append_raspberrypi =3D " \
+> >> +     file://xorg.conf.d/10-evdev.conf \
+> >> +"
+> >>
+> > I don't find this lin ebreak necesssary here. And if it was, don't
+> combine
+> > formating commits with other fixes.
 > >
-> > Please do. Btw, after a smoke test the boot process failed with your
-> > modifications:
+> Oops this was left over from some testing.
 >
-> Interesting! That certainly didn't happen for me. It may depend on the
-> exact size and internal layout of the rootfs image being written to the
-> SD image file. I'll test as many combinations as I can before
-> re-submitting.
->
-> J.
->
-> > [    2.274940] mmcblk0: mmc0:b368 SMI   3.84 GiB
-> > [    2.281131]  mmcblk0: p1 p2
-> > [    2.304604] EXT4-fs (mmcblk0p2): feature flags set on rev 0 fs,
-> running
-> > e2fsck is recommended
-> > [    2.313147] EXT4-fs (mmcblk0p2): bad geometry: block count 57344
-> exceeds
-> > size of device (45539 blocks)
-> > [    2.323630] List of all partitions:
-> > [    2.327160] b300         4027392 mmcblk0  driver: mmcblk
-> > [    2.332487]   b301           20480 mmcblk0p1
-> > 00000000-0000-0000-0000-000000000000
-> > [    2.340085]   b302           45539 mmcblk0p2
-> > 00000000-0000-0000-0000-000000000000
-> > [    2.347592] No filesystem could mount root, tried:  ext4
-> > [    2.352910] Kernel panic - not syncing: VFS: Unable to mount root fs
-> on
-> > unknown-block(179,2)
-> > [    2.361384] [<c0013b98>] (unwind_backtrace+0x0/0xf0) from [<c0398cb8>]
-> > (panic+0x90/0x1dc)
-> > [    2.369575] [<c0398cb8>] (panic+0x90/0x1dc) from [<c04ebcb4>]
-> > (mount_block_root+0x1f0/0x250)
-> > [    2.378011] [<c04ebcb4>] (mount_block_root+0x1f0/0x250) from
-> [<c04ebf28>]
-> > (mount_root+0xf0/0x118)
-> > [    2.386879] [<c04ebf28>] (mount_root+0xf0/0x118) from [<c04ec0a4>]
-> > (prepare_namespace+0x154/0x1b4)
-> > [    2.395833] [<c04ec0a4>] (prepare_namespace+0x154/0x1b4) from
-> [<c04eb8f4>]
-> > (kernel_init+0x168/0x1a4)
-> > [    2.404971] [<c04eb8f4>] (kernel_init+0x168/0x1a4) from [<c000eae0>]
-> > (kernel_thread_exit+0x0/0x8)
-> > PANIC: VFS: Unable to mount root fs on unknown-block(179,2
-> >
->
-> --
-> Jan Schmidt <thaytan@noraisin.net>
->
+> Andreas
 >
 
 
--- 
+
+--=20
 *Andrei Gherzan*
 m: +40.744.478.414 |  f: +40.31.816.28.12
 
---20cf3071ceac86a01f04d7d1fd6d
+--20cf307c9dee8ca53d04d7d2004e
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Any news on this. Still waiting for patches :)</div><div c=
-lass=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Sun, Jan 27, 201=
-3 at 2:04 PM, Jan Schmidt <span dir=3D"ltr">&lt;<a href=3D"mailto:thaytan@n=
-oraisin.net" target=3D"_blank">thaytan@noraisin.net</a>&gt;</span> wrote:<b=
-r>
+<div dir=3D"ltr"><div style>Hey Andreas,</div><div><br></div>Is this sill n=
+eeded? Did you test this lately?</div><div class=3D"gmail_extra"><br><br><d=
+iv class=3D"gmail_quote">On Sun, Jan 27, 2013 at 4:35 PM, Andreas M=FCller =
+<span dir=3D"ltr">&lt;<a href=3D"mailto:schnitzeltony@googlemail.com" targe=
+t=3D"_blank">schnitzeltony@googlemail.com</a>&gt;</span> wrote:<br>
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On Sun, 2013-01-27 at 13:3=
-2 +0200, Andrei Gherzan wrote:<br>
-&gt; On Sun, Jan 27, 2013 at 10:17:57PM +1100, Jan Schmidt wrote:<br>
-&gt; &gt; On Sun, 2013-01-27 at 00:47 +0200, Andrei Gherzan wrote:<br>
-&gt; &gt; &gt; On Sat, Jan 26, 2013 at 10:18:24PM +1100, Jan Schmidt wrote:=
-<br>
-&gt; &gt; &gt; &gt; When constructing the SD card image, the code was using=
-<br>
-&gt; &gt; &gt; &gt; the inherited ROOTFS_SIZE, which is the size of the<br>
-<br>
-</div>*snip*<br>
-<div class=3D"im"><br>
-&gt; &gt; &gt; &gt; --- a/classes/sdcard_image-rpi.bbclass<br>
-&gt; &gt; &gt; &gt; +++ b/classes/sdcard_image-rpi.bbclass<br>
-&gt; &gt; &gt; &gt; @@ -13,14 +13,16 @@ inherit image_types<br>
-&gt; &gt; &gt; &gt; =A0# =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 Default Free space =
-=3D 1.3x<br>
-&gt; &gt; &gt; &gt; =A0# =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 Use IMAGE_OVERHEAD_=
-FACTOR to add more space<br>
-&gt; &gt; &gt; &gt; =A0# =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 &lt;---------&gt;<b=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On Sat, Jan 26, 2013 at 11=
+:58 PM, Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro">andrei@gher=
+zan.ro</a>&gt; wrote:<br>
+
+
+&gt; On Thu, Jan 24, 2013 at 10:57:42PM +0100, Andreas M=FCller wrote:<br>
+&gt;&gt; for some reason wildcards don&#39;t work in current head. Error me=
+ssage was:<br>
+&gt;&gt;<br>
+&gt;&gt; | DEBUG: Executing shell function do_install<br>
+&gt;&gt; | install: cannot stat `/home/Superandy/tmp/oe-core-eglibc/work/ra=
+spberrypi-angstrom-linux-gnueabi/xserver-xf86-config/0.1-r18/xorg.conf.d/*&=
+#39;: No such file or directory<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt; I can&#39;t reproduce your error. For me this works. Maybe was somethi=
+ng broken in<br>
+&gt; oe-core? Anyway it seems to be fixed now. Would you retest it please<b=
 r>
-&gt; &gt; &gt; &gt; -# =A0 =A0 =A0 =A0 =A0 =A04KiB =A0 =A0 =A0 =A0 =A0 =A0 =
-=A020MiB =A0 =A0 =A0 =A0 =A0 SDIMG_ROOTFS<br>
-&gt; &gt; &gt; &gt; +# =A0 =A0 =A0 =A0 =A0 =A04KiB =A0 =A0 =A0 =A0 =A0 =A0 =
-~20MiB =A0 =A0 =A0 =A0 =A0 SDIMG_ROOTFS<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Why ~20M? As you see in the class BOOT_SPACE ?=3D &quot;2048=
-0&quot;. So that is 20MiB.<br>
-&gt; &gt;<br>
-&gt; &gt; I was trying to make it clear in the comment that if the user cha=
-nges<br>
-&gt; &gt; the BOOT_SPACE size, it will always be rounded up to the nearest =
-4MB. I<br>
-&gt; &gt; couldn&#39;t think of a great way. Also, I didn&#39;t pay enough =
-attention - the<br>
-&gt; &gt; comment is saying IMAGE_ROOTFS_ALIGNMENT is 4kB, but it should be=
- MiB.<br>
-&gt; &gt;<br>
+</div>Will do that<br>
+<div class=3D"im">&gt;<br>
+&gt;&gt; Signed-off-by: Andreas M=FCller &lt;<a href=3D"mailto:schnitzelton=
+y@googlemail.com">schnitzeltony@googlemail.com</a>&gt;<br>
+&gt;&gt; ---<br>
+&gt;&gt; =A0.../xorg-xserver/xserver-xf86-config_0.1.bbappend =A0| =A0 =A06=
+ ++++--<br>
+&gt;&gt; =A01 files changed, 4 insertions(+), 2 deletions(-)<br>
+&gt;&gt;<br>
+&gt;&gt; diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1=
+.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend<=
+br>
+&gt;&gt; index 65931e2..a8b8e8c 100644<br>
+&gt;&gt; --- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappe=
+nd<br>
+&gt;&gt; +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappe=
+nd<br>
+&gt;&gt; @@ -1,12 +1,14 @@<br>
+&gt;&gt; =A0FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; =A0# Don&#39;t forget to bump PRINC if you update the extra files.=
+<br>
+&gt;&gt; -PRINC :=3D &quot;${@int(PRINC) + 5}&quot;<br>
+&gt;&gt; +PRINC :=3D &quot;${@int(PRINC) + 6}&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; =A0THISDIR :=3D &quot;${@os.path.dirname(bb.data.getVar(&#39;FILE&=
+#39;, d, True))}&quot;<br>
+&gt;&gt; =A0FILESPATH =3D. &quot;${@base_set_filespath([&quot;${THISDIR}/${=
+PN}&quot;], d)}:&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; -SRC_URI_append_raspberrypi =3D &quot; file://xorg.conf.d/* &quot;=
+<br>
+&gt;&gt; +SRC_URI_append_raspberrypi =3D &quot; \<br>
+&gt;&gt; + =A0 =A0 file://xorg.conf.d/10-evdev.conf \<br>
+&gt;&gt; +&quot;<br>
+&gt;&gt;<br>
+&gt; I don&#39;t find this lin ebreak necesssary here. And if it was, don&#=
+39;t combine<br>
+&gt; formating commits with other fixes.<br>
 &gt;<br>
-&gt; Uh, I understand now your point here. Well, I don&#39;t think that use=
-r needs to<br>
-&gt; know that if he wants 20470 as BOOT_SPACE, he&#39;s partition will end=
- up 20480.<br>
-&gt; Because this is something related to performance and it&#39;s in his b=
-enefit after<br>
-&gt; all. So let&#39;s drop this for now.<br>
-<br>
-</div>OK.<br>
-<div class=3D"im"><br>
-&gt; About the 4kB thing - yes. Needs fix.<br>
-<br>
-</div>OK.<br>
-<br>
-*snip*<br>
-<div class=3D"im"><br>
-&gt; &gt; &gt; &gt; =A0 =A0 =A0 =A0 BOOT_SPACE_ALIGNED=3D$(expr ${BOOT_SPAC=
-E_ALIGNED} - ${BOOT_SPACE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})<br>
-&gt; &gt; &gt; &gt; - =A0 =A0 =A0 SDIMG_SIZE=3D$(expr ${IMAGE_ROOTFS_ALIGNM=
-ENT} + ${BOOT_SPACE_ALIGNED} + $ROOTFS_SIZE + ${IMAGE_ROOTFS_ALIGNMENT})<br=
->
-&gt; &gt; &gt; &gt; + =A0 =A0 =A0 ROOTFS_SIZE=3D`du -ks ${SDIMG_ROOTFS} | a=
-wk &#39;{print $1}&#39;`<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Are you sure `du -ks ${ROOTFS_SIZE} | awk &#39;{print $1}&#3=
-9;` is aligned to<br>
-&gt; &gt; &gt; IMAGE_ROOTFS_ALIGNMENT? I&#39;m not so sure about this. So y=
-ou might need to align<br>
-&gt; &gt; &gt; it the way BOOT_SPACE is aligned.<br>
-&gt; &gt;<br>
-&gt; &gt; No, the ROOTFS_SIZE will be whatever the base recipe creates. I d=
-on&#39;t<br>
-&gt; &gt; think it will have any particular alignment, except by accident -=
- in the<br>
-&gt; &gt; sense that it&#39;s probably stored on an ext3 filesystem that ha=
-s 4kB<br>
-&gt; &gt; allocation blocks and therefore &#39;du -sk&#39; will round it up=
- to that. We<br>
-&gt; &gt; would need to explicitly round up to 4MiB, but I&#39;m not sure w=
-hy to do<br>
-&gt; &gt; that -<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; Check this out:<br>
-&gt; <a href=3D"http://android.bytearrays.com/android/what-means-sd-card-al=
-ignment/" target=3D"_blank">http://android.bytearrays.com/android/what-mean=
-s-sd-card-alignment/</a><br>
-<br>
-</div>Sure, but the largst cluster sizes I&#39;ve seen are 32KB (do they co=
-me<br>
-bigger yet?) 4MiB seems like a large amount for anticipation of future<br>
-cluster sizes.<br>
-<div class=3D"im"><br>
-&gt; &gt; &gt; &gt; + =A0 =A0 =A0 SDIMG_SIZE=3D$(expr ${IMAGE_ROOTFS_ALIGNM=
-ENT} + ${BOOT_SPACE_ALIGNED} + ${ROOTFS_SIZE})<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; =A0 =A0 =A0 =A0 # Initialize sdcard image file<br>
-&gt; &gt; &gt; &gt; =A0 =A0 =A0 =A0 dd if=3D/dev/zero of=3D${SDIMG} bs=3D1 =
-count=3D0 seek=3D$(expr 1024 \* ${SDIMG_SIZE})<br>
-&gt; &gt; &gt; &gt; @@ -71,7 +74,7 @@ IMAGE_CMD_rpi-sdimg () {<br>
-&gt; &gt; &gt; &gt; =A0 =A0 =A0 =A0 parted -s ${SDIMG} unit KiB mkpart prim=
-ary fat32 ${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE=
-_ROOTFS_ALIGNMENT})<br>
-&gt; &gt; &gt; &gt; =A0 =A0 =A0 =A0 parted -s ${SDIMG} set 1 boot on<br>
-&gt; &gt; &gt; &gt; =A0 =A0 =A0 =A0 # Create rootfs partition<br>
-&gt; &gt; &gt; &gt; - =A0 =A0 =A0 parted -s ${SDIMG} unit KiB mkpart primar=
-y ext2 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) $(expr ${=
-BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT} \+ ${ROOTFS_SIZE})<br>
-&gt; &gt; &gt; &gt; + =A0 =A0 =A0 parted -s ${SDIMG} unit KiB mkpart primar=
-y ext2 $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT}) $(expr ${=
-SDIMG_SIZE} - 1)<br>
-&gt; &gt; &gt; &gt; =A0 =A0 =A0 =A0 parted ${SDIMG} print<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Don&#39;t think that -1 is needed here.<br>
-&gt; &gt;<br>
-&gt; &gt; No, you&#39;re right - it shouldn&#39;t be. I got a weird error w=
-here parted<br>
-&gt; &gt; failed to create the partition in the image file, saying it ran p=
-ast the<br>
-&gt; &gt; end. Possibly related to the error you mentioned you saw that mad=
-e you<br>
-&gt; &gt; pad with IMAGE_ROOTFS_ALIGNMENT in the first place. I think I&#39=
-;ll<br>
-&gt; &gt; investigate more.<br>
-&gt; &gt;<br>
-&gt; &gt; There&#39;s a couple of things to check and fix here, so I think =
-I&#39;ll<br>
-&gt; &gt; withdraw this patch and re-send it later after more testing. The =
-first 2<br>
-&gt; &gt; patches still should be OK though.<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt; Please do. Btw, after a smoke test the boot process failed with your<b=
-r>
-&gt; modifications:<br>
-<br>
-</div>Interesting! That certainly didn&#39;t happen for me. It may depend o=
-n the<br>
-exact size and internal layout of the rootfs image being written to the<br>
-SD image file. I&#39;ll test as many combinations as I can before<br>
-re-submitting.<br>
-<br>
-J.<br>
-<div><div class=3D"h5"><br>
-&gt; [ =A0 =A02.274940] mmcblk0: mmc0:b368 SMI =A0 3.84 GiB<br>
-&gt; [ =A0 =A02.281131] =A0mmcblk0: p1 p2<br>
-&gt; [ =A0 =A02.304604] EXT4-fs (mmcblk0p2): feature flags set on rev 0 fs,=
- running<br>
-&gt; e2fsck is recommended<br>
-&gt; [ =A0 =A02.313147] EXT4-fs (mmcblk0p2): bad geometry: block count 5734=
-4 exceeds<br>
-&gt; size of device (45539 blocks)<br>
-&gt; [ =A0 =A02.323630] List of all partitions:<br>
-&gt; [ =A0 =A02.327160] b300 =A0 =A0 =A0 =A0 4027392 mmcblk0 =A0driver: mmc=
-blk<br>
-&gt; [ =A0 =A02.332487] =A0 b301 =A0 =A0 =A0 =A0 =A0 20480 mmcblk0p1<br>
-&gt; 00000000-0000-0000-0000-000000000000<br>
-&gt; [ =A0 =A02.340085] =A0 b302 =A0 =A0 =A0 =A0 =A0 45539 mmcblk0p2<br>
-&gt; 00000000-0000-0000-0000-000000000000<br>
-&gt; [ =A0 =A02.347592] No filesystem could mount root, tried: =A0ext4<br>
-&gt; [ =A0 =A02.352910] Kernel panic - not syncing: VFS: Unable to mount ro=
-ot fs on<br>
-&gt; unknown-block(179,2)<br>
-&gt; [ =A0 =A02.361384] [&lt;c0013b98&gt;] (unwind_backtrace+0x0/0xf0) from=
- [&lt;c0398cb8&gt;]<br>
-&gt; (panic+0x90/0x1dc)<br>
-&gt; [ =A0 =A02.369575] [&lt;c0398cb8&gt;] (panic+0x90/0x1dc) from [&lt;c04=
-ebcb4&gt;]<br>
-&gt; (mount_block_root+0x1f0/0x250)<br>
-&gt; [ =A0 =A02.378011] [&lt;c04ebcb4&gt;] (mount_block_root+0x1f0/0x250) f=
-rom [&lt;c04ebf28&gt;]<br>
-&gt; (mount_root+0xf0/0x118)<br>
-&gt; [ =A0 =A02.386879] [&lt;c04ebf28&gt;] (mount_root+0xf0/0x118) from [&l=
-t;c04ec0a4&gt;]<br>
-&gt; (prepare_namespace+0x154/0x1b4)<br>
-&gt; [ =A0 =A02.395833] [&lt;c04ec0a4&gt;] (prepare_namespace+0x154/0x1b4) =
-from [&lt;c04eb8f4&gt;]<br>
-&gt; (kernel_init+0x168/0x1a4)<br>
-&gt; [ =A0 =A02.404971] [&lt;c04eb8f4&gt;] (kernel_init+0x168/0x1a4) from [=
-&lt;c000eae0&gt;]<br>
-&gt; (kernel_thread_exit+0x0/0x8)<br>
-&gt; PANIC: VFS: Unable to mount root fs on unknown-block(179,2<br>
-&gt;<br>
-<br>
---<br>
-</div></div>Jan Schmidt &lt;<a href=3D"mailto:thaytan@noraisin.net">thaytan=
-@noraisin.net</a>&gt;<br>
-<br>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div dir=3D"=
-ltr"><div style=3D"text-align:center"></div><div style=3D"text-align:center=
-"><div align=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;font-s=
-ize:medium">
+</div>Oops this was left over from some testing.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Andreas<br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"tex=
+t-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Rom=
+an&#39;;font-size:medium">
 
 <b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
 n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
@@ -433,4 +204,4 @@ n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
 </div></div></div>
 </div>
 
---20cf3071ceac86a01f04d7d1fd6d--
+--20cf307c9dee8ca53d04d7d2004e--
