@@ -1,33 +1,31 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A99CE013D9
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 05:08:14 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Mar 2013 05:08:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,844,1355126400"; d="scan'208";a="306463664"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Mar 2013 05:08:11 -0700
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.99]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.244]) with mapi id
-	14.01.0355.002; Thu, 14 Mar 2013 12:08:08 +0000
-From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
-To: =?iso-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-Thread-Topic: [yocto] [PATCH] [eclipse-poky][master]Add more comprehensive
-	error message for invalid project name
-Thread-Index: AQHOIJWsj7rejXwya0yGsg/XHmwRepik/HeAgAAbYhI=
-Date: Thu, 14 Mar 2013 12:08:05 +0000
-Message-ID: <3E179CF0D7162B4AA4E2B324209A4639B12949@IRSMSX101.ger.corp.intel.com>
-References: <1363252002-16769-1-git-send-email-ioanax.grigoropol@intel.com>,
-	<5141A68D.5020601@timomueller.eu>
-In-Reply-To: <5141A68D.5020601@timomueller.eu>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.19.9.41]
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qc0-f179.google.com (mail-qc0-f179.google.com
+	[209.85.216.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E272E012F1
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 06:21:31 -0700 (PDT)
+Received: by mail-qc0-f179.google.com with SMTP id b40so1002069qcq.38
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 06:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=0SsAzBMfnjh1sSJK2nsRslyZRqIBWlWcLe7Sd1P/wMY=;
+	b=PRD7cS7geueusQYFiDQ4Nub/SJu8I4GZXXh+v64inLJB/Cf1LIhJ43ACUgqcFjkNY3
+	9Rr4NkOPw3KbSwnge89x7LvfzrIyLLs60IGH1ATnYwUGWWzr6zqCdsVHHnPbrmPS7oRZ
+	4szny1nXbmVISMgt8zClc0hYPcKjpl0n+As8b1qnOkfjIqI+G0NYqbQTTy9+yRVlwAbY
+	m3r5jtJaGhuiB4fH91JyGPbeYth8syP677m4Dk+QlocOtn0KJKfqerk2oUY7DUbm639X
+	VeE4iR2HwY+WUsKdNXCu2//P4wSEIcr4xI12yENzHww6CVcSxjOdxRhoFu2EaVPT9LkZ
+	HdpQ==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] [eclipse-poky][master]Add more comprehensive error message for invalid project name
+X-Received: by 10.224.58.201 with SMTP id i9mr3246685qah.81.1363267290722;
+	Thu, 14 Mar 2013 06:21:30 -0700 (PDT)
+Received: by 10.49.67.98 with HTTP; Thu, 14 Mar 2013 06:21:30 -0700 (PDT)
+In-Reply-To: <CAFyqS9pPywJFkh+60oOqse0oUjrp3qJuOqNZ4dXH3cbb40UXbQ@mail.gmail.com>
+References: <CAFyqS9pPywJFkh+60oOqse0oUjrp3qJuOqNZ4dXH3cbb40UXbQ@mail.gmail.com>
+Date: Thu, 14 Mar 2013 14:21:30 +0100
+Message-ID: <CAFyqS9rDXuPdCYG6ntWCxbaMxJi9bVNQDG7TCrBg1oOzCKjYyQ@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: Problem compiling util-linux-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,186 +37,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Mar 2013 12:08:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 14 Mar 2013 13:21:31 -0000
+Content-Type: multipart/alternative; boundary=20cf3074b46698f5e304d7e26662
+
+--20cf3074b46698f5e304d7e26662
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Timo,=0A=
-=0A=
-Thank you for the comments. I have sent a new version of the patch to the l=
-ist.=0A=
-=0A=
-Ioana=0A=
-________________________________________=0A=
-From: Timo M=FCller [mail@timomueller.eu]=0A=
-Sent: Thursday, March 14, 2013 12:29 PM=0A=
-To: Grigoropol, IoanaX=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] [PATCH] [eclipse-poky][master]Add more comprehensive e=
-rror message for invalid project name=0A=
-=0A=
-Hi Ioana,=0A=
-=0A=
-Ioana Grigoropol wrote, On 14.03.2013 10:06:=0A=
-> [Yocto #4008]=0A=
->=0A=
-> Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>=0A=
-> ---=0A=
->   .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   34 +++++++++++++=
-++++---=0A=
->   1 file changed, 29 insertions(+), 5 deletions(-)=0A=
->=0A=
-> diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYo=
-ctoCProjectTemplate.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/=
-wizard/NewYoctoCProjectTemplate.java=0A=
-> index 5ffd6b7..8ab5972 100644=0A=
-> --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCPro=
-jectTemplate.java=0A=
-> +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCPro=
-jectTemplate.java=0A=
-> @@ -10,6 +10,8 @@=0A=
->    **********************************************************************=
-*********/=0A=
->   package org.yocto.sdk.ide.wizard;=0A=
->=0A=
-> +import java.util.ArrayList;=0A=
-> +import java.util.Arrays;=0A=
->   import java.util.LinkedHashMap;=0A=
->   import java.util.List;=0A=
->=0A=
-> @@ -46,11 +48,11 @@ import org.yocto.sdk.ide.YoctoProfileElement;=0A=
->   import org.yocto.sdk.ide.YoctoSDKChecker;=0A=
->   import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;=0A=
->   import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;=0A=
-> +import org.yocto.sdk.ide.YoctoSDKPlugin;=0A=
-> +import org.yocto.sdk.ide.YoctoUIElement;=0A=
->   import org.yocto.sdk.ide.natures.YoctoSDKEmptyProjectNature;=0A=
->   import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;=0A=
->   import org.yocto.sdk.ide.utils.YoctoSDKUtils;=0A=
-> -import org.yocto.sdk.ide.YoctoSDKPlugin;=0A=
-> -import org.yocto.sdk.ide.YoctoUIElement;=0A=
->=0A=
->=0A=
->   @SuppressWarnings("restriction")=0A=
-> @@ -58,11 +60,20 @@ public class NewYoctoCProjectTemplate extends Process=
-Runner {=0A=
->       protected boolean savedAutoBuildingValue;=0A=
->       protected ProjectCreatedActions pca;=0A=
->       protected IManagedBuildInfo info;=0A=
-> +     protected List<Character> illegalChars =3D Arrays.asList('$', '"','=
-#','%','&','\'','(',')','*', '+', ',','.','/',':',';','<','=3D','>','?','@'=
-,'[','\\',']','^','`','{','|','}','~');=0A=
->=0A=
->       public NewYoctoCProjectTemplate() {=0A=
->               pca =3D new ProjectCreatedActions();=0A=
->       }=0A=
-> -=0A=
-> +     private String printIllegalChars(){=0A=
-> +             String print =3D "";=0A=
-> +             for (int i =3D 0; i < illegalChars.size(); i++) {=0A=
-> +                     print +=3D illegalChars.get(i);=0A=
-> +                     if (i !=3D illegalChars.size() - 1)=0A=
-> +                             print +=3D " ,";=0A=
-> +             }=0A=
-> +             return print;=0A=
-> +     }=0A=
-=0A=
-I think the contained "if" isn't really necessary. You can remove the=0A=
-last ", " afterwards. Then you can also use a for each loop to append=0A=
-the characters.=0A=
-=0A=
-private String printIllegalChars(){=0A=
-        String print =3D "";=0A=
-=0A=
-        for (Character character : illegalChars) {=0A=
-                print +=3D character + ", ";=0A=
-        }=0A=
-=0A=
-        if (!illegalChars.isEmpty()) {=0A=
-                print =3D print.substring(0, print.lastIndexOf(",") - 1);=
-=0A=
-        }=0A=
-=0A=
-        return print;=0A=
-}=0A=
-=0A=
->       public void process(TemplateCore template, ProcessArgument[] args, =
-String processId, IProgressMonitor monitor) throws ProcessFailureException =
-{=0A=
->=0A=
->               String projectName =3D args[0].getSimpleValue();=0A=
-> @@ -74,9 +85,10 @@ public class NewYoctoCProjectTemplate extends ProcessR=
-unner {=0A=
->               boolean isEmptryProject =3D Boolean.valueOf(isEmptyProjetVa=
-lue).booleanValue();=0A=
->               IProject project =3D ResourcesPlugin.getWorkspace().getRoot=
-().getProject(projectName);=0A=
->               try {=0A=
-> -                     if (projectName.contains(" ")) {=0A=
-> +                     if (!isValidProjectName(projectName)) {=0A=
->                               project.delete(true, null);=0A=
-> -                             throw new ProcessFailureException(projectNa=
-me + " contains space(s).  Project name can't contain space(s)");=0A=
-> +                             throw new ProcessFailureException("Project =
-name " + "\""+ projectName +"\"" +" is invalid! " +=0A=
-> +                                             "\nNone of these characters=
- are accepted inside project names: whitespaces, " + printIllegalChars());=
-=0A=
-=0A=
-Would be nice if we can wrap this up with the YoctoSDKMessages to be=0A=
-able to internationalize the string later.=0A=
-=0A=
->                       }=0A=
->                       if (!project.exists()) {=0A=
->                               IWorkspace workspace =3D ResourcesPlugin.ge=
-tWorkspace();=0A=
-> @@ -166,6 +178,18 @@ public class NewYoctoCProjectTemplate extends Proces=
-sRunner {=0A=
->                       throw new OperationCanceledException(Messages.getSt=
-ring("NewManagedProject.3") + e.getMessage());=0A=
->               }=0A=
->       }=0A=
-> +     private boolean isValidProjectName(String projectName) {=0A=
-> +             if (projectName.contains("\\s+"))=0A=
-> +                     return false;=0A=
-> +=0A=
-> +             char[] chars =3D projectName.toCharArray();=0A=
-> +             if (!Character.isJavaIdentifierStart(chars[0]))=0A=
-> +                     return false;=0A=
-> +             for (int i =3D 1; i < chars.length; i++)=0A=
-> +                     if (illegalChars.contains(chars[i]))=0A=
-> +                             return false;=0A=
-> +             return true;=0A=
-> +}=0A=
-=0A=
-I think it would be better to use functionality from java.util.regex to=0A=
-do the name checking. The Pattern could be compiled once as a static=0A=
-member and we could than use the matcher to check whether the project=0A=
-name is fine.=0A=
-=0A=
-Something like this:=0A=
-=0A=
-private static Pattern pattern =3D Pattern.compile(".*(\\$|\").*");=0A=
-=0A=
-private boolean isValidProjectName(String projectName) {=0A=
-   Matcher matcher =3D pattern.matcher(projectName);=0A=
-=0A=
-   if (matcher.matches()) {=0A=
-     return false;=0A=
-   }=0A=
-=0A=
-   return true;=0A=
-}=0A=
-=0A=
->=0A=
->       protected final void turnOffAutoBuild(IWorkspace workspace) throws =
-CoreException {=0A=
->               IWorkspaceDescription workspaceDesc =3D workspace.getDescri=
-ption();=0A=
->=0A=
-=0A=
-Best regards,=0A=
-Timo=0A=
-=0A=
+On Wed, Mar 13, 2013 at 8:34 PM, Hans Beck=E9rus <hans.beckerus@gmail.com>w=
+rote:
 
+> Hi. I just moved from a x86 Ubuntu host to SuSE x86_64. Now I have issues
+> getting my ARM image to build due to compilation errors in util-linux?
+> It seems it is the util-linux-native that fails even though I get this in
+> the end:
+>
+> *  ERROR: Task 432
+> (virtual:native:/home/poky/meta/recipes-core/util-linux/
+> util-linux_2.22.2.bb, do_compile) failed with exit code '1'*
+>
+>
+> Here is the actual error reported from the log:
+>
+>    | *gcc -std=3Dgnu99 -DHAVE_CONFIG_H -I.  -include config.h -I./include
+> -DLOCALEDIR=3D\"/home/poky/build/tmp/sysroots/x86_64-linux/usr/share/loca=
+le\"
+> -D_PATH_LOCALSTATEDIR=3D\"/home/poky/build/tmp/sysroots/x86_64-linux/var\=
+"
+> -isystem/home/poky/build/tmp/sysroots/x86_64-linux/usr/include
+> -fsigned-char -fno-common -Wall -Werror=3Dsequence-point -Wextra
+> -Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes
+> -Wno-missing-field-initializers -Wredundant-decls -Wsign-compare
+> -Wtype-limits -Wuninitialized -Wunused-parameter -Wunused-result
+> -Wunused-variable
+> -isystem/home/poky/build/tmp/sysroots/x86_64-linux/usr/include -O2 -pipe =
+-c
+> -o misc-utils/procs.o misc-utils/procs.c
+> | In file included from misc-utils/lsblk.c:46:0:
+> | /usr/include/libudev.h:28:2: error: #error "#define
+> LIBUDEV_I_KNOW_THE_API_IS_SUBJECT_TO_CHANGE is needed to use this
+> experimental library version"*
+>
+>
+> I dit not get this error on the Ubuntu host. In fact
+> /usr/include/libudev.h does not even exist and I dont think
+> util-linux-native is even built.
+> Why is it built on the SuSE host? Trying to define
+> LIBUDEV_I_KNOW_THE_API_IS_SUBJECT_TO_CHANGE only made be pass the first
+> error, then I got into issues with unresolved udev symbols instead. Is a
+> no-go to try to use the Yocto environment on this SuSE host? It does warn
+> about it :(
+>
+> *WARNING: Host distribution "SUSE-LINUX-11" has not been validated with
+> this version of the build system; you may possibly experience unexpected
+> failures. It is recommended that you use a tested distribution.*
+>
+> I am currently on branch:master
+>
+> Hans
+>
+> Ok, I seem to have worked around this particular problem. I have new ones
+but I post them separately ;)
+In this case it seems the *libudev* installed on my host is too old and
+breaks the build.
+I solved it in my layer using a util-linux_2.22.2.bbappend file by doing:
+*   EXTRA_OECONF_append_class-native =3D " --without-udev"*
+This is ok in my case since I will use mdev rather than udev.
+
+Hans
+
+--20cf3074b46698f5e304d7e26662
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<br><br><div class=3D"gmail_quote">On Wed, Mar 13, 2013 at 8:34 PM, Hans Be=
+ck=E9rus <span dir=3D"ltr">&lt;<a href=3D"mailto:hans.beckerus@gmail.com" t=
+arget=3D"_blank">hans.beckerus@gmail.com</a>&gt;</span> wrote:<br><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0pt 0pt 0pt 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex">
+Hi. I just moved from a x86 Ubuntu host to SuSE x86_64. Now I have issues g=
+etting my ARM image to build due to compilation errors in util-linux?<br>It=
+ seems it is the util-linux-native that fails even though I get this in the=
+ end:<br>
+
+<br><i>=A0 ERROR: Task 432 (virtual:native:/home/poky/meta/recipes-core/uti=
+l-linux/<a href=3D"http://util-linux_2.22.2.bb" target=3D"_blank">util-linu=
+x_2.22.2.bb</a>, do_compile) failed with exit code &#39;1&#39;</i><br><br><=
+br>
+Here is the actual error reported from the log:<br>
+<br>=A0=A0 | <i>gcc -std=3Dgnu99 -DHAVE_CONFIG_H -I.=A0 -include config.h -=
+I./include -DLOCALEDIR=3D\&quot;/home/poky/build/tmp/sysroots/x86_64-linux/=
+usr/share/locale\&quot; -D_PATH_LOCALSTATEDIR=3D\&quot;/home/poky/build/tmp=
+/sysroots/x86_64-linux/var\&quot; -isystem/home/poky/build/tmp/sysroots/x86=
+_64-linux/usr/include -fsigned-char -fno-common -Wall -Werror=3Dsequence-po=
+int -Wextra -Wmissing-declarations -Wmissing-parameter-type -Wmissing-proto=
+types -Wno-missing-field-initializers -Wredundant-decls -Wsign-compare -Wty=
+pe-limits -Wuninitialized -Wunused-parameter -Wunused-result -Wunused-varia=
+ble -isystem/home/poky/build/tmp/sysroots/x86_64-linux/usr/include -O2 -pip=
+e -c -o misc-utils/procs.o misc-utils/procs.c<br>
+
+| In file included from misc-utils/lsblk.c:46:0:<br>| /usr/include/libudev.=
+h:28:2: error: #error &quot;#define LIBUDEV_I_KNOW_THE_API_IS_SUBJECT_TO_CH=
+ANGE is needed to use this experimental library version&quot;</i><br><br>
+
+<br>I dit not get this error on the Ubuntu host. In fact /usr/include/libud=
+ev.h does not even exist and I dont think util-linux-native is even built. =
+<br>Why is it built on the SuSE host? Trying to define LIBUDEV_I_KNOW_THE_A=
+PI_IS_SUBJECT_TO_CHANGE only made be pass the first error, then I got into =
+issues with unresolved udev symbols instead. Is a no-go to try to use the Y=
+octo environment on this SuSE host? It does warn about it :(<br>
+
+<br><i>WARNING: Host distribution &quot;SUSE-LINUX-11&quot; has not been va=
+lidated with this version of the build system; you may possibly experience =
+unexpected failures. It is recommended that you use a tested distribution.<=
+/i><br>
+
+<br>I am currently on branch:master<span class=3D"HOEnZb"><font color=3D"#8=
+88888"><br><br>Hans<br><br></font></span></blockquote><div>Ok, I seem to ha=
+ve worked around this particular problem. I have new ones but I post them s=
+eparately ;)<br>
+In this case it seems the <i>libudev</i> installed on my host is too old an=
+d breaks the build.<br>I solved it in my layer using a util-linux_2.22.2.bb=
+append file by doing:<br><i>=A0=A0 EXTRA_OECONF_append_class-native =3D &qu=
+ot; --without-udev&quot;</i><br>
+This is ok in my case since I will use mdev rather than udev. <br><br>Hans<=
+br><br><br></div></div><br>
+
+--20cf3074b46698f5e304d7e26662--
