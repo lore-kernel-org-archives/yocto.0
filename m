@@ -1,27 +1,29 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 798BAE01466
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 13:15:17 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Mar 2013 13:15:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,846,1355126400"; d="scan'208";a="303076402"
-Received: from unknown (HELO envy.home) ([10.255.13.202])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Mar 2013 13:15:16 -0700
-Message-ID: <51422FD2.6070605@linux.intel.com>
-Date: Thu, 14 Mar 2013 13:15:14 -0700
-From: Darren Hart <dvhart@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A800E01460;
+	Thu, 14 Mar 2013 13:56:25 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2EKuG2O001334
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 14 Mar 2013 13:56:16 -0700 (PDT)
+Received: from [128.224.22.72] (128.224.22.72) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 14 Mar 2013 13:56:16 -0700
+Message-ID: <5142396A.9060609@windriver.com>
+Date: Thu, 14 Mar 2013 13:56:10 -0700
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130110 Thunderbird/17.0.2
+	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
 MIME-Version: 1.0
 To: Insop Song <insop.song@gmail.com>
-References: <CACzyEJ_9EjNYwy=uy-h-wAyfFXfFQqiHKdavMPaTS8Fcso1H1w@mail.gmail.com>
-	<5140B150.7050606@linux.intel.com>
-	<CACzyEJ9apjW=+w7=9aLUD6UQtwmO6eyoac+XPBA_83MxEKdQdw@mail.gmail.com>
-In-Reply-To: <CACzyEJ9apjW=+w7=9aLUD6UQtwmO6eyoac+XPBA_83MxEKdQdw@mail.gmail.com>
-X-Enigmail-Version: 1.5.1
-Cc: yocto@yoctoproject.org
-Subject: Re: Loading a new yocto image to Intel Fri2 board
+References: <CACzyEJ_WLRVObY-EuECAaF4UyCS8x9DJsHOhn9p45EhurS5g8g@mail.gmail.com>
+In-Reply-To: <CACzyEJ_WLRVObY-EuECAaF4UyCS8x9DJsHOhn9p45EhurS5g8g@mail.gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>,
+	Development list for the linux-yocto repositories
+	<linux-yocto@yoctoproject.org>
+Subject: Re: [PATCH] [meta-realtime] Add rt-app and define core-image-realtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,26 +35,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Mar 2013 20:15:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 14 Mar 2013 20:56:25 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 03/14/2013 12:56 PM, Insop Song wrote:
-> Hi Darren,
-> 
-> mkefidisk.sh works, thank you.
-> 
-> What I found was, USB still doesn't work even with mkefidisk.sh.
-> So I used micro sd card instead.
+On 13-03-14 12:52 PM, Insop Song wrote:
+> Hi Bruce,
+>
+> This is for adding rt-app, please let me know what you think.
+> For next patch, I will add schedtool_dl
 
-Aha, yes. You will need to add "rootwait" to your kernel command line
-for reliable booting over usb. There is no way I see to determine if USB
-is being used (/dev/sda could just as easily be SATA). Perhaps mkefidisk
-should just use rootwait by default. Patches accepted.
+This patch looks ok, what are the differences from your original
+layer ? I've already imported changes from there, so I'd just
+like to hear about differences between the two.
 
+I also have schedtool staged in the tree already, if you wait
+until tomorrow, I can push that tree and you can test and extend
+that base.
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+Cheers,
+
+Bruce
+
+>
+> Regards,
+>
+> Insop
+>
+> ----------------------------------------------------------------------------------
+>
+> - "rt-app" is a test application that starts multiple periodic threads
+>    in order to simulate a real-time periodic load
+>
+>    - run example
+>
+>    root@qemux86:~# rt-app -t 100000:35000:d -D 1
+>    [rt-app] <notice> [0] Using SCHED_DEADLINE policy:
+>    [rt-app] <notice> [0] starting thread with period: 100000, exec:
+>    35000,deadline: 100000, priority: 10
+>    [rt-app] <notice> [0] Locking pages in memory
+>    deadline	dur.	slack	Budget	Used Budget
+>    0	100000	35000	35000	64705	305724113	305759126
+>    305824105	35013	64979
+>    0	100000	35000	35000	165100	305824508	305859531
+>    ....
+>    0	100000	35000	35000	864955	306524363	306559381
+>    306624105	35019	64724
+>    0	100000	35000	35000	965099	306624507	306659526
+>    306724105	35019	64578
+>    [rt-app] <notice> [0] Exiting.
+> ---
+>   recipes-extended/images/core-image-realtime.bb     |   12 +++++++++
+>   ...adline-as-a-default-to-go-around-yocto-bu.patch |   26 ++++++++++++++++++
+>   recipes-tools/rt-app/rt-app.bb                     |   28 ++++++++++++++++++++
+>   3 files changed, 66 insertions(+)
+>   create mode 100644 recipes-extended/images/core-image-realtime.bb
+>   create mode 100644
+> recipes-tools/rt-app/files/0001-set-with-deadline-as-a-default-to-go-around-yocto-bu.patch
+>   create mode 100644 recipes-tools/rt-app/rt-app.bb
+>
+> diff --git a/recipes-extended/images/core-image-realtime.bb
+> b/recipes-extended/images/core-image-realtime.bb
+> new file mode 100644
+> index 0000000..624aacf
+> --- /dev/null
+> +++ b/recipes-extended/images/core-image-realtime.bb
+> @@ -0,0 +1,12 @@
+> +require recipes-core/images/core-image-minimal-dev.bb
+> +
+> +DEPENDS = "linux-yocto"
+> +
+> +IMAGE_FEATURES += "package-management ssh-server-dropbear"
+> +EXTRA_IMAGE_FEATURES = "tools-debug debug-tweaks tools-profile dbg-pkgs"
+> +
+> +IMAGE_INSTALL = "\
+> +	${CORE_IMAGE_BASE_INSTALL} \
+> +	rt-app \
+> +	libgcc \
+> +	"
+> diff --git a/recipes-tools/rt-app/files/0001-set-with-deadline-as-a-default-to-go-around-yocto-bu.patch
+> b/recipes-tools/rt-app/files/0001-set-with-deadline-as-a-default-to-go-around-yocto-bu.patch
+> new file mode 100644
+> index 0000000..a697e89
+> --- /dev/null
+> +++ b/recipes-tools/rt-app/files/0001-set-with-deadline-as-a-default-to-go-around-yocto-bu.patch
+> @@ -0,0 +1,26 @@
+> +From 041b2b65889c44c47f90313c5bf9ce61effa96df Mon Sep 17 00:00:00 2001
+> +From: Insop Song <insop.song@gmail.com>
+> +Date: Sat, 9 Mar 2013 01:23:24 -0800
+> +Subject: [PATCH] set "--with-deadline" as a default to go around yocto build
+> + error on deadline enabled
+> +
+> +---
+> + configure.ac |    2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/configure.ac b/configure.ac
+> +index a5e2990..64e57e4 100644
+> +--- a/configure.ac
+> ++++ b/configure.ac
+> +@@ -34,7 +34,7 @@ AC_ARG_WITH([deadline],
+> + 	[AS_HELP_STRING([--with-deadline],
+> +          [Add support for SCHED_DEADLINE])],
+> + 	[],
+> +-	[with_deadline=no])
+> ++	[with_deadline=yes])
+> +
+> + AS_IF([test "x$with_deadline" != xno],
+> + 	[AC_DEFINE([DLSCHED], [1], [Define if you have SCHED_DEADLINE support])
+> +--
+> +1.7.9.5
+> +
+> diff --git a/recipes-tools/rt-app/rt-app.bb b/recipes-tools/rt-app/rt-app.bb
+> new file mode 100644
+> index 0000000..acce437
+> --- /dev/null
+> +++ b/recipes-tools/rt-app/rt-app.bb
+> @@ -0,0 +1,28 @@
+> +DESCRIPTION = "rt-app is a test application that starts multiple
+> periodic threads in order to simulate a real-time periodic load"
+> +SECTION = "devel"
+> +LICENSE = "GPLv2"
+> +LIC_FILES_CHKSUM =
+> "file://COPYING;endline=339;md5=e43fc16fccd8519fba405f0a0ff6e8a3"
+> +PR = "r1"
+> +
+> +SRCREV = "e81cbe9f76ee298feded17bb7455d4deb2fb32af"
+> +
+> +SRC_URI = "git://github.com/gbagnoli/rt-app.git \
+> +	file://0001-set-with-deadline-as-a-default-to-go-around-yocto-bu.patch \
+> +	"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +inherit autotools gettext pkgconfig
+> +
+> +do_configure_prepend() {
+> +	autoreconf --install --verbose --force
+> +}
+> +
+> +do_install() {
+> +     	install -d ${D}${bindir}
+> +     	install -m 0755 src/rt-app ${D}${bindir}
+> +}
+> +
+> +FILES_{PN} = "${bindir}/rt-app"
+> +
+> +PARALLEL_MAKE = ""
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
