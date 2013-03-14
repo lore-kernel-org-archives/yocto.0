@@ -1,28 +1,19 @@
-Return-Path: <simon.egli@tik.ee.ethz.ch>
-Received: from smtp.ee.ethz.ch (smtp.ee.ethz.ch [129.132.2.219])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D66BEE0121B
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 01:51:46 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.ee.ethz.ch (Postfix) with ESMTP id CCDE7D9494
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 09:51:44 +0100 (MET)
-X-Virus-Scanned: by amavisd-new on smtp.ee.ethz.ch
-Received: from smtp.ee.ethz.ch ([127.0.0.1])
-	by localhost (.ee.ethz.ch [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id R0-VExXFwIce for <yocto@yoctoproject.org>;
-	Thu, 14 Mar 2013 09:51:44 +0100 (MET)
-Received: from [82.130.102.217] (unknown [82.130.102.217])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested) (Authenticated sender: eglis)
-	by smtp.ee.ethz.ch (Postfix) with ESMTPSA id 4CA5ED9304
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 09:51:44 +0100 (MET)
-Message-ID: <51418F9F.2070104@tik.ee.ethz.ch>
-Date: Thu, 14 Mar 2013 09:51:43 +0100
-From: Simon Egli <simon.egli@tik.ee.ethz.ch>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
-MIME-Version: 1.0
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF871E0121B
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 02:24:03 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 14 Mar 2013 02:24:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,843,1355126400"; d="scan'208";a="301870589"
+Received: from unknown (HELO localhost.localdomain) ([10.237.105.62])
+	by orsmga002.jf.intel.com with ESMTP; 14 Mar 2013 02:24:01 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Subject: Can't install linux-libc-headers in to rootfs
+Date: Thu, 14 Mar 2013 11:06:42 +0200
+Message-Id: <1363252002-16769-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH] [eclipse-poky][master]Add more comprehensive error message for invalid project name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,97 +25,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Mar 2013 08:51:47 -0000
-Content-Type: multipart/alternative;
-	boundary="------------030302020401030209050901"
+X-List-Received-Date: Thu, 14 Mar 2013 09:24:03 -0000
 
---------------030302020401030209050901
-Content-Type: text/plain; charset=ISO-8859-15; format=flowed
-Content-Transfer-Encoding: 7bit
+[Yocto #4008]
 
-Hi all,
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   34 +++++++++++++++++---
+ 1 file changed, 29 insertions(+), 5 deletions(-)
 
-I'm generating a custom image on which we may from time to time compile 
-programs in the field,
-so we need the libc-headers package.
-This package is generated fine with "bitbake linux-libc-headers", but on 
-building the rootfs it fails with following message (from the log):
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
+index 5ffd6b7..8ab5972 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
+@@ -10,6 +10,8 @@
+  *******************************************************************************/
+ package org.yocto.sdk.ide.wizard;
+ 
++import java.util.ArrayList;
++import java.util.Arrays;
+ import java.util.LinkedHashMap;
+ import java.util.List;
+ 
+@@ -46,11 +48,11 @@ import org.yocto.sdk.ide.YoctoProfileElement;
+ import org.yocto.sdk.ide.YoctoSDKChecker;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
++import org.yocto.sdk.ide.YoctoSDKPlugin;
++import org.yocto.sdk.ide.YoctoUIElement;
+ import org.yocto.sdk.ide.natures.YoctoSDKEmptyProjectNature;
+ import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;
+ import org.yocto.sdk.ide.utils.YoctoSDKUtils;
+-import org.yocto.sdk.ide.YoctoSDKPlugin;
+-import org.yocto.sdk.ide.YoctoUIElement;
+ 
+ 
+ @SuppressWarnings("restriction")
+@@ -58,11 +60,20 @@ public class NewYoctoCProjectTemplate extends ProcessRunner {
+ 	protected boolean savedAutoBuildingValue;
+ 	protected ProjectCreatedActions pca;
+ 	protected IManagedBuildInfo info;
++	protected List<Character> illegalChars = Arrays.asList('$', '"','#','%','&','\'','(',')','*', '+', ',','.','/',':',';','<','=','>','?','@','[','\\',']','^','`','{','|','}','~');
+ 	
+ 	public NewYoctoCProjectTemplate() {
+ 		pca = new ProjectCreatedActions();
+ 	}
+-	
++	private String printIllegalChars(){
++		String print = "";
++		for (int i = 0; i < illegalChars.size(); i++) {
++			print += illegalChars.get(i);
++			if (i != illegalChars.size() - 1)
++				print += " ,";
++		}
++		return print;
++	}
+ 	public void process(TemplateCore template, ProcessArgument[] args, String processId, IProgressMonitor monitor) throws ProcessFailureException {
+ 
+ 		String projectName = args[0].getSimpleValue();
+@@ -74,9 +85,10 @@ public class NewYoctoCProjectTemplate extends ProcessRunner {
+ 		boolean isEmptryProject = Boolean.valueOf(isEmptyProjetValue).booleanValue();
+ 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+ 		try {
+-			if (projectName.contains(" ")) {
++			if (!isValidProjectName(projectName)) {
+ 				project.delete(true, null);
+-				throw new ProcessFailureException(projectName + " contains space(s).  Project name can't contain space(s)");
++				throw new ProcessFailureException("Project name " + "\""+ projectName +"\"" +" is invalid! " +
++						"\nNone of these characters are accepted inside project names: whitespaces, " + printIllegalChars());
+ 			}
+ 			if (!project.exists()) {
+ 				IWorkspace workspace = ResourcesPlugin.getWorkspace();
+@@ -166,6 +178,18 @@ public class NewYoctoCProjectTemplate extends ProcessRunner {
+ 			throw new OperationCanceledException(Messages.getString("NewManagedProject.3") + e.getMessage());
+ 		}
+ 	}
++	private boolean isValidProjectName(String projectName) {
++		if (projectName.contains("\\s+"))
++			return false;
++
++		char[] chars = projectName.toCharArray();
++		if (!Character.isJavaIdentifierStart(chars[0]))
++			return false;
++		for (int i = 1; i < chars.length; i++)
++			if (illegalChars.contains(chars[i]))
++				return false;
++		return true;
++}
+ 
+ 	protected final void turnOffAutoBuild(IWorkspace workspace) throws CoreException {
+ 		IWorkspaceDescription workspaceDesc = workspace.getDescription();
+-- 
+1.7.9.5
 
-/Unable to fERROR: Function failed: do_rootfs (see 
-/home/eglis/yocto/build/tmp/work/overo-poky-linux-gnueabi/swarmix-image-1.0-r0/temp/log.do_rootfs.4009 
-for further information)//
-//ind package linux-libc-headers (linux-libc-headers)!/
 
-When I look in to the tmp directory of the package I find the headers 
-correctly sitting in "package/usr/include"
-
-Any idea what's causing this?
-
-Thank you for helping me with this...
-
-additional information:
-bitbake -s gives me: "linux-libc-headers  :3.2-r1"
-I use bitbake version 1.15.2
-running on a Ubuntu 12.10 64-bit machine
-my layers were created using repo:
-
-/repo version v1.12.2//
-//       (from https://gerrit.googlesource.com/git-repo)//
-//repo launcher version 1.19//
-//       (from /usr/local/bin/repo)//
-//git version 1.7.9.5//
-//Python 2.7.3 (default, Aug  1 2012, 05:14:39) //
-//[GCC 4.6.3]/
-
-
-
---------------030302020401030209050901
-Content-Type: text/html; charset=ISO-8859-15
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html;
-      charset=ISO-8859-15">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hi all, <br>
-    <br>
-    I'm generating a custom image on which we may from time to time
-    compile programs in the field, <br>
-    so we need the libc-headers package. <br>
-    This package is generated fine with "bitbake linux-libc-headers",
-    but on building the rootfs it fails with following message (from the
-    log): <br>
-    <br>
-    <i>Unable to fERROR: Function failed: do_rootfs (see
-      /home/eglis/yocto/build/tmp/work/overo-poky-linux-gnueabi/swarmix-image-1.0-r0/temp/log.do_rootfs.4009
-      for further information)</i><i><br>
-    </i><i>ind package linux-libc-headers (linux-libc-headers)!</i><br>
-    <br>
-    When I look in to the tmp directory of the package I find the
-    headers correctly sitting in "package/usr/include"<br>
-    <br>
-    Any idea what's causing this?<br>
-    <br>
-    Thank you for helping me with this...<br>
-    <br>
-    additional information:<br>
-    bitbake -s gives me: "linux-libc-headers  :3.2-r1"<br>
-    I use bitbake version 1.15.2<br>
-    running on a Ubuntu 12.10 64-bit machine<br>
-    my layers were created using repo: <br>
-    <br>
-    <i>repo version v1.12.2</i><i><br>
-    </i><i>       (from <a class="moz-txt-link-freetext" href="https://gerrit.googlesource.com/git-repo">https://gerrit.googlesource.com/git-repo</a>)</i><i><br>
-    </i><i>repo launcher version 1.19</i><i><br>
-    </i><i>       (from /usr/local/bin/repo)</i><i><br>
-    </i><i>git version 1.7.9.5</i><i><br>
-    </i><i>Python 2.7.3 (default, Aug  1 2012, 05:14:39) </i><i><br>
-    </i><i>[GCC 4.6.3]</i><br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------030302020401030209050901--
