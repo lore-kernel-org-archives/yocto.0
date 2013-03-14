@@ -1,17 +1,17 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A800E01460;
-	Thu, 14 Mar 2013 13:56:25 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 409C9E01460;
+	Thu, 14 Mar 2013 14:14:42 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2EKuG2O001334
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r2ELEdbu015875
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 14 Mar 2013 13:56:16 -0700 (PDT)
+	Thu, 14 Mar 2013 14:14:39 -0700 (PDT)
 Received: from [128.224.22.72] (128.224.22.72) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 14 Mar 2013 13:56:16 -0700
-Message-ID: <5142396A.9060609@windriver.com>
-Date: Thu, 14 Mar 2013 13:56:10 -0700
+	Thu, 14 Mar 2013 14:14:39 -0700
+Message-ID: <51423DBA.1070608@windriver.com>
+Date: Thu, 14 Mar 2013 14:14:34 -0700
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
@@ -35,7 +35,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Mar 2013 20:56:25 -0000
+X-List-Received-Date: Thu, 14 Mar 2013 21:14:42 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -45,13 +45,14 @@ On 13-03-14 12:52 PM, Insop Song wrote:
 > This is for adding rt-app, please let me know what you think.
 > For next patch, I will add schedtool_dl
 
-This patch looks ok, what are the differences from your original
-layer ? I've already imported changes from there, so I'd just
-like to hear about differences between the two.
+Reading this more closely, can you split this into two patches ?
+We need to review this in chunks, patch 1 for the rt-app (it
+looks fine), and another for the image definition ?
 
-I also have schedtool staged in the tree already, if you wait
-until tomorrow, I can push that tree and you can test and extend
-that base.
+oe-core already has core-image-rt and core-image-rt-sdk, so the
+naming and content here will be a bit confusing. We should
+determine where we want the image definition, and if we can
+simply extend the oe-core ones versus introducing new ones.
 
 Cheers,
 
