@@ -1,22 +1,31 @@
-Return-Path: <eric@eukrea.com>
-Received: from smtp6-g21.free.fr (smtp6-g21.free.fr [212.27.42.6])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D6EDE0145F
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 07:02:27 -0700 (PDT)
-Received: from e6520eb (unknown [90.84.144.53]) (Authenticated sender: eukrea)
-	by smtp6-g21.free.fr (Postfix) with ESMTPSA id 1D7028229C;
-	Thu, 14 Mar 2013 15:02:15 +0100 (CET)
-Date: Thu, 14 Mar 2013 15:02:11 +0100
-From: Eric =?UTF-8?B?QsOpbmFyZA==?= <eric@eukrea.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Message-ID: <20130314150211.1b6b68e4@e6520eb>
-In-Reply-To: <CAK18fxFeApWE8OVpf41AaEqpmLvsbdVu8srh5g6rh97Pb16hkg@mail.gmail.com>
-References: <1363122024-31419-1-git-send-email-eric@eukrea.com>
-	<CAK18fxFeApWE8OVpf41AaEqpmLvsbdVu8srh5g6rh97Pb16hkg@mail.gmail.com>
-Organization: =?UTF-8?B?RXVrcsOpYQ==?= Electromatique
-X-Mailer: Claws Mail 3.9.0 (GTK+ 2.24.13; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] use right license name for GPLv2
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 193C3E0145F
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 07:39:46 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UG9K7-0003PW-JW
+	for yocto@yoctoproject.org; Thu, 14 Mar 2013 15:40:03 +0100
+Received: from 24-196-194-18.static.hckr.nc.charter.com ([24.196.194.18])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 15:40:03 +0100
+Received: from kurtmyles by 24-196-194-18.static.hckr.nc.charter.com with
+	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 15:40:03 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: "Kurt Stevens" <kurtmyles@gmail.com>
+Date: Thu, 14 Mar 2013 10:32:22 -0400
+Message-ID: <khsn0u$1gr$1@ger.gmane.org>
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 24-196-194-18.static.hckr.nc.charter.com
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 6.00.2900.5931
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6157
+X-RFC2646: Format=Flowed; Original
+X-Antivirus: avast! (VPS 130314-1, 03/14/2013), Outbound message
+X-Antivirus-Status: Clean
+Subject: Using meta-openembeded with yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,25 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Mar 2013 14:02:29 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 14 Mar 2013 14:39:47 -0000
 
-Hi Andrei,
+Hello all,
 
-Le Wed, 13 Mar 2013 20:01:54 +0200,
-Andrei Gherzan <andrei@gherzan.ro> a =C3=A9crit :
-> The SPDX name for GPLv2 (http://spdx.org/licenses/) is GPL-2.0 so I'd like
-> to use this.
->=20
-OE-core is mainly using GPLv2 thus the change proposal to be consistant.
+    I am new to this list, and new to working with yocto project. I have 
+been able to build bootable images for my target (atom) using yocto and hob, 
+and am very happy and impressed.
 
-> And one more thing, please add the recipe name in the commit log -
-> something like:
-> *rpi-first-run-wizard.bb: Use right license name for GPLv2*
->=20
-2 recipes were concerned in this patch so I din't put their names in
-the 1st line to keep it short.
+    I would also like to use some of the layers within meta-oe (specifically 
+apache and mysql), but I don't know how to go about using the layers from 
+yocto.
 
-Eric
+    If someone could help me get started, I would greatly appreciate it.
+
+Thanks,
+
+Kurt Stevens
+
+
+
+
 
