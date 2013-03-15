@@ -1,38 +1,36 @@
 Return-Path: <insop.song@gmail.com>
-Received: from mail-qc0-f170.google.com (mail-qc0-f170.google.com
-	[209.85.216.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 249D3E0147C;
-	Fri, 15 Mar 2013 04:51:34 -0700 (PDT)
-Received: by mail-qc0-f170.google.com with SMTP id d42so1503202qca.29
-	for <multiple recipients>; Fri, 15 Mar 2013 04:51:33 -0700 (PDT)
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C2EFE01474;
+	Fri, 15 Mar 2013 04:55:37 -0700 (PDT)
+Received: by mail-wi0-f169.google.com with SMTP id l13so479372wie.0
+	for <multiple recipients>; Fri, 15 Mar 2013 04:55:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:x-mailer:in-reply-to
-	:references:in-reply-to:references;
-	bh=HlNqgJ4PANepSPh+CSybpvoujZGqi73cqYxcVLK3fNc=;
-	b=JUXvGAajorMRW+7maShqSKFORuqXWNfP58VJTyrQeNa6F4K5kpN9/3JtyHNeItRCA3
-	r5pQaknE3N/CGSxJkCik1UmjZYfur7z/YdmmHPmUJztwHuY7BbUSb4KbmCDt9hInXF2d
-	ry/MntzGdeyGk1wosBHvqFTtRQBNxiHrg0UKRfsPphiveIK75YePQesFlWq0Rit15/qe
-	hAm8znEzsoB0T/N0XYfyq3yxVruUOGhY1YNRV0qwA9auFskYtZv6NFCHqDy0Hz86Cl8m
-	khDOcTEI2pR4McfQ4ykXrUnP1EZkEWgozJTFSkfMDG2Wd/wrCwxWJeKRlLVqz/QuJ+87
-	S7BQ==
-X-Received: by 10.49.24.110 with SMTP id t14mr4827478qef.48.1363348293630;
-	Fri, 15 Mar 2013 04:51:33 -0700 (PDT)
-Received: from sputnik.gateway.2wire.net
-	(76-218-13-253.lightspeed.sntcca.sbcglobal.net. [76.218.13.253])
-	by mx.google.com with ESMTPS id ku2sm2476279qeb.4.2013.03.15.04.51.31
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 15 Mar 2013 04:51:32 -0700 (PDT)
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=kJu8odyCsXYF7NUWWPF1Uuwal1QUYYyLu7lrm/UWUhg=;
+	b=0b9QaE2Oev7D79ITUskifpkG2TEh2VEc9FSXLiJwdebl2x1WvZDJMsRy+r+WvO2Mad
+	ncnwtQrD09CsTuD+lQDQG08Jddg9uTsd0wqqp+BijYOekhnnoM32keqdfVaKqh1CfQRI
+	8DiBIolJ3IpCg1B1h1soACKIq59YNYzgPoHKzRmsHEDZcreSj3rS40rFTSFPLw0XNpy7
+	NxtQDqsavEhsHCzM10xTSTO1ADN/+BkR/mzsbHoUJSlz8K1+MljAcalx5X9pi1KKn00U
+	Fs1CRd+Hgnmb7acWPkZ4G50kg3WtdltIkLgQvBvjsJc7qwsrpjL6qJxuhiFWz9GeaUM5
+	ayQQ==
+X-Received: by 10.194.76.37 with SMTP id h5mr10400392wjw.21.1363348536097;
+	Fri, 15 Mar 2013 04:55:36 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.194.235.41 with HTTP; Fri, 15 Mar 2013 04:55:16 -0700 (PDT)
+In-Reply-To: <CADkTA4M=wxdo1_iBB-RJQWLcJHUvemn+6ng1GbTZzhBJfwaZnw@mail.gmail.com>
+References: <CACzyEJ8DDZqhSDWvTN9vBtpZ910eGtAC9GGtvNEqHpM0x1hxVg@mail.gmail.com>
+	<CADkTA4M=wxdo1_iBB-RJQWLcJHUvemn+6ng1GbTZzhBJfwaZnw@mail.gmail.com>
 From: Insop Song <insop.song@gmail.com>
-To: insop.song@gmail.com, bruce.ashfield@gmail.com, dvhart@linux.intel.com,
-	linux-yocto@yoctoproject.org, yocto@yoctoproject.org
-Date: Fri, 15 Mar 2013 04:47:17 -0700
-Message-Id: <a766d16a1cf4da3c2dd13b8c7e53f89775733187.1363347615.git.insop.song@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1363347615.git.insop.song@gmail.com>
-References: <insop.song@gmail.com> <cover.1363347615.git.insop.song@gmail.com>
-In-Reply-To: <cover.1363347615.git.insop.song@gmail.com>
-References: <cover.1363347615.git.insop.song@gmail.com>
-Subject: [PATCH 1/1] add scheedtool-dl for testing sched_deadline use jiri's github as a main repo
+Date: Fri, 15 Mar 2013 04:55:16 -0700
+Message-ID: <CACzyEJ9w_dj7j5htzp1shV-y6GEP3rdn2KMPFBV6RSEjF2eugw@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>,
+	"Development list for the linux-yocto*.git Linux kernel repositories"
+	<linux-yocto@yoctoproject.org>
+Subject: Re: [meta-realtime][PATCH] add sched_deadline reckpies-kernel for 3.8 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,55 +42,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2013 11:51:34 -0000
+X-List-Received-Date: Fri, 15 Mar 2013 11:55:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
----
- recipes-extended/images/core-image-realtime.bb |    1 +
- recipes-tools/schedtool-dl/schedtool-dl.bb     |   23 +++++++++++++++++++++++
- 2 files changed, 24 insertions(+)
- create mode 100644 recipes-tools/schedtool-dl/schedtool-dl.bb
+On Thu, Mar 14, 2013 at 11:27 PM, Bruce Ashfield
+<bruce.ashfield@gmail.com> wrote:
+>
+> I was just merging your changes, and realized that gmail may have dropped
+> your schedtool-dl recipe.
+>
+> Can you resend it with your updated series ? I have another schedtool
+> recipe here, but it's against an older sched_dl release, so I'd like to
+> compare it to yours and merge the two of them together.
 
-diff --git a/recipes-extended/images/core-image-realtime.bb b/recipes-extended/images/core-image-realtime.bb
-index 624aacf..386b16b 100644
---- a/recipes-extended/images/core-image-realtime.bb
-+++ b/recipes-extended/images/core-image-realtime.bb
-@@ -8,5 +8,6 @@ EXTRA_IMAGE_FEATURES = "tools-debug debug-tweaks tools-profile dbg-pkgs"
- IMAGE_INSTALL = "\
- 	${CORE_IMAGE_BASE_INSTALL} \
- 	rt-app \
-+	schedtool-dl \
- 	libgcc \
- 	"
-diff --git a/recipes-tools/schedtool-dl/schedtool-dl.bb b/recipes-tools/schedtool-dl/schedtool-dl.bb
-new file mode 100644
-index 0000000..6b298f1
---- /dev/null
-+++ b/recipes-tools/schedtool-dl/schedtool-dl.bb
-@@ -0,0 +1,23 @@
-+DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
-+SECTION = "devel"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
-+PR = "r1"
-+
-+SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git"
-+SRCREV = "${AUTOREV}"
-+
-+S = "${WORKDIR}/git"
-+
-+do_compile() {
-+	oe_runmake
-+}
-+
-+do_install() {
-+     	install -d ${D}${bindir}
-+     	install -m 0755 schedtool ${D}${bindir}
-+}
-+
-+FILES_{PN} = "${bindir}/schedtool" 
-+
-+PARALLEL_MAKE = ""
--- 
-1.7.9.5
+I've sent out a new patch that has schedtool_dl.
+I used Juri's github as a main repo, which he has been updating recently.
 
+So now, I will look more on scripts for testing using these applications.
+Also will look to see the test and data collection using ftrace. I've
+done this before, but I will make it more easier to reproducible using
+meta-realtime layer.
+
+Let me know if you have any suggestion.
+
+Regards,
+
+Insop
 
