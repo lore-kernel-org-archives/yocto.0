@@ -1,39 +1,35 @@
 Return-Path: <insop.song@gmail.com>
-Received: from mail-we0-f182.google.com (mail-we0-f182.google.com
-	[74.125.82.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CF75E01472;
-	Fri, 15 Mar 2013 03:52:20 -0700 (PDT)
-Received: by mail-we0-f182.google.com with SMTP id t57so3103553wey.27
-	for <multiple recipients>; Fri, 15 Mar 2013 03:52:19 -0700 (PDT)
+Received: from mail-qc0-f175.google.com (mail-qc0-f175.google.com
+	[209.85.216.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7CC1E00429;
+	Fri, 15 Mar 2013 04:51:31 -0700 (PDT)
+Received: by mail-qc0-f175.google.com with SMTP id j3so1495901qcs.34
+	for <multiple recipients>; Fri, 15 Mar 2013 04:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=TVS3u8nAOI1SYFAiNeyK7fQx8BBODNY1sWBfiYaAe/8=;
-	b=j+06G6QjO0L+NcC9yJE1xvteBPCze0dZnFyetMTFi83wnkOtcLC1j/NjqiTEdROFbk
-	snG1beDySwLtC44h/8v7gwLPy4zjTa9EZWPpkI8oWMAl0zFYT71+6F6hijXHPm4IMTWF
-	qeFIdCrIGAk1B8kUQQO/R00KxDYgDcReKIYfve2hKoi2gqgfR+lIrX7wkgq3t1+HToKu
-	tAdCD6wun800McCV5K0nHnR4mnt5Zs95gSzQuDbBmRAQCsAu48PZbHsOqEerUbShveGa
-	72grIysBFomB4BtehgkQaUo54KieF610kDom/o6dn7bM77jUAlhuBfHiWK2xpWmHpVRb
-	4uRQ==
-X-Received: by 10.194.11.70 with SMTP id o6mr9597521wjb.29.1363344739593; Fri,
-	15 Mar 2013 03:52:19 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Fri, 15 Mar 2013 03:51:59 -0700 (PDT)
-In-Reply-To: <5142C3C5.7030302@windriver.com>
-References: <CACzyEJ8DDZqhSDWvTN9vBtpZ910eGtAC9GGtvNEqHpM0x1hxVg@mail.gmail.com>
-	<5142AE66.8010105@windriver.com>
-	<CACzyEJ9VV89cDL3YB2ru-FAiAwjtOjs_An9gRjoUW5oHe93uaA@mail.gmail.com>
-	<CADkTA4PJkFwNshUgcYTKKM+GDHTevMGPTj7t-M1eNeAL+XE_Zg@mail.gmail.com>
-	<CACzyEJ_mjkVe-zo=uKug=m+NHjhr3YJeOY0F46L8pYzmhfXgzg@mail.gmail.com>
-	<5142C353.8020209@windriver.com> <5142C3C5.7030302@windriver.com>
+	h=x-received:from:to:subject:date:message-id:x-mailer:in-reply-to
+	:references; bh=U6qRjigpJFYsI3DvFWf/XeY2lLa75Fvya/ovVM156p8=;
+	b=nx0NyChNUsW3pWlSP/hGZTme0rvCGf2Wbi+zHtGIGf5+4f24Bmpz8FvHECpEnOsaah
+	tq9SS9iKbExqecdPx3GlTfUVr4ywsrhd3PWNvrzzHhwp1yIPVwdX1bC/xXNP+TjT/CrH
+	9q3nAcxo9krSSJ1uyPVKEYz6lqHzOnAl/2dsoMzZCGAjGI6IzDkxLg2fUhrek+7/z0wA
+	io99N9PL1/oPYksm7H9PFwqAVnw6LYVt4T7iZvQvn5fBzv7xS1QOsSDUGy67qUo+tvBv
+	3193bKlkmaFPLywBGQLrjsc5O1j015oNoGjA5PfrYPJOu2w7hYSqVdtaoasSfMZeIb3W
+	9Dyw==
+X-Received: by 10.229.69.24 with SMTP id x24mr1022216qci.16.1363348291036;
+	Fri, 15 Mar 2013 04:51:31 -0700 (PDT)
+Received: from sputnik.gateway.2wire.net
+	(76-218-13-253.lightspeed.sntcca.sbcglobal.net. [76.218.13.253])
+	by mx.google.com with ESMTPS id ku2sm2476279qeb.4.2013.03.15.04.51.27
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 15 Mar 2013 04:51:29 -0700 (PDT)
 From: Insop Song <insop.song@gmail.com>
-Date: Fri, 15 Mar 2013 03:51:59 -0700
-Message-ID: <CACzyEJ9saPeY4tB7FrXAYyqBo4mG9N6Lsd+pYVt5hE+FPEn5qA@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	"Development list for the linux-yocto*.git Linux kernel repositories"
-	<linux-yocto@yoctoproject.org>
-Subject: Re: [linux-yocto] [meta-realtime][PATCH] add sched_deadline reckpies-kernel for 3.8 kernel
+To: insop.song@gmail.com, bruce.ashfield@gmail.com, dvhart@linux.intel.com,
+	linux-yocto@yoctoproject.org, yocto@yoctoproject.org
+Date: Fri, 15 Mar 2013 04:47:16 -0700
+Message-Id: <cover.1363347615.git.insop.song@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <insop.song@gmail.com>
+References: <insop.song@gmail.com>
+Subject: [PATCH 0/1] add scheedtool-dl for testing sched_deadline
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,25 +41,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2013 10:52:20 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 15 Mar 2013 11:51:32 -0000
 
-On Thu, Mar 14, 2013 at 11:46 PM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
+add scheedtool-dl for testing sched_deadline
 
->
-> I hit send too soon, I meant to point out that in a situation such
-> as this, you can ammend your original commit with your second set
-> of change and re-submit just the single patch. I can squash the
-> commits here, but it's easier to do on your end.
->
-> Just summarize the v2 in your new patch email when you ammend/squash
-> changes, so we won't forget what was changed :)
->
+Insop Song (1):
+  add scheedtool-dl for testing sched_deadline     use jiri's github as
+    a main repo
 
-Yup, sent out a squashed patch just now.
+ recipes-extended/images/core-image-realtime.bb |    1 +
+ recipes-tools/schedtool-dl/schedtool-dl.bb     |   23 +++++++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+ create mode 100644 recipes-tools/schedtool-dl/schedtool-dl.bb
 
-Regards,
+-- 
+1.7.9.5
 
-Insop
 
