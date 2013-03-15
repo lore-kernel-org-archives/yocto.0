@@ -1,36 +1,32 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-we0-f179.google.com (mail-we0-f179.google.com
-	[74.125.82.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CED84E01460;
-	Thu, 14 Mar 2013 14:37:22 -0700 (PDT)
-Received: by mail-we0-f179.google.com with SMTP id p43so2618730wea.24
-	for <multiple recipients>; Thu, 14 Mar 2013 14:37:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=Cn98UV0fhtxzFgJGAQIcZS0XCO8OmNx2cUUL9UeRzC8=;
-	b=SeZv0eAU/l4rgvNEjt7jdHVWu8V4zgMHgN0t7C8/rDFIEC1+NiTtIqlRVMLrQjYiLr
-	/H2J5IcahqETP8JC+izEE7Dhq/cCDdFFNbi9qMvwALf54yW55CNfHMnONaXU4IyDRDv5
-	1h/h1x9tYuprJJ7Of3cHSZ7PXu+8btYShvnlbtEI0VMHdLwPJ/lA5dIKiVtbcPZm0SiX
-	zWHm7aGQuvsAzfsX1DLUybFblnEGlTIH3qAWO/SN6a6ya/y7h7XkjKddcfnPxmM/vx3r
-	R4fnTUWDLpuz9bRs3YpRYA+2oRYg2pR21vnGGfvpyvqpLOUlrmcTy4Sg8IqHNjdst6OF
-	Tlfw==
-X-Received: by 10.180.76.84 with SMTP id i20mr6998328wiw.9.1363297041570; Thu,
-	14 Mar 2013 14:37:21 -0700 (PDT)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13CDCE004FE
+	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 17:07:01 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Mar 2013 17:07:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,848,1355126400"; d="scan'208";a="303178998"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by fmsmga001.fm.intel.com with ESMTP; 14 Mar 2013 17:07:00 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.79]) with mapi id
+	14.01.0355.002; Thu, 14 Mar 2013 17:06:57 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH v2] [eclipse-poky][master]Add more
+	comprehensive	error message for invalid project name
+Thread-Index: AQHOIKysMmZOeCbYEkOgQ9cucer4DJil4HRA
+Date: Fri, 15 Mar 2013 00:06:56 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6F409FFF@ORSMSX101.amr.corp.intel.com>
+References: <1363261812-20167-1-git-send-email-ioanax.grigoropol@intel.com>
+In-Reply-To: <1363261812-20167-1-git-send-email-ioanax.grigoropol@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Thu, 14 Mar 2013 14:37:01 -0700 (PDT)
-In-Reply-To: <5142396A.9060609@windriver.com>
-References: <CACzyEJ_WLRVObY-EuECAaF4UyCS8x9DJsHOhn9p45EhurS5g8g@mail.gmail.com>
-	<5142396A.9060609@windriver.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Thu, 14 Mar 2013 14:37:01 -0700
-Message-ID: <CACzyEJ8NxC4vpipe=-7B3wmTgsYpN=-v6mWQxjwCAibbpAxqoA@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>,
-	Development list for the linux-yocto repositories
-	<linux-yocto@yoctoproject.org>
-Subject: Re: [PATCH] [meta-realtime] Add rt-app and define core-image-realtime
+Subject: Re: [PATCH v2] [eclipse-poky][master]Add more comprehensive	error message for invalid project name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,36 +38,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Mar 2013 21:37:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 15 Mar 2013 00:07:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 14, 2013 at 1:56 PM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 13-03-14 12:52 PM, Insop Song wrote:
+Hi Ioana,
 
->
-> This patch looks ok, what are the differences from your original
-> layer ? I've already imported changes from there, so I'd just
-> like to hear about differences between the two.
->
+This patch still can't address the situation that found by Timo as followin=
+g....
 
-do_configure with --with-deadline option fails, that's why I've added
-a patch to set "deadline" option by default instead of getting it from
-configure.
+Thanks,
+Jessica
 
-I've tried to figure out the do_configure failure but was not able to
-figure it out.
-You can try this without my patch and add "--with-deadline" to configure.
+I forgot to mention. I found a way to create projects with invalid names.
+
+# Create a new Yocto C Project
+# Enter a wrong name eg. Test"
+# Press next
+# Press finish
+# --> Error Message is shown, press ok
+# Press back
+# Change the name to an also invalid name eg. Test$ # Click finish
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol
+Sent: Thursday, March 14, 2013 4:50 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [PATCH v2] [eclipse-poky][master]Add more comprehensive er=
+ror message for invalid project name
+
+[Yocto #4008]
+
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
+ .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |    1 +
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   27 ++++++++++++++++=
+----
+ 2 files changed, 23 insertions(+), 5 deletions(-)
+
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessag=
+es.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMes=
+sages.properties
+index 8596123..fc9813f 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.prop=
+erties
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.p
++++ roperties
+@@ -10,6 +10,7 @@
+  * BMW Car IT - added keys for target profiles
+  *************************************************************************=
+******/
+ Wizard.SDK.Warning.Title =3D Invalid Yocto Project ADT Location
++Wizard.SDK.Error.ProjecName =3D Project name "{0}" is invalid! \nNone of
++these characters are accepted inside project names: whitespaces, {1}
+
+ Poky.SDK.Location.Empty =3D Specified Toolchain Root Location is empty.
+ Poky.SDK.Location.Empty.Advice =3D You need specify Toolchain Root Locatio=
+n before building any project.
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoct=
+oCProjectTemplate.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wi=
+zard/NewYoctoCProjectTemplate.java
+index 5ffd6b7..4d1684a 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProje=
+ctTemplate.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCPr
++++ ojectTemplate.java
+@@ -10,8 +10,11 @@
+  *************************************************************************=
+******/
+ package org.yocto.sdk.ide.wizard;
+
++import java.util.Arrays;
+ import java.util.LinkedHashMap;
+ import java.util.List;
++import java.util.regex.Matcher;
++import java.util.regex.Pattern;
+
+ import org.eclipse.cdt.autotools.core.AutotoolsNewProjectNature;
+ import org.eclipse.cdt.core.CCorePlugin; @@ -46,11 +49,12 @@ import org.yo=
+cto.sdk.ide.YoctoProfileElement;
+ import org.yocto.sdk.ide.YoctoSDKChecker;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
++import org.yocto.sdk.ide.YoctoSDKMessages;
++import org.yocto.sdk.ide.YoctoSDKPlugin; import
++org.yocto.sdk.ide.YoctoUIElement;
+ import org.yocto.sdk.ide.natures.YoctoSDKEmptyProjectNature;
+ import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;
+ import org.yocto.sdk.ide.utils.YoctoSDKUtils;
+-import org.yocto.sdk.ide.YoctoSDKPlugin; -import org.yocto.sdk.ide.YoctoUI=
+Element;
 
 
-> I also have schedtool staged in the tree already, if you wait
-> until tomorrow, I can push that tree and you can test and extend
-> that base.
->
+ @SuppressWarnings("restriction")
+@@ -58,11 +62,19 @@ public class NewYoctoCProjectTemplate extends ProcessRu=
+nner {
+        protected boolean savedAutoBuildingValue;
+        protected ProjectCreatedActions pca;
+        protected IManagedBuildInfo info;
++       protected List<Character> illegalChars =3D Arrays.asList('$', '"','=
+#','%','&','\'','(',')','*', '+', ',','.','/',':',';','<','=3D','>','?','@'=
+,'[','\\',']','^','`','{','|','}','~');
++       private static final String PROJECT_NAME_ERROR =3D
++"Wizard.SDK.Error.ProjecName";
 
-Sounds good.
+        public NewYoctoCProjectTemplate() {
+                pca =3D new ProjectCreatedActions();
+        }
+-
++       private String printIllegalChars(){
++               String print =3D "";
++               for (Character ch : illegalChars)
++                       print +=3D ch + ", ";
++               print =3D print.substring(0, print.length() - 2);
++               return print;
++       }
+        public void process(TemplateCore template, ProcessArgument[] args, =
+String processId, IProgressMonitor monitor) throws ProcessFailureException =
+{
 
-Regards,
+                String projectName =3D args[0].getSimpleValue(); @@ -74,9 +=
+86,9 @@ public class NewYoctoCProjectTemplate extends ProcessRunner {
+                boolean isEmptryProject =3D Boolean.valueOf(isEmptyProjetVa=
+lue).booleanValue();
+                IProject project =3D ResourcesPlugin.getWorkspace().getRoot=
+().getProject(projectName);
+                try {
+-                       if (projectName.contains(" ")) {
++                       if (!isValidProjectName(projectName)) {
+                                project.delete(true, null);
+-                               throw new ProcessFailureException(projectNa=
+me + " contains space(s).  Project name can't contain space(s)");
++                               throw new
++ProcessFailureException(YoctoSDKMessages.getFormattedString(PROJECT_NAM
++E_ERROR, new Object[]{projectName, printIllegalChars()}));
+                        }
+                        if (!project.exists()) {
+                                IWorkspace workspace =3D ResourcesPlugin.ge=
+tWorkspace(); @@ -166,6 +178,11 @@ public class NewYoctoCProjectTemplate ex=
+tends ProcessRunner {
+                        throw new OperationCanceledException(Messages.getSt=
+ring("NewManagedProject.3") + e.getMessage());
+                }
+        }
++       private boolean isValidProjectName(String projectName) {
++               Pattern pattern =3D Pattern.compile("^[a-zA-Z][a-zA-Z0-9_\\=
+-]*$");
++               Matcher matcher =3D pattern.matcher(projectName);
++               return matcher.find();
++}
 
-Insop
+        protected final void turnOffAutoBuild(IWorkspace workspace) throws =
+CoreException {
+                IWorkspaceDescription workspaceDesc =3D workspace.getDescri=
+ption();
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
