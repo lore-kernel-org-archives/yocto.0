@@ -1,28 +1,28 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62188E00770
-	for <yocto@yoctoproject.org>; Fri, 15 Mar 2013 07:41:03 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFD60E00770;
+	Fri, 15 Mar 2013 07:46:59 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2FEf2Bm016881
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r2FEkvnB003297
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 15 Mar 2013 07:41:03 -0700 (PDT)
+	Fri, 15 Mar 2013 07:46:57 -0700 (PDT)
 Received: from [128.224.22.84] (128.224.22.84) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 15 Mar 2013 07:41:02 -0700
-Message-ID: <514332FC.2070805@windriver.com>
-Date: Fri, 15 Mar 2013 07:41:00 -0700
+	Fri, 15 Mar 2013 07:46:57 -0700
+Message-ID: <5143345E.9070703@windriver.com>
+Date: Fri, 15 Mar 2013 07:46:54 -0700
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-References: <CAFyqS9rzC5ueHXBKnzt7JnfWKKSvBkXBEL3px3vh3itEXaRWqg@mail.gmail.com>
-	<51432E43.7060708@windriver.com>
-	<CAFyqS9qmjLqMoXkqdFCvzHN_dMcZOd5yn0tgUR4iX5bGdvSSVQ@mail.gmail.com>
-In-Reply-To: <CAFyqS9qmjLqMoXkqdFCvzHN_dMcZOd5yn0tgUR4iX5bGdvSSVQ@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: remove /boot/uImage and /usr/share/terminfo
+To: Insop Song <insop.song@gmail.com>
+References: <cover.1363347615.git.insop.song@gmail.com>
+	<a766d16a1cf4da3c2dd13b8c7e53f89775733187.1363347615.git.insop.song@gmail.com>
+In-Reply-To: <a766d16a1cf4da3c2dd13b8c7e53f89775733187.1363347615.git.insop.song@gmail.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
+	linux-yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] add scheedtool-dl for testing sched_deadline use jiri's github as a main repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,62 +34,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2013 14:41:03 -0000
+X-List-Received-Date: Fri, 15 Mar 2013 14:47:00 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 13-03-15 07:36 AM, Hans Beckérus wrote:
+On 13-03-15 04:47 AM, Insop Song wrote:
+> ---
+>   recipes-extended/images/core-image-realtime.bb |    1 +
+>   recipes-tools/schedtool-dl/schedtool-dl.bb     |   23 +++++++++++++++++++++++
+>   2 files changed, 24 insertions(+)
+>   create mode 100644 recipes-tools/schedtool-dl/schedtool-dl.bb
 >
->
-> On Fri, Mar 15, 2013 at 3:20 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com <mailto:bruce.ashfield@windriver.com>> wrote:
->
->     On 13-03-15 06:33 AM, Hans Beckérus wrote:
->
->         Hi. In an effort to shrink our rootfs by some major numbers we
->         found two
->         low-hanging fruits that we would like to address before cherry
->         picking
->         and removing lots of good linux functionality. We have no need
->         for the
->         uImage (3MB) stored in /boot and also we can leave out the
->         terminfo tree
->         (2.5MB).
->         My question here now is if the build system provide functionality to
->         actually tell the image builder not to include these specific
->         components?
->
->
->      From kernel.bbclass, you just need to clear RDEPENDS_kernel-base
->     in your .conf files:
->
->     # Allow machines to override this dependency if kernel image files are
->     # not wanted in images as standard
->     RDEPENDS_kernel-base ?= "kernel-image"
->
->     You'll still get your kernel modules installed after making this change.
->
->     Bruce
->
->
-> Thanks Bruce.How could I have missed that? I believe I scanned through
-> the kernel.bbclass for something like this.
-> Also got some good tip regarding /usr/share/terminfo? Guess I need to
-> figure out what package drags it in ;)
+> diff --git a/recipes-extended/images/core-image-realtime.bb b/recipes-extended/images/core-image-realtime.bb
+> index 624aacf..386b16b 100644
+> --- a/recipes-extended/images/core-image-realtime.bb
+> +++ b/recipes-extended/images/core-image-realtime.bb
+> @@ -8,5 +8,6 @@ EXTRA_IMAGE_FEATURES = "tools-debug debug-tweaks tools-profile dbg-pkgs"
+>   IMAGE_INSTALL = "\
+>   	${CORE_IMAGE_BASE_INSTALL} \
+>   	rt-app \
+> +	schedtool-dl \
+>   	libgcc \
+>   	"
 
-Not off the top of my head. Hopefully someone else with experience in
-that area will notice the traffic and jump in :)
+This part of the patch is still a problem, so I'll drop  it on merge.
+We still need to rationalize why we can't extend the oe-core
+rt images:
 
-I'm fairly certain that is is controllable, since in the past, I've
-known it to be removed and tuned for small systems, so it's not a
-completely uncommon thing to do.
+./recipes-rt/images/core-image-rt.bb
+./recipes-rt/images/core-image-rt-sdk.bb
+
+For this addition. Until we work through that, you can carry a local
+patch, or add the tools back via your local.conf adding it to IMAGE_INSTALL.
+
+> diff --git a/recipes-tools/schedtool-dl/schedtool-dl.bb b/recipes-tools/schedtool-dl/schedtool-dl.bb
+> new file mode 100644
+> index 0000000..6b298f1
+> --- /dev/null
+> +++ b/recipes-tools/schedtool-dl/schedtool-dl.bb
+> @@ -0,0 +1,23 @@
+> +DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
+> +SECTION = "devel"
+> +LICENSE = "GPLv2"
+> +LIC_FILES_CHKSUM = "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
+> +PR = "r1"
+> +
+> +SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git"
+> +SRCREV = "${AUTOREV}"
+
+We also want to lock down the SRCREV vs autorev. I'd expect that going 
+forward,
+you can maintain/update this once we've merged it, so when a SRCREV
+is known to be good, you can send update patches with the new values
+(just like I do with linux-yocto in oe-core). But in the general case,
+we want to have consistent and reproducible builds and to do that,
+we need a well defined SRCREV.
+
+So one more version of the series and we should be good (you can
+drop the image addition as part of that) .. sorry for all the
+iterations, the first merges always take the longest.
 
 Cheers,
 
 Bruce
 
->
-> Hans
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_compile() {
+> +	oe_runmake
+> +}
+> +
+> +do_install() {
+> +     	install -d ${D}${bindir}
+> +     	install -m 0755 schedtool ${D}${bindir}
+> +}
+> +
+> +FILES_{PN} = "${bindir}/schedtool"
+> +
+> +PARALLEL_MAKE = ""
 >
 
 
