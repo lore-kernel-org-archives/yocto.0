@@ -1,28 +1,33 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFD60E00770;
-	Fri, 15 Mar 2013 07:46:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r2FEkvnB003297
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 15 Mar 2013 07:46:57 -0700 (PDT)
-Received: from [128.224.22.84] (128.224.22.84) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 15 Mar 2013 07:46:57 -0700
-Message-ID: <5143345E.9070703@windriver.com>
-Date: Fri, 15 Mar 2013 07:46:54 -0700
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130221 Thunderbird/17.0.3
-MIME-Version: 1.0
-To: Insop Song <insop.song@gmail.com>
-References: <cover.1363347615.git.insop.song@gmail.com>
-	<a766d16a1cf4da3c2dd13b8c7e53f89775733187.1363347615.git.insop.song@gmail.com>
-In-Reply-To: <a766d16a1cf4da3c2dd13b8c7e53f89775733187.1363347615.git.insop.song@gmail.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
-	linux-yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] add scheedtool-dl for testing sched_deadline use jiri's github as a main repo
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDAD3E00429
+	for <yocto@yoctoproject.org>; Fri, 15 Mar 2013 08:04:55 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UGWC3-0007tq-Ea
+	for yocto@yoctoproject.org; Fri, 15 Mar 2013 16:05:15 +0100
+Received: from host-80-81-19-29.customer.m-online.net ([80.81.19.29])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 15 Mar 2013 16:05:15 +0100
+Received: from v.vogelhuber by host-80-81-19-29.customer.m-online.net with
+	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 15 Mar 2013 16:05:15 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Volker Vogelhuber <v.vogelhuber@digitalendoscopy.de>
+Date: Fri, 15 Mar 2013 15:04:35 +0000 (UTC)
+Message-ID: <loom.20130315T160013-564@post.gmane.org>
+References: <513F58FA.3080808@digitalendoscopy.de>
+	<loom.20130315T095848-21@post.gmane.org>
+	<51433167.2060009@windriver.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 80.81.19.29 (Mozilla/5.0 (X11;
+	Linux x86_64) AppleWebKit/537.4 (KHTML, like Gecko)
+	Chrome/22.0.1229.94 Safari/537.4)
+Subject: Re: building yocto image from git always switches branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,85 +39,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2013 14:47:00 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 15 Mar 2013 15:04:56 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-On 13-03-15 04:47 AM, Insop Song wrote:
-> ---
->   recipes-extended/images/core-image-realtime.bb |    1 +
->   recipes-tools/schedtool-dl/schedtool-dl.bb     |   23 +++++++++++++++++++++++
->   2 files changed, 24 insertions(+)
->   create mode 100644 recipes-tools/schedtool-dl/schedtool-dl.bb
->
-> diff --git a/recipes-extended/images/core-image-realtime.bb b/recipes-extended/images/core-image-realtime.bb
-> index 624aacf..386b16b 100644
-> --- a/recipes-extended/images/core-image-realtime.bb
-> +++ b/recipes-extended/images/core-image-realtime.bb
-> @@ -8,5 +8,6 @@ EXTRA_IMAGE_FEATURES = "tools-debug debug-tweaks tools-profile dbg-pkgs"
->   IMAGE_INSTALL = "\
->   	${CORE_IMAGE_BASE_INSTALL} \
->   	rt-app \
-> +	schedtool-dl \
->   	libgcc \
->   	"
+Hi,
 
-This part of the patch is still a problem, so I'll drop  it on merge.
-We still need to rationalize why we can't extend the oe-core
-rt images:
+> Interesting. Are you working out of yocto/oe-core master ? The linux
+> yocto kernel support should always fail if the kernel source dir
+> isn't a git repo (or convert it into one) and not impact the main
+> yocto/oe-core tree.
+As mentioned in the first post, I checked out the danny branch. 
 
-./recipes-rt/images/core-image-rt.bb
-./recipes-rt/images/core-image-rt-sdk.bb
+I used the following bitbake recipe for kernel compilation:
 
-For this addition. Until we work through that, you can carry a local
-patch, or add the tools back via your local.conf adding it to IMAGE_INSTALL.
+inherit kernel
+require recipes-kernel/linux/linux-yocto.inc
 
-> diff --git a/recipes-tools/schedtool-dl/schedtool-dl.bb b/recipes-tools/schedtool-dl/schedtool-dl.bb
-> new file mode 100644
-> index 0000000..6b298f1
-> --- /dev/null
-> +++ b/recipes-tools/schedtool-dl/schedtool-dl.bb
-> @@ -0,0 +1,23 @@
-> +DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
-> +SECTION = "devel"
-> +LICENSE = "GPLv2"
-> +LIC_FILES_CHKSUM = "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
-> +PR = "r1"
-> +
-> +SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git"
-> +SRCREV = "${AUTOREV}"
+SECTION = "kernel"
+LICENSE = "GPLv2"
 
-We also want to lock down the SRCREV vs autorev. I'd expect that going 
-forward,
-you can maintain/update this once we've merged it, so when a SRCREV
-is known to be good, you can send update patches with the new values
-(just like I do with linux-yocto in oe-core). But in the general case,
-we want to have consistent and reproducible builds and to do that,
-we need a well defined SRCREV.
+LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-So one more version of the series and we should be good (you can
-drop the image addition as part of that) .. sorry for all the
-iterations, the first merges always take the longest.
 
-Cheers,
+DESCRIPTION = "Linux kernel for the tao-boards"
+KERNEL_IMAGETYPE = "uImage"
+KERNEL_CC_append += "-mno-unaligned-access "
 
-Bruce
+COMPATIBLE_MACHINE = "(tao)"
 
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_compile() {
-> +	oe_runmake
-> +}
-> +
-> +do_install() {
-> +     	install -d ${D}${bindir}
-> +     	install -m 0755 schedtool ${D}${bindir}
-> +}
-> +
-> +FILES_{PN} = "${bindir}/schedtool"
-> +
-> +PARALLEL_MAKE = ""
->
+PV = "2.6.37"
+
+MACHINE_KERNEL_PR_append = "c+tn"
+
+SRC_URI = "file://linux-2.6.37-tn.tar.xz \
+           file://defconfig \
+           file://nonetwork.patch \
+           file://rtc.patch \
+	   file://multitouch.patch"
+
+S = "${WORKDIR}/linux-2.6.37-tn"
+
+# Sadly perf is broken:
+do_compile_perf() {
+	:
+}
+
+do_validate_branches() {
+	  :
+}
+
+do_install_perf() {
+	:
+}
+
+
+After I removed the require recipes-kernel/linux/linux-yocto.inc
+line it worked. As you can see I have a .tar.xz file for the kernel source, so 
+no git. But the git command within the linux-yocto.inc file
+realizes, that there is a git repository. But it's not one from the
+kernel, but from the poky repository the whole build environment is 
+located in.
+
+
+
 
 
