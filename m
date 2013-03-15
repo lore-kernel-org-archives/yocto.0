@@ -1,26 +1,31 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4950E012F3
-	for <yocto@yoctoproject.org>; Thu, 14 Mar 2013 22:09:44 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 14 Mar 2013 22:09:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,849,1355126400"; d="scan'208";a="306981610"
-Received: from unknown (HELO [10.255.13.217]) ([10.255.13.217])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Mar 2013 22:09:25 -0700
-Message-ID: <5142AD04.30900@linux.intel.com>
-Date: Thu, 14 Mar 2013 22:09:24 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 804E1E01472;
+	Thu, 14 Mar 2013 22:10:09 -0700 (PDT)
+Received: by mail-wg0-f54.google.com with SMTP id fm10so2791681wgb.9
+	for <multiple recipients>; Thu, 14 Mar 2013 22:10:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:from:date:message-id:subject:to:cc
+	:content-type; bh=EFH90wAOj6PCp62RnXEzWph4SikjU6XzUvly2X4OuLU=;
+	b=wZVVTbgAXd+P+fl2mEvfqMPAF4jKNYIqNZb3QVlEzbxqdG3oLTmUjKUbvJPDLvhqof
+	lMxaZpLL3hTStpwyNFbEr6SuhfPNmztR/S1T/2j21Rb9aBn7QKYMRzaEQ9yBb4ZUMdvI
+	xH14Y09o3rjozbG/sFLwFZE5n3yguSHmXAAJSYGtUKUJCX2oEX+hqPxMk4MUqp//+CKU
+	S27ByGoctsP1aNJ57IJIewRi74lXHvTzzmO85UKxHbQKK+flpyjDC6Szm2gIxnes9vhf
+	y8eZrMEeieas5cEgU9AwnmDU54cZWKMAGzns/82w9+YoN5UZJo1RjrQ0TlxidPhfCBpx
+	i6VQ==
+X-Received: by 10.194.76.37 with SMTP id h5mr8543937wjw.21.1363324208170; Thu,
+	14 Mar 2013 22:10:08 -0700 (PDT)
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <CAE_REAuOnhUG7GOgJHzSbGjrEyjKj8ApZ3J6W1=PtwZd2TM1Mg@mail.gmail.com>
-	<CAE_REAuMoVX4RPkVN4UFKX0XvVPK5-b07M-53ueVeKtzWBCFWQ@mail.gmail.com>
-	<4C570CD8-26A9-42D0-994E-5329CE7687D5@gmail.com>
-In-Reply-To: <4C570CD8-26A9-42D0-994E-5329CE7687D5@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Regarding Licensing of "mbsalign.c" available in util-linux-2.21.2 version (Yocto-1.3-Danny)
+Received: by 10.194.235.41 with HTTP; Thu, 14 Mar 2013 22:09:47 -0700 (PDT)
+From: Insop Song <insop.song@gmail.com>
+Date: Thu, 14 Mar 2013 22:09:47 -0700
+Message-ID: <CACzyEJ8DDZqhSDWvTN9vBtpZ910eGtAC9GGtvNEqHpM0x1hxVg@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>,
+	"Development list for the linux-yocto*.git Linux kernel repositories"
+	<linux-yocto@yoctoproject.org>
+Subject: [meta-realtime][PATCH] add sched_deadline reckpies-kernel for 3.8 kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,93 +37,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2013 05:09:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 15 Mar 2013 05:10:10 -0000
+X-Groupsio-MsgNum: 12572
+Content-Type: multipart/mixed; boundary=047d7bb03bc4244e9104d7efa7c6
+
+--047d7bb03bc4244e9104d7efa7c6
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi Bruce,
+
+I've added recipes-kernel to use edf branch and cfg.
+
+- tested on qemux86
+===========================================
+
+root@qemux86:~# uname -a
+Linux qemux86 3.8.1-yocto-standard #1 SMP PREEMPT Thu Mar 14 21:57:12
+PDT 2013 i686 GNU/Linux
+root@qemux86:~# rt-app -t 100000:35000:d -D 2
+[rt-app] <notice> [0] Using SCHED_DEADLINE policy:
+[rt-app] <notice> [0] starting thread with period: 100000, exec:
+35000,deadline: 100000, priority: 10
+[rt-app] <notice> [0] Locking pages in memory
+#idx	period	min_et	max_et	rel_st	start		end		deadline	dur.	slack	Budget	Used
+Budget
+0	100000	35000	35000	65466	354577907	354612918	354677899	35011	64981
+0	100000	35000	35000	165585	354678026	354713105	354777899	35079	64794
+...
+0	100000	35000	35000	1965672	356478113	356513126	356577899	35014	64772
+[rt-app] <notice> [0] Exiting.
+root@qemux86:~#
+
+===========================================
+
+Let me know what you think.
+
+Regards,
+
+Insop
+
+===========================================
 
 
+Subject: [meta-realtime][PATCH] add sched_deadline reckpies-kernel for 3.8
+ kernel
 
-On 03/11/2013 10:17 AM, Khem Raj wrote:
->
-> On Mar 11, 2013, at 3:45 AM, Gaurang Shastri <gmshastri@gmail.com
-> <mailto:gmshastri@gmail.com>> wrote:
->
->> Hi All,
->>
->> Any shades of light for below query ???
->>
->
-> I would suggest to open a bug for it.
->
-Timing is on this one!
+---
+ recipes-kernel/linux/linux-yocto/edf.cfg      |    4 ++++
+ recipes-kernel/linux/linux-yocto_3.8.bbappend |   14 ++++++++++++++
+ 2 files changed, 18 insertions(+)
+ create mode 100644 recipes-kernel/linux/linux-yocto/edf.cfg
+ create mode 100644 recipes-kernel/linux/linux-yocto_3.8.bbappend
 
-I noticed this recently independent of this email!
+diff --git a/recipes-kernel/linux/linux-yocto/edf.cfg
+b/recipes-kernel/linux/linux-yocto/edf.cfg
+new file mode 100644
+index 0000000..ccf004f
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto/edf.cfg
+@@ -0,0 +1,4 @@
++CONFIG_CGROUPS=y
++CONFIG_CGROUP_SCHED=y
++CONFIG_DEADLINE_GROUP_SCHED=y
++
+diff --git a/recipes-kernel/linux/linux-yocto_3.8.bbappend
+b/recipes-kernel/linux/linux-yocto_3.8.bbappend
+new file mode 100644
+index 0000000..c6a969f
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto_3.8.bbappend
+@@ -0,0 +1,14 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++COMPATIBLE_MACHINE_qemux86 = "qemux86"
++COMPATIBLE_MACHINE_fri2 = "fri2"
++
++KBRANCH_qemux86 = "standard/edf"
++KBRANCH_fri2 = "standard/edf"
++
++KMACHINE_qemux86 = "qemux86"
++KMACHINE_fri2 = "fri2"
++
++SRCREV_machine_qemux86 = "62d98f6b12f91cc7419b88dfa2e0abe077c94f9f"
++SRCREV_machine_fri2 = "62d98f6b12f91cc7419b88dfa2e0abe077c94f9f"
++
++KERNEL_FEATURES_append =" cfg/edf.scc"
+-- 
+1.7.9.5
 
-I have contacted the maintainer of util-linux to clarify the license of 
-mbsalign.c as it's used directly by cal and lslocks and included in the 
-common library.
+--047d7bb03bc4244e9104d7efa7c6
+Content-Type: application/octet-stream; 
+	name="0001-add-sched_deadline-reckpies-kernel-for-3.8-kernel.patch"
+Content-Disposition: attachment; 
+	filename="0001-add-sched_deadline-reckpies-kernel-for-3.8-kernel.patch"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_heavygzx0
 
-As it also turns out the original reason that util-linux was marked as 
-GPLv3 because of lscpu, which is now be changed back to GPLv2.
+RnJvbSA1NzZkOTczMDJmYWY1NjE1ZmY1ZThmYzFhMTAxYmUzNWM2MjA2ZWEwIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBJbnNvcCBTb25nIDxpbnNvcC5zb25nQGdtYWlsLmNvbT4KRGF0
+ZTogVGh1LCAxNCBNYXIgMjAxMyAyMTo1MjozOCAtMDcwMApTdWJqZWN0OiBbbWV0YS1yZWFsdGlt
+ZV1bUEFUQ0hdIGFkZCBzY2hlZF9kZWFkbGluZSByZWNrcGllcy1rZXJuZWwgZm9yIDMuOAoga2Vy
+bmVsCgotLS0KIHJlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvL2VkZi5jZmcgICAgICB8
+ICAgIDQgKysrKwogcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG9fMy44LmJiYXBwZW5k
+IHwgICAxNCArKysrKysrKysrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCAxOCBpbnNlcnRpb25zKCsp
+CiBjcmVhdGUgbW9kZSAxMDA2NDQgcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgteW9jdG8vZWRm
+LmNmZwogY3JlYXRlIG1vZGUgMTAwNjQ0IHJlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3Rv
+XzMuOC5iYmFwcGVuZAoKZGlmZiAtLWdpdCBhL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlv
+Y3RvL2VkZi5jZmcgYi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0by9lZGYuY2ZnCm5l
+dyBmaWxlIG1vZGUgMTAwNjQ0CmluZGV4IDAwMDAwMDAuLmNjZjAwNGYKLS0tIC9kZXYvbnVsbAor
+KysgYi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0by9lZGYuY2ZnCkBAIC0wLDAgKzEs
+NCBAQAorQ09ORklHX0NHUk9VUFM9eQorQ09ORklHX0NHUk9VUF9TQ0hFRD15CitDT05GSUdfREVB
+RExJTkVfR1JPVVBfU0NIRUQ9eQorCmRpZmYgLS1naXQgYS9yZWNpcGVzLWtlcm5lbC9saW51eC9s
+aW51eC15b2N0b18zLjguYmJhcHBlbmQgYi9yZWNpcGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0
+b18zLjguYmJhcHBlbmQKbmV3IGZpbGUgbW9kZSAxMDA2NDQKaW5kZXggMDAwMDAwMC4uYzZhOTY5
+ZgotLS0gL2Rldi9udWxsCisrKyBiL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXlvY3RvXzMu
+OC5iYmFwcGVuZApAQCAtMCwwICsxLDE0IEBACitGSUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAi
+JHtUSElTRElSfS8ke1BOfToiCitDT01QQVRJQkxFX01BQ0hJTkVfcWVtdXg4NiA9ICJxZW11eDg2
+IgorQ09NUEFUSUJMRV9NQUNISU5FX2ZyaTIgPSAiZnJpMiIKKworS0JSQU5DSF9xZW11eDg2ID0g
+InN0YW5kYXJkL2VkZiIKK0tCUkFOQ0hfZnJpMiA9ICJzdGFuZGFyZC9lZGYiCisKK0tNQUNISU5F
+X3FlbXV4ODYgPSAicWVtdXg4NiIKK0tNQUNISU5FX2ZyaTIgPSAiZnJpMiIKKworU1JDUkVWX21h
+Y2hpbmVfcWVtdXg4NiA9ICI2MmQ5OGY2YjEyZjkxY2M3NDE5Yjg4ZGZhMmUwYWJlMDc3Yzk0Zjlm
+IgorU1JDUkVWX21hY2hpbmVfZnJpMiA9ICI2MmQ5OGY2YjEyZjkxY2M3NDE5Yjg4ZGZhMmUwYWJl
+MDc3Yzk0ZjlmIgorCitLRVJORUxfRkVBVFVSRVNfYXBwZW5kID0iIGNmZy9lZGYuc2NjIgotLSAK
+MS43LjkuNQoK
 
-I will keep people posted on this one.
-
-We try to do our best to keep the license information up to date and 
-sometimes files under core licenses slip by. As upstreams projects start 
-to use SPDX this kind of problem can be avoided.
-
-Thanks for pointing it out.
-
-Sau!
-
-
-
-
->> //Gaurang Shastri
->>
->> On Fri, Mar 8, 2013 at 2:51 PM, Gaurang Shastri <gmshastri@gmail.com
->> <mailto:gmshastri@gmail.com>> wrote:
->>
->>     Hi All,
->>
->>     I have some concerns regarding util-linux-2.21.2 version . As per
->>     Yocto-1.3 (danny) recipe,
->>     {{{
->>
->>     LICENSE_${PN}-lscpu = "GPLv3+"  <-- util-linux_2.21.2.bb
->>     <http://util-linux_2.21.2.bb/>
->>
->>     LICENSE = "GPLv2+ & LGPLv2.1+ & BSD"   <-- util-linux.inc
->>
->>     }}}
->>
->>     So as per the above description, only lscpu is GPLv3.
->>
->>     But while looking into the source of util-linux-2.21.2, I found
->>     out that "util-linux-2.21.2/lib/mbsalign.c" is GPLv3 and it is
->>     used by following binaries while building:
->>     {{{
->>       -  fdisk
->>       -  partx
->>     }}}
->>
->>     So does it mean that the above binaries should also be GPLv3 and
->>     need to take care in util-linux.{bb,inc} ???
->>
->>     Regards,
->>     Gaurang Shastri
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
+--047d7bb03bc4244e9104d7efa7c6--
