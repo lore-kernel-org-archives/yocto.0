@@ -1,28 +1,28 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qc0-f175.google.com (mail-qc0-f175.google.com
-	[209.85.216.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 012B1E0147A
-	for <yocto@yoctoproject.org>; Fri, 15 Mar 2013 06:33:45 -0700 (PDT)
-Received: by mail-qc0-f175.google.com with SMTP id j3so1525705qcs.20
-	for <yocto@yoctoproject.org>; Fri, 15 Mar 2013 06:33:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=M47dT40Oq/h+iIc2kiBcaBwm+IRy206+32vC0JGgcPc=;
-	b=H66IerMcGhZDCKyswYecrZqc4+vvUaEbMITiy68vYgIW7r2aVQpPRE+eHthv8bd6i+
-	GgcbxApNVPz70UnXSfbILoQk/SYQ/1O0kq415HTPXUUrRjhviylJeS3ZzzzIjIzwfUbA
-	4q9WgO0henyquRJ3Eb4lsRBAdwcJ6V0M5+CaMmD7pjmC9fjtRqTeSqnFZA2iMzyszmvd
-	X2f1RmvlxppvyEBPRzBeBpJL1FC9mdl/xFVcvset12Ys2pvin3GEEZc7kPYJVonN48py
-	gumUDAYtg+EmMbWzEVAesOGQTTBDIBHiwBPtyr/1DOnhybix88DNf2Gh4O3z1+ZtmvYg
-	hCaw==
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AD2DE00770
+	for <yocto@yoctoproject.org>; Fri, 15 Mar 2013 06:57:51 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 15 Mar 2013 06:57:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,850,1355126400"; d="scan'208";a="303426440"
+Received: from unknown (HELO [10.255.13.217]) ([10.255.13.217])
+	by fmsmga001.fm.intel.com with ESMTP; 15 Mar 2013 06:57:48 -0700
+Message-ID: <514328DC.30103@linux.intel.com>
+Date: Fri, 15 Mar 2013 06:57:48 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-X-Received: by 10.224.58.201 with SMTP id i9mr5502513qah.81.1363354425293;
-	Fri, 15 Mar 2013 06:33:45 -0700 (PDT)
-Received: by 10.49.67.98 with HTTP; Fri, 15 Mar 2013 06:33:45 -0700 (PDT)
-Date: Fri, 15 Mar 2013 14:33:45 +0100
-Message-ID: <CAFyqS9rzC5ueHXBKnzt7JnfWKKSvBkXBEL3px3vh3itEXaRWqg@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: yocto@yoctoproject.org
-Subject: remove /boot/uImage and /usr/share/terminfo
+To: Gaurang Shastri <gmshastri@gmail.com>
+References: <CAE_REAuOnhUG7GOgJHzSbGjrEyjKj8ApZ3J6W1=PtwZd2TM1Mg@mail.gmail.com>
+	<CAE_REAuMoVX4RPkVN4UFKX0XvVPK5-b07M-53ueVeKtzWBCFWQ@mail.gmail.com>
+	<4C570CD8-26A9-42D0-994E-5329CE7687D5@gmail.com>
+	<5142AD04.30900@linux.intel.com>
+	<CAE_REAsY=72buk0smfJDdjqBQm3spJ8dPfqMPc3cY9uyPn9XVQ@mail.gmail.com>
+In-Reply-To: <CAE_REAsY=72buk0smfJDdjqBQm3spJ8dPfqMPc3cY9uyPn9XVQ@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Regarding Licensing of "mbsalign.c" available in util-linux-2.21.2 version (Yocto-1.3-Danny)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,41 +34,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2013 13:33:46 -0000
-Content-Type: multipart/alternative; boundary=20cf3074b46639053804d7f6b0af
+X-List-Received-Date: Fri, 15 Mar 2013 13:57:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---20cf3074b46639053804d7f6b0af
-Content-Type: text/plain; charset=ISO-8859-1
+On 03/15/2013 06:31 AM, Gaurang Shastri wrote:
+> Thanks for replying on this.
+>
+> FYI, I have already open a bug for this:
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=4014
+>
 
-Hi. In an effort to shrink our rootfs by some major numbers we found two
-low-hanging fruits that we would like to address before cherry picking and
-removing lots of good linux functionality. We have no need for the uImage
-(3MB) stored in /boot and also we can leave out the terminfo tree (2.5MB).
-My question here now is if the build system provide functionality to
-actually tell the image builder not to include these specific components?
-Or do we need to write some post installer for our rootfs that mounts the
-image, removes the files, and then umount it?
-If we remove inclusion of any kernel modules it seems that /boot is never
-populated? But we need the modules. Also, what package brings in terminfo?
-Is it as simple as writing a .bbappend to remove it att deploy time?
+Thanks,
 
-Hans
+I have a patch from the upstream author of the code changing the license 
+from GPLv3 to LGPLv2.1 so this will be resolved shortly.
 
---20cf3074b46639053804d7f6b0af
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+We can also take this patch into the Danny release to clarify it.
 
-Hi. In an effort to shrink our rootfs by some major numbers we found two lo=
-w-hanging fruits that we would like to address before cherry picking and re=
-moving lots of good linux functionality. We have no need for the uImage (3M=
-B) stored in /boot and also we can leave out the terminfo tree (2.5MB).<br>
-My question here now is if the build system provide functionality to actual=
-ly tell the image builder not to include these specific components?<br>Or d=
-o we need to write some post installer for our rootfs that mounts the image=
-, removes the files, and then umount it?<br>
-If we remove inclusion of any kernel modules it seems that /boot is never p=
-opulated? But we need the modules. Also, what package brings in terminfo? <=
-br>Is it as simple as writing a .bbappend to remove it att deploy time?<br>
-<br>Hans<br><br>
+Sau!
 
---20cf3074b46639053804d7f6b0af--
+> Regards,
+> Gaurang Shastri
+>
+> On Fri, Mar 15, 2013 at 10:39 AM, Saul Wold <sgw@linux.intel.com
+> <mailto:sgw@linux.intel.com>> wrote:
+>
+>
+>
+>     On 03/11/2013 10:17 AM, Khem Raj wrote:
+>
+>
+>         On Mar 11, 2013, at 3:45 AM, Gaurang Shastri
+>         <gmshastri@gmail.com <mailto:gmshastri@gmail.com>
+>         <mailto:gmshastri@gmail.com <mailto:gmshastri@gmail.com>>> wrote:
+>
+>             Hi All,
+>
+>             Any shades of light for below query ???
+>
+>
+>         I would suggest to open a bug for it.
+>
+>     Timing is on this one!
+>
+>     I noticed this recently independent of this email!
+>
+>     I have contacted the maintainer of util-linux to clarify the license
+>     of mbsalign.c as it's used directly by cal and lslocks and included
+>     in the common library.
+>
+>     As it also turns out the original reason that util-linux was marked
+>     as GPLv3 because of lscpu, which is now be changed back to GPLv2.
+>
+>     I will keep people posted on this one.
+>
+>     We try to do our best to keep the license information up to date and
+>     sometimes files under core licenses slip by. As upstreams projects
+>     start to use SPDX this kind of problem can be avoided.
+>
+>     Thanks for pointing it out.
+>
+>     Sau!
+>
+>
+>
+>
+>             //Gaurang Shastri
+>
+>             On Fri, Mar 8, 2013 at 2:51 PM, Gaurang Shastri
+>             <gmshastri@gmail.com <mailto:gmshastri@gmail.com>
+>             <mailto:gmshastri@gmail.com <mailto:gmshastri@gmail.com>>>
+>             wrote:
+>
+>                  Hi All,
+>
+>                  I have some concerns regarding util-linux-2.21.2
+>             version . As per
+>                  Yocto-1.3 (danny) recipe,
+>                  {{{
+>
+>                  LICENSE_${PN}-lscpu = "GPLv3+"  <--
+>             util-linux_2.21.2.bb <http://util-linux_2.21.2.bb>
+>                  <http://util-linux_2.21.2.bb/>
+>
+>
+>                  LICENSE = "GPLv2+ & LGPLv2.1+ & BSD"   <-- util-linux.inc
+>
+>                  }}}
+>
+>                  So as per the above description, only lscpu is GPLv3.
+>
+>                  But while looking into the source of util-linux-2.21.2,
+>             I found
+>                  out that "util-linux-2.21.2/lib/__mbsalign.c" is GPLv3
+>             and it is
+>                  used by following binaries while building:
+>                  {{{
+>                    -  fdisk
+>                    -  partx
+>                  }}}
+>
+>                  So does it mean that the above binaries should also be
+>             GPLv3 and
+>                  need to take care in util-linux.{bb,inc} ???
+>
+>                  Regards,
+>                  Gaurang Shastri
+>
+>
+>             _________________________________________________
+>             yocto mailing list
+>             yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>             <mailto:yocto@yoctoproject.org
+>             <mailto:yocto@yoctoproject.org>__>
+>             https://lists.yoctoproject.__org/listinfo/yocto
+>             <https://lists.yoctoproject.org/listinfo/yocto>
+>
+>
+>
+>
+>         _________________________________________________
+>         yocto mailing list
+>         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>         https://lists.yoctoproject.__org/listinfo/yocto
+>         <https://lists.yoctoproject.org/listinfo/yocto>
+>
+>
+
