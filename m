@@ -1,34 +1,35 @@
 Return-Path: <insop.song@gmail.com>
-Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC681E0145F;
-	Sat, 16 Mar 2013 01:30:32 -0700 (PDT)
-Received: by mail-wg0-f42.google.com with SMTP id 12so1179076wgh.3
-	for <multiple recipients>; Sat, 16 Mar 2013 01:30:31 -0700 (PDT)
+Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
+	[209.85.216.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FEB1E01439;
+	Sat, 16 Mar 2013 03:16:21 -0700 (PDT)
+Received: by mail-qa0-f45.google.com with SMTP id g10so790237qah.18
+	for <multiple recipients>; Sat, 16 Mar 2013 03:16:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=e4IHtcE23RDsqT6cra1lqJfxetRrOmIaomTlPKhQx8I=;
-	b=K1XOfH+Gwi4Fg1tx3yBYyCBh4UykTSQsd6YzFk+fWvltiLvYoMkxklyH6Nq8Yxwfrp
-	6/FQxzyyAl15hfW7vdwY6BOH+Zx29S5sXk0yij3uwaNUX4bsKO3zidqgvG3SIE0UuOGC
-	Y30t+whZ94FIsA+BSbOFScWcg8rvT2CM7n5qCz7V+DedEe/GtAyZ7jcRvoqGuEPf+SpD
-	OmWKbmBgg34OhplAdpg6vfBk70rHT0SxBQr0dIsMJpfKs7Bm+nTYwuAYt0BoBCzGmAe0
-	Pm8diBdjHL0v8zqv1gGONJUnPzocWCjgQyX1stzvxA4eRYj5v3sUbFpEFeroFFiTLSSA
-	PsxA==
-X-Received: by 10.194.11.70 with SMTP id o6mr15068270wjb.29.1363422631826;
-	Sat, 16 Mar 2013 01:30:31 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Sat, 16 Mar 2013 01:30:11 -0700 (PDT)
-In-Reply-To: <5143345E.9070703@windriver.com>
-References: <cover.1363347615.git.insop.song@gmail.com>
-	<a766d16a1cf4da3c2dd13b8c7e53f89775733187.1363347615.git.insop.song@gmail.com>
-	<5143345E.9070703@windriver.com>
+	h=x-received:from:to:subject:date:message-id:x-mailer:in-reply-to
+	:references; bh=U/sXAhURWft9yKclHMY3t5HTcHMZYn/i0mlXxb96mDo=;
+	b=fzXEjI6wandJDHPX2d1b3EJv6ssX5ypRpNp6JoXkthX6R3TL+lnVVG4bBWbQWuPTNZ
+	8J5TSC8fqLmUDXl/dEW/d2AQjOAu6OthPM6y7yuqX7/9+ZiOP+0r5bwNEaspLKkhheQU
+	fhcoFAjIX2XvE+7BoGOFkGt6zjiXKZ3ftbQziHAMxzWtizgWbVEWcXKajviHe81tIU4F
+	oOUyn7zXdPFGRgKXW5OyGn6OI5zoQ6vdjPtWtUMGB1Gkpsep3r3BuwZwqJv3MVfwBjGe
+	6AlhRMmmmmQ7mHvPwdYMj2+ViTw4mF25Kx+Vz5xp5fXL56dcTGjjRQY5MzkDSIg02SFC
+	3TEw==
+X-Received: by 10.224.149.69 with SMTP id s5mr10443270qav.56.1363428980686;
+	Sat, 16 Mar 2013 03:16:20 -0700 (PDT)
+Received: from sputnik.gateway.2wire.net
+	(76-218-13-253.lightspeed.sntcca.sbcglobal.net. [76.218.13.253])
+	by mx.google.com with ESMTPS id et9sm11955534qab.9.2013.03.16.03.16.17
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sat, 16 Mar 2013 03:16:19 -0700 (PDT)
 From: Insop Song <insop.song@gmail.com>
-Date: Sat, 16 Mar 2013 01:30:11 -0700
-Message-ID: <CACzyEJ-JAyx53BWArVftotHiCoeGA_jjg-GFphVtp4ATweRwJg@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
-	linux-yocto@yoctoproject.org
-Subject: Re: [PATCH 1/1] add scheedtool-dl for testing sched_deadline use jiri's github as a main repo
+To: insop.song@gmail.com, bruce.ashfield@gmail.com, dvhart@linux.intel.com,
+	linux-yocto@yoctoproject.org, yocto@yoctoproject.org
+Date: Sat, 16 Mar 2013 03:16:10 -0700
+Message-Id: <cover.1363428594.git.insop.song@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <insop.song@gmail.com>
+References: <insop.song@gmail.com>
+Subject: [PATCH 0/1] [meta-realtime] Add rt-app, schedtool, define core-image-realtime, and append recipies-kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,96 +41,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Mar 2013 08:30:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 16 Mar 2013 10:16:21 -0000
 
-On Fri, Mar 15, 2013 at 7:46 AM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 13-03-15 04:47 AM, Insop Song wrote:
->>
->> ---
->>   recipes-extended/images/core-image-realtime.bb |    1 +
->>   recipes-tools/schedtool-dl/schedtool-dl.bb     |   23
->> +++++++++++++++++++++++
->>   2 files changed, 24 insertions(+)
->>   create mode 100644 recipes-tools/schedtool-dl/schedtool-dl.bb
->>
->> diff --git a/recipes-extended/images/core-image-realtime.bb
->> b/recipes-extended/images/core-image-realtime.bb
->> index 624aacf..386b16b 100644
->> --- a/recipes-extended/images/core-image-realtime.bb
->> +++ b/recipes-extended/images/core-image-realtime.bb
->> @@ -8,5 +8,6 @@ EXTRA_IMAGE_FEATURES = "tools-debug debug-tweaks
->> tools-profile dbg-pkgs"
->>   IMAGE_INSTALL = "\
->>         ${CORE_IMAGE_BASE_INSTALL} \
->>         rt-app \
->> +       schedtool-dl \
->>         libgcc \
->>         "
->
->
-> This part of the patch is still a problem, so I'll drop  it on merge.
-> We still need to rationalize why we can't extend the oe-core
-> rt images:
->
-> ./recipes-rt/images/core-image-rt.bb
-> ./recipes-rt/images/core-image-rt-sdk.bb
->
-> For this addition. Until we work through that, you can carry a local
-> patch, or add the tools back via your local.conf adding it to IMAGE_INSTALL.
->
->
+meta-realtime layer for testing sched_deadline and other real-time applications
 
-I put the "libgcc" because rt-app complained during finish regarding
-pthread and libgcc during my previous meta-realtime/meta-dl, which was
-using core-image-minimal.
+Add rt-app, schedtool, define core-image-realtime, and append recipies-kernel
 
-Since, I updated my image bases this time, I might not need it.
-I will test without "libgcc" and will update the patch.
+*applications tested are shown below:
 
-I've updated my poky tree to the latest, and I am having trouble due
-to "neard" package failure (I post a question on this).
-That's why it's taking long to verify and update the patch.
+1. rt-app
+- "rt-app" is a test application that starts multiple periodic threads
+  in order to simulate a real-time periodic load
 
+- run example
 
->> diff --git a/recipes-tools/schedtool-dl/schedtool-dl.bb
->> b/recipes-tools/schedtool-dl/schedtool-dl.bb
->> new file mode 100644
->> index 0000000..6b298f1
->> --- /dev/null
->> +++ b/recipes-tools/schedtool-dl/schedtool-dl.bb
->> @@ -0,0 +1,23 @@
->> +DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
->> +SECTION = "devel"
->> +LICENSE = "GPLv2"
->> +LIC_FILES_CHKSUM =
->> "file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
->> +PR = "r1"
->> +
->> +SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git"
->> +SRCREV = "${AUTOREV}"
->
->
-> We also want to lock down the SRCREV vs autorev. I'd expect that going
-> forward,
-> you can maintain/update this once we've merged it, so when a SRCREV
-> is known to be good, you can send update patches with the new values
-> (just like I do with linux-yocto in oe-core). But in the general case,
-> we want to have consistent and reproducible builds and to do that,
-> we need a well defined SRCREV.
->
+  root@qemux86:~# rt-app -t 100000:35000:d -D 1
+  [rt-app] <notice> [0] Using SCHED_DEADLINE policy:
+  [rt-app] <notice> [0] starting thread with period: 100000, exec:
+  35000,deadline: 100000, priority: 10
+  [rt-app] <notice> [0] Locking pages in memory
+  idx	period	min_et	max_et	rel_st	start		end
+  deadline	dur.	slack	Budget	Used Budget
+  0	100000	35000	35000	64705	305724113	305759126
+  305824105	35013	64979
+  ...
+  0	100000	35000	35000	965099	306624507	306659526
+  306724105	35019	64578
+  [rt-app] <notice> [0] Exiting.
 
-updated and testing is in-progress.
+2. schedtool
+- scheduler test tool
+- run example
+  root@qemux86:~# schedtool -E -t 10000:100000 -a 0 -e yes > /dev/null&
+  root@qemux86:~# schedtool -E -t 30000:100000 -a 0 -e yes > /dev/null&
+  root@qemux86:~# jobs
+  [1]-  Running                 schedtool -E -t 10000:100000 -a 0 -e yes
+  > /dev/null &
+  [2]+  Running                 schedtool -E -t 30000:100000 -a 0 -e yes
+  > /dev/null &
 
+  $ top
+  Mem: 33616K used, 84308K free, 0K shrd, 2684K buff, 13904K cached
+  CPU:  37% usr   5% sys   0% nic  56% idle   0% io   0% irq   0% sirq
+  Load average: 911.65 428.84 84.32 35501/62 715
+  PID  PPID USER     STAT   VSZ %VSZ %CPU COMMAND
+  714   688 root     R     2352   2%  28% yes
+  713   688 root     R     2352   2%   9% yes
+  715   688 root     R     2724   2%   4% top
 
-> So one more version of the series and we should be good (you can
-> drop the image addition as part of that) .. sorry for all the
-> iterations, the first merges always take the longest.
->
+Insop Song (1):
+  Add rt-app, schedtool, define core-image-realtime, and append
+    recipies-kernel
 
-I appreciate your through review and will send out the revision soon
-as I am done testing.
+ recipes-extended/images/core-image-realtime.bb     |   12 +++++++++
+ recipes-kernel/linux/linux-yocto_3.8.bbappend      |    9 +++++++
+ ...adline-as-a-default-to-go-around-yocto-bu.patch |   26 ++++++++++++++++++
+ recipes-tools/rt-app/rt-app.bb                     |   28 ++++++++++++++++++++
+ recipes-tools/schedtool-dl/schedtool-dl.bb         |   23 ++++++++++++++++
+ 5 files changed, 98 insertions(+)
+ create mode 100644 recipes-extended/images/core-image-realtime.bb
+ create mode 100644 recipes-kernel/linux/linux-yocto_3.8.bbappend
+ create mode 100644 recipes-tools/rt-app/files/0001-set-with-deadline-as-a-default-to-go-around-yocto-bu.patch
+ create mode 100644 recipes-tools/rt-app/rt-app.bb
+ create mode 100644 recipes-tools/schedtool-dl/schedtool-dl.bb
 
-Insop
+-- 
+1.7.9.5
+
 
