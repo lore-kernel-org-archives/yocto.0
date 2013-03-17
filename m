@@ -1,35 +1,35 @@
 Return-Path: <insop.song@gmail.com>
-Received: from mail-wg0-f45.google.com (mail-wg0-f45.google.com [74.125.82.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92CD1E003DB
-	for <yocto@yoctoproject.org>; Sat, 16 Mar 2013 23:49:00 -0700 (PDT)
-Received: by mail-wg0-f45.google.com with SMTP id dq12so4273669wgb.24
-	for <yocto@yoctoproject.org>; Sat, 16 Mar 2013 23:48:59 -0700 (PDT)
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7BE2E003DB;
+	Sat, 16 Mar 2013 23:52:13 -0700 (PDT)
+Received: by mail-wi0-f180.google.com with SMTP id hi8so1631773wib.13
+	for <multiple recipients>; Sat, 16 Mar 2013 23:52:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:mime-version:in-reply-to:references:from:date:message-id
 	:subject:to:cc:content-type;
-	bh=/TYpub6/T+IZxwHviw3osC5IfWDVbC5nKWlv2KIxoKI=;
-	b=UoudoY8SOubzkl3//6tBpjBFF78QVA5Cms3hYuXeXJIo42ahHx2UgmsbyxsQ5bhsSm
-	6X4bBdx+ZGx/MDmNG4vkb29QLAUrwLdbLFjpgrH+oymncbHqA9BeDlc+dHS6obDN9U07
-	eUsCDMtb5YSMZmwVyNlIXuwG1cqqdepxyHoPWsuiw4zMjDgNeMk9VQlLO3SD1J6xY3DX
-	pkgUrVJDzUf1etamCzMICBF9el3RT8gOyVEAeyu00JLFvovy2UFXxVNWqsIfChqdOtuy
-	ORkc5RsWPNlWGXfnPUXhtoYwdSthZLyRUS404xe9borRBTUYsvY9jj7w/1d8H1Dl6N0E
-	UXtQ==
-X-Received: by 10.180.76.84 with SMTP id i20mr10545026wiw.9.1363502939056;
-	Sat, 16 Mar 2013 23:48:59 -0700 (PDT)
+	bh=Wd2eK1E+t/Ccm5gHQFdNhb42nhPV2QleDIxkjxOvqBc=;
+	b=acm8dUr2ZzpQViiqiGW8slAI915KWCaMo6QZvpI6r8RbMU1VBIdiDs8Voj8mGf2RH+
+	S+8GaOuM55L0P1JBSYPd+Dy/EAsI5B2zJ3GIZACtgSzTgavm4PQ59qSML964Pa3MkzJr
+	rhTeUN9GY4wey6AcyBzHC5lIwDAOm7Gyjqi+Hl6E53UcFWCFIe+fTSYr+0TMzWSFckCA
+	r6z6GRXouYdbkzuyycanp7UQdGvaYYckoYJHJWtAkGbH91sw+//nFxoFf9h4eW4cUvOI
+	n8sahW+3H10JAoTA3IO3lhOzoQAxMxy+c7idy+a4rSZ/515L8YWunR/1G9jFzM7vvG16
+	YPYg==
+X-Received: by 10.194.123.103 with SMTP id lz7mr18663974wjb.10.1363503132579; 
+	Sat, 16 Mar 2013 23:52:12 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Sat, 16 Mar 2013 23:48:39 -0700 (PDT)
-In-Reply-To: <CAJTo0LaRQ+LdUN+c2H3Dd4qL9j+C_Be+FjyNEe0SqyXT6YbSjw@mail.gmail.com>
-References: <CACzyEJ_Xuu8P+sFsahsFECHe1bo2NGn=1HdJjASnE4GOdRES4w@mail.gmail.com>
-	<CAJTo0LY52qE3QMO_FffY3GOkt2VDd+bNbYkX130y3wv34zu5iA@mail.gmail.com>
-	<CACzyEJ_rkzc1udoPsb2Nh34n8DPefGpp5Xvh=8E-w5d5TumBSg@mail.gmail.com>
-	<CACzyEJ8nphA7Li_SOK3BaDT+1qfVKTdxDsncyD5N2C8jYB0G5g@mail.gmail.com>
-	<CAJTo0LaRQ+LdUN+c2H3Dd4qL9j+C_Be+FjyNEe0SqyXT6YbSjw@mail.gmail.com>
+Received: by 10.194.235.41 with HTTP; Sat, 16 Mar 2013 23:51:52 -0700 (PDT)
+In-Reply-To: <F22887B9-EB54-45EA-AC94-FBABDDE4D698@gmail.com>
+References: <insop.song@gmail.com> <cover.1363347615.git.insop.song@gmail.com>
+	<a766d16a1cf4da3c2dd13b8c7e53f89775733187.1363347615.git.insop.song@gmail.com>
+	<F22887B9-EB54-45EA-AC94-FBABDDE4D698@gmail.com>
 From: Insop Song <insop.song@gmail.com>
-Date: Sat, 16 Mar 2013 23:48:39 -0700
-Message-ID: <CACzyEJ_HCB8qPbOBYnUcecA6FgWpdz_uU0JSRpVHf73ODOcVyw@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [question] "icecc: improve interaction with sstate"
+Date: Sat, 16 Mar 2013 23:51:52 -0700
+Message-ID: <CACzyEJ9PpzedOQp+2F03M=b6EzVVKWnVXeNLOPLrWhy=0Vd9CQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
+	linux-yocto@yoctoproject.org
+Subject: Re: [PATCH 1/1] add scheedtool-dl for testing sched_deadline use jiri's github as a main repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,66 +41,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Mar 2013 06:49:01 -0000
+X-List-Received-Date: Sun, 17 Mar 2013 06:52:14 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Sat, Mar 16, 2013 at 5:38 PM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 16 March 2013 01:16, Insop Song <insop.song@gmail.com> wrote:
->> So at this point, I will wait to see if any one is seen this recently.
+On Sat, Mar 16, 2013 at 10:01 PM, Khem Raj <raj.khem@gmail.com> wrote:
 >
-> The autobuilder appears to be hitting this still, but as several
-> oe-core maintainers are still travelling after a conference you may
-> have to wait until Monday.
-
-Thank you for the update while you are on the road.
-
-I pull the latest again
-(http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=2381e46e77c8d33472f60861f66e44addd53af68)
-And it is okay now.
-
-Could be the Richard's this commit fixed it.
-"package_rpm: Ensure PV manipulations are correct	Richard Purdie"
-(b5e5d25c25f30db1f9855e24afef9d8f0bb77d35)
+> On Mar 15, 2013, at 4:47 AM, Insop Song <insop.song@gmail.com> wrote:
+>
+>> +SRCREV = "${AUTOREV}"
+>
+> IMO find a good revision and send that one here. you can use AUTOREV internally for your
+> development thats all fine
 
 
-Here is my output:
--------------------------------------------
+Hi Khem,
 
- ~/mybuilds/meta-realtime $ time bitbake core-image-realtime
-Loading cache: 100%
-|######################################################################################|
-ETA:  00:00:00
-Loaded 1123 entries from dependency cache.
+Thank you for the review.
+I've updated that already as Bruce suggested the same as well in the
+latest patch update.
 
-Build Configuration:
-BB_VERSION        = "1.17.1"
-BUILD_SYS         = "i686-linux"
-NATIVELSBSTRING   = "Ubuntu-12.10"
-TARGET_SYS        = "i586-poky-linux"
-MACHINE           = "qemux86"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.3+snapshot-20130316"
-TUNE_FEATURES     = "m32 i586"
-TARGET_FPU        = ""
-meta
-meta-yocto
-meta-yocto-bsp    = "master:2381e46e77c8d33472f60861f66e44addd53af68"
-meta-realtime     = "schedtool-sq:ed7886f649ab945625ccbfed0ecc74a500a7c22d"
+Here is the update patch for your reference.
 
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Tasks Summary: Attempted 3938 tasks of which 2355 didn't need to
-be rerun and all succeeded.
-
-real	122m1.472s
-user	514m20.641s
-sys	73m56.453s
-
-------------------------------
-
-regards,
+Thank you.
 
 Insop
+
++From 041b2b65889c44c47f90313c5bf9ce61effa96df Mon Sep 17 00:00:00 2001
++From: Insop Song <insop.song@gmail.com>
++Date: Sat, 9 Mar 2013 01:23:24 -0800
++Subject: [PATCH] set "--with-deadline" as a default to go around yocto build
++ error on deadline enabled
++
++---
++ configure.ac  |    2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/configure.ac  b/configure.ac
++index a5e2990..64e57e4 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -34,7 +34,7 @@ AC_ARG_WITH([deadline],
++       [AS_HELP_STRING([--with-deadline],
++          [Add support for SCHED_DEADLINE])],
++       [],
++-      [with_deadline=no])
+++      [with_deadline=yes])
++
++ AS_IF([test "x$with_deadline" != xno],
++       [AC_DEFINE([DLSCHED], [1], [Define if you have SCHED_DEADLINE support])
++--
++1.7.9.5
++
+diff --git a/recipes-tools/rt-app/rt-app.bb  b/recipes-tools/rt-app/rt-app.bb
+new file mode 100644
+index 0000000..acce437
+--- /dev/null
++++ b/recipes-tools/rt-app/rt-app.bb
+@@ -0,0 +1,28 @@
++DESCRIPTION = "rt-app is a test application that starts multiple
+periodic threads in order to simulate a real-time periodic load"
++SECTION = "devel"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM =
+"file://COPYING;endline=339;md5=e43fc16fccd8519fba405f0a0ff6e8a3"
++PR = "r1"
++
++SRCREV = "e81cbe9f76ee298feded17bb7455d4deb2fb32af"
++
++SRC_URI = "git://github.com/gbagnoli/rt-app.git \
++       file://0001-set-with-deadline-as-a-default-to-go-around-yocto-bu.patch \
++       "
++
++S = "${WORKDIR}/git"
++
++inherit autotools gettext pkgconfig
++
++do_configure_prepend() {
++       autoreconf --install --verbose --force
++}
++
++do_install() {
++       install -d ${D}${bindir}
++       install -m 0755 src/rt-app ${D}${bindir}
++}
++
++FILES_{PN} = "${bindir}/rt-app"
++
++PARALLEL_MAKE = ""
+diff --git a/recipes-tools/schedtool-dl/schedtool-dl.bb
+b/recipes-tools/schedtool-dl/schedtool-dl.bb
+new file mode 100644
+index 0000000..5592175
+--- /dev/null
++++ b/recipes-tools/schedtool-dl/schedtool-dl.bb
+@@ -0,0 +1,23 @@
++DESCRIPTION = "schedtool-dl (scheduler test tool) for deadline scheduler"
++SECTION = "devel"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM =
+"file://Makefile;endline=55;md5=e4b4e8ed9c2132e1d727a1bb5e3bd984"
++PR = "r1"
++
++SRC_URI = "git://github.com/jlelli/schedtool-dl.git;protocol=git"
++SRCREV = "cd4e3f2f5a33c3266e25e447e8efbacb3b8c88da"
++
++S = "${WORKDIR}/git"
++
++do_compile() {
++       oe_runmake
++}
++
++do_install() {
++       install -d ${D}${bindir}
++       install -m 0755 schedtool ${D}${bindir}
++}
++
++FILES_{PN} = "${bindir}/schedtool"
++
++PARALLEL_MAKE = ""
 
