@@ -1,32 +1,27 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97BDAE006AD
-	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 11:47:21 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 17 Mar 2013 11:47:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,860,1355126400"; 
-	d="scan'208,217";a="280747444"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by orsmga001.jf.intel.com with ESMTP; 17 Mar 2013 11:47:11 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.19]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.244]) with mapi id
-	14.01.0355.002; Sun, 17 Mar 2013 18:43:42 +0000
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: Florin Cristian Dan <dan.florincristian@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] burn images to usb problem!!!
-Thread-Index: AQHOIp9PVRyN+rUZtkyNWOzibJ5wuJiqN4og
-Date: Sun, 17 Mar 2013 18:43:41 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E96167A6142@IRSMSX104.ger.corp.intel.com>
-References: <CABzOdpR5QY=ftoHqRhmD4-8d2fnpXm8M9KUwAtohsNCAg+DQfQ@mail.gmail.com>
-In-Reply-To: <CABzOdpR5QY=ftoHqRhmD4-8d2fnpXm8M9KUwAtohsNCAg+DQfQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A917DE006AD
+	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 14:37:21 -0700 (PDT)
+Received: by mail-wg0-f50.google.com with SMTP id es5so4549508wgb.29
+	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 14:37:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=9ryUcBcq0CZv42YJFra9XLQF0TTMhZDZy9sdelPCSGY=;
+	b=EAVtxhwlGeNZzbATxh1InZCcTHn1Z/QTDMe16UXnJiD94qh1egOcHx3b4ZuYft/EJj
+	Hlk/hGcaEcBhqQUh7rDTUB9XLibxScglyyxHRk+iIXb6NGtUbVuk+yZXbzxxmsXg8sMI
+	omqHFRuytjMaYYiwZdhkZ1J0zc8QDeZrFBIBYUib0inPAshy8YbuKVYdgqekv/9VMZj/
+	RRBMjEhVViesxjWFxRuyQa4gDOair98PDfQV7bZav9DNm8eXG7ETgtLslNAzFNC1yxqS
+	nkLfNimHR/QPsFiq+twEA0rimTDxoy9A3bMYYv8DdUS5/6wXohYfNaa/WYf4//mESY6d
+	Uthw==
 MIME-Version: 1.0
-Subject: Re: burn images to usb problem!!!
+X-Received: by 10.180.97.132 with SMTP id ea4mr13071099wib.23.1363556240613;
+	Sun, 17 Mar 2013 14:37:20 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Sun, 17 Mar 2013 14:37:20 -0700 (PDT)
+Date: Sun, 17 Mar 2013 17:37:20 -0400
+Message-ID: <CAHUNapQOknbQKfj+m6OaONATjhb4Sg9JqX1Vkd-qUV+jj+tM_A@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: problems building 'neard'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,218 +33,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Mar 2013 18:47:21 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_1FFB62CE8AEB0D4298B51122D8903E96167A6142IRSMSX104gercor_"
+X-List-Received-Date: Sun, 17 Mar 2013 21:37:22 -0000
+Content-Type: multipart/alternative; boundary=f46d04426c4e5a671f04d825adb2
 
---_000_1FFB62CE8AEB0D4298B51122D8903E96167A6142IRSMSX104gercor_
-Content-Type: text/plain; charset="us-ascii"
+--f46d04426c4e5a671f04d825adb2
+Content-Type: text/plain; charset=ISO-8859-1
+
+I'm not sure if this is specific to my host, but:
+
+Build Configuration:
+BB_VERSION        = "1.17.1"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "openSUSE-project-12.3"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.3+snapshot-20130317"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-yocto
+meta-yocto-bsp    = "master:1ceb13dda11645229053fc4840954333f8910ba4"
+
+ERROR: Function failed: BUILDSPEC (see
+/home/trevor/devel/yocto/git-method/coreimgmin/tmp/work/i586-poky-linux/neard/0.9-gitAUTOINC+1e20e396cb837017b7e5ef822bfdab6ce060d2cf-r1/temp/log.do_package_write_rpm.15728
+for further information)
+ERROR: Logfile of failure stored in:
+/home/trevor/devel/yocto/git-method/coreimgmin/tmp/work/i586-poky-linux/neard/0.9-gitAUTOINC+1e20e396cb837017b7e5ef822bfdab6ce060d2cf-r1/temp/log.do_package_write_rpm.15728
+Log data follows:
+| DEBUG: Executing python function sstate_task_prefunc
+| DEBUG: Python function sstate_task_prefunc finished
+| DEBUG: Executing python function do_package_write_rpm
+| DEBUG: Executing python function read_subpackage_metadata
+| DEBUG: Python function read_subpackage_metadata finished
+| DEBUG: Executing python function do_package_rpm
+| DEBUG: Executing python function write_specfile
+| NOTE: Not creating empty RPM package for neard-tests
+| NOTE: Creating RPM package for neard-dbg
+| NOTE: Not creating empty RPM package for neard-staticdev
+| NOTE: Creating RPM package for neard-dev
+| NOTE: Not creating empty RPM package for neard-doc
+| NOTE: Not creating empty RPM package for neard-locale
+| NOTE: Creating RPM package for neard
+| NOTE: Creating RPM package for neard
+| DEBUG: Python function write_specfile finished
+| DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
+'common-linux', 'common-glibc', 'i586-linux', 'common']
+| DEBUG: Executing shell function BUILDSPEC
+| error: line 152: Illegal char '-' in EVR: Suggests: neard =
+0.9-git0+1e20e396cb837017b7e5ef822bfdab6ce060d2cf-r1
+| error: Package has no %description: neard-dbg.i586
+| Building target platforms: i586-poky-linux
+| DEBUG: Python function do_package_rpm finished
+| DEBUG: Python function do_package_write_rpm finished
+| ERROR: Function failed: BUILDSPEC (see
+/home/trevor/devel/yocto/git-method/coreimgmin/tmp/work/i586-poky-linux/neard/0.9-gitAUTOINC+1e20e396cb837017b7e5ef822bfdab6ce060d2cf-r1/temp/log.do_package_write_rpm.15728
+for further information)
+
+--f46d04426c4e5a671f04d825adb2
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hello Florin,
-
-In the poky folder there is a README.hardware file which contain instructio=
-ns on how to write an image to the USB drive.
-Here is a section of that file:
-"USB Device:
-  1. Build a live image. This image type consists of a simple filesystem
-     without a partition table, which is suitable for USB keys, and with th=
-e
-     default setup for the atom-pc machine, this image type is built
-     automatically for any image you build. For example:
-
-     $ bitbake core-image-minimal
-
-  2. Use the "dd" utility to write the image to the raw block device. For
-     example:
-
-     # dd if=3Dcore-image-minimal-atom-pc.hddimg of=3D/dev/sdb
-"
-Please make sure you read all the additional information you may need to un=
-derstand the steps in building an image for a particular device.
-We are glad to have you onboard in the Embedded Linux community.
-
-Regards,
---
-Alexandru Georgescu
-Yocto QA Engineer
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Florin Cristian Dan
-Sent: Sunday, March 17, 2013 01:38
-To: yocto@yoctoproject.org
-Subject: [yocto] burn images to usb problem!!!
-
-hello,
-I'm preety new with linux embedded and especially with Yocyo Project wich b=
-y the way i think it's awesome. I managed to build a core-image-sato-quemux=
-86, it runs ok within qemu, but now i want to boot this image from a USB me=
-mory stick, and i don't know how to do it, and wich files from /build/tmp/d=
-eploy/images to use.
-I will be greatefull, for an answer, thank you very much
-
---_000_1FFB62CE8AEB0D4298B51122D8903E96167A6142IRSMSX104gercor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+<div dir=3D"ltr">I&#39;m not sure if this is specific to my host, but:<br><=
+div><br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1=
+.17.1&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quo=
+t;<br>NATIVELSBSTRING=A0=A0 =3D &quot;openSUSE-project-12.3&quot;<br>
+TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;i586-poky-linux&quot;<br>MACHINE=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;qemux86&quot;<br>DISTRO=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=A0=A0 =
+=3D &quot;1.3+snapshot-20130317&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quo=
+t;m32 i586&quot;<br>
+TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;&quot;<br>meta=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto-bs=
+p=A0=A0=A0 =3D &quot;master:1ceb13dda11645229053fc4840954333f8910ba4&quot;<=
+br><br>ERROR: Function failed: BUILDSPEC (see /home/trevor/devel/yocto/git-=
+method/coreimgmin/tmp/work/i586-poky-linux/neard/0.9-gitAUTOINC+1e20e396cb8=
+37017b7e5ef822bfdab6ce060d2cf-r1/temp/log.do_package_write_rpm.15728 for fu=
+rther information)<br>
+ERROR: Logfile of failure stored in: /home/trevor/devel/yocto/git-method/co=
+reimgmin/tmp/work/i586-poky-linux/neard/0.9-gitAUTOINC+1e20e396cb837017b7e5=
+ef822bfdab6ce060d2cf-r1/temp/log.do_package_write_rpm.15728<br>Log data fol=
+lows:<br>
+| DEBUG: Executing python function sstate_task_prefunc<br>| DEBUG: Python f=
+unction sstate_task_prefunc finished<br>| DEBUG: Executing python function =
+do_package_write_rpm<br>| DEBUG: Executing python function read_subpackage_=
+metadata<br>
+| DEBUG: Python function read_subpackage_metadata finished<br>| DEBUG: Exec=
+uting python function do_package_rpm<br>| DEBUG: Executing python function =
+write_specfile<br>| NOTE: Not creating empty RPM package for neard-tests<br=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Courrier New";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hello Florin,<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">In the poky folder there =
-is a README.hardware file which contain instructions on how to write an ima=
-ge to the USB drive.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Here is a section of that=
- file:
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F4=
-97D">&#8220;</span><span style=3D"font-size:9.0pt;font-family:&quot;Courrie=
-r New&quot;">USB Device:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp; 1. Build a live image=
-. This image type consists of a simple filesystem<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp; wit=
-hout a partition table, which is suitable for USB keys, and with the<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp; def=
-ault setup for the atom-pc machine, this image type is built<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp; aut=
-omatically for any image you build. For example:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp; $ b=
-itbake core-image-minimal<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp; 2. Use the &quot;dd&q=
-uot; utility to write the image to the raw block device. For<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp; exa=
-mple:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:9.0pt;font-family:&quot;Courrier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp; # d=
-d if=3Dcore-image-minimal-atom-pc.hddimg of=3D/dev/sdb<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&#8220;<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Please make sure you read=
- all the additional information you may need to understand the steps in bui=
-lding an image for a particular device.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">We are glad to have you o=
-nboard in the Embedded Linux community.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regards,<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">--<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Alexandru Georgescu<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Yocto QA Engineer<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Florin Cristian Dan<br>
-<b>Sent:</b> Sunday, March 17, 2013 01:38<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] burn images to usb problem!!!<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">hello,<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal">I'm preety new with linux embedded and especially wi=
-th Yocyo Project wich by the way i think it's awesome. I managed to build a=
- core-image-sato-quemux86, it runs ok within qemu, but now i want to boot t=
-his image from a USB memory stick,
- and i don't know how to do it, and wich files from /build/tmp/deploy/image=
-s to use.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I will be greatefull, for an answer, thank you very =
-much<o:p></o:p></p>
-</div>
-</div>
-</body>
-</html>
+| NOTE: Creating RPM package for neard-dbg<br>| NOTE: Not creating empty RP=
+M package for neard-staticdev<br>| NOTE: Creating RPM package for neard-dev=
+<br>| NOTE: Not creating empty RPM package for neard-doc<br>| NOTE: Not cre=
+ating empty RPM package for neard-locale<br>
+| NOTE: Creating RPM package for neard<br>| NOTE: Creating RPM package for =
+neard<br>| DEBUG: Python function write_specfile finished<br>| DEBUG: SITE =
+files [&#39;endian-little&#39;, &#39;bit-32&#39;, &#39;ix86-common&#39;, &#=
+39;common-linux&#39;, &#39;common-glibc&#39;, &#39;i586-linux&#39;, &#39;co=
+mmon&#39;]<br>
+| DEBUG: Executing shell function BUILDSPEC<br>| error: line 152: Illegal c=
+har &#39;-&#39; in EVR: Suggests: neard =3D 0.9-git0+1e20e396cb837017b7e5ef=
+822bfdab6ce060d2cf-r1<br>| error: Package has no %description: neard-dbg.i5=
+86<br>
+| Building target platforms: i586-poky-linux<br>| DEBUG: Python function do=
+_package_rpm finished<br>| DEBUG: Python function do_package_write_rpm fini=
+shed<br>| ERROR: Function failed: BUILDSPEC (see /home/trevor/devel/yocto/g=
+it-method/coreimgmin/tmp/work/i586-poky-linux/neard/0.9-gitAUTOINC+1e20e396=
+cb837017b7e5ef822bfdab6ce060d2cf-r1/temp/log.do_package_write_rpm.15728 for=
+ further information)<br>
+</div></div>
 
---_000_1FFB62CE8AEB0D4298B51122D8903E96167A6142IRSMSX104gercor_--
+--f46d04426c4e5a671f04d825adb2--
