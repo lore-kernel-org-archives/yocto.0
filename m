@@ -1,28 +1,27 @@
-Return-Path: <dan.florincristian@gmail.com>
-Received: from mail-ia0-f174.google.com (mail-ia0-f174.google.com
-	[209.85.210.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 578B6E00740
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 01:34:39 -0700 (PDT)
-Received: by mail-ia0-f174.google.com with SMTP id b35so967013iac.33
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 01:34:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=K6dyDZut4HqCBzeHFbHMfF89BAZdiFuP5jPoyxwMVlE=;
-	b=Pqx9+1qDUrSmnNkX5GCgIoTf+5HV1jY++yhqbnLBd034hj/ZWiTqOhHUbHmlHEmQSM
-	hzQxozY9oZpH3FmuImfqyuNswdcJidtyuY70iHiNRijviuiGRn5nCs4/X1QadD405vSt
-	CVJ/YLtu6kcXL14hdUieJWOspujeWytjYkreTCb6HhxsU9UqoePe2xJ75QCuuSBa7W1d
-	dJUfd4NsXIJK6hHMLY3v/J770W/GK/v+60XCfaQz3aZlV2Z86lCdnibSoIcTUadaqESn
-	3aLjKPSoP+d5vc+h34LN2QUW7HbDIxDkm/DGNV48BqnV8MMgBBSy+pwUxbH8eppvQQOi
-	Wc2w==
+Return-Path: <simon.egli@tik.ee.ethz.ch>
+Received: from smtp.ee.ethz.ch (smtp.ee.ethz.ch [129.132.2.219])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1C4CE01342
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 04:41:34 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.ee.ethz.ch (Postfix) with ESMTP id 9F953D9309;
+	Mon, 18 Mar 2013 12:41:32 +0100 (MET)
+X-Virus-Scanned: by amavisd-new on smtp.ee.ethz.ch
+Received: from smtp.ee.ethz.ch ([127.0.0.1])
+	by localhost (.ee.ethz.ch [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id IGjWmzBSeODB; Mon, 18 Mar 2013 12:41:32 +0100 (MET)
+Received: from [82.130.102.217] (unknown [82.130.102.217])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested) (Authenticated sender: eglis)
+	by smtp.ee.ethz.ch (Postfix) with ESMTPSA id 59AA8D9305;
+	Mon, 18 Mar 2013 12:41:32 +0100 (MET)
+Message-ID: <5146FD6C.8070803@tik.ee.ethz.ch>
+Date: Mon, 18 Mar 2013 12:41:32 +0100
+From: Simon Egli <simon.egli@tik.ee.ethz.ch>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
 MIME-Version: 1.0
-X-Received: by 10.43.4.74 with SMTP id ob10mr8640759icb.28.1363595678599; Mon,
-	18 Mar 2013 01:34:38 -0700 (PDT)
-Received: by 10.64.20.6 with HTTP; Mon, 18 Mar 2013 01:34:38 -0700 (PDT)
-Date: Mon, 18 Mar 2013 10:34:38 +0200
-Message-ID: <CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com>
-From: Florin Cristian Dan <dan.florincristian@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Timeout elimination
+Subject: [META-OE][PATCH] iperf 2.0.5 + fix for minor bug while cross-compiling
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,37 +33,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 08:34:39 -0000
-Content-Type: multipart/alternative; boundary=bcaec5158d870a5c9c04d82edc60
+X-List-Received-Date: Mon, 18 Mar 2013 11:41:35 -0000
+X-Groupsio-MsgNum: 12643
+Content-Type: multipart/mixed; boundary="------------060405000503010103010703"
 
---bcaec5158d870a5c9c04d82edc60
-Content-Type: text/plain; charset=ISO-8859-1
+--------------060405000503010103010703
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello, i've managed to burn the BSP image (emenlow) on a usb stick, on
-booted on my target machin, apparently it works fine, but i would like to
-know how can i eliminate that 10 day timeout, i've tried to enter the
-address that is given in the splash http://yoctoproject.org/tlk but is not
-working ("page not found"), this is one question, and another question is:
-currently i'm booting the image from a USB stick, but i want to make it
-defintive and run it from the targets CF memory, the principple of writing
-the image to the CF memory is the same as writing the image for the USB
-stick?
-Thank you very much
-Best regards
+Please see attached my patch to iperf 2.0.5 + fix
+I hope this may be of use for someone and that it will be integrated in 
+to yocto master
 
---bcaec5158d870a5c9c04d82edc60
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Greetings,
 
-Hello, i&#39;ve managed to burn the BSP image (emenlow) on a usb stick, on =
-booted on my target machin, apparently it works fine, but i would like to k=
-now how can i eliminate that 10 day timeout, i&#39;ve tried to enter the ad=
-dress that is given in the splash <a href=3D"http://yoctoproject.org/tlk">h=
-ttp://yoctoproject.org/tlk</a> but is not working (&quot;page not found&quo=
-t;), this is one question, and another question is: currently i&#39;m booti=
-ng the image from a USB stick, but i want to make it defintive and run it f=
-rom the targets CF memory, the principple of writing the image to the CF me=
-mory is the same as writing the image for the USB stick?<div>
-Thank you very much</div><div>Best regards</div>
+Simon
 
---bcaec5158d870a5c9c04d82edc60--
+--------------060405000503010103010703
+Content-Type: text/x-patch;
+ name="0001-Recipe-for-iperf-2.0.5.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="0001-Recipe-for-iperf-2.0.5.patch"
+
+From 5a46a34945539ac46046bec9534322c09ff0896a Mon Sep 17 00:00:00 2001
+From: Simon Egli <simon.egli@tik.ee.ethz.ch>
+Date: Mon, 18 Mar 2013 12:37:20 +0100
+Subject: [PATCH 1/2] Recipe for iperf 2.0.5
+
+Signed-off-by: Simon Egli <simon.egli@tik.ee.ethz.ch>
+---
+ meta-oe/recipes-benchmark/iperf/iperf_2.0.5.bb |   21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+ create mode 100644 meta-oe/recipes-benchmark/iperf/iperf_2.0.5.bb
+
+diff --git a/meta-oe/recipes-benchmark/iperf/iperf_2.0.5.bb b/meta-oe/recipes-benchmark/iperf/iperf_2.0.5.bb
+new file mode 100644
+index 0000000..3f93ee5
+--- /dev/null
++++ b/meta-oe/recipes-benchmark/iperf/iperf_2.0.5.bb
+@@ -0,0 +1,21 @@
++DESCRIPTION = "Iperf is a tool to measure maximum TCP bandwidth, allowing the tuning of various parameters and UDP characteristics"
++HOMEPAGE = "http://dast.nlanr.net/Projects/Iperf/"
++SECTION = "console/network"
++LICENSE = "NewBSD"
++LIC_FILES_CHKSUM = "file://COPYING;md5=e8478eae9f479e39bc34975193360298"
++
++SRC_URI = " \
++	${SOURCEFORGE_MIRROR}/iperf/iperf-${PV}.tar.gz \
++	file://0001-Fixing-special-format-bug-with-bitbake.patch \
++	"
++
++
++SRC_URI[md5sum] = "44b5536b67719f4250faed632a3cd016"
++SRC_URI[sha256sum] = "636b4eff0431cea80667ea85a67ce4c68698760a9837e1e9d13096d20362265b"
++
++inherit autotools
++
++S="${WORKDIR}/iperf-${PV}"
++
++EXTRA_OECONF = "--exec-prefix=${STAGING_DIR_HOST}${layout_exec_prefix}"
++
+-- 
+1.7.9.5
+
+
+--------------060405000503010103010703
+Content-Type: text/x-patch;
+ name="0002-Fixing-special-format-bug-with-bitbake.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="0002-Fixing-special-format-bug-with-bitbake.patch"
+
+From 85fdd92a41626e821c98251ee13a0dd8f280de40 Mon Sep 17 00:00:00 2001
+From: Simon Egli <simon.egli@tik.ee.ethz.ch>
+Date: Mon, 18 Mar 2013 12:37:40 +0100
+Subject: [PATCH 2/2] Fixing special format bug with bitbake
+
+    On overo (native) we get HAVE_QUAD_SUPPORT, but don't seem with bitbake.
+    This leads to "iperf -s -u -y c" returning empty bandwith and jitter,
+    because of formatting error.
+    Didn't seem to work with "'CFLAGS += "-HAVE_QUAD_SUPPORT"', because of configure error,
+    so giving iperf HAVE_QUAD_SUPPORT in Locale.c
+
+Signed-off-by: Simon Egli <simon.egli@tik.ee.ethz.ch>
+---
+ ...01-Fixing-special-format-bug-with-bitbake.patch |   31 ++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+ create mode 100644 meta-oe/recipes-benchmark/iperf/iperf-2.0.5/0001-Fixing-special-format-bug-with-bitbake.patch
+
+diff --git a/meta-oe/recipes-benchmark/iperf/iperf-2.0.5/0001-Fixing-special-format-bug-with-bitbake.patch b/meta-oe/recipes-benchmark/iperf/iperf-2.0.5/0001-Fixing-special-format-bug-with-bitbake.patch
+new file mode 100644
+index 0000000..fb04cd7
+--- /dev/null
++++ b/meta-oe/recipes-benchmark/iperf/iperf-2.0.5/0001-Fixing-special-format-bug-with-bitbake.patch
+@@ -0,0 +1,31 @@
++From 8f359740e9d8b4b18c83873aab6d80b40e36beaf Mon Sep 17 00:00:00 2001
++From: Simon Egli <simon.egli@tik.ee.ethz.ch>
++Date: Mon, 18 Mar 2013 12:30:12 +0100
++Subject: [PATCH] Fixing special format bug with bitbake
++
++On overo (native) we get HAVE_QUAD_SUPPORT, but don't seem with bitbake.
++This leads to "iperf -s -u -y c" returning empty bandwith and jitter,
++because of formatting error.
++Didn't seem to work with "'CFLAGS += "-HAVE_QUAD_SUPPORT"', because of configure error,
++so giving iperf HAVE_QUAD_SUPPORT in Locale.c
++
++Signed-off-by: Simon Egli <simon.egli@tik.ee.ethz.ch>
++---
++ src/Locale.c |    1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/src/Locale.c b/src/Locale.c
++index b5d42b1..f0e10b6 100644
++--- a/src/Locale.c
+++++ b/src/Locale.c
++@@ -238,6 +238,7 @@ const char server_reporting[] =
++ const char reportCSV_peer[] =
++ "%s,%u,%s,%u";
++ 
+++#define HAVE_QUAD_SUPPORT
++ #ifdef HAVE_QUAD_SUPPORT
++ #ifdef HAVE_PRINTF_QD
++ const char reportCSV_bw_format[] =
++-- 
++1.7.9.5
++
+-- 
+1.7.9.5
+
+
+--------------060405000503010103010703--
