@@ -1,22 +1,23 @@
 Return-Path: <gley-yocto@m.gmane.org>
 Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDCFAE0140A
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 10:47:51 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 049B4E01410
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 11:49:55 -0700 (PDT)
 Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1UHeAN-0003QE-DI
-	for yocto@yoctoproject.org; Mon, 18 Mar 2013 18:48:11 +0100
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UHf8R-0007rB-7j
+	for yocto@yoctoproject.org; Mon, 18 Mar 2013 19:50:15 +0100
 Received: from 24-196-194-18.static.hckr.nc.charter.com ([24.196.194.18])
 	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
 	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 18:48:11 +0100
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:50:15 +0100
 Received: from kurtmyles by 24-196-194-18.static.hckr.nc.charter.com with
 	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 18:48:11 +0100
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:50:15 +0100
 X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
 From: "Kurt Stevens" <kurtmyles@gmail.com>
-Date: Mon, 18 Mar 2013 13:48:08 -0400
-Message-ID: <ki7jvm$ddj$1@ger.gmane.org>
+Date: Mon, 18 Mar 2013 14:50:04 -0400
+Message-ID: <ki7njv$kdv$1@ger.gmane.org>
+References: <CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com>
 X-Complaints-To: usenet@ger.gmane.org
 X-Gmane-NNTP-Posting-Host: 24-196-194-18.static.hckr.nc.charter.com
 X-MSMail-Priority: Normal
@@ -25,7 +26,7 @@ X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6157
 X-RFC2646: Format=Flowed; Original
 X-Antivirus: avast! (VPS 130318-0, 03/18/2013), Outbound message
 X-Antivirus-Status: Clean
-Subject: How to script HOB settings
+Subject: Re: Timeout elimination
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,33 +38,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 17:47:52 -0000
+X-List-Received-Date: Mon, 18 Mar 2013 18:49:55 -0000
 
-Hello,
+As for putting the image on a cf card, it may depend on which file system 
+you would use.
 
-    I have been building images using HOB, and that works very well.
+I am using ext3 on a cf card, following the instructions for installing to a 
+hard drive on this page:
 
-    I had read in the docs about creating a custom package group, and I did 
-this, and it worked well until I needed to incorporate some openembedded 
-layers.
+ https://wiki.yoctoproject.org/wiki/How_do_I
 
-    After that my custom package group is either being ignored or 
-overridden.
+Luck to you.
 
-    I am having to select multiple perl libraries and system utilities for 
-my package, and this is not only error prone and tedious, but I really want 
-to keep these settings in a way that I can reapply them easily.
+"Florin Cristian Dan" 
+<dan.florincristian@gmail.com> wrote in 
+message 
+news:CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com...
+> Hello, i've managed to burn the BSP image (emenlow) on a usb stick, on
+> booted on my target machin, apparently it works fine, but i would like to
+> know how can i eliminate that 10 day timeout, i've tried to enter the
+> address that is given in the splash http://yoctoproject.org/tlk but is not
+> working ("page not found"), this is one question, and another question is:
+> currently i'm booting the image from a USB stick, but i want to make it
+> defintive and run it from the targets CF memory, the principple of writing
+> the image to the CF memory is the same as writing the image for the USB
+> stick?
+> Thank you very much
+> Best regards
+>
 
-    I expect to use the same setup in the future on a different 
-architecture, and having a layer or script that I can apply which works like 
-the custom package group originally did would be great.
 
-    I would appreciate any ideas,
+--------------------------------------------------------------------------------
 
-Thanks,
 
-Kurt Stevens
-
+> 
 
 
 
