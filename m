@@ -1,33 +1,28 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
-	[74.125.82.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9241E006C2
-	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 23:14:38 -0700 (PDT)
-Received: by mail-we0-f175.google.com with SMTP id x8so4563916wey.20
-	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 23:14:37 -0700 (PDT)
+Return-Path: <dan.florincristian@gmail.com>
+Received: from mail-ia0-f174.google.com (mail-ia0-f174.google.com
+	[209.85.210.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 578B6E00740
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 01:34:39 -0700 (PDT)
+Received: by mail-ia0-f174.google.com with SMTP id b35so967013iac.33
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 01:34:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:content-type;
-	bh=hso44aWjoTu8JN32KVc6Pd5twXbypsuv4K5uaGIvXSU=;
-	b=HYujTGEeDpwBhuPa7gQ0X/McA6sCpysI9XT++72HZ42xRNPpvvG21Clb5NzuAh4+IE
-	b9vbNMZ3zau62kXaYTuWr3ctkWHLuX8Awry0nlrMfWbWSK2i8JNTVPAnL6ejSfyMlFHJ
-	m12Ecjzg9Sd7bsdpta5LbJ5nQi9IdSU7OXfTOHAu5fVyFiqIr8bR6mKXee1pcpRKRB4R
-	yOxIqRrBToArr8DwDwzybJF3nHOH1GfApDFpKrPHjtE6KRjDnL8tvpws+MSyzG7nhUUb
-	lMm9jHxaKN9uuzaqhqSPqzVwjzirD8Ysg43Ou7f3Qf2gYP7kkYdnmT333Re7iDfKHFr8
-	f9hA==
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=K6dyDZut4HqCBzeHFbHMfF89BAZdiFuP5jPoyxwMVlE=;
+	b=Pqx9+1qDUrSmnNkX5GCgIoTf+5HV1jY++yhqbnLBd034hj/ZWiTqOhHUbHmlHEmQSM
+	hzQxozY9oZpH3FmuImfqyuNswdcJidtyuY70iHiNRijviuiGRn5nCs4/X1QadD405vSt
+	CVJ/YLtu6kcXL14hdUieJWOspujeWytjYkreTCb6HhxsU9UqoePe2xJ75QCuuSBa7W1d
+	dJUfd4NsXIJK6hHMLY3v/J770W/GK/v+60XCfaQz3aZlV2Z86lCdnibSoIcTUadaqESn
+	3aLjKPSoP+d5vc+h34LN2QUW7HbDIxDkm/DGNV48BqnV8MMgBBSy+pwUxbH8eppvQQOi
+	Wc2w==
 MIME-Version: 1.0
-X-Received: by 10.194.21.233 with SMTP id y9mr14812200wje.47.1363587277416;
-	Sun, 17 Mar 2013 23:14:37 -0700 (PDT)
-Received: by 10.194.45.100 with HTTP; Sun, 17 Mar 2013 23:14:37 -0700 (PDT)
-In-Reply-To: <CACzyEJ_m_7TAc4=921zT_6G3esaPZAPxB2ixSzvA4J+Q2St7Tg@mail.gmail.com>
-References: <CAHUNapQOknbQKfj+m6OaONATjhb4Sg9JqX1Vkd-qUV+jj+tM_A@mail.gmail.com>
-	<CA+chaQfQSwRUH8jpKLRJ_391RtN6_myfGe-Kgb9_=Z27JtedTw@mail.gmail.com>
-	<CACzyEJ_m_7TAc4=921zT_6G3esaPZAPxB2ixSzvA4J+Q2St7Tg@mail.gmail.com>
-Date: Mon, 18 Mar 2013 02:14:37 -0400
-Message-ID: <CAHUNapSE+dqan+PTSOL-AqgxEcuZHSSmEuQWBJs5zySTw78sng@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: problems building 'neard'
+X-Received: by 10.43.4.74 with SMTP id ob10mr8640759icb.28.1363595678599; Mon,
+	18 Mar 2013 01:34:38 -0700 (PDT)
+Received: by 10.64.20.6 with HTTP; Mon, 18 Mar 2013 01:34:38 -0700 (PDT)
+Date: Mon, 18 Mar 2013 10:34:38 +0200
+Message-ID: <CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com>
+From: Florin Cristian Dan <dan.florincristian@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Timeout elimination
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,17 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 06:14:39 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d27744a70ef04d82ce70c
+X-List-Received-Date: Mon, 18 Mar 2013 08:34:39 -0000
+Content-Type: multipart/alternative; boundary=bcaec5158d870a5c9c04d82edc60
 
---047d7b5d27744a70ef04d82ce70c
+--bcaec5158d870a5c9c04d82edc60
 Content-Type: text/plain; charset=ISO-8859-1
 
-Yes, thanks everyone. Pulling the latest fixes the problem.
+Hello, i've managed to burn the BSP image (emenlow) on a usb stick, on
+booted on my target machin, apparently it works fine, but i would like to
+know how can i eliminate that 10 day timeout, i've tried to enter the
+address that is given in the splash http://yoctoproject.org/tlk but is not
+working ("page not found"), this is one question, and another question is:
+currently i'm booting the image from a USB stick, but i want to make it
+defintive and run it from the targets CF memory, the principple of writing
+the image to the CF memory is the same as writing the image for the USB
+stick?
+Thank you very much
+Best regards
 
---047d7b5d27744a70ef04d82ce70c
+--bcaec5158d870a5c9c04d82edc60
 Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-<div dir="ltr">Yes, thanks everyone. Pulling the latest fixes the problem.<br></div>
+Hello, i&#39;ve managed to burn the BSP image (emenlow) on a usb stick, on =
+booted on my target machin, apparently it works fine, but i would like to k=
+now how can i eliminate that 10 day timeout, i&#39;ve tried to enter the ad=
+dress that is given in the splash <a href=3D"http://yoctoproject.org/tlk">h=
+ttp://yoctoproject.org/tlk</a> but is not working (&quot;page not found&quo=
+t;), this is one question, and another question is: currently i&#39;m booti=
+ng the image from a USB stick, but i want to make it defintive and run it f=
+rom the targets CF memory, the principple of writing the image to the CF me=
+mory is the same as writing the image for the USB stick?<div>
+Thank you very much</div><div>Best regards</div>
 
---047d7b5d27744a70ef04d82ce70c--
+--bcaec5158d870a5c9c04d82edc60--
