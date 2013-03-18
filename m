@@ -1,32 +1,28 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 049B4E01410
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 11:49:55 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1UHf8R-0007rB-7j
-	for yocto@yoctoproject.org; Mon, 18 Mar 2013 19:50:15 +0100
-Received: from 24-196-194-18.static.hckr.nc.charter.com ([24.196.194.18])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:50:15 +0100
-Received: from kurtmyles by 24-196-194-18.static.hckr.nc.charter.com with
-	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:50:15 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: "Kurt Stevens" <kurtmyles@gmail.com>
-Date: Mon, 18 Mar 2013 14:50:04 -0400
-Message-ID: <ki7njv$kdv$1@ger.gmane.org>
-References: <CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com>
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 24-196-194-18.static.hckr.nc.charter.com
-X-MSMail-Priority: Normal
-X-Newsreader: Microsoft Outlook Express 6.00.2900.5931
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6157
-X-RFC2646: Format=Flowed; Original
-X-Antivirus: avast! (VPS 130318-0, 03/18/2013), Outbound message
-X-Antivirus-Status: Clean
-Subject: Re: Timeout elimination
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f178.google.com (mail-we0-f178.google.com
+	[74.125.82.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21106E01410
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 15:02:11 -0700 (PDT)
+Received: by mail-we0-f178.google.com with SMTP id o45so5252333wer.37
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 15:02:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=F44b4KqL5Xvczr1lsqM1TVGJBqdrBCRslqfrvV3w9w8=;
+	b=eLmBsZgPC86AxgZBjuND51gJvZ1uH05CHAxaW2421DIHYPsLSLOgmLUVEi0OBACKyK
+	A0OtgMEsK36ik8nSrlntakEBloCWJGadxu/bBTri5LcfNCKTK7WIKMn/7J01IcZegTD5
+	nR7W4NhPZCRuAl/LfxWzlHzvNMbF0RbNI7lNTMjCC1BTKGDISPVF038cJj4eUgXfX9cB
+	gLLH1urXS7c8o2GXht99M7EjdCun4WVqA2HTRJ+jWAfTKeV9bWnRcRrmejLng7olVSYP
+	FK3SJMk4Aix17twl6CQ9IMw6tjYfWDpVmhYTplxxkyshBlGR5rDG8KJoa9IeUU00vPYU
+	VKeA==
+MIME-Version: 1.0
+X-Received: by 10.180.83.39 with SMTP id n7mr1134915wiy.8.1363644130672; Mon,
+	18 Mar 2013 15:02:10 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Mon, 18 Mar 2013 15:02:10 -0700 (PDT)
+Date: Mon, 18 Mar 2013 18:02:10 -0400
+Message-ID: <CAHUNapTBSMo+M-g8Kg8NKoVksAkZ6j8kvC5OsSG2V=q7=zqO0w@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: TMPDIR collision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,41 +34,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 18:49:55 -0000
+X-List-Received-Date: Mon, 18 Mar 2013 22:02:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-As for putting the image on a cf card, it may depend on which file system 
-you would use.
+I have been going through the archives from this list looking for
+information to not only improve my build times but to make these
+builds safer (there are hints dropped here and there that these large
+builds are bad on disks which has me worried seeing that I use the
+same disk+partition for both my builds and my personal data).
 
-I am using ext3 on a cf card, following the instructions for installing to a 
-hard drive on this page:
+One of the suggestions I'm anxious to try is to use tmpfs for my /tmp.
+I assume this is because gcc uses the environment's TMPDIR variable to
+define the location to place its temporary artifacts (which on most
+systems turns out to be /tmp)? I can certainly see how this would be a
+good improvement, but sometimes my /tmp ends up with lots of
+non-build-related cruft which can become quite large. While I would
+like to get gcc to use a tmpfs for its temporary files, I don't
+necessarily want a whole bunch of PDFs I'm reading to be taking up
+valuable tmpfs space unnecessarily. Therefore I'd like to keep /tmp
+where it is, but somehow get gcc to use a different TMPDIR when
+performing a build.
 
- https://wiki.yoctoproject.org/wiki/How_do_I
+I can't just modify my .bashrc to define the new TMPDIR since anything
+that uses the TMPDIR that is run after such a change (i.e. the
+non-build-related cruft) will just end up in TMPDIR anyway.
 
-Luck to you.
+But in bitbake's configuration there is also a variable named TMPDIR
+which specifies where bitbake does all of its work (e.g.
+${TOPDIR}/tmp). These two TMPDIRs could possibly collide, couldn't
+they?
 
-"Florin Cristian Dan" 
-<dan.florincristian@gmail.com> wrote in 
-message 
-news:CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com...
-> Hello, i've managed to burn the BSP image (emenlow) on a usb stick, on
-> booted on my target machin, apparently it works fine, but i would like to
-> know how can i eliminate that 10 day timeout, i've tried to enter the
-> address that is given in the splash http://yoctoproject.org/tlk but is not
-> working ("page not found"), this is one question, and another question is:
-> currently i'm booting the image from a USB stick, but i want to make it
-> defintive and run it from the targets CF memory, the principple of writing
-> the image to the CF memory is the same as writing the image for the USB
-> stick?
-> Thank you very much
-> Best regards
->
+Let's say I wanted to leave /tmp where it is, but modify my
+environment, when building, such that gcc will use /some/other/tmp
+(i.e. a tmpfs) for its artifacts. It is normal to modify one's
+environment when invoking a command, but if I wanted to modify my
+environment when invoking bitbake, it'll confuse the two TMPDIRs,
+won't it?
 
+$ TMPDIR=/some/other/tmp bitbake world
 
---------------------------------------------------------------------------------
-
-
-> 
-
-
-
+This would cause both gcc and bitbake to use /some/other/tmp, no?
 
