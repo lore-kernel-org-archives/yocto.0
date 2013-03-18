@@ -1,28 +1,26 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qe0-f52.google.com (mail-qe0-f52.google.com
-	[209.85.128.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38C83E01342
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 05:13:35 -0700 (PDT)
-Received: by mail-qe0-f52.google.com with SMTP id s14so3233864qeb.39
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 05:13:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=qoOrYQKWfQriLOgf4EmYjWgwa43TaKIol6PoOa8BBMk=;
-	b=CTaLA9RJZRuNmonk0RLRpboFsEAvxRBgYHC+geT4aO3NbeS6HHPhuaLmrPyAhwJ7Bt
-	QPpQZS/QvMkZUsL59tpiRwa5hkM7tg+nKApGsJJLVuRvH4ZA/R8k+FJ6377DhkqtC65+
-	p3d1wRtSd5hzy/amWUGkV2ujf4oNA4DzbBrCJIyJkDqBIyDQrZcs0Hjj2r/YG9gitjWK
-	YdGmIMFPLFuUzmzWO0bunNS2ECeUg6eZoxLY1juDyIJ20VdXbV6LA/7Ie50NG2YuRsxK
-	8hJG4x/qZZG5UromAw3bJKb5VmANP5X2tbz8A7T1J72Py+6x5UH7qKEU1HEDyNpZZDdZ
-	+ahg==
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 062B4E01342
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 05:38:14 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r2ICcDRJ003322
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 18 Mar 2013 05:38:13 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 18 Mar 2013 05:38:12 -0700
+Message-ID: <51470AA5.80400@windriver.com>
+Date: Mon, 18 Mar 2013 08:37:57 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
 MIME-Version: 1.0
-X-Received: by 10.229.78.80 with SMTP id j16mr4490435qck.87.1363608814717;
-	Mon, 18 Mar 2013 05:13:34 -0700 (PDT)
-Received: by 10.49.67.98 with HTTP; Mon, 18 Mar 2013 05:13:34 -0700 (PDT)
-Date: Mon, 18 Mar 2013 13:13:34 +0100
-Message-ID: <CAFyqS9qv4Sg_7VM-5nRj--BPgRkF-8FW1tY_KvjeTGHh7CeKMg@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: yocto@yoctoproject.org
-Subject: remove /usr/share/terminfo
+To: Florin Cristian Dan <dan.florincristian@gmail.com>
+References: <CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com>
+In-Reply-To: <CABzOdpTr4xsWPZtYxwnXOq3XpezVMHULu5Vx9qgxOtKbHt-Gxg@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Timeout elimination
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,77 +32,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 12:13:35 -0000
-Content-Type: multipart/alternative; boundary=002354333326039cad04d831eb6c
+X-List-Received-Date: Mon, 18 Mar 2013 12:38:15 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---002354333326039cad04d831eb6c
-Content-Type: text/plain; charset=ISO-8859-1
+On 13-03-18 04:34 AM, Florin Cristian Dan wrote:
+> Hello, i've managed to burn the BSP image (emenlow) on a usb stick, on
+> booted on my target machin, apparently it works fine, but i would like
+> to know how can i eliminate that 10 day timeout, i've tried to enter the
 
-This is a continuation of the thread handling removal of /boot/uImage and
-terminfo database. The /boot/uImage is solved but I am still having issues
-with trying to remove /usr/share/terminfo database. I thought it would be
-as easy as just creating a ncurses .bbappend and configure the package with
-OE_EXTRACONF = "--disable-database --enable-termcap". Not so. The problem
-is that the ncurses.inc has some hardcode configuration options. One of
-these is not compatible with "--disable-database". Specifically it is
-"--with-ticlib". To me it seems like the ncurses package has not been
-designed for providing the option to disable the terminfo database.
+To answer this part of the question. Simply rebuild the kernel yourself
+and the timeout will be removed. All of the configuration and layers
+used to build the kernel you downloaded are available with the meta-intel
+releases, minus the layer that adds the timeout configuration.
 
-What I did as a temporary workaround was to override the entire
-ncurses_config() option to overcome the conflict. But I am not very happy
-with this solution, neither I am very happy with what happens to the
-package when actually faulting out the terminfo support. The result of such
-a configuration is that the entire ncurses library gets crippled and a lot
-of packages can no longer be used, eg. htop. Also, the ncurses package
-recipe does not seem to create the termcap database instead of terminfo if
-such is removed. Which is completely natural since it does not support
-disabling terminfo in the first place.
-Maybe I could try the option to compile in the termcap database? But then I
-do not know what the gain would be. What I am after is to get rid of the
-database completely from the rootfs due to size constraints, but instead
-link to some network mounted location. If the terminfo database is missing
-ncurses will simply fallback to a dumb terminal setting which is fine on a
-production board. In a test environment the network location will be
-available and ncurses will be able to locate the database.
+Cheers,
 
-Any ideas what can be done here? If I would like to remove the physical
-database from the rootfs and instead replace it by a soft link. Where would
-be the best place to do this?
+Bruce
 
-Hans
+> address that is given in the splash http://yoctoproject.org/tlk but is
+> not working ("page not found"), this is one question, and another
+> question is: currently i'm booting the image from a USB stick, but i
+> want to make it defintive and run it from the targets CF memory, the
+> principple of writing the image to the CF memory is the same as writing
+> the image for the USB stick?
+> Thank you very much
+> Best regards
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---002354333326039cad04d831eb6c
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-This is a continuation of the thread handling removal of /boot/uImage and t=
-erminfo database. The /boot/uImage is solved but I am still having issues w=
-ith trying to remove /usr/share/terminfo database. I thought it would be as=
- easy as just creating a ncurses .bbappend and configure the package with O=
-E_EXTRACONF =3D &quot;--disable-database --enable-termcap&quot;. Not so. Th=
-e problem is that the ncurses.inc has some hardcode configuration options. =
-One of these is not compatible with &quot;--disable-database&quot;. Specifi=
-cally it is &quot;--with-ticlib&quot;. To me it seems like the ncurses pack=
-age has not been designed for providing the option to disable the terminfo =
-database.<br>
-<br>What I did as a temporary workaround was to override the entire ncurses=
-_config() option to overcome the conflict. But I am not very happy with thi=
-s solution, neither I am very happy with what happens to the package when a=
-ctually faulting out the terminfo support. The result of such a configurati=
-on is that the entire ncurses library gets crippled and a lot of packages c=
-an no longer be used, eg. htop. Also, the ncurses package recipe does not s=
-eem to create the termcap database instead of terminfo if such is removed. =
-Which is completely natural since it does not support disabling terminfo in=
- the first place.<br>
-Maybe I could try the option to compile in the termcap database? But then I=
- do not know what the gain would be. What I am after is to get rid of the d=
-atabase completely from the rootfs due to size constraints, but instead lin=
-k to some network mounted location. If the terminfo database is missing ncu=
-rses will simply fallback to a dumb terminal setting which is fine on a pro=
-duction board. In a test environment the network location will be available=
- and ncurses will be able to locate the database.<br>
-<br>Any ideas what can be done here? If I would like to remove the physical=
- database from the rootfs and instead replace it by a soft link. Where woul=
-d be the best place to do this? <br><br>Hans<br><br>
-
---002354333326039cad04d831eb6c--
