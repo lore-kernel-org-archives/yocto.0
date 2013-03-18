@@ -1,32 +1,25 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f170.google.com (mail-we0-f170.google.com
-	[74.125.82.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 742C0E00741
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 07:33:01 -0700 (PDT)
-Received: by mail-we0-f170.google.com with SMTP id z53so5023392wey.29
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 07:33:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:content-type;
-	bh=UmGHT0ijvtI0pvv7PBn9PRKD5SnvaRTPF/0csZttI1k=;
-	b=atVK+wdLb3QRpRUQe9idwDf6TztWP++XKX1NIODNaeUUnIZFDt8Gn1ku+kWWhenI7y
-	prmcEQSd43oeOqVSKaN0AsdvHnLkCawtaJv9lM+5Oh7ZWPsAjx7RwPGT7UJhbL57TFcg
-	cZ1c2u+z9UXBgIZBhx/Yvb2nqAttTadX+8gOZnJh6soXagyWzZ1n+VE2IfNP1IXjkS1f
-	PCpz9twLj9VVTZY0nao7OrONDCSM/fobZGobslYnB6avnI0javVXbSTp275S47aasvWf
-	1pBmM758opwvJwGeOya1rPyrGkF8IWY+VvAAtJUhCVL9D/7XrOoCyNpPuUN/sTQB4ApW
-	IcCA==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D238E0140A
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 07:53:46 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 7B7E9F811EF; Mon, 18 Mar 2013 08:53:45 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id AAA1BF811EE;
+	Mon, 18 Mar 2013 08:53:43 -0600 (MDT)
+Message-ID: <51472A7A.6020209@mlbassoc.com>
+Date: Mon, 18 Mar 2013 08:53:46 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
 MIME-Version: 1.0
-X-Received: by 10.194.58.202 with SMTP id t10mr25272270wjq.4.1363617177173;
-	Mon, 18 Mar 2013 07:32:57 -0700 (PDT)
-Received: by 10.194.45.100 with HTTP; Mon, 18 Mar 2013 07:32:56 -0700 (PDT)
-In-Reply-To: <20130317231756.GA3190@jama>
-References: <CACzyEJ_Xuu8P+sFsahsFECHe1bo2NGn=1HdJjASnE4GOdRES4w@mail.gmail.com>
-	<20130317231756.GA3190@jama>
-Date: Mon, 18 Mar 2013 10:32:56 -0400
-Message-ID: <CAHUNapQs_=wXGdUP6ovvLTxTciGavnL55y9EixR=DGavYub60g@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [question] "icecc: improve interaction with sstate"
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Help configuring pulseaudio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,19 +31,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 14:33:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 18 Mar 2013 14:53:46 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sun, Mar 17, 2013 at 7:17 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> Please use better Subject next time, I was wondering what could be
-> broken by my patch to icecc and your question is quite unrelated to that
-> commit.
->
-> Something like "neard failing to build with latest poky" would be
-> better.
+I know this is a little off-topic.  I have a Poky/Yocto
+based system running pulseaudio out of the box.  Output
+(playback) works great,  but it is choosing the wrong
+device for input.  I'm hoping someone can give me a pointer
+on how to configure things to get the input correct.
 
-...which is why I wasn't aware of this thread when I sent my problem
-report about neard :-D
+Here are my devices (raw ALSA version):
+   # aplay -l
+   **** List of PLAYBACK Hardware Devices ****
+   card 0: Cobra4430p82 [Cobra4430p82], device 0: Multimedia (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 2: Voice (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 3: Tone Playback (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 4: VIB-DL (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 5: MODEM (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 6: Multimedia (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 8: Headset Playback twl6040-legacy-8 []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 9: (HS Playback) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 11: (HF Playback) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 12: (Vibra) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 13: (BT Capture) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 14: (BT Playback) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 15: (FM Playback) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 16: (FM Capture) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   # arecord -l
+   **** List of CAPTURE Hardware Devices ****
+   card 0: Cobra4430p82 [Cobra4430p82], device 0: Multimedia (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 1: Multimedia Capture (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 2: Voice (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 5: MODEM (*) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 8: Headset Playback twl6040-legacy-8 []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 10: (Analog Capture) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 13: (BT Capture) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 14: (BT Playback) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 15: (FM Playback) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
+   card 0: Cobra4430p82 [Cobra4430p82], device 16: (FM Capture) []
+     Subdevices: 1/1
+     Subdevice #0:   Subdevice #0
 
-I guess *technically* I should have been reading all the correspondence...
+Here's what pulse is choosing:
+   # pactl stat
+   Currently in use: 1 blocks containing 64.0 KiB bytes total.
+   Allocated during whole lifetime: 59019 blocks containing 41.4 MiB bytes total.
+   Sample cache size: 0 B
+   Server String: /var/volatile/tmp/pulse-FUK8lo8eJhXc/native
+   Library Protocol Version: 26
+   Server Protocol Version: 26
+   Is Local: yes
+   Client Index: 53
+   Tile Size: 65496
+   User Name: root
+   Host Name: cobra4430p82
+   Server Name: pulseaudio
+   Server Version: 2.1
+   Default Sample Specification: s16le 2ch 44100Hz
+   Default Channel Map: front-left,front-right
+   Default Sink: alsa_output.platform-omap-abe-twl6040.analog-stereo
+   Default Source: alsa_output.platform-omap-abe-twl6040.analog-stereo.monitor
+   Cookie: 93f5:b437
+
+What I want is for it to choose the ALSA device hw:0,1 for input (source).
+
+Can someone help out?
+
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
