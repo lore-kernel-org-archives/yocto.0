@@ -1,31 +1,33 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-qa0-f51.google.com (mail-qa0-f51.google.com
-	[209.85.216.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F9C7E006AD
-	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 22:24:49 -0700 (PDT)
-Received: by mail-qa0-f51.google.com with SMTP id cr7so1428096qab.17
-	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 22:24:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type:x-gm-message-state;
-	bh=TO73LthgosIcptqIL+YOMmSJpJFxYDSoRRqKy1+qJhE=;
-	b=T4bpRbFrhmXsAcFRAVkqEpb8P3wk1uQQPfBANoIJjivjX3Ka4dAH7hEXvLyoMSwm3d
-	wiEWl/lawzx4+PyFDydhQ/QEA56kg+3rc96y6S/KsX3bF984S9R795oD0dIHTuocLSo3
-	NQBwUWtNCsNnridcsT9hX/LHMkABLQvZmNp/leW/cuUnRz/9wSBsryI0a27NnNtb88R4
-	iFM56NzvHQ6EOa1DGp+M2Pd3w4aYaChsy1nmslWDgaQC9PpfgEN8SlwSR2EDt6U+VEf3
-	ZrOyKOsFE2floIXZaadMW3Qo6w5KmPJSv89945k0mQQGoWEOFwXyPRDnAdp7CKUWgNch
-	QaQg==
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
+	[74.125.82.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9241E006C2
+	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 23:14:38 -0700 (PDT)
+Received: by mail-we0-f175.google.com with SMTP id x8so4563916wey.20
+	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 23:14:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=hso44aWjoTu8JN32KVc6Pd5twXbypsuv4K5uaGIvXSU=;
+	b=HYujTGEeDpwBhuPa7gQ0X/McA6sCpysI9XT++72HZ42xRNPpvvG21Clb5NzuAh4+IE
+	b9vbNMZ3zau62kXaYTuWr3ctkWHLuX8Awry0nlrMfWbWSK2i8JNTVPAnL6ejSfyMlFHJ
+	m12Ecjzg9Sd7bsdpta5LbJ5nQi9IdSU7OXfTOHAu5fVyFiqIr8bR6mKXee1pcpRKRB4R
+	yOxIqRrBToArr8DwDwzybJF3nHOH1GfApDFpKrPHjtE6KRjDnL8tvpws+MSyzG7nhUUb
+	lMm9jHxaKN9uuzaqhqSPqzVwjzirD8Ysg43Ou7f3Qf2gYP7kkYdnmT333Re7iDfKHFr8
+	f9hA==
 MIME-Version: 1.0
-X-Received: by 10.49.50.197 with SMTP id e5mr20228827qeo.42.1363584289215;
-	Sun, 17 Mar 2013 22:24:49 -0700 (PDT)
-Received: by 10.49.81.226 with HTTP; Sun, 17 Mar 2013 22:24:49 -0700 (PDT)
-Date: Sun, 17 Mar 2013 22:24:49 -0700
-Message-ID: <CAPhnLPDD_TS1QC4tuhLrX2Q7OpMf-5oFQzyJcdVTZWKxiJNZ7A@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmwAkfydpTLx2QNVsuQSc3atvIrGRzD20iSoZ69ZolbEYjv8HvpQVwUT2ggrtXZPwHaAWFN
-Subject: New autobuilder.yoctoproject.org up and running
+X-Received: by 10.194.21.233 with SMTP id y9mr14812200wje.47.1363587277416;
+	Sun, 17 Mar 2013 23:14:37 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Sun, 17 Mar 2013 23:14:37 -0700 (PDT)
+In-Reply-To: <CACzyEJ_m_7TAc4=921zT_6G3esaPZAPxB2ixSzvA4J+Q2St7Tg@mail.gmail.com>
+References: <CAHUNapQOknbQKfj+m6OaONATjhb4Sg9JqX1Vkd-qUV+jj+tM_A@mail.gmail.com>
+	<CA+chaQfQSwRUH8jpKLRJ_391RtN6_myfGe-Kgb9_=Z27JtedTw@mail.gmail.com>
+	<CACzyEJ_m_7TAc4=921zT_6G3esaPZAPxB2ixSzvA4J+Q2St7Tg@mail.gmail.com>
+Date: Mon, 18 Mar 2013 02:14:37 -0400
+Message-ID: <CAHUNapSE+dqan+PTSOL-AqgxEcuZHSSmEuQWBJs5zySTw78sng@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: problems building 'neard'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,69 +39,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 05:24:50 -0000
+X-List-Received-Date: Mon, 18 Mar 2013 06:14:39 -0000
+Content-Type: multipart/alternative; boundary=047d7b5d27744a70ef04d82ce70c
+
+--047d7b5d27744a70ef04d82ce70c
 Content-Type: text/plain; charset=ISO-8859-1
 
-All,
+Yes, thanks everyone. Pulling the latest fixes the problem.
 
-I'm pleased to announce that the migration to the new
-yocto-autobuilder code base is almost complete. A few minor issues
-have been identified and are either fixed and waiting for the current
-build to complete (nightly-intel-gpl) or about to be fixed
-(nightly-x32). The new autobuilder is located at:
+--047d7b5d27744a70ef04d82ce70c
+Content-Type: text/html; charset=ISO-8859-1
 
-http://autobuilder.yoctoproject.org:8011
+<div dir="ltr">Yes, thanks everyone. Pulling the latest fixes the problem.<br></div>
 
-A few things.
-
-The old autobuilder still exists. If for some reason we need it, we do
-have a rollback plan in place. I am leaving up the master page in
-order to support any bugzilla entries that have links to the
-autobuilder. This will not stay up forever. I'm currently thinking of
-a longer term solution where the autobuilder can provide something
-like a pastebin of the errors, in order provide long term link
-management.
-
-Testing autobuilder runs is extraordinarily time consuming.
-Considering the support matrix (danny, denzil and current), time it
-takes to build each, plus the new support for mix and match layering,
-testing "everything" is impossible. If you see any issue, please, let
-me know immediately. This migration is occurring fairly late in the
-release cycle and I want to identify any issues within the next week
-or so, especially any missing/misplaced artifacts.
-
-I have been noticing some failed sanity issues in my test runs. I do
-not believe that this is caused by the new autobuilder code. In fact,
-I spent some time looking at it and discussing it with RP and we both
-feel that it is not caused by the new code. I've reduced the number of
-concurrent builds on the slaves to two for the time being to verify
-that the ab wasn't causing sanity failures. I'll try later in the week
-to bump those back up to 3 builds per slave.
-
-Things should run faster on the new autobuilder, especially once I
-bump things back up to 3 builds per slave. I won't be sure how fast
-for about a week or so, in order to get a good sample of data. If I
-had to guess, I know of one change on nightly that should save close
-to an hour.
-
-Also, you'll notice that meta-intel is no longer on the main
-autobuilder. We are moving it to its own master. Its outage will
-extend until Monday evening Pacific time.  We did this for a few
-reasons, mainly to reduce load on the autobuilder master. I will
-announce the finalized url tomorrow.
-
-The code base for the new autobuilder currently lives in:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/log/?h=eflanagan/yocto-autobuilder-refactor
-
-Once this migration is complete and had some shake out time, we'll be
-moving it into master.
-
-Thanks,
--b
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
+--047d7b5d27744a70ef04d82ce70c--
