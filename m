@@ -1,33 +1,33 @@
 Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
-	[209.85.214.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89414E006AD
-	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 21:31:01 -0700 (PDT)
-Received: by mail-ob0-f172.google.com with SMTP id tb18so4931760obb.17
-	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 21:31:01 -0700 (PDT)
+Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
+	[209.85.214.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6319E006AD
+	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 21:58:57 -0700 (PDT)
+Received: by mail-ob0-f174.google.com with SMTP id 16so4927658obc.5
+	for <yocto@yoctoproject.org>; Sun, 17 Mar 2013 21:58:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
 	:subject:from:to:cc:content-type;
-	bh=gii991laFFzskyUkVHGsCu2FCY0UghUdRurR4mhp7OY=;
-	b=FB9cgjgo5bZnmuTdaVZjWBBYu3MKoD4xk53SOaxqeCqKRoJTzw0qF7mIEBAnwsbszb
-	7L2f5HCYoJFCeqBXuUkixS+sgqUcCQLzxVIpRjVctZppYEJZIIXRwuY2gdS2su+IbBKo
-	9zW9igzFrG42FAhzJU5cFHBYbfG0MEPlIT9yCMOJPfVB7o0Xl7AAxOfTHFXRZbgxENiZ
-	56NyXRKLmmZFZVl3c56xptXJ6tc/j6tojIf/1jnOM6DL+wcil+fAqIdsvW9CBwwg+Tsn
-	/VXerAbQLMWFU+g9CzOP5Db8npSyccnKlzRdhwR760ccdy1NZs6XKTcZigMuLQVHL1z2
-	x+MQ==
+	bh=WyrSdRJcZPhf6mpd1p3lCerVpK/1lSPGNpWHwiDIJoM=;
+	b=MW5l7+mE7SLmT7UzfLSFbA5NMYf2ExEngHSOfVK+3vPWrpu++5B2rsBXjVvcLV8All
+	jg/J3EzfGvSa6nOS+eqknpYUWTgyT1nQToz/mmyExWtgYX9+V7HGOLiZD8yGvgfFANBX
+	s0ioM9Qhv8C+3Oe46xJm5z7Mfr/bzXtUUW5c/9a5e6i1qpwEP4wWJj4b4/3v56PNdAyc
+	Skg2W+MvJgpyZG8W5HvYPHNDzPEna5RWW2e/AsW0DkSdbgibBBIN8zI1bXwO7yT4aJZZ
+	rkiisUe32h4E/S+g6oKKFGTJxMQHR5tWvlmqAlDUCOHuM1y+LZpNyjO+6rgyl3o1GWRg
+	3Baw==
 MIME-Version: 1.0
-X-Received: by 10.60.7.67 with SMTP id h3mr6198577oea.69.1363581060882; Sun,
-	17 Mar 2013 21:31:00 -0700 (PDT)
-Received: by 10.182.121.99 with HTTP; Sun, 17 Mar 2013 21:31:00 -0700 (PDT)
-Received: by 10.182.121.99 with HTTP; Sun, 17 Mar 2013 21:31:00 -0700 (PDT)
+X-Received: by 10.182.107.66 with SMTP id ha2mr6431201obb.43.1363582737169;
+	Sun, 17 Mar 2013 21:58:57 -0700 (PDT)
+Received: by 10.182.121.99 with HTTP; Sun, 17 Mar 2013 21:58:56 -0700 (PDT)
+Received: by 10.182.121.99 with HTTP; Sun, 17 Mar 2013 21:58:56 -0700 (PDT)
 In-Reply-To: <7E022AA2-E447-4C9A-8186-5F19D3DFD859@gmail.com>
 References: <9BACABF0C6B14A4D8C33B42A795119BE1B6F3998@POCITMSEXMB05.LntUniverse.com>
 	<CA+Z6RkUxVBDJqRT0kcwyqNROhjVsxKkRugB3EMVWAadsDL2-Pw@mail.gmail.com>
 	<7E022AA2-E447-4C9A-8186-5F19D3DFD859@gmail.com>
-Date: Mon, 18 Mar 2013 10:01:00 +0530
-Message-ID: <CA+Z6RkVCZ-zGXvaMjEi+C79BNuUUQOu4gMZsYkHoXUxzXBpWxg@mail.gmail.com>
+Date: Mon, 18 Mar 2013 10:28:56 +0530
+Message-ID: <CA+Z6RkUzm3ZRULvg8wx0msesHe_jASGk=s1Y5AN=CawP243gHQ@mail.gmail.com>
 From: Navani Srivastava <navani.srivastava@gmail.com>
-To: Prana <pranap@gmail.com>
+To: Prana <pranap@gmail.com>, Khem Raj <raj.khem@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: SDK creation
 X-BeenThere: yocto@yoctoproject.org
@@ -41,16 +41,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 04:31:01 -0000
-Content-Type: multipart/alternative; boundary=e89a8f924078c1aa5404d82b7466
+X-List-Received-Date: Mon, 18 Mar 2013 04:58:58 -0000
+Content-Type: multipart/alternative; boundary=14dae93b5692abc89e04d82bd871
 
---e89a8f924078c1aa5404d82b7466
+--14dae93b5692abc89e04d82bd871
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Hi all,
 
-Thanks for your reply.. But including this option didn't helped me..
-On Mar 15, 2013 12:17 PM, "Prana" <pranap@gmail.com> wrote:
+Adding below lines helped..
+
+PREFERRED_VERSION_qt4-embedded = "4.8.1"
+
+I was changing qt configuration options so was getting that error even
+after adding mentioned lines..
+Thanks for the help
+
+Thanks and Regards
+Navani
+ On Mar 15, 2013 12:17 PM, "Prana" <pranap@gmail.com> wrote:
 
 > Try adding this to your machine.conf
 >
@@ -90,13 +99,19 @@ On Mar 15, 2013 12:17 PM, "Prana" <pranap@gmail.com> wrote:
 >
 >
 
---e89a8f924078c1aa5404d82b7466
+--14dae93b5692abc89e04d82bd871
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi,</p>
-<p>Thanks for your reply.. But including this option didn&#39;t helped me.=
-.</p>
+<p>Hi all,</p>
+<p>Adding below lines helped..</p>
+<p>PREFERRED_VERSION_qt4-embedded =3D &quot;4.8.1&quot;</p>
+<p> I was changing qt configuration options so was getting that error even=
+ after adding mentioned lines..<br>
+Thanks for the help </p>
+<p>Thanks and Regards <br>
+Navani <br>
+</p>
 <div class=3D"gmail_quote">On Mar 15, 2013 12:17 PM, &quot;Prana&quot; &lt=
 ;<a href=3D"mailto:pranap@gmail.com">pranap@gmail.com</a>&gt; wrote:<br typ=
 e=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
@@ -140,4 +155,4 @@ toproject.org</a></span><br>
 _blank">https://lists.yoctoproject.org/listinfo/yocto</a></span><br></div><=
 /blockquote></div></blockquote></div>
 
---e89a8f924078c1aa5404d82b7466--
+--14dae93b5692abc89e04d82bd871--
