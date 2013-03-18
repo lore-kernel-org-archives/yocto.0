@@ -1,37 +1,34 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
-	[209.85.212.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81E72E0140A;
-	Mon, 18 Mar 2013 08:47:11 -0700 (PDT)
-Received: by mail-wi0-f173.google.com with SMTP id hq4so2834871wib.0
-	for <multiple recipients>; Mon, 18 Mar 2013 08:47:10 -0700 (PDT)
+Return-Path: <aenbacka@gmail.com>
+Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5371BE0140A
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 10:27:42 -0700 (PDT)
+Received: by mail-lb0-f175.google.com with SMTP id n3so4752119lbo.6
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 10:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=QO1ylIsT8/kSARqdfnik1Hj6sBXARkKix035am+QQNg=;
-	b=eN/yvuNmKHKg9TwhjZvb0145E59DzTgWhcGbj5M+Z4zRqQaMpLPTADSz8cIEWjmSNd
-	4HL4X7cNJ+auxRfOEMAAQTmKM/wvpTqcoLz5X262+grkZiCkjOJQIhoOAM5YRtyOClNN
-	BnR+70eoIvTvvdjou1MN3rwwHcG282b9rfJFq2OTBOJvgCr4l8r3n3AeCHVYvoqiOIit
-	/tK8NNvDs2h7et3xCppfQS+p2fX9P7gDbkNxbHLq/+S/bBCQtyOfsTc8ScHT5gNZv/1F
-	ftQ27vr3yIgjXo8Ra5nx64HN3NISSpNAWgSb3Bt+zdNdpT8LIw5n1UbfCkTmr0YWzb0+
-	9u9A==
-X-Received: by 10.194.123.103 with SMTP id lz7mr26062628wjb.10.1363621630431; 
-	Mon, 18 Mar 2013 08:47:10 -0700 (PDT)
+	h=x-received:from:to:subject:date:message-id:mime-version
+	:content-type:x-mailer:thread-index:content-language;
+	bh=nWlt3DLR4p5nGZP78ktWRUARdiK7PZfXOC/3Xx5ME3I=;
+	b=BG5qqwMKLmDElzOJeAkbvBIjDTyICwk/yjpXqmnCmMkDKoYzik1Fx8kRariunT4YHd
+	qFU2yGzr/zq+S6eLoRXZA6QzADJQcEZEcvsWr9Cyc5/fL9lZsusBFhc1jx6L9E+RY8h9
+	K6wbkPf2yOOIDEzKYxhHIk1Ya33heEAR5cm3kEoiDQuIMJCV21XIbSAZ4h7vI0aT7WQc
+	ywWAZovAMOUhtmS17YhGh7KmwbaNJkJ7Lvn4+GK94WS3MyBL5CYbwRlNmiOmmtmqBZvQ
+	HitUL+qA1eEgFp07mxGArakSc9KYcfV5Udl4PNk3t2fZoAqEjY+yU7t7dDyE1NihxG1w
+	Ccwg==
+X-Received: by 10.152.146.199 with SMTP id te7mr15365221lab.23.1363627660849; 
+	Mon, 18 Mar 2013 10:27:40 -0700 (PDT)
+Received: from LAPTOP (a88-115-129-147.elisa-laajakaista.fi. [88.115.129.147])
+	by mx.google.com with ESMTPS id fl9sm5694387lbb.9.2013.03.18.10.27.38
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Mon, 18 Mar 2013 10:27:39 -0700 (PDT)
+From: "Andreas Enbacka" <aenbacka@gmail.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 18 Mar 2013 19:27:34 +0200
+Message-ID: <000601ce23fd$e1b38620$a51a9260$@gmail.com>
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Mon, 18 Mar 2013 08:46:49 -0700 (PDT)
-In-Reply-To: <51472307.9000202@windriver.com>
-References: <insop.song@gmail.com> <cover.1363428594.git.insop.song@gmail.com>
-	<514540B6.2090307@windriver.com>
-	<CACzyEJ-Fe8iGEHH8ddG18Op_1sfkNBhVtWTsJcRhf4cxaVw6kw@mail.gmail.com>
-	<51472307.9000202@windriver.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Mon, 18 Mar 2013 08:46:49 -0700
-Message-ID: <CACzyEJ8f3G+d1MdqQFzVq6v_U7YpqQa729nP5Z7o8Hca0FROVQ@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
-	"Development list for the linux-yocto*.git Linux kernel repositories"
-	<linux-yocto@yoctoproject.org>
-Subject: Re: [linux-yocto] [PATCH 0/1] [meta-realtime] Add rt-app, schedtool, define core-image-realtime, and append recipies-kernel
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: Ac4j/SkRlArDSxSpQCGoTA2CASTF6Q==
+Subject: Error when building image in Hob
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,28 +40,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Mar 2013 15:47:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 18 Mar 2013 17:27:42 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0007_01CE240E.A5A418A0"
+Content-Language: fi
 
-On Mon, Mar 18, 2013 at 7:21 AM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
->
->
-> I went with core-image-rt-extended this morning.
->
-> The changes have been merged, briefly tested and pushed to the
-> yocto layer.
->
-> I've also created a docs/ subirectory in the layer, if you have
-> test steps, READMEs or other information to contribute, that's the
-> place we should put it.
->
-> We can tweak this as required from here.
->
+------=_NextPart_000_0007_01CE240E.A5A418A0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Thank you and will update the docs dir soon.
+Hello,
 
-Regards,
+ 
 
-Insop
+I would like to ask about an image building problem I have when using Hob
+within the yocto project. I am trying to build images for the Intel emenlow
+taget (e.g., core-image-sato, core-image-x11).  I am able to build the
+images ok in case I do not edit them; however when trying to edit an image
+(adding some package(s)), the image build always fail with an error message
+as follows:
 
+ 
+
+Hob found an error:
+
+Required build target 'hob-image-20130318-131837' has no buildable
+providers. Missing or unbuildable dependency chain was
+
+['hob-image-20130318-131837','libgstinterfaces-0.10'] (the error always
+refers to 'Nothing RPROVIDES libgstinterfaces-0.10' before the mentioned
+error).'
+
+ 
+
+Any clues what could cause the problem would be greatly appreciated. 
+
+ 
+
+Also, why do the packages always need to be re-selected on step 2/2: Edit
+packages, once they have been selected on step 1 in Hob?
+
+ 
+
+Best regards,
+
+Andreas Enbacka
+
+ 
+
+ 
+
+
+------=_NextPart_000_0007_01CE240E.A5A418A0
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 2.0cm 70.85pt 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DSV-FI>Hello,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DSV-FI><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I would like to ask about an image =
+building problem I have when using Hob within the yocto project. I am =
+trying to build images for the Intel emenlow taget (e.g., =
+core-image-sato, core-image-x11).&nbsp; I am able to build the images ok =
+in case I do not edit them; however when trying to edit an image (adding =
+some package(s)), the image build always fail with an error message as =
+follows:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Hob found an error:<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Required build target =
+'hob-image-20130318-131837' has no buildable providers. Missing or =
+unbuildable dependency chain was<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>['hob-image-20130318-131837','libgstinterfaces-0.10'] (the =
+error always refers to &#8216;Nothing RPROVIDES =
+libgstinterfaces-0.10&#8217; before the mentioned =
+error).&#8217;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Any clues what could cause the problem would be greatly =
+appreciated. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Also, why do the packages always need to be re-selected on =
+step 2/2: Edit packages, once they have been selected on step 1 in =
+Hob?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Best regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Andreas =
+Enbacka<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+
+------=_NextPart_000_0007_01CE240E.A5A418A0--
