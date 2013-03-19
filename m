@@ -1,22 +1,29 @@
-Return-Path: <Maxin.John@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id A979BE0147F
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 06:06:22 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.318.1;
-	Tue, 19 Mar 2013 14:06:19 +0100
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id 0B560288B02;
-	Tue, 19 Mar 2013 14:06:20 +0100 (CET)
-Date: Tue, 19 Mar 2013 14:06:20 +0100
-From: "Maxin B. John" <maxin.john@enea.com>
-To: <tom.zanussi@linux.intel.com>
-Message-ID: <20130319130619.GA41031@sestofb10.enea.se>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Received-SPF: None (SESTOEX03.enea.se: maxin.john@enea.com does not
-	designate permitted sender hosts)
-Cc: yocto@yoctoproject.org
-Subject: perf build breaks in poky master branch
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1680E01481
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 06:28:23 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r2JDbEVT006626; Tue, 19 Mar 2013 13:37:14 GMT
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id MkMtKqarq0IE; Tue, 19 Mar 2013 13:37:14 +0000 (GMT)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r2JDb9Bg006606
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Tue, 19 Mar 2013 13:37:12 GMT
+Message-ID: <1363699671.16482.101.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Maxin B. John" <maxin.john@enea.com>
+Date: Tue, 19 Mar 2013 13:27:51 +0000
+In-Reply-To: <20130319130619.GA41031@sestofb10.enea.se>
+References: <20130319130619.GA41031@sestofb10.enea.se>
+X-Mailer: Evolution 3.6.2-0ubuntu0.1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org, tom.zanussi@linux.intel.com
+Subject: Re: perf build breaks in poky master branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,120 +35,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 13:06:23 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 19 Mar 2013 13:28:24 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Tue, 2013-03-19 at 14:06 +0100, Maxin B. John wrote:
+> Hi,
+> 
+> Perf build fails while trying to build core-image-minimal for qemux86, 
+> $ git clone git://git.yoctoproject.org/poky
+> $ cd poky
+> $ source oe-init-build-env
+> $ bitbake core-image-minimal
 
-Perf build fails while trying to build core-image-minimal for qemux86, 
-$ git clone git://git.yoctoproject.org/poky
-$ cd poky
-$ source oe-init-build-env
-$ bitbake core-image-minimal
-Pseudo is not present but is required, building this first before the main build
-Loading cache: 100%
-|###############################################################################|
-ETA:  00:00:00
-Loaded 347 entries from dependency cache.
-ERROR: ExpansionError during parsing
-/home/majo/master/poky/meta/recipes-kernel/perf/perf.bb:
-Failure expanding variable do_package: ExpansionError: Failure
-expanding variable do_package, expression was
-bb.data.setVar('PKGV',
-'${@get_kernelversion('/home/majo/master/poky/build/tmp/sysroots/qemux86/usr/src/kernel').split("-")[0]}',
-d)
-    # Change the following version to cause sstate to invalidate the
-    # package
-    # cache.  This is useful if an item this class depends on changes
-    # in a
-    # way that the output of this class changes.  rpmdeps is a good
-    # example
-    # as any change to rpmdeps requires this to be rerun.
-    # PACKAGE_BBCLASS_VERSION = "1"
+Sorry about this, I merged a patch which didn't work in a build from
+scratch and the autobuilder just reported the same issue. I've merged a
+fix for it.
 
-    # Init cachedpath
-    global cpath
-    cpath = oe.cachedpath.CachedPath()
+Cheers,
 
-    ###########################################################################
-    # Sanity test the setup
-    ###########################################################################
+Richard
 
-    packages = (d.getVar('PACKAGES', True) or "").split()
-    if len(packages) < 1:
-        bb.debug(1, "No packages to build, skipping do_package")
-        return
-
-    workdir = d.getVar('WORKDIR', True)
-    outdir = d.getVar('DEPLOY_DIR', True)
-    dest = d.getVar('D', True)
-    dvar = d.getVar('PKGD', True)
-    pn = d.getVar('PN', True)
-
-    if not workdir or not outdir or not dest or not dvar or not pn:
-        bb.error("WORKDIR, DEPLOY_DIR, D, PN and PKGD all must be
-defined, unable to package")
-        return
-
-    bb.build.exec_func("package_get_auto_pr", d)
-
-    ###########################################################################
-    # Optimisations
-    ###########################################################################
-
-    # Contunually rexpanding complex expressions is inefficient,
-    # particularly when
-    # we write to the datastore and invalidate the expansion cache.
-    # This code
-    # pre-expands some frequently used variables
-
-    def expandVar(x, d):
-        d.setVar(x, d.getVar(x, True))
-
-    for x in 'PN', 'PV', 'BPN', 'TARGET_SYS', 'EXTENDPRAUTO':
-        expandVar(x, d)
-
-    ###########################################################################
-    # Setup PKGD (from D)
-    ###########################################################################
-
-    for f in (d.getVar('PACKAGEBUILDPKGD', True) or '').split():
-        bb.build.exec_func(f, d)
-
-    ###########################################################################
-    # Split up PKGD into PKGDEST
-    ###########################################################################
-
-    cpath = oe.cachedpath.CachedPath()
-
-    for f in (d.getVar('PACKAGESPLITFUNCS', True) or '').split():
-        bb.build.exec_func(f, d)
-
-    ###########################################################################
-    # Process PKGDEST
-    ###########################################################################
-
-    # Build global list of files in each split package
-    global pkgfiles
-    pkgfiles = {}
-    packages = d.getVar('PACKAGES', True).split()
-    pkgdest = d.getVar('PKGDEST', True)
-    for pkg in packages:
-        pkgfiles[pkg] = []
-        for walkroot, dirs, files in cpath.walk(pkgdest + "/" + pkg):
-            for file in files:
-                pkgfiles[pkg].append(walkroot + os.sep + file)
-
-    for f in (d.getVar('PACKAGEFUNCS', True) or '').split():
-        bb.build.exec_func(f, d)
- which triggered exception AttributeError: 'NoneType' object has no
-attribute 'split'
-NOTE: Error during finalise of
-/home/majo/master/poky/meta/recipes-kernel/perf/perf.bb
-ERROR: Command execution failed: Exited with 1
-
-Summary: There were 2 ERROR messages shown, returning a non-zero exit
-code.
-  
 
