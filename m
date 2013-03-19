@@ -1,21 +1,31 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D8BAE006AD
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 08:56:27 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 19 Mar 2013 08:56:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,872,1355126400"; d="scan'208";a="273055590"
-Received: from unknown (HELO [10.255.13.175]) ([10.255.13.175])
-	by azsmga001.ch.intel.com with ESMTP; 19 Mar 2013 08:55:51 -0700
-Message-ID: <51488A86.1090807@linux.intel.com>
-Date: Tue, 19 Mar 2013 08:55:50 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
-MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, March 19, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Return-Path: <atanas.gegov.oss@gmail.com>
+Received: from mail-bk0-f53.google.com (mail-bk0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB9C4E006AD
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 09:02:09 -0700 (PDT)
+Received: by mail-bk0-f53.google.com with SMTP id j10so308752bkw.26
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 09:02:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=HCFFLEbiO5EhkGPhII9XWoLcID13ONdKdPBT0H3awKA=;
+	b=h4LL5FV31ypCIGkKi6q+2tBVxny6flGSCqk2BWsvQ4O9/r2o9fBaosbeGaeixQEGW4
+	+ZMCBkHWMvaL03tzMDOQoVDlXNQPcZRoAOusZKO2KE1uqV21XCM79WvYKIcgxs0SHYVl
+	KmVP/5EjpFGg0NcNQrCrgyXQUA+IV3yo35Xi3FWztsdvhgnsm9FI6uYgsxD6KEElusVA
+	8PJj0y6AKp0dIyXp0yvkkZHI7MpCl3F7/hxH6nhw0+tKTP6l7fvHkn/AirHQzazhgkzE
+	R9tyzZFVp9VNzGjeVSD6Fl/wbbC5WA+C7EI/GDr+TUNu2k0Jr8kbBQYITPylKSZ53YIp
+	RWiw==
+X-Received: by 10.204.244.135 with SMTP id lq7mr9074757bkb.138.1363708928360; 
+	Tue, 19 Mar 2013 09:02:08 -0700 (PDT)
+Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
+	by mx.google.com with ESMTPS id v2sm6616816bkw.5.2013.03.19.09.02.06
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 19 Mar 2013 09:02:07 -0700 (PDT)
+From: Atanas Gegov <atanas.gegov.oss@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue, 19 Mar 2013 17:01:44 +0100
+Message-Id: <1363708911-13002-1-git-send-email-atanas.gegov.oss@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [eclipse-poky][PATCH 0/7] Introducing a YoctoSDKAutotoolsProjectNature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,60 +37,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 15:56:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 19 Mar 2013 16:02:10 -0000
 
-Attendees:
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Saul, MichaelH, MarkH, JeffP, Beth, Richard, KevinS, TomZ, DaveST,
-JessicaZ, ScottR, Nitin, Corneliu, RossB, PaulE, AlexD, SeanH
+Hi,
 
-Notes:
+this patch series does a refactoring in the project natures. It does not add new
+functionality. In detail, this means the following:
 
-* Opens collection - 5 min (Song)
-* Yocto Project 1.3.1 status - 10 min (Ross)
-   - 1.3.1 has a couple of bugs from QA, but nothing critical
-     - marked for 1.3.2, no regressions noted.
-   - Possible to get some Docs updates
-   - Release Notes working
-   - No objections from CCB for release readiness
+Initially, the org.yocto.sdk.ide plugin defined 2 natures:
+1/ YoctoSDKProjectNature (every template project has this nature,
+strongly coupled with Autotools)
+2/ YoctoSDKEmptyProjectNature (additional nature for empty projects)
 
-* Yocto 1.4 status - 10 min (Song/team)
-   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
-   - systemd changes coming from Ross tomorrow for 1.4M5 Build
-   - There are a couple QA failures from testing last week
+With this change there are now 3 natures available:
+1/ YoctoSDKProjectNature (the "basic" nature,
+every Yocto IDE project has this nature)
+2/ YoctoSDKAutotoolsProjectNature (requires YoctoSDKProjectNature,
+strongly coupled with Autotools, all existing template projects get it)
+3/ YoctoSDKEmptyProjectNature (additional nature for empty projects,
+requires YoctoSDKProjectNature)
 
-   *** RP Named 1.4 Dylan!
+Now it is possible to introduce new type of Yocto projects that
+for example use CMake instead of Autotools. These projects still
+have the YoctoSDKProjectNature which provides the right environment,
+the cross-development profiles, etc.
 
-  * SWAT team rotation: Andrei Dinu -> Cristiana Voicu
+Cheers,
+Atanas
 
-* Opens - 10 min
-   - Beth - New Autobuilder
-     Apologies for Spaming due to issue in git fetcher
-     Networking issues resolved
-     Autobuilder ports have changed, new port is 8011
-     ** Reminder AB logs should not be pointed to by Bugzilla, please 
-cut and paste
+P.S: This patch series apply on the current master "Remove clutter project templates"
+(5e20d3c32072ddd91dceb8b2b793ef13f25b915e). However, it should be updated if the
+patch currently discussed on the mailing list "[yocto][PATCH v2][eclipse-poky][master]
+Add more comprehensive error message for invalid project name" is applied before this
+patch series.
 
-* Team Sharing - 20 min
-   - AlexD - Working on High bugs Qemu VMware issue
-   - Mark - Perl & allarch multilib, should not be allarch, please review
-            perl for one multilib might use a different directory with
-            shared library bits.
-   - MichaelH, speeding up mailing list issues,
-               yocto-admin@yoctoproject.org for issues
-   - Richard - package.bbclass performance tuning using cached stat 
-calls, 800,000 stat calls reduced to about 160,000 stat calls down from 
-2minutes to 10secs, possible issues with data life time with creating or 
-moving files.  Separating build ${B} vs source ${S}, stream of patches 
-to allow this in packages.
+Atanas Gegov (7):
+  plugins/sdk.ide: Prepared templates for autotools nature
+  plugins/sdk.ide: Added a new YoctoSDKAutotoolsProjectNature
+  plugins/sdk.ide: Added a check method for the global target profie
+  plugins/sdk.ide: Switch to YoctoSDKAutotoolsProjectNature
+  plugins/sdk.ide: Renamed the NewYoctoProjectPostProcess
+  plugins/sdk.ide: Improved usage of strings in class
+  plugins/sdk.ide: Extracted error message to YoctoSDKMessages
 
+ .../OSGI-INF/l10n/bundle.properties                |    1 +
+ plugins/org.yocto.sdk.ide/plugin.xml               |   28 ++++++-
+ .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |   13 +++
+ .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |    3 +-
+ .../natures/YoctoSDKAutotoolsProjectNature.java    |   86 ++++++++++++++++++++
+ .../sdk/ide/natures/YoctoSDKProjectNature.java     |   70 ----------------
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    6 +-
+ .../NewYoctoAutotoolsProjectPostProcess.java       |   81 ++++++++++++++++++
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   84 +++++++++++--------
+ .../sdk/ide/wizard/NewYoctoProjectPostProcess.java |   73 -----------------
+ .../projecttemplates/EmptyCPPProject/template.xml  |    1 +
+ .../projecttemplates/EmptyCProject/template.xml    |    1 +
+ .../HelloWorldCAutotoolsProject/template.xml       |    3 +-
+ .../HelloWorldCGTKProject/template.xml             |    3 +-
+ .../HelloWorldCPPAutotoolsProject/template.xml     |    3 +-
+ 15 files changed, 268 insertions(+), 188 deletions(-)
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKAutotoolsProjectNature.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectPostProcess.java
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+-- 
+1.7.9.5
 
 
