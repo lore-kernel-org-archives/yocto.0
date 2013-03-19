@@ -1,32 +1,32 @@
 Return-Path: <kergoth@gmail.com>
-Received: from mail-ia0-f179.google.com (mail-ia0-f179.google.com
-	[209.85.210.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF4D1E01472
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:06:46 -0700 (PDT)
-Received: by mail-ia0-f179.google.com with SMTP id x24so5857521iak.10
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:06:46 -0700 (PDT)
+Received: from mail-ia0-f176.google.com (mail-ia0-f176.google.com
+	[209.85.210.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BFAAE01487
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:07:02 -0700 (PDT)
+Received: by mail-ia0-f176.google.com with SMTP id i1so888112iaa.7
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:07:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
 	bh=ayBJTf6OA8JeUvOqgHU9NLYFePkpskCDB7psk0oiaDU=;
-	b=LtF3g9oQkKAOvKnNNyeIuvTObAqGQ3xPrv6k81qUqMQwAyE/e8k8jOjPt9FCzS7aOn
-	o88UhRls3RokcjadhiekdRhqQSOaDvb65cbCluSFBVUCAyYcYR7uskRdLrJGjyo57TKC
-	Ik5/iR43x8q+NUE7qyRZQDu8nem6MAQEmA6rHx1ZfM2Wr+VhlvwOAswFhE9Yso/f0oiI
-	EdNv2lm/mMWyi3oq0Mp4GQ4muPdlChDahJvRYblek7Z5og9vb05QPn7UDY4bohXu0lCw
-	yHYgY2kioks6JTv1Bzy3y62WrfMreREN1uHmkebwtpWWkw33uAWg6pYiDZv2UE5t60Z3
-	QPtQ==
-X-Received: by 10.42.88.145 with SMTP id c17mr9832186icm.47.1363658806519;
-	Mon, 18 Mar 2013 19:06:46 -0700 (PDT)
+	b=DAHtOvqNcR+FLVIIPb4TGgZkleEoX1TRH1GrOvNj2QFbOQGWD9Pfo8472zRNPaSB0G
+	Nxaj0p2d1RTxcRQV7k5htEuR6aCTf5G8xYO9tgASYxqiV9ZqUGcqbSIKdMGX6HW4k07t
+	h4fbcm2VCSDpwk0A8RzMpDToBnv2pyfywCN5X5kdpKFZ3lPJjTAE8SEZfrKSywugzsOG
+	GWUfj5l3Z4yi2HKyoYD+ZNS4krIpPsb4eLdV6Uh69CKKLQ1lzAyncXj5hdXEoAa8qfTw
+	bPyrz60MlvBC5rxKaaMa4JxtieVwCBmdra4f8yrCjevI0HdLufqqy8UYO4ilkJY6UywY
+	M56g==
+X-Received: by 10.43.65.195 with SMTP id xn3mr10044669icb.5.1363658822271;
+	Mon, 18 Mar 2013 19:07:02 -0700 (PDT)
 Received: from precise64.alm.mentorg.com (nat-lmt.mentorg.com. [139.181.28.34])
-	by mx.google.com with ESMTPS id wn10sm12075570igb.2.2013.03.18.19.06.44
+	by mx.google.com with ESMTPS id ua6sm12086613igb.0.2013.03.18.19.07.00
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 18 Mar 2013 19:06:45 -0700 (PDT)
+	Mon, 18 Mar 2013 19:07:01 -0700 (PDT)
 From: Christopher Larson <kergoth@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 18 Mar 2013 19:06:40 -0700
-Message-Id: <1363658800-27480-1-git-send-email-kergoth@gmail.com>
+Date: Mon, 18 Mar 2013 19:06:57 -0700
+Message-Id: <1363658817-27658-1-git-send-email-kergoth@gmail.com>
 X-Mailer: git-send-email 1.8.2
 Cc: Christopher Larson <chris_larson@mentor.com>
-Subject: [meta-selinux][PATCH] layer.conf: avoid unnecessary early expansion with :=
+Subject: [meta-selinux][for-danny][PATCH] layer.conf: avoid unnecessary early expansion with :=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,7 +38,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 02:06:47 -0000
+X-List-Received-Date: Tue, 19 Mar 2013 02:07:02 -0000
 
 From: Christopher Larson <chris_larson@mentor.com>
 
