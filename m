@@ -1,31 +1,33 @@
 Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-bk0-f53.google.com (mail-bk0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB9C4E006AD
+Received: from mail-bk0-f51.google.com (mail-bk0-f51.google.com
+	[209.85.214.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E5DCE006AD
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 09:02:10 -0700 (PDT)
+Received: by mail-bk0-f51.google.com with SMTP id ik5so317907bkc.10
 	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 09:02:09 -0700 (PDT)
-Received: by mail-bk0-f53.google.com with SMTP id j10so308752bkw.26
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 09:02:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
-	bh=HCFFLEbiO5EhkGPhII9XWoLcID13ONdKdPBT0H3awKA=;
-	b=h4LL5FV31ypCIGkKi6q+2tBVxny6flGSCqk2BWsvQ4O9/r2o9fBaosbeGaeixQEGW4
-	+ZMCBkHWMvaL03tzMDOQoVDlXNQPcZRoAOusZKO2KE1uqV21XCM79WvYKIcgxs0SHYVl
-	KmVP/5EjpFGg0NcNQrCrgyXQUA+IV3yo35Xi3FWztsdvhgnsm9FI6uYgsxD6KEElusVA
-	8PJj0y6AKp0dIyXp0yvkkZHI7MpCl3F7/hxH6nhw0+tKTP6l7fvHkn/AirHQzazhgkzE
-	R9tyzZFVp9VNzGjeVSD6Fl/wbbC5WA+C7EI/GDr+TUNu2k0Jr8kbBQYITPylKSZ53YIp
-	RWiw==
-X-Received: by 10.204.244.135 with SMTP id lq7mr9074757bkb.138.1363708928360; 
-	Tue, 19 Mar 2013 09:02:08 -0700 (PDT)
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
+	:references; bh=rAwnrZUozbJuCgekRDo4YFXqhBDSMROpidsaKwLTDy8=;
+	b=tWNToeQgwbweojjfnX4OUMwmcjv4t0k0g74b6fZiXBQlIyVWBxpqSRZyYaROMa1tl+
+	NQa11sNKF0W0Jji9145j42yqKN1bqQ4ZbUMRHTkL1vWZ8Mrbotug2RLHG9ken3qWoryr
+	HjzfGxmc99cCxQd0uQVeTS/pvB9KNj9Af+S2HqU61n9hOJEG8KMsqGpqBq/EKk7SK+HB
+	Mha0FZDg0jWpIPGigxOAk6yJdkySXnmBriw2cd0OiZsrUMZCmn60rVmbQqf3HRhNgBKK
+	tW9QcbWu1sYaYkNkIXGDuzw3kxwuhvWP+yJHx5injN5aXnI55n32ZYyxExiIwHddSkI3
+	Vfdg==
+X-Received: by 10.205.136.5 with SMTP id ii5mr9132331bkc.137.1363708929496;
+	Tue, 19 Mar 2013 09:02:09 -0700 (PDT)
 Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPS id v2sm6616816bkw.5.2013.03.19.09.02.06
+	by mx.google.com with ESMTPS id v2sm6616816bkw.5.2013.03.19.09.02.08
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 19 Mar 2013 09:02:07 -0700 (PDT)
+	Tue, 19 Mar 2013 09:02:08 -0700 (PDT)
 From: Atanas Gegov <atanas.gegov.oss@gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue, 19 Mar 2013 17:01:44 +0100
-Message-Id: <1363708911-13002-1-git-send-email-atanas.gegov.oss@gmail.com>
+Date: Tue, 19 Mar 2013 17:01:45 +0100
+Message-Id: <1363708911-13002-2-git-send-email-atanas.gegov.oss@gmail.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [eclipse-poky][PATCH 0/7] Introducing a YoctoSDKAutotoolsProjectNature
+In-Reply-To: <1363708911-13002-1-git-send-email-atanas.gegov.oss@gmail.com>
+References: <1363708911-13002-1-git-send-email-atanas.gegov.oss@gmail.com>
+Subject: [PATCH 1/7] plugins/sdk.ide: Prepared templates for autotools nature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,67 +43,110 @@ X-List-Received-Date: Tue, 19 Mar 2013 16:02:10 -0000
 
 From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Hi,
-
-this patch series does a refactoring in the project natures. It does not add new
-functionality. In detail, this means the following:
-
-Initially, the org.yocto.sdk.ide plugin defined 2 natures:
-1/ YoctoSDKProjectNature (every template project has this nature,
-strongly coupled with Autotools)
-2/ YoctoSDKEmptyProjectNature (additional nature for empty projects)
-
-With this change there are now 3 natures available:
-1/ YoctoSDKProjectNature (the "basic" nature,
-every Yocto IDE project has this nature)
-2/ YoctoSDKAutotoolsProjectNature (requires YoctoSDKProjectNature,
-strongly coupled with Autotools, all existing template projects get it)
-3/ YoctoSDKEmptyProjectNature (additional nature for empty projects,
-requires YoctoSDKProjectNature)
-
-Now it is possible to introduce new type of Yocto projects that
-for example use CMake instead of Autotools. These projects still
-have the YoctoSDKProjectNature which provides the right environment,
-the cross-development profiles, etc.
-
-Cheers,
-Atanas
-
-P.S: This patch series apply on the current master "Remove clutter project templates"
-(5e20d3c32072ddd91dceb8b2b793ef13f25b915e). However, it should be updated if the
-patch currently discussed on the mailing list "[yocto][PATCH v2][eclipse-poky][master]
-Add more comprehensive error message for invalid project name" is applied before this
-patch series.
-
-Atanas Gegov (7):
-  plugins/sdk.ide: Prepared templates for autotools nature
-  plugins/sdk.ide: Added a new YoctoSDKAutotoolsProjectNature
-  plugins/sdk.ide: Added a check method for the global target profie
-  plugins/sdk.ide: Switch to YoctoSDKAutotoolsProjectNature
-  plugins/sdk.ide: Renamed the NewYoctoProjectPostProcess
-  plugins/sdk.ide: Improved usage of strings in class
-  plugins/sdk.ide: Extracted error message to YoctoSDKMessages
-
- .../OSGI-INF/l10n/bundle.properties                |    1 +
- plugins/org.yocto.sdk.ide/plugin.xml               |   28 ++++++-
- .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |   13 +++
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |    3 +-
- .../natures/YoctoSDKAutotoolsProjectNature.java    |   86 ++++++++++++++++++++
- .../sdk/ide/natures/YoctoSDKProjectNature.java     |   70 ----------------
- .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    6 +-
- .../NewYoctoAutotoolsProjectPostProcess.java       |   81 ++++++++++++++++++
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   84 +++++++++++--------
- .../sdk/ide/wizard/NewYoctoProjectPostProcess.java |   73 -----------------
+Added an extra variable to the templates and the
+creating process. They are now prepared for a new
+autotools nature.
+---
+ plugins/org.yocto.sdk.ide/plugin.xml               |    4 ++++
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |    3 +++
  .../projecttemplates/EmptyCPPProject/template.xml  |    1 +
  .../projecttemplates/EmptyCProject/template.xml    |    1 +
- .../HelloWorldCAutotoolsProject/template.xml       |    3 +-
- .../HelloWorldCGTKProject/template.xml             |    3 +-
- .../HelloWorldCPPAutotoolsProject/template.xml     |    3 +-
- 15 files changed, 268 insertions(+), 188 deletions(-)
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKAutotoolsProjectNature.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
- delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectPostProcess.java
+ .../HelloWorldCAutotoolsProject/template.xml       |    1 +
+ .../HelloWorldCGTKProject/template.xml             |    1 +
+ .../HelloWorldCPPAutotoolsProject/template.xml     |    1 +
+ 7 files changed, 12 insertions(+)
 
+diff --git a/plugins/org.yocto.sdk.ide/plugin.xml b/plugins/org.yocto.sdk.ide/plugin.xml
+index 8e8daac..1fbca80 100644
+--- a/plugins/org.yocto.sdk.ide/plugin.xml
++++ b/plugins/org.yocto.sdk.ide/plugin.xml
+@@ -142,6 +142,10 @@
+                external="true"
+                name="isEmptyProject">
+          </simple>
++         <simple
++               external="true"
++               name="isAutotoolsProject">
++         </simple>
+       </processType>
+       <processType
+             name="NewYoctoProjectPostProcess"
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
+index 5ffd6b7..35fb821 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
+@@ -70,8 +70,11 @@ public class NewYoctoCProjectTemplate extends ProcessRunner {
+ 		String artifactExtension = args[2].getSimpleValue();
+ 		String isCProjectValue = args[3].getSimpleValue();
+ 		String isEmptyProjetValue = args[4].getSimpleValue();
++		String isAutotoolsProjectValue = args[5].getSimpleValue();
+ 		boolean isCProject = Boolean.valueOf(isCProjectValue).booleanValue();
+ 		boolean isEmptryProject = Boolean.valueOf(isEmptyProjetValue).booleanValue();
++		boolean isAutotoolsProject = Boolean.valueOf(isAutotoolsProjectValue).booleanValue();
++
+ 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+ 		try {
+ 			if (projectName.contains(" ")) {
+diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPProject/template.xml
+index e1b2338..0f0a7e8 100644
+--- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPProject/template.xml
++++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPProject/template.xml
+@@ -9,6 +9,7 @@
+ 		<simple name="artifactExtension" value="exe" /> 
+ 		<simple name="isCProject" value="false" /> 
+ 		<simple name="isEmptyProject" value="true" />
++		<simple name="isAutotoolsProject" value="true" />
+ 	</process>
+ 
+ </template>
+diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCProject/template.xml
+index f5c595c..8f821af 100644
+--- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCProject/template.xml
++++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCProject/template.xml
+@@ -10,6 +10,7 @@
+ 		<simple name="artifactExtension" value="exe" /> 
+ 		<simple name="isCProject" value="true" /> 
+ 		<simple name="isEmptyProject" value="true" />
++		<simple name="isAutotoolsProject" value="true" />
+ 	</process>
+ 
+ </template>
+diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
+index 52ac355..ca58158 100644
+--- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
++++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
+@@ -55,6 +55,7 @@
+ 		<simple name="artifactExtension" value="exe" /> 
+ 		<simple name="isCProject" value="true" /> 
+ 		<simple name="isEmptyProject" value="false" />
++		<simple name="isAutotoolsProject" value="true" />
+ 	</process>
+ 
+ 	<process type="org.eclipse.cdt.core.CreateSourceFolder">
+diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKProject/template.xml
+index e552a54..bbcf153 100644
+--- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKProject/template.xml
++++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKProject/template.xml
+@@ -55,6 +55,7 @@
+ 		<simple name="artifactExtension" value="exe" /> 
+ 		<simple name="isCProject" value="true" /> 
+ 		<simple name="isEmptyProject" value="false" />
++		<simple name="isAutotoolsProject" value="true" />
+ 	</process>
+ 
+ 	<process type="org.eclipse.cdt.core.CreateSourceFolder">
+diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
+index a6bac07..7ec9e05 100644
+--- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
++++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
+@@ -55,6 +55,7 @@
+ 		<simple name="artifactExtension" value="exe" /> 
+ 		<simple name="isCProject" value="false" /> 
+ 		<simple name="isEmptyProject" value="false" />
++		<simple name="isAutotoolsProject" value="true" />
+ 	</process>
+ 
+ 	<process type="org.eclipse.cdt.core.CreateSourceFolder">
 -- 
 1.7.9.5
 
