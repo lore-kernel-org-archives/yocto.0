@@ -1,26 +1,21 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <sgw@linux.intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 236A9E006AD
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 08:55:53 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 19 Mar 2013 08:55:52 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D8BAE006AD
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 08:56:27 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 19 Mar 2013 08:56:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,872,1355126400"; d="scan'208";a="216462397"
-Received: from unknown (HELO helios.localnet) ([10.255.13.154])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Mar 2013 08:55:51 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Florin Cristian Dan <dan.florincristian@gmail.com>
-Date: Tue, 19 Mar 2013 15:55:50 +0000
-Message-ID: <1466847.IjQTqfg5oi@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.1 (Linux/3.5.0-25-generic; KDE/4.10.1; i686; ; )
-In-Reply-To: <CABzOdpRL6VJSfcx5n8aO81b=SRg61k8oZGX5nwvzJ8TRcNw0Lg@mail.gmail.com>
-References: <CABzOdpQ0H0oBe7bFFwc03ff9nx=BtOXbpyy032iXwpTe2vSbaA@mail.gmail.com>
-	<2307196.6NslAs12Xo@helios>
-	<CABzOdpRL6VJSfcx5n8aO81b=SRg61k8oZGX5nwvzJ8TRcNw0Lg@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="4.84,872,1355126400"; d="scan'208";a="273055590"
+Received: from unknown (HELO [10.255.13.175]) ([10.255.13.175])
+	by azsmga001.ch.intel.com with ESMTP; 19 Mar 2013 08:55:51 -0700
+Message-ID: <51488A86.1090807@linux.intel.com>
+Date: Tue, 19 Mar 2013 08:55:50 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto Java support.
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, March 19, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,28 +27,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 15:55:53 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 19 Mar 2013 15:56:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tuesday 19 March 2013 17:09:32 Florin Cristian Dan wrote:
-> Hello, thank you very much for your answer, i will folow your instructions
-> but i have few more misunderstandings, like...after i do all that steps to
-> enable the java layer, and burn a new image, how i can develop a java app,
-> what IDE i should use? Isn't necesary a plugin like the Eclipse case?
+Attendees:
 
-It should be possible to use any IDE that you like, there is no hard 
-requirement. If you use Eclipse you will get some integration that we provide, 
-but you can still develop your Java apps in another IDE and deploy them on the 
-target separately.
+Saul, MichaelH, MarkH, JeffP, Beth, Richard, KevinS, TomZ, DaveST,
+JessicaZ, ScottR, Nitin, Corneliu, RossB, PaulE, AlexD, SeanH
 
-Cheers,
-Paul
+Notes:
 
-PS: please reply on-list so that everyone can follow the discussion. Thanks.
+* Opens collection - 5 min (Song)
+* Yocto Project 1.3.1 status - 10 min (Ross)
+   - 1.3.1 has a couple of bugs from QA, but nothing critical
+     - marked for 1.3.2, no regressions noted.
+   - Possible to get some Docs updates
+   - Release Notes working
+   - No objections from CCB for release readiness
 
--- 
+* Yocto 1.4 status - 10 min (Song/team)
+   https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+   - systemd changes coming from Ross tomorrow for 1.4M5 Build
+   - There are a couple QA failures from testing last week
 
-Paul Eggleton
-Intel Open Source Technology Centre
+   *** RP Named 1.4 Dylan!
+
+  * SWAT team rotation: Andrei Dinu -> Cristiana Voicu
+
+* Opens - 10 min
+   - Beth - New Autobuilder
+     Apologies for Spaming due to issue in git fetcher
+     Networking issues resolved
+     Autobuilder ports have changed, new port is 8011
+     ** Reminder AB logs should not be pointed to by Bugzilla, please 
+cut and paste
+
+* Team Sharing - 20 min
+   - AlexD - Working on High bugs Qemu VMware issue
+   - Mark - Perl & allarch multilib, should not be allarch, please review
+            perl for one multilib might use a different directory with
+            shared library bits.
+   - MichaelH, speeding up mailing list issues,
+               yocto-admin@yoctoproject.org for issues
+   - Richard - package.bbclass performance tuning using cached stat 
+calls, 800,000 stat calls reduced to about 160,000 stat calls down from 
+2minutes to 10secs, possible issues with data life time with creating or 
+moving files.  Separating build ${B} vs source ${S}, stream of patches 
+to allow this in packages.
+
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+
 
