@@ -1,20 +1,32 @@
-Return-Path: <kevin.strasser@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C57EAE01410
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 18:08:37 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 18 Mar 2013 18:07:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,868,1355126400"; d="scan'208";a="281295945"
-Received: from wrk.jf.intel.com ([10.7.202.65])
-	by orsmga001.jf.intel.com with ESMTP; 18 Mar 2013 18:08:37 -0700
-From: Kevin Strasser <kevin.strasser@linux.intel.com>
+Return-Path: <kergoth@gmail.com>
+Received: from mail-da0-f43.google.com (mail-da0-f43.google.com
+	[209.85.210.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C3ECE01469
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 18:13:52 -0700 (PDT)
+Received: by mail-da0-f43.google.com with SMTP id u36so1685870dak.30
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 18:13:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=8xR1JqZsI71dpjR96v071dS4ftXeL0I2By1lCEFGBEs=;
+	b=BEqbbs2zO4QjLGxZR/EMfKPZi0cPjHId31RrA8i2tBR2h3x7sa3PzKmtnQDwXZYHyM
+	ILOzM4O/fQsEmwgeRlm5+iCFiMxWs5LUln4wfILc3pBiPKwqE4M2+Ibx59DFs9mEEjJ1
+	zLQ74Gje7rb7dv6bcglyvkqDTAnDhNt79tbdoHZkYELjE6egvwRGo7beb0rdlNU4GvZo
+	R6iP4caoCZigRuLIeimNdhkM7dKMvWPJ2yz9dXpOFHz95t0nhSVbpQ/tSGiMfgy3u6gX
+	cqE9pPrduKT7nuIjnn989MVjv/XrPRZEejiIQnZGBRyMG/w1IiBEGdNwwW98KH74DGxc
+	OlOQ==
+X-Received: by 10.67.1.42 with SMTP id bd10mr431166pad.124.1363655632399;
+	Mon, 18 Mar 2013 18:13:52 -0700 (PDT)
+Received: from precise64.alm.mentorg.com (nat-lmt.mentorg.com. [139.181.28.34])
+	by mx.google.com with ESMTPS id t1sm10222485pab.12.2013.03.18.18.13.50
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 18 Mar 2013 18:13:51 -0700 (PDT)
+From: Christopher Larson <kergoth@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 18 Mar 2013 18:05:21 -0700
-Message-Id: <cover.1363640001.git.kevin.strasser@linux.intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: [meta-baryon] [PATCH 0/5] Updates and fixes
+Date: Mon, 18 Mar 2013 18:13:45 -0700
+Message-Id: <1363655625-11817-1-git-send-email-kergoth@gmail.com>
+X-Mailer: git-send-email 1.8.2
+Cc: Christopher Larson <chris_larson@mentor.com>
+Subject: [meta-baryon][PATCH] layer.conf: avoid unnecessary early expansion with :=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,120 +38,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 01:08:37 -0000
+X-List-Received-Date: Tue, 19 Mar 2013 01:13:52 -0000
 
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
+From: Christopher Larson <chris_larson@mentor.com>
 
-The following changes since commit 566cb211cee8a9870257a4ac2fc706990a70b9d2:
+bitbake handles immediate expansions of LAYERDIR for us automatically.
 
-  nfs-utils: update bbappend version to 1.2.7 (2013-02-27 15:24:30 +0000)
+Signed-off-by: Christopher Larson <chris_larson@mentor.com>
+---
+ conf/layer.conf | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib strassek/baryon
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon
-
-Kevin Strasser (5):
-  kernel: enable nfsd in linux-yocto 3.8
-  ffmpegthumbnailer: update to 2.0.8
-  ffmpegthumbnailer: include cstring
-  samba: sync with meta-oe
-  lvm2: sync with meta-oe
-
- recipes-connectivity/samba/files/smb.conf          |   10 -
- .../bug_221618_precise-64bit-prototype.patch       |   20 +
- ...4104_mention-kerberos-in-smbspool-manpage.patch |   34 +
- ...m_7499-nss_wins-dont-clobber-daemons-logs.patch |   47 +
- .../bug_601406_fix-perl-path-in-example.patch      |   15 +
- ...04768_upstream_7826_drop-using-samba-link.patch |   21 +
- ...ug_604768_upstream_7826_fix-WHATSNEW-link.patch |   18 +
- ...onfigure-disable-core_pattern-cross-check.patch |   20 +
- .../configure-disable-getaddrinfo-cross.patch      |   11 +
- .../samba/samba-3.6.8/documentation.patch          |  302 +
- .../samba/samba-3.6.8/documentation2.patch         |  314 +
- .../samba-3.6.8/dont-build-VFS-examples.patch      |   31 +
- .../samba/samba-3.6.8/fhs-filespaths.patch         |   65 +
- .../samba/samba-3.6.8/installswat.sh.patch         |   23 +
- .../samba-3.6.8/libutil_drop_AI_ADDRCONFIG.patch   |   54 +
- .../samba-3.6.8/only_export_public_symbols.patch   |   21 +
- .../samba/samba-3.6.8/pam-examples.patch           |   17 +
- .../samba/samba-3.6.8/shadow_copy2_backport.patch  | 2101 +++
- .../samba/samba-3.6.8/smbclient-pager.patch        |   18 +
- .../samba/samba-3.6.8/smbtar-bashism.patch         |   19 +
- .../samba/samba-3.6.8/smbtorture-manpage.patch     |   94 +
- .../samba/samba-3.6.8/undefined-symbols.patch      |   24 +
- .../samba/samba-3.6.8/usershare.patch              |   38 +
- .../samba/samba-3.6.8/waf-as-source.patch          |18534 ++++++++++++++++++++
- recipes-connectivity/samba/samba-basic.inc         |   38 +-
- recipes-connectivity/samba/samba.inc               |   43 +-
- .../samba/samba/Managing-Samba.txt                 |   40 +
- recipes-connectivity/samba/samba/cifs.patch        |   10 +
- .../samba/{files => samba}/config-h.patch          |    0
- .../samba/{files => samba}/config-lfs.patch        |    0
- .../samba/samba/configure-3.3.0.patch              |   85 +
- .../samba/{files/init => samba/init.samba}         |    4 +-
- recipes-connectivity/samba/samba/init.winbind      |   38 +
- recipes-connectivity/samba/samba/mtab.patch        |   11 +
- .../samba/{files => samba}/quota.patch             |    0
- .../{files/smb.conf.example => samba/smb.conf}     |   34 +-
- recipes-connectivity/samba/{files => samba}/tdb.pc |    2 +-
- .../samba/{files => samba}/tdbheaderfix.patch      |    0
- .../samba/{files => samba}/volatiles.03_samba      |    0
- recipes-connectivity/samba/samba_3.5.6.bb          |   50 -
- recipes-connectivity/samba/samba_3.6.8.bb          |   59 +
- ...yocto_3.0.bbappend => linux-yocto_3.8.bbappend} |    0
- .../ffmpeg/ffmpegthumbnailer/include-cstring.patch |   25 +
- ...bnailer_2.0.7.bb => ffmpegthumbnailer_2.0.8.bb} |    9 +-
- recipes-support/lvm2/lvm2.inc                      |    6 +-
- recipes-support/lvm2/lvm2_2.02.85.bb               |    7 -
- recipes-support/lvm2/lvm2_2.02.97.bb               |    6 +
- 47 files changed, 22209 insertions(+), 109 deletions(-)
- delete mode 100644 recipes-connectivity/samba/files/smb.conf
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_221618_precise-64bit-prototype.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_387266_upstream_4104_mention-kerberos-in-smbspool-manpage.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_598313_upstream_7499-nss_wins-dont-clobber-daemons-logs.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_601406_fix-perl-path-in-example.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_604768_upstream_7826_drop-using-samba-link.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_604768_upstream_7826_fix-WHATSNEW-link.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/configure-disable-core_pattern-cross-check.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/configure-disable-getaddrinfo-cross.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/documentation.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/documentation2.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/dont-build-VFS-examples.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/fhs-filespaths.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/installswat.sh.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/libutil_drop_AI_ADDRCONFIG.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/only_export_public_symbols.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/pam-examples.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/shadow_copy2_backport.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/smbclient-pager.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/smbtar-bashism.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/smbtorture-manpage.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/undefined-symbols.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/usershare.patch
- create mode 100644 recipes-connectivity/samba/samba-3.6.8/waf-as-source.patch
- create mode 100644 recipes-connectivity/samba/samba/Managing-Samba.txt
- create mode 100644 recipes-connectivity/samba/samba/cifs.patch
- rename recipes-connectivity/samba/{files => samba}/config-h.patch (100%)
- rename recipes-connectivity/samba/{files => samba}/config-lfs.patch (100%)
- create mode 100644 recipes-connectivity/samba/samba/configure-3.3.0.patch
- rename recipes-connectivity/samba/{files/init => samba/init.samba} (98%)
- create mode 100644 recipes-connectivity/samba/samba/init.winbind
- create mode 100644 recipes-connectivity/samba/samba/mtab.patch
- rename recipes-connectivity/samba/{files => samba}/quota.patch (100%)
- rename recipes-connectivity/samba/{files/smb.conf.example => samba/smb.conf} (94%)
- rename recipes-connectivity/samba/{files => samba}/tdb.pc (87%)
- rename recipes-connectivity/samba/{files => samba}/tdbheaderfix.patch (100%)
- rename recipes-connectivity/samba/{files => samba}/volatiles.03_samba (100%)
- delete mode 100644 recipes-connectivity/samba/samba_3.5.6.bb
- create mode 100644 recipes-connectivity/samba/samba_3.6.8.bb
- rename recipes-kernel/linux/{linux-yocto_3.0.bbappend => linux-yocto_3.8.bbappend} (100%)
- create mode 100644 recipes-multimedia/ffmpeg/ffmpegthumbnailer/include-cstring.patch
- rename recipes-multimedia/ffmpeg/{ffmpegthumbnailer_2.0.7.bb => ffmpegthumbnailer_2.0.8.bb} (71%)
- delete mode 100644 recipes-support/lvm2/lvm2_2.02.85.bb
- create mode 100644 recipes-support/lvm2/lvm2_2.02.97.bb
-
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 0d33e3b..5515047 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -2,12 +2,12 @@
+ # Copyright 2011 Intel Corporation
+ 
+ # We have a conf directory, prepend to BBPATH to prefer our versions
+-BBPATH := "${LAYERDIR}:${BBPATH}"
++BBPATH =. "${LAYERDIR}:"
+ 
+ # We have recipes-* directories, add to BBFILES
+-BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb ${LAYERDIR}/recipes-*/*/*.bbappend"
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb ${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "meta-baryon"
+-BBFILE_PATTERN_meta-baryon := "^${LAYERDIR}/"
++BBFILE_PATTERN_meta-baryon = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-baryon = "7"
+ 
 -- 
-1.7.9.5
+1.8.2
 
 
