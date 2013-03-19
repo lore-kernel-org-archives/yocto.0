@@ -1,32 +1,32 @@
 Return-Path: <kergoth@gmail.com>
-Received: from mail-ia0-f174.google.com (mail-ia0-f174.google.com
-	[209.85.210.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B9F3E01410
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 18:34:37 -0700 (PDT)
-Received: by mail-ia0-f174.google.com with SMTP id b35so1758796iac.5
-	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 18:34:36 -0700 (PDT)
+Received: from mail-ia0-f179.google.com (mail-ia0-f179.google.com
+	[209.85.210.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF4D1E01472
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:06:46 -0700 (PDT)
+Received: by mail-ia0-f179.google.com with SMTP id x24so5857521iak.10
+	for <yocto@yoctoproject.org>; Mon, 18 Mar 2013 19:06:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
-	bh=jG2VI/xjNx+y070lVdyRl0K17Z5JZdSbwh0DnAhhuAQ=;
-	b=rbpp/brBSlJe2sEY3mzlrhwWfxDC7yuy4uGoNbbJqNGBtg68Xuf9sh7ZsJFUEeJIfT
-	F1X3tyAywlJMfQj5JTzBcp6mBgpkLwLwezQSBNh3uwh72ZaAmaIz1FQz97SKVvJddYXz
-	5QSW2pguyoaxi4a6oeakept1ip8yVZk0WBImixNcBBgHlcUCiw02nfPKj122KwTOWRtd
-	tUN+1DHF4gnXE+06YFgYzGSL+uP6D7W/NTY4WXypFfI2LZTPow+X1CuA2zXWKm+PTN4y
-	HdZBKGvwc851DmXRpBtwr89NPyxRfkD1OaMSOvpr84agl4ovAykHt/DSNdibG8hzj4Co
-	FiCQ==
-X-Received: by 10.42.175.73 with SMTP id az9mr5190361icb.55.1363656876751;
-	Mon, 18 Mar 2013 18:34:36 -0700 (PDT)
+	bh=ayBJTf6OA8JeUvOqgHU9NLYFePkpskCDB7psk0oiaDU=;
+	b=LtF3g9oQkKAOvKnNNyeIuvTObAqGQ3xPrv6k81qUqMQwAyE/e8k8jOjPt9FCzS7aOn
+	o88UhRls3RokcjadhiekdRhqQSOaDvb65cbCluSFBVUCAyYcYR7uskRdLrJGjyo57TKC
+	Ik5/iR43x8q+NUE7qyRZQDu8nem6MAQEmA6rHx1ZfM2Wr+VhlvwOAswFhE9Yso/f0oiI
+	EdNv2lm/mMWyi3oq0Mp4GQ4muPdlChDahJvRYblek7Z5og9vb05QPn7UDY4bohXu0lCw
+	yHYgY2kioks6JTv1Bzy3y62WrfMreREN1uHmkebwtpWWkw33uAWg6pYiDZv2UE5t60Z3
+	QPtQ==
+X-Received: by 10.42.88.145 with SMTP id c17mr9832186icm.47.1363658806519;
+	Mon, 18 Mar 2013 19:06:46 -0700 (PDT)
 Received: from precise64.alm.mentorg.com (nat-lmt.mentorg.com. [139.181.28.34])
-	by mx.google.com with ESMTPS id l2sm11963611igb.1.2013.03.18.18.34.35
+	by mx.google.com with ESMTPS id wn10sm12075570igb.2.2013.03.18.19.06.44
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 18 Mar 2013 18:34:35 -0700 (PDT)
+	Mon, 18 Mar 2013 19:06:45 -0700 (PDT)
 From: Christopher Larson <kergoth@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 18 Mar 2013 18:34:31 -0700
-Message-Id: <1363656871-17934-1-git-send-email-kergoth@gmail.com>
+Date: Mon, 18 Mar 2013 19:06:40 -0700
+Message-Id: <1363658800-27480-1-git-send-email-kergoth@gmail.com>
 X-Mailer: git-send-email 1.8.2
 Cc: Christopher Larson <chris_larson@mentor.com>
-Subject: [meta-meson-bsp][PATCH] layer.conf: avoid unnecessary early expansion with :=
+Subject: [meta-selinux][PATCH] layer.conf: avoid unnecessary early expansion with :=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,7 +38,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 01:34:37 -0000
+X-List-Received-Date: Tue, 19 Mar 2013 02:06:47 -0000
 
 From: Christopher Larson <chris_larson@mentor.com>
 
@@ -50,24 +50,25 @@ Signed-off-by: Christopher Larson <chris_larson@mentor.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/conf/layer.conf b/conf/layer.conf
-index ae3af08..8bff37a 100644
+index ca1bb46..7af76a1 100644
 --- a/conf/layer.conf
 +++ b/conf/layer.conf
-@@ -1,11 +1,11 @@
+@@ -1,12 +1,12 @@
  # We have a conf and classes directory, add to BBPATH
 -BBPATH := "${BBPATH}:${LAYERDIR}"
 +BBPATH .= ":${LAYERDIR}"
  
- # We have a recipes directory, add to BBFILES
+ # We have a packages directory, add to BBFILES
 -BBFILES := "${BBFILES} ${LAYERDIR}/recipes-*/*/*.bb \
 +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
              ${LAYERDIR}/recipes-*/*/*.bbappend"
  
- BBFILE_COLLECTIONS += "mesonbsp"
--BBFILE_PATTERN_mesonbsp := "^${LAYERDIR}/"
-+BBFILE_PATTERN_mesonbsp = "^${LAYERDIR}/"
- BBFILE_PRIORITY_mesonbsp = "5"
+ BBFILE_COLLECTIONS += "selinux"
+-BBFILE_PATTERN_selinux := "^${LAYERDIR}/"
++BBFILE_PATTERN_selinux = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_selinux = "5"
  
+ # This should only be incremented on significant changes that will
 -- 
 1.8.2
 
