@@ -1,35 +1,45 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65D88E006C3;
-	Tue, 19 Mar 2013 13:17:07 -0700 (PDT)
-Received: by mail-wg0-f46.google.com with SMTP id fg15so708116wgb.25
-	for <multiple recipients>; Tue, 19 Mar 2013 13:17:06 -0700 (PDT)
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
+	[209.85.128.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A689E006AD
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 14:27:53 -0700 (PDT)
+Received: by mail-ve0-f180.google.com with SMTP id jx10so860009veb.11
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 14:27:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=CaD/yutPh7+PPFF8UObj2DYKCa3KdTZxrncRLCvOa4A=;
-	b=KcVnUSVV0dsDrm1dFOt2eAjGtn/mbKFyq7rBlkhHW4Of+c+YPMv2e1eTl6GIsxjf1A
-	nap/Wm5BanSdAcvVYKJ1XeYKKzQDRiYyJoo8/3Vj89F44a9c8eeVAGgr7++sqYULlcUX
-	LCj4qdhXo5nw0P/XR+dASgtqkH1tK8F1TdqTPolgo9pww4KlYAM9vJ+M7HXlJrSBNtoL
-	b/Y4vE4sFHMhMPNEXrqfpE6W6AVkbq2HpJRHi2ROT5BIyMw3pM75q6o79qi7ukqoUgC4
-	42FUyRteKf2D0fM2SAAsu6Jgd12Apa3Shxg2MzE4obXs9vVRSYJzpBEbmAVimMnXl+yr
-	24eA==
-X-Received: by 10.194.11.70 with SMTP id o6mr6095445wjb.29.1363724226400; Tue,
-	19 Mar 2013 13:17:06 -0700 (PDT)
+	h=x-received:sender:from:to:cc:subject:references:date:in-reply-to
+	:message-id:user-agent:mime-version:content-type;
+	bh=Jw4wB1WPkIu7272qlM/memMA8pET6cvf08ADzlfrjTU=;
+	b=Typ8+7LaRVQTJg+NdUdkDpyqT4C1uzxjsMlJSHZkGr0nfdjx7HROPzymsDB0ljqrWL
+	aLCCDbf9F9tJi4UGRmrrQ+nv6fsnnlVTYKstEPPTMc1nfow6yvOmfFsbOHJj3g6Pjt3l
+	jo+UDDeCXJeSd4PEKcMyOixZ8TfsLVvLulK2U/wCDID9QHwlhPRYKS6IEvdL06ngLPQI
+	kpp0F3/EQdWz7Mcmg2B12blv6pmiyLnelLmcO+10e8l+HyHJ13i5Qd++cSB354oVm6vN
+	HC/FqA20xQwEftl7QoHR6Adp9q5BEXsuUMffE/ATlkenaBVLSl8H6Dgcu5lwHkJAPWeL
+	QCSw==
+X-Received: by 10.52.24.133 with SMTP id u5mr4029056vdf.49.1363728472680;
+	Tue, 19 Mar 2013 14:27:52 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id tf2sm31486943veb.8.2013.03.19.14.27.50
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Tue, 19 Mar 2013 14:27:51 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Tue, 19 Mar 2013 17:28:01 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+References: <F1069DB4DED5494AA1DC65CB388B29EA@PAULD>
+	<CAJTo0LYzZvQZ1CvXGtO2Sj8nLrzPgtb8M61gRwz+Y_p_HhPuYw@mail.gmail.com>
+	<3C8645632D634EAC903E8930B57F4777@PAULD>
+	<CAJTo0La0yxkJ4bJsBbji1rCg6ea9fwGiR_q0vH+f032BHNYTTA@mail.gmail.com>
+	<56C806C0B65D44ADA7D6314F4051E91E@PAULD>
+Date: Tue, 19 Mar 2013 17:28:01 -0400
+In-Reply-To: <56C806C0B65D44ADA7D6314F4051E91E@PAULD> (Paul D. DeRocco's
+	message of "Tue, 12 Mar 2013 23:53:47 -0700")
+Message-ID: <87r4jbcc66.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
 MIME-Version: 1.0
-Received: by 10.194.235.41 with HTTP; Tue, 19 Mar 2013 13:16:46 -0700 (PDT)
-In-Reply-To: <5148B147.1090409@windriver.com>
-References: <cover.1363691191.git.insop.song@gmail.com>
-	<8e260f937e1ddad0fb19e36b6b3b6d8d9aa299c4.1363691191.git.insop.song@gmail.com>
-	<5148B147.1090409@windriver.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Tue, 19 Mar 2013 13:16:46 -0700
-Message-ID: <CACzyEJ9VVAtCidawt7a16LCmimbS9yNE_j2ycwtOH3Nhtz=NTw@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto@yoctoproject.org, dvhart@linux.intel.com,
-	"Development list for the linux-yocto*.git Linux kernel repositories"
-	<linux-yocto@yoctoproject.org>
-Subject: Re: [linux-yocto] [meta-realtime][PATCH 1/1] create a script directory and add a script to run test program and collect data
+Cc: yocto@yoctoproject.org
+Subject: Re: Can't find guile-2.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,197 +51,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 20:17:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 19 Mar 2013 21:27:53 -0000
+Content-Type: text/plain
 
-Thank you Bruce,
+"Paul D. DeRocco" <pderocco@ix.netcom.com> writes:
 
-More documentations and scripts for testing and analysis the data will follow.
+>> From: Burton, Ross
+>> 
+>> On 12 March 2013 18:20, Paul D. DeRocco 
+>> <pderocco@ix.netcom.com> wrote:
+>> > It says "attempted 145 tasks of which 145 didn't need to be 
+>> > rerun". So it thinks it's already there.
+>> 
+>> Indeed.   Something is breaking - you'll have to mail the whole
+>> configure log from autogen to attempt to debug this.
+>
+> One thing that I notice is that in my build/tmp/work/i686-linux, I have two
+> directories, autogen-native-5.12-r2 and autogen-native-5.12-r3. The first is
+> from my successful out-of-the-box build of a week ago; the second is from my
+> current failed build. What I did in between was to add the
+> openembedded-core/meta and meta-openembedded/meta-oe layers in order to
+> include Samba. The two logs deviate at line 275 where the old successful one
+> says "checking whether with-libguile was specified... no" and the new failed
+> one says "checking for i686-linux-pkg-config... no". I suspect something in
+> the OE stuff appended to a recipe, which is leading to the problem.
+>
+Same thing here. Everything was building fine until I added the meta-oe
+layer.
 
-Regards,
+Does one of you have a workaround for this?
 
-Insop
+Thanks,
 
-On Tue, Mar 19, 2013 at 11:41 AM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 13-03-19 07:14 AM, Insop Song wrote:
->>
->> - run_rt-app.py runs rt-app on the target machine and collects the
->>    output log to host
->>
->> - how to run:
->> $ fab -f run_rt-app.py run_app
->>
->> Note: requires fabric (python program) on the host
->>
->> Signed-off-by: Insop Song <insop.song@gmail.com>
->> ---
->>   docs/00-INDEX         |    4 +--
->>   docs/00-README        |    6 ++--
->>   scripts/README        |    1 +
->>   scripts/run_rt-app.py |   88
->> +++++++++++++++++++++++++++++++++++++++++++++++++
->>   4 files changed, 94 insertions(+), 5 deletions(-)
->>   create mode 100644 scripts/README
->>   create mode 100644 scripts/run_rt-app.py
->>
->> diff --git a/docs/00-INDEX b/docs/00-INDEX
->> index 41d83a5..878e5d0 100644
->> --- a/docs/00-INDEX
->> +++ b/docs/00-INDEX
->> @@ -1,4 +1,4 @@
->> -This is a brief list of all the files in meta-virtualization/docs and
->> what
->> +This is a brief list of all the files in meta-realtime/docs and what
->>   they contain. If you add a documentation file, please list it here in
->>   alphabetical order as well.
->>
->> @@ -6,5 +6,5 @@ alphabetical order as well.
->>           - this file.
->>
->>   00-README
->> -        - info on the goals of meta-virtualization and this docs subdir
->> +        - info on the goals of meta-realtime and this docs subdir
->
->
-> Something strange is happening here, I had cherry picked my meta-virt
-> README structure over to meta-realtime, and fixed the references .. but
-> the changes didn't get pushed out. I've done that now. So I'll drop
-> these chunks of the patch.
->
-> Thanks for catching this.
->
-> The rest looks good, and I've merged the changes.
->
-> Bruce
->
->
->>
->> diff --git a/docs/00-README b/docs/00-README
->> index 6fea112..f20baca 100644
->> --- a/docs/00-README
->> +++ b/docs/00-README
->> @@ -1,6 +1,6 @@
->> -meta-virtualization: docs
->> +meta-realtime: docs
->>   =========================
->>
->> -The docs subdirectory is a holding tank for meta-virtualization related
->> +The docs subdirectory is a holding tank for meta-realtime related
->>   READMEs, documentation, testing information, configuration and other
->> -notes that help the users of meta-virt.
->> +notes that help the users of meta-realtime.
->> diff --git a/scripts/README b/scripts/README
->> new file mode 100644
->> index 0000000..48034e6
->> --- /dev/null
->> +++ b/scripts/README
->> @@ -0,0 +1 @@
->> +This directory contains Various useful scripts for working with
->> meta-realtime
->> diff --git a/scripts/run_rt-app.py b/scripts/run_rt-app.py
->> new file mode 100644
->> index 0000000..3beb20c
->> --- /dev/null
->> +++ b/scripts/run_rt-app.py
->> @@ -0,0 +1,88 @@
->> +#
->> +# run rt-app on remote machine and collect the data
->> +#
->> +# note:
->> +#
->> +# 0. install fabric 1.6 on the develop host
->> +# - $ pip install fabric
->> +#
->> +# 1. copy ssh public key (copy and paste host's "~/.ssh/id_rsa.pub" to
->> the remote's ~/.ssh/authorized_keys)
->> +#
->> +# 2. update the "env.hosts" with your remote system
->> +#
->> +# 3. run the script from the host
->> +# - $ fab -f run_rt-app.py run_app
->> +#
->> +
->> +from __future__ import with_statement
->> +from fabric.api import *
->> +from fabric.contrib import *
->> +from fabric.contrib.console import confirm
->> +
->> +import socket
->> +import getpass
->> +import datetime
->> +import time
->> +import datetime
->> +
->> +
->> +env.hosts = ['root@192.168.1.78']
->> +remote_ip = env.hosts[0]
->> +
->> +now = datetime.datetime.now()
->> +
->> +YES    = "/usr/bin/yes"
->> +KILLALL        = "/usr/bin/killall"
->> +SCP    = "/usr/bin/scp"
->> +
->> +RTAPP  = "/usr/bin/rt-app"
->> +
->> +period_t       = 100000
->> +run_t          = 30000
->> +
->> +num_run = 10
->> +sec_run = 100
->> +
->> +dir_name       = "/home/root"
->> +f_name         = "rt-app_run_log-%s.txt" % now.strftime("%Y-%m-%d-%H-%M")
->> +file_name      = "%s/%s" % (dir_name, f_name)
->> +
->> +def pre():
->> +       print
->> "\n==========================================================="
->> +       print "1. Conecting remote : %s" % env.hosts[0]
->> +       print
->> "===========================================================\n"
->> +
->> +       # scripts that runs on the remote
->> +       un = run("uname -a", quiet=True)
->> +       hn = run("hostname", quiet=True)
->> +       print "running script on host [%s], OS[%s]" % (hn, un)
->> +
->> +#
->> +# run the app on the remote and collect the data into log
->> +#
->> +def main():
->> +       print
->> "\n==========================================================="
->> +       print "2. Running rt-app %s times.." % num_run
->> +       print
->> "===========================================================\n"
->> +
->> +       run('echo \"test log (period = %s, execution time %s) run %s times
->> on each %s sec \n\n\" > %s' % \
->> +               (period_t, run_t, num_run, sec_run, file_name))
->> +       for i in range(0, num_run):
->> +               run("%s -t %s:%s:d -D %s >> %s" %  \
->> +                       (RTAPP, period_t, run_t, sec_run, file_name))
->> +
->> +#
->> +# bring the data log to the host
->> +#
->> +def post():
->> +       # running this from local host
->> +       local("%s %s:%s ." % (SCP, remote_ip, file_name))
->> +
->> +       print
->> "\n=============================================================================="
->> +       print "3. Run finished, and log file ""%s"" is copied to host." %
->> f_name
->> +       print
->> "==============================================================================\n"
->> +
->> +def run_app():
->> +       pre()
->> +       main()
->> +       post()
->>
->
+Marc
 
