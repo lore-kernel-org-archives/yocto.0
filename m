@@ -1,28 +1,33 @@
-Return-Path: <dan.florincristian@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE6DBE01482
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 00:58:43 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id x14so207757ief.21
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 00:58:43 -0700 (PDT)
+Return-Path: <aenbacka@gmail.com>
+Received: from mail-ee0-f51.google.com (mail-ee0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CFCDE0147A
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 02:32:42 -0700 (PDT)
+Received: by mail-ee0-f51.google.com with SMTP id d17so115049eek.38
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 02:32:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=w+7Ibtg3n0aV1zlQwDPhu1FknOOP6nE21sSvSNyg9yI=;
-	b=DwCfCB8iNvTooHaYJcyA0E7Mn4Lqa6o9vnyjf4FeyCrR3vXb4laCsvRlmStzxmJZyE
-	eXHsvIYUVUN337UwCjy1RD7W1Tn2LaALTO3B08bMRw7iIjNcFlmgtp5NsvM+9dviBHwo
-	DKjMtxBrENXFmEMBf5iyoRfL2FNIwYzJVN8yePZo+IQlhXc5Yu6AX0CwKGh10zxBVeqi
-	pXAQ7QLQK9zUxUVsrfxIWqpMoW7Eicm7DgJtrSEsIJq4iLgsvtmpPqwtxtKZs/1OoH7F
-	nx1AT20AsEz5itQdIKKgtDb8YeKLZD7asDfthyrzpsLhxgaMVtNjbA4srCJV5YPO0x1V
-	k1Wg==
+	h=x-received:from:to:subject:date:message-id:mime-version
+	:content-type:x-mailer:thread-index:content-language;
+	bh=Yh4be+FtvLOxngxTVlAIhhqcZweFJRRFjMIxZDwN27A=;
+	b=zV5Bwy6sC9sOeFn8y3aP2EgP7LlAvh212//CZPMe1pDEMNhNBdLgs4NDvp7qOjL51A
+	nYlj0gsywc60haSje99hnvyd7ngrZhoRMqzTTZL/xm6VyaOYsOd8k6VmlCpM2quLS+AI
+	QxRysI4UyprVSXwZz2LanKdcuCEsDhYgRfHY9Im37Qfbt8ed9fh11aBA4HIjd8uuNHRb
+	rQmV98z7T8xGBQXrqCWdBeDH6542GZhsN5dbeIAroXN0iIsGEMCLl5bgDa2sDc4li7t7
+	xhExwOklbEL8oc1XwSLcZHEFYIJF6s4wupAzuACaeE9TtRJ5bqeBNAbiOqFvSAGMTYMo
+	cKSw==
+X-Received: by 10.14.211.65 with SMTP id v41mr58168294eeo.33.1363685561308;
+	Tue, 19 Mar 2013 02:32:41 -0700 (PDT)
+Received: from LAPTOP (mail.embedo.fi. [194.100.97.18])
+	by mx.google.com with ESMTPS id 44sm31901852eek.5.2013.03.19.02.32.40
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Tue, 19 Mar 2013 02:32:40 -0700 (PDT)
+From: "Andreas Enbacka" <aenbacka@gmail.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 19 Mar 2013 11:32:35 +0200
+Message-ID: <005501ce2484$b1558d20$1400a760$@gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.50.41.200 with SMTP id h8mr1211480igl.14.1363679923538; Tue,
-	19 Mar 2013 00:58:43 -0700 (PDT)
-Received: by 10.64.20.6 with HTTP; Tue, 19 Mar 2013 00:58:43 -0700 (PDT)
-Date: Tue, 19 Mar 2013 09:58:43 +0200
-Message-ID: <CABzOdpQ0H0oBe7bFFwc03ff9nx=BtOXbpyy032iXwpTe2vSbaA@mail.gmail.com>
-From: Florin Cristian Dan <dan.florincristian@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto Java support.
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: Ac4khGNUjVaeGg9jRJegusgWFd4VLA==
+Subject: Hob custom image build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,41 +39,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 07:58:44 -0000
-Content-Type: multipart/alternative; boundary=14dae9340ad16e21a204d84279e9
+X-List-Received-Date: Tue, 19 Mar 2013 09:32:43 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0056_01CE2495.74DEF960"
+Content-Language: fi
 
---14dae9340ad16e21a204d84279e9
-Content-Type: text/plain; charset=ISO-8859-1
+------=_NextPart_000_0056_01CE2495.74DEF960
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-> Hello,
-> Ok, so in the last days, i've managest to bake my own sato-emenlow image,
-> and runed it on my machine wich is a PEB2739 (Intel Atom Z510 based).I'm
-> intrested now in developing some industrial applications, like different
-> types of masurement gauges.  Now i wonder if yocto project has suport for
-> java and how its done, as far as i am, i'have read that there would some
-> meta-java layer, but i'm not sure what to do further, where to get it, and
-> how the development proces would go.
->  Can someone please give me some advices.
->
-> Best regards
->
+Hello,
 
---14dae9340ad16e21a204d84279e9
-Content-Type: text/html; charset=ISO-8859-1
+ 
+
+Whenever I build a custom image in Hob (using Create your own image), I get
+the following error output once the image build stage is completed:
+
+ 
+
+Traceback (most recent call last):
+
+  File "/home/user/poky/bitbake/lib/bb/ui/crumbs/builder.py", line 1096, in
+handler_build_succeeded_cb
+
+    self.build_succeeded()
+
+  File "/home/user/poky/bitbake/lib/bb/ui/crumbs/builder.py", line 1029, in
+build_succeeded
+
+    version = self.recipe_model.get_custom_image_version()
+
+  File "/home/user/poky/bitbake/lib/bb/ui/crumbs/hoblistmodel.py", line 696,
+in get_custom_image_version
+
+    return self.custom_image_version
+
+AttributeError: 'RecipeListModel' object has no attribute
+'custom_image_version'
+
+ 
+
+The UI is the stuck at 99% (do_build). However, the image build process has
+otherwise succeeded (the image files exist in the images folder). However,
+Hob needs to be force closed.
+
+ 
+
+Best regards,
+
+Andreas Enbacka
+
+
+------=_NextPart_000_0056_01CE2495.74DEF960
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<br><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello,=A0<div=
->Ok, so in the last days, i&#39;ve managest to bake my own sato-emenlow ima=
-ge, and runed it on my machine wich is a PEB2739 (Intel Atom Z510 based).I&=
-#39;m intrested now in developing some industrial applications, like differ=
-ent types of masurement gauges. =A0Now i wonder if yocto project has suport=
- for java and how its done, as far as i am, i&#39;have read that there woul=
-d some meta-java layer, but i&#39;m not sure what to do further, where to g=
-et it, and how the development proces would go.</div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 2.0cm 70.85pt 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DSV-FI>Hello,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DSV-FI><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Whenever I build a custom image in =
+Hob (using Create your own image), I get the following error output once =
+the image build stage is completed:<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Traceback (most recent call =
+last):<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&nbsp; File =
+&quot;/home/user/poky/bitbake/lib/bb/ui/crumbs/builder.py&quot;, line =
+1096, in handler_build_succeeded_cb<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; =
+self.build_succeeded()<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&nbsp; File =
+&quot;/home/user/poky/bitbake/lib/bb/ui/crumbs/builder.py&quot;, line =
+1029, in build_succeeded<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&nbsp;&nbsp;&nbsp; version =3D =
+self.recipe_model.get_custom_image_version()<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>&nbsp; File =
+&quot;/home/user/poky/bitbake/lib/bb/ui/crumbs/hoblistmodel.py&quot;, =
+line 696, in get_custom_image_version<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>&nbsp;&nbsp;&nbsp; return =
+self.custom_image_version<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>AttributeError: 'RecipeListModel' =
+object has no attribute 'custom_image_version'<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>The UI is the stuck at 99% =
+(do_build). However, the image build process has otherwise succeeded =
+(the image files exist in the images folder). However, Hob needs to be =
+force closed.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Best regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Andreas =
+Enbacka<o:p></o:p></span></p></div></body></html>
 
-<div>=A0Can someone please give me some advices.</div><div><br></div><div>B=
-est regards</div>
-</blockquote></div><br>
-
---14dae9340ad16e21a204d84279e9--
+------=_NextPart_000_0056_01CE2495.74DEF960--
