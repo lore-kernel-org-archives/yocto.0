@@ -1,21 +1,24 @@
-Return-Path: <juergen.messerer@bbv.ch>
-Received: from owa.outnet.ch (mail.outnet.ch [80.67.146.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A431E006CB
-	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 06:49:33 -0700 (PDT)
-Received: from TKSSREX01.outnet.ch ([10.10.10.1]) by tkssrexhcu01.outnet.ch
-	([172.17.220.45]) with mapi; Tue, 19 Mar 2013 14:49:31 +0100
-From: =?iso-8859-1?Q?J=FCrgen_Messerer?= <juergen.messerer@bbv.ch>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 19 Mar 2013 14:49:30 +0100
-Thread-Topic: ti-xdctools fails with yocto  1.3 on ubuntu 64bit
-Thread-Index: AQHOJKiUjbi6D0SFt0yqa/RZ+X83Tg==
-Message-ID: <A7B59F6D52627C44813C136D437B0832079834507C4C@TKSSREX01.outnet.ch>
-Accept-Language: en-US, de-CH
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, de-CH
-MIME-Version: 1.0
-Subject: ti-xdctools fails with yocto 1.3 on ubuntu 64bit
+Return-Path: <tom.zanussi@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9BE9E006C3
+	for <yocto@yoctoproject.org>; Tue, 19 Mar 2013 06:43:04 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Mar 2013 06:43:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,872,1355126400"; d="scan'208";a="281632914"
+Received: from unknown (HELO [10.255.13.116]) ([10.255.13.116])
+	by orsmga001.jf.intel.com with ESMTP; 19 Mar 2013 06:43:02 -0700
+Message-ID: <1363700581.901.18.camel@empanada>
+From: Tom Zanussi <tom.zanussi@linux.intel.com>
+To: "Maxin B. John" <maxin.john@enea.com>
+Date: Tue, 19 Mar 2013 08:43:01 -0500
+In-Reply-To: <20130319130619.GA41031@sestofb10.enea.se>
+References: <20130319130619.GA41031@sestofb10.enea.se>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+X-Mailman-Approved-At: Tue, 19 Mar 2013 07:06:57 -0700
+Cc: yocto@yoctoproject.org
+Subject: Re: perf build breaks in poky master branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,88 +30,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Mar 2013 13:49:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hi everyone.
-
-I just tried to build an image for the beagleboard with Ti DSP support.
-Unfortunately it failed with the message below.
-On a 32bit system it worked but on the Ubuntu 12.10 64bit it failed with th=
-e message below.
-
-Is this beacause of the missing ia32-libs?
-
-If yes can some one tell me exactly which 32bit-library is needed, because =
-a  'apt-get install ia32-libs' will install 237MB of libraries.
-I think it is not necessary to install all of those libs.
-
-Thanks for the help.
-
-Best regards
-
-Juergen
+X-List-Received-Date: Tue, 19 Mar 2013 13:43:04 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
 
+On Tue, 2013-03-19 at 14:06 +0100, Maxin B. John wrote:
+> Hi,
+> 
+> Perf build fails while trying to build core-image-minimal for qemux86, 
+
+Hi,
+
+Richard has just pushed a fix for a thinko in the patch, please pull and
+try again.
+
+Tom
+
+> $ git clone git://git.yoctoproject.org/poky
+> $ cd poky
+> $ source oe-init-build-env
+> $ bitbake core-image-minimal
+> Pseudo is not present but is required, building this first before the main build
+> Loading cache: 100%
+> |###############################################################################|
+> ETA:  00:00:00
+> Loaded 347 entries from dependency cache.
+> ERROR: ExpansionError during parsing
+> /home/majo/master/poky/meta/recipes-kernel/perf/perf.bb:
+> Failure expanding variable do_package: ExpansionError: Failure
+> expanding variable do_package, expression was
+> bb.data.setVar('PKGV',
+> '${@get_kernelversion('/home/majo/master/poky/build/tmp/sysroots/qemux86/usr/src/kernel').split("-")[0]}',
+> d)
+>     # Change the following version to cause sstate to invalidate the
+>     # package
+>     # cache.  This is useful if an item this class depends on changes
+>     # in a
+>     # way that the output of this class changes.  rpmdeps is a good
+>     # example
+>     # as any change to rpmdeps requires this to be rerun.
+>     # PACKAGE_BBCLASS_VERSION = "1"
+> 
+>     # Init cachedpath
+>     global cpath
+>     cpath = oe.cachedpath.CachedPath()
+> 
+>     ###########################################################################
+>     # Sanity test the setup
+>     ###########################################################################
+> 
+>     packages = (d.getVar('PACKAGES', True) or "").split()
+>     if len(packages) < 1:
+>         bb.debug(1, "No packages to build, skipping do_package")
+>         return
+> 
+>     workdir = d.getVar('WORKDIR', True)
+>     outdir = d.getVar('DEPLOY_DIR', True)
+>     dest = d.getVar('D', True)
+>     dvar = d.getVar('PKGD', True)
+>     pn = d.getVar('PN', True)
+> 
+>     if not workdir or not outdir or not dest or not dvar or not pn:
+>         bb.error("WORKDIR, DEPLOY_DIR, D, PN and PKGD all must be
+> defined, unable to package")
+>         return
+> 
+>     bb.build.exec_func("package_get_auto_pr", d)
+> 
+>     ###########################################################################
+>     # Optimisations
+>     ###########################################################################
+> 
+>     # Contunually rexpanding complex expressions is inefficient,
+>     # particularly when
+>     # we write to the datastore and invalidate the expansion cache.
+>     # This code
+>     # pre-expands some frequently used variables
+> 
+>     def expandVar(x, d):
+>         d.setVar(x, d.getVar(x, True))
+> 
+>     for x in 'PN', 'PV', 'BPN', 'TARGET_SYS', 'EXTENDPRAUTO':
+>         expandVar(x, d)
+> 
+>     ###########################################################################
+>     # Setup PKGD (from D)
+>     ###########################################################################
+> 
+>     for f in (d.getVar('PACKAGEBUILDPKGD', True) or '').split():
+>         bb.build.exec_func(f, d)
+> 
+>     ###########################################################################
+>     # Split up PKGD into PKGDEST
+>     ###########################################################################
+> 
+>     cpath = oe.cachedpath.CachedPath()
+> 
+>     for f in (d.getVar('PACKAGESPLITFUNCS', True) or '').split():
+>         bb.build.exec_func(f, d)
+> 
+>     ###########################################################################
+>     # Process PKGDEST
+>     ###########################################################################
+> 
+>     # Build global list of files in each split package
+>     global pkgfiles
+>     pkgfiles = {}
+>     packages = d.getVar('PACKAGES', True).split()
+>     pkgdest = d.getVar('PKGDEST', True)
+>     for pkg in packages:
+>         pkgfiles[pkg] = []
+>         for walkroot, dirs, files in cpath.walk(pkgdest + "/" + pkg):
+>             for file in files:
+>                 pkgfiles[pkg].append(walkroot + os.sep + file)
+> 
+>     for f in (d.getVar('PACKAGEFUNCS', True) or '').split():
+>         bb.build.exec_func(f, d)
+>  which triggered exception AttributeError: 'NoneType' object has no
+> attribute 'split'
+> NOTE: Error during finalise of
+> /home/majo/master/poky/meta/recipes-kernel/perf/perf.bb
+> ERROR: Command execution failed: Exited with 1
+> 
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit
+> code.
+>   
 
 
-testuser@ubuntu:~/myYocto/mybuilds/beagleboard-core-image-bbv$ bitbake ti-x=
-dctools
-Loading cache: 100% |######################################################=
-#####################################| ETA:  00:00:00
-Loaded 1267 entries from dependency cache.
-=20
-Build Configuration:
-BB_VERSION        =3D "1.16.0"
-TARGET_ARCH       =3D "arm"
-TARGET_OS         =3D "linux-gnueabi"
-MACHINE           =3D "beagleboard"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.3"
-TUNE_FEATURES     =3D "armv7a vfp neon cortexa8"
-TARGET_FPU        =3D "vfp-neon"
-meta            =20
-meta-yocto      =20
-meta-bbv          =3D "danny:e89f812a0af56beda951c1dce6113a61d6db8cda"
-meta-ti           =3D "danny:900893454cc0639c767b3a2435097bdbfee28414"
-=20
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-WARNING: TI installer requires 32bit glibc libraries for proper operation
-run 'yum install glibc.i686' on Fedora or 'apt-get install ia32-libs' on Ub=
-untu/Debian
-ERROR: Command Error: exit status: 1  Output:
-Applying patch fix-hardcoded-paths.diff
-can't find file to patch at input line 4
-Perhaps you used the wrong -p or --strip option?
-The text leading up to this was:
---------------------------
-|diff -ur a/packages/gnu/targets/ITarget.xs b/packages/gnu/targets/ITarget.=
-xs
-|--- a/packages/gnu/targets/ITarget.xs  2011-08-06 13:24:44.000000000 +0200
-|+++ b/packages/gnu/targets/ITarget.xs               2011-08-06 13:23:37.00=
-0000000 +0200
---------------------------
-No file to patch.  Skipping patch.
-2 out of 2 hunks ignored
-Patch fix-hardcoded-paths.diff does not apply (enforce with -f)
-ERROR: Function failed: patch_do_patch
-ERROR: Logfile of failure stored in: /home/testuser/myYocto/mybuilds/beagle=
-board-core-image-bbv/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/ti-xdctool=
-s-3_23_00_32-r0/temp/log.do_patch.31449
-ERROR: Task 1 (/home/testuser/myYocto/poky_danny/meta-ti/recipes-ti/devtool=
-s/ti-xdctools_3.23.00.32.bb, do_patch) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 720 tasks of which 713 didn't need to be rer=
-un and 1 failed.
-Waiting for 0 running tasks to finish:
-=20
-Summary: 1 task failed:
-  /home/testuser/myYocto/poky_danny/meta-ti/recipes-ti/devtools/ti-xdctools=
-_3.23.00.32.bb, do_patch
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.=
 
