@@ -1,28 +1,30 @@
-Return-Path: <dan.florincristian@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AF6AE012F1
-	for <yocto@yoctoproject.org>; Wed, 20 Mar 2013 07:57:32 -0700 (PDT)
-Received: by mail-oa0-f51.google.com with SMTP id h2so1880409oag.10
-	for <yocto@yoctoproject.org>; Wed, 20 Mar 2013 07:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=lmkaqC7vA1D63HX2e5uWekZ8EDE4XwL5juikd0jYu6k=;
-	b=cGUa/094ew9rgQG267xJL6RujsVbSepgI7w/zzl2HsocrthVGfJT5czNJRAgCOJnFc
-	6bu5P6IIrr2gROWjJJr51S5cAaNHd4XTpaUO+quJfKhV8tPSBjtnpz82WyzhI9xjoelL
-	7oGL/oo3mFE6GvKigXdiWnJEGpLjMfEa5Uxd6+lQcNiAuF3doDySiMFZWvyQc/re86QN
-	2MSzpkftlK55hueA/xzpSN9cC7zigIio8Ls1l9Qo6xlN70TPRSdU0yXGYXi6VE9Er9Rt
-	yTSqpg6QT6KKnk71TqNpyxQOcqgY1X1W0pGFS3/c1PxsLpDjcPitLmbNEN9Pp1NGVaC9
-	YZjw==
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-kukur.atl.sa.earthlink.net
+	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 865D9E006D6
+	for <yocto@yoctoproject.org>; Wed, 20 Mar 2013 11:11:37 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=GtT+1JJi00HB5fh5Bp7c1xD0uRB7lW9pmapIN8RpYjgMVC1LF44ItwNHGWIaIZws;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UINU8-0005NT-JX; Wed, 20 Mar 2013 14:11:36 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>,
+	<yocto@yoctoproject.org>
+References: <F1069DB4DED5494AA1DC65CB388B29EA@PAULD><CAJTo0LYzZvQZ1CvXGtO2Sj8nLrzPgtb8M61gRwz+Y_p_HhPuYw@mail.gmail.com><3C8645632D634EAC903E8930B57F4777@PAULD><CAJTo0La0yxkJ4bJsBbji1rCg6ea9fwGiR_q0vH+f032BHNYTTA@mail.gmail.com><56C806C0B65D44ADA7D6314F4051E91E@PAULD>
+	<CAJTo0LY3edhzsbOrPzw6FEDUW58Rc_RjQdamGTPdjCar6gBN1g@mail.gmail.com>
+In-Reply-To: <CAJTo0LY3edhzsbOrPzw6FEDUW58Rc_RjQdamGTPdjCar6gBN1g@mail.gmail.com>
+Date: Wed, 20 Mar 2013 11:11:20 -0700
+Message-ID: <603BDC00C3D14F51BF551A28572660E3@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.60.171.102 with SMTP id at6mr4428453oec.60.1363791451843;
-	Wed, 20 Mar 2013 07:57:31 -0700 (PDT)
-Received: by 10.76.163.71 with HTTP; Wed, 20 Mar 2013 07:57:31 -0700 (PDT)
-Date: Wed, 20 Mar 2013 16:57:31 +0200
-Message-ID: <CABzOdpQdqLfg=RsjfgG2Qj5hQnVF4116a6vq=yAE2Vgbr520QQ@mail.gmail.com>
-From: Florin Cristian Dan <dan.florincristian@gmail.com>
-To: yocto@yoctoproject.org
-Subject: core-image-sato-emenlow-sdk Boot problem
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac4lVGJ67PuSRgNzTN+J0d1JGgd7PwAQb6RQ
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688bcaf7c99ac91ffc77247281cf0b945e2350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: Can't find guile-2.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,67 +36,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Mar 2013 14:57:32 -0000
-Content-Type: multipart/alternative; boundary=bcaec54ee09408f4a904d85c7140
+X-List-Received-Date: Wed, 20 Mar 2013 18:11:37 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
---bcaec54ee09408f4a904d85c7140
-Content-Type: text/plain; charset=ISO-8859-1
+> From: Burton, Ross
+> 
+> autogen-native depends on guile-native so that should have worked -
+> try doing "bitbake -ccleansstate guile-native ; bitbake guile-native"
+> to force that to be rebuilt.
 
-Hello everybody,
-I've just finished burning my image, core-image-sato-sdk trough HOB , and
-i've added the layer path to meta-intel folder and to meta-emenlow wich is
-within meta-intel, after that it was just a matter of time. After 8 hours
-and some....the process finished (i don't know if that is normal, i don't
-run my Ubuntu on a virtual machine, i run it on a I5, 6gb Ram)
-anyway...aftar the procces was completed, i've burn the .hddimg first on a
-usb stick, aftter that i pluged the USB in my target machine,
-surprise...the boot wouldn't start, said something about not finding the
-kernel image...
-After that i decided to burn again the image but this time i chosed .iso
-file, after the burning proccess completed i've pluged in the USB, the boot
-starts, the Yocto Project logo apears, but gets stuck when the loading bar
-is realy close to the end....i've rebooted the target machine only in
-terminat....i enter the login: root....after that i run startx comand and
-suprise it gave me this:
-xauth: error in locking autorithy file /home/root/.serverauth.1358
-xauth: error in locking autorithy file /home/root/.Xautorithy
-xauth: error in locking autorithy file /home/root/.Xautorithy
-xauth: error in locking autorithy file /home/root/.Xautorithy
-xauth: error in locking autorithy file /home/root/.Xautorithy
+It complains that guile-native doesn't have a task called do_cleanstate.
 
-Fatal server error:
-Could not create lock file in /tmp/.tx0-lock
+-- 
 
-Has anyoane any ideea what to do?
-Thank you very much
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
---bcaec54ee09408f4a904d85c7140
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-Hello everybody,=A0<div>I&#39;ve just finished burning my image, core-image=
--sato-sdk trough HOB , and i&#39;ve added the layer path to meta-intel fold=
-er and to meta-emenlow wich is within meta-intel, after that it was just a =
-matter of time. After 8 hours and some....the process finished (i don&#39;t=
- know if that is normal, i don&#39;t run my Ubuntu on a virtual machine, i =
-run it on a I5, 6gb Ram) anyway...aftar the procces was completed, i&#39;ve=
- burn the .hddimg first on a usb stick, aftter that i pluged the USB in my =
-target machine, surprise...the boot wouldn&#39;t start, said something abou=
-t not finding the kernel image...</div>
-<div>After that i decided to burn again the image but this time i chosed .i=
-so file, after the burning proccess completed i&#39;ve pluged in the USB, t=
-he boot starts, the Yocto Project logo apears, but gets stuck when the load=
-ing bar is realy close to the end....i&#39;ve rebooted the target machine o=
-nly in terminat....i enter the login: root....after that i run startx coman=
-d and suprise it gave me this:</div>
-<div>xauth: error in locking autorithy file /home/root/.serverauth.1358</di=
-v><div>xauth: error in locking autorithy file /home/root/.Xautorithy</div><=
-div>xauth: error in locking autorithy file /home/root/.Xautorithy</div>
-<div>xauth: error in locking autorithy file /home/root/.Xautorithy</div><di=
-v>xauth: error in locking autorithy file /home/root/.Xautorithy</div><div><=
-br></div><div>Fatal server error:</div><div>Could not create lock file in /=
-tmp/.tx0-lock</div>
-<div><br></div><div>Has anyoane any ideea what to do?</div><div>Thank you v=
-ery much</div>
-
---bcaec54ee09408f4a904d85c7140--
