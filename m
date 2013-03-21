@@ -1,34 +1,22 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A438FE0149D
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 13:11:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=gelTmtmrtWzya4T1pD7Jo/55asdL2AImqq3dIsMZ3J0=; 
-	b=S0Vt15HTwxS1FnST98oOPgUdSyNLAe7eIw59XhW5Clcr/zxKAvTfVZt36zUJHNFBYD8+sXpoDqE4ZIfDkb5Ig+2BiCFO5+iDt9Ye/DJvcc0EGZ4w5h8B8pAPjx370D/5;
-Received: from [109.224.129.17] (port=7469
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>) id 1UIlpK-002CL0-Ol
-	for yocto@yoctoproject.org; Thu, 21 Mar 2013 20:11:06 +0000
-From: Chris Tapp <opensource@keylevel.com>
-Date: Thu, 21 Mar 2013 20:11:05 +0000
-Message-Id: <C5ADEA0A-CC34-4A20-8D8B-27789A0C5358@keylevel.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1283)
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Subject: No keyboard in X
+Return-Path: <kevin.strasser@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD906E0148A
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 13:27:48 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 21 Mar 2013 13:27:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.84,888,1355126400"; d="scan'208";a="305787521"
+Received: from wrk.jf.intel.com ([10.7.202.62])
+	by orsmga002.jf.intel.com with ESMTP; 21 Mar 2013 13:27:46 -0700
+From: Kevin Strasser <kevin.strasser@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 21 Mar 2013 13:24:21 -0700
+Message-Id: <cover.1363896182.git.kevin.strasser@linux.intel.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1558587.S9v9mAN4hA@helios>
+References: <1558587.S9v9mAN4hA@helios>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: [meta-baryon] [PATCH v2 0/6] Updates and fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,37 +28,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 20:11:07 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 21 Mar 2013 20:27:48 -0000
 
-I've got a system (Danny, meta-intel-cedartrail) with a custom =
-/etc/mini_x/session file which is used to run an application at startup.
+Hi Paul,
 
-This all works to the extent that the application starts and runs, but =
-the keyboard doesn't work - 'Esc' should cause the application to =
-terminate and the X session to end. The Xorg log shows that the session =
-is "Using VT number 2".
+The old configuration bits are now included with the new samba recipe and
+everything is again working out-of-the-box. Also, I've added a commit to 
+the series that removes our workaround for the NFS regression; it has been
+fixed both in OE-core as well as upstream.
 
-If I kill the session manually, login on the tty and restart (using =
-'init 4', 'init 5') then the application runs as before but this time =
-the keyboard works as expected.
+The following changes since commit 566cb211cee8a9870257a4ac2fc706990a70b9d2:
 
-inittab runs a getty on tty1 to tty4.
+  nfs-utils: update bbappend version to 1.2.7 (2013-02-27 15:24:30 +0000)
 
-Any idea what's going on here? Is it because tty2 isn't active when X =
-starts, or is it something like a permissions problem which means the =
-keyboard can't be used until a user is authenticated on the VT that's =
-being used?
+are available in the git repository at:
 
-Would running the X session on the tty0 (console) work? If so, how can I =
-force it to be used?
+  git://git.yoctoproject.org/poky-contrib strassek/baryon
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=strassek/baryon
 
-Chris Tapp
+Kevin Strasser (6):
+  kernel: enable nfsd in linux-yocto 3.8
+  ffmpegthumbnailer: update to 2.0.8
+  ffmpegthumbnailer: include cstring
+  lvm2: sync with meta-oe
+  nfs-utils: remove NFS upcall workaround
+  samba: sync with meta-oe
 
-opensource@keylevel.com
-www.keylevel.com
+ .../nfs-utils/nfs-utils_1.2.7.bbappend             |    8 -
+ .../bug_221618_precise-64bit-prototype.patch       |   20 +
+ ...4104_mention-kerberos-in-smbspool-manpage.patch |   34 +
+ ...m_7499-nss_wins-dont-clobber-daemons-logs.patch |   47 +
+ .../bug_601406_fix-perl-path-in-example.patch      |   15 +
+ ...04768_upstream_7826_drop-using-samba-link.patch |   21 +
+ ...ug_604768_upstream_7826_fix-WHATSNEW-link.patch |   18 +
+ ...onfigure-disable-core_pattern-cross-check.patch |   20 +
+ .../configure-disable-getaddrinfo-cross.patch      |   11 +
+ .../samba/samba-3.6.8/documentation.patch          |  302 +
+ .../samba/samba-3.6.8/documentation2.patch         |  314 +
+ .../samba-3.6.8/dont-build-VFS-examples.patch      |   31 +
+ .../samba/samba-3.6.8/fhs-filespaths.patch         |   65 +
+ .../samba/samba-3.6.8/installswat.sh.patch         |   23 +
+ .../samba-3.6.8/libutil_drop_AI_ADDRCONFIG.patch   |   54 +
+ .../samba-3.6.8/only_export_public_symbols.patch   |   21 +
+ .../samba/samba-3.6.8/pam-examples.patch           |   17 +
+ .../samba/samba-3.6.8/shadow_copy2_backport.patch  | 2101 +++
+ .../samba/samba-3.6.8/smbclient-pager.patch        |   18 +
+ .../samba/samba-3.6.8/smbtar-bashism.patch         |   19 +
+ .../samba/samba-3.6.8/smbtorture-manpage.patch     |   94 +
+ .../samba/samba-3.6.8/undefined-symbols.patch      |   24 +
+ .../samba/samba-3.6.8/usershare.patch              |   38 +
+ .../samba/samba-3.6.8/waf-as-source.patch          |18534 ++++++++++++++++++++
+ recipes-connectivity/samba/samba-basic.inc         |   38 +-
+ recipes-connectivity/samba/samba.inc               |   41 +-
+ .../samba/samba/Managing-Samba.txt                 |   40 +
+ recipes-connectivity/samba/samba/cifs.patch        |   10 +
+ .../samba/{files => samba}/config-h.patch          |    0
+ .../samba/{files => samba}/config-lfs.patch        |    0
+ .../samba/samba/configure-3.3.0.patch              |   85 +
+ .../samba/{files/init => samba/init.samba}         |    4 +-
+ recipes-connectivity/samba/samba/init.winbind      |   38 +
+ recipes-connectivity/samba/samba/mtab.patch        |   11 +
+ .../samba/{files => samba}/quota.patch             |    0
+ .../samba/{files => samba}/smb.conf                |    0
+ .../samba/{files => samba}/smb.conf.example        |   34 +-
+ recipes-connectivity/samba/{files => samba}/tdb.pc |    2 +-
+ .../samba/{files => samba}/tdbheaderfix.patch      |    0
+ .../samba/{files => samba}/volatiles.03_samba      |    0
+ recipes-connectivity/samba/samba_3.5.6.bb          |   50 -
+ recipes-connectivity/samba/samba_3.6.8.bb          |   73 +
+ ...yocto_3.0.bbappend => linux-yocto_3.8.bbappend} |    0
+ .../ffmpeg/ffmpegthumbnailer/include-cstring.patch |   25 +
+ ...bnailer_2.0.7.bb => ffmpegthumbnailer_2.0.8.bb} |    9 +-
+ recipes-support/lvm2/lvm2.inc                      |    6 +-
+ recipes-support/lvm2/lvm2_2.02.85.bb               |    7 -
+ recipes-support/lvm2/lvm2_2.02.97.bb               |    6 +
+ 48 files changed, 22223 insertions(+), 105 deletions(-)
+ delete mode 100644 recipes-connectivity/nfs-utils/nfs-utils_1.2.7.bbappend
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_221618_precise-64bit-prototype.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_387266_upstream_4104_mention-kerberos-in-smbspool-manpage.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_598313_upstream_7499-nss_wins-dont-clobber-daemons-logs.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_601406_fix-perl-path-in-example.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_604768_upstream_7826_drop-using-samba-link.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/bug_604768_upstream_7826_fix-WHATSNEW-link.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/configure-disable-core_pattern-cross-check.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/configure-disable-getaddrinfo-cross.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/documentation.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/documentation2.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/dont-build-VFS-examples.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/fhs-filespaths.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/installswat.sh.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/libutil_drop_AI_ADDRCONFIG.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/only_export_public_symbols.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/pam-examples.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/shadow_copy2_backport.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/smbclient-pager.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/smbtar-bashism.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/smbtorture-manpage.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/undefined-symbols.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/usershare.patch
+ create mode 100644 recipes-connectivity/samba/samba-3.6.8/waf-as-source.patch
+ create mode 100644 recipes-connectivity/samba/samba/Managing-Samba.txt
+ create mode 100644 recipes-connectivity/samba/samba/cifs.patch
+ rename recipes-connectivity/samba/{files => samba}/config-h.patch (100%)
+ rename recipes-connectivity/samba/{files => samba}/config-lfs.patch (100%)
+ create mode 100644 recipes-connectivity/samba/samba/configure-3.3.0.patch
+ rename recipes-connectivity/samba/{files/init => samba/init.samba} (98%)
+ create mode 100644 recipes-connectivity/samba/samba/init.winbind
+ create mode 100644 recipes-connectivity/samba/samba/mtab.patch
+ rename recipes-connectivity/samba/{files => samba}/quota.patch (100%)
+ rename recipes-connectivity/samba/{files => samba}/smb.conf (100%)
+ rename recipes-connectivity/samba/{files => samba}/smb.conf.example (94%)
+ rename recipes-connectivity/samba/{files => samba}/tdb.pc (87%)
+ rename recipes-connectivity/samba/{files => samba}/tdbheaderfix.patch (100%)
+ rename recipes-connectivity/samba/{files => samba}/volatiles.03_samba (100%)
+ delete mode 100644 recipes-connectivity/samba/samba_3.5.6.bb
+ create mode 100644 recipes-connectivity/samba/samba_3.6.8.bb
+ rename recipes-kernel/linux/{linux-yocto_3.0.bbappend => linux-yocto_3.8.bbappend} (100%)
+ create mode 100644 recipes-multimedia/ffmpeg/ffmpegthumbnailer/include-cstring.patch
+ rename recipes-multimedia/ffmpeg/{ffmpegthumbnailer_2.0.7.bb => ffmpegthumbnailer_2.0.8.bb} (71%)
+ delete mode 100644 recipes-support/lvm2/lvm2_2.02.85.bb
+ create mode 100644 recipes-support/lvm2/lvm2_2.02.97.bb
 
-
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
+-- 
+1.7.9.5
 
 
