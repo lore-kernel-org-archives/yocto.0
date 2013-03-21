@@ -1,30 +1,38 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-galgo.atl.sa.earthlink.net
-	(elasmtp-galgo.atl.sa.earthlink.net [209.86.89.61])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58567E01471
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 12:10:55 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=ZvX6c2oJUhe9YhjJEZ8eJXmYTtreOfJpk5bPfWgr4XzhDNerEqkFMvKv+RCSOlbG;
-	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-galgo.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UIkt4-0005NU-JW; Thu, 21 Mar 2013 15:10:54 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Burton, Ross'" <ross.burton@intel.com>,
-	<yocto@yoctoproject.org>
-References: <F1069DB4DED5494AA1DC65CB388B29EA@PAULD><CAJTo0LYzZvQZ1CvXGtO2Sj8nLrzPgtb8M61gRwz+Y_p_HhPuYw@mail.gmail.com><3C8645632D634EAC903E8930B57F4777@PAULD><CAJTo0La0yxkJ4bJsBbji1rCg6ea9fwGiR_q0vH+f032BHNYTTA@mail.gmail.com><56C806C0B65D44ADA7D6314F4051E91E@PAULD><CAJTo0LY3edhzsbOrPzw6FEDUW58Rc_RjQdamGTPdjCar6gBN1g@mail.gmail.com><603BDC00C3D14F51BF551A28572660E3@PAULD><CAJTo0LZBRFHubPhCBZg8cko+TiZY3xz7YDJU-fzg0sgRFAhw2g@mail.gmail.com><B85484ED80754E0D8F82ECCA688762AF@PAULD><CAJTo0LaOU=ak5awePdFdW2sCB=N1CsbiLMaQgF6Gzt5gFWuNSw@mail.gmail.com><9331786F4D074BCCAB63AE3E10152262@PAULD><F6460DFEAC8C415FAFCF7A16B0499DA6@intel.com><207F72914E4C4014A2C1124BBADDD244@PAULD><D6081CD6470747D1803B8A19E552149F@intel.com><439A53A3DAF743BEA77A6820E8B9641E@PAULD><DAD15C33EB5B4620BF57DF4816FC3C4B@intel.com><F164AFC4EFDF43D28B0BC563D7026360@PAULD>
-	<CAJTo0LbAhQV6QANXgPe2Ax4DR6Wzs+jOz=ZtZTxRNFc0C3rLqg@mail.gmail.com>
-In-Reply-To: <CAJTo0LbAhQV6QANXgPe2Ax4DR6Wzs+jOz=ZtZTxRNFc0C3rLqg@mail.gmail.com>
-Date: Thu, 21 Mar 2013 12:10:39 -0700
-Message-ID: <3955EF7F861B487B90A47607BAB635F4@PAULD>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-Thread-Index: Ac4mGhVgi4qh7gT3Si6CoJcfErLP3wAR3qQA
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606884bcadec6b7bda62c2db2e49b4dabf19e350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: Re: Can't find guile-2.0
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3621CE0148A
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 12:22:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=5rUprbR5V1zb77wFAguZZKq27lJ3vvs3JTASj3gGLE4=; 
+	b=TWn3q/5AJDkm3LJZ3h7vc5HV2/STrzEoXHX4Tv5jXRVG7yEY6o/RB6XfTtTUyZUr2bp5gAwD7EvoTqat8M2SYi2kAxJIu9k1HN92JNA/oaflQUYrBT+4V3pRR+Ml84E0;
+Received: from [109.224.129.17] (port=12785
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>)
+	id 1UIl3s-0022O5-65; Thu, 21 Mar 2013 19:22:04 +0000
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CAJTo0LYfUK7LuqUCA+SxmBYBnQZDuLAst0GGTz+U3hXV7_=HhQ@mail.gmail.com>
+Date: Thu, 21 Mar 2013 19:22:02 +0000
+Message-Id: <F97C42E2-7C1E-4A51-B446-0EFBFBFC9C05@keylevel.com>
+References: <29BFB1FE-41FC-484E-900A-58A29001E39C@keylevel.com>
+	<CAJTo0LYfUK7LuqUCA+SxmBYBnQZDuLAst0GGTz+U3hXV7_=HhQ@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Possible Cedartrail PVR build race
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,41 +44,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 19:10:55 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Mar 2013 19:22:06 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-> From: Burton, Ross
-> 
-> Ah ha!
-> 
-> poky contains a copy of oe-core, so you don't need both, for a given
-> version the meta/ directories will be identical (poky is the union of
-> oe-core, bitbake, and meta-yocto).
-> 
-> I'd forgotten that meta-oe used to have guile in. Presumably the
-> problem here is that autogen-native wants guile-native and it finds
-> guile-native_1.8.7 before realising that guile_2.0.7 can also do a
-> native build (that's what BBCLASSEXTEND=native does).
-> 
-> Try using BBMASK to hide the guile in meta-oe.  Add this to 
-> your local.conf:
-> 
-> BBMASK = "meta-oe/recipes-support/guile"
+Hi Ross,
 
-That did it. However, I think we've been chasing floobydust, due to a
-cockpit error on my part. The reason I was including openembedded-core/meta
-is because it defined fontcache.bbclass, which meta-openembedded/meta-oe
-referred to. But that was only true when I was erroneously using the master
-branches of their git repositories. Now that I'm on the danny branches, I
-see that that isn't a problem any more. So I've removed
-openembedded-core/meta entirely from my bblayers.conf, and I'm trying a
-rebuild now, and will let you know the results.
+On 21 Mar 2013, at 09:09, Burton, Ross wrote:
 
--- 
+> On 21 March 2013 09:01, Chris Tapp <opensource@keylevel.com> wrote:
+>> I think I have a build race condition for a project:
+>>=20
+>> 1) Using the meta-intel/cedartrail BSP;
+>> 2) Building under Danny 8.0;
+>> 3) Custom image;
+>> 4) Custom task;
+>> 5) OpenGLES application which runs under 'X'.
+>>=20
+>> If I do a clean build (i.e. after deleting tmp/ sstate-cache/) then =
+my application produces 'fuzz' on the screen - some vertical strips =
+visible, but nothing recognisable.
+>>=20
+>> If I then 'cleanall' the image, task and application and rebuild the =
+image I get an image with an application that works as expected.
+>>=20
+>> I suspect this is something to do with some warning messages I get =
+during the clean build:
+>>=20
+>> WARNING: The recipe is trying to install files into a shared area =
+when those files already exist. Those files are:
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/KHR/khrplatform.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/GLES/gl.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/GLES/egl.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/GLES/glext.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/GLES/glplatform.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/EGL/egl.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/EGL/eglplatform.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/EGL/eglext.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/GLES2/gl2platform.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/GLES2/gl2.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
+/GLES2/gl2ext.h
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
+GLESv1_CM.so
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
+GLESv2.so.2
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
+GLESv2.so
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
+GLESv1_CM.so.1
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
+EGL.so.1
+>>   =
+/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
+EGL.so
+>>=20
+>> Is there something I can add to my image/task/application .bb to =
+prevent this?
+>=20
+> If you were using master you'd see some more useful output, such as
+> the recipes that are conflicting.  I'm 99% certain that in this case
+> it's pvr-cdt-driver and mesa-dri.  On CDT you really don't want
+> mesa-dri.
+>=20
+> I suspect this is coming through the xserver-xorg package which
+> defaults to enabling GLX, which requires mesa-dri.  Inspecting your
+> dependency tree with depexp should confirm this.  Presumably your GLES
+> application is using EGL and not GLX?
+>=20
+> I'm always forgetting the exact syntax here, but try setting
+> PACKAGECONFIG_pn-xserver-xorg =3D "udev" in your local.conf.  This
+> should disable the glx options, and drop the mesa-dri dependency.
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+Thanks, that's helped a bit. depexp was showing:
+
+xserver-xorg, libva, mesa-dri, packagegroup-core-x11-xserver.
+
+Your setting gets rid of 'xserver-xorg' and I assume 'mesa-dri' will go =
+when mesa-dri isn't needed.
+
+So, that just leaves libva and the packagegroup.
+
+> Ross
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
 
 
