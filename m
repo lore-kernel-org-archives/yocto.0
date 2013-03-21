@@ -1,50 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
-	[209.85.128.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A18FE014A5
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 02:54:12 -0700 (PDT)
-Received: by mail-ve0-f169.google.com with SMTP id 15so2276843vea.28
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 02:54:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=HszepAnAp1mwyICORwi5EbcEZLQrZfti2fDCEOtID+Y=;
-	b=IjqNqWI1+dUR7r6Coft1Aq/QbHLXUgBOQoD17U7pS0HHVu4p8+9BUtNBAKJr58RuKR
-	A+n8dJhSM/jcpEHSqetqcf7PaVg/R1WfoDMkgGBHLI3sl/0iCCPsmJguiahDUgRWnt/g
-	LCsM7hmXguLKdrcnj6+tjKduJXtNzLFZCAEYe//dz8JotJ96ZOHQhmv55YWSSFO7FkXw
-	E6Lx6e1T6N55/5LWVD3zaxlDoPNc4/tEkpXzMJlIkgH06IBZ81dY1KXGBEY2TMqgjDWK
-	O8hIGVjTw2T4j39mRGQ+zj7kyYKUSARe+ZHkAoLBuJA4UCcum8vyEZuw+WfvrosIc728
-	e/BA==
-X-Received: by 10.52.75.65 with SMTP id a1mr10494110vdw.79.1363859652289; Thu,
-	21 Mar 2013 02:54:12 -0700 (PDT)
+Return-Path: <dan.florincristian@gmail.com>
+Received: from mail-da0-f45.google.com (mail-da0-f45.google.com
+	[209.85.210.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5C8CE014A5
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 02:58:41 -0700 (PDT)
+Received: by mail-da0-f45.google.com with SMTP id v40so1551198dad.32
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 02:58:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=LNRCTvyS51i/bfHrvA6TwI4I6QOCYjJVrO/8/PE+f9o=;
+	b=ZlOdxMua4ki39V/FdYuTS/3PgRWnAlti5EuVLoZRCKPV6naSUk8PGkRyzsOPs8v53r
+	lccmpaE1+mVzS3eKcpNz9xsfEjppzIA2eD51UodrW6yP+7EF63g4PP6fsU4yjRc1y6Bz
+	nJSBLTkBloXw52ckM6wx41tdhjv1sdmyM6BqgirVgxDbJxH673Tx48NfgcE8I2agwPJ0
+	bDj/qxdifv9s4aKOGDyes15xcC0PcjlFqlzVGpt2sp8WUDCBWvowfZpRD09uWvZcOKbR
+	6qh77XlzI3a6dKW7D6UTEZ2HZG+tIApZihrKRPIxTC4g/rMm6QP99ceQsFoHikuLwCqN
+	JjRg==
 MIME-Version: 1.0
-Received: by 10.58.125.102 with HTTP; Thu, 21 Mar 2013 02:53:44 -0700 (PDT)
-In-Reply-To: <F164AFC4EFDF43D28B0BC563D7026360@PAULD>
-References: <F1069DB4DED5494AA1DC65CB388B29EA@PAULD>
-	<CAJTo0LYzZvQZ1CvXGtO2Sj8nLrzPgtb8M61gRwz+Y_p_HhPuYw@mail.gmail.com>
-	<3C8645632D634EAC903E8930B57F4777@PAULD>
-	<CAJTo0La0yxkJ4bJsBbji1rCg6ea9fwGiR_q0vH+f032BHNYTTA@mail.gmail.com>
-	<56C806C0B65D44ADA7D6314F4051E91E@PAULD>
-	<CAJTo0LY3edhzsbOrPzw6FEDUW58Rc_RjQdamGTPdjCar6gBN1g@mail.gmail.com>
-	<603BDC00C3D14F51BF551A28572660E3@PAULD>
-	<CAJTo0LZBRFHubPhCBZg8cko+TiZY3xz7YDJU-fzg0sgRFAhw2g@mail.gmail.com>
-	<B85484ED80754E0D8F82ECCA688762AF@PAULD>
-	<CAJTo0LaOU=ak5awePdFdW2sCB=N1CsbiLMaQgF6Gzt5gFWuNSw@mail.gmail.com>
-	<9331786F4D074BCCAB63AE3E10152262@PAULD>
-	<F6460DFEAC8C415FAFCF7A16B0499DA6@intel.com>
-	<207F72914E4C4014A2C1124BBADDD244@PAULD>
-	<D6081CD6470747D1803B8A19E552149F@intel.com>
-	<439A53A3DAF743BEA77A6820E8B9641E@PAULD>
-	<DAD15C33EB5B4620BF57DF4816FC3C4B@intel.com>
-	<F164AFC4EFDF43D28B0BC563D7026360@PAULD>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 21 Mar 2013 09:53:44 +0000
-Message-ID: <CAJTo0LbAhQV6QANXgPe2Ax4DR6Wzs+jOz=ZtZTxRNFc0C3rLqg@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-X-Gm-Message-State: ALoCoQnbKvX+OT0M42FohshtuSbzG3al1OO6berld9TJIohGRraPwTR+VlbrNlXT/zZO0VhAS/XD
-Cc: yocto@yoctoproject.org
-Subject: Re: Can't find guile-2.0
+X-Received: by 10.68.117.104 with SMTP id kd8mr14170528pbb.1.1363859921593;
+	Thu, 21 Mar 2013 02:58:41 -0700 (PDT)
+Received: by 10.66.134.174 with HTTP; Thu, 21 Mar 2013 02:58:41 -0700 (PDT)
+Date: Thu, 21 Mar 2013 11:58:41 +0200
+Message-ID: <CABzOdpRbq0Y0r38Q8MUgwZoAiRfJuZxzyhT6xE0Y5TVSn-xE9g@mail.gmail.com>
+From: Florin Cristian Dan <dan.florincristian@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Java on target machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,56 +34,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 09:54:13 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 21 Mar 2013 09:58:41 -0000
+Content-Type: multipart/alternative; boundary=047d7b072330266b1104d86c62c2
 
-Hi Paul,
+--047d7b072330266b1104d86c62c2
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 21 March 2013 06:48, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
-> In the metadata trees, meta-openembedded/meta-oe has recipes called
-> "guile_1.8.7.bb" and "guile-native_1.8.7.bb". poky-danny-8.0/meta and
-> openembedded-core/meta both have recipes called "guile_2.0.6.bb". The latter
-> has some extra junk in it I don't understand. Nothing has a recipe called
-> "guile-native_2.0.6.bb".
+First of all hello every body,
+A few days ago, i sent an e-mail in wich i was asking how can i run java
+apps on my target machine, mr. Paul Eggleton was kind enough to answar and
+gave me some links for enableing the layer, download the desired layer from
+LayerIndex and so on. I followed those steps, and i've started my owm
+image...
+I've added the layer suport for emenlow, respectivly i've edite the
+bblayar.conf adding the path to meta-intel and meta-emenlow
+then i've added the path for meta-java-master...After that i read the READ
+me file inside the meta-java-master and saw this:
+This layer depends on:
 
-Ah ha!
+URI: git://git.openembedded.org/openembedded-core
+branch: master
+revision: HEAD
 
-poky contains a copy of oe-core, so you don't need both, for a given
-version the meta/ directories will be identical (poky is the union of
-oe-core, bitbake, and meta-yocto).
+URI: git://git.openembedded.org/meta-openembedded
+branch: master
+revision: HEAD
 
-I'd forgotten that meta-oe used to have guile in. Presumably the
-problem here is that autogen-native wants guile-native and it finds
-guile-native_1.8.7 before realising that guile_2.0.7 can also do a
-native build (that's what BBCLASSEXTEND=native does).
+So i,ve downloaded the two layer and add their path to bblayer.conf. After
+that i've edited the local.conf named my machine emenlow and also added
+this for java:
+PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
+PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
+PREFERRED_VERSION_openjdk-6-jre = "6b24-1.11.9"
 
-Try using BBMASK to hide the guile in meta-oe.  Add this to your local.conf:
+because that was the README from the meta-java-master was saying. I've
+saved my files and then i started the bitbake process...
+bitbaje core-image-sato-emenlow
+but there were to errors that were saying that there is no conf folder in
+the ompenembedded-core and meta-openembedded so i've removed their path
+from bblayer.conf and i've started again the process, i think gave me few
+warnings but the process continued and my image burned succesfully. I've
+booted the image and tried to run a java simple hello world program, but of
+core there were no sign o java compiler. javac myfile.java ---
+javac:command not found
+What do you thing i should do?
+Thank you.
 
-BBMASK = "meta-oe/recipes-support/guile"
+--047d7b072330266b1104d86c62c2
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-> So let me see if I understand the problem. Everything worked fine when I
-> built the standard image, but I started having problems when I pulled in a
-> couple of repositories from OpenEmbedded so that I could add a Samba server.
-> Something in the layers I added needs to run a tool called autogen, so it
-> tries to do a native build of autogen-5.12-r3. In the process of configuring
-> that, it needs access to guile-2.0.6, but it can't find it, so it quits. Is
-> it looking to run guile, or is it looking for a native version of the guile
-> library to link into autogen? Somehow, I've got the source for this version
-> of guile, but nothing is building it, and there is no recipe for it. Where
-> is the recipe supposed to be found? Or is this simply a tool that I'm
-> supposed to have on my machine in the first place, and bitbake doesn't try
-> to build it?
+First of all hello every body,=A0<div>A few days ago, i sent an e-mail in w=
+ich i was asking how can i run java apps on my target machine, mr. Paul Egg=
+leton was kind enough to answar and gave me some links for enableing the la=
+yer, download the desired layer from LayerIndex and so on. I followed those=
+ steps, and i&#39;ve started my owm image...</div>
+<div>I&#39;ve added the layer suport for emenlow, respectivly i&#39;ve edit=
+e the bblayar.conf adding the path to meta-intel and meta-emenlow</div><div=
+>then i&#39;ve added the path for meta-java-master...After that i read the =
+READ me file inside the meta-java-master and saw this:</div>
+<div><div>This layer depends on:</div><div><br></div><div>URI: git://<a hre=
+f=3D"http://git.openembedded.org/openembedded-core">git.openembedded.org/op=
+enembedded-core</a></div><div>branch: master</div><div>revision: HEAD</div>
+<div><br></div><div>URI: git://<a href=3D"http://git.openembedded.org/meta-=
+openembedded">git.openembedded.org/meta-openembedded</a></div><div>branch: =
+master</div><div>revision: HEAD</div></div><div><br></div><div>So i,ve down=
+loaded the two layer and add their path to bblayer.conf. After that i&#39;v=
+e edited the local.conf named my machine emenlow and also added this for ja=
+va:</div>
+<div><div>PREFERRED_PROVIDER_virtual/java-native =3D &quot;jamvm-native&quo=
+t;</div><div>PREFERRED_PROVIDER_virtual/javac-native =3D &quot;ecj-bootstra=
+p-native&quot;</div></div><div>PREFERRED_VERSION_openjdk-6-jre =3D &quot;6b=
+24-1.11.9&quot;</div>
+<div><br></div><div>because that was the README from the meta-java-master w=
+as saying. I&#39;ve saved my files and then i started the bitbake process..=
+.</div><div>bitbaje core-image-sato-emenlow</div><div>but there were to err=
+ors that were saying that there is no conf folder in the ompenembedded-core=
+ and meta-openembedded so i&#39;ve removed their path from bblayer.conf and=
+ i&#39;ve started again the process, i think gave me few warnings but the p=
+rocess continued and my image burned succesfully. I&#39;ve booted the image=
+ and tried to run a java simple hello world program, but of core there were=
+ no sign o java compiler. javac myfile.java --- javac:command not found</di=
+v>
+<div>What do you thing i should do?</div><div>Thank you.</div>
 
-The root cause is normally needing to build grub.  grub needs
-autogen-native which needs guile-native, as it uses guile.  We don't
-assume guile exists on the host, so will always build it ourselves.
-
-Normally guile_2.0.6.bb can do both cross and native builds.  It
-appears that meta-oe has an older version of guile with an explicit
-guile-native name, which is selected before the newer version in
-oe-core.  This is the root of the problem, and the BBMASK should cause
-it to ignore that recipe.  I've just submitted a patch to remove this
-guile from meta-oe, as it's just causing trouble.
-
-Ross
-
+--047d7b072330266b1104d86c62c2--
