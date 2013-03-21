@@ -1,37 +1,34 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DEF7E0146D
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 07:13:47 -0700 (PDT)
-Received: by mail-vb0-f49.google.com with SMTP id s24so1927544vbi.36
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 07:13:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=CduLuTncpw36c7fHiWb680Hqz/ojZwAzHYl0GRHFs0k=;
-	b=mhdAxDn2l/CUwijuPeJuqYk0G37ujQTx0d3ZpDsDlXf+YP9cr7wa+kGqIu+iPc8ti6
-	cm28PpCBj61KjTSUQ2m1EOolBwESr5EWDiO9gFj4zil9RKRdUGcXsiZnzM/g2XL5X8PN
-	8lUHyQ67r1LGp4S1JRtk2KgTrOFyTeXhMVBgJuG0EwEFPMsHKx+dlv1PMyJQgJXiseZ3
-	u6EgwLct9sOzUE3FLeXG4+C2U6oT3+po5hDUSPJ94XEl/XLoh722MbS45Kb89WP5OHhg
-	OrwmizJUwIeMWVLjqdvTbqym4tZuVGdEiaaPuvt3MDhGUDmCpcC4A51KQBLNPjGBAKT0
-	QP0A==
-X-Received: by 10.220.151.144 with SMTP id c16mr13759412vcw.18.1363875226648; 
-	Thu, 21 Mar 2013 07:13:46 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
+	[74.125.82.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E9C6E0146C
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 07:46:46 -0700 (PDT)
+Received: by mail-we0-f174.google.com with SMTP id r6so2409864wey.5
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 07:46:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:content-transfer-encoding;
+	bh=iNNqANvq9UTYExIUWNBCSZhUcgDAkzja4NPFs8ymdeE=;
+	b=G4hFubptFfw61IdcyZ90jzvbFuxaq2Gk4RQOOT14HggwK57fhzliHbbhcD9gydAa26
+	jT2iPde56Lx1xRFXdAufpf/hbcLMd0QDzIBzlDNb6YUJtLiE3aH0+mRChOvmo6E+mF7w
+	fUXu3kDyKaWv+GCCVBnBparCQ9c8K9+qFLk1M7Dkr2p76DdYAaMe7HVi4vbVzdNnNubd
+	TF7OV9v8aGRRS+yZxGW0R4o138TCZNqNjxr+zM/Y3y1TGCZbJPvwAYMbykJAcL88MiuI
+	gmMhZfz5G9HvXKPlCQtwLfeMidRX+yMxWsRmTQ7NowFGwI92X59cjrQSc78AJzUXIthR
+	65nw==
 MIME-Version: 1.0
-Received: by 10.58.125.102 with HTTP; Thu, 21 Mar 2013 07:13:26 -0700 (PDT)
-In-Reply-To: <CA+chaQcK5mDao81MAMnrM+FmOTnH8FAKmZ2KyX95FTruuTNS-A@mail.gmail.com>
-References: <513F03EC.4020909@linux.intel.com>
-	<514972E1.3010802@linux.intel.com>
-	<CAJTo0LYAdjQd3QA+d8SXo=Phrr5fDwejaGxQXGsSEHNbx4uiYA@mail.gmail.com>
-	<CA+chaQcK5mDao81MAMnrM+FmOTnH8FAKmZ2KyX95FTruuTNS-A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 21 Mar 2013 14:13:26 +0000
-Message-ID: <CAJTo0LavnpYoTcdbiZ-3C-Fu6duuN9btqFtmCUgW5pWDLGX+Hg@mail.gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-X-Gm-Message-State: ALoCoQlECkRhQPqjdLU0PfvhJaS4KjfutgTmHdyp9Nasjk4cxm288ytPuaCb7gi501cWRSAvN03Q
+X-Received: by 10.194.157.42 with SMTP id wj10mr17882033wjb.12.1363877205958; 
+	Thu, 21 Mar 2013 07:46:45 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Thu, 21 Mar 2013 07:46:45 -0700 (PDT)
+In-Reply-To: <20130321150542.18ab7c22@e6520eb>
+References: <CAPhnLPDrWsXJMUVb+HqUkHqBDiZSyOqjxtmgiuGGgPBFcc4Eww@mail.gmail.com>
+	<CAHUNapQOUHi7f0va3hPjM_Pu69zvbEJuxnHeR__BBZTVnpJvOg@mail.gmail.com>
+	<20130321150542.18ab7c22@e6520eb>
+Date: Thu, 21 Mar 2013 10:46:45 -0400
+Message-ID: <CAHUNapQV9U65Yi43BQZBhJs7TcdueJ3SiEwYGaJBbRLt7E=ROg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: systemd timeouts started daemons
+Subject: Re: Autobuilder migration status.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,14 +40,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 14:13:47 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 21 Mar 2013 14:46:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 21 March 2013 14:10, Martin Jansa <martin.jansa@gmail.com> wrote:
-> Does this resolve also update-rc.d postinst trying to start
-> /etc/init.d/dbus-1 and failing to find it?
+On Thu, Mar 21, 2013 at 10:05 AM, Eric B=E9nard <eric@eukrea.com> wrote:
+> in the build log
+> http://autobuilder.yoctoproject.org:8011/builders/nightly-fsl-arm/builds/=
+18/steps/Building%20Images/logs/stdio
+> you can see it builds for imx53qsb :
+> MACHINE           =3D "imx53qsb"
 
-That's something else to be fixed.
-
-Ross
+Thank you, now I see how to use those entries. All the environment
+dumps were cluttering the logs up and distracting me :-)
 
