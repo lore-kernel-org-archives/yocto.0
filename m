@@ -1,31 +1,37 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
-	[74.125.82.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DE33E006D6
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 08:31:49 -0700 (PDT)
-Received: by mail-we0-f176.google.com with SMTP id s43so2380968wey.7
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 08:31:48 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f169.google.com (mail-pd0-f169.google.com
+	[209.85.192.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E101EE01472
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 10:58:48 -0700 (PDT)
+Received: by mail-pd0-f169.google.com with SMTP id 3so1206304pdj.14
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 10:58:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:content-type;
-	bh=JxuVIfb3DBMpg6NDrtIId5ERM9fYU8Lw2592uykrFo0=;
-	b=cJ+zW8cwEhXPjPPjCUgUGhQhvLC+5E7CCQhy0B0CnaVuzKNv2SoBp3ut0hacnHJHR3
-	nHBdd9rKc4x2zqndN9DiOPUrwuVq19laZqcQ98+ZLsuQXppwkjtsiVHMsCI32rLacg2n
-	0hLP2twTMsAMhaFyBtRBXyHr5wWnWrUZgijrT6oXktt9NZDihVKarFz3gLVo8XdAae7l
-	pMdqsnJtjZLq9dbbfUv9C4JZEYlmKz7tokpkVHaOCtX8cMj8ppEJxLHlx52eQ4QRTyGJ
-	WJEk6xpMxmCv8YkR/x/5HFwnHuBG8ZX+0M7fhUVX+NmepBandHAokr7/4nZnStcJEzOc
-	znWQ==
-MIME-Version: 1.0
-X-Received: by 10.180.77.9 with SMTP id o9mr5771206wiw.16.1363879908460; Thu,
-	21 Mar 2013 08:31:48 -0700 (PDT)
-Received: by 10.194.45.100 with HTTP; Thu, 21 Mar 2013 08:31:48 -0700 (PDT)
-In-Reply-To: <CAPhnLPDrWsXJMUVb+HqUkHqBDiZSyOqjxtmgiuGGgPBFcc4Eww@mail.gmail.com>
-References: <CAPhnLPDrWsXJMUVb+HqUkHqBDiZSyOqjxtmgiuGGgPBFcc4Eww@mail.gmail.com>
-Date: Thu, 21 Mar 2013 11:31:48 -0400
-Message-ID: <CAHUNapR+bMqr36jwEzeZk4BEqxZ4+JaPrGJ-4Uo14OHe753s2w@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Autobuilder migration status.
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=ivSfz5/aZrfZjmR465AYCaw1Xu2qtcqiWbv2WuVyHQo=;
+	b=s3TL0f/HlBOZJIRGFzLHLFAJRxyeZAHyjo+W4uKjz/phfXGjbE3L4XUNAfkqWw/3wV
+	FH93Z6zhbPmHfgX4UUs7sohVmM0TvUPNRmFai9++7vNB9d9XyckvDUD7i9Jot4BtAg34
+	vAvjyhB+tggbaTa2cTumjfqUXj4l1ne75intCqCvYZSBFhzyth/pmj7GWek15AeeBpJG
+	YAok/6UeZqeS0wkTyRs6EUQdjme1N56HPRc9lwBzHxUOCViIAjkalAn2KJbzLMlBmyJ1
+	TnKmKRE79rGu3kDSJQIlnqO2sQB0aSP5TQPBmCWtzIbo+P6GHUCPkmL+Z7CdNHJqF4KP
+	AxJw==
+X-Received: by 10.66.72.105 with SMTP id c9mr15974826pav.177.1363888728641;
+	Thu, 21 Mar 2013 10:58:48 -0700 (PDT)
+Received: from vspringer-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36])
+	by mx.google.com with ESMTPS id wl14sm7343193pac.18.2013.03.21.10.58.46
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 21 Mar 2013 10:58:47 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CACzyEJ_vQfDNho=ZxGc1YwAsT5UqdX3dHpVFFBmaynK_CZ=mtQ@mail.gmail.com>
+Date: Thu, 21 Mar 2013 10:58:47 -0700
+Message-Id: <F8358AF0-D35A-496C-A53F-877F6280D19E@gmail.com>
+References: <CACzyEJ_vQfDNho=ZxGc1YwAsT5UqdX3dHpVFFBmaynK_CZ=mtQ@mail.gmail.com>
+To: Insop Song <insop.song@gmail.com>
+X-Mailer: Apple Mail (2.1503)
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: custom hddimg failure (mkdosfs: seek failed)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,45 +43,168 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 15:31:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 21 Mar 2013 17:58:49 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-I have looked at the output from a couple builds (nightly-fsl-arm,
-nightly-fsl-ppc, nightly-mips) and had a couple questions.
+EXTRA_IMAGE_FEATURES =3D  "tools-sdk"
+=20
+On Mar 21, 2013, at 1:44 AM, Insop Song <insop.song@gmail.com> wrote:
 
-Running "poky/oe-init-build-env" will produce a
-"build/conf/local.conf", but the nightly builder prefers to puts its
-configurations into "build/conf/auto.conf". Obviously there's nothing
-wrong with this, but I'm wondering why use auto.conf instead of
-local.conf? I'm guessing there's some nugget of information in this
-choice that I'm hoping to discover.
+> Hi,
+>=20
+> I am trying to add sdk (gcc ..) to meta-realtime
+> (http://git.yoctoproject.org/cgit/cgit.cgi/meta-realtime/).
+> Only difference between upstream meta-realtime is ""tools-sdk"
+>=20
+> -----
+> require recipes-core/images/core-image-minimal-dev.bb
+>=20
+> DESCRIPTION =3D "Image with meta-realtime and sdk"
+>=20
+> DEPENDS =3D "linux-yocto"
+>=20
+> IMAGE_FEATURES +=3D "package-management ssh-server-dropbear"
+> IMAGE_FEATURES +=3D "tools-sdk"
+> EXTRA_IMAGE_FEATURES =3D "tools-debug debug-tweaks tools-profile =
+dbg-pkgs"
+>=20
+> IMAGE_INSTALL =3D "\
+> 	${CORE_IMAGE_BASE_INSTALL} \
+> 	rt-app \
+> 	schedtool-dl \
+> 	"
+>=20
+> ----
+>=20
+> I am keep getting hddimg failure with this message "mkdosfs: seek =
+failed"
+>=20
+> I appreciate if anyone know on this issue.
+>=20
+> Thank you,
+>=20
+> Insop
+>=20
+> ---
+> This is full output including error message.
+>=20
+> $ time bitbake core-image-realtime-sdk
+> Pseudo is not present but is required, building this first before the =
+main build
+> Parsing recipes: 100%
+> =
+|#########################################################################=
+###################|
+> Time: 00:00:49
+> Parsing of 834 .bb files complete (0 cached, 834 parsed). 1144
+> targets, 29 skipped, 0 masked, 0 errors.
+>=20
+> Build Configuration:
+> BB_VERSION        =3D "1.17.1"
+> BUILD_SYS         =3D "i686-linux"
+> NATIVELSBSTRING   =3D "Ubuntu-12.10"
+> TARGET_SYS        =3D "i586-poky-linux"
+> MACHINE           =3D "fri2"
+> DISTRO            =3D "poky"
+> DISTRO_VERSION    =3D "1.3+snapshot-20130321"
+> TUNE_FEATURES     =3D "m32 core2"
+> TARGET_FPU        =3D ""
+> meta
+> meta-yocto
+> meta-yocto-bsp    =3D =
+"master:9ffee9add2d0380f4025e7a678a166f25a7d659e"
+> meta-intel
+> meta-fri2         =3D =
+"master:7a5e19e0c7d5967ef7b003ab775b7210c0ee16d7"
+> meta-realtime     =3D =
+"image-sdk:6825219a33a4b4d140a01cee5165d805951d1d75"
+>=20
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> NOTE: Tasks Summary: Attempted 63 tasks of which 63 didn't need to be
+> rerun and all succeeded.
+> No currently running tasks (2 of 9)
+> Loading cache: 100%
+> =
+|#########################################################################=
+#####################|
+> ETA:  00:00:00
+> Loaded 1145 entries from dependency cache.
+>=20
+> Build Configuration:
+> BB_VERSION        =3D "1.17.1"
+> BUILD_SYS         =3D "i686-linux"
+> NATIVELSBSTRING   =3D "Ubuntu-12.10"
+> TARGET_SYS        =3D "i586-poky-linux"
+> MACHINE           =3D "fri2"
+> DISTRO            =3D "poky"
+> DISTRO_VERSION    =3D "1.3+snapshot-20130321"
+> TUNE_FEATURES     =3D "m32 core2"
+> TARGET_FPU        =3D ""
+> meta
+> meta-yocto
+> meta-yocto-bsp    =3D =
+"master:9ffee9add2d0380f4025e7a678a166f25a7d659e"
+> meta-intel
+> meta-fri2         =3D =
+"master:7a5e19e0c7d5967ef7b003ab775b7210c0ee16d7"
+> meta-realtime     =3D =
+"image-sdk:6825219a33a4b4d140a01cee5165d805951d1d75"
+>=20
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> ERROR: Function failed: build_hddimg (see
+> =
+/home/insop/mybuilds/fri2-1.4/tmp/work/fri2-poky-linux/core-image-realtime=
+-sdk/1.0-r0/temp/log.do_bootimg.21803
+> for further information)
+> ERROR: Logfile of failure stored in:
+> =
+/home/insop/mybuilds/fri2-1.4/tmp/work/fri2-poky-linux/core-image-realtime=
+-sdk/1.0-r0/temp/log.do_bootimg.21803
+> Log data follows:
+> | DEBUG: Executing python function do_bootimg
+> | DEBUG: Executing python function build_syslinux_cfg
+> | DEBUG: Python function build_syslinux_cfg finished
+> | DEBUG: Executing python function build_grub_cfg
+> | DEBUG: Python function build_grub_cfg finished
+> | DEBUG: Executing shell function build_hddimg
+> | mkdosfs: seek failed
+> | mkdosfs 2.11 (12 Mar 2005)
+> | DEBUG: Python function do_bootimg finished
+> | ERROR: Function failed: build_hddimg (see
+> =
+/home/insop/mybuilds/fri2-1.4/tmp/work/fri2-poky-linux/core-image-realtime=
+-sdk/1.0-r0/temp/log.do_bootimg.21803
+> for further information)
+> ERROR: Task 8 =
+(/home/insop/poky/meta-realtime/recipes-extended/images/core-image-realtim=
+e-sdk.bb,
+> do_bootimg) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 4522 tasks of which 3799 didn't need to
+> be rerun and 1 failed.
+> No currently running tasks (4522 of 4523)
+>=20
+> Summary: 1 task failed:
+>  =
+/home/insop/poky/meta-realtime/recipes-extended/images/core-image-realtime=
+-sdk.bb,
+> do_bootimg
+> Summary: There was 1 ERROR message shown, returning a non-zero exit =
+code.
+>=20
+> real	48m10.876s
+> user	55m35.948s
+> sys	9m36.128s
+> insop@chai ~/mybuilds/fri2-1.4 $
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Not all builds, but these three seem to follow similar steps:
-1. prepare
-2. configure+build core-image-sato core-image-sato-dev
-core-image-sato-sdk core-image-minimal core-image-minimal-dev
-3. configure+build core-image-sato core-image-sato-dev
-core-image-sato-sdk core-image-minimal core-image-minimal-dev
-4. configure+build meta-toolchain-gmae
-5. configure+build meta-toolchain-gmae
-6. finish up
-I can't help but wonder why the same builds are (apparently) done more
-than once? Also, for me I think it would be better if #2 and #3 split
-out each of those build targets individually. Seeing that, say,
-meta-fsl-arm failed wouldn't provide me with as much information as
-knowing that (for example) core-image-minimal passed, but
-core-image-sato failed. With the build the way it is currently, I'd
-have to dig through #2's log to see whether core-image-minimal was
-okay or not.
-
-Is the choice of build slave random? I've noticed that there seem to
-be 3 different slave hosts: debian, fedora, and suse. This is great!
-Although rare, sometimes the host does influence whether a build fails
-or succeeds, so I'm curious to know if a build's choice of slave will
-always be the same or is selected randomly. Also, I've noticed that
-the version of the host software on the slaves can vary (e.g. I've
-noticed a suse 11.3 and a 12.2). I'm curious to know if this is on
-purpose.
-
-Thanks.
 
