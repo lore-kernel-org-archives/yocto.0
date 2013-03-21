@@ -1,34 +1,34 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E88C9E014A4
-	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 02:01:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=X9RZBSJ6gTFVAG45rxEgaeR/vg3De2w+8wqDhv5aQoQ=; 
-	b=iorcRtRNgeXCJjOYtuTyB/76ktoKOP7v6vI+U9g9pyD60fDyoi9RXVBTTWUHJGZMv05hh5rIUXGSS6HTp71fOo8NoW0Wxpvb0Av4MUqYNj93bvlI2ZNTrCUNi/ZzzOip;
-Received: from [109.224.129.17] (port=3977
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>) id 1UIbND-0046Kt-9p
-	for yocto@yoctoproject.org; Thu, 21 Mar 2013 09:01:23 +0000
-From: Chris Tapp <opensource@keylevel.com>
-Date: Thu, 21 Mar 2013 09:01:22 +0000
-Message-Id: <29BFB1FE-41FC-484E-900A-58A29001E39C@keylevel.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1283)
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Subject: Possible Cedartrail PVR build race
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 434B5E014A4
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 02:10:03 -0700 (PDT)
+Received: by mail-vc0-f176.google.com with SMTP id ib11so2065273vcb.21
+	for <yocto@yoctoproject.org>; Thu, 21 Mar 2013 02:10:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=m6Q0FuPbEZ4wRa8ep+vZEL9GN2NVZo3kvPnMVEeR59c=;
+	b=TxEPoYLpF2CkqgeWibnKE9bG9FqhMB+kmMrxsr6Xzt2y/kRvZqH8NmS0z3GQMrhQZi
+	/+mlVSILlgZoXXMJFX+KoLEVEf0Q760J2hb5WREmx6wssD1gXLf8YvwIRe+e3JkAvg1T
+	wOMpkrq/WzGCl1rrlsLJx7vUsnKUIq1no7ezxKTk38GcIt9hZJuh7GEzuoJN9dx3vdFQ
+	CLWHwZ1HRgyCBDofXum3idr+nFNlaZdLbZ9NKqHefIPg4LSrDHutYgcYSvCnbah1HKQf
+	tL7Xw5AJxAGBJJJtXchQqQozQDbIwUm/1hF/2QTusO4c1JsYOL87nyQeM5d+MmcyQxjQ
+	TXQw==
+X-Received: by 10.58.143.116 with SMTP id sd20mr12181002veb.39.1363857002412; 
+	Thu, 21 Mar 2013 02:10:02 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.58.125.102 with HTTP; Thu, 21 Mar 2013 02:09:42 -0700 (PDT)
+In-Reply-To: <29BFB1FE-41FC-484E-900A-58A29001E39C@keylevel.com>
+References: <29BFB1FE-41FC-484E-900A-58A29001E39C@keylevel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 21 Mar 2013 09:09:42 +0000
+Message-ID: <CAJTo0LYfUK7LuqUCA+SxmBYBnQZDuLAst0GGTz+U3hXV7_=HhQ@mail.gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+X-Gm-Message-State: ALoCoQm7+UUe545AxfttTZhd4kNXWS6DWZ+re2N9Kskyai4CyKUSvPkKKICfmY6DJDDOBDhmLiui
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Possible Cedartrail PVR build race
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,90 +40,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2013 09:01:25 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 21 Mar 2013 09:10:03 -0000
+Content-Type: text/plain; charset=UTF-8
 
-I think I have a build race condition for a project:
+On 21 March 2013 09:01, Chris Tapp <opensource@keylevel.com> wrote:
+> I think I have a build race condition for a project:
+>
+> 1) Using the meta-intel/cedartrail BSP;
+> 2) Building under Danny 8.0;
+> 3) Custom image;
+> 4) Custom task;
+> 5) OpenGLES application which runs under 'X'.
+>
+> If I do a clean build (i.e. after deleting tmp/ sstate-cache/) then my application produces 'fuzz' on the screen - some vertical strips visible, but nothing recognisable.
+>
+> If I then 'cleanall' the image, task and application and rebuild the image I get an image with an application that works as expected.
+>
+> I suspect this is something to do with some warning messages I get during the clean build:
+>
+> WARNING: The recipe is trying to install files into a shared area when those files already exist. Those files are:
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/KHR/khrplatform.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/GLES/gl.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/GLES/egl.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/GLES/glext.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/GLES/glplatform.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/EGL/egl.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/EGL/eglplatform.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/EGL/eglext.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/GLES2/gl2platform.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/GLES2/gl2.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include/GLES2/gl2ext.h
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/libGLESv1_CM.so
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/libGLESv2.so.2
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/libGLESv2.so
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/libGLESv1_CM.so.1
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/libEGL.so.1
+>    /media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/libEGL.so
+>
+> Is there something I can add to my image/task/application .bb to prevent this?
 
-1) Using the meta-intel/cedartrail BSP;
-2) Building under Danny 8.0;
-3) Custom image;
-4) Custom task;
-5) OpenGLES application which runs under 'X'.
+If you were using master you'd see some more useful output, such as
+the recipes that are conflicting.  I'm 99% certain that in this case
+it's pvr-cdt-driver and mesa-dri.  On CDT you really don't want
+mesa-dri.
 
-If I do a clean build (i.e. after deleting tmp/ sstate-cache/) then my =
-application produces 'fuzz' on the screen - some vertical strips =
-visible, but nothing recognisable.
+I suspect this is coming through the xserver-xorg package which
+defaults to enabling GLX, which requires mesa-dri.  Inspecting your
+dependency tree with depexp should confirm this.  Presumably your GLES
+application is using EGL and not GLX?
 
-If I then 'cleanall' the image, task and application and rebuild the =
-image I get an image with an application that works as expected.
+I'm always forgetting the exact syntax here, but try setting
+PACKAGECONFIG_pn-xserver-xorg = "udev" in your local.conf.  This
+should disable the glx options, and drop the mesa-dri dependency.
 
-I suspect this is something to do with some warning messages I get =
-during the clean build:
-
-WARNING: The recipe is trying to install files into a shared area when =
-those files already exist. Those files are:
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/KHR/khrplatform.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/GLES/gl.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/GLES/egl.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/GLES/glext.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/GLES/glplatform.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/EGL/egl.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/EGL/eglplatform.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/EGL/eglext.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/GLES2/gl2platform.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/GLES2/gl2.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/include=
-/GLES2/gl2ext.h
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
-GLESv1_CM.so
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
-GLESv2.so.2
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
-GLESv2.so
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
-GLESv1_CM.so.1
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
-EGL.so.1
-   =
-/media/SSD-RAID/build-danny-cedartrail/tmp/sysroots/cedartrail/usr/lib/lib=
-EGL.so
-
-Is there something I can add to my image/task/application .bb to prevent =
-this?
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+Ross
 
