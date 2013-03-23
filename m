@@ -1,37 +1,33 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail16c40.carrierzone.com (mail16c40.carrierzone.com
-	[209.235.156.156])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DAA2E014A4
-	for <yocto@yoctoproject.org>; Fri, 22 Mar 2013 16:25:33 -0700 (PDT)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail16c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	r2MNPSNM021283; Fri, 22 Mar 2013 23:25:30 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: "'Paul D. DeRocco'" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
-References: <C5CDD289A5664B4F8F886AE3556BC91E@PAULD>
-In-Reply-To: <C5CDD289A5664B4F8F886AE3556BC91E@PAULD>
-Date: Fri, 22 Mar 2013 16:25:18 -0700
-Message-ID: <000901ce2754$855db490$90191db0$@annabooks.com>
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6C39E01471
+	for <yocto@yoctoproject.org>; Fri, 22 Mar 2013 23:54:00 -0700 (PDT)
+Received: by mail-wi0-f179.google.com with SMTP id hn17so2426103wib.0
+	for <yocto@yoctoproject.org>; Fri, 22 Mar 2013 23:53:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=SLOcaxMVfbpn2hwJdrK3Akv48f2MB8lGuri74KUtG8k=;
+	b=PTyjux+VxPxPSbtROTuODdGf0MxijOok8j+9KgLI5//ibjG+jkHZBGZ3odv2l/NDJb
+	Jp4PadXUUqwvNkunkCQApACcPJzOwutpebzsFCr48+Alv6vG1MmZopO8GD4X6vb6yhib
+	zz/VvFvp5jGnYDYa2mOWh4SBQKLHn6ous6B9Huq/2zq3AKOI8grVqpcLFifupFZdtDbX
+	UQ9/gByj1GMujRDkCUQYUtUw42xfvIo1iMcZ1lX0l/WiqGoQV7fWgz2ogs1aFNl/FfZR
+	siBQipXV3qDL/O6cD7JRi0raioRHWKJnu+BoN6iDSkpRtwzuABGonHKw/Cq/aodcu187
+	TLdQ==
+X-Received: by 10.180.108.97 with SMTP id hj1mr990797wib.16.1364021639590;
+	Fri, 22 Mar 2013 23:53:59 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQGp+57FduXzhtb2TBpYbZZ08WZkcpj6sQcg
-X-CSC: 0
-X-CHA: v=2.0 cv=M7T63VMs c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=3liNXRVIyK4A:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
-	a=dGV3tEs6UksA:10 a=iGHA9ds3AAAA:8 a=QrVWhbZvAAAA:8
-	a=JrDC0LBiO5Jl-myquEIA:9 a=CjuIK1q_8ugA:10 a=XDKM753qmDAA:10
-	a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A02020A.514CE86B.0026, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Subject: Re: Perplexed by boot mechanism
+Received: by 10.194.235.41 with HTTP; Fri, 22 Mar 2013 23:53:39 -0700 (PDT)
+In-Reply-To: <F8358AF0-D35A-496C-A53F-877F6280D19E@gmail.com>
+References: <CACzyEJ_vQfDNho=ZxGc1YwAsT5UqdX3dHpVFFBmaynK_CZ=mtQ@mail.gmail.com>
+	<F8358AF0-D35A-496C-A53F-877F6280D19E@gmail.com>
+From: Insop Song <insop.song@gmail.com>
+Date: Fri, 22 Mar 2013 23:53:39 -0700
+Message-ID: <CACzyEJ9pcwrYKfJGqMux79sUmPnSOA_9LaLNcz5jWi4ZCanGHA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: custom hddimg failure (mkdosfs: seek failed)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,80 +39,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Mar 2013 23:25:33 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Sat, 23 Mar 2013 06:54:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Paul D. DeRocco
-> Sent: Friday, March 22, 2013 4:06 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Perplexed by boot mechanism
-> 
-> I'm trying to get a core-image-base-cedartrail-nopvr image to boot from an
-> eUSB SSD on an Intel Atom mobo. I'm following the instructions in
-> 
-> <https://www.yoctoproject.org/download/intel-atom-n2600n2800d2550-
-> wnm10-chip
-> set-cedar-trail>
-> 
-> which tell me to dd the .hddimg file onto the flash drive. But apparently,
-the
-> image isn't an image of a regular bootable system drive, but is a "live
-image"
-> of a smaller system that can either boot the real system from a
-virtualized file
-> system in RAM whose image is read from a single file in the first level,
-or it
-> can install the real system to a different drive.
-> (Correct me if I'm mistaken about any of this.)
-> 
-> What's the point of all this? It seems like a completely unnecessary layer
-of
-> complexity and inefficiency. I have a very vague understanding of the
-whole
-> concept of running a live image off a virtual file system, and it seems to
-make
-> sense when you're booting off a readonly medium like a DVD, but this is a
-> writable flash drive. Why doesn't the .hddimg file just contain the real
-target
-> root file system partition in it? Or is that what some of those other
-files in the
-> build/tmp/deploy/images directory represent? If the latter, is there a way
-I
-> can just directly create the flash drive the way it will ultimately be
-used in the
-> final system, without using this "live image" stuff?
-> 
-> I'd really like to be able to create the flash, mount it under Ubuntu, and
-not
-> see the five files the implement the live image, but see the full root
-file
-> system of my target.
-> 
-> --
-> 
-> Ciao,               Paul D. DeRocco
-> Paul                mailto:pderocco@ix.netcom.com
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hi Khem,
 
-Paul,
+Thank you for the reply.
 
-I think you want to use the ext3 image not the live image (.hddimg). If you
-follow the steps to install the ext 3 image on your boot drive, you will see
-all the root files systems on the drive in another distro like Ubuntu .
+I've tried and it worked only if I use "tools-sdk" like below:
+
+However, this image asks me the paaswrd, do you know?
+
+Thank you,
+
+Insop
+
+=========================================
+DEPENDS = "linux-yocto"
+
+IMAGE_FEATURES += "package-management ssh-server-dropbear"
+EXTRA_IMAGE_FEATURES = "tools-sdk tools-profile"
+
+IMAGE_INSTALL = "\
+	${CORE_IMAGE_BASE_INSTALL} \
+	rt-app \
+	schedtool-dl \
+
+=========================================
 
 
-Regards,
 
-Sean Liming
-
+On Thu, Mar 21, 2013 at 10:58 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> EXTRA_IMAGE_FEATURES =  "tools-sdk"
+>
+> On Mar 21, 2013, at 1:44 AM, Insop Song <insop.song@gmail.com> wrote:
+>
+>> Hi,
+>>
+>> I am trying to add sdk (gcc ..) to meta-realtime
+>> (http://git.yoctoproject.org/cgit/cgit.cgi/meta-realtime/).
+>> Only difference between upstream meta-realtime is ""tools-sdk"
+>>
+>> -----
+>> require recipes-core/images/core-image-minimal-dev.bb
+>>
+>> DESCRIPTION = "Image with meta-realtime and sdk"
+>>
+>> DEPENDS = "linux-yocto"
+>>
+>> IMAGE_FEATURES += "package-management ssh-server-dropbear"
+>> IMAGE_FEATURES += "tools-sdk"
+>> EXTRA_IMAGE_FEATURES = "tools-debug debug-tweaks tools-profile dbg-pkgs"
+>>
+>> IMAGE_INSTALL = "\
+>>       ${CORE_IMAGE_BASE_INSTALL} \
+>>       rt-app \
+>>       schedtool-dl \
+>>       "
+>>
+>> ----
+>>
+>> I am keep getting hddimg failure with this message "mkdosfs: seek failed"
+>>
+>> I appreciate if anyone know on this issue.
+>>
+>> Thank you,
+>>
+>> Insop
+>>
+>> ---
+>> This is full output including error message.
+>>
+>> $ time bitbake core-image-realtime-sdk
+>> Pseudo is not present but is required, building this first before the main build
+>> Parsing recipes: 100%
+>> |############################################################################################|
+>> Time: 00:00:49
+>> Parsing of 834 .bb files complete (0 cached, 834 parsed). 1144
+>> targets, 29 skipped, 0 masked, 0 errors.
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.17.1"
+>> BUILD_SYS         = "i686-linux"
+>> NATIVELSBSTRING   = "Ubuntu-12.10"
+>> TARGET_SYS        = "i586-poky-linux"
+>> MACHINE           = "fri2"
+>> DISTRO            = "poky"
+>> DISTRO_VERSION    = "1.3+snapshot-20130321"
+>> TUNE_FEATURES     = "m32 core2"
+>> TARGET_FPU        = ""
+>> meta
+>> meta-yocto
+>> meta-yocto-bsp    = "master:9ffee9add2d0380f4025e7a678a166f25a7d659e"
+>> meta-intel
+>> meta-fri2         = "master:7a5e19e0c7d5967ef7b003ab775b7210c0ee16d7"
+>> meta-realtime     = "image-sdk:6825219a33a4b4d140a01cee5165d805951d1d75"
+>>
+>> NOTE: Resolving any missing task queue dependencies
+>> NOTE: Preparing runqueue
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> NOTE: Tasks Summary: Attempted 63 tasks of which 63 didn't need to be
+>> rerun and all succeeded.
+>> No currently running tasks (2 of 9)
+>> Loading cache: 100%
+>> |##############################################################################################|
+>> ETA:  00:00:00
+>> Loaded 1145 entries from dependency cache.
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.17.1"
+>> BUILD_SYS         = "i686-linux"
+>> NATIVELSBSTRING   = "Ubuntu-12.10"
+>> TARGET_SYS        = "i586-poky-linux"
+>> MACHINE           = "fri2"
+>> DISTRO            = "poky"
+>> DISTRO_VERSION    = "1.3+snapshot-20130321"
+>> TUNE_FEATURES     = "m32 core2"
+>> TARGET_FPU        = ""
+>> meta
+>> meta-yocto
+>> meta-yocto-bsp    = "master:9ffee9add2d0380f4025e7a678a166f25a7d659e"
+>> meta-intel
+>> meta-fri2         = "master:7a5e19e0c7d5967ef7b003ab775b7210c0ee16d7"
+>> meta-realtime     = "image-sdk:6825219a33a4b4d140a01cee5165d805951d1d75"
+>>
+>> NOTE: Resolving any missing task queue dependencies
+>> NOTE: Preparing runqueue
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> ERROR: Function failed: build_hddimg (see
+>> /home/insop/mybuilds/fri2-1.4/tmp/work/fri2-poky-linux/core-image-realtime-sdk/1.0-r0/temp/log.do_bootimg.21803
+>> for further information)
+>> ERROR: Logfile of failure stored in:
+>> /home/insop/mybuilds/fri2-1.4/tmp/work/fri2-poky-linux/core-image-realtime-sdk/1.0-r0/temp/log.do_bootimg.21803
+>> Log data follows:
+>> | DEBUG: Executing python function do_bootimg
+>> | DEBUG: Executing python function build_syslinux_cfg
+>> | DEBUG: Python function build_syslinux_cfg finished
+>> | DEBUG: Executing python function build_grub_cfg
+>> | DEBUG: Python function build_grub_cfg finished
+>> | DEBUG: Executing shell function build_hddimg
+>> | mkdosfs: seek failed
+>> | mkdosfs 2.11 (12 Mar 2005)
+>> | DEBUG: Python function do_bootimg finished
+>> | ERROR: Function failed: build_hddimg (see
+>> /home/insop/mybuilds/fri2-1.4/tmp/work/fri2-poky-linux/core-image-realtime-sdk/1.0-r0/temp/log.do_bootimg.21803
+>> for further information)
+>> ERROR: Task 8 (/home/insop/poky/meta-realtime/recipes-extended/images/core-image-realtime-sdk.bb,
+>> do_bootimg) failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 4522 tasks of which 3799 didn't need to
+>> be rerun and 1 failed.
+>> No currently running tasks (4522 of 4523)
+>>
+>> Summary: 1 task failed:
+>>  /home/insop/poky/meta-realtime/recipes-extended/images/core-image-realtime-sdk.bb,
+>> do_bootimg
+>> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>>
+>> real  48m10.876s
+>> user  55m35.948s
+>> sys   9m36.128s
+>> insop@chai ~/mybuilds/fri2-1.4 $
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
