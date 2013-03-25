@@ -1,28 +1,34 @@
-Return-Path: <dan.florincristian@gmail.com>
-Received: from mail-da0-f41.google.com (mail-da0-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F2CEE0140A
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 00:53:34 -0700 (PDT)
-Received: by mail-da0-f41.google.com with SMTP id w4so3121112dam.0
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 00:53:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=N5HsPD01sKBSHqqDeYQy35P5iuvNcnrjUzvvJbJilZk=;
-	b=benmlUQtNyzwdwTAF9xOcApd+gAvOjIDg31P4Kp4odGQy/3rg13+nm0EuKNaYVGZUQ
-	2XOO/1Lc/SkifNzXK9T6TwZclRvCuBBFgff9YZrO/7+yHLAs6oNX91grN/92xNmt0u52
-	0XBLHPhrm1Rzlgks7hA9z84xCWlz6E+ATJ96JHj40yAPGM8M28l2C8ox1gTJ0ty1kMR/
-	BwTzpHWrt0p7Hb/5uemFmBUo7hPFFzE4xzCjsgZ0nal0VVOjRbfqovKCtkTOBx1QDbPc
-	OZRgdWYi7/QWlorN0h539V9bp0V+tcVMRrOL2zemW4xQcrMfilEAdi4gCafFUPZCbqAn
-	y+Vg==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f47.google.com (mail-vb0-f47.google.com
+	[209.85.212.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BBC9E014CE
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 02:00:26 -0700 (PDT)
+Received: by mail-vb0-f47.google.com with SMTP id e21so3825803vbm.34
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 02:00:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=5QWNfOim0rt8kMMXm2fSKoGyvbI96MvX7SQYZ8Sdw7Y=;
+	b=l6HirViAYOAQYgSRLf9AwPdLx4SkHTZb65A8SrF/rFFigkTQyGW5w2KK/jM6b20kco
+	1JZpHXyPgJVt6aBl5QA72bE7VFyP4M8gX/Mprb8UYy3EPtMj5gbaJ4aPZaWIMJyLQ8y2
+	chXJZtAImLiEHZoV5tG78Q0eFFUFrc7jHu4OqQL/FUiM5Eg0X1X//+iqAEqAYXD3lGn/
+	2HFv6OCaAyBxy1ffrF0/F4haIULvbW6H9errcXN8mbTG7dZUQIo5I9ci9bVHlDhlVoNP
+	Bgxt00EB5gKMF4U2P+QxRuPphNoRZxKMQlzn4axRVn26fFIP/QIQSM+/K+yOsWAi7FQJ
+	C12g==
+X-Received: by 10.58.143.116 with SMTP id sd20mr14483078veb.39.1364202026238; 
+	Mon, 25 Mar 2013 02:00:26 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.68.117.104 with SMTP id kd8mr16330190pbb.1.1364198013778;
-	Mon, 25 Mar 2013 00:53:33 -0700 (PDT)
-Received: by 10.66.134.174 with HTTP; Mon, 25 Mar 2013 00:53:33 -0700 (PDT)
-Date: Mon, 25 Mar 2013 09:53:33 +0200
-Message-ID: <CABzOdpQ5dU9DRbsF7vsP8uYgcNVfBUzTvOVeRGJu5brSGD=Q-w@mail.gmail.com>
-From: Florin Cristian Dan <dan.florincristian@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto Qt!
+Received: by 10.58.125.102 with HTTP; Mon, 25 Mar 2013 02:00:06 -0700 (PDT)
+In-Reply-To: <CABzOdpQ5dU9DRbsF7vsP8uYgcNVfBUzTvOVeRGJu5brSGD=Q-w@mail.gmail.com>
+References: <CABzOdpQ5dU9DRbsF7vsP8uYgcNVfBUzTvOVeRGJu5brSGD=Q-w@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 25 Mar 2013 09:00:06 +0000
+Message-ID: <CAJTo0LaWUpfKWPc=0vmnYvrfUL-EZhKPv5+pteGzTTL4ud42RQ@mail.gmail.com>
+To: Florin Cristian Dan <dan.florincristian@gmail.com>
+X-Gm-Message-State: ALoCoQl8IAhnWL+3BvyVmIAQ4gUX6jM/nw/XVwi21yaJn8wLKLLiXGA4hn6w6cyDH5SA8zY4gLNl
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto Qt!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,65 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Mar 2013 07:53:34 -0000
-Content-Type: multipart/alternative; boundary=047d7b07233003c2be04d8bb1a88
+X-List-Received-Date: Mon, 25 Mar 2013 09:00:27 -0000
+Content-Type: text/plain; charset=UTF-8
 
---047d7b07233003c2be04d8bb1a88
-Content-Type: text/plain; charset=ISO-8859-1
+On 25 March 2013 07:53, Florin Cristian Dan
+<dan.florincristian@gmail.com> wrote:
+>  But no succes.
+>
+> Please can someone show me te correct path to do this?
 
-Hi,
-This is my fifth mail i think and no one still responded me, i'm trying to
-start developing apps, using Qt and add Qt support to Yocto.
-I've built a image for my Intel Atom based target machine, and added
-IMAGE_FEATURES
-+= "qt4-pkgs" to local.conf file. It burned succesfuly the image
-booted on my target machine and the i've pluged in a usb with a simple qt
-app wich would displayed a window and tried to do this:
+Instead of just saying "it doesn't work", please say what errors you
+get, what doesn't work, and so on.  It's impossible for people reading
+this mail to know exactly what's happening.
 
-1. cd to a /usr/bin/qtopia/demos/mainwindow  (for example)
-2. (qmake -project)
-3. qmake -o Makefile mainwindow.pro
-3. (uic ui files)
-4. make
+Ross
 
-
- But no succes.
-
-Please can someone show me te correct path to do this?
-
---047d7b07233003c2be04d8bb1a88
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Hi,=A0<div>This is my fifth mail i think and no one still responded me, i&#=
-39;m trying to start developing apps, using Qt and add Qt support to Yocto.=
-</div><div>I&#39;ve built a image for my Intel Atom based target machine, a=
-nd added=A0<span style=3D"white-space:pre-wrap">IMAGE_FEATURES +=3D &quot;q=
-t4-pkgs&quot; to local.conf file. It burned succesfuly the image</span></di=
-v>
-<div><span style=3D"white-space:pre-wrap">booted on my target machine and t=
-he i&#39;ve pluged in a usb with a simple qt app wich would displayed a win=
-dow and tried to do this:</span></div><div><pre style=3D"font-family:courie=
-r,&#39;courier new&#39;,monospace;font-size:14px;white-space:pre-wrap;word-=
-wrap:break-word;margin-top:0px;margin-bottom:0px;line-height:19px;backgroun=
-d-color:rgb(255,255,255)">
-1. cd to a /usr/bin/qtopia/demos/mainwindow  (for example)
-2. (qmake -project)
-3. qmake -o Makefile <a href=3D"http://mainwindow.pro">mainwindow.pro</a>
-3. (uic ui files)
-4. make</pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monosp=
-ace;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px=
-;margin-bottom:0px;line-height:19px;background-color:rgb(255,255,255)"><br>
-</pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;fon=
-t-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin=
--bottom:0px;line-height:19px;background-color:rgb(255,255,255)"><span style=
-=3D"font-family:arial;font-size:small;line-height:normal"> But no succes.</=
-span></pre>
-<pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;font-size=
-:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-botto=
-m:0px;line-height:19px;background-color:rgb(255,255,255)"><span style=3D"fo=
-nt-family:arial;font-size:small;line-height:normal">Please can someone show=
- me te correct path to do this?</span></pre>
-</div>
-
---047d7b07233003c2be04d8bb1a88--
