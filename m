@@ -1,32 +1,35 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4570E0129D
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 13:30:38 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 25 Mar 2013 13:30:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,907,1355126400"; d="scan'208";a="308212895"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Mar 2013 13:30:37 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.226.64) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 25 Mar 2013 13:30:37 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
-	ORSMSX157.amr.corp.intel.com ([10.22.226.64]) with mapi id
-	14.01.0438.000; Mon, 25 Mar 2013 13:30:37 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, March
-	26, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac4pl4RZwER9Eo36SUi/IvD9jv+j2QAAAV6w
-Date: Mon, 25 Mar 2013 20:30:37 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70F15BF2@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E6F4E0129D
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:45:32 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id m1so923983ves.41
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:45:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=U5dmsWCLGh/MYsaUIXfryhW7aIkpKdSsplZhrLiEk3A=;
+	b=fROIEkw3TCncROkHKquXB5tzzVG3uCqAV3R4WiQWTSoBewDcKdSxRSYl+vZlinyqhr
+	bz9gopELtbvPkjJG1lxdPWRc9clvoijUaQFeBXOClRoG2Gv2ByHOacwF9KnRIqb+lp11
+	SQsKdsypGVhhhgNSLtQoyayGCJVjG2FZmzgS5fEXh6qSVEFWCkILyr7QHYr7TgcJLJNS
+	6CSQ1FNT30RqSB38cHY1HufO9By7lcDVieLHU3oCC8Uyne0ewsXV2vQ0LM2etz6uDsov
+	1fKJ4zrjAwxHunUd4KxtmKlQJ/XQRmLC8zOytmHeps4EMI06FV8C39C1dWonprZIjP0N
+	eGGg==
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, March 26, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.220.8.4 with SMTP id f4mr17706079vcf.20.1364247931543; Mon,
+	25 Mar 2013 14:45:31 -0700 (PDT)
+Received: by 10.52.174.165 with HTTP; Mon, 25 Mar 2013 14:45:31 -0700 (PDT)
+In-Reply-To: <CAHUNapR+bMqr36jwEzeZk4BEqxZ4+JaPrGJ-4Uo14OHe753s2w@mail.gmail.com>
+References: <CAPhnLPDrWsXJMUVb+HqUkHqBDiZSyOqjxtmgiuGGgPBFcc4Eww@mail.gmail.com>
+	<CAHUNapR+bMqr36jwEzeZk4BEqxZ4+JaPrGJ-4Uo14OHe753s2w@mail.gmail.com>
+Date: Mon, 25 Mar 2013 14:45:31 -0700
+Message-ID: <CAPhnLPAbnxUWAQ2APO6qeDouzP=gFvOeZh3kv7=WAYHLFQrsaw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Trevor Woerner <twoerner@gmail.com>
+X-Gm-Message-State: ALoCoQlh6gZi+6XwJv3E6aPLGV3s7WCpjgPcfaFyauK2oLcueDKEc/y6DYgJ+5+vktxVl+z2s/n/
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Autobuilder migration status.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,135 +41,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Mar 2013 20:30:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 25 Mar 2013 21:45:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto 1.4 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
-* Yocto 1.5 Planning - 5 min (Song)
-* SWAT team rotation: Cristiana Voicu -> Radu Moisan
-* Opens - 10 min=20
-* Team Sharing - 20 min
+On Thu, Mar 21, 2013 at 8:31 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+> I have looked at the output from a couple builds (nightly-fsl-arm,
+> nightly-fsl-ppc, nightly-mips) and had a couple questions.
+>
+> Running "poky/oe-init-build-env" will produce a
+> "build/conf/local.conf", but the nightly builder prefers to puts its
+> configurations into "build/conf/auto.conf". Obviously there's nothing
+> wrong with this, but I'm wondering why use auto.conf instead of
+> local.conf? I'm guessing there's some nugget of information in this
+> choice that I'm hoping to discover.
 
+It's nothing particularly special, except I do it to differentiate an
+autogenerated local.conf from the local.conf that is created by
+oe-init-build-env. I'm sure there was a different reason for it, but
+the commit log never made it over from the o-hand.org svn server so...
 
------Original Appointment-----
+>
+> Not all builds, but these three seem to follow similar steps:
+> 1. prepare
+> 2. configure+build core-image-sato core-image-sato-dev
+> core-image-sato-sdk core-image-minimal core-image-minimal-dev
+> 3. configure+build core-image-sato core-image-sato-dev
+> core-image-sato-sdk core-image-minimal core-image-minimal-dev
+> 4. configure+build meta-toolchain-gmae
+> 5. configure+build meta-toolchain-gmae
+> 6. finish up
 
+For the most part, yes, that is correct.
 
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
+> I can't help but wonder why the same builds are (apparently) done more
+> than once?
 
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+SDKMACHINE and MACHINE
 
-Conference details=20
-Conference name:=20
-Yocto Technical Team
-Conference date/start time:=20
-Tue Jun 26, 2012 at 10:00 AM Central Daylight Time=20
-Participants:=20
-30
-Duration:=20
-60 minutes=20
-Participant passcode:=20
-76994298
-Dial-in number:=20
-1.972.995.7777=20
-US Toll Free number:=20
-1.877.561.6828=20
-BlackBerry users, click this link to join your conference as a participant:
-1.972.995.7777x76994298#
-=A0
-Depending on where you are dialing from, either your BlackBerry will pause =
-and enter the passcode automatically or you will be prompted to click again=
- to dial the passcode.
+We build out qemu* targets twice, once with one SDKMACHINE, then with
+another. Same goes for the toolchain.
 
-Local and Global Access Numbers=20
+In reality, we actually build it out 4 times if you also include the
+lsb build outs.
 
+> Also, for me I think it would be better if #2 and #3 split
+> out each of those build targets individually.
 
-Country=20
-Dial-in number
-Australia:=20
-1800 636 843
-Czech Republic:=20
-242 430 350
-China (Beijing):=20
-From office dial 8-9957777 or 8784277=20
-Beijing Out of Office dial 5878 4277
-China (Shanghai):=20
-From office dial 8-9957777 or 3073322=20
-Shanghai Out of Office dial 2307 3322
-China (Shenzen):=20
-From office dial 8-9957777 or 6007877=20
-Shenzen Out of Office dial 2600 7877
-China (Other Cities):=20
-From IP phone dial 8-9957777=20
-Other cities - Non IP phone dial 021-23073322
-Denmark:=20
-8060 1400
-Finland:=20
-09 41333477
-France:=20
-0497 275888
-Germany:=20
-08161 803232
-Holland:=20
-030 2417490
-India:=20
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-Israel:=20
-09 790 6715
-Italy:=20
-039 69061234 (039 is local city code not country code)
-Japan:=20
-From TI Campus use 8 995 7777=20
-Outside TI use 03 4331 3777
-Malaysia:=20
-From IP phone dial 2643799=20
-From Kuala Lumpur dial 4264 3799=20
-Outside Kuala Lumpur dial (03)4264 3799
-Norway:=20
-2 295 8744
-Philippines:=20
-From Baguio City use 4471177=20
-From Metro Manila area use 8702477
-Singapore:=20
-From IP phone dial 3894777=20
-Outside TI use 6389 4777
-South Korea:=20
-From IP phone dial 5606998=20
-From Seoul dial 5606998=20
-Outside Seoul dial (02)5606998
-Sweden:=20
-08 58755577
-Taiwan:=20
-From IP phone dial 1363=20
-From Taipei dial 2241 1363=20
-Outside Taipei dial (02)2241 1363
-Turkey:=20
-Landline Only dial 0811 288 0001=20
-then enter 877 633 1123=20
-UK:=20
-01604 663003
-US:=20
-972 995 7777 or 1877 561 6828
+Building them together provides a slight performance increase. That
+said, for the end user if they want to build them individually:
 
-Recurring conferences=20
-First scheduled conference:=20
-Tue Jun 26, 2012
-Recurrence frequency:=20
-Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:=20
-End on Fri Jun 21, 2013, 10:40 AM CDT
+This line in, for example, nightly-arm.conf
+        {'BuildImages': {'images': 'core-image-sato
+core-image-sato-dev core-image-sato-sdk core-image-minimal
+core-image-minimal-dev'}}
+Just becomes these lines:
+        {'BuildImages': {'images': 'core-image-sato'}},
+        {'BuildImages': {'images': 'core-image-sato-dev'}},
+        {'BuildImages': {'images': 'core-image-sato-sdk'}}.....
 
+> Seeing that, say,
+> meta-fsl-arm failed wouldn't provide me with as much information as
+> knowing that (for example) core-image-minimal passed, but
+> core-image-sato failed. With the build the way it is currently, I'd
+> have to dig through #2's log to see whether core-image-minimal was
+> okay or not.
 
+I agree. I'm going to be working on error logging soon so we can look
+at splitting up the errors a bit. Not positive on implementation yet
+but I'm starting to think of the best way to do it.
 
+>
+> Is the choice of build slave random? I've noticed that there seem to
+> be 3 different slave hosts: debian, fedora, and suse. This is great!
+
+Yes, however you can tie a builder to a slave or group of slaves:
+
+[nightly-arm]
+builders: [ab02, ab10]
+
+> Although rare, sometimes the host does influence whether a build fails
+> or succeeds, so I'm curious to know if a build's choice of slave will
+> always be the same or is selected randomly.
+
+selected randomly for the most part. Some builds, like eclipse-poky
+are set to a smaller subset as I don't want java installed on every
+builder.
+
+> Also, I've noticed that
+> the version of the host software on the slaves can vary (e.g. I've
+> noticed a suse 11.3 and a 12.2). I'm curious to know if this is on
+> purpose.
+
+Yes. We're trying to get distro coverage from the autobuilder as well
+as release artifacts and QA.
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
