@@ -1,33 +1,34 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E6F4E0129D
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:45:32 -0700 (PDT)
-Received: by mail-ve0-f182.google.com with SMTP id m1so923983ves.41
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:45:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=U5dmsWCLGh/MYsaUIXfryhW7aIkpKdSsplZhrLiEk3A=;
-	b=fROIEkw3TCncROkHKquXB5tzzVG3uCqAV3R4WiQWTSoBewDcKdSxRSYl+vZlinyqhr
-	bz9gopELtbvPkjJG1lxdPWRc9clvoijUaQFeBXOClRoG2Gv2ByHOacwF9KnRIqb+lp11
-	SQsKdsypGVhhhgNSLtQoyayGCJVjG2FZmzgS5fEXh6qSVEFWCkILyr7QHYr7TgcJLJNS
-	6CSQ1FNT30RqSB38cHY1HufO9By7lcDVieLHU3oCC8Uyne0ewsXV2vQ0LM2etz6uDsov
-	1fKJ4zrjAwxHunUd4KxtmKlQJ/XQRmLC8zOytmHeps4EMI06FV8C39C1dWonprZIjP0N
-	eGGg==
+Return-Path: <kergoth@gmail.com>
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BB15E0129D
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:55:51 -0700 (PDT)
+Received: by mail-la0-f48.google.com with SMTP id fq13so12401707lab.35
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:55:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=NgjZJ1qV4xx+O+KkWPX48wr4HFpSwIbjkJ3Cnj9SdL8=;
+	b=PB76zT/Qxmh3K6kiIZh5VvX8x2749Ge5M1XJe0DKKzBqSCRzg5NZBJOKrhKmaskc4U
+	jKJgGrUlcz5XKT/N6TNFiFL24tg97fTEWG1w0a/NuDF5pzyCWhTc1vPPTbKF3GmHTisB
+	LFYOjkfaetZIxlv9UzHYLJT9z3JCqYi4Xha2raL5wretE1jVV2ewSNXkSCJvrAolYw2d
+	1z1JaQrU0QKro9XxKER7cGaBmTaZScmF9AL6FJQh08O7NG7wUhzfo969kK6ZiHFZ4Bm9
+	uOFO1E7CwHeYnPh1h1srFrzw8Wgsc4lV3zdd67eIUvzUFOJ5UAYSeRhY/6rkKUWxDwV8
+	bRSg==
+X-Received: by 10.152.136.20 with SMTP id pw20mr6923414lab.16.1364248550077;
+	Mon, 25 Mar 2013 14:55:50 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.220.8.4 with SMTP id f4mr17706079vcf.20.1364247931543; Mon,
-	25 Mar 2013 14:45:31 -0700 (PDT)
-Received: by 10.52.174.165 with HTTP; Mon, 25 Mar 2013 14:45:31 -0700 (PDT)
-In-Reply-To: <CAHUNapR+bMqr36jwEzeZk4BEqxZ4+JaPrGJ-4Uo14OHe753s2w@mail.gmail.com>
+Sender: kergoth@gmail.com
+Received: by 10.112.25.195 with HTTP; Mon, 25 Mar 2013 14:55:30 -0700 (PDT)
+In-Reply-To: <CAPhnLPAbnxUWAQ2APO6qeDouzP=gFvOeZh3kv7=WAYHLFQrsaw@mail.gmail.com>
 References: <CAPhnLPDrWsXJMUVb+HqUkHqBDiZSyOqjxtmgiuGGgPBFcc4Eww@mail.gmail.com>
 	<CAHUNapR+bMqr36jwEzeZk4BEqxZ4+JaPrGJ-4Uo14OHe753s2w@mail.gmail.com>
-Date: Mon, 25 Mar 2013 14:45:31 -0700
-Message-ID: <CAPhnLPAbnxUWAQ2APO6qeDouzP=gFvOeZh3kv7=WAYHLFQrsaw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Gm-Message-State: ALoCoQlh6gZi+6XwJv3E6aPLGV3s7WCpjgPcfaFyauK2oLcueDKEc/y6DYgJ+5+vktxVl+z2s/n/
+	<CAPhnLPAbnxUWAQ2APO6qeDouzP=gFvOeZh3kv7=WAYHLFQrsaw@mail.gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Mon, 25 Mar 2013 14:55:30 -0700
+X-Google-Sender-Auth: tDDh4FG-JhIECa7_Yvm2c5LjFP8
+Message-ID: <CABcZANmY8gF0+rEM_8DrLwp2_nvYWaUnDJ30XVGXEyuT9BNz2w@mail.gmail.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Autobuilder migration status.
 X-BeenThere: yocto@yoctoproject.org
@@ -41,102 +42,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Mar 2013 21:45:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 25 Mar 2013 21:55:51 -0000
+Content-Type: multipart/alternative; boundary=f46d042f9210367b0204d8c6dee2
 
-On Thu, Mar 21, 2013 at 8:31 AM, Trevor Woerner <twoerner@gmail.com> wrote:
-> I have looked at the output from a couple builds (nightly-fsl-arm,
-> nightly-fsl-ppc, nightly-mips) and had a couple questions.
+--f46d042f9210367b0204d8c6dee2
+Content-Type: text/plain; charset=UTF-8
+
+On Mon, Mar 25, 2013 at 2:45 PM, Flanagan, Elizabeth <
+elizabeth.flanagan@intel.com> wrote:
+
+> On Thu, Mar 21, 2013 at 8:31 AM, Trevor Woerner <twoerner@gmail.com>
+> wrote:
+> > I have looked at the output from a couple builds (nightly-fsl-arm,
+> > nightly-fsl-ppc, nightly-mips) and had a couple questions.
+> >
+> > Running "poky/oe-init-build-env" will produce a
+> > "build/conf/local.conf", but the nightly builder prefers to puts its
+> > configurations into "build/conf/auto.conf". Obviously there's nothing
+> > wrong with this, but I'm wondering why use auto.conf instead of
+> > local.conf? I'm guessing there's some nugget of information in this
+> > choice that I'm hoping to discover.
 >
-> Running "poky/oe-init-build-env" will produce a
-> "build/conf/local.conf", but the nightly builder prefers to puts its
-> configurations into "build/conf/auto.conf". Obviously there's nothing
-> wrong with this, but I'm wondering why use auto.conf instead of
-> local.conf? I'm guessing there's some nugget of information in this
-> choice that I'm hoping to discover.
+> It's nothing particularly special, except I do it to differentiate an
+> autogenerated local.conf from the local.conf that is created by
+> oe-init-build-env. I'm sure there was a different reason for it, but
+> the commit log never made it over from the o-hand.org svn server so...
 
-It's nothing particularly special, except I do it to differentiate an
-autogenerated local.conf from the local.conf that is created by
-oe-init-build-env. I'm sure there was a different reason for it, but
-the commit log never made it over from the o-hand.org svn server so...
 
->
-> Not all builds, but these three seem to follow similar steps:
-> 1. prepare
-> 2. configure+build core-image-sato core-image-sato-dev
-> core-image-sato-sdk core-image-minimal core-image-minimal-dev
-> 3. configure+build core-image-sato core-image-sato-dev
-> core-image-sato-sdk core-image-minimal core-image-minimal-dev
-> 4. configure+build meta-toolchain-gmae
-> 5. configure+build meta-toolchain-gmae
-> 6. finish up
-
-For the most part, yes, that is correct.
-
-> I can't help but wonder why the same builds are (apparently) done more
-> than once?
-
-SDKMACHINE and MACHINE
-
-We build out qemu* targets twice, once with one SDKMACHINE, then with
-another. Same goes for the toolchain.
-
-In reality, we actually build it out 4 times if you also include the
-lsb build outs.
-
-> Also, for me I think it would be better if #2 and #3 split
-> out each of those build targets individually.
-
-Building them together provides a slight performance increase. That
-said, for the end user if they want to build them individually:
-
-This line in, for example, nightly-arm.conf
-        {'BuildImages': {'images': 'core-image-sato
-core-image-sato-dev core-image-sato-sdk core-image-minimal
-core-image-minimal-dev'}}
-Just becomes these lines:
-        {'BuildImages': {'images': 'core-image-sato'}},
-        {'BuildImages': {'images': 'core-image-sato-dev'}},
-        {'BuildImages': {'images': 'core-image-sato-sdk'}}.....
-
-> Seeing that, say,
-> meta-fsl-arm failed wouldn't provide me with as much information as
-> knowing that (for example) core-image-minimal passed, but
-> core-image-sato failed. With the build the way it is currently, I'd
-> have to dig through #2's log to see whether core-image-minimal was
-> okay or not.
-
-I agree. I'm going to be working on error logging soon so we can look
-at splitting up the errors a bit. Not positive on implementation yet
-but I'm starting to think of the best way to do it.
-
->
-> Is the choice of build slave random? I've noticed that there seem to
-> be 3 different slave hosts: debian, fedora, and suse. This is great!
-
-Yes, however you can tie a builder to a slave or group of slaves:
-
-[nightly-arm]
-builders: [ab02, ab10]
-
-> Although rare, sometimes the host does influence whether a build fails
-> or succeeds, so I'm curious to know if a build's choice of slave will
-> always be the same or is selected randomly.
-
-selected randomly for the most part. Some builds, like eclipse-poky
-are set to a smaller subset as I don't want java installed on every
-builder.
-
-> Also, I've noticed that
-> the version of the host software on the slaves can vary (e.g. I've
-> noticed a suse 11.3 and a 12.2). I'm curious to know if this is on
-> purpose.
-
-Yes. We're trying to get distro coverage from the autobuilder as well
-as release artifacts and QA.
-
+Yeah, that's basically why auto.conf is supported at all. It was
+specifically intended to be used for generated content primarily for
+autobuilders :)
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Christopher Larson
 
+--f46d042f9210367b0204d8c6dee2
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Mon, Mar 25, 2013 at 2:45 PM, Flanagan, Elizabeth <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:elizabeth.flanagan@intel.com" target=3D"_blank">elizabeth=
+.flanagan@intel.com</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On Thu, Mar 21, 2013 at 8:=
+31 AM, Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gm=
+ail.com</a>&gt; wrote:<br>
+
+
+&gt; I have looked at the output from a couple builds (nightly-fsl-arm,<br>
+&gt; nightly-fsl-ppc, nightly-mips) and had a couple questions.<br>
+&gt;<br>
+&gt; Running &quot;poky/oe-init-build-env&quot; will produce a<br>
+&gt; &quot;build/conf/local.conf&quot;, but the nightly builder prefers to =
+puts its<br>
+&gt; configurations into &quot;build/conf/auto.conf&quot;. Obviously there&=
+#39;s nothing<br>
+&gt; wrong with this, but I&#39;m wondering why use auto.conf instead of<br=
+>
+&gt; local.conf? I&#39;m guessing there&#39;s some nugget of information in=
+ this<br>
+&gt; choice that I&#39;m hoping to discover.<br>
+<br>
+</div>It&#39;s nothing particularly special, except I do it to differentiat=
+e an<br>
+autogenerated local.conf from the local.conf that is created by<br>
+oe-init-build-env. I&#39;m sure there was a different reason for it, but<br=
+>
+the commit log never made it over from the <a href=3D"http://o-hand.org" ta=
+rget=3D"_blank">o-hand.org</a> svn server so...</blockquote></div><br>Yeah,=
+ that&#39;s basically why auto.conf is supported at all. It was specificall=
+y intended to be used for generated content primarily for autobuilders :)<b=
+r>
+
+-- <br>Christopher Larson</div></div>
+
+--f46d042f9210367b0204d8c6dee2--
