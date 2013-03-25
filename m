@@ -1,33 +1,31 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BB15E0129D
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:55:51 -0700 (PDT)
-Received: by mail-la0-f48.google.com with SMTP id fq13so12401707lab.35
-	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 14:55:50 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B11B4E0129D
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 15:18:10 -0700 (PDT)
+Received: by mail-wi0-f173.google.com with SMTP id ez12so2675699wid.6
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 15:18:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=NgjZJ1qV4xx+O+KkWPX48wr4HFpSwIbjkJ3Cnj9SdL8=;
-	b=PB76zT/Qxmh3K6kiIZh5VvX8x2749Ge5M1XJe0DKKzBqSCRzg5NZBJOKrhKmaskc4U
-	jKJgGrUlcz5XKT/N6TNFiFL24tg97fTEWG1w0a/NuDF5pzyCWhTc1vPPTbKF3GmHTisB
-	LFYOjkfaetZIxlv9UzHYLJT9z3JCqYi4Xha2raL5wretE1jVV2ewSNXkSCJvrAolYw2d
-	1z1JaQrU0QKro9XxKER7cGaBmTaZScmF9AL6FJQh08O7NG7wUhzfo969kK6ZiHFZ4Bm9
-	uOFO1E7CwHeYnPh1h1srFrzw8Wgsc4lV3zdd67eIUvzUFOJ5UAYSeRhY/6rkKUWxDwV8
-	bRSg==
-X-Received: by 10.152.136.20 with SMTP id pw20mr6923414lab.16.1364248550077;
-	Mon, 25 Mar 2013 14:55:50 -0700 (PDT)
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=aV6AjNjL/T8kx1kor9VgPaT9Cn+4L3jj68BBRrJg9w4=;
+	b=bGzf5pI4bNIna+2Quq/4/Uso3MtgCjEF513eJ3wUwkXufnnjtm6VZMNgU4J65+9A5V
+	PLcsAYt9BWDzHDmT6dHqUQtNwBYOWZkv8oexbPpHQeZmVOSuK/LfB77rXNg2U8WgFMYC
+	3BnMk8HnFCcFClwztft2MCJ3nU/ELiUYsFeg5t1aikJLuBjfezlr/jDSmpC+P6LvxMT8
+	dFoxa8IW0Ai9UXuMRHbCVj2MJCRAxnFZ9AJ7TOGtcBG3mdr8Fa11i+q9oX4Mz/3XYrVa
+	h9XMhoVcU3cZB97RzSvVWyYJ8fXSPQ+J0ZjzvJKH+uZ7ekI8AbjJg+Zi4fd4Akc9yMpF
+	tM5A==
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.25.195 with HTTP; Mon, 25 Mar 2013 14:55:30 -0700 (PDT)
+X-Received: by 10.180.73.229 with SMTP id o5mr4070674wiv.8.1364249889495; Mon,
+	25 Mar 2013 15:18:09 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Mon, 25 Mar 2013 15:18:09 -0700 (PDT)
 In-Reply-To: <CAPhnLPAbnxUWAQ2APO6qeDouzP=gFvOeZh3kv7=WAYHLFQrsaw@mail.gmail.com>
 References: <CAPhnLPDrWsXJMUVb+HqUkHqBDiZSyOqjxtmgiuGGgPBFcc4Eww@mail.gmail.com>
 	<CAHUNapR+bMqr36jwEzeZk4BEqxZ4+JaPrGJ-4Uo14OHe753s2w@mail.gmail.com>
 	<CAPhnLPAbnxUWAQ2APO6qeDouzP=gFvOeZh3kv7=WAYHLFQrsaw@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Mon, 25 Mar 2013 14:55:30 -0700
-X-Google-Sender-Auth: tDDh4FG-JhIECa7_Yvm2c5LjFP8
-Message-ID: <CABcZANmY8gF0+rEM_8DrLwp2_nvYWaUnDJ30XVGXEyuT9BNz2w@mail.gmail.com>
+Date: Mon, 25 Mar 2013 18:18:09 -0400
+Message-ID: <CAHUNapQ=i4yO7NgY+VVp+8wqf+gHp6X3BDM2qvNQ4_aeShNHpw@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
 To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Autobuilder migration status.
@@ -42,79 +40,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Mar 2013 21:55:51 -0000
-Content-Type: multipart/alternative; boundary=f46d042f9210367b0204d8c6dee2
+X-List-Received-Date: Mon, 25 Mar 2013 22:18:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---f46d042f9210367b0204d8c6dee2
-Content-Type: text/plain; charset=UTF-8
+Thanks for all those answers.
 
-On Mon, Mar 25, 2013 at 2:45 PM, Flanagan, Elizabeth <
-elizabeth.flanagan@intel.com> wrote:
+On Mon, Mar 25, 2013 at 5:45 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> On Thu, Mar 21, 2013 at 8:31 AM, Trevor Woerner <twoerner@gmail.com> wrote:
+>> Not all builds, but these three seem to follow similar steps:
+>> 1. prepare
+>> 2. configure+build core-image-sato core-image-sato-dev
+>> core-image-sato-sdk core-image-minimal core-image-minimal-dev
+>> 3. configure+build core-image-sato core-image-sato-dev
+>> core-image-sato-sdk core-image-minimal core-image-minimal-dev
+>> 4. configure+build meta-toolchain-gmae
+>> 5. configure+build meta-toolchain-gmae
+>> 6. finish up
 
-> On Thu, Mar 21, 2013 at 8:31 AM, Trevor Woerner <twoerner@gmail.com>
-> wrote:
-> > I have looked at the output from a couple builds (nightly-fsl-arm,
-> > nightly-fsl-ppc, nightly-mips) and had a couple questions.
-> >
-> > Running "poky/oe-init-build-env" will produce a
-> > "build/conf/local.conf", but the nightly builder prefers to puts its
-> > configurations into "build/conf/auto.conf". Obviously there's nothing
-> > wrong with this, but I'm wondering why use auto.conf instead of
-> > local.conf? I'm guessing there's some nugget of information in this
-> > choice that I'm hoping to discover.
+...
+
+>> Also, for me I think it would be better if #2 and #3 split
+>> out each of those build targets individually.
 >
-> It's nothing particularly special, except I do it to differentiate an
-> autogenerated local.conf from the local.conf that is created by
-> oe-init-build-env. I'm sure there was a different reason for it, but
-> the commit log never made it over from the o-hand.org svn server so...
+> Building them together provides a slight performance increase.
+
+Would there be even more of a performance increase if you just simply
+did a "bitbake world" instead of doing all of those targets
+sequentially? (I assume "world" builds all recipes and doesn't create
+images?)
 
 
-Yeah, that's basically why auto.conf is supported at all. It was
-specifically intended to be used for generated content primarily for
-autobuilders :)
--- 
-Christopher Larson
+It appears that all build configurations (on a given slave) use the
+same location for DL_DIR and SSTATE_DIR, but the TMPDIR location is
+not provided in the configuration file. This would imply each build
+uses a fresh TMPDIR directory (since by default it would be set to
+${TOPDIR}/tmp which comes from the local.conf)? I'm still trying to
+figure out the best/optimal way to be using Yocto at home. When I
+first started, I would use a separate directory for each "project"
+(i.e. machine, board, architecture, etc). But lately I've realized
+that most people just do all their projects in one build location.
+However, when switching between different "projects", interspersed
+with various "git pulls" in between, I seem to get in a state when I'm
+forced to delete my entire TMPDIR location in order for anything to
+build cleanly again. Is this the general consensus?
 
---f46d042f9210367b0204d8c6dee2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Mon, Mar 25, 2013 at 2:45 PM, Flanagan, Elizabeth <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:elizabeth.flanagan@intel.com" target=3D"_blank">elizabeth=
-.flanagan@intel.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On Thu, Mar 21, 2013 at 8:=
-31 AM, Trevor Woerner &lt;<a href=3D"mailto:twoerner@gmail.com">twoerner@gm=
-ail.com</a>&gt; wrote:<br>
-
-
-&gt; I have looked at the output from a couple builds (nightly-fsl-arm,<br>
-&gt; nightly-fsl-ppc, nightly-mips) and had a couple questions.<br>
-&gt;<br>
-&gt; Running &quot;poky/oe-init-build-env&quot; will produce a<br>
-&gt; &quot;build/conf/local.conf&quot;, but the nightly builder prefers to =
-puts its<br>
-&gt; configurations into &quot;build/conf/auto.conf&quot;. Obviously there&=
-#39;s nothing<br>
-&gt; wrong with this, but I&#39;m wondering why use auto.conf instead of<br=
->
-&gt; local.conf? I&#39;m guessing there&#39;s some nugget of information in=
- this<br>
-&gt; choice that I&#39;m hoping to discover.<br>
-<br>
-</div>It&#39;s nothing particularly special, except I do it to differentiat=
-e an<br>
-autogenerated local.conf from the local.conf that is created by<br>
-oe-init-build-env. I&#39;m sure there was a different reason for it, but<br=
->
-the commit log never made it over from the <a href=3D"http://o-hand.org" ta=
-rget=3D"_blank">o-hand.org</a> svn server so...</blockquote></div><br>Yeah,=
- that&#39;s basically why auto.conf is supported at all. It was specificall=
-y intended to be used for generated content primarily for autobuilders :)<b=
-r>
-
--- <br>Christopher Larson</div></div>
-
---f46d042f9210367b0204d8c6dee2--
