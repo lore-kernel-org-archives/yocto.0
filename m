@@ -1,24 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A02B3E01466
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 07:26:02 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 26 Mar 2013 07:26:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.84,911,1355126400"; d="scan'208";a="276145476"
-Received: from unknown (HELO helios.localnet) ([10.255.13.191])
-	by azsmga001.ch.intel.com with ESMTP; 26 Mar 2013 07:25:59 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Vanveerdeghem, Simon" <Simon.Vanveerdeghem@barco.com>
-Date: Tue, 26 Mar 2013 14:25:58 +0000
-Message-ID: <1755052.MPJKo0IPHY@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.1 (Linux/3.5.0-26-generic; KDE/4.10.1; i686; ; )
-In-Reply-To: <8D433CD511BE4646B47F8B31C900818E0CB1C53C@kndmex01.barco.com>
-References: <8D433CD511BE4646B47F8B31C900818E0CB1C53C@kndmex01.barco.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Shared DL_DIR with other users
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92E65E006DC;
+	Tue, 26 Mar 2013 10:09:43 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r2QHItW0028895; Tue, 26 Mar 2013 17:19:23 GMT
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id iL8ZDO-nrbZE; Tue, 26 Mar 2013 17:19:23 +0000 (GMT)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r2QHJI3V028910
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Tue, 26 Mar 2013 17:19:21 GMT
+Message-ID: <1364317761.3097.91.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto <yocto@yoctoproject.org>, openembedded-core
+	<openembedded-core@lists.openembedded.org>, bitbake-devel
+	<bitbake-devel@lists.openembedded.org>, "poky@yoctoproject.org"
+	<poky@yoctoproject.org>
+Date: Tue, 26 Mar 2013 17:09:21 +0000
+X-Mailer: Evolution 3.6.2-0ubuntu0.1 
+Mime-Version: 1.0
+Subject: Yocto Project 1.5 Planning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,53 +35,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2013 14:26:02 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 26 Mar 2013 17:09:44 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi Simon,
+We're now in the planning stages for the 1.5 release scheduled for about
+6 months time. The process hasn't changed, if there are things you'd
+like to see worked on in this timeframe, please ensure there are entries
+for them in the bugzilla. Usually these are "enhancement" requests.
 
-On Tuesday 26 March 2013 14:37:36 Vanveerdeghem, Simon wrote:
-> We are using Yocto with a couple of users, to prevent that our build
-> server has duplicates of downloads, we share the DL_DIR.
-> 
-> But we have problems with permissions. When a user run yocto, it will
-> checkout sources, or download tar files with permissions 644 with the
-> username of the user who is running yocto.
-> 
-> When another user will do a cleanall of a bitbake recipe, yocto will
-> remove the tarball and the svn workingcopy, but because the permissions
-> aren't 777 It cannot remove all the files (yocto doesn't throw an error
-> here).
-> 
-> When that other user will do a fetch of thqt recipe, yocto will checkout
-> the svn directory, it will leave as good as clean because it says
-> internally "Skipped ." (yocto doesn't throw an error here) then it wil
-> take a tarball of it, again the tarball has only a directory named of
-> the checked out module, but have no sources. (yocto doesn't throw an
-> error here)
-> 
-> When yocto will building the sources it will fail because the tar was
-> clean, and there is nothing to build.
-> 
-> The rootcause of this problem is that the shared download directory only
-> use 644. (We can workaround this with the .profile (we can set in the
-> .profile a standard permission mask, but then you always use that mask,
-> something we don't want)
+https://bugzilla.yoctoproject.org/
 
-It's likely that sharing DL_DIR directly between multiple users is not a
-heavily tested scenario. One way around it which is fairly widely used 
-though is to set up a local mirror shared by all of the build machines
-and keep DL_DIR separate on each machine. There is some information on
-how to do that here:
+We as a project will then go through these, decide on which ones to work
+on and at which priorities and then work through these in the 1.5
+timeframe in the usual way.
 
-https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_create_my_own_source_download_mirror_.3F
+Obviously the project members do have some say in what they ultimately
+work on, equally I've always tried to ensure OE community priorities
+also get some attention and I'd say we have a pretty good track record
+there of getting things done. What I can say for sure is that if it
+isn't there, it is unlikely to get worked on. 
+
+If you do plan to work on something yourself, it really does also help
+me and the team for it to be listed in there as I have some idea of when
+its coming and can for example make sure that we have enough runway for
+autobuilder testing and so on. It also means two people don't do the
+same thing!
 
 Cheers,
-Paul
 
--- 
+Richard
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
+
+
+
 
