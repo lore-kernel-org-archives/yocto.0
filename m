@@ -1,27 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 245C5E0131E
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 12:25:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2QJPcKk011539
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 12:25:38 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.234) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Tue, 26 Mar 2013 12:25:38 -0700
-Message-ID: <5151F62F.7050403@windriver.com>
-Date: Tue, 26 Mar 2013 14:25:35 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:17.0) Gecko/20130307 Thunderbird/17.0.4
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
+	[74.125.82.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F22FE0131E
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 13:04:56 -0700 (PDT)
+Received: by mail-we0-f174.google.com with SMTP id u12so757240wey.33
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 13:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=KPZRBFKrKy0mE6/VURK8rWBtIbAOmQaTTSJ3NYON18o=;
+	b=Z4dBysNAmBwRcGLRD0LXGmOUT/l9KQe8ttWVvT/uAM8E4qaBwVASLIbUmCWoeh7ORI
+	qPMbGarpO2+V41V0hyW2g+o8JWNHqU2SVKl6ovEE8AdaoCLGnpfmuP75vfw+0l1/aUYD
+	pmFII8WULxut2TCKZNgala0LO3rwJZfEdLFZ3Pj4zrl/+CQlaUJxpefTZ+WQhze07K6c
+	scmHEAMMNUKp+Tg4XL5XlNeV2aVVpXcaMcZH+9SjPq5z9R9FAT4YhYF3l0OZQegP4ruy
+	oL4Lt1KovSHg12adikb/xjyq+b7k9tmW68ecbEMLb/zZHPlGA3G0wl/rZcXFgJyEyXvu
+	Zrrg==
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <8D433CD511BE4646B47F8B31C900818E0CB1C53C@kndmex01.barco.com>
-	<1755052.MPJKo0IPHY@helios>
-In-Reply-To: <1755052.MPJKo0IPHY@helios>
-Subject: Re: Shared DL_DIR with other users
+X-Received: by 10.194.157.42 with SMTP id wj10mr27214901wjb.12.1364328294801; 
+	Tue, 26 Mar 2013 13:04:54 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Tue, 26 Mar 2013 13:04:54 -0700 (PDT)
+In-Reply-To: <CAJTo0LbShQBwCN43p=+9Wx4y=L8O23j4dS5Q9OgE5wd3GWU7yA@mail.gmail.com>
+References: <1364317761.3097.91.camel@ted>
+	<CAHUNapRNPuN-_bG9e4zdn=2MVd3jqWVrwr6Zhm1M2PQ8fU1PvQ@mail.gmail.com>
+	<CAJTo0LbShQBwCN43p=+9Wx4y=L8O23j4dS5Q9OgE5wd3GWU7yA@mail.gmail.com>
+Date: Tue, 26 Mar 2013 16:04:54 -0400
+Message-ID: <CAHUNapQZb9xKqCTQpQtVx=2yyrha-1ufjKNmtNUEPWwkVkVQrw@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [poky] Yocto Project 1.5 Planning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,64 +40,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2013 19:25:39 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Mar 2013 20:04:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 3/26/13 9:25 AM, Paul Eggleton wrote:
-> Hi Simon,
->
-> On Tuesday 26 March 2013 14:37:36 Vanveerdeghem, Simon wrote:
->> We are using Yocto with a couple of users, to prevent that our build
->> server has duplicates of downloads, we share the DL_DIR.
->>
->> But we have problems with permissions. When a user run yocto, it will
->> checkout sources, or download tar files with permissions 644 with the
->> username of the user who is running yocto.
->>
->> When another user will do a cleanall of a bitbake recipe, yocto will
->> remove the tarball and the svn workingcopy, but because the permissions
->> aren't 777 It cannot remove all the files (yocto doesn't throw an error
->> here).
->>
->> When that other user will do a fetch of thqt recipe, yocto will checkout
->> the svn directory, it will leave as good as clean because it says
->> internally "Skipped ." (yocto doesn't throw an error here) then it wil
->> take a tarball of it, again the tarball has only a directory named of
->> the checked out module, but have no sources. (yocto doesn't throw an
->> error here)
->>
->> When yocto will building the sources it will fail because the tar was
->> clean, and there is nothing to build.
->>
->> The rootcause of this problem is that the shared download directory only
->> use 644. (We can workaround this with the .profile (we can set in the
->> .profile a standard permission mask, but then you always use that mask,
->> something we don't want)
->
-> It's likely that sharing DL_DIR directly between multiple users is not a
-> heavily tested scenario. One way around it which is fairly widely used
-> though is to set up a local mirror shared by all of the build machines
-> and keep DL_DIR separate on each machine. There is some information on
-> how to do that here:
->
-> https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_create_my_own_source_download_mirror_.3F
+On Tue, Mar 26, 2013 at 2:37 PM, Burton, Ross <ross.burton@intel.com> wrote:
+> Danni would be a terrible name
 
-This is how we do it.  We have one user who routinely does a fetchall against 
-the trees and populates the mirror.  Then the users have a layer which adds:
+Of course it would be a terrible name, that's why I suggested it; I
+figured it'd fit in with the others :-D
 
-PREMIRRORS_append = "\
-      git://.*/.* file://path/ \n \
-      svn://.*/.* file://path/ \n \
-      ftp://.*/.* file://path/ \n \
-      http://.*/.* file://path/ \n \
-      https://.*/.* file://path/ \n \
-"
-
---Mark
-
-> Cheers,
-> Paul
->
-
+(don't forget my earlier statement about this being done in jest)
 
