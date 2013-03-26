@@ -1,29 +1,31 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85C5AE0136C;
-	Tue, 26 Mar 2013 10:26:28 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r2QHZ0WN030835; Tue, 26 Mar 2013 17:35:59 GMT
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id MSXWD+y8XhjB; Tue, 26 Mar 2013 17:35:59 +0000 (GMT)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r2QHZqbf030865
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Tue, 26 Mar 2013 17:35:55 GMT
-Message-ID: <1364318755.3097.106.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto <yocto@yoctoproject.org>, openembedded-core
-	<openembedded-core@lists.openembedded.org>, bitbake-devel
-	<bitbake-devel@lists.openembedded.org>, "poky@yoctoproject.org"
-	<poky@yoctoproject.org>
-Date: Tue, 26 Mar 2013 17:25:55 +0000
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
-Mime-Version: 1.0
-Subject: Status updates going forward and communication
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f179.google.com (mail-we0-f179.google.com
+	[74.125.82.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9E91E0136C
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 10:28:25 -0700 (PDT)
+Received: by mail-we0-f179.google.com with SMTP id p43so899763wea.10
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 10:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=NW1D+2ZZoI1sul6Q1VxiGOBYODoo/4a25SVOtlsXQ+E=;
+	b=LIYpdnadqjn5FtkLIcBJnTWqGSrEMRZyNZsShq8do8vJMmvS7JNhUzZbwXwq5a6DeP
+	BxFr1hSWOOuU+6zMIyfH3rs24cBbbiH1cVXFLb7hMV2TPeCi80/sc3IXoCQ0Tgzvb00j
+	QUEH8oAkVSgfqzU33dZvaaFlZXhBO3BOiQv0ZsxmzRhr0aLGinfH8zWqJK0vCD0NAN+E
+	U2zegjXGxXnK9tLbcLyBwd8vIsXdrNYpekAC3u0QLVmtilRhrpxZJxw6sjXRQV5DBPjb
+	uX+oFsqgEz6lDAjYsli00u5qLFGYJJqxnyQnzd5GP4pnsuc7WxtCexJXsTLQ/cBz1RiP
+	Qh8w==
+MIME-Version: 1.0
+X-Received: by 10.180.85.103 with SMTP id g7mr444980wiz.23.1364318904380; Tue,
+	26 Mar 2013 10:28:24 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Tue, 26 Mar 2013 10:28:24 -0700 (PDT)
+In-Reply-To: <1364317761.3097.91.camel@ted>
+References: <1364317761.3097.91.camel@ted>
+Date: Tue, 26 Mar 2013 13:28:24 -0400
+Message-ID: <CAHUNapRNPuN-_bG9e4zdn=2MVd3jqWVrwr6Zhm1M2PQ8fU1PvQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [poky] Yocto Project 1.5 Planning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,49 +37,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2013 17:26:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Mar 2013 17:28:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-There have been some concerns raised at the TSC recently about how
-transparent the Yocto Project development process is and how and where
-it connects to OpenEmbedded. When you're dealing with companies and
-engineers there does need to be a process with things like schedules and
-in the interests of transparency, all the gory details are out there.
-This is why you see some things being targeted for milestones and hence
-getting more attention than others at certain times. This isn't to say
-community input is any less valuable, there is just a balancing act I
-need to do to keep all the various areas on track. We don't always keep
-the schedules either, I've caused my share of friction by "refusing" to
-merge systemd on time several times over for example as it simply hasn't
-been ready.
+[the following is meant to be humourous, please take it as such]
 
-Talking with the TSC, its felt we need to better communicate some of the
-issues and what exactly is happening at any given time. I suspect some
-of the tension could be helped with some kind of regular status email
-about what is going on and where things are at. This would attempt to
-explain why patches were slow to merge for example of why certain things
-appear to being "ignored" (e.g. the systemd version upgrade is simply
-being postponed until after Ross' series merges which in turn is pending
-a known bug getting fixed).
-
-From a load perspective, I want to write these summaries like I want a
-hole in the head, its going to eat more time which I simply don't have.
-The alternatives like asking someone else to write it would likely end
-up increasing my workload anyhow though and its certainly true that I
-have some of the key information which needs to go into this. I already
-explain this several times over each week in different forums but sadly
-its not reaching everyone, particularly some of the people it needs to.
-
-I am therefore going to attempt to send out such an email. This is a
-trial for now and probably going to be a lot of work for me so let
-me/TSC/Jefro/the list know your thoughts on it. I'd love to come up with
-a way to get other people involved in the process but I'm simply not
-seeing it at the moment. I may try and cut back in my involvement in
-some of the other meetings as a consequence though.
-
-Cheers,
-
-Richard
-
+What I'm hoping to see in the next release is a better release name.
+Male first names was the best suggestion? I recommend the next release
+be named "Dani", a female version of "Danny", just to keep things
+equal.
 
