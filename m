@@ -1,54 +1,28 @@
-Return-Path: <sipke.vriend@xilinx.com>
-Received: from db8outboundpool.messaging.microsoft.com
-	(mail-db8lp0188.outbound.messaging.microsoft.com [213.199.154.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B041CE00740;
-	Mon, 25 Mar 2013 23:12:07 -0700 (PDT)
-Received: from mail138-db8-R.bigfish.com (10.174.8.244) by
-	DB8EHSOBE011.bigfish.com (10.174.4.74) with Microsoft SMTP Server id
-	14.1.225.23; Tue, 26 Mar 2013 06:12:06 +0000
-Received: from mail138-db8 (localhost [127.0.0.1])	by
-	mail138-db8-R.bigfish.com (Postfix) with ESMTP id 9330480109;
-	Tue, 26 Mar 2013 06:12:06 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:149.199.60.83; KIP:(null); UIP:(null); IPV:NLI;
-	H:xsj-gw1; RD:unknown-60-83.xilinx.com; EFVD:NLI
-X-SpamScore: 0
-X-BigFish: VPS0(zz98dI9371I1432I14ffIdb82h853kzz1f42h1ee6h1de0h1202h1e76h1d1ah1d2ahzz8275dh8275bhz2fh95h668h839h944hd24hf0ah119dh1220h1288h12a5h12a9h12bdh137ah13b6h1441h14ddh1504h1537h153bh162dh1631h1758h18e1h1946h19b5h1b0ah906i1155h)
-Received-SPF: pass (mail138-db8: domain of xilinx.com designates 149.199.60.83
-	as permitted sender) client-ip=149.199.60.83;
-	envelope-from=sipke.vriend@xilinx.com; helo=xsj-gw1 ;
-	helo=xsj-gw1 ; 
-Received: from mail138-db8 (localhost.localdomain [127.0.0.1]) by mail138-db8
-	(MessageSwitch) id 1364278325363502_12610;
-	Tue, 26 Mar 2013 06:12:05 +0000 (UTC)
-Received: from DB8EHSMHS017.bigfish.com (unknown [10.174.8.232])	by
-	mail138-db8.bigfish.com (Postfix) with ESMTP id 561944C0045;
-	Tue, 26 Mar 2013 06:12:05 +0000 (UTC)
-Received: from xsj-gw1 (149.199.60.83) by DB8EHSMHS017.bigfish.com
-	(10.174.4.27) with Microsoft SMTP Server id 14.1.225.23;
-	Tue, 26 Mar 2013 06:12:04 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66]
-	helo=xsj-smtp1.xilinx.com)	by xsj-gw1 with esmtp (Exim
-	4.63)	(envelope-from <sipke.vriend@xilinx.com>)	id 1UKN76-0008I0-9G;
-	Mon, 25 Mar 2013 23:12:04 -0700
-From: Sipke Vriend <sipke.vriend@xilinx.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, Khem Raj
-	<raj.khem@gmail.com>
-Thread-Topic: [yocto] TUNE_PKGARCH for Microblaze
-Thread-Index: Ac4lGvRWCMgC7lCzQ3WJMTlC0IRu/QAVft2AARhDQ+A=
-Date: Tue, 26 Mar 2013 06:12:02 +0000
-References: <3c725a86-09c2-4c5a-b9c8-541e4a70ee5f@DB8EHSMHS025.ehs.local>
-	<7F713EA1-FD12-46CA-9F14-DF9F83585F9D@gmail.com>
-In-Reply-To: <7F713EA1-FD12-46CA-9F14-DF9F83585F9D@gmail.com>
-Accept-Language: en-AU, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.162.153]
+Return-Path: <dan.florincristian@gmail.com>
+Received: from mail-pd0-f179.google.com (mail-pd0-f179.google.com
+	[209.85.192.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11147E00740
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 23:33:44 -0700 (PDT)
+Received: by mail-pd0-f179.google.com with SMTP id x10so2878347pdj.38
+	for <yocto@yoctoproject.org>; Mon, 25 Mar 2013 23:33:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=eXCUC7I5GIVmlb+mRZPlQccAeIJsQeyR6/fyII7NOR0=;
+	b=FYFxsc01Q/Qk/0vulXghlr/9ioT2gQb+MnGmymKL86bS4hyMJYBfTAatg2E/wuYQ14
+	3/xWOijcDj/ylxyzQ0BzF6dIXFKPxqbgNvDQ9jfoWjjgU/bufz85J/Bql31/GPlXATjR
+	bsidp1K9k466vx3xc7SZ5Du+P88Jw6qK2Fgopyq3mLbI99M2BPqG3H79W/v7tmgjhdin
+	aIt9q1+tOfB8SyBu3e2U0SR0LAyAvGSJPxTO6Ap9Ctb6u/iCw20+80i1uYD8Hxid6wpf
+	83SuXCY2B19ZSCdqUTG6Mi82t5Ef5X0MzCNBajbmJt3qskkDSVpqImTUltDPCkkolFhR
+	2P+w==
 MIME-Version: 1.0
-X-RCIS-Action: ALLOW
-Message-ID: <e978f827-c688-48ed-ad53-346e3231e285@DB8EHSMHS017.ehs.local>
-X-OriginatorOrg: xilinx.com
-Cc: "meta-xilinx@yoctoproject.org" <meta-xilinx@yoctoproject.org>
-Subject: Re: TUNE_PKGARCH for Microblaze
+X-Received: by 10.66.121.1 with SMTP id lg1mr22695868pab.167.1364279623727;
+	Mon, 25 Mar 2013 23:33:43 -0700 (PDT)
+Received: by 10.66.134.174 with HTTP; Mon, 25 Mar 2013 23:33:43 -0700 (PDT)
+Date: Tue, 26 Mar 2013 08:33:43 +0200
+Message-ID: <CABzOdpRcL1L-7xrvuoZFkojQsStR1En1TKmekE_vPVvbYy7ZQQ@mail.gmail.com>
+From: Florin Cristian Dan <dan.florincristian@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: Yocto Qt!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,195 +34,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2013 06:12:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 26 Mar 2013 06:33:44 -0000
+Content-Type: multipart/alternative; boundary=e89a8ffbab2758c04304d8ce1a1a
+
+--e89a8ffbab2758c04304d8ce1a1a
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi...
+I've tried adding this
+
+CORE_IMAGE_EXTRA_INSTALL += "qt4-tools"
+
+ in order to have the qt4 tools, and now, i made a simple qt4 form
+aplication with a label ana a test box, nothing special, just for
+test...i first tried to compile the program on my target machine
+
+when i enterd qmake "project" i get this : "QMAKESPEC has not been se.
+so configuration cannot be deduced.Error processint file..."
+
+Then i tried to compile the program on my PC, i succeded doing that,
+and then copied all the folder to a USB and tried to run the
+executable on my target, and got this "./project: error thile loading
+shared librarie: libQt5Widgets.so.5: cannot open shared object file:
+No such file or directory.
+
+What am I missing?
+
+--e89a8ffbab2758c04304d8ce1a1a
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hi...<div>I&#39;ve tried adding this=A0</div><div><pre style=3D"font-family=
+:courier,&#39;courier new&#39;,monospace;font-size:14px;white-space:pre-wra=
+p;word-wrap:break-word;margin-top:0px;margin-bottom:0px;line-height:19px;ba=
+ckground-color:rgb(255,255,255)">
+CORE_IMAGE_EXTRA_INSTALL +=3D &quot;qt4-tools&quot;</pre><pre style=3D"font=
+-family:courier,&#39;courier new&#39;,monospace;font-size:14px;white-space:=
+pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;line-height:=
+19px;background-color:rgb(255,255,255)">
+<span style=3D"font-family:arial;font-size:small;line-height:normal;white-s=
+pace:normal">=A0in order to have the qt4 tools, and now, i made a simple qt=
+4 form aplication with a label ana a test box, nothing special, just for te=
+st...i first tried to compile the program on my target machine</span></pre>
+<pre style=3D"word-wrap:break-word;margin-top:0px;margin-bottom:0px;backgro=
+und-color:rgb(255,255,255)"><font face=3D"arial"><span style=3D"white-space=
+:normal">when i enterd qmake &quot;project&quot; i get this : &quot;QMAKESP=
+EC has not been se. so configuration cannot be deduced.Error processint fil=
+e...&quot;</span></font></pre>
+<pre style=3D"word-wrap:break-word;margin-top:0px;margin-bottom:0px;backgro=
+und-color:rgb(255,255,255)"><font face=3D"arial"><span style=3D"white-space=
+:normal">Then i tried to compile the program on my PC, i succeded doing tha=
+t, and then copied all the folder to a USB and tried to run the executable =
+on my target, and got this &quot;./project: error thile loading shared libr=
+arie: libQt5Widgets.so.5: cannot open shared object file: No such file or d=
+irectory.</span></font></pre>
+<pre style=3D"word-wrap:break-word;margin-top:0px;margin-bottom:0px;backgro=
+und-color:rgb(255,255,255)"><font face=3D"arial"><span style=3D"white-space=
+:normal">What am I missing?</span></font></pre><pre style=3D"word-wrap:brea=
+k-word;margin-top:0px;margin-bottom:0px;background-color:rgb(255,255,255)">
+<br></pre></div>
 
-With help from Khem's email we have been able to perform 'some' sanity
-checking against the microblaze architecture.
-
-The TUNECONFLICTS assist us in ensuring conflicting features are flagged du=
-ring
-the bitbake sanity check, however because Microblaze's features are =
-
-independently configurable, we would like to do some additional 'sanity =
-
-checking'. =
-
-
-Using a hierarchical method of features, like in arm, is not really viable =
-for =
-
-Microblaze, so if there are alternate existing ways we would like to use th=
-em =
-
-rather than creating localised bb classes to do this for us.
-
-1. Is there a way similar to TUNECONFLICTS for "paired" features, i.e. if o=
-ne =
-
-   feature exists another must also?
-   (Certain microblaze versions must have a set of features if a particular=
- =
-
-   feature is enabled).
-2. Is there a way to define that certain features must exist, other than =
-
-   defining multiple machines   (e.g. in endian case we would like to ensur=
-e one =
-
-   of them is picked)?
-3. Additionally (or instead of 1 and 2) is there a way we can introduce/app=
-end a =
-
-   'sanity check' into the bitbake layer model - i.e. inform bitbake to =
-
-   run 'our complex sanity' check?
-
-As a continuation from my last email, the following is a list of possible M=
-icroblaze =
-
-architecture features, which can be supplied in the machine and/or local.co=
-nf =
-
-file. Lack of  a hardware feature means the soft version is used.
-
-big-endian/little-endian =
-
-vXXX where XXX is a microblaze version (like v830) =
-
-barrel-shift =
-
-multiply-high multiply-low =
-
-pattern-compare =
-
-reorder =
-
-divide-hard =
-
-fpu-hard fpu-hard-extended =
-
-
-Additionally we plan to modify the package name slightly, e.g.
-microblazeel-v840-bs-ml-div-fe-cmp-re
-microblazeel-v830-bs-mh
-microblazeel-v830
-
-Regards
-Sipke
-
->On Mar 20, 2013, at 4:44 PM, Khem Raj <mailto:raj.khem@gmail.com> wrote:
->
->
->On Mar 19, 2013, at 9:08 PM, Sipke Vriend <sipke.vriend@xilinx.com> wrote:=
-
->
->
->Hi all,
-> =
-
->We are seeking some feedback regarding common practices for defining TUNE_=
-PKGARCH within Yocto.
-> =
-
->
->usually its dictated by architecture, ABI and other processor features. th=
-e current tune files have good ways to express the relationships =
-
->you would translate the below table into set of TUNE_FEATURES and define P=
-ACKAGE_EXTRA_ARCHS if you need to express compatibility between different t=
-unes
->
->Look at arm tunes they are the best examples of complexity
->
->
->We need to define a unique TUNE_PKGARCH for the possible configuration of =
-Microblaze architecture.
->Our proposal is short unique string for each HW feature which is enabled i=
-n Microblaze.
-> =
-
->For 'extensive hardware usage' architecture, this would result in somethin=
-g like:
->mbebv730-bs-mh-div-fb-cmp
->mbebv840-bs-mh-div-fb-cmp-re
->mbelv840-bs-ml-div-fe-cmp-re
->and for architecture with no 'hardware usage':
->mbebv730
->mbebv840
->mbelv840
-> =
-
->The table below details the unique strings and their relation to compiler =
-and hardware flags, and a couple of versions of Microblaze architecture.
->(If this table does not show cleanly switch to fixed width font)
->-------------------
->String Compiler Flag        Hardware Flag         CPU versions
->       -mcpu=3DvX.YY.Z                              v7.30.a v8.40.a
-> =
-
->mbel   -mlittle-endian      C_ENDIANNESS (LITTLE) -       o
->mbeb   -mbig-endian         C_ENDIANNESS (BIG)    x       o
-> =
-
->bs     -mxl-barrel-shift    C_USE_BARREL          o       o
-> =
-
->ml     -mnoxl-soft-mul      C_USE_HW_MUL (MUL32)  o       o
->mh     -mxl-multiply-high   C_USE_HW_MUL (MUL64)  o       o
-> =
-
->div    -mnoxl-soft-div      C_USE_DIV             o       o
-> =
-
->fb     -mhard-float         C_USE_FPU (BASIC)     o       o
->fe     -mxl-float-convert   C_USE_FPU (EXTENDED)  o       o
->fe     -mxl-float-sqrt      C_USE_FPU (EXTENDED)  o       o
-> =
-
->cmp   -mxl-pattern-compare  C_USE_PCMP_INSTR      o       o
-> =
-
->re    -mxl-reorder          C_USE_REORDER_INSTR   -       o
-> =
-
->Where '-' means unavailable 'x' is only option and 'o' is optional.
->-------------------
-> =
-
->
->
->you can express this with TUNECONFLICTS and TUNEVALID
->
->and may be create heirarchy of tune files which builds upon common tunings=
-.
->
->
->Note the table rows have hardware feature 'groupings', which means only on=
-e of the strings should be present within the TUNE_PKGARCH. For example the=
- Floating Point Unit hardware feature can be defined by either fb (for basi=
-c mode) or fe (for extended mode).
-> =
-
->Regards
->Sipke
-> =
-
-> =
-
-> =
-
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
->
->
-
-
-
+--e89a8ffbab2758c04304d8ce1a1a--
