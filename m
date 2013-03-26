@@ -1,21 +1,27 @@
-Return-Path: <eric@eukrea.com>
-Received: from smtp2-g21.free.fr (smtp2-g21.free.fr [212.27.42.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D52AE00740
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 02:02:33 -0700 (PDT)
-Received: from e6520eb (pac33-2-82-240-38-71.fbx.proxad.net [82.240.38.71])
-	(Authenticated sender: eukrea)
-	by smtp2-g21.free.fr (Postfix) with ESMTPSA id 812E34B005F;
-	Tue, 26 Mar 2013 10:02:24 +0100 (CET)
-Date: Tue, 26 Mar 2013 10:02:22 +0100
-From: Eric =?UTF-8?B?QsOpbmFyZA==?= <eric@eukrea.com>
-To: Florin Cristian Dan <dan.florincristian@gmail.com>
-Message-ID: <20130326100223.18d9eb82@e6520eb>
-In-Reply-To: <CABzOdpRcL1L-7xrvuoZFkojQsStR1En1TKmekE_vPVvbYy7ZQQ@mail.gmail.com>
-References: <CABzOdpRcL1L-7xrvuoZFkojQsStR1En1TKmekE_vPVvbYy7ZQQ@mail.gmail.com>
-Organization: =?UTF-8?B?RXVrcsOpYQ==?= Electromatique
-X-Mailer: Claws Mail 3.9.0 (GTK+ 2.24.13; x86_64-redhat-linux-gnu)
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
+Return-Path: <dan.florincristian@gmail.com>
+Received: from mail-da0-f41.google.com (mail-da0-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57B09E00740
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 04:35:00 -0700 (PDT)
+Received: by mail-da0-f41.google.com with SMTP id w4so3657832dam.14
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 04:35:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=aWEyS4YGk1G3Dapwtwgb0faNx3CI1h6wr2WRW7E408o=;
+	b=VkqrjBX9MZolH+2usHbCzQBTI2dAWcaxjVBTaQO8620/OMdnyfGQg2KOcdZEC5vuuJ
+	Xpf8jFyfeaJqPo1TVJObYlRJp2YcCAzQf6R5fFiCzpHnX++y5rwEanJ8M7xtW7H54aKn
+	TUO1ll9+lTvoUE2FQohzFyFzaN964Vo09FABCVeQpQp2w6h1bzTq+6K1SI3+CxtI3K7s
+	Dk690LRZQ/ogex+en/roFGy5PXiZRTVNvEoZmbexBfpqJOusQQOYeCYQ4cxzRLFx0OOh
+	HdK0AN9BqdBSmDy+iC+foLhtEDN1ADvjmtoWcFi4QQcm66uS2uYL+W57LWyneMRSRRdn
+	xh3w==
+MIME-Version: 1.0
+X-Received: by 10.66.122.37 with SMTP id lp5mr23197612pab.159.1364297700050;
+	Tue, 26 Mar 2013 04:35:00 -0700 (PDT)
+Received: by 10.66.134.174 with HTTP; Tue, 26 Mar 2013 04:34:59 -0700 (PDT)
+Date: Tue, 26 Mar 2013 13:34:59 +0200
+Message-ID: <CABzOdpTEzcra9g4KgnoWfYWFjaQjiCrUsmuR_GS5SQ1fsKGenQ@mail.gmail.com>
+From: Florin Cristian Dan <dan.florincristian@gmail.com>
+To: yocto@yoctoproject.org
 Subject: Re: Yocto Qt!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -28,36 +34,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2013 09:02:35 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 26 Mar 2013 11:35:00 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e4fd8c78bd804d8d24f33
 
-Hi,
+--047d7b2e4fd8c78bd804d8d24f33
+Content-Type: text/plain; charset=ISO-8859-1
 
-Le Tue, 26 Mar 2013 08:33:43 +0200,
-Florin Cristian Dan <dan.florincristian@gmail.com> a =C3=A9crit :
+Can you please tell me where can i download Qt4SDK? I've searched it but i
+did not find it
 
-> Hi...
-> I've tried adding this
->=20
-> CORE_IMAGE_EXTRA_INSTALL +=3D "qt4-tools"
->=20
->  in order to have the qt4 tools, and now, i made a simple qt4 form
-> aplication with a label ana a test box, nothing special, just for
-> test...i first tried to compile the program on my target machine
->=20
-> when i enterd qmake "project" i get this : "QMAKESPEC has not been se.
-> so configuration cannot be deduced.Error processint file..."
->=20
-> Then i tried to compile the program on my PC, i succeded doing that,
-> and then copied all the folder to a USB and tried to run the
-> executable on my target, and got this "./project: error thile loading
-> shared librarie: libQt5Widgets.so.5: cannot open shared object file:
-> No such file or directory.
->=20
-> What am I missing?
+--047d7b2e4fd8c78bd804d8d24f33
+Content-Type: text/html; charset=ISO-8859-1
 
-your PC's SDK seems to use Qt5, Yocto is using Qt4.
+Can you please tell me where can i download Qt4SDK? I&#39;ve searched it but i did not find it
 
-Eric
-
+--047d7b2e4fd8c78bd804d8d24f33--
