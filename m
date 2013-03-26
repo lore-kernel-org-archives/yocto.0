@@ -1,26 +1,27 @@
 Return-Path: <mark.hatle@windriver.com>
 Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0F7BE0146C
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 12:21:25 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 245C5E0131E
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 12:25:39 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2QJLOkZ011486
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r2QJPcKk011539
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 12:21:24 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 12:25:38 -0700 (PDT)
 Received: from Marks-MacBook-Pro.local (172.25.36.234) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Tue, 26 Mar 2013 12:21:25 -0700
-Message-ID: <5151F532.70304@windriver.com>
-Date: Tue, 26 Mar 2013 14:21:22 -0500
+	14.2.342.3; Tue, 26 Mar 2013 12:25:38 -0700
+Message-ID: <5151F62F.7050403@windriver.com>
+Date: Tue, 26 Mar 2013 14:25:35 -0500
 From: Mark Hatle <mark.hatle@windriver.com>
 Organization: Wind River Systems
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
 	rv:17.0) Gecko/20130307 Thunderbird/17.0.4
 MIME-Version: 1.0
 To: <yocto@yoctoproject.org>
-References: <CA+QkY1DZCJnYH-3wUc_z+SXOBtBS7NQU3GV+kCaTTeK8Co+8eA@mail.gmail.com>
-In-Reply-To: <CA+QkY1DZCJnYH-3wUc_z+SXOBtBS7NQU3GV+kCaTTeK8Co+8eA@mail.gmail.com>
-Subject: Re: Building "restricted" source code
+References: <8D433CD511BE4646B47F8B31C900818E0CB1C53C@kndmex01.barco.com>
+	<1755052.MPJKo0IPHY@helios>
+In-Reply-To: <1755052.MPJKo0IPHY@helios>
+Subject: Re: Shared DL_DIR with other users
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,49 +33,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2013 19:21:26 -0000
+X-List-Received-Date: Tue, 26 Mar 2013 19:25:39 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 3/26/13 7:53 AM, Jerrod Peach wrote:
-> As part of my company's firmware builds, we have to build some code that only a
-> handful of developers are allowed to view.  We call this restricted source code.
->   Getting our official "system" builds to build this code isn't a problem.  What
-> is a problem is a regular developer's build of this code.
+On 3/26/13 9:25 AM, Paul Eggleton wrote:
+> Hi Simon,
 >
-> Imagine this scenario: The restricted source depends upon eglibc.  Our low-level
-> team, who doesn't have access to the restricted source, updates the recipe for
-> eglibc.  The hash for the restricted package is permuted, and so they can't get
-> an sstate hit and are required to rebuild the source.  But, since they can't
-> check out the source, they can't build it.  This would cause a build failure.
+> On Tuesday 26 March 2013 14:37:36 Vanveerdeghem, Simon wrote:
+>> We are using Yocto with a couple of users, to prevent that our build
+>> server has duplicates of downloads, we share the DL_DIR.
+>>
+>> But we have problems with permissions. When a user run yocto, it will
+>> checkout sources, or download tar files with permissions 644 with the
+>> username of the user who is running yocto.
+>>
+>> When another user will do a cleanall of a bitbake recipe, yocto will
+>> remove the tarball and the svn workingcopy, but because the permissions
+>> aren't 777 It cannot remove all the files (yocto doesn't throw an error
+>> here).
+>>
+>> When that other user will do a fetch of thqt recipe, yocto will checkout
+>> the svn directory, it will leave as good as clean because it says
+>> internally "Skipped ." (yocto doesn't throw an error here) then it wil
+>> take a tarball of it, again the tarball has only a directory named of
+>> the checked out module, but have no sources. (yocto doesn't throw an
+>> error here)
+>>
+>> When yocto will building the sources it will fail because the tar was
+>> clean, and there is nothing to build.
+>>
+>> The rootcause of this problem is that the shared download directory only
+>> use 644. (We can workaround this with the .profile (we can set in the
+>> .profile a standard permission mask, but then you always use that mask,
+>> something we don't want)
 >
-> Is anyone dealing with this scenario while using Yocto currently?  If so, how?
->   I know it may be unlikely that many people are hitting this since Yocto is
-> primarily used to build open-source code, but I thought I'd take a shot in the
-> dark and hope for the best.  :-)
+> It's likely that sharing DL_DIR directly between multiple users is not a
+> heavily tested scenario. One way around it which is fairly widely used
+> though is to set up a local mirror shared by all of the build machines
+> and keep DL_DIR separate on each machine. There is some information on
+> how to do that here:
 >
+> https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_create_my_own_source_download_mirror_.3F
 
-Two ways I know of doing this.  Slightly different way of doing things:
+This is how we do it.  We have one user who routinely does a fetchall against 
+the trees and populates the mirror.  Then the users have a layer which adds:
 
-1) If the code does -not- rely on outside influences, such as eglibc.  Configure 
-the recipe and pretty much ignore everything else with a vardepsexp.  Then ship 
-the sstate-cache files that cover the compiled code.  (Along with the original 
-recipe...)
-
-2) For code that DOES rely on outside influences.. create a custom recipe that 
-either downloads the source and builds it [if the user has access to the 
-source], or will pull the binaries from a specific location and simply 
-install/package them.   This is actually the more common approach.
-
-(To seed that location, you can extract the items from your restricted build -- 
-or build it outside the tree using an SDK or similar.)
+PREMIRRORS_append = "\
+      git://.*/.* file://path/ \n \
+      svn://.*/.* file://path/ \n \
+      ftp://.*/.* file://path/ \n \
+      http://.*/.* file://path/ \n \
+      https://.*/.* file://path/ \n \
+"
 
 --Mark
 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Cheers,
+> Paul
 >
 
 
