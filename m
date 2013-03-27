@@ -1,33 +1,29 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC8FCE01474
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 21:02:01 -0700 (PDT)
-Received: by mail-vb0-f48.google.com with SMTP id fc21so4876517vbb.7
-	for <yocto@yoctoproject.org>; Tue, 26 Mar 2013 21:02:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:content-type:x-gm-message-state;
-	bh=caX+bAEsjt+P2TkY9UrSxRqlQ9da5WolOuB0GultA5Y=;
-	b=WeoEk/QryUOW7Dk0ORRCGWvapyLALSV/Nls7sgQ64Bym2Rh1PL/IBsTw8hkvxJquHf
-	4qo5Q6sjY6ebENvWiDuLlyf1lHSU54ddiM8qWfbp0feCxHjOh0bjjTrcv7+fa+3jy9OT
-	Oq2kuM4YW2x/Bpt/mwlUCF8glU2Mr46XWzKaMHe3uLLYlRs3HRxnZnVCsYQrhelJRTp3
-	ipm82dfuCD78DVRIfYWpAylIHXX4ybSNpO8F9zAOU3Z+rhfUPCRJ1qe+gD02yLKIq62o
-	EQhe97HNa+62GbamnDVpDUj+0UT4s1d44fKuaK4rYmOjCefpR+l9QXXY98LslHzAXJde
-	GPBw==
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-kukur.atl.sa.earthlink.net
+	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBA89E01481
+	for <yocto@yoctoproject.org>; Wed, 27 Mar 2013 01:09:18 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=b2hw2zmKprNDKu/YTD7CFBOo9e3qi8Pw0EjZh9osSRKCNePfsDGJFw4kPMRz+VIV;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UKlQ5-0005pa-UQ
+	for yocto@yoctoproject.org; Wed, 27 Mar 2013 04:09:18 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD><20130307104051.GH32228@jama.dyndns-home.com><96E98E10F7094D32B371FD84AFF0FFFC@PAULD><20130307182933.GS32228@jama.dyndns-home.com><50BB56BA2C44400C9B6A31B0C2641BD2@PAULD>
+	<20130307224223.GU32228@jama.dyndns-home.com>
+In-Reply-To: <20130307224223.GU32228@jama.dyndns-home.com>
+Date: Wed, 27 Mar 2013 01:09:11 -0700
+Message-ID: <D5340F46DF5F458D9096EA823C3A9EAE@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.220.88.145 with SMTP id a17mr21784584vcm.66.1364356920912;
-	Tue, 26 Mar 2013 21:02:00 -0700 (PDT)
-Received: by 10.52.163.74 with HTTP; Tue, 26 Mar 2013 21:02:00 -0700 (PDT)
-In-Reply-To: <CAPhnLPDAEG+scHdCFGvbV+n7hKOQysrcJ+yuZ=CnCdYHkdGvNQ@mail.gmail.com>
-References: <CAPhnLPDAEG+scHdCFGvbV+n7hKOQysrcJ+yuZ=CnCdYHkdGvNQ@mail.gmail.com>
-Date: Tue, 26 Mar 2013 21:02:00 -0700
-Message-ID: <CAPhnLPCV0D4xW=MTjUqxd4okZ32PZWdKryKxBzM5G42FSy0P0A@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQkYsqjPiyatMIe8AE3KmBzEFhXCUGThiD1OazPHA+6bUqkGVCbmv/YsL/07PGL7dVewcr+m
-Subject: Re: 1.4_M5.rc2 availability
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4br5tbhE6DmnlPSmi0A39DPNa6sAPB6iOA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688b0e1f46c0741bdc48277a83d951ede2a350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: Samba server?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,43 +35,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Mar 2013 04:02:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 27 Mar 2013 08:09:19 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Tue, Mar 26, 2013 at 7:57 PM, Flanagan, Elizabeth
-<elizabeth.flanagan@intel.com> wrote:
-> 1.4_M5.rc2 is currently building and will be available in a few hours at:
->
-> http://autobuilder.yoctoproject.org/pub/nightly/20130326-2
+A couple weeks ago, several people here were kind enough to help me through
+the process of adding the OpenEmbedded layer called
+meta-openembedded/meta-oe to my core-image-base-cedartrail-nopvr build,
+which I wanted because it contains Samba. I eventually got it to build
+without errors. But still no Samba.
 
-All,
-
-I've found an error in the autobuilder code that caused the creation
-of bblayers.conf to exclude meta-qt3. I've fixed the issue and have
-restarted this build. It should be complete within the next 6-7 hours
-or so. The new URL will be:
-
-http://autobuilder.yoctoproject.org/pub/nightly/20130327-1
-
->
-> meta-intel: 2e8760d272aa2c62b41cbf768445c99569604c5e
-> meta-qt3: 4c27cce6688aa39852f3cba5e7b80ec279019605
-> poky: bdca49274173153b1b0a72887de6321b4756b684
-> meta-fsl-ppc: 29dece8008c3c6d48b09aeef37f85617cef5dce9
-> meta-fsl-arm: 2ea1d2c944c63a078a1921cf8b8abfbc04d5adaa
-> eclipse-poky: 5e20d3c32072ddd91dceb8b2b793ef13f25b915e
->
-> -b
->
-> --
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
-
-
+The log file shows that the layer.conf file for that layer is being read,
+and there is indeed some recipes for Samba. The bitbake -s option lists
+samba as one of the packages. But the logs only show a few of recipes being
+processed from this layer, none having to do with Samba. I was under the
+impression that adding a layer added the recipes in the layer, and caused
+them to be built. Apparently not. What am I missing?
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
