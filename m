@@ -1,42 +1,32 @@
 Return-Path: <twoerner@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C03DE014BD
-	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:33:04 -0700 (PDT)
-Received: by mail-wi0-f176.google.com with SMTP id hm14so3695980wib.9
-	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:33:04 -0700 (PDT)
+Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
+	[209.85.212.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA1A3E014BD
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:52:30 -0700 (PDT)
+Received: by mail-wi0-f181.google.com with SMTP id hj8so3640639wib.2
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:52:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
 	:subject:from:to:cc:content-type;
-	bh=wjcOs0ELBYeatPYFolfUbw+LESgvN9YpMFEDRLayvL4=;
-	b=DbOSq8KkjoOk7+fb5oDrKrOJUo3TkQ9AeV5LGpVBB2boXvoap+CQtH8/DojHS++yMl
-	B/+re8LGnkNh/eM46OOIt4Ng5o3Yn36Fs4Vxx8fzA69LnMAGxKWykYY+HEiWjt9yoIoV
-	us8FdJmfZe3vmJmcwnq0X6lDJqK/eqDFjQ/yPc4PqXaIY1SwRhgJzuwwAevf2Chwqoqb
-	HuXQ5nWwYnYnL675v/EhNtk7JMiED392o9GUVGfsy8JqNPfqFBnWcwxyObTBRcbwRny4
-	i7DXe6XFZ5BBHaX4TEeZTlo7QwORlwQcnXLDGGxpC+Ifsn4ckyoMey7DPssXgRgQ5afZ
-	I/FA==
+	bh=02qEWpVFm0VxKtfFW04UiU6yI7UsYk8Xm0N6qB9OuKI=;
+	b=W3fkNpzo39m8vl4dKc5TP9ZBVGzzOfB4EaEHSzx+Xx2swS4Dbo/xb3/WfqnEbDK8IO
+	TvpvE++ZIFTyRxvFQnla0dekBJH07PEO4GY2a2ETuvJnVcX7Gov+fASGBU/MtQuHtP3Y
+	BB/vRBdBx2kDxUWjGjGajR1OFOuYb7cBraZkx0C/2D2jm+NRtSd3m4XmFzsStUb4ZOov
+	vlcxirXA9gL7x9xNzxvyggPJfQOJqf6pnyvjCPuON3bbykLOrx2+mym09g544jwahaxe
+	7TGySYdyzGGO6VbwxvOhHkknP66zc7ASQYV41qy9xQ7puji3i0/yrdUrN497CvSkEn4j
+	gftQ==
 MIME-Version: 1.0
-X-Received: by 10.180.39.207 with SMTP id r15mr31389wik.16.1364502783887; Thu,
-	28 Mar 2013 13:33:03 -0700 (PDT)
-Received: by 10.194.45.100 with HTTP; Thu, 28 Mar 2013 13:33:03 -0700 (PDT)
-In-Reply-To: <5153A67F.9070702@windriver.com>
-References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD>
-	<20130307104051.GH32228@jama.dyndns-home.com>
-	<96E98E10F7094D32B371FD84AFF0FFFC@PAULD>
-	<20130307182933.GS32228@jama.dyndns-home.com>
-	<50BB56BA2C44400C9B6A31B0C2641BD2@PAULD>
-	<20130307224223.GU32228@jama.dyndns-home.com>
-	<D5340F46DF5F458D9096EA823C3A9EAE@PAULD>
-	<20130327090320.GA13837@ad.chargestorm.se>
-	<2AE00AC2A89C48A38A01262D58FA692A@PAULD>
-	<5153A67F.9070702@windriver.com>
-Date: Thu, 28 Mar 2013 16:33:03 -0400
-Message-ID: <CAHUNapSVECmuLk8gMhcMisMTLpjA1xbFaG7Q3Ro9edFKbNGiBg@mail.gmail.com>
+X-Received: by 10.180.39.207 with SMTP id r15mr105673wik.16.1364503950147;
+	Thu, 28 Mar 2013 13:52:30 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Thu, 28 Mar 2013 13:52:29 -0700 (PDT)
+In-Reply-To: <20130328142134.GA94584@gmail.com>
+References: <20130328142134.GA94584@gmail.com>
+Date: Thu, 28 Mar 2013 16:52:29 -0400
+Message-ID: <CAHUNapQk-9TfTg=M0QH-25bW624VyhQmdU3F3QfKScAfsY11bA@mail.gmail.com>
 From: Trevor Woerner <twoerner@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
-	"Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Samba server?
+To: =?ISO-8859-1?Q?Eren_T=FCrkay?= <eren@hambedded.org>
+Cc: Yocto Discussion List <yocto@yoctoproject.org>
+Subject: Re: OE/Yocto Talk in Free Software and Linux Days in Turkey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,39 +38,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Mar 2013 20:33:05 -0000
+X-List-Received-Date: Thu, 28 Mar 2013 20:52:31 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-I'm kinda surprised Robert Day hasn't jumped in, I know he's got all
-this straightened out :-)
+If I expected that my audience would be mostly made up of people who
+have been using *nix for years and are comfortable with the cmdline,
+then I would show how I use Yocto/OE via the cmdline. If I expected
+that most of them would be more accustomed to Eclipse/GUI-based
+development, then I would try to introduce them to the Yocto Project
+via Hob or the ADT.
 
-On Wed, Mar 27, 2013 at 10:10 PM, ChenQi <Qi.Chen@windriver.com> wrote:
-> In your case, you could add the following line to local.conf.
-> IMAGE_INSTALL_append += "samba"
+While it is true that using Yocto is an absolutely amazing tool for
+building embedded distributions, in the grand scheme of things
+building a kernel+filesystem for your target is not something that
+you're going to be doing 3 times every day. In fact there's probably
+only one member of any development team who needs to know how to
+create the kernel+fs. The rest of the team is probably involved with
+writing the "magic sauce" that'll make your product stand out. For
+those members (the majority of the team) showing how Yocto can also
+create an SDK that helps them cross-develop their code is more likely
+to be the stand-out feature that'll pull them in.
 
-I thought this was not the generally accepted notation. I thought
+If I had to create a talk I'd probably spend no more than 40% of the
+time showing them how neat Yocto is in that you can add various
+packages to an image and how the package list is independent of the
+target CPU. For example, you can have 2 different devices, but build
+an image for both that contains the same packages and all that's
+needed is a one-line, local, configuration change. I'd then spend the
+rest of the talk discussing the SDK that can be generated and deployed
+to the various team members. Then, if a package is added, a new SDK is
+generated, the team members install the new SDK, update their
+environment, and "voila!" they can now build an application that uses
+sqlite3 (for example).
 
-    IMAGE_INSTALL_append = " samba"
+There are many previous Yocto/OE talks from which you can draw
+inspiration. free-electrons.com has archives of many such talks from
+various embedded linux conferences. These archives include videos as
+well as slides. Maybe something in that pile can help you get ready?
 
-(note the space before 'samba') was better. Having an _append bitbake
-option and using += seems a bit redundant.
-
-Sorry, Paul, for only noticing this thread now. I wrote a very quick
-bunch of notes when I was going through this as well. Some of these
-notes are probably out of date (they were "correct" at the time, but
-trying to keep pace with Yocto is isn't easy!) but hopefully there's
-something there that might help.
-
-My notes are at:
-https://github.com/twoerner/meta-trevor/blob/master/misc/notes
-
-Specifically item #8 might be useful.
-
-Robert Day wrote lots of notes which you can find starting here:
-http://www.crashcourse.ca/wiki/index.php/Yocto_Project
-
-Tim Bird too has written some good stuff:
-http://elinux.org/Yocto_Project_Introduction
-
-I'm sure there are others as well.
+E.g. http://free-electrons.com/blog/elc-2012-videos/
 
