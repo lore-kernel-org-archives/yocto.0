@@ -1,29 +1,42 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-kukur.atl.sa.earthlink.net
-	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88F28E014BD
-	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 14:35:54 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=rhcSbxxLxY7IHc3dzqdMzD/CKU2LR4pVINZLEiGuMGbhyA84j8bBVm9vLBB1SYpp;
-	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1ULKUD-0007DY-Pj; Thu, 28 Mar 2013 17:35:53 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Trevor Woerner'" <twoerner@gmail.com>,
-	<yocto@yoctoproject.org>
-References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD><20130307104051.GH32228@jama.dyndns-home.com><96E98E10F7094D32B371FD84AFF0FFFC@PAULD><20130307182933.GS32228@jama.dyndns-home.com><50BB56BA2C44400C9B6A31B0C2641BD2@PAULD><20130307224223.GU32228@jama.dyndns-home.com><D5340F46DF5F458D9096EA823C3A9EAE@PAULD><20130327090320.GA13837@ad.chargestorm.se><2AE00AC2A89C48A38A01262D58FA692A@PAULD><5153A67F.9070702@windriver.com>
-	<CAHUNapSVECmuLk8gMhcMisMTLpjA1xbFaG7Q3Ro9edFKbNGiBg@mail.gmail.com>
-In-Reply-To: <CAHUNapSVECmuLk8gMhcMisMTLpjA1xbFaG7Q3Ro9edFKbNGiBg@mail.gmail.com>
-Date: Thu, 28 Mar 2013 14:35:53 -0700
-Message-ID: <5C1BF08F6F2843618BBE6BEDED4089D5@PAULD>
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CA30E014BD
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 14:44:01 -0700 (PDT)
+Received: by mail-we0-f169.google.com with SMTP id x43so4017682wey.0
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 14:44:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=GAYR+caMCz7Z1JSYV1bRKWTFm8JE3+70vpZ0wm5wZHE=;
+	b=X9e7aywuWJpeaVMgZaeZ2pjXds3qQx4BZVZsc+kNCNWtiv13/2r/USJy46bWegv2eT
+	Pl2WKNEOOMsi3wV6ttJ7Bn7M7XmJO0y3ezytY3x1cRl0AEDJDGC/WixdWM4pmEf2kGxC
+	wKrzkHQL+Z5EuCaJVClL0XB5yRZZYFy2jE7b83qfUkYyxFSM83ec2gIAMjaoraRjuQ/3
+	g3RtuXKKKLvHreLIQBUErux9p+exjSQTVxzZBTzFWsy7yhgvDmW//U9VWHIhoCSBulG+
+	lLfrEXeBNodShbOfxI6dEPtMbaWcYZh9o7olc2JR/9LTbDxU2aU6tMGBdSsDsJRl1jFr
+	BWcw==
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac4r83wilS+hCx+7Sza+y4IrCqKloAABmTrw
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606889ef9d79c109f5bacca8e84ac3f2aa4d8350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
+X-Received: by 10.180.94.133 with SMTP id dc5mr221291wib.1.1364507041335; Thu,
+	28 Mar 2013 14:44:01 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Thu, 28 Mar 2013 14:44:01 -0700 (PDT)
+In-Reply-To: <5C1BF08F6F2843618BBE6BEDED4089D5@PAULD>
+References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD>
+	<20130307104051.GH32228@jama.dyndns-home.com>
+	<96E98E10F7094D32B371FD84AFF0FFFC@PAULD>
+	<20130307182933.GS32228@jama.dyndns-home.com>
+	<50BB56BA2C44400C9B6A31B0C2641BD2@PAULD>
+	<20130307224223.GU32228@jama.dyndns-home.com>
+	<D5340F46DF5F458D9096EA823C3A9EAE@PAULD>
+	<20130327090320.GA13837@ad.chargestorm.se>
+	<2AE00AC2A89C48A38A01262D58FA692A@PAULD>
+	<5153A67F.9070702@windriver.com>
+	<CAHUNapSVECmuLk8gMhcMisMTLpjA1xbFaG7Q3Ro9edFKbNGiBg@mail.gmail.com>
+	<5C1BF08F6F2843618BBE6BEDED4089D5@PAULD>
+Date: Thu, 28 Mar 2013 17:44:01 -0400
+Message-ID: <CAHUNapR9qjghTk0+pfbQjn4R3e1ULF1pfpmk_bqiKkzz+jvrcQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Samba server?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,58 +49,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Mar 2013 21:35:54 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 28 Mar 2013 21:44:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-> From: Trevor Woerner
-> 
-> I'm kinda surprised Robert Day hasn't jumped in, I know he's got all
-> this straightened out :-)
-> 
-> On Wed, Mar 27, 2013 at 10:10 PM, ChenQi 
-> <Qi.Chen@windriver.com> wrote:
-> > In your case, you could add the following line to local.conf.
-> > IMAGE_INSTALL_append += "samba"
-> 
-> I thought this was not the generally accepted notation. I thought
-> 
->     IMAGE_INSTALL_append = " samba"
-> 
-> (note the space before 'samba') was better. Having an _append bitbake
-> option and using += seems a bit redundant.
+On Thu, Mar 28, 2013 at 5:35 PM, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
+> Somehow, it grates on me that underscore is used almost like an
+> operator in BitBake.
 
-That's what I thought, too, but what do I know? I tried it with += and no
-space, and it does indeed work. I have no idea how this stuff is parsed
-internally. Somehow, it grates on me that underscore is used almost like an
-operator in BitBake.
+You're not alone!
 
-> Sorry, Paul, for only noticing this thread now. I wrote a very quick
-> bunch of notes when I was going through this as well. Some of these
-> notes are probably out of date (they were "correct" at the time, but
-> trying to keep pace with Yocto is isn't easy!) but hopefully there's
-> something there that might help.
-> 
-> My notes are at:
-> https://github.com/twoerner/meta-trevor/blob/master/misc/notes
-> 
-> Specifically item #8 might be useful.
+Because the people who did this are reading this list ;-) I'll be
+polite, it is clever, but even after a year of trying to get
+comfortable with it, I still think it is a poor paradigm.
 
-Thanks. The distinction between recipes and packages is very useful to know.
-So is some of the other stuff.
+A variable name is a variable name and should be only a variable name.
+One shouldn't have to parse a variable name to try to determine what
+operations should be performed on the value of a variable in addition
+to whatever external operations are requested :-)
 
-> Robert Day wrote lots of notes which you can find starting here:
-> http://www.crashcourse.ca/wiki/index.php/Yocto_Project
-> 
-> Tim Bird too has written some good stuff:
-> http://elinux.org/Yocto_Project_Introduction
+VARIABLE_append -= "feature"
 
-I'll read those, too.
-
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
-
+??
 
