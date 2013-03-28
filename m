@@ -1,40 +1,42 @@
-Return-Path: <eu@felipetonello.com>
-Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
-	[209.85.214.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A862E014BD
-	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 11:14:10 -0700 (PDT)
-Received: by mail-ob0-f171.google.com with SMTP id x4so9523729obh.30
-	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 11:14:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=0nfNqxYKXWkVvF+C20eVZIBFN92sddfNdQIlQ2rhyXA=;
-	b=MCJt4Q1lX7pt4WDa0arFuFg/wxHwdAK46z9AD6Pyh4y8kFRWiTS/5OhbAFJCs+e5Nv
-	nmYWkqkE2qx0EdXf4fJgzBWSE1Bgc/Pb28d/aKFRGrZqHggv0NbB9argONjL34EnQLRx
-	HgyoPTujfpMa8YPLHBfwYzUt9rZZnuLEHo+V6ZQZNNohYAs0KsSfzX/9+p7wotHNxNpf
-	mdJPUOhhYgqikNbxayRl1TW+TdlD/bpnPAX8IhhlrhdT9MT7tXMnPmOcnEcWJf69Bau2
-	qPwZ2D828vmM2hytLOz2lAMpmCxqXZjarY81ALFVk/pgA4GP6389B+qkGhc4JcTvx+E5
-	Faig==
-X-Received: by 10.182.2.132 with SMTP id 4mr6060400obu.42.1364494449260;
-	Thu, 28 Mar 2013 11:14:09 -0700 (PDT)
-Received: from [192.168.48.44] (wsip-70-183-20-162.oc.oc.cox.net.
-	[70.183.20.162])
-	by mx.google.com with ESMTPS id j10sm24230610obg.4.2013.03.28.11.14.07
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 28 Mar 2013 11:14:08 -0700 (PDT)
-Message-ID: <51548879.1090101@felipetonello.com>
-Date: Thu, 28 Mar 2013 11:14:17 -0700
-From: Felipe Ferreri Tonello <eu@felipetonello.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C03DE014BD
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:33:04 -0700 (PDT)
+Received: by mail-wi0-f176.google.com with SMTP id hm14so3695980wib.9
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:33:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=wjcOs0ELBYeatPYFolfUbw+LESgvN9YpMFEDRLayvL4=;
+	b=DbOSq8KkjoOk7+fb5oDrKrOJUo3TkQ9AeV5LGpVBB2boXvoap+CQtH8/DojHS++yMl
+	B/+re8LGnkNh/eM46OOIt4Ng5o3Yn36Fs4Vxx8fzA69LnMAGxKWykYY+HEiWjt9yoIoV
+	us8FdJmfZe3vmJmcwnq0X6lDJqK/eqDFjQ/yPc4PqXaIY1SwRhgJzuwwAevf2Chwqoqb
+	HuXQ5nWwYnYnL675v/EhNtk7JMiED392o9GUVGfsy8JqNPfqFBnWcwxyObTBRcbwRny4
+	i7DXe6XFZ5BBHaX4TEeZTlo7QwORlwQcnXLDGGxpC+Ifsn4ckyoMey7DPssXgRgQ5afZ
+	I/FA==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CABzOdpTy6Vq4YZr1gMZX3PFwYHURRMm1HPdB4Dk4GM3rFhnGTA@mail.gmail.com>
-In-Reply-To: <CABzOdpTy6Vq4YZr1gMZX3PFwYHURRMm1HPdB4Dk4GM3rFhnGTA@mail.gmail.com>
-X-Gm-Message-State: ALoCoQmPoVlefeutL7mMMe7P9Xq3+COvvX10oOlLvNpkL0Fqh6W0F//5z0Jboquk49oDmZG/t5Oz
-Subject: Re: Qt developement Yocto
+X-Received: by 10.180.39.207 with SMTP id r15mr31389wik.16.1364502783887; Thu,
+	28 Mar 2013 13:33:03 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Thu, 28 Mar 2013 13:33:03 -0700 (PDT)
+In-Reply-To: <5153A67F.9070702@windriver.com>
+References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD>
+	<20130307104051.GH32228@jama.dyndns-home.com>
+	<96E98E10F7094D32B371FD84AFF0FFFC@PAULD>
+	<20130307182933.GS32228@jama.dyndns-home.com>
+	<50BB56BA2C44400C9B6A31B0C2641BD2@PAULD>
+	<20130307224223.GU32228@jama.dyndns-home.com>
+	<D5340F46DF5F458D9096EA823C3A9EAE@PAULD>
+	<20130327090320.GA13837@ad.chargestorm.se>
+	<2AE00AC2A89C48A38A01262D58FA692A@PAULD>
+	<5153A67F.9070702@windriver.com>
+Date: Thu, 28 Mar 2013 16:33:03 -0400
+Message-ID: <CAHUNapSVECmuLk8gMhcMisMTLpjA1xbFaG7Q3Ro9edFKbNGiBg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
+	"Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Samba server?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,23 +48,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Mar 2013 18:14:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 28 Mar 2013 20:33:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Florin,
+I'm kinda surprised Robert Day hasn't jumped in, I know he's got all
+this straightened out :-)
 
-On 03/23/2013 09:48 AM, Florin Cristian Dan wrote:
-> Hello
-> I've done a little bit research on the internet, wondering what are the
-> options for GUI development for the target machines, i've tried to add
-> java support but i failed, and now i saw that Qt support is possible,
-> can someone explain what the steps should be? If any plugin is requierd
-> for the host, and things like that?
+On Wed, Mar 27, 2013 at 10:10 PM, ChenQi <Qi.Chen@windriver.com> wrote:
+> In your case, you could add the following line to local.conf.
+> IMAGE_INSTALL_append += "samba"
 
-You can take a look in other qt applications/libraries recipes at 
-meta-oe: 
-https://github.com/openembedded/meta-oe/tree/master/meta-oe/recipes-qt
+I thought this was not the generally accepted notation. I thought
 
-- Felipe
+    IMAGE_INSTALL_append = " samba"
+
+(note the space before 'samba') was better. Having an _append bitbake
+option and using += seems a bit redundant.
+
+Sorry, Paul, for only noticing this thread now. I wrote a very quick
+bunch of notes when I was going through this as well. Some of these
+notes are probably out of date (they were "correct" at the time, but
+trying to keep pace with Yocto is isn't easy!) but hopefully there's
+something there that might help.
+
+My notes are at:
+https://github.com/twoerner/meta-trevor/blob/master/misc/notes
+
+Specifically item #8 might be useful.
+
+Robert Day wrote lots of notes which you can find starting here:
+http://www.crashcourse.ca/wiki/index.php/Yocto_Project
+
+Tim Bird too has written some good stuff:
+http://elinux.org/Yocto_Project_Introduction
+
+I'm sure there are others as well.
 
