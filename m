@@ -1,32 +1,32 @@
 Return-Path: <twoerner@gmail.com>
-Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
-	[209.85.212.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA1A3E014BD
-	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:52:30 -0700 (PDT)
-Received: by mail-wi0-f181.google.com with SMTP id hj8so3640639wib.2
-	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 13:52:30 -0700 (PDT)
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04EA7E014BD
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 14:34:20 -0700 (PDT)
+Received: by mail-we0-f171.google.com with SMTP id d46so6615939wer.30
+	for <yocto@yoctoproject.org>; Thu, 28 Mar 2013 14:34:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:x-received:in-reply-to:references:date:message-id
 	:subject:from:to:cc:content-type;
-	bh=02qEWpVFm0VxKtfFW04UiU6yI7UsYk8Xm0N6qB9OuKI=;
-	b=W3fkNpzo39m8vl4dKc5TP9ZBVGzzOfB4EaEHSzx+Xx2swS4Dbo/xb3/WfqnEbDK8IO
-	TvpvE++ZIFTyRxvFQnla0dekBJH07PEO4GY2a2ETuvJnVcX7Gov+fASGBU/MtQuHtP3Y
-	BB/vRBdBx2kDxUWjGjGajR1OFOuYb7cBraZkx0C/2D2jm+NRtSd3m4XmFzsStUb4ZOov
-	vlcxirXA9gL7x9xNzxvyggPJfQOJqf6pnyvjCPuON3bbykLOrx2+mym09g544jwahaxe
-	7TGySYdyzGGO6VbwxvOhHkknP66zc7ASQYV41qy9xQ7puji3i0/yrdUrN497CvSkEn4j
-	gftQ==
+	bh=jTLcn/BsKvh8nPscYQQt4b2Jv8adoGJWDO/gLZVP1Xg=;
+	b=nFdXRhjJa1uauQlam9Og4RNMV+sw0wdd8b8drzGZ1Rukn38yLMwetBwGMUUPEoLqkT
+	NgL4fdF4N5d3OhTTCKHwBGIjVONMbaHJx7cErD5eXFcmhaz+ZPU1KeIzAqCayn7rK+vP
+	sZ4k83afzCk87NiQzn6yAJT2IJ9uAAqQo+gWi1J72nmNq5l8yMzVdGx6jMjCuZg95eou
+	/Sg6zzMO4uwOQL4YqkPEU2VvlGyAEf/748R4mIMuQrGfbMqgO+/lftxUlaP2JM1P3Ejs
+	aWwvwiCzL8/Sb8SLEnx6KfLRnG55ft/ROvNuRZNOf+1T34TzcKVrgB5S4zRK/bIZ0GZs
+	0NIg==
 MIME-Version: 1.0
-X-Received: by 10.180.39.207 with SMTP id r15mr105673wik.16.1364503950147;
-	Thu, 28 Mar 2013 13:52:30 -0700 (PDT)
-Received: by 10.194.45.100 with HTTP; Thu, 28 Mar 2013 13:52:29 -0700 (PDT)
-In-Reply-To: <20130328142134.GA94584@gmail.com>
-References: <20130328142134.GA94584@gmail.com>
-Date: Thu, 28 Mar 2013 16:52:29 -0400
-Message-ID: <CAHUNapQk-9TfTg=M0QH-25bW624VyhQmdU3F3QfKScAfsY11bA@mail.gmail.com>
+X-Received: by 10.194.21.233 with SMTP id y9mr144995wje.47.1364506459850; Thu,
+	28 Mar 2013 14:34:19 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Thu, 28 Mar 2013 14:34:19 -0700 (PDT)
+In-Reply-To: <CD7A35C5.26726%belen.barros.pena@intel.com>
+References: <CD7A35C5.26726%belen.barros.pena@intel.com>
+Date: Thu, 28 Mar 2013 17:34:19 -0400
+Message-ID: <CAHUNapTPKxYi-hcm2xv4xhQ1GAmkYm9ZpaAZQYsPoh_K_G0=0Q@mail.gmail.com>
 From: Trevor Woerner <twoerner@gmail.com>
-To: =?ISO-8859-1?Q?Eren_T=FCrkay?= <eren@hambedded.org>
-Cc: Yocto Discussion List <yocto@yoctoproject.org>
-Subject: Re: OE/Yocto Talk in Free Software and Linux Days in Turkey
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RFC: templates in Hob 1.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,43 +38,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Mar 2013 20:52:31 -0000
+X-List-Received-Date: Thu, 28 Mar 2013 21:34:21 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-If I expected that my audience would be mostly made up of people who
-have been using *nix for years and are comfortable with the cmdline,
-then I would show how I use Yocto/OE via the cmdline. If I expected
-that most of them would be more accustomed to Eclipse/GUI-based
-development, then I would try to introduce them to the Yocto Project
-via Hob or the ADT.
+On Thu, Mar 28, 2013 at 2:00 PM, Barros Pena, Belen
+<belen.barros.pena@intel.com> wrote:
+> When we tried to define it properly, we realised that templates could be a
+> few different things, and that we should find out which of them is the
+> most useful. This email is my attempt to gather your thoughts on this
+> templates business.
+>
+> I guess the key question to answer is: in your opinion, which parts of the
+> configuration should be saved as part of a Hob template?
 
-While it is true that using Yocto is an absolutely amazing tool for
-building embedded distributions, in the grand scheme of things
-building a kernel+filesystem for your target is not something that
-you're going to be doing 3 times every day. In fact there's probably
-only one member of any development team who needs to know how to
-create the kernel+fs. The rest of the team is probably involved with
-writing the "magic sauce" that'll make your product stand out. For
-those members (the majority of the team) showing how Yocto can also
-create an SDK that helps them cross-develop their code is more likely
-to be the stand-out feature that'll pull them in.
+If someone handed me something and said "this is my embedded Linux
+distribution's template" I would assume it would pertain to the "feel"
+of this distribution and not, for example, to the list of packages,
+machine, endianness, interfaces, or anything else processor-,
+installation-, or board-specific.
 
-If I had to create a talk I'd probably spend no more than 40% of the
-time showing them how neat Yocto is in that you can add various
-packages to an image and how the package list is independent of the
-target CPU. For example, you can have 2 different devices, but build
-an image for both that contains the same packages and all that's
-needed is a one-line, local, configuration change. I'd then spend the
-rest of the talk discussing the SDK that can be generated and deployed
-to the various team members. Then, if a package is added, a new SDK is
-generated, the team members install the new SDK, update their
-environment, and "voila!" they can now build an application that uses
-sqlite3 (for example).
+Yocto creates distributions. So if Yocto/Hob has something called
+"templates" then a sensible question to ask is "what is in a Debian
+template?" or a Fedora template? or an openSUSE template? And how do
+they compare to each other?
 
-There are many previous Yocto/OE talks from which you can draw
-inspiration. free-electrons.com has archives of many such talks from
-various embedded linux conferences. These archives include videos as
-well as slides. Maybe something in that pile can help you get ready?
+Each of these distributions (Debian, Fedora, openSUSE) can create
+images for x86, x86_64, ARM, and other targets, therefore the choice
+of hardware doesn't define a distribution's template. The person
+installing Fedora on one machine can choose which packages to install
+such that two people's installations could look entirely different
+from each other (e.g. one person might choose XFCE and the other use
+Gnome), therefore the list of packages doesn't define a distribution's
+template. Each of these can be installed on devices that have or don't
+have Ethernet ports, serial ports, various video output, and various
+input devices, therefore the choice of hardware doesn't define a
+distribution's template.
 
-E.g. http://free-electrons.com/blog/elc-2012-videos/
+The assumption is that if someone is comfortable using Fedora on one
+device/installation, they'll also be at home using Fedora on another.
+Therefore there is something templatizable about Fedora that doesn't
+rely on the specific hardware on which you're using it nor on which
+packages are installed. What that is, though, I'm not 100% sure.
+
+To be honest I am uncertain how one could have a "distribution
+template". The above is just my musing on this subject if we had to
+have something called a template :-)
+
+Seeing how poky is very debian-like, most images created with Yocto
+will feel like Debian more than anything else, won't they?
 
