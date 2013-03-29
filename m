@@ -1,27 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3374E003AA
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2013 15:07:42 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 29 Mar 2013 15:07:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,375,1363158000"; d="scan'208";a="310496645"
-Received: from unknown (HELO helios.localnet) ([10.255.12.237])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Mar 2013 15:07:40 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Otavio Salvador <otavio@ossystems.com.br>
-Date: Fri, 29 Mar 2013 22:07:39 +0000
-Message-ID: <2155964.5sB9Y5hPjU@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.1 (Linux/3.5.0-26-generic; KDE/4.10.1; i686; ; )
-In-Reply-To: <CAP9ODKrG4Q22XbpHBec7144kYCZD3D6ULfeHR5yH8fygcu=ZwQ@mail.gmail.com>
-References: <3982011.Guen6pOcoq@helios>
-	<CAP9ODKrG4Q22XbpHBec7144kYCZD3D6ULfeHR5yH8fygcu=ZwQ@mail.gmail.com>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-dupuy.atl.sa.earthlink.net
+	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECEAAE003AA
+	for <yocto@yoctoproject.org>; Fri, 29 Mar 2013 16:15:45 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=LiiUASStsZ3mUVJB7o4o8kZNIqduxrJF7uT7CBFU/RxY/P0zLDV5YUnp4BgHx2hS;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1ULiWP-00042W-BM
+	for yocto@yoctoproject.org; Fri, 29 Mar 2013 19:15:45 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+References: <C797901E086446C2A1E1C4637ED4262B@PAULD><8B53A185-C840-438C-B74B-D5267DD14F10@keylevel.com>
+	<09AEF6051AA14B28BF640910EA131219@PAULD>
+In-Reply-To: <09AEF6051AA14B28BF640910EA131219@PAULD>
+Date: Fri, 29 Mar 2013 16:15:46 -0700
+Message-ID: <58D3047F74434B278AB3C73C399FF6F1@PAULD>
 MIME-Version: 1.0
-Cc: yocto <yocto@yoctoproject.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	openembedded-core@lists.openembedded.org
-Subject: Re: [OE-core] New OE layer index now available
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4m3CoFOKf3gqgcS5aVXcIdw3VUMAAX+yXwAWWEM4A=
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068863aca8ae1482c094b1e631ee1e789f32350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: Problem creating bootable flash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,37 +35,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2013 22:07:43 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 29 Mar 2013 23:15:46 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Friday 29 March 2013 18:58:09 Otavio Salvador wrote:
-> On Fri, Mar 29, 2013 at 6:34 PM, Paul Eggleton
-> 
-> <paul.eggleton@linux.intel.com> wrote:
-> > There is a new index for OpenEmbedded layers available here:
-> >   http://layers.openembedded.org
-> > 
-> > It can be used to browse and search for existing layers, as well as the
-> > recipes and machines contained within them. In addition to the short
-> > description, repository location and usage link we were collecting in the
-> > existing wiki, we can now store information on maintainers, layer
-> > dependencies, and the associated mailing list, as well as a longer
-> > description. New layers can be submitted easily using a simple form which
-> > does not require a login.
-> 
-> I'd like to update some info in some layers I am the maintainer; how
-> can I do it?
+I'm still having no luck booting my system. I've built
+core-image-base-cedartrail-nopvr, with only one modification (added samba
+from OE), and I'm trying to boot it on an Intel DN2800MT mobo from a 1GB
+eUSB SSD. Here's what I've done:
 
-Just click on "login" in the top right hand corner, then on "Create one now", 
-enter your details, you'll need to confirm your email, then you should be able 
-to log in and then click on the Edit button on the layer info page.
+Opened gparted, selected /dev/sdb, which is the SSD.
 
-Cheers,
-Paul
+Created a fresh MSDOS partition table.
+
+Selected the 979MB unallocated space, created a new 949MB FAT16 partition.
+
+Selected the remaining 30MB unallocated space, created a new FAT16
+partition, which will hold my application data.
+
+Invoked the pending operations.
+
+Selected the first partition, set the "boot" flag.
+
+Exited gparted.
+
+In terminal, went into my images directory, and did
+
+    sudo dd if=core-image-base-cedartrail-nopvr.hddimg of=/dev/sdb1
+
+After a few seconds, it finished. I then unplugged and plugged the SSD from
+the USB header, and it automounted the two partitions and popped up two
+windows showing their contents. Closed the second one, and examined the
+first one. It contained the usual five files for booting a live image.
+
+Opened syslinux.cfg in an editor. It showed that syslinux is configured to
+use a serial port, which is wrong for my system. Also, it showed two boot
+choices, one called "boot" for running the live image, and the other called
+"install".
+
+Eventually, I'll get the build to supply a custom syslinux.cfg, but for now,
+I figured I'd just manually edit it. Since I want it to interact with the
+screen and keyboard, and not a serial port, I removed "serial 1 115200". The
+default is supposedly "console 1", which I would expect would use the video
+and keyboard from the text mode it inherits from the BIOS. I also removed
+the "install" section.
+
+The options on the minimal boot kernel included "console=ttyS0,115200" and
+"console=tty0 video=vesafb vga=0x318". Since I don't know what my mobo
+supports for VGA video, I figured I'd just let it use text mode, so I
+replaced them both with just "console=tty0". The final contents of
+syslinux.cfg were:
+
+    ALLOWOPTIONS 1
+    DEFAULT boot
+    TIMEOUT 10
+    PROMPT 1
+    LABEL boot
+    KERNEL /vmlinuz
+    APPEND initrd=/initrd LABEL=boot root=/dev/ram0 console=tty0
+
+I did a "Safely remove" on the device, unplugged it, plugged it into my test
+motherboard, and fired it up.
+
+I went into the BIOS boot menu, to make sure the BIOS recognized it as a
+bootable device, and it did. I hit Enter to boot it. All I got was a
+standard black VGA text mode screen with a blinking gray cursor. At that
+point, Ctrl-Alt-Del wouldn't reboot.
+
+If my device wasn't bootable, I'd expect the BIOS to complain. If it was
+still in the BIOS, I'd expect to be able to reboot with Ctrl-Alt-Del. If it
+actually ran ldlinux.sys, and yet didn't properly use the video, I'd expect
+it to time out and boot the live image. But I don't see any evidence that
+it's doing that.
+
+Does my syslinux.cfg look correct for showing the syslinux stuff on the text
+mode output? Do my kernel options look correct for getting the live image
+boot kernel to talk to the screen in text mode? Can anyone see anything else
+that might be wrong?
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
