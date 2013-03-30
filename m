@@ -1,29 +1,40 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-dupuy.atl.sa.earthlink.net
-	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECEAAE003AA
-	for <yocto@yoctoproject.org>; Fri, 29 Mar 2013 16:15:45 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=LiiUASStsZ3mUVJB7o4o8kZNIqduxrJF7uT7CBFU/RxY/P0zLDV5YUnp4BgHx2hS;
-	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1ULiWP-00042W-BM
-	for yocto@yoctoproject.org; Fri, 29 Mar 2013 19:15:45 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-References: <C797901E086446C2A1E1C4637ED4262B@PAULD><8B53A185-C840-438C-B74B-D5267DD14F10@keylevel.com>
-	<09AEF6051AA14B28BF640910EA131219@PAULD>
-In-Reply-To: <09AEF6051AA14B28BF640910EA131219@PAULD>
-Date: Fri, 29 Mar 2013 16:15:46 -0700
-Message-ID: <58D3047F74434B278AB3C73C399FF6F1@PAULD>
+Return-Path: <eren@hambedded.org>
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F6FBE01469
+	for <yocto@yoctoproject.org>; Sat, 30 Mar 2013 02:39:26 -0700 (PDT)
+Received: by mail-pa0-f47.google.com with SMTP id bj3so656680pad.34
+	for <yocto@yoctoproject.org>; Sat, 30 Mar 2013 02:39:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent:x-gm-message-state;
+	bh=RTL8/iRgG9fcKVb0PvEmt6CY+ugRK1eLBf5nBgvgCB8=;
+	b=IBov2WuSGRDJESPTO5mgmKOuQJmg5D4wHCEAFVOt6R0h4gPsmidylXTmKIpls/gWa3
+	ESkAs261JQ/GDVcqSc3cjyks7gucXFSbv+YFS8b/ikFuPGtOeTyKT1e4G9MRAaVNZoVZ
+	VUbhakkYo8ykZUE54ykyPh/41W6rT4qqFZViimJ2DeRtz/fU2sKkrRt825Nf6jTQnOug
+	LLd0vZOvDnnP6JfJ2jWDriRM8HUh+vS09Eql3N4aMZFNB4+4YkaVkEdpnX6E+0dUvmDd
+	C7FhIaSBdgcahHLqmHPDIA7aV620oMctNQhdvRXEBEVFYC6wXnSK7UW+v+S63c/ji3pS
+	OuiA==
+X-Received: by 10.66.121.133 with SMTP id lk5mr8556817pab.171.1364636366425;
+	Sat, 30 Mar 2013 02:39:26 -0700 (PDT)
+Received: from gmail.com (santralsozluk.com. [178.79.176.184])
+	by mx.google.com with ESMTPS id i9sm6855833paa.7.2013.03.30.02.39.24
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Sat, 30 Mar 2013 02:39:25 -0700 (PDT)
+Date: Sat, 30 Mar 2013 11:39:16 +0200
+From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20130330093916.GA82622@gmail.com>
+References: <20130328142134.GA94584@gmail.com>
+	<CAHUNapQk-9TfTg=M0QH-25bW624VyhQmdU3F3QfKScAfsY11bA@mail.gmail.com>
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac4m3CoFOKf3gqgcS5aVXcIdw3VUMAAX+yXwAWWEM4A=
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068863aca8ae1482c094b1e631ee1e789f32350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: Re: Problem creating bootable flash
+In-Reply-To: <CAHUNapQk-9TfTg=M0QH-25bW624VyhQmdU3F3QfKScAfsY11bA@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Gm-Message-State: ALoCoQmH83+7N4OtEHTh7G6S/yDXu5jouPEZyFT7CLoBsnf5iahEmwdYOqpueLYxE0IvHKq7H3sQ
+Cc: Yocto Discussion List <yocto@yoctoproject.org>
+Subject: Re: OE/Yocto Talk in Free Software and Linux Days in Turkey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,88 +46,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2013 23:15:46 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 30 Mar 2013 09:39:29 -0000
+X-Groupsio-MsgNum: 12834
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="ibTvN161/egqYuK8"
+Content-Disposition: inline
 
-I'm still having no luck booting my system. I've built
-core-image-base-cedartrail-nopvr, with only one modification (added samba
-from OE), and I'm trying to boot it on an Intel DN2800MT mobo from a 1GB
-eUSB SSD. Here's what I've done:
+--ibTvN161/egqYuK8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Opened gparted, selected /dev/sdb, which is the SSD.
+On Thu, Mar 28, 2013 at 04:52:29PM -0400, Trevor Woerner wrote:
+> If I had to create a talk I'd probably spend no more than 40% of the
+> time showing them how neat Yocto is in that you can add various
+> packages to an image and how the package list is independent of the
+> target CPU. For example, you can have 2 different devices, but build
+> an image for both that contains the same packages and all that's
+> needed is a one-line, local, configuration change. I'd then spend the
+> rest of the talk discussing the SDK that can be generated and deployed
+> to the various team members. Then, if a package is added, a new SDK is
+> generated, the team members install the new SDK, update their
+> environment, and "voila!" they can now build an application that uses
+> sqlite3 (for example).
 
-Created a fresh MSDOS partition table.
+Thanks for your suggestion! You are right about SDK and most people in
+the development team would normally write applications for the board
+using the SDK.
 
-Selected the 979MB unallocated space, created a new 949MB FAT16 partition.
+I will probably allocate 50% of the talk to SDK after explaining what
+Yocto is, and how we can use it to build a root image. I'm thinking of
+showing how the kernel/fs guy can work, and how other team members can
+use the image easily.
 
-Selected the remaining 30MB unallocated space, created a new FAT16
-partition, which will hold my application data.
+> There are many previous Yocto/OE talks from which you can draw
+> inspiration. free-electrons.com has archives of many such talks from
+> various embedded linux conferences. These archives include videos as
+> well as slides. Maybe something in that pile can help you get ready?
+>=20
+> E.g. http://free-electrons.com/blog/elc-2012-videos/
 
-Invoked the pending operations.
+Thank you for the links. I also got yocto project presentations.
 
-Selected the first partition, set the "boot" flag.
+Regards,
+Eren
 
-Exited gparted.
+--=20
+    . 73! DE TA1AET
+      http://linkedin.com/in/erenturkay
 
-In terminal, went into my images directory, and did
+--ibTvN161/egqYuK8
+Content-Type: application/pgp-signature
 
-    sudo dd if=core-image-base-cedartrail-nopvr.hddimg of=/dev/sdb1
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (Darwin)
 
-After a few seconds, it finished. I then unplugged and plugged the SSD from
-the USB header, and it automounted the two partitions and popped up two
-windows showing their contents. Closed the second one, and examined the
-first one. It contained the usual five files for booting a live image.
+iQIcBAEBAgAGBQJRVrLEAAoJEOM7bMm6HhcTHf4QAJA43jaB9aD4tw9L8R9ipn0h
+luYf1tsVR9gzJNhfKwIcWMdGtPkZFW96AaciRCpKYoKLPMSNl0dL2mg03dGguX8z
+jgl5Zx8o7I7giWz7AZuof/EpsV6EddFbnDUrzrSDB1YmfwSoVU62aGKF8WCPup+s
+Ydix3A1FrExHeXmQM+nZulvG89gE1CViKa6caTI5rp+itQk/uTfUuUdPwdmTglWs
+d1vYm4Xhbv3cMjwZWj1CSVRwGf9GmR2XwzIGfeUXE0XYFgkfbnD9g+zAkS5eZuC/
+LEGWKzLOsnxXY1Gl1QaU9cX2c0DeMvY09srcsLebNzlTOLMGP/5pciIYHcgEwtfM
+0mHpQQ/U93yzVad8fTeSSq1HQ1d2RIk7wgPxryeC2hxsm6Rj3FVN+g0clFuRUKmc
+YKVdcs/YvdyKjFowb6w01A/U9XSuLrl1bURTNSDYOpLCMPI2HSsNYWw9a6Iy7LEC
+faWAJbzdUkIduuWWlaDj+wHvt3/HoqM9XGNRxNuGf0OaervYQF91q0rGwyWSzmZC
+Ad0+moXDcB7CmAoIbQOg2kmLRwRzJyEvWU9WUxqNxxHO6iApQABr9sg4KhDnYqNk
+eC+22gflGsIisTJlLT7PkTwewrlEHX0rsNReqvbkatXp4Y+0WYbbjBrpTx7ITcBv
+S0Byw0xHsqYkEedMjgQZ
+=CuV1
+-----END PGP SIGNATURE-----
 
-Opened syslinux.cfg in an editor. It showed that syslinux is configured to
-use a serial port, which is wrong for my system. Also, it showed two boot
-choices, one called "boot" for running the live image, and the other called
-"install".
-
-Eventually, I'll get the build to supply a custom syslinux.cfg, but for now,
-I figured I'd just manually edit it. Since I want it to interact with the
-screen and keyboard, and not a serial port, I removed "serial 1 115200". The
-default is supposedly "console 1", which I would expect would use the video
-and keyboard from the text mode it inherits from the BIOS. I also removed
-the "install" section.
-
-The options on the minimal boot kernel included "console=ttyS0,115200" and
-"console=tty0 video=vesafb vga=0x318". Since I don't know what my mobo
-supports for VGA video, I figured I'd just let it use text mode, so I
-replaced them both with just "console=tty0". The final contents of
-syslinux.cfg were:
-
-    ALLOWOPTIONS 1
-    DEFAULT boot
-    TIMEOUT 10
-    PROMPT 1
-    LABEL boot
-    KERNEL /vmlinuz
-    APPEND initrd=/initrd LABEL=boot root=/dev/ram0 console=tty0
-
-I did a "Safely remove" on the device, unplugged it, plugged it into my test
-motherboard, and fired it up.
-
-I went into the BIOS boot menu, to make sure the BIOS recognized it as a
-bootable device, and it did. I hit Enter to boot it. All I got was a
-standard black VGA text mode screen with a blinking gray cursor. At that
-point, Ctrl-Alt-Del wouldn't reboot.
-
-If my device wasn't bootable, I'd expect the BIOS to complain. If it was
-still in the BIOS, I'd expect to be able to reboot with Ctrl-Alt-Del. If it
-actually ran ldlinux.sys, and yet didn't properly use the video, I'd expect
-it to time out and boot the live image. But I don't see any evidence that
-it's doing that.
-
-Does my syslinux.cfg look correct for showing the syslinux stuff on the text
-mode output? Do my kernel options look correct for getting the live image
-boot kernel to talk to the screen in text mode? Can anyone see anything else
-that might be wrong?
-
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
-
-
+--ibTvN161/egqYuK8--
