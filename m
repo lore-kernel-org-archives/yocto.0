@@ -1,19 +1,29 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DC1CE0051D
-	for <yocto@yoctoproject.org>; Mon,  1 Apr 2013 07:47:45 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 01 Apr 2013 07:47:45 -0700
+Return-Path: <corneliux.stoicescu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C66CAE0051D
+	for <yocto@yoctoproject.org>; Mon,  1 Apr 2013 08:38:36 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Apr 2013 08:38:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,387,1363158000"; d="scan'208";a="310591755"
-Received: from ideapad.rb.intel.com ([10.237.105.62])
-	by orsmga002.jf.intel.com with ESMTP; 01 Apr 2013 07:47:43 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon,  1 Apr 2013 17:30:13 +0300
-Message-Id: <1364826613-18120-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [eclipse-poky][windows-build] Fix message displaying & Recipe parsing
+X-IronPort-AV: E=Sophos;i="4.87,387,1363158000"; 
+	d="scan'208,217";a="315140020"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by fmsmga002.fm.intel.com with ESMTP; 01 Apr 2013 08:37:11 -0700
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.198]) by
+	IRSMSX101.ger.corp.intel.com ([169.254.1.99]) with mapi id
+	14.01.0355.002; Mon, 1 Apr 2013 16:36:47 +0100
+From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: Weekly Test Report for Yocto 1.4 201303212 Build
+Thread-Index: Ac4u7qPjnKyQrmtYSOO2NM0eLamH/w==
+Date: Mon, 1 Apr 2013 15:36:46 +0000
+Message-ID: <33115ABC4887814E8A92A08FBC93416B09797701@IRSMSX103.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
+MIME-Version: 1.0
+Subject: Weekly Test Report for Yocto 1.4 201303212 Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,455 +35,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 14:47:45 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 15:38:37 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_33115ABC4887814E8A92A08FBC93416B09797701IRSMSX103gercor_"
 
-- customize output processing so that messages are displayed while a command sends interactive output (eg. git clone)
-- collect command output from corresponding buffer: when not using a Local connection to create a new Recipe, there is only one buffer standing for both
+--_000_33115ABC4887814E8A92A08FBC93416B09797701IRSMSX103gercor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    1 +
- .../bc/remote/utils/CommandOutputProcessor.java    |   33 ++++++++
- .../org/yocto/bc/remote/utils/CommandRunnable.java |    7 +-
- .../org/yocto/bc/remote/utils/OutputProcessor.java |   85 ++++++++++++++++++++
- .../yocto/bc/remote/utils/ProcessStreamBuffer.java |   13 ++-
- .../org/yocto/bc/remote/utils/RemoteHelper.java    |   65 +--------------
- .../org/yocto/bc/remote/utils/RemoteMachine.java   |   13 +--
- .../org/yocto/bc/remote/utils/YoctoCommand.java    |    2 +-
- .../bc/remote/utils/YoctoRunnableWithProgress.java |   32 +++++++-
- 9 files changed, 165 insertions(+), 86 deletions(-)
- create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandOutputProcessor.java
- create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/OutputProcessor.java
+Hello,
 
-diff --git a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF b/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
-index 4e57f33..68fc49e 100644
---- a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
-@@ -30,6 +30,7 @@ Import-Package: org.eclipse.cdt.managedbuilder.core,
-  org.eclipse.rse.core.model,
-  org.eclipse.rse.core.subsystems,
-  org.eclipse.rse.internal.services.local.shells,
-+ org.eclipse.rse.internal.services.shells,
-  org.eclipse.rse.services,
-  org.eclipse.rse.services.clientserver.messages,
-  org.eclipse.rse.services.files,
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandOutputProcessor.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandOutputProcessor.java
-new file mode 100644
-index 0000000..4da33a4
---- /dev/null
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandOutputProcessor.java
-@@ -0,0 +1,33 @@
-+package org.yocto.bc.remote.utils;
-+
-+import org.eclipse.core.runtime.IProgressMonitor;
-+import org.eclipse.rse.services.shells.IHostShell;
-+
-+public class CommandOutputProcessor extends OutputProcessor {
-+
-+	public CommandOutputProcessor(IProgressMonitor monitor,
-+			IHostShell hostShell, CommandResponseHandler cmdHandler, String task) {
-+		super(monitor, hostShell, cmdHandler, task);
-+	}
-+
-+	@Override
-+	protected boolean isErrChStop(char ch) {
-+		return (ch == '\n');
-+	}
-+
-+	@Override
-+	protected boolean isOutChStop(char ch) {
-+		return (ch == '\n');
-+	}
-+
-+	@Override
-+	protected void processOutputBufferLine(char ch, String str) {
-+		processBuffer.addOutputLine(str);
-+	}
-+
-+	@Override
-+	protected void processErrorBufferLine(char ch, String str) {
-+		processBuffer.addErrorLine(str);
-+	}
-+
-+}
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandRunnable.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandRunnable.java
-index 7406f50..f1ab9b1 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandRunnable.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandRunnable.java
-@@ -1,13 +1,8 @@
- package org.yocto.bc.remote.utils;
- 
--import java.io.BufferedReader;
--import java.io.InputStreamReader;
--import java.util.concurrent.locks.Lock;
--
- import org.eclipse.core.runtime.CoreException;
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.rse.core.model.IHost;
--import org.eclipse.rse.services.shells.HostShellProcessAdapter;
- import org.eclipse.rse.services.shells.IHostShell;
- 
- public class CommandRunnable implements Runnable{
-@@ -28,7 +23,7 @@ public class CommandRunnable implements Runnable{
- 	public void run() {
- 		try {
- 			hostShell = RemoteHelper.runCommandRemote(connection, cmd, monitor);
--			cmd.setProcessBuffer(RemoteHelper.processOutput(monitor, hostShell, cmdHandler, new char[]{'\n'}));
-+			cmd.setProcessBuffer(RemoteHelper.processOutput(monitor, hostShell, cmdHandler));
- 		} catch (CoreException e) {
- 			e.printStackTrace();
- 		} catch (Exception e) {
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/OutputProcessor.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/OutputProcessor.java
-new file mode 100644
-index 0000000..877bb50
---- /dev/null
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/OutputProcessor.java
-@@ -0,0 +1,85 @@
-+package org.yocto.bc.remote.utils;
-+
-+import java.io.BufferedReader;
-+import java.io.IOException;
-+import java.util.concurrent.locks.Lock;
-+
-+import org.eclipse.core.runtime.IProgressMonitor;
-+import org.eclipse.rse.internal.services.shells.TerminalServiceHostShell;
-+import org.eclipse.rse.services.shells.IHostShell;
-+
-+public abstract class OutputProcessor{
-+	private static final int ERROR_BUFFER = 1;
-+	private static final int OUTPUT_BUFFER = 2;
-+	protected String task;
-+	protected ProcessStreamBuffer processBuffer;
-+	protected IHostShell hostShell;
-+	protected CommandResponseHandler cmdHandler;
-+	protected IProgressMonitor monitor;
-+	
-+	public OutputProcessor(IProgressMonitor monitor, IHostShell hostShell, CommandResponseHandler cmdHandler, String task){
-+		this.monitor = monitor;
-+		this.hostShell = hostShell;
-+		this.processBuffer = new ProcessStreamBuffer(hostShell instanceof TerminalServiceHostShell);
-+		this.cmdHandler = cmdHandler;
-+		this.task = task;
-+	}
-+	public ProcessStreamBuffer processOutput() throws Exception{
-+		if (hostShell == null)
-+			throw new Exception("An error has occured while trying to run remote command!");
-+		monitor.beginTask(this.task, RemoteHelper.TOTALWORKLOAD);
-+		Lock lock = hostShell.getLock();
-+		lock.lock();
-+		BufferedReader inbr = hostShell.getReader(false);
-+		BufferedReader errbr = hostShell.getReader(true);
-+		boolean cancel = false;
-+		while (!cancel) {
-+			if(monitor.isCanceled()) {
-+				cancel = true;
-+				lock.unlock();
-+				throw new InterruptedException("User Cancelled");
-+			}
-+			processBuffer(errbr, ERROR_BUFFER);
-+			processBuffer(inbr, OUTPUT_BUFFER);
-+			cancel = true;
-+		}
-+		lock.unlock();
-+		return processBuffer;
-+	}
-+	protected abstract boolean isErrChStop(char ch);
-+	protected abstract boolean isOutChStop(char ch);
-+	protected boolean isChStop(char ch, int type){
-+		if (type == ERROR_BUFFER)
-+			return isErrChStop(ch);
-+		else if(type == OUTPUT_BUFFER)
-+			return isOutChStop(ch);
-+		return false;
-+	}
-+	protected abstract void processOutputBufferLine(char ch, String str);
-+	protected abstract void processErrorBufferLine(char ch, String str);
-+	protected void processBufferLine(String str, char ch, int type){
-+		if (type == ERROR_BUFFER)
-+			processErrorBufferLine(ch, str);
-+		else if(type == OUTPUT_BUFFER)
-+			processOutputBufferLine(ch, str);
-+	}
-+	protected void processBuffer(BufferedReader br, int type) throws IOException{
-+		StringBuffer buffer = new StringBuffer();
-+		int c;
-+		if (br != null)
-+		while ((c = br.read()) != -1) {
-+			char ch = (char) c;
-+			buffer.append(ch);
-+			if (isChStop(ch, type)){
-+				String str = buffer.toString();
-+				processBufferLine(str, ch, type);
-+				System.out.println(str);
-+				if (str.trim().equals(RemoteHelper.TERMINATOR)) {
-+					break;
-+				}
-+				cmdHandler.response(str, false);
-+				buffer.delete(0, buffer.length());
-+			}
-+		}
-+	}
-+}
-\ No newline at end of file
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java
-index e0d502c..73d0805 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java
-@@ -8,8 +8,10 @@ public class ProcessStreamBuffer {
- 	private static final String WHITESPACES = "\\s+";
- 	List<String> errorLines;
- 	List<String> outputLines;
-+	boolean isTerminal;
- 
--	ProcessStreamBuffer(){
-+	ProcessStreamBuffer(boolean isTerminal){
-+		this.isTerminal = isTerminal;
- 		errorLines = new ArrayList<String>();
- 		outputLines = new ArrayList<String>();
- 	}
-@@ -56,8 +58,13 @@ public class ProcessStreamBuffer {
- 	}
- 
- 	public String getOutputLineContaining(String arg, String pattern) {
--		for (int i = outputLines.size() - 1; i >= 0; i--){
--			String line = outputLines.get(i);
-+		List<String> lines = null;
-+		if (isTerminal)
-+			lines = errorLines;
-+		else
-+			lines = outputLines;
-+		for (int i = lines.size() - 1; i >= 0; i--){
-+			String line = lines.get(i);
- 			if (line.contains(arg)) {
- 				String[] tokens = line.split("\\s+");
- 				if (Pattern.matches(pattern,  tokens[0])) {
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-index 507ac54..17d612b 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-@@ -10,16 +10,12 @@
-  ********************************************************************************/
- package org.yocto.bc.remote.utils;
- 
--import java.io.BufferedReader;
- import java.io.File;
- import java.io.InputStream;
--import java.io.InputStreamReader;
- import java.net.URI;
- import java.net.URISyntaxException;
--import java.util.Arrays;
- import java.util.HashMap;
- import java.util.Map;
--import java.util.concurrent.locks.Lock;
- 
- import org.eclipse.core.runtime.CoreException;
- import org.eclipse.core.runtime.IProgressMonitor;
-@@ -39,7 +35,6 @@ import org.eclipse.rse.services.IService;
- import org.eclipse.rse.services.clientserver.messages.SystemMessageException;
- import org.eclipse.rse.services.files.IFileService;
- import org.eclipse.rse.services.files.IHostFile;
--import org.eclipse.rse.services.shells.HostShellProcessAdapter;
- import org.eclipse.rse.services.shells.IHostShell;
- import org.eclipse.rse.services.shells.IShellService;
- import org.eclipse.rse.subsystems.files.core.model.RemoteFileUtility;
-@@ -75,68 +70,12 @@ public class RemoteHelper {
- 		return getRemoteMachine(connection).getCmdHandler();
- 	}
- 
--	public static ProcessStreamBuffer getProcessBuffer(IHost connection) {
--		return getRemoteMachine(connection).getProcessBuffer();
--	}
--
- 	public static IHostShell getHostShell(IHost connection) {
- 		return getRemoteMachine(connection).getHostShell();
- 	}
- 
--	public static ProcessStreamBuffer processOutput(IProgressMonitor monitor, IHostShell hostShell, CommandResponseHandler cmdHandler, char[] ending) throws Exception {
--		if (hostShell == null)
--			throw new Exception("An error has occured while trying to run remote command!");
--
--		Lock lock = hostShell.getLock();
--		lock.lock();
--		ProcessStreamBuffer processBuffer = new ProcessStreamBuffer();
--		
--		BufferedReader inbr = hostShell.getReader(false);
--		BufferedReader errbr = hostShell.getReader(true);
--		
--		boolean cancel = false;
--		while (!cancel) {
--			if(monitor.isCanceled()) {
--				cancel = true;
--				lock.unlock();
--				throw new InterruptedException("User Cancelled");
--			}
--			StringBuffer buffer = new StringBuffer();
--			int c;
--			if (errbr != null)
--				while ((c = errbr.read()) != -1) {
--					char ch = (char) c;
--					buffer.append(ch);
--					if (Arrays.asList(ending).contains(ch)){
--						String str = buffer.toString();
--						processBuffer.addErrorLine(str);
--						System.out.println(str);
--						if (str.trim().equals(RemoteHelper.TERMINATOR)) {
--							break;
--						}
--						cmdHandler.response(str, true);
--						buffer.delete(0, buffer.length());
--					}
--				}
--			if (inbr != null)
--				while ((c = inbr.read()) != -1) {
--					char ch = (char) c;
--					buffer.append(ch);
--					if (ch == '\n'){
--						String str = buffer.toString();
--						processBuffer.addOutputLine(str);
--						System.out.println(str);
--						if (str.trim().equals(RemoteHelper.TERMINATOR)) {
--							break;
--						}
--						cmdHandler.response(str, false);
--						buffer.delete(0, buffer.length());
--					}
--				}
--			cancel = true;
--		}
--		lock.unlock();
--		return processBuffer;
-+	public static ProcessStreamBuffer processOutput(IProgressMonitor monitor, IHostShell hostShell, CommandResponseHandler cmdHandler) throws Exception {
-+		return new CommandOutputProcessor(monitor, hostShell, cmdHandler, "").processOutput();
- 	}
- 	
- 	public static IHost getRemoteConnectionByName(String remoteConnection) {
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
-index 52bc011..0b9ca3b 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
-@@ -1,12 +1,9 @@
- package org.yocto.bc.remote.utils;
- 
--import java.io.BufferedReader;
--import java.io.InputStreamReader;
- import java.util.ArrayList;
- import java.util.HashMap;
- import java.util.List;
- import java.util.Map;
--import java.util.concurrent.locks.Lock;
- 
- import org.eclipse.core.runtime.CoreException;
- import org.eclipse.core.runtime.IProgressMonitor;
-@@ -19,7 +16,6 @@ import org.eclipse.rse.core.subsystems.ISubSystem;
- import org.eclipse.rse.internal.services.local.shells.LocalShellService;
- import org.eclipse.rse.services.clientserver.messages.SystemMessageException;
- import org.eclipse.rse.services.files.IFileService;
--import org.eclipse.rse.services.shells.HostShellProcessAdapter;
- import org.eclipse.rse.services.shells.IHostShell;
- import org.eclipse.rse.services.shells.IShellService;
- import org.eclipse.rse.subsystems.files.core.servicesubsystem.IFileServiceSubSystem;
-@@ -35,7 +31,6 @@ public class RemoteMachine {
- 	private CommandResponseHandler cmdHandler;
- 	private IHostShell hostShell;
- 	private IShellService shellService;
--	private ProcessStreamBuffer processBuffer;
- 	private IHost connection;
- 
- 	private ISubSystem fileSubSystem;
-@@ -79,7 +74,7 @@ public class RemoteMachine {
- 			try {
- 				SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 3);
- 				IHostShell hostShell = shellService.runCommand("", "env" + " ; echo " + RemoteHelper.TERMINATOR + "; exit;", new String[]{}, subMonitor);
--				buffer = RemoteHelper.processOutput(subMonitor, hostShell, cmdHandler, new char[]{'\n'});
-+				buffer = RemoteHelper.processOutput(subMonitor, hostShell, cmdHandler);
- 				for(int i = 0; i < buffer.getOutputLines().size(); i++) {
- 					String out = buffer.getOutputLines().get(i);
- 					String[] tokens = out.split("=");
-@@ -165,12 +160,6 @@ public class RemoteMachine {
- 		return null;
- 	}
- 
--	public ProcessStreamBuffer getProcessBuffer() {
--		if (processBuffer == null)
--			processBuffer = new ProcessStreamBuffer();
--		return processBuffer;
--	}
--
- 	public IHost getConnection() {
- 		return connection;
- 	}
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java
-index 0fd4f32..9375806 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java
-@@ -11,7 +11,7 @@ public class YoctoCommand {
- 		this.setCommand(command);
- 		this.setInitialDirectory(initialDirectory);
- 		this.setArguments(arguments);
--		this.setProcessBuffer(new ProcessStreamBuffer());
-+		this.setProcessBuffer(new ProcessStreamBuffer(false));
- 	}
- 
- 	public String getCommand() {
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
-index e748be7..81311fe 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
-@@ -31,6 +31,7 @@ public class YoctoRunnableWithProgress implements IRunnableWithProgress {
- 		this.calculator = new GitCalculatePercentage();
- 	}
- 
-+	
- 	private interface ICalculatePercentage {
- 		public float calWorkloadDone(String info) throws IllegalArgumentException;
- 	}
-@@ -80,7 +81,36 @@ public class YoctoRunnableWithProgress implements IRunnableWithProgress {
- 			e.printStackTrace();
- 		}
- 	}
-+	class YoctoRunnableOutputProcessor extends OutputProcessor{
- 
-+		public YoctoRunnableOutputProcessor(IProgressMonitor monitor,
-+				IHostShell hostShell, CommandResponseHandler cmdHandler,
-+				String task) {
-+			super(monitor, hostShell, cmdHandler, task);
-+		}
-+		@Override
-+		protected boolean isErrChStop(char ch) {
-+			return (ch == '\n' || ch == '\r');
-+		}
-+
-+		@Override
-+		protected boolean isOutChStop(char ch) {
-+			return (ch == '\n');
-+		}
-+
-+		@Override
-+		protected void processOutputBufferLine(char ch, String str) {
-+			processBuffer.addOutputLine(str);
-+		}
-+
-+		@Override
-+		protected void processErrorBufferLine(char ch, String str) {
-+			processBuffer.addOutputLine(str);
-+			if (ch == '\r')
-+				reportProgress(str);
-+		}
-+		
-+	}
- 
- 	class YoctoThread implements Runnable{
- 		private IHost connection;
-@@ -98,7 +128,7 @@ public class YoctoRunnableWithProgress implements IRunnableWithProgress {
- 		public void run() {
- 			try {
- 				hostShell = RemoteHelper.runCommandRemote(this.connection, command, monitor);
--				command.setProcessBuffer(RemoteHelper.processOutput(monitor, hostShell, cmdHandler, new char[]{'\n', '\r'}));
-+				command.setProcessBuffer(new YoctoRunnableOutputProcessor(monitor, hostShell, cmdHandler, taskName).processOutput());
- 			} catch (CoreException e) {
- 				e.printStackTrace();
- 			} catch (Exception e) {
--- 
-1.7.9.5
+Here is the weekly test report for Yocto 1.4 https://wiki.yoctoproject.org/=
+wiki/Weekly_Test_Report_for_Yocto_1.4_201303212_Build
 
+Poky commit: master: 9ffee9add2d0380f4025e7a678a166f25a7d659e
 
+If you have any questions or concerns, please contact us by replying to thi=
+s email.
+
+Regards,
+Stoicescu Cornel
+Romania Yocto QA
+
+--_000_33115ABC4887814E8A92A08FBC93416B09797701IRSMSX103gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here is the weekly test report for Yocto 1.4<span st=
+yle=3D"color:#1F497D">
+<a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Test_Report_for_Yocto_=
+1.4_201303212_Build">
+https://wiki.yoctoproject.org/wiki/Weekly_Test_Report_for_Yocto_1.4_2013032=
+12_Build</a></span><o:p></o:p></p>
+<pre><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;=
+sans-serif&quot;;color:black">Poky commit: master: </span><span style=3D"fo=
+nt-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">9ffe=
+e9add2d0380f4025e7a678a166f25a7d659e<o:p></o:p></span></pre>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></=
+span></p>
+<p class=3D"MsoNormal">If you have any questions or concerns, please contac=
+t us by replying to this email.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Stoicescu Cornel<o:p></o:p></p>
+<p class=3D"MsoNormal">Romania Yocto QA<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_33115ABC4887814E8A92A08FBC93416B09797701IRSMSX103gercor_--
