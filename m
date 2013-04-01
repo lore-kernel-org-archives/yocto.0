@@ -1,32 +1,31 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9AFCE0051D
-	for <yocto@yoctoproject.org>; Mon,  1 Apr 2013 10:02:10 -0700 (PDT)
-Received: by mail-la0-f48.google.com with SMTP id fq13so2298621lab.35
-	for <yocto@yoctoproject.org>; Mon, 01 Apr 2013 10:02:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=/w8mcj11a2IA17N5bSjLcFbujpAz8FG4zl0wSSMbfFw=;
-	b=UvTZtQK8JJn4oonAFq6fOp3V94s0GucZygtI54+MzCcT3C5XHTMJsRa2y3f1YQS0ed
-	FNPTCy8aNnIabBHxa9pgPlr7FYgVN/LL/UUXJayTc2JCrR7CbSI/oiAcHIbrgEgb0x+D
-	jjEVZESP3Ppx05bI65ju2YxpJoFxtGlw9lrbsjTffol6VBl7qOBm6OWzhBv5nb93nCua
-	OzeVfgXjn5b/q0J0VHrWkQfdYwjt5+9K84yxEt1rV7DihWQxWd1FnZndBVtYgVO+o5Zi
-	qXaQW2J9D5fB82+Bp9EygkozUHZ56NNZrtYPnQbXtXetg7+3EBaBMf1AixZLORGPzAGd
-	5D0w==
-X-Received: by 10.112.156.42 with SMTP id wb10mr2515406lbb.32.1364835729252;
-	Mon, 01 Apr 2013 10:02:09 -0700 (PDT)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.25.195 with HTTP; Mon, 1 Apr 2013 10:01:49 -0700 (PDT)
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCEEE0E@ORSMSX104.amr.corp.intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E125E0051D
+	for <yocto@yoctoproject.org>; Mon,  1 Apr 2013 11:18:32 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 01 Apr 2013 11:18:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,387,1363158000"; 
+	d="scan'208,217";a="279234912"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by azsmga001.ch.intel.com with ESMTP; 01 Apr 2013 11:18:31 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.213]) with mapi id
+	14.01.0355.002; Mon, 1 Apr 2013 11:18:30 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Chris Larson <clarson@kergoth.com>
+Thread-Topic: [yocto] $HOME use in DL_DiR
+Thread-Index: Ac4u9lMq3Dm9+wxDQx6nrEDKWrpyxAAPvKSAAA3JxqA=
+Date: Mon, 1 Apr 2013 18:18:30 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCEEE69@ORSMSX104.amr.corp.intel.com>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCEEE0E@ORSMSX104.amr.corp.intel.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Mon, 1 Apr 2013 10:01:49 -0700
-X-Google-Sender-Auth: qfJZ-OHweEkVrWGrEdTDJM3u9mI
-Message-ID: <CABcZANkCRDA2mDfdq5Xi4a-fcUvdP=TP+WUP-KCH5nSoLxg1tg@mail.gmail.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+	<CABcZANkCRDA2mDfdq5Xi4a-fcUvdP=TP+WUP-KCH5nSoLxg1tg@mail.gmail.com>
+In-Reply-To: <CABcZANkCRDA2mDfdq5Xi4a-fcUvdP=TP+WUP-KCH5nSoLxg1tg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: $HOME use in DL_DiR
 X-BeenThere: yocto@yoctoproject.org
@@ -40,49 +39,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 17:02:11 -0000
-Content-Type: multipart/alternative; boundary=089e012296f2d1aa9104d94f94f4
+X-List-Received-Date: Mon, 01 Apr 2013 18:18:32 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB123796FCEEE69ORSMSX104amrcor_"
 
---089e012296f2d1aa9104d94f94f4
-Content-Type: text/plain; charset=UTF-8
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123796FCEEE69ORSMSX104amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Mon, Apr 1, 2013 at 9:31 AM, Rifenbark, Scott M <
-scott.m.rifenbark@intel.com> wrote:
+SG1tbeKApi4gSXQgcHJldHR5IG11Y2gga2lsbGVkIG15IGJ1aWxkLiAgTWF5YmUgSSB1c2VkIGJh
+ZCBzeW50YXguICBJIHdpbGwgdHJ5IGFuZCByZWNyZWF0ZSBpdCAoSSBoYXZlIHNpbmNlIHJlbW92
+ZWQgdGhlIGRpcmVjdG9yeSBhbmQgZW1wdGllZCB0aGUgdHJhc2gpLiAgSSBtYXkgbm90IGhhdmUg
+dXNlZCB0aGUgY3VybHkgYnJhY2VzLg0KDQpTY290dA0KDQpGcm9tOiBrZXJnb3RoQGdtYWlsLmNv
+bSBbbWFpbHRvOmtlcmdvdGhAZ21haWwuY29tXSBPbiBCZWhhbGYgT2YgQ2hyaXMgTGFyc29uDQpT
+ZW50OiBNb25kYXksIEFwcmlsIDAxLCAyMDEzIDEwOjAyIEFNDQpUbzogUmlmZW5iYXJrLCBTY290
+dCBNDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gJEhP
+TUUgdXNlIGluIERMX0RpUg0KDQpPbiBNb24sIEFwciAxLCAyMDEzIGF0IDk6MzEgQU0sIFJpZmVu
+YmFyaywgU2NvdHQgTSA8c2NvdHQubS5yaWZlbmJhcmtAaW50ZWwuY29tPG1haWx0bzpzY290dC5t
+LnJpZmVuYmFya0BpbnRlbC5jb20+PiB3cm90ZToNCkkgcmVjZW50bHkgdXNlZCAkSE9NRSBhcyBw
+YXJ0IG9mIGEgcGF0aCBpbiB0aGUgRExfRElSIHZhcmlhYmxlIGluIG15IGxvY2FsLmNvbmYuICBU
+aGlzIGNhdXNlZCBiYWQgdGhpbmdzIHRvIGhhcHBlbiBkdXJpbmcgdGhlIGJ1aWxkLiAgSXQgZXNz
+ZW50aWFsbHkgY3JlYXRlZCBhICJuZXZlci1lbmRpbmciIGRpcmVjdG9yeSBzdHJ1Y3R1cmUgaW5z
+aWRlIG15IGJ1aWxkIGRpcmVjdG9yeSBhbmQgdGhlIGJ1aWxkIGZhaWxlZC4gIEkgd291bGQgbGlr
+ZSBwbGFjZSBhIG5vdGUgaW4gdGhlIGdsb3NzYXJ5IGVudHJ5IGZvciB0aGUgRExfRElSIHZhcmlh
+YmxlLiAgQ2FuIGFueW9uZSBwcm92aWRlIHNvbWUgZ2VuZXJhbCByZWFzb25zIHdoeSBhIHVzZXIg
+c2hvdWxkIG5vdCB1c2UgJEhPTUUgYXMgcGFydCBvZiB0aGUgRExfRElSIHBhdGggdGhhdCBnb2Vz
+IGJleW9uZCAiaXQgd2lsbCBicmVhayB0aGUgYnVpbGQiPw0KDQokSE9NRSBpcyBzaGVsbCB2YXJp
+YWJsZSBzeW50YXgsIG5vdCBiaXRiYWtlLiBJIHVzZSAke0hPTUV9IHNhZmVseSBpbiBteSBETF9E
+SVIgb24gYSByZWd1bGFyIGJhc2lzLg0KLS0NCkNocmlzdG9waGVyIExhcnNvbg0K
 
-> I recently used $HOME as part of a path in the DL_DIR variable in my
-> local.conf.  This caused bad things to happen during the build.  It
-> essentially created a "never-ending" directory structure inside my build
-> directory and the build failed.  I would like place a note in the glossary
-> entry for the DL_DIR variable.  Can anyone provide some general reasons why
-> a user should not use $HOME as part of the DL_DIR path that goes beyond "it
-> will break the build"?
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123796FCEEE69ORSMSX104amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2
+IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBs
+aS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9t
+Oi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
+bWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4u
+RW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVm
+YXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
+Cgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30N
+CmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0t
+W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRt
+YXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
+CjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRh
+PSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJv
+ZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0i
+V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
+ZiZxdW90Oztjb2xvcjojMUY0OTdEIj5IbW1t4oCmLiBJdCBwcmV0dHkgbXVjaCBraWxsZWQgbXkg
+YnVpbGQuJm5ic3A7IE1heWJlIEkgdXNlZCBiYWQgc3ludGF4LiZuYnNwOyBJIHdpbGwgdHJ5IGFu
+ZCByZWNyZWF0ZSBpdCAoSSBoYXZlIHNpbmNlIHJlbW92ZWQgdGhlIGRpcmVjdG9yeSBhbmQgZW1w
+dGllZCB0aGUgdHJhc2gpLiZuYnNwOyBJDQogbWF5IG5vdCBoYXZlIHVzZWQgdGhlIGN1cmx5IGJy
+YWNlcy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
+dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+O2NvbG9yOiMxRjQ5N0QiPlNjb3R0PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1s
+ZWZ0OnNvbGlkIGJsdWUgMS41cHQ7cGFkZGluZzowaW4gMGluIDBpbiA0LjBwdCI+DQo8ZGl2Pg0K
+PGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3Bh
+ZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZx
+dW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
+ZiZxdW90OyI+IGtlcmdvdGhAZ21haWwuY29tIFttYWlsdG86a2VyZ290aEBnbWFpbC5jb21dDQo8
+Yj5PbiBCZWhhbGYgT2YgPC9iPkNocmlzIExhcnNvbjxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXks
+IEFwcmlsIDAxLCAyMDEzIDEwOjAyIEFNPGJyPg0KPGI+VG86PC9iPiBSaWZlbmJhcmssIFNjb3R0
+IE08YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0
+OjwvYj4gUmU6IFt5b2N0b10gJEhPTUUgdXNlIGluIERMX0RpUjxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIE1vbiwg
+QXByIDEsIDIwMTMgYXQgOTozMSBBTSwgUmlmZW5iYXJrLCBTY290dCBNICZsdDs8YSBocmVmPSJt
+YWlsdG86c2NvdHQubS5yaWZlbmJhcmtAaW50ZWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+c2NvdHQu
+bS5yaWZlbmJhcmtAaW50ZWwuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5JIHJlY2VudGx5IHVzZWQgJEhPTUUgYXMgcGFydCBvZiBhIHBhdGgg
+aW4gdGhlIERMX0RJUiB2YXJpYWJsZSBpbiBteSBsb2NhbC5jb25mLiAmbmJzcDtUaGlzIGNhdXNl
+ZCBiYWQgdGhpbmdzIHRvIGhhcHBlbiBkdXJpbmcgdGhlIGJ1aWxkLiAmbmJzcDtJdCBlc3NlbnRp
+YWxseSBjcmVhdGVkIGEgJnF1b3Q7bmV2ZXItZW5kaW5nJnF1b3Q7IGRpcmVjdG9yeSBzdHJ1Y3R1
+cmUgaW5zaWRlIG15IGJ1aWxkIGRpcmVjdG9yeSBhbmQgdGhlIGJ1aWxkIGZhaWxlZC4NCiAmbmJz
+cDtJIHdvdWxkIGxpa2UgcGxhY2UgYSBub3RlIGluIHRoZSBnbG9zc2FyeSBlbnRyeSBmb3IgdGhl
+IERMX0RJUiB2YXJpYWJsZS4gJm5ic3A7Q2FuIGFueW9uZSBwcm92aWRlIHNvbWUgZ2VuZXJhbCBy
+ZWFzb25zIHdoeSBhIHVzZXIgc2hvdWxkIG5vdCB1c2UgJEhPTUUgYXMgcGFydCBvZiB0aGUgRExf
+RElSIHBhdGggdGhhdCBnb2VzIGJleW9uZCAmcXVvdDtpdCB3aWxsIGJyZWFrIHRoZSBidWlsZCZx
+dW90Oz88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0K
+JEhPTUUgaXMgc2hlbGwgdmFyaWFibGUgc3ludGF4LCBub3QgYml0YmFrZS4gSSB1c2UgJHtIT01F
+fSBzYWZlbHkgaW4gbXkgRExfRElSIG9uIGEgcmVndWxhciBiYXNpcy48YnI+DQotLSA8YnI+DQpD
+aHJpc3RvcGhlciBMYXJzb248bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-$HOME is shell variable syntax, not bitbake. I use ${HOME} safely in my
-DL_DIR on a regular basis.
--- 
-Christopher Larson
-
---089e012296f2d1aa9104d94f94f4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On M=
-on, Apr 1, 2013 at 9:31 AM, Rifenbark, Scott M <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott.m.rifenbar=
-k@intel.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">I recently used $HOME as part of a path in t=
-he DL_DIR variable in my local.conf. =C2=A0This caused bad things to happen=
- during the build. =C2=A0It essentially created a &quot;never-ending&quot; =
-directory structure inside my build directory and the build failed. =C2=A0I=
- would like place a note in the glossary entry for the DL_DIR variable. =C2=
-=A0Can anyone provide some general reasons why a user should not use $HOME =
-as part of the DL_DIR path that goes beyond &quot;it will break the build&q=
-uot;?</blockquote>
-
-</div><br>$HOME is shell variable syntax, not bitbake. I use ${HOME} safely=
- in my DL_DIR on a regular basis.<br>-- <br>Christopher Larson</div></div>
-
---089e012296f2d1aa9104d94f94f4--
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123796FCEEE69ORSMSX104amrcor_--
