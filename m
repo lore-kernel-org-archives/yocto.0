@@ -1,39 +1,30 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5B33E00499
-	for <yocto@yoctoproject.org>; Sun, 31 Mar 2013 15:18:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=wwyzyFg8t68YC6PxDIwgzulzXw48t5hwMNE4uZk6K4c=; 
-	b=o9eoqULerrcm1poB3x704Zl5SOpx2S+QRlJKiLrtV1dKdD2UHV3edZXSRZgVpm6nL7lQtN9XHdS8Ru0s+cme4qxmkB9Uv2y+MaDIPWUP0x2vupHktXPlYeeRIW0tQ8zO;
-Received: from [109.224.129.17] (port=43076
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1UMQZX-001BU3-L3; Sun, 31 Mar 2013 23:17:55 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <58D3047F74434B278AB3C73C399FF6F1@PAULD>
-Date: Sun, 31 Mar 2013 23:17:56 +0100
-Message-Id: <61CB2848-B7F6-4C0B-8644-65C0CD0DD6F8@keylevel.com>
-References: <C797901E086446C2A1E1C4637ED4262B@PAULD><8B53A185-C840-438C-B74B-D5267DD14F10@keylevel.com>
-	<09AEF6051AA14B28BF640910EA131219@PAULD>
-	<58D3047F74434B278AB3C73C399FF6F1@PAULD>
-To: Paul D. DeRocco <pderocco@ix.netcom.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: yocto@yoctoproject.org
-Subject: Re: Problem creating bootable flash
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-junco.atl.sa.earthlink.net
+	(elasmtp-junco.atl.sa.earthlink.net [209.86.89.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E220E0145F
+	for <yocto@yoctoproject.org>; Sun, 31 Mar 2013 21:16:15 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=GHswQlD5A+S47mjWfa9GWybvxrIG2fMCvC9LjjkdHFYOnmFEVfBwlycMOjI94jOm;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-junco.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UMWAI-0004aX-V9; Sun, 31 Mar 2013 23:16:15 -0500
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Chris Tapp'" <opensource@keylevel.com>,
+	<yocto@yoctoproject.org>
+References: <C797901E086446C2A1E1C4637ED4262B@PAULD><8B53A185-C840-438C-B74B-D5267DD14F10@keylevel.com><09AEF6051AA14B28BF640910EA131219@PAULD><58D3047F74434B278AB3C73C399FF6F1@PAULD>
+	<61CB2848-B7F6-4C0B-8644-65C0CD0DD6F8@keylevel.com>
+In-Reply-To: <61CB2848-B7F6-4C0B-8644-65C0CD0DD6F8@keylevel.com>
+Date: Sun, 31 Mar 2013 21:16:19 -0700
+Message-ID: <105A6073859D47C780306AD895453FC0@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4uXa43affOh+50RsSimsM6BxfSLgALtUdA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606888e40387c0099caa35b8750ce24e40fc0350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: How to partition a flash drive (was: Problem creating bootable flash)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,143 +36,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 31 Mar 2013 22:18:08 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 01 Apr 2013 04:16:15 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hi Paul,
+> From: Chris Tapp
+> 
+> This should end
+>    of=/dev/sdb
+> 
+> The hddimg file includes the partition info and both 
+> partitions, so you don't need any of the other steps.
 
-On 29 Mar 2013, at 23:15, Paul D. DeRocco wrote:
+Actually, the .hddimg is a single FAT16 volume, with no partition table,
+which contains files for creating a couple of different RAM disk images,
+which are part of the live-image mechanism.
 
-> I'm still having no luck booting my system. I've built
-> core-image-base-cedartrail-nopvr, with only one modification (added =
-samba
-> from OE), and I'm trying to boot it on an Intel DN2800MT mobo from a =
-1GB
-> eUSB SSD. Here's what I've done:
->=20
-> Opened gparted, selected /dev/sdb, which is the SSD.
->=20
-> Created a fresh MSDOS partition table.
->=20
-> Selected the 979MB unallocated space, created a new 949MB FAT16 =
-partition.
->=20
-> Selected the remaining 30MB unallocated space, created a new FAT16
-> partition, which will hold my application data.
->=20
-> Invoked the pending operations.
->=20
-> Selected the first partition, set the "boot" flag.
->=20
-> Exited gparted.
->=20
-> In terminal, went into my images directory, and did
->=20
->    sudo dd if=3Dcore-image-base-cedartrail-nopvr.hddimg of=3D/dev/sdb1
+I am leaning toward using this live-image mechanism in my project
+permanently, because it almost eliminates the possibility of anything
+corrupting the OS in any persistent way. My application does have a small
+amount of persistent data, and I don't want to use the union or overlay file
+system as a way of adding persistence to the live image, because that sort
+of defeats the security of the live image. So I do indeed want to use a
+truly partitioned flash drive, and put my application data on a separate
+small partition.
 
-This should end
-   of=3D/dev/sdb
+What's going wrong is that the code in the MBR created by gparted (and I
+assume by parted) unconditionally uses drive number 0x80 (the first hard
+disk) when it tries to load the zeroth sector from the bootable partition.
+The BIOS, however, is treating this eUSB SSD as a removable drive, and
+calling it drive zero. So it's crashing at the point where the MBR code
+jumps to what is supposed to be the zeroth sector of the partition.
 
-The hddimg file includes the partition info and both partitions, so you =
-don't need any of the other steps.
+The code in the boot sector for the FAT16 volume uses whatever drive number
+is in the DL register on entry, and this works fine when booting directly
+from the BIOS into this code with no intervening MBR, so the solution is to
+modify the MBR boot code to do the same thing. This simply involves NOP-ing
+out the MOV DL, 80H instruction. Then, it should successfully boot a
+partitioned flash drive as though it were a hard disk.
 
-> After a few seconds, it finished.
+-- 
 
-I'm assuming you did a 'sync' or similar at this point.
-
-> I then unplugged and plugged the SSD from
-> the USB header, and it automounted the two partitions and popped up =
-two
-> windows showing their contents. Closed the second one, and examined =
-the
-> first one. It contained the usual five files for booting a live image.
->=20
-> Opened syslinux.cfg in an editor. It showed that syslinux is =
-configured to
-> use a serial port, which is wrong for my system. Also, it showed two =
-boot
-> choices, one called "boot" for running the live image, and the other =
-called
-> "install".
->=20
-> Eventually, I'll get the build to supply a custom syslinux.cfg, but =
-for now,
-> I figured I'd just manually edit it. Since I want it to interact with =
-the
-> screen and keyboard, and not a serial port, I removed "serial 1 =
-115200". The
-> default is supposedly "console 1", which I would expect would use the =
-video
-> and keyboard from the text mode it inherits from the BIOS. I also =
-removed
-> the "install" section.
->=20
-> The options on the minimal boot kernel included "console=3DttyS0,115200"=
- and
-> "console=3Dtty0 video=3Dvesafb vga=3D0x318". Since I don't know what =
-my mobo
-> supports for VGA video, I figured I'd just let it use text mode, so I
-> replaced them both with just "console=3Dtty0". The final contents of
-> syslinux.cfg were:
->=20
->    ALLOWOPTIONS 1
->    DEFAULT boot
->    TIMEOUT 10
->    PROMPT 1
->    LABEL boot
->    KERNEL /vmlinuz
->    APPEND initrd=3D/initrd LABEL=3Dboot root=3D/dev/ram0 console=3Dtty0
->=20
-> I did a "Safely remove" on the device, unplugged it, plugged it into =
-my test
-> motherboard, and fired it up.
->=20
-> I went into the BIOS boot menu, to make sure the BIOS recognized it as =
-a
-> bootable device, and it did. I hit Enter to boot it. All I got was a
-> standard black VGA text mode screen with a blinking gray cursor. At =
-that
-> point, Ctrl-Alt-Del wouldn't reboot.
->=20
-> If my device wasn't bootable, I'd expect the BIOS to complain. If it =
-was
-> still in the BIOS, I'd expect to be able to reboot with Ctrl-Alt-Del. =
-If it
-> actually ran ldlinux.sys, and yet didn't properly use the video, I'd =
-expect
-> it to time out and boot the live image. But I don't see any evidence =
-that
-> it's doing that.
-
-I think you've got a bootable device because you configured it to be, =
-above.
-You shouldn't need to do this as the 'dd' should set it all up for you.
-
->=20
-> Does my syslinux.cfg look correct for showing the syslinux stuff on =
-the text
-> mode output? Do my kernel options look correct for getting the live =
-image
-> boot kernel to talk to the screen in text mode? Can anyone see =
-anything else
-> that might be wrong?
->=20
-> --=20
->=20
-> Ciao,               Paul D. DeRocco
-> Paul                mailto:pderocco@ix.netcom.com=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
 
