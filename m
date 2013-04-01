@@ -1,39 +1,34 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DEEEE013A7
-	for <yocto@yoctoproject.org>; Mon,  1 Apr 2013 02:51:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=bydOJQnyZSIcihAy2MNzBzT5Zvl7/Wtouiwq6sYDWeI=; 
-	b=Ltv0H4lwJwqPa4sK8TkLuA3QDskNQLPGOUIxASIzqOYBHmuQrk6IwOOHSToGkcGwqHPOyFpCRiUBdWYZ3bGfD+6fFZwf5r2z/Qna9wWp0ilbAydER/CD2k/wqrEZqsaK;
-Received: from [109.224.129.17] (port=16019
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1UMbOZ-000Hep-DX; Mon, 01 Apr 2013 10:51:19 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <105A6073859D47C780306AD895453FC0@PAULD>
-Date: Mon, 1 Apr 2013 10:51:22 +0100
-Message-Id: <31349738-2C1E-437E-8719-5C61EF09B4D2@keylevel.com>
-References: <C797901E086446C2A1E1C4637ED4262B@PAULD><8B53A185-C840-438C-B74B-D5267DD14F10@keylevel.com><09AEF6051AA14B28BF640910EA131219@PAULD><58D3047F74434B278AB3C73C399FF6F1@PAULD>
-	<61CB2848-B7F6-4C0B-8644-65C0CD0DD6F8@keylevel.com>
-	<105A6073859D47C780306AD895453FC0@PAULD>
-To: Paul D. DeRocco <pderocco@ix.netcom.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: yocto@yoctoproject.org
-Subject: Re: How to partition a flash drive (was: Problem creating bootable flash)
+Return-Path: <Joe.MacDonald@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87E9FE013A7
+	for <yocto@yoctoproject.org>; Mon,  1 Apr 2013 03:48:07 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r31Am0NN025484
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 1 Apr 2013 03:48:00 -0700 (PDT)
+Received: from yow-jmacdona-d1.ottawa.wrs.com (128.224.146.66) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server
+	(TLS) id 14.2.342.3; Mon, 1 Apr 2013 03:48:00 -0700
+Received: from yow-jmacdona-l1 (unknown [172.25.44.2])	by
+	yow-jmacdona-d1.ottawa.wrs.com (Postfix) with ESMTP id 11C517FCE;
+	Mon,  1 Apr 2013 06:47:06 -0400 (EDT)
+Received: by yow-jmacdona-l1 (Postfix, from userid 1000)	id 419602007F; Mon,
+	1 Apr 2013 06:47:59 -0400 (EDT)
+Date: Mon, 1 Apr 2013 06:47:59 -0400
+From: Joe MacDonald <Joe.MacDonald@windriver.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20130401104758.GB9978@windriver.com>
+References: <3982011.Guen6pOcoq@helios>
+MIME-Version: 1.0
+In-Reply-To: <3982011.Guen6pOcoq@helios>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org,
+	openembedded-core@lists.openembedded.org
+Subject: Re: [OE-core] New OE layer index now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,89 +40,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 09:51:21 -0000
+X-List-Received-Date: Mon, 01 Apr 2013 10:48:07 -0000
+X-Groupsio-MsgNum: 12842
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="wzJLGUyc3ArbnUjN"
+Content-Disposition: inline
+
+--wzJLGUyc3ArbnUjN
 Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
+[[OE-core] New OE layer index now available] On 13.03.29 (Fri 21:34) Paul E=
+ggleton wrote:
 
-On 1 Apr 2013, at 05:16, Paul D. DeRocco wrote:
-
->> From: Chris Tapp
->>=20
->> This should end
->>   of=3D/dev/sdb
->>=20
->> The hddimg file includes the partition info and both=20
->> partitions, so you don't need any of the other steps.
+> Hi folks,
 >=20
-> Actually, the .hddimg is a single FAT16 volume, with no partition =
-table,
-> which contains files for creating a couple of different RAM disk =
-images,
-> which are part of the live-image mechanism.
-
-Sorry, I was trying to do too many things late at night!
-
-I confused myself with the image created using the 'install' boot option =
-;-)
-
-> I am leaning toward using this live-image mechanism in my project
-> permanently, because it almost eliminates the possibility of anything
-> corrupting the OS in any persistent way. My application does have a =
-small
-> amount of persistent data, and I don't want to use the union or =
-overlay file
-> system as a way of adding persistence to the live image, because that =
-sort
-> of defeats the security of the live image. So I do indeed want to use =
-a
-> truly partitioned flash drive, and put my application data on a =
-separate
-> small partition.
-
-Good choice, as unionfs isn't supported in the 3.0 kernel in Yocto.
-I've used it before to give persistence using a read-only partition with =
-some
-scripts to make it writeable to allow configuration files (etc) to be =
-updated
-whilst still giving a decent level of protection.
-
+> There is a new index for OpenEmbedded layers available here:
 >=20
-> What's going wrong is that the code in the MBR created by gparted (and =
-I
-> assume by parted) unconditionally uses drive number 0x80 (the first =
-hard
-> disk) when it tries to load the zeroth sector from the bootable =
-partition.
-> The BIOS, however, is treating this eUSB SSD as a removable drive, and
-> calling it drive zero. So it's crashing at the point where the MBR =
-code
-> jumps to what is supposed to be the zeroth sector of the partition.
+>   http://layers.openembedded.org
 >=20
-> The code in the boot sector for the FAT16 volume uses whatever drive =
-number
-> is in the DL register on entry, and this works fine when booting =
-directly
-> from the BIOS into this code with no intervening MBR, so the solution =
-is to
-> modify the MBR boot code to do the same thing. This simply involves =
-NOP-ing
-> out the MOV DL, 80H instruction. Then, it should successfully boot a
-> partitioned flash drive as though it were a hard disk.
+> It can be used to browse and search for existing layers, as well as the=
+=20
+> recipes and machines contained within them. In addition to the short=20
+> description, repository location and usage link we were collecting in the=
+=20
+> existing wiki, we can now store information on maintainers, layer=20
+> dependencies, and the associated mailing list, as well as a longer=20
+> description. New layers can be submitted easily using a simple form which=
+ does=20
+> not require a login.
 >=20
-> --=20
+> I've imported all the data from the existing index on the OE wiki and fil=
+led
+> in the blanks by hand - please check the entries for your layers and if I=
+'ve=20
+> missed anything or entered something incorrectly, please let me know (rep=
+ly=20
+> off-list) and I'll fix it; alternatively if you're already listed as the=
+=20
+> maintainer of a layer you can create an account with the same email addre=
+ss=20
+> and you'll be able to edit the entry yourself at any time.
 >=20
-> Ciao,               Paul D. DeRocco
-> Paul                mailto:pderocco@ix.netcom.com=20
+> The index also supports multiple branches, but for the moment there is on=
+ly a=20
+> master branch configured as I'd like to have people check the layer data =
+before=20
+> adding the additional stable branches (danny and denzil).
 >=20
+> Feedback on the new site is welcome. The code is also available in case y=
+ou=20
+> want to take a look / improve something - see the TODO file for possible =
+future=20
+> improvements:
 >=20
+>   http://git.yoctoproject.org/cgit/cgit.cgi/layerindex-web/
+>=20
+> Once people have had a chance to give feedback I'll replace the content o=
+f the=20
+> existing OE wiki page with a link to the new index.
 
-Chris Tapp
+I like it, though I have a couple of questions about the accounts
+themselves.
 
-opensource@keylevel.com
-www.keylevel.com
+   - Any chance we could have them connected (or use the same
+     credentials as) the patchworks ones?
 
+   - If not, what options can we set on accounts?  Right now I just see
+     "log out" and "change password".  Both pretty important, but I'd
+     also like to add alternate email addresses, for example, since I
+     use two quite regularly and update meta-networking from both.
 
+--=20
+-Joe MacDonald.
+:wq
 
+--wzJLGUyc3ArbnUjN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEARECAAYFAlFZZd4ACgkQPN8S4W6ZZneB3QCfYHFqPs0osZPRC0xnWgKNO/4l
++04AnRpSJT0ExCiCzto3r3PpFUh973KX
+=uWQ8
+-----END PGP SIGNATURE-----
+
+--wzJLGUyc3ArbnUjN--
