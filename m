@@ -1,30 +1,26 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-junco.atl.sa.earthlink.net
-	(elasmtp-junco.atl.sa.earthlink.net [209.86.89.63])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E220E0145F
-	for <yocto@yoctoproject.org>; Sun, 31 Mar 2013 21:16:15 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=GHswQlD5A+S47mjWfa9GWybvxrIG2fMCvC9LjjkdHFYOnmFEVfBwlycMOjI94jOm;
-	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-junco.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UMWAI-0004aX-V9; Sun, 31 Mar 2013 23:16:15 -0500
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Chris Tapp'" <opensource@keylevel.com>,
-	<yocto@yoctoproject.org>
-References: <C797901E086446C2A1E1C4637ED4262B@PAULD><8B53A185-C840-438C-B74B-D5267DD14F10@keylevel.com><09AEF6051AA14B28BF640910EA131219@PAULD><58D3047F74434B278AB3C73C399FF6F1@PAULD>
-	<61CB2848-B7F6-4C0B-8644-65C0CD0DD6F8@keylevel.com>
-In-Reply-To: <61CB2848-B7F6-4C0B-8644-65C0CD0DD6F8@keylevel.com>
-Date: Sun, 31 Mar 2013 21:16:19 -0700
-Message-ID: <105A6073859D47C780306AD895453FC0@PAULD>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AF4FE013A7
+	for <yocto@yoctoproject.org>; Mon,  1 Apr 2013 02:32:26 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 01 Apr 2013 02:32:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,385,1363158000"; d="scan'208";a="311630426"
+Received: from unknown (HELO helios.localnet) ([10.255.13.254])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Apr 2013 02:32:25 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Date: Mon, 01 Apr 2013 10:32:24 +0100
+Message-ID: <1624497.d7J2isS43f@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.1 (Linux/3.5.0-26-generic; KDE/4.10.1; i686; ; )
+In-Reply-To: <BAEA0795F10B4BF6BD9BAA17CBC46EB0@PAULD>
+References: <74C70EB8A6B644C890B30B2F4B3C9415@PAULD>
+	<5153A67F.9070702@windriver.com>
+	<BAEA0795F10B4BF6BD9BAA17CBC46EB0@PAULD>
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac4uXa43affOh+50RsSimsM6BxfSLgALtUdA
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606888e40387c0099caa35b8750ce24e40fc0350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: Re: How to partition a flash drive (was: Problem creating bootable flash)
+Cc: yocto@yoctoproject.org
+Subject: Re: Samba server?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,50 +32,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Apr 2013 04:16:15 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 01 Apr 2013 09:32:27 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-> From: Chris Tapp
-> 
-> This should end
->    of=/dev/sdb
-> 
-> The hddimg file includes the partition info and both 
-> partitions, so you don't need any of the other steps.
+On Wednesday 27 March 2013 20:10:40 Paul D. DeRocco wrote:
+> So is there a general way to peruse the collection of recipes? Does one have
+> to do "ls -R *.bb" to get the list of recipes, then read the comments
+> inside the files to see how to use them?
 
-Actually, the .hddimg is a single FAT16 volume, with no partition table,
-which contains files for creating a couple of different RAM disk images,
-which are part of the live-image mechanism.
+There are a few useful tools here. Firstly, "bitbake-layers show-recipes" will 
+list all recipes available in your current configuration, the versions 
+available and which layers they are provided by. You can also specify a search 
+keyword on the command line.
 
-I am leaning toward using this live-image mechanism in my project
-permanently, because it almost eliminates the possibility of anything
-corrupting the OS in any persistent way. My application does have a small
-amount of persistent data, and I don't want to use the union or overlay file
-system as a way of adding persistence to the live image, because that sort
-of defeats the security of the live image. So I do indeed want to use a
-truly partitioned flash drive, and put my application data on a separate
-small partition.
+Additionally, "bitbake -s" will list all available "targets" (recipes, plus 
+any BBCLASSEXTENDed variants, e.g. zlib-native) and the latest and current 
+preferred versions.
 
-What's going wrong is that the code in the MBR created by gparted (and I
-assume by parted) unconditionally uses drive number 0x80 (the first hard
-disk) when it tries to load the zeroth sector from the bootable partition.
-The BIOS, however, is treating this eUSB SSD as a removable drive, and
-calling it drive zero. So it's crashing at the point where the MBR code
-jumps to what is supposed to be the zeroth sector of the partition.
+Lastly, if you want to search all available recipes in community layers, there 
+is now an online metadata index available:
 
-The code in the boot sector for the FAT16 volume uses whatever drive number
-is in the DL register on entry, and this works fine when booting directly
-from the BIOS into this code with no intervening MBR, so the solution is to
-modify the MBR boot code to do the same thing. This simply involves NOP-ing
-out the MOV DL, 80H instruction. Then, it should successfully boot a
-partitioned flash drive as though it were a hard disk.
+  http://layers.openembedded.org/
+
+Cheers,
+Paul
 
 -- 
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
