@@ -1,22 +1,26 @@
 Return-Path: <stefanx.stanacar@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 324BAE01481
-	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 12:55:05 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D50EE01494
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 12:55:06 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 02 Apr 2013 12:55:04 -0700
+	by azsmga102.ch.intel.com with ESMTP; 02 Apr 2013 12:55:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,394,1363158000"; d="scan'208";a="279813714"
+X-IronPort-AV: E=Sophos;i="4.87,394,1363158000"; d="scan'208";a="279813716"
 Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by azsmga001.ch.intel.com with ESMTP; 02 Apr 2013 12:55:04 -0700
+	by azsmga001.ch.intel.com with ESMTP; 02 Apr 2013 12:55:05 -0700
 Received: from localhost.localdomain (unknown [10.237.112.141])
-	by linux.intel.com (Postfix) with ESMTP id 3D01A2C8001
-	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 12:54:57 -0700 (PDT)
+	by linux.intel.com (Postfix) with ESMTP id 62D762C8001
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 12:54:58 -0700 (PDT)
 From: Stefan Stanacar <stefanx.stanacar@intel.com>
 To: yocto@yoctoproject.org
-Date: Tue,  2 Apr 2013 22:54:53 +0300
-Message-Id: <cover.1364932393.git.stefanx.stanacar@intel.com>
+Date: Tue,  2 Apr 2013 22:54:54 +0300
+Message-Id: <fb54809a805342b7011430b80d371c4790eb59f0.1364932393.git.stefanx.stanacar@intel.com>
 X-Mailer: git-send-email 1.8.1.4
-Subject: [yocto-autobuilder][PATCH 0/1] Add support for creating lib64 multilib configs
+In-Reply-To: <cover.1364932393.git.stefanx.stanacar@intel.com>
+References: <cover.1364932393.git.stefanx.stanacar@intel.com>
+In-Reply-To: <cover.1364932393.git.stefanx.stanacar@intel.com>
+References: <cover.1364932393.git.stefanx.stanacar@intel.com>
+Subject: [yocto-autobuilder][PATCH 1/1] CreateAutoConf.py: add support for lib64 multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,23 +32,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2013 19:55:05 -0000
+X-List-Received-Date: Tue, 02 Apr 2013 19:55:06 -0000
 
-The following changes since commit 2c1a41e7fd054dc0443b4740c9f5e14d0bf25ce4:
+Add a check for 'multilib' : 'lib64' and keep the default as lib32,
+so if a buildset has 'multilib': True (or 'multilib' : 'lib32') nothing changes.
 
-  CreateAutoConf.py: Remove unneeded try/excepts (2013-04-02 11:59:45 -0700)
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib stefans/yab2
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=stefans/yab2
-
-Stefan Stanacar (1):
-  CreateAutoConf.py: add support for lib64 multilib
-
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
  .../site-packages/autobuilder/buildsteps/CreateAutoConf.py     | 10 +++++++---
  1 file changed, 7 insertions(+), 3 deletions(-)
 
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
+index ac90fd0..dbf7d14 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
+@@ -81,10 +81,14 @@ class CreateAutoConf(ShellCommand):
+             if self.pvr == "True":
+                 fout = fout + 'LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver" \n'
+                 fout = fout + 'PVR_LICENSE = "yes" \n'
+-            if self.multilib == "True":
++            if self.multilib:
+                 fout = fout + 'require conf/multilib.conf \n'
+-                fout = fout + 'MULTILIBS = "multilib:lib32" \n'
+-                fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib32 = "x86" \n'
++                if self.multilib == "True" or self.multilib == "lib32":
++                    fout = fout + 'MULTILIBS = "multilib:lib32" \n'
++                    fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib32 = "x86" \n'
++                elif self.multilib == "lib64":
++                    fout = fout + 'MULTILIBS = "multilib:lib64" \n'
++                    fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib64 = "x86-64" \n'
+                 fout = fout + 'SSTATE_DIR ?= "' + os.environ.get("SSTATE_PUBLISH_DIR") + '/multilib" \n'
+             else:
+                 fout = fout + 'SSTATE_DIR ?= "' + os.environ.get("SSTATE_PUBLISH_DIR") + '/" \n'
 -- 
 1.8.1.4
 
