@@ -1,29 +1,28 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81CE6E014C2
-	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 15:27:42 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 02 Apr 2013 15:27:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,396,1363158000"; d="scan'208";a="279879138"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by azsmga001.ch.intel.com with ESMTP; 02 Apr 2013 15:27:16 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.197]) with mapi id
-	14.01.0355.002; Tue, 2 Apr 2013 15:27:16 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, April
-	02, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac4v8R7druPdohFYTeqKFwHYvsZA/QAAAwfw
-Date: Tue, 2 Apr 2013 22:27:14 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70F1A193@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-masked.atl.sa.earthlink.net
+	(elasmtp-masked.atl.sa.earthlink.net [209.86.89.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AB01E01513
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 16:57:51 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=dkpar2+pVLkEC76ftevrAsKQRBiTP/8t6D8+pWuY9Ufee0Sukuepzsj2ihddmTN3;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-masked.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UNB5K-0001Ca-Fs
+	for yocto@yoctoproject.org; Tue, 02 Apr 2013 19:57:50 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+References: <E32C22186F664AC79D0019B49275C4EE@PAULD>
+In-Reply-To: <E32C22186F664AC79D0019B49275C4EE@PAULD>
+Date: Tue, 2 Apr 2013 16:57:58 -0700
+Message-ID: <7DD9C18F1CC445FDAE4598F91AACCA5A@PAULD>
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, April 02, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4v6OLutIUbhKmlT8+L4nrLND2JOgAE6dJw
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688426ffea502d1f5fe1db170af41c92562350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: This one can't be me...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,61 +34,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2013 22:27:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 02 Apr 2013 23:57:51 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Attendees:
-MichaelH, BethF, BruceA, MarkH, Bj=F6rnS, DaveST, KevinS, TomZ, SaulW, Bele=
-n, RichardP, SeanH, PaulE, SongL.=20
-=A0
-Agenda:
-=A0
-* Opens collection - 5 min (Song)
-* Yocto Project 1.3.1 status - 10 min (Beth)
-  . Initial build is without distro version, old build is deleted. New AB h=
-as a bug that did not build LSB. Some sanity failures on LSB.
-  . There are bugs opened for AB by QA. Some of them are AB bugs, for examp=
-les GPL bugs. Some other may not be. Beth will be working on these issues.=
-=20
-  . ScottR has a doc change, it got pulled into the new build.
-  . Beth: there will be some AB downtime. This afternoon.
-  . Plan: Generating a new build for 1.3.1. Using the same tag. Certainly h=
-as more fixes. Already had a QA run on the same code. Got CCB approval. The=
-re are already people using this branch. So we are confident on the quality=
-. There won't be additional QA needed. But Beth will compare the file count=
- with 1.3. Make sure we are not missing anything.
-=A0
-* Yocto 1.4 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
-  . No feature development as expected. But bug count is high (318). A lot =
-of people were on vacation last week. That probably contributed to more bug=
-s than we liked. AB changes is another reason. We are back to the normal pr=
-ocedure and staffing now focusing on bug fixing.
-   . Mark: LSB result, looks like generally we are in good shape. Couple of=
- concerns: number of failures gone up. Many of them can be explained. But t=
-here are 3 python failures we are concerned. We know our users are using py=
-thon. M5 LSB issues have decreased compared with M4. but higher than M1. Ma=
-rk will follow up to create bugs if necessary. Song will follow up with QA =
-to find out if we changed LSB testing in anyway in 1.4.=20
-=A0
-* SWAT team rotation: Radu Moisan -> Bogdan Marinescu> (Song will to email =
-Bogdan to confirm)
-=A0
-* Opens - 10 min=20
-* Team Sharing - 20 min
-  . Paul: new OE layer index is online now. (http://layers.openembedded.org=
-/) Populated with layers, recipes and machine information. Submit your feed=
-back. Thanks to Mike for setting it up. Working on bugs, helping Scott with=
- doc.
-  - Sean: Supersede the old infrastructure? Will put a link on the top of t=
-he current wiki (http://www.openembedded.org/wiki/LayerIndex).
-  - Scott: change the manual later? Paul: make the change now.
-  . Michael: did get the power upgrade done. Took 20 minutes longer. Additi=
-onal capacity there for new servers. had a ram failures on one machine. Reb=
-uilding that machine. Trying to get it back online. Package reporting syste=
-m. New layer index app. Security people is scanning that site to make sure =
-good security.
+Followup:
+
+I figured I'd try a sato build, since that's what the example on the BSP
+page uses. But core-image-sato-cedartrail-nopvr panics in the same way as
+core-image-base-cedartrail-nopvr. For sato, I surmised maybe 1GB wasn't
+enough, so I put in a second stick. This time, instead of spewing out a lot
+of kernel startup stuff ending in a panic, it gave me a SYSLINUX signon on
+the top of the screen, sat there for about 10 seconds, then rebooted into
+the BIOS, repeatedly. So I put back core-image-base-cedartrail-nopvr, and it
+also gave me the SYSLINUX signon, and rebooted after 10 seconds.
+
+The fact that it behaves differently with 2GB suggests that maybe 1GB isn't
+enough, but that seems hard to imagine even for sato, let alone the base
+console version. I've run Ubuntu on these particular RAM modules, on a
+different motherboard, so I don't think I've got bad RAM.
+
+Any help figuring this out would be appreciated. For all my work, and
+apparently successful builds, I haven't managed to boot anything yet.
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
+> From: Paul D. DeRocco
+> 
+> I've successfully built core-image-base-cedartrail-nopvr, with NO
+> modifications, no meta-oe layer to pull in Samba, no attempt 
+> to partition
+> the flash drive, just the .hddimg file dd'ed to /dev/sdb, to 
+> see if I can
+> get something, anything to boot out of the box.
+> 
+> I get a kernel panic when it tries to boot on my Intel 
+> DN2800MT mobo, with
+> 1GB of RAM. The error messages, which appear on the attached 
+> VGA monitor,
+> are:
+> 
+> VFS: Cannot open root device "ram0" or unknown-block(0,0)
+> Please append a correct "root=" boot option;
+> here are the available partitions:
+> VFS: Unable to mount root fs on unknown-block(0,0)
+> User configuration error - no valid root filesystem found
+> 
+> Here is the syslinux.cfg file that is controlling the boot:
+> 
+> # Automatically created by OE
+> serial 0 115200
+> ALLOWOPTIONS 1
+> DEFAULT boot
+> TIMEOUT 10
+> PROMPT 1
+> LABEL boot
+> KERNEL /vmlinuz
+> APPEND initrd=/initrd LABEL=boot  root=/dev/ram0   
+> console=ttyS0,115200
+> console=tty0 video=vesafb vga=0x318
+> LABEL install
+> KERNEL /vmlinuz
+> APPEND initrd=/initrd LABEL=install  root=/dev/ram0   
+> console=ttyS0,115200
+> console=tty0 video=vesafb vga=0x318
+> 
+> This is a live-image boot, and the flash drive contains the usual five
+> files. As far as I can tell, a live-image boot is a two-stage 
+> boot beginning
+> with a really stripped down vmlinuz and a small RAM-disk read 
+> from initrd,
+> which then reads the big rootfs.img into another RAM-disk and 
+> tries to boot
+> the real kernel from that. I don't know which kernel is 
+> panicking, because
+> it all flies by so fast.
+> 
+> Any ideas, or am I cursed?
 
 
