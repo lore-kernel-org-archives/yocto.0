@@ -1,30 +1,22 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E8E1E013A7
-	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 10:03:53 -0700 (PDT)
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 324BAE01481
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 12:55:05 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 02 Apr 2013 10:03:53 -0700
+	by azsmga102.ch.intel.com with ESMTP; 02 Apr 2013 12:55:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,394,1363158000"; d="scan'208";a="279739314"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by azsmga001.ch.intel.com with ESMTP; 02 Apr 2013 10:03:52 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.19]) by
-	IRSMSX101.ger.corp.intel.com ([169.254.1.99]) with mapi id
-	14.01.0355.002; Tue, 2 Apr 2013 18:03:50 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] RFC: templates in Hob 1.5
-Thread-Index: AQHOL8QLGCAoP3HlTkKDLNEidb2osQ==
-Date: Tue, 2 Apr 2013 17:03:49 +0000
-Message-ID: <CD80CC7F.26935%belen.barros.pena@intel.com>
-In-Reply-To: <CAHUNapSKNX826DbtikAAf2bQEQMjiQyikdXC3oF1yTCQ75gbiw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.3.1.130117
-x-originating-ip: [10.252.63.24]
-MIME-Version: 1.0
-Subject: Re: RFC: templates in Hob 1.5
+X-IronPort-AV: E=Sophos;i="4.87,394,1363158000"; d="scan'208";a="279813714"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by azsmga001.ch.intel.com with ESMTP; 02 Apr 2013 12:55:04 -0700
+Received: from localhost.localdomain (unknown [10.237.112.141])
+	by linux.intel.com (Postfix) with ESMTP id 3D01A2C8001
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 12:54:57 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue,  2 Apr 2013 22:54:53 +0300
+Message-Id: <cover.1364932393.git.stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [yocto-autobuilder][PATCH 0/1] Add support for creating lib64 multilib configs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,59 +28,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Apr 2013 17:03:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <42E91FF098766444BD77A981791A9706@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 02 Apr 2013 19:55:05 -0000
 
-On 02/04/2013 16:50, "Trevor Woerner" <twoerner@gmail.com> wrote:
+The following changes since commit 2c1a41e7fd054dc0443b4740c9f5e14d0bf25ce4:
 
->On Tue, Apr 2, 2013 at 6:21 AM, Barros Pena, Belen
-><belen.barros.pena@intel.com> wrote:
->> But it seems to me there is
->> more interesting stuff buried somewhere in your answer, so I hope it's
->>ok
->> if I dig a little deeper.
->
->:-D
->
->> I think I might have asked the wrong question. Let's forget about the
->>word
->> "template" for a moment, and ask something a bit different: of the stuff
->> you select / configure when building an image with Hob, what would be
->> useful to save for reuse? Once we determine that, we can discuss how it
->> should be called ("template" could be the wrong word).
->
->When I use Hob to click on things here and there, I'm usually just
->playing around; just trying out some things. When I find some
->combination of things that I like, my instinct would be to
->compartmentalize that off into a layer: a particular grouping of
->packages would either be a DISTRO or an image, building something for
->a particular development board would be a BSP or a MACHINE (etc).
->
->In other words I think the "layer" concept completely captures
->whatever it is you're trying to capture with "templates".
->
->:-D
->
->If you're looking to integrate this functionality into Hob, maybe you
->need to look at some way of creating layers? Perhaps a user could save
->their package configuration as a DISTRO or in an image layer?
+  CreateAutoConf.py: Remove unneeded try/excepts (2013-04-02 11:59:45 -0700)
 
-I like this answer much more :) Thanks, Trevor! This really helps.
+are available in the git repository at:
 
-Belen
+  git://git.yoctoproject.org/poky-contrib stefans/yab2
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=stefans/yab2
 
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+Stefan Stanacar (1):
+  CreateAutoConf.py: add support for lib64 multilib
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+ .../site-packages/autobuilder/buildsteps/CreateAutoConf.py     | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+-- 
+1.8.1.4
 
 
