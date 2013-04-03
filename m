@@ -1,32 +1,31 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D387CE014D0
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 01:42:38 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 03 Apr 2013 01:42:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,399,1363158000"; d="scan'208";a="222247579"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by AZSMGA002.ch.intel.com with ESMTP; 03 Apr 2013 01:42:37 -0700
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.73]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.19]) with mapi id
-	14.01.0355.002; Wed, 3 Apr 2013 09:42:23 +0100
-From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] [PATCH] Remove clutter project templates
-Thread-Index: AQHOHz3kdXZmJu3H302lysKq/ZR7oJjENyqAgAAUqEs=
-Date: Wed, 3 Apr 2013 08:42:23 +0000
-Message-ID: <3E179CF0D7162B4AA4E2B324209A4639B30171@IRSMSX101.ger.corp.intel.com>
-References: <1363104333-15085-1-git-send-email-ioanax.grigoropol@intel.com>,
-	<2562063.qdqmlPHIqx@helios>
-In-Reply-To: <2562063.qdqmlPHIqx@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.19.9.46]
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ve0-f194.google.com (mail-ve0-f194.google.com
+	[209.85.128.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 226B2E01517
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 01:47:03 -0700 (PDT)
+Received: by mail-ve0-f194.google.com with SMTP id ox1so372490veb.1
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 01:47:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
+	:subject:from:to:content-type;
+	bh=pJpkj/XsCgGQ7RRxcgZQVoBk7gerWkjAorKel6CtlDU=;
+	b=Xl56bRYVKIbbOjRutW1Lay2tdAPSNTiNUDyGj6lZmiANM2ZCPLpJKAaksZ7fgcX6E8
+	SCmqQu+Ujck+Bq/fQNKLxwKtGsPei0TMDdcLOecrnWFtqS8Tyjn4augFUHn+530Htl9P
+	rIhOWs787/Kj7zKwDgri8nQ1eOdOeC8gUnidQzO3IK8yLu3oejjB5cuZTT0i3tO5ozVs
+	MYBBdxBJ4WwFqENgL6fEo2m5CZqCuoPsm5TqC7IOup0Bait3alRu9Rc8EU55X618yx/z
+	/198SqrZPOcR6FRizqXNGrNPFRqC0x1qpbJFDHmGVQ3Pvo86/uuYjysaUtlD//BuceHC
+	LJ1g==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Remove clutter project templates
+X-Received: by 10.52.67.3 with SMTP id j3mr401096vdt.108.1364978822347; Wed,
+	03 Apr 2013 01:47:02 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.70.141 with HTTP; Wed, 3 Apr 2013 01:47:02 -0700 (PDT)
+Date: Wed, 3 Apr 2013 10:47:02 +0200
+X-Google-Sender-Auth: vMtZbhJk0QYMDDDBaekNO6yxwRw
+Message-ID: <CAFMfyz+evbAH-Yes=LdnkU9TWi-GKdVRWHT-MYaCNzh8Hf_1fQ@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Installing foreign fonts into the yocto build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,47 +37,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 08:42:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 03 Apr 2013 08:47:03 -0000
+Content-Type: multipart/alternative; boundary=20cf307cfbd6d52e8c04d970e5de
 
-Hi Paul,=0A=
-=0A=
-In my opinion, since clutter was only brought in core-image-sato and core-i=
-mage-sato-sdk by clutter-box2d, and not independently, it means it was not =
-really intended to support it. =0A=
-=0A=
-Do you think there should be support for clutter in the sdk images ?=0A=
-Clutter + dependencies is not a small package and was only getting into ima=
-ges through testapps feature, and we could use gtk templates instead.=0A=
-=0A=
-Thanks,=0A=
-Ioana=0A=
-________________________________________=0A=
-From: Paul Eggleton [paul.eggleton@linux.intel.com]=0A=
-Sent: Wednesday, April 03, 2013 11:14 AM=0A=
-To: Grigoropol, IoanaX=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] [PATCH] Remove clutter project templates=0A=
-=0A=
-Hi Ioana,=0A=
-=0A=
-On Tuesday 12 March 2013 18:05:33 Ioana Grigoropol wrote:=0A=
-> - support for clutter was removed from core-image-sato along with=0A=
-> clutter-box2d and thus the project templates in Eclipse should not be=0A=
-> supported anymore; gtk templates should be used instead=0A=
-=0A=
-The removal of clutter-box2d doesn't signal that clutter itself is=0A=
-unsupported, so I think maybe we shouldn't be removing these templates just=
-=0A=
-yet.=0A=
-=0A=
-Cheers,=0A=
-Paul=0A=
-=0A=
---=0A=
-=0A=
-Paul Eggleton=0A=
-Intel Open Source Technology Centre=0A=
+--20cf307cfbd6d52e8c04d970e5de
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hi Guys,
+
+I have a small issue. On my device, I would like to have Chinese, Japanese,
+Russian, Hebrewish, Greek fonts and all European language special
+characters available for java application based on X.
+
+In general I would like to know a method of adding custom fonts which are
+scalable to X server. I tried browsing oever the internet and in the
+mailing lists but not much success... Suggestions are deeply appreciated...
+
+Regards,
+Satya
+
+--20cf307cfbd6d52e8c04d970e5de
+Content-Type: text/html; charset=ISO-8859-1
+
+<div dir="ltr">Hi Guys,<div><br></div><div style>I have a small issue. On my device, I would like to have Chinese, Japanese, Russian, Hebrewish, Greek fonts and all European language special characters available for java application based on X.</div>
+<div style><br></div><div style>In general I would like to know a method of adding custom fonts which are scalable to X server. I tried browsing oever the internet and in the mailing lists but not much success... Suggestions are deeply appreciated...</div>
+<div style><br></div><div style>Regards,</div><div style>Satya</div></div>
+
+--20cf307cfbd6d52e8c04d970e5de--
