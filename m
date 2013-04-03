@@ -1,20 +1,34 @@
-Return-Path: <c.aeschlimann@acn-group.ch>
-Received: from 111.com (mail.dns-net.ch [195.160.190.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FB03E014EE
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 07:56:07 -0700 (PDT)
-Received: from [172.16.147.83] (unknown [212.98.42.40])
-	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
-	(No client certificate requested)
-	by 111.com (Postfix) with ESMTPSA id 9D4A537604B
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 16:56:05 +0200 (CEST)
-Message-ID: <515C4317.4070409@acn-group.ch>
-Date: Wed, 03 Apr 2013 16:56:23 +0200
-From: Christophe Aeschlimann <c.aeschlimann@acn-group.ch>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130307 Thunderbird/17.0.4
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f53.google.com (mail-vb0-f53.google.com
+	[209.85.212.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE5F9E0151A
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 08:00:13 -0700 (PDT)
+Received: by mail-vb0-f53.google.com with SMTP id i3so508030vbh.40
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 08:00:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=N6ZJI9d82P76wdlGut1JzqVYCfnS9ycB/qf3f9hPaO4=;
+	b=BCznBoV9DQZv1h1S6Y3q/VMtNkEHccJJikaUSnoUHLBUOPeqazyuWTftam5jH1P5tz
+	poVK5aviNdqnkoKKvGEpBEAbPOUhzvxr4TOBEVnodqx9oA5fNUfEyy+2nAh+kE6SJqw+
+	QhFPGoL4Jdu3/qPUTcEAcPVAi3DUT2PWemcBrEbbs8NCQQpVYtifHhxht506imhhowI8
+	eE62XmNMJ4KGEiYfklnpVq8ibSUe0Gm4l5EdxDvDk9R14WpXDK2qGXKC4NlE6rPArJ5V
+	Uu7q/WaTmGIlaxn91JuY4YRdPdtufLLiqGN2BzTth4ihL6h5K8XHBxAb1Fmk7wuNW4PI
+	eKcA==
+X-Received: by 10.58.220.229 with SMTP id pz5mr1489544vec.30.1365001212866;
+	Wed, 03 Apr 2013 08:00:12 -0700 (PDT)
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Prevent zImage to be copied to /boot/ in image
+Received: by 10.58.134.74 with HTTP; Wed, 3 Apr 2013 07:59:52 -0700 (PDT)
+In-Reply-To: <CANwz6nxxMDJ8JK3gH4oNbZA_qUQy4o+02A4JoVzd4dwsUz5vGA@mail.gmail.com>
+References: <CANwz6nxxMDJ8JK3gH4oNbZA_qUQy4o+02A4JoVzd4dwsUz5vGA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 3 Apr 2013 15:59:52 +0100
+Message-ID: <CAJTo0LbgxU7X7+bkEmMTLyRBGX+RQQYzgnzXQ2yk5o74cgogug@mail.gmail.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+X-Gm-Message-State: ALoCoQlLZ4o2IUEKKmcWjlRwjQxjPFPM4/uBshiG241ogYW8iSJNvV8+xa3muy/wmeR6KIzE7R3i
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: boost & qt-mobility-x11 added to core-image-sato
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,25 +40,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 14:56:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 03 Apr 2013 15:00:13 -0000
+Content-Type: text/plain; charset=UTF-8
 
 Hi,
 
-I'm using the danny branch and I would like to know if there is a way to
-not have the zImage included in the generated image under the /boot/ folder.
+On 3 April 2013 15:01, Edward Vidal <vidal.develone@gmail.com> wrote:
+> What is the correct procedure to add bitbake results to the target?
 
-I'm trying to save on space in the generated image and I couldn't find
-anywhere to configure that behaviour.
+http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage-localconf
 
-Thank you,
+Generally you can specify the key packages and the dependencies will
+pull in the rest.  In this case "boost" is a meta-package that has no
+contents but simply depends on the library packages, so you can just
+add "boost" if that's what you really want to do.
 
--- 
-Christophe Aeschlimann
-
-Embedded Software Engineer & IT Manager
-ACN Advanced Communications Networks S.A.
-2000 - Neuchâtel, Switzerland
-Tel. +41 32 724 74 31
+Ross
 
