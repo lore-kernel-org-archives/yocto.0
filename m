@@ -1,36 +1,32 @@
-Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
-	[209.85.219.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B8D0E01517
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 01:31:12 -0700 (PDT)
-Received: by mail-oa0-f45.google.com with SMTP id o6so1247190oag.18
-	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 01:31:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=uBTeJFEVMJD55h6H8heOhJ4PL8vIrMkpyBafvvDTQKc=;
-	b=00lVNGa4sLEv+X+lrhnC9u+NOT3LoLrpiswlxAfRcqQhTFHiBp4VClXpgJqcP5cq5I
-	oM/huqUZ7UxIRFCFscGcHFarOWrgtM9GgNA2b1Ssu9ogWX0sgc8l0jMoinAu3gaHHQDf
-	zjJWTHCtbFmolkwxpfw17AM63JbybDYC8Ce2yx7JgP5aY1a/L4RAP8dq8e5tsQofK6GN
-	3c4qiV3v0LlqKFWp+yphP8r5bXFxfoxytw55khgOhfjhwwDc33v0aGK7XdDHi5qqGbVY
-	D/r2y/fc5+z83OgHpFuZmKGfDiPt7kISw0anskYQN8bu/9Mbni8K4iVPnd/CyJeQ5kVN
-	w0Pw==
-MIME-Version: 1.0
-X-Received: by 10.60.3.130 with SMTP id c2mr461264oec.59.1364977871731; Wed,
-	03 Apr 2013 01:31:11 -0700 (PDT)
-Received: by 10.182.121.99 with HTTP; Wed, 3 Apr 2013 01:31:11 -0700 (PDT)
-Received: by 10.182.121.99 with HTTP; Wed, 3 Apr 2013 01:31:11 -0700 (PDT)
-In-Reply-To: <1806884.N0BHJJRgku@helios>
-References: <9BACABF0C6B14A4D8C33B42A795119BE1B6F3998@POCITMSEXMB05.LntUniverse.com>
-	<1B03475D-B706-43D2-A25F-DCB9B0DAF68F@gmail.com>
-	<CA+Z6RkUCNAaR_BTCmHQEGcNcAssuyJ6Kg7Rqp5vOwGpmuyUNzw@mail.gmail.com>
-	<1806884.N0BHJJRgku@helios>
-Date: Wed, 3 Apr 2013 14:01:11 +0530
-Message-ID: <CA+Z6RkX7xhK5dcgEscHrVuTwMWysXL8BH8nWhmeErQgU_im=jA@mail.gmail.com>
-From: Navani Srivastava <navani.srivastava@gmail.com>
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D387CE014D0
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 01:42:38 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 03 Apr 2013 01:42:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,399,1363158000"; d="scan'208";a="222247579"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by AZSMGA002.ch.intel.com with ESMTP; 03 Apr 2013 01:42:37 -0700
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.73]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.19]) with mapi id
+	14.01.0355.002; Wed, 3 Apr 2013 09:42:23 +0100
+From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: SDK creation
+Thread-Topic: [yocto] [PATCH] Remove clutter project templates
+Thread-Index: AQHOHz3kdXZmJu3H302lysKq/ZR7oJjENyqAgAAUqEs=
+Date: Wed, 3 Apr 2013 08:42:23 +0000
+Message-ID: <3E179CF0D7162B4AA4E2B324209A4639B30171@IRSMSX101.ger.corp.intel.com>
+References: <1363104333-15085-1-git-send-email-ioanax.grigoropol@intel.com>,
+	<2562063.qdqmlPHIqx@helios>
+In-Reply-To: <2562063.qdqmlPHIqx@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.19.9.46]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] Remove clutter project templates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,65 +38,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 08:31:12 -0000
-Content-Type: multipart/alternative; boundary=e89a8fb2017e2bc24c04d970addd
-
---e89a8fb2017e2bc24c04d970addd
-Content-Type: text/plain; charset=ISO-8859-1
-
-Thanks for your reply..
-It worked..
-On Apr 3, 2013 12:58 PM, "Paul Eggleton" <paul.eggleton@linux.intel.com>
-wrote:
-
-> On Friday 15 March 2013 14:12:45 Navani Srivastava wrote:
-> > I tried giving
-> > PREFERRED_PROVIDER_qt4_embedded ?= "4.8.1"
-> >
-> > in machine configuration file but it didn't helped..
-> > Any suggestions?
->
-> This should be PREFERRED_VERSION_qt4-embedded = "4.8.1"
-> (note VERSION not PROVIDER, qt4-embedded not qt4_embedded, and = not ?= )
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---e89a8fb2017e2bc24c04d970addd
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Wed, 03 Apr 2013 08:42:39 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Thanks for your reply..<br>
-It worked..</p>
-<div class=3D"gmail_quote">On Apr 3, 2013 12:58 PM, &quot;Paul Eggleton&quo=
-t; &lt;<a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux=
-.intel.com</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">
-On Friday 15 March 2013 14:12:45 Navani Srivastava wrote:<br>
-&gt; I tried giving<br>
-&gt; PREFERRED_PROVIDER_qt4_embedded ?=3D &quot;4.8.1&quot;<br>
-&gt;<br>
-&gt; in machine configuration file but it didn&#39;t helped..<br>
-&gt; Any suggestions?<br>
-<br>
-This should be PREFERRED_VERSION_qt4-embedded =3D &quot;4.8.1&quot;<br>
-(note VERSION not PROVIDER, qt4-embedded not qt4_embedded, and =3D not ?=3D=
- )<br>
-<br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</blockquote></div>
+Hi Paul,=0A=
+=0A=
+In my opinion, since clutter was only brought in core-image-sato and core-i=
+mage-sato-sdk by clutter-box2d, and not independently, it means it was not =
+really intended to support it. =0A=
+=0A=
+Do you think there should be support for clutter in the sdk images ?=0A=
+Clutter + dependencies is not a small package and was only getting into ima=
+ges through testapps feature, and we could use gtk templates instead.=0A=
+=0A=
+Thanks,=0A=
+Ioana=0A=
+________________________________________=0A=
+From: Paul Eggleton [paul.eggleton@linux.intel.com]=0A=
+Sent: Wednesday, April 03, 2013 11:14 AM=0A=
+To: Grigoropol, IoanaX=0A=
+Cc: yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] [PATCH] Remove clutter project templates=0A=
+=0A=
+Hi Ioana,=0A=
+=0A=
+On Tuesday 12 March 2013 18:05:33 Ioana Grigoropol wrote:=0A=
+> - support for clutter was removed from core-image-sato along with=0A=
+> clutter-box2d and thus the project templates in Eclipse should not be=0A=
+> supported anymore; gtk templates should be used instead=0A=
+=0A=
+The removal of clutter-box2d doesn't signal that clutter itself is=0A=
+unsupported, so I think maybe we shouldn't be removing these templates just=
+=0A=
+yet.=0A=
+=0A=
+Cheers,=0A=
+Paul=0A=
+=0A=
+--=0A=
+=0A=
+Paul Eggleton=0A=
+Intel Open Source Technology Centre=0A=
 
---e89a8fb2017e2bc24c04d970addd--
