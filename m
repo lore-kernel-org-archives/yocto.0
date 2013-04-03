@@ -1,36 +1,28 @@
-Return-Path: <s.stirtzel@googlemail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A22D2E0146B
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 04:45:31 -0700 (PDT)
-Received: by mail-ob0-f179.google.com with SMTP id vb8so1271772obc.24
-	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 04:45:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:content-transfer-encoding;
-	bh=Bs08R5AusgrMnM6rFF4fWapjunTZ/duNu0bznGIW2cc=;
-	b=HUtDqaL15ydMIyRTP72v8HY8cL0Lp1lsdlYXgVkE2lkA33hkOrsPX2MR9GVRHJvaHZ
-	KNhtPPrxfutoeO6Yg55Rzo/xmKWLZyclEsajD/lBE+uFqEX1v3p818Eb8jluyqgtvTsj
-	f1x821KDdmQpEjYjZTKaaVaUPEafNahfTXNbPGGKHaIVJo9ZUIWESDfzYSTTPh2HUE4B
-	7xUDx3T7d78jcfnbJ3A2kNy4NSmXGis4DAo1rSidDVvOjdmJA1bHoRssZMn08XbBSxBI
-	gbHWatdg06pu2Fj3VyEESslqz7hUz3cHum7/hk5o76+qjqK/Jq/+j9H4hENqXK7dH3hk
-	Is+w==
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10037E01423
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 07:01:55 -0700 (PDT)
+Received: by mail-vc0-f176.google.com with SMTP id ib11so1470078vcb.21
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 07:01:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=9Uc7ot4CvkZ41mYHnBL0I/n/sQROwUMd2ol/TSQIVns=;
+	b=mAlew0woausotoMACYfxwLn/0rSymjFCTePIVY113ZRV5vpOey5VVHx2Q0oiIcxviF
+	uk+Hhy0ozZwoMAbaBJRBKpUMdl3SnNqHFnpE7/HFi63LD/q27CHRvEBQNJy4tV9E99M4
+	nR0flqigL2I01BnTbm/L9HBO74EaL2MCqDFtxOEdKAW0Rv5Ki2giYFXoy84ZzDe2ugdZ
+	+BqyiE0FaGHwz9SaIaJX4ZkiHwU14+7DOgUXANOqwgbZQALTa6YsqtNNU2goWHy1r31s
+	ju24OO2M/uxVr3e8xn2F7fkzybIS0rnH+ozSyOw9zTqZ+r+SvyMQRtCmGtSDx89kJLtZ
+	xRlA==
 MIME-Version: 1.0
-X-Received: by 10.60.172.108 with SMTP id bb12mr836073oec.110.1364989530996;
-	Wed, 03 Apr 2013 04:45:30 -0700 (PDT)
-Received: by 10.60.46.69 with HTTP; Wed, 3 Apr 2013 04:45:30 -0700 (PDT)
-In-Reply-To: <62673661A504604B856269DAADA8BC281DE2E894@ILPTWPVEXMB02.ecitele.com>
-References: <62673661A504604B856269DAADA8BC281DE2C5CC@ILPTWPVEXMB02.ecitele.com>
-	<2281089.7AcPuKSElP@helios>
-	<CAGiJk9d1aR30d=rZ2GuG5bKyW1NQSNLAXfcCoWu=NTZidDvDDw@mail.gmail.com>
-	<62673661A504604B856269DAADA8BC281DE2E894@ILPTWPVEXMB02.ecitele.com>
-Date: Wed, 3 Apr 2013 13:45:30 +0200
-Message-ID: <CAGiJk9fhg6h-aQbBNT_1mVhFkaV88FfXRM6yhtXx+APCx2B1aQ@mail.gmail.com>
-From: Samuel Stirtzel <s.stirtzel@googlemail.com>
-To: Michael Fainstein <Michael.Fainstein@ecitele.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to convert source rpm spec to bitbake recipe?
+X-Received: by 10.220.153.69 with SMTP id j5mr1275072vcw.35.1364997715497;
+	Wed, 03 Apr 2013 07:01:55 -0700 (PDT)
+Received: by 10.52.159.163 with HTTP; Wed, 3 Apr 2013 07:01:55 -0700 (PDT)
+Date: Wed, 3 Apr 2013 08:01:55 -0600
+Message-ID: <CANwz6nxxMDJ8JK3gH4oNbZA_qUQy4o+02A4JoVzd4dwsUz5vGA@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: yocto@yoctoproject.org
+Subject: boost & qt-mobility-x11 added to core-image-sato
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,67 +34,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 11:45:31 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 03 Apr 2013 14:01:56 -0000
+Content-Type: multipart/alternative; boundary=f46d043c7ca6f39a0904d9754b57
+
+--f46d043c7ca6f39a0904d9754b57
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+I have been using the bitbake core-image-sato with
+
+EXTRA_IMAGE_FEATURES = "debug-tweaks tools-sdk" which adds the sdk to the
+image.
+
+I since have done bitbake boost (added about 14 RPMs) and bitbake
+qt-mobility-x11 (81 RPMs).
+
+After creating the boost libs I installed the 14 RPMs on the target
+with the script
+rpm -Uh  \
+boost-1.53.0-r1.armv7a_vfp_neon.rpm \
+boost-dbg-1.53.0-r1.armv7a_vfp_neon.rpm \
+boost-dev-1.53.0-r1.armv7a_vfp_neon.rpm \
+boost-staticdev-1.53.0-r1.armv7a_vfp_neon.rpm \
+boost-test-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-date-time1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-filesystem1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-graph1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-iostreams1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-program-options1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-regex1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-signals1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-system1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \
+libboost-thread1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm
+
+The qt-mobility-x11 RPMs were installed with rpm -Uh *.rpm.
+The difficult part was determining what are the needed dependencies.  This
+was done by running the rpm -Uh --test *.rpm many times and adding
+additional RPMs to set of RPMs.
+
+What is the correct procedure to add bitbake results to the target?
+How does one know what packages are included in the image? What should be
+the order first bitbake boost, bitbake qt-mobility, and then bitbake
+core-image-sato?  This order did not work I still needed to install the new
+RPMs after the target was running.
+
+
+Any and all help will be appreciated!
+
+Thanks
+
+--f46d043c7ca6f39a0904d9754b57
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-2013/4/3 Michael Fainstein <Michael.Fainstein@ecitele.com>:
->> -----Original Message-----
->> From: Samuel Stirtzel [mailto:s.stirtzel@googlemail.com]
->> Sent: =D7=99=D7=95=D7=9D =D7=93 03 =D7=90=D7=A4=D7=A8=D7=99=D7=9C 2013 1=
-3:47
->> To: Paul Eggleton
->> Cc: Michael Fainstein; yocto@yoctoproject.org
->> Subject: Re: [yocto] how to convert source rpm spec to bitbake recipe?
->>
->> 2013/4/3 Paul Eggleton <paul.eggleton@linux.intel.com>:
->> > Hi Michael,
->> >
->> > On Sunday 31 March 2013 08:45:23 Michael Fainstein wrote:
->> >> Is there a tool or guide for conversion of source rpm spec file to
->> bitbake
->> >> recipe?
->> >
->> > There is scripts/create-recipe - this is aimed at just downloading sou=
-rce
->> and
->> > using a spec file contained within as a basis for a new recipe (among
->> other
->> > methods it uses to determine recipe contents), however it could be
->> adapted to
->> > read a specified spec file I would think.
->> >
->> > Cheers,
->> > Paul
->>
->> Hi Paul,
->> good to know.
->>
->> Does this script also helps with packaging?
->>
->> For KDE there are tons of sub-packages within one recipe, adding them
->> per hand is the major time factor in this case.
->> Currently I use a decrepit script [1] to do this, but maybe I can use
->> this one if it meets my expectations.
->>
->> [1] kde-spec2bb.sh beware, contains excessive sed usage:
->> http://pastebin.com/3g5xDKJ5
->>
->>
->> --
->> Regards
->> Samuel
+<div dir=3D"ltr"><br>Hello,<br>I have been using the bitbake core-image-sat=
+o with<br><br>EXTRA_IMAGE_FEATURES =3D &quot;debug-tweaks tools-sdk&quot; w=
+hich adds the sdk to the image.<br><br>I since have done bitbake boost (add=
+ed about 14 RPMs) and bitbake<br>
+qt-mobility-x11 (81 RPMs).<br><br>After creating the boost libs I installed=
+ the 14 RPMs on the target<br>with the script<br>rpm -Uh=A0 \<br>boost-1.53=
+.0-r1.armv7a_vfp_neon.rpm \<br>boost-dbg-1.53.0-r1.armv7a_vfp_neon.rpm \<br=
 >
-> Hi Samuel,
-> kde-spec2bb.sh script references spec2bb.inc script. Can you post a link =
-to it?
->
+boost-dev-1.53.0-r1.armv7a_vfp_neon.rpm \<br>boost-staticdev-1.53.0-r1.armv=
+7a_vfp_neon.rpm \<br>boost-test-1.53.0-r1.armv7a_vfp_neon.rpm \<br>libboost=
+-date-time1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \<br>libboost-filesystem1.53=
+.0-1.53.0-r1.armv7a_vfp_neon.rpm \<br>
+libboost-graph1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \<br>libboost-iostreams1=
+.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \<br>libboost-program-options1.53.0-1.5=
+3.0-r1.armv7a_vfp_neon.rpm \<br>libboost-regex1.53.0-1.53.0-r1.armv7a_vfp_n=
+eon.rpm \<br>
+libboost-signals1.53.0-1.53.0-r1.armv7a_vfp_neon.rpm \<br>libboost-system1.=
+53.0-1.53.0-r1.armv7a_vfp_neon.rpm \<br>libboost-thread1.53.0-1.53.0-r1.arm=
+v7a_vfp_neon.rpm<br><br>The qt-mobility-x11 RPMs were installed with rpm -U=
+h *.rpm.<br>
+The difficult part was determining what are the needed dependencies.=A0 Thi=
+s was done by running the rpm -Uh --test *.rpm many times and adding additi=
+onal RPMs to set of RPMs. =A0<br><br>What is the correct procedure to add b=
+itbake results to the target?<br>
+How does one know what packages are included in the image? What should be t=
+he order first bitbake boost, bitbake qt-mobility, and then bitbake core-im=
+age-sato?=A0 This order did not work I still needed to install the new RPMs=
+ after the target was running.<br>
+<br><br>Any and all help will be appreciated!<br><br>Thanks</div>
 
-The spec2bb.inc only handles the parameters.
-But sure here is the link: http://pastebin.com/S64CkYUa
-
-
---
-Regards
-Samuel
-
+--f46d043c7ca6f39a0904d9754b57--
