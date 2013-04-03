@@ -1,20 +1,53 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D736E0147D
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 15:14:09 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 03 Apr 2013 15:14:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,403,1363158000"; d="scan'208";a="289011104"
-Received: from fear.jf.intel.com (HELO rage.local) ([10.7.201.160])
-	by orsmga001.jf.intel.com with ESMTP; 03 Apr 2013 15:14:09 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Wed,  3 Apr 2013 15:16:25 -0700
-Message-Id: <9df95d49188bacbe180bfac67edfaa682d542ed3.1365027385.git.dvhart@linux.intel.com>
-X-Mailer: git-send-email 1.7.5.4
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [PATCH] [poky-extras] linux-yocto*3.8: Add bbappend for linux-yocto 3.8 recipes
+Return-Path: <john.williams@xilinx.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe005.messaging.microsoft.com [216.32.181.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9945E013A7
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 15:38:28 -0700 (PDT)
+Received: from mail107-ch1-R.bigfish.com (10.43.68.234) by
+	CH1EHSOBE010.bigfish.com (10.43.70.60) with Microsoft SMTP Server id
+	14.1.225.23; Wed, 3 Apr 2013 22:38:27 +0000
+Received: from mail107-ch1 (localhost [127.0.0.1])	by
+	mail107-ch1-R.bigfish.com (Postfix) with ESMTP id BEEAA200F3;
+	Wed,  3 Apr 2013 22:38:27 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:149.199.60.83; KIP:(null); UIP:(null); IPV:NLI;
+	H:xsj-gw1; RD:unknown-60-83.xilinx.com; EFVD:NLI
+X-SpamScore: 1
+X-BigFish: VPS1(zzzz1f42h1fc6h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ahzz8275bhz2fh95h668h839h944hd24hf0ah119dh1220h1288h12a5h12a9h12bdh137ah13b6h1441h14ddh1504h1537h153bh162dh1631h1758h18e1h1946h19b5h1b0ah906i1155h)
+Received-SPF: pass (mail107-ch1: domain of xilinx.com designates 149.199.60.83
+	as permitted sender) client-ip=149.199.60.83;
+	envelope-from=john.williams@xilinx.com; helo=xsj-gw1 ;
+	helo=xsj-gw1 ; 
+Received: from mail107-ch1 (localhost.localdomain [127.0.0.1]) by mail107-ch1
+	(MessageSwitch) id 136502870652278_17170;
+	Wed,  3 Apr 2013 22:38:26 +0000 (UTC)
+Received: from CH1EHSMHS031.bigfish.com (snatpool2.int.messaging.microsoft.com
+	[10.43.68.234])	by mail107-ch1.bigfish.com (Postfix) with ESMTP id
+	F3CF5420069;	Wed,  3 Apr 2013 22:38:25 +0000 (UTC)
+Received: from xsj-gw1 (149.199.60.83) by CH1EHSMHS031.bigfish.com
+	(10.43.70.31) with Microsoft SMTP Server id 14.1.225.23; Wed, 3 Apr 2013
+	22:38:25 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66]
+	helo=xsj-smtp1.xilinx.com)	by xsj-gw1 with esmtp (Exim
+	4.63)	(envelope-from <john.williams@xilinx.com>)	id 1UNWK1-0005Fs-Bd;
+	Wed, 03 Apr 2013 15:38:25 -0700
+From: John Williams <john.williams@xilinx.com>
+To: "Saridakis, Dean   (US SSA)" <dean.saridakis@baesystems.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Easy one: fetch fails
+Thread-Index: Ac4wmirKzG7I/3HMQzqAt5Om3ArUVAAIYXsw
+Date: Wed, 3 Apr 2013 22:38:22 +0000
+References: <20130403191633.1B258E0156B@yocto-www.yoctoproject.org>
+In-Reply-To: <20130403191633.1B258E0156B@yocto-www.yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.162.69]
+MIME-Version: 1.0
+X-RCIS-Action: ALLOW
+Message-ID: <43b08ff8-289c-431b-9e82-44d4655d1076@CH1EHSMHS031.ehs.local>
+X-OriginatorOrg: xilinx.com
+Cc: John Williams <jwilliams@xilinx.com>
+Subject: Re: Easy one: fetch fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,81 +59,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 22:14:09 -0000
+X-List-Received-Date: Wed, 03 Apr 2013 22:38:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Enable meta-kernel-dev support for the 3.8 kernels.
+> I'm starting w/ an SDK based on yocto & am trying to add canutil to the b=
+uild.
+> There's already a recipe in meta-oe, but unfortunately I can't get throug=
+h my
+> corporate firewall w/ the git protocol. However I can w/ http. So I added=
+ a layer
+> w/ a bbppend to change the SRC_URI
 
-Signed-off-by: Darren Hart <dvhart@linux.intel.com>
----
- .../linux/linux-yocto-rt_3.8.bbappend              |   25 ++++++++++++++++++++
- .../recipes-kernel/linux/linux-yocto_3.8.bbappend  |   25 ++++++++++++++++++++
- 2 files changed, 50 insertions(+), 0 deletions(-)
- create mode 100644 meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend
- create mode 100644 meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend
+Alternatively just use corkscrew to tunnel git via your company's http prox=
+y:
 
-diff --git a/meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend b/meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend
-new file mode 100644
-index 0000000..18eab0d
---- /dev/null
-+++ b/meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend
-@@ -0,0 +1,25 @@
-+FILESEXTRAPATHS := "${THISDIR}/${PN}"
-+
-+COMPATIBLE_MACHINE = "${MACHINE}"
-+
-+# Note: put these in your local.conf to avoid multi-kernel build errors
-+# PREFERRED_VERSION_linux-yocto-rt_${MACHINE} = "3.8%"
-+
-+# KMACHINE is the branch to build
-+# KMACHINE_<MACHINE> ?= "yocto/${LINUX_KERNEL_TYPE}/${KMACHINE}"
-+
-+# KERNEL_FEATURES are features to be added to the kernel, and must
-+# point to configurations stored on the 'meta' branch of the kernel
-+# that is being built.
-+# KERNEL_FEATURES ?= <FOO>
-+
-+# It is often nice to have a local clone of the kernel repos, to
-+# allow patches to be staged, branches created, etc. Modify
-+
-+# KSRC_linux_yocto_3_8 to point to your local clone as appropriate.
-+# KSRC_linux_yocto_3_8 ?= "/path/to/local/linux-yocto-3.8.git/"
-+#SRC_URI = "git://${KSRC_linux_yocto_3_8};protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-+
-+SRCREV_machine_${MACHINE}="${AUTOREV}"
-+SRCREV_meta="${AUTOREV}"
-+LOCALCOUNT = "0"
-diff --git a/meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend b/meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend
-new file mode 100644
-index 0000000..9e61e33
---- /dev/null
-+++ b/meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend
-@@ -0,0 +1,25 @@
-+FILESEXTRAPATHS := "${THISDIR}/${PN}"
-+
-+COMPATIBLE_MACHINE = "${MACHINE}"
-+
-+# Note: put these in your local.conf to avoid multi-kernel build errors
-+# PREFERRED_VERSION_linux-yocto_${MACHINE} = "3.8%"
-+
-+# KMACHINE is the branch to build
-+# KMACHINE_<MACHINE> ?= "yocto/${LINUX_KERNEL_TYPE}/${KMACHINE}"
-+
-+# KERNEL_FEATURES are features to be added to the kernel, and must
-+# point to configurations stored on the 'meta' branch of the kernel
-+# that is being built.
-+# KERNEL_FEATURES ?= <FOO>
-+
-+# It is often nice to have a local clone of the kernel repos, to
-+# allow patches to be staged, branches created, etc. Modify
-+
-+# KSRC_linux_yocto_3_8 to point to your local clone as appropriate.
-+# KSRC_linux_yocto_3_8 ?= "/path/to/local/linux-yocto-3.8.git/"
-+# SRC_URI = "git://${KSRC_linux_yocto_3_8};protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-+
-+SRCREV_machine_${MACHINE}="${AUTOREV}"
-+SRCREV_meta="${AUTOREV}"
-+LOCALCOUNT = "0"
--- 
-1.7.5.4
+https://gforge.ti.com/gf/project/omapandroid/wiki/?pagename=3DGit+Firewall
+
+John
+
 
 
