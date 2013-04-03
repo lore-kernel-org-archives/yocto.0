@@ -1,32 +1,24 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
-	[209.85.220.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E531E01508
-	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 22:12:31 -0700 (PDT)
-Received: by mail-pa0-f51.google.com with SMTP id jh10so689304pab.38
-	for <yocto@yoctoproject.org>; Tue, 02 Apr 2013 22:12:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
-	bh=8Ks2mHrS7M1ozVivUB1Pd//3SUMR9SfVzcwZWQNXmYE=;
-	b=qr2xBZyLCXZIzIHMS/yyQXuJcGF3oi7lNyvJYfQ0a1XzDEIY6MXZb+F0NMN0ISGjRa
-	KMh2wxOoqaf+G1kkChuN/2OtLtM3oIoO6UPtiDdvJ8+0SsgKLXBZkHuEUkxBi4MdvM1h
-	9dvpmAqgnn+r1BgO/eqeSYgC/SvfdK8T7YbgVQPWh0zbSC+a8Vs/7IniVkMn7FLqtWR8
-	ooqGhGxcZ5M6KjfnmFEPNz4eLyU1GkBV7n/hN6yWXoyKpWf9Kdmxt85Crw8s7FdBU4SE
-	8ZsoGXVEMD7gV8sqd9V7W+YY+jFJPP8cTBX1hqodDUq6D+WmDkhJQl7aKRGfs2DAlbdb
-	S26g==
-X-Received: by 10.68.135.136 with SMTP id ps8mr459858pbb.2.1364965950524;
-	Tue, 02 Apr 2013 22:12:30 -0700 (PDT)
-Received: from isis.gateway.2wire.net
-	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
-	by mx.google.com with ESMTPS id f4sm4484947pbc.6.2013.04.02.22.12.28
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 02 Apr 2013 22:12:29 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue,  2 Apr 2013 22:11:50 -0700
-Message-Id: <1364965911-17324-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [meta-yocto][PATCH] poky.conf: Use weaker assignment for PREMIRROR
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF95E01508
+	for <yocto@yoctoproject.org>; Tue,  2 Apr 2013 23:41:43 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Apr 2013 23:41:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,399,1363158000"; d="scan'208";a="288610599"
+Received: from unknown (HELO helios.localnet) ([10.255.13.234])
+	by orsmga001.jf.intel.com with ESMTP; 02 Apr 2013 23:41:41 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 03 Apr 2013 07:41:31 +0100
+Message-ID: <1991749.pLqSkOTN3J@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.1 (Linux/3.5.0-26-generic; KDE/4.10.1; i686; ; )
+In-Reply-To: <1364965911-17324-1-git-send-email-raj.khem@gmail.com>
+References: <1364965911-17324-1-git-send-email-raj.khem@gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-yocto][PATCH] poky.conf: Use weaker assignment for PREMIRROR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,31 +30,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 05:12:31 -0000
+X-List-Received-Date: Wed, 03 Apr 2013 06:41:43 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-This is to facilitate distros using poky as reference
-so that they can use ?= and provide an option for their
-users to override it if desired
+On Tuesday 02 April 2013 22:11:50 Khem Raj wrote:
+> This is to facilitate distros using poky as reference
+> so that they can use ?= and provide an option for their
+> users to override it if desired
+> 
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  meta-yocto/conf/distro/poky.conf |    2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/meta-yocto/conf/distro/poky.conf
+> b/meta-yocto/conf/distro/poky.conf index afe328b..963b3dd 100644
+> --- a/meta-yocto/conf/distro/poky.conf
+> +++ b/meta-yocto/conf/distro/poky.conf
+> @@ -44,7 +44,7 @@ TCLIBCAPPEND = ""
+>  QEMU_TARGETS ?= "arm i386 mips mipsel ppc x86_64"
+>  # Other QEMU_TARGETS "mips64 mips64el sh4"
+> 
+> -PREMIRRORS ?= "\
+> +PREMIRRORS ??= "\
+>  bzr://.*/.*   http://downloads.yoctoproject.org/mirror/sources/ \n \
+>  cvs://.*/.*   http://downloads.yoctoproject.org/mirror/sources/ \n \
+>  git://.*/.*   http://downloads.yoctoproject.org/mirror/sources/ \n \
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- meta-yocto/conf/distro/poky.conf |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I'm not sure this is a path we should be going down; potentially we could end 
+up having to use ??= for just about everything.
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index afe328b..963b3dd 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -44,7 +44,7 @@ TCLIBCAPPEND = ""
- QEMU_TARGETS ?= "arm i386 mips mipsel ppc x86_64"
- # Other QEMU_TARGETS "mips64 mips64el sh4"
- 
--PREMIRRORS ?= "\
-+PREMIRRORS ??= "\
- bzr://.*/.*   http://downloads.yoctoproject.org/mirror/sources/ \n \
- cvs://.*/.*   http://downloads.yoctoproject.org/mirror/sources/ \n \
- git://.*/.*   http://downloads.yoctoproject.org/mirror/sources/ \n \
+Wouldn't you be better off using your own separate distro config (perhaps 
+copying poky.conf instead of "require"ing it) and then the user can just set 
+it with "=" ?
+
+Cheers,
+Paul
+
 -- 
-1.7.9.5
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
