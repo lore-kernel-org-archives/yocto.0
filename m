@@ -1,24 +1,40 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68220E01423
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 08:38:54 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 03 Apr 2013 08:38:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,402,1363158000"; d="scan'208";a="316331150"
-Received: from unknown (HELO envy.home) ([10.255.13.219])
-	by fmsmga002.fm.intel.com with ESMTP; 03 Apr 2013 08:38:53 -0700
-Message-ID: <515C4D0D.7030708@linux.intel.com>
-Date: Wed, 03 Apr 2013 08:38:53 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130110 Thunderbird/17.0.2
-MIME-Version: 1.0
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
+	[209.85.219.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18B03E013AC
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 09:04:14 -0700 (PDT)
+Received: by mail-oa0-f46.google.com with SMTP id k1so1697670oag.19
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 09:04:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:sender:from:to:subject:references:date:in-reply-to
+	:message-id:user-agent:mime-version:content-type;
+	bh=FGSzaNCWC+DjGTeC0vZHskQVYXi5GEOUEXRrikQ6uKc=;
+	b=psKTWyUVNONvgdyqGPxtITnLXMbQoJEIudlXdOJO/K4qto3o58MoHQAueu+SLe1aMx
+	uF/tN7OT8BTDVcQD6c+u096VtqXTZ6u8LSbu2qKZ+iZlP7166dXMhxP+Uy0uKoGAja+t
+	zEC9ad/IO2MQGL5meaeBysuFaI51UZ30aw/SLMmjMoRFKF1Uon6teLSRksVgVpciOYPZ
+	2oyZzNzBT+yxkIzqBb2CqqD5vL4prO+v3QCcL5S5X1Grokq5VJR1/DdDKwEsEfbRVDpM
+	FgqQH2fHePuj9fvLucAv+vR/hNt6eg40pXXcWdzBh4WjjMHp+YPMjK5/rP7ZMrW3P7aa
+	cYlA==
+X-Received: by 10.60.92.201 with SMTP id co9mr1061229oeb.113.1365005054500;
+	Wed, 03 Apr 2013 09:04:14 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPS id a10sm2744754oez.1.2013.04.03.09.04.12
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Wed, 03 Apr 2013 09:04:13 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Wed, 03 Apr 2013 12:04:34 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: yocto@yoctoproject.org
 References: <E32C22186F664AC79D0019B49275C4EE@PAULD>
-In-Reply-To: <E32C22186F664AC79D0019B49275C4EE@PAULD>
-X-Enigmail-Version: 1.5.1
-Cc: yocto@yoctoproject.org
+	<7DD9C18F1CC445FDAE4598F91AACCA5A@PAULD>
+Date: Wed, 03 Apr 2013 12:04:34 -0400
+In-Reply-To: <7DD9C18F1CC445FDAE4598F91AACCA5A@PAULD> (Paul D. DeRocco's
+	message of "Tue, 2 Apr 2013 16:57:58 -0700")
+Message-ID: <87ip43txbh.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
+MIME-Version: 1.0
 Subject: Re: This one can't be me...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,109 +47,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 15:38:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 03 Apr 2013 16:04:15 -0000
+Content-Type: text/plain
+
+"Paul D. DeRocco" <pderocco@ix.netcom.com> writes:
+
+> Followup:
+>
+> I figured I'd try a sato build, since that's what the example on the BSP
+> page uses. But core-image-sato-cedartrail-nopvr panics in the same way as
+> core-image-base-cedartrail-nopvr. For sato, I surmised maybe 1GB wasn't
+> enough, so I put in a second stick. This time, instead of spewing out a lot
+> of kernel startup stuff ending in a panic, it gave me a SYSLINUX signon on
+> the top of the screen, sat there for about 10 seconds, then rebooted into
+> the BIOS, repeatedly. So I put back core-image-base-cedartrail-nopvr, and it
+> also gave me the SYSLINUX signon, and rebooted after 10 seconds.
+>
+> The fact that it behaves differently with 2GB suggests that maybe 1GB isn't
+> enough, but that seems hard to imagine even for sato, let alone the base
+> console version. I've run Ubuntu on these particular RAM modules, on a
+> different motherboard, so I don't think I've got bad RAM.
+>
+> Any help figuring this out would be appreciated. For all my work, and
+> apparently successful builds, I haven't managed to boot anything yet.
 
 Hi Paul,
 
-First off, please CC the relevant maintainers of the recipes and BSPs
-you are having trouble with. The README in the cedartrail BSP lists
-Kishore as the maintainer, now on CC. This will help improve response
-time to your post as well as getting the right people looking at it.
+The live images boot in (roughly) the following way:
 
-Kishore, can you please work with Paul to get him booting?
+1- BIOS loads the bootloader (syslinux)
+2- Bootloader loads the kernel and initrd
+3- Kernel starts and executes the 'init' script from the initrd
+4- The 'init' script mounts sysfs, devtmpfs and procfs filesystems and
+   starts udev. It then waits for a storage device containing the
+   rootfs.img file to appear (udev rules will mount the device in
+   /media).
+5- Once the file (rootfs.img) appears it loop-mounts and switch_root to
+   it to continue the booting process.
 
-Some ideas on things to check/try inline below.
+BTW, there is only _one_ kernel. The two stage process allows more
+flexibility as where your rootfs is located (CD, usb flash, network
+boot, etc.).
 
-On 04/02/2013 02:27 PM, Paul D. DeRocco wrote:
-> I've successfully built core-image-base-cedartrail-nopvr, with NO
-> modifications, no meta-oe layer to pull in Samba, no attempt to partition
-> the flash drive, just the .hddimg file dd'ed to /dev/sdb, to see if I can
-> get something, anything to boot out of the box.
-> 
-> I get a kernel panic when it tries to boot on my Intel DN2800MT mobo, with
-> 1GB of RAM. The error messages, which appear on the attached VGA monitor,
-> are:
-> 
-> VFS: Cannot open root device "ram0" or unknown-block(0,0)
-> Please append a correct "root=" boot option;
-> here are the available partitions:
-> VFS: Unable to mount root fs on unknown-block(0,0)
-> User configuration error - no valid root filesystem found
+From what I see in the kernel messages you supplied it looks like the
+init script doesn't even got a chance to run. Kernel issue?
 
+One strange thing also is the use of the 3.0 kernel on this BSP. Which
+doesn't shows up in the list of available kernels (well at least on the
+git.yoctoproject.org web site.) so I don't know what happens in such
+cases.
 
-Believe it or not, this is the single most common boot error in the
-history of boot errors on Linux :-)
+It would definitely help if the maintainer of the cedartrail BSP could
+drop-in and give some advice!
 
-It is telling you there is no block device called "ram0" to load and
-there are no other block devices detected. The USB stick doesn't show up
-here because USB can take a while to enumerate and unless you tell the
-kernel to wait for it, it doesn't. That shouldn't be your problem here
-as you are attempting to boot from a ramdisk.
+Good luck,
 
-The most obvious question is whether or not the kernel you built has
-ramdisk support. You can do this by analyzing the .config file in your
-linux-yocto build tree
-(build/tmp/work/cedartrail.../linux-yocto*/linux-cedartrail-standard-build/.config).
-You want to look for:
-
-$ grep BLK_DEV_RAM .config
-CONFIG_BLK_DEV_RAM=y
-CONFIG_BLK_DEV_RAM_COUNT=16
-CONFIG_BLK_DEV_RAM_SIZE=4096
-
-> 
-> Here is the syslinux.cfg file that is controlling the boot:
-> 
-> # Automatically created by OE
-> serial 0 115200
-> ALLOWOPTIONS 1
-> DEFAULT boot
-> TIMEOUT 10
-> PROMPT 1
-> LABEL boot
-> KERNEL /vmlinuz
-> APPEND initrd=/initrd LABEL=boot  root=/dev/ram0   console=ttyS0,115200
-> console=tty0 video=vesafb vga=0x318
-> LABEL install
-> KERNEL /vmlinuz
-> APPEND initrd=/initrd LABEL=install  root=/dev/ram0   console=ttyS0,115200
-> console=tty0 video=vesafb vga=0x318
-> 
-> This is a live-image boot, and the flash drive contains the usual five
-> files. As far as I can tell, a live-image boot is a two-stage boot beginning
-> with a really stripped down vmlinuz and a small RAM-disk read from initrd,
-> which then reads the big rootfs.img into another RAM-disk and tries to boot
-> the real kernel from that. I don't know which kernel is panicking, because
-> it all flies by so fast.
-
-
-Well, see my comment above, the kernel was about as explicit as it can
-be - it didn't find a block device to mount as root. However, when
-debugging kernel issues, it is important to be able to record the log.
-You have a serial port console configured in your kernel parameters
-(console=ttyS0,115200), it would be a good idea to connect to the serial
-console and capture the boot messages to a file using minicom, screen,
-or similar.
-
-
-> Any ideas, or am I cursed?
-> 
-
-Another common problem is the hddimg format itself and conflicts with
-certain firmware. You can try the zip image format as described in
-poky/README.hardware under the "Intel Atom based PCs and devices" section.
-
-Finally, usb sticks are terrible about just being bad. Many of them are
-literally write once devices. They're fine so long as you don't fill
-them up, which works for shuffling small files around, but writing full
-OS images to them tends to kill them in a hurry. Try with a brand new stick.
-
-Thanks,
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+Marc
 
