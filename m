@@ -1,41 +1,28 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
-	[209.85.219.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18B03E013AC
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 09:04:14 -0700 (PDT)
-Received: by mail-oa0-f46.google.com with SMTP id k1so1697670oag.19
-	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 09:04:14 -0700 (PDT)
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qc0-f171.google.com (mail-qc0-f171.google.com
+	[209.85.216.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E59E0E01423
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 09:19:43 -0700 (PDT)
+Received: by mail-qc0-f171.google.com with SMTP id q2so770394qch.30
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 09:19:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:sender:from:to:subject:references:date:in-reply-to
-	:message-id:user-agent:mime-version:content-type;
-	bh=FGSzaNCWC+DjGTeC0vZHskQVYXi5GEOUEXRrikQ6uKc=;
-	b=psKTWyUVNONvgdyqGPxtITnLXMbQoJEIudlXdOJO/K4qto3o58MoHQAueu+SLe1aMx
-	uF/tN7OT8BTDVcQD6c+u096VtqXTZ6u8LSbu2qKZ+iZlP7166dXMhxP+Uy0uKoGAja+t
-	zEC9ad/IO2MQGL5meaeBysuFaI51UZ30aw/SLMmjMoRFKF1Uon6teLSRksVgVpciOYPZ
-	2oyZzNzBT+yxkIzqBb2CqqD5vL4prO+v3QCcL5S5X1Grokq5VJR1/DdDKwEsEfbRVDpM
-	FgqQH2fHePuj9fvLucAv+vR/hNt6eg40pXXcWdzBh4WjjMHp+YPMjK5/rP7ZMrW3P7aa
-	cYlA==
-X-Received: by 10.60.92.201 with SMTP id co9mr1061229oeb.113.1365005054500;
-	Wed, 03 Apr 2013 09:04:14 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPS id a10sm2744754oez.1.2013.04.03.09.04.12
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Wed, 03 Apr 2013 09:04:13 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Wed, 03 Apr 2013 12:04:34 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
-To: yocto@yoctoproject.org
-References: <E32C22186F664AC79D0019B49275C4EE@PAULD>
-	<7DD9C18F1CC445FDAE4598F91AACCA5A@PAULD>
-Date: Wed, 03 Apr 2013 12:04:34 -0400
-In-Reply-To: <7DD9C18F1CC445FDAE4598F91AACCA5A@PAULD> (Paul D. DeRocco's
-	message of "Tue, 2 Apr 2013 16:57:58 -0700")
-Message-ID: <87ip43txbh.fsf@sonatest.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=9qxZ9z/5sqdN45CFgmetURJC2uyUnYSSXTLUeJ7F2EM=;
+	b=Blx1/563zhVP8LRH7X6+CU2x6bn5Y8M2iZyRjinGkTtI/Cj2gWXlLwzZtD5mkz0Llb
+	KTZo16MiGQ7nQYBprl5Q/DLIqKGRKRemDydTXQT5NDXIslJwVIKjf6NJ6eEi/K9LdFcw
+	j1CEtlPUOrjd9xn7Q5nO+Bkk/JX2qvIMKh+DuetQkXrPruZb4wJsZ0kfmZbt4Yp38JHc
+	m/gR89gVm09ZQyzIBgKhRlEg8UWf7siDNEUpRzv+iGNJ5NcurfIxkxnX6qiIxtDApig2
+	n+caTTD1trL6UUEKbIAi4Ay+Lk6bl84OuVVDL5ZX+J29xkc9LQt72MmizOIQOQDcrgb9
+	Tptg==
 MIME-Version: 1.0
-Subject: Re: This one can't be me...
+X-Received: by 10.229.166.140 with SMTP id m12mr752306qcy.81.1365005983285;
+	Wed, 03 Apr 2013 09:19:43 -0700 (PDT)
+Received: by 10.49.35.140 with HTTP; Wed, 3 Apr 2013 09:19:43 -0700 (PDT)
+Date: Wed, 3 Apr 2013 18:19:43 +0200
+Message-ID: <CAFyqS9qh8q5jd48RNmxF7vreNoc-8g=R4A8_d90ZMD32HnSXhA@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Is there no official support for Erlang runtime in Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,60 +34,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 16:04:15 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 03 Apr 2013 16:19:44 -0000
+Content-Type: multipart/alternative; boundary=14dae9c09356c00cfd04d9773824
 
-"Paul D. DeRocco" <pderocco@ix.netcom.com> writes:
+--14dae9c09356c00cfd04d9773824
+Content-Type: text/plain; charset=ISO-8859-1
 
-> Followup:
->
-> I figured I'd try a sato build, since that's what the example on the BSP
-> page uses. But core-image-sato-cedartrail-nopvr panics in the same way as
-> core-image-base-cedartrail-nopvr. For sato, I surmised maybe 1GB wasn't
-> enough, so I put in a second stick. This time, instead of spewing out a lot
-> of kernel startup stuff ending in a panic, it gave me a SYSLINUX signon on
-> the top of the screen, sat there for about 10 seconds, then rebooted into
-> the BIOS, repeatedly. So I put back core-image-base-cedartrail-nopvr, and it
-> also gave me the SYSLINUX signon, and rebooted after 10 seconds.
->
-> The fact that it behaves differently with 2GB suggests that maybe 1GB isn't
-> enough, but that seems hard to imagine even for sato, let alone the base
-> console version. I've run Ubuntu on these particular RAM modules, on a
-> different motherboard, so I don't think I've got bad RAM.
->
-> Any help figuring this out would be appreciated. For all my work, and
-> apparently successful builds, I haven't managed to boot anything yet.
+Hi. We wish to bring in the Erlang runtime into our builds, tailored for
+embedded systems.
+I can see that OpenEmbedded provides such a package in their classic
+release. But I can not seem to find it as part of Yocto, neither can I find
+it among the official OpenEmbedded recipes from their Wiki index. Is there
+something that I have overlooked here? Or should it be fine just to bring
+in the recipe from the OpenEmbedded classic git repo and add it to our own
+meta?
 
-Hi Paul,
+Hans
 
-The live images boot in (roughly) the following way:
+--14dae9c09356c00cfd04d9773824
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-1- BIOS loads the bootloader (syslinux)
-2- Bootloader loads the kernel and initrd
-3- Kernel starts and executes the 'init' script from the initrd
-4- The 'init' script mounts sysfs, devtmpfs and procfs filesystems and
-   starts udev. It then waits for a storage device containing the
-   rootfs.img file to appear (udev rules will mount the device in
-   /media).
-5- Once the file (rootfs.img) appears it loop-mounts and switch_root to
-   it to continue the booting process.
+Hi. We wish to bring in the Erlang runtime into our builds, tailored for em=
+bedded systems.<br>I can see that OpenEmbedded provides such a package in t=
+heir classic release. But I can not seem to find it as part of Yocto, neith=
+er can I find it among the official OpenEmbedded recipes from their Wiki in=
+dex. Is there something that I have overlooked here? Or should it be fine j=
+ust to bring in the recipe from the OpenEmbedded classic git repo and add i=
+t to our own meta?<br>
+<br>Hans<br>=A0<br>
 
-BTW, there is only _one_ kernel. The two stage process allows more
-flexibility as where your rootfs is located (CD, usb flash, network
-boot, etc.).
-
-From what I see in the kernel messages you supplied it looks like the
-init script doesn't even got a chance to run. Kernel issue?
-
-One strange thing also is the use of the 3.0 kernel on this BSP. Which
-doesn't shows up in the list of available kernels (well at least on the
-git.yoctoproject.org web site.) so I don't know what happens in such
-cases.
-
-It would definitely help if the maintainer of the cedartrail BSP could
-drop-in and give some advice!
-
-Good luck,
-
-Marc
-
+--14dae9c09356c00cfd04d9773824--
