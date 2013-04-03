@@ -1,38 +1,21 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62230E01545
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 11:45:52 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 03 Apr 2013 11:45:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,402,1363158000"; d="scan'208";a="222468909"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 03 Apr 2013 11:45:47 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.225.80) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 3 Apr 2013 11:45:47 -0700
-Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.10.107]) with mapi id
-	14.01.0355.002; Wed, 3 Apr 2013 11:45:46 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, "Grigoropol, IoanaX"
-	<ioanax.grigoropol@intel.com>, "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [PATCH] Remove clutter project templates
-Thread-Index: AQHOMEleY65SZpX4NkGNHiTS7byLfJjE0ZIA
-Date: Wed, 3 Apr 2013 18:45:45 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDBE18E@ORSMSX104.amr.corp.intel.com>
-References: <1363104333-15085-1-git-send-email-ioanax.grigoropol@intel.com>
-	<2562063.qdqmlPHIqx@helios>
-	<3E179CF0D7162B4AA4E2B324209A4639B30171@IRSMSX101.ger.corp.intel.com>
-	<6064664.vH6NInnK1q@helios>
-In-Reply-To: <6064664.vH6NInnK1q@helios>
+Return-Path: <dean.saridakis@baesystems.com>
+Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
+	[149.32.232.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F0E7E014B6
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 11:52:20 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="4.87,402,1363132800"; d="scan'208,217";a="3188745"
+X-IronPort-AV: E=Sophos;i="4.87,402,1363132800"; d="scan'208,217";a="3092719"
+From: "Saridakis, Dean   (US SSA)" <dean.saridakis@baesystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Easy one: fetch fails
+Thread-Index: Ac4wmirKzG7I/3HMQzqAt5Om3ArUVA==
+Date: Wed, 3 Apr 2013 18:52:07 +0000
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [10.37.161.240]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Remove clutter project templates
+Subject: Easy one: fetch fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,78 +27,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 18:45:52 -0000
+X-List-Received-Date: Wed, 03 Apr 2013 18:52:20 -0000
+Message-ID: <MADEUP.15D9585896A5ADF7.29417@lists.yoctoproject.org>
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_B98BBFB67D89184E8E876F332BDBC3E0A16BCFGLDMS85001goldlnk_"
+
+--_000_B98BBFB67D89184E8E876F332BDBC3E0A16BCFGLDMS85001goldlnk_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
+I've got the yocto basics, but sill a novice.
 
-We removed clutter project templates just because we found that the underli=
-ne package support for it is no longer there(in core-image-sato) and assume=
- that there's a reason for the change.  I'm in the same boat as you that by=
- no means I'm an expert with clutter thus don't know how popular it's among=
- developers. But base on my limited experiment with it when adding the temp=
-late support in Eclipse, it seems a pretty neat framework for adding animat=
-ion support, etc. and can be useful  for new application developers doing t=
-he work.
+I'm starting w/ an SDK based on yocto & am trying to add canutil to the bui=
+ld. There's already a recipe in meta-oe, but unfortunately I can't get thro=
+ugh my corporate firewall w/ the git protocol. However I can w/ http. So I =
+added a layer w/ a bbppend to change the SRC_URI
+
+from "git://git.pengutronix.de/git/tools/canutils.git;protocol=3Dgit;tag=3D=
+${TAG}"
+to "http://git.pengutronix.de/git/tools/canutils.git;protocol=3Dhttp;tag=3D=
+${TAG}"
+
+(and similarly for libsocketcan). If there's simpler/cleaner way to do this=
+ I'm open to suggestions.
+
+Problem is the fetch fails w/
+ERROR: Fetcher failure for URL: 'http://git.pengutronix.de/git/tools/canuti=
+ls.git'. The fetch command returned success for url http://git.pengutronix.=
+de/git/tools/canutils.git but /home/ds/QorIQ-SDK-V1.3-20121114-yocto/build_=
+p5020ds_release/../sources/canutils.git doesn't exist?!
+
+I am able to manually do a git clone w/ the http url. (thought about manual=
+ly forcing the file into the source dir, but wasn't sure exactly what's exp=
+ected, especially w/ the tag - still a git novice as well)
 
 Thanks,
-Jessica
+
+Dean
 
 
+--_000_B98BBFB67D89184E8E876F332BDBC3E0A16BCFGLDMS85001goldlnk_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Paul Eggleton
-Sent: Wednesday, April 03, 2013 1:58 AM
-To: Grigoropol, IoanaX
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] [PATCH] Remove clutter project templates
-
-On Wednesday 03 April 2013 08:42:23 Grigoropol, IoanaX wrote:
-> Paul Eggleton wrote:
-> > On Tuesday 12 March 2013 18:05:33 Ioana Grigoropol wrote:
-> > > - support for clutter was removed from core-image-sato along with
-> > > clutter-box2d and thus the project templates in Eclipse should not
-> > > be supported anymore; gtk templates should be used instead
-> >
-> > The removal of clutter-box2d doesn't signal that clutter itself is
-> > unsupported, so I think maybe we shouldn't be removing these
-> > templates just yet.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> In my opinion, since clutter was only brought in core-image-sato and
-> core-image-sato-sdk by clutter-box2d, and not independently, it means
-> it was not really intended to support it.
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I&#8217;ve got the yocto basics, but sill a novice.<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m starting w/ an SDK based on yocto &amp; am=
+ trying to add canutil to the build. There&#8217;s already a recipe in meta=
+-oe, but unfortunately I can&#8217;t get through my corporate firewall w/ t=
+he git protocol. However I can w/ http. So I added a layer
+ w/ a bbppend to change the SRC_URI <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">from &quot;git://git.pengutronix.de/git/tools/canuti=
+ls.git;protocol=3Dgit;tag=3D${TAG}&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">to &quot;http://git.pengutronix.de/git/tools/canutil=
+s.git;protocol=3Dhttp;tag=3D${TAG}&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">(and similarly for libsocketcan). If there&#8217;s s=
+impler/cleaner way to do this I&#8217;m open to suggestions.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Problem is the fetch fails w/ <o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Fetcher failure for URL: 'http://git.pengutro=
+nix.de/git/tools/canutils.git'. The fetch command returned success for url =
+http://git.pengutronix.de/git/tools/canutils.git but /home/ds/QorIQ-SDK-V1.=
+3-20121114-yocto/build_p5020ds_release/../sources/canutils.git
+ doesn't exist?!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am able to manually do a git clone w/ the http url=
+. (thought about manually forcing the file into the source dir, but wasn&#8=
+217;t sure exactly what&#8217;s expected, especially w/ the tag &#8211; sti=
+ll a git novice as well)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Dean <o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-Possibly; the other alternative is that nobody had really considered the qu=
-estion of whether or not it should be included. I'm unsure as to which is t=
-he case here.
-
-> Do you think there should be support for clutter in the sdk images ?
-
-I would say it depends on whether we believe it will be useful to new appli=
-cation developers, or we're just keeping it around for compatibility with e=
-xisting applications. I can see it being useful but I'd probably like to he=
-ar from Jessica and others as well.
-
-> Clutter + dependencies is not a small package and was only getting
-> into images through testapps feature, and we could use gtk templates inst=
-ead.
-
-True, but Gtk+ and Clutter aren't quite the same thing. I'm not an expert o=
-n Clutter by any means but I believe it provides a much better framework fo=
-r animations and non-traditional UIs than Gtk+ does.
-
-Cheers,
-Paul
-
---
-
-Paul Eggleton
-Intel Open Source Technology Centre
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--_000_B98BBFB67D89184E8E876F332BDBC3E0A16BCFGLDMS85001goldlnk_--
