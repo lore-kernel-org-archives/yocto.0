@@ -1,53 +1,30 @@
-Return-Path: <john.williams@xilinx.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe005.messaging.microsoft.com [216.32.181.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9945E013A7
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 15:38:28 -0700 (PDT)
-Received: from mail107-ch1-R.bigfish.com (10.43.68.234) by
-	CH1EHSOBE010.bigfish.com (10.43.70.60) with Microsoft SMTP Server id
-	14.1.225.23; Wed, 3 Apr 2013 22:38:27 +0000
-Received: from mail107-ch1 (localhost [127.0.0.1])	by
-	mail107-ch1-R.bigfish.com (Postfix) with ESMTP id BEEAA200F3;
-	Wed,  3 Apr 2013 22:38:27 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:149.199.60.83; KIP:(null); UIP:(null); IPV:NLI;
-	H:xsj-gw1; RD:unknown-60-83.xilinx.com; EFVD:NLI
-X-SpamScore: 1
-X-BigFish: VPS1(zzzz1f42h1fc6h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ahzz8275bhz2fh95h668h839h944hd24hf0ah119dh1220h1288h12a5h12a9h12bdh137ah13b6h1441h14ddh1504h1537h153bh162dh1631h1758h18e1h1946h19b5h1b0ah906i1155h)
-Received-SPF: pass (mail107-ch1: domain of xilinx.com designates 149.199.60.83
-	as permitted sender) client-ip=149.199.60.83;
-	envelope-from=john.williams@xilinx.com; helo=xsj-gw1 ;
-	helo=xsj-gw1 ; 
-Received: from mail107-ch1 (localhost.localdomain [127.0.0.1]) by mail107-ch1
-	(MessageSwitch) id 136502870652278_17170;
-	Wed,  3 Apr 2013 22:38:26 +0000 (UTC)
-Received: from CH1EHSMHS031.bigfish.com (snatpool2.int.messaging.microsoft.com
-	[10.43.68.234])	by mail107-ch1.bigfish.com (Postfix) with ESMTP id
-	F3CF5420069;	Wed,  3 Apr 2013 22:38:25 +0000 (UTC)
-Received: from xsj-gw1 (149.199.60.83) by CH1EHSMHS031.bigfish.com
-	(10.43.70.31) with Microsoft SMTP Server id 14.1.225.23; Wed, 3 Apr 2013
-	22:38:25 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66]
-	helo=xsj-smtp1.xilinx.com)	by xsj-gw1 with esmtp (Exim
-	4.63)	(envelope-from <john.williams@xilinx.com>)	id 1UNWK1-0005Fs-Bd;
-	Wed, 03 Apr 2013 15:38:25 -0700
-From: John Williams <john.williams@xilinx.com>
-To: "Saridakis, Dean   (US SSA)" <dean.saridakis@baesystems.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Easy one: fetch fails
-Thread-Index: Ac4wmirKzG7I/3HMQzqAt5Om3ArUVAAIYXsw
-Date: Wed, 3 Apr 2013 22:38:22 +0000
-References: <20130403191633.1B258E0156B@yocto-www.yoctoproject.org>
-In-Reply-To: <20130403191633.1B258E0156B@yocto-www.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.162.69]
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-mealy.atl.sa.earthlink.net
+	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B19DDE01508
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 17:21:49 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=ilA1fF9oHf/rA1md55p0QTpXTQtf7RQwWRQ7dAAGl9RdxQAOcPjgAX9mCXwjpDlp;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UNXw4-00077m-Iv; Wed, 03 Apr 2013 20:21:48 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Darren Hart'" <dvhart@linux.intel.com>
+References: <E32C22186F664AC79D0019B49275C4EE@PAULD><515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD>
+	<515C8FEF.2090201@linux.intel.com>
+In-Reply-To: <515C8FEF.2090201@linux.intel.com>
+Date: Wed, 3 Apr 2013 17:21:57 -0700
+Message-ID: <7FEC659FC16A466C9B7671C5BADEDB81@PAULD>
 MIME-Version: 1.0
-X-RCIS-Action: ALLOW
-Message-ID: <43b08ff8-289c-431b-9e82-44d4655d1076@CH1EHSMHS031.ehs.local>
-X-OriginatorOrg: xilinx.com
-Cc: John Williams <jwilliams@xilinx.com>
-Subject: Re: Easy one: fetch fails
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4wrGD8HaAgYukxQd6UZuqABCXZCQAHSrKA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688279dd140e5ecf68bbadae86a327233c1350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org
+Subject: Re: This one can't be me...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,25 +36,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Apr 2013 22:38:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 04 Apr 2013 00:21:50 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-> I'm starting w/ an SDK based on yocto & am trying to add canutil to the b=
-uild.
-> There's already a recipe in meta-oe, but unfortunately I can't get throug=
-h my
-> corporate firewall w/ the git protocol. However I can w/ http. So I added=
- a layer
-> w/ a bbppend to change the SRC_URI
+> From: Darren Hart
+> 
+> Are you building with the rm work setting? Otherwise, that 
+> should not be
+> empty unless you have more than one linux-yocto* directory 
+> and the other
+> is populated.
+> 
+> If not, verify rm work is not on and just build the kernel:
+> 
+> $ bitbake linux-yocto -c cleansstate
+> $ bitbake linux-yocto
 
-Alternatively just use corkscrew to tunnel git via your company's http prox=
-y:
+After doing that (with two esses), I now have a .config file, along with a
+ton of other stuff, in that folder. I have no idea what made it disappear,
+because I don't use the rm_work option.
 
-https://gforge.ti.com/gf/project/omapandroid/wiki/?pagename=3DGit+Firewall
+However, the only BLK_DEV_RAM line is
 
-John
+	# CONFIG_BLK_DEV_RAM is not set
 
+I haven't been fiddling with the kernel, because I don't know how to fiddle
+with the kernel. This should be a plain vanilla build.
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+  
 
 
