@@ -1,26 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0B08E0150F
-	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 17:58:29 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r340wRiM028652
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 3 Apr 2013 17:58:27 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.31) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Wed, 3 Apr 2013 17:58:28 -0700
-Message-ID: <515CD033.2000807@windriver.com>
-Date: Wed, 3 Apr 2013 20:58:27 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vb0-f50.google.com (mail-vb0-f50.google.com
+	[209.85.212.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08667E01535
+	for <yocto@yoctoproject.org>; Wed,  3 Apr 2013 19:16:50 -0700 (PDT)
+Received: by mail-vb0-f50.google.com with SMTP id w15so956010vbb.9
+	for <yocto@yoctoproject.org>; Wed, 03 Apr 2013 19:16:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to:cc
+	:content-type:x-gm-message-state;
+	bh=gbdxRvssIcXlF+3KcWgYsvhzcz2F0n2b4Hjiirdcna0=;
+	b=TLu1/PCyJ2nJHEWbF1Rl4svyjbb3OqohT6g3uYdIqPQap3S7TQRqazhRvs6K1GSZfK
+	irlkBspI9uYquAxSYA02QWfpHaVxBtecM5wJi4BUNsF0FSAPSlrjDklpppr1SPNQJ5hm
+	EpSnEJSs+9zVCfug0WqxK/SvhoxbqSg2M71EnDM737M9mFkL6n0UUIk8k7yM/JjbHoQF
+	q4z5h1tW4HYcyYLbqzIsxrimzhFKr/BpN8xuSgBzTN958wIf1Gd5XqbCVSjJj5ZUilNE
+	q8Ir6XbfJ1EylBSK5jMIIoOeYBnFgejH00HJ4jdqiQ5jWQVzQ9MOTjycBSSJ9MPixxnF
+	zMiA==
 MIME-Version: 1.0
-To: Darren Hart <dvhart@linux.intel.com>
-References: <9df95d49188bacbe180bfac67edfaa682d542ed3.1365027385.git.dvhart@linux.intel.com>
-In-Reply-To: <9df95d49188bacbe180bfac67edfaa682d542ed3.1365027385.git.dvhart@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH] [poky-extras] linux-yocto*3.8: Add bbappend for linux-yocto 3.8 recipes
+X-Received: by 10.58.205.179 with SMTP id lh19mr3297444vec.7.1365041810131;
+	Wed, 03 Apr 2013 19:16:50 -0700 (PDT)
+Received: by 10.52.230.226 with HTTP; Wed, 3 Apr 2013 19:16:49 -0700 (PDT)
+Date: Wed, 3 Apr 2013 19:16:49 -0700
+Message-ID: <CAPhnLPCtJRaK1BZ7-dd8r2AmZ4TZ69QuFCzkMXG4VofV-p+SJA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>
+X-Gm-Message-State: ALoCoQlYuVT3SEaedpeLVJN+CCFgU90xJGDahmVoFU7QpLgOeYGiaJ1IVOSmMA75qVILs4TaYV7x
+Cc: SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>
+Subject: Weekly build availablity
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,92 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2013 00:58:30 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 04 Apr 2013 02:16:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 13-04-03 6:16 PM, Darren Hart wrote:
-> Enable meta-kernel-dev support for the 3.8 kernels.
+The weekly build is built and available at:
 
-Acked-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+http://autobuilder.yoctoproject.org/pub/nightly/20130403-2
 
-I have something similar local to my machine that I hadn't gotten
-around to pushing out.
+Known issues:
+Due to Bug 4186 - bitbake package-index fails over NFS, the adt-ipk
+package index was created and deployed by hand. I have a temp fix in
+the autobuilder to work around this issue.
 
-Cheers,
+nightly-multilib failed due to lib64 issues. This is a known issue and
+lib64 images are new targets.
 
-Bruce
+nightly-fsl-arm* failed
 
->
-> Signed-off-by: Darren Hart<dvhart@linux.intel.com>
-> ---
->   .../linux/linux-yocto-rt_3.8.bbappend              |   25 ++++++++++++++++++++
->   .../recipes-kernel/linux/linux-yocto_3.8.bbappend  |   25 ++++++++++++++++++++
->   2 files changed, 50 insertions(+), 0 deletions(-)
->   create mode 100644 meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend
->   create mode 100644 meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend
->
-> diff --git a/meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend b/meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend
-> new file mode 100644
-> index 0000000..18eab0d
-> --- /dev/null
-> +++ b/meta-kernel-dev/recipes-kernel/linux/linux-yocto-rt_3.8.bbappend
-> @@ -0,0 +1,25 @@
-> +FILESEXTRAPATHS := "${THISDIR}/${PN}"
-> +
-> +COMPATIBLE_MACHINE = "${MACHINE}"
-> +
-> +# Note: put these in your local.conf to avoid multi-kernel build errors
-> +# PREFERRED_VERSION_linux-yocto-rt_${MACHINE} = "3.8%"
-> +
-> +# KMACHINE is the branch to build
-> +# KMACHINE_<MACHINE>  ?= "yocto/${LINUX_KERNEL_TYPE}/${KMACHINE}"
-> +
-> +# KERNEL_FEATURES are features to be added to the kernel, and must
-> +# point to configurations stored on the 'meta' branch of the kernel
-> +# that is being built.
-> +# KERNEL_FEATURES ?=<FOO>
-> +
-> +# It is often nice to have a local clone of the kernel repos, to
-> +# allow patches to be staged, branches created, etc. Modify
-> +
-> +# KSRC_linux_yocto_3_8 to point to your local clone as appropriate.
-> +# KSRC_linux_yocto_3_8 ?= "/path/to/local/linux-yocto-3.8.git/"
-> +#SRC_URI = "git://${KSRC_linux_yocto_3_8};protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-> +
-> +SRCREV_machine_${MACHINE}="${AUTOREV}"
-> +SRCREV_meta="${AUTOREV}"
-> +LOCALCOUNT = "0"
-> diff --git a/meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend b/meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend
-> new file mode 100644
-> index 0000000..9e61e33
-> --- /dev/null
-> +++ b/meta-kernel-dev/recipes-kernel/linux/linux-yocto_3.8.bbappend
-> @@ -0,0 +1,25 @@
-> +FILESEXTRAPATHS := "${THISDIR}/${PN}"
-> +
-> +COMPATIBLE_MACHINE = "${MACHINE}"
-> +
-> +# Note: put these in your local.conf to avoid multi-kernel build errors
-> +# PREFERRED_VERSION_linux-yocto_${MACHINE} = "3.8%"
-> +
-> +# KMACHINE is the branch to build
-> +# KMACHINE_<MACHINE>  ?= "yocto/${LINUX_KERNEL_TYPE}/${KMACHINE}"
-> +
-> +# KERNEL_FEATURES are features to be added to the kernel, and must
-> +# point to configurations stored on the 'meta' branch of the kernel
-> +# that is being built.
-> +# KERNEL_FEATURES ?=<FOO>
-> +
-> +# It is often nice to have a local clone of the kernel repos, to
-> +# allow patches to be staged, branches created, etc. Modify
-> +
-> +# KSRC_linux_yocto_3_8 to point to your local clone as appropriate.
-> +# KSRC_linux_yocto_3_8 ?= "/path/to/local/linux-yocto-3.8.git/"
-> +# SRC_URI = "git://${KSRC_linux_yocto_3_8};protocol=file;nocheckout=1;branch=${KBRANCH},meta;name=machine,meta"
-> +
-> +SRCREV_machine_${MACHINE}="${AUTOREV}"
-> +SRCREV_meta="${AUTOREV}"
-> +LOCALCOUNT = "0"
+poky-tiny failed
 
+meta-intel 3de2325133eb581c5c8d66133821ea5a801cf8ae
+meta-qt3 4c27cce6688aa39852f3cba5e7b80ec279019605
+poky fe336b149552b1f4f24d979c40302653298b98cc
+bitbake b5b4b6e4fefa6a164a49b291a0993b1ff63947f4
+oecore ca36be708e54c0c86535bc8512295c76c48f6cf5
+meta-fsl-ppc 6e861617d3f61bcddcc944835f331e387e12db46
+meta-fsl-arm 666485e1835aaa34518464265980acfee250783d
+
+--
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
