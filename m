@@ -1,20 +1,22 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3B59E0148E
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 03:53:45 -0700 (PDT)
-Received: from [192.168.0.2] (host86-137-81-165.range86-137.btcentralplus.com
-	[86.137.81.165]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+Return-Path: <c.aeschlimann@acn-group.ch>
+Received: from 111.com (mail.dns-net.ch [195.160.190.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B691DE0136C
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 07:54:58 -0700 (PDT)
+Received: from [172.16.147.83] (unknown [212.98.42.40])
+	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
 	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 86D99952C
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 11:53:44 +0100 (BST)
-Message-ID: <515D5BB7.8020202@r-finger.com>
-Date: Thu, 04 Apr 2013 11:53:43 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+	by 111.com (Postfix) with ESMTPSA id 7660837607F
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 16:54:57 +0200 (CEST)
+Message-ID: <515D9454.9000703@acn-group.ch>
+Date: Thu, 04 Apr 2013 16:55:16 +0200
+From: Christophe Aeschlimann <c.aeschlimann@acn-group.ch>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:17.0) Gecko/20130328 Thunderbird/17.0.5
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: GObject Introspection support for Yocto: meta-gir
+To: yocto@yoctoproject.org
+References: <515C4466.5020209@windriver.com>
+In-Reply-To: <515C4466.5020209@windriver.com>
+Subject: Re: Prevent zImage to be copied to /boot/ in image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,31 +28,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2013 10:53:46 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 04 Apr 2013 14:54:58 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
+> On 13-04-03 10:56 AM, Christophe Aeschlimann wrote:
+> 
+> Have you tried clearing this variable:
+> 
+> (from kernel.bbclass)
+> 
+> # Allow machines to override this dependency if kernel image files are
+> # not wanted in images as standard
+> RDEPENDS_kernel-base ?= "kernel-image"
 
-Support for GObject Introspection is one of the gaping omissions in
-current Yocto / OE coverage, and here at sleep(5) we thought it was time
-someone took the bull by the horns and did something about it ... so
-without further ado:
+Thank you for your answer,
 
-  https://github.com/Guacamayo/meta-gir
+I did that but it still didn't work.
 
-The repo contains a lengthy README that I shall not repeat here at
-length, other than saying it's early days in terms of package coverage
-(though everything needed to build core-image-sato is in place; a small
-patch for oecore is in the repo), and undoubtedly there is scope for
-improvement -- contributions are not only welcome, but invited.
+I now found out that it is because I have an out-of-tree kernel module
+in my layer that inherits module.bbclass.
 
-The git repo is currently under the Guacamayo project because it was
-convenient for us, but would be happy to move it to g.yp.o, if there was
-impetus to do so.
+And module.bbclass does the following :
 
-Have fun,
+RDEPENDS += "kernel-image update-modules"
 
-Tomas
+Is there a reason why module.bbclass requires kernel-image ?
+
+Best regards,
+
 -- 
-http://sleepfive.com
+Christophe Aeschlimann
+
+Embedded Software Engineer & IT Manager
+ACN Advanced Communications Networks S.A.
+2000 - Neuchâtel, Switzerland
+Tel. +41 32 724 74 31
 
