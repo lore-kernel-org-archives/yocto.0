@@ -1,30 +1,20 @@
-Return-Path: <thaytan@noraisin.net>
-Received: from noraisin.net (unknown [220.233.23.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E70C8E0136C
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 03:44:31 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by noraisin.net (Postfix) with ESMTP id E7DB333801D3;
-	Thu,  4 Apr 2013 21:44:17 +1100 (EST)
-X-Virus-Scanned: Debian amavisd-new at decorama.com.au
-Received: from noraisin.net ([127.0.0.1])
-	by localhost (mail.decorama.com.au [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id GEsKpyt-g4+s; Thu,  4 Apr 2013 21:44:07 +1100 (EST)
-Received: from [192.168.11.41] (113.94.233.220.static.exetel.com.au
-	[220.233.94.113])
-	by noraisin.net (Postfix) with ESMTPSA id 7852D3380385;
-	Thu,  4 Apr 2013 21:44:01 +1100 (EST)
-Message-ID: <1365072238.22093.50.camel@shorty.home.>
-From: Jan Schmidt <thaytan@noraisin.net>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Thu, 04 Apr 2013 21:43:58 +1100
-In-Reply-To: <10424141.AW7YeVNGIV@helios>
-References: <1363208280-32663-1-git-send-email-thaytan@noraisin.net>
-	<10424141.AW7YeVNGIV@helios>
-X-Mailer: Evolution 3.4.4-2 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] sdcard-image: Use the size of the generated rootfs
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3B59E0148E
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 03:53:45 -0700 (PDT)
+Received: from [192.168.0.2] (host86-137-81-165.range86-137.btcentralplus.com
+	[86.137.81.165]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 86D99952C
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 11:53:44 +0100 (BST)
+Message-ID: <515D5BB7.8020202@r-finger.com>
+Date: Thu, 04 Apr 2013 11:53:43 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: GObject Introspection support for Yocto: meta-gir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,31 +26,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2013 10:44:32 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 04 Apr 2013 10:53:46 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2013-04-04 at 11:37 +0100, Paul Eggleton wrote:
-> On Thursday 14 March 2013 07:57:59 Jan Schmidt wrote:
-> >
 
-*snip*
+Support for GObject Introspection is one of the gaping omissions in
+current Yocto / OE coverage, and here at sleep(5) we thought it was time
+someone took the bull by the horns and did something about it ... so
+without further ado:
 
+  https://github.com/Guacamayo/meta-gir
 
-> Looks like this is a patch for meta-raspberrypi although it isn't marked as 
-> such. Andrei, have you seen this?
+The repo contains a lengthy README that I shall not repeat here at
+length, other than saying it's early days in terms of package coverage
+(though everything needed to build core-image-sato is in place; a small
+patch for oecore is in the repo), and undoubtedly there is scope for
+improvement -- contributions are not only welcome, but invited.
 
-Rats - I knew I forgot something when re-sending the patch. Sorry - yes,
-it should have a [meta-raspberrypi] tag.
+The git repo is currently under the Guacamayo project because it was
+convenient for us, but would be happy to move it to g.yp.o, if there was
+impetus to do so.
 
-J.
+Have fun,
 
-> 
-> Cheers,
-> Paul
-> 
-
+Tomas
 -- 
-Jan Schmidt <thaytan@noraisin.net>
-
+http://sleepfive.com
 
