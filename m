@@ -1,39 +1,34 @@
-Return-Path: <kishore.k.bodke@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B614EE0148C
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 12:14:27 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 04 Apr 2013 12:14:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,410,1363158000"; d="scan'208";a="222944369"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by AZSMGA002.ch.intel.com with ESMTP; 04 Apr 2013 12:14:26 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 4 Apr 2013 12:14:26 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.39]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.185]) with mapi id
-	14.01.0355.002; Thu, 4 Apr 2013 12:14:25 -0700
-From: "Bodke, Kishore K" <kishore.k.bodke@intel.com>
-To: "Bruce Ashfield (bruce.ashfield@windriver.com)"
-	<bruce.ashfield@windriver.com>, Darren Hart <dvhart@linux.intel.com>, "Paul
-	D. DeRocco" <pderocco@ix.netcom.com>
-Thread-Topic: [yocto] This one can't be me...
-Thread-Index: Ac4v6OLutIUbhKmlT8+L4nrLND2JOgA0yGyAAAkHLIAAAPA1gAAITTSAACOC5oAADDYCwAAW/syQ
-Date: Thu, 4 Apr 2013 19:14:25 +0000
-Message-ID: <D956029D25CF204F948EA0FB515E1EE258405B4D@ORSMSX105.amr.corp.intel.com>
-References: <E32C22186F664AC79D0019B49275C4EE@PAULD><515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD>
-	<515C8FEF.2090201@linux.intel.com>	<7FEC659FC16A466C9B7671C5BADEDB81@PAULD>
-	<515DB5F5.5010300@linux.intel.com>
-	<D956029D25CF204F948EA0FB515E1EE258405A68@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE258405A68@ORSMSX105.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
+	[209.85.212.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59696E01490
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 15:04:28 -0700 (PDT)
+Received: by mail-vb0-f49.google.com with SMTP id 11so1669069vbf.8
+	for <yocto@yoctoproject.org>; Thu, 04 Apr 2013 15:04:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=VmnYXYusDQQ3AZvrXcueDZGF4DuKCz+c1agpaibpg+M=;
+	b=LcrUhD74E7TqfUJO6/7ZjKqZVDOX1FG3T2p4H9sMI6rQdoWcHnYPjQZjE635A4XN2o
+	rWX8VmOV7zgQKcYGOxxYah9BvtDK+ruwEFbY1NHL4FhrYC2fzqcY8B8bK8P/u+ajN1qZ
+	r+lh1avv9i+YN1fnjL/gcdK/i/xdwTqIzVTFoVvd5gLjvJ5V5XJanS374ZwuyrtEuu6Q
+	Eb0ujeW9SYtNnZktB+t+E9ooJpxdqRXAYqyLlCpAADG+ep6ZSwr1bPsLpQFAzXyd/gZN
+	C6LjfJ0Kfp+rV9kt+ZKyVKFxDOhVPkvIk/kb28X+IJzLi0U4If68xh7MXuF64G1qpL3J
+	YLFw==
 MIME-Version: 1.0
+X-Received: by 10.220.223.202 with SMTP id il10mr6376494vcb.4.1365113067406;
+	Thu, 04 Apr 2013 15:04:27 -0700 (PDT)
+Received: by 10.52.230.226 with HTTP; Thu, 4 Apr 2013 15:04:27 -0700 (PDT)
+In-Reply-To: <cover.1365095192.git.stefanx.stanacar@intel.com>
+References: <cover.1365095192.git.stefanx.stanacar@intel.com>
+Date: Thu, 4 Apr 2013 15:04:27 -0700
+Message-ID: <CAPhnLPCojptMJRzDohn3qaK5u393v-P1CykMmyBxpRrgqY_uHA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Stefan Stanacar <stefanx.stanacar@intel.com>
+X-Gm-Message-State: ALoCoQnjlaWGL5oXZ6YwJdqcDz+ZcRFED6ai7oO+Is+Cad5gKxM+XRgGZV83OIng04uQUKMzMeIM
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: This one can't be me...
+Subject: Re: [yocto-autobuilder][PATCH 0/2] Add a new buildset
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,84 +40,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2013 19:14:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 04 Apr 2013 22:04:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+Can we rename the buildtarget to something else? nightly-qa-extras or something?
 
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Bodke, Kishore K
->Sent: Thursday, April 04, 2013 11:31 AM
->To: Darren Hart; Paul D. DeRocco
->Cc: yocto@yoctoproject.org
->Subject: Re: [yocto] This one can't be me...
+On Thu, Apr 4, 2013 at 10:23 AM, Stefan Stanacar
+<stefanx.stanacar@intel.com> wrote:
+> The following changes since commit 72198b128658049d1f07f0df999f7282a9c6535f:
 >
+>   PublishArtifacts.py: poky-tiny deploy (2013-04-03 23:44:07 -0700)
 >
+> are available in the git repository at:
 >
->>-----Original Message-----
->>From: Darren Hart [mailto:dvhart@linux.intel.com]
->>Sent: Thursday, April 04, 2013 10:19 AM
->>To: Paul D. DeRocco
->>Cc: yocto@yoctoproject.org; Bodke, Kishore K
->>Subject: Re: [yocto] This one can't be me...
->>
->>
->>
->>On 04/03/2013 05:21 PM, Paul D. DeRocco wrote:
->>>> From: Darren Hart
->>>>
->>>> Are you building with the rm work setting? Otherwise, that
->>>> should not be
->>>> empty unless you have more than one linux-yocto* directory
->>>> and the other
->>>> is populated.
->>>>
->>>> If not, verify rm work is not on and just build the kernel:
->>>>
->>>> $ bitbake linux-yocto -c cleansstate
->>>> $ bitbake linux-yocto
->>>
->>> After doing that (with two esses), I now have a .config file, along wit=
-h a
->>> ton of other stuff, in that folder. I have no idea what made it disappe=
-ar,
->>> because I don't use the rm_work option.
->>>
->>> However, the only BLK_DEV_RAM line is
->>>
->>> 	# CONFIG_BLK_DEV_RAM is not set
->>>
->>> I haven't been fiddling with the kernel, because I don't know how to fi=
-ddle
->>> with the kernel. This should be a plain vanilla build.
->>>
->>
->>So that would result in this exact failure. Kishore, can you verify the
->>BSP linux-yocto meta-data and either fix the BLK_DEV_RAM issue or help
->>Paul sort out what he may have done that resulted in this breakage?
->>
+>   git://git.yoctoproject.org/poky-contrib stefans/yab4
+>   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=stefans/yab4
 >
->Hi Paul,
+> Stefan Stanacar (2):
+>   QA1-nightly-extra.conf: add new buildset config
+>   nightly.conf, yoctoAB.conf: enable the new QA1-nightly-extra buildset
 >
->While I do the check and verify at my end, can you enable the missing conf=
-igs
->by
->Menuconfig?
+>  buildset-config/QA1-nightly-extra.conf | 18 ++++++++++++++++++
+>  buildset-config/nightly.conf           |  2 +-
+>  buildset-config/yoctoAB.conf           |  3 ++-
+>  3 files changed, 21 insertions(+), 2 deletions(-)
+>  create mode 100644 buildset-config/QA1-nightly-extra.conf
 >
->bitbake  -c  menuconfig  linux-yocto
->bitbake  linux-yocto.
+> --
+> 1.8.1.4
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Hi Bruce/Darren,
 
-I do not see Linux-yocto-3.0 kernel branch in git repo.
-Is it no longer available?
-Cedartrail BSP for 1.3 Yocto (danny) supports only 3.0 kernel.
 
-I am not sure how Paul is able to build this bsp?
-
-Thanks
-Kishore.
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
