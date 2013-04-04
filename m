@@ -1,27 +1,22 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CFF7E01490
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 10:18:58 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 04 Apr 2013 10:18:46 -0700
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB975E014D8
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 10:23:48 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 04 Apr 2013 10:23:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,410,1363158000"; d="scan'208";a="289449205"
-Received: from envy.jf.intel.com (HELO envy.home) ([10.7.199.54])
-	by orsmga001.jf.intel.com with ESMTP; 04 Apr 2013 10:18:45 -0700
-Message-ID: <515DB5F5.5010300@linux.intel.com>
-Date: Thu, 04 Apr 2013 10:18:45 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130110 Thunderbird/17.0.2
-MIME-Version: 1.0
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-References: <E32C22186F664AC79D0019B49275C4EE@PAULD><515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD>
-	<515C8FEF.2090201@linux.intel.com>
-	<7FEC659FC16A466C9B7671C5BADEDB81@PAULD>
-In-Reply-To: <7FEC659FC16A466C9B7671C5BADEDB81@PAULD>
-X-Enigmail-Version: 1.5.1
-Cc: yocto@yoctoproject.org
-Subject: Re: This one can't be me...
+X-IronPort-AV: E=Sophos;i="4.87,410,1363158000"; d="scan'208";a="313706093"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga001.fm.intel.com with ESMTP; 04 Apr 2013 10:23:48 -0700
+Received: from localhost.localdomain (unknown [10.237.112.141])
+	by linux.intel.com (Postfix) with ESMTP id E8A6A2C8001
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 10:23:40 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  4 Apr 2013 20:23:27 +0300
+Message-Id: <cover.1365095192.git.stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [yocto-autobuilder][PATCH 0/2] Add a new buildset
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,46 +28,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2013 17:18:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 04 Apr 2013 17:23:49 -0000
 
+The following changes since commit 72198b128658049d1f07f0df999f7282a9c6535f:
 
+  PublishArtifacts.py: poky-tiny deploy (2013-04-03 23:44:07 -0700)
 
-On 04/03/2013 05:21 PM, Paul D. DeRocco wrote:
->> From: Darren Hart
->>
->> Are you building with the rm work setting? Otherwise, that 
->> should not be
->> empty unless you have more than one linux-yocto* directory 
->> and the other
->> is populated.
->>
->> If not, verify rm work is not on and just build the kernel:
->>
->> $ bitbake linux-yocto -c cleansstate
->> $ bitbake linux-yocto
-> 
-> After doing that (with two esses), I now have a .config file, along with a
-> ton of other stuff, in that folder. I have no idea what made it disappear,
-> because I don't use the rm_work option.
-> 
-> However, the only BLK_DEV_RAM line is
-> 
-> 	# CONFIG_BLK_DEV_RAM is not set
-> 
-> I haven't been fiddling with the kernel, because I don't know how to fiddle
-> with the kernel. This should be a plain vanilla build.
-> 
+are available in the git repository at:
 
-So that would result in this exact failure. Kishore, can you verify the
-BSP linux-yocto meta-data and either fix the BLK_DEV_RAM issue or help
-Paul sort out what he may have done that resulted in this breakage?
+  git://git.yoctoproject.org/poky-contrib stefans/yab4
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=stefans/yab4
 
-Thanks,
+Stefan Stanacar (2):
+  QA1-nightly-extra.conf: add new buildset config
+  nightly.conf, yoctoAB.conf: enable the new QA1-nightly-extra buildset
+
+ buildset-config/QA1-nightly-extra.conf | 18 ++++++++++++++++++
+ buildset-config/nightly.conf           |  2 +-
+ buildset-config/yoctoAB.conf           |  3 ++-
+ 3 files changed, 21 insertions(+), 2 deletions(-)
+ create mode 100644 buildset-config/QA1-nightly-extra.conf
 
 -- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+1.8.1.4
+
 
