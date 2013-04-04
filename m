@@ -1,32 +1,24 @@
-Return-Path: <ndec13@gmail.com>
-Received: from mail-ob0-f182.google.com (mail-ob0-f182.google.com
-	[209.85.214.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5616E014AD
-	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 08:01:28 -0700 (PDT)
-Received: by mail-ob0-f182.google.com with SMTP id ef5so2606942obb.41
-	for <yocto@yoctoproject.org>; Thu, 04 Apr 2013 08:01:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=CyRfn7mKRsiQV9HksXWNWFf+bRRR6JiBVu0588bnMuQ=;
-	b=UlqhbqQthXd/z8huXU3Cm6AOXWO+xBDsN6MGjUeJmfwb+m8Tg5yBl26oQCDnsfR/E4
-	T60Rv+ZrawdSpdCzNdxV8HRIr61GozZfGiyVcUJYPh3nCaSETneGLcy9DWuADSNdwKiH
-	9O2kgB0KUkWxsAQQRyjzeNi4QKFNz8Q7J40Y5qqMPvN9ndpamWlcpQcY23y4kS9PT5I8
-	ObvR642E56RS1yitwYI+PBXT5DT0sk16hDBGByw/gJO51OngWpQejHhncvdYSSgGQT34
-	TvhmXtkccavT61sJFvxijh1gHpnxHLP5hYbasGAxFCHzZFBhO8GioOjRGXiaMxp8wyiM
-	vrzQ==
-X-Received: by 10.60.142.164 with SMTP id rx4mr4621122oeb.83.1365087687854;
-	Thu, 04 Apr 2013 08:01:27 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.76.34.39 with HTTP; Thu, 4 Apr 2013 08:01:07 -0700 (PDT)
-In-Reply-To: <3982011.Guen6pOcoq@helios>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BF26E014BB
+	for <yocto@yoctoproject.org>; Thu,  4 Apr 2013 08:23:04 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 04 Apr 2013 08:23:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,409,1363158000"; d="scan'208";a="280811575"
+Received: from unknown (HELO helios.localnet) ([10.255.13.167])
+	by azsmga001.ch.intel.com with ESMTP; 04 Apr 2013 08:23:01 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: openembedded-core@lists.openembedded.org
+Date: Thu, 04 Apr 2013 16:23 +0100
+Message-ID: <4508990.pcm6NvoxmA@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.1 (Linux/3.5.0-26-generic; KDE/4.10.1; i686; ; )
+In-Reply-To: <CAOT3miKi62MtFGjiNYeykNKAsFQ+srtwqSbsSyge3ZzGHD4DOw@mail.gmail.com>
 References: <3982011.Guen6pOcoq@helios>
-From: Nicolas Dechesne <ndec13@gmail.com>
-Date: Thu, 4 Apr 2013 17:01:07 +0200
-Message-ID: <CAOT3miKi62MtFGjiNYeykNKAsFQ+srtwqSbsSyge3ZzGHD4DOw@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto <yocto@yoctoproject.org>, openembedded-devel@lists.openembedded.org,
-	openembedded-core <openembedded-core@lists.openembedded.org>
+	<CAOT3miKi62MtFGjiNYeykNKAsFQ+srtwqSbsSyge3ZzGHD4DOw@mail.gmail.com>
+MIME-Version: 1.0
+Cc: openembedded-devel@lists.openembedded.org, yocto <yocto@yoctoproject.org>
 Subject: Re: [OE-core] New OE layer index now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,29 +31,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Apr 2013 15:01:28 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 04 Apr 2013 15:23:04 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-hi,
+On Thursday 04 April 2013 17:01:07 Nicolas Dechesne wrote:
+> i was thinking it might be useful (in fact at least it would be very
+> useful for me right now) to get version 'history' for each supported
+> branch. if i understand the design correctly, i first need to set the
+> branch I want to search, then search. but what about an 'all branch
+> search' that displays recipes version *and* layer for multiple
+> branches, so that we can easily see version change and recipe move
+> in-between layers between all branches.
 
-this is a really useful addition! thanks!
+Hmm, I hadn't thought of that, but yes it does sound useful. I'll add it to 
+the todo list.
 
-On Fri, Mar 29, 2013 at 10:34 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> The index also supports multiple branches, but for the moment there is only a
-> master branch configured as I'd like to have people check the layer data before
-> adding the additional stable branches (danny and denzil).
->
+Cheers,
+Paul
 
-i was thinking it might be useful (in fact at least it would be very
-useful for me right now) to get version 'history' for each supported
-branch. if i understand the design correctly, i first need to set the
-branch I want to search, then search. but what about an 'all branch
-search' that displays recipes version *and* layer for multiple
-branches, so that we can easily see version change and recipe move
-in-between layers between all branches.
+-- 
 
-does that make any sense to anyone?
-
-nicolas
+Paul Eggleton
+Intel Open Source Technology Centre
 
