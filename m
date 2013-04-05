@@ -1,35 +1,31 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B77FE0150B
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 15:35:07 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id gd11so469479vcb.17
-	for <yocto@yoctoproject.org>; Fri, 05 Apr 2013 15:35:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=dUS6gDR1KHwg88+fkYJ7wDVwDCByjb9ZmAsr3FkC+nQ=;
-	b=Ia6deNchtwsLXGPivjm3suanCwwsUWfF6EWBlq+OmvhUovn0olF/3U7DIjqnE9rrty
-	3L+tgarNSAHQbRmbE+GEEqOYeoYkhb5NUFrJyBJtX2jVtF+E5KPeGPI/ZTQZ40k6qNhs
-	G+zhpMu6mL8E94pqsSvESON/SbqIZ9tufWMVsd2Djz1XXjeIEmf1m1AZ5cEZoMoiW+v8
-	2Wtc7fLiiwhUy4eaqCFBGnQ8W0Xj/3Ah1rZ/kmTrTLv1NFlZSleRv5tLFcSSfFT82snf
-	oAi8hzl3K7TBEmpA4ASjzyoiyZoojHuoFpfmB6s7ZH01uGmrKK9zWLasju+AzhZa3ZKR
-	BcKg==
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-junco.atl.sa.earthlink.net
+	(elasmtp-junco.atl.sa.earthlink.net [209.86.89.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C791E01514
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 15:45:38 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=UtOQhE8jujE2WdbhixVUIGbH45E4aNYlJAtml6hC/0ugfBbfA0CsntkW9QBipRO/;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-junco.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UOFO5-0006Ar-CK
+	for yocto@yoctoproject.org; Fri, 05 Apr 2013 17:45:37 -0500
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+References: <E32C22186F664AC79D0019B49275C4EE@PAULD><515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD><515C8FEF.2090201@linux.intel.com><7FEC659FC16A466C9B7671C5BADEDB81@PAULD><515DB5F5.5010300@linux.intel.com><D956029D25CF204F948EA0FB515E1EE258405A68@ORSMSX105.amr.corp.intel.com><13F417252F8B4CB5BB755BB07928D20C@PAULD><D956029D25CF204F948EA0FB515E1EE258405AC4@ORSMSX105.amr.corp.intel.com><2FD1BA69DE1E491C839CA26A7D2CA32A@PAULD><D956029D25CF204F948EA0FB515E1EE258405C96@ORSMSX105.amr.corp.intel.com><547521F5BFD54F2D8E6783515988F589@PAULD>
+	<D956029D25CF204F948EA0FB515E1EE258406365@ORSMSX105.amr.corp.intel.com>
+	<83730A512373431B95CA2E526DB84A99@PAULD>
+	<D956029D25CF204F948EA0FB515E1EE25840666D@ORSMSX105.amr.corp.intel.com>
+In-Reply-To: <D956029D25CF204F948EA0FB515E1EE25840666D@ORSMSX105.amr.corp.intel.com>
+Date: Fri, 5 Apr 2013 15:45:38 -0700
+Message-ID: <B2D67BA623D949A0A2EE7AE68ABCF96A@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.52.97.131 with SMTP id ea3mr4420240vdb.71.1365201306762;
-	Fri, 05 Apr 2013 15:35:06 -0700 (PDT)
-Received: by 10.52.159.163 with HTTP; Fri, 5 Apr 2013 15:35:06 -0700 (PDT)
-In-Reply-To: <6B996A59-7914-4BEE-BEF4-FCC782E5B28F@gmail.com>
-References: <CANwz6nzAr3m8rebqwzY_KkU-JFNZUTh=Ks4HW048ugg=Q13wYA@mail.gmail.com>
-	<DAE1825C-DECF-40F1-8C62-EBA1ADC46B7B@gmail.com>
-	<CANwz6nwE14Fmnh2sV3wp9OCqzTEVotC4OLssA3fSRthQLqb6BQ@mail.gmail.com>
-	<6B996A59-7914-4BEE-BEF4-FCC782E5B28F@gmail.com>
-Date: Fri, 5 Apr 2013 16:35:06 -0600
-Message-ID: <CANwz6nxDTHJzbctFwKE9o8PDDwsz8SxsSSOiRNaDdc8abN77hw@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: gcc enable-languages
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4v6OLutIUbhKmlT8+L4nrLND2JOgA0yGyAAAkHLIAAAPA1gAAITTSAACOC5oAADDYCwAAYHWCwADAW1QAAXwadUAC5lNBAAUsEvbACkoxCQAUkEuYQCkA8DnAUgChJIA==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688f0459aa6a685fcfdf1ce59c8cda207ec350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: This one can't be me...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,69 +37,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 22:35:07 -0000
-Content-Type: multipart/alternative; boundary=20cf307cfc7eefc63f04d9a4b2e3
+X-List-Received-Date: Fri, 05 Apr 2013 22:45:38 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
---20cf307cfc7eefc63f04d9a4b2e3
-Content-Type: text/plain; charset=ISO-8859-1
+> From: Bodke, Kishore K [mailto:kishore.k.bodke@intel.com] 
+> 
+> I did a clean build and booted N2800 board.
+> Sato desktop comes up.
+> No issues here.
 
-I believe that the error was in gcc-configure-common.inc it should of been
-f95 not fortran. I am do a clean build  now for beagleboard and beaglebone.
+I believe you. To reiterate my last questions: does it matter what order the
+layers are specified in bblayers.conf? If not, is deleting the downloads
+tree and doing another build the only thing left to try?
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
-
-On Fri, Apr 5, 2013 at 3:06 PM, Khem Raj <raj.khem@gmail.com> wrote:
-
->
-> On Apr 5, 2013, at 2:02 PM, Edward Vidal <vidal.develone@gmail.com> wrote:
->
-> ERROR: This autoconf log indicates errors, it looked at host include
-> and/or library paths while determining system capabilities.
-> Rerun configure task after fixing this. The path was
-> '/home/vidal/POKY/build032713/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/gcc-runtime/4.7.2-r19/gcc-4.7.2/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux-gnueabi/libgfortran'
->
->
->
-> so something is not cross compiling.
->
-
---20cf307cfc7eefc63f04d9a4b2e3
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I believe that the error was in gcc-configure-common.inc i=
-t should of been f95 not fortran. I am do a clean build=A0 now for beaglebo=
-ard and beaglebone.<br><br></div><div class=3D"gmail_extra"><br><br><div cl=
-ass=3D"gmail_quote">
-On Fri, Apr 5, 2013 at 3:06 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</spa=
-n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
-order-left:1px #ccc solid;padding-left:1ex">
-<div style=3D"word-wrap:break-word"><div class=3D"im"><br><div><div>On Apr =
-5, 2013, at 2:02 PM, Edward Vidal &lt;<a href=3D"mailto:vidal.develone@gmai=
-l.com" target=3D"_blank">vidal.develone@gmail.com</a>&gt; wrote:</div><br><=
-blockquote type=3D"cite">
-<span style=3D"font-family:Helvetica;font-size:medium;font-style:normal;fon=
-t-variant:normal;font-weight:normal;letter-spacing:normal;line-height:norma=
-l;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:n=
-ormal;word-spacing:0px;display:inline!important;float:none">ERROR: This aut=
-oconf log indicates errors, it looked at host include and/or library paths =
-while determining system capabilities.</span><br style=3D"font-family:Helve=
-tica;font-size:medium;font-style:normal;font-variant:normal;font-weight:nor=
-mal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-i=
-ndent:0px;text-transform:none;white-space:normal;word-spacing:0px">
-<span style=3D"font-family:Helvetica;font-size:medium;font-style:normal;fon=
-t-variant:normal;font-weight:normal;letter-spacing:normal;line-height:norma=
-l;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:n=
-ormal;word-spacing:0px;display:inline!important;float:none">Rerun configure=
- task after fixing this. The path was &#39;/home/vidal/POKY/build032713/pok=
-y/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/gcc-runtime/4.7.2-r19/g=
-cc-4.7.2/build.arm-poky-linux-gnueabi.arm-poky-linux-gnueabi/arm-poky-linux=
--gnueabi/libgfortran&#39;</span><br style=3D"font-family:Helvetica;font-siz=
-e:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-sp=
-acing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;tex=
-t-transform:none;white-space:normal;word-spacing:0px">
-</blockquote></div><br><div><br></div></div><div>so something is not cross =
-compiling.</div></div></blockquote></div><br></div>
-
---20cf307cfc7eefc63f04d9a4b2e3--
