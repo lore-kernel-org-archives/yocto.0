@@ -1,34 +1,29 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDF66E0152B
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 16:35:08 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 05 Apr 2013 16:35:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,418,1363158000"; d="scan'208";a="281550116"
-Received: from unknown (HELO [10.255.13.189]) ([10.255.13.189])
-	by azsmga001.ch.intel.com with ESMTP; 05 Apr 2013 16:34:32 -0700
-Message-ID: <1365204871.17697.6.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Date: Fri, 05 Apr 2013 18:34:31 -0500
-In-Reply-To: <83730A512373431B95CA2E526DB84A99@PAULD>
-References: <E32C22186F664AC79D0019B49275C4EE@PAULD>
-	<515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD>
-	<515C8FEF.2090201@linux.intel.com><7FEC659FC16A466C9B7671C5BADEDB81@PAULD>
-	<515DB5F5.5010300@linux.intel.com>
-	<D956029D25CF204F948EA0FB515E1EE258405A68@ORSMSX105.amr.corp.intel.com>
-	<13F417252F8B4CB5BB755BB07928D20C@PAULD>
-	<D956029D25CF204F948EA0FB515E1EE258405AC4@ORSMSX105.amr.corp.intel.com>
-	<2FD1BA69DE1E491C839CA26A7D2CA32A@PAULD>
-	<D956029D25CF204F948EA0FB515E1EE258405C96@ORSMSX105.amr.corp.intel.com>
-	<547521F5BFD54F2D8E6783515988F589@PAULD>
-	<D956029D25CF204F948EA0FB515E1EE258406365@ORSMSX105.amr.corp.intel.com>
-	<83730A512373431B95CA2E526DB84A99@PAULD>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 296B5E0146D
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 16:41:49 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id D3D72F81204; Fri,  5 Apr 2013 17:41:48 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id EDCF2F81202;
+	Fri,  5 Apr 2013 17:41:47 -0600 (MDT)
+Message-ID: <515F613C.6080909@mlbassoc.com>
+Date: Fri, 05 Apr 2013 17:41:48 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
+MIME-Version: 1.0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <515EC933.70305@mlbassoc.com> <515F040F.40402@mlbassoc.com>
+	<30341079.23PBRlhEQk@helios>
+In-Reply-To: <30341079.23PBRlhEQk@helios>
 Cc: yocto@yoctoproject.org
-Subject: Re: This one can't be me...
+Subject: Re: Weird FILESPATH issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,48 +35,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 23:35:08 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 05 Apr 2013 23:41:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2013-04-05 at 11:48 -0700, Paul D. DeRocco wrote:
-> > From: Bodke, Kishore K
-> > 
-> > Here are the config parameters for the clean build that I am 
-> > doing now.
-> > 
-> > kishore@kishore-desktop:/usr/local/src/cedartrail/build/tmp/wo
-> rk/cedartrail_nopvr-poky-linux/linux-yocto-3.0.32+git1>
-> +bf5ee4945ee6d748e6abe16356f2357f76b5e2f0_1+1e79e03d115ed17788
-> 2ab53909a4f3555e434833-r4.1/linux-cedartrail-nopvr-standard-build$ grep >
-> BLK_DEV_RAM .config
-> > CONFIG_BLK_DEV_RAM=y
-> > CONFIG_BLK_DEV_RAM_COUNT=16
-> > CONFIG_BLK_DEV_RAM_SIZE=4096
-> > 
-> > I don't understand how these are missing in your build?  
-> > BLK_DEV_RAM are enabled for Cedartrail-nopvr build.
-> > 
-> > What did you do different?
-> 
-> I don't know. I detailed the steps I took. I still have
-> 
-> 	# CONFIG_BLK_DEV_RAM is not set
-> 
-> Does the order of the layers in bblayers.conf matter? Is it possible that
-> something in the past fetched a different version of something, and it's
-> sitting in my downloads tree and screwing things up?
-> 
-> I'm sending you the two build log files separately, so that they don't go
-> out to the entire list.
-> 
+On 2013-04-05 11:31, Paul Eggleton wrote:
+> On Friday 05 April 2013 11:04:15 Gary Thomas wrote:
+>> On 2013-04-05 06:53, Gary Thomas wrote:
+>>> I think the problem is because the main recipe contains this line:
+>>>     FILESPATH = "${FILE_DIRNAME}/python-pygobject:${FILE_DIRNAME}/files"
+>>>
+>>> How can I write my .bbappend file to pick up the patch from my [local]
+>>> layer?
+>>>
+>>> Thanks
+>>>
+>>> n.b. isn't that 'FILESPATH' line in the main recipe rather unfriendly?
+>>
+>> What I don't get is that I've done this exact same style of .bbappend for
+>> other recipes and it works fine.  For example, I have this
+>>
+>>     ${LAYER}/recipes-sato/gtk-engines/gtk-sato-engine_git.bbappend:
+>>          FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>          SRC_URI_append = " file://adjust-sato-theme.patch "
+>>          PACKAGE_ARCH = "${MACHINE_ARCH}"
+>>
+>> This .bbappend file works perfectly :-(
+>
+> The FILESPATH line you referred to is very old and probably no longer
+> necessary. Try dropping it and see if everything works.
 
-Can you send those to me as well, along with your entire bblayers.conf
-and local.conf?
+I did and it still doesn't work.  Now it looks at many more directories,
+including the overrides, etc, but still not looking in the layer that
+contains the .bbappend.  I now get these:
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native-2.27.91/i686
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native-2.27.91/cobra4430p82
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native-2.27.91/omap4
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native-2.27.91/armv7a
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native-2.27.91/amltd
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native-2.27.91/
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native/i686
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native/cobra4430p82
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native/omap4
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native/armv7a
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native/amltd
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-native/
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-2.27.91/i686
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-2.27.91/cobra4430p82
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-2.27.91/omap4
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-2.27.91/armv7a
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-2.27.91/amltd
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject-2.27.91/
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject/i686
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject/cobra4430p82
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject/omap4
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject/armv7a
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject/amltd
+     /home/local/poky-multi/meta/recipes-devtools/python/python-pygobject/
+     /home/local/poky-multi/meta/recipes-devtools/python/files/i686
+     /home/local/poky-multi/meta/recipes-devtools/python/files/cobra4430p82
+     /home/local/poky-multi/meta/recipes-devtools/python/files/omap4
+     /home/local/poky-multi/meta/recipes-devtools/python/files/armv7a
+     /home/local/poky-multi/meta/recipes-devtools/python/files/amltd
+     /home/local/poky-multi/meta/recipes-devtools/python/files/
 
-Thanks,
+Still very confused.
 
-Tom
-
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
