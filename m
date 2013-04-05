@@ -1,28 +1,37 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qa0-f50.google.com (mail-qa0-f50.google.com
-	[209.85.216.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 681DBE01494
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 02:08:25 -0700 (PDT)
-Received: by mail-qa0-f50.google.com with SMTP id bv4so190214qab.2
-	for <yocto@yoctoproject.org>; Fri, 05 Apr 2013 02:08:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=JTywZiD8l9j3t8GmHUuuUGAPA4PPb+zcVD8dYqMfTs4=;
-	b=FkdDNfzF6I1qYawaunSiqYjTlkuWofFS6bZziYWDFpIhnSJ3ZybXuZ0ZKRombP7ldm
-	9/sPhN6Z+xFpe4kZ4E+rA5CBlfkflQ7VTKh00Gac49hvfBhIxLh2mORfLjO1n+L+t+ET
-	nHmPjHKKuusV5jy6p9/DQh1GUN8YfxmEQircy991vSr2Jpp0oamG8Gc8VIBn5c3P4KwB
-	saEoWaN9tYLvfi+mZ7NUqBg8UZpnxOcOMuGjB6BT9Aqx2I7EITLV60ULnzOMnxrl0mzs
-	fNo9J7s/D5DJ4yW3kbOJzSet9gVIFF10Qse+W9yltzNkzgQMxe+c9A/xNVWCVqAy49aV
-	CowA==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f176.google.com (mail-ve0-f176.google.com
+	[209.85.128.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF8FAE014D5
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 02:35:46 -0700 (PDT)
+Received: by mail-ve0-f176.google.com with SMTP id ox1so3374574veb.21
+	for <yocto@yoctoproject.org>; Fri, 05 Apr 2013 02:35:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=S6bo/8YUit4pB39TVa4ILdKRlcKdd8JDJli/2jACgU0=;
+	b=Juv0Pc9aTU4BLcSidxZwQ9CN1nQ+Sc20CjAh4vZanf8VBkLwlWdSFlJXza4xxmCJih
+	FexrWMUuIXb9GF7QsKsnOTkS1+24or4OoYHUdclp+pKw0dY+YDn7CPD6j8+6ZsWCp0D0
+	y+RJlk41F8iAESyUBM0T+Kkl/770W9F0daeH3ekadHsETmMHDCb3JqSdA23vAhgWaIrx
+	toEGpYe2pdm7roxVkbNHpsXD+nZTAG0lqSo0cVIG3sWvL8JQH5s6sW3mduLCuHvDeghk
+	6rFp1kTUnBRRZKH3y3vxeSsI8jKH4EpIWn3ACsEiQ+IraX5PVYFUsfPGSbAhiHRsazpv
+	PUBA==
+X-Received: by 10.52.67.75 with SMTP id l11mr6420904vdt.29.1365154546034; Fri,
+	05 Apr 2013 02:35:46 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.224.110.205 with SMTP id o13mr7506725qap.81.1365152904687;
-	Fri, 05 Apr 2013 02:08:24 -0700 (PDT)
-Received: by 10.49.35.140 with HTTP; Fri, 5 Apr 2013 02:08:24 -0700 (PDT)
-Date: Fri, 5 Apr 2013 11:08:24 +0200
-Message-ID: <CAFyqS9rPxsUqhnNYzCVF4y96DoMDsF2LKV8Xk7ds7Ad3Y+3jYA@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: yocto@yoctoproject.org
-Subject: USB Ethernet problems
+Received: by 10.220.100.68 with HTTP; Fri, 5 Apr 2013 02:35:25 -0700 (PDT)
+In-Reply-To: <3486181.3zQ0PC9o8U@helios>
+References: <CAFMfyz+evbAH-Yes=LdnkU9TWi-GKdVRWHT-MYaCNzh8Hf_1fQ@mail.gmail.com>
+	<14373389.b9xaIaY1vP@helios>
+	<CAFMfyzKMBXx+j6Wx2e=xdaTU2gHsvTqiEsKAmmCm7AKde_5THw@mail.gmail.com>
+	<3486181.3zQ0PC9o8U@helios>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 5 Apr 2013 10:35:25 +0100
+Message-ID: <CAJTo0LYwesVtSPRGSm9vORfpcEuU65ntYbrU+graya=ZyV-qeg@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Gm-Message-State: ALoCoQmTcjpGLVz6SteHtKuM8e50MVG+A2oJv40bcRcqOHBXbf3ejQ964lXtYGjEPUXeIeE2RiKu
+Cc: yocto@yoctoproject.org
+Subject: Re: Installing foreign fonts into the yocto build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,53 +43,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 09:08:25 -0000
-Content-Type: multipart/alternative; boundary=20cf3063e315f2ba5004d9996de6
+X-List-Received-Date: Fri, 05 Apr 2013 09:35:47 -0000
+Content-Type: text/plain; charset=UTF-8
 
---20cf3063e315f2ba5004d9996de6
-Content-Type: text/plain; charset=ISO-8859-1
+On 5 April 2013 08:26, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
+> The file
+> doesn't display properly in the matchbox-terminal application (displaying
+> garbage, indicating the encoding is incorrect)
 
-Hi. In our configuration we do not have an on-board Ethernet device. It
-connected to the USB-host adapter.
-It seems that probing of such devices are done very late in the kernel
-boot-up which means it gets out of sync with the network init script(s)
-and the NIC thus has to be brought up manually after boot.
+FWIW, the terminal is based on libvte, so that *should* work.  Annoying.
 
-...
-usb 1-1: new high-speed USB device number 2 using xusbps-ehci
-hub 1-1:1.0: USB hub found
-hub 1-1:1.0: 4 ports detected
-VFS: Mounted root (ext2 filesystem) on device 1:0.
-devtmpfs: mounted
-Freeing init memory: 152K
-INIT: version 2.88 booting
-usb 1-1.4: new high-speed USB device number 3 using xusbps-ehci
-Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such file
-or directory
-bootlogd.
-Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device
-INIT: Entering runlevel: 5
-Starting Dropbear SSH server: NET: Registered protocol family 10
-dropbear.
-Starting syslogd/klogd: done
-Stopping Bootlog daemon: bootlogd.
-asix 1-1.4:1.0: eth0: register 'asix' at usb-xusbps-ehci.0-1.4, ASIX
-AX88772 USB 2.0 Ethernet, fc:75:16:cf:6a:86
-...
+Ross
 
-Is there some way to configure a system through Yocto to handle this
-scenario?
-
-Hans
-
---20cf3063e315f2ba5004d9996de6
-Content-Type: text/html; charset=ISO-8859-1
-
-Hi. In our configuration we do not have an on-board Ethernet device. It connected to the USB-host adapter.<br>It seems that probing of such devices are done very late in the kernel boot-up which means it gets out of sync with the network init script(s)<br>
-and the NIC thus has to be brought up manually after boot. <br><br>...<br>usb 1-1: new high-speed USB device number 2 using xusbps-ehci<br>hub 1-1:1.0: USB hub found<br>hub 1-1:1.0: 4 ports detected<br>VFS: Mounted root (ext2 filesystem) on device 1:0.<br>
-devtmpfs: mounted<br>Freeing init memory: 152K<br>INIT: version 2.88 booting<br>usb 1-1.4: new high-speed USB device number 3 using xusbps-ehci<br>Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such file or directory<br>
-bootlogd.<br>Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device<br>INIT: Entering runlevel: 5<br>Starting Dropbear SSH server: NET: Registered protocol family 10<br>dropbear.<br>Starting syslogd/klogd: done<br>
-Stopping Bootlog daemon: bootlogd.<br>asix 1-1.4:1.0: eth0: register &#39;asix&#39; at usb-xusbps-ehci.0-1.4, ASIX AX88772 USB 2.0 Ethernet, fc:75:16:cf:6a:86<br>...<br><br>Is there some way to configure a system through Yocto to handle this scenario?<br>
-<br>Hans<br><br><br>
-
---20cf3063e315f2ba5004d9996de6--
