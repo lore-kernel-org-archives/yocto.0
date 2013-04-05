@@ -1,31 +1,41 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-junco.atl.sa.earthlink.net
-	(elasmtp-junco.atl.sa.earthlink.net [209.86.89.63])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C791E01514
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 15:45:38 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=UtOQhE8jujE2WdbhixVUIGbH45E4aNYlJAtml6hC/0ugfBbfA0CsntkW9QBipRO/;
-	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-junco.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1UOFO5-0006Ar-CK
-	for yocto@yoctoproject.org; Fri, 05 Apr 2013 17:45:37 -0500
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-References: <E32C22186F664AC79D0019B49275C4EE@PAULD><515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD><515C8FEF.2090201@linux.intel.com><7FEC659FC16A466C9B7671C5BADEDB81@PAULD><515DB5F5.5010300@linux.intel.com><D956029D25CF204F948EA0FB515E1EE258405A68@ORSMSX105.amr.corp.intel.com><13F417252F8B4CB5BB755BB07928D20C@PAULD><D956029D25CF204F948EA0FB515E1EE258405AC4@ORSMSX105.amr.corp.intel.com><2FD1BA69DE1E491C839CA26A7D2CA32A@PAULD><D956029D25CF204F948EA0FB515E1EE258405C96@ORSMSX105.amr.corp.intel.com><547521F5BFD54F2D8E6783515988F589@PAULD>
-	<D956029D25CF204F948EA0FB515E1EE258406365@ORSMSX105.amr.corp.intel.com>
-	<83730A512373431B95CA2E526DB84A99@PAULD>
-	<D956029D25CF204F948EA0FB515E1EE25840666D@ORSMSX105.amr.corp.intel.com>
-In-Reply-To: <D956029D25CF204F948EA0FB515E1EE25840666D@ORSMSX105.amr.corp.intel.com>
-Date: Fri, 5 Apr 2013 15:45:38 -0700
-Message-ID: <B2D67BA623D949A0A2EE7AE68ABCF96A@PAULD>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac4v6OLutIUbhKmlT8+L4nrLND2JOgA0yGyAAAkHLIAAAPA1gAAITTSAACOC5oAADDYCwAAYHWCwADAW1QAAXwadUAC5lNBAAUsEvbACkoxCQAUkEuYQCkA8DnAUgChJIA==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688f0459aa6a685fcfdf1ce59c8cda207ec350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: Re: This one can't be me...
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f50.google.com (mail-pb0-f50.google.com
+	[209.85.160.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7F20E014D6
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 16:00:08 -0700 (PDT)
+Received: by mail-pb0-f50.google.com with SMTP id jt11so2253891pbb.37
+	for <yocto@yoctoproject.org>; Fri, 05 Apr 2013 16:00:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:message-id:references:to:x-mailer;
+	bh=5LjI+RPfC+CF50Ym7blaijLG8hCKPRVTo9VWM6JSjm4=;
+	b=o96PmAM+d5uJcWiE6VqDwDJJBt+8uwbtKSrvVBd7d9/AYUbaTkNXH0DheYsmlLI6CZ
+	WHC8V2swYoxVht1Ar+VxjTqanLHXBxukomiWVeSEjVFVbboqoni9OT0GOkP3lutVH/c2
+	fhnKSI4Cd9KMLVpT3j0e3XPtEczzmoyhyWMlwlmYZvZ7GBKXoyaX5W0voEKnbEXqToN6
+	vud6QwiiQ8Tlff4eelWG+iG+oI/YtjTQCWIyeTpH0cQUA5L84+gZ+LXUJ1Ft0zSOzWx/
+	+fVBaPIx4PHWuHo+y/fIv2VXbrCbF9Jc8qHCsRFeI3d6NH0qu/ovMSQqHpE1En3NYOyH
+	7DEQ==
+X-Received: by 10.66.102.65 with SMTP id fm1mr17074625pab.164.1365202808657;
+	Fri, 05 Apr 2013 16:00:08 -0700 (PDT)
+Received: from vspringer-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36])
+	by mx.google.com with ESMTPS id gn2sm15999964pbb.22.2013.04.05.16.00.07
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 05 Apr 2013 16:00:07 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CANwz6nxDTHJzbctFwKE9o8PDDwsz8SxsSSOiRNaDdc8abN77hw@mail.gmail.com>
+Date: Fri, 5 Apr 2013 16:00:05 -0700
+Message-Id: <EC024295-DFE9-4D1A-9EE5-DD7A02EACB5D@gmail.com>
+References: <CANwz6nzAr3m8rebqwzY_KkU-JFNZUTh=Ks4HW048ugg=Q13wYA@mail.gmail.com>
+	<DAE1825C-DECF-40F1-8C62-EBA1ADC46B7B@gmail.com>
+	<CANwz6nwE14Fmnh2sV3wp9OCqzTEVotC4OLssA3fSRthQLqb6BQ@mail.gmail.com>
+	<6B996A59-7914-4BEE-BEF4-FCC782E5B28F@gmail.com>
+	<CANwz6nxDTHJzbctFwKE9o8PDDwsz8SxsSSOiRNaDdc8abN77hw@mail.gmail.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+X-Mailer: Apple Mail (2.1503)
+Cc: yocto@yoctoproject.org
+Subject: Re: gcc enable-languages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,24 +47,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 22:45:38 -0000
+X-List-Received-Date: Fri, 05 Apr 2013 23:00:09 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_59E710C0-DE08-4D2F-88E8-14D42F5C4F83"
+
+--Apple-Mail=_59E710C0-DE08-4D2F-88E8-14D42F5C4F83
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-> From: Bodke, Kishore K [mailto:kishore.k.bodke@intel.com] 
-> 
-> I did a clean build and booted N2800 board.
-> Sato desktop comes up.
-> No issues here.
-
-I believe you. To reiterate my last questions: does it matter what order the
-layers are specified in bblayers.conf? If not, is deleting the downloads
-tree and doing another build the only thing left to try?
-
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+	charset=iso-8859-1
 
 
+On Apr 5, 2013, at 3:35 PM, Edward Vidal <vidal.develone@gmail.com> =
+wrote:
+
+> I believe that the error was in gcc-configure-common.inc it should of =
+been f95 not fortran. I am do a clean build  now for beagleboard and =
+beaglebone.
+
+No, f95 is old and deprecated 'fortran' is right=
+
+--Apple-Mail=_59E710C0-DE08-4D2F-88E8-14D42F5C4F83
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=iso-8859-1
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+"><br><div><div>On Apr 5, 2013, at 3:35 PM, Edward Vidal &lt;<a =
+href=3D"mailto:vidal.develone@gmail.com">vidal.develone@gmail.com</a>&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><span style=3D"font-family: Helvetica; font-size: medium; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
+-webkit-auto; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; display: inline !important; float: none; =
+">I believe that the error was in gcc-configure-common.inc it should of =
+been f95 not fortran. I am do a clean build&nbsp; now for beagleboard =
+and beaglebone.</span><br style=3D"font-family: Helvetica; font-size: =
+medium; font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
+-webkit-auto; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; "></blockquote></div><br><div>No, f95 is =
+old and deprecated 'fortran' is right</div></body></html>=
+
+--Apple-Mail=_59E710C0-DE08-4D2F-88E8-14D42F5C4F83--
