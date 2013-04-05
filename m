@@ -1,37 +1,39 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
-	[209.85.212.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21DE3E01519
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 16:07:33 -0700 (PDT)
-Received: by mail-vb0-f44.google.com with SMTP id e12so2588189vbg.3
-	for <yocto@yoctoproject.org>; Fri, 05 Apr 2013 16:07:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=RCKnmGFW/sTMdyG1gFhKQD2HXUINAg/4LXFyJD/IB/8=;
-	b=RC+PJm2sVS5AI/sCU7gvG3dIGE6bWhPg87Eqd+RIrAWi8upl4aE4uZ8ZHC30osVgXE
-	TdCFU8pzpYySTGS41d1M+8Pwkwfri2XbWRHicWwI0ujapa4huU8yWxLirgkplRZ2iYrz
-	63h77dujqcZITHSCa+Ox6UIGi6TR0NayO1DNfY27nSZ6Yc2YyLPNUlrAiAsOasXWUaxr
-	rGLfbsmpaYtGdG2CPg87jCttKY5EO6r265xebMAymqXWdiapNIAziotp5R1bPyNLvtrM
-	4crO9sqCK0RgI+4B/3lzlcK393sMZYeJyWmf8+1eyBGM5tGEyazMME1SyTaC9cxtbyth
-	3gmg==
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail32c40.carrierzone.com (mail90c40.carrierzone.com
+	[209.235.156.230])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CD77E0151E
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 16:17:50 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r35NHZlS000439; Fri, 5 Apr 2013 23:17:43 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Paul D. DeRocco'" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
+References: <E32C22186F664AC79D0019B49275C4EE@PAULD><515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD><515C8FEF.2090201@linux.intel.com><7FEC659FC16A466C9B7671C5BADEDB81@PAULD><515DB5F5.5010300@linux.intel.com><D956029D25CF204F948EA0FB515E1EE258405A68@ORSMSX105.amr.corp.intel.com><13F417252F8B4CB5BB755BB07928D20C@PAULD><D956029D25CF204F948EA0FB515E1EE258405AC4@ORSMSX105.amr.corp.intel.com><2FD1BA69DE1E491C839CA26A7D2CA32A@PAULD><D956029D25CF204F948EA0FB515E1EE258405C96@ORSMSX105.amr.corp.intel.com><547521F5BFD54F2D8E6783515988F589@PAULD>	<D956029D25CF204F948EA0FB515E1EE258406365@ORSMSX105.amr.corp.intel.com>	<83730A512373431B95CA2E526DB84A99@PAULD>	<D956029D25CF204F948EA0FB515E1EE25840666D@ORSMSX105.amr.corp.intel.com>
+	<B2D67BA623D949A0A2EE7AE68ABCF96A@PAULD>
+In-Reply-To: <B2D67BA623D949A0A2EE7AE68ABCF96A@PAULD>
+Date: Fri, 5 Apr 2013 16:17:27 -0700
+Message-ID: <001601ce3253$c207f9a0$4617ece0$@annabooks.com>
 MIME-Version: 1.0
-X-Received: by 10.220.154.14 with SMTP id m14mr9661487vcw.21.1365203252401;
-	Fri, 05 Apr 2013 16:07:32 -0700 (PDT)
-Received: by 10.52.159.163 with HTTP; Fri, 5 Apr 2013 16:07:32 -0700 (PDT)
-In-Reply-To: <EC024295-DFE9-4D1A-9EE5-DD7A02EACB5D@gmail.com>
-References: <CANwz6nzAr3m8rebqwzY_KkU-JFNZUTh=Ks4HW048ugg=Q13wYA@mail.gmail.com>
-	<DAE1825C-DECF-40F1-8C62-EBA1ADC46B7B@gmail.com>
-	<CANwz6nwE14Fmnh2sV3wp9OCqzTEVotC4OLssA3fSRthQLqb6BQ@mail.gmail.com>
-	<6B996A59-7914-4BEE-BEF4-FCC782E5B28F@gmail.com>
-	<CANwz6nxDTHJzbctFwKE9o8PDDwsz8SxsSSOiRNaDdc8abN77hw@mail.gmail.com>
-	<EC024295-DFE9-4D1A-9EE5-DD7A02EACB5D@gmail.com>
-Date: Fri, 5 Apr 2013 17:07:32 -0600
-Message-ID: <CANwz6nyFgN_e_JfSKKm-8_teQkvETkFAsBxpo3HS5nUFeyfp4A@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: gcc enable-languages
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQHLrTCDXs94kk+U9Dv0oHt0accmBAJBIOSOAfeu0TUChoyUPwJMoQNaAO2aTbUBrZ+LqgHnyvU2ALNFJu4BH6xy4gFJ6udkAiILnbwCMmOBnwHftNm3Am0kyU8BoqLBeZf1zffA
+X-CSC: 0
+X-CHA: v=2.0 cv=OZQv+GvY c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=kWLX5mDfqJkA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
+	a=8U_O21SMUI4A:10 a=iGHA9ds3AAAA:8 a=QyXUC8HyAAAA:8 a=QrVWhbZvAAAA:8
+	a=5GClaeDkGynZLpaCqmUA:9 a=CjuIK1q_8ugA:10 a=FCaQVidmf_IA:10
+	a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10 a=dGJ0OcVc7YAA:10
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020203.515F5B97.0079, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Subject: Re: This one can't be me...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,61 +45,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 23:07:33 -0000
-Content-Type: multipart/alternative; boundary=f46d043d64afe7df6004d9a52690
-
---f46d043d64afe7df6004d9a52690
-Content-Type: text/plain; charset=ISO-8859-1
-
-I went back to fortran but also changed FORTRAN ?= fortran
-14,15c14,15
-< FORTRAN ?= ",fortran"
-< LANGUAGES ?= "c,c++,fortran${JAVA}"
----
-> FORTRAN ?= ",f77"
-> LANGUAGES ?= "c,c++${FORTRAN}${JAVA}"
+X-List-Received-Date: Fri, 05 Apr 2013 23:17:50 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
 
-On Fri, Apr 5, 2013 at 5:00 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Paul D. DeRocco
+> Sent: Friday, April 05, 2013 3:46 PM
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] This one can't be me...
+> 
+> > From: Bodke, Kishore K [mailto:kishore.k.bodke@intel.com]
+> >
+> > I did a clean build and booted N2800 board.
+> > Sato desktop comes up.
+> > No issues here.
+> 
+> I believe you. To reiterate my last questions: does it matter what order
+the
+> layers are specified in bblayers.conf? If not, is deleting the downloads
+tree
+> and doing another build the only thing left to try?
+> 
+> --
+> 
+> Ciao,               Paul D. DeRocco
+> Paul                mailto:pderocco@ix.netcom.com
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
->
-> On Apr 5, 2013, at 3:35 PM, Edward Vidal <vidal.develone@gmail.com> wrote:
->
-> I believe that the error was in gcc-configure-common.inc it should of been
-> f95 not fortran. I am do a clean build  now for beagleboard and beaglebone.
->
->
-> No, f95 is old and deprecated 'fortran' is right
->
+I have the build working with this bblayers listing:
 
---f46d043d64afe7df6004d9a52690
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+BBLAYERS ?= " \
+  /home/usr/Yocto1.3/poky-danny-8.0/meta \
+  /home/usr/Yocto1.3/poky-danny-8.0/meta-yocto \
+  /home/usr/Yocto1.3/poky-danny-8.0/meta-intel \  
+  /home/usr/Yocto1.3/poky-danny-8.0/meta-intel/meta-cedartrail \
+"
 
-<div dir=3D"ltr">I went back to fortran but also changed FORTRAN ?=3D fortr=
-an<br>14,15c14,15<br>&lt; FORTRAN ?=3D &quot;,fortran&quot;<br>&lt; LANGUAG=
-ES ?=3D &quot;c,c++,fortran${JAVA}&quot;<br>---<br>&gt; FORTRAN ?=3D &quot;=
-,f77&quot;<br>
-&gt; LANGUAGES ?=3D &quot;c,c++${FORTRAN}${JAVA}&quot;<br></div><div class=
-=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Apr 5, 2013 at =
-5:00 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.co=
-m" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><div cla=
-ss=3D"im"><br><div><div>On Apr 5, 2013, at 3:35 PM, Edward Vidal &lt;<a hre=
-f=3D"mailto:vidal.develone@gmail.com" target=3D"_blank">vidal.develone@gmai=
-l.com</a>&gt; wrote:</div>
-<br><blockquote type=3D"cite"><span style=3D"font-family:Helvetica;font-siz=
-e:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-sp=
-acing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;tex=
-t-transform:none;white-space:normal;word-spacing:0px;display:inline!importa=
-nt;float:none">I believe that the error was in gcc-configure-common.inc it =
-should of been f95 not fortran. I am do a clean build=A0 now for beagleboar=
-d and beaglebone.</span><br style=3D"font-family:Helvetica;font-size:medium=
-;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:no=
-rmal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transf=
-orm:none;white-space:normal;word-spacing:0px">
-</blockquote></div><br></div><div>No, f95 is old and deprecated &#39;fortra=
-n&#39; is right</div></div></blockquote></div><br></div>
+I have never tried switching them around, but I don't see how it matters
 
---f46d043d64afe7df6004d9a52690--
+
+Regards,
+
+Sean Liming
+Owner
+
+Tel: 714-970-7523 / Cell: 858-774-3176
+
+
