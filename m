@@ -1,35 +1,37 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6405E01518
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 16:05:14 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Apr 2013 16:04:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,417,1363158000"; d="scan'208";a="281541331"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by azsmga001.ch.intel.com with ESMTP; 05 Apr 2013 16:04:32 -0700
-Received: from orsmsx155.amr.corp.intel.com (10.22.226.54) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 5 Apr 2013 16:04:31 -0700
-Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
-	ORSMSX155.amr.corp.intel.com ([10.22.226.54]) with mapi id
-	14.01.0355.002; Fri, 5 Apr 2013 16:04:31 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] [eclipse-poky][master]Check build directory
-	when	location is set using "Browse" button
-Thread-Index: AQHOMg9GPfma2rSjh0ieCJGH6nF/dZjIPVxg
-Date: Fri, 5 Apr 2013 23:04:31 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDBF380@ORSMSX104.amr.corp.intel.com>
-References: <1365172249-31621-1-git-send-email-ioanax.grigoropol@intel.com>
-In-Reply-To: <1365172249-31621-1-git-send-email-ioanax.grigoropol@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
+	[209.85.212.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21DE3E01519
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 16:07:33 -0700 (PDT)
+Received: by mail-vb0-f44.google.com with SMTP id e12so2588189vbg.3
+	for <yocto@yoctoproject.org>; Fri, 05 Apr 2013 16:07:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=RCKnmGFW/sTMdyG1gFhKQD2HXUINAg/4LXFyJD/IB/8=;
+	b=RC+PJm2sVS5AI/sCU7gvG3dIGE6bWhPg87Eqd+RIrAWi8upl4aE4uZ8ZHC30osVgXE
+	TdCFU8pzpYySTGS41d1M+8Pwkwfri2XbWRHicWwI0ujapa4huU8yWxLirgkplRZ2iYrz
+	63h77dujqcZITHSCa+Ox6UIGi6TR0NayO1DNfY27nSZ6Yc2YyLPNUlrAiAsOasXWUaxr
+	rGLfbsmpaYtGdG2CPg87jCttKY5EO6r265xebMAymqXWdiapNIAziotp5R1bPyNLvtrM
+	4crO9sqCK0RgI+4B/3lzlcK393sMZYeJyWmf8+1eyBGM5tGEyazMME1SyTaC9cxtbyth
+	3gmg==
 MIME-Version: 1.0
-Subject: Re: [PATCH] [eclipse-poky][master]Check build directory when	location is set using "Browse" button
+X-Received: by 10.220.154.14 with SMTP id m14mr9661487vcw.21.1365203252401;
+	Fri, 05 Apr 2013 16:07:32 -0700 (PDT)
+Received: by 10.52.159.163 with HTTP; Fri, 5 Apr 2013 16:07:32 -0700 (PDT)
+In-Reply-To: <EC024295-DFE9-4D1A-9EE5-DD7A02EACB5D@gmail.com>
+References: <CANwz6nzAr3m8rebqwzY_KkU-JFNZUTh=Ks4HW048ugg=Q13wYA@mail.gmail.com>
+	<DAE1825C-DECF-40F1-8C62-EBA1ADC46B7B@gmail.com>
+	<CANwz6nwE14Fmnh2sV3wp9OCqzTEVotC4OLssA3fSRthQLqb6BQ@mail.gmail.com>
+	<6B996A59-7914-4BEE-BEF4-FCC782E5B28F@gmail.com>
+	<CANwz6nxDTHJzbctFwKE9o8PDDwsz8SxsSSOiRNaDdc8abN77hw@mail.gmail.com>
+	<EC024295-DFE9-4D1A-9EE5-DD7A02EACB5D@gmail.com>
+Date: Fri, 5 Apr 2013 17:07:32 -0600
+Message-ID: <CANwz6nyFgN_e_JfSKKm-8_teQkvETkFAsBxpo3HS5nUFeyfp4A@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: gcc enable-languages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,183 +43,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 23:05:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 05 Apr 2013 23:07:33 -0000
+Content-Type: multipart/alternative; boundary=f46d043d64afe7df6004d9a52690
+
+--f46d043d64afe7df6004d9a52690
+Content-Type: text/plain; charset=ISO-8859-1
+
+I went back to fortran but also changed FORTRAN ?= fortran
+14,15c14,15
+< FORTRAN ?= ",fortran"
+< LANGUAGES ?= "c,c++,fortran${JAVA}"
+---
+> FORTRAN ?= ",f77"
+> LANGUAGES ?= "c,c++${FORTRAN}${JAVA}"
+
+
+On Fri, Apr 5, 2013 at 5:00 PM, Khem Raj <raj.khem@gmail.com> wrote:
+
+>
+> On Apr 5, 2013, at 3:35 PM, Edward Vidal <vidal.develone@gmail.com> wrote:
+>
+> I believe that the error was in gcc-configure-common.inc it should of been
+> f95 not fortran. I am do a clean build  now for beagleboard and beaglebone.
+>
+>
+> No, f95 is old and deprecated 'fortran' is right
+>
+
+--f46d043d64afe7df6004d9a52690
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ioana,
+<div dir=3D"ltr">I went back to fortran but also changed FORTRAN ?=3D fortr=
+an<br>14,15c14,15<br>&lt; FORTRAN ?=3D &quot;,fortran&quot;<br>&lt; LANGUAG=
+ES ?=3D &quot;c,c++,fortran${JAVA}&quot;<br>---<br>&gt; FORTRAN ?=3D &quot;=
+,f77&quot;<br>
+&gt; LANGUAGES ?=3D &quot;c,c++${FORTRAN}${JAVA}&quot;<br></div><div class=
+=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Apr 5, 2013 at =
+5:00 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.co=
+m" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><div cla=
+ss=3D"im"><br><div><div>On Apr 5, 2013, at 3:35 PM, Edward Vidal &lt;<a hre=
+f=3D"mailto:vidal.develone@gmail.com" target=3D"_blank">vidal.develone@gmai=
+l.com</a>&gt; wrote:</div>
+<br><blockquote type=3D"cite"><span style=3D"font-family:Helvetica;font-siz=
+e:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-sp=
+acing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;tex=
+t-transform:none;white-space:normal;word-spacing:0px;display:inline!importa=
+nt;float:none">I believe that the error was in gcc-configure-common.inc it =
+should of been f95 not fortran. I am do a clean build=A0 now for beagleboar=
+d and beaglebone.</span><br style=3D"font-family:Helvetica;font-size:medium=
+;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:no=
+rmal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px">
+</blockquote></div><br></div><div>No, f95 is old and deprecated &#39;fortra=
+n&#39; is right</div></div></blockquote></div><br></div>
 
-I can't reproduce the bug on my end so can't further debug the issue.  But =
-based on the context of this patch, seems we're missing checkBuildDir for b=
-uildLocation?  By looking at the code, shouldn't the easiest fix is to add =
-checkBuildDir on the validatePage for the case the buildLocationText is not=
- empty?
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Friday, April 05, 2013 7:31 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH] [eclipse-poky][master]Check build directory when l=
-ocation is set using "Browse" button
-
-[Yocto #4206]
-
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../sdk/remotetools/wizards/bsp/MainPage.java      |   57 +++++++++++++++-=
-----
- 1 file changed, 43 insertions(+), 14 deletions(-)
-
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/wizards/bsp/MainPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yoc=
-to/sdk/remotetools/wizards/bsp/MainPage.java
-index d84cc24..156829b 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizar=
-ds/bsp/MainPage.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wi
-+++ zards/bsp/MainPage.java
-@@ -25,6 +25,7 @@ import org.eclipse.swt.events.ModifyEvent;
- import org.eclipse.swt.events.ModifyListener;
- import org.eclipse.swt.events.SelectionAdapter;
- import org.eclipse.swt.events.SelectionEvent;
-+import org.eclipse.swt.events.SelectionListener;
- import org.eclipse.swt.layout.GridData;  import org.eclipse.swt.layout.Gri=
-dLayout;
- import org.eclipse.swt.widgets.Button;
-@@ -108,7 +109,8 @@ public class MainPage extends WizardPage {
-                                controlChanged(e.widget);
-                        }
-                });
--               setBtnMetadataLoc(addFileSelectButton(textContainer, textMe=
-tadataLoc));
-+               buildLocationListener =3D new BuildLocationListener("");
-+               setBtnMetadataLoc(addFileSelectButton(textContainer, textMe=
-tadataLoc,
-+null));
-
-                labelBuildLoc =3D new Label(composite, SWT.NONE);
-                labelBuildLoc.setText("Build location: "); @@ -118,10 +120,=
-10 @@ public class MainPage extends WizardPage {
-                textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENT=
-ER, true, false));
-
-                textBuildLoc =3D (Text)addTextControl(textContainer, "");
--               buildLocationListener =3D new BuildLocationListener("");
-                textBuildLoc.addFocusListener(buildLocationListener);
-+               textBuildLoc.addModifyListener(buildLocationListener);
-
--               setBtnBuilddirLoc(addFileSelectButton(textContainer, textBu=
-ildLoc));
-+               setBtnBuilddirLoc(addFileSelectButton(textContainer, textBu=
-ildLoc,
-+buildLocationListener));
-
-                labelBspName =3D new Label(composite, SWT.NONE);
-                labelBspName.setText("BSP Name*: ");
-@@ -152,7 +154,7 @@ public class MainPage extends WizardPage {
-                                controlChanged(e.widget);
-                        }
-                });
--               setBtnBspOutLoc(addFileSelectButton(textContainer, textBspO=
-utputLoc));
-+               setBtnBspOutLoc(addFileSelectButton(textContainer, textBspO=
-utputLoc,
-+null));
-
-                labelKArch =3D new Label(composite, SWT.NONE);
-                labelKArch.setText("Kernel Architecture*: "); @@ -206,18 +2=
-08,25 @@ public class MainPage extends WizardPage {
-                return text;
-        }
-
--       private Button addFileSelectButton(final Composite parent, final Te=
-xt text) {
-+       private Button addFileSelectButton(final Composite parent, final Te=
-xt
-+text, SelectionListener listener) {
-                Button button =3D new Button(parent, SWT.PUSH | SWT.LEAD);
-                button.setText("Browse...");
--               button.addSelectionListener(new SelectionAdapter() {
--                       @Override
--                       public void widgetSelected(SelectionEvent event) {
--                               String dirName =3D new DirectoryDialog(pare=
-nt.getShell()).open();
--                               if (dirName !=3D null) {
--                                       text.setText(dirName);
-+               if (listener =3D=3D null) {
-+                       button.addSelectionListener(new SelectionListener()=
- {
-+                               @Override
-+                               public void widgetSelected(SelectionEvent e=
-) {
-+                                       // TODO Auto-generated method stub
-+                                       String dirName =3D new DirectoryDia=
-log(parent.getShell()).open();
-+                                       if (dirName !=3D null) {
-+                                               text.setText(dirName);
-+                                       }
-                                }
--                       }
--               });
-+                               @Override
-+                               public void widgetDefaultSelected(Selection=
-Event e) {
-+                               }
-+                       });
-+               } else
-+                       button.addSelectionListener(listener);
-                return button;
-        }
-
-@@ -473,7 +482,7 @@ public class MainPage extends WizardPage {
-                this.btnBuildLoc =3D btnBuilddirLoc;
-        }
-
--       class BuildLocationListener implements FocusListener{
-+       class BuildLocationListener implements FocusListener,
-+SelectionListener, ModifyListener{
-                String value;
-                boolean changed;
-
-@@ -492,6 +501,26 @@ public class MainPage extends WizardPage {
-                                buildDirChecked =3D true;
-                        }
-                }
-+               @Override
-+               public void widgetSelected(SelectionEvent e) {
-+                       String dirName =3D new DirectoryDialog(((Button)e.g=
-etSource()).getParent().getShell()).open();
-+                       if (dirName !=3D null) {
-+                               textBuildLoc.setText(dirName);
-+                               value =3D dirName;
-+                       }
-+               }
-+               @Override
-+               public void widgetDefaultSelected(SelectionEvent e) {
-+                       // TODO Auto-generated method stub
-+               }
-+               @Override
-+               public void modifyText(ModifyEvent e) {
-+
-+                       if(!((Text)e.getSource()).getText().equals(value)) =
-{
-+                               checkBuildDir();
-+                               buildDirChecked =3D true;
-+                       }
-+               }
-
-        }
- }
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--f46d043d64afe7df6004d9a52690--
