@@ -1,25 +1,26 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A1A3E0136C
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 00:26:59 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 05 Apr 2013 00:25:17 -0700
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A223E01494
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 00:49:35 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 05 Apr 2013 00:49:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,413,1363158000"; d="scan'208";a="289771031"
-Received: from unknown (HELO helios.localnet) ([10.255.13.157])
-	by orsmga001.jf.intel.com with ESMTP; 05 Apr 2013 00:26:58 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>, yocto@yoctoproject.org
-Date: Fri, 05 Apr 2013 08:26:57 +0100
-Message-ID: <3486181.3zQ0PC9o8U@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.1 (Linux/3.5.0-26-generic; KDE/4.10.1; i686; ; )
-In-Reply-To: <CAFMfyzKMBXx+j6Wx2e=xdaTU2gHsvTqiEsKAmmCm7AKde_5THw@mail.gmail.com>
-References: <CAFMfyz+evbAH-Yes=LdnkU9TWi-GKdVRWHT-MYaCNzh8Hf_1fQ@mail.gmail.com>
-	<14373389.b9xaIaY1vP@helios>
-	<CAFMfyzKMBXx+j6Wx2e=xdaTU2gHsvTqiEsKAmmCm7AKde_5THw@mail.gmail.com>
-MIME-Version: 1.0
-Subject: Re: Installing foreign fonts into the yocto build
+X-IronPort-AV: E=Sophos;i="4.87,413,1363158000"; d="scan'208";a="281163166"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by azsmga001.ch.intel.com with ESMTP; 05 Apr 2013 00:49:34 -0700
+Received: from localhost.localdomain (unknown [10.237.112.141])
+	by linux.intel.com (Postfix) with ESMTP id 1226A2C8001
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 00:49:26 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  5 Apr 2013 10:49:21 +0300
+Message-Id: <22d828e0d50c0024c0e3553313424b1286d4caca.1365147946.git.stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+In-Reply-To: <cover.1365147946.git.stefanx.stanacar@intel.com>
+References: <cover.1365147946.git.stefanx.stanacar@intel.com>
+In-Reply-To: <cover.1365147946.git.stefanx.stanacar@intel.com>
+References: <cover.1365147946.git.stefanx.stanacar@intel.com>
+Subject: [yocto-autobuilder][PATCH v2 1/2] nightly-qa-extras.conf: add new buildset config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,46 +32,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 07:26:59 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Fri, 05 Apr 2013 07:49:35 -0000
 
-On Friday 05 April 2013 09:05:34 Satya Swaroop Damarla wrote:
-> Thank you Paul..  This was very helpful... From your reply. I underst=
-ood
-> that poky build doesnot support unicode characters set because the ge=
-rman
-> special characters are not displayed ... Am I right?
+This buildset is for extra images which don't really fit in other buildsets.
+For now it includes builds for basic image with btrfs and changed root
+home dir, a sato image with read-only rootfs and sato with systemd.
 
-There's nothing inherent about Poky / OpenEmbedded that means it doesn'=
-t=20
-support Unicode. Individual pieces of software might have difficulties =
-however.=20
-I just copied over a text file containing "Schr=C3=B6dinger's =F0=9F=98=
-=BB" (i.e. one German=20
-character and one special one) in UTF-8 to a core-image-sato image. The=
- file=20
-doesn't display properly in the matchbox-terminal application (displayi=
-ng=20
-garbage, indicating the encoding is incorrect), however in Notes (leafp=
-ad) it=20
-displays the =C3=B6 but not the =F0=9F=98=BB (displaying a single box w=
-ith hex code instead,=20
-indicating that the font is missing that special character).
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
+ buildset-config/nightly-qa-extras.conf | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 buildset-config/nightly-qa-extras.conf
 
-FYI I read this article recently and found it very useful - you may alr=
-eady=20
-know some or all of this, but just in case:
+diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
+new file mode 100644
+index 0000000..7debcdd
+--- /dev/null
++++ b/buildset-config/nightly-qa-extras.conf
+@@ -0,0 +1,18 @@
++[nightly-qa-extras]
++builders: 'builder1'
++repos: [{'poky':
++            {'repourl':'git://git.yoctoproject.org/poky',
++             'bbpriority':'1',
++             'branch':'master'}}]
++steps: [{'SetDest':{}},
++        {'CheckOutLayers': {}},
++        {'RunPreamble': {}},
++        {'GetDistroVersion' : {'distro': 'poky'}},
++        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nROOT_HOME = "/root"\nIMAGE_FSTYPES_forcevariable = "btrfs"\nKERNEL_FEATURES_append = " cfg/fs/btrfs"\n'}},
++        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
++        {'BuildImages': {'images': 'core-image-minimal'}},
++        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nDISTRO_FEATURES_append = " systemd"\nVIRTUAL-RUNTIME_init-manager = "systemd"\n'}},
++        {'BuildImages': {'images': 'core-image-sato'}},
++        {'RunSanityTests': {'images': 'core-image-sato'}},
++        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nEXTRA_IMAGE_FEATURES = "debug-tweaks read-only-rootfs"\n'}},
++        {'BuildImages': {'images': 'core-image-sato'}}]
+-- 
+1.8.1.4
 
-http://www.joelonsoftware.com/articles/Unicode.html
-
-Cheers,
-Paul
-
-PS please keep the discussion on the mailing list, thanks.
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
