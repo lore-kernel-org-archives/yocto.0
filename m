@@ -1,32 +1,28 @@
-Return-Path: <corneliux.stoicescu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55F6DE0051D
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 01:40:35 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 05 Apr 2013 01:40:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,413,1363158000"; 
-	d="scan'208,217";a="312749470"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by orsmga002.jf.intel.com with ESMTP; 05 Apr 2013 01:40:29 -0700
-Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
-	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 5 Apr 2013 09:40:27 +0100
-Received: from irsmsx103.ger.corp.intel.com ([169.254.3.198]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.23]) with mapi id
-	14.01.0355.002; Fri, 5 Apr 2013 09:40:28 +0100
-From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
-To: yocto <yocto@yoctoproject.org>
-Thread-Topic: Full Pass Test Report for Yocto 1.4 M5 RC2 2013-03-27-1 Build
-Thread-Index: Ac4x2TiOEmeUy1h7SRWtUGaOVypr2A==
-Date: Fri, 5 Apr 2013 08:40:27 +0000
-Message-ID: <33115ABC4887814E8A92A08FBC93416B097981C1@IRSMSX103.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qa0-f50.google.com (mail-qa0-f50.google.com
+	[209.85.216.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 681DBE01494
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 02:08:25 -0700 (PDT)
+Received: by mail-qa0-f50.google.com with SMTP id bv4so190214qab.2
+	for <yocto@yoctoproject.org>; Fri, 05 Apr 2013 02:08:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=JTywZiD8l9j3t8GmHUuuUGAPA4PPb+zcVD8dYqMfTs4=;
+	b=FkdDNfzF6I1qYawaunSiqYjTlkuWofFS6bZziYWDFpIhnSJ3ZybXuZ0ZKRombP7ldm
+	9/sPhN6Z+xFpe4kZ4E+rA5CBlfkflQ7VTKh00Gac49hvfBhIxLh2mORfLjO1n+L+t+ET
+	nHmPjHKKuusV5jy6p9/DQh1GUN8YfxmEQircy991vSr2Jpp0oamG8Gc8VIBn5c3P4KwB
+	saEoWaN9tYLvfi+mZ7NUqBg8UZpnxOcOMuGjB6BT9Aqx2I7EITLV60ULnzOMnxrl0mzs
+	fNo9J7s/D5DJ4yW3kbOJzSet9gVIFF10Qse+W9yltzNkzgQMxe+c9A/xNVWCVqAy49aV
+	CowA==
 MIME-Version: 1.0
-Subject: Full Pass Test Report for Yocto 1.4 M5 RC2 2013-03-27-1 Build
+X-Received: by 10.224.110.205 with SMTP id o13mr7506725qap.81.1365152904687;
+	Fri, 05 Apr 2013 02:08:24 -0700 (PDT)
+Received: by 10.49.35.140 with HTTP; Fri, 5 Apr 2013 02:08:24 -0700 (PDT)
+Date: Fri, 5 Apr 2013 11:08:24 +0200
+Message-ID: <CAFyqS9rPxsUqhnNYzCVF4y96DoMDsF2LKV8Xk7ds7Ad3Y+3jYA@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: yocto@yoctoproject.org
+Subject: USB Ethernet problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,130 +34,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 08:40:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_33115ABC4887814E8A92A08FBC93416B097981C1IRSMSX103gercor_"
+X-List-Received-Date: Fri, 05 Apr 2013 09:08:25 -0000
+Content-Type: multipart/alternative; boundary=20cf3063e315f2ba5004d9996de6
 
---_000_33115ABC4887814E8A92A08FBC93416B097981C1IRSMSX103gercor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--20cf3063e315f2ba5004d9996de6
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hello,
+Hi. In our configuration we do not have an on-board Ethernet device. It
+connected to the USB-host adapter.
+It seems that probing of such devices are done very late in the kernel
+boot-up which means it gets out of sync with the network init script(s)
+and the NIC thus has to be brought up manually after boot.
 
-Here is the Full Pass test report for Yocto 1.4 M5 RC2 https://wiki.yoctopr=
-oject.org/wiki/Full_Pass_Test_Report_for_Yocto_1.4_M5_RC2_201303271_Build
-This result has also been added to https://wiki.yoctoproject.org/wiki/Yocto=
-_1.4_Milestone_Test_Report
+...
+usb 1-1: new high-speed USB device number 2 using xusbps-ehci
+hub 1-1:1.0: USB hub found
+hub 1-1:1.0: 4 ports detected
+VFS: Mounted root (ext2 filesystem) on device 1:0.
+devtmpfs: mounted
+Freeing init memory: 152K
+INIT: version 2.88 booting
+usb 1-1.4: new high-speed USB device number 3 using xusbps-ehci
+Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such file
+or directory
+bootlogd.
+Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device
+INIT: Entering runlevel: 5
+Starting Dropbear SSH server: NET: Registered protocol family 10
+dropbear.
+Starting syslogd/klogd: done
+Stopping Bootlog daemon: bootlogd.
+asix 1-1.4:1.0: eth0: register 'asix' at usb-xusbps-ehci.0-1.4, ASIX
+AX88772 USB 2.0 Ethernet, fc:75:16:cf:6a:86
+...
 
+Is there some way to configure a system through Yocto to handle this
+scenario?
 
-Poky commit: master: bdca49274173153b1b0a72887de6321b4756b684
+Hans
 
-If you have any questions or concerns, please contact us by replying to thi=
-s email.
+--20cf3063e315f2ba5004d9996de6
+Content-Type: text/html; charset=ISO-8859-1
 
-Regards,
-Stoicescu Cornel
-Romania Yocto QA
+Hi. In our configuration we do not have an on-board Ethernet device. It connected to the USB-host adapter.<br>It seems that probing of such devices are done very late in the kernel boot-up which means it gets out of sync with the network init script(s)<br>
+and the NIC thus has to be brought up manually after boot. <br><br>...<br>usb 1-1: new high-speed USB device number 2 using xusbps-ehci<br>hub 1-1:1.0: USB hub found<br>hub 1-1:1.0: 4 ports detected<br>VFS: Mounted root (ext2 filesystem) on device 1:0.<br>
+devtmpfs: mounted<br>Freeing init memory: 152K<br>INIT: version 2.88 booting<br>usb 1-1.4: new high-speed USB device number 3 using xusbps-ehci<br>Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such file or directory<br>
+bootlogd.<br>Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device<br>INIT: Entering runlevel: 5<br>Starting Dropbear SSH server: NET: Registered protocol family 10<br>dropbear.<br>Starting syslogd/klogd: done<br>
+Stopping Bootlog daemon: bootlogd.<br>asix 1-1.4:1.0: eth0: register &#39;asix&#39; at usb-xusbps-ehci.0-1.4, ASIX AX88772 USB 2.0 Ethernet, fc:75:16:cf:6a:86<br>...<br><br>Is there some way to configure a system through Yocto to handle this scenario?<br>
+<br>Hans<br><br><br>
 
---_000_33115ABC4887814E8A92A08FBC93416B097981C1IRSMSX103gercor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:"Courier New";}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle21
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here is the Full Pass test report for Yocto 1.4 M5 R=
-C2 <a href=3D"https://wiki.yoctoproject.org/wiki/Full_Pass_Test_Report_for_=
-Yocto_1.4_M5_RC2_201303271_Build">
-<span style=3D"color:windowtext">https://wiki.yoctoproject.org/wiki/Full_Pa=
-ss_Test_Report_for_Yocto_1.4_M5_RC2_201303271_Build</span></a><o:p></o:p></=
-p>
-<p class=3D"MsoNormal">This result has also been added to <a href=3D"https:=
-//wiki.yoctoproject.org/wiki/Yocto_1.4_Milestone_Test_Report">
-<span style=3D"color:windowtext">https://wiki.yoctoproject.org/wiki/Yocto_1=
-.4_Milestone_Test_Report</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<pre><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;=
-sans-serif&quot;">Poky commit: master: </span>bdca49274173153b1b0a72887de63=
-21b4756b684<o:p></o:p></pre>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal">If you have any questions or concerns, please contac=
-t us by replying to this email.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Stoicescu Cornel<o:p></o:p></p>
-<p class=3D"MsoNormal">Romania Yocto QA<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_33115ABC4887814E8A92A08FBC93416B097981C1IRSMSX103gercor_--
+--20cf3063e315f2ba5004d9996de6--
