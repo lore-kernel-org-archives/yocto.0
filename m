@@ -1,26 +1,26 @@
 Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A223E01494
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDCEDE01494
 	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 00:49:35 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Apr 2013 00:49:34 -0700
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 05 Apr 2013 00:49:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,413,1363158000"; d="scan'208";a="281163166"
+X-IronPort-AV: E=Sophos;i="4.87,413,1363158000"; d="scan'208";a="317283705"
 Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by azsmga001.ch.intel.com with ESMTP; 05 Apr 2013 00:49:34 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 05 Apr 2013 00:49:35 -0700
 Received: from localhost.localdomain (unknown [10.237.112.141])
-	by linux.intel.com (Postfix) with ESMTP id 1226A2C8001
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 00:49:26 -0700 (PDT)
+	by linux.intel.com (Postfix) with ESMTP id 2C2502C8001
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 00:49:27 -0700 (PDT)
 From: Stefan Stanacar <stefanx.stanacar@intel.com>
 To: yocto@yoctoproject.org
-Date: Fri,  5 Apr 2013 10:49:21 +0300
-Message-Id: <22d828e0d50c0024c0e3553313424b1286d4caca.1365147946.git.stefanx.stanacar@intel.com>
+Date: Fri,  5 Apr 2013 10:49:22 +0300
+Message-Id: <42428863e33a4278e68a0535d41cb63e234be0d6.1365147946.git.stefanx.stanacar@intel.com>
 X-Mailer: git-send-email 1.8.1.4
 In-Reply-To: <cover.1365147946.git.stefanx.stanacar@intel.com>
 References: <cover.1365147946.git.stefanx.stanacar@intel.com>
 In-Reply-To: <cover.1365147946.git.stefanx.stanacar@intel.com>
 References: <cover.1365147946.git.stefanx.stanacar@intel.com>
-Subject: [yocto-autobuilder][PATCH v2 1/2] nightly-qa-extras.conf: add new buildset config
+Subject: [yocto-autobuilder][PATCH v2 2/2] nightly.conf, yoctoAB.conf: enable the new nightly-qa-extras buildset
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,42 +32,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Apr 2013 07:49:35 -0000
+X-List-Received-Date: Fri, 05 Apr 2013 07:49:36 -0000
 
-This buildset is for extra images which don't really fit in other buildsets.
-For now it includes builds for basic image with btrfs and changed root
-home dir, a sato image with read-only rootfs and sato with systemd.
+Add the new buildset to the nightly target
 
 Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
 ---
- buildset-config/nightly-qa-extras.conf | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
- create mode 100644 buildset-config/nightly-qa-extras.conf
+ buildset-config/nightly.conf | 2 +-
+ buildset-config/yoctoAB.conf | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
-new file mode 100644
-index 0000000..7debcdd
---- /dev/null
-+++ b/buildset-config/nightly-qa-extras.conf
-@@ -0,0 +1,18 @@
-+[nightly-qa-extras]
-+builders: 'builder1'
-+repos: [{'poky':
-+            {'repourl':'git://git.yoctoproject.org/poky',
-+             'bbpriority':'1',
-+             'branch':'master'}}]
-+steps: [{'SetDest':{}},
-+        {'CheckOutLayers': {}},
-+        {'RunPreamble': {}},
-+        {'GetDistroVersion' : {'distro': 'poky'}},
-+        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nROOT_HOME = "/root"\nIMAGE_FSTYPES_forcevariable = "btrfs"\nKERNEL_FEATURES_append = " cfg/fs/btrfs"\n'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-+        {'BuildImages': {'images': 'core-image-minimal'}},
-+        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nDISTRO_FEATURES_append = " systemd"\nVIRTUAL-RUNTIME_init-manager = "systemd"\n'}},
-+        {'BuildImages': {'images': 'core-image-sato'}},
-+        {'RunSanityTests': {'images': 'core-image-sato'}},
-+        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nEXTRA_IMAGE_FEATURES = "debug-tweaks read-only-rootfs"\n'}},
-+        {'BuildImages': {'images': 'core-image-sato'}}]
+diff --git a/buildset-config/nightly.conf b/buildset-config/nightly.conf
+index 0b334ff..5b286f0 100644
+--- a/buildset-config/nightly.conf
++++ b/buildset-config/nightly.conf
+@@ -69,7 +69,7 @@ steps: [{'SetDest':{}},
+                               'nightly-x32': {},
+                               'nightly-x86-64': {}, 'nightly-x86-64-lsb': {},
+                               'nightly-x86': {}, 'nightly-x86-lsb': {},
+-                              'poky-tiny': {}}}},
++                              'poky-tiny': {}, 'nightly-qa-extras': {}}}},
+         {'PrepPkgIndex' : {}},
+         {'BuildImages': {'images': 'package-index'}},
+         {'BuildImages': {'images': 'adt-installer'}},
+diff --git a/buildset-config/yoctoAB.conf b/buildset-config/yoctoAB.conf
+index 5f29400..a478ec7 100644
+--- a/buildset-config/yoctoAB.conf
++++ b/buildset-config/yoctoAB.conf
+@@ -4,4 +4,5 @@ order: ['nightly', 'eclipse-plugin', 'nightly-arm', 'nightly-arm-lsb', 'nightly-
+         'nightly-x86-64', 'nightly-x86-64-lsb', 'nightly-x86',
+         'nightly-x86-lsb', 'nightly-x32', 'nightly-multilib',
+         'nightly-world', 'nightly-non-gpl3', 'nightly-oecore',
+-        'nightly-intel-gpl', 'poky-tiny', 'build-appliance']
++        'nightly-intel-gpl', 'poky-tiny', 'build-appliance',
++        'nightly-qa-extras']
 -- 
 1.8.1.4
 
