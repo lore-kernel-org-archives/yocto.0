@@ -1,16 +1,18 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-kukur.atl.sa.earthlink.net
-	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BBC2E01523
-	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 21:15:16 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=W30YGop3kRRmF0mDCcg61zQX5XPtuXAFb8H8q/+Opl+5XV73d9bLFC8gz4KLcy+m;
-	h=Received:From:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UOKX5-0001hg-JH; Sat, 06 Apr 2013 00:15:15 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87F10E0148E
+	for <yocto@yoctoproject.org>; Fri,  5 Apr 2013 21:48:14 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 05 Apr 2013 21:48:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,419,1363158000"; d="scan'208";a="314512753"
+Received: from unknown (HELO [10.255.13.189]) ([10.255.13.189])
+	by fmsmga001.fm.intel.com with ESMTP; 05 Apr 2013 21:48:13 -0700
+Message-ID: <1365223693.17697.20.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Date: Fri, 05 Apr 2013 23:48:13 -0500
+In-Reply-To: <0E036F4959FA47449AD8E358A8C85848@PAULD>
 References: <E32C22186F664AC79D0019B49275C4EE@PAULD>
 	<515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD>
 	<515C8FEF.2090201@linux.intel.com><7FEC659FC16A466C9B7671C5BADEDB81@PAULD>
@@ -25,15 +27,9 @@ References: <E32C22186F664AC79D0019B49275C4EE@PAULD>
 	<83730A512373431B95CA2E526DB84A99@PAULD>
 	<1365204871.17697.6.camel@empanada>
 	<1365221016.17697.13.camel@empanada>
-In-Reply-To: <1365221016.17697.13.camel@empanada>
-Date: Fri, 5 Apr 2013 21:15:16 -0700
-Message-ID: <0E036F4959FA47449AD8E358A8C85848@PAULD>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac4ye7dsuLP6iJYvSt2gGskyxDRuIQAARCaA
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688937641eaf40500fbc823653b898d3dec350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
+	<0E036F4959FA47449AD8E358A8C85848@PAULD>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: This one can't be me...
 X-BeenThere: yocto@yoctoproject.org
@@ -47,29 +43,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Apr 2013 04:15:16 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Sat, 06 Apr 2013 04:48:14 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-> From: Tom Zanussi [mailto:tom.zanussi@intel.com] 
+On Fri, 2013-04-05 at 21:15 -0700, Paul D. DeRocco wrote:
+> > From: Tom Zanussi [mailto:tom.zanussi@intel.com] 
+> > 
+> > I'm seeing the same thing here (# CONFIG_BLK_DEV_RAM is not set) with
+> > your bblayers and local.conf.  For some reason the base and
+> > standard .cfgs aren't being applied to the .config.  I'll have to dig
+> > around further as time permits over the weekend...
 > 
-> I'm seeing the same thing here (# CONFIG_BLK_DEV_RAM is not set) with
-> your bblayers and local.conf.  For some reason the base and
-> standard .cfgs aren't being applied to the .config.  I'll have to dig
-> around further as time permits over the weekend...
+> Thanks, although this might be floobydust. I've nuked the _entire_ build
+> tree, included downloads, and am trying a rebuild from scratch, but that
+> will take until tomorrow morning to complete, since I'm doing the build on
+> an Atom. If it somehow solves the problem, I'll let you know, so you don't
+> waste your time chasing unicorns. But if it doesn't solve the problem, your
+> help would definitely be appreciated. I've been trying to get a build, any
+> build, to boot for a really long time now.
+> 
 
-Thanks, although this might be floobydust. I've nuked the _entire_ build
-tree, included downloads, and am trying a rebuild from scratch, but that
-will take until tomorrow morning to complete, since I'm doing the build on
-an Atom. If it somehow solves the problem, I'll let you know, so you don't
-waste your time chasing unicorns. But if it doesn't solve the problem, your
-help would definitely be appreciated. I've been trying to get a build, any
-build, to boot for a really long time now.
+My guess is there's a real problem here, since I'm able to reproduce it
+with my own downloads dir and a rebuild from scratch.  Now that I have a
+reproducer, I'm pretty sure we'll be able to nail down the problem and
+at least get the kernel part right - if the kernel is missing config
+like this it just won't boot, plain and simple, so we need to get past
+that first and chances are it will be smoother sailing after that...
 
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+Tom
 
 
