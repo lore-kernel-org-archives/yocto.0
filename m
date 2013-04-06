@@ -1,45 +1,30 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f46.google.com (mail-pb0-f46.google.com
-	[209.85.160.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87A8AE01523
-	for <yocto@yoctoproject.org>; Sat,  6 Apr 2013 07:51:15 -0700 (PDT)
-Received: by mail-pb0-f46.google.com with SMTP id rp8so2480738pbb.19
-	for <yocto@yoctoproject.org>; Sat, 06 Apr 2013 07:51:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
-	:cc:message-id:references:to:x-mailer;
-	bh=qggfRLXB0wNOutWtWa4rBq/RhHsuOPHzQnfHSIr18Kw=;
-	b=kFpc6idsLiXBbyt5iEMekhKf/zPh2r87MVPw5wNQV0c0fF+/bNTtRY53fQKONRVHdu
-	nINc+a34k57vf34bqSbUCcrerrvkslQmRfcV9JV5+kGLWm1dfT2wjCeL3RRnCD2Vi47p
-	Cd7E7qKZ9ZDph8I9sQRGyQkm7Zbjp/ycjniayTVZM5fWP4BgeGXqfuMEJ1k7yyqWCJv8
-	2vGYMWOrAu8hbTun84iAfGRyGjWoPF1H0zplAUlvsZ0LKfCSk+dvE0AoAk7efRWojF6b
-	jqjcdOh4zZtDSsJhiQ/un8EQmtgN6CIx5yyVGfZ7joOi0kvdxQi3npnWwBwiMlX8caHd
-	5LWw==
-X-Received: by 10.68.202.196 with SMTP id kk4mr20355005pbc.186.1365259875416; 
-	Sat, 06 Apr 2013 07:51:15 -0700 (PDT)
-Received: from vspringer-sslvpn-nc.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPS id kl4sm18678290pbc.31.2013.04.06.07.51.13
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 06 Apr 2013 07:51:14 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CANwz6nyhqnu4JZjsW2m4+pqTwH1mtexXKynJcEZ3=BdjSL+NDQ@mail.gmail.com>
-Date: Sat, 6 Apr 2013 07:51:12 -0700
-Message-Id: <7E585C08-EF4C-4425-98C8-B7C3AF6A9C4F@gmail.com>
-References: <CANwz6nzAr3m8rebqwzY_KkU-JFNZUTh=Ks4HW048ugg=Q13wYA@mail.gmail.com>
-	<DAE1825C-DECF-40F1-8C62-EBA1ADC46B7B@gmail.com>
-	<CANwz6nwE14Fmnh2sV3wp9OCqzTEVotC4OLssA3fSRthQLqb6BQ@mail.gmail.com>
-	<6B996A59-7914-4BEE-BEF4-FCC782E5B28F@gmail.com>
-	<CANwz6nxDTHJzbctFwKE9o8PDDwsz8SxsSSOiRNaDdc8abN77hw@mail.gmail.com>
-	<EC024295-DFE9-4D1A-9EE5-DD7A02EACB5D@gmail.com>
-	<CANwz6nyFgN_e_JfSKKm-8_teQkvETkFAsBxpo3HS5nUFeyfp4A@mail.gmail.com>
-	<CANwz6nybr1j-K=JgfOdhCTyefQ-4FnEYkm-KOMUVZWtapRJSOg@mail.gmail.com>
-	<CANwz6nyhqnu4JZjsW2m4+pqTwH1mtexXKynJcEZ3=BdjSL+NDQ@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-X-Mailer: Apple Mail (2.1503)
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-masked.atl.sa.earthlink.net
+	(elasmtp-masked.atl.sa.earthlink.net [209.86.89.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19B34E01498
+	for <yocto@yoctoproject.org>; Sat,  6 Apr 2013 11:20:37 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=o1mMxCD2haWUW0INaLDAC4mUjcpZ+ZFzLPbcwMdQtHnl/k4GkBgshjTIBeQKFG/k;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-masked.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UOXjA-0005vX-9g; Sat, 06 Apr 2013 14:20:36 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Tom Zanussi'" <tom.zanussi@intel.com>
+References: <E32C22186F664AC79D0019B49275C4EE@PAULD><515C4D0D.7030708@linux.intel.com><1FA14170446D481E9E3DB9080F55EEB9@PAULD><515C8FEF.2090201@linux.intel.com><7FEC659FC16A466C9B7671C5BADEDB81@PAULD><515DB5F5.5010300@linux.intel.com><D956029D25CF204F948EA0FB515E1EE258405A68@ORSMSX105.amr.corp.intel.com><13F417252F8B4CB5BB755BB07928D20C@PAULD><D956029D25CF204F948EA0FB515E1EE258405AC4@ORSMSX105.amr.corp.intel.com><2FD1BA69DE1E491C839CA26A7D2CA32A@PAULD><D956029D25CF204F948EA0FB515E1EE258405C96@ORSMSX105.amr.corp.intel.com><547521F5BFD54F2D8E6783515988F589@PAULD><D956029D25CF204F948EA0FB515E1EE258406365@ORSMSX105.amr.corp.intel.com><83730A512373431B95CA2E526DB84A99@PAULD><1365204871.17697.6.camel@empanada><1365221016.17697.13.camel@empanada><0E036F4959FA47449AD8E358A8C85848@PAULD><1365223693.17697.20.camel@empanada>
+	<1365256835.17697.30.camel@empanada>
+In-Reply-To: <1365256835.17697.30.camel@empanada>
+Date: Sat, 6 Apr 2013 11:20:38 -0700
+Message-ID: <FAC308421B044DE0AD65032D547ED420@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4y0oENNtmI4kmiT+SM3j2iVAwxEwAHqcUQ
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606880894d7359565a2f1633e7c6e51882ac4350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
-Subject: Re: gcc enable-languages
+Subject: Re: This one can't be me...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,47 +36,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Apr 2013 14:51:15 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_4C88E5BD-6929-4C16-AA17-B0CA1688F806"
-
---Apple-Mail=_4C88E5BD-6929-4C16-AA17-B0CA1688F806
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 06 Apr 2013 18:20:37 -0000
 Content-Type: text/plain;
-	charset=iso-8859-1
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+> From: Tom Zanussi
+> 
+> It looks like the problem is a bad SRCREV for the meta branch in the
+> -nopvr machine in the cedartrail danny tarball.  Try changing the
+> following line in
+> meta-cedartrail/recipes-kernel/linux/linux-yocto_3.0.bbappend:
+> 
+> SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= 
+> "a4ac64fe873f08ef718e2849b88914725dc99c1c"
+> 
+> to
+> 
+> SRCREV_meta_pn-linux-yocto_cedartrail-nopvr ?= 
+> "bf5ee4945ee6d748e6abe16356f2357f76b5e2f0"
+> 
+> Changing that got me a .config with the correct CONFIG_BLK_DEV_RAM
+> setting.
+
+Ta-da! That fixed it.
+
+I'm glad the subject of this thread didn't come back to bite me.
+
+Thanks so much for your time in figuring this out.
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
-On Apr 6, 2013, at 4:30 AM, Edward Vidal <vidal.develone@gmail.com> =
-wrote:
-
-> If I don't set libgfortran my image completes okay. When libgfortran =
-in gcc-config-runtime.inc I get do_compile error
->=20
->=20
-
-OK, did you try to run/build any fortran programs with this image.=
-
---Apple-Mail=_4C88E5BD-6929-4C16-AA17-B0CA1688F806
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><br><div><div>On Apr 6, 2013, at 4:30 AM, Edward Vidal &lt;<a =
-href=3D"mailto:vidal.develone@gmail.com">vidal.develone@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><p style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; ">If I don't set libgfortran my image =
-completes okay. When libgfortran in gcc-config-runtime.inc I get =
-do_compile error</p><br =
-class=3D"Apple-interchange-newline"></blockquote></div><br><div>OK, did =
-you try to run/build any fortran programs with this =
-image.</div></body></html>=
-
---Apple-Mail=_4C88E5BD-6929-4C16-AA17-B0CA1688F806--
