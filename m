@@ -1,32 +1,29 @@
-Return-Path: <Gianpaolo_Macario@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C637E014F4
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 06:44:22 -0700 (PDT)
-Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
-	by relay1.mentorg.com with esmtp 
-	id 1UPCMv-0004Ln-QS from Gianpaolo_Macario@mentor.com 
-	for yocto@yoctoproject.org; Mon, 08 Apr 2013 06:44:21 -0700
-Received: from SVR-IES-FEM-03.mgc.mentorg.com ([137.202.0.108]) by
-	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
-	SMTPSVC(6.0.3790.4675); Mon, 8 Apr 2013 06:44:21 -0700
-Received: from EU-MBX-02.mgc.mentorg.com ([169.254.3.230]) by
-	SVR-IES-FEM-03.mgc.mentorg.com ([137.202.0.108]) with mapi id
-	14.01.0289.001; Mon, 8 Apr 2013 14:44:20 +0100
-From: "Macario, Gianpaolo" <Gianpaolo_Macario@mentor.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-ivi] No recipes available for:
-	meta-ivi/recipes-graphics/xorg-xserver/xserver-xorg_1.14.0.bbappend
-Thread-Index: Ac40XpXXgRzr1hxfRdSk4Bqb3WTh0Q==
-Date: Mon, 8 Apr 2013 13:44:20 +0000
-Message-ID: <0CCD6BBA210ECA418BCD82271FCFD94C544B22F7@EU-MBX-02.mgc.mentorg.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.202.0.76]
+Return-Path: <esteban.rc@gmail.com>
+Received: from mail-ia0-f173.google.com (mail-ia0-f173.google.com
+	[209.85.210.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 620E5E00597
+	for <yocto@yoctoproject.org>; Sat,  6 Apr 2013 11:10:38 -0700 (PDT)
+Received: by mail-ia0-f173.google.com with SMTP id h37so4070356iak.18
+	for <yocto@yoctoproject.org>; Sat, 06 Apr 2013 11:10:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:from:date:message-id:subject:to
+	:content-type; bh=L6yetjBw6Z/iv+Y/rqfAcmyyzGJrXIXKTn4Aj72Pw+k=;
+	b=yY/jeRD3jl4qHybL9Ak+hL6sPc61JmdRyTenyIBeU56bx/0DKi57AJW7NFfsfjxkNF
+	ObCoEzxgEpNuuGy/rjkwfQ2CrQGExQOEfspNG6B0bg4DS0vnkm/94u/G8ir8uy9jCWqD
+	URzDMfVO8RjjmLqUBVTD8IXX4QGmhD94PO5zaE+C2Ur0jcCt05dliTX6XfAOujF6yxtm
+	gTkIz5vTQKXUFPfagP5nuM54Z+4DQ+srV2Vsms+uG2mIS8uMyPLpFoW1UrX74c+isYB0
+	6P0/WMEzTUDnrhbX8xZeVoxjRcrLxipF/QqeBU3N+TNux4jm8YAfGxfpH3I285IWDKIk
+	T+sA==
+X-Received: by 10.50.13.208 with SMTP id j16mr2720935igc.73.1365271837919;
+	Sat, 06 Apr 2013 11:10:37 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginalArrivalTime: 08 Apr 2013 13:44:21.0887 (UTC)
-	FILETIME=[2CD2C0F0:01CE345F]
-Subject: [meta-ivi] No recipes available for: meta-ivi/recipes-graphics/xorg-xserver/xserver-xorg_1.14.0.bbappend
+Received: by 10.64.25.74 with HTTP; Sat, 6 Apr 2013 11:09:57 -0700 (PDT)
+From: Esteban Rivera <esteban.rc@gmail.com>
+Date: Sat, 6 Apr 2013 12:09:57 -0600
+Message-ID: <CACN9-wSmFVcD7eDkXA0ahD35HjFAPy5AX+6uQN-VDg_X24qPeA@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Mon, 08 Apr 2013 06:54:19 -0700
+Subject: Problem Installing Package Manager in FRI2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,149 +35,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 13:44:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Sat, 06 Apr 2013 18:10:38 -0000
+Content-Type: multipart/alternative; boundary=f46d0447f094ebd34104d9b51e34
+
+--f46d0447f094ebd34104d9b51e34
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+
+I'm trying to generate an image for the FRI2 using the official Intel BSP
+provided in the Yocto Project website, in this image I want to include at
+least one package manager.
+
+I'm Using poky 8.0 with Hob GUI, from the recipes listed that can be
+included in the image I can see Dpkg and Zypper package managers, but I
+have trouble with both packages.
+
+I'm unable to create the Image whenever Dpkg is included because of the
+following error message:
+
+error: Failed dependencies:
+/home/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/bin/perl-native/perl
+is needed by dpkg-1.16.8-r18.0.core2
+
+I get this message even tho the files do exist at the path specified by the
+error message.
+
+On the other hand whenever I select Zypper, the image is created correctly
+but any zypper commands ends up showing the following error:
+
+zypper: dbconfig.c:493: db3New: Assertion 'dbOpts != ((void *)0) && *db0pts
+!= '\0'' failed.
+Aborted
+
+I'm I missing something during the Image creation?
+
+Thank You for your time.
+
+-- 
+Esteban Rivera
+
+--f46d0447f094ebd34104d9b51e34
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hello
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif;font-size:small"><div class=3D"gmail_default">Hello,</div><div cl=
+ass=3D"gmail_default"><br></div><div class=3D"gmail_default">I&#39;m trying=
+ to generate an image for the FRI2 using the official Intel BSP provided in=
+ the Yocto Project website, in this image I want to include at least one pa=
+ckage manager.</div>
 
-I am afraid I discovered a bug against the GENIVI Foton-0.1 Yocto Baseline.
-I followed the instructions at http://git.yoctoproject.org/cgit/cgit.cgi/me=
-ta-ivi/tree/README.md?h=3D4.0
+<div class=3D"gmail_default"><br></div><div class=3D"gmail_default">I&#39;m=
+ Using poky 8.0 with Hob GUI, from the recipes listed that can be included =
+in the image I can see Dpkg and Zypper package managers, but I have trouble=
+ with both packages.</div>
 
-I suspect some misalignment between meta-ivi and poky SHA - however I belie=
-ve I followed what the README.me says.
+<div class=3D"gmail_default"><br></div><div class=3D"gmail_default">I&#39;m=
+ unable to create the Image whenever Dpkg is included because of the follow=
+ing error message:</div><div class=3D"gmail_default" style=3D"font-family:a=
+rial,sans-serif;font-size:13px">
 
-Thank you in advance for any help or suggestions!
+<div class=3D"gmail_default"><font face=3D"tahoma, sans-serif"><br></font><=
+/div><div class=3D"gmail_default"><font face=3D"tahoma, sans-serif">error: =
+Failed dependencies:</font></div><div class=3D"gmail_default"><font face=3D=
+"tahoma, sans-serif"><span style=3D"white-space:pre-wrap">	</span>/home/pok=
+y-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/bin/perl-native/perl is nee=
+ded by dpkg-1.16.8-r18.0.core2</font></div>
 
-Login as gmacario@mv-linux-powerhorse
+</div><div class=3D"gmail_default"><br></div><div class=3D"gmail_default">I=
+ get this message even tho the files do exist at the path specified by the =
+error message.</div><div class=3D"gmail_default"><br></div><div class=3D"gm=
+ail_default">
 
-mkdir $HOME/genivi-baseline
-cd $HOME/genivi-baseline
-git clone git://git.yoctoproject.org/poky
-cd poky; git checkout d823759b4594143d522eae0b2a2498436a6dcb1e; cd -
-git clone git://git.yoctoproject.org/meta-ivi
-cd meta-ivi; git checkout 4.0; cd -
+On the other hand whenever I select Zypper, the image is created correctly =
+but any zypper commands ends up showing the following error:</div><div clas=
+s=3D"gmail_default"><br></div><div class=3D"gmail_default">zypper: dbconfig=
+.c:493: db3New: Assertion &#39;dbOpts !=3D ((void *)0) &amp;&amp; *db0pts !=
+=3D &#39;\0&#39;&#39; failed.</div>
 
-Read http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/tree/README.md?h=3D=
-4.0
+<div class=3D"gmail_default">Aborted =A0</div><div class=3D"gmail_default">=
+<br></div><div class=3D"gmail_default">I&#39;m I missing something during t=
+he Image creation?</div><div class=3D"gmail_default"><br></div><div class=
+=3D"gmail_default">
 
-Initialize Build Environment
+Thank You for your time.</div></div><div><br></div>-- <br><font face=3D"tah=
+oma, sans-serif">Esteban Rivera</font>
+</div>
 
-source poky/oe-init-build-env
-Backup configuration files (will hand edit them later on)
-
-cp conf/bblayers.conf conf/bblayers.conf.ORIG
-cp conf/local.conf conf/local.conf.ORIG
-Edit conf/bblayers.conf
-
-gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$ diff =
--uw conf/bblayers.conf.ORIG conf/bblayers.conf
---- conf/bblayers.conf.ORIG     2013-04-08 15:03:16.000000000 +0200
-+++ conf/bblayers.conf  2013-04-08 15:07:59.000000000 +0200
-@@ -6,6 +6,7 @@
- BBFILES ?=3D ""
-
- BBLAYERS ?=3D " \
-+  /scratch/gmacario/genivi-baseline/meta-ivi \
-   /scratch/gmacario/genivi-baseline/poky/meta \
-   /scratch/gmacario/genivi-baseline/poky/meta-yocto \
-   /scratch/gmacario/genivi-baseline/poky/meta-yocto-bsp \
-gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$
-Edit conf/local.conf
-
-gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$ diff =
--uw conf/local.conf.ORIG conf/local.conf
---- conf/local.conf.ORIG        2013-04-08 15:04:43.000000000 +0200
-+++ conf/local.conf     2013-04-08 15:11:26.000000000 +0200
-@@ -17,12 +17,12 @@
- # These two options control how much parallelism BitBake should use. The f=
-irst
- # option determines how many tasks bitbake should run in parallel:
- #
--#BB_NUMBER_THREADS =3D "4"
-+BB_NUMBER_THREADS =3D "4"
- #
- # The second option controls how many processes make should run in paralle=
-l when
- # running compile tasks:
- #
--#PARALLEL_MAKE =3D "-j 4"
-+PARALLEL_MAKE =3D "-j 4"
- #
- # For a quad-core machine, BB_NUMBER_THREADS =3D "4", PARALLEL_MAKE =3D "-=
-j 4" would
- # be appropriate for example.
-@@ -48,7 +48,8 @@
- #MACHINE ?=3D "routerstationpro"
- #
- # This sets the default machine to be qemux86 if no other machine is selec=
-ted:
--MACHINE ??=3D "qemux86"
-+#MACHINE ??=3D "qemux86"
-+MACHINE ??=3D "vexpressa9"
-
- #
- # Where to place downloads
-@@ -63,6 +64,8 @@
- #
- #DL_DIR ?=3D "${TOPDIR}/downloads"
-
-+INCOMPATIBLE_LICENSE =3D "GPLv3"
-+
- #
- # Where to place shared-state files
- #
-@@ -99,7 +102,7 @@
- # Ultimately when creating custom policy, people will likely end up subcla=
-ssing
- # these defaults.
- #
--DISTRO ?=3D "poky"
-+DISTRO ?=3D "poky-ivi-systemd"
- # As an example of a subclass there is a "bleeding" edge policy configurat=
-ion
- # where many versions are set to the absolute latest code from the upstrea=
-m
- # source control systems. This is just mentioned here as an example, its n=
-ot
-gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$
-(2013-04-08 15:14 CEST)
-Start the build
-
-time bitbake foton-image
-Result
-
-gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$ time =
-bitbake -k foton-image
-Pseudo is not present but is required, building this first before the main =
-build
-Parsing recipes: 100% |####################################################=
-#################################| Time: 00:00:19
-Parsing of 828 .bb files complete (0 cached, 828 parsed). 1136 targets, 82 =
-skipped, 0 masked, 0 errors.
-ERROR: No recipes available for:
-  /scratch/gmacario/genivi-baseline/meta-ivi/recipes-graphics/xorg-xserver/=
-xserver-xorg_1.14.0.bbappend
-ERROR: Command execution failed: Exited with 1
-
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
-real    0m27.805s
-user    2m37.490s
-sys     0m4.904s
-gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$
-
-Cordiali Saluti / Best Regards
-
---
-Gianpaolo Macario
-Senior Member Technical Staff
-Mentor Graphics - Linux Transportation Solutions
-email:=A0gianpaolo_macario@mentor.com
-phone: +39-02-249894.208
-http://www.mentor.com/ivi
-
-
-
+--f46d0447f094ebd34104d9b51e34--
