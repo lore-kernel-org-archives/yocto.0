@@ -1,33 +1,39 @@
-Return-Path: <Gianpaolo_Macario@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F123DE014B9
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 13:52:17 -0700 (PDT)
-Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
-	by relay1.mentorg.com with esmtp 
-	id 1UPJ33-0006k3-Bu from Gianpaolo_Macario@mentor.com ;
-	Mon, 08 Apr 2013 13:52:17 -0700
-Received: from SVR-IES-FEM-01.mgc.mentorg.com ([137.202.0.104]) by
-	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
-	Microsoft SMTPSVC(6.0.3790.4675); Mon, 8 Apr 2013 13:52:17 -0700
-Received: from EU-MBX-02.mgc.mentorg.com ([169.254.3.230]) by
-	SVR-IES-FEM-01.mgc.mentorg.com ([137.202.0.104]) with mapi id
-	14.01.0289.001; Mon, 8 Apr 2013 21:52:15 +0100
-From: "Macario, Gianpaolo" <Gianpaolo_Macario@mentor.com>
-To: "Behrens, Holger" <Holger.Behrens@windriver.com>
-Thread-Topic: [meta-ivi][PATCH] README.md: Fix poky SHA
-Thread-Index: Ac40mtgre1QcySnrQ8SGTTiqvAdRbQ==
-Date: Mon, 8 Apr 2013 20:52:15 +0000
-Message-ID: <0CCD6BBA210ECA418BCD82271FCFD94C544BF7FF@EU-MBX-02.mgc.mentorg.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.202.0.76]
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail32c40.carrierzone.com (mail32c40.carrierzone.com
+	[209.235.156.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F307CE00499
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 14:49:45 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail32c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r38LnWtO023291; Mon, 8 Apr 2013 21:49:35 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Trevor Woerner'" <twoerner@gmail.com>
+References: <36ED13F3654AE54CA763E6821D93A571104C91C9@szxeml534-mbx.china.huawei.com>	<000301ce3185$ab049a20$010dce60$@annabooks.com>
+	<CAHUNapRQ+hWo7P2eXUYNof=MsqJVDRY2HE4KV8-=dOeUro=scQ@mail.gmail.com>
+In-Reply-To: <CAHUNapRQ+hWo7P2eXUYNof=MsqJVDRY2HE4KV8-=dOeUro=scQ@mail.gmail.com>
+Date: Mon, 8 Apr 2013 14:49:31 -0700
+Message-ID: <000001ce34a2$f584a3e0$e08deba0$@annabooks.com>
 MIME-Version: 1.0
-X-OriginalArrivalTime: 08 Apr 2013 20:52:17.0199 (UTC)
-	FILETIME=[F48073F0:01CE349A]
-Cc: "Sarbu, Florin-Ionut \(Florin\)" <Florin.Sarbu@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [meta-ivi][PATCH] README.md: Fix poky SHA
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQHwnVdAd9P1yPtTIpCJsNrInLVdjQJB3h5BAi3R+XmYZIz8kA==
+X-CSC: 0
+X-CHA: v=2.0 cv=OZQv+GvY c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=Jxlpq9rTYUsA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
+	a=hp-o6XMKCZ4A:10 a=pGLkceISAAAA:8 a=iGHA9ds3AAAA:8
+	a=8BMPEu9vC_X-f1RgA7QA:9 a=CjuIK1q_8ugA:10 a=MSl-tDqOz04A:10
+	a=XDKM753qmDAA:10 a=PAfwrr6pMpkA:10 a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020203.51633B6F.0122, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Cc: 'Sanil kumar' <sanil.kumar@huawei.com>, yocto@yoctoproject.org
+Subject: Re: RFC: Post build configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,42 +45,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 20:52:18 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 08 Apr 2013 21:49:46 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-SGkgSG9sZ2VyLA0KDQpVc2luZyBtYXN0ZXIgKGFuZCBub3QgdGhlIFNIQSBhZHZlcnRpc2VkIGlu
-IFJFQURNRS5tZCkgdGhlIGJ1aWxkIHdhcyBhY3R1YWxseSBzdWNjZXNzZnVsLg0KDQpBdHRhY2hp
-bmcgcGF0Y2guDQoNClNpZ25lZC1vZmYtYnk6IEdpYW5wYW9sbyBNYWNhcmlvIDxnaWFucGFvbG9f
-bWFjYXJpb0BtZW50b3IuY29tPg0KLS0tDQogUkVBRE1FLm1kIHwgICAgMiArLQ0KIDEgZmlsZSBj
-aGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KDQpkaWZmIC0tZ2l0IGEvUkVB
-RE1FLm1kIGIvUkVBRE1FLm1kDQppbmRleCBiMmM4NGY5Li5mMTdhNjA2IDEwMDY0NA0KLS0tIGEv
-UkVBRE1FLm1kDQorKysgYi9SRUFETUUubWQNCkBAIC0xNiw3ICsxNiw3IEBAIExheWVyIERlcGVu
-ZGVuY2llcw0KDQogVVJJOiBnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5DQogYnJhbmNo
-OiBtYXN0ZXINCi1yZXZpc2lvbjogZDgyMzc1OWI0NTk0MTQzZDUyMmVhZTBiMmEyNDk4NDM2YTZk
-Y2IxZQ0KK3JldmlzaW9uOiBhNjUwMjA4MWI3YzdhY2M0OTE4N2FhN2M2OGFkMTllMDc1MWVlMDMw
-DQoNCiBVc2luZyB0aGUgYWJvdmUgZ2l0IHNoYSdzIGFuZCBtYXN0ZXIgbWV0YS1pdmksIGJpdGJh
-a2luZyBmb3Rvbi1pbWFnZSBpcw0KIGtub3duIHRvIHdvcmsgKHRoZSBmb3Rvbi1pbWFnZSBidWls
-ZCBzaG91bGQgYmUgR0VOSVZJIDQuMCBjb21wbGlhbnQpLg0KLS0NCjEuNy45LjUNCg0KQ29yZGlh
-bGkgU2FsdXRpIC8gQmVzdCBSZWdhcmRzDQoNCi0tDQpHaWFucGFvbG8gTWFjYXJpbw0KU2VuaW9y
-IE1lbWJlciBUZWNobmljYWwgU3RhZmYNCk1lbnRvciBHcmFwaGljcyAtIExpbnV4IFRyYW5zcG9y
-dGF0aW9uIFNvbHV0aW9ucw0KZW1haWw6IGdpYW5wYW9sb19tYWNhcmlvQG1lbnRvci5jb20NCmh0
-dHA6Ly93d3cubWVudG9yLmNvbS9pdmkNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-PiBGcm9tOiBCZWhyZW5zLCBIb2xnZXIgW21haWx0bzpIb2xnZXIuQmVocmVuc0B3aW5kcml2ZXIu
-Y29tXQ0KPiBTZW50OiBNb25kYXksIEFwcmlsIDA4LCAyMDEzIDU6MzQgUE0NCj4gVG86IE1hY2Fy
-aW8sIEdpYW5wYW9sbw0KPiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgU2FyYnUsIEZsb3Jp
-bi1Jb251dCAoRmxvcmluKQ0KPiBTdWJqZWN0OiBSRTogW3lvY3RvXSBbbWV0YS1pdmldIE5vIHJl
-Y2lwZXMgYXZhaWxhYmxlIGZvcjogbWV0YS1pdmkvcmVjaXBlcy0NCj4gZ3JhcGhpY3MveG9yZy14
-c2VydmVyL3hzZXJ2ZXIteG9yZ18xLjE0LjAuYmJhcHBlbmQNCj4gDQo+IEhlbGxvIEdpYW5wYW9s
-bywNCj4gDQo+ID4gSGVsbG8NCj4gPg0KPiA+IEkgYW0gYWZyYWlkIEkgZGlzY292ZXJlZCBhIGJ1
-ZyBhZ2FpbnN0IHRoZSBHRU5JVkkgRm90b24tMC4xIFlvY3RvIEJhc2VsaW5lLg0KPiA+IEkgZm9s
-bG93ZWQgdGhlIGluc3RydWN0aW9ucyBhdA0KPiA+IGh0dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9y
-Zy9jZ2l0L2NnaXQuY2dpL21ldGEtDQo+ID4gaXZpL3RyZWUvUkVBRE1FLm1kP2g9NC4wDQo+ID4N
-Cj4gPiBJIHN1c3BlY3Qgc29tZSBtaXNhbGlnbm1lbnQgYmV0d2VlbiBtZXRhLWl2aSBhbmQgcG9r
-eSBTSEEgLSBob3dldmVyIEkNCj4gPiBiZWxpZXZlIEkgZm9sbG93ZWQgd2hhdCB0aGUgUkVBRE1F
-Lm1lIHNheXMuDQo+ID4NCj4gPiBUaGFuayB5b3UgaW4gYWR2YW5jZSBmb3IgYW55IGhlbHAgb3Ig
-c3VnZ2VzdGlvbnMhDQo+IA0KPiBZb3UgbWF5IGJlIHJpZ2h0LCB0cnkgdGhlIHBva3kgbWFzdGVy
-Lg0KPiBBbmQgaW4gY2FzZSB0aGF0IHdvcmtzIGZvciB5b3UsIHBsZWFzZSBzZW50IGEgcGF0Y2gu
-DQo+IA0KPiBSZWdhcmRzLA0KPiBIb2xnZXINCg==
+> -----Original Message-----
+> From: Trevor Woerner [mailto:twoerner@gmail.com]
+> Sent: Monday, April 08, 2013 1:28 PM
+> To: Sean Liming
+> Cc: Venkata ramana gollamudi; yocto@yoctoproject.org; Sanil kumar
+> Subject: Re: [yocto] RFC: Post build configuration
+> 
+> On Thu, Apr 4, 2013 at 6:42 PM, Sean Liming <sean.liming@annabooks.com>
+> wrote:
+> > Why post-build instead of pre-build?
+> 
+> The idea is that you have one build, and you are manufacturing 5000
+devices.
+> 
+> So you take this one build and load it on each of your identical devices
+which
+> you then sell to your customers. But if each device you sell is supposed
+to
+> have a unique piece of configuration information, you don't want to have
+to
+> create 5000 builds, one for each device, do you? In other words, this
+unique
+> data shouldn't be part of the build, you wouldn't want to have to start a
+new
+> build just because you want to change this unique data?
+> 
+> Ideally you would create one build. Then, just before loading this build
+onto a
+> given device, you do something to set this unique piece of information
+(i.e.
+> post-build) for this one device, then you repeat for the remaining 4999
+> devices.
+> 
+> The assumption here is that builds are "expensive" (i.e. slow) while post-
+> build configuration would be "cheap" (i.e. quick, easy, fast).
+
+Excellent. That makes a lot of sense. Is this post-build utility an active
+project for the Yocto Project or is it just getting started?  Is it a menu
+driven item / something that we can include via a layer?
+
+Regards,
+
+Sean Liming
+
 
