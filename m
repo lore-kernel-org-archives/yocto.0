@@ -1,31 +1,38 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B25FE00597
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 09:42:16 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:57707 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UPF95-0001lz-EY
-	for yocto@yoctoproject.org; Mon, 08 Apr 2013 12:42:15 -0400
-Date: Mon, 8 Apr 2013 12:42:12 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1304081236160.1071@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: supplying your own "defconfig" in a kernel recipe
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DF97E00597
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 10:34:05 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id lj1so3353924pab.21
+	for <yocto@yoctoproject.org>; Mon, 08 Apr 2013 10:34:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=Yw0V2vLIGgpOvhzYss8EQzmxAElt6nTpMXKq+owiy8Y=;
+	b=wtoutiL38eUxNo3jsPRGnajjznqig0IUF+sNwE8OI5oIg7AHOIS4TTGD8R6CWHv1jN
+	66w2OBvcVMJCK2cZIcTYQ0HRsGDo/A6u3DaBLqccmqQMQGnMynKkdhWRAItEKu2rF0RA
+	N7kDujF3sDZ5DoI1GJfc0MsnP0BmDcloEM2/Q/O+d8gzsrW/iSuK7oUa1rs++0+2cB10
+	+/FxRuo8INy8zJprZezYmNUsAuBOsY65HPHPYPv2HOYp/soloxk0GWYOuXJx6aRx4svm
+	vXm4AdgriS+Kg+aQhR5L9sh16vNLJmnIcn6crlnbL2TcIy7u1HGpZ5E4sm6e+UIwSVWP
+	qJgQ==
+X-Received: by 10.66.154.76 with SMTP id vm12mr38689615pab.106.1365442444845; 
+	Mon, 08 Apr 2013 10:34:04 -0700 (PDT)
+Received: from jchheda-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPS id
+	xl10sm41319105pac.15.2013.04.08.10.34.02
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 08 Apr 2013 10:34:03 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <13657913.npgBCsoM95@helios>
+Date: Mon, 8 Apr 2013 10:34:01 -0700
+Message-Id: <553741AD-3DD0-4878-901E-29C09BEB11B3@gmail.com>
+References: <5162A418.4070204@mlbassoc.com> <5162B84A.2020707@mlbassoc.com>
+	<13657913.npgBCsoM95@helios>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Mailer: Apple Mail (2.1503)
+Cc: yocto@yoctoproject.org
+Subject: Re: GDB problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,52 +44,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 16:42:16 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 08 Apr 2013 17:34:05 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
-  a bit of inconsistent wording between the kernel hands-on lab1 and
-the kernel dev manual (unless i'm misreading).
+On Apr 8, 2013, at 5:47 AM, Paul Eggleton =
+<paul.eggleton@linux.intel.com> wrote:
 
-  in lab1, we read:
+> Does installing eglibc-dbg help with this? (Assuming you don't have =
+this=20
+> installed already.)
 
-"This is a bare-bones simple Linux kernel recipe. It inherits all of
-the logic for configuring and building the kernel from the
-kernel.bbclass (the 'inherit kernel' line). It specifies the Linux
-kernel sources in SRC_URI as a recent tarball release from kernel.org.
-It also specifies a defconfig, this file is used as the .config to
-build the kernel. It is empty for now, so the Linux kernel
-configuration system will use defaults."
-
-  suggesting an empty defconfig will force the config step to use
-defaults. but the kernel dev manual states:
-
-"If you have a complete Linux kernel .config file you want to use,
-copy it to the ${FILES} directory within your layer and name it
-"defconfig". Then, add the following line to your linux-yocto
-.bbappend file in your layer:
-
-     SRC_URI += "file://defconfig"
-
-which suggests to the reader that a user-supplied defconfig file
-should represent *only* a "complete" .config file.
-
-  the kernel.bbclass itself seems to suggest that your defconfig file
-can represent any part of the configuration you want to override the
-default.
-
-  does anyone else see the apparent inconsistency that might trip up a
-reader?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+libc6-dev should be enough. You do not need -dbg one. If it does not =
+work with -dev
+then we have a problem.=
 
