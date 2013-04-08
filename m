@@ -1,32 +1,31 @@
-Return-Path: <Holger.Behrens@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7111EE01487
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 08:33:48 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r38FXkAA004615
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 8 Apr 2013 08:33:46 -0700 (PDT)
-Received: from ALA-MBB.corp.ad.wrs.com ([169.254.1.233]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.02.0342.003;
-	Mon, 8 Apr 2013 08:33:45 -0700
-From: "Behrens, Holger" <Holger.Behrens@windriver.com>
-To: "Macario, Gianpaolo" <Gianpaolo_Macario@mentor.com>
-Thread-Topic: [yocto] [meta-ivi] No recipes available for:
-	meta-ivi/recipes-graphics/xorg-xserver/xserver-xorg_1.14.0.bbappend
-Thread-Index: Ac40XpXXgRzr1hxfRdSk4Bqb3WTh0QADvCEA
-Date: Mon, 8 Apr 2013 15:33:45 +0000
-Message-ID: <7A688B48FC95D148BFE83E098348BE5036FD7382@ALA-MBB.corp.ad.wrs.com>
-References: <0CCD6BBA210ECA418BCD82271FCFD94C544B22F7@EU-MBX-02.mgc.mentorg.com>
-In-Reply-To: <0CCD6BBA210ECA418BCD82271FCFD94C544B22F7@EU-MBX-02.mgc.mentorg.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.224.204.216]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF2DAE014B7
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 08:41:44 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:57351 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UPECW-00076x-11
+	for yocto@yoctoproject.org; Mon, 08 Apr 2013 11:41:44 -0400
+Date: Mon, 8 Apr 2013 11:41:39 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304081135020.23038@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: "Sarbu, Florin-Ionut \(Florin\)" <Florin.Sarbu@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-ivi] No recipes available for: meta-ivi/recipes-graphics/xorg-xserver/xserver-xorg_1.14.0.bbappend
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: working my way through the kernel hands-on labs finally
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,22 +37,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 15:33:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 08 Apr 2013 15:41:45 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-SGVsbG8gR2lhbnBhb2xvLA0KDQo+IEhlbGxvDQo+IA0KPiBJIGFtIGFmcmFpZCBJIGRpc2NvdmVy
-ZWQgYSBidWcgYWdhaW5zdCB0aGUgR0VOSVZJIEZvdG9uLTAuMSBZb2N0byBCYXNlbGluZS4NCj4g
-SSBmb2xsb3dlZCB0aGUgaW5zdHJ1Y3Rpb25zIGF0IGh0dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9y
-Zy9jZ2l0L2NnaXQuY2dpL21ldGEtDQo+IGl2aS90cmVlL1JFQURNRS5tZD9oPTQuMA0KPiANCj4g
-SSBzdXNwZWN0IHNvbWUgbWlzYWxpZ25tZW50IGJldHdlZW4gbWV0YS1pdmkgYW5kIHBva3kgU0hB
-IC0gaG93ZXZlciBJDQo+IGJlbGlldmUgSSBmb2xsb3dlZCB3aGF0IHRoZSBSRUFETUUubWUgc2F5
-cy4NCj4gDQo+IFRoYW5rIHlvdSBpbiBhZHZhbmNlIGZvciBhbnkgaGVscCBvciBzdWdnZXN0aW9u
-cyENCg0KWW91IG1heSBiZSByaWdodCwgdHJ5IHRoZSBwb2t5IG1hc3Rlci4gDQpBbmQgaW4gY2Fz
-ZSB0aGF0IHdvcmtzIGZvciB5b3UsIHBsZWFzZSBzZW50IGEgcGF0Y2guDQoNClJlZ2FyZHMsDQpI
-b2xnZXINCg0KLS0gDQpIb2xnZXIgQmVocmVucywgUHJpbmNpcGFsIFRlY2hub2xvZ2lzdCwgV2lu
-ZCBSaXZlciAgDQpXaW5kIFJpdmVyIEdtYkgsIFNpdHo6IElzbWFuaW5nIC8gUmVnaXN0ZXJnZXJp
-Y2h0OiBBRyBNw7xuY2hlbiwgIA0KSFJCLU5yIDk3Nzg0LCBHZXNjaMOkZnRzZsO8aHJlcjogSmFu
-ZSBCb25lLCBBbmRyZWFzIFBhYmluZ2VyICANCg0KDQoNCg0K
+
+  finally have the time to work my way through the ELC 2013 hands on
+kernel labs described here:
+
+https://www.yoctoproject.org/tools-resources/presentations/working-kernel
+
+since i'll almost certainly use some of them in my next yocto course,
+so the occasional question for anyone who's already been down this
+road.  start with lab 1.
+
+  the doc mentions including the meta-yocto and meta-yocto-bsp layers
+-- are those strictly necessary? the layer.conf definition file for
+the lab1 layer doesn't list those layers as dependencies. what will
+happen if i leave them out? what's the policy on explicitly listing
+dependencies on those two layers in a new layer?
+
+  also, just doing a basic fetch for lab1 produces:
+
+ERROR: QA Issue:
+/home/rpjday/yocto/k_lab/layers/meta-lab1-qemux86/recipes-kernel/linux/linux_3.0.18.bb:
+Variable FILES is set as not being package specific, please fix this.
+
+  is that deliberate? something that will be resolved later in the
+lab as part of an exercise? just curious.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
