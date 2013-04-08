@@ -1,23 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7219AE01487
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 09:07:41 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B25FE00597
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 09:42:16 -0700 (PDT)
 Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:57589 helo=crashcourse.ca)
+	([99.240.144.66]:57707 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UPEbc-0008UO-DT; Mon, 08 Apr 2013 12:07:40 -0400
-Date: Mon, 8 Apr 2013 12:07:35 -0400 (EDT)
+	id 1UPF95-0001lz-EY
+	for yocto@yoctoproject.org; Mon, 08 Apr 2013 12:42:15 -0400
+Date: Mon, 8 Apr 2013 12:42:12 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-In-Reply-To: <5162EA66.1090306@windriver.com>
-Message-ID: <alpine.DEB.2.02.1304081205090.27859@oneiric>
-References: <alpine.DEB.2.02.1304081135020.23038@oneiric>
-	<5162E975.5040705@windriver.com>
-	<alpine.DEB.2.02.1304081200410.11037@oneiric>
-	<5162EA66.1090306@windriver.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304081236160.1071@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -29,8 +25,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: working my way through the kernel hands-on labs finally
+Subject: supplying your own "defconfig" in a kernel recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,55 +37,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 16:07:41 -0000
+X-List-Received-Date: Mon, 08 Apr 2013 16:42:16 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Mon, 8 Apr 2013, Bruce Ashfield wrote:
 
-> On 13-04-08 12:02 PM, Robert P. J. Day wrote:
-> > On Mon, 8 Apr 2013, Bruce Ashfield wrote:
-> >
-> > > On 13-04-08 11:41 AM, Robert P. J. Day wrote:
-> > > >
-> > > >     finally have the time to work my way through the ELC 2013 hands on
-> > > > kernel labs described here:
-> > > >
-> > > > https://www.yoctoproject.org/tools-resources/presentations/working-kernel
-> > > >
-> > > > since i'll almost certainly use some of them in my next yocto course,
-> > > > so the occasional question for anyone who's already been down this
-> > > > road.  start with lab 1.
-> > > >
-> > > >     the doc mentions including the meta-yocto and meta-yocto-bsp layers
-> > > > -- are those strictly necessary? the layer.conf definition file for
-> > > > the lab1 layer doesn't list those layers as dependencies. what will
-> > > > happen if i leave them out? what's the policy on explicitly listing
-> > > > dependencies on those two layers in a new layer?
-> > > >
-> > > >     also, just doing a basic fetch for lab1 produces:
-> > > >
-> > > > ERROR: QA Issue:
-> > > > /home/rpjday/yocto/k_lab/layers/meta-lab1-qemux86/recipes-kernel/linux/linux_3.0.18.bb:
-> > > > Variable FILES is set as not being package specific, please fix this.
-> > > >
-> > > >     is that deliberate? something that will be resolved later in the
-> > > > lab as part of an exercise? just curious.
-> > >
-> > > Probably not deliberate, the kernel labs aren't about packaging.
-> > > Which branch are you using for your tests ? Even if it's an old
-> > > release branch, there may have been some QA backports between the
-> > > time the lab was done, and the time you are running it.
-> >
-> >    i'm using HEAD for everything, even though the labs dictate
-> > poky-danny-8.0.1; if anything breaks because of that, i'll make a note
-> > of it.
->
-> That's what I wondered. These were all done against 1.3, so the QA
-> warning (and other issues you'll see) are very likely caused by this
-> skew. For the next round of conferences, there are plans to update
-> them to use 1.4 and get required cleanup.
+  a bit of inconsistent wording between the kernel hands-on lab1 and
+the kernel dev manual (unless i'm misreading).
 
-  okey dokey.
+  in lab1, we read:
+
+"This is a bare-bones simple Linux kernel recipe. It inherits all of
+the logic for configuring and building the kernel from the
+kernel.bbclass (the 'inherit kernel' line). It specifies the Linux
+kernel sources in SRC_URI as a recent tarball release from kernel.org.
+It also specifies a defconfig, this file is used as the .config to
+build the kernel. It is empty for now, so the Linux kernel
+configuration system will use defaults."
+
+  suggesting an empty defconfig will force the config step to use
+defaults. but the kernel dev manual states:
+
+"If you have a complete Linux kernel .config file you want to use,
+copy it to the ${FILES} directory within your layer and name it
+"defconfig". Then, add the following line to your linux-yocto
+.bbappend file in your layer:
+
+     SRC_URI += "file://defconfig"
+
+which suggests to the reader that a user-supplied defconfig file
+should represent *only* a "complete" .config file.
+
+  the kernel.bbclass itself seems to suggest that your defconfig file
+can represent any part of the configuration you want to override the
+default.
+
+  does anyone else see the apparent inconsistency that might trip up a
+reader?
 
 rday
 
