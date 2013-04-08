@@ -1,36 +1,31 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAFB6E00499
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 14:53:09 -0700 (PDT)
-Received: by mail-wi0-f170.google.com with SMTP id hm11so4350886wib.1
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2013 14:53:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=b3PQll4fm/Nn33CHadV/5/ybz7R96I8qJ9FYRonUVHc=;
-	b=pBqCu/FrRE6tWvYKLGGB4rBKt827qVTmVWixv83F+AFgzQrkaE1SBHSxeEkPUdWJzq
-	VLqeFTz/CYKsvlG+PovXjpocpm5vOT77VdYmn/koloDBRANQsOWDtGKWsgRebeBF2YeT
-	onk1LMBgOGrse4dENSeojBMyVDPJLkwb2aXnZBixs6+bYj52ByPxhp0VXzzBWK9KNih0
-	PVqZDR5hDvakb7r+1kowh70kXNNbySQo3jfDbqPUXviGlNou4kOHyxMtkiiNpyBynaHq
-	fdieLnXVOWuQc6qfd7YoeZJ7UFvkVH9VRk04pcqUxeCWn0+tIT2bBx1cqI+7gi8LKtSZ
-	KTYw==
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 943EDE00597
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 14:59:46 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:55521 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UPK6L-0006PV-V1
+	for yocto@yoctoproject.org; Mon, 08 Apr 2013 17:59:46 -0400
+Date: Mon, 8 Apr 2013 17:59:43 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304081757170.3910@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-X-Received: by 10.180.182.36 with SMTP id eb4mr15566555wic.8.1365457988658;
-	Mon, 08 Apr 2013 14:53:08 -0700 (PDT)
-Received: by 10.194.45.100 with HTTP; Mon, 8 Apr 2013 14:53:08 -0700 (PDT)
-In-Reply-To: <000001ce34a2$f584a3e0$e08deba0$@annabooks.com>
-References: <36ED13F3654AE54CA763E6821D93A571104C91C9@szxeml534-mbx.china.huawei.com>
-	<000301ce3185$ab049a20$010dce60$@annabooks.com>
-	<CAHUNapRQ+hWo7P2eXUYNof=MsqJVDRY2HE4KV8-=dOeUro=scQ@mail.gmail.com>
-	<000001ce34a2$f584a3e0$e08deba0$@annabooks.com>
-Date: Mon, 8 Apr 2013 17:53:08 -0400
-Message-ID: <CAHUNapQkneoLF7_7DBFxd+Cm23iTBkJezDsy4NEq9v06GiSybw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Sean Liming <sean.liming@annabooks.com>
-Cc: Sanil kumar <sanil.kumar@huawei.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: Post build configuration
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: what's the situation with MIPS support/BSPs/dev kits in yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,13 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 21:53:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 08 Apr 2013 21:59:46 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Mon, Apr 8, 2013 at 5:49 PM, Sean Liming <sean.liming@annabooks.com> wrote:
-> Is this post-build utility an active
-> project for the Yocto Project or is it just getting started?
 
-It's only in the discussion phase right now, hence the "RFC" in the
-subject line.
+  other than the canonical routerstation pro in the meta-yocto-bsp
+layer, is there any serious work being put into MIPS machines?  a
+quick google didn't seem to find anything, and the rs pro itself was
+end-of-lifed a while back (as i recall), so is there something else if
+one wants to use yocto on a MIPS dev kit?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
