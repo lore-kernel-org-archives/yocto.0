@@ -1,29 +1,32 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26C9DE0148E
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 06:01:15 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id CC2BAF811EC; Mon,  8 Apr 2013 07:01:14 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 104F8F811FE;
-	Mon,  8 Apr 2013 07:01:14 -0600 (MDT)
-Message-ID: <5162BF9F.3010500@mlbassoc.com>
-Date: Mon, 08 Apr 2013 07:01:19 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
+Return-Path: <Gianpaolo_Macario@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C637E014F4
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 06:44:22 -0700 (PDT)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1UPCMv-0004Ln-QS from Gianpaolo_Macario@mentor.com 
+	for yocto@yoctoproject.org; Mon, 08 Apr 2013 06:44:21 -0700
+Received: from SVR-IES-FEM-03.mgc.mentorg.com ([137.202.0.108]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Mon, 8 Apr 2013 06:44:21 -0700
+Received: from EU-MBX-02.mgc.mentorg.com ([169.254.3.230]) by
+	SVR-IES-FEM-03.mgc.mentorg.com ([137.202.0.108]) with mapi id
+	14.01.0289.001; Mon, 8 Apr 2013 14:44:20 +0100
+From: "Macario, Gianpaolo" <Gianpaolo_Macario@mentor.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [meta-ivi] No recipes available for:
+	meta-ivi/recipes-graphics/xorg-xserver/xserver-xorg_1.14.0.bbappend
+Thread-Index: Ac40XpXXgRzr1hxfRdSk4Bqb3WTh0Q==
+Date: Mon, 8 Apr 2013 13:44:20 +0000
+Message-ID: <0CCD6BBA210ECA418BCD82271FCFD94C544B22F7@EU-MBX-02.mgc.mentorg.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.202.0.76]
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <5162A418.4070204@mlbassoc.com> <5162B84A.2020707@mlbassoc.com>
-	<13657913.npgBCsoM95@helios>
-In-Reply-To: <13657913.npgBCsoM95@helios>
-Cc: yocto@yoctoproject.org
-Subject: Re: GDB problems
+X-OriginalArrivalTime: 08 Apr 2013 13:44:21.0887 (UTC)
+	FILETIME=[2CD2C0F0:01CE345F]
+Subject: [meta-ivi] No recipes available for: meta-ivi/recipes-graphics/xorg-xserver/xserver-xorg_1.14.0.bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,53 +38,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 13:01:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 08 Apr 2013 13:44:22 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 2013-04-08 06:47, Paul Eggleton wrote:
-> On Monday 08 April 2013 06:30:02 Gary Thomas wrote:
->> On 2013-04-08 05:03, Gary Thomas wrote:
->>> I'm trying to run GDB to debug code on my target.  Whenever I start
->>>
->>> it up, I get this warning:
->>>     warning: Unable to find libthread_db matching inferior's thread
->>>     library, thread debugging will not be available.>
->>> and indeed, no thread debug commands will work.
->>>
->>> I've found that the library /usr/lib/libthread_db.so is not being
->>> installed in the rootfs.  However, just adding this library isn't
->>> enough.  The file /lib/libpthread-2.60.so has been stripped on the
->>> target and this also breaks GDB.  Installing a non-stripped version
->>> of this library lets GDB do thread debugging.
->>>
->>> Both of these libraries come from the eglibc package.  How can I
->>>
->>> adjust that recipe to:
->>>     * Install libthread_db.so
->>>     * Avoid stripping libpthread-2.16.so
->
-> Does installing eglibc-dbg help with this? (Assuming you don't have this
-> installed already.)
+Hello
 
-Yes, although it's named 'libc6-dbg'
+I am afraid I discovered a bug against the GENIVI Foton-0.1 Yocto Baseline.
+I followed the instructions at http://git.yoctoproject.org/cgit/cgit.cgi/me=
+ta-ivi/tree/README.md?h=3D4.0
 
->
->>> It looks like the libthread_db.so file(s) should be installed via
->>> the 'eglibc-thread-db' package, but I can't find this package anywhere
->>> on my system.
->>
->> It's not clear to me why, but the files labelled as 'eglibc-thread-db' in
->> the eglibc recipe end up in the 'libthread-db1' package, so that mystery
->> is solved.
->
-> That is debian library package renaming (debian.bbclass).
+I suspect some misalignment between meta-ivi and poky SHA - however I belie=
+ve I followed what the README.me says.
 
-Ah, black magic...
+Thank you in advance for any help or suggestions!
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Login as gmacario@mv-linux-powerhorse
+
+mkdir $HOME/genivi-baseline
+cd $HOME/genivi-baseline
+git clone git://git.yoctoproject.org/poky
+cd poky; git checkout d823759b4594143d522eae0b2a2498436a6dcb1e; cd -
+git clone git://git.yoctoproject.org/meta-ivi
+cd meta-ivi; git checkout 4.0; cd -
+
+Read http://git.yoctoproject.org/cgit/cgit.cgi/meta-ivi/tree/README.md?h=3D=
+4.0
+
+Initialize Build Environment
+
+source poky/oe-init-build-env
+Backup configuration files (will hand edit them later on)
+
+cp conf/bblayers.conf conf/bblayers.conf.ORIG
+cp conf/local.conf conf/local.conf.ORIG
+Edit conf/bblayers.conf
+
+gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$ diff =
+-uw conf/bblayers.conf.ORIG conf/bblayers.conf
+--- conf/bblayers.conf.ORIG     2013-04-08 15:03:16.000000000 +0200
++++ conf/bblayers.conf  2013-04-08 15:07:59.000000000 +0200
+@@ -6,6 +6,7 @@
+ BBFILES ?=3D ""
+
+ BBLAYERS ?=3D " \
++  /scratch/gmacario/genivi-baseline/meta-ivi \
+   /scratch/gmacario/genivi-baseline/poky/meta \
+   /scratch/gmacario/genivi-baseline/poky/meta-yocto \
+   /scratch/gmacario/genivi-baseline/poky/meta-yocto-bsp \
+gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$
+Edit conf/local.conf
+
+gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$ diff =
+-uw conf/local.conf.ORIG conf/local.conf
+--- conf/local.conf.ORIG        2013-04-08 15:04:43.000000000 +0200
++++ conf/local.conf     2013-04-08 15:11:26.000000000 +0200
+@@ -17,12 +17,12 @@
+ # These two options control how much parallelism BitBake should use. The f=
+irst
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-#BB_NUMBER_THREADS =3D "4"
++BB_NUMBER_THREADS =3D "4"
+ #
+ # The second option controls how many processes make should run in paralle=
+l when
+ # running compile tasks:
+ #
+-#PARALLEL_MAKE =3D "-j 4"
++PARALLEL_MAKE =3D "-j 4"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS =3D "4", PARALLEL_MAKE =3D "-=
+j 4" would
+ # be appropriate for example.
+@@ -48,7 +48,8 @@
+ #MACHINE ?=3D "routerstationpro"
+ #
+ # This sets the default machine to be qemux86 if no other machine is selec=
+ted:
+-MACHINE ??=3D "qemux86"
++#MACHINE ??=3D "qemux86"
++MACHINE ??=3D "vexpressa9"
+
+ #
+ # Where to place downloads
+@@ -63,6 +64,8 @@
+ #
+ #DL_DIR ?=3D "${TOPDIR}/downloads"
+
++INCOMPATIBLE_LICENSE =3D "GPLv3"
++
+ #
+ # Where to place shared-state files
+ #
+@@ -99,7 +102,7 @@
+ # Ultimately when creating custom policy, people will likely end up subcla=
+ssing
+ # these defaults.
+ #
+-DISTRO ?=3D "poky"
++DISTRO ?=3D "poky-ivi-systemd"
+ # As an example of a subclass there is a "bleeding" edge policy configurat=
+ion
+ # where many versions are set to the absolute latest code from the upstrea=
+m
+ # source control systems. This is just mentioned here as an example, its n=
+ot
+gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$
+(2013-04-08 15:14 CEST)
+Start the build
+
+time bitbake foton-image
+Result
+
+gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$ time =
+bitbake -k foton-image
+Pseudo is not present but is required, building this first before the main =
+build
+Parsing recipes: 100% |####################################################=
+#################################| Time: 00:00:19
+Parsing of 828 .bb files complete (0 cached, 828 parsed). 1136 targets, 82 =
+skipped, 0 masked, 0 errors.
+ERROR: No recipes available for:
+  /scratch/gmacario/genivi-baseline/meta-ivi/recipes-graphics/xorg-xserver/=
+xserver-xorg_1.14.0.bbappend
+ERROR: Command execution failed: Exited with 1
+
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+real    0m27.805s
+user    2m37.490s
+sys     0m4.904s
+gmacario@mv-linux-powerhorse:/scratch/gmacario/genivi-baseline/build$
+
+Cordiali Saluti / Best Regards
+
+--
+Gianpaolo Macario
+Senior Member Technical Staff
+Mentor Graphics - Linux Transportation Solutions
+email:=A0gianpaolo_macario@mentor.com
+phone: +39-02-249894.208
+http://www.mentor.com/ivi
+
+
 
