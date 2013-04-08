@@ -1,29 +1,36 @@
-Return-Path: <esteban.rc@gmail.com>
-Received: from mail-ia0-f173.google.com (mail-ia0-f173.google.com
-	[209.85.210.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 620E5E00597
-	for <yocto@yoctoproject.org>; Sat,  6 Apr 2013 11:10:38 -0700 (PDT)
-Received: by mail-ia0-f173.google.com with SMTP id h37so4070356iak.18
-	for <yocto@yoctoproject.org>; Sat, 06 Apr 2013 11:10:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:from:date:message-id:subject:to
-	:content-type; bh=L6yetjBw6Z/iv+Y/rqfAcmyyzGJrXIXKTn4Aj72Pw+k=;
-	b=yY/jeRD3jl4qHybL9Ak+hL6sPc61JmdRyTenyIBeU56bx/0DKi57AJW7NFfsfjxkNF
-	ObCoEzxgEpNuuGy/rjkwfQ2CrQGExQOEfspNG6B0bg4DS0vnkm/94u/G8ir8uy9jCWqD
-	URzDMfVO8RjjmLqUBVTD8IXX4QGmhD94PO5zaE+C2Ur0jcCt05dliTX6XfAOujF6yxtm
-	gTkIz5vTQKXUFPfagP5nuM54Z+4DQ+srV2Vsms+uG2mIS8uMyPLpFoW1UrX74c+isYB0
-	6P0/WMEzTUDnrhbX8xZeVoxjRcrLxipF/QqeBU3N+TNux4jm8YAfGxfpH3I285IWDKIk
-	T+sA==
-X-Received: by 10.50.13.208 with SMTP id j16mr2720935igc.73.1365271837919;
-	Sat, 06 Apr 2013 11:10:37 -0700 (PDT)
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D1F3E0049E
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 07:58:53 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 08 Apr 2013 07:58:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,432,1363158000"; d="scan'208";a="224568714"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by AZSMGA002.ch.intel.com with ESMTP; 08 Apr 2013 07:58:51 -0700
+Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 8 Apr 2013 15:58:50 +0100
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.73]) by
+	IRSMSX153.ger.corp.intel.com ([169.254.9.23]) with mapi id
+	14.01.0355.002; Mon, 8 Apr 2013 15:58:50 +0100
+From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH] [eclipse-poky][master]Check build directory
+	when	location is set using "Browse" button
+Thread-Index: AQHOMlHw3y2Go1msYEma05ClD3kKypjMbFQb
+Date: Mon, 8 Apr 2013 14:58:50 +0000
+Message-ID: <3E179CF0D7162B4AA4E2B324209A4639B31A43@IRSMSX101.ger.corp.intel.com>
+References: <1365172249-31621-1-git-send-email-ioanax.grigoropol@intel.com>,
+	<C6510F6D410BB64A8C15398EDC6B847C6FDBF380@ORSMSX104.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C6FDBF380@ORSMSX104.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.19.9.42]
 MIME-Version: 1.0
-Received: by 10.64.25.74 with HTTP; Sat, 6 Apr 2013 11:09:57 -0700 (PDT)
-From: Esteban Rivera <esteban.rc@gmail.com>
-Date: Sat, 6 Apr 2013 12:09:57 -0600
-Message-ID: <CACN9-wSmFVcD7eDkXA0ahD35HjFAPy5AX+6uQN-VDg_X24qPeA@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Mon, 08 Apr 2013 06:54:19 -0700
-Subject: Problem Installing Package Manager in FRI2
+Subject: Re: [PATCH] [eclipse-poky][master]Check build directory when	location is set using "Browse" button
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,92 +42,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Apr 2013 18:10:38 -0000
-Content-Type: multipart/alternative; boundary=f46d0447f094ebd34104d9b51e34
-
---f46d0447f094ebd34104d9b51e34
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-
-I'm trying to generate an image for the FRI2 using the official Intel BSP
-provided in the Yocto Project website, in this image I want to include at
-least one package manager.
-
-I'm Using poky 8.0 with Hob GUI, from the recipes listed that can be
-included in the image I can see Dpkg and Zypper package managers, but I
-have trouble with both packages.
-
-I'm unable to create the Image whenever Dpkg is included because of the
-following error message:
-
-error: Failed dependencies:
-/home/poky-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/bin/perl-native/perl
-is needed by dpkg-1.16.8-r18.0.core2
-
-I get this message even tho the files do exist at the path specified by the
-error message.
-
-On the other hand whenever I select Zypper, the image is created correctly
-but any zypper commands ends up showing the following error:
-
-zypper: dbconfig.c:493: db3New: Assertion 'dbOpts != ((void *)0) && *db0pts
-!= '\0'' failed.
-Aborted
-
-I'm I missing something during the Image creation?
-
-Thank You for your time.
-
--- 
-Esteban Rivera
-
---f46d0447f094ebd34104d9b51e34
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Mon, 08 Apr 2013 14:58:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
-ans-serif;font-size:small"><div class=3D"gmail_default">Hello,</div><div cl=
-ass=3D"gmail_default"><br></div><div class=3D"gmail_default">I&#39;m trying=
- to generate an image for the FRI2 using the official Intel BSP provided in=
- the Yocto Project website, in this image I want to include at least one pa=
-ckage manager.</div>
+Hi Jessica,=0A=
+=0A=
+I can reproduce this issue following these steps:=0A=
+=0A=
+- open yocto-bsp menu=0A=
+- set metadata location=0A=
+- set build location directory using browse button and without interfering =
+with the text field at all=0A=
+- set output location to new directory=0A=
+- press "Next"=0A=
+- select a Kernel from the combo=0A=
+=0A=
+The problem is that we only check the build directory when the focus is los=
+t in the text field, and we do not take into account when the value of this=
+ field is populated using "Browse" button.=0A=
+We must check for the build directory in the first page of the wizard, beca=
+use any of the actions that can be done on the properties page(2nd) needs t=
+o have a functional build directory and will fail otherwise. =0A=
+The validatePage() method is only taken into consideration when we an finis=
+h the wizard without any further user interaction.=0A=
+=0A=
+Thanks,=0A=
+Ioana=0A=
+________________________________________=0A=
+From: Zhang, Jessica=0A=
+Sent: Saturday, April 06, 2013 2:04 AM=0A=
+To: Grigoropol, IoanaX; yocto@yoctoproject.org=0A=
+Subject: RE: [yocto] [PATCH] [eclipse-poky][master]Check build directory wh=
+en   location is set using "Browse" button=0A=
+=0A=
+Hi Ioana,=0A=
+=0A=
+I can't reproduce the bug on my end so can't further debug the issue.  But =
+based on the context of this patch, seems we're missing checkBuildDir for b=
+uildLocation?  By looking at the code, shouldn't the easiest fix is to add =
+checkBuildDir on the validatePage for the case the buildLocationText is not=
+ empty?=0A=
+=0A=
+Thanks,=0A=
+Jessica=0A=
+=0A=
+-----Original Message-----=0A=
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol=0A=
+Sent: Friday, April 05, 2013 7:31 AM=0A=
+To: yocto@yoctoproject.org=0A=
+Subject: [yocto] [PATCH] [eclipse-poky][master]Check build directory when l=
+ocation is set using "Browse" button=0A=
+=0A=
+[Yocto #4206]=0A=
+=0A=
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>=0A=
+---=0A=
+ .../sdk/remotetools/wizards/bsp/MainPage.java      |   57 +++++++++++++++-=
+----=0A=
+ 1 file changed, 43 insertions(+), 14 deletions(-)=0A=
+=0A=
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
+s/wizards/bsp/MainPage.java b/plugins/org.yocto.sdk.remotetools/src/org/yoc=
+to/sdk/remotetools/wizards/bsp/MainPage.java=0A=
+index d84cc24..156829b 100644=0A=
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wizar=
+ds/bsp/MainPage.java=0A=
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/wi=0A=
++++ zards/bsp/MainPage.java=0A=
+@@ -25,6 +25,7 @@ import org.eclipse.swt.events.ModifyEvent;=0A=
+ import org.eclipse.swt.events.ModifyListener;=0A=
+ import org.eclipse.swt.events.SelectionAdapter;=0A=
+ import org.eclipse.swt.events.SelectionEvent;=0A=
++import org.eclipse.swt.events.SelectionListener;=0A=
+ import org.eclipse.swt.layout.GridData;  import org.eclipse.swt.layout.Gri=
+dLayout;=0A=
+ import org.eclipse.swt.widgets.Button;=0A=
+@@ -108,7 +109,8 @@ public class MainPage extends WizardPage {=0A=
+                                controlChanged(e.widget);=0A=
+                        }=0A=
+                });=0A=
+-               setBtnMetadataLoc(addFileSelectButton(textContainer, textMe=
+tadataLoc));=0A=
++               buildLocationListener =3D new BuildLocationListener("");=0A=
++               setBtnMetadataLoc(addFileSelectButton(textContainer, textMe=
+tadataLoc,=0A=
++null));=0A=
+=0A=
+                labelBuildLoc =3D new Label(composite, SWT.NONE);=0A=
+                labelBuildLoc.setText("Build location: "); @@ -118,10 +120,=
+10 @@ public class MainPage extends WizardPage {=0A=
+                textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENT=
+ER, true, false));=0A=
+=0A=
+                textBuildLoc =3D (Text)addTextControl(textContainer, "");=
+=0A=
+-               buildLocationListener =3D new BuildLocationListener("");=0A=
+                textBuildLoc.addFocusListener(buildLocationListener);=0A=
++               textBuildLoc.addModifyListener(buildLocationListener);=0A=
+=0A=
+-               setBtnBuilddirLoc(addFileSelectButton(textContainer, textBu=
+ildLoc));=0A=
++               setBtnBuilddirLoc(addFileSelectButton(textContainer, textBu=
+ildLoc,=0A=
++buildLocationListener));=0A=
+=0A=
+                labelBspName =3D new Label(composite, SWT.NONE);=0A=
+                labelBspName.setText("BSP Name*: ");=0A=
+@@ -152,7 +154,7 @@ public class MainPage extends WizardPage {=0A=
+                                controlChanged(e.widget);=0A=
+                        }=0A=
+                });=0A=
+-               setBtnBspOutLoc(addFileSelectButton(textContainer, textBspO=
+utputLoc));=0A=
++               setBtnBspOutLoc(addFileSelectButton(textContainer, textBspO=
+utputLoc,=0A=
++null));=0A=
+=0A=
+                labelKArch =3D new Label(composite, SWT.NONE);=0A=
+                labelKArch.setText("Kernel Architecture*: "); @@ -206,18 +2=
+08,25 @@ public class MainPage extends WizardPage {=0A=
+                return text;=0A=
+        }=0A=
+=0A=
+-       private Button addFileSelectButton(final Composite parent, final Te=
+xt text) {=0A=
++       private Button addFileSelectButton(final Composite parent, final Te=
+xt=0A=
++text, SelectionListener listener) {=0A=
+                Button button =3D new Button(parent, SWT.PUSH | SWT.LEAD);=
+=0A=
+                button.setText("Browse...");=0A=
+-               button.addSelectionListener(new SelectionAdapter() {=0A=
+-                       @Override=0A=
+-                       public void widgetSelected(SelectionEvent event) {=
+=0A=
+-                               String dirName =3D new DirectoryDialog(pare=
+nt.getShell()).open();=0A=
+-                               if (dirName !=3D null) {=0A=
+-                                       text.setText(dirName);=0A=
++               if (listener =3D=3D null) {=0A=
++                       button.addSelectionListener(new SelectionListener()=
+ {=0A=
++                               @Override=0A=
++                               public void widgetSelected(SelectionEvent e=
+) {=0A=
++                                       // TODO Auto-generated method stub=
+=0A=
++                                       String dirName =3D new DirectoryDia=
+log(parent.getShell()).open();=0A=
++                                       if (dirName !=3D null) {=0A=
++                                               text.setText(dirName);=0A=
++                                       }=0A=
+                                }=0A=
+-                       }=0A=
+-               });=0A=
++                               @Override=0A=
++                               public void widgetDefaultSelected(Selection=
+Event e) {=0A=
++                               }=0A=
++                       });=0A=
++               } else=0A=
++                       button.addSelectionListener(listener);=0A=
+                return button;=0A=
+        }=0A=
+=0A=
+@@ -473,7 +482,7 @@ public class MainPage extends WizardPage {=0A=
+                this.btnBuildLoc =3D btnBuilddirLoc;=0A=
+        }=0A=
+=0A=
+-       class BuildLocationListener implements FocusListener{=0A=
++       class BuildLocationListener implements FocusListener,=0A=
++SelectionListener, ModifyListener{=0A=
+                String value;=0A=
+                boolean changed;=0A=
+=0A=
+@@ -492,6 +501,26 @@ public class MainPage extends WizardPage {=0A=
+                                buildDirChecked =3D true;=0A=
+                        }=0A=
+                }=0A=
++               @Override=0A=
++               public void widgetSelected(SelectionEvent e) {=0A=
++                       String dirName =3D new DirectoryDialog(((Button)e.g=
+etSource()).getParent().getShell()).open();=0A=
++                       if (dirName !=3D null) {=0A=
++                               textBuildLoc.setText(dirName);=0A=
++                               value =3D dirName;=0A=
++                       }=0A=
++               }=0A=
++               @Override=0A=
++               public void widgetDefaultSelected(SelectionEvent e) {=0A=
++                       // TODO Auto-generated method stub=0A=
++               }=0A=
++               @Override=0A=
++               public void modifyText(ModifyEvent e) {=0A=
++=0A=
++                       if(!((Text)e.getSource()).getText().equals(value)) =
+{=0A=
++                               checkBuildDir();=0A=
++                               buildDirChecked =3D true;=0A=
++                       }=0A=
++               }=0A=
+=0A=
+        }=0A=
+ }=0A=
+--=0A=
+1.7.9.5=0A=
+=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
-<div class=3D"gmail_default"><br></div><div class=3D"gmail_default">I&#39;m=
- Using poky 8.0 with Hob GUI, from the recipes listed that can be included =
-in the image I can see Dpkg and Zypper package managers, but I have trouble=
- with both packages.</div>
-
-<div class=3D"gmail_default"><br></div><div class=3D"gmail_default">I&#39;m=
- unable to create the Image whenever Dpkg is included because of the follow=
-ing error message:</div><div class=3D"gmail_default" style=3D"font-family:a=
-rial,sans-serif;font-size:13px">
-
-<div class=3D"gmail_default"><font face=3D"tahoma, sans-serif"><br></font><=
-/div><div class=3D"gmail_default"><font face=3D"tahoma, sans-serif">error: =
-Failed dependencies:</font></div><div class=3D"gmail_default"><font face=3D=
-"tahoma, sans-serif"><span style=3D"white-space:pre-wrap">	</span>/home/pok=
-y-danny-8.0/build/tmp/sysroots/x86_64-linux/usr/bin/perl-native/perl is nee=
-ded by dpkg-1.16.8-r18.0.core2</font></div>
-
-</div><div class=3D"gmail_default"><br></div><div class=3D"gmail_default">I=
- get this message even tho the files do exist at the path specified by the =
-error message.</div><div class=3D"gmail_default"><br></div><div class=3D"gm=
-ail_default">
-
-On the other hand whenever I select Zypper, the image is created correctly =
-but any zypper commands ends up showing the following error:</div><div clas=
-s=3D"gmail_default"><br></div><div class=3D"gmail_default">zypper: dbconfig=
-.c:493: db3New: Assertion &#39;dbOpts !=3D ((void *)0) &amp;&amp; *db0pts !=
-=3D &#39;\0&#39;&#39; failed.</div>
-
-<div class=3D"gmail_default">Aborted =A0</div><div class=3D"gmail_default">=
-<br></div><div class=3D"gmail_default">I&#39;m I missing something during t=
-he Image creation?</div><div class=3D"gmail_default"><br></div><div class=
-=3D"gmail_default">
-
-Thank You for your time.</div></div><div><br></div>-- <br><font face=3D"tah=
-oma, sans-serif">Esteban Rivera</font>
-</div>
-
---f46d0447f094ebd34104d9b51e34--
