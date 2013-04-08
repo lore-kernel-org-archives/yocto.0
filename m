@@ -1,34 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBBC1E014AA
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 02:18:43 -0700 (PDT)
-Received: by mail-vb0-f49.google.com with SMTP id 11so3570228vbf.22
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2013 02:18:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=MA9r88ZUay6GpLkPyYLcVkqFoRwqbL86lmaaITr73uA=;
-	b=cXANAmK04MKmYlS+HwGtLFbf6CT9Y3IYZJcGLxOJGG3RCJuH1l0QCttLkBgYC+yusU
-	Vf6y2257PPI0be6vN2EF9TSUFZZJ4KWhxlWzKmkancJUezl31BLeNtiXb6/X6PJ4g2Sn
-	JwzmKYFwyy2ZdFtKx+OQIBB/3pAlsSqZ+zZshi0V5HSST8dHwUz5ifHI8Rv1YThKSb8J
-	jc5QZqEY/sxYSBrQC2fxetyYjN0ZTKMkZOUNta0lmtZlXEvQ3tw9vxRJbW5+hGHtLQiy
-	O4s/DEuiyBtZvvw0W+9csqqa5mB7XGpoHi6UHUZf1HsYPdxC0XdZHaZ6692wAPflVFdU
-	6jnQ==
-X-Received: by 10.58.214.231 with SMTP id od7mr6060831vec.44.1365412723126;
-	Mon, 08 Apr 2013 02:18:43 -0700 (PDT)
+Return-Path: <dan.florincristian@gmail.com>
+Received: from mail-ia0-f181.google.com (mail-ia0-f181.google.com
+	[209.85.210.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAA44E014AA
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 02:22:14 -0700 (PDT)
+Received: by mail-ia0-f181.google.com with SMTP id o25so4960510iad.26
+	for <yocto@yoctoproject.org>; Mon, 08 Apr 2013 02:22:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=gE6Cj2iZ7l8Vgj1JYTyjTxTy09NC3EpvgREJo2467MQ=;
+	b=YxYs6XAbl9S6Bv8kPu7VXdh36lQTLN9+iUIXpl3Sq/EsVeoi+UUyTcKp1YolOUMaXC
+	nfK2csF5hRBRyUGB20XNdUr3kjcK8l5WPPZNgH7/EV+bD1dLgNdsN/zwNkvyLxAHz/US
+	Mdi7c388S3KNWXUtidLPwBuwI9wbD0xQw220dWKqupEPJcfp+C3fiYYJxw/rau901xuF
+	Ig35m/wNxdVCsJw/7UPpny9jFW7aVa7jUIt99VvJyItjE7w3c+4ambffLuXLx6Cvy51W
+	RIm4KCnERNcyXGto/ws1a5OXvvVCdrrqJC8yWFFM/60n6UD9G6iL6eDnzgfmkXVfUxJx
+	lsEg==
 MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Mon, 8 Apr 2013 02:18:22 -0700 (PDT)
-In-Reply-To: <003701ce3434$f487d750$dd9785f0$@gmail.com>
-References: <003701ce3434$f487d750$dd9785f0$@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 8 Apr 2013 10:18:22 +0100
-Message-ID: <CAJTo0LZn4dD97s66fkGOnYtmj86ZLEcdfNk2wGk989WTYi6ZEw@mail.gmail.com>
-To: Andreas Enbacka <aenbacka@gmail.com>
-X-Gm-Message-State: ALoCoQltk1h0H45IJ/C7TMIUyVHCiCLbuZh1AxBc0Fn3Kl/XxVauMTdWFwvF5SsJrMw3oiTfEBXy
-Cc: yocto@yoctoproject.org
-Subject: Re: Problem with mouse and keyboard detection in yocto (core-image-sato on emenlow)
+X-Received: by 10.50.114.37 with SMTP id jd5mr6531016igb.2.1365412934469; Mon,
+	08 Apr 2013 02:22:14 -0700 (PDT)
+Received: by 10.64.20.6 with HTTP; Mon, 8 Apr 2013 02:22:14 -0700 (PDT)
+Date: Mon, 8 Apr 2013 12:22:14 +0300
+Message-ID: <CABzOdpQmx0juTDrS29xBHsrL-+uSPN3ONBk9stMhCNt6+f-QUg@mail.gmail.com>
+From: Florin Cristian Dan <dan.florincristian@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Serial communication problem!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,25 +34,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 09:18:44 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 08 Apr 2013 09:22:15 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a98acee52aa04d9d5f880
 
-On 8 April 2013 09:42, Andreas Enbacka <aenbacka@gmail.com> wrote:
-> I have experienced some problems with getting the USB mouse and keyboard
-> detected in the default core-image-sato Yocto image, built for the Intel
-> Emenlow machine (with emgd graphics). X launches successfully to the Sato
-> desktop, but I get no response from the mouse or keyboard. When I from
-> terminal execute grep -i mouse /var/log/Xorg.0.log from terminal, I get the
-> following output:
+--047d7b3a98acee52aa04d9d5f880
+Content-Type: text/plain; charset=ISO-8859-1
 
-Attaching the entire X log instead of grepping for phrases that you
-think are relevant would be more useful - in this case the module that
-X should be using for USB input is "evdev", not "mouse".  Check that
-you've got the xorg evdev driver present and that the server is
-loading the module.  It's possible that the permissions are wrong on
-the input nodes in /dev/input.
+Hello,
+I have a little problem in finding out how does serial communication works
+within yocto-project.
+I've build a sato image with meta-emenlow bsp and qt4 support, i've done
+some qt apps and succeded in making them work on the target machine.
+Now i want my qt applicaion to recive some data via serial port, my target
+machine has a single serial DB9 father connector. I've found a class and
+build a program wich opens a specified port and listens it.
+i also have a Explorer 16 development board wich i use to send data trough
+serial. I tested whis with my ubuntu PC(sent data from devel. board, and
+opend a port with the qt program) and it worked i was able to see exactly
+what i've expected.
+Then i connected the devl board with my target machine, ran the serial
+listener on the target machine,  with "ttyS0" as the name for serial port,
+but nothing happend, no errors occured, but it just sitts there and dosen't
+do anything, i've also tried ttyS1 ttyS2 ttyS3 for the port name, but the
+same thing happend.
+Any advice?
+Is there some line that needs to be written before i burn my sato image in
+order to enable serial ports?
+Thank you
 
-Oh, and what version of Poky  / oe-core were you using - 1.3 or master?
+--047d7b3a98acee52aa04d9d5f880
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Ross
+<div dir=3D"ltr">Hello,<div style>I have a little problem in finding out ho=
+w does serial communication works within yocto-project.</div><div style>I&#=
+39;ve build a sato image with meta-emenlow bsp and qt4 support, i&#39;ve do=
+ne some qt apps and succeded in making them work on the target machine.=A0<=
+/div>
+<div style>Now i want my qt applicaion to recive some data via serial port,=
+ my target machine has a single serial DB9 father connector. I&#39;ve found=
+ a class and build a program wich opens a specified port and listens it.=A0=
+</div>
+<div style>i also have a Explorer 16 development board wich i use to send d=
+ata trough serial. I tested whis with my ubuntu PC(sent data from devel. bo=
+ard, and opend a port with the qt program) and it worked i was able to see =
+exactly what i&#39;ve expected.=A0</div>
+<div style>Then i connected the devl board with my target machine, ran the =
+serial listener on the target machine, =A0with &quot;ttyS0&quot; as the nam=
+e for serial port, but nothing happend, no errors occured, but it just sitt=
+s there and dosen&#39;t do anything, i&#39;ve also tried ttyS1 ttyS2 ttyS3 =
+for the port name, but the same thing happend.</div>
+<div style>Any advice?</div><div style>Is there some line that needs to be =
+written before i burn my sato image in order to enable serial ports?</div><=
+div style>Thank you</div></div>
 
+--047d7b3a98acee52aa04d9d5f880--
