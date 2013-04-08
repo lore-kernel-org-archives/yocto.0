@@ -1,31 +1,23 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6009FE0148E
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 05:35:23 -0700 (PDT)
-Received: by mail-vc0-f171.google.com with SMTP id ha11so4924472vcb.30
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2013 05:35:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
-	:subject:from:to:content-type;
-	bh=EKhjquNIzT+xtIjAIROs8h5c89usdAzE0Hr5pSHdc1Y=;
-	b=OWMTHcZcUS4sCr7r1ItVtspPM6qSH0KFV5HAZtlGqT3WMTxCoJPMjGvAXWZP4Ixc6o
-	XQF2LqVQYTEm9Mzam0LGzA/TvL4NlIPko812ZdbWwsMymQvdY0D1tugZPyngX1o/Q2hs
-	m+OC8N6G4iHrc+oeBbrT8gzLfvgPBqT2QAGtWN5liis/2NuQ3ebvkaS4QqQXNV8WoEAj
-	UcVwMSvkUt+e5utxtx/JxI+N/mR+u7iJXQsLoYmlwGP/pVAKUfG3bnOrgDEywd21b/l7
-	CkWPFvUguUydsetXnmcrQApmk3ipZ0U+SQ4ZjIN5ZE9UduDosCh70S3WfPl+OPbjy/Mz
-	ggkQ==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 654AAE014DF
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 05:47:37 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 08 Apr 2013 05:47:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,431,1363158000"; d="scan'208";a="283050433"
+Received: from unknown (HELO helios.localnet) ([10.255.13.125])
+	by azsmga001.ch.intel.com with ESMTP; 08 Apr 2013 05:47:35 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>, yocto@yoctoproject.org
+Date: Mon, 08 Apr 2013 13:47:34 +0100
+Message-ID: <13657913.npgBCsoM95@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.5.0-26-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <5162B84A.2020707@mlbassoc.com>
+References: <5162A418.4070204@mlbassoc.com> <5162B84A.2020707@mlbassoc.com>
 MIME-Version: 1.0
-X-Received: by 10.220.109.145 with SMTP id j17mr15547018vcp.34.1365424522873; 
-	Mon, 08 Apr 2013 05:35:22 -0700 (PDT)
-Sender: satyaswaroop.damarla@gmail.com
-Received: by 10.52.70.141 with HTTP; Mon, 8 Apr 2013 05:35:22 -0700 (PDT)
-Date: Mon, 8 Apr 2013 14:35:22 +0200
-X-Google-Sender-Auth: HJ7N9m8Etvey7_cwq7DFin0sL68
-Message-ID: <CAFMfyzJY+VSRa8vQP+7yi3KAC-4gRNEmTtCBahbfMjowig+MRA@mail.gmail.com>
-From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Calibrating touchscreen and the default display
+Subject: Re: GDB problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,70 +29,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 12:35:23 -0000
-Content-Type: multipart/alternative; boundary=047d7b3a852ea754ba04d9d8aba9
+X-List-Received-Date: Mon, 08 Apr 2013 12:47:37 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---047d7b3a852ea754ba04d9d8aba9
-Content-Type: text/plain; charset=ISO-8859-1
+On Monday 08 April 2013 06:30:02 Gary Thomas wrote:
+> On 2013-04-08 05:03, Gary Thomas wrote:
+> > I'm trying to run GDB to debug code on my target.  Whenever I start
+> > 
+> > it up, I get this warning:
+> >    warning: Unable to find libthread_db matching inferior's thread
+> >    library, thread debugging will not be available.> 
+> > and indeed, no thread debug commands will work.
+> > 
+> > I've found that the library /usr/lib/libthread_db.so is not being
+> > installed in the rootfs.  However, just adding this library isn't
+> > enough.  The file /lib/libpthread-2.60.so has been stripped on the
+> > target and this also breaks GDB.  Installing a non-stripped version
+> > of this library lets GDB do thread debugging.
+> > 
+> > Both of these libraries come from the eglibc package.  How can I
+> > 
+> > adjust that recipe to:
+> >    * Install libthread_db.so
+> >    * Avoid stripping libpthread-2.16.so
 
-Hi Guys,
+Does installing eglibc-dbg help with this? (Assuming you don't have this 
+installed already.)
 
-I have a TSC2007 touchscree for my tegra-harmony board.... The problem is
-calibration of the board.... Let me explain a bit better. I successfully
-compiled a basic X11 image.
+> > It looks like the libthread_db.so file(s) should be installed via
+> > the 'eglibc-thread-db' package, but I can't find this package anywhere
+> > on my system.
+> 
+> It's not clear to me why, but the files labelled as 'eglibc-thread-db' in
+> the eglibc recipe end up in the 'libthread-db1' package, so that mystery
+> is solved.
 
-On the boot, the Linux penguins appear in the landscape mode on the
-display. Is it possible to rotate so that the penguins appear in the
-potrait mode? Apparently, I want to know if the Linux kernel identifies the
-display as 480x800 instead of 800x480.... Now, I rotate the psplash and
-also the used xrandr to rotate the display. The following is the fbset
-output
+That is debian library package renaming (debian.bbclass).
 
-mode "800x480-60"
-        # D: 33.260 MHz, H: 31.496 kHz, V: 59.993 Hz
-        geometry 800 480 800 960 32
-        timings 30066 120 120 15 15 16 15
-        accel false
-        rgba 8/0,8/8,8/16,8/24
-endmode
+Cheers,
+Paul
 
-Secondly, I also want to calibrate the touchscreen. Eventhough I rotate the
-touchscreen in the xorg.conf.d/10-touchscreen.conf file.. When I run
-ts_calibrate, it still calibrates in landscape mode and not in potrait
-mode....
+-- 
 
-I am completely blocked in this stage..... It would be great to receive
-suggestions to solve these issues
+Paul Eggleton
+Intel Open Source Technology Centre
 
-Greets,
-Satya
-
---047d7b3a852ea754ba04d9d8aba9
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Guys,<div><br></div><div>I have a TSC2007 touchscree fo=
-r my tegra-harmony board.... The problem is calibration of the board.... Le=
-t me explain a bit better. I successfully compiled a basic X11 image.</div>
-
-<div><br></div><div>On the boot, the Linux penguins appear in the landscape=
- mode on the display. Is it possible to rotate so that the penguins appear =
-in the potrait mode? Apparently, I want to know if the Linux kernel identif=
-ies the display as 480x800 instead of 800x480.... Now, I rotate the psplash=
- and also the used xrandr to rotate the display. The following is the fbset=
- output</div>
-
-<div><br></div><div><div>mode &quot;800x480-60&quot;</div><div>=A0 =A0 =A0 =
-=A0 # D: 33.260 MHz, H: 31.496 kHz, V: 59.993 Hz</div><div>=A0 =A0 =A0 =A0 =
-geometry 800 480 800 960 32</div><div>=A0 =A0 =A0 =A0 timings 30066 120 120=
- 15 15 16 15</div>
-<div>=A0 =A0 =A0 =A0 accel false</div><div>=A0 =A0 =A0 =A0 rgba 8/0,8/8,8/1=
-6,8/24</div><div>endmode</div><div><br></div><div>Secondly, I also want to =
-calibrate the touchscreen. Eventhough I rotate the touchscreen in the xorg.=
-conf.d/10-touchscreen.conf file.. When I run ts_calibrate, it still calibra=
-tes in landscape mode and not in potrait mode....=A0</div>
-</div><div><br></div><div style>I am completely blocked in this stage..... =
-It would be great to receive suggestions to solve these issues</div><div st=
-yle><br></div><div style>Greets,</div><div style>Satya</div></div>
-
---047d7b3a852ea754ba04d9d8aba9--
