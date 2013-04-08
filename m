@@ -1,39 +1,27 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
-	[209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A9E9E014AD
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 05:19:31 -0700 (PDT)
-Received: by mail-ve0-f180.google.com with SMTP id c13so5225698vea.39
-	for <yocto@yoctoproject.org>; Mon, 08 Apr 2013 05:19:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=uNKpyPby7bFIkh6Z5SPpO+VB7piesQaXM+kzx1YuRBI=;
-	b=B9CGPmc7xIeJcMef30WL+fgxeLAUQjUZDrx5c6bvRehQZdzK2IX215I/hfFj8Ox4fR
-	n6MPLH3x8gad/Fd16duZg3KQDmrCobcsyjPcAC5NVkrfEVvFzhH689oQU0VtUopMLdi7
-	Z7RxJzD/z1g8wA9AVkE1qh6f+EDTmko4PhPVF1g34JYPRJ3oW49qEfIBlQssMY9hPcJs
-	6xahnVoVHvIIFrFDQkOnTokhdVvn6iFcXIJTap7iInjWBJ6qp8ehnu/J6vI5hAYnaZAD
-	9Tt0cSKfh/dkHmNyxdvY/o1JfwKaS0tsgF+VlQHabIDfWj5bfcWv7TIaFhnF1CWV4LvM
-	BTEA==
-X-Received: by 10.58.188.48 with SMTP id fx16mr15604806vec.22.1365423570795;
-	Mon, 08 Apr 2013 05:19:30 -0700 (PDT)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1DD1E0148E
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 05:29:58 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 7A8B0F811FE; Mon,  8 Apr 2013 06:29:58 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 14038F811EC;
+	Mon,  8 Apr 2013 06:29:57 -0600 (MDT)
+Message-ID: <5162B84A.2020707@mlbassoc.com>
+Date: Mon, 08 Apr 2013 06:30:02 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
 MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Mon, 8 Apr 2013 05:19:10 -0700 (PDT)
-In-Reply-To: <00e801ce3452$67c501d0$374f0570$@gmail.com>
-References: <003701ce3434$f487d750$dd9785f0$@gmail.com>
-	<CAJTo0LZn4dD97s66fkGOnYtmj86ZLEcdfNk2wGk989WTYi6ZEw@mail.gmail.com>
-	<009101ce343e$8db88560$a9299020$@gmail.com>
-	<CAJTo0LaQ76oZK3PDPnjhgVoQFjMnMkr1tGiVtXJ-U=qfhNg5Pg@mail.gmail.com>
-	<00e801ce3452$67c501d0$374f0570$@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 8 Apr 2013 13:19:10 +0100
-Message-ID: <CAJTo0LZ_j=GiuDT=9QFWSEmUGc-t9U209WqJpgb5ULYKNYtBbw@mail.gmail.com>
-To: Andreas Enbacka <aenbacka@gmail.com>
-X-Gm-Message-State: ALoCoQkx+biBGwuYDXZLSzc2KuuaUpS9221I19tPwCc35aMGSCpfQikt7ApXvJJmUfAl6gKTY4tB
-Cc: yocto@yoctoproject.org
-Subject: Re: Problem with mouse and keyboard detection in yocto (core-image-sato on emenlow)
+To: yocto@yoctoproject.org
+References: <5162A418.4070204@mlbassoc.com>
+In-Reply-To: <5162A418.4070204@mlbassoc.com>
+Subject: Re: GDB problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,23 +33,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 12:19:31 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 08 Apr 2013 12:29:58 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 8 April 2013 13:12, Andreas Enbacka <aenbacka@gmail.com> wrote:
-> I rebuilt xf86-input-keyboard and xf86-input-mouse (as well as the core-i=
-mage-sato image), and now the mouse / keyboard works ok in X. Thanks for th=
-e assistance.
+On 2013-04-08 05:03, Gary Thomas wrote:
+> I'm trying to run GDB to debug code on my target.  Whenever I start
+> it up, I get this warning:
+>    warning: Unable to find libthread_db matching inferior's thread library, thread debugging will not be available.
+> and indeed, no thread debug commands will work.
 >
-> I checked the Xorg log file, it seems to add the mouse using the mouse_dr=
-v.so module, not evdev_drv.so. Do I need to rebuild xf86-input-evdev as wel=
-l to get the mouse added using evdev? This because I have a custom applicat=
-ion that handles the touch screen calibration running on top of X, and itex=
-pects the mouse to be added via evdev.
+> I've found that the library /usr/lib/libthread_db.so is not being
+> installed in the rootfs.  However, just adding this library isn't
+> enough.  The file /lib/libpthread-2.60.so has been stripped on the
+> target and this also breaks GDB.  Installing a non-stripped version
+> of this library lets GDB do thread debugging.
+>
+> Both of these libraries come from the eglibc package.  How can I
+> adjust that recipe to:
+>    * Install libthread_db.so
+>    * Avoid stripping libpthread-2.16.so
+>
+> It looks like the libthread_db.so file(s) should be installed via
+> the 'eglibc-thread-db' package, but I can't find this package anywhere
+> on my system.
 
-Probably - you could try removing the mouse and keyboard drivers and
-leaving just evdev if it still prefers mouse/keyboard over evdev.
+It's not clear to me why, but the files labelled as 'eglibc-thread-db' in
+the eglibc recipe end up in the 'libthread-db1' package, so that mystery
+is solved.
 
-Ross
+I still don't know how to get the libpthread library to be not stripped
+(which it seems is what it takes to make GDB happy in this case).
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
