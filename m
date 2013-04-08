@@ -1,19 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AACFAE00597
-	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 15:54:42 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72834E00499
+	for <yocto@yoctoproject.org>; Mon,  8 Apr 2013 16:02:26 -0700 (PDT)
 Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:56906 helo=crashcourse.ca)
+	([174.115.5.73]:57000 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UPKxV-0000Te-3p; Mon, 08 Apr 2013 18:54:41 -0400
-Date: Mon, 8 Apr 2013 18:54:34 -0400 (EDT)
+	id 1UPL4z-0000op-5B; Mon, 08 Apr 2013 19:02:25 -0400
+Date: Mon, 8 Apr 2013 19:02:12 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Bruce Ashfield <bruce.ashfield@windriver.com>
 In-Reply-To: <5163442A.7070801@windriver.com>
-Message-ID: <alpine.DEB.2.02.1304081840340.4612@oneiric>
+Message-ID: <alpine.DEB.2.02.1304081858490.4897@oneiric>
 References: <alpine.DEB.2.02.1304081757170.3910@oneiric>
 	<5163442A.7070801@windriver.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
@@ -40,7 +40,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Apr 2013 22:54:42 -0000
+X-List-Received-Date: Mon, 08 Apr 2013 23:02:26 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 On Mon, 8 Apr 2013, Bruce Ashfield wrote:
@@ -61,12 +61,18 @@ On Mon, 8 Apr 2013, Bruce Ashfield wrote:
 > actually purchase one :) That's going to happen shortly after yocto
 > 1.4 completes.
 
-  it would appear there's a canadian branch of ubiquiti:
+  ok, based on a bit more reading, it *seems* that the phrase
+"edgemax" refers to a "platform", while an actual router based on that
+platform might be the edgerouter lite:
+
+http://ubnt.ca/en/edgemax/61-edgemax.html
+
+  does that make sense? if you look at this page:
 
 http://ubnt.ca/en/8-edgemax
 
-but based on what i remember about ubiquiti, it's *excruciating* to
-try to figure out how to buy anything from them.
+it seems that the edgerouter lite is the single actual product in that
+category, and it appears to be buyable online.
 
 rday
 
