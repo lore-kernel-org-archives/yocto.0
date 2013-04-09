@@ -1,33 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEB5FE01469
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 06:10:30 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:55185 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UPYJi-00086W-Ao
-	for yocto@yoctoproject.org; Tue, 09 Apr 2013 09:10:30 -0400
-Date: Tue, 9 Apr 2013 09:10:27 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-In-Reply-To: <alpine.DEB.2.02.1304090833380.5655@oneiric>
-Message-ID: <alpine.DEB.2.02.1304090906420.6611@oneiric>
-References: <alpine.DEB.2.02.1304090833380.5655@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
+	[209.85.128.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40585E01473
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 06:53:47 -0700 (PDT)
+Received: by mail-ve0-f180.google.com with SMTP id c13so6472600vea.11
+	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 06:53:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type;
+	bh=SQ902C5ZJ59UptQe79sHWg3sS+NjmXg8wHuKD3hn3zo=;
+	b=T6WDJzq+quYUscnr+2mzktpj4DkiJRJdQ+CMKT+U/t66JU4ZxtSTlz5H4PT2LzRMSH
+	Wba1mbTNiuZxjnAKzq1g8njf/s1RS6HS3h5OYWflvM5ut5eAW96aULwWAVdXBG4y4cZv
+	0n9+FM6gfkE+xEtrzbtDttUV9zTkGUFvH9op7JzM+nLV4AENpOskazjT9U8aq7MZnoMD
+	W4tcSoLs6XxXv7DwwM+7J8s8gUfUWXLuT1rJh8I5D43Q/hbud7BrCa6uw1G4qqqYHKma
+	SpUpt9C6nEnr7OV2sbOxiMIu2b1VDqvK7xuo9da6o1mJY7Jyv4PG1k1ooEqS3RAWOmcZ
+	0ooQ==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: i think the list of "required software" needs to be clarified
+X-Received: by 10.58.205.179 with SMTP id lh19mr19034600vec.7.1365515626736;
+	Tue, 09 Apr 2013 06:53:46 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.70.141 with HTTP; Tue, 9 Apr 2013 06:53:46 -0700 (PDT)
+In-Reply-To: <20130409125403.GC2474@jama>
+References: <CAFMfyzLjJPfRY++w1WPn24rHu6wJr_H_V9D8MZhUXc5N1u8XWQ@mail.gmail.com>
+	<20130409125403.GC2474@jama>
+Date: Tue, 9 Apr 2013 15:53:46 +0200
+X-Google-Sender-Auth: OUwXaREo-1eP7rvPqqA61wRf75E
+Message-ID: <CAFMfyz+04EeUJ2QqqzBsKoFDOe5YXX7HtTRWWmBvSvK5nZHqVw@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>, yocto@yoctoproject.org
+Subject: Re: systemd vs sysvinit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,47 +40,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 13:10:31 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 09 Apr 2013 13:53:47 -0000
+Content-Type: multipart/alternative; boundary=089e011841a0ddf48904d9ede1cf
+
+--089e011841a0ddf48904d9ede1cf
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello Martin, I didnot find it.. Is it possible to send me a link so that I
+can work on it
+
+Greets,
+Satya
 
 
-  i just found an old thread that i was in:
+On Tue, Apr 9, 2013 at 2:54 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
 
-http://lists.linuxtogo.org/pipermail/openembedded-core/2012-July/025402.html
+> On Tue, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:
+> > Hi, I created two images first by using sysvinit and the other using
+> > systemd... The image using sysvinit works perfectly but the image with
+> > systemd works only from the second boot. In the first boot it hangs. What
+> > could be the possible reasons?
+>
+> run-postinst service probably, see my e-mail in oe-core ML
+>
+> --
+> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+>
 
-i do notice what seems to be an inconsistency.  from bitbake.conf:
+--089e011841a0ddf48904d9ede1cf
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-ASSUME_PROVIDED = "\
-    bzip2-native \
-    chrpath-native \
-    git-native \
-    grep-native \
-    diffstat-native \
-    patch-native \
-    perl-native-runtime \
-    python-native-runtime \
-    tar-native \
-    virtual/libintl-native \
-    "
-# gzip-native should be listed above?
+<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">Hello Martin, I didnot find it.. Is it possible to send me a link so that=
+ I can work on it</span><div style=3D"font-family:arial,sans-serif;font-siz=
+e:13px">
+<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">Greets=
+,</div><div style=3D"font-family:arial,sans-serif;font-size:13px">Satya</di=
+v></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tu=
+e, Apr 9, 2013 at 2:54 PM, Martin Jansa <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gmail.com</a>&g=
+t;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On T=
+ue, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:<br>
+&gt; Hi, I created two images first by using sysvinit and the other using<b=
+r>
+&gt; systemd... The image using sysvinit works perfectly but the image with=
+<br>
+&gt; systemd works only from the second boot. In the first boot it hangs. W=
+hat<br>
+&gt; could be the possible reasons?<br>
+<br>
+</div></div>run-postinst service probably, see my e-mail in oe-core ML<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+Martin &#39;JaMa&#39; Jansa =A0 =A0 jabber: <a href=3D"mailto:Martin.Jansa@=
+gmail.com">Martin.Jansa@gmail.com</a><br>
+</font></span></blockquote></div><br></div>
 
-  so gzip is listed here as questionable, but seems to be essential
-based on sanity.bbclass:
-
-SANITY_REQUIRED_UTILITIES ?= "patch diffstat makeinfo git bzip2 tar
-gzip gawk chrpath wget cpio"
-
-  does that not seem a touch inconsistent?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--089e011841a0ddf48904d9ede1cf--
