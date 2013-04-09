@@ -1,34 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9D3BE01460
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 14:46:41 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:56595 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UPgNE-0006Km-KW; Tue, 09 Apr 2013 17:46:40 -0400
-Date: Tue, 9 Apr 2013 17:46:37 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Trevor Woerner <twoerner@gmail.com>
-In-Reply-To: <CAHUNapRQTMvCE=8RLNhae+sm6=VN7pP4TfbBBM0nvcCR5aTmkQ@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1304091746080.4929@oneiric>
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89948E00AFC
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 15:06:57 -0700 (PDT)
+Received: by mail-wi0-f173.google.com with SMTP id ez12so4214570wid.12
+	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 15:06:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=bMsof/Oko2ZXUJEgZNhzG+aAs4SdlzvxWFUKXIeqXPQ=;
+	b=s1K1d1hTEgy5P4MVwg1jgsS4JFoBxFSjcBHkecniVvdMoQaJMRMfuKzHeSI8WA+DwT
+	pNA3E0bF9jh3xfWVydTR0iHgXeJhRhZwZhBgoQuG6znJmEFLY1XAUbfQuDQqhHIIbOoX
+	tdhd7hjRxeU1stp4s5oxQ6GMJ3p/sMifXNyUEhzJQG4efLT2vlqi6YNdcxEn6ZSRhvxa
+	SZ64v2Ml2JdE/MMTc9XHCKHHJJEKQYzXtceQezrjIr5dOaqjk5381+HgDv36ecwtMw5m
+	zC+gqyzRr3qPbU5lW/2NNscj2/uzAo8/yABdEWlkYmOvMzjXdKi9aRjvtAwPpW70mUfc
+	9LMw==
+MIME-Version: 1.0
+X-Received: by 10.194.157.42 with SMTP id wj10mr41743944wjb.12.1365545216370; 
+	Tue, 09 Apr 2013 15:06:56 -0700 (PDT)
+Received: by 10.194.45.100 with HTTP; Tue, 9 Apr 2013 15:06:56 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1304091746080.4929@oneiric>
 References: <alpine.DEB.2.02.1304081135020.23038@oneiric>
 	<1365469127.17697.70.camel@empanada>
 	<alpine.DEB.2.02.1304090729220.4184@oneiric>
 	<CAHUNapRQTMvCE=8RLNhae+sm6=VN7pP4TfbBBM0nvcCR5aTmkQ@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+	<alpine.DEB.2.02.1304091746080.4929@oneiric>
+Date: Tue, 9 Apr 2013 18:06:56 -0400
+Message-ID: <CAHUNapTHjYk6fWdRsk0-xLBEP5kUgnCR7Ss3TrvTuE9svgnKjQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: working my way through the kernel hands-on labs finally
 X-BeenThere: yocto@yoctoproject.org
@@ -42,32 +42,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 21:46:42 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 09 Apr 2013 22:06:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, 9 Apr 2013, Trevor Woerner wrote:
+On Tue, Apr 9, 2013 at 5:46 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>   ok, so what am i looking for?
 
-> Hi Robert,
->
-> Since you're working your way through the labs, I was wondering if
-> you'd be interested in testing something out for me? When I went
-> through these labs I had set my PACKAGE_CLASSES to package_ipk instead
-> of the default package_rpm. While doing so I had discovered a bug
-> which I reported, but nobody else (to my knowledge) tried to reproduce
-> the issue. Would you mind working through the labs with package_ipk
-> and seeing if there are some things that don't work as advertised?
+I couldn't get lab3 to work fully unless I switched from package_ipk
+to package_rpm. The module would get built and included in the image,
+but it wasn't being loaded automatically during boot. At the time I
+tried against the master HEAD and everything worked fine, so whatever
+it is I think I've found, it has been fixed (this is only a
+danny-8.0.1 problem).
 
-  ok, so what am i looking for?
+https://lists.yoctoproject.org/pipermail/yocto/2013-February/014424.html
 
-rday
+When I mentioned it, it didn't seem to make sense that the choice of
+packaging should affect something like this. But I tried it a couple
+times on my machine and could reproduce it. I don't think anyone else
+tried reproducing it.
 
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+This might be of interest to anyone still using danny.
 
