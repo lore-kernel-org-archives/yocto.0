@@ -1,49 +1,28 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-bk0-f51.google.com (mail-bk0-f51.google.com
-	[209.85.214.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8991E0121A
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 09:09:13 -0700 (PDT)
-Received: by mail-bk0-f51.google.com with SMTP id y8so3664009bkt.24
-	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 09:09:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=I700v8OBMM4Pnc+KZdbPSX9qISbosYcZlxbvp7/KX4A=;
-	b=dTnv9HbIMVO46ZWhj0dIdT1qCtagnuhBQQn4HC9a355GNM0Vo9LdVF2c1vUIX62jZK
-	VgGYfuRP3tTmKv5QOVj0ScnSG/jqfh9WRKck4bKxrv+e937pPZij4Euj9QK9MYT9kr2c
-	p1n08YhPnw72SOr4IoA7xUNhK6D+YVRe5pBsc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=I700v8OBMM4Pnc+KZdbPSX9qISbosYcZlxbvp7/KX4A=;
-	b=I+3S+SH1K6Kozhe9In3SaGd7MXketNqIyufAEmtrDEcTD3Gbe3QGe1mblQFR85KgYk
-	5PJLe8+sej8g5urVO3wI2dJaFskmWygOGdu6yH6IwxJcp1WCpXuDrqv+yOIbGMtQMjD4
-	cungsv9cQ/4nE9bdC3aQAhAqSLiRPffMSh0wbEyDYKX9NJM/M9G6R3hEc5PGLFPxVjk4
-	zs8XTxi80oM5+/Pl2ZX4rLYHtOukdqOIoyEC1Ece3y34GrCR/f4UvOor3rmVA/IvszuZ
-	geACnMSigiuSHXB5PtQohcDYdei9XB0usYe41qikpInbCOnswBFcqqwkZpIghQMsXu67
-	FVhw==
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qe0-f48.google.com (mail-qe0-f48.google.com
+	[209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F202E00499
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 10:20:36 -0700 (PDT)
+Received: by mail-qe0-f48.google.com with SMTP id 2so3761244qea.21
+	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 10:20:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=osu4Kh9PhM3MGDuTsXHBkFNDIjnEFAtv6inDBgBY5vs=;
+	b=Cec15gpWCleLmSv6q8Dvf6Cq63aQ7WIDVBbdtDPofQO2CjwyvllFr0Uuh8DVUzRlh9
+	wLS7NCD7UX7R2HT6hRtm1JjYsbt3xGw8GyfzEmYPC8ccYw7zmW5Z5zCqP28mzc3Cnajt
+	emV7L0d4r+diPvn8QGismj6bZuw2inrSVMf843r0tLlT3t8qSVKoj2N10wqUo/EX6Rwr
+	ih1qZHqdbn/eDysJWZ/NfqamCwR0GvCnBjNOlWhAZMxeiJew1lAqigKgHQg3o6mvM0qJ
+	qsURK3GIfjBy1N+Nu4b+NXn4yP8s6u97HleRjlnd2OZc89x6YHkTYrG2Zhz6Ch2OUGvZ
+	Hf4Q==
 MIME-Version: 1.0
-X-Received: by 10.205.17.200 with SMTP id qd8mr12974125bkb.36.1365523752558;
-	Tue, 09 Apr 2013 09:09:12 -0700 (PDT)
-Received: by 10.204.237.74 with HTTP; Tue, 9 Apr 2013 09:09:12 -0700 (PDT)
-In-Reply-To: <36ED13F3654AE54CA763E6821D93A57122D7FD5E@szxeml534-mbs.china.huawei.com>
-References: <36ED13F3654AE54CA763E6821D93A571104C91C9@szxeml534-mbx.china.huawei.com>
-	<000301ce3185$ab049a20$010dce60$@annabooks.com>
-	<CAHUNapRQ+hWo7P2eXUYNof=MsqJVDRY2HE4KV8-=dOeUro=scQ@mail.gmail.com>
-	<000001ce34a2$f584a3e0$e08deba0$@annabooks.com>
-	<CAHUNapQkneoLF7_7DBFxd+Cm23iTBkJezDsy4NEq9v06GiSybw@mail.gmail.com>
-	<CA+gsK-p1AradoFSPrwE-oiWF2NQtaEjiq4GQUqK47cEi4fXQpA@mail.gmail.com>
-	<36ED13F3654AE54CA763E6821D93A57122D7FD5E@szxeml534-mbs.china.huawei.com>
-Date: Tue, 9 Apr 2013 09:09:12 -0700
-Message-ID: <CA+gsK-qy_MO_RxvaRWwHYVHNW3-zUt+E488kxgwQPmHJ+jyV2Q@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
-X-Gm-Message-State: ALoCoQldlBOWEWdlk5LoxM9deHMg+te10j6rcUZRyqx4SAFgqCF0+xlZrwDQ2M9ExTP3ts0IYNlK
-Cc: Sanil kumar <sanil.kumar@huawei.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RFC: Post build configuration
+X-Received: by 10.224.115.210 with SMTP id j18mr6171437qaq.16.1365528036374;
+	Tue, 09 Apr 2013 10:20:36 -0700 (PDT)
+Received: by 10.49.35.140 with HTTP; Tue, 9 Apr 2013 10:20:36 -0700 (PDT)
+Date: Tue, 9 Apr 2013 19:20:36 +0200
+Message-ID: <CAFyqS9pVw2AvNHosX__o-73C7oeMFkbFs03XdQKXTWBVTtQtLw@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: /etc/inittab generated incorrectly?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,49 +34,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 16:09:14 -0000
-Content-Type: multipart/alternative; boundary=20cf3022361d3464e404d9efc60f
-
---20cf3022361d3464e404d9efc60f
+X-List-Received-Date: Tue, 09 Apr 2013 17:20:37 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Ramana,
+I am having an issue with the /etc/inittab file that seems to be
+incorrectly generated causing the following error at boot:
+   INIT: version 2.88 booting
+   INIT: /etc/inittab[42]: duplicate ID field "1"usb 1-1.1: new
+high-speed USB device number 3 using xusbps-ehci
 
-Maybe I do not understand what exactly you are looking for. Maybe you have
-some concrete examples.
+The reason for this error is due to the 'id' being incorrectly
+assigned to the getty ports in initttab, here is a sample from my
+version of it:
 
-Anything that somehow changes the configuration of the target has to go
-into the root file system one way or the other. You can easily include
-packages into the root file system by adding them to the IMAGE_INSTALL
-variable. But no matter what BitBake will have to re-run the tasks building
-the root file system.
+<snip>
+# Normally not reached, but fallthrough in case of emergency.
+z6:6:respawn:/sbin/sulogin
+0:12345:respawn:/sbin/getty 115200 ttyUSB0
+1:12345:respawn:/sbin/getty 115200 ttyPS0
+# /sbin/getty invocations for the runlevels.
+#
+# The "id" field MUST be the same as the last
+# characters of the device (after "tty").
+#
+# Format:
+#  <id>:<runlevels>:<action>:<process>
+#
 
-That works fine for a small number of devices but it does not scale. If you
-need to scale it you need to do configuration management after you have
-brought up the device for the first time during test. Then you can use the
-package manager to install new packages.
+1:2345:respawn:/sbin/getty 38400 tty1
+<snip>
 
-:rjs
+The getty started for ttyPS0 and tty1 is assigned with the same id.
+I think that for the entries to be unique, the ids should have been
+assigned as 'USB0', 'PS0' and '1' respectively. At least that is what
+is hinted by the comment in inittab itself ;) If I look inside
+sysvinit-inittab_2.88dsf.bb I can see that the tty1 entry was added
+because of having USE_VT=1. The others are coming from SERIAL_CONSOLES
+in my machine .conf.
+Is there some known limitation that USE_VT may not be used in
+combination with SERIAL_CONSOLES? If I use SERIAL_CONSOLE instead it
+works since the id is hardcoded to 'S'. It could be argued if this is
+right or wrong, but at least it avoids the clash in id allocation from
+USE_VT. But I need multiple gettys started so using SERIAL_CONSOLE is
+not an option in this case.
 
---20cf3022361d3464e404d9efc60f
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Would this be a bug worth fixing or is my only option here to instead
+set USE_VT=0?
+I guess one possible solution would be to assume 'tty' as prefix and
+then use the rest as suffix in the id field instead of now simply
+using the loop iterator?
+Actually I am not even sure I need a getty to be started on tty1!? Is
+it common praxis to have such an entry? I will only attach to the
+board through the physical serial connections or ssh. The last commit
+I see of this file is
 
-<div dir=3D"ltr">Ramana,<div><br></div><div>Maybe I do not understand what =
-exactly you are looking for. Maybe you have some concrete examples.</div><d=
-iv><br></div><div>Anything that somehow changes the configuration of the ta=
-rget has to go into the root file system one way or the other. You can easi=
-ly include packages into the root file system by adding them to the IMAGE_I=
-NSTALL variable. But no matter what BitBake will have to re-run the tasks b=
-uilding the root file system.<br>
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra" style>That =
-works fine for a small number of devices but it does not scale. If you need=
- to scale it you need to do configuration management after you have brought=
- up the device for the first time during test. Then you can use the package=
- manager to install new packages.</div>
-<div class=3D"gmail_extra" style><br></div><div class=3D"gmail_extra" style=
->:rjs</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote"><b=
-r></div>
-</div></div></div>
+commit 074d49d2cc8bbc1a53a031d9ae0c828596017ed2
+Author: Zhenhua Luo <b19537@freescale.com>
+Date:   Wed Sep 26 15:18:37 2012 +0800
 
---20cf3022361d3464e404d9efc60f--
+Regards,
+Hans
+
