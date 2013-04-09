@@ -1,34 +1,59 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
-	[74.125.82.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A3D7E00AFC
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 10:30:16 -0700 (PDT)
-Received: by mail-we0-f181.google.com with SMTP id d7so5541167wer.12
-	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 10:30:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=T7ectMK+PLbrTKUepNnXgAn6Z2f4w2IeMro+iy3+f8E=;
-	b=uQaR+E3okGSmwB+vFOW0Xmu6amVIW+KMVfA5ujLnM/KnNUyBc508scR6vkceLYS5I1
-	O06ijxxHNy4MFW/99LLBPus7M3SHWELM0OPtxwFZ3UZykQiSo5GJkwuRUAapRXnhkzcJ
-	GCgojG6KzM5rX5y7XX7a9z3j2jqbdodZIOXc8kYNQ8BX89V1vhW+oM6gC9JuYcBcPvLG
-	8d1B5o7YvsSxIeWNRvXtsFPab5Rc1Ri9TRHVC2LciC+tXy9cP2h4gKss56NmlvE+4m7E
-	kisnziBCdimzjvYpSZmaXv/ZmacRgstWUxHlmkTncRIfq31v+B8i6kKVSRtoTv7yq16w
-	6PRQ==
+Return-Path: <tim.bird@am.sony.com>
+Received: from tx2outboundpool.messaging.microsoft.com
+	(tx2ehsobe001.messaging.microsoft.com [65.55.88.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 144C3E00AFC
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 10:37:30 -0700 (PDT)
+Received: from mail38-tx2-R.bigfish.com (10.9.14.248) by
+	TX2EHSOBE004.bigfish.com (10.9.40.24) with Microsoft SMTP Server id
+	14.1.225.23; Tue, 9 Apr 2013 17:37:29 +0000
+Received: from mail38-tx2 (localhost [127.0.0.1])	by mail38-tx2-R.bigfish.com
+	(Postfix) with ESMTP id 6AF9F200E9	for <yocto@yoctoproject.org>;
+	Tue,  9 Apr 2013 17:37:29 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:160.33.194.231; KIP:(null); UIP:(null);
+	IPV:NLI; H:usculsndmail04v.am.sony.com; RD:mail04.sonyusa.com;
+	EFVD:NLI
+X-SpamScore: -3
+X-BigFish: VPS-3(zzbb2dI98dI9371Izz1f42h1fc6h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ahzzz2fh2a8h668h839h93fhd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h1765h18e1h190ch1946h19b4h19c3h1b0ah1155h)
+Received-SPF: pass (mail38-tx2: domain of am.sony.com designates
+	160.33.194.231 as permitted sender) client-ip=160.33.194.231;
+	envelope-from=tim.bird@am.sony.com;
+	helo=usculsndmail04v.am.sony.com ; .am.sony.com ; 
+Received: from mail38-tx2 (localhost.localdomain [127.0.0.1]) by mail38-tx2
+	(MessageSwitch) id 1365529047133711_3426;
+	Tue,  9 Apr 2013 17:37:27 +0000 (UTC)
+Received: from TX2EHSMHS041.bigfish.com (unknown [10.9.14.238])	by
+	mail38-tx2.bigfish.com (Postfix) with ESMTP id 1BD0240004D	for
+	<yocto@yoctoproject.org>; Tue,  9 Apr 2013 17:37:27 +0000 (UTC)
+Received: from usculsndmail04v.am.sony.com (160.33.194.231) by
+	TX2EHSMHS041.bigfish.com (10.9.99.141) with Microsoft SMTP Server (TLS)
+	id 14.1.225.23; Tue, 9 Apr 2013 17:37:26 +0000
+Received: from usculsndmail12v.am.sony.com (usculsndmail12v.am.sony.com
+	[146.215.230.103])	by usculsndmail04v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id
+	r39HbP4T025653	for
+	<yocto@yoctoproject.org>; Tue, 9 Apr 2013 17:37:25 GMT
+Received: from mail1x.sgo.in.sel.sony.com (mail4.bc.in.sel.sony.com
+	[43.130.1.112])	by usculsndmail12v.am.sony.com
+	(Sentrion-MTA-4.2.2/Sentrion-MTA-4.2.2) with ESMTP id r39HbN5L016538
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256
+	verify=FAIL)	for
+	<yocto@yoctoproject.org>; Tue, 9 Apr 2013 17:37:25 GMT
+Received: from [43.135.148.222] ([43.135.148.222])	by
+	mail1x.sgo.in.sel.sony.com (Switch-3.4.2/Switch-3.4.2) with ESMTP id
+	r39HbMES015748	for <yocto@yoctoproject.org>;
+	Tue, 9 Apr 2013 17:37:22 GMT
+Message-ID: <516452DF.3050605@am.sony.com>
+Date: Tue, 9 Apr 2013 10:41:51 -0700
+From: Tim Bird <tim.bird@am.sony.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
 MIME-Version: 1.0
-X-Received: by 10.194.178.100 with SMTP id cx4mr40385594wjc.47.1365528614364; 
-	Tue, 09 Apr 2013 10:30:14 -0700 (PDT)
-Received: by 10.194.243.137 with HTTP; Tue, 9 Apr 2013 10:30:14 -0700 (PDT)
-In-Reply-To: <CAFMfyz+04EeUJ2QqqzBsKoFDOe5YXX7HtTRWWmBvSvK5nZHqVw@mail.gmail.com>
-References: <CAFMfyzLjJPfRY++w1WPn24rHu6wJr_H_V9D8MZhUXc5N1u8XWQ@mail.gmail.com>
-	<20130409125403.GC2474@jama>
-	<CAFMfyz+04EeUJ2QqqzBsKoFDOe5YXX7HtTRWWmBvSvK5nZHqVw@mail.gmail.com>
-Date: Tue, 9 Apr 2013 19:30:14 +0200
-Message-ID: <CA+chaQewTUOhCotVwyM2S7nqjH0aHHEcbvqvEUsw4=Co5gKRRA@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: systemd vs sysvinit
+To: <yocto@yoctoproject.org>
+References: <alpine.DEB.2.02.1304090833380.5655@oneiric>
+	<alpine.DEB.2.02.1304090906420.6611@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1304090906420.6611@oneiric>
+X-OriginatorOrg: am.sony.com
+Subject: Patch version gotchas (was Re: i think the list of "required software" needs to be clarified)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,88 +65,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 17:30:16 -0000
-Content-Type: multipart/alternative; boundary=089e013d1be8fd99b904d9f0e71c
+X-List-Received-Date: Tue, 09 Apr 2013 17:37:30 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---089e013d1be8fd99b904d9f0e71c
-Content-Type: text/plain; charset=UTF-8
+On 04/09/2013 06:10 AM, Robert P. J. Day wrote:
+> SANITY_REQUIRED_UTILITIES ?= "patch diffstat makeinfo git bzip2 tar
+> gzip gawk chrpath wget cpio"
 
-I meant this thread
-http://lists.linuxtogo.org/pipermail/openembedded-core/2013-March/037660.html
+This is just a generic warning on the subject of native patch.
+We recently had a discussion on the LTSI-dev mailing list about
+patch.  It seems that some patches produced by git now require
+a later version of patch than was shipped in relatively recent
+platforms(e.g. Ubuntu 12.04 shipped with patch 2.6.1)
 
-But looking at it again, it probably won't help you much :/.
+Based on this, at Sony we intended to switch over to patch 2.7
+(which has explicit support for "diff --git" format)
+Unfortunately, we found that some of our patches were not compatible
+with this version of patch, and thus found ourselves in
+a pickle.  We now have to switch between patch versions, depending
+on the project and set of patches we're working on.
+
+=============================
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Network Entertainment
+=============================
 
 
-On Tue, Apr 9, 2013 at 3:53 PM, Satya Swaroop Damarla <
-swaroop.damarla@gmail.com> wrote:
-
-> Hello Martin, I didnot find it.. Is it possible to send me a link so that
-> I can work on it
->
-> Greets,
-> Satya
->
->
-> On Tue, Apr 9, 2013 at 2:54 PM, Martin Jansa <martin.jansa@gmail.com>wrote:
->
->> On Tue, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:
->> > Hi, I created two images first by using sysvinit and the other using
->> > systemd... The image using sysvinit works perfectly but the image with
->> > systemd works only from the second boot. In the first boot it hangs.
->> What
->> > could be the possible reasons?
->>
->> run-postinst service probably, see my e-mail in oe-core ML
->>
->> --
->> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
->>
->
->
-
---089e013d1be8fd99b904d9f0e71c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div style>I meant this thread</div><a href=3D"http://list=
-s.linuxtogo.org/pipermail/openembedded-core/2013-March/037660.html">http://=
-lists.linuxtogo.org/pipermail/openembedded-core/2013-March/037660.html</a><=
-br>
-<div><br></div><div style>But looking at it again, it probably won&#39;t he=
-lp you much :/.</div></div><div class=3D"gmail_extra"><br><br><div class=3D=
-"gmail_quote">On Tue, Apr 9, 2013 at 3:53 PM, Satya Swaroop Damarla <span d=
-ir=3D"ltr">&lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blan=
-k">swaroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im"><div dir=3D"ltr"><span sty=
-le=3D"font-family:arial,sans-serif;font-size:13px">Hello Martin, I didnot f=
-ind it.. Is it possible to send me a link so that I can work on it</span><d=
-iv style=3D"font-family:arial,sans-serif;font-size:13px">
-
-<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">Greets=
-,</div><div style=3D"font-family:arial,sans-serif;font-size:13px">Satya</di=
-v></div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote"=
-><div class=3D"im">
-On Tue, Apr 9, 2013 at 2:54 PM, Martin Jansa <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gmail.com=
-</a>&gt;</span> wrote:<br>
-</div><div><div class=3D"h5"><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div>On Tu=
-e, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:<br>
-&gt; Hi, I created two images first by using sysvinit and the other using<b=
-r>
-&gt; systemd... The image using sysvinit works perfectly but the image with=
-<br>
-&gt; systemd works only from the second boot. In the first boot it hangs. W=
-hat<br>
-&gt; could be the possible reasons?<br>
-<br>
-</div></div>run-postinst service probably, see my e-mail in oe-core ML<br>
-<span><font color=3D"#888888"><br>
---<br>
-Martin &#39;JaMa&#39; Jansa =C2=A0 =C2=A0 jabber: <a href=3D"mailto:Martin.=
-Jansa@gmail.com" target=3D"_blank">Martin.Jansa@gmail.com</a><br>
-</font></span></blockquote></div></div></div><br></div>
-</blockquote></div><br></div>
-
---089e013d1be8fd99b904d9f0e71c--
