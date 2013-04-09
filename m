@@ -1,21 +1,21 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6F48E01469
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 04:27:56 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC4D2E01469
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 04:32:07 -0700 (PDT)
 Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:53978 helo=crashcourse.ca)
+	([99.240.144.66]:53999 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UPWiQ-0003KE-Tc; Tue, 09 Apr 2013 07:27:54 -0400
-Date: Tue, 9 Apr 2013 07:27:51 -0400 (EDT)
+	id 1UPWmV-0003Us-4s; Tue, 09 Apr 2013 07:32:07 -0400
+Date: Tue, 9 Apr 2013 07:32:03 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-In-Reply-To: <5163442A.7070801@windriver.com>
-Message-ID: <alpine.DEB.2.02.1304090718010.3901@oneiric>
-References: <alpine.DEB.2.02.1304081757170.3910@oneiric>
-	<5163442A.7070801@windriver.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+In-Reply-To: <1365469127.17697.70.camel@empanada>
+Message-ID: <alpine.DEB.2.02.1304090729220.4184@oneiric>
+References: <alpine.DEB.2.02.1304081135020.23038@oneiric>
+	<1365469127.17697.70.camel@empanada>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -28,7 +28,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: what's the situation with MIPS support/BSPs/dev kits in yocto?
+Subject: Re: working my way through the kernel hands-on labs finally
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,53 +40,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 11:27:57 -0000
+X-List-Received-Date: Tue, 09 Apr 2013 11:32:08 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Mon, 8 Apr 2013, Bruce Ashfield wrote:
+On Mon, 8 Apr 2013, Tom Zanussi wrote:
 
-> On 13-04-08 5:59 PM, Robert P. J. Day wrote:
+> On Mon, 2013-04-08 at 11:41 -0400, Robert P. J. Day wrote:
+> > finally have the time to work my way through the ELC 2013 hands on
+> > kernel labs described here:
 > >
-> >    other than the canonical routerstation pro in the meta-yocto-bsp
-> > layer, is there any serious work being put into MIPS machines?  a
-> > quick google didn't seem to find anything, and the rs pro itself was
-> > end-of-lifed a while back (as i recall), so is there something else if
-> > one wants to use yocto on a MIPS dev kit?
+> > https://www.yoctoproject.org/tools-resources/presentations/working-kernel
+> >
+> > since i'll almost certainly use some of them in my next yocto course,
+> > so the occasional question for anyone who's already been down this
+> > road.  start with lab 1.
+> >
+> >   the doc mentions including the meta-yocto and meta-yocto-bsp
+> > layers -- are those strictly necessary? the layer.conf definition
+> > file for the lab1 layer doesn't list those layers as dependencies.
+> > what will happen if i leave them out? what's the policy on
+> > explicitly listing dependencies on those two layers in a new
+> > layer?
+> >
 >
-> From: https://bugzilla.yoctoproject.org/show_bug.cgi?id=2444
->
-> MIPS suggested refresh: http://www.ubnt.com/edgemax
->
-> .. but I've yet to complete the due diligence on seeing if I can
-> actually purchase one :) That's going to happen shortly after yocto
-> 1.4 completes.
+> The bblayers.conf for the labs is just the bblayers.conf that gets
+> generated the first time you source oe-init-build-env in poky, which
+> is what the lab is based on.  You shouldn't need those layers - the
+> BSPs should work fine outside of poky, but since this is a yocto lab
+> and it uses poky, there's no need to make a point of removing them -
+> actually, I haven't tried removing those layers - meta-yocto-bsp
+> could certainly be removed since it's all machine-specific to
+> existing BSPs, but it's easy enough to remove them and see...
 
-  i ordered one last night -- total $159.79 (CAD), including
-shipping. it took a couple minutes to understand what i was reading
-here:
+  i took them out since i'm a minimalist -- i really like to strip out
+anything that doesn't need to be there to avoid any unexpected side
+effects.  so far, doesn't seem to have made a difference, and i didn't
+expect it to.
 
-http://ubnt.ca/en/8-edgemax
-
-  "edgemax" is simply the generic name for the "platform" -- the
-product itself is the edgerouter lite 3 (or "erlite3" as they like to
-abbreviate it):
-
-http://ubnt.ca/en/edgemax/61-edgemax.html
-
-so the next shipment comes in on friday to ubnt.ca, at which point
-they'll ship one to me.  the admin claims that they're getting in only
-a "very limited" number of them on friday, so you can take that with
-whatever grain of salt you feel is appropriate, but i wanted one.
+  to lab 2.  and beyond!
 
 rday
-
-p.s. i was interested in a newer MIPS box as a former student of mine
-dropped me a note and told me his corp was planning a new product
-based on the MIPS SEAD-3:
-
-http://www.mips.com/products/development-kits/mips-sead-3/
-
-but that thing is crazy expensive ($2K USD).
 
 -- 
 
