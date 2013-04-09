@@ -1,28 +1,34 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qe0-f48.google.com (mail-qe0-f48.google.com
-	[209.85.128.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F202E00499
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 10:20:36 -0700 (PDT)
-Received: by mail-qe0-f48.google.com with SMTP id 2so3761244qea.21
-	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 10:20:36 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
+	[74.125.82.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A3D7E00AFC
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 10:30:16 -0700 (PDT)
+Received: by mail-we0-f181.google.com with SMTP id d7so5541167wer.12
+	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 10:30:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=osu4Kh9PhM3MGDuTsXHBkFNDIjnEFAtv6inDBgBY5vs=;
-	b=Cec15gpWCleLmSv6q8Dvf6Cq63aQ7WIDVBbdtDPofQO2CjwyvllFr0Uuh8DVUzRlh9
-	wLS7NCD7UX7R2HT6hRtm1JjYsbt3xGw8GyfzEmYPC8ccYw7zmW5Z5zCqP28mzc3Cnajt
-	emV7L0d4r+diPvn8QGismj6bZuw2inrSVMf843r0tLlT3t8qSVKoj2N10wqUo/EX6Rwr
-	ih1qZHqdbn/eDysJWZ/NfqamCwR0GvCnBjNOlWhAZMxeiJew1lAqigKgHQg3o6mvM0qJ
-	qsURK3GIfjBy1N+Nu4b+NXn4yP8s6u97HleRjlnd2OZc89x6YHkTYrG2Zhz6Ch2OUGvZ
-	Hf4Q==
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=T7ectMK+PLbrTKUepNnXgAn6Z2f4w2IeMro+iy3+f8E=;
+	b=uQaR+E3okGSmwB+vFOW0Xmu6amVIW+KMVfA5ujLnM/KnNUyBc508scR6vkceLYS5I1
+	O06ijxxHNy4MFW/99LLBPus7M3SHWELM0OPtxwFZ3UZykQiSo5GJkwuRUAapRXnhkzcJ
+	GCgojG6KzM5rX5y7XX7a9z3j2jqbdodZIOXc8kYNQ8BX89V1vhW+oM6gC9JuYcBcPvLG
+	8d1B5o7YvsSxIeWNRvXtsFPab5Rc1Ri9TRHVC2LciC+tXy9cP2h4gKss56NmlvE+4m7E
+	kisnziBCdimzjvYpSZmaXv/ZmacRgstWUxHlmkTncRIfq31v+B8i6kKVSRtoTv7yq16w
+	6PRQ==
 MIME-Version: 1.0
-X-Received: by 10.224.115.210 with SMTP id j18mr6171437qaq.16.1365528036374;
-	Tue, 09 Apr 2013 10:20:36 -0700 (PDT)
-Received: by 10.49.35.140 with HTTP; Tue, 9 Apr 2013 10:20:36 -0700 (PDT)
-Date: Tue, 9 Apr 2013 19:20:36 +0200
-Message-ID: <CAFyqS9pVw2AvNHosX__o-73C7oeMFkbFs03XdQKXTWBVTtQtLw@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: /etc/inittab generated incorrectly?
+X-Received: by 10.194.178.100 with SMTP id cx4mr40385594wjc.47.1365528614364; 
+	Tue, 09 Apr 2013 10:30:14 -0700 (PDT)
+Received: by 10.194.243.137 with HTTP; Tue, 9 Apr 2013 10:30:14 -0700 (PDT)
+In-Reply-To: <CAFMfyz+04EeUJ2QqqzBsKoFDOe5YXX7HtTRWWmBvSvK5nZHqVw@mail.gmail.com>
+References: <CAFMfyzLjJPfRY++w1WPn24rHu6wJr_H_V9D8MZhUXc5N1u8XWQ@mail.gmail.com>
+	<20130409125403.GC2474@jama>
+	<CAFMfyz+04EeUJ2QqqzBsKoFDOe5YXX7HtTRWWmBvSvK5nZHqVw@mail.gmail.com>
+Date: Tue, 9 Apr 2013 19:30:14 +0200
+Message-ID: <CA+chaQewTUOhCotVwyM2S7nqjH0aHHEcbvqvEUsw4=Co5gKRRA@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: systemd vs sysvinit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,64 +40,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 17:20:37 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 09 Apr 2013 17:30:16 -0000
+Content-Type: multipart/alternative; boundary=089e013d1be8fd99b904d9f0e71c
 
-I am having an issue with the /etc/inittab file that seems to be
-incorrectly generated causing the following error at boot:
-   INIT: version 2.88 booting
-   INIT: /etc/inittab[42]: duplicate ID field "1"usb 1-1.1: new
-high-speed USB device number 3 using xusbps-ehci
+--089e013d1be8fd99b904d9f0e71c
+Content-Type: text/plain; charset=UTF-8
 
-The reason for this error is due to the 'id' being incorrectly
-assigned to the getty ports in initttab, here is a sample from my
-version of it:
+I meant this thread
+http://lists.linuxtogo.org/pipermail/openembedded-core/2013-March/037660.html
 
-<snip>
-# Normally not reached, but fallthrough in case of emergency.
-z6:6:respawn:/sbin/sulogin
-0:12345:respawn:/sbin/getty 115200 ttyUSB0
-1:12345:respawn:/sbin/getty 115200 ttyPS0
-# /sbin/getty invocations for the runlevels.
-#
-# The "id" field MUST be the same as the last
-# characters of the device (after "tty").
-#
-# Format:
-#  <id>:<runlevels>:<action>:<process>
-#
+But looking at it again, it probably won't help you much :/.
 
-1:2345:respawn:/sbin/getty 38400 tty1
-<snip>
 
-The getty started for ttyPS0 and tty1 is assigned with the same id.
-I think that for the entries to be unique, the ids should have been
-assigned as 'USB0', 'PS0' and '1' respectively. At least that is what
-is hinted by the comment in inittab itself ;) If I look inside
-sysvinit-inittab_2.88dsf.bb I can see that the tty1 entry was added
-because of having USE_VT=1. The others are coming from SERIAL_CONSOLES
-in my machine .conf.
-Is there some known limitation that USE_VT may not be used in
-combination with SERIAL_CONSOLES? If I use SERIAL_CONSOLE instead it
-works since the id is hardcoded to 'S'. It could be argued if this is
-right or wrong, but at least it avoids the clash in id allocation from
-USE_VT. But I need multiple gettys started so using SERIAL_CONSOLE is
-not an option in this case.
+On Tue, Apr 9, 2013 at 3:53 PM, Satya Swaroop Damarla <
+swaroop.damarla@gmail.com> wrote:
 
-Would this be a bug worth fixing or is my only option here to instead
-set USE_VT=0?
-I guess one possible solution would be to assume 'tty' as prefix and
-then use the rest as suffix in the id field instead of now simply
-using the loop iterator?
-Actually I am not even sure I need a getty to be started on tty1!? Is
-it common praxis to have such an entry? I will only attach to the
-board through the physical serial connections or ssh. The last commit
-I see of this file is
+> Hello Martin, I didnot find it.. Is it possible to send me a link so that
+> I can work on it
+>
+> Greets,
+> Satya
+>
+>
+> On Tue, Apr 9, 2013 at 2:54 PM, Martin Jansa <martin.jansa@gmail.com>wrote:
+>
+>> On Tue, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:
+>> > Hi, I created two images first by using sysvinit and the other using
+>> > systemd... The image using sysvinit works perfectly but the image with
+>> > systemd works only from the second boot. In the first boot it hangs.
+>> What
+>> > could be the possible reasons?
+>>
+>> run-postinst service probably, see my e-mail in oe-core ML
+>>
+>> --
+>> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+>>
+>
+>
 
-commit 074d49d2cc8bbc1a53a031d9ae0c828596017ed2
-Author: Zhenhua Luo <b19537@freescale.com>
-Date:   Wed Sep 26 15:18:37 2012 +0800
+--089e013d1be8fd99b904d9f0e71c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Regards,
-Hans
+<div dir=3D"ltr"><div style>I meant this thread</div><a href=3D"http://list=
+s.linuxtogo.org/pipermail/openembedded-core/2013-March/037660.html">http://=
+lists.linuxtogo.org/pipermail/openembedded-core/2013-March/037660.html</a><=
+br>
+<div><br></div><div style>But looking at it again, it probably won&#39;t he=
+lp you much :/.</div></div><div class=3D"gmail_extra"><br><br><div class=3D=
+"gmail_quote">On Tue, Apr 9, 2013 at 3:53 PM, Satya Swaroop Damarla <span d=
+ir=3D"ltr">&lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blan=
+k">swaroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im"><div dir=3D"ltr"><span sty=
+le=3D"font-family:arial,sans-serif;font-size:13px">Hello Martin, I didnot f=
+ind it.. Is it possible to send me a link so that I can work on it</span><d=
+iv style=3D"font-family:arial,sans-serif;font-size:13px">
 
+<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">Greets=
+,</div><div style=3D"font-family:arial,sans-serif;font-size:13px">Satya</di=
+v></div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote"=
+><div class=3D"im">
+On Tue, Apr 9, 2013 at 2:54 PM, Martin Jansa <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gmail.com=
+</a>&gt;</span> wrote:<br>
+</div><div><div class=3D"h5"><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div><div>On Tu=
+e, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:<br>
+&gt; Hi, I created two images first by using sysvinit and the other using<b=
+r>
+&gt; systemd... The image using sysvinit works perfectly but the image with=
+<br>
+&gt; systemd works only from the second boot. In the first boot it hangs. W=
+hat<br>
+&gt; could be the possible reasons?<br>
+<br>
+</div></div>run-postinst service probably, see my e-mail in oe-core ML<br>
+<span><font color=3D"#888888"><br>
+--<br>
+Martin &#39;JaMa&#39; Jansa =C2=A0 =C2=A0 jabber: <a href=3D"mailto:Martin.=
+Jansa@gmail.com" target=3D"_blank">Martin.Jansa@gmail.com</a><br>
+</font></span></blockquote></div></div></div><br></div>
+</blockquote></div><br></div>
+
+--089e013d1be8fd99b904d9f0e71c--
