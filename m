@@ -1,21 +1,19 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC4D2E01469
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 04:32:07 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB522E00597
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 05:45:54 -0700 (PDT)
 Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:53999 helo=crashcourse.ca)
+	([99.240.144.66]:54994 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UPWmV-0003Us-4s; Tue, 09 Apr 2013 07:32:07 -0400
-Date: Tue, 9 Apr 2013 07:32:03 -0400 (EDT)
+	id 1UPXvt-0006jQ-Vr
+	for yocto@yoctoproject.org; Tue, 09 Apr 2013 08:45:54 -0400
+Date: Tue, 9 Apr 2013 08:45:51 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: Tom Zanussi <tom.zanussi@intel.com>
-In-Reply-To: <1365469127.17697.70.camel@empanada>
-Message-ID: <alpine.DEB.2.02.1304090729220.4184@oneiric>
-References: <alpine.DEB.2.02.1304081135020.23038@oneiric>
-	<1365469127.17697.70.camel@empanada>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304090833380.5655@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -27,8 +25,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: working my way through the kernel hands-on labs finally
+Subject: i think the list of "required software" needs to be clarified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,44 +37,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 11:32:08 -0000
+X-List-Received-Date: Tue, 09 Apr 2013 12:45:55 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Mon, 8 Apr 2013, Tom Zanussi wrote:
 
-> On Mon, 2013-04-08 at 11:41 -0400, Robert P. J. Day wrote:
-> > finally have the time to work my way through the ELC 2013 hands on
-> > kernel labs described here:
-> >
-> > https://www.yoctoproject.org/tools-resources/presentations/working-kernel
-> >
-> > since i'll almost certainly use some of them in my next yocto course,
-> > so the occasional question for anyone who's already been down this
-> > road.  start with lab 1.
-> >
-> >   the doc mentions including the meta-yocto and meta-yocto-bsp
-> > layers -- are those strictly necessary? the layer.conf definition
-> > file for the lab1 layer doesn't list those layers as dependencies.
-> > what will happen if i leave them out? what's the policy on
-> > explicitly listing dependencies on those two layers in a new
-> > layer?
-> >
->
-> The bblayers.conf for the labs is just the bblayers.conf that gets
-> generated the first time you source oe-init-build-env in poky, which
-> is what the lab is based on.  You shouldn't need those layers - the
-> BSPs should work fine outside of poky, but since this is a yocto lab
-> and it uses poky, there's no need to make a point of removing them -
-> actually, I haven't tried removing those layers - meta-yocto-bsp
-> could certainly be removed since it's all machine-specific to
-> existing BSPs, but it's easy enough to remove them and see...
+  i know i've mentioned this before, but it's still somewhat confusing
+if a new yocto user wants to figure out *exactly* what he or she must
+install manually on a yocto development host.
 
-  i took them out since i'm a minimalist -- i really like to strip out
-anything that doesn't need to be there to avoid any unexpected side
-effects.  so far, doesn't seem to have made a difference, and i didn't
-expect it to.
+  there are a pile of web pages that claim to explain this:
 
-  to lab 2.  and beyond!
+http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html
+http://www.openembedded.org/index.php?title=OEandYourDistro
+http://www.openembedded.org/index.php?title=Required_software
+http://www.yoctoproject.org/docs/1.4/ref-manual/ref-manual.html#required-packages-for-the-host-development-system
+
+but they're inconsistent, and the bigger issue is this in
+bitbake.conf:
+
+  ASSUME_PROVIDED = "\
+    bzip2-native \
+    chrpath-native \
+    git-native \
+    grep-native \
+    diffstat-native \
+    patch-native \
+    perl-native-runtime \
+    python-native-runtime \
+    tar-native \
+    virtual/libintl-native \
+    "
+  # gzip-native should be listed above?
+
+it would *seem* that, for efficiency, the build process should take
+far more advantage of already-installed native packages. the above
+list is kind of weird in its selective inconsistency -- why is git
+there but not subversion? why is bzip2 but (as you can read) not gzip?
+
+  in addition, some of the above links insist that you need to
+install (for instance) m4, but it's obvious that m4 is going to be
+downloaded and built for you.  the same with quilt, i believe.
+
+  anyway, you get the idea. i think it was tom z(?) who explained once
+that downloading and building even some natively-installed tools made
+Q/A easier, and that's certainly true. but it would also be useful,
+for efficiency, to at least *suggest* to readers what native tools
+they might take advantage of, with a minimum supported version of
+each.
+
+  thoughts?
 
 rday
 
