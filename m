@@ -1,34 +1,34 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
-	[209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40585E01473
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 06:53:47 -0700 (PDT)
-Received: by mail-ve0-f180.google.com with SMTP id c13so6472600vea.11
-	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 06:53:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:content-type;
-	bh=SQ902C5ZJ59UptQe79sHWg3sS+NjmXg8wHuKD3hn3zo=;
-	b=T6WDJzq+quYUscnr+2mzktpj4DkiJRJdQ+CMKT+U/t66JU4ZxtSTlz5H4PT2LzRMSH
-	Wba1mbTNiuZxjnAKzq1g8njf/s1RS6HS3h5OYWflvM5ut5eAW96aULwWAVdXBG4y4cZv
-	0n9+FM6gfkE+xEtrzbtDttUV9zTkGUFvH9op7JzM+nLV4AENpOskazjT9U8aq7MZnoMD
-	W4tcSoLs6XxXv7DwwM+7J8s8gUfUWXLuT1rJh8I5D43Q/hbud7BrCa6uw1G4qqqYHKma
-	SpUpt9C6nEnr7OV2sbOxiMIu2b1VDqvK7xuo9da6o1mJY7Jyv4PG1k1ooEqS3RAWOmcZ
-	0ooQ==
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 112CEE01471
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 07:15:11 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:57099 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UPZKI-0004B6-0l; Tue, 09 Apr 2013 10:15:10 -0400
+Date: Tue, 9 Apr 2013 10:15:07 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+In-Reply-To: <5163442A.7070801@windriver.com>
+Message-ID: <alpine.DEB.2.02.1304091011290.19035@oneiric>
+References: <alpine.DEB.2.02.1304081757170.3910@oneiric>
+	<5163442A.7070801@windriver.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-X-Received: by 10.58.205.179 with SMTP id lh19mr19034600vec.7.1365515626736;
-	Tue, 09 Apr 2013 06:53:46 -0700 (PDT)
-Sender: satyaswaroop.damarla@gmail.com
-Received: by 10.52.70.141 with HTTP; Tue, 9 Apr 2013 06:53:46 -0700 (PDT)
-In-Reply-To: <20130409125403.GC2474@jama>
-References: <CAFMfyzLjJPfRY++w1WPn24rHu6wJr_H_V9D8MZhUXc5N1u8XWQ@mail.gmail.com>
-	<20130409125403.GC2474@jama>
-Date: Tue, 9 Apr 2013 15:53:46 +0200
-X-Google-Sender-Auth: OUwXaREo-1eP7rvPqqA61wRf75E
-Message-ID: <CAFMfyz+04EeUJ2QqqzBsKoFDOe5YXX7HtTRWWmBvSvK5nZHqVw@mail.gmail.com>
-From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>, yocto@yoctoproject.org
-Subject: Re: systemd vs sysvinit
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: what's the situation with MIPS support/BSPs/dev kits in yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,63 +40,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 13:53:47 -0000
-Content-Type: multipart/alternative; boundary=089e011841a0ddf48904d9ede1cf
+X-List-Received-Date: Tue, 09 Apr 2013 14:15:11 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---089e011841a0ddf48904d9ede1cf
-Content-Type: text/plain; charset=ISO-8859-1
+On Mon, 8 Apr 2013, Bruce Ashfield wrote:
 
-Hello Martin, I didnot find it.. Is it possible to send me a link so that I
-can work on it
-
-Greets,
-Satya
-
-
-On Tue, Apr 9, 2013 at 2:54 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-
-> On Tue, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:
-> > Hi, I created two images first by using sysvinit and the other using
-> > systemd... The image using sysvinit works perfectly but the image with
-> > systemd works only from the second boot. In the first boot it hangs. What
-> > could be the possible reasons?
+> On 13-04-08 5:59 PM, Robert P. J. Day wrote:
+> >
+> >    other than the canonical routerstation pro in the meta-yocto-bsp
+> > layer, is there any serious work being put into MIPS machines?  a
+> > quick google didn't seem to find anything, and the rs pro itself was
+> > end-of-lifed a while back (as i recall), so is there something else if
+> > one wants to use yocto on a MIPS dev kit?
 >
-> run-postinst service probably, see my e-mail in oe-core ML
+> From: https://bugzilla.yoctoproject.org/show_bug.cgi?id=2444
 >
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> MIPS suggested refresh: http://www.ubnt.com/edgemax
 >
+> .. but I've yet to complete the due diligence on seeing if I can
+> actually purchase one :) That's going to happen shortly after yocto
+> 1.4 completes.
 
---089e011841a0ddf48904d9ede1cf
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+  one final addition to the picture, the ERlite 3 seem to have some
+real horsepower, according to the specs:
 
-<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
-">Hello Martin, I didnot find it.. Is it possible to send me a link so that=
- I can work on it</span><div style=3D"font-family:arial,sans-serif;font-siz=
-e:13px">
-<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">Greets=
-,</div><div style=3D"font-family:arial,sans-serif;font-size:13px">Satya</di=
-v></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tu=
-e, Apr 9, 2013 at 2:54 PM, Martin Jansa <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gmail.com</a>&g=
-t;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On T=
-ue, Apr 09, 2013 at 01:21:31PM +0200, Satya Swaroop Damarla wrote:<br>
-&gt; Hi, I created two images first by using sysvinit and the other using<b=
-r>
-&gt; systemd... The image using sysvinit works perfectly but the image with=
-<br>
-&gt; systemd works only from the second boot. In the first boot it hangs. W=
-hat<br>
-&gt; could be the possible reasons?<br>
-<br>
-</div></div>run-postinst service probably, see my e-mail in oe-core ML<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-Martin &#39;JaMa&#39; Jansa =A0 =A0 jabber: <a href=3D"mailto:Martin.Jansa@=
-gmail.com">Martin.Jansa@gmail.com</a><br>
-</font></span></blockquote></div><br></div>
+  http://www.ubnt.com/edgemax#EdgeMAXhardware
 
---089e011841a0ddf48904d9ede1cf--
+* (Layer-3 base forwarding) 1,000,000 pps for 64-byte packets. Line
+rate (3 Gbps) across all three ports for 512-byte packets and higher
+
+* Dual-core MIPS64 processor with hardware acceleration for packet
+processing and encryption/decryption
+
+* 3 RJ-45 Gigabit Ethernet ports
+
+* 512 MB DDR2 RAM
+
+* 2 GB onboard flash storage
+
+* 1 RJ-45 serial console port
+
+  the full datasheet:
+
+http://www.ubnt.com/downloads/datasheets/edgemax/EdgeRouter_Lite_DS.pdf
+
+at $159 (CAD) which includes shipping, that strikes me as eminently
+affordable.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
