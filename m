@@ -1,29 +1,31 @@
-Return-Path: <alexandrux.palalau@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CC81E014D0
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 08:00:49 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 10 Apr 2013 08:00:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,447,1363158000"; d="scan'208";a="320344963"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga002.fm.intel.com with ESMTP; 10 Apr 2013 08:00:46 -0700
-Received: from [10.237.108.114] (apalalax-mobl.ger.corp.intel.com
-	[10.237.108.114])
-	by linux.intel.com (Postfix) with ESMTP id B1D372C8001;
-	Wed, 10 Apr 2013 08:00:38 -0700 (PDT)
-Message-ID: <51657E9C.10808@linux.intel.com>
-Date: Wed, 10 Apr 2013 18:00:44 +0300
-From: Alexandru Palalau <alexandrux.palalau@linux.intel.com>
-Organization: Intel OTC
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:17.0) Gecko/20130215 Thunderbird/17.0.3
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
+	[209.85.216.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82064E014BC
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 08:36:07 -0700 (PDT)
+Received: by mail-qa0-f53.google.com with SMTP id o19so350342qap.5
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 08:36:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type:content-transfer-encoding;
+	bh=YfRo50jbT770DnYo4UPfT6joXhkAZgM7QctHE+GnfWU=;
+	b=uyEXZOvY2dLtEncgzGXYk/lFIFGBuQ52nzJfgaRynw+HyQdoTMm/+pLtb8/Ti6JmVL
+	PqCf3kJ/GrQPHKPEBQmKKNeMvAJxtwH/PkRW+uln8G3IWPYfJ7UUz2CFNmV4Rzwo4iTv
+	VIq2Fui9PghLxannhXeHObJnWkIlZwvecrJRd4swGQiKY3ASPRWNeotPmDvhUlNb1iRz
+	2IFKquCYt6nMS2ZoqU26dokIANzEhRwZk6zpxosggWFawq6Q1FWfB6DWlyNrjg5gm4SE
+	95tldvu+Vr+Z9g8qVwaRxn8C5Pd9dYGdRVj5KN0fZEvfQLyvAowdbX91LHVH6WE5NL31
+	oSrg==
 MIME-Version: 1.0
-To: Rakesh Garg <rakesh.garg@aricent.com>
-References: <2D511792EEA46345951D979490DB6D5B5E6BEC74CE@GUREXMB01.ASIAN.AD.ARICENT.COM>
-In-Reply-To: <2D511792EEA46345951D979490DB6D5B5E6BEC74CE@GUREXMB01.ASIAN.AD.ARICENT.COM>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem while running "bitbake core-image-minimal"
+X-Received: by 10.224.115.210 with SMTP id j18mr2956359qaq.16.1365608166991;
+	Wed, 10 Apr 2013 08:36:06 -0700 (PDT)
+Received: by 10.49.35.140 with HTTP; Wed, 10 Apr 2013 08:36:06 -0700 (PDT)
+In-Reply-To: <CAFyqS9ojF7ivNqUhZ5EcD1TGTeuMTju20LHksQe4-pWj3+wM=g@mail.gmail.com>
+References: <CAFyqS9ojF7ivNqUhZ5EcD1TGTeuMTju20LHksQe4-pWj3+wM=g@mail.gmail.com>
+Date: Wed, 10 Apr 2013 17:36:06 +0200
+Message-ID: <CAFyqS9rndgCOi+b=fJ3tEOyTGQnVgNRGWOwZg4oYSd3Ru70siA@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: bootlogd error at startup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,90 +37,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 15:00:49 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 10 Apr 2013 15:36:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Just tried it on the same platform, under the same commit.
-Most likely, this is a network problem on your side.
-Try just to fetch the package using:
+Just for follow-up.
+The solution to this problem is to make sure CONFIG_LEGACY_PTYS=3Dy in
+the kernel config.
 
-bitbake -c fetch gcc-cross-initial
+Hans
 
-Good luck!
-
-On 4/10/2013 4:12 PM, Rakesh Garg wrote:
-> Hi All,
+On Fri, Feb 22, 2013 at 4:50 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> =
+wrote:
+> I am running the default minimal image on an ARM based board and get
+> the followig error from bootlogd at startup
 >
-> I am new to Yocto and is trying to do some hands-on.
+> <...>
+> INIT: version 2.88 booting
+> Starting udev
+> udev[661]: starting version 164
+> Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such
+> file or directory
+> bootlogd.
+> Configuring network interfaces... udhcpc (v1.20.2) started
+> Sending discover...
+> Sending discover...
+> Sending discover...
+> No lease, failing
+> Running postinst /etc/rpm-postinsts/100...
+> INIT: Entering runlevel: 5
+> Starting syslogd/klogd: done
+> Stopping Bootlog daemon: bootlogd.
+> <...>
 >
-> I downloaded the Yocto project on my Fedore-18 host by using the
-> following command:
+> After login and checking /dev there *is* a /dev/tty. Also, if starting
+> bootlogd manually using '/etc/init.d/bootlogd start' there is no
+> error.
+> So my guess is that /dev was not yet populated properly when bootlogd
+> was started by the init process. IIRC is this not that something that
+> udev should do when started?
 >
-> git clone git://git.yoctoproject.org/poky.git
+> Is this a known bug or is there something I have missed in my configurati=
+on?
 >
-> and then ran the following commands:
+> Here is my /etc/inittab (default except from SERIAL_DEVICE)
 >
-> 1.source oe-init-build-env
+> # /etc/inittab: init(8) configuration.
+> # $Id: inittab,v 1.91 2002/01/25 13:35:21 miquels Exp $
 >
-> 2.configured local.conf with MACHINE=routerstationpro and rest as default.
+> # The default runlevel.
+> id:5:initdefault:
 >
-> 3.bitbake core-image-minimal
+> # Boot-time system configuration/initialization script.
+> # This is run first except when booting in emergency (-b) mode.
+> si::sysinit:/etc/init.d/rcS
 >
-> The last command runs for some time and then hangs for forever. (I’ve
-> ran it for overnight also just incase it downloads too much since am
-> running it for the first time). The screen logs says that it is running
-> do_fetch for gcc-cross-initial-4.7.2-r19
+> # What to do in single-user mode.
+> ~~:S:wait:/sbin/sulogin
 >
-> I also tried stopping and then re-running the command but no help. It
-> again stucks at the same point.
+> # /etc/init.d executes the S and K scripts upon change
+> # of runlevel.
+> #
+> # Runlevel 0 is halt.
+> # Runlevel 1 is single-user.
+> # Runlevels 2-5 are multi-user.
+> # Runlevel 6 is reboot.
 >
-> Following is the terminal output:
+> l0:0:wait:/etc/init.d/rc 0
+> l1:1:wait:/etc/init.d/rc 1
+> l2:2:wait:/etc/init.d/rc 2
+> l3:3:wait:/etc/init.d/rc 3
+> l4:4:wait:/etc/init.d/rc 4
+> l5:5:wait:/etc/init.d/rc 5
+> l6:6:wait:/etc/init.d/rc 6
+> # Normally not reached, but fallthrough in case of emergency.
+> z6:6:respawn:/sbin/sulogin
+> S:2345:respawn:/sbin/getty 115200 ttyPS0
+> # /sbin/getty invocations for the runlevels.
+> #
+> # The "id" field MUST be the same as the last
+> # characters of the device (after "tty").
+> #
+> # Format:
+> #  <id>:<runlevels>:<action>:<process>
+> #
 >
-> Build Configuration:
-> BB_VERSION = "1.17.1"
-> BUILD_SYS = "i686-linux"
-> NATIVELSBSTRING = "Fedora-18"
-> TARGET_SYS = "mips-poky-linux"
-> MACHINE = "routerstationpro"
-> DISTRO = "poky"
-> DISTRO_VERSION = "1.3+snapshot-20130410"
-> TUNE_FEATURES = "o32 bigendian fpu-hard mips32"
-> TARGET_FPU = ""
-> meta
-> meta-yocto
-> meta-yocto-bsp = "master:cbdbc54e5743944fd24f497b46b3c54ad966d8eb"
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> Currently 1 running tasks (158 of 1568):
-> 0: gcc-cross-initial-4.7.2-r19 do_fetch (pid 5583)
->
-> Please suggest what could be the possible reason for this issue.
->
-> Thanks and Regards,
->
-> Rakesh
->
->
->
->
->
-> ===============================================================================
-> Please refer to http://www.aricent.com/legal/email_disclaimer.html
-> for important disclosures regarding this electronic communication.
-> ===============================================================================
+> 1:2345:respawn:/sbin/getty 38400 tty1
 >
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
--- 
-Alexandru Palalau
+> Hans
 
