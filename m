@@ -1,28 +1,33 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DB59E014C1
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 05:55:51 -0700 (PDT)
-Received: by mail-wi0-f180.google.com with SMTP id c10so428604wiw.1
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 05:55:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=GPh2l2VhkIPsby08o666SdLF4yqF1sBYVKCb7VE03JI=;
-	b=ShIpHRQY0fA00/3fwikzjRsV3ExdFfnnEnzhtThltWXhg6HmwJT7CnGc+JyOrFI/PR
-	+9z7MYrvEY5gfc5XK6Mccs9iyxveL4cUOiVv4G3eIZkP+ojLs6IEZc51PseIDYBhwQtQ
-	a/03ErQa5z4OR/Lsbnfr2+g1meIEcN62gb8j2ztoDTRHMBcncWI/uf+MCrv3xaNlSz66
-	RWgK9u+7iVokdmLwDihGW8701d98PhyOL9VAEAAj8nr5q6rfMBTAEDMSy4YFN1tJk7fN
-	wN3mN/lEGd1DcOV8fcN/L/380W/BwMjgQAKjC48sTpW8Kh0Imx3/pop/nUhLFwd5ocqV
-	JaGw==
-MIME-Version: 1.0
-X-Received: by 10.180.101.41 with SMTP id fd9mr3231321wib.20.1365598546210;
-	Wed, 10 Apr 2013 05:55:46 -0700 (PDT)
-Received: by 10.194.167.73 with HTTP; Wed, 10 Apr 2013 05:55:46 -0700 (PDT)
-Date: Wed, 10 Apr 2013 08:55:46 -0400
-Message-ID: <CAHUNapTGSiw7G_7wtyTFXBrFecstxPyHYnwB=dfRpWLM81jyrQ@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: newer host fails to build old qemu-native Was: working my way through the kernel hands-on labs finally
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16210E014DB
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 06:10:06 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UPumo-0000gw-Jq
+	for yocto@yoctoproject.org; Wed, 10 Apr 2013 15:10:02 +0200
+Received: from gate02.msc-ge.com ([91.201.100.98])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 15:10:02 +0200
+Received: from achim.kanert by gate02.msc-ge.com with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 15:10:02 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Achim Kanert <achim.kanert@rwth-aachen.de>
+Date: Wed, 10 Apr 2013 12:39:03 +0000 (UTC)
+Message-ID: <loom.20130410T143813-208@post.gmane.org>
+References: <1711946.6ebLgJzAjK@fedora-fisso> <51263B0E.6020209@mlbassoc.com>
+	<3061185.qjNdBeNxOi@fedora-fisso>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 91.201.100.98 (Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1;
+	Trident/4.0; .NET CLR 2.0.50727; .NET CLR 1.1.4322;
+	.NET CLR 3.0.04506.30; .NET4.0E; .NET CLR 3.0.4506.2152;
+	.NET CLR 3.5.30729; MS-RTC LM 8; .NET4.0C))
+Subject: Re: core-image-sato + firefox for pandaboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +39,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 12:55:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 10 Apr 2013 13:10:06 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Apr 9, 2013 at 6:34 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> Yes, I'll try reproducing this and post my results.
+Davide Soldan <davide.soldan@...> writes:
 
-Now I've hit a snag. Since performing these tests, I have upgraded my
-host system from openSUSE 12.2 to 12.3. Building qemu-native from the
-HEAD (which uses qemu version 1.4.0) succeeds just fine. Trying to
-build danny's qemu-native (which is version 1.2.0) fails. The problem
-is that back in the 1.2.0 days the qemu build was not explicitly
-including -lrt, but now it is. My guess is that back then -lrt was
-being implicitly included as part of some other explicit library
-dependency, but now that link probably needs to be explicit.
+> 
+> In data giovedì 21 febbraio 2013 08:19:42, Gary Thomas ha scritto:
+> > On 2013-02-21 07:52, Davide Soldan wrote:
+> > > Hi to all!
+> > > I'm new in building images with yocto for my pandaboard. Trying to 
+build core-image-sato
+> (http://maniacbug.wordpress.com/2012/08/03/pandayocto/) all works fine, 
+but now I want to add some
+> packages to this image.
+> > > So proceeding like mentioned here
+> https://lists.yoctoproject.org/pipermail/yocto/2012-May/009175.html, 
+downloading
+> meta-browser layer and adding this layer to build/conf/bblayers.conf and 
+adding the package firefox to
+> conf/build/local.conf I've got this error:
+> > >
+> > > ERROR: No recipes available for:
+> > >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-
+gnome/gnome-settings-daemon/gnome-settings-daemon_2.32.1.bbappend
+> > >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-
+graphics/libxi/libxi_1.6.1.bbappend
+> > >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-
+support/nspr/nspr_4.9.4.bbappend
+> > >
+> > > So I found, for example, gnome-settings-daemon under meta-
+openebedded (dependency declared in the
+> README file of meta-browser). Adding the layer "meta-openembedded/meta-
+gnome" to
+> build/conf/bblayers.conf to satisfy the gnome-settings-daemon dependency 
+I've got the following
+> different error:
+> > >
+> > > NOTE: Error expanding variable populate_packages
+> > > NOTE: Error during finalise of /home/davide/yocto/poky-denzil-
+7.0/meta-openembedded/meta-gnome/recipes-support/goffice/goffice_0.8.17.bb
+> > > ERROR: Unable to parse /home/davide/yocto/poky-denzil-7.0/meta-
+openembedded/meta-gnome/recipes-support/goffice/goffice_0.8.17.bb
+> > 
+> > I was able to build this combo (master, not denzil) by only importing
+> > the necessary recipes, not all of meta-gnome.  I just put them in a
+> > local layer.
+> > 
+> > n.b. FireFox runs OK, but IMO [Google] Chromium is much snappier on 
+the PandaBoard.
+> > You should be able to build it using the same setup.
+> > 
+> > 
+> Solved the problem: I downloaded the yocto denzil release from the 
+website (tar.gz file) but the layers
+> meta-browser/openembedded-come/meta-openembedded was from git...so the 
+branch of this latest
+> layers was master and not denzil. checking out the correct branch solved 
+the problem!
+> Thanks!
+> 
 
-From qemu-git this explicit check (and inclusion) of -lrt was put in
-with 8bacde.
-[qemu-git]$ git describe --contains 8bacde
-v1.3.0-rc0~548
 
-It looks like this has been backported to the meta-freescale layer.
-https://lists.yoctoproject.org/pipermail/meta-freescale/2013-February/001461.html
+Hi,
+I am new to yocto and have the same problem.
+Can you please shortly describe which recipes you added.
 
-I'll need to include something similar so danny-8.0.1 can proceed.
+Regards,
+Achim Kanert
 
-This has nothing to do with Yocto itself. If I download, unpack,
-configure, and build qemu-1.2.0 separately (i.e. completely outside of
-Yocto), it fails too. But doing the same with 1.4.0 succeeds.
 
