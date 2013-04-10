@@ -1,22 +1,31 @@
-Return-Path: <Adrian.Dudau@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5A072E014BC
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 09:12:15 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.318.1;
-	Wed, 10 Apr 2013 18:12:12 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4451)	id AFB412800C6;
-	Wed, 10 Apr 2013 18:12:12 +0200 (CEST)
-From: <adrian.dudau@enea.com>
-To: <jessica.zhang@intel.com>
-Date: Wed, 10 Apr 2013 18:11:56 +0200
-Message-ID: <1365610316-26378-1-git-send-email-adrian.dudau@enea.com>
-X-Mailer: git-send-email 1.7.10.4
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6F6CE014D0
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 09:20:53 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:38841 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UPxlU-0007Kf-9h
+	for yocto@yoctoproject.org; Wed, 10 Apr 2013 12:20:52 -0400
+Date: Wed, 10 Apr 2013 12:20:44 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304101215110.26509@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: adrian.dudau@enea.com does not
-	designate permitted sender hosts)
-Cc: yocto@yoctoproject.org
-Subject: [PATCH][eclipse-poky][master] Systemtap: use FileDialog instead of DirectoryDialog for script browser
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: building a rootfs for a mips SEAD-3, and DEFAULTTUNE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,81 +37,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 16:12:16 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 10 Apr 2013 16:20:53 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-From: Adrian Dudau <adrian.dudau@enea.com>
 
-[Yocto #4240]
+  my recent curiosity about MIPS was inspired by a former student
+asking what it would take to build a root filesystem for the SEAD-3:
 
-Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
----
- .../actions/SystemtapSettingDialog.java            |   23 ++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+http://www.mips.com/products/development-kits/mips-sead-3/
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-index 133b91c..bb22ba6 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Button;
- import org.eclipse.swt.widgets.Composite;
- import org.eclipse.swt.widgets.Control;
- import org.eclipse.swt.widgets.DirectoryDialog;
-+import org.eclipse.swt.widgets.FileDialog;
- import org.eclipse.swt.widgets.Label;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.swt.widgets.Text;
-@@ -115,7 +116,7 @@ public class SystemtapSettingDialog extends Dialog {
- 		textContainer.setLayout(new GridLayout(2, false));
- 		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
- 		metadataLocationText = (Text)addTextControl(textContainer, metadata_location);
--		metadataLocationBtn = addFileSelectButton(textContainer, metadataLocationText);
-+		metadataLocationBtn = addDirSelectButton(textContainer, metadataLocationText);
- 		
- 		label = new Label(projComp, SWT.NONE);
- 		label.setText(Messages.User_ID);
-@@ -167,7 +168,7 @@ public class SystemtapSettingDialog extends Dialog {
- 		return (Control)text;
- 	}
- 
--	private Button addFileSelectButton(final Composite parent, final Text text) {
-+	private Button addDirSelectButton(final Composite parent, final Text text) {
- 		Button button = new Button(parent, SWT.PUSH | SWT.LEAD);
- 		button.setText("Browse");
- 		button.addSelectionListener(new SelectionAdapter() {
-@@ -184,6 +185,23 @@ public class SystemtapSettingDialog extends Dialog {
- 		return button;
- 	}		
- 
-+	private Button addFileSelectButton(final Composite parent, final Text text) {
-+		Button button = new Button(parent, SWT.PUSH | SWT.LEAD);
-+		button.setText("Browse");
-+		button.addSelectionListener(new SelectionAdapter() {
-+			@Override
-+			public void widgetSelected(SelectionEvent event) {
-+				String fileName;
-+				
-+				fileName = new FileDialog(parent.getShell()).open();
-+				if (fileName != null) {
-+					text.setText(fileName);
-+				}
-+			}
-+		});
-+		return button;
-+	}		
-+	
-  	@Override
- 	protected void okPressed() {
- 		IDialogSettings settings = Activator.getDefault().getDialogSettings();
-@@ -195,6 +213,7 @@ public class SystemtapSettingDialog extends Dialog {
- 		File metadata_dir = new File(metadata_location);
- 		if (!metadata_dir.exists()) {
- 			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified metadata location does not exist!");
-+			return;
- 		}
- 		if (!metadata_dir.isDirectory()) {
- 			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified metadata location is not a directory!");
+  he'd already built for the routerstation pro and, according to him,
+the fundamental difference is that rs pro defaults to big endian,
+while the SEAD-3 is little endian. he already has u-boot and the
+kernel, he just wanted to build a corresponding rootfs.
+
+  after a *very* cursory glance at the layers, i suggested that it
+looked like all he had to do was set:
+
+  DEFAULTTUNE = "mips32el"
+
+in his local.conf to override the default of "mips32" in the file
+tune-mips32.inc.
+
+  i'm quite prepared to be totally wrong about this, so if someone has
+a better answer, i'm open to suggestions.
+
+rday
+
+p.s.  i was originally going to suggest the SEAD-3 as the next MIPS
+board until he told me it cost $2K. ouch.
+
 -- 
-1.7.10.4
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
