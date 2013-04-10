@@ -1,29 +1,41 @@
-Return-Path: <rakesh.garg@aricent.com>
-Received: from jaguar.aricent.com (unknown [121.241.96.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01509E014EE
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 06:12:37 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id F015B36B7C
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 18:42:05 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136])
-	by jaguar.aricent.com (Postfix) with ESMTP id D984D36B62
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 18:42:05 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.130]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Wed, 10 Apr 2013 18:42:06 +0530
-From: Rakesh Garg <rakesh.garg@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 10 Apr 2013 18:42:05 +0530
-Thread-Topic: Problem while running "bitbake core-image-minimal" 
-Thread-Index: Ac417P92E8rVaj24TpC6iscblNEZxQ==
-Message-ID: <2D511792EEA46345951D979490DB6D5B5E6BEC74CE@GUREXMB01.ASIAN.AD.ARICENT.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <davide.soldan@kynetics.it>
+Received: from mail-wi0-f174.google.com (mail-wi0-f174.google.com
+	[209.85.212.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF590E014D0
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 06:34:12 -0700 (PDT)
+Received: by mail-wi0-f174.google.com with SMTP id hj8so4812142wib.1
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 06:34:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:user-agent
+	:in-reply-to:references:mime-version:content-transfer-encoding
+	:content-type:x-gm-message-state;
+	bh=SEViUrP8vdxs3Ab5hNRbCQ9Y3eaJH9W6LIRHnmf1jL4=;
+	b=b2IQgU8b1NH6HrMUGOUGC8cUfQG/c3ZZK3PmrDp7JgdzSryhWjsXHiU/Dy0qqTrtTS
+	olAiB1M43go+0k9RJp5/jlsJysti27wG84Hj/Gc8wDyOqP+Cd0fx8+ATQH3W6xdDOdzF
+	gcPygukLFMTUoPl1HRCpiwQVcMJMcOk5OxPQfJKtL5IARKrwVWO8lo0nj0TAKu0DW9Ae
+	h80bSW5OhBTh49Owe0Uc6rQOhW+GAP4WL/vQ8hx+Co5+y1RyPkl1WEwOeiQXxcPWT2vj
+	+IdIYCWL7Pg8kgyZvsISkcPn5Rwcmdy+GRA9Eq/DZsht4xd1Qno81lCcJZZzGs6yZSd6
+	CUnA==
+X-Received: by 10.180.188.141 with SMTP id ga13mr27178704wic.9.1365600851626; 
+	Wed, 10 Apr 2013 06:34:11 -0700 (PDT)
+Received: from fedora-fisso.localnet
+	(static-217-133-170-65.clienti.tiscali.it. [217.133.170.65])
+	by mx.google.com with ESMTPS id k5sm35472147wiy.5.2013.04.10.06.34.09
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Wed, 10 Apr 2013 06:34:10 -0700 (PDT)
+From: Davide Soldan <davide.soldan@kynetics.it>
+To: yocto@yoctoproject.org
+Date: Wed, 10 Apr 2013 15:34:05 +0200
+Message-ID: <3229891.QdK03jF6Lc@fedora-fisso>
+User-Agent: KMail/4.10.1 (Linux/3.8.4-102.fc17.x86_64; KDE/4.10.1; x86_64; ; )
+In-Reply-To: <loom.20130410T143813-208@post.gmane.org>
+References: <1711946.6ebLgJzAjK@fedora-fisso> <3061185.qjNdBeNxOi@fedora-fisso>
+	<loom.20130410T143813-208@post.gmane.org>
 MIME-Version: 1.0
-Subject: Problem while running "bitbake core-image-minimal"
+X-Gm-Message-State: ALoCoQlCxDlty7tTrjYHjkE3nbgvX39Rli5bYfy1axtf743Zm336j11RTuZA3H7/xSaIXVsPe75V
+Cc: Achim Kanert <achim.kanert@rwth-aachen.de>
+Subject: Re: core-image-sato + firefox for pandaboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,297 +47,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 13:12:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_2D511792EEA46345951D979490DB6D5B5E6BEC74CEGUREXMB01ASIA_"
-
---_000_2D511792EEA46345951D979490DB6D5B5E6BEC74CEGUREXMB01ASIA_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 10 Apr 2013 13:34:13 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Hi All,
+In data mercoled=EC 10 aprile 2013 12:39:03, Achim Kanert ha scritto:
+> Davide Soldan <davide.soldan@...> writes:
+>=20
+> >=20
+> > In data gioved=EC 21 febbraio 2013 08:19:42, Gary Thomas ha scritto=
+:
+> > > On 2013-02-21 07:52, Davide Soldan wrote:
+> > > > Hi to all!
+> > > > I'm new in building images with yocto for my pandaboard. Trying=
+ to=20
+> build core-image-sato
+> > (http://maniacbug.wordpress.com/2012/08/03/pandayocto/) all works f=
+ine,=20
+> but now I want to add some
+> > packages to this image.
+> > > > So proceeding like mentioned here
+> > https://lists.yoctoproject.org/pipermail/yocto/2012-May/009175.html=
+,=20
+> downloading
+> > meta-browser layer and adding this layer to build/conf/bblayers.con=
+f and=20
+> adding the package firefox to
+> > conf/build/local.conf I've got this error:
+> > > >
+> > > > ERROR: No recipes available for:
+> > > >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-
+> gnome/gnome-settings-daemon/gnome-settings-daemon_2.32.1.bbappend
+> > > >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-
+> graphics/libxi/libxi_1.6.1.bbappend
+> > > >    /home/davide/yocto/poky-denzil-7.0/meta-browser/recipes-
+> support/nspr/nspr_4.9.4.bbappend
+> > > >
+> > > > So I found, for example, gnome-settings-daemon under meta-
+> openebedded (dependency declared in the
+> > README file of meta-browser). Adding the layer "meta-openembedded/m=
+eta-
+> gnome" to
+> > build/conf/bblayers.conf to satisfy the gnome-settings-daemon depen=
+dency=20
+> I've got the following
+> > different error:
+> > > >
+> > > > NOTE: Error expanding variable populate_packages
+> > > > NOTE: Error during finalise of /home/davide/yocto/poky-denzil-
+> 7.0/meta-openembedded/meta-gnome/recipes-support/goffice/goffice_0.8.=
+17.bb
+> > > > ERROR: Unable to parse /home/davide/yocto/poky-denzil-7.0/meta-=
 
-I am new to Yocto and is trying to do some hands-on.
+> openembedded/meta-gnome/recipes-support/goffice/goffice_0.8.17.bb
+> > >=20
+> > > I was able to build this combo (master, not denzil) by only impor=
+ting
+> > > the necessary recipes, not all of meta-gnome.  I just put them in=
+ a
+> > > local layer.
+> > >=20
+> > > n.b. FireFox runs OK, but IMO [Google] Chromium is much snappier =
+on=20
+> the PandaBoard.
+> > > You should be able to build it using the same setup.
+> > >=20
+> > >=20
+> > Solved the problem: I downloaded the yocto denzil release from the=20=
 
-I downloaded the Yocto project on my Fedore-18 host by using the following =
-command:
-git clone git://git.yoctoproject.org/poky.git
+> website (tar.gz file) but the layers
+> > meta-browser/openembedded-come/meta-openembedded was from git...so =
+the=20
+> branch of this latest
+> > layers was master and not denzil. checking out the correct branch s=
+olved=20
+> the problem!
+> > Thanks!
+> >=20
+>=20
+>=20
+> Hi,
+> I am new to yocto and have the same problem.
+> Can you please shortly describe which recipes you added.
+>=20
+> Regards,
+> Achim Kanert
+>=20
+It was firefox recipes under meta-browser layer...
+The old layerindex website doesn't exist anymore and there's a new webs=
+ite: http://layers.openembedded.org/layerindex/layer/meta-browser/
+I think you could use a recipe like firefox-l10n-en-us
 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
-and then ran the following commands:
-
-1.       source oe-init-build-env
-
-2.       configured local.conf with MACHINE=3Drouterstationpro and rest as =
-default.
-
-3.       bitbake core-image-minimal
-
-The last command runs for some time and then hangs for forever. (I've ran i=
-t for overnight also just incase it downloads too much since am running it =
-for the first time). The screen logs says that it is running do_fetch for g=
-cc-cross-initial-4.7.2-r19
-
-I also tried stopping and then re-running the command but no help. It again=
- stucks at the same point.
-
-Following is the terminal output:
-Build Configuration:
-BB_VERSION =3D "1.17.1"
-BUILD_SYS =3D "i686-linux"
-NATIVELSBSTRING =3D "Fedora-18"
-TARGET_SYS =3D "mips-poky-linux"
-MACHINE =3D "routerstationpro"
-DISTRO =3D "poky"
-DISTRO_VERSION =3D "1.3+snapshot-20130410"
-TUNE_FEATURES =3D "o32 bigendian fpu-hard mips32"
-TARGET_FPU =3D ""
-meta
-meta-yocto
-meta-yocto-bsp =3D "master:cbdbc54e5743944fd24f497b46b3c54ad966d8eb"
-
-NOTE: Resolving any missing task queue dependencies
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-Currently 1 running tasks (158 of 1568):
-0: gcc-cross-initial-4.7.2-r19 do_fetch (pid 5583)
-
-Please suggest what could be the possible reason for this issue.
-
-Thanks and Regards,
-Rakesh
-
-
-
-
-
-
-
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_000_2D511792EEA46345951D979490DB6D5B5E6BEC74CEGUREXMB01ASIA_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1120297514;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1270988594 -366817844 67698713 67698715 67698703 67=
-698713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Segoe UI","sans-serif";
-	color:black;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi All,<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I am new to Yocto and =
-is trying to do some hands-on.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I downloaded the Yocto=
- project on my Fedore-18 host by using the following command:<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"color:#1F4=
-97D">git clone git://git.yoctoproject.org/poky.git<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">and then ran the follo=
-wing commands:<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Segoe UI&quot;,&quot;sans-serif&quot;;color:black"><span style=3D"mso-l=
-ist:Ignore">1.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"color:#1F497D">source oe-init=
--build-env&nbsp;<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Segoe UI&quot;,&quot;sans-serif&quot;;color:black"><span style=3D"mso-l=
-ist:Ignore">2.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"color:#1F497D">configured loc=
-al.conf with MACHINE=3Drouterstationpro and rest as default.<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Segoe UI&quot;,&quot;sans-serif&quot;;color:black"><span style=3D"mso-l=
-ist:Ignore">3.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"color:#1F497D">bitbake core-i=
-mage-minimal<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">The last command runs =
-for some time and then hangs for forever. (I&#8217;ve ran it for overnight =
-also just incase it downloads too much since am running it for the first ti=
-me). The screen logs says that it is running
- do_fetch for gcc-cross-initial-4.7.2-r19<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I also tried stopping =
-and then re-running the command but no help. It again stucks at the same po=
-int.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Following is the termi=
-nal output:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Se=
-goe UI&quot;,&quot;sans-serif&quot;;color:black">Build Configuration:<br>
-BB_VERSION =3D &quot;1.17.1&quot;<br>
-BUILD_SYS =3D &quot;i686-linux&quot;<br>
-NATIVELSBSTRING =3D &quot;Fedora-18&quot;<br>
-TARGET_SYS =3D &quot;mips-poky-linux&quot;<br>
-MACHINE =3D &quot;routerstationpro&quot;<br>
-DISTRO =3D &quot;poky&quot;<br>
-DISTRO_VERSION =3D &quot;1.3&#43;snapshot-20130410&quot;<br>
-TUNE_FEATURES =3D &quot;o32 bigendian fpu-hard mips32&quot;<br>
-TARGET_FPU =3D &quot;&quot;<br>
-meta&nbsp;<br>
-meta-yocto&nbsp;<br>
-meta-yocto-bsp =3D &quot;master:cbdbc54e5743944fd24f497b46b3c54ad966d8eb&qu=
-ot;<br>
-<br>
-NOTE: Resolving any missing task queue dependencies<br>
-NOTE: Preparing runqueue<br>
-NOTE: Executing SetScene Tasks<br>
-NOTE: Executing RunQueue Tasks<br>
-Currently 1 running tasks (158 of 1568):<br>
-0: gcc-cross-initial-4.7.2-r19 do_fetch (pid 5583)</span><span style=3D"fon=
-t-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Please suggest what co=
-uld be the possible reason for this issue.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks and Regards,<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Rakesh<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D;background:black"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D;background:black"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D;background:black"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-</div>
-<br>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
-for important disclosures regarding this electronic communication.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-</font>
-</body>
-</html>
-
---_000_2D511792EEA46345951D979490DB6D5B5E6BEC74CEGUREXMB01ASIA_--
