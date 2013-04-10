@@ -1,25 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6127E014CB
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 05:33:56 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 10 Apr 2013 05:33:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,446,1363158000"; d="scan'208";a="284244197"
-Received: from unknown (HELO helios.localnet) ([10.255.14.51])
-	by azsmga001.ch.intel.com with ESMTP; 10 Apr 2013 05:33:55 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jean-baptiste DUONEA <jbduro2@gmail.com>
-Date: Wed, 10 Apr 2013 13:33:54 +0100
-Message-ID: <5554864.lTrseEoNhs@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <516555F8.50006@gmail.com>
-References: <10f0001e.10c21.13d45669ae7.Coremail.huanmateme@163.com>
-	<516555F8.50006@gmail.com>
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DB59E014C1
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 05:55:51 -0700 (PDT)
+Received: by mail-wi0-f180.google.com with SMTP id c10so428604wiw.1
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 05:55:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=GPh2l2VhkIPsby08o666SdLF4yqF1sBYVKCb7VE03JI=;
+	b=ShIpHRQY0fA00/3fwikzjRsV3ExdFfnnEnzhtThltWXhg6HmwJT7CnGc+JyOrFI/PR
+	+9z7MYrvEY5gfc5XK6Mccs9iyxveL4cUOiVv4G3eIZkP+ojLs6IEZc51PseIDYBhwQtQ
+	a/03ErQa5z4OR/Lsbnfr2+g1meIEcN62gb8j2ztoDTRHMBcncWI/uf+MCrv3xaNlSz66
+	RWgK9u+7iVokdmLwDihGW8701d98PhyOL9VAEAAj8nr5q6rfMBTAEDMSy4YFN1tJk7fN
+	wN3mN/lEGd1DcOV8fcN/L/380W/BwMjgQAKjC48sTpW8Kh0Imx3/pop/nUhLFwd5ocqV
+	JaGw==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: "trap: 80: SIGHUP: bad trap" comes up when building core-image-sato.
+X-Received: by 10.180.101.41 with SMTP id fd9mr3231321wib.20.1365598546210;
+	Wed, 10 Apr 2013 05:55:46 -0700 (PDT)
+Received: by 10.194.167.73 with HTTP; Wed, 10 Apr 2013 05:55:46 -0700 (PDT)
+Date: Wed, 10 Apr 2013 08:55:46 -0400
+Message-ID: <CAHUNapTGSiw7G_7wtyTFXBrFecstxPyHYnwB=dfRpWLM81jyrQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: newer host fails to build old qemu-native Was: working my way through the kernel hands-on labs finally
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,26 +34,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 12:33:57 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 10 Apr 2013 12:55:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wednesday 10 April 2013 14:07:20 Jean-baptiste DUONEA wrote:
-> Problem comes from Dash shell, which is used by default on Ubuntu.
-> You have to reconfigure your terminal and disable the usage of Dash :
-> Type in your console : sudo dpkg-reconfigure dash
-> Choose the answer "No"
-> Close and launch your terminal, now it will works !
+On Tue, Apr 9, 2013 at 6:34 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+> Yes, I'll try reproducing this and post my results.
 
-We do not need to do this anymore as of the denzil release (1.2) - we 
-explicitly support /bin/sh not being bash, and in fact I am running with 
-/bin/sh -> dash on Ubuntu here right now.
+Now I've hit a snag. Since performing these tests, I have upgraded my
+host system from openSUSE 12.2 to 12.3. Building qemu-native from the
+HEAD (which uses qemu version 1.4.0) succeeds just fine. Trying to
+build danny's qemu-native (which is version 1.2.0) fails. The problem
+is that back in the 1.2.0 days the qemu build was not explicitly
+including -lrt, but now it is. My guess is that back then -lrt was
+being implicitly included as part of some other explicit library
+dependency, but now that link probably needs to be explicit.
 
-Cheers,
-Paul
+From qemu-git this explicit check (and inclusion) of -lrt was put in
+with 8bacde.
+[qemu-git]$ git describe --contains 8bacde
+v1.3.0-rc0~548
 
--- 
+It looks like this has been backported to the meta-freescale layer.
+https://lists.yoctoproject.org/pipermail/meta-freescale/2013-February/001461.html
 
-Paul Eggleton
-Intel Open Source Technology Centre
+I'll need to include something similar so danny-8.0.1 can proceed.
+
+This has nothing to do with Yocto itself. If I download, unpack,
+configure, and build qemu-1.2.0 separately (i.e. completely outside of
+Yocto), it fails too. But doing the same with 1.4.0 succeeds.
 
