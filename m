@@ -1,37 +1,29 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA0BDE00AFC
-	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 15:34:38 -0700 (PDT)
-Received: by mail-wg0-f43.google.com with SMTP id f12so7309837wgh.34
-	for <yocto@yoctoproject.org>; Tue, 09 Apr 2013 15:34:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=A9Hhbo+l2g6N/sxRfcYpihRIYqcDfznf0YR0xv0cQFI=;
-	b=PZuRlhTx7J74MMO9UWbAld6adV1ZanxIEIiQy6KwKLqcViyHzB9/mTiaF9G2d1juNV
-	tccQiD2RhhuBWluXmQO5qAeyHHHIhbFrM0B+n7fsiMFb5JRGe/YwJDShkYS4xMpCA0II
-	1jUQIR/d1cQW1O+hqoBZFDt/FWi6yJMWn+w0cOto+mUUfFDsuZ2gnqVDodfFC5qL506r
-	42UvpQROgdxdf9giwCeR/w2l5E0+M1THar6NXpJMlb+lzgYZweNyc5zow3BMNN6nBy9f
-	CY0gEEd1tzfZEYq6LzOuG+MQ2iVXFzbiPkaqvYDWbMk9usTvQdTOGFcr1ZtYVIk4tIlC
-	O/FQ==
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-masked.atl.sa.earthlink.net
+	(elasmtp-masked.atl.sa.earthlink.net [209.86.89.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A9D7E01496
+	for <yocto@yoctoproject.org>; Tue,  9 Apr 2013 22:49:15 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=pH8OWJVyj2JUK9fLWVcwfQ0eHULOEhl/vrh7Wd5GEBXbK/KByO/RpaM8UfvXvqdh;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-masked.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UPnuE-0007Wx-GA
+	for yocto@yoctoproject.org; Wed, 10 Apr 2013 01:49:14 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+References: <C797901E086446C2A1E1C4637ED4262B@PAULD><8B53A185-C840-438C-B74B-D5267DD14F10@keylevel.com><09AEF6051AA14B28BF640910EA131219@PAULD><58D3047F74434B278AB3C73C399FF6F1@PAULD><61CB2848-B7F6-4C0B-8644-65C0CD0DD6F8@keylevel.com>
+	<105A6073859D47C780306AD895453FC0@PAULD>
+In-Reply-To: <105A6073859D47C780306AD895453FC0@PAULD>
+Date: Tue, 9 Apr 2013 22:49:12 -0700
+Message-ID: <1C1773F9642A4F2EBA9FC3662E2C40B1@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.180.73.229 with SMTP id o5mr10147107wiv.8.1365546877904;
-	Tue, 09 Apr 2013 15:34:37 -0700 (PDT)
-Received: by 10.194.45.100 with HTTP; Tue, 9 Apr 2013 15:34:37 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1304091828340.27288@oneiric>
-References: <alpine.DEB.2.02.1304081135020.23038@oneiric>
-	<1365469127.17697.70.camel@empanada>
-	<alpine.DEB.2.02.1304090729220.4184@oneiric>
-	<CAHUNapRQTMvCE=8RLNhae+sm6=VN7pP4TfbBBM0nvcCR5aTmkQ@mail.gmail.com>
-	<alpine.DEB.2.02.1304091746080.4929@oneiric>
-	<CAHUNapTHjYk6fWdRsk0-xLBEP5kUgnCR7Ss3TrvTuE9svgnKjQ@mail.gmail.com>
-	<alpine.DEB.2.02.1304091828340.27288@oneiric>
-Date: Tue, 9 Apr 2013 18:34:37 -0400
-Message-ID: <CAHUNapTP4Dfe4nXtOhHQZRDBV89z-r57+p3NodZ0x3tOEUzmUQ@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: working my way through the kernel hands-on labs finally
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac4uXa43affOh+50RsSimsM6BxfSLgALtUdAAch8/oA=
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068802e467c5b3561335d9d0a0d69a3b8869350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: How to partition a flash drive (solved)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,15 +35,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Apr 2013 22:34:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 10 Apr 2013 05:49:15 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Tue, Apr 9, 2013 at 6:29 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->   so, did you say you were going to try to reproduce this? i don't
-> want to spend time poking around this if it turns out even *you* can't
-> make it happen again. :-)
+> From: Paul D. DeRocco
+> 
+> What's going wrong is that the code in the MBR created by 
+> gparted (and I
+> assume by parted) unconditionally uses drive number 0x80 (the 
+> first hard
+> disk) when it tries to load the zeroth sector from the 
+> bootable partition.
+> The BIOS, however, is treating this eUSB SSD as a removable drive, and
+> calling it drive zero. So it's crashing at the point where 
+> the MBR code
+> jumps to what is supposed to be the zeroth sector of the partition.
 
-Understood :-)
+It turns out that the Volume Boot Record code produced by Syslinux is
+incompatible with the Master Boot Record code produced by parted and
+gparted. However, there is an mbr.bin file in the Syslinux distribution that
+works. If you dd this to the first 440 bytes of the MBR (leaving the actual
+partition table intact), it boots fine. So, yes, you can indeed run a Yocto
+live image from one partition on a flash drive, and have another partition
+for persistent data.
 
-Yes, I'll try reproducing this and post my results.
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
