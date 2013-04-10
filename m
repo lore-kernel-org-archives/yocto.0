@@ -1,34 +1,25 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6A59E014BC
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 09:56:28 -0700 (PDT)
-Received: by mail-ve0-f182.google.com with SMTP id m1so623072ves.41
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 09:56:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=0g2yguGjOqaTEp78Lp3Z80BmNkj+/5vLHvbuHUTDNdo=;
-	b=ZokNTO1AQTlXBunCR5J9KJRLVoWYEzVge6/ubVhiT/Y9WZG9PR+PWMr8xZQB3P4xxx
-	Ha+wFSnTtuGLE6wvNw6NJ6HGWr3RCP4CA5X5BQ+/nxjVR73eZVsgvTRlS/WU/9/pdA2W
-	uSS99DXLxeBCfzxtXjU3ZORZXgnTVMfrksn525DVXgV23v7SIEf7pSK94aF/LRuVtSh4
-	qfMxKeo5AAw8WSikww6sCHB0/Hs3AYdjOupul6hndfj/AloRDr2eNP4XLPAugJhwzxD1
-	dCkU6vZ4Jr6ju6/7sRmsrhUd4iU7DVVjPqsnffydLJ5pKkbNAltyZe5VnYw7u4rIwoXv
-	56mA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC8DAE014CC
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 10:06:43 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 10 Apr 2013 10:06:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,449,1363158000"; d="scan'208";a="317277904"
+Received: from unknown (HELO helios.localnet) ([10.255.14.51])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Apr 2013 10:06:38 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Hans =?ISO-8859-1?Q?Beck=E9rus?= <hans.beckerus@gmail.com>
+Date: Wed, 10 Apr 2013 18:06:37 +0100
+Message-ID: <3209321.o4PzGlxfLj@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <CAFyqS9rndgCOi+b=fJ3tEOyTGQnVgNRGWOwZg4oYSd3Ru70siA@mail.gmail.com>
+References: <CAFyqS9ojF7ivNqUhZ5EcD1TGTeuMTju20LHksQe4-pWj3+wM=g@mail.gmail.com>
+	<CAFyqS9rndgCOi+b=fJ3tEOyTGQnVgNRGWOwZg4oYSd3Ru70siA@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.58.214.231 with SMTP id od7mr2172833vec.44.1365612988284;
-	Wed, 10 Apr 2013 09:56:28 -0700 (PDT)
-Received: by 10.59.3.198 with HTTP; Wed, 10 Apr 2013 09:56:28 -0700 (PDT)
-In-Reply-To: <cover.1365147946.git.stefanx.stanacar@intel.com>
-References: <cover.1365147946.git.stefanx.stanacar@intel.com>
-Date: Wed, 10 Apr 2013 09:56:28 -0700
-Message-ID: <CAPhnLPAh8YPWrAEDx-yeDTvX09YYwEsFnO1G+8MLgguLKOf15Q@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Stefan Stanacar <stefanx.stanacar@intel.com>
-X-Gm-Message-State: ALoCoQl3luut/bnxi1DcreTgZsKMw7trDTtcGgW90vvZDstF+xrYtNNX/pM9PriecPGRS/Q7SZed
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH v2 0/2] Add a new buildset
+Cc: yocto@yoctoproject.org
+Subject: Re: bootlogd error at startup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,48 +31,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 16:56:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 10 Apr 2013 17:06:44 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-I'm going to wait for 1.4 to come out before I pull this. Please keep
-this around as we need it, but I don't want to mess around with what
-gets built out until it's necessary.
+On Wednesday 10 April 2013 17:36:06 Hans Beck=E9rus wrote:
+> Just for follow-up.
+> The solution to this problem is to make sure CONFIG_LEGACY_PTYS=3Dy i=
+n
+> the kernel config.
 
--b
+Thanks, it's good to know you found the solution (as will others hopefu=
+lly if=20
+they come across your post.)
 
-On Fri, Apr 5, 2013 at 12:49 AM, Stefan Stanacar
-<stefanx.stanacar@intel.com> wrote:
-> The following changes since commit a9434f623752818e10e703a613ef65586c435bbd:
->
->   PublishArtifacts.py: poky-tiny deploy (2013-04-04 11:20:56 -0700)
->
-> are available in the git repository at:
->
->   git://git.yoctoproject.org/poky-contrib stefans/yab4
->   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=stefans/yab4
->
-> Stefan Stanacar (2):
->   nightly-qa-extras.conf: add new buildset config
->   nightly.conf, yoctoAB.conf: enable the new nightly-qa-extras buildset
->
->  buildset-config/nightly-qa-extras.conf | 18 ++++++++++++++++++
->  buildset-config/nightly.conf           |  2 +-
->  buildset-config/yoctoAB.conf           |  3 ++-
->  3 files changed, 21 insertions(+), 2 deletions(-)
->  create mode 100644 buildset-config/nightly-qa-extras.conf
->
-> --
-> 1.8.1.4
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Cheers,
+Paul
 
+--=20
 
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Paul Eggleton
+Intel Open Source Technology Centre
 
