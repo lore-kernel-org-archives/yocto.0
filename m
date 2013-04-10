@@ -1,37 +1,31 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-da0-f52.google.com (mail-da0-f52.google.com
-	[209.85.210.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B273BE014CB
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 00:24:25 -0700 (PDT)
-Received: by mail-da0-f52.google.com with SMTP id f10so92342dak.11
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 00:24:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references:x-gm-message-state;
-	bh=wGefyt8cFCIhLBbdCjoZ1XbG+kXq2RwFxjcjYoeWDYA=;
-	b=jtYSlnvUcxENSipR6Ms11rZxCiBIdNCXYxwhX6GfRUcF/Z6bdO5kZB4Hu4OUklSmyu
-	rVqazTTJr+HbAZ2gaa+ny+kAhr2sduGnffV3hw0Og3Lscact4ggfsaFwiQWSDv7lpeto
-	yTQBc5k0uU1EZtY2eUaKG+OougsB31CzS4+SQ3KK8kNqSESnwota0syg7pljEpx2FIC4
-	RXpIUdh4vH6tk9Kg7IYcFYv2Flx2pHKoja0U1ZN5STAJRfnxXqu0r4bo4saWjErRenn2
-	NStKXNPioIXlYAvXbRyeMUXGcieSHD3h3zyBCNTYQBgcHjzd/kr1iqeajKRx2W5ALL/t
-	Z8Bg==
-X-Received: by 10.66.121.104 with SMTP id lj8mr1989627pab.51.1365578665556;
-	Wed, 10 Apr 2013 00:24:25 -0700 (PDT)
-Received: from avartita.hsd1.or.comcast.net.
-	(c-24-21-207-18.hsd1.or.comcast.net. [24.21.207.18])
-	by mx.google.com with ESMTPS id t16sm5394105pbs.32.2013.04.10.00.24.24
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 10 Apr 2013 00:24:24 -0700 (PDT)
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 10 Apr 2013 00:23:43 -0700
-Message-Id: <c0e08b39b16a8b690fa314e0215d148b3683ae31.1365578515.git.elizabeth.flanagan@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1365578515.git.elizabeth.flanagan@intel.com>
-References: <cover.1365578515.git.elizabeth.flanagan@intel.com>
-X-Gm-Message-State: ALoCoQn/+C17N2E39IhNzUSpiINpJLybJN44H5w2o4EWetoZanZy8H+rv3tLhQ918Ircq4CHl3Ob
-Subject: [PATCH 1/1] poky.conf: Flipping vars for dylan release
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qe0-f49.google.com (mail-qe0-f49.google.com
+	[209.85.128.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 011F5E014B5
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 04:27:06 -0700 (PDT)
+Received: by mail-qe0-f49.google.com with SMTP id 6so158548qeb.8
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 04:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type:content-transfer-encoding;
+	bh=JaDfabTdag4MdO24qMraMbpv4XbpWfYD0sU/gtobFJw=;
+	b=fr+Nwg6g63Vpr7Rvt5Clthnx8nAatF3l1wg2MjzIWr9JM5QuMtqlsg4D7QIGlmCbYd
+	XVaUZNOgpu2rlNt/j0okfVJTqOehM/w3z6CfifXkWf8GOWS34SUuS3srXCTiuSLg7PAb
+	g8dglD45Vk3Q9kTdrSaKYvqWhn2D+315Tc/3g/0L8Rx9uNHV0JtXZGDs4nWUfoY9cTih
+	HPN0AhWGjS9B1fzPOW151u3XG/GXrpt7sXldq2taddIn9HcTZV3o8QgF2AGjl01sITTX
+	tdVjlBJcF5p91MOvp+K+AysNMTgPb+oQUaA4WjD8pHs+BNgyuPfaHfR3O5VJzPsQ1QCW
+	DbOQ==
+MIME-Version: 1.0
+X-Received: by 10.49.108.104 with SMTP id hj8mr1891191qeb.4.1365593226335;
+	Wed, 10 Apr 2013 04:27:06 -0700 (PDT)
+Received: by 10.49.35.140 with HTTP; Wed, 10 Apr 2013 04:27:06 -0700 (PDT)
+In-Reply-To: <CAFyqS9pVw2AvNHosX__o-73C7oeMFkbFs03XdQKXTWBVTtQtLw@mail.gmail.com>
+References: <CAFyqS9pVw2AvNHosX__o-73C7oeMFkbFs03XdQKXTWBVTtQtLw@mail.gmail.com>
+Date: Wed, 10 Apr 2013 13:27:06 +0200
+Message-ID: <CAFyqS9onq80zJn4=BGR30pHT13Be5SGEwn=6pz1qbufmBC=+rQ@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: /etc/inittab generated incorrectly?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,42 +37,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Apr 2013 07:24:25 -0000
+X-List-Received-Date: Wed, 10 Apr 2013 11:27:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-DISTRO/SDKVERSION etc need to be flipped for dylan. This
-commit is valid only for the dylan branch.
+On Tue, Apr 9, 2013 at 7:20 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> w=
+rote:
+> I am having an issue with the /etc/inittab file that seems to be
+> incorrectly generated causing the following error at boot:
+>    INIT: version 2.88 booting
+>    INIT: /etc/inittab[42]: duplicate ID field "1"usb 1-1.1: new
+> high-speed USB device number 3 using xusbps-ehci
+>
+> The reason for this error is due to the 'id' being incorrectly
+> assigned to the getty ports in initttab, here is a sample from my
+> version of it:
+>
+> <snip>
+> # Normally not reached, but fallthrough in case of emergency.
+> z6:6:respawn:/sbin/sulogin
+> 0:12345:respawn:/sbin/getty 115200 ttyUSB0
+> 1:12345:respawn:/sbin/getty 115200 ttyPS0
+> # /sbin/getty invocations for the runlevels.
+> #
+> # The "id" field MUST be the same as the last
+> # characters of the device (after "tty").
+> #
+> # Format:
+> #  <id>:<runlevels>:<action>:<process>
+> #
+>
+> 1:2345:respawn:/sbin/getty 38400 tty1
+> <snip>
+>
+> The getty started for ttyPS0 and tty1 is assigned with the same id.
+> I think that for the entries to be unique, the ids should have been
+> assigned as 'USB0', 'PS0' and '1' respectively. At least that is what
+> is hinted by the comment in inittab itself ;) If I look inside
+> sysvinit-inittab_2.88dsf.bb I can see that the tty1 entry was added
+> because of having USE_VT=3D1. The others are coming from SERIAL_CONSOLES
+> in my machine .conf.
+> Is there some known limitation that USE_VT may not be used in
+> combination with SERIAL_CONSOLES? If I use SERIAL_CONSOLE instead it
+> works since the id is hardcoded to 'S'. It could be argued if this is
+> right or wrong, but at least it avoids the clash in id allocation from
+> USE_VT. But I need multiple gettys started so using SERIAL_CONSOLE is
+> not an option in this case.
+>
+> Would this be a bug worth fixing or is my only option here to instead
+> set USE_VT=3D0?
+> I guess one possible solution would be to assume 'tty' as prefix and
+> then use the rest as suffix in the id field instead of now simply
+> using the loop iterator?
+> Actually I am not even sure I need a getty to be started on tty1!? Is
+> it common praxis to have such an entry? I will only attach to the
+> board through the physical serial connections or ssh. The last commit
+> I see of this file is
+>
+> commit 074d49d2cc8bbc1a53a031d9ae0c828596017ed2
+> Author: Zhenhua Luo <b19537@freescale.com>
+> Date:   Wed Sep 26 15:18:37 2012 +0800
+>
 
-Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+Here is a quick fix of the problem for me.
+Of course a .bbappend could also be used with the similar correction.
+
+Hans
+
+From b5cedfdf2c790007daa8befe523650e66c46fe98 Mon Sep 17 00:00:00 2001
+From: hans.beckerus@gmail.com
+Date: Wed, 10 Apr 2013 13:05:08 +0200
+Subject: [PATCH] Fix id generation in inittab
+
 ---
- meta-yocto/conf/distro/poky.conf |    7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index 538f343..b9c2758 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -1,9 +1,9 @@
- DISTRO = "poky"
--DISTRO_NAME = "Poky 8.0 (Yocto Project 1.3 Reference Distro)"
--DISTRO_VERSION = "1.3+snapshot-${DATE}"
-+DISTRO_NAME = "Poky 9.0 (Yocto Project 1.4 Reference Distro)"
-+DISTRO_VERSION = "1.4"
- DISTRO_CODENAME = "dylan"
- SDK_VENDOR = "-pokysdk"
--SDK_VERSION := "${@'${DISTRO_VERSION}'.replace('snapshot-${DATE}','snapshot')}"
-+SDK_VERSION := "${@'${DISTRO_VERSION}'}"
- 
- MAINTAINER = "Poky <poky@yoctoproject.org>"
- 
-@@ -70,6 +70,7 @@ CONNECTIVITY_CHECK_URIS ?= " \
-              http://bugzilla.yoctoproject.org/report.cgi"
- 
- SANITY_TESTED_DISTROS ?= " \
-+            Yocto-1.3 \n \
-             Yocto-1.2 \n \
-             Poky-1.2 \n \
-             Poky-1.3 \n \
--- 
-1.7.9.5
+diff --git a/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb
+b/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb
+index b289853..d7b5af9 100644
+--- a/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb
++++ b/meta/recipes-core/sysvinit/sysvinit-inittab_2.88dsf.bb
+@@ -21,14 +21,12 @@ do_install() {
+         echo "S:2345:respawn:${base_sbindir}/getty ${SERIAL_CONSOLE}"
+>> ${D}${sysconfdir}/inittab
+     fi
 
+-    idx=3D0
+     tmp=3D"${SERIAL_CONSOLES}"
+     for i in $tmp
+     do
+        j=3D`echo ${i} | sed s/\;/\ /g`
+-       echo "${idx}:12345:respawn:${base_sbindir}/getty ${j}" >>
+${D}${sysconfdir}/inittab
+-
+-       idx=3D`expr $idx + 1`
++       id=3D`echo ${j} | sed -r 's/.*tty(\S+)/\1/'`
++       echo "${id}:12345:respawn:${base_sbindir}/getty ${j}" >>
+${D}${sysconfdir}/inittab
+     done
+
+     if [ "${USE_VT}" =3D "1" ]; then
+--
+1.8.1.4
+
+On Tue, Apr 9, 2013 at 7:20 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> w=
+rote:
+> I am having an issue with the /etc/inittab file that seems to be
+> incorrectly generated causing the following error at boot:
+>    INIT: version 2.88 booting
+>    INIT: /etc/inittab[42]: duplicate ID field "1"usb 1-1.1: new
+> high-speed USB device number 3 using xusbps-ehci
+>
+> The reason for this error is due to the 'id' being incorrectly
+> assigned to the getty ports in initttab, here is a sample from my
+> version of it:
+>
+> <snip>
+> # Normally not reached, but fallthrough in case of emergency.
+> z6:6:respawn:/sbin/sulogin
+> 0:12345:respawn:/sbin/getty 115200 ttyUSB0
+> 1:12345:respawn:/sbin/getty 115200 ttyPS0
+> # /sbin/getty invocations for the runlevels.
+> #
+> # The "id" field MUST be the same as the last
+> # characters of the device (after "tty").
+> #
+> # Format:
+> #  <id>:<runlevels>:<action>:<process>
+> #
+>
+> 1:2345:respawn:/sbin/getty 38400 tty1
+> <snip>
+>
+> The getty started for ttyPS0 and tty1 is assigned with the same id.
+> I think that for the entries to be unique, the ids should have been
+> assigned as 'USB0', 'PS0' and '1' respectively. At least that is what
+> is hinted by the comment in inittab itself ;) If I look inside
+> sysvinit-inittab_2.88dsf.bb I can see that the tty1 entry was added
+> because of having USE_VT=3D1. The others are coming from SERIAL_CONSOLES
+> in my machine .conf.
+> Is there some known limitation that USE_VT may not be used in
+> combination with SERIAL_CONSOLES? If I use SERIAL_CONSOLE instead it
+> works since the id is hardcoded to 'S'. It could be argued if this is
+> right or wrong, but at least it avoids the clash in id allocation from
+> USE_VT. But I need multiple gettys started so using SERIAL_CONSOLE is
+> not an option in this case.
+>
+> Would this be a bug worth fixing or is my only option here to instead
+> set USE_VT=3D0?
+> I guess one possible solution would be to assume 'tty' as prefix and
+> then use the rest as suffix in the id field instead of now simply
+> using the loop iterator?
+> Actually I am not even sure I need a getty to be started on tty1!? Is
+> it common praxis to have such an entry? I will only attach to the
+> board through the physical serial connections or ssh. The last commit
+> I see of this file is
+>
+> commit 074d49d2cc8bbc1a53a031d9ae0c828596017ed2
+> Author: Zhenhua Luo <b19537@freescale.com>
+> Date:   Wed Sep 26 15:18:37 2012 +0800
+>
+> Regards,
+> Hans
 
