@@ -1,29 +1,19 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCCC3E014AE
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 01:38:36 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3B8nhrS004862; Thu, 11 Apr 2013 09:49:44 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id iozsZEnMUdg3; Thu, 11 Apr 2013 09:49:43 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3B8nYqh004839
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Thu, 11 Apr 2013 09:49:37 +0100
-Message-ID: <1365669493.16702.42.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Thu, 11 Apr 2013 09:38:13 +0100
-In-Reply-To: <CAPhnLPAmLKbfehcGK3NPZFbNCja6H3TG=Y9q9r=A1PsjURy4gg@mail.gmail.com>
-References: <CAPhnLPAmLKbfehcGK3NPZFbNCja6H3TG=Y9q9r=A1PsjURy4gg@mail.gmail.com>
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: 1.4_M6.rc1 started
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F03EE014AE
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 02:07:58 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 11 Apr 2013 02:07:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,454,1363158000"; d="scan'208";a="320768159"
+Received: from ideapad.rb.intel.com ([10.237.105.146])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Apr 2013 02:07:56 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 11 Apr 2013 11:50:15 +0300
+Message-Id: <1365670215-24845-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH] [eclipse-poky][branch:master]Use different dialogs for metadata & system tap script locations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,35 +25,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2013 08:38:37 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Apr 2013 09:07:58 -0000
 
-On Wed, 2013-04-10 at 15:48 -0700, Flanagan, Elizabeth wrote:
-> Our first release candidate for dylan has been started. It will be
-> available this evening at:
-> http://autobuilder.yoctoproject.org/pub/nightly/20130410-1
-> 
-> Repo               Branch      Hash
-> poky                dylan         adb63ca02348af72a30cef2f20de2234b74a7200
-> meta-intel       dylan         fd58fb07cf4fcc0553d0608f5688fc03e41ea15c
-> meta-qt3         dylan         4c27cce6688aa39852f3cba5e7b80ec279019605
-> meta-fsl-arm  dylan         5b8683ad04d63f0d5b2638cac245bff28468b634
-> meta-fsl-ppc   master      3312fd5ce9caced68eff577cd0e83ff1471b0612
-> eclipse-poky   dylan         e5172830f61b7dcc3ac03d18a03e63389c6b4629
-> 
-> So far everything looks pretty green. I'll have tags up tonight once
-> it completes.
+[Yocto #4243]
 
-For the reasons Bruce and Trevor alluded to, I'm pronouncing this build
-DoA. We've tried to pull together too much too fast. We've fixes for
-several major issues and will run another build which should look better
-and this time, be worth testing.
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
+ .../actions/SystemtapSettingDialog.java            |   21 +++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
-QA Folks: Please wait for the next build.
-
-Cheers,
-
-Richard
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
+index 133b91c..fc9d547 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
+@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Button;
+ import org.eclipse.swt.widgets.Composite;
+ import org.eclipse.swt.widgets.Control;
+ import org.eclipse.swt.widgets.DirectoryDialog;
++import org.eclipse.swt.widgets.FileDialog;
+ import org.eclipse.swt.widgets.Label;
+ import org.eclipse.swt.widgets.Shell;
+ import org.eclipse.swt.widgets.Text;
+@@ -34,6 +35,9 @@ import org.yocto.sdk.remotetools.SWTFactory;
+ public class SystemtapSettingDialog extends Dialog {
+ 
+ 	static protected String TITLE="Systemtap Crosstap";
++	private final static int FILE_DIALOG = 1;
++	private final static int DIRECTORY_DIALOG = 2;
++	
+ 	protected String title;
+ 	protected String metadata_location;
+ 	protected String systemtap_script;
+@@ -115,7 +119,7 @@ public class SystemtapSettingDialog extends Dialog {
+ 		textContainer.setLayout(new GridLayout(2, false));
+ 		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+ 		metadataLocationText = (Text)addTextControl(textContainer, metadata_location);
+-		metadataLocationBtn = addFileSelectButton(textContainer, metadataLocationText);
++		metadataLocationBtn = addFileSelectButton(textContainer, metadataLocationText, DIRECTORY_DIALOG);
+ 		
+ 		label = new Label(projComp, SWT.NONE);
+ 		label.setText(Messages.User_ID);
+@@ -143,7 +147,7 @@ public class SystemtapSettingDialog extends Dialog {
+ 		textContainer.setLayout(new GridLayout(2, false));
+ 		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+ 		systemtapScriptText = (Text)addTextControl(textContainer, systemtap_script);
+-		systemtapScriptBtn = addFileSelectButton(textContainer, systemtapScriptText);
++		systemtapScriptBtn = addFileSelectButton(textContainer, systemtapScriptText, FILE_DIALOG);
+ 		
+ 		label = new Label(projComp, SWT.NONE);
+ 		label.setText(Messages.Systemtap_Args);
+@@ -167,17 +171,20 @@ public class SystemtapSettingDialog extends Dialog {
+ 		return (Control)text;
+ 	}
+ 
+-	private Button addFileSelectButton(final Composite parent, final Text text) {
++	private Button addFileSelectButton(final Composite parent, final Text text, final int dialogType) {
+ 		Button button = new Button(parent, SWT.PUSH | SWT.LEAD);
+ 		button.setText("Browse");
+ 		button.addSelectionListener(new SelectionAdapter() {
+ 			@Override
+ 			public void widgetSelected(SelectionEvent event) {
+-				String dirName;
++				String name = null;
+ 				
+-				dirName = new DirectoryDialog(parent.getShell()).open();
+-				if (dirName != null) {
+-					text.setText(dirName);
++				if (dialogType == DIRECTORY_DIALOG)
++					name = new DirectoryDialog(parent.getShell()).open();
++				else if(dialogType == FILE_DIALOG)
++					name = new FileDialog(parent.getShell()).open();
++				if (name != null) {
++					text.setText(name);
+ 				}
+ 			}
+ 		});
+-- 
+1.7.9.5
 
 
