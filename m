@@ -1,30 +1,66 @@
-Return-Path: <Krishna.Dwivedi@aricent.com>
-Received: from jaguar.aricent.com (unknown [121.241.96.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62834E013D9
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 07:20:55 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id DD7D536B3A
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 19:50:24 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136])
-	by jaguar.aricent.com (Postfix) with ESMTP id C574736B2E
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 19:50:24 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.130]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Thu, 11 Apr 2013 19:50:25 +0530
-From: Krishna Dwivedi <Krishna.Dwivedi@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 11 Apr 2013 19:50:22 +0530
-Thread-Topic: Arguement list too big error in bitbake meta-toolchain for
-	MIPS architechture
-Thread-Index: Ac42v7QgKNGQl64yQZW5YcNZF+HlSg==
-Message-ID: <B60DC3E72D20B040854608D81E44050F64F451A433@GUREXMB01.ASIAN.AD.ARICENT.COM>
+Return-Path: <Michael.Fainstein@ecitele.com>
+Received: from mail1.bemta14.messagelabs.com (mail1.bemta14.messagelabs.com
+	[193.109.254.117])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03675E0146C
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 08:49:47 -0700 (PDT)
+Received: from [193.109.254.147:32166] by server-13.bemta-14.messagelabs.com
+	id 73/7E-07387-89BD6615; Thu, 11 Apr 2013 15:49:44 +0000
+X-Env-Sender: Michael.Fainstein@ecitele.com
+X-Msg-Ref: server-6.tower-27.messagelabs.com!1365692089!3386606!4
+X-Originating-IP: [147.234.242.234]
+X-StarScan-Received: 
+X-StarScan-Version: 6.8.6.1; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 22836 invoked from network); 11 Apr 2013 14:54:53 -0000
+Received: from ilptbmg01-out.ecitele.com (HELO ilptbmg01-out.ecitele.com)
+	(147.234.242.234)
+	by server-6.tower-27.messagelabs.com with DHE-RSA-AES256-SHA encrypted
+	SMTP; 11 Apr 2013 14:54:53 -0000
+X-AuditID: 93eaf2e7-b7f396d000005d9d-57-5166ceb80cd7
+Received: from ilptexch01.ecitele.com ( [172.31.244.40])
+	by ilptbmg01-out.ecitele.com (Symantec Messaging Gateway) with SMTP id
+	17.98.23965.8BEC6615; Thu, 11 Apr 2013 17:54:48 +0300 (IDT)
+Received: from ILPTWPVEXCA02.ecitele.com (172.31.244.232) by
+	ilptexch01.ecitele.com (172.31.244.40) with Microsoft SMTP Server (TLS)
+	id 8.3.264.0; Thu, 11 Apr 2013 17:54:48 +0300
+Received: from ILPTWPVEXMB02.ecitele.com ([fe80::5979:ca8d:419f:56df]) by
+	ILPTWPVEXCA02.ecitele.com ([fe80::c473:490d:3a7e:e34a%12]) with mapi id
+	14.02.0328.009; Thu, 11 Apr 2013 17:54:48 +0300
+From: Michael Fainstein <Michael.Fainstein@ecitele.com>
+To: =?utf-8?B?RXJpYyBCw6luYXJk?= <eric@eukrea.com>
+Thread-Topic: [yocto] how to use native executable from one recipe during
+	install in another recipe
+Thread-Index: Ac42q+uNDpDhPUR3TKSbxe3uxp3DW///3QAA//+xUuA=
+Date: Thu, 11 Apr 2013 14:54:47 +0000
+Message-ID: <62673661A504604B856269DAADA8BC281DE35FA7@ILPTWPVEXMB02.ecitele.com>
+References: <62673661A504604B856269DAADA8BC281DE35E00@ILPTWPVEXMB02.ecitele.com>
+	<20130411145330.1dbee1c2@e6520eb>
+In-Reply-To: <20130411145330.1dbee1c2@e6520eb>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [10.4.58.22]
+content-transfer-encoding: base64
 MIME-Version: 1.0
-Subject: Arguement list too big error in bitbake meta-toolchain for MIPS architechture
+X-CFilter-Loop: Reflected
+X-Brightmail-Tracker: H4sIAAAAAAAAA3VTe0hTURzm7M7turx1nZpHiVqnByhubS1plov+SLH+UXsXiV13j9ut7d6x
+	e41WEIuKzKCHmZUIJln2sISSXjRLs7BasyAietHDqGn0QooKqnu7aUJ0/vrO+b7zfb9z+P1I
+	wrhJn05yvIQDPONFOoN2T9+nAfP5aHmx9e2zHEd1rEU3GxRs7d6hKwLLQyCX4XlBYiRsYrHo
+	cqKiALeGcQWRiWOdyIZMfi/jwj7MS07E+P2YZ9Esg+mflSvLON6EeZfAcrzbieYuKDQ7HNk5
+	ZhuaNXmCzT7TsNDDiSZs9jGc1+TDosi4sUk+WdlGeCojvXp/jXHtxx+39CHwILEKxJOQngbf
+	3rugUfFoeOdpq64KGEgjHQawKfJUq27OAhg616VTVEb6GoBHbnsUrKOnw57G93oFJ9NT4eVI
+	dZyCCTob7tm/mVBwEs3Cx1+jhKrB8Or3Zp2KZ8DqrpegCpCklp4ET71ilGOKLoJdjy4SapQE
+	d9w6/bu4eNoCK+8/AQoGcqFfbrZo1KhU+LC34c8DaNh0qYdQcQqMvfwRp+KxcGdk2+8ogs6A
+	rRenqFfHw5rtz/VqbCK8caBXq8ZmwncDR/5cTYMdRx9od4G0umFpdX+d6oY51Q1zOgi0x0EK
+	5/VLZT631WbBLk7CXmxxCb7TQO2X1+fBt4aJnYAmAUqgrgRxsTGOWSMGfZ0gjdSgFCp8u7zY
+	OLJMYIMeRvSUBiq8WOwEkCRQMrUiLHMUywTX4YAwSOXJX7mbSB/hEuTO5KVSu9X6/w1KpZpD
+	SwqNtFvuy9UY+3Fg0GcMSSJItSvxiQHsxmvLOa/0l9aQ8UoZCXIZrYqGEv2MT+TcKn8T2Mmm
+	F2/6AXn0TKwfGLW8wOP0VGqzIqUVqaeCH3IbnJ0+kCp/QxLVpqgS5Mka8uuTozRylG0nq0TJ
+	UzREpYfAzMa8EXtf27ImbrEvL5hqD0c/0/VLLQdXt+Xx3eyFyoq2k4ZYEG1dlFbfvF44Z+04
+	O0dgam/k+6esCKPFJw4FNmRYIuaMn4WRdse+k/2owRotqR3HN+ajnpxo/ark63zLRseoeR2x
+	rLt5Z46VNJIN1nE185/rxr9x3vtQuyz3MNKKHsaWSQRE5hfNP0D2FgQAAA==
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: how to use native executable from one recipe during install in another recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,306 +72,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2013 14:20:56 -0000
+X-List-Received-Date: Thu, 11 Apr 2013 15:49:50 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B60DC3E72D20B040854608D81E44050F64F451A433GUREXMB01ASIA_"
+Content-Type: text/plain; charset="utf-8"
 
---_000_B60DC3E72D20B040854608D81E44050F64F451A433GUREXMB01ASIA_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEVyaWMgQsOpbmFyZCBb
+bWFpbHRvOmVyaWNAZXVrcmVhLmNvbV0NCj4gU2VudDog15nXldedwqDXlCAxMSDXkNek16jX
+mdecIDIwMTMgMTU6NTMNCj4gVG86IE1pY2hhZWwgRmFpbnN0ZWluDQo+IENjOiB5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIGhvdyB0byB1c2UgbmF0
+aXZlIGV4ZWN1dGFibGUgZnJvbSBvbmUgcmVjaXBlIGR1cmluZw0KPiBpbnN0YWxsIGluIGFu
+b3RoZXIgcmVjaXBlDQo+IA0KPiBIaSBNaWNoYWVsLA0KPiANCj4gTGUgVGh1LCAxMSBBcHIg
+MjAxMyAxMTo1ODo1MCArMDAwMCwNCj4gTWljaGFlbCBGYWluc3RlaW4gPE1pY2hhZWwuRmFp
+bnN0ZWluQGVjaXRlbGUuY29tPiBhIMOpY3JpdCA6DQo+ID4gSSBoYXZlIG9uZSByZWNpcGUg
+dGhhdCBpbmhlcml0cyAibmF0aXZlIiwgYnVpbGRzIG5hdGl2ZSBleGVjdXRhYmxlIGFuZA0K
+PiBpbnN0YWxscyBpdCBpbiB0bXAvd29yay94ODZfNjQtbGludXgvZm9vLW5hdGl2ZS0xLjAw
+LXIwL2ltYWdlL3NiaW4vZm9vDQo+ID4NCj4gZG8geW91IGhhdmUgQkJDTEFTU0VYVEVORCA9
+ICJuYXRpdmUiIGluIHRoaXMgcmVjaXBlID8NCj4gDQo+IEluIHRoZSBlbmQsIGlzbid0IHRo
+ZSBuYXRpdmUgYmluYXJ5IGluc3RhbGxlZCBpbiA6DQo+IHN5c3Jvb3RzL3g4Nl82NC1saW51
+eC91c3Ivc2Jpbi8gPw0KPiANCj4gPiBBbm90aGVyIHJlY2lwZSBkZXBlbmRzIG9uIGZpcnN0
+IG9uZSBhbmQgbmVlZHMgdG8gZXhlY3V0ZSBmb28gaW4gaXRzDQo+IGRvX2luc3RhbGwgaW4g
+b3JkZXIgdG8gaW5zdGFsbCBmaWxlcyBpbiB0bXAvd29yay9wcGNlNTAwdjItZnNsLWxpbnV4
+LQ0KPiBnbnVzcGUvZm9vLTEuMDAtcjAvaW1hZ2UvZXRjLw0KPiA+DQo+ID4gSSBjYW4ndCBm
+aW5kIGEgd2F5IHRvIGRvIGl0LiBBbnkgc3VnZ2VzdGlvbnM/IEhvdyBjYW4gSSBpbnN0YWxs
+IGZvbyBpbg0KPiBmaXJzdCByZWNpcGUgdG8gc29tZSBjb21tb24gbG9jYXRpb24gdGhhdCAy
+bmQgcmVjaXBlIGNhbiB1c2U/IElzIHRoZXJlIHN1Y2gNCj4gc3RhbmRhcmQgbG9jYXRpb24/
+DQo+ID4NCj4gWW91IHNob3VsZCB0aGVuIGJlIGFibGUgdG8gY2FsbCBpdCBpbiB0aGUgb3Ro
+ZXIgcmVjaXBlIGFzIElJUkMgdGhpcyBwYXRoDQo+IGlzIGluICRQQVRIIChhbmQgeW91ciBy
+ZWNpcGUgc2hvdWxkIGRlcGVuZCBvbiBmb28tbmF0aXZlKQ0KPiANCj4gRXJpYw0KDQpUaGFu
+a3MhDQoNCkkgaGFkIGEgcHJvYmxlbSB3aXRoIGRvX3BvcHVsYXRlX3N5c3Jvb3QgaW4gbmF0
+aXZlIHJlY2lwZSBkdWUgdG8gYmFkIGdlbmVyYXRlZCBwYXRoIGZvciBkb19wb3B1bGF0ZV9z
+eXNyb290W3NzdGF0ZS1pbnB1dGRpcnNdLiBJIG92ZXJyb2RlIGl0IGluIG15IHJlY2lwZSB3
+aXRoIA0KZG9fcG9wdWxhdGVfc3lzcm9vdFtzc3RhdGUtaW5wdXRkaXJzXSA9ICIke1NZU1JP
+T1RfREVTVERJUn0iIGFuZCB0aGlzIHJlY2lwZSB3YXMgYnVpbGQgIHN1Y2Nlc3NmdWxseS4g
+SG93ZXZlciwgZm9vIHdhcyBub3QgaW5zdGFsbGVkIGluIHN5c3Jvb3RzL3g4Nl82NC1saW51
+eC4NCkkgY2hhbmdlZCBERVNURElSIGluICdtYWtlIGluc3RhbGwnIGZyb20gJHtEfSB0byAk
+e1NZU1JPT1RfREVTVERJUn0gYW5kIGZpbmFsbHkgZ290IGZvbyB3ZXJlIEkgbmVlZCBpdC4N
+Cg0KVGhhbmtzLA0KTWljaGFlbA0KDQoNCg0KVGhpcyBlLW1haWwgbWVzc2FnZSBpcyBpbnRl
+bmRlZCBmb3IgdGhlIHJlY2lwaWVudCBvbmx5IGFuZCBjb250YWlucyBpbmZvcm1hdGlvbiB3
+aGljaCBpcyBDT05GSURFTlRJQUwgYW5kIHdoaWNoIG1heSBiZSBwcm9wcmlldGFyeSB0byBF
+Q0kgVGVsZWNvbS4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyB0cmFuc21pc3Npb24gaW4g
+ZXJyb3IsIHBsZWFzZSBpbmZvcm0gdXMgYnkgZS1tYWlsLCBwaG9uZSBvciBmYXgsIGFuZCB0
+aGVuIGRlbGV0ZSB0aGUgb3JpZ2luYWwgYW5kIGFsbCBjb3BpZXMgdGhlcmVvZi4NCg0K
 
-Hi All,
-
-I am trying to build recipe meta-toolchain for MIPS architecture but runnin=
-g into errors. Can anyone please let me know, if I am missing anything here=
- or what could be root cause of this and how can I fix it. I have followed =
-these steps:
-
-1)In  WORKDIR/build/conf/local.conf-I selected MACHINE ?=3D "qemumips" for =
-mips architechture.
-
-2)source oe-init-build-env.
-
-3)bitbake meta-toolchain.
-
-In third step,I am running into these errors:
-
-NOTE: recipe nativesdk-gettext-0.18.2-r0: task do_configure: Started
-ERROR: Error executing a python function in /home/netlogic/yocto/poky/meta/=
-recipes-core/eglibc/eglibc-locale_2.17.bb:
-CalledProcessError: Command 'cp -al /home/netlogic/yocto/poky/build/tmp/wor=
-k/mips32-poky-linux/eglibc-locale/2.17-r0/packages-split/* /home/netlogic/y=
-octo/poky/build/tmp/work/mips32-poky-linux/eglibc-locale/2.17-r0/sstate-bui=
-ld-package//packages-split' returned non-zero exit status 126 with output /=
-bin/sh: /bin/cp: Argument list too long
-
-
-ERROR: The stack trace of python calls that resulted in this exception/fail=
-ure was:
-ERROR:   File "sstate_task_postfunc", line 10, in <module>
-ERROR:
-ERROR:   File "sstate_task_postfunc", line 7, in sstate_task_postfunc
-ERROR:
-ERROR:   File "sstate.bbclass", line 50, in sstate_package
-ERROR:
-ERROR:   File "/home/netlogic/yocto/poky/meta/lib/oe/path.py", line 94, in =
-copyhardlinktree
-ERROR:     check_output(cmd, shell=3DTrue, stderr=3Dsubprocess.STDOUT)
-ERROR:
-ERROR:   File "/home/netlogic/yocto/poky/meta/lib/oe/path.py", line 155, in=
- check_output
-ERROR:     raise CalledProcessError(retcode, cmd, output=3Doutput)
-ERROR:
-ERROR: The code that was being executed was:
-ERROR:      0006:        bb.build.exec_func(intercept, d)
-ERROR:      0007:    sstate_package(shared_state, d)
-ERROR:      0008:
-ERROR:      0009:
-ERROR:  *** 0010:sstate_task_postfunc(d)
-ERROR:      0011:
-ERROR: [From file: 'sstate_task_postfunc', lineno: 10, function: <module>]
-ERROR:      0003:    shared_state =3D sstate_state_fromvars(d)
-ERROR:      0004:    sstate_install(shared_state, d)
-ERROR:      0005:    for intercept in shared_state['interceptfuncs']:
-ERROR:      0006:        bb.build.exec_func(intercept, d)
-ERROR:  *** 0007:    sstate_package(shared_state, d)
-ERROR:      0008:
-ERROR:      0009:
-ERROR:      0010:sstate_task_postfunc(d)
-ERROR:      0011:
-ERROR: [From file: 'sstate_task_postfunc', lineno: 7, function: sstate_task=
-_postfunc]
-ERROR:      0046:    for plain in ss['plaindirs']:
-ERROR:      0047:        pdir =3D plain.replace(workdir, sstatebuild)
-ERROR:      0048:        bb.mkdirhier(plain)
-ERROR:      0049:        bb.mkdirhier(pdir)
-ERROR:  *** 0050:        oe.path.copyhardlinktree(plain, pdir)
-ERROR:      0051:
-ERROR:      0052:    d.setVar('SSTATE_BUILDDIR', sstatebuild)
-ERROR:      0053:    d.setVar('SSTATE_PKG', sstatepkg)
-ERROR:      0054:    sstate_hardcode_path(d)
-ERROR: [From file: 'sstate.bbclass', lineno: 50, function: sstate_package]
-ERROR: Function failed: sstate_task_postfunc
-ERROR: Logfile of failure stored in: /home/netlogic/yocto/poky/build/tmp/wo=
-rk/mips32-poky-linux/eglibc-locale/2.17-r0/temp/log.do_package.27399
-NOTE: recipe eglibc-locale-2.17-r0: task do_package: Failed
-ERROR: Task 772 (/home/netlogic/yocto/poky/meta/recipes-core/eglibc/eglibc-=
-locale_2.17.bb, do_package) failed with exit code '1'
-
-
-Regards,
-Krishna
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_000_B60DC3E72D20B040854608D81E44050F64F451A433GUREXMB01ASIA_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am trying to build recipe meta-toolchain for MIPS =
-architecture but running into errors. Can anyone please let me know, if I a=
-m missing anything here or what could be root cause of this and how can I f=
-ix it. I have followed these steps:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">1)In&nbsp; WORKDIR/build/conf/local.conf-I selected =
-MACHINE ?=3D &quot;qemumips&quot; for mips architechture.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">2)source oe-init-build-env.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">3)bitbake meta-toolchain.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>In third step,I am running into these errors:<o:p=
-></o:p></b></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">NOTE: recipe nativesdk-gettext-0.18.2-r0: task do_co=
-nfigure: Started<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Error executing a python function in /home/ne=
-tlogic/yocto/poky/meta/recipes-core/eglibc/eglibc-locale_2.17.bb:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">CalledProcessError: Command 'cp -al /home/netlogic/y=
-octo/poky/build/tmp/work/mips32-poky-linux/eglibc-locale/2.17-r0/packages-s=
-plit/* /home/netlogic/yocto/poky/build/tmp/work/mips32-poky-linux/eglibc-lo=
-cale/2.17-r0/sstate-build-package//packages-split'
- returned non-zero exit status 126 with output /bin/sh: /bin/cp: <b>Argumen=
-t list too long</b><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">ERROR: The stack trace of python calls that resulted=
- in this exception/failure was:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp; File &quot;sstate_task_postfunc&q=
-uot;, line 10, in &lt;module&gt;<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp; File &quot;sstate_task_postfunc&q=
-uot;, line 7, in sstate_task_postfunc<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp; File &quot;sstate.bbclass&quot;, =
-line 50, in sstate_package<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp; File &quot;/home/netlogic/yocto/p=
-oky/meta/lib/oe/path.py&quot;, line 94, in copyhardlinktree<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp; check_output(cmd, she=
-ll=3DTrue, stderr=3Dsubprocess.STDOUT)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp; File &quot;/home/netlogic/yocto/p=
-oky/meta/lib/oe/path.py&quot;, line 155, in check_output<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp; raise CalledProcessEr=
-ror(retcode, cmd, output=3Doutput)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: The code that was being executed was:<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0006:&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.build.exec_func(intercept, d)<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0007:&nbsp;&nbs=
-p;&nbsp; sstate_package(shared_state, d)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0008:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0009:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR:&nbsp; *** 0010:sstate_task_postfunc(d)<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0011:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR: [From file: 'sstate_task_postfunc', lineno: 1=
-0, function: &lt;module&gt;]<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0003:&nbsp;&nbs=
-p;&nbsp; shared_state =3D sstate_state_fromvars(d)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0004:&nbsp;&nbs=
-p;&nbsp; sstate_install(shared_state, d)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0005:&nbsp;&nbs=
-p;&nbsp; for intercept in shared_state['interceptfuncs']:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0006:&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.build.exec_func(intercept, d)<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR:&nbsp; *** 0007:&nbsp;&nbsp;&nbsp; sstate_pack=
-age(shared_state, d)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0008:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0009:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0010:sstate_tas=
-k_postfunc(d)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0011:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR: [From file: 'sstate_task_postfunc', lineno: 7=
-, function: sstate_task_postfunc]<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;0046:&nbsp;&nbs=
-p;&nbsp; for plain in ss['plaindirs']:<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0047:&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pdir =3D plain.replace(workdir, sstatebuil=
-d)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0048:&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.mkdirhier(plain)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0049:&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.mkdirhier(pdir)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp; *** 0050:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp; oe.path.copyhardlinktree(plain, pdir)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0051:<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0052:&nbsp;&nbs=
-p;&nbsp; d.setVar('SSTATE_BUILDDIR', sstatebuild)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0053:&nbsp;&nbs=
-p;&nbsp; d.setVar('SSTATE_PKG', sstatepkg)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0054:&nbsp;&nbs=
-p;&nbsp; sstate_hardcode_path(d)<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: [From file: 'sstate.bbclass', lineno: 50, fun=
-ction: sstate_package]<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Function failed: sstate_task_postfunc<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">ERROR: Logfile of failure stored in: /home/netlogic/=
-yocto/poky/build/tmp/work/mips32-poky-linux/eglibc-locale/2.17-r0/temp/log.=
-do_package.27399<o:p></o:p></p>
-<p class=3D"MsoNormal">NOTE: recipe eglibc-locale-2.17-r0: task do_package:=
- Failed<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Task 772 (/home/netlogic/yocto/poky/meta/reci=
-pes-core/eglibc/eglibc-locale_2.17.bb, do_package) failed with exit code '1=
-'<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Krishna<o:p></o:p></p>
-</div>
-<br>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
-for important disclosures regarding this electronic communication.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-</font>
-</body>
-</html>
-
---_000_B60DC3E72D20B040854608D81E44050F64F451A433GUREXMB01ASIA_--
