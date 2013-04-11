@@ -1,25 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97158E014AD
-	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 19:41:46 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r3B2fjQ5002953
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 10 Apr 2013 19:41:45 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.74) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Wed, 10 Apr 2013 19:41:44 -0700
-Message-ID: <516622E7.90509@windriver.com>
-Date: Wed, 10 Apr 2013 22:41:43 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:9.0) Gecko/20111222 Thunderbird/9.0.1
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B45CE01496
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 20:21:47 -0700 (PDT)
+Received: by mail-wi0-f182.google.com with SMTP id hi18so99396wib.9
+	for <yocto@yoctoproject.org>; Wed, 10 Apr 2013 20:21:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=JH8qs5Hy+wL6M68zuwfLK1kc5OnMqZVbG4v1QIfSPLw=;
+	b=cnxYSMXx2tln53KkjPzjZkG9jv4Ck7d4rPIGlW5/FeOmpYrTBy9Dj74EGgw7rKsqOa
+	ig9jJe/o/YpJaJRjYUmOMJCHb95NcLwGKaZ5vSuBEHWpp/IgTMb5uuJm/FWRmAhrx/zh
+	iCsR+7TLR9hKKbzTWzIRsriY/jyLGdLkPoj9Jtwmr+/bZBQf/D+OOdX+NdR+3J5q4Twr
+	Bd3AxybtMdF8lC13bNwIPn4PmuhTUAbZL3aUUmVtLhSssBGY4BRBciXPQHGYcRXzjT3g
+	+F6FrpacYvpPWDwHL3dsYU67nvFhSaA2eU2fsnb6q/7k5lJSDqQ06bJaYwFZRkSGbxts
+	eUqw==
 MIME-Version: 1.0
-To: Trevor Woerner <twoerner@gmail.com>
+X-Received: by 10.194.109.227 with SMTP id hv3mr7385251wjb.32.1365650506471;
+	Wed, 10 Apr 2013 20:21:46 -0700 (PDT)
+Received: by 10.194.167.73 with HTTP; Wed, 10 Apr 2013 20:21:46 -0700 (PDT)
+In-Reply-To: <516622E7.90509@windriver.com>
 References: <CAPhnLPAmLKbfehcGK3NPZFbNCja6H3TG=Y9q9r=A1PsjURy4gg@mail.gmail.com>
 	<CAHUNapTQhQNb+DRf7Z6HvtcQmQ+Jo2jtJiqKt8u6frUEvM-UaQ@mail.gmail.com>
-In-Reply-To: <CAHUNapTQhQNb+DRf7Z6HvtcQmQ+Jo2jtJiqKt8u6frUEvM-UaQ@mail.gmail.com>
+	<516622E7.90509@windriver.com>
+Date: Wed, 10 Apr 2013 23:21:46 -0400
+Message-ID: <CAHUNapRb6Fheg1tOf56GKg9Zqxe8h52XVNPAHKmPiwB=xEZ1=Q@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: 1.4_M6.rc1 started
 X-BeenThere: yocto@yoctoproject.org
@@ -33,82 +40,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2013 02:41:46 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Apr 2013 03:21:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 13-04-10 10:34 PM, Trevor Woerner wrote:
-> On Wed, Apr 10, 2013 at 6:48 PM, Flanagan, Elizabeth
-> <elizabeth.flanagan@intel.com>  wrote:
->> Our first release candidate for dylan has been started.
->>
->> Repo               Branch      Hash
->> poky                dylan         adb63ca02348af72a30cef2f20de2234b74a7200
->
-> I did a little bit of my own ad-hoc testing and wanted to share my
-> results. Maybe others could give it a try and see if they come up with
-> the same?
->
-> Checking out the dylan branch of poky I just wanted to perform a
-> simple "bitbake console-image-minimal" for each of the supported qemu
-> targets, run the resulting image under qemu, log in as root, and run
-> "uname -a".
->
-> Here are my results:
->
-> qemux86
->          bitbake core-image-minimal
->                  - okay
->          runqemu qemux86
->                  - okay
->
-> qemuarm
->          bitbake core-image-minimal
->                  - okay
->          runqemu qemuarm
->                  - segfault
->
-> qemumips
->          bitbake core-image-minimal
->                  - okay
->          runqemu qemumips
->                  - couldn't log in on main terminal
->                  - but could log in using Ctrl+Alt+3 terminal
+On Wed, Apr 10, 2013 at 10:41 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> Fixed. A few hours ago.
+[...]
+> Known problem. And I've got a fix already tested and on it's way to
+> Richard.
 
-Fixed. A few hours ago.
 
->
-> qemuppc
->          bitbake core-image-minimal
->                  - okay
->          runqemu qemuppc
->                  - okay
->
-> qemux86-64
->          bitbake core-image-minimal
->                  - okay
->          runqemu qemux86-64
->                  - okay
->
-> I have attached a png of my qemuarm output. Right now I'm deleting its
-> tmp directory and trying again.
-
-Known problem. And I've got a fix already tested and on it's way to
-Richard.
-
-Cheers,
-
-Bruce
-
->
-> Next I want to try a "bitbake world" of all the targets to see whether
-> they can all succeed (they did a couple commits ago).
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Wow, one certainly does get service around here! :-)
 
