@@ -1,38 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f54.google.com (mail-pb0-f54.google.com
-	[209.85.160.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07662E014AD;
-	Wed, 10 Apr 2013 23:03:57 -0700 (PDT)
-Received: by mail-pb0-f54.google.com with SMTP id xa7so680393pbc.13
-	for <multiple recipients>; Wed, 10 Apr 2013 23:03:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
-	:cc:message-id:references:to:x-mailer;
-	bh=4VYl7Sp44fpveyfWtoTZl/2N/i0Z+axXzFBjLHqSY/I=;
-	b=s7HIryLWs8bGkQPsOOhnNYJOlAtkGuZ3YK6rxNaFjBWQPu6XidcpTq/0Pe8ixXqgAE
-	HeBfUAyUbuXdVm/v5rXTEZjGddx6pjV8RVgKkWILENu9JEyRsVELnoWRQwtoyjtxM29r
-	EMkxOJoTwp/6fmWbJAjmtMTmvFwuDqfTp8r6p/MTv/nNnlc4ruLkvznDtgrL/tDrGxMW
-	CIjLV/Xjhf1EVxQvtuJ9QWsL40F2IboWA8E3DaYAgXLYMv1QVffdUoND31BIuFg1GSv5
-	ZyW1+eHf3//F30nVhaQgvG0yl49tnSw2SLh4fszXnbZ1IvVjKsyerqZ9PpZwdBlve/co
-	Hjvg==
-X-Received: by 10.68.160.226 with SMTP id xn2mr6748169pbb.174.1365660236808;
-	Wed, 10 Apr 2013 23:03:56 -0700 (PDT)
-Received: from jchheda-sslvpn-nc.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPS id yr10sm3562610pab.6.2013.04.10.23.03.54
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 10 Apr 2013 23:03:55 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <2c7fcb27-77ce-4ff3-a94f-f4d1d708343f@VA3EHSMHS029.ehs.local>
-Date: Wed, 10 Apr 2013 23:03:51 -0700
-Message-Id: <097135E1-DE1B-457F-A4D5-A0BEB50A8826@gmail.com>
-References: <2c7fcb27-77ce-4ff3-a94f-f4d1d708343f@VA3EHSMHS029.ehs.local>
-To: Sipke Vriend <sipke.vriend@xilinx.com>
-X-Mailer: Apple Mail (2.1503)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"meta-xilinx@yoctoproject.org" <meta-xilinx@yoctoproject.org>
-Subject: Re: Xilinx git repositories moved to github
+Return-Path: <Gianpaolo_Macario@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E52BFE014AE
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 00:14:40 -0700 (PDT)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1UQBiR-0002hN-Fp from Gianpaolo_Macario@mentor.com ;
+	Thu, 11 Apr 2013 00:14:39 -0700
+Received: from SVR-IES-FEM-02.mgc.mentorg.com ([137.202.0.106]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Thu, 11 Apr 2013 00:14:39 -0700
+Received: from EU-MBX-02.mgc.mentorg.com ([169.254.3.230]) by
+	SVR-IES-FEM-02.mgc.mentorg.com ([137.202.0.106]) with mapi id
+	14.01.0289.001; Thu, 11 Apr 2013 08:14:38 +0100
+From: "Macario, Gianpaolo" <Gianpaolo_Macario@mentor.com>
+To: "florin.sarbu@windriver.com" <florin.sarbu@windriver.com>
+Thread-Topic: [meta-ivi][PATCH] README.md: Fix poky SHA
+Thread-Index: Ac42hDBeAzGYoaflQSuzkPQ/pEr1kg==
+Date: Thu, 11 Apr 2013 07:14:38 +0000
+Message-ID: <0CCD6BBA210ECA418BCD82271FCFD94C5464DD63@EU-MBX-02.mgc.mentorg.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [137.202.0.76]
+MIME-Version: 1.0
+X-OriginalArrivalTime: 11 Apr 2013 07:14:39.0693 (UTC)
+	FILETIME=[3B3057D0:01CE3684]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [meta-ivi][PATCH] README.md: Fix poky SHA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,106 +38,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2013 06:03:57 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895"
-
---Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895
+X-List-Received-Date: Thu, 11 Apr 2013 07:14:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
-Sipke
+Specify a newer SHA for poky since the previous one now causes the build me=
+ta-ivi build to fail.
+See https://lists.yoctoproject.org/pipermail/yocto/2013-April/015273.html=20
+=20
+Signed-off-by: Gianpaolo Macario <gianpaolo_macario@mentor.com>
+---
+ README.md |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+=20
+diff --git a/README.md b/README.md
+index b2c84f9..f17a606 100644
+--- a/README.md
++++ b/README.md
+@@ -16,7 +16,7 @@ Layer Dependencies
+=20
+ URI: git://git.yoctoproject.org/poky
+ branch: master
+-revision: d823759b4594143d522eae0b2a2498436a6dcb1e
++revision: a6502081b7c7acc49187aa7c68ad19e0751ee030
+=20
+ Using the above git sha's and master meta-ivi, bitbaking foton-image is
+ known to work (the foton-image build should be GENIVI 4.0 compliant).
+--
+1.7.9.5
 
-On Apr 10, 2013, at 9:19 PM, Sipke Vriend <sipke.vriend@xilinx.com> =
-wrote:
 
-> Hi,
-> =20
-> If your recipes rely on repositories at git.xilinx.com, please update =
-them to use
-> github.com/Xilinx.
-
-
-You might want to check if layer index needs to be notified of this =
-change and surely other distributions e.g. angstrom etc.
-
-> =20
-> Regards
-> Sipke
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"><base href=3D"x-msg://1719/"></head><body =
-style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
--webkit-line-break: after-white-space; ">Sipke<div><br><div><div>On Apr =
-10, 2013, at 9:19 PM, Sipke Vriend &lt;<a =
-href=3D"mailto:sipke.vriend@xilinx.com">sipke.vriend@xilinx.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div lang=3D"EN-AU" link=3D"blue" vlink=3D"purple" =
-style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
-0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
-0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-"><div class=3D"WordSection1" style=3D"page: WordSection1; "><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
-style=3D"font-size: 11pt; ">Hi,<o:p></o:p></span></font></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
-style=3D"font-size: 11pt; ">&nbsp;</span></font></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
-style=3D"font-size: 11pt; ">If your recipes rely on repositories at<span =
-class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"http://git.xilinx.com" style=3D"color: purple; text-decoration: =
-underline; ">git.xilinx.com</a>, please update them to =
-use<o:p></o:p></span></font></div><div style=3D"margin: 0cm 0cm =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif; "><font =
-size=3D"2" face=3D"Calibri"><span style=3D"font-size: 11pt; "><a =
-href=3D"http://github.com/Xilinx" style=3D"color: purple; =
-text-decoration: underline; =
-">github.com/Xilinx</a>.</span></font></div></div></div></blockquote><div>=
-<br></div><div><br></div><div>You might want to check if layer index =
-needs to be notified of this change and surely other distributions e.g. =
-angstrom etc.</div><br><blockquote type=3D"cite"><div lang=3D"EN-AU" =
-link=3D"blue" vlink=3D"purple" style=3D"font-family: Helvetica; =
-font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><div =
-class=3D"WordSection1" style=3D"page: WordSection1; "><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
-style=3D"font-size: 11pt; "><o:p></o:p></span></font></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
-style=3D"font-size: 11pt; ">&nbsp;</span></font></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
-style=3D"font-size: 11pt; ">Regards<o:p></o:p></span></font></div><div =
-style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
-style=3D"font-size: 11pt; =
-">Sipke<o:p></o:p></span></font></div></div><br =
-clear=3D"all">_______________________________________________<br>yocto =
-mailing list<br><a href=3D"mailto:yocto@yoctoproject.org" style=3D"color: =
-purple; text-decoration: underline; ">yocto@yoctoproject.org</a><br><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
-purple; text-decoration: underline; =
-">https://lists.yoctoproject.org/listinfo/yocto</a><br></div></blockquote>=
-</div><br></div></body></html>=
-
---Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895--
