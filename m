@@ -1,33 +1,33 @@
 Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-we0-f182.google.com (mail-we0-f182.google.com
-	[74.125.82.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 414B7E014DB
+Received: from mail-we0-f178.google.com (mail-we0-f178.google.com
+	[74.125.82.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 103DFE014D8
 	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 04:25:49 -0700 (PDT)
-Received: by mail-we0-f182.google.com with SMTP id k14so1150438wer.41
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 04:25:48 -0700 (PDT)
+Received: by mail-we0-f178.google.com with SMTP id z53so1192642wey.9
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 04:25:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=NiEK8u1kzjDSDjroUEVyQoFixZCaw5m6WNBbuzFlY2A=;
-	b=NHd/HCXKH9Pbb1lelc5oRrRuwK0zXBshPEGigEyZs7HiEdidmLj+cPRLZCsxUv60jy
-	t3WfEIIJe6ZrcjQYChEBxFjAMPWPAzoXRohP2V8bXoZ3ZNqXOBcM5GaXTxFjqJJCX4SX
-	QJJxOfTThtLh0lBq7NRoyRHe0v2y7B0Tmr/yRSNiwuMISLq4zGZ3RlZP1oR6J4CJSgjk
-	OVSSoBe2egyTLIjEaWtml+IcAn2cEwiIEllmEV1qyvy727qLSdMbDehLD6bFYOtZ5sU/
-	l3viEKG5HJaJOuirkF0Zlm5zqzIaPqr1pm3jaLFYZNtzQmrOipNs0HfS/Pa122PIFvUs
-	ewwg==
-X-Received: by 10.180.81.232 with SMTP id d8mr9639112wiy.25.1365679548392;
-	Thu, 11 Apr 2013 04:25:48 -0700 (PDT)
+	:references; bh=Du13iZ7SV0Lz26KVoAuL07RM6+Bd7oj8SjRmSKNPW6g=;
+	b=vsvAhl3vTpnT7ayCp3h2GbT0bOQNCh8sA9Ogzc/JwFk++q5OlDpeNbAKoBuX0wR3D5
+	n5SCvZqIwLpv8qG7QtDp+DjuenX+4fILENTh1nE1PR2Cruef/TFyQwg7dPvsuwejxfGj
+	WrTLORxDsPn6mWpQMBS41+2J0bOfV7F6buiQhuhyFs0HKgs2qbdwpFmeYek3xTQO2Z0X
+	qFiTlZnbRUMwTLcvl417/snHjbunCmUd/sqfWVjUcrvbfwaTH+zPqvWFb0dumdKB7pRV
+	XKLYyGynHvGVizOmY2+td7i5VynGpIJ/YeWYSg5mZwA/2nPMoL5ugJHOBXOUmu0z44d/
+	0nzw==
+X-Received: by 10.194.133.198 with SMTP id pe6mr10063449wjb.9.1365679549301;
+	Thu, 11 Apr 2013 04:25:49 -0700 (PDT)
 Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPS id g4sm2785162wib.11.2013.04.11.04.25.47
+	by mx.google.com with ESMTPS id g4sm2785162wib.11.2013.04.11.04.25.48
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 11 Apr 2013 04:25:47 -0700 (PDT)
+	Thu, 11 Apr 2013 04:25:48 -0700 (PDT)
 From: Atanas Gegov <atanas.gegov.oss@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 11 Apr 2013 13:25:29 +0200
-Message-Id: <1365679531-4518-8-git-send-email-atanas.gegov.oss@gmail.com>
+Date: Thu, 11 Apr 2013 13:25:30 +0200
+Message-Id: <1365679531-4518-9-git-send-email-atanas.gegov.oss@gmail.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1365679531-4518-1-git-send-email-atanas.gegov.oss@gmail.com>
 References: <1365679531-4518-1-git-send-email-atanas.gegov.oss@gmail.com>
-Subject: [PATCHv2 7/9] plugins/sdk.ide: Renamed the NewYoctoProjectPostProcess
+Subject: [PATCHv2 8/9] plugins/sdk.ide: Improved usage of strings in class
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,253 +39,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2013 11:25:49 -0000
+X-List-Received-Date: Thu, 11 Apr 2013 11:25:50 -0000
 
 From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Renamed the NewYoctoProjectPostProcess to
-NewYoctoAutotoolsProjectPostProcess as it is actually
-relevant for Autotools-based projects. Added a check
-for the apropriate project nature in the the "process"
-method of NewYoctoAutotoolsProjectPostProcess.
+Extracted string constants. Added missing
+NON-NLS-1 declarations.
 ---
- plugins/org.yocto.sdk.ide/plugin.xml               |    4 +-
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |    2 +
- .../NewYoctoAutotoolsProjectPostProcess.java       |   77 ++++++++++++++++++++
- .../sdk/ide/wizard/NewYoctoProjectPostProcess.java |   73 -------------------
- .../HelloWorldCAutotoolsProject/template.xml       |    2 +-
- .../HelloWorldCGTKAutotoolsProject/template.xml    |    2 +-
- .../HelloWorldCPPAutotoolsProject/template.xml     |    2 +-
- 7 files changed, 84 insertions(+), 78 deletions(-)
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
- delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectPostProcess.java
+ .../NewYoctoAutotoolsProjectPostProcess.java       |   10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/plugins/org.yocto.sdk.ide/plugin.xml b/plugins/org.yocto.sdk.ide/plugin.xml
-index 6e378bd..1b882a2 100644
---- a/plugins/org.yocto.sdk.ide/plugin.xml
-+++ b/plugins/org.yocto.sdk.ide/plugin.xml
-@@ -164,8 +164,8 @@
-          </simple>
-       </processType>
-       <processType
--            name="NewYoctoProjectPostProcess"
--            processRunner="org.yocto.sdk.ide.wizard.NewYoctoProjectPostProcess">
-+            name="NewYoctoAutotoolsProjectPostProcess"
-+            processRunner="org.yocto.sdk.ide.wizard.NewYoctoAutotoolsProjectPostProcess">
-          <simple
-                name="projectName">
-          </simple>
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-index 780bc90..67087f0 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
-@@ -98,3 +98,5 @@ LaunchConfig.BuildScope.Attr = org.eclipse.ui.externaltools.ATTR_LAUNCH_CONFIGUR
- LaunchConfig.BuildScope.Value = ${projects:}
- LaunchConfig.Location.Attr = org.eclipse.ui.externaltools.ATTR_LOCATION
- LaunchConfig.Arguments.Attr = org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS;
-+
-+AutotoolsProjectPostProcess.WrongProjectNature = {0} is not an Autotools project
 diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
-new file mode 100644
-index 0000000..9bc042a
---- /dev/null
+index 9bc042a..cb187e9 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
 +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
-@@ -0,0 +1,77 @@
-+/*******************************************************************************
-+ * Copyright (c) 2012 Intel Corporation.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * Intel - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.sdk.ide.wizard;
-+
-+import java.io.BufferedReader;
-+import java.io.InputStream;
-+import java.io.InputStreamReader;
-+
-+import org.eclipse.cdt.core.templateengine.TemplateCore;
-+import org.eclipse.cdt.core.templateengine.process.ProcessArgument;
-+import org.eclipse.cdt.core.templateengine.process.ProcessFailureException;
-+import org.eclipse.cdt.core.templateengine.process.ProcessRunner;
-+import org.eclipse.cdt.core.templateengine.process.processes.Messages;
-+import org.eclipse.core.resources.IProject;
-+import org.eclipse.core.resources.ResourcesPlugin;
-+import org.eclipse.core.runtime.IPath;
-+import org.eclipse.core.runtime.IProgressMonitor;
-+import org.yocto.sdk.ide.YoctoSDKMessages;
-+import org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature;
-+
-+public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
-+
-+	public NewYoctoAutotoolsProjectPostProcess() {}
-+
-+	public void process(TemplateCore template, ProcessArgument[] args, String processId, IProgressMonitor monitor) throws ProcessFailureException {
-+
-+		String projectName = args[0].getSimpleValue();
-+
-+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-+		try {
-+			if (!project.exists()) {
-+				throw new ProcessFailureException(Messages.getString("NewManagedProject.4") + projectName); //$NON-NLS-1$
-+			} else if (!project.hasNature(YoctoSDKAutotoolsProjectNature.YoctoSDK_AUTOTOOLS_NATURE_ID)) {
-+				throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + //$NON-NLS-1$
-+						YoctoSDKMessages.getFormattedString("AutotoolsProjectPostProcess.WrongProjectNature", //$NON-NLS-1$
-+								projectName));
-+			} else {
-+				IPath path = project.getLocation();
-+				String path_str = path.toString();
-+				String autogen_cmd = "chmod +x " + path_str + "/autogen.sh";
-+				try {
-+					Runtime rt = Runtime.getRuntime();
-+					Process proc = rt.exec(autogen_cmd);
-+					InputStream stdin = proc.getInputStream();
-+					InputStreamReader isr = new InputStreamReader(stdin);
-+					BufferedReader br = new BufferedReader(isr);
-+					String line = null;
-+					String error_message = "";
-+
-+					while ( (line = br.readLine()) != null) {
-+						error_message = error_message + line;
-+					}
-+
-+					int exitVal = proc.waitFor();
-+					if (exitVal != 0) {
-+						throw new ProcessFailureException("Failed to make autogen.sh executable for project: " + projectName);
-+					}
-+				} catch (Throwable t) {
-+					t.printStackTrace();
-+
-+				}
-+			}
-+		}
-+		catch (Exception e)
-+		{
-+			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage(), e); //$NON-NLS-1$
-+		}
-+	}
-+}
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectPostProcess.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectPostProcess.java
-deleted file mode 100644
-index d028ee6..0000000
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectPostProcess.java
-+++ /dev/null
-@@ -1,73 +0,0 @@
--/*******************************************************************************
-- * Copyright (c) 2012 Intel Corporation.
-- * All rights reserved. This program and the accompanying materials
-- * are made available under the terms of the Eclipse Public License v1.0
-- * which accompanies this distribution, and is available at
-- * http://www.eclipse.org/legal/epl-v10.html
-- *
-- * Contributors:
-- * Intel - initial API and implementation
-- *******************************************************************************/
--package org.yocto.sdk.ide.wizard;
--
--import java.io.BufferedReader;
--import java.io.InputStream;
--import java.io.InputStreamReader;
--
--import org.eclipse.cdt.core.templateengine.TemplateCore;
--import org.eclipse.cdt.core.templateengine.process.ProcessArgument;
--import org.eclipse.cdt.core.templateengine.process.ProcessFailureException;
--import org.eclipse.cdt.core.templateengine.process.ProcessRunner;
--import org.eclipse.cdt.core.templateengine.process.processes.Messages;
--import org.eclipse.core.resources.IProject;
--import org.eclipse.core.resources.ResourcesPlugin;
--import org.eclipse.core.runtime.IPath;
--import org.eclipse.core.runtime.IProgressMonitor;
--
--
--@SuppressWarnings("restriction")
--public class NewYoctoProjectPostProcess extends ProcessRunner {
--	
--	public NewYoctoProjectPostProcess() {}
--	
--	public void process(TemplateCore template, ProcessArgument[] args, String processId, IProgressMonitor monitor) throws ProcessFailureException {
--
--		String projectName = args[0].getSimpleValue();
--		
--		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
--		try {
--			if (!project.exists()) {
--					throw new ProcessFailureException(Messages.getString("NewManagedProject.4") + projectName); //$NON-NLS-1$
--				} else {
--					IPath path = project.getLocation();
--					String path_str = path.toString();
--					String autogen_cmd = "chmod +x " + path_str + "/autogen.sh";
--					try {
--						Runtime rt = Runtime.getRuntime();
--						Process proc = rt.exec(autogen_cmd);
--						InputStream stdin = proc.getInputStream();
--						InputStreamReader isr = new InputStreamReader(stdin);
--						BufferedReader br = new BufferedReader(isr);
--						String line = null;
--						String error_message = "";
--						
--						while ( (line = br.readLine()) != null) {
--							error_message = error_message + line;
--						}
--						
--						int exitVal = proc.waitFor();
--						if (exitVal != 0) {
--							throw new ProcessFailureException("Failed to make autogen.sh executable for project: " + projectName);
--						} 
--					} catch (Throwable t) {
--						t.printStackTrace();
--						
--					}
--				}
--		}
--		catch (Exception e)
--		{
--			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage(), e); //$NON-NLS-1$
--		} 
--	}
--}
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
-index 7693080..70c9910 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
-@@ -135,7 +135,7 @@
-         </complex-array>
- 	</process>
+@@ -11,6 +11,7 @@
+ package org.yocto.sdk.ide.wizard;
  
--	<process type="org.yocto.sdk.ide.NewYoctoProjectPostProcess">
-+	<process type="org.yocto.sdk.ide.NewYoctoAutotoolsProjectPostProcess">
- 		<simple name="projectName" value="$(projectName)" /> 
- 	</process>
+ import java.io.BufferedReader;
++import java.io.File;
+ import java.io.InputStream;
+ import java.io.InputStreamReader;
  
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml
-index d55a904..8933add 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml
-@@ -135,7 +135,7 @@
-         </complex-array>
- 	</process>
+@@ -28,6 +29,9 @@ import org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature;
  
--	<process type="org.yocto.sdk.ide.NewYoctoProjectPostProcess">
-+	<process type="org.yocto.sdk.ide.NewYoctoAutotoolsProjectPostProcess">
- 		<simple name="projectName" value="$(projectName)" /> 
- 	</process>
- </template>
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
-index 83e6fda..9d1914c 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
-@@ -135,7 +135,7 @@
-         </complex-array>
- 	</process>
+ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
  
--	<process type="org.yocto.sdk.ide.NewYoctoProjectPostProcess">
-+	<process type="org.yocto.sdk.ide.NewYoctoAutotoolsProjectPostProcess">
- 		<simple name="projectName" value="$(projectName)" /> 
- 	</process>
- </template>
++	public static final String CHMOD_COMMAND = "chmod +x "; //$NON-NLS-1$
++	public static final String AUTOGEN_SCRIPT_NAME = "autogen.sh"; //$NON-NLS-1$
++
+ 	public NewYoctoAutotoolsProjectPostProcess() {}
+ 
+ 	public void process(TemplateCore template, ProcessArgument[] args, String processId, IProgressMonitor monitor) throws ProcessFailureException {
+@@ -45,7 +49,7 @@ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
+ 			} else {
+ 				IPath path = project.getLocation();
+ 				String path_str = path.toString();
+-				String autogen_cmd = "chmod +x " + path_str + "/autogen.sh";
++				String autogen_cmd = CHMOD_COMMAND + path_str + File.separator + AUTOGEN_SCRIPT_NAME;
+ 				try {
+ 					Runtime rt = Runtime.getRuntime();
+ 					Process proc = rt.exec(autogen_cmd);
+@@ -53,7 +57,7 @@ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
+ 					InputStreamReader isr = new InputStreamReader(stdin);
+ 					BufferedReader br = new BufferedReader(isr);
+ 					String line = null;
+-					String error_message = "";
++					String error_message = ""; //$NON-NLS-1$
+ 
+ 					while ( (line = br.readLine()) != null) {
+ 						error_message = error_message + line;
+@@ -61,7 +65,7 @@ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
+ 
+ 					int exitVal = proc.waitFor();
+ 					if (exitVal != 0) {
+-						throw new ProcessFailureException("Failed to make autogen.sh executable for project: " + projectName);
++						throw new ProcessFailureException("Failed to make autogen.sh executable for project: " + projectName); //$NON-NLS-1$
+ 					}
+ 				} catch (Throwable t) {
+ 					t.printStackTrace();
 -- 
 1.7.9.5
 
