@@ -1,32 +1,29 @@
-Return-Path: <Gianpaolo_Macario@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E52BFE014AE
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 00:14:40 -0700 (PDT)
-Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
-	by relay1.mentorg.com with esmtp 
-	id 1UQBiR-0002hN-Fp from Gianpaolo_Macario@mentor.com ;
-	Thu, 11 Apr 2013 00:14:39 -0700
-Received: from SVR-IES-FEM-02.mgc.mentorg.com ([137.202.0.106]) by
-	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
-	SMTPSVC(6.0.3790.4675); Thu, 11 Apr 2013 00:14:39 -0700
-Received: from EU-MBX-02.mgc.mentorg.com ([169.254.3.230]) by
-	SVR-IES-FEM-02.mgc.mentorg.com ([137.202.0.106]) with mapi id
-	14.01.0289.001; Thu, 11 Apr 2013 08:14:38 +0100
-From: "Macario, Gianpaolo" <Gianpaolo_Macario@mentor.com>
-To: "florin.sarbu@windriver.com" <florin.sarbu@windriver.com>
-Thread-Topic: [meta-ivi][PATCH] README.md: Fix poky SHA
-Thread-Index: Ac42hDBeAzGYoaflQSuzkPQ/pEr1kg==
-Date: Thu, 11 Apr 2013 07:14:38 +0000
-Message-ID: <0CCD6BBA210ECA418BCD82271FCFD94C5464DD63@EU-MBX-02.mgc.mentorg.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [137.202.0.76]
-MIME-Version: 1.0
-X-OriginalArrivalTime: 11 Apr 2013 07:14:39.0693 (UTC)
-	FILETIME=[3B3057D0:01CE3684]
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCCC3E014AE
+	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 01:38:36 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r3B8nhrS004862; Thu, 11 Apr 2013 09:49:44 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id iozsZEnMUdg3; Thu, 11 Apr 2013 09:49:43 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r3B8nYqh004839
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Thu, 11 Apr 2013 09:49:37 +0100
+Message-ID: <1365669493.16702.42.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Thu, 11 Apr 2013 09:38:13 +0100
+In-Reply-To: <CAPhnLPAmLKbfehcGK3NPZFbNCja6H3TG=Y9q9r=A1PsjURy4gg@mail.gmail.com>
+References: <CAPhnLPAmLKbfehcGK3NPZFbNCja6H3TG=Y9q9r=A1PsjURy4gg@mail.gmail.com>
+X-Mailer: Evolution 3.6.2-0ubuntu0.1 
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [meta-ivi][PATCH] README.md: Fix poky SHA
+Subject: Re: 1.4_M6.rc1 started
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,34 +35,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2013 07:14:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 11 Apr 2013 08:38:37 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Specify a newer SHA for poky since the previous one now causes the build me=
-ta-ivi build to fail.
-See https://lists.yoctoproject.org/pipermail/yocto/2013-April/015273.html=20
-=20
-Signed-off-by: Gianpaolo Macario <gianpaolo_macario@mentor.com>
----
- README.md |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-=20
-diff --git a/README.md b/README.md
-index b2c84f9..f17a606 100644
---- a/README.md
-+++ b/README.md
-@@ -16,7 +16,7 @@ Layer Dependencies
-=20
- URI: git://git.yoctoproject.org/poky
- branch: master
--revision: d823759b4594143d522eae0b2a2498436a6dcb1e
-+revision: a6502081b7c7acc49187aa7c68ad19e0751ee030
-=20
- Using the above git sha's and master meta-ivi, bitbaking foton-image is
- known to work (the foton-image build should be GENIVI 4.0 compliant).
---
-1.7.9.5
+On Wed, 2013-04-10 at 15:48 -0700, Flanagan, Elizabeth wrote:
+> Our first release candidate for dylan has been started. It will be
+> available this evening at:
+> http://autobuilder.yoctoproject.org/pub/nightly/20130410-1
+> 
+> Repo               Branch      Hash
+> poky                dylan         adb63ca02348af72a30cef2f20de2234b74a7200
+> meta-intel       dylan         fd58fb07cf4fcc0553d0608f5688fc03e41ea15c
+> meta-qt3         dylan         4c27cce6688aa39852f3cba5e7b80ec279019605
+> meta-fsl-arm  dylan         5b8683ad04d63f0d5b2638cac245bff28468b634
+> meta-fsl-ppc   master      3312fd5ce9caced68eff577cd0e83ff1471b0612
+> eclipse-poky   dylan         e5172830f61b7dcc3ac03d18a03e63389c6b4629
+> 
+> So far everything looks pretty green. I'll have tags up tonight once
+> it completes.
+
+For the reasons Bruce and Trevor alluded to, I'm pronouncing this build
+DoA. We've tried to pull together too much too fast. We've fixes for
+several major issues and will run another build which should look better
+and this time, be worth testing.
+
+QA Folks: Please wait for the next build.
+
+Cheers,
+
+Richard
 
 
