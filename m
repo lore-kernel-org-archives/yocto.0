@@ -1,50 +1,38 @@
-Return-Path: <sipke.vriend@xilinx.com>
-Received: from va3outboundpool.messaging.microsoft.com
-	(va3ehsobe005.messaging.microsoft.com [216.32.180.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F88AE014AD;
-	Wed, 10 Apr 2013 21:19:59 -0700 (PDT)
-Received: from mail213-va3-R.bigfish.com (10.7.14.233) by
-	VA3EHSOBE003.bigfish.com (10.7.40.23) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 11 Apr 2013 04:19:58 +0000
-Received: from mail213-va3 (localhost [127.0.0.1])	by
-	mail213-va3-R.bigfish.com (Postfix) with ESMTP id 9431954037C;
-	Thu, 11 Apr 2013 04:19:58 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:149.199.60.83; KIP:(null); UIP:(null); IPV:NLI;
-	H:xsj-gw1; RD:unknown-60-83.xilinx.com; EFVD:NLI
-X-SpamScore: 1
-X-BigFish: VPS1(zzc857hzz1f42h1fc6h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ahzz17326ah18c673h8275bh8275dhz2fh95h668h839hd24hf0ah119dh1288h12a5h12bdh137ah1441h14ddh1504h1537h153bh162dh1631h1758h18e1h1946h19b5h1b0ah1bceh906i1155h)
-Received-SPF: pass (mail213-va3: domain of xilinx.com designates 149.199.60.83
-	as permitted sender) client-ip=149.199.60.83;
-	envelope-from=sipke.vriend@xilinx.com; helo=xsj-gw1 ;
-	helo=xsj-gw1 ; 
-Received: from mail213-va3 (localhost.localdomain [127.0.0.1]) by mail213-va3
-	(MessageSwitch) id 1365653996673845_25457;
-	Thu, 11 Apr 2013 04:19:56 +0000 (UTC)
-Received: from VA3EHSMHS029.bigfish.com (unknown [10.7.14.253])	by
-	mail213-va3.bigfish.com (Postfix) with ESMTP id A0C7C6C005C;
-	Thu, 11 Apr 2013 04:19:56 +0000 (UTC)
-Received: from xsj-gw1 (149.199.60.83) by VA3EHSMHS029.bigfish.com
-	(10.7.99.39) with Microsoft SMTP Server id 14.1.225.23; Thu, 11 Apr 2013
-	04:19:49 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66]
-	helo=xsj-smtp1.xilinx.com)	by xsj-gw1 with esmtp (Exim
-	4.63)	(envelope-from <sipke.vriend@xilinx.com>)	id 1UQ8zF-0002n9-CK;
-	Wed, 10 Apr 2013 21:19:49 -0700
-From: Sipke Vriend <sipke.vriend@xilinx.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f54.google.com (mail-pb0-f54.google.com
+	[209.85.160.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07662E014AD;
+	Wed, 10 Apr 2013 23:03:57 -0700 (PDT)
+Received: by mail-pb0-f54.google.com with SMTP id xa7so680393pbc.13
+	for <multiple recipients>; Wed, 10 Apr 2013 23:03:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:message-id:references:to:x-mailer;
+	bh=4VYl7Sp44fpveyfWtoTZl/2N/i0Z+axXzFBjLHqSY/I=;
+	b=s7HIryLWs8bGkQPsOOhnNYJOlAtkGuZ3YK6rxNaFjBWQPu6XidcpTq/0Pe8ixXqgAE
+	HeBfUAyUbuXdVm/v5rXTEZjGddx6pjV8RVgKkWILENu9JEyRsVELnoWRQwtoyjtxM29r
+	EMkxOJoTwp/6fmWbJAjmtMTmvFwuDqfTp8r6p/MTv/nNnlc4ruLkvznDtgrL/tDrGxMW
+	CIjLV/Xjhf1EVxQvtuJ9QWsL40F2IboWA8E3DaYAgXLYMv1QVffdUoND31BIuFg1GSv5
+	ZyW1+eHf3//F30nVhaQgvG0yl49tnSw2SLh4fszXnbZ1IvVjKsyerqZ9PpZwdBlve/co
+	Hjvg==
+X-Received: by 10.68.160.226 with SMTP id xn2mr6748169pbb.174.1365660236808;
+	Wed, 10 Apr 2013 23:03:56 -0700 (PDT)
+Received: from jchheda-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36])
+	by mx.google.com with ESMTPS id yr10sm3562610pab.6.2013.04.10.23.03.54
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 10 Apr 2013 23:03:55 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <2c7fcb27-77ce-4ff3-a94f-f4d1d708343f@VA3EHSMHS029.ehs.local>
+Date: Wed, 10 Apr 2013 23:03:51 -0700
+Message-Id: <097135E1-DE1B-457F-A4D5-A0BEB50A8826@gmail.com>
+References: <2c7fcb27-77ce-4ff3-a94f-f4d1d708343f@VA3EHSMHS029.ehs.local>
+To: Sipke Vriend <sipke.vriend@xilinx.com>
+X-Mailer: Apple Mail (2.1503)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"meta-xilinx@yoctoproject.org" <meta-xilinx@yoctoproject.org>
-Thread-Topic: Xilinx git repositories moved to github
-Thread-Index: Ac42a5DC0D+JCgYiRa6jIRfkzPkulQ==
-Date: Thu, 11 Apr 2013 04:19:48 +0000
-Accept-Language: en-AU, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.162.100]
-MIME-Version: 1.0
-X-RCIS-Action: ALLOW
-Message-ID: <2c7fcb27-77ce-4ff3-a94f-f4d1d708343f@VA3EHSMHS029.ehs.local>
-X-OriginatorOrg: xilinx.com
-Subject: Xilinx git repositories moved to github
+Subject: Re: Xilinx git repositories moved to github
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,69 +44,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Apr 2013 04:19:59 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 11 Apr 2013 06:03:57 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_013C21CBE857074E966A9022D6B61ED350C0B8XSJPSEXMBX01xlnxx_"
+	boundary="Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895"
 
---_000_013C21CBE857074E966A9022D6B61ED350C0B8XSJPSEXMBX01xlnxx_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-SGksDQoNCklmIHlvdXIgcmVjaXBlcyByZWx5IG9uIHJlcG9zaXRvcmllcyBhdCBnaXQueGlsaW54
-LmNvbSwgcGxlYXNlIHVwZGF0ZSB0aGVtIHRvIHVzZQ0KZ2l0aHViLmNvbS9YaWxpbnguDQoNClJl
-Z2FyZHMNClNpcGtlDQoKCg==
+Sipke
 
+On Apr 10, 2013, at 9:19 PM, Sipke Vriend <sipke.vriend@xilinx.com> =
+wrote:
 
---_000_013C21CBE857074E966A9022D6B61ED350C0B8XSJPSEXMBX01xlnxx_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
-bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
-YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3Jp
-dHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlz
-aXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
-DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFp
-bFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29tcG9zZTsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERl
-ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBX
-b3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4w
-cHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
-O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
-IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
-ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
-cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
-Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLUFVIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
-cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-Zm9udCBzaXplPSIyIiBmYWNlPSJDYWxpYnJpIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dCI+SGksPG86cD48L286cD48L3NwYW4+PC9mb250PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-Pjxmb250IHNpemU9IjIiIGZhY2U9IkNhbGlicmkiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L2ZvbnQ+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGZvbnQgc2l6ZT0iMiIgZmFjZT0iQ2FsaWJyaSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQiPklmIHlvdXIgcmVjaXBlcyByZWx5IG9uIHJlcG9zaXRvcmllcyBhdCBnaXQueGls
-aW54LmNvbSwgcGxlYXNlIHVwZGF0ZSB0aGVtIHRvIHVzZQ0KPG86cD48L286cD48L3NwYW4+PC9m
-b250PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxmb250IHNpemU9IjIiIGZhY2U9IkNhbGli
-cmkiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5naXRodWIuY29tL1hpbGlueC48bzpw
-PjwvbzpwPjwvc3Bhbj48L2ZvbnQ+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGZvbnQgc2l6
-ZT0iMiIgZmFjZT0iQ2FsaWJyaSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9zcGFuPjwvZm9udD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Zm9u
-dCBzaXplPSIyIiBmYWNlPSJDYWxpYnJpIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+
-UmVnYXJkczxvOnA+PC9vOnA+PC9zcGFuPjwvZm9udD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48Zm9udCBzaXplPSIyIiBmYWNlPSJDYWxpYnJpIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdCI+U2lwa2U8bzpwPjwvbzpwPjwvc3Bhbj48L2ZvbnQ+PC9wPg0KPC9kaXY+DQo8YnIgY2xl
-YXI9YWxsPiAKPC9ib2R5Pg0KPC9odG1sPg0KCg==
+> Hi,
+> =20
+> If your recipes rely on repositories at git.xilinx.com, please update =
+them to use
+> github.com/Xilinx.
 
 
---_000_013C21CBE857074E966A9022D6B61ED350C0B8XSJPSEXMBX01xlnxx_--
+You might want to check if layer index needs to be notified of this =
+change and surely other distributions e.g. angstrom etc.
+
+> =20
+> Regards
+> Sipke
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"><base href=3D"x-msg://1719/"></head><body =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; ">Sipke<div><br><div><div>On Apr =
+10, 2013, at 9:19 PM, Sipke Vriend &lt;<a =
+href=3D"mailto:sipke.vriend@xilinx.com">sipke.vriend@xilinx.com</a>&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div lang=3D"EN-AU" link=3D"blue" vlink=3D"purple" =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div class=3D"WordSection1" style=3D"page: WordSection1; "><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
+style=3D"font-size: 11pt; ">Hi,<o:p></o:p></span></font></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
+style=3D"font-size: 11pt; ">&nbsp;</span></font></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
+style=3D"font-size: 11pt; ">If your recipes rely on repositories at<span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"http://git.xilinx.com" style=3D"color: purple; text-decoration: =
+underline; ">git.xilinx.com</a>, please update them to =
+use<o:p></o:p></span></font></div><div style=3D"margin: 0cm 0cm =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif; "><font =
+size=3D"2" face=3D"Calibri"><span style=3D"font-size: 11pt; "><a =
+href=3D"http://github.com/Xilinx" style=3D"color: purple; =
+text-decoration: underline; =
+">github.com/Xilinx</a>.</span></font></div></div></div></blockquote><div>=
+<br></div><div><br></div><div>You might want to check if layer index =
+needs to be notified of this change and surely other distributions e.g. =
+angstrom etc.</div><br><blockquote type=3D"cite"><div lang=3D"EN-AU" =
+link=3D"blue" vlink=3D"purple" style=3D"font-family: Helvetica; =
+font-size: medium; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><div =
+class=3D"WordSection1" style=3D"page: WordSection1; "><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
+style=3D"font-size: 11pt; "><o:p></o:p></span></font></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
+style=3D"font-size: 11pt; ">&nbsp;</span></font></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
+style=3D"font-size: 11pt; ">Regards<o:p></o:p></span></font></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><font size=3D"2" face=3D"Calibri"><span =
+style=3D"font-size: 11pt; =
+">Sipke<o:p></o:p></span></font></div></div><br =
+clear=3D"all">_______________________________________________<br>yocto =
+mailing list<br><a href=3D"mailto:yocto@yoctoproject.org" style=3D"color: =
+purple; text-decoration: underline; ">yocto@yoctoproject.org</a><br><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
+purple; text-decoration: underline; =
+">https://lists.yoctoproject.org/listinfo/yocto</a><br></div></blockquote>=
+</div><br></div></body></html>=
+
+--Apple-Mail=_94FE82F7-4889-4512-923A-E69F74429895--
