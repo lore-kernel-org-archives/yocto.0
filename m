@@ -1,30 +1,34 @@
-Return-Path: <liljegren.mats2@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09D6DE014D4
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 06:58:07 -0700 (PDT)
-Received: by mail-ee0-f48.google.com with SMTP id b15so1310372eek.21
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 06:58:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
-	:subject:from:to:content-type;
-	bh=8J0J6RoZtOJtBC8aLA+UL+/JYTMz4UNmr8fO9j1g7ac=;
-	b=EyE6XK67Osa2lwAP2pEIwPf//QOwoWcma1ENmKqzO21zEuzx3UxyZHEbMJj+0YsBKN
-	iSn2SVS0heBNhQbXUX4+PFAFQDOm30a62nsDHGEeQUrtq5F+jaS2NbZbkKNvrF4x2yWN
-	s5mWxRlXvv8D9I2uCujXlwHIPIoOrQvOjJAryDUZhPpI9uqjw+wQ1zpmBgFL3FPrXVXO
-	XOTuc3J0G25h/NHSa7ze2C5matsT7+w918pupVThY7AYGWSOMDqQ7Ri0bop49rYsaPIk
-	e5U5FxInDKk3lBagvcYzJ2XUTYnEdzRjIQq3Gl2a08tlAYEqNRSgZLoKmfC6PAj5bowQ
-	tQYQ==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f41.google.com (mail-vb0-f41.google.com
+	[209.85.212.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 297F5E014D5
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 08:08:17 -0700 (PDT)
+Received: by mail-vb0-f41.google.com with SMTP id f13so2266595vbg.0
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 08:08:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=VTEGz9EOBVhNPPlbVFcyQuvD8U6iHqp7ZQwQJFEN7VI=;
+	b=ScI6z2dAwNq0fdAGce3y3qOBJVMPbpMuYmBK6ropcBtKb/Z699q3ZFtja0MJsmjcmx
+	cvGFNhCvw7cs09Osv4iA+NdpJwJtbFrxcj/BTYL6Pd/cJUWSFL/w70yQ9wS59n9Zwvt6
+	M97UR8f8fAjXp1L2i8OBRB1HgPOHQgS2pCaE/Ont+eFWFUzZ/bJYaPIl3m2rrQSugy/y
+	QChmyLZ4zjA6wxUGoErodi+wacnNBmjONI+A+WNLxbjxV8wTMW8msvC3Hppu5QaLHGgb
+	dsB/yoJVWAVwDLHrGywH8TnCN5Q5Os8elmQrC0Ek1gguyU3rltzj/ZsoinztRazm7N/3
+	55lg==
+X-Received: by 10.220.153.2 with SMTP id i2mr8618230vcw.53.1365779296157; Fri,
+	12 Apr 2013 08:08:16 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.15.43.73 with SMTP id w49mr28823072eev.12.1365775081339;
-	Fri, 12 Apr 2013 06:58:01 -0700 (PDT)
-Sender: liljegren.mats2@gmail.com
-Received: by 10.14.142.17 with HTTP; Fri, 12 Apr 2013 06:58:01 -0700 (PDT)
-Date: Fri, 12 Apr 2013 15:58:01 +0200
-X-Google-Sender-Auth: haFxRIz6lDyiai1m8HK2WHahmdw
-Message-ID: <CA+xJJ19kDS-444AsV1esV_QRbqf+GRwsVgf+E498CQVNxxYAGA@mail.gmail.com>
-From: Mats Liljegren <mats.liljegren@enea.com>
-To: yocto@yoctoproject.org
-Subject: How to archive source for a single package
+Received: by 10.220.100.68 with HTTP; Fri, 12 Apr 2013 08:07:56 -0700 (PDT)
+In-Reply-To: <CAFMfyzLjJPfRY++w1WPn24rHu6wJr_H_V9D8MZhUXc5N1u8XWQ@mail.gmail.com>
+References: <CAFMfyzLjJPfRY++w1WPn24rHu6wJr_H_V9D8MZhUXc5N1u8XWQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 12 Apr 2013 16:07:56 +0100
+Message-ID: <CAJTo0LbNPgXZ_bKFOk4gFex1B=j9yrZX1YwDruVqBiL0rw5R5A@mail.gmail.com>
+To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+X-Gm-Message-State: ALoCoQmHQiGSg4genWKbIiY8sGJJDBwVzMvWgJUZcN1yluQEqoD8McZnLz6oZ/NidW+9wavw4zj3
+Cc: yocto@yoctoproject.org
+Subject: Re: systemd vs sysvinit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,38 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 13:58:08 -0000
-Content-Type: multipart/alternative; boundary=089e01681310912a7604da2a4a9e
-
---089e01681310912a7604da2a4a9e
+X-List-Received-Date: Fri, 12 Apr 2013 15:08:17 -0000
 Content-Type: text/plain; charset=UTF-8
 
-I need to archive source for virtual/kernel when building. This is needed
-for other builds that uses the bitbake build result.
+On 9 April 2013 12:21, Satya Swaroop Damarla <swaroop.damarla@gmail.com> wrote:
+> Hi, I created two images first by using sysvinit and the other using
+> systemd... The image using sysvinit works perfectly but the image with
+> systemd works only from the second boot. In the first boot it hangs. What
+> could be the possible reasons?
 
-I saw that there is archive-patched-source class, which seems to do what I
-want plus a lot more. The problem with it is that it seems to be intended
-for other use case than mine, which means that it does a lot more work than
-I need.
+Are you still having this problem?  I've not seen systemd hang on
+first boot.  Can you share some more details, i.e. what layers, what
+image?
 
-Is there a way to either tame archive-patched-source to only be applicable
-for virtual/kernel, or is there other ways of accomplishing what I want?
+Ross
 
-Regards
-  Mats
-
---089e01681310912a7604da2a4a9e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div>I need to archive source for virtual/k=
-ernel when building. This is needed for other builds that uses the bitbake =
-build result.<br><br></div>I saw that there is archive-patched-source class=
-, which seems to do what I want plus a lot more. The problem with it is tha=
-t it seems to be intended for other use case than mine, which means that it=
- does a lot more work than I need.<br>
-<br></div>Is there a way to either tame archive-patched-source to only be a=
-pplicable for virtual/kernel, or is there other ways of accomplishing what =
-I want?<br><br></div>Regards<br></div>=C2=A0 Mats<br><br></div>
-
---089e01681310912a7604da2a4a9e--
