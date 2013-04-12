@@ -1,26 +1,29 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02CEAE0146C
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 03:27:27 -0700 (PDT)
-Received: by mail-vc0-f175.google.com with SMTP id ib11so2076244vcb.34
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 03:27:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=KaJpr/a8r1Gq2pJIxJlLrUu8/8pXSJKHMtPHJt5Z0Pc=;
-	b=mP6sdxEE9lyLoJ/Ymr/lIAm+VMqwB5M3eupDQz/iicTJy08O9AyP7YamAVv753cAb/
-	KaUR/MTuTPcrUfFiAOFE65abANsRBFgmjThQ4abA81u9KGkqP6rNk5La5XAKbjfUHQbg
-	Y9d+s3PZHkxuTXJJm3SbYzygUwXxJ99otGXjFNwUgfrxHzOsDBWkgI9mZjagbDMnYMXh
-	kXXauoT4yWZQGWeJk+WllfHd8S9oMA5kgqJl9cwKE0nl3qTcQpV75Kxhw07/b1KI+ySF
-	lLea4TCjQMSg9+uJmI9H3GdVUiIAKfApKiV/vJvVFrw+n+nIUQxHbu152yUOmpygelCM
-	yrjQ==
-X-Received: by 10.52.73.234 with SMTP id o10mr6793307vdv.29.1365762447044;
-	Fri, 12 Apr 2013 03:27:27 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Fri, 12 Apr 2013 03:27:06 -0700 (PDT)
-In-Reply-To: <000d01ce3742$c91dddb0$5b599910$@gmail.com>
+Return-Path: <aenbacka@gmail.com>
+Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5F87E0146C
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 05:28:13 -0700 (PDT)
+Received: by mail-la0-f43.google.com with SMTP id eg20so1672878lab.16
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 05:28:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:references:in-reply-to:subject:date
+	:message-id:mime-version:content-type:content-transfer-encoding
+	:x-mailer:thread-index:content-language;
+	bh=DT9y1Rb5edxDdmlsAsjT7wiz1If1ZihHwvd2J/dzrTg=;
+	b=X6dMQlrNZhn2sLy+QkrJDhjRebjEZOjg/NqN2yL0gYfcQWXlcXrgFYsarB4/1s8Cz8
+	vm6zFdlJNFYK99ogVOysQSuR4xc4woofIx87NfPMxJDUFVWsJ/dNEtvGoQCoAhsi1Li1
+	aQSE05/Fh8mmuQ9fnzOfTzR/kg279m2MdQNHdaCcDRyMlyUy/kMvcp2bKi3Y62uDfnDY
+	WEHyWzPdcOofOpIHL4Z58nI2cp6mBcDJDPNIW0dmshy+h+KDMHUKnQ7qAe1BxxrT0hBx
+	YWyy5BMlr1lqB0ROLRx+fOT0LMOd3DneJHRme9KGPJn/KUC87JkVf1xMQGQzwjCB71r0
+	q0tA==
+X-Received: by 10.112.3.202 with SMTP id e10mr5388892lbe.84.1365769692014;
+	Fri, 12 Apr 2013 05:28:12 -0700 (PDT)
+Received: from LAPTOP (mail.embedo.fi. [194.100.97.18])
+	by mx.google.com with ESMTPS id v7sm3220477laz.4.2013.04.12.05.28.10
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Fri, 12 Apr 2013 05:28:11 -0700 (PDT)
+From: "Andreas Enbacka" <aenbacka@gmail.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>
 References: <003701ce3434$f487d750$dd9785f0$@gmail.com>
 	<CAJTo0LZn4dD97s66fkGOnYtmj86ZLEcdfNk2wGk989WTYi6ZEw@mail.gmail.com>
 	<009101ce343e$8db88560$a9299020$@gmail.com>
@@ -32,11 +35,13 @@ References: <003701ce3434$f487d750$dd9785f0$@gmail.com>
 	<001701ce35b5$708f5f40$51ae1dc0$@gmail.com>
 	<51657C37.9000901@windriver.com>
 	<000d01ce3742$c91dddb0$5b599910$@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 12 Apr 2013 11:27:06 +0100
-Message-ID: <CAJTo0LY4eFJDY3fPCaO-cYm_tyJSjqvGjx0HYgf84jp79P1DTg@mail.gmail.com>
-To: Andreas Enbacka <aenbacka@gmail.com>
-X-Gm-Message-State: ALoCoQkhmYIZecmSik10A/RWuaLew8wk5s6t9HsN+6k2q6J+9eO/3x4CTLISJ4wgl/UNmB5V7nzZ
+	<CAJTo0LY4eFJDY3fPCaO-cYm_tyJSjqvGjx0HYgf84jp79P1DTg@mail.gmail.com>
+In-Reply-To: <CAJTo0LY4eFJDY3fPCaO-cYm_tyJSjqvGjx0HYgf84jp79P1DTg@mail.gmail.com>
+Date: Fri, 12 Apr 2013 15:27:55 +0300
+Message-ID: <001201ce3779$2a0c6930$7e253b90$@gmail.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQH944JhdSdZ2SxfUz8SRR72F7dePwGwEU34AgDMcSEB8hSHPAG+DacFAnO58k8Bg/s4BQILAWEjApttcRIC2X9PiQKNghvsAWczuBCXvMBdsA==
 Cc: yocto@yoctoproject.org
 Subject: Re: Problem with mouse and keyboard detection in yocto (core-image-sato on emenlow)
 X-BeenThere: yocto@yoctoproject.org
@@ -50,23 +55,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 10:27:28 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 12 Apr 2013 12:28:14 -0000
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Language: fi
+
+Hi,
+
+Thanks for the suggestion, I will fetch the dylan branch and retry.
+
+//Andreas
+
+-----Original Message-----
+From: Burton, Ross [mailto:ross.burton@intel.com]=20
+Sent: 12. huhtikuuta 2013 13:27
+To: Andreas Enbacka
+Cc: Bruce Ashfield; yocto@yoctoproject.org
+Subject: Re: [yocto] Problem with mouse and keyboard detection in yocto =
+(core-image-sato on emenlow)
 
 On 12 April 2013 06:58, Andreas Enbacka <aenbacka@gmail.com> wrote:
-> I tried to execute zcat /proc/config.gz | grep EVDEV, and it produced the
-> following output:
+> I tried to execute zcat /proc/config.gz | grep EVDEV, and it produced=20
+> the following output:
 >
 > #  CONFIG_INPUT_EVDEV is not set
-> CONFIG_USB_VIDEO_CLASS_INPUT_EVDEV=y
+> CONFIG_USB_VIDEO_CLASS_INPUT_EVDEV=3Dy
 >
-> Does the above shed some light what could be the problem with the image?
+> Does the above shed some light what could be the problem with the =
+image?
 
 Erm, yes.  My atom-pc kernel has CONFIG_INPUT_EVDEV set.
 
-There was a bug where kernel configuration was dropping fragments, so
+There was a bug where kernel configuration was dropping fragments, so =
 you may want to try fetching the dylan branch (as we're about to
 release) and trying again.
 
 Ross
+
 
