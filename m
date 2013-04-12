@@ -1,38 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3089E0146C
-	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 05:34:34 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r3CCYOMh007302
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 12 Apr 2013 05:34:25 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 12 Apr 2013 05:34:24 -0700
-Message-ID: <5167FF48.8080601@windriver.com>
-Date: Fri, 12 Apr 2013 08:34:16 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
+Return-Path: <liljegren.mats2@gmail.com>
+Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09D6DE014D4
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 06:58:07 -0700 (PDT)
+Received: by mail-ee0-f48.google.com with SMTP id b15so1310372eek.21
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 06:58:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
+	:subject:from:to:content-type;
+	bh=8J0J6RoZtOJtBC8aLA+UL+/JYTMz4UNmr8fO9j1g7ac=;
+	b=EyE6XK67Osa2lwAP2pEIwPf//QOwoWcma1ENmKqzO21zEuzx3UxyZHEbMJj+0YsBKN
+	iSn2SVS0heBNhQbXUX4+PFAFQDOm30a62nsDHGEeQUrtq5F+jaS2NbZbkKNvrF4x2yWN
+	s5mWxRlXvv8D9I2uCujXlwHIPIoOrQvOjJAryDUZhPpI9uqjw+wQ1zpmBgFL3FPrXVXO
+	XOTuc3J0G25h/NHSa7ze2C5matsT7+w918pupVThY7AYGWSOMDqQ7Ri0bop49rYsaPIk
+	e5U5FxInDKk3lBagvcYzJ2XUTYnEdzRjIQq3Gl2a08tlAYEqNRSgZLoKmfC6PAj5bowQ
+	tQYQ==
 MIME-Version: 1.0
-To: Andreas Enbacka <aenbacka@gmail.com>
-References: <003701ce3434$f487d750$dd9785f0$@gmail.com>
-	<CAJTo0LZn4dD97s66fkGOnYtmj86ZLEcdfNk2wGk989WTYi6ZEw@mail.gmail.com>
-	<009101ce343e$8db88560$a9299020$@gmail.com>
-	<CAJTo0LaQ76oZK3PDPnjhgVoQFjMnMkr1tGiVtXJ-U=qfhNg5Pg@mail.gmail.com>
-	<00e801ce3452$67c501d0$374f0570$@gmail.com>
-	<CAJTo0LZ_j=GiuDT=9QFWSEmUGc-t9U209WqJpgb5ULYKNYtBbw@mail.gmail.com>
-	<001b01ce3480$ac63e850$052bb8f0$@gmail.com>
-	<CAJTo0LZQ2ZhDFU-5ggpa1COfXVSs9_-W5k4muJyLpNFi2FQzVA@mail.gmail.com>
-	<001701ce35b5$708f5f40$51ae1dc0$@gmail.com>
-	<51657C37.9000901@windriver.com>
-	<000d01ce3742$c91dddb0$5b599910$@gmail.com>
-	<CAJTo0LY4eFJDY3fPCaO-cYm_tyJSjqvGjx0HYgf84jp79P1DTg@mail.gmail.com>
-	<001201ce3779$2a0c6930$7e253b90$@gmail.com>
-In-Reply-To: <001201ce3779$2a0c6930$7e253b90$@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Problem with mouse and keyboard detection in yocto (core-image-sato on emenlow)
+X-Received: by 10.15.43.73 with SMTP id w49mr28823072eev.12.1365775081339;
+	Fri, 12 Apr 2013 06:58:01 -0700 (PDT)
+Sender: liljegren.mats2@gmail.com
+Received: by 10.14.142.17 with HTTP; Fri, 12 Apr 2013 06:58:01 -0700 (PDT)
+Date: Fri, 12 Apr 2013 15:58:01 +0200
+X-Google-Sender-Auth: haFxRIz6lDyiai1m8HK2WHahmdw
+Message-ID: <CA+xJJ19kDS-444AsV1esV_QRbqf+GRwsVgf+E498CQVNxxYAGA@mail.gmail.com>
+From: Mats Liljegren <mats.liljegren@enea.com>
+To: yocto@yoctoproject.org
+Subject: How to archive source for a single package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,51 +36,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 12:34:34 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Apr 2013 13:58:08 -0000
+Content-Type: multipart/alternative; boundary=089e01681310912a7604da2a4a9e
 
-On 13-04-12 08:27 AM, Andreas Enbacka wrote:
-> Hi,
->
-> Thanks for the suggestion, I will fetch the dylan branch and retry.
->
+--089e01681310912a7604da2a4a9e
+Content-Type: text/plain; charset=UTF-8
 
-And I can confirm that with an atom-pc board I configured just
-minutes ago:
+I need to archive source for virtual/kernel when building. This is needed
+for other builds that uses the bitbake build result.
 
-% grep EVDEV linux-atom-pc-standard-build/.config
-CONFIG_INPUT_EVDEV=y
+I saw that there is archive-patched-source class, which seems to do what I
+want plus a lot more. The problem with it is that it seems to be intended
+for other use case than mine, which means that it does a lot more work than
+I need.
 
-Cheers,
+Is there a way to either tame archive-patched-source to only be applicable
+for virtual/kernel, or is there other ways of accomplishing what I want?
 
-Bruce
+Regards
+  Mats
 
+--089e01681310912a7604da2a4a9e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-> //Andreas
->
-> -----Original Message-----
-> From: Burton, Ross [mailto:ross.burton@intel.com]
-> Sent: 12. huhtikuuta 2013 13:27
-> To: Andreas Enbacka
-> Cc: Bruce Ashfield; yocto@yoctoproject.org
-> Subject: Re: [yocto] Problem with mouse and keyboard detection in yocto (core-image-sato on emenlow)
->
-> On 12 April 2013 06:58, Andreas Enbacka <aenbacka@gmail.com> wrote:
->> I tried to execute zcat /proc/config.gz | grep EVDEV, and it produced
->> the following output:
->>
->> #  CONFIG_INPUT_EVDEV is not set
->> CONFIG_USB_VIDEO_CLASS_INPUT_EVDEV=y
->>
->> Does the above shed some light what could be the problem with the image?
->
-> Erm, yes.  My atom-pc kernel has CONFIG_INPUT_EVDEV set.
->
-> There was a bug where kernel configuration was dropping fragments, so you may want to try fetching the dylan branch (as we're about to
-> release) and trying again.
->
-> Ross
->
+<div dir=3D"ltr"><div><div><div><div>I need to archive source for virtual/k=
+ernel when building. This is needed for other builds that uses the bitbake =
+build result.<br><br></div>I saw that there is archive-patched-source class=
+, which seems to do what I want plus a lot more. The problem with it is tha=
+t it seems to be intended for other use case than mine, which means that it=
+ does a lot more work than I need.<br>
+<br></div>Is there a way to either tame archive-patched-source to only be a=
+pplicable for virtual/kernel, or is there other ways of accomplishing what =
+I want?<br><br></div>Regards<br></div>=C2=A0 Mats<br><br></div>
 
-
+--089e01681310912a7604da2a4a9e--
