@@ -1,32 +1,28 @@
-Return-Path: <Chao.Peng@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06FF9E014B2
-	for <yocto@yoctoproject.org>; Thu, 11 Apr 2013 20:18:46 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r3C3Ij4H028465
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 11 Apr 2013 20:18:45 -0700 (PDT)
-Received: from ALA-MBB.corp.ad.wrs.com ([169.254.1.233]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.02.0342.003;
-	Thu, 11 Apr 2013 20:18:43 -0700
-From: "Peng, Chao" <Chao.Peng@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: FW: Yocto Project 1.4 Beta Testing
-Thread-Index: AQHONONArAg8LWy6pUetsaDRbizoQ5jQy7vw
-Date: Fri, 12 Apr 2013 03:18:44 +0000
-Message-ID: <F9BD66A8A41DB34694989D72637CB085663222D4@ALA-MBB.corp.ad.wrs.com>
-References: <28EA37C66C2CC44FB35EC6489D2181296648643A@ALA-MBB.corp.ad.wrs.com>
-	<5163A74D.4000201@windriver.com>
-In-Reply-To: <5163A74D.4000201@windriver.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.224.162.223]
+Return-Path: <andrew.james77777@gmail.com>
+Received: from mail-qe0-f49.google.com (mail-qe0-f49.google.com
+	[209.85.128.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F78E01410
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 01:34:45 -0700 (PDT)
+Received: by mail-qe0-f49.google.com with SMTP id 6so1389844qeb.22
+	for <yocto@yoctoproject.org>; Fri, 12 Apr 2013 01:34:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=kLW1yp4dF5XmrE5ktL7aezNxq6/bJsS90/5bMyM8KQs=;
+	b=pJR66DEn7KZ/EsQ3CC8TUPUDDtuo9sVhWxbdBhaM7PE5tLeN9sAsVL9kpUJXh7FawE
+	JQXPcovYrOli7Nh9OXMaM5/brD+5/IXonjT4FS2gY8Eui8GKmxhxTK60X5i51I9sBVfy
+	FPSZEErntCHtr+D6q1RJPC5Pl1zVQGhfSvORZhYv7dgQK8XZmrswbMe7/Zj/PZzfDnmg
+	T0EENR9u58DhezOEoM6Ir3MAt1HXFOs4Y0piF1f2zoef8FYNp3GJUGTiBm0eH977vHx1
+	4ELrlbyG0uHrc67P3MaNXCZU7b9Nar/2KwmUjhAzrXxKBKFvzC26SNcc8Kwe3907uTJY
+	JXvw==
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 11 Apr 2013 23:37:37 -0700
-Cc: "Wang, Weiwei" <Weiwei.Wang@windriver.com>
-Subject: Re: FW: Yocto Project 1.4 Beta Testing
+X-Received: by 10.224.8.202 with SMTP id i10mr10890317qai.56.1365755684751;
+	Fri, 12 Apr 2013 01:34:44 -0700 (PDT)
+Received: by 10.49.25.11 with HTTP; Fri, 12 Apr 2013 01:34:44 -0700 (PDT)
+Date: Fri, 12 Apr 2013 09:34:44 +0100
+Message-ID: <CAACeMc+wMTTRjKNPe5udZ5MKL=EFLL-comumqQbTt2zHtacTcg@mail.gmail.com>
+From: Andrew James <andrew.james77777@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Build problems with ML507 and meta-xilinx
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,70 +34,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Apr 2013 03:18:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 12 Apr 2013 08:34:45 -0000
+Content-Type: multipart/alternative; boundary=bcaec517ae0470915804da25c691
 
-SGkgYWxsLA0KDQpJIHRyaWVkIHRoaXMgYW5kIGZlbHQgaXQgZWFzeSB0byB1c2UgZm9yIGEgIG5l
-dyBoYW5kIGxpa2UgbWUuDQoNCkV4cGVyaWVuY2Ugc3VydmV5IG9mIHVzaW5nIFlvY3RvIDEuNA0K
-UTogV2hpY2ggYXJjaGl0ZWN0dXJlIGRpZCB5b3UgY2hvb3NlIHRvIGJ1aWxkPw0KQTp4ODYNCg0K
-UTogSG93IGVhc2lseSB3ZXJlIHlvdSBhYmxlIHRvIGJ1aWxkIGFuIGltYWdlIGFuZCBib290IGFu
-IGltYWdlPw0KQTogSXQgaXMgdmVyeSBlYXN5DQoNClE6IElzIHRoZXJlIGFueSBzdXJwcmlzZSB0
-byB5b3UgaW4gdGhlIHByb2Nlc3Mgb2YgZG9pbmcgdGhpcyBCZXRhIHRlc3Rpbmc/IElmIHNvLCB3
-b3VsZCB5b3UgcGxlYXNlIGRlc2NyaWJlIA0KaXQgYW5kIHRlbGwgdXMgaG93IHlvdSBleHBlY3Rl
-ZCBpdCB0byB3b3JrPw0KQTpZZXMsIEkgYnVpbHQgeW9jdG8gd2l0aCBTYXRvIHJlZmVyZW5jZSBV
-c2VyIEludGVyZmFjZSBzdXBwb3J0IGFuZCBpdCBpcyBhbWF6aW5nIGZvciBtZSB0aGF0IFFFTVUg
-RW11bGF0b3IgY2FuIGdpdmUgZnVsbC1zeXN0ZW0gZW11bGF0aW9uLg0KDQpROiBXYXMgaXQgZWFz
-eSB0byBmaW5kIHRoZSBzdXBwb3J0IHlvdSBuZWVkZWQgdG8gYnVpbGQgYW5kIGJvb3QgYW4gaW1h
-Z2U/DQpBOlllcyAsIHRoZSBkb2N1bWVudHMgb24gdGhlICB5b2N0b3Byb2plY3Qub3JnIGlzIHZl
-cnkgcmljaCBhbmQgZWFzeSB0byBmb2xsb3cuDQoNClE6IFdoaWNoIEJ1Z3ppbGxhIHJlcG9ydHMg
-ZGlkIHlvdSBzdWJtaXQ/DQpBOiA0MjQ3DQoNClE6IERpZCB5b3UgdHJ5IGFueXRoaW5nIGVsc2Ug
-d2l0aCBZb2N0byAxLjQ/DQpBOk5vdCB5ZXQNCg0KUTogV2hhdCB3b3VsZCB5b3UgbGlrZSB0byBo
-YXZlIGluIFlvY3RvIFByb2plY3QgZm9yIGZ1dHVyZSByZWxlYXNlcz8NCkE6SXMgaXQgcG9zc2li
-bGUgdG8gaGF2ZSBwZXJjZW50IGluZGljYXRvcihvciBzb21ldGhpbmcgbGlrZSB0aGlzKSBmb3Ig
-Y29tbWFuZCBsaW5lIFVJPyBTb21ldGltZXMgaXQgdGFrZXMgdG9vIGxvbmcgYW5kIEkgZXZlbiB3
-b25kZXIgaWYgaXQncyBzdGlsbCBkb2luZyBzb21ldGhpbmcuDQoNClRoYW5rcywNCkNoYW8NCi0t
-LS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBXZWl3ZWkgV2FuZyBbbWFpbHRvOndlaXdl
-aS53YW5nQHdpbmRyaXZlci5jb21dIA0KU2VudDogQXByaWwgMDksIDIwMTMgMTM6MzANClRvOiBQ
-ZW5nLCBDaGFvOyBXZWksIFl1bmd1byAoQnJ5YW4pOyBMaSwgRnVwYW4NClN1YmplY3Q6IEZ3ZDog
-Rlc6IFlvY3RvIFByb2plY3QgMS40IEJldGEgVGVzdGluZw0KDQpZdW5ndW/vvIxQZW5nY2hhbywg
-RnVwYW4NCg0KSSBrbm93IHlvdSBndXlzIGFsbCBoYXZlIGNvbW1pdHRlZCBhc3NpZ25tZW50LCBi
-dXQgSSBzdGlsbCBzdWdnZXN0IHlvdSBndXlzIGNhbiB0cnkgaXQsIGJlY2F1c2Ugb3VyIFdSbGlu
-dXggaXMgaGlnaGx5IGJhc2VkIG9uIFlvY3RvLCBpdCBjYW4gaGVscCB5b3UgZ3V5cyBmYW1pbGlh
-ciB3aXRoIFlvY3RvL3dybGludXggZmFzdC4NCg0KQW55d2F5LCBpdCBpcyBub3QgYSBtdXN0LWRv
-IGpvYiwgaXQgZGVwZW5kcyBvbiB5b3VyIHdpbGxpbmcNCg0KDQpSZWdhcmRzDQpXZWl3ZWkNCg0K
-DQoNCg0KDQotLS0tLS0tLSBPcmlnaW5hbCBNZXNzYWdlIC0tLS0tLS0tDQpTdWJqZWN0OiAJRlc6
-IFlvY3RvIFByb2plY3QgMS40IEJldGEgVGVzdGluZw0KRGF0ZTogCVR1ZSwgOSBBcHIgMjAxMyAw
-Njo1MzowMyArMDgwMA0KRnJvbTogCUxpbmcsIE1pY2hhZWwgPE1pY2hhZWwuTGluZ0B3aW5kcml2
-ZXIuY29tPg0KVG86IAlXYW5nLCBXZWl3ZWkgPFdlaXdlaS5XYW5nQHdpbmRyaXZlci5jb20+LCBM
-aXUsIEJvIChUb255KQ0KPEJvLkxpdUB3aW5kcml2ZXIuY29tPiwgR29vY2gsIFN0ZXBoZW4gPHN0
-ZXBoZW4uZ29vY2hAd2luZHJpdmVyLmNvbT4NCkNDOiAJWmhhbiwgUm9uZ2thaSAoTWFyaykgPHJv
-bmdrYWkuemhhbkB3aW5kcml2ZXIuY29tPg0KDQoNCg0KV2Vpd2VpDQoNCkNhbiBzb21lb25lIG9m
-IENEQyBMaW51eCB0ZWFtIHBhcnRpY2lwYXRlIGluIHRoaXM/DQoNCllQIGlzIGltcG9ydGFudCBm
-b3IgdGhlIFdSTCBmdXR1cmXigKYuLg0KDQpUaGFua3MhDQoNCi1NaWNoYWVsDQoNCipGcm9tOipM
-aXUsIFNvbmcgW21haWx0bzpzb25nLmxpdUBpbnRlbC5jb21dDQoqU2VudDoqIE1vbmRheSwgQXBy
-aWwgMDgsIDIwMTMgMTE6MjYgQU0NCipUbzoqIERpR2lnbGlvLCBKb2huOyBBbGxpc29uLCBSYW1z
-ZXkgVDsgU2Ftc29uLCBEb247IEJ1cnJpcywgSmFzb24gTTsgVHVzenluc2tpLCBSb24gUzsgTW9m
-ZmV0LCBOYXRoYW47IEthbWJsZSwgTml0aW4gQTsgVW5nLCBDaGVuZyBDaHVhbjsgQmx1bSwgS2ly
-azsgWWVsZXN3YXJhcHUsIFJhbzsgU2VvdywgQ2hlbiBZb25nOyBTdGV3YXJ0LCBEYXZpZCBDOyBX
-aWxsaWFtc29uLCBHbGVubiBQOyBBcnpvdW1hbmlhbiwgS2FocmVuOyBCYXJyeSwgUGV0ZXI7IEJv
-cmRlcnMsIEpheSBIOyBMeW5jaCwgTWljaGFlbCBBOyBPc2llci1taXhvbiwgSmVmZnJleTsgU2F4
-ZW5hLCBSYWh1bDsgVmVybWEsIElzaHU7IFphbnVzc2ksIFRvbTsgTWlsbHNhcCwgTWljaGFlbCBH
-OyBOYXJhc2ltaGFuLCBCYWJ1OyBIYXRsZSwgTWFyazsgTmljaG9sc29uLCBBbmRyZXc7IE1hbmRh
-bCwgTGF4bWlrYW50YTsgUnV0aGVyZm9yZCwgTmljb2xlIEs7IE1vc2VzLCBGcmVkOyBDcmV3cywg
-TWljaGFlbCBSOyBDaGlhbmcsIFRlcmVuY2U7IFJpY2NpLCBEYXZpZGU7IFRhLCBMaWV1OyBFcndh
-eSwgVHJhY2V5IE07IEVuZywgUm9iZXJ0OyBCb2RrZSwgS2lzaG9yZSBLOyBNdXJ1Z2VzdSwgU2l2
-YWt1bWFyOyBHaWxsZW4sIE15bGluaCBIOyBMaW5nLCBNaWNoYWVsOyBZdXN1ZiwgSW1yYW47IENo
-YW4sIENoZWUgWWF1OyBDaXByaWFubywgSm9objsgVmVua2F0YXJhbWFuaSwgU2F0aGlzaCBQOyBI
-YXVuc2NoaWxkLCBOaWNob2xhcyBOOyBTaHVyZWloLCBTYWJyaW5hOyBGaW51Y2FuZSwgS2V2aW47
-IENvcXVlcmVsLCBMYXVyZW50IE07IFNpbXNlaywgR29raGFuOyBPbmcsIEJvb24gTGVvbmc7IEhh
-dywgRm9vIENoaWVuOyBDYXR0cy1UdWNrZXIsIEZyZWQ7IEpham9kaWEsIFRhbnlhIEsNCipTdWJq
-ZWN0OiogWW9jdG8gUHJvamVjdCAxLjQgQmV0YSBUZXN0aW5nDQoNCkhpIGFsbCwNCg0KSXTigJlz
-IHRoYXQgdGltZSBhZ2FpbiwgWW9jdG8gUHJvamVjdCByZWxlYXNlcyBldmVyeSA2IG1vbnRocyBh
-bmQgbm93IHdlIGFyZSByZWFkeSBmb3IgMS40IEJldGEgdGVzdGluZy4gQXR0YWNoZWQgaXMgdGhl
-IEJldGEgdXNlcnMgZ3VpZGUgd2l0aCB0ZXN0aW5nIGluc3RydWN0aW9ucywgcGxlYXNlIGV4cGxv
-cmUgaXQgeW91cnNlbGYgb3IgZm9yd2FyZCB0aGlzIHRvIGFueW9uZSB3aG8gY291bGQgYmUgaW50
-ZXJlc3RlZC4gUmVtZW1iZXIsIHdlIGhhdmUgWW9jdG8gVC1zaGlydHMgZm9yIHlvdSBpZiB5b3Ug
-c2VuZCBtZSB0aGUgc3VydmV5IGZlZWRiYWNrLg0KDQpUaGFua3MhDQoNClNvbmcNCg0KDQoNCg==
+--bcaec517ae0470915804da25c691
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hi,
+
+I wonder if someone can help me. I'm attempting to do a yocto build for the
+ML507 xilinx development board and am running into build error when
+building eglibc
+I'm using VMWARE Player running an Ubuntu 12.10 64-bit virtual machine. I
+can succesfully build core-image-minimal using the default settings, but
+when trying
+to build for the ML507 (MACHINE = virtex-5-*ml507*-powerpc-440 I get a
+build error when compiling eglibc, '440fp not supported'
+
+I have used git to get the 'danny' version of the yocto directories.
+
+Any help would be appreciated, I can provide futher details if neccessary
+
+Thanks
+
+Andrew
+
+--bcaec517ae0470915804da25c691
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi,</div>
+<div>=A0</div>
+<div>I wonder if someone can help me. I&#39;m attempting to do a yocto buil=
+d for the ML507 xilinx development board and am running into build error wh=
+en building eglibc</div>
+<div>I&#39;m using VMWARE Player running an Ubuntu 12.10 64-bit virtual mac=
+hine. I can succesfully build core-image-minimal using the default settings=
+, but when trying</div>
+<div>to build for the ML507 (MACHINE =3D <font color=3D"#009933">virtex-5-<=
+b>ml507</b>-powerpc-440 </font>I get a build error when compiling eglibc, &=
+#39;440fp not supported&#39;</div>
+<div>=A0</div>
+<div>I have used git to get the &#39;danny&#39; version of the yocto direct=
+ories.</div>
+<div>=A0</div>
+<div>Any help would be appreciated, I can provide futher details if neccess=
+ary</div>
+<div>=A0</div>
+<div>Thanks</div>
+<div>=A0</div>
+<div>Andrew</div>
+
+--bcaec517ae0470915804da25c691--
