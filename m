@@ -1,34 +1,35 @@
-Return-Path: <Krishna.Dwivedi@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98F6CE006CB
-	for <yocto@yoctoproject.org>; Sun, 14 Apr 2013 23:20:16 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id B173936B50;
-	Mon, 15 Apr 2013 11:49:56 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136])
-	by jaguar.aricent.com (Postfix) with ESMTP id 990CB36B51;
-	Mon, 15 Apr 2013 11:49:56 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.130]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Mon, 15 Apr 2013 11:49:56 +0530
-From: Krishna Dwivedi <Krishna.Dwivedi@aricent.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 15 Apr 2013 11:49:55 +0530
-Thread-Topic: [yocto] Arguement list too big error in bitbake meta-toolchain
-	for MIPS architechture-Gentle Reminder
-Thread-Index: Ac45oK3j7rqmR5oUSgOFZsm+UDj+PwAADmvw
-Message-ID: <B60DC3E72D20B040854608D81E44050F64F451A978@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <B60DC3E72D20B040854608D81E44050F64F451A93E@GUREXMB01.ASIAN.AD.ARICENT.COM>
-	<C0A8E72C-810B-4558-BC59-232DE17E0804@gmail.com>
-In-Reply-To: <C0A8E72C-810B-4558-BC59-232DE17E0804@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <liljegren.mats2@gmail.com>
+Received: from mail-ea0-f172.google.com (mail-ea0-f172.google.com
+	[209.85.215.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C242DE0140A
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 00:39:49 -0700 (PDT)
+Received: by mail-ea0-f172.google.com with SMTP id z7so2099220eaf.31
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 00:39:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=cy8QZmifHwX1CkpIaGFecPO1BdHUV1vWXyupXucG5MU=;
+	b=sql+o2yjFCE8MEvxc4BlCHtPwmJtA4Y5s0lPt62zuoUyWqMQyaNaC7vuJuyT4eUAKa
+	G8iTAz5wPDQSjCPM5iRG/E8qj/2CYlLBsWVSrmKKiM9BEjAqp9F1zOGpRT3YK1u1GhE9
+	DF62u36t4aH9U/e72qCLVuxk8qtJGuQijoXm8zZW7ivDuwa27bt4YZRle1DYbNtlj8X/
+	MgnHTXOrsoOTSq5QxC2v0CymP9vDxUFaMJFm81Re1BXADNvLyc6oqImP6FD5IpKwmnWq
+	sZWxSEDsm/HZKBdXHa9rNscrdqqcbU7eBIRv6CE+x4mKorrDQVmJTSD3hJvJbFF/Z6Vn
+	EnOw==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Arguement list too big error in bitbake meta-toolchain for MIPS architechture-Gentle Reminder
+X-Received: by 10.15.107.205 with SMTP id cb53mr59633405eeb.14.1366011588395; 
+	Mon, 15 Apr 2013 00:39:48 -0700 (PDT)
+Sender: liljegren.mats2@gmail.com
+Received: by 10.15.83.67 with HTTP; Mon, 15 Apr 2013 00:39:48 -0700 (PDT)
+In-Reply-To: <20130412191507.GA32099@wrk>
+References: <CA+xJJ19kDS-444AsV1esV_QRbqf+GRwsVgf+E498CQVNxxYAGA@mail.gmail.com>
+	<20130412191507.GA32099@wrk>
+Date: Mon, 15 Apr 2013 09:39:48 +0200
+X-Google-Sender-Auth: RsHh8yc3o89cvYpoNtlXSm2J9Oc
+Message-ID: <CA+xJJ1-gQst69uEivqCteJWyRPyEkcFrjNrPKLd9c1Lv8UEF2Q@mail.gmail.com>
+From: Mats Liljegren <mats.liljegren@enea.com>
+To: Kevin Strasser <kevin.strasser@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: How to archive source for a single package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,407 +41,381 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 06:20:19 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B60DC3E72D20B040854608D81E44050F64F451A978GUREXMB01ASIA_"
+X-List-Received-Date: Mon, 15 Apr 2013 07:39:50 -0000
+Content-Type: multipart/alternative; boundary=089e01633c347c733d04da615bfb
 
---_000_B60DC3E72D20B040854608D81E44050F64F451A978GUREXMB01ASIA_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--089e01633c347c733d04da615bfb
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+I tried that but got the error shown below. This made me believe that
+archive-patched-source wasn't built for being included from a recipe:
 
-I am using bash shell and fedora 18 operating system.
+$ bitbake virtual/kernel
+Loading cache: 100%
+|#######################################################################|
+ETA:  00:00:00
+Loaded 1234 entries from dependency cache.
+Parsing recipes: 100%
+|#####################################################################|
+Time: 00:00:00
+Parsing of 921 .bb files complete (920 cached, 1 parsed). 1232 targets, 86
+skipped, 7 masked, 0 errors.
+WARNING: No recipes available for:
 
-Regards,
-Krishna
+/media/sdb1/fb/mlil/poky/meta-enea/recipes-append/hv-cfg/hv-cfg_git.bbappend
 
-From: Khem Raj [mailto:raj.khem@gmail.com]
-Sent: Monday, April 15, 2013 11:45 AM
-To: Krishna Dwivedi
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Arguement list too big error in bitbake meta-toolchain=
- for MIPS architechture-Gentle Reminder
+/media/sdb1/fb/mlil/poky/meta-enea/recipes-kernel/linux/linux-davinci-mainline.bbappend
+
+/media/sdb1/fb/mlil/poky/meta-enea/recipes-kernel/linux/linux-qoriq-sdk.bbappend
+
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-12.10"
+TARGET_SYS        = "arm-enea-linux-gnueabi"
+MACHINE           = "pandaboard"
+DISTRO            = "enea-lwrt-demo"
+DISTRO_VERSION    = "2.0"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta              = "master-enea:312d568ef126816b1497cc097c93d8152b893732"
+meta-enea         = "master-enea:e81e7fe27b8ab3f9fe32faf2d6f95565d84945c0"
+meta-enea-lwrt    = "master-enea:b97c23337c29eb7b1fa72486ba67430a2975c98d"
+meta-ti           = "master:c14c386946e1ea341faeea292580e37d538d645d"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+ERROR: An uncaught exception occured in runqueue, please see the failure
+below:
+ERROR: Running idle function
+Traceback (most recent call last):
+  File "/media/sdb1/fb/mlil/poky/bitbake/lib/bb/runqueue.py", line 887, in
+RunQueue._execute_runqueue():
+                 else:
+    >                self.rqexe = RunQueueExecuteScenequeue(self)
+
+  File "/media/sdb1/fb/mlil/poky/bitbake/lib/bb/runqueue.py", line 1610, in
+RunQueueExecuteScenequeue.__init__(rq=<bb.runqueue.RunQueue instance at
+0x89b1ab8>):
+                 locs = { "sq_fn" : sq_fn, "sq_task" : sq_taskname,
+"sq_hash" : sq_hash, "sq_hashfn" : sq_hashfn, "d" :
+self.cooker.configuration.data }
+    >            valid = bb.utils.better_eval(call, locs)
+
+  File "/media/sdb1/fb/mlil/poky/bitbake/lib/bb/utils.py", line 341, in
+better_eval(source='sstate_checkhashes(sq_fn, sq_task, sq_hash, sq_hashfn,
+d)', locals={'sq_fn':
+['/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb'], 'sq_task': ['do_populate_sysroot', 'do_deploy',
+'do_packagedata', 'do_package', 'do_package_write_ipk',
+'do_dumpdata_create_diff_gz'], 'sq_hash':
+['d701160f5f90ad867344decaa45e850c', '0e83bfbb44dd5f9bc1aab965401eafae',
+'a043b351409fd10d0df4f4ef70ef5721', 'cccb256c759ec8ab2b45b033a8fd6fcb',
+'965fd06e4464ed8a1322b04c69e1e487', 'b71395177e7741c4182f3628ca82f6b9'],
+'sq_hashfn': ['
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-'],
+'d': <bb.data_smart.DataSmart object at 0x28f31d0>}):
+     def better_eval(source, locals):
+    >    return eval(source, _context, locals)
+
+  File "<string>", line 1, in <module>
+  File "sstate.bbclass", line 15, in
+sstate_checkhashes(sq_fn=['/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb',
+'/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/
+linux-omap4_3.9.bb'], sq_task=['do_populate_sysroot', 'do_deploy',
+'do_packagedata', 'do_package', 'do_package_write_ipk',
+'do_dumpdata_create_diff_gz'], sq_hash=['d701160f5f90ad867344decaa45e850c',
+'0e83bfbb44dd5f9bc1aab965401eafae', 'a043b351409fd10d0df4f4ef70ef5721',
+'cccb256c759ec8ab2b45b033a8fd6fcb', '965fd06e4464ed8a1322b04c69e1e487',
+'b71395177e7741c4182f3628ca82f6b9'], sq_hashfn=['
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-', '
+sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-'],
+d=<bb.data_smart.DataSmart object at 0x28f31d0>)
+KeyError: 'do_dumpdata_create_diff_gz'
+
+NOTE: Tasks Summary: Attempted 0 tasks of which 0 didn't need to be rerun
+and all succeeded.
+
+Summary: There was 1 WARNING message shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+$
+
+/Mats
 
 
-On Apr 14, 2013, at 10:38 PM, Krishna Dwivedi <Krishna.Dwivedi@aricent.com<=
-mailto:Krishna.Dwivedi@aricent.com>> wrote:
+On Fri, Apr 12, 2013 at 9:15 PM, Kevin Strasser <
+kevin.strasser@linux.intel.com> wrote:
 
-
-Hi All,
-
-Thanks in advance.
-Can anyone please let me know what could be issue here.
-
-Regards,
-Krishna
-
-
-From: Krishna Dwivedi
-Sent: Thursday, April 11, 2013 7:50 PM
-To: 'yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>'
-Subject: Arguement list too big error in bitbake meta-toolchain for MIPS ar=
-chitechture
-
-Hi All,
-
-I am trying to build recipe meta-toolchain for MIPS architecture but runnin=
-g into errors. Can anyone please let me know, if I am missing anything here=
- or what could be root cause of this and how can I fix it. I have followed =
-these steps:
-
-1)In  WORKDIR/build/conf/local.conf-I selected MACHINE ?=3D "qemumips" for =
-mips architechture.
-
-2)source oe-init-build-env.
-
-3)bitbake meta-toolchain.
-
-In third step,I am running into these errors:
-
-NOTE: recipe nativesdk-gettext-0.18.2-r0: task do_configure: Started
-ERROR: Error executing a python function in /home/netlogic/yocto/poky/meta/=
-recipes-core/eglibc/eglibc-locale_2.17.bb:
-CalledProcessError: Command 'cp -al /home/netlogic/yocto/poky/build/tmp/wor=
-k/mips32-poky-linux/eglibc-locale/2.17-r0/packages-split/* /home/netlogic/y=
-octo/poky/build/tmp/work/mips32-poky-linux/eglibc-locale/2.17-r0/sstate-bui=
-ld-package//packages-split' returned non-zero exit status 126 with output /=
-bin/sh: /bin/cp: Argument list too long
-
-
-what shell are you using on build host and what OS does it run ?
-
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_000_B60DC3E72D20B040854608D81E44050F64F451A978GUREXMB01ASIA_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hi Mats,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<base href=3D"x-msg://1526/"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.apple-converted-space
-	{mso-style-name:apple-converted-space;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I am using bash shell and=
- fedora 18 operating system.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regards,<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Krishna<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Khem Raj=
- [mailto:raj.khem@gmail.com]
-<br>
-<b>Sent:</b> Monday, April 15, 2013 11:45 AM<br>
-<b>To:</b> Krishna Dwivedi<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Arguement list too big error in bitbake meta-to=
-olchain for MIPS architechture-Gentle Reminder<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Apr 14, 2013, at 10:38 PM, Krishna Dwivedi &lt;<a=
- href=3D"mailto:Krishna.Dwivedi@aricent.com">Krishna.Dwivedi@aricent.com</a=
->&gt; wrote:<o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal"><br>
-<br>
-<o:p></o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi All,</span><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks in advance.</span>=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Can anyone please let me =
-know what could be issue here.</span><span style=3D"font-size:11.0pt;font-f=
-amily:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regards,</span><span styl=
-e=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot=
-;"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Krishna</span><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-"><o:p></o:p></span></p>
-</div>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span class=3D"apple-=
-converted-space"><span style=3D"font-size:10.0pt;font-family:&quot;Tahoma&q=
-uot;,&quot;sans-serif&quot;">&nbsp;</span></span><span style=3D"font-size:1=
-0.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">Krishna
- Dwivedi<span class=3D"apple-converted-space">&nbsp;</span><br>
-<b>Sent:</b><span class=3D"apple-converted-space">&nbsp;</span>Thursday, Ap=
-ril 11, 2013 7:50 PM<br>
-<b>To:</b><span class=3D"apple-converted-space">&nbsp;</span>'<a href=3D"ma=
-ilto:yocto@yoctoproject.org"><span style=3D"color:purple">yocto@yoctoprojec=
-t.org</span></a>'<br>
-<b>Subject:</b><span class=3D"apple-converted-space">&nbsp;</span>Arguement=
- list too big error in bitbake meta-toolchain for MIPS architechture</span>=
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;"><o:p></o:p></span></p>
-</div>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">Hi All,<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">I am trying to build recipe meta-toolch=
-ain for MIPS architecture but running into errors. Can anyone please let me=
- know, if I am missing anything here or what could be root
- cause of this and how can I fix it. I have followed these steps:<o:p></o:p=
-></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">1)In&nbsp; WORKDIR/build/conf/local.con=
-f-I selected MACHINE ?=3D &quot;qemumips&quot; for mips architechture.<o:p>=
-</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">2)source oe-init-build-env.<o:p></o:p><=
-/span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">3)bitbake meta-toolchain.<o:p></o:p></s=
-pan></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;">In third step,I am running into thes=
-e errors:</span></b><span style=3D"font-size:11.0pt;font-family:&quot;Calib=
-ri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">NOTE: recipe nativesdk-gettext-0.18.2-r=
-0: task do_configure: Started<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">ERROR: Error executing a python functio=
-n in /home/netlogic/yocto/poky/meta/recipes-core/eglibc/eglibc-locale_2.17.=
-bb:<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">CalledProcessError: Command 'cp -al /ho=
-me/netlogic/yocto/poky/build/tmp/work/mips32-poky-linux/eglibc-locale/2.17-=
-r0/packages-split/* /home/netlogic/yocto/poky/build/tmp/work/mips32-poky-li=
-nux/eglibc-locale/2.17-r0/sstate-build-package//packages-split'
- returned non-zero exit status 126 with output /bin/sh: /bin/cp:<span class=
-=3D"apple-converted-space">&nbsp;</span><b>Argument list too long</b><o:p><=
-/o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">what shell are you using on build host and what OS d=
-oes it run ?<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</div>
-<br>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
-for important disclosures regarding this electronic communication.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-</font>
-</body>
-</html>
+> On Fri, Apr 12, 2013 at 03:58:01PM +0200, Mats Liljegren wrote:
+> > I need to archive source for virtual/kernel when building. This is needed
+> > for other builds that uses the bitbake build result.
+> >
+> > I saw that there is archive-patched-source class, which seems to do what
+> I
+> > want plus a lot more. The problem with it is that it seems to be intended
+> > for other use case than mine, which means that it does a lot more work
+> than
+> > I need.
+> >
+> The archive-*-source classes are primarily intended to assist in
+> providing materials for license compliance for the entire target
+> image. That being said, it shouldn't be too difficult to apply them
+> to a single package.
+>
+> > Is there a way to either tame archive-patched-source to only be
+> applicable
+> > for virtual/kernel, or is there other ways of accomplishing what I want?
+> >
+> I assume you have a line in your local.conf that looks something like:
+>
+>   INHERIT += "archive-patched-source"
+>
+> This means that the class will be inherited at the global level and
+> therefor applied to all packages. It's perfectly reasonable to inherit
+> the class in any specific package, by adding this line to its recipe:
+>
+>   inherit archive-patched-source
+>
+> I hope this gives you what you're looking for. Take a look at the
+> Yocto Project dev manual[1] for further information on the source
+> archiver.
+>
+> -Kevin
+>
+> [1]
+> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#maintaining-open-source-license-compliance-during-your-products-lifecycle
+>
+> > Regards
+> >   Mats
+>
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---_000_B60DC3E72D20B040854608D81E44050F64F451A978GUREXMB01ASIA_--
+--089e01633c347c733d04da615bfb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I tried that but got the error shown below. This made me b=
+elieve that archive-patched-source wasn&#39;t built for being included from=
+ a recipe:<br><div><br>$ bitbake virtual/kernel<br>Loading cache: 100% |###=
+####################################################################| ETA:=
+=C2=A0 00:00:00<br>
+Loaded 1234 entries from dependency cache.<br>Parsing recipes: 100% |######=
+###############################################################| Time: 00:0=
+0:00<br>Parsing of 921 .bb files complete (920 cached, 1 parsed). 1232 targ=
+ets, 86 skipped, 7 masked, 0 errors.<br>
+WARNING: No recipes available for:<br>=C2=A0 /media/sdb1/fb/mlil/poky/meta-=
+enea/recipes-append/hv-cfg/hv-cfg_git.bbappend<br>=C2=A0 /media/sdb1/fb/mli=
+l/poky/meta-enea/recipes-kernel/linux/linux-davinci-mainline.bbappend<br>=
+=C2=A0 /media/sdb1/fb/mlil/poky/meta-enea/recipes-kernel/linux/linux-qoriq-=
+sdk.bbappend<br>
+<br>Build Configuration:<br>BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 =3D &quot;1.18.0&quot;<br>BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSBSTRING=C2=A0=C2=A0=
+ =3D &quot;Ubuntu-12.10&quot;<br>TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 =3D &quot;arm-enea-linux-gnueabi&quot;<br>
+MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &qu=
+ot;pandaboard&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 =3D &quot;enea-lwrt-demo&quot;<br>DISTRO_VERSION=C2=
+=A0=C2=A0=C2=A0 =3D &quot;2.0&quot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=
+=A0 =3D &quot;armv7a vfp neon&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 =3D &quot;vfp-neon&quot;<br>
+meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 =3D &quot;master-enea:312d568ef126816b1497cc097c93d8152b893732&qu=
+ot;<br>meta-enea=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;=
+master-enea:e81e7fe27b8ab3f9fe32faf2d6f95565d84945c0&quot;<br>meta-enea-lwr=
+t=C2=A0=C2=A0=C2=A0 =3D &quot;master-enea:b97c23337c29eb7b1fa72486ba67430a2=
+975c98d&quot;<br>
+meta-ti=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &qu=
+ot;master:c14c386946e1ea341faeea292580e37d538d645d&quot;<br><br>NOTE: Resol=
+ving any missing task queue dependencies<br>NOTE: Preparing runqueue<br>ERR=
+OR: An uncaught exception occured in runqueue, please see the failure below=
+:<br>
+ERROR: Running idle function<br>Traceback (most recent call last):<br>=C2=
+=A0 File &quot;/media/sdb1/fb/mlil/poky/bitbake/lib/bb/runqueue.py&quot;, l=
+ine 887, in RunQueue._execute_runqueue():<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else:<br=
+>=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.rqexe =3D RunQueueExecuteScene=
+queue(self)<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 <br>=C2=A0 File &quot;/media/sdb1/fb/mlil/poky/bit=
+bake/lib/bb/runqueue.py&quot;, line 1610, in RunQueueExecuteScenequeue.__in=
+it__(rq=3D&lt;bb.runqueue.RunQueue instance at 0x89b1ab8&gt;):<br>=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 locs =3D { &quot;sq_fn&quot; : sq_fn, &quot;sq_task&quot; : sq=
+_taskname, &quot;sq_hash&quot; : sq_hash, &quot;sq_hashfn&quot; : sq_hashfn=
+, &quot;d&quot; : self.cooker.configuration.data }<br>
+=C2=A0=C2=A0=C2=A0 &gt;=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 valid =3D bb.utils.better_eval(call, locs)<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0 <br>=C2=A0 File &quot;/media/sdb1/fb/mlil/poky/bitbake/lib/bb/=
+utils.py&quot;, line 341, in better_eval(source=3D&#39;sstate_checkhashes(s=
+q_fn, sq_task, sq_hash, sq_hashfn, d)&#39;, locals=3D{&#39;sq_fn&#39;: [&#3=
+9;/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/<a href=3D"h=
+ttp://linux-omap4_3.9.bb">linux-omap4_3.9.bb</a>&#39;, &#39;/media/sdb1/fb/=
+mlil/poky/meta-enea-lwrt/recipes-kernel/linux/<a href=3D"http://linux-omap4=
+_3.9.bb">linux-omap4_3.9.bb</a>&#39;, &#39;/media/sdb1/fb/mlil/poky/meta-en=
+ea-lwrt/recipes-kernel/linux/<a href=3D"http://linux-omap4_3.9.bb">linux-om=
+ap4_3.9.bb</a>&#39;, &#39;/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-k=
+ernel/linux/<a href=3D"http://linux-omap4_3.9.bb">linux-omap4_3.9.bb</a>&#3=
+9;, &#39;/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/<a hr=
+ef=3D"http://linux-omap4_3.9.bb">linux-omap4_3.9.bb</a>&#39;, &#39;/media/s=
+db1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/<a href=3D"http://linu=
+x-omap4_3.9.bb">linux-omap4_3.9.bb</a>&#39;], &#39;sq_task&#39;: [&#39;do_p=
+opulate_sysroot&#39;, &#39;do_deploy&#39;, &#39;do_packagedata&#39;, &#39;d=
+o_package&#39;, &#39;do_package_write_ipk&#39;, &#39;do_dumpdata_create_dif=
+f_gz&#39;], &#39;sq_hash&#39;: [&#39;d701160f5f90ad867344decaa45e850c&#39;,=
+ &#39;0e83bfbb44dd5f9bc1aab965401eafae&#39;, &#39;a043b351409fd10d0df4f4ef7=
+0ef5721&#39;, &#39;cccb256c759ec8ab2b45b033a8fd6fcb&#39;, &#39;965fd06e4464=
+ed8a1322b04c69e1e487&#39;, &#39;b71395177e7741c4182f3628ca82f6b9&#39;], &#3=
+9;sq_hashfn&#39;: [&#39; sstate-linux-omap4-pandaboard-enea-linux-gnueabi-3=
+.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pandaboard-enea-linux-gn=
+ueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pandaboard-enea-l=
+inux-gnueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pandaboard=
+-enea-linux-gnueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pan=
+daboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-om=
+ap4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-&#39;], &#39;d&#39;: =
+&lt;bb.data_smart.DataSmart object at 0x28f31d0&gt;}):<br>
+=C2=A0=C2=A0=C2=A0=C2=A0 def better_eval(source, locals):<br>=C2=A0=C2=A0=
+=C2=A0 &gt;=C2=A0=C2=A0=C2=A0 return eval(source, _context, locals)<br>=C2=
+=A0=C2=A0=C2=A0=C2=A0 <br>=C2=A0 File &quot;&lt;string&gt;&quot;, line 1, i=
+n &lt;module&gt;<br>=C2=A0 File &quot;sstate.bbclass&quot;, line 15, in sst=
+ate_checkhashes(sq_fn=3D[&#39;/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recip=
+es-kernel/linux/<a href=3D"http://linux-omap4_3.9.bb">linux-omap4_3.9.bb</a=
+>&#39;, &#39;/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/<=
+a href=3D"http://linux-omap4_3.9.bb">linux-omap4_3.9.bb</a>&#39;, &#39;/med=
+ia/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/linux/<a href=3D"http://=
+linux-omap4_3.9.bb">linux-omap4_3.9.bb</a>&#39;, &#39;/media/sdb1/fb/mlil/p=
+oky/meta-enea-lwrt/recipes-kernel/linux/<a href=3D"http://linux-omap4_3.9.b=
+b">linux-omap4_3.9.bb</a>&#39;, &#39;/media/sdb1/fb/mlil/poky/meta-enea-lwr=
+t/recipes-kernel/linux/<a href=3D"http://linux-omap4_3.9.bb">linux-omap4_3.=
+9.bb</a>&#39;, &#39;/media/sdb1/fb/mlil/poky/meta-enea-lwrt/recipes-kernel/=
+linux/<a href=3D"http://linux-omap4_3.9.bb">linux-omap4_3.9.bb</a>&#39;], s=
+q_task=3D[&#39;do_populate_sysroot&#39;, &#39;do_deploy&#39;, &#39;do_packa=
+gedata&#39;, &#39;do_package&#39;, &#39;do_package_write_ipk&#39;, &#39;do_=
+dumpdata_create_diff_gz&#39;], sq_hash=3D[&#39;d701160f5f90ad867344decaa45e=
+850c&#39;, &#39;0e83bfbb44dd5f9bc1aab965401eafae&#39;, &#39;a043b351409fd10=
+d0df4f4ef70ef5721&#39;, &#39;cccb256c759ec8ab2b45b033a8fd6fcb&#39;, &#39;96=
+5fd06e4464ed8a1322b04c69e1e487&#39;, &#39;b71395177e7741c4182f3628ca82f6b9&=
+#39;], sq_hashfn=3D[&#39; sstate-linux-omap4-pandaboard-enea-linux-gnueabi-=
+3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pandaboard-enea-linux-g=
+nueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pandaboard-enea-=
+linux-gnueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pandaboar=
+d-enea-linux-gnueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-omap4-pa=
+ndaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-&#39;, &#39; sstate-linux-o=
+map4-pandaboard-enea-linux-gnueabi-3.9-r0-pandaboard-3-&#39;], d=3D&lt;bb.d=
+ata_smart.DataSmart object at 0x28f31d0&gt;)<br>
+KeyError: &#39;do_dumpdata_create_diff_gz&#39;<br><br>NOTE: Tasks Summary: =
+Attempted 0 tasks of which 0 didn&#39;t need to be rerun and all succeeded.=
+<br><br>Summary: There was 1 WARNING message shown.<br>Summary: There were =
+2 ERROR messages shown, returning a non-zero exit code.<br>
+$ <br><br></div><div>/Mats<br></div></div><div class=3D"gmail_extra"><br><b=
+r><div class=3D"gmail_quote">On Fri, Apr 12, 2013 at 9:15 PM, Kevin Strasse=
+r <span dir=3D"ltr">&lt;<a href=3D"mailto:kevin.strasser@linux.intel.com" t=
+arget=3D"_blank">kevin.strasser@linux.intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi Mats,<br>
+<div class=3D"im"><br>
+On Fri, Apr 12, 2013 at 03:58:01PM +0200, Mats Liljegren wrote:<br>
+&gt; I need to archive source for virtual/kernel when building. This is nee=
+ded<br>
+&gt; for other builds that uses the bitbake build result.<br>
+&gt;<br>
+&gt; I saw that there is archive-patched-source class, which seems to do wh=
+at I<br>
+&gt; want plus a lot more. The problem with it is that it seems to be inten=
+ded<br>
+&gt; for other use case than mine, which means that it does a lot more work=
+ than<br>
+&gt; I need.<br>
+&gt;<br>
+</div>The archive-*-source classes are primarily intended to assist in<br>
+providing materials for license compliance for the entire target<br>
+image. That being said, it shouldn&#39;t be too difficult to apply them<br>
+to a single package.<br>
+<div class=3D"im"><br>
+&gt; Is there a way to either tame archive-patched-source to only be applic=
+able<br>
+&gt; for virtual/kernel, or is there other ways of accomplishing what I wan=
+t?<br>
+&gt;<br>
+</div>I assume you have a line in your local.conf that looks something like=
+:<br>
+<br>
+=C2=A0 INHERIT +=3D &quot;archive-patched-source&quot;<br>
+<br>
+This means that the class will be inherited at the global level and<br>
+therefor applied to all packages. It&#39;s perfectly reasonable to inherit<=
+br>
+the class in any specific package, by adding this line to its recipe:<br>
+<br>
+=C2=A0 inherit archive-patched-source<br>
+<br>
+I hope this gives you what you&#39;re looking for. Take a look at the<br>
+Yocto Project dev manual[1] for further information on the source<br>
+archiver.<br>
+<br>
+-Kevin<br>
+<br>
+[1] <a href=3D"http://www.yoctoproject.org/docs/current/dev-manual/dev-manu=
+al.html#maintaining-open-source-license-compliance-during-your-products-lif=
+ecycle" target=3D"_blank">http://www.yoctoproject.org/docs/current/dev-manu=
+al/dev-manual.html#maintaining-open-source-license-compliance-during-your-p=
+roducts-lifecycle</a><br>
+
+<br>
+&gt; Regards<br>
+&gt; =C2=A0 Mats<br>
+<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br></div>
+
+--089e01633c347c733d04da615bfb--
