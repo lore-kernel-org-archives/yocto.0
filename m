@@ -1,24 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BA73E014D8
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 05:40:12 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Apr 2013 05:40:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,476,1363158000"; d="scan'208";a="322484825"
-Received: from unknown (HELO helios.localnet) ([10.255.13.245])
-	by fmsmga002.fm.intel.com with ESMTP; 15 Apr 2013 05:40:11 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Trevor Woerner <twoerner@gmail.com>, yocto@yoctoproject.org
-Date: Mon, 15 Apr 2013 13:40:10 +0100
-Message-ID: <6129459.jTm7n3POKe@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <CAHUNapQBeYp_2-zDcOEU81VFoTtYmWaKEiiB8-9Z=_tXWV6rcg@mail.gmail.com>
-References: <CAPhnLPBKA7RmB5_KZ-m12O_ehR4BobYgB2qJYL1DPj071ouVYA@mail.gmail.com>
-	<CAHUNapQBeYp_2-zDcOEU81VFoTtYmWaKEiiB8-9Z=_tXWV6rcg@mail.gmail.com>
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ob0-f182.google.com (mail-ob0-f182.google.com
+	[209.85.214.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4B6BE00597
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 07:17:21 -0700 (PDT)
+Received: by mail-ob0-f182.google.com with SMTP id dn14so11100obc.27
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 07:17:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
+	:subject:from:to:content-type;
+	bh=7a3hhbUyFqAfqmbThSdtN8loVFRPFX/wzJ/PcJonh/s=;
+	b=S0kbdd2jBIUyFCNaEXs69+dvIfA6/1G9NyWwypAo1Ty+VnYmczwFMZU3pa5/GJR95f
+	iVylBvebzssI6T0xOC7KxWXT+3MPwtEfqg5bo8Okmge2feRZros1A4k2kaj6IOLiGa55
+	WmNLwwjo9NmZzcGEP6dSrig+ux1x4rfYp2UpeMhIrliHlXPtk83omDWklp5UkqUrUfT7
+	HytbIYPYepbDyMwWWzvnOtK2bnH1NTOq32Chmo2WYR7KOY5SAwcTWR/+8nYuBmV2uuJk
+	/3juhplzqkdZobTLtF1tSIcIrHCzvUCW3bugTe8t0dleBMI0Wkw44IdNy/Y8dLEAEy6U
+	qVzQ==
 MIME-Version: 1.0
-Subject: Re: Yocto 1.4_M5 released
+X-Received: by 10.60.135.234 with SMTP id pv10mr7269226oeb.101.1366035440742; 
+	Mon, 15 Apr 2013 07:17:20 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.76.24.34 with HTTP; Mon, 15 Apr 2013 07:17:20 -0700 (PDT)
+Date: Mon, 15 Apr 2013 16:17:20 +0200
+X-Google-Sender-Auth: LtFwtKdqQxGLjIDXWgFiOhX6OH4
+Message-ID: <CAFMfyzKEScWXRFDFXQRjrw-+Gm0ie=wwrtAt07JuXBZiOOmhPA@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Tools for measuring temperature on Tegra-Harmony board or in general
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,22 +37,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 12:40:12 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 15 Apr 2013 14:17:21 -0000
+Content-Type: multipart/alternative; boundary=047d7b41c1ec32832c04da66e91c
 
-On Monday 15 April 2013 07:46:42 Trevor Woerner wrote:
-> If I want to get an idea of what's going to be in the next release,
-> dylan, which branch do I use: dylan or 1.4_M5?
+--047d7b41c1ec32832c04da66e91c
+Content-Type: text/plain; charset=ISO-8859-1
 
-So, dylan is already quite a few bugfixes ahead of 1.4_M5 at this point. dylan 
-will become 1.4 when the final release occurs.
- 
-Cheers,
-Paul
+Hi,
 
--- 
+I have successfully compiled and am so happy the way poky is working on my
+Tgera-Harmony modified version board... I have a new requirement which is
+to find temperature of CPU so that we can control the fan..
 
-Paul Eggleton
-Intel Open Source Technology Centre
+I think it comes with NCT1008-i2c-4-4C temperature sensor and has Tegra i2C
+adapter
 
+Greets,
+Satya
+
+--047d7b41c1ec32832c04da66e91c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div style>I have successfully compiled =
+and am so happy the way poky is working on my Tgera-Harmony modified versio=
+n board... I have a new requirement which is to find temperature of CPU so =
+that we can control the fan..</div>
+<div style><br></div><div style>I think it comes with NCT1008-i2c-4-4C temp=
+erature sensor and has Tegra i2C adapter</div><div style><br></div><div sty=
+le>Greets,</div><div style>Satya</div></div>
+
+--047d7b41c1ec32832c04da66e91c--
