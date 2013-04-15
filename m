@@ -1,36 +1,30 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 551D6E013CA
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 12:12:05 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 15 Apr 2013 12:12:04 -0700
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE674E0140A
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 14:08:04 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 15 Apr 2013 14:08:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,477,1363158000"; d="scan'208";a="227433400"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by AZSMGA002.ch.intel.com with ESMTP; 15 Apr 2013 12:12:03 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.240.5) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 15 Apr 2013 12:12:03 -0700
-Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.26]) with mapi id
-	14.01.0355.002; Mon, 15 Apr 2013 12:12:02 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Atanas Gegov <atanas.gegov.oss@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCHv2 4/9] plugins/sdk.ide: Switch to
-	YoctoSDKAutotoolsProjectNature
-Thread-Index: AQHONqd2kB3FnnCuuUCmpMwCL6CWCZjXq4Iw
-Date: Mon, 15 Apr 2013 19:12:02 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDC8E87@ORSMSX104.amr.corp.intel.com>
-References: <1365679531-4518-1-git-send-email-atanas.gegov.oss@gmail.com>
-	<1365679531-4518-5-git-send-email-atanas.gegov.oss@gmail.com>
-In-Reply-To: <1365679531-4518-5-git-send-email-atanas.gegov.oss@gmail.com>
+X-IronPort-AV: E=Sophos;i="4.87,479,1363158000"; 
+	d="scan'208,217";a="286506756"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by azsmga001.ch.intel.com with ESMTP; 15 Apr 2013 14:08:03 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.22]) with mapi id
+	14.01.0355.002; Mon, 15 Apr 2013 14:08:02 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, April
+	16, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac46HTbxXW8S1vzpReC6i3JPkumiBAAAAZvQ
+Date: Mon, 15 Apr 2013 21:08:01 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70F3482A@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: [PATCHv2 4/9] plugins/sdk.ide: Switch to	YoctoSDKAutotoolsProjectNature
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, April 16, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,534 +36,571 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 19:12:06 -0000
+X-List-Received-Date: Mon, 15 Apr 2013 21:08:06 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A70F3482AORSMSX101amrcor_"
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70F3482AORSMSX101amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Atanas,
+Agenda:
 
-Everything looks good for the patch series except can we make YoctoSDKAutot=
-oolsProjectNature subclass of YoctoSDKProjectNature by extending it to bett=
-er show the classes relationship.  In this way, you don't need to introduce=
- the special method of addYoctoSDKAutotoolsNature in YoctoSDKAutotoolsProje=
-ctNature which makes the interface a little bit cleaner via encapsulation.
+* Opens collection - 5 min (Song)
+* Yocto 1.3.1 Release - Ross
+* Yocto 1.4 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
+* SWAT team rotation: Saul -> Laurentiu Palcu
+* Opens - 10 min
+* Team Sharing - 20 min
 
-Thanks,
-Jessica
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Atanas Gegov
-Sent: Thursday, April 11, 2013 4:25 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCHv2 4/9] plugins/sdk.ide: Switch to YoctoSDKAutotools=
-ProjectNature
+-----Original Appointment-----
 
-From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-The YoctoSDKProjectNature remains the basic nature for all Yocto projects i=
-n the IDE. The projects using Autotools (all templates) get the YoctoSDKPro=
-jectNature and additionally the YoctoSDKAutotoolsProjectNature. The process=
- NewYoctoCProjectTemplate is adapted accordingly.
----
- plugins/org.yocto.sdk.ide/plugin.xml               |    2 +-
- .../natures/YoctoSDKAutotoolsProjectNature.java    |   45 +++++++++++
- .../sdk/ide/natures/YoctoSDKProjectNature.java     |   70 ----------------=
--
- .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    6 +-
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |   79 ++++++++++++----=
-----
- 5 files changed, 96 insertions(+), 106 deletions(-)
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
 
-diff --git a/plugins/org.yocto.sdk.ide/plugin.xml b/plugins/org.yocto.sdk.i=
-de/plugin.xml
-index f21434b..35e34b4 100644
---- a/plugins/org.yocto.sdk.ide/plugin.xml
-+++ b/plugins/org.yocto.sdk.ide/plugin.xml
-@@ -91,7 +91,7 @@
-                            type=3D"org.eclipse.core.resources.IResource">
-                         <test
-                               property=3D"org.eclipse.core.resources.proje=
-ctNature"
--                              value=3D"org.yocto.sdk.ide.YoctoSDKNature">
-+
-+ value=3D"org.yocto.sdk.ide.YoctoSDKAutotoolsNature">
-                         </test>
-                      </adapt>
-                   </iterate>
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoS=
-DKAutotoolsProjectNature.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk=
-/ide/natures/YoctoSDKAutotoolsProjectNature.java
-index ac73878..767c005 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKAutot=
-oolsProjectNature.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKAu
-+++ totoolsProjectNature.java
-@@ -10,15 +10,31 @@
-  *************************************************************************=
-******/
- package org.yocto.sdk.ide.natures;
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
 
-+import
-+org.eclipse.cdt.internal.autotools.core.configure.AutotoolsConfiguratio
-+nManager; import
-+org.eclipse.cdt.internal.autotools.core.configure.IAConfiguration;
-+import org.eclipse.cdt.managedbuilder.core.IConfiguration;
-+import org.eclipse.cdt.managedbuilder.core.IManagedBuildInfo;
-+import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
- import org.eclipse.core.resources.IProject;
- import org.eclipse.core.resources.IProjectNature;
- import org.eclipse.core.runtime.CoreException;
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.yocto.sdk.ide.YoctoSDKPlugin;
-+import org.yocto.sdk.ide.YoctoUIElement; import
-+org.yocto.sdk.ide.utils.YoctoSDKUtils;
+Conference details
+Conference name:        Yocto Technical Team
+Conference date/start time:     Tue Jun 26, 2012 at 10:00 AM Central Daylig=
+ht Time
+Participants:   30
+Duration:       60 minutes
+Participant passcode:   76994298
+Dial-in number:         1.972.995.7777
+US Toll Free number:    1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:=
+     1.972.995.7777x76994298#
+        Depending on where you are dialing from, either your BlackBerry wil=
+l pause and enter the passcode automatically or you will be prompted to cli=
+ck again to dial the passcode.
 
- public class YoctoSDKAutotoolsProjectNature implements IProjectNature {
-        public static final  String YoctoSDK_AUTOTOOLS_NATURE_ID =3D YoctoS=
-DKPlugin.getUniqueIdentifier() + ".YoctoSDKAutotoolsNature";
 
-+       private static final String DEFAULT_HOST_STR =3D "host";
-+       private static final String DEFAULT_TARGET_STR =3D "target";
-+       private static final String DEFAULT_BUILD_STR =3D "build";
-+       private static final String DEFAULT_AUTOGEN_OPT_STR =3D "autogenOpt=
-s";
-+
-+       private static final String DEFAULT_CONFIGURE_STR =3D "configure";
-+       private static final String DEFAULT_AUTOGEN_STR =3D "autogen";
-+       private static final String DEFAULT_LIBTOOL_SYSROOT_PREFIX =3D "
-+--with-libtool-sysroot=3D";
-+
-        private IProject proj;
+Local and Global Access Numbers
 
-        public void configure() throws CoreException { @@ -38,4 +54,33 @@ p=
-ublic class YoctoSDKAutotoolsProjectNature implements IProjectNature {
-        public static void addYoctoSDKAutotoolsNature(IProject project, IPr=
-ogressMonitor monitor) throws CoreException {
-                YoctoSDKNatureUtils.addNature(project, YoctoSDK_AUTOTOOLS_N=
-ATURE_ID, monitor);
-        }
-+
-+       public static void configureAutotoolsOptions(IProject project) {
-+               IManagedBuildInfo info =3D ManagedBuildManager.getBuildInfo=
-(project);
-+               IConfiguration icfg =3D info.getDefaultConfiguration();
-+               YoctoUIElement elem =3D YoctoSDKUtils.getElemFromProjectEnv=
-(project);
-+               String sysroot_str =3D elem.getStrSysrootLoc();
-+               String id =3D icfg.getId();
-+               String CFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, "C=
-FLAGS");
-+               String CXXFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, =
-"CXXFLAGS");
-+               String CPPFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, =
-"CPPFLAGS");
-+               String LDFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, "=
-LDFLAGS");
-+
-+               String command_prefix =3D "CFLAGS=3D\" -g -O0 " + CFLAGS_st=
-r + "\" CXXFLAGS=3D\" -g -O0 "
-+                               + CXXFLAGS_str + "\" LDFLAGS=3D\"" + LDFLAG=
-S_str + "\" CPPFLAGS=3D\"" + CPPFLAGS_str + "\"";
-+               String autogen_setting =3D command_prefix+" autogen.sh" + D=
-EFAULT_LIBTOOL_SYSROOT_PREFIX + sysroot_str;
-+               String configure_setting =3D command_prefix + " configure" =
-+ DEFAULT_LIBTOOL_SYSROOT_PREFIX + sysroot_str;
-+               IAConfiguration cfg =3D AutotoolsConfigurationManager.getIn=
-stance().getConfiguration(project, id);
-+               String strConfigure =3D YoctoSDKUtils.getEnvValue(project,
-+"CONFIGURE_FLAGS");
-+
-+               cfg.setOption(DEFAULT_CONFIGURE_STR, configure_setting);
-+               cfg.setOption(DEFAULT_BUILD_STR, YoctoSDKUtils.splitString(=
-strConfigure, "--build=3D"));
-+               cfg.setOption(DEFAULT_HOST_STR, YoctoSDKUtils.splitString(s=
-trConfigure, "--host=3D"));
-+               cfg.setOption(DEFAULT_TARGET_STR, YoctoSDKUtils.splitString=
-(strConfigure, "--target=3D"));
-+               cfg.setOption(DEFAULT_AUTOGEN_STR, autogen_setting);
-+               cfg.setOption(DEFAULT_AUTOGEN_OPT_STR, strConfigure);
-+
-+               AutotoolsConfigurationManager.getInstance().addConfiguratio=
-n(project, cfg);
-+               AutotoolsConfigurationManager.getInstance().saveConfigs(pro=
-ject);
-+       }
- }
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoS=
-DKProjectNature.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natu=
-res/YoctoSDKProjectNature.java
-index fcb296d..51926fb 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKProje=
-ctNature.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKPr
-+++ ojectNature.java
-@@ -10,39 +10,15 @@
-  *************************************************************************=
-******/
- package org.yocto.sdk.ide.natures;
 
--import org.eclipse.cdt.internal.autotools.core.configure.AutotoolsConfigur=
-ationManager;
--import org.eclipse.cdt.internal.autotools.core.configure.IAConfiguration;
--import org.eclipse.cdt.managedbuilder.core.IConfiguration;
--import org.eclipse.cdt.managedbuilder.core.IManagedBuildInfo;
--import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
- import org.eclipse.core.resources.IProject;
- import org.eclipse.core.resources.IProjectNature;
- import org.eclipse.core.runtime.CoreException;
- import org.eclipse.core.runtime.IProgressMonitor;
--import org.eclipse.jface.preference.IPreferenceStore;
--import org.yocto.sdk.ide.YoctoGeneralException;
--import org.yocto.sdk.ide.YoctoProfileElement;
--import org.yocto.sdk.ide.YoctoSDKChecker;
- import org.yocto.sdk.ide.YoctoSDKPlugin; -import org.yocto.sdk.ide.YoctoUI=
-Element; -import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;
--import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
--import org.yocto.sdk.ide.utils.YoctoSDKUtils;
 
--
--@SuppressWarnings("restriction")
- public class YoctoSDKProjectNature implements IProjectNature {
-        public static final  String YoctoSDK_NATURE_ID =3D YoctoSDKPlugin.g=
-etUniqueIdentifier() + ".YoctoSDKNature";
 
--       private static final String DEFAULT_HOST_STR =3D "host";
--       private static final String DEFAULT_TARGET_STR =3D "target";
--       private static final String DEFAULT_BUILD_STR =3D "build";
--       private static final String DEFAULT_AUTOGEN_OPT_STR =3D "autogenOpt=
-s";
--
--       private static final String DEFAULT_CONFIGURE_STR =3D "configure";
--       private static final String DEFAULT_AUTOGEN_STR =3D "autogen";
--       private static final String DEFAULT_LIBTOOL_SYSROOT_PREFIX =3D " --=
-with-libtool-sysroot=3D";
--
-        private IProject proj;
+Country
+Dial-in number
 
-        public void configure() throws CoreException { @@ -62,50 +38,4 @@ p=
-ublic class YoctoSDKProjectNature implements IProjectNature {
-        public static void addYoctoSDKNature(IProject project, IProgressMon=
-itor monitor) throws CoreException {
-                YoctoSDKNatureUtils.addNature(project, YoctoSDK_NATURE_ID, =
-monitor);
-        }
--
--       public static void configureAutotoolsOptions(IProject project) {
--               IManagedBuildInfo info =3D ManagedBuildManager.getBuildInfo=
-(project);
--               IConfiguration icfg =3D info.getDefaultConfiguration();
--               YoctoUIElement elem =3D YoctoSDKUtils.getElemFromProjectEnv=
-(project);
--               String sysroot_str =3D elem.getStrSysrootLoc();
--               String id =3D icfg.getId();
--               String CFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, "C=
-FLAGS");
--               String CXXFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, =
-"CXXFLAGS");
--               String CPPFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, =
-"CPPFLAGS");
--               String LDFLAGS_str =3D YoctoSDKUtils.getEnvValue(project, "=
-LDFLAGS");
--
--               String command_prefix =3D "CFLAGS=3D\" -g -O0 " + CFLAGS_st=
-r + "\" CXXFLAGS=3D\" -g -O0 "
--               + CXXFLAGS_str + "\" LDFLAGS=3D\"" + LDFLAGS_str + "\" CPPF=
-LAGS=3D\"" + CPPFLAGS_str + "\"";
--               String autogen_setting =3D command_prefix+" autogen.sh" + D=
-EFAULT_LIBTOOL_SYSROOT_PREFIX + sysroot_str;
--               String configure_setting =3D command_prefix + " configure" =
-+ DEFAULT_LIBTOOL_SYSROOT_PREFIX + sysroot_str;
--               IAConfiguration cfg =3D AutotoolsConfigurationManager.getIn=
-stance().getConfiguration(project, id);
--               String strConfigure =3D YoctoSDKUtils.getEnvValue(project, =
-"CONFIGURE_FLAGS");
--
--               cfg.setOption(DEFAULT_CONFIGURE_STR, configure_setting);
--               cfg.setOption(DEFAULT_BUILD_STR, YoctoSDKUtils.splitString(=
-strConfigure, "--build=3D"));
--               cfg.setOption(DEFAULT_HOST_STR, YoctoSDKUtils.splitString(s=
-trConfigure, "--host=3D"));
--               cfg.setOption(DEFAULT_TARGET_STR, YoctoSDKUtils.splitString=
-(strConfigure, "--target=3D"));
--               cfg.setOption(DEFAULT_AUTOGEN_STR, autogen_setting);
--               cfg.setOption(DEFAULT_AUTOGEN_OPT_STR, strConfigure);
--
--               AutotoolsConfigurationManager.getInstance().addConfiguratio=
-n(project, cfg);
--               AutotoolsConfigurationManager.getInstance().saveConfigs(pro=
-ject);
--       }
--
--       public static void configureAutotools(IProject project) throws Yoct=
-oGeneralException {
--               YoctoProfileElement profileElement =3D YoctoSDKUtils.getPro=
-filesFromDefaultStore();
--               YoctoSDKUtils.saveProfilesToProjectPreferences(profileEleme=
-nt, project);
--               IPreferenceStore selecteProfileStore =3D YoctoSDKPlugin.get=
-ProfilePreferenceStore(profileElement.getSelectedProfile());
--               YoctoUIElement elem =3D YoctoSDKUtils.getElemFromStore(sele=
-cteProfileStore);
--               SDKCheckResults result =3D YoctoSDKChecker.checkYoctoSDK(el=
-em);
--               if (result !=3D SDKCheckResults.SDK_PASS){
--                       String strErrorMsg =3D  YoctoSDKChecker.getErrorMes=
-sage(result, SDKCheckRequestFrom.Wizard);
--                       throw new YoctoGeneralException(strErrorMsg);
--               }
--               else
--               {
--                       YoctoSDKUtils.setEnvironmentVariables(project, elem=
-);
--                       configureAutotoolsOptions(project);
--               }
--       }
- }
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDK=
-Utils.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDK=
-Utils.java
-index bd781b3..1e2e424 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtils.j=
-ava
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtil
-+++ s.java
-@@ -54,8 +54,8 @@ import org.yocto.sdk.ide.YoctoProfileElement;
- import org.yocto.sdk.ide.YoctoSDKMessages;
- import org.yocto.sdk.ide.YoctoSDKPlugin;  import org.yocto.sdk.ide.YoctoUI=
-Element;
-+import org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature;
- import org.yocto.sdk.ide.natures.YoctoSDKEmptyProjectNature;
--import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;
- import org.yocto.sdk.ide.preferences.PreferenceConstants;
+Australia:
+1800 636 843
 
- public class YoctoSDKUtils {
-@@ -427,7 +427,9 @@ public class YoctoSDKUtils {
+Czech Republic:
+242 430 350
 
-                try {
-                        setEnvironmentVariables(project, elem);
--                       YoctoSDKProjectNature.configureAutotoolsOptions(pro=
-ject);
-+                       if(project.hasNature(YoctoSDKAutotoolsProjectNature=
-.YoctoSDK_AUTOTOOLS_NATURE_ID)) {
-+                               YoctoSDKAutotoolsProjectNature.configureAut=
-otoolsOptions(project);
-+                       }
-                        IConsole console =3D CCorePlugin.getDefault().getCo=
-nsole("org.yocto.sdk.ide.YoctoConsole");
-                        console.start(project);
-                        consoleOutStream =3D console.getOutputStream(); dif=
-f --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCP=
-rojectTemplate.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizar=
-d/NewYoctoCProjectTemplate.java
-index 73531e5..239cbf8 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProje=
-ctTemplate.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCPr
-+++ ojectTemplate.java
-@@ -28,6 +28,7 @@ import org.eclipse.cdt.make.core.MakeCorePlugin;
- import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager;
- import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager.IDis=
-coveredPathInfo;
- import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager.IPer=
-ProjectDiscoveredPathInfo;
-+import
-+org.eclipse.cdt.make.internal.core.scannerconfig.util.SymbolEntry;
- import org.eclipse.cdt.managedbuilder.core.BuildException;
- import org.eclipse.cdt.managedbuilder.core.IConfiguration;
- import org.eclipse.cdt.managedbuilder.core.IManagedBuildInfo;
-@@ -56,6 +57,7 @@ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
- import org.yocto.sdk.ide.YoctoSDKMessages;
- import org.yocto.sdk.ide.YoctoSDKPlugin;  import org.yocto.sdk.ide.YoctoUI=
-Element;
-+import org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature;
- import org.yocto.sdk.ide.natures.YoctoSDKEmptyProjectNature;
- import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;
- import org.yocto.sdk.ide.utils.YoctoSDKUtils;
-@@ -88,7 +90,7 @@ public class NewYoctoCProjectTemplate extends ProcessRunn=
-er {
-                String isEmptyProjetValue =3D args[4].getSimpleValue();
-                String isAutotoolsProjectValue =3D args[5].getSimpleValue()=
-;
-                boolean isCProject =3D Boolean.valueOf(isCProjectValue).boo=
-leanValue();
--               boolean isEmptryProject =3D Boolean.valueOf(isEmptyProjetVa=
-lue).booleanValue();
-+               boolean isEmptyProject =3D
-+Boolean.valueOf(isEmptyProjetValue).booleanValue();
-                boolean isAutotoolsProject =3D Boolean.valueOf(isAutotoolsP=
-rojectValue).booleanValue();
+China (Beijing):
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
 
-                IProject project =3D ResourcesPlugin.getWorkspace().getRoot=
-().getProject(projectName);
-@@ -126,19 +128,8 @@ public class NewYoctoCProjectTemplate extends ProcessR=
-unner {
-                                pca.setArtifactExtension(artifactExtension)=
-;
-                                info =3D pca.createProject(monitor, CCorePl=
-ugin.DEFAULT_INDEXER, isCProject);
+China (Shanghai):
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
 
--                               AutotoolsNewProjectNature.addAutotoolsNatur=
-e(project, monitor);
--                               // For each IConfiguration, create a corres=
-ponding Autotools Configuration
--                               IConfiguration[] cfgs =3D pca.getConfigs();
--                               for (int i =3D 0; i < cfgs.length; ++i) {
--                                       IConfiguration cfg =3D cfgs[i];
--                                       AutotoolsConfigurationManager.getIn=
-stance().getConfiguration(project, cfg.getName(), true);
--                               }
--                               AutotoolsConfigurationManager.getInstance()=
-.saveConfigs(project);
--                               if(isEmptryProject) {
--                                       YoctoSDKEmptyProjectNature.addYocto=
-SDKEmptyNature(project, monitor);
--                               }
--                               YoctoSDKProjectNature.addYoctoSDKNature(pro=
-ject, monitor);
--                               YoctoSDKProjectNature.configureAutotools(pr=
-oject);
-+                               addNatures(project, false, isEmptyProject, =
-isAutotoolsProject,
-+monitor);
-+
-                                info.setValid(true);
-                                ManagedBuildManager.saveBuildInfo(project, =
-true);
+China (Shenzen):
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
 
-@@ -147,31 +138,19 @@ public class NewYoctoCProjectTemplate extends Process=
-Runner {
+China (Other Cities):
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
 
-                                IWorkspace workspace =3D ResourcesPlugin.ge=
-tWorkspace();
-                                turnOffAutoBuild(workspace);
--                               YoctoProfileElement profileElement =3D Yoct=
-oSDKUtils.getProfilesFromDefaultStore();
--                               IPreferenceStore selecteProfileStore =3D Yo=
-ctoSDKPlugin.getProfilePreferenceStore(profileElement.getSelectedProfile())=
-;
--                               YoctoUIElement elem =3D YoctoSDKUtils.getEl=
-emFromStore(selecteProfileStore);
--                               SDKCheckResults result =3D YoctoSDKChecker.=
-checkYoctoSDK(elem);
--                               if (result !=3D SDKCheckResults.SDK_PASS){
--                                       String strErrorMsg =3D  YoctoSDKChe=
-cker.getErrorMessage(result, SDKCheckRequestFrom.Wizard);
--                                       throw new YoctoGeneralException(str=
-ErrorMsg);
--                               }
--                               AutotoolsNewProjectNature.addAutotoolsNatur=
-e(project, monitor);
--                               if(isEmptryProject) {
--                                       YoctoSDKEmptyProjectNature.addYocto=
-SDKEmptyNature(project, monitor);
--                               }
--
--                               YoctoSDKProjectNature.addYoctoSDKNature(pro=
-ject, monitor);
--                               YoctoSDKProjectNature.configureAutotools(pr=
-oject);
--
--                               AutotoolsConfigurationManager.getInstance()=
-.saveConfigs(project);
-+
-+                               YoctoSDKChecker.checkIfGloballySelectedYoct=
-oProfileIsValid();
-+
-+                               addNatures(project, true, isEmptyProject, i=
-sAutotoolsProject,
-+monitor);
-+
-                                //restoreAutoBuild(workspace);
-                                IDiscoveredPathManager manager =3D MakeCore=
-Plugin.getDefault().getDiscoveryManager();
-                                IDiscoveredPathInfo pathInfo =3D manager.ge=
-tDiscoveredInfo(project);
-                                if (pathInfo instanceof IPerProjectDiscover=
-edPathInfo) {
-                                    IPerProjectDiscoveredPathInfo projectPa=
-thInfo =3D
-                                        (IPerProjectDiscoveredPathInfo) pat=
-hInfo;
--                                   projectPathInfo.setIncludeMap(new Linke=
-dHashMap());
--                                   projectPathInfo.setSymbolMap(new Linked=
-HashMap());
-+                                   projectPathInfo.setIncludeMap(new Linke=
-dHashMap<String, Boolean>());
-+                                   projectPathInfo.setSymbolMap(new Linked=
-HashMap<String,
-+SymbolEntry>());
-                                    manager.removeDiscoveredInfo(project);
-                                }
-                        }
-@@ -200,6 +179,40 @@ public class NewYoctoCProjectTemplate extends ProcessR=
-unner {
-                return matcher.find();
- }
+Denmark:
+8060 1400
 
-+       private void addNatures(IProject project, boolean projectExists, bo=
-olean isEmptyProject,
-+                       boolean isAutotoolsProject, IProgressMonitor monito=
-r)
-+                                       throws CoreException, YoctoGeneralE=
-xception {
-+               YoctoSDKProjectNature.addYoctoSDKNature(project, monitor);
-+
-+               YoctoSDKChecker.checkIfGloballySelectedYoctoProfileIsValid(=
-);
-+
-+               YoctoProfileElement profileElement =3D YoctoSDKUtils.getPro=
-filesFromDefaultStore();
-+               YoctoSDKUtils.saveProfilesToProjectPreferences(profileEleme=
-nt,
-+project);
-+
-+               IPreferenceStore selecteProfileStore =3D YoctoSDKPlugin.get=
-ProfilePreferenceStore(profileElement.getSelectedProfile());
-+               YoctoUIElement elem =3D YoctoSDKUtils.getElemFromStore(sele=
-cteProfileStore);
-+               YoctoSDKUtils.setEnvironmentVariables(project, elem);
-+
-+               if (isEmptyProject) {
-+                       YoctoSDKEmptyProjectNature.addYoctoSDKEmptyNature(p=
-roject, monitor);
-+               }
-+
-+               if (isAutotoolsProject) {
-+                       AutotoolsNewProjectNature.addAutotoolsNature(projec=
-t, monitor);
-+
-+                       if(!projectExists) {
-+                               // For each IConfiguration, create a corres=
-ponding Autotools Configuration
-+                               for (IConfiguration cfg : pca.getConfigs())=
- {
-+                                       AutotoolsConfigurationManager.getIn=
-stance().getConfiguration(project, cfg.getName(), true);
-+                               }
-+                               AutotoolsConfigurationManager.getInstance()=
-.saveConfigs(project);
-+                       }
-+
-+                       YoctoSDKAutotoolsProjectNature.addYoctoSDKAutotools=
-Nature(project, monitor);
-+                       YoctoSDKAutotoolsProjectNature.configureAutotoolsOp=
-tions(project);
-+               }
-+       }
-+
-        protected final void turnOffAutoBuild(IWorkspace workspace) throws =
-CoreException {
-                IWorkspaceDescription workspaceDesc =3D workspace.getDescri=
-ption();
-                savedAutoBuildingValue =3D workspaceDesc.isAutoBuilding();
---
-1.7.9.5
+Finland:
+09 41333477
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+France:
+0497 275888
 
+Germany:
+08161 803232
+
+Holland:
+030 2417490
+
+India:
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+
+Israel:
+09 790 6715
+
+Italy:
+039 69061234 (039 is local city code not country code)
+
+Japan:
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+
+Malaysia:
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+
+Norway:
+2 295 8744
+
+Philippines:
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+
+Singapore:
+From IP phone dial 3894777
+Outside TI use 6389 4777
+
+South Korea:
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+
+Sweden:
+08 58755577
+
+Taiwan:
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+
+Turkey:
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+
+UK:
+01604 663003
+
+US:
+972 995 7777 or 1877 561 6828
+
+
+Recurring conferences
+First scheduled conference:     Tue Jun 26, 2012
+Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:        End on Fri Jun 21, 2013, 10:40 AM CDT
+
+
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70F3482AORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.3.1 Release - Ross</div>
+<div>* Yocto 1.4 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+4_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.4_Status</u></font></a></div>
+<div>* SWAT team rotation: Saul -&gt; Laurentiu Palcu </div>
+<div>* Opens - 10 min </div>
+<div>* Team Sharing - 20 min</div>
+<div><font face=3D"Calibri" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Calibri" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
+Original Appointment-----</span></font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
+ attending the meeting to logon the Yocto IRC chancel during the meeting (o=
+ptional):</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
+></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
+=3D"http://webchat.freenode.net/?channels=3D#yocto"><font color=3D"blue"><u=
+>http://webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font=
+></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
+ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
+><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
+/font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"725" style=3D"width:435pt;">
+<tr>
+<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
+span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Conference deta=
+ils</b> </span></font></td>
+</tr>
+</table>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"217" style=3D"width:130.4pt;">
+<col width=3D"507" style=3D"width:304.6pt;">
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Conference name: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Yocto Technical Team</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Conference date/start time: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Tue Jun 26, 2012 at 10:00 AM Central Daylight Time </b></s=
+pan></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Participants: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>30</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Duration: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>60 minutes </b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Participant passcode: </span></font></td>
+<td><font face=3D"Calibri" color=3D"#1F497D">76994298</font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Dial-in number: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>1.972.995.7777 </b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">US Toll Free number: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>1.877.561.6828 </b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">BlackBerry users, click this link to join your conference as =
+a <b>participant</b>:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>1.972.995.7777x</b><font face=3D"Calibri" size=3D"2" color=
+=3D"#1F497D"><span style=3D"font-size:11pt;">76994298</span></font><b>#</b>=
+</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">&nbsp;</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
+ry will pause and enter the passcode automatically or you will be prompted =
+to click again to dial the passcode.</span></font></td>
+</tr>
+<tr>
+<td colspan=3D"2">
+<table width=3D"273" style=3D"width:164.25pt;margin-left:5.55pt;">
+<col width=3D"273" style=3D"width:164.25pt;">
+<tr>
+<td><font face=3D"Calibri"></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#428CC6;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#CFCFCF"><span style=3D"font-size:8.5pt;background-color:#428CC6;">=
+<b>Local and Global Access Numbers</b> </span></font></td>
+</tr>
+</table>
+<div><font face=3D"Calibri" color=3D"#666666">&nbsp;</font></div>
+<table width=3D"576" style=3D"width:345.6pt;margin-left:5.55pt;">
+<col width=3D"172" style=3D"width:103.4pt;">
+<col width=3D"403" style=3D"width:242.2pt;">
+<tr>
+<td><font face=3D"Calibri"></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
+ountry</b> </span></font></td>
+<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
+ial-in number</b></span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Australia:</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+1800 636 843</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Czech Republic:</b> </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">242 430 350</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Beijing):</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From office dial 8-9957777 or 8784277
+<br>
+
+Beijing Out of Office dial 5878 4277</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Shanghai):</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From office dial 8-9957777 or 3073322
+<br>
+
+Shanghai Out of Office dial 2307 3322</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Shenzen):</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From office dial 8-9957777 or 6007877
+<br>
+
+Shenzen Out of Office dial 2600 7877</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Other Cities):</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 8-9957777
+<br>
+
+Other cities - Non IP phone dial 021-23073322</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Denmark:</b> </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">8060 1400</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Finland:</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+09 41333477</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>France: </b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">0497 275888</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Germany:</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+08161 803232</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Holland: </b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">030 2417490</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>India: </b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+BSNL subscribers use 1800 425 9996 (Toll Free)<br>
+
+Airtel subscribers use 0008 009 861 212 (Toll Free)<br>
+
+From TI Campus use 89957777<br>
+
+Others use 2509 9555 (Landline within Bangalore) or<br>
+
+80 2509 9555 (Outside Bangalore)</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Israel: </b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">09 790 6715</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Italy:</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+039 69061234 (039 is local city code not country code)</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Japan: </b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">From TI Campus use 8 995 7777
+<br>
+
+Outside TI use 03 4331 3777</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Malaysia: </b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 2643799
+<br>
+
+From Kuala Lumpur dial 4264 3799 <br>
+
+Outside Kuala Lumpur dial (03)4264 3799</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Norway: </b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">2 295 8744</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Philippines:</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From Baguio City use 4471177
+<br>
+
+From Metro Manila area use 8702477</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Singapore:</b> </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">From IP phone dial 3894777
+<br>
+
+Outside TI use 6389 4777</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>South Korea:</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 5606998
+<br>
+
+From Seoul dial 5606998 <br>
+
+Outside Seoul dial (02)5606998</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Sweden: </b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">08 58755577</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Taiwan:</b> </span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 1363
+<br>
+
+From Taipei dial 2241 1363 <br>
+
+Outside Taipei dial (02)2241 1363</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Turkey:</b> </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Landline Only</b> dial 0811 288 0001
+<br>
+
+then enter 877 633 1123 </span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>UK: </b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+01604 663003</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>US:</b> </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
+</tr>
+</table>
+<div><font face=3D"Calibri" color=3D"#666666">&nbsp;</font></div>
+</td>
+</tr>
+</table>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"725" style=3D"width:435pt;">
+<tr>
+<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
+span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Recurring confe=
+rences </b></span></font></td>
+</tr>
+</table>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"217" style=3D"width:130.4pt;">
+<col width=3D"507" style=3D"width:304.6pt;">
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">First scheduled conference: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Tue Jun 26, 2012</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Recurrence frequency: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Recurrence ends: </span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>End on Fri Jun 21, 2013, 10:40 AM CDT</b></span></font></t=
+d>
+</tr>
+</table>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A70F3482AORSMSX101amrcor_--
