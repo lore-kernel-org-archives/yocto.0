@@ -1,28 +1,34 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3257E00597
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 07:58:52 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r3FEwo6g004839
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 15 Apr 2013 07:58:50 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 15 Apr 2013 07:58:50 -0700
-Message-ID: <516C15A0.3080505@windriver.com>
-Date: Mon, 15 Apr 2013 10:58:40 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130308 Thunderbird/17.0.4
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25CEFE00597
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 08:10:41 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 15 Apr 2013 08:08:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,476,1363158000"; d="scan'208";a="295143115"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga001.jf.intel.com with ESMTP; 15 Apr 2013 08:10:11 -0700
+Received: from orsmsx109.amr.corp.intel.com (10.22.240.7) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Mon, 15 Apr 2013 08:10:10 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
+	ORSMSX109.amr.corp.intel.com ([169.254.2.235]) with mapi id
+	14.01.0355.002; Mon, 15 Apr 2013 08:10:10 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] YP "download" versus "downloads" page?
+Thread-Index: AQHOODzvRTAoM91QgEW6MpKWCUJz9pjXZgwQ
+Date: Mon, 15 Apr 2013 15:10:10 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCF5CBD@ORSMSX104.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1304130745450.1291@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1304130745450.1291@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: "Saridakis, Dean (US SSA)" <dean.saridakis@baesystems.com>
-References: <20130411231941.C175BE0146C@yocto-www.yoctoproject.org>
-	<51675860.3030204@windriver.com>
-	<B98BBFB67D89184E8E876F332BDBC3E0A23616@GLDMS85001.goldlnk.rootlnka.net>
-In-Reply-To: <B98BBFB67D89184E8E876F332BDBC3E0A23616@GLDMS85001.goldlnk.rootlnka.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Config fragment not being picked up
+Subject: Re: YP "download" versus "downloads" page?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,56 +40,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 14:58:53 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 15 Apr 2013 15:10:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 13-04-15 10:53 AM, Saridakis, Dean (US SSA) wrote:
->>>>> Think I've followed the example in the manual correctly. My append file
->> is
->>>> pretty simple:
->>>>>
->>>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}"
->>>>
->>>> It looks like you forgot the colon at the end of the path.
->>>> Try this:
->>>>     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>>
->>>> -Kevin
->>>
->>> Good eye, but afraid that didn't help (maybe the path was empty
->> before???). I think the files are getting picked up, since fetch will fail if
->> change the file name to force a not found error.
->>>
->>
->> What release are you using ? I tested this just last night before the
->> 1.4 release final RC .. so it definitely still works!
->>
->> How are you determining that it isn't being picked up?
+I noticed this the other day and am fixing it. =20
+
+Scott
+
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Saturday, April 13, 2013 4:49 AM
+>To: Yocto discussion list
+>Subject: [yocto] YP "download" versus "downloads" page?
 >
-> I believe the SDK is based on Yocto 1.2 / Poky 7.0 -- bitbake is 1.15.2.
-> kernel.bbclass kernel_do_configure() looks like it only does a make oldconfig on defconfig...?
-> Should I expect to see the .cfg files being eppended there?
 >
-> The .config I end up with doesn't have the definitions from my .cfg fragment files.
-
-Fragments are processed later in the build procedure. Assuming
-this is a linux-yocto based bbappend, they'll be added in the 
-kernel_configme
-task, and will modify the base BSP configuration.
-
-That doesn't mean that all the settings will make it to the final
-.config, since normal LKC processing and missing dependencies would
-drop invalid/incorrect settings.
-
-Cheers,
-
-Bruce
-
+>  just noticed that the docs definition of the YP "downloads" page is
+>https://www.yoctoproject.org/download, which appears to take you
+>specifically to the download page of the latest release.
 >
->>
->> Cheers,
->>
->> Bruce
-
+>  the *generic* downloads page, however, is:
+>
+>https://www.yoctoproject.org/downloads    [note the trailing 's']
+>
+>  can this be clarified? i think that if the docs refer to what
+>appears to be a general, top-level YP "downloads" page, it should
+>cover *all* of the downloads -- that is, it should refer to that
+>latter link.
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
