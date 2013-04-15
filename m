@@ -1,35 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9279CE01498
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 05:30:07 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:55170 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1URiXu-0001zw-CW; Mon, 15 Apr 2013 08:30:06 -0400
-Date: Mon, 15 Apr 2013 08:30:01 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Krishna Dwivedi <Krishna.Dwivedi@aricent.com>
-In-Reply-To: <B60DC3E72D20B040854608D81E44050F64F451AB07@GUREXMB01.ASIAN.AD.ARICENT.COM>
-Message-ID: <alpine.DEB.2.02.1304150828140.3430@oneiric>
-References: <B60DC3E72D20B040854608D81E44050F64F451A93E@GUREXMB01.ASIAN.AD.ARICENT.COM>
-	<alpine.DEB.2.02.1304150722160.22880@oneiric>
-	<B60DC3E72D20B040854608D81E44050F64F451AB07@GUREXMB01.ASIAN.AD.ARICENT.COM>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BA73E014D8
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 05:40:12 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 15 Apr 2013 05:40:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,476,1363158000"; d="scan'208";a="322484825"
+Received: from unknown (HELO helios.localnet) ([10.255.13.245])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Apr 2013 05:40:11 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Trevor Woerner <twoerner@gmail.com>, yocto@yoctoproject.org
+Date: Mon, 15 Apr 2013 13:40:10 +0100
+Message-ID: <6129459.jTm7n3POKe@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <CAHUNapQBeYp_2-zDcOEU81VFoTtYmWaKEiiB8-9Z=_tXWV6rcg@mail.gmail.com>
+References: <CAPhnLPBKA7RmB5_KZ-m12O_ehR4BobYgB2qJYL1DPj071ouVYA@mail.gmail.com>
+	<CAHUNapQBeYp_2-zDcOEU81VFoTtYmWaKEiiB8-9Z=_tXWV6rcg@mail.gmail.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Arguement list too big error in bitbake meta-toolchain for MIPS architechture-Gentle Reminder
+Subject: Re: Yocto 1.4_M5 released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,32 +30,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 12:30:07 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 15 Apr 2013 12:40:12 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, 15 Apr 2013, Krishna Dwivedi wrote:
+On Monday 15 April 2013 07:46:42 Trevor Woerner wrote:
+> If I want to get an idea of what's going to be in the next release,
+> dylan, which branch do I use: dylan or 1.4_M5?
 
-> Hi Robert,
->
-> I am trying on fedora 18 and I am continuously running into this issue.
-
-  all i can report is that
-
-$ bitbake meta-toolchain
-
-for qemumips on my 64-bit ubuntu system works fine. i'm willing to do
-more testing if anyone can think of variations worth trying.
-
-rday
-
+So, dylan is already quite a few bugfixes ahead of 1.4_M5 at this point. dylan 
+will become 1.4 when the final release occurs.
+ 
+Cheers,
+Paul
 
 -- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Paul Eggleton
+Intel Open Source Technology Centre
 
