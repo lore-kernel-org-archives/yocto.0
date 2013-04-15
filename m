@@ -1,31 +1,25 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79E3BE00597
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 09:50:10 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3FGo2it025457; Mon, 15 Apr 2013 17:50:02 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id 7p_vv57rOi5n; Mon, 15 Apr 2013 17:50:02 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3FGnxtg025446
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Mon, 15 Apr 2013 17:50:01 +0100
-Message-ID: <1366044576.8670.68.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Mon, 15 Apr 2013 17:49:36 +0100
-In-Reply-To: <6129459.jTm7n3POKe@helios>
-References: <CAPhnLPBKA7RmB5_KZ-m12O_ehR4BobYgB2qJYL1DPj071ouVYA@mail.gmail.com>
-	<CAHUNapQBeYp_2-zDcOEU81VFoTtYmWaKEiiB8-9Z=_tXWV6rcg@mail.gmail.com>
-	<6129459.jTm7n3POKe@helios>
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto 1.4_M5 released
+Return-Path: <dean.saridakis@baesystems.com>
+Received: from dmzms99802.na.baesystems.com (dmzms99802.na.baesystems.com
+	[149.32.232.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B3DDE013CA
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 10:36:48 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="4.87,476,1363132800"; 
+   d="scan'208";a="5659975"
+X-IronPort-AV: E=Sophos;i="4.87,476,1363132800"; 
+   d="scan'208";a="9528682"
+From: "Saridakis, Dean   (US SSA)" <dean.saridakis@baesystems.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Thread-Topic: [yocto] Config fragment not being picked up
+Thread-Index: AQHOOezUciO3n1vSLEGHMocqsqv435jXh64Q
+Date: Mon, 15 Apr 2013 17:36:44 +0000
+In-Reply-To: <516C1ADA.8050908@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.37.161.240]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Config fragment not being picked up
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,30 +31,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 16:50:10 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 15 Apr 2013 17:36:49 -0000
+Message-ID: <MADEUP.15D9585E2E943436.15037@lists.yoctoproject.org>
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2013-04-15 at 13:40 +0100, Paul Eggleton wrote:
-> On Monday 15 April 2013 07:46:42 Trevor Woerner wrote:
-> > If I want to get an idea of what's going to be in the next release,
-> > dylan, which branch do I use: dylan or 1.4_M5?
-> 
-> So, dylan is already quite a few bugfixes ahead of 1.4_M5 at this point. dylan 
-> will become 1.4 when the final release occurs.
+> >>>>>>> Think I've followed the example in the manual correctly. My
+> >>>>>>> append file
+> >>>> is
+> >>>>>> pretty simple:
+> >>>>>>>
+> >>>>>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}"
+> >>>>>>
+> >>>>>> It looks like you forgot the colon at the end of the path.
+> >>>>>> Try this:
+> >>>>>>      FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> >>>>>>
+> >>>>>> -Kevin
+> >>>>>
+> >>>>> Good eye, but afraid that didn't help (maybe the path was empty
+> >>>> before???). I think the files are getting picked up, since fetch
+> >>>> will fail if change the file name to force a not found error.
+> >>>>>
+> >>>>
+> >>>> What release are you using ? I tested this just last night before
+> >>>> the
+> >>>> 1.4 release final RC .. so it definitely still works!
+> >>>>
+> >>>> How are you determining that it isn't being picked up?
+> >>>
+> >>> I believe the SDK is based on Yocto 1.2 / Poky 7.0 -- bitbake is 1.15=
+.2.
+> >>> kernel.bbclass kernel_do_configure() looks like it only does a make
+> >> oldconfig on defconfig...?
+> >>> Should I expect to see the .cfg files being eppended there?
+> >>>
+> >>> The .config I end up with doesn't have the definitions from my .cfg
+> >> fragment files.
+> >>
+> >> Fragments are processed later in the build procedure. Assuming this
+> >> is a linux-yocto based bbappend, they'll be added in the
+> >> kernel_configme task, and will modify the base BSP configuration.
+> >>
+> >> That doesn't mean that all the settings will make it to the final
+> >> .config, since normal LKC processing and missing dependencies would
+> >> drop invalid/incorrect settings.
+> >
+> > The SDK .bb inherits directly from kernel & doesn't use linux-yocto.bb.=
+ So
+> listtask doesn't show configme.
+> > I see an addtask for it in linux-yocto.inc, but am guessing that trying=
+ to
+> shoehorn that in on top of the SDK (in my append file) is probably more
+> trouble than it's worth.
+> > Guess I'm better off trying to figure out how to patch the defconfig?
+>=20
+> The ability to use fragments requires that you at least use the linux-yoc=
+to
+> bbclass, it will work with non linux-yocto recipes, but you need to follo=
+w the
+> example in meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb
+>=20
+> The 1.2 vintage fragments aren't as feature rich as 1.3 and 1.4, but they
+> should work to add simple fragment modifications.
+>=20
+> I hate to see anyone hacking a defconfig unless nothing else works :)
 
-We released M5 since if we didn't, there is certain stigma attached to
-"missing" a milestone in management circles. The release is therefore a
-book keeping exercise (and tests the release infrastructure on the
-autobuilder too). We've had the QA results from M5 for a while and they
-did play a significant part of focusing effort for M6.
+Thanks for all the help. The skeleton example isn't in 1.2. Based on 1.3 I =
+tried adding=20
 
-At this point M6 is the interesting one and the dylan branch.
+	require recipes-kernel/linux/linux-yocto.inc
 
-Cheers,
+to my append, but ran into other errors (looks like it adds 5 tasks includi=
+ng kernel_configme). Did a brute-force override of do_kernel_checkout() to =
+get around my 1st error, but then do_patch() failed, so think I'm going to =
+punt & hack defconfig.
+Thanks again for all the help.
 
-Richard
-
-
+>=20
+> Bruce
+>=20
+> >
+> >
+> >>
+> >> Cheers,
+> >>
+> >> Bruce
+> >>
+> >>>
+> >>>>
+> >>>> Cheers,
+> >>>>
+> >>>> Bruce
+> >
 
 
