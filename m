@@ -1,33 +1,32 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04ADDE01498
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 04:27:29 -0700 (PDT)
-Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
-	([174.115.5.73]:54531 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1URhZI-0008G5-2V; Mon, 15 Apr 2013 07:27:28 -0400
-Date: Mon, 15 Apr 2013 07:27:23 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Krishna Dwivedi <Krishna.Dwivedi@aricent.com>
-In-Reply-To: <B60DC3E72D20B040854608D81E44050F64F451A93E@GUREXMB01.ASIAN.AD.ARICENT.COM>
-Message-ID: <alpine.DEB.2.02.1304150722160.22880@oneiric>
-References: <B60DC3E72D20B040854608D81E44050F64F451A93E@GUREXMB01.ASIAN.AD.ARICENT.COM>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3B59E01498
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 04:46:43 -0700 (PDT)
+Received: by mail-wi0-f173.google.com with SMTP id l13so864288wie.0
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 04:46:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=ccQgZYi+itSVBJLKkqGE/N1dmJICy3V8AL74TMsq/FI=;
+	b=0Wltdc54h+E+n5oRpD5WsY9ib1t2OYwcLtZMIIixLqVtYMJtmEWpKStPgdj1iokRSn
+	ETkRVzgUqj+q7+4a8W8o4x34n6NBZkih0WQeKgFt8XHlpp9kCb0S4hjDcP6ymlko6OqI
+	x4/IIC4+iOtAT7qk5glXtGuy8K0KfXrOB4h3N2UWMGdUQgaIFxzr7viPLtZbhschtxkS
+	j9CbKQ/70Rri2suQbzNcCRel2yYcbP8m2hCSGm66GtObMbJiZjQyK5EQjRLBUJQcTWEE
+	l6RUtEehOS+QzYUP1kQoD7P0RhUacEbQ8Wo29iA94Qscz53zhI7akLSWRC74oSDZStxT
+	Q28g==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-Received: by 10.181.11.164 with SMTP id ej4mr11435404wid.29.1366026402323;
+	Mon, 15 Apr 2013 04:46:42 -0700 (PDT)
+Received: by 10.194.167.73 with HTTP; Mon, 15 Apr 2013 04:46:42 -0700 (PDT)
+In-Reply-To: <CAPhnLPBKA7RmB5_KZ-m12O_ehR4BobYgB2qJYL1DPj071ouVYA@mail.gmail.com>
+References: <CAPhnLPBKA7RmB5_KZ-m12O_ehR4BobYgB2qJYL1DPj071ouVYA@mail.gmail.com>
+Date: Mon, 15 Apr 2013 07:46:42 -0400
+Message-ID: <CAHUNapQBeYp_2-zDcOEU81VFoTtYmWaKEiiB8-9Z=_tXWV6rcg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Arguement list too big error in bitbake meta-toolchain for MIPS architechture-Gentle Reminder
+Subject: Re: Yocto 1.4_M5 released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,70 +38,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2013 11:27:30 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-689142317-1366025246=:22880"
+X-List-Received-Date: Mon, 15 Apr 2013 11:46:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---8323329-689142317-1366025246=:22880
-Content-Type: TEXT/PLAIN; charset=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
+On Sat, Apr 13, 2013 at 5:59 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> The fifth milestone for the upcoming Yocto Project 1.4 release is now
+> available
 
-On Mon, 15 Apr 2013, Krishna Dwivedi wrote:
+If I want to get an idea of what's going to be in the next release,
+dylan, which branch do I use: dylan or 1.4_M5?
 
-> Hi All,
->
-> I am trying to build recipe meta-toolchain for MIPS architecture but
-> running into errors. Can anyone please let me know, if I am missing
-> anything here or what could be root cause of this and how can I fix
-> it. I have followed these steps:
->
-> 1)In  WORKDIR/build/conf/local.conf-I selected MACHINE ?= "qemumips" for mips architechture.
->
-> 2)source oe-init-build-env.
+When I use dylan I'm able to "bitbake world" for a qemux86 target just
+fine; when I use 1.4_M5, alsa-tools fails (No package 'gtk+-2.0'
+found) and openSUSE-12.3 isn't yet validated (i.e. it seems to be
+quite a bit older).
 
-> 3)bitbake meta-toolchain.
->
-> In third step,I am running into these errors:
->
-> NOTE: recipe nativesdk-gettext-0.18.2-r0: task do_configure: Started
->
-> ERROR: Error executing a python function in
-> /home/netlogic/yocto/poky/meta/recipes-core/eglibc/eglibc-locale_2.17.bb:
->
-> CalledProcessError: Command 'cp -al/home/netlogic/yocto/poky/build/tmp/work/mips32-poky-linux/eglibc-locale/2.17-r0/packages-sp
-> lit/*/home/netlogic/yocto/poky/build/tmp/work/mips32-poky-linux/eglibc-locale/2.17-r0/sstate-buil
-> d-package//packages-split' returned non-zero exit status 126 with output /bin/sh: /bin/cp:
-> Argument list too long
+Maybe I'm doing something wrong with git?
 
-... snip ...
+Best regards,
+    Trevor
 
-  i just did the above on my ubuntu system -- qemumips and "bitbake
-meta-toolchain" -- and i can see that step running right now among 4
-running tasks:
-
-0: nativesdk-gettext-0.18.2-r0 do_configure (pid 6695)
-
-  man, sure seems to be taking a while, while other tasks complete and
-are replaced by new tasks.  oh, wait, it just completed, replaced by:
-
-2: nativesdk-gettext-0.18.2-r0 do_compile (pid 12727)
-
-so the configure step seems to have succeeded. in other words, works
-for me. and:
-
-$ ls -l /bin/sh
-lrwxrwxrwx 1 root root 4 May 22  2012 /bin/sh -> bash
-$
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323329-689142317-1366025246=:22880--
