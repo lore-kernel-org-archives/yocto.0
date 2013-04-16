@@ -1,31 +1,37 @@
-Return-Path: <Aws.Ismail@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18756E01469
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 21:58:01 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r3G4w0ij018930
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 15 Apr 2013 21:58:00 -0700 (PDT)
-Received: from awsations-macbook-pro.local (128.224.23.151) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Mon, 15 Apr 2013 21:58:00 -0700
-Message-ID: <516CDA57.7030400@windriver.com>
-Date: Tue, 16 Apr 2013 00:57:59 -0400
-From: Aws Ismail <aws.ismail@windriver.com>
-Organization: WRS
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6;
-	rv:17.0) Gecko/20130216 Thunderbird/17.0.3
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f51.google.com (mail-vb0-f51.google.com
+	[209.85.212.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 720FFE0146D
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 01:55:02 -0700 (PDT)
+Received: by mail-vb0-f51.google.com with SMTP id x19so186454vbf.10
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 01:55:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=sArQFLl9jWt5sPhx9BdYpeuyjZykd/AvTvbAhB3iTF0=;
+	b=BZK/wlnuznnsDQL3U6q1wGdp74ZWO9URxYFLaVjHSlNjzFJG33P0kR7ro76LTiloT4
+	UO42cY5pX3LPgmNdof3nTrA1QOMVdp1DrPDEiR7Y2myRl5e/njP3RMg2ooBZ4TCb1RnR
+	MXBogOWxNhzajsDAlQzpT2tPIj/IKo3Duh2A49jgZlXtD9NLrDCh4tEx4DqVimfAUWjl
+	o1tLW6Ubvr1u+17EtwTiTpqBzdckGH7pGHwnI6E1SujZb8uCbN80jLOr0dj6b1QjanxE
+	yDiDk4EhKzwy3roy+D+XL0O8ssCqnfrf4a5Inv1WpcJGsHm5sgVJP1VRbrDchmfj1JPJ
+	YGrg==
+X-Received: by 10.220.140.18 with SMTP id g18mr819588vcu.54.1366102501464;
+	Tue, 16 Apr 2013 01:55:01 -0700 (PDT)
 MIME-Version: 1.0
-To: gmail <jayleezju@gmail.com>
-References: <6053A3A9-F75D-4E36-BC3A-AFB0CEC5DE60@gmail.com>
-In-Reply-To: <6053A3A9-F75D-4E36-BC3A-AFB0CEC5DE60@gmail.com>
+Received: by 10.220.100.68 with HTTP; Tue, 16 Apr 2013 01:54:41 -0700 (PDT)
+In-Reply-To: <CANwz6nxtkVCvz5GBQwtDaL8Qx1FurZg4vMHv4eSyeP05d6ZQow@mail.gmail.com>
+References: <CANwz6nxtkVCvz5GBQwtDaL8Qx1FurZg4vMHv4eSyeP05d6ZQow@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 16 Apr 2013 09:54:41 +0100
+Message-ID: <CAJTo0LZY+zTcC2dOLx0-5Y_jw1smgCvV-UGMv_J7VuDm9Bp9+g@mail.gmail.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+X-Gm-Message-State: ALoCoQnmubtfcmk8PsglfNg/y64b5uIJniWwamTwopha74WLXDv73Y4f7qKrp+AB8e7DWZsI6TaJ
 Cc: yocto@yoctoproject.org
-Subject: Re: poky lsb support
+Subject: Re: beagleboard, qemuarm, beaglebone, and pandaboard images.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: aws.ismail@windriver.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -34,96 +40,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2013 04:58:02 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 16 Apr 2013 08:55:02 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 13-04-15 10:21 PM, gmail wrote:
-> HI every body:
->
-> I  have a package(opensaf)  which needs support of  lsb init script .So I  use this "DISTRO ?= "poky-lab" in conf/local.conf
-> And i set IMAGE_INSTALL in my image  recipe as follows:
-> IMAGE_INSTALL = "\
->      ${CORE_IMAGE_BASE_INSTALL} \
->      packagegroup-core-boot \
->      bash\
->      bc \
->      binutils binutils-symlinks \
->      coreutils \
->      cpio \
->      cronie \
->      diffutils \
->      ed \
->      elfutils \
->      file \
->      findutils \
->      gawk \
->      grep \
->      m4 \
->      ncurses \
->      libpam \
->      procps \
->      psmisc \
->      sed \
->      shadow \
->      tar \
->      util-linux \
->      zlib \
->      lsb \
->      lsbsetup \
->      \
->      dhcp-client \
->      lsof \
->      pciutils \
->      setserial \
->      strace \
->      sysstat \
->      usbutils \
->      which \
->      kernel-module-tipc \
->      libxml2 \
->      python-shell \
->      python-xml \
->      python-subprocess \
->      eglibc-utils \
->      tipcutils \
->      opensaf\
->      "
->
-> I didn't use  packagegroup-core-lsb because the flash of my device is very limited.
->
-> When I use the startup script of "opensaf" I always get
-> "/etc/core-lsb/lsb_start_daemon: line 44 : daemon: command not found
-> /etc/core-lsb/lsb_log_message: line 16: failure: command not found"
->
-> where can I find these commands : "daemon,failure", or which package I need to include to have these?
->
-> PS: my poky branch is danny.
->
-> Anybody can help ? thanks very much.
-Hi,
+On 16 April 2013 01:00, Edward Vidal <vidal.develone@gmail.com> wrote:
+> beagleboard 1949 RPMs
+> qemuarm 1747 RPMs
+> beaglebone 1742 RPMs
+> pandaboard 3842 RPMs
+> Any and all help will be appreciated.
 
-These lsb* scripts are added by the lsbinitscripts bb recipe found in:
+Have a look in work/[machine]/[image]/[version], you'll see
+installed-pkgs.txt and complementary-pkgs.txt.  Comparing these will
+tell you where the differences are.
 
-meta/recipes-extended/lsb/
-
-In order to have them installed, you can install them directly (i.e. add 
-lsbinitscripts to your conf/local.conf)
-
-lsbinitscripts is pulled in by the core-lsb-misc package group defined in:
-
-meta/recipes-extended/packagegroups/packagegroup-core-lsb.bb
-
-Hope that answers your question.
-
-Cheers.
-
-Aws\
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Ross
 
