@@ -1,33 +1,28 @@
-Return-Path: <jayleezju@gmail.com>
-Received: from mail-pb0-f52.google.com (mail-pb0-f52.google.com
-	[209.85.160.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27F74E01482
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 19:21:09 -0700 (PDT)
-Received: by mail-pb0-f52.google.com with SMTP id mc8so10680pbc.39
-	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 19:21:08 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
+	[209.85.214.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5A50E0146B
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 20:46:33 -0700 (PDT)
+Received: by mail-ob0-f177.google.com with SMTP id 16so59712obc.22
+	for <yocto@yoctoproject.org>; Mon, 15 Apr 2013 20:46:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:content-type:content-transfer-encoding:subject
-	:message-id:date:to:mime-version:x-mailer;
-	bh=4XJOkRDHUSaMkI+QAq0hcfews2PW3ElT/WAdefOKAJ4=;
-	b=mhDa5JhlhbxV8FV/FwHkyZEe8Wi4wyR60MuGh0BA587JJGjFa4tVV7A4pXlqJo+ucn
-	Fwlfrulk+idBgG1QN2r+md0BR+940766xloKRNXVXzLK7dnmAY8YUOGszKRKAmBI+kpN
-	Cd/su+WXfIu0Sli+B6S99rHObfrJsLyoyQxZDz8pVG7K6pnF63n9yYk5RJDHoGB2MAiw
-	Hn44y486ilqdjU2eQouI9gk4ebPK4kTF0XzeUWqoBEdAgWkWHi+os8XALg2yH8vdQ4Wf
-	vnylhiDjOp/WQ1E5W/UylpR4s2oyTaalad1xwnNFyYEgHlw96vfnpRJFe14wslRkis4l
-	gbTg==
-X-Received: by 10.68.247.100 with SMTP id yd4mr431305pbc.47.1366078868854;
-	Mon, 15 Apr 2013 19:21:08 -0700 (PDT)
-Received: from [192.168.28.27] ([183.129.173.4])
-	by mx.google.com with ESMTPS id jw10sm22533395pbb.3.2013.04.15.19.21.07
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 15 Apr 2013 19:21:08 -0700 (PDT)
-From: gmail <jayleezju@gmail.com>
-Message-Id: <6053A3A9-F75D-4E36-BC3A-AFB0CEC5DE60@gmail.com>
-Date: Tue, 16 Apr 2013 10:21:04 +0800
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
-X-Mailer: Apple Mail (2.1503)
-Subject: poky lsb support
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=g7rgm64GLOnyrggtEodbZIp1vArjBrKqP29Ub2yyH9U=;
+	b=ZPrfdD/V5w4JbBsI8QXcnFzrptJtGHv2gJYunBL0b0V/VwDNjC3tBPgYa8COK9jRGC
+	Mj1058FxbSf1RSoH5crAcnIAsrTjBWmhzgCoeAvPadraoDbYgRQZDioN9gJgjzKd+HhP
+	ygKvHX8gEmOhW+3aKs+FUCblrPXInhvL9uCf4eKaHxxZANdKKJR7WMwRBoEztM2QkGIO
+	Fu554MZfggaoSVQ3dVyBsjUWQ9RONQ/lLDyh2gGf71DPk+PaNvRdj1SDb44NsFAMoc9h
+	GqoT6wJ5LaM2rUj+j0gCLcnSMzn3jDpee2jz00HfNUkr29OmTI7uLpPtHaP/8BX/4nA0
+	6GcA==
+MIME-Version: 1.0
+X-Received: by 10.182.235.49 with SMTP id uj17mr210333obc.18.1366083993059;
+	Mon, 15 Apr 2013 20:46:33 -0700 (PDT)
+Received: by 10.76.169.194 with HTTP; Mon, 15 Apr 2013 20:46:32 -0700 (PDT)
+Date: Mon, 15 Apr 2013 23:46:32 -0400
+Message-ID: <CAHUNapTBjAg2U6p3nk8E_dtrJAcJ3BJ-EFYvsCtQ2R71dtGRwg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: runqemu: Could not initialize SDL(No available video device) - exiting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,76 +34,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2013 02:21:09 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 16 Apr 2013 03:46:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-HI every body:
+If I start with
 
-I  have a package(opensaf)  which needs support of  lsb init script .So =
-I  use this "DISTRO ?=3D "poky-lab" in conf/local.conf
-And i set IMAGE_INSTALL in my image  recipe as follows:
-IMAGE_INSTALL =3D "\
-    ${CORE_IMAGE_BASE_INSTALL} \=20
-    packagegroup-core-boot \
-    bash\
-    bc \
-    binutils binutils-symlinks \
-    coreutils \
-    cpio \
-    cronie \
-    diffutils \
-    ed \
-    elfutils \
-    file \
-    findutils \
-    gawk \
-    grep \
-    m4 \
-    ncurses \
-    libpam \
-    procps \
-    psmisc \
-    sed \
-    shadow \
-    tar \
-    util-linux \
-    zlib \
-    lsb \
-    lsbsetup \
-    \
-    dhcp-client \
-    lsof \
-    pciutils \
-    setserial \
-    strace \
-    sysstat \
-    usbutils \
-    which \
-    kernel-module-tipc \
-    libxml2 \
-    python-shell \
-    python-xml \
-    python-subprocess \
-    eglibc-utils \
-    tipcutils \
-    opensaf\
-    "
+    $ bitbake core-image-minimal
 
-I didn't use  packagegroup-core-lsb because the flash of my device is =
-very limited.
+and then do
 
-When I use the startup script of "opensaf" I always get=20
-"/etc/core-lsb/lsb_start_daemon: line 44 : daemon: command not found
-/etc/core-lsb/lsb_log_message: line 16: failure: command not found"
+    $ runqemu qemux86
 
-where can I find these commands : "daemon,failure", or which package I =
-need to include to have these?
+a new window opens and qemu runs as expected (i.e. it pops open a new
+window and runs in that and not via vnc).
 
-PS: my poky branch is danny.
+If I then do
 
-Anybody can help ? thanks very much.
+    $ bitbake core-image-sato
 
+and try
 
+    $ runqemu qemux86
 
+I then get
+
+    Could not initialize SDL(No available video device) - exiting
+
+But if I use the qemu-system-i386 built and installed natively on my
+system, it works just fine (in other words, I don't think this is
+caused by my host missing some key libraries).
+
+If I then try to go back and re-run the previously-working
+core-image-minimal, now it will fail and give me the same error
+message
+
+    $ runqemu qemux86 core-image-minimal
+    ....
+    Could not initialize SDL(No available video device) - exiting
+
+Any ideas?
+
+I noticed this first on dylan:20269c371eaca7e655d983b8f55e5b3cb021c071
+but it appears to also be present on
+master:45c8cc1a58e7868f4603be08a86fef178edfc926 too.
+
+Is it caused, perhaps, by some old sstate? I keep my tmp and sstate
+directories distinct, and haven't deleted any sstate in weeks
+(months?) now.
+
+Best regards,
+    Trevor
 
