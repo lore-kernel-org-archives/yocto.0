@@ -1,27 +1,34 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5856DE01469
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:02:35 -0700 (PDT)
-Received: by mail-ee0-f46.google.com with SMTP id d49so407630eek.33
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:02:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=S4/Olw+bUsIbdwTTX9nGCodQQwb9otTI9qGJk7w/b/g=;
-	b=yv4nD/lBif8zRyCYm4JzFLQJCfOlSBWR7tFJdNGUuPbtLwt8F2mvw+D+KiONM2t+hJ
-	MLGPLJIpC6d+4NCx8NaKJ8I2Nbz711A0tyEDTEwMPJ2FRUb3psnYfUtV/NNVk9MH2YKL
-	TcjR+prZMipFxHxX/KqHMVynjBcm1VZQ+ofbeBNbwwNw331DhPXlJ8SlvMur8aec1pTH
-	gO0mD8PvmsKb91XXhqfZnPVPs+xK0busODAk6qXQqNe8XHJ54+yVV8O5dUxyjVhdRa+V
-	BRl7H7Gzl9XySlFnAUrmmR5P1T6bt8rnVFWSg2/ntaNbNPxlbhkqZTr6WnVA37/58hJ4
-	Gqbg==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78228E01469
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:11:04 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id da11so763724veb.27
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:11:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=D1C4W0An2axLC5QJHIJcKqgf5O9Uli8g7bMPiYxKTek=;
+	b=RlKQweWvFmkU8ExOZBY6Q3u4dWR61RPKQMI9q9xNiutRp0XrnGlKBDSxCP1jcdAFPO
+	PM2okraGDt4PU3JNH5rSnbVAivOJs3A9kakdyGnk3F1pFszKNlIsF0lsGLYb/PQ6J6mb
+	JLSKjjd+t5RDUGJPTxbxicEDBYoGQKE+hAOuqWK+jf7gye4MYOTNOXFSQzbtvh7uTaa5
+	5843ntx6YI0l0KerHygOXTK/uOAMOQJ2fgQN861OYusXvZkhPJvupPZNemapTJZFWNWz
+	1N2zx4yXV1viUVujBDwUfbMO4gkXeTKT1gmt+kcq89G1gdOgCTdeC3uUV/E2H7chQP97
+	ZTSw==
+X-Received: by 10.220.153.2 with SMTP id i2mr2493636vcw.53.1366139463533; Tue,
+	16 Apr 2013 12:11:03 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.15.34.199 with SMTP id e47mr9271286eev.35.1366138954089;
-	Tue, 16 Apr 2013 12:02:34 -0700 (PDT)
-Received: by 10.223.168.6 with HTTP; Tue, 16 Apr 2013 12:02:33 -0700 (PDT)
-Date: Tue, 16 Apr 2013 13:02:33 -0600
-Message-ID: <CANwz6nwRC9D4KUa8BEJF3siCbu9KCf9khgpmH2kV_Rcp9esZKA@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Repository to upgrade images
+Received: by 10.220.100.68 with HTTP; Tue, 16 Apr 2013 12:10:42 -0700 (PDT)
+In-Reply-To: <CANwz6nwRC9D4KUa8BEJF3siCbu9KCf9khgpmH2kV_Rcp9esZKA@mail.gmail.com>
+References: <CANwz6nwRC9D4KUa8BEJF3siCbu9KCf9khgpmH2kV_Rcp9esZKA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 16 Apr 2013 20:10:42 +0100
+Message-ID: <CAJTo0LZzHf-Qc-Sv6OvV1GS2fm1PRXBzaC6F7FJekTM-YEoxdQ@mail.gmail.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+X-Gm-Message-State: ALoCoQlNe+G2bNXdWwYv8bA0i+exyAiPPfCsCU47fnKFSijPPB8EfEqT/ivtNRpmte1GtFbTZBgC
+Cc: yocto@yoctoproject.org
+Subject: Re: Repository to upgrade images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,47 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2013 19:02:35 -0000
-Content-Type: multipart/alternative; boundary=089e016351a612accf04da7f0345
+X-List-Received-Date: Tue, 16 Apr 2013 19:11:04 -0000
+Content-Type: text/plain; charset=UTF-8
 
---089e016351a612accf04da7f0345
-Content-Type: text/plain; charset=ISO-8859-1
+On 16 April 2013 20:02, Edward Vidal <vidal.develone@gmail.com> wrote:
+> Are there any plans to provide a repo of pkgs where systems can be upgraded
+> and new pkgs installed like other distro Fedora, CentOS, and rhel?  This
+> would also require yum or the new software that is replacing yum.
 
-Hello,
-Are there any plans to provide a repo of pkgs where systems can be upgraded
-and new pkgs installed like other distro Fedora, CentOS, and rhel?  This
-would also require yum or the new software that is replacing yum.
+Do you mean for upgrading images built using Yocto?  This is already
+possible, the contents of tmp/deploy/[package format] is a package
+repository.  If you use rpm you'll have zypper (danny and below) or
+smart (dylan onwards).
 
-Also  for my Fedora, CentOS, and rhel systems I use cobbler for network
-installs and liveDVD.  For cobbler you need a repository and and the target
-needs to be able to support PXE.  Does any of embedded boards support PXE?
-I need gfortran and numy support.  I have tried modifying the files
-gcc-configure-common.inc with (LANGUAGES ?= "c,c++${FORTRAN}${JAVA}" to
-LANGUAGES ?= "c,c++,fortran${JAVA}"  and gcc-configure-runtime.inc with (
-RUNTIMETARGET = "libssp libstdc++-v3 libgomp" to RUNTIMETARGET = "libssp
-libstdc++-v3 libgomp libgfortran").  these changes both cause
-core-image-sato-sdk-ex to file.
+Ross
 
-Thanks any and all help will be appreciated.
-
---089e016351a612accf04da7f0345
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><br></div>Hello, <br></div>Are there a=
-ny plans to provide a repo of pkgs where systems can be upgraded and new pk=
-gs installed like other distro Fedora, CentOS, and rhel?=A0 This would also=
- require yum or the new software that is replacing yum.<br>
-<br></div>Also=A0 for my Fedora, CentOS, and rhel systems I use cobbler for=
- network installs and liveDVD.=A0 For cobbler you need a repository and and=
- the target needs to be able to support PXE.=A0 Does any of embedded boards=
- support PXE?<br>
-</div><div>I need gfortran and numy support.=A0 I have tried modifying the =
-files gcc-configure-common.inc with (LANGUAGES ?=3D &quot;c,c++${FORTRAN}${=
-JAVA}&quot; to LANGUAGES ?=3D &quot;c,c++,fortran${JAVA}&quot;=A0 and gcc-c=
-onfigure-runtime.inc with ( RUNTIMETARGET =3D &quot;libssp libstdc++-v3 lib=
-gomp&quot; to RUNTIMETARGET =3D &quot;libssp libstdc++-v3 libgomp libgfortr=
-an&quot;).=A0 these changes both cause core-image-sato-sdk-ex to file.<br>
-<br></div>Thanks any and all help will be appreciated.<br></div>
-
---089e016351a612accf04da7f0345--
