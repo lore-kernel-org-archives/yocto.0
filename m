@@ -1,32 +1,36 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
-	[209.85.212.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B460E0146B
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:53:58 -0700 (PDT)
-Received: by mail-wi0-f172.google.com with SMTP id hq17so2255868wib.5
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:53:57 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46490E0146B
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:54:25 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id lj1so516706pab.35
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 12:54:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=8d1nXlCMFIp4I8fCm3ZeU4DRxoPIStShCDaQoVNi1gE=;
-	b=a8NAb6/KBHOQFvu5XD/zsfks6AFxm5brcTAvQdiCzlwfC97xXqkGw4l6zIIA1XWZCb
-	s2HMnSWkk4xA++LdkAODP6ZlH9BtA79aBquL9pdBfajWy8V8DFJWCXEaCfa7ROn7c6pA
-	GqSICVzQy4ioxRQM5/r9sEUU2azh1xlOHuwIZK0Muwegrvlb/JHmed0Uc+AJ8EO7xnQ4
-	A3y/mLDFmsMegX0vxaZOgqddHyIBVDj5P41YrZimUkEUqRAexR2F42Sh/e86KQ/YX+IJ
-	y+3NmsLic16BxL2YBkQhOj9dVQjR0g2so6Afj/u7lXHxnGYKD1gX4iY7Z5ZAKN8Csmaw
-	u1yA==
-MIME-Version: 1.0
-X-Received: by 10.180.13.34 with SMTP id e2mr21744196wic.29.1366142037072;
-	Tue, 16 Apr 2013 12:53:57 -0700 (PDT)
-Received: by 10.194.167.73 with HTTP; Tue, 16 Apr 2013 12:53:56 -0700 (PDT)
-In-Reply-To: <CANwz6nyiR-dOb2owu_dXV_kQNH4JZRWrgfO3Z0hnkKui_sJ-6g@mail.gmail.com>
+	h=x-received:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=8AZaWGqbubpUsLXmCvQ2OQpIgj1WUMoc2iIjwb+VhT4=;
+	b=l1auPqaysJm4CreCYnHefEFEuTfBPle4G47PAeOtBb3u4xsPa+BsWbUT2FWiPQzmtT
+	YfTwAq5gGQvzMbyrXPH3hFSN7Jnvi4U+SJRVbgivVZSt29wm6L3Yoxc2uwDYJ7Fi6QmB
+	xSjZuTQLx4TdiqmJeVmnzgoPDEDFhejJ+LIAqj1cWT47ztfBR5f8J2/RYEeF8y9memTD
+	txfWwIIgIDxByV3QifHqQLsgBkOmc2QsKdGzDpkwpVLQVO8q53VTCJjEZtkmhA4OydtT
+	9jd5AJ2O/5hdlZU7K019R4hPx7wdKZgKQqhlFUIYWULoeJoa1mVweauFrbN7ITuI1gPL
+	Bddg==
+X-Received: by 10.68.180.4 with SMTP id dk4mr5310049pbc.104.1366142065026;
+	Tue, 16 Apr 2013 12:54:25 -0700 (PDT)
+Received: from localhost (ip-62-24-80-7.net.upcbroadband.cz. [62.24.80.7])
+	by mx.google.com with ESMTPS id fc8sm3828927pad.21.2013.04.16.12.54.22
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Tue, 16 Apr 2013 12:54:24 -0700 (PDT)
+Date: Tue, 16 Apr 2013 21:54:22 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+Message-ID: <20130416195422.GU10628@jama.dyndns-home.com>
 References: <CANwz6nwRC9D4KUa8BEJF3siCbu9KCf9khgpmH2kV_Rcp9esZKA@mail.gmail.com>
 	<CAHUNapTftvQZHdtfqZ6orYoi2BsVHFVsO-yT-myS+daKxeQjEA@mail.gmail.com>
 	<CANwz6nyiR-dOb2owu_dXV_kQNH4JZRWrgfO3Z0hnkKui_sJ-6g@mail.gmail.com>
-Date: Tue, 16 Apr 2013 15:53:56 -0400
-Message-ID: <CAHUNapTp27q9SnudnSSRKNGyf0HvnCG8f1K4KtSFuE5E-J7_KA@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CANwz6nyiR-dOb2owu_dXV_kQNH4JZRWrgfO3Z0hnkKui_sJ-6g@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Repository to upgrade images
 X-BeenThere: yocto@yoctoproject.org
@@ -40,13 +44,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2013 19:53:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 16 Apr 2013 19:54:25 -0000
+X-Groupsio-MsgNum: 13200
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="dXvu6+ixFx2ZffE8"
+Content-Disposition: inline
 
-On Tue, Apr 16, 2013 at 3:49 PM, Edward Vidal <vidal.develone@gmail.com> wrote:
+--dXvu6+ixFx2ZffE8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Apr 16, 2013 at 01:49:13PM -0600, Edward Vidal wrote:
 > With that said how does Angstrom which uses opkg upgrades images that are
-> build with Angstrom.
+> build with Angstrom.   I prefer Yocto but I had some pre-built image that
 
-Angstrom is a distribution, so it can make assumptions about how to
-build a set of packages that will work on your system.
+The same mechanism as Ross and Trevor said.
 
+> came with my beagleboard and I used opkg upgrade  and opkg install
+> gfortran.   Also has anyone built gfortran, libgfortran, and numpy?
+> Currently these are some dependencies that I need for GNURADIO?
+> Thanks Any and all help is appreciated
+> Ed
+
+gnuradio is already in meta-oe and jenkins is building it every day with
+it :).
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--dXvu6+ixFx2ZffE8
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
+
+iEYEARECAAYFAlFtrG4ACgkQN1Ujt2V2gBxURACgozfoLDWkQ4Fa3yIPNGHOdOSW
+SkMAoIDyHayzcLW3qiN2z7as0E2vJAzN
+=A592
+-----END PGP SIGNATURE-----
+
+--dXvu6+ixFx2ZffE8--
