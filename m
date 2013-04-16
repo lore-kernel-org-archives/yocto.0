@@ -1,33 +1,37 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59821E01469
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 15:27:18 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 16 Apr 2013 15:27:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,487,1363158000"; 
-	d="scan'208,217";a="287129391"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by azsmga001.ch.intel.com with ESMTP; 16 Apr 2013 15:27:16 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Tue, 16 Apr 2013 15:27:16 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.213]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.12.150]) with mapi id
-	14.01.0355.002; Tue, 16 Apr 2013 15:27:16 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project Technical Team Meeting - Tuesday, April 16, 2013
-	8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac468XU7WkgD/qIoTNmSG84uXa8oigAAApbQ
-Date: Tue, 16 Apr 2013 22:27:15 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A70F364BC@ORSMSX101.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
+	[209.85.215.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0074E014DD
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 15:51:07 -0700 (PDT)
+Received: by mail-ea0-f180.google.com with SMTP id d10so454249eaj.39
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 15:51:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=W2dT8xCD/td+z30/rBVJtqMhKEpOTPDtHQVW959EGnc=;
+	b=JaWQ7O2k+OWb38mNQ+8ofp924VYjM37myCa+R5JkFCjQbSjo6dBWeuUZ8w50k8y4Hi
+	kUShELc7k/57LEz8un1uE1icj9G5wcWbmIyoHnq3VCR1Ukm1LTdxmuBjAWx3kpoo9AY1
+	3ZLx1f9eQzVPydsuoXbTB1ap+oBkFlEARF5mb822oWQJhOamkhGL4mY/uC0kKvydBnWM
+	q1+WdNTDxOZXw1yntINwKMIfARYmAZMUr3hck0jECC48qYRP4Z3XB1tktTZtPA34Ddeh
+	QJB0A+7NO56CTQCkSNhy4vC2JU63CWu3Bj/APbxUPEARd+BYtt3pNXIc6LwAT/tNvmMh
+	M0bA==
 MIME-Version: 1.0
-Subject: Yocto Project Technical Team Meeting - Tuesday, April 16, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.14.149.141 with SMTP id x13mr11264261eej.31.1366152666588;
+	Tue, 16 Apr 2013 15:51:06 -0700 (PDT)
+Received: by 10.223.168.6 with HTTP; Tue, 16 Apr 2013 15:51:06 -0700 (PDT)
+In-Reply-To: <20130416210616.GC29302@jama.dyndns-home.com>
+References: <CANwz6nwRC9D4KUa8BEJF3siCbu9KCf9khgpmH2kV_Rcp9esZKA@mail.gmail.com>
+	<CAHUNapTftvQZHdtfqZ6orYoi2BsVHFVsO-yT-myS+daKxeQjEA@mail.gmail.com>
+	<CANwz6nyiR-dOb2owu_dXV_kQNH4JZRWrgfO3Z0hnkKui_sJ-6g@mail.gmail.com>
+	<20130416195422.GU10628@jama.dyndns-home.com>
+	<CANwz6nxuc1SP_5hw-4E_u6of1f-XvFROKVfO3vxXkT1_zx4Pyg@mail.gmail.com>
+	<20130416210616.GC29302@jama.dyndns-home.com>
+Date: Tue, 16 Apr 2013 16:51:06 -0600
+Message-ID: <CANwz6nzHjD3y2-XD-M+s3i1yPW9GBUtsvz6NuY8qPkFcDb2DpQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Repository to upgrade images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,136 +43,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2013 22:27:19 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A70F364BCORSMSX101amrcor_"
+X-List-Received-Date: Tue, 16 Apr 2013 22:51:08 -0000
+Content-Type: multipart/alternative; boundary=089e0163449866cb5504da823459
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A70F364BCORSMSX101amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--089e0163449866cb5504da823459
+Content-Type: text/plain; charset=ISO-8859-1
+
+Martin,
+I should be able to add meta-openembedded like I added meta-ti by adding to
+bblayers.conf is that correct?
+I fetch with git clone git://openembedded.org/meta-openembedded
+Thanks
+
+
+On Tue, Apr 16, 2013 at 3:06 PM, Martin Jansa <martin.jansa@gmail.com>wrote:
+
+> On Tue, Apr 16, 2013 at 02:40:21PM -0600, Edward Vidal wrote:
+> > Can you point me to where I can find
+> >
+> > gnuradio is already in meta-oe and jenkins is building it every day with
+> > it :).
+> > I did a search meta-oe jenkins nothing seems to come up I have seen
+> > meta-gnurado as part 0f Angstrom.  I believe that is for the processor
+> > in the ettus research board.
+>
+> I meant this:
+>
+> http://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connectivity/gnuradio/gnuradio_git.bb
+> not sure what you're looking for.
+>
+> > On Tue, Apr 16, 2013 at 1:54 PM, Martin Jansa <martin.jansa@gmail.com
+> >wrote:
+> >
+> > > On Tue, Apr 16, 2013 at 01:49:13PM -0600, Edward Vidal wrote:
+> > > > With that said how does Angstrom which uses opkg upgrades images
+> that are
+> > > > build with Angstrom.   I prefer Yocto but I had some pre-built image
+> that
+> > >
+> > > The same mechanism as Ross and Trevor said.
+> > >
+> > > > came with my beagleboard and I used opkg upgrade  and opkg install
+> > > > gfortran.   Also has anyone built gfortran, libgfortran, and numpy?
+> > > > Currently these are some dependencies that I need for GNURADIO?
+> > > > Thanks Any and all help is appreciated
+> > > > Ed
+> > >
+> > > gnuradio is already in meta-oe and jenkins is building it every day
+> with
+> > > it :).
+> > >
+> > > --
+> > > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> > >
+>
+> --
+> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+>
+
+--089e0163449866cb5504da823459
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:
-Saul, Beth, ScottR, Bj=F6rnS, KevinS, TomZ, Corneliu, JeffP, Belen, Richard=
-P, RossB, PaulE, Nitin, SeanH, Bruce, Darren, Song
+<div dir=3D"ltr"><div><div><div><div><br></div>Martin,<br></div>I should be=
+ able to add meta-openembedded like I added meta-ti by adding to bblayers.c=
+onf is that correct?<br></div>I fetch with git clone git://<a href=3D"http:=
+//openembedded.org/meta-openembedded">openembedded.org/meta-openembedded</a=
+><br>
+</div>Thanks<br></div><div class=3D"gmail_extra"><br><br><div class=3D"gmai=
+l_quote">On Tue, Apr 16, 2013 at 3:06 PM, Martin Jansa <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@=
+gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On Tue, Apr 16, 2013 at 02=
+:40:21PM -0600, Edward Vidal wrote:<br>
+&gt; Can you point me to where I can find<br>
+&gt;<br>
+&gt; gnuradio is already in meta-oe and jenkins is building it every day wi=
+th<br>
+&gt; it :).<br>
+&gt; I did a search meta-oe jenkins nothing seems to come up I have seen<br=
+>
+&gt; meta-gnurado as part 0f Angstrom. =A0I believe that is for the process=
+or<br>
+&gt; in the ettus research board.<br>
+<br>
+</div>I meant this:<br>
+<a href=3D"http://git.openembedded.org/meta-openembedded/tree/meta-oe/recip=
+es-connectivity/gnuradio/gnuradio_git.bb" target=3D"_blank">http://git.open=
+embedded.org/meta-openembedded/tree/meta-oe/recipes-connectivity/gnuradio/g=
+nuradio_git.bb</a><br>
 
-Agenda:
+not sure what you&#39;re looking for.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt; On Tue, Apr 16, 2013 at 1:54 PM, Martin Jansa &lt;<a href=3D"mailto:ma=
+rtin.jansa@gmail.com">martin.jansa@gmail.com</a>&gt;wrote:<br>
+&gt;<br>
+&gt; &gt; On Tue, Apr 16, 2013 at 01:49:13PM -0600, Edward Vidal wrote:<br>
+&gt; &gt; &gt; With that said how does Angstrom which uses opkg upgrades im=
+ages that are<br>
+&gt; &gt; &gt; build with Angstrom. =A0 I prefer Yocto but I had some pre-b=
+uilt image that<br>
+&gt; &gt;<br>
+&gt; &gt; The same mechanism as Ross and Trevor said.<br>
+&gt; &gt;<br>
+&gt; &gt; &gt; came with my beagleboard and I used opkg upgrade =A0and opkg=
+ install<br>
+&gt; &gt; &gt; gfortran. =A0 Also has anyone built gfortran, libgfortran, a=
+nd numpy?<br>
+&gt; &gt; &gt; Currently these are some dependencies that I need for GNURAD=
+IO?<br>
+&gt; &gt; &gt; Thanks Any and all help is appreciated<br>
+&gt; &gt; &gt; Ed<br>
+&gt; &gt;<br>
+&gt; &gt; gnuradio is already in meta-oe and jenkins is building it every d=
+ay with<br>
+&gt; &gt; it :).<br>
+&gt; &gt;<br>
+&gt; &gt; --<br>
+&gt; &gt; Martin &#39;JaMa&#39; Jansa =A0 =A0 jabber: <a href=3D"mailto:Mar=
+tin.Jansa@gmail.com">Martin.Jansa@gmail.com</a><br>
+&gt; &gt;<br>
+<br>
+--<br>
+Martin &#39;JaMa&#39; Jansa =A0 =A0 jabber: <a href=3D"mailto:Martin.Jansa@=
+gmail.com">Martin.Jansa@gmail.com</a><br>
+</div></div></blockquote></div><br></div>
 
-* Opens collection - 5 min (Song)
-* Yocto 1.3.1 Release - Ross.
-  - The release is out. Building out 1.3.2. Hopefully won't take as long as=
- 1.3.1
-  - This is the first release with new AB infrastructure. We did comparison=
- between 1.3.1 and 1.3, less than 0.1% difference.
-  - Big thanks to Ross, Beth and everyone who contributed to this release. =
-Congratulations to the team.
-* Yocto 1.4 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status
-  - 1.4 RC1 is out for testing. There are a few fixes that need to be in RC=
-2. So this week we will generate RC2 and run full pass on RC2.
-  - a whole lot of patches went in, not happy, but no choice. Performance d=
-egradation found and fixed. Showed the value of the performance testing. A =
-few bugs recently opened. Worry me (RP) a little bit, seems like we are sti=
-ll finding issues.
-  - 1.4 release looking good. Saul seems to have introduced an issue with b=
-usybox, Saul will look into it today.
-  - Patches not going in in the next few hours probably won't make the rele=
-ase. ScottR: does the deadline apply for docs? No.
-  - Big thanks to the QA team, all 1.4 merged features have been verified.
-  - Bug fixing: 80 bugs resolved last week. Record for the release. Now the=
- total # of open bugs stands at around 270. looking good for the release.
-  - RP has been closing bugs. Cleanup. Low hanging fruits. Encourage others=
- to do the same.
-  - Let's keep our focus on 1.4 release. Keep our fingers crossed before we=
- get 1.4 out of the door.
-
-* SWAT team rotation: Saul would like to stay on for this week
-* Opens - 10 min
-  - Web HOB (Belen): The plan is to do something for 1.5. probably starting=
- from build and analysis. Some features are already in Bugzilla. If you are=
- interested in help in anyway, any feedback, please get in touch with the m=
-ailing list, getting touch with Belen. (https://wiki.yoctoproject.org/wiki/=
-Web_Hob_design_project_with_T%26T & http://www.yoctoproject.org/webhob/phas=
-e3_final_web_prototype/dashboard.html)
-* Team Sharing - 20 min
-
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A70F364BCORSMSX101amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>Saul, Beth, ScottR, <font size=3D"2"><span style=3D"font-size:10pt;">B=
-j=F6rnS, </span></font>KevinS, TomZ, Corneliu, JeffP, Belen, RichardP, Ross=
-B, PaulE, Nitin, SeanH, Bruce, Darren, Song</div>
-<div>&nbsp;</div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.3.1 Release - Ross. </div>
-<div>&nbsp; - The release is out. Building out 1.3.2. Hopefully won't take =
-as long as 1.3.1</div>
-<div>&nbsp; - This is the first release with new AB infrastructure. We did =
-comparison between 1.3.1 and 1.3, less than 0.1% difference.</div>
-<div>&nbsp; - Big thanks to Ross, Beth and everyone who contributed to this=
- release. Congratulations to the team.</div>
-<div>* Yocto 1.4 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-4_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.4_Status</u></font></a></div>
-<div>&nbsp; - 1.4 RC1 is out for testing. There are a few fixes that need t=
-o be in RC2. So this week we will generate RC2 and run full pass on RC2.</d=
-iv>
-<div>&nbsp; - a whole lot of patches went in, not happy, but no choice. Per=
-formance degradation found and fixed. Showed the value of the performance t=
-esting. A few bugs recently opened. Worry me (RP) a little bit, seems like =
-we are still finding issues.</div>
-<div>&nbsp; - 1.4 release looking good. Saul seems to have introduced an is=
-sue with busybox, Saul will look into it today. </div>
-<div>&nbsp; - Patches not going in in the next few hours probably won't mak=
-e the release. ScottR: does the deadline apply for docs? No.</div>
-<div>&nbsp; - Big thanks to the QA team, all 1.4 merged features have been =
-verified. </div>
-<div>&nbsp; - Bug fixing: 80 bugs resolved last week. Record for the releas=
-e. Now the total # of open bugs stands at around 270. looking good for the =
-release.</div>
-<div>&nbsp; - RP has been closing bugs. Cleanup. Low hanging fruits. Encour=
-age others to do the same. </div>
-<div>&nbsp; - Let's keep our focus on 1.4 release. Keep our fingers crossed=
- before we get 1.4 out of the door.</div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div>* SWAT team rotation: Saul would like to stay on for this week</div>
-<div>* Opens - 10 min </div>
-<div>&nbsp; - Web HOB (Belen): The plan is to do something for 1.5. probabl=
-y starting from build and analysis. Some features are already in Bugzilla. =
-If you are interested in help in anyway, any feedback, please get in touch =
-with the mailing list, getting touch
-with Belen. (<a href=3D"https://wiki.yoctoproject.org/wiki/Web_Hob_design_p=
-roject_with_T%26T"><font size=3D"2" color=3D"blue"><span style=3D"font-size=
-:10pt;"><u>https://wiki.yoctoproject.org/wiki/Web_Hob_design_project_with_T=
-%26T</u></span></font></a> &amp; <a href=3D"http://www.yoctoproject.org/web=
-hob/phase3_final_web_prototype/dashboard.html"><font size=3D"2" color=3D"bl=
-ue"><span style=3D"font-size:10pt;"><u>http://www.yoctoproject.org/webhob/p=
-hase3_final_web_prototype/dashboard.html</u></span></font></a>)</div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Calibri" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Calibri" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A70F364BCORSMSX101amrcor_--
+--089e0163449866cb5504da823459--
