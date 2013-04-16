@@ -1,33 +1,38 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
-	[209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E588BE014E0
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 07:36:09 -0700 (PDT)
-Received: by mail-ve0-f180.google.com with SMTP id pb11so466862veb.25
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 07:36:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:content-type;
-	bh=7yUnaOkwhfnr0eNBua8lKPjLyc9Pwo9SDqB2tfk3lkM=;
-	b=SyMPiK0P1JwOQhbpaheCH1X3fa+5VWsKSh59QrvqRmL6mNvIG+tDf+0SMJhTka3LXw
-	fClNGLJrrzG7JOC20PDslsFDDL1prHHgZ7I0Ph0n6nB04a2noW2vUXjHCFU9v+ip2ElG
-	THlzxpK68VJFuvOkvO69mYPm1+u3K04mw16sK0CK1rsVzoxgzkPAyunhLIqSxwLXVr3+
-	MHMBQCcMKtPg0UfSUD4uJ4RrUlr1+HOwQasLz8afs2aI0xYsDBowDxg3qV++gCUyHXS5
-	YU5yRixp6Q5bm4/kWyTGpMhMxpxB5DbYNTPUyzJktguN0IIlHhAw1yYigfoSwZL32TIS
-	hVDw==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB951E0140A
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 07:41:23 -0700 (PDT)
+Received: by mail-vc0-f182.google.com with SMTP id ht10so449252vcb.13
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 07:41:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=XDOPk8qwDJhaSk+dnkPUOA0u9hLAeQxFliFwwQhd0zA=;
+	b=DekZLJrLf6xKMbvPBahHi5Q1gvTe6CHNbbNxwqgsxw+5smATEhqxGKm5SPKvr446Sg
+	aSdBqid6aGZ7oayRncIXVQHMJTAY/GsQ+F5VgYXPJ8eJjKM7ziRHPGtZgRTdXnEYF1jk
+	AKROcwqDt8+xkLbxFoE95rwkpg+XvTLLU8udAY+wgBIqF7Nk+p3+SqkSybz0mTwuZQUd
+	VFmzdEk9bPNg6yEqUIgROA8ddn0N054RLMZOIcmNaSCoDK3+CqGqB4rpC+JSslVmW6TA
+	SP3fwPrUiyTKj9fLLhUcIGX3V+ndDvj2HJhwawt+PiLhANA6ysXeqdGgJeYz5INO4GTq
+	B+Vg==
+X-Received: by 10.52.108.10 with SMTP id hg10mr1473067vdb.34.1366123282829;
+	Tue, 16 Apr 2013 07:41:22 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.52.22.202 with SMTP id g10mr1412002vdf.126.1366122968165;
-	Tue, 16 Apr 2013 07:36:08 -0700 (PDT)
-Sender: satyaswaroop.damarla@gmail.com
-Received: by 10.52.88.177 with HTTP; Tue, 16 Apr 2013 07:36:08 -0700 (PDT)
-In-Reply-To: <CAFMfyzKi+pgonm6DET-JQDVhHmM3rA8A44_TCgFK+ok_aroe6Q@mail.gmail.com>
-References: <CAFMfyzKi+pgonm6DET-JQDVhHmM3rA8A44_TCgFK+ok_aroe6Q@mail.gmail.com>
-Date: Tue, 16 Apr 2013 16:36:08 +0200
-X-Google-Sender-Auth: XVrau4mKglmUAVoEd22k8_ZtmJU
-Message-ID: <CAFMfyz+Ernk0-PZHBACtwgcNvF1kCojj+SvkxrAtzVjM_Ux_NA@mail.gmail.com>
-From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Keyboard support and Europen Font Support
+Received: by 10.220.100.68 with HTTP; Tue, 16 Apr 2013 07:41:01 -0700 (PDT)
+In-Reply-To: <CANwz6nzYSqU=YT0V11Jo7dp0TX-NThe-yVXNCWNDEOXAy8-r2A@mail.gmail.com>
+References: <CANwz6nxtkVCvz5GBQwtDaL8Qx1FurZg4vMHv4eSyeP05d6ZQow@mail.gmail.com>
+	<CAJTo0LZY+zTcC2dOLx0-5Y_jw1smgCvV-UGMv_J7VuDm9Bp9+g@mail.gmail.com>
+	<CANwz6nxw7PK_g_RsukLbaFZYCPGEMrviFq_sm5ki6H=R_GiLDA@mail.gmail.com>
+	<CAJTo0LZjwYj04fw6wq6HBsT1v5UQjCKYc6he8rNudBL+B0dyng@mail.gmail.com>
+	<CANwz6nzYSqU=YT0V11Jo7dp0TX-NThe-yVXNCWNDEOXAy8-r2A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 16 Apr 2013 15:41:01 +0100
+Message-ID: <CAJTo0LYbbWMX6Gf9eOFO3HgCeio94rFLKfXSK7T8qiSs-WN5gw@mail.gmail.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+X-Gm-Message-State: ALoCoQnaxHG2P5CoUsYKKwaK0jmnlpzIoVpIMp3QS/lLoVqGLHYPnwYENT29vnZj6X3tp5DNXdtf
+Cc: yocto@yoctoproject.org
+Subject: Re: beagleboard, qemuarm, beaglebone, and pandaboard images.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,35 +44,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2013 14:36:10 -0000
-Content-Type: multipart/alternative; boundary=20cf3079b6ea3cb67304da7b4a29
+X-List-Received-Date: Tue, 16 Apr 2013 14:41:23 -0000
+Content-Type: text/plain; charset=UTF-8
 
---20cf3079b6ea3cb67304da7b4a29
-Content-Type: text/plain; charset=ISO-8859-1
+On 16 April 2013 15:35, Edward Vidal <vidal.develone@gmail.com> wrote:
+> They all use EXTRA_IMAGE_FEATURES = "debug-tweaks tools-sdk".in local.conf
+> Something within the build is deciding which pkgs get installed between
+> different builds.  I would expect several different RPMs but not hundreds as
+> was the case.
 
-Hi Guys,
+Different BSPs can cause different packages to get pulled in, but
+without seeing full package lists from each of the images nobody can
+really comment on what is causing the differences.
 
-I have German keyboard and my company can install the embedded machines
-anywhere in the world (mostly Europe). So, I would like to support all
-european languages both in keyboard and font, both in X and VT. So, for the
-moment I would like to know if it is possible to have a German Keyboard
-working on a VT and also German letters to be displayed on VT.
+Maybe the meta-ti kernels are building more options as modules in
+their own packages?  Maybe you've found a bug in the locale package
+selection? It's impossible to say without actually seeing the package
+lists.
 
-Greets,
-Satya
+Ross
 
---20cf3079b6ea3cb67304da7b4a29
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Guys,<div><br></div><div>I have German keyboard and my =
-company can install the embedded machines anywhere in the world (mostly Eur=
-ope). So, I would like to support all european languages both in keyboard a=
-nd font, both in X and VT. So, for the moment I would like to know if it is=
- possible to have a German Keyboard working on a VT and also German letters=
- to be displayed on VT.=A0<br>
-<div class=3D"gmail_quote"><div dir=3D"ltr">
-<div><br></div><div>Greets,</div><div>Satya</div><div><br></div></div>
-</div><br></div></div>
-
---20cf3079b6ea3cb67304da7b4a29--
