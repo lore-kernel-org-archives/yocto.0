@@ -1,26 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48DB5E014EF
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:42:32 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 17 Apr 2013 08:40:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,494,1363158000"; d="scan'208";a="319754401"
-Received: from unknown (HELO helios.localnet) ([10.255.14.28])
-	by orsmga002.jf.intel.com with ESMTP; 17 Apr 2013 08:42:21 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Wed, 17 Apr 2013 16:42:20 +0100
-Message-ID: <1735326.q5ElvD3frK@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1304171135470.12898@oneiric>
-References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123796FCF66BA@ORSMSX104.amr.corp.intel.com>
-	<alpine.DEB.2.02.1304171135470.12898@oneiric>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FABEE01487
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:56:26 -0700 (PDT)
+Received: by mail-ve0-f177.google.com with SMTP id cy12so439024veb.22
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:56:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:content-transfer-encoding
+	:x-gm-message-state;
+	bh=3ANYMvxy+NbQs5GYszFH22TK9K1ehJTZd574fsjat0k=;
+	b=bmUhRwhYKlikXsoSRe5N+5A9Z5LH4IoG6Wbf5lZM01IsCpVMlv3hbxoQU69erUfc7x
+	9Xwr4Q1LtE8KwtPm3QjYVBZWPL2dEJhTqFLbZu/Kaj7gLAhpAuDt5runTd7VTo3ZZoj8
+	2300lK8KnfWXM3ujocH51+x1xyykbUOLQL2+nXuHuQnuPrYkLxIJIV/ABxH9zeIFNJw1
+	52HYvidAIUd0Z5bPYr2T8FwgVcoQzcSGSIhFZK5jj+qOYEzNqSssa+n+6ODuB4/jYqlL
+	kGHALw4QOpuxNOSSh397TZ4i2bhcbBqqJRk1zyy6v+uqSVb0CLNEWhnyP2776DHjO8SX
+	q2cA==
+X-Received: by 10.52.108.10 with SMTP id hg10mr4500299vdb.34.1366214185486;
+	Wed, 17 Apr 2013 08:56:25 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.220.100.68 with HTTP; Wed, 17 Apr 2013 08:56:05 -0700 (PDT)
+In-Reply-To: <CAFyqS9q9YBd+hCRjn-gzeJj3nv=AVY0Qj3PKDyBajnRWoQDMxg@mail.gmail.com>
+References: <CAFyqS9q9YBd+hCRjn-gzeJj3nv=AVY0Qj3PKDyBajnRWoQDMxg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 17 Apr 2013 16:56:05 +0100
+Message-ID: <CAJTo0LYn7tXnr_AX-jDsBEJJsaVj+5rudU4izuZ_LaQuZn6ihQ@mail.gmail.com>
+To: =?UTF-8?Q?Hans_Beck=C3=A9rus?= <hans.beckerus@gmail.com>
+X-Gm-Message-State: ALoCoQmE9FmLQARAd362atGrT2zHTvZzDaI8R8ksXiJp24had07y/QFVn1E0oUz/BFTV5VvF6YBn
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: writeup on the mechanics of FILESEXTRAPATHS and bbappend files
+Subject: Re: Disable stripping of binaries in do_package phase, is it possible?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,24 +41,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 15:42:32 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 17 Apr 2013 15:56:26 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 17 April 2013 11:39:09 Robert P. J. Day wrote:
-> p.s.  i think one of the manuals should mention chris larson's
-> "bitbake-env" utility, which i use for debugging and explanations all
-> the time.
+On 17 April 2013 16:31, Hans Beck=C3=A9rus <hans.beckerus@gmail.com> wrote:
+> I have a package for which some parts of it consist of pre-built
+> binaries, already stripped. When building I get lots of warning about
+> strip failing because the file(s) are already stripped.
+> Is there some simple way to turn off stripping during this phase?
+> I tried to disable do_package using the [noexec] attribute but that is
+> the wrong approach surely since it causes the rootfs build to fail
+> since the .rpm is not compiled properly ;)
 
-I'd rather wait until we actually integrate that into BitBake (i.e. provide it 
-with the BitBake source, which I hope we can look at within the next 
-development cycle).
+Use INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1" to turn off the generation of
+-dbg packages, as this is where the splitting and stripping happens.
+As your binaries are already stripped, -dbg packages are pointless.
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Ross
 
