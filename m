@@ -1,30 +1,29 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-mealy.atl.sa.earthlink.net
-	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29CFCE014DD
-	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 17:50:33 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=XkGniabwCLXlzkrd7QTORtgvIMPs80IguCn+TMa0meVnDghYN7TawY2xrE4ehkjd;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:X-Mailer:Thread-Index:X-MIMEOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1USGZz-00082k-Um; Tue, 16 Apr 2013 20:50:32 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Paul Eggleton'" <paul.eggleton@linux.intel.com>
-References: <8B6CDD4DF052424F91A0C447C50E3614@PAULD>
-	<7992156.jO3X0cFusz@helios>
-In-Reply-To: <7992156.jO3X0cFusz@helios>
-Date: Tue, 16 Apr 2013 17:50:39 -0700
-Message-ID: <A15A95348D8546D1BAD5997203ECF01D@PAULD>
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 3004EE014DF
+	for <yocto@yoctoproject.org>; Tue, 16 Apr 2013 18:40:33 -0700 (PDT)
+Received: (qmail 2860 invoked by uid 1003); 17 Apr 2013 01:40:32 -0000
+Received: from unknown (HELO ?192.168.1.106?)
+	(philip@opensdr.com@71.171.26.125)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	17 Apr 2013 01:40:32 -0000
+Message-ID: <516DFD8F.5040007@balister.org>
+Date: Tue, 16 Apr 2013 21:40:31 -0400
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130311 Thunderbird/17.0.4
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac45s+aJjagHEDNTS3SPdNMicZv4hQBSLReQ
-X-MIMEOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688d8564e253640715da990496f211fcc49350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Cc: yocto@yoctoproject.org
-Subject: Re: Why isn't USB MIDI working?
+To: Edward Vidal <vidal.develone@gmail.com>
+References: <CANwz6nwRC9D4KUa8BEJF3siCbu9KCf9khgpmH2kV_Rcp9esZKA@mail.gmail.com>
+	<CAHUNapTftvQZHdtfqZ6orYoi2BsVHFVsO-yT-myS+daKxeQjEA@mail.gmail.com>
+	<CANwz6nyiR-dOb2owu_dXV_kQNH4JZRWrgfO3Z0hnkKui_sJ-6g@mail.gmail.com>
+	<20130416195422.GU10628@jama.dyndns-home.com>
+	<CANwz6nxuc1SP_5hw-4E_u6of1f-XvFROKVfO3vxXkT1_zx4Pyg@mail.gmail.com>
+In-Reply-To: <CANwz6nxuc1SP_5hw-4E_u6of1f-XvFROKVfO3vxXkT1_zx4Pyg@mail.gmail.com>
+X-Enigmail-Version: 1.5.1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Repository to upgrade images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,120 +35,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 00:50:33 -0000
-X-Groupsio-MsgNum: 13205
-Content-Type: multipart/mixed;
-	boundary="----=_NextPart_000_0185_01CE3ACA.E8DD5FF0"
-
-------=_NextPart_000_0185_01CE3ACA.E8DD5FF0
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Wed, 17 Apr 2013 01:40:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-> From: Paul Eggleton
+On 04/16/2013 04:40 PM, Edward Vidal wrote:
+> Can you point me to where I can find
+
+Maybe you should give us some more details. It doesn't look like the
+angstrom feeds ahve a package for gnuradio, but we can ask Koen if he
+can add it.
+
+If you are building custom images, just add gnuradio to the
+IMAGE_EXTRA_INSTALL var (or whatever it is called). Check how gnuradio
+is packaged, you may need some other packages for all desired features.
+
+Philip
+
 > 
-> On Sunday 14 April 2013 15:49:12 Paul D. DeRocco wrote:
-> > I've built core-image-base-cedartrail-nopvr, which includes 
-> > ALSA. /dev/snd
-> > properly contains the devices for my mobo, and 
-> > /proc/asound/devices lists
-> > them as well. If I plug in a USB MIDI device (a USB to MIDI 
-> > converter), I
-> > see the USB connect message on the console, but no device 
-> > is added to
-> > /dev/snd or /proc/asound/devices. Anyone have any idea why? 
-> > I've tried an
-> > eMu XMidi1x1, and a cheap generic converter. Both work fine 
-> > under Ubuntu, on
-> > the same mobo.
+> gnuradio is already in meta-oe and jenkins is building it every day with
+> it :).
+> I did a search meta-oe jenkins nothing seems to come up I have seen
+> meta-gnurado as part 0f Angstrom.  I believe that is for the processor
+> in the ettus research board.
 > 
-> Typically two things are required for a USB device to work - 
-> a driver, and an 
-> appropriate udev rule to associate the driver with the 
-> device. Do you have USB 
-> midi support enabled in the kernel? If so, is there a udev 
-> rule for USB midi 
-> devices? If there isn't, presumably you could just use Ubuntu 
-> as a reference 
-> for that.
+> Thanks
+> 
+> 
+> 
+> On Tue, Apr 16, 2013 at 1:54 PM, Martin Jansa <martin.jansa@gmail.com>wrote:
+> 
+>> On Tue, Apr 16, 2013 at 01:49:13PM -0600, Edward Vidal wrote:
+>>> With that said how does Angstrom which uses opkg upgrades images that are
+>>> build with Angstrom.   I prefer Yocto but I had some pre-built image that
+>>
+>> The same mechanism as Ross and Trevor said.
+>>
+>>> came with my beagleboard and I used opkg upgrade  and opkg install
+>>> gfortran.   Also has anyone built gfortran, libgfortran, and numpy?
+>>> Currently these are some dependencies that I need for GNURADIO?
+>>> Thanks Any and all help is appreciated
+>>> Ed
+>>
+>> gnuradio is already in meta-oe and jenkins is building it every day with
+>> it :).
+>>
+>> --
+>> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+>>
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
-I apologize for my ignorance, but I really don't know how to go about
-figuring this out.
-
-There is a file called /lib/udev/rules.d/60-persistent-alsa.rules, which is
-full of cryptic stuff that I don't understand, including two lines referring
-to usb, but nothing specifically about MIDI. I compared it to the file on
-Ubuntu, and it's similar but not the same, but I have no idea whether any of
-the differences are meaningful. They're both small, so I've attached them.
-
-Also, I see that while the alsa-utils recipe is being built, the resulting
-image only seems to have a couple of alsa utilities: alsamixer and alsactl,
-even though there are a whole lot more listed in
-meta/recipes-multimedia/alsa/alsa-utils_1.0.25.bb.
-
-And when I run the system, there is no /dev/snd/seq device, which is the
-main interface to all MIDI devices. I don't plan on using that, preferring
-to use the /dev/snd/midi* OSS emulation device which is supposed to appear
-when an individual device is connected, but that's not happening, either.
-
-How do I find out if USB MIDI support is enabled in the kernel?
-
-This is plain vanilla core-image-base-cedartrail-nopvr, without any
-modifications. ALSA is part of it. Isn't it supposed to just work?
-
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
-
-------=_NextPart_000_0185_01CE3ACA.E8DD5FF0
-Content-Type: application/octet-stream;
-	name="60-persistent-alsa.rules.Yocto"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
-	filename="60-persistent-alsa.rules.Yocto"
-
-# do not edit this file, it will be overwritten on update
-
-ACTION=3D=3D"remove", GOTO=3D"persistent_alsa_end"
-SUBSYSTEM!=3D"sound", GOTO=3D"persistent_alsa_end"
-KERNEL!=3D"controlC[0-9]*", GOTO=3D"persistent_alsa_end"
-
-SUBSYSTEMS=3D=3D"usb", ENV{ID_MODEL}=3D=3D"", IMPORT{program}=3D"usb_id --e=
-xport %p"
-SUBSYSTEMS=3D=3D"usb", ENV{ID_IFACE}=3D"$attr{bInterfaceNumber}"
-ENV{ID_SERIAL}=3D=3D"?*", ENV{ID_IFACE}=3D=3D"?*", SYMLINK+=3D"snd/by-id/$e=
-nv{ID_BUS}-$env{ID_SERIAL}-$env{ID_IFACE}"
-ENV{ID_SERIAL}=3D=3D"?*", ENV{ID_IFACE}=3D=3D"", SYMLINK+=3D"snd/by-id/$env=
-{ID_BUS}-$env{ID_SERIAL}"
-
-ENV{ID_PATH}=3D=3D"", IMPORT{program}=3D"path_id %p"
-ENV{ID_PATH}=3D=3D"?*", SYMLINK+=3D"snd/by-path/$env{ID_PATH}"
-
-LABEL=3D"persistent_alsa_end"
-
-------=_NextPart_000_0185_01CE3ACA.E8DD5FF0
-Content-Type: application/octet-stream;
-	name="60-persistent-alsa.rules.Ubuntu"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
-	filename="60-persistent-alsa.rules.Ubuntu"
-
-# do not edit this file, it will be overwritten on update
-
-ACTION=3D=3D"remove", GOTO=3D"persistent_alsa_end"
-SUBSYSTEM!=3D"sound", GOTO=3D"persistent_alsa_end"
-KERNEL!=3D"controlC[0-9]*", GOTO=3D"persistent_alsa_end"
-
-SUBSYSTEMS=3D=3D"usb", ENV{ID_MODEL}=3D=3D"", IMPORT{builtin}=3D"usb_id"
-ENV{ID_SERIAL}=3D=3D"?*", ENV{ID_USB_INTERFACE_NUM}=3D=3D"?*", SYMLINK+=3D"=
-snd/by-id/$env{ID_BUS}-$env{ID_SERIAL}-$env{ID_USB_INTERFACE_NUM}"
-ENV{ID_SERIAL}=3D=3D"?*", ENV{ID_USB_INTERFACE_NUM}=3D=3D"", SYMLINK+=3D"sn=
-d/by-id/$env{ID_BUS}-$env{ID_SERIAL}"
-
-IMPORT{builtin}=3D"path_id"
-ENV{ID_PATH}=3D=3D"?*", SYMLINK+=3D"snd/by-path/$env{ID_PATH}"
-
-LABEL=3D"persistent_alsa_end"
-
-------=_NextPart_000_0185_01CE3ACA.E8DD5FF0--
