@@ -1,21 +1,23 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC9ABE01487
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:34:31 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C71AE01487
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:39:11 -0700 (PDT)
 Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:60254 helo=crashcourse.ca)
+	([99.240.144.66]:60262 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1USUNS-0001ce-JN; Wed, 17 Apr 2013 11:34:30 -0400
-Date: Wed, 17 Apr 2013 11:34:27 -0400 (EDT)
+	id 1USURy-0001rn-Fx; Wed, 17 Apr 2013 11:39:10 -0400
+Date: Wed, 17 Apr 2013 11:39:09 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <516EBBE7.8060201@mlbassoc.com>
-Message-ID: <alpine.DEB.2.02.1304171128010.12898@oneiric>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCF66BA@ORSMSX104.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1304171135470.12898@oneiric>
 References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
-	<2155264.hXQStR7GGJ@helios> <516EBBE7.8060201@mlbassoc.com>
+	<2155264.hXQStR7GGJ@helios>
+	<alpine.DEB.2.02.1304171108430.11390@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123796FCF66BA@ORSMSX104.amr.corp.intel.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -27,7 +29,8 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: yocto@yoctoproject.org
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: writeup on the mechanics of FILESEXTRAPATHS and bbappend files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,43 +43,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 15:34:31 -0000
+X-List-Received-Date: Wed, 17 Apr 2013 15:39:12 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Wed, 17 Apr 2013, Gary Thomas wrote:
+On Wed, 17 Apr 2013, Rifenbark, Scott M wrote:
 
-> On 2013-04-17 09:03, Paul Eggleton wrote:
-> > On Wednesday 17 April 2013 10:24:42 Robert P. J. Day wrote:
-> > >    a while back, i dug into how FILESEXTRAPATHS worked with respect to
-> > > .bbappend files and i wrote it up, just updated it a bit here:
-> > >
-> > > http://www.crashcourse.ca/wiki/index.php/FILESEXTRAPATHS_and_bbappend_files
-> > >
-> > > do i have it about right? it seemed that the underlying details
-> > > weren't really explained well in any of the current yocto docs, and i
-> > > wanted something i could point students at.
-> >
-> > It looks OK to me although if you're going to point students at it I might
-> > suggest moving the "don't look here!" stuff elsewhere ;)
-> >
-> > Also as I believe I mentioned before, FILESEXTRAPATHS adds not just one
-> > directory but an "entire list of directories" is it allows bbappend file
-> > path
-> > behaviour to match that of the recipe itself.
->
-> I also think it would be good to point out the use of := in the
-> FILESEXTRAPATHS assignment and why it's important.
+> Just a note here regarding which Yocto Project manuals to look at
+> for the most current information.  Use the 1.4 manuals.  So for the
+> FILESEXTRAPATHS variable description you should look at
+> http://www.yoctoproject.org/docs/1.4/ref-manual/ref-manual.html#var-FILESEXTRAPATHS
+> entry.  The description in this more recent manual may be lacking as
+> well.  I will try and work on that going forward.
 
-  done:
-
-http://www.crashcourse.ca/wiki/index.php/FILESEXTRAPATHS_and_bbappend_files#Adding_the_meta-yocto_layer_and_building_for_a_BeagleBoard
-
-i'm already unhappy with the way that whole page is written so i'll
-redesign it this weekend, and maybe add a bit more. i just remember it
-taking me a while to truly understand what was happening there so i
-figured i'd better write it down before i forgot.
+  i use the "in progress" version of all of the manuals, so i still
+think that glossary entry is a bit skimpy on details. on the other
+hand, glossary entries are *normally* fairly brief, so a full
+explanation of something like that probably belongs elsewhere, anyway.
 
 rday
+
+p.s.  i think one of the manuals should mention chris larson's
+"bitbake-env" utility, which i use for debugging and explanations all
+the time.
 
 -- 
 
