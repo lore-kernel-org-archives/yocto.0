@@ -1,33 +1,33 @@
 Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-bk0-f47.google.com (mail-bk0-f47.google.com
-	[209.85.214.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D1D6E014FC
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E361E014FC
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 06:29:51 -0700 (PDT)
+Received: by mail-bk0-f48.google.com with SMTP id jf3so772302bkc.35
 	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 06:29:50 -0700 (PDT)
-Received: by mail-bk0-f47.google.com with SMTP id ik5so750342bkc.6
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 06:29:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=Du13iZ7SV0Lz26KVoAuL07RM6+Bd7oj8SjRmSKNPW6g=;
-	b=UcaB7hKT2+5KVpib6K6Xqkg5x1yQggliXY721TCQpYnslZclF/ZQdUI6tv791ahOrI
-	gWhvkXx3wQY6qnZSc6TfEyqhY4mNQsn6bWOotdhdy1gMwkHapOJgvIzN1qzEiLI9kaR2
-	jmxSHGKUI5iiQ+pM3Y+sodMsnvFVpmBua6MaJDt/MTtpjUpDX4oJRURAfYcr1DKvY8Up
-	sKFy7pLMnpWARcgW2D36D+xkqSpLoN7YlmsC/ud+gO/jIY7VpPi38NeDNhmKIXGsXuhq
-	yHkdlwcDjqhXJiPzypeyrSq0YLd/8uAa3V78oSOGh6GJ+Sb9RmqCtLBwT7aITlTt1Rgc
-	gSPQ==
-X-Received: by 10.205.24.132 with SMTP id re4mr2265622bkb.92.1366205389263;
-	Wed, 17 Apr 2013 06:29:49 -0700 (PDT)
+	:references; bh=bKKLAmhH05Ql9oUT0z2QzgTfcuPK+kZpmBvUNjKB0UI=;
+	b=q/Mt8Qf4wkIPdko84vQa1FLMb+Io11Jzj/6JRBkYvez4nyS+uvTzQ9EJ5pdSGNMOvG
+	XHSKnMR2JHchlttiWPjj7bowKP8zQDRogwR0sfOaLLNowoSeBx8iAIbMj6puAsFAMSlt
+	3R+Z8ggOdwUSSW0kNSYGFMSwC8+gr6rrRrlx5N/R2y/KTODZekhckP987pM4IKlMJIHY
+	EQBg/m0rc0B4jagBHSxsE/Dgzq/bOLL8ArhyvSWzE0An78EdHCHTTQ+z1+TJCNDTsP4K
+	vCYmo097E1Ym1yj7A5235F/yImIRUehbcpSVJQsrvEjqOZ+BYHqGnADPslx0YtCSrVgN
+	L1pQ==
+X-Received: by 10.204.190.81 with SMTP id dh17mr2298511bkb.15.1366205390362;
+	Wed, 17 Apr 2013 06:29:50 -0700 (PDT)
 Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPS id gy3sm2111386bkc.16.2013.04.17.06.29.47
+	by mx.google.com with ESMTPS id gy3sm2111386bkc.16.2013.04.17.06.29.49
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 17 Apr 2013 06:29:48 -0700 (PDT)
+	Wed, 17 Apr 2013 06:29:49 -0700 (PDT)
 From: Atanas Gegov <atanas.gegov.oss@gmail.com>
 To: yocto@yoctoproject.org
-Date: Wed, 17 Apr 2013 15:29:24 +0200
-Message-Id: <1366205365-8843-10-git-send-email-atanas.gegov.oss@gmail.com>
+Date: Wed, 17 Apr 2013 15:29:25 +0200
+Message-Id: <1366205365-8843-11-git-send-email-atanas.gegov.oss@gmail.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1366205365-8843-1-git-send-email-atanas.gegov.oss@gmail.com>
 References: <1366205365-8843-1-git-send-email-atanas.gegov.oss@gmail.com>
-Subject: [PATCHv3 09/10] plugins/sdk.ide: Improved usage of strings in class
+Subject: [PATCHv3 10/10] plugins/sdk.ide: Extracted error message to YoctoSDKMessages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,65 +39,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 13:29:50 -0000
+X-List-Received-Date: Wed, 17 Apr 2013 13:29:51 -0000
 
 From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Extracted string constants. Added missing
-NON-NLS-1 declarations.
+Improved the i18n ability.
 ---
- .../NewYoctoAutotoolsProjectPostProcess.java       |   10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |    1 +
+ .../NewYoctoAutotoolsProjectPostProcess.java       |    8 ++++----
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
+index 67087f0..4ff1574 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoSDKMessages.properties
+@@ -100,3 +100,4 @@ LaunchConfig.Location.Attr = org.eclipse.ui.externaltools.ATTR_LOCATION
+ LaunchConfig.Arguments.Attr = org.eclipse.ui.externaltools.ATTR_TOOL_ARGUMENTS;
+ 
+ AutotoolsProjectPostProcess.WrongProjectNature = {0} is not an Autotools project
++AutotoolsProjectPostProcess.ChmodFailure = Failed to make autogen.sh executable for project: {0}
 diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
-index 9bc042a..cb187e9 100644
+index cb187e9..f467dac 100644
 --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
 +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoAutotoolsProjectPostProcess.java
-@@ -11,6 +11,7 @@
- package org.yocto.sdk.ide.wizard;
- 
- import java.io.BufferedReader;
-+import java.io.File;
- import java.io.InputStream;
- import java.io.InputStreamReader;
- 
-@@ -28,6 +29,9 @@ import org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature;
- 
- public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
- 
-+	public static final String CHMOD_COMMAND = "chmod +x "; //$NON-NLS-1$
-+	public static final String AUTOGEN_SCRIPT_NAME = "autogen.sh"; //$NON-NLS-1$
-+
- 	public NewYoctoAutotoolsProjectPostProcess() {}
- 
- 	public void process(TemplateCore template, ProcessArgument[] args, String processId, IProgressMonitor monitor) throws ProcessFailureException {
-@@ -45,7 +49,7 @@ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
- 			} else {
- 				IPath path = project.getLocation();
- 				String path_str = path.toString();
--				String autogen_cmd = "chmod +x " + path_str + "/autogen.sh";
-+				String autogen_cmd = CHMOD_COMMAND + path_str + File.separator + AUTOGEN_SCRIPT_NAME;
- 				try {
- 					Runtime rt = Runtime.getRuntime();
- 					Process proc = rt.exec(autogen_cmd);
-@@ -53,7 +57,7 @@ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
- 					InputStreamReader isr = new InputStreamReader(stdin);
- 					BufferedReader br = new BufferedReader(isr);
- 					String line = null;
--					String error_message = "";
-+					String error_message = ""; //$NON-NLS-1$
- 
- 					while ( (line = br.readLine()) != null) {
- 						error_message = error_message + line;
-@@ -61,7 +65,7 @@ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
+@@ -65,16 +65,16 @@ public class NewYoctoAutotoolsProjectPostProcess extends ProcessRunner {
  
  					int exitVal = proc.waitFor();
  					if (exitVal != 0) {
--						throw new ProcessFailureException("Failed to make autogen.sh executable for project: " + projectName);
-+						throw new ProcessFailureException("Failed to make autogen.sh executable for project: " + projectName); //$NON-NLS-1$
+-						throw new ProcessFailureException("Failed to make autogen.sh executable for project: " + projectName); //$NON-NLS-1$
++						throw new ProcessFailureException(
++								YoctoSDKMessages.getFormattedString("AutotoolsProjectPostProcess.ChmodFailure", //$NON-NLS-1$
++										projectName));
  					}
  				} catch (Throwable t) {
  					t.printStackTrace();
+ 
+ 				}
+ 			}
+-		}
+-		catch (Exception e)
+-		{
++		} catch (Exception e) {
+ 			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage(), e); //$NON-NLS-1$
+ 		}
+ 	}
 -- 
 1.7.9.5
 
