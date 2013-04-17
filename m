@@ -1,29 +1,25 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC5EDE01487
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:42:27 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 72C42F811F4; Wed, 17 Apr 2013 09:42:27 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 74EC2F811F3;
-	Wed, 17 Apr 2013 09:42:26 -0600 (MDT)
-Message-ID: <516EC2E2.8010107@mlbassoc.com>
-Date: Wed, 17 Apr 2013 09:42:26 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
-MIME-Version: 1.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48DB5E014EF
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:42:32 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 17 Apr 2013 08:40:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,494,1363158000"; d="scan'208";a="319754401"
+Received: from unknown (HELO helios.localnet) ([10.255.14.28])
+	by orsmga002.jf.intel.com with ESMTP; 17 Apr 2013 08:42:21 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Wed, 17 Apr 2013 16:42:20 +0100
+Message-ID: <1735326.q5ElvD3frK@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <alpine.DEB.2.02.1304171135470.12898@oneiric>
 References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
-	<2155264.hXQStR7GGJ@helios> <516EBBE7.8060201@mlbassoc.com>
-	<alpine.DEB.2.02.1304171128010.12898@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1304171128010.12898@oneiric>
-Cc: yocto@yoctoproject.org
+	<41DEA4B02DBDEF40A0F3B6D0DDB123796FCF66BA@ORSMSX104.amr.corp.intel.com>
+	<alpine.DEB.2.02.1304171135470.12898@oneiric>
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: writeup on the mechanics of FILESEXTRAPATHS and bbappend files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,54 +32,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 15:42:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Apr 2013 15:42:32 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2013-04-17 09:34, Robert P. J. Day wrote:
-> On Wed, 17 Apr 2013, Gary Thomas wrote:
->
->> On 2013-04-17 09:03, Paul Eggleton wrote:
->>> On Wednesday 17 April 2013 10:24:42 Robert P. J. Day wrote:
->>>>     a while back, i dug into how FILESEXTRAPATHS worked with respect to
->>>> .bbappend files and i wrote it up, just updated it a bit here:
->>>>
->>>> http://www.crashcourse.ca/wiki/index.php/FILESEXTRAPATHS_and_bbappend_files
->>>>
->>>> do i have it about right? it seemed that the underlying details
->>>> weren't really explained well in any of the current yocto docs, and i
->>>> wanted something i could point students at.
->>>
->>> It looks OK to me although if you're going to point students at it I might
->>> suggest moving the "don't look here!" stuff elsewhere ;)
->>>
->>> Also as I believe I mentioned before, FILESEXTRAPATHS adds not just one
->>> directory but an "entire list of directories" is it allows bbappend file
->>> path
->>> behaviour to match that of the recipe itself.
->>
->> I also think it would be good to point out the use of := in the
->> FILESEXTRAPATHS assignment and why it's important.
->
->    done:
->
-> http://www.crashcourse.ca/wiki/index.php/FILESEXTRAPATHS_and_bbappend_files#Adding_the_meta-yocto_layer_and_building_for_a_BeagleBoard
+On Wednesday 17 April 2013 11:39:09 Robert P. J. Day wrote:
+> p.s.  i think one of the manuals should mention chris larson's
+> "bitbake-env" utility, which i use for debugging and explanations all
+> the time.
 
-Thanks.  You might add a comment about what happens if you do it wrong (I should know!)
-that it will search in the directory that has the .bb file and not the .bbappend.
+I'd rather wait until we actually integrate that into BitBake (i.e. provide it 
+with the BitBake source, which I hope we can look at within the next 
+development cycle).
 
->
-> i'm already unhappy with the way that whole page is written so i'll
-> redesign it this weekend, and maybe add a bit more. i just remember it
-> taking me a while to truly understand what was happening there so i
-> figured i'd better write it down before i forgot.
->
-> rday
->
+Cheers,
+Paul
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
