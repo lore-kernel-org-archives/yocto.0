@@ -1,70 +1,34 @@
-Return-Path: <Michael.Fainstein@ecitele.com>
-Received: from mail1.bemta4.messagelabs.com (mail1.bemta4.messagelabs.com
-	[85.158.143.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E9A3E014B2
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 03:01:50 -0700 (PDT)
-Received: from [85.158.143.99:5151] by server-1.bemta-4.messagelabs.com id
-	7B/7B-06203-D037E615; Wed, 17 Apr 2013 10:01:49 +0000
-X-Env-Sender: Michael.Fainstein@ecitele.com
-X-Msg-Ref: server-6.tower-216.messagelabs.com!1366192896!21636885!5
-X-Originating-IP: [147.234.242.234]
-X-StarScan-Received: 
-X-StarScan-Version: 6.8.6.1; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 25915 invoked from network); 17 Apr 2013 10:01:46 -0000
-Received: from ilptbmg01-out.ecitele.com (HELO ilptbmg01-out.ecitele.com)
-	(147.234.242.234)
-	by server-6.tower-216.messagelabs.com with DHE-RSA-AES256-SHA encrypted
-	SMTP; 17 Apr 2013 10:01:46 -0000
-X-AuditID: 93eaf2e7-b7fcd6d000002add-c7-516e730ad90c
-Received: from ilptexch01.ecitele.com ( [172.31.244.40])
-	by ilptbmg01-out.ecitele.com (Symantec Messaging Gateway) with SMTP id
-	03.40.10973.A037E615; Wed, 17 Apr 2013 13:01:46 +0300 (IDT)
-Received: from ILPTWPVEXCA02.ecitele.com (172.31.244.232) by
-	ilptexch01.ecitele.com (172.31.244.40) with Microsoft SMTP Server (TLS)
-	id 8.3.264.0; Wed, 17 Apr 2013 13:01:46 +0300
-Received: from ILPTWPVEXMB02.ecitele.com ([fe80::5979:ca8d:419f:56df]) by
-	ILPTWPVEXCA02.ecitele.com ([fe80::c473:490d:3a7e:e34a%12]) with mapi id
-	14.02.0328.009; Wed, 17 Apr 2013 13:01:45 +0300
-From: Michael Fainstein <Michael.Fainstein@ecitele.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: use different versions of autoconf and automake in parallel
-	for different packages
-Thread-Index: Ac47Uo1IcuS3HkhRRoiP/1V2AGf0wA==
-Date: Wed, 17 Apr 2013 10:01:45 +0000
-Message-ID: <62673661A504604B856269DAADA8BC281DE3B272@ILPTWPVEXMB02.ecitele.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-puzzleid: {A86520B9-D4D0-46D9-8B1E-03CF1F654098}
-x-cr-hashedpuzzle: IyU= QDo= A7DI BEd2 DAHd D3lW EH7F Ekf7 F10F F2hx Gb7J
-	GfDv HASc HBx/ H1RE
-	JIgk; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {A86520B9-D4D0-46D9-8B1E-03CF1F654098};
-	bQBpAGMAaABhAGUAbAAuAGYAYQBpAG4AcwB0AGUAaQBuAEAAZQBjAGkAdABlAGwAZQAuAGMAbwBtAA==;
-	Wed, 17 Apr 2013 10:01:40 GMT;
-	dQBzAGUAIABkAGkAZgBmAGUAcgBlAG4AdAAgAHYAZQByAHMAaQBvAG4AcwAgAG8AZgAgAGEAdQB0AG8AYwBvAG4AZgAgAGEAbgBkACAAYQB1AHQAbwBtAGEAawBlACAAaQBuACAAcABhAHIAYQBsAGwAZQBsACAAZgBvAHIAIABkAGkAZgBmAGUAcgBlAG4AdAAgAHAAYQBjAGsAYQBnAGUAcwA=
-x-originating-ip: [10.4.58.22]
-content-transfer-encoding: quoted-printable
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
+	[209.85.220.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B11CAE014B2
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 03:43:54 -0700 (PDT)
+Received: by mail-vc0-f177.google.com with SMTP id hr11so1184074vcb.8
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 03:43:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type;
+	bh=wXd2G9nheDzuRy3nCUSEZYYzIS/SyOvI/2vauVSnPX8=;
+	b=rEZlZ/A/r8jRnbyNEYbGe7djiLhQq4CElEuV7Fsiw7KV9m6j5kG5wqx/uhXGRWt6Gl
+	IjDMhwoAIC8gFZ2uliLot+kZXKXRHus6GR6cn53Do/J3bLf9Oiqbdnt94g5xwCgOsJBT
+	9Kep/EFDc+4iza61KhwUzFFPO3h+coaUGm9EBMIxcBJYn4vrgJ6eCAawQSVqti8iZAkY
+	srJPSD72s89/YAiaPJuXBlun001ScwFRHM2btfA2n2UaLgTHVazmEuzSp6F5rqtJmMoM
+	ydaUveBtCeFB+k+YMeYQF79y8gshlQtrNdqdHl++oA1nyB6qwoClNeuz2oA+U1BGGEFM
+	AR3Q==
 MIME-Version: 1.0
-X-CFilter-Loop: Reflected
-X-Brightmail-Tracker: H4sIAAAAAAAAA3VTW0gUURjm7EzjtDoxbpqntWKZLpC14raJW6nVQ5EvqSREUWzj7ml3cGZ2
-	3RlDeyizwOpBUwNTNC/JamIXuohhUS4YJYZKSRJkNyEvVCS2UmQ146wmRPP0nf/75vu/c/h/
-	EjMECSPJiTLyiSzPEHq8YnxyyqyXxMyES5XrbeVjbcQOsKf4SQmRAQ4WgmRWFD0yKyOTE0mO
-	FCbDxx1jHQWMiXOmMBbG5OVZBxKQKKcwrNeLRCeTqjf98yUrMk40IdHhcXKiK4VJ25duttkS
-	t5gtTOq61RbrNn2Wm5NMyCywHG8SkCSxLmRSKkfuYO5AcSfmbSTyy3tqiEJQvug8WExCejO8
-	2tGr0/Ay2D98gzgP9KSBfgBgVe0zTDu0A1jy5myI6Qbw9rUrQP2FoJNgX8OXMBVH0Ylw9PEU
-	oeKl9GH4snEyVM+G5QF/CMfDt69PzWpwei0MVvbO1ik6A74cG571BEqM6Z622UgYHQNfjdSF
-	4tGw6X4fpuFoOPbhV+gKiXDiXQWuhoN0Cw4fXvwephGrYGnvOaAZbYT1nZOEhjdAf8MEpjWO
-	hE+rRnAVG+g4+HnKHzJdDrtahvALAFYvyFG9wKp6gVX1Aqt6gLeCaI73ytmCK8ESjxycjHgU
-	7/AIt4A2KB87wI+6NQFAk4CJoPq9QqZhEXtMKhACYDmpY6Kp7lwx07Ak2+MscLOS2+7L45EU
-	AJDEmCiqLkvhKCdbcBz5PHPULuU5yzBjuMOjjKQo260JCf8/MDFUc+H+dAPtUgYyByEv8s35
-	rCBJBlJVavtIH3Kh/KMcL/+ldeRiNUaEEqNC1VCSlxUkzqXxPcBMttwemwAGXPSIyBhD2VUR
-	rYrceeK8z9y6jIMY5QGWUptVVYSyTPNO40oTndLkUWuO2kRZnHnKWAjex5eV3HX8ai/1bI9N
-	O7RygE06bewKN0xuqoHTcfUHt2SMkDN7wy/brJbS3bED3w838Nc6n2Tz1hZ/X1FeFjDLOalf
-	c2s/pw82vzlJxEUeGPQfuj4z9PvMvaKksroXuq7unYE79puf5BXfBHtV8EKp7eJPc/TzhuA6
-	y4nYpq0DowwuuVlLHOaT2D85kVhlCQQAAA==
-Subject: use different versions of autoconf and automake in parallel for different packages
+X-Received: by 10.52.103.50 with SMTP id ft18mr3670916vdb.108.1366195433570;
+	Wed, 17 Apr 2013 03:43:53 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.88.177 with HTTP; Wed, 17 Apr 2013 03:43:53 -0700 (PDT)
+In-Reply-To: <2569596.XjSoTCsBqP@fedora-fisso>
+References: <CAFMfyzKm+N1JDJZyu-BDFwU86d824hiP3HmaQsFQxxqLo9_YvA@mail.gmail.com>
+	<2569596.XjSoTCsBqP@fedora-fisso>
+Date: Wed, 17 Apr 2013 12:43:53 +0200
+X-Google-Sender-Auth: xc_jtxaDCYbCD4FjlvpoLSb_U4Q
+Message-ID: <CAFMfyzJKyS7k4MtB-nbecWABqZvCZ7NZ1WbeougLpmjx2vbdBA@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: Davide Soldan <davide.soldan@kynetics.it>, yocto@yoctoproject.org
+Subject: Re: Exporting variables and extending PATH for Embedded Java
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,34 +40,256 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 10:01:51 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 17 Apr 2013 10:43:54 -0000
+Content-Type: multipart/alternative; boundary=047d7bacb7e48333a304da8c29e6
 
-I have a lot of source packages from CentOS-5. They all use autoconf 2.59 an=
-d automake 1.9.6.
-Autotools in Yocto are much newer: autoconf 2.63 and automake 1.11.1.
-CentOS-5 packages fail to auto-configure with newer autotools.
+--047d7bacb7e48333a304da8c29e6
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Can I install and use in parallel several versions of autoconf and automake=
- native tools? I found a guide for doing it at http://www.linuxfromscratch.o=
-rg/hints/downloads/files/autotools-multiversion.txt and implemented it. Howe=
-ver, install of one version replaces (completely removes) other version, so=
- I can use only one version for my build, and that's not what I want: all Yo=
-cto native tools should use newer autotools version and my packages should u=
-se older autotools version.
+Thank you David.. This solved my issue ..
 
 
-Any suggestions for implementing this?
+On Wed, Apr 17, 2013 at 11:17 AM, Davide Soldan
+<davide.soldan@kynetics.it>wrote:
 
-Thanks,
-Michael
+> **
+>
+> Environment variable should be defined in /etc/profile
+>
+> In my build that file is managed by "base-files" recipe. So I wrote a
+> custom recipe "base-files_3.0.14.bbappend" with only a row
+>
+> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+>
+> in the "files" directory I put the "profile" file with the definition of
+> the environment variable.
+>
+> In that way you should overwrite the original /etc/profile with your
+> custom file...
+>
+>
+>
+> In data mercoled=EC 17 aprile 2013 10:57:54, Satya Swaroop Damarla ha
+> scritto:
+>
+> Hi Guys,
+>
+>
+> I am planning to install embedded java runtime environment and it just
+> needs the following steps
+>
+> 1. Creation of directory /usr/share/java
+>
+> 2. Copy the files to this directory
+>
+> 3. Creating a environment variable
+> JAVA_HOME=3D/usr/share/java/ejre1.7.0_10/bin
+>
+> 4. Extending the variable PATH=3D$PATH:$JAVA_HOME
+>
+>
+> here is my recipe... The first and second parts are done but I am not abl=
+e
+> to figure out the 3rd and 4th steps.. Here is my recipe
+>
+>
+> DESCRIPTION =3D "Embedded Java from Oracle/Sun"
+>
+>
+> LICENSE_FLAGS =3D "oracle_java"
+>
+> LICENSE =3D "Oracle_Binary_Code_License_Agreement"
+>
+> LIC_FILES_CHKSUM =3D "\
+>
+>
+> file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=3D98f46ab6481d=
+87c4d77e0e91a6dbc15f
+> \
+>
+>
+> file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3Df5f3c0856f=
+2ca27413b55b6ca50c897e
+> \
+>
+>
+> file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.tx=
+t;md5=3Dc339b34e3da6673d2c5950d0f8808f8c
+> \
+>
+>         "
+>
+>
+> SRC_URI =3D
+> "file:///home/damarla/yocto/ejre-7u10-fcs-b18-linux-arm-vfp-client_headfu=
+l-28_nov_2012.gz"
+>
+>
+> SRCREV ?=3D "${AUTOREV}"
+>
+>
+>
+> SRC_URI[md5sum] =3D "8a6f08f39f916fcdbe0d741d550741ad"
+>
+> SRC_URI[sha256sum] =3D
+> "194a522bc27cf4746a0d8ca1e947b13832166ecd6f4f2fbaf5ce1df2a7493d43"
+>
+>
+> inherit allarch
+>
+>
+> do_install () {
+>
+>         install -d ${D}/usr/share/java/
+>
+>         cp -r ejre1.7.0_10 ${D}/usr/share/java
+>
+> }
+>
+>
+>
+> Help is deeply appreciated!
+>
+> Greets,
+>
+> Satya
+>
+>
+>
+>
 
+--047d7bacb7e48333a304da8c29e6
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Thank you David.. This solved my issue ..</div><div class=
+=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, Apr 17, 2013 at=
+ 11:17 AM, Davide Soldan <span dir=3D"ltr">&lt;<a href=3D"mailto:davide.sol=
+dan@kynetics.it" target=3D"_blank">davide.soldan@kynetics.it</a>&gt;</span>=
+ wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><u></u>
+<div style=3D"font-family:&#39;Sans Serif&#39;;font-size:9pt;font-weight:40=
+0;font-style:normal">
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px">Environment variable should be defined in /etc/profile<=
+/p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px">In my build that file is managed by &quot;base-files&qu=
+ot; recipe. So I wrote a custom recipe &quot;base-files_3.0.14.bbappend&quo=
+t; with only a row</p>
 
-This e-mail message is intended for the recipient only and contains informat=
-ion which is CONFIDENTIAL and which may be proprietary to ECI Telecom. If yo=
-u have received this transmission in error, please inform us by e-mail, phon=
-e or fax, and then delete the original and all copies thereof.
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&qu=
+ot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px">in the &quot;files&quot; directory I put the &quot;prof=
+ile&quot; file with the definition of the environment variable.</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px">In that way you should overwrite the original /etc/prof=
+ile with your custom file...</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px">=A0</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px">In data mercoled=EC 17 aprile 2013 10:57:54, Satya Swar=
+oop Damarla ha scritto:<br></p><div><div class=3D"h5">
+<p style=3D"margin-top:12px;margin-bottom:0px;margin-left:40px;margin-right=
+:40px;text-indent:0px">Hi Guys,</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">I am planning to install embedded java runtime enviro=
+nment and it just needs the following steps</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">1. Creation of directory /usr/share/java</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">2. Copy the files to this directory</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">3. Creating a environment variable JAVA_HOME=3D/usr/s=
+hare/java/ejre1.7.0_10/bin</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">4. Extending the variable PATH=3D$PATH:$JAVA_HOME</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">here is my recipe... The first and second parts are d=
+one but I am not able to figure out the 3rd and 4th steps.. Here is my reci=
+pe</p>
 
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">DESCRIPTION =3D &quot;Embedded Java from Oracle/Sun&q=
+uot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">LICENSE_FLAGS =3D &quot;oracle_java&quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">LICENSE =3D &quot;Oracle_Binary_Code_License_Agreemen=
+t&quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">LIC_FILES_CHKSUM =3D &quot;\</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">=A0 =A0 =A0 =A0 file://${WORKDIR}/${JDK_JRE}${PV}_${P=
+V_UPDATE}/LICENSE;md5=3D98f46ab6481d87c4d77e0e91a6dbc15f \</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">=A0 =A0 =A0 =A0 file://${WORKDIR}/${JDK_JRE}${PV}_${P=
+V_UPDATE}/COPYRIGHT;md5=3Df5f3c0856f2ca27413b55b6ca50c897e \</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">=A0 =A0 =A0 =A0 file://${WORKDIR}/${JDK_JRE}${PV}_${P=
+V_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=3Dc339b34e3da6673d2c5950d0f8808f8=
+c \</p>
 
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">=A0 =A0 =A0 =A0 &quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">SRC_URI =3D &quot;file:///home/damarla/yocto/ejre-7u1=
+0-fcs-b18-linux-arm-vfp-client_headful-28_nov_2012.gz&quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">SRCREV ?=3D &quot;${AUTOREV}&quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">SRC_URI[md5sum] =3D &quot;8a6f08f39f916fcdbe0d741d550=
+741ad&quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">SRC_URI[sha256sum] =3D &quot;194a522bc27cf4746a0d8ca1=
+e947b13832166ecd6f4f2fbaf5ce1df2a7493d43&quot;</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">inherit allarch</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">do_install () {</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">=A0 =A0 =A0 =A0 install -d ${D}/usr/share/java/</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">=A0 =A0 =A0 =A0 cp -r ejre1.7.0_10 ${D}/usr/share/jav=
+a</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">}</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px"><br></p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">Help is deeply appreciated!</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">Greets,</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:40px;margin-right:=
+40px;text-indent:0px">Satya</p>
+<p style=3D"margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0=
+px;text-indent:0px"><br><br></p></div></div></div></blockquote></div><br></=
+div>
+
+--047d7bacb7e48333a304da8c29e6--
