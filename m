@@ -1,37 +1,31 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15DFDE014E2
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 01:02:38 -0700 (PDT)
-Received: by mail-vc0-f176.google.com with SMTP id hf12so1086357vcb.7
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 01:02:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:content-transfer-encoding
-	:x-gm-message-state;
-	bh=PzWJV+izNEIh/dd9FS1pz0tbE5U64VddwTU2vyDCk5A=;
-	b=S7BenL2RgTTRFdS5J6V2u+T1QclkNTmGC2rqkZSYSwsn4sf7bjTAUPpijR2pPI3Wu6
-	otAXUfKuU1HhuGaFozZghAZIFBBWPnYhQgi7lSr6+4YEcY6KTUaqRIB6LOdaFLtnOlhF
-	ENf3LlJaAbSn7Zz2AbBr2sJ+/7ePzZyBZRkHmDb4xPUxDFBybiNkOxZ8L/FZEgQSksKa
-	BgRHuydhvYZ6fP16ti1AhH8CUgLm1mh5PsTG/f6nPF5HaT2zUUB2/MbJCiUI4CgkJeLU
-	7rnSO3wSUYxqS1Fv7Bg9u9YoxT8w7s7yF15yo4ggZTwq99eGVLyU2WK+BXvDa8y6cAxT
-	9iwQ==
-X-Received: by 10.58.15.193 with SMTP id z1mr4055283vec.40.1366185757051; Wed,
-	17 Apr 2013 01:02:37 -0700 (PDT)
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FE4CE014E2
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 01:57:55 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id gf12so1135539vcb.18
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 01:57:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
+	:subject:from:to:content-type;
+	bh=zVapb2fWl69PkDT5ADjOlyQwi+STjiwmb+RZ3Mpb0Wc=;
+	b=t1x+ApjnML5UTX3NzctdbMNaWabYyfwwp3OuVo9QVECYuuKlxCApz2axOEbdL+QNgs
+	ebLEYVNcZr/O40Li7JabvcJsqV5UKJDBBWyh3hiI0F5AVEgL6b5WpSKZWmMLkTSt3rA9
+	YN5pLwvyPjBQGDJuKUvhywEhbWCJ8tqNbQ8CZzd692+YTATmbg/SQX3rKSLHaKQ2kAfY
+	T8LTqW0+OV/2nw0N1mR0rBi6zP8dMnNlsCl8SlPw6isLR0HnnBG3JHDvo8LTCZCF8q4P
+	/MXWZG0EOKi+hdZ1n0qV2TWXorG0xnjjhpSHoeftiWBWLYdJEXVA19I6k3K9FbBiZp0C
+	dVvg==
 MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Wed, 17 Apr 2013 01:02:17 -0700 (PDT)
-In-Reply-To: <CAHUNapTftvQZHdtfqZ6orYoi2BsVHFVsO-yT-myS+daKxeQjEA@mail.gmail.com>
-References: <CANwz6nwRC9D4KUa8BEJF3siCbu9KCf9khgpmH2kV_Rcp9esZKA@mail.gmail.com>
-	<CAHUNapTftvQZHdtfqZ6orYoi2BsVHFVsO-yT-myS+daKxeQjEA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 17 Apr 2013 09:02:17 +0100
-Message-ID: <CAJTo0Lak8VBiZeFMx3R_Gi53b-nS=5DmyZgd6oq+z_xL__mkSA@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Gm-Message-State: ALoCoQl4OPS+zSj3kIijps8/piIH//FklryoKZ1a684Gxv6fM+47y4u6t0DwWjLbCGmqWy5L/Ki/
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Edward Vidal <vidal.develone@gmail.com>
-Subject: Re: Repository to upgrade images
+X-Received: by 10.58.198.79 with SMTP id ja15mr4225180vec.15.1366189074563;
+	Wed, 17 Apr 2013 01:57:54 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.88.177 with HTTP; Wed, 17 Apr 2013 01:57:54 -0700 (PDT)
+Date: Wed, 17 Apr 2013 10:57:54 +0200
+X-Google-Sender-Auth: 7GgsjD1KoWCyJGEZGX3v5lSrRss
+Message-ID: <CAFMfyzKm+N1JDJZyu-BDFwU86d824hiP3HmaQsFQxxqLo9_YvA@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Exporting variables and extending PATH for Embedded Java
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,38 +37,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 08:02:38 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 17 Apr 2013 08:57:55 -0000
+Content-Type: multipart/alternative; boundary=047d7b6d7dfe7c4cf004da8aae3e
+
+--047d7b6d7dfe7c4cf004da8aae3e
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi Guys,
+
+I am planning to install embedded java runtime environment and it just
+needs the following steps
+1. Creation of directory /usr/share/java
+2. Copy the files to this directory
+3. Creating a environment variable
+JAVA_HOME=/usr/share/java/ejre1.7.0_10/bin
+4. Extending the variable PATH=$PATH:$JAVA_HOME
+
+here is my recipe... The first and second parts are done but I am not able
+to figure out the 3rd and 4th steps.. Here is my recipe
+
+DESCRIPTION = "Embedded Java from Oracle/Sun"
+
+LICENSE_FLAGS = "oracle_java"
+LICENSE = "Oracle_Binary_Code_License_Agreement"
+LIC_FILES_CHKSUM = "\
+
+file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=98f46ab6481d87c4d77e0e91a6dbc15f
+\
+
+file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=f5f3c0856f2ca27413b55b6ca50c897e
+\
+
+file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=c339b34e3da6673d2c5950d0f8808f8c
+\
+        "
+
+SRC_URI =
+"file:///home/damarla/yocto/ejre-7u10-fcs-b18-linux-arm-vfp-client_headful-28_nov_2012.gz"
+
+SRCREV ?= "${AUTOREV}"
+
+
+SRC_URI[md5sum] = "8a6f08f39f916fcdbe0d741d550741ad"
+SRC_URI[sha256sum] =
+"194a522bc27cf4746a0d8ca1e947b13832166ecd6f4f2fbaf5ce1df2a7493d43"
+
+inherit allarch
+
+do_install () {
+        install -d ${D}/usr/share/java/
+        cp -r ejre1.7.0_10 ${D}/usr/share/java
+}
+
+
+Help is deeply appreciated!
+Greets,
+Satya
+
+--047d7b6d7dfe7c4cf004da8aae3e
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On 16 April 2013 20:15, Trevor Woerner <twoerner@gmail.com> wrote:
-> On Tue, Apr 16, 2013 at 3:02 PM, Edward Vidal <vidal.develone@gmail.com> =
-wrote:
->> Are there any plans to provide a repo of pkgs where systems can be upgra=
-ded
->> and new pkgs installed like other distro Fedora, CentOS, and rhel?  This
->> would also require yum or the new software that is replacing yum.
->
-> I doubt it. The Yocto Project is not an embedded Linux distribution =E2=
-=80=93
-> it creates a custom one for you. Providing a public package upgrade
-> repository is fine for a given distribution (e.g. Fedora, Debian, etc)
-> because it can make assumptions regarding the compiler, c library,
-> build/configuration options, etc. If you are creating your own
-> distributions, any of those variable can be tweaked, therefore making
-> any such public repository useless.
->
-> If you would like to have such an ability for your devices, you'll
-> need have to create your own public site and build the packages
-> yourself (all of which will incorporate any of your specific
-> "tweaks"). Yocto will help you do that (and make it easy) but doing
-> this in a generic way for everyone's Yocto distribution would be
-> impossible (I would think).
+<div dir=3D"ltr">Hi Guys,<div><br></div><div style>I am planning to install=
+ embedded java runtime environment and it just needs the following steps</d=
+iv><div style>1. Creation of directory /usr/share/java</div><div style>2. C=
+opy the files to this directory</div>
+<div style>3. Creating a environment variable JAVA_HOME=3D/usr/share/java/e=
+jre1.7.0_10/bin</div><div style>4. Extending the variable PATH=3D$PATH:$JAV=
+A_HOME</div><div style><br></div><div style>here is my recipe... The first =
+and second parts are done but I am not able to figure out the 3rd and 4th s=
+teps.. Here is my recipe</div>
+<div style><br></div><div style><div>DESCRIPTION =3D &quot;Embedded Java fr=
+om Oracle/Sun&quot;</div><div><br></div><div>LICENSE_FLAGS =3D &quot;oracle=
+_java&quot;</div><div>LICENSE =3D &quot;Oracle_Binary_Code_License_Agreemen=
+t&quot;</div>
+<div>LIC_FILES_CHKSUM =3D &quot;\</div><div>=A0 =A0 =A0 =A0 file://${WORKDI=
+R}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=3D98f46ab6481d87c4d77e0e91a6dbc=
+15f \</div><div>=A0 =A0 =A0 =A0 file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDA=
+TE}/COPYRIGHT;md5=3Df5f3c0856f2ca27413b55b6ca50c897e \</div>
+<div>=A0 =A0 =A0 =A0 file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPA=
+RTYLICENSEREADME.txt;md5=3Dc339b34e3da6673d2c5950d0f8808f8c \</div><div>=A0=
+ =A0 =A0 =A0 &quot;</div><div><br></div><div>SRC_URI =3D &quot;file:///home=
+/damarla/yocto/ejre-7u10-fcs-b18-linux-arm-vfp-client_headful-28_nov_2012.g=
+z&quot;</div>
+<div><br></div><div>SRCREV ?=3D &quot;${AUTOREV}&quot;</div><div><br></div>=
+<div><br></div><div>SRC_URI[md5sum] =3D &quot;8a6f08f39f916fcdbe0d741d55074=
+1ad&quot;</div><div>SRC_URI[sha256sum] =3D &quot;194a522bc27cf4746a0d8ca1e9=
+47b13832166ecd6f4f2fbaf5ce1df2a7493d43&quot;</div>
+<div><br></div><div>inherit allarch</div><div><br></div><div>do_install () =
+{</div><div>=A0 =A0 =A0 =A0 install -d ${D}/usr/share/java/</div><div>=A0 =
+=A0 =A0 =A0 cp -r ejre1.7.0_10 ${D}/usr/share/java</div><div>}</div><div><b=
+r></div><div>
+<br></div><div style>Help is deeply appreciated!</div><div style>Greets,</d=
+iv><div style>Satya</div></div></div>
 
-Yes, a generic approach would be impossible because of the nature of
-Yocto.  As an example though, the Angstrom distribution that is build
-using the Yocto Project *does* expose and support package feeds for
-on-device upgrades.
-
-Ross
-
+--047d7b6d7dfe7c4cf004da8aae3e--
