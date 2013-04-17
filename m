@@ -1,19 +1,37 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B4D5E0148C
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 10:19:44 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 17 Apr 2013 10:17:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,495,1363158000"; d="scan'208";a="296464325"
-Received: from ideapad.rb.intel.com ([10.237.105.146])
-	by orsmga001.jf.intel.com with ESMTP; 17 Apr 2013 10:19:42 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 17 Apr 2013 20:01:23 +0300
-Message-Id: <1366218083-5274-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] [eclipse-poky][master]Add host to known_host for running crosstap script
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
+	[209.85.128.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70545E0140A
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 11:10:12 -0700 (PDT)
+Received: by mail-ve0-f169.google.com with SMTP id d10so1690509vea.14
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 11:10:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=eGCWejcDMGnSsgyMFB1TGrTTch242KGtvlQ4OF8pcM4=;
+	b=0jLSMmFUoJsKn8Sl1DPFPbFbRL4/onxqVIdixMz/Sg1DftsbnpbXOabqb8lH8citk4
+	LBtnZrbHQL/HGYtbEGxvzZxNMIQVMGRuFYA4OHAVl/iblVP6Q/RtIzeTmLrRzu0DEiA/
+	BYcBrRVc756eg1Oipu4vkLTxZ4S57zep9KWiHGM2zeQ0nqB78RvM1Ax7d0jTIhXyRGVg
+	aqyOnJdDLj2bUEhc8C3vKDKwP86WIKyZUZ875hPXFhoz4/joAL6uqbNwQVv+EVyGnAF3
+	4/CMpGowtSbiQvxSqDoBeazJ+Q/IBS3pSge/69f+0I0MDf/BTqSYGS1Kgq3fkcwKs7XN
+	RrQg==
+MIME-Version: 1.0
+X-Received: by 10.220.39.69 with SMTP id f5mr5818642vce.45.1366222211364; Wed,
+	17 Apr 2013 11:10:11 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.88.177 with HTTP; Wed, 17 Apr 2013 11:10:11 -0700 (PDT)
+In-Reply-To: <CAJTo0LZr0s1tp6V0_3W5odWmCOzyRtU4_E92OL8omtf9GBGTPA@mail.gmail.com>
+References: <CAFMfyzJJY0hFGXimgdVwzp8i58PnXPnAUyKH_bk9DU25FXVjiw@mail.gmail.com>
+	<CAJTo0LbUfNkkgeM9HNN4pE6n-tMyMJY9_4_Ns5BTie91=Qy4HQ@mail.gmail.com>
+	<CAFMfyzKZNic47o-x83EZu5ueu7imZE9ZWCtYGsPu+J-0oqE2qQ@mail.gmail.com>
+	<CAJTo0LZr0s1tp6V0_3W5odWmCOzyRtU4_E92OL8omtf9GBGTPA@mail.gmail.com>
+Date: Wed, 17 Apr 2013 20:10:11 +0200
+X-Google-Sender-Auth: DdZLZqMZ1IPMVZZgZ58JLCWrReQ
+Message-ID: <CAFMfyz+F292KQyQBBV7Oyu_q+BAj0F=gBPQqzE6EEDKk347FMQ@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Adding prebuilt binaries to /usr/bin on rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,182 +43,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 17:19:44 -0000
+X-List-Received-Date: Wed, 17 Apr 2013 18:10:12 -0000
+Content-Type: multipart/alternative; boundary=bcaec54eebba97bd4e04da92652b
 
-- when running crosstap script, if the host does not exist in known_hosts, the interface blocks until the user enters "yes" or "no" in Eclipse console
-- in order to prevent this, we try to connect to the host beforehand printing all the debug messages and wait  to see if there was a key found
-  - if there was no key found, a message dialog is shown to the user asking to confirm adding this new host to known_host.
-    - if approved - we run "ssh -o StrictHostKeyChecking=no" which does not require any input from the user and automatically adds the host & proceed to running crosstap command
-    - if the user does not approve -> message is displayed that authentication failed
-  - if there was at least one key found
-    - parse the debug messages further to see if the keys match
-          - message "Authentication succeeded" is encountered -> proceed to running crosstap command
-          - authentication failed due to change in keys -> collect error message and display it to the user
+--bcaec54eebba97bd4e04da92652b
+Content-Type: text/plain; charset=ISO-8859-1
 
-[Yocto #4307]
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../org/yocto/sdk/remotetools/ShellSession.java    |   89 ++++++++++++++++++++
- .../sdk/remotetools/actions/SystemtapModel.java    |   17 ++--
- 2 files changed, 98 insertions(+), 8 deletions(-)
+Hi..
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
-index bd1cb38..5602798 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
-@@ -19,6 +19,10 @@ import java.io.InputStreamReader;
- import java.io.OutputStream;
- import java.io.OutputStreamWriter;
- import java.lang.reflect.InvocationTargetException;
-+import java.util.regex.Matcher;
-+import java.util.regex.Pattern;
-+
-+import org.eclipse.jface.dialogs.MessageDialog;
- 
- public class ShellSession {
- 	/**
-@@ -213,6 +217,91 @@ public class ShellSession {
- 			interrupt = false;
- 		}
- 	}
-+	synchronized
-+	public boolean ensureKnownHostKey(String user, String host) throws IOException {
-+
-+		boolean loadKeysMatch = false;
-+		boolean accepted = false;
-+		Process proc = Runtime.getRuntime().exec("ssh -o LogLevel=DEBUG3 " + user + "@" + host);
-+		Pattern patternLoad = Pattern.compile("^debug3: load_hostkeys: loaded (\\d+) keys");
-+		Pattern patternAuthSucceeded = Pattern.compile("^debug1: Authentication succeeded.*");
-+
-+		try {
-+			InputStream es = proc.getErrorStream();
-+			String info;
-+			while (!loadKeysMatch) {
-+				info = null;
-+				StringBuffer buffer = new StringBuffer();
-+				int c;
-+				while (es.available() > 0) {
-+					c = es.read();
-+					char ch = (char) c;
-+					buffer.append(ch);
-+					if (ch == '\r') {
-+						info = buffer.toString().trim();
-+						Matcher m = patternLoad.matcher(info);
-+						if(m.matches()) {
-+							int keys = new Integer(m.group(1));
-+							if (keys == 0) {
-+								proc.destroy();
-+								accepted = MessageDialog.openQuestion(null, "Host authenticity", "The authenticity of host '" + host + "(" + host + ")' can't be established.\nAre you sure you want to continue connecting ?");
-+								if (accepted){
-+									proc = Runtime.getRuntime().exec("ssh -o StrictHostKeyChecking=no " + user + "@" + host);//add host key to known_hosts
-+									try {
-+										Thread.sleep(2000); //wait for process to finish
-+									} catch (InterruptedException e) {
-+										e.printStackTrace();
-+									}
-+									proc.destroy();
-+								} else {
-+									MessageDialog.openError(null, "Host authenticity", "Host key verification failed.");
-+								}
-+							} else {
-+								String errorMsg = "";
-+								// wait to check if key is the same and authentication succeeds
-+								while (es.available() > 0) {
-+									c = es.read();
-+									ch = (char) c;
-+									buffer.append(ch);
-+									if (ch == '\r') {
-+										info = buffer.toString().trim();
-+										Matcher mAuthS = patternAuthSucceeded.matcher(info);
-+										if(mAuthS.matches()) {
-+											accepted = true;
-+											break;
-+										} else {
-+											if (!info.startsWith("debug"))
-+												errorMsg += info + "\n";
-+										}
-+										try {
-+											Thread.sleep(100);
-+										} catch (InterruptedException e) {
-+											// TODO Auto-generated catch block
-+											e.printStackTrace();
-+										}
-+										buffer.delete(0, buffer.length());
-+									}
-+								}
-+								if (!accepted && !errorMsg.isEmpty())
-+									MessageDialog.openError(null, "Host authenticity", errorMsg);
-+							}
-+							loadKeysMatch = true;
-+							break;
-+						}
-+						buffer.delete(0, buffer.length());
-+					}
-+				}
-+			}
-+			es.close();
-+		} catch (IOException e) {
-+			try {
-+				throw new InvocationTargetException(e);
-+			} catch (InvocationTargetException e1) {
-+				e1.printStackTrace();
-+			}
-+		}
-+		return accepted;
-+	}
- 	
- 	private void clearErrorStream(InputStream is) {
- 	
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-index 79f2dd1..0d22d97 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-@@ -10,8 +10,8 @@
-  *******************************************************************************/
- package org.yocto.sdk.remotetools.actions;
- 
--import java.lang.reflect.InvocationTargetException;
- import java.io.File;
-+import java.lang.reflect.InvocationTargetException;
- 
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.swt.widgets.Display;
-@@ -19,7 +19,6 @@ import org.eclipse.ui.console.ConsolePlugin;
- import org.eclipse.ui.console.IConsole;
- import org.eclipse.ui.console.IConsoleManager;
- import org.eclipse.ui.console.MessageConsole;
--
- import org.yocto.sdk.remotetools.ShellSession;
- 
- public class SystemtapModel extends BaseModel {
-@@ -64,18 +63,20 @@ public class SystemtapModel extends BaseModel {
- 	public void preProcess(IProgressMonitor monitor)
- 			throws InvocationTargetException, InterruptedException {
- 	}
--
-+    
- 	public void process(IProgressMonitor monitor)
- 	throws InvocationTargetException, InterruptedException {
- 		try {
- 			ShellSession shell = new ShellSession(ShellSession.SHELL_TYPE_BASH, 
- 												new File(this.metadata_location),
- 												DEFAULT_INIT_SCRIPT, sessionConsole.newOutputStream());
--			String crosstapCmd = "crosstap " + user_id + "@" + remote_host + " " + systemtap_script;
--			if (systemtap_args != null)
--				crosstapCmd = crosstapCmd + " " + systemtap_args;
--			shell.execute(crosstapCmd);
--									
-+			boolean acceptedKey = shell.ensureKnownHostKey(user_id, remote_host);
-+			if (acceptedKey) {
-+				String crosstapCmd = "crosstap " + user_id + "@" + remote_host + " " + systemtap_script;
-+				if (systemtap_args != null)
-+					crosstapCmd = crosstapCmd + " " + systemtap_args;
-+				shell.execute(crosstapCmd);
-+			}
- 		} catch (Exception e) {
- 			throw new InvocationTargetException(e,e.getMessage());
- 		}
--- 
-1.7.9.5
+If I dont avoid this error.. I cant build the rootfilesystem....
 
 
+On Wed, Apr 17, 2013 at 5:56 PM, Burton, Ross <ross.burton@intel.com> wrote:
+
+> On 17 April 2013 16:11, Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+> wrote:
+> > WARNING: File '/usr/bin/sdusb-cmd' from skidata-tools was already
+> stripped,
+> > this will prevent future debugging!
+>
+> Use INHIBIT_PACKAGE_DEBUG_SPLIT = "1" to turn off the generation of
+> -dbg packages, as this is where the splitting and stripping happens.
+> As your binaries are already stripped, -dbg packages are pointless.
+>
+> > ERROR: QA Issue: No GNU_HASH in the elf binary:
+> >
+> '/home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/cortexa9-vfp-vfpv3d16-poky-linux-gnueabi/skidata-tools/1.0-r0/packages-split/skidata-tools/usr/bin/devsrv'
+>
+> This is familiar but I can't remember how to make it disappear, sorry.
+>
+> Ross
+>
+
+--bcaec54eebba97bd4e04da92652b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi..<div><br></div><div style>If I dont avoid this error..=
+ I cant build the rootfilesystem....=A0</div></div><div class=3D"gmail_extr=
+a"><br><br><div class=3D"gmail_quote">On Wed, Apr 17, 2013 at 5:56 PM, Burt=
+on, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" tar=
+get=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 17 April 2013 16:11, Sa=
+tya Swaroop Damarla &lt;<a href=3D"mailto:swaroop.damarla@gmail.com">swaroo=
+p.damarla@gmail.com</a>&gt; wrote:<br>
+
+&gt; WARNING: File &#39;/usr/bin/sdusb-cmd&#39; from skidata-tools was alre=
+ady stripped,<br>
+&gt; this will prevent future debugging!<br>
+<br>
+</div>Use INHIBIT_PACKAGE_DEBUG_SPLIT =3D &quot;1&quot; to turn off the gen=
+eration of<br>
+-dbg packages, as this is where the splitting and stripping happens.<br>
+As your binaries are already stripped, -dbg packages are pointless.<br>
+<div class=3D"im"><br>
+&gt; ERROR: QA Issue: No GNU_HASH in the elf binary:<br>
+&gt; &#39;/home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/cortexa9-vf=
+p-vfpv3d16-poky-linux-gnueabi/skidata-tools/1.0-r0/packages-split/skidata-t=
+ools/usr/bin/devsrv&#39;<br>
+<br>
+</div>This is familiar but I can&#39;t remember how to make it disappear, s=
+orry.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br></div>
+
+--bcaec54eebba97bd4e04da92652b--
