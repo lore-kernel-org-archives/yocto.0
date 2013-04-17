@@ -1,36 +1,29 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C71AE01487
-	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:39:11 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:60262 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1USURy-0001rn-Fx; Wed, 17 Apr 2013 11:39:10 -0400
-Date: Wed, 17 Apr 2013 11:39:09 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCF66BA@ORSMSX104.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1304171135470.12898@oneiric>
-References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
-	<2155264.hXQStR7GGJ@helios>
-	<alpine.DEB.2.02.1304171108430.11390@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123796FCF66BA@ORSMSX104.amr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC5EDE01487
+	for <yocto@yoctoproject.org>; Wed, 17 Apr 2013 08:42:27 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 72C42F811F4; Wed, 17 Apr 2013 09:42:27 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 74EC2F811F3;
+	Wed, 17 Apr 2013 09:42:26 -0600 (MDT)
+Message-ID: <516EC2E2.8010107@mlbassoc.com>
+Date: Wed, 17 Apr 2013 09:42:26 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
+	<2155264.hXQStR7GGJ@helios> <516EBBE7.8060201@mlbassoc.com>
+	<alpine.DEB.2.02.1304171128010.12898@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1304171128010.12898@oneiric>
+Cc: yocto@yoctoproject.org
 Subject: Re: writeup on the mechanics of FILESEXTRAPATHS and bbappend files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,36 +36,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2013 15:39:12 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 17 Apr 2013 15:42:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 17 Apr 2013, Rifenbark, Scott M wrote:
+On 2013-04-17 09:34, Robert P. J. Day wrote:
+> On Wed, 17 Apr 2013, Gary Thomas wrote:
+>
+>> On 2013-04-17 09:03, Paul Eggleton wrote:
+>>> On Wednesday 17 April 2013 10:24:42 Robert P. J. Day wrote:
+>>>>     a while back, i dug into how FILESEXTRAPATHS worked with respect to
+>>>> .bbappend files and i wrote it up, just updated it a bit here:
+>>>>
+>>>> http://www.crashcourse.ca/wiki/index.php/FILESEXTRAPATHS_and_bbappend_files
+>>>>
+>>>> do i have it about right? it seemed that the underlying details
+>>>> weren't really explained well in any of the current yocto docs, and i
+>>>> wanted something i could point students at.
+>>>
+>>> It looks OK to me although if you're going to point students at it I might
+>>> suggest moving the "don't look here!" stuff elsewhere ;)
+>>>
+>>> Also as I believe I mentioned before, FILESEXTRAPATHS adds not just one
+>>> directory but an "entire list of directories" is it allows bbappend file
+>>> path
+>>> behaviour to match that of the recipe itself.
+>>
+>> I also think it would be good to point out the use of := in the
+>> FILESEXTRAPATHS assignment and why it's important.
+>
+>    done:
+>
+> http://www.crashcourse.ca/wiki/index.php/FILESEXTRAPATHS_and_bbappend_files#Adding_the_meta-yocto_layer_and_building_for_a_BeagleBoard
 
-> Just a note here regarding which Yocto Project manuals to look at
-> for the most current information.  Use the 1.4 manuals.  So for the
-> FILESEXTRAPATHS variable description you should look at
-> http://www.yoctoproject.org/docs/1.4/ref-manual/ref-manual.html#var-FILESEXTRAPATHS
-> entry.  The description in this more recent manual may be lacking as
-> well.  I will try and work on that going forward.
+Thanks.  You might add a comment about what happens if you do it wrong (I should know!)
+that it will search in the directory that has the .bb file and not the .bbappend.
 
-  i use the "in progress" version of all of the manuals, so i still
-think that glossary entry is a bit skimpy on details. on the other
-hand, glossary entries are *normally* fairly brief, so a full
-explanation of something like that probably belongs elsewhere, anyway.
-
-rday
-
-p.s.  i think one of the manuals should mention chris larson's
-"bitbake-env" utility, which i use for debugging and explanations all
-the time.
+>
+> i'm already unhappy with the way that whole page is written so i'll
+> redesign it this weekend, and maybe add a bit more. i just remember it
+> taking me a while to truly understand what was happening there so i
+> figured i'd better write it down before i forgot.
+>
+> rday
+>
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
