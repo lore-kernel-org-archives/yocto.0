@@ -1,33 +1,25 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
-	[209.85.192.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 973E9E01473
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 08:37:58 -0700 (PDT)
-Received: by mail-pd0-f175.google.com with SMTP id g10so1632356pdj.20
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 08:37:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:content-type:content-transfer-encoding:subject
-	:message-id:date:to:mime-version:x-mailer;
-	bh=1wLaY/Z7AxHmDqQ3M3lWWDjrTgodcmlOUToPGFOKQxg=;
-	b=sBSI2B3iYXhfV+M3Cjx3l+2dNb+GLhm/yLLQiaSJgTSxDWUf01oSrlMTMw1NiNY4lK
-	LFQV9dPvvKnbpQk7C6uSwr4yqxlFC+RyExWhJM1s4DYhvRvS2xYqFO8UX2qn19WM20hw
-	LZnf0IqpdfaG1AIqtlFtDPhQgdUIwX7MBmju6WUZpfliWxm5/SwOt+7dywL5Zg5nPYqD
-	px2tUOyZg26L4C8vr14+GkCiDb/7BA2pYi03U4hnXpD5t6kFSIYozfg1CACI/CgKdHrE
-	vAfsHhtM4YEq3+NzSsa5UKPpgfBpaUbJ64CUNlLSVS+X4xy8orTgqSh1hTUSkJ5uSjCw
-	58eg==
-X-Received: by 10.67.10.133 with SMTP id ea5mr13942372pad.135.1366299478326;
-	Thu, 18 Apr 2013 08:37:58 -0700 (PDT)
-Received: from [192.168.1.100] ([94.205.106.101])
-	by mx.google.com with ESMTPS id l4sm4736909pbo.6.2013.04.18.08.37.55
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 18 Apr 2013 08:37:57 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Message-Id: <9CEFD538-1DCB-4431-A89F-18DC00A7C9A4@gmail.com>
-Date: Thu, 18 Apr 2013 19:37:51 +0400
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
-X-Mailer: Apple Mail (2.1503)
-Subject: [poky] bash: oe-init-build-env: line 33: syntax error near unexpected token `elif'
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC543E01473
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 09:33:52 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 657FBF811EA; Thu, 18 Apr 2013 10:33:52 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id CD187F811DA;
+	Thu, 18 Apr 2013 10:33:51 -0600 (MDT)
+Message-ID: <51702071.4050509@mlbassoc.com>
+Date: Thu, 18 Apr 2013 10:33:53 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Package woes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,32 +31,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Apr 2013 15:37:58 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 18 Apr 2013 16:33:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-      The following commit=20
+This morning, I had built an image successfully using a slightly older
+Poky/Yocto master (af9ed97e30ac1a3a2b4e1062f2f8aee255d05972).
+Then I updated to master (90b98764555945a186562ca8d501a9585ce2b23f)
 
-=
-http://ares/gitweb/?p=3Dtools/poky.git;a=3Dblobdiff;f=3Doe-init-build-env;=
-h=3D68af7b5193b73627cd6ebf6196adfa685a787c38;hp=3D67eddcd295bd9d1adac21fc4=
-e97506fca05f4bfa;hb=3D813127247a1100b1abe179dfba25795560eac864;hpb=3Da468b=
-0d5579148771da716eaf357e5d45fc3211c
+Now, when I try to build an image (any 'rootfs' image), I
+get a ton of errors like these:
+|  * opkg_install_pkg: Package python-modules md5sum mismatch. Either the opkg or the package index are corrupt. Try 'opkg update'.
+|  * opkg_install_cmd: Cannot install package python-modules.
+|  * opkg_install_pkg: Package libffi6 md5sum mismatch. Either the opkg or the package index are corrupt. Try 'opkg update'.
+|  * opkg_install_cmd: Cannot install package gst-plugins-base-app.
+|  * opkg_install_pkg: Package libx11-6 md5sum mismatch. Either the opkg or the package index are corrupt. Try 'opkg update'.
+|  * opkg_install_cmd: Cannot install package gst-plugins-base-xvimagesink.
 
-is causing a build error while sourcing the oe-init-build-env build =
-script
+There are also a lot of messages like these:
+| Found /home/local/imx6_poky/tmp/deploy/ipk/armv7a-vfp-neon/locale-base-sw-ke_2.17-r0_armv7a-vfp-neon.ipk in Packages, but mtime differs - re-reading
+| Found /home/local/imx6_poky/tmp/deploy/ipk/armv7a-vfp-neon/locale-base-sw-tz_2.17-r0_armv7a-vfp-neon.ipk in Packages, but mtime differs - re-reading
+| Found /home/local/imx6_poky/tmp/deploy/ipk/armv7a-vfp-neon/locale-base-szl-pl_2.17-r0_armv7a-vfp-neon.ipk in Packages, but mtime differs - re-reading
 
-$ cd /tool/yocto/poky;source oe-init-build-env build
-: command not found
-: command not found
-bash: oe-init-build-env: line 33: syntax error near unexpected token =
-`elif'
-'ash: oe-init-build-env: line 33: `   elif [ -n "$ZSH_NAME" ]; then
+I don't understand this one at all because I tried rebuilding
+virtual/libc-locale and I still get them.
 
-This is on Ubuntu 12.10 x86 64-bit.
+Any ideas what's happening?  Sadly, I seem to be totally stuck
+with this problem :-(
 
-Elvis Dowson
-
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
