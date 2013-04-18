@@ -1,29 +1,29 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75E4CE014DD
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 00:35:34 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3I7ZkQo021023; Thu, 18 Apr 2013 08:35:47 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id gpB_U07GI0_K; Thu, 18 Apr 2013 08:35:46 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3I7ZfTI021015
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Thu, 18 Apr 2013 08:35:43 +0100
-Message-ID: <1366270503.10502.23.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Thu, 18 Apr 2013 08:35:03 +0100
-In-Reply-To: <CAPhnLPAqTd39NUkKt0dv_=W1Dooodzdg3WJ_q0An+ZjQNgRtEw@mail.gmail.com>
-References: <CAPhnLPAqTd39NUkKt0dv_=W1Dooodzdg3WJ_q0An+ZjQNgRtEw@mail.gmail.com>
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: 1.4_M6.rc2
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FE3EE014E0
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 03:23:47 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id B4AE2F811E3; Thu, 18 Apr 2013 04:23:46 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id F1B8DF811E2;
+	Thu, 18 Apr 2013 04:23:44 -0600 (MDT)
+Message-ID: <516FC9B2.1090802@mlbassoc.com>
+Date: Thu, 18 Apr 2013 04:23:46 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
+	<2155264.hXQStR7GGJ@helios> <516EBBE7.8060201@mlbassoc.com>
+	<CAHUNapRQdV5hM8rMrChYD4joa1N0eN9iok6+C4UU07AaJv04Zg@mail.gmail.com>
+In-Reply-To: <CAHUNapRQdV5hM8rMrChYD4joa1N0eN9iok6+C4UU07AaJv04Zg@mail.gmail.com>
+Subject: Re: writeup on the mechanics of FILESEXTRAPATHS and bbappend files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,36 +35,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Apr 2013 07:35:34 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 18 Apr 2013 10:23:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2013-04-17 at 13:14 -0700, Flanagan, Elizabeth wrote:
-> We're delayed slightly for the 1.4_M6.rc2 build. The build should be
-> soonish, once RP gives me the thumbs up. Please adjust your schedules
-> accordingly, we're hoping to get this started in a few hours.
+On 2013-04-17 16:26, Trevor Woerner wrote:
+> On Wed, Apr 17, 2013 at 11:12 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+>> I also think it would be good to point out the use of := in the
+>> FILESEXTRAPATHS
+>> assignment and why it's important.
+>
+> Knowing that the := operator will put your directories first is only
+> useful if you also know that the underlying mechanism will take the
+> first such files from the given directories it encounters :-) What's
+> to say bitbake doesn't look at all the directories/files and take the
+> last ones?
 
-We do have a 1.6_M6.rc2 candidate build which is revision
-87eb70243749e0e2431f98770746fa42002f4441 (dylan branch).
+This has more to do with how the path is constructed (using _prepend).
 
-I suggest we start testing this with particular focus and prioritisation
-on the systemd and sysvinit testing due to the changes that have gone in
-last minute.
+My point, which was totally unclear to me when using this line, was
+that with ':=' ${THISDIR} evaluates to the directory that contains
+the .bbappend file (what you want/need) whereas with '=' it evaluates
+to the directory containing the main .bb file.  Incredibly confusing
+if you miss it...
 
-If any problems are discovered, please flag them ASAP as the plan would
-be to abort this rc and rebuild if any issues in those areas are
-discovered.
-
-I should stress that DISTRO_FEATURES should not be changed in existing
-build directories (reusing sstate is fine). Several of the init issues
-we've see have been tracked down to this. Its never been supported
-although is probably something we'll improve in 1.5 since it catches so
-many people out. This note needs to be in the release notes as well.
-
-Cheers,
-
-Richard
-
-
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
