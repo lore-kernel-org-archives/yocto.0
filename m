@@ -1,38 +1,28 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-da0-f46.google.com (mail-da0-f46.google.com
-	[209.85.210.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32E6EE014B5
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 09:47:32 -0700 (PDT)
-Received: by mail-da0-f46.google.com with SMTP id y19so1470561dan.33
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 09:47:31 -0700 (PDT)
+Return-Path: <errordeveloper@gmail.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E138E0140A
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 11:34:31 -0700 (PDT)
+Received: by mail-vb0-f48.google.com with SMTP id p13so2714842vbe.7
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 11:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=evJ1FEaREpa9YlcQ/5zi07+Nv3enjzxL8Kt+OhRHy0U=;
-	b=e9h/TsogVIfLgB6RMdEbhkbm/zlHzh+HY48LXNDMkvjFhWMitS/Edgm7LlUcC8XREK
-	qYPzzydNofLmVzGZkgrRNzi9CdSXDNYjfuEgWHWPkwnGZ5rNYh7wMysqBCnRuMsAJA0P
-	pIIbkOiufglf6Dhklbt6CjhLVNFSvZ04cbPIubO39ZldTQofdBesq2i/gI/yTuc1GjrW
-	OlmNP0jcDVAGLrvnQB28nPJF6NvrZMKKp97btyAxXKXYT/6OY3S/vrk7wtK/BunrJGIP
-	kXMq7g8w8jj5VbHoFGn7SCnAaOjfbMkJJDtQZpCiQfYoPuEVKZT3sc/Yqlmre++TwChr
-	ep0Q==
-X-Received: by 10.66.49.38 with SMTP id r6mr13923383pan.212.1366303651787;
-	Thu, 18 Apr 2013 09:47:31 -0700 (PDT)
-Received: from [192.168.1.100] ([94.205.106.101])
-	by mx.google.com with ESMTPS id pa2sm11565547pac.9.2013.04.18.09.47.29
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 18 Apr 2013 09:47:30 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <FFFC0574-F5E4-4239-AECA-A4F6AF9BDAE9@gmail.com>
-Date: Thu, 18 Apr 2013 20:47:25 +0400
-Message-Id: <24726B11-5930-499E-BAB2-51A9BA32CDCD@gmail.com>
-References: <9CEFD538-1DCB-4431-A89F-18DC00A7C9A4@gmail.com>
-	<CAHUNapQakOn5n3=fAHT7nBCYLU1fAiVNm52cLEn4rORGuXaFRg@mail.gmail.com>
-	<76557A7C-1A9C-4A40-9E31-B8F3EDE828F9@gmail.com>
-	<FFFC0574-F5E4-4239-AECA-A4F6AF9BDAE9@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1503)
-Subject: Re: [poky] bash: oe-init-build-env: line 33: syntax error near unexpected token `elif'
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=ebuMweNE8hkAk5prvX87jlTv5gDJ1P5aYF+w4XLM6mM=;
+	b=gp1z9FlrM1N3ogVyBahX+2OrM134dlmWJAZ6lyd/30ftD8xDLJ+aIqXDnbSf5UZ79l
+	wSIS5OGeMw+mpTBQw9thYOxEtDvD6qN4PVYGfQPSIZfueguD+txQwWBbCxhMZryKlLkX
+	I/a8MVY/XaLJU3YXRXMEsK0PU3hbUOEXLF4dd+F/mhR3XvHBgqfSFYWXMHJOqqBukbYk
+	f8uvXNJ6gf3LRAeWxDWbK7lShMsIOUrC9nW3f0ZqHPQnxfaddIfUSG48VY1mMEHZLLqu
+	o8ONA16mf5qCFDt4IGWE/B09UsehjGd+k0wWkaNDE8k3H88pJ5+dpX36vScjr/eKoiz9
+	BK1A==
+MIME-Version: 1.0
+X-Received: by 10.52.229.234 with SMTP id st10mr7686842vdc.70.1366310070332;
+	Thu, 18 Apr 2013 11:34:30 -0700 (PDT)
+Received: by 10.59.7.197 with HTTP; Thu, 18 Apr 2013 11:34:30 -0700 (PDT)
+Date: Thu, 18 Apr 2013 19:34:30 +0100
+Message-ID: <CAPhDKbENJcwh=wzUxA_4vN9VC3+SeTDvU8JGkfXmS4cgJec3ew@mail.gmail.com>
+From: Ilya Dmitrichenko <errordeveloper@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Warning message building python packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,18 +34,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Apr 2013 16:47:32 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 18 Apr 2013 18:34:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
 Hi,
-     I think I know what happened. I briefly setup autocrlf=3Dtrue in =
-the global .gitconfig last week, and when I pull in all the latest =
-commits, it ended up adding CRLF, and ended up causing issues. Even =
-after disabling it, the damage already done to the local poky =
-repository. Luckily I had backups.
 
-This shouldn't have happened to with git!
+I have posted my question on Stack Overflow:
+http://stackoverflow.com/questions/16090550/building-python-packages
 
-Elvis Dowson=
+As the presence of OE users is on SO is not quite high, I though I
+might post the link here also.
+
+Cheers,
+-- 
+Ilya
 
