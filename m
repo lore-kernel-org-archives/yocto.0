@@ -1,36 +1,35 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C415E014E0
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 03:28:00 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:43887 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1USm4M-0002Ay-Hj; Thu, 18 Apr 2013 06:27:58 -0400
-Date: Thu, 18 Apr 2013 06:27:50 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Gary Thomas <gary@mlbassoc.com>
-In-Reply-To: <516FC9B2.1090802@mlbassoc.com>
-Message-ID: <alpine.DEB.2.02.1304180627120.4241@oneiric>
-References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
-	<2155264.hXQStR7GGJ@helios> <516EBBE7.8060201@mlbassoc.com>
-	<CAHUNapRQdV5hM8rMrChYD4joa1N0eN9iok6+C4UU07AaJv04Zg@mail.gmail.com>
-	<516FC9B2.1090802@mlbassoc.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8690EE014E0
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 04:42:36 -0700 (PDT)
+Received: by mail-wi0-f169.google.com with SMTP id h11so1818724wiv.4
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 04:42:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:content-type;
+	bh=WDq4xWVLqBexLzSBVVnM+9r0r0cBEhnMPj6Rq/yui8Q=;
+	b=FkV233l5p63UKmH9lCBF38pJXMaM1Px2q5eKBrF03KP3yp2ckjDcMPHtoh1BHMsYfV
+	w9+NPEYcOQOvmGsJLIAqWROHzYZVdqAUJvtZeIio9bskGV6TEOWkS54l7+XtSZ+2a1hy
+	o+EZE7wbBHkTlu4kpkVGdpAlR4JcpN35NxkMSbVQ898h2UEeoxnx3MTPmzXmDkeZ45C0
+	JG6s0DCk5aqhE1tgBw0KeJM7ZLMfyTazIxuUcdzcAO9gMTySfwUO90xuyzSjZraLnT2i
+	6/UCzPwMBpBA39gRu6Ki2BU2n9qBMuPlydm1XKbAnXzkNnNO5JqRA11TAtz5nnlV+/UO
+	w2cQ==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: writeup on the mechanics of FILESEXTRAPATHS and bbappend files
+X-Received: by 10.180.80.3 with SMTP id n3mr17386491wix.20.1366285355149; Thu,
+	18 Apr 2013 04:42:35 -0700 (PDT)
+Received: by 10.194.167.73 with HTTP; Thu, 18 Apr 2013 04:42:34 -0700 (PDT)
+In-Reply-To: <CA+gsK-pdGWseY5mcf3naYoFaqLieXFaVazNWQ9yo5BZEDuSm7g@mail.gmail.com>
+References: <CAHUNapTBjAg2U6p3nk8E_dtrJAcJ3BJ-EFYvsCtQ2R71dtGRwg@mail.gmail.com>
+	<CAHUNapRTY=2TtCSFE=OJz_iGwuaJHKv8iHsL3VrJ=jKXSCf=SQ@mail.gmail.com>
+	<CA+gsK-r=iE4CmnUXb79J-T5g6dy5csKZNNpMu5=SnFM4WBdKbg@mail.gmail.com>
+	<CAHUNapS_dMQnpqCFMLqyGrbch0SQbJZc4aSVxFk+SRO9mU=2rQ@mail.gmail.com>
+	<CA+gsK-pdGWseY5mcf3naYoFaqLieXFaVazNWQ9yo5BZEDuSm7g@mail.gmail.com>
+Date: Thu, 18 Apr 2013 07:42:34 -0400
+Message-ID: <CAHUNapQqzgLsC7HDyvARLDb=gJ3X6QxWLnHND69duBXBLKybGg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: runqemu: Could not initialize SDL(No available video device) - exiting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,43 +41,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Apr 2013 10:28:00 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 18 Apr 2013 11:42:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Thu, 18 Apr 2013, Gary Thomas wrote:
+On Thu, Apr 18, 2013 at 12:50 AM, Rudolf Streif
+<rstreif@linuxfoundation.org> wrote:
+> Removing sstate triggered a rebuilt of qemu-native which also includes
+> running the configure task again whose output sets the switch whether or not
+> Qemu is built with video support. Apparently the first time you built it it
+> could not find libsdl-devel on your host but the second time it could. But
+> of course I cannot tell you why that happened. Do you still have the logs?
+> Did you install libsdl-devel between the two attempts?
 
-> On 2013-04-17 16:26, Trevor Woerner wrote:
-> > On Wed, Apr 17, 2013 at 11:12 AM, Gary Thomas <gary@mlbassoc.com> wrote:
-> > > I also think it would be good to point out the use of := in the
-> > > FILESEXTRAPATHS
-> > > assignment and why it's important.
-> >
-> > Knowing that the := operator will put your directories first is only
-> > useful if you also know that the underlying mechanism will take the
-> > first such files from the given directories it encounters :-) What's
-> > to say bitbake doesn't look at all the directories/files and take the
-> > last ones?
->
-> This has more to do with how the path is constructed (using _prepend).
->
-> My point, which was totally unclear to me when using this line, was
-> that with ':=' ${THISDIR} evaluates to the directory that contains
-> the .bbappend file (what you want/need) whereas with '=' it evaluates
-> to the directory containing the main .bb file.  Incredibly confusing
-> if you miss it...
+Unfortunately the logs are long lost; I clean out TMPDIR quite
+regularly (but retain sstate). This makes perfect sense and is most
+likely what happened; I probably noticed I was missing libSDL-devel
+when I built qemu from git by hand :-) In any case restoring my old
+sstate and doing
 
-  ah, quite so, must make a note of that. i wonder how many other
-places that point should be made forcefully.
+    $ bitbake -c cleansstate qemu-native
+    $ bitbake -c cleansstate nativesdk-qemu
 
-rday
+cleaned everything up for me.
 
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Should YP be trying to build its own copy of libSDL (with the -devel)
+if it finds some part of libSDL (i.e. the header files) is missing
+from the host? This is almost like a "host contamination" issue, no?
 
