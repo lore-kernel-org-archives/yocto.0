@@ -1,19 +1,18 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D915E014DD
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 05:37:40 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B5BAE01496
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 06:35:23 -0700 (PDT)
 Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:54102 helo=crashcourse.ca)
+	([99.240.144.66]:62716 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UTAZP-0005um-LJ
-	for yocto@yoctoproject.org; Fri, 19 Apr 2013 08:37:39 -0400
-Date: Fri, 19 Apr 2013 08:37:36 -0400 (EDT)
+	id 1UTBTG-00006y-Aw; Fri, 19 Apr 2013 09:35:22 -0400
+Date: Fri, 19 Apr 2013 09:35:18 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1304190827410.4247@oneiric>
+Message-ID: <alpine.DEB.2.02.1304190932010.4968@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -25,7 +24,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: clarification about BSP layer names and bblayers.conf file?
+Subject: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,48 +36,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 12:37:40 -0000
+X-List-Received-Date: Fri, 19 Apr 2013 13:35:23 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  from section 1.1 of BSP developers guide:
+The actual files subdirectory name is "netbase-5.0", not "netbase".
 
-http://www.yoctoproject.org/docs/latest/bsp-guide/bsp-guide.html#bsp-layers
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-first, it's not actually *required* that a layer name start with the
-prefix "meta-", is it?  pretty sure it's not and, if it isn't, that
-should be made abundantly clear. it's fine to point out that it's a
-well-established convention but it should still be mentioned
-explicitly that it's not necessary.
+---
 
-  second, the BBLAYERS example there seems overly complicated and
-potentially confusing to beginners. the fact that meta-yocto is listed
-as NON_REMOVABLE might make readers wonder how they're supposed to
-know that. why not go with something a lot more people will see, like,
-say:
+  same fix was once applied to exactly the same recipe bbappend file
+under meta-ti layer.
 
-     BBLAYERS = ?" \                  <-- and that looks like a typo
-       /usr/local/src/yocto/meta \
-       /usr/local/src/yocto/meta-ti \
-       "
-
-     BBLAYERS_NON_REMOVABLE ?= " \
-       /usr/local/src/yocto/meta \
-       "
-
-  finally, the passing reference to layers that contain sub-BSP-layers
-is good, but show an example, such as the fact that the meta-crownbay
-layer.conf file has a dependency on meta-intel:
-
-...
-LAYERDEPENDS_crownbay = "intel"
-
-  never pass up the opportunity to reinforce an idea with a few lines
-of actual code. :-)
-
-  more shortly ...
-
-rday
+diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core/netbase/netbase_5.0.bbappend
+index 36432f5..a3fbd33 100644
+--- a/recipes-core/netbase/netbase_5.0.bbappend
++++ b/recipes-core/netbase/netbase_5.0.bbappend
+@@ -1,3 +1,3 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+ # Don't forget to bump PRINC if you update the extra files.
+ PRINC = "1"
 
 -- 
 
@@ -89,5 +68,4 @@ Robert P. J. Day                                 Ottawa, Ontario, CANADA
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
 ========================================================================
-
 
