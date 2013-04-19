@@ -1,25 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64E4DE01496;
-	Fri, 19 Apr 2013 01:25:56 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Apr 2013 01:25:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,507,1363158000"; d="scan'208";a="321585478"
-Received: from unknown (HELO helios.localnet) ([10.255.13.209])
-	by fmsmga001.fm.intel.com with ESMTP; 19 Apr 2013 01:25:40 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Fri, 19 Apr 2013 09:25:24 +0100
-Message-ID: <1392229.rlL64ybf7G@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <FB1FE6F3-40EC-4711-95D0-5633B0103297@gmail.com>
-References: <FB1FE6F3-40EC-4711-95D0-5633B0103297@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54C6EE014DD
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 05:19:50 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:54051 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UTAI9-0005Ak-SS
+	for yocto@yoctoproject.org; Fri, 19 Apr 2013 08:19:49 -0400
+Date: Fri, 19 Apr 2013 08:19:46 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304190814320.4139@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org,
-	meta-xilinx Mailing List <meta-xilinx@yoctoproject.org>
-Subject: Re: [meta-xilinx] PREFERRED_VERSION_linux-libc-headers = "3.6" getting ignored
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: how strict are released BSP requirements?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,40 +37,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 08:25:56 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 19 Apr 2013 12:19:51 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Friday 19 April 2013 11:44:49 Elvis Dowson wrote:
->        In my zynq-7-default-versions.inc file, I have the following
-> definitions for preferred versions
-> 
-> PREFERRED_VERSION_virtual/kernel ?= "3.6"
-> PREFERRED_VERSION_linux-libc-headers = "3.6"
-> PREFERRED_VERSION_u-boot = "2012.10"
-> 
-> However, when I build core-image-minimal,
-> PREFERRED_VERSION_linux-libc-headers = "3.6" gets ignored and it goes ahead
-> and builds linux-libc-headers_3.8.bb
-> 
-> Is it only effective if specified in the local.conf file?
 
-No, it should be effective anywhere - unless it's being overridden later on. In 
-recent versions of bitbake, the -e option will show for each variable how the 
-final value got set, you should be able to see where it is being overridden 
-from there. Alternatively with older versions you should just be able to "git 
-grep" for the value in each of the layers you have enabled in order to find 
-where it is being set.
+  (aside: currently going through yocto BSP developer's guide with my
+proofreader's beanie on so be prepared for a few BSP-related questions
+today. you've been warned.)
 
-Are you sure you really need your own version of linux-libc-headers? Most of 
-the time it is not necessary for the version to match that of the kernel you 
-are using.
+  in section on BSP requirements:
 
-Cheers,
-Paul
+http://www.yoctoproject.org/docs/latest/bsp-guide/bsp-guide.html#released-bsp-requirements
+
+there are alleged requirements like the existence of README and
+README.sources files, but it seems lots of layers at
+http://layers.openembedded.org/layerindex/ don't have one or the other
+of those files. could that explanation be refined a bit? or should
+those layers suck it up and add all files that are allegedly
+"required"?
+
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
