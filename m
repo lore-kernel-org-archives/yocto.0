@@ -1,40 +1,34 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
-	[209.85.128.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A104E01496
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 23:10:38 -0700 (PDT)
-Received: by mail-ve0-f172.google.com with SMTP id db10so70153veb.31
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 23:10:37 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D5C2E01496;
+	Fri, 19 Apr 2013 00:44:56 -0700 (PDT)
+Received: by mail-pa0-f47.google.com with SMTP id bj1so186660pad.20
+	for <multiple recipients>; Fri, 19 Apr 2013 00:44:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:content-type;
-	bh=JdRnNAZ+GyDwhmXOAFwmwdFq5SnroIgvCJvfCRX7w8Y=;
-	b=XZasp/Azen6x4rKqKz2gYkRS3Zu2lT4Ntgb5RCfYFn/ashav0Vx16dpg5fx3nzclCr
-	MTb+nD9mj4LNTJ4K9D7S5ioGDnY/X5qcoUZKgnkwkLZSC6jz8xoTKRT/kRV9a0m80A1i
-	l2CJhQRqtUSVQ0d17T7x4REtCzIKq1jLLzABZXWHU2GxTR55snToDPtO0CGIUWxvjavw
-	DMIwGBvOytsXFC8Pb4fQtORzw1OjG/r3S0sOJEGj1KbaVHBNAmFR8cByB58L//623a7U
-	kSI+unRu0gW5UL4Ki2874+L5l1RMHO4F6lpnvMqlxZMoLw/SHS/x25ZKHIDv34rxCPel
-	Km2Q==
-MIME-Version: 1.0
-X-Received: by 10.58.144.170 with SMTP id sn10mr6044798veb.7.1366351837464;
-	Thu, 18 Apr 2013 23:10:37 -0700 (PDT)
-Sender: satyaswaroop.damarla@gmail.com
-Received: by 10.52.88.177 with HTTP; Thu, 18 Apr 2013 23:10:37 -0700 (PDT)
-In-Reply-To: <62673661A504604B856269DAADA8BC281DE3C0EA@ILPTWPVEXMB02.ecitele.com>
-References: <CAFMfyzJJY0hFGXimgdVwzp8i58PnXPnAUyKH_bk9DU25FXVjiw@mail.gmail.com>
-	<CAJTo0LbUfNkkgeM9HNN4pE6n-tMyMJY9_4_Ns5BTie91=Qy4HQ@mail.gmail.com>
-	<CAFMfyzKZNic47o-x83EZu5ueu7imZE9ZWCtYGsPu+J-0oqE2qQ@mail.gmail.com>
-	<CAJTo0LZr0s1tp6V0_3W5odWmCOzyRtU4_E92OL8omtf9GBGTPA@mail.gmail.com>
-	<CAFMfyz+F292KQyQBBV7Oyu_q+BAj0F=gBPQqzE6EEDKk347FMQ@mail.gmail.com>
-	<CAJTo0Laj1w=q5NSq+zpZufLib8gs2qOKkzQi2syVpjep13ML_Q@mail.gmail.com>
-	<62673661A504604B856269DAADA8BC281DE3C0EA@ILPTWPVEXMB02.ecitele.com>
-Date: Fri, 19 Apr 2013 08:10:37 +0200
-X-Google-Sender-Auth: Km3a3m50c9WObx5sBka6nUa0rnk
-Message-ID: <CAFMfyz+Q5YWp1yqD-TM9Dk9017mp+zJho0tMZmF9C6nKckJ-jA@mail.gmail.com>
-From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-To: Michael Fainstein <Michael.Fainstein@ecitele.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Adding prebuilt binaries to /usr/bin on rootfs
+	h=x-received:from:content-type:content-transfer-encoding:subject:date
+	:message-id:cc:to:mime-version:x-mailer;
+	bh=lwrl2tXNqtwuvaufz3N7Qu96CvY24zf2dXMT5Y0UggI=;
+	b=ZwDS6GKcgC9Qq8aYO3m+rUj0B3hkX6kDovVRj//No0ZaXRlD64IcRo/Iv6ZX2UXmgz
+	3YinJ3KHs5zdO3SnQOJ31ObYygBTHPe6TseDUFBiOvhC+To/SEpmWWIvmSv5+XMYuQH1
+	xu9lO2m+oSNaJ2zg6vGLyeyCAb5eWruf//WrZcjnEPxauekJP/jbsISmtPOoV4XSn9fb
+	gakaWvCDrj9R5vfFR52OZqqf76mGfMGXgzhSQt8WN1nXjcePvS5pQeKov4Lo9h7Fd+tZ
+	8PBx4d/fw2qvkS3O/WuexqLX426EUVEErmmVx60KHgv6oO5KluUPgxtBpWXmpXzFMoHb
+	CYBA==
+X-Received: by 10.68.113.101 with SMTP id ix5mr17746397pbb.142.1366357496149; 
+	Fri, 19 Apr 2013 00:44:56 -0700 (PDT)
+Received: from [192.168.1.100] ([94.205.106.101])
+	by mx.google.com with ESMTPS id lo7sm13768693pab.19.2013.04.19.00.44.53
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 19 Apr 2013 00:44:55 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Fri, 19 Apr 2013 11:44:49 +0400
+Message-Id: <FB1FE6F3-40EC-4711-95D0-5633B0103297@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
+X-Mailer: Apple Mail (2.1503)
+Cc: meta-xilinx Mailing List <meta-xilinx@yoctoproject.org>
+Subject: [meta-xilinx] PREFERRED_VERSION_linux-libc-headers = "3.6" getting ignored
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,118 +40,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 06:10:38 -0000
-Content-Type: multipart/alternative; boundary=047d7b672198e9120604dab09320
-
---047d7b672198e9120604dab09320
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 19 Apr 2013 07:44:56 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Gentlemen!
+Hi,
+       In my zynq-7-default-versions.inc file, I have the following =
+definitions for preferred versions
 
-It worked.. Thanks a lot
+PREFERRED_VERSION_virtual/kernel ?=3D "3.6"
+PREFERRED_VERSION_linux-libc-headers =3D "3.6"
+PREFERRED_VERSION_u-boot =3D "2012.10"
 
-Greets,
-Satya
+However, when I build core-image-minimal, =
+PREFERRED_VERSION_linux-libc-headers =3D "3.6" gets ignored and it goes =
+ahead and builds linux-libc-headers_3.8.bb
 
+Is it only effective if specified in the local.conf file?
 
-On Thu, Apr 18, 2013 at 7:01 AM, Michael Fainstein <
-Michael.Fainstein@ecitele.com> wrote:
+Elvis Dowson=
 
-> > -----Original Message-----
-> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> > bounces@yoctoproject.org] On Behalf Of Burton, Ross
-> > Sent: =D7=99=D7=95=D7=9D =D7=93 17 =D7=90=D7=A4=D7=A8=D7=99=D7=9C 2013 =
-21:55
-> > To: Satya Swaroop Damarla
-> > Cc: yocto@yoctoproject.org
-> > Subject: Re: [yocto] Adding prebuilt binaries to /usr/bin on rootfs
-> >
-> > On 17 April 2013 19:10, Satya Swaroop Damarla <swaroop.damarla@gmail.co=
-m
-> >
-> > wrote:
-> > > If I dont avoid this error.. I cant build the rootfilesystem....
-> >
-> > Hopefully someone else will respond who knows how to handle that proble=
-m.
-> >
-> > Ross
->
-> This error is generated by meta/classes/insane.bbclass.
-> Check the usage of INSANE_SKIP_ flag in various recipes. Try adding line
-> INSANE_SKIP_${PN} =3D "ldflags"
-> to your recipe.
->
-> Michael
->
->
-> This e-mail message is intended for the recipient only and contains
-> information which is CONFIDENTIAL and which may be proprietary to ECI
-> Telecom. If you have received this transmission in error, please inform u=
-s
-> by e-mail, phone or fax, and then delete the original and all copies
-> thereof.
->
->
-
---047d7b672198e9120604dab09320
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
-">Gentlemen!</span><div style=3D"font-family:arial,sans-serif;font-size:13p=
-x"><br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">It =
-worked.. Thanks a lot</div>
-<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
-tyle=3D"font-family:arial,sans-serif;font-size:13px">Greets,</div><div styl=
-e=3D"font-family:arial,sans-serif;font-size:13px">Satya</div></div><div cla=
-ss=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">On Thu, Apr 18, 2013 at 7:01 AM, Michael=
- Fainstein <span dir=3D"ltr">&lt;<a href=3D"mailto:Michael.Fainstein@ecitel=
-e.com" target=3D"_blank">Michael.Fainstein@ecitele.com</a>&gt;</span> wrote=
-:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">&gt;=
- -----Original Message-----<br>
-&gt; From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@=
-yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-">yocto-</a><br>
-&gt; <a href=3D"mailto:bounces@yoctoproject.org">bounces@yoctoproject.org</=
-a>] On Behalf Of Burton, Ross<br>
-&gt; Sent: =D7=99=D7=95=D7=9D=C2=A0=D7=93 17 =D7=90=D7=A4=D7=A8=D7=99=D7=9C=
- 2013 21:55<br>
-&gt; To: Satya Swaroop Damarla<br>
-&gt; Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
-a><br>
-&gt; Subject: Re: [yocto] Adding prebuilt binaries to /usr/bin on rootfs<br=
->
-&gt;<br>
-&gt; On 17 April 2013 19:10, Satya Swaroop Damarla &lt;<a href=3D"mailto:sw=
-aroop.damarla@gmail.com">swaroop.damarla@gmail.com</a>&gt;<br>
-&gt; wrote:<br>
-&gt; &gt; If I dont avoid this error.. I cant build the rootfilesystem....<=
-br>
-&gt;<br>
-&gt; Hopefully someone else will respond who knows how to handle that probl=
-em.<br>
-&gt;<br>
-&gt; Ross<br>
-<br>
-</div></div>This error is generated by meta/classes/insane.bbclass.<br>
-Check the usage of INSANE_SKIP_ flag in various recipes. Try adding line<br=
->
-INSANE_SKIP_${PN} =3D &quot;ldflags&quot;<br>
-to your recipe.<br>
-<br>
-Michael<br>
-<br>
-<br>
-This e-mail message is intended for the recipient only and contains informa=
-tion which is CONFIDENTIAL and which may be proprietary to ECI Telecom. If =
-you have received this transmission in error, please inform us by e-mail, p=
-hone or fax, and then delete the original and all copies thereof.<br>
-
-<br>
-</blockquote></div><br></div>
-
---047d7b672198e9120604dab09320--
