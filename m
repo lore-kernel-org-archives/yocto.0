@@ -1,47 +1,40 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
-	[209.85.215.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D31E4E01496
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 20:34:38 -0700 (PDT)
-Received: by mail-ea0-f170.google.com with SMTP id a15so1522905eae.15
-	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 20:34:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=n4w+7hwjAM4hIKyb/MWv5NcozX5zJQ3w11YCD6inZOM=;
-	b=Dyx6vNAlHvR9M2k0hf8f/J57qMfnIVtFZDehhagSm3O9w4Qwp688gyUZ7s0jI2icBd
-	fx9+CP0PcSt2QyWSMuaE5Y6WF4uoaXg6/M+W3IhcS9bRF4cL73p9l36gOfW8CdglFZCq
-	AwEb+mxVeSpUg3HwW/TGS5XUwNBMQ37NyB7vM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type:x-gm-message-state;
-	bh=n4w+7hwjAM4hIKyb/MWv5NcozX5zJQ3w11YCD6inZOM=;
-	b=JADIh2MJdqMyM1WX9zjMI/3Awl6THK7uID45LpuUqdSiYYSdnAi0vT9f0W55wPMaYu
-	5dQnHc5/XAeuHTB/f4Ick+8HyBcrWgHRfekfMHSqhI1k90ksjhU1llAW2qAtaY5orYCn
-	R8RexcJz0dThzXhL9EWRDcs5So3pgAat5vznV1vi2n39Se2DjOJ33qfSRvJHJsw/KSF5
-	vTsXha18gmu6XeOCsHo9hh3mvUYdPyzHH1a0r90h8hsXYLJ6573+qc7xjAo6Tmy29Se1
-	P84t0iXyDfa52NKf4PhNXC/Pi5cfMzzfze+96CIx0KFzLj6piEFd+8oKzmdhnj1803TF
-	8YlQ==
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
+	[209.85.128.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A104E01496
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 23:10:38 -0700 (PDT)
+Received: by mail-ve0-f172.google.com with SMTP id db10so70153veb.31
+	for <yocto@yoctoproject.org>; Thu, 18 Apr 2013 23:10:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type;
+	bh=JdRnNAZ+GyDwhmXOAFwmwdFq5SnroIgvCJvfCRX7w8Y=;
+	b=XZasp/Azen6x4rKqKz2gYkRS3Zu2lT4Ntgb5RCfYFn/ashav0Vx16dpg5fx3nzclCr
+	MTb+nD9mj4LNTJ4K9D7S5ioGDnY/X5qcoUZKgnkwkLZSC6jz8xoTKRT/kRV9a0m80A1i
+	l2CJhQRqtUSVQ0d17T7x4REtCzIKq1jLLzABZXWHU2GxTR55snToDPtO0CGIUWxvjavw
+	DMIwGBvOytsXFC8Pb4fQtORzw1OjG/r3S0sOJEGj1KbaVHBNAmFR8cByB58L//623a7U
+	kSI+unRu0gW5UL4Ki2874+L5l1RMHO4F6lpnvMqlxZMoLw/SHS/x25ZKHIDv34rxCPel
+	Km2Q==
 MIME-Version: 1.0
-X-Received: by 10.15.94.200 with SMTP id bb48mr37297957eeb.21.1366342477299;
-	Thu, 18 Apr 2013 20:34:37 -0700 (PDT)
-Received: by 10.223.87.73 with HTTP; Thu, 18 Apr 2013 20:34:37 -0700 (PDT)
-In-Reply-To: <CAHUNapQqzgLsC7HDyvARLDb=gJ3X6QxWLnHND69duBXBLKybGg@mail.gmail.com>
-References: <CAHUNapTBjAg2U6p3nk8E_dtrJAcJ3BJ-EFYvsCtQ2R71dtGRwg@mail.gmail.com>
-	<CAHUNapRTY=2TtCSFE=OJz_iGwuaJHKv8iHsL3VrJ=jKXSCf=SQ@mail.gmail.com>
-	<CA+gsK-r=iE4CmnUXb79J-T5g6dy5csKZNNpMu5=SnFM4WBdKbg@mail.gmail.com>
-	<CAHUNapS_dMQnpqCFMLqyGrbch0SQbJZc4aSVxFk+SRO9mU=2rQ@mail.gmail.com>
-	<CA+gsK-pdGWseY5mcf3naYoFaqLieXFaVazNWQ9yo5BZEDuSm7g@mail.gmail.com>
-	<CAHUNapQqzgLsC7HDyvARLDb=gJ3X6QxWLnHND69duBXBLKybGg@mail.gmail.com>
-Date: Thu, 18 Apr 2013 20:34:37 -0700
-Message-ID: <CA+gsK-pF=teYdc+AZxnnN5suTRpZKKkJLZtnwCAiDBAHHnNMZQ@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Gm-Message-State: ALoCoQknTfEjghel2VOKOceULqLwF0hWJiJIuEOfWnaWAzdGm0w59KW5DHZdgv5Ih5HAA8T/3sV5
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: runqemu: Could not initialize SDL(No available video device) - exiting
+X-Received: by 10.58.144.170 with SMTP id sn10mr6044798veb.7.1366351837464;
+	Thu, 18 Apr 2013 23:10:37 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.88.177 with HTTP; Thu, 18 Apr 2013 23:10:37 -0700 (PDT)
+In-Reply-To: <62673661A504604B856269DAADA8BC281DE3C0EA@ILPTWPVEXMB02.ecitele.com>
+References: <CAFMfyzJJY0hFGXimgdVwzp8i58PnXPnAUyKH_bk9DU25FXVjiw@mail.gmail.com>
+	<CAJTo0LbUfNkkgeM9HNN4pE6n-tMyMJY9_4_Ns5BTie91=Qy4HQ@mail.gmail.com>
+	<CAFMfyzKZNic47o-x83EZu5ueu7imZE9ZWCtYGsPu+J-0oqE2qQ@mail.gmail.com>
+	<CAJTo0LZr0s1tp6V0_3W5odWmCOzyRtU4_E92OL8omtf9GBGTPA@mail.gmail.com>
+	<CAFMfyz+F292KQyQBBV7Oyu_q+BAj0F=gBPQqzE6EEDKk347FMQ@mail.gmail.com>
+	<CAJTo0Laj1w=q5NSq+zpZufLib8gs2qOKkzQi2syVpjep13ML_Q@mail.gmail.com>
+	<62673661A504604B856269DAADA8BC281DE3C0EA@ILPTWPVEXMB02.ecitele.com>
+Date: Fri, 19 Apr 2013 08:10:37 +0200
+X-Google-Sender-Auth: Km3a3m50c9WObx5sBka6nUa0rnk
+Message-ID: <CAFMfyz+Q5YWp1yqD-TM9Dk9017mp+zJho0tMZmF9C6nKckJ-jA@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: Michael Fainstein <Michael.Fainstein@ecitele.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Adding prebuilt binaries to /usr/bin on rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,73 +46,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 03:34:39 -0000
-Content-Type: multipart/alternative; boundary=089e016818f00081d204daae66c6
+X-List-Received-Date: Fri, 19 Apr 2013 06:10:38 -0000
+Content-Type: multipart/alternative; boundary=047d7b672198e9120604dab09320
 
---089e016818f00081d204daae66c6
-Content-Type: text/plain; charset=ISO-8859-1
-
-> Should YP be trying to build its own copy of libSDL (with the -devel)
-> if it finds some part of libSDL (i.e. the header files) is missing
-> from the host? This is almost like a "host contamination" issue, no?
->
-
-You are raising an interesting point to which I have no answer. YP has a
-recipe to build libsdl and it specifies BBCLASSEXTEND = "nativesdk" only,
-not BBCLASSEXTEND = "native nativesdk" as one would expect if were to build
-it for Qemu.
-
-The qemu.inc recipe also does not list libsdl in DEPENDS_class-native but
-it does so in DEPENDS_class-nativesdk and in DEPENDS. I cannot tell you why
-that is but it may be worthwhile trying to add libsdl to
-DEPENDS_class-native of qemu.inc and native to BBCLASSEXTEND in
-libsdl_1.2.15.bb.
-
-I wonder if bitbake qemu-nativesdk would build even if you don't have
-libsdl installed on your host.
-
-Rudi
-
---089e016818f00081d204daae66c6
-Content-Type: text/html; charset=ISO-8859-1
+--047d7b672198e9120604dab09320
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><div class=3D"gmail_quote">=
+Gentlemen!
+
+It worked.. Thanks a lot
+
+Greets,
+Satya
+
+
+On Thu, Apr 18, 2013 at 7:01 AM, Michael Fainstein <
+Michael.Fainstein@ecitele.com> wrote:
+
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> > bounces@yoctoproject.org] On Behalf Of Burton, Ross
+> > Sent: =D7=99=D7=95=D7=9D =D7=93 17 =D7=90=D7=A4=D7=A8=D7=99=D7=9C 2013 =
+21:55
+> > To: Satya Swaroop Damarla
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: [yocto] Adding prebuilt binaries to /usr/bin on rootfs
+> >
+> > On 17 April 2013 19:10, Satya Swaroop Damarla <swaroop.damarla@gmail.co=
+m
+> >
+> > wrote:
+> > > If I dont avoid this error.. I cant build the rootfilesystem....
+> >
+> > Hopefully someone else will respond who knows how to handle that proble=
+m.
+> >
+> > Ross
+>
+> This error is generated by meta/classes/insane.bbclass.
+> Check the usage of INSANE_SKIP_ flag in various recipes. Try adding line
+> INSANE_SKIP_${PN} =3D "ldflags"
+> to your recipe.
+>
+> Michael
+>
+>
+> This e-mail message is intended for the recipient only and contains
+> information which is CONFIDENTIAL and which may be proprietary to ECI
+> Telecom. If you have received this transmission in error, please inform u=
+s
+> by e-mail, phone or fax, and then delete the original and all copies
+> thereof.
+>
+>
+
+--047d7b672198e9120604dab09320
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">Gentlemen!</span><div style=3D"font-family:arial,sans-serif;font-size:13p=
+x"><br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">It =
+worked.. Thanks a lot</div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
+tyle=3D"font-family:arial,sans-serif;font-size:13px">Greets,</div><div styl=
+e=3D"font-family:arial,sans-serif;font-size:13px">Satya</div></div><div cla=
+ss=3D"gmail_extra">
+<br><br><div class=3D"gmail_quote">On Thu, Apr 18, 2013 at 7:01 AM, Michael=
+ Fainstein <span dir=3D"ltr">&lt;<a href=3D"mailto:Michael.Fainstein@ecitel=
+e.com" target=3D"_blank">Michael.Fainstein@ecitele.com</a>&gt;</span> wrote=
+:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Should YP be trying to build its own copy of libSDL (with the -devel)<br>
-if it finds some part of libSDL (i.e. the header files) is missing<br>
-from the host? This is almost like a &quot;host contamination&quot; issue, =
-no?<br>
-<div class=3D"HOEnZb"><div class=3D"h5"></div></div></blockquote></div><div=
-><font face=3D"garamond, serif"><span style=3D"border-collapse:collapse;col=
-or:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px"><br></span=
-></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-You are raising an interesting point to which I have no answer. YP has a re=
-cipe to build libsdl and it specifies BBCLASSEXTEND =3D &quot;nativesdk&quo=
-t; only, not BBCLASSEXTEND =3D &quot;native nativesdk&quot; as one would ex=
-pect if were to build it for Qemu.</span></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font face=3D"garamond, serif"><span sty=
-le=3D"border-collapse:collapse;color:rgb(102,102,102);font-family:arial,san=
-s-serif;font-size:13px">The qemu.inc recipe also does not list libsdl in DE=
-PENDS_class-native but it does so in DEPENDS_class-nativesdk and in DEPENDS=
-. I cannot tell you why that is but it may be worthwhile trying to add libs=
-dl to DEPENDS_class-native of qemu.inc and native to BBCLASSEXTEND in <a hr=
-ef=3D"http://libsdl_1.2.15.bb">libsdl_1.2.15.bb</a>.</span></font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font color=3D"#666666" face=3D"arial, s=
-ans-serif">I wonder if bitbake qemu-nativesdk would build even if you don&#=
-39;t have libsdl installed on your host.</font></div>
-<div style><font face=3D"garamond, serif"><span style=3D"border-collapse:co=
-llapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px">=
-<br></span></font></div><div style><font color=3D"#666666" face=3D"arial, s=
-ans-serif">Rudi</font></div>
+x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">&gt;=
+ -----Original Message-----<br>
+&gt; From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-">yocto-</a><br>
+&gt; <a href=3D"mailto:bounces@yoctoproject.org">bounces@yoctoproject.org</=
+a>] On Behalf Of Burton, Ross<br>
+&gt; Sent: =D7=99=D7=95=D7=9D=C2=A0=D7=93 17 =D7=90=D7=A4=D7=A8=D7=99=D7=9C=
+ 2013 21:55<br>
+&gt; To: Satya Swaroop Damarla<br>
+&gt; Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt; Subject: Re: [yocto] Adding prebuilt binaries to /usr/bin on rootfs<br=
+>
+&gt;<br>
+&gt; On 17 April 2013 19:10, Satya Swaroop Damarla &lt;<a href=3D"mailto:sw=
+aroop.damarla@gmail.com">swaroop.damarla@gmail.com</a>&gt;<br>
+&gt; wrote:<br>
+&gt; &gt; If I dont avoid this error.. I cant build the rootfilesystem....<=
+br>
+&gt;<br>
+&gt; Hopefully someone else will respond who knows how to handle that probl=
+em.<br>
+&gt;<br>
+&gt; Ross<br>
+<br>
+</div></div>This error is generated by meta/classes/insane.bbclass.<br>
+Check the usage of INSANE_SKIP_ flag in various recipes. Try adding line<br=
+>
+INSANE_SKIP_${PN} =3D &quot;ldflags&quot;<br>
+to your recipe.<br>
+<br>
+Michael<br>
+<br>
+<br>
+This e-mail message is intended for the recipient only and contains informa=
+tion which is CONFIDENTIAL and which may be proprietary to ECI Telecom. If =
+you have received this transmission in error, please inform us by e-mail, p=
+hone or fax, and then delete the original and all copies thereof.<br>
 
-</div></div>
+<br>
+</blockquote></div><br></div>
 
---089e016818f00081d204daae66c6--
+--047d7b672198e9120604dab09320--
