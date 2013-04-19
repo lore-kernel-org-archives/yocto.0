@@ -1,35 +1,38 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D8F9E0144A
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:23:05 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:55563 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UTCDQ-0002YN-GN; Fri, 19 Apr 2013 10:23:04 -0400
-Date: Fri, 19 Apr 2013 10:23:01 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-In-Reply-To: <517151AF.3030301@r-finger.com>
-Message-ID: <alpine.DEB.2.02.1304191019470.5475@oneiric>
-References: <alpine.DEB.2.02.1304190945410.5102@oneiric>
-	<CAJTo0Lac3O-3n13gbzEcKysxijojQMgj0k5Sh1YTuk6dDVkFNw@mail.gmail.com>
-	<517151AF.3030301@r-finger.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A2BCE0144A
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:25:10 -0700 (PDT)
+Received: by mail-pa0-f54.google.com with SMTP id fa11so2313726pad.41
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:25:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=YQecT8oMrQwsqk3fK5URcZvnvIzhWs8CU2v/LnEg3OU=;
+	b=cn8wvEtovtP5wjmtd1mtEGoJTAI0RslvExd7RW7MFhLr4BWllBc4vVYiop76JUfP+u
+	G+vKB8y5lg2D0lhwHx/X+zp6BTSOzz2PJYyCusmK4S+Zh663Zlid8v7qBenRbZnWII8t
+	a7aOi7D1m9edwRmroewB40GV35gS+PNOJd2TVuLc/C6UhOar+rBLN4WgUM5abZk/RQWH
+	msOCnsyfYpEWPy+idjALEoRadOPBvtwh6c+q1QaQMVfvI1hl6gAyvYQMNJ73ay6CxhGK
+	UUlCIZJcumiHw0FBBaWwdxzM4JWlVyMqpyK5sm2lIKU6NRCZQABGmgoAdXXIKyW6FnBz
+	aEKg==
+X-Received: by 10.68.172.65 with SMTP id ba1mr19982580pbc.166.1366381509745;
+	Fri, 19 Apr 2013 07:25:09 -0700 (PDT)
+Received: from localhost (ip-62-24-80-7.net.upcbroadband.cz. [62.24.80.7])
+	by mx.google.com with ESMTPS id uy3sm13628747pbc.7.2013.04.19.07.25.06
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Fri, 19 Apr 2013 07:25:08 -0700 (PDT)
+Date: Fri, 19 Apr 2013 16:25:09 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Message-ID: <20130419142509.GJ2489@jama>
+References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
+	<20130419135843.GH2489@jama>
+	<alpine.DEB.2.02.1304191016030.5451@oneiric>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: any point in a single machine recipe using a machine-specific file?
+In-Reply-To: <alpine.DEB.2.02.1304191016030.5451@oneiric>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,54 +44,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 14:23:05 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 19 Apr 2013 14:25:10 -0000
+X-Groupsio-MsgNum: 13287
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="yr6OvWOSyJed8q4v"
+Content-Disposition: inline
 
-On Fri, 19 Apr 2013, Tomas Frydrych wrote:
+--yr6OvWOSyJed8q4v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On 19/04/13 15:02, Burton, Ross wrote:
-> > On 19 April 2013 14:49, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> >>   but in the case of the rpi, is there any value in putting the
-> >> files under a machine-named subdirectory? of course it won't
-> >> hurt, but is there any point to it?
+On Fri, Apr 19, 2013 at 10:17:10AM -0400, Robert P. J. Day wrote:
+> On Fri, 19 Apr 2013, Martin Jansa wrote:
+>=20
+> > On Fri, Apr 19, 2013 at 09:35:18AM -0400, Robert P. J. Day wrote:
+> > >
+> > > The actual files subdirectory name is "netbase-5.0", not "netbase".
+> > >
+> > > Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+> > >
+> > > ---
+> > >
+> > >   same fix was once applied to exactly the same recipe bbappend file
+> > > under meta-ti layer.
+> > >
+> > > diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core=
+/netbase/netbase_5.0.bbappend
+> > > index 36432f5..a3fbd33 100644
+> > > --- a/recipes-core/netbase/netbase_5.0.bbappend
+> > > +++ b/recipes-core/netbase/netbase_5.0.bbappend
+> > > @@ -1,3 +1,3 @@
+> > > -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > > +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+> > >  # Don't forget to bump PRINC if you update the extra files.
+> > >  PRINC =3D "1"
 > >
-> > You could argue the clarity that it will bring if another machine
-> > is added to the BSP - the maintainer will be forced to decide if
-> > it's common across all machines that the BSP will service, or
-> > truly is specific to a particular machine.
->
-> No, no, no, this has nothing to do with clarity, it's the only way
-> in which it can be done without breaking other machines. As Martin
-> said, multiple BSP layers often are included at the same time, and
-> if a config file pulled in by a BSP bbappend is not made machine
-> specific (which is what the machine specific directory means), it
-> will be installed for any machine that does not come with a higher
-> priority bbappend that also overrides this file.
+> > that's P or use BP, and fix PRINC when you're there..
+>=20
+>   ok, pedantic question -- the comment suggests you're supposed to
+> increment PRINC "if you update the extra files". but i didn't, i just
+> made sure they're now being included. i guess that still counts, yes?
 
-  ok, now we're getting somewhere -- so it would be *strongly*
-*encouraged* to make all of these bbappend files machine-specific?
-that is, if you want to avoid potential confusion down the road. i'm
-still a bit queasy on the idea that you'd include so many layers that
-this might be an issue but ... whatever. i mean, if i wasn't
-specifically building for an rpi, i can't imagine why i'd include the
-meta-rpi layer.
+I was talking about PRINC :=3D "${@int(PRINC) + 1}"
 
-> As an additional point, the 'interfaces' file should not be included
-> in a netbase bbappend, it's not part of the netbase base package ...
-> I opened a bug against meta-yocto-bsp for this, but seems this is
-> more wide spread.
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-  huh, you're right, i'd never noticed that.
+--yr6OvWOSyJed8q4v
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-rday
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.19 (GNU/Linux)
 
--- 
+iEYEARECAAYFAlFxU8UACgkQN1Ujt2V2gBzC4ACfWcJsuVfShuEB8AlfzZvSnGNk
+XbcAoLhHMaiOFp74y8j/G9oHLOqQrfIK
+=KHC8
+-----END PGP SIGNATURE-----
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--yr6OvWOSyJed8q4v--
