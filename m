@@ -1,36 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C86DEE01410
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:39:19 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:55910 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UTCT9-0003JJ-00; Fri, 19 Apr 2013 10:39:19 -0400
-Date: Fri, 19 Apr 2013 10:39:15 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Martin Jansa <martin.jansa@gmail.com>
-In-Reply-To: <20130419142509.GJ2489@jama>
-Message-ID: <alpine.DEB.2.02.1304191038530.5636@oneiric>
-References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
-	<20130419135843.GH2489@jama>
-	<alpine.DEB.2.02.1304191016030.5451@oneiric>
-	<20130419142509.GJ2489@jama>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <katutxakurra@gmail.com>
+Received: from mail-ie0-f196.google.com (mail-ie0-f196.google.com
+	[209.85.223.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3D50E0144A
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:44:39 -0700 (PDT)
+Received: by mail-ie0-f196.google.com with SMTP id 10so264377ied.7
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:44:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=0jPLOfsHmkdukHDndssyVvRlxxrbKRHprC3SZEYihYc=;
+	b=ZM9abs5RnI6CE4x1VFcPasMoJj5oaQKJr4YPzN6vsnwO8CHeOaZaY7/F/ylWY3N6vc
+	73yTHXF8PltxZfCwFHr0nq8YgQNrOYHdc5umN7XDkB7B5W6K6mR5MKDHv2hIjohCgpGi
+	uVqsKJ0xzvQ54yvbTM2km46VYA28qxPBGtZ688v14LttMIxFJozgaHHOlqvYkItoQsJc
+	du/SbgElx7qwxWwLzq/chc+y+IXsxknyj/hz1ODNfta0sen3/YMXAORlYupFECZPJzok
+	WzcxC8S4VC/VoP7B/+ZTOBfna/CczO4LixAC00zWSMVtlUzMexYFxm5GyuAFCEQb0hy3
+	r8cQ==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
+X-Received: by 10.50.41.5 with SMTP id b5mr9533757igl.58.1366382679187; Fri,
+	19 Apr 2013 07:44:39 -0700 (PDT)
+Received: by 10.50.53.212 with HTTP; Fri, 19 Apr 2013 07:44:39 -0700 (PDT)
+Date: Fri, 19 Apr 2013 15:44:39 +0100
+Message-ID: <CAM1ZcoW1aaZUZW=t2J+GbNjyYQQPjSpRoGfJC9u-dh2ZJXFQoQ@mail.gmail.com>
+From: Katu Txakur <katutxakurra@gmail.com>
+To: yocto@yoctoproject.org
+Subject: libsnmp-dev in yocto built image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,54 +34,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 14:39:20 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 19 Apr 2013 14:44:40 -0000
+Content-Type: multipart/alternative; boundary=089e01176f7138b71004dab7c221
 
-On Fri, 19 Apr 2013, Martin Jansa wrote:
+--089e01176f7138b71004dab7c221
+Content-Type: text/plain; charset=ISO-8859-1
 
-> On Fri, Apr 19, 2013 at 10:17:10AM -0400, Robert P. J. Day wrote:
-> > On Fri, 19 Apr 2013, Martin Jansa wrote:
-> >
-> > > On Fri, Apr 19, 2013 at 09:35:18AM -0400, Robert P. J. Day wrote:
-> > > >
-> > > > The actual files subdirectory name is "netbase-5.0", not "netbase".
-> > > >
-> > > > Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-> > > >
-> > > > ---
-> > > >
-> > > >   same fix was once applied to exactly the same recipe bbappend file
-> > > > under meta-ti layer.
-> > > >
-> > > > diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core/netbase/netbase_5.0.bbappend
-> > > > index 36432f5..a3fbd33 100644
-> > > > --- a/recipes-core/netbase/netbase_5.0.bbappend
-> > > > +++ b/recipes-core/netbase/netbase_5.0.bbappend
-> > > > @@ -1,3 +1,3 @@
-> > > > -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > > > +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> > > >  # Don't forget to bump PRINC if you update the extra files.
-> > > >  PRINC = "1"
-> > >
-> > > that's P or use BP, and fix PRINC when you're there..
-> >
-> >   ok, pedantic question -- the comment suggests you're supposed to
-> > increment PRINC "if you update the extra files". but i didn't, i just
-> > made sure they're now being included. i guess that still counts, yes?
+Hi,
+I want to include net-snmp in an image that I'm building with the Yocto
+project (gumstix-console-image). When I add it net-snmp-client or server to
+the local.conf I get this error when bitbake is creating the rootfs.
+
+
+Processing perl-module-text-soundex...
+
+error: Failed dependencies:
+
+net-snmp-server = ${EXTENDPV} is needed by net-snmp-dev-5.7.1-r0.armv7a
+
+net-snmp-client = ${EXTENDPV} is needed by net-snmp-dev-5.7.1-r0.armv7a
+
+eglibc-binary-localedata-de-de.iso88591 is needed by
+locale-base-de-de.iso-8859-1-2.13-r20.armv7a
+
+/home/katu/gumstix-yocto/build/tmp/sysroots/i686-linux/usr/bin/perl-native/perl
+is needed by dpkg-1.15.8.7-r16.4.armv7a
+
+
+I also want to include libsnmp-dev to include the agent_module_config.h in
+my development enviroment.
+
+Could somebody please give me a hand with this?
+
+Thanks a lot
+
+--089e01176f7138b71004dab7c221
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div style>I want to include net-snmp in an image that =
+I&#39;m building with the Yocto project (gumstix-console-image). When I add=
+ it net-snmp-client or server to the local.conf I get this error when bitba=
+ke is creating the rootfs.</div>
+<div style><br></div><div style><div><br></div><div>Processing perl-module-=
+text-soundex...</div><div><br></div><div>error: Failed dependencies:</div><=
+div><br></div><div><span class=3D"" style=3D"white-space:pre">	</span>net-s=
+nmp-server =3D ${EXTENDPV} is needed by net-snmp-dev-5.7.1-r0.armv7a</div>
+<div><br></div><div><span class=3D"" style=3D"white-space:pre">	</span>net-=
+snmp-client =3D ${EXTENDPV} is needed by net-snmp-dev-5.7.1-r0.armv7a</div>=
+<div><br></div><div><span class=3D"" style=3D"white-space:pre">	</span>egli=
+bc-binary-localedata-de-de.iso88591 is needed by locale-base-de-de.iso-8859=
+-1-2.13-r20.armv7a</div>
+<div><br></div><div><span class=3D"" style=3D"white-space:pre">	</span>/hom=
+e/katu/gumstix-yocto/build/tmp/sysroots/i686-linux/usr/bin/perl-native/perl=
+ is needed by dpkg-1.15.8.7-r16.4.armv7a</div><div><br></div><div><br></div=
 >
-> I was talking about PRINC := "${@int(PRINC) + 1}"
+<div style>I also want to include libsnmp-dev to include the=A0<span style=
+=3D"color:rgb(51,51,51);font-size:13px;line-height:19px">agent_module_confi=
+g.h in my development enviroment.</span></div><div style><span style=3D"col=
+or:rgb(51,51,51);font-size:13px;line-height:19px"><br>
+</span></div><div style><span style=3D"color:rgb(51,51,51);font-size:13px;l=
+ine-height:19px">Could somebody please give me a hand with this?</span></di=
+v><div style><span style=3D"color:rgb(51,51,51);font-size:13px;line-height:=
+19px"><br>
+</span></div><div style><span style=3D"color:rgb(51,51,51);font-size:13px;l=
+ine-height:19px">Thanks a lot</span></div></div></div>
 
-  i think i'll just leave this to the rpi folks. :-)
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--089e01176f7138b71004dab7c221--
