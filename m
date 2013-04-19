@@ -1,29 +1,32 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09995E0147D
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 09:24:05 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 19 Apr 2013 09:21:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,510,1363158000"; d="scan'208";a="320959550"
-Received: from unknown (HELO [10.255.14.2]) ([10.255.14.2])
-	by orsmga002.jf.intel.com with ESMTP; 19 Apr 2013 09:23:43 -0700
-Message-ID: <51716F8F.2080408@linux.intel.com>
-Date: Fri, 19 Apr 2013 09:23:43 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1870E014F2
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 10:29:43 -0700 (PDT)
+Received: by mail-wi0-f176.google.com with SMTP id hj19so1163799wib.3
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 10:29:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=QzWh4/jJinxt04aeog/O2BjXr9hR5wuY+OYyMZuF5b4=;
+	b=VKbZtK4T7r4ynX0wWRKCPNWVPpzT86SMbfTss0SgEvU4Pp69W43kTY3uXyioRQ5Y0r
+	qxIh6XN7E+HVls64ChDEd0+C3/Mmv+Ia9d6XXwaJqXxO7INXZMSgw689JDcnSUJ/TDDX
+	jyOk8ytwRaA4Sszyzk+SvlxlksCWJGkcaxIM3XMg3umCs/J5iQxn34V6whj8k2v/jG84
+	rI9B5UV2ECodgxkf7C9NqeB/EYExAibMh8RBxP4enFMjqvCpuOy2mEwsihQGlZGcjlqQ
+	t3OsZec86+quELoebyDr6whYF66/bkxNa3MzZ5tKcNngHYs42qWS6xlZP4QL+8m6QEuP
+	fo+Q==
 MIME-Version: 1.0
-To: Paul Barker <paul@paulbarker.me.uk>
-References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
-	<20130419135843.GH2489@jama>
-	<alpine.DEB.2.02.1304191016030.5451@oneiric>
-	<20130419142509.GJ2489@jama>
-	<alpine.DEB.2.02.1304191038530.5636@oneiric>
-	<CANyK_8ehX8Bsgd35pvx54EGeCG6=WLBoDFV0h=5Suz3uXPyREw@mail.gmail.com>
-In-Reply-To: <CANyK_8ehX8Bsgd35pvx54EGeCG6=WLBoDFV0h=5Suz3uXPyREw@mail.gmail.com>
+X-Received: by 10.180.80.3 with SMTP id n3mr4712183wix.20.1366392582072; Fri,
+	19 Apr 2013 10:29:42 -0700 (PDT)
+Received: by 10.194.167.73 with HTTP; Fri, 19 Apr 2013 10:29:41 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1304190827410.4247@oneiric>
+References: <alpine.DEB.2.02.1304190827410.4247@oneiric>
+Date: Fri, 19 Apr 2013 13:29:41 -0400
+Message-ID: <CAHUNapTAXCmZOR-hBSWz-uVSj2Fue8x9TtN3+DerCtQN__G2mQ@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
+Subject: Re: clarification about BSP layer names and bblayers.conf file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,35 +38,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 16:24:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Apr 2013 17:29:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 04/19/2013 07:45 AM, Paul Barker wrote:
-> On 19 April 2013 15:39, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->>
->>    i think i'll just leave this to the rpi folks. :-)
->>
->
-> I'm building for raspberrypi so I'll add this to my queue of things to look at.
->
-Just another note about the netbase, for 1.4 the interfaces file moved 
-to init-ifupdown, so that file should move to a new recipe with 
-bbappends for init-ifupdown-1.0.
+On Fri, Apr 19, 2013 at 8:37 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> first, it's not actually *required* that a layer name start with the
+> prefix "meta-", is it?  pretty sure it's not and, if it isn't, that
+> should be made abundantly clear. it's fine to point out that it's a
+> well-established convention but it should still be mentioned
+> explicitly that it's not necessary.
 
-We just fixed meta-yocto for the beagleboard  in the final 1.4 release.
+If we agree that what we currently have is "version 1", and in-line
+with the philosophy of always throwing away "version 1", my gut
+feeling is that instead of poky being the base of everything and
+everything else added on top as layers, I believe the people running
+this project would start with openembedded-core as the base, with poky
+being simply one (of many) layers on top and therefore (properly)
+renamed to meta-poky. My point is that in an ideal world poky should
+be renamed, to follow the accepted convention; but since it isn't, it
+demonstrates that layers don't have to start with the "meta-*" prefix.
 
-Sau!
+> the fact that meta-yocto is listed
+> as NON_REMOVABLE might make readers wonder how they're supposed to
+> know that. why not go with something a lot more people will see, like,
+> say:
+>
+>      BBLAYERS = ?" \                  <-- and that looks like a typo
+>        /usr/local/src/yocto/meta \
+>        /usr/local/src/yocto/meta-ti \
+>        "
+>
+>      BBLAYERS_NON_REMOVABLE ?= " \
+>        /usr/local/src/yocto/meta \
+>        "
 
-> --
-> Paul Barker
->
-> Email: paul@paulbarker.me.uk
-> http://www.paulbarker.me.uk
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+The whole concept of "non-removable" layers seems redundant. If a
+person were trying to build an image for i.MX53 that makes use of TI's
+work, the meta-ti layer would be just as "non-removable" as any other,
+wouldn't it?
 
