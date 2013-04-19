@@ -1,23 +1,34 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F874E0144A
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:16:17 -0700 (PDT)
-Received: from [192.168.0.2] (host86-137-86-81.range86-137.btcentralplus.com
-	[86.137.86.81]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 7B0249512
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 15:16:16 +0100 (BST)
-Message-ID: <517151AF.3030301@r-finger.com>
-Date: Fri, 19 Apr 2013 15:16:15 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6624AE0144A
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:17:14 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:55531 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UTC7l-0002IA-7S; Fri, 19 Apr 2013 10:17:13 -0400
+Date: Fri, 19 Apr 2013 10:17:10 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Martin Jansa <martin.jansa@gmail.com>
+In-Reply-To: <20130419135843.GH2489@jama>
+Message-ID: <alpine.DEB.2.02.1304191016030.5451@oneiric>
+References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
+	<20130419135843.GH2489@jama>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1304190945410.5102@oneiric>
-	<CAJTo0Lac3O-3n13gbzEcKysxijojQMgj0k5Sh1YTuk6dDVkFNw@mail.gmail.com>
-In-Reply-To: <CAJTo0Lac3O-3n13gbzEcKysxijojQMgj0k5Sh1YTuk6dDVkFNw@mail.gmail.com>
-Subject: Re: any point in a single machine recipe using a machine-specific file?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,44 +40,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 14:16:17 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Apr 2013 14:17:14 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 19/04/13 15:02, Burton, Ross wrote:
-> On 19 April 2013 14:49, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->>   but in the case of the rpi, is there any value in putting the files
->> under a machine-named subdirectory? of course it won't hurt, but is
->> there any point to it?
-> 
-> You could argue the clarity that it will bring if another machine is
-> added to the BSP - the maintainer will be forced to decide if it's
-> common across all machines that the BSP will service, or truly is
-> specific to a particular machine.
+On Fri, 19 Apr 2013, Martin Jansa wrote:
 
-No, no, no, this has nothing to do with clarity, it's the only way in
-which it can be done without breaking other machines. As Martin said,
-multiple BSP layers often are included at the same time, and if a config
-file pulled in by a BSP bbappend is not made machine specific (which is
-what the machine specific directory means), it will be installed for any
-machine that does not come with a higher priority bbappend that also
-overrides this file.
+> On Fri, Apr 19, 2013 at 09:35:18AM -0400, Robert P. J. Day wrote:
+> >
+> > The actual files subdirectory name is "netbase-5.0", not "netbase".
+> >
+> > Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+> >
+> > ---
+> >
+> >   same fix was once applied to exactly the same recipe bbappend file
+> > under meta-ti layer.
+> >
+> > diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core/netbase/netbase_5.0.bbappend
+> > index 36432f5..a3fbd33 100644
+> > --- a/recipes-core/netbase/netbase_5.0.bbappend
+> > +++ b/recipes-core/netbase/netbase_5.0.bbappend
+> > @@ -1,3 +1,3 @@
+> > -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> > +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+> >  # Don't forget to bump PRINC if you update the extra files.
+> >  PRINC = "1"
+>
+> that's P or use BP, and fix PRINC when you're there..
 
-As an additional point, the 'interfaces' file should not be included in
-a netbase bbappend, it's not part of the netbase base package ... I
-opened a bug against meta-yocto-bsp for this, but seems this is more
-wide spread.
+  ok, pedantic question -- the comment suggests you're supposed to
+increment PRINC "if you update the extra files". but i didn't, i just
+made sure they're now being included. i guess that still counts, yes?
 
-Tomas
-
-> 
-> Ross
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+rday
 
 -- 
-http://sleepfive.com
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
