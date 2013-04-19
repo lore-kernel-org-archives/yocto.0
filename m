@@ -1,29 +1,24 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19BDBE0144A
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 08:03:45 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3JF4Chf003214; Fri, 19 Apr 2013 16:04:13 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id k2npoBpHyVrk; Fri, 19 Apr 2013 16:04:12 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3JF4562003194
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Fri, 19 Apr 2013 16:04:07 +0100
-Message-ID: <1366383800.10502.132.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Fri, 19 Apr 2013 16:03:20 +0100
-In-Reply-To: <51715A12.60007@mlbassoc.com>
-References: <51715A12.60007@mlbassoc.com>
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
-Mime-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Change in 'devshell' behaviour
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6AB8E0144A
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 08:05:45 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Apr 2013 08:05:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,509,1363158000"; d="scan'208";a="324922976"
+Received: from unknown (HELO helios.localnet) ([10.255.13.209])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Apr 2013 08:05:15 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Katu Txakur <katutxakurra@gmail.com>
+Date: Fri, 19 Apr 2013 16:05:15 +0100
+Message-ID: <2626269.NDBbjkYV5W@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <CAM1ZcoW1aaZUZW=t2J+GbNjyYQQPjSpRoGfJC9u-dh2ZJXFQoQ@mail.gmail.com>
+References: <CAM1ZcoW1aaZUZW=t2J+GbNjyYQQPjSpRoGfJC9u-dh2ZJXFQoQ@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: libsnmp-dev in yocto built image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,65 +30,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 15:03:46 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Apr 2013 15:05:45 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Fri, 2013-04-19 at 08:52 -0600, Gary Thomas wrote:
-> CAUTION!! giant security hole awaits!
+On Friday 19 April 2013 15:44:39 Katu Txakur wrote:
+> I want to include net-snmp in an image that I'm building with the Yocto
+> project (gumstix-console-image). When I add it net-snmp-client or server to
+> the local.conf I get this error when bitbake is creating the rootfs.
 > 
-> I've just discovered that recent Poky/Yocto runs 'devshell' as ROOT!
+> Processing perl-module-text-soundex...
 > 
-> If I run 'bitbake SOME-RECIPE -c devshell' with a somewhat older
-> metadata (poky rev 09359e6ec00901abfe49157f1f9730117b4d284b)
-> the shell is run using my user id.
+> error: Failed dependencies:
 > 
-> With a newer poky rev 90b98764555945a186562ca8d501a9585ce2b23f,
-> the shell runs as 'root'.
+> net-snmp-server = ${EXTENDPV} is needed by net-snmp-dev-5.7.1-r0.armv7a
 > 
-> This change came with this revision:
-> 
-> commit 4dc31a327be1a506e78e1d028db08ceee22a216f
-> Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-> Date:   Thu Mar 28 13:17:12 2013 +0000
-> 
->      base.bbclass: When we use fakeroot, also use it for devshell
-> 
->      Its generally useful for devshell to end up in the fakeroot environment. If
->      a user needs to exit it, PSEUDO_UNLOAD=1 <command> works, its usually
->      harder to enter the envionment.
-> 
->      [YOCTO #3374]
-> 
->      (From OE-Core rev: e6ffc747a8ca5142c9bc6fbd2b06b5808bb38b02)
-> 
->      Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-> 
-> Isn't this a horrible security flaw?  Or is 'fakeroot' actually safe?
-> The change description doesn't tell me why it's "useful".
-> 
-> Whatever the case, to me at least it's very unnerving...
+> net-snmp-client = ${EXTENDPV} is needed by net-snmp-dev-5.7.1-r0.armv7a
 
-I think the key word to look at here is "fake". You'll find you can't do
-anything nasty to your system you couldn't do as your normal user
-account and this is purely emulation.
-
-This "root" context is the one do_install, do_populate_sysroot and other
-tasks run under so that we can give files owners and permissions in the
-packages. We chose to give it more visibility since its actually useful
-for debugging several types of problems. For example, you can look
-around the rootfs from the rootfs task and see real users as it would
-get tarballed up.
-
-You can get your normal shell back with "PSEUDO_UNLOAD=1 bash", which is
-much easier than trying to get into the pseudo context in the first
-place.
-
-So please rest assured there is no security issue here.
+We don't use EXTENDPV anymore; EXTENDPV is not defined and that's why you're 
+seeing that unexpanded value. Where did you get your net-snmp recipe from? 
+Which version of the build system are you using?
 
 Cheers,
+Paul
 
-Richard
+-- 
 
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
