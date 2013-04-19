@@ -1,34 +1,25 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
-	[209.85.220.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D5C2E01496;
-	Fri, 19 Apr 2013 00:44:56 -0700 (PDT)
-Received: by mail-pa0-f47.google.com with SMTP id bj1so186660pad.20
-	for <multiple recipients>; Fri, 19 Apr 2013 00:44:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:content-type:content-transfer-encoding:subject:date
-	:message-id:cc:to:mime-version:x-mailer;
-	bh=lwrl2tXNqtwuvaufz3N7Qu96CvY24zf2dXMT5Y0UggI=;
-	b=ZwDS6GKcgC9Qq8aYO3m+rUj0B3hkX6kDovVRj//No0ZaXRlD64IcRo/Iv6ZX2UXmgz
-	3YinJ3KHs5zdO3SnQOJ31ObYygBTHPe6TseDUFBiOvhC+To/SEpmWWIvmSv5+XMYuQH1
-	xu9lO2m+oSNaJ2zg6vGLyeyCAb5eWruf//WrZcjnEPxauekJP/jbsISmtPOoV4XSn9fb
-	gakaWvCDrj9R5vfFR52OZqqf76mGfMGXgzhSQt8WN1nXjcePvS5pQeKov4Lo9h7Fd+tZ
-	8PBx4d/fw2qvkS3O/WuexqLX426EUVEErmmVx60KHgv6oO5KluUPgxtBpWXmpXzFMoHb
-	CYBA==
-X-Received: by 10.68.113.101 with SMTP id ix5mr17746397pbb.142.1366357496149; 
-	Fri, 19 Apr 2013 00:44:56 -0700 (PDT)
-Received: from [192.168.1.100] ([94.205.106.101])
-	by mx.google.com with ESMTPS id lo7sm13768693pab.19.2013.04.19.00.44.53
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 19 Apr 2013 00:44:55 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Fri, 19 Apr 2013 11:44:49 +0400
-Message-Id: <FB1FE6F3-40EC-4711-95D0-5633B0103297@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
-X-Mailer: Apple Mail (2.1503)
-Cc: meta-xilinx Mailing List <meta-xilinx@yoctoproject.org>
-Subject: [meta-xilinx] PREFERRED_VERSION_linux-libc-headers = "3.6" getting ignored
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64E4DE01496;
+	Fri, 19 Apr 2013 01:25:56 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 19 Apr 2013 01:25:41 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,507,1363158000"; d="scan'208";a="321585478"
+Received: from unknown (HELO helios.localnet) ([10.255.13.209])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Apr 2013 01:25:40 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Fri, 19 Apr 2013 09:25:24 +0100
+Message-ID: <1392229.rlL64ybf7G@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <FB1FE6F3-40EC-4711-95D0-5633B0103297@gmail.com>
+References: <FB1FE6F3-40EC-4711-95D0-5633B0103297@gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org,
+	meta-xilinx Mailing List <meta-xilinx@yoctoproject.org>
+Subject: Re: [meta-xilinx] PREFERRED_VERSION_linux-libc-headers = "3.6" getting ignored
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,23 +31,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 07:44:56 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 19 Apr 2013 08:25:56 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
-       In my zynq-7-default-versions.inc file, I have the following =
-definitions for preferred versions
+On Friday 19 April 2013 11:44:49 Elvis Dowson wrote:
+>        In my zynq-7-default-versions.inc file, I have the following
+> definitions for preferred versions
+> 
+> PREFERRED_VERSION_virtual/kernel ?= "3.6"
+> PREFERRED_VERSION_linux-libc-headers = "3.6"
+> PREFERRED_VERSION_u-boot = "2012.10"
+> 
+> However, when I build core-image-minimal,
+> PREFERRED_VERSION_linux-libc-headers = "3.6" gets ignored and it goes ahead
+> and builds linux-libc-headers_3.8.bb
+> 
+> Is it only effective if specified in the local.conf file?
 
-PREFERRED_VERSION_virtual/kernel ?=3D "3.6"
-PREFERRED_VERSION_linux-libc-headers =3D "3.6"
-PREFERRED_VERSION_u-boot =3D "2012.10"
+No, it should be effective anywhere - unless it's being overridden later on. In 
+recent versions of bitbake, the -e option will show for each variable how the 
+final value got set, you should be able to see where it is being overridden 
+from there. Alternatively with older versions you should just be able to "git 
+grep" for the value in each of the layers you have enabled in order to find 
+where it is being set.
 
-However, when I build core-image-minimal, =
-PREFERRED_VERSION_linux-libc-headers =3D "3.6" gets ignored and it goes =
-ahead and builds linux-libc-headers_3.8.bb
+Are you sure you really need your own version of linux-libc-headers? Most of 
+the time it is not necessary for the version to match that of the kernel you 
+are using.
 
-Is it only effective if specified in the local.conf file?
+Cheers,
+Paul
 
-Elvis Dowson=
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
