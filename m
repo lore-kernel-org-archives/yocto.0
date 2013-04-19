@@ -1,38 +1,29 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75A8BE0144A
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:59:38 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:56201 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UTCmn-0004Yb-JS; Fri, 19 Apr 2013 10:59:37 -0400
-Date: Fri, 19 Apr 2013 10:59:35 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-In-Reply-To: <51715B36.9040408@r-finger.com>
-Message-ID: <alpine.DEB.2.02.1304191058460.5834@oneiric>
-References: <alpine.DEB.2.02.1304190945410.5102@oneiric>
-	<CAJTo0Lac3O-3n13gbzEcKysxijojQMgj0k5Sh1YTuk6dDVkFNw@mail.gmail.com>
-	<alpine.DEB.2.02.1304191008450.5407@oneiric>
-	<517152BC.8070905@r-finger.com>
-	<alpine.DEB.2.02.1304191032090.5553@oneiric>
-	<51715B36.9040408@r-finger.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: any point in a single machine recipe using a machine-specific file?
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19BDBE0144A
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 08:03:45 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r3JF4Chf003214; Fri, 19 Apr 2013 16:04:13 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id k2npoBpHyVrk; Fri, 19 Apr 2013 16:04:12 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r3JF4562003194
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Fri, 19 Apr 2013 16:04:07 +0100
+Message-ID: <1366383800.10502.132.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Fri, 19 Apr 2013 16:03:20 +0100
+In-Reply-To: <51715A12.60007@mlbassoc.com>
+References: <51715A12.60007@mlbassoc.com>
+X-Mailer: Evolution 3.6.2-0ubuntu0.1 
+Mime-Version: 1.0
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Change in 'devshell' behaviour
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,45 +35,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 14:59:38 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 19 Apr 2013 15:03:46 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Fri, 19 Apr 2013, Tomas Frydrych wrote:
+On Fri, 2013-04-19 at 08:52 -0600, Gary Thomas wrote:
+> CAUTION!! giant security hole awaits!
+> 
+> I've just discovered that recent Poky/Yocto runs 'devshell' as ROOT!
+> 
+> If I run 'bitbake SOME-RECIPE -c devshell' with a somewhat older
+> metadata (poky rev 09359e6ec00901abfe49157f1f9730117b4d284b)
+> the shell is run using my user id.
+> 
+> With a newer poky rev 90b98764555945a186562ca8d501a9585ce2b23f,
+> the shell runs as 'root'.
+> 
+> This change came with this revision:
+> 
+> commit 4dc31a327be1a506e78e1d028db08ceee22a216f
+> Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+> Date:   Thu Mar 28 13:17:12 2013 +0000
+> 
+>      base.bbclass: When we use fakeroot, also use it for devshell
+> 
+>      Its generally useful for devshell to end up in the fakeroot environment. If
+>      a user needs to exit it, PSEUDO_UNLOAD=1 <command> works, its usually
+>      harder to enter the envionment.
+> 
+>      [YOCTO #3374]
+> 
+>      (From OE-Core rev: e6ffc747a8ca5142c9bc6fbd2b06b5808bb38b02)
+> 
+>      Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+> 
+> Isn't this a horrible security flaw?  Or is 'fakeroot' actually safe?
+> The change description doesn't tell me why it's "useful".
+> 
+> Whatever the case, to me at least it's very unnerving...
 
-> On 19/04/13 15:34, Robert P. J. Day wrote:
-> > On Fri, 19 Apr 2013, Tomas Frydrych wrote:
-> >
-> >> On 19/04/13 15:15, Robert P. J. Day wrote:
-> >>> i'd wonder, if you're building for a different machine, why are
-> >>> you including the meta-rpi layer?
-> >>
-> >> Because at a distro-level you often want to target different
-> >> architectures.
-> >
-> >   yes, i appreciate that but, in *this* case, we're talking about a
-> > single machine with a single architecture. i'm pretty sure we're
-> > agreeing, i'm just pointing out that in this specific example, having
-> > a machine-specific subdirectory is overkill.
->
-> BSP layers are not stand alone entities, they can never assume that
-> no other machines exist in the ecosystem they are pulled into. So,
-> no, it is most definitely not an overkill. I am not sure how else to
-> explain it, maybe fix up the RPI layer the way you intended locally
-> and build yourself a Qemu image, see what happens to your interfaces
-> file.
+I think the key word to look at here is "fake". You'll find you can't do
+anything nasty to your system you couldn't do as your normal user
+account and this is purely emulation.
 
-  no, no, i'm good with this -- is this point made emphatically
-anywhere in the existing docs?
+This "root" context is the one do_install, do_populate_sysroot and other
+tasks run under so that we can give files owners and permissions in the
+packages. We chose to give it more visibility since its actually useful
+for debugging several types of problems. For example, you can look
+around the rootfs from the rootfs task and see real users as it would
+get tarballed up.
 
-rday
+You can get your normal shell back with "PSEUDO_UNLOAD=1 bash", which is
+much easier than trying to get into the pseudo context in the first
+place.
 
--- 
+So please rest assured there is no security issue here.
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Cheers,
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Richard
+
+
 
