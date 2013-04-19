@@ -1,38 +1,29 @@
-Return-Path: <wmat@alphatroop.com>
-Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCB72E0146E
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 09:02:17 -0700 (PDT)
-Received: by mail-vc0-f174.google.com with SMTP id kw10so4019807vcb.33
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 09:02:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:x-originating-ip:in-reply-to:references
-	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=uMFUnxr4rjpFQ6o9QDukCpfjRbCMZOpJZuUoiZdRv/0=;
-	b=N2jCYLUmp5vyE13NZXh/XF7RtxAPZJaOsR1yDM5fmJhlud0Bw57ds2Qlvat1gmFsaM
-	r6VhZz/pNfR1CVXqAzbTuxF72Mln43Z+1faTm8SEmtrvAoCxiX1DCtdQqP6JaWLG2XEl
-	DFFt7Gu30tPoFsfNnnxYTMpbDwgox9s1CGEeZwnnqOmatazGSb41+A8ION/uuX5rYwJE
-	m2afVfeyRVFNB1xQukS5fFffW1FhbyEhA5PShBU1NEK3ANBt/Bs/3i93wPmRBUY2XxAH
-	4YZ88dICBC2EJf2mxeJCy41fT1SDmX4jYA2upjKtJZbWgulTEJ4s8zfe8ZmKceMugPK7
-	CL+w==
-X-Received: by 10.58.12.69 with SMTP id w5mr12079199veb.16.1366387337098; Fri,
-	19 Apr 2013 09:02:17 -0700 (PDT)
+Return-Path: <sgw@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09995E0147D
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 09:24:05 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 19 Apr 2013 09:21:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,510,1363158000"; d="scan'208";a="320959550"
+Received: from unknown (HELO [10.255.14.2]) ([10.255.14.2])
+	by orsmga002.jf.intel.com with ESMTP; 19 Apr 2013 09:23:43 -0700
+Message-ID: <51716F8F.2080408@linux.intel.com>
+Date: Fri, 19 Apr 2013 09:23:43 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/17.0 Thunderbird/17.0
 MIME-Version: 1.0
-Received: by 10.220.58.4 with HTTP; Fri, 19 Apr 2013 09:01:56 -0700 (PDT)
-X-Originating-IP: [24.246.30.132]
-In-Reply-To: <1735326.q5ElvD3frK@helios>
-References: <alpine.DEB.2.02.1304171022430.10912@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123796FCF66BA@ORSMSX104.amr.corp.intel.com>
-	<alpine.DEB.2.02.1304171135470.12898@oneiric>
-	<1735326.q5ElvD3frK@helios>
-From: "William M.A. Traynor" <wmat@alphatroop.com>
-Date: Fri, 19 Apr 2013 12:01:56 -0400
-Message-ID: <CAGfZjq6vSOy4Fkiv4MxYviqjq+aBnuZAmv4FEN6Mx+HBcCV0Kw@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Gm-Message-State: ALoCoQk+Z2kP6yYMusC6RvwFvzgc+5nzExmrH2A63N4V9HzspvILDrMj0x4Ya00pX+5ZARrfwR3A
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: writeup on the mechanics of FILESEXTRAPATHS and bbappend files
+To: Paul Barker <paul@paulbarker.me.uk>
+References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
+	<20130419135843.GH2489@jama>
+	<alpine.DEB.2.02.1304191016030.5451@oneiric>
+	<20130419142509.GJ2489@jama>
+	<alpine.DEB.2.02.1304191038530.5636@oneiric>
+	<CANyK_8ehX8Bsgd35pvx54EGeCG6=WLBoDFV0h=5Suz3uXPyREw@mail.gmail.com>
+In-Reply-To: <CANyK_8ehX8Bsgd35pvx54EGeCG6=WLBoDFV0h=5Suz3uXPyREw@mail.gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,32 +35,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 16:02:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 19 Apr 2013 16:24:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Apr 17, 2013 at 11:42 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> On Wednesday 17 April 2013 11:39:09 Robert P. J. Day wrote:
->> p.s.  i think one of the manuals should mention chris larson's
->> "bitbake-env" utility, which i use for debugging and explanations all
->> the time.
+On 04/19/2013 07:45 AM, Paul Barker wrote:
+> On 19 April 2013 15:39, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>>
+>>    i think i'll just leave this to the rpi folks. :-)
+>>
 >
-> I'd rather wait until we actually integrate that into BitBake (i.e. provide it
-> with the BitBake source, which I hope we can look at within the next
-> development cycle).
+> I'm building for raspberrypi so I'll add this to my queue of things to look at.
+>
+Just another note about the netbase, for 1.4 the interfaces file moved 
+to init-ifupdown, so that file should move to a new recipe with 
+bbappends for init-ifupdown-1.0.
 
-Is it as simple as including it in the contrib directory?
+We just fixed meta-yocto for the beagleboard  in the final 1.4 release.
 
->
-> Cheers,
-> Paul
->
+Sau!
+
 > --
+> Paul Barker
 >
-> Paul Eggleton
-> Intel Open Source Technology Centre
+> Email: paul@paulbarker.me.uk
+> http://www.paulbarker.me.uk
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
