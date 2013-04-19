@@ -1,34 +1,34 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D003AE0144A
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:02:35 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:55449 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UTBta-0001an-ET; Fri, 19 Apr 2013 10:02:34 -0400
-Date: Fri, 19 Apr 2013 10:02:32 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Martin Jansa <martin.jansa@gmail.com>
-In-Reply-To: <20130419135843.GH2489@jama>
-Message-ID: <alpine.DEB.2.02.1304191001310.5226@oneiric>
-References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
-	<20130419135843.GH2489@jama>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29425E0144A
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:03:10 -0700 (PDT)
+Received: by mail-vc0-f179.google.com with SMTP id hz11so3918748vcb.10
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:03:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=ugWGlSlf7IVhX9NMO3+28WGoWP0fs5a+fFYAzPoKtDE=;
+	b=oe2GSmE1Er3SoKNOntD0WaSbItgWv3CW9Yj1ryD2u+9R5Yn+ndcahveRxQw0FgZszj
+	M/hJ/h6Irq9nNqpZEBoZX50dF9j5WUSchYhLxcRXcUCgM7yOYa8761NSajdc/Qg4fAqE
+	nBQ+1z1RbFiuqGAZIPU9jiACcsCt3H+KAfY/7kyd7kzGlvvjTEclCrC6Ld1kD+vFSfOu
+	kKgD5mRTeQkzCS2wcVhufiKit+9YicGuMg/S1Oc4hUb4jkeuyYbY8eFrB8l4Mv+o4c24
+	Z8tpgoDRIixMNoRb4bB9hjIR2EBgc7n6l/t4vb4AaH1ST4Ap+kvK3uzUwssyM1ayhWjn
+	e9kg==
+X-Received: by 10.52.16.233 with SMTP id j9mr9965364vdd.29.1366380189250; Fri,
+	19 Apr 2013 07:03:09 -0700 (PDT)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Received: by 10.220.100.68 with HTTP; Fri, 19 Apr 2013 07:02:49 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1304190945410.5102@oneiric>
+References: <alpine.DEB.2.02.1304190945410.5102@oneiric>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 19 Apr 2013 15:02:49 +0100
+Message-ID: <CAJTo0Lac3O-3n13gbzEcKysxijojQMgj0k5Sh1YTuk6dDVkFNw@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-Gm-Message-State: ALoCoQlaEqMsdTHu7R8fBYdHX/WuNFfBOWWXdgBoY9zQgFu71echtXJmH5fYCy66zCPORwNlbyJx
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
+Subject: Re: any point in a single machine recipe using a machine-specific file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,47 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 14:02:36 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 19 Apr 2013 14:03:10 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, 19 Apr 2013, Martin Jansa wrote:
+On 19 April 2013 14:49, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>   but in the case of the rpi, is there any value in putting the files
+> under a machine-named subdirectory? of course it won't hurt, but is
+> there any point to it?
 
-> On Fri, Apr 19, 2013 at 09:35:18AM -0400, Robert P. J. Day wrote:
-> >
-> > The actual files subdirectory name is "netbase-5.0", not "netbase".
-> >
-> > Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-> >
-> > ---
-> >
-> >   same fix was once applied to exactly the same recipe bbappend file
-> > under meta-ti layer.
-> >
-> > diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core/netbase/netbase_5.0.bbappend
-> > index 36432f5..a3fbd33 100644
-> > --- a/recipes-core/netbase/netbase_5.0.bbappend
-> > +++ b/recipes-core/netbase/netbase_5.0.bbappend
-> > @@ -1,3 +1,3 @@
-> > -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> >  # Don't forget to bump PRINC if you update the extra files.
-> >  PRINC = "1"
->
-> that's P or use BP, and fix PRINC when you're there..
+You could argue the clarity that it will bring if another machine is
+added to the BSP - the maintainer will be forced to decide if it's
+common across all machines that the BSP will service, or truly is
+specific to a particular machine.
 
-  ok, but i was just working off of *exactly* the same patch format
-that went into meta-ti.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+Ross
 
