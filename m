@@ -1,34 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6624AE0144A
-	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:17:14 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:55531 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UTC7l-0002IA-7S; Fri, 19 Apr 2013 10:17:13 -0400
-Date: Fri, 19 Apr 2013 10:17:10 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Martin Jansa <martin.jansa@gmail.com>
-In-Reply-To: <20130419135843.GH2489@jama>
-Message-ID: <alpine.DEB.2.02.1304191016030.5451@oneiric>
-References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
-	<20130419135843.GH2489@jama>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A35C3E0144A
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 07:20:45 -0700 (PDT)
+Received: from [192.168.0.2] (host86-137-86-81.range86-137.btcentralplus.com
+	[86.137.86.81]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 037749512
+	for <yocto@yoctoproject.org>; Fri, 19 Apr 2013 15:20:44 +0100 (BST)
+Message-ID: <517152BC.8070905@r-finger.com>
+Date: Fri, 19 Apr 2013 15:20:44 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
+To: yocto@yoctoproject.org
+References: <alpine.DEB.2.02.1304190945410.5102@oneiric>
+	<CAJTo0Lac3O-3n13gbzEcKysxijojQMgj0k5Sh1YTuk6dDVkFNw@mail.gmail.com>
+	<alpine.DEB.2.02.1304191008450.5407@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1304191008450.5407@oneiric>
+Subject: Re: any point in a single machine recipe using a machine-specific file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,47 +30,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Apr 2013 14:17:14 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 19 Apr 2013 14:20:45 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 19 Apr 2013, Martin Jansa wrote:
+On 19/04/13 15:15, Robert P. J. Day wrote:
+> i'd wonder, if you're building for a different machine, why are
+> you including the meta-rpi layer?
 
-> On Fri, Apr 19, 2013 at 09:35:18AM -0400, Robert P. J. Day wrote:
-> >
-> > The actual files subdirectory name is "netbase-5.0", not "netbase".
-> >
-> > Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
-> >
-> > ---
-> >
-> >   same fix was once applied to exactly the same recipe bbappend file
-> > under meta-ti layer.
-> >
-> > diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core/netbase/netbase_5.0.bbappend
-> > index 36432f5..a3fbd33 100644
-> > --- a/recipes-core/netbase/netbase_5.0.bbappend
-> > +++ b/recipes-core/netbase/netbase_5.0.bbappend
-> > @@ -1,3 +1,3 @@
-> > -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> >  # Don't forget to bump PRINC if you update the extra files.
-> >  PRINC = "1"
->
-> that's P or use BP, and fix PRINC when you're there..
+Because at a distro-level you often want to target different architectures.
 
-  ok, pedantic question -- the comment suggests you're supposed to
-increment PRINC "if you update the extra files". but i didn't, i just
-made sure they're now being included. i guess that still counts, yes?
+> best answer i'd be able to give is that it's not essential but it
+> won't hurt anything, which sounds kind of lame. :-)
 
-rday
+No, it's is essential that it is done this way, BSPs are for specific
+machines, so they should never install generic config files.
 
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Tomas
 
