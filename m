@@ -1,31 +1,34 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-vb0-f45.google.com (mail-vb0-f45.google.com
-	[209.85.212.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 656D6E014F3
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 01:25:56 -0700 (PDT)
-Received: by mail-vb0-f45.google.com with SMTP id w15so5576278vbf.18
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 01:25:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
-	:subject:from:to:content-type;
-	bh=tACrxB6ZnhX/vMY7r9WrQjy1XG1id/5NbGC3V1yqwZ8=;
-	b=yUPmjMn/EIGJ/6NRT4oezU56Kg+wC0DJXROBzXBMeAPS2APaAoNSYXkQFLaaxn0x2W
-	K/2MPm6iNEQWszTc9KGpbDCn9WWtiGP2v8OS/bnCOI6gYLTCAG4qbmgpFGMHsh3fdm0N
-	KuVPWSziF8YW6wGqra8ixNAoL8A0A4aml0U/bfVSVSzT2XQL2PoUCBwURUnZUlsR1K+9
-	kRCkDgDIMZPFxtP1oaPHOJ4FxSQQrwPCxvfmkZeeqJ1qWdt5FyIRqOr16lQlG9NEfdZ6
-	QE7c7qCUq8yNop6EQ/ePf+DBIH7JAr9xlJV3sGgM5u9F2I22vNxdtQKd2udoD0a0+UcD
-	YlFQ==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
+	[209.85.212.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DE94E014F3
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 01:55:50 -0700 (PDT)
+Received: by mail-vb0-f42.google.com with SMTP id p12so5644746vbe.1
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 01:55:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=Cq8/NfJvo1EXYAQGW/tQPsXOYXkHhGrjULamD7cLTtA=;
+	b=NPz5SwE4XsRtDmQADWaKmDgjx5nR4L4PE5463lzMDUwjbn1UVvLDPnGv56kN//zDxk
+	b172yeRZFwyzaPYKKTEnOh4tIuk9RuuipNtp0WMNPALzPNPcDZKzciATxvgJepxAAvWI
+	Ca6vszoR62hkeOzobm+r8UCyoQd1izfZcwtdc8jpgTLi89Z1J8a7+iIEbOuPZ1o4e/jG
+	2H0wvbx+UgSk4ahFtd5UJAFbemNvJSjpsHk5Ei8q9AT+6y5NyF6Wt7F0e19r58eVtgfS
+	dxMk5nh9l0JpS9k/f395PZrkAzvIg5HkLw7HEti0tRxwDmu6BO2bJTg7k49wnS43IeXV
+	zwoA==
+X-Received: by 10.52.165.99 with SMTP id yx3mr2123575vdb.34.1366620949419;
+	Mon, 22 Apr 2013 01:55:49 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.58.28.144 with SMTP id b16mr9739315veh.43.1366619155715;
-	Mon, 22 Apr 2013 01:25:55 -0700 (PDT)
-Sender: satyaswaroop.damarla@gmail.com
-Received: by 10.52.88.177 with HTTP; Mon, 22 Apr 2013 01:25:55 -0700 (PDT)
-Date: Mon, 22 Apr 2013 10:25:55 +0200
-X-Google-Sender-Auth: 9hxwgi_H3ueZV3B2WQtxiUGmjlE
-Message-ID: <CAFMfyz+=HMqt6Jgrsq3_GgdZL9K-obRYuYsVVrxqonzfP-t2gQ@mail.gmail.com>
-From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Package which sets Background Image
+Received: by 10.220.100.68 with HTTP; Mon, 22 Apr 2013 01:55:29 -0700 (PDT)
+In-Reply-To: <CAFMfyz+=HMqt6Jgrsq3_GgdZL9K-obRYuYsVVrxqonzfP-t2gQ@mail.gmail.com>
+References: <CAFMfyz+=HMqt6Jgrsq3_GgdZL9K-obRYuYsVVrxqonzfP-t2gQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 22 Apr 2013 09:55:29 +0100
+Message-ID: <CAJTo0LYnBG_7vyVhW2o3HK=XNHRctJ3-zE+yq2=LxrKz-WdGOQ@mail.gmail.com>
+To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+X-Gm-Message-State: ALoCoQk+BP3nqTIxWQHi/L7Ecie8NosPG8CPYocm6SNeUJoMhvptmext5fe65rGWXwTj5Bpt+slX
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Package which sets Background Image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,24 +40,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 08:25:56 -0000
-Content-Type: multipart/alternative; boundary=047d7b6785e05209f004daeed1c5
+X-List-Received-Date: Mon, 22 Apr 2013 08:55:50 -0000
+Content-Type: text/plain; charset=UTF-8
 
---047d7b6785e05209f004daeed1c5
-Content-Type: text/plain; charset=ISO-8859-1
+On 22 April 2013 09:25, Satya Swaroop Damarla <swaroop.damarla@gmail.com> wrote:
+> I hope everyone had a nice weekend.. Back to work ;-)
+> I would like to know what package is used to set a background image.
 
-Hi Guys,
+This is something that you as a system builder can define - if you use
+a larger desktop environment then they'll provide their own way, there
+are numerous tools which can set the image such as xsri, or you can
+use the tool provided by X, xsetroot.  Finally, you can do it yourself
+if you're already coding some of the system, setting the root window
+contents is fairly simple.
 
-I hope everyone had a nice weekend.. Back to work ;-)
-I would like to know what package is used to set a background image.
+Ross
 
-Greets,
-Satya
-
---047d7b6785e05209f004daeed1c5
-Content-Type: text/html; charset=ISO-8859-1
-
-<div dir="ltr">Hi Guys,<div><br></div><div style>I hope everyone had a nice weekend.. Back to work ;-)</div><div style>I would like to know what package is used to set a background image.</div><div style><br></div><div style>
-Greets,</div><div style>Satya</div></div>
-
---047d7b6785e05209f004daeed1c5--
