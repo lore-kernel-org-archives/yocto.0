@@ -1,21 +1,31 @@
-Return-Path: <dean.saridakis@baesystems.com>
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
-	[149.32.232.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7A61E0054B
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 08:57:56 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.87,527,1363132800"; d="scan'208,217";a="5742362"
-X-IronPort-AV: E=Sophos;i="4.87,527,1363132800"; d="scan'208,217";a="10458378"
-From: "Saridakis, Dean   (US SSA)" <dean.saridakis@baesystems.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Patching from .bbappend
-Thread-Index: Ac4/ccdRm3xhCuZXSjqBzvsE9BgSbA==
-Date: Mon, 22 Apr 2013 15:57:52 +0000
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.37.161.240]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 313BFE0054B
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 09:00:12 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:38598 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UUJA3-0003uE-Bk
+	for yocto@yoctoproject.org; Mon, 22 Apr 2013 12:00:11 -0400
+Date: Mon, 22 Apr 2013 12:00:07 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304221056510.7236@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Patching from .bbappend
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: remaining comments on current BSP developers guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,85 +37,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 15:57:57 -0000
-Message-ID: <MADEUP.15D95862001070D4.14359@lists.yoctoproject.org>
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_B98BBFB67D89184E8E876F332BDBC3E0A2809CGLDMS85001goldlnk_"
-
---_000_B98BBFB67D89184E8E876F332BDBC3E0A2809CGLDMS85001goldlnk_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Does anyone have an example of how to apply a patch from an append file? (e=
-ven better if the base recipe inherits autotools)
+X-List-Received-Date: Mon, 22 Apr 2013 16:00:12 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-Dean
+  (again, someone up the food chain can decide what's worth
+processing.)
 
+1.6.1 Common Features
 
---_000_B98BBFB67D89184E8E876F332BDBC3E0A2809CGLDMS85001goldlnk_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+* "Both tools [yocto-bsp and yocto-kernel] reside in the scripts/
+subdirectory of the Source Directory." no, they don't, they're in
+meta-yocto/scripts/, so simply sourcing oe-init-build-env isn't
+sufficient to add them to the search path, is it? (i'm guessing it
+used to be, but no longer.)
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Does anyone have an example of how to apply a patch =
-from an append file? (even better if the base recipe inherits autotools)<o:=
-p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Dean <o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+1.6.2 Creating a new BSP Layer ...
 
---_000_B98BBFB67D89184E8E876F332BDBC3E0A2809CGLDMS85001goldlnk_--
+     $ yocto-bsp list karch
+     Architectures available:
+         qemu
+         x86_64
+         i386
+         powerpc
+         arm
+         mips
+
+  but if you run that, you get the additional arch "layer". where's
+that coming from? is it a holdover from before there was a yocto-layer
+command? i never noticed that before now.
+
+* "Assuming you have sourced the environment ..." Again, you don't get
+these utilities in your PATH by sourcing the environment, you need to
+do that manually.
+
+* "...pressing enter and providing an invalid response..." um, what is
+that supposed to say?
+
+* Point 6.  Do you actually need to include the meta-yocto and
+meta-yocto-bsp layers in this new layer's bblayers.conf file? I don't
+see why but maybe I'm missing something obvious.
+
+* also, typo "BBLAYERS = ?"
+
+  i think that's everything.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
