@@ -1,42 +1,36 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f50.google.com (mail-vb0-f50.google.com
-	[209.85.212.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDA61E006F9
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 13:17:43 -0700 (PDT)
-Received: by mail-vb0-f50.google.com with SMTP id w16so113545vbb.9
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 13:17:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=YGyi/HLY9BrSEimcFcbe2tYOhbfcW5CHiYb5yDES30k=;
-	b=wJ/mt7d1smd1IXqH9u3iFN1B5YbyetWS1d4+CpcXSx9iDyAMREbzT8NqC17A7ECVBv
-	TCnGgV5e1Qyc8Z5CCeQ6Hkycw75eHJg3vdNYYkaiq8lR76vmFylYPNEW5QMk41ii6JfW
-	w3Omed8jP/Now9IiOB4qbQxV5F0NvmA2xU08k4kIRU4NukQ/DwWRJ4LErYLox9k7Br61
-	f5EORItzTVE+eiRMSQXVgmOyGbREHcpmCMNcvUFMJPoRuRiI93LiqHe+f50E5OYgfnhg
-	E4rjj673erEtLMhCAIEmQRuEOVOQWqN9xWvIb7K+08JIbZCuS0FU8Bo4geRiscJt9UUk
-	BheQ==
-MIME-Version: 1.0
-X-Received: by 10.52.88.2 with SMTP id bc2mr1862919vdb.27.1366661863055; Mon,
-	22 Apr 2013 13:17:43 -0700 (PDT)
-Sender: paul.betafive@gmail.com
-Received: by 10.220.224.135 with HTTP; Mon, 22 Apr 2013 13:17:42 -0700 (PDT)
-In-Reply-To: <CAK18fxGrJ+9+-OzgOA9VRj34=_jV2nhiPQA_w3yjjGzAjHqBaQ@mail.gmail.com>
-References: <alpine.DEB.2.02.1304190932010.4968@oneiric>
-	<20130419135843.GH2489@jama>
-	<alpine.DEB.2.02.1304191016030.5451@oneiric>
-	<20130419142509.GJ2489@jama>
-	<alpine.DEB.2.02.1304191038530.5636@oneiric>
-	<CANyK_8ehX8Bsgd35pvx54EGeCG6=WLBoDFV0h=5Suz3uXPyREw@mail.gmail.com>
-	<51716F8F.2080408@linux.intel.com>
-	<CANyK_8dNtrKOT=dqueYHBTUPm6scULOO-qAURY41hZdzeX_yqA@mail.gmail.com>
-	<CAK18fxGrJ+9+-OzgOA9VRj34=_jV2nhiPQA_w3yjjGzAjHqBaQ@mail.gmail.com>
-Date: Mon, 22 Apr 2013 21:17:42 +0100
-X-Google-Sender-Auth: EurGBJdWatef_-CZ5EJ1ztwBME4
-Message-ID: <CANyK_8fRvO6VVJwmVXZM=ro_tXR-9DAnKUG+-qZ=CZ3jDY9VGw@mail.gmail.com>
+Return-Path: <paul@paulbarker.me.uk>
+Received: from mo1.mail-out.ovh.net (18.mo1.mail-out.ovh.net [46.105.35.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B464E013C9
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 13:19:46 -0700 (PDT)
+Received: from mail99.ha.ovh.net (b6.ovh.net [213.186.33.56])
+	by mo1.mail-out.ovh.net (Postfix) with SMTP id 025F2FF89AA
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 22:19:45 +0200 (CEST)
+Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
+	by b0.ovh.net with SMTP; 22 Apr 2013 22:19:44 +0200
+Received: from 94-192-12-83.zone6.bethere.co.uk (HELO
+	b5-server.betafive.co.uk) (paul@betafive.co.uk@94.192.12.83)
+	by ns0.ovh.net with SMTP; 22 Apr 2013 22:19:42 +0200
+Received: from b5-vm-mint0.betafive.co.uk (b5-vm-mint0.betafive.co.uk
+	[192.168.0.100])
+	by b5-server.betafive.co.uk (Postfix) with ESMTP id ADF8716010F;
+	Mon, 22 Apr 2013 21:19:38 +0100 (BST)
 From: Paul Barker <paul@paulbarker.me.uk>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] Fix FILESEXTRAPATHS, dir is "netbase-5.0"
+To: yocto@yoctoproject.org
+X-Ovh-Mailout: 178.32.228.1 (mo1.mail-out.ovh.net)
+Date: Mon, 22 Apr 2013 21:19:37 +0100
+Message-Id: <1366661977-26631-1-git-send-email-paul@paulbarker.me.uk>
+X-Mailer: git-send-email 1.7.10.4
+X-Ovh-Tracer-Id: 11195385724809480586
+X-Ovh-Remote: 94.192.12.83 (94-192-12-83.zone6.bethere.co.uk)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: 0
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeeifedrfeehucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecu
+X-Spam-Check: DONE|U 0.5/N
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeeifedrfeehucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecu
+Subject: [meta-raspberrypi][PATCH] netbase: Remove bbappend and files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,33 +42,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 20:17:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 22 Apr 2013 20:19:46 -0000
 
-On 20 April 2013 21:35, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> On Sat, Apr 20, 2013 at 4:05 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
->>
->> So I'd recommend dropping these from meta-raspberrypi completely. Just
->> my opinion though, anyone else got any thoughts on this?
->>
->
-> Hello guys. Probably dropping would be the best thing here. I don't think
-> that the issue is reproduced anymore with netbase on rpi. If you submit
-> patch I can give it a try.
->
+Dropped raspberrypi modifications to hosts and interfaces files as they are
+unnecessary.
 
-I've thrown a patch together, will send it to the list. Not sure if
-you want to elaborate on the commit message a little though before it
-goes into the main repo, I'm not quite up to speed with the history of
-some of these recipes.
+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+---
+ recipes-core/netbase/netbase-5.0/raspberrypi/hosts      |    2 --
+ recipes-core/netbase/netbase-5.0/raspberrypi/interfaces |   15 ---------------
+ recipes-core/netbase/netbase_5.0.bbappend               |    3 ---
+ 3 files changed, 20 deletions(-)
+ delete mode 100644 recipes-core/netbase/netbase-5.0/raspberrypi/hosts
+ delete mode 100644 recipes-core/netbase/netbase-5.0/raspberrypi/interfaces
+ delete mode 100644 recipes-core/netbase/netbase_5.0.bbappend
 
-(I must learn to check my reply/reply-all selection!)
+diff --git a/recipes-core/netbase/netbase-5.0/raspberrypi/hosts b/recipes-core/netbase/netbase-5.0/raspberrypi/hosts
+deleted file mode 100644
+index 7d87a18..0000000
+--- a/recipes-core/netbase/netbase-5.0/raspberrypi/hosts
++++ /dev/null
+@@ -1,2 +0,0 @@
+-127.0.0.1	localhost.localdomain		localhost	raspberrypi	rpi
+-
+diff --git a/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces b/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces
+deleted file mode 100644
+index 00ae607..0000000
+--- a/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces
++++ /dev/null
+@@ -1,15 +0,0 @@
+-# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+- 
+-# The loopback interface
+-auto lo
+-iface lo inet loopback
+-
+-# Wireless interfaces
+-iface wlan0 inet dhcp
+-	wireless_mode managed
+-	wireless_essid any
+-	wpa-driver wext
+-	wpa-conf /etc/wpa_supplicant.conf
+-
+-# Bluetooth networking
+-iface bnep0 inet dhcp
+diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core/netbase/netbase_5.0.bbappend
+deleted file mode 100644
+index 36432f5..0000000
+--- a/recipes-core/netbase/netbase_5.0.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-# Don't forget to bump PRINC if you update the extra files.
+-PRINC = "1"
+-- 
+1.7.10.4
 
-Thanks,
-
---
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
