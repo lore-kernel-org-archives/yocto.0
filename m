@@ -1,36 +1,31 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88835E014F3
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 04:27:46 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:33366 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UUEuO-0007av-VV; Mon, 22 Apr 2013 07:27:45 -0400
-Date: Mon, 22 Apr 2013 07:27:42 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Tom Zanussi <tom.zanussi@intel.com>
-In-Reply-To: <1366465052.27207.74.camel@empanada>
-Message-ID: <alpine.DEB.2.02.1304220722330.2214@oneiric>
-References: <alpine.DEB.2.02.1304190827410.4247@oneiric>
-	<1366409274.27207.69.camel@empanada>
-	<alpine.DEB.2.02.1304200534160.14289@oneiric>
-	<1366465052.27207.74.camel@empanada>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: clarification about BSP layer names and bblayers.conf file?
+Return-Path: <atanas.gegov.oss@gmail.com>
+Received: from mail-bk0-f45.google.com (mail-bk0-f45.google.com
+	[209.85.214.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE010E014F3
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 05:06:12 -0700 (PDT)
+Received: by mail-bk0-f45.google.com with SMTP id j4so629514bkw.32
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 05:06:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
+	bh=xeYFyfbPnY6GeB5gPh73/8pUj4jYeJmXDw3Sj279xqc=;
+	b=olYeKSqP4ez4+WUV0yz2LIliwPCwu5Q1MfxLuxxJTNNMlUKYskiupzEKeQpSGFjBad
+	jsJmSqEtCO5uM/9PyquYbERxiInnakDK3aw0J4Rvle63NRj4av1CjPycQpYPoYfbEIkt
+	jeeC/JjMp8sQz2EoBFwLKKf6jGo2RhkoXS20+/LVyW7LLNSqA3ndFR+6Y40Tmyhf1Gz+
+	ID21al36zHnhWvgqOWhsRaaKs6b3q5pVoD+/q8vP3qhJh0oNv/xJ1NB2itSU0YQxFQNm
+	AAHyjKZK+7JUTufDx9c1HRXG+2ceH1WY2DIccSAdw9J3ImgJEw3MaxNXLWMYUKXxPe4X
+	h9Jw==
+X-Received: by 10.205.99.130 with SMTP id cs2mr9894317bkc.118.1366632371126;
+	Mon, 22 Apr 2013 05:06:11 -0700 (PDT)
+Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
+	by mx.google.com with ESMTPS id cv9sm6751434bkb.5.2013.04.22.05.06.09
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 22 Apr 2013 05:06:09 -0700 (PDT)
+From: Atanas Gegov <atanas.gegov.oss@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 22 Apr 2013 14:05:57 +0200
+Message-Id: <1366632363-6064-1-git-send-email-atanas.gegov.oss@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [eclipse-poky][RFC 0/6] Introducing a YoctoSDKCMakeProjectNature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,43 +37,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 11:27:46 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 22 Apr 2013 12:06:13 -0000
 
-On Sat, 20 Apr 2013, Tom Zanussi wrote:
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-> On Sat, 2013-04-20 at 05:35 -0400, Robert P. J. Day wrote:
+Hi,
 
-> >   i was just looking for an example of the kind of hierarchical
-> > layer structure you find in meta-intel. is there another layer
-> > that has that kind of structure?
-> >
->
-> A quick scan of all the layers I have opengrokked here doesn't show
-> any either, so possibly meta-intel is currently the only example.
-> If so, let's use it..
+This patch series introduces a YoctoSDKCMakeProjectNature as a new
+nature for CMake-based Yocto Projects in the IDE. It requires the
+basic YoctoSDKProjectNature and is an alternative to the
+YoctoSDKAutotoolsProjectNature.
 
-  as a recap, for the purposes of my oe/yocto course, i was after a
-range of BSP definitions from simplest to most complex. at one end,
-the example i picked on as a layer that defined a single variation of
-a single board was raspberry-pi.
+This does not affect the currently existing Autotools template
+projects.
 
-  from there, i can demonstrate examples of, say, a layer that defines
-more than one variant of a single machine (say, meta-intel's
-meta-crownbay), then a layer that defines a number of independent
-machines (say, meta-yocto-bsp), up to the hierarchical structure of
-meta-intel, and any other interesting variations i run across in
-between.
+Upcoming patch series will add the last missing parts for having CMake
+projects in the IDE: a ManagedBuilder for CMake (CMake toolchain for
+building in Eclipse) and some template projects. However, I already
+wanted to post this series for a review and make sure that the
+concept is acceptable, so that we can build on top of it.
 
-rday
+Cheers, Atanas
+
+P.S: This patch series apply on the current master "plugins/sdk.ide:
+Extracted error message to YoctoSDKMessages"
+(7142c5fc82a41a9d5f86c48b289db0ef44f5a897).
+
+Atanas Gegov (6):
+  plugins/sdk.ide: Prepared templates for CMake nature
+  plugins/sdk.ide: Added a new YoctoSDKCMakeProjectNature
+  plugins/sdk.ide: Enable the creation of CMake projects
+  plugins/sdk.ide: Update CMake projects on Yocto settings change
+  plugins/sdk.ide: Renamed template process
+  plugins/sdk.ide: Fixed whitespace issues
+
+ .../OSGI-INF/l10n/bundle.properties                |    1 +
+ plugins/org.yocto.sdk.ide/plugin.xml               |   25 +-
+ .../ide/natures/YoctoSDKCMakeProjectNature.java    |   92 +++++++
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    7 +-
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |  245 -------------------
+ .../ide/wizard/NewYoctoProjectTemplateProcess.java |  256 ++++++++++++++++++++
+ .../EmptyCAutotoolsProject/template.xml            |    1 +
+ .../EmptyCPPAutotoolsProject/template.xml          |    1 +
+ .../HelloWorldCAutotoolsProject/template.xml       |    1 +
+ .../HelloWorldCGTKAutotoolsProject/template.xml    |    1 +
+ .../HelloWorldCPPAutotoolsProject/template.xml     |    1 +
+ 11 files changed, 384 insertions(+), 247 deletions(-)
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
 
 -- 
+1.7.9.5
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
