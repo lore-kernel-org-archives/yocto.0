@@ -1,24 +1,30 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A830E014F5
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 06:18:59 -0700 (PDT)
-Received: from [192.168.0.2] (host86-137-86-81.range86-137.btcentralplus.com
-	[86.137.86.81]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id AF4339512
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 14:18:57 +0100 (BST)
-Message-ID: <517538C0.6050803@r-finger.com>
-Date: Mon, 22 Apr 2013 14:18:56 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BF68E014CB
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 06:48:46 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:36078 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UUH6r-0005Ga-V8; Mon, 22 Apr 2013 09:48:46 -0400
+Date: Mon, 22 Apr 2013 09:48:42 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1304220853580.32510@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <20130419230440.DCDE7E0146E@yocto-www.yoctoproject.org>
-	<20130419232226.GB941@wrk>
-	<B98BBFB67D89184E8E876F332BDBC3E0A27FDD@GLDMS85001.goldlnk.rootlnka.net>
-In-Reply-To: <B98BBFB67D89184E8E876F332BDBC3E0A27FDD@GLDMS85001.goldlnk.rootlnka.net>
-Subject: Re: Trouble patching a package
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: observations on current BSP developer's guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,56 +36,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 13:18:59 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-On 22/04/13 13:56, Saridakis, Dean (US SSA) wrote:
->>> Seems like this ought to be pretty easy based on the docs - Not sure
->>> what I've got wrong. I've added an append to my layer w/
->>>
->>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>
->>> SRC_URI += "0001-yada-yada.patch"
->>>
->>> # Comment out while debugging
->>> #PRINC := "${@int(PRINC) + 1}"
->>>
->>> The append file is in BBFILES. The patch file is in the same dir as
->>> the append file (using a files sub-dir didn't help). Been doing
->>> "bitbake -c patch -f pkg" to test/debug. (pkg is canutils, which is
->>> autconf based)
->>
->> Based on the path you're using, the patch needs to be in a subdir relative to
->> your append file. Specifically, the subdir needs to have the same name as the
->> package.
->>
->> -Kevin
-> 
-> I've also tried just "${THISDIR}:" with the same results.
-> 
-> A lot of this stuff is still magic to me & I'm not sure how to go about demystifying it -- do I have to dig into the underlying classes?
-> E.g., what magic is required to pick up & apply a patch file? Anything named *.patch? 
+X-List-Received-Date: Mon, 22 Apr 2013 13:48:47 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
->>> #PRINC := "${@int(PRINC) + 1}"
+  brief notes on BSP dev guide, someone else higher up the food chain
+can decide if any of this merits changes or clarifications.
 
-Not sure which version of Yocto you are using, but this is probably the
-source of your problems -- until very recently no PR change means no
-rebuild.
+1.1 BSP Layers
 
-The other thing, if you modify SRC_URI, re-running the 'patch' task is
-not enough, the patches need to be added to the sources, which happens
-during the 'unpack' task.
+* emphasize that name of "meta-*" is only convention, but a really
+well-established one
 
-If you are adding a patch to the bbappend, there is only two things that
-can go wrong: your extra path is wrong, in which case you will get a
-failure during 'unpack', or your patch does not apply, then you will get
-a failure during 'patch' task. If neither of these is happening, then
-your bbappend changes are not being processed.
+* remove lines of meta-yocto/meta-yocto-bsp from example, has
+potential for giving readers wrong impression. also that whole
+BBLAYERS_NON_REMOVABLE thing is debatable. pick simpler example.
 
-If in doubt run 'bitbake -c cleansstate package' to start from the
-beginning.
+1.2 Example Filesystem Layout
 
-Tomas
+* clarify what is *actually* required to be an official OE/YP layer,
+as some layers don't have things like README, README.sources, etc.
+
+1.2.5 Layer Configuration File
+
+* "here are the last three statements from the Crown Bay
+conf/layer.conf file" -- those aren't actually the last three lines,
+there's also the "_depends" line but someone else can decide how to
+word that.
+
+* wait, that sample layer.conf file seems wrong, aren't the BBFILES
+entries missing a wildcard directory layer?
+
+1.2.6 Hardware Configuration Options
+
+* "For example, the ia32-base.inc file resides in the meta-intel BSP
+Layer in conf/machine/include." hmmmm ... pedantic, yes, but should
+meta-intel really be described as a "BSP" layer? what's the proper way
+to describe it?
+
+* also, that statement is simply wrong as that directory contains only
+meta-intel.inc, not ia32-base.inc. and last para might also mention
+the include of meta-intel.inc in addition to the other two "require"s.
+
+
+1.2.7 Miscellaneous Recipe Files
+
+* Might rename this to "Miscellaneous BSP-specific Recipe Files", to
+distinguish it from the *other* recipe-related sections that follow?
+
+1.2.9 Linux Kernel Configuration
+
+* Worth upgrading the example shown to 3.8 instead of 3.4? and the
+source shown there doesn't exactly match what's in the current file.
+
+* "The file also uses the optional KBRANCH variable to ensure the
+build process uses the standard/default/crownbay kernel branch."
+sorry, "standard/default/crownbay"? shouldn't that say just
+"standard/crownbay"?
+
+* "you had a some" -> "you had some"
+
+1.3.1 Released BSP Requirements
+
+* again, a number of existing layers don't fully comply with this list
+
+* File System Layout: "recipe-*" -> "recipes-*"
+
+* Machine Configuration File: should probably say that you need to
+include one *or more* machine config files, not just one.
+
+* Note: "It is completely possible for a developer to structure the
+working repository as a conglomeration of unrelated BSP files..."
+might be worth pointing out that this is exactly what meta-yocto-bsp
+does, but that's a special case.
+
+1.4 Customizing a Recipe for a BSP
+
+* based on recent discussion, probably don't want to use the netbase
+recipe as the example here :-) besides, point 1 erroneously refers to
+the "netbases" directory instead of "netbase".
+
+  that's enough for now, i'll finish reading the bsp tools section
+later.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
