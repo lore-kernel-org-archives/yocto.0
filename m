@@ -1,45 +1,23 @@
-Return-Path: <dean.saridakis@baesystems.com>
-Received: from dmzms99801.na.baesystems.com (dmzms99801.na.baesystems.com
-	[149.32.232.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B75DE014F3
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 05:56:14 -0700 (PDT)
-X-SENDER-IP: 10.37.225.66
-X-SENDER-REPUTATION: None
-X-IronPort-AV: E=Sophos;i="4.87,526,1363132800"; 
-   d="scan'208";a="5712540"
-Received: from rfc1918.na.baesystems.com (HELO cascms99802.na.baesystems.com)
-	([10.37.225.66])
-	by dmzms99801.na.baesystems.com with ESMTP/TLS/RC4-SHA;
-	22 Apr 2013 12:56:12 +0000
-X-SENDER-IP: 10.37.194.19
-X-SENDER-REPUTATION: None
-X-IronPort-AV: E=Sophos;i="4.87,526,1363132800"; 
-   d="scan'208";a="3907725"
-X-IPAS-Result: AqEEALQydVEKJcIT/2dsb2JhbABPgzzAfoEddIIfAQEBAQIBAQEBNzQLEAIBCCIUECcBCiUCBA4FCIgGErwEBI8OMQeCZmEDk0cDgQmWaIIo
-Received: from GLDMS99984.goldlnk.rootlnka.net (10.37.199.133) by
-	gldms99919.goldlnk.rootlnka.net (10.37.194.19) with Microsoft SMTP
-	Server (TLS) id 8.3.279.5; Mon, 22 Apr 2013 08:56:11 -0400
-Received: from GLDMS85003.goldlnk.rootlnka.net (10.37.161.195) by
-	gldms99984.goldlnk.rootlnka.net (10.37.199.133) with Microsoft SMTP
-	Server (TLS) id 14.2.318.4; Mon, 22 Apr 2013 08:56:11 -0400
-Received: from GLDMS85001.goldlnk.rootlnka.net ([fe80::136:899e:bab0:2587]) by
-	GLDMS85003.goldlnk.rootlnka.net ([172.16.0.147]) with mapi id
-	14.02.0318.004; Mon, 22 Apr 2013 08:56:10 -0400
-From: "Saridakis, Dean   (US SSA)" <dean.saridakis@baesystems.com>
-To: Kevin Strasser <kevin.strasser@linux.intel.com>
-Thread-Topic: [yocto] Trouble patching a package
-Thread-Index: AQHOPVUm/If97J35cUuWEEaKiyMafJjiMxIQ
-Date: Mon, 22 Apr 2013 12:56:10 +0000
-Message-ID: <B98BBFB67D89184E8E876F332BDBC3E0A27FDD@GLDMS85001.goldlnk.rootlnka.net>
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A830E014F5
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 06:18:59 -0700 (PDT)
+Received: from [192.168.0.2] (host86-137-86-81.range86-137.btcentralplus.com
+	[86.137.86.81]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id AF4339512
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 14:18:57 +0100 (BST)
+Message-ID: <517538C0.6050803@r-finger.com>
+Date: Mon, 22 Apr 2013 14:18:56 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
 References: <20130419230440.DCDE7E0146E@yocto-www.yoctoproject.org>
 	<20130419232226.GB941@wrk>
-In-Reply-To: <20130419232226.GB941@wrk>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.37.161.240]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<B98BBFB67D89184E8E876F332BDBC3E0A27FDD@GLDMS85001.goldlnk.rootlnka.net>
+In-Reply-To: <B98BBFB67D89184E8E876F332BDBC3E0A27FDD@GLDMS85001.goldlnk.rootlnka.net>
 Subject: Re: Trouble patching a package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -52,63 +30,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 12:56:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 22 Apr 2013 13:18:59 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> > Seems like this ought to be pretty easy based on the docs - Not sure
-> > what I've got wrong. I've added an append to my layer w/
-> >
-> > FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> >
-> > SRC_URI +=3D "0001-yada-yada.patch"
-> >
-> > # Comment out while debugging
-> > #PRINC :=3D "${@int(PRINC) + 1}"
-> >
-> > The append file is in BBFILES. The patch file is in the same dir as
-> > the append file (using a files sub-dir didn't help). Been doing
-> > "bitbake -c patch -f pkg" to test/debug. (pkg is canutils, which is
-> > autconf based)
->=20
-> Based on the path you're using, the patch needs to be in a subdir relativ=
-e to
-> your append file. Specifically, the subdir needs to have the same name as=
- the
-> package.
->=20
-> -Kevin
+On 22/04/13 13:56, Saridakis, Dean (US SSA) wrote:
+>>> Seems like this ought to be pretty easy based on the docs - Not sure
+>>> what I've got wrong. I've added an append to my layer w/
+>>>
+>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>>
+>>> SRC_URI += "0001-yada-yada.patch"
+>>>
+>>> # Comment out while debugging
+>>> #PRINC := "${@int(PRINC) + 1}"
+>>>
+>>> The append file is in BBFILES. The patch file is in the same dir as
+>>> the append file (using a files sub-dir didn't help). Been doing
+>>> "bitbake -c patch -f pkg" to test/debug. (pkg is canutils, which is
+>>> autconf based)
+>>
+>> Based on the path you're using, the patch needs to be in a subdir relative to
+>> your append file. Specifically, the subdir needs to have the same name as the
+>> package.
+>>
+>> -Kevin
+> 
+> I've also tried just "${THISDIR}:" with the same results.
+> 
+> A lot of this stuff is still magic to me & I'm not sure how to go about demystifying it -- do I have to dig into the underlying classes?
+> E.g., what magic is required to pick up & apply a patch file? Anything named *.patch? 
 
-I've also tried just "${THISDIR}:" with the same results.
 
-A lot of this stuff is still magic to me & I'm not sure how to go about dem=
-ystifying it -- do I have to dig into the underlying classes?
-E.g., what magic is required to pick up & apply a patch file? Anything name=
-d *.patch?=20
+>>> #PRINC := "${@int(PRINC) + 1}"
 
-> >
-> > Ran into a couple thing I didn't understand trying to debug. I tried
-> > adding
-> >
-> > do_patch_append() {
-> >     bbnote "Got here "
-> > }
-> >
-> > to log my append file was getting picked up, but the parse failed.
-> >
-> > Didn't get errors if the patch file name was wrong. The log only has a =
-git ls-
-> remote (which seems a little odd).
-> >
-> > Any help would be appreciated.
-> >
-> > Dean
-> >
->=20
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+Not sure which version of Yocto you are using, but this is probably the
+source of your problems -- until very recently no PR change means no
+rebuild.
 
+The other thing, if you modify SRC_URI, re-running the 'patch' task is
+not enough, the patches need to be added to the sources, which happens
+during the 'unpack' task.
+
+If you are adding a patch to the bbappend, there is only two things that
+can go wrong: your extra path is wrong, in which case you will get a
+failure during 'unpack', or your patch does not apply, then you will get
+a failure during 'patch' task. If neither of these is happening, then
+your bbappend changes are not being processed.
+
+If in doubt run 'bitbake -c cleansstate package' to start from the
+beginning.
+
+Tomas
 
