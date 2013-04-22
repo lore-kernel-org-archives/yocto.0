@@ -1,34 +1,27 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
-	[209.85.212.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DE94E014F3
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 01:55:50 -0700 (PDT)
-Received: by mail-vb0-f42.google.com with SMTP id p12so5644746vbe.1
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 01:55:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=Cq8/NfJvo1EXYAQGW/tQPsXOYXkHhGrjULamD7cLTtA=;
-	b=NPz5SwE4XsRtDmQADWaKmDgjx5nR4L4PE5463lzMDUwjbn1UVvLDPnGv56kN//zDxk
-	b172yeRZFwyzaPYKKTEnOh4tIuk9RuuipNtp0WMNPALzPNPcDZKzciATxvgJepxAAvWI
-	Ca6vszoR62hkeOzobm+r8UCyoQd1izfZcwtdc8jpgTLi89Z1J8a7+iIEbOuPZ1o4e/jG
-	2H0wvbx+UgSk4ahFtd5UJAFbemNvJSjpsHk5Ei8q9AT+6y5NyF6Wt7F0e19r58eVtgfS
-	dxMk5nh9l0JpS9k/f395PZrkAzvIg5HkLw7HEti0tRxwDmu6BO2bJTg7k49wnS43IeXV
-	zwoA==
-X-Received: by 10.52.165.99 with SMTP id yx3mr2123575vdb.34.1366620949419;
-	Mon, 22 Apr 2013 01:55:49 -0700 (PDT)
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC0B0E014F3
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 02:25:24 -0700 (PDT)
+Received: by mail-wg0-f54.google.com with SMTP id y10so771581wgg.21
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 02:25:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:from:date:message-id:subject:to
+	:content-type; bh=LCd8vB6k4edLx3g5LRnkGXVK7V9aCG6HYt2UA6llSaM=;
+	b=hiNZ8CDfimbYdWa6M9NvR1srN2iCYHdJFxpNTRdUoXZqOScbhM4nFUCXm/f0B3TNFX
+	S2mTyjWdiNsJJhrZxXkP3jT3pcvcHhXktNIwB5kbVWbdfLvFLQ1lTaLVo5UYgiIsDSfB
+	FqZjNCshCBSi5V1LqAC8C9lbedohEXc3oXkG8GvqklNr5VKTW740rAcMVFSUAWYD2kYU
+	wTitjF0vRhNr5oy811YA98d2WDQJgy58VKE/ZhKyHfa/89vEJ6bSIL6vdNcHzdGDneU5
+	CKlwd4D9K5/b95K4J0o/TU5LDEj5KlMOItdCBSXz2fHO5zIi3lfstWoozDruJrlEAN1E
+	F3Jg==
+X-Received: by 10.180.72.228 with SMTP id g4mr64853051wiv.22.1366622723096;
+	Mon, 22 Apr 2013 02:25:23 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Mon, 22 Apr 2013 01:55:29 -0700 (PDT)
-In-Reply-To: <CAFMfyz+=HMqt6Jgrsq3_GgdZL9K-obRYuYsVVrxqonzfP-t2gQ@mail.gmail.com>
-References: <CAFMfyz+=HMqt6Jgrsq3_GgdZL9K-obRYuYsVVrxqonzfP-t2gQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 22 Apr 2013 09:55:29 +0100
-Message-ID: <CAJTo0LYnBG_7vyVhW2o3HK=XNHRctJ3-zE+yq2=LxrKz-WdGOQ@mail.gmail.com>
-To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-X-Gm-Message-State: ALoCoQk+BP3nqTIxWQHi/L7Ecie8NosPG8CPYocm6SNeUJoMhvptmext5fe65rGWXwTj5Bpt+slX
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Package which sets Background Image
+Received: by 10.194.40.163 with HTTP; Mon, 22 Apr 2013 02:25:03 -0700 (PDT)
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Mon, 22 Apr 2013 11:25:03 +0200
+Message-ID: <CAAGt+t3dy7C1-gGdypOY4heYF8angEx1S9HZaFCW+WgkfNnnZA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Error: runqemu: command not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,19 +33,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 08:55:50 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 22 Apr 2013 09:25:25 -0000
+Content-Type: multipart/alternative; boundary=f46d043c819ef3c6c204daefa593
 
-On 22 April 2013 09:25, Satya Swaroop Damarla <swaroop.damarla@gmail.com> wrote:
-> I hope everyone had a nice weekend.. Back to work ;-)
-> I would like to know what package is used to set a background image.
+--f46d043c819ef3c6c204daefa593
+Content-Type: text/plain; charset=ISO-8859-1
 
-This is something that you as a system builder can define - if you use
-a larger desktop environment then they'll provide their own way, there
-are numerous tools which can set the image such as xsri, or you can
-use the tool provided by X, xsetroot.  Finally, you can do it yourself
-if you're already coding some of the system, setting the root window
-contents is fairly simple.
+Hi all,
 
-Ross
+I downloaded poky-danny-8.0, after editing conf file, i made a
+build(bitbake core-image-minimal), after the build completed. When I try to
+boot the image it throws  *runqemu: command not found. *Any Ideas?
 
+Thank You,
+
+-- 
+Regards,
+Zafrullah Syed
+
+--f46d043c819ef3c6c204daefa593
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<div><br></div><div>I downloaded poky-danny-8.0, af=
+ter editing conf file, i made a build(bitbake core-image-minimal), after th=
+e build completed. When I try to boot the image it throws =A0<i>runqemu: co=
+mmand not found. </i>Any Ideas?</div>
+
+<div><br><div style>Thank You,</div><div style><br></div>-- <br><span style=
+=3D"font-family:arial,sans-serif;font-size:13px;border-collapse:collapse;co=
+lor:rgb(136,136,136)">Regards,<br>Zafrullah Syed</span><div><font color=3D"=
+#888888" face=3D"arial, sans-serif"><span style=3D"border-collapse:collapse=
+"><br>
+
+</span></font></div>
+</div></div>
+
+--f46d043c819ef3c6c204daefa593--
