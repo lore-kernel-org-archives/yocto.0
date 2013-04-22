@@ -1,30 +1,41 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BF68E014CB
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 06:48:46 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:36078 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UUH6r-0005Ga-V8; Mon, 22 Apr 2013 09:48:46 -0400
-Date: Mon, 22 Apr 2013 09:48:42 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1304220853580.32510@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <jonas.l.jonsson@ericsson.com>
+Received: from mailgw7.ericsson.se (mailgw7.ericsson.se [193.180.251.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80910E014CB
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 07:40:15 -0700 (PDT)
+X-AuditID: c1b4fb30-b7f266d000000cb5-06-51754bc92e04
+Received: from ESESSHC017.ericsson.se (Unknown_Domain [153.88.253.125])
+	by mailgw7.ericsson.se (Symantec Mail Security) with SMTP id
+	63.2C.03253.9CB45715; Mon, 22 Apr 2013 16:40:10 +0200 (CEST)
+Received: from ESESSMB305.ericsson.se ([169.254.5.114]) by
+	ESESSHC017.ericsson.se ([153.88.183.69]) with mapi id 14.02.0328.009;
+	Mon, 22 Apr 2013 16:40:09 +0200
+From: Jonas Jonsson L <jonas.l.jonsson@ericsson.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] SSTATE_MIRRORS problems, libpthread.so.0 not found ...
+Thread-Index: AQHOOVnCJYwv7gv/zUKUq8wrVeKG35jiVcVA
+Date: Mon, 22 Apr 2013 14:40:09 +0000
+Message-ID: <0342A6AD36648742A199353A51DDC7031155B93D@ESESSMB305.ericsson.se>
+References: <0342A6AD36648742A199353A51DDC70311546C9C@ESESSMB305.ericsson.se>
+	<CAMKF1sp5Rq-mwpM79J3vr7LmZyyQFHBRz7WDhtKXpVBUimHokQ@mail.gmail.com>
+In-Reply-To: <CAMKF1sp5Rq-mwpM79J3vr7LmZyyQFHBRz7WDhtKXpVBUimHokQ@mail.gmail.com>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [153.88.183.19]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: observations on current BSP developer's guide
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCLMWRmVeSWpSXmKPExsUyM+Jvre4p79JAgznzeCzars9itJj0cg2b
+	A5PHzll32T3aT/SxBTBFcdmkpOZklqUW6dslcGX0ndvNWLArq+L4k0WMDYwn0rsYOTkkBEwk
+	Zt6/xgphi0lcuLeeDcQWEjjMKLHmTVQXIxeQvYRR4ueeGYwgCTaghgkrb4LZIgKKEs0tv5lB
+	bGYBT4mWBROYQGxhAW+JhgNT2CBqfCTaPy9igbCNJF4tfAgWZxFQlZi+8xhYL6+Ar8TBFQfY
+	IJZNYZT48LIJbAGnQKDE0wdzwWxGAVmJ+9/vsUAsE5e49WQ+E8TVAhJL9pxnhrBFJV4+/gf1
+	jaJE+9MGRoj6fIlXy+ezQCwTlDg58wnLBEbRWUhGzUJSNgtJ2SxGDqC4psT6XfoQJYoSU7of
+	skPYGhKtc+ayI4svYGRfxciem5iZk15uvokRGFMHt/w22MG46b7YIUZpDhYlcd5w1wsBQgLp
+	iSWp2ampBalF8UWlOanFhxiZODilGhinhD4tu/EiPE6ncU+M4zfmp/PrL6fKplievDDTbcXS
+	fzsWvlw9++uE97eaKzX5ayTm9ugJO5nIsHknHslcNm3Tl7oK/tt5e2f/8OnOy69W3KSnls1l
+	+Wz6l19OBtK8ytf2b0w94abiaPW+SdGv9qDKVuGmRaFymZV/TGsapyw9qyAy/Yy4/G0lluKM
+	REMt5qLiRACwb7StdwIAAA==
+Cc: "Yocto Mailinglist \(yocto@yoctoproject.org\)" <yocto@yoctoproject.org>
+Subject: Re: SSTATE_MIRRORS problems, libpthread.so.0 not found ...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,98 +47,190 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 13:48:47 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 22 Apr 2013 14:40:16 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_0342A6AD36648742A199353A51DDC7031155B93DESESSMB305erics_"
 
+--_000_0342A6AD36648742A199353A51DDC7031155B93DESESSMB305erics_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-  brief notes on BSP dev guide, someone else higher up the food chain
-can decide if any of this merits changes or clarifications.
+SGksIHNvcnJ5IGZvciBsYXRlIGFuc3dlciwgYnV0IHllcywgdGhlIGxpYnB0aHJlYWQtZmlsZXMg
+ZXhpc3RzIGluIG15IGN1c3RvbWl6ZWQgc2FuZGJveCBzeXNyb290IChhcyB3ZWxsIGFzIGluIHRo
+ZSDigJhjbGVhbuKAmSBzYW5kYm94IHN5c3Jvb3QpLiAgVGhlIChhdXRvdG9vbGVkKSBwcm9qZWN0
+IHRoYXQgSeKAmW0gYnVpbGQgaXMgdHJ5aW5nIHRvIGxpbmsgYW4gYXBwbGljYXRpb24gYW5kIGl0
+IHVzZXMgQ1hYTEQgKHdoaWNoIGlzIENYWCA9PiBhcm0tcG9reS1saW51eC1nbnVhYmktZysrKS4N
+CkxEIGhhcyB0aGUg4oCTc3lzcm9vdCBmbGFnIGFwcGVuZGVkIGluIHRoZSBjb21tYW5kLCBDWFhM
+RCBkb2VzbuKAmXQgaGF2ZSBpdCAoYWNjb3JkaW5nIHRvIHRoZSBnZW5lcmF0ZWQgTWFrZWZpbGUp
+LiAgQW0gSSBvciBhdXRvdG9vbHMgZG9pbmcgc29tZXRoaW5nIHdyb25nIGhlcmU/DQoNCi9Kb25h
+cw0KDQoNCkZyb206IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXQ0KU2VudDog
+ZGVuIDE0IGFwcmlsIDIwMTMgMjM6NDgNClRvOiBKb25hcyBKb25zc29uIEwNCkNjOiBZb2N0byBN
+YWlsaW5nbGlzdCAoeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZykNClN1YmplY3Q6IFJlOiBbeW9jdG9d
+IFNTVEFURV9NSVJST1JTIHByb2JsZW1zLCBsaWJwdGhyZWFkLnNvLjAgbm90IGZvdW5kIC4uLg0K
+DQoNCg0KT24gVGh1cnNkYXksIEFwcmlsIDExLCAyMDEzLCBKb25hcyBKb25zc29uIEwgPGpvbmFz
+Lmwuam9uc3NvbkBlcmljc3Nvbi5jb208bWFpbHRvOmpvbmFzLmwuam9uc3NvbkBlcmljc3Nvbi5j
+b20+PiB3cm90ZToNCj4gSGkhDQo+DQo+DQo+DQo+IEnigJltIGJ1aWxkaW5nIHNldmVyYWwgZGlm
+ZmVyZW50IFJhc3BiZXJyeSBQaSBpbWFnZXMgdGhhdCBhcmUgYWxtb3N0IHRoZSBzYW1lLCBzb21l
+IGNvbmZpZ3VyYXRpb24gaXNzdWVzIChpcC1hZGRyZXNzLCBob3N0bmFtZXMgZXRjKSBkaWZmZXJz
+IG9uIHRob3NlIGRpZmZlcmVudCBpbWFnZXMuICBNeSBzb2x1dGlvbiB3YXMgdG8gc2ltcGx5IGJ1
+aWxkIGEg4oCYY2xlYW7igJkgaW1hZ2Ugd2l0aG91dCBhbnkgdHdlYWtpbmcsIHRoZW4gdXNlIGFs
+bCB0aGUgcGFja2FnZXMgZnJvbSB0aGUg4oCYY2xlYW7igJkgaW1hZ2UgdmlhIFNTVEFURV9NSVJS
+T1JTIGFuZCBidWlsZCBteSBpbWFnZXMgd2l0aCB0aGVpciBvd24gcGVjdWxpYXJpdGllcy4gIFRo
+ZSDigJhjbGVhbuKAmSBpbWFnZSBpcyBiYXNpY2FsbHkgYSDigJhjb3JlLWltYWdlLW1pbmltYWzi
+gJkgaW1hZ2UgKHJwaS1od3VwLWltYWdlIGZvciBSYXNwYmVycnkgUGkpLg0KPg0KPg0KPg0KPiBT
+byBpbiDigJhjbGVhbuKAmSBJIGhhdmUgdGhlIHNzdGF0ZS1jYWNoZSwgYW5kIGluIHRoZSBvdGhl
+ciBjb25maWd1cmF0aW9ucywgSSBzZXQgdXANCj4NCj4gU1NUQVRFX01JUlJPUlMgPz0g4oCcZmls
+ZTovLy4qIGZpbGU6Ly8vaG9tZS9mb29iYXIvY2xlYW4vc3N0YXRlLWNhY2hlL1BBVEg8ZmlsZTov
+Ly9cXC4qJTIwZmlsZTpcaG9tZVxmb29iYXJcY2xlYW5cc3N0YXRlLWNhY2hlXFBBVEg+4oCdDQo+
+DQo+IGluIG15IGxvY2FsLmNvbmYg4oCmLiAgSXQgd29ya3MgbGlrZSBhIGNoYXJtIHdpdGggcmVn
+YXJkcyB0byBzcGVlZCBhbmQgZGlzay1zcGFjZS4NCj4NCj4NCj4NCj4gVGhlIHBhY2thZ2UgdGhh
+dCBJ4oCZdmUgYnVpbHQgYnVpbGRzIGNsZWFuIHdpdGhvdXQgYW55IHdhcm5pbmdzIGluIHRoZSDi
+gJhjbGVhbuKAmSBidWlsZC4gIEhvd2V2ZXIsIGlmIEkgZG9u4oCZdCBidWlsZCBteSBwYWNrYWdl
+IGluIHRoZSBjbGVhbiBpbWFnZSwgYnV0IGluIG9uZSBvZiBteSDigJhjb25maWd1cmVk4oCZIGlt
+YWdlcywgaXQgZmFpbHMuICBBbGwgb2YgYSBzdWRkZW4sIHRoZSBsaW5rZXIgY2Fu4oCZdCBmaW5k
+IG5laXRoZXIgL2xpYi9saWJwdGhyZWFkLnNvLjAgbm9yIC91c3IvbGliL2xpYnB0aHJlYWRfbm9u
+c2hhcmVkLmEgTA0KPg0KDQpJdCBzZWVtcyB5b3UgaGF2ZSB0b3RhbGx5IGRpZmZlcmVudCB3b3Jr
+c3BhY2VzIHBlciBpbWFnZSB3aGljaCBzaGFyZSBzYW1lIHN0YXRlIGlzIHRoYXQgcmlnaHQgPw0K
+DQpEbyB5b3UgaGF2ZSB0aGVzZSBmaWxlcyBwb3B1bGF0ZWQgaW4gb25lIG9mIGN1c3RvbWlzZWQg
+c2FuZGJveGVzDQoNCkxpbmtlciBzaG91bGQgbG9vayBpbnRvIHRoZSBjdXN0b21pc2VkIFNhbmRi
+b3gncyBzeXNyb290IG5vdCBjbGVhbiBzYW5kYm94IG9uZQ0KPg0KPg0KPiBidWlsZGZvbGRlci90
+bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkgPiBscyAtbGwgbGliL2xpYnB0aHJlYWQuc28uMCB1c3Iv
+bGliL2xpYnB0aHJlYWRfbm9uc2hhcmVkLmEgbGliL2xpYnB0aHJlYWQtMi4xNy5zbzxodHRwOi8v
+bGlicHRocmVhZC0yLjE3LnNvPg0KPg0KPiAtcnd4ci14ci14IDEgZm9vYmFyIGJpdGJha2VycyA5
+NjA4MDIgQXByIDExIDEyOjQ3IGxpYi9saWJwdGhyZWFkLTIuMTcuc288aHR0cDovL2xpYnB0aHJl
+YWQtMi4xNy5zbz4NCj4NCj4gbHJ3eHJ3eHJ3eCAxIGZvb2JhciBiaXRiYWtlcnMgICAgIDE4IEFw
+ciAxMSAxMjo0NyBsaWIvbGlicHRocmVhZC5zby4wIC0+IGxpYnB0aHJlYWQtMi4xNy5zbzxodHRw
+Oi8vbGlicHRocmVhZC0yLjE3LnNvPg0KPg0KPiAtcnctci0tci0tIDEgZm9vYmFyIGJpdGJha2Vy
+cyAgIDMzNzYgQXByIDExIDEyOjQ3IHVzci9saWIvbGlicHRocmVhZF9ub25zaGFyZWQuYQ0KPg0K
+Pg0KPg0KPiBXaGF04oCZcyBnb2luZyBvbiBoZXJlPyAgVGhlIHN5c3Jvb3QgKGZvciB0aGUgR05V
+IHRvb2xzKSBwb2ludHMgdG8gdGhlIGNvcnJlY3QgZm9sZGVyLCBhbmQgdGhlIHByb2plY3QgaXMg
+YSBzdGFuZGFyZCBhdXRvdG9vbHMgcHJvamVjdCwgdGh1cyBubyBtYWdpYyBpbnZvbHZlZC4gIElz
+IHRoZXJlIGFueSBwYXJ0aWN1bGFyIGRlcGVuZGVuY3kgdGhhdCBJIG11c3Qgc2V0IHVwIGluIG9y
+ZGVyIHRvIHVzZSBwdGhyZWFkcz8NCj4NCj4NCj4NCj4gQW55IGlkZWFzPyAgQnkgdGhlIHdheSwg
+SeKAmW0gb24gcG9reS9tYXN0ZXIgKG1hcmNoIDc6dGgpLCDigJhnaXQgbG9nIOKAk24gMeKAmSBz
+aG93cyDigJg2ZDlhM2FjMDUxNTM4MGQwNzg5ZWUzZDMxNmMwODIxMjU5MmE2Zjlh4oCZIChpZiB0
+aGF04oCZcyBpbnRlcmVzdGluZ+KApikNCj4NCj4NCj4NCj4gQmVzdCByZWdhcmRzLA0KPg0KPiBK
+b25hcyBKb25zc29uDQo=
 
-1.1 BSP Layers
+--_000_0342A6AD36648742A199353A51DDC7031155B93DESESSMB305erics_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-* emphasize that name of "meta-*" is only convention, but a really
-well-established one
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
+QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3Mi4w
+cHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRT
+ZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVk
+ZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0t
+PjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0K
+PG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+
+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxp
+bms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkhpLCBzb3Jy
+eSBmb3IgbGF0ZSBhbnN3ZXIsIGJ1dCB5ZXMsIHRoZSBsaWJwdGhyZWFkLWZpbGVzIGV4aXN0cyBp
+biBteSBjdXN0b21pemVkIHNhbmRib3ggc3lzcm9vdCAoYXMgd2VsbCBhcyBpbiB0aGUg4oCYY2xl
+YW7igJkgc2FuZGJveCBzeXNyb290KS4gJm5ic3A7VGhlIChhdXRvdG9vbGVkKQ0KIHByb2plY3Qg
+dGhhdCBJ4oCZbSBidWlsZCBpcyB0cnlpbmcgdG8gbGluayBhbiBhcHBsaWNhdGlvbiBhbmQgaXQg
+dXNlcyBDWFhMRCAod2hpY2ggaXMgQ1hYID0mZ3Q7IGFybS1wb2t5LWxpbnV4LWdudWFiaS1nJiM0
+MzsmIzQzOykuJm5ic3A7DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+TEQgaGFzIHRo
+ZSDigJNzeXNyb290IGZsYWcgYXBwZW5kZWQgaW4gdGhlIGNvbW1hbmQsIENYWExEIGRvZXNu4oCZ
+dCBoYXZlIGl0IChhY2NvcmRpbmcgdG8gdGhlIGdlbmVyYXRlZCBNYWtlZmlsZSkuJm5ic3A7IEFt
+IEkgb3IgYXV0b3Rvb2xzIGRvaW5nIHNvbWV0aGluZyB3cm9uZyBoZXJlPzxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+L0pv
+bmFzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
+b2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVv
+dDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90
+OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFp
+bC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gZGVuIDE0IGFwcmlsIDIwMTMgMjM6NDg8YnI+DQo8
+Yj5Ubzo8L2I+IEpvbmFzIEpvbnNzb24gTDxicj4NCjxiPkNjOjwvYj4gWW9jdG8gTWFpbGluZ2xp
+c3QgKHlvY3RvQHlvY3RvcHJvamVjdC5vcmcpPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9j
+dG9dIFNTVEFURV9NSVJST1JTIHByb2JsZW1zLCBsaWJwdGhyZWFkLnNvLjAgbm90IGZvdW5kIC4u
+LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KPGJyPg0KT24gVGh1cnNkYXks
+IEFwcmlsIDExLCAyMDEzLCBKb25hcyBKb25zc29uIEwgJmx0OzxhIGhyZWY9Im1haWx0bzpqb25h
+cy5sLmpvbnNzb25AZXJpY3Nzb24uY29tIj5qb25hcy5sLmpvbnNzb25AZXJpY3Nzb24uY29tPC9h
+PiZndDsgd3JvdGU6PGJyPg0KJmd0OyBIaSE8YnI+DQomZ3Q7PGJyPg0KJmd0OyAmbmJzcDs8YnI+
+DQomZ3Q7PGJyPg0KJmd0OyBJ4oCZbSBidWlsZGluZyBzZXZlcmFsIGRpZmZlcmVudCBSYXNwYmVy
+cnkgUGkgaW1hZ2VzIHRoYXQgYXJlIGFsbW9zdCB0aGUgc2FtZSwgc29tZSBjb25maWd1cmF0aW9u
+IGlzc3VlcyAoaXAtYWRkcmVzcywgaG9zdG5hbWVzIGV0YykgZGlmZmVycyBvbiB0aG9zZSBkaWZm
+ZXJlbnQgaW1hZ2VzLiZuYnNwOyBNeSBzb2x1dGlvbiB3YXMgdG8gc2ltcGx5IGJ1aWxkIGEg4oCY
+Y2xlYW7igJkgaW1hZ2Ugd2l0aG91dCBhbnkgdHdlYWtpbmcsIHRoZW4gdXNlIGFsbCB0aGUgcGFj
+a2FnZXMNCiBmcm9tIHRoZSDigJhjbGVhbuKAmSBpbWFnZSB2aWEgU1NUQVRFX01JUlJPUlMgYW5k
+IGJ1aWxkIG15IGltYWdlcyB3aXRoIHRoZWlyIG93biBwZWN1bGlhcml0aWVzLiZuYnNwOyBUaGUg
+4oCYY2xlYW7igJkgaW1hZ2UgaXMgYmFzaWNhbGx5IGEg4oCYY29yZS1pbWFnZS1taW5pbWFs4oCZ
+IGltYWdlIChycGktaHd1cC1pbWFnZSBmb3IgUmFzcGJlcnJ5IFBpKS48YnI+DQomZ3Q7PGJyPg0K
+Jmd0OyAmbmJzcDs8YnI+DQomZ3Q7PGJyPg0KJmd0OyBTbyBpbiDigJhjbGVhbuKAmSBJIGhhdmUg
+dGhlIHNzdGF0ZS1jYWNoZSwgYW5kIGluIHRoZSBvdGhlciBjb25maWd1cmF0aW9ucywgSSBzZXQg
+dXA8YnI+DQomZ3Q7PGJyPg0KJmd0OyBTU1RBVEVfTUlSUk9SUyA/PSDigJw8YSBocmVmPSJmaWxl
+Oi8vL1xcLiolMjBmaWxlOlxob21lXGZvb2JhclxjbGVhblxzc3RhdGUtY2FjaGVcUEFUSCI+Zmls
+ZTovLy4qIGZpbGU6Ly8vaG9tZS9mb29iYXIvY2xlYW4vc3N0YXRlLWNhY2hlL1BBVEg8L2E+4oCd
+PGJyPg0KJmd0Ozxicj4NCiZndDsgaW4gbXkgbG9jYWwuY29uZiDigKYuJm5ic3A7IEl0IHdvcmtz
+IGxpa2UgYSBjaGFybSB3aXRoIHJlZ2FyZHMgdG8gc3BlZWQgYW5kIGRpc2stc3BhY2UuPGJyPg0K
+Jmd0Ozxicj4NCiZndDsgJm5ic3A7PGJyPg0KJmd0Ozxicj4NCiZndDsgVGhlIHBhY2thZ2UgdGhh
+dCBJ4oCZdmUgYnVpbHQgYnVpbGRzIGNsZWFuIHdpdGhvdXQgYW55IHdhcm5pbmdzIGluIHRoZSDi
+gJhjbGVhbuKAmSBidWlsZC4mbmJzcDsgSG93ZXZlciwgaWYgSSBkb27igJl0IGJ1aWxkIG15IHBh
+Y2thZ2UgaW4gdGhlIGNsZWFuIGltYWdlLCBidXQgaW4gb25lIG9mIG15IOKAmGNvbmZpZ3VyZWTi
+gJkgaW1hZ2VzLCBpdCBmYWlscy4mbmJzcDsgQWxsIG9mIGEgc3VkZGVuLCB0aGUgbGlua2VyIGNh
+buKAmXQgZmluZCBuZWl0aGVyIC9saWIvbGlicHRocmVhZC5zby4wDQogbm9yIC91c3IvbGliL2xp
+YnB0aHJlYWRfbm9uc2hhcmVkLmEgTDxicj4NCiZndDs8YnI+DQo8YnI+DQpJdCBzZWVtcyB5b3Ug
+aGF2ZSB0b3RhbGx5IGRpZmZlcmVudCB3b3Jrc3BhY2VzIHBlciBpbWFnZSB3aGljaCBzaGFyZSBz
+YW1lIHN0YXRlIGlzIHRoYXQgcmlnaHQgPzxicj4NCjxicj4NCkRvIHlvdSBoYXZlIHRoZXNlIGZp
+bGVzIHBvcHVsYXRlZCBpbiBvbmUgb2YgY3VzdG9taXNlZCBzYW5kYm94ZXMgPGJyPg0KPGJyPg0K
+TGlua2VyIHNob3VsZCBsb29rIGludG8gdGhlIGN1c3RvbWlzZWQgU2FuZGJveCdzIHN5c3Jvb3Qg
+bm90IGNsZWFuIHNhbmRib3ggb25lPGJyPg0KJmd0OyAmbmJzcDs8YnI+DQomZ3Q7PGJyPg0KJmd0
+OyBidWlsZGZvbGRlci90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkgJmd0OyBscyAtbGwgbGliL2xp
+YnB0aHJlYWQuc28uMCB1c3IvbGliL2xpYnB0aHJlYWRfbm9uc2hhcmVkLmEgbGliLzxhIGhyZWY9
+Imh0dHA6Ly9saWJwdGhyZWFkLTIuMTcuc28iPmxpYnB0aHJlYWQtMi4xNy5zbzwvYT48YnI+DQom
+Z3Q7PGJyPg0KJmd0OyAtcnd4ci14ci14IDEgZm9vYmFyIGJpdGJha2VycyA5NjA4MDIgQXByIDEx
+IDEyOjQ3IGxpYi88YSBocmVmPSJodHRwOi8vbGlicHRocmVhZC0yLjE3LnNvIj5saWJwdGhyZWFk
+LTIuMTcuc288L2E+PGJyPg0KJmd0Ozxicj4NCiZndDsgbHJ3eHJ3eHJ3eCAxIGZvb2JhciBiaXRi
+YWtlcnMmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgMTggQXByIDExIDEyOjQ3IGxpYi9saWJwdGhy
+ZWFkLnNvLjAgLSZndDsgPGEgaHJlZj0iaHR0cDovL2xpYnB0aHJlYWQtMi4xNy5zbyI+DQpsaWJw
+dGhyZWFkLTIuMTcuc288L2E+PGJyPg0KJmd0Ozxicj4NCiZndDsgLXJ3LXItLXItLSAxIGZvb2Jh
+ciBiaXRiYWtlcnMmbmJzcDsmbmJzcDsgMzM3NiBBcHIgMTEgMTI6NDcgdXNyL2xpYi9saWJwdGhy
+ZWFkX25vbnNoYXJlZC5hPGJyPg0KJmd0Ozxicj4NCiZndDsgJm5ic3A7PGJyPg0KJmd0Ozxicj4N
+CiZndDsgV2hhdOKAmXMgZ29pbmcgb24gaGVyZT8mbmJzcDsgVGhlIHN5c3Jvb3QgKGZvciB0aGUg
+R05VIHRvb2xzKSBwb2ludHMgdG8gdGhlIGNvcnJlY3QgZm9sZGVyLCBhbmQgdGhlIHByb2plY3Qg
+aXMgYSBzdGFuZGFyZCBhdXRvdG9vbHMgcHJvamVjdCwgdGh1cyBubyBtYWdpYyBpbnZvbHZlZC4m
+bmJzcDsgSXMgdGhlcmUgYW55IHBhcnRpY3VsYXIgZGVwZW5kZW5jeSB0aGF0IEkgbXVzdCBzZXQg
+dXAgaW4gb3JkZXIgdG8gdXNlIHB0aHJlYWRzPyZuYnNwOzxicj4NCiZndDs8YnI+DQomZ3Q7ICZu
+YnNwOzxicj4NCiZndDs8YnI+DQomZ3Q7IEFueSBpZGVhcz8mbmJzcDsgQnkgdGhlIHdheSwgSeKA
+mW0gb24gcG9reS9tYXN0ZXIgKG1hcmNoIDc6dGgpLCDigJhnaXQgbG9nIOKAk24gMeKAmSBzaG93
+cyDigJg2ZDlhM2FjMDUxNTM4MGQwNzg5ZWUzZDMxNmMwODIxMjU5MmE2Zjlh4oCZIChpZiB0aGF0
+4oCZcyBpbnRlcmVzdGluZ+KApik8YnI+DQomZ3Q7PGJyPg0KJmd0OyAmbmJzcDs8YnI+DQomZ3Q7
+PGJyPg0KJmd0OyBCZXN0IHJlZ2FyZHMsPGJyPg0KJmd0Ozxicj4NCiZndDsgSm9uYXMgSm9uc3Nv
+biA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-* remove lines of meta-yocto/meta-yocto-bsp from example, has
-potential for giving readers wrong impression. also that whole
-BBLAYERS_NON_REMOVABLE thing is debatable. pick simpler example.
-
-1.2 Example Filesystem Layout
-
-* clarify what is *actually* required to be an official OE/YP layer,
-as some layers don't have things like README, README.sources, etc.
-
-1.2.5 Layer Configuration File
-
-* "here are the last three statements from the Crown Bay
-conf/layer.conf file" -- those aren't actually the last three lines,
-there's also the "_depends" line but someone else can decide how to
-word that.
-
-* wait, that sample layer.conf file seems wrong, aren't the BBFILES
-entries missing a wildcard directory layer?
-
-1.2.6 Hardware Configuration Options
-
-* "For example, the ia32-base.inc file resides in the meta-intel BSP
-Layer in conf/machine/include." hmmmm ... pedantic, yes, but should
-meta-intel really be described as a "BSP" layer? what's the proper way
-to describe it?
-
-* also, that statement is simply wrong as that directory contains only
-meta-intel.inc, not ia32-base.inc. and last para might also mention
-the include of meta-intel.inc in addition to the other two "require"s.
-
-
-1.2.7 Miscellaneous Recipe Files
-
-* Might rename this to "Miscellaneous BSP-specific Recipe Files", to
-distinguish it from the *other* recipe-related sections that follow?
-
-1.2.9 Linux Kernel Configuration
-
-* Worth upgrading the example shown to 3.8 instead of 3.4? and the
-source shown there doesn't exactly match what's in the current file.
-
-* "The file also uses the optional KBRANCH variable to ensure the
-build process uses the standard/default/crownbay kernel branch."
-sorry, "standard/default/crownbay"? shouldn't that say just
-"standard/crownbay"?
-
-* "you had a some" -> "you had some"
-
-1.3.1 Released BSP Requirements
-
-* again, a number of existing layers don't fully comply with this list
-
-* File System Layout: "recipe-*" -> "recipes-*"
-
-* Machine Configuration File: should probably say that you need to
-include one *or more* machine config files, not just one.
-
-* Note: "It is completely possible for a developer to structure the
-working repository as a conglomeration of unrelated BSP files..."
-might be worth pointing out that this is exactly what meta-yocto-bsp
-does, but that's a special case.
-
-1.4 Customizing a Recipe for a BSP
-
-* based on recent discussion, probably don't want to use the netbase
-recipe as the example here :-) besides, point 1 erroneously refers to
-the "netbases" directory instead of "netbase".
-
-  that's enough for now, i'll finish reading the bsp tools section
-later.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--_000_0342A6AD36648742A199353A51DDC7031155B93DESESSMB305erics_--
