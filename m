@@ -1,36 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A223E014F3
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 04:21:00 -0700 (PDT)
-Received: by mail-vc0-f180.google.com with SMTP id m16so5919623vca.39
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 04:20:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=B5VBHMI1AIxv1rlv2LtMT82xSSPki2hzYeKjzknCCso=;
-	b=TsG+lRGq7S+l2mucHLW5BgRb5I8Xaq0GpygWPmwO6Y361a4DRQdVCNW7uEVDyEiRE7
-	faw+knqaDO8ch/Kpo5RYdDtZHDBCn2l6y26v/OJnyRZJH0xjlPkhRCb+IJVIhp6dMpFW
-	+jscWfr6JQrb6VuHdyrn4Frx+O50lteA97ZQbPaInkp7T/mWO0eqNVNxQyZCBb0anPjt
-	zdCmJy9yEp28ZwanTobAJkS1dBDKzVT6BSUe1Fi+k5T/7+r39tpIC0zJvfzYcxkKyLQq
-	mEAbD423TuS3vOQTs2ysc//+vvpEDOVm2KJJWdYbUTNH6N8mqF+AkmPmYchcg+N3UfH1
-	iynA==
-X-Received: by 10.52.158.163 with SMTP id wv3mr15953545vdb.82.1366629659646;
-	Mon, 22 Apr 2013 04:20:59 -0700 (PDT)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88835E014F3
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 04:27:46 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:33366 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UUEuO-0007av-VV; Mon, 22 Apr 2013 07:27:45 -0400
+Date: Mon, 22 Apr 2013 07:27:42 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Tom Zanussi <tom.zanussi@intel.com>
+In-Reply-To: <1366465052.27207.74.camel@empanada>
+Message-ID: <alpine.DEB.2.02.1304220722330.2214@oneiric>
+References: <alpine.DEB.2.02.1304190827410.4247@oneiric>
+	<1366409274.27207.69.camel@empanada>
+	<alpine.DEB.2.02.1304200534160.14289@oneiric>
+	<1366465052.27207.74.camel@empanada>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Mon, 22 Apr 2013 04:20:39 -0700 (PDT)
-In-Reply-To: <CAFMfyz+YH1zaMF4j_d1MMHbiEFCngj_+z_rryshjzyurC=6qJQ@mail.gmail.com>
-References: <CAFMfyz+=HMqt6Jgrsq3_GgdZL9K-obRYuYsVVrxqonzfP-t2gQ@mail.gmail.com>
-	<CAJTo0LYnBG_7vyVhW2o3HK=XNHRctJ3-zE+yq2=LxrKz-WdGOQ@mail.gmail.com>
-	<CAFMfyz+YH1zaMF4j_d1MMHbiEFCngj_+z_rryshjzyurC=6qJQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 22 Apr 2013 12:20:39 +0100
-Message-ID: <CAJTo0LaXsbr614c9am63C=+v9AW6a-oXYgEzFkW7OdQnsozpMQ@mail.gmail.com>
-To: Satya Swaroop Damarla <satyaswaroop.damarla@gmail.com>
-X-Gm-Message-State: ALoCoQk/+YYlwGxanemxcpJJNAOdy/Hz6zqilEstHx/lcVbcBrrC//ckmYb1aq9uUNMnw/hDyHrB
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Package which sets Background Image
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: clarification about BSP layer names and bblayers.conf file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,16 +42,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 11:21:00 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 22 Apr 2013 11:27:46 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 22 April 2013 12:04, Satya Swaroop Damarla
-<satyaswaroop.damarla@gmail.com> wrote:
-> Thank you Ross... Is there already a recipe for  xsetroot or should we
-> create one...
+On Sat, 20 Apr 2013, Tom Zanussi wrote:
 
-You'll need to create one, following the examples in
-recipes-graphics/xorg-apps/.
+> On Sat, 2013-04-20 at 05:35 -0400, Robert P. J. Day wrote:
 
-Ross
+> >   i was just looking for an example of the kind of hierarchical
+> > layer structure you find in meta-intel. is there another layer
+> > that has that kind of structure?
+> >
+>
+> A quick scan of all the layers I have opengrokked here doesn't show
+> any either, so possibly meta-intel is currently the only example.
+> If so, let's use it..
+
+  as a recap, for the purposes of my oe/yocto course, i was after a
+range of BSP definitions from simplest to most complex. at one end,
+the example i picked on as a layer that defined a single variation of
+a single board was raspberry-pi.
+
+  from there, i can demonstrate examples of, say, a layer that defines
+more than one variant of a single machine (say, meta-intel's
+meta-crownbay), then a layer that defines a number of independent
+machines (say, meta-yocto-bsp), up to the hierarchical structure of
+meta-intel, and any other interesting variations i run across in
+between.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
