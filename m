@@ -1,34 +1,42 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A781E013C9
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 11:21:04 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 22 Apr 2013 11:20:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,528,1363158000"; d="scan'208";a="230420268"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by AZSMGA002.ch.intel.com with ESMTP; 22 Apr 2013 11:20:50 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.240.5) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 22 Apr 2013 11:20:49 -0700
-Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.26]) with mapi id
-	14.01.0355.002; Mon, 22 Apr 2013 11:20:49 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] remaining comments on current BSP developers guide
-Thread-Index: AQHOP3K5KUHUi4/CTEm4J8t8Gdq+IJjii+Xg
-Date: Mon, 22 Apr 2013 18:20:49 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCF7788@ORSMSX104.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1304221056510.7236@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1304221056510.7236@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C9F7E006F9
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 12:49:12 -0700 (PDT)
+Received: by mail-wi0-f180.google.com with SMTP id h11so5046130wiv.13
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 12:49:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=7Yjf5avi4Z6IkwO4mfVaqjwoMhwMN75zg5dFTwVRUOQ=;
+	b=cB3hPnumYeHXl/oVQmfxco+izvgBJpreIP6imDnOE60lSkt+5cS+46kBvBNxLhY4CC
+	TWxFCinZDYjO+jlNbJbiG85bQ8dgKQdotYp5Qk6BS91XHNUSZCrgEPgbaaRmY56x7GGd
+	8D3inFFuxhcT3BdmW+qnvUCEbf+da1NrBiWLY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=7Yjf5avi4Z6IkwO4mfVaqjwoMhwMN75zg5dFTwVRUOQ=;
+	b=oTEwsMAXOZskC0s1l/JF+i8o84+jHRnvU9gs3V1UNjGibd1vYPlKDJ9C3/RBTnqXu8
+	hQK5oS5PPpwuIN7gCEeqUAAhIN1VC+aKKIFq+2gyJ5m6NVEQnY9e9dZLGqcqH2VhtIMZ
+	dwwuG6OPcgJpDOqa3r6LQlapZ6g7l5Cj6y/apEXRiIHO9AFATellEI6H+qToLElI41hj
+	HzOi8H4GduUMcROrTo5AC2qTw0RZhXoeZQ/0pT8VXHr4o/QUjPzZfe+P0wH2X3f5cFfL
+	yM6/DZ+rVro6FZEIPlTkMCI1Y4231ttOSQqgk5e9d0bCdlqV793IdUSPiyRrZNGJ6GMO
+	GhjA==
 MIME-Version: 1.0
-Subject: Re: remaining comments on current BSP developers guide
+X-Received: by 10.180.206.205 with SMTP id lq13mr55393360wic.21.1366660150695; 
+	Mon, 22 Apr 2013 12:49:10 -0700 (PDT)
+Received: by 10.223.87.73 with HTTP; Mon, 22 Apr 2013 12:49:10 -0700 (PDT)
+In-Reply-To: <20130422175755.7FDD0E01498@yocto-www.yoctoproject.org>
+References: <20130422175755.7FDD0E01498@yocto-www.yoctoproject.org>
+Date: Mon, 22 Apr 2013 12:49:10 -0700
+Message-ID: <CA+gsK-rNZxF=EQfytz9sB95826J2g0fCpZaG4n0z2872BcCAoQ@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: "Saridakis, Dean (US SSA)" <dean.saridakis@baesystems.com>
+X-Gm-Message-State: ALoCoQkACJoYafSHYdiqWw0z3kZ5LDXLO3WVbfr1RStwTalNsvWeqEon5s+fF+KcPaApxSf5cwzD
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Patching from .bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,92 +48,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 18:21:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 22 Apr 2013 19:49:12 -0000
+Content-Type: multipart/alternative; boundary=001a11c382d4cfd42104daf85ced
+
+--001a11c382d4cfd42104daf85ced
+Content-Type: text/plain; charset=ISO-8859-1
+
+You got it figured out?
+
+Simply add
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
+SRC_URI += "mypatch.patch"
+PRINC := "${@int(PRINC) + 1}"
+
+to your bbappend and put your patch in a subdirectory
+<packagename>-<packageversion> relative to the recipe.
+
+:rjs
+
+--001a11c382d4cfd42104daf85ced
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Robert,=20
+<div dir=3D"ltr">You got it figured out?<div><br></div><div style>Simply ad=
+d</div><div style><br></div><span style=3D"font-family:arial,sans-serif;fon=
+t-size:13px">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${P}:&quot;</spa=
+n><br style=3D"font-family:arial,sans-serif;font-size:13px">
+<div style>SRC_URI +=3D &quot;mypatch.patch&quot;<br></div><div style><div>=
+<span style=3D"font-family:arial,sans-serif;font-size:13px">PRINC :=3D &quo=
+t;${@int(PRINC) + 1}&quot;</span><br></div><div><span style=3D"font-family:=
+arial,sans-serif;font-size:13px"><br>
+</span></div></div><div style>to your bbappend and put your patch in a subd=
+irectory &lt;packagename&gt;-&lt;packageversion&gt; relative to the recipe.=
+</div><div style><br></div><div style>:rjs</div><div class=3D"gmail_extra">
+<br><br>
+</div></div>
 
-Fixed the two points below in the doc.   See http://www.yoctoproject.org/do=
-cs/1.4/bsp-guide/bsp-guide.html.
-
-Thanks again,=20
-Scott
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Monday, April 22, 2013 9:00 AM
->To: Yocto discussion list
->Subject: [yocto] remaining comments on current BSP developers guide
->
->
->  (again, someone up the food chain can decide what's worth
->processing.)
->
->1.6.1 Common Features
->
->* "Both tools [yocto-bsp and yocto-kernel] reside in the scripts/
->subdirectory of the Source Directory." no, they don't, they're in
->meta-yocto/scripts/, so simply sourcing oe-init-build-env isn't
->sufficient to add them to the search path, is it? (i'm guessing it
->used to be, but no longer.)
->
->1.6.2 Creating a new BSP Layer ...
->
->     $ yocto-bsp list karch
->     Architectures available:
->         qemu
->         x86_64
->         i386
->         powerpc
->         arm
->         mips
->
->  but if you run that, you get the additional arch "layer". where's
->that coming from? is it a holdover from before there was a yocto-layer
->command? i never noticed that before now.
->
->* "Assuming you have sourced the environment ..." Again, you don't get
->these utilities in your PATH by sourcing the environment, you need to
->do that manually.
->
->* "...pressing enter and providing an invalid response..." um, what is
->that supposed to say?
-
-Poor wording - changed to "Pressing enter without supplying anything on the=
- command line or pressing enter with an invalid response causes...."
-
->
->* Point 6.  Do you actually need to include the meta-yocto and
->meta-yocto-bsp layers in this new layer's bblayers.conf file? I don't
->see why but maybe I'm missing something obvious.
->
->* also, typo "BBLAYERS =3D ?"
-
-Fixed typo.
-
->
->  i think that's everything.
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
-
+--001a11c382d4cfd42104daf85ced--
