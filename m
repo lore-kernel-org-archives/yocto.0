@@ -1,33 +1,33 @@
 Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-bk0-f53.google.com (mail-bk0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB014E014F7
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 05:06:17 -0700 (PDT)
-Received: by mail-bk0-f53.google.com with SMTP id jg9so206968bkc.12
-	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 05:06:17 -0700 (PDT)
+Received: from mail-bk0-f54.google.com (mail-bk0-f54.google.com
+	[209.85.214.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FBFDE014F7
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 05:06:19 -0700 (PDT)
+Received: by mail-bk0-f54.google.com with SMTP id q11so149651bkw.27
+	for <yocto@yoctoproject.org>; Mon, 22 Apr 2013 05:06:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=RVlRIqrZeu+PkwbiDcV2nBdVeawhKhQvYSf2biAFJDE=;
-	b=SrYS4r59xQoNJOfgUFPu2dipsfcXV5xRWM/QniHdofxU5rT74mgKWlgYZ2MjddiCVT
-	bgJoa9K8NsCrZA7KyVkH8JWV9s2SSyMbe83YfAMpTsgkhpaAJ6GMt+5tB0cGsjaNZevy
-	KxouaOn9r3mH/oLjGFrd2BvbVEoUO1Cp89A53c6XEsl1rfh13i1nRO9U+nyVa3l9KCgl
-	TTllv7dm/XPdyITOLOSCQzxYYInc1VirNWZ78NnpJmp5DXLIqFV034OLbGSNwevEaYRb
-	S7PSasvo3IXXhlqrCxrE45x6yl+KpIGf0XGNXOg7Wmo06tpWT1fvgDs7Xk8sKl477tZb
-	3+9w==
-X-Received: by 10.204.232.8 with SMTP id js8mr7726137bkb.109.1366632377003;
+	:references; bh=zzzs7SwkuzL9/RWZQp5WrTe0vUBRE0cvxfA2ChCwS20=;
+	b=JKSflSBrkENOn2TGKvpjd5sDFF3tKFRz6YBGq+XAZi9xwpUzQCECwDqtAwURCxU5I2
+	ez4yphUvepoxQ/RhmnNwr69gJNpaGSwCAjeHzZgszCkzrndBnHSV7M9WV9uLftQa0odk
+	OG5k+7oUX/2IRuc2eLdvaoGUqR2yZiivABMX71xN8YceggcbGBr3qUj8PrV2BZGxV5dT
+	uRjdOXS4d6/QRsxOz81v3R/bqhOdr+Y311GqLG7tcPgWu7kDcwxxGm57+DmSzhXnzcLo
+	O2BI3+VBuI4M0SIb7YHXtKzUNbLpbtyoHeMQrOt9YBrESt0Sv93YT+i0lH9T3s5HzqK1
+	rJ5A==
+X-Received: by 10.204.173.9 with SMTP id n9mr10703484bkz.47.1366632377985;
 	Mon, 22 Apr 2013 05:06:17 -0700 (PDT)
 Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPS id cv9sm6751434bkb.5.2013.04.22.05.06.16
+	by mx.google.com with ESMTPS id cv9sm6751434bkb.5.2013.04.22.05.06.17
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 22 Apr 2013 05:06:16 -0700 (PDT)
+	Mon, 22 Apr 2013 05:06:17 -0700 (PDT)
 From: Atanas Gegov <atanas.gegov.oss@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 22 Apr 2013 14:06:02 +0200
-Message-Id: <1366632363-6064-6-git-send-email-atanas.gegov.oss@gmail.com>
+Date: Mon, 22 Apr 2013 14:06:03 +0200
+Message-Id: <1366632363-6064-7-git-send-email-atanas.gegov.oss@gmail.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1366632363-6064-1-git-send-email-atanas.gegov.oss@gmail.com>
 References: <1366632363-6064-1-git-send-email-atanas.gegov.oss@gmail.com>
-Subject: [RFC 5/6] plugins/sdk.ide: Renamed template process
+Subject: [RFC 6/6] plugins/sdk.ide: Fixed whitespace issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,549 +39,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2013 12:06:18 -0000
+X-List-Received-Date: Mon, 22 Apr 2013 12:06:19 -0000
 
 From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-The original name of the class had two drawbacks:
-firstly, it suggested that it applies only for C
-projects and secondly, it did not state that this
-is a process.
+Resolved whitespace issues which popped up while
+renaming the NewYoctoProjectTemplateProcess. Also
+added some missing "//$NON-NLS-1$" declarations.
 ---
- plugins/org.yocto.sdk.ide/plugin.xml               |    2 +-
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |  251 --------------------
- .../ide/wizard/NewYoctoProjectTemplateProcess.java |  251 ++++++++++++++++++++
- 3 files changed, 252 insertions(+), 252 deletions(-)
- delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
+ .../ide/wizard/NewYoctoProjectTemplateProcess.java |   37 +++++++++++---------
+ 1 file changed, 21 insertions(+), 16 deletions(-)
 
-diff --git a/plugins/org.yocto.sdk.ide/plugin.xml b/plugins/org.yocto.sdk.ide/plugin.xml
-index 2d6b941..7ea55c7 100644
---- a/plugins/org.yocto.sdk.ide/plugin.xml
-+++ b/plugins/org.yocto.sdk.ide/plugin.xml
-@@ -156,7 +156,7 @@
-          point="org.eclipse.cdt.core.templateProcessTypes">
-       <processType
-             name="NewYoctoProject"
--            processRunner="org.yocto.sdk.ide.wizard.NewYoctoCProjectTemplate">
-+            processRunner="org.yocto.sdk.ide.wizard.NewYoctoProjectTemplateProcess">
-          <simple
-                name="name">
-          </simple>
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
-deleted file mode 100644
-index dc9bca5..0000000
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
-+++ /dev/null
-@@ -1,251 +0,0 @@
--/*******************************************************************************
-- * Copyright (c) 2010 Intel Corporation.
-- * All rights reserved. This program and the accompanying materials
-- * are made available under the terms of the Eclipse Public License v1.0
-- * which accompanies this distribution, and is available at
-- * http://www.eclipse.org/legal/epl-v10.html
-- *
-- * Contributors:
-- * Intel - initial API and implementation
-- *******************************************************************************/
--package org.yocto.sdk.ide.wizard;
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
+index bf89488..2ac52e5 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
+@@ -62,7 +62,6 @@ import org.yocto.sdk.ide.natures.YoctoSDKNatureUtils;
+ import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;
+ import org.yocto.sdk.ide.utils.YoctoSDKUtils;
+ 
 -
--import java.util.Arrays;
--import java.util.LinkedHashMap;
--import java.util.List;
--import java.util.regex.Matcher;
--import java.util.regex.Pattern;
--
--import org.eclipse.cdt.autotools.core.AutotoolsNewProjectNature;
--import org.eclipse.cdt.core.CCorePlugin;
--import org.eclipse.cdt.core.templateengine.TemplateCore;
--import org.eclipse.cdt.core.templateengine.process.ProcessArgument;
--import org.eclipse.cdt.core.templateengine.process.ProcessFailureException;
--import org.eclipse.cdt.core.templateengine.process.ProcessRunner;
--import org.eclipse.cdt.core.templateengine.process.processes.Messages;
--import org.eclipse.cdt.internal.autotools.core.configure.AutotoolsConfigurationManager;
--import org.eclipse.cdt.make.core.MakeCorePlugin;
--import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager;
--import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager.IDiscoveredPathInfo;
--import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager.IPerProjectDiscoveredPathInfo;
--import org.eclipse.cdt.make.internal.core.scannerconfig.util.SymbolEntry;
--import org.eclipse.cdt.managedbuilder.core.BuildException;
--import org.eclipse.cdt.managedbuilder.core.IConfiguration;
--import org.eclipse.cdt.managedbuilder.core.IManagedBuildInfo;
--import org.eclipse.cdt.managedbuilder.core.IOption;
--import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
--import org.eclipse.cdt.managedbuilder.templateengine.ProjectCreatedActions;
--import org.eclipse.cdt.managedbuilder.ui.wizards.MBSCustomPageManager;
--import org.eclipse.jface.wizard.IWizardPage;
--import org.eclipse.cdt.ui.wizards.CDTMainWizardPage;
--import org.eclipse.cdt.internal.ui.wizards.ICDTCommonProjectWizard;
--import org.eclipse.core.resources.IProject;
--import org.eclipse.core.resources.IWorkspace;
--import org.eclipse.core.resources.IWorkspaceDescription;
--import org.eclipse.core.resources.ResourcesPlugin;
--import org.eclipse.core.runtime.CoreException;
--import org.eclipse.core.runtime.IPath;
--import org.eclipse.core.runtime.IProgressMonitor;
--import org.eclipse.core.runtime.OperationCanceledException;
--import org.eclipse.core.runtime.Path;
--import org.eclipse.jface.preference.IPreferenceStore;
--import org.yocto.sdk.ide.YoctoGeneralException;
--import org.yocto.sdk.ide.YoctoProfileElement;
--import org.yocto.sdk.ide.YoctoSDKChecker;
--import org.yocto.sdk.ide.YoctoSDKMessages;
--import org.yocto.sdk.ide.YoctoSDKPlugin;
--import org.yocto.sdk.ide.YoctoUIElement;
--import org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature;
--import org.yocto.sdk.ide.natures.YoctoSDKCMakeProjectNature;
--import org.yocto.sdk.ide.natures.YoctoSDKEmptyProjectNature;
--import org.yocto.sdk.ide.natures.YoctoSDKNatureUtils;
--import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;
--import org.yocto.sdk.ide.utils.YoctoSDKUtils;
--
--
--@SuppressWarnings("restriction")
--public class NewYoctoCProjectTemplate extends ProcessRunner {
--	protected boolean savedAutoBuildingValue;
--	protected ProjectCreatedActions pca;
--	protected IManagedBuildInfo info;
--	protected List<Character> illegalChars = Arrays.asList('$', '"','#','%','&','\'','(',')','*', '+', ',','.','/',':',';','<','=','>','?','@','[','\\',']','^','`','{','|','}','~');
--	private static final String PROJECT_NAME_ERROR = "Wizard.SDK.Error.ProjectName";
+ @SuppressWarnings("restriction")
+ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 	protected boolean savedAutoBuildingValue;
+@@ -70,10 +69,11 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 	protected IManagedBuildInfo info;
+ 	protected List<Character> illegalChars = Arrays.asList('$', '"','#','%','&','\'','(',')','*', '+', ',','.','/',':',';','<','=','>','?','@','[','\\',']','^','`','{','|','}','~');
+ 	private static final String PROJECT_NAME_ERROR = "Wizard.SDK.Error.ProjectName";
 -	
--	public NewYoctoCProjectTemplate() {
--		pca = new ProjectCreatedActions();
--	}
--	private String printIllegalChars(){
--		String print = "";
--		for (Character ch : illegalChars)
--			print += ch + ", ";
--		print = print.substring(0, print.length() - 2);
--		return print;
--	}
--	public void process(TemplateCore template, ProcessArgument[] args, String processId, IProgressMonitor monitor) throws ProcessFailureException {
--
--		String projectName = args[0].getSimpleValue();
--		String location = args[1].getSimpleValue();
--		String artifactExtension = args[2].getSimpleValue();
--		String isCProjectValue = args[3].getSimpleValue();
--		String isEmptyProjetValue = args[4].getSimpleValue();
--		String isAutotoolsProjectValue = args[5].getSimpleValue();
--		String isCMakeProjectValue = args[6].getSimpleValue();
--		boolean isCProject = Boolean.valueOf(isCProjectValue).booleanValue();
--		boolean isEmptyProject = Boolean.valueOf(isEmptyProjetValue).booleanValue();
--		boolean isAutotoolsProject = Boolean.valueOf(isAutotoolsProjectValue).booleanValue();
--		boolean isCMakeProject = Boolean.valueOf(isCMakeProjectValue).booleanValue();
--
--		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
--		try {
--			if (!isValidProjectName(projectName)) {
++
+ 	public NewYoctoProjectTemplateProcess() {
+ 		pca = new ProjectCreatedActions();
+ 	}
++
+ 	private String printIllegalChars(){
+ 		String print = "";
+ 		for (Character ch : illegalChars)
+@@ -98,7 +98,7 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+ 		try {
+ 			if (!isValidProjectName(projectName)) {
 -				
--				IWizardPage[] pages = MBSCustomPageManager.getPages();
--				if(pages != null && pages.length > 0) {
--					CDTMainWizardPage cdtMainPage = (CDTMainWizardPage)pages[0];
--					cdtMainPage.setPageComplete(false);
--					ICDTCommonProjectWizard wizard = (ICDTCommonProjectWizard) pages[0].getWizard();
--					wizard.performCancel();
--
--					project.delete(true, null);
--				}
--				throw new ProcessFailureException(YoctoSDKMessages.getFormattedString(PROJECT_NAME_ERROR, new Object[]{projectName, printIllegalChars()}));
--			}
--			if (!project.exists()) {
--				IWorkspace workspace = ResourcesPlugin.getWorkspace();
--				turnOffAutoBuild(workspace);
--
--				IPath locationPath = null;
--				if (location != null && !location.trim().equals("")) { //$NON-NLS-1$
--					locationPath = Path.fromPortableString(location);
--				}
--
--				List<?> configs = template.getTemplateInfo().getConfigurations();
--				if (configs == null || configs.size() == 0) {
--					throw new ProcessFailureException(Messages.getString("NewManagedProject.4") + projectName); //$NON-NLS-1$
--				}
--
--				pca.setProject(project);
--				pca.setProjectLocation(locationPath);
--				pca.setConfigs((IConfiguration[]) configs.toArray(new IConfiguration[configs.size()]));
--				pca.setArtifactExtension(artifactExtension);
--				info = pca.createProject(monitor, CCorePlugin.DEFAULT_INDEXER, isCProject);
--
--				addNatures(project, false, isEmptyProject, isAutotoolsProject, isCMakeProject, monitor);
--
--				info.setValid(true);
--				ManagedBuildManager.saveBuildInfo(project, true);
--
--				restoreAutoBuild(workspace);
--			} else {
++
+ 				IWizardPage[] pages = MBSCustomPageManager.getPages();
+ 				if(pages != null && pages.length > 0) {
+ 					CDTMainWizardPage cdtMainPage = (CDTMainWizardPage)pages[0];
+@@ -110,6 +110,7 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 				}
+ 				throw new ProcessFailureException(YoctoSDKMessages.getFormattedString(PROJECT_NAME_ERROR, new Object[]{projectName, printIllegalChars()}));
+ 			}
++
+ 			if (!project.exists()) {
+ 				IWorkspace workspace = ResourcesPlugin.getWorkspace();
+ 				turnOffAutoBuild(workspace);
+@@ -120,6 +121,7 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 				}
+ 
+ 				List<?> configs = template.getTemplateInfo().getConfigurations();
++
+ 				if (configs == null || configs.size() == 0) {
+ 					throw new ProcessFailureException(Messages.getString("NewManagedProject.4") + projectName); //$NON-NLS-1$
+ 				}
+@@ -137,7 +139,7 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 
+ 				restoreAutoBuild(workspace);
+ 			} else {
 -				
--				IWorkspace workspace = ResourcesPlugin.getWorkspace();
--				turnOffAutoBuild(workspace);
--
--				YoctoSDKChecker.checkIfGloballySelectedYoctoProfileIsValid();
--
--				addNatures(project, true, isEmptyProject, isAutotoolsProject, isCMakeProject, monitor);
--
--				//restoreAutoBuild(workspace);
--				IDiscoveredPathManager manager = MakeCorePlugin.getDefault().getDiscoveryManager();
--				IDiscoveredPathInfo pathInfo = manager.getDiscoveredInfo(project);
--				if (pathInfo instanceof IPerProjectDiscoveredPathInfo) {
++
+ 				IWorkspace workspace = ResourcesPlugin.getWorkspace();
+ 				turnOffAutoBuild(workspace);
+ 
+@@ -148,19 +150,20 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 				//restoreAutoBuild(workspace);
+ 				IDiscoveredPathManager manager = MakeCorePlugin.getDefault().getDiscoveryManager();
+ 				IDiscoveredPathInfo pathInfo = manager.getDiscoveredInfo(project);
++
+ 				if (pathInfo instanceof IPerProjectDiscoveredPathInfo) {
 -				    IPerProjectDiscoveredPathInfo projectPathInfo =
 -				    	(IPerProjectDiscoveredPathInfo) pathInfo;
 -				    projectPathInfo.setIncludeMap(new LinkedHashMap<String, Boolean>());
 -				    projectPathInfo.setSymbolMap(new LinkedHashMap<String, SymbolEntry>());
 -				    manager.removeDiscoveredInfo(project);    
--				}
--			}
--		}
--		catch (CoreException e)
--		{
--			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage(), e); //$NON-NLS-1$
++					IPerProjectDiscoveredPathInfo projectPathInfo =
++							(IPerProjectDiscoveredPathInfo) pathInfo;
++					projectPathInfo.setIncludeMap(new LinkedHashMap<String, Boolean>());
++					projectPathInfo.setSymbolMap(new LinkedHashMap<String, SymbolEntry>());
++					manager.removeDiscoveredInfo(project);
+ 				}
+ 			}
+ 		}
+ 		catch (CoreException e)
+ 		{
+ 			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage(), e); //$NON-NLS-1$
 -		} 
--		catch (BuildException e)
--		{
--			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage()); //$NON-NLS-1$
--		}
--		catch (YoctoGeneralException e)
--		{
--			try {
--				project.delete(true, monitor);
--			} catch (CoreException err) {
++		}
+ 		catch (BuildException e)
+ 		{
+ 			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage()); //$NON-NLS-1$
+@@ -170,16 +173,18 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 			try {
+ 				project.delete(true, monitor);
+ 			} catch (CoreException err) {
 -				throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage() + " " + err.getMessage()); 
--			}
++				throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage() //$NON-NLS-1$
++						+ " " + err.getMessage()); //$NON-NLS-1$
+ 			}
 -			throw new OperationCanceledException(Messages.getString("NewManagedProject.3") + e.getMessage());
--		}
--	}
--	private boolean isValidProjectName(String projectName) {
++			throw new OperationCanceledException(Messages.getString("NewManagedProject.3") + e.getMessage()); //$NON-NLS-1$
+ 		}
+ 	}
++
+ 	private boolean isValidProjectName(String projectName) {
 -		Pattern pattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9_\\-]*$");
--		Matcher matcher = pattern.matcher(projectName);
--		return matcher.find();
++		Pattern pattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9_\\-]*$"); //$NON-NLS-1$
+ 		Matcher matcher = pattern.matcher(projectName);
+ 		return matcher.find();
 -}
--
--	private void addNatures(IProject project, boolean projectExists, boolean isEmptyProject,
--			boolean isAutotoolsProject, boolean isCMakeProject, IProgressMonitor monitor)
--					throws CoreException, YoctoGeneralException {
--		YoctoSDKNatureUtils.addNature(project, YoctoSDKProjectNature.YoctoSDK_NATURE_ID, monitor);
--
--		YoctoSDKChecker.checkIfGloballySelectedYoctoProfileIsValid();
--
--		YoctoProfileElement profileElement = YoctoSDKUtils.getProfilesFromDefaultStore();
--		YoctoSDKUtils.saveProfilesToProjectPreferences(profileElement, project);
--
--		IPreferenceStore selecteProfileStore = YoctoSDKPlugin.getProfilePreferenceStore(profileElement.getSelectedProfile());
--		YoctoUIElement elem = YoctoSDKUtils.getElemFromStore(selecteProfileStore);
--		YoctoSDKUtils.setEnvironmentVariables(project, elem);
--
--		if (isEmptyProject) {
--			YoctoSDKNatureUtils.addNature(project, YoctoSDKEmptyProjectNature.YoctoSDK_EMPTY_NATURE_ID, monitor);
--		}
--
--		if (isAutotoolsProject) {
--			AutotoolsNewProjectNature.addAutotoolsNature(project, monitor);
--
--			if (!projectExists) {
--				// For each IConfiguration, create a corresponding Autotools Configuration
--				for (IConfiguration cfg : pca.getConfigs()) {
--					AutotoolsConfigurationManager.getInstance().getConfiguration(project, cfg.getName(), true);
--				}
--				AutotoolsConfigurationManager.getInstance().saveConfigs(project);
--			}
--
--			YoctoSDKNatureUtils.addNature(project, YoctoSDKAutotoolsProjectNature.YoctoSDK_AUTOTOOLS_NATURE_ID, monitor);
--			YoctoSDKAutotoolsProjectNature.configureAutotoolsOptions(project);
--		} else if (isCMakeProject) {
--			YoctoSDKNatureUtils.addNature(project, YoctoSDKCMakeProjectNature.YoctoSDK_CMAKE_NATURE_ID, monitor);
--			YoctoSDKCMakeProjectNature.extendProjectEnvironmentForCMake(project);
--		}
--	}
--
--	protected final void turnOffAutoBuild(IWorkspace workspace) throws CoreException {
--		IWorkspaceDescription workspaceDesc = workspace.getDescription();
--		savedAutoBuildingValue = workspaceDesc.isAutoBuilding();
--		workspaceDesc.setAutoBuilding(false);
--		workspace.setDescription(workspaceDesc);
--	}
++	}
+ 
+ 	private void addNatures(IProject project, boolean projectExists, boolean isEmptyProject,
+ 			boolean isAutotoolsProject, boolean isCMakeProject, IProgressMonitor monitor)
+@@ -224,13 +229,13 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 		workspaceDesc.setAutoBuilding(false);
+ 		workspace.setDescription(workspaceDesc);
+ 	}
 -	
--	protected final void restoreAutoBuild(IWorkspace workspace) throws CoreException {
--		IWorkspaceDescription workspaceDesc = workspace.getDescription();
--		workspaceDesc.setAutoBuilding(savedAutoBuildingValue);
--		workspace.setDescription(workspaceDesc);
--	}
++
+ 	protected final void restoreAutoBuild(IWorkspace workspace) throws CoreException {
+ 		IWorkspaceDescription workspaceDesc = workspace.getDescription();
+ 		workspaceDesc.setAutoBuilding(savedAutoBuildingValue);
+ 		workspace.setDescription(workspaceDesc);
+ 	}
 -	
--	/**
--	 * setOptionValue
--	 * @param config
--	 * @param option
--	 * @param val
--	 * @throws BuildException
--	 */
--	protected void setOptionValue(IConfiguration config, IOption option, String val) throws BuildException {
--		if (val != null) {
--			if (!option.isExtensionElement()) {
--				option.setValue(val);
--			} else {
--				IOption newOption = config.getToolChain().createOption(option, option.getId() + "." + ManagedBuildManager.getRandomNumber(), option.getName(), false); //$NON-NLS-1$
--				newOption.setValue(val);
--			}
--		}
--	}
--}
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
-new file mode 100644
-index 0000000..bf89488
---- /dev/null
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
-@@ -0,0 +1,251 @@
-+/*******************************************************************************
-+ * Copyright (c) 2010 Intel Corporation.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * Intel - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.sdk.ide.wizard;
 +
-+import java.util.Arrays;
-+import java.util.LinkedHashMap;
-+import java.util.List;
-+import java.util.regex.Matcher;
-+import java.util.regex.Pattern;
-+
-+import org.eclipse.cdt.autotools.core.AutotoolsNewProjectNature;
-+import org.eclipse.cdt.core.CCorePlugin;
-+import org.eclipse.cdt.core.templateengine.TemplateCore;
-+import org.eclipse.cdt.core.templateengine.process.ProcessArgument;
-+import org.eclipse.cdt.core.templateengine.process.ProcessFailureException;
-+import org.eclipse.cdt.core.templateengine.process.ProcessRunner;
-+import org.eclipse.cdt.core.templateengine.process.processes.Messages;
-+import org.eclipse.cdt.internal.autotools.core.configure.AutotoolsConfigurationManager;
-+import org.eclipse.cdt.make.core.MakeCorePlugin;
-+import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager;
-+import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager.IDiscoveredPathInfo;
-+import org.eclipse.cdt.make.core.scannerconfig.IDiscoveredPathManager.IPerProjectDiscoveredPathInfo;
-+import org.eclipse.cdt.make.internal.core.scannerconfig.util.SymbolEntry;
-+import org.eclipse.cdt.managedbuilder.core.BuildException;
-+import org.eclipse.cdt.managedbuilder.core.IConfiguration;
-+import org.eclipse.cdt.managedbuilder.core.IManagedBuildInfo;
-+import org.eclipse.cdt.managedbuilder.core.IOption;
-+import org.eclipse.cdt.managedbuilder.core.ManagedBuildManager;
-+import org.eclipse.cdt.managedbuilder.templateengine.ProjectCreatedActions;
-+import org.eclipse.cdt.managedbuilder.ui.wizards.MBSCustomPageManager;
-+import org.eclipse.jface.wizard.IWizardPage;
-+import org.eclipse.cdt.ui.wizards.CDTMainWizardPage;
-+import org.eclipse.cdt.internal.ui.wizards.ICDTCommonProjectWizard;
-+import org.eclipse.core.resources.IProject;
-+import org.eclipse.core.resources.IWorkspace;
-+import org.eclipse.core.resources.IWorkspaceDescription;
-+import org.eclipse.core.resources.ResourcesPlugin;
-+import org.eclipse.core.runtime.CoreException;
-+import org.eclipse.core.runtime.IPath;
-+import org.eclipse.core.runtime.IProgressMonitor;
-+import org.eclipse.core.runtime.OperationCanceledException;
-+import org.eclipse.core.runtime.Path;
-+import org.eclipse.jface.preference.IPreferenceStore;
-+import org.yocto.sdk.ide.YoctoGeneralException;
-+import org.yocto.sdk.ide.YoctoProfileElement;
-+import org.yocto.sdk.ide.YoctoSDKChecker;
-+import org.yocto.sdk.ide.YoctoSDKMessages;
-+import org.yocto.sdk.ide.YoctoSDKPlugin;
-+import org.yocto.sdk.ide.YoctoUIElement;
-+import org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature;
-+import org.yocto.sdk.ide.natures.YoctoSDKCMakeProjectNature;
-+import org.yocto.sdk.ide.natures.YoctoSDKEmptyProjectNature;
-+import org.yocto.sdk.ide.natures.YoctoSDKNatureUtils;
-+import org.yocto.sdk.ide.natures.YoctoSDKProjectNature;
-+import org.yocto.sdk.ide.utils.YoctoSDKUtils;
-+
-+
-+@SuppressWarnings("restriction")
-+public class NewYoctoProjectTemplateProcess extends ProcessRunner {
-+	protected boolean savedAutoBuildingValue;
-+	protected ProjectCreatedActions pca;
-+	protected IManagedBuildInfo info;
-+	protected List<Character> illegalChars = Arrays.asList('$', '"','#','%','&','\'','(',')','*', '+', ',','.','/',':',';','<','=','>','?','@','[','\\',']','^','`','{','|','}','~');
-+	private static final String PROJECT_NAME_ERROR = "Wizard.SDK.Error.ProjectName";
-+	
-+	public NewYoctoProjectTemplateProcess() {
-+		pca = new ProjectCreatedActions();
-+	}
-+	private String printIllegalChars(){
-+		String print = "";
-+		for (Character ch : illegalChars)
-+			print += ch + ", ";
-+		print = print.substring(0, print.length() - 2);
-+		return print;
-+	}
-+	public void process(TemplateCore template, ProcessArgument[] args, String processId, IProgressMonitor monitor) throws ProcessFailureException {
-+
-+		String projectName = args[0].getSimpleValue();
-+		String location = args[1].getSimpleValue();
-+		String artifactExtension = args[2].getSimpleValue();
-+		String isCProjectValue = args[3].getSimpleValue();
-+		String isEmptyProjetValue = args[4].getSimpleValue();
-+		String isAutotoolsProjectValue = args[5].getSimpleValue();
-+		String isCMakeProjectValue = args[6].getSimpleValue();
-+		boolean isCProject = Boolean.valueOf(isCProjectValue).booleanValue();
-+		boolean isEmptyProject = Boolean.valueOf(isEmptyProjetValue).booleanValue();
-+		boolean isAutotoolsProject = Boolean.valueOf(isAutotoolsProjectValue).booleanValue();
-+		boolean isCMakeProject = Boolean.valueOf(isCMakeProjectValue).booleanValue();
-+
-+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-+		try {
-+			if (!isValidProjectName(projectName)) {
-+				
-+				IWizardPage[] pages = MBSCustomPageManager.getPages();
-+				if(pages != null && pages.length > 0) {
-+					CDTMainWizardPage cdtMainPage = (CDTMainWizardPage)pages[0];
-+					cdtMainPage.setPageComplete(false);
-+					ICDTCommonProjectWizard wizard = (ICDTCommonProjectWizard) pages[0].getWizard();
-+					wizard.performCancel();
-+
-+					project.delete(true, null);
-+				}
-+				throw new ProcessFailureException(YoctoSDKMessages.getFormattedString(PROJECT_NAME_ERROR, new Object[]{projectName, printIllegalChars()}));
-+			}
-+			if (!project.exists()) {
-+				IWorkspace workspace = ResourcesPlugin.getWorkspace();
-+				turnOffAutoBuild(workspace);
-+
-+				IPath locationPath = null;
-+				if (location != null && !location.trim().equals("")) { //$NON-NLS-1$
-+					locationPath = Path.fromPortableString(location);
-+				}
-+
-+				List<?> configs = template.getTemplateInfo().getConfigurations();
-+				if (configs == null || configs.size() == 0) {
-+					throw new ProcessFailureException(Messages.getString("NewManagedProject.4") + projectName); //$NON-NLS-1$
-+				}
-+
-+				pca.setProject(project);
-+				pca.setProjectLocation(locationPath);
-+				pca.setConfigs((IConfiguration[]) configs.toArray(new IConfiguration[configs.size()]));
-+				pca.setArtifactExtension(artifactExtension);
-+				info = pca.createProject(monitor, CCorePlugin.DEFAULT_INDEXER, isCProject);
-+
-+				addNatures(project, false, isEmptyProject, isAutotoolsProject, isCMakeProject, monitor);
-+
-+				info.setValid(true);
-+				ManagedBuildManager.saveBuildInfo(project, true);
-+
-+				restoreAutoBuild(workspace);
-+			} else {
-+				
-+				IWorkspace workspace = ResourcesPlugin.getWorkspace();
-+				turnOffAutoBuild(workspace);
-+
-+				YoctoSDKChecker.checkIfGloballySelectedYoctoProfileIsValid();
-+
-+				addNatures(project, true, isEmptyProject, isAutotoolsProject, isCMakeProject, monitor);
-+
-+				//restoreAutoBuild(workspace);
-+				IDiscoveredPathManager manager = MakeCorePlugin.getDefault().getDiscoveryManager();
-+				IDiscoveredPathInfo pathInfo = manager.getDiscoveredInfo(project);
-+				if (pathInfo instanceof IPerProjectDiscoveredPathInfo) {
-+				    IPerProjectDiscoveredPathInfo projectPathInfo =
-+				    	(IPerProjectDiscoveredPathInfo) pathInfo;
-+				    projectPathInfo.setIncludeMap(new LinkedHashMap<String, Boolean>());
-+				    projectPathInfo.setSymbolMap(new LinkedHashMap<String, SymbolEntry>());
-+				    manager.removeDiscoveredInfo(project);    
-+				}
-+			}
-+		}
-+		catch (CoreException e)
-+		{
-+			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage(), e); //$NON-NLS-1$
-+		} 
-+		catch (BuildException e)
-+		{
-+			throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage()); //$NON-NLS-1$
-+		}
-+		catch (YoctoGeneralException e)
-+		{
-+			try {
-+				project.delete(true, monitor);
-+			} catch (CoreException err) {
-+				throw new ProcessFailureException(Messages.getString("NewManagedProject.3") + e.getMessage() + " " + err.getMessage()); 
-+			}
-+			throw new OperationCanceledException(Messages.getString("NewManagedProject.3") + e.getMessage());
-+		}
-+	}
-+	private boolean isValidProjectName(String projectName) {
-+		Pattern pattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9_\\-]*$");
-+		Matcher matcher = pattern.matcher(projectName);
-+		return matcher.find();
-+}
-+
-+	private void addNatures(IProject project, boolean projectExists, boolean isEmptyProject,
-+			boolean isAutotoolsProject, boolean isCMakeProject, IProgressMonitor monitor)
-+					throws CoreException, YoctoGeneralException {
-+		YoctoSDKNatureUtils.addNature(project, YoctoSDKProjectNature.YoctoSDK_NATURE_ID, monitor);
-+
-+		YoctoSDKChecker.checkIfGloballySelectedYoctoProfileIsValid();
-+
-+		YoctoProfileElement profileElement = YoctoSDKUtils.getProfilesFromDefaultStore();
-+		YoctoSDKUtils.saveProfilesToProjectPreferences(profileElement, project);
-+
-+		IPreferenceStore selecteProfileStore = YoctoSDKPlugin.getProfilePreferenceStore(profileElement.getSelectedProfile());
-+		YoctoUIElement elem = YoctoSDKUtils.getElemFromStore(selecteProfileStore);
-+		YoctoSDKUtils.setEnvironmentVariables(project, elem);
-+
-+		if (isEmptyProject) {
-+			YoctoSDKNatureUtils.addNature(project, YoctoSDKEmptyProjectNature.YoctoSDK_EMPTY_NATURE_ID, monitor);
-+		}
-+
-+		if (isAutotoolsProject) {
-+			AutotoolsNewProjectNature.addAutotoolsNature(project, monitor);
-+
-+			if (!projectExists) {
-+				// For each IConfiguration, create a corresponding Autotools Configuration
-+				for (IConfiguration cfg : pca.getConfigs()) {
-+					AutotoolsConfigurationManager.getInstance().getConfiguration(project, cfg.getName(), true);
-+				}
-+				AutotoolsConfigurationManager.getInstance().saveConfigs(project);
-+			}
-+
-+			YoctoSDKNatureUtils.addNature(project, YoctoSDKAutotoolsProjectNature.YoctoSDK_AUTOTOOLS_NATURE_ID, monitor);
-+			YoctoSDKAutotoolsProjectNature.configureAutotoolsOptions(project);
-+		} else if (isCMakeProject) {
-+			YoctoSDKNatureUtils.addNature(project, YoctoSDKCMakeProjectNature.YoctoSDK_CMAKE_NATURE_ID, monitor);
-+			YoctoSDKCMakeProjectNature.extendProjectEnvironmentForCMake(project);
-+		}
-+	}
-+
-+	protected final void turnOffAutoBuild(IWorkspace workspace) throws CoreException {
-+		IWorkspaceDescription workspaceDesc = workspace.getDescription();
-+		savedAutoBuildingValue = workspaceDesc.isAutoBuilding();
-+		workspaceDesc.setAutoBuilding(false);
-+		workspace.setDescription(workspaceDesc);
-+	}
-+	
-+	protected final void restoreAutoBuild(IWorkspace workspace) throws CoreException {
-+		IWorkspaceDescription workspaceDesc = workspace.getDescription();
-+		workspaceDesc.setAutoBuilding(savedAutoBuildingValue);
-+		workspace.setDescription(workspaceDesc);
-+	}
-+	
-+	/**
-+	 * setOptionValue
-+	 * @param config
-+	 * @param option
-+	 * @param val
-+	 * @throws BuildException
-+	 */
-+	protected void setOptionValue(IConfiguration config, IOption option, String val) throws BuildException {
-+		if (val != null) {
-+			if (!option.isExtensionElement()) {
-+				option.setValue(val);
-+			} else {
-+				IOption newOption = config.getToolChain().createOption(option, option.getId() + "." + ManagedBuildManager.getRandomNumber(), option.getName(), false); //$NON-NLS-1$
-+				newOption.setValue(val);
-+			}
-+		}
-+	}
-+}
+ 	/**
+ 	 * setOptionValue
+ 	 * @param config
 -- 
 1.7.9.5
 
