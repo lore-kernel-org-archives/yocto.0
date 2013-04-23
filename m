@@ -1,26 +1,39 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D8A8E014D5
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:27:13 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3NCRx8l006245; Tue, 23 Apr 2013 13:27:59 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id y1zFfiEgj0jv; Tue, 23 Apr 2013 13:27:59 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3NCRrNP006231
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Tue, 23 Apr 2013 13:27:54 +0100
-Message-ID: <1366720007.23738.57.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto <yocto@yoctoproject.org>
-Date: Tue, 23 Apr 2013 13:26:47 +0100
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
-Mime-Version: 1.0
-Subject: [PATCH] meta-jasperforest: Fix BBFILES
+Return-Path: <aenbacka@gmail.com>
+Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
+	[209.85.220.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59666E014D5
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:29:35 -0700 (PDT)
+Received: by mail-pa0-f45.google.com with SMTP id lf10so464224pab.32
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:29:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:cc:references:in-reply-to:subject:date
+	:message-id:mime-version:content-type:content-transfer-encoding
+	:x-mailer:thread-index:content-language;
+	bh=O7cNj6XQzEoqTHQwatZr8VWfF86m8qOOZrl5C06qWBQ=;
+	b=x2N/Y+qSM4LM3p6ZL15VS83DHwkbsNgFE760cCu87qMB2lNia15w/uqZPgAO7WObOk
+	xc7+vjkKB/EeleeMQio+NsGcpI9jfeyrSQmI7vTA4+oQrYsPW0gcw/17pIROxZhsgZQp
+	LinXuVnbC3FoL70MLQxUKDrl49VpX2dTu4+7Kp4iviaVjxWvibEX7bR62DhDnYZ/Fkci
+	yqqRSptRN/qSTyny5Zvq1ZEXXwuhHHZuj17WUqz2iDFctf/2BnMyDDzIFOllfw3LlfzF
+	ZJ0Est/lV3ELQfpGvHDnURhGIV5h46k26n+EbQ/dJ4Min4jp6hNpi9rlCCiSaGKq7cHV
+	EN8Q==
+X-Received: by 10.68.136.132 with SMTP id qa4mr39996247pbb.3.1366720175016;
+	Tue, 23 Apr 2013 05:29:35 -0700 (PDT)
+Received: from LAPTOP (mail.embedo.fi. [194.100.97.18])
+	by mx.google.com with ESMTPS id dr4sm29392225pbb.19.2013.04.23.05.29.32
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Tue, 23 Apr 2013 05:29:33 -0700 (PDT)
+From: "Andreas Enbacka" <aenbacka@gmail.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>
+References: <00da01ce401a$852365e0$8f6a31a0$@gmail.com>
+	<CAJTo0Lbf_TOUcuYCJKsqb6n6RfnL6W9+kSmaJWV-A7AszZ5R4g@mail.gmail.com>
+In-Reply-To: <CAJTo0Lbf_TOUcuYCJKsqb6n6RfnL6W9+kSmaJWV-A7AszZ5R4g@mail.gmail.com>
+Date: Tue, 23 Apr 2013 15:29:25 +0300
+Message-ID: <010401ce401e$3399b130$9acd1390$@gmail.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJ0agU91SWHrqS/aC17pHrJVTScbQKfJcFTl4JvEZA=
+Cc: yocto@yoctoproject.org
+Subject: Re: Splashscreen using psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,49 +45,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2013 12:27:14 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 23 Apr 2013 12:29:35 -0000
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Language: fi
 
-BBFILES is whitespace delimited. If .= used, no whitespace padding is added around
-the addition and this can lead to it being combined with some other part of the
-field, leading to parts of BBFILES mysteriously not being seen.
+Hello,
 
-For example, I have in my bblayers.conf:
+Thanks a lot for info, I will try with that.
 
-  /media/build1/poky/meta-intel/meta-emenlow \
-  /media/build1/poky/meta-intel/meta-fri2 \
-  /media/build1/poky/meta-intel/meta-jasperforest \
-  /media/build1/poky/meta-intel/meta-n450 \
-  /media/build1/poky/meta-intel/meta-romley \
+//Andreas
 
-and this results in the warning:
+-----Original Message-----
+From: Burton, Ross [mailto:ross.burton@intel.com]=20
+Sent: 23. huhtikuuta 2013 15:09
+To: Andreas Enbacka
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Splashscreen using psplash
 
-WARNING: No bb files matched BBFILE_PATTERN_fri2 '^/media/build1/poky/meta-intel/meta-fri2/'
+On 23 April 2013 13:03, Andreas Enbacka <aenbacka@gmail.com> wrote:
+> I am creating a custom image based on core-image-sato, with a custom =
+splash
+> screen (using psplash). I have been able to replace the default yocto
+> splashscreen in my image,  however, my question is whether it is =
+possible to
+> hide the initial console output text displayed on the screen prior to
+> showing the splashscreen?  Currently most of the boot process is =
+completed
+> at the stage when the splash screen is being displayed on screen. This =
+is
+> because the image should be used as part of an embedded device, and =
+the
+> end-user should not see any traces of the underlying linux distro.
 
-and if I try to build MACHINE=fri2, I get strange errors due to the .bb files
-not being parsed.
+Passing "quiet" to the kernel (APPEND+=3D"quiet" in local.conf will do
+it for testing) should stop the majority of the text.  A full
+splash-from-bootloader is possible if you have a bootloader that
+displays the image, and then a silent kernel from there.
 
-The fix is simply to use +=, just like every other layer.conf file.
-
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- meta-jasperforest/conf/layer.conf |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
-index b539733..6d096e7 100644
---- a/meta-jasperforest/conf/layer.conf
-+++ b/meta-jasperforest/conf/layer.conf
-@@ -2,7 +2,7 @@
- BBPATH .= ":${LAYERDIR}"
- 
- # We have a recipes directory, add to BBFILES
--BBFILES .= "${LAYERDIR}/recipes-*/*/*.bb \
-+BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
- 	${LAYERDIR}/recipes-*/*/*.bbappend"
- 
- BBFILE_COLLECTIONS += "jasperforest"
-
+Ross
 
 
