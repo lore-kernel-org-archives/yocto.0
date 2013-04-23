@@ -1,34 +1,26 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E8EAE014D5
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:09:41 -0700 (PDT)
-Received: by mail-vc0-f171.google.com with SMTP id ha11so521251vcb.30
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:09:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=PbmUxpBaSR4HZMgQZML0D48u9OhZBgh634Y1mUx9qRY=;
-	b=CYYxdNzYrE72h+yPLuQSqewXfo0iZPxw9m+bEBmSZbTWN6vBn+U4IunZtDe0ZB66UQ
-	pIfd/FtwXYy69j7dSy8htOEUSXFuTmEruOAdkjY+ta21Qe2RJIGsQmyOpu5r652vKga+
-	RQepxJ0DnSBgdEgW1AKKET8vECg+agoLCc01cT3ory2ecBRVV9eRGfzBGqlrHaARup0o
-	hHg0AGC6p/ARHH1LM3hShkXPMAW+X2YqzQ/RMnCGJs0aNOUwLxTqAGE/U6PmdF8/GuKl
-	mzwJoRVgrbGm+p2BZHcUuPTmV3ce0w6wlfiHtzv8LZnxnc7r3PY+hXinKwcxX+0Lqow2
-	s0Aw==
-X-Received: by 10.52.165.99 with SMTP id yx3mr5283815vdb.34.1366718980248;
-	Tue, 23 Apr 2013 05:09:40 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Tue, 23 Apr 2013 05:09:20 -0700 (PDT)
-In-Reply-To: <00da01ce401a$852365e0$8f6a31a0$@gmail.com>
-References: <00da01ce401a$852365e0$8f6a31a0$@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 23 Apr 2013 13:09:20 +0100
-Message-ID: <CAJTo0Lbf_TOUcuYCJKsqb6n6RfnL6W9+kSmaJWV-A7AszZ5R4g@mail.gmail.com>
-To: Andreas Enbacka <aenbacka@gmail.com>
-X-Gm-Message-State: ALoCoQkjMYB6GvkbwOISpKLQCkNYgbihp41PFuAtLjpPIE5beYMUHEOJvHPHj9KVaElL7MVCwH/7
-Cc: yocto@yoctoproject.org
-Subject: Re: Splashscreen using psplash
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D8A8E014D5
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:27:13 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r3NCRx8l006245; Tue, 23 Apr 2013 13:27:59 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id y1zFfiEgj0jv; Tue, 23 Apr 2013 13:27:59 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r3NCRrNP006231
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Tue, 23 Apr 2013 13:27:54 +0100
+Message-ID: <1366720007.23738.57.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto <yocto@yoctoproject.org>
+Date: Tue, 23 Apr 2013 13:26:47 +0100
+X-Mailer: Evolution 3.6.2-0ubuntu0.1 
+Mime-Version: 1.0
+Subject: [PATCH] meta-jasperforest: Fix BBFILES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,23 +32,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2013 12:09:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 23 Apr 2013 12:27:14 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 23 April 2013 13:03, Andreas Enbacka <aenbacka@gmail.com> wrote:
-> I am creating a custom image based on core-image-sato, with a custom splash
-> screen (using psplash). I have been able to replace the default yocto
-> splashscreen in my image,  however, my question is whether it is possible to
-> hide the initial console output text displayed on the screen prior to
-> showing the splashscreen?  Currently most of the boot process is completed
-> at the stage when the splash screen is being displayed on screen. This is
-> because the image should be used as part of an embedded device, and the
-> end-user should not see any traces of the underlying linux distro.
+BBFILES is whitespace delimited. If .= used, no whitespace padding is added around
+the addition and this can lead to it being combined with some other part of the
+field, leading to parts of BBFILES mysteriously not being seen.
 
-Passing "quiet" to the kernel (APPEND+="quiet" in local.conf will do
-it for testing) should stop the majority of the text.  A full
-splash-from-bootloader is possible if you have a bootloader that
-displays the image, and then a silent kernel from there.
+For example, I have in my bblayers.conf:
 
-Ross
+  /media/build1/poky/meta-intel/meta-emenlow \
+  /media/build1/poky/meta-intel/meta-fri2 \
+  /media/build1/poky/meta-intel/meta-jasperforest \
+  /media/build1/poky/meta-intel/meta-n450 \
+  /media/build1/poky/meta-intel/meta-romley \
+
+and this results in the warning:
+
+WARNING: No bb files matched BBFILE_PATTERN_fri2 '^/media/build1/poky/meta-intel/meta-fri2/'
+
+and if I try to build MACHINE=fri2, I get strange errors due to the .bb files
+not being parsed.
+
+The fix is simply to use +=, just like every other layer.conf file.
+
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ meta-jasperforest/conf/layer.conf |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
+index b539733..6d096e7 100644
+--- a/meta-jasperforest/conf/layer.conf
++++ b/meta-jasperforest/conf/layer.conf
+@@ -2,7 +2,7 @@
+ BBPATH .= ":${LAYERDIR}"
+ 
+ # We have a recipes directory, add to BBFILES
+-BBFILES .= "${LAYERDIR}/recipes-*/*/*.bb \
++BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ 	${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
+ BBFILE_COLLECTIONS += "jasperforest"
+
+
 
