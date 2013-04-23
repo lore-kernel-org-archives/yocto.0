@@ -1,24 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5086E01490
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 07:01:20 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r3NE1HNd016379
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 23 Apr 2013 07:01:17 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 23 Apr 2013 07:01:16 -0700
-Message-ID: <5176942C.9010401@windriver.com>
-Date: Tue, 23 Apr 2013 10:01:16 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130404 Thunderbird/17.0.5
-MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8733E014B2
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 07:02:45 -0700 (PDT)
+Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
+	([99.240.144.66]:35518 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UUdnx-0007ly-03; Tue, 23 Apr 2013 10:02:45 -0400
+Date: Tue, 23 Apr 2013 10:02:36 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+In-Reply-To: <5176942C.9010401@windriver.com>
+Message-ID: <alpine.DEB.2.02.1304231002040.16854@oneiric>
 References: <alpine.DEB.2.02.1304230955180.16781@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1304230955180.16781@oneiric>
+	<5176942C.9010401@windriver.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: kernel-dev manual: SCC Description File Reference seems incomplete
 X-BeenThere: yocto@yoctoproject.org
@@ -32,37 +40,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2013 14:01:20 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 23 Apr 2013 14:02:45 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 13-04-23 09:59 AM, Robert P. J. Day wrote:
->
->    currently psyching up to work my way through the kernel dev manual,
-> and i noticed this:
->
-> http://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#scc-reference
->
-> that reference list seems incomplete. at a *brief* glance:
->
-> * no mention of the "force" directive
-> * no mention "include" directive has optional following keywords, such
->    as "nocfg" or "inherit"
-> * no mention of kconf keyword "required", which i've seen on occasion
->
->    again, that was a very brief observation, not meant to be a complete
-> list.
+On Tue, 23 Apr 2013, Bruce Ashfield wrote:
 
-There are already bugs open, and in progress documentation updates to
-take care of this .. my remaining 1.4 action items. But putting out
-release fires trumped finishing them for the past few weeks.
-
-Cheers,
-
-Bruce
-
+> On 13-04-23 09:59 AM, Robert P. J. Day wrote:
+> >
+> >    currently psyching up to work my way through the kernel dev manual,
+> > and i noticed this:
+> >
+> > http://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#scc-reference
+> >
+> > that reference list seems incomplete. at a *brief* glance:
+> >
+> > * no mention of the "force" directive
+> > * no mention "include" directive has optional following keywords, such
+> >    as "nocfg" or "inherit"
+> > * no mention of kconf keyword "required", which i've seen on occasion
+> >
+> >    again, that was a very brief observation, not meant to be a complete
+> > list.
 >
-> rday
->
+> There are already bugs open, and in progress documentation updates to
+> take care of this .. my remaining 1.4 action items. But putting out
+> release fires trumped finishing them for the past few weeks.
 
+  ok, i'll just start a list and hang onto it until after that.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
