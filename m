@@ -1,32 +1,23 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 058F6E014D1
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 06:07:42 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3ND89n4008197; Tue, 23 Apr 2013 14:08:30 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id eYdthKbip1yZ; Tue, 23 Apr 2013 14:08:30 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r3ND8O32008210
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Tue, 23 Apr 2013 14:08:26 +0100
-Message-ID: <1366722437.23738.59.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Tue, 23 Apr 2013 14:07:17 +0100
-In-Reply-To: <51767FE1.5060809@mlbassoc.com>
-References: <00da01ce401a$852365e0$8f6a31a0$@gmail.com>
-	<CAJTo0Lbf_TOUcuYCJKsqb6n6RfnL6W9+kSmaJWV-A7AszZ5R4g@mail.gmail.com>
-	<010401ce401e$3399b130$9acd1390$@gmail.com>
-	<51767FE1.5060809@mlbassoc.com>
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13B49E014D1
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 06:22:02 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 23 Apr 2013 06:22:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,533,1363158000"; d="scan'208";a="322986067"
+Received: from unknown (HELO [10.255.14.66]) ([10.255.14.66])
+	by orsmga002.jf.intel.com with ESMTP; 23 Apr 2013 06:22:01 -0700
+Message-ID: <1366723320.1627.11.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date: Tue, 23 Apr 2013 08:22:00 -0500
+In-Reply-To: <1366720007.23738.57.camel@ted>
+References: <1366720007.23738.57.camel@ted>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
 Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Splashscreen using psplash
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [PATCH] meta-jasperforest: Fix BBFILES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,52 +29,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2013 13:07:43 -0000
+X-List-Received-Date: Tue, 23 Apr 2013 13:22:02 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Tue, 2013-04-23 at 06:34 -0600, Gary Thomas wrote:
-> On 2013-04-23 06:29, Andreas Enbacka wrote:
-> > Hello,
-> >
-> > Thanks a lot for info, I will try with that.
-> >
-> > //Andreas
-> >
-> > -----Original Message-----
-> > From: Burton, Ross [mailto:ross.burton@intel.com]
-> > Sent: 23. huhtikuuta 2013 15:09
-> > To: Andreas Enbacka
-> > Cc: yocto@yoctoproject.org
-> > Subject: Re: [yocto] Splashscreen using psplash
-> >
-> > On 23 April 2013 13:03, Andreas Enbacka <aenbacka@gmail.com> wrote:
-> >> I am creating a custom image based on core-image-sato, with a custom splash
-> >> screen (using psplash). I have been able to replace the default yocto
-> >> splashscreen in my image,  however, my question is whether it is possible to
-> >> hide the initial console output text displayed on the screen prior to
-> >> showing the splashscreen?  Currently most of the boot process is completed
-> >> at the stage when the splash screen is being displayed on screen. This is
-> >> because the image should be used as part of an embedded device, and the
-> >> end-user should not see any traces of the underlying linux distro.
-> >
-> > Passing "quiet" to the kernel (APPEND+="quiet" in local.conf will do
-> > it for testing) should stop the majority of the text.  A full
-> > splash-from-bootloader is possible if you have a bootloader that
-> > displays the image, and then a silent kernel from there.
+On Tue, 2013-04-23 at 13:26 +0100, Richard Purdie wrote:
+> BBFILES is whitespace delimited. If .= used, no whitespace padding is added around
+> the addition and this can lead to it being combined with some other part of the
+> field, leading to parts of BBFILES mysteriously not being seen.
 > 
-> Note: AFAICT this will only work if booting using grub or syslinux, not U-Boot
-> or some other embedded bootstrap.
+> For example, I have in my bblayers.conf:
+> 
+>   /media/build1/poky/meta-intel/meta-emenlow \
+>   /media/build1/poky/meta-intel/meta-fri2 \
+>   /media/build1/poky/meta-intel/meta-jasperforest \
+>   /media/build1/poky/meta-intel/meta-n450 \
+>   /media/build1/poky/meta-intel/meta-romley \
+> 
+> and this results in the warning:
+> 
+> WARNING: No bb files matched BBFILE_PATTERN_fri2 '^/media/build1/poky/meta-intel/meta-fri2/'
+> 
+> and if I try to build MACHINE=fri2, I get strange errors due to the .bb files
+> not being parsed.
+> 
+> The fix is simply to use +=, just like every other layer.conf file.
+> 
 
-The trick is to redirect the console output somewhere else. By default
-it goes to the first tty if I recall correctly but you can send it to a
-serial port or wherever you want...
+Good catch, thanks!
 
-Cheers,
+Pulled into meta-intel/master and meta-intel/dylan.
 
-Richard
+Tom
 
-
+> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+> ---
+>  meta-jasperforest/conf/layer.conf |    2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/meta-jasperforest/conf/layer.conf b/meta-jasperforest/conf/layer.conf
+> index b539733..6d096e7 100644
+> --- a/meta-jasperforest/conf/layer.conf
+> +++ b/meta-jasperforest/conf/layer.conf
+> @@ -2,7 +2,7 @@
+>  BBPATH .= ":${LAYERDIR}"
+>  
+>  # We have a recipes directory, add to BBFILES
+> -BBFILES .= "${LAYERDIR}/recipes-*/*/*.bb \
+> +BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+>  	${LAYERDIR}/recipes-*/*/*.bbappend"
+>  
+>  BBFILE_COLLECTIONS += "jasperforest"
+> 
+> 
 
 
 
