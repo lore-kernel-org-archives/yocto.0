@@ -1,27 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0928E014CB
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 03:34:53 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id DCB82F811E1; Tue, 23 Apr 2013 04:34:49 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9E12CF811E0;
-	Tue, 23 Apr 2013 04:34:48 -0600 (MDT)
-Message-ID: <517663D3.9090300@mlbassoc.com>
-Date: Tue, 23 Apr 2013 04:34:59 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
+Return-Path: <aenbacka@gmail.com>
+Received: from mail-da0-f54.google.com (mail-da0-f54.google.com
+	[209.85.210.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D809E014D1
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:03:14 -0700 (PDT)
+Received: by mail-da0-f54.google.com with SMTP id s35so304815dak.41
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 05:03:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:from:to:subject:date:message-id:mime-version
+	:content-type:x-mailer:thread-index:content-language;
+	bh=86iNiyyLVoPHixqTHEQ1XJYr+QVrH3w2hMBNT6JoSOA=;
+	b=d/CpZb9B62KfiN/KuqvYmpWEXKuKWpGJD7fQ+Acte5ITeV1hGKerTBzHjrSFk0tk7n
+	CpJT+uB+ritSerLG0jOyv1mc2YWOikTyFHFYnLFDb/vQPMUdcRagi4pfL/OA7OkikpV9
+	7oViRI6Dvx9mVAkpj4ryKyzUjsPW3pN+8d2ABoU1dRHqIrERYqx3uP6ikH9Txj/LY4Wj
+	SRlNoqHnEBgKOAq0P4MJkKdGBqZv9aeL6VRMasWYZltLD7kYIGxWprgDk9Qve0NuV7Qw
+	ZakjlHlPrgbL5kOT8mRaZC9fg7LSaKqfDMZjOCdKJQNxcsHIhL9d7KpXGEaiKOojBPYE
+	Fj/w==
+X-Received: by 10.68.210.5 with SMTP id mq5mr39864549pbc.44.1366718594151;
+	Tue, 23 Apr 2013 05:03:14 -0700 (PDT)
+Received: from LAPTOP (mail.embedo.fi. [194.100.97.18])
+	by mx.google.com with ESMTPS id ag4sm12979533pbc.20.2013.04.23.05.03.10
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Tue, 23 Apr 2013 05:03:12 -0700 (PDT)
+From: "Andreas Enbacka" <aenbacka@gmail.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 23 Apr 2013 15:03:03 +0300
+Message-ID: <00da01ce401a$852365e0$8f6a31a0$@gmail.com>
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-References: <5175C32D.8030304@mlbassoc.com>
-In-Reply-To: <5175C32D.8030304@mlbassoc.com>
-Subject: Re: udev breakage
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: Ac5AGcnB16pbsf8STjuqM/gjDRmOGA==
+Subject: Splashscreen using psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,83 +40,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2013 10:34:55 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 23 Apr 2013 12:03:14 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_00DB_01CE4033.AA711310"
+Content-Language: fi
+
+------=_NextPart_000_00DB_01CE4033.AA711310
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On 2013-04-22 17:09, Gary Thomas wrote:
-> I've found that Poky/Yocto images built after this commit have
-> a broken udev:
->
-> commit c71d1f446c734954dceba0666c4f074047864b87
-> Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-> Date:   Wed Apr 17 14:53:21 2013 +0000
->
->      udev: Effectively revert the move to /sbin
->
->      This effectively reverts the changes made in b49ddeb11c0319b7ece278fd7cef6b0223114ca9
->      to move udev's libexecdir to sbin. The changes caused too many issues in
->      other places and were not well enough tested this close to a release.
->
->      Rather than use base_libdir, the nonarch version is used to try and give some
->      chance of multilib not being totally broken in the release.
->
->      (From OE-Core rev: c50e50fdafad378d75b7b74259a3d55ca0fe3d18)
->
->      Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
->
-> Prior to this commit, the X server finds my input devices and works
-> perfectly.  After this commit, something breaks and X can't find any
-> keyboard/mouse/touch.
->
-> It seems like the path '/sbin/udev' has crept in some way that the
-> recipe configuration does not affect.  After the failing commit, all
-> of the udev files should be in ${nonarch_base_libdir}, not /sbin.
-> However, that doesn't seem to be the case in libudev
->
-> root@sabrelite:~# strings /lib/libudev.so.0 | grep /udev
-> /etc/udev/udev.conf
-> /run/udev
-> /sbin/udev/rules.d
-> /etc/udev/rules.d
->
-> I believe that this is why X is failing since it uses libudev to
-> search for devices.
->
-> I've not found where/how this mixup is happening, perhaps someone more
-> familiar with the udev code can spot it quickly.
+Hello,
+
+ 
+
+I am creating a custom image based on core-image-sato, with a custom splash
+screen (using psplash). I have been able to replace the default yocto
+splashscreen in my image,  however, my question is whether it is possible to
+hide the initial console output text displayed on the screen prior to
+showing the splashscreen?  Currently most of the boot process is completed
+at the stage when the splash screen is being displayed on screen. This is
+because the image should be used as part of an embedded device, and the
+end-user should not see any traces of the underlying linux distro. 
+
+ 
+
+Any info would be greatly appreciated.
+
+ 
+
+Best regards,
+
+Andreas Enbacka
+
+ 
 
 
-Somehow this misconfiguration ended up in a number of the executable
-programs in the udev package:
+------=_NextPart_000_00DB_01CE4033.AA711310
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-******* /usr/bin/udevadm
-/sbin/udev/ /sbin/udev/rules.d
-******* /lib/libudev.so.0.13.1
-/sbin/udev/rules.d
-******* /lib/udev/ata_id
-/sbin/udev/rules.d
-******* /lib/udev/collect
-/sbin/udev/rules.d
-******* /lib/udev/accelerometer
-/sbin/udev/rules.d
-******* /lib/udev/cdrom_id
-/sbin/udev/rules.d
-******* /lib/udev/udevd
-/sbin/udev/ /sbin/udev/devices /sbin/udev/rules.d
-******* /lib/udev/scsi_id
-/sbin/udev/rules.d
-******* /lib/udev/keymap
-/sbin/udev/keymaps/
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 2.0cm 70.85pt 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span lang=3DEN-US>Hello,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>I am creating a custom image based =
+on core-image-sato, with a custom splash screen (using psplash). I have =
+been able to replace the default yocto splashscreen in my image, =
+&nbsp;however, my question is whether it is possible to hide the initial =
+console output text displayed on the screen prior to showing the =
+splashscreen? &nbsp;Currently most of the boot process is completed at =
+the stage when the splash screen is being displayed on screen. This is =
+because the image should be used as part of an embedded device, and the =
+end-user should not see any traces of the underlying linux distro. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Any info would be greatly =
+appreciated.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Best regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Andreas =
+Enbacka<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
 
-
-Just to see if this is the problem, I added a symlink
-   # ln -s ${nonarch_base_libdir}/udev /sbin
-and X now works (after a reboot)
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+------=_NextPart_000_00DB_01CE4033.AA711310--
