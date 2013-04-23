@@ -1,33 +1,35 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3085E014D5
-	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 10:45:24 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:39124 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UUhHP-0002fb-GT
-	for yocto@yoctoproject.org; Tue, 23 Apr 2013 13:45:23 -0400
-Date: Tue, 23 Apr 2013 13:45:20 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-In-Reply-To: <alpine.DEB.2.02.1304231327020.23042@oneiric>
-Message-ID: <alpine.DEB.2.02.1304231344330.7912@oneiric>
-References: <alpine.DEB.2.02.1304231327020.23042@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9626DE014D8
+	for <yocto@yoctoproject.org>; Tue, 23 Apr 2013 11:50:44 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 23 Apr 2013 11:50:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,536,1363158000"; d="scan'208";a="323721476"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga001.fm.intel.com with ESMTP; 23 Apr 2013 11:50:43 -0700
+Received: from orsmsx108.amr.corp.intel.com (10.22.225.41) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Tue, 23 Apr 2013 11:50:43 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.4.227]) with mapi id
+	14.01.0355.002; Tue, 23 Apr 2013 11:50:42 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Atanas Gegov <atanas.gegov.oss@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [eclipse-poky][RFC 0/6] Introducing a
+	YoctoSDKCMakeProjectNature
+Thread-Index: AQHOP1I8mBJ7dw3LVkmg+KdTtl+DN5jkI6Wg
+Date: Tue, 23 Apr 2013 18:50:41 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDCDC04@ORSMSX104.amr.corp.intel.com>
+References: <1366632363-6064-1-git-send-email-atanas.gegov.oss@gmail.com>
+In-Reply-To: <1366632363-6064-1-git-send-email-atanas.gegov.oss@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Re: should i have known about "use-kernel-config"?
+Subject: Re: [eclipse-poky][RFC 0/6] Introducing a	YoctoSDKCMakeProjectNature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,46 +41,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2013 17:45:25 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 23 Apr 2013 18:50:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 23 Apr 2013, Robert P. J. Day wrote:
->
->   condensed version: i want to define a new machine for the MIPS
-> SEAD3, which is 32-bit, little endian, and it seemed pretty
-> straightforward, using the routerstation pro as a starting point and
-> making the appropriate tweaks.
->
->   i chose to base off of linux-yocto-3.8, and chose the
-> standard/mti-malta32 branch, then wanted to make sure i had an
-> appropriate defconfig. turns out there *is* a
-> arch/mips/configs/sead3_defconfig file in that branch, with exactly
-> the two settings i cared most about right at the top:
->
-> CONFIG_MIPS_SEAD3=y
-> CONFIG_CPU_LITTLE_ENDIAN=y
->
-> so all i wanted was to say, "use *that* as the defconfig", but i saw
-> nothing in the kernel guide that explained how until i tripped over
-> this in one of the meta-arago defconfig files:
->
-> use-kernel-config=am335x_evm_defconfig
->
->   does that do what i *think* it does? because it's certainly not
-> mentioned anywhere in the yocto docs.  and it's kind of handy.
+Hi Atanas,
 
-  oh, wait, i see that it's apparently a TI extension defined in
-meta-ti's setup-defconfig.inc.  never mind.  carry on.
+Overall, the patches look good.  Couple comments:
 
-rday
+1. So from the end user perspective, after the 2nd patch set, user will see=
+ "Yocto Project ADT CMake Project" category when they want to create a new =
+project?
+2. Can we change the API for addNatures by using an enum type for projectNa=
+ture instead of explicitly listing all of them out.  This way is easier for=
+ code maintenance and API usability.
+3. Don't know whether you've created a bugzilla account at bugzilla.yoctopr=
+oject.org or not, if not, please do, since I'd hope you're able to help fix=
+ing certain bugs in this area down the road.  Also, from project planning p=
+rocess wise, we're right in the 1.5 planning, and I'd like to create an ent=
+ry in the bugzilla for extending eclipse for CMake support and assign that =
+to you, so it's easier to track what are the community contribution to the =
+project.
 
--- 
+Thanks,
+Jessica
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Atanas Gegov
+Sent: Monday, April 22, 2013 5:06 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [eclipse-poky][RFC 0/6] Introducing a YoctoSDKCMakeProject=
+Nature
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+
+Hi,
+
+This patch series introduces a YoctoSDKCMakeProjectNature as a new nature f=
+or CMake-based Yocto Projects in the IDE. It requires the basic YoctoSDKPro=
+jectNature and is an alternative to the YoctoSDKAutotoolsProjectNature.
+
+This does not affect the currently existing Autotools template projects.
+
+Upcoming patch series will add the last missing parts for having CMake proj=
+ects in the IDE: a ManagedBuilder for CMake (CMake toolchain for building i=
+n Eclipse) and some template projects. However, I already wanted to post th=
+is series for a review and make sure that the concept is acceptable, so tha=
+t we can build on top of it.
+
+Cheers, Atanas
+
+P.S: This patch series apply on the current master "plugins/sdk.ide:
+Extracted error message to YoctoSDKMessages"
+(7142c5fc82a41a9d5f86c48b289db0ef44f5a897).
+
+Atanas Gegov (6):
+  plugins/sdk.ide: Prepared templates for CMake nature
+  plugins/sdk.ide: Added a new YoctoSDKCMakeProjectNature
+  plugins/sdk.ide: Enable the creation of CMake projects
+  plugins/sdk.ide: Update CMake projects on Yocto settings change
+  plugins/sdk.ide: Renamed template process
+  plugins/sdk.ide: Fixed whitespace issues
+
+ .../OSGI-INF/l10n/bundle.properties                |    1 +
+ plugins/org.yocto.sdk.ide/plugin.xml               |   25 +-
+ .../ide/natures/YoctoSDKCMakeProjectNature.java    |   92 +++++++
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    7 +-
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |  245 ----------------=
+---
+ .../ide/wizard/NewYoctoProjectTemplateProcess.java |  256 ++++++++++++++++=
+++++
+ .../EmptyCAutotoolsProject/template.xml            |    1 +
+ .../EmptyCPPAutotoolsProject/template.xml          |    1 +
+ .../HelloWorldCAutotoolsProject/template.xml       |    1 +
+ .../HelloWorldCGTKAutotoolsProject/template.xml    |    1 +
+ .../HelloWorldCPPAutotoolsProject/template.xml     |    1 +
+ 11 files changed, 384 insertions(+), 247 deletions(-)  create mode 100644 =
+plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjec=
+tNature.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
+NewYoctoCProjectTemplate.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
+NewYoctoProjectTemplateProcess.java
+
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
