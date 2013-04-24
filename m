@@ -1,26 +1,19 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6631E01510
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 05:34:51 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r3OCYleq005946
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 24 Apr 2013 05:34:48 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 24 Apr 2013 05:34:48 -0700
-Message-ID: <5177D167.6010909@windriver.com>
-Date: Wed, 24 Apr 2013 08:34:47 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130404 Thunderbird/17.0.5
-MIME-Version: 1.0
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-References: <alpine.DEB.2.02.1304240744050.31988@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1304240744050.31988@oneiric>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: how the &^$%^%@%^#$ does "file://defconfig" work?
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 776E7E01515
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 05:35:23 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 24 Apr 2013 05:35:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,542,1363158000"; d="scan'208";a="291028167"
+Received: from ideapad.rb.intel.com ([10.237.105.146])
+	by azsmga001.ch.intel.com with ESMTP; 24 Apr 2013 05:34:39 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed, 24 Apr 2013 15:15:54 +0300
+Message-Id: <1366805754-31196-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH] [eclipse-poky][master]Display progress bar while running systemtap script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,58 +25,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Apr 2013 12:34:51 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Apr 2013 12:35:23 -0000
 
-On 13-04-24 07:50 AM, Robert P. J. Day wrote:
->
->    been fighting with this for a couple of hours, so i'll start with
-> the short version -- here's the current explanation for "Changing the
-> Configuration" of your kernel:
->
-> http://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#changing-the-configuration
->
->    the salient bit:
->
-> "If you have a complete Linux kernel .config file you want to use,
-> copy it to a directory named files, which must be in your layer's
-> recipes-kernel/linux directory, and name the file "defconfig"."
->
->    first, that clearly suggests that file://defconfig is to be used
-> *only* when you have a complete .config file you want to use, which
-> also implies that if you use that, you should not be picking up any
-> other snippets. that's how i read that -- the use of
-> "file://defconfig" means that that is *exactly* the final form of my
-> eventual .config file. if that's not true, then that wording needs to
-> change.
->
->    also, i've been trying to do just that for a couple hours now, and i
-> am definitely *not* getting that as my final .config file used for the
-> kernel configuration. so what should be happening here? thanks.
+[Yocto #4270]
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
+ .../sdk/remotetools/actions/SystemtapHandler.java  |   35 ++++++++++----------
+ 1 file changed, 18 insertions(+), 17 deletions(-)
 
-What sort of delta are you seeing ? Just because something is a
-defconfig, doesn't mean that will be exactly what you see in the final
-.config.
-
-It also could vary a bit based on the kernel recipe you are using,
-i.e. if there are configure prepends or appends, or any input
-conditioning.
-
-The kernel's configuration routines will take all that input and
-potentially select, deselect or take defaults for values that are
-not in the defconfig .. hence why you'll see a delta.
-
-Cheers,
-
-Bruce
-
->
-> rday
->
-> p.s. as i have some spare time between contracts at the moment, i am
-> going to be going over some of the yocto docs in excruciating detail.
-> somewhere, scott rifenbark is now thinking, "oh, crap, ..."
->
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
+index 21bd3ef..87094ee 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
+@@ -12,11 +12,12 @@ package org.yocto.sdk.remotetools.actions;
+ import org.eclipse.core.commands.AbstractHandler;
+ import org.eclipse.core.commands.ExecutionEvent;
+ import org.eclipse.core.commands.ExecutionException;
+-import org.eclipse.core.runtime.NullProgressMonitor;
+ import org.eclipse.jface.dialogs.MessageDialog;
++import org.eclipse.swt.widgets.Shell;
+ import org.eclipse.ui.IWorkbenchWindow;
++import org.eclipse.ui.PlatformUI;
+ import org.eclipse.ui.handlers.HandlerUtil;
+-import org.eclipse.swt.widgets.Shell;
++import org.eclipse.ui.progress.IProgressService;
+ 
+ public class SystemtapHandler extends AbstractHandler {
+ 	protected SystemtapSettingDialog setting;
+@@ -33,27 +34,27 @@ public class SystemtapHandler extends AbstractHandler {
+ 				);
+ 		
+ 		setting.open();
+-		if (!setting.isOKPressed())
+-			return false;
+ 		String metadata_location = ((SystemtapSettingDialog)setting).getMetadataLocation();
+ 		String remote_host = ((SystemtapSettingDialog)setting).getRemoteHost();
+ 		String user_id = ((SystemtapSettingDialog)setting).getUserID();
+ 		String systemtap_script = ((SystemtapSettingDialog)setting).getSystemtapScript();
+ 		String systemtap_args = ((SystemtapSettingDialog)setting).getSystemtapArgs();
+-		
+-		
+-		SystemtapModel op=new SystemtapModel(metadata_location,remote_host, user_id, systemtap_script,
+-											systemtap_args,window.getShell().getDisplay());
+-		try {
+-			op.process(new NullProgressMonitor());
+-			return true;
+-		}catch (Exception e) {
+-			e.printStackTrace();
+-			MessageDialog.openError(window.getShell(),
+-									"Systemtap",
+-									e.getMessage());
++
++		if(setting.open() == BaseSettingDialog.OK) {
++			IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
++			SystemtapModel op = new SystemtapModel(metadata_location,remote_host, user_id, systemtap_script,
++					systemtap_args,window.getShell().getDisplay());
++			try {
++				progressService.busyCursorWhile(op);
++			}catch (InterruptedException e) {
++				//user cancelled
++			}catch (Exception e) {
++				e.printStackTrace();
++				MessageDialog.openError(window.getShell(),
++										"Systemtap",
++										e.getMessage());
++			}
+ 		}
+-			
+ 		return false;
+ 	}
+ 	
+-- 
+1.7.9.5
 
 
