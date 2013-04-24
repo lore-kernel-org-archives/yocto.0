@@ -1,27 +1,35 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93448E0150E
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 15:29:36 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 24 Apr 2013 15:29:24 -0700
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FA59E014DD
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 16:03:43 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 24 Apr 2013 16:03:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,546,1363158000"; d="scan'208";a="300958372"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga001.jf.intel.com with ESMTP; 24 Apr 2013 15:29:23 -0700
-Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.149])
-	by linux.intel.com (Postfix) with ESMTP id 6E7BE2C8001;
-	Wed, 24 Apr 2013 15:29:06 -0700 (PDT)
-From: Stefan Stanacar <stefanx.stanacar@intel.com>
-To: elizabeth.flanagan@intel.com,
-	 yocto@yoctoproject.org
-Date: Thu, 25 Apr 2013 01:29:12 +0300
-Message-Id: <40bd230b04fd680e7c8d86278604dd4494196595.1366841959.git.stefanx.stanacar@intel.com>
-X-Mailer: git-send-email 1.8.1.4
-In-Reply-To: <cover.1366841959.git.stefanx.stanacar@intel.com>
-References: <cover.1366841959.git.stefanx.stanacar@intel.com>
-In-Reply-To: <cover.1366841959.git.stefanx.stanacar@intel.com>
-References: <cover.1366841959.git.stefanx.stanacar@intel.com>
-Subject: [yocto-autobuilder][PATCH 2/6] CreateAutoConf.py: add initmgr option
+X-IronPort-AV: E=Sophos;i="4.87,546,1363158000"; d="scan'208";a="291473917"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by azsmga001.ch.intel.com with ESMTP; 24 Apr 2013 16:03:40 -0700
+Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 24 Apr 2013 16:03:34 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
+	ORSMSX154.amr.corp.intel.com ([169.254.11.84]) with mapi id
+	14.01.0355.002; Wed, 24 Apr 2013 16:03:30 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH] [eclipse-poky][master]Display progress bar
+	while	running systemtap script
+Thread-Index: AQHOQOhSeUJ7hM0zREqIUEppcufm7pjl/fBA
+Date: Wed, 24 Apr 2013 23:03:19 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDCECDA@ORSMSX104.amr.corp.intel.com>
+References: <1366805754-31196-1-git-send-email-ioanax.grigoropol@intel.com>
+In-Reply-To: <1366805754-31196-1-git-send-email-ioanax.grigoropol@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Subject: Re: [PATCH] [eclipse-poky][master]Display progress bar while	running systemtap script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,57 +41,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Apr 2013 22:29:36 -0000
+X-List-Received-Date: Wed, 24 Apr 2013 23:03:43 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Add an option to set the init manager used. This is used
-for building images with systemd. The order used is important
-as it decides the primary init system.
+Merged to eclipse-poky master.
 
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol
+Sent: Wednesday, April 24, 2013 5:16 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [PATCH] [eclipse-poky][master]Display progress bar while r=
+unning systemtap script
+
+[Yocto #4270]
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../autobuilder/buildsteps/CreateAutoConf.py              | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ .../sdk/remotetools/actions/SystemtapHandler.java  |   35 ++++++++++------=
+----
+ 1 file changed, 18 insertions(+), 17 deletions(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-index 3a4b9f9..fd73a3d 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-@@ -36,6 +36,7 @@ class CreateAutoConf(ShellCommand):
-         self.adtdev=False
-         self.factory = factory
-         self.buildappsrcrev = "${AUTOREV}"
-+        self.initmgr=None
-         self.kwargs = kwargs
-         for k, v in argdict.iteritems():
-             if type(v) is bool:
-@@ -112,13 +113,25 @@ class CreateAutoConf(ShellCommand):
-                 fout = fout + 'BUILDHISTORY_COMMIT = "1"\n'
-                 fout = fout + 'BUILDHISTORY_DIR = "' + os.environ.get('BUILD_HISTORY_DIR') + '/' + self.getProperty("buildername") + '/poky-buildhistory"\n'
-                 fout = fout + 'BUILDHISTORY_PUSH_REPO = "' + os.environ.get('BUILD_HISTORY_REPO') + ' ' + self.getProperty("buildername") + ':' + self.getProperty("buildername") + '"\n'
--            if self.getProperty("branch_poky") != "danny" and self.getProperty("distroversion"):
-+            if "danny" not in self.getProperty("branch_poky") and self.getProperty("distroversion"):
-                 if self.adtdev == "True":
-                     adtrepo_url=os.environ.get("ADTREPO_DEV_URL")
-                     fout=fout+'ADTREPO = "' + adtrepo_url + '/' + self.getProperty("distroversion") + '-' + self.getProperty("got_revision_poky") + '-' + self.getProperty("branch_poky") + '"\n'
-                 else:
-                     adtrepo_url=os.environ.get("ADTREPO_URL")
-                     fout=fout+'ADTREPO = "' + adtrepo_url + '/' + self.getProperty("distroversion") + '"\n'
-+            if self.initmgr and "danny" not in self.getProperty("branch_poky"):
-+                # we don't neet to test sysvinit only, because that's the default
-+                if self.initmgr == "systemd":
-+                    fout = fout + 'DISTRO_FEATURES_append = " systemd"\n'
-+                    fout = fout + 'VIRTUAL-RUNTIME_init_manager = "systemd"\n'
-+                    fout = fout + 'DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"\n'
-+                if self.initmgr == "systemd sysvinit":
-+                    fout = fout + 'DISTRO_FEATURES_append = " systemd"\n'
-+                    fout = fout + 'VIRTUAL-RUNTIME_init_manager = "systemd"\n'
-+                if self.initmgr == "sysvinit systemd":
-+                    fout = fout + 'DISTRO_FEATURES_append = " systemd"\n'
-+                    fout = fout + 'VIRTUAL-RUNTIME_init_manager = "sysvinit"\n'
-         if self.atextappend:
-             fout = fout + self.atextappend
- 
--- 
-1.8.1.4
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
+s/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org=
+/yocto/sdk/remotetools/actions/SystemtapHandler.java
+index 21bd3ef..87094ee 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
+ns/SystemtapHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
++++ tions/SystemtapHandler.java
+@@ -12,11 +12,12 @@ package org.yocto.sdk.remotetools.actions;
+ import org.eclipse.core.commands.AbstractHandler;
+ import org.eclipse.core.commands.ExecutionEvent;
+ import org.eclipse.core.commands.ExecutionException;
+-import org.eclipse.core.runtime.NullProgressMonitor;
+ import org.eclipse.jface.dialogs.MessageDialog;
++import org.eclipse.swt.widgets.Shell;
+ import org.eclipse.ui.IWorkbenchWindow;
++import org.eclipse.ui.PlatformUI;
+ import org.eclipse.ui.handlers.HandlerUtil;
+-import org.eclipse.swt.widgets.Shell;
++import org.eclipse.ui.progress.IProgressService;
 
+ public class SystemtapHandler extends AbstractHandler {
+        protected SystemtapSettingDialog setting; @@ -33,27 +34,27 @@ publi=
+c class SystemtapHandler extends AbstractHandler {
+                                );
+
+                setting.open();
+-               if (!setting.isOKPressed())
+-                       return false;
+                String metadata_location =3D ((SystemtapSettingDialog)setti=
+ng).getMetadataLocation();
+                String remote_host =3D ((SystemtapSettingDialog)setting).ge=
+tRemoteHost();
+                String user_id =3D ((SystemtapSettingDialog)setting).getUse=
+rID();
+                String systemtap_script =3D ((SystemtapSettingDialog)settin=
+g).getSystemtapScript();
+                String systemtap_args =3D ((SystemtapSettingDialog)setting)=
+.getSystemtapArgs();
+-
+-
+-               SystemtapModel op=3Dnew SystemtapModel(metadata_location,re=
+mote_host, user_id, systemtap_script,
+-                                                                          =
+             systemtap_args,window.getShell().getDisplay());
+-               try {
+-                       op.process(new NullProgressMonitor());
+-                       return true;
+-               }catch (Exception e) {
+-                       e.printStackTrace();
+-                       MessageDialog.openError(window.getShell(),
+-                                                                       "Sy=
+stemtap",
+-                                                                       e.g=
+etMessage());
++
++               if(setting.open() =3D=3D BaseSettingDialog.OK) {
++                       IProgressService progressService =3D PlatformUI.get=
+Workbench().getProgressService();
++                       SystemtapModel op =3D new SystemtapModel(metadata_l=
+ocation,remote_host, user_id, systemtap_script,
++                                       systemtap_args,window.getShell().ge=
+tDisplay());
++                       try {
++                               progressService.busyCursorWhile(op);
++                       }catch (InterruptedException e) {
++                               //user cancelled
++                       }catch (Exception e) {
++                               e.printStackTrace();
++                               MessageDialog.openError(window.getShell(),
++                                                                          =
+     "Systemtap",
++                                                                          =
+     e.getMessage());
++                       }
+                }
+-
+                return false;
+        }
+
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
