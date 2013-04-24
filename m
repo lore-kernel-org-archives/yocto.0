@@ -1,25 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93F17E014D3
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 06:35:38 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 24 Apr 2013 06:35:37 -0700
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30D5AE014E0
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 08:36:16 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 24 Apr 2013 08:36:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,542,1363158000"; d="scan'208";a="231453333"
-Received: from unknown (HELO helios.localnet) ([10.255.13.249])
-	by AZSMGA002.ch.intel.com with ESMTP; 24 Apr 2013 06:35:33 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
-Date: Wed, 24 Apr 2013 14:35:32 +0100
-Message-ID: <3875695.6MzV3H4rrf@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.5.0-27-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <5177D5CB.8060706@windriver.com>
-References: <364D31930BDB974AB40E22C5C2E584ED011E6155@asterix.SPINETIX.local>
-	<5177D5CB.8060706@windriver.com>
+X-IronPort-AV: E=Sophos;i="4.87,542,1363158000"; d="scan'208";a="300620925"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga001.jf.intel.com with ESMTP; 24 Apr 2013 08:36:06 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 24 Apr 2013 08:36:06 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.111]) with mapi id
+	14.01.0355.002; Wed, 24 Apr 2013 08:36:06 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] how the &^$%^%@%^#$ does "file://defconfig" work?
+Thread-Index: AQHOQOIC2+TW5OoLMUGcg0J9Q9PeDpjlgORg
+Date: Wed, 24 Apr 2013 15:36:05 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123796FCF7CFA@ORSMSX104.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1304240744050.31988@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1304240744050.31988@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: About running old kernels with Yoctoo 1.2 or 1.3
+Subject: Re: how the &^$%^%@%^#$ does "file://defconfig" work?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,53 +40,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Apr 2013 13:35:38 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 24 Apr 2013 15:36:16 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 24 April 2013 08:53:31 Bruce Ashfield wrote:
-> On 13-04-24 06:46 AM, Diego Santa Cruz wrote:
-> > We are starting the development of a product based on TI DM814x SoC and
-> > considering using Yocto to base our development on.
-> > 
-> > Unfortunately, TI does has only included support for this SoC on a
-> > derivative of the 2.6.37 kernel and has not pushed the SoC specifics
-> > upstream to mainline, so we are stuck to use that kernel as we cannot
-> > engage in porting all the support to a newer kernel at this time.
-> > 
-> > I am new to Yocto, but as far as I got from the documentation versions 1.2
-> > and 1.3 use a 3.4 kernel as the supported kernel. Would Yocto work with a
-> > 2.6.37 kernel or are new features that have been introduced in newer
-> > kernel
-> > version required to run Yocto 1.2 or 1.3?
-> 
-> Each Yocto release uses a sliding set of kernel's that have had at least
-> some level of testing with the associated userspace of the release.
-> 
->   1.4 is: 3.2, 3.4 and 3.8
->   1.3 was: 3.4, 3.2 and 3.0
->   1.2 was: 3.2, 3.0 and 2.6.37
-> 
-> But obviously, the linux kernel has a very stable userspace ABI, so there
-> shouldn't be any big compatibility issues with other kernel versions.
-> It's just that we don't know for sure.
-> 
-> It is true that each of these releases with have a linux-libc-headers
-> that is newer than the 2.6.x kernel you are talking about, which could
-> expose syscalls or other interfaces to userspace that aren't supported
-> in your kernel, but this typically degrades gracefully and the issue
-> detected when you try your applications.
 
-The usual problematic components are those that rely heavily upon the kernel 
-e.g. udev and systemd. For such components you may find you need to downgrade 
-or avoid them altogether; most of userspace should work just fine with an older 
-kernel though.
 
-Cheers,
-Paul
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Wednesday, April 24, 2013 4:51 AM
+>To: Yocto discussion list
+>Subject: [yocto] how the &^$%^%@%^#$ does "file://defconfig" work?
+>
+>
+>  been fighting with this for a couple of hours, so i'll start with
+>the short version -- here's the current explanation for "Changing the
+>Configuration" of your kernel:
+>
+>http://www.yoctoproject.org/docs/latest/kernel-dev/kernel-
+>dev.html#changing-the-configuration
+>
+>  the salient bit:
+>
+>"If you have a complete Linux kernel .config file you want to use,
+>copy it to a directory named files, which must be in your layer's
+>recipes-kernel/linux directory, and name the file "defconfig"."
+>
+>  first, that clearly suggests that file://defconfig is to be used
+>*only* when you have a complete .config file you want to use, which
+>also implies that if you use that, you should not be picking up any
+>other snippets. that's how i read that -- the use of
+>"file://defconfig" means that that is *exactly* the final form of my
+>eventual .config file. if that's not true, then that wording needs to
+>change.
+>
+>  also, i've been trying to do just that for a couple hours now, and i
+>am definitely *not* getting that as my final .config file used for the
+>kernel configuration. so what should be happening here? thanks.
+>
+>rday
+>
+>p.s. as i have some spare time between contracts at the moment, i am
+>going to be going over some of the yocto docs in excruciating detail.
+>somewhere, scott rifenbark is now thinking, "oh, crap, ..."
 
--- 
+Your feedback always improves things Robert... no problems.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
