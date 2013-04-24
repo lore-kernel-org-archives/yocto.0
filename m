@@ -1,31 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CB1CE01510
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 04:50:40 -0700 (PDT)
-Received: from cpebcc8100de718-cmbcc8100de715.cpe.net.cable.rogers.com
-	([99.240.144.66]:43228 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UUyDf-0001OP-I3
-	for yocto@yoctoproject.org; Wed, 24 Apr 2013 07:50:39 -0400
-Date: Wed, 24 Apr 2013 07:50:36 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1304240744050.31988@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <navani.srivastava@gmail.com>
+Received: from mail-oa0-f52.google.com (mail-oa0-f52.google.com
+	[209.85.219.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9E41E01510
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 05:01:07 -0700 (PDT)
+Received: by mail-oa0-f52.google.com with SMTP id n12so1527322oag.39
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 05:01:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=E/HpaB395M9Z1srRvK3OSlCc3fdpIf67lQe8Bwh+WDs=;
+	b=F22T3vm7lxuD2y3WBRJl//aPbORx6e+Tcu+M6EJDySjhigLpG8X7BM6zTBhMKZQndJ
+	bJI3hPUmZ4Zalomy2v5LLJUSxIZn6rspx7BNXaNRajo6I+oT3NhdA2Fh5R1/23yPEnur
+	J0CvteKHm9bkbNwWRJkV46YrPB9WdQPcAf8DifR24RT7IeCScOWE5y6bSCLk7se8InSA
+	ANmwtpzZLB6PtpFam6+Fwb77hpF3Lqr9ClytSiPG81lUVBuxbpTrqc18JBaq23Z6qiUA
+	J9HuxDPbGkD/o8q6hmWs6CuKi9juL82h6bjZopR2EEOueIt0Q69weUWlxD9I+ZcPmDfE
+	ROFg==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: how the &^$%^%@%^#$ does "file://defconfig" work?
+X-Received: by 10.182.98.228 with SMTP id el4mr17954693obb.31.1366804866942;
+	Wed, 24 Apr 2013 05:01:06 -0700 (PDT)
+Received: by 10.182.204.70 with HTTP; Wed, 24 Apr 2013 05:01:06 -0700 (PDT)
+Received: by 10.182.204.70 with HTTP; Wed, 24 Apr 2013 05:01:06 -0700 (PDT)
+In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE1B7095E9@POCITMSEXMB05.LntUniverse.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE1B7095E9@POCITMSEXMB05.LntUniverse.com>
+Date: Wed, 24 Apr 2013 17:31:06 +0530
+Message-ID: <CA+Z6RkV8n+YT7E-pFsMSVo1j8KZ6719O-3bY+RA+6rGg0xUXWQ@mail.gmail.com>
+From: Navani Srivastava <navani.srivastava@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: "navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Bitbake -c clean core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,47 +39,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Apr 2013 11:50:40 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 24 Apr 2013 12:01:07 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e42b8924f3d04db1a0eaa
 
+--047d7b2e42b8924f3d04db1a0eaa
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-  been fighting with this for a couple of hours, so i'll start with
-the short version -- here's the current explanation for "Changing the
-Configuration" of your kernel:
+Hi,
 
-http://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html#changing-the-configuration
+I am using poky-danny for development. I am facing problem at the time of
+cleaning rootfs image. If I am issuing =96
 
-  the salient bit:
+=93bitbake =96c clean  core-image-minimal=94
 
-"If you have a complete Linux kernel .config file you want to use,
-copy it to a directory named files, which must be in your layer's
-recipes-kernel/linux directory, and name the file "defconfig"."
+command , it is not cleaning deploy directory. I can still see images
+existing in =93tmp/deploy/images/=94. But the same is working fine for kern=
+el
+and boot loader.
 
-  first, that clearly suggests that file://defconfig is to be used
-*only* when you have a complete .config file you want to use, which
-also implies that if you use that, you should not be picking up any
-other snippets. that's how i read that -- the use of
-"file://defconfig" means that that is *exactly* the final form of my
-eventual .config file. if that's not true, then that wording needs to
-change.
+=93bitbake =96c clean u-boot=94 removes images from deploy directory also.
 
-  also, i've been trying to do just that for a couple hours now, and i
-am definitely *not* getting that as my final .config file used for the
-kernel configuration. so what should be happening here? thanks.
+Please suggest what changes are required to clean rootfs image completely
+from deploy directory.
 
-rday
+Thanks and Regards
+Navani Kamal Srivastava
 
-p.s. as i have some spare time between contracts at the moment, i am
-going to be going over some of the yocto docs in excruciating detail.
-somewhere, scott rifenbark is now thinking, "oh, crap, ..."
+--047d7b2e42b8924f3d04db1a0eaa
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
--- 
+<p>Hi,</p>
+<p>I am using poky-danny for development. I am facing problem at the time o=
+f cleaning rootfs image. If I am issuing =96</p>
+<p>=93bitbake =96c clean =A0core-image-minimal=94</p>
+<p>command , it is not cleaning deploy directory. I can still see images ex=
+isting in =93tmp/deploy/images/=94. But the same is working fine for kernel=
+ and boot loader.</p>
+<p>=93bitbake =96c clean u-boot=94 removes images from deploy directory als=
+o.</p>
+<p>Please suggest what changes are required to clean rootfs image completel=
+y from deploy directory.</p>
+<p>Thanks and Regards<br>
+Navani Kamal Srivastava<br>
+</p>
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--047d7b2e42b8924f3d04db1a0eaa--
