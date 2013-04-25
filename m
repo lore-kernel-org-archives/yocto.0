@@ -1,34 +1,34 @@
 Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-bk0-f54.google.com (mail-bk0-f54.google.com
-	[209.85.214.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1097EE01517
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:32:44 -0700 (PDT)
-Received: by mail-bk0-f54.google.com with SMTP id q11so1241275bkw.27
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:32:44 -0700 (PDT)
+Received: from mail-bk0-f48.google.com (mail-bk0-f48.google.com
+	[209.85.214.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B53DE0151C
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:32:47 -0700 (PDT)
+Received: by mail-bk0-f48.google.com with SMTP id jf3so1237121bkc.35
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:32:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:from:to:cc:subject:date:message-id:x-mailer:in-reply-to
-	:references; bh=4igYt5eZiRYmH0poR8uPWEAqNUE0701GE1mlTtrvNC8=;
-	b=Rka6xcXwipgSvBe68qj2IpnJlht1feZw+oKqaZ0hCb55RZ+HHbgutVcfy7quVOK+ib
-	ozf7B9UIKXIVmoGOyYjcZwZC/xdQIdw/fbw7/tN+se1j73cSNk022hhYKyn/NDVOl15N
-	hk80alXBcdBgqj6yxk+idLyTSA0fHVH2gLT873E3rlo9aoGtUQaHXblMWMDx5FZLAy34
-	aDCVPYdEnR9Z5txspJxCR3hCy6mQ2DGddrKgGOYBQnq6wRrPGsqWw5d7kaUtJYypWZg1
-	nTuMfaFcklnwBujNd1oApAZ1nP4IBGMRz1AJEsp0sp1E2a5n1jbcoUfuTtaFYyk3Cf3N
-	77PA==
-X-Received: by 10.205.114.207 with SMTP id fb15mr3670074bkc.137.1366893164137; 
-	Thu, 25 Apr 2013 05:32:44 -0700 (PDT)
+	:references; bh=l65JS4rV7CpXbqlTlTDmAPuuthiVg9ke4vgXScsXuKc=;
+	b=t8tu/CeRUEzW/apq8NovznfNGijERykf+JPNYx5KtzXd3CJDB+Bvk3ecQ7DXMqEwbC
+	fOfjtw2m1LbKsSyAAErcu+ZmwOxsgKUxYARpgOOCTzm6iRrYuD7/C0y04KOMnmKpBvPO
+	Km3CEi4Fjsmip5972RudK8fL5UpborkpqhN9BBR7XOtlSEP8opQu/1o9jo8mPoa6dQcM
+	E2+BoD9mXcZGyu/btK9RdOHu6Rih+dA1IzozcAL7S1faUsE3eO0dMv2tbilOpPsl28a3
+	/G+P1HOWY3DY2d4uH3dVttRehKBMqmSfizRcuWa8XkV49myFlR8Sux0hBPNy7KeFeBQC
+	e9Gw==
+X-Received: by 10.205.44.129 with SMTP id ug1mr2249243bkb.29.1366893165973;
+	Thu, 25 Apr 2013 05:32:45 -0700 (PDT)
 Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPSA id cv9sm1541605bkb.5.2013.04.25.05.32.42
+	by mx.google.com with ESMTPSA id cv9sm1541605bkb.5.2013.04.25.05.32.44
 	for <multiple recipients>
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 25 Apr 2013 05:32:43 -0700 (PDT)
+	Thu, 25 Apr 2013 05:32:45 -0700 (PDT)
 From: Atanas Gegov <atanas.gegov.oss@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 25 Apr 2013 14:32:27 +0200
-Message-Id: <1366893153-9880-2-git-send-email-atanas.gegov.oss@gmail.com>
+Date: Thu, 25 Apr 2013 14:32:28 +0200
+Message-Id: <1366893153-9880-3-git-send-email-atanas.gegov.oss@gmail.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1366893153-9880-1-git-send-email-atanas.gegov.oss@gmail.com>
 References: <1366893153-9880-1-git-send-email-atanas.gegov.oss@gmail.com>
-Subject: [RFCv2 1/7] plugins/sdk.ide: Prepared templates for CMake nature
+Subject: [RFCv2 2/7] plugins/sdk.ide: Added a new YoctoSDKCMakeProjectNature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,114 +40,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 12:32:45 -0000
+X-List-Received-Date: Thu, 25 Apr 2013 12:32:47 -0000
 
 From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Added an extra variable to the templates and the
-creating process to prepare them for the new CMake
-nature.
+This nature is intended for Yocto projects that
+use CMake as a build system. It requires the
+YoctoSDKProjectNature and can be used by upcoming
+CMake project templates. It excludes the
+YoctoSDKAutotoolsProjectNature, e.g. their
+relation in plugin.xml is declared as
+"one-of-nature".
 ---
- plugins/org.yocto.sdk.ide/plugin.xml               |    4 ++++
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |    2 ++
- .../EmptyCAutotoolsProject/template.xml            |    1 +
- .../EmptyCPPAutotoolsProject/template.xml          |    1 +
- .../HelloWorldCAutotoolsProject/template.xml       |    1 +
- .../HelloWorldCGTKAutotoolsProject/template.xml    |    1 +
- .../HelloWorldCPPAutotoolsProject/template.xml     |    1 +
- 7 files changed, 11 insertions(+)
+ .../OSGI-INF/l10n/bundle.properties                |    1 +
+ plugins/org.yocto.sdk.ide/plugin.xml               |   19 +++++++++++++++++++
+ .../ide/natures/YoctoSDKCMakeProjectNature.java    |   20 ++++++++++++++++++++
+ 3 files changed, 40 insertions(+)
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
 
+diff --git a/plugins/org.yocto.sdk.ide/OSGI-INF/l10n/bundle.properties b/plugins/org.yocto.sdk.ide/OSGI-INF/l10n/bundle.properties
+index 1a4e3c9..48eb653 100644
+--- a/plugins/org.yocto.sdk.ide/OSGI-INF/l10n/bundle.properties
++++ b/plugins/org.yocto.sdk.ide/OSGI-INF/l10n/bundle.properties
+@@ -2,6 +2,7 @@
+ page.name.0 = Yocto Project ADT
+ extension.name.0 = YoctoSDKNature
+ extension.name.1 = YoctoSDKAutotoolsNature
++extension.name.2 = YoctoSDKCMakeNature
+ command.name = ReconfigureYoctoProject
+ command.label.0 = Change Yocto Project Settings
+ command.mnemonic = C
 diff --git a/plugins/org.yocto.sdk.ide/plugin.xml b/plugins/org.yocto.sdk.ide/plugin.xml
-index 1b882a2..dd75532 100644
+index dd75532..2d6b941 100644
 --- a/plugins/org.yocto.sdk.ide/plugin.xml
 +++ b/plugins/org.yocto.sdk.ide/plugin.xml
-@@ -162,6 +162,10 @@
-                external="true"
-                name="isAutotoolsProject">
-          </simple>
-+         <simple
-+               external="true"
-+               name="isCMakeProject">
-+         </simple>
-       </processType>
-       <processType
-             name="NewYoctoAutotoolsProjectPostProcess"
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
-index a103ebe..705dc99 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoCProjectTemplate.java
-@@ -88,9 +88,11 @@ public class NewYoctoCProjectTemplate extends ProcessRunner {
- 		String isCProjectValue = args[3].getSimpleValue();
- 		String isEmptyProjetValue = args[4].getSimpleValue();
- 		String isAutotoolsProjectValue = args[5].getSimpleValue();
-+		String isCMakeProjectValue = args[6].getSimpleValue();
- 		boolean isCProject = Boolean.valueOf(isCProjectValue).booleanValue();
- 		boolean isEmptyProject = Boolean.valueOf(isEmptyProjetValue).booleanValue();
- 		boolean isAutotoolsProject = Boolean.valueOf(isAutotoolsProjectValue).booleanValue();
-+		boolean isCMakeProject = Boolean.valueOf(isCMakeProjectValue).booleanValue();
- 
- 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
- 		try {
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCAutotoolsProject/template.xml
-index 028f33d..e1c1abc 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCAutotoolsProject/template.xml
-@@ -11,6 +11,7 @@
- 		<simple name="isCProject" value="true" />
- 		<simple name="isEmptyProject" value="true" />
- 		<simple name="isAutotoolsProject" value="true" />
-+		<simple name="isCMakeProject" value="false" />
- 	</process>
- 
- </template>
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPAutotoolsProject/template.xml
-index ae4173b..9f1d46b 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/EmptyCPPAutotoolsProject/template.xml
-@@ -10,6 +10,7 @@
- 		<simple name="isCProject" value="false" />
- 		<simple name="isEmptyProject" value="true" />
- 		<simple name="isAutotoolsProject" value="true" />
-+		<simple name="isCMakeProject" value="false" />
- 	</process>
- 
- </template>
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
-index 33bffd5..ca154ca 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCAutotoolsProject/template.xml
-@@ -56,6 +56,7 @@
- 		<simple name="isCProject" value="true" />
- 		<simple name="isEmptyProject" value="false" />
- 		<simple name="isAutotoolsProject" value="true" />
-+		<simple name="isCMakeProject" value="false" />
- 	</process>
- 
- 	<process type="org.eclipse.cdt.core.CreateSourceFolder">
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml
-index 8a4f43b..4234ff4 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCGTKAutotoolsProject/template.xml
-@@ -56,6 +56,7 @@
- 		<simple name="isCProject" value="true" />
- 		<simple name="isEmptyProject" value="false" />
- 		<simple name="isAutotoolsProject" value="true" />
-+		<simple name="isCMakeProject" value="false" />
- 	</process>
- 
- 	<process type="org.eclipse.cdt.core.CreateSourceFolder">
-diff --git a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
-index 0b807d8..2bf76bf 100644
---- a/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
-+++ b/plugins/org.yocto.sdk.ide/templates/projecttemplates/HelloWorldCPPAutotoolsProject/template.xml
-@@ -56,6 +56,7 @@
- 		<simple name="isCProject" value="false" />
- 		<simple name="isEmptyProject" value="false" />
- 		<simple name="isAutotoolsProject" value="true" />
-+		<simple name="isCMakeProject" value="false" />
- 	</process>
- 
- 	<process type="org.eclipse.cdt.core.CreateSourceFolder">
+@@ -40,11 +40,30 @@
+                class="org.yocto.sdk.ide.natures.YoctoSDKAutotoolsProjectNature">
+          </run>
+       </runtime>
++      <one-of-nature
++            id="org.yocto.sdk.ide.buildsystemNaturesSet">
++      </one-of-nature>
+       <builder
+             id="org.eclipse.cdt.autotools.core.genmakebuilderV2">
+       </builder>
+    </extension>
+    <extension
++         id="YoctoSDKCMakeNature"
++         name="%extension.name.2"
++         point="org.eclipse.core.resources.natures">
++      <requires-nature
++            id="org.yocto.sdk.ide.YoctoSDKNature">
++      </requires-nature>
++      <runtime>
++         <run
++               class="org.yocto.sdk.ide.natures.YoctoSDKCMakeProjectNature">
++         </run>
++      </runtime>
++      <one-of-nature
++            id="org.yocto.sdk.ide.buildsystemNaturesSet">
++      </one-of-nature>
++   </extension>
++   <extension
+          id="YoctoSDKEmptyNature"
+          point="org.eclipse.core.resources.natures">
+       <requires-nature
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
+new file mode 100644
+index 0000000..86a9d45
+--- /dev/null
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjectNature.java
+@@ -0,0 +1,20 @@
++/*******************************************************************************
++ * Copyright (c) 2013 BMW Car IT GmbH.
++ * All rights reserved. This program and the accompanying materials
++ * are made available under the terms of the Eclipse Public License v1.0
++ * which accompanies this distribution, and is available at
++ * http://www.eclipse.org/legal/epl-v10.html
++ *
++ * Contributors:
++ * BMW Car IT - initial API and implementation
++ *******************************************************************************/
++package org.yocto.sdk.ide.natures;
++
++import org.eclipse.core.resources.IProject;
++import org.eclipse.core.runtime.CoreException;
++import org.yocto.sdk.ide.YoctoSDKPlugin;
++
++public class YoctoSDKCMakeProjectNature extends YoctoSDKProjectNature {
++	public static final  String YoctoSDK_CMAKE_NATURE_ID = YoctoSDKPlugin.getUniqueIdentifier() + ".YoctoSDKCMakeNature";
++
++}
 -- 
 1.7.9.5
 
