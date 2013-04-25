@@ -1,34 +1,32 @@
-Return-Path: <seth.boll@gmail.com>
-Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
-	[209.85.214.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CD5CE014E0
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 18:00:35 -0700 (PDT)
-Received: by mail-ob0-f174.google.com with SMTP id wc20so2097019obb.5
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 18:00:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:message-id:date:from:user-agent:mime-version:to:subject
-	:content-type; bh=BcrV++73kYtInoEq/6C2d0zZk1PUZXzufifH8vKOEwM=;
-	b=09rs3tp+R1tCvErUarliQxr6r3dF+UCw4S2xQZzPn6jgIORzbjxzlIuJ6B84MDie4L
-	Ppb4iTol04EcYbfnHLuvSUQSE8T7IrtLP3BohT46JP8HjUMCrYydeRcqsny8JjWJ4BRc
-	KtzGrIMENcJdZj1T6JlTc83jOprqYoF/B1l6+cAaXKu+UsdtyL6zTcBcvKSm8DruuXDV
-	G4l5wFICxiN88lfsHqJq4eKvucsdMEzag6obqoaQETJA0TPAS0/Bwiaikegv+2GWwrF+
-	rNWNdIJM1RWiwwxFmAnQV5qlM7d4MK37aYfndDbZyD3Msoiens3W8kp/v7rhZcDSIOJv
-	fVuQ==
-X-Received: by 10.60.102.73 with SMTP id fm9mr15507613oeb.110.1366851635136;
-	Wed, 24 Apr 2013 18:00:35 -0700 (PDT)
-Received: from [192.168.1.102] (c-66-41-191-40.hsd1.mn.comcast.net.
-	[66.41.191.40])
-	by mx.google.com with ESMTPSA id w7sm2564838obx.9.2013.04.24.18.00.34
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 24 Apr 2013 18:00:34 -0700 (PDT)
-Message-ID: <51788033.9010908@gmail.com>
-Date: Wed, 24 Apr 2013 20:00:35 -0500
-From: seth bollinger <seth.boll@gmail.com>
-User-Agent: Postbox 3.0.7 (Macintosh/20130119)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08C65E014F3
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 20:29:50 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 24 Apr 2013 20:29:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,547,1363158000"; d="scan'208";a="324427446"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga002.jf.intel.com with ESMTP; 24 Apr 2013 20:29:18 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.197]) with mapi id
+	14.01.0355.002; Wed, 24 Apr 2013 20:29:17 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH] [eclipse-poky][master]Display progress bar
+	while	running systemtap script
+Thread-Index: AQHOQOhSeUJ7hM0zREqIUEppcufm7pjl/fBA
+Date: Thu, 25 Apr 2013 03:29:17 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDCED5B@ORSMSX104.amr.corp.intel.com>
+References: <1366805754-31196-1-git-send-email-ioanax.grigoropol@intel.com>
+In-Reply-To: <1366805754-31196-1-git-send-email-ioanax.grigoropol@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi][PATCH 2/2] sdcard_image-rpi.bbclass: Copy startup files required for 16MB GPU operation.
+Subject: Re: [PATCH] [eclipse-poky][master]Display progress bar while	running systemtap script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,94 +38,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 01:00:35 -0000
-X-Groupsio-MsgNum: 13419
-Content-Type: multipart/mixed; boundary="------------080400000607040806070902"
+X-List-Received-Date: Thu, 25 Apr 2013 03:29:50 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---------------080400000607040806070902
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+Merged to eclipse-poky master.
 
-start_cd.elf and fixup_cd.dat are required when running the system with
-a 16MB GPU memory configuration.  This change copies all files contained
-in bcm2835-bootfiles instead of cherry picking.
+Thanks,
+Jessica
 
-Signed-off-by: Seth Bollinger <seth.boll@gmail.com>
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol
+Sent: Wednesday, April 24, 2013 5:16 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [PATCH] [eclipse-poky][master]Display progress bar while r=
+unning systemtap script
+
+[Yocto #4270]
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
-  classes/sdcard_image-rpi.bbclass |    6 +-----
-  1 files changed, 1 insertions(+), 5 deletions(-)
+ .../sdk/remotetools/actions/SystemtapHandler.java  |   35 ++++++++++------=
+----
+ 1 file changed, 18 insertions(+), 17 deletions(-)
 
-diff --git a/classes/sdcard_image-rpi.bbclass 
-b/classes/sdcard_image-rpi.bbclass
-index 7fe7c35..2ae5fd4 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -77,11 +77,7 @@ IMAGE_CMD_rpi-sdimg () {
-      # Create a vfat image with boot files
-      BOOT_BLOCKS=$(LC_ALL=C parted -s ${SDIMG} unit b print | awk '/ 1 
-/ { print substr($4, 1, length($4 -1)) / 512 /2 }')
-      mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img 
-$BOOT_BLOCKS
--    mcopy -i ${WORKDIR}/boot.img -s 
-${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/start.elf ::
--    mcopy -i ${WORKDIR}/boot.img -s 
-${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/fixup.dat ::
--    mcopy -i ${WORKDIR}/boot.img -s 
-${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt ::
--    mcopy -i ${WORKDIR}/boot.img -s 
-${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/cmdline.txt ::
--    mcopy -i ${WORKDIR}/boot.img -s 
-${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/bootcode.bin ::
-+    mcopy -i ${WORKDIR}/boot.img -s 
-${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
-      mcopy -i ${WORKDIR}/boot.img -s 
-${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::kernel.img
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
+s/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org=
+/yocto/sdk/remotetools/actions/SystemtapHandler.java
+index 21bd3ef..87094ee 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
+ns/SystemtapHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
++++ tions/SystemtapHandler.java
+@@ -12,11 +12,12 @@ package org.yocto.sdk.remotetools.actions;
+ import org.eclipse.core.commands.AbstractHandler;
+ import org.eclipse.core.commands.ExecutionEvent;
+ import org.eclipse.core.commands.ExecutionException;
+-import org.eclipse.core.runtime.NullProgressMonitor;
+ import org.eclipse.jface.dialogs.MessageDialog;
++import org.eclipse.swt.widgets.Shell;
+ import org.eclipse.ui.IWorkbenchWindow;
++import org.eclipse.ui.PlatformUI;
+ import org.eclipse.ui.handlers.HandlerUtil;
+-import org.eclipse.swt.widgets.Shell;
++import org.eclipse.ui.progress.IProgressService;
 
-      if [ -n ${FATPAYLOAD} ] ; then
--- 
-1.7.2.5
+ public class SystemtapHandler extends AbstractHandler {
+        protected SystemtapSettingDialog setting; @@ -33,27 +34,27 @@ publi=
+c class SystemtapHandler extends AbstractHandler {
+                                );
 
---------------080400000607040806070902
-Content-Type: text/plain; x-mac-type="0"; x-mac-creator="0";
- name="0002-sdcard_image-rpi.bbclass-Copy-startup-files-required.patch"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename*0="0002-sdcard_image-rpi.bbclass-Copy-startup-files-required.pa";
- filename*1="tch"
+                setting.open();
+-               if (!setting.isOKPressed())
+-                       return false;
+                String metadata_location =3D ((SystemtapSettingDialog)setti=
+ng).getMetadataLocation();
+                String remote_host =3D ((SystemtapSettingDialog)setting).ge=
+tRemoteHost();
+                String user_id =3D ((SystemtapSettingDialog)setting).getUse=
+rID();
+                String systemtap_script =3D ((SystemtapSettingDialog)settin=
+g).getSystemtapScript();
+                String systemtap_args =3D ((SystemtapSettingDialog)setting)=
+.getSystemtapArgs();
+-
+-
+-               SystemtapModel op=3Dnew SystemtapModel(metadata_location,re=
+mote_host, user_id, systemtap_script,
+-                                                                          =
+             systemtap_args,window.getShell().getDisplay());
+-               try {
+-                       op.process(new NullProgressMonitor());
+-                       return true;
+-               }catch (Exception e) {
+-                       e.printStackTrace();
+-                       MessageDialog.openError(window.getShell(),
+-                                                                       "Sy=
+stemtap",
+-                                                                       e.g=
+etMessage());
++
++               if(setting.open() =3D=3D BaseSettingDialog.OK) {
++                       IProgressService progressService =3D PlatformUI.get=
+Workbench().getProgressService();
++                       SystemtapModel op =3D new SystemtapModel(metadata_l=
+ocation,remote_host, user_id, systemtap_script,
++                                       systemtap_args,window.getShell().ge=
+tDisplay());
++                       try {
++                               progressService.busyCursorWhile(op);
++                       }catch (InterruptedException e) {
++                               //user cancelled
++                       }catch (Exception e) {
++                               e.printStackTrace();
++                               MessageDialog.openError(window.getShell(),
++                                                                          =
+     "Systemtap",
++                                                                          =
+     e.getMessage());
++                       }
+                }
+-
+                return false;
+        }
 
-From 2ac1c7b285fa0f48ae88461e72fd9b95d8ee2576 Mon Sep 17 00:00:00 2001
-From: Seth Bollinger <seth.boll@gmail.com>
-Date: Mon, 22 Apr 2013 07:25:58 -0500
-Subject: [PATCH 2/2] sdcard_image-rpi.bbclass:  Copy startup files required for 16MB GPU operation.
+--
+1.7.9.5
 
-start_cd.elf and fixup_cd.dat are required when running the system with
-a 16MB GPU memory configuration.  This change copies all files contained
-in bcm2835-bootfiles instead of cherry picking.
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
-Signed-off-by: Seth Bollinger <seth.boll@gmail.com>
----
- classes/sdcard_image-rpi.bbclass |    6 +-----
- 1 files changed, 1 insertions(+), 5 deletions(-)
-
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 7fe7c35..2ae5fd4 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -77,11 +77,7 @@ IMAGE_CMD_rpi-sdimg () {
- 	# Create a vfat image with boot files
- 	BOOT_BLOCKS=$(LC_ALL=C parted -s ${SDIMG} unit b print | awk '/ 1 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
- 	mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img $BOOT_BLOCKS
--	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/start.elf ::
--	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/fixup.dat ::
--	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt ::
--	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/cmdline.txt ::
--	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/bootcode.bin ::
-+	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
- 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::kernel.img
- 
- 	if [ -n ${FATPAYLOAD} ] ; then
--- 
-1.7.2.5
-
-
---------------080400000607040806070902--
