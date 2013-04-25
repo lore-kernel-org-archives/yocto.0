@@ -1,35 +1,34 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FA59E014DD
-	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 16:03:43 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 24 Apr 2013 16:03:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,546,1363158000"; d="scan'208";a="291473917"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by azsmga001.ch.intel.com with ESMTP; 24 Apr 2013 16:03:40 -0700
-Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 24 Apr 2013 16:03:34 -0700
-Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
-	ORSMSX154.amr.corp.intel.com ([169.254.11.84]) with mapi id
-	14.01.0355.002; Wed, 24 Apr 2013 16:03:30 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] [eclipse-poky][master]Display progress bar
-	while	running systemtap script
-Thread-Index: AQHOQOhSeUJ7hM0zREqIUEppcufm7pjl/fBA
-Date: Wed, 24 Apr 2013 23:03:19 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDCECDA@ORSMSX104.amr.corp.intel.com>
-References: <1366805754-31196-1-git-send-email-ioanax.grigoropol@intel.com>
-In-Reply-To: <1366805754-31196-1-git-send-email-ioanax.grigoropol@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <seth.boll@gmail.com>
+Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
+	[209.85.214.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24D01E014D8
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 18:00:33 -0700 (PDT)
+Received: by mail-ob0-f174.google.com with SMTP id wc20so2096997obb.5
+	for <yocto@yoctoproject.org>; Wed, 24 Apr 2013 18:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:message-id:date:from:user-agent:mime-version:to:subject
+	:content-type; bh=TKPHZXh+Yt4tZAL5I1e/4wdt9QqhcGmntY4g0DuhqQw=;
+	b=SBmkwzGXFqhFbXGDCdqwzhy8K1ZTQKo8QrnnXkCujmZSmi/HxImIewkqtOQ/cp0DTs
+	4VRWjaUsCIGZd+t/bnt7AmX6C2NTQwaanEbZ1jYYaN/jarxyV16UNRNL0Q7KMRr/jbep
+	MbYhQs1dah/PEN2eAug7bYrDB1djYnRuEBHi9XOk/McMJ8VpZraQOlABPGsx06biqpXx
+	XmIYvkRL15p96YigKH9zVdySQcTUcGjGRqO6jcAXthK39lpiA/pc4+Vv/1zFwfdi+Tpg
+	YUtS34elCOmlS7lN9eZ2k7ikMb3T9XbYCnWTY5og+Xyn9kvfGwUXl8MgB+321+jbTjz6
+	SPXQ==
+X-Received: by 10.60.18.233 with SMTP id z9mr19283853oed.19.1366851632421;
+	Wed, 24 Apr 2013 18:00:32 -0700 (PDT)
+Received: from [192.168.1.102] (c-66-41-191-40.hsd1.mn.comcast.net.
+	[66.41.191.40])
+	by mx.google.com with ESMTPSA id dt3sm2559510obb.12.2013.04.24.18.00.31
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 24 Apr 2013 18:00:31 -0700 (PDT)
+Message-ID: <51788031.7080701@gmail.com>
+Date: Wed, 24 Apr 2013 20:00:33 -0500
+From: seth bollinger <seth.boll@gmail.com>
+User-Agent: Postbox 3.0.7 (Macintosh/20130119)
 MIME-Version: 1.0
-Subject: Re: [PATCH] [eclipse-poky][master]Display progress bar while	running systemtap script
+To: yocto@yoctoproject.org
+Subject: [meta-raspberrypi][PATCH 1/2] sdcard_image-rpi.bbclass: Fix error in conditional test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,116 +40,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Apr 2013 23:03:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 25 Apr 2013 01:00:33 -0000
+X-Groupsio-MsgNum: 13418
+Content-Type: multipart/mixed; boundary="------------070008090607050608010702"
 
-Merged to eclipse-poky master.
+--------------070008090607050608010702
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks,
-Jessica
+When the shell tests for rootfs type I was seeing "[[: not found".  I
+use echo and egrep to test for the xz rootfs type to work around this
+error.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Wednesday, April 24, 2013 5:16 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH] [eclipse-poky][master]Display progress bar while r=
-unning systemtap script
-
-[Yocto #4270]
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+Signed-off-by: Seth Bollinger <seth.boll@gmail.com>
 ---
- .../sdk/remotetools/actions/SystemtapHandler.java  |   35 ++++++++++------=
-----
- 1 file changed, 18 insertions(+), 17 deletions(-)
+  classes/sdcard_image-rpi.bbclass |    2 +-
+  1 files changed, 1 insertions(+), 1 deletions(-)
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org=
-/yocto/sdk/remotetools/actions/SystemtapHandler.java
-index 21bd3ef..87094ee 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
-ns/SystemtapHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
-+++ tions/SystemtapHandler.java
-@@ -12,11 +12,12 @@ package org.yocto.sdk.remotetools.actions;
- import org.eclipse.core.commands.AbstractHandler;
- import org.eclipse.core.commands.ExecutionEvent;
- import org.eclipse.core.commands.ExecutionException;
--import org.eclipse.core.runtime.NullProgressMonitor;
- import org.eclipse.jface.dialogs.MessageDialog;
-+import org.eclipse.swt.widgets.Shell;
- import org.eclipse.ui.IWorkbenchWindow;
-+import org.eclipse.ui.PlatformUI;
- import org.eclipse.ui.handlers.HandlerUtil;
--import org.eclipse.swt.widgets.Shell;
-+import org.eclipse.ui.progress.IProgressService;
+diff --git a/classes/sdcard_image-rpi.bbclass 
+b/classes/sdcard_image-rpi.bbclass
+index 421f561..7fe7c35 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -99,7 +99,7 @@ IMAGE_CMD_rpi-sdimg () {
+      # Burn Partitions
+      dd if=${WORKDIR}/boot.img of=${SDIMG} conv=notrunc seek=1 
+bs=$(expr ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
+      # If SDIMG_ROOTFS_TYPE is a .xz file use xzcat
+-    if [[ "$SDIMG_ROOTFS_TYPE" == *.xz ]]
++    if echo "${SDIMG_ROOTFS_TYPE}" | egrep -q "*\.xz"
+      then
+          xzcat ${SDIMG_ROOTFS} | dd of=${SDIMG} conv=notrunc seek=1 
+bs=$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + ${IMAGE_ROOTFS_ALIGNMENT} \* 
+1024) && sync && sync
+      else
+-- 
+1.7.2.5
 
- public class SystemtapHandler extends AbstractHandler {
-        protected SystemtapSettingDialog setting; @@ -33,27 +34,27 @@ publi=
-c class SystemtapHandler extends AbstractHandler {
-                                );
+--------------070008090607050608010702
+Content-Type: text/plain; x-mac-type="0"; x-mac-creator="0";
+ name="0001-sdcard_image-rpi.bbclass-Fix-error-in-conditional-te.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename*0="0001-sdcard_image-rpi.bbclass-Fix-error-in-conditional-te.pa";
+ filename*1="tch"
 
-                setting.open();
--               if (!setting.isOKPressed())
--                       return false;
-                String metadata_location =3D ((SystemtapSettingDialog)setti=
-ng).getMetadataLocation();
-                String remote_host =3D ((SystemtapSettingDialog)setting).ge=
-tRemoteHost();
-                String user_id =3D ((SystemtapSettingDialog)setting).getUse=
-rID();
-                String systemtap_script =3D ((SystemtapSettingDialog)settin=
-g).getSystemtapScript();
-                String systemtap_args =3D ((SystemtapSettingDialog)setting)=
-.getSystemtapArgs();
--
--
--               SystemtapModel op=3Dnew SystemtapModel(metadata_location,re=
-mote_host, user_id, systemtap_script,
--                                                                          =
-             systemtap_args,window.getShell().getDisplay());
--               try {
--                       op.process(new NullProgressMonitor());
--                       return true;
--               }catch (Exception e) {
--                       e.printStackTrace();
--                       MessageDialog.openError(window.getShell(),
--                                                                       "Sy=
-stemtap",
--                                                                       e.g=
-etMessage());
-+
-+               if(setting.open() =3D=3D BaseSettingDialog.OK) {
-+                       IProgressService progressService =3D PlatformUI.get=
-Workbench().getProgressService();
-+                       SystemtapModel op =3D new SystemtapModel(metadata_l=
-ocation,remote_host, user_id, systemtap_script,
-+                                       systemtap_args,window.getShell().ge=
-tDisplay());
-+                       try {
-+                               progressService.busyCursorWhile(op);
-+                       }catch (InterruptedException e) {
-+                               //user cancelled
-+                       }catch (Exception e) {
-+                               e.printStackTrace();
-+                               MessageDialog.openError(window.getShell(),
-+                                                                          =
-     "Systemtap",
-+                                                                          =
-     e.getMessage());
-+                       }
-                }
--
-                return false;
-        }
+From 26b0b8b79376eea69aeaf91daf43bc6807a09dd0 Mon Sep 17 00:00:00 2001
+From: Seth Bollinger <seth.boll@gmail.com>
+Date: Mon, 22 Apr 2013 07:23:45 -0500
+Subject: [PATCH 1/2] sdcard_image-rpi.bbclass:  Fix error in conditional test
 
---
-1.7.9.5
+When the shell tests for rootfs type I was seeing "[[: not found".  I
+use echo and egrep to test for the xz rootfs type to work around this
+error.
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Signed-off-by: Seth Bollinger <seth.boll@gmail.com>
+---
+ classes/sdcard_image-rpi.bbclass |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
 
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 421f561..7fe7c35 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -99,7 +99,7 @@ IMAGE_CMD_rpi-sdimg () {
+ 	# Burn Partitions
+ 	dd if=${WORKDIR}/boot.img of=${SDIMG} conv=notrunc seek=1 bs=$(expr ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
+ 	# If SDIMG_ROOTFS_TYPE is a .xz file use xzcat
+-	if [[ "$SDIMG_ROOTFS_TYPE" == *.xz ]]
++	if echo "${SDIMG_ROOTFS_TYPE}" | egrep -q "*\.xz"
+ 	then
+ 		xzcat ${SDIMG_ROOTFS} | dd of=${SDIMG} conv=notrunc seek=1 bs=$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
+ 	else
+-- 
+1.7.2.5
+
+
+--------------070008090607050608010702--
