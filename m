@@ -1,34 +1,36 @@
 Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD075E014F3
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:51:50 -0700 (PDT)
-Received: by mail-ve0-f178.google.com with SMTP id c13so1246973vea.37
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:51:50 -0700 (PDT)
+Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92598E014F3
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:59:54 -0700 (PDT)
+Received: by mail-vc0-f169.google.com with SMTP id gd11so2866601vcb.0
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:59:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:x-received:sender:in-reply-to:references:date
 	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=W6KfEG15Azl9uzvvZ4DrUbL+ES9taazKF2pO7be2Cc4=;
-	b=PWA1Ilc+ZWUHKhESayfsJzEv2SURRjU1i+KT+HoVuYAPEa5GU7RfF2QRg5MOViC7ua
-	JifPOAYHwx0fLLhBhVsNLWvnkQSloxX1lWIF7DVvBk5DIPFc+CZLRN3xWFNOCAF3Uw25
-	XZU/wVvFgpMW/fuFYl+63w0/NnuAEVHswF8CCL7/gU24aVGmhvwUUUK1YWmctUUpBTuJ
-	JhkAHHJU9p8peZRFsdAN3RFep5O1NERZGQ/mYS4LZ0aEPgNCxVdd+2ex3+R+7PGkzci1
-	lOJo1IIJcnG+qSLOBh/bWtYLuAYxxJcNlwnogjqqArqFx2UJ45MY4lp4FmctWIjj1pp3
-	nMVw==
+	bh=KOnHkm/O8BI8YRBq/OSkGYsdgDUWs/bpgGwlF4kF/C0=;
+	b=rZyvzOBvfwhI2vL7uMIiQrnR/+0T+m4+npXYIKlTxuQJllY0e56hw3c2SyId3ozQwV
+	7IunNp3LN/uxmQhIraTarAYg1itwKaqimaWwJtzk5g5WT0zI00TEH2GpD9cHIiUUY16s
+	3GIENuKhLHM9y+aVaec7BHbyfg8g2fenwNArqsmKD5bJQ6TliUtCBUdaHzTGw41zF9p0
+	ViEgJMjX4t+PP48Md+T1dLZf8UTSAMwIOoxMy59jQHUhANRDCHcG5vPLLIwDoeNHWLlE
+	aC7ULh5hwIQX8BtQbhKSO2DqpuukLBScwbscwkC4RUSCP5MLX0C8k9MpheNJK87dXXxc
+	Nx5Q==
 MIME-Version: 1.0
-X-Received: by 10.58.223.134 with SMTP id qu6mr26978005vec.35.1366894310223;
-	Thu, 25 Apr 2013 05:51:50 -0700 (PDT)
+X-Received: by 10.52.88.2 with SMTP id bc2mr7687637vdb.27.1366894793597; Thu,
+	25 Apr 2013 05:59:53 -0700 (PDT)
 Sender: paul.betafive@gmail.com
-Received: by 10.220.224.135 with HTTP; Thu, 25 Apr 2013 05:51:50 -0700 (PDT)
-In-Reply-To: <51788033.9010908@gmail.com>
-References: <51788033.9010908@gmail.com>
-Date: Thu, 25 Apr 2013 13:51:50 +0100
-X-Google-Sender-Auth: XUzmupdFjq_sQp8kWQXw4T6Tbes
-Message-ID: <CANyK_8fpnN8C6-vZPyFmGx5U3_ySRQp7twsXcKO4utz+WWc2EQ@mail.gmail.com>
+Received: by 10.220.224.135 with HTTP; Thu, 25 Apr 2013 05:59:53 -0700 (PDT)
+In-Reply-To: <CA+JN8xMvcoaLKufSeCLO21ozH542OG-uZSn8fDS0OVMGXkUNbw@mail.gmail.com>
+References: <51788031.7080701@gmail.com>
+	<CANyK_8fujLspj_VCZd5TY9x4A62m=WKhva3BavL91XzwY5Krgw@mail.gmail.com>
+	<CA+JN8xMvcoaLKufSeCLO21ozH542OG-uZSn8fDS0OVMGXkUNbw@mail.gmail.com>
+Date: Thu, 25 Apr 2013 13:59:53 +0100
+X-Google-Sender-Auth: ybK2ZUrVA0vZHqWcbpKpjNeQML0
+Message-ID: <CANyK_8dWFNWQ2UhHdQUPACfruFk9uSrUfpTVxJeNn2m3kAYX=A@mail.gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
-To: seth bollinger <seth.boll@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 2/2] sdcard_image-rpi.bbclass: Copy startup files required for 16MB GPU operation.
+To: Seth Bollinger <seth.boll@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/2] sdcard_image-rpi.bbclass: Fix error in conditional test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,32 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 12:51:51 -0000
+X-List-Received-Date: Thu, 25 Apr 2013 12:59:54 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On 25 April 2013 02:00, seth bollinger <seth.boll@gmail.com> wrote:
-> start_cd.elf and fixup_cd.dat are required when running the system with
-> a 16MB GPU memory configuration.  This change copies all files contained
-> in bcm2835-bootfiles instead of cherry picking.
+On 25 April 2013 13:51, Seth Bollinger <seth.boll@gmail.com> wrote:
+> On Thu, Apr 25, 2013 at 7:38 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>
+>> '[[' should be a bash builtin. What host OS are you using for the build?
 >
-> Signed-off-by: Seth Bollinger <seth.boll@gmail.com>
+> I'm using debian.  I'll check what the default shell is.  You're right, it's
+> probably dash.
+>
 
-Trying to apply this email I get:
+Try 'sudo dpkg-reconfigure dash'.
 
-    Applying: sdcard_image-rpi.bbclass: Copy startup files required
-for 16MB GPU operation.
-    fatal: corrupt patch at line 14
-    Patch failed at 0001 sdcard_image-rpi.bbclass: Copy startup files
-required for 16MB GPU operation.
+> However, should this fail silently then?  In this instance I only saw the
+> error with debug enabled.  Otherwise it silently tried to dd a compressed
+> image to the sd card.  Of course this didn't run.  :)
+>
 
-Trying to apply the attached patch I get:
-
-    Patch format detection failed.
-
-Are you using 'git send-email'?
-
-However, I can apply this after fixing the attached patch file by
-hand, giving it a test now.
+I assume that 'if' tries to run the command, gets a non-zero return
+value as the command doesn't run and just interprets this as the
+command running but returning non-zero.
 
 --
 Paul Barker
