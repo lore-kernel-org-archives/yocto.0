@@ -1,25 +1,28 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 605B3E0150E
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:08:07 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id A305CF811DF; Thu, 25 Apr 2013 07:08:06 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id D9159F811DB;
-	Thu, 25 Apr 2013 07:08:04 -0600 (MDT)
-Message-ID: <51792AC3.7080501@mlbassoc.com>
-Date: Thu, 25 Apr 2013 07:08:19 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
+Return-Path: <jon.szymaniak@gmail.com>
+Received: from mail-we0-f178.google.com (mail-we0-f178.google.com
+	[74.125.82.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C000E01496
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 07:10:53 -0700 (PDT)
+Received: by mail-we0-f178.google.com with SMTP id z53so2641131wey.37
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 07:10:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:from:date:message-id:subject:to
+	:content-type; bh=sSI+K8HfLDfu8LaqzEdx28Iu4RPaawtqpokuiB0y0LY=;
+	b=XNk7QaMh/LQN/Lyq+k1MlxmalzSuMSVPE75o6Gxl9H8CRrV6qcBm2ocJ79c0LWUdSZ
+	83E9I2YnXcLmGqd/DMfT32aRGfJocX8XBMK9GpS0G14nWSPqyZ/42+iR5BCgyYig0VMR
+	ZA4doKiM1hYgovzdJg6p6t7Cqo9J0Cp1HH8ecH2ODVwY9fvDpM+TRpblVV8uf6ulZxCN
+	u/OE+PKgMy5ry1444R/CuOPuvyZH96IEooUvuwL9P+h48QS5Bl4H/XUUmM4zJHFSgsVy
+	s9dyD0eig5DxUOLu2IgX09erUHEvES27jflEdo0svN94PiCz2IbQbSgL6DmQXYM/IqC5
+	TYHQ==
+X-Received: by 10.180.93.134 with SMTP id cu6mr74508542wib.8.1366899052155;
+	Thu, 25 Apr 2013 07:10:52 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Files and overrides
+Received: by 10.194.37.233 with HTTP; Thu, 25 Apr 2013 07:10:31 -0700 (PDT)
+From: Jon Szymaniak <jon.szymaniak@gmail.com>
+Date: Thu, 25 Apr 2013 10:10:31 -0400
+Message-ID: <CANge7vWGtcVQE6Sv1rn1dxWR25W99eK53UdDJjBVp2zQW=nr+Q@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Finding/Generating Rootfs Package List
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,49 +34,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 13:08:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 25 Apr 2013 14:10:54 -0000
+Content-Type: multipart/alternative; boundary=f46d043894c572b23604db2ffc30
 
-I'm trying to supply a target specific file for which there are
-already many alternatives.  For whatever reason, the wrong file
-is always being chosen.
+--f46d043894c572b23604db2ffc30
+Content-Type: text/plain; charset=ISO-8859-1
 
-Here are the details: I have a local layer (meta-imx6) which is used
-to override/overlay a BSP layer (meta-fsl-arm) which in turn is
-supplying some tuned files.  In particular, the file 'xorg.conf'
-which appears in all of these places:
-   ./meta-imx6/recipes-graphics/xorg-xserver/xserver-xf86-config/sabrelite/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemuarm/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemuppc/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemux86-64/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemush4/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemumips/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemumips64/xorg.conf
-   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemux86/xorg.conf
-   ./meta-fsl-arm/recipes-graphics/xorg-xserver/xserver-xf86-config/mx6/xorg.conf
-   ./meta-fsl-arm/recipes-graphics/xorg-xserver/xserver-xf86-config/mx5/xorg.conf
-   ./meta-fsl-arm/recipes-graphics/xorg-xserver/xserver-xf86-config/mxs/xorg.conf
+Hi all,
 
-My meta-imx6 layer sets up the overrides to be:
-   FILESOVERRIDES="imx6qsabrelite:arm:armv7a:mx6:mx6q:sabrelite:amltd"
-   OVERRIDES="imx6qsabrelite:arm:armv7a:mx6:mx6q:sabrelite:amltd"
-where "amltd" is the name of my distribution and "sabrelite" is my machine name.
+I generally like to keep a little manifest file with my rootfs images,
+containing a list of installed packages and their associated versions.  On
+images where I keep package data around, I usually generate this via 'opkg
+list'.
 
-The file that is actually chosen is .../mx6/xorg.conf, but I want it to
-be .../sabrelite/xorg.conf  I have other files in the .../xserver-xf86-config/sabrelite
-directory being picked up (that's part of what this is about, adding such configury)
-but not xorg.conf
+In my current situation, I have a small read-only image where I can't
+afford to ship pkg data, and wanted to gather this info on the host side of
+things.  I assume this information is tracked somewhere in the poky build
+directory, but I'm having some trouble finding it.
 
-How can I fix this?  I tried moving/adding sabrelite to the front of the
-*OVERRIDES variables with no change.
+Could someone kindly point me towards this information or the documentation
+section(s) that I may have overlooked.
 
-Thanks
+Thank you!
+Jon
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--f46d043894c572b23604db2ffc30
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div>Hi all,<br><br></div><div>I generally like =
+to keep a little manifest file with my rootfs images, containing a list of =
+installed packages and their associated versions.=A0 On images where I keep=
+ package data around, I usually generate this via &#39;opkg list&#39;.=A0 <=
+br>
+
+</div><br></div>In my current situation, I have a small read-only image whe=
+re I can&#39;t afford to ship pkg data, and wanted to gather this info on t=
+he host side of things.=A0 I assume this information is tracked somewhere i=
+n the poky build directory, but I&#39;m having some trouble finding it.<br>
+
+<br></div><div><div><div>Could someone kindly point me towards this informa=
+tion or the documentation section(s) that I may have overlooked.<br></div><=
+div><br>Thank you!<br></div><div>Jon<br clear=3D"all"></div></div></div>
+</div>
+
+--f46d043894c572b23604db2ffc30--
