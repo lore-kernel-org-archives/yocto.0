@@ -1,36 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70C1BE0150E
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:41 -0700 (PDT)
-Received: by mail-vc0-f175.google.com with SMTP id lf10so2817046vcb.34
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=kgRhxaXDBGbbO8v+1pBKBpXkkRe0O9mFg985Zk+L1H4=;
-	b=dbjwm8jA18MQ6Kp+RybeTCGDv6cz3dVkkuc/w4YKx9Kd/bb3AqovpFxvvDRkOkkF2h
-	ebYjzB+MSX6gJKq5XWYqR9HEIoaGhE1nVL6FnhPiBD1AWp2PB5WY8y9PR3CjBDkPt8+4
-	QChhSX5NFUiTUehgw+QBfSOdVNx20oD5ilrlOssrmm/A/3mD9oAVhrVgHaaeA7qSCjAF
-	4zpQAuyA79+QxBhsblkTPaqow3aAdgz6rjkV+fDNtGUyv59VwaYaW/UxUltstqhRdtTC
-	pFPlP48zvj0nhjD8hQlGlbEVH+AnpEsp+nvlarFm6HPYVKJ+eYxtQFvDP5eZOJp1vkWb
-	Iylg==
-X-Received: by 10.52.165.99 with SMTP id yx3mr9451554vdb.34.1366895020886;
-	Thu, 25 Apr 2013 06:03:40 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DDFBE01525
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:45 -0700 (PDT)
+Received: by mail-vc0-f178.google.com with SMTP id ib11so2789508vcb.37
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=va89ibYRqcUwE3nO7/QyXBnYLs35Iif/zwFG+1b9MBg=;
+	b=DaaL/T66uHwWoKRJF7gai16CyTy2ZuPk09R6Zv6pWckh6s4sazIP5OYKqDmm3PAlZ5
+	7hRfSdY1Zew2VNayZrgvzVWdZWte8jij0zJskLhk9+bkc0tdVNnXUpts6Su7OBS3vHN0
+	Y7eY/LViuatdvmPQGHQd6GP9a7KlXTFbuJwnPBzrso18TBmufgBkhHd/6YhvZ0uRGshG
+	2QYqSQBEYHc2iQtxx5QYTpodKelue8lhYHHlEf2OFxiD3dApOt+gRfphJr43TlTrC4fQ
+	b8m+VYhI3yyA2jTc/duRbt6pIBWQzPGYupfv1lGS9bL8xUEL3AgrDfvO/u7yyhLg6imc
+	94iw==
 MIME-Version: 1.0
-Received: by 10.220.100.68 with HTTP; Thu, 25 Apr 2013 06:03:20 -0700 (PDT)
-In-Reply-To: <364D31930BDB974AB40E22C5C2E584ED011E6214@asterix.SPINETIX.local>
-References: <364D31930BDB974AB40E22C5C2E584ED011E6155@asterix.SPINETIX.local>
-	<5177D5CB.8060706@windriver.com> <3875695.6MzV3H4rrf@helios>
-	<364D31930BDB974AB40E22C5C2E584ED011E6214@asterix.SPINETIX.local>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 25 Apr 2013 14:03:20 +0100
-Message-ID: <CAJTo0LYKpFww2BUM=bPNv1PqN1TgAsF=d44gzmPi6zrE8s_K0A@mail.gmail.com>
-To: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
-X-Gm-Message-State: ALoCoQkpbou6aVOE1JlOael/Ln6wX2CEm9chxKR2C9Dju2JfPJi4YTYcA5dhfzhxZsL4n8ikV1WL
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: About running old kernels with Yoctoo 1.2 or 1.3
+X-Received: by 10.220.167.9 with SMTP id o9mr26912892vcy.25.1366895024434;
+	Thu, 25 Apr 2013 06:03:44 -0700 (PDT)
+Sender: paul.betafive@gmail.com
+Received: by 10.220.224.135 with HTTP; Thu, 25 Apr 2013 06:03:44 -0700 (PDT)
+In-Reply-To: <CA+JN8xOs5YL+vdtJz8ZtqCvUNVi7UO=++grHtx26n2iEpGXbGg@mail.gmail.com>
+References: <51788033.9010908@gmail.com>
+	<CANyK_8fpnN8C6-vZPyFmGx5U3_ySRQp7twsXcKO4utz+WWc2EQ@mail.gmail.com>
+	<CA+JN8xOs5YL+vdtJz8ZtqCvUNVi7UO=++grHtx26n2iEpGXbGg@mail.gmail.com>
+Date: Thu, 25 Apr 2013 14:03:44 +0100
+X-Google-Sender-Auth: jG10qWqBiVOhmR1z9Hdi4DVAPPs
+Message-ID: <CANyK_8efmMZwTde9tivSDcnUmo2XtZiQ6JTv6oFDbFJTmhp3tw@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Seth Bollinger <seth.boll@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 2/2] sdcard_image-rpi.bbclass: Copy startup files required for 16MB GPU operation.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,17 +42,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 13:03:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 25 Apr 2013 13:03:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Diego,
+On 25 April 2013 13:57, Seth Bollinger <seth.boll@gmail.com> wrote:
+> On Thu, Apr 25, 2013 at 7:51 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>
+>> Trying to apply this email I get:
+>>
+>>     Applying: sdcard_image-rpi.bbclass: Copy startup files required
+>> for 16MB GPU operation.
+>>     fatal: corrupt patch at line 14
+>>     Patch failed at 0001 sdcard_image-rpi.bbclass: Copy startup files
+>> required for 16MB GPU operation.
+>>
+>> Trying to apply the attached patch I get:
+>>
+>>     Patch format detection failed.
+>>
+>> Are you using 'git send-email'?
+>>
+>> However, I can apply this after fixing the attached patch file by
+>> hand, giving it a test now.
+>
+>
+> I run git format-patch and then copy the text into the email and attach the
+> patch.  I apologize for the trouble.  Richard complained of whitespace
+> problems in my last patches so I'm trying to alleviate this problem.  :)
+> I'll see if I can't get gmail set up on my vm so I can use git send-email.
+>
+> Seth
 
-On 25 April 2013 13:27, Diego Santa Cruz <Diego.SantaCruz@spinetix.com> wrote:
-> Many thanks for the valuable input. Is the traditional init system still
-> supported, or is Yocto using systemd exclusively?
+Somehow a leading '>' crept into the attached patch.
 
-With 1.4 (about to be released), systemd is an option but the default
-init is still sysvinit.
+Almost all mail clients ruin patches, maybe take a look at
+https://coderwall.com/p/dp-gka for using 'git send-email' with gmail.
 
-Ross
+If you don't want to clog the list with attempts which might not work,
+send a few test patches to me and i'll let you know if they work.
+
+--
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
