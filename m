@@ -1,26 +1,35 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 040A1E013C3
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 15:32:40 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r3PMWetF025354
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 15:32:40 -0700 (PDT)
-Received: from msp-dhcp5.wrs.com (172.25.34.5) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 25 Apr 2013 15:32:40 -0700
-Message-ID: <5179AF07.2030708@windriver.com>
-Date: Thu, 25 Apr 2013 17:32:39 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:17.0) Gecko/20130328 Thunderbird/17.0.5
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 330B3E013C3
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 15:51:21 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Apr 2013 15:51:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,553,1363158000"; d="scan'208";a="325712050"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga002.jf.intel.com with ESMTP; 25 Apr 2013 15:51:19 -0700
+Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 25 Apr 2013 15:51:14 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
+	ORSMSX155.amr.corp.intel.com ([169.254.7.179]) with mapi id
+	14.01.0355.002; Thu, 25 Apr 2013 15:51:14 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Atanas Gegov <atanas.gegov.oss@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [eclipse-poky][RFCv2 0/7] Introducing a
+	YoctoSDKCMakeProjectNature
+Thread-Index: AQHOQbEHSa/GwU/Cb0OdsTEA4s7PW5jnizWQ
+Date: Thu, 25 Apr 2013 22:51:14 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDD0241@ORSMSX104.amr.corp.intel.com>
+References: <1366893153-9880-1-git-send-email-atanas.gegov.oss@gmail.com>
+In-Reply-To: <1366893153-9880-1-git-send-email-atanas.gegov.oss@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CANge7vWGtcVQE6Sv1rn1dxWR25W99eK53UdDJjBVp2zQW=nr+Q@mail.gmail.com>
-In-Reply-To: <CANge7vWGtcVQE6Sv1rn1dxWR25W99eK53UdDJjBVp2zQW=nr+Q@mail.gmail.com>
-Subject: Re: Finding/Generating Rootfs Package List
+Subject: Re: [eclipse-poky][RFCv2 0/7] Introducing a	YoctoSDKCMakeProjectNature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,42 +41,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 22:32:41 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 25 Apr 2013 22:51:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-You can use the license manifest to give you this information.  See:
+Hi Atanas,
 
-build/tmp/deploy/licenses/<image>-<machine>-<timedate>/...
+Looks good to me.
 
-There is a license.manifest and package.manifest.  The license.manifest includes 
-package version.
+Thanks,
+Jessica
 
---Mark
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Atanas Gegov
+Sent: Thursday, April 25, 2013 5:32 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [eclipse-poky][RFCv2 0/7] Introducing a YoctoSDKCMakeProje=
+ctNature
 
-On 4/25/13 9:10 AM, Jon Szymaniak wrote:
-> Hi all,
->
-> I generally like to keep a little manifest file with my rootfs images,
-> containing a list of installed packages and their associated versions.  On
-> images where I keep package data around, I usually generate this via 'opkg list'.
->
-> In my current situation, I have a small read-only image where I can't afford to
-> ship pkg data, and wanted to gather this info on the host side of things.  I
-> assume this information is tracked somewhere in the poky build directory, but
-> I'm having some trouble finding it.
->
-> Could someone kindly point me towards this information or the documentation
-> section(s) that I may have overlooked.
->
-> Thank you!
-> Jon
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
+Hi,
+
+This patch series introduces a YoctoSDKCMakeProjectNature as a new nature f=
+or CMake-based Yocto Projects in the IDE. It requires the basic YoctoSDKPro=
+jectNature and is an alternative to the YoctoSDKAutotoolsProjectNature.
+
+This does not affect the currently existing Autotools template projects.
+
+Upcoming patch series will add the last missing parts for having CMake proj=
+ects in the IDE: a ManagedBuilder for CMake (CMake toolchain for building i=
+n Eclipse) and some template projects.
+
+Cheers, Atanas
+
+P.S: This patch series apply on the current master "Display progress bar wh=
+ile running systemtap script"
+(0006f3194e0050bb69887cece970df7a820b8c30).
+
+Atanas Gegov (7):
+  plugins/sdk.ide: Prepared templates for CMake nature
+  plugins/sdk.ide: Added a new YoctoSDKCMakeProjectNature
+  plugins/sdk.ide: Enable the creation of CMake projects
+  plugins/sdk.ide: Update CMake projects on Yocto settings change
+  plugins/sdk.ide: Renamed template process
+  plugins/sdk.ide: Fixed whitespace issues
+  plugins/sdk.ide: Extracted member variables
+
+ .../OSGI-INF/l10n/bundle.properties                |    1 +
+ plugins/org.yocto.sdk.ide/plugin.xml               |   25 +-
+ .../ide/natures/YoctoSDKCMakeProjectNature.java    |   92 +++++++
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    7 +-
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |  245 ----------------=
+--
+ .../ide/wizard/NewYoctoProjectTemplateProcess.java |  267 ++++++++++++++++=
+++++
+ .../EmptyCAutotoolsProject/template.xml            |    1 +
+ .../EmptyCPPAutotoolsProject/template.xml          |    1 +
+ .../HelloWorldCAutotoolsProject/template.xml       |    1 +
+ .../HelloWorldCGTKAutotoolsProject/template.xml    |    1 +
+ .../HelloWorldCPPAutotoolsProject/template.xml     |    1 +
+ 11 files changed, 395 insertions(+), 247 deletions(-)  create mode 100644 =
+plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjec=
+tNature.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
+NewYoctoCProjectTemplate.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
+NewYoctoProjectTemplateProcess.java
+
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
