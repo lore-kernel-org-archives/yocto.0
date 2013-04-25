@@ -1,29 +1,27 @@
-Return-Path: <sudhangathan@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 802F3E014F3
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:07:31 -0700 (PDT)
-Received: by mail-wi0-f176.google.com with SMTP id hj19so8553443wib.9
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:07:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:from:date:message-id:subject:to:cc
-	:content-type; bh=dJ4KBbrEbG1wnPIVEQNBK0GTsgIfullbwq1hkzSQ4rQ=;
-	b=kBr0lgooxyZBJUnMpTi6IYbkWhHdQQTSj4fNEyGAk0g0isWGwQJpJmjJnLAyXe3pKQ
-	LmWK6ac+GXmK4zSQNVGwOiBc1ShJUoRLohrr9KDHxwzZR8O5fPkjiS+NqPlYDc8ZdU0I
-	6AfiNB3tKCN/z8wk2B1E1rQN/2PsJdfxMieKWG9WPvv/WbdiCGn8c/wj+b7zWqwTmP+l
-	KhH9a8DPAI4DpaMMw6+f+r5L8NKK2j/lVRGCmxw0RgAWFriTbL+LcpWIsF+nSLlFvpEc
-	rgSbHp38hbUbHITuMo8Nbzh+KPZyMANMwhWqYV30kYfh2Yyyp7mFG84JgAEtAHefFQoQ
-	plEw==
-X-Received: by 10.194.92.231 with SMTP id cp7mr10634563wjb.3.1366891650128;
-	Thu, 25 Apr 2013 05:07:30 -0700 (PDT)
+Return-Path: <Diego.SantaCruz@spinetix.com>
+Received: from smtp4.infomaniak.ch (smtp4.infomaniak.ch [84.16.68.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1018E014F3
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:27:42 -0700 (PDT)
+Received: from inmail.spinetix.com (inmail.spinetix.com [212.147.27.179])
+	(authenticated bits=0)
+	by smtp4.infomaniak.ch (8.14.5/8.14.5) with ESMTP id r3PCRYHx006441
+	(version=TLSv1/SSLv3 cipher=RC4-MD5 bits=128 verify=NO);
+	Thu, 25 Apr 2013 14:27:35 +0200
+X-MimeOLE: Produced By Microsoft Exchange V6.5
 MIME-Version: 1.0
-Received: by 10.216.114.197 with HTTP; Thu, 25 Apr 2013 05:07:10 -0700 (PDT)
-From: Sudhangathan B S <sudhangathan@gmail.com>
-Date: Thu, 25 Apr 2013 17:37:10 +0530
-Message-ID: <CAGX3a9_nTNHnFfnyup52AGD=ApvZy8WW0dNkSo-V2mO5hGvh5w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Cc: Chris Whittenburg <whittenburg@gmail.com>
-Subject: Missing something in UAP for Overo-Fire
+Date: Thu, 25 Apr 2013 14:27:33 +0200
+Message-ID: <364D31930BDB974AB40E22C5C2E584ED011E6214@asterix.SPINETIX.local>
+In-reply-to: <3875695.6MzV3H4rrf@helios>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: [yocto] About running old kernels with Yoctoo 1.2 or 1.3
+thread-index: Ac5A8J76CKn4qmLST1S191WD0D0x3wAvAGlQ
+References: <364D31930BDB974AB40E22C5C2E584ED011E6155@asterix.SPINETIX.local>
+	<5177D5CB.8060706@windriver.com> <3875695.6MzV3H4rrf@helios>
+From: "Diego Santa Cruz" <Diego.SantaCruz@spinetix.com>
+To: "Paul Eggleton" <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: About running old kernels with Yoctoo 1.2 or 1.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,73 +33,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 12:07:31 -0000
-Content-Type: multipart/alternative; boundary=047d7bfd0c2e40a14b04db2e4344
-
---047d7bfd0c2e40a14b04db2e4344
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-
-I have included this folder in my poky folder, but still i'm not getting
-the UAP drivers and firmware up and running.
-
-https://github.com/chrisw957/meta-gumstix/commit/d0dbc51e1643860f9066c5e817db023fb062362c
-
-I'm compiling for Gumstix overo fire on an x86 Ubuntu Studio machine.
-No files related to the UAP are getting included in the rootfs tar ball.
-I'm not able to find the uap8xxx.ko file in the final build.
-The contents of this folder are:
-/home/desen555/yocto/build/tmp/work/overo-poky-linux-gnueabi/linux-sakoman-3.5-r0/git/drivers/net/wireless/libertas_uap
-built-in.o
-Makefile
-uap_debug.c
-uap_drv.h
-uap_fw.h
-uap_headers.h
-uap_main.c
-uap_proc.c
-uap_sdio_mmc.c
-uap_sdio_mmc.h
-
-Looks like it is partially getting compiled but not the final .ko files.
-I'l be glad to reply with any other details.
-
-Regards,
----------------------------------
-Sudhangathan BS
-Ph:(+91) 9731-905-205
----------------------------------
-
---047d7bfd0c2e40a14b04db2e4344
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 25 Apr 2013 12:27:43 -0000
+Content-class: urn:content-classes:message
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,<br><br></div>I have included this folder in my=
- poky folder, but still i&#39;m not getting the UAP drivers and firmware up=
- and running.<br><div><pre><a href=3D"https://github.com/chrisw957/meta-gum=
-stix/commit/d0dbc51e1643860f9066c5e817db023fb062362c">https://github.com/ch=
-risw957/meta-gumstix/commit/d0dbc51e1643860f9066c5e817db023fb062362c</a><br=
->
+> -----Original Message-----
+> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> Sent: 24 April 2013 15:36
+> To: Diego Santa Cruz
+> Cc: yocto@yoctoproject.org; Bruce Ashfield
+> Subject: Re: [yocto] About running old kernels with Yoctoo 1.2 or 1.3
+>=20
+> On Wednesday 24 April 2013 08:53:31 Bruce Ashfield wrote:
+> >
+> > Each Yocto release uses a sliding set of kernel's that have had at =
+least
+> > some level of testing with the associated userspace of the release.
+> >
+> >   1.4 is: 3.2, 3.4 and 3.8
+> >   1.3 was: 3.4, 3.2 and 3.0
+> >   1.2 was: 3.2, 3.0 and 2.6.37
+> >
+> > But obviously, the linux kernel has a very stable userspace ABI, so =
+there
+> > shouldn't be any big compatibility issues with other kernel =
+versions.
+> > It's just that we don't know for sure.
+> >
+> > It is true that each of these releases with have a =
+linux-libc-headers
+> > that is newer than the 2.6.x kernel you are talking about, which =
+could
+> > expose syscalls or other interfaces to userspace that aren't =
+supported
+> > in your kernel, but this typically degrades gracefully and the issue
+> > detected when you try your applications.
+>=20
+> The usual problematic components are those that rely heavily upon the
+kernel
+> e.g. udev and systemd. For such components you may find you need to
+downgrade
+> or avoid them altogether; most of userspace should work just fine with =
+an
+> older
+> kernel though.
 
-</pre>I&#39;m compiling for Gumstix overo fire on an x86 Ubuntu Studio mach=
-ine.<br></div><div>No files related to the UAP are getting included in the =
-rootfs tar ball. I&#39;m not able to find the uap8xxx.ko file in the final =
-build.<br>
+Many thanks for the valuable input. Is the traditional init system still
+supported, or is Yocto using systemd exclusively?
 
-The contents of this folder are:<br>/home/desen555/yocto/build/tmp/work/ove=
-ro-poky-linux-gnueabi/linux-sakoman-3.5-r0/git/drivers/net/wireless/liberta=
-s_uap<br>built-in.o<br>Makefile=A0 <br>uap_debug.c=A0 <br>uap_drv.h=A0 <br>=
-uap_fw.h=A0 <br>
+Best,
 
-uap_headers.h=A0 <br>uap_main.c=A0 <br>uap_proc.c=A0 <br>uap_sdio_mmc.c=A0 =
-<br>uap_sdio_mmc.h<br><br></div><div>Looks like it is partially getting com=
-piled but not the final .ko files. I&#39;l be glad to reply with any other =
-details.<br>
+Diego
 
-<br></div><div>Regards,<br clear=3D"all"></div><div><div><div>-------------=
---------------------<br>Sudhangathan BS<br>Ph:(+91) 9731-905-205<br>-------=
---------------------------</div>
-</div></div></div>
+--
+Diego Santa Cruz, PhD
+Technology Architect
+_________________________________
+SpinetiX S.A.
+Rue des Terreaux 17
+1003, Lausanne, Switzerland
+T +41 21 341 15 50
+F +41 21 311 19 56
+diego.santacruz@spinetix.com
+http://www.spinetix.com
+http://www.youtube.com/SpinetiXTeam
+_________________________________
 
---047d7bfd0c2e40a14b04db2e4344--
+
+
+
+
