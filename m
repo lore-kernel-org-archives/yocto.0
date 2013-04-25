@@ -1,36 +1,25 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DDFBE01525
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:45 -0700 (PDT)
-Received: by mail-vc0-f178.google.com with SMTP id ib11so2789508vcb.37
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=va89ibYRqcUwE3nO7/QyXBnYLs35Iif/zwFG+1b9MBg=;
-	b=DaaL/T66uHwWoKRJF7gai16CyTy2ZuPk09R6Zv6pWckh6s4sazIP5OYKqDmm3PAlZ5
-	7hRfSdY1Zew2VNayZrgvzVWdZWte8jij0zJskLhk9+bkc0tdVNnXUpts6Su7OBS3vHN0
-	Y7eY/LViuatdvmPQGHQd6GP9a7KlXTFbuJwnPBzrso18TBmufgBkhHd/6YhvZ0uRGshG
-	2QYqSQBEYHc2iQtxx5QYTpodKelue8lhYHHlEf2OFxiD3dApOt+gRfphJr43TlTrC4fQ
-	b8m+VYhI3yyA2jTc/duRbt6pIBWQzPGYupfv1lGS9bL8xUEL3AgrDfvO/u7yyhLg6imc
-	94iw==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 605B3E0150E
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:08:07 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id A305CF811DF; Thu, 25 Apr 2013 07:08:06 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id D9159F811DB;
+	Thu, 25 Apr 2013 07:08:04 -0600 (MDT)
+Message-ID: <51792AC3.7080501@mlbassoc.com>
+Date: Thu, 25 Apr 2013 07:08:19 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
 MIME-Version: 1.0
-X-Received: by 10.220.167.9 with SMTP id o9mr26912892vcy.25.1366895024434;
-	Thu, 25 Apr 2013 06:03:44 -0700 (PDT)
-Sender: paul.betafive@gmail.com
-Received: by 10.220.224.135 with HTTP; Thu, 25 Apr 2013 06:03:44 -0700 (PDT)
-In-Reply-To: <CA+JN8xOs5YL+vdtJz8ZtqCvUNVi7UO=++grHtx26n2iEpGXbGg@mail.gmail.com>
-References: <51788033.9010908@gmail.com>
-	<CANyK_8fpnN8C6-vZPyFmGx5U3_ySRQp7twsXcKO4utz+WWc2EQ@mail.gmail.com>
-	<CA+JN8xOs5YL+vdtJz8ZtqCvUNVi7UO=++grHtx26n2iEpGXbGg@mail.gmail.com>
-Date: Thu, 25 Apr 2013 14:03:44 +0100
-X-Google-Sender-Auth: jG10qWqBiVOhmR1z9Hdi4DVAPPs
-Message-ID: <CANyK_8efmMZwTde9tivSDcnUmo2XtZiQ6JTv6oFDbFJTmhp3tw@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-To: Seth Bollinger <seth.boll@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 2/2] sdcard_image-rpi.bbclass: Copy startup files required for 16MB GPU operation.
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Files and overrides
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,48 +31,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 13:03:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 25 Apr 2013 13:08:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 25 April 2013 13:57, Seth Bollinger <seth.boll@gmail.com> wrote:
-> On Thu, Apr 25, 2013 at 7:51 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
->>
->> Trying to apply this email I get:
->>
->>     Applying: sdcard_image-rpi.bbclass: Copy startup files required
->> for 16MB GPU operation.
->>     fatal: corrupt patch at line 14
->>     Patch failed at 0001 sdcard_image-rpi.bbclass: Copy startup files
->> required for 16MB GPU operation.
->>
->> Trying to apply the attached patch I get:
->>
->>     Patch format detection failed.
->>
->> Are you using 'git send-email'?
->>
->> However, I can apply this after fixing the attached patch file by
->> hand, giving it a test now.
->
->
-> I run git format-patch and then copy the text into the email and attach the
-> patch.  I apologize for the trouble.  Richard complained of whitespace
-> problems in my last patches so I'm trying to alleviate this problem.  :)
-> I'll see if I can't get gmail set up on my vm so I can use git send-email.
->
-> Seth
+I'm trying to supply a target specific file for which there are
+already many alternatives.  For whatever reason, the wrong file
+is always being chosen.
 
-Somehow a leading '>' crept into the attached patch.
+Here are the details: I have a local layer (meta-imx6) which is used
+to override/overlay a BSP layer (meta-fsl-arm) which in turn is
+supplying some tuned files.  In particular, the file 'xorg.conf'
+which appears in all of these places:
+   ./meta-imx6/recipes-graphics/xorg-xserver/xserver-xf86-config/sabrelite/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemuarm/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemuppc/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemux86-64/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemush4/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemumips/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemumips64/xorg.conf
+   ./meta/recipes-graphics/xorg-xserver/xserver-xf86-config/qemux86/xorg.conf
+   ./meta-fsl-arm/recipes-graphics/xorg-xserver/xserver-xf86-config/mx6/xorg.conf
+   ./meta-fsl-arm/recipes-graphics/xorg-xserver/xserver-xf86-config/mx5/xorg.conf
+   ./meta-fsl-arm/recipes-graphics/xorg-xserver/xserver-xf86-config/mxs/xorg.conf
 
-Almost all mail clients ruin patches, maybe take a look at
-https://coderwall.com/p/dp-gka for using 'git send-email' with gmail.
+My meta-imx6 layer sets up the overrides to be:
+   FILESOVERRIDES="imx6qsabrelite:arm:armv7a:mx6:mx6q:sabrelite:amltd"
+   OVERRIDES="imx6qsabrelite:arm:armv7a:mx6:mx6q:sabrelite:amltd"
+where "amltd" is the name of my distribution and "sabrelite" is my machine name.
 
-If you don't want to clog the list with attempts which might not work,
-send a few test patches to me and i'll let you know if they work.
+The file that is actually chosen is .../mx6/xorg.conf, but I want it to
+be .../sabrelite/xorg.conf  I have other files in the .../xserver-xf86-config/sabrelite
+directory being picked up (that's part of what this is about, adding such configury)
+but not xorg.conf
 
---
-Paul Barker
+How can I fix this?  I tried moving/adding sabrelite to the front of the
+*OVERRIDES variables with no change.
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
