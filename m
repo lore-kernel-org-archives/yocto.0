@@ -1,31 +1,81 @@
 Return-Path: <song.liu@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCA4FE01517
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 07:54:25 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FEFFE014DF
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 07:54:14 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 25 Apr 2013 07:54:15 -0700
+	by orsmga101.jf.intel.com with ESMTP; 25 Apr 2013 07:53:52 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.87,551,1363158000"; 
-	d="scan'208,217";a="325189618"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga002.jf.intel.com with ESMTP; 25 Apr 2013 07:54:15 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 25 Apr 2013 07:54:14 -0700
+	d="scan'208,217";a="325189309"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga002.jf.intel.com with ESMTP; 25 Apr 2013 07:53:51 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Thu, 25 Apr 2013 07:53:51 -0700
 Received: from orsmsx108.amr.corp.intel.com ([169.254.4.227]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.12.150]) with mapi id
-	14.01.0355.002; Thu, 25 Apr 2013 07:54:07 -0700
+	ORSMSX151.amr.corp.intel.com ([169.254.7.111]) with mapi id
+	14.01.0355.002; Thu, 25 Apr 2013 07:53:36 -0700
 From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: "Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
+	<alexandru.damian@intel.com>, "Calles Palacios, Osvaldo"
+	<osvaldo.calles.palacios@intel.com>, "Patel, Keyur R"
+	<keyur.r.patel@intel.com>, 'Anders Darander' <anders@chargestorm.se>,
+	"Barros Pena, Belen" <belen.barros.pena@intel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
+	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
+	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
+	<joshua.lock@intel.com>, "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
+	"Moeller, Thorsten" <thorsten.moeller@intel.com>, 'Sanjay Raina'
+	<sraina@mvista.com>, "Osier-mixon,
+	Jeffrey" <jeffrey.osier-mixon@intel.com>, 
+	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
+	"Saxena, Rahul" <rahul.saxena@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Zanussi, 
+	Tom" <tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
+	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
+	<Sean_Hudson@mentor.com>, "Serban,
+	Laurentiu" <laurentiu.serban@intel.com>, 
+	"Burton, Ross" <ross.burton@intel.com>, "Mueller, Robert"
+	<robert.mueller@intel.com>, "Arce Moreno, Abraham"
+	<abraham.arce.moreno@intel.com>,
+	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
+	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
+	<mario.a.santana.lopez@intel.com>, "'achaudha@mvista.com'"
+	<achaudha@mvista.com>, "Moisan, Radu" <radu.moisan@intel.com>, "Gavaz,
+	Ionut
+	A" <ionut.a.gavaz@intel.com>, "Popa, Valentin" <valentin.popa@intel.com>,
+	"Moses, Fred" <fred.moses@intel.com>, "Iorga, Cristian"
+	<cristian.iorga@intel.com>, "Lindner, MihaiX" <mihaix.lindner@intel.com>,
+	"Proca, Andreea B" <andreea.b.proca@intel.com>, "Stanacar, StefanX"
+	<stefanx.stanacar@intel.com>, "Stoicescu, CorneliuX"
+	<corneliux.stoicescu@intel.com>, "Palalau, AlexandruX"
+	<alexandrux.palalau@intel.com>, "'Butler,
+	Paul'" <Paul.Butler@windriver.com>, 
+	"Mirea, Viorel" <viorel.mirea@intel.com>, "Kamble, Nitin A"
+	<nitin.a.kamble@intel.com>, "Szankin, Maciej" <maciej.szankin@intel.com>,
+	"Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>, Olivia Salisbury
+	<olivia.salisbury@tobias.tv>, 'Chris Kaminski' <chris.kaminski@tobias.tv>, 
+	"'Maupin, Chase'" <chase.maupin@ti.com>, "Georgescu, Alexandru C"
+	<alexandru.c.georgescu@intel.com>
 Thread-Topic: Minutes: Yocto Project 1.4 release readiness meeting - 4/25/2013
-Thread-Index: Ac5BxKRh9ErROSGjTcekilDy44uutgAABDLw
-Date: Thu, 25 Apr 2013 14:54:13 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A718F41CD@ORSMSX108.amr.corp.intel.com>
+Thread-Index: Ac5BxKRh9ErROSGjTcekilDy44uutg==
+Date: Thu, 25 Apr 2013 14:53:35 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A718F41B2@ORSMSX108.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
+X-Mailman-Approved-At: Thu, 25 Apr 2013 07:56:09 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Minutes: Yocto Project 1.4 release readiness meeting - 4/25/2013
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,12 +88,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 14:54:26 -0000
+X-List-Received-Date: Thu, 25 Apr 2013 14:54:14 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A718F41CDORSMSX108amrcor_"
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F41CDORSMSX108amrcor_
+--_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -78,7 +128,7 @@ s release!
 
 
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F41CDORSMSX108amrcor_
+--_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -128,4 +178,4 @@ n this release!</div>
 </body>
 </html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F41CDORSMSX108amrcor_--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_--
