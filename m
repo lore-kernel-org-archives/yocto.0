@@ -1,82 +1,35 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FEFFE014DF
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 07:54:14 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 25 Apr 2013 07:53:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,551,1363158000"; 
-	d="scan'208,217";a="325189309"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 25 Apr 2013 07:53:51 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 25 Apr 2013 07:53:51 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.227]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.111]) with mapi id
-	14.01.0355.002; Thu, 25 Apr 2013 07:53:36 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>, "Calles Palacios, Osvaldo"
-	<osvaldo.calles.palacios@intel.com>, "Patel, Keyur R"
-	<keyur.r.patel@intel.com>, 'Anders Darander' <anders@chargestorm.se>,
-	"Barros Pena, Belen" <belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
-	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
-	<joshua.lock@intel.com>, "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
-	"Moeller, Thorsten" <thorsten.moeller@intel.com>, 'Sanjay Raina'
-	<sraina@mvista.com>, "Osier-mixon,
-	Jeffrey" <jeffrey.osier-mixon@intel.com>, 
-	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
-	"Saxena, Rahul" <rahul.saxena@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Zanussi, 
-	Tom" <tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
-	<Sean_Hudson@mentor.com>, "Serban,
-	Laurentiu" <laurentiu.serban@intel.com>, 
-	"Burton, Ross" <ross.burton@intel.com>, "Mueller, Robert"
-	<robert.mueller@intel.com>, "Arce Moreno, Abraham"
-	<abraham.arce.moreno@intel.com>,
-	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
-	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
-	<mario.a.santana.lopez@intel.com>, "'achaudha@mvista.com'"
-	<achaudha@mvista.com>, "Moisan, Radu" <radu.moisan@intel.com>, "Gavaz,
-	Ionut
-	A" <ionut.a.gavaz@intel.com>, "Popa, Valentin" <valentin.popa@intel.com>,
-	"Moses, Fred" <fred.moses@intel.com>, "Iorga, Cristian"
-	<cristian.iorga@intel.com>, "Lindner, MihaiX" <mihaix.lindner@intel.com>,
-	"Proca, Andreea B" <andreea.b.proca@intel.com>, "Stanacar, StefanX"
-	<stefanx.stanacar@intel.com>, "Stoicescu, CorneliuX"
-	<corneliux.stoicescu@intel.com>, "Palalau, AlexandruX"
-	<alexandrux.palalau@intel.com>, "'Butler,
-	Paul'" <Paul.Butler@windriver.com>, 
-	"Mirea, Viorel" <viorel.mirea@intel.com>, "Kamble, Nitin A"
-	<nitin.a.kamble@intel.com>, "Szankin, Maciej" <maciej.szankin@intel.com>,
-	"Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>, Olivia Salisbury
-	<olivia.salisbury@tobias.tv>, 'Chris Kaminski' <chris.kaminski@tobias.tv>, 
-	"'Maupin, Chase'" <chase.maupin@ti.com>, "Georgescu, Alexandru C"
-	<alexandru.c.georgescu@intel.com>
-Thread-Topic: Minutes: Yocto Project 1.4 release readiness meeting - 4/25/2013
-Thread-Index: Ac5BxKRh9ErROSGjTcekilDy44uutg==
-Date: Thu, 25 Apr 2013 14:53:35 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A718F41B2@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <jon.szymaniak@gmail.com>
+Received: from mail-we0-f180.google.com (mail-we0-f180.google.com
+	[74.125.82.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1479AE0054B
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 08:25:08 -0700 (PDT)
+Received: by mail-we0-f180.google.com with SMTP id x43so2673026wey.25
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 08:25:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=wWAHf6MhaEbVaw5ShBwfF6hnlrjp89xAy8MExC6pa4M=;
+	b=012V4Frcg220mxyhEWwjI367MGJNDIF/4fVpThEbubfz2RTPMBODU6k3sSoyADLRdF
+	IZnnX3aYHo/nlDoA8zg906Fnf1T5TC7v6tIGksHs9wmDe7GSkpxa5y4JqWYnBxLIijSX
+	0Nq8a8C15szVYhBgNaO/SLxwmKBWOsxEe+pTW3MXxeJJjxRurl2LveyLAoW00MlLCR2e
+	YyPtfysEeQFP9pEAr/1wOyyFZhR2eEDwm0mwoKUNZ3ZCtmuP3DST4c9jChSrFl3rIjeZ
+	ErCdGGwkngphXz9YmKf4O2kWiFwxMJoU4YHWXs8908cSKdp3z8nkKoAg5E8ohnbsm4m4
+	U/GQ==
+X-Received: by 10.194.219.162 with SMTP id pp2mr76633620wjc.27.1366903507343; 
+	Thu, 25 Apr 2013 08:25:07 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 25 Apr 2013 07:56:09 -0700
+Sender: jon.szymaniak@gmail.com
+Received: by 10.194.37.233 with HTTP; Thu, 25 Apr 2013 08:24:47 -0700 (PDT)
+In-Reply-To: <20130425142741.GH5538@jama.dyndns-home.com>
+References: <CANge7vWGtcVQE6Sv1rn1dxWR25W99eK53UdDJjBVp2zQW=nr+Q@mail.gmail.com>
+	<20130425142741.GH5538@jama.dyndns-home.com>
+From: Jon Szymaniak <jon.szymaniak+gpg@gmail.com>
+Date: Thu, 25 Apr 2013 11:24:47 -0400
+X-Google-Sender-Auth: L5SrqogGZjj4G18jDTd5k2q72Uc
+Message-ID: <CANge7vW1GpgFfHYL9RHL8KBAKd=Sw_Vp3VbdROGrydDZWSsm+A@mail.gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>, ross.burton@intel.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Minutes: Yocto Project 1.4 release readiness meeting - 4/25/2013
+Subject: Re: Finding/Generating Rootfs Package List
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,94 +41,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 14:54:14 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_"
+X-List-Received-Date: Thu, 25 Apr 2013 15:25:09 -0000
+Content-Type: multipart/alternative; boundary=001a11c1b9a8ff626204db3105bb
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a11c1b9a8ff626204db3105bb
+Content-Type: text/plain; charset=ISO-8859-1
 
-Attendees:
-MarkH (also represents KevinM), Saul, Corneliu, AlexG, Cristiana, AlexD, La=
-urentiu, Ionut, Jessica (also represents DaveST), Ross, BogdanM, Richard, C=
-ristian, Song
+Ross and Martin -- thanks for your quick responses.
 
-Notes:
+I failed to mention that I wanted both the ${PV} and ${PR} for packages, so
+unfortunately the *-pkgs.txt files won't suffice.
 
-- We have all CCB members here or represented here.
-- Review release criteria: please see: https://wiki.yoctoproject.org/wiki/Y=
-octo_Project_v1.4_Status#Milestone_6.2C_1.4_release<https://wiki.yoctoproje=
-ct.org/wiki/Yocto_Project_v1.4_Status>
-- There are some failures on AB due to racing issues. So we did not have a =
-completely green build. But these are random issue (4358), should not block=
- the release.
-- Postinstall issues found by the community lately. We will address them in=
- 1.5, but they should not block the release.
-- 1.5 release criteria or QA test summary could include community feedback =
-to reflect more of the community's opinion . Action item for Song: review 1=
-.5 release criteria.
-- CentOS should be tested more. Many commercial vendors are using CentOS. W=
-ill consider this when we review the 1.5 release.
+Is there a particular reason why these files don't contain this
+information? I haven't looked into where these are generated, but would
+including ${PV} and ${PR} in these be a welcome patch?
 
-* Decision: 1.4 release is a go.
+Looking at the buildhistory wiki page [1], I see this certainly provides
+what I need, and a whole lot more.
 
-Thank you all, and congratulations to the team and everyone involved in thi=
-s release!
+[1] https://wiki.yoctoproject.org/wiki/Buildhistory
+
+Thanks again,
+Jon
 
 
 
+On Thu, Apr 25, 2013 at 10:27 AM, Martin Jansa <martin.jansa@gmail.com>wrote:
 
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> On Thu, Apr 25, 2013 at 10:10:31AM -0400, Jon Szymaniak wrote:
+> > Hi all,
+> >
+> > I generally like to keep a little manifest file with my rootfs images,
+> > containing a list of installed packages and their associated versions.
+>  On
+> > images where I keep package data around, I usually generate this via
+> 'opkg
+> > list'.
+> >
+> > In my current situation, I have a small read-only image where I can't
+> > afford to ship pkg data, and wanted to gather this info on the host side
+> of
+> > things.  I assume this information is tracked somewhere in the poky build
+> > directory, but I'm having some trouble finding it.
+> >
+> > Could someone kindly point me towards this information or the
+> documentation
+> > section(s) that I may have overlooked.
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>MarkH (also represents KevinM), Saul, Corneliu, AlexG, Cristiana, Alex=
-D, Laurentiu, Ionut, Jessica (also represents DaveST), Ross, BogdanM, Richa=
-rd, Cristian, Song</div>
-<div>&nbsp;</div>
-<div>Notes:</div>
-<div>&nbsp;</div>
-<div>- We have all CCB members here or represented here.</div>
-<div>- Review release criteria: please see: <a href=3D"https://wiki.yoctopr=
-oject.org/wiki/Yocto_Project_v1.4_Status"><font color=3D"blue"><u>https://w=
-iki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status#Milestone_6.2C_1.4_rele=
-ase</u></font></a></div>
-<div>- There are some failures on AB due to racing issues. So we did not ha=
-ve a completely green build. But these are random issue (4358), should not =
-block the release.</div>
-<div>- Postinstall issues found by the community lately. We will address th=
-em in 1.5, but they should not block the release.</div>
-<div>- 1.5 release criteria or QA test summary could include community feed=
-back to reflect more of the community's opinion . Action item for Song: rev=
-iew 1.5 release criteria.</div>
-<div>- CentOS should be tested more. Many commercial vendors are using Cent=
-OS. Will consider this when we review the 1.5 release.</div>
-<div>&nbsp;</div>
-<div>* Decision: 1.4 release is a go. </div>
-<div>&nbsp;</div>
-<div>Thank you all, and congratulations to the team and everyone involved i=
-n this release!</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
+> buildhistory is what you're looking for
+>
+> --
+> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F41B2ORSMSX108amrcor_--
+
+
+-- 
+--
+Jon Szymaniak <jon.szymaniak+gpg@gmail.com>
+
+OpenPGP Key Hosted at the following keyservers:
+http://keyserver.ubuntu.com/
+http://pgp.mit.edu/
+
+--001a11c1b9a8ff626204db3105bb
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Ross and Martin -- thanks for your quick respons=
+es.<br><br></div>I failed to mention that I wanted both the ${PV} and ${PR}=
+ for packages, so unfortunately the *-pkgs.txt files won&#39;t suffice. <br=
+>
+
+<br>Is there a particular reason why these files don&#39;t contain this inf=
+ormation? I haven&#39;t looked into where these are generated, but would in=
+cluding ${PV} and ${PR} in these be a welcome patch?<br><br>Looking at the =
+buildhistory wiki page [1], I see this certainly provides what I need, and =
+a whole lot more.<br>
+
+<br>[1] <a href=3D"https://wiki.yoctoproject.org/wiki/Buildhistory">https:/=
+/wiki.yoctoproject.org/wiki/Buildhistory</a><br><br></div>Thanks again,<br>=
+Jon<br><div><br></div></div><div class=3D"gmail_extra"><br><br><div class=
+=3D"gmail_quote">
+
+On Thu, Apr 25, 2013 at 10:27 AM, Martin Jansa <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:martin.jansa@gmail.com" target=3D"_blank">martin.jansa@gmail.co=
+m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+<div class=3D"HOEnZb"><div class=3D"h5">On Thu, Apr 25, 2013 at 10:10:31AM =
+-0400, Jon Szymaniak wrote:<br>
+&gt; Hi all,<br>
+&gt;<br>
+&gt; I generally like to keep a little manifest file with my rootfs images,=
+<br>
+&gt; containing a list of installed packages and their associated versions.=
+ =A0On<br>
+&gt; images where I keep package data around, I usually generate this via &=
+#39;opkg<br>
+&gt; list&#39;.<br>
+&gt;<br>
+&gt; In my current situation, I have a small read-only image where I can&#3=
+9;t<br>
+&gt; afford to ship pkg data, and wanted to gather this info on the host si=
+de of<br>
+&gt; things. =A0I assume this information is tracked somewhere in the poky =
+build<br>
+&gt; directory, but I&#39;m having some trouble finding it.<br>
+&gt;<br>
+&gt; Could someone kindly point me towards this information or the document=
+ation<br>
+&gt; section(s) that I may have overlooked.<br>
+<br>
+</div></div>buildhistory is what you&#39;re looking for<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+Martin &#39;JaMa&#39; Jansa =A0 =A0 jabber: <a href=3D"mailto:Martin.Jansa@=
+gmail.com">Martin.Jansa@gmail.com</a><br>
+</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div dir=
+=3D"ltr"><div><div><font face=3D"courier new,monospace">--<br></font></div>=
+<font face=3D"courier new,monospace">Jon Szymaniak &lt;<a href=3D"mailto:jo=
+n.szymaniak%2Bgpg@gmail.com" target=3D"_blank">jon.szymaniak+gpg@gmail.com<=
+/a>&gt;<br>
+
+</font></div><font face=3D"courier new,monospace"><br>OpenPGP Key Hosted at=
+ the following keyservers:<br><a href=3D"http://keyserver.ubuntu.com/" targ=
+et=3D"_blank">http://keyserver.ubuntu.com/</a> <br><a href=3D"http://pgp.mi=
+t.edu/" target=3D"_blank">http://pgp.mit.edu/</a> <br>
+
+</font></div>
+</div>
+
+--001a11c1b9a8ff626204db3105bb--
