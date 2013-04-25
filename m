@@ -1,36 +1,36 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92598E014F3
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:59:54 -0700 (PDT)
-Received: by mail-vc0-f169.google.com with SMTP id gd11so2866601vcb.0
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:59:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=KOnHkm/O8BI8YRBq/OSkGYsdgDUWs/bpgGwlF4kF/C0=;
-	b=rZyvzOBvfwhI2vL7uMIiQrnR/+0T+m4+npXYIKlTxuQJllY0e56hw3c2SyId3ozQwV
-	7IunNp3LN/uxmQhIraTarAYg1itwKaqimaWwJtzk5g5WT0zI00TEH2GpD9cHIiUUY16s
-	3GIENuKhLHM9y+aVaec7BHbyfg8g2fenwNArqsmKD5bJQ6TliUtCBUdaHzTGw41zF9p0
-	ViEgJMjX4t+PP48Md+T1dLZf8UTSAMwIOoxMy59jQHUhANRDCHcG5vPLLIwDoeNHWLlE
-	aC7ULh5hwIQX8BtQbhKSO2DqpuukLBScwbscwkC4RUSCP5MLX0C8k9MpheNJK87dXXxc
-	Nx5Q==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70C1BE0150E
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:41 -0700 (PDT)
+Received: by mail-vc0-f175.google.com with SMTP id lf10so2817046vcb.34
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 06:03:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=kgRhxaXDBGbbO8v+1pBKBpXkkRe0O9mFg985Zk+L1H4=;
+	b=dbjwm8jA18MQ6Kp+RybeTCGDv6cz3dVkkuc/w4YKx9Kd/bb3AqovpFxvvDRkOkkF2h
+	ebYjzB+MSX6gJKq5XWYqR9HEIoaGhE1nVL6FnhPiBD1AWp2PB5WY8y9PR3CjBDkPt8+4
+	QChhSX5NFUiTUehgw+QBfSOdVNx20oD5ilrlOssrmm/A/3mD9oAVhrVgHaaeA7qSCjAF
+	4zpQAuyA79+QxBhsblkTPaqow3aAdgz6rjkV+fDNtGUyv59VwaYaW/UxUltstqhRdtTC
+	pFPlP48zvj0nhjD8hQlGlbEVH+AnpEsp+nvlarFm6HPYVKJ+eYxtQFvDP5eZOJp1vkWb
+	Iylg==
+X-Received: by 10.52.165.99 with SMTP id yx3mr9451554vdb.34.1366895020886;
+	Thu, 25 Apr 2013 06:03:40 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.52.88.2 with SMTP id bc2mr7687637vdb.27.1366894793597; Thu,
-	25 Apr 2013 05:59:53 -0700 (PDT)
-Sender: paul.betafive@gmail.com
-Received: by 10.220.224.135 with HTTP; Thu, 25 Apr 2013 05:59:53 -0700 (PDT)
-In-Reply-To: <CA+JN8xMvcoaLKufSeCLO21ozH542OG-uZSn8fDS0OVMGXkUNbw@mail.gmail.com>
-References: <51788031.7080701@gmail.com>
-	<CANyK_8fujLspj_VCZd5TY9x4A62m=WKhva3BavL91XzwY5Krgw@mail.gmail.com>
-	<CA+JN8xMvcoaLKufSeCLO21ozH542OG-uZSn8fDS0OVMGXkUNbw@mail.gmail.com>
-Date: Thu, 25 Apr 2013 13:59:53 +0100
-X-Google-Sender-Auth: ybK2ZUrVA0vZHqWcbpKpjNeQML0
-Message-ID: <CANyK_8dWFNWQ2UhHdQUPACfruFk9uSrUfpTVxJeNn2m3kAYX=A@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-To: Seth Bollinger <seth.boll@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] sdcard_image-rpi.bbclass: Fix error in conditional test
+Received: by 10.220.100.68 with HTTP; Thu, 25 Apr 2013 06:03:20 -0700 (PDT)
+In-Reply-To: <364D31930BDB974AB40E22C5C2E584ED011E6214@asterix.SPINETIX.local>
+References: <364D31930BDB974AB40E22C5C2E584ED011E6155@asterix.SPINETIX.local>
+	<5177D5CB.8060706@windriver.com> <3875695.6MzV3H4rrf@helios>
+	<364D31930BDB974AB40E22C5C2E584ED011E6214@asterix.SPINETIX.local>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 25 Apr 2013 14:03:20 +0100
+Message-ID: <CAJTo0LYKpFww2BUM=bPNv1PqN1TgAsF=d44gzmPi6zrE8s_K0A@mail.gmail.com>
+To: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
+X-Gm-Message-State: ALoCoQkpbou6aVOE1JlOael/Ln6wX2CEm9chxKR2C9Dju2JfPJi4YTYcA5dhfzhxZsL4n8ikV1WL
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: About running old kernels with Yoctoo 1.2 or 1.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,32 +42,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 12:59:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 25 Apr 2013 13:03:41 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 25 April 2013 13:51, Seth Bollinger <seth.boll@gmail.com> wrote:
-> On Thu, Apr 25, 2013 at 7:38 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
->>
->> '[[' should be a bash builtin. What host OS are you using for the build?
->
-> I'm using debian.  I'll check what the default shell is.  You're right, it's
-> probably dash.
->
+Hi Diego,
 
-Try 'sudo dpkg-reconfigure dash'.
+On 25 April 2013 13:27, Diego Santa Cruz <Diego.SantaCruz@spinetix.com> wrote:
+> Many thanks for the valuable input. Is the traditional init system still
+> supported, or is Yocto using systemd exclusively?
 
-> However, should this fail silently then?  In this instance I only saw the
-> error with debug enabled.  Otherwise it silently tried to dd a compressed
-> image to the sd card.  Of course this didn't run.  :)
->
+With 1.4 (about to be released), systemd is an option but the default
+init is still sysvinit.
 
-I assume that 'if' tries to run the command, gets a non-zero return
-value as the command doesn't run and just interprets this as the
-command running but returning non-zero.
-
---
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Ross
 
