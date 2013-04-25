@@ -1,34 +1,30 @@
-Return-Path: <s.stirtzel@googlemail.com>
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32785E014F3
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:42:45 -0700 (PDT)
-Received: by mail-oa0-f44.google.com with SMTP id h1so2770924oag.31
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:42:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=IudzQFdSBFTYnPvSiX3sq0lgoClfOovx0oxpC4soR2o=;
-	b=fEg19FrLvau6De5Wv5MjgMwCFOW2r73An4V73Qa/OB3M0/T4mv4W7zIm4wzglgfE4t
-	PgeGLDuhuAZG/GaphmYU+hAuSDeflUOHZ2ifFPxDin0mLJUhzImJnKD/SpR7rtM4i1mv
-	gI0MKpxzL5g+JjKw27wYmnnFeg2NNkbdffmesHmqsN2bnSPRNq5qNnEVOaix8zz16Y8l
-	ClzNqnlXbpeILbgfdvBiAiXEekcUg6pl1s3IKZRs42/nuDqFA+8QJwU9oBmJQUpNHJwb
-	iYTf/cbvFZE2ZPtj9W7NP4PpRc9mBE9H3/BG93Bm5rxBy2SmSFy3WwaHj0ATIbp7038/
-	/AYg==
-MIME-Version: 1.0
-X-Received: by 10.60.98.235 with SMTP id el11mr7698097oeb.57.1366893764548;
-	Thu, 25 Apr 2013 05:42:44 -0700 (PDT)
-Received: by 10.60.32.18 with HTTP; Thu, 25 Apr 2013 05:42:44 -0700 (PDT)
-In-Reply-To: <CANyK_8fujLspj_VCZd5TY9x4A62m=WKhva3BavL91XzwY5Krgw@mail.gmail.com>
-References: <51788031.7080701@gmail.com>
-	<CANyK_8fujLspj_VCZd5TY9x4A62m=WKhva3BavL91XzwY5Krgw@mail.gmail.com>
-Date: Thu, 25 Apr 2013 14:42:44 +0200
-Message-ID: <CAGiJk9fsm9eA1+QrkFbkmXoemT3224byG1R1xZhMSfns9gwepw@mail.gmail.com>
-From: Samuel Stirtzel <s.stirtzel@googlemail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] sdcard_image-rpi.bbclass: Fix error in conditional test
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 895FAE014F3
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 05:44:38 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UVLXL-00014u-N2
+	for yocto@yoctoproject.org; Thu, 25 Apr 2013 14:44:31 +0200
+Received: from 2-227-90-218.ip185.fastwebnet.it ([2.227.90.218])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 14:44:31 +0200
+Received: from f.deldegan by 2-227-90-218.ip185.fastwebnet.it with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 14:44:31 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Francesco Del Degan <f.deldegan@pr0gg3d.net>
+Date: Thu, 25 Apr 2013 14:44:25 +0200
+Message-ID: <87r4hy4w5y.fsf@pr0gg3d.net>
+References: <87fvyf5aj2.fsf@pr0gg3d.net>
+	<20130425084125.GB5538@jama.dyndns-home.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 2-227-90-218.ip185.fastwebnet.it
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.1 (gnu/linux)
+Cancel-Lock: sha1:xeYueQBtbtArVYOSzmvuVX+o9cw=
+Subject: Re: psplash_git.bb: Error when building with icecc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,28 +36,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 12:42:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 25 Apr 2013 12:44:38 -0000
+Content-Type: text/plain
 
-2013/4/25 Paul Barker <paul@paulbarker.me.uk>:
-> On 25 April 2013 02:00, seth bollinger <seth.boll@gmail.com> wrote:
->> When the shell tests for rootfs type I was seeing "[[: not found".  I
->> use echo and egrep to test for the xz rootfs type to work around this
->> error.
->>
+Martin Jansa <martin.jansa@gmail.com>
+writes:
+
+> On Thu, Apr 25, 2013 at 09:34:09AM +0200, Francesco Del Degan wrote:
+>> Hi all, i just found an error building core-image-basic with icecc
+>> inherited:
 >
-> '[[' should be a bash builtin. What host OS are you using for the build?
+> You can send patch extending blacklist defined in icecc.bbclass:
+>     system_package_blacklist = [ "uclibc", "glibc", "gcc", "bind", "u-boot", "dhcp-forwarder", "enchant", "connman", "orbit2" ]
+>     user_package_blacklist = (d.getVar('ICECC_USER_PACKAGE_BL') or "").split()
+>
+> or add psplash to ICECC_USER_PACKAGE_BL
 
-It sounds like Ubuntu / dash to me:
+This is not going to work, because set_icecc_env gets prepended anyhow,
+so i just got the same error.
 
-samuel@s-stirtzel-linux:~$ dash
-$ [[
-dash: 1: [[: not found
+In fact, the icecc.bbclass declares:
 
-Or at least dash will produce this error too.
+do_compile_prepend() {
+    set_icecc_env
+}
 
+and only in set_icecc_env the blacklist controls is performed.
 
---
-Regards
-Samuel
+The problem seems to be that do_compile in psplash_git.bb is written in python:
+
+python do_compile () {
+    import shutil, commands
+    ....
+}
+
+so prepending just mixes the two languages.
+
+Could be this the first case of mixing languages? Is bitbake able to
+make some transformation when prepending/appending like that.
+
+Also a some sort of conditional prepending based on languages could
+works. What do you think?
+
+>
+>> NameError: global name 'set_icecc_env' is not defined
+>> 
+>> ERROR: The stack trace of python calls that resulted in this
+>> exception/failure was:
+>> ERROR:   File "do_compile", line 26, in <module>
+>> ERROR: 
+>> ERROR:   File "do_compile", line 3, in do_compile
+>> ERROR: 
+>> ERROR: The code that was being executed was:
+>> ERROR:      0022:        bb.build.exec_func("oe_runmake", d)
+>> ERROR:      0023:        shutil.copyfile("psplash", outputfile)
+>> ERROR:      0024:
+>> ERROR:      0025:
+>> ERROR:  *** 0026:do_compile(d)
+>> ERROR:      0027:
+>> ERROR: [From file: 'do_compile', lineno: 26, function: <module>]
+>> ERROR:      0001:
+>> ERROR:      0002:def do_compile(d):
+>> ERROR:  *** 0003:    set_icecc_env
+>> ERROR:      0004:    import shutil, commands
+>> ERROR:      0005:
+>> ERROR:      0006:    # Build a separate executable for each splash image
+>> ERROR:      0007:    convertscript = "%s/make-image-header.sh" %
+>> d.getVar('S', True)
+>> ERROR: [From file: 'do_compile', lineno: 3, function: do_compile]
+>> ERROR: Function failed: do_compile
+>> 
+>> 
+>> 
+>> Seems that icecc compile_prepend (set_icecc_env shell function) gets prepended
+>> into psplash compile that is written in python. How to deal with it, and
+>> in general, is that possible to mix languages in prepend/append?
+>> 
+>> I'm using poky master and icecc is working great!
+>> 
+>> Cheers,
+>>   Francesco
+>> 
+>> 
+>> 
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 
