@@ -1,37 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f45.google.com (mail-pb0-f45.google.com
-	[209.85.160.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B18CE014D3
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 23:00:16 -0700 (PDT)
-Received: by mail-pb0-f45.google.com with SMTP id ro2so1042150pbb.4
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 23:00:16 -0700 (PDT)
+Return-Path: <ndec13@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F936E014D3
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 01:52:06 -0700 (PDT)
+Received: by mail-oa0-f51.google.com with SMTP id k14so3741082oag.38
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 01:52:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
-	:cc:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=QsY7XQFjyTh36RmsMTDbkdb30wDf1S7XtsPKmpgQtSU=;
-	b=gUlluanxOk0Z7i/xcYUTyAuv5Kw218FV5A6C7sNK5RVSF62p4MnuYaX+ZzAKNIXyCO
-	Fg+k7ihQ+jHyofm7Auwvs5jAKtPPoqrJtQOjpQYkKjv/cjznmNRmt7HEeeELN7gUCHJr
-	bYyAJBUqEVJ6ak7QjP+LnuqtdZ1tjUiT6W7n7AQPxYN6DovJhZrEmsHnlDr9pifrDLgz
-	YuqTqKaqZGmAjNE23fQAuhH/h+e0m7+tj9NXbP68nUCpSOrt3v0KU6clcb3BHGV8qGK0
-	4ZGw1m5+swDXHyhyfkiScE+mcpvKIXyJxlB5HMfzhVKNTkcJ1saCacNNibD37sDjbpOG
-	Vl5A==
-X-Received: by 10.68.170.66 with SMTP id ak2mr56779632pbc.123.1366956016422;
-	Thu, 25 Apr 2013 23:00:16 -0700 (PDT)
-Received: from sa-nc-common-173.static.jnpr.net (natint3.juniper.net.
-	[66.129.224.36]) by mx.google.com with ESMTPSA id
-	qi1sm11249616pac.21.2013.04.25.23.00.14 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 25 Apr 2013 23:00:15 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <62673661A504604B856269DAADA8BC281DE3C18C@ILPTWPVEXMB02.ecitele.com>
-Date: Thu, 25 Apr 2013 23:00:15 -0700
-Message-Id: <11E60CB6-AAB8-4682-8C23-B3C956EB9071@gmail.com>
-References: <62673661A504604B856269DAADA8BC281DE3C18C@ILPTWPVEXMB02.ecitele.com>
-To: Michael Fainstein <Michael.Fainstein@ecitele.com>
-X-Mailer: Apple Mail (2.1503)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: strip path in meta/site/common-linux
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=iC/g/KxyrYrGFrLnHQrxKo3lwUam7ZWXU4ZWxJP0TEE=;
+	b=GxPmFx6EUlY/nCr0+LnJtTkcAEyOKS++gPcq1rsdYvHmRxxFOoimDoTLD3MTZw+fN6
+	8FFGMf1vK9UCIDxE2qN/pg4+pzO1Fn7GlLS9nhlfCIWJnQ6SK0dnv+v8Z/tRlA8Sy+WP
+	1+nadgN225ZcHu/PN36zVFyfbsBe8/izCEDegghoJn1Hhp+6MmGZZlppQ6DfpOoqVCvV
+	X5jPd/NhT7mL/lvKUs9vEL+wUSTjNNfzNXX8zkxigkiKsQ0ai7EW95fHlqsSNm4Hkhun
+	8CcwhdtBPdXtVIGvBBsD+WG8rl9pU1DuuAy08/DF7TpVmEXmCO9ByDHXbelg7Yj7YppL
+	wFCQ==
+X-Received: by 10.60.83.70 with SMTP id o6mr17596710oey.81.1366966325664; Fri,
+	26 Apr 2013 01:52:05 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.76.27.170 with HTTP; Fri, 26 Apr 2013 01:51:45 -0700 (PDT)
+In-Reply-To: <5179AE16.5070201@windriver.com>
+References: <CAOT3miJ_akhKUidZi-0NsA-h7bMtOSrFm+BxGadopC-4qDb1gw@mail.gmail.com>
+	<5179AE16.5070201@windriver.com>
+From: Nicolas Dechesne <ndec13@gmail.com>
+Date: Fri, 26 Apr 2013 10:51:45 +0200
+Message-ID: <CAOT3miJcqmfPmA6bE24XK7mEoNRO4MVR0uKQsS28Ch1pXJ2Nhw@mail.gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Compliance program questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,30 +39,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Apr 2013 06:00:16 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 26 Apr 2013 08:52:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Fri, Apr 26, 2013 at 12:28 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
+>>   - is it tolerated to change the versions of some components from
+>> OE-core or meta-oe? Not just add patches through .bbappend, but
+>> actually use an older or a more recent version of components, let's
+>> say Gstreamer for example?
+>
+>
+> If you change an upstream repository, oe-core, meta-oe, meta-yocto, etc..
+> You should submit the patch to the appropriate upstream.  If the 'change'
+> has been backported from a newer version then it's already been submitted
+> upstream. (Good process here is to document the commit ID of what you
+> backported, so it's easy to show compliance.)
+>
+> This holds true on .bbappends and new versions of things.  Note: if you put
+> your new version of the code in your own custom layer, you don't need to
+> submit it upstream for compliance.  (But I recommend you do as it will make
+> long term maintenance much easier!)
 
 
-On Apr 17, 2013, at 10:30 PM, Michael Fainstein =
-<Michael.Fainstein@ecitele.com> wrote:
+I don't think i will change 'upstream' repo, in fact i don't even
+think we will redistribute (copy) the upstream oe-core and meta-oe.
+but we will need to use older version of some components (and perhaps
+newer version too sometimes). so I was planning to add the recipes for
+the older versions of an existing component into our 'distro' or
+'extras' layers.
 
-> IMHO program strip should be removed from meta/site/common-linux.
->=20
-> I had a problem in my recipe: 'make install' was failing due to =
-/usr/bin/strip failure to recognize file format (I am building for =
-powerpc on x86_64 PC). I traced this error back to ./configure that was =
-selecting /usr/bin/strip instead of powerpc-fsl-linux-gnuspe-strip. =
-After some more digging I found that configure selects strip due to line =
-db_cv_path_strip=3D${db_cv_path_strip=3D/usr/bin/strip}
-> in meta/site/common-linux.
-> I solved it by setting CONFIG_SITE=3D"" in my recipe.
-> IMHO common-linux should contain only architecture-independent =
-definitions. strip is architecture-dependent (e.g. x86 strip can't =
-handle powerpc files), so it shouldn't be defined in =
-meta/site/common-linux.
+as for .bbappend, i think we will only use bbappend to add non generic
+patches and/or alter the build configure options, none of that would
+need to be upstream, i guess.
 
-
-I would encourage you to write a patch and send it over.
-
+and, yes i understand that if in that process we happen to package new
+components, we will try to 'upstream' them in oe-core or meta-oe, for
+sure.
 
