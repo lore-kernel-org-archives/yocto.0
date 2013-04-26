@@ -1,36 +1,31 @@
-Return-Path: <ndec13@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F936E014D3
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 01:52:06 -0700 (PDT)
-Received: by mail-oa0-f51.google.com with SMTP id k14so3741082oag.38
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 01:52:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=iC/g/KxyrYrGFrLnHQrxKo3lwUam7ZWXU4ZWxJP0TEE=;
-	b=GxPmFx6EUlY/nCr0+LnJtTkcAEyOKS++gPcq1rsdYvHmRxxFOoimDoTLD3MTZw+fN6
-	8FFGMf1vK9UCIDxE2qN/pg4+pzO1Fn7GlLS9nhlfCIWJnQ6SK0dnv+v8Z/tRlA8Sy+WP
-	1+nadgN225ZcHu/PN36zVFyfbsBe8/izCEDegghoJn1Hhp+6MmGZZlppQ6DfpOoqVCvV
-	X5jPd/NhT7mL/lvKUs9vEL+wUSTjNNfzNXX8zkxigkiKsQ0ai7EW95fHlqsSNm4Hkhun
-	8CcwhdtBPdXtVIGvBBsD+WG8rl9pU1DuuAy08/DF7TpVmEXmCO9ByDHXbelg7Yj7YppL
-	wFCQ==
-X-Received: by 10.60.83.70 with SMTP id o6mr17596710oey.81.1366966325664; Fri,
-	26 Apr 2013 01:52:05 -0700 (PDT)
+Return-Path: <sauravkg@huawei.com>
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [119.145.14.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F8CCE014D8
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 04:59:30 -0700 (PDT)
+Received: from 172.24.2.119 (EHLO szxeml213-edg.china.huawei.com)
+	([172.24.2.119])
+	by szxrg01-dlp.huawei.com (MOS 4.3.4-GA FastPath queued)
+	with ESMTP id BBF65121; Fri, 26 Apr 2013 19:59:27 +0800 (CST)
+Received: from SZXEML402-HUB.china.huawei.com (10.82.67.32) by
+	szxeml213-edg.china.huawei.com (172.24.2.30) with Microsoft SMTP Server
+	(TLS) id 14.1.323.7; Fri, 26 Apr 2013 19:59:26 +0800
+Received: from blrprnc04ns (10.18.96.93) by szxeml402-hub.china.huawei.com
+	(10.82.67.32) with Microsoft SMTP Server id 14.1.323.7; Fri, 26 Apr 2013
+	19:59:22 +0800
+From: saurav <sauravkg@huawei.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 26 Apr 2013 17:29:21 +0530
+Message-ID: <000001ce4275$7d75ebd0$7861c370$@com>
 MIME-Version: 1.0
-Received: by 10.76.27.170 with HTTP; Fri, 26 Apr 2013 01:51:45 -0700 (PDT)
-In-Reply-To: <5179AE16.5070201@windriver.com>
-References: <CAOT3miJ_akhKUidZi-0NsA-h7bMtOSrFm+BxGadopC-4qDb1gw@mail.gmail.com>
-	<5179AE16.5070201@windriver.com>
-From: Nicolas Dechesne <ndec13@gmail.com>
-Date: Fri, 26 Apr 2013 10:51:45 +0200
-Message-ID: <CAOT3miJcqmfPmA6bE24XK7mEoNRO4MVR0uKQsS28Ch1pXJ2Nhw@mail.gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Compliance program questions
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: Ac5CdXy3xhjzhMP5Rdqvw1u2NeQpEw==
+X-Originating-IP: [10.18.96.93]
+X-CFilter-Loop: Reflected
+Subject: How to generate rootfs from package feed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: sauravkg@huawei.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,40 +34,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Apr 2013 08:52:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 26 Apr 2013 11:59:30 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0001_01CE42A3.972E27D0"
+Content-Language: en-us
 
-On Fri, Apr 26, 2013 at 12:28 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
->>   - is it tolerated to change the versions of some components from
->> OE-core or meta-oe? Not just add patches through .bbappend, but
->> actually use an older or a more recent version of components, let's
->> say Gstreamer for example?
->
->
-> If you change an upstream repository, oe-core, meta-oe, meta-yocto, etc..
-> You should submit the patch to the appropriate upstream.  If the 'change'
-> has been backported from a newer version then it's already been submitted
-> upstream. (Good process here is to document the commit ID of what you
-> backported, so it's easy to show compliance.)
->
-> This holds true on .bbappends and new versions of things.  Note: if you put
-> your new version of the code in your own custom layer, you don't need to
-> submit it upstream for compliance.  (But I recommend you do as it will make
-> long term maintenance much easier!)
+------=_NextPart_000_0001_01CE42A3.972E27D0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+ 
+
+Can anybody help me with information about rootfs generation?
+
+ 
+
+In Yocto 1.4 or previous releases, Is there a method exists to generate
+rootfs from package feed? 
+
+I am particularly looking at a method where packages need not be rebuild,
+but image needs to be generated by installing packages from package feed.
+
+ 
+
+I see a variable BUILD_IMAGES_FROM_FEEDS, but could not get the exact usage
+of it.
+
+Also want to check if such method exists for both rpm and ipkg formats.
+
+ 
+
+ 
+
+Regards,
+
+Saurav
+
+ 
 
 
-I don't think i will change 'upstream' repo, in fact i don't even
-think we will redistribute (copy) the upstream oe-core and meta-oe.
-but we will need to use older version of some components (and perhaps
-newer version too sometimes). so I was planning to add the recipes for
-the older versions of an existing component into our 'distro' or
-'extras' layers.
+------=_NextPart_000_0001_01CE42A3.972E27D0
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-as for .bbappend, i think we will only use bbappend to add non generic
-patches and/or alter the build configure options, none of that would
-need to be upstream, i guess.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 12 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p =
+class=3DMsoNormal>Hi,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Can anybody =
+help me with information about rootfs generation?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+In Yocto 1.4 or previous releases, Is there a method exists to generate =
+rootfs from package feed? <o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+I am particularly looking at a method where packages need not be =
+rebuild, but image needs to be generated by installing packages from =
+package feed.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+&nbsp;<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+I see a variable BUILD_IMAGES_FROM_FEEDS, but could not get the exact =
+usage of it.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+Also want to check if such method exists for both rpm and ipkg =
+formats.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+<o:p>&nbsp;</o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+<o:p>&nbsp;</o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";color:black'>=
+Regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal>Saurav<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-and, yes i understand that if in that process we happen to package new
-components, we will try to 'upstream' them in oe-core or meta-oe, for
-sure.
-
+------=_NextPart_000_0001_01CE42A3.972E27D0--
