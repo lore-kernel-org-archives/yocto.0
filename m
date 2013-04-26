@@ -1,35 +1,38 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 330B3E013C3
-	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 15:51:21 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 25 Apr 2013 15:51:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,553,1363158000"; d="scan'208";a="325712050"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga002.jf.intel.com with ESMTP; 25 Apr 2013 15:51:19 -0700
-Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 25 Apr 2013 15:51:14 -0700
-Received: from orsmsx104.amr.corp.intel.com ([169.254.3.124]) by
-	ORSMSX155.amr.corp.intel.com ([169.254.7.179]) with mapi id
-	14.01.0355.002; Thu, 25 Apr 2013 15:51:14 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Atanas Gegov <atanas.gegov.oss@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [eclipse-poky][RFCv2 0/7] Introducing a
-	YoctoSDKCMakeProjectNature
-Thread-Index: AQHOQbEHSa/GwU/Cb0OdsTEA4s7PW5jnizWQ
-Date: Thu, 25 Apr 2013 22:51:14 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C6FDD0241@ORSMSX104.amr.corp.intel.com>
-References: <1366893153-9880-1-git-send-email-atanas.gegov.oss@gmail.com>
-In-Reply-To: <1366893153-9880-1-git-send-email-atanas.gegov.oss@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <twoerner@gmail.com>
+Received: from mail-oa0-f47.google.com (mail-oa0-f47.google.com
+	[209.85.219.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1FC8E01496
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 18:30:27 -0700 (PDT)
+Received: by mail-oa0-f47.google.com with SMTP id n9so3453460oag.20
+	for <yocto@yoctoproject.org>; Thu, 25 Apr 2013 18:30:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=TBbvAkj6BcTTfUtxfr/Pqa629a66l6uHw74j7lIo/nk=;
+	b=wYfDlTNK5tbWN/zBJWZ6J8M0wxR99jCJkUPd/v/G2/JIe3Dq5L+UPjeMcoVCDY2OI3
+	YE3Huvq4O2zPTKET4OkcBCrr886FtN+tNHSYp9sUWgmhUxaCfj9403FDCym4RbbVIm1S
+	If9i3RjRKRkNSrBb5+s0nycbH98IkPADJFYIUA0VLqgVuxYxepw2ZR5f3/0mqeuWQHHx
+	nqSTL4HHE86DYhxqz+k/qBvPdSD0z9Naa5DjJwxa3RKkthKFZk3E50rlAs8t8NMrvHq5
+	36OjdUQ3zLYg50V09tCnU7MbbODF6+YvY5CJ6eJwCYZ/MkWO9v92qkK1HirFKa1xHVFQ
+	m+Iw==
 MIME-Version: 1.0
-Subject: Re: [eclipse-poky][RFCv2 0/7] Introducing a	YoctoSDKCMakeProjectNature
+X-Received: by 10.60.16.74 with SMTP id e10mr5124840oed.68.1366939827283; Thu,
+	25 Apr 2013 18:30:27 -0700 (PDT)
+Received: by 10.76.169.194 with HTTP; Thu, 25 Apr 2013 18:30:27 -0700 (PDT)
+In-Reply-To: <1365545491.1526.5.camel@empanada>
+References: <alpine.DEB.2.02.1304081135020.23038@oneiric>
+	<1365469127.17697.70.camel@empanada>
+	<alpine.DEB.2.02.1304090729220.4184@oneiric>
+	<CAHUNapRQTMvCE=8RLNhae+sm6=VN7pP4TfbBBM0nvcCR5aTmkQ@mail.gmail.com>
+	<alpine.DEB.2.02.1304091746080.4929@oneiric>
+	<CAHUNapTHjYk6fWdRsk0-xLBEP5kUgnCR7Ss3TrvTuE9svgnKjQ@mail.gmail.com>
+	<1365545491.1526.5.camel@empanada>
+Date: Thu, 25 Apr 2013 21:30:27 -0400
+Message-ID: <CAHUNapSPM68REknz=+bdK6fyAP+17QmUn36r1xjrjTuFP=UPuA@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Tom Zanussi <tom.zanussi@intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: working my way through the kernel hands-on labs finally
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,81 +44,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Apr 2013 22:51:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 26 Apr 2013 01:30:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Atanas,
+On Tue, Apr 9, 2013 at 6:11 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+> On Tue, 2013-04-09 at 18:06 -0400, Trevor Woerner wrote:
+>> On Tue, Apr 9, 2013 at 5:46 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>> >   ok, so what am i looking for?
+>>
+>> I couldn't get lab3 to work fully unless I switched from package_ipk
+>> to package_rpm. The module would get built and included in the image,
+>> but it wasn't being loaded automatically during boot. At the time I
+>> tried against the master HEAD and everything worked fine, so whatever
+>> it is I think I've found, it has been fixed (this is only a
+>> danny-8.0.1 problem).
+>>
+>> https://lists.yoctoproject.org/pipermail/yocto/2013-February/014424.html
+>>
+>> When I mentioned it, it didn't seem to make sense that the choice of
+>> packaging should affect something like this. But I tried it a couple
+>> times on my machine and could reproduce it. I don't think anyone else
+>> tried reproducing it.
+>
+> I believe I tried and couldn't reproduce it.  But if someone does
+> reproduce it, please file a bug detailing the *exact* steps needed to
+> reproduce.
 
-Looks good to me.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=4423
 
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Atanas Gegov
-Sent: Thursday, April 25, 2013 5:32 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [eclipse-poky][RFCv2 0/7] Introducing a YoctoSDKCMakeProje=
-ctNature
-
-From: Atanas Gegov <atanas.gegov@bmw-carit.de>
-
-Hi,
-
-This patch series introduces a YoctoSDKCMakeProjectNature as a new nature f=
-or CMake-based Yocto Projects in the IDE. It requires the basic YoctoSDKPro=
-jectNature and is an alternative to the YoctoSDKAutotoolsProjectNature.
-
-This does not affect the currently existing Autotools template projects.
-
-Upcoming patch series will add the last missing parts for having CMake proj=
-ects in the IDE: a ManagedBuilder for CMake (CMake toolchain for building i=
-n Eclipse) and some template projects.
-
-Cheers, Atanas
-
-P.S: This patch series apply on the current master "Display progress bar wh=
-ile running systemtap script"
-(0006f3194e0050bb69887cece970df7a820b8c30).
-
-Atanas Gegov (7):
-  plugins/sdk.ide: Prepared templates for CMake nature
-  plugins/sdk.ide: Added a new YoctoSDKCMakeProjectNature
-  plugins/sdk.ide: Enable the creation of CMake projects
-  plugins/sdk.ide: Update CMake projects on Yocto settings change
-  plugins/sdk.ide: Renamed template process
-  plugins/sdk.ide: Fixed whitespace issues
-  plugins/sdk.ide: Extracted member variables
-
- .../OSGI-INF/l10n/bundle.properties                |    1 +
- plugins/org.yocto.sdk.ide/plugin.xml               |   25 +-
- .../ide/natures/YoctoSDKCMakeProjectNature.java    |   92 +++++++
- .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    7 +-
- .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |  245 ----------------=
---
- .../ide/wizard/NewYoctoProjectTemplateProcess.java |  267 ++++++++++++++++=
-++++
- .../EmptyCAutotoolsProject/template.xml            |    1 +
- .../EmptyCPPAutotoolsProject/template.xml          |    1 +
- .../HelloWorldCAutotoolsProject/template.xml       |    1 +
- .../HelloWorldCGTKAutotoolsProject/template.xml    |    1 +
- .../HelloWorldCPPAutotoolsProject/template.xml     |    1 +
- 11 files changed, 395 insertions(+), 247 deletions(-)  create mode 100644 =
-plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjec=
-tNature.java
- delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
-NewYoctoCProjectTemplate.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
-NewYoctoProjectTemplateProcess.java
-
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+This is still reproducible. This time I also gave it a try using a
+Fedora 18 (64) VM. Lab 3 does not work if you set PACKAGE_CLASSES to
+"package_ipk".
 
