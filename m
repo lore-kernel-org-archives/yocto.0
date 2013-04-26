@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC375E01519
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 07:51:06 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE669E014E5
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 07:51:07 -0700 (PDT)
 Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 26 Apr 2013 07:51:06 -0700
+	by azsmga102.ch.intel.com with ESMTP; 26 Apr 2013 07:51:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,559,1363158000"; d="scan'208";a="293621312"
+X-IronPort-AV: E=Sophos;i="4.87,559,1363158000"; d="scan'208";a="293621325"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by azsmga001.ch.intel.com with ESMTP; 26 Apr 2013 07:51:04 -0700
+	by azsmga001.ch.intel.com with ESMTP; 26 Apr 2013 07:51:06 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 26 Apr 2013 17:32:02 +0300
-Message-Id: <1366986723-27748-4-git-send-email-ioanax.grigoropol@intel.com>
+Date: Fri, 26 Apr 2013 17:32:03 +0300
+Message-Id: <1366986723-27748-5-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1366986723-27748-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1366986723-27748-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 3/4] Unify preProcess for all commands models
+Subject: [PATCH 4/4] Add default behaviour for commands for post processing Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,279 +29,100 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 26 Apr 2013 14:51:08 -0000
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../yocto/sdk/remotetools/actions/BaseModel.java   |   22 +++++++--
- .../sdk/remotetools/actions/OprofileModel.java     |   42 +++++------------
- .../sdk/remotetools/actions/PowertopModel.java     |   39 +++++-----------
- .../sdk/remotetools/actions/SystemtapModel.java    |   30 ++++++-------
- .../yocto/sdk/remotetools/actions/Ust2Model.java   |   47 ++++++--------------
- .../sdk/remotetools/actions/UstModelLegacy.java    |   44 +++++-------------
- 6 files changed, 79 insertions(+), 145 deletions(-)
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |    3 ++-
+ .../sdk/remotetools/actions/OprofileModel.java     |    6 ------
+ .../sdk/remotetools/actions/PowertopModel.java     |    1 -
+ .../sdk/remotetools/actions/SystemtapModel.java    |    5 -----
+ .../yocto/sdk/remotetools/actions/Ust2Model.java   |   12 ------------
+ .../sdk/remotetools/actions/UstModelLegacy.java    |    6 +-----
+ 6 files changed, 3 insertions(+), 30 deletions(-)
 
 diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-index e1abd63..e13d1cf 100644
+index e13d1cf..650cc67 100644
 --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
 +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-@@ -16,11 +16,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.SubProgressMonitor;
- import org.eclipse.jface.operation.IRunnableWithProgress;
- import org.eclipse.rse.core.model.IHost;
-+import org.yocto.sdk.remotetools.RSEHelper;
- 
- abstract public class BaseModel implements IRunnableWithProgress {
- 	protected IHost host;
- 	protected String taskName;
--
-+	protected String localScript;
-+	protected String remoteExec;
-+	
- 	private static final int WORKLOAD = 100;
- 
- 	private static final int INIT_PERCENT = 5;
-@@ -37,13 +40,26 @@ abstract public class BaseModel implements IRunnableWithProgress {
- 	private static final String CLEAN_MSG = "Cleaning ";
- 	private static final String DOTS = "...";
- 
--	abstract public void preProcess(IProgressMonitor monitor) throws InvocationTargetException,	InterruptedException;
-+	public void preProcess(IProgressMonitor monitor) throws InvocationTargetException,	InterruptedException{
-+		//upload script to remote
-+		try {
-+			RSEHelper.putRemoteFileInPlugin(host, localScript, remoteExec, monitor);
-+		}catch (InterruptedException e){
-+			throw e;
-+		}catch (InvocationTargetException e) {
-+			throw e;
-+		}catch (Exception e) {
-+			throw new InvocationTargetException(e, e.getMessage());
-+		}
-+	}
- 	abstract public void postProcess(IProgressMonitor monitor) throws InvocationTargetException,InterruptedException;
+@@ -52,7 +52,8 @@ abstract public class BaseModel implements IRunnableWithProgress {
+ 			throw new InvocationTargetException(e, e.getMessage());
+ 		}
+ 	}
+-	abstract public void postProcess(IProgressMonitor monitor) throws InvocationTargetException,InterruptedException;
++	public void postProcess(IProgressMonitor monitor) throws InvocationTargetException,InterruptedException{}
++
  	abstract public void process(IProgressMonitor monitor) throws InvocationTargetException,InterruptedException;
  	
--	BaseModel(IHost host, String taskName) {
-+	BaseModel(IHost host, String taskName, String localScript, String remoteExec) {
- 		this.host = host;
- 		this.taskName = taskName;
-+		this.localScript = localScript;
-+		this.remoteExec = remoteExec;
- 	}
- 	protected void init(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
- 	}
+ 	BaseModel(IHost host, String taskName, String localScript, String remoteExec) {
 diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-index 71ff4d9..31c0667 100644
+index 31c0667..794a101 100644
 --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
 +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-@@ -18,49 +18,29 @@ import java.lang.reflect.InvocationTargetException;
- 
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.SubProgressMonitor;
--import org.eclipse.rse.core.model.IHost;
- import org.eclipse.jface.preference.IPreferenceStore;
-+import org.eclipse.rse.core.model.IHost;
- import org.eclipse.ui.IWorkbenchWindow;
--
- import org.yocto.sdk.ide.YoctoSDKPlugin;
- import org.yocto.sdk.ide.preferences.PreferenceConstants;
--import org.yocto.sdk.remotetools.remote.RemoteApplication;
- import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.LocalJob;
- import org.yocto.sdk.remotetools.Messages;
--import org.yocto.sdk.remotetools.RSEHelper;
-+import org.yocto.sdk.remotetools.remote.RemoteApplication;
- 
- public class OprofileModel extends BaseModel {
- 	
--	static final private String REMOTE_EXEC="/tmp/yocto_tool.sh";
--	static final private String LOCAL_SCRIPT="resources/yocto_tool.sh";
--	static final private String LOCAL_EXEC="oprofile-viewer";
-+	private static final String REMOTE_EXEC = "/tmp/yocto_tool.sh";
-+	private static final String LOCAL_SCRIPT = "resources/yocto_tool.sh";
-+	
-+	private static final String LOCAL_EXEC = "oprofile-viewer";
- 	
- 	private static final String TASK_NAME = "oprofile command";
- 
- 	private IWorkbenchWindow window;
- 	public OprofileModel(IHost host, IWorkbenchWindow window) {
--		super(host, TASK_NAME);
--		this.window=window;
--	}
+@@ -42,12 +42,6 @@ public class OprofileModel extends BaseModel {
+ 		super(host, TASK_NAME, LOCAL_SCRIPT, REMOTE_EXEC);
+ 		this.window = window;
+ 	}
 -
 -	@Override
--	public void preProcess(IProgressMonitor monitor)
+-	public void postProcess(IProgressMonitor monitor)
 -			throws InvocationTargetException, InterruptedException {
--		//upload script to remote
--		try {
--			RSEHelper.putRemoteFileInPlugin(
--					host,
--					LOCAL_SCRIPT, 
--					REMOTE_EXEC,
--					monitor);
--		}catch (InterruptedException e){
--			throw e;
--		}catch (InvocationTargetException e) {
--			throw e;
--		}catch (Exception e) {
--			throw new InvocationTargetException(e,e.getMessage());
--		}
-+		super(host, TASK_NAME, LOCAL_SCRIPT, REMOTE_EXEC);
-+		this.window = window;
- 	}
- 
- 	@Override
-@@ -71,7 +51,7 @@ public class OprofileModel extends BaseModel {
+-
+-	}
  	
  	private void startServer(IProgressMonitor monitor) throws Exception {
  		int exit_code;
--		RemoteApplication app=new RemoteApplication(host,null,REMOTE_EXEC,null);
-+		RemoteApplication app = new RemoteApplication(host, null, remoteExec, null);
- 		String args="start -d oprofile-server";
- 		
- 		try {
-@@ -92,8 +72,8 @@ public class OprofileModel extends BaseModel {
- 	
- 	private void stopServer(IProgressMonitor monitor) throws Exception {
- 		
--		RemoteApplication app=new RemoteApplication(host,null,REMOTE_EXEC,null);
--		String args="stop -d oprofile-server";
-+		RemoteApplication app = new RemoteApplication(host, null, remoteExec, null); 
-+		String args = "stop -d oprofile-server";
- 		try {
- 			monitor.beginTask("Stopping oprofile-server", 2);
- 			app.start(null,args,monitor);
 diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java
-index c5f11d3..dc43af0 100644
+index dc43af0..0bd4e9e 100644
 --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java
 +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PowertopModel.java
-@@ -29,10 +29,11 @@ import org.yocto.sdk.remotetools.views.BaseFileView;
- 
- public class PowertopModel extends BaseModel {
- 	
--	final private String REMOTE_EXEC="/tmp/yocto_tool.sh";
--	final private String LOCAL_SCRIPT="resources/yocto_tool.sh";
--	final private String REMOTE_FILE_PREFIX="/tmp/yocto-powertop-";
--	final private String LOCAL_FILE_SUFFIX=".local";
-+	private static final String REMOTE_EXEC = "/tmp/yocto_tool.sh";
-+	private static final String LOCAL_SCRIPT = "resources/yocto_tool.sh";
-+	
-+	final private String REMOTE_FILE_PREFIX = "/tmp/yocto-powertop-";
-+	final private String LOCAL_FILE_SUFFIX = ".local";
- 
- 	private static final String TASK_NAME = "powertop command";
- 
-@@ -44,31 +45,11 @@ public class PowertopModel extends BaseModel {
- 	String remotefile;
- 	
- 	public PowertopModel(IHost host, Float time,boolean showpid,Display display) {
--		super(host, TASK_NAME);
-+		super(host, TASK_NAME, LOCAL_SCRIPT, REMOTE_EXEC);
- 		this.time=time;
- 		this.showpid=showpid;
- 		this.display=display;
- 	}
--	
--	@Override
--	public void preProcess(IProgressMonitor monitor)
--			throws InvocationTargetException, InterruptedException {
--		//upload script to remote
--		try {
--			RSEHelper.putRemoteFileInPlugin(
--					host,
--					LOCAL_SCRIPT, 
--					REMOTE_EXEC,
--					monitor);
--		}catch (InterruptedException e){
--			throw e;
--		}catch (InvocationTargetException e) {
--			throw e;
--		}catch (Exception e) {
--			throw new InvocationTargetException(e,e.getMessage());
--		}
--
--	}
- 
- 	@Override
- 	public void postProcess(IProgressMonitor monitor)
-@@ -82,13 +63,13 @@ public class PowertopModel extends BaseModel {
- 	
- 	private void generateData(IProgressMonitor monitor) throws Exception {
- 		int exit_code;
--		RemoteApplication app=new RemoteApplication(host,null,REMOTE_EXEC,null);
-+		RemoteApplication app = new RemoteApplication(host, null, remoteExec, null);
- 		String currentDate=new SimpleDateFormat("yyyyMMddHHmmssSSS").format(Calendar.getInstance().getTime()).toString();
--		remotefile=new String(REMOTE_FILE_PREFIX + currentDate);
--		localfile=new String(remotefile + LOCAL_FILE_SUFFIX);
-+		remotefile = new String(REMOTE_FILE_PREFIX + currentDate);
-+		localfile = new String(remotefile + LOCAL_FILE_SUFFIX);
- 		
- 		ArrayList <String> param= new ArrayList <String>();
--		param.add(REMOTE_EXEC);
-+		param.add(remoteExec);
- 		param.add("start");
- 		param.add("-l");
- 		param.add(remotefile);
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-index 41c79df..294f866 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-@@ -37,13 +37,13 @@ public class SystemtapModel extends BaseModel {
- 	Display display;
- 	
- 	public SystemtapModel(String metadata_location, String remote_host, String user_id, String systemtap_script, String systemtap_args, Display display) {
--		super(null, TASK_NAME);
--		this.metadata_location=metadata_location;
--		this.remote_host=remote_host;
--		this.user_id=user_id;
--		this.systemtap_script=systemtap_script;
-+		super(null, TASK_NAME, "", "");
-+		this.metadata_location = metadata_location;
-+		this.remote_host = remote_host;
-+		this.user_id = user_id;
-+		this.systemtap_script = systemtap_script;
- 		this.systemtap_args = systemtap_args;
--		this.display=display;
-+		this.display = display;
- 		if (sessionConsole == null) {
- 			IConsoleManager conMan = ConsolePlugin.getDefault().getConsoleManager();
- 			IConsole[] existing = conMan.getConsoles();
-@@ -62,13 +62,12 @@ public class SystemtapModel extends BaseModel {
- 	}
- 	
- 	@Override
--	
--	public void preProcess(IProgressMonitor monitor)
--			throws InvocationTargetException, InterruptedException {
--	}
-+	public void preProcess(IProgressMonitor monitor) 
-+			throws InvocationTargetException, InterruptedException {}
-     
--	public void process(IProgressMonitor monitor)
--	throws InvocationTargetException, InterruptedException {
-+	@Override
-+	public void process(IProgressMonitor monitor) 
-+			throws InvocationTargetException, InterruptedException {
+@@ -57,7 +57,6 @@ public class PowertopModel extends BaseModel {
  		try {
- 			ShellSession shell = new ShellSession(ShellSession.SHELL_TYPE_BASH, 
- 												new File(this.metadata_location),
-@@ -85,9 +84,8 @@ public class SystemtapModel extends BaseModel {
+ 			new File(localfile).delete();
+ 		}catch (Exception e) {
+-			
  		}
  	}
  	
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
+index 294f866..ed8960d 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
+@@ -83,9 +83,4 @@ public class SystemtapModel extends BaseModel {
+ 			throw new InvocationTargetException(e,e.getMessage());
+ 		}
+ 	}
 -	
--	public void postProcess(IProgressMonitor monitor)
--			throws InvocationTargetException, InterruptedException {
--	}
-+	@Override
-+	public void postProcess(IProgressMonitor monitor) 
-+			throws InvocationTargetException, InterruptedException {}
- 
+-	@Override
+-	public void postProcess(IProgressMonitor monitor) 
+-			throws InvocationTargetException, InterruptedException {}
+-
  }
 diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java
-index 171f17b..40a86d5 100644
+index 40a86d5..2f508a6 100644
 --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java
 +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust2Model.java
-@@ -20,26 +20,25 @@ import org.eclipse.core.resources.IProject;
+@@ -57,18 +57,6 @@ public class Ust2Model extends BaseModel {
+ 		prj_name = project;
+ 		this.window = window;
+ 	}
+-
+-	@Override
+-	public void postProcess(IProgressMonitor monitor)
+-			throws InvocationTargetException, InterruptedException {
+-		try {
+-			//new File(localfile).delete();
+-			//NOT delete the directory since lttv-gui is running asynchronously
+-			//new File(localfile.substring(0,localfile.length()-LOCAL_FILE_SUFFIX.length())).delete();
+-		}catch (Exception e) {
+-			
+-		}
+-	}
+ 	
+ 	private String generateData(IProgressMonitor monitor) throws Exception {
+ 		int exit_code;
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
+index ef7fe04..ae00da6 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
+@@ -20,13 +20,12 @@ import org.eclipse.core.resources.IProject;
  import org.eclipse.core.resources.IResource;
  import org.eclipse.core.resources.IWorkspaceRoot;
  import org.eclipse.core.resources.ResourcesPlugin;
@@ -313,147 +134,20 @@ index 171f17b..40a86d5 100644
  import org.eclipse.rse.core.model.IHost;
  import org.eclipse.ui.IWorkbenchWindow;
 -
+ import org.yocto.sdk.remotetools.CommonHelper;
+ import org.yocto.sdk.remotetools.Messages;
  import org.yocto.sdk.remotetools.RSEHelper;
- import org.yocto.sdk.remotetools.remote.RemoteApplication;
- 
- public class Ust2Model extends BaseModel {
- 	
--	static final private String REMOTE_EXEC="/tmp/ust_tar.sh";
--	static final private String LOCAL_SCRIPT="resources/ust_tar.sh";
-+	private static final String REMOTE_EXEC = "/tmp/ust_tar.sh";
-+	private static final String LOCAL_SCRIPT = "resources/ust_tar.sh";
- 	
--	static final private String LOCAL_FILE_SUFFIX=".local.tar";
--	static final private String REMOTE_FILE_SUFFIX=".tar";
--	static final private String LOCAL_EXEC="lttv-gui";
--	public static final String TRACE_FOLDER_NAME = "Traces";
--	static final private String DATAFILE_PREFIX = "ustfile:";
-+	private static final String LOCAL_FILE_SUFFIX = ".local.tar";
-+	private static final String REMOTE_FILE_SUFFIX = ".tar";
-+	private static final String LOCAL_EXEC = "lttv-gui";
-+	private static final String TRACE_FOLDER_NAME = "Traces";
-+	private static final String DATAFILE_PREFIX = "ustfile:";
- 
- 	private static final String TASK_NAME = "ust2trace command";
- 		
-@@ -52,31 +51,11 @@ public class Ust2Model extends BaseModel {
- 	private IWorkbenchWindow window;
- 	
- 	public Ust2Model(IHost host, String trace, String project, IWorkbenchWindow window) {
--		super(host, TASK_NAME);
--		trace_loc=trace;
-+		super(host, TASK_NAME, LOCAL_SCRIPT, REMOTE_EXEC);
-+		trace_loc = trace;
- 		
- 		prj_name = project;
--		this.window=window;
--	}
--
--	@Override
--	public void preProcess(IProgressMonitor monitor)
--			throws InvocationTargetException, InterruptedException {
--		///upload script to remote
--		try {
--			RSEHelper.putRemoteFileInPlugin(
--					host,
--					LOCAL_SCRIPT, 
--					REMOTE_EXEC,
--					monitor);
--		}catch (InterruptedException e){
--			throw e;
--		}catch (InvocationTargetException e) {
--			throw e;
--		}catch (Exception e) {
--			throw new InvocationTargetException(e,e.getMessage());
--		}
--
-+		this.window = window;
- 	}
- 
- 	@Override
-@@ -93,9 +72,9 @@ public class Ust2Model extends BaseModel {
- 	
- 	private String generateData(IProgressMonitor monitor) throws Exception {
- 		int exit_code;
--		RemoteApplication app=new RemoteApplication(host,null,REMOTE_EXEC,null);
-+		RemoteApplication app = new RemoteApplication(host, null, remoteExec, null);
- 		
--		String remoteDataFile=null;
-+		String remoteDataFile = null;
- 		
+@@ -66,10 +65,7 @@ public class UstModelLegacy extends BaseModel {
+ 			throws InvocationTargetException, InterruptedException {
  		try {
- 			String temp;
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
-index 5920fda..ef7fe04 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
-@@ -34,14 +34,14 @@ import org.yocto.sdk.remotetools.remote.RemoteApplication;
- 
- public class UstModelLegacy extends BaseModel {
- 	
--	static final private String REMOTE_EXEC="/tmp/yocto_ust.sh";
--	static final private String LOCAL_SCRIPT="resources/yocto_ust.sh";
-+	private static final String REMOTE_EXEC = "/tmp/yocto_ust.sh";
-+	private static final String LOCAL_SCRIPT = "resources/yocto_ust.sh";
- 	
--	static final private String LOCAL_FILE_SUFFIX=".local.tar";
--	static final private String REMOTE_FILE_SUFFIX=".tar";
--	static final private String LOCAL_EXEC="lttv-gui";
--	public static final String TRACE_FOLDER_NAME = "Traces";
--	static final private String DATAFILE_PREFIX = "ustfile:";
-+	private static final String LOCAL_FILE_SUFFIX = ".local.tar";
-+	private static final String REMOTE_FILE_SUFFIX = ".tar";
-+	private static final String LOCAL_EXEC = "lttv-gui";
-+	private static final String TRACE_FOLDER_NAME = "Traces";
-+	private static final String DATAFILE_PREFIX = "ustfile:";
- 
- 	private static final String TASK_NAME = "usttrace command";
- 		
-@@ -54,31 +54,11 @@ public class UstModelLegacy extends BaseModel {
- 	private IWorkbenchWindow window;
- 	
- 	public UstModelLegacy(IHost host, String app,String arg, String project, IWorkbenchWindow window) {
--		super(host, TASK_NAME);
--		application=app;
--		argument=arg;
-+		super(host, TASK_NAME, LOCAL_SCRIPT, REMOTE_EXEC);
-+		application = app;
-+		argument = arg;
- 		prj_name = project;
--		this.window=window;
--	}
--
--	@Override
--	public void preProcess(IProgressMonitor monitor)
--			throws InvocationTargetException, InterruptedException {
--		///upload script to remote
--		try {
--			RSEHelper.putRemoteFileInPlugin(
--					host,
--					LOCAL_SCRIPT, 
--					REMOTE_EXEC,
--					monitor);
--		}catch (InterruptedException e){
--			throw e;
--		}catch (InvocationTargetException e) {
--			throw e;
--		}catch (Exception e) {
--			throw new InvocationTargetException(e,e.getMessage());
--		}
--
-+		this.window = window;
+ 			new File(localfile).delete();
+-			//NOT delete the directory since lttv-gui is running asynchronously
+-			//new File(localfile.substring(0,localfile.length()-LOCAL_FILE_SUFFIX.length())).delete();
+ 		}catch (Exception e) {
+-			
+ 		}
  	}
- 
- 	@Override
-@@ -95,7 +75,7 @@ public class UstModelLegacy extends BaseModel {
  	
- 	private String generateData(IProgressMonitor monitor) throws Exception {
- 		int exit_code;
--		RemoteApplication app=new RemoteApplication(host,null,REMOTE_EXEC,null);
-+		RemoteApplication app = new RemoteApplication(host, null, remoteExec, null);
- 		String tempArgs=new String();
- 		if(application!=null)
- 			tempArgs=tempArgs.concat(application + " ");
 -- 
 1.7.9.5
 
