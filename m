@@ -1,31 +1,33 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f53.google.com (mail-vb0-f53.google.com
-	[209.85.212.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EA8CE014E9
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 15:49:24 -0700 (PDT)
-Received: by mail-vb0-f53.google.com with SMTP id i3so975024vbh.26
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2013 15:49:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=r79k/07/7Pe4AE/YeF12pzRlYahZStbfamDabXJCGyQ=;
-	b=MRIbBJW59D4UWBJrALo10zjJD7oIbHlEW81syj//6GRX2QYQqdPZU3MNa7HIB6sju5
-	WTOn4TxnKyfRi3TSWDc2ZKPu7FGb8QNZLG7d7PO6BdeE22EucQNPrtv7VZ1OlV8yiNwU
-	aIHWzmvb/TpMIQFSop5VSoiOohOphCmsoiaxWjBEqI6sxOj8qcKPhwwcLg7Hf3sqnKKj
-	O6JaGucrOKFlxtNUUnR5k1SbX9cXpMYJAu4U/h11x885pgrl4zFi48tVdjGKbQrCg6Bs
-	CpyNl1EysSOD+A8jcj5yPysVhjutUI1W/Q3/iC5C6dX0pKTzJjX1Nwb42TRK22tW22mu
-	9EMg==
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38D9CE014EF
+	for <yocto@yoctoproject.org>; Sat, 27 Apr 2013 01:41:02 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 27 Apr 2013 01:41:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,562,1363158000"; d="scan'208";a="233471331"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 Apr 2013 01:41:00 -0700
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.73]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.19]) with mapi id
+	14.01.0355.002; Sat, 27 Apr 2013 09:40:15 +0100
+From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH 0/4] Initial changes for developing a common
+	remote	plugin
+Thread-Index: AQHOQqwkVsufIgqhuk+z8AGNyhvZ5JjpvYwg
+Date: Sat, 27 Apr 2013 08:40:09 +0000
+Message-ID: <3E179CF0D7162B4AA4E2B324209A4639B37EA3@IRSMSX101.ger.corp.intel.com>
+References: <1366986723-27748-1-git-send-email-ioanax.grigoropol@intel.com>
+	<C6510F6D410BB64A8C15398EDC6B847C6FDD096B@ORSMSX104.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C6FDD096B@ORSMSX104.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-X-Received: by 10.220.168.2 with SMTP id s2mr29724082vcy.6.1367016563516; Fri,
-	26 Apr 2013 15:49:23 -0700 (PDT)
-Received: by 10.52.163.79 with HTTP; Fri, 26 Apr 2013 15:49:23 -0700 (PDT)
-Date: Fri, 26 Apr 2013 15:49:23 -0700
-Message-ID: <CAPhnLPDTKb2Ukvc+wUGiwS9zbZ12HdhSjDAMM6DGPgpWnYxa6Q@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
-X-Gm-Message-State: ALoCoQn+PsUukctij382vd8XtGvMggYnc0idPomgwLEqkoTgci+vabgti2W/AETHX52W3j85LHEp
-Subject: [ANNOUNCEMENT] Yocto Project 1.4 "dylan" Released.
+Subject: Re: [PATCH 0/4] Initial changes for developing a common remote	plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,201 +39,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Apr 2013 22:49:24 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 27 Apr 2013 08:41:02 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-All,
+Hi Jessica,
 
-I am pleased to announce the availability of the latest major release
-of the Yocto Project, "dylan".
-gpg signed release notes are available at:
+Yes it makes sense.=20
+The reason why I started refactoring the code in the remote tools is to try=
+ and isolate the functionality we need to move to the separate plugin.  Ins=
+tead of moving everything in the first place, I am trying to reduce the cod=
+e to single points of control without modifying the actual functionalities =
+of the Helpers.
+I can do the refactoring the other way around, but I think this way is clea=
+ner because I would be clear what we need to keep in the helpers and what t=
+o drop.
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/RELEASENOTES.txt
+Thanks,
+Ioana
 
-The kernel.org sync is not quite complete, but should finish in the
-next few hours.
+-----Original Message-----
+From: Zhang, Jessica=20
+Sent: Friday, April 26, 2013 9:31 PM
+To: Grigoropol, IoanaX; yocto@yoctoproject.org
+Subject: RE: [yocto] [PATCH 0/4] Initial changes for developing a common re=
+mote plugin
 
-Congratulations to everyone for a successful release!
+Hi Ioana,
 
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+I thought we're going to create a common remote util plugin first then modi=
+fy the remotetools and bc.ui to use this new remote util plugin.  From your=
+ patch series, the 1st path seems you're doing that but the following 3 you=
+ are making changes to remote tools files.  I'd like us to focus on creatin=
+g this common util first then switch to modify the other plug-ins by using =
+this common util.  I'd expect this common util will contain classes that ho=
+st all the functions that currently exist in RemoteHelper.java in bc.ui jzh=
+ang/windows-build and RSEHelper.java in remotetools.  There are many duplic=
+ate codes in these classes that we should abstract them out to put in this =
+common util plug-in.  Does this make sense?
+
+Also, please add License header in new files if you are going to introduce =
+any.
+
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol
+Sent: Friday, April 26, 2013 7:32 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [PATCH 0/4] Initial changes for developing a common remote=
+ plugin
+
+- create a separate plugin in which to drop all tools needed for remote sup=
+port
+  - will leave it empty until all functionalilty is properly separated & th=
+e util remote code is clearly distinguised
+- code refactoring for remote tools plugin in order to simplify code and cr=
+eate single point of control over commands stages
+
+[Yocto #4362]
+Ioana Grigoropol (4):
+  Initial commit for remote separate plugin
+  Refactor Model(s) to display customized messages
+  Unify preProcess for all commands models
+  Add default behaviour for commands for post processing   =20
+    Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+
+ plugins/org.yocto.remote.utils/.classpath          |    7 ++
+ plugins/org.yocto.remote.utils/.project            |   28 ++++++
+ .../.settings/org.eclipse.jdt.core.prefs           |    7 ++
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   10 +++
+ plugins/org.yocto.remote.utils/build.properties    |    4 +
+ .../src/org/yocto/remote/utils/Activator.java      |   50 +++++++++++
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |   89 +++++++++++++---=
+----
+ .../sdk/remotetools/actions/OprofileModel.java     |   53 ++++--------
+ .../sdk/remotetools/actions/PowertopModel.java     |   47 ++++-------
+ .../sdk/remotetools/actions/SystemtapModel.java    |   34 ++++----
+ .../yocto/sdk/remotetools/actions/Ust2Model.java   |   63 ++++----------
+ .../sdk/remotetools/actions/UstModelLegacy.java    |   54 ++++--------
+ 12 files changed, 243 insertions(+), 203 deletions(-)  create mode 100644 =
+plugins/org.yocto.remote.utils/.classpath
+ create mode 100644 plugins/org.yocto.remote.utils/.project
+ create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jd=
+t.core.prefs
+ create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+ create mode 100644 plugins/org.yocto.remote.utils/build.properties
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/Activator.java
+
 --
+1.7.9.5
 
-Yocto Project 1.4 "Dylan" Release (poky 9.0.0)
-
-* Summary
-* Errata and Downloads
-* Features
-* Bug Metrics
-* Migration Issues
-* Known Issues
-
-____________________
-Summary
-____________________
-
-The latest major release of the Yocto Project, 1.4 "dylan", is now
-available for download at:
-
-* http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/poky-dylan-9.0=
-.0.tar.bz2
-* http://mirrors.kernel.org/yocto/yocto/yocto-1.4/poky-dylan-9.0.0.tar.bz2
-
-Improvements over the Yocto Project 1.3 "danny" Release include:
-
-    - Major performance improvements
-    - Smart, a replacement for zypper
-    - Read-only rootfs
-    - Wayland support, an X replacement.
-    - Systemd support, a replacement for the system V init daemon.
-    - Over 400 bugs fixed
-
-____________________
-Errata and Downloads
-____________________
-
-Release Name: poky-dylan-9.0.0
-Branch:  dylan
-Tag:  dylan-9.0.0
-Hash:  789b2b7e0cca404ff8ba8ed5ba823d215e6ba5b4
-md5: 9f9ac0c4152df569aa8707a228828741
-Download Locations:
-
- * http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/poky-dylan-9.=
-0.0.tar.bz2
- * http://mirrors.kernel.org/yocto/yocto/yocto-1.4/poky-dylan-9.0.0.tar.gz
-
-Release Name: meta-qt3-dylan-9.0.0
-Branch:  dylan
-Tag:  dylan-9.0.0
-Hash:  4c27cce6688aa39852f3cba5e7b80ec279019605
-md5: 4c14c1a19b5cd74eb4884520b2b94a37
-Download Locations:
-
- * http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/meta-qt3-dyla=
-n-9.0.0.tar.bz2
- * http://mirrors.kernel.org/yocto/yocto/yocto-1.4/meta-qt3-dylan-9.0.0.tar=
-.gz
-
-Release Name: eclipse-poky-dylan-9.0.0
-Branch:  dylan
-Tag:  dylan-9.0.0
-Hash:  dc9a609c68fe4a6bbbf34d418fd6611489c1d6f7
-md5: 6da1f0b3ca179da097fe3109e6208715
-Download Locations:
-
- * http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/eclipse-poky-=
-dylan-9.0.0.tar.bz2
- * http://mirrors.kernel.org/yocto/yocto/yocto-1.4/eclipse-poky-dylan-9.0.0=
-.tar.gz
-
-Release Name: yocto-autobuilder-dylan-9.0.0
-Branch:  dylan
-Tag:  dylan-9.0.0
-Hash:
-md5: 4c821df298dcef2065e320ab989b78e4
-Download Locations:
-
- * http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/yocto-autobui=
-lder-dylan-9.0.0.tar.bz2
- * http://mirrors.kernel.org/yocto/yocto/yocto-1.4/yocto-autobuilder-dylan-=
-9.0.0.tar.gz
-
-The QA report is available at:
-
- * https://wiki.yoctoproject.org/wiki/1.4_QA_Status
-
-____________________
-Features
-____________________
-
- * Performance improvements: The overall build time has been
-   reduced by more than 10%. Kernel build time is reduced by
-   about 25%. With rm_work enabled, 40% less storage will be
-   used for the tmp directory.
-
- * Support for Wayland, a simpler alternative for X
-
- * Support for systemd, a replacement for system V init daemon.
-
- * Support for postinstall scripts to run at roofs creation time,
-   which will reduce image boot time.
-
- * Support for both the Linux 3.8 kernel and LTSI (3.4) kernel.
-
- * Replace Zypper/RPM integration with a smaller/better package
-   resolver/manager - SMART/RPM.
-
- * Support for read-only root file system.
-
- * Usability improvements to HOB, bitbake, yocto-bsp and other
-   tools, including UI improvements, new features and bug fixes.
-
- * Documentation improvement/update and a new kernel development
-   manual and profiling manual.
-
- * A complete rewrite of the yocto-autobuilder to allow for easier
-   configuration, faster build times, and easier to maintain code.
-
- * Do you desire time proven technology? The meta-yocto-classic
-   layer is now available from either the Yocto Project PVCS
-   repository or in 38 3.5" floppies from Walnut Creek. Features
-   include:
-       - ext or minix filesystems
-       - lilo or loadlin boot loaders
-       - Linux kernel 0.99pl14. No more worrying about loadable modules!
-       - a.out binaries as the standard executable file format
-       - OSS comes as the standard sound system
-       - ksh, tcsh, twm, pine, rn, mailx, mc and many others...
-
- * Many package updates for most of the packages.
-
- * Many bug fixes and stability improvements.
-
-____________________
-Bug Metrics
-____________________
-
-This release consists of 407 bug fixes.  For a complete Bugzilla view
-of the list see:
-
-https://bugzilla.yoctoproject.org/buglist.cgi?f1=3Dtarget_milestone&list_id=
-=3D36841&bug_severity=3Dcritical&bug_severity=3Dmajor&bug_severity=3Dnormal=
-&bug_severity=3Dminor&o1=3Dsubstring&resolution=3DFIXED&chfieldto=3D2013-04=
--18&query_format=3Dadvanced&chfield=3Dresolution&chfieldfrom=3D2012-10-25&c=
-hfieldvalue=3DFIXED&bug_status=3DRESOLVED&bug_status=3DVERIFIED&bug_status=
-=3DCLOSED&v1=3D1.4
-
-____________________
-Migration Issues
-____________________
-
-See the "Migrating to the Yocto Project 1.4 Release" section in the
-Yocto Project Reference Manual at:
-
-* http://www.yoctoproject.org/docs/1.4/ref-manual/ref-manual.html#moving-to=
--the-yocto-project-1.4-release
-
-____________________
-Known Issues
-____________________
-
-The Yocto project uses an implementation of Bugzilla at
-http://bugzilla.yoctoproject.org to handle bug tracking.  You should
-always consult that source first when experiencing
-any issue with a Yocto Project release.
-
-The following bugs are known issues in 1.4 and are currently scheduled
-to be fixed in the next release, 1.4.1:
-
- 4214 - Don't Mix and Match OE-Core and Meta-OE systemd - bad
-        things will happen
- 4339 - psplash won't start with systemd - no hooks available
-        to start and stop psplash from systemd
- 4341 - systemd will not work with a Read-Only Rootfs
- 1502 - Debian packaging and multilib is also know to fail
- 4248 - Host gcc 4.8 issues (gcc-cross-initial do_compile failure)
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
