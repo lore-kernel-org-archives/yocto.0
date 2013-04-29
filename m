@@ -1,36 +1,33 @@
-Return-Path: <katutxakurra@gmail.com>
-Received: from mail-ia0-f177.google.com (mail-ia0-f177.google.com
-	[209.85.210.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DAE6E014BD
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 07:07:28 -0700 (PDT)
-Received: by mail-ia0-f177.google.com with SMTP id y26so5616964iab.22
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 07:07:27 -0700 (PDT)
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DC56E014BD
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 07:25:04 -0700 (PDT)
+Received: by mail-wg0-f50.google.com with SMTP id m15so3769666wgh.29
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 07:25:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=oX3P7N4ShiHemZ6DmKNhgvc8og/P+lPMMQpkF/t6crk=;
-	b=wuAE2f09z167uifNipPCUVIpjv2CnAkvK1AJ4ZAj6gvIzuLxYCzHgVwji/WC3f1VYW
-	Uy7UK1gUP9lwG0I/MLukG5QSqfSlaFHWehKAWXAkn61OyqatU0RakvUgNcoWfVMHAF4g
-	UxOgeQOXN6mlbOg/SLvLv6aIzGL8eSJYh9iXak06fVvtFip5JdzL9aWBU/E2zmicU7Jl
-	dgNmWFtL+KbXA8/lVtanBni4ydIUl7pEABN8BJW6N0x0D7UlToCous5QPNZJ+RCGx19/
-	qhdU9WOi72uZE5tyqPkziUOvcp5XyoKPT27l9N/0PIkVgsWL0zx0wD7tINeYOPwK+PlE
-	UhtQ==
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=JAstdbrYsL8iLyI1dRzjd1Mwg6Ks7M7L3ifiF64y0X0=;
+	b=cFW9LkF9OEPBmMUDpZuwAuwJUXpLYbZZa5s9E77bYKJrKSS5kelw41MCopC9iC0sF+
+	a6DOXFE2DEXDZNvJvgOyLk6D9IFy4uKhOVM2KtdHnudc4Xsr/S7T1mDhncsB4wQNprFq
+	PS72cic0//fM5qXMaRotmnqLTL3T4wb8oMSrAy2W9dxLBWrdTBv+kypE8z7FTlF4HOcq
+	njOmNuKeWkxW65VTGerkwzswu4qRM+tqA+z9LY86icazRYAGLbhWeEDt7uRpD2Y40KP9
+	imVbD7D6CX1W4PCstmP8EEaKE0yrzzomcmzL9RNkIiNc4yB9goRfdiJvFeXFEt+WWwVF
+	fGMw==
+X-Received: by 10.180.39.207 with SMTP id r15mr18287656wik.16.1367245503871;
+	Mon, 29 Apr 2013 07:25:03 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.50.66.193 with SMTP id h1mr1000321igt.54.1367244447745; Mon,
-	29 Apr 2013 07:07:27 -0700 (PDT)
-Received: by 10.50.53.212 with HTTP; Mon, 29 Apr 2013 07:07:27 -0700 (PDT)
-In-Reply-To: <1432842.YTVMpTaA9y@helios>
+Received: by 10.194.40.163 with HTTP; Mon, 29 Apr 2013 07:24:43 -0700 (PDT)
+In-Reply-To: <5560552.0ejHhnttl9@helios>
 References: <CAAGt+t04eUOBF3ZXeGVGatFh3V-vB3GWJ+JNtiWtH49hYUTUFw@mail.gmail.com>
+	<CAAGt+t2_5LUQD9Rnq9B-_7ou1=_Wj+N6qq8o6-88uoSdVwWFVg@mail.gmail.com>
+	<c46460b7-9c66-40f3-9a1c-1be602fb0172@email.android.com>
 	<5560552.0ejHhnttl9@helios>
-	<CAFMfyzL+CvD4Y5gg-j7zSqCV45CGzLFzJAQR_ZbHepqhAOnMNQ@mail.gmail.com>
-	<1432842.YTVMpTaA9y@helios>
-Date: Mon, 29 Apr 2013 15:07:27 +0100
-Message-ID: <CAM1ZcoXyXBizAYoHG0rXXbyZ1QaAL6eUFD1ZstwoAGb_43qUmw@mail.gmail.com>
-From: Katu Txakur <katutxakurra@gmail.com>
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Mon, 29 Apr 2013 16:24:43 +0200
+Message-ID: <CAAGt+t1uf-iLiJ7zwD2pX1=+QK0PbitvG6iDWk8Z8T-MDPwXsQ@mail.gmail.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Zafrullah Syed <zafrullahmehdi@gmail.com>,
-	Satya Swaroop Damarla <satyaswaroop.damarla@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org
 Subject: Re: poky: Bitbake nothing provides error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,51 +40,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Apr 2013 14:07:28 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc14e0a1594c04db8067c9
+X-List-Received-Date: Mon, 29 Apr 2013 14:25:05 -0000
+Content-Type: multipart/alternative; boundary=001a11c23f3094465e04db80a64e
 
---047d7bdc14e0a1594c04db8067c9
+--001a11c23f3094465e04db80a64e
 Content-Type: text/plain; charset=ISO-8859-1
 
-The instructions in
-https://github.com/gumstix/Gumstix-YoctoProject-Repo/blob/master/README.md
-worked
-for me, at least you can get them and have a look at the
-build/conf/local.conf file.
-
-Paul, how can get the recipes and related files that I find in the
-layerindex?
-Thanks
+I am using danny branch of meta-gumstix and also requested gumstix
+maintainer to update the files. I will again make a clean install again and
+hopefully it should work.
 
 
-2013/4/29 Paul Eggleton <paul.eggleton@linux.intel.com>
+On Mon, Apr 29, 2013 at 2:17 PM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
 
-> On Monday 29 April 2013 14:39:23 Satya Swaroop Damarla wrote:
-> > For example consider the recipe "networkmanager"... First check if there
-> is
-> > a basic recipe "networkmanager" in any of the layers becuase if there is
-> no
-> > basic recipe then it makes no sense in appending the recipe in your BSP
-> > layer..
+> On Monday 29 April 2013 13:26:37 Anders Darander wrote:
+> > Zafrullah Syed <zafrullahmehdi@gmail.com> wrote:
+> > >After setting MACHINE and adding the meta-gumstix and
+> > >meta-gumstix-extras path to conf/bblayers.conf and when building again,
+> > >i get the following:
+> > >
+> > >
+> > >WARNING: gumstix-repo-task: task.bbclass is deprecated, please inherit
+> > >packagegroup instead
+> > >
+> > >   | ETA:  00:00:30
+> > >
+> > >Parsing recipes: 100%
+> > >
 > >
-> > Try the following command
+> >|##########################################################################
+> > >|#################################################|>
+> > >Time: 00:00:37
+> > >
+> > >Parsing of 889 .bb files complete (0 cached, 889 parsed). 1196 targets,
+> > >44 skipped, 0 masked, 0 errors.
+> > >
+> > >ERROR: No recipes available for:
+> > >
 > >
-> > find  /home/zaif/ -name "networkmanager*"
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-connectivity/networkmanager/
+> > >networkmanager_0.9.2.0.bbappend
+> > >
 > >
-> > If there is none then you have to create one but if there is one already
-> > then possibly chnage the version number in meta-gumstix layer to the one
-> > which is already present in the other layer or viceversa...
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-connectivity/networkm
+> > >anager/networkmanager_0.9.2.0.bbappend
+> > >
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/systemd/systemd_git.bba
+> > >ppend
+> > >
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-core/systemd/systemd_
+> > >git.bbappend
+> > >
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-xfce/libxfce4ui/libxfce4ui_4
+> > >.8.1.bbappend
+> > >
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/base-passwd/base-passwd
+> > >_3.5.24.bbappend
+> > >
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-connectivity/rfkill/r
+> > >fkill_0.4.bbappend
+> > >
+> > >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/netbase/
+> netbase_4.47.bb
+> > >append
+> > >
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-support/vim/vim_7.2.4
+> > >46.bbappend
+> > >
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/gawk/gawk_4.0.0.bbappen
+> > >d
+> > >
+> > >ERROR: Command execution failed: Exited with 1
+> >
+> > These are applications whose versions have been upgraded in either
+> OE-Core
+> > or meta-oe. Thus, you need to update the bbappends in meta-gumstix to
+> match
+> > the current versions.
 >
-> If you use the following command instead it will confirm whether your build
-> system configuration knows anything about the named recipe:
->
->  bitbake-layers show-recipes "networkmanager*"
->
-> If you want to find recipes that exist anywhere in publicly available
-> layers,
-> use the recipe search function within the OE layer index:
->
->  http://layers.openembedded.org/layerindex/recipes/
+> Or, use the danny branch of meta-gumstix (if one exists) or poke the meta-
+> gumstix maintainer to update the bbappends there.
 >
 > Cheers,
 > Paul
@@ -96,61 +136,112 @@ Thanks
 >
 > Paul Eggleton
 > Intel Open Source Technology Centre
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---047d7bdc14e0a1594c04db8067c9
+
+
+-- 
+Regards,
+Zafrullah Syed
+
+--001a11c23f3094465e04db80a64e
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">The instructions in=A0<a href=3D"https://github.com/gumsti=
-x/Gumstix-YoctoProject-Repo/blob/master/README.md" target=3D"_blank" style=
-=3D"font-family:arial,sans-serif;font-size:13px">https://github.com/gumstix=
-/Gumstix-YoctoProject-Repo/blob/master/README.md</a>=A0worked for me, at le=
-ast you can get them and have a look at the build/conf/local.conf file.<div=
->
-<br></div><div style>Paul, how can get the recipes and related files that I=
- find in the layerindex? =A0</div><div style>Thanks</div></div><div class=
-=3D"gmail_extra"><br><br><div class=3D"gmail_quote">2013/4/29 Paul Eggleton=
- <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" tar=
-get=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;</span><br>
+<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">I am using danny branch of meta-gumstix and also requested gumstix mainta=
+iner to update the files. I will again make a clean install again and hopef=
+ully it should work.=A0</span><br>
+
+
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon, Apr 2=
+9, 2013 at 2:17 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:p=
+aul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.c=
+om</a>&gt;</span> wrote:<br>
+
+
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">On Monday 29 April 2013 14:39:23 Satya Swaro=
-op Damarla wrote:<br>
-&gt; For example consider the recipe &quot;networkmanager&quot;... First ch=
-eck if there is<br>
-&gt; a basic recipe &quot;networkmanager&quot; in any of the layers becuase=
- if there is no<br>
-&gt; basic recipe then it makes no sense in appending the recipe in your BS=
-P<br>
-&gt; layer..<br>
+x #ccc solid;padding-left:1ex"><div><div>On Monday 29 April 2013 13:26:37 A=
+nders Darander wrote:<br>
+&gt; Zafrullah Syed &lt;<a href=3D"mailto:zafrullahmehdi@gmail.com" target=
+=3D"_blank">zafrullahmehdi@gmail.com</a>&gt; wrote:<br>
+&gt; &gt;After setting MACHINE and adding the meta-gumstix and<br>
+&gt; &gt;meta-gumstix-extras path to conf/bblayers.conf and when building a=
+gain,<br>
+&gt; &gt;i get the following:<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt;WARNING: gumstix-repo-task: task.bbclass is deprecated, please inh=
+erit<br>
+&gt; &gt;packagegroup instead<br>
+&gt; &gt;<br>
+&gt; &gt; =A0 | ETA: =A000:00:30<br>
+&gt; &gt;<br>
+&gt; &gt;Parsing recipes: 100%<br>
+&gt; &gt;<br>
+&gt; &gt;|#################################################################=
+#########<br>
+&gt; &gt;|#################################################|&gt;<br>
+&gt; &gt;Time: 00:00:37<br>
+&gt; &gt;<br>
+&gt; &gt;Parsing of 889 .bb files complete (0 cached, 889 parsed). 1196 tar=
+gets,<br>
+&gt; &gt;44 skipped, 0 masked, 0 errors.<br>
+&gt; &gt;<br>
+&gt; &gt;ERROR: No recipes available for:<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix/recipes-connectivity/networ=
+kmanager/<br>
+&gt; &gt;networkmanager_0.9.2.0.bbappend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-connectivity=
+/networkm<br>
+&gt; &gt;anager/networkmanager_0.9.2.0.bbappend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/systemd/system=
+d_git.bba<br>
+&gt; &gt;ppend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-core/systemd=
+/systemd_<br>
+&gt; &gt;git.bbappend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix/recipes-xfce/libxfce4ui/lib=
+xfce4ui_4<br>
+&gt; &gt;.8.1.bbappend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/base-passwd/ba=
+se-passwd<br>
+&gt; &gt;_3.5.24.bbappend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-connectivity=
+/rfkill/r<br>
+&gt; &gt;fkill_0.4.bbappend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/netbase/<a hre=
+f=3D"http://netbase_4.47.bb" target=3D"_blank">netbase_4.47.bb</a><br>
+&gt; &gt;append<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-support/vim/=
+vim_7.2.4<br>
+&gt; &gt;46.bbappend<br>
+&gt; &gt;<br>
+&gt; &gt;/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/gawk/gawk_4.0.=
+0.bbappen<br>
+&gt; &gt;d<br>
+&gt; &gt;<br>
+&gt; &gt;ERROR: Command execution failed: Exited with 1<br>
 &gt;<br>
-&gt; Try the following command<br>
-&gt;<br>
-&gt; find =A0/home/zaif/ -name &quot;networkmanager*&quot;<br>
-&gt;<br>
-&gt; If there is none then you have to create one but if there is one alrea=
-dy<br>
-&gt; then possibly chnage the version number in meta-gumstix layer to the o=
-ne<br>
-&gt; which is already present in the other layer or viceversa...<br>
+&gt; These are applications whose versions have been upgraded in either OE-=
+Core<br>
+&gt; or meta-oe. Thus, you need to update the bbappends in meta-gumstix to =
+match<br>
+&gt; the current versions.<br>
 <br>
-If you use the following command instead it will confirm whether your build=
-<br>
-system configuration knows anything about the named recipe:<br>
-<br>
-=A0bitbake-layers show-recipes &quot;networkmanager*&quot;<br>
-<br>
-If you want to find recipes that exist anywhere in publicly available layer=
-s,<br>
-use the recipe search function within the OE layer index:<br>
-<br>
-=A0<a href=3D"http://layers.openembedded.org/layerindex/recipes/" target=3D=
-"_blank">http://layers.openembedded.org/layerindex/recipes/</a><br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
+</div></div>Or, use the danny branch of meta-gumstix (if one exists) or pok=
+e the meta-<br>
+gumstix maintainer to update the bbappends there.<br>
+<div><div><br>
 Cheers,<br>
 Paul<br>
 <br>
@@ -158,11 +249,14 @@ Paul<br>
 <br>
 Paul Eggleton<br>
 Intel Open Source Technology Centre<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
+<span style=3D"font-family:arial,sans-serif;font-size:13px;border-collapse:=
+collapse;color:rgb(136,136,136)">Regards,<br>Zafrullah Syed</span><div><fon=
+t color=3D"#888888" face=3D"arial, sans-serif"><span style=3D"border-collap=
+se:collapse"><br>
 
---047d7bdc14e0a1594c04db8067c9--
+
+</span></font></div>
+</div></div>
+
+--001a11c23f3094465e04db80a64e--
