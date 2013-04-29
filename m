@@ -1,18 +1,26 @@
-Return-Path: <Adrian.Dudau@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 3F0B8E013DE
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 05:15:41 -0700 (PDT)
-Received: from sestows827.enea.se (172.16.140.90) by SESTOEX03.enea.se
-	(172.21.1.38) with Microsoft SMTP Server (TLS) id 14.2.318.1;
-	Mon, 29 Apr 2013 14:15:30 +0200
-From: Adrian Dudau <adrian.dudau@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 29 Apr 2013 14:15:31 +0200
-Message-ID: <1367237731-18630-1-git-send-email-adrian.dudau@enea.com>
-X-Mailer: git-send-email 1.7.9.5
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFE60E013DE
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 05:17:51 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 29 Apr 2013 05:17:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,572,1363158000"; d="scan'208";a="325937187"
+Received: from unknown (HELO helios.localnet) ([10.255.12.140])
+	by fmsmga001.fm.intel.com with ESMTP; 29 Apr 2013 05:17:49 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Mon, 29 Apr 2013 13:17:45 +0100
+Message-ID: <5560552.0ejHhnttl9@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.8.0-19-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <c46460b7-9c66-40f3-9a1c-1be602fb0172@email.android.com>
+References: <CAAGt+t04eUOBF3ZXeGVGatFh3V-vB3GWJ+JNtiWtH49hYUTUFw@mail.gmail.com>
+	<CAAGt+t2_5LUQD9Rnq9B-_7ou1=_Wj+N6qq8o6-88uoSdVwWFVg@mail.gmail.com>
+	<c46460b7-9c66-40f3-9a1c-1be602fb0172@email.android.com>
 MIME-Version: 1.0
-X-Originating-IP: [172.16.140.90]
-Subject: [PATCH][eclipse-poky] systemtap: add possibility for user to point to his build folder
+Cc: yocto@yoctoproject.org
+Subject: Re: poky: Bitbake nothing provides error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,201 +32,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Apr 2013 12:15:42 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 29 Apr 2013 12:17:51 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-[Yocto #4223]
+On Monday 29 April 2013 13:26:37 Anders Darander wrote:
+> Zafrullah Syed <zafrullahmehdi@gmail.com> wrote:
+> >After setting MACHINE and adding the meta-gumstix and
+> >meta-gumstix-extras path to conf/bblayers.conf and when building again,
+> >i get the following:
+> >
+> >
+> >WARNING: gumstix-repo-task: task.bbclass is deprecated, please inherit
+> >packagegroup instead
+> >
+> >   | ETA:  00:00:30
+> >
+> >Parsing recipes: 100%
+> >
+> >|##########################################################################
+> >|#################################################|>
+> >Time: 00:00:37
+> >
+> >Parsing of 889 .bb files complete (0 cached, 889 parsed). 1196 targets,
+> >44 skipped, 0 masked, 0 errors.
+> >
+> >ERROR: No recipes available for:
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-connectivity/networkmanager/
+> >networkmanager_0.9.2.0.bbappend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-connectivity/networkm
+> >anager/networkmanager_0.9.2.0.bbappend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/systemd/systemd_git.bba
+> >ppend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-core/systemd/systemd_
+> >git.bbappend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-xfce/libxfce4ui/libxfce4ui_4
+> >.8.1.bbappend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/base-passwd/base-passwd
+> >_3.5.24.bbappend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-connectivity/rfkill/r
+> >fkill_0.4.bbappend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/netbase/netbase_4.47.bb
+> >append
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix-extras/recipes-support/vim/vim_7.2.4
+> >46.bbappend
+> >
+> >/home/zaif/poky-danny-8.0/meta-gumstix/recipes-core/gawk/gawk_4.0.0.bbappen
+> >d
+> >
+> >ERROR: Command execution failed: Exited with 1
+> 
+> These are applications whose versions have been upgraded in either OE-Core
+> or meta-oe. Thus, you need to update the bbappends in meta-gumstix to match
+> the current versions.
 
-Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
----
- .../src/org/yocto/sdk/remotetools/Messages.java    |    1 +
- .../org/yocto/sdk/remotetools/ShellSession.java    |    6 +++--
- .../sdk/remotetools/actions/SystemtapHandler.java  |    3 ++-
- .../sdk/remotetools/actions/SystemtapModel.java    |    6 +++--
- .../actions/SystemtapSettingDialog.java            |   28 ++++++++++++++++++++
- .../org/yocto/sdk/remotetools/messages.properties  |    1 +
- 6 files changed, 40 insertions(+), 5 deletions(-)
+Or, use the danny branch of meta-gumstix (if one exists) or poke the meta-
+gumstix maintainer to update the bbappends there.
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
-index 66ba62b..cbf2b05 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
-@@ -40,6 +40,7 @@ public class Messages extends NLS {
- 	public static String TerminalViewer_text;
- 	//public static String Systemtap_KO_Text;
- 	public static String Metadata_Location;
-+	public static String Builddir_Location;
- 	public static String User_ID;
- 	public static String Remote_Host;
- 	public static String Systemtap_Script;
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
-index 5602798..cbc8e55 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
-@@ -66,12 +66,14 @@ public class ShellSession {
- 	private String shellPath = null;
- 	private final String initCmd;
- 	private final File root;
-+	private final File builddir;
- 	
- 	private OutputStreamWriter out;
- 	
- 
--	public ShellSession(int shellType, File root, String initCmd, OutputStream out) throws IOException {
-+	public ShellSession(int shellType, File root, File builddir, String initCmd, OutputStream out) throws IOException {
- 		this.root = root;
-+		this.builddir = builddir;
- 		this.initCmd  = initCmd;
- 		if (out == null) {
- 			this.out = new OutputStreamWriter(null);
-@@ -95,7 +97,7 @@ public class ShellSession {
- 		}
- 		
- 		if (initCmd != null) {
--			execute("source " + initCmd);
-+			execute("source " + initCmd + " " + builddir.getAbsolutePath());
- 		}
- 	}
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-index 87094ee..dc11e39 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-@@ -35,6 +35,7 @@ public class SystemtapHandler extends AbstractHandler {
- 		
- 		setting.open();
- 		String metadata_location = ((SystemtapSettingDialog)setting).getMetadataLocation();
-+		String builddir_location = ((SystemtapSettingDialog)setting).getBuilddirLocation();
- 		String remote_host = ((SystemtapSettingDialog)setting).getRemoteHost();
- 		String user_id = ((SystemtapSettingDialog)setting).getUserID();
- 		String systemtap_script = ((SystemtapSettingDialog)setting).getSystemtapScript();
-@@ -42,7 +43,7 @@ public class SystemtapHandler extends AbstractHandler {
- 
- 		if(setting.open() == BaseSettingDialog.OK) {
- 			IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
--			SystemtapModel op = new SystemtapModel(metadata_location,remote_host, user_id, systemtap_script,
-+			SystemtapModel op = new SystemtapModel(metadata_location, builddir_location, remote_host, user_id, systemtap_script,
- 					systemtap_args,window.getShell().getDisplay());
- 			try {
- 				progressService.busyCursorWhile(op);
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-index 0d22d97..c834097 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-@@ -26,6 +26,7 @@ public class SystemtapModel extends BaseModel {
- 	protected static final String SYSTEMTAP_CONSOLE = "Systemtap Console";
- 	protected MessageConsole sessionConsole;
- 	private String metadata_location;
-+	private String builddir_location;
- 	private String remote_host;
- 	private String user_id;
- 	private String systemtap_script;
-@@ -33,9 +34,10 @@ public class SystemtapModel extends BaseModel {
- 	
- 	Display display;
- 	
--	public SystemtapModel(String metadata_location, String remote_host, String user_id, String systemtap_script, String systemtap_args, Display display) {
-+	public SystemtapModel(String metadata_location, String builddir_location, String remote_host, String user_id, String systemtap_script, String systemtap_args, Display display) {
- 		super(null);
- 		this.metadata_location=metadata_location;
-+		this.builddir_location=builddir_location;
- 		this.remote_host=remote_host;
- 		this.user_id=user_id;
- 		this.systemtap_script=systemtap_script;
-@@ -68,7 +70,7 @@ public class SystemtapModel extends BaseModel {
- 	throws InvocationTargetException, InterruptedException {
- 		try {
- 			ShellSession shell = new ShellSession(ShellSession.SHELL_TYPE_BASH, 
--												new File(this.metadata_location),
-+												new File(this.metadata_location), new File(this.builddir_location),
- 												DEFAULT_INIT_SCRIPT, sessionConsole.newOutputStream());
- 			boolean acceptedKey = shell.ensureKnownHostKey(user_id, remote_host);
- 			if (acceptedKey) {
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-index 8b4703c..2104ee8 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-@@ -37,18 +37,21 @@ public class SystemtapSettingDialog extends Dialog {
- 	static protected String TITLE="Systemtap Crosstap";
- 	protected String title;
- 	protected String metadata_location;
-+	protected String builddir_location;
- 	protected String systemtap_script;
- 	protected String user_id;
- 	protected String remote_host;
- 	protected String systemtap_args;
- 	protected boolean okPressed;
- 	protected Button metadataLocationBtn;
-+	protected Button builddirLocationBtn;
- 	protected Button systemtapScriptBtn;
- 	protected Text userIDText;
- 	protected Text remoteHostText;
- 	protected Text systemtapArgsText;
- 	protected Text systemtapScriptText;
- 	protected Text metadataLocationText;
-+	protected Text builddirLocationText;
- 	
- 	protected SystemtapSettingDialog(Shell parentShell, String title) {
- 		super(parentShell);
-@@ -75,6 +78,10 @@ public class SystemtapSettingDialog extends Dialog {
- 		return metadata_location;
- 	}
- 	
-+	public String getBuilddirLocation() {
-+		return builddir_location;
-+	}
-+
- 	public String getRemoteHost() {
- 		return remote_host;
- 	}
-@@ -119,6 +126,14 @@ public class SystemtapSettingDialog extends Dialog {
- 		metadataLocationBtn = addDirSelectButton(textContainer, metadataLocationText);
- 		
- 		label = new Label(projComp, SWT.NONE);
-+		label.setText(Messages.Builddir_Location);
-+		textContainer = new Composite(projComp, SWT.NONE);
-+		textContainer.setLayout(new GridLayout(2, false));
-+		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-+		builddirLocationText = (Text)addTextControl(textContainer, builddir_location);
-+		builddirLocationBtn = addDirSelectButton(textContainer, builddirLocationText);
-+
-+		label = new Label(projComp, SWT.NONE);
- 		label.setText(Messages.User_ID);
- 		userIDText = new Text(projComp, SWT.SINGLE | SWT.BORDER);
- 		
-@@ -219,6 +234,19 @@ public class SystemtapSettingDialog extends Dialog {
- 			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified metadata location is not a directory!");
- 			return;
- 		}
-+		builddir_location = builddirLocationText.getText();
-+		if ( (builddir_location == null) || builddir_location.isEmpty()) {
-+			CommonHelper.showErrorDialog("SystemTap Error", null, "Please specify your builddir location!");
-+			return;
-+		}
-+		File builddir_dir = new File(builddir_location);
-+		if (!builddir_dir.exists()) {
-+			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified builddir location does not exist!");
-+		}
-+		if (!metadata_dir.isDirectory()) {
-+			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified builddir location is not a directory!");
-+			return;
-+		}
- 		user_id = userIDText.getText();
- 		if ( (user_id == null) || user_id.isEmpty()) {
- 			CommonHelper.showErrorDialog("SystemTap Error", null, "Please specify remote user id!");
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
-index 7bbf987..2d6d8af 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
-@@ -35,6 +35,7 @@ Powertop_ShowPid_Text=show pids in wakeups list
- TerminalViewer_text=This view is dedicated to Yocto Remote tools. Please use the "Yocto Remote Tools" menu to open the view.
- //Systemtap_KO_Text=Kernel Module:
- Metadata_Location=Metadata Location:
-+Builddir_Location=Build dir Location:
- User_ID=User ID:
- Remote_Host=Remote Host:
- Systemtap_Script=Systemtap Script:
+Cheers,
+Paul
+
 -- 
-1.7.9.5
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
