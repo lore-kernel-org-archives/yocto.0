@@ -1,30 +1,32 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE557E013C9
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 16:42:02 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 29 Apr 2013 16:40:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,576,1363158000"; 
-	d="scan'208,217";a="328548935"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 29 Apr 2013 16:42:02 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.227]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.124]) with mapi id
-	14.01.0355.002; Mon, 29 Apr 2013 16:42:02 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, April
-	30, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac5FMxAh0QOC7e5LTU2jXGkKpb5NdQAAAfuQ
-Date: Mon, 29 Apr 2013 23:42:00 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A718F709B@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <sudhangathan@gmail.com>
+Received: from mail-wg0-f48.google.com (mail-wg0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0ACCE014BD
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 18:59:22 -0700 (PDT)
+Received: by mail-wg0-f48.google.com with SMTP id f11so19200wgh.3
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2013 18:59:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:content-type;
+	bh=w5JzymUIZoLJwzCGRefOPK2myWPyk2sokbFDHJI9Mf0=;
+	b=KRp181SDHa0E9S55dJEEiForkt9U2eEwkgB6wPTNEkejj3YuvLjxsB501jsRgIvhyi
+	7p321ehiHboiHUDkVH1NiVIrVLrubE2HtGLwpMb1cX+eYKRqRnRfXTguNAZ1E45U/qd8
+	wMN5S/T/rB/+Z/uSJitus/JhVuIcZYPDKsYYVPM796o/ukDKL7IOcKyZESV2c/HR44ks
+	Jr4kKiuHDLmCv7rJ6Suutq+nl1pf7BsSidsMQFAj4RIJn437r5PPMjYjcrgRbjdDhjfc
+	NXzH+NDxbeB/fncnFkeA3VRECrNct+RmVWz1hw4fdeOCeMOxGRbwZmfMEEfIDxDVIWpT
+	T1nw==
+X-Received: by 10.180.83.199 with SMTP id s7mr21294364wiy.19.1367287161319;
+	Mon, 29 Apr 2013 18:59:21 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, April 30, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Received: by 10.217.113.135 with HTTP; Mon, 29 Apr 2013 18:59:01 -0700 (PDT)
+In-Reply-To: <CADwiJcY-cei6niPpzeeEeDYX5t+E48YQsVYzoeO44wfVt05pcA@mail.gmail.com>
+References: <CAGX3a9_nTNHnFfnyup52AGD=ApvZy8WW0dNkSo-V2mO5hGvh5w@mail.gmail.com>
+	<CADwiJcY-cei6niPpzeeEeDYX5t+E48YQsVYzoeO44wfVt05pcA@mail.gmail.com>
+From: Sudhangathan B S <sudhangathan@gmail.com>
+Date: Tue, 30 Apr 2013 07:29:01 +0530
+Message-ID: <CAGX3a98s4E0=1_pfATjWMV46nBhEuVm1azL4psc1acOMrzaY1A@mail.gmail.com>
+To: Jun Yoshida <fantajista1089@gmail.com>, yocto@yoctoproject.org, 
+	Chris Whittenburg <whittenburg@gmail.com>
+Subject: Re: Missing something in UAP for Overo-Fire
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,510 +38,222 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Apr 2013 23:42:02 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A718F709BORSMSX108amrcor_"
+X-List-Received-Date: Tue, 30 Apr 2013 01:59:23 -0000
+Content-Type: multipart/alternative; boundary=14dae9cc973c8e769b04db8a59b9
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F709BORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--14dae9cc973c8e769b04db8a59b9
+Content-Type: text/plain; charset=ISO-8859-1
+
+bitbake -c compile_kernelmodules -f virtual/kernel ------ is only
+working...
+just bibake virtual/kernel too didn't work..
+I had already configured it to compile as modules manually in defconfig. So
+i didn't require "bitbake -c menuconfig virtual/kernel".
+
+Thank a lot...!!!!!,
+I'm now trying to up dhcp  server for IP addresses...!! any suggestions
+would be helpful.
+---------------------------------
+Sudhangathan BS
+Ph:(+91) 9731-905-205
+---------------------------------
+
+On Thu, Apr 25, 2013 at 7:22 PM, Chris Whittenburg <whittenburg@gmail.com>
+ wrote:
+
+>
+> Hello,
+>
+> I think you should try the following to force kernel modules to be built.
+>
+> bitbake -c compile_kernelmodules -f virtual/kernel
+>
+> Or you could clean and "bitbake virtual/kernel" and it should build the
+> kernel and modules.
+>
+> -chris
+>
+
+On Thu, Apr 25, 2013 at 8:02 PM, Jun Yoshida <fantajista1089@gmail.com>wrote:
+
+> Hello,
+>
+> How about confirming your kernel configuration by executing the following
+> command ?
+>
+> # bitbake -c menuconfig virtual/kernel
+>
+> If "CONFIG_LIBERTAS_UAP" is set, please build only your kernel by
+>
+> # bitbake -f -c compile virtual/kernel
+> # bitbake virtual/kernel
+>
+> uap8xxx.ko will be in modules*.tar.bz2, and copy it to your rootfs.
+>
+>
+> 2013/4/25 Sudhangathan B S <sudhangathan@gmail.com>
+>
+>>  Hello,
+>>
+>> I have included this folder in my poky folder, but still i'm not getting
+>> the UAP drivers and firmware up and running.
+>>
+>> https://github.com/chrisw957/meta-gumstix/commit/d0dbc51e1643860f9066c5e817db023fb062362c
+>>
+>>
+>>
+>> I'm compiling for Gumstix overo fire on an x86 Ubuntu Studio machine.
+>> No files related to the UAP are getting included in the rootfs tar ball.
+>> I'm not able to find the uap8xxx.ko file in the final build.
+>> The contents of this folder are:
+>>
+>> /home/desen555/yocto/build/tmp/work/overo-poky-linux-gnueabi/linux-sakoman-3.5-r0/git/drivers/net/wireless/libertas_uap
+>> built-in.o
+>> Makefile
+>> uap_debug.c
+>> uap_drv.h
+>> uap_fw.h
+>> uap_headers.h
+>> uap_main.c
+>> uap_proc.c
+>> uap_sdio_mmc.c
+>> uap_sdio_mmc.h
+>>
+>> Looks like it is partially getting compiled but not the final .ko files.
+>> I'l be glad to reply with any other details.
+>>
+>> Regards,
+>> ---------------------------------
+>> Sudhangathan BS
+>> Ph:(+91) 9731-905-205
+>> ---------------------------------
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>
+
+--14dae9cc973c8e769b04db8a59b9
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Agenda:
+<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">bitbake -c compile_kernelmodules -f virtual/kernel</span><span style=3D"f=
+ont-family:arial,sans-serif;font-size:13px">=A0------ is only working...=A0=
+</span><div>
 
-* Opens collection - 5 min (Song)
-* Yocto 1.5 release criteria review - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status#Yocto_Projec=
-t_1.5_Release_Criteria<https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status>
-* SWAT team rotation: Laurentiu Palcu -> Nitin
-* Opens - 10 min
-* Team Sharing - 20 min
+<font face=3D"arial, sans-serif">just bibake virtual/kernel too didn&#39;t =
+work..<br></font><div><font face=3D"arial, sans-serif">I had already config=
+ured it to compile as modules manually in defconfig. So i didn&#39;t requir=
+e &quot;</font><span style=3D"font-family:arial,sans-serif;font-size:13px">=
+bitbake -c menuconfig virtual/kernel</span><span style=3D"font-family:arial=
+,sans-serif">&quot;.</span></div>
 
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
+<div><div style><span style=3D"font-family:arial,sans-serif;font-size:13px"=
+><br></span></div><div style><span style=3D"font-family:arial,sans-serif;fo=
+nt-size:13px">Thank a lot...!!!!!,</span></div></div><div class=3D"gmail_ex=
+tra">
 
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto<http://webchat.fr=
-eenode.net/?channels=3D>
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-Conference details
-Conference name:        Yocto Technical Team
-Conference date/start time:     Tue Jun 26, 2012 at 10:00 AM Central Daylig=
-ht Time
-Participants:   30
-Duration:       60 minutes
-Participant passcode:   76994298
-Dial-in number:         1.972.995.7777
-US Toll Free number:    1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:=
-     1.972.995.7777x76994298#
-        Depending on where you are dialing from, either your BlackBerry wil=
-l pause and enter the passcode automatically or you will be prompted to cli=
-ck again to dial the passcode.
+I&#39;m now trying to up dhcp =A0server for IP addresses...!! any suggestio=
+ns would be helpful.<br clear=3D"all"><div>--------------------------------=
+-<br>Sudhangathan BS<br>Ph:(+91) 9731-905-205<br>--------------------------=
+-------</div>
 
 
-Local and Global Access Numbers
+<div class=3D"gmail_extra"><br></div>On Thu, Apr 25, 2013 at 7:22 PM, Chris=
+ Whittenburg=A0<span dir=3D"ltr">&lt;<a href=3D"mailto:whittenburg@gmail.co=
+m" target=3D"_blank">whittenburg@gmail.com</a>&gt;</span>=A0wrote:<br><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-=
+width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;paddin=
+g-left:1ex">
 
+<div dir=3D"ltr"><div><div><div><div><div><br></div>Hello,<br><br></div>I t=
+hink you should try the following to force kernel modules to be built.<br><=
+/div><div><br></div>bitbake -c compile_kernelmodules -f virtual/kernel<br>
 
+<br></div>Or you could clean and &quot;bitbake virtual/kernel&quot; and it =
+should build the kernel and modules.<span class=3D""><font color=3D"#888888=
+"><br><br></font></span></div><span class=3D""><font color=3D"#888888">-chr=
+is<br>
 
+</font></span></div></blockquote><br><div class=3D"gmail_quote">On Thu, Apr=
+ 25, 2013 at 8:02 PM, Jun Yoshida <span dir=3D"ltr">&lt;<a href=3D"mailto:f=
+antajista1089@gmail.com" target=3D"_blank">fantajista1089@gmail.com</a>&gt;=
+</span> wrote:<br>
 
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div dir=3D"ltr">Hello,=A0<div><br></div><div>How about co=
+nfirming your kernel configuration by executing the following command ?</di=
+v>
 
-Country
-Dial-in number
+<div><br></div><div># bitbake -c menuconfig virtual/kernel</div><div>
+<br></div><div>If &quot;CONFIG_LIBERTAS_UAP&quot; is set, please build only=
+ your kernel by</div><div><br></div><div># bitbake -f -c compile virtual/ke=
+rnel</div><div># bitbake virtual/kernel<br></div>
+<div><br></div><div><span style=3D"font-family:arial,sans-serif;font-size:1=
+4.44444465637207px">uap8xxx.ko will be in modules*.tar.bz2, and copy it to =
+your rootfs.</span><br></div></div><div class=3D"gmail_extra"><br>
+<br><div class=3D"gmail_quote"><div><div class=3D"h5">2013/4/25 Sudhangatha=
+n B S <span dir=3D"ltr">&lt;<a href=3D"mailto:sudhangathan@gmail.com" targe=
+t=3D"_blank">sudhangathan@gmail.com</a>&gt;</span><br></div></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-widt=
+h:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-le=
+ft:1ex">
 
-Australia:
-1800 636 843
-
-Czech Republic:
-242 430 350
-
-China (Beijing):
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-
-China (Shanghai):
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-
-China (Shenzen):
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-
-China (Other Cities):
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-
-Denmark:
-8060 1400
-
-Finland:
-09 41333477
-
-France:
-0497 275888
-
-Germany:
-08161 803232
-
-Holland:
-030 2417490
-
-India:
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-
-Israel:
-09 790 6715
-
-Italy:
-039 69061234 (039 is local city code not country code)
-
-Japan:
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-
-Malaysia:
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-
-Norway:
-2 295 8744
-
-Philippines:
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-
-Singapore:
-From IP phone dial 3894777
-Outside TI use 6389 4777
-
-South Korea:
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-
-Sweden:
-08 58755577
-
-Taiwan:
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-
-Turkey:
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-
-UK:
-01604 663003
-
-US:
-972 995 7777 or 1877 561 6828
-
-
-Recurring conferences
-First scheduled conference:     Tue Jun 26, 2012
-Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:        End on Fri Jun 21, 2013, 10:40 AM CDT
+<div><div class=3D"h5">
+<div dir=3D"ltr"><div>Hello,<br><br></div>I have included this folder in my=
+ poky folder, but still i&#39;m not getting the UAP drivers and firmware up=
+ and running.<br><div><pre><a href=3D"https://github.com/chrisw957/meta-gum=
+stix/commit/d0dbc51e1643860f9066c5e817db023fb062362c" target=3D"_blank">htt=
+ps://github.com/chrisw957/meta-gumstix/commit/d0dbc51e1643860f9066c5e817db0=
+23fb062362c</a><br>
 
 
 
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F709BORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+</pre>I&#39;m compiling for Gumstix overo fire on an x86 Ubuntu Studio mach=
+ine.<br></div><div>No files related to the UAP are getting included in the =
+rootfs tar ball. I&#39;m not able to find the uap8xxx.ko file in the final =
+build.<br>
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.5 release criteria review - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoprojec=
-t.org/wiki/Yocto_Project_v1.5_Status#Yocto_Project_1.5_Release_Criteria</u>=
-</font></a> </div>
-<div>* SWAT team rotation: Laurentiu Palcu -&gt; Nitin</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
- attending the meeting to logon the Yocto IRC chancel during the meeting (o=
-ptional):</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
-=3D"http://webchat.freenode.net/?channels=3D"><font color=3D"blue"><u>http:=
-//webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font></div=
->
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
-ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
-><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
-/font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<table width=3D"793" style=3D"width:476pt;margin-left:1.4pt;">
-<col width=3D"318" style=3D"width:191pt;">
-<col width=3D"475" style=3D"width:285pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-onference details</b> </span></font></td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference name: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Yocto Technical Team</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference date/start time: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 26, 2012 at 10:00 AM Central Daylight Time </b></s=
-pan></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participants: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>30</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Duration: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>60 minutes </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participant passcode: </span></font></td>
-<td><font face=3D"Calibri" color=3D"#1F497D">76994298</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Dial-in number: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777 </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">US Toll Free number: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.877.561.6828 </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BlackBerry users, click this link to join your conference as =
-a <b>participant</b>:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777x</b><font face=3D"Calibri" size=3D"2" color=
-=3D"#1F497D"><span style=3D"font-size:11pt;">76994298</span></font><b>#</b>=
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">&nbsp;</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
-ry will pause and enter the passcode automatically or you will be prompted =
-to click again to dial the passcode.</span></font></td>
-</tr>
-<tr>
-<td>
-<table width=3D"303" style=3D"width:181.95pt;margin-left:5.9pt;">
-<col width=3D"303" style=3D"width:181.95pt;">
-<tr>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#CBCBCB"><span style=3D"font=
--size:8.5pt;"><b>Local and Global Access Numbers</b> </span></font></td>
-</tr>
-</table>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<table width=3D"303" style=3D"width:182pt;margin-left:5.9pt;">
-<col width=3D"120" style=3D"width:72.45pt;">
-<col width=3D"182" style=3D"width:109.55pt;">
-<tr>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-ountry</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
-ial-in number</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Australia:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">1800 636 843</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Czech Republic:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">242 430 350</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Beijing):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From office dial 8-9957777 or 8784277=20
-<div>Beijing Out of Office dial 5878 4277</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Shanghai):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From office dial 8-9957777 or 3073322=20
-<div>Shanghai Out of Office dial 2307 3322</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Shenzen):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From office dial 8-9957777 or 6007877=20
-<div>Shenzen Out of Office dial 2600 7877</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Other Cities):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 8-9957777=20
-<div>Other cities - Non IP phone dial 021-23073322</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Denmark:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">8060 1400</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Finland:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 41333477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>France: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">0497 275888</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Germany:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08161 803232</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Holland: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">030 2417490</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>India: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BSNL subscribers use 1800 425 9996 (Toll Free)
-<div>Airtel subscribers use 0008 009 861 212 (Toll Free)</div>
-<div>From TI Campus use 89957777</div>
-<div>Others use 2509 9555 (Landline within Bangalore) or</div>
-<div>80 2509 9555 (Outside Bangalore)</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Israel: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 790 6715</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Italy:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">039 69061234 (039 is local city code not country code)</span>=
-</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Japan: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From TI Campus use 8 995 7777=20
-<div>Outside TI use 03 4331 3777</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Malaysia: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 2643799=20
-<div>From Kuala Lumpur dial 4264 3799 </div>
-<div>Outside Kuala Lumpur dial (03)4264 3799</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Norway: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">2 295 8744</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Philippines:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From Baguio City use 4471177=20
-<div>From Metro Manila area use 8702477</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Singapore:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 3894777=20
-<div>Outside TI use 6389 4777</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>South Korea:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 5606998=20
-<div>From Seoul dial 5606998 </div>
-<div>Outside Seoul dial (02)5606998</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Sweden: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08 58755577</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Taiwan:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 1363=20
-<div>From Taipei dial 2241 1363 </div>
-<div>Outside Taipei dial (02)2241 1363</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Turkey:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Landline Only</b> dial 0811 288 0001=20
-<div>then enter 877 633 1123 </div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>UK: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">01604 663003</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>US:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>R=
-ecurring conferences </b></span></font></td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">First scheduled conference: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 26, 2012</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence frequency: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence ends: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>End on Fri Jun 21, 2013, 10:40 AM CDT</b></span></font></t=
-d>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718F709BORSMSX108amrcor_--
+
+
+The contents of this folder are:<br>/home/desen555/yocto/build/tmp/work/ove=
+ro-poky-linux-gnueabi/linux-sakoman-3.5-r0/git/drivers/net/wireless/liberta=
+s_uap<br>built-in.o<br>Makefile=A0 <br>uap_debug.c=A0 <br>uap_drv.h=A0 <br>=
+uap_fw.h=A0 <br>
+
+
+
+
+uap_headers.h=A0 <br>uap_main.c=A0 <br>uap_proc.c=A0 <br>uap_sdio_mmc.c=A0 =
+<br>uap_sdio_mmc.h<br><br></div><div>Looks like it is partially getting com=
+piled but not the final .ko files. I&#39;l be glad to reply with any other =
+details.<br>
+
+
+
+
+<br></div><div>Regards,<br clear=3D"all"></div><div><div><div>-------------=
+--------------------<br>Sudhangathan BS<br>Ph:<a href=3D"tel:%28%2B91%29%20=
+9731-905-205" value=3D"+919731905205" target=3D"_blank">(+91) 9731-905-205<=
+/a><br>
+
+
+---------------------------------</div>
+</div></div></div>
+<br></div></div>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+</blockquote></div><br></div></div></div>
+
+--14dae9cc973c8e769b04db8a59b9--
