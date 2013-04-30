@@ -1,19 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF7B7E014FB
-	for <yocto@yoctoproject.org>; Tue, 30 Apr 2013 07:55:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10C85E014FB
+	for <yocto@yoctoproject.org>; Tue, 30 Apr 2013 07:55:58 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
 	by azsmga102.ch.intel.com with ESMTP; 30 Apr 2013 07:55:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,582,1363158000"; d="scan'208";a="234834758"
+X-IronPort-AV: E=Sophos;i="4.87,582,1363158000"; d="scan'208";a="234834760"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by AZSMGA002.ch.intel.com with ESMTP; 30 Apr 2013 07:55:51 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 30 Apr 2013 07:55:53 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Tue, 30 Apr 2013 17:36:23 +0300
-Message-Id: <1367332592-2585-1-git-send-email-ioanax.grigoropol@intel.com>
+Date: Tue, 30 Apr 2013 17:36:24 +0300
+Message-Id: <1367332592-2585-2-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH 0/8] Refactoring of remotetools plugin
+In-Reply-To: <1367332592-2585-1-git-send-email-ioanax.grigoropol@intel.com>
+References: <1367332592-2585-1-git-send-email-ioanax.grigoropol@intel.com>
+Subject: [PATCH 1/8] Remove UstLegacyModel since it is no longer supported
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,36 +29,258 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 30 Apr 2013 14:55:58 -0000
 
-- refactor all remote tools plugin to have single points of control for remote utilities plugin
-- remove all duplicate code
+- lttng legacy support was dropped but the model remained behind and it should not be maintained anymore
 
-Ioana Grigoropol (8):
-  Remove UstLegacyModel since it is no longer supported
-  Refactor Model(s) to display customized messages
-  Unify preProcess for all commands models
-  Add default behaviour for commands for post processing
-  Remove duplicate code when getting remote data from powertop and ust2
-  Refactor RemoteApplication implementation
-  Refactor powertop, oprofile and ust2 models to remote duplicate code
-  Refactor Latencytop and Perf Handler to remove duplicate code
-
- .../yocto/sdk/remotetools/actions/BaseModel.java   |  114 +++++++---
- .../sdk/remotetools/actions/IBaseConstants.java    |    3 +
- .../sdk/remotetools/actions/LatencytopHandler.java |   22 +-
- .../sdk/remotetools/actions/OprofileModel.java     |   79 ++-----
- .../yocto/sdk/remotetools/actions/PerfHandler.java |   22 +-
- .../sdk/remotetools/actions/PowertopModel.java     |   91 ++------
- .../sdk/remotetools/actions/SystemtapModel.java    |   34 ++-
- .../sdk/remotetools/actions/TerminalHandler.java   |   16 +-
- .../yocto/sdk/remotetools/actions/Ust2Model.java   |  132 +++--------
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
  .../sdk/remotetools/actions/UstModelLegacy.java    |  238 --------------------
- .../sdk/remotetools/remote/RemoteApplication.java  |  155 -------------
- .../sdk/remotetools/remote/RemoteShellExec.java    |  149 ++++++++++++
- 12 files changed, 346 insertions(+), 709 deletions(-)
+ 1 file changed, 238 deletions(-)
  delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteApplication.java
- create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
 
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
+deleted file mode 100644
+index 776f3d5..0000000
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
++++ /dev/null
+@@ -1,238 +0,0 @@
+-/*******************************************************************************
+- * Copyright (c) 2010 Intel Corporation.
+- * All rights reserved. This program and the accompanying materials
+- * are made available under the terms of the Eclipse Public License v1.0
+- * which accompanies this distribution, and is available at
+- * http://www.eclipse.org/legal/epl-v10.html
+- *
+- * Contributors:
+- * Intel - initial API and implementation
+- *******************************************************************************/
+-package org.yocto.sdk.remotetools.actions;
+-
+-import java.io.BufferedReader;
+-import java.io.File;
+-import java.io.InputStreamReader;
+-import java.lang.reflect.InvocationTargetException;
+-
+-import org.eclipse.core.resources.IFolder;
+-import org.eclipse.core.resources.IProject;
+-import org.eclipse.core.resources.IResource;
+-import org.eclipse.core.resources.IWorkspaceRoot;
+-import org.eclipse.core.resources.ResourcesPlugin;
+-import org.eclipse.core.runtime.IProgressMonitor;
+-import org.eclipse.core.runtime.Path;
+-import org.eclipse.core.runtime.SubProgressMonitor;
+-import org.eclipse.core.runtime.IPath;
+-import org.eclipse.rse.core.model.IHost;
+-import org.eclipse.ui.IWorkbenchWindow;
+-
+-import org.yocto.sdk.remotetools.CommonHelper;
+-import org.yocto.sdk.remotetools.Messages;
+-import org.yocto.sdk.remotetools.RSEHelper;
+-import org.yocto.sdk.remotetools.remote.RemoteApplication;
+-
+-public class UstModelLegacy extends BaseModel {
+-	
+-	static final private String REMOTE_EXEC="/tmp/yocto_ust.sh";
+-	static final private String LOCAL_SCRIPT="resources/yocto_ust.sh";
+-	
+-	static final private String LOCAL_FILE_SUFFIX=".local.tar";
+-	static final private String REMOTE_FILE_SUFFIX=".tar";
+-	static final private String LOCAL_EXEC="lttv-gui";
+-	public static final String TRACE_FOLDER_NAME = "Traces";
+-	static final private String DATAFILE_PREFIX = "ustfile:";
+-		
+-	private String argument;
+-	private String application;
+-	private String prj_name;
+-	
+-	private String localfile;
+-	
+-	private IWorkbenchWindow window;
+-	
+-	public UstModelLegacy(IHost host, String app,String arg, String project, IWorkbenchWindow window) {
+-		super(host);
+-		application=app;
+-		argument=arg;
+-		prj_name = project;
+-		this.window=window;
+-	}
+-
+-	@Override
+-	public void preProcess(IProgressMonitor monitor)
+-			throws InvocationTargetException, InterruptedException {
+-		///upload script to remote
+-		try {
+-			RSEHelper.putRemoteFileInPlugin(
+-					rseConnection, 
+-					LOCAL_SCRIPT, 
+-					REMOTE_EXEC,
+-					monitor);
+-		}catch (InterruptedException e){
+-			throw e;
+-		}catch (InvocationTargetException e) {
+-			throw e;
+-		}catch (Exception e) {
+-			throw new InvocationTargetException(e,e.getMessage());
+-		}
+-
+-	}
+-
+-	@Override
+-	public void postProcess(IProgressMonitor monitor)
+-			throws InvocationTargetException, InterruptedException {
+-		try {
+-			new File(localfile).delete();
+-			//NOT delete the directory since lttv-gui is running asynchronously
+-			//new File(localfile.substring(0,localfile.length()-LOCAL_FILE_SUFFIX.length())).delete();
+-		}catch (Exception e) {
+-			
+-		}
+-	}
+-	
+-	private String generateData(IProgressMonitor monitor) throws Exception {
+-		int exit_code;
+-		RemoteApplication app=new RemoteApplication(rseConnection,null,REMOTE_EXEC,null);
+-		String tempArgs=new String();
+-		if(application!=null)
+-			tempArgs=tempArgs.concat(application + " ");
+-		if(argument!=null)
+-			tempArgs=tempArgs.concat(argument);
+-		String remoteDataFile=null;
+-		
+-		try {
+-			String temp;
+-			int idx;
+-			monitor.beginTask("Starting usttrace", 2);
+-			//starting usttrace
+-			app.start(null,tempArgs,monitor);
+-			monitor.worked(1);
+-			BufferedReader in=new BufferedReader(new InputStreamReader(app.getInputStream()));
+-			while((temp=in.readLine())!=null) {
+-				idx=temp.indexOf(DATAFILE_PREFIX);
+-				if(idx!=-1) {
+-					remoteDataFile=temp.substring(idx + DATAFILE_PREFIX.length());
+-					break;
+-				}
+-			}
+-			exit_code=app.waitFor(monitor);
+-			app.terminate();
+-			if(exit_code!=0) {
+-				throw new Exception("Starting usttrace failed with exit code " + new Integer(exit_code).toString());
+-			}
+-		}finally {
+-			monitor.done();
+-		}
+-		if(remoteDataFile==null)
+-			throw new Exception("Ust: null remote data file");
+-		return remoteDataFile;
+-	}
+-	
+-	private void getDataFile(IProgressMonitor monitor,String datafile) throws Exception {
+-		
+-		if(datafile.endsWith(REMOTE_FILE_SUFFIX)==false)
+-			throw new Exception("Wrong ust data file "+datafile);
+-		
+-		localfile=new String(datafile.substring(0,datafile.length()-4) + LOCAL_FILE_SUFFIX);
+-		
+-		RSEHelper.getRemoteFile(
+-				rseConnection, 
+-				localfile,
+-				datafile, 
+-				monitor);
+-	}
+-
+-	private void importToProject(IProgressMonitor monitor) throws Exception {
+-		ProcessBuilder pb = new ProcessBuilder("tar", "fx", localfile);
+-		pb.directory(new File("/tmp"));
+-		Process p=pb.start();
+-		if(p.waitFor()!=0)
+-			throw new Exception("extract ust data files failed");
+-		
+-		String traceName = localfile.substring(0,localfile.length()-LOCAL_FILE_SUFFIX.length());
+-		
+-		IWorkspaceRoot wsroot = ResourcesPlugin.getWorkspace().getRoot();
+-		IPath full_path = wsroot.getFullPath();
+-		IProject project = wsroot.getProject(prj_name);
+-		IFolder traceFolder = project.getFolder(TRACE_FOLDER_NAME);
+-		if (!traceFolder.exists()) {
+-			throw new Exception("Can't find file trace folder in selected project.");
+-		}
+-		
+-		traceFolder.createLink(new Path(traceName), IResource.REPLACE, monitor);
+-	}
+-	
+-	private String[] generateViewerParam() throws Exception {
+-		String viewerParam=new String(LOCAL_EXEC);
+-		int i;
+-		
+-		ProcessBuilder pb = new ProcessBuilder("tar", "fx", localfile);
+-		pb.directory(new File("/tmp"));
+-		Process p=pb.start();
+-		if(p.waitFor()!=0)
+-			throw new Exception("extract ust data files failed");
+-		File f=new File(localfile.substring(0,localfile.length()-LOCAL_FILE_SUFFIX.length()));
+-		File []subdir=f.listFiles();
+-		
+-		for (i=0;i<subdir.length;i++) {
+-			if(subdir[i].isDirectory()) {
+-				viewerParam=viewerParam.concat(" -t " + subdir[i].getAbsolutePath());
+-			}
+-		}
+-		
+-		return viewerParam.split(" ");
+-	}
+-
+-	@Override
+-	public void process(IProgressMonitor monitor)
+-			throws InvocationTargetException, InterruptedException {
+-		// TODO Auto-generated method stub
+-		
+-		String datafile;
+-		
+-		monitor.beginTask("Running ust", 100);		
+-		try {
+-			//running usttrace
+-			monitor.subTask("Generating user space lttng data file remotely");
+-			datafile=generateData(new SubProgressMonitor(monitor,30));
+-			
+-			//download datafile to local
+-			monitor.subTask("Downloading user space lttng data file");
+-			getDataFile(new SubProgressMonitor(monitor,30),datafile);
+-			
+-			//extract datafile and import to lttng project
+-			importToProject(new SubProgressMonitor(monitor,30));
+-			//extract datafile, prepare cmd array
+-			/* JZ - we're using Eclipse built-in Lttng-viewer now
+-			String []cmdarray=generateViewerParam();
+-			if(cmdarray==null) {
+-				throw new Exception("Ust: empty ust data");
+-			}
+-			monitor.worked(30);
+-			
+-			monitor.subTask("lttv-gui is running locally");
+-			//start lttv-gui asynchronously
+-			new LocalJob("lttv-gui",cmdarray,null,null,window).schedule();
+-			*/			
+-		}catch (InterruptedException e){
+-			throw e;
+-		}catch (InvocationTargetException e) {
+-			throw e;
+-		}catch (Exception e){
+-			throw new InvocationTargetException(e, e.getMessage());
+-		}finally {
+-			monitor.done();
+-		}
+-	}
+-	
+-	static public boolean checkAvail() {
+-		boolean ret=CommonHelper.isExecAvail(LOCAL_EXEC);
+-		
+-		if(ret==false) {
+-			CommonHelper.showErrorDialog("User Mode Lttng", null,Messages.ErrorLttvGui);
+-		}
+-		return ret;
+-	}
+-
+-}
 -- 
 1.7.9.5
 
