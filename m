@@ -1,24 +1,22 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A863E014FB
-	for <yocto@yoctoproject.org>; Tue, 30 Apr 2013 13:30:18 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Apr 2013 13:30:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,582,1363158000"; d="scan'208";a="330333831"
-Received: from unknown (HELO [10.255.12.150]) ([10.255.12.150])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Apr 2013 13:30:03 -0700
-Message-ID: <518029CA.7080600@linux.intel.com>
-Date: Tue, 30 Apr 2013 13:30:02 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/17.0 Thunderbird/17.0
+Return-Path: <Randy.MacLeod@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA412E01512
+	for <yocto@yoctoproject.org>; Tue, 30 Apr 2013 14:28:36 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r3ULSZSd004120
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 30 Apr 2013 14:28:36 -0700 (PDT)
+Received: from yow-mthebeau-lx4.wrs.com (128.224.147.159) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.2.342.3; Tue, 30 Apr 2013 14:28:35 -0700
+From: Randy MacLeod <Randy.MacLeod@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 30 Apr 2013 17:28:34 -0400
+Message-ID: <1367357314-15049-1-git-send-email-Randy.MacLeod@windriver.com>
+X-Mailer: git-send-email 1.8.1
 MIME-Version: 1.0
-To: Felix01 Fischer <felix01.fischer@iav.de>
-References: <OF804FFBA4.FE98BF7E-ONC1257B5D.004B9DB5-C1257B5D.004E012E@retarus.de>
-In-Reply-To: <OF804FFBA4.FE98BF7E-ONC1257B5D.004B9DB5-C1257B5D.004E012E@retarus.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: booting with systemd fails with poky 9.0.0 & meta-ivi 4.0 & meta-intel master
+Subject: [PATCH] libselinux: drop flag: -Wno-unused-but-set-variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,74 +28,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Apr 2013 20:30:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 30 Apr 2013 21:28:37 -0000
+Content-Type: text/plain
 
-On 04/30/2013 07:12 AM, Felix01 Fischer wrote:
-> Hello,
->
-> I am not able to boot a genivi-compliant yocto build. The error is
->
-> "/init:: line XX: mount: not found"
->
-> I'm using poky 9.0.0, meta-ivi 4.0 & meta-intel master, machine??=
-> crownbay, DISTRO ?= "poky-ivi-systemd" and followed the inherent README.
->
-I attempted a similar build with qemux86-64 and did not find any 
-problems with it, I was able to boot corrrectly to login prompt 
-generated from systemd.
+The flag: -Wno-unused-but-set-variable isn't supported on older
+versions of gcc such as gcc-4.1.2 which is the native compiler for
+RHEL-5.9. I've droped this warning flag for both the native and target builds.
 
-I am looking at the rootfs, can you confirm if mount is correctly 
-installed in your rootfs?  You can look in 
-tmp-eglibc-eglibc/work/qemux86_64-oe-linux/foton-image/4.0.0-r0/rootfs/ 
-to see if mount is installed correctly in bin.
+Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+---
+ .../libselinux-drop-Wno-unused-but-set-variable.patch   | 17 +++++++++++++++++
+ recipes-security/selinux/libselinux_2.1.12.bb           |  9 ++++++---
+ 2 files changed, 23 insertions(+), 3 deletions(-)
+ create mode 100644 recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch
 
-Do you have another log output?
+diff --git a/recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch b/recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch
+new file mode 100644
+index 0000000..9deb67d
+--- /dev/null
++++ b/recipes-security/selinux/libselinux/libselinux-drop-Wno-unused-but-set-variable.patch
+@@ -0,0 +1,17 @@
++Subject: libselinux: drop flag: -Wno-unused-but-set-variable
++
++Upstream status: inappropriate (older compilers only).
++
++Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
++
++--- libselinux-2.1.12.orig/src/Makefile
+++++ libselinux-2.1.12/src/Makefile
++@@ -79,7 +79,7 @@
++ 
++ override CFLAGS += -I../include -I$(INCLUDEDIR) -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 $(EMFLAGS)
++ 
++-SWIG_CFLAGS += -Wno-error -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-parameter \
+++SWIG_CFLAGS += -Wno-error -Wno-unused-variable -Wno-unused-parameter \
++ 		-Wno-shadow -Wno-uninitialized -Wno-missing-prototypes -Wno-missing-declarations
++ 
++ RANLIB=ranlib
+diff --git a/recipes-security/selinux/libselinux_2.1.12.bb b/recipes-security/selinux/libselinux_2.1.12.bb
+index 34f9c2c..d881534 100644
+--- a/recipes-security/selinux/libselinux_2.1.12.bb
++++ b/recipes-security/selinux/libselinux_2.1.12.bb
+@@ -1,4 +1,4 @@
+-PR = "r0"
++PR = "r1"
+ 
+ include selinux_20120924.inc
+ include ${BPN}.inc
+@@ -8,5 +8,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
+ SRC_URI[md5sum] = "73270f384a032fad34b5fe075fa05ce2"
+ SRC_URI[sha256sum] = "8dad879380e0ce1e4ab67195a08f6052c1396493bcb12fe92a033f49f7dbca9e"
+ 
+-SRC_URI += "file://libselinux-fix-init-load-policy.patch \
+-	file://libselinux-pcre-link-order.patch"
++SRC_URI += "\
++        file://libselinux-fix-init-load-policy.patch \
++        file://libselinux-pcre-link-order.patch \
++        file://libselinux-drop-Wno-unused-but-set-variable.patch \
++        "
+-- 
+1.8.1
 
-Did you change anything else?
-
-Thanks
-	Sau!
-
-
-> This error occurred with yocto 8.0.1, meta-ivi 3.0 & meta-intel 8.0.0, too.
->
-> I'm kinda new to the whole systemd thing, so maybe this error is trivial
-> to solve?
->
-> Regards,
->
-> Felix Fischer
->
->
-> Viele Grüße
->
-> Felix Fischer
->
-> Studentischer Mitarbeiter (VC-D1)
-> Vehicle Cockpit Electronics Devices
->
-> IAV GmbH
-> Carnotstr. 1
-> 10587 BERLIN
-> GERMANY
->
-> Phone: +49 30 39978-9540
-> Fax:      +49 30 39978-9411
-> E-Mail:  <mailto:felix01.fischer@iav.de>
-> Internet: http://www.iav.com <http://www.iav.com/>
->
-> Sitz/Registered Office: Berlin,
-> Registergericht/Registration Court: Amtsgericht Charlottenburg,
-> Registernummer/Company Registration Number: HRB 21 280,
-> Geschäftsführer/Managing Directors: Kurt Blumenröder, Michael Schubert,
-> Dr. Rüdiger Goyk
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
