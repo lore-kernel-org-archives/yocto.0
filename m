@@ -1,35 +1,33 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54865E0151B
-	for <yocto@yoctoproject.org>; Wed,  1 May 2013 04:05:09 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id 15so1160731vea.29
-	for <yocto@yoctoproject.org>; Wed, 01 May 2013 04:05:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:x-originating-ip:in-reply-to:references
-	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=ruLIcfWml+818alKueupZ/jEAlWzb24an0pY4tUa43A=;
-	b=ceAmseQt/ou/uYLAEcFSFvZ/9arH26W6fMILZvD3xVnRqdpy3VafzQ6X6J7E1/eLT+
-	Bsyc0hIIVL/0pljEis9xhTXqjcBNd9aHS2Nq4aWQGwgAxV6n/OwzU8vLi08HV0HiGq2G
-	yYY1jfccdWrw6M8S6j+y/9MJZOL15XltG4mLSEeFkQqCvRI35bb1MemiLi9IBtlMJZce
-	awJWSQ8H5O79ypYTjDG3bHC4IZ6hRg0WgpCD5uM971QAYquzuUQsbhynoxx7DjY0+zgW
-	BJy8exro9/5XJt5NkOv4/jep4gPBGXF2q9XFBk9FpCesOi9EJSYq3ePvaWaRDCCvI25E
-	rNEA==
-X-Received: by 10.52.99.67 with SMTP id eo3mr637738vdb.21.1367406308410; Wed,
-	01 May 2013 04:05:08 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BDC7E014C8
+	for <yocto@yoctoproject.org>; Wed,  1 May 2013 11:39:45 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 01 May 2013 11:37:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,590,1363158000"; 
+	d="scan'208,217";a="329731520"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by orsmga002.jf.intel.com with ESMTP; 01 May 2013 11:39:44 -0700
+Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 1 May 2013 11:39:43 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.227]) by
+	ORSMSX155.amr.corp.intel.com ([169.254.7.179]) with mapi id
+	14.01.0355.002; Wed, 1 May 2013 11:39:44 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, April
+	30, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac5GmxWj0UT8Wqj+QJCQDp9aN41P2QAABzbw
+Date: Wed, 1 May 2013 18:39:43 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A718F9C58@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.58.106.97 with HTTP; Wed, 1 May 2013 04:04:48 -0700 (PDT)
-X-Originating-IP: [5.14.143.208]
-In-Reply-To: <517EFA31.2040206@philipp-wagner.com>
-References: <517EF0A0.10303@gmail.com> <517EFA31.2040206@philipp-wagner.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 1 May 2013 13:04:48 +0200
-Message-ID: <CAK18fxENqfs49sM082TB6KV6DdWU8kAyh1imEQ=FxfpmsPqQQg@mail.gmail.com>
-To: Philipp Wagner <lists@philipp-wagner.com>
-X-Gm-Message-State: ALoCoQnFNDza/SWTMYjhDO+h4lQ1gi7eIsOIp+bOipv+4fhMyOWNC7G3W3NeoPIq0nniXIfJQ0xA
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: meta-raspberrypi
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, April 30, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,74 +39,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 May 2013 11:05:09 -0000
-Content-Type: multipart/alternative; boundary=20cf307f377a46d8bf04dba6170b
+X-List-Received-Date: Wed, 01 May 2013 18:39:45 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A718F9C58ORSMSX108amrcor_"
 
---20cf307f377a46d8bf04dba6170b
-Content-Type: text/plain; charset=ISO-8859-1
-
-Right. Had a couple of problems + out of town for a while. Tonight will
-sync with all the patches sent. Sorry for this.
-
-
-On Tue, Apr 30, 2013 at 12:54 AM, Philipp Wagner
-<lists@philipp-wagner.com>wrote:
-
-> Am 30.04.2013 00:13, seth bollinger wrote:
-> > Is anyone maintaining the meta-raspberrypi repository?
->
-> Yes, it's maintained by Andrei Gherzan <andrei@gherzan.ro>.
->
-> Philipp
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
-
--- 
-*Andrei Gherzan*
-m: +40.744.478.414 |  f: +40.31.816.28.12
-
---20cf307f377a46d8bf04dba6170b
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A718F9C58ORSMSX108amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Right. Had a couple of problems + out of town for a while.=
- Tonight will sync with all the patches sent. Sorry for this.</div><div cla=
-ss=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tue, Apr 30, 2013 =
-at 12:54 AM, Philipp Wagner <span dir=3D"ltr">&lt;<a href=3D"mailto:lists@p=
-hilipp-wagner.com" target=3D"_blank">lists@philipp-wagner.com</a>&gt;</span=
-> wrote:<br>
+Attendees:
+Ramana, Saurav, Saul, LaurentiuP, KevinS, ScottR, JeffP, Bj=F6rnS, Beth, RP=
+, TomZ, Corneliu, MarkH, Nitin, Denys, AlexG, PaulE, Ross, Song
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">Am 30.04.2013 00:13, seth =
-bollinger wrote:<br>
-&gt; Is anyone maintaining the meta-raspberrypi repository?<br>
-<br>
-</div>Yes, it&#39;s maintained by Andrei Gherzan &lt;<a href=3D"mailto:andr=
-ei@gherzan.ro">andrei@gherzan.ro</a>&gt;.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Philipp<br>
-</font></span><div class=3D"HOEnZb"><div class=3D"h5">_____________________=
-__________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
-<div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"text-=
-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Roman=
-&#39;;font-size:medium">
+Congratulations to all on the 1.4 release! Now let's focus on 1.5 planning =
+this week.
 
-<b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
-n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
--1"><br></font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.74=
-4.478.414 | =A0f: +40.31.816.28.12</font><br>
+Notes:
 
-</div></div></div>
-</div>
+* Opens collection - 5 min (Song)
+* Point release dates:
+https://www.google.com/calendar/embed?src=3D3a0927ctps51u8rs2jv1uligdc%40gr=
+oup.calendar.google.com&ctz=3DAmerica/Los_Angeles
+ - 1.3.2 (Ross)
+    5/7: RC1 build
+    5/8 - 5/14: RC 1 testing
+    5/21: RC2 build
+    5/22-5/28: RC2 testing
+    5/31: Release
+ - 1.4.1 release: (PaulE)
+    6/19: RC1 build
+    6/20-6/25: RC1 testing
+    6/26: RC2 build
+    6/26-7/3: RC2 testing
+    7/8: Release
 
---20cf307f377a46d8bf04dba6170b--
+* Yocto 1.5 release criteria review - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status#Yocto_Projec=
+t_1.5_Release_Criteria<https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status>
+
+  - Centos: most current version of centos testing should be tested
+  - We should review the number of medium+ bugs when we release, and addres=
+s any concern.
+  - Bugs dispositioned: triaged, assigned to proper priority and target mil=
+estone.
+
+* SWAT team rotation: Laurentiu Palcu -> Nitin
+* Opens - 10 min
+* Team Sharing - 20 min
+  - Beth: Yocto Project now is sponsored by outreach program for Women. hav=
+e an intern working in summer. $ 5000 for 3 month. Attended Collab summit, =
+spdx, start looking at the functionality. Some work came out from the work =
+at university of omaha. FOSSology project, code inspection for license cont=
+amination. Had a meeting yesterday with Mark, Jefro, and others. Long discu=
+ssion, driving 2.0 specification.
+  - Michael: last week, ordering the new hardware. Will get even faster bui=
+ld. Meta-lsi layer released. Working on oe mailing list. Lots of preparatio=
+n. Working on the QA chart automation.
+  - RP: moving from giving update in the meetings to the mailing list as pr=
+omised to the community.
+  - Python version 3/RP: collecting data and community input, no decisions =
+made. working with 2.0. If we were to upgrade to 3, would that cause major =
+pain?
+Concern: a lot of distros don't have python 3?. Compatibility could be an i=
+ssue. Let me know if you have strong opinion. Beth: AB is an concern. But B=
+uildbot should run python 3.
+
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A718F9C58ORSMSX108amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>Ramana, Saurav, Saul, LaurentiuP, KevinS, ScottR, JeffP, Bj=F6rnS, Bet=
+h, RP, TomZ, Corneliu, MarkH, Nitin, Denys, AlexG, PaulE, Ross, Song </div>
+<div>&nbsp;</div>
+<div>Congratulations to all on the 1.4 release! Now let&#8217;s focus on 1.=
+5 planning this week.</div>
+<div>&nbsp;</div>
+<div>Notes:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Point release dates: </div>
+<div><font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12p=
+t;"><a href=3D"https://www.google.com/calendar/embed?src=3D3a0927ctps51u8rs=
+2jv1uligdc%40group.calendar.google.com&amp;ctz=3DAmerica/Los_Angeles"><font=
+ face=3D"Consolas" size=3D"2" color=3D"blue"><span style=3D"font-size:11pt;=
+"><u>https://www.google.com/calendar/embed?src=3D3a0927ctps51u8rs2jv1uligdc=
+%40group.calendar.google.com&amp;ctz=3DAmerica/Los_Angeles</u></span></font=
+></a><font face=3D"Consolas" size=3D"2" color=3D"#222222"><span style=3D"fo=
+nt-size:11pt;"><b>&nbsp;</b></span></font></span></font></div>
+<div> - 1.3.2 (Ross)</div>
+<div style=3D"padding-left:27pt;">5/7: RC1 build </div>
+<div style=3D"padding-left:27pt;">5/8 - 5/14: RC 1 testing</div>
+<div style=3D"padding-left:27pt;">5/21: RC2 build</div>
+<div style=3D"padding-left:27pt;">5/22-5/28: RC2 testing</div>
+<div style=3D"padding-left:27pt;">5/31: Release</div>
+<div> - 1.4.1 release: (PaulE)</div>
+<div>&nbsp;&nbsp;&nbsp; 6/19: RC1 build</div>
+<div>&nbsp;&nbsp;&nbsp; 6/20-6/25: RC1 testing</div>
+<div>&nbsp;&nbsp;&nbsp; 6/26: RC2 build</div>
+<div>&nbsp;&nbsp;&nbsp; 6/26-7/3: RC2 testing</div>
+<div>&nbsp;&nbsp;&nbsp; 7/8: Release&nbsp;</div>
+<div>&nbsp;</div>
+<div>* Yocto 1.5 release criteria review - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status#Yocto_Project_1.5_Release_Criteria</u></font></a> </div=
+>
+<div>&nbsp;</div>
+<div>&nbsp; - Centos: most current version of centos testing should be test=
+ed</div>
+<div>&nbsp; - We should review the number of medium&#43; bugs when we relea=
+se, and address any concern.</div>
+<div>&nbsp; - Bugs dispositioned: triaged, assigned to proper priority and =
+target milestone.</div>
+<div>&nbsp;</div>
+<div>* SWAT team rotation: Laurentiu Palcu -&gt; Nitin</div>
+<div>* Opens - 10 min </div>
+<div>* Team Sharing - 20 min</div>
+<div>&nbsp; - Beth: Yocto Project now is sponsored by outreach program for =
+Women. have an intern working in summer. $ 5000 for 3 month. Attended Colla=
+b summit, spdx, start looking at the functionality. Some work came out from=
+ the work at university of omaha. FOSSology
+project, code inspection for license contamination. Had a meeting yesterday=
+ with Mark, Jefro, and others. Long discussion, driving 2.0 specification.<=
+/div>
+<div>&nbsp; - Michael: last week, ordering the new hardware. Will get even =
+faster build. Meta-lsi layer released. Working on oe mailing list. Lots of =
+preparation. Working on the QA chart automation. </div>
+<div>&nbsp; - RP: moving from giving update in the meetings to the mailing =
+list as promised to the community.</div>
+<div>&nbsp; - Python version 3/RP: collecting data and community input, no =
+decisions made. working with 2.0. If we were to upgrade to 3, would that ca=
+use major pain? </div>
+<div>Concern: a lot of distros don't have python 3?. Compatibility could be=
+ an issue. Let me know if you have strong opinion. Beth: AB is an concern. =
+But Buildbot should run python 3.&nbsp; </div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A718F9C58ORSMSX108amrcor_--
