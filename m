@@ -1,36 +1,38 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F2E4E00310
-	for <yocto@yoctoproject.org>; Wed,  1 May 2013 12:10:22 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 01 May 2013 12:10:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,590,1363158000"; d="scan'208";a="296105901"
-Received: from fmsmsx105.amr.corp.intel.com ([10.19.9.36])
-	by azsmga001.ch.intel.com with ESMTP; 01 May 2013 12:10:21 -0700
-Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
-	FMSMSX105.amr.corp.intel.com (10.19.9.36) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Wed, 1 May 2013 12:10:20 -0700
-Received: from fmsmsx152.amr.corp.intel.com ([169.254.6.6]) by
-	FMSMSX113.amr.corp.intel.com ([169.254.4.18]) with mapi id
-	14.01.0355.002; Wed, 1 May 2013 12:10:20 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 2/8] Refactor Model(s) to display customized
-	messages
-Thread-Index: AQHORbMJfkrw/VjxjkOVZbSmfvEdzJjws2GQ
-Date: Wed, 1 May 2013 19:10:20 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C7077BAC4@fmsmsx152.amr.corp.intel.com>
-References: <1367332592-2585-1-git-send-email-ioanax.grigoropol@intel.com>
-	<1367332592-2585-3-git-send-email-ioanax.grigoropol@intel.com>
-In-Reply-To: <1367332592-2585-3-git-send-email-ioanax.grigoropol@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
+	[209.85.212.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 882C8E0152C
+	for <yocto@yoctoproject.org>; Wed,  1 May 2013 12:10:46 -0700 (PDT)
+Received: by mail-vb0-f42.google.com with SMTP id w15so1473027vbf.1
+	for <yocto@yoctoproject.org>; Wed, 01 May 2013 12:10:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:x-originating-ip:in-reply-to:references
+	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=iruyqU9/L32u6d9gRWeObTbGYp2DIAeUbGE/KnWJ+Ts=;
+	b=ClckvPiJ1l+wT+JVyJzh11qW/jQyLww13rYHifBSSuBaVT/RwnSl0g4oIMw9kS7a/u
+	Zt5S06r+9OAWCBIiyr/OIfjlZr4+3D5QUInzX4LqQ5TIkvBlF95BpCJlWUuZAs7C4/Ex
+	7ZiHPyUASQ1nurVKnq3wTK2v7sT573MCEFsOPPwUS4QMw6szrECGTOgLc7SmDH6SRDP7
+	JYULf7FTrjslPV6/fgG2iEnMRP190tKZyUw9Z0Q7s5o6EQwP5kb6AKBIBW/Hb5J/o1AU
+	N3rluN5u25QMMkS9ZY0Kpu6CB46mvtQF0asS0jtHssoqQbFmXxlqPj1sGedYdjrvPqdw
+	Q16g==
+X-Received: by 10.58.50.7 with SMTP id y7mr1216428ven.24.1367435445647; Wed,
+	01 May 2013 12:10:45 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/8] Refactor Model(s) to display customized messages
+Received: by 10.58.106.97 with HTTP; Wed, 1 May 2013 12:10:25 -0700 (PDT)
+X-Originating-IP: [5.14.143.208]
+In-Reply-To: <CANyK_8dWFNWQ2UhHdQUPACfruFk9uSrUfpTVxJeNn2m3kAYX=A@mail.gmail.com>
+References: <51788031.7080701@gmail.com>
+	<CANyK_8fujLspj_VCZd5TY9x4A62m=WKhva3BavL91XzwY5Krgw@mail.gmail.com>
+	<CA+JN8xMvcoaLKufSeCLO21ozH542OG-uZSn8fDS0OVMGXkUNbw@mail.gmail.com>
+	<CANyK_8dWFNWQ2UhHdQUPACfruFk9uSrUfpTVxJeNn2m3kAYX=A@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 1 May 2013 21:10:25 +0200
+Message-ID: <CAK18fxFCE_=X57fDp8+wYQOACeOjU2NPuM3bLKYYxCNFTOiCqA@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+X-Gm-Message-State: ALoCoQmJRMeO6BtHeZoz8a3WOa6TpoOCm3FbvEgBwEjYB69TxR1b3jdlIhTGt/xyjt4MtqOCCnMz
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/2] sdcard_image-rpi.bbclass: Fix error in conditional test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,404 +44,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 May 2013 19:10:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 01 May 2013 19:10:46 -0000
+Content-Type: multipart/alternative; boundary=089e0112c63afdeafe04dbacdfa0
+
+--089e0112c63afdeafe04dbacdfa0
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Thu, Apr 25, 2013 at 2:59 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+
+> On 25 April 2013 13:51, Seth Bollinger <seth.boll@gmail.com> wrote:
+> > On Thu, Apr 25, 2013 at 7:38 AM, Paul Barker <paul@paulbarker.me.uk>
+> wrote:
+> >>
+> >> '[[' should be a bash builtin. What host OS are you using for the build?
+> >
+> > I'm using debian.  I'll check what the default shell is.  You're right,
+> it's
+> > probably dash.
+> >
+>
+> Try 'sudo dpkg-reconfigure dash'.
+>
+> > However, should this fail silently then?  In this instance I only saw the
+> > error with debug enabled.  Otherwise it silently tried to dd a compressed
+> > image to the sd card.  Of course this didn't run.  :)
+> >
+>
+> I assume that 'if' tries to run the command, gets a non-zero return
+> value as the command doesn't run and just interprets this as the
+> command running but returning non-zero.
+>
+>
+I think I asked Seth a while ago and he confirmed that bash was his shell. I
+thought about dash as well. But as a matter of fact we should remove
+bashisms and make things as usable as possible. So maybe his patch makes
+sense after all.
+
+
+-- 
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
+
+--089e0112c63afdeafe04dbacdfa0
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ioana,
+<div dir=3D"ltr">On Thu, Apr 25, 2013 at 2:59 PM, Paul Barker <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:paul@paulbarker.me.uk" target=3D"_blank">paul@pa=
+ulbarker.me.uk</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div cla=
+ss=3D"gmail_quote">
 
-Why we're changing "public BaseModel(...)" to "BaseModel(...)"?
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex">On 25 April 2013 13:51, Seth Bollinger &lt;<a href=3D"mail=
+to:seth.boll@gmail.com">seth.boll@gmail.com</a>&gt; wrote:<br>
 
-Thanks,
-Jessica
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Tuesday, April 30, 2013 7:36 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH 2/8] Refactor Model(s) to display customized messag=
-es
+<div class=3D"im">&gt; On Thu, Apr 25, 2013 at 7:38 AM, Paul Barker &lt;<a =
+href=3D"mailto:paul@paulbarker.me.uk">paul@paulbarker.me.uk</a>&gt; wrote:<=
+br>
+&gt;&gt;<br>
+&gt;&gt; &#39;[[&#39; should be a bash builtin. What host OS are you using =
+for the build?<br>
+&gt;<br>
+</div>&gt; I&#39;m using debian. =A0I&#39;ll check what the default shell i=
+s. =A0You&#39;re right, it&#39;s<br>
+&gt; probably dash.<br>
+&gt;<br>
+<br>
+Try &#39;sudo dpkg-reconfigure dash&#39;.<br>
+<br>
+&gt; However, should this fail silently then? =A0In this instance I only sa=
+w the<br>
+&gt; error with debug enabled. =A0Otherwise it silently tried to dd a compr=
+essed<br>
+&gt; image to the sd card. =A0Of course this didn&#39;t run. =A0:)<br>
+&gt;<br>
+<br>
+I assume that &#39;if&#39; tries to run the command, gets a non-zero return=
+<br>
+value as the command doesn&#39;t run and just interprets this as the<br>
+command running but returning non-zero.<br>
+<div class=3D""><div class=3D"h5"><br></div></div></blockquote><div><br></d=
+iv><div>I think I asked Seth a while ago and he confirmed that bash was his=
+ shell. I</div><div>thought about dash as well. But as a matter of fact we =
+should remove</div>
 
-- each of the remote tools models (systemtap, oprofile, powertop, ust2, ust=
-legacy) inherits BaseModel class
-- when running any of these models there are a series of actions performed =
-such as:
-        - init
-        - pre-process
-        - process
-        - post-process
-        - clean
-- while the action is running a progress monitor is display showing no mess=
-age and no progress update
-        - in order to set an appropriate message for the monitor, define a =
-taskName at the parent level
-                that will be customized by each of the models
-        - each time the action performed changes the monitor's subtask mess=
-age should be updated accordingly
+<div>bashisms and make things as usable as possible. So maybe his patch mak=
+es</div><div>sense after all.=A0</div></div><br clear=3D"all"><div><br></di=
+v>-- <br><div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=
+=3D"text-align:center">
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../yocto/sdk/remotetools/actions/BaseModel.java   |   70 ++++++++++++----=
-----
- .../sdk/remotetools/actions/OprofileModel.java     |   15 +++--
- .../sdk/remotetools/actions/PowertopModel.java     |   13 ++--
- .../sdk/remotetools/actions/SystemtapModel.java    |    7 +-
- .../yocto/sdk/remotetools/actions/Ust2Model.java   |   10 +--
- 5 files changed, 70 insertions(+), 45 deletions(-)
+<div align=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;font-siz=
+e:medium"><b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small=
+;text-align:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333=
+" size=3D"-1"><br>
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/actions/BaseModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/=
-sdk/remotetools/actions/BaseModel.java
-index 4f6a5c8..e1abd63 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
-ns/BaseModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
-+++ tions/BaseModel.java
-@@ -18,49 +18,63 @@ import org.eclipse.jface.operation.IRunnableWithProgres=
-s;
- import org.eclipse.rse.core.model.IHost;
+</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
+4 | =A0f: +40.31.816.28.12</font><br></div></div></div>
+</div></div>
 
- abstract public class BaseModel implements IRunnableWithProgress {
--
--       protected IHost rseConnection;
-+       protected IHost host;
-+       protected String taskName;
-+
-+       private static final int WORKLOAD =3D 100;
-+
-+       private static final int INIT_PERCENT =3D 5;
-+       private static final int PRE_PROCESS_PERCENT =3D 30;
-+       private static final int PROCESS_PERCENT =3D 30;
-+       private static final int POST_PROCESS_PERCENT =3D 30;
-+       private static final int CLEAN_PERCENT =3D 5;
-+
-+       private static final String RUN_MSG =3D "Running task: ";
-+       private static final String INIT_MSG =3D "Initializing ";
-+       private static final String PRE_PROCESS_MSG =3D "Preparing ";
-+       private static final String PROCESS_MSG =3D "Processing ";
-+       private static final String POST_PROCESS_MSG =3D "Finishing ";
-+       private static final String CLEAN_MSG =3D "Cleaning ";
-+       private static final String DOTS =3D "...";
-
-        abstract public void preProcess(IProgressMonitor monitor) throws In=
-vocationTargetException,     InterruptedException;
-        abstract public void postProcess(IProgressMonitor monitor) throws I=
-nvocationTargetException,InterruptedException;
-        abstract public void process(IProgressMonitor monitor) throws Invoc=
-ationTargetException,InterruptedException;
-
--       public BaseModel(IHost rseConnection) {
--               this.rseConnection=3DrseConnection;
-+       BaseModel(IHost host, String taskName) {
-+               this.host =3D host;
-+               this.taskName =3D taskName;
-        }
--
-        protected void init(IProgressMonitor monitor) throws InvocationTarg=
-etException, InterruptedException {
--               /*
--               if(rseConnection=3D=3Dnull) {
--                       throw new InvocationTargetException(new Exception("=
-NULL rse connection"),"NULL rse connection");
--               }*/
-        }
-
--       protected void uninit(IProgressMonitor monitor) throws InvocationTa=
-rgetException, InterruptedException {
--
-+       protected void clean(IProgressMonitor monitor) throws
-+InvocationTargetException, InterruptedException {
-        }
--
-+
-        public void run(IProgressMonitor monitor) throws InvocationTargetEx=
-ception,
-     InterruptedException {
-
-                try {
--                       monitor.beginTask("", 100);
--                       init(new SubProgressMonitor(monitor,5));
--                       if(monitor.isCanceled())
--                               throw new InterruptedException("User cannce=
-lled");
--                       preProcess(new SubProgressMonitor(monitor,30));
--                       if(monitor.isCanceled())
--                               throw new InterruptedException("User cannce=
-lled");
--                       process(new SubProgressMonitor(monitor,30));
--                       if(monitor.isCanceled())
--                               throw new InterruptedException("User cannce=
-lled");
--                       postProcess(new SubProgressMonitor(monitor,30));
--               }catch (InterruptedException e){
--                       throw e;
--               }catch (InvocationTargetException e) {
-+                       monitor.beginTask(RUN_MSG + taskName, WORKLOAD);
-+
-+                       monitor.subTask(INIT_MSG + taskName + DOTS);
-+                       init(new SubProgressMonitor(monitor, INIT_PERCENT))=
-;
-+
-+                       monitor.subTask(PRE_PROCESS_MSG + taskName + DOTS);
-+                       preProcess(new SubProgressMonitor(monitor, PRE_PROC=
-ESS_PERCENT));
-+
-+                       monitor.subTask(PROCESS_MSG + taskName + DOTS);
-+                       process(new SubProgressMonitor(monitor, PROCESS_PER=
-CENT));
-+
-+                       monitor.subTask(POST_PROCESS_MSG + taskName + DOTS)=
-;
-+                       postProcess(new SubProgressMonitor(monitor, POST_PR=
-OCESS_PERCENT));
-+               } catch (InterruptedException e){
-+                       throw new InterruptedException("User cancelled!");
-+               } catch (InvocationTargetException e) {
-                        throw e;
--               }finally {
--                       uninit(new SubProgressMonitor(monitor,5));
-+               } finally {
-+                       monitor.subTask(CLEAN_MSG + taskName + DOTS);
-+                       clean(new SubProgressMonitor(monitor, CLEAN_PERCENT=
-));
-                        monitor.done();
-                }
-        }
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/actions/OprofileModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yo=
-cto/sdk/remotetools/actions/OprofileModel.java
-index 17b54b3..71ff4d9 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
-ns/OprofileModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
-+++ tions/OprofileModel.java
-@@ -36,18 +36,21 @@ public class OprofileModel extends BaseModel {
-        static final private String LOCAL_SCRIPT=3D"resources/yocto_tool.sh=
-";
-        static final private String LOCAL_EXEC=3D"oprofile-viewer";
-
-+       private static final String TASK_NAME =3D "oprofile command";
-+
-        private IWorkbenchWindow window;
-        public OprofileModel(IHost host, IWorkbenchWindow window) {
--               super(host);
-+               super(host, TASK_NAME);
-                this.window=3Dwindow;
-        }
-+
-        @Override
-        public void preProcess(IProgressMonitor monitor)
-                        throws InvocationTargetException, InterruptedExcept=
-ion {
-                //upload script to remote
-                try {
-                        RSEHelper.putRemoteFileInPlugin(
--                                       rseConnection,
-+                                       host,
-                                        LOCAL_SCRIPT,
-                                        REMOTE_EXEC,
-                                        monitor);
-@@ -68,7 +71,7 @@ public class OprofileModel extends BaseModel {
-
-        private void startServer(IProgressMonitor monitor) throws Exception=
- {
-                int exit_code;
--               RemoteApplication app=3Dnew RemoteApplication(rseConnection=
-,null,REMOTE_EXEC,null);
-+               RemoteApplication app=3Dnew
-+RemoteApplication(host,null,REMOTE_EXEC,null);
-                String args=3D"start -d oprofile-server";
-
-                try {
-@@ -89,7 +92,7 @@ public class OprofileModel extends BaseModel {
-
-        private void stopServer(IProgressMonitor monitor) throws Exception =
-{
-
--               RemoteApplication app=3Dnew RemoteApplication(rseConnection=
-,null,REMOTE_EXEC,null);
-+               RemoteApplication app=3Dnew
-+RemoteApplication(host,null,REMOTE_EXEC,null);
-                String args=3D"stop -d oprofile-server";
-                try {
-                        monitor.beginTask("Stopping oprofile-server", 2); @=
-@ -177,8 +180,8 @@ public class OprofileModel extends BaseModel {
-
-                        new LocalJob("oprofile-viewer",
-                                        (searchPath!=3Dnull) ?
--                                               new String[] {LOCAL_EXEC,"-=
-h",rseConnection.getHostName(),"-s",searchPath} :
--                                               new String[] {LOCAL_EXEC,"-=
-h",rseConnection.getHostName()},
-+                                               new String[] {LOCAL_EXEC,"-=
-h",host.getHostName(),"-s",searchPath} :
-+                                               new String[] {LOCAL_EXEC,"-=
-h",host.getHostName()},
-                                        null,
-                                        null,
-                                        window).schedule();
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/actions/PowertopModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yo=
-cto/sdk/remotetools/actions/PowertopModel.java
-index cdf4afd..c5f11d3 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
-ns/PowertopModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
-+++ tions/PowertopModel.java
-@@ -33,15 +33,18 @@ public class PowertopModel extends BaseModel {
-        final private String LOCAL_SCRIPT=3D"resources/yocto_tool.sh";
-        final private String REMOTE_FILE_PREFIX=3D"/tmp/yocto-powertop-";
-        final private String LOCAL_FILE_SUFFIX=3D".local";
-+
-+       private static final String TASK_NAME =3D "powertop command";
-+
-        private Float time;
-        private boolean showpid;
-        Display display;
--
-+
-        String localfile;
-        String remotefile;
-
-        public PowertopModel(IHost host, Float time,boolean showpid,Display=
- display) {
--               super(host);
-+               super(host, TASK_NAME);
-                this.time=3Dtime;
-                this.showpid=3Dshowpid;
-                this.display=3Ddisplay;
-@@ -53,7 +56,7 @@ public class PowertopModel extends BaseModel {
-                //upload script to remote
-                try {
-                        RSEHelper.putRemoteFileInPlugin(
--                                       rseConnection,
-+                                       host,
-                                        LOCAL_SCRIPT,
-                                        REMOTE_EXEC,
-                                        monitor);
-@@ -79,7 +82,7 @@ public class PowertopModel extends BaseModel {
-
-        private void generateData(IProgressMonitor monitor) throws Exceptio=
-n {
-                int exit_code;
--               RemoteApplication app=3Dnew RemoteApplication(rseConnection=
-,null,REMOTE_EXEC,null);
-+               RemoteApplication app=3Dnew
-+RemoteApplication(host,null,REMOTE_EXEC,null);
-                String currentDate=3Dnew SimpleDateFormat("yyyyMMddHHmmssSS=
-S").format(Calendar.getInstance().getTime()).toString();
-                remotefile=3Dnew String(REMOTE_FILE_PREFIX + currentDate);
-                localfile=3Dnew String(remotefile + LOCAL_FILE_SUFFIX); @@ =
--117,7 +120,7 @@ public class PowertopModel extends BaseModel {
-        private void getDataFile(IProgressMonitor monitor) throws Exception=
- {
-
-                RSEHelper.getRemoteFile(
--                               rseConnection,
-+                               host,
-                                localfile,
-                                remotefile,
-                                monitor);
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/y=
-octo/sdk/remotetools/actions/SystemtapModel.java
-index 0d22d97..41c79df 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
-ns/SystemtapModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
-+++ tions/SystemtapModel.java
-@@ -24,17 +24,20 @@ import org.yocto.sdk.remotetools.ShellSession;
- public class SystemtapModel extends BaseModel {
-        protected static final String DEFAULT_INIT_SCRIPT =3D "oe-init-buil=
-d-env";
-        protected static final String SYSTEMTAP_CONSOLE =3D "Systemtap Cons=
-ole";
-+
-+       private static final String TASK_NAME =3D "systemtap command";
-+
-        protected MessageConsole sessionConsole;
-        private String metadata_location;
-        private String remote_host;
-        private String user_id;
-        private String systemtap_script;
-        private String systemtap_args;
--
-+
-        Display display;
-
-        public SystemtapModel(String metadata_location, String remote_host,=
- String user_id, String systemtap_script, String systemtap_args, Display di=
-splay) {
--               super(null);
-+               super(null, TASK_NAME);
-                this.metadata_location=3Dmetadata_location;
-                this.remote_host=3Dremote_host;
-                this.user_id=3Duser_id;
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/actions/Ust2Model.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/=
-sdk/remotetools/actions/Ust2Model.java
-index dbde287..171f17b 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
-ns/Ust2Model.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
-+++ tions/Ust2Model.java
-@@ -40,6 +40,8 @@ public class Ust2Model extends BaseModel {
-        static final private String LOCAL_EXEC=3D"lttv-gui";
-        public static final String TRACE_FOLDER_NAME =3D "Traces";
-        static final private String DATAFILE_PREFIX =3D "ustfile:";
-+
-+       private static final String TASK_NAME =3D "ust2trace command";
-
-        private String trace_loc;
-
-@@ -50,7 +52,7 @@ public class Ust2Model extends BaseModel {
-        private IWorkbenchWindow window;
-
-        public Ust2Model(IHost host, String trace, String project, IWorkben=
-chWindow window) {
--               super(host);
-+               super(host, TASK_NAME);
-                trace_loc=3Dtrace;
-
-                prj_name =3D project;
-@@ -63,7 +65,7 @@ public class Ust2Model extends BaseModel {
-                ///upload script to remote
-                try {
-                        RSEHelper.putRemoteFileInPlugin(
--                                       rseConnection,
-+                                       host,
-                                        LOCAL_SCRIPT,
-                                        REMOTE_EXEC,
-                                        monitor);
-@@ -91,7 +93,7 @@ public class Ust2Model extends BaseModel {
-
-        private String generateData(IProgressMonitor monitor) throws Except=
-ion {
-                int exit_code;
--               RemoteApplication app=3Dnew RemoteApplication(rseConnection=
-,null,REMOTE_EXEC,null);
-+               RemoteApplication app=3Dnew
-+RemoteApplication(host,null,REMOTE_EXEC,null);
-
-                String remoteDataFile=3Dnull;
-
-@@ -131,7 +133,7 @@ public class Ust2Model extends BaseModel {
-                localfile=3Dnew String(datafile.substring(0,datafile.length=
-()-4) + LOCAL_FILE_SUFFIX);
-
-                RSEHelper.getRemoteFile(
--                               rseConnection,
-+                               host,
-                                localfile,
-                                datafile,
-                                monitor);
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--089e0112c63afdeafe04dbacdfa0--
