@@ -1,35 +1,34 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46C0CE014DB
-	for <yocto@yoctoproject.org>; Thu,  2 May 2013 08:53:21 -0700 (PDT)
-Received: by mail-vc0-f176.google.com with SMTP id ib11so617359vcb.35
-	for <yocto@yoctoproject.org>; Thu, 02 May 2013 08:53:20 -0700 (PDT)
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EC2EE014DB
+	for <yocto@yoctoproject.org>; Thu,  2 May 2013 09:18:58 -0700 (PDT)
+Received: by mail-wi0-f179.google.com with SMTP id l13so784799wie.6
+	for <yocto@yoctoproject.org>; Thu, 02 May 2013 09:18:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=KnKv0+uSxbRyzesBznOGCVHBTP9wkYFPQKftYDPWHKg=;
-	b=ODlE6BWQgh7oqxyg0zQBjsZ/YxjRKZMu8I6hM+2YoCKiRlQeQJ1RC8U0sgp04gGXwO
-	aRNUpdsq+yIiCLMmH+I5DdGooAoT0Zw//4jyE34p0ud3Yx17hl/cNCG1Y/Pbyh6auz7e
-	ZlCTEmdpAFolrfRAwYoNDefe1iMs0F58VbnfUVUCt+bIDKMpVH9W+0oFqGjX6zK2ZUu8
-	LcD8x+BrSJqKyV59t2RpUNkwxY2XfB50WaOjkkuGhQw1v/MR7e3aFYXdh72TUkW+/aX6
-	9OlmSIgKZmd/ksYSOsmPMsk1chydtxNkOkTHWyimnISHXVl7IoMymm8zrMjg4GmdDzVm
-	zCCA==
-X-Received: by 10.220.103.209 with SMTP id l17mr2338943vco.39.1367510000504;
-	Thu, 02 May 2013 08:53:20 -0700 (PDT)
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=KUYKqTiLFkFDhSbcpB2M6w0ssRd5LOVtD3bF1JOIlbY=;
+	b=YY6qDRnDmibk7YqdttIrZJgFv0eX/jGGf1T4hVg9lGkhD1i+sQwlPWTQ3Txk96k3RL
+	BP7rN9xRmMZlTfLxQpeFvH36/Seu0CopWVndVOD1SNvhCa+fNOcjkjq83yjsiRbGPu1U
+	KqkHBDOysQ1XVt1NI8c4s7lQAo73TIBob65dEyL3qWwi1OUuPjPVz5mTR5RI9Tbg5zPz
+	qmxe9xpYMTxQH+vWhgJIMw3M1Lyx3pZoL/gLQyNwKjnJ1+mg++dgNH9pYvm0YYqfLXGm
+	f7F4CVTxVztZWRnlCmOPOOj41qEecZJ8bnM66r3Emo7BK1slSCEELbiy6gyDD3jDNkpf
+	M+5A==
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.48.5 with HTTP; Thu, 2 May 2013 08:52:59 -0700 (PDT)
-In-Reply-To: <CAHUNapRr4y47FGqp90NZwKwwE0PGSj6A2vN1nRujqjBSL9oOZw@mail.gmail.com>
+X-Received: by 10.180.185.135 with SMTP id fc7mr26760787wic.29.1367511537844; 
+	Thu, 02 May 2013 09:18:57 -0700 (PDT)
+Received: by 10.194.5.132 with HTTP; Thu, 2 May 2013 09:18:57 -0700 (PDT)
+In-Reply-To: <CANyK_8erAWaRzrXxDOCwaa9xkfxqVM5Fk5hukGPoyapZJTMw5w@mail.gmail.com>
 References: <CANyK_8c2tTqktkHFuR+vzAGbsb3AKyFow1T4rU_aEnb8pdQnuw@mail.gmail.com>
 	<CAK18fxFMKykJQnuMqrU6eLkD0E_Ht+Vyo2tmayukvNU_eyV6aw@mail.gmail.com>
 	<CANyK_8fVfKbTHq3X1hdSWOFdwsz4cZLaaispiwC_hJJbimM1ig@mail.gmail.com>
 	<CAHUNapRr4y47FGqp90NZwKwwE0PGSj6A2vN1nRujqjBSL9oOZw@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 2 May 2013 16:52:59 +0100
-X-Google-Sender-Auth: VnfhTp7s8_YNhOZM-eI30sqwW68
-Message-ID: <CANyK_8erAWaRzrXxDOCwaa9xkfxqVM5Fk5hukGPoyapZJTMw5w@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
+	<CANyK_8erAWaRzrXxDOCwaa9xkfxqVM5Fk5hukGPoyapZJTMw5w@mail.gmail.com>
+Date: Thu, 2 May 2013 12:18:57 -0400
+Message-ID: <CAHUNapTKpNPZkj=aPYwAAoSHsr_QWx2Gv9wecuriAzcd7-2Dxg@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi] Zenity is in meta-gnome
 X-BeenThere: yocto@yoctoproject.org
@@ -43,29 +42,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2013 15:53:21 -0000
+X-List-Received-Date: Thu, 02 May 2013 16:18:59 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On 2 May 2013 16:12, Trevor Woerner <twoerner@gmail.com> wrote:
-> - a separate tool (which will probably need to be run as root) is used
-> to actually format/create the SD device (using, say, sfdisk for
-> automation) this way the last partition can be specified as "use the
-> rest of the disk"
-> - this tool unpacks the requested/required {tar|rpm|deb|ipk}s onto the
-> SD device (some of which can come from outside the Yocto build system,
-> e.g. from using the SDK); this device already has its
-> formatting/partitions ready
-> - this tool could also handle setting up serial numbers, IP addresses, etc
-> - this tools also sets up the bootloader (if required)
+On Thu, May 2, 2013 at 11:52 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> Sounds great though it may take a long time to copy files to an SD
+> card (I noticed a similar opinion at
+> http://www.raspbian.org/RaspbianInstaller). May be quicker to generate
+> an image file with the correct size first then dd that to the card.
 
-Sounds great though it may take a long time to copy files to an SD
-card (I noticed a similar opinion at
-http://www.raspbian.org/RaspbianInstaller). May be quicker to generate
-an image file with the correct size first then dd that to the card.
+If you prefer that route, to make it even faster you could
+additionally make use of the bmaptool:
+https://lists.yoctoproject.org/pipermail/yocto/2013-January/013759.html
 
---
-Paul Barker
+I've used it with the i.MX53 QSB and the improvement was noticeable.
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+I found it hard to get the image to be exactly the right size. There
+was always a little room left-over (or the image would be too big and
+wouldn't copy over to the card). This method doesn't (I don't think)
+support a flexible partition layout, just the generic 2-partition
+FAT+EXTx.
 
