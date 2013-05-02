@@ -1,29 +1,22 @@
-Return-Path: <Holger.Behrens@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41035E01510
-	for <yocto@yoctoproject.org>; Thu,  2 May 2013 05:08:47 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r42C8cPJ024124
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 2 May 2013 05:08:38 -0700 (PDT)
-Received: from ALA-MBA.corp.ad.wrs.com ([169.254.2.88]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.02.0342.003;
-	Thu, 2 May 2013 05:08:38 -0700
-From: "Behrens, Holger" <Holger.Behrens@windriver.com>
-To: Felix01 Fischer <felix01.fischer@iav.de>
-Thread-Topic: [yocto] booting with systemd fails with poky 9.0.0 & meta-ivi
-	4.0 & meta-intel master
-Thread-Index: Ac5HLXS8FnOfvHRCRKuY5YTLlGovmw==
-Date: Thu, 2 May 2013 12:08:37 +0000
-Message-ID: <7A688B48FC95D148BFE83E098348BE50370112B8@ALA-MBA.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.224.204.210]
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56049E014F9
+	for <yocto@yoctoproject.org>; Thu,  2 May 2013 06:28:00 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 May 2013 06:28:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,597,1363158000"; d="scan'208";a="330296521"
+Received: from unknown (HELO helios.localnet) ([10.255.12.165])
+	by orsmga002.jf.intel.com with ESMTP; 02 May 2013 06:27:59 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: openembedded-core@lists.openembedded.org,
+	openembedded-devel@lists.openembedded.org, yocto@yoctoproject.org
+Date: Thu, 02 May 2013 14:27:58 +0100
+Message-ID: <2924564.6VWmlqGvL5@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.8.0-19-generic; KDE/4.10.2; i686; ; )
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: booting with systemd fails with poky 9.0.0 & meta-ivi 4.0 & meta-intel master
+Subject: Please submit your unindexed layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,14 +28,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2013 12:08:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 02 May 2013 13:28:00 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-SGVsbG8gRmVsaXgsDQoNCkFzIHlvdSBoYXZlIHN1Y2Nlc3NmdWxseSBidWlsZCBhbmQgdHJpZWQg
-cWVtdXg4NiBtYWNoaW5lIElWSSBpbWFnZXMsDQpkaWQgeW91IHRyeSB0byBjcmVhdGUgYSBwcmlz
-dGluZSAobm9uLUlWSSkgUG9reSBpbWFnZSB0aGF0IHVzZXMNCnN5c3RlbWQgYXMgaW5pdCBzeXN0
-ZW0gYWxyZWFkeT8gRGlkIHRoYXQgd29yayBmb3IgYSBjcm93bmJheSBtYWNoaW5lPw0KDQpSZWdh
-cmRzLA0KSG9sZ2VyDQoNCg==
+Hi all,
+
+Even a cursory search of github reveals that there are a growing number of 
+layers being worked on in the community that aren't currently listed in the OE 
+layer index. I don't think it would be right for us to just add all of these 
+in bulk as we don't necessarily have all the needed information to do so, and 
+it's not clear if some of them are forks, or if they will continue to be 
+published in the same place, etc. So, what we really need is for the 
+maintainers of these layers to submit them to the layer index themselves, or 
+have someone else do it on their behalf.
+
+If you're maintaining a publicly accessible layer that already does something 
+useful and is not currently in the OE layer index, please submit it so that 
+other folks in the community can find it easily. The submission form doesn't 
+need a login and is pretty straightforward to fill in:
+
+  http://layers.openembedded.org/layerindex/submit/
+
+If you have any problems or concerns please let me know.
+
+Thanks!
+
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
