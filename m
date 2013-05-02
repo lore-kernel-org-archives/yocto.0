@@ -1,32 +1,30 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wg0-f41.google.com (mail-wg0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E66D3E014FE
-	for <yocto@yoctoproject.org>; Thu,  2 May 2013 08:12:13 -0700 (PDT)
-Received: by mail-wg0-f41.google.com with SMTP id y10so696202wgg.0
-	for <yocto@yoctoproject.org>; Thu, 02 May 2013 08:12:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:content-type;
-	bh=Zf6lEk8uWV5qD6h8Gt9Ld1PdZcxfuaxf2kugZCmEKuc=;
-	b=aCyVrCZItefbJUSTX8fjDoFG3Yych5Aqo9NJ7tvTUGdSqqiOmwQeZ4oUWOLyAF2hHM
-	VPqE9h8lnaR3Dez7IYnsQVrQnb5Ue6fU1DyFLZpalaKELq6b9pW/NsAhgjw6HvIbUzgK
-	AoNooni+UAzK2FZcMmtTFJABMRlLSQo0rh+afVH5VEEiKRQYqSc7crA9PYwK+5iNt2Zk
-	TcZ2negujRH/jCRU7dEpBL8HSFt3pyl/NCxX1M4Zl58wLV2aGnUFdM4far7zC+nytWkx
-	2Q2bVOv658qIxvAeB0LpoieE3ytOod12+eJPeF77RT+Xg4kTlKsT6pfBAyPbOor1mahn
-	uFBw==
+Return-Path: <Florin.Sarbu@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1889AE014DB
+	for <yocto@yoctoproject.org>; Thu,  2 May 2013 08:36:26 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r42FaGH6005863
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 2 May 2013 08:36:16 -0700 (PDT)
+Received: from ALA-MBB.corp.ad.wrs.com ([169.254.1.111]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.02.0342.003;
+	Thu, 2 May 2013 08:36:15 -0700
+From: "Sarbu, Florin-Ionut (Florin)" <Florin.Sarbu@windriver.com>
+To: "'Andrei Gherzan'" <andrei@gherzan.ro>, "'Felix01 Fischer'"
+	<felix01.fischer@iav.de>
+Thread-Topic: [yocto] Antwort: Re: booting with systemd fails with poky
+	9.0.0 & meta-ivi 4.0 & meta-intel master
+Thread-Index: AQHORygZxmMDaCA0NEOlTdZKlcANspjyBz84
+Date: Thu, 2 May 2013 15:36:15 +0000
+Message-ID: <50D17BD22A23EE4A887974F6B588203885676CD7@ALA-MBB.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.83.221]
 MIME-Version: 1.0
-X-Received: by 10.180.73.173 with SMTP id m13mr8089282wiv.27.1367507532243;
-	Thu, 02 May 2013 08:12:12 -0700 (PDT)
-Received: by 10.194.5.132 with HTTP; Thu, 2 May 2013 08:12:12 -0700 (PDT)
-In-Reply-To: <CANyK_8fVfKbTHq3X1hdSWOFdwsz4cZLaaispiwC_hJJbimM1ig@mail.gmail.com>
-References: <CANyK_8c2tTqktkHFuR+vzAGbsb3AKyFow1T4rU_aEnb8pdQnuw@mail.gmail.com>
-	<CAK18fxFMKykJQnuMqrU6eLkD0E_Ht+Vyo2tmayukvNU_eyV6aw@mail.gmail.com>
-	<CANyK_8fVfKbTHq3X1hdSWOFdwsz4cZLaaispiwC_hJJbimM1ig@mail.gmail.com>
-Date: Thu, 2 May 2013 11:12:12 -0400
-Message-ID: <CAHUNapRr4y47FGqp90NZwKwwE0PGSj6A2vN1nRujqjBSL9oOZw@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Zenity is in meta-gnome
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Subject: Re: Antwort: Re: booting with systemd fails with poky 9.0.0 & meta-ivi 4.0 & meta-intel master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,46 +36,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2013 15:12:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 02 May 2013 15:36:26 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_50D17BD22A23EE4A887974F6B588203885676CD7ALAMBBcorpadwrs_"
 
-On Thu, May 2, 2013 at 7:27 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
-> What would be useful is a first boot task which resizes the rootfs to
-> fill the SD card it's on without prompts. Should be easy to do with a
-> postinst script and fdisk.
+--_000_50D17BD22A23EE4A887974F6B588203885676CD7ALAMBBcorpadwrs_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-In my opinion, what would be even better:
+V2hhdCBicmFuY2ggb2YgbWV0YS1pdmkgYXJlIHlvdSB1c2luZz8NCg0KLS0tLS1PcmlnaW5hbCBN
+ZXNzYWdlLS0tLS0NCkZyb206IEFuZHJlaSBHaGVyemFuIFthbmRyZWlAZ2hlcnphbi5ybzxtYWls
+dG86YW5kcmVpQGdoZXJ6YW4ucm8+XQ0KU2VudDogVGh1cnNkYXksIE1heSAwMiwgMjAxMyAwNDoy
+NyBBTSBQYWNpZmljIFN0YW5kYXJkIFRpbWUNClRvOiBGZWxpeDAxIEZpc2NoZXINCkNjOiB5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnOyBTYXJidSwgRmxvcmluLUlvbnV0IChGbG9yaW4pOyBCZWhyZW5z
+LCBIb2xnZXINClN1YmplY3Q6IFJlOiBbeW9jdG9dIEFudHdvcnQ6IFJlOiBib290aW5nIHdpdGgg
+c3lzdGVtZCBmYWlscyB3aXRoIHBva3kgOS4wLjAgJiBtZXRhLWl2aSA0LjAgJiBtZXRhLWludGVs
+IG1hc3Rlcg0KDQoNCk9uIFRodSwgTWF5IDIsIDIwMTMgYXQgMTA6MDggQU0sIEZlbGl4MDEgRmlz
+Y2hlciA8ZmVsaXgwMS5maXNjaGVyQGlhdi5kZTxtYWlsdG86ZmVsaXgwMS5maXNjaGVyQGlhdi5k
+ZT4+IHdyb3RlOg0KSGVsbG8sDQoNCkkndmUgYXR0YWNoZWQgYSBmaWxlIHdpdGggdGhlIGNoYW5n
+ZXMgSSBtYWRlIHRvIGxvY2FsLmNvbmYsIGJibGF5ZXJzLmNvbmYgJiBzb21lIG91dHB1dCBmcm9t
+IGJpdGJha2UuIEkgY2FuIGJ1aWxkIHdvcmtpbmcgaW1hZ2VzIGZvciBxZW11eDg2LCB0b28NCg0K
+VGhlIGJ1aWxkIHByb2Nlc3MgaXRzZWxmIHRyaWdnZXJzIG5vIGVycm9ycy4NCg0KQXMgaW0gYnVp
+bGRpbmcgd2l0aCBNQUNISU5FID8/PSAiY3Jvd25iYXkiIEkgd2FzIGFibGUgdG8gbG9jYXRlDQp0
+bXAtZWdsaWJjLWVnbGliYy93b3JrL2Nyb3duYmF5LW9lLWxpbnV4L2ZvdG9uLWltYWdlLzQuMC4w
+LXIwL3Jvb3Rmcy9iaW4vbW91bnQgd2hpY2ggaXMgYSBzeW1saW5rIHRvIC9iaW4vbW91bnQudXRp
+bC1saW51eC4gVGhpcyBmaWxlIGV4aXN0cywgdG9vLg0KDQpUaGlzIGlzIHRoZSBvdXRwdXQgd2hl
+biB0cnlpbmcgdG8gYm9vdCwgYmVnaW5uaW5nIHdpdGggdGhlIC9pbml0IGVycm9yDQoNCiIvaW5p
+dDogbGluZSA5ODogbW91bnQ6IG5vdCBmb3VuZA0KL2luaXQ6IGxpbmUgOTg6IG1vdW50OiBub3Qg
+Zm91bmQNCi9pbml0OiBsaW5lIDk4OiBtb3VudDogbm90IGZvdW5kDQpzeXN0ZW1kLXVkZXZbNDRd
+OiBzdGFydGluZyB2ZXJzaW9uIDE5OQ0KY2F0OiBjYW4ndCBvcGVuICcvcHJvYy9jbWRsaW5lJzog
+Tm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KV2FpdGluZyBmb3IgcmVtb3ZhYmxlIG1lZGlhLi4u
+Ig0KDQoNCg0KU28geW91IGFyZSB1c2luZyBjcm93bmJheS4gTW9zdCBwcm9iYWJseSB5b3UgbWlz
+cyBzb21lIHN5c3RlbWQgY29uZmlncyBpbiBrZXJuZWwuIFRoYXQgd291bGQgYmUgbXkgZ3Vlc3Mu
+DQpBZGRpbmcgRmxvcmluIFNhcmJ1IGFuZCBIb2xnZXIgQmVocmVucyB0byBDQyAobWV0YS1pdmkg
+bWFpbnRhaW5lcikuDQoNCkNoZWVycyENCg0KLS0NCkFuZHJlaSBHaGVyemFuDQptOiArNDAuNzQ0
+LjQ3OC40MTQgfCAgZjogKzQwLjMxLjgxNi4yOC4xMg0K
 
-- the build system is instructed to not bother making an image, its
-job is to produce {tar|rpm|deb|ipk}s
-- a separate tool (which will probably need to be run as root) is used
-to actually format/create the SD device (using, say, sfdisk for
-automation) this way the last partition can be specified as "use the
-rest of the disk"
-- this tool unpacks the requested/required {tar|rpm|deb|ipk}s onto the
-SD device (some of which can come from outside the Yocto build system,
-e.g. from using the SDK); this device already has its
-formatting/partitions ready
-- this tool could also handle setting up serial numbers, IP addresses, etc
-- this tools also sets up the bootloader (if required)
+--_000_50D17BD22A23EE4A887974F6B588203885676CD7ALAMBBcorpadwrs_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-In this way any arbitrary partitioning could be used (1 root partition
-and 1 swap? /home separate? arbitrary home-brew partitions/names?),
-and the user is free to use whatever formatting for these partitions
-they want (they don't have to be decided at build time and the choice
-of partition types doesn't have to be restricted to whatever the build
-tool is able to use). Weird /etc/fstab tricks aren't required on the
-build machine (as some layers require). You have a separate tool that
-can be used by the "production" staff to pump out several SD/CF/etc
-images at a time (using a USB hub for example). Any arbitrary
-bootloader can be used, again not restricted to what the build tool
-can support. And the first-boot time isn't 10x longer than any
-subsequent boots :-)
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KV2hhdCBicmFuY2gg
+b2YgbWV0YS1pdmkgYXJlIHlvdSB1c2luZz88YnI+DQo8YnI+DQotLS0tLU9yaWdpbmFsIE1lc3Nh
+Z2UtLS0tLTxicj4NCjxiPkZyb206Jm5ic3A7PC9iPkFuZHJlaSBHaGVyemFuIFs8YSBocmVmPSJt
+YWlsdG86YW5kcmVpQGdoZXJ6YW4ucm8iPmFuZHJlaUBnaGVyemFuLnJvPC9hPl08YnI+DQo8Yj5T
+ZW50OiZuYnNwOzwvYj5UaHVyc2RheSwgTWF5IDAyLCAyMDEzIDA0OjI3IEFNIFBhY2lmaWMgU3Rh
+bmRhcmQgVGltZTxicj4NCjxiPlRvOiZuYnNwOzwvYj5GZWxpeDAxIEZpc2NoZXI8YnI+DQo8Yj5D
+YzombmJzcDs8L2I+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgU2FyYnUsIEZsb3Jpbi1Jb251dCAo
+RmxvcmluKTsgQmVocmVucywgSG9sZ2VyPGJyPg0KPGI+U3ViamVjdDombmJzcDs8L2I+UmU6IFt5
+b2N0b10gQW50d29ydDogUmU6IGJvb3Rpbmcgd2l0aCBzeXN0ZW1kIGZhaWxzIHdpdGggcG9reSA5
+LjAuMCAmYW1wOyBtZXRhLWl2aSA0LjAgJmFtcDsgbWV0YS1pbnRlbCBtYXN0ZXI8YnI+DQo8YnI+
+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQo8ZGl2IGNsYXNzPSJnbWFpbF9leHRyYSI+DQo8ZGl2IGNs
+YXNzPSJnbWFpbF9xdW90ZSI+T24gVGh1LCBNYXkgMiwgMjAxMyBhdCAxMDowOCBBTSwgRmVsaXgw
+MSBGaXNjaGVyIDxzcGFuIGRpcj0ibHRyIj4NCiZsdDs8YSBocmVmPSJtYWlsdG86ZmVsaXgwMS5m
+aXNjaGVyQGlhdi5kZSIgdGFyZ2V0PSJfYmxhbmsiPmZlbGl4MDEuZmlzY2hlckBpYXYuZGU8L2E+
+Jmd0Ozwvc3Bhbj4gd3JvdGU6PGJyPg0KPGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBz
+dHlsZT0ibWFyZ2luOjAgMCAwIC44ZXg7Ym9yZGVyLWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGlu
+Zy1sZWZ0OjFleCI+DQo8Zm9udCBmYWNlPSJzYW5zLXNlcmlmIj5IZWxsbyw8YnI+DQo8L2ZvbnQ+
+PGJyPg0KPGZvbnQgZmFjZT0ic2Fucy1zZXJpZiI+SSd2ZSBhdHRhY2hlZCBhIGZpbGUgd2l0aCB0
+aGUgY2hhbmdlcyBJIG1hZGUgdG8gbG9jYWwuY29uZiwgYmJsYXllcnMuY29uZiAmYW1wOyBzb21l
+IG91dHB1dCBmcm9tIGJpdGJha2UuIEkgY2FuIGJ1aWxkIHdvcmtpbmcgaW1hZ2VzIGZvciBxZW11
+eDg2LCB0b288L2ZvbnQ+DQo8YnI+DQo8Zm9udCBmYWNlPSJzYW5zLXNlcmlmIj48YnI+DQpUaGUg
+YnVpbGQgcHJvY2VzcyBpdHNlbGYgdHJpZ2dlcnMgbm8gZXJyb3JzLjxicj4NCjwvZm9udD48YnI+
+DQo8Zm9udCBmYWNlPSJzYW5zLXNlcmlmIj5BcyBpbSBidWlsZGluZyB3aXRoIE1BQ0hJTkUgPz89
+ICZxdW90O2Nyb3duYmF5JnF1b3Q7IEkgd2FzIGFibGUgdG8gbG9jYXRlPGJyPg0KPC9mb250Pjx0
+dD48Zm9udD50bXAtZWdsaWJjLWVnbGliYy93b3JrL2Nyb3duYmF5LW9lLWxpbnV4L2ZvdG9uLWlt
+YWdlLzQuMC4wLXIwL3Jvb3Rmcy9iaW4vbW91bnQgd2hpY2ggaXMgYSBzeW1saW5rIHRvIC9iaW4v
+bW91bnQudXRpbC1saW51eC4gVGhpcyBmaWxlIGV4aXN0cywgdG9vLjwvZm9udD48L3R0Pg0KPGJy
+Pg0KPGJyPg0KPHR0Pjxmb250PlRoaXMgaXMgdGhlIG91dHB1dCB3aGVuIHRyeWluZyB0byBib290
+LCBiZWdpbm5pbmcgd2l0aCB0aGUgL2luaXQgZXJyb3I8YnI+DQo8YnI+DQomcXVvdDsvaW5pdDog
+bGluZSA5ODogbW91bnQ6IG5vdCBmb3VuZDwvZm9udD48L3R0PiA8YnI+DQo8dHQ+PGZvbnQ+L2lu
+aXQ6IGxpbmUgOTg6IG1vdW50OiBub3QgZm91bmQ8L2ZvbnQ+PC90dD4gPGJyPg0KPHR0Pjxmb250
+Pi9pbml0OiBsaW5lIDk4OiBtb3VudDogbm90IGZvdW5kPC9mb250PjwvdHQ+IDxicj4NCjxmb250
+IGZhY2U9InNhbnMtc2VyaWYiPnN5c3RlbWQtdWRldls0NF06IHN0YXJ0aW5nIHZlcnNpb24gMTk5
+PC9mb250PiA8YnI+DQo8Zm9udCBmYWNlPSJzYW5zLXNlcmlmIj5jYXQ6IGNhbid0IG9wZW4gJy9w
+cm9jL2NtZGxpbmUnOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5PC9mb250Pg0KPGJyPg0KPGZv
+bnQgZmFjZT0ic2Fucy1zZXJpZiI+V2FpdGluZyBmb3IgcmVtb3ZhYmxlIG1lZGlhLi4uJnF1b3Q7
+PGJyPg0KPGJyPg0KPC9mb250Pjxicj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+
+DQo8ZGl2IHN0eWxlPSIiPlNvIHlvdSBhcmUgdXNpbmcgY3Jvd25iYXkuIE1vc3QgcHJvYmFibHkg
+eW91IG1pc3Mgc29tZSBzeXN0ZW1kIGNvbmZpZ3MgaW4ga2VybmVsLiBUaGF0IHdvdWxkIGJlIG15
+IGd1ZXNzLjwvZGl2Pg0KPGRpdiBzdHlsZT0iIj5BZGRpbmcgRmxvcmluIFNhcmJ1IGFuZCBIb2xn
+ZXIgQmVocmVucyB0byBDQyAobWV0YS1pdmkgbWFpbnRhaW5lcikuPC9kaXY+DQo8ZGl2IHN0eWxl
+PSIiPjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iIj5DaGVlcnMhPC9kaXY+DQo8L2Rpdj4NCjxk
+aXY+PGJyPg0KPC9kaXY+DQotLSA8YnI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9InRl
+eHQtYWxpZ246Y2VudGVyIj48L2Rpdj4NCjxkaXYgc3R5bGU9InRleHQtYWxpZ246Y2VudGVyIj4N
+CjxkaXYgYWxpZ249ImxlZnQiIHN0eWxlPSJmb250LWZhbWlseTonVGltZXMgTmV3IFJvbWFuJztm
+b250LXNpemU6bWVkaXVtIj48YiBzdHlsZT0iY29sb3I6cmdiKDUxLDUxLDUxKTtmb250LWZhbWls
+eTpBcmlhbDtmb250LXNpemU6c21hbGw7dGV4dC1hbGlnbjpjZW50ZXIiPkFuZHJlaSBHaGVyemFu
+PC9iPjxmb250IGZhY2U9IkFyaWFsIiBjb2xvcj0iIzMzMzMzMyIgc2l6ZT0iLTEiPjxicj4NCjwv
+Zm9udD48Zm9udCBmYWNlPSJBcmlhbCIgY29sb3I9IiMzMzMzMzMiIHNpemU9Ii0xIj5tOiAmIzQz
+OzQwLjc0NC40NzguNDE0IHwgJm5ic3A7ZjogJiM0Mzs0MC4zMS44MTYuMjguMTI8L2ZvbnQ+PGJy
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
+bD4NCg==
 
-In my opinion, up until now, the primary focus of The Yocto Project
-has always been on the front-end: setting up the cross-development
-environment and cross-compiling software for your target; don't get me
-wrong, this is all fantastic and necessary. But there doesn't seem to
-be much in the way of back-end support (i.e. the production
-environment).
-
+--_000_50D17BD22A23EE4A887974F6B588203885676CD7ALAMBBcorpadwrs_--
