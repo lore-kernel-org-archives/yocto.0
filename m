@@ -1,40 +1,35 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
-	[209.85.128.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9F99E006C2
-	for <yocto@yoctoproject.org>; Fri,  3 May 2013 02:30:54 -0700 (PDT)
-Received: by mail-ve0-f181.google.com with SMTP id d10so1304918vea.40
-	for <yocto@yoctoproject.org>; Fri, 03 May 2013 02:30:54 -0700 (PDT)
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BA6DE006C3
+	for <yocto@yoctoproject.org>; Fri,  3 May 2013 02:31:46 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id ht11so1259797vcb.18
+	for <yocto@yoctoproject.org>; Fri, 03 May 2013 02:31:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=x-received:mime-version:x-originating-ip:in-reply-to:references
 	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=cEam9YQTKRwcX6sBboSfZU6PUw29+1xiV3U4NI16r+o=;
-	b=e+GbNwX5mJdWPLja2Y48YjCwvv8oMU4hHkZ/Ai4OB5apJp/L5+i+BdPkJBPJS1ng7g
-	g6TZrJ93+a4w8frV+pJFtDg+WyuP/wgB70PWOtGa2aUMwxViw348DA+j7yQP2iYR2oxZ
-	UhOn7gTnGWEAuWpju3S9y4xEsK/n7bX3719K/DyWHulCIPoMV4ZvhXPDz0MVrosuCuR5
-	Kpb0UidbuDJUZjW8UDfff/uNgRdKnrJZvjEiePV+LHoGqCbsP0sYA0QmWJVdcKfkRNx+
-	CgsQQJFpm9Ajv70S5HXoVPS5qgVuJyvEnUx5T2G7GtM2+ukC/txSBc3qmd4UsKKv7n01
-	rqRw==
-X-Received: by 10.220.237.193 with SMTP id kp1mr3398154vcb.68.1367573453561;
-	Fri, 03 May 2013 02:30:53 -0700 (PDT)
+	bh=eaTstY25nwgSsBy0ahtGXqxH76cj54f6HcKUt6/ZTyc=;
+	b=I6liHNgYly7iWZpsOkddFMk3ie8UFX+BJveFPUkYHrt8x4V2UBj6i7nCn66wOYgKsK
+	gLfdLk5rLfgoZ221oSg5nhCwC1cvpf0YMRn0IJb86A5CnSJQ2PKONlvoqYmGWFNztQ/p
+	KyPWfjx8NP7nM5pcxle4+UpkWn0O3ehtihtzNZiWQ/L6AOs3u+tgp8uwFOnra9nxSceT
+	mAGJObMHkWwUOyfZCNM+Q1ELI4ozmoIEYwH28tewYpRspbXZ31iBF9FesFzjHGwvE86y
+	JgMyR50C1hFuAajM+carBKpBzcw0hqCbntdL/ZKiH9Vv1aQQWP+KjcGxAFJAcB1pW5YL
+	Ahrg==
+X-Received: by 10.220.66.212 with SMTP id o20mr3397807vci.2.1367573505593;
+	Fri, 03 May 2013 02:31:45 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.58.49.5 with HTTP; Fri, 3 May 2013 02:30:33 -0700 (PDT)
+Received: by 10.58.49.5 with HTTP; Fri, 3 May 2013 02:31:25 -0700 (PDT)
 X-Originating-IP: [5.14.143.208]
-In-Reply-To: <CANyK_8e+VWmPpZBO7CMTp2_3AT_qX46JDy_nUpBT1CyeS5iGog@mail.gmail.com>
-References: <51788031.7080701@gmail.com>
-	<CANyK_8fujLspj_VCZd5TY9x4A62m=WKhva3BavL91XzwY5Krgw@mail.gmail.com>
-	<CA+JN8xMvcoaLKufSeCLO21ozH542OG-uZSn8fDS0OVMGXkUNbw@mail.gmail.com>
-	<CANyK_8dWFNWQ2UhHdQUPACfruFk9uSrUfpTVxJeNn2m3kAYX=A@mail.gmail.com>
-	<CAK18fxFCE_=X57fDp8+wYQOACeOjU2NPuM3bLKYYxCNFTOiCqA@mail.gmail.com>
-	<CANyK_8e+VWmPpZBO7CMTp2_3AT_qX46JDy_nUpBT1CyeS5iGog@mail.gmail.com>
+In-Reply-To: <1366661977-26631-1-git-send-email-paul@paulbarker.me.uk>
+References: <1366661977-26631-1-git-send-email-paul@paulbarker.me.uk>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Fri, 3 May 2013 11:30:33 +0200
-Message-ID: <CAK18fxEWaLm2v56VhCKGC2X483iKE2OE76M_i4FK-Udk1S7-3g@mail.gmail.com>
+Date: Fri, 3 May 2013 11:31:25 +0200
+Message-ID: <CAK18fxGv2UO_+uvfJTE_s+tKocXagCJhsi-C=vQ0ek0qGb3sHw@mail.gmail.com>
 To: Paul Barker <paul@paulbarker.me.uk>
-X-Gm-Message-State: ALoCoQltTdgMmspgFnaQsQIZgQWhmTKg5cwhe/QzGiJ3xN/gYqU0HizjAxE/5B1WuD+0WxKlG+/h
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] sdcard_image-rpi.bbclass: Fix error in conditional test
+X-Gm-Message-State: ALoCoQlnoUZye3PEhfyDiE6LxTNIn5RFSc2ksCmerJghvT2MWgTjz2cYfKU6IF3aqY8IW+XX4Nry
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] netbase: Remove bbappend and files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,10 +41,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2013 09:30:55 -0000
-Content-Type: multipart/alternative; boundary=047d7b33dd82e77e5004dbcd0166
+X-List-Received-Date: Fri, 03 May 2013 09:31:46 -0000
+Content-Type: multipart/alternative; boundary=047d7b33da86015c4404dbcd05c5
 
---047d7b33dd82e77e5004dbcd0166
+--047d7b33da86015c4404dbcd05c5
 Content-Type: text/plain; charset=ISO-8859-1
 
 Merged to master.
@@ -57,32 +52,71 @@ Merged to master.
 Thanks a lot.
 
 
-On Thu, May 2, 2013 at 1:33 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+On Mon, Apr 22, 2013 at 10:19 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
 
-> On 1 May 2013 20:10, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> > I think I asked Seth a while ago and he confirmed that bash was his
-> shell. I
-> > thought about dash as well. But as a matter of fact we should remove
-> > bashisms and make things as usable as possible. So maybe his patch makes
-> > sense after all.
-> >
+> Dropped raspberrypi modifications to hosts and interfaces files as they are
+> unnecessary.
 >
-> Based on Paul Eggleton's reply elsewhere:
+> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+> ---
+>  recipes-core/netbase/netbase-5.0/raspberrypi/hosts      |    2 --
+>  recipes-core/netbase/netbase-5.0/raspberrypi/interfaces |   15
+> ---------------
+>  recipes-core/netbase/netbase_5.0.bbappend               |    3 ---
+>  3 files changed, 20 deletions(-)
+>  delete mode 100644 recipes-core/netbase/netbase-5.0/raspberrypi/hosts
+>  delete mode 100644 recipes-core/netbase/netbase-5.0/raspberrypi/interfaces
+>  delete mode 100644 recipes-core/netbase/netbase_5.0.bbappend
 >
-> On 2 May 2013 09:07, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
-> > On Wednesday 01 May 2013 19:13:19 seth bollinger wrote:
-> >> 2.  I couldn't find a wildcard string search in dash.  Can anyone
-> >> suggest a more shell agnostic way to do this?
-> >
-> > AFAIK grep or awk is the only way.
->
-> I think this patch probably does make sense.
->
+> diff --git a/recipes-core/netbase/netbase-5.0/raspberrypi/hosts
+> b/recipes-core/netbase/netbase-5.0/raspberrypi/hosts
+> deleted file mode 100644
+> index 7d87a18..0000000
+> --- a/recipes-core/netbase/netbase-5.0/raspberrypi/hosts
+> +++ /dev/null
+> @@ -1,2 +0,0 @@
+> -127.0.0.1      localhost.localdomain           localhost
+> raspberrypi     rpi
+> -
+> diff --git a/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces
+> b/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces
+> deleted file mode 100644
+> index 00ae607..0000000
+> --- a/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces
+> +++ /dev/null
+> @@ -1,15 +0,0 @@
+> -# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)
+> -
+> -# The loopback interface
+> -auto lo
+> -iface lo inet loopback
+> -
+> -# Wireless interfaces
+> -iface wlan0 inet dhcp
+> -       wireless_mode managed
+> -       wireless_essid any
+> -       wpa-driver wext
+> -       wpa-conf /etc/wpa_supplicant.conf
+> -
+> -# Bluetooth networking
+> -iface bnep0 inet dhcp
+> diff --git a/recipes-core/netbase/netbase_5.0.bbappend
+> b/recipes-core/netbase/netbase_5.0.bbappend
+> deleted file mode 100644
+> index 36432f5..0000000
+> --- a/recipes-core/netbase/netbase_5.0.bbappend
+> +++ /dev/null
+> @@ -1,3 +0,0 @@
+> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> -# Don't forget to bump PRINC if you update the extra files.
+> -PRINC = "1"
 > --
-> Paul Barker
+> 1.7.10.4
 >
-> Email: paul@paulbarker.me.uk
-> http://www.paulbarker.me.uk
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
 
@@ -91,55 +125,91 @@ On Thu, May 2, 2013 at 1:33 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
 *Andrei Gherzan*
 m: +40.744.478.414 |  f: +40.31.816.28.12
 
---047d7b33dd82e77e5004dbcd0166
+--047d7b33da86015c4404dbcd05c5
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr">Merged to master.=A0<div><br></div><div>Thanks a lot.</div=
-></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu=
-, May 2, 2013 at 1:33 PM, Paul Barker <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:paul@paulbarker.me.uk" target=3D"_blank">paul@paulbarker.me.uk</a>&gt;</=
-span> wrote:<br>
+></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon=
+, Apr 22, 2013 at 10:19 PM, Paul Barker <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:paul@paulbarker.me.uk" target=3D"_blank">paul@paulbarker.me.uk</a>&gt;=
+</span> wrote:<br>
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On 1 May 2013 20:10, Andre=
-i Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt=
-; wrote:<br>
-
-
-&gt; I think I asked Seth a while ago and he confirmed that bash was his sh=
-ell. I<br>
-&gt; thought about dash as well. But as a matter of fact we should remove<b=
-r>
-&gt; bashisms and make things as usable as possible. So maybe his patch mak=
+x #ccc solid;padding-left:1ex">Dropped raspberrypi modifications to hosts a=
+nd interfaces files as they are<br>
+unnecessary.<br>
+<br>
+Signed-off-by: Paul Barker &lt;<a href=3D"mailto:paul@paulbarker.me.uk">pau=
+l@paulbarker.me.uk</a>&gt;<br>
+---<br>
+=A0recipes-core/netbase/netbase-5.0/raspberrypi/hosts =A0 =A0 =A0| =A0 =A02=
+ --<br>
+=A0recipes-core/netbase/netbase-5.0/raspberrypi/interfaces | =A0 15 -------=
+--------<br>
+=A0recipes-core/netbase/netbase_5.0.bbappend =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =
+=A0 =A03 ---<br>
+=A03 files changed, 20 deletions(-)<br>
+=A0delete mode 100644 recipes-core/netbase/netbase-5.0/raspberrypi/hosts<br=
+>
+=A0delete mode 100644 recipes-core/netbase/netbase-5.0/raspberrypi/interfac=
 es<br>
-&gt; sense after all.<br>
-&gt;<br>
+=A0delete mode 100644 recipes-core/netbase/netbase_5.0.bbappend<br>
 <br>
-</div>Based on Paul Eggleton&#39;s reply elsewhere:<br>
+diff --git a/recipes-core/netbase/netbase-5.0/raspberrypi/hosts b/recipes-c=
+ore/netbase/netbase-5.0/raspberrypi/hosts<br>
+deleted file mode 100644<br>
+index 7d87a18..0000000<br>
+--- a/recipes-core/netbase/netbase-5.0/raspberrypi/hosts<br>
++++ /dev/null<br>
+@@ -1,2 +0,0 @@<br>
+-127.0.0.1 =A0 =A0 =A0localhost.localdomain =A0 =A0 =A0 =A0 =A0 localhost =
+=A0 =A0 =A0 raspberrypi =A0 =A0 rpi<br>
+-<br>
+diff --git a/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces b/reci=
+pes-core/netbase/netbase-5.0/raspberrypi/interfaces<br>
+deleted file mode 100644<br>
+index 00ae607..0000000<br>
+--- a/recipes-core/netbase/netbase-5.0/raspberrypi/interfaces<br>
++++ /dev/null<br>
+@@ -1,15 +0,0 @@<br>
+-# /etc/network/interfaces -- configuration file for ifup(8), ifdown(8)<br>
+-<br>
+-# The loopback interface<br>
+-auto lo<br>
+-iface lo inet loopback<br>
+-<br>
+-# Wireless interfaces<br>
+-iface wlan0 inet dhcp<br>
+- =A0 =A0 =A0 wireless_mode managed<br>
+- =A0 =A0 =A0 wireless_essid any<br>
+- =A0 =A0 =A0 wpa-driver wext<br>
+- =A0 =A0 =A0 wpa-conf /etc/wpa_supplicant.conf<br>
+-<br>
+-# Bluetooth networking<br>
+-iface bnep0 inet dhcp<br>
+diff --git a/recipes-core/netbase/netbase_5.0.bbappend b/recipes-core/netba=
+se/netbase_5.0.bbappend<br>
+deleted file mode 100644<br>
+index 36432f5..0000000<br>
+--- a/recipes-core/netbase/netbase_5.0.bbappend<br>
++++ /dev/null<br>
+@@ -1,3 +0,0 @@<br>
+-FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
+-# Don&#39;t forget to bump PRINC if you update the extra files.<br>
+-PRINC =3D &quot;1&quot;<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+1.7.10.4<br>
 <br>
-On 2 May 2013 09:07, Paul Eggleton &lt;<a href=3D"mailto:paul.eggleton@linu=
-x.intel.com">paul.eggleton@linux.intel.com</a>&gt; wrote:<br>
-&gt; On Wednesday 01 May 2013 19:13:19 seth bollinger wrote:<br>
-&gt;&gt; 2. =A0I couldn&#39;t find a wildcard string search in dash. =A0Can=
- anyone<br>
-&gt;&gt; suggest a more shell agnostic way to do this?<br>
-&gt;<br>
-&gt; AFAIK grep or awk is the only way.<br>
-<br>
-I think this patch probably does make sense.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
---<br>
-Paul Barker<br>
-<br>
-Email: <a href=3D"mailto:paul@paulbarker.me.uk">paul@paulbarker.me.uk</a><b=
-r>
-<a href=3D"http://www.paulbarker.me.uk" target=3D"_blank">http://www.paulba=
-rker.me.uk</a><br>
-</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
-<div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"text-=
-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Roman=
-&#39;;font-size:medium">
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"tex=
+t-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Rom=
+an&#39;;font-size:medium">
 
 <b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
 n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
@@ -149,4 +219,4 @@ n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
 </div></div></div>
 </div>
 
---047d7b33dd82e77e5004dbcd0166--
+--047d7b33da86015c4404dbcd05c5--
