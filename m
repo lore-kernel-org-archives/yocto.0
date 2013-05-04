@@ -1,32 +1,27 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
-	[209.85.128.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E9A9E01308
-	for <yocto@yoctoproject.org>; Fri,  3 May 2013 17:35:22 -0700 (PDT)
-Received: by mail-ve0-f172.google.com with SMTP id da11so2002201veb.31
-	for <yocto@yoctoproject.org>; Fri, 03 May 2013 17:35:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=bjRaXCupx61XXrNaFVt4ekAdUASvjMXVA/72Yp/37tI=;
-	b=qr2yhuE2No3GMBS54bfc7ES2MrHrLu6WRJcXfpFsJbNTLst+8hBUwXJgqC/0ccLt/A
-	DnbHaQkhlhmJim9n/rElRdzqmnZV5lNICnmP52I/HXS5WCgc8EWar+YulrhldySuJCNL
-	hPxUF5bxUJD0WDGe7d6Lj9mw3AttmuT0G5oaBEfP+iHs+eqP7+YmnEKDVjYcbE1iHxwh
-	pxD+IDfqz+fX61jy8EpF4CIlH0VnOLBHHcdiJ3BmuuvTSWGlhcgyLdlLOZ8A0bzUJZzs
-	Y/rdwhoxm7gbUfKtaSzRpscBNzsBsFk36ye+rBVnbXlvaFvEe18aQxuKTmyFIkxQeIyi
-	lpHQ==
-X-Received: by 10.220.103.209 with SMTP id l17mr4285301vco.39.1367627722213;
-	Fri, 03 May 2013 17:35:22 -0700 (PDT)
-MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.48.5 with HTTP; Fri, 3 May 2013 17:35:02 -0700 (PDT)
-In-Reply-To: <ABB6A20C-CB31-45DC-A74F-26424B52F84E@spidercloud.com>
+Return-Path: <Ben.Warren@spidercloud.com>
+Received: from berg.int.copivia.com (mailgate1.spidercloud.com [209.49.242.60])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4A8DE01470
+	for <yocto@yoctoproject.org>; Fri,  3 May 2013 17:49:31 -0700 (PDT)
+Received: from mailx.spidercloud.com ([10.1.1.225])
+	by berg.int.copivia.com (8.13.8/8.13.8) with ESMTP id r440nSw0027343;
+	Fri, 3 May 2013 17:49:28 -0700
+Received: from sofia.us.spidercloud.com ([10.1.1.225]) by
+	sofia.us.spidercloud.com ([10.1.1.225]) with mapi;
+	Fri, 3 May 2013 17:49:28 -0700
+From: Ben Warren <Ben.Warren@spidercloud.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 3 May 2013 17:49:28 -0700
+Thread-Topic: [yocto] Trouble integrating meta-virtualization
+Thread-Index: Ac5IYTsx3qJpQGVUSA+WfZ96SnOagw==
+Message-ID: <B9867B38-90A3-44F2-BC55-BAAE50BD6558@spidercloud.com>
 References: <ABB6A20C-CB31-45DC-A74F-26424B52F84E@spidercloud.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Sat, 4 May 2013 01:35:02 +0100
-X-Google-Sender-Auth: NOoaT1aWoNSPCcS2wFuTLc4zWKg
-Message-ID: <CANyK_8cMUdVdMkEDpUhqxCy2-0HjnCZqoUVwiGpkT5ZVvH0zHg@mail.gmail.com>
-To: Ben Warren <Ben.Warren@spidercloud.com>
+	<CANyK_8cMUdVdMkEDpUhqxCy2-0HjnCZqoUVwiGpkT5ZVvH0zHg@mail.gmail.com>
+In-Reply-To: <CANyK_8cMUdVdMkEDpUhqxCy2-0HjnCZqoUVwiGpkT5ZVvH0zHg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Trouble integrating meta-virtualization
 X-BeenThere: yocto@yoctoproject.org
@@ -40,30 +35,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 May 2013 00:35:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 04 May 2013 00:49:31 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 4 May 2013 00:44, Ben Warren <Ben.Warren@spidercloud.com> wrote:
-> Hello,
->
-> I'm trying to build an image using some components from meta-virtualization,
-> and it's failing because it can't find many of the dependent modules.  I'm
-> posting this on the main yocto mailing list since it's more of a general
-> question of 'where are these things?'
->
 
-Each layer should have a README file specifying its dependencies. See
-https://git.yoctoproject.org/cgit/cgit.cgi/meta-virtualization/tree/README
-or README in your local clone of the tree.
+On May 3, 2013, at 5:35 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
 
-In this case the layer seems to depend on meta-oe and meta-networking,
-both within the meta-openembedded group of layers.
+> On 4 May 2013 00:44, Ben Warren <Ben.Warren@spidercloud.com> wrote:
+>> Hello,
+>>=20
+>> I'm trying to build an image using some components from meta-virtualizat=
+ion,
+>> and it's failing because it can't find many of the dependent modules.  I=
+'m
+>> posting this on the main yocto mailing list since it's more of a general
+>> question of 'where are these things?'
+>>=20
+>=20
+> Each layer should have a README file specifying its dependencies. See
+> https://git.yoctoproject.org/cgit/cgit.cgi/meta-virtualization/tree/READM=
+E
+> or README in your local clone of the tree.
+>=20
+> In this case the layer seems to depend on meta-oe and meta-networking,
+> both within the meta-openembedded group of layers.
+>=20
+> Hope this helps,
+>=20
+Yes it does.  Thank you very much.
 
-Hope this helps,
-
---
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+regards,
+Ben=
 
