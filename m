@@ -1,29 +1,40 @@
-Return-Path: <Ben.Warren@spidercloud.com>
-Received: from berg.int.copivia.com (mailgate1.spidercloud.com [209.49.242.60])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4A8DE01470
-	for <yocto@yoctoproject.org>; Fri,  3 May 2013 17:49:31 -0700 (PDT)
-Received: from mailx.spidercloud.com ([10.1.1.225])
-	by berg.int.copivia.com (8.13.8/8.13.8) with ESMTP id r440nSw0027343;
-	Fri, 3 May 2013 17:49:28 -0700
-Received: from sofia.us.spidercloud.com ([10.1.1.225]) by
-	sofia.us.spidercloud.com ([10.1.1.225]) with mapi;
-	Fri, 3 May 2013 17:49:28 -0700
-From: Ben Warren <Ben.Warren@spidercloud.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 3 May 2013 17:49:28 -0700
-Thread-Topic: [yocto] Trouble integrating meta-virtualization
-Thread-Index: Ac5IYTsx3qJpQGVUSA+WfZ96SnOagw==
-Message-ID: <B9867B38-90A3-44F2-BC55-BAAE50BD6558@spidercloud.com>
-References: <ABB6A20C-CB31-45DC-A74F-26424B52F84E@spidercloud.com>
-	<CANyK_8cMUdVdMkEDpUhqxCy2-0HjnCZqoUVwiGpkT5ZVvH0zHg@mail.gmail.com>
-In-Reply-To: <CANyK_8cMUdVdMkEDpUhqxCy2-0HjnCZqoUVwiGpkT5ZVvH0zHg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDFCBE01458
+	for <yocto@yoctoproject.org>; Sat,  4 May 2013 03:34:09 -0700 (PDT)
+Received: by mail-vc0-f182.google.com with SMTP id ia10so2059975vcb.41
+	for <yocto@yoctoproject.org>; Sat, 04 May 2013 03:34:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=TBPntCrIaSjJyqdXaZaIek20abBlc+NCBQe2LWtybHY=;
+	b=m3K5N5dM0sJa3XvFz3/S3ixMA4K8q4gQ2di8vwqmqDfxjUZI7LPu3q6THzuQ/0Va1h
+	gTFa5rCQont7lHN9SjsyYylsySu6ZyizqF/rIYiuSLDSCOxA622QZLA//t81lahJjmT1
+	RQcvoXfVCFsO72ZtrWMq9MxwO5nR+gSwdvbcUZm7mjkTjto/XwJ69dEDDFVY6K4qdH7E
+	Ny/fXS38jR9tliOunM49JluRVaPAlS1c8ld/vVn47SwiXUA9VsoAUDVQyFgghAQ/Rk6y
+	gyDd0pXQK4SH7pIPBhsC7jDGxi1vqszPl9pLfnHkTHGvbjTs9vJbm39W1mcMSvwAcWVR
+	bYQQ==
+X-Received: by 10.52.27.52 with SMTP id q20mr4136468vdg.16.1367663649090; Sat,
+	04 May 2013 03:34:09 -0700 (PDT)
 MIME-Version: 1.0
+Sender: paul.betafive@gmail.com
+Received: by 10.220.48.5 with HTTP; Sat, 4 May 2013 03:33:48 -0700 (PDT)
+In-Reply-To: <CAHUNapTv=e3_zcKrR34=_v4Wtq6pp_WznA2gLKPBxTZ=FFo6KA@mail.gmail.com>
+References: <CANyK_8c2tTqktkHFuR+vzAGbsb3AKyFow1T4rU_aEnb8pdQnuw@mail.gmail.com>
+	<CAK18fxFMKykJQnuMqrU6eLkD0E_Ht+Vyo2tmayukvNU_eyV6aw@mail.gmail.com>
+	<CANyK_8fVfKbTHq3X1hdSWOFdwsz4cZLaaispiwC_hJJbimM1ig@mail.gmail.com>
+	<CAHUNapRr4y47FGqp90NZwKwwE0PGSj6A2vN1nRujqjBSL9oOZw@mail.gmail.com>
+	<CANyK_8erAWaRzrXxDOCwaa9xkfxqVM5Fk5hukGPoyapZJTMw5w@mail.gmail.com>
+	<518292E5.9030101@mlbassoc.com>
+	<CAHUNapTv=e3_zcKrR34=_v4Wtq6pp_WznA2gLKPBxTZ=FFo6KA@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Sat, 4 May 2013 11:33:48 +0100
+X-Google-Sender-Auth: f26lP8hI-a6qfUoXT02MmgLHuVA
+Message-ID: <CANyK_8cKxsPbG7DfcXAnD8-yeLCGHeuq=hUTWr9HN=m37WYsFQ@mail.gmail.com>
+To: Trevor Woerner <twoerner@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trouble integrating meta-virtualization
+Subject: Re: [meta-raspberrypi] Zenity is in meta-gnome
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,37 +46,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 May 2013 00:49:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 04 May 2013 10:34:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+On 2 May 2013 17:35, Trevor Woerner <twoerner@gmail.com> wrote:
+>
+> If I knew the best way to integrate it with Yocto, I'd submit patches
+> to include it. But for the time-being I'll just mention it :-)
+>
 
-On May 3, 2013, at 5:35 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+Maybe take a look at how the existing SD card image for the
+raspberrypi is generated? The relevant file is
+classes/sdcard_image-rpi.bbclass in meta-raspberrypi
+(https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/classes/sdcard_image-rpi.bbclass).
 
-> On 4 May 2013 00:44, Ben Warren <Ben.Warren@spidercloud.com> wrote:
->> Hello,
->>=20
->> I'm trying to build an image using some components from meta-virtualizat=
-ion,
->> and it's failing because it can't find many of the dependent modules.  I=
-'m
->> posting this on the main yocto mailing list since it's more of a general
->> question of 'where are these things?'
->>=20
->=20
-> Each layer should have a README file specifying its dependencies. See
-> https://git.yoctoproject.org/cgit/cgit.cgi/meta-virtualization/tree/READM=
-E
-> or README in your local clone of the tree.
->=20
-> In this case the layer seems to depend on meta-oe and meta-networking,
-> both within the meta-openembedded group of layers.
->=20
-> Hope this helps,
->=20
-Yes it does.  Thank you very much.
+You'd probably want to create a new rootfs of the desired size (maybe
+a IMAGE_SIZE variable that can be set in local.conf?) and untar the
+relvant .rootfs.tar.bz2 file into the new partition then join it with
+a machine-specific boot partition into a final image. The sizes would
+be set so rootfs size + boot size + alignment, etc = IMAGE_SIZE.
 
-regards,
-Ben=
+This doesn't solve everything you say about unique serial numbers or
+IP addresses but it's a start, such features could be added later.
+
+--
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
