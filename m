@@ -1,40 +1,35 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
-	[209.85.220.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDFCBE01458
-	for <yocto@yoctoproject.org>; Sat,  4 May 2013 03:34:09 -0700 (PDT)
-Received: by mail-vc0-f182.google.com with SMTP id ia10so2059975vcb.41
-	for <yocto@yoctoproject.org>; Sat, 04 May 2013 03:34:09 -0700 (PDT)
+Return-Path: <seth.boll@gmail.com>
+Received: from mail-vb0-f47.google.com (mail-vb0-f47.google.com
+	[209.85.212.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C3CDE00304
+	for <yocto@yoctoproject.org>; Sat,  4 May 2013 13:36:29 -0700 (PDT)
+Received: by mail-vb0-f47.google.com with SMTP id x14so2141791vbb.20
+	for <yocto@yoctoproject.org>; Sat, 04 May 2013 13:36:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=TBPntCrIaSjJyqdXaZaIek20abBlc+NCBQe2LWtybHY=;
-	b=m3K5N5dM0sJa3XvFz3/S3ixMA4K8q4gQ2di8vwqmqDfxjUZI7LPu3q6THzuQ/0Va1h
-	gTFa5rCQont7lHN9SjsyYylsySu6ZyizqF/rIYiuSLDSCOxA622QZLA//t81lahJjmT1
-	RQcvoXfVCFsO72ZtrWMq9MxwO5nR+gSwdvbcUZm7mjkTjto/XwJ69dEDDFVY6K4qdH7E
-	Ny/fXS38jR9tliOunM49JluRVaPAlS1c8ld/vVn47SwiXUA9VsoAUDVQyFgghAQ/Rk6y
-	gyDd0pXQK4SH7pIPBhsC7jDGxi1vqszPl9pLfnHkTHGvbjTs9vJbm39W1mcMSvwAcWVR
-	bYQQ==
-X-Received: by 10.52.27.52 with SMTP id q20mr4136468vdg.16.1367663649090; Sat,
-	04 May 2013 03:34:09 -0700 (PDT)
+	h=x-received:message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=rSvMseWBrWmNZvE6hhzMlLRWSzgL2s5ZBAgC98ri+po=;
+	b=QyKNki2EkXD8DDQsrehhm4r7aQlQqrS4OyB6EMLQSp75yPIFuyQ9hXL64Bfdjnk5t7
+	vZ4EkDAbNELkOHdYVT4ZNwVAMYsOd/apASQIaNFb8hofstFd3Vv6WAXXHuDh3jqTu6ae
+	8WN7rLCnL+mXX1aI3mvfwEiZTQET2RXg0H77b9o2edEibLUEDuLlzSA8yWTtJqL3PHqb
+	mPjtSTGx3gA8KUohLTtzWKGTxzgvzQpuQ629hzYkSG7rZtAjqbfhVICPs0aGbPfRkBRc
+	9BK7jDiCtGBWd4K9rKHohAri2v/XLhhGt2QSK5K1CTxt45NLvw9/AU4VZNUSC6qClHCY
+	+oBA==
+X-Received: by 10.221.9.70 with SMTP id ov6mr5121125vcb.72.1367699788638;
+	Sat, 04 May 2013 13:36:28 -0700 (PDT)
+Received: from [192.168.1.102] (c-66-41-191-40.hsd1.mn.comcast.net.
+	[66.41.191.40])
+	by mx.google.com with ESMTPSA id tk7sm924287vdc.0.2013.05.04.13.36.26
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sat, 04 May 2013 13:36:27 -0700 (PDT)
+Message-ID: <51857159.8000502@gmail.com>
+Date: Sat, 04 May 2013 15:36:41 -0500
+From: seth bollinger <seth.boll@gmail.com>
+User-Agent: Postbox 3.0.7 (Macintosh/20130119)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.48.5 with HTTP; Sat, 4 May 2013 03:33:48 -0700 (PDT)
-In-Reply-To: <CAHUNapTv=e3_zcKrR34=_v4Wtq6pp_WznA2gLKPBxTZ=FFo6KA@mail.gmail.com>
-References: <CANyK_8c2tTqktkHFuR+vzAGbsb3AKyFow1T4rU_aEnb8pdQnuw@mail.gmail.com>
-	<CAK18fxFMKykJQnuMqrU6eLkD0E_Ht+Vyo2tmayukvNU_eyV6aw@mail.gmail.com>
-	<CANyK_8fVfKbTHq3X1hdSWOFdwsz4cZLaaispiwC_hJJbimM1ig@mail.gmail.com>
-	<CAHUNapRr4y47FGqp90NZwKwwE0PGSj6A2vN1nRujqjBSL9oOZw@mail.gmail.com>
-	<CANyK_8erAWaRzrXxDOCwaa9xkfxqVM5Fk5hukGPoyapZJTMw5w@mail.gmail.com>
-	<518292E5.9030101@mlbassoc.com>
-	<CAHUNapTv=e3_zcKrR34=_v4Wtq6pp_WznA2gLKPBxTZ=FFo6KA@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Sat, 4 May 2013 11:33:48 +0100
-X-Google-Sender-Auth: f26lP8hI-a6qfUoXT02MmgLHuVA
-Message-ID: <CANyK_8cKxsPbG7DfcXAnD8-yeLCGHeuq=hUTWr9HN=m37WYsFQ@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Zenity is in meta-gnome
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: resize_inode
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,32 +41,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 May 2013 10:34:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 04 May 2013 20:36:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2 May 2013 17:35, Trevor Woerner <twoerner@gmail.com> wrote:
->
-> If I knew the best way to integrate it with Yocto, I'd submit patches
-> to include it. But for the time-being I'll just mention it :-)
->
+Hello All,
 
-Maybe take a look at how the existing SD card image for the
-raspberrypi is generated? The relevant file is
-classes/sdcard_image-rpi.bbclass in meta-raspberrypi
-(https://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/classes/sdcard_image-rpi.bbclass).
+I'm trying to create a small SD card image that I can quickly dd to card 
+and then do an online resize as a post process step to take advantage of 
+the entire space of the card.  Similar to how the raspbian image works.  
+Unfortunately genext2fs doesn't seem to set this flag (and reserve the 
+required resources), so the online resize fails.  I tried using tune2fs, 
+as it looked like there was some interest in adding support, but it 
+looks like it never happened.  Has anyone else run into this issue?  Is 
+there a solution?
 
-You'd probably want to create a new rootfs of the desired size (maybe
-a IMAGE_SIZE variable that can be set in local.conf?) and untar the
-relvant .rootfs.tar.bz2 file into the new partition then join it with
-a machine-specific boot partition into a final image. The sizes would
-be set so rootfs size + boot size + alignment, etc = IMAGE_SIZE.
+resize2fs 1.42.1 (17-Feb-2012)
+Filesystem at /dev/mmcblk0p2 is mounted on /; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 15
+resize2fs: Filesystem does not support online resizing
 
-This doesn't solve everything you say about unique serial numbers or
-IP addresses but it's a start, such features could be added later.
+| Setting filesystem feature 'resize_inode' not supported.
+| tune2fs 1.42.1 (17-Feb-2012)
 
---
-Paul Barker
+Thanks,
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Seth
 
