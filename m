@@ -1,47 +1,34 @@
-Return-Path: <mhalstead@linuxfoundation.org>
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8052E0137F
-	for <yocto@yoctoproject.org>; Mon,  6 May 2013 04:10:04 -0700 (PDT)
-Received: by mail-pa0-f54.google.com with SMTP id kx1so1985463pab.13
-	for <yocto@yoctoproject.org>; Mon, 06 May 2013 04:10:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=x-received:sender:message-id:date:from:user-agent:mime-version:to
-	:subject:x-enigmail-version:content-type;
-	bh=LDptSJsYwGY1FYPS8JZ/6x/6PqxF0vFurF6R4AzQP3A=;
-	b=VX2aEC8HdN4B8lELX2XzR7WBJWuoyi5DKEUEss/lMTZ+fuoIWEF+eo2h9mZIx7HEBT
-	inANQatmHBdJXJYo2nWeyhSi4Z2cWW8ZcQzqDpuH59SD/7xzjA6i/KIZ1RrZqAILiwdk
-	A9bQxIBogi0Rnao4Ia+xxmJQU6ln0eemje0OY=
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f50.google.com (mail-oa0-f50.google.com
+	[209.85.219.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2923E0027C
+	for <yocto@yoctoproject.org>; Mon,  6 May 2013 07:44:27 -0700 (PDT)
+Received: by mail-oa0-f50.google.com with SMTP id l10so1638042oag.37
+	for <yocto@yoctoproject.org>; Mon, 06 May 2013 07:44:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=x-received:sender:message-id:date:from:user-agent:mime-version:to
-	:subject:x-enigmail-version:content-type:x-gm-message-state;
-	bh=LDptSJsYwGY1FYPS8JZ/6x/6PqxF0vFurF6R4AzQP3A=;
-	b=STUP/QDMzRyVg3Wpv1GdhyTPAtfOw4ACETZSJBNHsaf5Q6aOveQ8EMVrHuU6P2/xD+
-	aA1PKQen90WcIrGarU6eL7wns1OJxV0xlwTH2b7wywrnJuSIDDmR6+yTbOp1UsOoxUnk
-	xBwZC7+QVzIdHoV+KQXyZnddzpOIXYl3bNKUGnqmVbVCVlSGR0UepSsY9Cl7zVglO8LZ
-	jGOSrcoFspRbsoeYr1q8kVZe8Vpkfbl1wOG2FuQqM/R8xC1l4JY5+5LPdOxNOPLsK8xT
-	Qc7b+qa+FCmTg622j8pNnSFMDNavFEFWWN4oEUikSiwsKE7gpKHHkaKxN9m4YvELJXTb
-	Cehw==
-X-Received: by 10.68.176.37 with SMTP id cf5mr25176640pbc.173.1367838604259;
-	Mon, 06 May 2013 04:10:04 -0700 (PDT)
-Received: from [192.168.1.67] (static-50-43-57-222.bvtn.or.frontiernet.net.
-	[50.43.57.222]) by mx.google.com with ESMTPSA id
-	qr7sm23519154pbc.16.2013.05.06.04.10.03 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 06 May 2013 04:10:03 -0700 (PDT)
-Sender: Michael Halstead <mhalstead@linuxfoundation.org>
-Message-ID: <51878F86.4060406@yoctoproject.org>
-Date: Mon, 06 May 2013 04:09:58 -0700
-From: Michael Halstead <michael@yoctoproject.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=FBJ//ClM1NCJWUqwp+ORvphZpFiOGmj+IsHMmKbaT/A=;
+	b=o76jbNRQFIBdaN410RZXBZvcEcMAJONgdNEdHlcQHFVQ6R3MJjSN0t/0zpMifUHeuj
+	xiIB50KhNUAy1Rw7517IgkWjdSyUozxLvKq18Cq7kFXZEYD/utSWP9aGSegA08FPJB5L
+	2ZzzuT6rcUzdS/nySfNVdgT4MKyp/7tD4QtNO8ZQso/NVOtfrU/1/11067lXsznGqf1i
+	s+/r1v5p7ocFMj/vCHMfeqFsRyqm3Movb8cwzg9bo6KbxZmO1nsymchdliFlUtIyn8nh
+	AQrUc+05FbIn2ZTLlAcmwzWTVphrl2sJmwU0eXyOja9+JP07A97tqrNzQvbi9M/nz81K
+	0p7A==
+X-Received: by 10.182.129.36 with SMTP id nt4mr5557311obb.62.1367851467032;
+	Mon, 06 May 2013 07:44:27 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.4.6
-X-Gm-Message-State: ALoCoQlv1JSJLYCI/dqbjchOZqR65HE5hwOjSXs9/wF4L3FVW3ll3AkLm27N14MgQo9Idt8hW+Bt
-Subject: Bug Trend for WW18 - new automated charts
+Received: by 10.76.35.193 with HTTP; Mon, 6 May 2013 07:44:05 -0700 (PDT)
+In-Reply-To: <26FE63BB-04B6-4226-8921-FE6D4DA9029F@gmail.com>
+References: <26FE63BB-04B6-4226-8921-FE6D4DA9029F@gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Mon, 6 May 2013 16:44:05 +0200
+Message-ID: <CAP71WjzcTuAbHemvAP0WPPyRJmFYetQmXHTRT=NdQak2bzQ1gw@mail.gmail.com>
+To: jojo <rjiejie@gmail.com>
+X-Gm-Message-State: ALoCoQlvuvYZ/L07AyQJkMKyy1IZGdKABZYBXYIXhWl21eStiWij7EW2nvfhQeojbR7Vyu2XHClw
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: how to enable DFB with cairo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,62 +40,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2013 11:10:04 -0000
-X-Groupsio-MsgNum: 13579
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="------------enig759F1EE884A1E127BB967297"
+X-List-Received-Date: Mon, 06 May 2013 14:44:28 -0000
+Content-Type: multipart/alternative; boundary=e89a8fb1fff6cca9a704dc0dbc86
 
---------------enig759F1EE884A1E127BB967297
+--e89a8fb1fff6cca9a704dc0dbc86
 Content-Type: text/plain; charset=ISO-8859-1
+
+On Mon, May 6, 2013 at 10:08 AM, jojo <rjiejie@gmail.com> wrote:
+
+>
+> I am not familiar with yocto project, and i want to enable DFB render
+> backend in cairo,
+>
+> du to the patches "
+> http://lists.linuxtogo.org/pipermail/openembedded-core/2011-November/013037.html
+> ",
+>
+> i know about first need to disable X11 feature in my system by default,
+> but i do not know about how to disable X11,
+>
+> Someone can point me out any clue to enable DFB with cairo in yocto ?
+>
+
+hi. you should check meta-yocto/conf/local.conf.sample.extended file, I
+think that might be of interest to you:
+
+# If you want to get an image based on directfb without x11, Please copy
+this variable to build/conf/local.conf
+
+#DISTRO_FEATURES = "alsa argp bluetooth ext2 irda largefile pcmcia
+usbgadget usbhost wifi xattr nfs zeroconf pci 3g directfb
+${DISTRO_FEATURES_LIBC}"
+
+I, too, am using an X11-less image using these recommendations.
+
+--e89a8fb1fff6cca9a704dc0dbc86
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Bug trend data is now gathered automatically and displayed using
-detailed interactive charts. Hover your mouse over various parts of the
-charts for more detail. The dynamic axis labels will sometimes omit text
-for readability but the relevant data is displayed in the chart. Data
-for each week is taken from 23:59:59 UTC on the Sunday ending the week.
-Daily data is collected during the last second of that day in UTC.
-Numbers from previous periods have been regenerated using these times
-for consistency.
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Mon, May 6, 2013 at 10:08 AM, jojo <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:rjiejie@gmail.com" target=3D"_blank">rjiejie@gmail.com</a>&gt;</span> wr=
+ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-style=
+:solid;padding-left:1ex">
 
-The charts are currently displayed on their own pages but in the future
-will be embedded into either the main Yocto Project website or the wiki.
+<div><br></div><div><span style=3D"white-space:pre-wrap">	</span>I am not f=
+amiliar with yocto project, and i want to enable DFB render backend in cair=
+o,</div><div><br></div><div><span style=3D"white-space:pre-wrap">	</span>du=
+ to the patches &quot;<a href=3D"http://lists.linuxtogo.org/pipermail/opene=
+mbedded-core/2011-November/013037.html" target=3D"_blank">http://lists.linu=
+xtogo.org/pipermail/openembedded-core/2011-November/013037.html</a>&quot;,<=
+/div>
 
-Find the new style trend charts links at
-https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend
+<div><br></div><div><span style=3D"white-space:pre-wrap">	</span>i know abo=
+ut first need to disable X11 feature in my system by default, but i do not =
+know about how to disable X11,</div><div><br></div><div><span style=3D"whit=
+e-space:pre-wrap">	</span>Someone=A0can point me out any clue to enable DFB=
+ with cairo in yocto ?=A0</div>
 
-Or view them all at once at https://wiki.yoctoproject.org/charts/combo.ht=
-ml
+<div>
+<span style=3D"border-collapse:separate;border-spacing:0px"><span style=3D"=
+border-spacing:0px;text-indent:0px;letter-spacing:normal;font-variant:norma=
+l;text-align:-webkit-auto;font-style:normal;font-weight:normal;line-height:=
+normal;border-collapse:separate;text-transform:none;font-size:medium;white-=
+space:normal;font-family:&#39;Heiti SC&#39;;word-spacing:0px"><div style=3D=
+"word-wrap:break-word">
 
---=20
-Michael Halstead
-Yocto Project / System Administrator
+<div><div></div></div></div></span></span></div></blockquote></div><br>hi. =
+you should check meta-yocto/conf/local.conf.sample.extended file, I think t=
+hat might be of interest to you:</div><div class=3D"gmail_extra"><div class=
+=3D"gmail_extra">
 
+<br></div><div class=3D"gmail_extra"># If you want to get an image based on=
+ directfb without x11, Please copy this variable to build/conf/local.conf =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</div><div class=3D"=
+gmail_extra">
 
+#DISTRO_FEATURES =3D &quot;alsa argp bluetooth ext2 irda largefile pcmcia u=
+sbgadget usbhost wifi xattr nfs zeroconf pci 3g directfb ${DISTRO_FEATURES_=
+LIBC}&quot; =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</div><di=
+v><br></div><div style>I, too, am using an X11-less image using these recom=
+mendations.</div>
 
---------------enig759F1EE884A1E127BB967297
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+<div style><br></div><div style><br></div></div><div class=3D"gmail_extra">=
+<br></div></div>
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.11 (GNU/Linux)
-Comment: Using GnuPG with undefined - http://www.enigmail.net/
-
-iQIcBAEBAgAGBQJRh4+KAAoJEDNzFwYBhhlp3YYP/R9QF27d5BCpuT5s2opP+rap
-GhgHFVOLCcxQ3g7oDtQqt14Eq5YX1QFXqiSlYJ4O8rq6otpwM8pWM2lPDsagWhK5
-EoYCW5Hg61cjzGcqeLqYqj3RoNnx1p5J4fbq7gy0l86IC6N6qmDg1OpnKr780RSQ
-dXfy2xwf1JmLfa9qta8aXEz3dpcxCOOQsUizW80KRZAAuK65EQtYJ8nmtGXhqz76
-3PMbgdqqXD5ewOb/MDXO2ogyxjo/bBmjTPm1tHaMoKdlC7rIfcR/tceIUJJMO7w8
-NJZD9RqECQMLyHn34VpOnZTpMZBtP390VAfTXS+wV/W1SCSispGaNHj80HOGJSxC
-I7yWHtGqzhxEezDU2JXW7utGylHMOehybKohAHQUA7t+muvOHOfXr1jEVYgCy1gX
-ZfxSW4eb6MKNO+26vbqwyD6Gr2KvrvnMNqmqp6KBC+ic4bQvudtdUdLhPsyHM9Tz
-BQg1CZFIj2DLow1VZD16U8qmPFubguEBoM9q2dNn06FMojY1c8HnNgh0moeeEHk0
-2K2gDYScbqyJWFV78IQdtMeQS4yFrgoZpOCwPsuXJlmSdNLupjTNRaPxEtZMAK0y
-3YJGfKQ7Ja6vtQ3Nlsl8oxRSOB1hsKO1EZIMqCiv+TIXabqYTBU4lvK40QgNYtv/
-qvP3awII7CYw3y0t2OcM
-=m+UU
------END PGP SIGNATURE-----
-
---------------enig759F1EE884A1E127BB967297--
+--e89a8fb1fff6cca9a704dc0dbc86--
