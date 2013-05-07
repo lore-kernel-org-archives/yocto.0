@@ -1,33 +1,28 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1CD5E0127D
-	for <yocto@yoctoproject.org>; Tue,  7 May 2013 13:45:02 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 07 May 2013 13:45:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,629,1363158000"; d="scan'208";a="238224182"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 May 2013 13:44:59 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.27]) by
-	ORSMSX101.amr.corp.intel.com ([169.254.8.213]) with mapi id
-	14.01.0355.002; Tue, 7 May 2013 13:44:58 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/8] Refactoring of remotetools plugin
-Thread-Index: AQHORbL0BlkX1Xaji0e2vo6zJ2/oUpjws6qwgAl60ACAAA2EwA==
-Date: Tue, 7 May 2013 20:44:57 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C70780DDE@ORSMSX103.amr.corp.intel.com>
-References: <1367332592-2585-1-git-send-email-ioanax.grigoropol@intel.com>,
-	<C6510F6D410BB64A8C15398EDC6B847C7077BAD9@fmsmsx152.amr.corp.intel.com>
-	<3E179CF0D7162B4AA4E2B324209A46391560C4F0@IRSMSX102.ger.corp.intel.com>
-In-Reply-To: <3E179CF0D7162B4AA4E2B324209A46391560C4F0@IRSMSX102.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <zaifupb@gmail.com>
+Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2621AE0127D
+	for <yocto@yoctoproject.org>; Tue,  7 May 2013 14:51:31 -0700 (PDT)
+Received: by mail-qa0-f48.google.com with SMTP id i13so674931qae.7
+	for <yocto@yoctoproject.org>; Tue, 07 May 2013 14:51:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:date:message-id:subject:from:to
+	:content-type; bh=tqiQWTLUbi8EQTfTcZqyJOdfwPZtkuO3Nj5ZLHzqNCc=;
+	b=VHZWdOU/1qCRGDUVo3ki8JVyh0tUGR7OU/Lzs1PxeHDCd4aBtzcOoXprPqk+t/v81p
+	TNL/O1opV7VdgciVhiItFuf9ehc1vAuW84wyyJMJWDKX2WV3EXdnCk9ElWcRBBOBv6f2
+	5fRbEanUQqPudYOFd6i/M9is+HuyF4BAIcQlsfc9+Co8f9Mf/6KwnVbjPPccauYsA4CJ
+	+RKcXgX80CCiterEVXgnpv/I3ikEzkOICVb7FRmsflqUZKS1Oms9CVXkCDIpo89z97Os
+	rrJ9MqVrzuBOpIu0L9oe6fNtLB3cDT17tj+u5C8qIYGhRDXlwbEkpfN19WiiZpc4zXRx
+	logg==
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/8] Refactoring of remotetools plugin
+X-Received: by 10.224.190.137 with SMTP id di9mr2979831qab.95.1367963490121;
+	Tue, 07 May 2013 14:51:30 -0700 (PDT)
+Received: by 10.229.164.76 with HTTP; Tue, 7 May 2013 14:51:30 -0700 (PDT)
+Date: Tue, 7 May 2013 23:51:30 +0200
+Message-ID: <CABx0rKFD26wSiabvtxBgYNVJw-uZNKddDbgDwpi3d6cb1EyCag@mail.gmail.com>
+From: Zaif upb <zaifupb@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Building Custom Images- Need help
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,89 +34,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 20:45:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 07 May 2013 21:51:31 -0000
+Content-Type: multipart/alternative; boundary=20cf300fb30be5367304dc27d15b
+
+--20cf300fb30be5367304dc27d15b
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi all,
+
+I am newbie for Yocto project, please help me.
+
+ I would like to know the process of making custom image for gumstix. I
+have been through this
+http://www.yoctoproject.org/docs/1.4/dev-manual/dev-manual.html#usingpoky-extend-addpkg
+manual but things are not clear yet.
+
+I can successfully build *gumstix-console-image. *I need to integrate
+Gstreamer and OpenCV libraries into that image. I do not know how to
+proceed.
+
+I edited *gumstix-console-image*.bb file according to  Streaming video with
+Gumstix<http://www.jumpnowtek.com/?option=com_content&view=article&id=81:gumstix-dsp-gstreamer&catid=35:gumstix&Itemid=67>as
+mentioned here for Gstreamer. It breaks badly.
+
+Any Idea how can I integrate them in my Image?
+
+Thank You for your Help.
+
+Regards,
+Zaifupb
+
+--20cf300fb30be5367304dc27d15b
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Merged to eclipse-poky master.
+<div dir=3D"ltr"><div><div><div><div><div><div><div>Hi all,<br><br></div>I =
+am newbie for Yocto project, please help me.<br><br>=A0I would like to know=
+ the process of making custom image for gumstix. I have been through this=
+=A0 <a href=3D"http://www.yoctoproject.org/docs/1.4/dev-manual/dev-manual.h=
+tml#usingpoky-extend-addpkg">http://www.yoctoproject.org/docs/1.4/dev-manua=
+l/dev-manual.html#usingpoky-extend-addpkg</a>=A0 manual but things are not =
+clear yet.<br>
+<br></div>I can successfully build <i>gumstix-console-image. </i>I need to =
+integrate Gstreamer and OpenCV libraries into that image. I do not know how=
+ to proceed. <br><br></div>I edited <i>gumstix-console-image</i>.bb file ac=
+cording to=A0=A0<a href=3D"http://www.jumpnowtek.com/?option=3Dcom_content&=
+amp;view=3Darticle&amp;id=3D81:gumstix-dsp-gstreamer&amp;catid=3D35:gumstix=
+&amp;Itemid=3D67">Streaming video with Gumstix</a> as mentioned here for Gs=
+treamer. It breaks badly.<br>
+<br></div>Any Idea how can I integrate them in my Image?<br><br></div>Thank=
+ You for your Help.<br><br></div>Regards,<br></div>Zaifupb<br></div>
 
-Thanks,
-Jessica
-
------Original Message-----
-From: Grigoropol, IoanaX
-Sent: Tuesday, May 07, 2013 5:56 AM
-To: Zhang, Jessica; yocto@yoctoproject.org
-Subject: RE: [yocto] [PATCH 0/8] Refactoring of remotetools plugin
-
-Hi Jessica,
-
-I have rebased the patches and included the changes you suggested. Please r=
-eview v2 of these patches.
-
-Thanks,
-Ioana
-________________________________________
-From: Zhang, Jessica
-Sent: Wednesday, May 01, 2013 10:11 PM
-To: Grigoropol, IoanaX; yocto@yoctoproject.org
-Subject: RE: [yocto] [PATCH 0/8] Refactoring of remotetools plugin
-
-Hi Ioana,
-
-Overall looks good with few comment/question that I provide separately.
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Tuesday, April 30, 2013 7:36 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH 0/8] Refactoring of remotetools plugin
-
-- refactor all remote tools plugin to have single points of control for rem=
-ote utilities plugin
-- remove all duplicate code
-
-Ioana Grigoropol (8):
-  Remove UstLegacyModel since it is no longer supported
-  Refactor Model(s) to display customized messages
-  Unify preProcess for all commands models
-  Add default behaviour for commands for post processing
-  Remove duplicate code when getting remote data from powertop and ust2
-  Refactor RemoteApplication implementation
-  Refactor powertop, oprofile and ust2 models to remote duplicate code
-  Refactor Latencytop and Perf Handler to remove duplicate code
-
- .../yocto/sdk/remotetools/actions/BaseModel.java   |  114 +++++++---
- .../sdk/remotetools/actions/IBaseConstants.java    |    3 +
- .../sdk/remotetools/actions/LatencytopHandler.java |   22 +-
- .../sdk/remotetools/actions/OprofileModel.java     |   79 ++-----
- .../yocto/sdk/remotetools/actions/PerfHandler.java |   22 +-
- .../sdk/remotetools/actions/PowertopModel.java     |   91 ++------
- .../sdk/remotetools/actions/SystemtapModel.java    |   34 ++-
- .../sdk/remotetools/actions/TerminalHandler.java   |   16 +-
- .../yocto/sdk/remotetools/actions/Ust2Model.java   |  132 +++--------
- .../sdk/remotetools/actions/UstModelLegacy.java    |  238 ----------------=
-----
- .../sdk/remotetools/remote/RemoteApplication.java  |  155 -------------
- .../sdk/remotetools/remote/RemoteShellExec.java    |  149 ++++++++++++
- 12 files changed, 346 insertions(+), 709 deletions(-)  delete mode 100644 =
-plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/Ust=
-ModelLegacy.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/remote/RemoteApplication.java
- create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/remote/RemoteShellExec.java
-
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--20cf300fb30be5367304dc27d15b--
