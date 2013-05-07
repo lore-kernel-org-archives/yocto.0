@@ -1,28 +1,27 @@
-Return-Path: <zaifupb@gmail.com>
-Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
-	[209.85.214.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 786EDE01470
-	for <yocto@yoctoproject.org>; Tue,  7 May 2013 04:58:45 -0700 (PDT)
-Received: by mail-ob0-f170.google.com with SMTP id ef5so417718obb.1
-	for <yocto@yoctoproject.org>; Tue, 07 May 2013 04:58:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=BPx0R3TSpdrVHixoxaNt/S7Q2Ud/O9DzGBOA3Bcz96s=;
-	b=QGUFpK9zKyCvNfqLjfpWCmf9JbTOlhJpi0S68aNozVqIW62VptlbDfaR0+thGQopvz
-	fhnWC8+hh7iDnqyrJa/cpwYXhf2ZLI5Vqk47zISNaUOdjP2YxPbB6fZgRb/8Ri9kgHt/
-	GgiUEx3Dxt7U2Kby4XwzxAX+XRYv3c0CCGY7JibXog+uH2DD8U+8r/PN3pIneWC40wxR
-	iFo5GCnOx0CrOvL40D/ZaJ2nc+MjvC1R3l+BGqHF6EPiheQl7/S4rfmIBiIhuk9fml72
-	qwp2EhuyocGXCjxIYeW0ihJlnQfrPqDp4ap9Bh15+AZyFLy+henwS9ShoUvxM2w47XPq
-	6k4w==
-MIME-Version: 1.0
-X-Received: by 10.60.94.101 with SMTP id db5mr455820oeb.86.1367927924666; Tue,
-	07 May 2013 04:58:44 -0700 (PDT)
-Received: by 10.76.13.73 with HTTP; Tue, 7 May 2013 04:58:44 -0700 (PDT)
-Date: Tue, 7 May 2013 13:58:44 +0200
-Message-ID: <CABx0rKGmaDs2DZDU8dssc0j0Hr8CkJy7jfgF85Eck3AapxC4tg@mail.gmail.com>
-From: Zaif upb <zaifupb@gmail.com>
-To: yocto@yoctoproject.org
-Subject: how to edit gumstix-console-image.bb?
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A19FE01477
+	for <yocto@yoctoproject.org>; Tue,  7 May 2013 05:45:40 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r47ClWD9004629; Tue, 7 May 2013 13:47:32 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id Pq0T8J0ZEv66; Tue,  7 May 2013 13:47:32 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r47ClOv8004592
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Tue, 7 May 2013 13:47:26 +0100
+Message-ID: <1367930701.27116.31.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: openembedded-core <openembedded-core@lists.openembedded.org>, yocto
+	<yocto@yoctoproject.org>
+Date: Tue, 07 May 2013 13:45:01 +0100
+X-Mailer: Evolution 3.6.2-0ubuntu0.1 
+Mime-Version: 1.0
+Subject: Status Update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,31 +33,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 11:58:45 -0000
-Content-Type: multipart/alternative; boundary=089e0117639107364b04dc1f8ac4
+X-List-Received-Date: Tue, 07 May 2013 12:45:40 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---089e0117639107364b04dc1f8ac4
-Content-Type: text/plain; charset=ISO-8859-1
+In summary its been a fairly quiet week, there are number of different
+holidays in different geos.
 
-HI all,
+Pending Patches
+===============
 
-After successfully build of gumstix-consol-image How to edit
-gumstix-console-image.bb to create our own custom image?
+There has been a steady stream of 1.5 patches starting to appear. With
+Saul's help these have been tested on the autobuilder and then many have
+been merged into master. There were some race issues with one of the
+sstate performance improvements but that is now resolved as far as I
+know. We're making slow/steady progress on gcc 4.8.
 
-(I want to add OpenCV to the image)
+1.5 planning is well underway now and some people are starting to work
+on the implementation of features.
 
-Any Ideas?
+1.4.1
+=====
 
-Thank You,
+Paul is going to maintain the 1.4 series. He's already queued up several
+of the fixes that didn't make 1.4 and these are now undergoing testing
+on the autobuilder. If anyone has any changes to propose for 1.4.1, now
+is the time. We're not looking at features or upgrades but will consider
+bug fixes.
 
-Regards,
-Zaifupb
+1.3.2
+=====
 
---089e0117639107364b04dc1f8ac4
-Content-Type: text/html; charset=ISO-8859-1
+I've merged a lot of queued changes that Ross prepared for 1.3.2 and
+this is now undergoing testing.
 
-<div dir="ltr">HI all,<div><br></div><div style>After successfully build of gumstix-consol-image How to edit <a href="http://gumstix-console-image.bb">gumstix-console-image.bb</a> to create our own custom image?</div><div style>
-<br></div><div style>(I want to add OpenCV to the image)</div><div style><br></div><div style>Any Ideas?</div><div style><br></div><div style>Thank You,</div><div style><br></div><div style>Regards,</div><div style>Zaifupb</div>
-</div>
+Python 3
+========
 
---089e0117639107364b04dc1f8ac4--
+I've been asked when bitbake will work under python3 several times now.
+The first question is which python 3 as there are big differences
+between them. I'm still not sure which python 3.X we'd end up wanting to
+target.
+
+I've done a bit of research and the changes we need to make are mostly
+of the annoying kind. I have had bitbake build a few things (e.g.
+pseudo-native) with a hacked up bitbake and metadata. The current
+roadblock is the oe.types functionality and I think I'll need Chris'
+help to fix this since some functionality it relies on was removed in
+3.x.
+
+I've a series I'll send out which deals with the simple issues. 
+
+There are several cases we'll have to put in "hacky" code to make things
+work for both py2 and py3, the most annoying being octal file
+permissions. There is no syntax which works in both so we're facing
+having to write them in hexidecimal if we want both to work. When I have
+spare time I'll continue to work on it and try and get a more complete
+build working.
+
+Cheers,
+
+Richard
+
+
+
