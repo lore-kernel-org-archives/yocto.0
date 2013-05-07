@@ -1,26 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71818E01439
-	for <yocto@yoctoproject.org>; Tue,  7 May 2013 11:34:24 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r47IYNXB021759
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 7 May 2013 11:34:23 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.235) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Tue, 7 May 2013 11:34:23 -0700
-Message-ID: <5189492F.3030409@windriver.com>
-Date: Tue, 7 May 2013 13:34:23 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:17.0) Gecko/20130328 Thunderbird/17.0.5
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7307FE01439
+	for <yocto@yoctoproject.org>; Tue,  7 May 2013 11:52:14 -0700 (PDT)
+Received: by mail-ve0-f177.google.com with SMTP id jw11so929491veb.22
+	for <yocto@yoctoproject.org>; Tue, 07 May 2013 11:52:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=e0GVOdj1gGdP3bpvKObRPLPjmRQEFfcrvNbzjWpDQNg=;
+	b=n/sseoijbNDA0ATlkymJ0uJlArXiL/jS2Wefsib0OCrhlQ8egzWJLFH0cDXf0BeC+8
+	tLfj1IZW9Je5ZZEw35RngtnTU4/O73vGzMiBtiP82gp29XC77mwrk4USjY/uCA1gqSBv
+	O81SxCy5f1iaJX3QMv0dkczDqsQOLHUOj9rrKnwd2yN8CTFXYZDLjFEcJlyL/x7NUK/Y
+	WojCCCoOYmbv1IxGNpIzjZsCPyOpQ2V6a6WSJuXCQJnotHo1n+T/Bt1K2pjFVjmCkpho
+	/RB4hmL27K/6HTXhSpiW8YdA+tAFPBKjIS8Sdqx9WLA6x7Dv4esDBGIwpofRCQEk+XVu
+	pSCA==
+X-Received: by 10.58.255.229 with SMTP id at5mr752987ved.44.1367952733422;
+	Tue, 07 May 2013 11:52:13 -0700 (PDT)
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <1B9AA52722844A4995CFFE20C2BC6B596B79C73C@ORSMSX107.amr.corp.intel.com>
-In-Reply-To: <1B9AA52722844A4995CFFE20C2BC6B596B79C73C@ORSMSX107.amr.corp.intel.com>
-Subject: Re: SRPMs
+Received: by 10.221.8.3 with HTTP; Tue, 7 May 2013 11:51:52 -0700 (PDT)
+In-Reply-To: <23c0c78e3de800ff998f3cc987ca51a1@fiskare.de>
+References: <23c0c78e3de800ff998f3cc987ca51a1@fiskare.de>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 7 May 2013 19:51:52 +0100
+Message-ID: <CAJTo0LZsK6a2+Te2VCkVhfvV7LA5UcOiPdW2ViiJqfBUBsUR2Q@mail.gmail.com>
+To: Felix Fischer <felix@fiskare.de>
+X-Gm-Message-State: ALoCoQl/ue6u4K0NEJPgoBQ+lJQFkOfbGXRlirpg1u4QCoA9oMfgBBl1ArKxrmMg4sJxF8xvevw0
+Cc: yocto@yoctoproject.org
+Subject: Re: Antwort: Re: booting with systemd fails with poky 9.0.0 & meta-ivi 4.0 & meta-intel master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,46 +40,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 18:34:24 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 07 May 2013 18:52:14 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 5/7/13 1:28 PM, Post, Travis wrote:
-> Is it possible to create source RPMs from Yocto? If so, is there any
-> documentation or guidance on how to do this? I’ve found a bug that was closed
-> mentioning:
+On 7 May 2013 17:13, Felix Fischer <felix@fiskare.de> wrote:
+> The last two lines I get are
 >
-> INHERIT += "archive-patched-source"
->
-> SOURCE_ARCHIVE_PACKAGE_TYPE = "SRPM"
->
-> However, this results in an error referencing get_package. When I add: “inherit
-> archiver”, this changes to an error referencing undefined variable ‘f’.
+> systemd-udev[48]: starting version 199
+> Waiting for removable media...
 
-At one point we had the system so it would generate an SRPM.  But you have to 
-remember the SRPM is just a container, this isn't going to build something you 
-can bring to your favorite RPM based distribution and build.
+It's possibly waiting for the automounter to run, but it's not
+installed.  Check that udev-extraconf is installed in your
+rootfs/initramfs or whatever is booting.  core-image-minimal-initramfs
+does, but I've no idea if the IVI images pull it in explicitly as we
+recently removed it as a universal recommendation in systemd/udev.
 
-The code would take the configure/compile/install steps and dump them into the 
-spec, along with references to the source and patches.  This way everything was 
-in one convenient place, but again -- it's not going to work standalone.
-
-To build software for the YP, you really need to use the build environment -- or 
-an SDK.
-
---Mark
-
-> Thanks,
->
->
-> Travis
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
+Ross
 
