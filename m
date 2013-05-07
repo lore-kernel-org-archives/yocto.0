@@ -1,27 +1,19 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A19FE01477
-	for <yocto@yoctoproject.org>; Tue,  7 May 2013 05:45:40 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r47ClWD9004629; Tue, 7 May 2013 13:47:32 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id Pq0T8J0ZEv66; Tue,  7 May 2013 13:47:32 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r47ClOv8004592
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Tue, 7 May 2013 13:47:26 +0100
-Message-ID: <1367930701.27116.31.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: openembedded-core <openembedded-core@lists.openembedded.org>, yocto
-	<yocto@yoctoproject.org>
-Date: Tue, 07 May 2013 13:45:01 +0100
-X-Mailer: Evolution 3.6.2-0ubuntu0.1 
-Mime-Version: 1.0
-Subject: Status Update
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44FCEE0148E
+	for <yocto@yoctoproject.org>; Tue,  7 May 2013 05:52:50 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 07 May 2013 05:52:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,628,1363158000"; d="scan'208";a="238023002"
+Received: from ideapad.rb.intel.com ([10.237.105.63])
+	by AZSMGA002.ch.intel.com with ESMTP; 07 May 2013 05:52:48 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue,  7 May 2013 15:32:52 +0300
+Message-Id: <1367929980-1807-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH v2 0/8] Refactoring of remotetools plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,67 +25,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 12:45:40 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 May 2013 12:52:50 -0000
 
-In summary its been a fairly quiet week, there are number of different
-holidays in different geos.
+- refactor all remote tools plugin to have single points of control for remote utilities plugin
+- remove all duplicate code
 
-Pending Patches
-===============
+Ioana Grigoropol (8):
+  Remove UstLegacyModel since it is no longer supported
+  Refactor Model(s) to display customized messages
+  Unify preProcess for all commands models
+  Add default behaviour for post-processing commands
+  Remove duplicate code when getting remote data from powertop and ust2
+  Refactor RemoteApplication implementation
+  Refactor powertop, oprofile and ust2 models to remove duplicate code
+  Refactor Latencytop and Perf Handler to remove duplicate code
 
-There has been a steady stream of 1.5 patches starting to appear. With
-Saul's help these have been tested on the autobuilder and then many have
-been merged into master. There were some race issues with one of the
-sstate performance improvements but that is now resolved as far as I
-know. We're making slow/steady progress on gcc 4.8.
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |  115 +++++++---
+ .../sdk/remotetools/actions/IBaseConstants.java    |    3 +
+ .../sdk/remotetools/actions/LatencytopHandler.java |   22 +-
+ .../sdk/remotetools/actions/OprofileModel.java     |   81 ++-----
+ .../yocto/sdk/remotetools/actions/PerfHandler.java |   22 +-
+ .../sdk/remotetools/actions/PowertopModel.java     |   90 ++------
+ .../sdk/remotetools/actions/SystemtapModel.java    |   34 ++-
+ .../sdk/remotetools/actions/TerminalHandler.java   |   16 +-
+ .../yocto/sdk/remotetools/actions/Ust2Model.java   |  132 +++--------
+ .../sdk/remotetools/actions/UstModelLegacy.java    |  238 --------------------
+ .../sdk/remotetools/remote/RemoteApplication.java  |  155 -------------
+ .../sdk/remotetools/remote/RemoteShellExec.java    |  149 ++++++++++++
+ 12 files changed, 348 insertions(+), 709 deletions(-)
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/UstModelLegacy.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteApplication.java
+ create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
 
-1.5 planning is well underway now and some people are starting to work
-on the implementation of features.
-
-1.4.1
-=====
-
-Paul is going to maintain the 1.4 series. He's already queued up several
-of the fixes that didn't make 1.4 and these are now undergoing testing
-on the autobuilder. If anyone has any changes to propose for 1.4.1, now
-is the time. We're not looking at features or upgrades but will consider
-bug fixes.
-
-1.3.2
-=====
-
-I've merged a lot of queued changes that Ross prepared for 1.3.2 and
-this is now undergoing testing.
-
-Python 3
-========
-
-I've been asked when bitbake will work under python3 several times now.
-The first question is which python 3 as there are big differences
-between them. I'm still not sure which python 3.X we'd end up wanting to
-target.
-
-I've done a bit of research and the changes we need to make are mostly
-of the annoying kind. I have had bitbake build a few things (e.g.
-pseudo-native) with a hacked up bitbake and metadata. The current
-roadblock is the oe.types functionality and I think I'll need Chris'
-help to fix this since some functionality it relies on was removed in
-3.x.
-
-I've a series I'll send out which deals with the simple issues. 
-
-There are several cases we'll have to put in "hacky" code to make things
-work for both py2 and py3, the most annoying being octal file
-permissions. There is no syntax which works in both so we're facing
-having to write them in hexidecimal if we want both to work. When I have
-spare time I'll continue to work on it and try and get a more complete
-build working.
-
-Cheers,
-
-Richard
-
+-- 
+1.7.9.5
 
 
