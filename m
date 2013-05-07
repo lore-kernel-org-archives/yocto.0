@@ -1,20 +1,31 @@
-Return-Path: <felix@fiskare.de>
-Received: from pluto.manitu.net (pluto.manitu.net [217.11.48.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F591E013D0
-	for <yocto@yoctoproject.org>; Tue,  7 May 2013 00:06:38 -0700 (PDT)
-Received: by pluto.manitu.net (Postfix, from userid 81)
-	id 50F4BC8161; Tue,  7 May 2013 09:06:36 +0200 (CEST)
-To: <yocto@yoctoproject.org>
-Received: from 91-66-87-58-dynip.superkabel.de ([91.66.87.58])
-	by webmail.manitu.de
-	with HTTP (HTTP/1.1 POST); Tue, 07 May 2013 09:06:36 +0200
+Return-Path: <cristian.iorga@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC496E013D0
+	for <yocto@yoctoproject.org>; Tue,  7 May 2013 02:12:53 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 07 May 2013 02:12:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,627,1363158000"; d="scan'208";a="309454669"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by orsmga001.jf.intel.com with ESMTP; 07 May 2013 02:12:34 -0700
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.244]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.19]) with mapi id
+	14.01.0355.002; Tue, 7 May 2013 10:12:28 +0100
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: Richard Cagley <rcagley@toyon.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: Hob found an error
+Thread-Index: Ac5Kl6AUzQI4iTYkRyO4TTWPUPTkGAAa0QeQ
+Date: Tue, 7 May 2013 09:12:27 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB1622BCDF@IRSMSX102.ger.corp.intel.com>
+References: <BA6FC03EA0815D428FB8A3C279ED49920740DB1D@mx.toyon.corp>
+In-Reply-To: <BA6FC03EA0815D428FB8A3C279ED49920740DB1D@mx.toyon.corp>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-Date: Tue, 07 May 2013 09:06:36 +0200
-From: felix <felix@fiskare.de>
-Message-ID: <d643ed5f088005b0420fa0a29f2f17fd@fiskare.de>
-X-Sender: felix@fiskare.de
-User-Agent: RoundCube Webmail/0.2-beta
-Subject: Antwort: Re: booting with systemd fails with poky 9.0.0 & meta-ivi 4.0 & meta-intel master
+Subject: Re: Hob found an error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,81 +37,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 07:06:38 -0000
-Content-Type: text/plain;
- charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 May 2013 09:12:53 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Richard,
 
-> What branch of meta-ivi are you using?
-
-I tried the 3.0 (and poky 1.3), 4.0 branch (and poky 1.4) and 4.0 branch
-(with "git checkout e33e0a0da6fd6f59e5e8244da9f23b590cf066e1" as stated in
-the genivi wiki), but no success.
-
-> As you have successfully build and tried qemux86 machine IVI images,
-> did you try to create a pristine (non-IVI) Poky image that uses
-> systemd as init system already? Did that work for a crownbay machine?
-
-I built a core-image-sato image using MACHINE ?= "crownbay" and DISTRO ?=
-"poky-ivi-systemd", but I had no luck.
-Right now I'm btrying that again with DISTRO ?="poky"
-
-
-Regards,
-Felix
-
-
-
-
-
-
-
-What branch of meta-ivi are you using?
+What bitbake/poky/hob are you using (versions)?
+/Cristian
 
 -----Original Message-----
-From: Andrei Gherzan [andrei at gherzan.ro<mailto:andrei at gherzan.ro>]
-Sent: Thursday, May 02, 2013 04:27 AM Pacific Standard Time
-To: Felix01 Fischer
-Cc: yocto at yoctoproject.org; Sarbu, Florin-Ionut (Florin); Behrens,
-Holger
-Subject: Re: [yocto] Antwort: Re: booting with systemd fails with poky
-9.0.0 & meta-ivi 4.0 & meta-intel master
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Richard Cagley
+Sent: Monday, May 06, 2013 11:25 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] Hob found an error
 
+When I try to add the videotestsrc plugin during package editing and the tr=
+y to build the image I get this message in a popup window. No clue even whe=
+re to start in debugging this.
 
-On Thu, May 2, 2013 at 10:08 AM, Felix01 Fischer <felix01.fischer at
-iav.de<mailto:felix01.fischer at iav.de>> wrote:
-Hello,
-
-I've attached a file with the changes I made to local.conf, bblayers.conf
-& some output from bitbake. I can build working images for qemux86, too
-
-The build process itself triggers no errors.
-
-As im building with MACHINE ??= "crownbay" I was able to locate
-tmp-eglibc-eglibc/work/crownbay-oe-linux/foton-image/4.0.0-r0/rootfs/bin/mount
-which is a symlink to /bin/mount.util-linux. This file exists, too.
-
-This is the output when trying to boot, beginning with the /init error
-
-"/init: line 98: mount: not found
-/init: line 98: mount: not found
-/init: line 98: mount: not found
-systemd-udev[44]: starting version 199
-cat: can't open '/proc/cmdline': No such file or directory
-Waiting for removable media..."
+Hob Exception - Error running command '['matchFile', 'hob-image.bb']':
+Traceback (most recent call last):
+  File "/opt/fsl-community-bsp/sources/poky/bitbake/lib/bb/command.py",
+line 68, in runCommand
+    result =3D command_method(self, commandline)
+  File "/opt/fsl-community-bsp/sources/poky/bitbake/lib/bb/command.py",
+line 210, in matchFile
+    return command.cooker.matchFile(fMatch)
+  File "/opt/fsl-community-bsp/sources/poky/bitbake/lib/bb/cooker.py",
+line 1142, in matchFile
+    raise NoSpecificMatch
+NoSpecificMatch
 
 
 
-So you are using crownbay. Most probably you miss some systemd configs in
-kernel. That would be my guess.
-Adding Florin Sarbu and Holger Behrens to CC (meta-ivi maintainer).
-
-Cheers!
-
---
-Andrei Gherzan
-m: +40.744.478.414 |  f: +40.31.816.28.12
-
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
