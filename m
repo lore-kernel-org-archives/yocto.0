@@ -1,33 +1,38 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 071D3E0027C
-	for <yocto@yoctoproject.org>; Mon,  6 May 2013 14:44:58 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 06 May 2013 14:44:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,624,1363158000"; 
-	d="scan'208,217";a="332771542"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga002.jf.intel.com with ESMTP; 06 May 2013 14:44:38 -0700
-Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 6 May 2013 14:44:36 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.227]) by
-	ORSMSX156.amr.corp.intel.com ([169.254.8.140]) with mapi id
-	14.01.0355.002; Mon, 6 May 2013 14:44:36 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, May
-	07, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac5KotCIIdNqtMXdQw+2PLLV2Qy93QAAAbWA
-Date: Mon, 6 May 2013 21:44:36 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A718FCAC0@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, May 07, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Return-Path: <rjiejie@gmail.com>
+Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
+	[209.85.192.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE536E0027C
+	for <yocto@yoctoproject.org>; Mon,  6 May 2013 18:55:30 -0700 (PDT)
+Received: by mail-pd0-f177.google.com with SMTP id g10so37019pdj.22
+	for <yocto@yoctoproject.org>; Mon, 06 May 2013 18:55:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:content-type:mime-version:subject:from:in-reply-to:date
+	:cc:message-id:references:to:x-mailer;
+	bh=W72KSIxZprlA5dGWbq0lpePMuyIAxX8Yccmwk8VKaZM=;
+	b=wsf6NL9XfTnSnEQrj97UqvXP0x+5U0/XuwKMPVPWJWcLz04pHVlKaTtFqufniMCJSt
+	Eh0wHYF2Lfzatp36JqDYMEQP1zhL4oAKpurOxkBr8/JHk5BhplBKVJ0dZ4lA0oxshyHT
+	GtpPfdx9veQaFH04w1skQYy37g1k244a5d2WTSspNoA1iVil1yvsHnFGbmWT4cTVXffZ
+	f3j7UtCEaK8MDlsSD9MA9ubBkHYM9dTsOHVAQ+GwL7IF+BTR2SFaT96EpwyYUb1puFFt
+	tz8be43POaZiCuVL3I+RlAdHSsCQkyDuJI2JrfbyKplTPqZOJr2zzKwanhXtMrWBX7UI
+	+5EA==
+X-Received: by 10.66.102.3 with SMTP id fk3mr440015pab.181.1367891730732;
+	Mon, 06 May 2013 18:55:30 -0700 (PDT)
+Received: from [192.168.1.148] ([122.235.137.153])
+	by mx.google.com with ESMTPSA id
+	zy5sm26012196pbb.43.2013.05.06.18.55.24 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 06 May 2013 18:55:29 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.3 \(1503\))
+From: jojo <rjiejie@gmail.com>
+In-Reply-To: <CAP71WjzcTuAbHemvAP0WPPyRJmFYetQmXHTRT=NdQak2bzQ1gw@mail.gmail.com>
+Date: Tue, 7 May 2013 09:55:17 +0800
+Message-Id: <C2149BE9-53DF-402A-B927-8D8D89A30158@gmail.com>
+References: <26FE63BB-04B6-4226-8921-FE6D4DA9029F@gmail.com>
+	<CAP71WjzcTuAbHemvAP0WPPyRJmFYetQmXHTRT=NdQak2bzQ1gw@mail.gmail.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+X-Mailer: Apple Mail (2.1503)
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: how to enable DFB with cairo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,511 +44,152 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2013 21:44:59 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 07 May 2013 01:55:31 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A718FCAC0ORSMSX108amrcor_"
+	boundary="Apple-Mail=_9D31166F-EB6C-41C2-8F22-2B5473BD465D"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718FCAC0ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--Apple-Mail=_9D31166F-EB6C-41C2-8F22-2B5473BD465D
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=GB2312
 
-Agenda:
+Hi,
 
-* Opens collection - 5 min (Song)
-* Yocto Project 1.3.2 status (Ross)
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-* SWAT team rotation: Nitin -> Elizabeth Flanagan
-* Opens - 10 min
-* Team Sharing - 20 min
+	Ok & Thanks, i will have a try in 1.4 :)
 
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto<http://webchat.fr=
-eenode.net/?channels=3D>
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-Conference details
-Conference name:        Yocto Technical Team
-Conference date/start time:     Tue Jun 26, 2012 at 10:00 AM Central Daylig=
-ht Time
-Participants:   30
-Duration:       60 minutes
-Participant passcode:   76994298
-Dial-in number:         1.972.995.7777
-US Toll Free number:    1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:=
-     1.972.995.7777x76994298#
-        Depending on where you are dialing from, either your BlackBerry wil=
-l pause and enter the passcode automatically or you will be prompted to cli=
-ck again to dial the passcode.
-
-
-Local and Global Access Numbers
+Thanks,
+- Jojo
 
 
 
 
+=D4=DA 2013-5-6=A3=AC=CF=C2=CE=E710:44=A3=ACNicolas Dechesne =
+<nicolas.dechesne@linaro.org> =D0=B4=B5=C0=A3=BA
 
-Country
-Dial-in number
-
-Australia:
-1800 636 843
-
-Czech Republic:
-242 430 350
-
-China (Beijing):
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-
-China (Shanghai):
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-
-China (Shenzen):
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-
-China (Other Cities):
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-
-Denmark:
-8060 1400
-
-Finland:
-09 41333477
-
-France:
-0497 275888
-
-Germany:
-08161 803232
-
-Holland:
-030 2417490
-
-India:
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-
-Israel:
-09 790 6715
-
-Italy:
-039 69061234 (039 is local city code not country code)
-
-Japan:
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-
-Malaysia:
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-
-Norway:
-2 295 8744
-
-Philippines:
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-
-Singapore:
-From IP phone dial 3894777
-Outside TI use 6389 4777
-
-South Korea:
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-
-Sweden:
-08 58755577
-
-Taiwan:
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-
-Turkey:
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-
-UK:
-01604 663003
-
-US:
-972 995 7777 or 1877 561 6828
+>=20
+> On Mon, May 6, 2013 at 10:08 AM, jojo <rjiejie@gmail.com> wrote:
+>=20
+> 	I am not familiar with yocto project, and i want to enable DFB =
+render backend in cairo,
+>=20
+> 	du to the patches =
+"http://lists.linuxtogo.org/pipermail/openembedded-core/2011-November/0130=
+37.html",
+>=20
+> 	i know about first need to disable X11 feature in my system by =
+default, but i do not know about how to disable X11,
+>=20
+> 	Someone can point me out any clue to enable DFB with cairo in =
+yocto ?=20
+>=20
+> hi. you should check meta-yocto/conf/local.conf.sample.extended file, =
+I think that might be of interest to you:
+>=20
+> # If you want to get an image based on directfb without x11, Please =
+copy this variable to build/conf/local.conf                              =
+                                  =20
+> #DISTRO_FEATURES =3D "alsa argp bluetooth ext2 irda largefile pcmcia =
+usbgadget usbhost wifi xattr nfs zeroconf pci 3g directfb =
+${DISTRO_FEATURES_LIBC}"                          =20
+>=20
+> I, too, am using an X11-less image using these recommendations.
+>=20
+>=20
+>=20
 
 
-Recurring conferences
-First scheduled conference:     Tue Jun 26, 2012
-Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:        End on Fri Jun 21, 2013, 10:40 AM CDT
-
-
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A718FCAC0ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail=_9D31166F-EB6C-41C2-8F22-2B5473BD465D
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=GB2312
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto Project 1.3.2 status (Ross)</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>* SWAT team rotation: Nitin -&gt; Elizabeth Flanagan</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
- attending the meeting to logon the Yocto IRC chancel during the meeting (o=
-ptional):</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
-=3D"http://webchat.freenode.net/?channels=3D"><font color=3D"blue"><u>http:=
-//webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font></div=
->
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
-ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
-><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
-/font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<table width=3D"793" style=3D"width:476pt;margin-left:1.4pt;">
-<col width=3D"318" style=3D"width:191pt;">
-<col width=3D"475" style=3D"width:285pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-onference details</b> </span></font></td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference name: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Yocto Technical Team</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference date/start time: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 26, 2012 at 10:00 AM Central Daylight Time </b></s=
-pan></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participants: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>30</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Duration: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>60 minutes </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participant passcode: </span></font></td>
-<td><font face=3D"Calibri" color=3D"#1F497D">76994298</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Dial-in number: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777 </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">US Toll Free number: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.877.561.6828 </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BlackBerry users, click this link to join your conference as =
-a <b>participant</b>:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777x</b><font face=3D"Calibri" size=3D"2" color=
-=3D"#1F497D"><span style=3D"font-size:11pt;">76994298</span></font><b>#</b>=
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">&nbsp;</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
-ry will pause and enter the passcode automatically or you will be prompted =
-to click again to dial the passcode.</span></font></td>
-</tr>
-<tr>
-<td>
-<table width=3D"303" style=3D"width:181.95pt;margin-left:5.9pt;">
-<col width=3D"303" style=3D"width:181.95pt;">
-<tr>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#CBCBCB"><span style=3D"font=
--size:8.5pt;"><b>Local and Global Access Numbers</b> </span></font></td>
-</tr>
-</table>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<table width=3D"303" style=3D"width:182pt;margin-left:5.9pt;">
-<col width=3D"120" style=3D"width:72.45pt;">
-<col width=3D"182" style=3D"width:109.55pt;">
-<tr>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-ountry</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
-ial-in number</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Australia:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">1800 636 843</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Czech Republic:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">242 430 350</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Beijing):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From office dial 8-9957777 or 8784277=20
-<div>Beijing Out of Office dial 5878 4277</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Shanghai):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From office dial 8-9957777 or 3073322=20
-<div>Shanghai Out of Office dial 2307 3322</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Shenzen):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From office dial 8-9957777 or 6007877=20
-<div>Shenzen Out of Office dial 2600 7877</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>China (Other Cities):</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 8-9957777=20
-<div>Other cities - Non IP phone dial 021-23073322</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Denmark:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">8060 1400</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Finland:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 41333477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>France: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">0497 275888</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Germany:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08161 803232</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Holland: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">030 2417490</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>India: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BSNL subscribers use 1800 425 9996 (Toll Free)
-<div>Airtel subscribers use 0008 009 861 212 (Toll Free)</div>
-<div>From TI Campus use 89957777</div>
-<div>Others use 2509 9555 (Landline within Bangalore) or</div>
-<div>80 2509 9555 (Outside Bangalore)</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Israel: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 790 6715</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Italy:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">039 69061234 (039 is local city code not country code)</span>=
-</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Japan: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From TI Campus use 8 995 7777=20
-<div>Outside TI use 03 4331 3777</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Malaysia: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 2643799=20
-<div>From Kuala Lumpur dial 4264 3799 </div>
-<div>Outside Kuala Lumpur dial (03)4264 3799</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Norway: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">2 295 8744</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Philippines:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From Baguio City use 4471177=20
-<div>From Metro Manila area use 8702477</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Singapore:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 3894777=20
-<div>Outside TI use 6389 4777</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>South Korea:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 5606998=20
-<div>From Seoul dial 5606998 </div>
-<div>Outside Seoul dial (02)5606998</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Sweden: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08 58755577</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Taiwan:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 1363=20
-<div>From Taipei dial 2241 1363 </div>
-<div>Outside Taipei dial (02)2241 1363</div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Turkey:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Landline Only</b> dial 0811 288 0001=20
-<div>then enter 877 633 1123 </div>
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>UK: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">01604 663003</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>US:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>R=
-ecurring conferences </b></span></font></td>
-<td><font face=3D"Calibri">&nbsp;</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">First scheduled conference: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 26, 2012</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence frequency: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence ends: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>End on Fri Jun 21, 2013, 10:40 AM CDT</b></span></font></t=
-d>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3DGB2312"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div><br></div><div><span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</span>Ok &amp;&nbsp;Thanks, i will have =
+a try in 1.4 :)<br><div>
+<span class=3D"Apple-style-span" style=3D"border-collapse: separate; =
+color: rgb(0, 0, 0); font-family: 'Heiti SC'; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; border-spacing: 0px; -webkit-text-decorations-in-effect: none; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+font-size: medium; "><span class=3D"Apple-style-span" =
+style=3D"border-collapse: separate; color: rgb(0, 0, 0); font-family: =
+'Heiti SC'; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; line-height: normal; orphans: 2; =
+text-align: -webkit-auto; text-indent: 0px; text-transform: none; =
+white-space: normal; widows: 2; word-spacing: 0px; border-spacing: 0px; =
+-webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: =
+auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; "><div><div><br =
+class=3D"Apple-interchange-newline">Thanks,</div><div>- =
+Jojo</div></div><div><br></div></div></span><br =
+class=3D"Apple-interchange-newline"></span><br =
+class=3D"Apple-interchange-newline">
+</div>
+<br><div><div>=D4=DA 2013-5-6=A3=AC=CF=C2=CE=E710:44=A3=ACNicolas =
+Dechesne &lt;<a =
+href=3D"mailto:nicolas.dechesne@linaro.org">nicolas.dechesne@linaro.org</a=
+>&gt; =D0=B4=B5=C0=A3=BA</div><br =
+class=3D"Apple-interchange-newline"><blockquote type=3D"cite"><div =
+dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On =
+Mon, May 6, 2013 at 10:08 AM, jojo <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:rjiejie@gmail.com" =
+target=3D"_blank">rjiejie@gmail.com</a>&gt;</span> wrote:<br><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
+-style:solid;padding-left:1ex">
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A718FCAC0ORSMSX108amrcor_--
+<div><br></div><div><span style=3D"white-space:pre-wrap">	</span>I =
+am not familiar with yocto project, and i want to enable DFB render =
+backend in cairo,</div><div><br></div><div><span =
+style=3D"white-space:pre-wrap">	</span>du to the patches "<a =
+href=3D"http://lists.linuxtogo.org/pipermail/openembedded-core/2011-Novemb=
+er/013037.html" =
+target=3D"_blank">http://lists.linuxtogo.org/pipermail/openembedded-core/2=
+011-November/013037.html</a>",</div>
+
+<div><br></div><div><span style=3D"white-space:pre-wrap">	</span>i =
+know about first need to disable X11 feature in my system by default, =
+but i do not know about how to disable =
+X11,</div><div><br></div><div><span style=3D"white-space:pre-wrap">	=
+</span>Someone&nbsp;can point me out any clue to enable DFB with cairo =
+in yocto ?&nbsp;</div>
+
+<div>
+<span style=3D"border-collapse:separate;border-spacing:0px"><span =
+style=3D"border-spacing:0px;text-indent:0px;letter-spacing:normal;font-var=
+iant:normal;text-align:-webkit-auto;font-style:normal;font-weight:normal;l=
+ine-height:normal;border-collapse:separate;text-transform:none;font-size:m=
+edium;white-space:normal;font-family:'Heiti SC';word-spacing:0px"><div =
+style=3D"word-wrap:break-word">
+
+=
+<div><div></div></div></div></span></span></div></blockquote></div><br>hi.=
+ you should check meta-yocto/conf/local.conf.sample.extended file, I =
+think that might be of interest to you:</div><div =
+class=3D"gmail_extra"><div class=3D"gmail_extra">
+
+<br></div><div class=3D"gmail_extra"># If you want to get an image based =
+on directfb without x11, Please copy this variable to =
+build/conf/local.conf &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</div><div class=3D"gmail_extra">
+
+#DISTRO_FEATURES =3D "alsa argp bluetooth ext2 irda largefile pcmcia =
+usbgadget usbhost wifi xattr nfs zeroconf pci 3g directfb =
+${DISTRO_FEATURES_LIBC}" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp;&nbsp;</div><div><br></div><div style=3D"">I, too, am using an =
+X11-less image using these recommendations.</div>
+
+<div style=3D""><br></div><div style=3D""><br></div></div><div =
+class=3D"gmail_extra"><br></div></div>
+</blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_9D31166F-EB6C-41C2-8F22-2B5473BD465D--
