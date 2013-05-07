@@ -1,20 +1,32 @@
-Return-Path: <felix@fiskare.de>
-Received: from uranus.manitu.net (uranus.manitu.net [217.11.48.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8034E0148E
-	for <yocto@yoctoproject.org>; Tue,  7 May 2013 09:13:08 -0700 (PDT)
-Received: by uranus.manitu.net (Postfix, from userid 81)
-	id C9E04814001; Tue,  7 May 2013 18:13:06 +0200 (CEST)
-To: <yocto@yoctoproject.org>
-Received: from 91-66-87-58-dynip.superkabel.de ([91.66.87.58])
-	by webmail.manitu.de
-	with HTTP (HTTP/1.1 POST); Tue, 07 May 2013 18:13:06 +0200
+Return-Path: <twoerner@gmail.com>
+Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBB53E01480
+	for <yocto@yoctoproject.org>; Tue,  7 May 2013 09:30:00 -0700 (PDT)
+Received: by mail-wg0-f52.google.com with SMTP id k13so809925wgh.31
+	for <yocto@yoctoproject.org>; Tue, 07 May 2013 09:29:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=+kpzu+Tv9QJop3574SvHbif1fRoHyUoCqNDcGTIzneQ=;
+	b=e5hZ4eFG8Gm35/s6M/9WDZ1tha5AGPg3O2mZ0aW5tpr5t1sB3T0mPfxenheg9t6pyf
+	eSbQLwR+fFHlhv162FZpkcRygk0d9ZwOSELLw6GNoOIbvv3VedMjYsHu5oDSRsTusEmI
+	ELC3+QqxACb1T+LJcVfQO09cLmPlC69H7gVF1NxOg4inoTd5OrYPb/MkxfBl2IwoGAS1
+	gog72b90+0UXe70XqWkrcxIbVUuO32QojK60dhfGCzIhsdYMblEEAhlOMoXkkiusmilX
+	jsPpgTFXNicNieWrkliopbCXiVROFpWQQICj0AA/uV36bjmnkKdtybhxLxXxZYAWYFO3
+	S7Gg==
 MIME-Version: 1.0
-Date: Tue, 07 May 2013 18:13:06 +0200
-From: Felix Fischer <felix@fiskare.de>
-Message-ID: <23c0c78e3de800ff998f3cc987ca51a1@fiskare.de>
-X-Sender: felix@fiskare.de
-User-Agent: RoundCube Webmail/0.2-beta
-Subject: Re: Antwort: Re: booting with systemd fails with poky 9.0.0 & meta-ivi 4.0 & meta-intel master
+X-Received: by 10.180.185.135 with SMTP id fc7mr16156842wic.29.1367944198098; 
+	Tue, 07 May 2013 09:29:58 -0700 (PDT)
+Received: by 10.194.5.132 with HTTP; Tue, 7 May 2013 09:29:57 -0700 (PDT)
+In-Reply-To: <1367930701.27116.31.camel@ted>
+References: <1367930701.27116.31.camel@ted>
+Date: Tue, 7 May 2013 12:29:57 -0400
+Message-ID: <CAHUNapT--78aOf=eCava7w9VsHAD8fL3odbreW-6EATt6mujbA@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: yocto <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: Status Update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,108 +38,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2013 16:13:09 -0000
-Content-Type: text/plain;
- charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 May 2013 16:30:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, 07 May 2013 09:06:36 +0200, felix <felix@fiskare.de> wrote:
-> Hello,
-> 
->> What branch of meta-ivi are you using?
-> 
-> I tried the 3.0 (and poky 1.3), 4.0 branch (and poky 1.4) and 4.0 branch
-> (with "git checkout e33e0a0da6fd6f59e5e8244da9f23b590cf066e1" as stated
-in
-> the genivi wiki), but no success.
-> 
->> As you have successfully build and tried qemux86 machine IVI images,
->> did you try to create a pristine (non-IVI) Poky image that uses
->> systemd as init system already? Did that work for a crownbay machine?
-> 
-> I built a core-image-sato image using MACHINE ?= "crownbay" and DISTRO
-?=
-> "poky-ivi-systemd", but I had no luck.
-> Right now I'm btrying that again with DISTRO ?="poky"
-
-
-The build is done. It won't boot either.
-The Error Message is the same except that
-the init and cat lines are gone.
-
-The last two lines I get are
-
-systemd-udev[48]: starting version 199
-Waiting for removable media...
-
-
-
-
-
-
-> 
-> 
-> Regards,
-> Felix
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> What branch of meta-ivi are you using?
-> 
-> -----Original Message-----
-> From: Andrei Gherzan [andrei at gherzan.ro<mailto:andrei at gherzan.ro>]
-> Sent: Thursday, May 02, 2013 04:27 AM Pacific Standard Time
-> To: Felix01 Fischer
-> Cc: yocto at yoctoproject.org; Sarbu, Florin-Ionut (Florin); Behrens,
-> Holger
-> Subject: Re: [yocto] Antwort: Re: booting with systemd fails with poky
-> 9.0.0 & meta-ivi 4.0 & meta-intel master
-> 
-> 
-> On Thu, May 2, 2013 at 10:08 AM, Felix01 Fischer <felix01.fischer at
-> iav.de<mailto:felix01.fischer at iav.de>> wrote:
-> Hello,
-> 
-> I've attached a file with the changes I made to local.conf,
-bblayers.conf
-> & some output from bitbake. I can build working images for qemux86, too
-> 
-> The build process itself triggers no errors.
-> 
-> As im building with MACHINE ??= "crownbay" I was able to locate
+On Tue, May 7, 2013 at 8:45 AM, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> 1.3.2
+> =====
 >
-tmp-eglibc-eglibc/work/crownbay-oe-linux/foton-image/4.0.0-r0/rootfs/bin/mount
-> which is a symlink to /bin/mount.util-linux. This file exists, too.
-> 
-> This is the output when trying to boot, beginning with the /init error
-> 
-> "/init: line 98: mount: not found
-> /init: line 98: mount: not found
-> /init: line 98: mount: not found
-> systemd-udev[44]: starting version 199
-> cat: can't open '/proc/cmdline': No such file or directory
-> Waiting for removable media..."
-> 
-> 
-> 
-> So you are using crownbay. Most probably you miss some systemd configs
-in
-> kernel. That would be my guess.
-> Adding Florin Sarbu and Holger Behrens to CC (meta-ivi maintainer).
-> 
-> Cheers!
-> 
-> --
-> Andrei Gherzan
-> m: +40.744.478.414 |  f: +40.31.816.28.12
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> I've merged a lot of queued changes that Ross prepared for 1.3.2 and
+> this is now undergoing testing.
 
+I have a patch for Danny to allow qemu-native of qemu-1.2.0 to compile
+on openSuSE 12.3 (which, apparently, is also affected by the same (or
+a similar) DSO linking change that affects fedora). Are the queued
+changes available somewhere so I can check this hasn't already been
+applied?
 
