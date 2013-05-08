@@ -1,36 +1,19 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D56FE0147D
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 05:46:15 -0700 (PDT)
-Received: by mail-wg0-f49.google.com with SMTP id j13so1798022wgh.4
-	for <yocto@yoctoproject.org>; Wed, 08 May 2013 05:46:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=DVoKVczlDx5vVgk1ga6ZKU1RWS2bYc00t+ztuR5k/hA=;
-	b=ovouZOybjEJm0Nk5ltzodO45yjgvKN4LQ3dUuO+xY3Znau6eMaF9hAbH7kqQm+j7X7
-	A/sQMptTfjk4m3s6FKxuJ0wh3JDTgInP/JHzy2BEmboHDFNtiYdMTCRbRX4rB+5oQd3u
-	/ygkJuIXbpe1ZXjoIWQeOGAA0yHexsYOL38mgxRMyshtixyxbq2yqlNSLxrOZthFAWEw
-	dl9f7QzfK7p764CS4P8aQmMfI2spX7BQcV4i4+h0gwMLdYuwZr1thqd5XGctMgyyo91S
-	LTiOeVtWag3/NnR2tbgESEFcckJWR1eCvEntb7MibjhSaXdLJy1bjv6ufVZxKedtRPzv
-	CwmQ==
-MIME-Version: 1.0
-X-Received: by 10.194.10.129 with SMTP id i1mr1582671wjb.21.1368017170276;
-	Wed, 08 May 2013 05:46:10 -0700 (PDT)
-Received: by 10.194.5.132 with HTTP; Wed, 8 May 2013 05:46:10 -0700 (PDT)
-In-Reply-To: <CAJTo0LaHKGS+FRWJX9yE29sdSSVR6R4JsykHOx9N6RpaBuEn+g@mail.gmail.com>
-References: <1367930701.27116.31.camel@ted>
-	<CAHUNapT--78aOf=eCava7w9VsHAD8fL3odbreW-6EATt6mujbA@mail.gmail.com>
-	<CAJTo0LaUSyekgycP37-jZnHmgy1wOM-PfJ0yZQtMrSP_bUp8hg@mail.gmail.com>
-	<CAHUNapTCr_YV+pfCJod6LcGfhGh4HEX+GmcQSFQ9frFS+HiecQ@mail.gmail.com>
-	<CAJTo0LaHKGS+FRWJX9yE29sdSSVR6R4JsykHOx9N6RpaBuEn+g@mail.gmail.com>
-Date: Wed, 8 May 2013 08:46:10 -0400
-Message-ID: <CAHUNapRQ9GWaCW3waCAiMsOqQP3xbiKrykn0-VCTB8oRa7rH8g@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: Status Update
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF8B9E0147D
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 06:14:54 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 08 May 2013 06:14:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,634,1363158000"; d="scan'208";a="238515887"
+Received: from ideapad.rb.intel.com ([10.237.105.63])
+	by AZSMGA002.ch.intel.com with ESMTP; 08 May 2013 06:14:53 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed,  8 May 2013 15:55:01 +0300
+Message-Id: <1368017704-14781-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 0/3] Add utilities to RSEHelper
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,21 +25,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 12:46:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 08 May 2013 13:14:55 -0000
 
-On Wed, May 8, 2013 at 6:35 AM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 7 May 2013 18:57, Trevor Woerner <twoerner@gmail.com> wrote:
->> I've looked through the list of patches and don't seem to find
->> anything that will do what my patch needs to do in order to build
->> qemu-1.2.0 on openSuSE 12.3. Would you consider adding the attached
->> patch for Danny? (normally I'd send it in-line but I'm behind a
->> firewall at the moment that won't allow "git send-email" to succeed,
->> otherwise I could submit it this evening)
->
-> Merged to my danny-next branch, after confirming that this isn't
-> needed in Dylan/master as qemu 1.4 has the -lrt linkages declared.
+- add small utilities functions to RSEHelper in order to  isolate functionalities that are strictly related to GUI and those that are remote utilities
 
-Whoops, sorry. I guess I should have mentioned that (since I was aware
-that qemu-native works fine with the latest Yocto HEAD).
+Ioana Grigoropol (3):
+  Move remote system type checkings from GUI Dialogs and to RSEHelper
+  Move logic for waiting for RSE initialization to RSEHelper
+  Move filtering of suitable connections to RSEHelper
+
+ .../src/org/yocto/sdk/remotetools/RSEHelper.java   |   21 +++++++++++++++
+ .../sdk/remotetools/actions/BaseSettingDialog.java |   27 +++++---------------
+ 2 files changed, 27 insertions(+), 21 deletions(-)
+
+-- 
+1.7.9.5
+
 
