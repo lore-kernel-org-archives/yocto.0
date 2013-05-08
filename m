@@ -1,33 +1,35 @@
 Return-Path: <paul.betafive@gmail.com>
-Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E180BE0146E
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 02:07:01 -0700 (PDT)
-Received: by mail-wg0-f51.google.com with SMTP id b13so1647245wgh.30
-	for <yocto@yoctoproject.org>; Wed, 08 May 2013 02:07:00 -0700 (PDT)
+Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
+	[209.85.128.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A28C1E0146E
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 02:18:04 -0700 (PDT)
+Received: by mail-ve0-f172.google.com with SMTP id b10so1581631vea.3
+	for <yocto@yoctoproject.org>; Wed, 08 May 2013 02:18:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:sender:from:to:cc:subject:date:message-id:x-mailer;
-	bh=ZQm6fvUWkRdJ604Ku6lVKfWwdFqEnLWrdCDRanvaYfc=;
-	b=IkP/NaIFll1Ku2g+k+SQam60xTu5T58M3L1kQGd4WB6HAocB6IOYF/u8nC6NNUNERF
-	PRtpft+Y+DSuOrP0PWv03XaKMn5P8t3Un3wg1P8OBJZjnqniRQslQOr3EStrgs0TZ53r
-	FkYY5YwNHD/SaYokxub9iuC4BNVc6sdjiaroQLvdvG9FEiJftZj/iFO6YJJy4lQ5qb7o
-	wyj87End1SQdF1kRrKR/lI0zvgyRhWP/gr1pVaV6ZiqSh3lufW3XGW+QK+tH9uUsVfpy
-	vIeIQGBdMsHvhyP9seWeN2vWiS9wnqT/vWkqlxB/+rP0oC54ripUBDbDZOywjY7O+QmZ
-	JITg==
-X-Received: by 10.194.24.38 with SMTP id r6mr8973840wjf.50.1368004020630;
-	Wed, 08 May 2013 02:07:00 -0700 (PDT)
-Received: from vesta.betafive.co.uk (94-192-12-83.zone6.bethere.co.uk.
-	[94.192.12.83])
-	by mx.google.com with ESMTPSA id dj7sm7836785wib.6.2013.05.08.02.06.58
-	for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 08 May 2013 02:06:59 -0700 (PDT)
-Sender: Paul Barker <paul.betafive@gmail.com>
+	h=x-received:mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=HjKZXDJvY08j0yrQ2jmLy2u8kI4bqKDPMtUyZq7hcsQ=;
+	b=iW21LxlDjD65YWmaj3W4L+ZD3hrCFbiwFdqTyOyAN8HQansDwYaeziv4VxXjKzZpk/
+	+FPtS5NQkmBeNqxYGSSRDuc4cV0MJRprTkntikUb4DCkx9sstC9UAfeC7GQaDjT82ast
+	Y/F5SIbXm5kaVDwJ7T2ENeQ5D/Tkyq7c9VK+MuOIqVSnwM6Ne8Ggz/4tZDrkp//ZRDWL
+	Ucu2+H9rElhxlvCy23qdnEObPtt0YdPaMOU76H+9jy/S1ta8x/0r4wwz9gkwdHU1cMCs
+	zVG/wtbZlBwtMFq5WniLNRAIJe9FQ8VIUDGE76zK9n36Zr6ZqWxZATsRCefdqC2jh/CI
+	loOQ==
+X-Received: by 10.52.172.73 with SMTP id ba9mr3403406vdc.16.1368004683613;
+	Wed, 08 May 2013 02:18:03 -0700 (PDT)
+MIME-Version: 1.0
+Sender: paul.betafive@gmail.com
+Received: by 10.220.48.5 with HTTP; Wed, 8 May 2013 02:17:43 -0700 (PDT)
+In-Reply-To: <CAK18fxE3h2mH6N3y4+jsjCDQci4X1bvtQXd8=PvOGL1XoB+0qw@mail.gmail.com>
+References: <1367591703-9582-1-git-send-email-paul@paulbarker.me.uk>
+	<CAK18fxE3h2mH6N3y4+jsjCDQci4X1bvtQXd8=PvOGL1XoB+0qw@mail.gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
-To: yocto@yoctoproject.org
-Date: Wed,  8 May 2013 10:06:45 +0100
-Message-Id: <1368004005-13185-1-git-send-email-paul@paulbarker.me.uk>
-X-Mailer: git-send-email 1.8.2.2
-Subject: [PATCH v2] rpi-gpio: renamed from RPi-GPIO
+Date: Wed, 8 May 2013 10:17:43 +0100
+X-Google-Sender-Auth: _hDWcNBUB4EUND7ciAgTgIXr3C0
+Message-ID: <CANyK_8fdJg9PehiJ4mG+ES4nfYfJR+ML0FhCQf0nfAMeF0jnuQ@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] rpi-gpio: renamed from RPi-GPIO
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,27 +41,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 09:07:02 -0000
+X-List-Received-Date: Wed, 08 May 2013 09:18:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Package names shouldn't contain capital letters.
+On 7 May 2013 12:45, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> Could you please resend it with - M?
+>
 
-Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
----
- .../python/{RPi-GPIO => rpi-gpio}/don-t-install-setuptools.patch          | 0
- recipes-devtools/python/{RPi-GPIO_0.2.0.bb => rpi-gpio_0.2.0.bb}          | 0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename recipes-devtools/python/{RPi-GPIO => rpi-gpio}/don-t-install-setuptools.patch (100%)
- rename recipes-devtools/python/{RPi-GPIO_0.2.0.bb => rpi-gpio_0.2.0.bb} (100%)
+Done, still not entirely used to git format-patch and git send-email.
+Will try putting it in my config as the default.
 
-diff --git a/recipes-devtools/python/RPi-GPIO/don-t-install-setuptools.patch b/recipes-devtools/python/rpi-gpio/don-t-install-setuptools.patch
-similarity index 100%
-rename from recipes-devtools/python/RPi-GPIO/don-t-install-setuptools.patch
-rename to recipes-devtools/python/rpi-gpio/don-t-install-setuptools.patch
-diff --git a/recipes-devtools/python/RPi-GPIO_0.2.0.bb b/recipes-devtools/python/rpi-gpio_0.2.0.bb
-similarity index 100%
-rename from recipes-devtools/python/RPi-GPIO_0.2.0.bb
-rename to recipes-devtools/python/rpi-gpio_0.2.0.bb
--- 
-1.8.2.2
+--
+Paul Barker
 
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
