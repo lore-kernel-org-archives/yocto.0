@@ -1,24 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E2D9E0148D
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 09:07:19 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 08 May 2013 09:06:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,635,1363158000"; d="scan'208";a="299464884"
-Received: from unknown (HELO helios.localnet) ([10.255.13.1])
-	by azsmga001.ch.intel.com with ESMTP; 08 May 2013 09:06:56 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Date: Wed, 08 May 2013 17:06:55 +0100
-Message-ID: <5184624.GY9VR8Da3d@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.8.0-19-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <CANwz6nyTMRVp6daU0GNR8fBnEJam-yshPdorAgYn6-M72XLJRQ@mail.gmail.com>
-References: <CANwz6nyTMRVp6daU0GNR8fBnEJam-yshPdorAgYn6-M72XLJRQ@mail.gmail.com>
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
+	[209.85.217.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57828E01407
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 10:40:14 -0700 (PDT)
+Received: by mail-lb0-f180.google.com with SMTP id v1so2161814lbd.25
+	for <yocto@yoctoproject.org>; Wed, 08 May 2013 10:40:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:sender:date:x-google-sender-auth:message-id
+	:subject:from:to:content-type;
+	bh=joG6DnG/7T1RnhHQn2h4v7RHwcx/zfZ9jTs8F8a+vI0=;
+	b=ayUBdfJ6Xv8Fe9ZaFpKLhx1pVaqmKYKYA7WN8hOXfZu7ClPQj0Pz2DjFH2zT4X0/bU
+	ehVQBz0RzZd9GdbdGGpt+gaR26fi8vjKapfAGMRrZSdKkzsWNfqD/fdrgcGUIFMZ9DiE
+	bmMpgFKj2/qVls34gp89hbz/oU4frPi7PK9sk1XDmcmYNpzlf8wYUHghdAoRiy5CbcCy
+	1apLh5PvyZhHIAK5UDuqaWhDEyyIK42t/kzjC1fQnRoe3pwR/dFhAoP/7S8D39uiJxXl
+	WdTUVt8kvBcZ0y6LQfkdPw/Rf00PQz/evnGmqbV9t6LVfFrtkeyHQ1xU0yHaajG+d8eZ
+	mzOw==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Denys Dmytriyenko <denys@ti.com>
-Subject: Re: netbase upgrade with meta-ti
+X-Received: by 10.152.116.113 with SMTP id jv17mr3691619lab.35.1368034812853; 
+	Wed, 08 May 2013 10:40:12 -0700 (PDT)
+Sender: jefro.net@gmail.com
+Received: by 10.112.71.70 with HTTP; Wed, 8 May 2013 10:40:12 -0700 (PDT)
+Date: Wed, 8 May 2013 10:40:12 -0700
+X-Google-Sender-Auth: 8PgS36gWSEdV8CeC0IHNcMpPYg8
+Message-ID: <CA+YB3rbKTTD-ztUexY1VuiFQ+25uTtvb+z8d25EkZRPgRtSKig@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Final day to apply for a Yocto Project internship
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,57 +37,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 16:07:20 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 08 May 2013 17:40:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wednesday 08 May 2013 09:15:32 Edward Vidal wrote:
-> I am using Yocto with meta-ti to create beaglebone and pandaboard
-> core-image-sato files.
-> The following version of poky
-> commit 84d45db4ddced96c736f106f8122eefadf925c41
-> Author: Darren Hart <dvhart@linux.intel.com>
-> Date:   Wed May 1 13:43:33 2013 -0700
-> 
->     grub-efi-native: Cleanup whitespace
-> 
->     A few of the recent commits have used inconsistent whitespace with
->     respect to tabs and spaces for indentation and alignment. Correct it.
-> 
->     (From OE-Core rev: 3472c1f7ab409cd91c1d4782d9e00880b84e3ae8)
-> 
->     Signed-off-by: Darren Hart <dvhart@linux.intel.com>
->     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-> The new version of poky updated netbase from netbase_5.0 to netbase_5.1
-> This still works for my beagleboard but not for qemuarm.
-> The version of meta-ti that I am using which had worked up until 04/29/13
-> was
-> commit 5e6fb2bcf1fff597ebb0334bbf4a36ab027965d2
-> Author: Denys Dmytriyenko <denys@ti.com>
-> Date:   Fri Apr 26 17:23:05 2013 -0400
-> 
->     linux-am335x-psp: fix typo in the filename to use underscore
-> 
->     Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> What is the procedure to update meta-ti from netbase_5.0 to netbase_5.1
+This is the final day to submit applications for internships with the
+Yocto Project as a sponsoring organization for the Outreach Program
+for Women. For more information, see our OPW Internship page
+(https://www.yoctoproject.org/opw-internship) and/or contact me with
+any questions.
 
-Looks like this has already been done a day or two ago in meta-ti:
-
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=de8061b927a80e3081327748141da939f09fe633
-
-What has been missed however is that the interfaces file is now in
-init-ifupdown rather than netbase, so this will need to be changed as
-well.
-
-FYI there is a specific mailing list for the meta-ti layer:
-
-  https://lists.yoctoproject.org/listinfo/meta-ti
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+--
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
