@@ -1,35 +1,40 @@
 Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
-	[209.85.128.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A28C1E0146E
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 02:18:04 -0700 (PDT)
-Received: by mail-ve0-f172.google.com with SMTP id b10so1581631vea.3
-	for <yocto@yoctoproject.org>; Wed, 08 May 2013 02:18:03 -0700 (PDT)
+Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5857CE0146E
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 02:56:09 -0700 (PDT)
+Received: by mail-vc0-f179.google.com with SMTP id hz10so1505662vcb.10
+	for <yocto@yoctoproject.org>; Wed, 08 May 2013 02:56:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=x-received:mime-version:sender:in-reply-to:references:from:date
 	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=HjKZXDJvY08j0yrQ2jmLy2u8kI4bqKDPMtUyZq7hcsQ=;
-	b=iW21LxlDjD65YWmaj3W4L+ZD3hrCFbiwFdqTyOyAN8HQansDwYaeziv4VxXjKzZpk/
-	+FPtS5NQkmBeNqxYGSSRDuc4cV0MJRprTkntikUb4DCkx9sstC9UAfeC7GQaDjT82ast
-	Y/F5SIbXm5kaVDwJ7T2ENeQ5D/Tkyq7c9VK+MuOIqVSnwM6Ne8Ggz/4tZDrkp//ZRDWL
-	Ucu2+H9rElhxlvCy23qdnEObPtt0YdPaMOU76H+9jy/S1ta8x/0r4wwz9gkwdHU1cMCs
-	zVG/wtbZlBwtMFq5WniLNRAIJe9FQ8VIUDGE76zK9n36Zr6ZqWxZATsRCefdqC2jh/CI
-	loOQ==
-X-Received: by 10.52.172.73 with SMTP id ba9mr3403406vdc.16.1368004683613;
-	Wed, 08 May 2013 02:18:03 -0700 (PDT)
+	bh=ZcyYrjdSp4/TWJDLRmit8FTW4cGNLLBkI/ouzVGzYaI=;
+	b=v+s+AVFKBadPPtbRZnQSA2fqh+n75qVIkefS1afR5CofdAqXwHq9mAEV2Lyw9CIKPI
+	7oQUc0c6W2CW7Pb24QnyqM9aHQLM+Cndha0Ueuqa0tRi3PJ4tdhq/0VPyCOt883Mnpk9
+	V2TcSiRvaApolH4t+lvIZLLs3zCTIk+O61x3LJDc0oHrsOhw97d3dH1Nurtq/poyv+cY
+	BpRCZxxwAokf5SpFVuW0n5IkVd280gK22it/XtoP/Jl6/I3zzun5Sjxny/HNtNaWz/BK
+	F5+h+yrXUJjnFqUCLb+g1whgMFrclBb60vRdOp2d43aFCC6lFSJsOrLFizaOmrN8A2N3
+	chBA==
+X-Received: by 10.220.168.71 with SMTP id t7mr889628vcy.39.1368006968668; Wed,
+	08 May 2013 02:56:08 -0700 (PDT)
 MIME-Version: 1.0
 Sender: paul.betafive@gmail.com
-Received: by 10.220.48.5 with HTTP; Wed, 8 May 2013 02:17:43 -0700 (PDT)
-In-Reply-To: <CAK18fxE3h2mH6N3y4+jsjCDQci4X1bvtQXd8=PvOGL1XoB+0qw@mail.gmail.com>
-References: <1367591703-9582-1-git-send-email-paul@paulbarker.me.uk>
-	<CAK18fxE3h2mH6N3y4+jsjCDQci4X1bvtQXd8=PvOGL1XoB+0qw@mail.gmail.com>
+Received: by 10.220.48.5 with HTTP; Wed, 8 May 2013 02:55:48 -0700 (PDT)
+In-Reply-To: <CAK18fxH+vfma5BuDfcLB7AdoJX+GjppYs83NSDC4=zh3O_OY4w@mail.gmail.com>
+References: <CANyK_8c2tTqktkHFuR+vzAGbsb3AKyFow1T4rU_aEnb8pdQnuw@mail.gmail.com>
+	<CAK18fxFMKykJQnuMqrU6eLkD0E_Ht+Vyo2tmayukvNU_eyV6aw@mail.gmail.com>
+	<CANyK_8fVfKbTHq3X1hdSWOFdwsz4cZLaaispiwC_hJJbimM1ig@mail.gmail.com>
+	<CAHUNapRr4y47FGqp90NZwKwwE0PGSj6A2vN1nRujqjBSL9oOZw@mail.gmail.com>
+	<CANyK_8erAWaRzrXxDOCwaa9xkfxqVM5Fk5hukGPoyapZJTMw5w@mail.gmail.com>
+	<518292E5.9030101@mlbassoc.com>
+	<CAK18fxH+vfma5BuDfcLB7AdoJX+GjppYs83NSDC4=zh3O_OY4w@mail.gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
-Date: Wed, 8 May 2013 10:17:43 +0100
-X-Google-Sender-Auth: _hDWcNBUB4EUND7ciAgTgIXr3C0
-Message-ID: <CANyK_8fdJg9PehiJ4mG+ES4nfYfJR+ML0FhCQf0nfAMeF0jnuQ@mail.gmail.com>
+Date: Wed, 8 May 2013 10:55:48 +0100
+X-Google-Sender-Auth: 3yoYpXcTK3Ba64hItF5YDm58rfI
+Message-ID: <CANyK_8f+MV8nnX2ptQHMGhONSfTFFUXLmUeQ8nFRpjcOaHygEQ@mail.gmail.com>
 To: Andrei Gherzan <andrei@gherzan.ro>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] rpi-gpio: renamed from RPi-GPIO
+Subject: Re: [meta-raspberrypi] Zenity is in meta-gnome
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,15 +46,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 09:18:04 -0000
+X-List-Received-Date: Wed, 08 May 2013 09:56:09 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On 7 May 2013 12:45, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> Could you please resend it with - M?
+On 2 May 2013 17:45, Andrei Gherzan <andrei@gherzan.ro> wrote:
+>
+> So that script was just a helper to make things easier for the user.
+>
+> On the other hand i'm pretty sure nobody uses it. Probably because is
+> outdated and seems to come from other project - which is true :). So if we
+> decide to keep it we need to refactor it. And raspi-config would be my
+> choice.
 >
 
-Done, still not entirely used to git format-patch and git send-email.
-Will try putting it in my config as the default.
+For my current builds I've removed this recipe completely. I think if
+someone wants a script like this it makes more sense to start from
+scratch or from raspi-config rather then from this script. I can send
+a patch if you agree.
 
 --
 Paul Barker
