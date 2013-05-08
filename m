@@ -1,34 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1FD0E01407
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 13:05:08 -0700 (PDT)
-Received: by mail-ve0-f182.google.com with SMTP id da11so775097veb.27
-	for <yocto@yoctoproject.org>; Wed, 08 May 2013 13:05:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=lWeQw1k1Lzt/C7FosRz51g+oH4qgg0ag5r9a+9Fy3z4=;
-	b=FM5i3GM4K710QfWegXDePMkG/TTqHyjm7WdR5pu0Em3SVTIEX52C1AYztC9C2RD8en
-	+sEoqTXyILK5xMATZtt3pIHOoiPCSTx2aoP0DfgfQRIJR6aHdNXF2jWhNUt2HPb2X2Q/
-	V3uVOigeumnOEHiruXjrIFXhoo3ROk63SnV2i+wnYnPG3GEKCPpcYrUTMJGpAVMLjAmF
-	xpAgXvzwY2qnJ6BVVQShxX8IMNP45eLoc+HohXzdC1LwvaYXye/nkYQYLNG7W3Yyj5Rs
-	BqD1x7vSSohDbSlkBYKjiQctuZugR+fhGrpVqFIB0/K6Y6As1v5TDQTcfK5MHMq43GgT
-	mjJQ==
-X-Received: by 10.220.176.71 with SMTP id bd7mr5734326vcb.12.1368043508082;
-	Wed, 08 May 2013 13:05:08 -0700 (PDT)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5D58E01439
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 14:54:26 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 08 May 2013 14:54:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,636,1363158000"; d="scan'208";a="299609859"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by azsmga001.ch.intel.com with ESMTP; 08 May 2013 14:54:25 -0700
+Received: from orsmsx110.amr.corp.intel.com (10.22.240.8) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 8 May 2013 14:54:25 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.27]) by
+	ORSMSX110.amr.corp.intel.com ([169.254.3.197]) with mapi id
+	14.01.0355.002; Wed, 8 May 2013 14:54:25 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH 3/3] Move filtering of suitable connections to
+	RSEHelper
+Thread-Index: AQHOS+4nwcDAW0Uhh0eqGZwG/eZ6m5j71OAA
+Date: Wed, 8 May 2013 21:54:24 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C70781F81@ORSMSX103.amr.corp.intel.com>
+References: <1368017704-14781-1-git-send-email-ioanax.grigoropol@intel.com>
+	<1368017704-14781-4-git-send-email-ioanax.grigoropol@intel.com>
+In-Reply-To: <1368017704-14781-4-git-send-email-ioanax.grigoropol@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.221.8.3 with HTTP; Wed, 8 May 2013 13:04:48 -0700 (PDT)
-In-Reply-To: <023f01ce4044$72657a90$57306fb0$@vt.edu>
-References: <023f01ce4044$72657a90$57306fb0$@vt.edu>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 8 May 2013 21:04:48 +0100
-Message-ID: <CAJTo0Layo6Gf_o8bjxy7uCHj9vk6qrf4hyDhquUwQv8-iSkGog@mail.gmail.com>
-To: Alexander Keller <alexan3@vt.edu>
-X-Gm-Message-State: ALoCoQncsluaW0waO84AhZFOcxcOsj7mwITG1XJ6SHh8KLB5jc1hqyLlI/uLSIBpQMsmuCIZS+/G
-Cc: yocto@yoctoproject.org
-Subject: Re: Building error for yocto
+Subject: Re: [PATCH 3/3] Move filtering of suitable connections to	RSEHelper
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,36 +42,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 20:05:09 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 08 May 2013 21:54:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 23 April 2013 18:03, Alexander Keller <alexan3@vt.edu> wrote:
-> I have trying to build yocto for the past couple of days to test the
-> hardware acceleration on the X11. However, when I try to build yocto I keep
-> on getting this error:
->
-> ERROR: Function failed: do_configure (see
-> /home/lucid/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/busybox/1.20.2-r8/temp/log.do_configure.30517
-> for further information)
->
-> ERROR: Logfile of failure stored in:
-> /home/lucid/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/busybox/1.20.2-r8/temp/log.do_configure.30517
->
-> Log data follows:
->
-> | DEBUG: Executing python function sysroot_cleansstate
->
-> | DEBUG: Python function sysroot_cleansstate finished
->
-> | DEBUG: Executing shell function do_configure
->
-> | trap: 80: SIGHUP: bad trap
+Hi Ioana,
 
-I just debugged this on IRC with another person who is seeing it, and
-it's a problem in kern-tools-native.  I'll work a patch out tomorrow
-but a quick fix to you or anyone else seeing this appears to be to
-open usr/bin/merge_config.sh in your *native* sysroot and change the
-first line from #! /bin/sh to #! /bin/bash.
+Isn't the logic in RSEHelper is reversed?  It should  be:
 
-Ross
+if (sysType =3D=3D null ||! sysType.isEnabled()) {
+        iter.remove();
+}
+
+Thanks,
+Jessica
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol
+Sent: Wednesday, May 08, 2013 5:55 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [PATCH 3/3] Move filtering of suitable connections to RSEH=
+elper
+
+- BaseSettingDialog performs an extra filtering for suitable connections fo=
+r a given host by checking the remote system type
+        - this checking should be done in RSEHelper since it involves a rem=
+ote action and thus removing BaseSettingDialog dependency on RSE Api
+        - modified RSEHelper.getSuitableConnections to include the filterin=
+g for connections with associated system type disabled
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
+ .../src/org/yocto/sdk/remotetools/RSEHelper.java   |    4 ++++
+ .../sdk/remotetools/actions/BaseSettingDialog.java |   10 +++-------
+ 2 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
+s/RSEHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remo=
+tetools/RSEHelper.java
+index d1a505d..8d0612a 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHe=
+lper.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RS
++++ EHelper.java
+@@ -150,6 +150,10 @@ public class RSEHelper {
+                        if(!terminalConnections.contains(fileConnection) &&=
+ !shellConnections.contains(fileConnection)){
+                                iter.remove();
+                        }
++                       IRSESystemType sysType =3D fileConnection.getSystem=
+Type();
++                       if (sysType !=3D null && sysType.isEnabled()) {
++                               iter.remove();
++                       }
+                }
+
+                return (IHost[]) filConnections.toArray(new IHost[filConnec=
+tions.size()]); diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yoct=
+o/sdk/remotetools/actions/BaseSettingDialog.java b/plugins/org.yocto.sdk.re=
+motetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
+index 06eeb00..962a20a 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
+ns/BaseSettingDialog.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac
++++ tions/BaseSettingDialog.java
+@@ -26,7 +26,6 @@ import org.yocto.sdk.remotetools.SWTFactory;
+ import org.yocto.sdk.remotetools.RSEHelper;
+ import org.eclipse.jface.dialogs.Dialog;  import org.eclipse.jface.dialogs=
+.IDialogConstants;
+-import org.eclipse.rse.core.IRSESystemType;
+ import org.eclipse.rse.core.model.IHost;  import org.eclipse.rse.ui.action=
+s.SystemNewConnectionAction;
+ import org.eclipse.swt.SWT;
+@@ -185,12 +184,9 @@ public class BaseSettingDialog extends Dialog {
+                connectionCombo.removeAll();
+                IHost[] connections =3D RSEHelper.getSuitableConnections();
+                for (int i =3D 0; i < connections.length; i++) {
+-                       IRSESystemType sysType =3D connections[i].getSystem=
+Type();
+-                       if (sysType !=3D null && sysType.isEnabled()) {
+-                               connectionCombo.add(connections[i].getAlias=
+Name());
+-                               if(connections[i].getAliasName().equals(cur=
+Conn))
+-                                       index=3Di;
+-                       }
++                       connectionCombo.add(connections[i].getAliasName());
++                       if(connections[i].getAliasName().equals(curConn))
++                               index=3Di;
+                }
+
+                if(index>=3D0) {
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
