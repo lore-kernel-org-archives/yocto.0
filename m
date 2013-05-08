@@ -1,32 +1,33 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-la0-f46.google.com (mail-la0-f46.google.com
-	[209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83AB4E0127D
-	for <yocto@yoctoproject.org>; Tue,  7 May 2013 22:36:34 -0700 (PDT)
-Received: by mail-la0-f46.google.com with SMTP id fk20so1369714lab.33
-	for <yocto@yoctoproject.org>; Tue, 07 May 2013 22:36:33 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E180BE0146E
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 02:07:01 -0700 (PDT)
+Received: by mail-wg0-f51.google.com with SMTP id b13so1647245wgh.30
+	for <yocto@yoctoproject.org>; Wed, 08 May 2013 02:07:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=9ZgcxYrs7szfWfxpXsnp1YeF4ER+cAtSv5LiLaFckJU=;
-	b=CdkN6PKha1bRhfpSDg8AsbwZVhG6ElYjwmwcNQ19bRk7FfPufkAHiajbWzxArtYp9J
-	/Nnx44rWHpn3NrGIDM+CIk0zzXDCks604B06xUPV2zErroe2qCBY8/JY4KbhtZbBEHaD
-	9LE+AEWilcYu3miAki1CwC49tjyY9+BRqXLI8PQIZDBgwLnbbj9ntpZQI+5EC1Th+MnP
-	sgj7xXUk0uMX3Nba3HQX+t0mbtVZM3aw1cQ20lprUVnNkHSf4Hbhch0igDFN0K0qsklg
-	ahY2TMjYpnetpcK88dcekTQKoeU6lSMTEhlormvmoXVXkx2fAGU940/izrXM0wSgJAbc
-	/rRw==
-MIME-Version: 1.0
-X-Received: by 10.112.139.4 with SMTP id qu4mr2375425lbb.37.1367991392782;
-	Tue, 07 May 2013 22:36:32 -0700 (PDT)
-Received: by 10.114.1.46 with HTTP; Tue, 7 May 2013 22:36:32 -0700 (PDT)
-In-Reply-To: <CAGxOggFg1+oKE=HFNKxL5wGhAQUh5e-84YnXpAZM-b8ea5+3FQ@mail.gmail.com>
-References: <CAGxOggFg1+oKE=HFNKxL5wGhAQUh5e-84YnXpAZM-b8ea5+3FQ@mail.gmail.com>
-Date: Wed, 8 May 2013 11:06:32 +0530
-Message-ID: <CAE_REAsJO2+dz0ym6_x9n6cKUM3Mc-wLATO-rdPjLOfMKKS=iA@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: varun bhatnagar <varun292006@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to install own package using yocto
+	h=x-received:sender:from:to:cc:subject:date:message-id:x-mailer;
+	bh=ZQm6fvUWkRdJ604Ku6lVKfWwdFqEnLWrdCDRanvaYfc=;
+	b=IkP/NaIFll1Ku2g+k+SQam60xTu5T58M3L1kQGd4WB6HAocB6IOYF/u8nC6NNUNERF
+	PRtpft+Y+DSuOrP0PWv03XaKMn5P8t3Un3wg1P8OBJZjnqniRQslQOr3EStrgs0TZ53r
+	FkYY5YwNHD/SaYokxub9iuC4BNVc6sdjiaroQLvdvG9FEiJftZj/iFO6YJJy4lQ5qb7o
+	wyj87End1SQdF1kRrKR/lI0zvgyRhWP/gr1pVaV6ZiqSh3lufW3XGW+QK+tH9uUsVfpy
+	vIeIQGBdMsHvhyP9seWeN2vWiS9wnqT/vWkqlxB/+rP0oC54ripUBDbDZOywjY7O+QmZ
+	JITg==
+X-Received: by 10.194.24.38 with SMTP id r6mr8973840wjf.50.1368004020630;
+	Wed, 08 May 2013 02:07:00 -0700 (PDT)
+Received: from vesta.betafive.co.uk (94-192-12-83.zone6.bethere.co.uk.
+	[94.192.12.83])
+	by mx.google.com with ESMTPSA id dj7sm7836785wib.6.2013.05.08.02.06.58
+	for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 08 May 2013 02:06:59 -0700 (PDT)
+Sender: Paul Barker <paul.betafive@gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+To: yocto@yoctoproject.org
+Date: Wed,  8 May 2013 10:06:45 +0100
+Message-Id: <1368004005-13185-1-git-send-email-paul@paulbarker.me.uk>
+X-Mailer: git-send-email 1.8.2.2
+Subject: [PATCH v2] rpi-gpio: renamed from RPi-GPIO
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,82 +39,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 05:36:34 -0000
-Content-Type: multipart/alternative; boundary=089e0112bf7205ced804dc2e5151
+X-List-Received-Date: Wed, 08 May 2013 09:07:02 -0000
 
---089e0112bf7205ced804dc2e5151
-Content-Type: text/plain; charset=ISO-8859-1
+Package names shouldn't contain capital letters.
 
-Hi Varun,
+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+---
+ .../python/{RPi-GPIO => rpi-gpio}/don-t-install-setuptools.patch          | 0
+ recipes-devtools/python/{RPi-GPIO_0.2.0.bb => rpi-gpio_0.2.0.bb}          | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename recipes-devtools/python/{RPi-GPIO => rpi-gpio}/don-t-install-setuptools.patch (100%)
+ rename recipes-devtools/python/{RPi-GPIO_0.2.0.bb => rpi-gpio_0.2.0.bb} (100%)
 
-Can you go and check the available good amount of documents.....for you i
-can suggest,
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-addpkg
+diff --git a/recipes-devtools/python/RPi-GPIO/don-t-install-setuptools.patch b/recipes-devtools/python/rpi-gpio/don-t-install-setuptools.patch
+similarity index 100%
+rename from recipes-devtools/python/RPi-GPIO/don-t-install-setuptools.patch
+rename to recipes-devtools/python/rpi-gpio/don-t-install-setuptools.patch
+diff --git a/recipes-devtools/python/RPi-GPIO_0.2.0.bb b/recipes-devtools/python/rpi-gpio_0.2.0.bb
+similarity index 100%
+rename from recipes-devtools/python/RPi-GPIO_0.2.0.bb
+rename to recipes-devtools/python/rpi-gpio_0.2.0.bb
+-- 
+1.8.2.2
 
-//Gaurang Shastri
 
-
-On Tue, May 7, 2013 at 10:48 PM, varun bhatnagar <varun292006@gmail.com>wrote:
-
-> Hi,
->
-> I am new to Yocto.
-> I have a tar package and I want to install this package in my image
-> created by Yocto. I want to perform three steps to install the package:
->
-> 1) Build directory named "build" (*mkdir build*)
-> 2) Change the directory to "build" (*cd build*)
-> 3) Execute cmake command (*cmake ..*)
->
-> Can anyone tell me how can I write the above steps in a bitbake recipe
-> file so that the above three steps should get executed. I have generated
-> checksum using *md5sum <pkgname>*
->
-> Any help will be appreciated.
->
-> Thanks in advance.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---089e0112bf7205ced804dc2e5151
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Varun,<br><br>Can you go and check the available g=
-ood amount of documents.....for you i can suggest,<br><a href=3D"http://www=
-.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-=
-addpkg">http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html=
-#usingpoky-extend-addpkg</a><br>
-<br></div>//Gaurang Shastri<br></div><div class=3D"gmail_extra"><br><br><di=
-v class=3D"gmail_quote">On Tue, May 7, 2013 at 10:48 PM, varun bhatnagar <s=
-pan dir=3D"ltr">&lt;<a href=3D"mailto:varun292006@gmail.com" target=3D"_bla=
-nk">varun292006@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Hi,</div><div><br></di=
-v><div>I am new to Yocto.</div><div>I have a tar package and I want to inst=
-all this package in my image created by Yocto. I want to perform three step=
-s to install the package:</div>
-
-<div><br></div><div>1) Build directory named &quot;build&quot; (<b>mkdir bu=
-ild</b>)</div><div>2) Change the directory to &quot;build&quot; (<b>cd buil=
-d</b>)</div><div>3) Execute cmake command (<b>cmake ..</b>)</div><div>
-<br>
-</div><div>Can anyone tell me how can I write the above steps in a bitbake =
-recipe file so that the above three steps should get executed. I have gener=
-ated checksum using <b>md5sum &lt;pkgname&gt;</b></div><div><br></div>
-<div>
-Any help will be appreciated.</div><div><br></div><div>Thanks in advance.</=
-div></div>
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---089e0112bf7205ced804dc2e5151--
