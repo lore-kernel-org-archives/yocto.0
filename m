@@ -1,44 +1,34 @@
-Return-Path: <kurtmyles@gmail.com>
-Received: from mail-gh0-f179.google.com (mail-gh0-f179.google.com
-	[209.85.160.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3889E01407
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 12:18:43 -0700 (PDT)
-Received: by mail-gh0-f179.google.com with SMTP id f16so465199ghb.38
-	for <yocto@yoctoproject.org>; Wed, 08 May 2013 12:18:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:subject:date:message-id:mime-version
-	:content-type:content-transfer-encoding:x-priority:x-msmail-priority
-	:x-mailer:importance:x-mimeole:thread-index:x-antivirus
-	:x-antivirus-status;
-	bh=XnJwLGh8aywgZL5rRKNY9Rpp30kI0R/ACb7hYPHGcNo=;
-	b=PxsNnNJMbBDSQUuSpnIx/OXiIvNh5LTxrOUtqMkzLWqz8KHbg/mo6ZS8suGHJViSsR
-	LRe0P7cH7KOXKDPKnXPWARTlbnuiYYMECMIT4bLLnEXn6E8M6MsjzPmP95T8JpEuLeI7
-	E5KG4l0ZMSeFTElQ4VSnzl/P2fXnFUfGYVI4YNR2rLR+Qlg0AKO5HSjWYvO2gBo2Zn8y
-	yY4hGEYBCN2xSmFZQa7wHNZfYzGiwoYDi+j+I9m0xNGSmCAtvvbdtbJ3itTxDO6Zno6u
-	mfbRrhXV6tfRQJowk8NZsSqgWTIoFW2TeIpgjFB7qloEnxmH+AWgSjB7IfztKGy4R11r
-	jiXA==
-X-Received: by 10.236.161.102 with SMTP id v66mr7797577yhk.162.1368040722780; 
-	Wed, 08 May 2013 12:18:42 -0700 (PDT)
-Received: from toshp105 (24-196-194-18.static.hckr.nc.charter.com.
-	[24.196.194.18])
-	by mx.google.com with ESMTPSA id n15sm65625795yhi.2.2013.05.08.12.18.41
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 08 May 2013 12:18:42 -0700 (PDT)
-From: "Kurt Stevens" <kurtmyles@gmail.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 8 May 2013 15:18:44 -0400
-Message-ID: <A306BD0E4C7243658E42B1F5B50D9716@toshp105>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1FD0E01407
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 13:05:08 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id da11so775097veb.27
+	for <yocto@yoctoproject.org>; Wed, 08 May 2013 13:05:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=lWeQw1k1Lzt/C7FosRz51g+oH4qgg0ag5r9a+9Fy3z4=;
+	b=FM5i3GM4K710QfWegXDePMkG/TTqHyjm7WdR5pu0Em3SVTIEX52C1AYztC9C2RD8en
+	+sEoqTXyILK5xMATZtt3pIHOoiPCSTx2aoP0DfgfQRIJR6aHdNXF2jWhNUt2HPb2X2Q/
+	V3uVOigeumnOEHiruXjrIFXhoo3ROk63SnV2i+wnYnPG3GEKCPpcYrUTMJGpAVMLjAmF
+	xpAgXvzwY2qnJ6BVVQShxX8IMNP45eLoc+HohXzdC1LwvaYXye/nkYQYLNG7W3Yyj5Rs
+	BqD1x7vSSohDbSlkBYKjiQctuZugR+fhGrpVqFIB0/K6Y6As1v5TDQTcfK5MHMq43GgT
+	mjJQ==
+X-Received: by 10.220.176.71 with SMTP id bd7mr5734326vcb.12.1368043508082;
+	Wed, 08 May 2013 13:05:08 -0700 (PDT)
 MIME-Version: 1.0
-X-Priority: 3 (Normal)
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook, Build 10.0.6863
-Importance: Normal
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6157
-Thread-Index: Ac5MINsSiAMf39AdQU2/8DkEgk3pZw==
-X-Antivirus: avast! (VPS 130508-0, 05/08/2013), Outbound message
-X-Antivirus-Status: Clean
-Subject: HOB Yocto 1.4 bzImage missing from ext3 image
+Received: by 10.221.8.3 with HTTP; Wed, 8 May 2013 13:04:48 -0700 (PDT)
+In-Reply-To: <023f01ce4044$72657a90$57306fb0$@vt.edu>
+References: <023f01ce4044$72657a90$57306fb0$@vt.edu>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 8 May 2013 21:04:48 +0100
+Message-ID: <CAJTo0Layo6Gf_o8bjxy7uCHj9vk6qrf4hyDhquUwQv8-iSkGog@mail.gmail.com>
+To: Alexander Keller <alexan3@vt.edu>
+X-Gm-Message-State: ALoCoQncsluaW0waO84AhZFOcxcOsj7mwITG1XJ6SHh8KLB5jc1hqyLlI/uLSIBpQMsmuCIZS+/G
+Cc: yocto@yoctoproject.org
+Subject: Re: Building error for yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,27 +40,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 19:18:43 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 08 May 2013 20:05:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hello,
+On 23 April 2013 18:03, Alexander Keller <alexan3@vt.edu> wrote:
+> I have trying to build yocto for the past couple of days to test the
+> hardware acceleration on the X11. However, when I try to build yocto I keep
+> on getting this error:
+>
+> ERROR: Function failed: do_configure (see
+> /home/lucid/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/busybox/1.20.2-r8/temp/log.do_configure.30517
+> for further information)
+>
+> ERROR: Logfile of failure stored in:
+> /home/lucid/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/busybox/1.20.2-r8/temp/log.do_configure.30517
+>
+> Log data follows:
+>
+> | DEBUG: Executing python function sysroot_cleansstate
+>
+> | DEBUG: Python function sysroot_cleansstate finished
+>
+> | DEBUG: Executing shell function do_configure
+>
+> | trap: 80: SIGHUP: bad trap
 
-	I included meta-openembedded in my poky folder (both git cloned from
-dylan release) and built atom-pc, using core-image-basic for a start point,
-and using the HOB interface.
+I just debugged this on IRC with another person who is seeing it, and
+it's a problem in kern-tools-native.  I'll work a patch out tomorrow
+but a quick fix to you or anyone else seeing this appears to be to
+open usr/bin/merge_config.sh in your *native* sysroot and change the
+first line from #! /bin/sh to #! /bin/bash.
 
-	I added apache and mysql (and deselected lighttpd), and got no
-errors in the log. 
-
-	When I use the ext3 file system image, though, the /boot/bzImage is
-missing. Manually copying the image into the boot folder allows boot, and
-there are no other issues I can see.
-
-Thanks,
-
-Kurt Stevens
-
-
+Ross
 
