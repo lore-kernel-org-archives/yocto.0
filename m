@@ -1,38 +1,37 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f175.google.com (mail-ve0-f175.google.com
-	[209.85.128.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E84ABE0146E
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 03:35:36 -0700 (PDT)
-Received: by mail-ve0-f175.google.com with SMTP id m1so1615672ves.34
-	for <yocto@yoctoproject.org>; Wed, 08 May 2013 03:35:36 -0700 (PDT)
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
+	[209.85.214.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CC30E01476
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 04:00:22 -0700 (PDT)
+Received: by mail-ob0-f172.google.com with SMTP id fb19so378688obc.3
+	for <yocto@yoctoproject.org>; Wed, 08 May 2013 04:00:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=qEvvvX/K18ZgAco6gFSg0mMD9z2+WqsnFQaXwer8kAU=;
-	b=dw5F6ScoVlLbmIQcHHrv+PIPSDrZgvVC1HLGm/J3PYqrzzYfuMBJexVQ9dX9BWq2Kl
-	DJBMkPd341a111QyD4dqr3i3yd1LpXhl1P1uPMTrdQz45d7K6CeAEaG8ezma0qQ1X93u
-	xHVFtSvVGJkr+T7AR+vboeVQevKnis9mGyz5Tuh1Z6bT4iRFbGbPkSn1BhRAT0IdgTI2
-	T8mZ2HOi51GhVjAsF3yKm6G318C87nmbwqx3Bu/oTwpzWNQItCwDLvU4XBFeuBuonrR2
-	XhnK85UOq1pKZ981Qmewa31fr/9Pug5ZuHmDXVIdD5WmpoZTF73S1/e9UcUrT3gQ9Wbe
-	ugXA==
-X-Received: by 10.52.117.212 with SMTP id kg20mr3473071vdb.55.1368009336104;
-	Wed, 08 May 2013 03:35:36 -0700 (PDT)
+	h=x-received:mime-version:x-originating-ip:in-reply-to:references
+	:from:date:message-id:subject:to:cc:content-type:x-gm-message-state;
+	bh=0ssG6oXY4yujD+tgWgpw1zF0uk2wZshxa383D9Qradk=;
+	b=TFoPTGTrE5k4LQpylw9xBGp2N+8VgftzDudIaGeMcJF2tDbovvf9DzWBV0N8tlABFU
+	ZjrGfHWChugv3r5e4PYO17JDGIEYexHzBju8oud7RD/JGEvkCpup1v0u/fX2QERsAaP+
+	GfqFbdTE9Nzod0DZkyFZZvuFwPVYb6nIAjHrEVONgcgpzQAr9DdX3vnpFke0DjZHlYw9
+	LVHn9S4pHpEX2uZizyRsM+00P9gNiMtg0ydY65hGr5ajULpO9Mtt6b0A7cY1Pi8EUt3V
+	kcOnUzeZgxIB9Z0hB8tXMbMXeN95STHOcALM04vgFMl43cx7/19fZ+07yGvseh5b+vTu
+	gvhg==
+X-Received: by 10.60.58.99 with SMTP id p3mr1851613oeq.23.1368010821813; Wed,
+	08 May 2013 04:00:21 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.221.8.3 with HTTP; Wed, 8 May 2013 03:35:16 -0700 (PDT)
-In-Reply-To: <CAHUNapTCr_YV+pfCJod6LcGfhGh4HEX+GmcQSFQ9frFS+HiecQ@mail.gmail.com>
-References: <1367930701.27116.31.camel@ted>
-	<CAHUNapT--78aOf=eCava7w9VsHAD8fL3odbreW-6EATt6mujbA@mail.gmail.com>
-	<CAJTo0LaUSyekgycP37-jZnHmgy1wOM-PfJ0yZQtMrSP_bUp8hg@mail.gmail.com>
-	<CAHUNapTCr_YV+pfCJod6LcGfhGh4HEX+GmcQSFQ9frFS+HiecQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 8 May 2013 11:35:16 +0100
-Message-ID: <CAJTo0LaHKGS+FRWJX9yE29sdSSVR6R4JsykHOx9N6RpaBuEn+g@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
-X-Gm-Message-State: ALoCoQluoXVKKkcUnMN9jvRSOn0cFvmPafBrm/JnBsSGj0GJgxyCyi/EksMNZwcL1cmailvJ+Rpi
-Cc: yocto <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: Status Update
+Received: by 10.76.108.242 with HTTP; Wed, 8 May 2013 04:00:01 -0700 (PDT)
+X-Originating-IP: [89.121.200.106]
+In-Reply-To: <CANyK_8fdJg9PehiJ4mG+ES4nfYfJR+ML0FhCQf0nfAMeF0jnuQ@mail.gmail.com>
+References: <1367591703-9582-1-git-send-email-paul@paulbarker.me.uk>
+	<CAK18fxE3h2mH6N3y4+jsjCDQci4X1bvtQXd8=PvOGL1XoB+0qw@mail.gmail.com>
+	<CANyK_8fdJg9PehiJ4mG+ES4nfYfJR+ML0FhCQf0nfAMeF0jnuQ@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 8 May 2013 14:00:01 +0300
+Message-ID: <CAK18fxE1tsUgHc395PHMZHWxAOgDOMUc+-E1R7cyM3xn7c2Jsw@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+X-Gm-Message-State: ALoCoQkoFhsDpT5PpnQZi3mUx8Tr3jYppG7urN8DcNtxmu9HRD5feTcOKFr3O1BSry6FTdNov+sd
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] rpi-gpio: renamed from RPi-GPIO
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,19 +43,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 10:35:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 08 May 2013 11:00:22 -0000
+Content-Type: multipart/alternative; boundary=089e013d0758155e7a04dc32d727
 
-On 7 May 2013 18:57, Trevor Woerner <twoerner@gmail.com> wrote:
-> I've looked through the list of patches and don't seem to find
-> anything that will do what my patch needs to do in order to build
-> qemu-1.2.0 on openSuSE 12.3. Would you consider adding the attached
-> patch for Danny? (normally I'd send it in-line but I'm behind a
-> firewall at the moment that won't allow "git send-email" to succeed,
-> otherwise I could submit it this evening)
+--089e013d0758155e7a04dc32d727
+Content-Type: text/plain; charset=ISO-8859-1
 
-Merged to my danny-next branch, after confirming that this isn't
-needed in Dylan/master as qemu 1.4 has the -lrt linkages declared.
+On Wed, May 8, 2013 at 12:17 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
 
-Ross
+> On 7 May 2013 12:45, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> > Could you please resend it with - M?
+> >
+>
+> Done, still not entirely used to git format-patch and git send-email.
+> Will try putting it in my config as the default.
+>
+> Thank you.
 
+-- 
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
+
+--089e013d0758155e7a04dc32d727
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Wed, May 8, 2013 at 12:17 PM, Paul Barker <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:paul@paulbarker.me.uk" target=3D"_blank">paul@paulbarker.=
+me.uk</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 7 May 2013 12:45, Andre=
+i Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt=
+; wrote:<br>
+
+
+&gt; Could you please resend it with - M?<br>
+&gt;<br>
+<br>
+</div>Done, still not entirely used to git format-patch and git send-email.=
+<br>
+Will try putting it in my config as the default.<br><br></blockquote><div s=
+tyle>Thank you.=A0</div></div><div><br></div>-- <br><div dir=3D"ltr"><div s=
+tyle=3D"text-align:center"></div><div style=3D"text-align:center"><div alig=
+n=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"=
+>
+
+<b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
+n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
+-1"><br></font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.74=
+4.478.414 | =A0f: +40.31.816.28.12</font><br>
+
+</div></div></div>
+</div></div>
+
+--089e013d0758155e7a04dc32d727--
