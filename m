@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2888EE01488
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 06:14:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 765B5E0148E
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 06:14:58 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 08 May 2013 06:14:57 -0700
+	by azsmga101.ch.intel.com with ESMTP; 08 May 2013 06:14:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,634,1363158000"; d="scan'208";a="238515907"
+X-IronPort-AV: E=Sophos;i="4.87,634,1363158000"; d="scan'208";a="238515913"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by AZSMGA002.ch.intel.com with ESMTP; 08 May 2013 06:14:55 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 08 May 2013 06:14:57 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  8 May 2013 15:55:03 +0300
-Message-Id: <1368017704-14781-3-git-send-email-ioanax.grigoropol@intel.com>
+Date: Wed,  8 May 2013 15:55:04 +0300
+Message-Id: <1368017704-14781-4-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368017704-14781-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368017704-14781-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 2/3] Move logic for waiting for RSE initialization to RSEHelper
+Subject: [PATCH 3/3] Move filtering of suitable connections to RSEHelper
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,63 +27,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2013 13:14:57 -0000
+X-List-Received-Date: Wed, 08 May 2013 13:14:58 -0000
 
-- BaseSettingsDialog contains code that ensures that RSE plug-in is initialized before performing any remote actions
-	- this piece of code should be placed in the RSEHelper since it does not have any relevance for the GUI class
-	- created method in RSEHelper called waitForRSEInitCompletition with this functionality
-	- replaced code in BaseSettingsDialog with a call to waitForRSEInitCompletition
-
+- BaseSettingDialog performs an extra filtering for suitable connections for a given host by checking the remote system type
+	- this checking should be done in RSEHelper since it involves a remote action and thus removing BaseSettingDialog dependency on RSE Api
+	- modified RSEHelper.getSuitableConnections to include the filtering for connections with associated system type disabled
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../src/org/yocto/sdk/remotetools/RSEHelper.java   |    9 +++++++++
- .../sdk/remotetools/actions/BaseSettingDialog.java |    8 +-------
- 2 files changed, 10 insertions(+), 7 deletions(-)
+ .../src/org/yocto/sdk/remotetools/RSEHelper.java   |    4 ++++
+ .../sdk/remotetools/actions/BaseSettingDialog.java |   10 +++-------
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-index bf48464..d1a505d 100644
+index d1a505d..8d0612a 100644
 --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
 +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-@@ -403,4 +403,13 @@ public class RSEHelper {
- 			return true;
- 		return false;
- 	}
-+
-+	public static void waitForRSEInitCompletition() {
-+		if (!RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL))
-+			try {
-+				RSECorePlugin.waitForInitCompletion(RSECorePlugin.INIT_MODEL);
-+			} catch (InterruptedException e) {
-+				return;
+@@ -150,6 +150,10 @@ public class RSEHelper {
+ 			if(!terminalConnections.contains(fileConnection) && !shellConnections.contains(fileConnection)){
+ 				iter.remove();
+ 			}
++			IRSESystemType sysType = fileConnection.getSystemType();
++			if (sysType != null && sysType.isEnabled()) {
++				iter.remove();
 +			}
-+	}
- }
+ 		}
+ 		
+ 		return (IHost[]) filConnections.toArray(new IHost[filConnections.size()]);
 diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-index 5c76bf9..06eeb00 100644
+index 06eeb00..962a20a 100644
 --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
 +++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-@@ -27,7 +27,6 @@ import org.yocto.sdk.remotetools.RSEHelper;
+@@ -26,7 +26,6 @@ import org.yocto.sdk.remotetools.SWTFactory;
+ import org.yocto.sdk.remotetools.RSEHelper;
  import org.eclipse.jface.dialogs.Dialog;
  import org.eclipse.jface.dialogs.IDialogConstants;
- import org.eclipse.rse.core.IRSESystemType;
--import org.eclipse.rse.core.RSECorePlugin;
+-import org.eclipse.rse.core.IRSESystemType;
  import org.eclipse.rse.core.model.IHost;
  import org.eclipse.rse.ui.actions.SystemNewConnectionAction;
  import org.eclipse.swt.SWT;
-@@ -181,12 +180,7 @@ public class BaseSettingDialog extends Dialog {
- 	
- 	protected void updateConnectionPulldown() {
- 		int index=-1;
--		if (!RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL))
--			try {
--				RSECorePlugin.waitForInitCompletion(RSECorePlugin.INIT_MODEL);
--			} catch (InterruptedException e) {
--				return;
--			}
-+		RSEHelper.waitForRSEInitCompletition();
- 		// already initialized
+@@ -185,12 +184,9 @@ public class BaseSettingDialog extends Dialog {
  		connectionCombo.removeAll();
  		IHost[] connections = RSEHelper.getSuitableConnections();
+ 		for (int i = 0; i < connections.length; i++) {
+-			IRSESystemType sysType = connections[i].getSystemType();
+-			if (sysType != null && sysType.isEnabled()) {
+-				connectionCombo.add(connections[i].getAliasName());
+-				if(connections[i].getAliasName().equals(curConn))
+-					index=i;
+-			}
++			connectionCombo.add(connections[i].getAliasName());
++			if(connections[i].getAliasName().equals(curConn))
++				index=i;
+ 		}
+ 		
+ 		if(index>=0) {
 -- 
 1.7.9.5
 
