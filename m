@@ -1,21 +1,19 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDA37E014A5
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:13:51 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 588E9E014B4
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:13:52 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
 	by azsmga102.ch.intel.com with ESMTP; 09 May 2013 01:13:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="239011855"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="239011813"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 01:13:29 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 01:13:22 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:53:24 +0300
-Message-Id: <1368086011-24931-6-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:53:19 +0300
+Message-Id: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
-References: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 05/12] Initial commit for separate remote utilities plugin
+Subject: [PATCH 00/12] Refactor Remote tools plugin & create Remote Utils separate plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,174 +27,65 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 09 May 2013 08:13:52 -0000
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- plugins/org.yocto.remote.utils/.classpath          |    7 +++
- plugins/org.yocto.remote.utils/.project            |   28 +++++++++
- .../.settings/org.eclipse.jdt.core.prefs           |    7 +++
- .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   10 ++++
- plugins/org.yocto.remote.utils/build.properties    |    4 ++
- .../src/org/yocto/remote/utils/Activator.java      |   60 ++++++++++++++++++++
- 6 files changed, 116 insertions(+)
+- some more refactoring for the org.yocto.sdk.remotetools 
+- create & populate org.yocto.remote.utils 
+
+
+Ioana Grigoropol (12):
+  Separate remote logic from GUI login in TerminalHandler
+    implementation
+  Move remote system type checkings from GUI Dialogs and to RSEHelper
+  Move logic for waiting for RSE initialization to RSEHelper
+  Move filtering of suitable connections to RSEHelper
+  Initial commit for separate remote utilities plugin
+  Move RSEHelper to a separate plugin
+  Move RemoteShellExec to separate plugin
+  Move ShellSession to org.yocto.remote.utils separate plugin
+  Move CommonHelper to org.yocto.remote.utils separate plugin
+  Move TerminalHandler to org.yocto.remote.utils
+  Remove unused TCFTerminalConnectors
+  Remove all plugin dependencies to RSE APi from remote tools plugin
+
+ plugins/org.yocto.remote.utils/.classpath          |    7 +
+ plugins/org.yocto.remote.utils/.project            |   28 +++
+ .../.settings/org.eclipse.jdt.core.prefs           |    7 +
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   27 +++
+ plugins/org.yocto.remote.utils/build.properties    |    4 +
+ .../src/org/yocto/remote/utils/Activator.java      |   62 +++++++
+ .../src/org/yocto/remote/utils}/CommonHelper.java  |   20 ++-
+ .../src/org/yocto/remote/utils/Messages.java       |   35 ++++
+ .../src/org/yocto/remote/utils}/RSEHelper.java     |  178 +++++++-------------
+ .../org/yocto/remote/utils}/RemoteShellExec.java   |   95 +++++------
+ .../src/org/yocto/remote/utils}/ShellSession.java  |   68 +++-----
+ .../org/yocto/remote/utils}/TerminalHandler.java   |  121 +++++--------
+ .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |   13 +-
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |    4 +-
+ .../sdk/remotetools/actions/BaseSettingDialog.java |   29 +---
+ .../sdk/remotetools/actions/DialogHandler.java     |   42 +++++
+ .../sdk/remotetools/actions/LatencytopHandler.java |    2 +-
+ .../sdk/remotetools/actions/OprofileModel.java     |    2 +-
+ .../yocto/sdk/remotetools/actions/PerfHandler.java |    2 +-
+ .../sdk/remotetools/actions/SystemtapModel.java    |    2 +-
+ .../actions/SystemtapSettingDialog.java            |    2 +-
+ .../remotetools/views/TCFTerminalConnector.java    |   49 ------
+ .../views/TCFTerminalConnectorImpl.java            |   98 -----------
+ 23 files changed, 416 insertions(+), 481 deletions(-)
  create mode 100644 plugins/org.yocto.remote.utils/.classpath
  create mode 100644 plugins/org.yocto.remote.utils/.project
  create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
  create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
  create mode 100644 plugins/org.yocto.remote.utils/build.properties
  create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/CommonHelper.java (77%)
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Messages.java
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/RSEHelper.java (77%)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote => org.yocto.remote.utils/src/org/yocto/remote/utils}/RemoteShellExec.java (69%)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/ShellSession.java (95%)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions => org.yocto.remote.utils/src/org/yocto/remote/utils}/TerminalHandler.java (55%)
+ create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
 
-diff --git a/plugins/org.yocto.remote.utils/.classpath b/plugins/org.yocto.remote.utils/.classpath
-new file mode 100644
-index 0000000..098194c
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/.classpath
-@@ -0,0 +1,7 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+<classpath>
-+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-+	<classpathentry kind="src" path="src"/>
-+	<classpathentry kind="output" path="bin"/>
-+</classpath>
-diff --git a/plugins/org.yocto.remote.utils/.project b/plugins/org.yocto.remote.utils/.project
-new file mode 100644
-index 0000000..29a2a5a
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/.project
-@@ -0,0 +1,28 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+<projectDescription>
-+	<name>org.yocto.remote.utils</name>
-+	<comment></comment>
-+	<projects>
-+	</projects>
-+	<buildSpec>
-+		<buildCommand>
-+			<name>org.eclipse.jdt.core.javabuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+		<buildCommand>
-+			<name>org.eclipse.pde.ManifestBuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+		<buildCommand>
-+			<name>org.eclipse.pde.SchemaBuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+	</buildSpec>
-+	<natures>
-+		<nature>org.eclipse.pde.PluginNature</nature>
-+		<nature>org.eclipse.jdt.core.javanature</nature>
-+	</natures>
-+</projectDescription>
-diff --git a/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs b/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
-new file mode 100644
-index 0000000..f42de36
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
-@@ -0,0 +1,7 @@
-+eclipse.preferences.version=1
-+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
-+org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
-+org.eclipse.jdt.core.compiler.compliance=1.7
-+org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
-+org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
-+org.eclipse.jdt.core.compiler.source=1.7
-diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-new file mode 100644
-index 0000000..eff0356
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-@@ -0,0 +1,10 @@
-+Manifest-Version: 1.0
-+Bundle-ManifestVersion: 2
-+Bundle-Name: Utils
-+Bundle-SymbolicName: org.yocto.remote.utils
-+Bundle-Version: 1.0.0.qualifier
-+Bundle-Activator: org.yocto.remote.utils.Activator
-+Require-Bundle: org.eclipse.ui,
-+ org.eclipse.core.runtime
-+Bundle-ActivationPolicy: lazy
-+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-diff --git a/plugins/org.yocto.remote.utils/build.properties b/plugins/org.yocto.remote.utils/build.properties
-new file mode 100644
-index 0000000..34d2e4d
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/build.properties
-@@ -0,0 +1,4 @@
-+source.. = src/
-+output.. = bin/
-+bin.includes = META-INF/,\
-+               .
-diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
-new file mode 100644
-index 0000000..047d900
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
-@@ -0,0 +1,60 @@
-+/*******************************************************************************
-+ * Copyright (c) 2013 Intel Corporation.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * Intel - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.remote.utils;
-+
-+import org.eclipse.ui.plugin.AbstractUIPlugin;
-+import org.osgi.framework.BundleContext;
-+
-+/**
-+ * The activator class controls the plug-in life cycle
-+ */
-+public class Activator extends AbstractUIPlugin {
-+
-+	// The plug-in ID
-+	public static final String PLUGIN_ID = "org.yocto.remote.utils"; //$NON-NLS-1$
-+
-+	// The shared instance
-+	private static Activator plugin;
-+	
-+	/**
-+	 * The constructor
-+	 */
-+	public Activator() {
-+	}
-+
-+	/*
-+	 * (non-Javadoc)
-+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-+	 */
-+	public void start(BundleContext context) throws Exception {
-+		super.start(context);
-+		plugin = this;
-+	}
-+
-+	/*
-+	 * (non-Javadoc)
-+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-+	 */
-+	public void stop(BundleContext context) throws Exception {
-+		plugin = null;
-+		super.stop(context);
-+	}
-+
-+	/**
-+	 * Returns the shared instance
-+	 *
-+	 * @return the shared instance
-+	 */
-+	public static Activator getDefault() {
-+		return plugin;
-+	}
-+
-+}
 -- 
 1.7.9.5
 
