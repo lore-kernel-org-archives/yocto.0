@@ -1,19 +1,19 @@
 Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E1F9E01480
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 05:26:20 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 09 May 2013 05:26:19 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B520E01480
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 05:32:17 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 09 May 2013 05:32:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,641,1363158000"; d="scan'208";a="310702161"
+X-IronPort-AV: E=Sophos;i="4.87,641,1363158000"; d="scan'208";a="239112214"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by orsmga001.jf.intel.com with ESMTP; 09 May 2013 05:26:17 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 05:32:14 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 15:06:23 +0300
-Message-Id: <1368101183-29416-1-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 15:12:18 +0300
+Message-Id: <1368101538-30068-1-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH v2] Move RSEHelper to a separate plugin
+Subject: [PATCH v3] Move RSEHelper to a separate plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,7 +25,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 12:26:20 -0000
+X-List-Received-Date: Thu, 09 May 2013 12:32:17 -0000
 
 - move RSEHelper to newly created separate plugin org.yocto.remote.utils
 - clean-up RSEHelper code by removing all unused methods
@@ -35,26 +35,24 @@ X-List-Received-Date: Thu, 09 May 2013 12:26:20 -0000
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   10 +
- .../org.yocto.remote.utils/resources/ust_tar.sh    |   19 +
- .../org.yocto.remote.utils/resources/yocto_tool.sh |  125 ++++++
- .../org.yocto.remote.utils/resources/yocto_ust.sh  |   35 ++
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   10 ++
+ .../org.yocto.remote.utils/resources/ust_tar.sh    |   19 +++
+ .../org.yocto.remote.utils/resources/yocto_tool.sh |  125 +++++++++++++++
+ .../org.yocto.remote.utils/resources/yocto_ust.sh  |   35 +++++
  .../src/org/yocto/remote/utils/Activator.java      |    4 +-
- .../src/org/yocto/remote/utils/Messages.java       |   35 ++
- .../src/org/yocto/remote/utils/RSEHelper.java      |  344 ++++++++++++++++
+ .../src/org/yocto/remote/utils/Messages.java       |   35 +++++
+ .../src/org/yocto/remote/utils}/RSEHelper.java     |  163 ++++++--------------
  .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |    3 +-
- .../src/org/yocto/sdk/remotetools/RSEHelper.java   |  419 --------------------
  .../yocto/sdk/remotetools/actions/BaseModel.java   |    2 +-
  .../sdk/remotetools/actions/BaseSettingDialog.java |    2 +-
  .../sdk/remotetools/actions/TerminalHandler.java   |    2 +-
  .../sdk/remotetools/remote/RemoteShellExec.java    |    2 +-
- 13 files changed, 577 insertions(+), 425 deletions(-)
+ 12 files changed, 277 insertions(+), 125 deletions(-)
  create mode 100755 plugins/org.yocto.remote.utils/resources/ust_tar.sh
  create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_tool.sh
  create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_ust.sh
  create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Messages.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RSEHelper.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/RSEHelper.java (78%)
 
 diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
 index eff0356..9616484 100644
@@ -341,436 +339,74 @@ index 0000000..fc696d6
 +	private Messages() {
 +	}
 +}
-diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RSEHelper.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RSEHelper.java
-new file mode 100644
-index 0000000..201c944
---- /dev/null
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RSEHelper.java
+similarity index 78%
+rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
+rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RSEHelper.java
+index 569b00d..201c944 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
 +++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RSEHelper.java
-@@ -0,0 +1,344 @@
-+/********************************************************************************
+@@ -1,5 +1,5 @@
+ /********************************************************************************
+- * Copyright (c) 2009, 2010 MontaVista Software, Inc and Others.
 + * Copyright (c) 2013 MontaVista Software, Inc and Others.
-+ * This program and the accompanying materials are made available under the terms
-+ * of the Eclipse Public License v1.0 which accompanies this distribution, and is
-+ * available at http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * Anna Dushistova (MontaVista) - initial API and implementation
-+ * Lianhao Lu (Intel)			- Modified to add other file operations.
+  * This program and the accompanying materials are made available under the terms
+  * of the Eclipse Public License v1.0 which accompanies this distribution, and is
+  * available at http://www.eclipse.org/legal/epl-v10.html
+@@ -7,8 +7,9 @@
+  * Contributors:
+  * Anna Dushistova (MontaVista) - initial API and implementation
+  * Lianhao Lu (Intel)			- Modified to add other file operations.
 + * Ioana Grigoropol (Intel)     - Separated remote functionality
-+ ********************************************************************************/
+  ********************************************************************************/
+-package org.yocto.sdk.remotetools;
 +package org.yocto.remote.utils;
-+
-+import java.io.BufferedInputStream;
-+import java.io.BufferedOutputStream;
-+import java.io.File;
-+import java.io.FileOutputStream;
-+import java.io.InputStream;
-+import java.util.ArrayList;
-+import java.util.Arrays;
-+import java.util.Iterator;
-+
-+import org.eclipse.core.runtime.CoreException;
+ 
+ import java.io.BufferedInputStream;
+ import java.io.BufferedOutputStream;
+@@ -20,32 +21,34 @@ import java.util.Arrays;
+ import java.util.Iterator;
+ 
+ import org.eclipse.core.runtime.CoreException;
 +import org.eclipse.core.runtime.FileLocator;
 +import org.eclipse.core.runtime.IProgressMonitor;
-+import org.eclipse.core.runtime.IStatus;
-+import org.eclipse.core.runtime.MultiStatus;
-+import org.eclipse.core.runtime.OperationCanceledException;
-+import org.eclipse.core.runtime.Path;
-+import org.eclipse.core.runtime.Status;
-+import org.eclipse.core.runtime.SubProgressMonitor;
-+import org.eclipse.osgi.util.NLS;
-+import org.eclipse.rse.core.IRSECoreStatusCodes;
+ import org.eclipse.core.runtime.IStatus;
+ import org.eclipse.core.runtime.MultiStatus;
+ import org.eclipse.core.runtime.OperationCanceledException;
+-import org.eclipse.core.runtime.IProgressMonitor;
+ import org.eclipse.core.runtime.Path;
+ import org.eclipse.core.runtime.Status;
+ import org.eclipse.core.runtime.SubProgressMonitor;
+-import org.eclipse.core.runtime.FileLocator;
+ import org.eclipse.osgi.util.NLS;
+ import org.eclipse.rse.core.IRSECoreStatusCodes;
 +import org.eclipse.rse.core.IRSESystemType;
-+import org.eclipse.rse.core.RSECorePlugin;
-+import org.eclipse.rse.core.model.IHost;
-+import org.eclipse.rse.core.model.ISubSystemConfigurationCategories;
-+import org.eclipse.rse.core.model.ISystemRegistry;
-+import org.eclipse.rse.core.subsystems.ISubSystem;
-+import org.eclipse.rse.services.IService;
-+import org.eclipse.rse.services.files.IFileService;
-+import org.eclipse.rse.services.shells.HostShellProcessAdapter;
-+import org.eclipse.rse.services.shells.IHostShell;
-+import org.eclipse.rse.services.shells.IShellService;
-+import org.eclipse.rse.subsystems.files.core.servicesubsystem.IFileServiceSubSystem;
+ import org.eclipse.rse.core.RSECorePlugin;
+ import org.eclipse.rse.core.model.IHost;
+ import org.eclipse.rse.core.model.ISubSystemConfigurationCategories;
+ import org.eclipse.rse.core.model.ISystemRegistry;
+ import org.eclipse.rse.core.subsystems.ISubSystem;
+-import org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem.IShellServiceSubSystem;
+ import org.eclipse.rse.services.IService;
+ import org.eclipse.rse.services.files.IFileService;
+ import org.eclipse.rse.services.shells.HostShellProcessAdapter;
+ import org.eclipse.rse.services.shells.IHostShell;
+ import org.eclipse.rse.services.shells.IShellService;
+ import org.eclipse.rse.subsystems.files.core.servicesubsystem.IFileServiceSubSystem;
 +import org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem.IShellServiceSubSystem;
-+import org.eclipse.rse.subsystems.terminals.core.ITerminalServiceSubSystem;
-+
-+public class RSEHelper {
+ import org.eclipse.rse.subsystems.terminals.core.ITerminalServiceSubSystem;
+-import org.eclipse.rse.core.IRSESystemType;
+ 
+ public class RSEHelper {
 +	private final static String EXIT_CMD = "exit"; //$NON-NLS-1$
 +	private final static String CMD_DELIMITER = ";"; //$NON-NLS-1$
-+	
-+	public static IHost getRemoteConnectionByName(String remoteConnection) {
-+		if (remoteConnection == null)
-+			return null;
-+		IHost[] connections = RSECorePlugin.getTheSystemRegistry().getHosts();
-+		for (int i = 0; i < connections.length; i++)
-+			if (connections[i].getAliasName().equals(remoteConnection))
-+				return connections[i];
-+		return null; // TODO Connection is not found in the list--need to react
-+		// somehow, throw the exception?
-+
-+	}
-+
-+	public static IService getConnectedRemoteFileService(
-+			IHost currentConnection, IProgressMonitor monitor) throws Exception {
-+		final ISubSystem subsystem = getFileSubsystem(currentConnection);
-+
-+		if (subsystem == null)
-+			throw new Exception(Messages.ErrorNoSubsystem);
-+
-+		try {
-+			subsystem.connect(monitor, false);
-+		} catch (CoreException e) {
-+			throw e;
-+		} catch (OperationCanceledException e) {
-+			throw new CoreException(Status.CANCEL_STATUS);
-+		}
-+
-+		if (!subsystem.isConnected())
-+			throw new Exception(Messages.ErrorConnectSubsystem);
-+
-+		return ((IFileServiceSubSystem) subsystem).getFileService();
-+	}
-+
-+	public static ISubSystem getFileSubsystem(IHost host) {
-+		if (host == null)
-+			return null;
-+		ISubSystem[] subSystems = host.getSubSystems();
-+		for (int i = 0; i < subSystems.length; i++) {
-+			if (subSystems[i] instanceof IFileServiceSubSystem)
-+				return subSystems[i];
-+		}
-+		return null;
-+	}
-+
-+	public static IService getConnectedShellService(
-+			IHost currentConnection, IProgressMonitor monitor) throws Exception {
-+		final ISubSystem subsystem = getShellSubsystem(currentConnection);
-+
-+		if (subsystem == null)
-+			throw new Exception(Messages.ErrorNoSubsystem);
-+
-+		try {
-+			subsystem.connect(monitor, false);
-+		} catch (CoreException e) {
-+			throw e;
-+		} catch (OperationCanceledException e) {
-+			throw new CoreException(Status.CANCEL_STATUS);
-+		}
-+
-+		if (!subsystem.isConnected())
-+			throw new Exception(Messages.ErrorConnectSubsystem);
-+
-+		return ((IShellServiceSubSystem) subsystem).getShellService();
-+	}
-+
-+	public static ISubSystem getShellSubsystem(IHost host) {
-+		if (host == null)
-+			return null;
-+		ISubSystem[] subSystems = host.getSubSystems();
-+		for (int i = 0; i < subSystems.length; i++) {
-+			if (subSystems[i] instanceof IShellServiceSubSystem)
-+				return subSystems[i];
-+		}
-+		return null;
-+	}
-+
-+	public static IHost[] getSuitableConnections() {
-+
-+		//we only get RSE connections with files&cmds subsystem
-+		ArrayList <IHost> filConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
-+				.getHostsBySubSystemConfigurationCategory(ISubSystemConfigurationCategories.SUBSYSTEM_CATEGORY_FILES))); //$NON-NLS-1$
-+
-+		ArrayList <IHost> terminalConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
-+				.getHostsBySubSystemConfigurationCategory("terminal")));//$NON-NLS-1$
-+
-+		ArrayList <IHost> shellConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
-+				.getHostsBySubSystemConfigurationCategory("shells"))); //$NON-NLS-1$
-+
-+		Iterator <IHost>iter = filConnections.iterator();
-+		while(iter.hasNext()){
-+			IHost fileConnection = iter.next();
-+			if(!terminalConnections.contains(fileConnection) && !shellConnections.contains(fileConnection)){
-+				iter.remove();
-+			}
-+			IRSESystemType sysType = fileConnection.getSystemType();
-+			if (sysType == null || !sysType.isEnabled()) {
-+				iter.remove();
-+			}
-+		}
-+
-+		return filConnections.toArray(new IHost[filConnections.size()]);
-+	}
-+
-+	public static void putRemoteFileInPlugin(IHost connection, String locaPathInPlugin, String remoteExePath,
-+			IProgressMonitor monitor) throws Exception {
-+
-+		assert(connection != null);
-+		monitor.beginTask(Messages.InfoUpload, 100);
-+
-+		IFileService fileService;
-+		try {
-+			fileService = (IFileService) getConnectedRemoteFileService(
-+							connection,
-+							new SubProgressMonitor(monitor, 5));
-+			InputStream  inputStream = FileLocator.openStream(
-+				    Activator.getDefault().getBundle(), new Path(locaPathInPlugin), false);
-+			Path remotePath = new Path(remoteExePath);
-+
-+			//TODO workaround for now
-+			//in case the underlying scp file service doesn't support inputStream upload
-+			BufferedInputStream bis = new BufferedInputStream(inputStream);
-+			File tempFile = File.createTempFile("scp", "temp"); //$NON-NLS-1$ //$NON-NLS-2$
-+			FileOutputStream os = new FileOutputStream(tempFile);
-+			BufferedOutputStream bos = new BufferedOutputStream(os);
-+			byte[] buffer = new byte[1024];
-+			int readCount;
-+			while( (readCount = bis.read(buffer)) > 0)
-+			{
-+				bos.write(buffer, 0, readCount);
-+			}
-+			bos.close();
-+			fileService.upload(tempFile, remotePath.removeLastSegments(1)
-+					.toString(), remotePath.lastSegment(), true, null, null,
-+					new SubProgressMonitor(monitor, 80));
-+			// Need to change the permissions to match the original file
-+			// permissions because of a bug in upload
-+			remoteShellExec(
-+					connection,
-+					"", "chmod", "+x " + spaceEscapify(remotePath.toString()), new SubProgressMonitor(monitor, 5)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-+
-+		} finally {
-+			monitor.done();
-+		}
-+		return;
-+	}
-+
-+	public static void getRemoteFile(IHost connection, String localExePath, String remoteExePath,
-+			IProgressMonitor monitor) throws Exception {
-+
-+		assert(connection!=null);
-+		monitor.beginTask(Messages.InfoDownload, 100);
-+
-+		IFileService fileService;
-+		try {
-+			fileService = (IFileService) getConnectedRemoteFileService(
-+							connection,
-+							new SubProgressMonitor(monitor, 10));
-+			File file = new File(localExePath);
-+			file.deleteOnExit();
-+			monitor.worked(5);
-+			Path remotePath = new Path(remoteExePath);
-+			fileService.download(remotePath.removeLastSegments(1).toString(),
-+					remotePath.lastSegment(),file,true, null,
-+					new SubProgressMonitor(monitor, 85));
-+			// Need to change the permissions to match the original file
-+			// permissions because of a bug in upload
-+			//RemoteApplication p = remoteShellExec(
-+			//		config,
-+			//		"", "chmod", "+x " + spaceEscapify(remotePath.toString()), new SubProgressMonitor(monitor, 5)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-+			//Thread.sleep(500);
-+			//p.destroy();
-+
-+		} finally {
-+			monitor.done();
-+		}
-+		return;
-+	}
-+
-+	public static ITerminalServiceSubSystem getTerminalSubSystem(
-+            IHost connection) {
-+        ISystemRegistry systemRegistry = RSECorePlugin.getTheSystemRegistry();
-+        ISubSystem[] subsystems = systemRegistry.getSubSystems(connection);
-+        for (int i = 0; i < subsystems.length; i++) {
-+        	if (subsystems[i] instanceof ITerminalServiceSubSystem) {
-+                ITerminalServiceSubSystem subSystem = (ITerminalServiceSubSystem) subsystems[i];
-+                return subSystem;
-+            }
-+        }
-+        return null;
-+    }
-+
-+	public static String spaceEscapify(String inputString) {
-+		if (inputString == null)
-+			return null;
-+
-+		return inputString.replaceAll(" ", "\\\\ "); //$NON-NLS-1$ //$NON-NLS-2$
-+	}
-+
-+	public static Process remoteShellExec(IHost connection,
-+			String prelaunchCmd, String remoteCommandPath, String arguments,
-+			IProgressMonitor monitor) throws CoreException {
-+
-+		monitor.beginTask(NLS.bind(Messages.RemoteShellExec_1,
-+				remoteCommandPath, arguments), 10);
-+		String realRemoteCommand = arguments == null ? spaceEscapify(remoteCommandPath)
-+				: spaceEscapify(remoteCommandPath) + " " + arguments; //$NON-NLS-1$
-+
-+		String remoteCommand = realRemoteCommand + CMD_DELIMITER + EXIT_CMD;
-+
-+		if(prelaunchCmd != null) {
-+			if (!prelaunchCmd.trim().equals("")) //$NON-NLS-1$
-+				remoteCommand = prelaunchCmd + CMD_DELIMITER + remoteCommand;
-+		}
-+
-+		IShellService shellService;
-+		Process p = null;
-+		try {
-+			shellService = (IShellService) getConnectedShellService(
-+							connection,
-+							new SubProgressMonitor(monitor, 7));
-+
-+			// This is necessary because runCommand does not actually run the
-+			// command right now.
-+			String env[] = new String[0];
-+			try {
-+				IHostShell hostShell = shellService.launchShell(
-+						"", env, new SubProgressMonitor(monitor, 3)); //$NON-NLS-1$
-+				hostShell.writeToShell(remoteCommand);
-+				p = new HostShellProcessAdapter(hostShell);
-+			} catch (Exception e) {
-+				if (p != null) {
-+					p.destroy();
-+				}
-+				abort(Messages.RemoteShellExec_2, e,
-+						IRSECoreStatusCodes.EXCEPTION_OCCURRED);
-+			}
-+		} catch (Exception e1) {
-+			abort(e1.getMessage(), e1,
-+					IRSECoreStatusCodes.EXCEPTION_OCCURRED);
-+		}
-+
-+		monitor.done();
-+		return p;
-+	}
-+
-+	/**
-+	 * Throws a core exception with an error status object built from the given
-+	 * message, lower level exception, and error code.
-+	 *
-+	 * @param message
-+	 *            the status message
-+	 * @param exception
-+	 *            lower level exception associated with the error, or
-+	 *            <code>null</code> if none
-+	 * @param code
-+	 *            error code
-+	 */
-+	public static void abort(String message, Throwable exception, int code) throws CoreException {
-+		IStatus status;
-+		if (exception != null) {
-+			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, code, message, exception);
-+			multiStatus.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, code, exception.getLocalizedMessage(), exception));
-+			status = multiStatus;
-+		} else {
-+			status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, code, message, null);
-+		}
-+		throw new CoreException(status);
-+	}
-+	/**
-+	 * Checks whether a IHost associated system's is enabled and not a local one
-+	 * @param host
-+	 * @return
-+	 */
-+	public static boolean isHostViable(IHost host) {
-+		IRSESystemType sysType = host.getSystemType();
-+		if (sysType != null && sysType.isEnabled() && !sysType.isLocal())
-+			return true;
-+		return false;
-+	}
-+
-+	/**
-+	 * Ensures that RSECorePlugin is initialized before performing any actions
-+	 */
-+	public static void waitForRSEInitCompletition() {
-+		if (!RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL))
-+			try {
-+				RSECorePlugin.waitForInitCompletion(RSECorePlugin.INIT_MODEL);
-+			} catch (InterruptedException e) {
-+				return;
-+			}
-+	}
-+}
-diff --git a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
-index d10a56e..c34ad9e 100644
---- a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
-@@ -24,7 +24,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
- Import-Package: org.eclipse.core.resources,
-  org.eclipse.debug.internal.ui,
-  org.eclipse.rse.shells.ui,
-- org.eclipse.ui.forms.widgets
-+ org.eclipse.ui.forms.widgets,
-+ org.yocto.remote.utils
- Bundle-Vendor: %Bundle-Vendor
- Bundle-ClassPath: lib/json-simple-1.1.1.jar,
-  .
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-deleted file mode 100644
-index 569b00d..0000000
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-+++ /dev/null
-@@ -1,419 +0,0 @@
--/********************************************************************************
-- * Copyright (c) 2009, 2010 MontaVista Software, Inc and Others.
-- * This program and the accompanying materials are made available under the terms
-- * of the Eclipse Public License v1.0 which accompanies this distribution, and is
-- * available at http://www.eclipse.org/legal/epl-v10.html
-- *
-- * Contributors:
-- * Anna Dushistova (MontaVista) - initial API and implementation
-- * Lianhao Lu (Intel)			- Modified to add other file operations.
-- ********************************************************************************/
--package org.yocto.sdk.remotetools;
--
--import java.io.BufferedInputStream;
--import java.io.BufferedOutputStream;
--import java.io.File;
--import java.io.FileOutputStream;
--import java.io.InputStream;
--import java.util.ArrayList;
--import java.util.Arrays;
--import java.util.Iterator;
--
--import org.eclipse.core.runtime.CoreException;
--import org.eclipse.core.runtime.IStatus;
--import org.eclipse.core.runtime.MultiStatus;
--import org.eclipse.core.runtime.OperationCanceledException;
--import org.eclipse.core.runtime.IProgressMonitor;
--import org.eclipse.core.runtime.Path;
--import org.eclipse.core.runtime.Status;
--import org.eclipse.core.runtime.SubProgressMonitor;
--import org.eclipse.core.runtime.FileLocator;
--import org.eclipse.osgi.util.NLS;
--import org.eclipse.rse.core.IRSECoreStatusCodes;
--import org.eclipse.rse.core.RSECorePlugin;
--import org.eclipse.rse.core.model.IHost;
--import org.eclipse.rse.core.model.ISubSystemConfigurationCategories;
--import org.eclipse.rse.core.model.ISystemRegistry;
--import org.eclipse.rse.core.subsystems.ISubSystem;
--import org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem.IShellServiceSubSystem;
--import org.eclipse.rse.services.IService;
--import org.eclipse.rse.services.files.IFileService;
--import org.eclipse.rse.services.shells.HostShellProcessAdapter;
--import org.eclipse.rse.services.shells.IHostShell;
--import org.eclipse.rse.services.shells.IShellService;
--import org.eclipse.rse.subsystems.files.core.servicesubsystem.IFileServiceSubSystem;
--import org.eclipse.rse.subsystems.terminals.core.ITerminalServiceSubSystem;
--import org.eclipse.rse.core.IRSESystemType;
--
--public class RSEHelper {
--	
--	public static IHost getRemoteConnectionByName(String remoteConnection) {
--		if (remoteConnection == null)
--			return null;
--		IHost[] connections = RSECorePlugin.getTheSystemRegistry().getHosts();
--		for (int i = 0; i < connections.length; i++)
--			if (connections[i].getAliasName().equals(remoteConnection))
--				return connections[i];
--		return null; // TODO Connection is not found in the list--need to react
--		// somehow, throw the exception?
--
--	}
+ 	
+ 	public static IHost getRemoteConnectionByName(String remoteConnection) {
+ 		if (remoteConnection == null)
+@@ -58,15 +61,6 @@ public class RSEHelper {
+ 		// somehow, throw the exception?
+ 
+ 	}
 -	
 -	public static String getRemoteHostName(String remoteConnection)
 -	{
@@ -780,94 +416,51 @@ index 569b00d..0000000
 -		else
 -			return host.getHostName();
 -	}
--
--	public static IService getConnectedRemoteFileService(
--			IHost currentConnection, IProgressMonitor monitor) throws Exception {
--		final ISubSystem subsystem = getFileSubsystem(currentConnection);
--
--		if (subsystem == null)
--			throw new Exception(Messages.ErrorNoSubsystem);
--
--		try {
--			subsystem.connect(monitor, false);
--		} catch (CoreException e) {
--			throw e;
--		} catch (OperationCanceledException e) {
--			throw new CoreException(Status.CANCEL_STATUS);
--		}
--
--		if (!subsystem.isConnected())
--			throw new Exception(Messages.ErrorConnectSubsystem);
--
--		return ((IFileServiceSubSystem) subsystem).getFileService();
--	}
--
--	public static ISubSystem getFileSubsystem(IHost host) {
--		if (host == null)
--			return null;
--		ISubSystem[] subSystems = host.getSubSystems();
--		for (int i = 0; i < subSystems.length; i++) {
--			if (subSystems[i] instanceof IFileServiceSubSystem)
--				return subSystems[i];
--		}
--		return null;
--	}
+ 
+ 	public static IService getConnectedRemoteFileService(
+ 			IHost currentConnection, IProgressMonitor monitor) throws Exception {
+@@ -99,7 +93,7 @@ public class RSEHelper {
+ 		}
+ 		return null;
+ 	}
 -	
--	public static IService getConnectedShellService(
--			IHost currentConnection, IProgressMonitor monitor) throws Exception {
--		final ISubSystem subsystem = getShellSubsystem(currentConnection);
--
--		if (subsystem == null)
--			throw new Exception(Messages.ErrorNoSubsystem);
--
--		try {
--			subsystem.connect(monitor, false);
--		} catch (CoreException e) {
--			throw e;
--		} catch (OperationCanceledException e) {
--			throw new CoreException(Status.CANCEL_STATUS);
--		}
--
--		if (!subsystem.isConnected())
--			throw new Exception(Messages.ErrorConnectSubsystem);
--
--		return ((IShellServiceSubSystem) subsystem).getShellService();
--	}
++
+ 	public static IService getConnectedShellService(
+ 			IHost currentConnection, IProgressMonitor monitor) throws Exception {
+ 		final ISubSystem subsystem = getShellSubsystem(currentConnection);
+@@ -120,7 +114,7 @@ public class RSEHelper {
+ 
+ 		return ((IShellServiceSubSystem) subsystem).getShellService();
+ 	}
 -	
--	public static ISubSystem getShellSubsystem(IHost host) {
--		if (host == null)
--			return null;
--		ISubSystem[] subSystems = host.getSubSystems();
--		for (int i = 0; i < subSystems.length; i++) {
--			if (subSystems[i] instanceof IShellServiceSubSystem)
--				return subSystems[i];
--		}
--		return null;
--	}
--
--	public static IHost[] getSuitableConnections() {
++
+ 	public static ISubSystem getShellSubsystem(IHost host) {
+ 		if (host == null)
+ 			return null;
+@@ -133,15 +127,15 @@ public class RSEHelper {
+ 	}
+ 
+ 	public static IHost[] getSuitableConnections() {
 -		
--		//we only get RSE connections with files&cmds subsystem
--		ArrayList <IHost> filConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
--				.getHostsBySubSystemConfigurationCategory(ISubSystemConfigurationCategories.SUBSYSTEM_CATEGORY_FILES))); //$NON-NLS-1$
++
+ 		//we only get RSE connections with files&cmds subsystem
+ 		ArrayList <IHost> filConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
+ 				.getHostsBySubSystemConfigurationCategory(ISubSystemConfigurationCategories.SUBSYSTEM_CATEGORY_FILES))); //$NON-NLS-1$
 -		
--		ArrayList <IHost> terminalConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
--				.getHostsBySubSystemConfigurationCategory("terminal")));//$NON-NLS-1$
++
+ 		ArrayList <IHost> terminalConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
+ 				.getHostsBySubSystemConfigurationCategory("terminal")));//$NON-NLS-1$
 -		
 -		ArrayList shellConnections = new ArrayList(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
--				.getHostsBySubSystemConfigurationCategory("shells"))); //$NON-NLS-1$
--
--		Iterator <IHost>iter = filConnections.iterator();
--		while(iter.hasNext()){
--			IHost fileConnection = iter.next();
--			if(!terminalConnections.contains(fileConnection) && !shellConnections.contains(fileConnection)){
--				iter.remove();
--			}
--			IRSESystemType sysType = fileConnection.getSystemType();
--			if (sysType == null || !sysType.isEnabled()) {
--				iter.remove();
--			}
--		}
++
++		ArrayList <IHost> shellConnections = new ArrayList <IHost>(Arrays.asList(RSECorePlugin.getTheSystemRegistry()
+ 				.getHostsBySubSystemConfigurationCategory("shells"))); //$NON-NLS-1$
+ 
+ 		Iterator <IHost>iter = filConnections.iterator();
+@@ -155,79 +149,16 @@ public class RSEHelper {
+ 				iter.remove();
+ 			}
+ 		}
 -		
 -		return (IHost[]) filConnections.toArray(new IHost[filConnections.size()]);
 -	}
@@ -933,22 +526,27 @@ index 569b00d..0000000
 -			monitor.done();
 -		}
 -		return;
--	}
++
++		return filConnections.toArray(new IHost[filConnections.size()]);
+ 	}
 -	
--	public static void putRemoteFileInPlugin(IHost connection, String locaPathInPlugin, String remoteExePath,
--			IProgressMonitor monitor) throws Exception {
++
+ 	public static void putRemoteFileInPlugin(IHost connection, String locaPathInPlugin, String remoteExePath,
+ 			IProgressMonitor monitor) throws Exception {
 -		
 -		assert(connection!=null);
--		monitor.beginTask(Messages.InfoUpload, 100);
++
++		assert(connection != null);
+ 		monitor.beginTask(Messages.InfoUpload, 100);
 -		
--		IFileService fileService;
--		try {
--			fileService = (IFileService) getConnectedRemoteFileService(
--							connection,
--							new SubProgressMonitor(monitor, 5));
--			InputStream  inputStream = FileLocator.openStream(
--				    Activator.getDefault().getBundle(), new Path(locaPathInPlugin), false);
--			Path remotePath = new Path(remoteExePath);
++
+ 		IFileService fileService;
+ 		try {
+ 			fileService = (IFileService) getConnectedRemoteFileService(
+@@ -236,17 +167,7 @@ public class RSEHelper {
+ 			InputStream  inputStream = FileLocator.openStream(
+ 				    Activator.getDefault().getBundle(), new Path(locaPathInPlugin), false);
+ 			Path remotePath = new Path(remoteExePath);
 -			/*
 -			if(!fileService.getFile(remotePath.removeLastSegments(1).toString(), 
 -					remotePath.lastSegment(), 
@@ -960,176 +558,143 @@ index 569b00d..0000000
 -					.toString(), remotePath.lastSegment(), true, null,
 -					new SubProgressMonitor(monitor, 80));
 -					*/
--			//TODO workaround for now
--			//in case the underlying scp file service doesn't support inputStream upload
--			BufferedInputStream bis = new BufferedInputStream(inputStream);
--			File tempFile = File.createTempFile("scp", "temp"); //$NON-NLS-1$ //$NON-NLS-2$
--			FileOutputStream os = new FileOutputStream(tempFile);
--			BufferedOutputStream bos = new BufferedOutputStream(os);
--			byte[] buffer = new byte[1024];
--			int readCount;
--			while( (readCount = bis.read(buffer)) > 0)
--			{
--				bos.write(buffer, 0, readCount);
--			}
--			bos.close();
--			fileService.upload(tempFile, remotePath.removeLastSegments(1)
--					.toString(), remotePath.lastSegment(), true, null, null,
--					new SubProgressMonitor(monitor, 80));
--			// Need to change the permissions to match the original file
--			// permissions because of a bug in upload
--			remoteShellExec(
--					connection,
--					"", "chmod", "+x " + spaceEscapify(remotePath.toString()), new SubProgressMonitor(monitor, 5)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
++
+ 			//TODO workaround for now
+ 			//in case the underlying scp file service doesn't support inputStream upload
+ 			BufferedInputStream bis = new BufferedInputStream(inputStream);
+@@ -268,19 +189,19 @@ public class RSEHelper {
+ 			remoteShellExec(
+ 					connection,
+ 					"", "chmod", "+x " + spaceEscapify(remotePath.toString()), new SubProgressMonitor(monitor, 5)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 -			
--		} finally {
--			monitor.done();
--		}
--		return;
--	}
++
+ 		} finally {
+ 			monitor.done();
+ 		}
+ 		return;
+ 	}
 -	
--	public static void getRemoteFile(IHost connection, String localExePath, String remoteExePath,
--			IProgressMonitor monitor) throws Exception {
++
+ 	public static void getRemoteFile(IHost connection, String localExePath, String remoteExePath,
+ 			IProgressMonitor monitor) throws Exception {
 -		
--		assert(connection!=null);
--		monitor.beginTask(Messages.InfoDownload, 100);
++
+ 		assert(connection!=null);
+ 		monitor.beginTask(Messages.InfoDownload, 100);
 -		
--		IFileService fileService;
--		try {
--			fileService = (IFileService) getConnectedRemoteFileService(
--							connection,
--							new SubProgressMonitor(monitor, 10));
--			File file = new File(localExePath);
--			file.deleteOnExit();
--			monitor.worked(5);
--			Path remotePath = new Path(remoteExePath);
++
+ 		IFileService fileService;
+ 		try {
+ 			fileService = (IFileService) getConnectedRemoteFileService(
+@@ -290,7 +211,7 @@ public class RSEHelper {
+ 			file.deleteOnExit();
+ 			monitor.worked(5);
+ 			Path remotePath = new Path(remoteExePath);
 -			fileService.download(remotePath.removeLastSegments(1).toString(), 
--					remotePath.lastSegment(),file,true, null,
--					new SubProgressMonitor(monitor, 85));
--			// Need to change the permissions to match the original file
--			// permissions because of a bug in upload
--			//RemoteApplication p = remoteShellExec(
--			//		config,
--			//		"", "chmod", "+x " + spaceEscapify(remotePath.toString()), new SubProgressMonitor(monitor, 5)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
--			//Thread.sleep(500);
--			//p.destroy();
++			fileService.download(remotePath.removeLastSegments(1).toString(),
+ 					remotePath.lastSegment(),file,true, null,
+ 					new SubProgressMonitor(monitor, 85));
+ 			// Need to change the permissions to match the original file
+@@ -300,13 +221,13 @@ public class RSEHelper {
+ 			//		"", "chmod", "+x " + spaceEscapify(remotePath.toString()), new SubProgressMonitor(monitor, 5)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+ 			//Thread.sleep(500);
+ 			//p.destroy();
 -			
--		} finally {
--			monitor.done();
--		}
--		return;
--	}
++
+ 		} finally {
+ 			monitor.done();
+ 		}
+ 		return;
+ 	}
 -	
--	public static ITerminalServiceSubSystem getTerminalSubSystem(
--            IHost connection) {
--        ISystemRegistry systemRegistry = RSECorePlugin.getTheSystemRegistry();
--        ISubSystem[] subsystems = systemRegistry.getSubSystems(connection);
--        for (int i = 0; i < subsystems.length; i++) {
--        	if (subsystems[i] instanceof ITerminalServiceSubSystem) {
--                ITerminalServiceSubSystem subSystem = (ITerminalServiceSubSystem) subsystems[i];
--                return subSystem;
--            }
--        }
--        return null;
--    }
++
+ 	public static ITerminalServiceSubSystem getTerminalSubSystem(
+             IHost connection) {
+         ISystemRegistry systemRegistry = RSECorePlugin.getTheSystemRegistry();
+@@ -319,21 +240,18 @@ public class RSEHelper {
+         }
+         return null;
+     }
 -	
--	public static String spaceEscapify(String inputString) {
--		if (inputString == null)
--			return null;
--
--		return inputString.replaceAll(" ", "\\\\ "); //$NON-NLS-1$ //$NON-NLS-2$
--	}
++
+ 	public static String spaceEscapify(String inputString) {
+ 		if (inputString == null)
+ 			return null;
+ 
+ 		return inputString.replaceAll(" ", "\\\\ "); //$NON-NLS-1$ //$NON-NLS-2$
+ 	}
 -	
 -	private final static String EXIT_CMD = "exit"; //$NON-NLS-1$
 -	private final static String CMD_DELIMITER = ";"; //$NON-NLS-1$
 -	
--	public static Process remoteShellExec(IHost connection,
--			String prelaunchCmd, String remoteCommandPath, String arguments,
--			IProgressMonitor monitor) throws CoreException {
++
+ 	public static Process remoteShellExec(IHost connection,
+ 			String prelaunchCmd, String remoteCommandPath, String arguments,
+ 			IProgressMonitor monitor) throws CoreException {
 -		
--		monitor.beginTask(NLS.bind(Messages.RemoteShellExec_1,
--				remoteCommandPath, arguments), 10);
--		String realRemoteCommand = arguments == null ? spaceEscapify(remoteCommandPath)
--				: spaceEscapify(remoteCommandPath) + " " + arguments; //$NON-NLS-1$
--
--		String remoteCommand = realRemoteCommand + CMD_DELIMITER + EXIT_CMD;
--
--		if(prelaunchCmd != null) {
--			if (!prelaunchCmd.trim().equals("")) //$NON-NLS-1$
--				remoteCommand = prelaunchCmd + CMD_DELIMITER + remoteCommand;
--		}
--
--		IShellService shellService;
--		Process p = null;
--		try {
--			shellService = (IShellService) getConnectedShellService(
--							connection,
--							new SubProgressMonitor(monitor, 7));
--
--			// This is necessary because runCommand does not actually run the
--			// command right now.
--			String env[] = new String[0];
--			try {
--				IHostShell hostShell = shellService.launchShell(
--						"", env, new SubProgressMonitor(monitor, 3)); //$NON-NLS-1$
--				hostShell.writeToShell(remoteCommand);
--				p = new HostShellProcessAdapter(hostShell);
--			} catch (Exception e) {
--				if (p != null) {
--					p.destroy();
--				}
--				abort(Messages.RemoteShellExec_2, e,
--						IRSECoreStatusCodes.EXCEPTION_OCCURRED);
--			}
--		} catch (Exception e1) {
--			abort(e1.getMessage(), e1,
--					IRSECoreStatusCodes.EXCEPTION_OCCURRED);
--		}
--
--		monitor.done();
--		return p;
--	}
++
+ 		monitor.beginTask(NLS.bind(Messages.RemoteShellExec_1,
+ 				remoteCommandPath, arguments), 10);
+ 		String realRemoteCommand = arguments == null ? spaceEscapify(remoteCommandPath)
+@@ -376,11 +294,11 @@ public class RSEHelper {
+ 		monitor.done();
+ 		return p;
+ 	}
 -	
--	/**
--	 * Throws a core exception with an error status object built from the given
--	 * message, lower level exception, and error code.
++
+ 	/**
+ 	 * Throws a core exception with an error status object built from the given
+ 	 * message, lower level exception, and error code.
 -	 * 
--	 * @param message
--	 *            the status message
--	 * @param exception
--	 *            lower level exception associated with the error, or
--	 *            <code>null</code> if none
--	 * @param code
--	 *            error code
--	 */
--	public static void abort(String message, Throwable exception, int code) throws CoreException {
--		IStatus status;
--		if (exception != null) {
--			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, code, message, exception);
--			multiStatus.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, code, exception.getLocalizedMessage(), exception));
++	 *
+ 	 * @param message
+ 	 *            the status message
+ 	 * @param exception
+@@ -394,13 +312,17 @@ public class RSEHelper {
+ 		if (exception != null) {
+ 			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, code, message, exception);
+ 			multiStatus.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, code, exception.getLocalizedMessage(), exception));
 -			status= multiStatus;
--		} else {
++			status = multiStatus;
+ 		} else {
 -			status= new Status(IStatus.ERROR, Activator.PLUGIN_ID, code, message, null);
--		}
--		throw new CoreException(status);
--	}
++			status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, code, message, null);
+ 		}
+ 		throw new CoreException(status);
+ 	}
 -
--	public static boolean isHostViable(IHost host) {
--		IRSESystemType sysType = host.getSystemType();
--		if (sysType != null && sysType.isEnabled() && !sysType.isLocal())
--			return true;
--		return false;
--	}
--
--	public static void waitForRSEInitCompletition() {
--		if (!RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL))
--			try {
--				RSECorePlugin.waitForInitCompletion(RSECorePlugin.INIT_MODEL);
--			} catch (InterruptedException e) {
--				return;
--			}
--	}
--}
++	/**
++	 * Checks whether a IHost associated system's is enabled and not a local one
++	 * @param host
++	 * @return
++	 */
+ 	public static boolean isHostViable(IHost host) {
+ 		IRSESystemType sysType = host.getSystemType();
+ 		if (sysType != null && sysType.isEnabled() && !sysType.isLocal())
+@@ -408,6 +330,9 @@ public class RSEHelper {
+ 		return false;
+ 	}
+ 
++	/**
++	 * Ensures that RSECorePlugin is initialized before performing any actions
++	 */
+ 	public static void waitForRSEInitCompletition() {
+ 		if (!RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL))
+ 			try {
+diff --git a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
+index d10a56e..c34ad9e 100644
+--- a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
++++ b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
+@@ -24,7 +24,8 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+ Import-Package: org.eclipse.core.resources,
+  org.eclipse.debug.internal.ui,
+  org.eclipse.rse.shells.ui,
+- org.eclipse.ui.forms.widgets
++ org.eclipse.ui.forms.widgets,
++ org.yocto.remote.utils
+ Bundle-Vendor: %Bundle-Vendor
+ Bundle-ClassPath: lib/json-simple-1.1.1.jar,
+  .
 diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
 index 2e15e48..08cb873 100644
 --- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
