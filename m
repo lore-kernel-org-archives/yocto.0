@@ -1,37 +1,47 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1911E00497
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 09:00:18 -0700 (PDT)
-Received: by mail-vc0-f169.google.com with SMTP id gd11so2810189vcb.14
-	for <yocto@yoctoproject.org>; Thu, 09 May 2013 09:00:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=LiMH8+C24QYsH9hMrY0GE7mtDvjtHYaJFRuytokxVcY=;
-	b=Lc2tSbMYIp6K4VdcAiOSADHed43DIZR3Ne+5pmV3GaJHz4MN6Q8I5yLyQ08bMmaw62
-	bTQRfShiZvFvzp0SuX9wUBepLWmstCvTI8agehr0jR07xhiNQJgKYLviOXBwM3fkasBr
-	+zaJ1vpIS1sXbd7Rk+4P4IioHW3GX9a7YSwvq9xxqydYUFbLwcVineENqFm0ZluUxNHZ
-	fUr8tl3ZIgkX1K7/NYBn2vGg4EUXK+A2VmyNkFZClg9PwxvngVp7UzCxdM7CaYX/mLPY
-	qGJ0MtpkMaY44ePS/jemfob8xTsJ0AUIhAHTP239B5IEAS116pOY37HgKV5YYtf+GmC/
-	gDlA==
-X-Received: by 10.58.15.193 with SMTP id z1mr8332057vec.40.1368115218064; Thu,
-	09 May 2013 09:00:18 -0700 (PDT)
+Return-Path: <petertornel@yahoo.com>
+Received: from nm7.bullet.mail.bf1.yahoo.com (nm7.bullet.mail.bf1.yahoo.com
+	[98.139.212.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 1B0D0E00429
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 09:29:49 -0700 (PDT)
+Received: from [98.139.212.153] by nm7.bullet.mail.bf1.yahoo.com with NNFMP;
+	09 May 2013 16:29:49 -0000
+Received: from [98.139.212.245] by tm10.bullet.mail.bf1.yahoo.com with NNFMP;
+	09 May 2013 16:29:49 -0000
+Received: from [127.0.0.1] by omp1054.mail.bf1.yahoo.com with NNFMP;
+	09 May 2013 16:29:49 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 202972.54010.bm@omp1054.mail.bf1.yahoo.com
+Received: (qmail 90615 invoked by uid 60001); 9 May 2013 16:29:49 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1368116989; bh=oKx7vJt/QyRe6ep+BTTtCo7xFhZC+iitgHkRlnt7HDI=;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=p8nkmtvP8gbfnK4LORcK0BjpyXSH2srFQmgPOOGPtl0jl2cJAucNz6nJEopaC9mk6SYJscUSa/EhZZRYhFWI9ZFqt8xAxcCC6nKswPId1DvWjb/pq1PqlP4iGUIjHoA0iZ6N+l2ErvrrtluXrHf2UcokriBZhsx19qLKl70eppY=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=XeUvOnkII0jLnke5GFA64y8ZJVKo+xeLSjwr9RZgEn8ZZT9aJi35RXwKwWZDFs1rxrMk1v11wt2QT591LmYKEnU3tZWJ9KEGNomGY8osJveGpOvO7ZBrAM6dK4mdFKq8yTvhjTl6C0gC/tO/gpzniKEZqfIm56v3scMnQIFAZoA=;
+X-YMail-OSG: EzAZBmAVM1lTOHd.hXVHhfhlkhAga0v4CN7Td2eNyF910AQ
+	mmY07eQL4EGoKCJ6zm.8lTul82dxRCuim6iriaauLlAKrl1ty17AadWJjr0A
+	vIyUE9x3tEpm60DDqHW_5eVxJ5RRDoPm75S6G_scobjgZB1DWRM_sVIpNci0
+	uEeorviqb8Ncdy4Q08Ic4CT9bn1UFcL2IgYhqVJ9dYO93FvQyUFLQCY4aIRu
+	GIbbL1rehW4MVFLV9AxAWGgeJ9gZrY9HibmEmGrYzKx.uqWlMws6zwBakhPx
+	J.jzus4fve9eDj3xg6Jbfcqx0yWNCEi2gfhAhhjH_Q8QOaiHk.FXMEK2kCy8
+	1FFEdjVyiCppmwU7rgU4TlQox_CGcyl39cG3LrUNNQWPiB7cx9gophuqZYi0
+	pYJJRWeXbCuJwpNMzNBPj4dgUAfEcxwFzyBWA2z4LuQ--
+Received: from [68.46.169.75] by web161503.mail.bf1.yahoo.com via HTTP;
+	Thu, 09 May 2013 09:29:49 PDT
+X-Rocket-MIMEInfo: 002.001,
+	QXRvbSBuZXRib29rIGZyb20gYSBGTEFTSCBkcml2ZS7CoCBUaGFua3MKClBldGUBMAEBAQE-
+X-Mailer: YahooMailWebService/0.8.141.536
+Message-ID: <1368116989.87405.YahooMailNeo@web161503.mail.bf1.yahoo.com>
+Date: Thu, 9 May 2013 09:29:49 -0700 (PDT)
+From: Peter Tornel <petertornel@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Received: by 10.221.8.3 with HTTP; Thu, 9 May 2013 08:59:57 -0700 (PDT)
-In-Reply-To: <CANwz6nzLfczXdCZ6pXRKWqenoJ_cB=cjUTuasPeZfim+Kn2zyA@mail.gmail.com>
-References: <CANwz6nzLfczXdCZ6pXRKWqenoJ_cB=cjUTuasPeZfim+Kn2zyA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 9 May 2013 16:59:57 +0100
-Message-ID: <CAJTo0LYJQkV=B7uTxW=pkd--VHX7VjdA4ST2q1JMVNsSVuKcQw@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-X-Gm-Message-State: ALoCoQkkOlVY0JRZN+BOPZvwWYvPwuVAx+mo3jB+w6fEGpxOjkm+Mpkk1lvCtUH3Z2uYWR0wfqBR
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: recipe gsl-1.15
+Subject: Please point me to the binary that has the best chance of booting a dual core...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -40,34 +50,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 16:00:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 09 May 2013 16:29:50 -0000
+Content-Type: multipart/alternative;
+	boundary="1524547028-468544942-1368116989=:87405"
 
-Hi,
+--1524547028-468544942-1368116989=:87405
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 9 May 2013 16:48, Edward Vidal <vidal.develone@gmail.com> wrote:
-> I am trying to write the recipe to add gsl-1.15 to core-image-sato.
->
-> First I did mdkir poky/meta/recipes-support/gsl
->
-> Is this the correct location for this recipe?
+Atom netbook from a FLASH drive.=A0 Thanks=0A=0APete
 
-It's a perfectly valid location.  The recipes folders have no defined
-structure, you can arrange them as you want.
+--1524547028-468544942-1368116989=:87405
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-[snip]
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
+mes new roman, new york, times, serif;font-size:12pt">Atom netbook from a F=
+LASH drive.&nbsp; Thanks<br><br>Pete<br><br><div></div></div></body></html>
 
-> Any and all help will be appreciated.
-
-You didn't actually say what the problem is.  I presume it's the error
-you're getting about your license checksum.  Well, your md5sum command
-is checksumming the entire file, and your LIC_FILES_CHKSUM is
-checksumming a single line of the file, so I expect them to be
-different.
-
-Is the NEWS file the only place that says the license is GPLv3?  The
-NEWS file should change with every release, so it's better to use a
-top-level license file or a fragment from a source file instead.
-
-Ross
-
+--1524547028-468544942-1368116989=:87405--
