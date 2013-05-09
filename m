@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3791E014D9
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:30 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EEC4E014E0
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:32 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:30 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817118"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817121"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:29 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:30 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:47:12 +0300
-Message-Id: <1368085635-24575-17-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:47:13 +0300
+Message-Id: <1368085635-24575-18-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 09/12] Move CommonHelper to org.yocto.remote.utils separate plugin
+Subject: [PATCH 10/12] Move TerminalHandler to org.yocto.remote.utils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,119 +27,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:07:31 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:07:32 -0000
 
-- common helper is better suited to org.yocto.remote.utils since it is used for:
-   - running commands
-   - displaying error dialogs
-- remove common helper from remote tools plugin and add it to a separated plugin
+- move TerminalHandler to separate plugin since it performs actions that are best suited for remote utilities
+- remove TerminalHandler from remotetools plugin
 - modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../src/org/yocto/remote/utils}/CommonHelper.java  |   20 +++++++++++---------
- .../sdk/remotetools/actions/OprofileModel.java     |    2 +-
- .../actions/SystemtapSettingDialog.java            |    2 +-
- .../sdk/remotetools/actions/TerminalHandler.java   |    2 +-
- 4 files changed, 14 insertions(+), 12 deletions(-)
- rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/CommonHelper.java (77%)
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |    9 ++++++-
+ .../org/yocto/remote/utils}/TerminalHandler.java   |   28 ++++++++++----------
+ .../sdk/remotetools/actions/DialogHandler.java     |    1 +
+ 3 files changed, 23 insertions(+), 15 deletions(-)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions => org.yocto.remote.utils/src/org/yocto/remote/utils}/TerminalHandler.java (94%)
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/CommonHelper.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/CommonHelper.java
-similarity index 77%
-rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/CommonHelper.java
-rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/CommonHelper.java
-index 72a5dfd..c01e866 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/CommonHelper.java
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/CommonHelper.java
+diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+index 9616484..e7afbd0 100644
+--- a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
++++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+@@ -11,10 +11,17 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ Import-Package: org.eclipse.rse.core,
+  org.eclipse.rse.core.model,
+  org.eclipse.rse.core.subsystems,
++ org.eclipse.rse.internal.terminals.ui,
++ org.eclipse.rse.internal.terminals.ui.views,
+  org.eclipse.rse.services,
+  org.eclipse.rse.services.files,
+  org.eclipse.rse.services.shells,
++ org.eclipse.rse.services.terminals,
+  org.eclipse.rse.subsystems.files.core.servicesubsystem,
+  org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem,
+- org.eclipse.rse.subsystems.terminals.core
++ org.eclipse.rse.subsystems.terminals.core,
++ org.eclipse.rse.subsystems.terminals.core.elements,
++ org.eclipse.rse.ui,
++ org.eclipse.tm.internal.terminal.control,
++ org.eclipse.tm.internal.terminal.provisional.api
+ Export-Package: org.yocto.remote.utils
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
+similarity index 94%
+rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
+rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
+index ae04dc9..e28ae79 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
 @@ -8,7 +8,7 @@
   * Contributors:
   * Intel - initial API and implementation
   *******************************************************************************/
--package org.yocto.sdk.remotetools;
+-package org.yocto.sdk.remotetools.actions;
 +package org.yocto.remote.utils;
  
- import org.eclipse.core.runtime.IStatus;
- import org.eclipse.core.runtime.Status;
-@@ -18,27 +18,29 @@ import org.eclipse.swt.widgets.Display;
- public class CommonHelper {
- 
- 	static public boolean isExecAvail(String exec) {
--		boolean ret=false;	
-+		boolean ret = false;
- 		try {
--			Process p=Runtime.getRuntime().exec(new String[] {"which",exec});
-+			Process p = Runtime.getRuntime().exec(new String[] {"which", exec});
- 			p.waitFor();
--			if(p.exitValue()==0) {
--				ret=true;
-+			if(p.exitValue() == 0) {
-+				ret = true;
- 			}
- 		} catch (Exception e) {
- 			e.printStackTrace();
- 		}
- 		return ret;
- 	}
--	
-+
- 	public static void showErrorDialog(final String dialogTitle, final String errorMessage, final String reason) {
--		//needs to be run in the ui thread otherwise swt throws invalid thread access 
-+		//needs to be run in the ui thread otherwise swt throws invalid thread access
- 		Display.getDefault().syncExec(new Runnable() {
-+			@Override
- 			public void run() {
--				ErrorDialog.openError(null, dialogTitle, errorMessage, new Status(IStatus.ERROR,Activator.PLUGIN_ID,reason));
-+				ErrorDialog.openError(null, dialogTitle, errorMessage,
-+						new Status(IStatus.ERROR,Activator.PLUGIN_ID,reason));
- 			}
- 		});
- 
- 	}
--	
-+
- }
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-index c125df7..7fbe7c6 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-@@ -21,9 +21,9 @@ import org.eclipse.core.runtime.SubProgressMonitor;
- import org.eclipse.jface.preference.IPreferenceStore;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.ui.IWorkbenchWindow;
-+import org.yocto.remote.utils.CommonHelper;
- import org.yocto.sdk.ide.YoctoSDKPlugin;
- import org.yocto.sdk.ide.preferences.PreferenceConstants;
--import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.LocalJob;
- import org.yocto.sdk.remotetools.Messages;
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-index 8b4703c..c447569 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-@@ -27,8 +27,8 @@ import org.eclipse.swt.widgets.FileDialog;
- import org.eclipse.swt.widgets.Label;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.swt.widgets.Text;
-+import org.yocto.remote.utils.CommonHelper;
- import org.yocto.sdk.remotetools.Activator;
--import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.Messages;
- import org.yocto.sdk.remotetools.SWTFactory;
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-index 4ad8688..ae04dc9 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-@@ -33,8 +33,8 @@ import org.eclipse.swt.events.DisposeListener;
+ import org.eclipse.core.commands.AbstractHandler;
+ import org.eclipse.core.commands.ExecutionException;
+@@ -33,20 +33,18 @@ import org.eclipse.swt.events.DisposeListener;
  import org.eclipse.swt.widgets.Shell;
  import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
  import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
-+import org.yocto.remote.utils.CommonHelper;
- import org.yocto.remote.utils.RSEHelper;
--import org.yocto.sdk.remotetools.CommonHelper;
+-import org.yocto.remote.utils.CommonHelper;
+-import org.yocto.remote.utils.RSEHelper;
  
  abstract public class TerminalHandler extends AbstractHandler {
+-	
+-	
++
++
+ 	protected Shell shell;
+-	
+-	protected String changeTerm="export TERM=vt100;";
+-	
++
++	protected String changeTerm = "export TERM=vt100;";
++
+ 	abstract protected String getInitCmd();
+ 	abstract protected String getConnnectionName();
+ 	abstract protected String getDialogTitle();
+-	
++
+ 	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
+         ITerminalShell terminalShell = null;
+         ITerminalViewControl terminalViewControl = (ITerminalViewControl) item
+@@ -65,7 +63,8 @@ abstract public class TerminalHandler extends AbstractHandler {
+ 			try {
+ 				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
+ 				dialog.run(true, true, new IRunnableWithProgress(){
+-				    public void run(IProgressMonitor monitor) {
++				    @Override
++					public void run(IProgressMonitor monitor) {
+ 				        monitor.beginTask("Connecting to remote target ...", 100);
+ 				        try {
+ 				        terminalSubSystem.connect(new NullProgressMonitor(), false);
+@@ -73,7 +72,7 @@ abstract public class TerminalHandler extends AbstractHandler {
+ 				        } catch (Exception e) {
+ 				        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
+ 				        	monitor.done();
+-				        	
++
+ 				        }
+ 				    }
+ 				});
+@@ -88,11 +87,11 @@ abstract public class TerminalHandler extends AbstractHandler {
+ 			return true;
+ 		return false;
+ 	}
+-	
++
+ 	public void execute(IHost host) throws ExecutionException {
+-		
++
+ 		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
+-		
++
+ 		if (terminalSubSystem != null) {
+ 			TerminalsUI terminalsUI = TerminalsUI.getInstance();
+ 			TerminalViewer viewer = terminalsUI.activateTerminalsView();
+@@ -103,6 +102,7 @@ abstract public class TerminalHandler extends AbstractHandler {
+ 				//we have manually exit it here
+ 				try {
+ 					tab.addDisposeListener(new DisposeListener() {
++						@Override
+ 						public void widgetDisposed(DisposeEvent e) {
+ 							Object source = e.getSource();
+ 							if (source instanceof CTabItem) {
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+index d5c3583..ca6d13b 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
+ import org.eclipse.rse.core.model.IHost;
+ import org.eclipse.ui.IWorkbenchWindow;
+ import org.eclipse.ui.handlers.HandlerUtil;
++import org.yocto.remote.utils.TerminalHandler;
+ 
+ abstract public class DialogHandler extends TerminalHandler {
  	
 -- 
 1.7.9.5
