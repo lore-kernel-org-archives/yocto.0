@@ -1,21 +1,35 @@
 Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2B2CE01507
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:14:02 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 09 May 2013 01:13:54 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71D72E01481
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:18:57 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 09 May 2013 01:18:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="239011823"
-Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 01:13:24 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:53:20 +0300
-Message-Id: <1368086011-24931-2-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
-References: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 01/12] Separate remote logic from GUI login in TerminalHandler implementation
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334184691"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga002.jf.intel.com with ESMTP; 09 May 2013 01:18:56 -0700
+Received: from irsmsx102.ger.corp.intel.com ([169.254.2.244]) by
+	IRSMSX101.ger.corp.intel.com ([169.254.1.73]) with mapi id
+	14.01.0355.002; Thu, 9 May 2013 09:18:55 +0100
+From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH 3/3] Move filtering of suitable connections	to
+	RSEHelper
+Thread-Index: AQHOTIYItxRa+3ICD0KHyVyNTuv9oZj8gYuA
+Date: Thu, 9 May 2013 08:18:54 +0000
+Message-ID: <3E179CF0D7162B4AA4E2B324209A46391560E085@IRSMSX102.ger.corp.intel.com>
+References: <1368017704-14781-1-git-send-email-ioanax.grigoropol@intel.com>
+	<1368017704-14781-4-git-send-email-ioanax.grigoropol@intel.com>,
+	<C6510F6D410BB64A8C15398EDC6B847C70781F81@ORSMSX103.amr.corp.intel.com>,
+	<3E179CF0D7162B4AA4E2B324209A46391560DF82@IRSMSX102.ger.corp.intel.com>
+In-Reply-To: <3E179CF0D7162B4AA4E2B324209A46391560DF82@IRSMSX102.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.19.9.42]
+MIME-Version: 1.0
+Subject: Re: [PATCH 3/3] Move filtering of suitable connections	to	RSEHelper
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,235 +41,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:14:04 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:18:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- TerminalHandler is used by both Perf and Latencytop handlers for running remote commands and for holding the settings dialog
-	- in order to separate the common functionality for running remote commands we need to separate the GUI from the utilitary funtions
-	- create DialogHandler that extends TerminalHandler to hold the GUI settings
-	- clean-up code in TerminalHandler:
-		- remove references to settings dialog
-		- modify execute method and keep only remote control code
-	- change Perf and Latencytop's parent to DialogHandler
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../sdk/remotetools/actions/DialogHandler.java     |   41 +++++++++
- .../sdk/remotetools/actions/LatencytopHandler.java |    2 +-
- .../yocto/sdk/remotetools/actions/PerfHandler.java |    2 +-
- .../sdk/remotetools/actions/TerminalHandler.java   |   93 ++++++--------------
- 4 files changed, 70 insertions(+), 68 deletions(-)
- create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-new file mode 100644
-index 0000000..d5c3583
---- /dev/null
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-@@ -0,0 +1,41 @@
-+/*******************************************************************************
-+ * Copyright (c) 2010 Intel Corporation.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * Intel - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.sdk.remotetools.actions;
-+
-+import org.eclipse.core.commands.ExecutionEvent;
-+import org.eclipse.core.commands.ExecutionException;
-+import org.eclipse.rse.core.model.IHost;
-+import org.eclipse.ui.IWorkbenchWindow;
-+import org.eclipse.ui.handlers.HandlerUtil;
-+
-+abstract public class DialogHandler extends TerminalHandler {
-+	
-+	protected BaseSettingDialog setting;
-+	
-+	abstract protected String getDialogTitle();
-+	
-+	protected void initialize(ExecutionEvent event) throws ExecutionException{
-+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-+		shell = window.getShell();
-+		setting = new SimpleSettingDialog(shell, getDialogTitle(), getConnnectionName());
-+	}
-+	
-+	@Override
-+	public Object execute(ExecutionEvent event) throws ExecutionException {
-+		initialize(event);
-+		
-+		if(setting.open() == BaseSettingDialog.OK) {
-+			IHost currentHost = setting.getHost();
-+			execute(currentHost);
-+		}
-+		return null;
-+	}
-+}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-index ef77957..e931388 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-@@ -11,7 +11,7 @@
- package org.yocto.sdk.remotetools.actions;
- 
- 
--public class LatencytopHandler extends TerminalHandler {
-+public class LatencytopHandler extends DialogHandler {
- 	
- 	private static String initCmd="export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin; cd; sudo latencytop\r";
- 	
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-index 949bd46..f3f9e49 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-@@ -11,7 +11,7 @@
- package org.yocto.sdk.remotetools.actions;
- 
- 
--public class PerfHandler extends TerminalHandler {
-+public class PerfHandler extends DialogHandler {
- 
- 	private static String initCmd="cd; perf\r";
- 	
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-index 84e38f2..9e7c169 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-@@ -11,7 +11,6 @@
- package org.yocto.sdk.remotetools.actions;
- 
- import org.eclipse.core.commands.AbstractHandler;
--import org.eclipse.core.commands.ExecutionEvent;
- import org.eclipse.core.commands.ExecutionException;
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.NullProgressMonitor;
-@@ -34,14 +33,11 @@ import org.eclipse.swt.events.DisposeListener;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
- import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
--import org.eclipse.ui.IWorkbenchWindow;
--import org.eclipse.ui.handlers.HandlerUtil;
- import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.RSEHelper;
- 
- abstract public class TerminalHandler extends AbstractHandler {
- 	
--	protected BaseSettingDialog setting;
- 	
- 	protected Shell shell;
- 	
-@@ -50,11 +46,6 @@ abstract public class TerminalHandler extends AbstractHandler {
- 	abstract protected String getInitCmd();
- 	abstract protected String getConnnectionName();
- 	abstract protected String getDialogTitle();
--	protected void initialize(ExecutionEvent event) throws ExecutionException{
--		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
--		shell = window.getShell();
--		setting = new SimpleSettingDialog(shell, getDialogTitle(), getConnnectionName());
--	}
- 	
- 	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
-         ITerminalShell terminalShell = null;
-@@ -98,70 +89,40 @@ abstract public class TerminalHandler extends AbstractHandler {
- 		return false;
- 	}
- 	
--	public Object execute(ExecutionEvent event) throws ExecutionException {
-+	public void execute(IHost host) throws ExecutionException {
- 		
--		initialize(event);
-+		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
- 		
--		if(setting.open()==BaseSettingDialog.OK) {
--			IHost currentHost = setting.getHost();
--			final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(currentHost);
--			
--			if (terminalSubSystem != null) {
--				TerminalsUI terminalsUI = TerminalsUI.getInstance();
--				TerminalViewer viewer = terminalsUI.activateTerminalsView();
--				if (preProcess(terminalSubSystem)) {
--				/*if (!terminalSubSystem.isConnected()) {
--					try {
--						ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
--						dialog.run(true, true, new IRunnableWithProgress(){
--						    public void run(IProgressMonitor monitor) {
--						        monitor.beginTask("Connecting to remote target ...", 100);
--						        try {
--						        terminalSubSystem.connect(new NullProgressMonitor(), false);
--						        monitor.done();
--						        } catch (Exception e) {
--						        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
--						        	monitor.done();
--						        }
--						    }
--						});
--					} catch (OperationCanceledException e) {
--						// user canceled, return silently
--						return null;
--					} catch (Exception e) {
--						SystemBasePlugin.logError(e.getLocalizedMessage(), e);
--					}
--				}
--				if (terminalSubSystem.isConnected()) {*/
--					CTabItem tab = viewer.getTabFolder().createTabItem(
--							terminalSubSystem.getHost(), changeTerm + getInitCmd());
--					//since RSETerminalConnector not exit the shell during the diconnection,
--					//we have manually exit it here
--					try {
--						tab.addDisposeListener(new DisposeListener() {
--							public void widgetDisposed(DisposeEvent e) {
--								
--								Object source = e.getSource();
--								if (source instanceof CTabItem) {
--									CTabItem currentItem = (CTabItem) source;
--									ITerminalShell shell=getTerminalShellFromTab(currentItem);
--									if(shell!=null) {
--										shell.exit();
--									}
-+		if (terminalSubSystem != null) {
-+			TerminalsUI terminalsUI = TerminalsUI.getInstance();
-+			TerminalViewer viewer = terminalsUI.activateTerminalsView();
-+			if (preProcess(terminalSubSystem)) {
-+				CTabItem tab = viewer.getTabFolder().createTabItem(
-+						terminalSubSystem.getHost(), changeTerm + getInitCmd());
-+				//since RSETerminalConnector not exit the shell during the diconnection,
-+				//we have manually exit it here
-+				try {
-+					tab.addDisposeListener(new DisposeListener() {
-+						public void widgetDisposed(DisposeEvent e) {
-+							Object source = e.getSource();
-+							if (source instanceof CTabItem) {
-+								CTabItem currentItem = (CTabItem) source;
-+								ITerminalShell shell=getTerminalShellFromTab(currentItem);
-+								if(shell!=null) {
-+									shell.exit();
- 								}
- 							}
--						});
--					}catch(Exception e) {
--						e.printStackTrace();
--					}
--					TerminalElement element = TerminalServiceHelper
--							.createTerminalElement(tab, terminalSubSystem);
--					terminalSubSystem.addChild(element);
--	
-+						}
-+					});
-+				}catch(Exception e) {
-+					e.printStackTrace();
- 				}
-+				TerminalElement element = TerminalServiceHelper
-+						.createTerminalElement(tab, terminalSubSystem);
-+				terminalSubSystem.addChild(element);
-+
- 			}
- 		}
--		return null;
- 	}
- 
- }
--- 
-1.7.9.5
-
+Hi Jessica,=0A=
+=0A=
+Please have a look at the last set of 12 patches I have sent. These should =
+apply cleanly on the master HEAD.=0A=
+It contains both patch sets for refactoring(4 patches) and creating a new s=
+eparate plugin for remote tools(8 patches).=0A=
+=0A=
+Thanks,=0A=
+Ioana=0A=
+________________________________________=0A=
+From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on be=
+half of Grigoropol, IoanaX [ioanax.grigoropol@intel.com]=0A=
+Sent: Thursday, May 09, 2013 10:21 AM=0A=
+To: Zhang, Jessica; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] [PATCH 3/3] Move filtering of suitable connections to =
+     RSEHelper=0A=
+=0A=
+Hi Jessica,=0A=
+=0A=
+Yes, you are right, sorry about that. I will send a v2 of this patch set.=
+=0A=
+=0A=
+Thanks,=0A=
+Ioana=0A=
+________________________________________=0A=
+From: Zhang, Jessica=0A=
+Sent: Thursday, May 09, 2013 12:54 AM=0A=
+To: Grigoropol, IoanaX; yocto@yoctoproject.org=0A=
+Subject: RE: [yocto] [PATCH 3/3] Move filtering of suitable connections to =
+     RSEHelper=0A=
+=0A=
+Hi Ioana,=0A=
+=0A=
+Isn't the logic in RSEHelper is reversed?  It should  be:=0A=
+=0A=
+if (sysType =3D=3D null ||! sysType.isEnabled()) {=0A=
+        iter.remove();=0A=
+}=0A=
+=0A=
+Thanks,=0A=
+Jessica=0A=
+-----Original Message-----=0A=
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol=0A=
+Sent: Wednesday, May 08, 2013 5:55 AM=0A=
+To: yocto@yoctoproject.org=0A=
+Subject: [yocto] [PATCH 3/3] Move filtering of suitable connections to RSEH=
+elper=0A=
+=0A=
+- BaseSettingDialog performs an extra filtering for suitable connections fo=
+r a given host by checking the remote system type=0A=
+        - this checking should be done in RSEHelper since it involves a rem=
+ote action and thus removing BaseSettingDialog dependency on RSE Api=0A=
+        - modified RSEHelper.getSuitableConnections to include the filterin=
+g for connections with associated system type disabled=0A=
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>=0A=
+---=0A=
+ .../src/org/yocto/sdk/remotetools/RSEHelper.java   |    4 ++++=0A=
+ .../sdk/remotetools/actions/BaseSettingDialog.java |   10 +++-------=0A=
+ 2 files changed, 7 insertions(+), 7 deletions(-)=0A=
+=0A=
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
+s/RSEHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remo=
+tetools/RSEHelper.java=0A=
+index d1a505d..8d0612a 100644=0A=
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHe=
+lper.java=0A=
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RS=0A=
++++ EHelper.java=0A=
+@@ -150,6 +150,10 @@ public class RSEHelper {=0A=
+                        if(!terminalConnections.contains(fileConnection) &&=
+ !shellConnections.contains(fileConnection)){=0A=
+                                iter.remove();=0A=
+                        }=0A=
++                       IRSESystemType sysType =3D fileConnection.getSystem=
+Type();=0A=
++                       if (sysType !=3D null && sysType.isEnabled()) {=0A=
++                               iter.remove();=0A=
++                       }=0A=
+                }=0A=
+=0A=
+                return (IHost[]) filConnections.toArray(new IHost[filConnec=
+tions.size()]); diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yoct=
+o/sdk/remotetools/actions/BaseSettingDialog.java b/plugins/org.yocto.sdk.re=
+motetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java=0A=
+index 06eeb00..962a20a 100644=0A=
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
+ns/BaseSettingDialog.java=0A=
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac=0A=
++++ tions/BaseSettingDialog.java=0A=
+@@ -26,7 +26,6 @@ import org.yocto.sdk.remotetools.SWTFactory;=0A=
+ import org.yocto.sdk.remotetools.RSEHelper;=0A=
+ import org.eclipse.jface.dialogs.Dialog;  import org.eclipse.jface.dialogs=
+.IDialogConstants;=0A=
+-import org.eclipse.rse.core.IRSESystemType;=0A=
+ import org.eclipse.rse.core.model.IHost;  import org.eclipse.rse.ui.action=
+s.SystemNewConnectionAction;=0A=
+ import org.eclipse.swt.SWT;=0A=
+@@ -185,12 +184,9 @@ public class BaseSettingDialog extends Dialog {=0A=
+                connectionCombo.removeAll();=0A=
+                IHost[] connections =3D RSEHelper.getSuitableConnections();=
+=0A=
+                for (int i =3D 0; i < connections.length; i++) {=0A=
+-                       IRSESystemType sysType =3D connections[i].getSystem=
+Type();=0A=
+-                       if (sysType !=3D null && sysType.isEnabled()) {=0A=
+-                               connectionCombo.add(connections[i].getAlias=
+Name());=0A=
+-                               if(connections[i].getAliasName().equals(cur=
+Conn))=0A=
+-                                       index=3Di;=0A=
+-                       }=0A=
++                       connectionCombo.add(connections[i].getAliasName());=
+=0A=
++                       if(connections[i].getAliasName().equals(curConn))=
+=0A=
++                               index=3Di;=0A=
+                }=0A=
+=0A=
+                if(index>=3D0) {=0A=
+--=0A=
+1.7.9.5=0A=
+=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
