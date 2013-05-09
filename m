@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFF51E014D2
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:25 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FC3EE014D7
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:27 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:25 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817081"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817094"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:23 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:24 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:47:08 +0300
-Message-Id: <1368085635-24575-13-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:47:09 +0300
+Message-Id: <1368085635-24575-14-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH v2 6/7] Remove unused TCFTerminalConnectors
+Subject: [PATCH 07/12] Move RemoteShellExec to separate plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,177 +27,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:07:26 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:07:27 -0000
 
-- removed TCFTerminalConnector and TCFTerminalConnectorImpl since there are no usages of this classes
+- RemoteShellExec is a wrapper over a remote executiong of a command in a shell and it belongs to org.yocto.remote.utils plugin
+- remove RemoteShellExec from remotetools plugin and add it to org.yocto.remote.utils
+- modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../remotetools/views/TCFTerminalConnector.java    |   49 ----------
- .../views/TCFTerminalConnectorImpl.java            |   98 --------------------
- 2 files changed, 147 deletions(-)
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
+ .../org/yocto/remote/utils}/RemoteShellExec.java   |   95 +++++++++-----------
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |    2 +-
+ 2 files changed, 44 insertions(+), 53 deletions(-)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote => org.yocto.remote.utils/src/org/yocto/remote/utils}/RemoteShellExec.java (69%)
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
-deleted file mode 100644
-index 6239136..0000000
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
-+++ /dev/null
-@@ -1,49 +0,0 @@
--/********************************************************************************
-- * Copyright (c) 2008, 2009 MontaVista Software, Inc. and others
-- * This program and the accompanying materials are made available under the terms
-- * of the Eclipse Public License v1.0 which accompanies this distribution, and is
-- * available at http://www.eclipse.org/legal/epl-v10.html
-- *
-- * Contributors:
-- * Anna Dushistova (MontaVista) - initial API and implementation
-- * Uwe Stieber (Wind River) - [282996] [terminal][api] Add "hidden" attribute to terminal connector extension point
-- ********************************************************************************/
--package org.yocto.sdk.remotetools.views;
--
--import org.eclipse.core.runtime.Platform;
--import org.eclipse.rse.core.model.IHost;
--import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
--
--public class TCFTerminalConnector extends TCFTerminalConnectorImpl implements ITerminalConnector {
--
--    public TCFTerminalConnector(IHost host) {
--		super(host);
--    }
--
--    public String getId() {
--        return "yocto_tcf_internal_connector"; //$NON-NLS-1$
--    }
--
--    public String getInitializationErrorMessage() {
--        return null;
--    }
--
--    public String getName() {
--        return "yocto_tcf_internal_connector";
--    }
--
--    public boolean isHidden() {
--    	return true;
--    }
--
--    public boolean isInitialized() {
--        return true;
--    }
--
--	public Object getAdapter(Class adapterType) {
--		if (adapterType.isInstance(this))
--			return this;
--		return Platform.getAdapterManager().getAdapter(this, adapterType);
--	}
--
--}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
-deleted file mode 100644
-index 105ca62..0000000
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
-+++ /dev/null
-@@ -1,98 +0,0 @@
--/********************************************************************************
-- * Copyright (c) 2008 MontaVista Software, Inc.
-- * This program and the accompanying materials are made available under the terms
-- * of the Eclipse Public License v1.0 which accompanies this distribution, and is
-- * available at http://www.eclipse.org/legal/epl-v10.html
-- *
-- * Contributors:
-- * Anna Dushistova (MontaVista) - initial API and implementation
-- * Yu-Fen Kuo (MontaVista)      - [227572] RSE Terminal doesn't reset the "connected" state when the shell exits
-- * Anna Dushistova (MontaVista) - [228577] [rseterminal] Clean up RSE Terminal impl
-- ********************************************************************************/
--package org.yocto.sdk.remotetools.views;
--
--import java.io.InputStream;
--import java.io.OutputStream;
--
--import org.eclipse.rse.core.model.IHost;
--import org.eclipse.tm.internal.terminal.provisional.api.ITerminalControl;
--import org.eclipse.tm.internal.terminal.provisional.api.provider.TerminalConnectorImpl;
--
--public class TCFTerminalConnectorImpl extends TerminalConnectorImpl {
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
+similarity index 69%
+rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
+rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
+index bfcbbfc..48b4f4d 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
+@@ -8,7 +8,7 @@
+  * Contributors:
+  * Intel - initial API and implementation
+  *******************************************************************************/
+-package org.yocto.sdk.remotetools.remote;
++package org.yocto.remote.utils;
+ 
+ import java.io.BufferedReader;
+ import java.io.IOException;
+@@ -17,60 +17,53 @@ import java.io.InputStreamReader;
+ import java.io.OutputStream;
+ 
+ import org.eclipse.core.runtime.IProgressMonitor;
+-//import org.eclipse.tcf.protocol.IToken;
+-//import org.eclipse.tcf.services.IStreams;
+-//import org.eclipse.tcf.services.IProcesses;
+-//import org.eclipse.tcf.util.TCFTask;
+ import org.eclipse.rse.core.model.IHost;
+-import org.yocto.remote.utils.RSEHelper;
+ 
+ public class RemoteShellExec {
 -	
--    private OutputStream fOutputStream;
--    private InputStream fInputStream;
--    IHost host;
--//TODO    private RSETerminalConnectionThread fConnection;
--//TODO    private ITerminalShell shell;
--
--    public TCFTerminalConnectorImpl(IHost host) {
--        super();
--        this.host = host;
--    }
--    /* TODO
--    public void connect(ITerminalControl control) {
--    	super.connect(control);
--        fConnection = new RSETerminalConnectionThread(this, control);
--        fConnection.start();
--    }
--
--    public void doDisconnect() {
--        fConnection.disconnect();
--        if (getInputStream() != null) {
--            try {
--                getInputStream().close();
--            } catch (Exception exception) {
--            	RSECorePlugin.getDefault().getLogger().logError("Error while closing input stream", exception); //$NON-NLS-1$
--            }
--        }
--
--        if (getTerminalToRemoteStream() != null) {
--            try {
--                getTerminalToRemoteStream().close();
--            } catch (Exception exception) {
--            	RSECorePlugin.getDefault().getLogger().logError("Error while closing terminal-to-remote stream", exception); //$NON-NLS-1$
--            }
--        }
--    }
--*/
--    public OutputStream getTerminalToRemoteStream() {
--        return fOutputStream;
--    }
--
--    public String getSettingsSummary() {
--        return "RSE: " + host.getName();
--    }
--/* TODO
--    public boolean isLocalEcho() {
--        return shell.isLocalEcho();
--    }
--
--    public void setTerminalSize(int newWidth, int newHeight) {
--    	if(shell != null)
--    	{	
--            shell.setTerminalSize(newWidth, newHeight);
--    	}    
--    }
--
--    public InputStream getInputStream() {
--        return fInputStream;
--    }
--
--    public void setOutputStream(OutputStream outputStream) {
--        fOutputStream = outputStream;
--    }
--
--    public void setInputStream(InputStream inputStream) {
--        fInputStream = inputStream;
--    }
--
--    public void setTerminalHostShell(ITerminalShell shell) {
--        this.shell = shell;
--    }
--
--    public ITerminalShell getTerminalHostShell() {
--        return shell;
--    }
--*/
--}
++
+ 	public static final int
+     STATE_NULL = 0,
+     STATE_RUNNING = 1,
+     STATE_EXITED = 2;
+-	
+-	private String command;
+-	private IHost host;
+-	
++
++	private final String command;
++	private final IHost host;
++
+ 	private InputStream fInStream;
+     private OutputStream fOutStream;
+     private InputStream fErrStream;
+     private Process remoteShellProcess;
+-	
+-	private int exit_code=0;
+-	private int status=STATE_NULL;
+-	
+-	private String RETURN_VALUE_TAG = "org.yocto.sdk.remotetools.RVTAG";
+-	private String RETURN_VALUE_CMD = ";echo \"" + RETURN_VALUE_TAG + "$?\"";
+-	
++
++	private int exitCode = 0;
++	private int status = STATE_NULL;
++
++	private final String RETURN_VALUE_TAG = "org.yocto.sdk.remotetools.RVTAG";
++	private final String RETURN_VALUE_CMD = ";echo \"" + RETURN_VALUE_TAG + "$?\"";
++
+ 	public RemoteShellExec(IHost host, String command) {
+ 		assert(host != null);
+ 		this.host = host;
+-		this.command=command;
++		this.command = command;
+ 	}
+-	
+-	public int getStatus()
+-	{
++
++	public int getStatus() {
+ 		return status;
+ 	}
+-	
+-	public int getExitCode()
+-	{
+-		return exit_code;
++
++	public int getExitCode() {
++		return exitCode;
+ 	}
+-	
++
+ 	private void reset() {
+-		fInStream=null;
+-		fOutStream=null;
+-		fErrStream=null;
+-		
+-		remoteShellProcess=null;
+-		exit_code=0;
+-		status=STATE_NULL;
++		fInStream = null;
++		fOutStream = null;
++		fErrStream = null;
++
++		remoteShellProcess = null;
++		exitCode = 0;
++		status = STATE_NULL;
+ 	}
+-	
++
+ 	public InputStream getInputStream() {
+         return fInStream;
+     }
+@@ -78,15 +71,15 @@ public class RemoteShellExec {
+     public OutputStream getOutputStream() {
+         return fOutStream;
+     }
+-    
++
+     public InputStream getErrStream() {
+         return fErrStream;
+     }
+-    
++
+ 	public synchronized void start(String prelaunchCmd, String argument, IProgressMonitor monitor) throws Exception {
+ 		if(status == STATE_RUNNING)
+ 				return;
+-	
++
+ 		reset();
+ 		argument = (argument == null ? RETURN_VALUE_CMD : argument + RETURN_VALUE_CMD);
+ 		remoteShellProcess = RSEHelper.remoteShellExec(this.host, prelaunchCmd, this.command, argument, monitor);
+@@ -95,41 +88,39 @@ public class RemoteShellExec {
+ 		fErrStream = remoteShellProcess.getErrorStream();
+ 		status = STATE_RUNNING;
+ 	}
+-	
++
+ 	 public synchronized void terminate() throws Exception {
+-		 
+ 		 if(status != STATE_RUNNING || remoteShellProcess != null)
+ 			 return;
+-		 
++
+ 		 remoteShellProcess.destroy();
+ 		 reset();
+ 	 }
+-	 
++
+ 	 public int waitFor(IProgressMonitor monitor) throws InterruptedException {
+-		 while(status==STATE_RUNNING) {
+-			 if(monitor!=null) {
++		 while(status == STATE_RUNNING) {
++			 if(monitor != null) {
+ 	    			if(monitor.isCanceled()) {
+ 	    				throw new InterruptedException("User Cancelled");
+ 	    			}
+  			 }
+-			 
++
+ 			 try {
+ 				 remoteShellProcess.waitFor();
+ 			 }catch(InterruptedException e){
+ 				 //get the return value
+ 				 try {
+ 					 if(fInStream.available() != 0) {
+-						 BufferedReader in=new BufferedReader(new InputStreamReader(fInStream));
++						 BufferedReader in = new BufferedReader(new InputStreamReader(fInStream));
+ 						 String thisline;
+ 						 int idx;
+-						 while((thisline=in.readLine()) != null) {
+-							    if(thisline.indexOf(RETURN_VALUE_CMD)==-1) {
+-									idx=thisline.indexOf(RETURN_VALUE_TAG);
++						 while((thisline = in.readLine()) != null) {
++							    if(thisline.indexOf(RETURN_VALUE_CMD) == -1) {
++									idx = thisline.indexOf(RETURN_VALUE_TAG);
+ 									if(idx != -1) {
+ 										try {
+-											exit_code=(new Integer(thisline.substring(idx+RETURN_VALUE_TAG.length()))).intValue();
++											exitCode=(new Integer(thisline.substring(idx+RETURN_VALUE_TAG.length()))).intValue();
+ 										}catch(NumberFormatException e2) {
+-											//
+ 										}
+ 										break;
+ 									}
+@@ -143,7 +134,7 @@ public class RemoteShellExec {
+ 				 status=STATE_EXITED;
+ 			 }
+ 		 }
+-		 return exit_code;
++		 return exitCode;
+ 	 }
+ }
+ 
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
+index 08cb873..dacd192 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
+@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
+ import org.eclipse.jface.operation.IRunnableWithProgress;
+ import org.eclipse.rse.core.model.IHost;
+ import org.yocto.remote.utils.RSEHelper;
+-import org.yocto.sdk.remotetools.remote.RemoteShellExec;
++import org.yocto.remote.utils.RemoteShellExec;
+ 
+ abstract public class BaseModel implements IRunnableWithProgress {
+ 	protected IHost host;
 -- 
 1.7.9.5
 
