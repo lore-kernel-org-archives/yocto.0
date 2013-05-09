@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A97F7E014F7
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:14:01 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF48AE014BF
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:14:00 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 09 May 2013 01:13:54 -0700
+	by azsmga101.ch.intel.com with ESMTP; 09 May 2013 01:13:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="239011984"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="239011977"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 01:13:36 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 01:13:33 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:53:29 +0300
-Message-Id: <1368086011-24931-11-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:53:27 +0300
+Message-Id: <1368086011-24931-9-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 10/12] Move TerminalHandler to org.yocto.remote.utils
+Subject: [PATCH 08/12] Move ShellSession to org.yocto.remote.utils separate plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,138 +29,196 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 09 May 2013 08:14:02 -0000
 
-- move TerminalHandler to separate plugin since it performs actions that are best suited for remote utilities
-- remove TerminalHandler from remotetools plugin
+- ShellSession is used as a wrapper for a remote shell used for running commands on a remote machine with bitbake environment
+- move ShellSession org.yocto.remote.plugin since it is part of remote utilities
+- remove shell session class from remotetools plugin
 - modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |    9 ++++++-
- .../org/yocto/remote/utils}/TerminalHandler.java   |   28 ++++++++++----------
- .../sdk/remotetools/actions/DialogHandler.java     |    1 +
- 3 files changed, 23 insertions(+), 15 deletions(-)
- rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions => org.yocto.remote.utils/src/org/yocto/remote/utils}/TerminalHandler.java (94%)
+ .../src/org/yocto/remote/utils}/ShellSession.java  |   68 ++++++++------------
+ .../sdk/remotetools/actions/SystemtapModel.java    |    2 +-
+ 2 files changed, 28 insertions(+), 42 deletions(-)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/ShellSession.java (95%)
 
-diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-index 9616484..e7afbd0 100644
---- a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-@@ -11,10 +11,17 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
- Import-Package: org.eclipse.rse.core,
-  org.eclipse.rse.core.model,
-  org.eclipse.rse.core.subsystems,
-+ org.eclipse.rse.internal.terminals.ui,
-+ org.eclipse.rse.internal.terminals.ui.views,
-  org.eclipse.rse.services,
-  org.eclipse.rse.services.files,
-  org.eclipse.rse.services.shells,
-+ org.eclipse.rse.services.terminals,
-  org.eclipse.rse.subsystems.files.core.servicesubsystem,
-  org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem,
-- org.eclipse.rse.subsystems.terminals.core
-+ org.eclipse.rse.subsystems.terminals.core,
-+ org.eclipse.rse.subsystems.terminals.core.elements,
-+ org.eclipse.rse.ui,
-+ org.eclipse.tm.internal.terminal.control,
-+ org.eclipse.tm.internal.terminal.provisional.api
- Export-Package: org.yocto.remote.utils
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
-similarity index 94%
-rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
-index ae04dc9..e28ae79 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
-@@ -8,7 +8,7 @@
-  * Contributors:
-  * Intel - initial API and implementation
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
+similarity index 95%
+rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
+rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
+index 5602798..751933f 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ShellSession.java
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
+@@ -9,7 +9,7 @@
+  *     Ken Gilmer - initial API and implementation
+  *     Jessica Zhang - Adopt for Yocto Tools plugin
   *******************************************************************************/
--package org.yocto.sdk.remotetools.actions;
+-package org.yocto.sdk.remotetools;
 +package org.yocto.remote.utils;
  
- import org.eclipse.core.commands.AbstractHandler;
- import org.eclipse.core.commands.ExecutionException;
-@@ -33,20 +33,18 @@ import org.eclipse.swt.events.DisposeListener;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
- import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
--import org.yocto.remote.utils.CommonHelper;
--import org.yocto.remote.utils.RSEHelper;
+ import java.io.BufferedReader;
+ import java.io.File;
+@@ -37,38 +37,36 @@ public class ShellSession {
+ 	/**
+ 	 * String used to isolate command execution
+ 	 */
+-	//public static final String TERMINATOR = "#234o987dsfkcqiuwey18837032843259d";
+ 	public static final String TERMINATOR = "build$";
+ 	public static final String LT = System.getProperty("line.separator");
+-	
++	private Process process;
++
++	private OutputStream pos = null;
++
++	private String shellPath = null;
++	private final String initCmd;
++	private final File root;
++
++	private OutputStreamWriter out;
++
+ 	public static String getFilePath(String file) throws IOException {
+ 		File f = new File(file);
+-		
++
+ 		if (!f.exists() || f.isDirectory()) {
+ 			throw new IOException("Path passed is not a file: " + file);
+ 		}
+-		
++
+ 		StringBuffer sb = new StringBuffer();
+-		
++
+ 		String elems[] = file.split(File.separator);
+-		
++
+ 		for (int i = 0; i < elems.length - 1; ++i) {
+ 			sb.append(elems[i]);
+ 			sb.append(File.separator);
+ 		}
+-		
++
+ 		return sb.toString();
+ 	}
+-	private Process process;
+-
+-	private OutputStream pos = null;
+-	
+-	private String shellPath = null;
+-	private final String initCmd;
+-	private final File root;
+-	
+-	private OutputStreamWriter out;
+-	
  
- abstract public class TerminalHandler extends AbstractHandler {
--	
--	
+ 	public ShellSession(int shellType, File root, String initCmd, OutputStream out) throws IOException {
+ 		this.root = root;
+@@ -82,31 +80,31 @@ public class ShellSession {
+ 			shellPath = "/bin/sh";
+ 		}
+ 		shellPath  = "/bin/bash";
+-		
 +
+ 		initializeShell();
+ 	}
+ 
+ 	private void initializeShell() throws IOException {
+ 		process = Runtime.getRuntime().exec(shellPath);
+ 		pos = process.getOutputStream();
+-		
 +
- 	protected Shell shell;
--	
--	protected String changeTerm="export TERM=vt100;";
--	
+ 		if (root != null) {
+ 			execute("cd " + root.getAbsolutePath());
+ 		}
+-		
 +
-+	protected String changeTerm = "export TERM=vt100;";
+ 		if (initCmd != null) {
+ 			execute("source " + initCmd);
+ 		}
+ 	}
+ 
+-	synchronized 
++	synchronized
+ 	public String execute(String command, int[] retCode) throws IOException {
+ 		String errorMessage = null;
+-		
 +
- 	abstract protected String getInitCmd();
- 	abstract protected String getConnnectionName();
- 	abstract protected String getDialogTitle();
--	
+ 		interrupt = false;
+ 		out.write(command);
+ 		out.write(LT);
+-		
 +
- 	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
-         ITerminalShell terminalShell = null;
-         ITerminalViewControl terminalViewControl = (ITerminalViewControl) item
-@@ -65,7 +63,8 @@ abstract public class TerminalHandler extends AbstractHandler {
- 			try {
- 				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
- 				dialog.run(true, true, new IRunnableWithProgress(){
--				    public void run(IProgressMonitor monitor) {
-+				    @Override
-+					public void run(IProgressMonitor monitor) {
- 				        monitor.beginTask("Connecting to remote target ...", 100);
- 				        try {
- 				        terminalSubSystem.connect(new NullProgressMonitor(), false);
-@@ -73,7 +72,7 @@ abstract public class TerminalHandler extends AbstractHandler {
- 				        } catch (Exception e) {
- 				        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
- 				        	monitor.done();
--				        	
+ 		sendToProcessAndTerminate(command);
+ 
+ 		if (process.getErrorStream().available() > 0) {
+@@ -119,7 +117,7 @@ public class ShellSession {
+ 			if (!msg_str.contains("WARNING"))
+ 				errorMessage = "Error while executing: " + command + LT + new String(msg);
+ 		}
+-		
 +
- 				        }
- 				    }
- 				});
-@@ -88,11 +87,11 @@ abstract public class TerminalHandler extends AbstractHandler {
- 			return true;
- 		return false;
+ 		BufferedReader br = new BufferedReader(new InputStreamReader(process
+ 				.getInputStream()));
+ 
+@@ -155,11 +153,11 @@ public class ShellSession {
+ 		return sb.toString();
+ 	}
+ 
+-	synchronized 
++	synchronized
+ 	public void execute(String command) throws IOException {
+ 		interrupt = false;
+ 		String errorMessage = null;
+-		
++
+ 		sendToProcessAndTerminate(command);
+ 		boolean cancel = false;
+ 		try {
+@@ -206,7 +204,7 @@ public class ShellSession {
+ 			} catch (InvocationTargetException e1) {
+ 				e1.printStackTrace();
+ 			}
+-		} 
++		}
+ 		out.flush();
+ 		if (errorMessage != null) {
+ 			throw new IOException(errorMessage);
+@@ -302,23 +300,11 @@ public class ShellSession {
+ 		}
+ 		return accepted;
  	}
 -	
-+
- 	public void execute(IHost host) throws ExecutionException {
--		
-+
- 		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
--		
-+
- 		if (terminalSubSystem != null) {
- 			TerminalsUI terminalsUI = TerminalsUI.getInstance();
- 			TerminalViewer viewer = terminalsUI.activateTerminalsView();
-@@ -103,6 +102,7 @@ abstract public class TerminalHandler extends AbstractHandler {
- 				//we have manually exit it here
- 				try {
- 					tab.addDisposeListener(new DisposeListener() {
-+						@Override
- 						public void widgetDisposed(DisposeEvent e) {
- 							Object source = e.getSource();
- 							if (source instanceof CTabItem) {
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-index d5c3583..ca6d13b 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.ui.IWorkbenchWindow;
- import org.eclipse.ui.handlers.HandlerUtil;
-+import org.yocto.remote.utils.TerminalHandler;
+-	private void clearErrorStream(InputStream is) {
+-	
+-		try {
+-			byte b[] = new byte[is.available()];
+-			is.read(b);			
+-			System.out.println("clearing: " + new String(b));
+-		} catch (IOException e) {
+-			e.printStackTrace();
+-			//Ignore any error
+-		}
+-	}
  
- abstract public class DialogHandler extends TerminalHandler {
- 	
+ 	/**
+ 	 * Send command string to shell process and add special terminator string so
+ 	 * reader knows when output is complete.
+-	 * 
++	 *
+ 	 * @param command
+ 	 * @throws IOException
+ 	 */
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
+index ed8960d..f443e00 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
+@@ -19,7 +19,7 @@ import org.eclipse.ui.console.ConsolePlugin;
+ import org.eclipse.ui.console.IConsole;
+ import org.eclipse.ui.console.IConsoleManager;
+ import org.eclipse.ui.console.MessageConsole;
+-import org.yocto.sdk.remotetools.ShellSession;
++import org.yocto.remote.utils.ShellSession;
+ 
+ public class SystemtapModel extends BaseModel {
+ 	protected static final String DEFAULT_INIT_SCRIPT = "oe-init-build-env";
 -- 
 1.7.9.5
 
