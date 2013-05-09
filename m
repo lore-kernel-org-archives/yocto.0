@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52D5CE014BF
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:14:00 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A97F7E014F7
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:14:01 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 09 May 2013 01:13:52 -0700
+	by azsmga101.ch.intel.com with ESMTP; 09 May 2013 01:13:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="239011837"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="239011984"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 01:13:27 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 09 May 2013 01:13:36 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:53:22 +0300
-Message-Id: <1368086011-24931-4-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:53:29 +0300
+Message-Id: <1368086011-24931-11-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368086011-24931-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 03/12] Move logic for waiting for RSE initialization to RSEHelper
+Subject: [PATCH 10/12] Move TerminalHandler to org.yocto.remote.utils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,63 +27,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:14:00 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:14:02 -0000
 
-- BaseSettingsDialog contains code that ensures that RSE plug-in is initialized before performing any remote actions
-	- this piece of code should be placed in the RSEHelper since it does not have any relevance for the GUI class
-	- created method in RSEHelper called waitForRSEInitCompletition with this functionality
-	- replaced code in BaseSettingsDialog with a call to waitForRSEInitCompletition
+- move TerminalHandler to separate plugin since it performs actions that are best suited for remote utilities
+- remove TerminalHandler from remotetools plugin
+- modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../src/org/yocto/sdk/remotetools/RSEHelper.java   |    9 +++++++++
- .../sdk/remotetools/actions/BaseSettingDialog.java |    8 +-------
- 2 files changed, 10 insertions(+), 7 deletions(-)
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |    9 ++++++-
+ .../org/yocto/remote/utils}/TerminalHandler.java   |   28 ++++++++++----------
+ .../sdk/remotetools/actions/DialogHandler.java     |    1 +
+ 3 files changed, 23 insertions(+), 15 deletions(-)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions => org.yocto.remote.utils/src/org/yocto/remote/utils}/TerminalHandler.java (94%)
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-index bf48464..d1a505d 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-@@ -403,4 +403,13 @@ public class RSEHelper {
+diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+index 9616484..e7afbd0 100644
+--- a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
++++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+@@ -11,10 +11,17 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ Import-Package: org.eclipse.rse.core,
+  org.eclipse.rse.core.model,
+  org.eclipse.rse.core.subsystems,
++ org.eclipse.rse.internal.terminals.ui,
++ org.eclipse.rse.internal.terminals.ui.views,
+  org.eclipse.rse.services,
+  org.eclipse.rse.services.files,
+  org.eclipse.rse.services.shells,
++ org.eclipse.rse.services.terminals,
+  org.eclipse.rse.subsystems.files.core.servicesubsystem,
+  org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem,
+- org.eclipse.rse.subsystems.terminals.core
++ org.eclipse.rse.subsystems.terminals.core,
++ org.eclipse.rse.subsystems.terminals.core.elements,
++ org.eclipse.rse.ui,
++ org.eclipse.tm.internal.terminal.control,
++ org.eclipse.tm.internal.terminal.provisional.api
+ Export-Package: org.yocto.remote.utils
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
+similarity index 94%
+rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
+rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
+index ae04dc9..e28ae79 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
+@@ -8,7 +8,7 @@
+  * Contributors:
+  * Intel - initial API and implementation
+  *******************************************************************************/
+-package org.yocto.sdk.remotetools.actions;
++package org.yocto.remote.utils;
+ 
+ import org.eclipse.core.commands.AbstractHandler;
+ import org.eclipse.core.commands.ExecutionException;
+@@ -33,20 +33,18 @@ import org.eclipse.swt.events.DisposeListener;
+ import org.eclipse.swt.widgets.Shell;
+ import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
+ import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
+-import org.yocto.remote.utils.CommonHelper;
+-import org.yocto.remote.utils.RSEHelper;
+ 
+ abstract public class TerminalHandler extends AbstractHandler {
+-	
+-	
++
++
+ 	protected Shell shell;
+-	
+-	protected String changeTerm="export TERM=vt100;";
+-	
++
++	protected String changeTerm = "export TERM=vt100;";
++
+ 	abstract protected String getInitCmd();
+ 	abstract protected String getConnnectionName();
+ 	abstract protected String getDialogTitle();
+-	
++
+ 	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
+         ITerminalShell terminalShell = null;
+         ITerminalViewControl terminalViewControl = (ITerminalViewControl) item
+@@ -65,7 +63,8 @@ abstract public class TerminalHandler extends AbstractHandler {
+ 			try {
+ 				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
+ 				dialog.run(true, true, new IRunnableWithProgress(){
+-				    public void run(IProgressMonitor monitor) {
++				    @Override
++					public void run(IProgressMonitor monitor) {
+ 				        monitor.beginTask("Connecting to remote target ...", 100);
+ 				        try {
+ 				        terminalSubSystem.connect(new NullProgressMonitor(), false);
+@@ -73,7 +72,7 @@ abstract public class TerminalHandler extends AbstractHandler {
+ 				        } catch (Exception e) {
+ 				        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
+ 				        	monitor.done();
+-				        	
++
+ 				        }
+ 				    }
+ 				});
+@@ -88,11 +87,11 @@ abstract public class TerminalHandler extends AbstractHandler {
  			return true;
  		return false;
  	}
+-	
 +
-+	public static void waitForRSEInitCompletition() {
-+		if (!RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL))
-+			try {
-+				RSECorePlugin.waitForInitCompletion(RSECorePlugin.INIT_MODEL);
-+			} catch (InterruptedException e) {
-+				return;
-+			}
-+	}
- }
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-index 5c76bf9..06eeb00 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-@@ -27,7 +27,6 @@ import org.yocto.sdk.remotetools.RSEHelper;
- import org.eclipse.jface.dialogs.Dialog;
- import org.eclipse.jface.dialogs.IDialogConstants;
- import org.eclipse.rse.core.IRSESystemType;
--import org.eclipse.rse.core.RSECorePlugin;
+ 	public void execute(IHost host) throws ExecutionException {
+-		
++
+ 		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
+-		
++
+ 		if (terminalSubSystem != null) {
+ 			TerminalsUI terminalsUI = TerminalsUI.getInstance();
+ 			TerminalViewer viewer = terminalsUI.activateTerminalsView();
+@@ -103,6 +102,7 @@ abstract public class TerminalHandler extends AbstractHandler {
+ 				//we have manually exit it here
+ 				try {
+ 					tab.addDisposeListener(new DisposeListener() {
++						@Override
+ 						public void widgetDisposed(DisposeEvent e) {
+ 							Object source = e.getSource();
+ 							if (source instanceof CTabItem) {
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+index d5c3583..ca6d13b 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
  import org.eclipse.rse.core.model.IHost;
- import org.eclipse.rse.ui.actions.SystemNewConnectionAction;
- import org.eclipse.swt.SWT;
-@@ -181,12 +180,7 @@ public class BaseSettingDialog extends Dialog {
+ import org.eclipse.ui.IWorkbenchWindow;
+ import org.eclipse.ui.handlers.HandlerUtil;
++import org.yocto.remote.utils.TerminalHandler;
+ 
+ abstract public class DialogHandler extends TerminalHandler {
  	
- 	protected void updateConnectionPulldown() {
- 		int index=-1;
--		if (!RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL))
--			try {
--				RSECorePlugin.waitForInitCompletion(RSECorePlugin.INIT_MODEL);
--			} catch (InterruptedException e) {
--				return;
--			}
-+		RSEHelper.waitForRSEInitCompletition();
- 		// already initialized
- 		connectionCombo.removeAll();
- 		IHost[] connections = RSEHelper.getSuitableConnections();
 -- 
 1.7.9.5
 
