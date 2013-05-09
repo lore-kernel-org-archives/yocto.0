@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A755AE014AA
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:19 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0C1BE014C3
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:20 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:19 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817049"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817056"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:17 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:19 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:47:04 +0300
-Message-Id: <1368085635-24575-9-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:47:05 +0300
+Message-Id: <1368085635-24575-10-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 04/12] Move filtering of suitable connections to RSEHelper
+Subject: [PATCH 05/12] Initial commit for separate remote utilities plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,60 +27,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:07:19 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:07:20 -0000
 
-- BaseSettingDialog performs an extra filtering for suitable connections for a given host by checking the remote system type
-	- this checking should be done in RSEHelper since it involves a remote action and thus removing BaseSettingDialog dependency on RSE Api
-	- modified RSEHelper.getSuitableConnections to include the filtering for connections with associated system type disabled
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../src/org/yocto/sdk/remotetools/RSEHelper.java   |    4 ++++
- .../sdk/remotetools/actions/BaseSettingDialog.java |   10 +++-------
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ plugins/org.yocto.remote.utils/.classpath          |    7 +++
+ plugins/org.yocto.remote.utils/.project            |   28 +++++++++
+ .../.settings/org.eclipse.jdt.core.prefs           |    7 +++
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   10 ++++
+ plugins/org.yocto.remote.utils/build.properties    |    4 ++
+ .../src/org/yocto/remote/utils/Activator.java      |   60 ++++++++++++++++++++
+ 6 files changed, 116 insertions(+)
+ create mode 100644 plugins/org.yocto.remote.utils/.classpath
+ create mode 100644 plugins/org.yocto.remote.utils/.project
+ create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
+ create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+ create mode 100644 plugins/org.yocto.remote.utils/build.properties
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-index d1a505d..569b00d 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHelper.java
-@@ -150,6 +150,10 @@ public class RSEHelper {
- 			if(!terminalConnections.contains(fileConnection) && !shellConnections.contains(fileConnection)){
- 				iter.remove();
- 			}
-+			IRSESystemType sysType = fileConnection.getSystemType();
-+			if (sysType == null || !sysType.isEnabled()) {
-+				iter.remove();
-+			}
- 		}
- 		
- 		return (IHost[]) filConnections.toArray(new IHost[filConnections.size()]);
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-index 06eeb00..962a20a 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java
-@@ -26,7 +26,6 @@ import org.yocto.sdk.remotetools.SWTFactory;
- import org.yocto.sdk.remotetools.RSEHelper;
- import org.eclipse.jface.dialogs.Dialog;
- import org.eclipse.jface.dialogs.IDialogConstants;
--import org.eclipse.rse.core.IRSESystemType;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.rse.ui.actions.SystemNewConnectionAction;
- import org.eclipse.swt.SWT;
-@@ -185,12 +184,9 @@ public class BaseSettingDialog extends Dialog {
- 		connectionCombo.removeAll();
- 		IHost[] connections = RSEHelper.getSuitableConnections();
- 		for (int i = 0; i < connections.length; i++) {
--			IRSESystemType sysType = connections[i].getSystemType();
--			if (sysType != null && sysType.isEnabled()) {
--				connectionCombo.add(connections[i].getAliasName());
--				if(connections[i].getAliasName().equals(curConn))
--					index=i;
--			}
-+			connectionCombo.add(connections[i].getAliasName());
-+			if(connections[i].getAliasName().equals(curConn))
-+				index=i;
- 		}
- 		
- 		if(index>=0) {
+diff --git a/plugins/org.yocto.remote.utils/.classpath b/plugins/org.yocto.remote.utils/.classpath
+new file mode 100644
+index 0000000..098194c
+--- /dev/null
++++ b/plugins/org.yocto.remote.utils/.classpath
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
++	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry kind="output" path="bin"/>
++</classpath>
+diff --git a/plugins/org.yocto.remote.utils/.project b/plugins/org.yocto.remote.utils/.project
+new file mode 100644
+index 0000000..29a2a5a
+--- /dev/null
++++ b/plugins/org.yocto.remote.utils/.project
+@@ -0,0 +1,28 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<projectDescription>
++	<name>org.yocto.remote.utils</name>
++	<comment></comment>
++	<projects>
++	</projects>
++	<buildSpec>
++		<buildCommand>
++			<name>org.eclipse.jdt.core.javabuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
++			<name>org.eclipse.pde.ManifestBuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
++			<name>org.eclipse.pde.SchemaBuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++	</buildSpec>
++	<natures>
++		<nature>org.eclipse.pde.PluginNature</nature>
++		<nature>org.eclipse.jdt.core.javanature</nature>
++	</natures>
++</projectDescription>
+diff --git a/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs b/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
+new file mode 100644
+index 0000000..f42de36
+--- /dev/null
++++ b/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
+@@ -0,0 +1,7 @@
++eclipse.preferences.version=1
++org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
++org.eclipse.jdt.core.compiler.compliance=1.7
++org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
++org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
++org.eclipse.jdt.core.compiler.source=1.7
+diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+new file mode 100644
+index 0000000..eff0356
+--- /dev/null
++++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+@@ -0,0 +1,10 @@
++Manifest-Version: 1.0
++Bundle-ManifestVersion: 2
++Bundle-Name: Utils
++Bundle-SymbolicName: org.yocto.remote.utils
++Bundle-Version: 1.0.0.qualifier
++Bundle-Activator: org.yocto.remote.utils.Activator
++Require-Bundle: org.eclipse.ui,
++ org.eclipse.core.runtime
++Bundle-ActivationPolicy: lazy
++Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+diff --git a/plugins/org.yocto.remote.utils/build.properties b/plugins/org.yocto.remote.utils/build.properties
+new file mode 100644
+index 0000000..34d2e4d
+--- /dev/null
++++ b/plugins/org.yocto.remote.utils/build.properties
+@@ -0,0 +1,4 @@
++source.. = src/
++output.. = bin/
++bin.includes = META-INF/,\
++               .
+diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
+new file mode 100644
+index 0000000..047d900
+--- /dev/null
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
+@@ -0,0 +1,60 @@
++/*******************************************************************************
++ * Copyright (c) 2013 Intel Corporation.
++ * All rights reserved. This program and the accompanying materials
++ * are made available under the terms of the Eclipse Public License v1.0
++ * which accompanies this distribution, and is available at
++ * http://www.eclipse.org/legal/epl-v10.html
++ *
++ * Contributors:
++ * Intel - initial API and implementation
++ *******************************************************************************/
++package org.yocto.remote.utils;
++
++import org.eclipse.ui.plugin.AbstractUIPlugin;
++import org.osgi.framework.BundleContext;
++
++/**
++ * The activator class controls the plug-in life cycle
++ */
++public class Activator extends AbstractUIPlugin {
++
++	// The plug-in ID
++	public static final String PLUGIN_ID = "org.yocto.remote.utils"; //$NON-NLS-1$
++
++	// The shared instance
++	private static Activator plugin;
++	
++	/**
++	 * The constructor
++	 */
++	public Activator() {
++	}
++
++	/*
++	 * (non-Javadoc)
++	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
++	 */
++	public void start(BundleContext context) throws Exception {
++		super.start(context);
++		plugin = this;
++	}
++
++	/*
++	 * (non-Javadoc)
++	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
++	 */
++	public void stop(BundleContext context) throws Exception {
++		plugin = null;
++		super.stop(context);
++	}
++
++	/**
++	 * Returns the shared instance
++	 *
++	 * @return the shared instance
++	 */
++	public static Activator getDefault() {
++		return plugin;
++	}
++
++}
 -- 
 1.7.9.5
 
