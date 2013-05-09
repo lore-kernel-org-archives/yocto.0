@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FC3EE014D7
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:27 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E865E014D9
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:28 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:27 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817094"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817104"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:24 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:27 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:47:09 +0300
-Message-Id: <1368085635-24575-14-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:47:10 +0300
+Message-Id: <1368085635-24575-15-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 07/12] Move RemoteShellExec to separate plugin
+Subject: [PATCH v2 7/7] Remove all plugin dependencies to RSE APi from remote tools plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,217 +27,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:07:27 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:07:28 -0000
 
-- RemoteShellExec is a wrapper over a remote executiong of a command in a shell and it belongs to org.yocto.remote.utils plugin
-- remove RemoteShellExec from remotetools plugin and add it to org.yocto.remote.utils
-- modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
+- removed all plugin dependencies to the RSE API & kept only the ones needed for GUI actions and Terminal views
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../org/yocto/remote/utils}/RemoteShellExec.java   |   95 +++++++++-----------
- .../yocto/sdk/remotetools/actions/BaseModel.java   |    2 +-
- 2 files changed, 44 insertions(+), 53 deletions(-)
- rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote => org.yocto.remote.utils/src/org/yocto/remote/utils}/RemoteShellExec.java (69%)
+ .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |   10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
-similarity index 69%
-rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
-rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
-index bfcbbfc..48b4f4d 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
-@@ -8,7 +8,7 @@
-  * Contributors:
-  * Intel - initial API and implementation
-  *******************************************************************************/
--package org.yocto.sdk.remotetools.remote;
-+package org.yocto.remote.utils;
- 
- import java.io.BufferedReader;
- import java.io.IOException;
-@@ -17,60 +17,53 @@ import java.io.InputStreamReader;
- import java.io.OutputStream;
- 
- import org.eclipse.core.runtime.IProgressMonitor;
--//import org.eclipse.tcf.protocol.IToken;
--//import org.eclipse.tcf.services.IStreams;
--//import org.eclipse.tcf.services.IProcesses;
--//import org.eclipse.tcf.util.TCFTask;
- import org.eclipse.rse.core.model.IHost;
--import org.yocto.remote.utils.RSEHelper;
- 
- public class RemoteShellExec {
--	
-+
- 	public static final int
-     STATE_NULL = 0,
-     STATE_RUNNING = 1,
-     STATE_EXITED = 2;
--	
--	private String command;
--	private IHost host;
--	
-+
-+	private final String command;
-+	private final IHost host;
-+
- 	private InputStream fInStream;
-     private OutputStream fOutStream;
-     private InputStream fErrStream;
-     private Process remoteShellProcess;
--	
--	private int exit_code=0;
--	private int status=STATE_NULL;
--	
--	private String RETURN_VALUE_TAG = "org.yocto.sdk.remotetools.RVTAG";
--	private String RETURN_VALUE_CMD = ";echo \"" + RETURN_VALUE_TAG + "$?\"";
--	
-+
-+	private int exitCode = 0;
-+	private int status = STATE_NULL;
-+
-+	private final String RETURN_VALUE_TAG = "org.yocto.sdk.remotetools.RVTAG";
-+	private final String RETURN_VALUE_CMD = ";echo \"" + RETURN_VALUE_TAG + "$?\"";
-+
- 	public RemoteShellExec(IHost host, String command) {
- 		assert(host != null);
- 		this.host = host;
--		this.command=command;
-+		this.command = command;
- 	}
--	
--	public int getStatus()
--	{
-+
-+	public int getStatus() {
- 		return status;
- 	}
--	
--	public int getExitCode()
--	{
--		return exit_code;
-+
-+	public int getExitCode() {
-+		return exitCode;
- 	}
--	
-+
- 	private void reset() {
--		fInStream=null;
--		fOutStream=null;
--		fErrStream=null;
--		
--		remoteShellProcess=null;
--		exit_code=0;
--		status=STATE_NULL;
-+		fInStream = null;
-+		fOutStream = null;
-+		fErrStream = null;
-+
-+		remoteShellProcess = null;
-+		exitCode = 0;
-+		status = STATE_NULL;
- 	}
--	
-+
- 	public InputStream getInputStream() {
-         return fInStream;
-     }
-@@ -78,15 +71,15 @@ public class RemoteShellExec {
-     public OutputStream getOutputStream() {
-         return fOutStream;
-     }
--    
-+
-     public InputStream getErrStream() {
-         return fErrStream;
-     }
--    
-+
- 	public synchronized void start(String prelaunchCmd, String argument, IProgressMonitor monitor) throws Exception {
- 		if(status == STATE_RUNNING)
- 				return;
--	
-+
- 		reset();
- 		argument = (argument == null ? RETURN_VALUE_CMD : argument + RETURN_VALUE_CMD);
- 		remoteShellProcess = RSEHelper.remoteShellExec(this.host, prelaunchCmd, this.command, argument, monitor);
-@@ -95,41 +88,39 @@ public class RemoteShellExec {
- 		fErrStream = remoteShellProcess.getErrorStream();
- 		status = STATE_RUNNING;
- 	}
--	
-+
- 	 public synchronized void terminate() throws Exception {
--		 
- 		 if(status != STATE_RUNNING || remoteShellProcess != null)
- 			 return;
--		 
-+
- 		 remoteShellProcess.destroy();
- 		 reset();
- 	 }
--	 
-+
- 	 public int waitFor(IProgressMonitor monitor) throws InterruptedException {
--		 while(status==STATE_RUNNING) {
--			 if(monitor!=null) {
-+		 while(status == STATE_RUNNING) {
-+			 if(monitor != null) {
- 	    			if(monitor.isCanceled()) {
- 	    				throw new InterruptedException("User Cancelled");
- 	    			}
-  			 }
--			 
-+
- 			 try {
- 				 remoteShellProcess.waitFor();
- 			 }catch(InterruptedException e){
- 				 //get the return value
- 				 try {
- 					 if(fInStream.available() != 0) {
--						 BufferedReader in=new BufferedReader(new InputStreamReader(fInStream));
-+						 BufferedReader in = new BufferedReader(new InputStreamReader(fInStream));
- 						 String thisline;
- 						 int idx;
--						 while((thisline=in.readLine()) != null) {
--							    if(thisline.indexOf(RETURN_VALUE_CMD)==-1) {
--									idx=thisline.indexOf(RETURN_VALUE_TAG);
-+						 while((thisline = in.readLine()) != null) {
-+							    if(thisline.indexOf(RETURN_VALUE_CMD) == -1) {
-+									idx = thisline.indexOf(RETURN_VALUE_TAG);
- 									if(idx != -1) {
- 										try {
--											exit_code=(new Integer(thisline.substring(idx+RETURN_VALUE_TAG.length()))).intValue();
-+											exitCode=(new Integer(thisline.substring(idx+RETURN_VALUE_TAG.length()))).intValue();
- 										}catch(NumberFormatException e2) {
--											//
- 										}
- 										break;
- 									}
-@@ -143,7 +134,7 @@ public class RemoteShellExec {
- 				 status=STATE_EXITED;
- 			 }
- 		 }
--		 return exit_code;
-+		 return exitCode;
- 	 }
- }
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-index 08cb873..dacd192 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
-@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
- import org.eclipse.jface.operation.IRunnableWithProgress;
- import org.eclipse.rse.core.model.IHost;
- import org.yocto.remote.utils.RSEHelper;
--import org.yocto.sdk.remotetools.remote.RemoteShellExec;
-+import org.yocto.remote.utils.RemoteShellExec;
- 
- abstract public class BaseModel implements IRunnableWithProgress {
- 	protected IHost host;
+diff --git a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
+index c34ad9e..5147c1a 100644
+--- a/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
++++ b/plugins/org.yocto.sdk.remotetools/META-INF/MANIFEST.MF
+@@ -7,16 +7,10 @@ Bundle-Activator: org.yocto.sdk.remotetools.Activator
+ Require-Bundle: org.eclipse.ui,
+  org.eclipse.core.runtime,
+  org.eclipse.rse.core;bundle-version="3.0.0",
+- org.eclipse.rse.services;bundle-version="3.0.0",
+- org.eclipse.rse.subsystems.files.core;bundle-version="3.0.0",
+- org.eclipse.rse.ui;bundle-version="3.0.0",
+  org.yocto.sdk.ide,
+- org.eclipse.tm.terminal;bundle-version="3.0.1",
+- org.eclipse.rse.subsystems.terminals.core;bundle-version="[1.0.0,2.0.0)",
+  org.eclipse.rse.terminals.ui;bundle-version="1.0.100",
+  org.eclipse.cdt;bundle-version="7.0.0",
+  org.eclipse.linuxtools.tmf.core;bundle-version="0.4.0",
+- org.eclipse.rse.subsystems.shells.core,
+  org.eclipse.ui.ide;bundle-version="3.8.0",
+  org.eclipse.ui.console;bundle-version="3.5.100"
+ Bundle-ActivationPolicy: lazy
+@@ -24,6 +18,10 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+ Import-Package: org.eclipse.core.resources,
+  org.eclipse.debug.internal.ui,
+  org.eclipse.rse.shells.ui,
++ org.eclipse.rse.ui.actions,
++ org.eclipse.tm.internal.terminal.control,
++ org.eclipse.tm.internal.terminal.control.actions,
++ org.eclipse.tm.internal.terminal.provisional.api,
+  org.eclipse.ui.forms.widgets,
+  org.yocto.remote.utils
+ Bundle-Vendor: %Bundle-Vendor
 -- 
 1.7.9.5
 
