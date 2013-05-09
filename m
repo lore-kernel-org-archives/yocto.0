@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EEC4E014E0
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:32 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D74BBE014E0
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:33 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:32 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817121"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817127"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:30 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:32 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:47:13 +0300
-Message-Id: <1368085635-24575-18-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:47:14 +0300
+Message-Id: <1368085635-24575-19-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 10/12] Move TerminalHandler to org.yocto.remote.utils
+Subject: [PATCH 11/12] Remove unused TCFTerminalConnectors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,140 +27,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:07:32 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:07:34 -0000
 
-- move TerminalHandler to separate plugin since it performs actions that are best suited for remote utilities
-- remove TerminalHandler from remotetools plugin
-- modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
+- removed TCFTerminalConnector and TCFTerminalConnectorImpl since there are no usages of this classes
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |    9 ++++++-
- .../org/yocto/remote/utils}/TerminalHandler.java   |   28 ++++++++++----------
- .../sdk/remotetools/actions/DialogHandler.java     |    1 +
- 3 files changed, 23 insertions(+), 15 deletions(-)
- rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions => org.yocto.remote.utils/src/org/yocto/remote/utils}/TerminalHandler.java (94%)
+ .../remotetools/views/TCFTerminalConnector.java    |   49 ----------
+ .../views/TCFTerminalConnectorImpl.java            |   98 --------------------
+ 2 files changed, 147 deletions(-)
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
 
-diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-index 9616484..e7afbd0 100644
---- a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-+++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-@@ -11,10 +11,17 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
- Import-Package: org.eclipse.rse.core,
-  org.eclipse.rse.core.model,
-  org.eclipse.rse.core.subsystems,
-+ org.eclipse.rse.internal.terminals.ui,
-+ org.eclipse.rse.internal.terminals.ui.views,
-  org.eclipse.rse.services,
-  org.eclipse.rse.services.files,
-  org.eclipse.rse.services.shells,
-+ org.eclipse.rse.services.terminals,
-  org.eclipse.rse.subsystems.files.core.servicesubsystem,
-  org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem,
-- org.eclipse.rse.subsystems.terminals.core
-+ org.eclipse.rse.subsystems.terminals.core,
-+ org.eclipse.rse.subsystems.terminals.core.elements,
-+ org.eclipse.rse.ui,
-+ org.eclipse.tm.internal.terminal.control,
-+ org.eclipse.tm.internal.terminal.provisional.api
- Export-Package: org.yocto.remote.utils
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
-similarity index 94%
-rename from plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-rename to plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
-index ae04dc9..e28ae79 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
-@@ -8,7 +8,7 @@
-  * Contributors:
-  * Intel - initial API and implementation
-  *******************************************************************************/
--package org.yocto.sdk.remotetools.actions;
-+package org.yocto.remote.utils;
- 
- import org.eclipse.core.commands.AbstractHandler;
- import org.eclipse.core.commands.ExecutionException;
-@@ -33,20 +33,18 @@ import org.eclipse.swt.events.DisposeListener;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
- import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
--import org.yocto.remote.utils.CommonHelper;
--import org.yocto.remote.utils.RSEHelper;
- 
- abstract public class TerminalHandler extends AbstractHandler {
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
+deleted file mode 100644
+index 6239136..0000000
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
++++ /dev/null
+@@ -1,49 +0,0 @@
+-/********************************************************************************
+- * Copyright (c) 2008, 2009 MontaVista Software, Inc. and others
+- * This program and the accompanying materials are made available under the terms
+- * of the Eclipse Public License v1.0 which accompanies this distribution, and is
+- * available at http://www.eclipse.org/legal/epl-v10.html
+- *
+- * Contributors:
+- * Anna Dushistova (MontaVista) - initial API and implementation
+- * Uwe Stieber (Wind River) - [282996] [terminal][api] Add "hidden" attribute to terminal connector extension point
+- ********************************************************************************/
+-package org.yocto.sdk.remotetools.views;
+-
+-import org.eclipse.core.runtime.Platform;
+-import org.eclipse.rse.core.model.IHost;
+-import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
+-
+-public class TCFTerminalConnector extends TCFTerminalConnectorImpl implements ITerminalConnector {
+-
+-    public TCFTerminalConnector(IHost host) {
+-		super(host);
+-    }
+-
+-    public String getId() {
+-        return "yocto_tcf_internal_connector"; //$NON-NLS-1$
+-    }
+-
+-    public String getInitializationErrorMessage() {
+-        return null;
+-    }
+-
+-    public String getName() {
+-        return "yocto_tcf_internal_connector";
+-    }
+-
+-    public boolean isHidden() {
+-    	return true;
+-    }
+-
+-    public boolean isInitialized() {
+-        return true;
+-    }
+-
+-	public Object getAdapter(Class adapterType) {
+-		if (adapterType.isInstance(this))
+-			return this;
+-		return Platform.getAdapterManager().getAdapter(this, adapterType);
+-	}
+-
+-}
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
+deleted file mode 100644
+index 105ca62..0000000
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
++++ /dev/null
+@@ -1,98 +0,0 @@
+-/********************************************************************************
+- * Copyright (c) 2008 MontaVista Software, Inc.
+- * This program and the accompanying materials are made available under the terms
+- * of the Eclipse Public License v1.0 which accompanies this distribution, and is
+- * available at http://www.eclipse.org/legal/epl-v10.html
+- *
+- * Contributors:
+- * Anna Dushistova (MontaVista) - initial API and implementation
+- * Yu-Fen Kuo (MontaVista)      - [227572] RSE Terminal doesn't reset the "connected" state when the shell exits
+- * Anna Dushistova (MontaVista) - [228577] [rseterminal] Clean up RSE Terminal impl
+- ********************************************************************************/
+-package org.yocto.sdk.remotetools.views;
+-
+-import java.io.InputStream;
+-import java.io.OutputStream;
+-
+-import org.eclipse.rse.core.model.IHost;
+-import org.eclipse.tm.internal.terminal.provisional.api.ITerminalControl;
+-import org.eclipse.tm.internal.terminal.provisional.api.provider.TerminalConnectorImpl;
+-
+-public class TCFTerminalConnectorImpl extends TerminalConnectorImpl {
 -	
--	
-+
-+
- 	protected Shell shell;
--	
--	protected String changeTerm="export TERM=vt100;";
--	
-+
-+	protected String changeTerm = "export TERM=vt100;";
-+
- 	abstract protected String getInitCmd();
- 	abstract protected String getConnnectionName();
- 	abstract protected String getDialogTitle();
--	
-+
- 	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
-         ITerminalShell terminalShell = null;
-         ITerminalViewControl terminalViewControl = (ITerminalViewControl) item
-@@ -65,7 +63,8 @@ abstract public class TerminalHandler extends AbstractHandler {
- 			try {
- 				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
- 				dialog.run(true, true, new IRunnableWithProgress(){
--				    public void run(IProgressMonitor monitor) {
-+				    @Override
-+					public void run(IProgressMonitor monitor) {
- 				        monitor.beginTask("Connecting to remote target ...", 100);
- 				        try {
- 				        terminalSubSystem.connect(new NullProgressMonitor(), false);
-@@ -73,7 +72,7 @@ abstract public class TerminalHandler extends AbstractHandler {
- 				        } catch (Exception e) {
- 				        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
- 				        	monitor.done();
--				        	
-+
- 				        }
- 				    }
- 				});
-@@ -88,11 +87,11 @@ abstract public class TerminalHandler extends AbstractHandler {
- 			return true;
- 		return false;
- 	}
--	
-+
- 	public void execute(IHost host) throws ExecutionException {
--		
-+
- 		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
--		
-+
- 		if (terminalSubSystem != null) {
- 			TerminalsUI terminalsUI = TerminalsUI.getInstance();
- 			TerminalViewer viewer = terminalsUI.activateTerminalsView();
-@@ -103,6 +102,7 @@ abstract public class TerminalHandler extends AbstractHandler {
- 				//we have manually exit it here
- 				try {
- 					tab.addDisposeListener(new DisposeListener() {
-+						@Override
- 						public void widgetDisposed(DisposeEvent e) {
- 							Object source = e.getSource();
- 							if (source instanceof CTabItem) {
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-index d5c3583..ca6d13b 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.ui.IWorkbenchWindow;
- import org.eclipse.ui.handlers.HandlerUtil;
-+import org.yocto.remote.utils.TerminalHandler;
- 
- abstract public class DialogHandler extends TerminalHandler {
- 	
+-    private OutputStream fOutputStream;
+-    private InputStream fInputStream;
+-    IHost host;
+-//TODO    private RSETerminalConnectionThread fConnection;
+-//TODO    private ITerminalShell shell;
+-
+-    public TCFTerminalConnectorImpl(IHost host) {
+-        super();
+-        this.host = host;
+-    }
+-    /* TODO
+-    public void connect(ITerminalControl control) {
+-    	super.connect(control);
+-        fConnection = new RSETerminalConnectionThread(this, control);
+-        fConnection.start();
+-    }
+-
+-    public void doDisconnect() {
+-        fConnection.disconnect();
+-        if (getInputStream() != null) {
+-            try {
+-                getInputStream().close();
+-            } catch (Exception exception) {
+-            	RSECorePlugin.getDefault().getLogger().logError("Error while closing input stream", exception); //$NON-NLS-1$
+-            }
+-        }
+-
+-        if (getTerminalToRemoteStream() != null) {
+-            try {
+-                getTerminalToRemoteStream().close();
+-            } catch (Exception exception) {
+-            	RSECorePlugin.getDefault().getLogger().logError("Error while closing terminal-to-remote stream", exception); //$NON-NLS-1$
+-            }
+-        }
+-    }
+-*/
+-    public OutputStream getTerminalToRemoteStream() {
+-        return fOutputStream;
+-    }
+-
+-    public String getSettingsSummary() {
+-        return "RSE: " + host.getName();
+-    }
+-/* TODO
+-    public boolean isLocalEcho() {
+-        return shell.isLocalEcho();
+-    }
+-
+-    public void setTerminalSize(int newWidth, int newHeight) {
+-    	if(shell != null)
+-    	{	
+-            shell.setTerminalSize(newWidth, newHeight);
+-    	}    
+-    }
+-
+-    public InputStream getInputStream() {
+-        return fInputStream;
+-    }
+-
+-    public void setOutputStream(OutputStream outputStream) {
+-        fOutputStream = outputStream;
+-    }
+-
+-    public void setInputStream(InputStream inputStream) {
+-        fInputStream = inputStream;
+-    }
+-
+-    public void setTerminalHostShell(ITerminalShell shell) {
+-        this.shell = shell;
+-    }
+-
+-    public ITerminalShell getTerminalHostShell() {
+-        return shell;
+-    }
+-*/
+-}
 -- 
 1.7.9.5
 
