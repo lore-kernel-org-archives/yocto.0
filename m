@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0C1BE014C3
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:20 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDA35E014C9
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:21 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:20 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:21 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817056"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817064"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:19 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:20 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:47:05 +0300
-Message-Id: <1368085635-24575-10-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:47:06 +0300
+Message-Id: <1368085635-24575-11-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 05/12] Initial commit for separate remote utilities plugin
+Subject: [PATCH v2 5/7] Move TerminalHandler to org.yocto.remote.utils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,118 +27,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:07:20 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:07:22 -0000
+
+- move TerminalHandler to separate plugin since it performs actions that are best suited for remote utilities
+- remove TerminalHandler from remotetools plugin
+- modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- plugins/org.yocto.remote.utils/.classpath          |    7 +++
- plugins/org.yocto.remote.utils/.project            |   28 +++++++++
- .../.settings/org.eclipse.jdt.core.prefs           |    7 +++
- .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   10 ++++
- plugins/org.yocto.remote.utils/build.properties    |    4 ++
- .../src/org/yocto/remote/utils/Activator.java      |   60 ++++++++++++++++++++
- 6 files changed, 116 insertions(+)
- create mode 100644 plugins/org.yocto.remote.utils/.classpath
- create mode 100644 plugins/org.yocto.remote.utils/.project
- create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
- create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
- create mode 100644 plugins/org.yocto.remote.utils/build.properties
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |    9 +-
+ .../org/yocto/remote/utils/TerminalHandler.java    |  128 ++++++++++++++++++++
+ .../sdk/remotetools/actions/DialogHandler.java     |    1 +
+ .../sdk/remotetools/actions/TerminalHandler.java   |  128 --------------------
+ 4 files changed, 137 insertions(+), 129 deletions(-)
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
 
-diff --git a/plugins/org.yocto.remote.utils/.classpath b/plugins/org.yocto.remote.utils/.classpath
-new file mode 100644
-index 0000000..098194c
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/.classpath
-@@ -0,0 +1,7 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+<classpath>
-+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-+	<classpathentry kind="src" path="src"/>
-+	<classpathentry kind="output" path="bin"/>
-+</classpath>
-diff --git a/plugins/org.yocto.remote.utils/.project b/plugins/org.yocto.remote.utils/.project
-new file mode 100644
-index 0000000..29a2a5a
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/.project
-@@ -0,0 +1,28 @@
-+<?xml version="1.0" encoding="UTF-8"?>
-+<projectDescription>
-+	<name>org.yocto.remote.utils</name>
-+	<comment></comment>
-+	<projects>
-+	</projects>
-+	<buildSpec>
-+		<buildCommand>
-+			<name>org.eclipse.jdt.core.javabuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+		<buildCommand>
-+			<name>org.eclipse.pde.ManifestBuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+		<buildCommand>
-+			<name>org.eclipse.pde.SchemaBuilder</name>
-+			<arguments>
-+			</arguments>
-+		</buildCommand>
-+	</buildSpec>
-+	<natures>
-+		<nature>org.eclipse.pde.PluginNature</nature>
-+		<nature>org.eclipse.jdt.core.javanature</nature>
-+	</natures>
-+</projectDescription>
-diff --git a/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs b/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
-new file mode 100644
-index 0000000..f42de36
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
-@@ -0,0 +1,7 @@
-+eclipse.preferences.version=1
-+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
-+org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
-+org.eclipse.jdt.core.compiler.compliance=1.7
-+org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
-+org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
-+org.eclipse.jdt.core.compiler.source=1.7
 diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-new file mode 100644
-index 0000000..eff0356
---- /dev/null
+index 9616484..e7afbd0 100644
+--- a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
 +++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
-@@ -0,0 +1,10 @@
-+Manifest-Version: 1.0
-+Bundle-ManifestVersion: 2
-+Bundle-Name: Utils
-+Bundle-SymbolicName: org.yocto.remote.utils
-+Bundle-Version: 1.0.0.qualifier
-+Bundle-Activator: org.yocto.remote.utils.Activator
-+Require-Bundle: org.eclipse.ui,
-+ org.eclipse.core.runtime
-+Bundle-ActivationPolicy: lazy
-+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-diff --git a/plugins/org.yocto.remote.utils/build.properties b/plugins/org.yocto.remote.utils/build.properties
+@@ -11,10 +11,17 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+ Import-Package: org.eclipse.rse.core,
+  org.eclipse.rse.core.model,
+  org.eclipse.rse.core.subsystems,
++ org.eclipse.rse.internal.terminals.ui,
++ org.eclipse.rse.internal.terminals.ui.views,
+  org.eclipse.rse.services,
+  org.eclipse.rse.services.files,
+  org.eclipse.rse.services.shells,
++ org.eclipse.rse.services.terminals,
+  org.eclipse.rse.subsystems.files.core.servicesubsystem,
+  org.eclipse.rse.subsystems.shells.core.subsystems.servicesubsystem,
+- org.eclipse.rse.subsystems.terminals.core
++ org.eclipse.rse.subsystems.terminals.core,
++ org.eclipse.rse.subsystems.terminals.core.elements,
++ org.eclipse.rse.ui,
++ org.eclipse.tm.internal.terminal.control,
++ org.eclipse.tm.internal.terminal.provisional.api
+ Export-Package: org.yocto.remote.utils
+diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
 new file mode 100644
-index 0000000..34d2e4d
+index 0000000..e28ae79
 --- /dev/null
-+++ b/plugins/org.yocto.remote.utils/build.properties
-@@ -0,0 +1,4 @@
-+source.. = src/
-+output.. = bin/
-+bin.includes = META-INF/,\
-+               .
-diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
-new file mode 100644
-index 0000000..047d900
---- /dev/null
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
-@@ -0,0 +1,60 @@
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/TerminalHandler.java
+@@ -0,0 +1,128 @@
 +/*******************************************************************************
-+ * Copyright (c) 2013 Intel Corporation.
++ * Copyright (c) 2010 Intel Corporation.
 + * All rights reserved. This program and the accompanying materials
 + * are made available under the terms of the Eclipse Public License v1.0
 + * which accompanies this distribution, and is available at
@@ -149,54 +84,268 @@ index 0000000..047d900
 + *******************************************************************************/
 +package org.yocto.remote.utils;
 +
-+import org.eclipse.ui.plugin.AbstractUIPlugin;
-+import org.osgi.framework.BundleContext;
++import org.eclipse.core.commands.AbstractHandler;
++import org.eclipse.core.commands.ExecutionException;
++import org.eclipse.core.runtime.IProgressMonitor;
++import org.eclipse.core.runtime.NullProgressMonitor;
++import org.eclipse.core.runtime.OperationCanceledException;
++import org.eclipse.jface.dialogs.ProgressMonitorDialog;
++import org.eclipse.jface.operation.IRunnableWithProgress;
++import org.eclipse.rse.core.model.IHost;
++import org.eclipse.rse.internal.terminals.ui.TerminalServiceHelper;
++import org.eclipse.rse.internal.terminals.ui.views.RSETerminalConnector;
++import org.eclipse.rse.internal.terminals.ui.views.TerminalViewTab;
++import org.eclipse.rse.internal.terminals.ui.views.TerminalViewer;
++import org.eclipse.rse.internal.terminals.ui.views.TerminalsUI;
++import org.eclipse.rse.services.terminals.ITerminalShell;
++import org.eclipse.rse.subsystems.terminals.core.ITerminalServiceSubSystem;
++import org.eclipse.rse.subsystems.terminals.core.elements.TerminalElement;
++import org.eclipse.rse.ui.SystemBasePlugin;
++import org.eclipse.swt.custom.CTabItem;
++import org.eclipse.swt.events.DisposeEvent;
++import org.eclipse.swt.events.DisposeListener;
++import org.eclipse.swt.widgets.Shell;
++import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
++import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
 +
-+/**
-+ * The activator class controls the plug-in life cycle
-+ */
-+public class Activator extends AbstractUIPlugin {
++abstract public class TerminalHandler extends AbstractHandler {
 +
-+	// The plug-in ID
-+	public static final String PLUGIN_ID = "org.yocto.remote.utils"; //$NON-NLS-1$
 +
-+	// The shared instance
-+	private static Activator plugin;
-+	
-+	/**
-+	 * The constructor
-+	 */
-+	public Activator() {
++	protected Shell shell;
++
++	protected String changeTerm = "export TERM=vt100;";
++
++	abstract protected String getInitCmd();
++	abstract protected String getConnnectionName();
++	abstract protected String getDialogTitle();
++
++	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
++        ITerminalShell terminalShell = null;
++        ITerminalViewControl terminalViewControl = (ITerminalViewControl) item
++                .getData(TerminalViewTab.DATA_KEY_CONTROL);
++        ITerminalConnector terminalConnector = terminalViewControl
++                .getTerminalConnector();
++        if (terminalConnector instanceof RSETerminalConnector) {
++            RSETerminalConnector rseTerminalConnector = (RSETerminalConnector) terminalConnector;
++            terminalShell = rseTerminalConnector.getTerminalHostShell();
++        }
++        return terminalShell;
++    }
++
++	protected boolean preProcess(final ITerminalServiceSubSystem terminalSubSystem) {
++		if (!terminalSubSystem.isConnected()) {
++			try {
++				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
++				dialog.run(true, true, new IRunnableWithProgress(){
++				    @Override
++					public void run(IProgressMonitor monitor) {
++				        monitor.beginTask("Connecting to remote target ...", 100);
++				        try {
++				        terminalSubSystem.connect(new NullProgressMonitor(), false);
++				        monitor.done();
++				        } catch (Exception e) {
++				        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
++				        	monitor.done();
++
++				        }
++				    }
++				});
++			} catch (OperationCanceledException e) {
++				// user canceled, return silently
++				return false;
++			} catch (Exception e) {
++				SystemBasePlugin.logError(e.getLocalizedMessage(), e);
++				return false;
++			}
++		} else
++			return true;
++		return false;
 +	}
 +
-+	/*
-+	 * (non-Javadoc)
-+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-+	 */
-+	public void start(BundleContext context) throws Exception {
-+		super.start(context);
-+		plugin = this;
-+	}
++	public void execute(IHost host) throws ExecutionException {
 +
-+	/*
-+	 * (non-Javadoc)
-+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-+	 */
-+	public void stop(BundleContext context) throws Exception {
-+		plugin = null;
-+		super.stop(context);
-+	}
++		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
 +
-+	/**
-+	 * Returns the shared instance
-+	 *
-+	 * @return the shared instance
-+	 */
-+	public static Activator getDefault() {
-+		return plugin;
++		if (terminalSubSystem != null) {
++			TerminalsUI terminalsUI = TerminalsUI.getInstance();
++			TerminalViewer viewer = terminalsUI.activateTerminalsView();
++			if (preProcess(terminalSubSystem)) {
++				CTabItem tab = viewer.getTabFolder().createTabItem(
++						terminalSubSystem.getHost(), changeTerm + getInitCmd());
++				//since RSETerminalConnector not exit the shell during the diconnection,
++				//we have manually exit it here
++				try {
++					tab.addDisposeListener(new DisposeListener() {
++						@Override
++						public void widgetDisposed(DisposeEvent e) {
++							Object source = e.getSource();
++							if (source instanceof CTabItem) {
++								CTabItem currentItem = (CTabItem) source;
++								ITerminalShell shell=getTerminalShellFromTab(currentItem);
++								if(shell!=null) {
++									shell.exit();
++								}
++							}
++						}
++					});
++				}catch(Exception e) {
++					e.printStackTrace();
++				}
++				TerminalElement element = TerminalServiceHelper
++						.createTerminalElement(tab, terminalSubSystem);
++				terminalSubSystem.addChild(element);
++
++			}
++		}
 +	}
 +
 +}
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+index d5c3583..ca6d13b 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
+ import org.eclipse.rse.core.model.IHost;
+ import org.eclipse.ui.IWorkbenchWindow;
+ import org.eclipse.ui.handlers.HandlerUtil;
++import org.yocto.remote.utils.TerminalHandler;
+ 
+ abstract public class DialogHandler extends TerminalHandler {
+ 	
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
+deleted file mode 100644
+index ae04dc9..0000000
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
++++ /dev/null
+@@ -1,128 +0,0 @@
+-/*******************************************************************************
+- * Copyright (c) 2010 Intel Corporation.
+- * All rights reserved. This program and the accompanying materials
+- * are made available under the terms of the Eclipse Public License v1.0
+- * which accompanies this distribution, and is available at
+- * http://www.eclipse.org/legal/epl-v10.html
+- *
+- * Contributors:
+- * Intel - initial API and implementation
+- *******************************************************************************/
+-package org.yocto.sdk.remotetools.actions;
+-
+-import org.eclipse.core.commands.AbstractHandler;
+-import org.eclipse.core.commands.ExecutionException;
+-import org.eclipse.core.runtime.IProgressMonitor;
+-import org.eclipse.core.runtime.NullProgressMonitor;
+-import org.eclipse.core.runtime.OperationCanceledException;
+-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+-import org.eclipse.jface.operation.IRunnableWithProgress;
+-import org.eclipse.rse.core.model.IHost;
+-import org.eclipse.rse.internal.terminals.ui.TerminalServiceHelper;
+-import org.eclipse.rse.internal.terminals.ui.views.RSETerminalConnector;
+-import org.eclipse.rse.internal.terminals.ui.views.TerminalViewTab;
+-import org.eclipse.rse.internal.terminals.ui.views.TerminalViewer;
+-import org.eclipse.rse.internal.terminals.ui.views.TerminalsUI;
+-import org.eclipse.rse.services.terminals.ITerminalShell;
+-import org.eclipse.rse.subsystems.terminals.core.ITerminalServiceSubSystem;
+-import org.eclipse.rse.subsystems.terminals.core.elements.TerminalElement;
+-import org.eclipse.rse.ui.SystemBasePlugin;
+-import org.eclipse.swt.custom.CTabItem;
+-import org.eclipse.swt.events.DisposeEvent;
+-import org.eclipse.swt.events.DisposeListener;
+-import org.eclipse.swt.widgets.Shell;
+-import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
+-import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
+-import org.yocto.remote.utils.CommonHelper;
+-import org.yocto.remote.utils.RSEHelper;
+-
+-abstract public class TerminalHandler extends AbstractHandler {
+-	
+-	
+-	protected Shell shell;
+-	
+-	protected String changeTerm="export TERM=vt100;";
+-	
+-	abstract protected String getInitCmd();
+-	abstract protected String getConnnectionName();
+-	abstract protected String getDialogTitle();
+-	
+-	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
+-        ITerminalShell terminalShell = null;
+-        ITerminalViewControl terminalViewControl = (ITerminalViewControl) item
+-                .getData(TerminalViewTab.DATA_KEY_CONTROL);
+-        ITerminalConnector terminalConnector = terminalViewControl
+-                .getTerminalConnector();
+-        if (terminalConnector instanceof RSETerminalConnector) {
+-            RSETerminalConnector rseTerminalConnector = (RSETerminalConnector) terminalConnector;
+-            terminalShell = rseTerminalConnector.getTerminalHostShell();
+-        }
+-        return terminalShell;
+-    }
+-
+-	protected boolean preProcess(final ITerminalServiceSubSystem terminalSubSystem) {
+-		if (!terminalSubSystem.isConnected()) {
+-			try {
+-				ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
+-				dialog.run(true, true, new IRunnableWithProgress(){
+-				    public void run(IProgressMonitor monitor) {
+-				        monitor.beginTask("Connecting to remote target ...", 100);
+-				        try {
+-				        terminalSubSystem.connect(new NullProgressMonitor(), false);
+-				        monitor.done();
+-				        } catch (Exception e) {
+-				        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
+-				        	monitor.done();
+-				        	
+-				        }
+-				    }
+-				});
+-			} catch (OperationCanceledException e) {
+-				// user canceled, return silently
+-				return false;
+-			} catch (Exception e) {
+-				SystemBasePlugin.logError(e.getLocalizedMessage(), e);
+-				return false;
+-			}
+-		} else
+-			return true;
+-		return false;
+-	}
+-	
+-	public void execute(IHost host) throws ExecutionException {
+-		
+-		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
+-		
+-		if (terminalSubSystem != null) {
+-			TerminalsUI terminalsUI = TerminalsUI.getInstance();
+-			TerminalViewer viewer = terminalsUI.activateTerminalsView();
+-			if (preProcess(terminalSubSystem)) {
+-				CTabItem tab = viewer.getTabFolder().createTabItem(
+-						terminalSubSystem.getHost(), changeTerm + getInitCmd());
+-				//since RSETerminalConnector not exit the shell during the diconnection,
+-				//we have manually exit it here
+-				try {
+-					tab.addDisposeListener(new DisposeListener() {
+-						public void widgetDisposed(DisposeEvent e) {
+-							Object source = e.getSource();
+-							if (source instanceof CTabItem) {
+-								CTabItem currentItem = (CTabItem) source;
+-								ITerminalShell shell=getTerminalShellFromTab(currentItem);
+-								if(shell!=null) {
+-									shell.exit();
+-								}
+-							}
+-						}
+-					});
+-				}catch(Exception e) {
+-					e.printStackTrace();
+-				}
+-				TerminalElement element = TerminalServiceHelper
+-						.createTerminalElement(tab, terminalSubSystem);
+-				terminalSubSystem.addChild(element);
+-
+-			}
+-		}
+-	}
+-
+-}
 -- 
 1.7.9.5
 
