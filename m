@@ -1,31 +1,23 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 609E2E01439
-	for <yocto@yoctoproject.org>; Wed,  8 May 2013 17:15:41 -0700 (PDT)
-Received: by mail-vc0-f177.google.com with SMTP id ha12so2230629vcb.8
-	for <yocto@yoctoproject.org>; Wed, 08 May 2013 17:15:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to:cc
-	:content-type:x-gm-message-state;
-	bh=/xwYXt44fynfaYbunHbbr/5vhBB9uAIMYuc3rINhpxw=;
-	b=U1KSrdTfDiv/7k2opkCaEuRC5g5AwZT1FZB8Ji8EG4iUAl6FtckieoXdtofp6fVHO3
-	GLR80y5ugmw3YfA8e6lXRxYkshLMdC5ELhgDHOM4FDQrZs/KYOIcaLSe5p9cMsnk/dRh
-	e1FSB5FQgm2Cgln8XR8dMOiWKOcQgeziUtM6ao7O7LepHWx8enemT1zIRpM1sca+RQyd
-	7Q61rRQmeKC6oM3W7yI4LU9TgOMiicpWJ1dHcKoEsvxLrxsfWoexEbRogII2mbbl/17o
-	j3z+znfKtTU9CvpzT4AozKWfjGfhzYaDrOcqncxr2kvE+8DVDiMOaxqzgOlXiWkEMKfS
-	FGhw==
+Return-Path: <Brian.Silverman@spirent.com>
+Received: from webmail.spirent.com (smtp1.spirent.com [38.111.148.215])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6437E01439
+	for <yocto@yoctoproject.org>; Wed,  8 May 2013 18:02:27 -0700 (PDT)
+Received: from SPCCOREXCMBX01.AD.SPIRENTCOM.COM ([169.254.1.204]) by
+	SPCCOREXCCAS02.AD.SPIRENTCOM.COM ([10.96.66.21]) with mapi id
+	14.02.0328.009; Wed, 8 May 2013 18:02:27 -0700
+From: "Silverman, Brian" <Brian.Silverman@spirent.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to specify that a task always be executed
+Thread-Index: Ac5MTyyhQ0z7BwKRTEmRuBcvyZohSw==
+Date: Thu, 9 May 2013 01:02:26 +0000
+Message-ID: <E91F01D24E9DDB4EBC9395107E044B1C037698@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.96.66.253]
+x-disclaimer: Yes
 MIME-Version: 1.0
-X-Received: by 10.220.67.200 with SMTP id s8mr6289550vci.66.1368058540679;
-	Wed, 08 May 2013 17:15:40 -0700 (PDT)
-Received: by 10.52.163.79 with HTTP; Wed, 8 May 2013 17:15:40 -0700 (PDT)
-Date: Wed, 8 May 2013 17:15:40 -0700
-Message-ID: <CAPhnLPCLuA2W1kiZagXJx0XBrqMABvj47XHkQ--9DUHZqnD_+A@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQknLw2grs8wVt52qZ/qv1Mla1/NgNDss8gR0/nEHGE7FI5wdUaL+Rvf36Uq27rLd4kA0QdH
-Subject: 1.3.2_rc1 respin (failing)
+Subject: How to specify that a task always be executed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +29,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 00:15:41 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 09 May 2013 01:02:28 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-All,
+I could use some help in understanding how to create a task that is always =
+executed. I initially tried just setting task[nostamp]=3D"1". However, it a=
+ppeared that the sstate cache was preventing bitbake from even considering =
+the task's stamp. So I set SSTATETASKS=3D"" in an attempt to completely dis=
+able the sstate cache for this recipe. However, the image.do_rootfs task th=
+en complains that it can't find the RPM. It looks to me like it is actually=
+ one of the sstate tasks that copies the RPM to the proper location. Clearl=
+y I'm not going about this the right way. Is there a simple way to ensure t=
+he RPM is always rebuilt? Below is a snippet from the recipe I attempted.
 
-I've respun 1.3.2_rc1 per request. So far, there are a few known
-issues that I've been opening bugs for: gnome-desktop fails
-do_install, powertop fails do_compile and a still more sanity test
-failures mainly around connman and shutdown.
+# The install task creates a file with some continuously changing informati=
+on
+# (for example, the time of the build, just for argument's sake)
+do_install () {
+    install -d ${D}${sysconfdir}
+    date >> ${D}${sysconfdir}/${PN}
+}
 
-meta-fsl-arm a0e486a76af5819ee76ac34e966feb72bd3c48bd
-meta-fsl-ppc 084331c6f72dfe8be2f4981c802c43ae44d3b812
-meta-intel c216fec83f2941632460245de13f0b859738baae
-meta-qt3 c86fb1727ae09526c442ec29fffde3f010aa70eb
-poky d6cc4edb533b196753cf90820d1e2b9ccd8fed7c
+# We want to make sure the latest information is included every time we bui=
+ld the
+# image that includes this package. So force the install task to always be =
+executed.
+do_install[nostamp] =3D "1"
+SSTATETASKS =3D ""
 
-The artifacts should be available in a few hours at:
+# We don't need many of the tasks, so disable them
+do_fetch[noexec] =3D "1"
+do_unpack[noexec] =3D "1"
+do_patch[noexec] =3D "1"
+do_configure[noexec] =3D "1"
+do_compile[noexec] =3D "1"
 
-http://autobuilder.yoctoproject.org/pub/nightly/20130508-2
+Thank you,
+Brian
 
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+E-mail confidentiality.
+--------------------------------
+This e-mail contains confidential and / or privileged information belonging=
+ to Spirent Communications plc, its affiliates and / or subsidiaries. If yo=
+u are not the intended recipient, you are hereby notified that any disclosu=
+re, copying, distribution and / or the taking of any action based upon reli=
+ance on the contents of this transmission is strictly forbidden. If you hav=
+e received this message in error please notify the sender by return e-mail =
+and delete it from your system.
+
+Spirent Communications plc
+Northwood Park, Gatwick Road, Crawley, West Sussex, RH10 9XN, United Kingdo=
+m.
+Tel No. +44 (0) 1293 767676
+Fax No. +44 (0) 1293 767677
+
+Registered in England Number 470893
+Registered at Northwood Park, Gatwick Road, Crawley, West Sussex, RH10 9XN,=
+ United Kingdom.
+
+Or if within the US,
+
+Spirent Communications,
+26750 Agoura Road, Calabasas, CA, 91302, USA.
+Tel No. 1-818-676- 2300
 
