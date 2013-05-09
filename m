@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F93FE01484
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:11 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0D6CE0149D
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:12 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:11 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334816997"
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334817006"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:10 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:11 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 10:46:58 +0300
-Message-Id: <1368085635-24575-3-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu,  9 May 2013 10:46:59 +0300
+Message-Id: <1368085635-24575-4-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH 01/12] Separate remote logic from GUI login in TerminalHandler implementation
+Subject: [PATCH v2 2/7] Move RemoteShellExec to separate plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,30 +27,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 08:07:11 -0000
+X-List-Received-Date: Thu, 09 May 2013 08:07:13 -0000
 
-- TerminalHandler is used by both Perf and Latencytop handlers for running remote commands and for holding the settings dialog
-	- in order to separate the common functionality for running remote commands we need to separate the GUI from the utilitary funtions
-	- create DialogHandler that extends TerminalHandler to hold the GUI settings
-	- clean-up code in TerminalHandler:
-		- remove references to settings dialog
-		- modify execute method and keep only remote control code
-	- change Perf and Latencytop's parent to DialogHandler
+- RemoteShellExec is a wrapper over a remote executiong of a command in a shell and it belongs to org.yocto.remote.utils plugin
+- remove RemoteShellExec from remotetools plugin and add it to org.yocto.remote.utils
+- modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
+
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../sdk/remotetools/actions/DialogHandler.java     |   41 +++++++++
- .../sdk/remotetools/actions/LatencytopHandler.java |    2 +-
- .../yocto/sdk/remotetools/actions/PerfHandler.java |    2 +-
- .../sdk/remotetools/actions/TerminalHandler.java   |   93 ++++++--------------
- 4 files changed, 70 insertions(+), 68 deletions(-)
- create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+ .../org/yocto/remote/utils/RemoteShellExec.java    |  140 ++++++++++++++++++
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |    2 +-
+ .../sdk/remotetools/remote/RemoteShellExec.java    |  149 --------------------
+ 3 files changed, 141 insertions(+), 150 deletions(-)
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
 new file mode 100644
-index 0000000..d5c3583
+index 0000000..48b4f4d
 --- /dev/null
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-@@ -0,0 +1,41 @@
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteShellExec.java
+@@ -0,0 +1,140 @@
 +/*******************************************************************************
 + * Copyright (c) 2010 Intel Corporation.
 + * All rights reserved. This program and the accompanying materials
@@ -61,200 +58,304 @@ index 0000000..d5c3583
 + * Contributors:
 + * Intel - initial API and implementation
 + *******************************************************************************/
-+package org.yocto.sdk.remotetools.actions;
++package org.yocto.remote.utils;
 +
-+import org.eclipse.core.commands.ExecutionEvent;
-+import org.eclipse.core.commands.ExecutionException;
++import java.io.BufferedReader;
++import java.io.IOException;
++import java.io.InputStream;
++import java.io.InputStreamReader;
++import java.io.OutputStream;
++
++import org.eclipse.core.runtime.IProgressMonitor;
 +import org.eclipse.rse.core.model.IHost;
-+import org.eclipse.ui.IWorkbenchWindow;
-+import org.eclipse.ui.handlers.HandlerUtil;
 +
-+abstract public class DialogHandler extends TerminalHandler {
-+	
-+	protected BaseSettingDialog setting;
-+	
-+	abstract protected String getDialogTitle();
-+	
-+	protected void initialize(ExecutionEvent event) throws ExecutionException{
-+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-+		shell = window.getShell();
-+		setting = new SimpleSettingDialog(shell, getDialogTitle(), getConnnectionName());
++public class RemoteShellExec {
++
++	public static final int
++    STATE_NULL = 0,
++    STATE_RUNNING = 1,
++    STATE_EXITED = 2;
++
++	private final String command;
++	private final IHost host;
++
++	private InputStream fInStream;
++    private OutputStream fOutStream;
++    private InputStream fErrStream;
++    private Process remoteShellProcess;
++
++	private int exitCode = 0;
++	private int status = STATE_NULL;
++
++	private final String RETURN_VALUE_TAG = "org.yocto.sdk.remotetools.RVTAG";
++	private final String RETURN_VALUE_CMD = ";echo \"" + RETURN_VALUE_TAG + "$?\"";
++
++	public RemoteShellExec(IHost host, String command) {
++		assert(host != null);
++		this.host = host;
++		this.command = command;
 +	}
-+	
-+	@Override
-+	public Object execute(ExecutionEvent event) throws ExecutionException {
-+		initialize(event);
-+		
-+		if(setting.open() == BaseSettingDialog.OK) {
-+			IHost currentHost = setting.getHost();
-+			execute(currentHost);
-+		}
-+		return null;
++
++	public int getStatus() {
++		return status;
 +	}
++
++	public int getExitCode() {
++		return exitCode;
++	}
++
++	private void reset() {
++		fInStream = null;
++		fOutStream = null;
++		fErrStream = null;
++
++		remoteShellProcess = null;
++		exitCode = 0;
++		status = STATE_NULL;
++	}
++
++	public InputStream getInputStream() {
++        return fInStream;
++    }
++
++    public OutputStream getOutputStream() {
++        return fOutStream;
++    }
++
++    public InputStream getErrStream() {
++        return fErrStream;
++    }
++
++	public synchronized void start(String prelaunchCmd, String argument, IProgressMonitor monitor) throws Exception {
++		if(status == STATE_RUNNING)
++				return;
++
++		reset();
++		argument = (argument == null ? RETURN_VALUE_CMD : argument + RETURN_VALUE_CMD);
++		remoteShellProcess = RSEHelper.remoteShellExec(this.host, prelaunchCmd, this.command, argument, monitor);
++		fInStream = remoteShellProcess.getInputStream();
++		fOutStream = remoteShellProcess.getOutputStream();
++		fErrStream = remoteShellProcess.getErrorStream();
++		status = STATE_RUNNING;
++	}
++
++	 public synchronized void terminate() throws Exception {
++		 if(status != STATE_RUNNING || remoteShellProcess != null)
++			 return;
++
++		 remoteShellProcess.destroy();
++		 reset();
++	 }
++
++	 public int waitFor(IProgressMonitor monitor) throws InterruptedException {
++		 while(status == STATE_RUNNING) {
++			 if(monitor != null) {
++	    			if(monitor.isCanceled()) {
++	    				throw new InterruptedException("User Cancelled");
++	    			}
++ 			 }
++
++			 try {
++				 remoteShellProcess.waitFor();
++			 }catch(InterruptedException e){
++				 //get the return value
++				 try {
++					 if(fInStream.available() != 0) {
++						 BufferedReader in = new BufferedReader(new InputStreamReader(fInStream));
++						 String thisline;
++						 int idx;
++						 while((thisline = in.readLine()) != null) {
++							    if(thisline.indexOf(RETURN_VALUE_CMD) == -1) {
++									idx = thisline.indexOf(RETURN_VALUE_TAG);
++									if(idx != -1) {
++										try {
++											exitCode=(new Integer(thisline.substring(idx+RETURN_VALUE_TAG.length()))).intValue();
++										}catch(NumberFormatException e2) {
++										}
++										break;
++									}
++							    }
++						 }
++					 }
++				 }catch(IOException e1) {
++					 //do nothing
++				 }
++			 }finally {
++				 status=STATE_EXITED;
++			 }
++		 }
++		 return exitCode;
++	 }
 +}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-index ef77957..e931388 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-@@ -11,7 +11,7 @@
- package org.yocto.sdk.remotetools.actions;
- 
- 
--public class LatencytopHandler extends TerminalHandler {
-+public class LatencytopHandler extends DialogHandler {
- 	
- 	private static String initCmd="export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin; cd; sudo latencytop\r";
- 	
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-index 949bd46..f3f9e49 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-@@ -11,7 +11,7 @@
- package org.yocto.sdk.remotetools.actions;
- 
- 
--public class PerfHandler extends TerminalHandler {
-+public class PerfHandler extends DialogHandler {
- 
- 	private static String initCmd="cd; perf\r";
- 	
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-index 84e38f2..9e7c169 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-@@ -11,7 +11,6 @@
- package org.yocto.sdk.remotetools.actions;
- 
- import org.eclipse.core.commands.AbstractHandler;
--import org.eclipse.core.commands.ExecutionEvent;
- import org.eclipse.core.commands.ExecutionException;
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.NullProgressMonitor;
-@@ -34,14 +33,11 @@ import org.eclipse.swt.events.DisposeListener;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
- import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
--import org.eclipse.ui.IWorkbenchWindow;
--import org.eclipse.ui.handlers.HandlerUtil;
- import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.RSEHelper;
- 
- abstract public class TerminalHandler extends AbstractHandler {
- 	
--	protected BaseSettingDialog setting;
- 	
- 	protected Shell shell;
- 	
-@@ -50,11 +46,6 @@ abstract public class TerminalHandler extends AbstractHandler {
- 	abstract protected String getInitCmd();
- 	abstract protected String getConnnectionName();
- 	abstract protected String getDialogTitle();
--	protected void initialize(ExecutionEvent event) throws ExecutionException{
--		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
--		shell = window.getShell();
--		setting = new SimpleSettingDialog(shell, getDialogTitle(), getConnnectionName());
--	}
- 	
- 	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
-         ITerminalShell terminalShell = null;
-@@ -98,70 +89,40 @@ abstract public class TerminalHandler extends AbstractHandler {
- 		return false;
- 	}
- 	
--	public Object execute(ExecutionEvent event) throws ExecutionException {
-+	public void execute(IHost host) throws ExecutionException {
- 		
--		initialize(event);
-+		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
- 		
--		if(setting.open()==BaseSettingDialog.OK) {
--			IHost currentHost = setting.getHost();
--			final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(currentHost);
--			
--			if (terminalSubSystem != null) {
--				TerminalsUI terminalsUI = TerminalsUI.getInstance();
--				TerminalViewer viewer = terminalsUI.activateTerminalsView();
--				if (preProcess(terminalSubSystem)) {
--				/*if (!terminalSubSystem.isConnected()) {
--					try {
--						ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
--						dialog.run(true, true, new IRunnableWithProgress(){
--						    public void run(IProgressMonitor monitor) {
--						        monitor.beginTask("Connecting to remote target ...", 100);
--						        try {
--						        terminalSubSystem.connect(new NullProgressMonitor(), false);
--						        monitor.done();
--						        } catch (Exception e) {
--						        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
--						        	monitor.done();
--						        }
--						    }
--						});
--					} catch (OperationCanceledException e) {
--						// user canceled, return silently
--						return null;
--					} catch (Exception e) {
--						SystemBasePlugin.logError(e.getLocalizedMessage(), e);
--					}
--				}
--				if (terminalSubSystem.isConnected()) {*/
--					CTabItem tab = viewer.getTabFolder().createTabItem(
--							terminalSubSystem.getHost(), changeTerm + getInitCmd());
--					//since RSETerminalConnector not exit the shell during the diconnection,
--					//we have manually exit it here
--					try {
--						tab.addDisposeListener(new DisposeListener() {
--							public void widgetDisposed(DisposeEvent e) {
--								
--								Object source = e.getSource();
--								if (source instanceof CTabItem) {
--									CTabItem currentItem = (CTabItem) source;
--									ITerminalShell shell=getTerminalShellFromTab(currentItem);
--									if(shell!=null) {
--										shell.exit();
--									}
-+		if (terminalSubSystem != null) {
-+			TerminalsUI terminalsUI = TerminalsUI.getInstance();
-+			TerminalViewer viewer = terminalsUI.activateTerminalsView();
-+			if (preProcess(terminalSubSystem)) {
-+				CTabItem tab = viewer.getTabFolder().createTabItem(
-+						terminalSubSystem.getHost(), changeTerm + getInitCmd());
-+				//since RSETerminalConnector not exit the shell during the diconnection,
-+				//we have manually exit it here
-+				try {
-+					tab.addDisposeListener(new DisposeListener() {
-+						public void widgetDisposed(DisposeEvent e) {
-+							Object source = e.getSource();
-+							if (source instanceof CTabItem) {
-+								CTabItem currentItem = (CTabItem) source;
-+								ITerminalShell shell=getTerminalShellFromTab(currentItem);
-+								if(shell!=null) {
-+									shell.exit();
- 								}
- 							}
--						});
--					}catch(Exception e) {
--						e.printStackTrace();
--					}
--					TerminalElement element = TerminalServiceHelper
--							.createTerminalElement(tab, terminalSubSystem);
--					terminalSubSystem.addChild(element);
--	
-+						}
-+					});
-+				}catch(Exception e) {
-+					e.printStackTrace();
- 				}
-+				TerminalElement element = TerminalServiceHelper
-+						.createTerminalElement(tab, terminalSubSystem);
-+				terminalSubSystem.addChild(element);
 +
- 			}
- 		}
--		return null;
- 	}
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
+index 08cb873..dacd192 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/BaseModel.java
+@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.SubProgressMonitor;
+ import org.eclipse.jface.operation.IRunnableWithProgress;
+ import org.eclipse.rse.core.model.IHost;
+ import org.yocto.remote.utils.RSEHelper;
+-import org.yocto.sdk.remotetools.remote.RemoteShellExec;
++import org.yocto.remote.utils.RemoteShellExec;
  
- }
+ abstract public class BaseModel implements IRunnableWithProgress {
+ 	protected IHost host;
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
+deleted file mode 100644
+index bfcbbfc..0000000
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote/RemoteShellExec.java
++++ /dev/null
+@@ -1,149 +0,0 @@
+-/*******************************************************************************
+- * Copyright (c) 2010 Intel Corporation.
+- * All rights reserved. This program and the accompanying materials
+- * are made available under the terms of the Eclipse Public License v1.0
+- * which accompanies this distribution, and is available at
+- * http://www.eclipse.org/legal/epl-v10.html
+- *
+- * Contributors:
+- * Intel - initial API and implementation
+- *******************************************************************************/
+-package org.yocto.sdk.remotetools.remote;
+-
+-import java.io.BufferedReader;
+-import java.io.IOException;
+-import java.io.InputStream;
+-import java.io.InputStreamReader;
+-import java.io.OutputStream;
+-
+-import org.eclipse.core.runtime.IProgressMonitor;
+-//import org.eclipse.tcf.protocol.IToken;
+-//import org.eclipse.tcf.services.IStreams;
+-//import org.eclipse.tcf.services.IProcesses;
+-//import org.eclipse.tcf.util.TCFTask;
+-import org.eclipse.rse.core.model.IHost;
+-import org.yocto.remote.utils.RSEHelper;
+-
+-public class RemoteShellExec {
+-	
+-	public static final int
+-    STATE_NULL = 0,
+-    STATE_RUNNING = 1,
+-    STATE_EXITED = 2;
+-	
+-	private String command;
+-	private IHost host;
+-	
+-	private InputStream fInStream;
+-    private OutputStream fOutStream;
+-    private InputStream fErrStream;
+-    private Process remoteShellProcess;
+-	
+-	private int exit_code=0;
+-	private int status=STATE_NULL;
+-	
+-	private String RETURN_VALUE_TAG = "org.yocto.sdk.remotetools.RVTAG";
+-	private String RETURN_VALUE_CMD = ";echo \"" + RETURN_VALUE_TAG + "$?\"";
+-	
+-	public RemoteShellExec(IHost host, String command) {
+-		assert(host != null);
+-		this.host = host;
+-		this.command=command;
+-	}
+-	
+-	public int getStatus()
+-	{
+-		return status;
+-	}
+-	
+-	public int getExitCode()
+-	{
+-		return exit_code;
+-	}
+-	
+-	private void reset() {
+-		fInStream=null;
+-		fOutStream=null;
+-		fErrStream=null;
+-		
+-		remoteShellProcess=null;
+-		exit_code=0;
+-		status=STATE_NULL;
+-	}
+-	
+-	public InputStream getInputStream() {
+-        return fInStream;
+-    }
+-
+-    public OutputStream getOutputStream() {
+-        return fOutStream;
+-    }
+-    
+-    public InputStream getErrStream() {
+-        return fErrStream;
+-    }
+-    
+-	public synchronized void start(String prelaunchCmd, String argument, IProgressMonitor monitor) throws Exception {
+-		if(status == STATE_RUNNING)
+-				return;
+-	
+-		reset();
+-		argument = (argument == null ? RETURN_VALUE_CMD : argument + RETURN_VALUE_CMD);
+-		remoteShellProcess = RSEHelper.remoteShellExec(this.host, prelaunchCmd, this.command, argument, monitor);
+-		fInStream = remoteShellProcess.getInputStream();
+-		fOutStream = remoteShellProcess.getOutputStream();
+-		fErrStream = remoteShellProcess.getErrorStream();
+-		status = STATE_RUNNING;
+-	}
+-	
+-	 public synchronized void terminate() throws Exception {
+-		 
+-		 if(status != STATE_RUNNING || remoteShellProcess != null)
+-			 return;
+-		 
+-		 remoteShellProcess.destroy();
+-		 reset();
+-	 }
+-	 
+-	 public int waitFor(IProgressMonitor monitor) throws InterruptedException {
+-		 while(status==STATE_RUNNING) {
+-			 if(monitor!=null) {
+-	    			if(monitor.isCanceled()) {
+-	    				throw new InterruptedException("User Cancelled");
+-	    			}
+- 			 }
+-			 
+-			 try {
+-				 remoteShellProcess.waitFor();
+-			 }catch(InterruptedException e){
+-				 //get the return value
+-				 try {
+-					 if(fInStream.available() != 0) {
+-						 BufferedReader in=new BufferedReader(new InputStreamReader(fInStream));
+-						 String thisline;
+-						 int idx;
+-						 while((thisline=in.readLine()) != null) {
+-							    if(thisline.indexOf(RETURN_VALUE_CMD)==-1) {
+-									idx=thisline.indexOf(RETURN_VALUE_TAG);
+-									if(idx != -1) {
+-										try {
+-											exit_code=(new Integer(thisline.substring(idx+RETURN_VALUE_TAG.length()))).intValue();
+-										}catch(NumberFormatException e2) {
+-											//
+-										}
+-										break;
+-									}
+-							    }
+-						 }
+-					 }
+-				 }catch(IOException e1) {
+-					 //do nothing
+-				 }
+-			 }finally {
+-				 status=STATE_EXITED;
+-			 }
+-		 }
+-		 return exit_code;
+-	 }
+-}
+-
 -- 
 1.7.9.5
 
