@@ -1,51 +1,43 @@
-Return-Path: <petertornel@yahoo.com>
-Received: from nm12.bullet.mail.bf1.yahoo.com (nm12.bullet.mail.bf1.yahoo.com
-	[98.139.212.171])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 0C87CE0047F
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 09:59:02 -0700 (PDT)
-Received: from [98.139.212.144] by nm12.bullet.mail.bf1.yahoo.com with NNFMP;
-	09 May 2013 16:59:02 -0000
-Received: from [98.139.212.230] by tm1.bullet.mail.bf1.yahoo.com with NNFMP;
-	09 May 2013 16:59:02 -0000
-Received: from [127.0.0.1] by omp1039.mail.bf1.yahoo.com with NNFMP;
-	09 May 2013 16:59:02 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 185165.87647.bm@omp1039.mail.bf1.yahoo.com
-Received: (qmail 41098 invoked by uid 60001); 9 May 2013 16:59:02 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1368118742; bh=SuDG7loP/ZuAxU+4D7drix7qcRdLT9FWm4Sdh5uw3Fg=;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type;
-	b=FPd+Q6TBnwTUQ0UlLC/8OSmmmzxPPFfIGfLDww43RKzgZ5TdN55vcSSC0d29KfWH5O4qHyZzutvDn95IfXTmZwBCNWXkbZPZHBSKWe7rIdlynv6buVInQFcJswkkpS32BJJwsI1zRVr+nG7AurrSxBZbBYtAyQO7dpn62q4y4rw=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type;
-	b=4rOvHNjYKVKGXfO28wH77TNZ7Vp8BdfpLpjdCI/uGaYar2e7EbIC3keAvwqQ/AU/ZE+VZ/dyB/vhQvRg+gGKs8iurPba4FWhsMgxK2wu3zfpo5HsxLR5KqBt49xL4XpUwq/S7Mag5iYyTVQwaB8+pTmR+J2gle3854TXK3+cd0E=;
-X-YMail-OSG: oYzP6NUVM1m4SmWl6tPRyCLZp7GTM5rDnFqPPX3quvS1oEr
-	4UBYdA9UIhvqNJ2JNxhDmInv_cNUvTzp4CEAfxkCFvhffPWhfScKdX3usC2i
-	aZR1u0KVJJPWnMOeYrhQ4zbJywrA38.Y6fkZcbOQffvI2WiW9SuY.zOldDH6
-	rseu0XX9.YtKBtYg23_4GVdXjlcTLkL9X1MfWD8o6yBSnknlxRZunxYt84n7
-	pAFzFfFYQpKK9rhCrt0gANZ0t5g4pGK0uC8KCaEtKbLIc1lTTRrVSo_zJG4c
-	1.FLJwex9_azzekOel43xhn3eGhjpv1vMdKC9eVzaMa9IVczmlnj3V0.PO27
-	eIgwmcYfeEvn0pIqISWrparfVY6lPEIDeyHzW2b0xRSuGeYEVWD9tWwfle4c
-	N3nRDO9tAOBmcMIOwv6p2r.3.CwoGQJwBdd3n4_fnY3w5XolEsfQBNiza6Ue
-	CmgtfkkulUkdyg8D2
-Received: from [68.46.169.75] by web161506.mail.bf1.yahoo.com via HTTP;
-	Thu, 09 May 2013 09:59:02 PDT
-X-Rocket-MIMEInfo: 002.001,
-	d2l0aCBHVUkuwqAgCgpUaGFua3MKCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCiBGcm9tOiBQZXRlciBUb3JuZWwgPHBldGVydG9ybmVsQHlhaG9vLmNvbT4KVG86ICJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnIiA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4gClNlbnQ6IFRodXJzZGF5LCBNYXkgOSwgMjAxMyAxMjoyOSBQTQpTdWJqZWN0OiBbeW9jdG9dIFBsZWFzZSBwb2ludCBtZSB0byB0aGUgYmluYXJ5IHRoYXQgaGFzIHRoZSBiZXN0IGNoYW5jZSBvZiBib290aW5nIGEgZHVhbCBjb3JlLi4BMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.141.536
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail42c40.carrierzone.com (mail93c40.carrierzone.com
+	[209.235.156.233])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0425E00429
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 10:11:08 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail42c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r49HB4pZ007905; Thu, 9 May 2013 17:11:06 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Peter Tornel'" <petertornel@yahoo.com>, <yocto@yoctoproject.org>
 References: <1368116989.87405.YahooMailNeo@web161503.mail.bf1.yahoo.com>
-Message-ID: <1368118742.36231.YahooMailNeo@web161506.mail.bf1.yahoo.com>
-Date: Thu, 9 May 2013 09:59:02 -0700 (PDT)
-From: Peter Tornel <petertornel@yahoo.com>
-To: Peter Tornel <petertornel@yahoo.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-In-Reply-To: <1368116989.87405.YahooMailNeo@web161503.mail.bf1.yahoo.com>
+	<1368118742.36231.YahooMailNeo@web161506.mail.bf1.yahoo.com>
+In-Reply-To: <1368118742.36231.YahooMailNeo@web161506.mail.bf1.yahoo.com>
+Date: Thu, 9 May 2013 10:10:58 -0700
+Message-ID: <003701ce4cd8$2e6263d0$8b272b70$@annabooks.com>
 MIME-Version: 1.0
-Subject: Re: Please point me to the binary that has the best chance of	booting a dual core...
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQEqEpUrMCigNSYjCpxg+pvFc9SxKQG2UMKjmjfXlEA=
+X-CSC: 0
+X-CHA: v=2.0 cv=QorpKyOd c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=Q35xj3356cQA:10 a=_DgR7O7FQkkA:10 a=IjdlZ_XXAAAA:8 a=k6qkldRCNLsA:10
+	a=iGHA9ds3AAAA:8 a=CjxXgO3LAAAA:8 a=S9CEaC2irAU1G2kQNdQA:9
+	a=CjuIK1q_8ugA:10 a=aq9oGTPis_MA:10 a=XDKM753qmDAA:10 a=rC2wZJ5BpNYA:10
+	a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8 a=Fmk_jceYzU4seQwAv7oA:9
+	a=gKO2Hq4RSVkA:10 a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10
+	a=tXsnliwV7b4A:10 a=i4lyuQJNtKDvGkeG:21 a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020208.518BD8AB.00EE, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Subject: Re: Please point me to the binary that has the best chance	of	booting a dual core...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,47 +46,240 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 16:59:03 -0000
+X-List-Received-Date: Thu, 09 May 2013 17:11:09 -0000
 Content-Type: multipart/alternative;
-	boundary="-537478627-1545332052-1368118742=:36231"
+	boundary="----=_NextPart_000_0038_01CE4C9D.82038BD0"
+Content-Language: en-us
 
----537478627-1545332052-1368118742=:36231
-Content-Type: text/plain; charset=iso-8859-1
+------=_NextPart_000_0038_01CE4C9D.82038BD0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+There are several BSPs for different Atom processors. The generic Atom
+processor might be a good starting point: 
+
+ 
+
+https://www.yoctoproject.org/download/intel%C2%AE-atom%E2%84%A2-based-pcs-an
+d-devices-atom-pc 
+
+ 
+
+The distribution built with the core-image-sato would give you a GUI shell
+interface
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Sean Liming
+
+ 
+
+http://www.annabooks.com/Book_OSSATOM.html 
+
+ 
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+On Behalf Of Peter Tornel
+Sent: Thursday, May 09, 2013 9:59 AM
+To: Peter Tornel; yocto@yoctoproject.org
+Subject: Re: [yocto] Please point me to the binary that has the best chance
+of booting a dual core...
+
+ 
+
+with GUI.  
+
+Thanks
+
+ 
+
+ 
+
+  _____  
+
+From: Peter Tornel <petertornel@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org> 
+Sent: Thursday, May 9, 2013 12:29 PM
+Subject: [yocto] Please point me to the binary that has the best chance of
+booting a dual core...
+
+ 
+
+Atom netbook from a FLASH drive.  Thanks
+
+Pete
+
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+
+------=_NextPart_000_0038_01CE4C9D.82038BD0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-with GUI.=A0 =0A=0AThanks=0A=0A=0A=0A=0A________________________________=0A=
- From: Peter Tornel <petertornel@yahoo.com>=0ATo: "yocto@yoctoproject.org" =
-<yocto@yoctoproject.org> =0ASent: Thursday, May 9, 2013 12:29 PM=0ASubject:=
- [yocto] Please point me to the binary that has the best chance of booting =
-a dual core...=0A =0A=0A=0AAtom netbook from a FLASH drive.=A0 Thanks=0A=0A=
-Pete=0A=0A=0A_______________________________________________=0Ayocto mailin=
-g list=0Ayocto@yoctoproject.org=0Ahttps://lists.yoctoproject.org/listinfo/y=
-octo
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><!--[if !mso]><style>v\:* =
+{behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>There are several BSPs for different Atom processors. The generic =
+Atom processor might be a good starting point: <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><a =
+href=3D"https://www.yoctoproject.org/download/intel%C2%AE-atom%E2%84%A2-b=
+ased-pcs-and-devices-atom-pc">https://www.yoctoproject.org/download/intel=
+%C2%AE-atom%E2%84%A2-based-pcs-and-devices-atom-pc</a> =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>The distribution built with the core-image-sato would give you a GUI =
+shell interface<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><div><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Regards,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Sean Liming<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><a =
+href=3D"http://www.annabooks.com/Book_OSSATOM.html">http://www.annabooks.=
+com/Book_OSSATOM.html</a> <o:p></o:p></span></p></div><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><div =
+style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt'><div><div style=3D'border:none;border-top:solid #B5C4DF =
+1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On Behalf Of </b>Peter Tornel<br><b>Sent:</b> Thursday, May 09, 2013 =
+9:59 AM<br><b>To:</b> Peter Tornel; =
+yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] Please point me to =
+the binary that has the best chance of booting a dual =
+core...<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal =
+style=3D'background:white'><span style=3D'color:black'>with GUI.&nbsp; =
+<br><br>Thanks<o:p></o:p></span></p><div><p class=3DMsoNormal =
+style=3D'background:white'><span =
+style=3D'color:black'><o:p>&nbsp;</o:p></span></p></div><div><p =
+class=3DMsoNormal style=3D'background:white'><span =
+style=3D'color:black'><o:p>&nbsp;</o:p></span></p></div><div><div><div><d=
+iv class=3DMsoNormal align=3Dcenter =
+style=3D'text-align:center;background:white'><span =
+style=3D'color:black'><hr size=3D1 width=3D"100%" =
+align=3Dcenter></span></div><p class=3DMsoNormal =
+style=3D'background:white'><b><span =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>F=
+rom:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'> =
+Peter Tornel &lt;<a =
+href=3D"mailto:petertornel@yahoo.com">petertornel@yahoo.com</a>&gt;<br><b=
+>To:</b> &quot;<a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>&quot; =
+&lt;<a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>&gt; =
+<br><b>Sent:</b> Thursday, May 9, 2013 12:29 PM<br><b>Subject:</b> =
+[yocto] Please point me to the binary that has the best chance of =
+booting a dual core...</span><span =
+style=3D'color:black'><o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal style=3D'background:white'><span =
+style=3D'color:black'><o:p>&nbsp;</o:p></span></p><div =
+id=3Dyiv6760086426><div><div><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt;background:white'><span =
+style=3D'color:black'>Atom netbook from a FLASH drive.&nbsp; =
+Thanks<br><br>Pete<o:p></o:p></span></p></div></div></div><p =
+class=3DMsoNormal style=3D'margin-bottom:12.0pt;background:white'><span =
+style=3D'color:black'><br>_______________________________________________=
+<br>yocto mailing list<br><a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br><b=
+r><o:p></o:p></span></p></div></div></div></div></div></div></body></html=
+>
 
----537478627-1545332052-1368118742=:36231
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
-mes new roman, new york, times, serif;font-size:12pt">with GUI.&nbsp; <br><=
-br>Thanks<br><div><span><br></span></div><div><br></div>  <div style=3D"fon=
-t-family: times new roman, new york, times, serif; font-size: 12pt;"> <div =
-style=3D"font-family: times new roman, new york, times, serif; font-size: 1=
-2pt;"> <div dir=3D"ltr"> <hr size=3D"1">  <font face=3D"Arial" size=3D"2"> =
-<b><span style=3D"font-weight:bold;">From:</span></b> Peter Tornel &lt;pete=
-rtornel@yahoo.com&gt;<br> <b><span style=3D"font-weight: bold;">To:</span><=
-/b> "yocto@yoctoproject.org" &lt;yocto@yoctoproject.org&gt; <br> <b><span s=
-tyle=3D"font-weight: bold;">Sent:</span></b> Thursday, May 9, 2013 12:29 PM=
-<br> <b><span style=3D"font-weight: bold;">Subject:</span></b> [yocto] Plea=
-se point me to the binary that has the best chance of=0A=09booting a dual c=
-ore...<br> </font> </div> <div class=3D"y_msg_container"><br><div id=3D"yiv=
-6760086426"><div><div style=3D"color:#000;background-color:#fff;font-family=
-:times new roman, new york, times, serif;font-size:12pt;">Atom netbook from=
- a FLASH drive.&nbsp; Thanks<br><br>Pete<br><br><div></div></div></div></di=
-v><br>_______________________________________________<br>yocto mailing list=
-<br><a ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yocto=
-project.org">yocto@yoctoproject.org</a><br><a href=3D"https://lists.yoctopr=
-oject.org/listinfo/yocto" target=3D"_blank">https://lists.yoctoproject.org/=
-listinfo/yocto</a><br><br><br></div> </div> </div>  </div></body></html>
-
----537478627-1545332052-1368118742=:36231--
+------=_NextPart_000_0038_01CE4C9D.82038BD0--
