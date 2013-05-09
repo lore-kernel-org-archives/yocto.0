@@ -1,37 +1,19 @@
 Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DC43E01480
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 00:21:19 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 09 May 2013 00:21:18 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66DB5E01480
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 01:07:09 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 01:07:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="299794861"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by azsmga001.ch.intel.com with ESMTP; 09 May 2013 00:21:17 -0700
-Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Thu, 9 May 2013 08:21:16 +0100
-Received: from irsmsx102.ger.corp.intel.com ([169.254.2.244]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.23]) with mapi id
-	14.01.0438.000; Thu, 9 May 2013 08:21:15 +0100
-From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 3/3] Move filtering of suitable connections to
-	RSEHelper
-Thread-Index: AQHOTDacw3uNe4OyS06ANnO6O8ZFm5j8cvX1
-Date: Thu, 9 May 2013 07:21:15 +0000
-Message-ID: <3E179CF0D7162B4AA4E2B324209A46391560DF82@IRSMSX102.ger.corp.intel.com>
-References: <1368017704-14781-1-git-send-email-ioanax.grigoropol@intel.com>
-	<1368017704-14781-4-git-send-email-ioanax.grigoropol@intel.com>,
-	<C6510F6D410BB64A8C15398EDC6B847C70781F81@ORSMSX103.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C70781F81@ORSMSX103.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.19.9.42]
-MIME-Version: 1.0
-Subject: Re: [PATCH 3/3] Move filtering of suitable connections to	RSEHelper
+X-IronPort-AV: E=Sophos;i="4.87,639,1363158000"; d="scan'208";a="334816979"
+Received: from ideapad.rb.intel.com ([10.237.105.63])
+	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 01:07:06 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  9 May 2013 10:46:56 +0300
+Message-Id: <1368085635-24575-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH 00/12] Refactor Remote tools plugin & create Remote Utils separate plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,119 +25,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 07:21:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 09 May 2013 08:07:09 -0000
 
-Hi Jessica,=0A=
-=0A=
-Yes, you are right, sorry about that. I will send a v2 of this patch set.=
-=0A=
-=0A=
-Thanks,=0A=
-Ioana=0A=
-________________________________________=0A=
-From: Zhang, Jessica=0A=
-Sent: Thursday, May 09, 2013 12:54 AM=0A=
-To: Grigoropol, IoanaX; yocto@yoctoproject.org=0A=
-Subject: RE: [yocto] [PATCH 3/3] Move filtering of suitable connections to =
-     RSEHelper=0A=
-=0A=
-Hi Ioana,=0A=
-=0A=
-Isn't the logic in RSEHelper is reversed?  It should  be:=0A=
-=0A=
-if (sysType =3D=3D null ||! sysType.isEnabled()) {=0A=
-        iter.remove();=0A=
-}=0A=
-=0A=
-Thanks,=0A=
-Jessica=0A=
------Original Message-----=0A=
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol=0A=
-Sent: Wednesday, May 08, 2013 5:55 AM=0A=
-To: yocto@yoctoproject.org=0A=
-Subject: [yocto] [PATCH 3/3] Move filtering of suitable connections to RSEH=
-elper=0A=
-=0A=
-- BaseSettingDialog performs an extra filtering for suitable connections fo=
-r a given host by checking the remote system type=0A=
-        - this checking should be done in RSEHelper since it involves a rem=
-ote action and thus removing BaseSettingDialog dependency on RSE Api=0A=
-        - modified RSEHelper.getSuitableConnections to include the filterin=
-g for connections with associated system type disabled=0A=
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>=0A=
----=0A=
- .../src/org/yocto/sdk/remotetools/RSEHelper.java   |    4 ++++=0A=
- .../sdk/remotetools/actions/BaseSettingDialog.java |   10 +++-------=0A=
- 2 files changed, 7 insertions(+), 7 deletions(-)=0A=
-=0A=
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetool=
-s/RSEHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remo=
-tetools/RSEHelper.java=0A=
-index d1a505d..8d0612a 100644=0A=
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RSEHe=
-lper.java=0A=
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/RS=0A=
-+++ EHelper.java=0A=
-@@ -150,6 +150,10 @@ public class RSEHelper {=0A=
-                        if(!terminalConnections.contains(fileConnection) &&=
- !shellConnections.contains(fileConnection)){=0A=
-                                iter.remove();=0A=
-                        }=0A=
-+                       IRSESystemType sysType =3D fileConnection.getSystem=
-Type();=0A=
-+                       if (sysType !=3D null && sysType.isEnabled()) {=0A=
-+                               iter.remove();=0A=
-+                       }=0A=
-                }=0A=
-=0A=
-                return (IHost[]) filConnections.toArray(new IHost[filConnec=
-tions.size()]); diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yoct=
-o/sdk/remotetools/actions/BaseSettingDialog.java b/plugins/org.yocto.sdk.re=
-motetools/src/org/yocto/sdk/remotetools/actions/BaseSettingDialog.java=0A=
-index 06eeb00..962a20a 100644=0A=
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actio=
-ns/BaseSettingDialog.java=0A=
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/ac=0A=
-+++ tions/BaseSettingDialog.java=0A=
-@@ -26,7 +26,6 @@ import org.yocto.sdk.remotetools.SWTFactory;=0A=
- import org.yocto.sdk.remotetools.RSEHelper;=0A=
- import org.eclipse.jface.dialogs.Dialog;  import org.eclipse.jface.dialogs=
-.IDialogConstants;=0A=
--import org.eclipse.rse.core.IRSESystemType;=0A=
- import org.eclipse.rse.core.model.IHost;  import org.eclipse.rse.ui.action=
-s.SystemNewConnectionAction;=0A=
- import org.eclipse.swt.SWT;=0A=
-@@ -185,12 +184,9 @@ public class BaseSettingDialog extends Dialog {=0A=
-                connectionCombo.removeAll();=0A=
-                IHost[] connections =3D RSEHelper.getSuitableConnections();=
-=0A=
-                for (int i =3D 0; i < connections.length; i++) {=0A=
--                       IRSESystemType sysType =3D connections[i].getSystem=
-Type();=0A=
--                       if (sysType !=3D null && sysType.isEnabled()) {=0A=
--                               connectionCombo.add(connections[i].getAlias=
-Name());=0A=
--                               if(connections[i].getAliasName().equals(cur=
-Conn))=0A=
--                                       index=3Di;=0A=
--                       }=0A=
-+                       connectionCombo.add(connections[i].getAliasName());=
-=0A=
-+                       if(connections[i].getAliasName().equals(curConn))=
-=0A=
-+                               index=3Di;=0A=
-                }=0A=
-=0A=
-                if(index>=3D0) {=0A=
---=0A=
-1.7.9.5=0A=
-=0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto=0A=
+- some more refactoring for the org.yocto.sdk.remotetools 
+- create & populate org.yocto.remote.utils
+
+Ioana Grigoropol (12):
+  Separate remote logic from GUI login in TerminalHandler
+    implementation
+  Move remote system type checkings from GUI Dialogs and to RSEHelper
+  Move logic for waiting for RSE initialization to RSEHelper
+  Move filtering of suitable connections to RSEHelper
+  Initial commit for separate remote utilities plugin
+  Move RSEHelper to a separate plugin
+  Move RemoteShellExec to separate plugin
+  Move ShellSession to org.yocto.remote.utils separate plugin
+  Move CommonHelper to org.yocto.remote.utils separate plugin
+  Move TerminalHandler to org.yocto.remote.utils
+  Remove unused TCFTerminalConnectors
+  Remove all plugin dependencies to RSE APi from remote tools plugin
+
+ plugins/org.yocto.remote.utils/.classpath          |    7 +
+ plugins/org.yocto.remote.utils/.project            |   28 +++
+ .../.settings/org.eclipse.jdt.core.prefs           |    7 +
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   27 +++
+ plugins/org.yocto.remote.utils/build.properties    |    4 +
+ .../src/org/yocto/remote/utils/Activator.java      |   62 +++++++
+ .../src/org/yocto/remote/utils}/CommonHelper.java  |   20 ++-
+ .../src/org/yocto/remote/utils/Messages.java       |   35 ++++
+ .../src/org/yocto/remote/utils}/RSEHelper.java     |  178 +++++++-------------
+ .../org/yocto/remote/utils}/RemoteShellExec.java   |   95 +++++------
+ .../src/org/yocto/remote/utils}/ShellSession.java  |   68 +++-----
+ .../org/yocto/remote/utils}/TerminalHandler.java   |  121 +++++--------
+ .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |   13 +-
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |    4 +-
+ .../sdk/remotetools/actions/BaseSettingDialog.java |   29 +---
+ .../sdk/remotetools/actions/DialogHandler.java     |   42 +++++
+ .../sdk/remotetools/actions/LatencytopHandler.java |    2 +-
+ .../sdk/remotetools/actions/OprofileModel.java     |    2 +-
+ .../yocto/sdk/remotetools/actions/PerfHandler.java |    2 +-
+ .../sdk/remotetools/actions/SystemtapModel.java    |    2 +-
+ .../actions/SystemtapSettingDialog.java            |    2 +-
+ .../remotetools/views/TCFTerminalConnector.java    |   49 ------
+ .../views/TCFTerminalConnectorImpl.java            |   98 -----------
+ 23 files changed, 416 insertions(+), 481 deletions(-)
+ create mode 100644 plugins/org.yocto.remote.utils/.classpath
+ create mode 100644 plugins/org.yocto.remote.utils/.project
+ create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jdt.core.prefs
+ create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+ create mode 100644 plugins/org.yocto.remote.utils/build.properties
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Activator.java
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/CommonHelper.java (77%)
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/Messages.java
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/RSEHelper.java (77%)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/remote => org.yocto.remote.utils/src/org/yocto/remote/utils}/RemoteShellExec.java (69%)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools => org.yocto.remote.utils/src/org/yocto/remote/utils}/ShellSession.java (95%)
+ rename plugins/{org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions => org.yocto.remote.utils/src/org/yocto/remote/utils}/TerminalHandler.java (55%)
+ create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnector.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTerminalConnectorImpl.java
+
+-- 
+1.7.9.5
+
 
