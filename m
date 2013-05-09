@@ -1,40 +1,34 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail42c40.carrierzone.com (mail93c40.carrierzone.com
-	[209.235.156.233])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0425E00429
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 10:11:08 -0700 (PDT)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail42c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	r49HB4pZ007905; Thu, 9 May 2013 17:11:06 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: "'Peter Tornel'" <petertornel@yahoo.com>, <yocto@yoctoproject.org>
-References: <1368116989.87405.YahooMailNeo@web161503.mail.bf1.yahoo.com>
-	<1368118742.36231.YahooMailNeo@web161506.mail.bf1.yahoo.com>
-In-Reply-To: <1368118742.36231.YahooMailNeo@web161506.mail.bf1.yahoo.com>
-Date: Thu, 9 May 2013 10:10:58 -0700
-Message-ID: <003701ce4cd8$2e6263d0$8b272b70$@annabooks.com>
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ee0-f51.google.com (mail-ee0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56C62E0047F
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 10:13:55 -0700 (PDT)
+Received: by mail-ee0-f51.google.com with SMTP id c1so1715152eek.38
+	for <yocto@yoctoproject.org>; Thu, 09 May 2013 10:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=tNyJjA4/Q9t1qW3yoclicBrGCTVtfOFruai9o67poWI=;
+	b=RMXdbiU9dlzpFsi1QcEBFwoQDh8I0N0Bg/uPaLDcbRvVpDqKeYsRHdQCOqSILoZF34
+	c3spEZY3KhoAs8n2iSU3gaAzKG3+JP6y4bO9ZK68QCV4sMj+xJ8CQyI+qsfqMbVbj2gq
+	6rqzJiciw2A+hTsBEbx6TVItRhcE2+rgr4sEctnI9ANbJYRncuH/9WluCj3jJxko4EwH
+	nFbrxDqSu9PO7qMQxXkic194EWJygoii5Oq+VZrE/eW96+b71L0nEEuUnQdTHtGJ8Pea
+	1wNmOTaHyW62/DP73IbsFkIywU0TRCb7eMBygS1ZorpyADpWFEDBQERXLVwyV4o2BMc4
+	ifDQ==
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQEqEpUrMCigNSYjCpxg+pvFc9SxKQG2UMKjmjfXlEA=
-X-CSC: 0
-X-CHA: v=2.0 cv=QorpKyOd c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=Q35xj3356cQA:10 a=_DgR7O7FQkkA:10 a=IjdlZ_XXAAAA:8 a=k6qkldRCNLsA:10
-	a=iGHA9ds3AAAA:8 a=CjxXgO3LAAAA:8 a=S9CEaC2irAU1G2kQNdQA:9
-	a=CjuIK1q_8ugA:10 a=aq9oGTPis_MA:10 a=XDKM753qmDAA:10 a=rC2wZJ5BpNYA:10
-	a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8 a=Fmk_jceYzU4seQwAv7oA:9
-	a=gKO2Hq4RSVkA:10 a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10
-	a=tXsnliwV7b4A:10 a=i4lyuQJNtKDvGkeG:21 a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A020208.518BD8AB.00EE, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Subject: Re: Please point me to the binary that has the best chance	of	booting a dual core...
+X-Received: by 10.15.93.193 with SMTP id w41mr20463113eez.22.1368119634121;
+	Thu, 09 May 2013 10:13:54 -0700 (PDT)
+Received: by 10.223.201.9 with HTTP; Thu, 9 May 2013 10:13:54 -0700 (PDT)
+In-Reply-To: <CAJTo0LYXzVDTegbhJ7AtkNEThremApwOR_-p=Y2S01GtcC0SpA@mail.gmail.com>
+References: <CANwz6nzLfczXdCZ6pXRKWqenoJ_cB=cjUTuasPeZfim+Kn2zyA@mail.gmail.com>
+	<CAJTo0LYJQkV=B7uTxW=pkd--VHX7VjdA4ST2q1JMVNsSVuKcQw@mail.gmail.com>
+	<CANwz6nwxkWyCPZTkPONK4z==j1+vbHc0PAYw4S7=hTjkwMbkow@mail.gmail.com>
+	<CAJTo0LYXzVDTegbhJ7AtkNEThremApwOR_-p=Y2S01GtcC0SpA@mail.gmail.com>
+Date: Thu, 9 May 2013 11:13:54 -0600
+Message-ID: <CANwz6nytB4+ucCjH46u0LAn9Kooz0VEF0z5GP9E8D1M=6SxowQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: recipe gsl-1.15
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,240 +40,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 17:11:09 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0038_01CE4C9D.82038BD0"
-Content-Language: en-us
+X-List-Received-Date: Thu, 09 May 2013 17:13:55 -0000
+Content-Type: multipart/alternative; boundary=089e0168144acd7bde04dc4c2c2a
 
-------=_NextPart_000_0038_01CE4C9D.82038BD0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--089e0168144acd7bde04dc4c2c2a
+Content-Type: text/plain; charset=ISO-8859-1
 
-There are several BSPs for different Atom processors. The generic Atom
-processor might be a good starting point: 
+Hello,
+Below is the current gs_1.15.bb
+DESCRIPTION = "GNU Scientific Library (GSL)"
+HOMEPAGE = "http://www.gnu.org/software/gsl/"
 
- 
+LICENSE = "GPLv3"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
 
-https://www.yoctoproject.org/download/intel%C2%AE-atom%E2%84%A2-based-pcs-an
-d-devices-atom-pc 
+SRC_URI = "http://mirror.rit.edu/gnu/gnu/gsl/gsl-${PV}.tar.gz"
+SRC_URI[md5sum] = "494ffefd90eef4ada678c306bab4030b"
+SRC_URI[sha256sum] =
+"85b907e57902e2b7606ef3aef960302ffdd13bd9dc5b8fcbfa75e4f0bf340ea3"
 
- 
+S = "${WORKDIR}/gsl-${PV}"
 
-The distribution built with the core-image-sato would give you a GUI shell
-interface
+inherit autotools
 
- 
+I currently running "MACHINE=beagleboard bitbake core-image-sato-sdk-ex"
+which I use to include boost and qt-mobility-x11
 
- 
+meta/recipes-sato/imagescore-image-sato-sdk-ex
+require core-image-sato.bb
 
-Regards,
+DESCRIPTION = "Image with Sato support that includes everything within \
+core-image-sato plus meta-toolchain, development headers and libraries to \
+form a standalone SDK."
 
- 
+IMAGE_FEATURES += "dev-pkgs tools-sdk qt4-pkgs \
+        tools-debug eclipse-debug tools-profile tools-testapps debug-tweaks
+ssh-server-openssh "
 
-Sean Liming
-
- 
-
-http://www.annabooks.com/Book_OSSATOM.html 
-
- 
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Peter Tornel
-Sent: Thursday, May 09, 2013 9:59 AM
-To: Peter Tornel; yocto@yoctoproject.org
-Subject: Re: [yocto] Please point me to the binary that has the best chance
-of booting a dual core...
-
- 
-
-with GUI.  
-
-Thanks
-
- 
-
- 
-
-  _____  
-
-From: Peter Tornel <petertornel@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org> 
-Sent: Thursday, May 9, 2013 12:29 PM
-Subject: [yocto] Please point me to the binary that has the best chance of
-booting a dual core...
-
- 
-
-Atom netbook from a FLASH drive.  Thanks
-
-Pete
+IMAGE_INSTALL += "kernel-dev boost qt-mobility-x11"
+Thanks Ed Vidal
 
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+On Thu, May 9, 2013 at 10:54 AM, Burton, Ross <ross.burton@intel.com> wrote:
 
-
-
-
-------=_NextPart_000_0038_01CE4C9D.82038BD0
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
-(filtered medium)"><!--[if !mso]><style>v\:* =
-{behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>There are several BSPs for different Atom processors. The generic =
-Atom processor might be a good starting point: <o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><a =
-href=3D"https://www.yoctoproject.org/download/intel%C2%AE-atom%E2%84%A2-b=
-ased-pcs-and-devices-atom-pc">https://www.yoctoproject.org/download/intel=
-%C2%AE-atom%E2%84%A2-based-pcs-and-devices-atom-pc</a> =
-<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>The distribution built with the core-image-sato would give you a GUI =
-shell interface<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><div><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Regards,<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'>Sean Liming<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><a =
-href=3D"http://www.annabooks.com/Book_OSSATOM.html">http://www.annabooks.=
-com/Book_OSSATOM.html</a> <o:p></o:p></span></p></div><p =
-class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><div =
-style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt'><div><div style=3D'border:none;border-top:solid #B5C4DF =
-1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><span =
-style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
-</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
-yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
-<b>On Behalf Of </b>Peter Tornel<br><b>Sent:</b> Thursday, May 09, 2013 =
-9:59 AM<br><b>To:</b> Peter Tornel; =
-yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] Please point me to =
-the binary that has the best chance of booting a dual =
-core...<o:p></o:p></span></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal =
-style=3D'background:white'><span style=3D'color:black'>with GUI.&nbsp; =
-<br><br>Thanks<o:p></o:p></span></p><div><p class=3DMsoNormal =
-style=3D'background:white'><span =
-style=3D'color:black'><o:p>&nbsp;</o:p></span></p></div><div><p =
-class=3DMsoNormal style=3D'background:white'><span =
-style=3D'color:black'><o:p>&nbsp;</o:p></span></p></div><div><div><div><d=
-iv class=3DMsoNormal align=3Dcenter =
-style=3D'text-align:center;background:white'><span =
-style=3D'color:black'><hr size=3D1 width=3D"100%" =
-align=3Dcenter></span></div><p class=3DMsoNormal =
-style=3D'background:white'><b><span =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'>F=
-rom:</span></b><span =
-style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";color:black'> =
-Peter Tornel &lt;<a =
-href=3D"mailto:petertornel@yahoo.com">petertornel@yahoo.com</a>&gt;<br><b=
->To:</b> &quot;<a =
-href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>&quot; =
-&lt;<a =
-href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>&gt; =
-<br><b>Sent:</b> Thursday, May 9, 2013 12:29 PM<br><b>Subject:</b> =
-[yocto] Please point me to the binary that has the best chance of =
-booting a dual core...</span><span =
-style=3D'color:black'><o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal style=3D'background:white'><span =
-style=3D'color:black'><o:p>&nbsp;</o:p></span></p><div =
-id=3Dyiv6760086426><div><div><p class=3DMsoNormal =
-style=3D'margin-bottom:12.0pt;background:white'><span =
-style=3D'color:black'>Atom netbook from a FLASH drive.&nbsp; =
-Thanks<br><br>Pete<o:p></o:p></span></p></div></div></div><p =
-class=3DMsoNormal style=3D'margin-bottom:12.0pt;background:white'><span =
-style=3D'color:black'><br>_______________________________________________=
-<br>yocto mailing list<br><a =
-href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br><b=
-r><o:p></o:p></span></p></div></div></div></div></div></div></body></html=
+> On 9 May 2013 17:50, Edward Vidal <vidal.develone@gmail.com> wrote:
+> > The only place I saw ** License updated to GNU GPL version 3.  was in the
+> > NEWS file.
+>
+> GNU software typically includes a COPYING file with the license terms
+> in, use that entire file.
+>
+> Ross
 >
 
-------=_NextPart_000_0038_01CE4C9D.82038BD0--
+--089e0168144acd7bde04dc4c2c2a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hello,<br>Below is the current <a href=3D"http:/=
+/gs_1.15.bb">gs_1.15.bb</a><br>DESCRIPTION =3D &quot;GNU Scientific Library=
+ (GSL)&quot;<br>HOMEPAGE =3D &quot;<a href=3D"http://www.gnu.org/software/g=
+sl/">http://www.gnu.org/software/gsl/</a>&quot;<br>
+<br>LICENSE =3D &quot;GPLv3&quot;<br>LIC_FILES_CHKSUM =3D &quot;file://COPY=
+ING;md5=3Dd32239bcb673463ab874e80d47fae504&quot;<br><br>SRC_URI =3D &quot;<=
+a href=3D"http://mirror.rit.edu/gnu/gnu/gsl/gsl-${PV}.tar.gz">http://mirror=
+.rit.edu/gnu/gnu/gsl/gsl-${PV}.tar.gz</a>&quot;<br>
+SRC_URI[md5sum] =3D &quot;494ffefd90eef4ada678c306bab4030b&quot;<br>SRC_URI=
+[sha256sum] =3D &quot;85b907e57902e2b7606ef3aef960302ffdd13bd9dc5b8fcbfa75e=
+4f0bf340ea3&quot;<br><br>S =3D &quot;${WORKDIR}/gsl-${PV}&quot;<br><br>inhe=
+rit autotools<br>
+<br></div>I currently running &quot;MACHINE=3Dbeagleboard bitbake core-imag=
+e-sato-sdk-ex&quot;=A0 which I use to include boost and qt-mobility-x11<br>=
+<br>meta/recipes-sato/imagescore-image-sato-sdk-ex<br>require <a href=3D"ht=
+tp://core-image-sato.bb">core-image-sato.bb</a><br>
+<br>DESCRIPTION =3D &quot;Image with Sato support that includes everything =
+within \<br>core-image-sato plus meta-toolchain, development headers and li=
+braries to \<br>form a standalone SDK.&quot;<br><br>IMAGE_FEATURES +=3D &qu=
+ot;dev-pkgs tools-sdk qt4-pkgs \<br>
+=A0=A0=A0=A0=A0=A0=A0 tools-debug eclipse-debug tools-profile tools-testapp=
+s debug-tweaks ssh-server-openssh &quot;<br><br>IMAGE_INSTALL +=3D &quot;ke=
+rnel-dev boost qt-mobility-x11&quot;<br></div>Thanks Ed Vidal<br></div><div=
+ class=3D"gmail_extra">
+<br><br><div class=3D"gmail_quote">On Thu, May 9, 2013 at 10:54 AM, Burton,=
+ Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=
+=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
+ding-left:1ex">
+<div class=3D"im">On 9 May 2013 17:50, Edward Vidal &lt;<a href=3D"mailto:v=
+idal.develone@gmail.com">vidal.develone@gmail.com</a>&gt; wrote:<br>
+&gt; The only place I saw ** License updated to GNU GPL version 3. =A0was i=
+n the<br>
+&gt; NEWS file.<br>
+<br>
+</div>GNU software typically includes a COPYING file with the license terms=
+<br>
+in, use that entire file.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br></div>
+
+--089e0168144acd7bde04dc4c2c2a--
