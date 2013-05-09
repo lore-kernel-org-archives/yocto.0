@@ -1,19 +1,25 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAAEDE00429
-	for <yocto@yoctoproject.org>; Thu,  9 May 2013 12:06:46 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 May 2013 12:06:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,642,1363158000"; d="scan'208";a="335099870"
-Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga002.fm.intel.com with ESMTP; 09 May 2013 12:06:44 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  9 May 2013 21:46:50 +0300
-Message-Id: <1368125210-3474-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH v2] Separate remote logic from GUI login in TerminalHandler implementation
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id ED448E00429
+	for <yocto@yoctoproject.org>; Thu,  9 May 2013 12:32:40 -0700 (PDT)
+Received: (qmail 29938 invoked by uid 1003); 9 May 2013 19:32:39 -0000
+Received: from unknown (HELO ?192.168.1.122?)
+	(philip@opensdr.com@71.171.26.125)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	9 May 2013 19:32:39 -0000
+Message-ID: <518BF9D6.3070202@balister.org>
+Date: Thu, 09 May 2013 15:32:38 -0400
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130311 Thunderbird/17.0.4
+MIME-Version: 1.0
+To: Edward Vidal <vidal.develone@gmail.com>
+References: <CANwz6nzLfczXdCZ6pXRKWqenoJ_cB=cjUTuasPeZfim+Kn2zyA@mail.gmail.com>
+In-Reply-To: <CANwz6nzLfczXdCZ6pXRKWqenoJ_cB=cjUTuasPeZfim+Kn2zyA@mail.gmail.com>
+X-Enigmail-Version: 1.5.1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: recipe gsl-1.15
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,234 +31,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2013 19:06:47 -0000
+X-List-Received-Date: Thu, 09 May 2013 19:32:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-- TerminalHandler is used by both Perf and Latencytop handlers for running remote commands and for holding the settings dialog
-	- in order to separate the common functionality for running remote commands we need to separate the GUI from the utilitary funtions
-	- create DialogHandler that extends TerminalHandler to hold the GUI settings
-	- clean-up code in TerminalHandler:
-		- remove references to settings dialog
-		- modify execute method and keep only remote control code
-	- change Perf and Latencytop's parent to DialogHandler
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../sdk/remotetools/actions/DialogHandler.java     |   40 +++++++++
- .../sdk/remotetools/actions/LatencytopHandler.java |    2 +-
- .../yocto/sdk/remotetools/actions/PerfHandler.java |    2 +-
- .../sdk/remotetools/actions/TerminalHandler.java   |   93 ++++++--------------
- 4 files changed, 69 insertions(+), 68 deletions(-)
- create mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
+There is already a recipe for gsl in meta-oe:
 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-new file mode 100644
-index 0000000..1ce9a1f
---- /dev/null
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/DialogHandler.java
-@@ -0,0 +1,40 @@
-+/*******************************************************************************
-+ * Copyright (c) 2010 Intel Corporation.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * Intel - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.sdk.remotetools.actions;
-+
-+import org.eclipse.core.commands.ExecutionEvent;
-+import org.eclipse.core.commands.ExecutionException;
-+import org.eclipse.rse.core.model.IHost;
-+import org.eclipse.ui.IWorkbenchWindow;
-+import org.eclipse.ui.handlers.HandlerUtil;
-+
-+abstract public class DialogHandler extends TerminalHandler {
-+
-+	protected BaseSettingDialog setting;
-+
-+	abstract protected String getDialogTitle();
-+
-+	protected void initialize(ExecutionEvent event) throws ExecutionException{
-+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-+		shell = window.getShell();
-+		setting = new SimpleSettingDialog(shell, getDialogTitle(), getConnnectionName());
-+	}
-+
-+	@Override
-+	public void execute(ExecutionEvent event) throws ExecutionException {
-+		initialize(event);
-+
-+		if(setting.open() == BaseSettingDialog.OK) {
-+			IHost currentHost = setting.getHost();
-+			execute(currentHost);
-+		}
-+	}
-+}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-index ef77957..e931388 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
-@@ -11,7 +11,7 @@
- package org.yocto.sdk.remotetools.actions;
- 
- 
--public class LatencytopHandler extends TerminalHandler {
-+public class LatencytopHandler extends DialogHandler {
- 	
- 	private static String initCmd="export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin; cd; sudo latencytop\r";
- 	
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-index 949bd46..f3f9e49 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/PerfHandler.java
-@@ -11,7 +11,7 @@
- package org.yocto.sdk.remotetools.actions;
- 
- 
--public class PerfHandler extends TerminalHandler {
-+public class PerfHandler extends DialogHandler {
- 
- 	private static String initCmd="cd; perf\r";
- 	
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-index 84e38f2..9e7c169 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-@@ -11,7 +11,6 @@
- package org.yocto.sdk.remotetools.actions;
- 
- import org.eclipse.core.commands.AbstractHandler;
--import org.eclipse.core.commands.ExecutionEvent;
- import org.eclipse.core.commands.ExecutionException;
- import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.NullProgressMonitor;
-@@ -34,14 +33,11 @@ import org.eclipse.swt.events.DisposeListener;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
- import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
--import org.eclipse.ui.IWorkbenchWindow;
--import org.eclipse.ui.handlers.HandlerUtil;
- import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.RSEHelper;
- 
- abstract public class TerminalHandler extends AbstractHandler {
- 	
--	protected BaseSettingDialog setting;
- 	
- 	protected Shell shell;
- 	
-@@ -50,11 +46,6 @@ abstract public class TerminalHandler extends AbstractHandler {
- 	abstract protected String getInitCmd();
- 	abstract protected String getConnnectionName();
- 	abstract protected String getDialogTitle();
--	protected void initialize(ExecutionEvent event) throws ExecutionException{
--		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
--		shell = window.getShell();
--		setting = new SimpleSettingDialog(shell, getDialogTitle(), getConnnectionName());
--	}
- 	
- 	protected ITerminalShell getTerminalShellFromTab(CTabItem item) {
-         ITerminalShell terminalShell = null;
-@@ -98,70 +89,40 @@ abstract public class TerminalHandler extends AbstractHandler {
- 		return false;
- 	}
- 	
--	public Object execute(ExecutionEvent event) throws ExecutionException {
-+	public void execute(IHost host) throws ExecutionException {
- 		
--		initialize(event);
-+		final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(host);
- 		
--		if(setting.open()==BaseSettingDialog.OK) {
--			IHost currentHost = setting.getHost();
--			final ITerminalServiceSubSystem terminalSubSystem = RSEHelper.getTerminalSubSystem(currentHost);
--			
--			if (terminalSubSystem != null) {
--				TerminalsUI terminalsUI = TerminalsUI.getInstance();
--				TerminalViewer viewer = terminalsUI.activateTerminalsView();
--				if (preProcess(terminalSubSystem)) {
--				/*if (!terminalSubSystem.isConnected()) {
--					try {
--						ProgressMonitorDialog dialog = new ProgressMonitorDialog(shell);
--						dialog.run(true, true, new IRunnableWithProgress(){
--						    public void run(IProgressMonitor monitor) {
--						        monitor.beginTask("Connecting to remote target ...", 100);
--						        try {
--						        terminalSubSystem.connect(new NullProgressMonitor(), false);
--						        monitor.done();
--						        } catch (Exception e) {
--						        	CommonHelper.showErrorDialog("Connection failure", null, e.getMessage());
--						        	monitor.done();
--						        }
--						    }
--						});
--					} catch (OperationCanceledException e) {
--						// user canceled, return silently
--						return null;
--					} catch (Exception e) {
--						SystemBasePlugin.logError(e.getLocalizedMessage(), e);
--					}
--				}
--				if (terminalSubSystem.isConnected()) {*/
--					CTabItem tab = viewer.getTabFolder().createTabItem(
--							terminalSubSystem.getHost(), changeTerm + getInitCmd());
--					//since RSETerminalConnector not exit the shell during the diconnection,
--					//we have manually exit it here
--					try {
--						tab.addDisposeListener(new DisposeListener() {
--							public void widgetDisposed(DisposeEvent e) {
--								
--								Object source = e.getSource();
--								if (source instanceof CTabItem) {
--									CTabItem currentItem = (CTabItem) source;
--									ITerminalShell shell=getTerminalShellFromTab(currentItem);
--									if(shell!=null) {
--										shell.exit();
--									}
-+		if (terminalSubSystem != null) {
-+			TerminalsUI terminalsUI = TerminalsUI.getInstance();
-+			TerminalViewer viewer = terminalsUI.activateTerminalsView();
-+			if (preProcess(terminalSubSystem)) {
-+				CTabItem tab = viewer.getTabFolder().createTabItem(
-+						terminalSubSystem.getHost(), changeTerm + getInitCmd());
-+				//since RSETerminalConnector not exit the shell during the diconnection,
-+				//we have manually exit it here
-+				try {
-+					tab.addDisposeListener(new DisposeListener() {
-+						public void widgetDisposed(DisposeEvent e) {
-+							Object source = e.getSource();
-+							if (source instanceof CTabItem) {
-+								CTabItem currentItem = (CTabItem) source;
-+								ITerminalShell shell=getTerminalShellFromTab(currentItem);
-+								if(shell!=null) {
-+									shell.exit();
- 								}
- 							}
--						});
--					}catch(Exception e) {
--						e.printStackTrace();
--					}
--					TerminalElement element = TerminalServiceHelper
--							.createTerminalElement(tab, terminalSubSystem);
--					terminalSubSystem.addChild(element);
--	
-+						}
-+					});
-+				}catch(Exception e) {
-+					e.printStackTrace();
- 				}
-+				TerminalElement element = TerminalServiceHelper
-+						.createTerminalElement(tab, terminalSubSystem);
-+				terminalSubSystem.addChild(element);
-+
- 			}
- 		}
--		return null;
- 	}
- 
- }
--- 
-1.7.9.5
+./meta-oe/recipes-support/gsl/gsl_1.12.bb
 
+We be happy to take a patch to update it to a current gsl.
+
+Philip
+
+On 05/09/2013 11:48 AM, Edward Vidal wrote:
+> Hello,
+> I am trying to write the recipe to add gsl-1.15 to core-image-sato.
+> 
+> First I did mdkir poky/meta/recipes-support/gsl
+> 
+> Is this the correct location for this recipe?
+> 
+> cp ~/POKY/gsl_1.15.bb ../meta/recipes-support/gsl/
+> 
+> This is the gsl_1.15.bb file
+> *************************************************
+> DESCRIPTION = "GNU Scientific Library (GSL)"
+> HOMEPAGE = "http://www.gnu.org/software/gsl/"
+> 
+> LICENSE = "GPLv3"
+> LIC_FILES_CHKSUM =
+> "file://NEWS;beginline=362;endline=363;md5=325d4344063147ef38e3ac2cbf1cc157"
+> 
+> SRC_URI = "http://mirror.rit.edu/gnu/gnu/gsl/gsl-${PV}.tar.gz"
+> SRC_URI[md5sum] = "494ffefd90eef4ada678c306bab4030b"
+> SRC_URI[sha256sum] =
+> "85b907e57902e2b7606ef3aef960302ffdd13bd9dc5b8fcbfa75e4f0bf340ea3"
+> 
+> S = "${WORKDIR}/gsl-${PV}"
+> 
+> inherit autotools
+> *************************************************
+> When I execute MACHINE=beagleboard bitbake gsl
+> 
+> Build Configuration:
+> BB_VERSION        = "1.19.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Fedora-18"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "beagleboard"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.3+snapshot-20130509"
+> TUNE_FEATURES     = "armv7a vfp neon"
+> TARGET_FPU        = "vfp-neon"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "master:84d45db4ddced96c736f106f8122eefadf925c41"
+> 
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> 
+> The fetch appears to work since in my repository I see the following:
+> /home/vidal/POKY/linux_src_dnloads/downloads/gsl-1.15.tar.gz
+> /home/vidal/POKY/linux_src_dnloads/downloads/gsl-1.15.tar.gz.done
+> 
+> In the file NEWS
+> 
+>     362 ** License updated to GNU GPL version 3.
+>     363
+> gsl-1.15]$ md5sum NEWS
+> 325d4344063147ef38e3ac2cbf1cc157  NEWS
+> 
+> ERROR: gsl: The new md5 checksum is 73ea11aaa98f8c40401be7c60ee2a8e6
+> ERROR: gsl: Check if the license information has changed in
+> ERROR: Licensing Error: LIC_FILES_CHKSUM does not match, please fix
+> ERROR: Function failed: do_qa_configure
+> ERROR: Logfile of failure stored in:
+> /home/vidal/POKY/build050613/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/gsl/1.15-r0/temp/log.do_configure.5839
+> ERROR: Task 5 (/home/vidal/POKY/build050613/poky/meta/recipes-support/gsl/
+> gsl_1.15.bb, do_configure) failed with exit code '1'
+> 
+> /home/vidal/POKY/build050613/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/gsl/1.15-r0/temp/log.do_configure.5839
+> configure: WARNING: unrecognized options: --disable-silent-rules
+> DEBUG: Shell function do_configure finished
+> DEBUG: Executing python function do_qa_configure
+> NOTE: Checking autotools environment for common misconfiguration
+> ERROR: gsl: md5 data is not matching for
+> file://NEWS;beginline=362;endline=363;md5=325d4344063147ef38e3ac2cbf1cc157
+> ERROR: gsl: The new md5 checksum is 73ea11aaa98f8c40401be7c60ee2a8e6
+> ERROR: gsl: Check if the license information has changed in
+> ERROR: Licensing Error: LIC_FILES_CHKSUM does not match, please fix
+> DEBUG: Python function do_qa_configure finished
+> 
+> Any and all help will be appreciated.
+> Thanks
+> Ed Vidal Jr.
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
