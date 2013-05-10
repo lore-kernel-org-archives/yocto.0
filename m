@@ -1,34 +1,24 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81B30E0051D
-	for <yocto@yoctoproject.org>; Fri, 10 May 2013 10:48:49 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 10 May 2013 10:48:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,650,1363158000"; d="scan'208";a="300586058"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by azsmga001.ch.intel.com with ESMTP; 10 May 2013 10:48:48 -0700
-Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Fri, 10 May 2013 10:48:47 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.150]) by
-	ORSMSX154.amr.corp.intel.com ([169.254.11.84]) with mapi id
-	14.01.0355.002; Fri, 10 May 2013 10:48:47 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 0/6] Separate org.yocto.remote.utils plugin
-Thread-Index: AQHOTP26s8N1ZakiREGGqciw4rXKTZj+syWw
-Date: Fri, 10 May 2013 17:48:47 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C7078A014@ORSMSX103.amr.corp.intel.com>
-References: <1368134354-5816-1-git-send-email-ioanax.grigoropol@intel.com>
-In-Reply-To: <1368134354-5816-1-git-send-email-ioanax.grigoropol@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <a.sterbini@tiscali.it>
+Received: from santino.mail.tiscali.it (santino.mail.tiscali.it
+	[213.205.33.245])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01B67E0051D
+	for <yocto@yoctoproject.org>; Fri, 10 May 2013 10:51:14 -0700 (PDT)
+Received: from [192.168.1.72] ([94.38.121.206])
+	by santino.mail.tiscali.it with 
+	id aHrB1l00D4THF2u01HrC3u; Fri, 10 May 2013 19:51:13 +0200
+x-auth-user: a.sterbini@tiscali.it
+Message-ID: <518D338F.8030008@tiscali.it>
+Date: Fri, 10 May 2013 19:51:11 +0200
+From: Andrea Sterbini <a.sterbini@tiscali.it>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130402 Thunderbird/17.0.5
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/6] Separate org.yocto.remote.utils plugin
+To: Elvis Dowson <elvis.dowson@gmail.com>
+References: <518CFDE7.2030606@tiscali.it>
+	<5518E211-421C-4289-AB1B-80AA40AF87B3@gmail.com>
+In-Reply-To: <5518E211-421C-4289-AB1B-80AA40AF87B3@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Problems building yocto for Xilinx ML507 (with some tentative fixes)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,110 +30,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 May 2013 17:48:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 10 May 2013 17:51:15 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Please fix your license to 2013.
+Not yet.
+I haven't been able to complete the complete run
 
-Thanks,
-Jessica
+     bitbake core-image-minimal
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Thursday, May 09, 2013 2:19 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH 0/6] Separate org.yocto.remote.utils plugin
+I moved to the meta-xilinx master branch
+I am able to complete almost 1600 tasks of 1666 by doing (after the 
+git.xilinx.com -> github.com/Xilinx fixes)
 
-- initial commit & populate for remote utils common plugin
+     bitbake core-image-minimal -k
+
+The error I get is
+
+> Build Configuration:
+> BB_VERSION        = "1.19.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Fedora-18"
+> TARGET_SYS        = "powerpc-poky-linux"
+> MACHINE           = "virtex-5-ml507-powerpc-440"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.3+snapshot-20130510"
+> TUNE_FEATURES     = "m32 ppc440 fpu-soft"
+> TARGET_FPU        = "soft"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "master:88a7b041fbf2583472aa9408a33dd8881223a0c1"
+> toolchain-layer   = "master:cc0067dc0c7ea469057238db6422864d1bce311c"
+> toolchain-layer   = "master:cd5f284730a6430d563443786c409aa6783d4b04"
+> meta-xilinx       = "master:4f1a74f86c402e0810e84ab0588b5de2ca9ccfff"
+> meta-angstrom     = "master:fe82cbd08eef51cd5d5a38c1cd0ed6ce7e57fb18"
+--- a lot of diagnostic messages later
+> ERROR: Function failed: do_configure (see 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/u-boot-xilinx/v2012.04.01-r17/temp/log.do_configure.10130 
+> for further information)
+> ERROR: Logfile of failure stored in: 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/u-boot-xilinx/v2012.04.01-r17/temp/log.do_configure.10130
+> Log data follows:
+> | DEBUG: Executing python function sysroot_cleansstate
+> | DEBUG: Python function sysroot_cleansstate finished
+> | DEBUG: Executing shell function do_configure
+> | NOTE: Replacing xparameters header to match hardware model
+> | 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/u-boot-xilinx/v2012.04.01-r17/temp/run.do_configure.10130: 
+> line 157: 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/u-boot-xilinx/v2012.04.01-r17/git/board/xilinx/ml507/xparameters.h: 
+> Not a directory
+> | ERROR: Function failed: do_configure (see 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/u-boot-xilinx/v2012.04.01-r17/temp/log.do_configure.10130 
+> for further information)
+> ERROR: Task 79 
+> (/home/andrea/src/FPGA/poky/meta-xilinx/recipes-bsp/u-boot/u-boot-xilinx_git.bb, 
+> do_configure) failed with exit code '1'
+> ERROR: Function failed: do_compile (see 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/linux-xilinx/3.3-r02/temp/log.do_compile.10129 
+> for further information)
+> ERROR: Logfile of failure stored in: 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/linux-xilinx/3.3-r02/temp/log.do_compile.10129
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | NOTE: make -j 4 uImage CC=powerpc-poky-linux-gcc 
+> LD=powerpc-poky-linux-ld.bfd
+> | scripts/kconfig/conf --silentoldconfig Kconfig
+> | ***
+> | *** Configuration file ".config" not found!
+> | ***
+> | *** Please run some configurator (e.g. "make oldconfig" or
+> | *** "make menuconfig" or "make xconfig").
+> | ***
+> | make[2]: *** [silentoldconfig] Error 1
+> | make[1]: *** [silentoldconfig] Error 2
+> | make: *** No rule to make target `include/config/auto.conf', needed 
+> by `include/config/kernel.release'.  Stop.
+> | make: *** Waiting for unfinished jobs....
+> | ERROR: oe_runmake failed
+> | ERROR: Function failed: do_compile (see 
+> /home/andrea/src/FPGA/poky/build/tmp/work/virtex_5_ml507_powerpc_440-poky-linux/linux-xilinx/3.3-r02/temp/log.do_compile.10129 
+> for further information)
+> ERROR: Task 811 
+> (/home/andrea/src/FPGA/poky/meta-xilinx/recipes-kernel/linux/linux-xilinx_3.3.bb, 
+> do_compile) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 1662 tasks of which 1660 didn't need to 
+> be rerun and 2 failed.
+> Waiting for 0 running tasks to finish:
+>
+> Summary: 2 tasks failed:
+> /home/andrea/src/FPGA/poky/meta-xilinx/recipes-bsp/u-boot/u-boot-xilinx_git.bb, 
+> do_configure
+> /home/andrea/src/FPGA/poky/meta-xilinx/recipes-kernel/linux/linux-xilinx_3.3.bb, 
+> do_compile
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit 
+> code.
+
+All the best
+Andrea
 
 
-Ioana Grigoropol (6):
-  Initial commit for separate remote utilities plugin
-  Move RSEHelper to a separate plugin
-  Move RemoteShellExec to separate plugin
-  Move ShellSession to org.yocto.remote.utils separate plugin
-  Move CommonHelper to org.yocto.remote.utils separate plugin
-  Move TerminalHandler to org.yocto.remote.utils
+On Fri 10 May 2013 05:11:48 PM CEST, Elvis Dowson wrote:
+>
+> Hi Andrea,
+>
+> On May 10, 2013, at 6:02 PM, Andrea Sterbini <a.sterbini@tiscali.it> 
+> wrote:
+>
+>>
+>> The problems I have found (and someway fixed) are:
+>>
+>> 1) when I do "bitbake meta-toolchain" I get an error complaining that 
+>> the compiler is not able to build for powerpc with FPU
+>> Fix: I have changed the ml507 rules to include just the soft FPU
+>
+>
+> I never did get soft-float to work properly with gcc-4.6 or gcc-4.7. I 
+> got soft-float to work with gcc-4.5.4.
+>
+> hard float fpu support worked with gcc-4.7.
+>
+> Were you able to boot and login to the command prompt with the 
+> generated images ?
+>
+> Best regards,
+>
+> Elvis Dowson
 
- plugins/org.yocto.remote.utils/.classpath          |    7 +
- plugins/org.yocto.remote.utils/.project            |   28 ++
- .../.settings/org.eclipse.jdt.core.prefs           |    7 +
- .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   28 ++
- plugins/org.yocto.remote.utils/build.properties    |    4 +
- .../org.yocto.remote.utils/resources/ust_tar.sh    |   19 +
- .../org.yocto.remote.utils/resources/yocto_tool.sh |  125 ++++++
- .../org.yocto.remote.utils/resources/yocto_ust.sh  |   35 ++
- .../src/org/yocto/remote/utils/Activator.java      |   62 +++
- .../src/org/yocto/remote/utils/CommonHelper.java   |   46 +++
- .../src/org/yocto/remote/utils/Messages.java       |   35 ++
- .../src/org/yocto/remote/utils/RSEHelper.java      |  344 ++++++++++++++++
- .../org/yocto/remote/utils/RemoteShellExec.java    |  140 +++++++
- .../src/org/yocto/remote/utils/ShellSession.java   |  327 +++++++++++++++
- .../org/yocto/remote/utils/TerminalHandler.java    |  128 ++++++
- .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |    3 +-
- .../org.yocto.sdk.remotetools/resources/ust_tar.sh |   19 -
- .../resources/yocto_tool.sh                        |  125 ------
- .../resources/yocto_ust.sh                         |   35 --
- .../org/yocto/sdk/remotetools/CommonHelper.java    |   44 --
- .../src/org/yocto/sdk/remotetools/RSEHelper.java   |  419 ----------------=
-----
- .../org/yocto/sdk/remotetools/ShellSession.java    |  341 ----------------
- .../yocto/sdk/remotetools/actions/BaseModel.java   |    4 +-
- .../sdk/remotetools/actions/BaseSettingDialog.java |    2 +-
- .../sdk/remotetools/actions/DialogHandler.java     |    1 +
- .../sdk/remotetools/actions/OprofileModel.java     |    2 +-
- .../sdk/remotetools/actions/SystemtapModel.java    |    2 +-
- .../actions/SystemtapSettingDialog.java            |    2 +-
- .../sdk/remotetools/actions/TerminalHandler.java   |  128 ------
- .../sdk/remotetools/remote/RemoteShellExec.java    |  149 -------
- 30 files changed, 1344 insertions(+), 1267 deletions(-)  create mode 10064=
-4 plugins/org.yocto.remote.utils/.classpath
- create mode 100644 plugins/org.yocto.remote.utils/.project
- create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jd=
-t.core.prefs
- create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
- create mode 100644 plugins/org.yocto.remote.utils/build.properties
- create mode 100755 plugins/org.yocto.remote.utils/resources/ust_tar.sh
- create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_tool.sh
- create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_ust.sh
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/Activator.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/CommonHelper.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/Messages.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/RSEHelper.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/RemoteShellExec.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/ShellSession.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/TerminalHandler.java
- delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/ust_tar.sh
- delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/yocto_tool.=
-sh
- delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/yocto_ust.s=
-h
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/CommonHelper.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/RSEHelper.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/ShellSession.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/actions/TerminalHandler.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/remote/RemoteShellExec.java
 
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
