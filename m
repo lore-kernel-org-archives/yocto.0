@@ -1,21 +1,23 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3375CE01484
-	for <yocto@yoctoproject.org>; Mon, 13 May 2013 02:47:00 -0700 (PDT)
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ADBBE0137D
+	for <yocto@yoctoproject.org>; Mon, 13 May 2013 03:13:09 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga102.ch.intel.com with ESMTP; 13 May 2013 02:46:52 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 13 May 2013 03:13:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,660,1363158000"; d="scan'208";a="333159793"
-Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga001.fm.intel.com with ESMTP; 13 May 2013 02:46:51 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 13 May 2013 12:26:33 +0300
-Message-Id: <1368437194-28574-6-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1368437194-28574-1-git-send-email-ioanax.grigoropol@intel.com>
-References: <1368437194-28574-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [PATCH v2 5/6] Move CommonHelper to org.yocto.remote.utils separate plugin
+X-IronPort-AV: E=Sophos;i="4.87,660,1363158000"; d="scan'208";a="333168647"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga001.fm.intel.com with ESMTP; 13 May 2013 03:13:08 -0700
+Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.149])
+	by linux.intel.com (Postfix) with ESMTP id 9EC066A4083;
+	Mon, 13 May 2013 03:12:57 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org,
+	elizabeth.flanagan@intel.com
+Date: Mon, 13 May 2013 13:13:13 +0300
+Message-Id: <1368439993-30447-1-git-send-email-stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [yocto-autobuilder][PATCH] buildsteps, nightly: run bitbake-selftest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,171 +29,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2013 09:47:01 -0000
+X-List-Received-Date: Mon, 13 May 2013 10:13:09 -0000
 
-- common helper is better suited to org.yocto.remote.utils since it is used for:
-   - running commands
-   - displaying error dialogs
-- remove common helper from remote tools plugin and add it to a separated plugin
-- modify org.yocto.sdk.remotetools to use implementation from org.yocto.remote.utils
+Added a new buildstep which calls bitbake-selftest.
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+[YOCTO #4433]
+
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
 ---
- .../src/org/yocto/remote/utils/CommonHelper.java   |   46 ++++++++++++++++++++
- .../org/yocto/sdk/remotetools/CommonHelper.java    |   44 -------------------
- .../sdk/remotetools/actions/OprofileModel.java     |    2 +-
- .../actions/SystemtapSettingDialog.java            |    2 +-
- .../sdk/remotetools/actions/TerminalHandler.java   |    2 +-
- 5 files changed, 49 insertions(+), 47 deletions(-)
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/CommonHelper.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/CommonHelper.java
+ buildset-config/nightly.conf                       |  1 +
+ .../autobuilder/buildsteps/RunBitbakeSelftest.py   | 28 ++++++++++++++++++++++
+ 2 files changed, 29 insertions(+)
+ create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/RunBitbakeSelftest.py
 
-diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/CommonHelper.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/CommonHelper.java
+diff --git a/buildset-config/nightly.conf b/buildset-config/nightly.conf
+index ffbc271..80173a5 100644
+--- a/buildset-config/nightly.conf
++++ b/buildset-config/nightly.conf
+@@ -51,6 +51,7 @@ steps: [{'SetDest':{}},
+         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64', 
+                             'distro': 'poky'}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
++        {'RunBitbakeSelftest': {}},
+         {'BuildImages': {'images': 'universe -c fetch'}},
+         {'TriggerBuilds': {'schedulerNames':
+                              {'build-appliance': {'waitForFinish': 'False'},
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunBitbakeSelftest.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunBitbakeSelftest.py
 new file mode 100644
-index 0000000..23afd38
+index 0000000..7d1874f
 --- /dev/null
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/CommonHelper.java
-@@ -0,0 +1,46 @@
-+/*******************************************************************************
-+ * Copyright (c) 2013 Intel Corporation.
-+ * All rights reserved. This program and the accompanying materials
-+ * are made available under the terms of the Eclipse Public License v1.0
-+ * which accompanies this distribution, and is available at
-+ * http://www.eclipse.org/legal/epl-v10.html
-+ *
-+ * Contributors:
-+ * Intel - initial API and implementation
-+ *******************************************************************************/
-+package org.yocto.remote.utils;
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunBitbakeSelftest.py
+@@ -0,0 +1,28 @@
++'''
++Created on May 13, 2013
 +
-+import org.eclipse.core.runtime.IStatus;
-+import org.eclipse.core.runtime.Status;
-+import org.eclipse.jface.dialogs.ErrorDialog;
-+import org.eclipse.swt.widgets.Display;
++__author__ = "Stefan Stanacar"
++__copyright__ = "Copyright 2013, Intel Corp."
++__credits__ = ["Stefan Stanacar"]
++__license__ = "GPL"
++__version__ = "2.0"
++__maintainer__ = "Stefan Stanacar"
++__email__ = "stefanx.stanacar@intel.com"
++'''
 +
-+public class CommonHelper {
 +
-+	static public boolean isExecAvail(String exec) {
-+		boolean ret = false;
-+		try {
-+			Process p = Runtime.getRuntime().exec(new String[] {"which", exec});
-+			p.waitFor();
-+			if(p.exitValue() == 0) {
-+				ret = true;
-+			}
-+		} catch (Exception e) {
-+			e.printStackTrace();
-+		}
-+		return ret;
-+	}
++from buildbot.steps.shell import ShellCommand
 +
-+	public static void showErrorDialog(final String dialogTitle, final String errorMessage, final String reason) {
-+		//needs to be run in the ui thread otherwise swt throws invalid thread access
-+		Display.getDefault().syncExec(new Runnable() {
-+			@Override
-+			public void run() {
-+				ErrorDialog.openError(null, dialogTitle, errorMessage,
-+						new Status(IStatus.ERROR,Activator.PLUGIN_ID,reason));
-+			}
-+		});
-+
-+	}
-+
-+}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/CommonHelper.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/CommonHelper.java
-deleted file mode 100644
-index 72a5dfd..0000000
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/CommonHelper.java
-+++ /dev/null
-@@ -1,44 +0,0 @@
--/*******************************************************************************
-- * Copyright (c) 2010 Intel Corporation.
-- * All rights reserved. This program and the accompanying materials
-- * are made available under the terms of the Eclipse Public License v1.0
-- * which accompanies this distribution, and is available at
-- * http://www.eclipse.org/legal/epl-v10.html
-- *
-- * Contributors:
-- * Intel - initial API and implementation
-- *******************************************************************************/
--package org.yocto.sdk.remotetools;
--
--import org.eclipse.core.runtime.IStatus;
--import org.eclipse.core.runtime.Status;
--import org.eclipse.jface.dialogs.ErrorDialog;
--import org.eclipse.swt.widgets.Display;
--
--public class CommonHelper {
--
--	static public boolean isExecAvail(String exec) {
--		boolean ret=false;	
--		try {
--			Process p=Runtime.getRuntime().exec(new String[] {"which",exec});
--			p.waitFor();
--			if(p.exitValue()==0) {
--				ret=true;
--			}
--		} catch (Exception e) {
--			e.printStackTrace();
--		}
--		return ret;
--	}
--	
--	public static void showErrorDialog(final String dialogTitle, final String errorMessage, final String reason) {
--		//needs to be run in the ui thread otherwise swt throws invalid thread access 
--		Display.getDefault().syncExec(new Runnable() {
--			public void run() {
--				ErrorDialog.openError(null, dialogTitle, errorMessage, new Status(IStatus.ERROR,Activator.PLUGIN_ID,reason));
--			}
--		});
--
--	}
--	
--}
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-index c125df7..7fbe7c6 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/OprofileModel.java
-@@ -21,9 +21,9 @@ import org.eclipse.core.runtime.SubProgressMonitor;
- import org.eclipse.jface.preference.IPreferenceStore;
- import org.eclipse.rse.core.model.IHost;
- import org.eclipse.ui.IWorkbenchWindow;
-+import org.yocto.remote.utils.CommonHelper;
- import org.yocto.sdk.ide.YoctoSDKPlugin;
- import org.yocto.sdk.ide.preferences.PreferenceConstants;
--import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.LocalJob;
- import org.yocto.sdk.remotetools.Messages;
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-index 8b4703c..c447569 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-@@ -27,8 +27,8 @@ import org.eclipse.swt.widgets.FileDialog;
- import org.eclipse.swt.widgets.Label;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.swt.widgets.Text;
-+import org.yocto.remote.utils.CommonHelper;
- import org.yocto.sdk.remotetools.Activator;
--import org.yocto.sdk.remotetools.CommonHelper;
- import org.yocto.sdk.remotetools.Messages;
- import org.yocto.sdk.remotetools.SWTFactory;
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-index 4ad8688..ae04dc9 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/TerminalHandler.java
-@@ -33,8 +33,8 @@ import org.eclipse.swt.events.DisposeListener;
- import org.eclipse.swt.widgets.Shell;
- import org.eclipse.tm.internal.terminal.control.ITerminalViewControl;
- import org.eclipse.tm.internal.terminal.provisional.api.ITerminalConnector;
-+import org.yocto.remote.utils.CommonHelper;
- import org.yocto.remote.utils.RSEHelper;
--import org.yocto.sdk.remotetools.CommonHelper;
- 
- abstract public class TerminalHandler extends AbstractHandler {
- 	
++class RunBitbakeSelftest(ShellCommand):
++    haltOnFailure = False
++    flunkOnFailure = True
++    name = "Running bitbake-selftest"
++    def __init__(self, factory, argdict=None, **kwargs):
++        self.factory = factory
++        for k, v in argdict.iteritems():
++                setattr(self, k, v)
++        self.description = "Running bitbake-selftest"
++        self.timeout = 100000
++        kwargs['timeout']=self.timeout
++        self.command = ". ./oe-init-build-env; bitbake-selftest"
++        ShellCommand.__init__(self, **kwargs)
 -- 
-1.7.9.5
+1.8.1.4
 
 
