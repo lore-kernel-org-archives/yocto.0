@@ -1,30 +1,24 @@
-Return-Path: <wmills@ti.com>
-Received: from comal.ext.ti.com (comal.ext.ti.com [198.47.26.152])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24D41E013ED;
-	Mon, 13 May 2013 07:27:56 -0700 (PDT)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by comal.ext.ti.com (8.13.7/8.13.7) with ESMTP id r4DERtRa001802;
-	Mon, 13 May 2013 09:27:55 -0500
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id r4DERsWV001445;
-	Mon, 13 May 2013 09:27:54 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 13 May 2013 09:27:54 -0500
-Received: from [172.24.16.22] (h16-22.vpn.ti.com [172.24.16.22])	by
-	dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id r4DERs9j029860;
-	Mon, 13 May 2013 09:27:54 -0500
-Message-ID: <5190F86A.2090506@ti.com>
-Date: Mon, 13 May 2013 10:27:54 -0400
-From: William Mills <wmills@ti.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0015AE006C2
+	for <yocto@yoctoproject.org>; Mon, 13 May 2013 08:51:55 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 13 May 2013 08:51:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,662,1363158000"; d="scan'208";a="240829169"
+Received: from unknown (HELO helios.localnet) ([10.255.12.245])
+	by AZSMGA002.ch.intel.com with ESMTP; 13 May 2013 08:51:54 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Sandino Flores Moreno <tigrux@gmail.com>
+Date: Mon, 13 May 2013 16:51:43 +0100
+Message-ID: <3389940.5HRX4CheDh@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.8.0-19-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <CAJX_UagqsBF7u-J8EEUAV+93R_=SbXTYFqJd5enau1NYM3_7GQ@mail.gmail.com>
+References: <CAJX_UagqsBF7u-J8EEUAV+93R_=SbXTYFqJd5enau1NYM3_7GQ@mail.gmail.com>
 MIME-Version: 1.0
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-References: <CAPhnLPDTKb2Ukvc+wUGiwS9zbZ12HdhSjDAMM6DGPgpWnYxa6Q@mail.gmail.com>
-In-Reply-To: <CAPhnLPDTKb2Ukvc+wUGiwS9zbZ12HdhSjDAMM6DGPgpWnYxa6Q@mail.gmail.com>
-Cc: yocto-announce@yoctoproject.org, yocto@yoctoproject.org
-Subject: Re: [ANNOUNCEMENT] Yocto Project 1.4 "dylan" Released.
+Cc: yocto@yoctoproject.org
+Subject: Re: Details on automated Yocto validation?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,28 +30,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2013 14:27:56 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 13 May 2013 15:51:56 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 04/26/2013 06:49 PM, Flanagan, Elizabeth wrote:
-> All,
->
-> I am pleased to announce the availability of the latest major release
-> of the Yocto Project, "dylan".
-> gpg signed release notes are available at:
->
-> http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/RELEASENOTES.txt
+On Tuesday 15 January 2013 16:46:49 Sandino Flores Moreno wrote:
+> Where may I find details about Yocto Validation?
+> Especially in what regards to automated tests.
+> 
+> I came up with this topic because we are using it to build a custom linux
+> distribution, rpm based, and now it is required to implement a proper
+> validation to ensure there are no regressions, that packages are sane, etc.
+> 
+> As it normally happens, there may be an effort that someone else started
+> already.
+> 
+> So far I have only found:
+> https://wiki.yoctoproject.org/wiki/Yocto_1.4_Schedule
+> 
+> But it's, as the name states, it is very general.
+> Something more specific would be useful.
 
-So, I must admit I am slow to actually read the release notes.
-However, I am very excited about the availability of the 
-meta-yocto-classic layer.
-I have my 38 floppy disks ready (37 saved from AOL junk mail offers, and 
-1 from Prodigy).
-However ftp.cdrom.com does not seem to respond.
-How else can I get this great layer?
+Sorry for the (extremely) late reply. There are a few different aspects to
+testing within the Yocto Project:
 
-(I was a little surprised to see mc in the classic list.  I still use it 
-everyday and is the first thing I install on any system.)
+* Autobuilder - we have an autobuilder infrastructure upon which we run
+regular builds for continuous integration purposes. Our autobuilder instance
 
+http://autobuilder.yoctoproject.org/
+
+The software that is used to manage the autobuilder infrastructure, which is
+based upon Buildbot, is also made available so that you can set up your own autobuilder
+if desired:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-autobuilder/
+
+* We also have a QA process for every release. This includes a number of manual
+tests which are recorded in Testopia within our Bugzilla instance at
+http://bugzilla.yoctoproject.org. We plan to automate many of these tests
+as part of the 1.5 release.
+
+* Package QA tests: these are run automatically on every package built by the
+build system. This is implemented in classes/insane.bbclass and is now
+documented in the reference manual:
+
+http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#ref-classes-insane
+
+* ptest: in 1.4 we added the "ptest" framework which allows you to integrate
+tests for individual software packages and run them on the target hardware (or
+within emulation). There is a section within the manual explaining how to use
+the ptest framework:
+
+http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#testing-packages-with-ptest
+
+* qemuimagetest: there are a limited set of runtime tests that you can
+run automatically on every built image (and we enable these on the
+autobuilder). These are not very well-documented but will likely be
+rewritten for the next release in any case (1.5); however there is some
+information on how to enable these in the sample local.conf - search
+for "IMAGETEST". The implementation of the tests can be found in
+scripts/qemuimage-tests/.
+
+You can see some of the improvement work we have planned for 1.5 in the
+bugs linked from this entry in Bugzilla:
+
+  https://bugzilla.yoctoproject.org/show_bug.cgi?id=4137
+
+Hope this helps.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
