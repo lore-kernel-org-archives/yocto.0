@@ -1,35 +1,29 @@
 Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26407E0137D
-	for <yocto@yoctoproject.org>; Mon, 13 May 2013 03:39:22 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 13 May 2013 03:39:21 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9486E0137D
+	for <yocto@yoctoproject.org>; Mon, 13 May 2013 04:48:12 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 13 May 2013 04:48:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,660,1363158000"; d="scan'208";a="336713310"
-Received: from fmsmsx103.amr.corp.intel.com ([10.19.9.34])
-	by fmsmga002.fm.intel.com with ESMTP; 13 May 2013 03:39:21 -0700
-Received: from fmsmsx151.amr.corp.intel.com (10.19.17.220) by
-	FMSMSX103.amr.corp.intel.com (10.19.9.34) with Microsoft SMTP Server
-	(TLS) id 14.1.355.2; Mon, 13 May 2013 03:39:21 -0700
+X-IronPort-AV: E=Sophos;i="4.87,662,1363158000"; d="scan'208";a="240733409"
+Received: from fmsmsx104.amr.corp.intel.com ([10.19.9.35])
+	by AZSMGA002.ch.intel.com with ESMTP; 13 May 2013 04:48:12 -0700
 Received: from fmsmsx152.amr.corp.intel.com ([169.254.6.6]) by
-	FMSMSX151.amr.corp.intel.com ([169.254.7.33]) with mapi id
-	14.01.0355.002; Mon, 13 May 2013 03:39:21 -0700
+	FMSMSX104.amr.corp.intel.com ([169.254.4.251]) with mapi id
+	14.01.0355.002; Mon, 13 May 2013 04:48:11 -0700
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Thread-Topic: FW: FW: [yocto] how the &^$%^%@%^#$ does "file://defconfig" work?
-Thread-Index: AQHOQOIC2+TW5OoLMUGcg0J9Q9PeDpjlgORggBW5iICAABeYYIAAdqgA//+MN5CAB3J4YIAAnPkA//+l2MA=
-Date: Mon, 13 May 2013 10:39:20 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35DAC@fmsmsx152.amr.corp.intel.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35C9D@fmsmsx152.amr.corp.intel.com>
-	<alpine.DEB.2.02.1305130459220.23967@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1305130459220.23967@oneiric>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Documentation cross-reference links for 1.4 on don't seem to
+	be working on my machine
+Thread-Index: Ac5Pz72q8WDK/jOoQg+b0yUDjBDO+Q==
+Date: Mon, 13 May 2013 11:48:11 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35DF1@fmsmsx152.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: FW: FW: how the &^$%^%@%^#$ does "file://defconfig" work?
+Subject: Documentation cross-reference links for 1.4 on don't seem to be working on my machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,48 +35,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2013 10:39:22 -0000
+X-List-Received-Date: Mon, 13 May 2013 11:48:13 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Touche Robert :)  You made my day.
+Just a heads up for the documentation that is published on the web.  I have=
+ encountered some strange behavior in which cross-reference links to other =
+specific places in a manual other than the one the link is originating from=
+ are not working.  Example URLs that will not link to a specific topic in a=
+ manual are:
+
+http://www.yoctoproject.org/docs/1.5/ref-manual/ref-manual.html#var-FILESEX=
+TRAPATHS
+http://www.yoctoproject.org/docs/1.4.1/ref-manual/ref-manual.html#var-FILES=
+EXTRAPATHS
+
+and so forth.  I just discovered this oddity and am trying to figure out th=
+e issue.  Instead of links like the above taking you to the specific spot i=
+n the manual they simply take you to the top of the manual. =20
+
+This behavior doesn't seem to be beyond my machine, which is running Ubuntu=
+ 12.04 LTS.  I am using Mozilla's firefox for Ubuntu canonical - 1.0 (20.0)=
+.  I tried going to the site on my Windows-based machine and all the links =
+behave normally for IE, Chrome, and Firefox.  This is probably something to=
+ do with my machine but I wanted to give a "heads-up" out there in case som=
+ebody else was having problems with the links.
 
 Scott
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Monday, May 13, 2013 2:01 AM
->To: Rifenbark, Scott M
->Cc: yocto@yoctoproject.org; Ashfield, Bruce
->Subject: Re: FW: FW: [yocto] how the &^$%^%@%^#$ does "file://defconfig"
->work?
->
->On Mon, 13 May 2013, Rifenbark, Scott M wrote:
->
->> >Bruce,
->> >
->> >Thanks for the very clear example and the analogy.  I might add a
->note
->> >to the section that was confusing Robert.  Sometimes he gets really
->> >picky on what he reads...
->
->  i resent that.  and you could have used a comma after the word
->"Sometimes" up there. :-)
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Scott Rifenbark
+Intel Corporation
+Yocto Project Documentation
+503.712.2702
+503.341.0418 (cell)
+
+
 
