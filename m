@@ -1,29 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73305E013DE
-	for <yocto@yoctoproject.org>; Mon, 13 May 2013 05:49:04 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r4DCmsRM012533
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 13 May 2013 05:48:54 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 13 May 2013 05:48:54 -0700
-Message-ID: <5190E12E.90205@windriver.com>
-Date: Mon, 13 May 2013 08:48:46 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130404 Thunderbird/17.0.5
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60364E01484
+	for <yocto@yoctoproject.org>; Mon, 13 May 2013 05:49:54 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 13 May 2013 05:47:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,662,1363158000"; d="scan'208";a="312668169"
+Received: from fmsmsx105.amr.corp.intel.com ([10.19.9.36])
+	by orsmga001.jf.intel.com with ESMTP; 13 May 2013 05:49:53 -0700
+Received: from fmsmsx152.amr.corp.intel.com ([169.254.6.6]) by
+	FMSMSX105.amr.corp.intel.com ([169.254.5.226]) with mapi id
+	14.01.0355.002; Mon, 13 May 2013 05:49:53 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Documentation cross-reference links for 1.4 on don't
+	seem to be working on my machine
+Thread-Index: Ac5Pz72q8WDK/jOoQg+b0yUDjBDO+QACIWzw
+Date: Mon, 13 May 2013 12:49:53 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35E27@fmsmsx152.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35DF1@fmsmsx152.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35DF1@fmsmsx152.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35C9D@fmsmsx152.amr.corp.intel.com>
-	<alpine.DEB.2.02.1305130459220.23967@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF35DAC@fmsmsx152.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF35DAC@fmsmsx152.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Robert P. J. Day" <rpjday@crashcourse.ca>
-Subject: Re: FW: FW: how the &^$%^%@%^#$ does "file://defconfig" work?
+Subject: Re: Documentation cross-reference links for 1.4 on don't seem to be working on my machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,50 +38,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2013 12:49:04 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 13 May 2013 12:49:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 13-05-13 06:39 AM, Rifenbark, Scott M wrote:
-> Touche Robert :)  You made my day.
+Solved - seemed to be a caching or cookie problem.  I cleared everything an=
+d the issue disappeared.=20
 
-And mine!
+Scott
 
-Bruce
-
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Rifenbark, Scott M
+>Sent: Monday, May 13, 2013 4:48 AM
+>To: yocto@yoctoproject.org
+>Subject: [yocto] Documentation cross-reference links for 1.4 on don't
+>seem to be working on my machine
 >
-> Scott
+>Just a heads up for the documentation that is published on the web.  I
+>have encountered some strange behavior in which cross-reference links to
+>other specific places in a manual other than the one the link is
+>originating from are not working.  Example URLs that will not link to a
+>specific topic in a manual are:
 >
->> -----Original Message-----
->> From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->> Sent: Monday, May 13, 2013 2:01 AM
->> To: Rifenbark, Scott M
->> Cc: yocto@yoctoproject.org; Ashfield, Bruce
->> Subject: Re: FW: FW: [yocto] how the &^$%^%@%^#$ does "file://defconfig"
->> work?
->>
->> On Mon, 13 May 2013, Rifenbark, Scott M wrote:
->>
->>>> Bruce,
->>>>
->>>> Thanks for the very clear example and the analogy.  I might add a
->> note
->>>> to the section that was confusing Robert.  Sometimes he gets really
->>>> picky on what he reads...
->>
->>   i resent that.  and you could have used a comma after the word
->> "Sometimes" up there. :-)
->>
->> rday
->>
->> --
->>
->> ========================================================================
->> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->>                         http://crashcourse.ca
->>
->> Twitter:                                       http://twitter.com/rpjday
->> LinkedIn:                               http://ca.linkedin.com/in/rpjday
->> ========================================================================
-
+>http://www.yoctoproject.org/docs/1.5/ref-manual/ref-manual.html#var-
+>FILESEXTRAPATHS
+>http://www.yoctoproject.org/docs/1.4.1/ref-manual/ref-manual.html#var-
+>FILESEXTRAPATHS
+>
+>and so forth.  I just discovered this oddity and am trying to figure out
+>the issue.  Instead of links like the above taking you to the specific
+>spot in the manual they simply take you to the top of the manual.
+>
+>This behavior doesn't seem to be beyond my machine, which is running
+>Ubuntu 12.04 LTS.  I am using Mozilla's firefox for Ubuntu canonical -
+>1.0 (20.0).  I tried going to the site on my Windows-based machine and
+>all the links behave normally for IE, Chrome, and Firefox.  This is
+>probably something to do with my machine but I wanted to give a "heads-
+>up" out there in case somebody else was having problems with the links.
+>
+>Scott
+>
+>Scott Rifenbark
+>Intel Corporation
+>Yocto Project Documentation
+>503.712.2702
+>503.341.0418 (cell)
+>
+>
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
