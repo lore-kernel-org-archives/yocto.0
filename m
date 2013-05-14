@@ -1,31 +1,34 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f176.google.com (mail-ve0-f176.google.com
-	[209.85.128.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BAD6E014FA
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 05:10:09 -0700 (PDT)
-Received: by mail-ve0-f176.google.com with SMTP id c13so454487vea.35
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 05:10:07 -0700 (PDT)
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
+	[209.85.128.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 543FBE01502
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 05:21:24 -0700 (PDT)
+Received: by mail-ve0-f172.google.com with SMTP id b10so483288vea.3
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 05:21:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:from:date:x-google-sender-auth
-	:message-id:subject:to:content-type;
-	bh=WNjCcq3vvv1gKjVr1WKQR/Tr8gueZZsKOnX45O4p0Bw=;
-	b=ZJQrnNF4y0IeEuAfW3CEzXmdSw6udRyqdwh3ndxzQ4eVFs54U1phd9+CYSXeXulV08
-	CEmqxvfLygeBpK4XNBpKNFnS0rmlEwBRm8BEAkav4ktQ9DfX4tGS2kDapo6qdwjHhZ7x
-	jXdTu9clPYrdfrMcu1TThH84depcfb6svkR21KPRN3tk/ezL/lNlOwDEZ/qTt3H3N4Uz
-	CjRDQI+C6zDLSMeYD2p0t4Zy6bpqVm1+qEkoN62WvzqLayJkK6iQ2PeB3uBcVCjVgQJu
-	Vl1UhWq+ybON6nuBoeQMQ15jJTiDEmeVUmvqVe9IUjAN6dBdoHaYF56eFWCEfjN+3Uie
-	z9TQ==
-X-Received: by 10.220.168.71 with SMTP id t7mr18242820vcy.39.1368533407554;
-	Tue, 14 May 2013 05:10:07 -0700 (PDT)
+	h=mime-version:x-received:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type;
+	bh=dxNzT3/+ebG8RrrkjdXBWlXFFmAw35SW7KMgp3n6lk4=;
+	b=l3bAnbVbcy9SXsGHnA1wbRLwXQ629VYQCT4vZdW3ttZL4dB0lVE2gFwnvtuW1uFksM
+	A21sCBTt9Tt5OxmnJmbYP3IIArYgnpFHz/F/6NXjYdE64YPS9wGZqgU/FTW8YeEZ43x1
+	ZCsrA8B6CY2JmLz6ywgPm3CO+lZ7JhZNy3TNEq21ZYpBIKmYFFOgATtEd2BBA8tv03/7
+	JC1hS8/mbjNA1B/pKbiNHZF2JLTOkjo3QaBcGTo/8D5d4IQn8Cmi8DeLIBFUUl2PudGY
+	GyFcb0GeKPkigjJeq3KNycb4J0YcAa4XvFSViWGzKg+rEyEOSXckNYgkLX0A5P4teZah
+	TDfw==
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.48.5 with HTTP; Tue, 14 May 2013 05:09:47 -0700 (PDT)
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Tue, 14 May 2013 13:09:47 +0100
-X-Google-Sender-Auth: Ag4VRZb8MhcmZ7P2C1m7ZTYTk6I
-Message-ID: <CANyK_8fKmat+m09jAcxqKA89Z0Qxt3V5+hsBXAvqVstEbvKucQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] Thoughts on Raspberry Pi firmware
+X-Received: by 10.220.223.14 with SMTP id ii14mr21618693vcb.50.1368534083793; 
+	Tue, 14 May 2013 05:21:23 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.116.194 with HTTP; Tue, 14 May 2013 05:21:23 -0700 (PDT)
+In-Reply-To: <7913150.opP2ggRnDV@helios>
+References: <CAFMfyzKYd7JWyzrKLBigCuZLtQeioyjhs2DAM8GvnXq9xGBanA@mail.gmail.com>
+	<7913150.opP2ggRnDV@helios>
+Date: Tue, 14 May 2013 14:21:23 +0200
+X-Google-Sender-Auth: sdMRfJgUthHDqvyRQVLrMaZ-xLU
+Message-ID: <CAFMfyzJAQbeU-Ww7-QmS2Ws_bCbXu1qGL4kwRw6uKJQkzSnV+w@mail.gmail.com>
+From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: lmsensors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,67 +40,193 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2013 12:10:09 -0000
+X-List-Received-Date: Tue, 14 May 2013 12:21:24 -0000
+Content-Type: multipart/alternative; boundary=14dae9cdc033ed7a9804dcacab4b
+
+--14dae9cdc033ed7a9804dcacab4b
 Content-Type: text/plain; charset=ISO-8859-1
 
-I had a few issues with starting my builds for Raspberry Pi as the
-bcm2835_bootfiles do_fetch would fail due to a github timeout. I
-cloned the relevant repository outside of bitbake and edited the
-SRC_URI to point to my local clone and everything went ok but that
-clone too a long long time. The upstream repository
-(https://github.com/raspberrypi/firmware) is huge, around 1.2 GB in
-size. I decided to repack just the files we need in a .tar.xz archive
-and I've ended up with around a 2-3 MB archive
-(http://www.paulbarker.me.uk/dist/rpi-fw/). An alternative would be to
-download a zip file of a given revision from github (eg
-https://github.com/raspberrypi/firmware/archive/0ac68cce44d4550c251172e8524100090e8211fa.zip)
-and this comes in at over 90 MB.
+Gentlemen, that actually worked...... Hurray.... Have a wonderful day guys
+:-)
 
-I know this is only an issue for a first build when nothing has been
-downloaded but it seems rather daft to be downloading an entire 1.2 GB
-git repo when we want only a handful of files at a given version. As
-the files are binary, even doing a 'git pull' when only a couple of
-new commits have happened takes time. It's not just download time,
-it's the time taken for github to compress objects. With my internet
-connection the time taken to do git clone was around 90 minutes. I
-haven't seen a way to do a git shallow clone for a past commit, only
-for the HEAD of the remote repository.
 
-Does anyone else think that we'd be better using either our own
-archive of just the files we need or a zip file of a given revision
-from github? I know the firmware isn't GPL so we might not need to
-redistribute the upstream sources but for my images I'd like to
-provide a mirror of everything needed to build them incase upstream
-sources disappear in the future. It does seem absurd to mirror 1.2 GB
-of files when a 2 MB archive will do.
+On Tue, May 14, 2013 at 12:44 PM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
 
-Secondly, is there any use case for building vc-graphics or
-vc-graphics-hardfp to provide virtual/egl and virtual/libgles2 (which
-rely on binary files from the raspberry pi firmware repo) instead of
-compiling from source using the userland package?
+> On Tuesday 14 May 2013 11:21:49 Satya Swaroop Damarla wrote:
+> > It has been a month I have been fighting with installing the package
+> > "lmsensors" and had no success till today.... I would really appreciate
+> > much help....
+> >
+> > The background goes like this..
+> >
+> > *bitbake lmsensors * works perfectly but when I add the package into the
+> > rootfs I get the following error
+> >
+> > * Package lmsensors-config is not available, but is referred to by
+> another
+> > package.*
+> > *| This may mean that the package is missing, has been obsoleted, or*
+> > *| is only available from another source*
+> > *| *
+> > *| Package lmsensors is not available, but is referred to by another
+> > package.*
+> > *| This may mean that the package is missing, has been obsoleted, or*
+> > *| is only available from another source*
+> > *| *
+> > *| E: Package 'lmsensors-config' has no installation candidate*
+> > *| E: Package 'lmsensors' has no installation candidate*
+> > *| ERROR: Function failed: do_rootfs (see
+> >
+> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-poky-l
+> > inux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_rootfs.29976 for
+> further
+> > information)*
+> > *ERROR: Task 7 (/home/damarla/yocto/poky/meta/recipes-graphics/images/
+> > core-image-skidata.bb, do_rootfs) failed with exit code '1'*
+> > *NOTE: Tasks Summary: Attempted 5210 tasks of which 4529 didn't need to
+> be
+> > rerun and 1 failed.*
+> > *No currently running tasks (5210 of 5211)*
+> > *
+> > *
+> > *Summary: 1 task failed:*
+> > *  /home/damarla/yocto/poky/meta/recipes-graphics/images/
+> > core-image-skidata.bb, do_rootfs*
+> > *Summary: There was 1 WARNING message shown.*
+> > *Summary: There was 1 ERROR message shown, returning a non-zero exit
+> code.*
+>
+> Looking at the output of building the current lmsensors recipe in meta-oe
+> master, the main "lmsensors" package is actually empty and thus is not
+> produced; this is a bit annoying and should probably be fixed. However
+> what I
+> think you're supposed to do is instead install the components of lmsensors
+> that you actually need. If you look at packages-split in the lmsensors work
+> directory (or the lmsensors* packages in tmp/deploy/ipk) you'll see it
+> produces the following, ignoring dbg/dev/doc/staticdev packages:
+>
+> lmsensors-fancontrol
+> lmsensors-libsensors
+> lmsensors-pwmconfig
+> lmsensors-sensord
+> lmsensors-sensors
+> lmsensors-sensorsconfconvert
+> lmsensors-sensorsdetect
+>
+> So I would suggest adding those of the above list that you need to your
+> image
+> instead of "lmsensors".
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+>
 
-I've built using my firmware archive packaged from the same commit we
-were previously using
-(http://www.paulbarker.me.uk/dist/rpi-fw/rpi-fw-yocto_20130107.tar.xz)
-with both userland and vc-graphics and build logs and details are
-available at:
+--14dae9cdc033ed7a9804dcacab4b
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-http://www.paulbarker.me.uk/yocto/20130510_poky-raspberrypi_userland/
+<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">Gentlemen, that actually worked...... Hurray.... Have a wonderful day guy=
+s :-)</span><br></div><div class=3D"gmail_extra"><br><br><div class=3D"gmai=
+l_quote">
+On Tue, May 14, 2013 at 12:44 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton=
+@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div class=3D"im">On Tuesday 14 May 2013 11:21:49 Satya Swaroop Damarla wro=
+te:<br>
+&gt; It has been a month I have been fighting with installing the package<b=
+r>
+&gt; &quot;lmsensors&quot; and had no success till today.... I would really=
+ appreciate<br>
+&gt; much help....<br>
+&gt;<br>
+&gt; The background goes like this..<br>
+&gt;<br>
+</div>&gt; *bitbake lmsensors * works perfectly but when I add the package =
+into the<br>
+<div class=3D"im">&gt; rootfs I get the following error<br>
+&gt;<br>
+</div>&gt; * Package lmsensors-config is not available, but is referred to =
+by another<br>
+&gt; package.*<br>
+&gt; *| This may mean that the package is missing, has been obsoleted, or*<=
+br>
+&gt; *| is only available from another source*<br>
+&gt; *| *<br>
+&gt; *| Package lmsensors is not available, but is referred to by another<b=
+r>
+&gt; package.*<br>
+&gt; *| This may mean that the package is missing, has been obsoleted, or*<=
+br>
+&gt; *| is only available from another source*<br>
+&gt; *| *<br>
+&gt; *| E: Package &#39;lmsensors-config&#39; has no installation candidate=
+*<br>
+&gt; *| E: Package &#39;lmsensors&#39; has no installation candidate*<br>
+&gt; *| ERROR: Function failed: do_rootfs (see<br>
+&gt; /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-=
+poky-l<br>
+&gt; inux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_rootfs.29976 for fu=
+rther<br>
+&gt; information)*<br>
+&gt; *ERROR: Task 7 (/home/damarla/yocto/poky/meta/recipes-graphics/images/=
+<br>
+&gt; <a href=3D"http://core-image-skidata.bb" target=3D"_blank">core-image-=
+skidata.bb</a>, do_rootfs) failed with exit code &#39;1&#39;*<br>
+&gt; *NOTE: Tasks Summary: Attempted 5210 tasks of which 4529 didn&#39;t ne=
+ed to be<br>
+&gt; rerun and 1 failed.*<br>
+&gt; *No currently running tasks (5210 of 5211)*<br>
+&gt; *<br>
+&gt; *<br>
+&gt; *Summary: 1 task failed:*<br>
+&gt; * =A0/home/damarla/yocto/poky/meta/recipes-graphics/images/<br>
+&gt; <a href=3D"http://core-image-skidata.bb" target=3D"_blank">core-image-=
+skidata.bb</a>, do_rootfs*<br>
+&gt; *Summary: There was 1 WARNING message shown.*<br>
+&gt; *Summary: There was 1 ERROR message shown, returning a non-zero exit c=
+ode.*<br>
+<br>
+Looking at the output of building the current lmsensors recipe in meta-oe<b=
+r>
+master, the main &quot;lmsensors&quot; package is actually empty and thus i=
+s not<br>
+produced; this is a bit annoying and should probably be fixed. However what=
+ I<br>
+think you&#39;re supposed to do is instead install the components of lmsens=
+ors<br>
+that you actually need. If you look at packages-split in the lmsensors work=
+<br>
+directory (or the lmsensors* packages in tmp/deploy/ipk) you&#39;ll see it<=
+br>
+produces the following, ignoring dbg/dev/doc/staticdev packages:<br>
+<br>
+lmsensors-fancontrol<br>
+lmsensors-libsensors<br>
+lmsensors-pwmconfig<br>
+lmsensors-sensord<br>
+lmsensors-sensors<br>
+lmsensors-sensorsconfconvert<br>
+lmsensors-sensorsdetect<br>
+<br>
+So I would suggest adding those of the above list that you need to your ima=
+ge<br>
+instead of &quot;lmsensors&quot;.<br>
+<br>
+Cheers,<br>
+Paul<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</font></span></blockquote></div><br></div>
 
-http://www.paulbarker.me.uk/yocto/20130510_poky-raspberrypi_vc-graphics/
-
-Current versions of the patches are available at:
-
-http://www.paulbarker.me.uk/yocto/20130510_poky-raspberrypi_userland/patches/meta-raspberrypi/0003-bootfiles-vc-graphics-consolidate-SRC_URI-and-S-vari.patch
-
-http://www.paulbarker.me.uk/yocto/20130510_poky-raspberrypi_userland/patches/meta-raspberrypi/0004-bootfiles-vc-graphics-use-archive-rather-than-git.patch
-
-Though I'm currently just looking for comments on the general idea,
-not ready to submit the patches for merging just yet.
-
---
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
-
+--14dae9cdc033ed7a9804dcacab4b--
