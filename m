@@ -1,34 +1,44 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
-	[209.85.128.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 543FBE01502
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 05:21:24 -0700 (PDT)
-Received: by mail-ve0-f172.google.com with SMTP id b10so483288vea.3
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 05:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:content-type;
-	bh=dxNzT3/+ebG8RrrkjdXBWlXFFmAw35SW7KMgp3n6lk4=;
-	b=l3bAnbVbcy9SXsGHnA1wbRLwXQ629VYQCT4vZdW3ttZL4dB0lVE2gFwnvtuW1uFksM
-	A21sCBTt9Tt5OxmnJmbYP3IIArYgnpFHz/F/6NXjYdE64YPS9wGZqgU/FTW8YeEZ43x1
-	ZCsrA8B6CY2JmLz6ywgPm3CO+lZ7JhZNy3TNEq21ZYpBIKmYFFOgATtEd2BBA8tv03/7
-	JC1hS8/mbjNA1B/pKbiNHZF2JLTOkjo3QaBcGTo/8D5d4IQn8Cmi8DeLIBFUUl2PudGY
-	GyFcb0GeKPkigjJeq3KNycb4J0YcAa4XvFSViWGzKg+rEyEOSXckNYgkLX0A5P4teZah
-	TDfw==
+Return-Path: <Brian.Wenholz@med.ge.com>
+Received: from exprod5og109.obsmtp.com (exprod5og109.obsmtp.com [64.18.0.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B5A0E014FF
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 05:51:18 -0700 (PDT)
+Received: from alpmlip11.e2k.ad.ge.com ([165.156.5.1]) (using TLSv1) by
+	exprod5ob109.postini.com ([64.18.4.12]) with SMTP
+	ID DSNKUZIzRe/1y8RCcd+LGt1wrvblshgZOkmS@postini.com;
+	Tue, 14 May 2013 05:51:22 PDT
+Received: from unknown (HELO cinmlef12.e2k.ad.ge.com) ([3.159.213.59])
+	by alpmlip11.e2k.ad.ge.com with ESMTP; 14 May 2013 08:51:09 -0400
+Received: from cinmlef17.e2k.ad.ge.com ([3.159.213.93]) by
+	cinmlef12.e2k.ad.ge.com with Microsoft SMTPSVC(6.0.3790.4675); 
+	Tue, 14 May 2013 08:51:08 -0400
+Received: from cinmlch01.e2k.ad.ge.com ([3.159.212.50]) by
+	cinmlef17.e2k.ad.ge.com with Microsoft SMTPSVC(6.0.3790.4675); 
+	Tue, 14 May 2013 08:51:01 -0400
+Received: from ALPURAPA17.e2k.ad.ge.com (3.159.19.136) by
+	cinmlch01.e2k.ad.ge.com (3.159.212.50) with Microsoft SMTP Server (TLS)
+	id 14.3.136.1; Tue, 14 May 2013 08:50:57 -0400
+Received: from ALPURAPA22.e2k.ad.ge.com ([169.254.4.124]) by
+	ALPURAPA17.e2k.ad.ge.com ([169.254.5.172]) with mapi id 14.02.0309.002;
+	Tue, 14 May 2013 08:50:57 -0400
+From: "Wenholz, Brian (GE Healthcare)" <Brian.Wenholz@med.ge.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] Does anyone have a recipe for efibootmgr?
+Thread-Index: AQHOTJAENDqYW0o3I02brC0jo4fIv5kEqPig
+Date: Tue, 14 May 2013 12:50:56 +0000
+Message-ID: <4F1B91CF7B31604FABE8442530201B78019E16@ALPURAPA22.e2k.ad.ge.com>
+References: <4F1B91CF7B31604FABE8442530201B780195B3@ALPURAPA22.e2k.ad.ge.com>
+	<349B24DA-30D1-4541-A2C1-4EDC44CEE734@gmail.com>
+	<2983293.qAFFc2TYrv@helios>
+In-Reply-To: <2983293.qAFFc2TYrv@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [3.159.19.187]
 MIME-Version: 1.0
-X-Received: by 10.220.223.14 with SMTP id ii14mr21618693vcb.50.1368534083793; 
-	Tue, 14 May 2013 05:21:23 -0700 (PDT)
-Sender: satyaswaroop.damarla@gmail.com
-Received: by 10.52.116.194 with HTTP; Tue, 14 May 2013 05:21:23 -0700 (PDT)
-In-Reply-To: <7913150.opP2ggRnDV@helios>
-References: <CAFMfyzKYd7JWyzrKLBigCuZLtQeioyjhs2DAM8GvnXq9xGBanA@mail.gmail.com>
-	<7913150.opP2ggRnDV@helios>
-Date: Tue, 14 May 2013 14:21:23 +0200
-X-Google-Sender-Auth: sdMRfJgUthHDqvyRQVLrMaZ-xLU
-Message-ID: <CAFMfyzJAQbeU-Ww7-QmS2Ws_bCbXu1qGL4kwRw6uKJQkzSnV+w@mail.gmail.com>
-From: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: lmsensors
+X-OriginalArrivalTime: 14 May 2013 12:51:01.0991 (UTC)
+	FILETIME=[B0685F70:01CE50A1]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Does anyone have a recipe for efibootmgr?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,193 +50,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2013 12:21:24 -0000
-Content-Type: multipart/alternative; boundary=14dae9cdc033ed7a9804dcacab4b
-
---14dae9cdc033ed7a9804dcacab4b
-Content-Type: text/plain; charset=ISO-8859-1
-
-Gentlemen, that actually worked...... Hurray.... Have a wonderful day guys
-:-)
-
-
-On Tue, May 14, 2013 at 12:44 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
-
-> On Tuesday 14 May 2013 11:21:49 Satya Swaroop Damarla wrote:
-> > It has been a month I have been fighting with installing the package
-> > "lmsensors" and had no success till today.... I would really appreciate
-> > much help....
-> >
-> > The background goes like this..
-> >
-> > *bitbake lmsensors * works perfectly but when I add the package into the
-> > rootfs I get the following error
-> >
-> > * Package lmsensors-config is not available, but is referred to by
-> another
-> > package.*
-> > *| This may mean that the package is missing, has been obsoleted, or*
-> > *| is only available from another source*
-> > *| *
-> > *| Package lmsensors is not available, but is referred to by another
-> > package.*
-> > *| This may mean that the package is missing, has been obsoleted, or*
-> > *| is only available from another source*
-> > *| *
-> > *| E: Package 'lmsensors-config' has no installation candidate*
-> > *| E: Package 'lmsensors' has no installation candidate*
-> > *| ERROR: Function failed: do_rootfs (see
-> >
-> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-poky-l
-> > inux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_rootfs.29976 for
-> further
-> > information)*
-> > *ERROR: Task 7 (/home/damarla/yocto/poky/meta/recipes-graphics/images/
-> > core-image-skidata.bb, do_rootfs) failed with exit code '1'*
-> > *NOTE: Tasks Summary: Attempted 5210 tasks of which 4529 didn't need to
-> be
-> > rerun and 1 failed.*
-> > *No currently running tasks (5210 of 5211)*
-> > *
-> > *
-> > *Summary: 1 task failed:*
-> > *  /home/damarla/yocto/poky/meta/recipes-graphics/images/
-> > core-image-skidata.bb, do_rootfs*
-> > *Summary: There was 1 WARNING message shown.*
-> > *Summary: There was 1 ERROR message shown, returning a non-zero exit
-> code.*
->
-> Looking at the output of building the current lmsensors recipe in meta-oe
-> master, the main "lmsensors" package is actually empty and thus is not
-> produced; this is a bit annoying and should probably be fixed. However
-> what I
-> think you're supposed to do is instead install the components of lmsensors
-> that you actually need. If you look at packages-split in the lmsensors work
-> directory (or the lmsensors* packages in tmp/deploy/ipk) you'll see it
-> produces the following, ignoring dbg/dev/doc/staticdev packages:
->
-> lmsensors-fancontrol
-> lmsensors-libsensors
-> lmsensors-pwmconfig
-> lmsensors-sensord
-> lmsensors-sensors
-> lmsensors-sensorsconfconvert
-> lmsensors-sensorsdetect
->
-> So I would suggest adding those of the above list that you need to your
-> image
-> instead of "lmsensors".
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---14dae9cdc033ed7a9804dcacab4b
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Tue, 14 May 2013 12:51:22 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
-">Gentlemen, that actually worked...... Hurray.... Have a wonderful day guy=
-s :-)</span><br></div><div class=3D"gmail_extra"><br><br><div class=3D"gmai=
-l_quote">
-On Tue, May 14, 2013 at 12:44 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton=
-@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<div class=3D"im">On Tuesday 14 May 2013 11:21:49 Satya Swaroop Damarla wro=
-te:<br>
-&gt; It has been a month I have been fighting with installing the package<b=
-r>
-&gt; &quot;lmsensors&quot; and had no success till today.... I would really=
- appreciate<br>
-&gt; much help....<br>
-&gt;<br>
-&gt; The background goes like this..<br>
-&gt;<br>
-</div>&gt; *bitbake lmsensors * works perfectly but when I add the package =
-into the<br>
-<div class=3D"im">&gt; rootfs I get the following error<br>
-&gt;<br>
-</div>&gt; * Package lmsensors-config is not available, but is referred to =
-by another<br>
-&gt; package.*<br>
-&gt; *| This may mean that the package is missing, has been obsoleted, or*<=
-br>
-&gt; *| is only available from another source*<br>
-&gt; *| *<br>
-&gt; *| Package lmsensors is not available, but is referred to by another<b=
-r>
-&gt; package.*<br>
-&gt; *| This may mean that the package is missing, has been obsoleted, or*<=
-br>
-&gt; *| is only available from another source*<br>
-&gt; *| *<br>
-&gt; *| E: Package &#39;lmsensors-config&#39; has no installation candidate=
-*<br>
-&gt; *| E: Package &#39;lmsensors&#39; has no installation candidate*<br>
-&gt; *| ERROR: Function failed: do_rootfs (see<br>
-&gt; /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-=
-poky-l<br>
-&gt; inux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_rootfs.29976 for fu=
-rther<br>
-&gt; information)*<br>
-&gt; *ERROR: Task 7 (/home/damarla/yocto/poky/meta/recipes-graphics/images/=
-<br>
-&gt; <a href=3D"http://core-image-skidata.bb" target=3D"_blank">core-image-=
-skidata.bb</a>, do_rootfs) failed with exit code &#39;1&#39;*<br>
-&gt; *NOTE: Tasks Summary: Attempted 5210 tasks of which 4529 didn&#39;t ne=
-ed to be<br>
-&gt; rerun and 1 failed.*<br>
-&gt; *No currently running tasks (5210 of 5211)*<br>
-&gt; *<br>
-&gt; *<br>
-&gt; *Summary: 1 task failed:*<br>
-&gt; * =A0/home/damarla/yocto/poky/meta/recipes-graphics/images/<br>
-&gt; <a href=3D"http://core-image-skidata.bb" target=3D"_blank">core-image-=
-skidata.bb</a>, do_rootfs*<br>
-&gt; *Summary: There was 1 WARNING message shown.*<br>
-&gt; *Summary: There was 1 ERROR message shown, returning a non-zero exit c=
-ode.*<br>
-<br>
-Looking at the output of building the current lmsensors recipe in meta-oe<b=
-r>
-master, the main &quot;lmsensors&quot; package is actually empty and thus i=
-s not<br>
-produced; this is a bit annoying and should probably be fixed. However what=
- I<br>
-think you&#39;re supposed to do is instead install the components of lmsens=
-ors<br>
-that you actually need. If you look at packages-split in the lmsensors work=
-<br>
-directory (or the lmsensors* packages in tmp/deploy/ipk) you&#39;ll see it<=
-br>
-produces the following, ignoring dbg/dev/doc/staticdev packages:<br>
-<br>
-lmsensors-fancontrol<br>
-lmsensors-libsensors<br>
-lmsensors-pwmconfig<br>
-lmsensors-sensord<br>
-lmsensors-sensors<br>
-lmsensors-sensorsconfconvert<br>
-lmsensors-sensorsdetect<br>
-<br>
-So I would suggest adding those of the above list that you need to your ima=
-ge<br>
-instead of &quot;lmsensors&quot;.<br>
-<br>
-Cheers,<br>
-Paul<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</font></span></blockquote></div><br></div>
+Paul and Khem,
 
---14dae9cdc033ed7a9804dcacab4b--
+Thank you for the replies. Yes I have already checked both the layer index =
+and classic OE recipes looking for efibootmgr. I could not find such a reci=
+pe. I will start working on building one from scratch then.
+
+Brian Wenholz
+-----Original Message-----
+From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
+Sent: Thursday, May 09, 2013 4:34 AM
+To: Wenholz, Brian (GE Healthcare)
+Cc: yocto@yoctoproject.org; Khem Raj
+Subject: Re: [yocto] Does anyone have a recipe for efibootmgr?
+
+On Wednesday 08 May 2013 21:46:56 Khem Raj wrote:
+> On May 7, 2013, at 11:11 AM, "Wenholz, Brian (GE Healthcare)"=20
+<Brian.Wenholz@med.ge.com> wrote:
+> > I have been unsuccessful in finding one yet, and would prefer not to=20
+> > re-invent the wheel.
+>
+> check
+> http://layers.openembedded.org/layerindex/
+
+Specifically the recipe search part:
+
+http://layers.openembedded.org/layerindex/recipes/
+
+> if its not there then it does not exist.
+> secondly check classic OE metadata and if it exists there
+>=20
+> http://git.openembedded.org/openembedded/tree/recipes
+>=20
+> then forward port it to relevant layer and post patches for the layer=20
+> using relevant layer guidelines
+
+FYI there is information on how to migrate recipes here:
+
+http://www.openembedded.org/wiki/Migrating_metadata_to_OE-Core
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
