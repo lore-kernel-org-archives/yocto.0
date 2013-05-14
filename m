@@ -1,28 +1,34 @@
-Return-Path: <varun292006@gmail.com>
-Received: from mail-da0-f53.google.com (mail-da0-f53.google.com
-	[209.85.210.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2FC9E0137D
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 09:11:15 -0700 (PDT)
-Received: by mail-da0-f53.google.com with SMTP id t11so393411daj.40
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 09:11:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to
-	:content-type; bh=2ybPfDo8ibD1dQyKFwZKvmoGwyeoqBfIxOuUwccIoBw=;
-	b=qIxPwarUVosQUPgFhz1gMHrDVvFnJ2Y/bg/Oyt3CvpU46Y637p+xyRqn98MwDauAxx
-	eIOW6+hP2Ki6r73EzaoQhr9SE1p1eEPJf5xOSBlehVm+WICfikhnFmPmZ2meFBwdfvTS
-	Bj5n/ROZkbSZjAJTo8rBItt71Yh0CvCjVxAGuGAew+UIUe8MutQxFkf1duQljIda/zpp
-	yZWH1wkZYDg0WLEIHzOrsgZFiNUAhPdGMpka9juQfJfg0DPTdJe4c5u5LBJT7DsznbzD
-	q9Ybm/MXkYRhy/scawi9Lq5Hl7CfbvD1caCmN0sLkbFDuZfH8EaOcIPfp3IN+NE/jW2f
-	HbDg==
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
+	[209.85.214.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C544FE0054B
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 12:37:02 -0700 (PDT)
+Received: by mail-ob0-f171.google.com with SMTP id ef5so1048310obb.30
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 12:37:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=q01jturwczH81VmIahtDJmDm+M33Qq/iKwe6I7G1uWs=;
+	b=o3SaZxOyJDEnS5XF2gLyBu+lkmhQRiernyr1M1fq6LcoLMM8TO+lCy1p68R5I8egAx
+	CZKwGXuA3utotwimbvElKPQM7wledIyy5mzlrP8pd6kujFvvrghTdWf7+QjXkGpcEOBm
+	Z/PwUYzYsQ68B0YFKzxS8EWqWGbT9JaYedbwuPfw6WvNTxXo0YtNZxgtgXruVF3ynVJa
+	lMAdqFtVizeMhzE6oNNoFtgUrpSPKdcL7idgGjIFjz11mwMoIvPy4sqUmXawmJWeH1P/
+	4d/JultSeGsxm15Pt1UY80MvIYpxBLZyr8OEfzUZG10z08zU/sd5CwZLAB6JInhpwfuC
+	lTYQ==
+X-Received: by 10.60.63.238 with SMTP id j14mr17016209oes.77.1368560222151;
+	Tue, 14 May 2013 12:37:02 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.66.245.110 with SMTP id xn14mr35123307pac.130.1368547875715; 
-	Tue, 14 May 2013 09:11:15 -0700 (PDT)
-Received: by 10.68.5.230 with HTTP; Tue, 14 May 2013 09:11:15 -0700 (PDT)
-Date: Tue, 14 May 2013 21:41:15 +0530
-Message-ID: <CAGxOggHzap957euPqkZEKT_Pt5hc9s0rUpfCdgpaHC8OU7=1EA@mail.gmail.com>
-From: varun bhatnagar <varun292006@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Yocto Doubts
+Received: by 10.76.168.67 with HTTP; Tue, 14 May 2013 12:36:41 -0700 (PDT)
+In-Reply-To: <CAGxOggHzap957euPqkZEKT_Pt5hc9s0rUpfCdgpaHC8OU7=1EA@mail.gmail.com>
+References: <CAGxOggHzap957euPqkZEKT_Pt5hc9s0rUpfCdgpaHC8OU7=1EA@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 14 May 2013 21:36:41 +0200
+Message-ID: <CAP71Wjwk6Q3kT-7=VGzy+kntQC+Rp7GQyEYgO4vA1FDEMAAGow@mail.gmail.com>
+To: varun bhatnagar <varun292006@gmail.com>
+X-Gm-Message-State: ALoCoQmSrXV51TZ10OSCZNMHuHbkvUGcPoDvg+oieSDekGWsez7sN/Oy/1Sjl0XqFG19MS0U7Xf4
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Doubts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,46 +40,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2013 16:11:16 -0000
-Content-Type: multipart/alternative; boundary=047d7b111acdfd823e04dcafe17a
+X-List-Received-Date: Tue, 14 May 2013 19:37:04 -0000
+Content-Type: multipart/alternative; boundary=001a11c21a8ce5372004dcb2c17c
 
---047d7b111acdfd823e04dcafe17a
+--001a11c21a8ce5372004dcb2c17c
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+On Tue, May 14, 2013 at 6:11 PM, varun bhatnagar <varun292006@gmail.com>wrote:
 
-I am trying to understand Yocto build process and I have couple of
-doubts.....
+> I am trying to understand Yocto build process and I have couple of
+> doubts.....
+>
 
-1) After specifying the architecture in local.conf when I give bitbake -k
-core-image-minimal the build process gets kicked off.
-                                    My doubt is how are the executables
-getting cross compiled. Is cmake getting called anywhere? How is the whole
-process linked?
+based on your questions, i think you need to read a bit more about the
+Yocto documentation. I definitely recommend that you carefully watch (or
+read) at least the following links:
 
-2) While building it executes some 1465 tasks which are packages written in
-recipe files and fetches them from internet. Will these be included in the
-image which will be created? If I want to restrict any package from getting
-downloaded how can I do that?
+-
+https://www.yoctoproject.org/tools-resources/videos/yocto-project-update-elc-2012
+-
+https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
+- http://www.slideshare.net/marcelolorenzati/yocto-iua-2012
+- http://www.slideshare.net/rossburton/the-yocto-project
 
-//
-//Varun
 
---047d7b111acdfd823e04dcafe17a
+
+> 1) After specifying the architecture in local.conf when I give bitbake -k
+> core-image-minimal the build process gets kicked off.
+>                                     My doubt is how are the executables
+> getting cross compiled. Is cmake getting called anywhere? How is the whole
+> process linked?
+>
+
+based on your configuration, the cross compiler is either compiled on the
+host first from source , or an 'external' toolchain is downloaded first.
+the default configuration is to build the cross compiler first. Then all
+components are cross compiled using the cross compiler. It doesn't matter
+if you have another cross compiler *already* installed on your machine,
+this one won't be used. how components are built is dictated by their
+'recipe'. it could be cmake, make, autoconf, or anything else.
+
+
+>
+> 2) While building it executes some 1465 tasks which are packages written
+> in recipe files and fetches them from internet. Will these be included in
+> the image which will be created? If I want to restrict any package from
+> getting downloaded how can I do that?
+>
+
+an 'image' is generated by 'aggregating' (binary) packages. packages are
+built from recipes. there is generally 1 recipe for each 'source'
+component, that can generate 1 or more 'packages'. in order to build a
+recipe there are many 'tasks' needed like fetching the source code,
+applying patches, configuration , compiling, packaging, ... so 1465 is the
+sum of all the tasks, it doesn't mean that there are 1465 packages in the
+image.
+
+you can control very precisely what you want to put in your image.
+'core-image-minimal' is a sample image provided in OE/yocto, but you are
+free to either customize this image, or create your own image. For that, I
+recommend looking at
+http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html, and
+more precisely if you care about customizing images at
+http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage
+
+--001a11c21a8ce5372004dcb2c17c
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div style>I am trying to understand Yoc=
-to build process and I have couple of doubts.....</div><div style><br></div=
-><div style>1) After specifying the architecture in local.conf when I give =
-bitbake -k core-image-minimal the build process gets kicked off.=A0</div>
-<div style>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 My doubt is how are the executables getting cross compiled. Is cmak=
-e getting called anywhere? How is the whole process linked?</div><div style=
-><br></div><div style>2) While building it executes some 1465 tasks which a=
-re packages written in recipe files and fetches them from internet. Will th=
-ese be included in the image which will be created? If I want to restrict a=
-ny package from getting downloaded how can I do that?</div>
-<div style><br></div><div style>//</div><div style>//Varun</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, May 14, 2013 at 6:11 PM, varun bhatnagar <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:varun292006@gmail.com" target=3D"_blank">varun292006@gmail.co=
+m</a>&gt;</span> wrote:<br>
 
---047d7b111acdfd823e04dcafe17a--
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div>I am trying to understand Yocto build process and I h=
+ave couple of doubts.....=A0</div>
+
+</blockquote><div><br></div><div>based on your questions, i think you need =
+to read a bit more about the Yocto documentation. I definitely recommend th=
+at you carefully watch (or read) at least the following links:</div><div>
+
+<br></div><div>-=A0<a href=3D"https://www.yoctoproject.org/tools-resources/=
+videos/yocto-project-update-elc-2012">https://www.yoctoproject.org/tools-re=
+sources/videos/yocto-project-update-elc-2012</a></div><div>-=A0<a href=3D"h=
+ttps://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.=
+html">https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-proj=
+ect-qs.html</a></div>
+
+<div>-=A0<a href=3D"http://www.slideshare.net/marcelolorenzati/yocto-iua-20=
+12">http://www.slideshare.net/marcelolorenzati/yocto-iua-2012</a></div><div=
+>-=A0<a href=3D"http://www.slideshare.net/rossburton/the-yocto-project">htt=
+p://www.slideshare.net/rossburton/the-yocto-project</a></div>
+
+<div><br></div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,2=
+04);border-left-style:solid;padding-left:1ex"><div></div><div>1) After spec=
+ifying the architecture in local.conf when I give bitbake -k core-image-min=
+imal the build process gets kicked off.=A0</div>
+
+
+<div>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 My doubt is how are the executables getting cross compiled. Is cmake ge=
+tting called anywhere? How is the whole process linked?</div></blockquote><=
+div><br></div><div style>based on your configuration, the cross compiler is=
+ either compiled on the host first from source , or an &#39;external&#39; t=
+oolchain is downloaded first. the default configuration is to build the cro=
+ss compiler first. Then all components are cross compiled using the cross c=
+ompiler. It doesn&#39;t matter if you have another cross compiler *already*=
+ installed on your machine, this one won&#39;t be used. how components are =
+built is dictated by their &#39;recipe&#39;. it could be cmake, make, autoc=
+onf, or anything else.=A0</div>
+
+<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
+-style:solid;padding-left:1ex"><div><br></div><div>2) While building it exe=
+cutes some 1465 tasks which are packages written in recipe files and fetche=
+s them from internet. Will these be included in the image which will be cre=
+ated? If I want to restrict any package from getting downloaded how can I d=
+o that?</div>
+
+</blockquote><div><br></div><div style>an &#39;image&#39; is generated by &=
+#39;aggregating&#39; (binary) packages. packages are built from recipes. th=
+ere is generally 1 recipe for each &#39;source&#39; component, that can gen=
+erate 1 or more &#39;packages&#39;. in order to build a recipe there are ma=
+ny &#39;tasks&#39; needed like fetching the source code, applying patches, =
+configuration , compiling, packaging, ... so 1465 is the sum of all the tas=
+ks, it doesn&#39;t mean that there are 1465 packages in the image. =A0</div=
+>
+
+<div style><br></div><div style>you can control very precisely what you wan=
+t to put in your image. &#39;core-image-minimal&#39; is a sample image prov=
+ided in OE/yocto, but you are free to either customize this image, or creat=
+e your own image. For that, I recommend looking at=A0<a href=3D"http://www.=
+yoctoproject.org/docs/current/dev-manual/dev-manual.html">http://www.yoctop=
+roject.org/docs/current/dev-manual/dev-manual.html</a>, and more precisely =
+if you care about customizing images at=A0<a href=3D"http://www.yoctoprojec=
+t.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage"=
+>http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingp=
+oky-extend-customimage</a></div>
+
+<div style><br></div><div style><br></div></div><br><br></div></div>
+
+--001a11c21a8ce5372004dcb2c17c--
