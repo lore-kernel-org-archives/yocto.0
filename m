@@ -1,26 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45AB6E014F5
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 02:45:06 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 14 May 2013 02:45:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,669,1363158000"; d="scan'208";a="337300635"
-Received: from unknown (HELO helios.localnet) ([10.255.12.153])
-	by fmsmga002.fm.intel.com with ESMTP; 14 May 2013 02:44:45 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Felix01 Fischer <felix01.fischer@iav.de>
-Date: Tue, 14 May 2013 10:44:45 +0100
-Message-ID: <9312274.8dCqzJR46U@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.8.0-19-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <OFE5D984C5.AA62713E-ONC1257B6B.00342B6A-C1257B6B.00349BEB@retarus.de>
-References: <OFF65EFDAC.F177D7D1-ONC1257B6B.002720EC-C1257B6B.00288BEC@retarus.de>
-	<5657638.Np3iF1lsb7@helios>
-	<OFE5D984C5.AA62713E-ONC1257B6B.00342B6A-C1257B6B.00349BEB@retarus.de>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A176E014F5
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 02:58:45 -0700 (PDT)
+Received: by mail-vc0-f176.google.com with SMTP id ib11so297623vcb.7
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 02:58:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=b3Og9cNtmKL2NjTHr0sFoQE1t9LHQrKbfrAehv495Yc=;
+	b=LIWdryFEN8SSongR6rGwOEmQ9ZzGzZbLy7ByLWQtaRBuQFENy0lmCo2yOQqu1PSsoo
+	YScrEOIS8zGn1FQc4JAmm2ZCFODL7f9s1BlJootk3JJNkPrtkLsQ3ze31RfOPpK3zZzz
+	0UoJiDy6sMdT52RR2iiDxKCa7pvmxU1UBTrLKN1fVWTPJxRyLeDA2KDwZvcNh1ElhI7q
+	C0FerQGwb4OkPrk7WXVrYVQ+sWhO6hbp4HOpb7JuXs5YzLZXHmfLmgX/KH8ugLbHF+jR
+	GA6rHNH8FGa2NISwbDypIxwYU4A11OyLEU8kMzUyCrKd9TbcYHXY/U3ZA1+UhgJSjECa
+	VDeA==
+X-Received: by 10.220.96.76 with SMTP id g12mr20834423vcn.53.1368525525440;
+	Tue, 14 May 2013 02:58:45 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Confused which layers are needed for meta-intel/meta-crownbay
+Received: by 10.221.8.3 with HTTP; Tue, 14 May 2013 02:58:25 -0700 (PDT)
+In-Reply-To: <CAFMfyzKYd7JWyzrKLBigCuZLtQeioyjhs2DAM8GvnXq9xGBanA@mail.gmail.com>
+References: <CAFMfyzKYd7JWyzrKLBigCuZLtQeioyjhs2DAM8GvnXq9xGBanA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 14 May 2013 10:58:25 +0100
+Message-ID: <CAJTo0La8xdpJXOgsjowff4mrib23r1GYz7RFrPPU=WvYTTxVdg@mail.gmail.com>
+To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
+X-Gm-Message-State: ALoCoQmMWvqVDMphfoSZAfNrDWV55udvNDdGetZxxflFcrWJup+82eBFqYQqGwO5zoyFN4sH70Xo
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: lmsensors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,38 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2013 09:45:06 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 14 May 2013 09:58:46 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Tuesday 14 May 2013 11:34:38 Felix01 Fischer wrote:
-> > It's not the opposite, it's the same. Poky is composed of
-> > openembedded-core,
-> > bitbake, yocto-docs and a few other bits and pieces; so you can either
-> > use poky here or openembedded-core + bitbake.
-> 
-> First, thank you for your quick reply :-)
-> 
-> So I guess, it's fine only to add meta-intel and meta-intel/meta-crownbay
-> to BBLayers and not openembedded-core and bitbake, too?
+On 14 May 2013 10:21, Satya Swaroop Damarla <swaroop.damarla@gmail.com> wrote:
+> bitbake lmsensors  works perfectly but when I add the package into the
+> rootfs I get the following error
+>
+>  Package lmsensors-config is not available, but is referred to by another
+> package.
+> | This may mean that the package is missing, has been obsoleted, or
+> | is only available from another source
+> |
+> | Package lmsensors is not available, but is referred to by another package.
+> | This may mean that the package is missing, has been obsoleted, or
+> | is only available from another source
+> |
+> | E: Package 'lmsensors-config' has no installation candidate
+> | E: Package 'lmsensors' has no installation candidate
 
-No, if you are already using poky, you wouldn't add openembedded-core to 
-bblayers.conf and you would never add bitbake there (bitbake is the build 
-tool, it's not a layer).
- 
-> If so, why not remove this confusing reference to open-embedded?
+Presumably it's your image recipe that is referring to "lmsensors" and
+"lmsensors-config".  This is saying that those packages don't exist.
+Have a look in the work directory for lmsensors
+(tmp/work/[machine]/lmsensors/[version]/deploy-*) and you'll see the
+list of packages that have been built.
 
-Most layers declare these dependencies because some users prefer to use 
-separate openembedded-core and bitbake rather than the combined poky, and it 
-is the established convention within the layer documentation to declare the 
-separate dependencies. Perhaps we could be clearer in our documentation that 
-poky can take place of those however.
- 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Ross
 
