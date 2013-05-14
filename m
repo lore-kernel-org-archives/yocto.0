@@ -1,34 +1,33 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
-	[209.85.214.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C544FE0054B
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 12:37:02 -0700 (PDT)
-Received: by mail-ob0-f171.google.com with SMTP id ef5so1048310obb.30
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 12:37:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-received:mime-version:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:x-gm-message-state;
-	bh=q01jturwczH81VmIahtDJmDm+M33Qq/iKwe6I7G1uWs=;
-	b=o3SaZxOyJDEnS5XF2gLyBu+lkmhQRiernyr1M1fq6LcoLMM8TO+lCy1p68R5I8egAx
-	CZKwGXuA3utotwimbvElKPQM7wledIyy5mzlrP8pd6kujFvvrghTdWf7+QjXkGpcEOBm
-	Z/PwUYzYsQ68B0YFKzxS8EWqWGbT9JaYedbwuPfw6WvNTxXo0YtNZxgtgXruVF3ynVJa
-	lMAdqFtVizeMhzE6oNNoFtgUrpSPKdcL7idgGjIFjz11mwMoIvPy4sqUmXawmJWeH1P/
-	4d/JultSeGsxm15Pt1UY80MvIYpxBLZyr8OEfzUZG10z08zU/sd5CwZLAB6JInhpwfuC
-	lTYQ==
-X-Received: by 10.60.63.238 with SMTP id j14mr17016209oes.77.1368560222151;
-	Tue, 14 May 2013 12:37:02 -0700 (PDT)
+Return-Path: <song.liu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AE98E01404
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 15:31:57 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 May 2013 15:31:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,672,1363158000"; 
+	d="scan'208,217";a="337630926"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga002.fm.intel.com with ESMTP; 14 May 2013 15:31:56 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Tue, 14 May 2013 15:31:56 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.227]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.128]) with mapi id
+	14.01.0355.002; Tue, 14 May 2013 15:31:56 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, May
+	14, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac5Q8tbFB0XYQBpnTOeg64P0AP+5dQ==
+Date: Tue, 14 May 2013 22:31:56 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A71904832@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.76.168.67 with HTTP; Tue, 14 May 2013 12:36:41 -0700 (PDT)
-In-Reply-To: <CAGxOggHzap957euPqkZEKT_Pt5hc9s0rUpfCdgpaHC8OU7=1EA@mail.gmail.com>
-References: <CAGxOggHzap957euPqkZEKT_Pt5hc9s0rUpfCdgpaHC8OU7=1EA@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 14 May 2013 21:36:41 +0200
-Message-ID: <CAP71Wjwk6Q3kT-7=VGzy+kntQC+Rp7GQyEYgO4vA1FDEMAAGow@mail.gmail.com>
-To: varun bhatnagar <varun292006@gmail.com>
-X-Gm-Message-State: ALoCoQmSrXV51TZ10OSCZNMHuHbkvUGcPoDvg+oieSDekGWsez7sN/Oy/1Sjl0XqFG19MS0U7Xf4
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Doubts
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, May 14, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,147 +39,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2013 19:37:04 -0000
-Content-Type: multipart/alternative; boundary=001a11c21a8ce5372004dcb2c17c
+X-List-Received-Date: Tue, 14 May 2013 22:31:57 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A71904832ORSMSX108amrcor_"
 
---001a11c21a8ce5372004dcb2c17c
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Tue, May 14, 2013 at 6:11 PM, varun bhatnagar <varun292006@gmail.com>wrote:
-
-> I am trying to understand Yocto build process and I have couple of
-> doubts.....
->
-
-based on your questions, i think you need to read a bit more about the
-Yocto documentation. I definitely recommend that you carefully watch (or
-read) at least the following links:
-
--
-https://www.yoctoproject.org/tools-resources/videos/yocto-project-update-elc-2012
--
-https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
-- http://www.slideshare.net/marcelolorenzati/yocto-iua-2012
-- http://www.slideshare.net/rossburton/the-yocto-project
-
-
-
-> 1) After specifying the architecture in local.conf when I give bitbake -k
-> core-image-minimal the build process gets kicked off.
->                                     My doubt is how are the executables
-> getting cross compiled. Is cmake getting called anywhere? How is the whole
-> process linked?
->
-
-based on your configuration, the cross compiler is either compiled on the
-host first from source , or an 'external' toolchain is downloaded first.
-the default configuration is to build the cross compiler first. Then all
-components are cross compiled using the cross compiler. It doesn't matter
-if you have another cross compiler *already* installed on your machine,
-this one won't be used. how components are built is dictated by their
-'recipe'. it could be cmake, make, autoconf, or anything else.
-
-
->
-> 2) While building it executes some 1465 tasks which are packages written
-> in recipe files and fetches them from internet. Will these be included in
-> the image which will be created? If I want to restrict any package from
-> getting downloaded how can I do that?
->
-
-an 'image' is generated by 'aggregating' (binary) packages. packages are
-built from recipes. there is generally 1 recipe for each 'source'
-component, that can generate 1 or more 'packages'. in order to build a
-recipe there are many 'tasks' needed like fetching the source code,
-applying patches, configuration , compiling, packaging, ... so 1465 is the
-sum of all the tasks, it doesn't mean that there are 1465 packages in the
-image.
-
-you can control very precisely what you want to put in your image.
-'core-image-minimal' is a sample image provided in OE/yocto, but you are
-free to either customize this image, or create your own image. For that, I
-recommend looking at
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html, and
-more precisely if you care about customizing images at
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage
-
---001a11c21a8ce5372004dcb2c17c
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A71904832ORSMSX108amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, May 14, 2013 at 6:11 PM, varun bhatnagar <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:varun292006@gmail.com" target=3D"_blank">varun292006@gmail.co=
-m</a>&gt;</span> wrote:<br>
+Attendees:
+Sean, ScottR, Beth, MichaelH, Bjorn, Christian, Tom, Kevin, Darren, Paul, D=
+enys, LaurentiuP, AlexG, AlexD, Richard, Saul, JeffP, MarkH, Nitin, Jaap, R=
+oss, Song
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>I am trying to understand Yocto build process and I h=
-ave couple of doubts.....=A0</div>
+Agenda:
 
-</blockquote><div><br></div><div>based on your questions, i think you need =
-to read a bit more about the Yocto documentation. I definitely recommend th=
-at you carefully watch (or read) at least the following links:</div><div>
+* Opens collection - 5 min (Song)
+* Yocto 1.3.2 Status - 5 min (Ross)
+  - In QA testing. One bug open for it, but not that critical.
+  - ScottR: have some commits for 1.3.2. Ross will get back to ScottR on th=
+is.
+  - Beth: will rebuild the meta-intel BSPs for this release today.
+* Yocto 1.4.1 Status - 5 min (Paul)
+  - still going to pull in Dylan next branch, running some AB build. Had a =
+number of issues. Working on them. Some got solutions, some still investiga=
+ting. Hope to have an answer for these problems in the next couple of days.
 
-<br></div><div>-=A0<a href=3D"https://www.yoctoproject.org/tools-resources/=
-videos/yocto-project-update-elc-2012">https://www.yoctoproject.org/tools-re=
-sources/videos/yocto-project-update-elc-2012</a></div><div>-=A0<a href=3D"h=
-ttps://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.=
-html">https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-proj=
-ect-qs.html</a></div>
+* Yocto 1.5 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
+  - Will have weekly build later this week.
+  - total open bug count stands at 268 as of last Sunday. Relatively stable=
+.
 
-<div>-=A0<a href=3D"http://www.slideshare.net/marcelolorenzati/yocto-iua-20=
-12">http://www.slideshare.net/marcelolorenzati/yocto-iua-2012</a></div><div=
->-=A0<a href=3D"http://www.slideshare.net/rossburton/the-yocto-project">htt=
-p://www.slideshare.net/rossburton/the-yocto-project</a></div>
+* SWAT team rotation: Beth -> Paul
+* Opens - 10 min
+  - Paul: UK number for the tech number is wrong. Denys will check (Song al=
+ready updated the meeting invite for this)
+  - AlexG: QA mailing list. Would like to have QA discussion list. Would li=
+ke to use a tag on the subject line '[QA]'.  We can create a dedicated mail=
+ing list later if needed. (No objections, QA team will move ahead with this=
+)
+  - Beth:
+    . We need to get things ready before a build. Mainly poky.conf. Beth wi=
+ll update online wiki/doc for this and send out email. Will remind point re=
+lease maintainers for this too.
+    . RC number gets confusing. We should not be needing to do 3 re-spins o=
+ne week. We will number RCs with numbers only and drop the 'respin' part.
+    . Meta-intel is coming out today. If you have any third party BSP you w=
+ould like to put out. Please let me know ahead of the time.
+  -
+* Team Sharing - 20 min
+ - Paul: other than patches for 1.4.1, fixing some bugs. Implementing 1.5 f=
+eatures. Update some recipes for meta-webserver. LAMP stack. Mysql recipe. =
+Using 5.1. Shall we move to other db? Who's using it? Jaap: getting Postgre=
+sql working on Angstrome. But it's supported poorly. Would like to have 9.4=
+. Darren and Ross also needs a Postgresql recipe. Jaap is working on the re=
+cipe. Will send email to oe-develop mailing list if needed.
+  - MichaelH: tomorrow will be gone at the data center. Adding new hardware=
+ to increase bandwidth. Some downtime coming (tomorrow, at most 10 minutes,=
+ half hour for build server) on AB. Will announce on the yocto mailing list=
+ and IRC channel.
+  - Sean: Saul will be presenting in LinuxCon Japan, Anyone else? Jessica a=
+nd ScottG will be there for Yocto and Minnow too.
+  - Ramana: Binary package feed (https://bugzilla.yoctoproject.org/show_bug=
+.cgi?id=3D3252). Marked as future now. Would like to continue with the disc=
+ussion and implementation. Will have resources to work on this sometime in =
+the future.
+    . HOB component is not right for this one, Paul will re-categorize.
+    . Would like to have more details on this. Suggest to split the bug int=
+o a few deliverables. (Ramana will follow up).
 
-<div><br></div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,2=
-04);border-left-style:solid;padding-left:1ex"><div></div><div>1) After spec=
-ifying the architecture in local.conf when I give bitbake -k core-image-min=
-imal the build process gets kicked off.=A0</div>
 
 
-<div>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 My doubt is how are the executables getting cross compiled. Is cmake ge=
-tting called anywhere? How is the whole process linked?</div></blockquote><=
-div><br></div><div style>based on your configuration, the cross compiler is=
- either compiled on the host first from source , or an &#39;external&#39; t=
-oolchain is downloaded first. the default configuration is to build the cro=
-ss compiler first. Then all components are cross compiled using the cross c=
-ompiler. It doesn&#39;t matter if you have another cross compiler *already*=
- installed on your machine, this one won&#39;t be used. how components are =
-built is dictated by their &#39;recipe&#39;. it could be cmake, make, autoc=
-onf, or anything else.=A0</div>
+--_000_7E680CB2A76BB8438D08CF13C09FC53A71904832ORSMSX108amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
--style:solid;padding-left:1ex"><div><br></div><div>2) While building it exe=
-cutes some 1465 tasks which are packages written in recipe files and fetche=
-s them from internet. Will these be included in the image which will be cre=
-ated? If I want to restrict any package from getting downloaded how can I d=
-o that?</div>
-
-</blockquote><div><br></div><div style>an &#39;image&#39; is generated by &=
-#39;aggregating&#39; (binary) packages. packages are built from recipes. th=
-ere is generally 1 recipe for each &#39;source&#39; component, that can gen=
-erate 1 or more &#39;packages&#39;. in order to build a recipe there are ma=
-ny &#39;tasks&#39; needed like fetching the source code, applying patches, =
-configuration , compiling, packaging, ... so 1465 is the sum of all the tas=
-ks, it doesn&#39;t mean that there are 1465 packages in the image. =A0</div=
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>Sean, ScottR, Beth, MichaelH, Bjorn, Christian, Tom, Kevin, Darren, Pa=
+ul, Denys, LaurentiuP, AlexG, AlexD, Richard, Saul, JeffP, MarkH, Nitin, Ja=
+ap, Ross, Song</div>
+<div>&nbsp;</div>
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.3.2 Status - 5 min (Ross)</div>
+<div>&nbsp; - In QA testing. One bug open for it, but not that critical.</d=
+iv>
+<div>&nbsp; - ScottR: have some commits for 1.3.2. Ross will get back to Sc=
+ottR on this. </div>
+<div>&nbsp; - Beth: will rebuild the meta-intel BSPs for this release today=
+.&nbsp; </div>
+<div>* Yocto 1.4.1 Status - 5 min (Paul)</div>
+<div>&nbsp; - still going to pull in Dylan next branch, running some AB bui=
+ld. Had a number of issues. Working on them. Some got solutions, some still=
+ investigating. Hope to have an answer for these problems in the next coupl=
+e of days.</div>
+<div>&nbsp;</div>
+<div>* Yocto 1.5 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status</u></font></a></div>
+<div>&nbsp; - Will have weekly build later this week.</div>
+<div>&nbsp; - total open bug count stands at 268 as of last Sunday. Relativ=
+ely stable.</div>
+<div>&nbsp;</div>
+<div>* SWAT team rotation: Beth -&gt; Paul</div>
+<div>* Opens - 10 min </div>
+<div>&nbsp; - Paul: UK number for the tech number is wrong. Denys will chec=
+k (Song already updated the meeting invite for this)</div>
+<div>&nbsp; - AlexG: QA mailing list. Would like to have QA discussion list=
+. Would like to use a tag on the subject line '[QA]'.&nbsp; We can create a=
+ dedicated mailing list later if needed. (No objections, QA team will move =
+ahead with this)</div>
+<div>&nbsp; - Beth: </div>
+<div>&nbsp;&nbsp;&nbsp; . We need to get things ready before a build. Mainl=
+y poky.conf. Beth will update online wiki/doc for this and send out email. =
+Will remind point release maintainers for this too. </div>
+<div>&nbsp;&nbsp;&nbsp; . RC number gets confusing. We should not be needin=
+g to do 3 re-spins one week. We will number RCs with numbers only and drop =
+the 'respin' part. </div>
+<div>&nbsp;&nbsp;&nbsp; . Meta-intel is coming out today. If you have any t=
+hird party BSP you would like to put out. Please let me know ahead of the t=
+ime. </div>
+<div>&nbsp; -&nbsp; </div>
+<div>* Team Sharing - 20 min</div>
+<div> - Paul: other than patches for 1.4.1, fixing some bugs. Implementing =
+1.5 features. Update some recipes for meta-webserver. LAMP stack. Mysql rec=
+ipe. Using 5.1. Shall we move to other db? Who's using it? Jaap: getting Po=
+stgresql working on Angstrome. But
+it's supported poorly. Would like to have 9.4. Darren and Ross also needs a=
+ Postgresql recipe. Jaap is working on the recipe. Will send email to oe-de=
+velop mailing list if needed.</div>
+<div>&nbsp; - MichaelH: tomorrow will be gone at the data center. Adding ne=
+w hardware to increase bandwidth. Some downtime coming (tomorrow, at most 1=
+0 minutes, half hour for build server) on AB. Will announce on the yocto ma=
+iling list and IRC channel.</div>
+<div>&nbsp; - Sean: Saul will be presenting in LinuxCon Japan, Anyone else?=
+ Jessica and ScottG will be there for Yocto and Minnow too. </div>
+<div>&nbsp; - Ramana: Binary package feed (<a href=3D"https://bugzilla.yoct=
+oproject.org/show_bug.cgi?id=3D3252"><font face=3D"Calibri" color=3D"blue">=
+<u>https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3252</u></font></a>)=
+. Marked as future now. Would like to continue
+with the discussion and implementation. Will have resources to work on this=
+ sometime in the future.</div>
+<div>&nbsp;&nbsp;&nbsp; . HOB component is not right for this one, Paul wil=
+l re-categorize. </div>
+<div>&nbsp;&nbsp;&nbsp; . Would like to have more details on this. Suggest =
+to split the bug into a few deliverables. (Ramana will follow up).</div>
+<div><font face=3D"Calibri" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
 
-<div style><br></div><div style>you can control very precisely what you wan=
-t to put in your image. &#39;core-image-minimal&#39; is a sample image prov=
-ided in OE/yocto, but you are free to either customize this image, or creat=
-e your own image. For that, I recommend looking at=A0<a href=3D"http://www.=
-yoctoproject.org/docs/current/dev-manual/dev-manual.html">http://www.yoctop=
-roject.org/docs/current/dev-manual/dev-manual.html</a>, and more precisely =
-if you care about customizing images at=A0<a href=3D"http://www.yoctoprojec=
-t.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage"=
->http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingp=
-oky-extend-customimage</a></div>
-
-<div style><br></div><div style><br></div></div><br><br></div></div>
-
---001a11c21a8ce5372004dcb2c17c--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A71904832ORSMSX108amrcor_--
