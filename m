@@ -1,24 +1,25 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA408E014F5
-	for <yocto@yoctoproject.org>; Tue, 14 May 2013 03:44:02 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 14 May 2013 03:44:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,670,1363158000"; d="scan'208";a="241299647"
-Received: from unknown (HELO helios.localnet) ([10.255.12.153])
-	by AZSMGA002.ch.intel.com with ESMTP; 14 May 2013 03:44:01 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>
-Date: Tue, 14 May 2013 11:44 +0100
-Message-ID: <7913150.opP2ggRnDV@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.8.0-19-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <CAFMfyzKYd7JWyzrKLBigCuZLtQeioyjhs2DAM8GvnXq9xGBanA@mail.gmail.com>
-References: <CAFMfyzKYd7JWyzrKLBigCuZLtQeioyjhs2DAM8GvnXq9xGBanA@mail.gmail.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 335FBE014F8
+	for <yocto@yoctoproject.org>; Tue, 14 May 2013 03:45:04 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id CAC0FF811DF; Tue, 14 May 2013 04:45:02 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 147E8F811DE;
+	Tue, 14 May 2013 04:45:00 -0600 (MDT)
+Message-ID: <519215AE.3090608@mlbassoc.com>
+Date: Tue, 14 May 2013 04:45:02 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: lmsensors
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: IMAGE_FEATURES check broken
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,73 +31,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2013 10:44:03 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 14 May 2013 10:45:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tuesday 14 May 2013 11:21:49 Satya Swaroop Damarla wrote:
-> It has been a month I have been fighting with installing the package
-> "lmsensors" and had no success till today.... I would really appreciate
-> much help....
-> 
-> The background goes like this..
-> 
-> *bitbake lmsensors * works perfectly but when I add the package into the
-> rootfs I get the following error
-> 
-> * Package lmsensors-config is not available, but is referred to by another
-> package.*
-> *| This may mean that the package is missing, has been obsoleted, or*
-> *| is only available from another source*
-> *| *
-> *| Package lmsensors is not available, but is referred to by another
-> package.*
-> *| This may mean that the package is missing, has been obsoleted, or*
-> *| is only available from another source*
-> *| *
-> *| E: Package 'lmsensors-config' has no installation candidate*
-> *| E: Package 'lmsensors' has no installation candidate*
-> *| ERROR: Function failed: do_rootfs (see
-> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-poky-l
-> inux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_rootfs.29976 for further
-> information)*
-> *ERROR: Task 7 (/home/damarla/yocto/poky/meta/recipes-graphics/images/
-> core-image-skidata.bb, do_rootfs) failed with exit code '1'*
-> *NOTE: Tasks Summary: Attempted 5210 tasks of which 4529 didn't need to be
-> rerun and 1 failed.*
-> *No currently running tasks (5210 of 5211)*
-> *
-> *
-> *Summary: 1 task failed:*
-> *  /home/damarla/yocto/poky/meta/recipes-graphics/images/
-> core-image-skidata.bb, do_rootfs*
-> *Summary: There was 1 WARNING message shown.*
-> *Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
+This commit breaks systems where IMAGE_FEATURES includes "package-management":
 
-Looking at the output of building the current lmsensors recipe in meta-oe 
-master, the main "lmsensors" package is actually empty and thus is not 
-produced; this is a bit annoying and should probably be fixed. However what I 
-think you're supposed to do is instead install the components of lmsensors 
-that you actually need. If you look at packages-split in the lmsensors work 
-directory (or the lmsensors* packages in tmp/deploy/ipk) you'll see it 
-produces the following, ignoring dbg/dev/doc/staticdev packages:
+commit d63c8a1597c9bd0a838cb59ca461ac432b630a90
+Author: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date:   Thu May 9 17:24:25 2013 +0100
 
-lmsensors-fancontrol
-lmsensors-libsensors
-lmsensors-pwmconfig
-lmsensors-sensord
-lmsensors-sensors
-lmsensors-sensorsconfconvert
-lmsensors-sensorsdetect
+     classes/image: show an error on invalid IMAGE_FEATURES
 
-So I would suggest adding those of the above list that you need to your image 
-instead of "lmsensors".
+A quick look at that class shows that package-management is being left
+out of the "validitems".  This patch fixes it:
 
-Cheers,
-Paul
+diff --git a/meta/classes/image.bbclass b/meta/classes/image.bbclass
+index 2b42e12..4f07708 100644
+--- a/meta/classes/image.bbclass
++++ b/meta/classes/image.bbclass
+@@ -19,7 +19,7 @@ INHIBIT_DEFAULT_DEPS = "1"
+  # IMAGE_FEATURES may contain any available package group
+  IMAGE_FEATURES ?= ""
+  IMAGE_FEATURES[type] = "list"
+-IMAGE_FEATURES[validitems] += "debug-tweaks read-only-rootfs"
++IMAGE_FEATURES[validitems] += "debug-tweaks read-only-rootfs package-management"
+
+  # rootfs bootstrap install
+  ROOTFS_BOOTSTRAP_INSTALL = "${@base_contains("IMAGE_FEATURES", "package-management", "", "${ROOTFS_PKGMANAGE_BOOTSTR
+
+Am I missing something else, or was this just overlooked?
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
