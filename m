@@ -1,22 +1,23 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16708E013A3
-	for <yocto@yoctoproject.org>; Wed, 15 May 2013 02:29:43 -0700 (PDT)
-Received: from [192.168.0.2] (host86-137-102-112.range86-137.btcentralplus.com
-	[86.137.102.112]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id BFAE5952B
-	for <yocto@yoctoproject.org>; Wed, 15 May 2013 10:29:41 +0100 (BST)
-Message-ID: <51935584.9030908@r-finger.com>
-Date: Wed, 15 May 2013 10:29:40 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CANyK_8fKmat+m09jAcxqKA89Z0Qxt3V5+hsBXAvqVstEbvKucQ@mail.gmail.com>
-In-Reply-To: <CANyK_8fKmat+m09jAcxqKA89Z0Qxt3V5+hsBXAvqVstEbvKucQ@mail.gmail.com>
-Subject: Re: [meta-raspberrypi] Thoughts on Raspberry Pi firmware
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FECEE013A3
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 03:32:33 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 15 May 2013 03:32:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,677,1363158000"; d="scan'208";a="313921810"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by orsmga001.jf.intel.com with ESMTP; 15 May 2013 03:32:32 -0700
+Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.149])
+	by linux.intel.com (Postfix) with ESMTP id D27FA6A4083;
+	Wed, 15 May 2013 03:32:21 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org,
+	elizabeth.flanagan@intel.com
+Date: Wed, 15 May 2013 13:32:42 +0300
+Message-Id: <1368613962-22807-1-git-send-email-stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [yocto-autobuilder][PATCH] nightly-qa-extras: fix image config options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,24 +29,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2013 09:29:43 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 15 May 2013 10:32:33 -0000
 
-On 14/05/13 13:09, Paul Barker wrote:
-> Secondly, is there any use case for building vc-graphics or 
-> vc-graphics-hardfp to provide virtual/egl and virtual/libgles2
-> (which rely on binary files from the raspberry pi firmware repo)
-> instead of compiling from source using the userland package?
+Use IMAGE_FEATURES_append instead of EXTRA_IMAGE_FEATURES
+because it gets overwritten by local.conf.
+Remove the dmesg sanity as it requires copying a file which
+won't work on a r/o image.
 
-It would be preferable if we could build these from source; last time I
-tried (which, admittedly, is a long while back), this was not possible
-because of some missing broadcom-specific header files that seemed not
-available anywhere, but I guess this is no longer the case.
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
+ buildset-config/nightly-qa-extras.conf | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Tomas
-
-
+diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
+index c3af24c..1846764 100644
+--- a/buildset-config/nightly-qa-extras.conf
++++ b/buildset-config/nightly-qa-extras.conf
+@@ -12,6 +12,6 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'BuildImages': {'images': 'core-image-sato'}},
+         {'RunSanityTests': {'images': 'core-image-sato'}},
+-        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nEXTRA_IMAGE_FEATURES = "debug-tweaks read-only-rootfs"\n'}},
++        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nIMAGE_FEATURES_append = " read-only-rootfs"\n'}},
+         {'BuildImages': {'images': 'core-image-sato'}},
+-        {'RunSanityTests': {'images': 'core-image-sato', 'scene' : 'sanity:boot sanity:ssh sanity:dmesg'}}]
++        {'RunSanityTests': {'images': 'core-image-sato', 'scene' : 'sanity:boot sanity:ssh'}}]
 -- 
-http://sleepfive.com
+1.8.1.4
+
 
