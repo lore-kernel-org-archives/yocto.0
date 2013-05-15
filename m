@@ -1,23 +1,34 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FECEE013A3
-	for <yocto@yoctoproject.org>; Wed, 15 May 2013 03:32:33 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 15 May 2013 03:32:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,677,1363158000"; d="scan'208";a="313921810"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga001.jf.intel.com with ESMTP; 15 May 2013 03:32:32 -0700
-Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.149])
-	by linux.intel.com (Postfix) with ESMTP id D27FA6A4083;
-	Wed, 15 May 2013 03:32:21 -0700 (PDT)
-From: Stefan Stanacar <stefanx.stanacar@intel.com>
-To: yocto@yoctoproject.org,
-	elizabeth.flanagan@intel.com
-Date: Wed, 15 May 2013 13:32:42 +0300
-Message-Id: <1368613962-22807-1-git-send-email-stefanx.stanacar@intel.com>
-X-Mailer: git-send-email 1.8.1.4
-Subject: [yocto-autobuilder][PATCH] nightly-qa-extras: fix image config options
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
+	[209.85.128.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 467C5E013A3
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 03:37:13 -0700 (PDT)
+Received: by mail-ve0-f170.google.com with SMTP id 14so1815861vea.15
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 03:37:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-received:mime-version:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type:x-gm-message-state;
+	bh=+jFZT9QLSlOz4TXBG8GdMMJ6M/l9tHgqZpHhpI/m0Vk=;
+	b=OTtL0Jm6bf9+DeLNA5LKsjEHwtUuS7MFEgoSrjkCX44FbElWEQk65sG3D6KYvTwfs0
+	YveCcZ7CSKmRcK4XfvZBQW9gN/8GFSMlJubzCbemdYrGmLinfMH03proTScjlDrK4Vvu
+	gz5VNkGLSxXrufr4GAsrytaggc6oA0IjL4r4HOfAfHsy+kOuA39ZFLlj56C3ap6Qigi1
+	uMdCPfe4/7eRWpmDHAVoUJx/dz9XO2e24I/rYYC8t6GqYqf40jGj/sLJesaDomSv4LRc
+	pfFrKSUEMYwZhCJ4ayKntMG7IDuBHkajstm0YLVWUd8Or154zg1A3zQPxx2tBR1cAouu
+	WCTQ==
+X-Received: by 10.52.69.200 with SMTP id g8mr3217221vdu.4.1368614232548; Wed,
+	15 May 2013 03:37:12 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.221.8.3 with HTTP; Wed, 15 May 2013 03:36:52 -0700 (PDT)
+In-Reply-To: <1368613962-22807-1-git-send-email-stefanx.stanacar@intel.com>
+References: <1368613962-22807-1-git-send-email-stefanx.stanacar@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 15 May 2013 11:36:52 +0100
+Message-ID: <CAJTo0LatQiXSBAakkzswEMfZRKe_cSA8ExjL-qZpY64C9ge_Wg@mail.gmail.com>
+To: Stefan Stanacar <stefanx.stanacar@intel.com>
+X-Gm-Message-State: ALoCoQnoOLQpkv511RMBLCKoDuWRZtk8Oxhuol2web1s3oxdbbovqFIFrt3lhVXgBYsGXoqgTXF+
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto-autobuilder][PATCH] nightly-qa-extras: fix image config options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +40,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2013 10:32:33 -0000
+X-List-Received-Date: Wed, 15 May 2013 10:37:13 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Use IMAGE_FEATURES_append instead of EXTRA_IMAGE_FEATURES
-because it gets overwritten by local.conf.
-Remove the dmesg sanity as it requires copying a file which
-won't work on a r/o image.
+On 15 May 2013 11:32, Stefan Stanacar <stefanx.stanacar@intel.com> wrote:
+> Remove the dmesg sanity as it requires copying a file which
+> won't work on a r/o image.
 
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
----
- buildset-config/nightly-qa-extras.conf | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Is this copying the dmesg.sh to the target?  Why not copy the file
+into /tmp, which will be read-write?
 
-diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
-index c3af24c..1846764 100644
---- a/buildset-config/nightly-qa-extras.conf
-+++ b/buildset-config/nightly-qa-extras.conf
-@@ -12,6 +12,6 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'BuildImages': {'images': 'core-image-sato'}},
-         {'RunSanityTests': {'images': 'core-image-sato'}},
--        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nEXTRA_IMAGE_FEATURES = "debug-tweaks read-only-rootfs"\n'}},
-+        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nIMAGE_FEATURES_append = " read-only-rootfs"\n'}},
-         {'BuildImages': {'images': 'core-image-sato'}},
--        {'RunSanityTests': {'images': 'core-image-sato', 'scene' : 'sanity:boot sanity:ssh sanity:dmesg'}}]
-+        {'RunSanityTests': {'images': 'core-image-sato', 'scene' : 'sanity:boot sanity:ssh'}}]
--- 
-1.8.1.4
-
+Ross
 
