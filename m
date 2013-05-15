@@ -1,36 +1,36 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47C1CE013A3
-	for <yocto@yoctoproject.org>; Wed, 15 May 2013 04:01:51 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 15 May 2013 03:59:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,677,1363158000"; d="scan'208";a="334375654"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by fmsmga001.fm.intel.com with ESMTP; 15 May 2013 04:01:49 -0700
-Received: from irsmsx105.ger.corp.intel.com (163.33.3.28) by
-	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 15 May 2013 12:01:48 +0100
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.161]) by
-	IRSMSX105.ger.corp.intel.com ([169.254.7.3]) with mapi id
-	14.03.0123.003; Wed, 15 May 2013 12:01:48 +0100
-From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [yocto-autobuilder][PATCH] nightly-qa-extras: fix
-	image config options
-Thread-Index: AQHOUVeSNoyFXzp1/UilKPiWuZ7rL5kF/MYAgAAHB4A=
-Date: Wed, 15 May 2013 11:01:47 +0000
-Message-ID: <1368615721.11746.3.camel@firebird.rb.intel.com>
-References: <1368613962-22807-1-git-send-email-stefanx.stanacar@intel.com>
-	<CAJTo0LatQiXSBAakkzswEMfZRKe_cSA8ExjL-qZpY64C9ge_Wg@mail.gmail.com>
-In-Reply-To: <CAJTo0LatQiXSBAakkzswEMfZRKe_cSA8ExjL-qZpY64C9ge_Wg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.105.149]
+Return-Path: <lists@philipp-wagner.com>
+Received: from turboconrad.planet-school.de (mail.planet-school.de
+	[194.116.187.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4DCDE0051D
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 08:51:39 -0700 (PDT)
+Received: from turboconrad.planet-school.de (srv004.service.ps-server.net
+	[194.116.186.79])
+	by turboconrad.planet-school.de (Postfix) with ESMTP id 15FB7B6A017
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 17:51:36 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	srv004.service.ps-server.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-101.2 required=5.0 tests=ALL_TRUSTED,AWL,
+	LOCAL_USER_RULE autolearn=unavailable version=3.3.2
+Received: from ashley.wagner-net (dhcp-138-246-70-158.dynamic.eduroam.mwn.de
+	[138.246.70.158])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: mail@philipp-wagner.com)
+	by turboconrad.planet-school.de (Postfix) with ESMTPSA id F2D3FB6A007
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 17:51:35 +0200 (CEST)
+Message-ID: <5193AF05.2000505@philipp-wagner.com>
+Date: Wed, 15 May 2013 17:51:33 +0200
+From: Philipp Wagner <lists@philipp-wagner.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH] nightly-qa-extras: fix image config options
+To: yocto@yoctoproject.org
+References: <CANyK_8fKmat+m09jAcxqKA89Z0Qxt3V5+hsBXAvqVstEbvKucQ@mail.gmail.com>
+	<51935584.9030908@r-finger.com>
+In-Reply-To: <51935584.9030908@r-finger.com>
+X-Virus-Scanned: ClamAV using ClamSMTP
+Subject: Re: [meta-raspberrypi] Thoughts on Raspberry Pi firmware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,21 +42,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2013 11:01:51 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <56C786FAA48D454DBF2964B045A57945@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 15 May 2013 15:51:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-DQoNCk9uIFdlZCwgMjAxMy0wNS0xNSBhdCAxMTozNiArMDEwMCwgQnVydG9uLCBSb3NzIHdyb3Rl
-Og0KPiBPbiAxNSBNYXkgMjAxMyAxMTozMiwgU3RlZmFuIFN0YW5hY2FyIDxzdGVmYW54LnN0YW5h
-Y2FyQGludGVsLmNvbT4gd3JvdGU6DQo+ID4gUmVtb3ZlIHRoZSBkbWVzZyBzYW5pdHkgYXMgaXQg
-cmVxdWlyZXMgY29weWluZyBhIGZpbGUgd2hpY2gNCj4gPiB3b24ndCB3b3JrIG9uIGEgci9vIGlt
-YWdlLg0KPiANCj4gSXMgdGhpcyBjb3B5aW5nIHRoZSBkbWVzZy5zaCB0byB0aGUgdGFyZ2V0PyAg
-V2h5IG5vdCBjb3B5IHRoZSBmaWxlDQo+IGludG8gL3RtcCwgd2hpY2ggd2lsbCBiZSByZWFkLXdy
-aXRlPw0KDQpZZXMsIGRtZXNnIHNhbml0eSB0ZXN0IGNhbGxzIFRlc3RfVGFyZ2V0X1ByZSB3aGlj
-aCBjb3BpZXMgZG1lc2cuc2gNCmluIC9vcHQvdGVzdC4gVGhhdCdzIHRoZSBkZWZhdWx0IGluIHFl
-bXVpbWFnZS10ZXN0bGliLiBJIGRvbid0IHNlZSB3aHkNCmRtZXNnIGNhbid0IGJlIGNoYW5nZWQg
-dG8gZG8gaXQgZGlmZmVyZW50bHkuIEFueXdheSB1bnRpbCB0aGF0IGNoYW5nZXMNCmluIG1hc3Rl
-ciwgdGhlIEFCIHNob3VsZG4ndCBydW4gaXQuDQoNCj4gDQo+IFJvc3MNCg0K
+Am 15.05.2013 11:29, schrieb Tomas Frydrych:
+> On 14/05/13 13:09, Paul Barker wrote:
+>> Secondly, is there any use case for building vc-graphics or 
+>> vc-graphics-hardfp to provide virtual/egl and virtual/libgles2
+>> (which rely on binary files from the raspberry pi firmware repo)
+>> instead of compiling from source using the userland package?
+> 
+> It would be preferable if we could build these from source; last time I
+> tried (which, admittedly, is a long while back), this was not possible
+> because of some missing broadcom-specific header files that seemed not
+> available anywhere, but I guess this is no longer the case.
+
+The graphics libraries can now be compiled from source (userland is part
+of meta-raspberrypi) and in my tests it's equivalent to the binary
+drivers. I'm not sure if those should be removed from meta-raspberrypi
+or left there for somebody who still needs them (why?).
+
+Philipp
 
