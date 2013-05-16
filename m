@@ -1,32 +1,25 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AC49E01366
-	for <yocto@yoctoproject.org>; Thu, 16 May 2013 14:29:17 -0700 (PDT)
-Received: by mail-ve0-f174.google.com with SMTP id db10so3400523veb.5
-	for <yocto@yoctoproject.org>; Thu, 16 May 2013 14:29:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-received:date:message-id:subject:from:to:cc
-	:content-type:x-gm-message-state;
-	bh=mbmLhgPtdbrGvaYNwErcrgUv1GEcbjmYxDipHjwPYgc=;
-	b=VvWwr2lRq+MD4U6QTOMsy6hBcc7UfPc0yk7zIoNikV/o5PlZEisk2ne2boAv9rHH2T
-	gEhLAr7LklzJMoVjCQ0XXqFrPqbvu5lhTo7FM3hhek2xxZUEYy7kqoZSo/6GaWna7syc
-	oqznuuHQa2I7mL6aNB5oUAheuUAZGtMjucL7XZIvnP3+ZbSAvQyMVIcxCSj5LvoPyAde
-	M1iubMx4c8zESZY4B3UwdIvvrTv6VHnLMYBKMzeQ37dKvxnJPLdQmkeCSLwA3yjG3rTU
-	r0kU1kog2RfwgSYAp0K8avDXg6d5AK3+ZsR40zWVephjRHokWVs4oy9ArGyeBRTJ9BN4
-	pL2Q==
+Return-Path: <Ben.Warren@spidercloud.com>
+Received: from berg.int.copivia.com (mailgate1.spidercloud.com [209.49.242.60])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56234E0051D
+	for <yocto@yoctoproject.org>; Thu, 16 May 2013 14:53:33 -0700 (PDT)
+Received: from mailx.spidercloud.com ([10.1.1.225])
+	by berg.int.copivia.com (8.13.8/8.13.8) with ESMTP id r4GLrX8V011814
+	for <yocto@yoctoproject.org>; Thu, 16 May 2013 14:53:33 -0700
+Received: from sofia.us.spidercloud.com ([10.1.1.225]) by
+	sofia.us.spidercloud.com ([10.1.1.225]) with mapi;
+	Thu, 16 May 2013 14:53:33 -0700
+From: Ben Warren <Ben.Warren@spidercloud.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 16 May 2013 14:53:33 -0700
+Thread-Topic: Problem with Python in pre-built SDK
+Thread-Index: Ac5Sf876qqG/2twFQmyiEHxPhYBdvw==
+Message-ID: <C7D08B87-2D4D-4CBD-BC91-379B187C2AEE@spidercloud.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.58.133.81 with SMTP id pa17mr28710699veb.37.1368739756536;
-	Thu, 16 May 2013 14:29:16 -0700 (PDT)
-Received: by 10.52.163.79 with HTTP; Thu, 16 May 2013 14:29:16 -0700 (PDT)
-Date: Thu, 16 May 2013 14:29:16 -0700
-Message-ID: <CAPhnLPAaEUu68tyzBS97CGCcyvMPc7C+_=Kj95tH9i3GLCFfrw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQmPCiooBa3Fu7D57wQ21yTsMu9JTwiZBB8VZuHmmw9ylgPf22K08YRTCp9GCqAHC9MVgL4k
-Cc: SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>
-Subject: 1.3.2 buildout
+Subject: Problem with Python in pre-built SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,28 +31,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2013 21:29:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 16 May 2013 21:53:33 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Folks,
+Hi,
 
-I've started the rebuild of 1.3.2. I think I've fixed
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=4492 however, please
-do not run a build on the main AB tonight until I give the all clear.
-I may need to generate this by hand.
+I'm having other Yocto problems using the stock Ubuntu x86_64 toolchain, so=
+ decided to install one using the instructions in section 2.1.2 (Using a Cr=
+oss-Toolchain Tarball) of the "Yocto Project Application Developer's Guide"=
+.
 
-meta-fsl-arm 	045239e8fb3babb4194e50857298f5136102d3d7 	
-meta-fsl-ppc 	084331c6f72dfe8be2f4981c802c43ae44d3b812 	
-meta-intel 	d44f005338012cc7111190122b2ab08a29c0e0e7 	
-meta-qt3 	c86fb1727ae09526c442ec29fffde3f010aa70eb 	
-poky 	8450317a6cbcc0b3e5ec00b266608ee1740d906c 	
+These are the commands I used:
 
-http://autobuilder.yoctoproject.org/pub/nightly/20130516-3
+$ wget http://downloads.yoctoproject.org/releases/yocto/yocto-1.4/toolchain=
+/x86_64/poky-eglibc-x86_64-x86_64-toolchain-gmae-1.4.sh
+$ sudo sh poky-eglibc-x86_64-x86_64-toolchain-gmae-1.4.sh
 
--b
+and installed at the default (/opt/poky/1.4)
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Now, I go through the usual steps:
+
+=3D=3D=3D=3D=3D=3D=3D=3D
+ben@ubuntu-scw:~$ cd /opt/poky
+ben@ubuntu-scw:/opt/poky$ . oe-init-build-env ../scw-appscard-build/
+
+### Shell environment set up for builds. ###
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+    core-image-minimal
+    core-image-sato
+    meta-toolchain
+    meta-toolchain-sdk
+    adt-installer
+    meta-ide-support
+
+You can also run generated qemu images with a command like 'runqemu qemux86=
+'
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+At this point, I guess I need to source the SDK environment file so poky kn=
+ows where the toolchain is?
+
+=3D=3D=3D=3D=3D=3D=3D=3D
+ben@ubuntu-scw:/opt/scw-appscard-build$ . /opt/poky/1.4/environment-setup-x=
+86_64-poky-linux
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+Then I try to build something
+
+=3D=3D=3D=3D=3D=3D=3D=3D
+ben@ubuntu-scw:/opt/scw-appscard-build$ MACHINE=3Dscw-appscard bitbake kvm-=
+image-minimal
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ImportError: No module named distutils.version
+Traceback (most recent call last):
+  File "/opt/poky/bitbake/bin/bitbake", line 34, in <module>
+    import bb
+  File "/opt/poky/bitbake/lib/bb/__init__.py", line 75, in <module>
+    import bb.msg
+  File "/opt/poky/bitbake/lib/bb/msg.py", line 32, in <module>
+    import bb.event
+  File "/opt/poky/bitbake/lib/bb/event.py", line 34, in <module>
+    import bb.utils
+  File "/opt/poky/bitbake/lib/bb/utils.py", line 22, in <module>
+    import re, fcntl, os, string, stat, shutil, time
+ImportError: No module named fcntl
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+So it looks like the Python included with the SDK is crippled or mis-config=
+ured:
+
+=3D=3D=3D=3D=3D=3D=3D=3D
+ben@ubuntu-scw:/opt/scw-appscard-build$ which python
+/opt/poky/1.4/sysroots/x86_64-pokysdk-linux/usr/bin/python
+ben@ubuntu-scw:/opt/scw-appscard-build$ python
+Python 2.7.3 (default, Apr 19 2013, 00:50:43)=20
+[GCC 4.7.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import fcntl
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: No module named fcntl
+>>>=20
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+Without sourcing the SDK environment file:
+
+=3D=3D=3D=3D=3D=3D=3D=3D
+ben@ubuntu-scw:~$ which python
+/usr/bin/python
+ben@ubuntu-scw:~$ python
+Python 2.7.3 (default, Sep 26 2012, 21:51:14)=20
+[GCC 4.7.2] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import fcntl
+>>>
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+Am I following the playbook correctly?  Does this Python need an explicit P=
+YTHONPATH or something like that?
+Note that I'm using poky at the 'Dylan 9.0' tag and have Ubuntu 12.10 x86_6=
+4 on the host.
+
+thanks,
+Ben
+
+
+
+
 
