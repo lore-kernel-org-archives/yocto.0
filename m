@@ -1,37 +1,28 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 395C9E01472
-	for <yocto@yoctoproject.org>; Wed, 15 May 2013 16:03:03 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id hf12so1398370vcb.31
-	for <yocto@yoctoproject.org>; Wed, 15 May 2013 16:03:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=NfIGT3+xgMxWDi9Mbha7xHZg9itTne5Ppniaxb2tKgg=;
-	b=keijYDaS8ElF4wHUq/SoXW8ou86DPF3fpPX+xWtxx5FyG6Gi5XUQbYA5lUWZfvp2JB
-	tfMgKvMp/RtMT4wPCZdPaSUjRtIvKPbH7r7HCJ+ixuoPG9Q8pa19RDWMnZT0u9nQiLNP
-	FZV+YDLBRsXdx2wYa+THZ63eL32BQhK9Y4vwfCuevLjszxdKXOG+kNs5liZtpHWau30a
-	40gagBAhs+ngxtZ6YVBrTHkes/bVfM1CCKtqf5mNjBJEhQ6XFDXyrFWsktRzcqkPRGGI
-	XoDADt6pJxfZZ1rg39x/BRzJLXJeh7BTU0BT1SDFEtad4rBlSDlLzftqb7TeZeTZcco9
-	8lsQ==
-X-Received: by 10.52.66.78 with SMTP id d14mr5330093vdt.111.1368658982360;
-	Wed, 15 May 2013 16:03:02 -0700 (PDT)
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAC2AE0149A
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 21:07:20 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 15 May 2013 21:07:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,681,1363158000"; d="scan'208";a="314410429"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga001.jf.intel.com with ESMTP; 15 May 2013 21:07:20 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.57]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.61]) with mapi id
+	14.01.0355.002; Wed, 15 May 2013 21:07:19 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: building the BitBake manual
+Thread-Index: Ac5R6trk75lK0LEeQdumZwDDy2QJUA==
+Date: Thu, 16 May 2013 04:07:19 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF393A2@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.48.5 with HTTP; Wed, 15 May 2013 16:02:42 -0700 (PDT)
-In-Reply-To: <1368650024.18324.102.camel@ted>
-References: <40EC58CA-E878-4F77-8E39-4F8D86F48E29@dominion.thruhere.net>
-	<1368650024.18324.102.camel@ted>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 16 May 2013 00:02:42 +0100
-X-Google-Sender-Auth: iaPBWCVO3j2o-kle83l_tueWrxM
-Message-ID: <CANyK_8c4t0Oy1p8sktO-rxMfc1CR+-gbkXYH1RzDSTRy6qQORQ@mail.gmail.com>
-To: openembedded-devel@lists.openembedded.org, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [oe] [RFC] Layers, PRINC and bbappends
+Subject: building the BitBake manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,30 +34,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2013 23:03:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 16 May 2013 04:07:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 15 May 2013 21:33, Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
+When running "make" on the BB docs, my Ubuntu system was missing two packag=
+es: dblatex, xmlto.  Currently, the "Required Packages for the Host Develop=
+ment System" section in the YP Reference Manual does not list these package=
+s as part of the "Documentation" packages.  I am thinking we should add the=
+se in for Ubuntu.  Can anyone tell me what the packages would be for Fedora=
+, OpenSUSE, and CentOS?  Are they named the same?
 
->
-> (e.g. when I include
-> meta-raspberrypi, it changes the psplash logo, regardless of whether I'm
-> building for the pi).
->
-> In many ways the bbappend is too easy and encourages anti-social
-> behaviour. I would recommend bouncing meta-rpi as being non yocto
-> project compatible due to the psplash issue if it were to apply which it
-> has not.
->
+Thanks,=20
+Scott
 
-I noticed the psplash logo when building a qemu image with
-meta-raspberrypi included, will look into fixing it so it only goes
-into MACHINE="raspberrypi" builds. Copying in yocto@ and Andrei as
-this is raspberrypi related.
+Scott Rifenbark
+Intel Corporation
+Yocto Project Documentation
+503.712.2702
+503.341.0418 (cell)
 
---
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
