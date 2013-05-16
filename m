@@ -1,34 +1,25 @@
-Return-Path: <laurentiu.palcu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D068FE01488
-	for <yocto@yoctoproject.org>; Thu, 16 May 2013 10:20:24 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 16 May 2013 10:20:24 -0700
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53404E0051D;
+	Thu, 16 May 2013 12:15:35 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 16 May 2013 12:15:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,685,1363158000"; d="scan'208";a="303508438"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by azsmga001.ch.intel.com with ESMTP; 16 May 2013 10:20:21 -0700
-Received: from irsmsx105.ger.corp.intel.com (163.33.3.28) by
-	IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 16 May 2013 18:20:20 +0100
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.161]) by
-	IRSMSX105.ger.corp.intel.com ([169.254.7.3]) with mapi id
-	14.03.0123.003; Thu, 16 May 2013 18:20:17 +0100
-From: "Palcu, Laurentiu" <laurentiu.palcu@intel.com>
-To: =?iso-8859-2?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] u-boot standalone application
-Thread-Index: AQHOUjLhMbzEdz6wWUmnqEXPbgrBS5kIDl0A
-Date: Thu, 16 May 2013 17:20:16 +0000
-Message-ID: <F50B87185088EB4790E240C070C3DF4B16B9A4B7@IRSMSX104.ger.corp.intel.com>
-References: <CAFyqS9q85RaBTtwvJxBHFbNSXENirtFt9+R6Mx6EDnHCtNxBMA@mail.gmail.com>
-In-Reply-To: <CAFyqS9q85RaBTtwvJxBHFbNSXENirtFt9+R6Mx6EDnHCtNxBMA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
+X-IronPort-AV: E=Sophos;i="4.87,685,1363158000"; d="scan'208";a="338479610"
+Received: from envy2.jf.intel.com (HELO envy2.home) ([10.7.199.80])
+	by orsmga002.jf.intel.com with ESMTP; 16 May 2013 12:15:34 -0700
+Message-ID: <51953053.8060204@linux.intel.com>
+Date: Thu, 16 May 2013 12:15:31 -0700
+From: Darren Hart <dvhart@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130110 Thunderbird/17.0.2
 MIME-Version: 1.0
-Subject: Re: u-boot standalone application
+To: Khem Raj <raj.khem@gmail.com>
+References: <1368680239-26344-1-git-send-email-raj.khem@gmail.com>
+In-Reply-To: <1368680239-26344-1-git-send-email-raj.khem@gmail.com>
+X-Enigmail-Version: 1.5.1
+Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org
+Subject: Re: [meta-intel][PATCH] tiny-init: Drop the bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,36 +31,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2013 17:20:25 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 May 2013 19:15:35 -0000
+Content-Type: text/plain; charset=ISO-8859-2
+Content-Transfer-Encoding: 7bit
 
-I'm not sure this is what you want but, did you try to play with=20
-externalsrc.bbclass? It should allow you to build out-of-tree sources.
 
-Laurentiu
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Hans Beck=E9rus
-Sent: Thursday, May 16, 2013 3:42 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] u-boot standalone application
+On 05/15/2013 09:57 PM, Khem Raj wrote:
+> init file which it was providing is ditto as meta-yocto
+> so bbappend is redundant plus it gets rid of following warning
+> for non poky distros.
+> 
+> WARNING: No recipes available for:
+>   /builds1/meta-intel/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
+> 
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> CC: Darren Hart <dvhart@linux.intel.com>
 
-Hi. Anyone ever experimented with building a u-boot standalone application =
-out-of-tree?
-To be able to do that u-boot must install libstubs.o and applicable header =
-files in the sysroot staging folder. Is there some example of how to do thi=
-s already or am I the first to try this out?
+Acked-by: Darren Hart <dvhart@linux.intel.com>
 
-Why do it this way you may ask? Well, we do not wish to have our code merge=
-d in the u-boot source tree, but instead compile it from an isolated packag=
-e. Sounds so simple... ;)
+Thanks Khem!
 
-Hans
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+> ---
+>  .../recipes-core/tiny-init/tiny-init.bbappend      |    6 -----
+>  meta-fri2/recipes-core/tiny-init/tiny-init/init    |   26 --------------------
+>  2 files changed, 32 deletions(-)
+>  delete mode 100644 meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
+>  delete mode 100644 meta-fri2/recipes-core/tiny-init/tiny-init/init
+> 
+> diff --git a/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend b/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
+> deleted file mode 100644
+> index 89416dc..0000000
+> --- a/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
+> +++ /dev/null
+> @@ -1,6 +0,0 @@
+> -# Update the init script for the tiny image to manually mount devtmpfs and
+> -# ensure the ttyPCH1 device is available for the console.
+> -
+> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> - 
+> -PRINC := "${@int(PRINC) + 1}"
+> diff --git a/meta-fri2/recipes-core/tiny-init/tiny-init/init b/meta-fri2/recipes-core/tiny-init/tiny-init/init
+> deleted file mode 100644
+> index 4b78f01..0000000
+> --- a/meta-fri2/recipes-core/tiny-init/tiny-init/init
+> +++ /dev/null
+> @@ -1,26 +0,0 @@
+> -#!/bin/sh
+> -
+> -# Mount the Linux kernel virtual filesystems
+> -mount none -t proc /proc
+> -mount none -t sysfs /sys
+> -
+> -# Ensure devtmpfs is mounted, it must be done manually with initramfs
+> -mount none -t devtmpfs /dev
+> -
+> -# Setup PTY infrastructure
+> -mkdir /dev/pts
+> -mount none -t devpts /dev/pts
+> -
+> -ifup lo
+> -
+> -# Allow for distro or local customizations
+> -if [ -f /etc/rc.local ] ; then
+> -	source /etc/rc.local
+> -fi
+> -
+> -# Become session leader and try to find a real tty (e.g. ttyS0)
+> -while true; do
+> -	setsid cttyhack sh
+> -	echo "Console sh exited with $?, respawning..."
+> -	sleep 1
+> -done
+> 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Technical Lead - Linux Kernel
 
