@@ -1,35 +1,42 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0151E0140A;
-	Wed, 15 May 2013 21:59:01 -0700 (PDT)
-Received: by mail-pd0-f177.google.com with SMTP id g10so1955915pdj.8
-	for <multiple recipients>; Wed, 15 May 2013 21:59:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:from:to:cc:subject:date:message-id:x-mailer;
-	bh=J/+c5F8xQeo+RGW9Yql3Ym1CbNnXc6hKXPYrvwKZA08=;
-	b=mglHe/+/LtG1xznVMBlhpe9KOYA5Ir1Y14rh2NketPlttwr6RrUB494HTIjJP7yMDx
-	9LdvHwt2HsKmiFr3UBjTq/W82XcSN9E03KKJaTbCM0Mxm0FcWleZ9AFb5QG3uI1KqZzq
-	8tC7NmLDKzfhG2cwUjel1dYaY3agwV29M4K0GJhycUHxIMS0lOzji8OFCMmaQ1h1mhG9
-	S9l6BxTf7o4Vul/9ywhNhx2ja2sGGp91YhdtcWhLyobvpN2bsL0r/ZTQbJusgEQalBsz
-	jIM8E3mhmVLmYLdLLv86ZJ+tf2OIv0LHVKnW9RQe6YQeoKZz0aZXAnK/QwnMKNJ/qOZK
-	FB6w==
-X-Received: by 10.66.148.201 with SMTP id tu9mr41596822pab.56.1368680341576;
-	Wed, 15 May 2013 21:59:01 -0700 (PDT)
-Received: from isis.gateway.2wire.net
-	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
-	by mx.google.com with ESMTPSA id ov2sm5266994pbc.34.2013.05.15.21.59.00
-	for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 15 May 2013 21:59:00 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: meta-intel@yoctoproject.org,
-	yocto@yoctoproject.org
-Date: Wed, 15 May 2013 21:57:19 -0700
-Message-Id: <1368680239-26344-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Cc: Darren Hart <dvhart@linux.intel.com>
-Subject: [meta-intel][PATCH] tiny-init: Drop the bbappend
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ea0-f174.google.com (mail-ea0-f174.google.com
+	[209.85.215.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C688E0149A
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 22:16:49 -0700 (PDT)
+Received: by mail-ea0-f174.google.com with SMTP id z7so1463537eaf.19
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 22:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type;
+	bh=+/tUYyGlp12TRIMezNitQf1kH2b6/rJhKXQwyLxFNAM=;
+	b=U3PxtavnY2xlmgTmG6ne78iDxT+pdEE46HmxXe7D7u2gGBUfGww/tf7KdHs1IaRUB0
+	1wx3mg8lX3sNtGZoi60hYfVkdoTFROcP9WwrEDy6GqkFAiAqfSiGEohqCv4ogBd8ICqU
+	YN1roKyVuQ/Pi0ea2Sl2DXEt+hoNGdBvLHFn0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:x-received:in-reply-to:references:date:message-id
+	:subject:from:to:cc:content-type:x-gm-message-state;
+	bh=+/tUYyGlp12TRIMezNitQf1kH2b6/rJhKXQwyLxFNAM=;
+	b=aPAfOB3g+iLqXm+0OxOB3bricwnqoXjOQ/ZFe7MG1tSMY84e1Q/xZJ//nKu0nL3CVR
+	mZnUFvIbiXEMh+yvF7dvuvZ1EQNVnVmDjAxB1BXtWPFUDpDCSAdHqj1uB6vIn21rU6MZ
+	ZsDEAYr6jHXEGr7HAf3TrhteLLzYg5yt5TqSLJs2tFv8A3XAlfU2/iI2EuJ5XAGMzSNh
+	v6mrNlqLjvNmGudwg8vnnyaqxvZp/mHb20ebOghbXB6v5GRkZ8EMNea5hhey42sX86Cw
+	s1wXKIMk1UUthsIgOISmwZrd19RAhp3/fz5+ZyDiuquFj9RM0NVU3KuEwsyNZ5cfeUvJ
+	2lVg==
+MIME-Version: 1.0
+X-Received: by 10.15.55.132 with SMTP id v4mr3908961eew.19.1368681407547; Wed,
+	15 May 2013 22:16:47 -0700 (PDT)
+Received: by 10.223.96.71 with HTTP; Wed, 15 May 2013 22:16:47 -0700 (PDT)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF393A2@ORSMSX101.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF393A2@ORSMSX101.amr.corp.intel.com>
+Date: Wed, 15 May 2013 22:16:47 -0700
+Message-ID: <CA+gsK-rnDcEMdc3i49qdqw73T+4qvx_OrmgRPVuKzHOWUcg71A@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+X-Gm-Message-State: ALoCoQmEu5AR5hWcNCMnAVHVgsLx6E3eBqR6cNa6RbYqc5OaozPFVJYYF4m8h9tiSPxwc+7AOG6S
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: building the BitBake manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,69 +48,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2013 04:59:01 -0000
+X-List-Received-Date: Thu, 16 May 2013 05:16:49 -0000
+Content-Type: multipart/alternative; boundary=001a1133d1a41bb98504dccef951
 
-init file which it was providing is ditto as meta-yocto
-so bbappend is redundant plus it gets rid of following warning
-for non poky distros.
+--001a1133d1a41bb98504dccef951
+Content-Type: text/plain; charset=ISO-8859-1
 
-WARNING: No recipes available for:
-  /builds1/meta-intel/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
+Scott,
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
-CC: Darren Hart <dvhart@linux.intel.com>
----
- .../recipes-core/tiny-init/tiny-init.bbappend      |    6 -----
- meta-fri2/recipes-core/tiny-init/tiny-init/init    |   26 --------------------
- 2 files changed, 32 deletions(-)
- delete mode 100644 meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
- delete mode 100644 meta-fri2/recipes-core/tiny-init/tiny-init/init
+On FC18 these packages are also called xmlto and dblatex.
 
-diff --git a/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend b/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
-deleted file mode 100644
-index 89416dc..0000000
---- a/meta-fri2/recipes-core/tiny-init/tiny-init.bbappend
-+++ /dev/null
-@@ -1,6 +0,0 @@
--# Update the init script for the tiny image to manually mount devtmpfs and
--# ensure the ttyPCH1 device is available for the console.
--
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-- 
--PRINC := "${@int(PRINC) + 1}"
-diff --git a/meta-fri2/recipes-core/tiny-init/tiny-init/init b/meta-fri2/recipes-core/tiny-init/tiny-init/init
-deleted file mode 100644
-index 4b78f01..0000000
---- a/meta-fri2/recipes-core/tiny-init/tiny-init/init
-+++ /dev/null
-@@ -1,26 +0,0 @@
--#!/bin/sh
--
--# Mount the Linux kernel virtual filesystems
--mount none -t proc /proc
--mount none -t sysfs /sys
--
--# Ensure devtmpfs is mounted, it must be done manually with initramfs
--mount none -t devtmpfs /dev
--
--# Setup PTY infrastructure
--mkdir /dev/pts
--mount none -t devpts /dev/pts
--
--ifup lo
--
--# Allow for distro or local customizations
--if [ -f /etc/rc.local ] ; then
--	source /etc/rc.local
--fi
--
--# Become session leader and try to find a real tty (e.g. ttyS0)
--while true; do
--	setsid cttyhack sh
--	echo "Console sh exited with $?, respawning..."
--	sleep 1
--done
--- 
-1.7.9.5
+xmlto has a dependency on flex which the package manager should install
+automatically.
+dblatex has dependencies on texlive-*.
+
+:rjs
 
 
+
+On Wed, May 15, 2013 at 9:07 PM, Rifenbark, Scott M <
+scott.m.rifenbark@intel.com> wrote:
+
+> When running "make" on the BB docs, my Ubuntu system was missing two
+> packages: dblatex, xmlto.  Currently, the "Required Packages for the Host
+> Development System" section in the YP Reference Manual does not list these
+> packages as part of the "Documentation" packages.  I am thinking we should
+> add these in for Ubuntu.  Can anyone tell me what the packages would be for
+> Fedora, OpenSUSE, and CentOS?  Are they named the same?
+>
+> Thanks,
+> Scott
+>
+> Scott Rifenbark
+> Intel Corporation
+> Yocto Project Documentation
+> 503.712.2702
+> 503.341.0418 (cell)
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a1133d1a41bb98504dccef951
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Scott,<div><br></div><div>On FC18 these packages are also called xmlto and =
+dblatex.</div><div><br></div><div>xmlto has a dependency on flex which the =
+package manager should install automatically.</div><div>dblatex has depende=
+ncies on texlive-*.</div>
+<div><br></div><div>:rjs</div><div><br></div><div><br><br><div class=3D"gma=
+il_quote">On Wed, May 15, 2013 at 9:07 PM, Rifenbark, Scott M <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">s=
+cott.m.rifenbark@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">When running &quot;make&quot; on the BB docs=
+, my Ubuntu system was missing two packages: dblatex, xmlto. =A0Currently, =
+the &quot;Required Packages for the Host Development System&quot; section i=
+n the YP Reference Manual does not list these packages as part of the &quot=
+;Documentation&quot; packages. =A0I am thinking we should add these in for =
+Ubuntu. =A0Can anyone tell me what the packages would be for Fedora, OpenSU=
+SE, and CentOS? =A0Are they named the same?<br>
+
+<br>
+Thanks,<br>
+Scott<br>
+<br>
+Scott Rifenbark<br>
+Intel Corporation<br>
+Yocto Project Documentation<br>
+<a href=3D"tel:503.712.2702" value=3D"+15037122702">503.712.2702</a><br>
+<a href=3D"tel:503.341.0418" value=3D"+15033410418">503.341.0418</a>=A0(cel=
+l)<br>
+<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br><br clear=3D"all"><div><br></div><div><font face=3D"=
+garamond, serif"><span style=3D"border-collapse:collapse;color:rgb(102,102,=
+102);font-family:arial,sans-serif;font-size:13px"><br></span></font></div>
+</div>
+
+--001a1133d1a41bb98504dccef951--
