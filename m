@@ -1,26 +1,30 @@
 Return-Path: <scott.m.rifenbark@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F983E014F5
-	for <yocto@yoctoproject.org>; Wed, 15 May 2013 23:28:01 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D94FE014FD
+	for <yocto@yoctoproject.org>; Wed, 15 May 2013 23:28:28 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 15 May 2013 23:25:59 -0700
+	by orsmga102.jf.intel.com with ESMTP; 15 May 2013 23:26:26 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.87,681,1363158000"; 
-	d="scan'208,217";a="338130930"
+	d="scan'208,217";a="338131158"
 Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga002.jf.intel.com with ESMTP; 15 May 2013 23:28:01 -0700
+	by orsmga002.jf.intel.com with ESMTP; 15 May 2013 23:28:27 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.1.355.2; Wed, 15 May 2013 23:28:27 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.57]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.204]) with mapi id
-	14.01.0355.002; Wed, 15 May 2013 23:28:00 -0700
+	ORSMSX152.amr.corp.intel.com ([169.254.8.147]) with mapi id
+	14.03.0123.003; Wed, 15 May 2013 23:28:27 -0700
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 To: Rudolf Streif <rstreif@linuxfoundation.org>
 Thread-Topic: [yocto] building the BitBake manual
-Thread-Index: Ac5R6trk75lK0LEeQdumZwDDy2QJUAARGF6AAAwxbOA=
-Date: Thu, 16 May 2013 06:28:00 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F1@ORSMSX101.amr.corp.intel.com>
+Thread-Index: Ac5R6trk75lK0LEeQdumZwDDy2QJUAARGF6AAAAahoAADEdrwA==
+Date: Thu, 16 May 2013 06:28:26 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F8@ORSMSX101.amr.corp.intel.com>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF393A2@ORSMSX101.amr.corp.intel.com>
 	<CA+gsK-rnDcEMdc3i49qdqw73T+4qvx_OrmgRPVuKzHOWUcg71A@mail.gmail.com>
-In-Reply-To: <CA+gsK-rnDcEMdc3i49qdqw73T+4qvx_OrmgRPVuKzHOWUcg71A@mail.gmail.com>
+	<CA+gsK-oFUTZH7SFqsg_D7H7STH+TTMoKUGaE58OAJj0VijyszQ@mail.gmail.com>
+In-Reply-To: <CA+gsK-oFUTZH7SFqsg_D7H7STH+TTMoKUGaE58OAJj0VijyszQ@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -39,23 +43,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2013 06:28:01 -0000
+X-List-Received-Date: Thu, 16 May 2013 06:28:28 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F1ORSMSX101amrcor_"
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F8ORSMSX101amrcor_"
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F1ORSMSX101amrcor_
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F8ORSMSX101amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Rudolf
+Got it - thanks.
 
 From: Rudolf Streif [mailto:rstreif@linuxfoundation.org]
-Sent: Wednesday, May 15, 2013 10:17 PM
+Sent: Wednesday, May 15, 2013 10:20 PM
 To: Rifenbark, Scott M
 Cc: yocto@yoctoproject.org
 Subject: Re: [yocto] building the BitBake manual
 
+And I hit the send button too early: on FC18 you also have to install texli=
+ve-multirow.
+
+:rjs
+On Wed, May 15, 2013 at 10:16 PM, Rudolf Streif <rstreif@linuxfoundation.or=
+g<mailto:rstreif@linuxfoundation.org>> wrote:
 Scott,
 
 On FC18 these packages are also called xmlto and dblatex.
@@ -94,7 +104,10 @@ https://lists.yoctoproject.org/listinfo/yocto
 
 
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F1ORSMSX101amrcor_
+
+
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F8ORSMSX101amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -152,8 +165,8 @@ div.WordSection1
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks Rudolf<o:p></o:p><=
-/span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Got it &#8211; thanks.<o:=
+p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 /p>
@@ -167,7 +180,7 @@ libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Rudolf S=
 treif [mailto:rstreif@linuxfoundation.org]
 <br>
-<b>Sent:</b> Wednesday, May 15, 2013 10:17 PM<br>
+<b>Sent:</b> Wednesday, May 15, 2013 10:20 PM<br>
 <b>To:</b> Rifenbark, Scott M<br>
 <b>Cc:</b> yocto@yoctoproject.org<br>
 <b>Subject:</b> Re: [yocto] building the BitBake manual<o:p></o:p></span></=
@@ -175,6 +188,17 @@ p>
 </div>
 </div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">And I hit the send button too early: on FC18 you als=
+o have to install texlive-multirow.<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">:rjs<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">On Wed, May 15, 2013 at 10:16 PM, Rudolf Streif &lt;=
+<a href=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blank">rstreif@li=
+nuxfoundation.org</a>&gt; wrote:<o:p></o:p></p>
 <p class=3D"MsoNormal">Scott,<o:p></o:p></p>
 <div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
@@ -201,6 +225,8 @@ ager should install automatically.<o:p></o:p></p>
 <p class=3D"MsoNormal">:rjs<o:p></o:p></p>
 </div>
 <div>
+<div>
+<div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 <div>
@@ -223,12 +249,14 @@ Scott<br>
 Scott Rifenbark<br>
 Intel Corporation<br>
 Yocto Project Documentation<br>
-<a href=3D"tel:503.712.2702">503.712.2702</a><br>
-<a href=3D"tel:503.341.0418">503.341.0418</a>&nbsp;(cell)<br>
+<a href=3D"tel:503.712.2702" target=3D"_blank">503.712.2702</a><br>
+<a href=3D"tel:503.341.0418" target=3D"_blank">503.341.0418</a>&nbsp;(cell)=
+<br>
 <br>
 _______________________________________________<br>
 yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
 >https://lists.yoctoproject.org/listinfo/yocto</a><o:p></o:p></p>
 </div>
@@ -244,7 +272,17 @@ yocto mailing list<br>
 </div>
 </div>
 </div>
+</div>
+<p class=3D"MsoNormal"><br>
+<br clear=3D"all">
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F1ORSMSX101amrcor_--
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF393F8ORSMSX101amrcor_--
