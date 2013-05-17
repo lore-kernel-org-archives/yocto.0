@@ -1,24 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F20EE01366
-	for <yocto@yoctoproject.org>; Fri, 17 May 2013 01:53:57 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 17 May 2013 01:51:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,690,1363158000"; d="scan'208";a="335628173"
-Received: from unknown (HELO helios.localnet) ([10.255.12.245])
-	by fmsmga001.fm.intel.com with ESMTP; 17 May 2013 01:53:55 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Post, Travis" <travis.post@intel.com>
-Date: Fri, 17 May 2013 09:53:55 +0100
-Message-ID: <1825160.HcECli0hlK@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.8.0-21-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <1B9AA52722844A4995CFFE20C2BC6B596B7A1105@ORSMSX107.amr.corp.intel.com>
-References: <1B9AA52722844A4995CFFE20C2BC6B596B7A1105@ORSMSX107.amr.corp.intel.com>
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
+	[209.85.128.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97483E006CC
+	for <yocto@yoctoproject.org>; Fri, 17 May 2013 07:08:50 -0700 (PDT)
+Received: by mail-ve0-f171.google.com with SMTP id m1so4071645ves.30
+	for <yocto@yoctoproject.org>; Fri, 17 May 2013 07:08:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=x-received:mime-version:sender:from:date:x-google-sender-auth
+	:message-id:subject:to:content-type;
+	bh=qYXeNv+wSWoweIa3UxcO4xkK5/o7RAMtSFA4m1E47M0=;
+	b=Zdp/X59GfCFnuQGXTkCAbv5rwghADSH4qU4ikhW/71Lyb3/3PODh+enlrUVV+7I/eR
+	Dt56K8VuEudpXVauTFEESXZe25tO7KYnBz0cinbdV0iRPZSJxRzVriqPThAy+66sciUl
+	rKHPbYaik4JwPa1mjhY9fq7yXEruhCSqeL9v+72EBFZ1/8M7+IxeyWdJ3zm/unOdoo7j
+	quvokbRwP+8cEVVyYMC7Wt4F9KtlSYs+bPV0Hh/qR5ppntLuEmaaZr3kKxnxjoh5o4qo
+	hzqcamkHEy4slM3Ec4tAD4kcursW+Y/D6rcCZDdbrUEL7sS3G1nDglc24nqwc7EzklKq
+	HfTA==
+X-Received: by 10.52.32.37 with SMTP id f5mr25459444vdi.28.1368799729728; Fri,
+	17 May 2013 07:08:49 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Customize Number of Threads per Task?
+Sender: paul.betafive@gmail.com
+Received: by 10.220.48.5 with HTTP; Fri, 17 May 2013 07:08:28 -0700 (PDT)
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 17 May 2013 15:08:28 +0100
+X-Google-Sender-Auth: PHv0nHDQNQOpWBC_3hAO5H9M9IU
+Message-ID: <CANyK_8dWZ=SviB++3PzcT9dM3OLtHQwPruzazznzNrg9iJ_USw@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Unclear on meta-toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,38 +37,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 May 2013 08:53:57 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Fri, 17 May 2013 14:08:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Travis,
+I'm looking to build an image along with a cross-compiler SDK so I've
+been looking through the documentation for this. I've been left with
+two things I'm unclear on.
 
-On Friday 17 May 2013 00:40:51 Post, Travis wrote:
-> I=E2=80=99ve written a bitbake class that adds a custom task in-betwe=
-en do_configure
-> and do_compile, called =E2=80=98do_send_to_remote=E2=80=99. Is there =
-any way for Yocto to
-> allow only one instance of this task to run at a time? I know I can s=
-et
-> BB_NUMBER_THREADS =3D 1, but that will slow down everything. Is there=
- a way
-> to do something like: BB_NUMBER_THREADS[do_send_to_remote] =3D 1?
+1) The difference between meta-toolchain and meta-toolchain-sdk. I've
+looked at the recipes and meta-toolchain-sdk is provided by a
+meta-toolchain-gmae recipe, a google search says GMAE is the "GNOME
+Mobile & Embedded Initiative (GMAE) software stack". Unless I've
+missed something this isn't in the documentation and isn't obvious
+from the bitbake output. I assume that what I want is just
+meta-toolchain but it may be work clarifying this.
 
-I don't think we have anything quite like that, but we do have support =
-for=20
-locking via a "lockfiles" parameter on a task function; e.g. from=20
-rootfs_rpm.bbclass:
+2) Building meta-toolchain for multiple targets. I can build images
+and package feeds for multiple targets by setting MACHINE in
+local.conf, doing a build, changing MACHINE and then doing another
+build. This leaves images and packages for both targets in the
+tmp/deploy/{images,ipk} directories and looks sensible. If I build
+meta-toolchain then change MACHINE and build meta-toolchain again, the
+packages in tmp/deploy/ipk/x86_64-nativesdk and the archive in
+tmp/deploy/sdk appear to be overwritten. I think this is especially an
+issue for different variants of the same platform, I'm looking at
+beagleboard, raspberrypi and qemuarm, all of which are ARM
+architectures. I could try naming the SDK archive by machine but
+there'd be a lot of overlap in the contents of the SDKs, it'd be
+really great to be able to generate a common SDK archive and then
+archives of just the machine-specific bits. Has anyone else tried
+producing SDKs for multiple target machines and if so do you have any
+thoughts on this?
 
-do_rootfs[lockfiles] +=3D "${DEPLOY_DIR_RPM}/rpm.lock"
+Thanks,
 
-That should ensure only one instance of the task's code gets to run at =
-a time.
+--
+Paul Barker
 
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
