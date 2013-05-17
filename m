@@ -1,31 +1,35 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
-	[209.85.128.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97483E006CC
-	for <yocto@yoctoproject.org>; Fri, 17 May 2013 07:08:50 -0700 (PDT)
-Received: by mail-ve0-f171.google.com with SMTP id m1so4071645ves.30
-	for <yocto@yoctoproject.org>; Fri, 17 May 2013 07:08:49 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
+	[209.85.217.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 343A3E01529
+	for <yocto@yoctoproject.org>; Fri, 17 May 2013 09:39:03 -0700 (PDT)
+Received: by mail-lb0-f173.google.com with SMTP id t10so4553139lbi.4
+	for <yocto@yoctoproject.org>; Fri, 17 May 2013 09:39:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=x-received:mime-version:sender:from:date:x-google-sender-auth
-	:message-id:subject:to:content-type;
-	bh=qYXeNv+wSWoweIa3UxcO4xkK5/o7RAMtSFA4m1E47M0=;
-	b=Zdp/X59GfCFnuQGXTkCAbv5rwghADSH4qU4ikhW/71Lyb3/3PODh+enlrUVV+7I/eR
-	Dt56K8VuEudpXVauTFEESXZe25tO7KYnBz0cinbdV0iRPZSJxRzVriqPThAy+66sciUl
-	rKHPbYaik4JwPa1mjhY9fq7yXEruhCSqeL9v+72EBFZ1/8M7+IxeyWdJ3zm/unOdoo7j
-	quvokbRwP+8cEVVyYMC7Wt4F9KtlSYs+bPV0Hh/qR5ppntLuEmaaZr3kKxnxjoh5o4qo
-	hzqcamkHEy4slM3Ec4tAD4kcursW+Y/D6rcCZDdbrUEL7sS3G1nDglc24nqwc7EzklKq
-	HfTA==
-X-Received: by 10.52.32.37 with SMTP id f5mr25459444vdi.28.1368799729728; Fri,
-	17 May 2013 07:08:49 -0700 (PDT)
+	h=x-received:mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=IjvqXdmlpRCGAbFPmvKhKsFXUw6gTFAmIYyTtxY0c2w=;
+	b=zmqU4v8tutsSrp97QZiOYchKc6j05QUOq5faDxBovOCODwu7UwZd1T8jL9SM/xNqxK
+	i7WLwPStReZx6mEQPCk4mmLdGdT3AG5msBrpvrkjYhIJHAfZVTNEM2CivFIgF1q0ypHc
+	dUgiIJAD5bsyyL7MdtX4soHS0E1VBnTEO0ydghtAuE6T16+16sohrrWbu+y9MwVDL5WX
+	ciR2t0nWJgBkA+BOJPvnwTQA7PoZI5N9ot6EvTN94vDeplpCMff4pF5uj/uu2HFK29D/
+	GxFuUBYamx5pAjAtqS5w6vrlDst9SkyZxtkYLDrU3nOJnsxOGCC6RUY3+kuEjlQGJ/XI
+	0Pvg==
+X-Received: by 10.112.202.105 with SMTP id kh9mr3591440lbc.120.1368808742018; 
+	Fri, 17 May 2013 09:39:02 -0700 (PDT)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.48.5 with HTTP; Fri, 17 May 2013 07:08:28 -0700 (PDT)
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 17 May 2013 15:08:28 +0100
-X-Google-Sender-Auth: PHv0nHDQNQOpWBC_3hAO5H9M9IU
-Message-ID: <CANyK_8dWZ=SviB++3PzcT9dM3OLtHQwPruzazznzNrg9iJ_USw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Unclear on meta-toolchain
+Sender: kergoth@gmail.com
+Received: by 10.112.141.74 with HTTP; Fri, 17 May 2013 09:38:41 -0700 (PDT)
+In-Reply-To: <1825160.HcECli0hlK@helios>
+References: <1B9AA52722844A4995CFFE20C2BC6B596B7A1105@ORSMSX107.amr.corp.intel.com>
+	<1825160.HcECli0hlK@helios>
+From: Chris Larson <clarson@kergoth.com>
+Date: Fri, 17 May 2013 09:38:41 -0700
+X-Google-Sender-Auth: AMkMDBKn4j5giL-AZRDH91eD6uA
+Message-ID: <CABcZANmABphUYZryZFiYrvn-5r=vHrFre=G6rkGQ-CBMmjZmVA@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Customize Number of Threads per Task?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,43 +41,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 May 2013 14:08:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 17 May 2013 16:39:03 -0000
+Content-Type: multipart/alternative; boundary=001a11c36c94d5643804dcec9eb3
 
-I'm looking to build an image along with a cross-compiler SDK so I've
-been looking through the documentation for this. I've been left with
-two things I'm unclear on.
+--001a11c36c94d5643804dcec9eb3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-1) The difference between meta-toolchain and meta-toolchain-sdk. I've
-looked at the recipes and meta-toolchain-sdk is provided by a
-meta-toolchain-gmae recipe, a google search says GMAE is the "GNOME
-Mobile & Embedded Initiative (GMAE) software stack". Unless I've
-missed something this isn't in the documentation and isn't obvious
-from the bitbake output. I assume that what I want is just
-meta-toolchain but it may be work clarifying this.
+On Fri, May 17, 2013 at 1:53 AM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
 
-2) Building meta-toolchain for multiple targets. I can build images
-and package feeds for multiple targets by setting MACHINE in
-local.conf, doing a build, changing MACHINE and then doing another
-build. This leaves images and packages for both targets in the
-tmp/deploy/{images,ipk} directories and looks sensible. If I build
-meta-toolchain then change MACHINE and build meta-toolchain again, the
-packages in tmp/deploy/ipk/x86_64-nativesdk and the archive in
-tmp/deploy/sdk appear to be overwritten. I think this is especially an
-issue for different variants of the same platform, I'm looking at
-beagleboard, raspberrypi and qemuarm, all of which are ARM
-architectures. I could try naming the SDK archive by machine but
-there'd be a lot of overlap in the contents of the SDKs, it'd be
-really great to be able to generate a common SDK archive and then
-archives of just the machine-specific bits. Has anyone else tried
-producing SDKs for multiple target machines and if so do you have any
-thoughts on this?
+> Hi Travis,
+>
+> On Friday 17 May 2013 00:40:51 Post, Travis wrote:
+> > I=E2=80=99ve written a bitbake class that adds a custom task in-between
+> do_configure
+> > and do_compile, called =E2=80=98do_send_to_remote=E2=80=99. Is there an=
+y way for Yocto to
+> > allow only one instance of this task to run at a time? I know I can set
+> > BB_NUMBER_THREADS =3D 1, but that will slow down everything. Is there a=
+ way
+> > to do something like: BB_NUMBER_THREADS[do_send_to_remote] =3D 1?
+>
+> I don't think we have anything quite like that, but we do have support fo=
+r
+> locking via a "lockfiles" parameter on a task function; e.g. from
+> rootfs_rpm.bbclass:
+>
+> do_rootfs[lockfiles] +=3D "${DEPLOY_DIR_RPM}/rpm.lock"
+>
+> That should ensure only one instance of the task's code gets to run at a
+> time.
+>
 
-Thanks,
+One could implement this through a custom bitbake scheduler. At one point I
+had a scheduler which let you define a task flag to indicate which resource
+it predominantly used (cpu, memory, network) and then let you define
+per-resource maximum thread counts, but it was extremely naive, and didn't
+improve overall performance much :\
+--=20
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
---
-Paul Barker
+--001a11c36c94d5643804dcec9eb3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Fri, May 17, 2013 at 1:53 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@=
+linux.intel.com</a>&gt;</span> wrote:<br>
 
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div id=3D":oc" style=3D"overflow:hidden">Hi=
+ Travis,<br>
+<div><div class=3D"h5"><br>
+On Friday 17 May 2013 00:40:51 Post, Travis wrote:<br>
+&gt; I=E2=80=99ve written a bitbake class that adds a custom task in-betwee=
+n do_configure<br>
+&gt; and do_compile, called =E2=80=98do_send_to_remote=E2=80=99. Is there a=
+ny way for Yocto to<br>
+&gt; allow only one instance of this task to run at a time? I know I can se=
+t<br>
+&gt; BB_NUMBER_THREADS =3D 1, but that will slow down everything. Is there =
+a way<br>
+&gt; to do something like: BB_NUMBER_THREADS[do_send_to_remote] =3D 1?<br>
+<br>
+</div></div>I don&#39;t think we have anything quite like that, but we do h=
+ave support for<br>
+locking via a &quot;lockfiles&quot; parameter on a task function; e.g. from=
+<br>
+rootfs_rpm.bbclass:<br>
+<br>
+do_rootfs[lockfiles] +=3D &quot;${DEPLOY_DIR_RPM}/rpm.lock&quot;<br>
+<br>
+That should ensure only one instance of the task&#39;s code gets to run at =
+a time.</div></blockquote></div><br>One could implement this through a cust=
+om bitbake scheduler. At one point I had a scheduler which let you define a=
+ task flag to indicate which resource it predominantly used (cpu, memory, n=
+etwork) and then let you define per-resource maximum thread counts, but it =
+was extremely naive, and didn&#39;t improve overall performance much :\<br>
+
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
+
+--001a11c36c94d5643804dcec9eb3--
