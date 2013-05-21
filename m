@@ -1,76 +1,28 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0309BE01491
-	for <yocto@yoctoproject.org>; Mon, 20 May 2013 15:12:10 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 20 May 2013 15:12:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,711,1363158000"; 
-	d="scan'208,217";a="337261764"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by fmsmga001.fm.intel.com with ESMTP; 20 May 2013 15:12:11 -0700
-Received: from orsmsx110.amr.corp.intel.com (10.22.240.8) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 20 May 2013 15:12:07 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.51]) by
-	ORSMSX110.amr.corp.intel.com ([169.254.3.121]) with mapi id
-	14.03.0123.003; Mon, 20 May 2013 15:12:06 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
-	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
-	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
-	<joshua.lock@intel.com>, "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
-	"Moeller, Thorsten" <thorsten.moeller@intel.com>, 'Sanjay Raina'
-	<sraina@mvista.com>, "Osier-mixon,
-	Jeffrey" <jeffrey.osier-mixon@intel.com>, 
-	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
-	"Saxena, Rahul" <rahul.saxena@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Zanussi, 
-	Tom" <tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
-	<Sean_Hudson@mentor.com>, "Serban,
-	Laurentiu" <laurentiu.serban@intel.com>, 
-	"Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>, "Burton, Ross" <ross.burton@intel.com>,
-	"Mueller, Robert" <robert.mueller@intel.com>, "Arce Moreno, Abraham"
-	<abraham.arce.moreno@intel.com>,
-	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
-	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
-	<mario.a.santana.lopez@intel.com>, "Calles Palacios, Osvaldo"
-	<osvaldo.calles.palacios@intel.com>, "Patel, Keyur R"
-	<keyur.r.patel@intel.com>, "'achaudha@mvista.com'" <achaudha@mvista.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, May
-	21, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac5Vpw/URy+ejFYJTXyOs7d80Lpxrg==
-Date: Mon, 20 May 2013 22:12:05 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A71911434@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
+	[209.85.214.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01CB1E01542
+	for <yocto@yoctoproject.org>; Tue, 21 May 2013 02:42:37 -0700 (PDT)
+Received: by mail-ob0-f180.google.com with SMTP id xk17so447509obc.39
+	for <yocto@yoctoproject.org>; Tue, 21 May 2013 02:42:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=O0m5itFoCrnyIa3/yNSSrJkpuOBIWUMyfedcT8deb2I=;
+	b=JOtIS8DRmQ8HxUQ5tkZ3hgQfqFeKTl69/LgVb+NaDIEcLC5JvkmmQPlIxO6rc7Vpvz
+	NSjgGtR/zZzoheQD3vq4TTfFsJDo/v644eBcOUPQvI/+s+lPxdccZu/r8tsvzBKcdD6Z
+	f2nymVZOZnTgpq9Q8n2BoLgQ7jtR/gys7+zCAVT4gGCGa1AVbEshYXFp3UwBU2Oat7tl
+	2I9G6ciOtHiGhC5J+JTbxg2iiCRzlbYXSibbxCEeopjF3NDLtBUZ8WqejNvLrpaJLmrH
+	/cyLa2mdlQveC34JwIQ2InU8HQIiZx0sRlBzrHLlEIZJmLNL5mqDfy5p8UgFR8rBe9nh
+	/W8g==
+X-Received: by 10.60.38.169 with SMTP id h9mr819694oek.120.1369129356302; Tue,
+	21 May 2013 02:42:36 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 20 May 2013 15:36:07 -0700
-Cc: "Szankin, Maciej" <maciej.szankin@intel.com>, "Palalau,
-	AlexandruX" <alexandrux.palalau@intel.com>, "'Maupin,
-	Chase'" <chase.maupin@ti.com>,
-	'Chris Kaminski' <chris.kaminski@tobias.tv>, "Mirea,
-	Viorel" <viorel.mirea@intel.com>,
-	SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>,
-	"Pruteanu, CodrinX C" <codrinx.c.pruteanu@intel.com>, "Damian,
-	Alexandru" <alexandru.damian@intel.com>,
-	Olivia Salisbury <olivia.salisbury@tobias.tv>
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, May 21, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Received: by 10.182.114.163 with HTTP; Tue, 21 May 2013 02:42:14 -0700 (PDT)
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Tue, 21 May 2013 11:42:14 +0200
+Message-ID: <CAAGt+t3ueJoFB=Vf9sX5pE5CTx4g9QG6px9XjW-uUrDH49BJvg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Hello world package error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,567 +34,184 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 May 2013 22:12:11 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A71911434ORSMSX108amrcor_"
+X-List-Received-Date: Tue, 21 May 2013 09:42:38 -0000
+Content-Type: multipart/alternative; boundary=089e0149530aef223104dd3744b0
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A71911434ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--089e0149530aef223104dd3744b0
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi all,
+
+
+
+I am trying to add Hello world package, my path is as follows,
+
+*/home/siguser/yocto/poky*
+
+
+    --meta-bebot
+       --recipes-bebot
+         --helloworld
+           --helloworld.bb
+
+
+                +-------------------------------------------
+
+
+                |   +-------------------------------------------
+
+                DESCRIPTION = "Simple helloworld application"
+                SECTION = "examples"
+                LICENSE = "MIT"
+                PR = "r0"
+                SRC_URI = "file://*hello.c*"
+                S = "*/home/siguser/workspace/bebot-apps/helloworld*"
+
+                do_compile() {
+         	${CC} hello.c -o helloworld
+                }
+
+                do_install() {
+	        install -d ${D}${bindir}
+	        install -m 0755 helloworld ${D}${bindir}
+                }
+          +-------------------------------------------
+
+
+                +-------------------------------------------
+ Source file location: */home/siguser/workspace/bebot-apps/helloworld*
+
+
+                                                              --hello.c
+
+
+When i try to run *bitbake helloworld* from build it throws "Nothing
+provides bitbake " error
+
+
+
+P.S: My source file location is outside of poky and i gave source
+location(S) in helloworld.bb
+
+
+Any help or ideas?
+
+
+
+Regards,
+
+Zafrullah Syed
+
+--089e0149530aef223104dd3744b0
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Agenda:
-
-* Opens collection - 5 min (Song)
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-* SWAT team rotation: Paul -> Ross
-* Opens - 10 min
-* Team Sharing - 20 min
-
-
-(UK number updated)
-
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-Conference details
-Conference name:        Yocto Technical Team
-Conference date/start time:     Tue Jun 26, 2012 at 10:00 AM Central Daylig=
-ht Time
-Participants:   30
-Duration:       60 minutes
-Participant passcode:   76994298
-Dial-in number:         1.972.995.7777
-US Toll Free number:    1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:=
-     1.972.995.7777x76994298#
-        Depending on where you are dialing from, either your BlackBerry wil=
-l pause and enter the passcode automatically or you will be prompted to cli=
-ck again to dial the passcode.
-
-
-Local and Global Access Numbers
-
-
-
-
-Country
-Dial-in number
-
-Australia:
-1800 636 843
-
-Czech Republic:
-242 430 350
-
-China (Beijing):
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-
-China (Shanghai):
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-
-China (Shenzen):
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-
-China (Other Cities):
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-
-Denmark:
-8060 1400
-
-Finland:
-09 41333477
-
-France:
-0497 275888
-
-Germany:
-08161 803232
-
-Holland:
-030 2417490
-
-India:
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-
-Israel:
-09 790 6715
-
-Italy:
-039 69061234 (039 is local city code not country code)
-
-Japan:
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-
-Malaysia:
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-
-Norway:
-2 295 8744
-
-Philippines:
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-
-Singapore:
-From IP phone dial 3894777
-Outside TI use 6389 4777
-
-South Korea:
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-
-Sweden:
-08 58755577
-
-Taiwan:
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-
-Turkey:
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-
-UK:
-01908355599
-
-US:
-972 995 7777 or 1877 561 6828
-
-
-Recurring conferences
-First scheduled conference:     Tue Jun 26, 2012
-Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:        End on Fri Jun 21, 2013, 10:40 AM CDT
-
-
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A71911434ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+<div dir=3D"ltr"><div><pre style=3D"font-family:courier,&#39;courier new&#3=
+9;,monospace;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margi=
+n-top:0px;margin-bottom:0px;color:rgb(0,0,0);line-height:19px">Hi all,</pre=
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>* SWAT team rotation: Paul -&gt; Ross</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Calibri" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">(UK number updated)=
-</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
- attending the meeting to logon the Yocto IRC chancel during the meeting (o=
-ptional):</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
-=3D"http://webchat.freenode.net/?channels=3D#yocto"><font color=3D"blue"><u=
->http://webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
-ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
-><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
-/font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Conference deta=
-ils</b> </span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference name: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Yocto Technical Team</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference date/start time: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 26, 2012 at 10:00 AM Central Daylight Time </b></s=
-pan></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participants: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>30</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Duration: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>60 minutes </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participant passcode: </span></font></td>
-<td><font face=3D"Calibri" color=3D"#1F497D">76994298</font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Dial-in number: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777 </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">US Toll Free number: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.877.561.6828 </b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BlackBerry users, click this link to join your conference as =
-a <b>participant</b>:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777x</b><font face=3D"Calibri" size=3D"2" color=
-=3D"#1F497D"><span style=3D"font-size:11pt;">76994298</span></font><b>#</b>=
-</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">&nbsp;</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
-ry will pause and enter the passcode automatically or you will be prompted =
-to click again to dial the passcode.</span></font></td>
-</tr>
-<tr>
-<td colspan=3D"2">
-<table width=3D"273" style=3D"width:164.25pt;margin-left:5.55pt;">
-<col width=3D"273" style=3D"width:164.25pt;">
-<tr>
-<td><font face=3D"Calibri"></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#428CC6;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#CFCFCF"><span style=3D"font-size:8.5pt;background-color:#428CC6;">=
-<b>Local and Global Access Numbers</b> </span></font></td>
-</tr>
-</table>
-<div><font face=3D"Calibri" color=3D"#666666">&nbsp;</font></div>
-<table width=3D"576" style=3D"width:345.6pt;margin-left:5.55pt;">
-<col width=3D"172" style=3D"width:103.4pt;">
-<col width=3D"403" style=3D"width:242.2pt;">
-<tr>
-<td><font face=3D"Calibri"></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-ountry</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
-ial-in number</b></span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Australia:</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-1800 636 843</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Czech Republic:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">242 430 350</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Beijing):</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 8784277
-<br>
 
-Beijing Out of Office dial 5878 4277</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shanghai):</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 3073322
-<br>
+<pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;font-size=
+:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-botto=
+m:0px;color:rgb(0,0,0);line-height:19px"><br></pre><pre style=3D"font-famil=
+y:courier,&#39;courier new&#39;,monospace;font-size:14px;white-space:pre-wr=
+ap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0);l=
+ine-height:19px">
 
-Shanghai Out of Office dial 2307 3322</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shenzen):</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 6007877
-<br>
+I am trying to add Hello world package, my path is as follows,</pre><pre st=
+yle=3D"font-family:courier,&#39;courier new&#39;,monospace;font-size:14px;w=
+hite-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;c=
+olor:rgb(0,0,0);line-height:19px">
 
-Shenzen Out of Office dial 2600 7877</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Other Cities):</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 8-9957777
-<br>
+<b>/home/siguser/yocto/poky</b></pre><pre style=3D"font-family:courier,&#39=
+;courier new&#39;,monospace;font-size:14px;white-space:pre-wrap;word-wrap:b=
+reak-word;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0);line-height:19p=
+x">
 
-Other cities - Non IP phone dial 021-23073322</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Denmark:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">8060 1400</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Finland:</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-09 41333477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>France: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">0497 275888</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Germany:</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-08161 803232</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Holland: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">030 2417490</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>India: </b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-BSNL subscribers use 1800 425 9996 (Toll Free)<br>
+    --meta-bebot
+       --recipes-bebot
+         --helloworld
+      =A0    --<a href=3D"http://helloworld.bb">helloworld.bb</a>          =
+</pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;fon=
+t-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin=
+-bottom:0px;color:rgb(0,0,0);line-height:19px">
 
-Airtel subscribers use 0008 009 861 212 (Toll Free)<br>
+               =A0+-------------------------------------------</pre><pre st=
+yle=3D"font-family:courier,&#39;courier new&#39;,monospace;font-size:14px;w=
+hite-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;c=
+olor:rgb(0,0,0);line-height:19px">
 
-From TI Campus use 89957777<br>
+                |   +-------------------------------------------
+</pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;fon=
+t-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin=
+-bottom:0px;color:rgb(0,0,0);line-height:19px">                DESCRIPTION =
+=3D &quot;Simple helloworld application&quot;
+                SECTION =3D &quot;examples&quot;
+                LICENSE =3D &quot;MIT&quot;
+                PR =3D &quot;r0&quot;
+                SRC_URI =3D &quot;file://<b>hello.c</b>&quot;
+                S =3D &quot;<b>/home/siguser/workspace/bebot-apps/helloworl=
+d</b>&quot;
 
-Others use 2509 9555 (Landline within Bangalore) or<br>
+                do_compile() {
+         	${CC} hello.c -o helloworld
+                }
 
-80 2509 9555 (Outside Bangalore)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Israel: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 790 6715</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Italy:</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-039 69061234 (039 is local city code not country code)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Japan: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From TI Campus use 8 995 7777
-<br>
+                do_install() {
+	        install -d ${D}${bindir}
+	        install -m 0755 helloworld ${D}${bindir}
+                }
+          +-------------------------------------------</pre><pre style=3D"f=
+ont-family:courier,&#39;courier new&#39;,monospace;font-size:14px;white-spa=
+ce:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;color:rgb=
+(0,0,0);line-height:19px">
 
-Outside TI use 03 4331 3777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Malaysia: </b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 2643799
-<br>
+                +-------------------------------------------        =20
+ Source file location: <b>/home/siguser/workspace/bebot-apps/helloworld</b>=
+            </pre><pre style=3D"font-family:courier,&#39;courier new&#39;,m=
+onospace;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-to=
+p:0px;margin-bottom:0px;color:rgb(0,0,0);line-height:19px">
 
-From Kuala Lumpur dial 4264 3799 <br>
+                                                              --hello.c</pr=
+e><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;font-si=
+ze:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bot=
+tom:0px;color:rgb(0,0,0);line-height:19px">
 
-Outside Kuala Lumpur dial (03)4264 3799</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Norway: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">2 295 8744</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Philippines:</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From Baguio City use 4471177
-<br>
+<br></pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace=
+;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;ma=
+rgin-bottom:0px;color:rgb(0,0,0);line-height:19px">When i try to run <i>bit=
+bake helloworld</i> from build it throws &quot;Nothing provides bitbake &qu=
+ot; error<br>
 
-From Metro Manila area use 8702477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Singapore:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 3894777
-<br>
+</pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;fon=
+t-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin=
+-bottom:0px;color:rgb(0,0,0);line-height:19px"><br></pre><pre style=3D"font=
+-family:courier,&#39;courier new&#39;,monospace;font-size:14px;white-space:=
+pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;color:rgb(0,=
+0,0);line-height:19px">
 
-Outside TI use 6389 4777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>South Korea:</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 5606998
-<br>
+P.S: My source file location is outside of poky and i gave source location(=
+S) in <a href=3D"http://helloworld.bb">helloworld.bb</a></pre><pre style=3D=
+"font-family:courier,&#39;courier new&#39;,monospace;font-size:14px;white-s=
+pace:pre-wrap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;color:r=
+gb(0,0,0);line-height:19px">
 
-From Seoul dial 5606998 <br>
+<br></pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace=
+;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;ma=
+rgin-bottom:0px;color:rgb(0,0,0);line-height:19px">Any help or ideas?</pre>
 
-Outside Seoul dial (02)5606998</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Sweden: </b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08 58755577</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Taiwan:</b> </span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 1363
-<br>
+<pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;font-size=
+:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-botto=
+m:0px;color:rgb(0,0,0);line-height:19px"><br></pre><pre style=3D"font-famil=
+y:courier,&#39;courier new&#39;,monospace;font-size:14px;white-space:pre-wr=
+ap;word-wrap:break-word;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0);l=
+ine-height:19px">
 
-From Taipei dial 2241 1363 <br>
+Regards,</pre><pre style=3D"font-family:courier,&#39;courier new&#39;,monos=
+pace;font-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0p=
+x;margin-bottom:0px;color:rgb(0,0,0);line-height:19px">Zafrullah Syed</pre>
 
-Outside Taipei dial (02)2241 1363</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Turkey:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Landline Only</b> dial 0811 288 0001
-<br>
+</div>
+</div>
 
-then enter 877 633 1123 </span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>UK: </b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font size=3D"2"><span style=3D"fon=
-t-size:10.5pt;background-color:#EBEBEB;">01908355599</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>US:</b> </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
-</tr>
-</table>
-<div><font face=3D"Calibri" color=3D"#666666">&nbsp;</font></div>
-</td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Recurring confe=
-rences </b></span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">First scheduled conference: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 26, 2012</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence frequency: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence ends: </span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>End on Fri Jun 21, 2013, 10:40 AM CDT</b></span></font></t=
-d>
-</tr>
-</table>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A71911434ORSMSX108amrcor_--
+--089e0149530aef223104dd3744b0--
