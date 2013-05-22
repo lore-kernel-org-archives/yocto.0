@@ -1,33 +1,31 @@
-Return-Path: <precipice.development@gmail.com>
-Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
-	[209.85.220.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35E01E0129D
-	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:03:01 -0700 (PDT)
-Received: by mail-pa0-f50.google.com with SMTP id fb11so629101pad.9
-	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:03:00 -0700 (PDT)
+Return-Path: <varun292006@gmail.com>
+Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
+	[209.85.220.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D37B4E013E3
+	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:06:22 -0700 (PDT)
+Received: by mail-pa0-f45.google.com with SMTP id lj1so2019587pab.4
+	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:06:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=91OSkhq+yjm+wp6tbNMVl7If6P5TgxW+MFiEjl/+Cls=;
-	b=gFDTnNImtdc7xkbpyIAHq4XUJHg11+Ys3sfo4ROot1k2B9V1okwnAvlF5yP33A+0Lb
-	7uxD1UgEyGxhgRoZuShM6tvxeibNDF77cjIVYPDlCF0P7BJM66oJvx4EjU8UsiKhI9CZ
-	XsBargxDKyCFfB23ig6KnsYaxAl+dce7U1qY1Udxn5o0SrBILxMiFloRqOCFVZzsF+7M
-	1oVyjIqddSe+QND9FIOGQgIqUlFWSZ+mx1yb/AfSfP2jSkxM/g7Ib/KHyqwNwg31DwS1
-	tBsAo0rmW1e54Ob2n/ZZmkTAOWuSDEcxHaIbNCi64drMxYNOI4NpLXnbYSYiPpmTs7Cp
-	bWjA==
+	:content-type; bh=ibq3ufwOdw+KsytonpP2gT8drfp+Sv3/yh59V3MP/w4=;
+	b=WpFWJ57cd61CUV+G2xoNvbBNbInCcpAVUqBZkWgZVoIyfkeEpwH5JGY1IPq/TtR6hT
+	yOraeIHQsfeq1rn6ynXxFxvM+FUTF295r/fKnDLyCwYbFkpBR8lN0Gg0BzP8GMEMH5o3
+	LEEtcJDQYI+VNymhiWo4VIRlI/M1K+fRuE6HQpXfpM2lHWklub619Qwg5+HAoGsHrF5/
+	RypJWQ48IO5DlEMoBT+VNK+aybpkB74+H+PRYP32stw11A4KNpH6VDzixnxKzMja0sCp
+	AWJcAibq06d2m5KRyrn3YU6+++RmVoFYfVu4tDp3sQ/xgxLZdpmQq87E2Ibadlffa8Bq
+	eGgA==
 MIME-Version: 1.0
-X-Received: by 10.68.14.6 with SMTP id l6mr8863534pbc.202.1369242180858; Wed,
-	22 May 2013 10:03:00 -0700 (PDT)
-Received: by 10.68.208.67 with HTTP; Wed, 22 May 2013 10:03:00 -0700 (PDT)
-In-Reply-To: <CA+gsK-qmFq2NLcd4-AO=aRBC7q3W8fwRarLpnv9-WtS2TWFLtg@mail.gmail.com>
-References: <CAN0nBNhwxY1hxj+BAyDKKkVnHSOpcxLfZB+vOq5MQqVvZQiSjA@mail.gmail.com>
-	<CA+gsK-qmFq2NLcd4-AO=aRBC7q3W8fwRarLpnv9-WtS2TWFLtg@mail.gmail.com>
-Date: Wed, 22 May 2013 10:03:00 -0700
-Message-ID: <CAN0nBNisz3mG5mx3JAWHdGCuDmE7yYekdZgNXu4rH6dvJ9qp8g@mail.gmail.com>
-From: Precipice Development <precipice.development@gmail.com>
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: ADT Install Issues
+X-Received: by 10.68.171.196 with SMTP id aw4mr8723870pbc.78.1369242382709;
+	Wed, 22 May 2013 10:06:22 -0700 (PDT)
+Received: by 10.68.5.230 with HTTP; Wed, 22 May 2013 10:06:22 -0700 (PDT)
+In-Reply-To: <CAP71WjzJjYu5Ft2hAkPs77RRf6=mbkoFbFK+XGTNnW39DFxyJg@mail.gmail.com>
+References: <CAGxOggGKPW3WQcYbo0vim833ErrjGk8fXQyyiinB56jDjvKWVg@mail.gmail.com>
+	<CAP71WjzJjYu5Ft2hAkPs77RRf6=mbkoFbFK+XGTNnW39DFxyJg@mail.gmail.com>
+Date: Wed, 22 May 2013 22:36:22 +0530
+Message-ID: <CAGxOggF_iWKtZcpmvqtuvBq6unr5S7tU9fHp+Hqwg2ZH1aV5nA@mail.gmail.com>
+From: varun bhatnagar <varun292006@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: runqemu: vnc server running on ::1:5900
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,104 +37,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 May 2013 17:03:01 -0000
-Content-Type: multipart/alternative; boundary=bcaec520ee87cd3ac704dd5189f9
+X-List-Received-Date: Wed, 22 May 2013 17:06:22 -0000
+Content-Type: multipart/alternative; boundary=047d7bacb516d539c604dd5195b8
 
---bcaec520ee87cd3ac704dd5189f9
+--047d7bacb516d539c604dd5195b8
 Content-Type: text/plain; charset=ISO-8859-1
 
-Some progress.  Thanks for your help.  My notes are below.  I found a path
-to get it working but not as per documentation
-
-I did use my own rootfs image.  In the adt_installer.conf file I had the
-following:
-
-YOCTOADT_ROOTFS_mips="minimal-dev sato-sdk"
-YOCTOADT_TARGET_SYSROOT_IMAGE_mips="minimal-dev"
-YOCTOADT_TARGET_SYSROOT_LOC_mips="$HOME/adt/sysroots/mips"
-
-In my eclipse preferences for ADT, I have sysroot pointed to the
-
-I also
-grabbed file:///home/jph/downloads/core-image-minimal-dev-routerstationpro.tar.bz2
-and did a runqemu-extract-sdk as a test. Pointed my sysroots to the
-extracted folder.  I get the same error in Eclipse.  I went ahead and
-grabbed the sato image for RSPro and repeated.  Reconfigure projects worked
-and gave me an info message only:
-
-Missing PROG mips-poky-linux-dlltool
-Missing PROG dlltool hw3
-Missing PROG mips-poky-linux-mt
-
-From this image the build worked.  Not sure why I am getting those errors
-with the dev image however (both mine and the downloaded one).
+Thanks for the reply Nicolas....
+But neither I am getting any qemu window in GUI nor any console. It is
+getting stuck there itself (as shown in the screenshot). But in the video
+which is available on the yocto site, when runqemu command is given one
+qemu console gets launched where in user can see the image getting booted.
+But in my case I am not getting anything and it is getting stuck.
 
 
+On Wed, May 22, 2013 at 10:21 PM, Nicolas Dechesne <
+nicolas.dechesne@linaro.org> wrote:
 
-On Tue, May 21, 2013 at 10:40 PM, Rudolf Streif <rstreif@linuxfoundation.org
-> wrote:
-
-> What root file system are you using with your Eclipse ADT setup? If you
-> are using one of the default ones that you can specify in
-> adt_installer.conf or your own?
 >
-> In any case it looks as if your root file system image is not suitable for
-> development work. You would need to use image targets that end in *-dev or
-> *-sdk such as core-image-minimal-dev.
+> On Wed, May 22, 2013 at 6:45 PM, varun bhatnagar <varun292006@gmail.com>wrote:
 >
-> Rudi
+>> I have successfully created a PowerPC image using* bitbake -k
+>> core-image-minimal*.
+>> When I am trying to boot it using *runqemu qemuppc* I am getting a
+>> message saying* vnc server running on ::1:5900.*
+>>
+>> I searched on internet and it was written that to resolve this error *SDL
+>> *and *SDL-devel* package should be installed.
+>>
+>> I have installed these packages but it did not work. Still I am getting
+>> the same message.
+>> Can anyone help me out with this. Below is the screenshot of message.
+>>
+>
+> it sounds normal to me. that message means that qemu successfully started
+> a VNC server. you now need to connect to the server to see the output. that
+> is handy when using graphical interface. if you have no UI, you can use the
+> 'nographic' option to runqemu, and it won't use VNC, and you will get the
+> login console in your terminal.
+>
+>
+>
 >
 
-
-
--- 
-Precipice Development International
-http://www.precipicedevelopment.com
-
---bcaec520ee87cd3ac704dd5189f9
+--047d7bacb516d539c604dd5195b8
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div style>Some progress. =A0Thanks for your help. =A0My n=
-otes are below. =A0I found a path to get it working but not as per document=
-ation</div><div><br></div>I did use my own rootfs image. =A0In the adt_inst=
-aller.conf file I had the following:<div>
-<br></div><div><div>YOCTOADT_ROOTFS_mips=3D&quot;minimal-dev sato-sdk&quot;=
-</div><div>YOCTOADT_TARGET_SYSROOT_IMAGE_mips=3D&quot;minimal-dev&quot;</di=
-v><div>YOCTOADT_TARGET_SYSROOT_LOC_mips=3D&quot;$HOME/adt/sysroots/mips&quo=
-t;</div>
-</div><div><br></div><div style>In my eclipse preferences for ADT, I have s=
-ysroot pointed to the=A0</div><div style><br></div><div style>I also grabbe=
-d=A0file:///home/jph/downloads/core-image-minimal-dev-routerstationpro.tar.=
-bz2 and did a runqemu-extract-sdk as a test. Pointed my sysroots to the ext=
-racted folder. =A0I get the same error in Eclipse. =A0I went ahead and grab=
-bed the sato image for RSPro and repeated. =A0Reconfigure projects worked a=
-nd gave me an info message only:</div>
-<div style><br></div><div style><div>Missing PROG mips-poky-linux-dlltool<s=
-pan class=3D"" style=3D"white-space:pre">	</span><span class=3D"" style=3D"=
-white-space:pre">	</span></div><div>Missing PROG dlltool<span class=3D"" st=
-yle=3D"white-space:pre">	</span>hw3<span class=3D"" style=3D"white-space:pr=
-e">		</span></div>
-<div>Missing PROG mips-poky-linux-mt<span class=3D"" style=3D"white-space:p=
-re">	</span></div><div><br></div><div style>From this image the build worke=
-d. =A0Not sure why I am getting those errors with the dev image however (bo=
-th mine and the downloaded one).</div>
-</div><div><br></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Tue, May 21, 2013 at 10:40 PM, Rudolf Streif <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blank">rstreif=
-@linuxfoundation.org</a>&gt;</span> wrote:<br>
+<div dir=3D"ltr">Thanks for the reply Nicolas....<div>But neither I am gett=
+ing any qemu window in GUI nor any console. It is getting stuck there itsel=
+f (as shown in the screenshot). But in the video which is available on the =
+yocto site, when runqemu command is given one qemu console gets launched wh=
+ere in user can see the image getting booted. But in my case I am not getti=
+ng anything and it is getting stuck.</div>
+</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed,=
+ May 22, 2013 at 10:21 PM, Nicolas Dechesne <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">nicolas.dechesne@=
+linaro.org</a>&gt;</span> wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">What root file system are you using with you=
-r Eclipse ADT setup? If you are using one of the default ones that you can =
-specify in adt_installer.conf or your own?
-<div><br></div><div>In any case it looks as if your root file system image =
-is not suitable for development work. You would need to use image targets t=
-hat end in *-dev or *-sdk such as core-image-minimal-dev.</div><div><br>
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra">=
+<div><div class=3D"h5"><br><div class=3D"gmail_quote">On Wed, May 22, 2013 =
+at 6:45 PM, varun bhatnagar <span dir=3D"ltr">&lt;<a href=3D"mailto:varun29=
+2006@gmail.com" target=3D"_blank">varun292006@gmail.com</a>&gt;</span> wrot=
+e:<br>
 
-</div><div>Rudi</div>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Precipice De=
-velopment International<br><a href=3D"http://www.precipicedevelopment.com">=
-http://www.precipicedevelopment.com</a>
-</div></div>
 
---bcaec520ee87cd3ac704dd5189f9--
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>I have successfully created a PowerPC i=
+mage using<b> bitbake -k core-image-minimal</b>.</div><div>When I am trying=
+ to boot it using <b>runqemu qemuppc</b> I am getting a message saying<b> v=
+nc server running on ::1:5900.</b></div>
+
+
+
+<div><br></div><div>I searched on internet and it was written that to resol=
+ve this error <b>SDL </b>and <b>SDL-devel</b> package should be installed.<=
+/div><div><br></div><div>I have installed these packages but it did not wor=
+k. Still I am getting the same message.</div>
+
+
+
+<div>Can anyone help me out with this. Below is the screenshot of message.<=
+/div><div></div></blockquote></div><br></div></div>it sounds normal to me. =
+that message means that qemu successfully started a VNC server. you now nee=
+d to connect to the server to see the output. that is handy when using grap=
+hical interface. if you have no UI, you can use the &#39;nographic&#39; opt=
+ion to runqemu, and it won&#39;t use VNC, and you will get the login consol=
+e in your terminal.=A0</div>
+
+
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br></div><=
+div class=3D"gmail_extra"><br></div></div>
+</blockquote></div><br></div>
+
+--047d7bacb516d539c604dd5195b8--
