@@ -1,35 +1,30 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
-	[209.85.212.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38935E013E3
-	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:12:13 -0700 (PDT)
-Received: by mail-vb0-f44.google.com with SMTP id e13so1442907vbg.31
-	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:12:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=U4zO0U9VRwT4L51xVTzf0AYeLcCXRbzdthNHPLCj7Ro=;
-	b=ghADAtRCip+xEzoJRmCeqZwPONByz02aXjTIR4XyK19hdxTfjlCxDCqgbB4u6iSeo6
-	VISSq/ajklV3TA/FwUiNjQfV4h3bpe4s43qOM0tVw6etitOKElAc1eK0jzdmN83Ocank
-	Vr0/F3LEMsCFu0gUp5vWbkJDg+s4tq6tkatqc+AuUyW09Tx2pd74teiu1PeUa5uKxCUe
-	5z/mrzZtsV1NVSDyu3GZuWgftIIKwVd49wlFCgAtFP7JP0ZMOucCwutVeTs4s6c4GEoi
-	LNHXjERVnO3dV80FP1EuTgmSPtsjk7LD0KNrN94zpLBktowxbn3yZQpQIR7r+zMUCmZe
-	I2pQ==
-X-Received: by 10.59.3.198 with SMTP id by6mr3112951ved.39.1369242732691; Wed,
-	22 May 2013 10:12:12 -0700 (PDT)
+Return-Path: <varun292006@gmail.com>
+Received: from mail-pb0-f53.google.com (mail-pb0-f53.google.com
+	[209.85.160.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 547AEE0148D
+	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:12:20 -0700 (PDT)
+Received: by mail-pb0-f53.google.com with SMTP id un4so1925399pbc.12
+	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:12:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=bdEpIOT+RwKQkK6+VvSmC44asMp0o/j2Mk/KmcTuKiM=;
+	b=XckqSsC/hb9BzcX+7x/mZrHSXMXYFr3BEluNV2IKenOb64YwU5BTOwvgi9zq7xgs76
+	Em945g7oQkOMXjEbS/OUlYh4zJwMX1otM2Snc8rnwv8t/WHvMNvFc51N6oif/IuSuM8b
+	ny+2PKTnUu+WA4oqPRMNcuNp5OeR7N0FjaVCzTdKZcLty0cNzwtgztgUsLlnEsu3k9i2
+	G3aVFSj0lH1rAYcBQLYN+KgdRHtMNST+a4Imhot15Gsh/jCAvud5P+XiadSNOJe5dg5A
+	L7DKM6y7BPXZrbEkq3TxsH7VXMMFccybehzHqOAQTidoPHspwm1ih4nNvXOzqNa+e2ho
+	Lx3w==
 MIME-Version: 1.0
-Received: by 10.220.98.7 with HTTP; Wed, 22 May 2013 10:11:52 -0700 (PDT)
-In-Reply-To: <CAGxOggF_iWKtZcpmvqtuvBq6unr5S7tU9fHp+Hqwg2ZH1aV5nA@mail.gmail.com>
+X-Received: by 10.68.20.193 with SMTP id p1mr8834208pbe.218.1369242740172;
+	Wed, 22 May 2013 10:12:20 -0700 (PDT)
+Received: by 10.68.5.230 with HTTP; Wed, 22 May 2013 10:12:20 -0700 (PDT)
+In-Reply-To: <CAJTo0LbaJ4ezpvobr6xGK6-=oPAh_H=Woh1uuY7pcrRZbmXHhg@mail.gmail.com>
 References: <CAGxOggGKPW3WQcYbo0vim833ErrjGk8fXQyyiinB56jDjvKWVg@mail.gmail.com>
-	<CAP71WjzJjYu5Ft2hAkPs77RRf6=mbkoFbFK+XGTNnW39DFxyJg@mail.gmail.com>
-	<CAGxOggF_iWKtZcpmvqtuvBq6unr5S7tU9fHp+Hqwg2ZH1aV5nA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 22 May 2013 18:11:52 +0100
-Message-ID: <CAJTo0LaBaL8cTFbPw-=1dJg6OE3z9da3=TwQj-Lp+3FyPW2FBw@mail.gmail.com>
-To: varun bhatnagar <varun292006@gmail.com>
-X-Gm-Message-State: ALoCoQkHfKT+UdZsszpNW9uYATw0Wa4peYsBV4l7A0mapVNW9jPOcAuFlwaDv6Zq7TdqP0OHZp3N
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAJTo0LbaJ4ezpvobr6xGK6-=oPAh_H=Woh1uuY7pcrRZbmXHhg@mail.gmail.com>
+Date: Wed, 22 May 2013 22:42:20 +0530
+Message-ID: <CAGxOggEv1AJfZDo7_QPt8ZSXwVb4WGGrjf_JaOKH1VWKKocabQ@mail.gmail.com>
+From: varun bhatnagar <varun292006@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: runqemu: vnc server running on ::1:5900
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,23 +37,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 May 2013 17:12:13 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 22 May 2013 17:12:20 -0000
+Content-Type: multipart/alternative; boundary=bcaec5215ac323ae1004dd51ab07
 
-On 22 May 2013 18:06, varun bhatnagar <varun292006@gmail.com> wrote:
-> Thanks for the reply Nicolas....
-> But neither I am getting any qemu window in GUI nor any console. It is
-> getting stuck there itself (as shown in the screenshot). But in the video
-> which is available on the yocto site, when runqemu command is given one qemu
-> console gets launched where in user can see the image getting booted. But in
-> my case I am not getting anything and it is getting stuck.
+--bcaec5215ac323ae1004dd51ab07
+Content-Type: text/plain; charset=ISO-8859-1
 
-As Nicolas said, that's expected.  You didn't have SDL present when
-qemu was compiled, so it's using VNC to display the UI.  Connect a VNC
-client to the address it gives you, and you'll see the UI.
+Thanks Burton, Ross....
+Will try this at my workplace.....
+And is this a bug?
 
-Alternatively, and this is how the video was done, if you install SDL
-and re-build qemu-native it will display a window itself.
 
-Ross
+On Wed, May 22, 2013 at 10:26 PM, Burton, Ross <ross.burton@intel.com>wrote:
 
+> On 22 May 2013 17:45, varun bhatnagar <varun292006@gmail.com> wrote:
+>
+>> Hi,
+>>
+>> I have successfully created a PowerPC image using* bitbake -k
+>> core-image-minimal*.
+>> When I am trying to boot it using *runqemu qemuppc* I am getting a
+>> message saying* vnc server running on ::1:5900.*
+>>
+>> I searched on internet and it was written that to resolve this error *SDL
+>> *and *SDL-devel* package should be installed.
+>>
+>> I have installed these packages but it did not work. Still I am getting
+>> the same message.
+>> Can anyone help me out with this. Below is the screenshot of message.
+>>
+>
+> The bit that you/the internet missed is that the "problem" is that qemu
+> didn't have SDL available when you built it.  You'll need to rebuild
+> qemu-native - "bitbake -ccleansstate qemu-native ; bitbake qemu-native".
+>
+> Ross
+>
+
+--bcaec5215ac323ae1004dd51ab07
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks Burton, Ross....<div style>Will try this at my work=
+place.....</div><div style>And is this a bug?</div></div><div class=3D"gmai=
+l_extra"><br><br><div class=3D"gmail_quote">On Wed, May 22, 2013 at 10:26 P=
+M, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.c=
+om" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 2=
+2 May 2013 17:45, varun bhatnagar <span dir=3D"ltr">&lt;<a href=3D"mailto:v=
+arun292006@gmail.com" target=3D"_blank">varun292006@gmail.com</a>&gt;</span=
+> wrote:<br>
+</div></div><div class=3D"gmail_quote"><div><div class=3D"h5"><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex">
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I have successfully created a Power=
+PC image using<b> bitbake -k core-image-minimal</b>.</div><div>When I am tr=
+ying to boot it using <b>runqemu qemuppc</b> I am getting a message saying<=
+b> vnc server running on ::1:5900.</b></div>
+
+
+
+<div><br></div><div>I searched on internet and it was written that to resol=
+ve this error <b>SDL </b>and <b>SDL-devel</b> package should be installed.<=
+/div><div><br></div><div>I have installed these packages but it did not wor=
+k. Still I am getting the same message.</div>
+
+
+
+<div>Can anyone help me out with this. Below is the screenshot of message.<=
+/div></div></blockquote><div><br></div></div></div><div>The bit that you/th=
+e internet missed is that the &quot;problem&quot; is that qemu didn&#39;t h=
+ave SDL available when you built it. =A0You&#39;ll need to rebuild qemu-nat=
+ive - &quot;bitbake -ccleansstate qemu-native ; bitbake qemu-native&quot;.<=
+/div>
+<span class=3D"HOEnZb"><font color=3D"#888888">
+
+<div><br></div><div>Ross</div></font></span></div>
+</blockquote></div><br></div>
+
+--bcaec5215ac323ae1004dd51ab07--
