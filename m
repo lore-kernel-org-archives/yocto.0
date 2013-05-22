@@ -1,72 +1,32 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E5DAE01515
-	for <yocto@yoctoproject.org>; Tue, 21 May 2013 14:45:24 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 21 May 2013 14:45:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,716,1363158000"; 
-	d="scan'208,217";a="341343012"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by fmsmga002.fm.intel.com with ESMTP; 21 May 2013 14:45:12 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.51]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.15]) with mapi id
-	14.03.0123.003; Tue, 21 May 2013 14:44:35 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>, "Patel, Keyur R" <keyur.r.patel@intel.com>,
-	'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
-	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
-	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
-	<joshua.lock@intel.com>, "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
-	"Moeller, Thorsten" <thorsten.moeller@intel.com>, 'Sanjay Raina'
-	<sraina@mvista.com>, "Osier-mixon,
-	Jeffrey" <jeffrey.osier-mixon@intel.com>, 
-	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
-	"Saxena, Rahul" <rahul.saxena@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Zanussi, 
-	Tom" <tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
-	<Sean_Hudson@mentor.com>, "Serban,
-	Laurentiu" <laurentiu.serban@intel.com>, 
-	"Burton, Ross" <ross.burton@intel.com>, "Mueller, Robert"
-	<robert.mueller@intel.com>, "Arce Moreno, Abraham"
-	<abraham.arce.moreno@intel.com>,
-	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
-	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
-	<mario.a.santana.lopez@intel.com>, "Calles Palacios, Osvaldo"
-	<osvaldo.calles.palacios@intel.com>, "'achaudha@mvista.com'"
-	<achaudha@mvista.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, May
-	21, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac5WbFuKSZUaWDL0SgGqPDM6BXU95g==
-Date: Tue, 21 May 2013 21:44:34 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A71912386@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 482B4E006BF
+	for <yocto@yoctoproject.org>; Tue, 21 May 2013 17:40:43 -0700 (PDT)
+Received: by mail-vc0-f175.google.com with SMTP id hv10so914647vcb.34
+	for <yocto@yoctoproject.org>; Tue, 21 May 2013 17:40:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=1CavhFc41dpzye19ZxnADkUEg1//NTGKi1GmIekBY40=;
+	b=No9MG3gpZZQh0RnyRo+WmCMUEZyl1UaOGYHwKIy1mwyxIvyC8NnQzaDgRKPXy00CAB
+	/L+3rS5TaXzK5p84VEcphEaW6dfISilWmGgP4KRtVm8LyOJgAl3CVnlPoKAaFs/nq3K4
+	B3FnxShXgGQEGCANRxzgeJOx4hd7j1+wUeuBmnirzMisavjcsRNY7Th8CUd7iNfY0gib
+	BYH4aks5taCSK1qjD/HAsATX6PZEW8uOiDwY8+Lv4ua5PbrBAThXTluD+wOwEPPxVtTg
+	0KRVchga+zfCnj0ctmKLVXyd3DtxgFdkmdTtaXGZnG/hptkAgnSBhNO7roub9rM3ochj
+	rtnQ==
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 21 May 2013 14:47:35 -0700
-Cc: "Szankin, Maciej" <maciej.szankin@intel.com>, "Palalau,
-	AlexandruX" <alexandrux.palalau@intel.com>,
-	'Chris Kaminski' <chris.kaminski@tobias.tv>, "'Maupin,
-	Chase'" <chase.maupin@ti.com>, "Mirea, Viorel" <viorel.mirea@intel.com>,
-	SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>,
-	"Pruteanu, CodrinX C" <codrinx.c.pruteanu@intel.com>, "Damian,
-	Alexandru" <alexandru.damian@intel.com>,
-	Olivia Salisbury <olivia.salisbury@tobias.tv>
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, May 21, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.58.187.164 with SMTP id ft4mr1904728vec.5.1369183242505;
+	Tue, 21 May 2013 17:40:42 -0700 (PDT)
+Received: by 10.52.163.79 with HTTP; Tue, 21 May 2013 17:40:42 -0700 (PDT)
+Date: Tue, 21 May 2013 17:40:42 -0700
+Message-ID: <CAPhnLPAwiJyXH2c8dRLVKw6rQTSzpRv1+bTp4GHxLZX1APDPaQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmODGewGp4VNt+q/E5Dt+P98jLGCE3pHo7Y3UpFH2rhAIogJnUESQ51ybhuIrC08TWaI4hs
+Cc: SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>
+Subject: Weekly build availability.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,114 +38,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 May 2013 21:45:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A71912386ORSMSX108amrcor_"
+X-List-Received-Date: Wed, 22 May 2013 00:40:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A71912386ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+The weekly build has been kicked and should be available soon at:
 
-Attendees:
-Saul, Sean, ScottR, MarkH, Kevin, Nitin, LaurentiuP, Tom, Cristian, JeffP, =
-PaulE, RichardP, AlexD, Belen, Ross, Beth, Corneliu, Bj=F6rnS, Song
+http://autobuilder.yoctoproject.org/pub/nightly/20130521-1
 
-Agenda:
+meta-fsl-arm 	323b2de457377929223eedd3007b184a31087add
+meta-fsl-ppc 	70afc09e8a5aac8c06d654c6477cc06c90d2d164 	
+meta-intel 	2ba2e0ea55bab687134b452a5db81d189b820f59
+meta-qt3 	4c27cce6688aa39852f3cba5e7b80ec279019605 	
+poky 	176a46b088135f2891983bb8540bc45389341d90
 
-* Opens collection - 5 min (Song)
-* 1.3.2 status (Ross)
-  - Everything looks fine in testing. QA report is already out.
-  - Beth needs release note: feature and know issues. Ross will get that th=
-is afternoon.
-* 1.4.1 status (Paul)
-  - Sent out tested patches series. One sent out to bitbake list, others se=
-nt to oe-core mailing list. There is one extra patch. Pending review. There=
- will at least one more bounce. Still have 5 bugs plus 1 doc bugs. Looking =
-fine for June 19th RC1.
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-  . Open Bug#, WDD looks fine. M1 progressing as normal.
-  . M1 dates: feature complete - 6/2. RC1 - 6/5
-* SWAT team rotation: Paul -> Ross
-* Opens - 10 min
-* Team Sharing - 20 min
-  - Beth: last week spent some time with Women Outreach Program interns. We=
- will have an intern for the next 3 month starting in June. Should be worki=
-ng on security stuff.
-  - Saul: M1 gcc 4.8 updated. Mostly there. One outstanding issue. Sent an =
-email to oe-core list. Bruce does not have cycles for this. Anyone can help=
-? Will be travelling next week to LinuxCon Japan with ScottG and Jessica.
-  - MichaelH: installed 10Gbits network card for our storage backend. Elimi=
-nates the network problem. Will be adding more storage capacity to accommod=
-ate growing data. Having this network update to help that. OE mailing lists=
- are on YP hardware.
-  - RP: looking at some bitbake changes, need re-architecture, task configu=
-ration around the server. There are some patches on the mailing list now. H=
-ash cut down to 10 chars from 40 chars.
+Please begin scheduled testing. Thanks.
 
+-b
 
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A71912386ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>Saul, Sean, ScottR, MarkH, Kevin, Nitin, LaurentiuP, Tom, Cristian, Je=
-ffP, PaulE, RichardP, AlexD, Belen, Ross, Beth, Corneliu, <span style=3D"ba=
-ckground-color:#F0F7FF;">Bj=F6rnS, Song</span></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* 1.3.2 status (Ross)</div>
-<div>&nbsp; - Everything looks fine in testing. QA report is already out.</=
-div>
-<div>&nbsp; - Beth needs release note: feature and know issues. Ross will g=
-et that this afternoon.</div>
-<div>* 1.4.1 status (Paul)</div>
-<div>&nbsp; - Sent out tested patches series. One sent out to bitbake list,=
- others sent to oe-core mailing list. There is one extra patch. Pending rev=
-iew. There will at least one more bounce. Still have 5 bugs plus 1 doc bugs=
-. Looking fine for June 19th RC1.</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>&nbsp; . Open Bug#, WDD looks fine. M1 progressing as normal. </div>
-<div>&nbsp; . M1 dates: feature complete - 6/2. RC1 - 6/5</div>
-<div>* SWAT team rotation: Paul -&gt; Ross</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div>&nbsp; - Beth: last week spent some time with Women Outreach Program i=
-nterns. We will have an intern for the next 3 month starting in June. Shoul=
-d be working on security stuff.</div>
-<div>&nbsp; - Saul: M1 gcc 4.8 updated. Mostly there. One outstanding issue=
-. Sent an email to oe-core list. Bruce does not have cycles for this. Anyon=
-e can help? Will be travelling next week to LinuxCon Japan with ScottG and =
-Jessica.</div>
-<div>&nbsp; - MichaelH: installed 10Gbits network card for our storage back=
-end. Eliminates the network problem. Will be adding more storage capacity t=
-o accommodate growing data. Having this network update to help that. OE mai=
-ling lists are on YP hardware.</div>
-<div>&nbsp; - RP: looking at some bitbake changes, need re-architecture, ta=
-sk configuration around the server. There are some patches on the mailing l=
-ist now. Hash cut down to 10 chars from 40 chars.</div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A71912386ORSMSX108amrcor_--
