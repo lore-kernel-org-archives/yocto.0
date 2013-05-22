@@ -1,28 +1,34 @@
-Return-Path: <0xf777@gmail.com>
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4552CE0140A
-	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:14:37 -0700 (PDT)
-Received: by mail-lb0-f176.google.com with SMTP id x10so2388335lbi.35
-	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:14:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=unpuSPNLlVVDzgBQAS152H3SueX7qexcmPt3vfiXxng=;
-	b=PfGY9zTn6YAU4s1xEOkKlVDaZvlXz1GPS6cuelPcAZnJhQ7Yi2mJLWc09EsjQJg8Hs
-	Vfc5ymWyNM5bVSH1Qtcfqx/vId0yXsRU/xawzgmy/my7S13QjFrMYiF6HwTfsBBSjc77
-	lgIkffV8C88X3u2Ighfsed+9Rlw43c7Xt/U6Vi9ijhL2QT3hzs+fYwkUMK3hJ9JGT/7j
-	iLTp7FaMigYbjZcwDClm175aXT13/tllRv8fAXPX3xacXxXY2URldMPJQTbZq53ZrPbk
-	sRX+1iE2mG4pWeiXywuGQa8YjcxuwGAZGfdr/9x4o6eUC2tCfjCI4EyB7thbsxGEA4wE
-	p2OQ==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59D78E0129D
+	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:18:13 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id ht10so1483254vcb.32
+	for <yocto@yoctoproject.org>; Wed, 22 May 2013 10:18:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=Kd0J3esUO3IiwbBjoxOrA+JG3xwcJTXlfK1bsxlgSzk=;
+	b=XZs1HJktZGJidcrB8rFRr8l768EXtl52EudWbZLc5bEdg9PRj4BCYl4DdqhmogjaD4
+	jGYX7bsOuzH+rVwJdsEvjtSFZKeBDXtfXkL+P0KXWUn5twjTT9YZPLjpSOmaWWE27/eH
+	u9KCEKM9ylHc6NZi+j9N0gaCStiY799occaHwtK2IyjqP92ZhuZuylXqa5tI1iPeAjjk
+	Uy6ssnDv3KhRoewJR8FtM25DL2cTDHCjePBtDqLjiFPz5yyLJRoH6ii9kjoln42OaSC4
+	Ce4sQ63YKBw0kYaPWL3KPi6naGcuCTwYQ5BtKGC/9Vy1cjlivP7v5s24IdOZriYsQtcC
+	IxwA==
+X-Received: by 10.52.69.200 with SMTP id g8mr2648758vdu.4.1369243092863; Wed,
+	22 May 2013 10:18:12 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.112.161.195 with SMTP id xu3mr4354087lbb.75.1369242875730;
-	Wed, 22 May 2013 10:14:35 -0700 (PDT)
-Received: by 10.152.27.168 with HTTP; Wed, 22 May 2013 10:14:35 -0700 (PDT)
-Date: Wed, 22 May 2013 21:14:35 +0400
-Message-ID: <CAHyyKNmFiF6K63543Ya4sQn9z8RwTyfykNGq-NKP7jwnsvwRGQ@mail.gmail.com>
-From: Alex M <0xf777@gmail.com>
-To: yocto@yoctoproject.org
-Subject: remove --build option in configure
+Received: by 10.220.98.7 with HTTP; Wed, 22 May 2013 10:17:52 -0700 (PDT)
+In-Reply-To: <CAHyyKNmFiF6K63543Ya4sQn9z8RwTyfykNGq-NKP7jwnsvwRGQ@mail.gmail.com>
+References: <CAHyyKNmFiF6K63543Ya4sQn9z8RwTyfykNGq-NKP7jwnsvwRGQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 22 May 2013 18:17:52 +0100
+Message-ID: <CAJTo0LYN1u+m-0cdrmUtRbz_m8QNeF3RC97E4RT4TMYTgHXoXQ@mail.gmail.com>
+To: Alex M <0xf777@gmail.com>
+X-Gm-Message-State: ALoCoQlg4pK15ZGQPwij5xK2LAS6X64MLddUa7lGZ7C1PZa9oFKaU5Q/zsNh846cxsVazd/682dU
+Cc: yocto@yoctoproject.org
+Subject: Re: remove --build option in configure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,29 +40,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 May 2013 17:14:37 -0000
-Content-Type: multipart/alternative; boundary=001a11c31d1438212304dd51b337
+X-List-Received-Date: Wed, 22 May 2013 17:18:13 -0000
+Content-Type: text/plain; charset=UTF-8
 
---001a11c31d1438212304dd51b337
-Content-Type: text/plain; charset=ISO-8859-1
+On 22 May 2013 18:14, Alex M <0xf777@gmail.com> wrote:
+> I'm writing recipe for ffmpeg and it fails at do_configure stage because
 
-Hello!
-I'm writing recipe for ffmpeg and it fails at do_configure stage because
-Yocto passes --build option but configure script from ffmpeg-1.2.1.tar*
-does not recognize this option, thus I'm getting this stage failed.
+I'll stop you here, because there's a libav recipe in
+meta-oe/meta-multimedia you can probably use.
 
-Is there any ways to customize arguments to "configure"?
+Ross
 
-I know how to add additional with EXTRA_OECONF =, but how to give less
-parameters? Without "--build".
-
---001a11c31d1438212304dd51b337
-Content-Type: text/html; charset=ISO-8859-1
-
-<div dir="ltr"><div><div><div>Hello!<br></div>I&#39;m writing recipe for ffmpeg and it 
-fails at do_configure stage because Yocto passes --build option but 
-configure script from ffmpeg-1.2.1.tar* does not recognize this option, 
-thus I&#39;m getting this stage failed.<br><br></div>Is there any ways to customize arguments to &quot;configure&quot;?<br><br></div>I know how to add additional with EXTRA_OECONF =, but how to give less parameters? Without &quot;--build&quot;.<br>
-</div>
-
---001a11c31d1438212304dd51b337--
