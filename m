@@ -1,25 +1,35 @@
-Return-Path: <dlazzari@leapfrog.com>
-Received: from mx3.leapfrog.com (mx3.leapfrog.com [63.114.26.253])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4236E006C2
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:46:02 -0700 (PDT)
-Received: from NAEMCASHT02.na.leapfrog.com (unknown [10.12.2.36])
-	by mx3.leapfrog.com (Postfix) with ESMTP id A895D6064
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:45:49 -0700 (PDT)
-Received: from NAEMMAIL01.na.leapfrog.com ([fe80::252e:28a6:3d8f:6991]) by
-	NAEMCASHT02.na.leapfrog.com ([::1]) with mapi id 14.01.0379.000;
-	Thu, 23 May 2013 14:45:49 -0700
-From: Daniel Lazzari <dlazzari@leapfrog.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Problem with Python in pre-built SDK
-Thread-Index: Ac5X+SDRcDdZS9u2R3SsN/Xh9Ar9xA==
-Date: Thu, 23 May 2013 21:45:48 +0000
-Message-ID: <E7A9054A5ACABE48B0E540E46E862B0FE6CA6BF2@NAEMMAIL01.na.leapfrog.com>
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94C72E006C2
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:52:36 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 23 May 2013 14:52:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,730,1363158000"; d="scan'208";a="307047885"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by azsmga001.ch.intel.com with ESMTP; 23 May 2013 14:52:34 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 23 May 2013 14:52:19 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.15]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.69]) with mapi id
+	14.03.0123.003; Thu, 23 May 2013 14:50:09 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Atanas Gegov <atanas.gegov.oss@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [eclipse-poky][PATCH 00/13] Completed CMake
+	integration in	the Yocto IDE
+Thread-Index: AQHOV5FRfKUKQOG3fkaDHZ1d68QIZZkTTp6A
+Date: Thu, 23 May 2013 21:50:09 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C32494@ORSMSX103.amr.corp.intel.com>
+References: <1369298392-4076-1-git-send-email-atanas.gegov.oss@gmail.com>
+In-Reply-To: <1369298392-4076-1-git-send-email-atanas.gegov.oss@gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.206.88]
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Re: Problem with Python in pre-built SDK
+Subject: Re: [eclipse-poky][PATCH 00/13] Completed CMake integration in	the Yocto IDE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,56 +41,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 21:46:02 -0000
+X-List-Received-Date: Thu, 23 May 2013 21:52:36 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-> Date: Thu, 23 May 2013 11:37:49 +0100
-> From: "Burton, Ross" <ross.burton@intel.com>
-> To: Ben Warren <Ben.Warren@spidercloud.com>
-> Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-> Subject: Re: [yocto] Problem with Python in pre-built SDK
-> Message-ID:
-> 	<CAJTo0LY8Toagve-
-> 1A0JC7Qg_p5ptp6Q2SOgH3=3D_+CuxgPrrBzg@mail.gmail.com>
-> Content-Type: text/plain; charset=3DUTF-8
->=20
-> On 16 May 2013 22:53, Ben Warren <Ben.Warren@spidercloud.com> wrote:
-> > I'm having other Yocto problems using the stock Ubuntu x86_64 toolchain=
-,
-> so decided to install
-> > one using the instructions in section 2.1.2 (Using a Cross-Toolchain Ta=
-rball)
-> of the "Yocto
-> > Project Application Developer's Guide".
->=20
-> What are these other problems?  Ubuntu should work fine as a host.
->=20
->=20
-> > ImportError: No module named fcntl
-> > =3D=3D=3D=3D=3D=3D=3D=3D
-> >
-> > So it looks like the Python included with the SDK is crippled or mis-
-> configured:
->=20
-> Yeah, the Python we build is split up massively, so clearly the SDK is
-> missing the packages that are needed to run bitbake.  But as I said,
-> using our SDK to build is over-complicating things as Ubuntu should
-> work fine.  What problems were you seeing?
->=20
-> Ross
+Hi Atanas,
 
-Just in case it matters, this actually bit us pretty badly at one point. We=
- use scons heavily and our typical workflow is to source the toolchain envi=
-ronment script then run scons. Unfortunately, because the environment file =
-adds the toolchain's native usr/bin to the path, scons tries to run with th=
-e broken python and you get the above ImportError. We fixed it by just dele=
-ting the python binary from the resulting toolchain so that python from the=
- host system is used instead.
+Seems this patch series relies on the previous RFC patches: [yocto] [eclips=
+e-poky][RFCv2 0/7] Introducing a YoctoSDKCMakeProjectNature.  Since they we=
+re RFC, I didn't apply them and this patch series will report YoctoSDKCMake=
+ProjectNature can't be resolved.  Can you send the YoctoSDKCMakeNature as p=
+atches not RFC?
 
-Not a serious issue, but pretty annoying.
+Thanks,
+Jessica
 
-Daniel Lazzari Jr.
 
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Atanas Gegov
+Sent: Thursday, May 23, 2013 1:40 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [eclipse-poky][PATCH 00/13] Completed CMake integration in=
+ the Yocto IDE
+
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+
+Hi,
+
+this patch series adds a new plugin containing a CMake configure tool, a to=
+olchain and a project type for building CMake projects in the Yocto IDE. Th=
+e plugin also introduces Hello World templates for C and C++. With this pat=
+ch series the CMake integration is completed and the CMake projects can be =
+built, debugged etc. as already known from the Autotools-based projects.
+
+Cheers,
+Atanas
+
+P.S: This patch series requires the already discussed patch series
+"[eclipse-poky][RFCv2 0/7] Introducing a YoctoSDKCMakeProjectNature".
+
+Atanas Gegov (13):
+  plugins/cmake: Added an empty CMake integration plugin
+  plugins/cmake: Defined CMake tool with options
+  plugins/sdk.ide: Added a method to get project environment
+  plugins/cmake: Preparing a configure Job
+  plugins/cmake: Added run method to configure Job
+  plugins/cmake: Added a Makefile generator
+  plugins/cmake: Added the generation of toolchain.cmake
+  plugins/cmake: Defined the building toolchain
+  plugins/cmake: Added a new category for CMake projects
+  plugins/cmake: Connect toolchain and new project category
+  plugins/cmake: Added CMake template projects
+  plugins/sdk.ide: Adapted RemoteDebugLauncher for CMake projects
+  features/sdk: Added CMake plugin to sdk feature
+
+ features/org.yocto.sdk/feature.xml                 |    6 +
+ plugins/org.yocto.cmake.managedbuilder/.classpath  |    7 +
+ plugins/org.yocto.cmake.managedbuilder/.project    |   28 ++
+ .../.settings/org.eclipse.jdt.core.prefs           |    8 +
+ .../META-INF/MANIFEST.MF                           |   16 ++
+ .../OSGI-INF/l10n/bundle.properties                |   40 +++
+ .../build.properties                               |    7 +
+ plugins/org.yocto.cmake.managedbuilder/plugin.xml  |  283 ++++++++++++++++=
+++++
+ .../org/yocto/cmake/managedbuilder/Activator.java  |   50 ++++
+ .../YoctoCMakeMakefileGenerator.java               |  281 ++++++++++++++++=
++++
+ .../cmake/managedbuilder/YoctoCMakeMessages.java   |   57 ++++
+ .../managedbuilder/YoctoCMakeMessages.properties   |   27 ++
+ .../managedbuilder/job/ExecuteConfigureJob.java    |  149 +++++++++++
+ .../cmake/managedbuilder/util/ConsoleUtility.java  |   49 ++++
+ .../cmake/managedbuilder/util/SystemProcess.java   |  118 ++++++++
+ .../HelloWorldCCMakeProject/src/CMakeLists.txt     |   34 +++
+ .../HelloWorldCCMakeProject/src/main.c             |   21 ++
+ .../HelloWorldCCMakeProject/template.properties    |   31 +++
+ .../HelloWorldCCMakeProject/template.xml           |   61 +++++
+ .../HelloWorldCPPCMakeProject/src/CMakeLists.txt   |   34 +++
+ .../HelloWorldCPPCMakeProject/src/main.cpp         |   21 ++
+ .../HelloWorldCPPCMakeProject/template.properties  |   31 +++
+ .../HelloWorldCPPCMakeProject/template.xml         |   61 +++++
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |   29 +-
+ 24 files changed, 1445 insertions(+), 4 deletions(-)  create mode 100644 p=
+lugins/org.yocto.cmake.managedbuilder/.classpath
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/.project
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/.settings/org.ec=
+lipse.jdt.core.prefs
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/META-INF/MANIFES=
+T.MF
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/OSGI-INF/l10n/bu=
+ndle.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/build.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/plugin.xml
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cm=
+ake/managedbuilder/Activator.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cm=
+ake/managedbuilder/YoctoCMakeMakefileGenerator.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cm=
+ake/managedbuilder/YoctoCMakeMessages.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cm=
+ake/managedbuilder/YoctoCMakeMessages.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cm=
+ake/managedbuilder/job/ExecuteConfigureJob.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cm=
+ake/managedbuilder/util/ConsoleUtility.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cm=
+ake/managedbuilder/util/SystemProcess.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCCMakeProject/src/CMakeLists.txt
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCCMakeProject/src/main.c
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCCMakeProject/template.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCCMakeProject/template.xml
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCPPCMakeProject/src/CMakeLists.txt
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCPPCMakeProject/src/main.cpp
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCPPCMakeProject/template.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projec=
+ttemplates/HelloWorldCPPCMakeProject/template.xml
+
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
