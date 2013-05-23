@@ -1,38 +1,30 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qe0-f49.google.com (mail-qe0-f49.google.com
-	[209.85.128.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56E34E01409
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 11:51:20 -0700 (PDT)
-Received: by mail-qe0-f49.google.com with SMTP id a11so2097192qen.36
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 11:51:19 -0700 (PDT)
+Return-Path: <hartmut.behrens@gmail.com>
+Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
+	[209.85.220.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8F77E0129D
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 12:55:13 -0700 (PDT)
+Received: by mail-vc0-f177.google.com with SMTP id ib11so2514233vcb.22
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 12:55:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=WkcRXCl2m0+K9vHmMFJwNvKw+VRutZyfI+W2MQklPYc=;
-	b=PspFQy+vNY6094W5A7mTfMtykEsjat0ldQe9CwZs+guCLrJSAmlMgEJL2zLsG57D8j
-	ADU08V1zEOYM0viperxRVc/ATAGygy7fPthOGU3Ij9un03ff/KmZ0XSkIYZZgGwbdn46
-	RhGI3ocFT8AyTXK7Vbu4TzWphTbIEe5FoLo3T+0vmKmugJoE3JpqhF/3O72Q4u46WjsK
-	fnNQH2nzYduZ8uz2Xtuenvq/D+AYq2efjLIiSgfbdlusrBp61yi9IAbHwJQdeplAfJ4S
-	LGDl743MxalMD/xuK9S96PVfqHcEk2eUKDlzmCM3N4BJNahXCTVlMt48Ohm5A9E9m56P
-	/8HA==
+	:content-type; bh=WlSrAWav5a3p5yIuEGiFWKz9z52YjC/mB51d6V7nYHE=;
+	b=HLReZl2xGv+spFskD/Yv4ka6RiCEKohuzMJnYh6GclbUIQysn0SKwyE+G9Ezx5ZRlf
+	weB9SZJl2HpPQgpH2neDBj1wUmT2LamPjne3TdI54rgQx5SlZEVlpLTBHsRr4p0lSRrN
+	JgYaMjXfP1PgwP5ENWlsIxwL2NH02JmZv0Whu5fXQ6o1qABDQ6xMbl3/iKRD4DG5tLWW
+	Q8xxHusD57YLNR2PkCPuKcvWWY5W630HKaQV5cGrQjmp7jVICq8f/ByL8j6Ja3xfCkDP
+	0zOZkk+nM+tbTtrEKX1ra0VSXzpdeLdTNOBXwViVVcn0vwzK89duVooqGB1GwEl0Qvjd
+	GH3w==
 MIME-Version: 1.0
-X-Received: by 10.229.131.201 with SMTP id y9mr4896939qcs.145.1369335079780;
-	Thu, 23 May 2013 11:51:19 -0700 (PDT)
-Received: by 10.49.24.142 with HTTP; Thu, 23 May 2013 11:51:19 -0700 (PDT)
-In-Reply-To: <CAJTo0LaSR_nvvkbFtTwoDgd1xcYY5fN08yoFXe4Y15_0_h_OBA@mail.gmail.com>
-References: <CAFyqS9r0yUn_dNT0PH9WgFp2pyOs3M+bNdQ=YnPAa8u8fbkFzw@mail.gmail.com>
-	<CAJTo0LYOqeHywd4zftCoccUpnvcB3kDA-TLtgjknkkAZh_Ec4Q@mail.gmail.com>
-	<CAFyqS9oLLmdB6_qJzTuXhZ8MyhUctUXaMttSAm5LNm0RHtq-ww@mail.gmail.com>
-	<CAJTo0Lbv6RmRN-dO_BRNmSRN49x5Pz8RqXOGf=kB5KcVz0MpyQ@mail.gmail.com>
-	<CAFyqS9qtnGX03cD-1OmfiJEVkT0MhCuAW-=XPGRRcnCD9VorFQ@mail.gmail.com>
-	<CAFyqS9oQmWmcZLBxYW=bYtsQMo70XzdWpP6vTme_BHkXSRtLyA@mail.gmail.com>
-	<CAJTo0LaSR_nvvkbFtTwoDgd1xcYY5fN08yoFXe4Y15_0_h_OBA@mail.gmail.com>
-Date: Thu, 23 May 2013 20:51:19 +0200
-Message-ID: <CAFyqS9oKKobdM334mq3=FyaQ+WYqKtSYxnG0Do4ENEYOYyCcbg@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: .rpm packaging weirdness of dynamic libraries
+X-Received: by 10.58.88.4 with SMTP id bc4mr6365057veb.48.1369338913276; Thu,
+	23 May 2013 12:55:13 -0700 (PDT)
+Received: by 10.58.220.129 with HTTP; Thu, 23 May 2013 12:55:13 -0700 (PDT)
+In-Reply-To: <CA+69FtB6Y0MCaynMcVPWAx8YK2WX+9gK5hfz+LOO51JxfUOccw@mail.gmail.com>
+References: <CA+69FtB6Y0MCaynMcVPWAx8YK2WX+9gK5hfz+LOO51JxfUOccw@mail.gmail.com>
+Date: Thu, 23 May 2013 21:55:13 +0200
+Message-ID: <CA+69FtDG3-WW7vTU7snmf+HjjxVLFpk8+1fLMyycz7tiaSgyRw@mail.gmail.com>
+From: Hartmut Behrens <hartmut.behrens@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: QA rdepends issue when building xerces-c
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,49 +36,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 18:51:20 -0000
+X-List-Received-Date: Thu, 23 May 2013 19:55:14 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 23, 2013 at 8:31 PM, Burton, Ross <ross.burton@intel.com> wrote=
-:
-> On 23 May 2013 18:16, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
->> Hmm. I tried the FILES trick, but either I am doing something wrong or
->> FILES does not really affect whats getting into the .rpm? This is what
->> I tried in our recipe
->>
->> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libelinx.so"
->> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libepmq.so"
+On Thu, May 23, 2013 at 6:53 PM, Hartmut Behrens
+<hartmut.behrens@gmail.com> wrote:
+> I also tried INSANE_SKIP_${PN} += "dev-so" without any luck.
 >
-> Use ${libdir} instead of exec_prefix/usr/lib, and I guess the default
-> FILES_${PN}-dev is taking the files first.  Try setting that to "".
->
-Thanks. I will certainly try that.
-However, I have completely changed path now ;) I think the root cause
-of this entire problem is that the package is constructed wrong. Since
-these .so files are modules, we need to tell libtool so it does not
-create the regular versioned lib file structure. What we want is a .so
-file and no links. Maybe then all of this is a no issue anymore?
+> Might you know how to solve this?
 
-elinx_drv_la_LDFLAGS =3D -module -avoid-version -shared
+So including INSANE_SKIP_${PN} = "dev-deps" does the trick.
 
-This might do the trick.
+I tried playing around with FILES (shown below), but can't quite get
+it right. The error that is issued then is "ERROR: QA Issue: non
+-dev/-dbg/-nativesdk package contains symlink .so ..."
 
-Hans
-
-
-On Thu, May 23, 2013 at 8:31 PM, Burton, Ross <ross.burton@intel.com> wrote=
-:
-> On 23 May 2013 18:16, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
->> Hmm. I tried the FILES trick, but either I am doing something wrong or
->> FILES does not really affect whats getting into the .rpm? This is what
->> I tried in our recipe
->>
->> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libelinx.so"
->> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libepmq.so"
->
-> Use ${libdir} instead of exec_prefix/usr/lib, and I guess the default
-> FILES_${PN}-dev is taking the files first.  Try setting that to "".
->
-> Ross
+FILES_${PN} = "${bindir}/* ${libdir}/*"
+FILES_${PN}-dev = "${includedir} ${libdir}/libxerces-c.so"
 
