@@ -1,26 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3118E01482
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 02:08:51 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 May 2013 02:08:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,726,1363158000"; d="scan'208";a="318278579"
-Received: from unknown (HELO helios.localnet) ([10.255.12.23])
-	by orsmga001.jf.intel.com with ESMTP; 23 May 2013 02:08:50 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: varun bhatnagar <varun292006@gmail.com>
-Date: Thu, 23 May 2013 10:08:49 +0100
-Message-ID: <9853675.p6VnmLGJNa@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.8.0-21-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <CAJTo0LZ_VTu6hWPUHN-xc1Xp-VBS8Ea9LwT_6ezg8NLROBkfeQ@mail.gmail.com>
-References: <CAGxOggGKPW3WQcYbo0vim833ErrjGk8fXQyyiinB56jDjvKWVg@mail.gmail.com>
-	<CAGxOggEv1AJfZDo7_QPt8ZSXwVb4WGGrjf_JaOKH1VWKKocabQ@mail.gmail.com>
-	<CAJTo0LZ_VTu6hWPUHN-xc1Xp-VBS8Ea9LwT_6ezg8NLROBkfeQ@mail.gmail.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f175.google.com (mail-ve0-f175.google.com
+	[209.85.128.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5074E014A9
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 03:38:10 -0700 (PDT)
+Received: by mail-ve0-f175.google.com with SMTP id cz11so2203433veb.6
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 03:38:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=gbPlV0CXzS1oaS/u45Q0hD+UHk9aSpeH5XRL5hchISY=;
+	b=hZs9LIElFOyjzTUEyQZ6SrltY09HlEY2oFbojSd4KJokG+EcfWU0E60Am1T9FsZTRW
+	2S77hrdViwzFtJey++harxT5xhQycLmpMQSRZMg0ekR3IbIGgZ2LTRFRKlw5KBGlb8Ad
+	WhQjc0Ic1FuMbbTuzaL4Ei7NEXeuar3PHyJoZMH+bV0/qLePnPQHcqj7wyFBXV0bM9Sq
+	7mlS3D2qVC+jKa6dhQ+iOdoPwcaFD+AqB0nAJiYprYZzurPjKunMByFk8/9mzhAhoe7X
+	hONEtKCfXmoKBQkn0DTrnxyjbBWCcPgAayN0I2+mXitDOCjakmirFMsJLnVT7h31UsEx
+	RGYA==
+X-Received: by 10.52.37.196 with SMTP id a4mr4047905vdk.82.1369305489881; Thu,
+	23 May 2013 03:38:09 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: runqemu: vnc server running on ::1:5900
+Received: by 10.220.98.7 with HTTP; Thu, 23 May 2013 03:37:49 -0700 (PDT)
+In-Reply-To: <C7D08B87-2D4D-4CBD-BC91-379B187C2AEE@spidercloud.com>
+References: <C7D08B87-2D4D-4CBD-BC91-379B187C2AEE@spidercloud.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 23 May 2013 11:37:49 +0100
+Message-ID: <CAJTo0LY8Toagve-1A0JC7Qg_p5ptp6Q2SOgH3=_+CuxgPrrBzg@mail.gmail.com>
+To: Ben Warren <Ben.Warren@spidercloud.com>
+X-Gm-Message-State: ALoCoQlD7dIs+ULepcY1IN+d9SNxv0LmIaFp4NI4WYIuQ7BTZQdND8X504JyRwNSnLdqv8p/WfC+
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Problem with Python in pre-built SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,28 +40,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 09:08:52 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 23 May 2013 10:38:11 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wednesday 22 May 2013 18:19:40 Burton, Ross wrote:
-> On 22 May 2013 18:12, varun bhatnagar <varun292006@gmail.com> wrote:
-> > Thanks Burton, Ross....
-> > Will try this at my workplace.....
-> > And is this a bug?
-> 
-> No.  Make it require SDL and people object, make it always build
-> without SDL and people object.  So the dependency is "floating".
+On 16 May 2013 22:53, Ben Warren <Ben.Warren@spidercloud.com> wrote:
+> I'm having other Yocto problems using the stock Ubuntu x86_64 toolchain, so decided to install
+> one using the instructions in section 2.1.2 (Using a Cross-Toolchain Tarball) of the "Yocto
+> Project Application Developer's Guide".
 
-More precisely, this allows people to build qemu-native both on headless 
-servers and on desktops that do have a display without any need to configure 
-anything.
+What are these other problems?  Ubuntu should work fine as a host.
 
-Cheers,
-Paul
 
--- 
+> ImportError: No module named fcntl
+> ========
+>
+> So it looks like the Python included with the SDK is crippled or mis-configured:
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Yeah, the Python we build is split up massively, so clearly the SDK is
+missing the packages that are needed to run bitbake.  But as I said,
+using our SDK to build is over-complicating things as Ubuntu should
+work fine.  What problems were you seeing?
+
+Ross
 
