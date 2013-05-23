@@ -1,21 +1,21 @@
 Return-Path: <ioanax.grigoropol@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D65EE014F1
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 07:59:39 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 019B5E014FB
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 07:59:40 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 May 2013 07:59:39 -0700
+	by orsmga101.jf.intel.com with ESMTP; 23 May 2013 07:59:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,728,1363158000"; d="scan'208";a="318423582"
+X-IronPort-AV: E=Sophos;i="4.87,728,1363158000"; d="scan'208";a="318423602"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by orsmga001.jf.intel.com with ESMTP; 23 May 2013 07:59:37 -0700
+	by orsmga001.jf.intel.com with ESMTP; 23 May 2013 07:59:39 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Thu, 23 May 2013 17:38:32 +0300
-Message-Id: <1369319915-25590-2-git-send-email-ioanax.grigoropol@intel.com>
+Date: Thu, 23 May 2013 17:38:33 +0300
+Message-Id: <1369319915-25590-3-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1369319915-25590-1-git-send-email-ioanax.grigoropol@intel.com>
 References: <1369319915-25590-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [eclipse-poky][branch:windows-build][PATCH 1/4] Adapt usage of LocalHostShell lock and reader to upstream changes
+Subject: [eclipse-poky][branch:windows-build][PATCH 2/4] Fix recipe parsing when using Remote host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,72 +27,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 14:59:39 -0000
+X-List-Received-Date: Thu, 23 May 2013 14:59:41 -0000
+
+- when running a remote command on a remote target, the TerminalServiceHostShell implementation is used for the HostShell(instead of the LocalHostShell)
+	- in this case, the shell does not have two readers (input, error), and instead it only offers one reader for both of the streams
+	- in the current implementation, the error stream is parsed first because it makes more sense to check for errors before trying to parse the output of the command
+		- in the remote case, since all output(error and output) will be sent to the same reader, the needed output of the command will be parsed as error and the output will be empty
+		- in order to fix this, we should look at the error lines resulted after running a remote command if we are using a remote target
 
 Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 ---
- .../org/yocto/bc/remote/utils/RemoteHelper.java    |   27 +++++++++++++++-----
- 1 file changed, 21 insertions(+), 6 deletions(-)
+ plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    1 +
+ .../yocto/bc/remote/utils/ProcessStreamBuffer.java |   13 ++++++++++---
+ .../org/yocto/bc/remote/utils/RemoteHelper.java    |    7 ++-----
+ .../org/yocto/bc/remote/utils/RemoteMachine.java   |    6 ------
+ .../org/yocto/bc/remote/utils/YoctoCommand.java    |    2 +-
+ 5 files changed, 14 insertions(+), 15 deletions(-)
 
+diff --git a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF b/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
+index 4e57f33..68fc49e 100644
+--- a/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
++++ b/plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF
+@@ -30,6 +30,7 @@ Import-Package: org.eclipse.cdt.managedbuilder.core,
+  org.eclipse.rse.core.model,
+  org.eclipse.rse.core.subsystems,
+  org.eclipse.rse.internal.services.local.shells,
++ org.eclipse.rse.internal.services.shells,
+  org.eclipse.rse.services,
+  org.eclipse.rse.services.clientserver.messages,
+  org.eclipse.rse.services.files,
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java
+index e0d502c..73d0805 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ProcessStreamBuffer.java
+@@ -8,8 +8,10 @@ public class ProcessStreamBuffer {
+ 	private static final String WHITESPACES = "\\s+";
+ 	List<String> errorLines;
+ 	List<String> outputLines;
++	boolean isTerminal;
+ 
+-	ProcessStreamBuffer(){
++	ProcessStreamBuffer(boolean isTerminal){
++		this.isTerminal = isTerminal;
+ 		errorLines = new ArrayList<String>();
+ 		outputLines = new ArrayList<String>();
+ 	}
+@@ -56,8 +58,13 @@ public class ProcessStreamBuffer {
+ 	}
+ 
+ 	public String getOutputLineContaining(String arg, String pattern) {
+-		for (int i = outputLines.size() - 1; i >= 0; i--){
+-			String line = outputLines.get(i);
++		List<String> lines = null;
++		if (isTerminal)
++			lines = errorLines;
++		else
++			lines = outputLines;
++		for (int i = lines.size() - 1; i >= 0; i--){
++			String line = lines.get(i);
+ 			if (line.contains(arg)) {
+ 				String[] tokens = line.split("\\s+");
+ 				if (Pattern.matches(pattern,  tokens[0])) {
 diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-index 507ac54..87c8637 100644
+index 87c8637..5b82e13 100644
 --- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
 +++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteHelper.java
-@@ -35,6 +35,7 @@ import org.eclipse.rse.core.RSECorePlugin;
- import org.eclipse.rse.core.model.IHost;
+@@ -36,6 +36,7 @@ import org.eclipse.rse.core.model.IHost;
  import org.eclipse.rse.core.model.ISystemRegistry;
  import org.eclipse.rse.core.subsystems.ISubSystem;
-+import org.eclipse.rse.internal.services.local.shells.LocalHostShell;
+ import org.eclipse.rse.internal.services.local.shells.LocalHostShell;
++import org.eclipse.rse.internal.services.shells.TerminalServiceHostShell;
  import org.eclipse.rse.services.IService;
  import org.eclipse.rse.services.clientserver.messages.SystemMessageException;
  import org.eclipse.rse.services.files.IFileService;
-@@ -87,18 +88,31 @@ public class RemoteHelper {
- 		if (hostShell == null)
- 			throw new Exception("An error has occured while trying to run remote command!");
- 
--		Lock lock = hostShell.getLock();
--		lock.lock();
-+		Lock lock = null;
-+		if (hostShell instanceof LocalHostShell) {
-+			lock = ((LocalHostShell)hostShell).getLock();
-+			lock.lock();
-+		}
- 		ProcessStreamBuffer processBuffer = new ProcessStreamBuffer();
- 		
--		BufferedReader inbr = hostShell.getReader(false);
--		BufferedReader errbr = hostShell.getReader(true);
-+		BufferedReader inbr = null;
-+		BufferedReader errbr = null;
-+
-+		if (hostShell instanceof LocalHostShell) {
-+			inbr = ((LocalHostShell)hostShell).getReader(false);
-+			errbr = ((LocalHostShell)hostShell).getReader(true);
-+		} else {
-+			Process p = new HostShellProcessAdapter(hostShell);
-+			inbr = new BufferedReader(new InputStreamReader(p.getInputStream()));
-+			errbr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-+		}
- 		
- 		boolean cancel = false;
- 		while (!cancel) {
- 			if(monitor.isCanceled()) {
- 				cancel = true;
--				lock.unlock();
-+				if (lock != null)
-+					lock.unlock();
- 				throw new InterruptedException("User Cancelled");
- 			}
- 			StringBuffer buffer = new StringBuffer();
-@@ -135,7 +149,8 @@ public class RemoteHelper {
- 				}
- 			cancel = true;
- 		}
--		lock.unlock();
-+		if (lock != null)
-+			lock.unlock();
- 		return processBuffer;
+@@ -76,10 +77,6 @@ public class RemoteHelper {
+ 		return getRemoteMachine(connection).getCmdHandler();
  	}
- 	
+ 
+-	public static ProcessStreamBuffer getProcessBuffer(IHost connection) {
+-		return getRemoteMachine(connection).getProcessBuffer();
+-	}
+-
+ 	public static IHostShell getHostShell(IHost connection) {
+ 		return getRemoteMachine(connection).getHostShell();
+ 	}
+@@ -93,7 +90,7 @@ public class RemoteHelper {
+ 			lock = ((LocalHostShell)hostShell).getLock();
+ 			lock.lock();
+ 		}
+-		ProcessStreamBuffer processBuffer = new ProcessStreamBuffer();
++		ProcessStreamBuffer processBuffer = new ProcessStreamBuffer(hostShell instanceof TerminalServiceHostShell);
+ 		
+ 		BufferedReader inbr = null;
+ 		BufferedReader errbr = null;
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
+index 52bc011..14501e4 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/RemoteMachine.java
+@@ -165,12 +165,6 @@ public class RemoteMachine {
+ 		return null;
+ 	}
+ 
+-	public ProcessStreamBuffer getProcessBuffer() {
+-		if (processBuffer == null)
+-			processBuffer = new ProcessStreamBuffer();
+-		return processBuffer;
+-	}
+-
+ 	public IHost getConnection() {
+ 		return connection;
+ 	}
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java
+index 0fd4f32..9375806 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoCommand.java
+@@ -11,7 +11,7 @@ public class YoctoCommand {
+ 		this.setCommand(command);
+ 		this.setInitialDirectory(initialDirectory);
+ 		this.setArguments(arguments);
+-		this.setProcessBuffer(new ProcessStreamBuffer());
++		this.setProcessBuffer(new ProcessStreamBuffer(false));
+ 	}
+ 
+ 	public String getCommand() {
 -- 
 1.7.9.5
 
