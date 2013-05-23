@@ -1,29 +1,28 @@
-Return-Path: <Ben.Warren@spidercloud.com>
-Received: from berg.int.copivia.com (mail.spidercloud.com [209.49.242.60])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7441E006C2
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 09:42:07 -0700 (PDT)
-Received: from mailx.spidercloud.com ([10.1.1.225])
-	by berg.int.copivia.com (8.13.8/8.13.8) with ESMTP id r4NGg3NI028226;
-	Thu, 23 May 2013 09:42:03 -0700
-Received: from sofia.us.spidercloud.com ([10.1.1.225]) by
-	sofia.us.spidercloud.com ([10.1.1.225]) with mapi;
-	Thu, 23 May 2013 09:42:02 -0700
-From: Ben Warren <Ben.Warren@spidercloud.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 23 May 2013 09:42:02 -0700
-Thread-Topic: [yocto] Problem with Python in pre-built SDK
-Thread-Index: Ac5X1HLV3OP1OcBwQx22VIpGcp5SIA==
-Message-ID: <481D2694-9ACC-4715-A64C-F6C5E13D33C5@spidercloud.com>
-References: <C7D08B87-2D4D-4CBD-BC91-379B187C2AEE@spidercloud.com>
-	<CAJTo0LY8Toagve-1A0JC7Qg_p5ptp6Q2SOgH3=_+CuxgPrrBzg@mail.gmail.com>
-In-Reply-To: <CAJTo0LY8Toagve-1A0JC7Qg_p5ptp6Q2SOgH3=_+CuxgPrrBzg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <hartmut.behrens@gmail.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA65BE0129D
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 09:53:58 -0700 (PDT)
+Received: by mail-vc0-f176.google.com with SMTP id ha11so2352608vcb.21
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 09:53:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=UrYcRm7+sRWlAcZ/0g1WL+Z2kgo2BGMqF9NBS2EXl5U=;
+	b=khrI7L42iKqLbweuWunFIwBG+Mnii3J4Z06e0TVoaXBWriJRlsIKmY2xSywP0tN+VQ
+	abnH0saZ3yf4+jFcapKOxw8EawU6PHV879xr8435nibz6euVTnppgxYqkPsNRbCpzbUa
+	eKDo3vZ93hBYyDG3irK+j3arwoDRrGV0SHqdT4eGiYOkYhXMi8RrDgDZb++aMNcZO9ir
+	u4DUHmr4wL2lCmFeaNHwfhNoyLftBxHz5uPGweS/756bQpsYfNPNN3fFHz97qQUHK9kj
+	6jKy3pyzwOJ6vRQPL9thw8ZtlgkvDJ/BD5Gz8OxGp2oSwyRdxk2fEKxyBRxBTp1an1U5
+	NS2w==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem with Python in pre-built SDK
+X-Received: by 10.52.191.39 with SMTP id gv7mr5031528vdc.57.1369328037956;
+	Thu, 23 May 2013 09:53:57 -0700 (PDT)
+Received: by 10.58.220.129 with HTTP; Thu, 23 May 2013 09:53:57 -0700 (PDT)
+Date: Thu, 23 May 2013 18:53:57 +0200
+Message-ID: <CA+69FtB6Y0MCaynMcVPWAx8YK2WX+9gK5hfz+LOO51JxfUOccw@mail.gmail.com>
+From: Hartmut Behrens <hartmut.behrens@gmail.com>
+To: yocto@yoctoproject.org
+Subject: QA rdepends issue when building xerces-c
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,52 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 16:42:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 23 May 2013 16:53:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Ross,
+Dear Yocto users,
 
-Thanks for responding.
+I created a recipe for xerces-c (see below), and when bitbaking, the
+error "ERROR: QA Issue: xerces-c rdepends on xerces-c-dev" is
+produced.
 
-On May 23, 2013, at 3:37 AM, "Burton, Ross" <ross.burton@intel.com> wrote:
+I added RPROVIDES_${PN} += "xerces-c-dev" to the recipe, incremented
+the PR number, and baked again but still without success.
 
-> On 16 May 2013 22:53, Ben Warren <Ben.Warren@spidercloud.com> wrote:
->> I'm having other Yocto problems using the stock Ubuntu x86_64 toolchain,=
- so decided to install
->> one using the instructions in section 2.1.2 (Using a Cross-Toolchain Tar=
-ball) of the "Yocto
->> Project Application Developer's Guide".
->=20
-> What are these other problems?  Ubuntu should work fine as a host.
-Other issues were mainly due to me working my way up the Yocto learning cur=
-ve.  I'm now able to build a working image using Ubuntu's host tools.
+I also tried INSANE_SKIP_${PN} += "dev-so" without any luck.
 
-That said, I'm looking at moving building away from Ubuntu and on to our co=
-rporate build servers, which run CentOS 5.  Some of these are running a 32-=
-bit OS and some a 64-bit one, and default Python has to be 2.4.  I've hacke=
-d bitbake to use another Python installation, but don't want to rely on the=
- host compiler tools.  All of our existing targets (non-x86) use cross-buil=
-ding tools which are self-contained.  I'd like to have something similar fo=
-r this target since it's much easier to version control.  From the Yocto do=
-cumentation, it looks like getting bitbake to make me an SDK is the answer.=
-  Too bad it doesn't seem to be that easy :(=20
->=20
->=20
->> ImportError: No module named fcntl
->> =3D=3D=3D=3D=3D=3D=3D=3D
->>=20
->> So it looks like the Python included with the SDK is crippled or mis-con=
-figured:
->=20
-> Yeah, the Python we build is split up massively, so clearly the SDK is
-> missing the packages that are needed to run bitbake.  But as I said,
-> using our SDK to build is over-complicating things as Ubuntu should
-> work fine.  What problems were you seeing?
->=20
-> Ross
+Might you know how to solve this?
 
-regards,
-Ben=
+The recipe:
+
+DESCRIPTION = "Xerces-c is a validating xml parser written in C++"
+HOMEPAGE = "http://xerces.apache.org/xerces-c/"
+
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+PR = "r6"
+
+SRC_URI = "file://xerces-c-${PV}.tar.gz"
+SRC_URI[md5sum] = "6a8ec45d83c8cfb1584c5a5345cb51ae"
+
+S = "${WORKDIR}/xerces-c-${PV}"
+
+inherit autotools lib_package pkgconfig gettext
+
+RPROVIDES_${PN} += "xerces-c-dev"
 
