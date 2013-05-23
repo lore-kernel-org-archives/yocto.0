@@ -1,34 +1,26 @@
-Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-ea0-f172.google.com (mail-ea0-f172.google.com
-	[209.85.215.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EB49E014E1
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 01:40:12 -0700 (PDT)
-Received: by mail-ea0-f172.google.com with SMTP id d10so1687717eaj.3
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 01:40:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
-	bh=/R2NPShUlHOCwkZyx0wGuNpaSYBo9ubMp3XqazoaYJw=;
-	b=QPWY35e25VzCZiqmIymINWRsP/4So6liAZt6tONkDizAoUSmkcRxe/5nAW/TtgjWvA
-	RC1yrCVPMfSl5CeLb6ec7oGfebgYmTV42H9yMTQQy5hM1ut7N4mhQrgc9jhErYPPE4EY
-	+eOHfvx78ONt2yN8UwmsTlo1Pn6132eKXBt0QAuXIRkDDJlfIT7Eh7Xzf/bkApNC1aWx
-	d1FNc7r/6So+5A9MVSPpgbQuP4cfsISk0lyT2Q4y/NasNxJ0g2JuaL+KoSEIqPN1r7k4
-	NaK4CysEdlb6jQa5fV6/v52aTh6iTSfiZwdriD2iQUJyyJ514kdU/UPDFO2GBaUq5Kfg
-	RTlw==
-X-Received: by 10.14.95.4 with SMTP id o4mr24604422eef.2.1369298411617;
-	Thu, 23 May 2013 01:40:11 -0700 (PDT)
-Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPSA id c41sm11438848eeu.8.2013.05.23.01.40.10
-	for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 23 May 2013 01:40:11 -0700 (PDT)
-From: Atanas Gegov <atanas.gegov.oss@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 23 May 2013 10:39:52 +0200
-Message-Id: <1369298392-4076-14-git-send-email-atanas.gegov.oss@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1369298392-4076-1-git-send-email-atanas.gegov.oss@gmail.com>
-References: <1369298392-4076-1-git-send-email-atanas.gegov.oss@gmail.com>
-Subject: [PATCH 13/13] features/sdk: Added CMake plugin to sdk feature
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3118E01482
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 02:08:51 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 23 May 2013 02:08:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,726,1363158000"; d="scan'208";a="318278579"
+Received: from unknown (HELO helios.localnet) ([10.255.12.23])
+	by orsmga001.jf.intel.com with ESMTP; 23 May 2013 02:08:50 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: varun bhatnagar <varun292006@gmail.com>
+Date: Thu, 23 May 2013 10:08:49 +0100
+Message-ID: <9853675.p6VnmLGJNa@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.8.0-21-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <CAJTo0LZ_VTu6hWPUHN-xc1Xp-VBS8Ea9LwT_6ezg8NLROBkfeQ@mail.gmail.com>
+References: <CAGxOggGKPW3WQcYbo0vim833ErrjGk8fXQyyiinB56jDjvKWVg@mail.gmail.com>
+	<CAGxOggEv1AJfZDo7_QPt8ZSXwVb4WGGrjf_JaOKH1VWKKocabQ@mail.gmail.com>
+	<CAJTo0LZ_VTu6hWPUHN-xc1Xp-VBS8Ea9LwT_6ezg8NLROBkfeQ@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: runqemu: vnc server running on ::1:5900
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,32 +32,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 08:40:12 -0000
+X-List-Received-Date: Thu, 23 May 2013 09:08:52 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+On Wednesday 22 May 2013 18:19:40 Burton, Ross wrote:
+> On 22 May 2013 18:12, varun bhatnagar <varun292006@gmail.com> wrote:
+> > Thanks Burton, Ross....
+> > Will try this at my workplace.....
+> > And is this a bug?
+> 
+> No.  Make it require SDL and people object, make it always build
+> without SDL and people object.  So the dependency is "floating".
 
-Made the CMake extension plugin a part of the
-Yocto sdk feature.
----
- features/org.yocto.sdk/feature.xml |    6 ++++++
- 1 file changed, 6 insertions(+)
+More precisely, this allows people to build qemu-native both on headless 
+servers and on desktops that do have a display without any need to configure 
+anything.
 
-diff --git a/features/org.yocto.sdk/feature.xml b/features/org.yocto.sdk/feature.xml
-index cca6534..03eac73 100644
---- a/features/org.yocto.sdk/feature.xml
-+++ b/features/org.yocto.sdk/feature.xml
-@@ -93,4 +93,10 @@
-          version="0.0.0"
-          unpack="false"/>
- 
-+   <plugin
-+         id="org.yocto.cmake.managedbuilder"
-+         download-size="0"
-+         install-size="0"
-+         version="0.0.0"
-+         unpack="false"/>
- </feature>
+Cheers,
+Paul
+
 -- 
-1.7.9.5
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
