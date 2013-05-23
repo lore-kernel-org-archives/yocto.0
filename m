@@ -1,21 +1,33 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68671E014F7
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 07:59:43 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 May 2013 07:59:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,728,1363158000"; d="scan'208";a="318423632"
-Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by orsmga001.jf.intel.com with ESMTP; 23 May 2013 07:59:42 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 23 May 2013 17:38:35 +0300
-Message-Id: <1369319915-25590-5-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1369319915-25590-1-git-send-email-ioanax.grigoropol@intel.com>
-References: <1369319915-25590-1-git-send-email-ioanax.grigoropol@intel.com>
-Subject: [eclipse-poky][branch:windows-build][PATCH 4/4] Customize Output processor for git clone command and fix message display
+Return-Path: <varun292006@gmail.com>
+Received: from mail-pb0-f45.google.com (mail-pb0-f45.google.com
+	[209.85.160.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B30F3E006C2
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 08:08:16 -0700 (PDT)
+Received: by mail-pb0-f45.google.com with SMTP id mc17so3022631pbc.4
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 08:08:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=7L6ZSguE68d0HS8ic/yOhU9zbpTufL7zpxVm9n95Xns=;
+	b=f2j1Vb+lEcDxKwOZwyZUcL+nq7m9Nk2LwkGvmQ9g7FHQR/2hhXfrj2ztIuJupx5K7Y
+	gIP6WePsS3UfLeStE3lzkq9+5Q7YJbOF4C9POfNN8Z196SAT69BHderCy5vgwqLeHYdg
+	3ZDVu8PQynREuD0rHna4SrNBEYm6jDPb2tggVGQWB0Q13ic64JHQLvfhXuv5PXoJl8wv
+	HzZEycM3wjTpHpHnjSczPo8A996YhIYCk3kP0gAcqWX3hcPHLjGOTMTRM6SJ8vlmL7iw
+	xckSRRab2XkCUwh3FGUHrCVpJhKlC/xUt2P53L9XgFsbMWHIzs6HJUXVRAunyMpsH5Zv
+	hX8g==
+MIME-Version: 1.0
+X-Received: by 10.66.27.72 with SMTP id r8mr5125545pag.151.1369321696402; Thu,
+	23 May 2013 08:08:16 -0700 (PDT)
+Received: by 10.68.5.230 with HTTP; Thu, 23 May 2013 08:08:16 -0700 (PDT)
+In-Reply-To: <CAJTo0LZ_VTu6hWPUHN-xc1Xp-VBS8Ea9LwT_6ezg8NLROBkfeQ@mail.gmail.com>
+References: <CAGxOggGKPW3WQcYbo0vim833ErrjGk8fXQyyiinB56jDjvKWVg@mail.gmail.com>
+	<CAJTo0LbaJ4ezpvobr6xGK6-=oPAh_H=Woh1uuY7pcrRZbmXHhg@mail.gmail.com>
+	<CAGxOggEv1AJfZDo7_QPt8ZSXwVb4WGGrjf_JaOKH1VWKKocabQ@mail.gmail.com>
+	<CAJTo0LZ_VTu6hWPUHN-xc1Xp-VBS8Ea9LwT_6ezg8NLROBkfeQ@mail.gmail.com>
+Date: Thu, 23 May 2013 20:38:16 +0530
+Message-ID: <CAGxOggHHLbwq7jVPnZVPmwhNdj9Fjixk8dfi7tZT0vKNy2BBJQ@mail.gmail.com>
+From: varun bhatnagar <varun292006@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: runqemu: vnc server running on ::1:5900
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,68 +39,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 14:59:43 -0000
+X-List-Received-Date: Thu, 23 May 2013 15:08:16 -0000
+Content-Type: multipart/alternative; boundary=bcaec52bec1f4c21f604dd640da8
 
-- in the particular case of creating a new bitbake project by cloning, the whole process is started from the context of the project wizard which is in charge of updating the monitor of the command
-	- since the transfer is redirected to the RemoteHelper, somehow along the way the reference of the wizard monitor is lost and the messages are not displayed correctly
-	- in order to fix this, the parsing is done locally inside the appropiate context & using a customization of the abstract OutputProcessor
+--bcaec52bec1f4c21f604dd640da8
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../bc/remote/utils/YoctoRunnableWithProgress.java |   31 +++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
+Hi,
 
-diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
-index 7eb7172..4005554 100644
---- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
-+++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
-@@ -80,7 +80,36 @@ public class YoctoRunnableWithProgress implements IRunnableWithProgress {
- 			e.printStackTrace();
- 		}
- 	}
-+	class YoctoRunnableOutputProcessor extends OutputProcessor{
- 
-+		public YoctoRunnableOutputProcessor(IProgressMonitor monitor,
-+				IHostShell hostShell, CommandResponseHandler cmdHandler,
-+				String task) {
-+			super(monitor, hostShell, cmdHandler, task);
-+		}
-+		@Override
-+		protected boolean isErrChStop(char ch) {
-+			return (ch == '\n' || ch == '\r');
-+		}
-+
-+		@Override
-+		protected boolean isOutChStop(char ch) {
-+			return (ch == '\n');
-+		}
-+
-+		@Override
-+		protected void processOutputBufferLine(char ch, String str) {
-+			processBuffer.addOutputLine(str);
-+		}
-+
-+		@Override
-+		protected void processErrorBufferLine(char ch, String str) {
-+			processBuffer.addOutputLine(str);
-+			if (ch == '\r')
-+				reportProgress(str);
-+		}
-+
-+	}
- 
- 	class YoctoThread implements Runnable{
- 		private IHost connection;
-@@ -98,7 +127,7 @@ public class YoctoRunnableWithProgress implements IRunnableWithProgress {
- 		public void run() {
- 			try {
- 				hostShell = RemoteHelper.runCommandRemote(this.connection, command, monitor);
--				command.setProcessBuffer(RemoteHelper.processOutput(monitor, hostShell, cmdHandler));
-+				command.setProcessBuffer(new YoctoRunnableOutputProcessor(monitor, hostShell, cmdHandler, taskName).processOutput());
- 			} catch (CoreException e) {
- 				e.printStackTrace();
- 			} catch (Exception e) {
--- 
-1.7.9.5
+Followed the instructions given by you and it worked....thanks a lot...!!!!
+
+But now I got one more problem......when I tried logging in I found out
+that my keyboard's key mapping got changed and it was not working. How can
+I fix this.... :(
+
+//
+Varun
 
 
+On Wed, May 22, 2013 at 10:49 PM, Burton, Ross <ross.burton@intel.com>wrote:
+
+> On 22 May 2013 18:12, varun bhatnagar <varun292006@gmail.com> wrote:
+> > Thanks Burton, Ross....
+> > Will try this at my workplace.....
+> > And is this a bug?
+>
+> No.  Make it require SDL and people object, make it always build
+> without SDL and people object.  So the dependency is "floating".
+>
+> Ross
+>
+
+--bcaec52bec1f4c21f604dd640da8
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div style>Followed the instructions giv=
+en by you and it worked....thanks a lot...!!!!</div><div style><br></div><d=
+iv style>But now I got one more problem......when I tried logging in I foun=
+d out that my keyboard&#39;s key mapping got changed and it was not working=
+. How can I fix this.... :(</div>
+<div style><br></div><div style>//</div><div style>Varun</div></div><div cl=
+ass=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, May 22, 2013=
+ at 10:49 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.bur=
+ton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote=
+:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 22 May 2013 18:12, varu=
+n bhatnagar &lt;<a href=3D"mailto:varun292006@gmail.com">varun292006@gmail.=
+com</a>&gt; wrote:<br>
+
+&gt; Thanks Burton, Ross....<br>
+&gt; Will try this at my workplace.....<br>
+&gt; And is this a bug?<br>
+<br>
+</div>No. =A0Make it require SDL and people object, make it always build<br=
+>
+without SDL and people object. =A0So the dependency is &quot;floating&quot;=
+.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br></div>
+
+--bcaec52bec1f4c21f604dd640da8--
