@@ -1,35 +1,30 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
-	[209.85.214.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12748E006C2
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:20:27 -0700 (PDT)
-Received: by mail-ob0-f177.google.com with SMTP id wn6so4580829obc.22
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:20:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=6qJ3S6b5kvEgJUPzte+kDVJsu9+73CYv+76rLgQF6AI=;
-	b=ccWa2qDvsjZmAfPrJ/N98EjHxxFA0/I30YGZzSKtKHgogAlvCtZoCCyHavS/0ZTnbB
-	MHP2s96XZJakC57KPUBOT/SV5Ifo5StVZcWLRNykEmNze/RYNrwz3u0mYqVlp/HPOcqZ
-	ytvNBbDMNdXPleXOsxx4tKwQS4h5rK3uuYyP7qJ7+xO7oRBDPWGGYdeSb2znzWBRMBsT
-	UGNXw1HHnHK2yrMErOlLHkwk7wcbYbIWvcMsRF0vqisUy85mmWkdm/olJ0SMyx3bRmGb
-	3UvcUmXED/Gx7XHdjoXFeS0AyRFJbFeY1Cvbvl+eEAMoExAr1I+yrpFZVJGsp5AGFrA2
-	jU6A==
-X-Received: by 10.60.103.76 with SMTP id fu12mr10118686oeb.71.1369344026077;
-	Thu, 23 May 2013 14:20:26 -0700 (PDT)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A057E006C2
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:36:28 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga102.ch.intel.com with ESMTP; 23 May 2013 14:36:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,730,1363158000"; d="scan'208";a="339102130"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga001.fm.intel.com with ESMTP; 23 May 2013 14:36:28 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.15]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.91]) with mapi id
+	14.03.0123.003; Thu, 23 May 2013 14:36:22 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
+Thread-Index: AQHOT771DAReMRX1kUaIqlllfEi9rJkTK1ewgAAvrEA=
+Date: Thu, 23 May 2013 21:36:21 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C32476@ORSMSX103.amr.corp.intel.com>
+References: <1368437194-28574-1-git-send-email-ioanax.grigoropol@intel.com> 
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Received: by 10.76.168.67 with HTTP; Thu, 23 May 2013 14:20:06 -0700 (PDT)
-In-Reply-To: <0789CF4373FAE1439958EBA64274B10924EFD6C06C@MXCL20.fgremc.it>
-References: <0789CF4373FAE1439958EBA64274B10924EFD6C06C@MXCL20.fgremc.it>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 23 May 2013 23:20:06 +0200
-Message-ID: <CAP71Wjy3ViuaPxZe+XvWEU3fS6geYymeYkLBxKD-xbTxmWMwbQ@mail.gmail.com>
-To: "LIU Yang (MM)" <yang.liu@magnetimarelli.com>
-X-Gm-Message-State: ALoCoQl2OH5387Q0iJL7AkB7W1ES21q9YUPC0NCHb/FfQlop278/57JCZ24irR7+Kj1uHT5SPvMQ
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"PAPARO Nino \(MM\)" <nino.paparo@magnetimarelli.com>
-Subject: Re: Yocto Qt5
+Subject: Re: [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,46 +36,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 21:20:27 -0000
-Content-Type: multipart/alternative; boundary=089e011613e840017304dd6940f0
-
---089e011613e840017304dd6940f0
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Thu, May 23, 2013 at 10:51 PM, LIU Yang (MM) <yang.liu@magnetimarelli.com
-> wrote:
-
-> I am first time coming here for help on Yocto project with Qt5, I have two
-> questions/problems when I tried to bitbake a recipe in our layer. ****
->
-> sorry to hijack (slightly...) that email, but what is the 'plan' for Qt5
-in OE? i don't see Qt5 listed in the yocto 1.5 schedule wiki. so are we
-going to replace qt4 by qt5 in oe-core? are we going to have them
-side-by-side? or is it going to live in its own layer?
-
-thanks
-
---089e011613e840017304dd6940f0
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 23 May 2013 21:36:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, May 23, 2013 at 10:51 PM, LIU Yang (MM) <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:yang.liu@magnetimarelli.com" target=3D"_blank">yang.liu@magnet=
-imarelli.com</a>&gt;</span> wrote:<br>
+I noticed an issue with the patches and reverted the changes.  The 2nd patc=
+h  in the series is corrupted, after applying that patch, the plugin loaded=
+ in IDE with an error which is caused by:
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><p class=3D"MsoNormal">I am first time comin=
-g here for help on Yocto project with Qt5, I have two questions/problems wh=
-en I tried to bitbake a recipe in our layer.
-<u></u><u></u></p>
-<p style=3D"margin-left:.75in"></p></blockquote></div>sorry to hijack (slig=
-htly...) that email, but what is the &#39;plan&#39; for Qt5 in OE? i don&#3=
-9;t see Qt5 listed in the yocto 1.5 schedule wiki. so are we going to repla=
-ce qt4 by qt5 in oe-core? are we going to have them side-by-side? or is it =
-going to live in its own layer?</div>
++>>>>>>> 2504c89... Move RSEHelper to a separate plugin
 
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra" style>thank=
-s=A0</div></div>
+Please run some unit testing before sending the patch.
 
---089e011613e840017304dd6940f0--
+Thanks,
+Jessica
+
+-----Original Message-----
+From: Zhang, Jessica
+Sent: Thursday, May 23, 2013 11:44 AM
+To: Grigoropol, IoanaX; yocto@yoctoproject.org
+Subject: RE: [yocto] [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
+
+Merged to eclipse-poky master.
+
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol
+Sent: Monday, May 13, 2013 2:26 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
+
+- initial commit & populate for remote utils common plugin
+
+Ioana Grigoropol (6):
+  Initial commit for separate remote utilities plugin
+  Move RSEHelper to a separate plugin
+  Move RemoteShellExec to separate plugin
+  Move ShellSession to org.yocto.remote.utils separate plugin
+  Move CommonHelper to org.yocto.remote.utils separate plugin
+  Move TerminalHandler to org.yocto.remote.utils
+
+ plugins/org.yocto.remote.utils/.classpath          |    7 +
+ plugins/org.yocto.remote.utils/.project            |   28 ++
+ .../.settings/org.eclipse.jdt.core.prefs           |    7 +
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   28 ++
+ plugins/org.yocto.remote.utils/build.properties    |    4 +
+ .../org.yocto.remote.utils/resources/ust_tar.sh    |   19 +
+ .../org.yocto.remote.utils/resources/yocto_tool.sh |  125 ++++++
+ .../org.yocto.remote.utils/resources/yocto_ust.sh  |   35 ++
+ .../src/org/yocto/remote/utils/Activator.java      |   62 +++
+ .../src/org/yocto/remote/utils/CommonHelper.java   |   46 +++
+ .../src/org/yocto/remote/utils/Messages.java       |   35 ++
+ .../src/org/yocto/remote/utils/RSEHelper.java      |  344 ++++++++++++++++
+ .../org/yocto/remote/utils/RemoteShellExec.java    |  140 +++++++
+ .../src/org/yocto/remote/utils/ShellSession.java   |  327 +++++++++++++++
+ .../org/yocto/remote/utils/TerminalHandler.java    |  128 ++++++
+ .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |    3 +-
+ .../org.yocto.sdk.remotetools/resources/ust_tar.sh |   19 -
+ .../resources/yocto_tool.sh                        |  125 ------
+ .../resources/yocto_ust.sh                         |   35 --
+ .../org/yocto/sdk/remotetools/CommonHelper.java    |   44 --
+ .../src/org/yocto/sdk/remotetools/RSEHelper.java   |  419 ----------------=
+----
+ .../org/yocto/sdk/remotetools/ShellSession.java    |  341 ----------------
+ .../yocto/sdk/remotetools/actions/BaseModel.java   |    4 +-
+ .../sdk/remotetools/actions/BaseSettingDialog.java |    2 +-
+ .../sdk/remotetools/actions/DialogHandler.java     |    1 +
+ .../sdk/remotetools/actions/OprofileModel.java     |    2 +-
+ .../sdk/remotetools/actions/SystemtapModel.java    |    2 +-
+ .../actions/SystemtapSettingDialog.java            |    2 +-
+ .../sdk/remotetools/actions/TerminalHandler.java   |  128 ------
+ .../sdk/remotetools/remote/RemoteShellExec.java    |  149 -------
+ 30 files changed, 1344 insertions(+), 1267 deletions(-)  create mode 10064=
+4 plugins/org.yocto.remote.utils/.classpath
+ create mode 100644 plugins/org.yocto.remote.utils/.project
+ create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jd=
+t.core.prefs
+ create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+ create mode 100644 plugins/org.yocto.remote.utils/build.properties
+ create mode 100755 plugins/org.yocto.remote.utils/resources/ust_tar.sh
+ create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_tool.sh
+ create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_ust.sh
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/Activator.java
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/CommonHelper.java
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/Messages.java
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/RSEHelper.java
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/RemoteShellExec.java
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/ShellSession.java
+ create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
+ls/TerminalHandler.java
+ delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/ust_tar.sh
+ delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/yocto_tool.=
+sh
+ delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/yocto_ust.s=
+h
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
+otetools/CommonHelper.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
+otetools/RSEHelper.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
+otetools/ShellSession.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
+otetools/actions/TerminalHandler.java
+ delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
+otetools/remote/RemoteShellExec.java
+
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
