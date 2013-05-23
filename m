@@ -1,38 +1,33 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47F3CE0129D
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 08:10:57 -0700 (PDT)
-Received: by mail-vb0-f49.google.com with SMTP id q13so30840vbe.22
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 08:10:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=Y1kzxwjEOsm0TlcECxICXvndEaYKPXFA2PzeLVhGnBM=;
-	b=j1s/2gSSjPcs+m8uITi7zzh7U+6IfjmS42LphyCmGrA0M06H2c+kL0n4BZB5jdk8QS
-	1Ua+mFLF87Vi2fZSzXkgY9BbINLhDy0Mfxqaen7UtkFqFduRp+yfgJ7VhiktPWVWpSEE
-	qYewioSshFwXj3z+HZD45acloYdHcPNxnGM3z4esq7VZQ6qhHoqGx1m3P6Y7WKFBP67S
-	9WqpluG1zguLYK+xbm1S+Ca90IUHm2CrbLApgZhP3Y1OEA/EOAGxPCrGmSMOxp+UxJ8v
-	75tDQ2XWo+wEPj+DufXg6I5UE3eeFlVRnxKN44iheTzpyjlJLFQldVAi4XCPhixnF+1M
-	k+0g==
-X-Received: by 10.220.176.71 with SMTP id bd7mr5515153vcb.12.1369321855504;
-	Thu, 23 May 2013 08:10:55 -0700 (PDT)
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qe0-f41.google.com (mail-qe0-f41.google.com
+	[209.85.128.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA261E006C2
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 08:25:35 -0700 (PDT)
+Received: by mail-qe0-f41.google.com with SMTP id b4so1987898qen.28
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 08:25:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=bGZ/uzXorNuITLG1jKKkpOZ95ZDBsOUosNQUc5sSnKQ=;
+	b=ZnupD8BV8V+IRuCRwYWELBeupkQwwL0OU3htU8MHoqfXsGnduNQSay7P2VaLDOc/D3
+	XVTOQvV5+1k+S4SH0zak5AFlEJvVCtMDlYrVkzlSnP83JjH2ZnAiC61V4NKfwSxS6GBD
+	CFhIV1iH9asO3PKQulisZSFQ3hWY5Yr/wdfIRwbXTik1FBtHc9T+LrHfF1tVAwJhYRGL
+	YSZEOzbT80Y+42Nm8wxZgXLzEpwpVUxJzDQxrYPnAvpa7NNq3nzlX6K7uroq/9woS+2o
+	RYt3jYFULjroP5ZmRK5ILhFV5k/73RGCWDvQSACmVkQKzFXdXIMvNLhfBMuuyZfeGf1i
+	u+GA==
 MIME-Version: 1.0
-Received: by 10.220.98.7 with HTTP; Thu, 23 May 2013 08:10:35 -0700 (PDT)
-In-Reply-To: <CAGxOggHHLbwq7jVPnZVPmwhNdj9Fjixk8dfi7tZT0vKNy2BBJQ@mail.gmail.com>
-References: <CAGxOggGKPW3WQcYbo0vim833ErrjGk8fXQyyiinB56jDjvKWVg@mail.gmail.com>
-	<CAJTo0LbaJ4ezpvobr6xGK6-=oPAh_H=Woh1uuY7pcrRZbmXHhg@mail.gmail.com>
-	<CAGxOggEv1AJfZDo7_QPt8ZSXwVb4WGGrjf_JaOKH1VWKKocabQ@mail.gmail.com>
-	<CAJTo0LZ_VTu6hWPUHN-xc1Xp-VBS8Ea9LwT_6ezg8NLROBkfeQ@mail.gmail.com>
-	<CAGxOggHHLbwq7jVPnZVPmwhNdj9Fjixk8dfi7tZT0vKNy2BBJQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 23 May 2013 16:10:35 +0100
-Message-ID: <CAJTo0Lat1mAf7UbtQ1aqSc-LZf0d7meUFxNM8ixkMWxz4Z3aGA@mail.gmail.com>
-To: varun bhatnagar <varun292006@gmail.com>
-X-Gm-Message-State: ALoCoQkTTGNpaCO7/tdz2wBEqiVIC53t24lRIsVQvFaFEia2kC+00uktH94/lDiMMQAHXJm3hxjn
+X-Received: by 10.49.96.104 with SMTP id dr8mr6472432qeb.43.1369322734865;
+	Thu, 23 May 2013 08:25:34 -0700 (PDT)
+Received: by 10.49.24.142 with HTTP; Thu, 23 May 2013 08:25:34 -0700 (PDT)
+In-Reply-To: <CAJTo0LYOqeHywd4zftCoccUpnvcB3kDA-TLtgjknkkAZh_Ec4Q@mail.gmail.com>
+References: <CAFyqS9r0yUn_dNT0PH9WgFp2pyOs3M+bNdQ=YnPAa8u8fbkFzw@mail.gmail.com>
+	<CAJTo0LYOqeHywd4zftCoccUpnvcB3kDA-TLtgjknkkAZh_Ec4Q@mail.gmail.com>
+Date: Thu, 23 May 2013 17:25:34 +0200
+Message-ID: <CAFyqS9oLLmdB6_qJzTuXhZ8MyhUctUXaMttSAm5LNm0RHtq-ww@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: runqemu: vnc server running on ::1:5900
+Subject: Re: .rpm packaging weirdness of dynamic libraries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,16 +39,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 15:10:57 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 23 May 2013 15:25:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On 23 May 2013 16:08, varun bhatnagar <varun292006@gmail.com> wrote:
-> But now I got one more problem......when I tried logging in I found out that
-> my keyboard's key mapping got changed and it was not working. How can I fix
-> this.... :(
+On Thu, May 23, 2013 at 4:55 PM, Burton, Ross <ross.burton@intel.com> wrote=
+:
+> On 23 May 2013 15:50, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
+>> But in the rpm, the libs are packaged incorrectly (or at least not as ex=
+pected)
+>
+> There (should) also be a linx-dev package, that contains the .so
+> symlinks.  .so symlink files are only needed at compilation time for
+> properly versioned libraries.
+>
+> Ross
+Well, yes and no ;) If I look in /lib there are plenty of libraries
+that comes with .so files so it seems they are needed in some cases,
+right? Also, since part of our system software is doing loading of
+dynamic libraries themselves using dlopen() it is *very* hard to
+enforce removal of .so files since that piece of software does not
+know what particular version of the library it should use. It should
+load whatever .so points to, most commonly the latest version. So, is
+there some way for us to make sure .so files are also part of the
+.rpm? we do not wish to install the -dev variant since it also
+pollutes the system with a lot of other not needed stuff. Since /lib
+is having a lot of of .so files it must be possible, or?
+Actually, I have never seen a system that does not include also the
+.so files? Not even embedded ones. They are only soft links so
+flash/ram/disk space is not really an issue here.
 
-It defaults to the US layout.  To be honest I'm not sure how to change
-the default layout, sorry.
+Hans
 
-Ross
+
+On Thu, May 23, 2013 at 4:55 PM, Burton, Ross <ross.burton@intel.com> wrote=
+:
+> On 23 May 2013 15:50, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
+>> But in the rpm, the libs are packaged incorrectly (or at least not as ex=
+pected)
+>
+> There (should) also be a linx-dev package, that contains the .so
+> symlinks.  .so symlink files are only needed at compilation time for
+> properly versioned libraries.
+>
+> Ross
 
