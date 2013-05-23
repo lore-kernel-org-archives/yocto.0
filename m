@@ -1,30 +1,25 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A057E006C2
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:36:28 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga102.ch.intel.com with ESMTP; 23 May 2013 14:36:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,730,1363158000"; d="scan'208";a="339102130"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga001.fm.intel.com with ESMTP; 23 May 2013 14:36:28 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.15]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.91]) with mapi id
-	14.03.0123.003; Thu, 23 May 2013 14:36:22 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
-Thread-Index: AQHOT771DAReMRX1kUaIqlllfEi9rJkTK1ewgAAvrEA=
-Date: Thu, 23 May 2013 21:36:21 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C32476@ORSMSX103.amr.corp.intel.com>
-References: <1368437194-28574-1-git-send-email-ioanax.grigoropol@intel.com> 
+Return-Path: <dlazzari@leapfrog.com>
+Received: from mx3.leapfrog.com (mx3.leapfrog.com [63.114.26.253])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4236E006C2
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:46:02 -0700 (PDT)
+Received: from NAEMCASHT02.na.leapfrog.com (unknown [10.12.2.36])
+	by mx3.leapfrog.com (Postfix) with ESMTP id A895D6064
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 14:45:49 -0700 (PDT)
+Received: from NAEMMAIL01.na.leapfrog.com ([fe80::252e:28a6:3d8f:6991]) by
+	NAEMCASHT02.na.leapfrog.com ([::1]) with mapi id 14.01.0379.000;
+	Thu, 23 May 2013 14:45:49 -0700
+From: Daniel Lazzari <dlazzari@leapfrog.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Problem with Python in pre-built SDK
+Thread-Index: Ac5X+SDRcDdZS9u2R3SsN/Xh9Ar9xA==
+Date: Thu, 23 May 2013 21:45:48 +0000
+Message-ID: <E7A9054A5ACABE48B0E540E46E862B0FE6CA6BF2@NAEMMAIL01.na.leapfrog.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [192.168.206.88]
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
+Subject: Re: Problem with Python in pre-built SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,126 +31,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 21:36:29 -0000
+X-List-Received-Date: Thu, 23 May 2013 21:46:02 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I noticed an issue with the patches and reverted the changes.  The 2nd patc=
-h  in the series is corrupted, after applying that patch, the plugin loaded=
- in IDE with an error which is caused by:
+> Date: Thu, 23 May 2013 11:37:49 +0100
+> From: "Burton, Ross" <ross.burton@intel.com>
+> To: Ben Warren <Ben.Warren@spidercloud.com>
+> Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+> Subject: Re: [yocto] Problem with Python in pre-built SDK
+> Message-ID:
+> 	<CAJTo0LY8Toagve-
+> 1A0JC7Qg_p5ptp6Q2SOgH3=3D_+CuxgPrrBzg@mail.gmail.com>
+> Content-Type: text/plain; charset=3DUTF-8
+>=20
+> On 16 May 2013 22:53, Ben Warren <Ben.Warren@spidercloud.com> wrote:
+> > I'm having other Yocto problems using the stock Ubuntu x86_64 toolchain=
+,
+> so decided to install
+> > one using the instructions in section 2.1.2 (Using a Cross-Toolchain Ta=
+rball)
+> of the "Yocto
+> > Project Application Developer's Guide".
+>=20
+> What are these other problems?  Ubuntu should work fine as a host.
+>=20
+>=20
+> > ImportError: No module named fcntl
+> > =3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > So it looks like the Python included with the SDK is crippled or mis-
+> configured:
+>=20
+> Yeah, the Python we build is split up massively, so clearly the SDK is
+> missing the packages that are needed to run bitbake.  But as I said,
+> using our SDK to build is over-complicating things as Ubuntu should
+> work fine.  What problems were you seeing?
+>=20
+> Ross
 
-+>>>>>>> 2504c89... Move RSEHelper to a separate plugin
+Just in case it matters, this actually bit us pretty badly at one point. We=
+ use scons heavily and our typical workflow is to source the toolchain envi=
+ronment script then run scons. Unfortunately, because the environment file =
+adds the toolchain's native usr/bin to the path, scons tries to run with th=
+e broken python and you get the above ImportError. We fixed it by just dele=
+ting the python binary from the resulting toolchain so that python from the=
+ host system is used instead.
 
-Please run some unit testing before sending the patch.
+Not a serious issue, but pretty annoying.
 
-Thanks,
-Jessica
+Daniel Lazzari Jr.
 
------Original Message-----
-From: Zhang, Jessica
-Sent: Thursday, May 23, 2013 11:44 AM
-To: Grigoropol, IoanaX; yocto@yoctoproject.org
-Subject: RE: [yocto] [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
-
-Merged to eclipse-poky master.
-
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Monday, May 13, 2013 2:26 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH v2 0/6] Separate org.yocto.remote.utils plugin
-
-- initial commit & populate for remote utils common plugin
-
-Ioana Grigoropol (6):
-  Initial commit for separate remote utilities plugin
-  Move RSEHelper to a separate plugin
-  Move RemoteShellExec to separate plugin
-  Move ShellSession to org.yocto.remote.utils separate plugin
-  Move CommonHelper to org.yocto.remote.utils separate plugin
-  Move TerminalHandler to org.yocto.remote.utils
-
- plugins/org.yocto.remote.utils/.classpath          |    7 +
- plugins/org.yocto.remote.utils/.project            |   28 ++
- .../.settings/org.eclipse.jdt.core.prefs           |    7 +
- .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |   28 ++
- plugins/org.yocto.remote.utils/build.properties    |    4 +
- .../org.yocto.remote.utils/resources/ust_tar.sh    |   19 +
- .../org.yocto.remote.utils/resources/yocto_tool.sh |  125 ++++++
- .../org.yocto.remote.utils/resources/yocto_ust.sh  |   35 ++
- .../src/org/yocto/remote/utils/Activator.java      |   62 +++
- .../src/org/yocto/remote/utils/CommonHelper.java   |   46 +++
- .../src/org/yocto/remote/utils/Messages.java       |   35 ++
- .../src/org/yocto/remote/utils/RSEHelper.java      |  344 ++++++++++++++++
- .../org/yocto/remote/utils/RemoteShellExec.java    |  140 +++++++
- .../src/org/yocto/remote/utils/ShellSession.java   |  327 +++++++++++++++
- .../org/yocto/remote/utils/TerminalHandler.java    |  128 ++++++
- .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |    3 +-
- .../org.yocto.sdk.remotetools/resources/ust_tar.sh |   19 -
- .../resources/yocto_tool.sh                        |  125 ------
- .../resources/yocto_ust.sh                         |   35 --
- .../org/yocto/sdk/remotetools/CommonHelper.java    |   44 --
- .../src/org/yocto/sdk/remotetools/RSEHelper.java   |  419 ----------------=
-----
- .../org/yocto/sdk/remotetools/ShellSession.java    |  341 ----------------
- .../yocto/sdk/remotetools/actions/BaseModel.java   |    4 +-
- .../sdk/remotetools/actions/BaseSettingDialog.java |    2 +-
- .../sdk/remotetools/actions/DialogHandler.java     |    1 +
- .../sdk/remotetools/actions/OprofileModel.java     |    2 +-
- .../sdk/remotetools/actions/SystemtapModel.java    |    2 +-
- .../actions/SystemtapSettingDialog.java            |    2 +-
- .../sdk/remotetools/actions/TerminalHandler.java   |  128 ------
- .../sdk/remotetools/remote/RemoteShellExec.java    |  149 -------
- 30 files changed, 1344 insertions(+), 1267 deletions(-)  create mode 10064=
-4 plugins/org.yocto.remote.utils/.classpath
- create mode 100644 plugins/org.yocto.remote.utils/.project
- create mode 100644 plugins/org.yocto.remote.utils/.settings/org.eclipse.jd=
-t.core.prefs
- create mode 100644 plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
- create mode 100644 plugins/org.yocto.remote.utils/build.properties
- create mode 100755 plugins/org.yocto.remote.utils/resources/ust_tar.sh
- create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_tool.sh
- create mode 100755 plugins/org.yocto.remote.utils/resources/yocto_ust.sh
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/Activator.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/CommonHelper.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/Messages.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/RSEHelper.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/RemoteShellExec.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/ShellSession.java
- create mode 100644 plugins/org.yocto.remote.utils/src/org/yocto/remote/uti=
-ls/TerminalHandler.java
- delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/ust_tar.sh
- delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/yocto_tool.=
-sh
- delete mode 100755 plugins/org.yocto.sdk.remotetools/resources/yocto_ust.s=
-h
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/CommonHelper.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/RSEHelper.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/ShellSession.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/actions/TerminalHandler.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/remote/RemoteShellExec.java
-
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
