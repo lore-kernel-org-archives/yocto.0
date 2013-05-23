@@ -1,32 +1,32 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [121.241.96.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 305A4E01481;
-	Thu, 23 May 2013 00:39:43 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 747D336B34;
-	Thu, 23 May 2013 13:09:24 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136])
-	by jaguar.aricent.com (Postfix) with ESMTP id 67D8736B2F;
-	Thu, 23 May 2013 13:09:24 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Thu, 23 May 2013 13:09:24 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>
-Date: Thu, 23 May 2013 13:09:22 +0530
-Thread-Topic: External-Sourcery-Toolchain Related Issue
-Thread-Index: Ac5XSBwud+8rkVfJS0qIv5zxKmS4bwAOdN/w
-Message-ID: <17797116383D4341B029FDF34C22BF6A52C4B2FC51@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.2471.1369267014.19864.yocto@yoctoproject.org>
-In-Reply-To: <mailman.2471.1369267014.19864.yocto@yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
-Subject: External-Sourcery-Toolchain Related Issue
+Return-Path: <atanas.gegov.oss@gmail.com>
+Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
+	[209.85.215.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACF18E01481
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 01:40:01 -0700 (PDT)
+Received: by mail-ea0-f180.google.com with SMTP id g10so1611909eak.11
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 01:40:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=rayFNvoGhRAsH1yWMcG0HgOEsX85kPvDud3veLocMoM=;
+	b=gA/mcmxsd9PsNG7NgdWVcImx37qPTzGJez45pBEYlMFD3jNts8m7ZJ3+4IEKFLDXkg
+	CsVbSqCZOIxhg/cYPSYC6uO5ZhKRVmvJbM+NJzwBztjS2NQa+7bzrpe2A1XYBkgC7owi
+	MbvLZ9hnjf3QKDyVeKCXhB9VlICJGO1pCEQvf2t+lBq8eeBUpQF3yDnlh17T44noICrX
+	SvAS8bFtoHuM59WOWLm3GydrWrLve+aTB56TKr8LjUuTnnhApDVUQvKyA0mh/e/kdS9I
+	mVvcJwW025n07Rz7cOmcE5NKYq56m8ZB2xaPIRxBZHLBNSeICM24O/nhAXBtDDxtF/bk
+	/ftQ==
+X-Received: by 10.14.107.200 with SMTP id o48mr28999382eeg.35.1369298400302;
+	Thu, 23 May 2013 01:40:00 -0700 (PDT)
+Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
+	by mx.google.com with ESMTPSA id c41sm11438848eeu.8.2013.05.23.01.39.58
+	for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 23 May 2013 01:39:59 -0700 (PDT)
+From: Atanas Gegov <atanas.gegov.oss@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 23 May 2013 10:39:39 +0200
+Message-Id: <1369298392-4076-1-git-send-email-atanas.gegov.oss@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [eclipse-poky][PATCH 00/13] Completed CMake integration in the Yocto IDE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,377 +38,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 07:39:44 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_17797116383D4341B029FDF34C22BF6A52C4B2FC51GUREXMB01ASIA_"
+X-List-Received-Date: Thu, 23 May 2013 08:40:02 -0000
 
---_000_17797116383D4341B029FDF34C22BF6A52C4B2FC51GUREXMB01ASIA_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
 Hi,
 
+this patch series adds a new plugin containing a CMake configure tool, a
+toolchain and a project type for building CMake projects in the Yocto IDE. The
+plugin also introduces Hello World templates for C and C++. With this patch
+series the CMake integration is completed and the CMake projects can be built,
+debugged etc. as already known from the Autotools-based projects.
+
+Cheers,
+Atanas
+
+P.S: This patch series requires the already discussed patch series
+"[eclipse-poky][RFCv2 0/7] Introducing a YoctoSDKCMakeProjectNature".
+
+Atanas Gegov (13):
+  plugins/cmake: Added an empty CMake integration plugin
+  plugins/cmake: Defined CMake tool with options
+  plugins/sdk.ide: Added a method to get project environment
+  plugins/cmake: Preparing a configure Job
+  plugins/cmake: Added run method to configure Job
+  plugins/cmake: Added a Makefile generator
+  plugins/cmake: Added the generation of toolchain.cmake
+  plugins/cmake: Defined the building toolchain
+  plugins/cmake: Added a new category for CMake projects
+  plugins/cmake: Connect toolchain and new project category
+  plugins/cmake: Added CMake template projects
+  plugins/sdk.ide: Adapted RemoteDebugLauncher for CMake projects
+  features/sdk: Added CMake plugin to sdk feature
+
+ features/org.yocto.sdk/feature.xml                 |    6 +
+ plugins/org.yocto.cmake.managedbuilder/.classpath  |    7 +
+ plugins/org.yocto.cmake.managedbuilder/.project    |   28 ++
+ .../.settings/org.eclipse.jdt.core.prefs           |    8 +
+ .../META-INF/MANIFEST.MF                           |   16 ++
+ .../OSGI-INF/l10n/bundle.properties                |   40 +++
+ .../build.properties                               |    7 +
+ plugins/org.yocto.cmake.managedbuilder/plugin.xml  |  283 ++++++++++++++++++++
+ .../org/yocto/cmake/managedbuilder/Activator.java  |   50 ++++
+ .../YoctoCMakeMakefileGenerator.java               |  281 +++++++++++++++++++
+ .../cmake/managedbuilder/YoctoCMakeMessages.java   |   57 ++++
+ .../managedbuilder/YoctoCMakeMessages.properties   |   27 ++
+ .../managedbuilder/job/ExecuteConfigureJob.java    |  149 +++++++++++
+ .../cmake/managedbuilder/util/ConsoleUtility.java  |   49 ++++
+ .../cmake/managedbuilder/util/SystemProcess.java   |  118 ++++++++
+ .../HelloWorldCCMakeProject/src/CMakeLists.txt     |   34 +++
+ .../HelloWorldCCMakeProject/src/main.c             |   21 ++
+ .../HelloWorldCCMakeProject/template.properties    |   31 +++
+ .../HelloWorldCCMakeProject/template.xml           |   61 +++++
+ .../HelloWorldCPPCMakeProject/src/CMakeLists.txt   |   34 +++
+ .../HelloWorldCPPCMakeProject/src/main.cpp         |   21 ++
+ .../HelloWorldCPPCMakeProject/template.properties  |   31 +++
+ .../HelloWorldCPPCMakeProject/template.xml         |   61 +++++
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |   29 +-
+ 24 files changed, 1445 insertions(+), 4 deletions(-)
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/.classpath
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/.project
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/.settings/org.eclipse.jdt.core.prefs
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/META-INF/MANIFEST.MF
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/OSGI-INF/l10n/bundle.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/build.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/plugin.xml
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/Activator.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMakefileGenerator.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/util/ConsoleUtility.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/util/SystemProcess.java
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCCMakeProject/src/CMakeLists.txt
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCCMakeProject/src/main.c
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCCMakeProject/template.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCCMakeProject/template.xml
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCPPCMakeProject/src/CMakeLists.txt
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCPPCMakeProject/src/main.cpp
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCPPCMakeProject/template.properties
+ create mode 100644 plugins/org.yocto.cmake.managedbuilder/templates/projecttemplates/HelloWorldCPPCMakeProject/template.xml
+
+-- 
+1.7.9.5
 
 
-I want to install my existing Toolchain to Yocto Sysroot bypassing default =
-yocto toolchain functionality.
-
-
-
-My requirements are
-
-
-
-1I will download toolchain from my git source ie tar file.
-
-2I just want to install this toolchain to tmp/sysroot folder in build direc=
-tory skipping compilation step.
-
-
-
-
-
-Steps implemented
-
-
-
-1 SRC_URI =3D "file:///home/toolchains_bin.tar<file:///\\home\toolchains_bi=
-n.tar>"
-
-2 TCMODE=3D"external-csl"
-
-3 EXTERNAL_TOOLCHAIN =3D "/home/yocto/poky/build/tmp/work/mips64-poky-linux=
-/external-sourcery-toolchain/GCC-r8/toolchains_bin/mipscross/linux"
-
-4CSL_TARGET_SYS_mips64 =3D "${TARGET_ARCH}${TARGET_TC_VENDOR}-${TCTYPE}"
-
-5CSL_TARGET_SYS =3D "${TARGET_ARCH}${TARGET_TC_VENDOR}-${TCTYPE}"
-
-6 TARGET_PREFIX =3D "${CSL_TARGET_SYS_mips64}-"
-
-
-
-But when I tried to run
-
-Build> bitbake linux (linux is recipe in my layer)
-
-
-
-It gives me error :
-
-
-
-ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/home=
-/yocto/poky/build/tmp/work/mips64-poky-linux/external-sourcery-toolchain/GC=
-C-r8/toolchains_bin/mipscross/linux/bin/mips64-nlm-linux-gcc -v' failed: co=
-mmand not found
-
-ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/home=
-/yocto/poky/build/tmp/work/mips64-poky-linux/external-sourcery-toolchain/GC=
-C-r8/toolchains_bin/mipscross/linux/bin/mips64-nlm-linux-gcc -v' failed: co=
-mmand not found
-
-
-
-and continue with the tasks executions like unpacking toolchains_bin.tar to=
- $WORKDIR/mips64-poky-linux/.. and other linux do configure etc
-
-
-
-
-
-Again run this recipe:
-
-@Build>bitbake linux
-
-NOTE. Once unpacked the toolchain to the location specified if I  again run=
- the above recipe then this error does not come.
-
-
-
-
-
-Please suggest me the way around to skip this error coming at the first tim=
-e when I build my recipe until my toolchain is not unpacked.
-
-
-
-
-
-Thanks in advance!
-
-
-
-
-
-Regards,
-
-Rohit Jindal
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_000_17797116383D4341B029FDF34C22BF6A52C4B2FC51GUREXMB01ASIA_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">Hi,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">I want to install my =
-existing Toolchain to Yocto Sysroot bypassing default yocto toolchain funct=
-ionality.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">My requirements are<o=
-:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">1I will download tool=
-chain from my git source ie tar file.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">2I just want to insta=
-ll this toolchain to tmp/sysroot folder in build directory skipping compila=
-tion step.<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">Steps implemented<o:p=
-></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">1 SRC_URI =3D &quot;<=
-a href=3D"file:///\\home\toolchains_bin.tar">file:///home/toolchains_bin.ta=
-r</a>&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">2 TCMODE=3D&quot;exte=
-rnal-csl&quot; <o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">3 EXTERNAL_TOOLCHAIN =
-=3D &quot;/home/yocto/poky/build/tmp/work/mips64-poky-linux/external-source=
-ry-toolchain/GCC-r8/toolchains_bin/mipscross/linux&quot;<o:p></o:p></span><=
-/p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">4CSL_TARGET_SYS_mips6=
-4 =3D &quot;${TARGET_ARCH}${TARGET_TC_VENDOR}-${TCTYPE}&quot;<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">5CSL_TARGET_SYS =3D &=
-quot;${TARGET_ARCH}${TARGET_TC_VENDOR}-${TCTYPE}&quot;<o:p></o:p></span></p=
->
-<p class=3D"MsoPlainText"><span style=3D"color:black">6 TARGET_PREFIX =3D &=
-quot;${CSL_TARGET_SYS_mips64}-&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">But when I tried to r=
-un <o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">Build&gt; bitbake lin=
-ux (linux is recipe in my layer)<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">It gives me error :<o=
-:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">ERROR: Failed to obta=
-in CodeSourcery toolchain version: Execution of '/home/yocto/poky/build/tmp=
-/work/mips64-poky-linux/external-sourcery-toolchain/GCC-r8/toolchains_bin/m=
-ipscross/linux/bin/mips64-nlm-linux-gcc
- -v' failed: command not found<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">ERROR: Failed to obta=
-in CodeSourcery toolchain version: Execution of '/home/yocto/poky/build/tmp=
-/work/mips64-poky-linux/external-sourcery-toolchain/GCC-r8/toolchains_bin/m=
-ipscross/linux/bin/mips64-nlm-linux-gcc
- -v' failed: command not found<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">and continue with the=
- tasks executions like unpacking toolchains_bin.tar to $WORKDIR/mips64-poky=
--linux/.. and other linux do configure etc<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">Again run this recipe=
-:<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">@Build&gt;bitbake lin=
-ux &nbsp;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">NOTE. Once unpacked t=
-he toolchain to the location specified if I &nbsp;again run the above recip=
-e then this error does not come.
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><u><span style=3D"color:black">Please suggest me =
-the way around to skip this error coming at the first time when I build my =
-recipe until my toolchain is not unpacked.<o:p></o:p></span></u></p>
-<p class=3D"MsoPlainText"><u><span style=3D"color:black"><o:p><span style=
-=3D"text-decoration:none">&nbsp;</span></o:p></span></u></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">Thanks in advance!<o:=
-p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">Regards,<o:p></o:p></=
-span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">Rohit Jindal<o:p></o:=
-p></span></p>
-<p class=3D"MsoPlainText"><u><span style=3D"color:black"><o:p><span style=
-=3D"text-decoration:none">&nbsp;</span></o:p></span></u></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
-an></p>
-</div>
-<br>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
-for important disclosures regarding this electronic communication.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-</font>
-</body>
-</html>
-
---_000_17797116383D4341B029FDF34C22BF6A52C4B2FC51GUREXMB01ASIA_--
