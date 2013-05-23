@@ -1,33 +1,37 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EC62E006C2
-	for <yocto@yoctoproject.org>; Thu, 23 May 2013 10:19:41 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga101.ch.intel.com with ESMTP; 23 May 2013 10:19:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,729,1363158000"; d="scan'208";a="338980222"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga001.fm.intel.com with ESMTP; 23 May 2013 10:19:45 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.15]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.91]) with mapi id
-	14.03.0123.003; Thu, 23 May 2013 10:19:39 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Adrian Dudau <Adrian.Dudau@enea.com>
-Thread-Topic: [PATCH][eclipse-poky] systemtap: add possibility for user to
-	point to his build folder
-Thread-Index: AQHOR9vQfVEPo1NHOkiNnseCAXpUnJkTI21A
-Date: Thu, 23 May 2013 17:19:39 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C32194@ORSMSX103.amr.corp.intel.com>
-References: <1367237731-18630-1-git-send-email-adrian.dudau@enea.com>
-	<C35DE6E3665B10419D70F74D9884ABD403B98700@sestoex09.enea.se>
-In-Reply-To: <C35DE6E3665B10419D70F74D9884ABD403B98700@sestoex09.enea.se>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qc0-f169.google.com (mail-qc0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 836CFE0129D
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 10:32:28 -0700 (PDT)
+Received: by mail-qc0-f169.google.com with SMTP id k15so1937703qcv.28
+	for <yocto@yoctoproject.org>; Thu, 23 May 2013 10:32:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=okKo6hH4tZJb+dRnDasB0tWMgNUlumErMhAmYnjiFJY=;
+	b=Tux8BcziV0IpsnRff03JUZQuHfE5RujnThzZpB/El1GiCJx2WC9vmSmb31VjzXH2ax
+	D4nL0mH1kCHvjcfQGsMYOi/IgeRdym/oi22n37dIWKL6Lyps4aKruV0Nvy9By/OCa5Sw
+	jOw+FIGY9GtR26us8jrmRQksuIaL9dWjDeLfGytL9dTjshiGalS9iOrbcGa4aQKdg8+w
+	6lAb5cXMvQB2X618uikY0qg7TS3Ug7uEWwVvPcYum6H4/LRLQf5yV749JldgBCN54Vor
+	BQIGh/RAT1IQkbCoJSSuUe9rmydt1b1TKA7NQgGFKedmxRICBQrXjk6wbj9jwzDmRAub
+	2bCw==
 MIME-Version: 1.0
+X-Received: by 10.224.58.141 with SMTP id g13mr12789569qah.49.1369330347688;
+	Thu, 23 May 2013 10:32:27 -0700 (PDT)
+Received: by 10.49.24.142 with HTTP; Thu, 23 May 2013 10:32:27 -0700 (PDT)
+In-Reply-To: <CAFyqS9oQmWmcZLBxYW=bYtsQMo70XzdWpP6vTme_BHkXSRtLyA@mail.gmail.com>
+References: <CAFyqS9r0yUn_dNT0PH9WgFp2pyOs3M+bNdQ=YnPAa8u8fbkFzw@mail.gmail.com>
+	<CAJTo0LYOqeHywd4zftCoccUpnvcB3kDA-TLtgjknkkAZh_Ec4Q@mail.gmail.com>
+	<CAFyqS9oLLmdB6_qJzTuXhZ8MyhUctUXaMttSAm5LNm0RHtq-ww@mail.gmail.com>
+	<CAJTo0Lbv6RmRN-dO_BRNmSRN49x5Pz8RqXOGf=kB5KcVz0MpyQ@mail.gmail.com>
+	<CAFyqS9qtnGX03cD-1OmfiJEVkT0MhCuAW-=XPGRRcnCD9VorFQ@mail.gmail.com>
+	<CAFyqS9oQmWmcZLBxYW=bYtsQMo70XzdWpP6vTme_BHkXSRtLyA@mail.gmail.com>
+Date: Thu, 23 May 2013 19:32:27 +0200
+Message-ID: <CAFyqS9rnOyC-H=_djNatS1mptDG+UR0rtQxfmAFB-z9Jsepv=Q@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH][eclipse-poky] systemtap: add possibility for user to point to his build folder
+Subject: Re: .rpm packaging weirdness of dynamic libraries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,228 +43,209 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 17:19:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 23 May 2013 17:32:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQW5kcmlhbiwNCg0KU29ycnksIEkgd2FzIHRyYXZlbGluZyBhbmQgbWlzc2VkIHRoaXMgcGF0
-Y2guICBBbmQgc2VlbXMgaXQncyBub3QgYXBwbGljYWJsZSB0byB0aGUgbGF0ZXN0IG1hc3Rlci4g
-IENhbiB5b3UgcmViYXNlIGFuZCByZXNlbmQ/DQoNClRoYW5rcywNCkplc3NpY2ENCg0KLS0tLS1P
-cmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEFkcmlhbiBEdWRhdSBbbWFpbHRvOkFkcmlhbi5E
-dWRhdUBlbmVhLmNvbV0NClNlbnQ6IEZyaWRheSwgTWF5IDAzLCAyMDEzIDE6NTMgQU0NClRvOiBa
-aGFuZywgSmVzc2ljYQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBb
-UEFUQ0hdW2VjbGlwc2UtcG9reV0gc3lzdGVtdGFwOiBhZGQgcG9zc2liaWxpdHkgZm9yIHVzZXIg
-dG8gcG9pbnQgdG8gaGlzIGJ1aWxkIGZvbGRlcg0KDQpPbiBNb24sIDIwMTMtMDQtMjkgYXQgMTQ6
-MTUgKzAyMDAsIEFkcmlhbiBEdWRhdSB3cm90ZToNCj4gW1lvY3RvICM0MjIzXQ0KPg0KPiBTaWdu
-ZWQtb2ZmLWJ5OiBBZHJpYW4gRHVkYXUgPGFkcmlhbi5kdWRhdUBlbmVhLmNvbT4NCj4gLS0tDQo+
-ICAuLi4vc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvTWVzc2FnZXMuamF2YSAgICB8ICAg
-IDEgKw0KPiAgLi4uL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvU2hlbGxTZXNzaW9uLmphdmEg
-ICAgfCAgICA2ICsrKy0tDQo+ICAuLi4vc2RrL3JlbW90ZXRvb2xzL2FjdGlvbnMvU3lzdGVtdGFw
-SGFuZGxlci5qYXZhICB8ICAgIDMgKystDQo+ICAuLi4vc2RrL3JlbW90ZXRvb2xzL2FjdGlvbnMv
-U3lzdGVtdGFwTW9kZWwuamF2YSAgICB8ICAgIDYgKysrLS0NCj4gIC4uLi9hY3Rpb25zL1N5c3Rl
-bXRhcFNldHRpbmdEaWFsb2cuamF2YSAgICAgICAgICAgIHwgICAyOCArKysrKysrKysrKysrKysr
-KysrKw0KPiAgLi4uL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvbWVzc2FnZXMucHJvcGVydGll
-cyAgfCAgICAxICsNCj4gIDYgZmlsZXMgY2hhbmdlZCwgNDAgaW5zZXJ0aW9ucygrKSwgNSBkZWxl
-dGlvbnMoLSkNCj4NCj4gZGlmZiAtLWdpdA0KPiBhL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1v
-dGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29scy9NZXNzDQo+IGFnZXMuamF2YQ0K
-PiBiL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9y
-ZW1vdGV0b29scy9NZXNzDQo+IGFnZXMuamF2YQ0KPiBpbmRleCA2NmJhNjJiLi5jYmYyYjA1IDEw
-MDY0NA0KPiAtLS0NCj4gYS9wbHVnaW5zL29yZy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29y
-Zy95b2N0by9zZGsvcmVtb3RldG9vbHMvTWVzcw0KPiBhZ2VzLmphdmENCj4gKysrIGIvcGx1Z2lu
-cy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xz
-Lw0KPiArKysgTWVzc2FnZXMuamF2YQ0KPiBAQCAtNDAsNiArNDAsNyBAQCBwdWJsaWMgY2xhc3Mg
-TWVzc2FnZXMgZXh0ZW5kcyBOTFMgew0KPiAgICAgICBwdWJsaWMgc3RhdGljIFN0cmluZyBUZXJt
-aW5hbFZpZXdlcl90ZXh0Ow0KPiAgICAgICAvL3B1YmxpYyBzdGF0aWMgU3RyaW5nIFN5c3RlbXRh
-cF9LT19UZXh0Ow0KPiAgICAgICBwdWJsaWMgc3RhdGljIFN0cmluZyBNZXRhZGF0YV9Mb2NhdGlv
-bjsNCj4gKyAgICAgcHVibGljIHN0YXRpYyBTdHJpbmcgQnVpbGRkaXJfTG9jYXRpb247DQo+ICAg
-ICAgIHB1YmxpYyBzdGF0aWMgU3RyaW5nIFVzZXJfSUQ7DQo+ICAgICAgIHB1YmxpYyBzdGF0aWMg
-U3RyaW5nIFJlbW90ZV9Ib3N0Ow0KPiAgICAgICBwdWJsaWMgc3RhdGljIFN0cmluZyBTeXN0ZW10
-YXBfU2NyaXB0OyBkaWZmIC0tZ2l0DQo+IGEvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRv
-b2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL1NoZWwNCj4gbFNlc3Npb24uamF2YQ0K
-PiBiL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9y
-ZW1vdGV0b29scy9TaGVsDQo+IGxTZXNzaW9uLmphdmENCj4gaW5kZXggNTYwMjc5OC4uY2JjOGU1
-NSAxMDA2NDQNCj4gLS0tDQo+IGEvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3Ny
-Yy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL1NoZWwNCj4gbFNlc3Npb24uamF2YQ0KPiArKysg
-Yi9wbHVnaW5zL29yZy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVt
-b3RldG9vbHMvDQo+ICsrKyBTaGVsbFNlc3Npb24uamF2YQ0KPiBAQCAtNjYsMTIgKzY2LDE0IEBA
-IHB1YmxpYyBjbGFzcyBTaGVsbFNlc3Npb24gew0KPiAgICAgICBwcml2YXRlIFN0cmluZyBzaGVs
-bFBhdGggPSBudWxsOw0KPiAgICAgICBwcml2YXRlIGZpbmFsIFN0cmluZyBpbml0Q21kOw0KPiAg
-ICAgICBwcml2YXRlIGZpbmFsIEZpbGUgcm9vdDsNCj4gKyAgICAgcHJpdmF0ZSBmaW5hbCBGaWxl
-IGJ1aWxkZGlyOw0KPg0KPiAgICAgICBwcml2YXRlIE91dHB1dFN0cmVhbVdyaXRlciBvdXQ7DQo+
-DQo+DQo+IC0gICAgIHB1YmxpYyBTaGVsbFNlc3Npb24oaW50IHNoZWxsVHlwZSwgRmlsZSByb290
-LCBTdHJpbmcgaW5pdENtZCwgT3V0cHV0U3RyZWFtIG91dCkgdGhyb3dzIElPRXhjZXB0aW9uIHsN
-Cj4gKyAgICAgcHVibGljIFNoZWxsU2Vzc2lvbihpbnQgc2hlbGxUeXBlLCBGaWxlIHJvb3QsIEZp
-bGUgYnVpbGRkaXIsIFN0cmluZw0KPiAraW5pdENtZCwgT3V0cHV0U3RyZWFtIG91dCkgdGhyb3dz
-IElPRXhjZXB0aW9uIHsNCj4gICAgICAgICAgICAgICB0aGlzLnJvb3QgPSByb290Ow0KPiArICAg
-ICAgICAgICAgIHRoaXMuYnVpbGRkaXIgPSBidWlsZGRpcjsNCj4gICAgICAgICAgICAgICB0aGlz
-LmluaXRDbWQgID0gaW5pdENtZDsNCj4gICAgICAgICAgICAgICBpZiAob3V0ID09IG51bGwpIHsN
-Cj4gICAgICAgICAgICAgICAgICAgICAgIHRoaXMub3V0ID0gbmV3IE91dHB1dFN0cmVhbVdyaXRl
-cihudWxsKTsgQEAgLTk1LDcgKzk3LDcgQEAgcHVibGljDQo+IGNsYXNzIFNoZWxsU2Vzc2lvbiB7
-DQo+ICAgICAgICAgICAgICAgfQ0KPg0KPiAgICAgICAgICAgICAgIGlmIChpbml0Q21kICE9IG51
-bGwpIHsNCj4gLSAgICAgICAgICAgICAgICAgICAgIGV4ZWN1dGUoInNvdXJjZSAiICsgaW5pdENt
-ZCk7DQo+ICsgICAgICAgICAgICAgICAgICAgICBleGVjdXRlKCJzb3VyY2UgIiArIGluaXRDbWQg
-KyAiICIgKyBidWlsZGRpci5nZXRBYnNvbHV0ZVBhdGgoKSk7DQo+ICAgICAgICAgICAgICAgfQ0K
-PiAgICAgICB9DQo+DQo+IGRpZmYgLS1naXQNCj4gYS9wbHVnaW5zL29yZy55b2N0by5zZGsucmVt
-b3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvYWN0aQ0KPiBvbnMvU3lzdGVt
-dGFwSGFuZGxlci5qYXZhDQo+IGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3Ny
-Yy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL2FjdGkNCj4gb25zL1N5c3RlbXRhcEhhbmRsZXIu
-amF2YQ0KPiBpbmRleCA4NzA5NGVlLi5kYzExZTM5IDEwMDY0NA0KPiAtLS0NCj4gYS9wbHVnaW5z
-L29yZy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMv
-YWN0aQ0KPiBvbnMvU3lzdGVtdGFwSGFuZGxlci5qYXZhDQo+ICsrKyBiL3BsdWdpbnMvb3JnLnlv
-Y3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29scy8NCj4gKysr
-IGFjdGlvbnMvU3lzdGVtdGFwSGFuZGxlci5qYXZhDQo+IEBAIC0zNSw2ICszNSw3IEBAIHB1Ymxp
-YyBjbGFzcyBTeXN0ZW10YXBIYW5kbGVyIGV4dGVuZHMNCj4gQWJzdHJhY3RIYW5kbGVyIHsNCj4N
-Cj4gICAgICAgICAgICAgICBzZXR0aW5nLm9wZW4oKTsNCj4gICAgICAgICAgICAgICBTdHJpbmcg
-bWV0YWRhdGFfbG9jYXRpb24gPQ0KPiAoKFN5c3RlbXRhcFNldHRpbmdEaWFsb2cpc2V0dGluZyku
-Z2V0TWV0YWRhdGFMb2NhdGlvbigpOw0KPiArICAgICAgICAgICAgIFN0cmluZyBidWlsZGRpcl9s
-b2NhdGlvbiA9DQo+ICsoKFN5c3RlbXRhcFNldHRpbmdEaWFsb2cpc2V0dGluZykuZ2V0QnVpbGRk
-aXJMb2NhdGlvbigpOw0KPiAgICAgICAgICAgICAgIFN0cmluZyByZW1vdGVfaG9zdCA9ICgoU3lz
-dGVtdGFwU2V0dGluZ0RpYWxvZylzZXR0aW5nKS5nZXRSZW1vdGVIb3N0KCk7DQo+ICAgICAgICAg
-ICAgICAgU3RyaW5nIHVzZXJfaWQgPSAoKFN5c3RlbXRhcFNldHRpbmdEaWFsb2cpc2V0dGluZyku
-Z2V0VXNlcklEKCk7DQo+ICAgICAgICAgICAgICAgU3RyaW5nIHN5c3RlbXRhcF9zY3JpcHQgPQ0K
-PiAoKFN5c3RlbXRhcFNldHRpbmdEaWFsb2cpc2V0dGluZykuZ2V0U3lzdGVtdGFwU2NyaXB0KCk7
-DQo+IEBAIC00Miw3ICs0Myw3IEBAIHB1YmxpYyBjbGFzcyBTeXN0ZW10YXBIYW5kbGVyIGV4dGVu
-ZHMNCj4gQWJzdHJhY3RIYW5kbGVyIHsNCj4NCj4gICAgICAgICAgICAgICBpZihzZXR0aW5nLm9w
-ZW4oKSA9PSBCYXNlU2V0dGluZ0RpYWxvZy5PSykgew0KPiAgICAgICAgICAgICAgICAgICAgICAg
-SVByb2dyZXNzU2VydmljZSBwcm9ncmVzc1NlcnZpY2UgPSBQbGF0Zm9ybVVJLmdldFdvcmtiZW5j
-aCgpLmdldFByb2dyZXNzU2VydmljZSgpOw0KPiAtICAgICAgICAgICAgICAgICAgICAgU3lzdGVt
-dGFwTW9kZWwgb3AgPSBuZXcgU3lzdGVtdGFwTW9kZWwobWV0YWRhdGFfbG9jYXRpb24scmVtb3Rl
-X2hvc3QsIHVzZXJfaWQsIHN5c3RlbXRhcF9zY3JpcHQsDQo+ICsgICAgICAgICAgICAgICAgICAg
-ICBTeXN0ZW10YXBNb2RlbCBvcCA9IG5ldyBTeXN0ZW10YXBNb2RlbChtZXRhZGF0YV9sb2NhdGlv
-biwNCj4gK2J1aWxkZGlyX2xvY2F0aW9uLCByZW1vdGVfaG9zdCwgdXNlcl9pZCwgc3lzdGVtdGFw
-X3NjcmlwdCwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzeXN0ZW10
-YXBfYXJncyx3aW5kb3cuZ2V0U2hlbGwoKS5nZXREaXNwbGF5KCkpOw0KPiAgICAgICAgICAgICAg
-ICAgICAgICAgdHJ5IHsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcHJvZ3Jlc3NT
-ZXJ2aWNlLmJ1c3lDdXJzb3JXaGlsZShvcCk7DQo+IGRpZmYgLS1naXQNCj4gYS9wbHVnaW5zL29y
-Zy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvYWN0
-aQ0KPiBvbnMvU3lzdGVtdGFwTW9kZWwuamF2YQ0KPiBiL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5y
-ZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29scy9hY3RpDQo+IG9ucy9TeXN0
-ZW10YXBNb2RlbC5qYXZhDQo+IGluZGV4IDBkMjJkOTcuLmM4MzQwOTcgMTAwNjQ0DQo+IC0tLQ0K
-PiBhL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9y
-ZW1vdGV0b29scy9hY3RpDQo+IG9ucy9TeXN0ZW10YXBNb2RlbC5qYXZhDQo+ICsrKyBiL3BsdWdp
-bnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29s
-cy8NCj4gKysrIGFjdGlvbnMvU3lzdGVtdGFwTW9kZWwuamF2YQ0KPiBAQCAtMjYsNiArMjYsNyBA
-QCBwdWJsaWMgY2xhc3MgU3lzdGVtdGFwTW9kZWwgZXh0ZW5kcyBCYXNlTW9kZWwgew0KPiAgICAg
-ICBwcm90ZWN0ZWQgc3RhdGljIGZpbmFsIFN0cmluZyBTWVNURU1UQVBfQ09OU09MRSA9ICJTeXN0
-ZW10YXAgQ29uc29sZSI7DQo+ICAgICAgIHByb3RlY3RlZCBNZXNzYWdlQ29uc29sZSBzZXNzaW9u
-Q29uc29sZTsNCj4gICAgICAgcHJpdmF0ZSBTdHJpbmcgbWV0YWRhdGFfbG9jYXRpb247DQo+ICsg
-ICAgIHByaXZhdGUgU3RyaW5nIGJ1aWxkZGlyX2xvY2F0aW9uOw0KPiAgICAgICBwcml2YXRlIFN0
-cmluZyByZW1vdGVfaG9zdDsNCj4gICAgICAgcHJpdmF0ZSBTdHJpbmcgdXNlcl9pZDsNCj4gICAg
-ICAgcHJpdmF0ZSBTdHJpbmcgc3lzdGVtdGFwX3NjcmlwdDsNCj4gQEAgLTMzLDkgKzM0LDEwIEBA
-IHB1YmxpYyBjbGFzcyBTeXN0ZW10YXBNb2RlbCBleHRlbmRzIEJhc2VNb2RlbCB7DQo+DQo+ICAg
-ICAgIERpc3BsYXkgZGlzcGxheTsNCj4NCj4gLSAgICAgcHVibGljIFN5c3RlbXRhcE1vZGVsKFN0
-cmluZyBtZXRhZGF0YV9sb2NhdGlvbiwgU3RyaW5nIHJlbW90ZV9ob3N0LCBTdHJpbmcgdXNlcl9p
-ZCwgU3RyaW5nIHN5c3RlbXRhcF9zY3JpcHQsIFN0cmluZyBzeXN0ZW10YXBfYXJncywgRGlzcGxh
-eSBkaXNwbGF5KSB7DQo+ICsgICAgIHB1YmxpYyBTeXN0ZW10YXBNb2RlbChTdHJpbmcgbWV0YWRh
-dGFfbG9jYXRpb24sIFN0cmluZw0KPiArYnVpbGRkaXJfbG9jYXRpb24sIFN0cmluZyByZW1vdGVf
-aG9zdCwgU3RyaW5nIHVzZXJfaWQsIFN0cmluZw0KPiArc3lzdGVtdGFwX3NjcmlwdCwgU3RyaW5n
-IHN5c3RlbXRhcF9hcmdzLCBEaXNwbGF5IGRpc3BsYXkpIHsNCj4gICAgICAgICAgICAgICBzdXBl
-cihudWxsKTsNCj4gICAgICAgICAgICAgICB0aGlzLm1ldGFkYXRhX2xvY2F0aW9uPW1ldGFkYXRh
-X2xvY2F0aW9uOw0KPiArICAgICAgICAgICAgIHRoaXMuYnVpbGRkaXJfbG9jYXRpb249YnVpbGRk
-aXJfbG9jYXRpb247DQo+ICAgICAgICAgICAgICAgdGhpcy5yZW1vdGVfaG9zdD1yZW1vdGVfaG9z
-dDsNCj4gICAgICAgICAgICAgICB0aGlzLnVzZXJfaWQ9dXNlcl9pZDsNCj4gICAgICAgICAgICAg
-ICB0aGlzLnN5c3RlbXRhcF9zY3JpcHQ9c3lzdGVtdGFwX3NjcmlwdDsNCj4gQEAgLTY4LDcgKzcw
-LDcgQEAgcHVibGljIGNsYXNzIFN5c3RlbXRhcE1vZGVsIGV4dGVuZHMgQmFzZU1vZGVsIHsNCj4g
-ICAgICAgdGhyb3dzIEludm9jYXRpb25UYXJnZXRFeGNlcHRpb24sIEludGVycnVwdGVkRXhjZXB0
-aW9uIHsNCj4gICAgICAgICAgICAgICB0cnkgew0KPiAgICAgICAgICAgICAgICAgICAgICAgU2hl
-bGxTZXNzaW9uIHNoZWxsID0gbmV3IFNoZWxsU2Vzc2lvbihTaGVsbFNlc3Npb24uU0hFTExfVFlQ
-RV9CQVNILA0KPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbmV3IEZpbGUo
-dGhpcy5tZXRhZGF0YV9sb2NhdGlvbiksDQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBuZXcgRmlsZSh0aGlzLm1ldGFkYXRhX2xvY2F0aW9uKSwgbmV3DQo+ICtGaWxlKHRo
-aXMuYnVpbGRkaXJfbG9jYXRpb24pLA0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgREVGQVVMVF9JTklUX1NDUklQVCwgc2Vzc2lvbkNvbnNvbGUubmV3T3V0cHV0U3RyZWFt
-KCkpOw0KPiAgICAgICAgICAgICAgICAgICAgICAgYm9vbGVhbiBhY2NlcHRlZEtleSA9IHNoZWxs
-LmVuc3VyZUtub3duSG9zdEtleSh1c2VyX2lkLCByZW1vdGVfaG9zdCk7DQo+ICAgICAgICAgICAg
-ICAgICAgICAgICBpZiAoYWNjZXB0ZWRLZXkpIHsNCj4gZGlmZiAtLWdpdA0KPiBhL3BsdWdpbnMv
-b3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29scy9h
-Y3RpDQo+IG9ucy9TeXN0ZW10YXBTZXR0aW5nRGlhbG9nLmphdmENCj4gYi9wbHVnaW5zL29yZy55
-b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvYWN0aQ0K
-PiBvbnMvU3lzdGVtdGFwU2V0dGluZ0RpYWxvZy5qYXZhDQo+IGluZGV4IDhiNDcwM2MuLjIxMDRl
-ZTggMTAwNjQ0DQo+IC0tLQ0KPiBhL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9z
-cmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29scy9hY3RpDQo+IG9ucy9TeXN0ZW10YXBTZXR0aW5n
-RGlhbG9nLmphdmENCj4gKysrIGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3Ny
-Yy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzLw0KPiArKysgYWN0aW9ucy9TeXN0ZW10YXBTZXR0
-aW5nRGlhbG9nLmphdmENCj4gQEAgLTM3LDE4ICszNywyMSBAQCBwdWJsaWMgY2xhc3MgU3lzdGVt
-dGFwU2V0dGluZ0RpYWxvZyBleHRlbmRzIERpYWxvZyB7DQo+ICAgICAgIHN0YXRpYyBwcm90ZWN0
-ZWQgU3RyaW5nIFRJVExFPSJTeXN0ZW10YXAgQ3Jvc3N0YXAiOw0KPiAgICAgICBwcm90ZWN0ZWQg
-U3RyaW5nIHRpdGxlOw0KPiAgICAgICBwcm90ZWN0ZWQgU3RyaW5nIG1ldGFkYXRhX2xvY2F0aW9u
-Ow0KPiArICAgICBwcm90ZWN0ZWQgU3RyaW5nIGJ1aWxkZGlyX2xvY2F0aW9uOw0KPiAgICAgICBw
-cm90ZWN0ZWQgU3RyaW5nIHN5c3RlbXRhcF9zY3JpcHQ7DQo+ICAgICAgIHByb3RlY3RlZCBTdHJp
-bmcgdXNlcl9pZDsNCj4gICAgICAgcHJvdGVjdGVkIFN0cmluZyByZW1vdGVfaG9zdDsNCj4gICAg
-ICAgcHJvdGVjdGVkIFN0cmluZyBzeXN0ZW10YXBfYXJnczsNCj4gICAgICAgcHJvdGVjdGVkIGJv
-b2xlYW4gb2tQcmVzc2VkOw0KPiAgICAgICBwcm90ZWN0ZWQgQnV0dG9uIG1ldGFkYXRhTG9jYXRp
-b25CdG47DQo+ICsgICAgIHByb3RlY3RlZCBCdXR0b24gYnVpbGRkaXJMb2NhdGlvbkJ0bjsNCj4g
-ICAgICAgcHJvdGVjdGVkIEJ1dHRvbiBzeXN0ZW10YXBTY3JpcHRCdG47DQo+ICAgICAgIHByb3Rl
-Y3RlZCBUZXh0IHVzZXJJRFRleHQ7DQo+ICAgICAgIHByb3RlY3RlZCBUZXh0IHJlbW90ZUhvc3RU
-ZXh0Ow0KPiAgICAgICBwcm90ZWN0ZWQgVGV4dCBzeXN0ZW10YXBBcmdzVGV4dDsNCj4gICAgICAg
-cHJvdGVjdGVkIFRleHQgc3lzdGVtdGFwU2NyaXB0VGV4dDsNCj4gICAgICAgcHJvdGVjdGVkIFRl
-eHQgbWV0YWRhdGFMb2NhdGlvblRleHQ7DQo+ICsgICAgIHByb3RlY3RlZCBUZXh0IGJ1aWxkZGly
-TG9jYXRpb25UZXh0Ow0KPg0KPiAgICAgICBwcm90ZWN0ZWQgU3lzdGVtdGFwU2V0dGluZ0RpYWxv
-ZyhTaGVsbCBwYXJlbnRTaGVsbCwgU3RyaW5nIHRpdGxlKSB7DQo+ICAgICAgICAgICAgICAgc3Vw
-ZXIocGFyZW50U2hlbGwpOw0KPiBAQCAtNzUsNiArNzgsMTAgQEAgcHVibGljIGNsYXNzIFN5c3Rl
-bXRhcFNldHRpbmdEaWFsb2cgZXh0ZW5kcyBEaWFsb2cgew0KPiAgICAgICAgICAgICAgIHJldHVy
-biBtZXRhZGF0YV9sb2NhdGlvbjsNCj4gICAgICAgfQ0KPg0KPiArICAgICBwdWJsaWMgU3RyaW5n
-IGdldEJ1aWxkZGlyTG9jYXRpb24oKSB7DQo+ICsgICAgICAgICAgICAgcmV0dXJuIGJ1aWxkZGly
-X2xvY2F0aW9uOw0KPiArICAgICB9DQo+ICsNCj4gICAgICAgcHVibGljIFN0cmluZyBnZXRSZW1v
-dGVIb3N0KCkgew0KPiAgICAgICAgICAgICAgIHJldHVybiByZW1vdGVfaG9zdDsNCj4gICAgICAg
-fQ0KPiBAQCAtMTE5LDYgKzEyNiwxNCBAQCBwdWJsaWMgY2xhc3MgU3lzdGVtdGFwU2V0dGluZ0Rp
-YWxvZyBleHRlbmRzIERpYWxvZyB7DQo+ICAgICAgICAgICAgICAgbWV0YWRhdGFMb2NhdGlvbkJ0
-biA9IGFkZERpclNlbGVjdEJ1dHRvbih0ZXh0Q29udGFpbmVyLA0KPiBtZXRhZGF0YUxvY2F0aW9u
-VGV4dCk7DQo+DQo+ICAgICAgICAgICAgICAgbGFiZWwgPSBuZXcgTGFiZWwocHJvakNvbXAsIFNX
-VC5OT05FKTsNCj4gKyAgICAgICAgICAgICBsYWJlbC5zZXRUZXh0KE1lc3NhZ2VzLkJ1aWxkZGly
-X0xvY2F0aW9uKTsNCj4gKyAgICAgICAgICAgICB0ZXh0Q29udGFpbmVyID0gbmV3IENvbXBvc2l0
-ZShwcm9qQ29tcCwgU1dULk5PTkUpOw0KPiArICAgICAgICAgICAgIHRleHRDb250YWluZXIuc2V0
-TGF5b3V0KG5ldyBHcmlkTGF5b3V0KDIsIGZhbHNlKSk7DQo+ICsgICAgICAgICAgICAgdGV4dENv
-bnRhaW5lci5zZXRMYXlvdXREYXRhKG5ldyBHcmlkRGF0YShTV1QuRklMTCwgU1dULkNFTlRFUiwg
-dHJ1ZSwgZmFsc2UpKTsNCj4gKyAgICAgICAgICAgICBidWlsZGRpckxvY2F0aW9uVGV4dCA9IChU
-ZXh0KWFkZFRleHRDb250cm9sKHRleHRDb250YWluZXIsIGJ1aWxkZGlyX2xvY2F0aW9uKTsNCj4g
-KyAgICAgICAgICAgICBidWlsZGRpckxvY2F0aW9uQnRuID0gYWRkRGlyU2VsZWN0QnV0dG9uKHRl
-eHRDb250YWluZXIsDQo+ICtidWlsZGRpckxvY2F0aW9uVGV4dCk7DQo+ICsNCj4gKyAgICAgICAg
-ICAgICBsYWJlbCA9IG5ldyBMYWJlbChwcm9qQ29tcCwgU1dULk5PTkUpOw0KPiAgICAgICAgICAg
-ICAgIGxhYmVsLnNldFRleHQoTWVzc2FnZXMuVXNlcl9JRCk7DQo+ICAgICAgICAgICAgICAgdXNl
-cklEVGV4dCA9IG5ldyBUZXh0KHByb2pDb21wLCBTV1QuU0lOR0xFIHwgU1dULkJPUkRFUik7DQo+
-DQo+IEBAIC0yMTksNiArMjM0LDE5IEBAIHB1YmxpYyBjbGFzcyBTeXN0ZW10YXBTZXR0aW5nRGlh
-bG9nIGV4dGVuZHMgRGlhbG9nIHsNCj4gICAgICAgICAgICAgICAgICAgICAgIENvbW1vbkhlbHBl
-ci5zaG93RXJyb3JEaWFsb2coIlN5c3RlbVRhcCBFcnJvciIsIG51bGwsICJUaGUgc3BlY2lmaWVk
-IG1ldGFkYXRhIGxvY2F0aW9uIGlzIG5vdCBhIGRpcmVjdG9yeSEiKTsNCj4gICAgICAgICAgICAg
-ICAgICAgICAgIHJldHVybjsNCj4gICAgICAgICAgICAgICB9DQo+ICsgICAgICAgICAgICAgYnVp
-bGRkaXJfbG9jYXRpb24gPSBidWlsZGRpckxvY2F0aW9uVGV4dC5nZXRUZXh0KCk7DQo+ICsgICAg
-ICAgICAgICAgaWYgKCAoYnVpbGRkaXJfbG9jYXRpb24gPT0gbnVsbCkgfHwgYnVpbGRkaXJfbG9j
-YXRpb24uaXNFbXB0eSgpKSB7DQo+ICsgICAgICAgICAgICAgICAgICAgICBDb21tb25IZWxwZXIu
-c2hvd0Vycm9yRGlhbG9nKCJTeXN0ZW1UYXAgRXJyb3IiLCBudWxsLCAiUGxlYXNlIHNwZWNpZnkg
-eW91ciBidWlsZGRpciBsb2NhdGlvbiEiKTsNCj4gKyAgICAgICAgICAgICAgICAgICAgIHJldHVy
-bjsNCj4gKyAgICAgICAgICAgICB9DQo+ICsgICAgICAgICAgICAgRmlsZSBidWlsZGRpcl9kaXIg
-PSBuZXcgRmlsZShidWlsZGRpcl9sb2NhdGlvbik7DQo+ICsgICAgICAgICAgICAgaWYgKCFidWls
-ZGRpcl9kaXIuZXhpc3RzKCkpIHsNCj4gKyAgICAgICAgICAgICAgICAgICAgIENvbW1vbkhlbHBl
-ci5zaG93RXJyb3JEaWFsb2coIlN5c3RlbVRhcCBFcnJvciIsIG51bGwsICJUaGUgc3BlY2lmaWVk
-IGJ1aWxkZGlyIGxvY2F0aW9uIGRvZXMgbm90IGV4aXN0ISIpOw0KPiArICAgICAgICAgICAgIH0N
-Cj4gKyAgICAgICAgICAgICBpZiAoIW1ldGFkYXRhX2Rpci5pc0RpcmVjdG9yeSgpKSB7DQo+ICsg
-ICAgICAgICAgICAgICAgICAgICBDb21tb25IZWxwZXIuc2hvd0Vycm9yRGlhbG9nKCJTeXN0ZW1U
-YXAgRXJyb3IiLCBudWxsLCAiVGhlIHNwZWNpZmllZCBidWlsZGRpciBsb2NhdGlvbiBpcyBub3Qg
-YSBkaXJlY3RvcnkhIik7DQo+ICsgICAgICAgICAgICAgICAgICAgICByZXR1cm47DQo+ICsgICAg
-ICAgICAgICAgfQ0KPiAgICAgICAgICAgICAgIHVzZXJfaWQgPSB1c2VySURUZXh0LmdldFRleHQo
-KTsNCj4gICAgICAgICAgICAgICBpZiAoICh1c2VyX2lkID09IG51bGwpIHx8IHVzZXJfaWQuaXNF
-bXB0eSgpKSB7DQo+ICAgICAgICAgICAgICAgICAgICAgICBDb21tb25IZWxwZXIuc2hvd0Vycm9y
-RGlhbG9nKCJTeXN0ZW1UYXAgRXJyb3IiLCBudWxsLCAiUGxlYXNlDQo+IHNwZWNpZnkgcmVtb3Rl
-IHVzZXIgaWQhIik7IGRpZmYgLS1naXQNCj4gYS9wbHVnaW5zL29yZy55b2N0by5zZGsucmVtb3Rl
-dG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvbWVzcw0KPiBhZ2VzLnByb3BlcnRp
-ZXMNCj4gYi9wbHVnaW5zL29yZy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9z
-ZGsvcmVtb3RldG9vbHMvbWVzcw0KPiBhZ2VzLnByb3BlcnRpZXMNCj4gaW5kZXggN2JiZjk4Ny4u
-MmQ2ZDhhZiAxMDA2NDQNCj4gLS0tDQo+IGEvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRv
-b2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL21lc3MNCj4gYWdlcy5wcm9wZXJ0aWVz
-DQo+ICsrKyBiL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3Rv
-L3Nkay9yZW1vdGV0b29scy8NCj4gKysrIG1lc3NhZ2VzLnByb3BlcnRpZXMNCj4gQEAgLTM1LDYg
-KzM1LDcgQEAgUG93ZXJ0b3BfU2hvd1BpZF9UZXh0PXNob3cgcGlkcyBpbiB3YWtldXBzIGxpc3QN
-Cj4gVGVybWluYWxWaWV3ZXJfdGV4dD1UaGlzIHZpZXcgaXMgZGVkaWNhdGVkIHRvIFlvY3RvIFJl
-bW90ZSB0b29scy4gUGxlYXNlIHVzZSB0aGUgIllvY3RvIFJlbW90ZSBUb29scyIgbWVudSB0byBv
-cGVuIHRoZSB2aWV3Lg0KPiAgLy9TeXN0ZW10YXBfS09fVGV4dD1LZXJuZWwgTW9kdWxlOg0KPiAg
-TWV0YWRhdGFfTG9jYXRpb249TWV0YWRhdGEgTG9jYXRpb246DQo+ICtCdWlsZGRpcl9Mb2NhdGlv
-bj1CdWlsZCBkaXIgTG9jYXRpb246DQo+ICBVc2VyX0lEPVVzZXIgSUQ6DQo+ICBSZW1vdGVfSG9z
-dD1SZW1vdGUgSG9zdDoNCj4gIFN5c3RlbXRhcF9TY3JpcHQ9U3lzdGVtdGFwIFNjcmlwdDoNCg0K
-SGkgSmVzc2ljYSwNCg0KQ291bGQgeW91IGdpdmUgbWUgc29tZSBmZWVkYmFjayBmb3IgdGhpcyBw
-YXRjaD8NCg0KVGhhbmtzLA0KLS1BZHJpYW4NCg==
+On Thu, May 23, 2013 at 7:16 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> =
+wrote:
+> On Thu, May 23, 2013 at 6:01 PM, Hans Beck=E9rus <hans.beckerus@gmail.com=
+> wrote:
+>> On Thu, May 23, 2013 at 5:47 PM, Burton, Ross <ross.burton@intel.com> wr=
+ote:
+>>> On 23 May 2013 16:25, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
+>>>> Well, yes and no ;) If I look in /lib there are plenty of libraries
+>>>> that comes with .so files so it seems they are needed in some cases,
+>>>> right? Also, since part of our system software is doing loading of
+>>>> dynamic libraries themselves using dlopen() it is *very* hard to
+>>>> enforce removal of .so files since that piece of software does not
+>>>> know what particular version of the library it should use. It should
+>>>> load whatever .so points to, most commonly the latest version. So, is
+>>>> there some way for us to make sure .so files are also part of the
+>>>> .rpm? we do not wish to install the -dev variant since it also
+>>>> pollutes the system with a lot of other not needed stuff. Since /lib
+>>>> is having a lot of of .so files it must be possible, or?
+>>>> Actually, I have never seen a system that does not include also the
+>>>> .so files? Not even embedded ones. They are only soft links so
+>>>> flash/ram/disk space is not really an issue here.
+>>>
+>>> *Every* mainstream linux distribution will not ship .so symlinks
+>>> unless you've installed the development files, or they are needed for
+>>> some reason (generally, the .so won't be a symlink in that case).  If
+>>> a particular library is designed to be unversioned and dlopen'd using
+>>> a .so filename, then change the FILES as appropriate.  If your package
+>>> is dlopening arbitrary versioned libraries though libfoo.so filenames
+>>> then you can either do more work and find the real name, or mess
+>>> around with the packaging yourself.
+>>>
+>>> Ross
+>>
+>> Sure. I am not questioning mainstream decision not to ship the .so
+>> symlinks. I most likely have never encountered real mainstream
+>> embedded systems before ;) Only home-brewed (we-can-do-it-ourselves)
+>> things. What I needed was some sort of pointer on how to handle the
+>> case when you do need to violate the mainstream rules :(
+>> I will play around with the FILES setting to see if it will get us
+>> were we need to be. I really do not wish to tamper with the packaging
+>> routines. It does what it does, with an obviously good reason too :P
+>>
+>> Thanks!
+>> Hans
+>>
+>>
+> Hmm. I tried the FILES trick, but either I am doing something wrong or
+> FILES does not really affect whats getting into the .rpm? This is what
+> I tried in our recipe
+>
+> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libelinx.so"
+> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libepmq.so"
+>
+> But I see now that dev RPM in addition to the normal RPM is what we
+> need besides the .la files but I think we we can live with that  ;) Is
+> there some simple/clever trick to have both the standard and the dev
+> RPM being installed on the rootfs?
+>
+
+Oops! Already spotted my typo there. It should of course be
+
+FILES_${PN} +=3D " ${exec_prefix}/lib/libelinx.so"
+FILES_${PN} +=3D " ${exec_prefix}/lib/libepmq.so"
+
+But unfortunately I did not make any difference to the .rpm file :(
+
+Hans
+
+On Thu, May 23, 2013 at 7:16 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> =
+wrote:
+> On Thu, May 23, 2013 at 6:01 PM, Hans Beck=E9rus <hans.beckerus@gmail.com=
+> wrote:
+>> On Thu, May 23, 2013 at 5:47 PM, Burton, Ross <ross.burton@intel.com> wr=
+ote:
+>>> On 23 May 2013 16:25, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
+>>>> Well, yes and no ;) If I look in /lib there are plenty of libraries
+>>>> that comes with .so files so it seems they are needed in some cases,
+>>>> right? Also, since part of our system software is doing loading of
+>>>> dynamic libraries themselves using dlopen() it is *very* hard to
+>>>> enforce removal of .so files since that piece of software does not
+>>>> know what particular version of the library it should use. It should
+>>>> load whatever .so points to, most commonly the latest version. So, is
+>>>> there some way for us to make sure .so files are also part of the
+>>>> .rpm? we do not wish to install the -dev variant since it also
+>>>> pollutes the system with a lot of other not needed stuff. Since /lib
+>>>> is having a lot of of .so files it must be possible, or?
+>>>> Actually, I have never seen a system that does not include also the
+>>>> .so files? Not even embedded ones. They are only soft links so
+>>>> flash/ram/disk space is not really an issue here.
+>>>
+>>> *Every* mainstream linux distribution will not ship .so symlinks
+>>> unless you've installed the development files, or they are needed for
+>>> some reason (generally, the .so won't be a symlink in that case).  If
+>>> a particular library is designed to be unversioned and dlopen'd using
+>>> a .so filename, then change the FILES as appropriate.  If your package
+>>> is dlopening arbitrary versioned libraries though libfoo.so filenames
+>>> then you can either do more work and find the real name, or mess
+>>> around with the packaging yourself.
+>>>
+>>> Ross
+>>
+>> Sure. I am not questioning mainstream decision not to ship the .so
+>> symlinks. I most likely have never encountered real mainstream
+>> embedded systems before ;) Only home-brewed (we-can-do-it-ourselves)
+>> things. What I needed was some sort of pointer on how to handle the
+>> case when you do need to violate the mainstream rules :(
+>> I will play around with the FILES setting to see if it will get us
+>> were we need to be. I really do not wish to tamper with the packaging
+>> routines. It does what it does, with an obviously good reason too :P
+>>
+>> Thanks!
+>> Hans
+>>
+>>
+> Hmm. I tried the FILES trick, but either I am doing something wrong or
+> FILES does not really affect whats getting into the .rpm? This is what
+> I tried in our recipe
+>
+> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libelinx.so"
+> FILES_${PN} +=3D " ${exec_prefix}/usr/lib/libepmq.so"
+>
+> But I see now that dev RPM in addition to the normal RPM is what we
+> need besides the .la files but I think we we can live with that  ;) Is
+> there some simple/clever trick to have both the standard and the dev
+> RPM being installed on the rootfs?
+>
+> Hans
+>
+>
+> On Thu, May 23, 2013 at 6:01 PM, Hans Beck=E9rus <hans.beckerus@gmail.com=
+> wrote:
+>> On Thu, May 23, 2013 at 5:47 PM, Burton, Ross <ross.burton@intel.com> wr=
+ote:
+>>> On 23 May 2013 16:25, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
+>>>> Well, yes and no ;) If I look in /lib there are plenty of libraries
+>>>> that comes with .so files so it seems they are needed in some cases,
+>>>> right? Also, since part of our system software is doing loading of
+>>>> dynamic libraries themselves using dlopen() it is *very* hard to
+>>>> enforce removal of .so files since that piece of software does not
+>>>> know what particular version of the library it should use. It should
+>>>> load whatever .so points to, most commonly the latest version. So, is
+>>>> there some way for us to make sure .so files are also part of the
+>>>> .rpm? we do not wish to install the -dev variant since it also
+>>>> pollutes the system with a lot of other not needed stuff. Since /lib
+>>>> is having a lot of of .so files it must be possible, or?
+>>>> Actually, I have never seen a system that does not include also the
+>>>> .so files? Not even embedded ones. They are only soft links so
+>>>> flash/ram/disk space is not really an issue here.
+>>>
+>>> *Every* mainstream linux distribution will not ship .so symlinks
+>>> unless you've installed the development files, or they are needed for
+>>> some reason (generally, the .so won't be a symlink in that case).  If
+>>> a particular library is designed to be unversioned and dlopen'd using
+>>> a .so filename, then change the FILES as appropriate.  If your package
+>>> is dlopening arbitrary versioned libraries though libfoo.so filenames
+>>> then you can either do more work and find the real name, or mess
+>>> around with the packaging yourself.
+>>>
+>>> Ross
+>>
+>> Sure. I am not questioning mainstream decision not to ship the .so
+>> symlinks. I most likely have never encountered real mainstream
+>> embedded systems before ;) Only home-brewed (we-can-do-it-ourselves)
+>> things. What I needed was some sort of pointer on how to handle the
+>> case when you do need to violate the mainstream rules :(
+>> I will play around with the FILES setting to see if it will get us
+>> were we need to be. I really do not wish to tamper with the packaging
+>> routines. It does what it does, with an obviously good reason too :P
+>>
+>> Thanks!
+>> Hans
+>>
+>>
+>> On Thu, May 23, 2013 at 5:47 PM, Burton, Ross <ross.burton@intel.com> wr=
+ote:
+>>> On 23 May 2013 16:25, Hans Beck=E9rus <hans.beckerus@gmail.com> wrote:
+>>>> Well, yes and no ;) If I look in /lib there are plenty of libraries
+>>>> that comes with .so files so it seems they are needed in some cases,
+>>>> right? Also, since part of our system software is doing loading of
+>>>> dynamic libraries themselves using dlopen() it is *very* hard to
+>>>> enforce removal of .so files since that piece of software does not
+>>>> know what particular version of the library it should use. It should
+>>>> load whatever .so points to, most commonly the latest version. So, is
+>>>> there some way for us to make sure .so files are also part of the
+>>>> .rpm? we do not wish to install the -dev variant since it also
+>>>> pollutes the system with a lot of other not needed stuff. Since /lib
+>>>> is having a lot of of .so files it must be possible, or?
+>>>> Actually, I have never seen a system that does not include also the
+>>>> .so files? Not even embedded ones. They are only soft links so
+>>>> flash/ram/disk space is not really an issue here.
+>>>
+>>> *Every* mainstream linux distribution will not ship .so symlinks
+>>> unless you've installed the development files, or they are needed for
+>>> some reason (generally, the .so won't be a symlink in that case).  If
+>>> a particular library is designed to be unversioned and dlopen'd using
+>>> a .so filename, then change the FILES as appropriate.  If your package
+>>> is dlopening arbitrary versioned libraries though libfoo.so filenames
+>>> then you can either do more work and find the real name, or mess
+>>> around with the packaging yourself.
+>>>
+>>> Ross
 
