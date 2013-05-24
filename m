@@ -1,34 +1,32 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5727DE014E9
-	for <yocto@yoctoproject.org>; Fri, 24 May 2013 10:04:07 -0700 (PDT)
-Received: by mail-ve0-f178.google.com with SMTP id pb11so1496676veb.23
-	for <yocto@yoctoproject.org>; Fri, 24 May 2013 10:04:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=ThSS9lG59YSi309suYLCLsdZFAfw3z1lV68WNU8jYMo=;
-	b=U49GQm2/BknfnBf23gBtSTG5rUOEKCrNSW8ZyqLU4QraPg8yZDiBqo0V0OObcMuLao
-	cVAg/4pn1Afk+qAWWZJTZBHbtnA6QoFZDfkxVB7HE/E2lDIZtmnkGmLLHSYctrdQc2mN
-	erWcdOQCjudNooR1pPZoiycBWn/3lsS3jFebfojJPZyx/uzpDvHptXXG3nuLDgmMeL+g
-	SndCEp6Kr26kwirY/Ga2oumkice81kxB4doMZSuKRTN/STmnFJlLwOvsw/5zPwwin6/D
-	QJUA5YWBCzE4bHOL5Fin8LKCCDRoIvvoDD7KcyPC7TY61vrYcJrQxcxiSz0ObQGN2H7D
-	a9QQ==
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BBF9E014E9
+	for <yocto@yoctoproject.org>; Fri, 24 May 2013 11:55:27 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 24 May 2013 11:55:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,737,1363158000"; d="scan'208";a="307487915"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by azsmga001.ch.intel.com with ESMTP; 24 May 2013 11:55:26 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.15]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.91]) with mapi id
+	14.03.0123.003; Fri, 24 May 2013 11:55:25 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Atanas Gegov <atanas.gegov.oss@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [eclipse-poky][PATCH 0/7] Introducing a
+	YoctoSDKCMakeProjectNature
+Thread-Index: AQHOWHbFMK7XXNX5mESP7L3UykD/l5kUrv6w
+Date: Fri, 24 May 2013 18:55:25 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C32CD4@ORSMSX103.amr.corp.intel.com>
+References: <1369397005-3262-1-git-send-email-atanas.gegov.oss@gmail.com>
+In-Reply-To: <1369397005-3262-1-git-send-email-atanas.gegov.oss@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.58.133.81 with SMTP id pa17mr9153574veb.37.1369415046386;
-	Fri, 24 May 2013 10:04:06 -0700 (PDT)
-Received: by 10.52.38.7 with HTTP; Fri, 24 May 2013 10:04:06 -0700 (PDT)
-In-Reply-To: <1369410740-28744-1-git-send-email-stefanx.stanacar@intel.com>
-References: <1369410740-28744-1-git-send-email-stefanx.stanacar@intel.com>
-Date: Fri, 24 May 2013 10:04:06 -0700
-Message-ID: <CAPhnLPCSJ-gKBtohNgLZOTf8Qizwp=H7HN9QMTnoTJ-ZDgeGjQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Stefan Stanacar <stefanx.stanacar@intel.com>
-X-Gm-Message-State: ALoCoQnyqCQEEj19o8h/7Jr4pw7r+TrkSA6Esp1un+tonmnBheG61wKsp50MDXFKv9Pn9m/ompBP
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto-autobuilder][PATCH] buildsteps: fix passing timeout arg for two steps
+Subject: Re: [eclipse-poky][PATCH 0/7] Introducing a	YoctoSDKCMakeProjectNature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,87 +38,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2013 17:04:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 24 May 2013 18:55:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-merged. Thanks!
+Hi Atanas,
 
--b
+All the cmake related patches have been merged to eclipse-poky master.   Al=
+so, can you provide some detailed information regarding how to test the fea=
+ture so QA can add adequate test cases in the existing eclipse plug-in test=
+ing.
 
-On Fri, May 24, 2013 at 8:52 AM, Stefan Stanacar
-<stefanx.stanacar@intel.com> wrote:
-> RunSanityTests and RunPreamble weren't passing kwargs to
-> ShellCommand so timeout was ignored.
-> For RunSanityTests I've changed the default to 1200 which should be
-> enough in most cases, but I've updated one build where
-> two images are actually tested (btrfs and ext4)
->
-> Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
-> ---
->  buildset-config/nightly-qa-extras.conf                               | 2 +-
->  lib/python2.7/site-packages/autobuilder/buildsteps/RunPreamble.py    | 2 +-
->  lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py | 5 +++--
->  3 files changed, 5 insertions(+), 4 deletions(-)
->
-> diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
-> index 1846764..1bdb0f0 100644
-> --- a/buildset-config/nightly-qa-extras.conf
-> +++ b/buildset-config/nightly-qa-extras.conf
-> @@ -11,7 +11,7 @@ steps: [{'SetDest':{}},
->          {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nROOT_HOME = "/root"\nIMAGE_FSTYPES = "btrfs"\nKERNEL_FEATURES_append = " cfg/fs/btrfs"\n'}},
->          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
->          {'BuildImages': {'images': 'core-image-sato'}},
-> -        {'RunSanityTests': {'images': 'core-image-sato'}},
-> +        {'RunSanityTests': {'images': 'core-image-sato', 'timeout' : '2400'}},
->          {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nIMAGE_FEATURES_append = " read-only-rootfs"\n'}},
->          {'BuildImages': {'images': 'core-image-sato'}},
->          {'RunSanityTests': {'images': 'core-image-sato', 'scene' : 'sanity:boot sanity:ssh'}}]
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunPreamble.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunPreamble.py
-> index d6476d6..5df2a7c 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunPreamble.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunPreamble.py
-> @@ -30,7 +30,7 @@ class RunPreamble(ShellCommand):
->          # Timeout needs to be passed to LoggingBuildStep as a kwarg
->          self.timeout = 100000
->          kwargs['timeout']=self.timeout
-> -        ShellCommand.__init__(self)
-> +        ShellCommand.__init__(self, **kwargs)
->
->      def describe(self, done=False):
->          description = ShellCommand.describe(self,done)
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py
-> index 1a428be..82fb044 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunSanityTests.py
-> @@ -24,6 +24,8 @@ class RunSanityTests(ShellCommand):
->          self.factory = factory
->          self.images=""
->          self.scene=None
-> +        # the default of 1200 seconds is enough for running sanity tests in most cases
-> +        self.timeout = 1200
->          for k, v in argdict.iteritems():
->              setattr(self, k, v)
->          self.description = "Running Sanity Tests"
-> @@ -36,10 +38,9 @@ class RunSanityTests(ShellCommand):
->              command = command + "echo 'TEST_SCEN = \"" + self.scene + "\"'" + " >> ./conf/auto.conf;"
->          command = command + "DISPLAY=localhost:1 bitbake " + self.images + " -c qemuimagetest_standalone"
->          # Timeout needs to be passed to LoggingBuildStep as a kwarg
-> -        self.timeout = 100000
->          kwargs['timeout']=self.timeout
->          self.command = command
-> -        ShellCommand.__init__(self)
-> +        ShellCommand.__init__(self, **kwargs)
->
->      def describe(self, done=False):
->          description = ShellCommand.describe(self,done)
-> --
-> 1.8.1.4
->
+Thanks,
+Jessica
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Atanas Gegov
+Sent: Friday, May 24, 2013 5:03 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [eclipse-poky][PATCH 0/7] Introducing a YoctoSDKCMakeProje=
+ctNature
+
+From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+
+Hi,
+
+This patch series introduces a YoctoSDKCMakeProjectNature as a new nature f=
+or CMake-based Yocto Projects in the IDE. It requires the basic YoctoSDKPro=
+jectNature and is an alternative to the YoctoSDKAutotoolsProjectNature.
+
+This does not affect the currently existing Autotools template projects.
+
+Upcoming patch series will add the last missing parts for having CMake proj=
+ects in the IDE: a ManagedBuilder for CMake (CMake toolchain for building i=
+n Eclipse) and some template projects.
+
+Cheers, Atanas
+
+P.S: This patch series apply on the current master "Fix the issue introduce=
+d by code refactoring since DialogHandler inherit IHandler, execute expect =
+to return an object"
+(dd7ab69282f7c9cc18ff06fffaa9681e4b297cfa).
 
 
+Atanas Gegov (7):
+  plugins/sdk.ide: Prepared templates for CMake nature
+  plugins/sdk.ide: Added a new YoctoSDKCMakeProjectNature
+  plugins/sdk.ide: Enable the creation of CMake projects
+  plugins/sdk.ide: Update CMake projects on Yocto settings change
+  plugins/sdk.ide: Renamed template process
+  plugins/sdk.ide: Fixed whitespace issues
+  plugins/sdk.ide: Extracted member variables
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+ .../OSGI-INF/l10n/bundle.properties                |    1 +
+ plugins/org.yocto.sdk.ide/plugin.xml               |   25 +-
+ .../ide/natures/YoctoSDKCMakeProjectNature.java    |   92 +++++++
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |    7 +-
+ .../sdk/ide/wizard/NewYoctoCProjectTemplate.java   |  245 ----------------=
+--
+ .../ide/wizard/NewYoctoProjectTemplateProcess.java |  267 ++++++++++++++++=
+++++
+ .../EmptyCAutotoolsProject/template.xml            |    1 +
+ .../EmptyCPPAutotoolsProject/template.xml          |    1 +
+ .../HelloWorldCAutotoolsProject/template.xml       |    1 +
+ .../HelloWorldCGTKAutotoolsProject/template.xml    |    1 +
+ .../HelloWorldCPPAutotoolsProject/template.xml     |    1 +
+ 11 files changed, 395 insertions(+), 247 deletions(-)  create mode 100644 =
+plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/natures/YoctoSDKCMakeProjec=
+tNature.java
+ delete mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
+NewYoctoCProjectTemplate.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/=
+NewYoctoProjectTemplateProcess.java
+
+--
+1.7.9.5
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
