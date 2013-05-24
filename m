@@ -1,33 +1,25 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21CC0E01489
-	for <yocto@yoctoproject.org>; Fri, 24 May 2013 00:54:04 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 24 May 2013 00:54:03 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00975E01489
+	for <yocto@yoctoproject.org>; Fri, 24 May 2013 01:57:42 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 24 May 2013 01:57:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,733,1363158000"; d="scan'208";a="318848443"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by orsmga001.jf.intel.com with ESMTP; 24 May 2013 00:54:02 -0700
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.127]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.193]) with mapi id
-	14.03.0123.003; Fri, 24 May 2013 08:54:02 +0100
-From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [eclipse-poky][branch:windows-build][PATCH 0/4] Adapt
-	remote bb plugin code & fix remaining issues
-Thread-Index: AQHOV+XJOpiI2Vcq/EicqlkUvL2fTJkT9qJd
-Date: Fri, 24 May 2013 07:54:00 +0000
-Message-ID: <3E179CF0D7162B4AA4E2B324209A463915FE82C0@IRSMSX101.ger.corp.intel.com>
-References: <1369319915-25590-1-git-send-email-ioanax.grigoropol@intel.com>,
-	<C6510F6D410BB64A8C15398EDC6B847C73C32372@ORSMSX103.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C32372@ORSMSX103.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.19.9.41]
+X-IronPort-AV: E=Sophos;i="4.87,734,1363158000"; d="scan'208";a="342736706"
+Received: from unknown (HELO helios.localnet) ([10.255.12.195])
+	by fmsmga002.fm.intel.com with ESMTP; 24 May 2013 01:57:41 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Fri, 24 May 2013 09:57:41 +0100
+Message-ID: <1492691.JmiHExUAMW@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.8.0-21-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <CAP71Wjy3ViuaPxZe+XvWEU3fS6geYymeYkLBxKD-xbTxmWMwbQ@mail.gmail.com>
+References: <0789CF4373FAE1439958EBA64274B10924EFD6C06C@MXCL20.fgremc.it>
+	<CAP71Wjy3ViuaPxZe+XvWEU3fS6geYymeYkLBxKD-xbTxmWMwbQ@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [eclipse-poky][branch:windows-build][PATCH 0/4] Adapt	remote bb plugin code & fix remaining issues
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto Qt5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,79 +31,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2013 07:54:04 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 24 May 2013 08:57:43 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Jessica,=0A=
-=0A=
-These changes can be applied independently on the windows-build branch, and=
- I have sent the patches to make sure that this part works properly before =
-merging them to a common remote plugin assuming that everything works.=0A=
-Since I will porting these utilities to the remote plugin, I think that it =
-is important  to have the original source of the code separted.=0A=
-=0A=
-Ioana=0A=
-________________________________________=0A=
-From: Zhang, Jessica=0A=
-Sent: Thursday, May 23, 2013 9:46 PM=0A=
-To: Grigoropol, IoanaX; yocto@yoctoproject.org=0A=
-Subject: RE: [yocto] [eclipse-poky][branch:windows-build][PATCH 0/4] Adapt =
-     remote bb plugin code & fix remaining issues=0A=
-=0A=
-Hi Ioana,=0A=
-=0A=
-Since we're doing the overall refactor and this part for bitbake commander =
-need to adopt the remote.util changes that's underway, and windows-build br=
-anch shouldn't be the one that we use.  Please incorporate this change to b=
-itbake commander change to use the remote.util tool.=0A=
-=0A=
-Thanks=0A=
-Jessica=0A=
-=0A=
------Original Message-----=0A=
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol=0A=
-Sent: Thursday, May 23, 2013 7:39 AM=0A=
-To: yocto@yoctoproject.org=0A=
-Subject: [yocto] [eclipse-poky][branch:windows-build][PATCH 0/4] Adapt remo=
-te bb plugin code & fix remaining issues=0A=
-=0A=
-- adapted remote bitbake commander project code to use upstream changes in =
-the LocalHostShell code=0A=
-- added fixes for recipe parsing=0A=
-- added fixes for messages displayed during git clone=0A=
-=0A=
-=0A=
-Ioana Grigoropol (4):=0A=
-  Adapt usage of LocalHostShell lock and reader to upstream changes=0A=
-  Fix recipe parsing when using Remote host=0A=
-  Refactor processing of commands output=0A=
-  Customize Output processor for git clone command and fix message=0A=
-    display=0A=
-=0A=
- plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    1 +=0A=
- .../bc/remote/utils/CommandOutputProcessor.java    |   33 +++++++=0A=
- .../org/yocto/bc/remote/utils/CommandRunnable.java |    7 +-=0A=
- .../org/yocto/bc/remote/utils/OutputProcessor.java |  102 ++++++++++++++++=
-++++=0A=
- .../yocto/bc/remote/utils/ProcessStreamBuffer.java |   13 ++-=0A=
- .../org/yocto/bc/remote/utils/RemoteHelper.java    |   65 +------------=0A=
- .../org/yocto/bc/remote/utils/RemoteMachine.java   |   13 +--=0A=
- .../org/yocto/bc/remote/utils/YoctoCommand.java    |    2 +-=0A=
- .../bc/remote/utils/YoctoRunnableWithProgress.java |   31 +++++-=0A=
- 9 files changed, 181 insertions(+), 86 deletions(-)  create mode 100644 pl=
-ugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/CommandOutputProcessor.=
-java=0A=
- create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/O=
-utputProcessor.java=0A=
-=0A=
---=0A=
-1.7.9.5=0A=
-=0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto=0A=
+On Thursday 23 May 2013 23:20:06 Nicolas Dechesne wrote:
+> On Thu, May 23, 2013 at 10:51 PM, LIU Yang (MM) <yang.liu@magnetimarelli.com
+> > wrote:
+> > 
+> > I am first time coming here for help on Yocto project with Qt5, I have two
+> > questions/problems when I tried to bitbake a recipe in our layer. ****
+>
+> sorry to hijack (slightly...) that email, but what is the 'plan' for Qt5
+> in OE? i don't see Qt5 listed in the yocto 1.5 schedule wiki. so are we
+> going to replace qt4 by qt5 in oe-core? are we going to have them
+> side-by-side? or is it going to live in its own layer?
+
+It's currently being developed in its own layer:
+
+http://layers.openembedded.org/layerindex/layer/meta-qt5/
+
+Once it's working satisfactorily (and I'll admit, I haven't been following it 
+closely) we should look to see whether it can fit in OE-Core.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
