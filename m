@@ -1,36 +1,36 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE5B0E0129D;
-	Thu, 23 May 2013 16:34:20 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 May 2013 16:32:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,730,1363158000"; d="scan'208";a="342304524"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga002.jf.intel.com with ESMTP; 23 May 2013 16:34:05 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.240.5) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 23 May 2013 16:34:00 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.51]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.206]) with mapi id
-	14.03.0123.003; Thu, 23 May 2013 16:34:00 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>
-Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Yocto Project 1.3.2 "danny"
-	released.
-Thread-Index: AQHOWAxE4UcvUXlMcECGGpcYSllZCZkTa6wA
-Date: Thu, 23 May 2013 23:33:59 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A71913BF9@ORSMSX108.amr.corp.intel.com>
-References: <CAPhnLPCHLDQ_OP8uOmk9eB4n9q+0xA6fA0GVcWZ_d-dwX-yoTQ@mail.gmail.com>
-In-Reply-To: <CAPhnLPCHLDQ_OP8uOmk9eB4n9q+0xA6fA0GVcWZ_d-dwX-yoTQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <kergoth@gmail.com>
+Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77E41E0140A;
+	Thu, 23 May 2013 19:25:27 -0700 (PDT)
+Received: by mail-la0-f45.google.com with SMTP id ec20so3978159lab.32
+	for <multiple recipients>; Thu, 23 May 2013 19:25:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=5WQesnFLLCUlH/YT+EibNTpZ0hERKfM836DXMJnKO6w=;
+	b=gTovq/+OG6z4whCcMNSlGzGMBAvQOlLPHy+hKe6B5HIsXxbIc/qtkO42yJfvmDy+bG
+	NlwMXViaEyp+HMSWTPtrKixSobSOl5xM+E9ontKGJcEvtzdO8ToDPbkvyHbi8hVGw09h
+	PpIs/Qv/Pskwb4g3gdfAHKsNqg9iU3ggMJW6lEty3bK5QasQaEj79cVtTwB6YuT2QHCr
+	U6NwcNdXPxOTVpEl7Df1wYpUysarp5y9s36PhLq4yd8Fm6Q4dGTOoxoWqGB01reA855s
+	GGxCVMdKT4i88eAe5XrU4Zwrjz4ODOnWla1c+ZJSQSV+RoE2eMdWMG3Gsi+ZOa27bPe3
+	5Qcw==
+X-Received: by 10.152.28.163 with SMTP id c3mr7837726lah.26.1369362325857;
+	Thu, 23 May 2013 19:25:25 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [yocto-announce] [ANNOUNCEMENT] Yocto Project 1.3.2 "danny"	released.
+Sender: kergoth@gmail.com
+Received: by 10.112.141.74 with HTTP; Thu, 23 May 2013 19:25:05 -0700 (PDT)
+In-Reply-To: <17797116383D4341B029FDF34C22BF6A52C4B2FC51@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <mailman.2471.1369267014.19864.yocto@yoctoproject.org>
+	<17797116383D4341B029FDF34C22BF6A52C4B2FC51@GUREXMB01.ASIAN.AD.ARICENT.COM>
+From: Chris Larson <clarson@kergoth.com>
+Date: Thu, 23 May 2013 19:25:05 -0700
+X-Google-Sender-Auth: du-dCRKg2NGp4ECI15yllt2aEiA
+Message-ID: <CABcZANn9wJyX_w=Z=r49DvEaBTL2=8=4KxZj7qsnDqJ62AzsDw@mail.gmail.com>
+To: Rohit2 Jindal <rohit2.jindal@aricent.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>
+Subject: Re: External-Sourcery-Toolchain Related Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,142 +42,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2013 23:34:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 24 May 2013 02:25:28 -0000
+Content-Type: multipart/alternative; boundary=089e0160babe006be004dd6d8323
+
+--089e0160babe006be004dd6d8323
+Content-Type: text/plain; charset=UTF-8
+
+On Thu, May 23, 2013 at 12:39 AM, Rohit2 Jindal
+<rohit2.jindal@aricent.com>wrote:
+
+> I want to install my existing Toolchain to Yocto Sysroot bypassing default
+> yocto toolchain functionality.****
+>
+> ** **
+>
+> My requirements are****
+>
+> ** **
+>
+> 1I will download toolchain from my git source ie tar file.****
+>
+> 2I just want to install this toolchain to tmp/sysroot folder in build
+> directory skipping compilation step.****
+>
+> ** **
+>
+> ** **
+>
+> Steps implemented****
+>
+> ** **
+>
+> 1 SRC_URI = "file:///home/toolchains_bin.tar"****
+>
+> 2 TCMODE="external-csl" ****
+>
+> 3 EXTERNAL_TOOLCHAIN =
+> "/home/yocto/poky/build/tmp/work/mips64-poky-linux/external-sourcery-toolchain/GCC-r8/toolchains_bin/mipscross/linux"
+> ****
+>
+> 4CSL_TARGET_SYS_mips64 = "${TARGET_ARCH}${TARGET_TC_VENDOR}-${TCTYPE}"****
+>
+> 5CSL_TARGET_SYS = "${TARGET_ARCH}${TARGET_TC_VENDOR}-${TCTYPE}"****
+>
+> 6 TARGET_PREFIX = "${CSL_TARGET_SYS_mips64}-"
+>
+
+The sourcery toolchain recipe pulls files from a codesourcery / mentor
+graphics Sourcery G++ toolchain installed at the EXTERNAL_TOOLCHAIN path.
+That SRC_URI will not do anything, and it expects the compiler to be
+available at parse time. Basically, the tcmode and recipe for sourcery is
+designed for a particular toolchain, not any random one, and is not
+structured at this time to allow extraction of a toolchain binary tarball.
+You'd have to customize / create your own based on the existing bits, using
+them as examples.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--089e0160babe006be004dd6d8323
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Thank you, Beth and Ross. And congratulations to the team on the release!
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Thu, May 23, 2013 at 12:39 AM, Rohit2 Jindal <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:rohit2.jindal@aricent.com" target=3D"_blank">rohit2.jindal@ari=
+cent.com</a>&gt;</span> wrote:<br>
 
-Song
-
------Original Message-----
-From: yocto-announce-bounces@yoctoproject.org [mailto:yocto-announce-bounce=
-s@yoctoproject.org] On Behalf Of Flanagan, Elizabeth
-Sent: Thursday, May 23, 2013 4:21 PM
-To: yocto@yoctoproject.org; yocto-announce@yoctoproject.org
-Subject: [yocto-announce] [ANNOUNCEMENT] Yocto Project 1.3.2 "danny" releas=
-ed.
-
-Hello,
-
-The latest point release of the Yocto Project danny release, 1.3.2, is now =
-available for download at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.3.2/poky-danny-8.0=
-.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.3.2/poky-danny-8.0.2.tar.gz
-
-Thanks go out to everyone for all their hard work during this release!
-
-Sincerely,
-
-Elizabeth Flanagan
-Yocto Build and Release
-<elizabeth.flanagan@intel.com>
-
---------------------
-yocto-1.3.2 Errata
---------------------
-
-Release Name: poky-danny-8.0.2
-Branch:  danny
-Tag:  danny-8.0.2
-Hash:  e52a74755b72038def2f093d18212d033d3d862d
-md5: 9fd0cdda96b9927958371ff2762bf293
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.3.2/poky-danny-8.0=
-.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.3.2/poky-danny-8.0.2.tar.gz
-
-Release Name: meta-intel-danny-8.0.2
-Branch:  danny
-Tag:  danny-8.0.2
-Hash:  d44f005338012cc7111190122b2ab08a29c0e0e7
-md5: 8073ec8d84bb626a4c55e8c4d763dd09
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.3.2/meta-intel-dan=
-ny-8.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.3.2/meta-intel-danny-8.0.2.ta=
-r.gz
-
-Release Name: eclipse-poky-danny-8.0.2
-Branch:  danny
-Tag:  danny-8.0.2
-Hash:  ae28375759e6c9a6eef64f74b61d95e1cb00783d
-md5: 120cb5215f073905e02e44e079c5d78c
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.3.2/eclipse-poky-d=
-anny-8.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.3.2/eclipse-poky-danny-8.0.2.=
-tar.gz
-
-Release Name: meta-qt3-danny-8.0.2
-Branch:  danny
-Tag:  danny-8.0.2
-Hash:  c86fb1727ae09526c442ec29fffde3f010aa70eb
-md5: 466c7fce61c655d274b0e0e1d2b8483d
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.3.2/meta-qt3-danny=
--8.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.3.2/meta-qt3-danny-8.0.2.tar.=
-gz
-
---------------------
-Notable Fixes
---------------------
-- Improved reliability in sanity testing
-- Improved multilib support
-- Numerous toolchain and sdk packaging fixes
-
---------------------
-Security fixes
---------------------
-CVE-2012-6085 (gupnp)
-CVE-2010-5107 (openssh)
-CVE-2012-6329 (perl)
-CVE-2013-1667 (perl)
-
---------------------
-Known Issues
---------------------
-- Depending on configuration and existing sstate, images may try to install=
- both lttng-ust and lttng2-ust into an image, which will fail.
-To work around this, bitbake -ccleansstate all of the lttng recipes.
-
---------------------
-Bug Fixes
---------------------
-2918: lib64-core-image-sato-sdk fails due to do_rootfs issue
-3069: perl File::Glob module is broken.
-3100: autoreconf run failed on x86-64 gmae-toolchain
-3325: nativesdk-ncurses 5.9: files were installed but not shipped
-3338: iptables-1.4.15: autoreconf run failed on gmae-toolchain
-3389: bitbake lib64-core-image-sato fails due to "nothing PROVIDES" errors
-3401: standalone toolchain should notify the user if the target
-      install dir of SDK is one already used
-3640: sanity.bbclass sometimes failing to find saved_tmpdir when
-      tmp-eglibc was deleted
-3745: [Test Case 169] Bitbake remake/remake-native check
-3839: [Test Case 378] Relocatable SDK - C - build Hello World GTK C
-      Autotols Project
-3935: beagleboard/routerstation/mpc8315e: abnormal filesystem-related
-      messages in dmesg when plugging a usb stick
-3951: perf doesn't build with core-image-minimal
-3983: [danny 1.3.1] Invalid symbolic link file in adt_installer.tar.bz2
-3984: iptables-1.4.15: autoreconf run fails on 1.3.1
-4010: bitbake ignores PRservice error
-4014: Regarding Licensing of "mbsalign.c" available in util-linux-2.21.2
-      version (Yocto-1.3-Danny)
-4470: Powertop fails do_compile on nightly-x86-lsb
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><p><span style>I want to install my existing=
+ Toolchain to Yocto Sysroot bypassing default yocto toolchain functionality=
+.<u></u><u></u></span></p>
 
 
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-_______________________________________________
-yocto-announce mailing list
-yocto-announce@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto-announce
+<p><span style><u></u>=C2=A0<u></u></span></p>
+<p><span style>My requirements are<u></u><u></u></span></p>
+<p><span style><u></u>=C2=A0<u></u></span></p>
+<p><span style>1I will download toolchain from my git source ie tar file.<u=
+></u><u></u></span></p>
+<p><span style>2I just want to install this toolchain to tmp/sysroot folder=
+ in build directory skipping compilation step.<u></u><u></u></span></p>
+<p><span style><u></u>=C2=A0<u></u></span></p>
+<p><span style><u></u>=C2=A0<u></u></span></p>
+<p><span style>Steps implemented<u></u><u></u></span></p>
+<p><span style><u></u>=C2=A0<u></u></span></p>
+<p><span style>1 SRC_URI =3D &quot;<a>file:///home/toolchains_bin.tar</a>&q=
+uot;<u></u><u></u></span></p>
+<p><span style>2 TCMODE=3D&quot;external-csl&quot; <u></u><u></u></span></p=
+>
+<p><span style>3 EXTERNAL_TOOLCHAIN =3D &quot;/home/yocto/poky/build/tmp/wo=
+rk/mips64-poky-linux/external-sourcery-toolchain/GCC-r8/toolchains_bin/mips=
+cross/linux&quot;<u></u><u></u></span></p>
+<p><span style>4CSL_TARGET_SYS_mips64 =3D &quot;${TARGET_ARCH}${TARGET_TC_V=
+ENDOR}-${TCTYPE}&quot;<u></u><u></u></span></p>
+<p><span style>5CSL_TARGET_SYS =3D &quot;${TARGET_ARCH}${TARGET_TC_VENDOR}-=
+${TCTYPE}&quot;<u></u><u></u></span></p>
+<p><span style>6 TARGET_PREFIX =3D &quot;${CSL_TARGET_SYS_mips64}-&quot;</s=
+pan></p></blockquote></div><br>The sourcery toolchain recipe pulls files fr=
+om a codesourcery / mentor graphics Sourcery G++ toolchain installed at the=
+ EXTERNAL_TOOLCHAIN path. That SRC_URI will not do anything, and it expects=
+ the compiler to be available at parse time. Basically, the tcmode and reci=
+pe for sourcery is designed for a particular toolchain, not any random one,=
+ and is not structured at this time to allow extraction of a toolchain bina=
+ry tarball. You&#39;d have to customize / create your own based on the exis=
+ting bits, using them as examples.<br>
 
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
+
+--089e0160babe006be004dd6d8323--
