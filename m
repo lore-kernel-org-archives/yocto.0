@@ -1,31 +1,29 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3902CE014F5
-	for <yocto@yoctoproject.org>; Fri, 24 May 2013 13:36:23 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 24 May 2013 13:34:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,737,1363158000"; d="scan'208";a="319153371"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga001.jf.intel.com with ESMTP; 24 May 2013 13:36:22 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.15]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.91]) with mapi id
-	14.03.0123.003; Fri, 24 May 2013 13:36:22 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH v3 0/2] Yocto SDK IDE cleanup
-Thread-Index: AQHOWF4KUwj8dbIFrUO1Da54J7H0AZkUy4tA
-Date: Fri, 24 May 2013 20:36:21 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C32DE7@ORSMSX103.amr.corp.intel.com>
-References: <1369385115-31487-1-git-send-email-ioanax.grigoropol@intel.com>
-In-Reply-To: <1369385115-31487-1-git-send-email-ioanax.grigoropol@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Subject: Re: [PATCH v3 0/2] Yocto SDK IDE cleanup
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39963E004CF
+	for <yocto@yoctoproject.org>; Sat, 25 May 2013 07:05:07 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UgF5j-0005Zt-Jz
+	for yocto@yoctoproject.org; Sat, 25 May 2013 16:05:03 +0200
+Received: from 212.50.246.123 ([212.50.246.123])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 25 May 2013 16:05:03 +0200
+Received: from jackrubby2010 by 212.50.246.123 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 25 May 2013 16:05:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Jack <jackrubby2010@gmail.com>
+Date: Sat, 25 May 2013 13:58:46 +0000 (UTC)
+Message-ID: <loom.20130525T145157-762@post.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 212.50.246.123 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
+	rv:20.0) Gecko/20100101 Firefox/20.0)
+Subject: How can I remove packages from rootfs file ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,50 +35,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2013 20:36:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 25 May 2013 14:05:10 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-The remote tools related changes are merged to eclipse-poky master plus the=
- following patch:
+Hi,
 
-http://git.yoctoproject.org/cgit/cgit.cgi/eclipse-poky/commit/?id=3Dff4ccb4=
-d65243f2a28eb89c72e9b425702b6c3aa
-
-For headless build.
+I maked a fsl-image-minaml rootfs file and customized it with adding
+particular packages. For example, I added
+IMAGE_INSTALL_append_pn-fsl-image-minimal = " task-core-ssh-openssh
+task-core-nfs-server" in local.conf file. The problem is that, the rootfs
+file has 6-7 MB capacity but this capacity of file is very high and not
+acceptable to me. So how can I remove some packages from rootfs file that I
+do not want ? For example, remove packages like ar, arping,  basename,
+telnet, beep, .....
 
 Thanks,
-Jessica
+Js
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Ioana Grigoropol
-Sent: Friday, May 24, 2013 1:45 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] [PATCH v3 0/2] Yocto SDK IDE cleanup
-
-- org.yocto.sdk.ide clean up - remove unused classes
-
-Ioana Grigoropol (2):
-  Remove unused TCFTerminalConnectors
-  Remove all plugin dependencies to RSE APi from remote tools plugin
-
- .../org.yocto.sdk.remotetools/META-INF/MANIFEST.MF |   10 +-
- .../remotetools/views/TCFTerminalConnector.java    |   49 ----------
- .../views/TCFTerminalConnectorImpl.java            |   98 ----------------=
-----
- 3 files changed, 4 insertions(+), 153 deletions(-)  delete mode 100644 plu=
-gins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/views/TCFTermi=
-nalConnector.java
- delete mode 100644 plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/rem=
-otetools/views/TCFTerminalConnectorImpl.java
-
---
-1.7.9.5
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
 
