@@ -1,17 +1,30 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47263E013A2
-	for <yocto@yoctoproject.org>; Sat, 25 May 2013 17:17:28 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 4127241A18; Sun, 26 May 2013 00:17:28 +0000 (UTC)
-Date: Sun, 26 May 2013 00:17:28 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A06FE013A2
+	for <yocto@yoctoproject.org>; Sat, 25 May 2013 23:31:55 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UgUUi-0000L6-P0
+	for yocto@yoctoproject.org; Sun, 26 May 2013 08:31:52 +0200
+Received: from 212.50.246.123 ([212.50.246.123])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 26 May 2013 08:31:52 +0200
+Received: from jackrubby2010 by 212.50.246.123 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 26 May 2013 08:31:52 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-Message-ID: <20130526001728.GA31876@ab01.i.yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+From: Jack <jackrubby2010@gmail.com>
+Date: Sun, 26 May 2013 06:31:36 +0000 (UTC)
+Message-ID: <loom.20130526T082522-255@post.gmane.org>
+References: <loom.20130525T145157-762@post.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 212.50.246.123 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
+	rv:20.0) Gecko/20100101 Firefox/20.0)
+Subject: Re: How can I remove packages from rootfs file ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,21 +36,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 May 2013 00:17:28 -0000
+X-List-Received-Date: Sun, 26 May 2013 06:31:55 -0000
 Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Content-Transfer-Encoding: 7bit
 
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-cups                     1.6.1               1.6.0               271 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-tinylogin                1.4                 1.4                 265 day                  Radu Moisan <radu.moisan@inte...        TinyLogin was merged into Busy...
-libpng12                 1.2.50              N/A                 41418 d                  No Maintainer info                      No data                       
-minicom                  2.6.2               2.6.2               26 days                  Cristian Iorga <cristian.iorg...        No data                       
-Manual Check Count: 4
-Manual Need Check Count: 3
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+Any help ???
+
+
 
