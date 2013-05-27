@@ -1,29 +1,26 @@
-Return-Path: <twoerner@gmail.com>
-Received: from mail-we0-f170.google.com (mail-we0-f170.google.com
-	[74.125.82.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED24CE0150F
-	for <yocto@yoctoproject.org>; Mon, 27 May 2013 09:35:46 -0700 (PDT)
-Received: by mail-we0-f170.google.com with SMTP id u59so4163206wes.1
-	for <yocto@yoctoproject.org>; Mon, 27 May 2013 09:35:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=134d6XG1cspw7V/k+8SSbnHi4AF4BxF60UEnGnlCWJY=;
-	b=KMarUQ3r5k4jRT7DMQNL/twsQZnj3DAyaonz15VzDrSXNo7qpH5mEtk1N4P1wjDFF3
-	w53Va5upFteX4DUOygMj+37UmSYv3/gwin3WFYpc1ofAgrFSQqbZsk8ko6b0gjJF81vJ
-	fo/VYrQeFttVN9CB7fv6QalVJxoEgQBj7ChiGRicdVVSjuLcRhbMJkoEKSKZ9NSHZRdG
-	MKsypDtNJ2yrqwAJakr9tyos4nAc6jl24amlvFhYvN3OVGI4Ms/rf/qLmR/fuAVIuvml
-	Pl09q19fvDsbEePo4IsbvVIWx9HY2+hfxIqR6GmqRInVfpjYc4tzkSLtCMz+ft2tGopT
-	Qz2g==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 862D0E0150F
+	for <yocto@yoctoproject.org>; Mon, 27 May 2013 11:33:20 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga102.ch.intel.com with ESMTP; 27 May 2013 11:33:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,752,1363158000"; d="scan'208";a="340940077"
+Received: from unknown (HELO helios.localnet) ([10.255.12.48])
+	by fmsmga001.fm.intel.com with ESMTP; 27 May 2013 11:33:29 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Jack <jackrubby2010@gmail.com>
+Date: Mon, 27 May 2013 19:33:17 +0100
+Message-ID: <2270262.ebMYOzLRXb@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.8.0-22-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <loom.20130527T160955-462@post.gmane.org>
+References: <loom.20130525T145157-762@post.gmane.org>
+	<5394411.Nd6qyTtVKA@helios>
+	<loom.20130527T160955-462@post.gmane.org>
 MIME-Version: 1.0
-X-Received: by 10.180.9.7 with SMTP id v7mr8975081wia.61.1369672545441; Mon,
-	27 May 2013 09:35:45 -0700 (PDT)
-Received: by 10.194.37.6 with HTTP; Mon, 27 May 2013 09:35:45 -0700 (PDT)
-Date: Mon, 27 May 2013 12:35:45 -0400
-Message-ID: <CAHUNapRLhMrO9Tt0QRPH703fQ7FdDiax30Ow8EzooiKH1o=Y2Q@mail.gmail.com>
-From: Trevor Woerner <twoerner@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Subject: doc nit
+Cc: yocto@yoctoproject.org
+Subject: Re: How can I remove packages from rootfs file ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,21 +32,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2013 16:35:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 27 May 2013 18:33:21 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+On Monday 27 May 2013 14:56:18 Jack wrote:
+> Thanks a lot Paul.
+> 
+> Paul Eggleton <paul.eggleton@...> writes:
+> > On Saturday 25 May 2013 13:58:46 Jack wrote:
+> > > I maked a fsl-image-minaml rootfs file and customized it with adding
+> > > particular packages. For example, I added
+> > > IMAGE_INSTALL_append_pn-fsl-image-minimal = " task-core-ssh-openssh
+> > > task-core-nfs-server" in local.conf file. The problem is that, the
+> > > rootfs
+> > > file has 6-7 MB capacity but this capacity of file is very high and not
+> > > acceptable to me. So how can I remove some packages from rootfs file
+> > > that I
+> > > do not want ?
+> > 
+> > There are several different aspects to answering this question.
+> > 
+> > The list of packages to be installed is composed of several things - the
+> > list of packages specified in IMAGE_INSTALL, packages brought in by
+> > IMAGE_FEATURES, and packages brought in to satisfy dependencies of either
+> > of the first two.
+> > 
+> > One way to analyse the contents of your image is to enable buildhistory
+> > [1]
+> > which gives you the full list of installed packages, installed packages by
+> > size, as well as graphs (.dot) that will show you the dependency
+> > relationships between the packages. These dot graphs can be viewed by
+> > converting them to images using the "dot" command (from graphviz) or
+> > using a viewer such as xdot [2].
+> 
+> I enabled buildhistory by adding INHERIT += "buildhistory" and
+> 
+> BUILDHISTORY_COMMIT = "1" to local.conf file. But I got this error :
+> | error: Failed dependencies:
+> | libcrypt.so.1(GLIBC_2.0) is needed by inetutils-1.8-r0.ppce500v2
 
-The Yocto Project Development Manual, section 3.2.2 (Source Control
-Management (SCM)) states that:
+This has nothing to do with buildhistory. Not sure what would cause this but 
+it looks like inetutils depends on libcrypt and for whatever reason that 
+wasn't provided by any package by the time it came to construct the image. Did 
+you change any other settings?
 
-"Git is a distributed system that is easy to
-backup (each checkout is a backup in itself)"
+> I changed DISTRO_FEATURES in local.conf to DISTRO_FEATURE = "busybox" but it
+> didn't compile.
 
-I'm not 100% sure a "checkout" would be considered a backup. I think
-most people would say that a "clone" is more like a backup than a
-"checkout". No?
+I'm afraid you can't just set DISTRO_FEATURES to "busybox". In particular this 
+will exclude a bunch of eglibc features, some of which are mandatory. You need 
+to understand what you are removing.
 
-Best regards,
-    Trevor
+> Finally, I found that one way to customize an image is hob. I remove some
+> packages with hob and the size of my root filesystem decreased. The type of
+> output file that generated is .rootfs.ext2.gz but I need
+> .rootfs.ext2.gz.u-boot type. How can I have .rootfs.ext2.gz.u-boot type with
+> hob? Is it possible convert .rootfs.ext2.gz to .rootfs.ext2.gz.u-boot?
+
+Doesn't seem to be a way to do this from hob at the moment (likely due to bug 
+4386). You could probably run u-boot-mkimage directly to generate the image.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
