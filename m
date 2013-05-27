@@ -1,31 +1,29 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2A67E014B4
-	for <yocto@yoctoproject.org>; Mon, 27 May 2013 07:56:45 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Ugyqk-0000qx-SN
-	for yocto@yoctoproject.org; Mon, 27 May 2013 16:56:40 +0200
-Received: from 212.50.246.123 ([212.50.246.123])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 27 May 2013 16:56:38 +0200
-Received: from jackrubby2010 by 212.50.246.123 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 27 May 2013 16:56:38 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Jack <jackrubby2010@gmail.com>
-Date: Mon, 27 May 2013 14:56:18 +0000 (UTC)
-Message-ID: <loom.20130527T160955-462@post.gmane.org>
-References: <loom.20130525T145157-762@post.gmane.org>
-	<5394411.Nd6qyTtVKA@helios>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 212.50.246.123 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
-	rv:20.0) Gecko/20100101 Firefox/20.0)
-Subject: Re: How can I remove packages from rootfs file ?
+Return-Path: <twoerner@gmail.com>
+Received: from mail-we0-f170.google.com (mail-we0-f170.google.com
+	[74.125.82.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED24CE0150F
+	for <yocto@yoctoproject.org>; Mon, 27 May 2013 09:35:46 -0700 (PDT)
+Received: by mail-we0-f170.google.com with SMTP id u59so4163206wes.1
+	for <yocto@yoctoproject.org>; Mon, 27 May 2013 09:35:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=134d6XG1cspw7V/k+8SSbnHi4AF4BxF60UEnGnlCWJY=;
+	b=KMarUQ3r5k4jRT7DMQNL/twsQZnj3DAyaonz15VzDrSXNo7qpH5mEtk1N4P1wjDFF3
+	w53Va5upFteX4DUOygMj+37UmSYv3/gwin3WFYpc1ofAgrFSQqbZsk8ko6b0gjJF81vJ
+	fo/VYrQeFttVN9CB7fv6QalVJxoEgQBj7ChiGRicdVVSjuLcRhbMJkoEKSKZ9NSHZRdG
+	MKsypDtNJ2yrqwAJakr9tyos4nAc6jl24amlvFhYvN3OVGI4Ms/rf/qLmR/fuAVIuvml
+	Pl09q19fvDsbEePo4IsbvVIWx9HY2+hfxIqR6GmqRInVfpjYc4tzkSLtCMz+ft2tGopT
+	Qz2g==
+MIME-Version: 1.0
+X-Received: by 10.180.9.7 with SMTP id v7mr8975081wia.61.1369672545441; Mon,
+	27 May 2013 09:35:45 -0700 (PDT)
+Received: by 10.194.37.6 with HTTP; Mon, 27 May 2013 09:35:45 -0700 (PDT)
+Date: Mon, 27 May 2013 12:35:45 -0400
+Message-ID: <CAHUNapRLhMrO9Tt0QRPH703fQ7FdDiax30Ow8EzooiKH1o=Y2Q@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Subject: doc nit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,96 +35,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2013 14:56:46 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 27 May 2013 16:35:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks a lot Paul.
+Hi,
 
-Paul Eggleton <paul.eggleton@...> writes:
+The Yocto Project Development Manual, section 3.2.2 (Source Control
+Management (SCM)) states that:
 
-> 
-> On Saturday 25 May 2013 13:58:46 Jack wrote:
-> > I maked a fsl-image-minaml rootfs file and customized it with adding
-> > particular packages. For example, I added
-> > IMAGE_INSTALL_append_pn-fsl-image-minimal = " task-core-ssh-openssh
-> > task-core-nfs-server" in local.conf file. The problem is that, the rootfs
-> > file has 6-7 MB capacity but this capacity of file is very high and not
-> > acceptable to me. So how can I remove some packages from rootfs file that I
-> > do not want ? 
-> 
-> There are several different aspects to answering this question.
-> 
-> The list of packages to be installed is composed of several things - the list
-> of packages specified in IMAGE_INSTALL, packages brought in by IMAGE_FEATURES,
-> and packages brought in to satisfy dependencies of either of the first two.
-> 
-> One way to analyse the contents of your image is to enable buildhistory [1]
-> which gives you the full list of installed packages, installed packages by
-> size, as well as graphs (.dot) that will show you the dependency relationships
-> between the packages. These dot graphs can be viewed by converting them to
-> images using the "dot" command (from graphviz) or using a viewer such as xdot
-> [2].
-I enabled buildhistory by adding INHERIT += "buildhistory" and
-BUILDHISTORY_COMMIT = "1" to local.conf file. But I got this error :
+"Git is a distributed system that is easy to
+backup (each checkout is a backup in itself)"
 
-| error: Failed dependencies:
-| libcrypt.so.1(GLIBC_2.0) is needed by inetutils-1.8-r0.ppce500v2
-.
-.
-.
-.
+I'm not 100% sure a "checkout" would be considered a backup. I think
+most people would say that a "clone" is more like a backup than a
+"checkout". No?
 
-How can I solve this error ?
-
-> 
-> Once you've analysed things at this level, you may find there are dependency
-> relationships that can't easily be broken, or some packages that are overly 
-> large. At this point you will need to start looking at changing the build 
-> configuraton of the packages in question - disabling optional functionalty, 
-> removing optional dependencies etc. (usually this would be done by changing
-> DISTRO_FEATURES, modifying the kernel configuration, changing PACKAGECONFIG
-> options for individual recipes, or if those aren't available modifying
-> EXTRA_OECONF). How far you want to go with this depends on how much you want
-> to optimise the size of your image.
-> 
-> If you do find you need to go down the latter path, I'd recommend checking out
-> Darren Hart's presentation "Tuning Embedded Linux - When Less is More" [3].
-
-I changed DISTRO_FEATURES in local.conf to DISTRO_FEATURE = "busybox" but it
-didn't compile.
-> 
-
-> > For example, remove packages like ar, arping,  basename, telnet, beep, .....
-> 
-> Note that whilst some of these may be from packages you can remove, many of
-> them may be functionality provided by busybox, i.e. where the command is just
-> a symlink to the busybox binary. You can modify the busybox build-time
-> configuration to disable these, but bear in mind that disabling them
-> usually only saves you a few kB. For some applications that may be a useful
-> saving, of course.
-> 
-> HTH.
-> 
-> Cheers,
-> Paul
-> 
-> [1]
-http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#maintaining-build-output-quality
-> 
-> [2] https://github.com/jrfonseca/xdot.py
-> 
-> [3] Slides: http://elinux.org/images/2/2b/Elce11_hart.pdf
-> Video: http://www.youtube.com/watch?v=WHLvI8j31vk
-> 
-
-Finally, I found that one way to customize an image is hob. I remove some
-packages with hob and the size of my root filesystem decreased. The type of
-output file that generated is .rootfs.ext2.gz but I need
-.rootfs.ext2.gz.u-boot type. How can I have .rootfs.ext2.gz.u-boot type with
-hob? Is it possible convert .rootfs.ext2.gz to .rootfs.ext2.gz.u-boot?
-
-
-
-
+Best regards,
+    Trevor
 
