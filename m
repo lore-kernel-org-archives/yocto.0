@@ -1,25 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63EDCE01458
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 07:11:01 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 28 May 2013 07:08:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,758,1363158000"; d="scan'208";a="341342072"
-Received: from unknown (HELO helios.localnet) ([10.252.121.204])
-	by fmsmga001.fm.intel.com with ESMTP; 28 May 2013 07:11:01 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Sebastian =?ISO-8859-1?Q?S=FCsens?= <su@mycable.de>
-Date: Tue, 28 May 2013 15:10:48 +0100
-Message-ID: <1776847.BtD7W1b5CJ@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.8.0-22-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <51A4B7DE.6010702@mycable.de>
-References: <51A4A0AD.1000207@mycable.de> <1439859.cGLdtq2HGo@helios>
-	<51A4B7DE.6010702@mycable.de>
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
+	[209.85.214.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B09E7E01458
+	for <yocto@yoctoproject.org>; Tue, 28 May 2013 07:14:44 -0700 (PDT)
+Received: by mail-ob0-f174.google.com with SMTP id wd20so2850833obb.33
+	for <yocto@yoctoproject.org>; Tue, 28 May 2013 07:14:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=n5RE8NZa2DZTo5DwWIZz8BHBiOaBtNq9kp0g92Dyofw=;
+	b=SU32c7zFgy3FJ9b51+Gy4c/oNmiF95FROQxIBO+c3veJdvGEaRi2H+bxf0RPDT+cDF
+	v3PB10bzDfE35CDzq6j2nrCWIbs84vcMA18p76lEecbodFSyvV/g+14wEVUsWZomXUwN
+	uYYILuJs6C+r+HFN/vwKEl/6c5KuT2XSGMNZ50OFGdmgfZ6dzC0/TOUn6WIo2C3nXMG/
+	BD8XWXq7SRdtoxuNuk+3y1wUSBYpyd08yn9UzohUCp9x7A/FVNUFtqWo/5TqeX/8Cv7k
+	lcFeHX9qQbg16xHrwp8XZwZfHMl/poPbe/sAr/9KzUqp25Q8tRT8S8i27HKREf7ggwRg
+	O6SA==
+X-Received: by 10.60.47.200 with SMTP id f8mr17778523oen.33.1369750483895;
+	Tue, 28 May 2013 07:14:43 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: How do I get the kernel modules into rootfs?
+Received: by 10.76.27.165 with HTTP; Tue, 28 May 2013 07:14:23 -0700 (PDT)
+In-Reply-To: <loom.20130528T152012-210@post.gmane.org>
+References: <loom.20130525T145157-762@post.gmane.org>
+	<5394411.Nd6qyTtVKA@helios>
+	<CAP71Wjx3xV7t5WUA_rEraDd3p0R2OE1mkZtOGkXFEk1hjEf2pg@mail.gmail.com>
+	<loom.20130528T152012-210@post.gmane.org>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 28 May 2013 16:14:23 +0200
+Message-ID: <CAP71WjzDQOJLzWUttV+gk6sqZqT4b636jNCc3ChCgcvLzpJH2Q@mail.gmail.com>
+To: Jack <jackrubby2010@gmail.com>
+X-Gm-Message-State: ALoCoQkH0gNnhTj3ptnZrvki/CqJN8GfpaMY1yus9K2G5qhOkoWlJFfKobTX8TRtAZHpnj03JQ6d
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: How can I remove packages from rootfs file ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,57 +43,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2013 14:11:01 -0000
+X-List-Received-Date: Tue, 28 May 2013 14:14:44 -0000
+Content-Type: multipart/alternative; boundary=001a11c2d6820616e904ddc7e393
+
+--001a11c2d6820616e904ddc7e393
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Tue, May 28, 2013 at 3:49 PM, Jack <jackrubby2010@gmail.com> wrote:
+
+> > on top of that, i wanted to remind that there is a dedicated chapter in
+> the Yocto manual about building 'tiny' systems [1]. Also you don't mention
+> which 'DISTRO' you are using, so make sure that you are aware that Yocto
+> comes with Poky, and Poky-tiny as well, which according to
+> conf/distro/poky-tiny.conf says:
+> >
+>
+> My MACHINE is p1022ds and DISTRO is fsl. When I changed fsl to poky I got
+> error.
+> What should I do ?
+
+
+ok, i was assuming you might be using DISTRO=poky... if you use another
+DISTRO, then i suggest that you study the differences between poky and
+poky-tiny to understand how the 'reference' DISTRO is building its 'tiny'
+variant. there are certainly things you can reused from poky-tiny to
+optimize your own build.
+
+--001a11c2d6820616e904ddc7e393
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-On Tuesday 28 May 2013 15:57:50 Sebastian S=FCsens wrote:
-> On 05/28/2013 03:03 PM, Paul Eggleton wrote:
-> > On Tuesday 28 May 2013 14:18:53 Sebastian S=FCsens wrote:
-> >> I have build the system with MACHINE_EXTRA_RRECOMMENDS +=3D "
-> >> kernel-modules" at the machine configuration.
-> >> When I look into the rootfs.tar archive I see no modules installed=
- in
-> >> /lib/modules. I get only a modules.tar archive at the deploy folde=
-r.
-> >>=20
-> >> How do I get the modules into the rootfs?
-> >=20
-> > This will only work if your image includes packagegroup-base, as no=
-ted
-> > in the glossary entry for this variable:
-> >=20
-> > http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html=
-#var-MA
-> > CHINE_EXTRA_RRECOMMENDS
-> >=20
-> > Presumably the image you are building does not include packagegroup=
--base
-> > (or more specifically, packagegroup-machine-base)?
->=20
-> now I build the system with packagegroup-base and it works.
-> Can I build the rootfs which include modules without the packagegroup=
--base?
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, May 28, 2013 at 3:49 PM, Jack <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:jackrubby2010@gmail.com" target=3D"_blank">jackrubby2010@gmail.com</a>&g=
+t;</span> wrote:<br>
 
-kernel-modules is just a package, so you can include it in IMAGE_INSTAL=
-L just=20
-like any other package name (although this may not be the most appropri=
-ate=20
-solution).
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div><div class=3D"im">&gt; on top of that, =
+i wanted to remind that there is a dedicated chapter in<br>
+the Yocto manual about building &#39;tiny&#39; systems [1]. Also you don&#3=
+9;t mention<br>
+which &#39;DISTRO&#39; you are using, so make sure that you are aware that =
+Yocto<br>
+comes with Poky, and Poky-tiny as well, which according to<br>
+conf/distro/poky-tiny.conf says:<br>
+&gt;<br>
+<br>
+</div></div>My MACHINE is p1022ds and DISTRO is fsl. When I changed fsl to =
+poky I got<br>
+error.<br>
+What should I do ?</blockquote></div><br>ok, i was assuming you might be us=
+ing DISTRO=3Dpoky... if you use another DISTRO, then i suggest that you stu=
+dy the differences between poky and poky-tiny to understand how the &#39;re=
+ference&#39; DISTRO is building its &#39;tiny&#39; variant. there are certa=
+inly things you can reused from poky-tiny to optimize your own build.</div>
 
-Alternatively, if you have a list of kernel modules that are required f=
-or=20
-booting you can have them installed in any image that uses packagegroup=
--core-
-boot by adding them to MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS.
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br></div><=
+/div>
 
-Cheers,
-Paul
-
-PS please keep replies CC'd to the mailing list, thanks.
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--001a11c2d6820616e904ddc7e393--
