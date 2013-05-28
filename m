@@ -1,24 +1,23 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E685E014FB
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 05:14:52 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 28 May 2013 05:14:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,758,1363158000"; d="scan'208";a="308913216"
-Received: from unknown (HELO helios.localnet) ([10.252.121.204])
-	by azsmga001.ch.intel.com with ESMTP; 28 May 2013 05:14:47 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Zafrullah Syed <zafrullahmehdi@gmail.com>
-Date: Tue, 28 May 2013 13:14:46 +0100
-Message-ID: <1430863.Eq8UUOJMnE@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.2 (Linux/3.8.0-22-generic; KDE/4.10.2; i686; ; )
-In-Reply-To: <CAAGt+t1SvAkQik=jAr5xPPBe7NE-VOwbDhLTnszst7NKF5W5TA@mail.gmail.com>
-References: <CAAGt+t1SvAkQik=jAr5xPPBe7NE-VOwbDhLTnszst7NKF5W5TA@mail.gmail.com>
+Return-Path: <su@mycable.de>
+Received: from serv07.server-center.de (serv07.server-center.de
+	[87.119.209.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEFA4E014FB
+	for <yocto@yoctoproject.org>; Tue, 28 May 2013 05:18:56 -0700 (PDT)
+Received: (qmail 31810 invoked from network); 28 May 2013 12:18:54 -0000
+Received: by simscan 1.1.0 ppid: 31801, pid: 31806, t: 0.1191s
+	scanners: regex: 1.1.0 spam: 3.2.1
+Received: from p578b3905.dip0.t-ipconnect.de (HELO ?10.27.1.138?)
+	(sumycaba@87.139.57.5)
+	by serv07.server-center.de with ESMTPA; 28 May 2013 12:18:54 -0000
+Message-ID: <51A4A0AD.1000207@mycable.de>
+Date: Tue, 28 May 2013 14:18:53 +0200
+From: =?ISO-8859-1?Q?Sebastian_S=FCsens?= <su@mycable.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Hello world-Checksum error
+To: yocto@yoctoproject.org
+X-Enigmail-Version: 1.4.6
+Subject: How do I get the kernel modules into rootfs?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,43 +29,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2013 12:14:52 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 28 May 2013 12:18:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
-On Tuesday 28 May 2013 13:46:26 Zafrullah Syed wrote:
-> I am trying to add Hello world recipe, everything was going good but after
-> giving bitbake <target> command it breaks with the following error:
-> 
-> siguser@siguser:~/yocto2013-05-08/poky/build$ *bitbake gumstix-console-image
-> *
-> 
-> ERROR: ExpansionError during parsing
-> /home/siguser/yocto2013-05-08/poky/meta-bebot/recipes-bebot/hello/hello.bb:
-> Failure expanding expression ${@bb.fetch.get_checksum_file_list(d)} which
-> triggered exception NoMethodError: Could not find a fetcher which supports
-> the URL: '${ftp://ftp.gnu.org/gnu}/hello/hello-${2.7}.tar.gz'
-> ERROR: Command execution failed: Exited with 1
-> 
-> 
-> *My hello.bb file is*:
-> 
-> DESCRIPTION = "GNU Helloworld application"
-> SECTION = "examples"
-> LICENSE = "GPLv3+"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
-> PR = "r0"
-> SRC_URI = "${ftp://ftp.gnu.org/gnu}/hello/hello-${2.7}.tar.gz"
+Hello,
 
-That should be:
+I have build the system with MACHINE_EXTRA_RRECOMMENDS += "
+kernel-modules" at the machine configuration.
+When I look into the rootfs.tar archive I see no modules installed in /lib/modules.
+I get only a modules.tar archive at the deploy folder.
 
-SRC_URI = "ftp://ftp.gnu.org/gnu}/hello/hello-2.7.tar.gz"
-
-Cheers,
-Paul
+How do I get the modules into the rootfs?
 
 -- 
+------------------------------------------------------------------------
+   Sebastian Süsens               Tel.   +49 4321 559 56-27
+   mycable GmbH                   Fax    +49 4321 559 56-10
+   Gartenstrasse 10
+   24534 Neumuenster, Germany     Email  su@mycable.de
+------------------------------------------------------------------------
+   mycable GmbH, Managing Director: Michael Carstens-Behrens
+   USt-IdNr: DE 214 231 199, Amtsgericht Kiel, HRB 1797 NM
+------------------------------------------------------------------------
+   This e-mail and any files transmitted with it are confidential and
+   intended solely for the use of the individual or entity to whom
+   they are addressed. If you have received this e-mail in error,
+   please notify the sender and delete all copies from your system.
+------------------------------------------------------------------------ 
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
