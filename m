@@ -1,37 +1,27 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
-	[209.85.214.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B09E7E01458
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 07:14:44 -0700 (PDT)
-Received: by mail-ob0-f174.google.com with SMTP id wd20so2850833obb.33
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 07:14:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=n5RE8NZa2DZTo5DwWIZz8BHBiOaBtNq9kp0g92Dyofw=;
-	b=SU32c7zFgy3FJ9b51+Gy4c/oNmiF95FROQxIBO+c3veJdvGEaRi2H+bxf0RPDT+cDF
-	v3PB10bzDfE35CDzq6j2nrCWIbs84vcMA18p76lEecbodFSyvV/g+14wEVUsWZomXUwN
-	uYYILuJs6C+r+HFN/vwKEl/6c5KuT2XSGMNZ50OFGdmgfZ6dzC0/TOUn6WIo2C3nXMG/
-	BD8XWXq7SRdtoxuNuk+3y1wUSBYpyd08yn9UzohUCp9x7A/FVNUFtqWo/5TqeX/8Cv7k
-	lcFeHX9qQbg16xHrwp8XZwZfHMl/poPbe/sAr/9KzUqp25Q8tRT8S8i27HKREf7ggwRg
-	O6SA==
-X-Received: by 10.60.47.200 with SMTP id f8mr17778523oen.33.1369750483895;
-	Tue, 28 May 2013 07:14:43 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.76.27.165 with HTTP; Tue, 28 May 2013 07:14:23 -0700 (PDT)
-In-Reply-To: <loom.20130528T152012-210@post.gmane.org>
-References: <loom.20130525T145157-762@post.gmane.org>
-	<5394411.Nd6qyTtVKA@helios>
-	<CAP71Wjx3xV7t5WUA_rEraDd3p0R2OE1mkZtOGkXFEk1hjEf2pg@mail.gmail.com>
-	<loom.20130528T152012-210@post.gmane.org>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 28 May 2013 16:14:23 +0200
-Message-ID: <CAP71WjzDQOJLzWUttV+gk6sqZqT4b636jNCc3ChCgcvLzpJH2Q@mail.gmail.com>
-To: Jack <jackrubby2010@gmail.com>
-X-Gm-Message-State: ALoCoQkH0gNnhTj3ptnZrvki/CqJN8GfpaMY1yus9K2G5qhOkoWlJFfKobTX8TRtAZHpnj03JQ6d
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: How can I remove packages from rootfs file ?
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D50BDE01423
+	for <yocto@yoctoproject.org>; Tue, 28 May 2013 10:36:41 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r4SHeGU1026756; Tue, 28 May 2013 18:40:16 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id Tsia6cScp116; Tue, 28 May 2013 18:40:16 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r4SHe9Pf026752
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Tue, 28 May 2013 18:40:10 +0100
+Message-ID: <1369762549.14887.191.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: openembedded-core <openembedded-core@lists.openembedded.org>, yocto
+	<yocto@yoctoproject.org>
+Date: Tue, 28 May 2013 18:35:49 +0100
+X-Mailer: Evolution 3.6.4-0ubuntu1 
+Mime-Version: 1.0
+Subject: Status Update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,62 +33,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2013 14:14:44 -0000
-Content-Type: multipart/alternative; boundary=001a11c2d6820616e904ddc7e393
+X-List-Received-Date: Tue, 28 May 2013 17:36:42 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a11c2d6820616e904ddc7e393
-Content-Type: text/plain; charset=ISO-8859-1
+Its been a few weeks since I sent one of these out, mainly as I've not
+had much to report.
 
-On Tue, May 28, 2013 at 3:49 PM, Jack <jackrubby2010@gmail.com> wrote:
+Pending Patches
+===============
 
-> > on top of that, i wanted to remind that there is a dedicated chapter in
-> the Yocto manual about building 'tiny' systems [1]. Also you don't mention
-> which 'DISTRO' you are using, so make sure that you are aware that Yocto
-> comes with Poky, and Poky-tiny as well, which according to
-> conf/distro/poky-tiny.conf says:
-> >
->
-> My MACHINE is p1022ds and DISTRO is fsl. When I changed fsl to poky I got
-> error.
-> What should I do ?
+Patches have been steadily getting reviewed and merged. Some things took
+a little longer than is ideal due to travel on Saul and my part. I know
+Saul is still travelling.
+
+Autobuilder status is much improved compared to where its been the past
+couple of weeks. We added a number of new sanity tests, they found
+issues, we've now got many of them fixed. The nightly-qa test is still
+problematic, the fsl-ppc machines are continuing to fail and have been
+failing for a while now :(.
+
+Automated QA
+============
+
+Architecture/planning wise, there is a big shakeup of the automated QA
+tests coming down the pipeline for 1.5. The current shell script based
+system isn't scaling so we're looking at moving to python unittest.
+
+Why is this important? Manual QA currently uses a lot of or QA resources
+and means releases take longer than we'd like, we also have issues if we
+ever try two in parallel (e.g. a point release). I want to see this
+problem removed and automation looks like the best way to achieve it. It
+means the QA teams can then focus on more automation and writing new
+test cases for new features and so on.
+
+Once the initial conversion happens, we're looking to convert many of
+the currently manual tests over to become automated and hence improve
+the speed we can put releases through the QA process amongst other
+things.
+
+This is all still being planned, further discussion will no doubt happen
+as soon as there is a plan to propose/discuss. There are a variety of
+open bugs in the bugzilla and people interested in what is going on can
+look at those and see the rough plans for 1.5.
+
+I can quickly summarise that:
+
+a) this work is focused on testing with qemu, not target hardware.
+Nothing done in this work would be incompatible with real hardware, its
+just not a focus right now (maybe 1.6?)
+
+b) We plan to leverage existing tests where we can, e.g. "make check" on
+target using ptest packages
+
+c) initially the plan is to cover the runtime qemu tests
+
+d) we're also looking at some kind of oe-selftest, a bit like
+bitbake-selftest which would run "bitbake X, change Y, bitbake X, check
+something" type scenarios.
+
+e) extensions to the package QA tests (insane.bbclass) are being
+considered
+
+f) a new level of QA tests against rootfs after they're generated will
+likely be created
+
+The plan is to establish the new python unittest code using a small
+team, then open things up for more contributions of test cases since
+this part of the process can be parallelised.
+
+1.3.2
+=====
+
+It shipped! Thanks Ross! :)
+
+Hopefully this should round out the bulk of the 1.3 issues people were
+running into. There is no 1.3.3 planned at this point.
+
+1.4.1
+=====
+
+A number of fixes were merged for this. I know there are a small number
+of patches still to come in but we'll need to start putting this through
+the release process shortly so please get any requests for bugs fixes
+for 1.4.x to Paul ASAP.
+
+Bitbake
+=======
+
+I've been spending quite a bit of time reviewing and also writing some
+changes to the core of bitbake, splitting up cooker. These changes set
+the scene for webhob and the memory resident bitbake concept as well as
+removal of the double bitbake execution. There will be more changes in
+this area landing and there may be some further mild instability whilst
+we work though any issues.
+
+There have also been some patches which remove the "global method scope"
+we had in bitbake. Those patches merged, I've not heard of anyone with
+issues due to them yet (the parallel parsing already half broke the
+global scope anyway).
+
+Cheers,
+
+Richard
 
 
-ok, i was assuming you might be using DISTRO=poky... if you use another
-DISTRO, then i suggest that you study the differences between poky and
-poky-tiny to understand how the 'reference' DISTRO is building its 'tiny'
-variant. there are certainly things you can reused from poky-tiny to
-optimize your own build.
 
---001a11c2d6820616e904ddc7e393
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, May 28, 2013 at 3:49 PM, Jack <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:jackrubby2010@gmail.com" target=3D"_blank">jackrubby2010@gmail.com</a>&g=
-t;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><div class=3D"im">&gt; on top of that, =
-i wanted to remind that there is a dedicated chapter in<br>
-the Yocto manual about building &#39;tiny&#39; systems [1]. Also you don&#3=
-9;t mention<br>
-which &#39;DISTRO&#39; you are using, so make sure that you are aware that =
-Yocto<br>
-comes with Poky, and Poky-tiny as well, which according to<br>
-conf/distro/poky-tiny.conf says:<br>
-&gt;<br>
-<br>
-</div></div>My MACHINE is p1022ds and DISTRO is fsl. When I changed fsl to =
-poky I got<br>
-error.<br>
-What should I do ?</blockquote></div><br>ok, i was assuming you might be us=
-ing DISTRO=3Dpoky... if you use another DISTRO, then i suggest that you stu=
-dy the differences between poky and poky-tiny to understand how the &#39;re=
-ference&#39; DISTRO is building its &#39;tiny&#39; variant. there are certa=
-inly things you can reused from poky-tiny to optimize your own build.</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br></div><=
-/div>
-
---001a11c2d6820616e904ddc7e393--
