@@ -1,28 +1,36 @@
-Return-Path: <martyn.welch@ge.com>
-Received: from exprod5og109.obsmtp.com (exprod5og109.obsmtp.com [64.18.0.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38382E01515
-	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:02:13 -0700 (PDT)
-Received: from alpmlip12.e2k.ad.ge.com ([165.156.5.1]) (using TLSv1) by
-	exprod5ob109.postini.com ([64.18.4.12]) with SMTP
-	ID DSNKUaX8VH+m3sqtslnanFKfov+mvn48+aKe@postini.com;
-	Wed, 29 May 2013 06:02:13 PDT
-Received: from unknown (HELO alpmlip01.e2k.ad.ge.com) ([3.159.17.48])
-	by alpmlip12.e2k.ad.ge.com with ESMTP/TLS/RC4-SHA;
-	29 May 2013 09:02:11 -0400
-Received: from es-j7s4d2j.amer.consind.ge.com (HELO [3.138.54.92])
-	([3.138.54.92])
-	by alpmlip01.e2k.ad.ge.com with ESMTP; 29 May 2013 09:02:10 -0400
-Message-ID: <51A5FC51.7050106@ge.com>
-Date: Wed, 29 May 2013 14:02:09 +0100
-From: Martyn Welch <martyn.welch@ge.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130330 Thunderbird/17.0.5
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F4E4E01515
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:26:15 -0700 (PDT)
+Received: by mail-vc0-f182.google.com with SMTP id gf12so6396845vcb.13
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:26:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=E5xrQl2oatNzdAYMuWaePIKhj+/GlWo0Amr9XBoqkYA=;
+	b=EPNg9u1McuuvFs+G9IsmtOOHQHQZ1W2VmvpGncFKric58tIEiDogNcpkHOyCGlAVaU
+	rHKCn5CmKOztS/QNOZKw7ScFG6kEpf7C9QJYpNll3dOTnQW7u9vGlJscqU3zf9FnSTTY
+	8c7sZ17Ruc3z0HVvVDERnEti5+D6WR+AjFUg7ihy1rsabjDmXA7jCpOT1iIIvwll8IRC
+	nB5xSjjR9THuoFzpJAACV6hOl0XFVDNvUPWE98To3VcaacTyPoagRXsJwP5/ILdQr6aK
+	DzelhSGPY8qdspLCYoekEndLJCl1cYgv/BItCx2/CXEon8+c9+E6+c9DY/tHOCkVYh2K
+	iONg==
+X-Received: by 10.52.69.200 with SMTP id g8mr1331437vdu.4.1369833974596; Wed,
+	29 May 2013 06:26:14 -0700 (PDT)
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Received: by 10.220.98.7 with HTTP; Wed, 29 May 2013 06:25:54 -0700 (PDT)
+In-Reply-To: <51A5FC51.7050106@ge.com>
 References: <10f0001e.10c21.13d45669ae7.Coremail.huanmateme@163.com>
 	<516555F8.50006@gmail.com> <5554864.lTrseEoNhs@helios>
-In-Reply-To: <5554864.lTrseEoNhs@helios>
-Cc: Jean-baptiste DUONEA <jbduro2@gmail.com>, yocto@yoctoproject.org
+	<51A5FC51.7050106@ge.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 29 May 2013 14:25:54 +0100
+Message-ID: <CAJTo0LbjnM=MRaL78v27JW60By0xj0+HUyL2aHA4LaWS-u1Stg@mail.gmail.com>
+To: Martyn Welch <martyn.welch@ge.com>
+X-Gm-Message-State: ALoCoQnujeGQLnPuQzlsUZG/sdMNCdqdUbNo+e8+DvANEllF8VeYbPAQH40iAtbN5ebRUh9+L2jC
+Cc: Jean-baptiste DUONEA <jbduro2@gmail.com>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
 Subject: Re: "trap: 80: SIGHUP: bad trap" comes up when building core-image-sato.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -35,33 +43,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2013 13:02:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 May 2013 13:26:15 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 10/04/13 13:33, Paul Eggleton wrote:
-> On Wednesday 10 April 2013 14:07:20 Jean-baptiste DUONEA wrote:
->> Problem comes from Dash shell, which is used by default on Ubuntu.
->> You have to reconfigure your terminal and disable the usage of Dash :
->> Type in your console : sudo dpkg-reconfigure dash
->> Choose the answer "No"
->> Close and launch your terminal, now it will works !
-> 
-> We do not need to do this anymore as of the denzil release (1.2) - we 
-> explicitly support /bin/sh not being bash, and in fact I am running with 
-> /bin/sh -> dash on Ubuntu here right now.
-> 
+Hi Martyn,
 
-Which release of Ubuntu are you using?
+On 29 May 2013 14:02, Martyn Welch <martyn.welch@ge.com> wrote:
+> I've just hit this exact problem building busybox from Yocto 1.4 on Ubuntu 10.04.
 
-I've just hit this exact problem building busybox from Yocto 1.4 on Ubuntu 10.04.
+This was root-caused down to a bug in a script in the kern-tools
+package.  You can either switch from 1.4 tarball to the dylan branch
+from git (where it's already fixed), wait for 1.4.1 (due early July, I
+think), or apply the fix yourself:
 
-Martyn
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3faa5039c8147d0bf9e352dc5ad1e9e12cf2086a
 
-
--- 
-Martyn Welch (Lead Software Engineer)  | Registered in England and Wales
-GE Intelligent Platforms               | (3828642) at 100 Barbirolli Square
-T +44(0)1327322748                     | Manchester, M2 3AB
-E martyn.welch@ge.com                  | VAT:GB 927559189
+Ross
 
