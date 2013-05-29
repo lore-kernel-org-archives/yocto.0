@@ -1,26 +1,33 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C875E004CF
-	for <yocto@yoctoproject.org>; Wed, 29 May 2013 11:34:38 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r4TIYbwI017893
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 29 May 2013 11:34:37 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 29 May 2013 11:34:36 -0700
-Message-ID: <51A64A3A.5030300@windriver.com>
-Date: Wed, 29 May 2013 14:34:34 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <caiortp@gmail.com>
+Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2B21E01439
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 11:53:30 -0700 (PDT)
+Received: by mail-la0-f45.google.com with SMTP id ec20so9090710lab.32
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 11:53:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=NgTYnjPAYWtwapTp9GjdJODnw0mwtV8aTPLxp5fhulM=;
+	b=TmPBTb/hXM3mWWALAlCiu2p6gCsrfCgU1gCY+Aq9FwlyUWSVDBLZUD5ArASjiGchra
+	CYPN+ugkRL9oJF05ASSDhav0BlHGD9XYFgZaaCIUrtK+ziON40nZCZYF1Mbqr+H/cK8F
+	XKk/YUSWLq9ssb+aZ1W13kuSGGZwFFiLJL4JHnU7You6zDwwb2YFRQTqzd9CbikfWQ+m
+	YpZr/mN/9fMtC3PVLjZAek0Dc8o2FZKLLjbi0IueQNS2ghnnDBKgJFbeoptiaT+8owBq
+	CW/8lvQdmYxwzWHuhr5gJqP7gFtYM0uZek5M0Fvy0QrQV0FEAmtrFEOsG6IDH5BS24bp
+	QHtA==
 MIME-Version: 1.0
-To: Caio <caiortp@gmail.com>
+X-Received: by 10.112.171.169 with SMTP id av9mr2227705lbc.130.1369853609277; 
+	Wed, 29 May 2013 11:53:29 -0700 (PDT)
+Received: by 10.112.63.138 with HTTP; Wed, 29 May 2013 11:53:29 -0700 (PDT)
+In-Reply-To: <51A64A3A.5030300@windriver.com>
 References: <CAJqtCyZR0+LAyymBB7Nv28Cv+m9gQnaVqNYFFbxvh5qvovJXcA@mail.gmail.com>
 	<51A646B8.2090509@windriver.com> <1369851756.1742.8.camel@empanada>
 	<CAJqtCya487+ZTs7Mi+W4VEWx+bRNB5ici49Gg=7QBEcam-FTNQ@mail.gmail.com>
-In-Reply-To: <CAJqtCya487+ZTs7Mi+W4VEWx+bRNB5ici49Gg=7QBEcam-FTNQ@mail.gmail.com>
+	<51A64A3A.5030300@windriver.com>
+Date: Wed, 29 May 2013 15:53:29 -0300
+Message-ID: <CAJqtCyZ652ia1eDOQRCcYojWReptu1=9Amoz2W=JODuvAp=6mQ@mail.gmail.com>
+From: Caio <caiortp@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Problem to compile kernel (enable nfsd)
 X-BeenThere: yocto@yoctoproject.org
@@ -34,210 +41,373 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2013 18:34:38 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 May 2013 18:53:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 13-05-29 02:30 PM, Caio wrote:
-> Bruce I tested the patch but doesn't work
->
+bitbake core-image-minimal
+Loading cache: 100%
+|#########################################################################################################################################################################################################|
+ETA:  00:00:00
+Loaded 1121 entries from dependency cache.
+Parsing recipes: 100%
+|#######################################################################################################################################################################################################|
+Time: 00:00:03
+Parsing of 814 .bb files complete (813 cached, 1 parsed). 1121
+targets, 37 skipped, 0 masked, 0 errors.
 
-It definitely works here. You'll need to provide more details besides
-"it doesn't work".
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-12.04"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "lab3-qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4.1"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-yocto
+meta-yocto-bsp
+meta-lab3-qemux86 = "dylan:3768675706462c0cc8566ead958161e77e2247e9"
 
-> meta-yocto/conf/distro/poky-
-> lsb.conf
->
-> require conf/distro/poky.conf
->
-> DISTRO = "poky-lsb"
-> DISTROOVERRIDES = "poky:linuxstdbase"
->
-> DISTRO_FEATURES_append = " pam largefile opengl"
-> PREFERRED_PROVIDER_virtual/libx11 = "libx11"
->
-> # Ensure the kernel nfs server is enabled
-> KERNEL_FEATURES_append_pn-linux-yocto = " features/nfsd/nfsd-enable.scc"
->
-> After a bitbake core-image-minimal
-> I have the same error.
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: Function failed: do_patch (see
+/home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
+for further information)
+ERROR: Logfile of failure stored in:
+/home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
+Log data follows:
+| DEBUG: Executing shell function do_patch
+| WARNING: no meta data branch found ...
+| Already on 'linux-3.4.y'
+| WARNING: addon feature "features/nfsd/nfsd-enable" was not found
+| ERROR: required features were not found. aborting
+| ERROR. Could not update linux-3.4.y
+| ERROR: Function failed: do_patch (see
+/home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
+for further information)
+ERROR: Task 843
+(/home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
+do_patch) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 1618 tasks of which 1617 didn't need to
+be rerun and 1 failed.
+No currently running tasks (571 of 1647)
 
-Dump your bitbake environment and grep for KERNEL_FEATURES.
+Summary: 1 task failed:
+  /home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
+do_patch
 
-i.e. bitbake -e -c compile linux-yocto-custom | grep KERNEL_FEATURES
 
-And we can see what is happening.
+log.do_patch.9687
+DEBUG: Executing shell function do_patch
+WARNING: no meta data branch found ...
+Already on 'linux-3.4.y'
+WARNING: addon feature "features/nfsd/nfsd-enable" was not found
+ERROR: required features were not found. aborting
+ERROR. Could not update linux-3.4.y
+ERROR: Function failed: do_patch (see
+/home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
+for further informati
 
-Cheers,
 
-Bruce
+conf/bblayers.conf
 
->
-> I will follow the Tom's suggestion and back the poky version.
->
-> Thank you very much!
->
-> 2013/5/29 Tom Zanussi <tom.zanussi@intel.com>:
->> On Wed, 2013-05-29 at 14:19 -0400, Bruce Ashfield wrote:
->>> On 13-05-29 02:15 PM, Caio wrote:
->>>> Hello,
->>>>
->>>> I'm following the ELC2013 hands-on
->>>> (https://www.yoctoproject.org/sites/yoctoproject.org/files/elc2013-kernel-lab.pdf)
->>>> but with poky 9.0.
->>>>
->>>> Git Branch (b15bdd842092f2335784c20b8e1b3a0ddcf7996b)
->>>>
->>>> In the lab3 I'm trying to compile a kernel from master git tree.
->>>>
->>>>
->>>> But I'm having these trouble to enable NFSD.
->>>> -WARNING: addon feature "features/nfsd/nfsd-enable" was not found
->>>>
->>>
->>> There's a bug in master at the moment that is breaking linux-yocto-custom.
->>>
+# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+LCONF_VERSION = "6"
+
+BBPATH = "${TOPDIR}"
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  /home/caio/yocto/poky/meta \
+  /home/caio/yocto/poky/meta-yocto \
+  /home/caio/yocto/poky/meta-yocto-bsp \
+  /home/caio/yocto/poky/meta-lab3-qemux86 \
+  "
+BBLAYERS_NON_REMOVABLE ?= " \
+  /home/caio/yocto/poky/meta \
+  /home/caio/yocto/poky/meta-yocto \
+
+
+
+./meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb
+
+inherit kernel
+require recipes-kernel/linux/linux-yocto.inc
+
+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1"
+
+SRC_URI += "file://defconfig"
+
+SRC_URI += "file://yocto-testmod.patch"
+SRC_URI += "file://lab3.cfg"
+
+#module_autoload_yocto-testmod = "yocto-testmod"
+
+KBRANCH = "linux-3.4.y"
+
+LINUX_VERSION ?= "3.4.28"
+LINUX_VERSION_EXTENSION ?= "-custom"
+
+SRCREV="${AUTOREV}"
+
+PR = "r0"
+PV = "${LINUX_VERSION}+git${SRCPV}"
+
+COMPATIBLE_MACHINE_lab3-qemux86 = "lab3-qemux86"
+
+
+
+/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom/defconfig :
+(full defconfig http://pastebin.com/iTtkKy3w)
+Just NFS config from
+CONFIG_NETWORK_FILESYSTEMS=y
+CONFIG_NFS_FS=y
+CONFIG_NFS_DEF_FILE_IO_SIZE=4096
+CONFIG_NFS_V3=y
+# CONFIG_NFS_V3_ACL is not set
+CONFIG_NFS_V4=y
+#CONFIG_NFS_V4_1 is not set
+CONFIG_ROOT_NFS=y
+# CONFIG_NFS_USE_LEGACY_DNS is not set
+#CONFIG_NFS_USE_KERNEL_DNS is not set
+CONFIG_NFSD=y
+CONFIG_LOCKD=y
+CONFIG_LOCKD_V4=y
+CONFIG_NFS_COMMON=y
+
+
+conf/local.conf http://pastebin.com/BVSz0eTL
+
+2013/5/29 Bruce Ashfield <bruce.ashfield@windriver.com>:
+> On 13-05-29 02:30 PM, Caio wrote:
 >>
->> Also apparently in the dylan point release i.e post-9.0.0.
+>> Bruce I tested the patch but doesn't work
 >>
->> Tom
+>
+> It definitely works here. You'll need to provide more details besides
+> "it doesn't work".
+>
+>
+>> meta-yocto/conf/distro/poky-
+>> lsb.conf
 >>
->>> I'll send it out for merge shortly.
+>> require conf/distro/poky.conf
+>>
+>> DISTRO = "poky-lsb"
+>> DISTROOVERRIDES = "poky:linuxstdbase"
+>>
+>> DISTRO_FEATURES_append = " pam largefile opengl"
+>> PREFERRED_PROVIDER_virtual/libx11 = "libx11"
+>>
+>> # Ensure the kernel nfs server is enabled
+>> KERNEL_FEATURES_append_pn-linux-yocto = " features/nfsd/nfsd-enable.scc"
+>>
+>> After a bitbake core-image-minimal
+>> I have the same error.
+>
+>
+> Dump your bitbake environment and grep for KERNEL_FEATURES.
+>
+> i.e. bitbake -e -c compile linux-yocto-custom | grep KERNEL_FEATURES
+>
+> And we can see what is happening.
+>
+> Cheers,
+>
+> Bruce
+>
+>
+>>
+>> I will follow the Tom's suggestion and back the poky version.
+>>
+>> Thank you very much!
+>>
+>> 2013/5/29 Tom Zanussi <tom.zanussi@intel.com>:
 >>>
->>> In the meantime, take this change:
+>>> On Wed, 2013-05-29 at 14:19 -0400, Bruce Ashfield wrote:
+>>>>
+>>>> On 13-05-29 02:15 PM, Caio wrote:
+>>>>>
+>>>>> Hello,
+>>>>>
+>>>>> I'm following the ELC2013 hands-on
+>>>>>
+>>>>> (https://www.yoctoproject.org/sites/yoctoproject.org/files/elc2013-kernel-lab.pdf)
+>>>>> but with poky 9.0.
+>>>>>
+>>>>> Git Branch (b15bdd842092f2335784c20b8e1b3a0ddcf7996b)
+>>>>>
+>>>>> In the lab3 I'm trying to compile a kernel from master git tree.
+>>>>>
+>>>>>
+>>>>> But I'm having these trouble to enable NFSD.
+>>>>> -WARNING: addon feature "features/nfsd/nfsd-enable" was not found
+>>>>>
+>>>>
+>>>> There's a bug in master at the moment that is breaking
+>>>> linux-yocto-custom.
+>>>>
 >>>
->>> --- a/meta-yocto/conf/distro/poky-lsb.conf
->>> +++ b/meta-yocto/conf/distro/poky-lsb.conf
->>> @@ -7,6 +7,6 @@ DISTRO_FEATURES_append = " pam largefile opengl"
->>>    PREFERRED_PROVIDER_virtual/libx11 = "libx11"
+>>> Also apparently in the dylan point release i.e post-9.0.0.
 >>>
->>>    # Ensure the kernel nfs server is enabled
->>> -KERNEL_FEATURES_append = " features/nfsd/nfsd-enable.scc"
->>> +KERNEL_FEATURES_append_pn-linux-yocto = " features/nfsd/nfsd-enable.scc"
+>>> Tom
 >>>
->>>
->>> Bruce
->>>
+>>>> I'll send it out for merge shortly.
 >>>>
->>>> My log:
+>>>> In the meantime, take this change:
 >>>>
->>>> Build Configuration:
->>>> BB_VERSION        = "1.18.0"
->>>> BUILD_SYS         = "x86_64-linux"
->>>> NATIVELSBSTRING   = "Ubuntu-12.04"
->>>> TARGET_SYS        = "i586-poky-linux"
->>>> MACHINE           = "lab3-qemux86"
->>>> DISTRO            = "poky"
->>>> DISTRO_VERSION    = "1.4.1"
->>>> TUNE_FEATURES     = "m32 i586"
->>>> TARGET_FPU        = ""
->>>> meta
->>>> meta-yocto
->>>> meta-yocto-bsp
->>>> meta-lab3-qemux86 = "dylan:3768675706462c0cc8566ead958161e77e2247e9"
+>>>> --- a/meta-yocto/conf/distro/poky-lsb.conf
+>>>> +++ b/meta-yocto/conf/distro/poky-lsb.conf
+>>>> @@ -7,6 +7,6 @@ DISTRO_FEATURES_append = " pam largefile opengl"
+>>>>    PREFERRED_PROVIDER_virtual/libx11 = "libx11"
+>>>>
+>>>>    # Ensure the kernel nfs server is enabled
+>>>> -KERNEL_FEATURES_append = " features/nfsd/nfsd-enable.scc"
+>>>> +KERNEL_FEATURES_append_pn-linux-yocto = "
+>>>> features/nfsd/nfsd-enable.scc"
 >>>>
 >>>>
->>>> NOTE: Resolving any missing task queue dependencies
->>>> NOTE: Preparing runqueue
->>>> NOTE: Executing SetScene Tasks
->>>> NOTE: Executing RunQueue Tasks
->>>> ERROR: Function failed: do_patch (see
->>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
->>>> for further information)
->>>> ERROR: Logfile of failure stored in:
->>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
->>>> Log data follows:
->>>> | DEBUG: Executing shell function do_patch
->>>> | WARNING: no meta data branch found ...
->>>> | Already on 'linux-3.4.y'
->>>> | WARNING: addon feature "features/nfsd/nfsd-enable" was not found
->>>> | ERROR: required features were not found. aborting
->>>> | ERROR. Could not update linux-3.4.y
->>>> | ERROR: Function failed: do_patch (see
->>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
->>>> for further information)
->>>> ERROR: Task 843
->>>> (/home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
->>>> do_patch) failed with exit code '1'
->>>> NOTE: Tasks Summary: Attempted 1618 tasks of which 1613 didn't need to
->>>> be rerun and 1 failed.
->>>> No currently running tasks (1618 of 1647)
+>>>> Bruce
 >>>>
->>>> Summary: 1 task failed:
->>>>     /home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
->>>> do_patch
->>>> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>>>>>
+>>>>> My log:
+>>>>>
+>>>>> Build Configuration:
+>>>>> BB_VERSION        = "1.18.0"
+>>>>> BUILD_SYS         = "x86_64-linux"
+>>>>> NATIVELSBSTRING   = "Ubuntu-12.04"
+>>>>> TARGET_SYS        = "i586-poky-linux"
+>>>>> MACHINE           = "lab3-qemux86"
+>>>>> DISTRO            = "poky"
+>>>>> DISTRO_VERSION    = "1.4.1"
+>>>>> TUNE_FEATURES     = "m32 i586"
+>>>>> TARGET_FPU        = ""
+>>>>> meta
+>>>>> meta-yocto
+>>>>> meta-yocto-bsp
+>>>>> meta-lab3-qemux86 = "dylan:3768675706462c0cc8566ead958161e77e2247e9"
+>>>>>
+>>>>>
+>>>>> NOTE: Resolving any missing task queue dependencies
+>>>>> NOTE: Preparing runqueue
+>>>>> NOTE: Executing SetScene Tasks
+>>>>> NOTE: Executing RunQueue Tasks
+>>>>> ERROR: Function failed: do_patch (see
+>>>>>
+>>>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
+>>>>> for further information)
+>>>>> ERROR: Logfile of failure stored in:
+>>>>>
+>>>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
+>>>>> Log data follows:
+>>>>> | DEBUG: Executing shell function do_patch
+>>>>> | WARNING: no meta data branch found ...
+>>>>> | Already on 'linux-3.4.y'
+>>>>> | WARNING: addon feature "features/nfsd/nfsd-enable" was not found
+>>>>> | ERROR: required features were not found. aborting
+>>>>> | ERROR. Could not update linux-3.4.y
+>>>>> | ERROR: Function failed: do_patch (see
+>>>>>
+>>>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
+>>>>> for further information)
+>>>>> ERROR: Task 843
+>>>>>
+>>>>> (/home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
+>>>>> do_patch) failed with exit code '1'
+>>>>> NOTE: Tasks Summary: Attempted 1618 tasks of which 1613 didn't need to
+>>>>> be rerun and 1 failed.
+>>>>> No currently running tasks (1618 of 1647)
+>>>>>
+>>>>> Summary: 1 task failed:
+>>>>>
+>>>>> /home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
+>>>>> do_patch
+>>>>> Summary: There was 1 ERROR message shown, returning a non-zero exit
+>>>>> code.
+>>>>>
+>>>>>
+>>>>>
+>>>>> I tryed configure defconf to
+>>>>>
+>>>>> CONFIG_NETWORK_FILESYSTEMS=y
+>>>>> CONFIG_NFS_FS=y
+>>>>> CONFIG_NFS_DEF_FILE_IO_SIZE=4096
+>>>>> CONFIG_NFS_V3=y
+>>>>> # CONFIG_NFS_V3_ACL is not set
+>>>>> CONFIG_NFS_V4=y
+>>>>> #CONFIG_NFS_V4_1 is not set
+>>>>> CONFIG_ROOT_NFS=y
+>>>>> # CONFIG_NFS_USE_LEGACY_DNS is not set
+>>>>> CONFIG_NFS_USE_KERNEL_DNS=y
+>>>>> CONFIG_NFSD=y
+>>>>>
+>>>>>
+>>>>> The Recipe
+>>>>>
+>>>>> inherit kernel
+>>>>> require recipes-kernel/linux/linux-yocto.inc
+>>>>>
+>>>>> SRC_URI =
+>>>>> "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1"
+>>>>>
+>>>>> SRC_URI += "file://defconfig"
+>>>>>
+>>>>> #SRC_URI += "file://yocto-testmod.patch"
+>>>>> #SRC_URI += "file://lab3.cfg"
+>>>>>
+>>>>> #module_autoload_yocto-testmod = "yocto-testmod"
+>>>>>
+>>>>> KBRANCH = "linux-3.4.y"
+>>>>>
+>>>>> LINUX_VERSION ?= "3.4.28"
+>>>>> LINUX_VERSION_EXTENSION ?= "-custom"
+>>>>>
+>>>>> SRCREV="${AUTOREV}"
+>>>>>
+>>>>> PR = "r0"
+>>>>> PV = "${LINUX_VERSION}+git${SRCPV}"
+>>>>>
+>>>>> COMPATIBLE_MACHINE_lab3-qemux86 = "lab3-qemux86"
+>>>>>
+>>>>>
+>>>>> There's some advice to me?
+>>>>>
+>>>>> Thank you!
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Caio Pereira
+>>>>>
+>>>>>
+>>>>> --
+>>>>> ----------------------------------------------
+>>>>> Caio Pereira
+>>>>> _______________________________________________
+>>>>> yocto mailing list
+>>>>> yocto@yoctoproject.org
+>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>>
 >>>>
->>>>
->>>>
->>>> I tryed configure defconf to
->>>>
->>>> CONFIG_NETWORK_FILESYSTEMS=y
->>>> CONFIG_NFS_FS=y
->>>> CONFIG_NFS_DEF_FILE_IO_SIZE=4096
->>>> CONFIG_NFS_V3=y
->>>> # CONFIG_NFS_V3_ACL is not set
->>>> CONFIG_NFS_V4=y
->>>> #CONFIG_NFS_V4_1 is not set
->>>> CONFIG_ROOT_NFS=y
->>>> # CONFIG_NFS_USE_LEGACY_DNS is not set
->>>> CONFIG_NFS_USE_KERNEL_DNS=y
->>>> CONFIG_NFSD=y
->>>>
->>>>
->>>> The Recipe
->>>>
->>>> inherit kernel
->>>> require recipes-kernel/linux/linux-yocto.inc
->>>>
->>>> SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1"
->>>>
->>>> SRC_URI += "file://defconfig"
->>>>
->>>> #SRC_URI += "file://yocto-testmod.patch"
->>>> #SRC_URI += "file://lab3.cfg"
->>>>
->>>> #module_autoload_yocto-testmod = "yocto-testmod"
->>>>
->>>> KBRANCH = "linux-3.4.y"
->>>>
->>>> LINUX_VERSION ?= "3.4.28"
->>>> LINUX_VERSION_EXTENSION ?= "-custom"
->>>>
->>>> SRCREV="${AUTOREV}"
->>>>
->>>> PR = "r0"
->>>> PV = "${LINUX_VERSION}+git${SRCPV}"
->>>>
->>>> COMPATIBLE_MACHINE_lab3-qemux86 = "lab3-qemux86"
->>>>
->>>>
->>>> There's some advice to me?
->>>>
->>>> Thank you!
->>>>
->>>> Regards,
->>>>
->>>> Caio Pereira
->>>>
->>>>
->>>> --
->>>> ----------------------------------------------
->>>> Caio Pereira
 >>>> _______________________________________________
 >>>> yocto mailing list
 >>>> yocto@yoctoproject.org
 >>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
 >>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>>
 >>
 >>
->
->
+>>
 >
 
+
+
+-- 
+----------------------------------------------
+Caio Pereira
 
