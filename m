@@ -1,32 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14844E01423
-	for <yocto@yoctoproject.org>; Wed, 29 May 2013 12:50:57 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r4TJotA0003180
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 29 May 2013 12:50:56 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 29 May 2013 12:50:56 -0700
-Message-ID: <51A65C1E.5050803@windriver.com>
-Date: Wed, 29 May 2013 15:50:54 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68359E014B4
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 14:42:00 -0700 (PDT)
+Received: by mail-wi0-f169.google.com with SMTP id hn14so4696633wib.4
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 14:41:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:mime-version:content-type;
+	bh=niYTTAb7DxmBEJR7ovpPMFbp62/fsCvpIt0bL4U8bGU=;
+	b=CV69RPzRSr8sK8o7EM8XZT7g9oj6wQgfrigaz2e4do4YvKOOpQ3s2cqKf/8vxsgdbs
+	CECzjqo9/jcVDI4lMcEfNvSx2JYkAU1I25igTOuU8gNZdHqykXkc6G3U+fs0FbCkOqp3
+	pSiOJHFhl7G6Fi2xOFImmThznJOk/f9+9IHCR1OKOocAjNwdYw/vh5EOgN3czQQQafgF
+	K+JXl/Xd/wYzdBk55Mn4x8cKq6w6ldWNCY9t2C3sBq8J2zQHjoEH+CUjTIc/LmT5paWX
+	mMRw3f3KzVSTsQr7tCn8g6TNdieWZJqYP3uQUbt2FWYTEn5XLjiHRMoXtAx8Vuw16zNs
+	h55w==
+X-Received: by 10.180.11.206 with SMTP id s14mr2244623wib.40.1369863719074;
+	Wed, 29 May 2013 14:41:59 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPSA id d5sm34008400wic.1.2013.05.29.14.41.55
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Wed, 29 May 2013 14:41:57 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Wed, 29 May 2013 17:42:08 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: yocto@yoctoproject.org
+Date: Wed, 29 May 2013 17:42:08 -0400
+Message-ID: <87zjvdwjin.fsf@sonatest.com>
 MIME-Version: 1.0
-To: Caio <caiortp@gmail.com>
-References: <CAJqtCyZR0+LAyymBB7Nv28Cv+m9gQnaVqNYFFbxvh5qvovJXcA@mail.gmail.com>
-	<51A646B8.2090509@windriver.com> <1369851756.1742.8.camel@empanada>
-	<CAJqtCya487+ZTs7Mi+W4VEWx+bRNB5ici49Gg=7QBEcam-FTNQ@mail.gmail.com>
-	<51A64A3A.5030300@windriver.com>
-	<CAJqtCyZ652ia1eDOQRCcYojWReptu1=9Amoz2W=JODuvAp=6mQ@mail.gmail.com>
-	<51A64FE9.5010409@windriver.com>
-	<CAJqtCybqZHCvuvXNVdnOGS6_oxKBHYJcj1OhrVoMiM6Q1Qv60Q@mail.gmail.com>
-In-Reply-To: <CAJqtCybqZHCvuvXNVdnOGS6_oxKBHYJcj1OhrVoMiM6Q1Qv60Q@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Problem to compile kernel (enable nfsd)
+Subject: udev not starting on first boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,426 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2013 19:50:58 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 May 2013 21:42:00 -0000
+Content-Type: text/plain
 
-On 13-05-29 03:05 PM, Caio wrote:
-> bitbake -e -c kernel_configme linux-yocto-custom | grep KERNEL_FEATURES
-> # $KERNEL_FEATURES [2 operations]
-> KERNEL_FEATURES="features/nfsd/nfsd-enable.scc"
+Hi,
 
-Great. I'll run some tests here as well. That's different variable override
-behaviour that I'm seeing.
+I'm currently upgrading from 1.3 to 1.4 and I'm having some issues on
+the first boot because it seems udev won't start.
 
-Bruce
+I'm using udev 182 from meta/recipes-core/udev. The system uses a
+read-only root filesystem (squashfs) paired with a RW partition joined
+together with AUFS to give the illusion of a RW filesystem.
 
->
-> 2013/5/29 Bruce Ashfield <bruce.ashfield@windriver.com>:
->> On 13-05-29 02:53 PM, Caio wrote:
->>>
->>> bitbake core-image-minimal
->>
->>
->> This won't give me what I'm looking for, bitbake the
->> kernel directly:
->>
->>    bitbake -e -c kernel_configme linux-yocto-custom | grep KERNEL_FEATURES
->>
->> Cheers,
->>
->> Bruce
->>
->>
->>> Loading cache: 100%
->>>
->>> |#########################################################################################################################################################################################################|
->>> ETA:  00:00:00
->>> Loaded 1121 entries from dependency cache.
->>> Parsing recipes: 100%
->>>
->>> |#######################################################################################################################################################################################################|
->>> Time: 00:00:03
->>> Parsing of 814 .bb files complete (813 cached, 1 parsed). 1121
->>> targets, 37 skipped, 0 masked, 0 errors.
->>>
->>> Build Configuration:
->>> BB_VERSION        = "1.18.0"
->>> BUILD_SYS         = "x86_64-linux"
->>> NATIVELSBSTRING   = "Ubuntu-12.04"
->>> TARGET_SYS        = "i586-poky-linux"
->>> MACHINE           = "lab3-qemux86"
->>> DISTRO            = "poky"
->>> DISTRO_VERSION    = "1.4.1"
->>> TUNE_FEATURES     = "m32 i586"
->>> TARGET_FPU        = ""
->>> meta
->>> meta-yocto
->>> meta-yocto-bsp
->>> meta-lab3-qemux86 = "dylan:3768675706462c0cc8566ead958161e77e2247e9"
->>>
->>> NOTE: Resolving any missing task queue dependencies
->>> NOTE: Preparing runqueue
->>> NOTE: Executing SetScene Tasks
->>> NOTE: Executing RunQueue Tasks
->>> ERROR: Function failed: do_patch (see
->>>
->>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
->>> for further information)
->>> ERROR: Logfile of failure stored in:
->>>
->>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
->>> Log data follows:
->>> | DEBUG: Executing shell function do_patch
->>> | WARNING: no meta data branch found ...
->>> | Already on 'linux-3.4.y'
->>> | WARNING: addon feature "features/nfsd/nfsd-enable" was not found
->>> | ERROR: required features were not found. aborting
->>> | ERROR. Could not update linux-3.4.y
->>> | ERROR: Function failed: do_patch (see
->>>
->>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
->>> for further information)
->>> ERROR: Task 843
->>>
->>> (/home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
->>> do_patch) failed with exit code '1'
->>> NOTE: Tasks Summary: Attempted 1618 tasks of which 1617 didn't need to
->>> be rerun and 1 failed.
->>> No currently running tasks (571 of 1647)
->>>
->>> Summary: 1 task failed:
->>>
->>> /home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
->>> do_patch
->>>
->>>
->>> log.do_patch.9687
->>> DEBUG: Executing shell function do_patch
->>> WARNING: no meta data branch found ...
->>> Already on 'linux-3.4.y'
->>> WARNING: addon feature "features/nfsd/nfsd-enable" was not found
->>> ERROR: required features were not found. aborting
->>> ERROR. Could not update linux-3.4.y
->>> ERROR: Function failed: do_patch (see
->>>
->>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.9687
->>> for further informati
->>>
->>>
->>> conf/bblayers.conf
->>>
->>> # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
->>> # changes incompatibly
->>> LCONF_VERSION = "6"
->>>
->>> BBPATH = "${TOPDIR}"
->>> BBFILES ?= ""
->>>
->>> BBLAYERS ?= " \
->>>     /home/caio/yocto/poky/meta \
->>>     /home/caio/yocto/poky/meta-yocto \
->>>     /home/caio/yocto/poky/meta-yocto-bsp \
->>>     /home/caio/yocto/poky/meta-lab3-qemux86 \
->>>     "
->>> BBLAYERS_NON_REMOVABLE ?= " \
->>>     /home/caio/yocto/poky/meta \
->>>     /home/caio/yocto/poky/meta-yocto \
->>>
->>>
->>>
->>> ./meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb
->>>
->>> inherit kernel
->>> require recipes-kernel/linux/linux-yocto.inc
->>>
->>> SRC_URI =
->>> "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1"
->>>
->>> SRC_URI += "file://defconfig"
->>>
->>> SRC_URI += "file://yocto-testmod.patch"
->>> SRC_URI += "file://lab3.cfg"
->>>
->>> #module_autoload_yocto-testmod = "yocto-testmod"
->>>
->>> KBRANCH = "linux-3.4.y"
->>>
->>> LINUX_VERSION ?= "3.4.28"
->>> LINUX_VERSION_EXTENSION ?= "-custom"
->>>
->>> SRCREV="${AUTOREV}"
->>>
->>> PR = "r0"
->>> PV = "${LINUX_VERSION}+git${SRCPV}"
->>>
->>> COMPATIBLE_MACHINE_lab3-qemux86 = "lab3-qemux86"
->>>
->>>
->>>
->>> /meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom/defconfig :
->>> (full defconfig http://pastebin.com/iTtkKy3w)
->>> Just NFS config from
->>> CONFIG_NETWORK_FILESYSTEMS=y
->>> CONFIG_NFS_FS=y
->>> CONFIG_NFS_DEF_FILE_IO_SIZE=4096
->>> CONFIG_NFS_V3=y
->>> # CONFIG_NFS_V3_ACL is not set
->>> CONFIG_NFS_V4=y
->>> #CONFIG_NFS_V4_1 is not set
->>> CONFIG_ROOT_NFS=y
->>> # CONFIG_NFS_USE_LEGACY_DNS is not set
->>> #CONFIG_NFS_USE_KERNEL_DNS is not set
->>> CONFIG_NFSD=y
->>> CONFIG_LOCKD=y
->>> CONFIG_LOCKD_V4=y
->>> CONFIG_NFS_COMMON=y
->>>
->>>
->>> conf/local.conf http://pastebin.com/BVSz0eTL
->>>
->>> 2013/5/29 Bruce Ashfield <bruce.ashfield@windriver.com>:
->>>>
->>>> On 13-05-29 02:30 PM, Caio wrote:
->>>>>
->>>>>
->>>>> Bruce I tested the patch but doesn't work
->>>>>
->>>>
->>>> It definitely works here. You'll need to provide more details besides
->>>> "it doesn't work".
->>>>
->>>>
->>>>> meta-yocto/conf/distro/poky-
->>>>> lsb.conf
->>>>>
->>>>> require conf/distro/poky.conf
->>>>>
->>>>> DISTRO = "poky-lsb"
->>>>> DISTROOVERRIDES = "poky:linuxstdbase"
->>>>>
->>>>> DISTRO_FEATURES_append = " pam largefile opengl"
->>>>> PREFERRED_PROVIDER_virtual/libx11 = "libx11"
->>>>>
->>>>> # Ensure the kernel nfs server is enabled
->>>>> KERNEL_FEATURES_append_pn-linux-yocto = " features/nfsd/nfsd-enable.scc"
->>>>>
->>>>> After a bitbake core-image-minimal
->>>>> I have the same error.
->>>>
->>>>
->>>>
->>>> Dump your bitbake environment and grep for KERNEL_FEATURES.
->>>>
->>>> i.e. bitbake -e -c compile linux-yocto-custom | grep KERNEL_FEATURES
->>>>
->>>> And we can see what is happening.
->>>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>
->>>>>
->>>>> I will follow the Tom's suggestion and back the poky version.
->>>>>
->>>>> Thank you very much!
->>>>>
->>>>> 2013/5/29 Tom Zanussi <tom.zanussi@intel.com>:
->>>>>>
->>>>>>
->>>>>> On Wed, 2013-05-29 at 14:19 -0400, Bruce Ashfield wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 13-05-29 02:15 PM, Caio wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> Hello,
->>>>>>>>
->>>>>>>> I'm following the ELC2013 hands-on
->>>>>>>>
->>>>>>>>
->>>>>>>> (https://www.yoctoproject.org/sites/yoctoproject.org/files/elc2013-kernel-lab.pdf)
->>>>>>>> but with poky 9.0.
->>>>>>>>
->>>>>>>> Git Branch (b15bdd842092f2335784c20b8e1b3a0ddcf7996b)
->>>>>>>>
->>>>>>>> In the lab3 I'm trying to compile a kernel from master git tree.
->>>>>>>>
->>>>>>>>
->>>>>>>> But I'm having these trouble to enable NFSD.
->>>>>>>> -WARNING: addon feature "features/nfsd/nfsd-enable" was not found
->>>>>>>>
->>>>>>>
->>>>>>> There's a bug in master at the moment that is breaking
->>>>>>> linux-yocto-custom.
->>>>>>>
->>>>>>
->>>>>> Also apparently in the dylan point release i.e post-9.0.0.
->>>>>>
->>>>>> Tom
->>>>>>
->>>>>>> I'll send it out for merge shortly.
->>>>>>>
->>>>>>> In the meantime, take this change:
->>>>>>>
->>>>>>> --- a/meta-yocto/conf/distro/poky-lsb.conf
->>>>>>> +++ b/meta-yocto/conf/distro/poky-lsb.conf
->>>>>>> @@ -7,6 +7,6 @@ DISTRO_FEATURES_append = " pam largefile opengl"
->>>>>>>      PREFERRED_PROVIDER_virtual/libx11 = "libx11"
->>>>>>>
->>>>>>>      # Ensure the kernel nfs server is enabled
->>>>>>> -KERNEL_FEATURES_append = " features/nfsd/nfsd-enable.scc"
->>>>>>> +KERNEL_FEATURES_append_pn-linux-yocto = "
->>>>>>> features/nfsd/nfsd-enable.scc"
->>>>>>>
->>>>>>>
->>>>>>> Bruce
->>>>>>>
->>>>>>>>
->>>>>>>> My log:
->>>>>>>>
->>>>>>>> Build Configuration:
->>>>>>>> BB_VERSION        = "1.18.0"
->>>>>>>> BUILD_SYS         = "x86_64-linux"
->>>>>>>> NATIVELSBSTRING   = "Ubuntu-12.04"
->>>>>>>> TARGET_SYS        = "i586-poky-linux"
->>>>>>>> MACHINE           = "lab3-qemux86"
->>>>>>>> DISTRO            = "poky"
->>>>>>>> DISTRO_VERSION    = "1.4.1"
->>>>>>>> TUNE_FEATURES     = "m32 i586"
->>>>>>>> TARGET_FPU        = ""
->>>>>>>> meta
->>>>>>>> meta-yocto
->>>>>>>> meta-yocto-bsp
->>>>>>>> meta-lab3-qemux86 = "dylan:3768675706462c0cc8566ead958161e77e2247e9"
->>>>>>>>
->>>>>>>>
->>>>>>>> NOTE: Resolving any missing task queue dependencies
->>>>>>>> NOTE: Preparing runqueue
->>>>>>>> NOTE: Executing SetScene Tasks
->>>>>>>> NOTE: Executing RunQueue Tasks
->>>>>>>> ERROR: Function failed: do_patch (see
->>>>>>>>
->>>>>>>>
->>>>>>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
->>>>>>>> for further information)
->>>>>>>> ERROR: Logfile of failure stored in:
->>>>>>>>
->>>>>>>>
->>>>>>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
->>>>>>>> Log data follows:
->>>>>>>> | DEBUG: Executing shell function do_patch
->>>>>>>> | WARNING: no meta data branch found ...
->>>>>>>> | Already on 'linux-3.4.y'
->>>>>>>> | WARNING: addon feature "features/nfsd/nfsd-enable" was not found
->>>>>>>> | ERROR: required features were not found. aborting
->>>>>>>> | ERROR. Could not update linux-3.4.y
->>>>>>>> | ERROR: Function failed: do_patch (see
->>>>>>>>
->>>>>>>>
->>>>>>>> /home/caio/yocto/poky/lab3/tmp/work/lab3_qemux86-poky-linux/linux-yocto-custom/3.4.28+gitAUTOINC+c7788792a5e7b0d5d7f96d0766b4cb6112d47d75-r0/temp/log.do_patch.8248
->>>>>>>> for further information)
->>>>>>>> ERROR: Task 843
->>>>>>>>
->>>>>>>>
->>>>>>>> (/home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
->>>>>>>> do_patch) failed with exit code '1'
->>>>>>>> NOTE: Tasks Summary: Attempted 1618 tasks of which 1613 didn't need
->>>>>>>> to
->>>>>>>> be rerun and 1 failed.
->>>>>>>> No currently running tasks (1618 of 1647)
->>>>>>>>
->>>>>>>> Summary: 1 task failed:
->>>>>>>>
->>>>>>>>
->>>>>>>> /home/caio/yocto/poky/meta-lab3-qemux86/recipes-kernel/linux/linux-yocto-custom.bb,
->>>>>>>> do_patch
->>>>>>>> Summary: There was 1 ERROR message shown, returning a non-zero exit
->>>>>>>> code.
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> I tryed configure defconf to
->>>>>>>>
->>>>>>>> CONFIG_NETWORK_FILESYSTEMS=y
->>>>>>>> CONFIG_NFS_FS=y
->>>>>>>> CONFIG_NFS_DEF_FILE_IO_SIZE=4096
->>>>>>>> CONFIG_NFS_V3=y
->>>>>>>> # CONFIG_NFS_V3_ACL is not set
->>>>>>>> CONFIG_NFS_V4=y
->>>>>>>> #CONFIG_NFS_V4_1 is not set
->>>>>>>> CONFIG_ROOT_NFS=y
->>>>>>>> # CONFIG_NFS_USE_LEGACY_DNS is not set
->>>>>>>> CONFIG_NFS_USE_KERNEL_DNS=y
->>>>>>>> CONFIG_NFSD=y
->>>>>>>>
->>>>>>>>
->>>>>>>> The Recipe
->>>>>>>>
->>>>>>>> inherit kernel
->>>>>>>> require recipes-kernel/linux/linux-yocto.inc
->>>>>>>>
->>>>>>>> SRC_URI =
->>>>>>>>
->>>>>>>> "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1"
->>>>>>>>
->>>>>>>> SRC_URI += "file://defconfig"
->>>>>>>>
->>>>>>>> #SRC_URI += "file://yocto-testmod.patch"
->>>>>>>> #SRC_URI += "file://lab3.cfg"
->>>>>>>>
->>>>>>>> #module_autoload_yocto-testmod = "yocto-testmod"
->>>>>>>>
->>>>>>>> KBRANCH = "linux-3.4.y"
->>>>>>>>
->>>>>>>> LINUX_VERSION ?= "3.4.28"
->>>>>>>> LINUX_VERSION_EXTENSION ?= "-custom"
->>>>>>>>
->>>>>>>> SRCREV="${AUTOREV}"
->>>>>>>>
->>>>>>>> PR = "r0"
->>>>>>>> PV = "${LINUX_VERSION}+git${SRCPV}"
->>>>>>>>
->>>>>>>> COMPATIBLE_MACHINE_lab3-qemux86 = "lab3-qemux86"
->>>>>>>>
->>>>>>>>
->>>>>>>> There's some advice to me?
->>>>>>>>
->>>>>>>> Thank you!
->>>>>>>>
->>>>>>>> Regards,
->>>>>>>>
->>>>>>>> Caio Pereira
->>>>>>>>
->>>>>>>>
->>>>>>>> --
->>>>>>>> ----------------------------------------------
->>>>>>>> Caio Pereira
->>>>>>>> _______________________________________________
->>>>>>>> yocto mailing list
->>>>>>>> yocto@yoctoproject.org
->>>>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>>>>
->>>>>>>
->>>>>>> _______________________________________________
->>>>>>> yocto mailing list
->>>>>>> yocto@yoctoproject.org
->>>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>>>
->>>>>
->>>>>
->>>>
->>>
->>>
->>>
->>
->
->
->
+The system is not configured with 'read-only-rootfs'.
 
+On the first boot no /var/run/udev is created clearly showing that udevd
+wasn't started.
+
+At first sight it seems to be caused by the fact that populate-volatile
+is called after udev, so some symlinks could be missing... that or some
+weird race issue.
+
+Any ideas?
+
+Marc
 
