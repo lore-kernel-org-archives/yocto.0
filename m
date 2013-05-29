@@ -1,27 +1,28 @@
-Return-Path: <su@mycable.de>
-Received: from serv07.server-center.de (serv07.server-center.de
-	[87.119.209.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C3B3E01482
-	for <yocto@yoctoproject.org>; Wed, 29 May 2013 02:27:00 -0700 (PDT)
-Received: (qmail 31813 invoked from network); 29 May 2013 09:26:59 -0000
-Received: by simscan 1.1.0 ppid: 31799, pid: 31810, t: 0.1886s
-	scanners: regex: 1.1.0 spam: 3.2.1
-Received: from p578b3905.dip0.t-ipconnect.de (HELO ?10.27.1.138?)
-	(sumycaba@87.139.57.5)
-	by serv07.server-center.de with ESMTPA; 29 May 2013 09:26:59 -0000
-Message-ID: <51A5C9E2.7080008@mycable.de>
-Date: Wed, 29 May 2013 11:26:58 +0200
-From: =?UTF-8?B?U2ViYXN0aWFuIFPDvHNlbnM=?= <su@mycable.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <katutxakurra@gmail.com>
+Received: from mail-ie0-f195.google.com (mail-ie0-f195.google.com
+	[209.85.223.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E40D1E01515
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:01:11 -0700 (PDT)
+Received: by mail-ie0-f195.google.com with SMTP id s9so1052545iec.2
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:01:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=wPkdKsliFYfvnooDNm1SglSyJ5N1dvmzu/kEYL8eNxA=;
+	b=hnAB3aRjjFB5tjWTsIO7CuOFJdKURE9e5XaeD5cJO4l9qbzO+fn0a8wUptKfCUJ0AN
+	Q/FoQ5WhrGXqdh3dA7Qoua/KTnKUsGoz7v+8zdnnwkCHV8cUbcTYFNPYDPCTvu8fU3fB
+	W+E6hJ6t7oee7bJeoXEdg8obdyGMQXPyr1l/2ilTZwRPautytZNciOUQR8sjbvrOawwu
+	vpiw1x3MF3B/spblHpmLeP/PGp7kBl2g0ycReK6+5AP2FB8QuketeD4L2JqpSAX3Xklu
+	hs/VzcuuaX/k7RQ6ZtXfn5YOkesd1vQO9LTCPT338rs7g5CBnXf+JeNyqKTLDkZwF3K/
+	kFMw==
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <51A5C7A0.2000908@mycable.de>
-	<CAJTo0LbU2qs5gpzxZiu3bhBO3O83Lcxks17EyqKtucOT32h0Cw@mail.gmail.com>
-In-Reply-To: <CAJTo0LbU2qs5gpzxZiu3bhBO3O83Lcxks17EyqKtucOT32h0Cw@mail.gmail.com>
-X-Enigmail-Version: 1.4.6
-Cc: yocto@yoctoproject.org
-Subject: Re: How can I change the install path of the rootfs?
+X-Received: by 10.50.134.136 with SMTP id pk8mr1159591igb.32.1369832471364;
+	Wed, 29 May 2013 06:01:11 -0700 (PDT)
+Received: by 10.50.34.163 with HTTP; Wed, 29 May 2013 06:01:11 -0700 (PDT)
+Date: Wed, 29 May 2013 14:01:11 +0100
+Message-ID: <CAM1ZcoV_9+XL=Xef62zSo8y7LTLtfYj9DyRhy5dqpcW84=sy_g@mail.gmail.com>
+From: Katu Txakur <katutxakurra@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: using module_autoload
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,69 +34,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2013 09:27:01 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 29 May 2013 13:01:12 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a9c16dba36d04dddaf928
 
-On 05/29/2013 11:24 AM, Burton, Ross wrote:
-> On 29 May 2013 10:17, Sebastian Süsens <su@mycable.de> wrote:
->> I want to install scripts in a folder names can. My bitbake file looks
->> following:
->>
->> DESCRIPTION = "Test scripts for testing xxsq701 interfaces"
->> SECTION = "test_applications"
->> PR = "r0"
->> PN = "test-scripts"
->> LICENSE = "${MYC_LICENSE}"
->> LIC_FILES_CHKSUM = "file://${MYC_LICENSFILE};md5=${MYCMD5_LICENSFILE}"
->>
->> S="${TOPDIR}/../applications/meta-testapps/test-scripts/src"
->>
->> do_install() {
->>     echo "DO_INSTALL: install test-scripts to ${D}/can"
->>     install -d ${D}/can
->>     install -m 0777 ${S}/can/init_can.sh ${D}/can
->> }
->>
->> When I run bitbake I get following error:
->> WARNING: QA Issue: test-scripts: Files/directories were installed but
->> not shipped
->>   /can
->>   /can/init_can.sh
->>
->>
->> And bitbakes break off with this message:
->> Unable to resolve package test-scripts
->>
->>
->> When I replace can with ${bindir} it works.
->>
->> How can I change the install path of the rootfs?
-> If you want to install stuff into a non-standard path then you'll need
-> to redefine the FILES_ variables (which defaults to $bindir and so on,
-> for convenience).  In this case, FILES_${PN} = "/can" will be
-> sufficient.
->
-> http://www.yoctoproject.org/docs/1.4/ref-manual/ref-manual.html#var-FILES
-> is the relevant section in the reference documentation.
->
-> Ross
-Thank you.
+--047d7b3a9c16dba36d04dddaf928
+Content-Type: text/plain; charset=ISO-8859-1
 
--- 
-------------------------------------------------------------------------
-   Sebastian Süsens               Tel.   +49 4321 559 56-27
-   mycable GmbH                   Fax    +49 4321 559 56-10
-   Gartenstrasse 10
-   24534 Neumuenster, Germany     Email  su@mycable.de
-------------------------------------------------------------------------
-   mycable GmbH, Managing Director: Michael Carstens-Behrens
-   USt-IdNr: DE 214 231 199, Amtsgericht Kiel, HRB 1797 NM
-------------------------------------------------------------------------
-   This e-mail and any files transmitted with it are confidential and
-   intended solely for the use of the individual or entity to whom
-   they are addressed. If you have received this e-mail in error,
-   please notify the sender and delete all copies from your system.
------------------------------------------------------------------------- 
+Hi,
+I'm failing to load a kernel module named spike doing this:
+1) add the recipe (inherit module), based in a Makefile with
+modules_install:
+$(MAKE) INSTALL_MOD_DIR=kernel/drivers/spike -C $(KERNEL_SRC) M=$(SRC)
+modules_install
+2) Add the package to the image with IMAGE_INSTALL += "spike" in the
+local.conf file
+3) In the machine/mymachine.conf I've added
+        MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "spike"
+        module_autoload_spike = "spike"
 
+The driver gets added to the image and I can load it with insmod spike,
+however, I would like to load it at boot time.
+A workaround is to create a file with the name spike.conf and write spike
+inside. Copying that file to /etc/modules-load.d/spike.conf
+loads the driver correctly, but I need to do it from a recipe.
 
+Can anyone spot what am I doing wrong?
+
+Thanks a lot,
+Katu
+
+--047d7b3a9c16dba36d04dddaf928
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div style>I&#39;m failing to load a kernel module name=
+d spike doing this:</div><div style>1) add the recipe (inherit module), bas=
+ed in a Makefile with</div><div style><div>modules_install:</div><div><span=
+ class=3D"" style=3D"white-space:pre">	</span>$(MAKE) INSTALL_MOD_DIR=3Dker=
+nel/drivers/spike -C $(KERNEL_SRC) M=3D$(SRC) modules_install</div>
+<div style>2) Add the package to the image with=A0IMAGE_INSTALL +=3D &quot;=
+spike&quot; in the local.conf file</div><div style>3) In the machine/mymach=
+ine.conf I&#39;ve added</div><div style>=A0 =A0 =A0 =A0 MACHINE_ESSENTIAL_E=
+XTRA_RRECOMMENDS +=3D &quot;spike&quot;</div>
+<div>=A0 =A0 =A0 =A0 module_autoload_spike =3D &quot;spike&quot;</div><div>=
+<br></div><div style>The driver gets added to the image and I can load it w=
+ith insmod spike, however, I would like to load it at boot time.</div><div =
+style>
+A workaround is to create a file with the name spike.conf and write spike i=
+nside. Copying that file to /etc/modules-load.d/spike.conf</div><div style>=
+loads the driver correctly, but I need to do it from a recipe.</div><div st=
+yle>
+<br></div><div style>Can anyone spot what am I doing wrong?</div><div style=
+><br></div><div style>Thanks a lot,</div><div style>Katu</div><div style><b=
+r></div></div></div>
+
+--047d7b3a9c16dba36d04dddaf928--
