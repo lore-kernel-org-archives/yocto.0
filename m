@@ -1,28 +1,29 @@
-Return-Path: <katutxakurra@gmail.com>
-Received: from mail-ie0-f195.google.com (mail-ie0-f195.google.com
-	[209.85.223.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E40D1E01515
-	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:01:11 -0700 (PDT)
-Received: by mail-ie0-f195.google.com with SMTP id s9so1052545iec.2
-	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:01:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=wPkdKsliFYfvnooDNm1SglSyJ5N1dvmzu/kEYL8eNxA=;
-	b=hnAB3aRjjFB5tjWTsIO7CuOFJdKURE9e5XaeD5cJO4l9qbzO+fn0a8wUptKfCUJ0AN
-	Q/FoQ5WhrGXqdh3dA7Qoua/KTnKUsGoz7v+8zdnnwkCHV8cUbcTYFNPYDPCTvu8fU3fB
-	W+E6hJ6t7oee7bJeoXEdg8obdyGMQXPyr1l/2ilTZwRPautytZNciOUQR8sjbvrOawwu
-	vpiw1x3MF3B/spblHpmLeP/PGp7kBl2g0ycReK6+5AP2FB8QuketeD4L2JqpSAX3Xklu
-	hs/VzcuuaX/k7RQ6ZtXfn5YOkesd1vQO9LTCPT338rs7g5CBnXf+JeNyqKTLDkZwF3K/
-	kFMw==
+Return-Path: <martyn.welch@ge.com>
+Received: from exprod5og109.obsmtp.com (exprod5og109.obsmtp.com [64.18.0.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38382E01515
+	for <yocto@yoctoproject.org>; Wed, 29 May 2013 06:02:13 -0700 (PDT)
+Received: from alpmlip12.e2k.ad.ge.com ([165.156.5.1]) (using TLSv1) by
+	exprod5ob109.postini.com ([64.18.4.12]) with SMTP
+	ID DSNKUaX8VH+m3sqtslnanFKfov+mvn48+aKe@postini.com;
+	Wed, 29 May 2013 06:02:13 PDT
+Received: from unknown (HELO alpmlip01.e2k.ad.ge.com) ([3.159.17.48])
+	by alpmlip12.e2k.ad.ge.com with ESMTP/TLS/RC4-SHA;
+	29 May 2013 09:02:11 -0400
+Received: from es-j7s4d2j.amer.consind.ge.com (HELO [3.138.54.92])
+	([3.138.54.92])
+	by alpmlip01.e2k.ad.ge.com with ESMTP; 29 May 2013 09:02:10 -0400
+Message-ID: <51A5FC51.7050106@ge.com>
+Date: Wed, 29 May 2013 14:02:09 +0100
+From: Martyn Welch <martyn.welch@ge.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130330 Thunderbird/17.0.5
 MIME-Version: 1.0
-X-Received: by 10.50.134.136 with SMTP id pk8mr1159591igb.32.1369832471364;
-	Wed, 29 May 2013 06:01:11 -0700 (PDT)
-Received: by 10.50.34.163 with HTTP; Wed, 29 May 2013 06:01:11 -0700 (PDT)
-Date: Wed, 29 May 2013 14:01:11 +0100
-Message-ID: <CAM1ZcoV_9+XL=Xef62zSo8y7LTLtfYj9DyRhy5dqpcW84=sy_g@mail.gmail.com>
-From: Katu Txakur <katutxakurra@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: using module_autoload
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <10f0001e.10c21.13d45669ae7.Coremail.huanmateme@163.com>
+	<516555F8.50006@gmail.com> <5554864.lTrseEoNhs@helios>
+In-Reply-To: <5554864.lTrseEoNhs@helios>
+Cc: Jean-baptiste DUONEA <jbduro2@gmail.com>, yocto@yoctoproject.org
+Subject: Re: "trap: 80: SIGHUP: bad trap" comes up when building core-image-sato.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,58 +35,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2013 13:01:12 -0000
-Content-Type: multipart/alternative; boundary=047d7b3a9c16dba36d04dddaf928
-
---047d7b3a9c16dba36d04dddaf928
+X-List-Received-Date: Wed, 29 May 2013 13:02:13 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi,
-I'm failing to load a kernel module named spike doing this:
-1) add the recipe (inherit module), based in a Makefile with
-modules_install:
-$(MAKE) INSTALL_MOD_DIR=kernel/drivers/spike -C $(KERNEL_SRC) M=$(SRC)
-modules_install
-2) Add the package to the image with IMAGE_INSTALL += "spike" in the
-local.conf file
-3) In the machine/mymachine.conf I've added
-        MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "spike"
-        module_autoload_spike = "spike"
+On 10/04/13 13:33, Paul Eggleton wrote:
+> On Wednesday 10 April 2013 14:07:20 Jean-baptiste DUONEA wrote:
+>> Problem comes from Dash shell, which is used by default on Ubuntu.
+>> You have to reconfigure your terminal and disable the usage of Dash :
+>> Type in your console : sudo dpkg-reconfigure dash
+>> Choose the answer "No"
+>> Close and launch your terminal, now it will works !
+> 
+> We do not need to do this anymore as of the denzil release (1.2) - we 
+> explicitly support /bin/sh not being bash, and in fact I am running with 
+> /bin/sh -> dash on Ubuntu here right now.
+> 
 
-The driver gets added to the image and I can load it with insmod spike,
-however, I would like to load it at boot time.
-A workaround is to create a file with the name spike.conf and write spike
-inside. Copying that file to /etc/modules-load.d/spike.conf
-loads the driver correctly, but I need to do it from a recipe.
+Which release of Ubuntu are you using?
 
-Can anyone spot what am I doing wrong?
+I've just hit this exact problem building busybox from Yocto 1.4 on Ubuntu 10.04.
 
-Thanks a lot,
-Katu
+Martyn
 
---047d7b3a9c16dba36d04dddaf928
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div style>I&#39;m failing to load a kernel module name=
-d spike doing this:</div><div style>1) add the recipe (inherit module), bas=
-ed in a Makefile with</div><div style><div>modules_install:</div><div><span=
- class=3D"" style=3D"white-space:pre">	</span>$(MAKE) INSTALL_MOD_DIR=3Dker=
-nel/drivers/spike -C $(KERNEL_SRC) M=3D$(SRC) modules_install</div>
-<div style>2) Add the package to the image with=A0IMAGE_INSTALL +=3D &quot;=
-spike&quot; in the local.conf file</div><div style>3) In the machine/mymach=
-ine.conf I&#39;ve added</div><div style>=A0 =A0 =A0 =A0 MACHINE_ESSENTIAL_E=
-XTRA_RRECOMMENDS +=3D &quot;spike&quot;</div>
-<div>=A0 =A0 =A0 =A0 module_autoload_spike =3D &quot;spike&quot;</div><div>=
-<br></div><div style>The driver gets added to the image and I can load it w=
-ith insmod spike, however, I would like to load it at boot time.</div><div =
-style>
-A workaround is to create a file with the name spike.conf and write spike i=
-nside. Copying that file to /etc/modules-load.d/spike.conf</div><div style>=
-loads the driver correctly, but I need to do it from a recipe.</div><div st=
-yle>
-<br></div><div style>Can anyone spot what am I doing wrong?</div><div style=
-><br></div><div style>Thanks a lot,</div><div style>Katu</div><div style><b=
-r></div></div></div>
+-- 
+Martyn Welch (Lead Software Engineer)  | Registered in England and Wales
+GE Intelligent Platforms               | (3828642) at 100 Barbirolli Square
+T +44(0)1327322748                     | Manchester, M2 3AB
+E martyn.welch@ge.com                  | VAT:GB 927559189
 
---047d7b3a9c16dba36d04dddaf928--
