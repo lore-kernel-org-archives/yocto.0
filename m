@@ -1,36 +1,31 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9B96E01423
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 23:04:12 -0700 (PDT)
-Received: by mail-vc0-f177.google.com with SMTP id ib11so6066615vcb.8
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 23:04:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=opBLAQVXKc5OgoYjnM2jileRZkIqR48cX86f0LS3gsg=;
-	b=fkhNc/H6PXf9MO/NTQ0LUf/+IU9MOKW9a9/oxAGP6WDMMtfpMvTMSfuliEgOW2tGzN
-	6vz35/+YAbkbccAQLKRxPi5SplNCY+H+v22uH405FY/LZ1KFhLHVNY1P/aWVmC4j32GI
-	7qgG7dlvZJ6QnEWzvsXU+Ck1+Wr63QatYg8ERyFS26wKyJ7QD5CkVgQ3brg670mH58fm
-	wyrjoeKG/HnlNzY5YulqkhwlFEq5uhtJPZfmw2BaJ1NsswR7JPQNTHTRL96eYCs0AThl
-	a7rNU1GKQ6IzgIs++zzWiH904lYnmNaZJSChE5Y/51zWLOrQtOUHM26sk6C30AA7n3Xx
-	D/aw==
+Return-Path: <rohit2.jindal@aricent.com>
+Received: from jaguar.aricent.com (jaguar.aricent.com [121.241.96.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E565E01439;
+	Tue, 28 May 2013 23:21:35 -0700 (PDT)
+Received: from jaguar.aricent.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 96ABB36B63;
+	Wed, 29 May 2013 11:51:16 +0530 (IST)
+Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
+	[10.203.171.136])
+	by jaguar.aricent.com (Postfix) with ESMTP id 7DD1536B4F;
+	Wed, 29 May 2013 11:51:16 +0530 (IST)
+Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
+	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
+	Wed, 29 May 2013 11:51:15 +0530
+From: Rohit2 Jindal <rohit2.jindal@aricent.com>
+To: "Yocto@Yoctoproject.Org" <Yocto@Yoctoproject.Org>,
+	"yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>
+Date: Wed, 29 May 2013 11:51:15 +0530
+Thread-Topic: Yocto with Fedora 18
+Thread-Index: Ac5XSBwud+8rkVfJS0qIv5zxKmS4bwAOdN/wASwwDHA=
+Message-ID: <17797116383D4341B029FDF34C22BF6A52C4C02ED4@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <mailman.2471.1369267014.19864.yocto@yoctoproject.org> 
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.52.165.36 with SMTP id yv4mr599596vdb.31.1369807452122; Tue,
-	28 May 2013 23:04:12 -0700 (PDT)
-Received: by 10.52.120.108 with HTTP; Tue, 28 May 2013 23:04:12 -0700 (PDT)
-In-Reply-To: <71F928C2-5030-4F57-804F-C08917813221@intel.com>
-References: <CAPhnLPAFOj05bXLUpq3qPws=8XO2excp4XgkiMkxnVWv-b7hDQ@mail.gmail.com>
-	<71F928C2-5030-4F57-804F-C08917813221@intel.com>
-Date: Tue, 28 May 2013 23:04:12 -0700
-Message-ID: <CAPhnLPDe6DTScPtxbjfG97PUbBBNur9ofHYLctxWGC1g7VAyDA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-X-Gm-Message-State: ALoCoQlN1Q+MqfTjuRzzolGtDj23vkd2mKMn0b7n3ge4Sv5i0gz7U0xm8i468+wiTPfrwnsZDkR/
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>
-Subject: Re: Weekly build now available for QA
+Subject: Yocto with Fedora 18
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,48 +37,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2013 06:04:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 29 May 2013 06:21:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_17797116383D4341B029FDF34C22BF6A52C4C02ED4GUREXMB01ASIA_"
 
-On Tue, May 28, 2013 at 10:38 PM, Georgescu, Alexandru C
-<alexandru.c.georgescu@intel.com> wrote:
-> Hi Beth,
-> Can you include the eclipse-plugin commit as well?
-> Thanks,
+--_000_17797116383D4341B029FDF34C22BF6A52C4C02ED4GUREXMB01ASIA_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Whoops. Sorry about that:
+Hi,
 
-eclipse-plugin: ff4ccb4d65243f2a28eb89c72e9b425702b6c3aa
+I am facing some issue when I run yocto with fedora 18 :
 
-> Alex
+1 When I run my recipe it stops after completing 63-tasks and again I have =
+to rerun my recipe back to  complete left out around 415 tasks. I did not g=
+ot why it shows this type of behavior. But this thing didn't happen with fe=
+dora 9 or fedora 7. Please suggest how to make it work that it completes al=
+l the tasks in one go without need to rerun (bitbake linux) twice.
+2 I modified external-sourcery-toolchain according to my requirement . Can =
+you suggest me the way if I want to override "toolchain_setup ()" function =
+of  "tcmode-external-sourcery.inc"   in my board.conf file or my recipe whe=
+re ever possible.
+
+Thanks  in Advance.
+
+Regards,
+Rohit Jindal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+Please refer to http://www.aricent.com/legal/email_disclaimer.html
+for important disclosures regarding this electronic communication.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+
+--_000_17797116383D4341B029FDF34C22BF6A52C4C02ED4GUREXMB01ASIA_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Sent from my iPad
->
-> On May 29, 2013, at 1:57, "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com> wrote:
->
->> All,
->>
->> The weekly build is available for QA. Please being QA on the following:
->>
->> Download: http://autobuilder.yoctoproject.org/pub/nightly/20130528-2
->>
->> poky 676fd3f394a0c0576b63c77ed2184bf5f42c29b6
->> meta-fsl-arm ab56b11ba65bfa3bb5d123a51510e6d5c9f65e36
->> meta-fsl-ppc 52b906c448f275719f241c634fe6e412e917b67a
->> meta-intel 2ba2e0ea55bab687134b452a5db81d189b820f59
->> meta-qt3 4c27cce6688aa39852f3cba5e7b80ec279019605
->>
->> Thanks!
->>
->> --
->> Elizabeth Flanagan
->> Yocto Project
->> Build and Release
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am facing some issue when I run yocto with fedora =
+18 :<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">1 When I run my recipe it stops after completing 63-=
+tasks and again I have to rerun my recipe back to &nbsp;complete left out a=
+round 415 tasks. I did not got why it shows this type of behavior. But this=
+ thing didn&#8217;t happen with fedora 9 or fedora
+ 7. Please suggest how to make it work that it completes all the tasks in o=
+ne go without need to rerun (bitbake linux) twice.<o:p></o:p></p>
+<p class=3D"MsoNormal">2 I modified external-sourcery-toolchain according t=
+o my requirement . Can you suggest me the way if I want to override &#8220;=
+toolchain_setup ()&#8221; function of &nbsp;&#8220;tcmode-external-sourcery=
+.inc&#8221; &nbsp;&nbsp;in my board.conf file or my recipe where ever possi=
+ble.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks&nbsp; in Advance.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Rohit Jindal<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText"><u><span style=3D"color:black"><o:p><span style=
+=3D"text-decoration:none">&nbsp;</span></o:p></span></u></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+</div>
+<br>
+<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
+<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
+for important disclosures regarding this electronic communication.<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+</font>
+</body>
+</html>
 
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
+--_000_17797116383D4341B029FDF34C22BF6A52C4C02ED4GUREXMB01ASIA_--
