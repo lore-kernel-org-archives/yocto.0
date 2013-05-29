@@ -1,43 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f50.google.com (mail-pb0-f50.google.com
-	[209.85.160.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A25A0E01439
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 20:07:51 -0700 (PDT)
-Received: by mail-pb0-f50.google.com with SMTP id wy17so8534301pbc.23
-	for <yocto@yoctoproject.org>; Tue, 28 May 2013 20:07:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:subject:from:reply-to:to:cc:date:in-reply-to:references
-	:organization:content-type:x-mailer:mime-version
-	:content-transfer-encoding;
-	bh=B6NLRActLUJgFJ+z5ToS4vK46Co9TESjBrc6E30Ut1Y=;
-	b=Atnd6yLsaXSZgj6ukcnoD7LwprajDICB7vJ6JwHn5SDv4bdzHk7rNeS26LYwFY7SG5
-	pkHZevur4mdAkGwGlUnQoJ1aE7Is5YsZn+LZgmO5JVMHtJA3MCuD2FRYHU7VTUxii7a6
-	qmtdmoicVcKCyEI5oUjl37s6e440KnGkL3i1czIOZw1kvl0fY3vPgKTEMKzy4N12bp+g
-	4T1fiX0AHrtY8qATrHnxnX7fDBbf2zM1KSl68pNePcCpYEXWjUQqWMT3NutlyHL8jw8T
-	oX4g7CjJx9txTWw0NSXyOkSitKOhSiXeyw5FBiVZKjZiNH++jx9eIOna0vzp7+/wikGZ
-	3Eew==
-X-Received: by 10.66.150.106 with SMTP id uh10mr1298447pab.118.1369796871500; 
-	Tue, 28 May 2013 20:07:51 -0700 (PDT)
-Received: from [192.168.1.82] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209]) by mx.google.com with ESMTPSA id
-	fp2sm35306337pbb.36.2013.05.28.20.07.50 for <multiple recipients>
-	(version=SSLv3 cipher=RC4-SHA bits=128/128);
-	Tue, 28 May 2013 20:07:50 -0700 (PDT)
-Message-ID: <1369796869.20925.1.camel@fedora>
-From: Khem Raj <raj.khem@gmail.com>
-To: varun bhatnagar <varun292006@gmail.com>
-Date: Tue, 28 May 2013 20:07:49 -0700
-In-Reply-To: <CAGxOggGqkqG-Tss3-nvX+DGkb7+Wo_pUZ2-kxQOG2=mPO4+CQQ@mail.gmail.com>
-References: <CAGxOggGqkqG-Tss3-nvX+DGkb7+Wo_pUZ2-kxQOG2=mPO4+CQQ@mail.gmail.com>
-Organization: Sakrah LLC
-X-Mailer: Evolution 3.8.2 (3.8.2-1.fc19) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: qemu: keyboard mapping got changed
+Return-Path: <alexandru.c.georgescu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1029E01423
+	for <yocto@yoctoproject.org>; Tue, 28 May 2013 22:38:30 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 28 May 2013 22:36:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,763,1363158000"; d="scan'208";a="344783239"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga002.jf.intel.com with ESMTP; 28 May 2013 22:38:21 -0700
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.161]) by
+	IRSMSX101.ger.corp.intel.com ([169.254.1.127]) with mapi id
+	14.03.0123.003; Wed, 29 May 2013 06:38:19 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Thread-Topic: Weekly build now available for QA
+Thread-Index: AQHOW/bH/VVgPCLHEUaWzyIaqQvAJZkbpYQL
+Date: Wed, 29 May 2013 05:38:18 +0000
+Message-ID: <71F928C2-5030-4F57-804F-C08917813221@intel.com>
+References: <CAPhnLPAFOj05bXLUpq3qPws=8XO2excp4XgkiMkxnVWv-b7hDQ@mail.gmail.com>
+In-Reply-To: <CAPhnLPAFOj05bXLUpq3qPws=8XO2excp4XgkiMkxnVWv-b7hDQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, SSD-OTC Romania Yocto
+	QA <ssd-otc.romania.yocto.qa@intel.com>
+Subject: Re: Weekly build now available for QA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: raj.khem@gmail.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,19 +37,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2013 03:07:51 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 May 2013 05:38:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2013-05-29 at 00:11 +0530, varun bhatnagar wrote:
-> 
-> I have build an image by using bitbake -k core-image-minimal. After
-> that I booted the image through qemu. But when I tried logging in I
-> found out that the key mapping of the keyboard got changed and correct
-> alphabets are not getting typed. I am attaching a screenshot below.
+Hi Beth,
+Can you include the eclipse-plugin commit as well?
+Thanks,
 
-what OS/machine are you running the console on ? is it a Mac then you
-might have to choose right encoding by adding 
-qemuparams="-k en" to runqemu invocation
+Alex
+On May 29, 2013, at 1:57, "Flanagan, Elizabeth" <elizabeth.flanagan@intel.=
+com> wrote:
 
+> All,
+>=20
+> The weekly build is available for QA. Please being QA on the following:
+>=20
+> Download: http://autobuilder.yoctoproject.org/pub/nightly/20130528-2
+>=20
+> poky 676fd3f394a0c0576b63c77ed2184bf5f42c29b6
+> meta-fsl-arm ab56b11ba65bfa3bb5d123a51510e6d5c9f65e36
+> meta-fsl-ppc 52b906c448f275719f241c634fe6e412e917b67a
+> meta-intel 2ba2e0ea55bab687134b452a5db81d189b820f59
+> meta-qt3 4c27cce6688aa39852f3cba5e7b80ec279019605
+>=20
+> Thanks!
+>=20
+> --=20
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
 
