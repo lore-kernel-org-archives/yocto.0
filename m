@@ -1,56 +1,32 @@
-Return-Path: <B19537@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe002.messaging.microsoft.com [216.32.180.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95C38E01466
-	for <yocto@yoctoproject.org>; Fri, 31 May 2013 01:19:51 -0700 (PDT)
-Received: from mail41-co1-R.bigfish.com (10.243.78.247) by
-	CO1EHSOBE010.bigfish.com (10.243.66.73) with Microsoft SMTP Server id
-	14.1.225.23; Fri, 31 May 2013 08:19:49 +0000
-Received: from mail41-co1 (localhost [127.0.0.1])	by mail41-co1-R.bigfish.com
-	(Postfix) with ESMTP id C8D74A602EF;
-	Fri, 31 May 2013 08:19:49 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 0
-X-BigFish: VS0(zz1443Izz1f42h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ah1fc6hzz8275bhz2dh2a8h668h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1d0ch1d2eh1d3fh1dc1h1dfeh1dffhbe9i1155h)
-Received: from mail41-co1 (localhost.localdomain [127.0.0.1]) by mail41-co1
-	(MessageSwitch) id 1369988388666688_3777;
-	Fri, 31 May 2013 08:19:48 +0000 (UTC)
-Received: from CO1EHSMHS020.bigfish.com (unknown [10.243.78.254])	by
-	mail41-co1.bigfish.com (Postfix) with ESMTP id 967F224005F;
-	Fri, 31 May 2013 08:19:48 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS020.bigfish.com
-	(10.243.66.30) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Fri, 31 May 2013 08:19:48 +0000
-Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.137]) by
-	039-SN1MMR1-002.039d.mgd.msft.net ([10.84.1.15]) with mapi id
-	14.02.0328.011; Fri, 31 May 2013 08:20:49 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Differnt build result of same u-boot source with differnet
-	binutils
-Thread-Index: Ac5d15j7nzXsrurcQamAouulJ/3pJA==
-Date: Fri, 31 May 2013 08:19:26 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A0157947F@039-SN2MPN1-021.039d.mgd.msft.net>
+Return-Path: <alexandru.c.georgescu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFEA6E01472
+	for <yocto@yoctoproject.org>; Fri, 31 May 2013 03:47:18 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 31 May 2013 03:47:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,778,1363158000"; 
+	d="scan'208,217";a="346202173"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by orsmga002.jf.intel.com with ESMTP; 31 May 2013 03:47:17 -0700
+Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
+	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 31 May 2013 11:47:17 +0100
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.161]) by
+	IRSMSX153.ger.corp.intel.com ([169.254.9.79]) with mapi id
+	14.03.0123.003; Fri, 31 May 2013 11:47:17 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [QA] Discussion tag
+Thread-Index: Ac5d66p/LVTEq/h6RP2716qpifGtxA==
+Date: Fri, 31 May 2013 10:47:16 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9617B2F039@IRSMSX104.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-cr-hashedpuzzle: DLsn FpcE GcZe G2jw IYTl JMVE Le94 LhBG NT9m RuXp UNlp
-	V8Ug XgGN XmYQ X7Sy YXq5; 2;
-	bwBwAGUAbgBlAG0AYgBlAGQAZABlAGQALQBjAG8AcgBlAEAAbABpAHMAdABzAC4AbwBwAGUAbgBlAG0AYgBlAGQAZABlAGQALgBvAHIAZwA7AHkAbwBjAHQAbwBAAHkAbwBjAHQAbwBwAHIAbwBqAGUAYwB0AC4AbwByAGcA;
-	Sosha1_v1; 7; {0B31DBC8-809C-411B-B9D0-EE6FFFAF9E4C};
-	YgAxADkANQAzADcAQABmAHIAZQBlAHMAYwBhAGwAZQAuAGMAbwBtAA==; Fri,
-	31 May 2013 08:19:40 GMT;
-	RABpAGYAZgBlAHIAbgB0ACAAYgB1AGkAbABkACAAcgBlAHMAdQBsAHQAIABvAGYAIABzAGEAbQBlACAAdQAtAGIAbwBvAHQAIABzAG8AdQByAGMAZQAgAHcAaQB0AGgAIABkAGkAZgBmAGUAcgBuAGUAdAAgAGIAaQBuAHUAdABpAGwAcwA=
-x-cr-puzzleid: {0B31DBC8-809C-411B-B9D0-EE6FFFAF9E4C}
-x-originating-ip: [10.192.208.134]
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: Wienskoski Edmar-RA8797 <RA8797@freescale.com>,
-	Udma Catalin-Dan-B32721 <B32721@freescale.com>
-Subject: Differnt build result of same u-boot source with differnet binutils
+Subject: [QA] Discussion tag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,55 +38,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 May 2013 08:19:51 -0000
+X-List-Received-Date: Fri, 31 May 2013 10:47:19 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_1FFB62CE8AEB0D4298B51122D8903E9617B2F039IRSMSX104gercor_"
+
+--_000_1FFB62CE8AEB0D4298B51122D8903E9617B2F039IRSMSX104gercor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-When the u-boot(HEAD of master in git://git.freescale.com/ppc/sdk/u-boot.gi=
-t) of p1022ds is built with different binutils in Yocto, the result is diff=
-erent.=20
+Hello,
 
-With binutils-2.23.1(last version in Yocto), u-boot can be built correctly.=
-=20
-With binutils-2.23.2(current version in Yocto), the build failed as followi=
-ng:
-| release.S: Assembler messages:
-| release.S:236: Error: value of 4294963524 too large for field of 2 bytes =
-at 170
-| release.S:237: Error: operand out of range (0xfffffffffffff144 is not bet=
-ween 0x0000000000000000 and 0x000000000000ffff)
-| release.S:237: Error: value of 4294963524 too large for field of 2 bytes =
-at 174
-| release.S:365: Error: value of 4294963524 too large for field of 2 bytes =
-at 206
-| release.S:366: Error: operand out of range (0xfffffffffffff144 is not bet=
-ween 0x0000000000000000 and 0x000000000000ffff)
-| release.S:366: Error: value of 4294963524 too large for field of 2 bytes =
-at 210
-| release.S:390: Error: value of 4294963520 too large for field of 2 bytes =
-at 278
-| release.S:391: Error: operand out of range (0xfffffffffffff140 is not bet=
-ween 0x0000000000000000 and 0x000000000000ffff)
-| release.S:391: Error: value of 4294963520 too large for field of 2 bytes =
-at 282
+As agreed in the last Yocto Project Technical meetings, to make sure we can=
+ filter better the QA related discussions, all the e-mails must have the [Q=
+A] tag in the subject. If there will be sufficient traffic on the mailing l=
+ist regarding QA, a separate list will be created.
 
-Below is the failed code section:
-[..snip..]
-233 #define toreset(x) (x - __secondary_start_page + 0xfffff000)
-234=20
-235         /* get our PIR to figure out our table entry */
-236         lis     r3,toreset(__spin_table_addr)@h
-237         ori     r3,r3,toreset(__spin_table_addr)@l
-238         lwz     r3,0(r3)
-[..snip..]
-
-Seems like the build error is related to binutils, can somebody shed some l=
-ight on the issue? Thanks in advance.=20
+Regards,
+--
+Alexandru Georgescu
+Yocto QA Engineer
+SSG/SSD Open Source Technology Center Romania
 
 
-Best Regards,
+--_000_1FFB62CE8AEB0D4298B51122D8903E9617B2F039IRSMSX104gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Zhenhua
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">As agreed in the last Yocto Project Technical meetin=
+gs, to make sure we can filter better the QA related discussions, all the e=
+-mails must have the [QA] tag in the subject. If there will be sufficient t=
+raffic on the mailing list regarding
+ QA, a separate list will be created.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">--<=
+o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">Ale=
+xandru Georgescu<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">Yoc=
+to QA Engineer<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">SSG=
+/SSD Open Source Technology Center Romania</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-
+--_000_1FFB62CE8AEB0D4298B51122D8903E9617B2F039IRSMSX104gercor_--
