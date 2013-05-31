@@ -1,38 +1,40 @@
-Return-Path: <cristian.iorga@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A665E01484
-	for <yocto@yoctoproject.org>; Fri, 31 May 2013 06:06:58 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 31 May 2013 06:06:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,779,1363158000"; 
-	d="png'150?scan'150,208,217,150";a="346255300"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga002.jf.intel.com with ESMTP; 31 May 2013 06:06:38 -0700
-Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Fri, 31 May 2013 14:06:37 +0100
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.3]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.79]) with mapi id
-	14.03.0123.003; Fri, 31 May 2013 14:06:36 +0100
-From: "Iorga, Cristian" <cristian.iorga@intel.com>
-To: Paul Beam <pbeam@windrock.com>, "yocto@yoctoproject.org"
+Return-Path: <pbeam@windrock.com>
+Received: from mail.cookcompression.com (cookmail.windrock.com [67.211.234.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6958EE01472
+	for <yocto@yoctoproject.org>; Fri, 31 May 2013 06:01:24 -0700 (PDT)
+X-ASG-Debug-ID: 1370005281-04aa7c0ee7521be0001-yzSStA
+Received: from mail.cookcompression.com (exchsvr.cook.local [10.10.0.17]) by
+	mail.cookcompression.com with ESMTP id nXlDYWxiH2WihUwk;
+	Fri, 31 May 2013 09:01:21 -0400 (EDT)
+X-Barracuda-Envelope-From: pbeam@windrock.com
+Received: from EXCHSVR.cook.local ([127.0.0.1]) by exchsvr ([127.0.0.1]) with
+	mapi; Fri, 31 May 2013 09:01:20 -0400
+From: Paul Beam <pbeam@windrock.com>
+To: "Iorga, Cristian" <cristian.iorga@intel.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
+Date: Fri, 31 May 2013 09:01:16 -0400
 Thread-Topic: Build Appliance problem
-Thread-Index: Ac5W6qxPiCV1+bNqRpS6G58O9VuUZwGHjTvgABhl0wAAJMHIkAAATZ7wAAAyUJA=
-Date: Fri, 31 May 2013 13:06:36 +0000
-Message-ID: <969F26A8BAB325438E7EB80D3C3134FB16BE8CA0@IRSMSX105.ger.corp.intel.com>
+X-ASG-Orig-Subj: RE: Build Appliance problem
+Thread-Index: Ac5W6qxPiCV1+bNqRpS6G58O9VuUZwGHjTvgABhl0wAAJMHIkAAATZ7w
+Message-ID: <F29EFC0B6AC8FE4C914081AD81252023090121ED62@exchsvr>
 References: <F29EFC0B6AC8FE4C914081AD812520230900E8641E@exchsvr>
 	<969F26A8BAB325438E7EB80D3C3134FB16BE7AAA@IRSMSX105.ger.corp.intel.com>
 	<F29EFC0B6AC8FE4C914081AD812520230901180CEC@exchsvr>
 	<969F26A8BAB325438E7EB80D3C3134FB16BE8C4E@IRSMSX105.ger.corp.intel.com>
-	<F29EFC0B6AC8FE4C914081AD81252023090121ED62@exchsvr>
-In-Reply-To: <F29EFC0B6AC8FE4C914081AD81252023090121ED62@exchsvr>
+In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB16BE8C4E@IRSMSX105.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
+acceptlanguage: en-US
 MIME-Version: 1.0
+X-Barracuda-Connect: exchsvr.cook.local[10.10.0.17]
+X-Barracuda-Start-Time: 1370005281
+X-Barracuda-URL: http://10.10.0.1:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at cookcompression.com
+X-Barracuda-Spam-Score: -1001.00
+X-Barracuda-Spam-Status: No, SCORE=-1001.00 using global scores of
+	TAG_LEVEL=1000.0 QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 
+X-Mailman-Approved-At: Fri, 31 May 2013 08:09:03 -0700
 Subject: Re: Build Appliance problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,38 +47,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 May 2013 13:06:59 -0000
-X-Groupsio-MsgNum: 14034
+X-List-Received-Date: Fri, 31 May 2013 13:01:25 -0000
+X-Groupsio-MsgNum: 14035
 Content-Language: en-US
 Content-Type: multipart/related;
-	boundary="_006_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_";
+	boundary="_006_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_";
 	type="multipart/alternative"
 
---_006_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_
+--_006_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_
 Content-Type: multipart/alternative;
-	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_"
+	boundary="_000_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_"
 
---_000_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_
+--_000_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-
-OK, in that case, please open a bug on this issue.
-I will investigate in parallel, but please fill in a bug report on bugzilla=
-.yoctoproject.org .
-Thank you,
-Cristian
-
-From: Paul Beam [mailto:pbeam@windrock.com]
-Sent: Friday, May 31, 2013 4:01 PM
-To: Iorga, Cristian; yocto@yoctoproject.org
-Subject: RE: Build Appliance problem
 
 Yes.  And I verified the md5.
 
 
 From: Iorga, Cristian [mailto:cristian.iorga@intel.com]
 Sent: Friday, May 31, 2013 8:52 AM
-To: Paul Beam; yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+To: Paul Beam; yocto@yoctoproject.org
 Subject: RE: Build Appliance problem
 
 Have you downloaded it from here?
@@ -89,9 +80,9 @@ Subject: RE: Build Appliance problem
 
 Hope this answers your question:
 
-[cid:image001.png@01CE5E18.C51E0CB0]
+[cid:image001.png@01CE5DDD.68C24200]
 
-[cid:image002.png@01CE5E18.C51E0CB0]
+[cid:image002.png@01CE5DDD.68C24200]
 
 From: Iorga, Cristian [mailto:cristian.iorga@intel.com]
 Sent: Thursday, May 30, 2013 3:41 AM
@@ -115,23 +106,21 @@ To get my feet wet with Yocto, I downloaded and installed the latest Yocto =
 Build Appliance, targeted for atom-pc, and selected the core-image-x11 base=
  image.  After hours and hours of building, sudo-1.8.6p7-r0 has an error:
 
-[cid:image003.png@01CE5E18.C51E0CB0]
+[cid:image003.png@01CE5DDD.68C24200]
 
 What do I do about this?
 
---_000_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_
+--_000_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
 osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
+=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
+oft Word 12 (filtered medium)"><!--[if !mso]><style>v\:* {behavior:url(#def=
+ault#VML);}
 o\:* {behavior:url(#default#VML);}
 w\:* {behavior:url(#default#VML);}
 .shape {behavior:url(#default#VML);}
@@ -189,10 +178,6 @@ span.EmailStyle22
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
 span.EmailStyle23
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle24
 	{mso-style-type:personal-reply;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
@@ -209,163 +194,86 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">OK, in that case, plea=
-se open a bug on this issue.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I will investigate in =
-parallel, but please fill in a bug report on bugzilla.yoctoproject.org .<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thank you,<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Cristian<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Paul Bea=
-m [mailto:pbeam@windrock.com]
-<br>
-<b>Sent:</b> Friday, May 31, 2013 4:01 PM<br>
-<b>To:</b> Iorga, Cristian; yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: Build Appliance problem<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Yes.&nbsp; And I verif=
-ied the md5.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Iorga, C=
-ristian [<a href=3D"mailto:cristian.iorga@intel.com">mailto:cristian.iorga@=
-intel.com</a>]
-<br>
-<b>Sent:</b> Friday, May 31, 2013 8:52 AM<br>
-<b>To:</b> Paul Beam; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yocto=
-project.org</a><br>
-<b>Subject:</b> RE: Build Appliance problem<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Have you downloaded it=
- from here?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><a href=3D"https://www=
-.yoctoproject.org/download/build-appliance-1">https://www.yoctoproject.org/=
-download/build-appliance-1</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Paul Bea=
-m [<a href=3D"mailto:pbeam@windrock.com">mailto:pbeam@windrock.com</a>]
-<br>
-<b>Sent:</b> Thursday, May 30, 2013 10:21 PM<br>
-<b>To:</b> Iorga, Cristian; <a href=3D"mailto:yocto@yoctoproject.org">yocto=
-@yoctoproject.org</a><br>
-<b>Subject:</b> RE: Build Appliance problem<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hope this answers your=
- question:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><img border=3D"0" widt=
-h=3D"868" height=3D"675" id=3D"_x0000_i1025" src=3D"cid:image001.png@01CE5E=
-18.C51E0CB0"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><img border=3D"0" widt=
-h=3D"522" height=3D"361" id=3D"Picture_x0020_5" src=3D"cid:image002.png@01C=
-E5E18.C51E0CB0"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Iorga, C=
-ristian [<a href=3D"mailto:cristian.iorga@intel.com">mailto:cristian.iorga@=
-intel.com</a>]
-<br>
-<b>Sent:</b> Thursday, May 30, 2013 3:41 AM<br>
-<b>To:</b> Paul Beam; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yocto=
-project.org</a><br>
-<b>Subject:</b> RE: Build Appliance problem<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hello Paul,<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Please state the exact=
- version of the BA.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also, can you please t=
-ell me if you are using BA behind a network proxy?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Regards,<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Cristian Iorga<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
-<a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoprojec=
-t.org</a> [<a href=3D"mailto:yocto-bounces@yoctoproject.org">mailto:yocto-b=
-ounces@yoctoproject.org</a>]
-<b>On Behalf Of </b>Paul Beam<br>
-<b>Sent:</b> Wednesday, May 22, 2013 3:49 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org=
-</a><br>
-<b>Subject:</b> [yocto] Build Appliance problem<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">To get my feet wet with Yocto, I downloaded and inst=
-alled the latest Yocto Build Appliance, targeted for atom-pc, and selected =
-the core-image-x11 base image.&nbsp; After hours and hours of building, sud=
-o-1.8.6p7-r0 has an error:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><img border=3D"0" width=3D"1024" height=3D"768" id=
-=3D"Picture_x0020_2" src=3D"cid:image003.png@01CE5E18.C51E0CB0"><o:p></o:p>=
-</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What do I do about this?<o:p></o:p></p>
-</div>
-</body>
-</html>
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'c=
+olor:#1F497D'>Yes.&nbsp; And I verified the md5.<o:p></o:p></span></p><p cl=
+ass=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><=
+p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span><=
+/p><div><div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.=
+0pt 0in 0in 0in'><p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;fo=
+nt-family:"Tahoma","sans-serif"'>From:</span></b><span style=3D'font-size:1=
+0.0pt;font-family:"Tahoma","sans-serif"'> Iorga, Cristian [mailto:cristian.=
+iorga@intel.com] <br><b>Sent:</b> Friday, May 31, 2013 8:52 AM<br><b>To:</b=
+> Paul Beam; yocto@yoctoproject.org<br><b>Subject:</b> RE: Build Appliance =
+problem<o:p></o:p></span></p></div></div><p class=3DMsoNormal><o:p>&nbsp;</=
+o:p></p><p class=3DMsoNormal><span style=3D'color:#1F497D'>Have you downloa=
+ded it from here?<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'=
+color:#1F497D'><a href=3D"https://www.yoctoproject.org/download/build-appli=
+ance-1">https://www.yoctoproject.org/download/build-appliance-1</a><o:p></o=
+:p></span></p><p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp=
+;</o:p></span></p><div><div style=3D'border:none;border-top:solid #B5C4DF 1=
+.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><span style=3D'font=
+-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span></b><span style=
+=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Paul Beam [<a href=
+=3D"mailto:pbeam@windrock.com">mailto:pbeam@windrock.com</a>] <br><b>Sent:<=
+/b> Thursday, May 30, 2013 10:21 PM<br><b>To:</b> Iorga, Cristian; <a href=
+=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><b>Subject=
+:</b> RE: Build Appliance problem<o:p></o:p></span></p></div></div><p class=
+=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span style=3D'color=
+:#1F497D'>Hope this answers your question:<o:p></o:p></span></p><p class=3D=
+MsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p clas=
+s=3DMsoNormal><span style=3D'color:#1F497D'><img border=3D0 width=3D868 hei=
+ght=3D675 id=3D"_x0000_i1025" src=3D"cid:image001.png@01CE5DDD.68C24200"><o=
+:p></o:p></span></p><p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p=
+>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'color:#1F497D'>=
+<img border=3D0 width=3D522 height=3D361 id=3D"Picture_x0020_5" src=3D"cid:=
+image002.png@01CE5DDD.68C24200"><o:p></o:p></span></p><p class=3DMsoNormal>=
+<span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div style=
+=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in'><=
+p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;font-family:"Tahoma"=
+,"sans-serif"'>From:</span></b><span style=3D'font-size:10.0pt;font-family:=
+"Tahoma","sans-serif"'> Iorga, Cristian [<a href=3D"mailto:cristian.iorga@i=
+ntel.com">mailto:cristian.iorga@intel.com</a>] <br><b>Sent:</b> Thursday, M=
+ay 30, 2013 3:41 AM<br><b>To:</b> Paul Beam; <a href=3D"mailto:yocto@yoctop=
+roject.org">yocto@yoctoproject.org</a><br><b>Subject:</b> RE: Build Applian=
+ce problem<o:p></o:p></span></p></div></div><p class=3DMsoNormal><o:p>&nbsp=
+;</o:p></p><p class=3DMsoNormal><span style=3D'color:#1F497D'>Hello Paul,<o=
+:p></o:p></span></p><p class=3DMsoNormal><span style=3D'color:#1F497D'>Plea=
+se state the exact version of the BA.<o:p></o:p></span></p><p class=3DMsoNo=
+rmal><span style=3D'color:#1F497D'>Also, can you please tell me if you are =
+using BA behind a network proxy?<o:p></o:p></span></p><p class=3DMsoNormal>=
+<span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNor=
+mal><span style=3D'color:#1F497D'>Regards,<o:p></o:p></span></p><p class=3D=
+MsoNormal><span style=3D'color:#1F497D'>Cristian Iorga<o:p></o:p></span></p=
+><p class=3DMsoNormal><span style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span=
+></p><div><div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:=
+3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;=
+font-family:"Tahoma","sans-serif"'>From:</span></b><span style=3D'font-size=
+:10.0pt;font-family:"Tahoma","sans-serif"'> <a href=3D"mailto:yocto-bounces=
+@yoctoproject.org">yocto-bounces@yoctoproject.org</a> [<a href=3D"mailto:yo=
+cto-bounces@yoctoproject.org">mailto:yocto-bounces@yoctoproject.org</a>] <b=
+>On Behalf Of </b>Paul Beam<br><b>Sent:</b> Wednesday, May 22, 2013 3:49 PM=
+<br><b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject=
+.org</a><br><b>Subject:</b> [yocto] Build Appliance problem<o:p></o:p></spa=
+n></p></div></div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoN=
+ormal>To get my feet wet with Yocto, I downloaded and installed the latest =
+Yocto Build Appliance, targeted for atom-pc, and selected the core-image-x1=
+1 base image.&nbsp; After hours and hours of building, sudo-1.8.6p7-r0 has =
+an error:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=
+=3DMsoNormal><img border=3D0 width=3D1024 height=3D768 id=3D"Picture_x0020_=
+2" src=3D"cid:image003.png@01CE5DDD.68C24200"><o:p></o:p></p><p class=3DMso=
+Normal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>What do I do about this?<o=
+:p></o:p></p></div></body></html>=
 
---_000_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_--
+--_000_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_--
 
---_006_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_
+--_006_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_
 Content-Type: image/png; name="image001.png"
 Content-Description: image001.png
 Content-Disposition: inline; filename="image001.png"; size=47125;
-	creation-date="Fri, 31 May 2013 13:06:35 GMT";
-	modification-date="Fri, 31 May 2013 13:06:35 GMT"
-Content-ID: <image001.png@01CE5E18.C51E0CB0>
+	creation-date="Fri, 31 May 2013 13:01:16 GMT";
+	modification-date="Fri, 31 May 2013 13:01:16 GMT"
+Content-ID: <image001.png@01CE5DDD.68C24200>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAA2QAAAKjCAIAAAD9EFsnAAAAAXNSR0IArs4c6QAAt89JREFUeF7t
@@ -1196,13 +1104,13 @@ QD0BikX17GhJAiRAAiRAAiRAAponQLGo+SFmB0mABEiABEiABEhAPQGKRfXsaEkCJEACJEACJEAC
 midAsaj5IWYHSYAESIAESIAESEA9AYpF9exoSQIkQAIkQAIkQAKaJ0CxqPkhZgdJgARIgARIgARI
 QD0BikX17GhJAiRAAiRAAiRAApon8H/qndwa6+WIMwAAAABJRU5ErkJggg==
 
---_006_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_
+--_006_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_
 Content-Type: image/png; name="image002.png"
 Content-Description: image002.png
 Content-Disposition: inline; filename="image002.png"; size=26014;
-	creation-date="Fri, 31 May 2013 13:06:36 GMT";
-	modification-date="Fri, 31 May 2013 13:06:36 GMT"
-Content-ID: <image002.png@01CE5E18.C51E0CB0>
+	creation-date="Fri, 31 May 2013 13:01:17 GMT";
+	modification-date="Fri, 31 May 2013 13:01:17 GMT"
+Content-ID: <image002.png@01CE5DDD.68C24200>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAgoAAAFpCAIAAAByK5drAAAAAXNSR0IArs4c6QAAZVhJREFUeF7t
@@ -1663,13 +1571,13 @@ yBUEZB5ypafVTiEgBIRATAjIPMQEl4SFgBAQArmCgMxDrvS02ikEhIAQiAkBmYeY4JKwEBACQiBX
 EJB5yJWeVjuFgBAQAjEhIPMQE1wSFgJCQAjkCgIyD7nS02qnEBACQiAmBGQeYoJLwkJACAiBXEHg
 /wGp+HelT9YHfQAAAABJRU5ErkJggg==
 
---_006_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_
+--_006_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_
 Content-Type: image/png; name="image003.png"
 Content-Description: image003.png
 Content-Disposition: inline; filename="image003.png"; size=113469;
-	creation-date="Fri, 31 May 2013 13:06:36 GMT";
-	modification-date="Fri, 31 May 2013 13:06:36 GMT"
-Content-ID: <image003.png@01CE5E18.C51E0CB0>
+	creation-date="Fri, 31 May 2013 13:01:17 GMT";
+	modification-date="Fri, 31 May 2013 13:01:17 GMT"
+Content-ID: <image003.png@01CE5DDD.68C24200>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAABAAAAAMACAIAAAA12IJaAAAAAXNSR0IArs4c6QAA/8pJREFUeF7s
@@ -3664,4 +3572,4 @@ rqp65eWXOnf+xp69bxqf/39MALpe8M0D+997/bVXq6qqyhcN1UwRUAQUAUVAEVAEFAFFQBEofwQI
 KAKKgCKgCCgCikD5IbB7zx6UIuz/v0OAyk9J1UgRUAQUAUVAEVAEFAFFQBFQBGwE/u8EQEFRBBQB
 RUARUAQUAUVAEVAEFIF6gsD/B2/lZimBz3EZAAAAAElFTkSuQmCC
 
---_006_969F26A8BAB325438E7EB80D3C3134FB16BE8CA0IRSMSX105gercor_--
+--_006_F29EFC0B6AC8FE4C914081AD81252023090121ED62exchsvr_--
