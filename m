@@ -1,26 +1,27 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C3DDE01551
-	for <yocto@yoctoproject.org>; Sun,  2 Jun 2013 13:24:09 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r52KNxO8018718
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 2 Jun 2013 13:23:59 -0700 (PDT)
-Received: from [128.224.21.242] (128.224.21.242) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Sun, 2 Jun 2013 13:23:57 -0700
-Message-ID: <51ABA9DB.2030204@windriver.com>
-Date: Sun, 2 Jun 2013 16:23:55 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 094D8E01551
+	for <yocto@yoctoproject.org>; Sun,  2 Jun 2013 14:35:37 -0700 (PDT)
+Received: by mail-ee0-f52.google.com with SMTP id c50so741023eek.11
+	for <yocto@yoctoproject.org>; Sun, 02 Jun 2013 14:35:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=wQYWhXoH8SXou7H7idLk6/zu7S00A9iXKlh83OyzkZc=;
+	b=KEu6O/qXwjK7ujNNnG2HU90dFBYX/1HbUDe6qREsmP2+woDs2GpxqSBBgQQhjIDYTG
+	J3QBHeGzRhdaC6cKVnCHGaKtbBWb5D99Qql7EmuvQWoKF8CCFTGSXW24bgT5e/6/AhXF
+	xT2vKggrJ/IccEA7oldOMX9xI1b0oFUk2VgpMMft/vu2WByQSKal1lkVMusUUlQx07xV
+	0mxROZe8wr1Znn5RYBuRpc9AN6o75V50O1wGfCgWnrV2NmC+X0LhsdfbJQ9peSt8EMPH
+	WiJ6iXxojQY+pWbxxOiEfQXVJzaH7JzIG3E5taN++6MXXqW4v58AgpnFUyR7UxRPxGsS
+	Tc4w==
 MIME-Version: 1.0
-To: Michael Stickel <michael@cubic.org>
-References: <51AB4815.6040006@cubic.org>
-In-Reply-To: <51AB4815.6040006@cubic.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: Problem building the linux kernel outside source directory for mips
+X-Received: by 10.14.87.198 with SMTP id y46mr21048809eee.83.1370208936815;
+	Sun, 02 Jun 2013 14:35:36 -0700 (PDT)
+Received: by 10.223.165.200 with HTTP; Sun, 2 Jun 2013 14:35:36 -0700 (PDT)
+Date: Sun, 2 Jun 2013 15:35:36 -0600
+Message-ID: <CANwz6ny8-LnE7-weEJnp5BAyR=j4Gbs4HXb29EPM0e4uNx1X4A@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: libstdc++-static impacts yocto builds fedora18
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,71 +33,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Jun 2013 20:24:09 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 02 Jun 2013 21:35:38 -0000
+Content-Type: multipart/alternative; boundary=001a11c23bf6f2920504de32a047
 
-On 13-06-02 09:26 AM, Michael Stickel wrote:
-> Hi,
->
-> I am new to yocto, so I don't know if this is the right list.
+--001a11c23bf6f2920504de32a047
+Content-Type: text/plain; charset=ISO-8859-1
 
-This will work, we also have the linux-yocto@yoctoproject.org kernel
-mailing list.
+Hello,
+I recently installed libstdc++-static-4.7.2-8.fc18.x86_64.rpm on a Fedora
+18 system which appears to cause problems in Yocto builds.
+This package was installed when trying to add meta-java to Yocto builds
+In the meta-java README
+Please note that libstdc++ static is needed on your host to compile
+icedtea6/7-native
+(install libstdc++-static on a Fedora).
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
+meta-ti           = "(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01"
+meta-oe           = "master:bea2397361da080df1256046b927b454e2e5fc9a"
+meta-yocto-bsp    = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
+I got serveral ERRORS
+ERROR: Package version for package libgcc went backwards which would break
+package feeds from (0:4.7.2-r20 to 0:4.7.2-r19)
+This build would not boot.
+Removed  libstdc++-static-4.7.2-8.fc18.x86_64.rpm and new build.
 
->
-> I tried to build a kernel for the MTX-1 platform that uses an AU1500
-> which is a MIPS32 based SoC.
-> After some work I got the standard kernel (3.8.4) used in poky 9 to work.
-> But I encountered some problems:
->
-> In poky-dylan-9.0.0/meta/recipes-kernel/linux/linux-yocto.inc the
-> builddir is set to
-> "${WORKDIR}/linux-${MACHINE}-${LINUX_KERNEL_TYPE}-build", but
-> KERNEL_EXTRA_ARGS does not contain O="${B}". How is the the out of
-> source build of the kernel meant to work?
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
+meta-ti           = "(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01"
+meta-oe           = "(nobranch):22100f5b136e1be268055f4da14c39d7a32e9023"
+meta-yocto-bsp    = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
+This build boots okay.
+Any and all help will be appreciated.
+Thanks
 
-Can you elaborate on this ? Are you actually seeing a problem, or
-just wondering about the glue ? If it's the glue, kernel-yocto.bbclass
-sets:
+--001a11c23bf6f2920504de32a047
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-KBUILD_OUTPUT = "${B}"
+<div dir=3D"ltr"><div><div><div>Hello,<br>I recently installed libstdc++-st=
+atic-4.7.2-8.fc18.x86_64.rpm on a Fedora 18 system which appears to cause p=
+roblems in Yocto builds.<br>This package was installed when trying to add m=
+eta-java to Yocto builds<br>
+In the meta-java README <br>Please note that libstdc++ static is needed on =
+your host to compile icedtea6/7-native<br>(install libstdc++-static on a Fe=
+dora).<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot=
+;1.18.0&quot;<br>
+BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSB=
+STRING=A0=A0 =3D &quot;Fedora-18&quot;<br>TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =
+=3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 =3D &quot;beaglebone&quot;<br>DISTRO=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 =3D &quot;poky&quot;<br>
+DISTRO_VERSION=A0=A0=A0 =3D &quot;1.4&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =
+=3D &quot;armv7a vfp neon&quot;<br>TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
+t;vfp-neon&quot;<br>meta<br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobr=
+anch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc&quot;<br>
+meta-ti=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):d61bfa88ed3df919=
+0ac9fd5643c27f77b34c5f01&quot;<br>meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D=
+ &quot;master:bea2397361da080df1256046b927b454e2e5fc9a&quot;<br>meta-yocto-=
+bsp=A0=A0=A0 =3D &quot;(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc&=
+quot;<br>
+I got serveral ERRORS<br>ERROR: Package version for package libgcc went bac=
+kwards which would break package feeds from (0:4.7.2-r20 to 0:4.7.2-r19)<br=
+>This build would not boot.<br>Removed=A0 libstdc++-static-4.7.2-8.fc18.x86=
+_64.rpm and new build.<br>
+<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.18.=
+0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<b=
+r>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>TARGET_SYS=A0=A0=A0=A0=
+=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>
+MACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;beaglebone&quot;<br>DISTRO=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
+=A0=A0 =3D &quot;1.4&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a vf=
+p neon&quot;<br>TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br=
+>meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>
+meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):c3cb65041834159a318df9=
+c1a5a05f1ef36a2ebc&quot;<br>meta-ti=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot=
+;(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01&quot;<br>meta-oe=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):22100f5b136e1be268055f4da14c3=
+9d7a32e9023&quot;<br>
+meta-yocto-bsp=A0=A0=A0 =3D &quot;(nobranch):c3cb65041834159a318df9c1a5a05f=
+1ef36a2ebc&quot;<br></div>This build boots okay.<br></div>Any and all help =
+will be appreciated.<br></div>Thanks <br></div>
 
-For the desired source/binary split.
-
->
-> The task do_kernel_configme trashed my kernel config. This may be
-> because defconfig is copied to ${B}/.config and do_kernel_configme is
-> executed in ${S} and does not find .config.
-
-Same question as above. This is basic functionality and kernel_configme
-is aware of the source/binary split, and has been doing this since
-yocto 0.9.
-
-Can you define "trashed" ?
-
->
-> Is the intended behavior of the out of source build for the kernel
-> documented.
-
-Everything should be in the kernel-dev manual and the other yocto
-project documentation. There's not that much to document, since the
-functionality has been unchanged for quite some time and works behind
-the scenes for a linux-yocto* based build.
-
-Cheers,
-
-Bruce
-
->
-> BTW: The kernel works and boots the core-image-minimal with usb USB
-> Storage as rootfs.
->
-> Best regards
-> Michael
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--001a11c23bf6f2920504de32a047--
