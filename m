@@ -1,17 +1,21 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3F91E0152C
-	for <yocto@yoctoproject.org>; Sat,  1 Jun 2013 17:18:53 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id E15FD407F1; Sun,  2 Jun 2013 00:18:53 +0000 (UTC)
-Date: Sun, 2 Jun 2013 00:18:53 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20130602001853.GA29951@ab01.i.yoctoproject.org>
+Return-Path: <michael@cubic.org>
+Received: from roasted.cubic.org (roasted.cubic.org [193.108.181.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6831BE0149A
+	for <yocto@yoctoproject.org>; Sun,  2 Jun 2013 06:27:02 -0700 (PDT)
+Received: from kiel-4d066c97.pool.mediaways.net ([77.6.108.151]:53854
+	helo=[192.168.10.100])
+	by roasted.cubic.org with esmtpsa (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.69) (envelope-from <michael@cubic.org>) id 1Uj8JC-0002Ep-PY
+	for yocto@yoctoproject.org; Sun, 02 Jun 2013 06:26:55 -0700
+Message-ID: <51AB4815.6040006@cubic.org>
+Date: Sun, 02 Jun 2013 15:26:45 +0200
+From: Michael Stickel <michael@cubic.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:14.0) Gecko/20120713 Thunderbird/14.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+To: yocto@yoctoproject.org
+X-Spam-Score: -1.4
+Subject: Problem building the linux kernel outside source directory for mips
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,21 +27,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Jun 2013 00:18:54 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Sun, 02 Jun 2013 13:27:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Hi,
 
+I am new to yocto, so I don't know if this is the right list.
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-cups                     1.6.1               1.6.0               278 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-tinylogin                1.4                 1.4                 272 day                  Radu Moisan <radu.moisan@inte...        TinyLogin was merged into Busy...
-libpng12                 1.2.50              N/A                 41425 d                  No Maintainer info                      No data                       
-minicom                  2.6.2               2.6.2               33 days                  Cristian Iorga <cristian.iorg...        No data                       
-Manual Check Count: 4
-Manual Need Check Count: 4
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+I tried to build a kernel for the MTX-1 platform that uses an AU1500 
+which is a MIPS32 based SoC.
+After some work I got the standard kernel (3.8.4) used in poky 9 to work.
+But I encountered some problems:
+
+In poky-dylan-9.0.0/meta/recipes-kernel/linux/linux-yocto.inc the 
+builddir is set to 
+"${WORKDIR}/linux-${MACHINE}-${LINUX_KERNEL_TYPE}-build", but 
+KERNEL_EXTRA_ARGS does not contain O="${B}". How is the the out of 
+source build of the kernel meant to work?
+
+The task do_kernel_configme trashed my kernel config. This may be 
+because defconfig is copied to ${B}/.config and do_kernel_configme is 
+executed in ${S} and does not find .config.
+
+Is the intended behavior of the out of source build for the kernel 
+documented.
+
+BTW: The kernel works and boots the core-image-minimal with usb USB 
+Storage as rootfs.
+
+Best regards
+Michael
 
