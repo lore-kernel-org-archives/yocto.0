@@ -1,32 +1,34 @@
 Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-bk0-f54.google.com (mail-bk0-f54.google.com
-	[209.85.214.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38144E004CF
+Received: from mail-bk0-f50.google.com (mail-bk0-f50.google.com
+	[209.85.214.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D49CDE004CF
 	for <yocto@yoctoproject.org>; Mon,  3 Jun 2013 01:30:07 -0700 (PDT)
-Received: by mail-bk0-f54.google.com with SMTP id it19so213679bkc.41
+Received: by mail-bk0-f50.google.com with SMTP id ik5so1700606bkc.23
 	for <yocto@yoctoproject.org>; Mon, 03 Jun 2013 01:30:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:x-mailer;
-	bh=qWm0FHIgtl2oGFUfSBQlz55KSZaOSg57NVsl+lohKOM=;
-	b=AXZC4WeJJ2jxjRvy9RI6ZzLjRyTy6LF5eU7YI29MDKAJiF2muSqq5kRwusM4c6RLC3
-	z7ev8RWeMnYuLu8pScZy/9gg9L/B3N3v++Axzm2IlJKTJxMhTtWdbo/ycx5qAiCo1xbG
-	Q+LKl45D3L2NyFhvNfWAmch7q8Lj0qMi9c/cb8+Zc7OGKDM+T1FgJs1JuDtlujSv2T3u
-	QJ/f/mcH154Ou0sI098ev+prrVR+56CQZURzYtMQISYU9S8v4m2sq4DPInPudH8ZXABk
-	aa1odzlg0pV2FTsLs3ZGzLEKtdk/2xypKl1yfTF+SOSMU/OnU2OMQZS6Y0dhI//vAJuf
-	ggAQ==
-X-Received: by 10.205.118.203 with SMTP id fr11mr6234255bkc.103.1370248205913; 
-	Mon, 03 Jun 2013 01:30:05 -0700 (PDT)
+	h=from:to:cc:subject:date:message-id:x-mailer:in-reply-to:references;
+	bh=Qy/i+Nzh/xflkhC/oSpjRWYh4nBj+4m1blJXcFpN3c0=;
+	b=jNGdLA3v1H+dula881nw1BUrLQyi2TEdooEyd9EGHi71yFe2EJvODXwSygy7Xk9igA
+	iZIuk5VPQQydubK5H9e8aIrEN/qjQ3xnmzYXWOLDClVL1qgNpp8FJ7jOsIv/SosAK22+
+	4NZOpOJqrWeYDfRRMT5frbojMdbEzTu/1ti28IL0wn0Zrmdz2nxerVuisgqyNRXLDolE
+	PlaqLFG3I2v58ezWyUIZmyRBFwmP7SYrl8J5xmaALBQYtMf7ioxbdpvWLqMYM1Nw6Vri
+	Zq/E/kJwJoonAq2Q0Ma3xPEQdOIuvHmctd3iKOiBoW3hLBnnxb/7npEidT1/cw0J19Uh
+	MPPQ==
+X-Received: by 10.205.103.134 with SMTP id di6mr6264740bkc.178.1370248206900; 
+	Mon, 03 Jun 2013 01:30:06 -0700 (PDT)
 Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
 	by mx.google.com with ESMTPSA id
-	jm15sm19449666bkb.13.2013.06.03.01.30.04 for <multiple recipients>
+	jm15sm19449666bkb.13.2013.06.03.01.30.06 for <multiple recipients>
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 03 Jun 2013 01:30:04 -0700 (PDT)
+	Mon, 03 Jun 2013 01:30:06 -0700 (PDT)
 From: Atanas Gegov <atanas.gegov.oss@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon,  3 Jun 2013 10:29:50 +0200
-Message-Id: <1370248197-4243-1-git-send-email-atanas.gegov.oss@gmail.com>
+Date: Mon,  3 Jun 2013 10:29:51 +0200
+Message-Id: <1370248197-4243-2-git-send-email-atanas.gegov.oss@gmail.com>
 X-Mailer: git-send-email 1.7.9.5
-Subject: [eclipse-poky][PATCH 0/7] Fixed bug in creating remote debug launcher
+In-Reply-To: <1370248197-4243-1-git-send-email-atanas.gegov.oss@gmail.com>
+References: <1370248197-4243-1-git-send-email-atanas.gegov.oss@gmail.com>
+Subject: [PATCH 1/7] plugins/sdk.ide: Extracted a private method
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,45 +40,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2013 08:30:07 -0000
+X-List-Received-Date: Mon, 03 Jun 2013 08:30:08 -0000
 
 From: Atanas Gegov <atanas.gegov@bmw-carit.de>
 
-Hi,
+Extracted a method that gets the full path of the
+environment-setup-* file.
+---
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |   22 ++++++++++++--------
+ 1 file changed, 13 insertions(+), 9 deletions(-)
 
-this patch series fixes a bug where the remote debug launcher is not correctly
-created because not all Yocto natures are added to the project at the point
-where the method is being called. The path to the binary was in some cases (by
-new CMake project) not correctly set. 
-
-This fix required some code refactoring. Some further refactoring was also done
-in order to reduce the complexity of the very large YoctoSDKUtils class.
-
-Cheers,
-Atanas
-
-P.S: This patch series apply on the current master "Add remote.utils plugin to
-sdk features" (ff4ccb4d65243f2a28eb89c72e9b425702b6c3aa).
-
-Atanas Gegov (7):
-  plugins/sdk.ide: Extracted a private method
-  plugins/sdk.ide: Extracted launchers creation
-  plugins/sdk.ide: Decoupled launcher creation from environment setting
-  plugins/sdk.ide: Moved a locally used method
-  plugins/sdk.ide: Changed access level modifiers for some methods
-  plugins/sdk.ide: Removed unused methods
-  plugins/sdk.ide: Moved more locally used methods
-
- .../managedbuilder/job/ExecuteConfigureJob.java    |   29 +-
- .../src/org/yocto/sdk/ide/YoctoSDKChecker.java     |   26 +-
- .../natures/YoctoSDKAutotoolsProjectNature.java    |   21 +-
- .../ide/preferences/YoctoSDKPreferencePage.java    |   25 +-
- .../preferences/YoctoSDKProjectPropertyPage.java   |  119 +++++-
- .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java |  388 +++++---------------
- .../sdk/ide/utils/YoctoSDKUtilsConstants.java      |    2 +-
- .../ide/wizard/NewYoctoProjectTemplateProcess.java |    2 +
- 8 files changed, 306 insertions(+), 306 deletions(-)
-
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java
+index 287de15..01b1288 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java
+@@ -210,21 +210,25 @@ public class YoctoSDKUtils {
+ 
+ 	}
+ 
+-	public static void setEnvironmentVariables(IProject project, YoctoUIElement elem) throws YoctoGeneralException{
+-		String sFileName;
+-		ICProjectDescription cpdesc = CoreModel.getDefault().getProjectDescription(project, true);
+-
++	private static String getEnvironmentSetupFileFullPath(YoctoUIElement elem) {
++		String envSetupFile = "";
+ 
+ 		if (elem.getEnumPokyMode() == YoctoUIElement.PokyMode.POKY_SDK_MODE) {
+-			sFileName = elem.getStrToolChainRoot()+"/" + YoctoSDKUtilsConstants.DEFAULT_ENV_FILE_PREFIX + elem.getStrTarget();
+-		}
+-		else {
++			envSetupFile = elem.getStrToolChainRoot() + "/";
++		} else {
+ 			//POKY TREE Mode
+-			sFileName = elem.getStrToolChainRoot() + YoctoSDKUtilsConstants.DEFAULT_TMP_PREFIX +
+-					YoctoSDKUtilsConstants.DEFAULT_ENV_FILE_PREFIX + elem.getStrTarget();
++			envSetupFile = elem.getStrToolChainRoot() + YoctoSDKUtilsConstants.DEFAULT_TMP_PREFIX;
+ 		}
++		envSetupFile += YoctoSDKUtilsConstants.DEFAULT_ENV_FILE_PREFIX + elem.getStrTarget();
++		return envSetupFile;
++	}
++
++	public static void setEnvironmentVariables(IProject project, YoctoUIElement elem) throws YoctoGeneralException {
++		ICProjectDescription cpdesc = CoreModel.getDefault().getProjectDescription(project, true);
+ 
++		String sFileName = getEnvironmentSetupFileFullPath(elem);
+ 		HashMap<String, String> envMap = parseEnvScript(sFileName);
++
+ 		setEnvVars(cpdesc, elem, envMap);
+ 
+ 		try {
 -- 
 1.7.9.5
 
