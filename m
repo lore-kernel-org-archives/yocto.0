@@ -1,23 +1,31 @@
-Return-Path: <michael@cubic.org>
-Received: from roasted.cubic.org (roasted.cubic.org [193.108.181.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29C54E006C2
-	for <yocto@yoctoproject.org>; Mon,  3 Jun 2013 11:54:16 -0700 (PDT)
-Received: from kiel-4d0668ec.pool.mediaways.net ([77.6.104.236]:49680
-	helo=[192.168.10.100])
-	by roasted.cubic.org with esmtpsa (TLS1.0:DHE_RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.69) (envelope-from <michael@cubic.org>) id 1UjZtT-0006pq-Qj
-	for yocto@yoctoproject.org; Mon, 03 Jun 2013 11:54:12 -0700
-Message-ID: <51ACE650.5010407@cubic.org>
-Date: Mon, 03 Jun 2013 20:54:08 +0200
-From: Michael Stickel <michael@cubic.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:14.0) Gecko/20120713 Thunderbird/14.0
-MIME-Version: 1.0
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AFE4E01409
+	for <yocto@yoctoproject.org>; Mon,  3 Jun 2013 12:15:08 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UjaDf-0004qT-BF
+	for yocto@yoctoproject.org; Mon, 03 Jun 2013 21:15:03 +0200
+Received: from host-148-202.smpp.northwestern.edu ([165.124.148.202])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 03 Jun 2013 21:15:03 +0200
+Received: from dtran11 by host-148-202.smpp.northwestern.edu with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 03 Jun 2013 21:15:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-References: <51AB4815.6040006@cubic.org> <51ABA9DB.2030204@windriver.com>
-In-Reply-To: <51ABA9DB.2030204@windriver.com>
-X-Spam-Score: -1.4
-Subject: Re: Problem building the linux kernel outside source directory for mips
+From: Dat Tran <dtran11@gmail.com>
+Date: Mon, 3 Jun 2013 18:56:40 +0000 (UTC)
+Message-ID: <loom.20130603T205457-413@post.gmane.org>
+References: <CANwz6nxsxvzY7w=VGjqBEbi1Eh2A4QaMKdrQLCDHFosBvtS+cA@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 165.124.148.202 (Mozilla/5.0 (Windows NT 6.1;
+	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.94
+	Safari/537.36)
+Subject: Re: gcc enable-languages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,20 +37,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2013 18:54:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 03 Jun 2013 19:15:08 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-On 02/06/13 22:23, Bruce Ashfield wrote:
-> Can you define "trashed" ?
+Edward Vidal <vidal.develone@...> writes:
 
-My defconfig is for mips and the .config file was for x86.
+> Hello,
+> I want to add support for FORTRAN in my image.
+> On target gcc -v shows --enable-languages=c,c++
+> This needs to --enable-languages=c,c++,fortran.based on my host system.
+> How does the variable FORTRAN in 
+/home/vidal/POKY/build032813_panda/poky/meta/recipes-devtools/gcc/gcc-
+configure-common.inc get set?  Can this be done in the local.conf file?
+> 
+> Does the FORTRAN ?= ",f77" this need to be FORTRAN ?= ",fortran" since we 
+are building gcc4.7?
+> Any and all help will be appreciated.
+> Thanks
 
-But I will dig into the documentation you mentioned first and try to 
-find out what I did wrong and come back later.
 
+Hi Edward, 
 
-Best Regards
-Michael
-PS: Sorry for the PM, wrong address.
+I am having the same problem as you. Did you solve this issue. I am looking 
+for gfortran recipe but I don't see it.
+
+thanks
+
 
