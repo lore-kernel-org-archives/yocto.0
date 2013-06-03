@@ -1,28 +1,24 @@
-Return-Path: <seth.boll@gmail.com>
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8941E0153D
-	for <yocto@yoctoproject.org>; Mon,  3 Jun 2013 04:49:07 -0700 (PDT)
-Received: by mail-oa0-f44.google.com with SMTP id n12so967664oag.17
-	for <yocto@yoctoproject.org>; Mon, 03 Jun 2013 04:49:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=jjd5Xm6ZLTAcP53wTf6q/PSl74hcrCrUOEMRJqzZaPY=;
-	b=g3IZcM20O4Q/ps6NE91v8llEEe1Buab8cMyCT80eOGAoOF+RgCakqqR/QrEA7yUNHx
-	oafzm711jVfjyn2qJaOvGIq8LsZTmxmjdHQNbAfU+Qj7bv92sb6K3nYi/AFHEJsw9aWK
-	+F2q586IpndYb9ekUNiOHquC0jKgNx2Q9sLUJ7AANtXZL99MgR05hAPV0HhrJQGx7p80
-	xFePmGJJKgw4fRFDM6CAiwobdbd9GXI7LMBM8EyryDlxqQjHqWxIfdQhD+PDsbz/w9mY
-	Mczk31xnOJ8f0Xwf2lpWOsvBy+4If1doJINUwZaAPAo+zEgE6KGYg9PafaQjF2NMp/t2
-	1h5Q==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E093AE0153D
+	for <yocto@yoctoproject.org>; Mon,  3 Jun 2013 05:11:03 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Jun 2013 05:11:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,792,1363158000"; d="scan'208";a="347256869"
+Received: from unknown (HELO helios.localnet) ([10.252.121.181])
+	by fmsmga002.fm.intel.com with ESMTP; 03 Jun 2013 05:10:48 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Seth Bollinger <seth.boll@gmail.com>
+Date: Mon, 03 Jun 2013 13:10:47 +0100
+Message-ID: <1979845.55KWpAQeV6@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.2 (Linux/3.8.0-23-generic; KDE/4.10.2; i686; ; )
+In-Reply-To: <CA+JN8xP3hNL6qmi=pDJRHAnp-3d_e2Z-=2sKncUxMq2jrRAS9Q@mail.gmail.com>
+References: <CA+JN8xP3hNL6qmi=pDJRHAnp-3d_e2Z-=2sKncUxMq2jrRAS9Q@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.60.83.146 with SMTP id q18mr1350713oey.24.1370260147106;
-	Mon, 03 Jun 2013 04:49:07 -0700 (PDT)
-Received: by 10.60.123.38 with HTTP; Mon, 3 Jun 2013 04:49:06 -0700 (PDT)
-Date: Mon, 3 Jun 2013 06:49:06 -0500
-Message-ID: <CA+JN8xP3hNL6qmi=pDJRHAnp-3d_e2Z-=2sKncUxMq2jrRAS9Q@mail.gmail.com>
-From: Seth Bollinger <seth.boll@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: opkg list-installed is empty
+Cc: yocto@yoctoproject.org
+Subject: Re: opkg list-installed is empty
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,41 +30,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2013 11:49:07 -0000
-Content-Type: multipart/alternative; boundary=089e0118381e517ada04de3e8d95
+X-List-Received-Date: Mon, 03 Jun 2013 12:11:04 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---089e0118381e517ada04de3e8d95
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Seth,
 
-Hello All,
+On Monday 03 June 2013 06:49:06 Seth Bollinger wrote:
+> I'm having a problem with opkg.  When I run the image I've built with the
+> package-management feature and PACKAGE_CLASS equal to package_ipk, the
+> image has no installed packages.  They're obviously installed, because it's
+> running but "opkg list-installed" is empty.  I was expecting a large list
+> of installed packages.  I don't see anything I would expect to see in
+> /var/lib/opkg.  I must be missing something fundamental, but after
+> reviewing the documentation and code, I'm coming up empty.  Please
+> enlighten me!
 
-I'm having a problem with opkg.  When I run the image I've built with the
-package-management feature and PACKAGE_CLASS equal to package_ipk, the
-image has no installed packages.  They're obviously installed, because it's
-running but "opkg list-installed" is empty.  I was expecting a large list
-of installed packages.  I don't see anything I would expect to see in
-/var/lib/opkg.  I must be missing something fundamental, but after
-reviewing the documentation and code, I'm coming up empty.  Please
-enlighten me!
+If /var/lib/opkg is empty in your image, it can only be because its contents 
+have been deleted; and that could be either because the value of 
+IMAGE_FEATURES doesn't end up containing package-management, or alternatively 
+remove_packaging_data_files is being added manually to 
+ROOTFS_POSTPROCESS_COMMAND (as core-image-minimal does). I'd suggest using 
+bitbake -e your-image | less and looking at the values of IMAGE_FEATURES and 
+ROOTFS_POSTPROCESS_COMMAND to see what's really going on.
 
-Thanks,
+Cheers,
+Paul
 
-Seth
+-- 
 
---089e0118381e517ada04de3e8d95
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<div dir=3D"ltr">Hello All,<div><br></div><div style>I&#39;m having a probl=
-em with opkg. =A0When I run the image I&#39;ve built with the package-manag=
-ement feature and PACKAGE_CLASS equal to package_ipk, the image has no inst=
-alled packages. =A0They&#39;re obviously installed, because it&#39;s runnin=
-g but &quot;opkg list-installed&quot; is empty. =A0I was expecting a large =
-list of installed packages. =A0I don&#39;t see anything I would expect to s=
-ee in /var/lib/opkg. =A0I must be missing something fundamental, but after =
-reviewing the documentation and code, I&#39;m coming up empty. =A0Please en=
-lighten me!</div>
-<div style><br></div><div style>Thanks,</div><div style><br>Seth</div></div=
->
-
---089e0118381e517ada04de3e8d95--
