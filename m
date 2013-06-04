@@ -1,36 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E22E0E014A5
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 05:35:50 -0700 (PDT)
-Received: from 76-10-154-218.dsl.teksavvy.com ([76.10.154.218]:59519
-	helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1UjqSr-0001RQ-G7; Tue, 04 Jun 2013 08:35:49 -0400
-Date: Tue, 4 Jun 2013 08:35:46 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Jack Mitchell <ml@communistcode.co.uk>
-In-Reply-To: <51ADDCE1.9020400@communistcode.co.uk>
-Message-ID: <alpine.DEB.2.02.1306040833430.5627@oneiric>
-References: <alpine.DEB.2.02.1306040727200.4915@oneiric>
-	<51ADD7C0.60707@communistcode.co.uk>
-	<alpine.DEB.2.02.1306040814300.5416@oneiric>
-	<51ADDCE1.9020400@communistcode.co.uk>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C29EE014A5
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 06:02:55 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 6826FF811EC; Tue,  4 Jun 2013 07:02:54 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 445B3F811E5;
+	Tue,  4 Jun 2013 07:02:53 -0600 (MDT)
+Message-ID: <51ADE57D.60502@mlbassoc.com>
+Date: Tue, 04 Jun 2013 07:02:53 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: anyone building for the arrow sockit eval board?
+To: yocto@yoctoproject.org
+References: <CAFyqS9pSX-XjSAsW2ABFRUCLiLfFUn2OCi9TtU1Y6EiBg9WHqA@mail.gmail.com>
+In-Reply-To: <CAFyqS9pSX-XjSAsW2ABFRUCLiLfFUn2OCi9TtU1Y6EiBg9WHqA@mail.gmail.com>
+Subject: Re: Strange error from do_package_write_rpm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,37 +33,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2013 12:35:51 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 04 Jun 2013 13:02:55 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, 4 Jun 2013, Jack Mitchell wrote:
-
-... snip ...
-
-> The interesting ones in there are meta-altera and meta-linaro; it
-> would also be interesting to see if anything else is modified or if
-> it is vanilla Yocto. I have a sinking feeling it may not be...
-> mainly due to the tightly coupled DT and socfpga implementation with
-> the Altera tools.
+On 2013-06-04 05:41, Hans Beckérus wrote:
+> Hello. After checking out poky:master
+> 0c0bb02f5104e3856c9d90088e1ece08652cc19f we suddenly experience the
+> following error coming from one of our recipes. We never observed this
+> before doing the poky uplift. Any hints to what might cause this?
 >
-> Could you post the altera-init script; I would imagine that hides
-> the demons ;)
+> I can see this:
+>
+> Exception: ExpansionError: Failure expanding variable SUMMARY,
+> expression was ${SUMMARY} - Debugging files which triggered exception
+> Exception: variable SUMMARY references itself!
+>
+> But even if I somewhat understand what it is trying to tell me,at the
+> same time I do not really understand what can be done about it :(
 
-  keep following along here:
+What does your SUMMARY line look like in your lmc_1.0.bb recipe?
 
-http://www.crashcourse.ca/wiki/index.php/SoCKit_Yocto_bsx_build
-
-i'm adding to that regularly.
-
-rday
+>
+> Hans
+>
+>
+>
+> Build Configuration:
+> BB_VERSION        = "1.19.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "SUSE-LINUX-11"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "zynq-zc706"
+> DISTRO            = "poky-chris"
+> DISTRO_VERSION    = "1.4+snapshot-20130604"
+> TUNE_FEATURES     = "armv7a vfp cortexa9"
+> TARGET_FPU        = "vfp"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "master:0c0bb02f5104e3856c9d90088e1ece08652cc19f"
+> meta-oe           = "master:7c292ce28756824b1fa377d516aedd979fa41f19"
+>
+> Ant the error:
+>
+> ERROR: Error executing a python function in
+> /home/qhanbec/poky/meta-chris/recipes-core/lmc/lmc.bb:
+>
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'write_specfile', lineno: 505, function: <module>
+>       0501:
+>       0502:    specfile.close()
+>       0503:
+>       0504:
+>   *** 0505:write_specfile(d)
+>       0506:
+> File: 'write_specfile', lineno: 209, function: write_specfile
+>       0205:        conffiles = (localdata.getVar('CONFFILES', True) or
+> "").split()
+>       0206:
+>       0207:        splitname    = strip_multilib(pkgname, d)
+>       0208:
+>   *** 0209:        splitsummary = (localdata.getVar('SUMMARY', True) or
+> localdata.getVar('DESCRIPTION', True) or ".")
+>       0210:        splitversion = (localdata.getVar('PKGV', True) or
+> "").replace('-', '+')
+>       0211:        splitrelease = (localdata.getVar('PKGR', True) or "")
+>       0212:        splitepoch   = (localdata.getVar('PKGE', True) or "")
+>       0213:        splitlicense = (localdata.getVar('LICENSE', True) or "")
+> File: '/home/qhanbec/poky/bitbake/lib/bb/data_smart.py', lineno: 503,
+> function: getVar
+>       0499:        value = self.getVarFlag(var, "_content", False, noweakdefault)
+>       0500:
+>       0501:        # Call expand() separately to make use of the expand cache
+>       0502:        if expand and value:
+>   *** 0503:            return self.expand(value, var)
+>       0504:        return value
+>       0505:
+>       0506:    def renameVar(self, key, newkey, **loginfo):
+>       0507:        """
+> File: '/home/qhanbec/poky/bitbake/lib/bb/data_smart.py', lineno: 336,
+> function: expand
+>       0332:
+>       0333:        return varparse
+>       0334:
+>       0335:    def expand(self, s, varname = None):
+>   *** 0336:        return self.expandWithRefs(s, varname).value
+>       0337:
+>       0338:
+>       0339:    def finalize(self, parent = False):
+>       0340:        """Performs final steps upon the datastore,
+> including application of overrides"""
+> File: '/home/qhanbec/poky/bitbake/lib/bb/data_smart.py', lineno: 326,
+> function: expandWithRefs
+>       0322:                raise
+>       0323:            except bb.parse.SkipPackage:
+>       0324:                raise
+>       0325:            except Exception as exc:
+>   *** 0326:                raise ExpansionError(varname, s, exc)
+>       0327:
+>       0328:        varparse.value = s
+>       0329:
+>       0330:        if varname:
+> Exception: ExpansionError: Failure expanding variable SUMMARY,
+> expression was ${SUMMARY} - Debugging files which triggered exception
+> Exception: variable SUMMARY references itself!
+>
+> ERROR: Function failed: write_specfile
+> ERROR: Logfile of failure stored in:
+> /home/qhanbec/poky/build/tmp/work/cortexa9-vfp-poky-linux-gnueabi/lmc/1.0-r0/temp/log.do_package_write_rpm.3408
+> ERROR: Task 12 (/home/qhanbec/poky/meta-chris/recipes-core/lmc/lmc.bb,
+> do_package_write_rpm) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 845 tasks of which 827 didn't need to
+> be rerun and 1 failed.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
