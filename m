@@ -1,28 +1,28 @@
-Return-Path: <nobody@cubic.org>
-Received: from roasted.cubic.org (roasted.cubic.org [193.108.181.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29D14E006C2
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 09:19:42 -0700 (PDT)
-Received: from nobody by roasted.cubic.org with local (Exim 4.69)
-	(envelope-from <nobody@cubic.org>) id 1UjtxT-0002EJ-Ic
-	for yocto@yoctoproject.org; Tue, 04 Jun 2013 09:19:39 -0700
-Received: from 87.139.57.5 (SquirrelMail authenticated user michael)
-	by mail.cubic.org with HTTP; Tue, 4 Jun 2013 09:19:39 -0700
-Message-ID: <0ec7140a16f60fdaeffd2cd2e691e62b.squirrel@mail.cubic.org>
-In-Reply-To: <CAAGt+t3VoPRzymiJKG5kwEXeD=SPDWO1KTa2AqE6QHG5t0XTyw@mail.gmail.com>
-References: <CAAGt+t1SvAkQik=jAr5xPPBe7NE-VOwbDhLTnszst7NKF5W5TA@mail.gmail.com>
-	<8731013.X4s1gPWXY4@helios>
-	<CAAGt+t100v=mrKE4gbJnGqn5ezJADUFwnxdWQ0xzK8SWqyva6g@mail.gmail.com>
-	<62291455.6hREtkkLEB@helios>
-	<CAAGt+t3VoPRzymiJKG5kwEXeD=SPDWO1KTa2AqE6QHG5t0XTyw@mail.gmail.com>
-Date: Tue, 4 Jun 2013 09:19:39 -0700
-From: michael@cubic.org
-To: yocto@yoctoproject.org
-User-Agent: SquirrelMail/1.4.19
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ea0-f178.google.com (mail-ea0-f178.google.com
+	[209.85.215.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 651BEE006C2
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 10:05:39 -0700 (PDT)
+Received: by mail-ea0-f178.google.com with SMTP id q15so402700ead.37
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 10:05:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ML9rgbVPpUD03sV6Wd7dUuywzziBB+KjPPdbVYItsgY=;
+	b=u4wJg1+rdwNUFDqaY7dsjBu1JaeQ6r1xxDs6NLj4yg9pv229o9B82xvy7iPpFsDil1
+	QMNOB3yGOS/5JUVqvCBQy8fdQ0LnjLIe219erFaiZ9TKKnFocfnEGDxEJGctoXnsVRhi
+	kfo6QS6x4eHv8Sg2C1iR8mtSQV268C3sH4TovuyJ7EwZxI76rpZzbEfi+wg5uvywOzEy
+	hUo2mA5k5E/z8u/fvXM3PrqdAIXuJJqrfuRg19Z1uBO4AKnKTUoPDivhtyEWh4eVQC1U
+	5NyXyjB7i7jGwCZ9QlJLqsiAlEnxGF7uH3oDAzACgGEDiRA8GD5Y2LIHio8+66tTije3
+	j3Gg==
 MIME-Version: 1.0
-X-Priority: 3 (Normal)
-Importance: Normal
-Sender: nobody <nobody@cubic.org>
-Subject: Re: Hello world-Checksum error
+X-Received: by 10.15.26.69 with SMTP id m45mr2681817eeu.83.1370365537971; Tue,
+	04 Jun 2013 10:05:37 -0700 (PDT)
+Received: by 10.223.165.200 with HTTP; Tue, 4 Jun 2013 10:05:37 -0700 (PDT)
+Date: Tue, 4 Jun 2013 11:05:37 -0600
+Message-ID: <CANwz6nxDiGanW6w3tb2W+6rW6utsbW0d8AtVZqrhZrOP+Xe-xg@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: beaglebone beagleboard pandaboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,50 +34,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2013 16:19:42 -0000
-Content-Type: text/plain;charset=iso-8859-1
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 04 Jun 2013 17:05:39 -0000
+Content-Type: multipart/alternative; boundary=089e016355161a924b04de571728
 
-> I think yes. I usually give just *source oe-init-build-env *command, this
-> is how i used earlier and failed. May be that is the reason it has created
-> another build directory in /poky.
+--089e016355161a924b04de571728
+Content-Type: text/plain; charset=ISO-8859-1
 
-We have a script for that in our build directory that we source and that
-calls oe-init-build-env relatively. With that the chance to do a mistake
-is minimized. It uses a relative path to oe-init-build-env.
-We also use relative paths to all the layers we use in out bblayers.conf.
-As reference we use ${TOPDIR}, which is the build directory.
+All,
+I just built an image for these systems and I noticed that the when logging
+in they all came up in / not at /home/root.  I checked /etc/passwd
+root:x:0:0:root:/home/root:/bin/sh.  This just occurred after a new git
+clone of all meta-data.  The build information all builds is below.
+I also noticed that xterm was installed which in previous builds I needed
+to install xterm manually.  Where do you find what caused these difference
+in builds?
 
-METADIR_BUILDSYSTEMBASE="${TOPDIR}/../buildsystem_base"
-BBLAYERS ?= " \
-  ${METADIR_BUILDSYSTEMBASE}/poky-dylan-9.0.0/meta \
-  ${METADIR_BUILDSYSTEMBASE}/poky-dylan-9.0.0/meta-yocto \
-  ${METADIR_BUILDSYSTEMBASE}/poky-dylan-9.0.0/meta-yocto-bsp \
-  ${METADIR_BUILDSYSTEMBASE}/meta-openembedded/meta-oe \
-  ${METADIR_BUILDSYSTEMBASE}/meta-ti \
-  "
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
+meta-ti           = "(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01"
+meta-oe           = "(nobranch):22100f5b136e1be268055f4da14c39d7a32e9023"
+meta-yocto-bsp    = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
 
-The oeenv script is no rocket science and mostly looks like this:
-----------[oeenv]-------------
-#!/bin/sh
-if [ -z "$ZSH_NAME" ] && [ "x$0" = "x./oeenv" ]; then
-   echo "Error: This script needs to be sourced. Please run as '. ./oeenv'"
-else
-# path to poky relative to build dir
-   RELPATHTOOEENV="../buildsystem_base/poky-dylan-9.0.0/oe-init-build-env"
+Linux beagleboard 3.4.36-yocto-standard #1 Mon Jun 3 12:11:42 MDT 2013
+armv7l GNU/Linux
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beagleboard"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4.1"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "origin/dylan:beda5013e46da16a3d76f095869a5a5c5b1bc08a"
+meta-oe           = "master:17ace92714bccf64d0d9fcefaabe3067f59fdf0a"
+meta-yocto-bsp    = "origin/dylan:beda5013e46da16a3d76f095869a5a5c5b1bc08a"
 
-   if [ -n "$BASH_SOURCE" ]; then
-      _BUILDROOT="`dirname $BASH_SOURCE`"
-   else
-      _BUILDROOT="`pwd`"
-   fi
-   _BUILDROOT=`readlink -f "$_BUILDROOT"`
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "pandaboard"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
+meta-ti           = "(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01"
+meta-oe           = "master:17ace92714bccf64d0d9fcefaabe3067f59fdf0a"
+meta-yocto-bsp    = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
 
-   source "$_BUILDROOT"/"$RELPATHTOOEENV" "$_BUILDROOT"
+All help will be appreciated.
+Thanks
 
-   unset _BUILDROOT
-   unset RELPATHTOOEENV
-fi
---------[end]----------
+--089e016355161a924b04de571728
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div>All,<br></div>I just built an image for these sy=
+stems and I noticed that the when logging in they all came up in / not at /=
+home/root.=A0 I checked /etc/passwd=A0 root:x:0:0:root:/home/root:/bin/sh.=
+=A0 This just occurred after a new git clone of all meta-data.=A0 The build=
+ information all builds is below.<br>
+</div>I also noticed that xterm was installed which in previous builds I ne=
+eded to install xterm manually.=A0 Where do you find what caused these diff=
+erence in builds?<br><div><br>Build Configuration:<br>BB_VERSION=A0=A0=A0=
+=A0=A0=A0=A0 =3D &quot;1.18.0&quot;<br>
+BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSB=
+STRING=A0=A0 =3D &quot;Fedora-18&quot;<br>TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =
+=3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 =3D &quot;beaglebone&quot;<br>DISTRO=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 =3D &quot;poky&quot;<br>
+DISTRO_VERSION=A0=A0=A0 =3D &quot;1.4&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =
+=3D &quot;armv7a vfp neon&quot;<br>TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
+t;vfp-neon&quot;<br>meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yo=
+cto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):c3cb65041834159a318df9c1a5a05=
+f1ef36a2ebc&quot;<br>
+meta-ti=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):d61bfa88ed3df919=
+0ac9fd5643c27f77b34c5f01&quot;<br>meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D=
+ &quot;(nobranch):22100f5b136e1be268055f4da14c39d7a32e9023&quot;<br>meta-yo=
+cto-bsp=A0=A0=A0 =3D &quot;(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2=
+ebc&quot;<br>
+<br>Linux beagleboard 3.4.36-yocto-standard #1 Mon Jun 3 12:11:42 MDT 2013 =
+armv7l GNU/Linux<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0=
+ =3D &quot;1.18.0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_=
+64-linux&quot;<br>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>
+TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>M=
+ACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;beagleboard&quot;<br>DISTRO=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
+=A0=A0 =3D &quot;1.4.1&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a =
+vfp neon&quot;<br>
+TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta<br>meta-yo=
+cto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;origin/dylan:beda5013e46da16a3d76f095869=
+a5a5c5b1bc08a&quot;<br>meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;mast=
+er:17ace92714bccf64d0d9fcefaabe3067f59fdf0a&quot;<br>
+meta-yocto-bsp=A0=A0=A0 =3D &quot;origin/dylan:beda5013e46da16a3d76f095869a=
+5a5c5b1bc08a&quot;<br><br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=
+=A0=A0 =3D &quot;1.18.0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
+t;x86_64-linux&quot;<br>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>
+TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>M=
+ACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;pandaboard&quot;<br>DISTRO=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
+=A0=A0 =3D &quot;1.4&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a vf=
+p neon&quot;<br>
+TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
+t;(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc&quot;<br>meta-ti=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):d61bfa88ed3df9190ac9fd5643=
+c27f77b34c5f01&quot;<br>
+meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:17ace92714bccf64d0d9=
+fcefaabe3067f59fdf0a&quot;<br>meta-yocto-bsp=A0=A0=A0 =3D &quot;(nobranch):=
+c3cb65041834159a318df9c1a5a05f1ef36a2ebc&quot;<br><br></div><div>All help w=
+ill be appreciated.<br>Thanks <br>
+</div><div><br></div></div>
 
+--089e016355161a924b04de571728--
