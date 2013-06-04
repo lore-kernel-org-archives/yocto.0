@@ -1,21 +1,31 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from owm.eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7B30E014A1
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 05:04:17 -0700 (PDT)
-Message-ID: <51ADD7C0.60707@communistcode.co.uk>
-Date: Tue, 04 Jun 2013 13:04:16 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+Return-Path: <akki.sahota@gmail.com>
+Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE83EE014A1
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 05:05:40 -0700 (PDT)
+Received: by mail-la0-f54.google.com with SMTP id ec20so117388lab.13
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 05:05:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=EFKk4BXohKLafY2V0YkUwR4knaBm7qxQoqZ4nskL1RQ=;
+	b=BUD2FyIOWBwvRwQcrVq0yU1hAkKjSHCTIPO0bRtzhZMW75GUHJRSG+EWI/qRd0pI4D
+	IBpaQSUjfXtZUFDC8Tt9yxzBOs1uohZvS2BkSXvP3ksjDP5o79pMGhVFEugP2jDLwhdW
+	8JIqwq6WRu2vMAl+oemAJlzX2XlG9YPgToHEBjA3Fq1fDjfEISgeb7s2TMihY4CmB3IN
+	JpFHzI8BCIOcSqhwTQHCl1+N3CZxuuB2Opqm3+vOqIW8o70ElXNiyucWqJE4arsm/B6v
+	klE5tmNAmKcZsYZDO+BXEa1D/F9FWpvipu1Wg1uyVuavXUFwrLa6lHBNV0dOL4lzrqTJ
+	dewQ==
 MIME-Version: 1.0
+X-Received: by 10.112.136.132 with SMTP id qa4mr13060237lbb.34.1370347539193; 
+	Tue, 04 Jun 2013 05:05:39 -0700 (PDT)
+Received: by 10.152.134.75 with HTTP; Tue, 4 Jun 2013 05:05:39 -0700 (PDT)
+Date: Tue, 4 Jun 2013 17:35:39 +0530
+Message-ID: <CAMUsWmCC5JS81SPA_dfmsfqmBis7fAVAbMGc5yuZVHW0RnTDXQ@mail.gmail.com>
+From: Akshay Sahota <akki.sahota@gmail.com>
 To: yocto@yoctoproject.org
-References: <alpine.DEB.2.02.1306040727200.4915@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1306040727200.4915@oneiric>
-Subject: Re: anyone building for the arrow sockit eval board?
+Subject: yocto - lbcm3m1 camera driver source code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -24,67 +34,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2013 12:04:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Jun 2013 12:05:41 -0000
+Content-Type: multipart/alternative; boundary=089e011771834ae86604de52e604
 
-On 04/06/13 12:32, Robert P. J. Day wrote:
->
->    that's this board:
->
-> http://www.rocketboards.org/foswiki/Documentation/ArrowSoCKitEvaluationBoard
->
-> there's an alleged page for downloading an appropriate layer here:
->
-> http://www.rocketboards.org/foswiki/Documentation/GitGettingSTarted#Yocto_Project
->
-> with the instructions:
->
-> $ git clone http://git.rocketboards.org/poky-socfpga.git
-> $ cd  poky-socfpga/
-> $ git checkout -b <test_branch_name> origin/danny-altera
-> $ source ./altera-init build
-> $ bitbake virtual/kernel virtual/bootloader altera-image
->
-> but those instructions clearly won't work as that checkout doesn't
-> include the script "altera-init" and doesn't define an "altera-image".
->
->    there's a much larger downloadable image called
-> "linux-socfpga-13.02-RC10-src.bsx", but it's well over 800M and is
-> defined to contain *everything* you need to build (that's all the
-> source and everything), but i don't want to go down that road as i'm
-> pretty sure i have most of the source.
->
->    so is there, in fact, a valid meta-altera(?) layer of some kind that
-> defines the machine, image(s) and recipes for the arrow sockit board,
-> without cluttering the download with 800M+ of extraneous junk? thanks.
->
-> rday
->
+--089e011771834ae86604de52e604
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Robert,
+Hi all,
 
-I recently went on a training day with EVB (at Altera offices) and they 
-said the only supported method was through the Altera downloads and 
-rocketboards community site, for there dev board. They were not aware of 
-any 'meta-altera' layer (which is madness).
+Can anyone provide me with the complete driver source code for Leopard
+Imaging camera module lbcm3m1...??
 
-I am attending an Arrow training day in the coming weeks (where they 
-give this board out for free) so it will be interesting to see if you 
-get anywhere with this as I will be incorporating my own distro, and as 
-such need a fully layered approach.
-
-If you still need me to ask any questions in a couple of weeks I will do 
-so for you.
-
-Cheers,
-Jack.
-
+Thanks in anticipation
 -- 
+*Akshay Sahota**
+*Fourth Year Undergraduate
+Department of Electronics & Electrical Engineering
+Indian Institute of Technology Kharagpur
 
-   Jack Mitchell (jack@embed.me.uk)
-   Embedded Systems Engineer
-   http://www.embed.me.uk
+--089e011771834ae86604de52e604
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
---
+<div dir=3D"ltr"><div>Hi all,<br><br></div>Can anyone provide me with the c=
+omplete driver source code for Leopard Imaging camera module lbcm3m1...??<b=
+r clear=3D"all"><div><div><div>=A0<br>Thanks in anticipation<br></div><div>=
+-- <br>
+<div dir=3D"ltr"><span style=3D"background-color:rgb(255,255,255)"><span st=
+yle=3D"color:rgb(136,136,136)"><b>Akshay Sahota</b></span></span><span styl=
+e=3D"color:rgb(136,136,136);background-color:rgb(255,255,255)"><b><font sty=
+le=3D"background-color:rgb(255,255,255)" color=3D"#666666"><br style=3D"fon=
+t-family:&#39;courier new&#39;,monospace">
+</font></b><font style=3D"font-family:arial,sans-serif;font-size:13px;backg=
+round-color:rgb(255,255,255)" color=3D"#666666"><font style=3D"font-family:=
+georgia,serif;color:rgb(153,153,153)" size=3D"1"><font color=3D"#666666"><f=
+ont size=3D"1">Fourth</font></font> </font></font><font style=3D"font-famil=
+y:arial,sans-serif;font-size:13px"><font style=3D"font-family:georgia,serif=
+" size=3D"1"><span style=3D"background-color:rgb(255,255,255);color:rgb(153=
+,153,153)">Year Undergraduate</span><br>
+</font><font style=3D"font-family:georgia,serif" size=3D"1" color=3D"#99999=
+9">Department of Electronics &amp; Electrical Engineering<br></font><span s=
+tyle=3D"font-family:&#39;courier new&#39;,monospace"><font style=3D"font-fa=
+mily:georgia,serif" size=3D"1" color=3D"#999999">Indian Institute of Techno=
+logy Kharagpur</font><br>
+</span></font></span></div>
+</div></div></div></div>
 
+--089e011771834ae86604de52e604--
