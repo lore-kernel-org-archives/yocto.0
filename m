@@ -1,28 +1,33 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ea0-f178.google.com (mail-ea0-f178.google.com
-	[209.85.215.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 651BEE006C2
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 10:05:39 -0700 (PDT)
-Received: by mail-ea0-f178.google.com with SMTP id q15so402700ead.37
-	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 10:05:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ML9rgbVPpUD03sV6Wd7dUuywzziBB+KjPPdbVYItsgY=;
-	b=u4wJg1+rdwNUFDqaY7dsjBu1JaeQ6r1xxDs6NLj4yg9pv229o9B82xvy7iPpFsDil1
-	QMNOB3yGOS/5JUVqvCBQy8fdQ0LnjLIe219erFaiZ9TKKnFocfnEGDxEJGctoXnsVRhi
-	kfo6QS6x4eHv8Sg2C1iR8mtSQV268C3sH4TovuyJ7EwZxI76rpZzbEfi+wg5uvywOzEy
-	hUo2mA5k5E/z8u/fvXM3PrqdAIXuJJqrfuRg19Z1uBO4AKnKTUoPDivhtyEWh4eVQC1U
-	5NyXyjB7i7jGwCZ9QlJLqsiAlEnxGF7uH3oDAzACgGEDiRA8GD5Y2LIHio8+66tTije3
-	j3Gg==
-MIME-Version: 1.0
-X-Received: by 10.15.26.69 with SMTP id m45mr2681817eeu.83.1370365537971; Tue,
-	04 Jun 2013 10:05:37 -0700 (PDT)
-Received: by 10.223.165.200 with HTTP; Tue, 4 Jun 2013 10:05:37 -0700 (PDT)
-Date: Tue, 4 Jun 2013 11:05:37 -0600
-Message-ID: <CANwz6nxDiGanW6w3tb2W+6rW6utsbW0d8AtVZqrhZrOP+Xe-xg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DECAE006C2
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 10:44:39 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 04 Jun 2013 10:44:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,801,1363158000"; 
+	d="scan'208,217";a="312184831"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by azsmga001.ch.intel.com with ESMTP; 04 Jun 2013 10:44:38 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 4 Jun 2013 10:44:37 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.163]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.69]) with mapi id
+	14.03.0123.003; Tue, 4 Jun 2013 10:44:37 -0700
+From: "Liu, Song" <song.liu@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: beaglebone beagleboard pandaboard
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, June
+	04, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac5hSxygR7IbKYILTAO4k9MzzcydJwAAAmNA
+Date: Tue, 4 Jun 2013 17:44:36 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7B0193D9@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, June 04, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,132 +39,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2013 17:05:39 -0000
-Content-Type: multipart/alternative; boundary=089e016355161a924b04de571728
+X-List-Received-Date: Tue, 04 Jun 2013 17:44:39 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_"
 
---089e016355161a924b04de571728
-Content-Type: text/plain; charset=ISO-8859-1
-
-All,
-I just built an image for these systems and I noticed that the when logging
-in they all came up in / not at /home/root.  I checked /etc/passwd
-root:x:0:0:root:/home/root:/bin/sh.  This just occurred after a new git
-clone of all meta-data.  The build information all builds is below.
-I also noticed that xterm was installed which in previous builds I needed
-to install xterm manually.  Where do you find what caused these difference
-in builds?
-
-Build Configuration:
-BB_VERSION        = "1.18.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Fedora-18"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "beaglebone"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.4"
-TUNE_FEATURES     = "armv7a vfp neon"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto        = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
-meta-ti           = "(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01"
-meta-oe           = "(nobranch):22100f5b136e1be268055f4da14c39d7a32e9023"
-meta-yocto-bsp    = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
-
-Linux beagleboard 3.4.36-yocto-standard #1 Mon Jun 3 12:11:42 MDT 2013
-armv7l GNU/Linux
-Build Configuration:
-BB_VERSION        = "1.18.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Fedora-18"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "beagleboard"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.4.1"
-TUNE_FEATURES     = "armv7a vfp neon"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto        = "origin/dylan:beda5013e46da16a3d76f095869a5a5c5b1bc08a"
-meta-oe           = "master:17ace92714bccf64d0d9fcefaabe3067f59fdf0a"
-meta-yocto-bsp    = "origin/dylan:beda5013e46da16a3d76f095869a5a5c5b1bc08a"
-
-Build Configuration:
-BB_VERSION        = "1.18.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Fedora-18"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "pandaboard"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.4"
-TUNE_FEATURES     = "armv7a vfp neon"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto        = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
-meta-ti           = "(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01"
-meta-oe           = "master:17ace92714bccf64d0d9fcefaabe3067f59fdf0a"
-meta-yocto-bsp    = "(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc"
-
-All help will be appreciated.
-Thanks
-
---089e016355161a924b04de571728
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>All,<br></div>I just built an image for these sy=
-stems and I noticed that the when logging in they all came up in / not at /=
-home/root.=A0 I checked /etc/passwd=A0 root:x:0:0:root:/home/root:/bin/sh.=
-=A0 This just occurred after a new git clone of all meta-data.=A0 The build=
- information all builds is below.<br>
-</div>I also noticed that xterm was installed which in previous builds I ne=
-eded to install xterm manually.=A0 Where do you find what caused these diff=
-erence in builds?<br><div><br>Build Configuration:<br>BB_VERSION=A0=A0=A0=
-=A0=A0=A0=A0 =3D &quot;1.18.0&quot;<br>
-BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSB=
-STRING=A0=A0 =3D &quot;Fedora-18&quot;<br>TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =
-=3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0 =3D &quot;beaglebone&quot;<br>DISTRO=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0 =3D &quot;poky&quot;<br>
-DISTRO_VERSION=A0=A0=A0 =3D &quot;1.4&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =
-=3D &quot;armv7a vfp neon&quot;<br>TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
-t;vfp-neon&quot;<br>meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yo=
-cto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):c3cb65041834159a318df9c1a5a05=
-f1ef36a2ebc&quot;<br>
-meta-ti=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):d61bfa88ed3df919=
-0ac9fd5643c27f77b34c5f01&quot;<br>meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D=
- &quot;(nobranch):22100f5b136e1be268055f4da14c39d7a32e9023&quot;<br>meta-yo=
-cto-bsp=A0=A0=A0 =3D &quot;(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2=
-ebc&quot;<br>
-<br>Linux beagleboard 3.4.36-yocto-standard #1 Mon Jun 3 12:11:42 MDT 2013 =
-armv7l GNU/Linux<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0=
- =3D &quot;1.18.0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_=
-64-linux&quot;<br>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>
-TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>M=
-ACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;beagleboard&quot;<br>DISTRO=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
-=A0=A0 =3D &quot;1.4.1&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a =
-vfp neon&quot;<br>
-TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta<br>meta-yo=
-cto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;origin/dylan:beda5013e46da16a3d76f095869=
-a5a5c5b1bc08a&quot;<br>meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;mast=
-er:17ace92714bccf64d0d9fcefaabe3067f59fdf0a&quot;<br>
-meta-yocto-bsp=A0=A0=A0 =3D &quot;origin/dylan:beda5013e46da16a3d76f095869a=
-5a5c5b1bc08a&quot;<br><br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=
-=A0=A0 =3D &quot;1.18.0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
-t;x86_64-linux&quot;<br>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>
-TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>M=
-ACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;pandaboard&quot;<br>DISTRO=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
-=A0=A0 =3D &quot;1.4&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a vf=
-p neon&quot;<br>
-TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
-t;(nobranch):c3cb65041834159a318df9c1a5a05f1ef36a2ebc&quot;<br>meta-ti=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):d61bfa88ed3df9190ac9fd5643=
-c27f77b34c5f01&quot;<br>
-meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:17ace92714bccf64d0d9=
-fcefaabe3067f59fdf0a&quot;<br>meta-yocto-bsp=A0=A0=A0 =3D &quot;(nobranch):=
-c3cb65041834159a318df9c1a5a05f1ef36a2ebc&quot;<br><br></div><div>All help w=
-ill be appreciated.<br>Thanks <br>
-</div><div><br></div></div>
+Attendees:
+MichaelH, Saul, MarkH, Jessica, TomZ, Beth, KevinS, PaulE, RichardP, Bj=F6r=
+nS, Corneliu, Denys, LaurentiuP, Belen, Ramana, Nitin, Darren, AnnM, Song
 
---089e016355161a924b04de571728--
+Minutes:
+
+* Opens collection - 5 min (Song)
+* Yocto 1.4.1 status - 10 min (Paul)
+ - One build started last night, came up with 1 failure. We need to fix it =
+and rebuild.
+ - Will kick off another build after 1.5 M1 RC1.
+ - Schedule: https://www.google.com/calendar/embed?src=3D3a0927ctps51u8rs2j=
+v1uligdc%40group.calendar.google.com&ctz=3DAmerica/Los_Angeles
+* Yocto 1.5 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
+  - Bug fixing: 293 open bugs, we may expect more bugs since QA will start =
+M1 RC testing.
+  - AB/build (Beth): Working on some issues: minnow hanging, some freescale=
+ issues. 1.5 M1 RC1 is on track.
+  - RP: Trying to get complier update (4.8) into M1. Have kernel hang, not =
+making M1. Need to get it in M2. Mark: ppc e500 is failing, overall it is w=
+orking well. Bruce will be back this week, we need to solve the arm kernel =
+hang issue. Saul/mark: will sync on grub building issue with multi-lib enab=
+led.
+ - Saul: pulling things into M2 later this week, pending patches will be on=
+ hold until M1 is built.
+
+* SWAT team rotation: Bogdan Marinescu -> Cristian Iorga  (Song to follow u=
+p)
+* Opens - 10 min
+* Team Sharing - 20 min
+ - Saul: last week in Japan Linuxcon, did a couple of presentations about Y=
+P. They are definitely interested. Hard to see how much uptake there is due=
+ to language barrier, etc. Would like to touch base with Bjorn on ptest. Af=
+ter the meeting.
+ - Bjorn: preparing a release. Ptest is on hold, hope to get back on this s=
+hortly. Will send update on what packages being worked on.
+  RP: bitbake work, mqueue, worker process, it turned out to be challenging=
+. There are some patches available if anyone is interested.
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>MichaelH, Saul, MarkH, Jessica, TomZ, Beth, KevinS, PaulE, RichardP, B=
+j=F6rnS, Corneliu, Denys, LaurentiuP, Belen, Ramana, Nitin, Darren, AnnM, S=
+ong</div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div>Minutes:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.4.1 status - 10 min (Paul)</div>
+<div> - One build started last night, came up with 1 failure. We need to fi=
+x it and rebuild.</div>
+<div> - Will kick off another build after 1.5 M1 RC1.</div>
+<div> - Schedule: <a href=3D"https://www.google.com/calendar/embed?src=3D3a=
+0927ctps51u8rs2jv1uligdc%40group.calendar.google.com&amp;ctz=3DAmerica/Los_=
+Angeles"><font color=3D"blue"><u>https://www.google.com/calendar/embed?src=
+=3D3a0927ctps51u8rs2jv1uligdc%40group.calendar.google.com&amp;ctz=3DAmerica=
+/Los_Angeles</u></font></a></div>
+<div>* Yocto 1.5 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status</u></font></a></div>
+<div>&nbsp; - Bug fixing: 293 open bugs, we may expect more bugs since QA w=
+ill start M1 RC testing. </div>
+<div>&nbsp; - AB/build (Beth): Working on some issues: minnow hanging, some=
+ freescale issues. 1.5 M1 RC1 is on track. </div>
+<div>&nbsp; - RP: Trying to get complier update (4.8) into M1. Have kernel =
+hang, not making M1. Need to get it in M2. Mark: ppc e500 is failing, overa=
+ll it is working well. Bruce will be back this week, we need to solve the a=
+rm kernel hang issue. Saul/mark: will
+sync on grub building issue with multi-lib enabled.</div>
+<div> - Saul: pulling things into M2 later this week, pending patches will =
+be on hold until M1 is built.</div>
+<div>&nbsp;</div>
+<div>* SWAT team rotation: Bogdan Marinescu -&gt; Cristian Iorga&nbsp; (Son=
+g to follow up)</div>
+<div>* Opens - 10 min </div>
+<div>* Team Sharing - 20 min</div>
+<div> - Saul: last week in Japan Linuxcon, did a couple of presentations ab=
+out YP. They are definitely interested. Hard to see how much uptake there i=
+s due to language barrier, etc. Would like to touch base with Bjorn on ptes=
+t. After the meeting.</div>
+<div> - Bjorn: preparing a release. Ptest is on hold, hope to get back on t=
+his shortly. Will send update on what packages being worked on.</div>
+<div>&nbsp; RP: bitbake work, mqueue, worker process, it turned out to be c=
+hallenging. There are some patches available if anyone is interested.</div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_--
