@@ -1,33 +1,27 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DECAE006C2
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 10:44:39 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 04 Jun 2013 10:44:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,801,1363158000"; 
-	d="scan'208,217";a="312184831"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by azsmga001.ch.intel.com with ESMTP; 04 Jun 2013 10:44:38 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 4 Jun 2013 10:44:37 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.163]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.69]) with mapi id
-	14.03.0123.003; Tue, 4 Jun 2013 10:44:37 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, June
-	04, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac5hSxygR7IbKYILTAO4k9MzzcydJwAAAmNA
-Date: Tue, 4 Jun 2013 17:44:36 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7B0193D9@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 835F8E006C2
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 12:41:33 -0700 (PDT)
+Received: by mail-ee0-f42.google.com with SMTP id c4so190334eek.29
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 12:41:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ZmQUQBmrgt781GKxXj55zQMjHr5+b7eACVCQOpmlDAY=;
+	b=kOUKEjRWaEwef8DHRszUt9NTv8GeZZiwoGpBuE6PidQFTG0ogIpzFahc/6/kwScdHJ
+	P7sEueA9gvIIj1f9+gPA1DM0Vkbah3MmACv/OmL9ZRzb8/2NbW4YYrAP9zICHpWc/1Sb
+	pGvYteqOUWkVZ5PFvSPGyYsO18lG6046NkTtHw04meegfzb+9S1078nF9PPnPpq2OSIW
+	AXGxpv/FT7S12KFfBzb8ifzq7uTkSZgGvqhyD4F8ypyXaDtRAnzAWVzHkpbuIXywTjdg
+	xtn63mZiEIRX35eTfrVcqqZI5VNvI2qv6+eKZOh/aP+vYDKxeyKLbgTZuenUMU6K/uKG
+	rA7g==
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, June 04, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.14.99.198 with SMTP id x46mr27077003eef.38.1370374892121;
+	Tue, 04 Jun 2013 12:41:32 -0700 (PDT)
+Received: by 10.223.165.200 with HTTP; Tue, 4 Jun 2013 12:41:32 -0700 (PDT)
+Date: Tue, 4 Jun 2013 13:41:32 -0600
+Message-ID: <CANwz6nzC4O8bN92q2YCCLtmGKK1S9LwYPLyWR0VZZBY+EiAUtg@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: yocto with meta-ti
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,121 +33,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2013 17:44:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_"
+X-List-Received-Date: Tue, 04 Jun 2013 19:41:33 -0000
+Content-Type: multipart/alternative; boundary=001a11c392c6a790d604de5944d2
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a11c392c6a790d604de5944d2
+Content-Type: text/plain; charset=ISO-8859-1
+
+Michael wrote
+
+Hi,
+
+As a quick hack you can mask out recipes-misc by adding the following line
+to your conf/local.conf :
+
+BBMASK = "meta-ti/recipes-misc"
+
+It seem to mask out everything in meta-ti/recipes-misc.
+
+This was a suggestion I found on the net. The better way would be if
+meta-ti would be split into multiple layers where one of them is a
+meta-ti-bsp layer.
+
+Best regards
+Michael
+
+I build with yocto and meta-ti for the beaglebone and pandaboard.
+
+This is what I add to local.conf
+MACHINE ?= "beaglebone"
+MACHINE ?= "pandaboard"
+BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/"
+
+and in bblayers.conf
+BBLAYERS ?= " \
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta \
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto \
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta-ti \
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta-oe/meta-oe \
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto-bsp \
+  "
+BBLAYERS_NON_REMOVABLE ?= " \
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta \
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto \
+
+This works okay see the post
+[yocto] beaglebone beagleboard pandaboard
+<https://lists.yoctoproject.org/pipermail/yocto/2013-June/016393.html>
+*Edward Vidal
+*
+
+*Let me know if this helps I am  using dylan branch with an older
+version of meta-ti
+commit d61bfa88ed3df9190ac9fd5643c27f77b34c5f01
+Author: Denys Dmytriyenko <denys@ti.com>
+Date:   Mon Feb 25 22:48:33 2013 -0500
+
+    linux-omapl138: fix alignment issue of 2.6.37 kernel with gcc-4.7
+
+    Patch by Steve Sakoman
+
+    Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+*
+
+*I hope this helps
+*
+
+*Ed Vidal
+*
+
+--001a11c392c6a790d604de5944d2
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:
-MichaelH, Saul, MarkH, Jessica, TomZ, Beth, KevinS, PaulE, RichardP, Bj=F6r=
-nS, Corneliu, Denys, LaurentiuP, Belen, Ramana, Nitin, Darren, AnnM, Song
+<div dir=3D"ltr">Michael wrote<br><pre>Hi,
 
-Minutes:
+As a quick hack you can mask out recipes-misc by adding the following line
+to your conf/local.conf :
 
-* Opens collection - 5 min (Song)
-* Yocto 1.4.1 status - 10 min (Paul)
- - One build started last night, came up with 1 failure. We need to fix it =
-and rebuild.
- - Will kick off another build after 1.5 M1 RC1.
- - Schedule: https://www.google.com/calendar/embed?src=3D3a0927ctps51u8rs2j=
-v1uligdc%40group.calendar.google.com&ctz=3DAmerica/Los_Angeles
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-  - Bug fixing: 293 open bugs, we may expect more bugs since QA will start =
-M1 RC testing.
-  - AB/build (Beth): Working on some issues: minnow hanging, some freescale=
- issues. 1.5 M1 RC1 is on track.
-  - RP: Trying to get complier update (4.8) into M1. Have kernel hang, not =
-making M1. Need to get it in M2. Mark: ppc e500 is failing, overall it is w=
-orking well. Bruce will be back this week, we need to solve the arm kernel =
-hang issue. Saul/mark: will sync on grub building issue with multi-lib enab=
-led.
- - Saul: pulling things into M2 later this week, pending patches will be on=
- hold until M1 is built.
+BBMASK =3D &quot;meta-ti/recipes-misc&quot;
 
-* SWAT team rotation: Bogdan Marinescu -> Cristian Iorga  (Song to follow u=
-p)
-* Opens - 10 min
-* Team Sharing - 20 min
- - Saul: last week in Japan Linuxcon, did a couple of presentations about Y=
-P. They are definitely interested. Hard to see how much uptake there is due=
- to language barrier, etc. Would like to touch base with Bjorn on ptest. Af=
-ter the meeting.
- - Bjorn: preparing a release. Ptest is on hold, hope to get back on this s=
-hortly. Will send update on what packages being worked on.
-  RP: bitbake work, mqueue, worker process, it turned out to be challenging=
-. There are some patches available if anyone is interested.
+It seem to mask out everything in meta-ti/recipes-misc.
 
+This was a suggestion I found on the net. The better way would be if
+meta-ti would be split into multiple layers where one of them is a
+meta-ti-bsp layer.
 
+Best regards
+Michael
+<br></pre><pre>I build with yocto and meta-ti for the beaglebone and pandab=
+oard.<br></pre><pre>This is what I add to local.conf<br>MACHINE ?=3D &quot;=
+beaglebone&quot;<br>MACHINE ?=3D &quot;pandaboard&quot;<br>BBMASK ?=3D &quo=
+t;.*/meta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/&quot;<br>
+</pre><pre>and in bblayers.conf<br>BBLAYERS ?=3D &quot; \<br>  /home/vidal/=
+POKY/build060213_dylan_panda/poky/meta \<br>  /home/vidal/POKY/build060213_=
+dylan_panda/poky/meta-yocto \<br>  /home/vidal/POKY/build060213_dylan_panda=
+/poky/meta-ti \<br>
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta-oe/meta-oe \<br>  /hom=
+e/vidal/POKY/build060213_dylan_panda/poky/meta-yocto-bsp \<br>  &quot;<br>B=
+BLAYERS_NON_REMOVABLE ?=3D &quot; \<br>  /home/vidal/POKY/build060213_dylan=
+_panda/poky/meta \<br>
+  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto \<br><br></pre><=
+pre>This works okay see the post <br><a href=3D"https://lists.yoctoproject.=
+org/pipermail/yocto/2013-June/016393.html">[yocto] beaglebone beagleboard p=
+andaboard
+</a><a name=3D"16393">=A0</a>
+<i>Edward Vidal<br></i></pre><pre><i>Let me know if this helps I am  using =
+dylan branch with an older version of meta-ti<br>commit d61bfa88ed3df9190ac=
+9fd5643c27f77b34c5f01<br>Author: Denys Dmytriyenko &lt;<a href=3D"mailto:de=
+nys@ti.com">denys@ti.com</a>&gt;<br>
+Date:   Mon Feb 25 22:48:33 2013 -0500<br><br>    linux-omapl138: fix align=
+ment issue of 2.6.37 kernel with gcc-4.7<br>    <br>    Patch by Steve Sako=
+man<br>    <br>    Signed-off-by: Denys Dmytriyenko &lt;<a href=3D"mailto:d=
+enys@ti.com">denys@ti.com</a>&gt;<br>
+</i></pre><pre><i>I hope this helps<br></i></pre><pre><i>Ed Vidal <br></i><=
+/pre></div>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>MichaelH, Saul, MarkH, Jessica, TomZ, Beth, KevinS, PaulE, RichardP, B=
-j=F6rnS, Corneliu, Denys, LaurentiuP, Belen, Ramana, Nitin, Darren, AnnM, S=
-ong</div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div>Minutes:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.4.1 status - 10 min (Paul)</div>
-<div> - One build started last night, came up with 1 failure. We need to fi=
-x it and rebuild.</div>
-<div> - Will kick off another build after 1.5 M1 RC1.</div>
-<div> - Schedule: <a href=3D"https://www.google.com/calendar/embed?src=3D3a=
-0927ctps51u8rs2jv1uligdc%40group.calendar.google.com&amp;ctz=3DAmerica/Los_=
-Angeles"><font color=3D"blue"><u>https://www.google.com/calendar/embed?src=
-=3D3a0927ctps51u8rs2jv1uligdc%40group.calendar.google.com&amp;ctz=3DAmerica=
-/Los_Angeles</u></font></a></div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>&nbsp; - Bug fixing: 293 open bugs, we may expect more bugs since QA w=
-ill start M1 RC testing. </div>
-<div>&nbsp; - AB/build (Beth): Working on some issues: minnow hanging, some=
- freescale issues. 1.5 M1 RC1 is on track. </div>
-<div>&nbsp; - RP: Trying to get complier update (4.8) into M1. Have kernel =
-hang, not making M1. Need to get it in M2. Mark: ppc e500 is failing, overa=
-ll it is working well. Bruce will be back this week, we need to solve the a=
-rm kernel hang issue. Saul/mark: will
-sync on grub building issue with multi-lib enabled.</div>
-<div> - Saul: pulling things into M2 later this week, pending patches will =
-be on hold until M1 is built.</div>
-<div>&nbsp;</div>
-<div>* SWAT team rotation: Bogdan Marinescu -&gt; Cristian Iorga&nbsp; (Son=
-g to follow up)</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div> - Saul: last week in Japan Linuxcon, did a couple of presentations ab=
-out YP. They are definitely interested. Hard to see how much uptake there i=
-s due to language barrier, etc. Would like to touch base with Bjorn on ptes=
-t. After the meeting.</div>
-<div> - Bjorn: preparing a release. Ptest is on hold, hope to get back on t=
-his shortly. Will send update on what packages being worked on.</div>
-<div>&nbsp; RP: bitbake work, mqueue, worker process, it turned out to be c=
-hallenging. There are some patches available if anyone is interested.</div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7B0193D9ORSMSX108amrcor_--
+--001a11c392c6a790d604de5944d2--
