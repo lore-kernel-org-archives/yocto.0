@@ -1,27 +1,34 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 835F8E006C2
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 12:41:33 -0700 (PDT)
-Received: by mail-ee0-f42.google.com with SMTP id c4so190334eek.29
-	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 12:41:32 -0700 (PDT)
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8312AE006C2
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 12:46:18 -0700 (PDT)
+Received: by mail-wg0-f51.google.com with SMTP id b13so590325wgh.18
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 12:46:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ZmQUQBmrgt781GKxXj55zQMjHr5+b7eACVCQOpmlDAY=;
-	b=kOUKEjRWaEwef8DHRszUt9NTv8GeZZiwoGpBuE6PidQFTG0ogIpzFahc/6/kwScdHJ
-	P7sEueA9gvIIj1f9+gPA1DM0Vkbah3MmACv/OmL9ZRzb8/2NbW4YYrAP9zICHpWc/1Sb
-	pGvYteqOUWkVZ5PFvSPGyYsO18lG6046NkTtHw04meegfzb+9S1078nF9PPnPpq2OSIW
-	AXGxpv/FT7S12KFfBzb8ifzq7uTkSZgGvqhyD4F8ypyXaDtRAnzAWVzHkpbuIXywTjdg
-	xtn63mZiEIRX35eTfrVcqqZI5VNvI2qv6+eKZOh/aP+vYDKxeyKLbgTZuenUMU6K/uKG
-	rA7g==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=TM3POFLObf6Tcm42plO29Xh6amQiM/U3okab73XQZ1Q=;
+	b=tzTpkeRiTxC6C/P7e2CKL++ex+psizvr9bKcz/Egf8Eir+GYqSb2FPPLoDG5BNEFHW
+	iEoBm/V1e19eWJRTumW+mEzd06doalPxNL8mRjOdy29XmE2CBHZ4t8FK/xWGDICMI1jc
+	AgInsrhWbzbNxepmRuxcrCSBK92cQw4NYhmBFugGS82q1JgNgs9sAmd0emebZP4fdXtF
+	PlTx+tUkKLZ4TsvtI3/kPPTLlLXZLLi332wgBALskRbx6mMMDJkxQM/Jj9d89cRfRSR7
+	wf2p7dTOWryzoQgbEIvzvHkyLfsjWbdNsTjPxh1fWVd2vWW0JudarCCdM08MayTqUgvP
+	cX1Q==
+X-Received: by 10.180.160.206 with SMTP id xm14mr3042849wib.50.1370375177477; 
+	Tue, 04 Jun 2013 12:46:17 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.14.99.198 with SMTP id x46mr27077003eef.38.1370374892121;
-	Tue, 04 Jun 2013 12:41:32 -0700 (PDT)
-Received: by 10.223.165.200 with HTTP; Tue, 4 Jun 2013 12:41:32 -0700 (PDT)
-Date: Tue, 4 Jun 2013 13:41:32 -0600
-Message-ID: <CANwz6nzC4O8bN92q2YCCLtmGKK1S9LwYPLyWR0VZZBY+EiAUtg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: yocto with meta-ti
+Received: by 10.194.250.35 with HTTP; Tue, 4 Jun 2013 12:45:57 -0700 (PDT)
+In-Reply-To: <4896833.vPV5cWFueY@helios>
+References: <CAAGt+t1SvAkQik=jAr5xPPBe7NE-VOwbDhLTnszst7NKF5W5TA@mail.gmail.com>
+	<62291455.6hREtkkLEB@helios>
+	<CAAGt+t3VoPRzymiJKG5kwEXeD=SPDWO1KTa2AqE6QHG5t0XTyw@mail.gmail.com>
+	<4896833.vPV5cWFueY@helios>
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Tue, 4 Jun 2013 21:45:57 +0200
+Message-ID: <CAAGt+t0JjS9XwkZe2v3h9yztWD_V08ZXw=6jRtzuKGQcia6gxA@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Hello world-Checksum error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,119 +40,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2013 19:41:33 -0000
-Content-Type: multipart/alternative; boundary=001a11c392c6a790d604de5944d2
+X-List-Received-Date: Tue, 04 Jun 2013 19:46:18 -0000
+Content-Type: multipart/alternative; boundary=047d7b6225b0a9a30d04de59551b
 
---001a11c392c6a790d604de5944d2
+--047d7b6225b0a9a30d04de59551b
 Content-Type: text/plain; charset=ISO-8859-1
-
-Michael wrote
 
 Hi,
 
-As a quick hack you can mask out recipes-misc by adding the following line
-to your conf/local.conf :
+I followed all the instructions and i started my build again. Build
+successfully started and struck with Hello md5sum error.
 
-BBMASK = "meta-ti/recipes-misc"
+ERROR: Fetcher failure for URL: '
+ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz'. No checksum specified for
+/home/siguser/yocto2013-05-21/build/downloads/hello-2.7.tar.gz, please add
+at least one to the recipe:
+SRC_URI[md5sum] = "fc01b05c7f943d3c42124942a2a9bb3a"
+SRC_URI[sha256sum] =
+"fd593b5bcf6d1bb6d7d1bb7eefdccdc0010cf2c4985ccb445ef490f768b927c0"
 
-It seem to mask out everything in meta-ti/recipes-misc.
 
-This was a suggestion I found on the net. The better way would be if
-meta-ti would be split into multiple layers where one of them is a
-meta-ti-bsp layer.
+I downloaded hello-2.7 from ftp://ftp.gnu.org/gnu/hello/ unzipped and ran
+md5sum against COPYING file. Each file has different md5sum, which md5sum
+should I include in my hello.bb file?
 
-Best regards
-Michael
+*My hello.bb file*:
 
-I build with yocto and meta-ti for the beaglebone and pandaboard.
+DESCRIPTION = "GNU Helloworld application"
+SECTION = "examples"
+LICENSE = "GPLv3+"
+LIC_FILES_CHKSUM = "file://COPYING;md5=fc01b05c7f943d3c42124942a2a9bb3a"
+PR = "r0"
+SRC_URI = "ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz"
+inherit autotools gettext
 
-This is what I add to local.conf
-MACHINE ?= "beaglebone"
-MACHINE ?= "pandaboard"
-BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/"
+Thank You,
 
-and in bblayers.conf
-BBLAYERS ?= " \
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta \
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto \
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta-ti \
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta-oe/meta-oe \
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto-bsp \
-  "
-BBLAYERS_NON_REMOVABLE ?= " \
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta \
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto \
 
-This works okay see the post
-[yocto] beaglebone beagleboard pandaboard
-<https://lists.yoctoproject.org/pipermail/yocto/2013-June/016393.html>
-*Edward Vidal
-*
 
-*Let me know if this helps I am  using dylan branch with an older
-version of meta-ti
-commit d61bfa88ed3df9190ac9fd5643c27f77b34c5f01
-Author: Denys Dmytriyenko <denys@ti.com>
-Date:   Mon Feb 25 22:48:33 2013 -0500
 
-    linux-omapl138: fix alignment issue of 2.6.37 kernel with gcc-4.7
+On Tue, Jun 4, 2013 at 3:57 PM, Paul Eggleton <paul.eggleton@linux.intel.com
+> wrote:
 
-    Patch by Steve Sakoman
+> On Tuesday 04 June 2013 15:42:06 Zafrullah Syed wrote:
+> > On Tue, Jun 4, 2013 at 3:26 PM, Paul Eggleton <
+> paul.eggleton@linux.intel.com
+> > wrote:
+> > > Yes, conf/bblayers.conf is supposed to be in the build directory; and
+> > > whichever build directory you are actually using. The build directory
+> can
+> > > be anywhere, but you shouldn't really have two build directories unless
+> > > you know what you are doing - did you perhaps run oe-init-build-env
+> with
+> > > no arguments in two different places? I suspect this is what has
+> happened.
+> >
+> > I think yes. I usually give just *source oe-init-build-env *command, this
+> > is how i used earlier and failed. May be that is the reason it has
+> created
+> > another build directory in /poky.
+> > What should be the command before building? i guess this(
+> > TEMPLATECONF=meta-gumstix-extras/conf
+> > source ./poky/oe-init-build-env ). so, every time i just need to give
+> > TEMPLATECONF  command before building?
+>
+> You need to run oe-init-build-env at the start of every session yes, but
+> you
+> shouldn't need to specify TEMPLATECONF except when you first create the
+> build
+> directory. The important thing is you need to be in the same directory when
+> you run oe-init-build-env *or* specify the path to the build directory as a
+> parameter.
+>
+> > Lastly, my meta-bebot directory should be as following ?
+> >
+> > /poky
+> >   --meta-bebot
+> >       --conf
+> >          --layer.conf
+> >   --recipes-bebot
+> >     --hello
+> >       --hello.bb
+>
+> If you have recipes-bebot under meta-bebot, yes.
+>
+> > and meta-bebot path should be set in bblayers.conf file?
+>
+> Yes.
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+>
 
-    Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-*
 
-*I hope this helps
-*
 
-*Ed Vidal
-*
+-- 
+Regards,
+Zafrullah Syed
 
---001a11c392c6a790d604de5944d2
+--047d7b6225b0a9a30d04de59551b
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Michael wrote<br><pre>Hi,
+<div dir=3D"ltr">Hi,<div><br></div><div>I followed all the instructions and=
+ i started my build again. Build successfully started and struck with Hello=
+ md5sum error.<br></div><div><br></div><div><div>ERROR: Fetcher failure for=
+ URL: &#39;<a href=3D"ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz">ftp://f=
+tp.gnu.org/gnu/hello/hello-2.7.tar.gz</a>&#39;. No checksum specified for /=
+home/siguser/yocto2013-05-21/build/downloads/hello-2.7.tar.gz, please add a=
+t least one to the recipe:</div>
 
-As a quick hack you can mask out recipes-misc by adding the following line
-to your conf/local.conf :
+<div>SRC_URI[md5sum] =3D &quot;fc01b05c7f943d3c42124942a2a9bb3a&quot;</div>=
+<div>SRC_URI[sha256sum] =3D &quot;fd593b5bcf6d1bb6d7d1bb7eefdccdc0010cf2c49=
+85ccb445ef490f768b927c0&quot;</div></div><div><br></div><div><br></div><div=
+ style>
 
-BBMASK =3D &quot;meta-ti/recipes-misc&quot;
+I downloaded hello-2.7 from=A0<a href=3D"ftp://ftp.gnu.org/gnu/hello/">ftp:=
+//ftp.gnu.org/gnu/hello/</a>=A0unzipped and ran md5sum against COPYING file=
+. Each file has different md5sum, which md5sum should I include in my <a hr=
+ef=3D"http://hello.bb">hello.bb</a> file?</div>
 
-It seem to mask out everything in meta-ti/recipes-misc.
+<div style><br></div><div style><u>My <a href=3D"http://hello.bb">hello.bb<=
+/a> file</u>:</div><div style><br></div><div style><div>DESCRIPTION =3D &qu=
+ot;GNU Helloworld application&quot;=A0</div><div>SECTION =3D &quot;examples=
+&quot;=A0</div>
 
-This was a suggestion I found on the net. The better way would be if
-meta-ti would be split into multiple layers where one of them is a
-meta-ti-bsp layer.
+<div>LICENSE =3D &quot;GPLv3+&quot;=A0</div><div>LIC_FILES_CHKSUM =3D &quot=
+;file://COPYING;md5=3Dfc01b05c7f943d3c42124942a2a9bb3a&quot;=A0</div><div>P=
+R =3D &quot;r0&quot;=A0</div><div>SRC_URI =3D &quot;<a href=3D"ftp://ftp.gn=
+u.org/gnu/hello/hello-2.7.tar.gz">ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar=
+.gz</a>&quot;=A0</div>
 
-Best regards
-Michael
-<br></pre><pre>I build with yocto and meta-ti for the beaglebone and pandab=
-oard.<br></pre><pre>This is what I add to local.conf<br>MACHINE ?=3D &quot;=
-beaglebone&quot;<br>MACHINE ?=3D &quot;pandaboard&quot;<br>BBMASK ?=3D &quo=
-t;.*/meta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/&quot;<br>
-</pre><pre>and in bblayers.conf<br>BBLAYERS ?=3D &quot; \<br>  /home/vidal/=
-POKY/build060213_dylan_panda/poky/meta \<br>  /home/vidal/POKY/build060213_=
-dylan_panda/poky/meta-yocto \<br>  /home/vidal/POKY/build060213_dylan_panda=
-/poky/meta-ti \<br>
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta-oe/meta-oe \<br>  /hom=
-e/vidal/POKY/build060213_dylan_panda/poky/meta-yocto-bsp \<br>  &quot;<br>B=
-BLAYERS_NON_REMOVABLE ?=3D &quot; \<br>  /home/vidal/POKY/build060213_dylan=
-_panda/poky/meta \<br>
-  /home/vidal/POKY/build060213_dylan_panda/poky/meta-yocto \<br><br></pre><=
-pre>This works okay see the post <br><a href=3D"https://lists.yoctoproject.=
-org/pipermail/yocto/2013-June/016393.html">[yocto] beaglebone beagleboard p=
-andaboard
-</a><a name=3D"16393">=A0</a>
-<i>Edward Vidal<br></i></pre><pre><i>Let me know if this helps I am  using =
-dylan branch with an older version of meta-ti<br>commit d61bfa88ed3df9190ac=
-9fd5643c27f77b34c5f01<br>Author: Denys Dmytriyenko &lt;<a href=3D"mailto:de=
-nys@ti.com">denys@ti.com</a>&gt;<br>
-Date:   Mon Feb 25 22:48:33 2013 -0500<br><br>    linux-omapl138: fix align=
-ment issue of 2.6.37 kernel with gcc-4.7<br>    <br>    Patch by Steve Sako=
-man<br>    <br>    Signed-off-by: Denys Dmytriyenko &lt;<a href=3D"mailto:d=
-enys@ti.com">denys@ti.com</a>&gt;<br>
-</i></pre><pre><i>I hope this helps<br></i></pre><pre><i>Ed Vidal <br></i><=
-/pre></div>
+<div>inherit autotools gettext=A0</div><div><br></div><div style>Thank You,=
+</div></div><div style><br></div><div style><br></div></div><div class=3D"g=
+mail_extra"><br><br><div class=3D"gmail_quote">On Tue, Jun 4, 2013 at 3:57 =
+PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@lin=
+ux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;</span=
+> wrote:<br>
 
---001a11c392c6a790d604de5944d2--
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On Tuesday 04 June 2013 15=
+:42:06 Zafrullah Syed wrote:<br>
+&gt; On Tue, Jun 4, 2013 at 3:26 PM, Paul Eggleton &lt;<a href=3D"mailto:pa=
+ul.eggleton@linux.intel.com">paul.eggleton@linux.intel.com</a><br>
+&gt; wrote:<br>
+</div><div class=3D"im">&gt; &gt; Yes, conf/bblayers.conf is supposed to be=
+ in the build directory; and<br>
+&gt; &gt; whichever build directory you are actually using. The build direc=
+tory can<br>
+&gt; &gt; be anywhere, but you shouldn&#39;t really have two build director=
+ies unless<br>
+&gt; &gt; you know what you are doing - did you perhaps run oe-init-build-e=
+nv with<br>
+&gt; &gt; no arguments in two different places? I suspect this is what has =
+happened.<br>
+&gt;<br>
+</div>&gt; I think yes. I usually give just *source oe-init-build-env *comm=
+and, this<br>
+<div class=3D"im">&gt; is how i used earlier and failed. May be that is the=
+ reason it has created<br>
+&gt; another build directory in /poky.<br>
+&gt; What should be the command before building? i guess this(<br>
+&gt; TEMPLATECONF=3Dmeta-gumstix-extras/conf<br>
+&gt; source ./poky/oe-init-build-env ). so, every time i just need to give<=
+br>
+&gt; TEMPLATECONF =A0command before building?<br>
+<br>
+</div>You need to run oe-init-build-env at the start of every session yes, =
+but you<br>
+shouldn&#39;t need to specify TEMPLATECONF except when you first create the=
+ build<br>
+directory. The important thing is you need to be in the same directory when=
+<br>
+you run oe-init-build-env *or* specify the path to the build directory as a=
+<br>
+parameter.<br>
+<div class=3D"im"><br>
+&gt; Lastly, my meta-bebot directory should be as following ?<br>
+&gt;<br>
+&gt; /poky<br>
+&gt; =A0 --meta-bebot<br>
+&gt; =A0 =A0 =A0 --conf<br>
+&gt; =A0 =A0 =A0 =A0 =A0--layer.conf<br>
+&gt; =A0 --recipes-bebot<br>
+&gt; =A0 =A0 --hello<br>
+&gt; =A0 =A0 =A0 --<a href=3D"http://hello.bb" target=3D"_blank">hello.bb</=
+a><br>
+<br>
+</div>If you have recipes-bebot under meta-bebot, yes.<br>
+<div class=3D"im"><br>
+&gt; and meta-bebot path should be set in bblayers.conf file?<br>
+<br>
+</div>Yes.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+Cheers,<br>
+Paul<br>
+<br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</div></div></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>=
+<span style=3D"font-family:arial,sans-serif;font-size:13px;border-collapse:=
+collapse;color:rgb(136,136,136)">Regards,<br>Zafrullah Syed</span><div><fon=
+t color=3D"#888888" face=3D"arial, sans-serif"><span style=3D"border-collap=
+se:collapse"><br>
+
+</span></font></div>
+</div>
+
+--047d7b6225b0a9a30d04de59551b--
