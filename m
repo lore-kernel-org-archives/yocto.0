@@ -1,22 +1,34 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B3ABE01439
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 01:17:54 -0700 (PDT)
-Received: from [192.168.0.2] (host86-141-47-214.range86-141.btcentralplus.com
-	[86.141.47.214]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id E67D5952B
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 09:17:53 +0100 (BST)
-Message-ID: <51ADA2B0.7000702@r-finger.com>
-Date: Tue, 04 Jun 2013 09:17:52 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAD71xELiPm0A46qyJBkfx+r4nFBZsXUcFDz6XZLvpQVgoSc0+Q@mail.gmail.com>
-In-Reply-To: <CAD71xELiPm0A46qyJBkfx+r4nFBZsXUcFDz6XZLvpQVgoSc0+Q@mail.gmail.com>
-Subject: Re: Error including meta-oracle-java in custom image
+Return-Path: <sujith.h@gmail.com>
+Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09288E01471
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 03:06:40 -0700 (PDT)
+Received: by mail-pd0-f182.google.com with SMTP id g10so13080pdj.13
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 03:06:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer;
+	bh=OF7qdIPswKcvlUYi8erqKtIOB8ncpNyrAHc4Lh1fUDI=;
+	b=TXQgEVq/huYEpMKMNbVNu/il6QSGDru2CV9LVkNiIMWpssqy0Wm8+qKH+lx+TUS7HZ
+	GkUpGZdBjzQ6leAO78nM6dBBY3kmccWePy7tpn2yg15VsDs8ovZDj4sSWZfAqrsf4v0b
+	I9HwrL+kxdkTcfZKk3oE6cFo4Gt5dbnkhQkWAmA70RKMhG2XqGCP2XJyNSIiBymCq/gC
+	CqiiQ78CSdkRzcNxt4zaknSZ1cDgsX3JNJt+rICITgflVVQ/O3XQVT8nlRT26rfQc8v4
+	WzZPskPWFLEZYpGS6+1TE1I+vHY9MOxynbR3TUGeaJkYWLaMxYOHfSFicBlwjMY72E9E
+	/AQA==
+X-Received: by 10.66.138.105 with SMTP id qp9mr28015307pab.127.1370340399464; 
+	Tue, 04 Jun 2013 03:06:39 -0700 (PDT)
+Received: from linux-z8xt.site ([115.119.134.194])
+	by mx.google.com with ESMTPSA id
+	vz8sm66935924pac.20.2013.06.04.03.06.36 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 04 Jun 2013 03:06:38 -0700 (PDT)
+From: Sujith H <sujith.h@gmail.com>
+To: holger.behrens@windriver.com,
+	florin.sarbu@windriver.com
+Date: Tue,  4 Jun 2013 15:33:25 +0530
+Message-Id: <1370340205-21395-1-git-send-email-sujith.h@gmail.com>
+X-Mailer: git-send-email 1.8.1.4
+Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
+Subject: [meta-ivi] [PATCH] node-startup-controller: Fixing conf file while packaging
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,62 +40,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2013 08:17:54 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Jun 2013 10:06:40 -0000
 
-Hi,
+From: Sujith H <Sujith_Haridasan@mentor.com>
 
-On 04/06/13 08:41, Marcelo Valle wrote:
-> 1.
-> Fetcher failure for URL:
-> 'http://download.oracle.com/otn-pub/java/jdk/7u2-b13/jre-7u2-linux-x64.tar.gz'.
-> Checksum mismatch!
-> 
-> ...
->
-> To fix it i've update oracle-jse-jre-x86-64_1.7.0.bb
-> <http://oracle-jse-jre-x86-64_1.7.0.bb> with these checksum.
-> I build the image again and new error appears
-> 
-> --------------------------------------------
-> 
-> 2.
-> Function failed: Unpack failure for URL:
-> 'http://download.oracle.com/otn-pub/java/jdk/7u2-b13/jre-7u2-linux-x64.tar.gz'
-> 
-> Unpacking
-> /home/mvalle/Yocto2/poky-dylan-9.0.0/build/downloads/jre-7u2-linux-x64.tar.gz
-> gzip: stdin: not in gzip format
+Issue found while building foton-image when PACKAGE_CLASSES
+set to "package_ipk". This patch will fix the issue.
+This patch has to be applied to branch 4.0.
 
-This suggests that the original check sum failure is down to your
-original download being corrupted. You should not modify the chechsums,
-but rather run 'bitbake -c cleanall oracle-jse-jre-x86-64', and then
-rerun the build to fetch the tarball again. Or, since you already have
-the tarball, you can change the checksums back, run 'bitbake -c
-cleansstate oracle-jse-jre-x86-64', then rerun the build.
+Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
+---
+ .../node-startup-controller/node-startup-controller_1.0.2.bb           | 3 +++
+ .../node-startup-controller/node-startup-controller_git.bb             | 3 +++
+ 2 files changed, 6 insertions(+)
 
-(Your set up works because you manually replaced the tarball after the
-sums have been verified, but if someone else tries to build your
-modified recipe, it will fail on the checksums.).
-
-> -----------------------------------------------
-> But if I try to build my custom image and the build fails with these error:
-> 
-> Function failed: do_rootfs
-> 
-> | Computing transaction...error: Can't install
-> oracle-jse-jre-x86-64-1.7.0-r0@x86_64: no package provides
-> libXi.so.6()(64bit)
-
-
-libXi is provided by the libxi package, this should be added to the
-RDEPENDS for the jre package to get it pulled into the image (looking at
-the recipe there are probably other RDEPENDS missing there as well).
-
-Tomas
-
-
+diff --git a/recipes-extended/node-startup-controller/node-startup-controller_1.0.2.bb b/recipes-extended/node-startup-controller/node-startup-controller_1.0.2.bb
+index 470bb97..fd3e1c9 100644
+--- a/recipes-extended/node-startup-controller/node-startup-controller_1.0.2.bb
++++ b/recipes-extended/node-startup-controller/node-startup-controller_1.0.2.bb
+@@ -55,3 +55,6 @@ FILES_${PN}-nsm-dummy = "\
+ FILES_${PN}-nsm-dummy-dbg = "\
+     ${libdir}/${PN}-1/.debug/nsm-dummy \
+     "
++do_install_append() {
++    rm -f ${D}${sysconfdir}/dbus-1/system.d/org.genivi.NodeStateManager.conf
++}
+diff --git a/recipes-extended/node-startup-controller/node-startup-controller_git.bb b/recipes-extended/node-startup-controller/node-startup-controller_git.bb
+index 0d3b90c..2fec5da 100644
+--- a/recipes-extended/node-startup-controller/node-startup-controller_git.bb
++++ b/recipes-extended/node-startup-controller/node-startup-controller_git.bb
+@@ -51,3 +51,6 @@ FILES_${PN}-nsm-dummy = "\
+ FILES_${PN}-nsm-dummy-dbg = "\
+ 	${libdir}/${PN}-1/.debug/nsm-dummy \
+ 	"
++do_install_append() {
++    rm -f ${D}${sysconfdir}/dbus-1/system.d/org.genivi.NodeStateManager.conf
++}
 -- 
-http://sleepfive.com
+1.8.1.4
+
 
