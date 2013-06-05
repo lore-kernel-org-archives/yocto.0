@@ -1,36 +1,22 @@
-Return-Path: <Holger.Behrens@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AD89E01409
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 23:34:59 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r556YtRV017640
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 4 Jun 2013 23:34:55 -0700 (PDT)
-Received: from ALA-MBB.corp.ad.wrs.com ([169.254.1.61]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.02.0342.003;
-	Tue, 4 Jun 2013 23:34:54 -0700
-From: "Behrens, Holger" <Holger.Behrens@windriver.com>
-To: "Sarbu, Florin-Ionut (Florin)" <Florin.Sarbu@windriver.com>, sujith h
-	<sujith.h@gmail.com>
-Thread-Topic: [meta-ivi] [PATCH] node-startup-controller: Fixing conf file
-	while packaging
-Thread-Index: AQHOYQs5yA2Tqg1CukycH+p/54/XAZkly5GAgAAyxICAAAxkAIAAn/zQ
-Date: Wed, 5 Jun 2013 06:34:53 +0000
-Message-ID: <7A688B48FC95D148BFE83E098348BE503713A848@ALA-MBB.corp.ad.wrs.com>
-References: <1370340205-21395-1-git-send-email-sujith.h@gmail.com>
-	<CADyYWLne-vnFtPVpzxP0DYoWhzNkrCWX4ACx1+5FkqG7DPHGHA@mail.gmail.com>
-	<51ADE85D.5000908@windriver.com>
-	<CADyYWL=GGNHqV0y5F4_RVzfyqMsQN+tZmSit0=ArRQNjHDrkjQ@mail.gmail.com>
-In-Reply-To: <CADyYWL=GGNHqV0y5F4_RVzfyqMsQN+tZmSit0=ArRQNjHDrkjQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.224.204.222]
+Return-Path: <Sen.Zhang@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EABD8E01505
+	for <yocto@yoctoproject.org>; Wed,  5 Jun 2013 01:29:37 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r558TbHn004772
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 5 Jun 2013 01:29:37 -0700 (PDT)
+Received: from jesse-wrs-desktop.corp.ad.wrs.com (128.224.162.230) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.342.3; Wed, 5 Jun 2013 01:29:36 -0700
+From: Jesse Zhang <sen.zhang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 5 Jun 2013 16:32:00 +0800
+Message-ID: <cover.1370417284.git.sen.zhang@windriver.com>
+X-Mailer: git-send-email 1.7.11.7
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Sujith H <Sujith_Haridasan@mentor.com>
-Subject: Re: [meta-ivi] [PATCH] node-startup-controller: Fixing conf file while packaging
+Subject: [PATCH 0/1] dev-manual: fix instructions for enabling ptest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,87 +28,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jun 2013 06:34:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 05 Jun 2013 08:29:38 -0000
+Content-Type: text/plain
 
-SGksDQoNCj4gSGkgRmxvcmluLA0KPiANCj4gWW91IGFyZSByaWdodC4gVGhlIGVycm9yIEkgZ2V0
-IGlzOg0KPiANCj4gQ29uZmlndXJpbmcgbmV0YmFzZS4NCj4gQ29uZmlndXJpbmcgcHJvY3BzLg0K
-PiBDb25maWd1cmluZyBwYWNrYWdlZ3JvdXAtY29yZS1ib290LWdlbml2aS4NCj4gQ29uZmlndXJp
-bmcgdS1ib290LXNhYnJlLXNkLg0KPiBDb25maWd1cmluZyB1LWJvb3Qtc2FicmUtbGl0ZS4NCj4g
-Q29uZmlndXJpbmcgcnVuLXBvc3RpbnN0cy4NCj4gQ29uZmlndXJpbmcgdS1ib290LXNhYnJlLWFp
-cXVhZC4NCj4gQ29sbGVjdGVkIGVycm9yczoNCj4gICogY2hlY2tfZGF0YV9maWxlX2NsYXNoZXM6
-IFBhY2thZ2Ugbm9kZS1zdGF0ZS1tYW5hZ2VyIHdhbnRzIHRvIGluc3RhbGwgZmlsZQ0KPiAvaG9t
-ZS9zdWppdGgvTUVMNy9mb3Rvbi11cHN0cmVhbS9hdHAtYnVpbGQvdG1wL3dvcmsvbXg2cS1wb2t5
-LWxpbnV4LQ0KPiBnbnVlYWJpL2ZvdG9uLWltYWdlLzQuMC4wLXIwL3Jvb3Rmcy9ldGMvZGJ1cy0N
-Cj4gMS9zeXN0ZW0uZC9vcmcuZ2VuaXZpLk5vZGVTdGF0ZU1hbmFnZXIuY29uZg0KPiAgICAgICAg
-IEJ1dCB0aGF0IGZpbGUgaXMgYWxyZWFkeSBwcm92aWRlZCBieSBwYWNrYWdlICAqIG5vZGUtc3Rh
-cnR1cC1jb250cm9sbGVyDQo+ICAqIG9wa2dfaW5zdGFsbF9jbWQ6IENhbm5vdCBpbnN0YWxsIHBh
-Y2thZ2UgcGFja2FnZWdyb3VwLWNvcmUtcDIuDQo+IEVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IGRv
-X3Jvb3RmcyAoc2VlIC9ob21lL3N1aml0aC9NRUw3L2ZvdG9uLQ0KPiB1cHN0cmVhbS9hdHAtYnVp
-bGQvdG1wL3dvcmsvbXg2cS1wb2t5LWxpbnV4LWdudWVhYmkvZm90b24tDQo+IGltYWdlLzQuMC4w
-LXIwL3RlbXAvbG9nLmRvX3Jvb3Rmcy4xNDg5NCBmb3IgZnVydGhlciBpbmZvcm1hdGlvbikNCj4g
-DQo+IFRoaXMgaXMgb25lIHNvbHV0aW9uIHRoYXQgY2FtZSB0byBteSBtaW5kLg0KDQppbiBjYXNl
-cyB3ZSBoYXZlIGJvdGggdGhlIE5TQyAoUDEpIGFuZCB0aGUgTlNNIChQMikgaW4gYW4gaW1hZ2Us
-IHRoZSBOU01fZHVtbXkgd2hpY2ggaXMgcGFydCBvZiB0aGUgTlNDIHNob3VsZCBub3QgYmUgaW5z
-dGFsbGVkLg0KDQpSZWdhcmRzLA0KSG9sZ2VyDQoNCj4gVGhhbmtzLA0KPiBTdWppdGggSA0KPiAN
-Cj4gDQo+IA0KPiBPbiBUdWUsIEp1biA0LCAyMDEzIGF0IDY6NDUgUE0sIEZsb3JpbiBTYXJidSA8
-ZmxvcmluLnNhcmJ1QHdpbmRyaXZlci5jb20+DQo+IHdyb3RlOg0KPiANCj4gDQo+IAlIaSwNCj4g
-CXBsZWFzZSBwcm92aWRlIGEgbG9nIHdpdGggdGhlIGFjdHVhbCBlcnJvci4gVGhlIGF0dGFjaGVk
-IHBhdGNoIGRvZXMNCj4gbm90IGNvbnRhaW4gYSBzb2x1dGlvbiB0byB5b3VyIHByb2JsZW0gaW4g
-bXkgb3Bpbmlvbi4NCj4gDQo+IAlUaGFuayB5b3UsDQo+IAlGbG9yaW4NCj4gDQo+IA0KPiAJT24g
-MDYvMDQvMjAxMyAwMToxMyBQTSwgc3VqaXRoIGggd3JvdGU6DQo+IA0KPiANCj4gCQlIaSwNCj4g
-DQo+IAkJV2hlbiBwYWNrYWdlX2lwayBpcyB1c2VkLCB0aGVuIG9wa2cgZmFpbHMgdG8gaW5zdGFs
-bCBub2RlLQ0KPiBzdGF0ZS1tYW5hZ2VyDQo+IAkJZHVyaW5nIHRoZSBkb19yb290ZnMgcGhhc2Ug
-b2YgZm90b24taW1hZ2UuIEJ1dCB0aGlzIGJlaGF2aW9yDQo+IGlzIG5vdCBzZWVuDQo+IAkJd2hl
-biBycG0gaXMgdXNlZC4gb3BrZyBmYWlscyB0byBpbnN0YWxsIHdoZW4NCj4gb3JnLmdlbml2aS5O
-b2RlU3RhdGVNYW5hZ2VyLmNvbmYNCj4gCQlpcyB0aGVyZSBpbiBldGMvZGJ1cy0xL2RidXMtMS9z
-eXN0ZW0uZC8gZGlyZWN0b3J5IHByb3ZpZGVkDQo+IGJ5IG5vZGUtc3RhcnR1cC1jb250cm9sbGVy
-Lg0KPiAJCVdoZW4gcnBtIHBhY2thZ2luZyBpcyB1c2VkIHRoZW4gbm9kZS1zdGF0ZS1tYW5hZ2Vy
-J3MNCj4gb3JnLmdlbml2aS5Ob2RlU3RhdGVNYW5hZ2VyLmNvbmYNCj4gCQlpcyBmb3JjZWZ1bGx5
-IGluc3RhbGxlZC4NCj4gDQo+IAkJVGhhbmtzLA0KPiANCj4gCQlTdWppdGggSA0KPiANCj4gDQo+
-IAkJT24gVHVlLCBKdW4gNCwgMjAxMyBhdCAzOjMzIFBNLCBTdWppdGggSA0KPiA8c3VqaXRoLmhA
-Z21haWwuY29tPiB3cm90ZToNCj4gDQo+IA0KPiAJCQlGcm9tOiBTdWppdGggSCA8U3VqaXRoX0hh
-cmlkYXNhbkBtZW50b3IuY29tPg0KPiANCj4gCQkJSXNzdWUgZm91bmQgd2hpbGUgYnVpbGRpbmcg
-Zm90b24taW1hZ2Ugd2hlbg0KPiBQQUNLQUdFX0NMQVNTRVMNCj4gCQkJc2V0IHRvICJwYWNrYWdl
-X2lwayIuIFRoaXMgcGF0Y2ggd2lsbCBmaXggdGhlIGlzc3VlLg0KPiAJCQlUaGlzIHBhdGNoIGhh
-cyB0byBiZSBhcHBsaWVkIHRvIGJyYW5jaCA0LjAuDQo+IA0KPiAJCQlTaWduZWQtb2ZmLWJ5OiBT
-dWppdGggSA0KPiA8U3VqaXRoX0hhcmlkYXNhbkBtZW50b3IuY29tPg0KPiAJCQktLS0NCj4gCQkJ
-IC4uLi9ub2RlLXN0YXJ0dXAtY29udHJvbGxlci9ub2RlLXN0YXJ0dXAtDQo+IGNvbnRyb2xsZXJf
-MS4wLjIuYmIgICAgICAgICAgIHwgMyArKysNCj4gCQkJIC4uLi9ub2RlLXN0YXJ0dXAtY29udHJv
-bGxlci9ub2RlLXN0YXJ0dXAtDQo+IGNvbnRyb2xsZXJfZ2l0LmJiICAgICAgICAgICAgIHwgMyAr
-KysNCj4gCQkJIDIgZmlsZXMgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspDQo+IA0KPiAJCQlkaWZm
-IC0tZ2l0IGEvcmVjaXBlcy1leHRlbmRlZC9ub2RlLXN0YXJ0dXAtDQo+IGNvbnRyb2xsZXIvbm9k
-ZS1zdGFydHVwLWNvbnRyb2xsZXJfMS4wLjIuYmIgYi9yZWNpcGVzLWV4dGVuZGVkL25vZGUtDQo+
-IHN0YXJ0dXAtY29udHJvbGxlci9ub2RlLXN0YXJ0dXAtY29udHJvbGxlcl8xLjAuMi5iYg0KPiAJ
-CQlpbmRleCA0NzBiYjk3Li5mZDNlMWM5IDEwMDY0NA0KPiAJCQktLS0gYS9yZWNpcGVzLWV4dGVu
-ZGVkL25vZGUtc3RhcnR1cC0NCj4gY29udHJvbGxlci9ub2RlLXN0YXJ0dXAtY29udHJvbGxlcl8x
-LjAuMi5iYg0KPiAJCQkrKysgYi9yZWNpcGVzLWV4dGVuZGVkL25vZGUtc3RhcnR1cC0NCj4gY29u
-dHJvbGxlci9ub2RlLXN0YXJ0dXAtY29udHJvbGxlcl8xLjAuMi5iYg0KPiAJCQlAQCAtNTUsMyAr
-NTUsNiBAQCBGSUxFU18ke1BOfS1uc20tZHVtbXkgPSAiXA0KPiAJCQkgRklMRVNfJHtQTn0tbnNt
-LWR1bW15LWRiZyA9ICJcDQo+IAkJCSAgICAgJHtsaWJkaXJ9LyR7UE59LTEvLmRlYnVnL25zbS1k
-dW1teSBcDQo+IAkJCSAgICAgIg0KPiAJCQkrZG9faW5zdGFsbF9hcHBlbmQoKSB7DQo+IAkJCSsg
-ICAgcm0gLWYgJHtEfSR7c3lzY29uZmRpcn0vZGJ1cy0NCj4gMS9zeXN0ZW0uZC9vcmcuZ2VuaXZp
-Lk5vZGVTdGF0ZU1hbmFnZXIuY29uZg0KPiAJCQkrfQ0KPiAJCQlkaWZmIC0tZ2l0IGEvcmVjaXBl
-cy1leHRlbmRlZC9ub2RlLXN0YXJ0dXAtDQo+IGNvbnRyb2xsZXIvbm9kZS1zdGFydHVwLWNvbnRy
-b2xsZXJfZ2l0LmJiIGIvcmVjaXBlcy1leHRlbmRlZC9ub2RlLQ0KPiBzdGFydHVwLWNvbnRyb2xs
-ZXIvbm9kZS1zdGFydHVwLWNvbnRyb2xsZXJfZ2l0LmJiDQo+IAkJCWluZGV4IDBkM2I5MGMuLjJm
-ZWM1ZGEgMTAwNjQ0DQo+IAkJCS0tLSBhL3JlY2lwZXMtZXh0ZW5kZWQvbm9kZS1zdGFydHVwLQ0K
-PiBjb250cm9sbGVyL25vZGUtc3RhcnR1cC1jb250cm9sbGVyX2dpdC5iYg0KPiAJCQkrKysgYi9y
-ZWNpcGVzLWV4dGVuZGVkL25vZGUtc3RhcnR1cC0NCj4gY29udHJvbGxlci9ub2RlLXN0YXJ0dXAt
-Y29udHJvbGxlcl9naXQuYmINCj4gCQkJQEAgLTUxLDMgKzUxLDYgQEAgRklMRVNfJHtQTn0tbnNt
-LWR1bW15ID0gIlwNCj4gCQkJIEZJTEVTXyR7UE59LW5zbS1kdW1teS1kYmcgPSAiXA0KPiAJCQkg
-ICAgICAgICR7bGliZGlyfS8ke1BOfS0xLy5kZWJ1Zy9uc20tZHVtbXkgXA0KPiAJCQkgICAgICAg
-ICINCj4gCQkJK2RvX2luc3RhbGxfYXBwZW5kKCkgew0KPiAJCQkrICAgIHJtIC1mICR7RH0ke3N5
-c2NvbmZkaXJ9L2RidXMtDQo+IDEvc3lzdGVtLmQvb3JnLmdlbml2aS5Ob2RlU3RhdGVNYW5hZ2Vy
-LmNvbmYNCj4gCQkJK30NCj4gCQkJLS0NCj4gCQkJMS44LjEuNA0KPiANCj4gDQo+IA0KPiANCj4g
-DQo+IA0KPiAJCS0tDQo+IAkJ4LS44LWB4LSc4LS/4LSk4LWNIOC0ueC0sOC0v+C0puC0vuC0uOC0
-qOC1jQ0KPiAJCUJhbmdhbG9yZQ0KPiAJCTxQcm9qZWN0PkNvbnRyaWJ1dG9yIHRvIEtERSBwcm9q
-ZWN0DQo+IAkJaHR0cDovL2ZjaS53aWtpYS5jb20vd2lraS9BbnRpLURSTS1DYW1wYWlnbg0KPiAJ
-CTxCbG9nPiBodHRwOi8vc3VqaXRoaC5pbmZvDQo+IA0KPiANCj4gDQo+IA0KPiANCj4gDQo+IC0t
-DQo+IOC0uOC1geC0nOC0v+C0pOC1jSDgtLngtLDgtL/gtKbgtL7gtLjgtKjgtY0NCj4gQmFuZ2Fs
-b3JlDQo+IDxQcm9qZWN0PkNvbnRyaWJ1dG9yIHRvIEtERSBwcm9qZWN0DQo+IGh0dHA6Ly9mY2ku
-d2lraWEuY29tL3dpa2kvQW50aS1EUk0tQ2FtcGFpZ24NCj4gPEJsb2c+IGh0dHA6Ly9zdWppdGho
-LmluZm8NCg0K
+(Resent from the poky list)
+
+The following changes since commit a62aed41f2d8f874f7ae24d0e5be5dbc66ea2199:
+
+  lrzsz: check locale.h in configure (2013-06-04 15:55:46 +0100)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib szhang/doc
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=szhang/doc
+
+Jesse Zhang (1):
+  dev-manual: fix instructions for enabling ptest
+
+ documentation/dev-manual/dev-manual-common-tasks.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+1.7.11.7
+
 
