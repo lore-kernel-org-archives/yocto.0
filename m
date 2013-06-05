@@ -1,35 +1,19 @@
-Return-Path: <jon.szymaniak@gmail.com>
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AE41E006C2
-	for <yocto@yoctoproject.org>; Wed,  5 Jun 2013 09:31:31 -0700 (PDT)
-Received: by mail-wi0-f170.google.com with SMTP id ey16so453812wid.1
-	for <yocto@yoctoproject.org>; Wed, 05 Jun 2013 09:31:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=+m5F47Kd9ou6rwnr+kAiwtFxfAgK8VuJU43UUFRLF2g=;
-	b=SjvfSsnwI8RX5I5RsGqAQgbwIicsFNK78wcp1h1QHDT5M5xqy+1s6Hmbrm2+BIxtKg
-	3CmKfBPNPX5akfTZ9NKMBRxZ0LzEw9UcX4GsjnbO2e6tez0TBxlp0E6FZdGekS7pMi2R
-	352cKkCui+1sospyIoDLwbvBgnq4433wjVTgenVj9L8IFSqiQ0jtmir/VckLJfEVkTX9
-	pihFPRtRtqVcssCApX5ZL/yn0lfkDFIWClLAI1c4gX507Tpwa3WHE+Sv511Jcgv28amQ
-	a54OdXDCe/dZVJEy/UfMn8jV7NwWCKDAokr5jsdVgl5c2qj3F+NRrIMI/8+h1n9Anij6
-	NP/A==
-X-Received: by 10.180.105.231 with SMTP id gp7mr7501085wib.23.1370449890314;
-	Wed, 05 Jun 2013 09:31:30 -0700 (PDT)
-MIME-Version: 1.0
-Sender: jon.szymaniak@gmail.com
-Received: by 10.194.57.163 with HTTP; Wed, 5 Jun 2013 09:31:06 -0700 (PDT)
-In-Reply-To: <2988518.NeGldAHcyY@helios>
-References: <CANge7vVxHxnAOwxRbFvhYSkuKJ3DqAMHbLRL+LQ_y__PyXL2Fw@mail.gmail.com>
-	<2988518.NeGldAHcyY@helios>
-From: Jon Szymaniak <jon.szymaniak+gpg@gmail.com>
-Date: Wed, 5 Jun 2013 12:31:06 -0400
-X-Google-Sender-Auth: ha2sQUHM7D52CrJbov6VhC5YT6Q
-Message-ID: <CANge7vWcitmDEap9gi7YuhfL+u_XyudXz8SavKHqQmutwtuDsA@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Correctly setting a package-specific RDEPENDS
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28A19E006C2
+	for <yocto@yoctoproject.org>; Wed,  5 Jun 2013 10:22:25 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 05 Jun 2013 10:22:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,808,1363158000"; d="scan'208";a="348629208"
+Received: from ideapad.rb.intel.com ([10.237.105.63])
+	by fmsmga002.fm.intel.com with ESMTP; 05 Jun 2013 10:22:23 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed,  5 Jun 2013 20:00:01 +0300
+Message-Id: <1370451622-10619-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [RFC refactor 00/21] Merging windows-build with master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,67 +25,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jun 2013 16:31:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 05 Jun 2013 17:22:25 -0000
 
-> On Wednesday 05 June 2013 10:53:23 Jon Szymaniak wrote:
->> I recently upgraded to the Dylan (9.0.0) release and am looking to
->> clean up some QA issues associated with my RDEPENDS variables not
->> being package-specific.
->>
->> I'm a bit confused by a couple lines in the manual [1]:
->>
->> "The names of the variables you list with RDEPENDS must be the names
->> of other packages as listed in the PACKAGES variable. You should not
->> list recipe names (PN)."
->
-> I think the mention of PN here is confusing. It's trying to explain that you
-> should use package names and not recipe names, but perhaps the wording needs
-> to be improved.
->
->> It makes sense to me that you'd want to set the run-time deps on a
->> per-package basis to avoid creating false-dependencies. However, I'm
->> unsure as to how can simply not write RDEPENDS_${PN} in some cases.
->> Furthermore, I feel like I'm not quite understanding what the
->> consequences of using RDEPENDS_${PN} are.
->>
->> Here's an example of what I'm trying to do -- perhaps someone will
->> catch where I'm getting confused and offer some insight?
->>
->> Let's say I have a program_a.bb and a program_b.bb. Both are simple
->> recipes that compile and install ${D}/usr/bin/program_a and
->> ${D}/usr/bin/program_b.
->>
->> Because program_a forks and execs program_b, but otherwise does not
->> depend upon it to compile, I thought I should place RDEPENDS_${PN} =
->> "program_b " in program_a.bb.  However, this seems to violate the
->> aforementioned snippet from the manual.
->
-> That is the expected usage; I guess the manual has confused you. All the QA
-> warning is saying is you should do this:
->
-> RDEPENDS_${PN} = "somepackage"
->
-> and _not_ this:
->
-> RDEPENDS = "somepackage"
->
-> (The reason being, the latter would add a runtime dependency on "somepackage"
-> to every package in the recipe's PACKAGES, which is almost never the desired
-> result.)
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
+- 3rd batch of refactoring & merging windows-build with master
+- applies on top of the second batch of 8 patches
+- still one more class to refactor(OptionsPage)
 
+Ioana Grigoropol (21):
+  Fix ShellSession execute
+  Remove shell type from ShellSession constructor
+  Use / as separator  instead of OS separator
+  Remove unsed methods & inner classes from ShellSession
+  Save active connection for Bitbake recipe
+  Initialize and store the connection on Recipe Wizard
+  Store connection for recipe in Recipe Wizard Page
+  Refactor Wizard Page fields to have consistent names
+  Refactor populate method name
+  Break handlePopulate into remote and local functions
+  Use uri instead of string to determine location of recipe & determine
+    archive type
+  Store metadata location as URI instead of String
+  Refactor Recipe Wizard Page to use Remote target Api
+  Run all Recipe task in wizard container
+  Enable Populate button when src URI changes
+  Store reference to OptionsPage in InstallWizard
+  Collect Bitbake error lines
+  Refactor Bitbake wizard to use RemoteHelper API
+  Retrieve console from RemoteHelper instead of recreating it
+  Remove LongRunningTask,ICalculatePercentage from InstallWizard
+  Create separated class for ConsoleWriter
 
-Hi Paul,
+ plugins/org.yocto.bc.ui/META-INF/MANIFEST.MF       |    4 +-
+ .../src/org/yocto/bc/bitbake/BBSession.java        |   10 +
+ .../src/org/yocto/bc/bitbake/ShellSession.java     |  138 ++---
+ .../org/yocto/bc/remote/utils/ConsoleWriter.java   |   36 ++
+ .../bc/remote/utils/YoctoRunnableWithProgress.java |  211 ++++++++
+ .../src/org/yocto/bc/ui/Activator.java             |    2 +-
+ .../bc/ui/editors/bitbake/BitBakeFileEditor.java   |    1 +
+ .../bc/ui/wizards/BitbakeRecipeUIElement.java      |   15 +-
+ .../bc/ui/wizards/NewBitBakeFileRecipeWizard.java  |   41 +-
+ .../ui/wizards/NewBitBakeFileRecipeWizardPage.java |  528 +++++++++++---------
+ .../yocto/bc/ui/wizards/install/InstallWizard.java |  275 +++-------
+ .../BBConfigurationInitializeOperation.java        |   23 +-
+ 12 files changed, 710 insertions(+), 574 deletions(-)
+ create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/ConsoleWriter.java
+ create mode 100644 plugins/org.yocto.bc.ui/src/org/yocto/bc/remote/utils/YoctoRunnableWithProgress.java
 
-That clarifies things greatly. Many thanks!
+-- 
+1.7.9.5
 
-- Jon
 
