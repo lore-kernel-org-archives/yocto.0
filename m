@@ -1,31 +1,31 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04F81E01409
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 17:48:11 -0700 (PDT)
-Received: by mail-vc0-f179.google.com with SMTP id hz10so727385vcb.10
-	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 17:48:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=DmCsrgWM48b1icyGUiAHdGSJwAR6jByufTxSkluWtUc=;
-	b=CFux9kz9S3jO05FhhN+KLW0MG4Vp3laBlPsMKsZtLLFozXNqjPStuTqbQJKKncKQLQ
-	qibIqoo+MzsDBWCxRWtAb9+x8CmERJDtnd9aYKK7lxBd1f+ANTrG3FrIoTCBNAIt+9F9
-	vYNuhifr8QQ5g1Wqk0CxMFPsdQCaQXKHXES3GyfI07bATWYLfmNhCkSYkSPlFXxBFPA0
-	gDda0aw5UbljVhs9hMOEsYo6WkPIEEIZhbd/8gjk+V2KpmNA0jGMzmfV7ntjQ/zqxU9S
-	R12rufDnUpDQhgSGbJs8CTeJ+SXsuwW7MFkGk1OFlkK1EOAHDsja2VQ+YtIsa3GLRJMv
-	1ATA==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AA8EE01409
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 22:36:44 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 04 Jun 2013 22:37:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,804,1363158000"; d="scan'208";a="348318102"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga002.fm.intel.com with ESMTP; 04 Jun 2013 22:36:43 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.64]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.91]) with mapi id
+	14.03.0123.003; Tue, 4 Jun 2013 22:36:43 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [RFC] Change in milestone branching.
+Thread-Index: AQHOYYN2ThwdiTtrTUu3/DI8BT+afJkmmitQ
+Date: Wed, 5 Jun 2013 05:36:41 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF47682@ORSMSX101.amr.corp.intel.com>
+References: <CAPhnLPBjbPh=W7+PFgtxQR8Agu_YbYPqhehCi4zrBR776qi7pw@mail.gmail.com>
+In-Reply-To: <CAPhnLPBjbPh=W7+PFgtxQR8Agu_YbYPqhehCi4zrBR776qi7pw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.52.97.37 with SMTP id dx5mr16421164vdb.23.1370393291212;
-	Tue, 04 Jun 2013 17:48:11 -0700 (PDT)
-Received: by 10.52.114.170 with HTTP; Tue, 4 Jun 2013 17:48:11 -0700 (PDT)
-Date: Tue, 4 Jun 2013 17:48:11 -0700
-Message-ID: <CAPhnLPD8jGosiRuwqt17qXSFH3Tii1ifyFbO-wmDGXvoyPY-pw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQkmlLzbxTgPq+89ZjnZ5lR7N94n/P7Kex6vvUCbob22Oq91sczDK/3TuX2ugt4sgcbZpgcU
-Subject: 1.5_M1.rc1 availability
+Subject: Re: [RFC] Change in milestone branching.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,27 +37,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jun 2013 00:48:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 05 Jun 2013 05:36:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-1.5_M1.rc1 will be available soon at:
+Good in my opinion.
 
-http://autobuilder.yoctoproject.org/pub/nightly/20130604-5
+Scott R.
 
-poky                 a62aed41f2d8f874f7ae24d0e5be5dbc66ea2199
-meta-fsl-arm    be6317c244c61a62b952bbf9b5b706c239f49a78
-meta-fsl-ppc    52b906c448f275719f241c634fe6e412e917b67a
-meta-intel        24d63bd57269f3142c57c2d697c56101f73b23dc	
-meta-minnow  0d428f867ffdf83dd35803c7318180751ddb096f
-meta-qt3         4c27cce6688aa39852f3cba5e7b80ec279019605	
-eclipse-poky    Not known yet
-
-Please begin QA as soon as possible. Thanks!
-
--b
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Flanagan, Elizabeth
+>Sent: Tuesday, June 04, 2013 5:27 PM
+>To: yocto@yoctoproject.org
+>Subject: [yocto] [RFC] Change in milestone branching.
+>
+>All.
+>
+>Now that the autobuilder is able to do mix and match branching
+>(everything doesn't need to be the same), does anyone foresee any
+>issues with doing away with future poky milestone branches and just
+>utilize tags? This should make maintainers jobs a bit easier in that
+>they now do not need to maintain/stabilize multiple branches and it
+>should help a bit with master stability. We will of course continue to
+>do the final release branch but would no longer need the 1.5_M1
+>branches.
+>
+>Objections? Thoughts? My plan is that if maintainers would like to see
+>this, to do it for the 1.5 M1 milestone.
+>
+>-b
+>
+>--
+>Elizabeth Flanagan
+>Yocto Project
+>Build and Release
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
