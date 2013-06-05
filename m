@@ -1,36 +1,33 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
-	[74.125.82.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73B87E01409
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 23:06:14 -0700 (PDT)
-Received: by mail-we0-f174.google.com with SMTP id q58so928063wes.5
-	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 23:06:12 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-qe0-f54.google.com (mail-qe0-f54.google.com
+	[209.85.128.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45C79E014F8
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2013 23:08:51 -0700 (PDT)
+Received: by mail-qe0-f54.google.com with SMTP id ne12so792522qeb.41
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2013 23:08:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=nDSdDUyaaH5FNj+LWbGyyc59NQjXfH48ehyuWIcnTu8=;
-	b=Xl88rEv9EXBgewOVa7LO3uS4aWRftqAhcYkuRLIEP9FJRU23g1O9epUzVVFOjVgURZ
-	/c8IDdGZm4Yze+3/QIa5AFUOBhKR3sZP2FKbXLRaa6BiXP0mL26JOqnLg2/FnecAqJG2
-	/otKS9Zw/91FsBk5OEKDSJ9tCJ10VEbJqt6WftepQurXTGPx4BvaZ9BZwSYKiX6UVGzu
-	dLNnh+UpKpzyxI4wzxEXBrIOOGR5/nvWHzxuNzLspKVP8k4qZjzQIWyVIuI/EpSrPCeD
-	mMB/BuYJ1L8EMIx4EMcdETzlZuEZI0ssnSU/Qz0z9rNszuIRRzARWNRBFfPBpgEmQzXE
-	c8ZQ==
-X-Received: by 10.194.249.69 with SMTP id ys5mr19999240wjc.39.1370412372787;
-	Tue, 04 Jun 2013 23:06:12 -0700 (PDT)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type:x-gm-message-state;
+	bh=Vc+zZc5L8u9zhF4TB9b2cprVfFEIbtj16rBo2LDi4uU=;
+	b=RL8i23rFwC1YSsP/dNZZhQKo6BcakJFai2LYURpxfkSmnTkQpJ25TdSX8yuPCRBUgv
+	tUJQ1a9YovW2ZAgNhO6CX/7Mdr3iFqEoGQT9oWPSpvgaPVNjmWI/JvvoZmi1arw2eOAL
+	qwl4TJx+/zYB+SkWmR5nEhXs3ESnK26Rw41l3eaKcwbadFMP3dAhzozpvJ2qZSBzHt6D
+	tecZCzjlbJDgynpt36H1ipP+AcbaFA77JCxIF89zlHMg54/HDwEE4eV6F8WOWgHRKUj9
+	vY+NyBZS07kSGZR1ezpINFR3qJN8eNJOQ1mIlMhyqGXgHQE8Kp1RQdrd/5J0XEeW3ATG
+	P+vw==
 MIME-Version: 1.0
-Received: by 10.180.165.6 with HTTP; Tue, 4 Jun 2013 23:05:52 -0700 (PDT)
-In-Reply-To: <CAMUsWmD6F_qEm95q5y92xuP5yg3sNeBm+6GnaMQGOge3CmP8xw@mail.gmail.com>
-References: <CANwz6nzC4O8bN92q2YCCLtmGKK1S9LwYPLyWR0VZZBY+EiAUtg@mail.gmail.com>
-	<CAMUsWmD6F_qEm95q5y92xuP5yg3sNeBm+6GnaMQGOge3CmP8xw@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 5 Jun 2013 08:05:52 +0200
-Message-ID: <CAP71Wjx=WoR6MAgGpU+nVAGt2Grnk1Y88qOepDjUeyKeX027Ug@mail.gmail.com>
-To: Akshay Sahota <akki.sahota@gmail.com>
-X-Gm-Message-State: ALoCoQn7wdKF19cB2A+BNeu1Pben4LyceqFG47ugzC3ED0lRbHJDaBoqjtNFPo5sAhxZhkZQR2wp
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Edward Vidal <vidal.develone@gmail.com>
-Subject: Re: yocto with meta-ti
+X-Received: by 10.229.32.66 with SMTP id b2mr6068447qcd.74.1370412530312; Tue,
+	04 Jun 2013 23:08:50 -0700 (PDT)
+Received: by 10.49.64.161 with HTTP; Tue, 4 Jun 2013 23:08:50 -0700 (PDT)
+In-Reply-To: <CAPhnLPD8jGosiRuwqt17qXSFH3Tii1ifyFbO-wmDGXvoyPY-pw@mail.gmail.com>
+References: <CAPhnLPD8jGosiRuwqt17qXSFH3Tii1ifyFbO-wmDGXvoyPY-pw@mail.gmail.com>
+Date: Tue, 4 Jun 2013 23:08:50 -0700
+Message-ID: <CAPhnLPD5Nw8hX=gZDZD4_t-AMeBVO8LPeXNOzYZ-euNVx=W9=w@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQmvWEjqQrJZDt9zvaIeoO4bx40Tzo9PylrCOmy8O4iH6Ee8nrifV4LJJ7bu9nXRNcW/jE6/
+Subject: Re: 1.5_M1.rc1 availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,137 +39,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jun 2013 06:06:14 -0000
-Content-Type: multipart/alternative; boundary=001a11c28308ad197f04de61fee5
-
---001a11c28308ad197f04de61fee5
+X-List-Received-Date: Wed, 05 Jun 2013 06:08:51 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Jun 5, 2013 at 7:55 AM, Akshay Sahota <akki.sahota@gmail.com> wrote:
+We have the git hash for:
+eclipse-poky 	0b2dc574b1b08eab2102b37f3b64ab7bd70d9595
 
-> *
-> BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/"
->  #BBMASK = "meta-ti/recipes-misc meta-oe/recipes-graphics"
-> #BBMASK = "meta-oe/recipes-devtools"
-> #BBMASK = "meta-oe/recipes-graphics"
-> #
-> # Parallelism Options*...
+Things are taking a bit longer because this build was done with a clean sstate.
+
+-b
+
+On Tue, Jun 4, 2013 at 5:48 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> 1.5_M1.rc1 will be available soon at:
 >
+> http://autobuilder.yoctoproject.org/pub/nightly/20130604-5
 >
-> and bblayers.conf
+> poky                 a62aed41f2d8f874f7ae24d0e5be5dbc66ea2199
+> meta-fsl-arm    be6317c244c61a62b952bbf9b5b706c239f49a78
+> meta-fsl-ppc    52b906c448f275719f241c634fe6e412e917b67a
+> meta-intel        24d63bd57269f3142c57c2d697c56101f73b23dc
+> meta-minnow  0d428f867ffdf83dd35803c7318180751ddb096f
+> meta-qt3         4c27cce6688aa39852f3cba5e7b80ec279019605
+> eclipse-poky    Not known yet
 >
-> *BBLAYERS ?= " \
->   /home/asahota/poky-try/poky/meta \
->   /home/asahota/poky-try/poky/meta-yocto \
->   /home/asahota/poky-try/poky/meta-yocto-bsp \
->   /home/asahota/poky-try/poky/meta-ti \
->   /home/asahota/poky-try/poky/meta-openembedded/meta-oe \
->   "
-> *
+> Please begin QA as soon as possible. Thanks!
 >
-
-i suspect you are using wrong combination of branch/version, but you don't
-give what branch/version you are using, not cannot confirm.
-
-
-> *
-> BBLAYERS_NON_REMOVABLE ?= " \
->   /home/asahota/poky-try/poky/meta \
->   /home/asahota/poky-try/poky/meta-yocto \
->   "*
+> -b
 >
-> and the output is :
-> *$ bitbake -k core-image-minimal
-> Pseudo is not present but is required, building this first before the main
-> build
-> WARNING: Host distribution "Ubuntu 12.04.2 LTS" has not been validated
-> with this version of the build system; you may possibly experience
-> unexpected failures. It is recommended that you use a tested distribution.
-> ERROR: ParseError at
-> /home/asahota/poky-try/poky/meta-openembedded/meta-oe/recipes-devtools/cloud9/
-> cloud9_0.6.bb:11: Could not inherit file classes/systemd.bbclass
-> *
->
-
-systemd.bbclass was introduced in 'dylan' version of Yocto (aka 1.4). are
-you sure this is what you are using? to be it sounds like you are using
-Yocto/danny with meta-ti and meta-oe 'master' branch (or dylan branch).
+> --
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
 
 
-*ERROR: Command execution failed: Exited with 1
->
-> Summary: There was 1 WARNING message shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-> *
-> What is the mistake, sounds too silly.!
 
---001a11c28308ad197f04de61fee5
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Jun 5, 2013 at 7:55 AM, Akshay Sahota <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:akki.sahota@gmail.com" target=3D"_blank">akki.sahota@gmail.com</=
-a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div><div><div><i><div class=3D"im">BBMASK ?=3D &quot;.*/m=
-eta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/&quot;<br>
-
-</div>
-#BBMASK =3D &quot;meta-ti/recipes-misc meta-oe/recipes-graphics&quot;<br>#B=
-BMASK =3D &quot;meta-oe/recipes-devtools&quot;<br>#BBMASK =3D &quot;meta-oe=
-/recipes-graphics&quot;<br>#<br># Parallelism Options</i>...<br><br><br></d=
-iv>
-
-
-and bblayers.conf<br><br><i>BBLAYERS ?=3D &quot; \<br>=A0 /home/asahota/pok=
-y-try/poky/meta \<br>=A0 /home/asahota/poky-try/poky/meta-yocto \<br>=A0 /h=
-ome/asahota/poky-try/poky/meta-yocto-bsp \<br>=A0 /home/asahota/poky-try/po=
-ky/meta-ti \<br>
-
-
-=A0 /home/asahota/poky-try/poky/meta-openembedded/meta-oe \<br>=A0 &quot;<b=
-r></i></div></div></blockquote><div><br></div><div class=3D"gmail_extra">i =
-suspect you are using wrong combination of branch/version, but you don&#39;=
-t give what branch/version you are using, not cannot confirm.</div>
-
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
--style:solid;padding-left:1ex"><div><div><i><br>BBLAYERS_NON_REMOVABLE ?=3D=
- &quot; \<br>
-
-=A0 /home/asahota/poky-try/poky/meta \<br>=A0 /home/asahota/poky-try/poky/m=
-eta-yocto \<br>=A0 &quot;</i><br><br>
-</div>and the output is :<br><i>$ bitbake -k core-image-minimal<br>Pseudo i=
-s not present but is required, building this first before the main build<br=
->WARNING: Host distribution &quot;Ubuntu 12.04.2 LTS&quot; has not been val=
-idated with this version of the build system; you may possibly experience u=
-nexpected failures. It is recommended that you use a tested distribution.<b=
-r>
-
-
-ERROR: ParseError at /home/asahota/poky-try/poky/meta-openembedded/meta-oe/=
-recipes-devtools/cloud9/<a href=3D"http://cloud9_0.6.bb:11" target=3D"_blan=
-k">cloud9_0.6.bb:11</a>: Could not inherit file classes/systemd.bbclass<br>
-
-</i></div></blockquote><div>=A0</div><div style>systemd.bbclass was introdu=
-ced in &#39;dylan&#39; version of Yocto (aka 1.4). are you sure this is wha=
-t you are using? to be it sounds like you are using Yocto/danny with meta-t=
-i and meta-oe &#39;master&#39; branch (or dylan branch).=A0</div>
-
-<div style><br></div><div style><br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:=
-rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div><i>ERROR: C=
-ommand execution failed: Exited with 1<br>
-
-
-<br>Summary: There was 1 WARNING message shown.<br>Summary: There were 2 ER=
-ROR messages shown, returning a non-zero exit code.<br></i><br></div>What i=
-s the mistake, sounds too silly.!</blockquote></div><br></div><div class=3D=
-"gmail_extra">
-
-<br></div></div>
-
---001a11c28308ad197f04de61fee5--
