@@ -1,51 +1,22 @@
-Return-Path: <B19537@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe006.messaging.microsoft.com [216.32.180.189])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84A9BE0155A
-	for <yocto@yoctoproject.org>; Wed,  5 Jun 2013 23:48:46 -0700 (PDT)
-Received: from mail42-co1-R.bigfish.com (10.243.78.234) by
-	CO1EHSOBE036.bigfish.com (10.243.66.101) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 6 Jun 2013 06:48:45 +0000
-Received: from mail42-co1 (localhost [127.0.0.1])	by mail42-co1-R.bigfish.com
-	(Postfix) with ESMTP id 08AE29000D1	for <yocto@yoctoproject.org>;
-	Thu,  6 Jun 2013 06:48:45 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 1
-X-BigFish: VS1(zzda00hdc73hzz1f42h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ah1fc6hzzz2dh2a8h668h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e1dhbe9i1155h)
-Received: from mail42-co1 (localhost.localdomain [127.0.0.1]) by mail42-co1
-	(MessageSwitch) id 1370501323183800_14560;
-	Thu,  6 Jun 2013 06:48:43 +0000 (UTC)
-Received: from CO1EHSMHS016.bigfish.com (unknown [10.243.78.251])	by
-	mail42-co1.bigfish.com (Postfix) with ESMTP id 20E3848004D	for
-	<yocto@yoctoproject.org>; Thu,  6 Jun 2013 06:48:43 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS016.bigfish.com
-	(10.243.66.26) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Thu, 6 Jun 2013 06:48:42 +0000
-Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.137]) by
-	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.02.0328.011;
-	Thu, 6 Jun 2013 06:49:58 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Can Yocto run on host with other CPU types
-Thread-Index: Ac5igd9+xX5mFZ2JT6aEWilowWIgcQ==
-Date: Thu, 6 Jun 2013 06:48:15 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A0157EC80@039-SN2MPN1-021.039d.mgd.msft.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-cr-hashedpuzzle: dHg= AaGq AlkH A2Z8 BrSb EJFC FFhG FV5u GVAn Hohk IMIo
-	IN76 IYyh JruF J5xR
-	K+Vm; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
-	Sosha1_v1; 7; {1FA3F682-DC56-47BA-99EE-A0563690D3F6};
-	YgAxADkANQAzADcAQABmAHIAZQBlAHMAYwBhAGwAZQAuAGMAbwBtAA==; Thu,
-	06 Jun 2013 06:48:38 GMT;
-	QwBhAG4AIABZAG8AYwB0AG8AIAByAHUAbgAgAG8AbgAgAGgAbwBzAHQAIAB3AGkAdABoACAAbwB0AGgAZQByACAAQwBQAFUAIAB0AHkAcABlAHMA
-x-cr-puzzleid: {1FA3F682-DC56-47BA-99EE-A0563690D3F6}
-x-originating-ip: [10.192.208.134]
+Return-Path: <Sen.Zhang@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48897E01560
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2013 00:22:29 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r567MSCX020030
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 6 Jun 2013 00:22:29 -0700 (PDT)
+Received: from jesse-wrs-desktop.corp.ad.wrs.com (128.224.162.230) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.2.342.3; Thu, 6 Jun 2013 00:22:28 -0700
+From: Jesse Zhang <sen.zhang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 6 Jun 2013 15:24:50 +0800
+Message-ID: <cover.1370503045.git.sen.zhang@windriver.com>
+X-Mailer: git-send-email 1.7.11.7
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: Can Yocto run on host with other CPU types
+Subject: [PATCH 0/1] fix assignments of BB_ENV_EXTRAWHITE variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,19 +28,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jun 2013 06:48:46 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 06 Jun 2013 07:22:29 -0000
+Content-Type: text/plain
 
-Hi,=20
+This is applicable to oe-core as well. But oe-core misses a commit:
 
-Except x86/x86-64 hosts, can Yocto support to run on hosts with other CPU a=
-rch, e.g.  ARM, Powerpc, etc?
+    commit 54728735d67b567cdb067f793490ad15c448c828
+    Author: Darren Hart <dvhart@linux.intel.com>
+    Date:   Fri Feb 8 14:27:23 2013 -0800
 
+        meta-yocto: Document new oe-git-proxy in site.conf.sample
 
-Best Regards,
+It should be applied before this one.
 
-Zhenhua
+jesse
+
+The following changes since commit a62aed41f2d8f874f7ae24d0e5be5dbc66ea2199:
+
+  lrzsz: check locale.h in configure (2013-06-04 15:55:46 +0100)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib szhang/white
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=szhang/white
+
+Jesse Zhang (1):
+  local.conf.sample: use ?= to assign BB_ENV_EXTRAWHITE variables
+
+ meta-yocto/conf/local.conf.sample          | 4 ++--
+ meta-yocto/conf/local.conf.sample.extended | 2 +-
+ meta-yocto/conf/site.conf.sample           | 6 +++---
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+-- 
+1.7.11.7
 
 
