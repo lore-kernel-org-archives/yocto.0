@@ -1,51 +1,34 @@
-Return-Path: <pkonopel@visteon.com>
-Received: from db9outboundpool.messaging.microsoft.com
-	(mail-db9lp0251.outbound.messaging.microsoft.com [213.199.154.251])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3242BE0156A
-	for <yocto@yoctoproject.org>; Thu,  6 Jun 2013 06:32:54 -0700 (PDT)
-Received: from mail107-db9-R.bigfish.com (10.174.16.243) by
-	DB9EHSOBE002.bigfish.com (10.174.14.65) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 6 Jun 2013 13:32:53 +0000
-Received: from mail107-db9 (localhost [127.0.0.1])	by
-	mail107-db9-R.bigfish.com (Postfix) with ESMTP id 3FEF33E0091;
-	Thu,  6 Jun 2013 13:32:53 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:157.56.250.101; KIP:(null); UIP:(null);
-	IPV:NLI; H:AMXPRD0611HT002.eurprd06.prod.outlook.com; RD:none;
-	EFVD:NLI
-X-SpamScore: -1
-X-BigFish: PS-1(zzc89bh1432Izz1f42h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ah1fc6hzz8275bh8275dhz2fh2a8h668h839h947hd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h19ceh1ad9h1b0ah1d07h1d0ch1d2eh1d3fh1dc1h1de9h1dfeh1dffh1e1dh1155h)
-Received-SPF: pass (mail107-db9: domain of visteon.com designates
-	157.56.250.101 as permitted sender) client-ip=157.56.250.101;
-	envelope-from=pkonopel@visteon.com;
-	helo=AMXPRD0611HT002.eurprd06.prod.outlook.com ; .outlook.com ; 
-Received: from mail107-db9 (localhost.localdomain [127.0.0.1]) by mail107-db9
-	(MessageSwitch) id 1370525571193471_26982;
-	Thu,  6 Jun 2013 13:32:51 +0000 (UTC)
-Received: from DB9EHSMHS017.bigfish.com (unknown [10.174.16.236])	by
-	mail107-db9.bigfish.com (Postfix) with ESMTP id 2A68D2E004B;
-	Thu,  6 Jun 2013 13:32:51 +0000 (UTC)
-Received: from AMXPRD0611HT002.eurprd06.prod.outlook.com (157.56.250.101) by
-	DB9EHSMHS017.bigfish.com (10.174.14.27) with Microsoft SMTP Server
-	(TLS) id 14.16.227.3; Thu, 6 Jun 2013 13:32:50 +0000
-Received: from AMXPRD0611MB598.eurprd06.prod.outlook.com ([169.254.3.17]) by
-	AMXPRD0611HT002.eurprd06.prod.outlook.com ([10.242.11.163]) with mapi
-	id 14.16.0311.000; Thu, 6 Jun 2013 13:32:49 +0000
-From: "Konopelko, Pavel (P.)" <pkonopel@visteon.com>
-To: "fahad_usman@mentor.com" <fahad_usman@mentor.com>
-Thread-Topic: [yocto] [meta-ivi][PATCH] packagegroups: restructure the
-	yocto-ivi PGs
-Thread-Index: Ac5itaw5/JVDSoIZRumHRkXD3JnlqQ==
-Date: Thu, 6 Jun 2013 13:32:48 +0000
-Message-ID: <1A73FAC9AA3F824C856F2F0A9589EBDA2DFD6DE0@AMXPRD0611MB598.eurprd06.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [91.212.132.117]
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
+	[209.85.128.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91FACE01567
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2013 02:48:02 -0700 (PDT)
+Received: by mail-ve0-f169.google.com with SMTP id m1so2048850ves.28
+	for <yocto@yoctoproject.org>; Thu, 06 Jun 2013 02:48:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ZX5kqVsjl0odScPF5enBvqF4Uow81R4WveDBeksZyZM=;
+	b=ZD8PUKyOEQhYBhSZ4EWe9K8QfoiHZ+GJM+EWeqO99oIAq7MJPZPYz0Cj27LWwn4tyl
+	C7XQOaXxMy8AoGeGprq8PDtgNY/+4ZHNhrUlPImD+/ElFQ/2R0HF6irSSMBX2sK0F876
+	8d7xDcWgwxqX0fPqEy3HqWbddKxcXvmRu0diLHKVPVV+j5LzkZndmdaHjvKwDbGQ/w4u
+	AD4lzTnyTdrs/c6aeDLbWNh7ONNkVt7CGsucNJnLJ9HGGssSBJMFWryMDDVNlSYbhkmb
+	7xg+kBRpIAdB6/rbQA+MJeDmLuaP9/bzkxjCZvKjfFZ10y3XGgeaXlh1xtJv+Ssoc5FY
+	tV9Q==
 MIME-Version: 1.0
-X-OriginatorOrg: visteon.com
-X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+X-Received: by 10.220.45.9 with SMTP id c9mr16986002vcf.65.1370512081804; Thu,
+	06 Jun 2013 02:48:01 -0700 (PDT)
+Received: by 10.52.179.33 with HTTP; Thu, 6 Jun 2013 02:48:01 -0700 (PDT)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C379DD@ORSMSX103.amr.corp.intel.com>
+References: <CAFMfyzKvAfk7o_r1d0EjJw=kHTEY4_AfkGdprxPAhmv9MSkt1A@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C73C379DD@ORSMSX103.amr.corp.intel.com>
+Date: Thu, 6 Jun 2013 11:48:01 +0200
+Message-ID: <CAFMfyz+TLv2qazgxgkdM0pDb8vVKYnm8mDcBs8aWuPb0X-2XxQ@mail.gmail.com>
+From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+X-Mailman-Approved-At: Thu, 06 Jun 2013 06:38:12 -0700
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-ivi][PATCH] packagegroups: restructure the yocto-ivi PGs
+Subject: Re: Application Development
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,58 +40,311 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jun 2013 13:32:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 06 Jun 2013 09:48:02 -0000
+Content-Type: multipart/alternative; boundary=001a11c2013ecbe30704de79350f
+
+--001a11c2013ecbe30704de79350f
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Fahad,
+Hi Jessica & Philip,
 
-> Date: Thu,  6 Jun 2013 09:54:01 +0500
-> From: Fahad Usman <fahad_usman@mentor.com>
-> To: yocto@yoctoproject.org
-> Subject: [yocto][meta-ivi][PATCH] packagegroups: restructure the
-> yocto-ivi PGs
-> Message-ID: <1370494441-20953-1-git-send-email-fahad_usman@mentor.com>
->=20
-> with the current implementation of packagegroups, it's not clear
-> how a particular recipe map to the GENIVI baseline document.
->=20
-> this scheme remove confusion about which packagegroup a certain
-> recipe belong to. And provide guidance to the customers about
-> modifying the image. For instance customers should be careful about
-> replacing specific-p1 components if they wish to maintain GENIVI
-> compliance.
-[...]
+I have an issue... This is such a long error ... I even did a fresh build
+by deleting the "tmp" directory. The image build went very well but the
+toolchain is always giving me a error...
 
-It is correct that GENIVI compliance differentiates the components on two p=
-roperties (two priorities and three types).  However, I would assert that n=
-ot all of the resulting 6 combinations are really relevant for the meta-ivi=
- implementation.
+*| Selecting previously unselected package xz-dev.*
+*| Unpacking xz-dev (from .../xz-dev_5.1.2alpha-r0_armel.deb) ...*
+*| The following package disappeared from your system as*
+*| all files have been overwritten by other packages:*
+*|   avahi*
+*| log_check: Using
+/home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-poky-=
+linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_sdk.4066
+as logfile*
+*| Logfile is clean*
+*| Installing NATIVESDK packages*
+*| Ign file: ./ InRelease*
+*| Ign file: ./ InRelease*
+*| Ign file: ./ Release.gpg*
+*| Ign file: ./ Release.gpg*
+*| Get:1 file: ./ Release [24 B]*
+*| Get:2 file: ./ Release [11 B]*
+*| Ign file: ./ Translation-en*
+*| Ign file: ./ Translation-en*
+*| Reading package lists...*
+*| W: Ignoring Provides line with DepCompareOp for package
+nativesdk-pkgconfig__pkg-config__*
+*| W: You may want to run apt-get update to correct these problems*
+*| Reading package lists...*
+*| Building dependency tree...*
+*| Reading state information...*
+*| Some packages could not be installed. This may mean that you have*
+*| requested an impossible situation or if you are using the unstable*
+*| distribution that some required packages have not yet been created*
+*| or been moved out of Incoming.*
+*| The following information may help to resolve the situation:*
+*| *
+*| The following packages have unmet dependencies:*
+*|  packagegroup-cross-canadian-arm : Depends: gdb-cross-canadian-arm but
+it is not installable*
+*|                                    Depends: gcc-cross-canadian-arm but
+it is not installable*
+*|                                    Depends: meta-environment-arm but it
+is not installable*
+*|                                    Depends: binutils-cross-canadian-arm
+but it is not installable*
+*| W: Ignoring Provides line with DepCompareOp for package
+nativesdk-pkgconfig__pkg-config__*
+*| W: You may want to run apt-get update to correct these problems*
+*| E: Unable to correct problems, you have held broken packages.*
+*| DEBUG: Python function do_populate_sdk finished*
+*| ERROR: Function failed: populate_sdk_image (see
+/home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-poky-=
+linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_sdk.4066
+for further information)*
+*ERROR: Task 10 (/home/damarla/yocto/poky/meta/recipes-graphics/images/
+core-image-skidata.bb, do_populate_sdk) failed with exit code '1'*
+*NOTE: Tasks Summary: Attempted 5020 tasks of which 4939 didn't need to be
+rerun and 1 failed.*
+*
+*
+*Summary: 1 task failed:*
+*  /home/damarla/yocto/poky/meta/recipes-graphics/images/
+core-image-skidata.bb, do_populate_sdk*
+*Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
 
-Personally, I would say that from the implementer perspective two things re=
-ally matter: (1) the component priority and (2) the possibility to exchange=
- component's implementation.  (1) is already reflected by the existing pack=
-agegroups (-core-p1 and -core-p2).  For (2), abstract and placeholder compo=
-nents can be treated the same way (since they both allow to freely choose t=
-he implementation).  These would leave us with 4 different categories (inst=
-ead of 6 as proposed).  For naming purposes I would suggest something like =
-'-p1/p2-fixed/variable' (although I must admit that these names do not yet =
-feel 100% right).
-
-There is an additional complication to be considered.  In some cases, compo=
-nents with different priority/variability (and therefore belonging to diffe=
-rent packagegroups) are produced from the same source tree.  For example Au=
-dioManager comes with the daemon and default plug-in.  However, while the d=
-aemon is P1/specific, the plug-ins are P2/abstract.
+I am not able to install those packages as they say there are no
+installation candidate for them...
 
 
-Regards,
---Pavel Konopelko
 
-Visteon Innovation & Technology GmbH
-Sitz der Gesellschaft/Place of Business: Kerpen
-Registergericht: K=F6ln HRB 71036
-Gesch=E4ftsf=FChrung/Management Board: Christian Feltgen=20
+On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica <jessica.zhang@intel.com>wro=
+te:
+
+>  Hi Satya,****
+>
+> ** **
+>
+> Use bitbake image-name =96c populate_sdk, this allows you to create a
+> toolchain with sysroot that match your target image that allows you to
+> develop app against=85****
+>
+> ** **
+>
+> Cheers,****
+>
+> Jessica****
+>
+> ** **
+>
+> *From:* yocto-bounces@yoctoproject.org [mailto:
+> yocto-bounces@yoctoproject.org] *On Behalf Of *Satya Swaroop Damarla
+> *Sent:* Wednesday, June 05, 2013 6:05 AM
+> *To:* yocto@yoctoproject.org
+> *Subject:* [yocto] Application Development****
+>
+> ** **
+>
+> Hi Guys,****
+>
+> ** **
+>
+> I have an issue... I created a custom image based on NVIDIA Tegra2 with a
+> custom kernel. I installed  packages specific Tegra board and application
+> specific. Now we want to send the baord and the new linux image for
+> application development... ****
+>
+> ** **
+>
+> As I went through ADT manual, I only found qemu based toolchains but I
+> want to create toolchain based on my rootfs and kernel... so that the
+> development team can develop a voip application for the board... I am kin=
+d
+> of stuck how to proceed in this issue...****
+>
+> ** **
+>
+> I really need a small way out and hopefully I will catch things
+> automatically..****
+>
+> ** **
+>
+> Cheers,****
+>
+> Satya****
+>
+
+--001a11c2013ecbe30704de79350f
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Jessica &amp; Philip,<div><br></div><div>I have an issu=
+e... This is such a long error ... I even did a fresh build by deleting the=
+ &quot;tmp&quot; directory. The image build went very well but the toolchai=
+n is always giving me a error... =A0</div>
+
+<div><br></div><div><i>| Selecting previously unselected package xz-dev.</i=
+></div><div><i>| Unpacking xz-dev (from .../xz-dev_5.1.2alpha-r0_armel.deb)=
+ ...</i></div><div><i>| The following package disappeared from your system =
+as</i></div>
+
+<div><i>| all files have been overwritten by other packages:</i></div><div>=
+<i>| =A0 avahi</i></div><div><i>| log_check: Using /home/damarla/yocto/poky=
+/buildSkidataHarmony/tmp/work/skidata_harmony-poky-linux-gnueabi/core-image=
+-skidata/1.0-r0/temp/log.do_populate_sdk.4066 as logfile</i></div>
+
+<div><i>| Logfile is clean</i></div><div><i>| Installing NATIVESDK packages=
+</i></div><div><i>| Ign file: ./ InRelease</i></div><div><i>| Ign file: ./ =
+InRelease</i></div><div><i>| Ign file: ./ Release.gpg</i></div><div><i>| Ig=
+n file: ./ Release.gpg</i></div>
+
+<div><i>| Get:1 file: ./ Release [24 B]</i></div><div><i>| Get:2 file: ./ R=
+elease [11 B]</i></div><div><i>| Ign file: ./ Translation-en</i></div><div>=
+<i>| Ign file: ./ Translation-en</i></div><div><i>| Reading package lists..=
+.</i></div>
+
+<div><i>| W: Ignoring Provides line with DepCompareOp for package nativesdk=
+-pkgconfig__pkg-config__</i></div><div><i>| W: You may want to run apt-get =
+update to correct these problems</i></div><div><i>| Reading package lists..=
+.</i></div>
+
+<div><i>| Building dependency tree...</i></div><div><i>| Reading state info=
+rmation...</i></div><div><i>| Some packages could not be installed. This ma=
+y mean that you have</i></div><div><i>| requested an impossible situation o=
+r if you are using the unstable</i></div>
+
+<div><i>| distribution that some required packages have not yet been create=
+d</i></div><div><i>| or been moved out of Incoming.</i></div><div><i>| The =
+following information may help to resolve the situation:</i></div><div>
+
+<i>|=A0</i></div><div><i>| The following packages have unmet dependencies:<=
+/i></div><div><i>| =A0packagegroup-cross-canadian-arm : Depends: gdb-cross-=
+canadian-arm but it is not installable</i></div><div><i>| =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0Depends: gcc-cross-c=
+anadian-arm but it is not installable</i></div>
+
+<div><i>| =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0Depends: meta-environment-arm but it is not installable</i></div><di=
+v><i>| =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0Depends: binutils-cross-canadian-arm but it is not installable</i></div>
+
+<div><i>| W: Ignoring Provides line with DepCompareOp for package nativesdk=
+-pkgconfig__pkg-config__</i></div><div><i>| W: You may want to run apt-get =
+update to correct these problems</i></div><div><i>| E: Unable to correct pr=
+oblems, you have held broken packages.</i></div>
+
+<div><i>| DEBUG: Python function do_populate_sdk finished</i></div><div><i>=
+| ERROR: Function failed: populate_sdk_image (see /home/damarla/yocto/poky/=
+buildSkidataHarmony/tmp/work/skidata_harmony-poky-linux-gnueabi/core-image-=
+skidata/1.0-r0/temp/log.do_populate_sdk.4066 for further information)</i></=
+div>
+
+<div><i>ERROR: Task 10 (/home/damarla/yocto/poky/meta/recipes-graphics/imag=
+es/<a href=3D"http://core-image-skidata.bb" target=3D"_blank">core-image-sk=
+idata.bb</a>, do_populate_sdk) failed with exit code &#39;1&#39;</i></div>
+<div><i>NOTE: Tasks Summary: Attempted 5020 tasks of which 4939 didn&#39;t =
+need to be rerun and 1 failed.</i></div>
+<div><i><br></i></div><div><i>Summary: 1 task failed:</i></div><div><i>=A0 =
+/home/damarla/yocto/poky/meta/recipes-graphics/images/<a href=3D"http://cor=
+e-image-skidata.bb" target=3D"_blank">core-image-skidata.bb</a>, do_populat=
+e_sdk</i></div>
+<div>
+<i>Summary: There was 1 ERROR message shown, returning a non-zero exit code=
+.</i></div><div><br></div><div style>I am not able to install those package=
+s as they say there are no installation candidate for them...</div><div>
+<br></div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quot=
+e">On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:jessica.zhang@intel.com" target=3D"_blank">jessica.zhang@int=
+el.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
 
 
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Satya,<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Use bitbake image-name =
+=96c populate_sdk, this allows you to create a toolchain with sysroot that =
+match your target image that allows you to develop app against=85<u></u><u>=
+</u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Cheers,<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Jessica<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
+=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.o=
+rg" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+<b>On Behalf Of </b>Satya Swaroop Damarla<br>
+<b>Sent:</b> Wednesday, June 05, 2013 6:05 AM<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] Application Development<u></u><u></u></span></p><di=
+v><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi Guys,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I have an issue... I created a custom image based on=
+ NVIDIA Tegra2 with a custom kernel. I installed =A0packages specific Tegra=
+ board and application specific. Now we want to send the baord and the new =
+linux image for application development...=A0<u></u><u></u></p>
+
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">As I went through ADT manual, I only found qemu base=
+d toolchains but I want to create toolchain based on my rootfs and kernel..=
+. so that the development team can develop a voip application for the board=
+... I am kind of stuck how to proceed
+ in this issue...<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I really need a small way out and hopefully I will c=
+atch things automatically..<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Cheers,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<u></u><u></u></p>
+</div>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br></div>
+
+--001a11c2013ecbe30704de79350f--
