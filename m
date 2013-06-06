@@ -1,32 +1,35 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
-	[209.85.217.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82CF9E0155A
-	for <yocto@yoctoproject.org>; Wed,  5 Jun 2013 21:41:26 -0700 (PDT)
-Received: by mail-lb0-f175.google.com with SMTP id v10so2665135lbd.34
-	for <yocto@yoctoproject.org>; Wed, 05 Jun 2013 21:41:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=GNiW7qIk0t0C0wCuHB1bjofWAoLjeDa5XaPj2TYCan0=;
-	b=GZE4R6nCoAlNkaTBIrbVlbq9O3Tq1tNT370cB3r+6LAfRr8w+iMg3TFWpsuHN87Edg
-	nmL1yzYqe7TnvALUGnZ6jWZCLGqOdHoVqYq7iKge0uoGDcK9qc4T8cgbCnq6Agvu4vvd
-	B7pWRjnmTR2BBbx/alKWsArt/reaswhR7YPiMqzhJvq8w54xtBoVu5O026JGe+D+DXo1
-	P7ihCgCkx4yDAtZG7DcD6bz81HW5Yo65xHY6RkVZ2xXoxyhjPPvXh4WsK7iCDfXMxwgp
-	3lUrKwMe9eLcojz6hq8mYADor71/Q4tLuLa8Z6Iu4UtAOK/G/lFeW9ZBz+8N1bdeBKjc
-	d+FA==
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2077EE0155A
+	for <yocto@yoctoproject.org>; Wed,  5 Jun 2013 21:53:07 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 05 Jun 2013 21:53:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,812,1363158000"; 
+	d="scan'208,217";a="251321521"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by AZSMGA002.ch.intel.com with ESMTP; 05 Jun 2013 21:52:46 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 5 Jun 2013 21:52:45 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.22]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.69]) with mapi id
+	14.03.0123.003; Wed, 5 Jun 2013 21:52:45 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Satya Swaroop Damarla <swaroop.damarla@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Application Development
+Thread-Index: AQHOYe3TEb9xDGGLo0OLuHBVplozDZkoHv2w
+Date: Thu, 6 Jun 2013 04:52:44 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C379DD@ORSMSX103.amr.corp.intel.com>
+References: <CAFMfyzKvAfk7o_r1d0EjJw=kHTEY4_AfkGdprxPAhmv9MSkt1A@mail.gmail.com>
+In-Reply-To: <CAFMfyzKvAfk7o_r1d0EjJw=kHTEY4_AfkGdprxPAhmv9MSkt1A@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Received: by 10.112.21.74 with SMTP id t10mr16026835lbe.129.1370493684888;
-	Wed, 05 Jun 2013 21:41:24 -0700 (PDT)
-Received: by 10.114.58.72 with HTTP; Wed, 5 Jun 2013 21:41:24 -0700 (PDT)
-In-Reply-To: <CAAGt+t1EKDfo=_=NK1vJMfYFh=yh=iJy+pf1c++-XKFO91LO_w@mail.gmail.com>
-References: <CAAGt+t1EKDfo=_=NK1vJMfYFh=yh=iJy+pf1c++-XKFO91LO_w@mail.gmail.com>
-Date: Thu, 6 Jun 2013 10:11:24 +0530
-Message-ID: <CAE_REAtAtUBTK6FujVr4q581m7ey4r1iXSxM0BAkhW7zyO8jJQ@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Zafrullah Syed <zafrullahmehdi@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: LIC_FILES_CHKSUM points to an invalid file
+Subject: Re: Application Development
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,392 +41,203 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jun 2013 04:41:27 -0000
-Content-Type: multipart/alternative; boundary=14dae94739f3413c1b04de74edab
+X-List-Received-Date: Thu, 06 Jun 2013 04:53:07 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C379DDORSMSX103amrcor_"
 
---14dae94739f3413c1b04de74edab
-Content-Type: text/plain; charset=ISO-8859-1
-
-hi,
-
-can you try with "bitbake -c cleanall hello" , change the recipe name from
-hello.bb -> hello_2.7.bb and do "bitbake hello"
-
-//Gaurang Shastri
-
-
-On Thu, Jun 6, 2013 at 12:47 AM, Zafrullah Syed <zafrullahmehdi@gmail.com>wrote:
-
-> I am getting these errors when I try my build. Any Idea?
->
-> ERROR: Function failed: hello: LIC_FILES_CHKSUM points to an invalid file:
-> /home/siguser/yocto2013-05-08/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/hello-1.0-r0/hello-1.0/COPYING
->
-> ERROR: Logfile of failure stored in:
-> /home/siguser/yocto2013-05-08/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/hello-1.0-r0/temp/log.do_configure.1985
->
-> Screen shot of the above error directory. http://imgur.com/zRLKuYj
->
-> hello-1.0 is empty but hello-2.7 has all the files extracted.
->
-> Why does hello-1.0 exist when i did not include it in my recipe.
->
-> my hello.bb recipe:
->
-> DESCRIPTION = "GNU Helloworld application"
-> SECTION = "examples"
-> LICENSE = "GPLv3+"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
-> PR = "r0"
-> SRC_URI = "ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz"
-> SRC_URI[md5sum] = "fc01b05c7f943d3c42124942a2a9bb3a"
-> SRC_URI[sha256sum] =
-> "fd593b5bcf6d1bb6d7d1bb7eefdccdc0010cf2c4985ccb445ef490f768b927c0"
-> inherit autotools gettext
->
-> Any ideas about this error?
->
-> Thank You,
->
-> On Tue, Jun 4, 2013 at 9:45 PM, Zafrullah Syed <zafrullahmehdi@gmail.com>wrote:
->
->> Hi,
->>
->> I followed all the instructions and i started my build again. Build
->> successfully started and struck with Hello md5sum error.
->>
->> ERROR: Fetcher failure for URL: '
->> ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz'. No checksum specified for
->> /home/siguser/yocto2013-05-21/build/downloads/hello-2.7.tar.gz, please add
->> at least one to the recipe:
->> SRC_URI[md5sum] = "fc01b05c7f943d3c42124942a2a9bb3a"
->> SRC_URI[sha256sum] =
->> "fd593b5bcf6d1bb6d7d1bb7eefdccdc0010cf2c4985ccb445ef490f768b927c0"
->>
->>
->> I downloaded hello-2.7 from ftp://ftp.gnu.org/gnu/hello/ unzipped and
->> ran md5sum against COPYING file. Each file has different md5sum, which
->> md5sum should I include in my hello.bb file?
->>
->> *My hello.bb file*:
->>
->> DESCRIPTION = "GNU Helloworld application"
->> SECTION = "examples"
->> LICENSE = "GPLv3+"
->> LIC_FILES_CHKSUM = "file://COPYING;md5=fc01b05c7f943d3c42124942a2a9bb3a"
->> PR = "r0"
->> SRC_URI = "ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz"
->> inherit autotools gettext
->>
->> Thank You,
->>
->>
->>
->>
->> On Tue, Jun 4, 2013 at 3:57 PM, Paul Eggleton <
->> paul.eggleton@linux.intel.com> wrote:
->>
->>> On Tuesday 04 June 2013 15:42:06 Zafrullah Syed wrote:
->>> > On Tue, Jun 4, 2013 at 3:26 PM, Paul Eggleton <
->>> paul.eggleton@linux.intel.com
->>> > wrote:
->>> > > Yes, conf/bblayers.conf is supposed to be in the build directory; and
->>> > > whichever build directory you are actually using. The build
->>> directory can
->>> > > be anywhere, but you shouldn't really have two build directories
->>> unless
->>> > > you know what you are doing - did you perhaps run oe-init-build-env
->>> with
->>> > > no arguments in two different places? I suspect this is what has
->>> happened.
->>> >
->>> > I think yes. I usually give just *source oe-init-build-env *command,
->>> this
->>> > is how i used earlier and failed. May be that is the reason it has
->>> created
->>> > another build directory in /poky.
->>> > What should be the command before building? i guess this(
->>> > TEMPLATECONF=meta-gumstix-extras/conf
->>> > source ./poky/oe-init-build-env ). so, every time i just need to give
->>> > TEMPLATECONF  command before building?
->>>
->>> You need to run oe-init-build-env at the start of every session yes, but
->>> you
->>> shouldn't need to specify TEMPLATECONF except when you first create the
->>> build
->>> directory. The important thing is you need to be in the same directory
->>> when
->>> you run oe-init-build-env *or* specify the path to the build directory
->>> as a
->>> parameter.
->>>
->>> > Lastly, my meta-bebot directory should be as following ?
->>> >
->>> > /poky
->>> >   --meta-bebot
->>> >       --conf
->>> >          --layer.conf
->>> >   --recipes-bebot
->>> >     --hello
->>> >       --hello.bb
->>>
->>> If you have recipes-bebot under meta-bebot, yes.
->>>
->>> > and meta-bebot path should be set in bblayers.conf file?
->>>
->>> Yes.
->>>
->>> Cheers,
->>> Paul
->>>
->>> --
->>>
->>> Paul Eggleton
->>> Intel Open Source Technology Centre
->>>
->>
->>
->>
->> --
->> Regards,
->> Zafrullah Syed
->>
->>
->
->
-> --
-> Regards,
-> Zafrullah Syed
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---14dae94739f3413c1b04de74edab
-Content-Type: text/html; charset=ISO-8859-1
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C379DDORSMSX103amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>hi,<br><br></div>can you try with &quot;bitbake =
--c cleanall hello&quot; , change the recipe name from <a href=3D"http://hel=
-lo.bb">hello.bb</a> -&gt; <a href=3D"http://hello_2.7.bb">hello_2.7.bb</a> =
-and do &quot;bitbake hello&quot;<br>
-<br></div>//Gaurang Shastri<br></div><div class=3D"gmail_extra"><br><br><di=
-v class=3D"gmail_quote">On Thu, Jun 6, 2013 at 12:47 AM, Zafrullah Syed <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:zafrullahmehdi@gmail.com" target=3D"_b=
-lank">zafrullahmehdi@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">I am getting these errors w=
-hen I try my build. Any Idea?=A0<div><br></div><div><div>ERROR: Function fa=
-iled: hello: LIC_FILES_CHKSUM points to an invalid file: /home/siguser/yoct=
-o2013-05-08/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/hello-1.0-r0/=
-hello-1.0/COPYING</div>
+Hi Satya,
 
 
 
-<div><br></div><div>ERROR: Logfile of failure stored in: /home/siguser/yoct=
-o2013-05-08/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/hello-1.0-r0/=
-temp/log.do_configure.1985</div></div><div class=3D"gmail_extra"><br>Screen=
- shot of the above error directory.=A0<a href=3D"http://imgur.com/zRLKuYj" =
-target=3D"_blank">http://imgur.com/zRLKuYj</a></div>
-
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">hello-1.0 i=
-s empty but hello-2.7 has all the files extracted.</div><div class=3D"gmail=
-_extra"><br></div><div class=3D"gmail_extra">Why does hello-1.0 exist when =
-i did not include it in my recipe.</div>
-
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">my <a href=
-=3D"http://hello.bb" target=3D"_blank">hello.bb</a> recipe:</div><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=3D"gmail_e=
-xtra">
-
-DESCRIPTION =3D &quot;GNU Helloworld application&quot;=A0</div><div class=
-=3D"gmail_extra">SECTION =3D &quot;examples&quot;=A0</div><div class=3D"gma=
-il_extra">LICENSE =3D &quot;GPLv3+&quot;=A0</div><div class=3D"gmail_extra"=
->LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3Dd32239bcb673463ab874e80d47=
-fae504&quot;=A0</div>
-
-
-<div class=3D"gmail_extra">PR =3D &quot;r0&quot;=A0</div><div class=3D"gmai=
-l_extra">SRC_URI =3D &quot;<a href=3D"ftp://ftp.gnu.org/gnu/hello/hello-2.7=
-.tar.gz" target=3D"_blank">ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz</a>=
-&quot;=A0</div>
-<div class=3D"gmail_extra">
-
-SRC_URI[md5sum] =3D &quot;fc01b05c7f943d3c42124942a2a9bb3a&quot;</div><div =
-class=3D"gmail_extra">SRC_URI[sha256sum] =3D &quot;fd593b5bcf6d1bb6d7d1bb7e=
-efdccdc0010cf2c4985ccb445ef490f768b927c0&quot;</div><div class=3D"gmail_ext=
-ra">
-
-
-inherit autotools gettext=A0</div></div><div class=3D"gmail_extra"><br></di=
-v><div class=3D"gmail_extra">Any ideas about this error?</div><div class=3D=
-"gmail_extra"><br></div><div class=3D"gmail_extra">Thank You,</div>
-
-<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Jun 4, 20=
-13 at 9:45 PM, Zafrullah Syed <span dir=3D"ltr">&lt;<a href=3D"mailto:zafru=
-llahmehdi@gmail.com" target=3D"_blank">zafrullahmehdi@gmail.com</a>&gt;</sp=
-an> wrote:<br>
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-<div dir=3D"ltr">Hi,<div><br></div><div>I followed all the instructions and=
- i started my build again. Build successfully started and struck with Hello=
- md5sum error.<br></div><div><br></div><div><div>ERROR: Fetcher failure for=
- URL: &#39;<a href=3D"ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz" target=
-=3D"_blank">ftp://ftp.gnu.org/gnu/hello/hello-2.7.tar.gz</a>&#39;. No check=
-sum specified for /home/siguser/yocto2013-05-21/build/downloads/hello-2.7.t=
-ar.gz, please add at least one to the recipe:</div>
+Use bitbake image-name -c populate_sdk, this allows you to create a toolcha=
+in with sysroot that match your target image that allows you to develop app=
+ against...
 
 
 
+Cheers,
 
-<div>SRC_URI[md5sum] =3D &quot;fc01b05c7f943d3c42124942a2a9bb3a&quot;</div>=
-<div>SRC_URI[sha256sum] =3D &quot;fd593b5bcf6d1bb6d7d1bb7eefdccdc0010cf2c49=
-85ccb445ef490f768b927c0&quot;</div></div><div><br></div><div><br></div><div=
+Jessica
+
+
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Satya Swaroop Damarla
+Sent: Wednesday, June 05, 2013 6:05 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Application Development
+
+
+
+Hi Guys,
+
+
+
+I have an issue... I created a custom image based on NVIDIA Tegra2 with a c=
+ustom kernel. I installed  packages specific Tegra board and application sp=
+ecific. Now we want to send the baord and the new linux image for applicati=
+on development...
+
+
+
+As I went through ADT manual, I only found qemu based toolchains but I want=
+ to create toolchain based on my rootfs and kernel... so that the developme=
+nt team can develop a voip application for the board... I am kind of stuck =
+how to proceed in this issue...
+
+
+
+I really need a small way out and hopefully I will catch things automatical=
+ly..
+
+
+
+Cheers,
+
+Satya
+
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C379DDORSMSX103amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Satya,<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Use bitbake image-name &#=
+8211;c populate_sdk, this allows you to create a toolchain with sysroot tha=
+t match your target image that allows you to develop app against&#8230;<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cheers,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Satya Swaroop Damarla<br>
+<b>Sent:</b> Wednesday, June 05, 2013 6:05 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Application Development<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I have an issue... I created a custom image based on=
+ NVIDIA Tegra2 with a custom kernel. I installed &nbsp;packages specific Te=
+gra board and application specific. Now we want to send the baord and the n=
+ew linux image for application development...&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">As I went through ADT manual, I only found qemu base=
+d toolchains but I want to create toolchain based on my rootfs and kernel..=
+. so that the development team can develop a voip application for the board=
+... I am kind of stuck how to proceed
+ in this issue...<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I really need a small way out and hopefully I will c=
+atch things automatically..<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Cheers,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<o:p></o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
 
-
-
-
-I downloaded hello-2.7 from=A0<a href=3D"ftp://ftp.gnu.org/gnu/hello/" targ=
-et=3D"_blank">ftp://ftp.gnu.org/gnu/hello/</a>=A0unzipped and ran md5sum ag=
-ainst COPYING file. Each file has different md5sum, which md5sum should I i=
-nclude in my <a href=3D"http://hello.bb" target=3D"_blank">hello.bb</a> fil=
-e?</div>
-
-
-
-
-<div><br></div><div><u>My <a href=3D"http://hello.bb" target=3D"_blank">hel=
-lo.bb</a> file</u>:</div><div><br></div><div><div><div>DESCRIPTION =3D &quo=
-t;GNU Helloworld application&quot;=A0</div><div>SECTION =3D &quot;examples&=
-quot;=A0</div>
-
-
-
-
-<div>LICENSE =3D &quot;GPLv3+&quot;=A0</div></div><div>LIC_FILES_CHKSUM =3D=
- &quot;file://COPYING;md5=3Dfc01b05c7f943d3c42124942a2a9bb3a&quot;=A0</div>=
-<div>PR =3D &quot;r0&quot;=A0</div><div>SRC_URI =3D &quot;<a href=3D"ftp://=
-ftp.gnu.org/gnu/hello/hello-2.7.tar.gz" target=3D"_blank">ftp://ftp.gnu.org=
-/gnu/hello/hello-2.7.tar.gz</a>&quot;=A0</div>
-
-
-
-
-<div>inherit autotools gettext=A0</div><div><br></div><div>Thank You,</div>=
-</div><div><br></div><div><br></div></div><div class=3D"gmail_extra"><div><=
-div><br><br><div class=3D"gmail_quote">On Tue, Jun 4, 2013 at 3:57 PM, Paul=
- Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel=
-.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;</span> wrote:=
-<br>
-
-
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>On Tuesday 04 June 2013 15:42:06 Zafrullah Syed wrote=
-:<br>
-
-
-
-&gt; On Tue, Jun 4, 2013 at 3:26 PM, Paul Eggleton &lt;<a href=3D"mailto:pa=
-ul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.co=
-m</a><br>
-&gt; wrote:<br>
-</div><div>&gt; &gt; Yes, conf/bblayers.conf is supposed to be in the build=
- directory; and<br>
-&gt; &gt; whichever build directory you are actually using. The build direc=
-tory can<br>
-&gt; &gt; be anywhere, but you shouldn&#39;t really have two build director=
-ies unless<br>
-&gt; &gt; you know what you are doing - did you perhaps run oe-init-build-e=
-nv with<br>
-&gt; &gt; no arguments in two different places? I suspect this is what has =
-happened.<br>
-&gt;<br>
-</div>&gt; I think yes. I usually give just *source oe-init-build-env *comm=
-and, this<br>
-<div>&gt; is how i used earlier and failed. May be that is the reason it ha=
-s created<br>
-&gt; another build directory in /poky.<br>
-&gt; What should be the command before building? i guess this(<br>
-&gt; TEMPLATECONF=3Dmeta-gumstix-extras/conf<br>
-&gt; source ./poky/oe-init-build-env ). so, every time i just need to give<=
-br>
-&gt; TEMPLATECONF =A0command before building?<br>
-<br>
-</div>You need to run oe-init-build-env at the start of every session yes, =
-but you<br>
-shouldn&#39;t need to specify TEMPLATECONF except when you first create the=
- build<br>
-directory. The important thing is you need to be in the same directory when=
-<br>
-you run oe-init-build-env *or* specify the path to the build directory as a=
-<br>
-parameter.<br>
-<div><br>
-&gt; Lastly, my meta-bebot directory should be as following ?<br>
-&gt;<br>
-&gt; /poky<br>
-&gt; =A0 --meta-bebot<br>
-&gt; =A0 =A0 =A0 --conf<br>
-&gt; =A0 =A0 =A0 =A0 =A0--layer.conf<br>
-&gt; =A0 --recipes-bebot<br>
-&gt; =A0 =A0 --hello<br>
-&gt; =A0 =A0 =A0 --<a href=3D"http://hello.bb" target=3D"_blank">hello.bb</=
-a><br>
-<br>
-</div>If you have recipes-bebot under meta-bebot, yes.<br>
-<div><br>
-&gt; and meta-bebot path should be set in bblayers.conf file?<br>
-<br>
-</div>Yes.<br>
-<div><div><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br><br clear=3D"all"><span class=3D"HOEnZb"=
-><font color=3D"#888888"><div><br></div></font></span></div></div><span cla=
-ss=3D"HOEnZb"><font color=3D"#888888"><span><font color=3D"#888888">-- <br>=
-<span style=3D"font-family:arial,sans-serif;font-size:13px;border-collapse:=
-collapse;color:rgb(136,136,136)">Regards,<br>
-
-
-
-Zafrullah Syed</span><div><font color=3D"#888888" face=3D"arial, sans-serif=
-"><span style=3D"border-collapse:collapse"><br>
-</span></font></div>
-</font></span></font></span></div><span class=3D"HOEnZb"><font color=3D"#88=
-8888">
-</font></span></blockquote></div><span class=3D"HOEnZb"><font color=3D"#888=
-888"><br><br clear=3D"all"><div><br></div>-- <br><span style=3D"font-family=
-:arial,sans-serif;font-size:13px;border-collapse:collapse;color:rgb(136,136=
-,136)">Regards,<br>
-Zafrullah Syed</span><div><font color=3D"#888888" face=3D"arial, sans-serif=
-"><span style=3D"border-collapse:collapse"><br>
-
-
-</span></font></div>
-</font></span></div></div>
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---14dae94739f3413c1b04de74edab--
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C379DDORSMSX103amrcor_--
