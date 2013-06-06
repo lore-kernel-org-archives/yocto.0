@@ -1,34 +1,35 @@
-Return-Path: <fahad.usman@gmail.com>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A12ADE01566
-	for <yocto@yoctoproject.org>; Thu,  6 Jun 2013 01:25:51 -0700 (PDT)
-Received: by mail-pa0-f48.google.com with SMTP id kp1so877427pab.35
-	for <yocto@yoctoproject.org>; Thu, 06 Jun 2013 01:25:51 -0700 (PDT)
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-vb0-f45.google.com (mail-vb0-f45.google.com
+	[209.85.212.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26BB1E01568
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2013 04:07:18 -0700 (PDT)
+Received: by mail-vb0-f45.google.com with SMTP id 12so1859381vbf.32
+	for <yocto@yoctoproject.org>; Thu, 06 Jun 2013 04:07:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=ovj1jOZztQDBrnup86xNzG/2NK/M0qs3zAp5OgRPgow=;
-	b=lL1SO6IysoUj8Br0eIIjxLA8qPjYMS6iX7vjLDKJrRnp2quo3oi37lgFfD4FNJup74
-	SjbE4XVRSSBICHL2wxsY+/KMdg9Z9/Uxg+KVQTCle6elWxDX8AE38JAngf+Qp49kubHP
-	eatBbtJdpGUx0M94ro3J76DZA1lA6930oO982oDYf9E/+qlAJM62RkX7SYiNlmz9AJEy
-	xtjgVbxlpDO2NUr3azxCbx4xK/kk8kCofhKQX/5cwf0VTOkDa6vzUxkJxCW3mdRpLCbD
-	KdMTnS1Aw1nuVfnztIv4Kah+YY88kKJECUksVYU9sgHQQwQSxTSogQCRW1DQ0DqoYIA7
-	jv1w==
-X-Received: by 10.68.224.1 with SMTP id qy1mr38170918pbc.85.1370507151288;
-	Thu, 06 Jun 2013 01:25:51 -0700 (PDT)
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:content-type;
+	bh=Wfku3mC5Uze4Y+ilWA2RLrvz6D7IZfSa/bCIAYibSWA=;
+	b=fRS1CxuaX8AFPowvf9/XS1AjfXW0Qoqz3Lem4lohgAkY1NU1PREI+hHSbHPcOKOm6z
+	w+7Tarmml+oX0nrmWyYDvZTHaz4ptNMEvRTOT6vMnnlyPaFB/Zi5L7gC8WlaUi2Iuh1M
+	VyijWBnD6t7MkwNV8eauwh3DdYVbW+0OCrxumq17VkMUlJWEFhAnNmBxLsHpYxqd2zpi
+	q+ZUEGX4O10lreUWiaUI0mfEbth4XQv6FSvRfAt6ZHB0mQkl8njnUfR2wQ5UsZlzUHsR
+	xnagoGSVHmLUhVxaup/aPoItENUQ6FsvjYvIVGgRhDOmRWCznx0JSGbIPrM/ge7KnMfY
+	6MeQ==
 MIME-Version: 1.0
-Sender: fahad.usman@gmail.com
-Received: by 10.70.25.162 with HTTP; Thu, 6 Jun 2013 01:25:21 -0700 (PDT)
-In-Reply-To: <1370494441-20953-1-git-send-email-fahad_usman@mentor.com>
-References: <1370494441-20953-1-git-send-email-fahad_usman@mentor.com>
-From: Fahad Usman <fahad_usman@mentor.com>
-Date: Thu, 6 Jun 2013 13:25:21 +0500
-X-Google-Sender-Auth: PRrIcZELSa7_dxNcs7eXksgjKvU
-Message-ID: <CAHVMiV-=vB1EsRRvLh-xCtpiv2V4L9BUJNE8Rbt3Jr7jx_VQMA@mail.gmail.com>
-To: florin.sarbu@windriver.com, holger.behrens@windriver.com
-Cc: yocto@yoctoproject.org
-Subject: [meta-ivi][PATCH] packagegroups: restructure the yocto-ivi PGs
+X-Received: by 10.52.65.238 with SMTP id a14mr18464738vdt.24.1370516837505;
+	Thu, 06 Jun 2013 04:07:17 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.179.33 with HTTP; Thu, 6 Jun 2013 04:07:17 -0700 (PDT)
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C379DD@ORSMSX103.amr.corp.intel.com>
+References: <CAFMfyzKvAfk7o_r1d0EjJw=kHTEY4_AfkGdprxPAhmv9MSkt1A@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C73C379DD@ORSMSX103.amr.corp.intel.com>
+Date: Thu, 6 Jun 2013 13:07:17 +0200
+X-Google-Sender-Auth: xm-iYxWY6-SXL3Hwxu9W1fvHXac
+Message-ID: <CAFMfyzJb4U0AXTfC80TtizhX_AzOxuDk5D_Lkgz10SopdTGxWA@mail.gmail.com>
+From: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Application Development
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,584 +41,340 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jun 2013 08:25:51 -0000
-Content-Type: multipart/alternative; boundary=047d7b163241ea32c904de780f7c
+X-List-Received-Date: Thu, 06 Jun 2013 11:07:18 -0000
+Content-Type: multipart/alternative; boundary=20cf307f33724284b904de7a51bd
 
---047d7b163241ea32c904de780f7c
-Content-Type: text/plain; charset=ISO-8859-1
-
-fyi
-
----------- Forwarded message ----------
-From: Fahad Usman <fahad_usman@mentor.com>
-Date: Thu, Jun 6, 2013 at 9:54 AM
-Subject: [meta-ivi][PATCH] packagegroups: restructure the yocto-ivi PGs
-To: yocto@yoctoproject.org
-Cc: Fahad Usman <fahad_usman@mentor.com>
-
-
-with the current implementation of packagegroups, it's not clear how a
-particular recipe map to the GENIVI baseline document.
-
-this scheme remove confusion about which packagegroup a certain recipe
-belong
-to. And provide guidance to the customers about modifying the image. For
-instance customers should be careful about replacing specific-p1 components
-if
-they wish to maintain GENIVI compliance.
-
-Signed-off-by: Fahad Usman <fahad_usman@mentor.com>
----
- recipes-yocto-ivi/images/foton-image.bb             |  8 +++++++-
- .../packagegroup-abstract-component-p1.bb           | 21
-+++++++++++++++++++++
- ...-p2.bb => packagegroup-abstract-component-p2.bb} | 14 ++++++--------
- .../packagegroup-placeholder-component-p1.bb        | 20
-++++++++++++++++++++
- ...-p1.bb => packagegroup-specific-component-p1.bb} | 21
-+++++++--------------
- .../packagegroup-specific-component-p2.bb           | 19
-+++++++++++++++++++
- 6 files changed, 80 insertions(+), 23 deletions(-)
- create mode 100644 recipes-yocto-ivi/packagegroups/
-packagegroup-abstract-component-p1.bb
- rename recipes-yocto-ivi/packagegroups/{packagegroup-core-p2.bb =>
-packagegroup-abstract-component-p2.bb} (63%)
- create mode 100644 recipes-yocto-ivi/packagegroups/
-packagegroup-placeholder-component-p1.bb
- rename recipes-yocto-ivi/packagegroups/{packagegroup-core-p1.bb =>
-packagegroup-specific-component-p1.bb} (67%)
- create mode 100644 recipes-yocto-ivi/packagegroups/
-packagegroup-specific-component-p2.bb
-
-diff --git a/recipes-yocto-ivi/images/foton-image.bbb/recipes-yocto-ivi/images/
-foton-image.bb
-index 6d3077e..0b9a04a 100644
---- a/recipes-yocto-ivi/images/foton-image.bb
-+++ b/recipes-yocto-ivi/images/foton-image.bb
-@@ -4,6 +4,12 @@ include recipes-yocto-ivi/images/ivi-image.inc
- PV = "4.0.1"
- #PR = "r1"
-
--IMAGE_INSTALL_append = " packagegroup-core-p1 packagegroup-core-p2"
-+IMAGE_INSTALL_append = " \
-+    packagegroup-abstract-component-p1 \
-+    packagegroup-placeholder-component-p1 \
-+    packagegroup-specific-component-p2 \
-+    packagegroup-abstract-component-p2 \
-+    packagegroup-specific-component-p1 \
-+"
-
- # Add image specific packages
-diff --git a/recipes-yocto-ivi/packagegroups/
-packagegroup-abstract-component-p1.bb b/recipes-yocto-ivi/packagegroups/
-packagegroup-abstract-component-p1.bb
-new file mode 100644
-index 0000000..7730252
---- /dev/null
-+++ b/recipes-yocto-ivi/packagegroups/packagegroup-abstract-component-p1.bb
-@@ -0,0 +1,21 @@
-+DESCRIPTION = "GENIVI P1 Abstract components (AC)"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM =
-"file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit packagegroup
-+
-+PACKAGES = "\
-+    packagegroup-abstract-component-p1 \
-+    "
-+
-+ALLOW_EMPTY_${PN} = "1"
-+
-+RDEPENDS_${PN} += "\
-+    bluez4 \
-+    bluez4-systemd \
-+    eglibc \
-+    layer-management \
-+    obex-client \
-+    obexd \
-+    "
-diff --git a/recipes-yocto-ivi/packagegroups/packagegroup-core-p2.bbb/recipes-yocto-ivi/packagegroups/
-packagegroup-abstract-component-p2.bb
-similarity index 63%
-rename from recipes-yocto-ivi/packagegroups/packagegroup-core-p2.bb
-rename to recipes-yocto-ivi/packagegroups/
-packagegroup-abstract-component-p2.bb
-index e9b7b86..c9ca67b 100644
---- a/recipes-yocto-ivi/packagegroups/packagegroup-core-p2.bb
-+++ b/recipes-yocto-ivi/packagegroups/packagegroup-abstract-component-p2.bb
-@@ -1,4 +1,4 @@
--DESCRIPTION = "P2 packages"
-+DESCRIPTION = "GENIVI P2 Abstract components (SC)"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM =
-"file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
- PR = "r0"
-@@ -6,16 +6,14 @@ PR = "r0"
- inherit packagegroup
-
- PACKAGES = "\
--    packagegroup-core-p2 \
-+    packagegroup-abstract-component-p2 \
-     "
-
--RDEPENDS_packagegroup-core-p2 = "\
-+ALLOW_EMPTY_${PN} = "1"
-+
-+
-+RDEPENDS_${PN} += "\
-     node-state-manager \
-     ofono \
-     ofono-systemd \
--    pulseaudio-server \
--    wireless-tools \
-     "
--
--
--
-diff --git a/recipes-yocto-ivi/packagegroups/
-packagegroup-placeholder-component-p1.bb b/recipes-yocto-ivi/packagegroups/
-packagegroup-placeholder-component-p1.bb
-new file mode 100644
-index 0000000..373266a
---- /dev/null
-+++ b/recipes-yocto-ivi/packagegroups/
-packagegroup-placeholder-component-p1.bb
-@@ -0,0 +1,20 @@
-+DESCRIPTION = "GENIVI P1 Placeholder components (PC)"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM =
-"file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit packagegroup
-+
-+PACKAGES = "\
-+    packagegroup-placeholder-component-p1 \
-+    "
-+
-+ALLOW_EMPTY_${PN} = "1"
-+
-+
-+RDEPENDS_${PN} += "\
-+    "
-+
-+RRECOMMENDS_${PN} = "\
-+    packagegroup-xserver-ivi \
-+    "
-diff --git a/recipes-yocto-ivi/packagegroups/packagegroup-core-p1.bbb/recipes-yocto-ivi/packagegroups/
-packagegroup-specific-component-p1.bb
-similarity index 67%
-rename from recipes-yocto-ivi/packagegroups/packagegroup-core-p1.bb
-rename to recipes-yocto-ivi/packagegroups/
-packagegroup-specific-component-p1.bb
-index 657aa89..731813b 100644
---- a/recipes-yocto-ivi/packagegroups/packagegroup-core-p1.bb
-+++ b/recipes-yocto-ivi/packagegroups/packagegroup-specific-component-p1.bb
-@@ -1,44 +1,37 @@
--DESCRIPTION = "P1 packages"
-+DESCRIPTION = "GENIVI P1 Specific components (SC)"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM =
-"file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--PR = "r1"
-+PR = "r0"
-
- inherit packagegroup
-
- PACKAGES = "\
--    packagegroup-core-p1 \
-+    packagegroup-specific-component-p1 \
-     "
-
--RDEPENDS_packagegroup-core-p1 = "\
-+ALLOW_EMPTY_${PN} = "1"
-+
-+
-+RDEPENDS_${PN} += "\
-     kernel-modules \
-     audiomanager \
-     dlt-daemon \
-     dlt-daemon-systemd \
-     alsa-lib  \
-     alsa-utils \
--    bluez4 \
--    bluez4-systemd \
-     connman \
-     curl \
-     dbus \
-     ecryptfs-utils \
--    eglibc \
-     fuse \
-     gstreamer \
-     gst-plugins-good \
-     gst-plugins-base \
--    layer-management \
-     libusb1 \
-     node-startup-controller \
--    obex-client \
--    obexd \
-     openssl \
-     quota \
-     sqlite3 \
-     udev \
-     wpa-supplicant \
-     "
--
--RRECOMMENDS_${PN} = "\
--    packagegroup-xserver-ivi \
--    "
-diff --git a/recipes-yocto-ivi/packagegroups/
-packagegroup-specific-component-p2.bb b/recipes-yocto-ivi/packagegroups/
-packagegroup-specific-component-p2.bb
-new file mode 100644
-index 0000000..18a2abb
---- /dev/null
-+++ b/recipes-yocto-ivi/packagegroups/packagegroup-specific-component-p2.bb
-@@ -0,0 +1,19 @@
-+DESCRIPTION = "GENIVI P2 Specific components (SC)"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM =
-"file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+inherit packagegroup
-+
-+PACKAGES = "\
-+    packagegroup-specific-component-p2 \
-+    "
-+
-+ALLOW_EMPTY_${PN} = "1"
-+
-+
-+RDEPENDS_${PN} += "\
-+    pulseaudio-server \
-+    wireless-tools \
-+    "
-+
---
-1.8.2.3
-
---047d7b163241ea32c904de780f7c
-Content-Type: text/html; charset=ISO-8859-1
+--20cf307f33724284b904de7a51bd
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">fyi<br><br><div class=3D"gmail_quote">---------- Forwarded=
- message ----------<br>From: <b class=3D"gmail_sendername">Fahad Usman</b> =
-<span dir=3D"ltr">&lt;<a href=3D"mailto:fahad_usman@mentor.com">fahad_usman=
-@mentor.com</a>&gt;</span><br>
+Hi Jessica & Philip,
 
-Date: Thu, Jun 6, 2013 at 9:54 AM<br>Subject: [meta-ivi][PATCH] packagegrou=
-ps: restructure the yocto-ivi PGs<br>To: <a href=3D"mailto:yocto@yoctoproje=
-ct.org">yocto@yoctoproject.org</a><br>Cc: Fahad Usman &lt;<a href=3D"mailto=
-:fahad_usman@mentor.com">fahad_usman@mentor.com</a>&gt;<br>
+I have an issue... This is such a long error ... I even did a fresh build
+by deleting the "tmp" directory. The image build went very well but the
+toolchain is always giving me a error...
 
-<br><br>with the current implementation of packagegroups, it&#39;s not clea=
-r how a<br>
-particular recipe map to the GENIVI baseline document.<br>
-<br>
-this scheme remove confusion about which packagegroup a certain recipe belo=
-ng<br>
-to. And provide guidance to the customers about modifying the image. For<br=
+*| Selecting previously unselected package xz-dev.*
+*| Unpacking xz-dev (from .../xz-dev_5.1.2alpha-r0_armel.deb) ...*
+*| The following package disappeared from your system as*
+*| all files have been overwritten by other packages:*
+*|   avahi*
+*| log_check: Using
+/home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-poky-=
+linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_sdk.4066
+as logfile*
+*| Logfile is clean*
+*| Installing NATIVESDK packages*
+*| Ign file: ./ InRelease*
+*| Ign file: ./ InRelease*
+*| Ign file: ./ Release.gpg*
+*| Ign file: ./ Release.gpg*
+*| Get:1 file: ./ Release [24 B]*
+*| Get:2 file: ./ Release [11 B]*
+*| Ign file: ./ Translation-en*
+*| Ign file: ./ Translation-en*
+*| Reading package lists...*
+*| W: Ignoring Provides line with DepCompareOp for package
+nativesdk-pkgconfig__pkg-config__*
+*| W: You may want to run apt-get update to correct these problems*
+*| Reading package lists...*
+*| Building dependency tree...*
+*| Reading state information...*
+*| Some packages could not be installed. This may mean that you have*
+*| requested an impossible situation or if you are using the unstable*
+*| distribution that some required packages have not yet been created*
+*| or been moved out of Incoming.*
+*| The following information may help to resolve the situation:*
+*| *
+*| The following packages have unmet dependencies:*
+*|  packagegroup-cross-canadian-arm : Depends: gdb-cross-canadian-arm but
+it is not installable*
+*|                                    Depends: gcc-cross-canadian-arm but
+it is not installable*
+*|                                    Depends: meta-environment-arm but it
+is not installable*
+*|                                    Depends: binutils-cross-canadian-arm
+but it is not installable*
+*| W: Ignoring Provides line with DepCompareOp for package
+nativesdk-pkgconfig__pkg-config__*
+*| W: You may want to run apt-get update to correct these problems*
+*| E: Unable to correct problems, you have held broken packages.*
+*| DEBUG: Python function do_populate_sdk finished*
+*| ERROR: Function failed: populate_sdk_image (see
+/home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmony-poky-=
+linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_sdk.4066
+for further information)*
+*ERROR: Task 10 (/home/damarla/yocto/poky/meta/recipes-graphics/images/
+core-image-skidata.bb, do_populate_sdk) failed with exit code '1'*
+*NOTE: Tasks Summary: Attempted 5020 tasks of which 4939 didn't need to be
+rerun and 1 failed.*
+*
+*
+*Summary: 1 task failed:*
+*  /home/damarla/yocto/poky/meta/recipes-graphics/images/
+core-image-skidata.bb, do_populate_sdk*
+*Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
+
+I am not able to install those packages as they say there are no
+installation candidate for them...
+
+
+On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica <jessica.zhang@intel.com>wro=
+te:
+
+>  Hi Satya,****
 >
-instance customers should be careful about replacing specific-p1 components=
- if<br>
-they wish to maintain GENIVI compliance.<br>
-<br>
-Signed-off-by: Fahad Usman &lt;<a href=3D"mailto:fahad_usman@mentor.com">fa=
-had_usman@mentor.com</a>&gt;<br>
----<br>
-=A0recipes-yocto-ivi/images/<a href=3D"http://foton-image.bb" target=3D"_bl=
-ank">foton-image.bb</a> =A0 =A0 =A0 =A0 =A0 =A0 | =A08 +++++++-<br>
-=A0.../<a href=3D"http://packagegroup-abstract-component-p1.bb" target=3D"_=
-blank">packagegroup-abstract-component-p1.bb</a> =A0 =A0 =A0 =A0 =A0 | 21 +=
-++++++++++++++++++++<br>
-=A0...-<a href=3D"http://p2.bb" target=3D"_blank">p2.bb</a> =3D&gt; <a href=
-=3D"http://packagegroup-abstract-component-p2.bb" target=3D"_blank">package=
-group-abstract-component-p2.bb</a>} | 14 ++++++--------<br>
-=A0.../<a href=3D"http://packagegroup-placeholder-component-p1.bb" target=
-=3D"_blank">packagegroup-placeholder-component-p1.bb</a> =A0 =A0 =A0 =A0| 2=
-0 ++++++++++++++++++++<br>
-=A0...-<a href=3D"http://p1.bb" target=3D"_blank">p1.bb</a> =3D&gt; <a href=
-=3D"http://packagegroup-specific-component-p1.bb" target=3D"_blank">package=
-group-specific-component-p1.bb</a>} | 21 +++++++--------------<br>
-=A0.../<a href=3D"http://packagegroup-specific-component-p2.bb" target=3D"_=
-blank">packagegroup-specific-component-p2.bb</a> =A0 =A0 =A0 =A0 =A0 | 19 +=
-++++++++++++++++++<br>
-=A06 files changed, 80 insertions(+), 23 deletions(-)<br>
-=A0create mode 100644 recipes-yocto-ivi/packagegroups/<a href=3D"http://pac=
-kagegroup-abstract-component-p1.bb" target=3D"_blank">packagegroup-abstract=
--component-p1.bb</a><br>
-=A0rename recipes-yocto-ivi/packagegroups/{<a href=3D"http://packagegroup-c=
-ore-p2.bb" target=3D"_blank">packagegroup-core-p2.bb</a> =3D&gt; <a href=3D=
-"http://packagegroup-abstract-component-p2.bb" target=3D"_blank">packagegro=
-up-abstract-component-p2.bb</a>} (63%)<br>
+> ** **
+>
+> Use bitbake image-name =96c populate_sdk, this allows you to create a
+> toolchain with sysroot that match your target image that allows you to
+> develop app against=85****
+>
+> ** **
+>
+> Cheers,****
+>
+> Jessica****
+>
+> ** **
+>
+> *From:* yocto-bounces@yoctoproject.org [mailto:
+> yocto-bounces@yoctoproject.org] *On Behalf Of *Satya Swaroop Damarla
+> *Sent:* Wednesday, June 05, 2013 6:05 AM
+> *To:* yocto@yoctoproject.org
+> *Subject:* [yocto] Application Development****
+>
+> ** **
+>
+> Hi Guys,****
+>
+> ** **
+>
+> I have an issue... I created a custom image based on NVIDIA Tegra2 with a
+> custom kernel. I installed  packages specific Tegra board and application
+> specific. Now we want to send the baord and the new linux image for
+> application development... ****
+>
+> ** **
+>
+> As I went through ADT manual, I only found qemu based toolchains but I
+> want to create toolchain based on my rootfs and kernel... so that the
+> development team can develop a voip application for the board... I am kin=
+d
+> of stuck how to proceed in this issue...****
+>
+> ** **
+>
+> I really need a small way out and hopefully I will catch things
+> automatically..****
+>
+> ** **
+>
+> Cheers,****
+>
+> Satya****
+>
+
+--20cf307f33724284b904de7a51bd
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">Hi Jessica &amp; Philip,</span><div style=3D"font-family:arial,sans-serif=
+;font-size:13px"><br></div><div style=3D"font-family:arial,sans-serif;font-=
+size:13px">
+I have an issue... This is such a long error ... I even did a fresh build b=
+y deleting the &quot;tmp&quot; directory. The image build went very well bu=
+t the toolchain is always giving me a error... =A0</div><div style=3D"font-=
+family:arial,sans-serif;font-size:13px">
+<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| S=
+electing previously unselected package xz-dev.</i></div><div style=3D"font-=
+family:arial,sans-serif;font-size:13px"><i>| Unpacking xz-dev (from .../xz-=
+dev_5.1.2alpha-r0_armel.deb) ...</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| The followi=
+ng package disappeared from your system as</i></div><div style=3D"font-fami=
+ly:arial,sans-serif;font-size:13px"><i>| all files have been overwritten by=
+ other packages:</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| =A0 avahi</=
+i></div><div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| log=
+_check: Using /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata=
+_harmony-poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_=
+sdk.4066 as logfile</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| Logfile is =
+clean</i></div><div style=3D"font-family:arial,sans-serif;font-size:13px"><=
+i>| Installing NATIVESDK packages</i></div><div style=3D"font-family:arial,=
+sans-serif;font-size:13px">
+<i>| Ign file: ./ InRelease</i></div><div style=3D"font-family:arial,sans-s=
+erif;font-size:13px"><i>| Ign file: ./ InRelease</i></div><div style=3D"fon=
+t-family:arial,sans-serif;font-size:13px"><i>| Ign file: ./ Release.gpg</i>=
+</div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| Ign file: .=
+/ Release.gpg</i></div><div style=3D"font-family:arial,sans-serif;font-size=
+:13px"><i>| Get:1 file: ./ Release [24 B]</i></div><div style=3D"font-famil=
+y:arial,sans-serif;font-size:13px">
+<i>| Get:2 file: ./ Release [11 B]</i></div><div style=3D"font-family:arial=
+,sans-serif;font-size:13px"><i>| Ign file: ./ Translation-en</i></div><div =
+style=3D"font-family:arial,sans-serif;font-size:13px"><i>| Ign file: ./ Tra=
+nslation-en</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| Reading pac=
+kage lists...</i></div><div style=3D"font-family:arial,sans-serif;font-size=
+:13px"><i>| W: Ignoring Provides line with DepCompareOp for package natives=
+dk-pkgconfig__pkg-config__</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| W: You may =
+want to run apt-get update to correct these problems</i></div><div style=3D=
+"font-family:arial,sans-serif;font-size:13px"><i>| Reading package lists...=
+</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| Building de=
+pendency tree...</i></div><div style=3D"font-family:arial,sans-serif;font-s=
+ize:13px"><i>| Reading state information...</i></div><div style=3D"font-fam=
+ily:arial,sans-serif;font-size:13px">
+<i>| Some packages could not be installed. This may mean that you have</i><=
+/div><div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| reques=
+ted an impossible situation or if you are using the unstable</i></div><div =
+style=3D"font-family:arial,sans-serif;font-size:13px">
+<i>| distribution that some required packages have not yet been created</i>=
+</div><div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| or be=
+en moved out of Incoming.</i></div><div style=3D"font-family:arial,sans-ser=
+if;font-size:13px">
+<i>| The following information may help to resolve the situation:</i></div>=
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>|=A0</i></div=
+><div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| The follow=
+ing packages have unmet dependencies:</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| =A0packageg=
+roup-cross-canadian-arm : Depends: gdb-cross-canadian-arm but it is not ins=
+tallable</i></div><div style=3D"font-family:arial,sans-serif;font-size:13px=
+">
+<i>| =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0Depends: gcc-cross-canadian-arm but it is not installable</i></div><div =
+style=3D"font-family:arial,sans-serif;font-size:13px"><i>| =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0Depends: meta-enviro=
+nment-arm but it is not installable</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0Depends: binuti=
+ls-cross-canadian-arm but it is not installable</i></div><div style=3D"font=
+-family:arial,sans-serif;font-size:13px">
+<i>| W: Ignoring Provides line with DepCompareOp for package nativesdk-pkgc=
+onfig__pkg-config__</i></div><div style=3D"font-family:arial,sans-serif;fon=
+t-size:13px"><i>| W: You may want to run apt-get update to correct these pr=
+oblems</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| E: Unable t=
+o correct problems, you have held broken packages.</i></div><div style=3D"f=
+ont-family:arial,sans-serif;font-size:13px"><i>| DEBUG: Python function do_=
+populate_sdk finished</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>| ERROR: Func=
+tion failed: populate_sdk_image (see /home/damarla/yocto/poky/buildSkidataH=
+armony/tmp/work/skidata_harmony-poky-linux-gnueabi/core-image-skidata/1.0-r=
+0/temp/log.do_populate_sdk.4066 for further information)</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>ERROR: Task 1=
+0 (/home/damarla/yocto/poky/meta/recipes-graphics/images/<a href=3D"http://=
+core-image-skidata.bb/" target=3D"_blank">core-image-skidata.bb</a>, do_pop=
+ulate_sdk) failed with exit code &#39;1&#39;</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>NOTE: Tasks S=
+ummary: Attempted 5020 tasks of which 4939 didn&#39;t need to be rerun and =
+1 failed.</i></div><div style=3D"font-family:arial,sans-serif;font-size:13p=
+x">
+<i><br></i></div><div style=3D"font-family:arial,sans-serif;font-size:13px"=
+><i>Summary: 1 task failed:</i></div><div style=3D"font-family:arial,sans-s=
+erif;font-size:13px"><i>=A0 /home/damarla/yocto/poky/meta/recipes-graphics/=
+images/<a href=3D"http://core-image-skidata.bb/" target=3D"_blank">core-ima=
+ge-skidata.bb</a>, do_populate_sdk</i></div>
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><i>Summary: Ther=
+e was 1 ERROR message shown, returning a non-zero exit code.</i></div><div =
+style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div style=
+=3D"font-family:arial,sans-serif;font-size:13px">
+I am not able to install those packages as they say there are no installati=
+on candidate for them...</div></div><div class=3D"gmail_extra"><br><br><div=
+ class=3D"gmail_quote">On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:jessica.zhang@intel.com" target=3D"_blan=
+k">jessica.zhang@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
 
 
-=A0create mode 100644 recipes-yocto-ivi/packagegroups/<a href=3D"http://pac=
-kagegroup-placeholder-component-p1.bb" target=3D"_blank">packagegroup-place=
-holder-component-p1.bb</a><br>
-=A0rename recipes-yocto-ivi/packagegroups/{<a href=3D"http://packagegroup-c=
-ore-p1.bb" target=3D"_blank">packagegroup-core-p1.bb</a> =3D&gt; <a href=3D=
-"http://packagegroup-specific-component-p1.bb" target=3D"_blank">packagegro=
-up-specific-component-p1.bb</a>} (67%)<br>
 
 
-=A0create mode 100644 recipes-yocto-ivi/packagegroups/<a href=3D"http://pac=
-kagegroup-specific-component-p2.bb" target=3D"_blank">packagegroup-specific=
--component-p2.bb</a><br>
-<br>
-diff --git a/recipes-yocto-ivi/images/<a href=3D"http://foton-image.bb" tar=
-get=3D"_blank">foton-image.bb</a> b/recipes-yocto-ivi/images/<a href=3D"htt=
-p://foton-image.bb" target=3D"_blank">foton-image.bb</a><br>
-index 6d3077e..0b9a04a 100644<br>
---- a/recipes-yocto-ivi/images/<a href=3D"http://foton-image.bb" target=3D"=
-_blank">foton-image.bb</a><br>
-+++ b/recipes-yocto-ivi/images/<a href=3D"http://foton-image.bb" target=3D"=
-_blank">foton-image.bb</a><br>
-@@ -4,6 +4,12 @@ include recipes-yocto-ivi/images/ivi-image.inc<br>
-=A0PV =3D &quot;4.0.1&quot;<br>
-=A0#PR =3D &quot;r1&quot;<br>
-<br>
--IMAGE_INSTALL_append =3D &quot; packagegroup-core-p1 packagegroup-core-p2&=
-quot;<br>
-+IMAGE_INSTALL_append =3D &quot; \<br>
-+ =A0 =A0packagegroup-abstract-component-p1 \<br>
-+ =A0 =A0packagegroup-placeholder-component-p1 \<br>
-+ =A0 =A0packagegroup-specific-component-p2 \<br>
-+ =A0 =A0packagegroup-abstract-component-p2 \<br>
-+ =A0 =A0packagegroup-specific-component-p1 \<br>
-+&quot;<br>
-<br>
-=A0# Add image specific packages<br>
-diff --git a/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup=
--abstract-component-p1.bb" target=3D"_blank">packagegroup-abstract-componen=
-t-p1.bb</a> b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegrou=
-p-abstract-component-p1.bb" target=3D"_blank">packagegroup-abstract-compone=
-nt-p1.bb</a><br>
 
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Satya,<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Use bitbake image-name =
+=96c populate_sdk, this allows you to create a toolchain with sysroot that =
+match your target image that allows you to develop app against=85<u></u><u>=
+</u></span></p>
 
-new file mode 100644<br>
-index 0000000..7730252<br>
---- /dev/null<br>
-+++ b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-abstra=
-ct-component-p1.bb" target=3D"_blank">packagegroup-abstract-component-p1.bb=
-</a><br>
-@@ -0,0 +1,21 @@<br>
-+DESCRIPTION =3D &quot;GENIVI P1 Abstract components (AC)&quot;<br>
-+LICENSE =3D &quot;MIT&quot;<br>
-+LIC_FILES_CHKSUM =3D &quot;file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=
-=3D3da9cfbcb788c80a0384361b4de20420&quot;<br>
-+PR =3D &quot;r0&quot;<br>
-+<br>
-+inherit packagegroup<br>
-+<br>
-+PACKAGES =3D &quot;\<br>
-+ =A0 =A0packagegroup-abstract-component-p1 \<br>
-+ =A0 =A0&quot;<br>
-+<br>
-+ALLOW_EMPTY_${PN} =3D &quot;1&quot;<br>
-+<br>
-+RDEPENDS_${PN} +=3D &quot;\<br>
-+ =A0 =A0bluez4 \<br>
-+ =A0 =A0bluez4-systemd \<br>
-+ =A0 =A0eglibc \<br>
-+ =A0 =A0layer-management \<br>
-+ =A0 =A0obex-client \<br>
-+ =A0 =A0obexd \<br>
-+ =A0 =A0&quot;<br>
-diff --git a/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup=
--core-p2.bb" target=3D"_blank">packagegroup-core-p2.bb</a> b/recipes-yocto-=
-ivi/packagegroups/<a href=3D"http://packagegroup-abstract-component-p2.bb" =
-target=3D"_blank">packagegroup-abstract-component-p2.bb</a><br>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Cheers,<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Jessica<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
+=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.o=
+rg" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+<b>On Behalf Of </b>Satya Swaroop Damarla<br>
+<b>Sent:</b> Wednesday, June 05, 2013 6:05 AM<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] Application Development<u></u><u></u></span></p><di=
+v><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi Guys,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I have an issue... I created a custom image based on=
+ NVIDIA Tegra2 with a custom kernel. I installed =A0packages specific Tegra=
+ board and application specific. Now we want to send the baord and the new =
+linux image for application development...=A0<u></u><u></u></p>
 
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">As I went through ADT manual, I only found qemu base=
+d toolchains but I want to create toolchain based on my rootfs and kernel..=
+. so that the development team can develop a voip application for the board=
+... I am kind of stuck how to proceed
+ in this issue...<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I really need a small way out and hopefully I will c=
+atch things automatically..<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Cheers,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<u></u><u></u></p>
+</div>
+</div>
+</div></div></div>
+</div>
 
-similarity index 63%<br>
-rename from recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-=
-core-p2.bb" target=3D"_blank">packagegroup-core-p2.bb</a><br>
-rename to recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-ab=
-stract-component-p2.bb" target=3D"_blank">packagegroup-abstract-component-p=
-2.bb</a><br>
-index e9b7b86..c9ca67b 100644<br>
---- a/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-core-p=
-2.bb" target=3D"_blank">packagegroup-core-p2.bb</a><br>
-+++ b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-abstra=
-ct-component-p2.bb" target=3D"_blank">packagegroup-abstract-component-p2.bb=
-</a><br>
-@@ -1,4 +1,4 @@<br>
--DESCRIPTION =3D &quot;P2 packages&quot;<br>
-+DESCRIPTION =3D &quot;GENIVI P2 Abstract components (SC)&quot;<br>
-=A0LICENSE =3D &quot;MIT&quot;<br>
-=A0LIC_FILES_CHKSUM =3D &quot;file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;m=
-d5=3D3da9cfbcb788c80a0384361b4de20420&quot;<br>
-=A0PR =3D &quot;r0&quot;<br>
-@@ -6,16 +6,14 @@ PR =3D &quot;r0&quot;<br>
-=A0inherit packagegroup<br>
-<br>
-=A0PACKAGES =3D &quot;\<br>
-- =A0 =A0packagegroup-core-p2 \<br>
-+ =A0 =A0packagegroup-abstract-component-p2 \<br>
-=A0 =A0 =A0&quot;<br>
-<br>
--RDEPENDS_packagegroup-core-p2 =3D &quot;\<br>
-+ALLOW_EMPTY_${PN} =3D &quot;1&quot;<br>
-+<br>
-+<br>
-+RDEPENDS_${PN} +=3D &quot;\<br>
-=A0 =A0 =A0node-state-manager \<br>
-=A0 =A0 =A0ofono \<br>
-=A0 =A0 =A0ofono-systemd \<br>
-- =A0 =A0pulseaudio-server \<br>
-- =A0 =A0wireless-tools \<br>
-=A0 =A0 =A0&quot;<br>
--<br>
--<br>
--<br>
-diff --git a/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup=
--placeholder-component-p1.bb" target=3D"_blank">packagegroup-placeholder-co=
-mponent-p1.bb</a> b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packa=
-gegroup-placeholder-component-p1.bb" target=3D"_blank">packagegroup-placeho=
-lder-component-p1.bb</a><br>
+</blockquote></div><br></div>
 
-
-new file mode 100644<br>
-index 0000000..373266a<br>
---- /dev/null<br>
-+++ b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-placeh=
-older-component-p1.bb" target=3D"_blank">packagegroup-placeholder-component=
--p1.bb</a><br>
-@@ -0,0 +1,20 @@<br>
-+DESCRIPTION =3D &quot;GENIVI P1 Placeholder components (PC)&quot;<br>
-+LICENSE =3D &quot;MIT&quot;<br>
-+LIC_FILES_CHKSUM =3D &quot;file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=
-=3D3da9cfbcb788c80a0384361b4de20420&quot;<br>
-+PR =3D &quot;r0&quot;<br>
-+<br>
-+inherit packagegroup<br>
-+<br>
-+PACKAGES =3D &quot;\<br>
-+ =A0 =A0packagegroup-placeholder-component-p1 \<br>
-+ =A0 =A0&quot;<br>
-+<br>
-+ALLOW_EMPTY_${PN} =3D &quot;1&quot;<br>
-+<br>
-+<br>
-+RDEPENDS_${PN} +=3D &quot;\<br>
-+ =A0 =A0&quot;<br>
-+<br>
-+RRECOMMENDS_${PN} =3D &quot;\<br>
-+ =A0 =A0packagegroup-xserver-ivi \<br>
-+ =A0 =A0&quot;<br>
-diff --git a/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup=
--core-p1.bb" target=3D"_blank">packagegroup-core-p1.bb</a> b/recipes-yocto-=
-ivi/packagegroups/<a href=3D"http://packagegroup-specific-component-p1.bb" =
-target=3D"_blank">packagegroup-specific-component-p1.bb</a><br>
-
-
-similarity index 67%<br>
-rename from recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-=
-core-p1.bb" target=3D"_blank">packagegroup-core-p1.bb</a><br>
-rename to recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-sp=
-ecific-component-p1.bb" target=3D"_blank">packagegroup-specific-component-p=
-1.bb</a><br>
-index 657aa89..731813b 100644<br>
---- a/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-core-p=
-1.bb" target=3D"_blank">packagegroup-core-p1.bb</a><br>
-+++ b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-specif=
-ic-component-p1.bb" target=3D"_blank">packagegroup-specific-component-p1.bb=
-</a><br>
-@@ -1,44 +1,37 @@<br>
--DESCRIPTION =3D &quot;P1 packages&quot;<br>
-+DESCRIPTION =3D &quot;GENIVI P1 Specific components (SC)&quot;<br>
-=A0LICENSE =3D &quot;MIT&quot;<br>
-=A0LIC_FILES_CHKSUM =3D &quot;file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;m=
-d5=3D3da9cfbcb788c80a0384361b4de20420&quot;<br>
--PR =3D &quot;r1&quot;<br>
-+PR =3D &quot;r0&quot;<br>
-<br>
-=A0inherit packagegroup<br>
-<br>
-=A0PACKAGES =3D &quot;\<br>
-- =A0 =A0packagegroup-core-p1 \<br>
-+ =A0 =A0packagegroup-specific-component-p1 \<br>
-=A0 =A0 =A0&quot;<br>
-<br>
--RDEPENDS_packagegroup-core-p1 =3D &quot;\<br>
-+ALLOW_EMPTY_${PN} =3D &quot;1&quot;<br>
-+<br>
-+<br>
-+RDEPENDS_${PN} +=3D &quot;\<br>
-=A0 =A0 =A0kernel-modules \<br>
-=A0 =A0 =A0audiomanager \<br>
-=A0 =A0 =A0dlt-daemon \<br>
-=A0 =A0 =A0dlt-daemon-systemd \<br>
-=A0 =A0 =A0alsa-lib =A0\<br>
-=A0 =A0 =A0alsa-utils \<br>
-- =A0 =A0bluez4 \<br>
-- =A0 =A0bluez4-systemd \<br>
-=A0 =A0 =A0connman \<br>
-=A0 =A0 =A0curl \<br>
-=A0 =A0 =A0dbus \<br>
-=A0 =A0 =A0ecryptfs-utils \<br>
-- =A0 =A0eglibc \<br>
-=A0 =A0 =A0fuse \<br>
-=A0 =A0 =A0gstreamer \<br>
-=A0 =A0 =A0gst-plugins-good \<br>
-=A0 =A0 =A0gst-plugins-base \<br>
-- =A0 =A0layer-management \<br>
-=A0 =A0 =A0libusb1 \<br>
-=A0 =A0 =A0node-startup-controller \<br>
-- =A0 =A0obex-client \<br>
-- =A0 =A0obexd \<br>
-=A0 =A0 =A0openssl \<br>
-=A0 =A0 =A0quota \<br>
-=A0 =A0 =A0sqlite3 \<br>
-=A0 =A0 =A0udev \<br>
-=A0 =A0 =A0wpa-supplicant \<br>
-=A0 =A0 =A0&quot;<br>
--<br>
--RRECOMMENDS_${PN} =3D &quot;\<br>
-- =A0 =A0packagegroup-xserver-ivi \<br>
-- =A0 =A0&quot;<br>
-diff --git a/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup=
--specific-component-p2.bb" target=3D"_blank">packagegroup-specific-componen=
-t-p2.bb</a> b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegrou=
-p-specific-component-p2.bb" target=3D"_blank">packagegroup-specific-compone=
-nt-p2.bb</a><br>
-
-
-new file mode 100644<br>
-index 0000000..18a2abb<br>
---- /dev/null<br>
-+++ b/recipes-yocto-ivi/packagegroups/<a href=3D"http://packagegroup-specif=
-ic-component-p2.bb" target=3D"_blank">packagegroup-specific-component-p2.bb=
-</a><br>
-@@ -0,0 +1,19 @@<br>
-+DESCRIPTION =3D &quot;GENIVI P2 Specific components (SC)&quot;<br>
-+LICENSE =3D &quot;MIT&quot;<br>
-+LIC_FILES_CHKSUM =3D &quot;file://${IVI_COREBASE}/meta-ivi/COPYING.MIT;md5=
-=3D3da9cfbcb788c80a0384361b4de20420&quot;<br>
-+PR =3D &quot;r0&quot;<br>
-+<br>
-+inherit packagegroup<br>
-+<br>
-+PACKAGES =3D &quot;\<br>
-+ =A0 =A0packagegroup-specific-component-p2 \<br>
-+ =A0 =A0&quot;<br>
-+<br>
-+ALLOW_EMPTY_${PN} =3D &quot;1&quot;<br>
-+<br>
-+<br>
-+RDEPENDS_${PN} +=3D &quot;\<br>
-+ =A0 =A0pulseaudio-server \<br>
-+ =A0 =A0wireless-tools \<br>
-+ =A0 =A0&quot;<br>
-+<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.8.2.3<br>
-<br>
-</font></span></div><br></div>
-
---047d7b163241ea32c904de780f7c--
+--20cf307f33724284b904de7a51bd--
