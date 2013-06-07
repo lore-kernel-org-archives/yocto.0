@@ -1,28 +1,24 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qc0-f180.google.com (mail-qc0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16C80E01572
-	for <yocto@yoctoproject.org>; Fri,  7 Jun 2013 01:05:11 -0700 (PDT)
-Received: by mail-qc0-f180.google.com with SMTP id a1so223796qcx.25
-	for <yocto@yoctoproject.org>; Fri, 07 Jun 2013 01:05:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=EdHdRgZQrtSKFLww9AyOhqPltfkmvER5edZdWj3ADiI=;
-	b=Joe0xceFRNlS1HpRj7bWbZWOEKsFMNLkD72t/RZkX2CStBL8ttObqn85TNaakP3Bac
-	q1Bz748qc0nfkXMckinbBGeNHgRWUCutkPZ4YW8MYC4h/Aw7O2ltIJ7j/eyGTQOw+HNt
-	KR2aPz/NNxZech4/x7vR2SyQWSrF4sKSKPkNPyfpjTU/lq8tOkJNrpOsl3m6U+ccmNDZ
-	uivlSkJV10FyGIxTUdp+VDa09WP4DRrHDFpfphUNYWWeU/9/nYN2O2NTWbKikBJx0h1U
-	hHs8Cc76gF7A1LKGFn+Ex1eswuv5BVoLBZ94+WGImgC7ZdIjYACwzx8FsrnsqyFAAcSN
-	HV9Q==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3B25E01572
+	for <yocto@yoctoproject.org>; Fri,  7 Jun 2013 01:45:23 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Jun 2013 01:45:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,820,1363158000"; d="scan'208";a="349583681"
+Received: from unknown (HELO helios.localnet) ([10.252.121.224])
+	by fmsmga002.fm.intel.com with ESMTP; 07 Jun 2013 01:45:16 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Mike Dean <mdean@emacinc.com>
+Date: Fri, 07 Jun 2013 09:45:14 +0100
+Message-ID: <1423046.5zGHAVJZfP@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.3 (Linux/3.8.0-23-generic; KDE/4.10.3; i686; ; )
+In-Reply-To: <CAPMJ7HqEvt4UWPC=648nQ=RwJDqrv0qmcfmEkaVggX4wCCZs3w@mail.gmail.com>
+References: <CAPMJ7HqEvt4UWPC=648nQ=RwJDqrv0qmcfmEkaVggX4wCCZs3w@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.224.78.193 with SMTP id m1mr1478209qak.79.1370592310383;
-	Fri, 07 Jun 2013 01:05:10 -0700 (PDT)
-Received: by 10.49.24.239 with HTTP; Fri, 7 Jun 2013 01:05:10 -0700 (PDT)
-Date: Fri, 7 Jun 2013 10:05:10 +0200
-Message-ID: <CAFyqS9oP_F1+Fa2+cVMnhmTwJTbzcD2ec2QQ0Cf-Mup6mDRKQw@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: staging of native header file to non-native package
+Cc: yocto@yoctoproject.org
+Subject: Re: Distributing Compilation of Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,16 +30,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jun 2013 08:05:11 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 07 Jun 2013 08:45:23 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hello. We have a native package that implements a header file that is
-required also by another non-native package. What is the best approach
-to handle such a situation?
-I guess one option is to create two recipes for the package containing
-the header filer; one native and a one non-native that does not
-configure/compile anything but only installs the header file? But that
-seems ugly :( Must be some more clever way if solving this?
+Hi Mike,
 
-Hans
+On Thursday 06 June 2013 18:39:38 Mike Dean wrote:
+> Can I distribute the compilation with Yocto?  I found posts about using
+> icecc to do so, and tried to set it up, but I haven't been able to get it
+> to work correctly.  I have two machines which each have two Xeon quadcore
+> processors dedicated to building Yocto, but I can only use one if I can't
+> get this setup.  I would really appreciate any help and/or pointers anyone
+> can give on this.
+
+If you haven't already seen this, you might find it interesting:
+
+http://www.openembedded.org/wiki/Using_IceCC
+
+I've not tried it myself but I know a couple of people have used it 
+successfully recently.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
