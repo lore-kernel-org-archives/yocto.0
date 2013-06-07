@@ -1,47 +1,28 @@
-Return-Path: <B19537@freescale.com>
-Received: from db8outboundpool.messaging.microsoft.com
-	(mail-db8lp0185.outbound.messaging.microsoft.com [213.199.154.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE031E01574
-	for <yocto@yoctoproject.org>; Fri,  7 Jun 2013 03:46:10 -0700 (PDT)
-Received: from mail33-db8-R.bigfish.com (10.174.8.238) by
-	DB8EHSOBE002.bigfish.com (10.174.4.65) with Microsoft SMTP Server id
-	14.1.225.23; Fri, 7 Jun 2013 10:46:08 +0000
-Received: from mail33-db8 (localhost [127.0.0.1])	by mail33-db8-R.bigfish.com
-	(Postfix) with ESMTP id D0407BC00CE	for <yocto@yoctoproject.org>;
-	Fri,  7 Jun 2013 10:46:08 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -4
-X-BigFish: VS-4(zz98dI9371I936eI542I1432Izz1f42h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ah1fc6hzzz2dh2a8h668h839h8e2h8e3h93fhd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1d0ch1d2eh1d3fh1dfeh1dffh1e1dhbe9i1155h)
-Received: from mail33-db8 (localhost.localdomain [127.0.0.1]) by mail33-db8
-	(MessageSwitch) id 1370601966648301_27732;
-	Fri,  7 Jun 2013 10:46:06 +0000 (UTC)
-Received: from DB8EHSMHS006.bigfish.com (unknown [10.174.8.228])	by
-	mail33-db8.bigfish.com (Postfix) with ESMTP id 9CA754C0051	for
-	<yocto@yoctoproject.org>; Fri,  7 Jun 2013 10:46:06 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by DB8EHSMHS006.bigfish.com
-	(10.174.4.16) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Fri, 7 Jun 2013 10:46:06 +0000
-Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.137]) by
-	039-SN1MMR1-003.039d.mgd.msft.net ([10.84.1.16]) with mapi id
-	14.02.0328.011; Fri, 7 Jun 2013 10:47:24 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Can Yocto run on host with other CPU types
-Thread-Index: Ac5igd9+xX5mFZ2JT6aEWilowWIgcQA4oOOAAAGMZxA=
-Date: Fri, 7 Jun 2013 10:45:37 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A0157FC1A@039-SN2MPN1-021.039d.mgd.msft.net>
-References: <CA452391058F6D4E9715FB2C29D9312A0157EC80@039-SN2MPN1-021.039d.mgd.msft.net>
-	<1370598605.6864.16.camel@ted>
-In-Reply-To: <1370598605.6864.16.camel@ted>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.208.134]
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F390CE01574
+	for <yocto@yoctoproject.org>; Fri,  7 Jun 2013 04:11:30 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 7835AF811E9; Fri,  7 Jun 2013 05:11:30 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 150F7F811E4;
+	Fri,  7 Jun 2013 05:11:26 -0600 (MDT)
+Message-ID: <51B1BFDF.1010806@mlbassoc.com>
+Date: Fri, 07 Jun 2013 05:11:27 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: Wrobel Heinz-R39252 <r39252@freescale.com>
-Subject: Re: Can Yocto run on host with other CPU types
+To: yocto@yoctoproject.org
+References: <CAPMJ7HqEvt4UWPC=648nQ=RwJDqrv0qmcfmEkaVggX4wCCZs3w@mail.gmail.com>
+	<1423046.5zGHAVJZfP@helios>
+In-Reply-To: <1423046.5zGHAVJZfP@helios>
+Subject: Re: Distributing Compilation of Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,24 +34,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jun 2013 10:46:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 07 Jun 2013 11:11:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSaWNoYXJkIFB1cmRpZSBbbWFp
-bHRvOnJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmddDQo+IFNlbnQ6IEZyaWRheSwg
-SnVuZSAwNywgMjAxMyA1OjUwIFBNDQo+IA0KPiBPbiBUaHUsIDIwMTMtMDYtMDYgYXQgMDY6NDgg
-KzAwMDAsIEx1byBaaGVuaHVhLUIxOTUzNyB3cm90ZToNCj4gPiBFeGNlcHQgeDg2L3g4Ni02NCBo
-b3N0cywgY2FuIFlvY3RvIHN1cHBvcnQgdG8gcnVuIG9uIGhvc3RzIHdpdGggb3RoZXINCj4gPiBD
-UFUgYXJjaCwgZS5nLiAgQVJNLCBQb3dlcnBjLCBldGM/DQo+IA0KPiBZb3UgbWVhbiBhcyB0aGUg
-c3lzdGVtIHRvIHJ1biB0aGUgYnVpbGRzIG9uPyANCltMdW8gWmhlbmh1YS1CMTk1MzddIFllcw0K
-DQo+IEluIHRoZW9yeSB0aGF0IHdvdWxkIGJlIHBvc3NpYmxlIGFsdGhvdWdoIG1vc3QgcGVvcGxl
-IHRlbmQgdG8gdXNlIHg4NiBhbmQgdGhlIG90aGVycyBhcmVuJ3QNCj4gdGVzdGVkIGFmYWlrLg0K
-W0x1byBaaGVuaHVhLUIxOTUzN10gRG9lcyBpdCBtYWtlIHNlbnNlIHRvIGxvZyBkZWZlY3RzIGlu
-IFlQIGJ1Z3ppbGxhIGlmIGlzc3VlIGlzIGZvdW5kIG9uIGhvc3Qgd2l0aCB0aG9zZSBDUFUgdHlw
-ZXM/DQoNCkJUVywgaXMgdGhlcmUgYSBsaW1pdGF0aW9uIGZvciBtYXhpbXVtIHBhcmFsbGVsIG51
-bWJlciBvZiBZb2N0byBidWlsZD8gSSBkb24ndCB0aGluayB0aGUgbnVtYmVyIGNhbiBiZSBhcmJp
-dHJhcnkuIA0KDQoNCkJlc3QgUmVnYXJkcywNCg0KWmhlbmh1YQ0K
+On 2013-06-07 02:45, Paul Eggleton wrote:
+> Hi Mike,
+>
+> On Thursday 06 June 2013 18:39:38 Mike Dean wrote:
+>> Can I distribute the compilation with Yocto?  I found posts about using
+>> icecc to do so, and tried to set it up, but I haven't been able to get it
+>> to work correctly.  I have two machines which each have two Xeon quadcore
+>> processors dedicated to building Yocto, but I can only use one if I can't
+>> get this setup.  I would really appreciate any help and/or pointers anyone
+>> can give on this.
+>
+> If you haven't already seen this, you might find it interesting:
+>
+> http://www.openembedded.org/wiki/Using_IceCC
+>
+> I've not tried it myself but I know a couple of people have used it
+> successfully recently.
 
+Looks interesting and I think I'd like to try it myself.  However, that page
+has a reference to http://bugs.openembedded.org/attachment.cgi?id=1032&action=view
+which seems to be down at the moment (tested from both sides of the pond)
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
