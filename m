@@ -1,35 +1,36 @@
 Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3E5AE015EA
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 04:51:16 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 10 Jun 2013 04:51:16 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B067EE01532
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 06:20:04 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga101.ch.intel.com with ESMTP; 10 Jun 2013 06:20:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,836,1363158000"; d="scan'208";a="351040396"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga002.jf.intel.com with ESMTP; 10 Jun 2013 04:51:15 -0700
+X-IronPort-AV: E=Sophos;i="4.87,837,1363158000"; d="scan'208";a="347550617"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Jun 2013 06:20:23 -0700
 Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 10 Jun 2013 12:48:48 +0100
+	IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 10 Jun 2013 14:19:37 +0100
 Received: from irsmsx101.ger.corp.intel.com ([169.254.1.105]) by
 	IRSMSX151.ger.corp.intel.com ([169.254.4.91]) with mapi id
-	14.03.0123.003; Mon, 10 Jun 2013 12:48:48 +0100
+	14.03.0123.003; Mon, 10 Jun 2013 14:19:36 +0100
 From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
 To: Yocto DEV Romania <yocto.dev.romania@intel.com>, Yocto GB DEV Romania
 	<yocto.gb.dev.romania@intel.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: WSR WW23: Ioana Grigoropol
-Thread-Index: AQHOZZ/U2xANmGYcu0iLX5DizHKk2Zkuz68w
-Date: Mon, 10 Jun 2013 11:48:47 +0000
-Message-ID: <3E179CF0D7162B4AA4E2B324209A463915FF4CF2@IRSMSX101.ger.corp.intel.com>
+Thread-Index: AQHOZZ/U2xANmGYcu0iLX5DizHKk2Zkuz68wgAAfQRA=
+Date: Mon, 10 Jun 2013 13:19:36 +0000
+Message-ID: <3E179CF0D7162B4AA4E2B324209A463915FF4D5D@IRSMSX101.ger.corp.intel.com>
 References: <20130610060016.GA6018@lpalcu-linux>
-In-Reply-To: <20130610060016.GA6018@lpalcu-linux>
+	<3E179CF0D7162B4AA4E2B324209A463915FF4CF2@IRSMSX101.ger.corp.intel.com>
+In-Reply-To: <3E179CF0D7162B4AA4E2B324209A463915FF4CF2@IRSMSX101.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-Subject: WSR WW23: Ioana Grigoropol
+Subject: Re: WSR WW23: Ioana Grigoropol
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,10 +42,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jun 2013 11:51:16 -0000
+X-List-Received-Date: Mon, 10 Jun 2013 13:20:05 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Wrong mailing list, please disregard this.
+
+-----Original Message-----
+From: Grigoropol, IoanaX=20
+Sent: Monday, June 10, 2013 2:49 PM
+To: Yocto DEV Romania; Yocto GB DEV Romania; yocto@yoctoproject.org
+Subject: WSR WW23: Ioana Grigoropol
 
  (features):
 4362  Refactor plug-in code to create a common remote communication util   =
