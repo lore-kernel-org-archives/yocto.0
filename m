@@ -1,42 +1,31 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qe0-f51.google.com (mail-qe0-f51.google.com
-	[209.85.128.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3355E0158B
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 07:07:48 -0700 (PDT)
-Received: by mail-qe0-f51.google.com with SMTP id a11so2030702qen.24
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 07:07:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type:content-transfer-encoding;
-	bh=M4I9a7SQeAwvTxFHKnxLgq5WvIfSFnltOxsXZsGfU3I=;
-	b=GcmrTVSa8XBfAdWx1uNuEK00v2dU3m87XRqBOcviFmedVP68A924N65JeC1+G1K1lb
-	jI32yAf0NI6XCRi0NxphgNPMIuXYfhucvCrqEBq9hS5gzADYj55WwDZH33JNUFxdfF4X
-	sirYdTJ2O1WPKogYfW2d/TkNwyF2W9hQJMFVZCbWKb25rXSGzlQyOVaFLD//PEo7tPGm
-	jAIqqOZZR8/8L0gvvzXBci+2CWcV2EkIwtFylVdgXvUisVBQH7resxo+yB22s/ogj5/I
-	Z3od7zTqNxOzFIcLyiR2DJ2xMBUAr4gJ88GSnPHZ7YnN6ZLC/F4CKRIwcK1ngxgdqQ7U
-	NETQ==
+Return-Path: <rohit2.jindal@aricent.com>
+Received: from jaguar.aricent.com (jaguar.aricent.com [121.241.96.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 662F4E015AD;
+	Mon, 10 Jun 2013 07:50:58 -0700 (PDT)
+Received: from jaguar.aricent.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 233AD36B33;
+	Mon, 10 Jun 2013 20:20:39 +0530 (IST)
+Received: from GUREXHT02.ASIAN.AD.ARICENT.COM (gurexht02.asian.ad.aricent.com
+	[10.203.171.138])
+	by jaguar.aricent.com (Postfix) with ESMTP id 0D13F36B27;
+	Mon, 10 Jun 2013 20:20:39 +0530 (IST)
+Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
+	GUREXHT02.ASIAN.AD.ARICENT.COM ([10.203.171.138]) with mapi;
+	Mon, 10 Jun 2013 20:20:39 +0530
+From: Rohit2 Jindal <rohit2.jindal@aricent.com>
+To: "'yocto@yoctoproject.org'" <'yocto@yoctoproject.org'>,
+	"yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>
+Date: Mon, 10 Jun 2013 20:20:37 +0530
+Thread-Topic: menuconfig not working in FEDORA18
+Thread-Index: Ac5XSBwud+8rkVfJS0qIv5zxKmS4bwAOdN/wAZ7chWAB+wkegA==
+Message-ID: <17797116383D4341B029FDF34C22BF6A52C4CCADB9@GUREXMB01.ASIAN.AD.ARICENT.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.49.101.74 with SMTP id fe10mr11233984qeb.11.1370873267592;
-	Mon, 10 Jun 2013 07:07:47 -0700 (PDT)
-Received: by 10.49.24.239 with HTTP; Mon, 10 Jun 2013 07:07:47 -0700 (PDT)
-In-Reply-To: <CAFyqS9qQ6uotr0KEEjFG8OrO8H=nwC4x+22kZYuhxtrw2XFMRg@mail.gmail.com>
-References: <CAFMfyzKvAfk7o_r1d0EjJw=kHTEY4_AfkGdprxPAhmv9MSkt1A@mail.gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C73C379DD@ORSMSX103.amr.corp.intel.com>
-	<CAFMfyzJb4U0AXTfC80TtizhX_AzOxuDk5D_Lkgz10SopdTGxWA@mail.gmail.com>
-	<CAFMfyzJjrtEkON57=7+d433FMZo+memj8oMufqAWb5tTysydaQ@mail.gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C73C38476@ORSMSX103.amr.corp.intel.com>
-	<CAFyqS9pfyWVpDUNt8ZodfbWrhjyWOV_C-s-9_Vjf_JAGN4Xp8w@mail.gmail.com>
-	<C6510F6D410BB64A8C15398EDC6B847C73C384BA@ORSMSX103.amr.corp.intel.com>
-	<CAFyqS9rwJZM3bO4zbj2JFcKrTNdQ20uWG3dXqW=v921zsxfWQQ@mail.gmail.com>
-	<CAFyqS9qxuw0G7nQOPPwdNR9cnP2yYZ-L+XjCDEdTFsV7BrKJeA@mail.gmail.com>
-	<CAFMfyzKgaoFNRjvw9qy14SmqXAqhWsHcBTaeZnMog1DUsaFLjQ@mail.gmail.com>
-	<CAFyqS9qQ6uotr0KEEjFG8OrO8H=nwC4x+22kZYuhxtrw2XFMRg@mail.gmail.com>
-Date: Mon, 10 Jun 2013 16:07:47 +0200
-Message-ID: <CAFyqS9pW4qtnt0z6yRnAM_owbUAPbCJ8xGdyqGbaOL4y78TDoQ@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Application Development
+X-Mailman-Approved-At: Mon, 10 Jun 2013 08:09:10 -0700
+Subject: menuconfig not working in FEDORA18
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,1218 +37,269 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jun 2013 14:07:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 10 Jun 2013 14:50:59 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_17797116383D4341B029FDF34C22BF6A52C4CCADB9GUREXMB01ASIA_"
+
+--_000_17797116383D4341B029FDF34C22BF6A52C4CCADB9GUREXMB01ASIA_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-[SOLVED]
-
-Now it works! I do not know how my poky environment got polluted, but
-after doing
-  bitbake -c cleanall meta-environment-arm
-  bitbake -c cleanall sdk-gnu-config
-building the SDK passed without errors and I got my installation in deploy/=
-sdk.
-Even tried if for a small test application and it seems to work fine :)
-
-So no need to add sdk-tools, all that I have is what is added to
-SDKIMAGE_FEATURES by image.bbclass which is dev-pkgs and dbg-pkgs.
+Hi,
 
 
-Hans
 
-On Mon, Jun 10, 2013 at 1:28 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> =
-wrote:
-> On Mon, Jun 10, 2013 at 12:33 PM, DAMARLA Satya Swaroop
-> <satyaswaroop.damarla@gmail.com> wrote:
->> I installed "dev-pkgs" in EXTRA_IMAGE_FEATURES ... and then build the
->> toolchain, it was successfull....
->>
-> That should already be provided by image.bbclass?
-> Checking the file packagegroup-cross-canadian.bbclass i found this
+Actually I am trying to run command
+
+Bitbake -c menuconfig linux(recipe-name)
+
+
+
+Getting error
+NOTE: Executing RunQueue Tasks
+ERROR: No valid terminal found, unable to open devshell
+ERROR: Function failed: do_menuconfig
+ERROR: Logfile of failure stored in: /home/netlogic/yocto/poky/build/tmp/wo=
+rk/xlp8xx-poky-linux/linux/2.6.32-r1/temp/log.do_menuconfig.24937
+ERROR: Task 4 (/home/netlogic/yocto/poky/meta-xlp/recipes-kernel/linux/linu=
+x.bb, do_menuconfig) failed with exit code '1'
+
+
+
+
+
+Please suggest me the way to solve this problem.
+
+
+
+
+
+Thanks in advance!
+
+
+
+
+
+Regards,
+
+Rohit Jindal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+Please refer to http://www.aricent.com/legal/email_disclaimer.html
+for important disclosures regarding this electronic communication.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+
+--_000_17797116383D4341B029FDF34C22BF6A52C4CCADB9GUREXMB01ASIA_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> # For backwards compatibility after rename
-> RPROVIDES_${PN} =3D "task-cross-canadian-${TRANSLATED_TARGET_ARCH}"
->
-> RDEPENDS_${PN} =3D "\
->     binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} \
->     gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} \
->     gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} \
->     meta-environment-${TRANSLATED_TARGET_ARCH} \
->     "
->
-> So, now I understand were the dependency to meta-environment-arm came
-> from. But how to resolve it?
-> Am I missing some package(s) in my environment? What *should* provide
-> meta-environment-arm?
-> All I can find under Poky is meta-environment.bb.
->
-> Hans
->
->>
->> On Mon, Jun 10, 2013 at 12:03 PM, Hans Beck=E9rus <hans.beckerus@gmail.c=
-om>
->> wrote:
->>>
->>> Any updates on this matter? Do I need to provide more information?
->>> /Hans
->>>
->>> On Fri, Jun 7, 2013 at 4:29 PM, Hans Beck=E9rus <hans.beckerus@gmail.co=
-m>
->>> wrote:
->>> > On Fri, Jun 7, 2013 at 4:21 PM, Zhang, Jessica <jessica.zhang@intel.c=
-om>
->>> > wrote:
->>> >> When you create your image, what profile did you use.  Are you build=
-ing
->>> >> one of our existing images, e.g. core-image-minimal, etc. or it's a
->>> >> customized image and if so, how did you customize your image, via la=
-yer or
->>> >> install extra packages?  I think x11 is brought in via some package
->>> >> dependency.  You said you were able to build the image, was the x11 =
-packages
->>> >> there?  We're building a toolchain plus the sysroot that matching th=
-e rootfs
->>> >> of your target image here so it's not just the toolchain that is bui=
-lt.
->>> >>
->>> >
->>> > Hi Jessica.
->>> >
->>> > I am building my own image recipe that basically does:
->>> >
->>> > require recipes-core/images/core-image-minimal-mtdutils.bb
->>> > IMAGE_FEATURES +=3D " ssh-server-dropbear \
->>> >                   "
->>> >
->>> > Its a console-only type of image for an embedded device with no
->>> > graphic support what so ever.
->>> > Building the the rootfs and booting it up on the device works fine.
->>> > I have had no X11 dependency until I added tools-sdk to IMAGE_FEATURE=
-S
->>> > as suggested.
->>> > What I am after is a command-line-only toolchain which will be using
->>> > the sysroot from my rootfs build.
->>> > Maybe I am asking for something that is not supported?
->>> >
->>> > Hans
->>> >
->>> >
->>> >> -----Original Message-----
->>> >> From: Hans Beck=E9rus [mailto:hans.beckerus@gmail.com]
->>> >> Sent: Friday, June 07, 2013 7:09 AM
->>> >> To: Zhang, Jessica
->>> >> Cc: DAMARLA Satya Swaroop; yocto@yoctoproject.org
->>> >> Subject: Re: [yocto] Application Development
->>> >>
->>> >> On Fri, Jun 7, 2013 at 4:03 PM, Zhang, Jessica
->>> >> <jessica.zhang@intel.com> wrote:
->>> >>> Yes, you need those packages in your sysroot for cross development.
->>> >>>
->>> >>>
->>> >> Ok. But out of curiosity, why should I need X11 packages for a simpl=
-e
->>> >> command-line based toolchain?
->>> >> I assume that none of these X11 packages gets copied to my target
->>> >> device rootfs, or?
->>> >>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: satyaswaroop.damarla@gmail.com
->>> >>> [mailto:satyaswaroop.damarla@gmail.com]
->>> >>> On Behalf Of DAMARLA Satya Swaroop
->>> >>> Sent: Friday, June 07, 2013 12:10 AM
->>> >>> To: Zhang, Jessica; yocto@yoctoproject.org
->>> >>> Subject: Re: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> SHould we install development and debigging pacakages in the images
->>> >>> when we want to build a toolchain.. I mean this
->>> >>>
->>> >>>
->>> >>>
->>> >>>  "dbg-pkgs"       - add -dbg packages for all installed packages
->>> >>>
->>> >>> #                     (adds symbol information for
->>> >>> debugging/profiling)
->>> >>>
->>> >>> #  "dev-pkgs"       - add -dev packages for all installed packages
->>> >>>
->>> >>> #                     (useful if you want to develop against libs i=
-n
->>> >>> the
->>> >>> image)
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> Greets,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 1:07 PM, DAMARLA Satya Swaroop
->>> >>> <swaroop.damarla@gmail.com> wrote:
->>> >>>
->>> >>> Hi Jessica & Philip,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... This is such a long error ... I even did a fresh
->>> >>> build by deleting the "tmp" directory. The image build went very we=
-ll
->>> >>> but the toolchain is always giving me a error...
->>> >>>
->>> >>>
->>> >>>
->>> >>> | Selecting previously unselected package xz-dev.
->>> >>>
->>> >>> | Unpacking xz-dev (from .../xz-dev_5.1.2alpha-r0_armel.deb) ...
->>> >>>
->>> >>> | The following package disappeared from your system as
->>> >>>
->>> >>> | all files have been overwritten by other packages:
->>> >>>
->>> >>> |   avahi
->>> >>>
->>> >>> | log_check: Using
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> as logfile
->>> >>>
->>> >>> | Logfile is clean
->>> >>>
->>> >>> | Installing NATIVESDK packages
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Get:1 file: ./ Release [24 B]
->>> >>>
->>> >>> | Get:2 file: ./ Release [11 B]
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | Building dependency tree...
->>> >>>
->>> >>> | Reading state information...
->>> >>>
->>> >>> | Some packages could not be installed. This may mean that you have
->>> >>>
->>> >>> | requested an impossible situation or if you are using the unstabl=
-e
->>> >>>
->>> >>> | distribution that some required packages have not yet been create=
-d
->>> >>>
->>> >>> | or been moved out of Incoming.
->>> >>>
->>> >>> | The following information may help to resolve the situation:
->>> >>>
->>> >>> |
->>> >>>
->>> >>> | The following packages have unmet dependencies:
->>> >>>
->>> >>> |  packagegroup-cross-canadian-arm : Depends: gdb-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: gcc-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: meta-environment-arm =
-but
->>> >>> | it is
->>> >>> not installable
->>> >>>
->>> >>> |                                    Depends:
->>> >>> | binutils-cross-canadian-arm
->>> >>> but it is not installable
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | E: Unable to correct problems, you have held broken packages.
->>> >>>
->>> >>> | DEBUG: Python function do_populate_sdk finished
->>> >>>
->>> >>> | ERROR: Function failed: populate_sdk_image (see
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> for further information)
->>> >>>
->>> >>> ERROR: Task 10
->>> >>> (/home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-s=
-kid
->>> >>> ata.bb,
->>> >>> do_populate_sdk) failed with exit code '1'
->>> >>>
->>> >>> NOTE: Tasks Summary: Attempted 5020 tasks of which 4939 didn't need=
- to
->>> >>> be rerun and 1 failed.
->>> >>>
->>> >>>
->>> >>>
->>> >>> Summary: 1 task failed:
->>> >>>
->>> >>>
->>> >>> /home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-sk=
-ida
->>> >>> ta.bb,
->>> >>> do_populate_sdk
->>> >>>
->>> >>> Summary: There was 1 ERROR message shown, returning a non-zero exit
->>> >>> code.
->>> >>>
->>> >>>
->>> >>>
->>> >>> I am not able to install those packages as they say there are no
->>> >>> installation candidate for them...
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica
->>> >>> <jessica.zhang@intel.com>
->>> >>> wrote:
->>> >>>
->>> >>> Hi Satya,
->>> >>>
->>> >>>
->>> >>>
->>> >>> Use bitbake image-name -c populate_sdk, this allows you to create a
->>> >>> toolchain with sysroot that match your target image that allows you=
- to
->>> >>> develop app against...
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: yocto-bounces@yoctoproject.org
->>> >>> [mailto:yocto-bounces@yoctoproject.org]
->>> >>> On Behalf Of Satya Swaroop Damarla
->>> >>> Sent: Wednesday, June 05, 2013 6:05 AM
->>> >>> To: yocto@yoctoproject.org
->>> >>> Subject: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> Hi Guys,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... I created a custom image based on NVIDIA Tegra2
->>> >>> with a custom kernel. I installed  packages specific Tegra board an=
-d
->>> >>> application specific. Now we want to send the baord and the new lin=
-ux
->>> >>> image for application development...
->>> >>>
->>> >>>
->>> >>>
->>> >>> As I went through ADT manual, I only found qemu based toolchains bu=
-t I
->>> >>> want to create toolchain based on my rootfs and kernel... so that t=
-he
->>> >>> development team can develop a voip application for the board... I =
-am
->>> >>> kind of stuck how to proceed in this issue...
->>> >>>
->>> >>>
->>> >>>
->>> >>> I really need a small way out and hopefully I will catch things
->>> >>> automatically..
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> _______________________________________________
->>> >>> yocto mailing list
->>> >>> yocto@yoctoproject.org
->>> >>> https://lists.yoctoproject.org/listinfo/yocto
->>> >>>
->>> >>
->>> >>
->>> >> On Fri, Jun 7, 2013 at 4:03 PM, Zhang, Jessica
->>> >> <jessica.zhang@intel.com> wrote:
->>> >>> Yes, you need those packages in your sysroot for cross development.
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: satyaswaroop.damarla@gmail.com
->>> >>> [mailto:satyaswaroop.damarla@gmail.com]
->>> >>> On Behalf Of DAMARLA Satya Swaroop
->>> >>> Sent: Friday, June 07, 2013 12:10 AM
->>> >>> To: Zhang, Jessica; yocto@yoctoproject.org
->>> >>> Subject: Re: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> SHould we install development and debigging pacakages in the images
->>> >>> when we want to build a toolchain.. I mean this
->>> >>>
->>> >>>
->>> >>>
->>> >>>  "dbg-pkgs"       - add -dbg packages for all installed packages
->>> >>>
->>> >>> #                     (adds symbol information for
->>> >>> debugging/profiling)
->>> >>>
->>> >>> #  "dev-pkgs"       - add -dev packages for all installed packages
->>> >>>
->>> >>> #                     (useful if you want to develop against libs i=
-n
->>> >>> the
->>> >>> image)
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> Greets,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 1:07 PM, DAMARLA Satya Swaroop
->>> >>> <swaroop.damarla@gmail.com> wrote:
->>> >>>
->>> >>> Hi Jessica & Philip,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... This is such a long error ... I even did a fresh
->>> >>> build by deleting the "tmp" directory. The image build went very we=
-ll
->>> >>> but the toolchain is always giving me a error...
->>> >>>
->>> >>>
->>> >>>
->>> >>> | Selecting previously unselected package xz-dev.
->>> >>>
->>> >>> | Unpacking xz-dev (from .../xz-dev_5.1.2alpha-r0_armel.deb) ...
->>> >>>
->>> >>> | The following package disappeared from your system as
->>> >>>
->>> >>> | all files have been overwritten by other packages:
->>> >>>
->>> >>> |   avahi
->>> >>>
->>> >>> | log_check: Using
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> as logfile
->>> >>>
->>> >>> | Logfile is clean
->>> >>>
->>> >>> | Installing NATIVESDK packages
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Get:1 file: ./ Release [24 B]
->>> >>>
->>> >>> | Get:2 file: ./ Release [11 B]
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | Building dependency tree...
->>> >>>
->>> >>> | Reading state information...
->>> >>>
->>> >>> | Some packages could not be installed. This may mean that you have
->>> >>>
->>> >>> | requested an impossible situation or if you are using the unstabl=
-e
->>> >>>
->>> >>> | distribution that some required packages have not yet been create=
-d
->>> >>>
->>> >>> | or been moved out of Incoming.
->>> >>>
->>> >>> | The following information may help to resolve the situation:
->>> >>>
->>> >>> |
->>> >>>
->>> >>> | The following packages have unmet dependencies:
->>> >>>
->>> >>> |  packagegroup-cross-canadian-arm : Depends: gdb-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: gcc-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: meta-environment-arm =
-but
->>> >>> | it is
->>> >>> not installable
->>> >>>
->>> >>> |                                    Depends:
->>> >>> | binutils-cross-canadian-arm
->>> >>> but it is not installable
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | E: Unable to correct problems, you have held broken packages.
->>> >>>
->>> >>> | DEBUG: Python function do_populate_sdk finished
->>> >>>
->>> >>> | ERROR: Function failed: populate_sdk_image (see
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> for further information)
->>> >>>
->>> >>> ERROR: Task 10
->>> >>> (/home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-s=
-kid
->>> >>> ata.bb,
->>> >>> do_populate_sdk) failed with exit code '1'
->>> >>>
->>> >>> NOTE: Tasks Summary: Attempted 5020 tasks of which 4939 didn't need=
- to
->>> >>> be rerun and 1 failed.
->>> >>>
->>> >>>
->>> >>>
->>> >>> Summary: 1 task failed:
->>> >>>
->>> >>>
->>> >>> /home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-sk=
-ida
->>> >>> ta.bb,
->>> >>> do_populate_sdk
->>> >>>
->>> >>> Summary: There was 1 ERROR message shown, returning a non-zero exit
->>> >>> code.
->>> >>>
->>> >>>
->>> >>>
->>> >>> I am not able to install those packages as they say there are no
->>> >>> installation candidate for them...
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica
->>> >>> <jessica.zhang@intel.com>
->>> >>> wrote:
->>> >>>
->>> >>> Hi Satya,
->>> >>>
->>> >>>
->>> >>>
->>> >>> Use bitbake image-name -c populate_sdk, this allows you to create a
->>> >>> toolchain with sysroot that match your target image that allows you=
- to
->>> >>> develop app against...
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: yocto-bounces@yoctoproject.org
->>> >>> [mailto:yocto-bounces@yoctoproject.org]
->>> >>> On Behalf Of Satya Swaroop Damarla
->>> >>> Sent: Wednesday, June 05, 2013 6:05 AM
->>> >>> To: yocto@yoctoproject.org
->>> >>> Subject: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> Hi Guys,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... I created a custom image based on NVIDIA Tegra2
->>> >>> with a custom kernel. I installed  packages specific Tegra board an=
-d
->>> >>> application specific. Now we want to send the baord and the new lin=
-ux
->>> >>> image for application development...
->>> >>>
->>> >>>
->>> >>>
->>> >>> As I went through ADT manual, I only found qemu based toolchains bu=
-t I
->>> >>> want to create toolchain based on my rootfs and kernel... so that t=
-he
->>> >>> development team can develop a voip application for the board... I =
-am
->>> >>> kind of stuck how to proceed in this issue...
->>> >>>
->>> >>>
->>> >>>
->>> >>> I really need a small way out and hopefully I will catch things
->>> >>> automatically..
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> _______________________________________________
->>> >>> yocto mailing list
->>> >>> yocto@yoctoproject.org
->>> >>> https://lists.yoctoproject.org/listinfo/yocto
->>> >>>
->>> >
->>> > On Fri, Jun 7, 2013 at 4:21 PM, Zhang, Jessica <jessica.zhang@intel.c=
-om>
->>> > wrote:
->>> >> When you create your image, what profile did you use.  Are you build=
-ing
->>> >> one of our existing images, e.g. core-image-minimal, etc. or it's a
->>> >> customized image and if so, how did you customize your image, via la=
-yer or
->>> >> install extra packages?  I think x11 is brought in via some package
->>> >> dependency.  You said you were able to build the image, was the x11 =
-packages
->>> >> there?  We're building a toolchain plus the sysroot that matching th=
-e rootfs
->>> >> of your target image here so it's not just the toolchain that is bui=
-lt.
->>> >>
->>> >> -----Original Message-----
->>> >> From: Hans Beck=E9rus [mailto:hans.beckerus@gmail.com]
->>> >> Sent: Friday, June 07, 2013 7:09 AM
->>> >> To: Zhang, Jessica
->>> >> Cc: DAMARLA Satya Swaroop; yocto@yoctoproject.org
->>> >> Subject: Re: [yocto] Application Development
->>> >>
->>> >> On Fri, Jun 7, 2013 at 4:03 PM, Zhang, Jessica
->>> >> <jessica.zhang@intel.com> wrote:
->>> >>> Yes, you need those packages in your sysroot for cross development.
->>> >>>
->>> >>>
->>> >> Ok. But out of curiosity, why should I need X11 packages for a simpl=
-e
->>> >> command-line based toolchain?
->>> >> I assume that none of these X11 packages gets copied to my target
->>> >> device rootfs, or?
->>> >>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: satyaswaroop.damarla@gmail.com
->>> >>> [mailto:satyaswaroop.damarla@gmail.com]
->>> >>> On Behalf Of DAMARLA Satya Swaroop
->>> >>> Sent: Friday, June 07, 2013 12:10 AM
->>> >>> To: Zhang, Jessica; yocto@yoctoproject.org
->>> >>> Subject: Re: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> SHould we install development and debigging pacakages in the images
->>> >>> when we want to build a toolchain.. I mean this
->>> >>>
->>> >>>
->>> >>>
->>> >>>  "dbg-pkgs"       - add -dbg packages for all installed packages
->>> >>>
->>> >>> #                     (adds symbol information for
->>> >>> debugging/profiling)
->>> >>>
->>> >>> #  "dev-pkgs"       - add -dev packages for all installed packages
->>> >>>
->>> >>> #                     (useful if you want to develop against libs i=
-n
->>> >>> the
->>> >>> image)
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> Greets,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 1:07 PM, DAMARLA Satya Swaroop
->>> >>> <swaroop.damarla@gmail.com> wrote:
->>> >>>
->>> >>> Hi Jessica & Philip,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... This is such a long error ... I even did a fresh
->>> >>> build by deleting the "tmp" directory. The image build went very we=
-ll
->>> >>> but the toolchain is always giving me a error...
->>> >>>
->>> >>>
->>> >>>
->>> >>> | Selecting previously unselected package xz-dev.
->>> >>>
->>> >>> | Unpacking xz-dev (from .../xz-dev_5.1.2alpha-r0_armel.deb) ...
->>> >>>
->>> >>> | The following package disappeared from your system as
->>> >>>
->>> >>> | all files have been overwritten by other packages:
->>> >>>
->>> >>> |   avahi
->>> >>>
->>> >>> | log_check: Using
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> as logfile
->>> >>>
->>> >>> | Logfile is clean
->>> >>>
->>> >>> | Installing NATIVESDK packages
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Get:1 file: ./ Release [24 B]
->>> >>>
->>> >>> | Get:2 file: ./ Release [11 B]
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | Building dependency tree...
->>> >>>
->>> >>> | Reading state information...
->>> >>>
->>> >>> | Some packages could not be installed. This may mean that you have
->>> >>>
->>> >>> | requested an impossible situation or if you are using the unstabl=
-e
->>> >>>
->>> >>> | distribution that some required packages have not yet been create=
-d
->>> >>>
->>> >>> | or been moved out of Incoming.
->>> >>>
->>> >>> | The following information may help to resolve the situation:
->>> >>>
->>> >>> |
->>> >>>
->>> >>> | The following packages have unmet dependencies:
->>> >>>
->>> >>> |  packagegroup-cross-canadian-arm : Depends: gdb-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: gcc-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: meta-environment-arm =
-but
->>> >>> | it is
->>> >>> not installable
->>> >>>
->>> >>> |                                    Depends:
->>> >>> | binutils-cross-canadian-arm
->>> >>> but it is not installable
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | E: Unable to correct problems, you have held broken packages.
->>> >>>
->>> >>> | DEBUG: Python function do_populate_sdk finished
->>> >>>
->>> >>> | ERROR: Function failed: populate_sdk_image (see
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> for further information)
->>> >>>
->>> >>> ERROR: Task 10
->>> >>> (/home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-s=
-kid
->>> >>> ata.bb,
->>> >>> do_populate_sdk) failed with exit code '1'
->>> >>>
->>> >>> NOTE: Tasks Summary: Attempted 5020 tasks of which 4939 didn't need=
- to
->>> >>> be rerun and 1 failed.
->>> >>>
->>> >>>
->>> >>>
->>> >>> Summary: 1 task failed:
->>> >>>
->>> >>>
->>> >>> /home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-sk=
-ida
->>> >>> ta.bb,
->>> >>> do_populate_sdk
->>> >>>
->>> >>> Summary: There was 1 ERROR message shown, returning a non-zero exit
->>> >>> code.
->>> >>>
->>> >>>
->>> >>>
->>> >>> I am not able to install those packages as they say there are no
->>> >>> installation candidate for them...
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica
->>> >>> <jessica.zhang@intel.com>
->>> >>> wrote:
->>> >>>
->>> >>> Hi Satya,
->>> >>>
->>> >>>
->>> >>>
->>> >>> Use bitbake image-name -c populate_sdk, this allows you to create a
->>> >>> toolchain with sysroot that match your target image that allows you=
- to
->>> >>> develop app against...
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: yocto-bounces@yoctoproject.org
->>> >>> [mailto:yocto-bounces@yoctoproject.org]
->>> >>> On Behalf Of Satya Swaroop Damarla
->>> >>> Sent: Wednesday, June 05, 2013 6:05 AM
->>> >>> To: yocto@yoctoproject.org
->>> >>> Subject: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> Hi Guys,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... I created a custom image based on NVIDIA Tegra2
->>> >>> with a custom kernel. I installed  packages specific Tegra board an=
-d
->>> >>> application specific. Now we want to send the baord and the new lin=
-ux
->>> >>> image for application development...
->>> >>>
->>> >>>
->>> >>>
->>> >>> As I went through ADT manual, I only found qemu based toolchains bu=
-t I
->>> >>> want to create toolchain based on my rootfs and kernel... so that t=
-he
->>> >>> development team can develop a voip application for the board... I =
-am
->>> >>> kind of stuck how to proceed in this issue...
->>> >>>
->>> >>>
->>> >>>
->>> >>> I really need a small way out and hopefully I will catch things
->>> >>> automatically..
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> _______________________________________________
->>> >>> yocto mailing list
->>> >>> yocto@yoctoproject.org
->>> >>> https://lists.yoctoproject.org/listinfo/yocto
->>> >>>
->>> >>
->>> >>
->>> >> On Fri, Jun 7, 2013 at 4:03 PM, Zhang, Jessica
->>> >> <jessica.zhang@intel.com> wrote:
->>> >>> Yes, you need those packages in your sysroot for cross development.
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: satyaswaroop.damarla@gmail.com
->>> >>> [mailto:satyaswaroop.damarla@gmail.com]
->>> >>> On Behalf Of DAMARLA Satya Swaroop
->>> >>> Sent: Friday, June 07, 2013 12:10 AM
->>> >>> To: Zhang, Jessica; yocto@yoctoproject.org
->>> >>> Subject: Re: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> SHould we install development and debigging pacakages in the images
->>> >>> when we want to build a toolchain.. I mean this
->>> >>>
->>> >>>
->>> >>>
->>> >>>  "dbg-pkgs"       - add -dbg packages for all installed packages
->>> >>>
->>> >>> #                     (adds symbol information for
->>> >>> debugging/profiling)
->>> >>>
->>> >>> #  "dev-pkgs"       - add -dev packages for all installed packages
->>> >>>
->>> >>> #                     (useful if you want to develop against libs i=
-n
->>> >>> the
->>> >>> image)
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> Greets,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 1:07 PM, DAMARLA Satya Swaroop
->>> >>> <swaroop.damarla@gmail.com> wrote:
->>> >>>
->>> >>> Hi Jessica & Philip,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... This is such a long error ... I even did a fresh
->>> >>> build by deleting the "tmp" directory. The image build went very we=
-ll
->>> >>> but the toolchain is always giving me a error...
->>> >>>
->>> >>>
->>> >>>
->>> >>> | Selecting previously unselected package xz-dev.
->>> >>>
->>> >>> | Unpacking xz-dev (from .../xz-dev_5.1.2alpha-r0_armel.deb) ...
->>> >>>
->>> >>> | The following package disappeared from your system as
->>> >>>
->>> >>> | all files have been overwritten by other packages:
->>> >>>
->>> >>> |   avahi
->>> >>>
->>> >>> | log_check: Using
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> as logfile
->>> >>>
->>> >>> | Logfile is clean
->>> >>>
->>> >>> | Installing NATIVESDK packages
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ InRelease
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Ign file: ./ Release.gpg
->>> >>>
->>> >>> | Get:1 file: ./ Release [24 B]
->>> >>>
->>> >>> | Get:2 file: ./ Release [11 B]
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Ign file: ./ Translation-en
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | Reading package lists...
->>> >>>
->>> >>> | Building dependency tree...
->>> >>>
->>> >>> | Reading state information...
->>> >>>
->>> >>> | Some packages could not be installed. This may mean that you have
->>> >>>
->>> >>> | requested an impossible situation or if you are using the unstabl=
-e
->>> >>>
->>> >>> | distribution that some required packages have not yet been create=
-d
->>> >>>
->>> >>> | or been moved out of Incoming.
->>> >>>
->>> >>> | The following information may help to resolve the situation:
->>> >>>
->>> >>> |
->>> >>>
->>> >>> | The following packages have unmet dependencies:
->>> >>>
->>> >>> |  packagegroup-cross-canadian-arm : Depends: gdb-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: gcc-cross-canadian-ar=
-m
->>> >>> | but it
->>> >>> is not installable
->>> >>>
->>> >>> |                                    Depends: meta-environment-arm =
-but
->>> >>> | it is
->>> >>> not installable
->>> >>>
->>> >>> |                                    Depends:
->>> >>> | binutils-cross-canadian-arm
->>> >>> but it is not installable
->>> >>>
->>> >>> | W: Ignoring Provides line with DepCompareOp for package
->>> >>> nativesdk-pkgconfig__pkg-config__
->>> >>>
->>> >>> | W: You may want to run apt-get update to correct these problems
->>> >>>
->>> >>> | E: Unable to correct problems, you have held broken packages.
->>> >>>
->>> >>> | DEBUG: Python function do_populate_sdk finished
->>> >>>
->>> >>> | ERROR: Function failed: populate_sdk_image (see
->>> >>> /home/damarla/yocto/poky/buildSkidataHarmony/tmp/work/skidata_harmo=
-ny-
->>> >>> poky-linux-gnueabi/core-image-skidata/1.0-r0/temp/log.do_populate_s=
-dk.
->>> >>> 4066
->>> >>> for further information)
->>> >>>
->>> >>> ERROR: Task 10
->>> >>> (/home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-s=
-kid
->>> >>> ata.bb,
->>> >>> do_populate_sdk) failed with exit code '1'
->>> >>>
->>> >>> NOTE: Tasks Summary: Attempted 5020 tasks of which 4939 didn't need=
- to
->>> >>> be rerun and 1 failed.
->>> >>>
->>> >>>
->>> >>>
->>> >>> Summary: 1 task failed:
->>> >>>
->>> >>>
->>> >>> /home/damarla/yocto/poky/meta/recipes-graphics/images/core-image-sk=
-ida
->>> >>> ta.bb,
->>> >>> do_populate_sdk
->>> >>>
->>> >>> Summary: There was 1 ERROR message shown, returning a non-zero exit
->>> >>> code.
->>> >>>
->>> >>>
->>> >>>
->>> >>> I am not able to install those packages as they say there are no
->>> >>> installation candidate for them...
->>> >>>
->>> >>>
->>> >>>
->>> >>> On Thu, Jun 6, 2013 at 6:52 AM, Zhang, Jessica
->>> >>> <jessica.zhang@intel.com>
->>> >>> wrote:
->>> >>>
->>> >>> Hi Satya,
->>> >>>
->>> >>>
->>> >>>
->>> >>> Use bitbake image-name -c populate_sdk, this allows you to create a
->>> >>> toolchain with sysroot that match your target image that allows you=
- to
->>> >>> develop app against...
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Jessica
->>> >>>
->>> >>>
->>> >>>
->>> >>> From: yocto-bounces@yoctoproject.org
->>> >>> [mailto:yocto-bounces@yoctoproject.org]
->>> >>> On Behalf Of Satya Swaroop Damarla
->>> >>> Sent: Wednesday, June 05, 2013 6:05 AM
->>> >>> To: yocto@yoctoproject.org
->>> >>> Subject: [yocto] Application Development
->>> >>>
->>> >>>
->>> >>>
->>> >>> Hi Guys,
->>> >>>
->>> >>>
->>> >>>
->>> >>> I have an issue... I created a custom image based on NVIDIA Tegra2
->>> >>> with a custom kernel. I installed  packages specific Tegra board an=
-d
->>> >>> application specific. Now we want to send the baord and the new lin=
-ux
->>> >>> image for application development...
->>> >>>
->>> >>>
->>> >>>
->>> >>> As I went through ADT manual, I only found qemu based toolchains bu=
-t I
->>> >>> want to create toolchain based on my rootfs and kernel... so that t=
-he
->>> >>> development team can develop a voip application for the board... I =
-am
->>> >>> kind of stuck how to proceed in this issue...
->>> >>>
->>> >>>
->>> >>>
->>> >>> I really need a small way out and hopefully I will catch things
->>> >>> automatically..
->>> >>>
->>> >>>
->>> >>>
->>> >>> Cheers,
->>> >>>
->>> >>> Satya
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>>
->>> >>> _______________________________________________
->>> >>> yocto mailing list
->>> >>> yocto@yoctoproject.org
->>> >>> https://lists.yoctoproject.org/listinfo/yocto
->>> >>>
->>
->>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">Hi,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;">Actually I am trying to run command<=
+o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;">Bitbake &#8211;c menuconfig linux(re=
+cipe-name)<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;">Getting error<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">NOTE: Executing RunQueue=
+ Tasks<br>
+ERROR: No valid terminal found, unable to open devshell<br>
+ERROR: Function failed: do_menuconfig<br>
+ERROR: Logfile of failure stored in: /home/netlogic/yocto/poky/build/tmp/wo=
+rk/xlp8xx-poky-linux/linux/2.6.32-r1/temp/log.do_menuconfig.24937<br>
+ERROR: Task 4 (/home/netlogic/yocto/poky/meta-xlp/recipes-kernel/linux/linu=
+x.bb, do_menuconfig) failed with exit code '1'<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><u><span style=3D"color:black">Please suggest me =
+the way</span> to solve this problem.<span style=3D"color:black"><o:p></o:p=
+></span></u></p>
+<p class=3D"MsoPlainText"><u><span style=3D"color:black"><o:p><span style=
+=3D"text-decoration:none">&nbsp;</span></o:p></span></u></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black">Thanks in advance!<o:=
+p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black">Regards,<o:p></o:p></=
+span></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black">Rohit Jindal<o:p></o:=
+p></span></p>
+<p class=3D"MsoPlainText"><u><span style=3D"color:black"><o:p><span style=
+=3D"text-decoration:none">&nbsp;</span></o:p></span></u></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></p>
+</div>
+<br>
+<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
+<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
+for important disclosures regarding this electronic communication.<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+</font>
+</body>
+</html>
 
+--_000_17797116383D4341B029FDF34C22BF6A52C4CCADB9GUREXMB01ASIA_--
