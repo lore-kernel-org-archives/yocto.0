@@ -1,27 +1,34 @@
-Return-Path: <Ben.Warren@spidercloud.com>
-Received: from berg.int.copivia.com (mail.spidercloud.com [209.49.242.60])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A225E014F1
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 12:36:02 -0700 (PDT)
-Received: from mailx.spidercloud.com ([10.1.1.225])
-	by berg.int.copivia.com (8.13.8/8.13.8) with ESMTP id r5BJa2CR016090
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 12:36:02 -0700
-Received: from sofia.us.spidercloud.com ([10.1.1.225]) by
-	sofia.us.spidercloud.com ([10.1.1.225]) with mapi;
-	Tue, 11 Jun 2013 12:36:02 -0700
-From: Ben Warren <Ben.Warren@spidercloud.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 11 Jun 2013 12:36:00 -0700
-Thread-Topic: SOLVED: How to get mkfs.ext4 in rootfs package
-Thread-Index: Ac5m2udXtiVW3KmbQ6GjKaTX0BxOtw==
-Message-ID: <CCC55643-4330-4AE6-B2D8-AD5E47E486DC@spidercloud.com>
-References: <0E1D49D2-4C56-45AC-AB70-2EA8261EE4D8@spidercloud.com>
-In-Reply-To: <0E1D49D2-4C56-45AC-AB70-2EA8261EE4D8@spidercloud.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
+	[209.85.128.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5234E014F1
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 15:10:43 -0700 (PDT)
+Received: by mail-ve0-f169.google.com with SMTP id m1so6158236ves.14
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 15:10:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=ZK+fezwmjhxn/S1ZTwGuTqPC7BLvxYzV0NbCp5wH+QI=;
+	b=nO+hMYstcuee0VkByQSQ261DVg0cFvMRj8mHtjU1ggjU10AYRCOUgvRNa+kjsBuyhd
+	+P9PzKI8WJ1HKAYtT74yLwHgbZvV3w/pIQTHwzPHCtSxDNqYfVJEJMNF0scalgepVnZg
+	n+uAdKE4SIm4GUXdh+xWnr4llkQhRaeNHhhrVX1o4rFQ7vJlXbOtkL5xyAzB7mCDHa/a
+	Ldxlb9kbBq6n7DEuQ3xfdDmcBGy3j+OZkY4h+vzsIMnmuuFSGketiMxWIi5ft2jwh92T
+	BIsjNKvyDIoqCDF8ySS7UnxyY2oX3j6Cg/jFNifnthPku87IX5N2naYZTEonrFkAQ8ee
+	Bunw==
 MIME-Version: 1.0
-Subject: SOLVED: How to get mkfs.ext4 in rootfs package
+X-Received: by 10.58.34.69 with SMTP id x5mr7972466vei.11.1370988642389; Tue,
+	11 Jun 2013 15:10:42 -0700 (PDT)
+Received: by 10.52.114.170 with HTTP; Tue, 11 Jun 2013 15:10:42 -0700 (PDT)
+In-Reply-To: <1810497.uZE9ivf2T0@localhost.localdomain>
+References: <1810497.uZE9ivf2T0@localhost.localdomain>
+Date: Tue, 11 Jun 2013 15:10:42 -0700
+Message-ID: <CAPhnLPDjcbvejh+YnfrGXvwX2+qsHSfDowL8JuVSZc+M52YA7Q@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Diego <diego.ml@zoho.com>
+X-Gm-Message-State: ALoCoQkM74pVqRUkIRgBe7ifC9niJoe2m1FP5q5RkR5LMtqVT1/8EupBG84T0gbsPGXZjXMnwQaZ
+Cc: yocto@yoctoproject.org
+Subject: Re: How to deal with non-standard license.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,47 +40,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 19:36:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 11 Jun 2013 22:10:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Sorry for the spam.  Still learning how this works=85
+On Tue, Jun 11, 2013 at 5:28 AM, Diego <diego.ml@zoho.com> wrote:
+> Hi everybody,
+>
+> I have written a recipe which I'd like to contribute for glmark2:
+> https://launchpad.net/glmark2
+>
+> The last thing that puzzles me before submitting it is that it's partly GPL3+,
+> and partly under this license:
+> https://github.com/rafalmiel/glmark2-wl/blob/master/COPYING.SGI
+> which is not in this list:
+> https://wiki.yoctoproject.org/wiki/License_Infrastructure_Interest_Group#Licenses
+> Is there any way to deal with that license? What should I put in the LICENSE
+> field in my recipe?
 
-Turns out I needed 'e2fsprogs-mke2fs'
+So, you will need to add a custom license or submit a patch OE-Core to
+add that license. Where are you contributing this to?
 
-regards,
-Ben
+If it's to a layer, you'll want to add the license to a custom license
+path. You'll want that file to be unique and descriptive. Please make
+sure the license filename has a version in the file name. eg SGI-1.
+Within the layer you'll make a directory (in this example I use
+custom-licenses), add the license text to a file named SGI-1, then add
+this to your layer.conf:
 
-On Jun 11, 2013, at 10:51 AM, Ben Warren <Ben.Warren@spidercloud.com> wrote=
-:
+LICENSE_PATH += "${LAYERDIR}/custom-licenses"
+SPDXLICENSEMAP[SGIv1] = "SGI-1"
 
-> Hi,
->=20
-> I'm trying to get the 'mkfs.ext4' binary from e2fsprogs into my image, in=
- particular the '.ext3' rootfs image, and am obviously missing something fu=
-ndamental.
-> I'm using a custom image based on (copy/pasted from) 'kvm_image_minimal',=
- and have added 'e2fsprogs' to the IMAGE_INSTALL string in the image descri=
-ptor file.
->=20
-> I see that the library is compiling and the binary is in tmp/sysroots:
->=20
-> ben@ubuntu-scw:/opt/scw-appscard-build$ ls tmp/sysroots/x86_64-linux/sbin=
-/mkfs.*
-> tmp/sysroots/x86_64-linux/sbin/mkfs.ext2  tmp/sysroots/x86_64-linux/sbin/=
-mkfs.ext4     tmp/sysroots/x86_64-linux/sbin/mkfs.minix
-> tmp/sysroots/x86_64-linux/sbin/mkfs.ext3  tmp/sysroots/x86_64-linux/sbin/=
-mkfs.ext4dev
->=20
-> but it's not making it to the rootfs images.
->=20
-> I've tried to read the documentation but still am not quite sure about wh=
-at defines the contents of the rootfs images.
->=20
-> thanks,
-> Ben
->=20
->=20
+That should get you what you want.
 
+-b
+
+>
+> Bests,
+> Diego
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
