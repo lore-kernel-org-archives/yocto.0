@@ -1,17 +1,26 @@
-Return-Path: <muhammad_shakeel@mentor.com>
-Received: from gemini.alm.mentorg.com (nat-lmt.mentorg.com [139.181.28.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66DD2E01512
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 08:31:53 -0700 (PDT)
-Received: from pkl-mshakeel-ubuntu.mgc.mentorg.com ([137.202.157.119])
-	by gemini.alm.mentorg.com (8.14.4/8.14.4) with ESMTP id r5BFVjGq013478; 
-	Tue, 11 Jun 2013 10:31:47 -0500
-From: "Shakeel, Muhammad" <muhammad_shakeel@mentor.com>
-To: holger.behrens@windriver.com, florin.sarbu@windriver.com
-Date: Tue, 11 Jun 2013 20:32:04 +0500
-Message-Id: <1370964724-30717-1-git-send-email-muhammad_shakeel@mentor.com>
-X-Mailer: git-send-email 1.7.9.5
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93E75E01506
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 08:34:26 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 11 Jun 2013 08:34:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,845,1363158000"; d="scan'208";a="348210719"
+Received: from unknown (HELO helios.localnet) ([10.252.122.29])
+	by fmsmga001.fm.intel.com with ESMTP; 11 Jun 2013 08:34:53 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Javi Roman <javiroman@kernel-labs.org>
+Date: Tue, 11 Jun 2013 16:34:23 +0100
+Message-ID: <1494443.7oZTxQ4oFI@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.3 (Linux/3.8.0-23-generic; KDE/4.10.3; i686; ; )
+In-Reply-To: <CACWQdqC6UwX7jYgxp-aRE4pUBz3G=npAAyBRuv3OJQQ_9Y4X_w@mail.gmail.com>
+References: <CACWQdqCvEU3x0ctvUUrMhCAcoxnU0=SpVuW4E7Zo-ret9vidcA@mail.gmail.com>
+	<51B732EF.9080902@windriver.com>
+	<CACWQdqC6UwX7jYgxp-aRE4pUBz3G=npAAyBRuv3OJQQ_9Y4X_w@mail.gmail.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: [PATCH 3/3] [meta-ivi] portmap: By default do not bind to 127.0.0.1
+Subject: Re: Custom kernel in Yocto/dylan branch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,32 +32,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 15:31:53 -0000
+X-List-Received-Date: Tue, 11 Jun 2013 15:34:27 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Muhammad Shakeel <muhammad_shakeel@mentor.com>
+On Tuesday 11 June 2013 16:47:53 Javi Roman wrote:
+> With
+> 
+> SRC_URI_append = "file://defconfig"
 
--l prevents portmap from binding to other external networking
-interfaces i.e. ethernet
+Does your actual recipe have a leading space in the value? _append won't add 
+this for you so you have to do it explicitly.
 
-Signed-off-by: Muhammad Shakeel <muhammad_shakeel@mentor.com>
----
- .../portmap/portmap/portmap.service                |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Cheers,
+Paul
 
-diff --git a/recipes-connectivity/portmap/portmap/portmap.service b/recipes-connectivity/portmap/portmap/portmap.service
-index a76754f..e14058d 100644
---- a/recipes-connectivity/portmap/portmap/portmap.service
-+++ b/recipes-connectivity/portmap/portmap/portmap.service
-@@ -4,7 +4,7 @@ After=connman.service
- 
- [Service]
- Type=forking
--ExecStart=/sbin/portmap -l
-+ExecStart=/sbin/portmap
- PIDFile=/var/run/portmap.pid
- 
- [Install]
 -- 
-1.7.9.5
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
