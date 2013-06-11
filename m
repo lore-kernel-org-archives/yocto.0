@@ -1,14 +1,14 @@
 Return-Path: <flihp@twobit.us>
 Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB44BE0151C
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 17:46:01 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93577E0151C
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 17:54:47 -0700 (PDT)
 Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
 	helo=[172.16.2.10])
 	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
 	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1UmCij-0007YJ-W1; Tue, 11 Jun 2013 00:45:59 +0000
-Message-ID: <51B6733C.8030606@twobit.us>
-Date: Mon, 10 Jun 2013 20:45:48 -0400
+	id 1UmCrF-0007Yk-Nq; Tue, 11 Jun 2013 00:54:46 +0000
+Message-ID: <51B67550.7070306@twobit.us>
+Date: Mon, 10 Jun 2013 20:54:40 -0400
 From: Philip Tricca <flihp@twobit.us>
 User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:10.0.12) Gecko/20130116 Icedove/10.0.12
@@ -24,7 +24,7 @@ X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
 X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
 X-SA-Exim-Scanned: Yes (on www.twobit.us)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: meta-selinux patch doesn't apply cleanly
+Subject: meta-selinux make ALLOW_EMPTY package specific
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,48 +36,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 00:46:02 -0000
+X-List-Received-Date: Tue, 11 Jun 2013 00:54:48 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hello Mark / Xin,
+Hello again,
 
-I built the dylan branch of meta-selinux against the oe-core dylan branch today and ran into a minor issue.  The findutils-with-selinux patch doesn't apply cleanly.  The fix-up is very small and just requires fixing one blob.  Looks like the docs have changed a bit.
-
-There's a patch below if you're interested.  These may be appropriate for the master branch as well but I've only tested against the dylan release branch.
+Again a quick patch to get meta-selinux dylan branch building with oe-core dylan.  The QA scripts error'd out complaining that ALLOW_EMPTY in the task-core-selinux wasn't packages specific.  Not sure if it's relevant but this was with the latest bitbake release branch 1.18.  One line fix below.
 
 Regards,
 - Philip
 
 From: Philip Tricca <flihp@twobit.us>
-Date: Mon, 10 Jun 2013 20:30:15 -0400
-Subject: [PATCH 1/2] Fix doc menu blob in findutils-with-selinux.patch.
+Date: Mon, 10 Jun 2013 20:33:32 -0400
+Subject: [PATCH 2/2] Make ALLOW_EMPTY package specific to keep QA scripts
+ happy.
 
 ---
- .../findutils/findutils-4.4.2/findutils-with-selinux.patch         |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-security/tasks/task-core-selinux.bb |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch b/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
-index 9597b09..e38f53f 100644
---- a/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
-+++ b/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
-@@ -66,14 +66,14 @@ index 391ffa0..f599bbc 100644
-  @node Contents
-  @section Contents
-  
--@@ -1733,6 +1740,7 @@ from the novel you are reading.
-+@@ -1734,6 +1741,7 @@ from the novel you are reading.
-  * Size Directives::
-  * Location Directives::
-  * Time Directives::
- +* Other Directives::
-- * Formatting Flags::
-  @end menu
-  
-+ @node Name Directives
- @@ -1890,6 +1898,14 @@ File's last modification time in the format specified by @var{k}
-  (@pxref{Time Formats}).
-  @end table
+diff --git a/recipes-security/tasks/task-core-selinux.bb b/recipes-security/tasks/task-core-selinux.bb
+index 05f8dfc..dda9c50 100644
+--- a/recipes-security/tasks/task-core-selinux.bb
++++ b/recipes-security/tasks/task-core-selinux.bb
+@@ -8,7 +8,7 @@ PACKAGES = "\
+     task-core-selinux \
+     "
+ 
+-ALLOW_EMPTY = "1"
++ALLOW_EMPTY_${PN} = "1"
+ 
+ RDEPENDS_task-core-selinux = " \
+ 	ustr \
 -- 
 1.7.10.4
 
