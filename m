@@ -1,28 +1,17 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB99BE01506
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 08:21:30 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5BFLSk6006720
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 11 Jun 2013 08:21:28 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Tue, 11 Jun 2013 08:21:28 -0700
-Message-ID: <51B74077.4050902@windriver.com>
-Date: Tue, 11 Jun 2013 11:21:27 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
-MIME-Version: 1.0
-To: Javi Roman <javiroman@kernel-labs.org>
-References: <CACWQdqCvEU3x0ctvUUrMhCAcoxnU0=SpVuW4E7Zo-ret9vidcA@mail.gmail.com>
-	<51B732EF.9080902@windriver.com>
-	<CACWQdqC6UwX7jYgxp-aRE4pUBz3G=npAAyBRuv3OJQQ_9Y4X_w@mail.gmail.com>
-In-Reply-To: <CACWQdqC6UwX7jYgxp-aRE4pUBz3G=npAAyBRuv3OJQQ_9Y4X_w@mail.gmail.com>
+Return-Path: <muhammad_shakeel@mentor.com>
+Received: from gemini.alm.mentorg.com (nat-lmt.mentorg.com [139.181.28.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93726E01512
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 08:31:09 -0700 (PDT)
+Received: from pkl-mshakeel-ubuntu.mgc.mentorg.com ([137.202.157.119])
+	by gemini.alm.mentorg.com (8.14.4/8.14.4) with ESMTP id r5BFV03B013348; 
+	Tue, 11 Jun 2013 10:31:02 -0500
+From: "Shakeel, Muhammad" <muhammad_shakeel@mentor.com>
+To: holger.behrens@windriver.com, florin.sarbu@windriver.com
+Date: Tue, 11 Jun 2013 20:30:38 +0500
+Message-Id: <1370964638-30649-1-git-send-email-muhammad_shakeel@mentor.com>
+X-Mailer: git-send-email 1.7.9.5
 Cc: yocto@yoctoproject.org
-Subject: Re: Custom kernel in Yocto/dylan branch.
+Subject: [PATCH 1/3] [meta-ivi] portmap: Use systemd service type forking instead of oneshot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,118 +23,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 15:21:32 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Jun 2013 15:31:12 -0000
 
-On 13-06-11 10:47 AM, Javi Roman wrote:
-> With
->
-> SRC_URI_append = "file://defconfig"
->
+From: Muhammad Shakeel <muhammad_shakeel@mentor.com>
 
-Which is what I expected. And you say that it isn't being applied
-at all ? Is that by inspecting the final contents of .config ?
-Or something else ?
+portmap is a resident program and we want to start it in background.
+With service type 'forking' systemd knows that the executable is a daemon.
+Although in this case 'oneshot' + 'RemainAfterExit=yes' works but it
+is intended for non-resident programs.
 
-Since this is on the dylan branches, I know it has been tested
-explicitly there.
+Signed-off-by: Muhammad Shakeel <muhammad_shakeel@mentor.com>
+---
+ .../portmap/portmap/portmap.service                |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I'll switch and do some of my own test builds.
-
-Cheers,
-
-Bruce
-
->
-> Javi Roman
->
->
-> On Tue, Jun 11, 2013 at 4:23 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->> On 13-06-11 10:18 AM, Javi Roman wrote:
->>>
->>> Hi!
->>>
->>>
->>> I few years ago I used to work with OpenEmbedded (the classical
->>> branch). The addition of new kernel recipes was easy for me,
->>> nevertheless I'm unable to do similar things with the current
->>> Yocto-dylan branch.
->>>
->>> The current Yocto-dylan is based on Linux kernel 3.x branches, all the
->>> documentation regarding add custom kernels or new kernel features are
->>> based on those 3.x branches. However, I would like to use a 2.6.32
->>> Linux kernel (it's a constraint for my project).
->>>
->>> I'm using the following kernel recipe in my bsp:
->>>
->>> linux/
->>>         linux-yocto-abacus/
->>>                    defconfig
->>>          linux-yocto-abacus_2.6.32.bb
->>>
->>> #####  linux-yocto-abacus_2.6.32.bb ####
->>>
->>> inherit kernel
->>> require recipes-kernel/linux/linux-yocto.inc
->>>
->>> INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
->>>
->>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->>> SRC_URI_append =3D "file://defconfig"
->>>
->>> PROVIDES =3D "virtual/kernel"
->>>
->>> SRC_URI =3D
->>> "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
->>> it;protocol=3Dgit;nocheckout=3D1"
->>>
->>> LINUX_VERSION =3D "2.6.32"
->>> LINUX_VERSION_EXTENSION =3D "-abacus"
->>>
->>> # tag: v3.4    76e10d158efb6d4516018846f60c2ab5501900bc
->>> # tag: v2.6.32 459b3d520991ec1b8e5ba68fbc4b206d602fee6e
->>> SRCREV=3D"459b3d520991ec1b8e5ba68fbc4b206d602fee6e"
->>>
->>> PR =3D "r1"
->>> PV =3D "${LINUX_VERSION}+git${SRCPV}"
->>>
->>> COMPATIBLE_MACHINE =3D "romley"
->>>
->>> ############ end ###################
->>>
->>> When I build the kernel with:
->>>
->>> # bitbake virtual/kernel
->>>
->>> The kernel is downloaded from kernel.org, with the correct git tag
->>> (v2.6.32) and is built with success. Nevertheless, the "defconfig" is
->>> not properly added in the kernel configuration. If I run:
->>>
->>> # bitbake virtual/kernel -c menuconfig
->>>
->>> The ncurses menuconfig is not using the "defconfig" added by me.
->>>
->>> The "defconfig" with all kernel configurations is a deprecated feature?
->>> Which is the correct way to add a new kernel recipe?
->>
->>
->> It definitely should still be working, we have plenty of defconfig
->> users (whether right or wong ;) and it is tested daily.
->>
->> How did you specify your defconfig on the SRC_URI ?
->>
->> Bruce
->>
->>>
->>> Many thanks!
->>> Javi Roman
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
+diff --git a/recipes-connectivity/portmap/portmap/portmap.service b/recipes-connectivity/portmap/portmap/portmap.service
+index 7f9bc94..a76754f 100644
+--- a/recipes-connectivity/portmap/portmap/portmap.service
++++ b/recipes-connectivity/portmap/portmap/portmap.service
+@@ -3,9 +3,9 @@ Description=Portmap
+ After=connman.service
+ 
+ [Service]
+-Type=oneshot
++Type=forking
+ ExecStart=/sbin/portmap -l
+-RemainAfterExit=yes
++PIDFile=/var/run/portmap.pid
+ 
+ [Install]
+ WantedBy=multi-user.target
+-- 
+1.7.9.5
 
 
