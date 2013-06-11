@@ -1,37 +1,30 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
-	[209.85.216.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 817EBE014E2
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 15:11:56 -0700 (PDT)
-Received: by mail-qa0-f53.google.com with SMTP id g10so2581982qah.19
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 15:11:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:user-agent:mime-version
-	:content-type; bh=rAa63kydQRDxsnkK3R0RuylTOBrYxzjCqWxJKip8ZN8=;
-	b=EeZJ3vEycNYVM6ICBRBKAwn7Saqz9A3DkhNs5RIpLFUS5gUuEu3ZlrhnmRvZdpeIXm
-	TzJmYPXzSHrFhfp10GXBFKEa+Ym3/EUIGV/UHWcnlw5hcnI1NNvfWfB3tN5mj3IQ6gUy
-	DQyNlidn66+V7K8BiMZ+xqFvOQ7iiMk68/W1xVpIcwwg+EYTbk+bEIDmgofiN0O26kUW
-	gLqrK2shkgCM5B+eulTW4HaGK8/8Eo7y6HWjqFKYyNTnQHMEnYf1Z/O7YcHuWhqohJ5f
-	UY2K3v5uX68ssHCpwNpfmsWf+1LUCGBitX+jqWAkJdBcOKbfQvaq7ryETKuorxQlTBs0
-	RV+Q==
-X-Received: by 10.49.18.166 with SMTP id x6mr12640622qed.39.1370893154245;
-	Mon, 10 Jun 2013 12:39:14 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPSA id
-	ds7sm15464704qab.13.2013.06.10.12.39.11 for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Mon, 10 Jun 2013 12:39:12 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Mon, 10 Jun 2013 15:39:30 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
-To: yocto@yoctoproject.org
-Date: Mon, 10 Jun 2013 15:39:30 -0400
-Message-ID: <874nd592ml.fsf@sonatest.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.2 (gnu/linux)
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB44BE0151C
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2013 17:46:01 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=[172.16.2.10])
+	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1UmCij-0007YJ-W1; Tue, 11 Jun 2013 00:45:59 +0000
+Message-ID: <51B6733C.8030606@twobit.us>
+Date: Mon, 10 Jun 2013 20:45:48 -0400
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.12) Gecko/20130116 Icedove/10.0.12
 MIME-Version: 1.0
-Subject: kernel-module in initramfs
+To: mark.hatle@windriver.com, Xin.Ouyang@windriver.com
+X-Enigmail-Version: 1.4.1
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: meta-selinux patch doesn't apply cleanly
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,22 +36,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jun 2013 22:11:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 11 Jun 2013 00:46:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hello Mark / Xin,
 
-I have an application recipe wich RDEPENDS on a couple of kernel modules
-and is installed in my initramfs image. The dependency on the kernel
-modules is expressed by:
+I built the dylan branch of meta-selinux against the oe-core dylan branch today and ran into a minor issue.  The findutils-with-selinux patch doesn't apply cleanly.  The fix-up is very small and just requires fixing one blob.  Looks like the docs have changed a bit.
 
-RDEPENDS_${PN}_mymachine += "kernel-module-abc kernel-module-def"
+There's a patch below if you're interested.  These may be appropriate for the master branch as well but I've only tested against the dylan release branch.
 
-This seems to work fine, expect that I now have a copy of the bzImage
-packaged in the initramfs. This has a negative effect on boot
-performance and the final image size.
+Regards,
+- Philip
 
-Is there a way to get rid of this 'extra' bzImage?
+From: Philip Tricca <flihp@twobit.us>
+Date: Mon, 10 Jun 2013 20:30:15 -0400
+Subject: [PATCH 1/2] Fix doc menu blob in findutils-with-selinux.patch.
 
-Marc
+---
+ .../findutils/findutils-4.4.2/findutils-with-selinux.patch         |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch b/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
+index 9597b09..e38f53f 100644
+--- a/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
++++ b/recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
+@@ -66,14 +66,14 @@ index 391ffa0..f599bbc 100644
+  @node Contents
+  @section Contents
+  
+-@@ -1733,6 +1740,7 @@ from the novel you are reading.
++@@ -1734,6 +1741,7 @@ from the novel you are reading.
+  * Size Directives::
+  * Location Directives::
+  * Time Directives::
+ +* Other Directives::
+- * Formatting Flags::
+  @end menu
+  
++ @node Name Directives
+ @@ -1890,6 +1898,14 @@ File's last modification time in the format specified by @var{k}
+  (@pxref{Time Formats}).
+  @end table
+-- 
+1.7.10.4
 
