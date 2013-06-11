@@ -1,30 +1,39 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6580E01538
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 02:26:53 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 1059A68A01C; Tue, 11 Jun 2013 10:26:51 +0100 (BST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	loki.analogue-micro-ltd.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.12.145] (unknown [192.168.12.145])
-	by mail.analogue-micro.com (Postfix) with ESMTP id A5BFF68A019;
-	Tue, 11 Jun 2013 10:26:49 +0100 (BST)
-Message-ID: <51B6ED57.8010307@mlbassoc.com>
-Date: Tue, 11 Jun 2013 10:26:47 +0100
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
-MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ea0-f171.google.com (mail-ea0-f171.google.com
+	[209.85.215.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9374FE01538
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 02:45:23 -0700 (PDT)
+Received: by mail-ea0-f171.google.com with SMTP id m14so6060748eaj.16
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 02:45:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=vZAJjZ8oTbbnpw4sIOaFn9JNPBXLcBGNutFwutimAwA=;
+	b=AYMJgYj5rQDsNofWXZgy0qZKjn9Qc2WuOEVmamFLLzwyztLdieqIUk/trSrkAdyhmf
+	xe0z+UOV7xt3/w5bwtwtjV3cnW2BEwGYUewHZUkEdu2r3b2AOOA8BGkFSpgvhHrp+mqA
+	SuViDgMhl6b0/Fn7xmHuM5wCy47IvOmKWVQG3WWtYyUxy2rXg54HKj9NSTW3hzbmeAQC
+	FjyRn6OxAkMeAsFGWLkyTJd8EBcFhz62vzEwj4/Yu4S3GpDFWFGSsu3QGmxVHiif+uoQ
+	ybNvadKuZoTiuFY6y8RuiZ8ivmpTuL9PgRk1uK6FXTLTjDsir5UQhs9gxP0K15mdHsKd
+	r79A==
+X-Received: by 10.15.100.129 with SMTP id bn1mr15329014eeb.93.1370943922446;
+	Tue, 11 Jun 2013 02:45:22 -0700 (PDT)
+Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
+	by mx.google.com with ESMTPSA id
+	y10sm29192115eev.3.2013.06.11.02.45.21 for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Tue, 11 Jun 2013 02:45:21 -0700 (PDT)
+Date: Tue, 11 Jun 2013 11:45:45 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <20130611094545.GD3233@jama>
 References: <CAPMJ7HqEvt4UWPC=648nQ=RwJDqrv0qmcfmEkaVggX4wCCZs3w@mail.gmail.com>
 	<51B1BFDF.1010806@mlbassoc.com>
 	<CAMKF1soLrkdRWc5CoUGDsRU9aHQickPnnnBRLK=DeU6E8wdW-Q@mail.gmail.com>
 	<2513519.TnlYEDHE6H@helios> <20130611090708.GC3233@jama>
-In-Reply-To: <20130611090708.GC3233@jama>
+	<51B6ED57.8010307@mlbassoc.com>
+MIME-Version: 1.0
+In-Reply-To: <51B6ED57.8010307@mlbassoc.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
 Subject: Re: Distributing Compilation of Yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -38,53 +47,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 09:26:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Jun 2013 09:45:24 -0000
+X-Groupsio-MsgNum: 14247
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="EP0wieDxd4TSJjHq"
+Content-Disposition: inline
 
-On 2013-06-11 10:07, Martin Jansa wrote:
-> On Tue, Jun 11, 2013 at 09:20:05AM +0100, Paul Eggleton wrote:
->> On Monday 10 June 2013 20:16:22 Khem Raj wrote:
->>> On Fri, Jun 7, 2013 at 4:11 AM, Gary Thomas <gary@mlbassoc.com> wrote:
->>>> Looks interesting and I think I'd like to try it myself.  However, that
->>>> page has a reference to
->>>> http://bugs.openembedded.org/attachment.cgi?id=1032&action=view
->>>> which seems to be down at the moment (tested from both sides of the pond)
->>>
->>> OE bugzilla has been decommissioned long ago.
->>
->> In that case the "Using IceCC" page on the OE wiki [1] should not be linking
->> to it. Can someone who has actually used IceCC in conjunction with OE (or has
->> contact with someone who has) please update the page? Martin?
->
-> We're not using create-icecc-env.sh script, I've updated the page how to
-> use icecc service in ubuntu and removed old link.
+--EP0wieDxd4TSJjHq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'm confused (sorry) - there are still references to that script on the Wiki page.
-If you're not using the create-icecc-env.sh, how do you set it up and what does
-ICECC_ENV_EXEC point to?
+On Tue, Jun 11, 2013 at 10:26:47AM +0100, Gary Thomas wrote:
+> On 2013-06-11 10:07, Martin Jansa wrote:
+> > On Tue, Jun 11, 2013 at 09:20:05AM +0100, Paul Eggleton wrote:
+> >> On Monday 10 June 2013 20:16:22 Khem Raj wrote:
+> >>> On Fri, Jun 7, 2013 at 4:11 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+> >>>> Looks interesting and I think I'd like to try it myself.  However, t=
+hat
+> >>>> page has a reference to
+> >>>> http://bugs.openembedded.org/attachment.cgi?id=3D1032&action=3Dview
+> >>>> which seems to be down at the moment (tested from both sides of the =
+pond)
+> >>>
+> >>> OE bugzilla has been decommissioned long ago.
+> >>
+> >> In that case the "Using IceCC" page on the OE wiki [1] should not be l=
+inking
+> >> to it. Can someone who has actually used IceCC in conjunction with OE =
+(or has
+> >> contact with someone who has) please update the page? Martin?
+> >
+> > We're not using create-icecc-env.sh script, I've updated the page how to
+> > use icecc service in ubuntu and removed old link.
+>=20
+> I'm confused (sorry) - there are still references to that script on the W=
+iki page.
+> If you're not using the create-icecc-env.sh, how do you set it up and wha=
+t does
+> ICECC_ENV_EXEC point to?
 
-Also I assume based on the current page that your patch to icecc.bbclass is not
-yet merged?
+icecc.bbclass:
+ICECC_ENV_EXEC ?=3D "${STAGING_BINDIR_NATIVE}/icecc-create-env"
 
-Thanks
+> Also I assume based on the current page that your patch to icecc.bbclass =
+is not
+> yet merged?
 
->
->>
->> Thanks,
->> Paul
->>
->> [1] http://www.openembedded.org/wiki/Using_IceCC
->>
->> --
->>
->> Paul Eggleton
->> Intel Open Source Technology Centre
->
+Thanks, I've removed reference to that patch which is now merged.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--EP0wieDxd4TSJjHq
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.20 (GNU/Linux)
+
+iEYEARECAAYFAlG28ckACgkQN1Ujt2V2gBz6hwCfaNL3AxTgHPitWAVg55V/L+UV
+n3oAn14FgG6MdM+a7+Eof6J15R7Qj5rn
+=np56
+-----END PGP SIGNATURE-----
+
+--EP0wieDxd4TSJjHq--
