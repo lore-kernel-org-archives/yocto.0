@@ -1,17 +1,31 @@
-Return-Path: <noor_ahsan@mentor.com>
-Received: from gemini.alm.mentorg.com (nat-lmt.mentorg.com [139.181.28.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B27E3E0151C
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 05:49:07 -0700 (PDT)
-Received: from pkl-ahsann-ubuntu.mgc.mentorg.com ([137.202.157.70])
-	by gemini.alm.mentorg.com (8.14.4/8.14.4) with ESMTP id r5BCmwvY029904; 
-	Tue, 11 Jun 2013 07:48:59 -0500
-From: "Noor, Ahsan" <noor_ahsan@mentor.com>
-To: holger.behrens@windriver.com, florin.sarbu@windriver.com
-Date: Tue, 11 Jun 2013 17:48:45 +0500
-Message-Id: <1370954925-31952-1-git-send-email-noor_ahsan@mentor.com>
-X-Mailer: git-send-email 1.7.9.5
-Cc: yocto@yoctoproject.org
-Subject: [PATCH V2] dlt-daemon: Fix multiple issues with service files.
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C46FE01538
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 05:59:22 -0700 (PDT)
+Received: by mail-vc0-f176.google.com with SMTP id ha12so1779290vcb.7
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 05:59:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:date:x-google-sender-auth:message-id:subject
+	:from:to:content-type;
+	bh=x5ZdRv47vBa0VpLmeFWKoFvYJmGVKjEwJMsF08M0iYY=;
+	b=nrXAWyvFl0+mBOmdcOpAozprC00KMDcXilIDRChEr7JhELNmW/7hPK2YeUq7AXKuQb
+	fG7ScKn4KF5HjK+FPBo1SPl4cMad7IVq0yOPq0vm7eTeq6Q8IM9aUJ3XnFX6mLrT+uRL
+	OCE1UF9rKMoIrG/bcVc+jyhshOzT50ML+CO5OBQ43ItKx1Vh7+NnTBGsRR4OV8s0lKpm
+	cn2hb2lLlK9lL49T8Wy/16dX9xeU9xA81/Z0l4jnHEn9dDoQWlxm7cYmjiPljX433X0n
+	jRkcrtndpY5+LzWtjcsLn4huOt/utf1xlxB77MyPWJM4C9sAFAxl4YsdPUaQQYZvENYe
+	NENQ==
+MIME-Version: 1.0
+X-Received: by 10.52.65.238 with SMTP id a14mr6712643vdt.24.1370955561950;
+	Tue, 11 Jun 2013 05:59:21 -0700 (PDT)
+Sender: satyaswaroop.damarla@gmail.com
+Received: by 10.52.179.33 with HTTP; Tue, 11 Jun 2013 05:59:21 -0700 (PDT)
+Date: Tue, 11 Jun 2013 14:59:21 +0200
+X-Google-Sender-Auth: R4Pd_k1Hf4bsZECT1UmmunHL1YA
+Message-ID: <CAFMfyz+_j-mWj4C0YJUnOBcCX-oMGc8196pmPcQcD8XbK6r0xA@mail.gmail.com>
+From: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: No crosscompiler in Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,90 +37,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 12:49:08 -0000
+X-List-Received-Date: Tue, 11 Jun 2013 12:59:23 -0000
+Content-Type: multipart/alternative; boundary=20cf307f337245e32404dee0772c
 
-From: Noor <noor_ahsan@mentor.com>
+--20cf307f337245e32404dee0772c
+Content-Type: text/plain; charset=ISO-8859-1
 
-* The newly included patch, systemd_service_installation.patch, is required
-  because the cmake script in the dlt-daemon package tries to locate the
-  systemd units directory on the host. During cross compiling it should not
-  see paths on local machine and make decesion based on it. On ubuntu 10.04
-  /lib/systemd/system folder does not exist so cross-compiling dlt-deamon
-  results in no servie file image folder. So commented the if condition which
-  checks the existance of /lib/systemd/system. Genivi issue link dealing with
-  this is http://bugs.genivi.org/show_bug.cgi?id=67.
-* Created symlinks of dlt.service and dlt-system.servic in basic.target.wants
-  folder.
-* Set PARALLEL_MAKE to "" as faced some issues when it was set.
+Gentlemen! We have a problem here...
 
-Signed-off-by: Noor Ahsan <noor_ahsan@mentor.com>
----
- .../systemd_service_installation.patch             |   24 ++++++++++++++++++++
- recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb    |   16 ++++++++++++-
- 2 files changed, 39 insertions(+), 1 deletion(-)
+I compiled the toolchain using the command *bitbake core-image-skidata -c
+populate_sdk *and installed the toolchain but I have to tell you that I
+dont see any cross-compiler installed with the toolchain...
 
-diff --git a/recipes-extended/dlt-daemon/dlt-daemon-2.9.0/systemd_service_installation.patch b/recipes-extended/dlt-daemon/dlt-daemon-2.9.0/systemd_service_installation.patch
-new file mode 100644
-index 0000000..8469a5e
---- /dev/null
-+++ b/recipes-extended/dlt-daemon/dlt-daemon-2.9.0/systemd_service_installation.patch
-@@ -0,0 +1,24 @@
-+--- git/systemd/CMakeLists_old.txt	2013-03-12 16:53:37.052664326 +0500
-++++ git/systemd/CMakeLists.txt	2013-03-12 16:53:57.052896347 +0500
-+@@ -46,15 +46,15 @@ if(WITH_SYSTEMD)
-+     message(STATUS "DLT adaptor udp configuration: APPID=${DLT_ADAPTOR_UDP_APPID} CTID=${DLT_ADAPTOR_UDP_CTID} PORT=${DLT_ADAPTOR_UDP_PORT}" )
-+     
-+     
-+-    if(EXISTS ${SYSTEMD_CONFIGURATIONS_FILES_DIR})
-++    #if(EXISTS ${SYSTEMD_CONFIGURATIONS_FILES_DIR})
-+         install(FILES ${PROJECT_BINARY_DIR}/systemd/dlt.service DESTINATION ${SYSTEMD_CONFIGURATIONS_FILES_DIR} )
-+         install(FILES ${PROJECT_BINARY_DIR}/systemd/dlt-system.service DESTINATION ${SYSTEMD_CONFIGURATIONS_FILES_DIR} )
-+         install(FILES ${PROJECT_BINARY_DIR}/systemd/dlt-receive.service DESTINATION ${SYSTEMD_CONFIGURATIONS_FILES_DIR} )
-+         install(FILES ${PROJECT_BINARY_DIR}/systemd/dlt-example-user.service DESTINATION ${SYSTEMD_CONFIGURATIONS_FILES_DIR} )
-+         install(FILES ${PROJECT_BINARY_DIR}/systemd/dlt-adaptor-udp.service DESTINATION ${SYSTEMD_CONFIGURATIONS_FILES_DIR} )
-+         message(STATUS "Unit files will be installed to ${SYSTEMD_CONFIGURATIONS_FILES_DIR} after make install" )
-+-    else(EXISTS ${SYSTEMD_CONFIGURATIONS_FILES_DIR})
-+-        message(STATUS "Unit files will not be installed to ${SYSTEMD_CONFIGURATIONS_FILES_DIR} after make install")
-+-    endif(EXISTS ${SYSTEMD_CONFIGURATIONS_FILES_DIR})
-++    #else(EXISTS ${SYSTEMD_CONFIGURATIONS_FILES_DIR})
-++    #    message(STATUS "Unit files will not be installed to ${SYSTEMD_CONFIGURATIONS_FILES_DIR} after make install")
-++    #endif(EXISTS ${SYSTEMD_CONFIGURATIONS_FILES_DIR})
-+      
-+-endif(WITH_SYSTEMD)
-+\ No newline at end of file
-++endif(WITH_SYSTEMD)
-diff --git a/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb b/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb
-index 9cdbfc0..82b46eb 100644
---- a/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb
-+++ b/recipes-extended/dlt-daemon/dlt-daemon_2.9.0.bb
-@@ -19,7 +19,9 @@ LICENSE = "MPLv2"
- LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=99ba60c3fad7eaf8c56bca6dd75cba09 \
- 		    file://MPL.txt;md5=ccdb2761cef70c8b2612624c323f89dc"
- 
--SRC_URI = "git://git.projects.genivi.org/${PN}.git;protocol=git;tag=v${PV}"
-+SRC_URI = "git://git.projects.genivi.org/${PN}.git;protocol=git;tag=v${PV} \
-+           file://systemd_service_installation.patch \
-+          "
- 
- S = "${WORKDIR}/git"
- 
-@@ -31,3 +33,15 @@ FILES_${PN}-systemd += "${systemd_unitdir}/system/"
- PACKAGES =+ "${PN}-systemd"
- 
- EXTRA_OECMAKE = "-DWITH_SYSTEMD=ON"
-+
-+PARALLEL_MAKE = ""
-+
-+do_install_append() {
-+    # Remove "User=genivi" option from systemd service files, as we want this to go to default setting
-+    sed -i '/User/d' ${D}/${systemd_unitdir}/system/*.service
-+
-+    # Install the required systemd services links        
-+    install -d ${D}${base_libdir}/systemd/system/basic.target.wants
-+    ln -sf ../dlt.service ${D}${base_libdir}/systemd/system/basic.target.wants/dlt.service
-+    ln -sf ../dlt-system.service ${D}${base_libdir}/systemd/system/basic.target.wants/dlt-system.service
-+}
--- 
-1.7.9.5
+Any guesses what could be the reason.. The image is customized x11 image...
 
+Greets,
+Satya
 
+--20cf307f337245e32404dee0772c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Gentlemen! We have a problem here...<div><br></div><div st=
+yle>I compiled the toolchain using the command <i>bitbake core-image-skidat=
+a -c populate_sdk </i>and installed the toolchain but I have to tell you th=
+at I dont see any cross-compiler installed with the toolchain...</div>
+<div style><br></div><div style>Any guesses what could be the reason.. The =
+image is customized x11 image...</div><div style><br></div><div style>Greet=
+s,</div><div style>Satya</div></div>
+
+--20cf307f337245e32404dee0772c--
