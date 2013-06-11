@@ -1,28 +1,28 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
-	[209.85.215.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2FBEE01506
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 07:50:50 -0700 (PDT)
-Received: by mail-ea0-f180.google.com with SMTP id k10so6366896eaj.25
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 07:50:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=OTCHtIsDsE8LNaN5fhY0XdZjc4Eh/zZ4XRnFU3V8YXo=;
-	b=0xL6tFhfiDKCxcydIkuSFW996jHn1v3fIkmUK63kdeEFj3swqXMhW2XQuVmYuaIL/r
-	7k15HvyE204uTQu84ddMt3vki2OAK/JtIpDXzi+sB0bPEomjWtWTdfHGxbeT57ek/PfH
-	Z0ZK/z2elYZaD+9hW8UXAZaCd9bDkWPpbc9BNRYON6u9LZPLlKRBXJijC6iYE9Sla+8Z
-	5pHa3D6vzrXL3UxSL44X8NRrp6pFEmfcNsE5Z+93g7ynEXdX4jX0szi3gpDUFtIF9VAV
-	IHyB2qQ/GqapQL3wGASNmWl/MkA0kK/IY2DJZ0uX/nfe3VGZhh+gOBq0ZLIS/68lEo9z
-	AmAg==
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB99BE01506
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 08:21:30 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5BFLSk6006720
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 11 Jun 2013 08:21:28 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 11 Jun 2013 08:21:28 -0700
+Message-ID: <51B74077.4050902@windriver.com>
+Date: Tue, 11 Jun 2013 11:21:27 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-X-Received: by 10.15.93.134 with SMTP id w6mr17063691eez.25.1370962249598;
-	Tue, 11 Jun 2013 07:50:49 -0700 (PDT)
-Received: by 10.223.159.195 with HTTP; Tue, 11 Jun 2013 07:50:49 -0700 (PDT)
-Date: Tue, 11 Jun 2013 08:50:49 -0600
-Message-ID: <CANwz6nxwUaGiXncQGQa1OGK=7s4b8TjTWphy4VL=qyiTFe3Z+Q@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Yocto branches with other meta-data sets
+To: Javi Roman <javiroman@kernel-labs.org>
+References: <CACWQdqCvEU3x0ctvUUrMhCAcoxnU0=SpVuW4E7Zo-ret9vidcA@mail.gmail.com>
+	<51B732EF.9080902@windriver.com>
+	<CACWQdqC6UwX7jYgxp-aRE4pUBz3G=npAAyBRuv3OJQQ_9Y4X_w@mail.gmail.com>
+In-Reply-To: <CACWQdqC6UwX7jYgxp-aRE4pUBz3G=npAAyBRuv3OJQQ_9Y4X_w@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Custom kernel in Yocto/dylan branch.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,104 +34,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 14:50:52 -0000
-Content-Type: multipart/alternative; boundary=089e0160c864e36ad104dee20586
+X-List-Received-Date: Tue, 11 Jun 2013 15:21:32 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0160c864e36ad104dee20586
-Content-Type: text/plain; charset=ISO-8859-1
+On 13-06-11 10:47 AM, Javi Roman wrote:
+> With
+>
+> SRC_URI_append = "file://defconfig"
+>
 
-Hello all
-I am trying to understand the various branches of poky.
-It appears that 1.4_M6 became dylan-9.0.0 which is DISTRO_VERSION    =
-"1.4".  Is this correct?
+Which is what I expected. And you say that it isn't being applied
+at all ? Is that by inspecting the final contents of .config ?
+Or something else ?
 
-top level of meta-oe
-git branch -a
-* master
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/danny
-  remotes/origin/danny-next
-  remotes/origin/denzil
-  remotes/origin/denzil-next
-  remotes/origin/dylan
-  remotes/origin/dylan-next
-  remotes/origin/master
-my conf/bblayers has the following entry
-/home/vidal/POKY/build060613_dylan/poky/meta-oe/meta-oe \
+Since this is on the dylan branches, I know it has been tested
+explicitly there.
 
-When I have the following in my conf/bblayers
-/home/vidal/POKY/build060613_dylan/poky/meta-oe \ I get errors.
-can not find conf/layer.conf.
-When using meta-oe with Yocto which branch should I be using
- origin/master, origin/dylan, or  origin/dylan-next?
-My previous builds have been using origin/master
-For my Yocto I use the following
+I'll switch and do some of my own test builds.
 
-git clone git://git.yoctoproject.org/poky
-cd poky
-git checkout -b dylan origin/dylan
-Which I found in dev-manual 3.6.1. Repositories, Tags, and Branches
-I noticed that this started as DISTRO_VERSION    = "1.4" a few days ago and
-now it is DISTRO_VERSION    = "1.4.1".
+Cheers,
 
-When using meta-ti which I use to build images for beaglebone & pandaboard.
-top level of meta-ti
-git branch -a
-* master
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/danny
-  remotes/origin/denzil
-  remotes/origin/master
-  remotes/origin/split
+Bruce
 
-This branch works with origin/dylan of yocto meta-ti           =
-"(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01".
-I do not see a origin/dylan for meta-ti.
-Is Yocto the main source of meta-data that other are creating same branches?
-Is Yocto project participation Yocto Project Compatible what is driving the
-same branches?
+>
+> Javi Roman
+>
+>
+> On Tue, Jun 11, 2013 at 4:23 PM, Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+>> On 13-06-11 10:18 AM, Javi Roman wrote:
+>>>
+>>> Hi!
+>>>
+>>>
+>>> I few years ago I used to work with OpenEmbedded (the classical
+>>> branch). The addition of new kernel recipes was easy for me,
+>>> nevertheless I'm unable to do similar things with the current
+>>> Yocto-dylan branch.
+>>>
+>>> The current Yocto-dylan is based on Linux kernel 3.x branches, all the
+>>> documentation regarding add custom kernels or new kernel features are
+>>> based on those 3.x branches. However, I would like to use a 2.6.32
+>>> Linux kernel (it's a constraint for my project).
+>>>
+>>> I'm using the following kernel recipe in my bsp:
+>>>
+>>> linux/
+>>>         linux-yocto-abacus/
+>>>                    defconfig
+>>>          linux-yocto-abacus_2.6.32.bb
+>>>
+>>> #####  linux-yocto-abacus_2.6.32.bb ####
+>>>
+>>> inherit kernel
+>>> require recipes-kernel/linux/linux-yocto.inc
+>>>
+>>> INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
+>>>
+>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>>> SRC_URI_append =3D "file://defconfig"
+>>>
+>>> PROVIDES =3D "virtual/kernel"
+>>>
+>>> SRC_URI =3D
+>>> "git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.g=
+>>> it;protocol=3Dgit;nocheckout=3D1"
+>>>
+>>> LINUX_VERSION =3D "2.6.32"
+>>> LINUX_VERSION_EXTENSION =3D "-abacus"
+>>>
+>>> # tag: v3.4    76e10d158efb6d4516018846f60c2ab5501900bc
+>>> # tag: v2.6.32 459b3d520991ec1b8e5ba68fbc4b206d602fee6e
+>>> SRCREV=3D"459b3d520991ec1b8e5ba68fbc4b206d602fee6e"
+>>>
+>>> PR =3D "r1"
+>>> PV =3D "${LINUX_VERSION}+git${SRCPV}"
+>>>
+>>> COMPATIBLE_MACHINE =3D "romley"
+>>>
+>>> ############ end ###################
+>>>
+>>> When I build the kernel with:
+>>>
+>>> # bitbake virtual/kernel
+>>>
+>>> The kernel is downloaded from kernel.org, with the correct git tag
+>>> (v2.6.32) and is built with success. Nevertheless, the "defconfig" is
+>>> not properly added in the kernel configuration. If I run:
+>>>
+>>> # bitbake virtual/kernel -c menuconfig
+>>>
+>>> The ncurses menuconfig is not using the "defconfig" added by me.
+>>>
+>>> The "defconfig" with all kernel configurations is a deprecated feature?
+>>> Which is the correct way to add a new kernel recipe?
+>>
+>>
+>> It definitely should still be working, we have plenty of defconfig
+>> users (whether right or wong ;) and it is tested daily.
+>>
+>> How did you specify your defconfig on the SRC_URI ?
+>>
+>> Bruce
+>>
+>>>
+>>> Many thanks!
+>>> Javi Roman
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
 
-Any and all help will be appreciated.
-Thanks
-Ed Vidal
 
---089e0160c864e36ad104dee20586
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello all<br>I am trying to understand the various branche=
-s of poky.<br>It appears that 1.4_M6 became dylan-9.0.0 which is DISTRO_VER=
-SION=A0=A0=A0 =3D &quot;1.4&quot;.=A0 Is this correct?<br><br>top level of =
-meta-oe<br>
-git branch -a<br>* master<br>=A0 remotes/origin/HEAD -&gt; origin/master<br=
->=A0 remotes/origin/danny<br>=A0 remotes/origin/danny-next<br>=A0 remotes/o=
-rigin/denzil<br>=A0 remotes/origin/denzil-next<br>=A0 remotes/origin/dylan<=
-br>=A0 remotes/origin/dylan-next<br>
-=A0 remotes/origin/master<br>my conf/bblayers has the following entry<br>/h=
-ome/vidal/POKY/build060613_dylan/poky/meta-oe/meta-oe \<br><br>When I have =
-the following in my conf/bblayers<br>/home/vidal/POKY/build060613_dylan/pok=
-y/meta-oe \ I get errors.<br>
-can not find conf/layer.conf.<br>When using meta-oe with Yocto which branch=
- should I be using<br>=A0origin/master, origin/dylan, or=A0 origin/dylan-ne=
-xt?<br>My previous builds have been using origin/master <br>For my Yocto I =
-use the following<br>
-<br>git clone git://<a href=3D"http://git.yoctoproject.org/poky">git.yoctop=
-roject.org/poky</a><br>cd poky<br>git checkout -b dylan origin/dylan<br>Whi=
-ch I found in dev-manual 3.6.1. Repositories, Tags, and Branches<br>I notic=
-ed that this started as DISTRO_VERSION=A0=A0=A0 =3D &quot;1.4&quot; a few d=
-ays ago and now it is DISTRO_VERSION=A0=A0=A0 =3D &quot;1.4.1&quot;.<br>
-<br>When using meta-ti which I use to build images for beaglebone &amp; pan=
-daboard.<br>top level of meta-ti<br>git branch -a<br>* master<br>=A0 remote=
-s/origin/HEAD -&gt; origin/master<br>=A0 remotes/origin/danny<br>=A0 remote=
-s/origin/denzil<br>
-=A0 remotes/origin/master<br>=A0 remotes/origin/split<br><br>This branch wo=
-rks with origin/dylan of yocto meta-ti=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &q=
-uot;(nobranch):d61bfa88ed3df9190ac9fd5643c27f77b34c5f01&quot;.<br>I do not =
-see a origin/dylan for meta-ti.<br>
-Is Yocto the main source of meta-data that other are creating same branches=
-?<br>Is Yocto project participation Yocto Project Compatible what is drivin=
-g the same branches?<br><br>Any and all help will be appreciated.<br>Thanks=
-<br>
-Ed Vidal<br><br><br>=A0<br><br></div>
-
---089e0160c864e36ad104dee20586--
