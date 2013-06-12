@@ -1,27 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87DC5E01560
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 01:24:04 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 27C4A68A01C; Wed, 12 Jun 2013 09:24:02 +0100 (BST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	loki.analogue-micro-ltd.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.12.145] (unknown [192.168.12.145])
-	by mail.analogue-micro.com (Postfix) with ESMTP id 948E968A019;
-	Wed, 12 Jun 2013 09:24:01 +0100 (BST)
-Message-ID: <51B83021.8010905@mlbassoc.com>
-Date: Wed, 12 Jun 2013 09:24:01 +0100
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f52.google.com (mail-oa0-f52.google.com
+	[209.85.219.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2FF6E01560
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 01:28:50 -0700 (PDT)
+Received: by mail-oa0-f52.google.com with SMTP id g12so3934447oah.25
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 01:28:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=rp0t2GeKbARbpfxH+wwFk/jM1PHIO1dxS13/s9rpBoo=;
+	b=f9D+VtMLqP+RPJo+onXTe8389dVZ263/jc8TtYq+7ablCyk7nvvHILu/g0bXaFybTH
+	yjhn1DJqxiG+BqWiSV8aQjvvVj62j2ZH9T7k73bnZsJU2BsGsNQnMMkBljEBpKd/YgX0
+	iE3eT8KrJvEw8b57ISRTekHwktlAKUU+eIwo8rDjKsu2ZmnzWPwIB54YJVfXMe/6kYqK
+	l7PIRM/Wbh1JbRR9rp/L7Z8lG+/nNObJJS14hXv7toaOiTxRCmCdl7yc7nrEhY8cWIvN
+	T1s6UhZhWWH/RClNGOxsvMFAIP8cpAXuBIPQnje9hBMf1NPtNYypOqZIuE/3rt3zn7uu
+	PuhA==
+X-Received: by 10.60.93.196 with SMTP id cw4mr594918oeb.135.1371025729140;
+	Wed, 12 Jun 2013 01:28:49 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Received: by 10.76.27.165 with HTTP; Wed, 12 Jun 2013 01:28:28 -0700 (PDT)
+In-Reply-To: <51B83021.8010905@mlbassoc.com>
 References: <CAP71Wjz-_omLGprC9xkBaZ6cbp=JmZrgGJy=UjtJCdrZiTfpEg@mail.gmail.com>
-In-Reply-To: <CAP71Wjz-_omLGprC9xkBaZ6cbp=JmZrgGJy=UjtJCdrZiTfpEg@mail.gmail.com>
+	<51B83021.8010905@mlbassoc.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 12 Jun 2013 10:28:28 +0200
+Message-ID: <CAP71WjxS=3-pJpbPBq3QbJqa_0_5M_keFnbPtHFDjRLQ4_1i6w@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQmpBZlWrd6o9W2dcBeEHX3BddjeyOhACmvQNX3F+S3yAwkHNrGD1G8jXHv/jPesZQVSQLGR
+Cc: Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: question about packagegroups
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,56 +41,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 08:24:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 12 Jun 2013 08:28:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2013-06-12 09:08, Nicolas Dechesne wrote:
-> hello,
+On Wed, Jun 12, 2013 at 10:24 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+> The problem is that bitbake runs recipes, not packages.  So in order to
+> get the package 'packagegroup-custom-tools', you have to build your main
+> recipe which will also build 'packagegroup-custom-apps'
 >
-> i am creating a packagegroup to organize better my image/recipes. i am
-> doing something along these lines:
->
->      DESCRIPTION = "My Custom Package Groups"
->
->       inherit packagegroup
->
->       PACKAGES = "\
->           packagegroup-custom-apps \
->           packagegroup-custom-tools \
->           "
->
->       RDEPENDS_packagegroup-custom-apps = "\
->           dropbear \
->           portmap \
->           psplash"
->
->       RDEPENDS_packagegroup-custom-tools = "\
->           oprofile \
->           oprofileui-server \
->           lttng-control \
->           lttng-viewer"
->
-> and in my imageA i am pulling *only* packagegroup-custom-tools with
-> IMAGE_INSTALL.
->
-> What I notice is that all packages listed in my packagegroup even the
-> ones from packagegroup-custom-apps which isn't pulled in my image are
-> built when building my image. Of course they are not installed, but
-> why are they built? it is wasting a large amount of time, while it's
-> not even needed. is that really expected or am i doing something wrong
-> here?
+> I've run across this myself and what I did was to split my package groups
+> (then called tasks) into separate recipes.
 
-The problem is that bitbake runs recipes, not packages.  So in order to
-get the package 'packagegroup-custom-tools', you have to build your main
-recipe which will also build 'packagegroup-custom-apps'
-
-I've run across this myself and what I did was to split my package groups
-(then called tasks) into separate recipes.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+ok, i was suspecting something like that.. but i wasn't sure why. ok,
+i will just split my recipes, then.
 
