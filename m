@@ -1,30 +1,29 @@
-Return-Path: <wmills@ti.com>
-Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59D9EE006C2
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 14:33:02 -0700 (PDT)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5CLWs7P013382;
-	Wed, 12 Jun 2013 16:32:54 -0500
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5CLWseD008151;
-	Wed, 12 Jun 2013 16:32:54 -0500
-Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
-	Wed, 12 Jun 2013 16:32:53 -0500
-Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
-	[158.218.102.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
-	r5CLWrJg031951;	Wed, 12 Jun 2013 16:32:53 -0500
-Message-ID: <51B8E905.3090405@ti.com>
-Date: Wed, 12 Jun 2013 17:32:53 -0400
-From: William Mills <wmills@ti.com>
-User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
-	rv:1.9.2.27) Gecko/20120216 Thunderbird/3.1.19
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-junco.atl.sa.earthlink.net
+	(elasmtp-junco.atl.sa.earthlink.net [209.86.89.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37259E006C2
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 14:58:17 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=C954Df/dMszKV3pJ4UHHRPpqChKEE03KsNMT4vQn3dAA08Fg62Zf84Ebov8PCFWi;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-junco.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1Umt3Y-0000zc-Tm; Wed, 12 Jun 2013 17:58:17 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Trevor Woerner'" <twoerner@gmail.com>
+References: <0A7B481F47BD4848A701598AE9CDD6DA@PAULD><bc6dfda22fdcefeb7de188e29b2ad887.squirrel@mail.cubic.org><1875741.cStO1T6C1g@helios><58DC6CADE1A5492E9E712C310E6C9019@PAULD>
+	<CAHUNapQwaFgZv58X-MEhMc_x1rDUL2jtGY+irZ=d6fDQDKxC-w@mail.gmail.com>
+In-Reply-To: <CAHUNapQwaFgZv58X-MEhMc_x1rDUL2jtGY+irZ=d6fDQDKxC-w@mail.gmail.com>
+Date: Wed, 12 Jun 2013 14:58:21 -0700
+Message-ID: <DB661AC610E74F50A7066636B2F398E7@PAULD>
 MIME-Version: 1.0
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-References: <0A7B481F47BD4848A701598AE9CDD6DA@PAULD><bc6dfda22fdcefeb7de188e29b2ad887.squirrel@mail.cubic.org>	<1875741.cStO1T6C1g@helios>
-	<58DC6CADE1A5492E9E712C310E6C9019@PAULD>
-In-Reply-To: <58DC6CADE1A5492E9E712C310E6C9019@PAULD>
-Cc: 'Paul Eggleton' <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+X-Mailer: Microsoft Office Outlook 11
+Thread-index: Ac5nsIhc7VfK9jF9QH+2iwHjnngkigABZF2w
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688c070a71fac58e1aa8329b46f51fac9de350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org
 Subject: Re: Need clarification on some terms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,26 +36,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 21:33:04 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 12 Jun 2013 21:58:18 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2013 03:51 PM, Paul D. DeRocco wrote:
-> For now, I really just need to know if I'm interested in the SDK, since I
-> have no intention of ever running compilations on my target system.
->
+> From: Trevor Woerner
+> 
+> Imagine a company which produces embedded devices running Linux. There
+> are hardware engineers, and software people. Within the software group
+> there will always be that person (or group) which is responsible for
+> creating the Linux filesystem which runs on the device, i.e. the
+> "base" system, and there is the person or group responsible for
+> writing the "special sauce", the program which (or programs that) make
+> the device do the special thing that sets this device apart (i.e. the
+> application developer group).
+> 
+> Sometimes these people are the one and the same person, other times
+> they are separate people/groups.
+> 
+> Only the person/group responsible for the base filesystem need to know
+> about Yocto/OE. The "special sauce" people don't need to know anything
+> about packages, kernels, udev, /etc, or any of that other stuff. But
+> what they do need is a "compiler"[1] so they can build the software
+> for their target device.
+> 
+> The "compiler" they need has to be tied to the base filesystem. They
+> shouldn't be using a "compiler" that isn't aware of what libraries
+> (and therefore also be using the correct header files) that are going
+> to be available on the target, and they shouldn't be using a compiler
+> that isn't aware of the version of the kernel that will be available
+> on the target.
+> 
+> In order to help get the Yocto/OE group and the application group in
+> sync, Yocto/OE has this neat target which allows the platform team to
+> generate an "compiler" (i.e. the SDK) that the application group can
+> use which is, through the magic of the Yocto system, perfectly tuned
+> for the image the platform team is creating. In other words, the
+> application team doesn't need to perform Yocto builds in order to
+> write their software, they just need the Yocto people to generate an
+> SDK for them and produce a new SDK anytime anything on the target
+> image changes. The Yocto people can generate this SDK using a very
+> simple one-liner.
+> 
+> For a little more information, please have a look at item 19 of
+> https://github.com/twoerner/meta-trevor/blob/master/misc/notes
 
-Trevor's answer has a lot of great background.
+Okay, so I'm wrong about the SDK being a toolchain that runs on the target.
+It does indeed run on the host, right? So why is the toolchain that builds
+the target application on the host different from the toolchain that builds
+the target OS image on the host?
 
-My short answer is gcc-cross is for use inside bitbake (in the host) and 
-gcc-crosssdk is for use outside of bitbake (still on the host).  This 
-outside bitbake use case is the SDK Trevor described.
+-- 
 
-Why does gcc need to get built differently between these two use cases? 
-  I gave up asking this many years ago and accepted it as "something I 
-can not change" for my own serenity.  I am sure Paul or Khem could give 
-the detail.  The sdk version does have extra stuff to make it 
-relocatable etc that is not needed inside of bitbake.  However I don't 
-know why we don't always build the sdk-able version.
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
