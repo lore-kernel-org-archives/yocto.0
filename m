@@ -1,36 +1,34 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54B9BE006C2
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 13:38:28 -0700 (PDT)
-Received: by mail-vb0-f49.google.com with SMTP id 12so2933180vbf.8
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 13:38:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
+Return-Path: <twoerner@gmail.com>
+Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29CBDE01482
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 13:42:00 -0700 (PDT)
+Received: by mail-qa0-f48.google.com with SMTP id cm16so627652qab.14
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 13:41:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=F5dT7wt1Iu2C0lH4dUtXZ88Zz46+v9jRoSgMAeGbhWs=;
-	b=oo5pOv1zXNglcsZ9ux+sOIU980DeIw5ij/8fShAYtudeGvCSvnxxkwl1U6+nonUQtM
-	DBChI/K/ZU40l2dSjdYqMG+PYFjLwOGinGCsTu6QPBwYMGSdmTFx9aaJcygmsPfxLQAK
-	/FGKXcwXZna8bgDuX50xooZeeVWLJf+vB4kVxYTfZLbX+oYef9g+odMDlchca42EiDg1
-	YZiLbulAruC0CQkdkCvvdIOGmcKRzq4FllXm3CdfKdI0i1zNhOP8e0TH40VO5Si92DHn
-	Dp9XF8ZZ2vaNcIt85yGBhcKBPGAgdOTcmu4FIKk3e+itxhC78ov4TyYWPB82pgszu4Sb
-	FnyA==
+	:cc:content-type;
+	bh=L3rvb5B2YmuErsVIjsKxHqXZcliMf1OKTryzAJ/B3WA=;
+	b=EtbfndsyflxDznvCaA4y5ccHAkQAtHLworpzJd2DWnIzTmzNRLnA1pTFprkHAfwd8s
+	Bsv+gK6L5WKGTlsHbeRC/KklBiXmEhRxnTZgVGiRgCJFw0hkMuGcHDxaziDQDmTVIIhZ
+	OtsyE5iBHsAJjF46cLkzckBZ8ZybSgVZyhfDMT85JKatRN+E4Lvr0fYu9HHLCUtorS7m
+	X+Ss4wsiooQlFqjZZTlSJNf11nocYNmZlFlvnuREKVzycnbHyEvbpgK8rkxLvhIkgqk6
+	fjm2k46c8cEFEhSPfoGbT4GcfnbICSZ7F0WWQeiZFZMHxNBanvcUGm2l6c68Gs1QoxrK
+	vgKw==
 MIME-Version: 1.0
-X-Received: by 10.220.105.9 with SMTP id r9mr10341952vco.60.1371069507783;
-	Wed, 12 Jun 2013 13:38:27 -0700 (PDT)
-Received: by 10.52.114.170 with HTTP; Wed, 12 Jun 2013 13:38:27 -0700 (PDT)
-In-Reply-To: <51B8D4BA.2020109@gmail.com>
-References: <CAFyqS9qOXTV-8vRDuff0_JN=4ZobqbwqSbLm1MNQtTHNEPP3Qg@mail.gmail.com>
-	<CAPhnLPBsH=Oibe5X3vDeVn9gxq3Msjn_ogZaU6dRm4W0uGYRCw@mail.gmail.com>
-	<51B8D4BA.2020109@gmail.com>
-Date: Wed, 12 Jun 2013 13:38:27 -0700
-Message-ID: <CAPhnLPC7kOo8jgVx5KK=ZT2xNibR60K7XzVESr+wGDEdFAwCAg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Hans Beckerus <hans.beckerus@gmail.com>
-X-Gm-Message-State: ALoCoQlxuK3m4rFXfDkvNh8AuuWGyvW68KVP2xvGwYb8emESHmAmeBFCnMXV7vaUSlhvg11UU9R2
+X-Received: by 10.229.138.209 with SMTP id b17mr3176408qcu.94.1371069719855;
+	Wed, 12 Jun 2013 13:41:59 -0700 (PDT)
+Received: by 10.224.7.199 with HTTP; Wed, 12 Jun 2013 13:41:59 -0700 (PDT)
+In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE4013B910EC264@pluto.melinkcorp.local>
+References: <91586D499ADFD74FBCFB8425266A5DE4013B910EC22E@pluto.melinkcorp.local>
+	<CADkTA4PkMUc8rzBWewZWwygE=XcXLBAQwHFEXcUPZX6mqzmADA@mail.gmail.com>
+	<91586D499ADFD74FBCFB8425266A5DE4013B910EC264@pluto.melinkcorp.local>
+Date: Wed, 12 Jun 2013 16:41:59 -0400
+Message-ID: <CAHUNapQeeSN2eD9jG4mmw8hXU1n_vip7gNJ1TPossrOeD==PRw@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yet another LIC_FILES_CHKSUM question
+Subject: Re: Problems fetching branch for linux-yocto-custom
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,124 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 20:38:29 -0000
+X-List-Received-Date: Wed, 12 Jun 2013 20:42:04 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 12, 2013 at 1:06 PM, Hans Beckerus <hans.beckerus@gmail.com> wr=
-ote:
-> On 2013-06-12 7:55, Flanagan, Elizabeth wrote:
->>
->> On Wed, Jun 12, 2013 at 6:05 AM, Hans Beck=E9rus <hans.beckerus@gmail.co=
-m>
->> wrote:
->>>
->>> In what way does LIC_FILES_CHKSUM correlate to what is specified in
->>> LICENSE?
->>> LIC_FILES_CHKSUM *must* be specified unless LICENSE is set to CLOSED.
->>> But, what if the package does not itself provide a license type file?
->>> Is it then ok to simply leave LIC_FILES_CHKSUM =3D "" ?
->>
->> That's kind of a tricky situation. I'm not a lawyer, but I haven't
->> actually seen an actual instance where there was a stated open source
->> license that wasn't also in the source. If there is then the correct
->> path is to probably put actual license text in the upstream as I can
->> imagine all sorts of legal issues with this. Any lawyers care to field
->> this on?
->>
->> -b
+On Wed, Jun 12, 2013 at 3:37 PM, Bryan Evenson <bevenson@melinkcorp.com> wrote:
+> # Added KBRANCH spec
+> KBRANCH = "linux-3.9-at91"
+>> > # Override SRC_URI in a bbappend file to point at a different source
+>> #
+>> > tree if you do not want to build from Linus' tree.
+>> > SRC_URI = "git://github.com/linux4sam/linux-at91.git;branch=linux-
+>> 3.9-
+>> at91;tag=dcdf169e24c0cb6d7dc69e0a09d2395934e95075;protocol=git;nochecko
+>> ut=1"
 >
-> Hi Elizabeth, I understand you are not a lawyer ;) I did not really expec=
-t
-> one either.
-> Let's tweak the question into something slightly different. Assume that
-> LICENSE is saying eg. GPLv2, but the COPYING file provided by the package
-> says GPLv3? Iow, there is a mismatch between the what the recipe says and
-> what the package tells you.
+> # Changed SRC_URI to following
+> SRC_URI = "git://github.com/linux4sam/linux-at91.git;branch=${KBRANCH};protocol=git;nocheckout=1"
 
-Ah, in that case, the LICENSE is obviously incorrect and the recipe
-should be patched, right?
+It looks like all you did was to define the string "linux-3.9-at91" in
+its own variable, put that in your SRC_URI string, and remove the
+"tag=..." field. Would your original recipe have worked if all you did
+was remove the "tag=..." field?
 
-> I am a little bit confused to how LICENSE and LIC_FILES_CHKSUM really wor=
-ks
-> together? Why do we need two different ways of telling what license we us=
-e
-> or actually expect?
-
-This is a way for us to tell that the LICENSE may have changed. If the
-text of the license files in LIC_FILES_CHKSUM change, something
-happened that needs to be looked at.
-
-> Or is LICENSE checked against the files pointed to by
-> LIC_FILES_CHKSUM? Should it not always be the file(s) stored in the upstr=
-eam
-> package that dictates what license should be applied?
-
-They are, but there are a few problems with this....
-
-1. Figuring out license automatically is an interesting and kind of
-time consuming issue. COPYING isn't *always* the license information.
-We've got source that has license information in headers, in COPYING,
-in LICENSE, in a lot of places and figuring out is a file contains
-license information without a common portable data exchange is kind of
-hard (license people see where I'm going here ;) )......
-2. This is one of the reasons that Matt Germonprez and a team of
-people at the University of Nebraska Omaha are working on implementing
-some tooling around SPDX within the project (for more on SPDX see:
-www.spdx.org). We need a way to do deep inspection of source as well
-as recognize when the upstream has implemented an SPDX file. This
-should be implemented in the 1.5 time frame.
-
-So, in a nutshell, scanning for license during every build is time
-consuming. We want to do it once, improve the LICENSE data where we
-can, and utilize LIC_FILES_CHKSUM to help maintain it, running our
-SPDX utilities now and then to be able to find new licenses added that
-LIC_FILES_CHKSUM may not know about.
-
--b
-
->
-> Hans
->
->
->>> Also, I could see that there was an Erlang Public License file
->>> available in poky. But the file is named ErlPL-1.1 and there were no
->>> maps attached to it, this patch will add that.
->>>
->>> Hans
->>>
->>> diff --git a/meta/conf/licenses.conf b/meta/conf/licenses.conf
->>> index 3cb143c..ffed997 100644
->>> --- a/meta/conf/licenses.conf
->>> +++ b/meta/conf/licenses.conf
->>> @@ -101,9 +101,14 @@ SPDXLICENSEMAP[AFL-1] =3D "AFL-1.2"
->>>   SPDXLICENSEMAP[AFLv2] =3D "AFL-2.0"
->>>   SPDXLICENSEMAP[AFLv1] =3D "AFL-1.2"
->>>
->>> +#Erlang variations
->>> +SPDXLICENSEMAP[ErlPLv1.1] =3D "ErlPL-1.1"
->>> +SPDXLICENSEMAP[ErlPL1.1] =3D "ErlPL-1.1"
->>> +
->>>   #Other variations
->>>   SPDXLICENSEMAP[EPLv1.0] =3D "EPL-1.0"
->>>
->>> +
->>>   # Additional license directories. Add your custom licenses
->>> directories this path.
->>>   # LICENSE_PATH +=3D "${COREBASE}/custom-licenses"
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->>
->
-
-
-
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Is KBRANCH being used somewhere else? Doesn't bitbake's "git" fetcher
+already have a generic way of specifying a branch? Why would a kernel
+recipe need to also define a branch variable? Do non-kernel recipes
+also need to define some kind of branch variable too?
 
