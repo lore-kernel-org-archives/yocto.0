@@ -1,33 +1,34 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 738ADE01560
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 22:47:03 -0700 (PDT)
-Received: by mail-la0-f48.google.com with SMTP id lx15so6583300lab.35
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 22:47:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=kunDx3phmE5k78DRh0sitcieAVN0ycMrENYsPopVQ2k=;
-	b=g5nzI/Xon5kLw9YKlrinkT45Jqk1Xj+MqMAHgqsrhStEtemYsmcDXj/4SOAc1bsxV6
-	mMT9IALuwuULIGJqflLPuTKR20WJGhVPUoEjxgRGDuxkCH4ME4ONCpzy1IH6K5T+vu+0
-	n2qznCIuHD/6vWl5os4QYILUBFbFtLuGFDIBfHv7hoQgK11Bmri2JYcpPOCTQFfDzphh
-	KAzb5u3sgxCzExpceCZLQ53FXMfyINexdkkyMSpWCs/Np9kV8aJ8RPwxUPKpmxM/16Ca
-	E6lrpg6xaeZvvpX51QbRFZC6WPPLkmq5eWuZ4SH30ruUojHnQAeoQjHeatLOuT6efj7y
-	GG+w==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A576E01560
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 22:58:55 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 11 Jun 2013 22:58:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,848,1363158000"; d="scan'208";a="315702430"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by azsmga001.ch.intel.com with ESMTP; 11 Jun 2013 22:58:54 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 11 Jun 2013 22:58:54 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.64]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.69]) with mapi id
+	14.03.0123.003; Tue, 11 Jun 2013 22:58:54 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Need clarification on some terms
+Thread-Index: Ac5nIlkRp+c4KMD8R1u/T9DvP2C7/QADvL1w
+Date: Wed, 12 Jun 2013 05:58:53 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF48912@ORSMSX101.amr.corp.intel.com>
+References: <0A7B481F47BD4848A701598AE9CDD6DA@PAULD>
+In-Reply-To: <0A7B481F47BD4848A701598AE9CDD6DA@PAULD>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.152.29.41 with SMTP id g9mr8884840lah.44.1371016021994; Tue,
-	11 Jun 2013 22:47:01 -0700 (PDT)
-Received: by 10.114.58.72 with HTTP; Tue, 11 Jun 2013 22:47:01 -0700 (PDT)
-In-Reply-To: <CCC55643-4330-4AE6-B2D8-AD5E47E486DC@spidercloud.com>
-References: <0E1D49D2-4C56-45AC-AB70-2EA8261EE4D8@spidercloud.com>
-	<CCC55643-4330-4AE6-B2D8-AD5E47E486DC@spidercloud.com>
-Date: Wed, 12 Jun 2013 11:17:01 +0530
-Message-ID: <CAE_REAuG+FZkFSMjjdPJ7SEGDVsdc1Snq0BEtWoVuh_SgDKjyQ@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Ben Warren <Ben.Warren@spidercloud.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SOLVED: How to get mkfs.ext4 in rootfs package
+Subject: Re: Need clarification on some terms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,128 +40,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 05:47:04 -0000
-Content-Type: multipart/alternative; boundary=089e0158c09af8f3a904deee8abc
-
---089e0158c09af8f3a904deee8abc
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Wed, 12 Jun 2013 05:58:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Can you try with IMAGE_INSTALL_append =3D " e2fsprogs" and run once again
-"bitbake core-image-minimal" or whatever you are referring for your final
-target
+Paul,
 
-//Gaurang Shastri
+Thanks for pointing out these areas where it is confusing.  Maybe someone o=
+n the team can add some comments about the gcc-* recipe stuff.  I don't hav=
+e that understanding but if I am giving more explanation I can update that =
+entry.  I believe the term Cross-Development Toolchain" is the same that Bi=
+tBake builds in the beginning.  If not, please someone from the team add so=
+me clarification for me and I will update.  I will look for the term "SDK" =
+throughout and remedy that.  In the beginning of the development of the doc=
+s we used the term SDK liberally.  Then we decided to weed it out.  Seems I=
+ need to completely finish that task.
 
+Scott
 
-On Wed, Jun 12, 2013 at 1:06 AM, Ben Warren <Ben.Warren@spidercloud.com>wro=
-te:
-
-> Sorry for the spam.  Still learning how this works=85
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Paul D. DeRocco
+>Sent: Tuesday, June 11, 2013 9:07 PM
+>To: yocto@yoctoproject.org
+>Subject: [yocto] Need clarification on some terms
 >
-> Turns out I needed 'e2fsprogs-mke2fs'
+>I'm trying a second time to see if I can learn this system. Section 3.4
+>contains a short glossary which explains some things and seems to
+>obscure
+>others. So perhaps someone can clear up a few simple things.
 >
-> regards,
-> Ben
+>"Cross-Development Toolchain: A collection of software development tools
+>and
+>utilities that allow you to develop software for targeted
+>architectures." Is
+>that different from the toolchain that bitbake builds in the beginning,
+>and
+>then uses to build the image? If so, what is it?
 >
-> On Jun 11, 2013, at 10:51 AM, Ben Warren <Ben.Warren@spidercloud.com>
-> wrote:
+>"Following is a list of toolchain recipes..." This is followed by
+>gcc-cross-initial, gcc-cross-intermediate, gcc-cross. All three of these
+>things say that the toolchain runs on the host and is used to build
+>software
+>for the target. So why are there three of them? What are the differences
+>among them? It also says that each one is a "native" package. In my
+>experience, a "native" toolchain has always meant a toolchain that
+>produces
+>code for the same machine that the toolchain runs on, while a "cross"
+>toolchain produces code for a different machine. That's obviously not
+>what
+>"native" means in this context, so what does it mean?
 >
-> > Hi,
-> >
-> > I'm trying to get the 'mkfs.ext4' binary from e2fsprogs into my image,
-> in particular the '.ext3' rootfs image, and am obviously missing somethin=
-g
-> fundamental.
-> > I'm using a custom image based on (copy/pasted from)
-> 'kvm_image_minimal', and have added 'e2fsprogs' to the IMAGE_INSTALL stri=
-ng
-> in the image descriptor file.
-> >
-> > I see that the library is compiling and the binary is in tmp/sysroots:
-> >
-> > ben@ubuntu-scw:/opt/scw-appscard-build$ ls
-> tmp/sysroots/x86_64-linux/sbin/mkfs.*
-> > tmp/sysroots/x86_64-linux/sbin/mkfs.ext2
->  tmp/sysroots/x86_64-linux/sbin/mkfs.ext4
-> tmp/sysroots/x86_64-linux/sbin/mkfs.minix
-> > tmp/sysroots/x86_64-linux/sbin/mkfs.ext3
->  tmp/sysroots/x86_64-linux/sbin/mkfs.ext4dev
-> >
-> > but it's not making it to the rootfs images.
-> >
-> > I've tried to read the documentation but still am not quite sure about
-> what defines the contents of the rootfs images.
-> >
-> > thanks,
-> > Ben
-> >
-> >
+>The documentation makes frequent references to "the SDK" without ever
+>defining it. I know what it means generically, but what is it in the
+>Yocto
+>context? And why does the SDK involve yet another set of three
+>toolchains?
+>(Oh, and why is one of them called "canadian"?)
 >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>--
 >
+>Ciao,               Paul D. DeRocco
+>Paul                mailto:pderocco@ix.netcom.com
+>
+>
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
---089e0158c09af8f3a904deee8abc
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Can you try with IMAGE_INSTALL_append =3D &quot; e2fs=
-progs&quot; and run once again &quot;bitbake core-image-minimal&quot; or wh=
-atever you are referring for your final target<br><br></div>//Gaurang Shast=
-ri<br>
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed,=
- Jun 12, 2013 at 1:06 AM, Ben Warren <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:Ben.Warren@spidercloud.com" target=3D"_blank">Ben.Warren@spidercloud.com<=
-/a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Sorry for the spam. =A0Still learning how th=
-is works=85<br>
-<br>
-Turns out I needed &#39;e2fsprogs-mke2fs&#39;<br>
-<br>
-regards,<br>
-Ben<br>
-<br>
-On Jun 11, 2013, at 10:51 AM, Ben Warren &lt;<a href=3D"mailto:Ben.Warren@s=
-pidercloud.com">Ben.Warren@spidercloud.com</a>&gt; wrote:<br>
-<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I&#39;m trying to get the &#39;mkfs.ext4&#39; binary from e2fsprogs in=
-to my image, in particular the &#39;.ext3&#39; rootfs image, and am obvious=
-ly missing something fundamental.<br>
-&gt; I&#39;m using a custom image based on (copy/pasted from) &#39;kvm_imag=
-e_minimal&#39;, and have added &#39;e2fsprogs&#39; to the IMAGE_INSTALL str=
-ing in the image descriptor file.<br>
-&gt;<br>
-&gt; I see that the library is compiling and the binary is in tmp/sysroots:=
-<br>
-&gt;<br>
-&gt; ben@ubuntu-scw:/opt/scw-appscard-build$ ls tmp/sysroots/x86_64-linux/s=
-bin/mkfs.*<br>
-&gt; tmp/sysroots/x86_64-linux/sbin/mkfs.ext2 =A0tmp/sysroots/x86_64-linux/=
-sbin/mkfs.ext4 =A0 =A0 tmp/sysroots/x86_64-linux/sbin/mkfs.minix<br>
-&gt; tmp/sysroots/x86_64-linux/sbin/mkfs.ext3 =A0tmp/sysroots/x86_64-linux/=
-sbin/mkfs.ext4dev<br>
-&gt;<br>
-&gt; but it&#39;s not making it to the rootfs images.<br>
-&gt;<br>
-&gt; I&#39;ve tried to read the documentation but still am not quite sure a=
-bout what defines the contents of the rootfs images.<br>
-&gt;<br>
-&gt; thanks,<br>
-&gt; Ben<br>
-&gt;<br>
-&gt;<br>
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br></div>
-
---089e0158c09af8f3a904deee8abc--
