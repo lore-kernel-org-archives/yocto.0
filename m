@@ -1,28 +1,36 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89DA0E01560
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 06:05:11 -0700 (PDT)
-Received: by mail-qc0-f176.google.com with SMTP id z10so1032382qcx.35
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 06:05:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=iuDYRtfolGHve/jc04USb2xD0WL7f/jNxzpIRYZdW/U=;
-	b=sP2bYxMrFzEDq6cJW4S0QZV9afd9gPkj+5+su2plso+FF3ZJjqckh/rwYHbYMoaJwJ
-	ShIKrNMA7IljWX1zwc6hCdCBMGsbjpOHOiDqJvuR//bwreEXbPNkDLZQSQVU8S+5HK4N
-	6PVFEltjPWQ+M8snNXIYAehNhy/8AuNOHwoZ1u0vFIZzaP7cTbfNORN/eacEBEcFtv1O
-	SAelTR40r7mb6/bOcsyFmg5M+mPfwy95CtWor8BB3O/0Ws+MJelQ2Ed9B9AnewBOIC99
-	YaQKwikYBumiQi2S2AlyWYTQ1BrR0SceQoBQKyoa45UNmxBNGyok5iKPbaCInapotNdK
-	UUyA==
+Return-Path: <rohit2.jindal@aricent.com>
+Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 893B0E01560;
+	Wed, 12 Jun 2013 06:15:59 -0700 (PDT)
+Received: from jaguar.aricent.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 9969C36B44;
+	Wed, 12 Jun 2013 18:45:39 +0530 (IST)
+Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
+	[10.203.171.136])
+	by jaguar.aricent.com (Postfix) with ESMTP id 8337C36B36;
+	Wed, 12 Jun 2013 18:45:39 +0530 (IST)
+Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
+	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
+	Wed, 12 Jun 2013 18:45:39 +0530
+From: Rohit2 Jindal <rohit2.jindal@aricent.com>
+To: "yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 12 Jun 2013 18:45:37 +0530
+Thread-Topic: Recompile the recipe everytime
+Thread-Index: Ac5mGrOUAC1Mnbu4QtS5fZ1dNgZZvgAV8wLQAD7e0LA=
+Message-ID: <17797116383D4341B029FDF34C22BF6A52C4CCB180@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <17797116383D4341B029FDF34C22BF6A52C4CCADB9@GUREXMB01.ASIAN.AD.ARICENT.COM>
+	<51B5EA46.8040609@linux.intel.com>
+	<17797116383D4341B029FDF34C22BF6A52C4CCADBD@GUREXMB01.ASIAN.AD.ARICENT.COM>
+	<51B5EEC6.4040007@linux.intel.com>
+	<17797116383D4341B029FDF34C22BF6A52C4CCADC1@GUREXMB01.ASIAN.AD.ARICENT.COM>
+	<51B639AC.3050200@linux.intel.com> 
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.229.62.193 with SMTP id y1mr2888897qch.78.1371042311293;
-	Wed, 12 Jun 2013 06:05:11 -0700 (PDT)
-Received: by 10.49.24.239 with HTTP; Wed, 12 Jun 2013 06:05:11 -0700 (PDT)
-Date: Wed, 12 Jun 2013 15:05:11 +0200
-Message-ID: <CAFyqS9qOXTV-8vRDuff0_JN=4ZobqbwqSbLm1MNQtTHNEPP3Qg@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Yet another LIC_FILES_CHKSUM question
+Subject: Recompile the recipe everytime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,37 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 13:05:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 12 Jun 2013 13:15:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-In what way does LIC_FILES_CHKSUM correlate to what is specified in LICENSE?
-LIC_FILES_CHKSUM *must* be specified unless LICENSE is set to CLOSED.
-But, what if the package does not itself provide a license type file?
-Is it then ok to simply leave LIC_FILES_CHKSUM = "" ?
+Hi ,
 
-Also, I could see that there was an Erlang Public License file
-available in poky. But the file is named ErlPL-1.1 and there were no
-maps attached to it, this patch will add that.
+Please help me out I am stuck in some issue, actually I want my recipe to d=
+o compilation everytime on every run of
 
-Hans
+Bitbake linux-yocto
 
-diff --git a/meta/conf/licenses.conf b/meta/conf/licenses.conf
-index 3cb143c..ffed997 100644
---- a/meta/conf/licenses.conf
-+++ b/meta/conf/licenses.conf
-@@ -101,9 +101,14 @@ SPDXLICENSEMAP[AFL-1] = "AFL-1.2"
- SPDXLICENSEMAP[AFLv2] = "AFL-2.0"
- SPDXLICENSEMAP[AFLv1] = "AFL-1.2"
+ie can I remove stamping or sstate-cache that it allows me to run compilati=
+on everytime on every run of bitbake linux-yocto.
 
-+#Erlang variations
-+SPDXLICENSEMAP[ErlPLv1.1] = "ErlPL-1.1"
-+SPDXLICENSEMAP[ErlPL1.1] = "ErlPL-1.1"
-+
- #Other variations
- SPDXLICENSEMAP[EPLv1.0] = "EPL-1.0"
 
-+
- # Additional license directories. Add your custom licenses
-directories this path.
- # LICENSE_PATH += "${COREBASE}/custom-licenses"
+I tried do_compile[nostamp] =3D"1" but it did not work but same thing worke=
+d for do_install[nostamp]=3D"1"
+
+Thanks in advance!
+
+Regards,
+Rohit Jindal
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+Please refer to http://www.aricent.com/legal/email_disclaimer.html
+for important disclosures regarding this electronic communication.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
 
