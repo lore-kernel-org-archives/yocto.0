@@ -1,30 +1,35 @@
-Return-Path: <Ben.Warren@spidercloud.com>
-Received: from berg.int.copivia.com (mailgate1.spidercloud.com [209.49.242.60])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16571E01560
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 23:10:20 -0700 (PDT)
-Received: from mailx.spidercloud.com ([10.1.1.225])
-	by berg.int.copivia.com (8.13.8/8.13.8) with ESMTP id r5C6AI2D021599;
-	Tue, 11 Jun 2013 23:10:18 -0700
-Received: from sofia.us.spidercloud.com ([10.1.1.225]) by
-	sofia.us.spidercloud.com ([10.1.1.225]) with mapi;
-	Tue, 11 Jun 2013 23:10:17 -0700
-From: Ben Warren <Ben.Warren@spidercloud.com>
-To: Gaurang Shastri <gmshastri@gmail.com>
-Date: Tue, 11 Jun 2013 23:10:17 -0700
-Thread-Topic: [yocto] SOLVED: How to get mkfs.ext4 in rootfs package
-Thread-Index: Ac5nM4IvxGbsGVEBRnypPFQAjtSAdA==
-Message-ID: <089E25F3-1F2C-42B0-933D-833A2181CB72@spidercloud.com>
-References: <0E1D49D2-4C56-45AC-AB70-2EA8261EE4D8@spidercloud.com>
-	<CCC55643-4330-4AE6-B2D8-AD5E47E486DC@spidercloud.com>
-	<CAE_REAuG+FZkFSMjjdPJ7SEGDVsdc1Snq0BEtWoVuh_SgDKjyQ@mail.gmail.com>
-In-Reply-To: <CAE_REAuG+FZkFSMjjdPJ7SEGDVsdc1Snq0BEtWoVuh_SgDKjyQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f179.google.com (mail-ve0-f179.google.com
+	[209.85.128.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA1FEE01567
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 23:33:05 -0700 (PDT)
+Received: by mail-ve0-f179.google.com with SMTP id d10so6362246vea.38
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 23:33:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type:x-gm-message-state;
+	bh=EhtERAgki4NZ7Hxtd4NouqfWTA9Ksn2oopcKfn+eW9c=;
+	b=PRmfwDj1OaMGPybMV6v6jYUOm1w1wWO1ZWmaM0I0CPr9ElnDCh5YDv+SHHBXEcNOeE
+	ksrYW8J7qF7qefRVBegxvcRnwMTRWz+dh4EkGv+YMV5D6buuiztijDeLNt28Uyq7juNd
+	IJCjdvM/OEKKl7sxqcsmD1tS9czEH7TL0d3AO8aSi4UxmnCEgXBb5+yQZF0fRDM6QNsd
+	VK+EDQi8CnvpxjpogMedMnkewdAofMES4MNSHXQumKbXwL/MxcGiL4rYvfWwAatxRYRD
+	W1YCC7thQb3q5qbKXi3LgKpIFv6O4MwhBJ/H4OmQfgUbhACassx6Wd36lj/qBl0FxvUD
+	vI/g==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SOLVED: How to get mkfs.ext4 in rootfs package
+X-Received: by 10.52.0.130 with SMTP id 2mr7779324vde.97.1371018784832; Tue,
+	11 Jun 2013 23:33:04 -0700 (PDT)
+Received: by 10.52.114.170 with HTTP; Tue, 11 Jun 2013 23:33:04 -0700 (PDT)
+In-Reply-To: <CAPhnLPBgTbb2m+L=DSr9p8ta7gm5OsR2-N4OeXkoo31_YHTx4A@mail.gmail.com>
+References: <CAPhnLPBgTbb2m+L=DSr9p8ta7gm5OsR2-N4OeXkoo31_YHTx4A@mail.gmail.com>
+Date: Tue, 11 Jun 2013 23:33:04 -0700
+Message-ID: <CAPhnLPCzaAVuvYVL6Nxaa4guH5nyNN4ME6KFkJNvo4+zW=Cvuw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org, Zhao Yi <yi.zhao@windriver.com>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Otavio Salvador <otavio@ossystems.com.br>
+X-Gm-Message-State: ALoCoQmflT0F0cp/r59UaHTKNDVv4GG4p2l+UOxDJ4vUStxtWhUYfJwYRMdCpNZzgpfH/NzgQ2s/
+Subject: Re: 1.4.1 rc1 available for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,148 +41,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 06:10:23 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_089E25F31F2C42B0933D833A2181CB72spidercloudcom_"
+X-List-Received-Date: Wed, 12 Jun 2013 06:33:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_089E25F31F2C42B0933D833A2181CB72spidercloudcom_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Folks....
 
-Hi Gaurang,
+We're going to respin this due to some autobuilder issues. I'll send
+out a mail in a bit to update you on the status/location. If you've
+begun testing, please stop and wait for this build.
 
-On Jun 11, 2013, at 10:47 PM, Gaurang Shastri <gmshastri@gmail.com<mailto:g=
-mshastri@gmail.com>> wrote:
+-b
 
-Can you try with IMAGE_INSTALL_append =3D " e2fsprogs" and run once again "=
-bitbake core-image-minimal" or whatever you are referring for your final ta=
-rget
-
-The 'e2fsprogs' target adds libs, but not the executables.  I needed to add=
- 'e2fsprogs-mke2fs' to get what I wanted.
-
-regards,
-Ben
-
-//Gaurang Shastri
-
-
-On Wed, Jun 12, 2013 at 1:06 AM, Ben Warren <Ben.Warren@spidercloud.com<mai=
-lto:Ben.Warren@spidercloud.com>> wrote:
-Sorry for the spam.  Still learning how this works=85
-
-Turns out I needed 'e2fsprogs-mke2fs'
-
-regards,
-Ben
-
-On Jun 11, 2013, at 10:51 AM, Ben Warren <Ben.Warren@spidercloud.com<mailto=
-:Ben.Warren@spidercloud.com>> wrote:
-
-> Hi,
+On Tue, Jun 11, 2013 at 6:15 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> All, we've begun a spin of 1.4.1. This is the first release candidate.
+> Unfortunately, a minor issue has occurred with the eclipse-plugin, so
+> that will have to be rebuilt once the build run ends (as we may have
+> to bring the buildbot slave down to fix it)
 >
-> I'm trying to get the 'mkfs.ext4' binary from e2fsprogs into my image, in=
- particular the '.ext3' rootfs image, and am obviously missing something fu=
-ndamental.
-> I'm using a custom image based on (copy/pasted from) 'kvm_image_minimal',=
- and have added 'e2fsprogs' to the IMAGE_INSTALL string in the image descri=
-ptor file.
+> The artifacts should be available in a few hours. Please begin testing
+> as they are available.
 >
-> I see that the library is compiling and the binary is in tmp/sysroots:
+> Location: http://autobuilder.yoctoproject.org/pub/nightly/20130611-2
 >
-> ben@ubuntu-scw:/opt/scw-appscard-build$ ls tmp/sysroots/x86_64-linux/sbin=
-/mkfs.*
-> tmp/sysroots/x86_64-linux/sbin/mkfs.ext2  tmp/sysroots/x86_64-linux/sbin/=
-mkfs.ext4     tmp/sysroots/x86_64-linux/sbin/mkfs.minix
-> tmp/sysroots/x86_64-linux/sbin/mkfs.ext3  tmp/sysroots/x86_64-linux/sbin/=
-mkfs.ext4dev
+> meta-fsl-arm    d31a4e85673874dbc6b42bb5d1e8496810c574cc
+> meta-fsl-ppc    51252492cdda18eb3838b1c3108217a59243ba2a
+> meta-intel      048def7bae8e3e1a11c91f5071f99bdcf8e6dd16
+> meta-minnow     0d428f867ffdf83dd35803c7318180751ddb096f
+> meta-qt3        4c27cce6688aa39852f3cba5e7b80ec279019605
+> poky    73f103bf9b2cdf985464dc53bf4f1cfd71d4531f
 >
-> but it's not making it to the rootfs images.
+> I'll have the eclipse-plugin hash when we build it out.
 >
-> I've tried to read the documentation but still am not quite sure about wh=
-at defines the contents of the rootfs images.
+> -b
 >
-> thanks,
-> Ben
->
->
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
+> --
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
 
 
 
---_000_089E25F31F2C42B0933D833A2181CB72spidercloudcom_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html charset=
-=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; -webkit-nbsp-=
-mode: space; -webkit-line-break: after-white-space; ">Hi Gaurang,<div><br><=
-div><div>On Jun 11, 2013, at 10:47 PM, Gaurang Shastri &lt;<a href=3D"mailt=
-o:gmshastri@gmail.com">gmshastri@gmail.com</a>&gt; wrote:</div><br class=3D=
-"Apple-interchange-newline"><blockquote type=3D"cite"><div dir=3D"ltr"><div=
->Can you try with IMAGE_INSTALL_append =3D " e2fsprogs" and run once again =
-"bitbake core-image-minimal" or whatever you are referring for your final t=
-arget<br><br></div></div></blockquote>The 'e2fsprogs' target adds libs, but=
- not the executables. &nbsp;I needed to add 'e2fsprogs-mke2fs' to get what =
-I wanted.</div><div><br></div><div>regards,</div><div>Ben</div><div><br><bl=
-ockquote type=3D"cite"><div dir=3D"ltr">//Gaurang Shastri<br>
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed,=
- Jun 12, 2013 at 1:06 AM, Ben Warren <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:Ben.Warren@spidercloud.com" target=3D"_blank">Ben.Warren@spidercloud.com<=
-/a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Sorry for the spam. &nbsp;Still learning how=
- this works=85<br>
-<br>
-Turns out I needed 'e2fsprogs-mke2fs'<br>
-<br>
-regards,<br>
-Ben<br>
-<br>
-On Jun 11, 2013, at 10:51 AM, Ben Warren &lt;<a href=3D"mailto:Ben.Warren@s=
-pidercloud.com">Ben.Warren@spidercloud.com</a>&gt; wrote:<br>
-<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I'm trying to get the 'mkfs.ext4' binary from e2fsprogs into my image,=
- in particular the '.ext3' rootfs image, and am obviously missing something=
- fundamental.<br>
-&gt; I'm using a custom image based on (copy/pasted from) 'kvm_image_minima=
-l', and have added 'e2fsprogs' to the IMAGE_INSTALL string in the image des=
-criptor file.<br>
-&gt;<br>
-&gt; I see that the library is compiling and the binary is in tmp/sysroots:=
-<br>
-&gt;<br>
-&gt; ben@ubuntu-scw:/opt/scw-appscard-build$ ls tmp/sysroots/x86_64-linux/s=
-bin/mkfs.*<br>
-&gt; tmp/sysroots/x86_64-linux/sbin/mkfs.ext2 &nbsp;tmp/sysroots/x86_64-lin=
-ux/sbin/mkfs.ext4 &nbsp; &nbsp; tmp/sysroots/x86_64-linux/sbin/mkfs.minix<b=
-r>
-&gt; tmp/sysroots/x86_64-linux/sbin/mkfs.ext3 &nbsp;tmp/sysroots/x86_64-lin=
-ux/sbin/mkfs.ext4dev<br>
-&gt;<br>
-&gt; but it's not making it to the rootfs images.<br>
-&gt;<br>
-&gt; I've tried to read the documentation but still am not quite sure about=
- what defines the contents of the rootfs images.<br>
-&gt;<br>
-&gt; thanks,<br>
-&gt; Ben<br>
-&gt;<br>
-&gt;<br>
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br></div>
-</blockquote></div><br></div></body></html>=
-
---_000_089E25F31F2C42B0933D833A2181CB72spidercloudcom_--
