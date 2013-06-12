@@ -1,35 +1,31 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
-	[209.85.217.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC753E01560
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 00:56:26 -0700 (PDT)
-Received: by mail-lb0-f173.google.com with SMTP id v1so3477145lbd.4
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 00:56:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=GxbE5uopkupoI9Cxkve/eKbVHRTkldaWPnHqeNAJQKY=;
-	b=s5OgqFCJQWbw019mPE1AmusQ5GuR8LfbhoLbNx9PBf9tDJLMqj4R+z2QEEUE7q6rhQ
-	UXJqUkNGr/kYdJ/ChLG2i7FgOZIVLPzm1JVF/laov0oqK/z+WsPG3Ce+ZA8c2OemUtDJ
-	VhbodMKZ4q0B/1CHLE6KodLlmDSL5hWkXhAwIoH3SStKbayj9cHuyADaOjMR4a7sXNwp
-	hrYkeFt1e1ZbtuQIQgJ1N2p5XBMVszDuyvbPLeYCOd3op/u2t9oa0HrTjZ+0pWzpL1No
-	4glyr909NxOz3Nlk93rkFqBXSUgMBwAmie4UjOvjVzuSBeTjUBntxk6UWv+tUdW1W1tQ
-	KcMQ==
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
+	[209.85.219.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1661BE01560
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 01:08:53 -0700 (PDT)
+Received: by mail-oa0-f44.google.com with SMTP id l10so3111660oag.17
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 01:08:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type
+	:x-gm-message-state;
+	bh=/nA7hYOK+egg5znNhdEW7YKWY2a/Qjw4wmysn8CzRdI=;
+	b=LYSXDiVuJUdiEpbs47cUDmJYZRnj7iOk6d7wbE8m2gktmsu2x+7lEvQJo+6O5nyoN1
+	EeHVoiGkgIVzqVZ5ajpkGffcKEmRjrLhUR60M4NH+iT8ZjrWEZNgSDaBy7hOh15PHzMK
+	+3jid/kg9+5cRby2T2nwLmoHuy8wVt4oDKmKElye/CK01sI2Hik90xUCdbaBPV4wpvsG
+	Rt6w68kioNoan5oOhVZey1n0IF/di1V6dI7YtMHnKTY/GJ+ywL4nQQiLNYd+UUz3qi0g
+	QxL9G2aub8tgVtiz0hHz8pua3egNTZ24MC2jRTW60poupxP7Y6Gp4QMHoAjxc2rlF6iK
+	4EZA==
+X-Received: by 10.182.98.135 with SMTP id ei7mr14295895obb.102.1371024533075; 
+	Wed, 12 Jun 2013 01:08:53 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.152.88.105 with SMTP id bf9mr7470652lab.38.1371023784770;
-	Wed, 12 Jun 2013 00:56:24 -0700 (PDT)
-Received: by 10.114.58.72 with HTTP; Wed, 12 Jun 2013 00:56:24 -0700 (PDT)
-In-Reply-To: <089E25F3-1F2C-42B0-933D-833A2181CB72@spidercloud.com>
-References: <0E1D49D2-4C56-45AC-AB70-2EA8261EE4D8@spidercloud.com>
-	<CCC55643-4330-4AE6-B2D8-AD5E47E486DC@spidercloud.com>
-	<CAE_REAuG+FZkFSMjjdPJ7SEGDVsdc1Snq0BEtWoVuh_SgDKjyQ@mail.gmail.com>
-	<089E25F3-1F2C-42B0-933D-833A2181CB72@spidercloud.com>
-Date: Wed, 12 Jun 2013 13:26:24 +0530
-Message-ID: <CAE_REAt+H2qY_qU=j217DNR_Ps9dicjOauGjXtiS6As-iGAWGg@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Ben Warren <Ben.Warren@spidercloud.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SOLVED: How to get mkfs.ext4 in rootfs package
+Received: by 10.76.27.165 with HTTP; Wed, 12 Jun 2013 01:08:32 -0700 (PDT)
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 12 Jun 2013 10:08:32 +0200
+Message-ID: <CAP71Wjz-_omLGprC9xkBaZ6cbp=JmZrgGJy=UjtJCdrZiTfpEg@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQl1WZHFBtN+t4M+gefvSr/YlLOE48P99wNRbICgLoRfQCvvwU/H6mLfK/NjR9IBBMgXcTqh
+Subject: question about packagegroups
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,185 +37,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 07:56:28 -0000
-Content-Type: multipart/alternative; boundary=001a11c36722ab823204def0597b
+X-List-Received-Date: Wed, 12 Jun 2013 08:08:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---001a11c36722ab823204def0597b
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+hello,
 
-Yes, as per e2fsprogs.bb file,
+i am creating a packagegroup to organize better my image/recipes. i am
+doing something along these lines:
 
-PACKAGES =3D+ "e2fsprogs-e2fsck e2fsprogs-mke2fs e2fsprogs-tune2fs
-e2fsprogs-badblocks"
-..
-FILES_e2fsprogs-mke2fs =3D "${base_sbindir}/mke2fs
-${base_sbindir}/mkfs.ext* ${sysconfdir}/mke2fs.conf"
+    DESCRIPTION = "My Custom Package Groups"
 
-But finally you got what you want :)
+     inherit packagegroup
 
-//Gaurang Shastri
+     PACKAGES = "\
+         packagegroup-custom-apps \
+         packagegroup-custom-tools \
+         "
 
+     RDEPENDS_packagegroup-custom-apps = "\
+         dropbear \
+         portmap \
+         psplash"
 
+     RDEPENDS_packagegroup-custom-tools = "\
+         oprofile \
+         oprofileui-server \
+         lttng-control \
+         lttng-viewer"
 
+and in my imageA i am pulling *only* packagegroup-custom-tools with
+IMAGE_INSTALL.
 
-On Wed, Jun 12, 2013 at 11:40 AM, Ben Warren <Ben.Warren@spidercloud.com>wr=
-ote:
+What I notice is that all packages listed in my packagegroup even the
+ones from packagegroup-custom-apps which isn't pulled in my image are
+built when building my image. Of course they are not installed, but
+why are they built? it is wasting a large amount of time, while it's
+not even needed. is that really expected or am i doing something wrong
+here?
 
-> Hi Gaurang,
->
-> On Jun 11, 2013, at 10:47 PM, Gaurang Shastri <gmshastri@gmail.com> wrote=
-:
->
-> Can you try with IMAGE_INSTALL_append =3D " e2fsprogs" and run once again
-> "bitbake core-image-minimal" or whatever you are referring for your final
-> target
->
-> The 'e2fsprogs' target adds libs, but not the executables.  I needed to
-> add 'e2fsprogs-mke2fs' to get what I wanted.
->
-> regards,
-> Ben
->
-> //Gaurang Shastri
->
->
-> On Wed, Jun 12, 2013 at 1:06 AM, Ben Warren <Ben.Warren@spidercloud.com>w=
-rote:
->
->> Sorry for the spam.  Still learning how this works=85
->>
->> Turns out I needed 'e2fsprogs-mke2fs'
->>
->> regards,
->> Ben
->>
->> On Jun 11, 2013, at 10:51 AM, Ben Warren <Ben.Warren@spidercloud.com>
->> wrote:
->>
->> > Hi,
->> >
->> > I'm trying to get the 'mkfs.ext4' binary from e2fsprogs into my image,
->> in particular the '.ext3' rootfs image, and am obviously missing somethi=
-ng
->> fundamental.
->> > I'm using a custom image based on (copy/pasted from)
->> 'kvm_image_minimal', and have added 'e2fsprogs' to the IMAGE_INSTALL str=
-ing
->> in the image descriptor file.
->> >
->> > I see that the library is compiling and the binary is in tmp/sysroots:
->> >
->> > ben@ubuntu-scw:/opt/scw-appscard-build$ ls
->> tmp/sysroots/x86_64-linux/sbin/mkfs.*
->> > tmp/sysroots/x86_64-linux/sbin/mkfs.ext2
->>  tmp/sysroots/x86_64-linux/sbin/mkfs.ext4
->> tmp/sysroots/x86_64-linux/sbin/mkfs.minix
->> > tmp/sysroots/x86_64-linux/sbin/mkfs.ext3
->>  tmp/sysroots/x86_64-linux/sbin/mkfs.ext4dev
->> >
->> > but it's not making it to the rootfs images.
->> >
->> > I've tried to read the documentation but still am not quite sure about
->> what defines the contents of the rootfs images.
->> >
->> > thanks,
->> > Ben
->> >
->> >
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
->
+thanks
 
---001a11c36722ab823204def0597b
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+nicolas
 
-<div dir=3D"ltr">Yes, as per <a href=3D"http://e2fsprogs.bb">e2fsprogs.bb</=
-a> file,<br><br><pre><code>PACKAGES =3D+ &quot;e2fsprogs-e2fsck e2fsprogs-m=
-ke2fs e2fsprogs-tune2fs e2fsprogs-badblocks&quot;<br>..<br></code><code>FIL=
-ES_e2fsprogs-mke2fs =3D &quot;${base_sbindir}/mke2fs ${base_sbindir}/mkfs.e=
-xt* ${sysconfdir}/mke2fs.conf&quot;</code><br>
-<br></pre><pre>But finally you got what you want :)<br><br></pre><pre>//Gau=
-rang Shastri<br></pre><br></div><div class=3D"gmail_extra"><br><br><div cla=
-ss=3D"gmail_quote">On Wed, Jun 12, 2013 at 11:40 AM, Ben Warren <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:Ben.Warren@spidercloud.com" target=3D"_blank=
-">Ben.Warren@spidercloud.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word">Hi Gaura=
-ng,<div><br><div><div class=3D"im"><div>On Jun 11, 2013, at 10:47 PM, Gaura=
-ng Shastri &lt;<a href=3D"mailto:gmshastri@gmail.com" target=3D"_blank">gms=
-hastri@gmail.com</a>&gt; wrote:</div>
-<br><blockquote type=3D"cite"><div dir=3D"ltr"><div>Can you try with IMAGE_=
-INSTALL_append =3D &quot; e2fsprogs&quot; and run once again &quot;bitbake =
-core-image-minimal&quot; or whatever you are referring for your final targe=
-t<br>
-<br></div></div></blockquote></div>The &#39;e2fsprogs&#39; target adds libs=
-, but not the executables. =A0I needed to add &#39;e2fsprogs-mke2fs&#39; to=
- get what I wanted.</div><div><br></div><div>regards,</div><div>Ben</div>
-<div><div class=3D"h5"><div><br><blockquote type=3D"cite"><div dir=3D"ltr">=
-//Gaurang Shastri<br>
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed,=
- Jun 12, 2013 at 1:06 AM, Ben Warren <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:Ben.Warren@spidercloud.com" target=3D"_blank">Ben.Warren@spidercloud.com<=
-/a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Sorry for the spam. =A0Still learning how th=
-is works=85<br>
-<br>
-Turns out I needed &#39;e2fsprogs-mke2fs&#39;<br>
-<br>
-regards,<br>
-Ben<br>
-<br>
-On Jun 11, 2013, at 10:51 AM, Ben Warren &lt;<a href=3D"mailto:Ben.Warren@s=
-pidercloud.com" target=3D"_blank">Ben.Warren@spidercloud.com</a>&gt; wrote:=
-<br>
-<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I&#39;m trying to get the &#39;mkfs.ext4&#39; binary from e2fsprogs in=
-to my image, in particular the &#39;.ext3&#39; rootfs image, and am obvious=
-ly missing something fundamental.<br>
-&gt; I&#39;m using a custom image based on (copy/pasted from) &#39;kvm_imag=
-e_minimal&#39;, and have added &#39;e2fsprogs&#39; to the IMAGE_INSTALL str=
-ing in the image descriptor file.<br>
-&gt;<br>
-&gt; I see that the library is compiling and the binary is in tmp/sysroots:=
-<br>
-&gt;<br>
-&gt; ben@ubuntu-scw:/opt/scw-appscard-build$ ls tmp/sysroots/x86_64-linux/s=
-bin/mkfs.*<br>
-&gt; tmp/sysroots/x86_64-linux/sbin/mkfs.ext2 =A0tmp/sysroots/x86_64-linux/=
-sbin/mkfs.ext4 =A0 =A0 tmp/sysroots/x86_64-linux/sbin/mkfs.minix<br>
-&gt; tmp/sysroots/x86_64-linux/sbin/mkfs.ext3 =A0tmp/sysroots/x86_64-linux/=
-sbin/mkfs.ext4dev<br>
-&gt;<br>
-&gt; but it&#39;s not making it to the rootfs images.<br>
-&gt;<br>
-&gt; I&#39;ve tried to read the documentation but still am not quite sure a=
-bout what defines the contents of the rootfs images.<br>
-&gt;<br>
-&gt; thanks,<br>
-&gt; Ben<br>
-&gt;<br>
-&gt;<br>
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br></div>
-</blockquote></div><br></div></div></div></div></blockquote></div><br></div=
->
-
---001a11c36722ab823204def0597b--
