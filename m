@@ -1,24 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B439E01594
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 16:58:26 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Jun 2013 16:58:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,848,1363158000"; d="scan'208";a="351750854"
-Received: from unknown (HELO helios.localnet) ([10.252.121.243])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Jun 2013 16:58:25 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Diego <diego.ml@zoho.com>
-Date: Wed, 12 Jun 2013 00:58:23 +0100
-Message-ID: <7334223.3qN6cKa2rq@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.3 (Linux/3.8.0-23-generic; KDE/4.10.3; i686; ; )
-In-Reply-To: <1810497.uZE9ivf2T0@localhost.localdomain>
-References: <1810497.uZE9ivf2T0@localhost.localdomain>
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
+	[209.85.212.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E5B5E014F1
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 18:15:13 -0700 (PDT)
+Received: by mail-vb0-f44.google.com with SMTP id e15so2101490vbg.3
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 18:15:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=p0Qtn4E7jX+v+Z8Mh8Q/XT6GHUvcGfYCYePQ9zFcGhU=;
+	b=EfxIgwAMAcFqPdeVtaX7dTjYzgaS62VZoLlS8QMQGQnweb2d/yjD8zTUY28QG1COTz
+	fMeRIkCzKREEebvAzGgzUJtQAyMq6biiKZx1r80Cwlb9Gj0wvRdDpbI79fE/SeLg2/8t
+	a7fVGVxvqpckk48x2UZjVGytbBu5xpS48wAhpCK8jx7JTzhsVBOh3Kco9WHkg0Sv9ikk
+	fA32K/netHzafUiosV7sJ42MLX/r/oRhrz6+SNfHsFzDKKFm++awnsAaSWsP0BOky48p
+	oaUezBa3USJrFTYd5SpqBFcok50phGV0VnP5tQr5IGT7RNWkSEIwXt2EKbs68/dxE72d
+	7C8A==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: How to deal with non-standard license.
+X-Received: by 10.52.97.37 with SMTP id dx5mr7509019vdb.23.1370999712793; Tue,
+	11 Jun 2013 18:15:12 -0700 (PDT)
+Received: by 10.52.114.170 with HTTP; Tue, 11 Jun 2013 18:15:12 -0700 (PDT)
+Date: Tue, 11 Jun 2013 18:15:12 -0700
+Message-ID: <CAPhnLPBgTbb2m+L=DSr9p8ta7gm5OsR2-N4OeXkoo31_YHTx4A@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org, Zhao Yi <yi.zhao@windriver.com>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Otavio Salvador <otavio@ossystems.com.br>
+X-Gm-Message-State: ALoCoQm8CPrJunVu3mymF/pi0v/FGogcvOnC2MRFjplBGW8J+w7rtZgJ02TEWIYik80bTDJlekkB
+Subject: 1.4.1 rc1 available for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +39,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2013 23:58:27 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 12 Jun 2013 01:15:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Diego,
+All, we've begun a spin of 1.4.1. This is the first release candidate.
+Unfortunately, a minor issue has occurred with the eclipse-plugin, so
+that will have to be rebuilt once the build run ends (as we may have
+to bring the buildbot slave down to fix it)
 
-On Tuesday 11 June 2013 14:28:09 Diego wrote:
-> I have written a recipe which I'd like to contribute for glmark2:
-> https://launchpad.net/glmark2
-> 
-> The last thing that puzzles me before submitting it is that it's partly
-> GPL3+, and partly under this license:
-> https://github.com/rafalmiel/glmark2-wl/blob/master/COPYING.SGI
-> which is not in this list:
-> https://wiki.yoctoproject.org/wiki/License_Infrastructure_Interest_Group#Lic
-> enses Is there any way to deal with that license? What should I put in the
-> LICENSE field in my recipe?
+The artifacts should be available in a few hours. Please begin testing
+as they are available.
 
-Beth has covered the part about adding the license text, the only remaining 
-piece is how you should set LICENSE within your recipe; assuming you would 
-call this SGI license SGI-1 based on what you said above you would set LICENSE 
-as follows:
+Location: http://autobuilder.yoctoproject.org/pub/nightly/20130611-2
 
-LICENSE = "GPLv3+ & SGI-1"
+meta-fsl-arm 	d31a4e85673874dbc6b42bb5d1e8496810c574cc
+meta-fsl-ppc 	51252492cdda18eb3838b1c3108217a59243ba2a
+meta-intel 	048def7bae8e3e1a11c91f5071f99bdcf8e6dd16
+meta-minnow 	0d428f867ffdf83dd35803c7318180751ddb096f
+meta-qt3 	4c27cce6688aa39852f3cba5e7b80ec279019605
+poky 	73f103bf9b2cdf985464dc53bf4f1cfd71d4531f
 
-("&" means different licences apply to different parts of the software).
+I'll have the eclipse-plugin hash when we build it out.
 
-Note also that the LIC_FILES_CHKSUM variable should be set to point to both 
-COPYING and COPYING.SGI.
-
-Cheers,
-Paul
+-b
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
