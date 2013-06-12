@@ -1,33 +1,26 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
-	[209.85.212.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E5B5E014F1
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 18:15:13 -0700 (PDT)
-Received: by mail-vb0-f44.google.com with SMTP id e15so2101490vbg.3
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 18:15:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=p0Qtn4E7jX+v+Z8Mh8Q/XT6GHUvcGfYCYePQ9zFcGhU=;
-	b=EfxIgwAMAcFqPdeVtaX7dTjYzgaS62VZoLlS8QMQGQnweb2d/yjD8zTUY28QG1COTz
-	fMeRIkCzKREEebvAzGgzUJtQAyMq6biiKZx1r80Cwlb9Gj0wvRdDpbI79fE/SeLg2/8t
-	a7fVGVxvqpckk48x2UZjVGytbBu5xpS48wAhpCK8jx7JTzhsVBOh3Kco9WHkg0Sv9ikk
-	fA32K/netHzafUiosV7sJ42MLX/r/oRhrz6+SNfHsFzDKKFm++awnsAaSWsP0BOky48p
-	oaUezBa3USJrFTYd5SpqBFcok50phGV0VnP5tQr5IGT7RNWkSEIwXt2EKbs68/dxE72d
-	7C8A==
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-galgo.atl.sa.earthlink.net
+	(elasmtp-galgo.atl.sa.earthlink.net [209.86.89.61])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C28AE01567
+	for <yocto@yoctoproject.org>; Tue, 11 Jun 2013 21:07:23 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=li4wIfK51NW8zH0cN3mM/+TTbu3iyO+SJsh7zZfbCQ9nsiVvrtBh0HyM/ZdaiQH7;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-galgo.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UmcLC-0007xZ-Sw
+	for yocto@yoctoproject.org; Wed, 12 Jun 2013 00:07:23 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 11 Jun 2013 21:07:26 -0700
+Message-ID: <0A7B481F47BD4848A701598AE9CDD6DA@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.52.97.37 with SMTP id dx5mr7509019vdb.23.1370999712793; Tue,
-	11 Jun 2013 18:15:12 -0700 (PDT)
-Received: by 10.52.114.170 with HTTP; Tue, 11 Jun 2013 18:15:12 -0700 (PDT)
-Date: Tue, 11 Jun 2013 18:15:12 -0700
-Message-ID: <CAPhnLPBgTbb2m+L=DSr9p8ta7gm5OsR2-N4OeXkoo31_YHTx4A@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org, Zhao Yi <yi.zhao@windriver.com>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Otavio Salvador <otavio@ossystems.com.br>
-X-Gm-Message-State: ALoCoQm8CPrJunVu3mymF/pi0v/FGogcvOnC2MRFjplBGW8J+w7rtZgJ02TEWIYik80bTDJlekkB
-Subject: 1.4.1 rc1 available for testing
+X-Mailer: Microsoft Office Outlook 11
+Thread-index: Ac5nIlkRp+c4KMD8R1u/T9DvP2C7/Q==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688add75cbdfc4822259e00c3f80a1287d4350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Need clarification on some terms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,32 +32,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 01:15:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 12 Jun 2013 04:07:24 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-All, we've begun a spin of 1.4.1. This is the first release candidate.
-Unfortunately, a minor issue has occurred with the eclipse-plugin, so
-that will have to be rebuilt once the build run ends (as we may have
-to bring the buildbot slave down to fix it)
+I'm trying a second time to see if I can learn this system. Section 3.4
+contains a short glossary which explains some things and seems to obscure
+others. So perhaps someone can clear up a few simple things.
 
-The artifacts should be available in a few hours. Please begin testing
-as they are available.
+"Cross-Development Toolchain: A collection of software development tools and
+utilities that allow you to develop software for targeted architectures." Is
+that different from the toolchain that bitbake builds in the beginning, and
+then uses to build the image? If so, what is it?
 
-Location: http://autobuilder.yoctoproject.org/pub/nightly/20130611-2
+"Following is a list of toolchain recipes..." This is followed by
+gcc-cross-initial, gcc-cross-intermediate, gcc-cross. All three of these
+things say that the toolchain runs on the host and is used to build software
+for the target. So why are there three of them? What are the differences
+among them? It also says that each one is a "native" package. In my
+experience, a "native" toolchain has always meant a toolchain that produces
+code for the same machine that the toolchain runs on, while a "cross"
+toolchain produces code for a different machine. That's obviously not what
+"native" means in this context, so what does it mean?
 
-meta-fsl-arm 	d31a4e85673874dbc6b42bb5d1e8496810c574cc
-meta-fsl-ppc 	51252492cdda18eb3838b1c3108217a59243ba2a
-meta-intel 	048def7bae8e3e1a11c91f5071f99bdcf8e6dd16
-meta-minnow 	0d428f867ffdf83dd35803c7318180751ddb096f
-meta-qt3 	4c27cce6688aa39852f3cba5e7b80ec279019605
-poky 	73f103bf9b2cdf985464dc53bf4f1cfd71d4531f
-
-I'll have the eclipse-plugin hash when we build it out.
-
--b
+The documentation makes frequent references to "the SDK" without ever
+defining it. I know what it means generically, but what is it in the Yocto
+context? And why does the SDK involve yet another set of three toolchains?
+(Oh, and why is one of them called "canadian"?)
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+ 
+
 
