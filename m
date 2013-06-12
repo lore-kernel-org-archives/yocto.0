@@ -1,36 +1,31 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
-	[209.85.128.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9333CE01409
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 14:17:05 -0700 (PDT)
-Received: by mail-ve0-f169.google.com with SMTP id m1so7315559ves.0
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 14:17:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding:x-gm-message-state;
-	bh=qLoVC2ASh7Uw5BdjoPSWyg4/HMkEn+D+4YubzOnrZTo=;
-	b=ZMfZo4n7+0+wNJe66mh+2cPp3hbNEE2fIkG4tBzeSP2CjKupy3gaOg7zK/lS4l4ZTY
-	Ir0nTxTZlumKbqEjgNdxo1G6kUyfC01sMHdO5+PhrPACqU/EmkBuunqRJBeJRAdtPjmK
-	Nz85yRcXDjJXygQnhdFd2vbVv7Q6aRZXdj9/ImtTfQ9yakmseIdMnSbqLv3X0qZTXZlE
-	LSkE4ZggsEGOAEUGwnE/GthsqcrJEJMTegWDpIWTgvEJuCZPPvsPl9UzBz82Yycg2VRw
-	/8rHQWD/bQrL+e6+Hhwq20k9QGHCuf4N1YwZ6NweyRvw9Vir2oFL9p89f7trCGVQ3xwZ
-	YLBw==
+Return-Path: <wmills@ti.com>
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59D9EE006C2
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2013 14:33:02 -0700 (PDT)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id r5CLWs7P013382;
+	Wed, 12 Jun 2013 16:32:54 -0500
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r5CLWseD008151;
+	Wed, 12 Jun 2013 16:32:54 -0500
+Received: from dlelxv22.itg.ti.com (172.17.1.197) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.2.342.3;
+	Wed, 12 Jun 2013 16:32:53 -0500
+Received: from gtwmills.gt.design.ti.com (gtwmills.gt.design.ti.com
+	[158.218.102.52])	by dlelxv22.itg.ti.com (8.13.8/8.13.8) with ESMTP id
+	r5CLWrJg031951;	Wed, 12 Jun 2013 16:32:53 -0500
+Message-ID: <51B8E905.3090405@ti.com>
+Date: Wed, 12 Jun 2013 17:32:53 -0400
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.2.27) Gecko/20120216 Thunderbird/3.1.19
 MIME-Version: 1.0
-X-Received: by 10.58.22.36 with SMTP id a4mr10471071vef.28.1371071825496; Wed,
-	12 Jun 2013 14:17:05 -0700 (PDT)
-Received: by 10.52.114.170 with HTTP; Wed, 12 Jun 2013 14:17:05 -0700 (PDT)
-In-Reply-To: <2975064.NgcQZYsAKT@localhost.localdomain>
-References: <1810497.uZE9ivf2T0@localhost.localdomain>
-	<CAPhnLPDjcbvejh+YnfrGXvwX2+qsHSfDowL8JuVSZc+M52YA7Q@mail.gmail.com>
-	<2975064.NgcQZYsAKT@localhost.localdomain>
-Date: Wed, 12 Jun 2013 14:17:05 -0700
-Message-ID: <CAPhnLPCEbtR=8Wa+odYJ197-Nqa6DHwRbPRY8V_OWrbE4bGjSw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Diego <diego.ml@zoho.com>
-X-Gm-Message-State: ALoCoQnnGCejTlIVabdC5zWy8kwiOw9YAN58WuKLSLbUeZlJhL/7NFAUg6Noym8mCYtplzfVgiYF
-Cc: yocto@yoctoproject.org
-Subject: Re: How to deal with non-standard license.
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+References: <0A7B481F47BD4848A701598AE9CDD6DA@PAULD><bc6dfda22fdcefeb7de188e29b2ad887.squirrel@mail.cubic.org>	<1875741.cStO1T6C1g@helios>
+	<58DC6CADE1A5492E9E712C310E6C9019@PAULD>
+In-Reply-To: <58DC6CADE1A5492E9E712C310E6C9019@PAULD>
+Cc: 'Paul Eggleton' <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: Need clarification on some terms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,82 +37,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2013 21:17:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Jun 2013 21:33:04 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 12, 2013 at 9:41 AM, Diego <diego.ml@zoho.com> wrote:
-> In data marted=EC 11 giugno 2013 15:10:42, Flanagan, Elizabeth ha scritto=
-:
->> On Tue, Jun 11, 2013 at 5:28 AM, Diego <diego.ml@zoho.com> wrote:
->> > Hi everybody,
->> >
->> > I have written a recipe which I'd like to contribute for glmark2:
->> > https://launchpad.net/glmark2
->> >
->> > The last thing that puzzles me before submitting it is that it's partl=
-y
->> > GPL3+, and partly under this license:
->> > https://github.com/rafalmiel/glmark2-wl/blob/master/COPYING.SGI
->> > which is not in this list:
->> > https://wiki.yoctoproject.org/wiki/License_Infrastructure_Interest_Gro=
-up#L
->> > icenses Is there any way to deal with that license? What should I put =
-in
->> > the LICENSE field in my recipe?
->>
->> So, you will need to add a custom license or submit a patch OE-Core to
->> add that license. Where are you contributing this to?
->>
->> If it's to a layer, you'll want to add the license to a custom license
->> path. You'll want that file to be unique and descriptive. Please make
->> sure the license filename has a version in the file name. eg SGI-1.
->> Within the layer you'll make a directory (in this example I use
->> custom-licenses), add the license text to a file named SGI-1, then add
->> this to your layer.conf:
->>
->> LICENSE_PATH +=3D "${LAYERDIR}/custom-licenses"
->> SPDXLICENSEMAP[SGIv1] =3D "SGI-1"
->>
->> That should get you what you want.
->
-> Hi Elizabeth,
->
-> I'm trying to integrate glmark2 into openembedded (meta-oe layer). I know=
- this
-> is not the right mailing list for that task, but I'm still on the license
-> problem.
+On 06/12/2013 03:51 PM, Paul D. DeRocco wrote:
+> For now, I really just need to know if I'm interested in the SDK, since I
+> have no intention of ever running compilations on my target system.
 >
 
-Ah, ok. In that case, ignore what I just said and patch oe-core's
-files/common-licenses with the SGI license and
-files/conf/licenses.conf with:
+Trevor's answer has a lot of great background.
 
-SPDXLICENSEMAP[SGIv1] =3D "SGI-1"
-SRC_DISTRIBUTE_LICENSES +=3D "SGI-1"
+My short answer is gcc-cross is for use inside bitbake (in the host) and 
+gcc-crosssdk is for use outside of bitbake (still on the host).  This 
+outside bitbake use case is the SDK Trevor described.
 
-That's the right way to do this, IMHO
+Why does gcc need to get built differently between these two use cases? 
+  I gave up asking this many years ago and accepted it as "something I 
+can not change" for my own serenity.  I am sure Paul or Khem could give 
+the detail.  The sdk version does have extra stuff to make it 
+relocatable etc that is not needed inside of bitbake.  However I don't 
+know why we don't always build the sdk-able version.
 
-> I've tried to do as you suggested, but I'm getting:
-> WARNING: glmark2: No generic license file exists for: SGI-1 in any provid=
-er
-> Paul suggested:
-> LICENSE =3D "GPLv3+ & SGI-1"
-> I've tried also:
-> LICENSE =3D "GPLv3+ & SGIv1"
-> but I'm still getting the same error message (obviously with "SGIv1" inst=
-ead).
->
-> I'm attaching the full patch for you to review if I'm doing something wro=
-ng.
->
-> Thank you for any hint you might give me,
-> Diego
-
--b
-
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
 
