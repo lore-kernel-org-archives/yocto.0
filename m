@@ -1,45 +1,26 @@
-Return-Path: <kurtmyles@gmail.com>
-Received: from mail-yh0-f45.google.com (mail-yh0-f45.google.com
-	[209.85.213.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70A08E013DE
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 12:26:18 -0700 (PDT)
-Received: by mail-yh0-f45.google.com with SMTP id b20so1381255yha.18
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 12:26:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:mime-version:content-type
-	:content-transfer-encoding:x-priority:x-msmail-priority:x-mailer
-	:importance:thread-index:in-reply-to:x-mimeole:x-antivirus
-	:x-antivirus-status;
-	bh=6ve4QHyF4l7vPC+S5qXLiUbHtnXz2/EbQJqv6KbBEuM=;
-	b=njrJXYGLdvkYptbWdmpvrXy0c1WpxiMJl08VxnGmKSlNbWjHtDMG0X6KJKGZ5drN7h
-	tlWFiHsTwwBv0UOCxdLzXK0xx5RLqxMRQ+8jWvdCQep+LH+PNKdgCue5Rr+33S2yEdLt
-	srwu9iJ8DMJid4HxHXh3meCWyiVJJTN5McEIlxZsASXYetwz5RkLr2mXhKiNC2a3v+Fm
-	3sYqDT/xsmThuxyZeo5NHtJeaDrdf8JYYOD+HME2a++J0TY8puN7affquXtMyLVu+kdO
-	tcEAwt2jDx/Ekjg6G0UPXoO3rLj/mrOWigIrhRufciCWaqd6Phk5PXMvjSKP4kw2LG24
-	yGFw==
-X-Received: by 10.236.70.9 with SMTP id o9mr1638806yhd.35.1371151577952;
-	Thu, 13 Jun 2013 12:26:17 -0700 (PDT)
-Received: from toshp105 (24-196-194-18.static.hckr.nc.charter.com.
-	[24.196.194.18])
-	by mx.google.com with ESMTPSA id x22sm36131504yhd.2.2013.06.13.12.26.16
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 13 Jun 2013 12:26:17 -0700 (PDT)
-From: "Kurt Stevens" <kurtmyles@gmail.com>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-masked.atl.sa.earthlink.net
+	(elasmtp-masked.atl.sa.earthlink.net [209.86.89.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DFD2E013A8
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 16:04:14 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=XvPMtB9snrgRzRBMxe03diOjAEp88lfRVJ4nBtBPQoz0dcgQYX0r/tCCxijlUrWp;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-masked.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UnGYv-00068a-Lv
+	for yocto@yoctoproject.org; Thu, 13 Jun 2013 19:04:13 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 13 Jun 2013 15:26:29 -0400
-Message-ID: <E26A4E088CC341B49A35A61D9C9232F5@toshp105>
+Date: Thu, 13 Jun 2013 16:04:19 -0700
+Message-ID: <AD1643F765234DAB82EE48FFF72638C3@PAULD>
 MIME-Version: 1.0
-X-Priority: 3 (Normal)
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook, Build 10.0.6863
-Importance: Normal
-Thread-Index: Ac5Lrjg5TFFkUXzcR5u+xi1IVv/xCQcvLm/Q
-In-Reply-To: <mailman.1430.1367991395.19864.yocto@yoctoproject.org>
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6157
-X-Antivirus: avast! (VPS 130613-0, 06/13/2013), Outbound message
-X-Antivirus-Status: Clean
-Subject: Building perl with perl-modules
+X-Mailer: Microsoft Office Outlook 11
+Thread-index: Ac5oilX5Vum6+bT7Q5u+1LKV57/XFA==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606884b14c6b344b1604c31479a24125c31bb350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Where do image names come from?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,23 +32,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2013 19:26:19 -0000
+X-List-Received-Date: Thu, 13 Jun 2013 23:04:16 -0000
 Content-Type: text/plain;
 	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-Hello,
+Where does the base name of the image files in build/tmp/deploy/images come
+from? More to the point, if I create my own image recipe in my own layer,
+what control do I have over the name of the resulting image files? I'd like
+to be able to create more than one variant, and not have to remember which
+is which based on the build times appended to the file names.
 
-	I am using the dylan version of poky, and including perl. This
-builds fine with perl selected in hob, but if I also select the =
-perl-modules
-item, I get the error message 'nothing rprovides ncurses-libncurses' and =
-the
-build fails.
+A related question: section 5.2.1 of the dev-manual says I can create a
+custom image based on an existing image by copying that image recipe and
+then modifying it. Is there some reason I can't use a .bbappend for this,
+e.g., core-image-base.bbappend?
 
-	Thanks,
+-- 
 
-Kurt Stevens
-
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+ 
 
 
