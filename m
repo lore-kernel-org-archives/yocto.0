@@ -1,33 +1,36 @@
-Return-Path: <katutxakurra@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62988E01409
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 09:08:24 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id ar20so23400506iec.7
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 09:08:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=gpYXjIFeM/fB7pfrTk7hpf8G+9GARukksEERv6i48Dg=;
-	b=e1jKpmBUgLONaXyx/j+0iy4s2XCovMb+VZ5XPKUigb6I0ikf+3bHyd45uN0I88biGz
-	LHtbs0Wk7X3Z7CMtpp5P7KStgRX+Ra2OAfoYflwPj5vwtDj1+t/zGRl8OZzQSuDqH21w
-	hGYbBHm3p31FjHirBde8hmJPVRvcxYDH6MHTvuZId5bKIlNWTfaQ8D/D70G483xG8HbJ
-	VgYbN/HxIlr5WRufgkI0xEBsA5/oib3MU7be4tkHaDLhd9R39Camo6HZLdKCDetdy2lV
-	E3xyQHjtFkbHqITrKkN0Ie4BHDbE8Yrdd8EkNqxphJ5M0FzM3fTROi4WQCghVQCdsjOl
-	AJJw==
+Return-Path: <peachj@lexmark.com>
+Received: from exprod8og114.obsmtp.com (exprod8og114.obsmtp.com [64.18.3.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CD50E013A8
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 09:28:50 -0700 (PDT)
+Received: from mail-oa0-f52.google.com ([209.85.219.52]) (using TLSv1) by
+	exprod8ob114.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKUbnzQeYAhjat/ArQUkFZAVVnZW+eAXwU@postini.com;
+	Thu, 13 Jun 2013 09:28:52 PDT
+Received: by mail-oa0-f52.google.com with SMTP id g12so6568658oah.11
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 09:28:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=AD5TLGvRiu067Vw8nMAP7RfKMV2DIcksSuHJkc4hjkg=;
+	b=m5AEV/JefyuQ6OPSBz3STO0ilOYkxPvBdHXIiVChyqUNic34x/w4tkOLMJEzIo4kAj
+	AauN202iaqz9MLmYt9HlMmSG9nCp0iND/WViy6xPXWZPzG4g2YXO2R6EPOqhtAXmssoV
+	wmG4Q8GcQ144X+ac76QyrBrBMJhc5mKzrl2C+ADeSu3lozyTyIdMP6P5o2elu3c4QJUU
+	sr0VJOQv/H7Ii5621m/MjEU4PvdkoW1sPVRdCnqmuia3uEud2CI0MrJD1mXmkyPnV22Y
+	XaWcSZK/UfLZn7le+33dbs5CpXR6nuNdhxU9//9x72mMS35+x+AMlniZAp2x+rgRw0xN
+	jIQw==
+X-Received: by 10.60.84.102 with SMTP id x6mr1312949oey.73.1371140929172;
+	Thu, 13 Jun 2013 09:28:49 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.50.134.136 with SMTP id pk8mr643566igb.32.1371139704421;
-	Thu, 13 Jun 2013 09:08:24 -0700 (PDT)
-Received: by 10.50.43.167 with HTTP; Thu, 13 Jun 2013 09:08:24 -0700 (PDT)
-In-Reply-To: <CAJTo0Lbzzb1X7N_micY3qBTprcK8ZV4i8=g5pd_6BMptQtdgpA@mail.gmail.com>
-References: <CAM1ZcoU1VZLQeKCt=xySb8ji0v-dYTQkiXwPDG_oDOwafUdgjg@mail.gmail.com>
-	<CAJTo0Lbzzb1X7N_micY3qBTprcK8ZV4i8=g5pd_6BMptQtdgpA@mail.gmail.com>
-Date: Thu, 13 Jun 2013 17:08:24 +0100
-Message-ID: <CAM1ZcoVjQ83ecfrQasDY29CYs+RNEUmUqJbjg6XseS-qBF-n1g@mail.gmail.com>
-From: Katu Txakur <katutxakurra@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: recipe using waf installation location
+X-Received: by 10.60.84.102 with SMTP id x6mr1312945oey.73.1371140929088; Thu,
+	13 Jun 2013 09:28:49 -0700 (PDT)
+Received: by 10.76.20.232 with HTTP; Thu, 13 Jun 2013 09:28:48 -0700 (PDT)
+Date: Thu, 13 Jun 2013 12:28:48 -0400
+Message-ID: <CA+QkY1AuHy-wzgTWfRq7B0e7GFR4fAXdf_okVZ7wypjBp5ewzw@mail.gmail.com>
+From: Jerrod Peach <peachj@lexmark.com>
+To: yocto <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQlA0mG7J+DQBgtKe2ZO690+gj5LQcHTYObqx9yMu5slqF4DYoSsyXz5nfRPvmJ5LbnipmEeG9k5vSIVXtqWTm++StOi3J3Y3us3NL6l3ndtoY4gQtNpkVentVxWIgjycvGWB70t0RgalrXFSWy60blzRhUNxD0O+R9lUnDJtMZ4NxnYZWQ=
+Subject: Yocto 1.4: Bad behavior between rm_work and packaging causing failures?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,74 +42,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2013 16:08:27 -0000
-Content-Type: multipart/alternative; boundary=047d7b3a9c1605033104df0b5764
+X-List-Received-Date: Thu, 13 Jun 2013 16:28:52 -0000
+Content-Type: multipart/alternative; boundary=089e0111d9ca03fbb004df0ba0a7
 
---047d7b3a9c1605033104df0b5764
+--089e0111d9ca03fbb004df0ba0a7
 Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks a lot Ross,
-you are absolutely right. Just that the --prefix in waf it's done in the
-configure so I now have
+All,
 
-do_configure() {
-./waf configure --prefix=${prefix} --debug --alsa --clients=128
-}
+Since upgrading to Yocto 1.4, several people at our organization have
+noticed a couple of weird build failures related to rm_work and packaging.
+ Here are the two failure scenarios:
 
-and it's working. I still get the same warning for /usr/lib/.debug/* files.
-I guess that the prefix has to be setup differently for debug? I'm new to
-waf too...
+1) A user builds package, but bitbake only re-runs the do_pkg_write_rpm
+task without having run any other build tasks.  This appears to be due to a
+supposedly-valid stamp file existing for the other tasks in the task graph.
+ This would normally result in an empty rpm being created, but the rpm
+creation code (smartly) refuses to create empty rpms.  This, then, causes a
+build failure during image creation (if the package is needed for the
+image, of course) because the rpm isn't present.  We think this situation
+leads to the second failure we see.
 
-Thanks again for your help.
+2) Whether a build succeeds or fails, if it's run on our build
+infrastructure, we upload its sstate to an sstate mirror.  sstate is still
+uploaded for the do_package_write_rpm task in case 1 for builds performed
+on our infrastructure.  That means the sstate, then, contains no rpm for
+the package in question.  This causes later builds to fail with the same
+error as in case 1 (the rpm isn't present when the image needs it), but for
+a different reason (getting a hit on poisoned sstate).
 
+We do not know how to reproduce this problem.  We think it's related to
+commit f090c15 (in the poky repo), but we haven't had much time to
+investigate further.  I suspect there is only one bug to fix here (i.e.,
+whatever is causing stamp files to incorrectly exist), but since there are
+some number of unknowns here, I thought I'd be better off describing the
+whole situation, just in case.
 
-2013/6/13 Burton, Ross <ross.burton@intel.com>
+Has anyone else seen this?  Does anyone have ideas as to what's causing it?
 
-> On 13 June 2013 09:55, Katu Txakur <katutxakurra@gmail.com> wrote:
-> > do_configure() {
-> > ./waf configure --alsa --debug --clients=128
-> > }
->
-> I've never used waf, but I expect at this point you need to tell waf
-> what the prefix is.  With autoconf this would be --prefix=${prefix},
-> have a look at the waf arguments and autotool.bbclass for examples.
->
-> Ross
->
+Kind regards,
 
---047d7b3a9c1605033104df0b5764
+Jerrod
+
+--089e0111d9ca03fbb004df0ba0a7
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks a lot Ross,<div>you are absolutely right. Just that=
- the --prefix in waf it&#39;s done in the configure so I now have</div><div=
-><div><br></div><div>do_configure() {</div><div><span class=3D"" style=3D"w=
-hite-space:pre">	</span>./waf configure --prefix=3D${prefix} --debug --alsa=
- --clients=3D128 =A0</div>
-<div>}</div></div><div><br></div><div style>and it&#39;s working. I still g=
-et the same warning for /usr/lib/.debug/* files. I guess that the prefix ha=
-s to be setup differently for debug? I&#39;m new to waf too...</div><div st=
-yle>
-<br></div><div style>Thanks again for your help.</div></div><div class=3D"g=
-mail_extra"><br><br><div class=3D"gmail_quote">2013/6/13 Burton, Ross <span=
- dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank"=
->ross.burton@intel.com</a>&gt;</span><br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On 13 June 2013 09:55, Kat=
-u Txakur &lt;<a href=3D"mailto:katutxakurra@gmail.com">katutxakurra@gmail.c=
-om</a>&gt; wrote:<br>
+<div dir=3D"ltr">All,<div><br></div><div style>Since upgrading to Yocto 1.4=
+, several people at our organization have noticed a couple of weird build f=
+ailures related to rm_work and packaging. =A0Here are the two failure scena=
+rios:</div>
+<div style><br></div><div style>1) A user builds package, but bitbake only =
+re-runs the do_pkg_write_rpm task without having run any other build tasks.=
+ =A0This appears to be due to a supposedly-valid stamp file existing for th=
+e other tasks in the task graph. =A0This would normally result in an empty =
+rpm being created, but the rpm creation code (smartly) refuses to create em=
+pty rpms. =A0This, then, causes a build failure during image creation (if t=
+he package is needed for the image, of course) because the rpm isn&#39;t pr=
+esent. =A0We think this situation leads to the second failure we see.</div>
+<div style><br></div><div style>2) Whether a build succeeds or fails, if it=
+&#39;s run on our build infrastructure, we upload its sstate to an sstate m=
+irror. =A0sstate is still uploaded for the do_package_write_rpm task in cas=
+e 1 for builds performed on our infrastructure. =A0That means the sstate, t=
+hen, contains no rpm for the package in question. =A0This causes later buil=
+ds to fail with the same error as in case 1 (the rpm isn&#39;t present when=
+ the image needs it), but for a different reason (getting a hit on poisoned=
+ sstate).</div>
+<div style><br></div><div style>We do not know how to reproduce this proble=
+m. =A0We think it&#39;s related to commit=A0f090c15 (in the poky repo), but=
+ we haven&#39;t had much time to investigate further. =A0I suspect there is=
+ only one bug to fix here (i.e., whatever is causing stamp files to incorre=
+ctly exist), but since there are some number of unknowns here, I thought I&=
+#39;d be better off describing the whole situation, just in case.</div>
+<div style><br></div><div style>Has anyone else seen this? =A0Does anyone h=
+ave ideas as to what&#39;s causing it?</div><div style><br></div><div style=
+>Kind regards,</div><div style><br></div><div style>Jerrod</div></div>
 
-&gt; do_configure() {<br>
-&gt; ./waf configure --alsa --debug --clients=3D128<br>
-&gt; }<br>
-<br>
-</div>I&#39;ve never used waf, but I expect at this point you need to tell =
-waf<br>
-what the prefix is. =A0With autoconf this would be --prefix=3D${prefix},<br=
->
-have a look at the waf arguments and autotool.bbclass for examples.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Ross<br>
-</font></span></blockquote></div><br></div>
-
---047d7b3a9c1605033104df0b5764--
+--089e0111d9ca03fbb004df0ba0a7--
