@@ -1,32 +1,29 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25278E01409;
-	Thu, 13 Jun 2013 08:24:29 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 1CD4136B44;
-	Thu, 13 Jun 2013 20:54:10 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136])
-	by jaguar.aricent.com (Postfix) with ESMTP id 0750736B35;
-	Thu, 13 Jun 2013 20:54:10 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Thu, 13 Jun 2013 20:54:10 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>
-Date: Thu, 13 Jun 2013 20:54:08 +0530
-Thread-Topic: Recompile the recipe everytime 
-Thread-Index: Ac5nnw6iH1YvIwO6Q6aYfkjono2OlAAqszCA
-Message-ID: <17797116383D4341B029FDF34C22BF6A52C4CCB36E@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.11.1371063601.16784.yocto@yoctoproject.org>
-In-Reply-To: <mailman.11.1371063601.16784.yocto@yoctoproject.org>
+Return-Path: <song.liu@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26B59E01409
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 08:41:31 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 13 Jun 2013 08:41:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,859,1363158000"; 
+	d="scan'208,217";a="316528705"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by azsmga001.ch.intel.com with ESMTP; 13 Jun 2013 08:41:30 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.91]) by
+	ORSMSX101.amr.corp.intel.com ([169.254.8.64]) with mapi id
+	14.03.0123.003; Thu, 13 Jun 2013 08:41:29 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project 1.5 M1 release readiness meeting
+Thread-Index: Ac5oTFWI1VN8XCkeQyuAlx0KQqbvcgAABaPA
+Date: Thu, 13 Jun 2013 15:41:29 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EE3221E@ORSMSX108.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: Recompile the recipe everytime
+Subject: Minutes: Yocto Project 1.5 M1 release readiness meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,46 +35,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2013 15:24:32 -0000
+X-List-Received-Date: Thu, 13 Jun 2013 15:41:32 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EE3221EORSMSX108amrcor_"
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE3221EORSMSX108amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Gentle reminder!!!
+Attendees:
+Saul, Paul, AlexG, ScottR, Jessica, Richard, Denys, Tom, Dave, Beth, Song
 
-Hi ,
+Minutes:
 
-Please help me out I am stuck in some issue, actually I want my recipe to d=
-o compilation everytime on every run of
-
-Bitbake linux-yocto
-
-ie can I remove stamping or sstate-cache that it allows me to run compilati=
-on everytime on every run of bitbake linux-yocto.
-
-
-I tried do_compile[nostamp] =3D"1" but it did not work but same thing worke=
-d for do_install[nostamp]=3D"1"
-
-Thanks in advance!
-
-Regards,
-Rohit Jindal
+* All high features completed. Webhob has delays, the team is looking into =
+this figuring out how to get it back on track.
+* No high bugs against M1. Do have  routerstation pro BSP issue,  Bruce and=
+ Wind River team is looking into it.
+* Full pass QA report: https://wiki.yoctoproject.org/wiki/Fullpass_Test_Rep=
+ort_for_Yocto_1.5_M1_2013-05-28-2_Build
+* Performance date:  https://wiki.yoctoproject.org/wiki/Performance_Test
+* Build time is break even compared with 1.4. No major changes. Size of tmp=
+ dir has improvement from 27GB to 25GB.
+* M1 is mainly bug fixes and feature improvements, as well as bitbake infra=
+structure changes in preparation for webhob.
+* Decision: green light for M1 release.
 
 
 
 
 
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE3221EORSMSX108amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>Saul, Paul, AlexG, ScottR, Jessica, Richard, Denys, Tom, Dave, Beth, S=
+ong</div>
+<div>&nbsp;</div>
+<div>Minutes:</div>
+<div>&nbsp;</div>
+<div>* All high features completed. Webhob has delays, the team is looking =
+into this figuring out how to get it back on track.</div>
+<div>* No high bugs against M1. Do have&nbsp; routerstation pro BSP issue,&=
+nbsp; Bruce and Wind River team is looking into it.</div>
+<div>* Full pass QA report: <a href=3D"https://wiki.yoctoproject.org/wiki/F=
+ullpass_Test_Report_for_Yocto_1.5_M1_2013-05-28-2_Build"><font color=3D"blu=
+e"><u>https://wiki.yoctoproject.org/wiki/Fullpass_Test_Report_for_Yocto_1.5=
+_M1_2013-05-28-2_Build</u></font></a></div>
+<div>* Performance date:&nbsp; <a href=3D"https://wiki.yoctoproject.org/wik=
+i/Performance_Test"><font color=3D"blue"><u>https://wiki.yoctoproject.org/w=
+iki/Performance_Test</u></font></a></div>
+<div>* Build time is break even compared with 1.4. No major changes. Size o=
+f tmp dir has improvement from 27GB to 25GB.</div>
+<div>* M1 is mainly bug fixes and feature improvements, as well as bitbake =
+infrastructure changes in preparation for webhob.</div>
+<div>* Decision: green light for M1 release.</div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE3221EORSMSX108amrcor_--
