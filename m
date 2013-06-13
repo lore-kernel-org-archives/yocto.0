@@ -1,28 +1,45 @@
-Return-Path: <denis@denix.org>
-Received: from vms173013pub.verizon.net (vms173013pub.verizon.net
-	[206.46.173.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 990B7E013A8
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 11:24:31 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173013.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MOC00GAHGFR2CG1@vms173013.mailsrvcs.net> for
-	yocto@yoctoproject.org; Thu, 13 Jun 2013 13:24:02 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 9B105200E2; Thu,
-	13 Jun 2013 14:23:51 -0400 (EDT)
-Date: Thu, 13 Jun 2013 14:23:51 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Message-id: <20130613182351.GB11656@denix.org>
-References: <CANwz6nzC4O8bN92q2YCCLtmGKK1S9LwYPLyWR0VZZBY+EiAUtg@mail.gmail.com>
-	<CAMUsWmD6F_qEm95q5y92xuP5yg3sNeBm+6GnaMQGOge3CmP8xw@mail.gmail.com>
-	<CAP71Wjx=WoR6MAgGpU+nVAGt2Grnk1Y88qOepDjUeyKeX027Ug@mail.gmail.com>
-MIME-version: 1.0
-In-reply-to: <CAP71Wjx=WoR6MAgGpU+nVAGt2Grnk1Y88qOepDjUeyKeX027Ug@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Edward Vidal <vidal.develone@gmail.com>
-Subject: Re: yocto with meta-ti
+Return-Path: <kurtmyles@gmail.com>
+Received: from mail-yh0-f45.google.com (mail-yh0-f45.google.com
+	[209.85.213.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70A08E013DE
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 12:26:18 -0700 (PDT)
+Received: by mail-yh0-f45.google.com with SMTP id b20so1381255yha.18
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 12:26:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:x-priority:x-msmail-priority:x-mailer
+	:importance:thread-index:in-reply-to:x-mimeole:x-antivirus
+	:x-antivirus-status;
+	bh=6ve4QHyF4l7vPC+S5qXLiUbHtnXz2/EbQJqv6KbBEuM=;
+	b=njrJXYGLdvkYptbWdmpvrXy0c1WpxiMJl08VxnGmKSlNbWjHtDMG0X6KJKGZ5drN7h
+	tlWFiHsTwwBv0UOCxdLzXK0xx5RLqxMRQ+8jWvdCQep+LH+PNKdgCue5Rr+33S2yEdLt
+	srwu9iJ8DMJid4HxHXh3meCWyiVJJTN5McEIlxZsASXYetwz5RkLr2mXhKiNC2a3v+Fm
+	3sYqDT/xsmThuxyZeo5NHtJeaDrdf8JYYOD+HME2a++J0TY8puN7affquXtMyLVu+kdO
+	tcEAwt2jDx/Ekjg6G0UPXoO3rLj/mrOWigIrhRufciCWaqd6Phk5PXMvjSKP4kw2LG24
+	yGFw==
+X-Received: by 10.236.70.9 with SMTP id o9mr1638806yhd.35.1371151577952;
+	Thu, 13 Jun 2013 12:26:17 -0700 (PDT)
+Received: from toshp105 (24-196-194-18.static.hckr.nc.charter.com.
+	[24.196.194.18])
+	by mx.google.com with ESMTPSA id x22sm36131504yhd.2.2013.06.13.12.26.16
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 13 Jun 2013 12:26:17 -0700 (PDT)
+From: "Kurt Stevens" <kurtmyles@gmail.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 13 Jun 2013 15:26:29 -0400
+Message-ID: <E26A4E088CC341B49A35A61D9C9232F5@toshp105>
+MIME-Version: 1.0
+X-Priority: 3 (Normal)
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook, Build 10.0.6863
+Importance: Normal
+Thread-Index: Ac5Lrjg5TFFkUXzcR5u+xi1IVv/xCQcvLm/Q
+In-Reply-To: <mailman.1430.1367991395.19864.yocto@yoctoproject.org>
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6157
+X-Antivirus: avast! (VPS 130613-0, 06/13/2013), Outbound message
+X-Antivirus-Status: Clean
+Subject: Building perl with perl-modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,82 +51,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2013 18:24:31 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 13 Jun 2013 19:26:19 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 05, 2013 at 08:05:52AM +0200, Nicolas Dechesne wrote:
-> On Wed, Jun 5, 2013 at 7:55 AM, Akshay Sahota <akki.sahota@gmail.com> wrote:
-> 
-> > *
-> > BBMASK ?= ".*/meta-ti/recipes-(misc|bsp/formfactor|graphics/mesa)/"
-> >  #BBMASK = "meta-ti/recipes-misc meta-oe/recipes-graphics"
-> > #BBMASK = "meta-oe/recipes-devtools"
-> > #BBMASK = "meta-oe/recipes-graphics"
-> > #
-> > # Parallelism Options*...
-> >
-> >
-> > and bblayers.conf
-> >
-> > *BBLAYERS ?= " \
-> >   /home/asahota/poky-try/poky/meta \
-> >   /home/asahota/poky-try/poky/meta-yocto \
-> >   /home/asahota/poky-try/poky/meta-yocto-bsp \
-> >   /home/asahota/poky-try/poky/meta-ti \
+Hello,
 
-Please pay attention to the order of BSP layers, especially those providing 
-the same machine configuration... For example, in the above setup, you won't 
-be able to use "beagleboard" machine config from meta-ti, as you have it 
-shadowed by the config from meta-yocto-bsp.
+	I am using the dylan version of poky, and including perl. This
+builds fine with perl selected in hob, but if I also select the =
+perl-modules
+item, I get the error message 'nothing rprovides ncurses-libncurses' and =
+the
+build fails.
 
--- 
-Denys
+	Thanks,
 
+Kurt Stevens
 
-> >   /home/asahota/poky-try/poky/meta-openembedded/meta-oe \
-> >   "
-> > *
-> >
-> 
-> i suspect you are using wrong combination of branch/version, but you don't
-> give what branch/version you are using, not cannot confirm.
-> 
-> 
-> > *
-> > BBLAYERS_NON_REMOVABLE ?= " \
-> >   /home/asahota/poky-try/poky/meta \
-> >   /home/asahota/poky-try/poky/meta-yocto \
-> >   "*
-> >
-> > and the output is :
-> > *$ bitbake -k core-image-minimal
-> > Pseudo is not present but is required, building this first before the main
-> > build
-> > WARNING: Host distribution "Ubuntu 12.04.2 LTS" has not been validated
-> > with this version of the build system; you may possibly experience
-> > unexpected failures. It is recommended that you use a tested distribution.
-> > ERROR: ParseError at
-> > /home/asahota/poky-try/poky/meta-openembedded/meta-oe/recipes-devtools/cloud9/
-> > cloud9_0.6.bb:11: Could not inherit file classes/systemd.bbclass
-> > *
-> >
-> 
-> systemd.bbclass was introduced in 'dylan' version of Yocto (aka 1.4). are
-> you sure this is what you are using? to be it sounds like you are using
-> Yocto/danny with meta-ti and meta-oe 'master' branch (or dylan branch).
-> 
-> 
-> *ERROR: Command execution failed: Exited with 1
-> >
-> > Summary: There was 1 WARNING message shown.
-> > Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-> > *
-> > What is the mistake, sounds too silly.!
-
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
 
