@@ -1,19 +1,32 @@
-Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4409CE01409
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 07:47:57 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 13 Jun 2013 07:47:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,859,1363158000"; d="scan'208";a="316501396"
-Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by azsmga001.ch.intel.com with ESMTP; 13 Jun 2013 07:47:34 -0700
-From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 13 Jun 2013 17:24:57 +0300
-Message-Id: <1371133497-1055-1-git-send-email-ioanax.grigoropol@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [Upstream org.eclipse.tm] Add getReader method in IHostShell
+Return-Path: <rohit2.jindal@aricent.com>
+Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25278E01409;
+	Thu, 13 Jun 2013 08:24:29 -0700 (PDT)
+Received: from jaguar.aricent.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 1CD4136B44;
+	Thu, 13 Jun 2013 20:54:10 +0530 (IST)
+Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
+	[10.203.171.136])
+	by jaguar.aricent.com (Postfix) with ESMTP id 0750736B35;
+	Thu, 13 Jun 2013 20:54:10 +0530 (IST)
+Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
+	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
+	Thu, 13 Jun 2013 20:54:10 +0530
+From: Rohit2 Jindal <rohit2.jindal@aricent.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>
+Date: Thu, 13 Jun 2013 20:54:08 +0530
+Thread-Topic: Recompile the recipe everytime 
+Thread-Index: Ac5nnw6iH1YvIwO6Q6aYfkjono2OlAAqszCA
+Message-ID: <17797116383D4341B029FDF34C22BF6A52C4CCB36E@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <mailman.11.1371063601.16784.yocto@yoctoproject.org>
+In-Reply-To: <mailman.11.1371063601.16784.yocto@yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: Recompile the recipe everytime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,113 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2013 14:47:58 -0000
+X-List-Received-Date: Thu, 13 Jun 2013 15:24:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- added method in IHostShell to be implemented in TerminalHostShell
-- this method is already implemented in LocalHostShell upstream
+Gentle reminder!!!
 
-Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
----
- .../services/dstore/shells/DStoreHostShell.java    |    7 +++++++
- .../services/shells/TerminalServiceHostShell.java  |   19 +++++++++++--------
- .../eclipse/rse/services/shells/IHostShell.java    |    3 +++
- 3 files changed, 21 insertions(+), 8 deletions(-)
+Hi ,
 
-diff --git a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreHostShell.java b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreHostShell.java
-index 06763d3..5094cd1 100644
---- a/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services.dstore/src/org/eclipse/rse/internal/services/dstore/shells/DStoreHostShell.java
-@@ -18,6 +18,8 @@
- 
- package org.eclipse.rse.internal.services.dstore.shells;
- 
-+import java.io.BufferedReader;
-+
- import org.eclipse.dstore.core.model.DE;
- import org.eclipse.dstore.core.model.DataElement;
- import org.eclipse.dstore.core.model.DataStore;
-@@ -92,5 +94,10 @@ public class DStoreHostShell extends AbstractHostShell implements IHostShell
- 		
- 	}
- 
-+	public BufferedReader getReader(boolean isErrorReader) {
-+		// TODO Auto-generated method stub
-+		return null;
-+	}
-+
- 	
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java
-index 2a461ad..9a8e890 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java
-@@ -47,7 +47,7 @@ public class TerminalServiceHostShell extends AbstractHostShell {
- 	public static final String SHELL_INVOCATION = ">"; //$NON-NLS-1$
- 
- 	ITerminalShell fTerminalShell;
--	
-+	BufferedReader fBufReader;
- 	private TerminalServiceShellOutputReader fStdoutHandler;
- 	
- 	private TerminalServiceShellOutputReader fStderrHandler;
-@@ -60,21 +60,21 @@ public class TerminalServiceHostShell extends AbstractHostShell {
- 		try {
- 			fTerminalShell = terminalShell;
- 			String encoding = fTerminalShell.getDefaultEncoding();
--			BufferedReader bufReader;
-+
- 			if (encoding != null) {
--				bufReader = new BufferedReader(new InputStreamReader(fTerminalShell
-+				fBufReader = new BufferedReader(new InputStreamReader(fTerminalShell
- 						.getInputStream(), encoding)); 
- 			} else {
--				bufReader = new BufferedReader(new InputStreamReader(fTerminalShell
-+				fBufReader = new BufferedReader(new InputStreamReader(fTerminalShell
- 								.getInputStream()));
- 			}
- 			//bug 356132: wait for initial output before sending any command
- 			//FIXME this should likely move into the TerminalServiceShellWriterThread, so wait can be canceled
--			bufReader.mark(1);
--			bufReader.read();
--			bufReader.reset();
-+			fBufReader.mark(1);
-+			fBufReader.read();
-+			fBufReader.reset();
- 			
--			fStdoutHandler = new TerminalServiceShellOutputReader(this, bufReader, false);
-+			fStdoutHandler = new TerminalServiceShellOutputReader(this, fBufReader, false);
- 			fStderrHandler = new TerminalServiceShellOutputReader(this, null, true);
- 			OutputStream outputStream = fTerminalShell.getOutputStream();
- 			if (encoding != null) {
-@@ -170,4 +170,7 @@ public class TerminalServiceHostShell extends AbstractHostShell {
- 		return "echo $PWD'>'"; //$NON-NLS-1$
- 	}
- 
-+	public BufferedReader getReader(boolean isErrorReader) {
-+		return fBufReader;
-+	}
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShell.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShell.java
-index 8139cfc..e7fd70b 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/IHostShell.java
-@@ -16,6 +16,8 @@
- 
- package org.eclipse.rse.services.shells;
- 
-+import java.io.BufferedReader;
-+
- 
- public interface IHostShell 
- {
-@@ -29,4 +31,5 @@ public interface IHostShell
- 	
- 	public void exit();
- 	
-+	public BufferedReader getReader(boolean isErrorReader);
- }
-\ No newline at end of file
--- 
-1.7.9.5
+Please help me out I am stuck in some issue, actually I want my recipe to d=
+o compilation everytime on every run of
 
+Bitbake linux-yocto
+
+ie can I remove stamping or sstate-cache that it allows me to run compilati=
+on everytime on every run of bitbake linux-yocto.
+
+
+I tried do_compile[nostamp] =3D"1" but it did not work but same thing worke=
+d for do_install[nostamp]=3D"1"
+
+Thanks in advance!
+
+Regards,
+Rohit Jindal
+
+
+
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+Please refer to http://www.aricent.com/legal/email_disclaimer.html
+for important disclosures regarding this electronic communication.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
 
