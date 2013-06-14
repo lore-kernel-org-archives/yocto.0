@@ -1,21 +1,25 @@
-Return-Path: <djnass_18@hotmail.com>
-Received: from dub0-omc3-s4.dub0.hotmail.com (dub0-omc3-s4.dub0.hotmail.com
-	[157.55.2.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1ACEE013A8
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 09:20:24 -0700 (PDT)
-Received: from DUB116-W90 ([157.55.2.9]) by dub0-omc3-s4.dub0.hotmail.com with
-	Microsoft SMTPSVC(6.0.3790.4675); Fri, 14 Jun 2013 09:20:23 -0700
-X-TMN: [wq/btcOxsAZUZGlvs3AsSSbyTf57shlvlrGmQuP7/8E=]
-X-Originating-Email: [djnass_18@hotmail.com]
-Message-ID: <DUB116-W9038BE05D96B60298CC60C98800@phx.gbl>
-From: Thanassis Silis <djnass_18@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 14 Jun 2013 16:20:23 +0000
-Importance: Normal
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4029CE013A8
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 09:35:11 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 14 Jun 2013 09:35:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,867,1363158000"; d="scan'208";a="329554423"
+Received: from unknown (HELO helios.localnet) ([10.252.122.5])
+	by orsmga001.jf.intel.com with ESMTP; 14 Jun 2013 09:35:10 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Dat Tran <dtran11@gmail.com>, Edward Vidal <vidal.develone@gmail.com>
+Date: Fri, 14 Jun 2013 17:35:08 +0100
+Message-ID: <1571616.VWc8oWtlLJ@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.3 (Linux/3.8.0-23-generic; KDE/4.10.3; i686; ; )
+In-Reply-To: <loom.20130614T060308-378@post.gmane.org>
+References: <CANwz6nxO25BCt2B-H8T9_SO5F3DqfE1w2QDSoXPVnP-qxq994Q@mail.gmail.com>
+	<loom.20130614T060308-378@post.gmane.org>
 MIME-Version: 1.0
-X-OriginalArrivalTime: 14 Jun 2013 16:20:23.0561 (UTC)
-	FILETIME=[127E1790:01CE691B]
-Subject: Can not build (configure) a simple Hello world program in eclipse with ADT
+Cc: yocto@yoctoproject.org
+Subject: Re: gcc enable-languages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,155 +31,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 16:20:26 -0000
-Content-Type: multipart/alternative;
-	boundary="_4020b2d6-caac-4d13-8bd6-73ea546eee3f_"
+X-List-Received-Date: Fri, 14 Jun 2013 16:35:12 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---_4020b2d6-caac-4d13-8bd6-73ea546eee3f_
-Content-Type: text/plain; charset="iso-8859-7"
-Content-Transfer-Encoding: quoted-printable
+On Friday 14 June 2013 04:04:07 Dat Tran wrote:
+> Anyone know of any clues that will help us? Thanks.
+> 
+> Edward Vidal <vidal.develone@...> writes:
+> > Dat Tran <dtran11 at gmail.com> wrote 
+> > > Hello,
+> > > 
+> > > I want to add support for FORTRAN in my image.
+> > > On target gcc -v shows --enable-languages=c,c++
+> > > This needs to --enable-languages=c,c++,fortran.based on my host system.
+> > > How does the variable FORTRAN in
+> > 
+> > /home/vidal/POKY/build032813_panda/poky/meta/recipes-devtools/gcc/gcc-
+> > configure-common.inc get set?  Can this be done in the local.conf file?
+> > 
+> > > Does the FORTRAN ?= ",f77" this need to be FORTRAN ?= ",fortran" since
+> > > we are building gcc4.7?
 
-hello everyone=2C
-I am following the yocto Project Devel Manual ( http://www.yoctoproject.org=
-/docs/1.4/dev-manual/dev-manual.html#adt-eclipse=0A=
- ) to set up eclipse for use with an embedded target . I am stuck in =0A=
-section 4.2.2.2 trying to make a simple autotools hello world =0A=
-application. The build fails at configure stage=20
+I have no direct knowledge of how to enable language support, but if you look 
+at meta/recipes-devtools/gcc/gcc-4.7.inc you'll see it sets FORTRAN = "", 
+which means setting it with = in local.conf won't work (since local.conf 
+parsing comes before recipes) nor will the FORTRAN ?= setting in meta/recipes-
+devtools/gcc/gcc-configure-common.inc. 
 
-checking for style of include used by make... GNU
-checking=0A=
- for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc  =0A=
--march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon =0A=
---sysroot=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite
-checking whether the C compiler works... no
-configure: error: in `/home/nass/eclipse/adt_hello/':
-configure: error: in `/home/nass/eclipse/adt_hello/':
-configure: error: C compiler cannot create executables
-configure: error: C compiler cannot create executables
-See `config.log' for more details
+I'd suggest bbappending the appropriate gcc recipe and set FORTRAN there 
+(which one depends on where you want to compile fortran code; gcc-cross would 
+be the right one for building a recipe for fortran software to run on the 
+target). You may need to set other variables in the bbappend as well, I'm not 
+entirely sure.
 
-Configuration failed with error
+An example of a layer that does something similar would be the meta-ada layer:
 
-config.log looks fairly similar to this post: https://lists.yoctoproject.or=
-g/pipermail/yocto/2013-January/013860.html
+https://github.com/Lucretia/meta-ada
 
-I have configured to use the toolchain from the build directory. In fact th=
-e paths to the toolchain and sysroots are (both):=20
-"/home/nass/yocto/build/tmp/" .
+Cheers,
+Paul
 
-I=0A=
- went on to try the slightly more manual in CLI :  =0A=
-http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#creating-an=
-d-running-a-project-based-on-gnu-autotools=0A=
-=20
+-- 
 
-again at configure  stage=2C I get:
-=20
-checking=0A=
- for gcc... arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-interwork=
-=0A=
- -mfloat-abi=3Dsoftfp -mfpu=3Dneon =0A=
---sysroot=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite
-checking whether the C compiler works... yes
-checking for C compiler default output file name... a.out
-checking for suffix of executables...=20
-checking whether we are cross compiling... configure: error: in `/home/nass=
-/appz/dev/yoctauto':
-configure: error: cannot run C compiled programs.
-If you meant to cross compile=2C use `--host'.
-See `config.log' for more details
+Paul Eggleton
+Intel Open Source Technology Centre
 
-Should=0A=
- I really use --host? Wouldn't it be in the plugin setup options already=0A=
- if that was necessary? OR wouldn't the environment-setup* file contain =0A=
-the necessary declarations?
-
-Any ideas how to avert it?
-
-Thank you for your help! 		 	   		  =
-
---_4020b2d6-caac-4d13-8bd6-73ea546eee3f_
-Content-Type: text/html; charset="iso-8859-7"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>hello everyone=2C<br>I am follow=
-ing the yocto Project Devel Manual ( <a href=3D"http://www.yoctoproject.org=
-/docs/1.4/dev-manual/dev-manual.html#adt-eclipse" target=3D"_blank">http://=
-www.yoctoproject.org/docs/1.4/dev-manual/dev-manual.html#adt-eclipse</a>=0A=
- ) to set up eclipse for use with an embedded target . I am stuck in =0A=
-section 4.2.2.2 trying to make a simple autotools hello world =0A=
-application. The build fails at configure stage <br><br><blockquote><font s=
-tyle=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">checking for st=
-yle of include used by make... GNU</font><font style=3D"" face=3D"Courier N=
-ew"><br></font><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=
-=3D"2">checking=0A=
- for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc&nbsp=3B =0A=
--march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon =0A=
---sysroot=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite</font><font =
-style=3D"" face=3D"Courier New"><br></font><font style=3D"font-size: 10pt=
-=3B" face=3D"Courier New" size=3D"2">checking whether the C compiler works.=
-.. no</font><font style=3D"" face=3D"Courier New"><br></font><font style=3D=
-"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">configure: error: in `=
-/home/nass/eclipse/adt_hello/':</font><font style=3D"" face=3D"Courier New"=
-><br></font><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D=
-"2">configure: error: in `/home/nass/eclipse/adt_hello/':</font><font style=
-=3D"" face=3D"Courier New"><br></font><font style=3D"font-size: 10pt=3B" fa=
-ce=3D"Courier New" size=3D"2">configure: error: C compiler cannot create ex=
-ecutables</font><font style=3D"" face=3D"Courier New"><br></font><font styl=
-e=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">configure: error: =
-C compiler cannot create executables</font><font style=3D"" face=3D"Courier=
- New"><br></font><font style=3D"font-size: 10pt=3B" face=3D"Courier New" si=
-ze=3D"2">See `config.log' for more details</font><font style=3D"" face=3D"C=
-ourier New"><br></font><font style=3D"" face=3D"Courier New"><br></font><fo=
-nt style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">Configurati=
-on failed with error</font><br></blockquote><br>config.log looks fairly sim=
-ilar to this post: <a href=3D"https://lists.yoctoproject.org/pipermail/yoct=
-o/2013-January/013860.html" target=3D"_blank">https://lists.yoctoproject.or=
-g/pipermail/yocto/2013-January/013860.html</a><br><br>I have configured to =
-use the toolchain from the build directory. In fact the paths to the toolch=
-ain and sysroots are (both): <br>"/home/nass/yocto/build/tmp/" .<br><br>I=
-=0A=
- went on to try the slightly more manual in CLI :&nbsp=3B =0A=
-http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#creating-an=
-d-running-a-project-based-on-gnu-autotools=0A=
- <br><br>again at configure&nbsp=3B stage=2C I get:<br>&nbsp=3B<br><blockqu=
-ote><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">chec=
-king=0A=
- for gcc... arm-poky-linux-gnueabi-gcc&nbsp=3B -march=3Darmv7-a -mthumb-int=
-erwork=0A=
- -mfloat-abi=3Dsoftfp -mfpu=3Dneon =0A=
---sysroot=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite</font><br><f=
-ont style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">checking w=
-hether the C compiler works... yes</font><br><font style=3D"font-size: 10pt=
-=3B" face=3D"Courier New" size=3D"2">checking for C compiler default output=
- file name... a.out</font><br><font style=3D"font-size: 10pt=3B" face=3D"Co=
-urier New" size=3D"2">checking for suffix of executables... </font><br><fon=
-t style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">checking whe=
-ther we are cross compiling... configure: error: in `/home/nass/appz/dev/yo=
-ctauto':</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courier New" =
-size=3D"2">configure: error: cannot run C compiled programs.</font><br><fon=
-t style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">If you meant=
- to cross compile=2C use `--host'.</font><br><font style=3D"font-size: 10pt=
-=3B" face=3D"Courier New" size=3D"2">See `config.log' for more details</fon=
-t><br></blockquote><br>Should=0A=
- I really use --host? Wouldn't it be in the plugin setup options already=0A=
- if that was necessary? OR wouldn't the environment-setup* file contain =0A=
-the necessary declarations?<br><br>Any ideas how to avert it?<br><br>Thank =
-you for your help! 		 	   		  </div></body>
-</html>=
-
---_4020b2d6-caac-4d13-8bd6-73ea546eee3f_--
