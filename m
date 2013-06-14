@@ -1,35 +1,41 @@
 Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00A4BE013A8
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 10:35:50 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6905E013A8
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 10:40:29 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 14 Jun 2013 10:35:45 -0700
+	by azsmga101.ch.intel.com with ESMTP; 14 Jun 2013 10:40:29 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.87,867,1363158000"; 
-	d="scan'208,217";a="349970414"
+	d="scan'208,217";a="349972423"
 Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Jun 2013 10:36:16 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 14 Jun 2013 10:40:59 -0700
+Received: from orsmsx107.amr.corp.intel.com (10.22.240.5) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 14 Jun 2013 10:40:27 -0700
 Received: from orsmsx103.amr.corp.intel.com ([169.254.2.22]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.91]) with mapi id
-	14.03.0123.003; Fri, 14 Jun 2013 10:35:45 -0700
+	ORSMSX107.amr.corp.intel.com ([169.254.1.206]) with mapi id
+	14.03.0123.003; Fri, 14 Jun 2013 10:40:27 -0700
 From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Thanassis Silis <djnass_18@hotmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Can not build (configure) a simple Hello world program
-	in eclipse with ADT
-Thread-Index: AQHOaRs4kuWst/+wiUmz8Yx9RIPqRJk1Z+FggACAJoD//4/RgA==
-Date: Fri, 14 Jun 2013 17:35:44 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C3B188@ORSMSX103.amr.corp.intel.com>
-References: <DUB116-W9038BE05D96B60298CC60C98800@phx.gbl>,
-	<C6510F6D410BB64A8C15398EDC6B847C73C3B0A6@ORSMSX103.amr.corp.intel.com>
-	<DUB116-W136485E174295132673564498800@phx.gbl>
-In-Reply-To: <DUB116-W136485E174295132673564498800@phx.gbl>
+To: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
+Thread-Topic: [yocto] No crosscompiler in Toolchain
+Thread-Index: AQHOZqOPiJG6l+V0REyK3+Gu8PiLqZkxP9gAgAASrYD//4tR8IABISaAgAG07oCAAdalgP//847g
+Date: Fri, 14 Jun 2013 17:40:26 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C3B199@ORSMSX103.amr.corp.intel.com>
+References: <CAFMfyz+_j-mWj4C0YJUnOBcCX-oMGc8196pmPcQcD8XbK6r0xA@mail.gmail.com>
+	<CA+YB3rYq6_o_Sc50t0TVm5rnEeG2MD2qo=Ya6WKyG=c5vy_vHg@mail.gmail.com>
+	<CAFMfyzKzvBDTxPoLN6=fFkP=Rbd_KWVpLk=352F6OxB3e5-iWg@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C73C39CA0@ORSMSX103.amr.corp.intel.com>
+	<CAFMfyz+km6mQctRO5d52+p4+4hKuE9qzv755EjTOW7Zc3KEb0Q@mail.gmail.com>
+	<CAFMfyzJiqRGsU+xjjt+htvHrCok1UyZijz2_0Z+40gXiebAQgQ@mail.gmail.com>
+	<CAFMfyz+OM4EJwTWda16WNOPtUbX6e2UWuvaHXFEWOf2Wd2qE-A@mail.gmail.com>
+In-Reply-To: <CAFMfyz+OM4EJwTWda16WNOPtUbX6e2UWuvaHXFEWOf2Wd2qE-A@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: Can not build (configure) a simple Hello world program in eclipse with ADT
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: No crosscompiler in Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,25 +47,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 17:35:51 -0000
+X-List-Received-Date: Fri, 14 Jun 2013 17:40:31 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C3B188ORSMSX103amrcor_"
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C3B199ORSMSX103amrcor_"
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C3B188ORSMSX103amrcor_
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C3B199ORSMSX103amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Tanassis,
+Hi Satya,
 
 
 
-Can you install your sysroot setup by following the steps of ADT manual, ei=
-ther download a prebuild image.tar.gz file and use runqemu-extract-sdk to e=
-xtract it under /home/user/sysroot_*** directory, or use adt_installer to s=
-et it up?  Any of the sysroot that you got by building  toolchain is just t=
-oo minimum and we typically advise people to setup their sysroot base on ta=
-rget image rootfs.
+If bitbake meta_toolchain didn't generate the correct cross compiler, then =
+it's a bug, would you mind open a bug in bugzilla.yoctoproject.org for us w=
+ith detailed info e.g. what release, what are the cross toolchain that you =
+were trying to build, etc?  As to your image particular toolchain, since we=
+'re lacking the data how you customize your image, it's really hard for us =
+to nail down your issue unfortunately.
 
 
 
@@ -69,131 +75,228 @@ Jessica
 
 
 
-From: Thanassis Silis [mailto:djnass_18@hotmail.com]
-Sent: Friday, June 14, 2013 10:13 AM
-To: Zhang, Jessica; yocto@yoctoproject.org
-Subject: RE: [yocto] Can not build (configure) a simple Hello world program=
- in eclipse with ADT
+From: DAMARLA Satya Swaroop [mailto:satyaswaroop.damarla@gmail.com]
+Sent: Friday, June 14, 2013 4:21 AM
+To: Zhang, Jessica
+Cc: Jeff Osier-Mixon; yocto@yoctoproject.org
+Subject: Re: [yocto] No crosscompiler in Toolchain
 
 
+
+Hi Everyone,
+
+
+
+I solved the issue, but I don't know if its right or wrong but for the mome=
+nt I am happy... The following didnot work for me
+
+
+
+bitbake core-image-skidata -c populate_sdk
+
+              nor
+
+bitbake meta-toolchain
+
+
+
+but bitbake meta-toolchain-sdk  worked for me and created a toolchain with =
+the crosscompiler... I have no idea why the others didnot create a toolchai=
+n with cross compiler for me. I think this has to be discussed in more deta=
+il..
+
+
+
+For now have a wonderful weekend
+
+
+
+Warm regards from Austria,
+
+Satya
+
+
+
+On Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaroop <satyaswaroop.damarl=
+a@gmail.com<mailto:satyaswaroop.damarla@gmail.com>> wrote:
+
+Hi,
+
+
+
+Any updates on this issue why there is no cross compiler in the toolchain w=
+e build... I think this is pretty important unfortunately I am not able to =
+find the cause.. Help is deeply appreciated..
+
+
+
+Greets,
+
+Satya
+
+
+
+On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaroop <satyaswaroop.damarl=
+a@gmail.com<mailto:satyaswaroop.damarla@gmail.com>> wrote:
 
 Hi Jessica,
-well I selected the toolchain from build dir and pointed both paths (toolch=
-ain and sysroots) to
-/home/<user>/<yocto_root>/build/tmp/
-
-The rest is appended automatically I guess.
-The target showed up  correctly in the dropdown box ( armv7a-vfp-neon-poky-=
-linux-gnueabi ) .
-
-Following your advice, I changed the toolchain and sysroots to point to /op=
-t/poky/1.4.1/ (changed the radio button to point to "standalone prebuilt to=
-olchain" - i bitbaked from the same build the meta-toolchain-sdk as well.
-
-I then recreated the hello world autotools example and the problem persists=
-.....
-
-Thank you for your help!
-Tanassis
-
-  _____
-
-From: jessica.zhang@intel.com<mailto:jessica.zhang@intel.com>
-To: djnass_18@hotmail.com<mailto:djnass_18@hotmail.com>; yocto@yoctoproject=
-.org<mailto:yocto@yoctoproject.org>
-Subject: RE: [yocto] Can not build (configure) a simple Hello world program=
- in eclipse with ADT
-Date: Fri, 14 Jun 2013 16:36:59 +0000
-
-Hi Thanassis,
 
 
 
-How did you configure your toolchain and sysroot, in the windows->preferenc=
-e for ADT? I noticed from the commandling that your sysroot is sysroot=3D/h=
-ome/nass/yocto/build/tmp/sysroots/imx6qsabrelite
+By the sentence "No crosscompiler for my target installed in my toolchain",=
+ I mean I don't find the binaries for crosscompiling which are usually pres=
+ent in the directory as shown below
 
 
 
-Typically we'd advise people not to directly use the sysroot under the buil=
-d environment.  If you follow the ADT manual there're couple ways for you t=
-o setup sysroot, either extract from image rootfs or use adt_installer.
+damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux/usr=
+/bin$ ls
+
+aclocal        autoreconf        flash2raw.terrier       opkg-key    pseudo=
+log  qemu-mipsel       qemu-system-mipsel  raw2flash.terrier        runqemu=
+-ifup
+
+aclocal-1.12   autoscan          gnu-configize           perl        qemu-a=
+rm   qemu-mips.real    qemu-system-ppc     runqemu                  runqemu=
+-internal
+
+autoconf       autoupdate        ifnames                 perl5.14.3  qemu-g=
+a    qemu-nbd          qemu-system-x86_64  runqemu-addptable2image  tunctl
+
+autoheader     dtc               libtoolize              perl.real   qemu-i=
+386  qemu-ppc          qemu-x86_64         runqemu-export-rootfs    update-=
+alternatives
+
+autom4te       flash2raw.akita   m4                      pkg-config  qemu-i=
+mg   qemu-system-arm   raw2flash.akita     runqemu-extract-sdk      x86_64-=
+pokysdk-linux-libtool
+
+automake       flash2raw.borzoi  oe-find-native-sysroot  pseudo      qemu-i=
+o    qemu-system-i386  raw2flash.borzoi    runqemu-gen-tapdevs
+
+automake-1.12  flash2raw.spitz   opkg-cl                 pseudodb    qemu-m=
+ips  qemu-system-mips  raw2flash.spitz     runqemu-ifdown
 
 
 
-Thanks,
+
+
+I don't have a directory and the list is empty
+
+
+
+damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux/usr=
+/bin$ ls -la| egrep '^d'
+
+drwxr-xr-x 2 damarla damarla    4096 Jun 11 14:27 .
+
+drwxr-xr-x 7 damarla damarla    4096 Jun 11 14:15 ..
+
+
+
+I want to know what could be the potential issue that my toolchain has no c=
+rosscompiler for my target
+
+
+
+Greets,
+
+Satya
+
+
+
+On Tue, Jun 11, 2013 at 9:05 PM, Zhang, Jessica <jessica.zhang@intel.com<ma=
+ilto:jessica.zhang@intel.com>> wrote:
+
+Hi Satya,
+
+
+
+What is your cross compiler that you said it's not installed? For example, =
+on my development host e.g. x86, after I install the toolchain, there's an =
+environment-setup-*** file, inside it specifies what is your cross compiler=
+, e.g. arm-poky-linux-gnueabi-gcc for my case, after I source the environme=
+nt file, and do which arm-poky-linux-gnueabi-gcc, I can see it's under path=
+_to_toolchain/sysroots/i686_pokysdk_linux/usr/bin/armv5te-poky-linux-gnueab=
+i/arm-poky-linux-gnueabi-gcc... so you're seeing things differently?
+
+
 
 Jessica
 
 
 
 From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
- [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Thanassis Silis
-Sent: Friday, June 14, 2013 9:20 AM
-To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-Subject: [yocto] Can not build (configure) a simple Hello world program in =
-eclipse with ADT
+ [mailto:yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.o=
+rg>] On Behalf Of DAMARLA Satya Swaroop
+Sent: Tuesday, June 11, 2013 11:55 AM
+To: Jeff Osier-Mixon; yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+Subject: Re: [yocto] No crosscompiler in Toolchain
 
 
 
-hello everyone,
-I am following the yocto Project Devel Manual ( http://www.yoctoproject.org=
-/docs/1.4/dev-manual/dev-manual.html#adt-eclipse ) to set up eclipse for us=
-e with an embedded target . I am stuck in section 4.2.2.2 trying to make a =
-simple autotools hello world application. The build fails at configure stag=
-e
-
-checking for style of include used by make... GNU
-checking for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc  -mar=
-ch=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysroot=
-=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite
-checking whether the C compiler works... no
-configure: error: in `/home/nass/eclipse/adt_hello/':
-configure: error: in `/home/nass/eclipse/adt_hello/':
-configure: error: C compiler cannot create executables
-configure: error: C compiler cannot create executables
-See `config.log' for more details
-
-Configuration failed with error
+First I am sorry about the Gentlemen.... Next time it would be Ladies & Gen=
+tlemen... ;-)
 
 
-config.log looks fairly similar to this post: https://lists.yoctoproject.or=
-g/pipermail/yocto/2013-January/013860.html
 
-I have configured to use the toolchain from the build directory. In fact th=
-e paths to the toolchain and sysroots are (both):
-"/home/nass/yocto/build/tmp/" .
-
-I went on to try the slightly more manual in CLI :  http://www.yoctoproject=
-.org/docs/1.4/adt-manual/adt-manual.html#creating-and-running-a-project-bas=
-ed-on-gnu-autotools
-
-again at configure  stage, I get:
+Let me explain the situation better ... core-image-skidata (arm) is customi=
+zed image which I build and I want to build a toolchain for this image on m=
+y x86_64 with should consist of cross compiler (which I assume a toolchain =
+should contain). The build for the toolchain went successfull but when I in=
+stalled the toolchain on my system, I didnot find the crosscompiler install=
+ed...
 
 
-checking for gcc... arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-in=
-terwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysroot=3D/home/nass/yocto/buil=
-d/tmp/sysroots/imx6qsabrelite
-checking whether the C compiler works... yes
-checking for C compiler default output file name... a.out
-checking for suffix of executables...
-checking whether we are cross compiling... configure: error: in `/home/nass=
-/appz/dev/yoctauto':
-configure: error: cannot run C compiled programs.
-If you meant to cross compile, use `--host'.
-See `config.log' for more details
+
+Hope you understood my problem..
 
 
-Should I really use --host? Wouldn't it be in the plugin setup options alre=
-ady if that was necessary? OR wouldn't the environment-setup* file contain =
-the necessary declarations?
 
-Any ideas how to avert it?
+Greets,
 
-Thank you for your help!
+Satya
 
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C3B188ORSMSX103amrcor_
+
+On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon <jefro@jefro.net<mailto:j=
+efro@jefro.net>> wrote:
+
+On Tue, Jun 11, 2013 at 5:59 AM, DAMARLA Satya Swaroop
+<swaroop.damarla@gmail.com<mailto:swaroop.damarla@gmail.com>> wrote:
+> Gentlemen! We have a problem here...
+
+Not all here are gentlemen :)
+
+
+> I compiled the toolchain using the command bitbake core-image-skidata -c
+> populate_sdk and installed the toolchain but I have to tell you that I do=
+nt
+> see any cross-compiler installed with the toolchain...
+>
+> Any guesses what could be the reason.. The image is customized x11 image.=
+..
+
+I'm not sure I understand. It looks like you are using Host A to build
+a toolchain and install it into an image (core-image-skidata) on
+Target A. Are you then expecting to use Target A as Host B to compile
+for Target B?  Is it possible that the skidata image recipe does not
+contain the cross-compiler recipes?
+
+--
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
+
+
+
+
+
+
+
+
+
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C3B199ORSMSX103amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -205,11 +308,7 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
 <meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
+<style><!--
 /* Font Definitions */
 @font-face
 	{font-family:SimSun;
@@ -240,14 +339,6 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
 p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	{mso-style-priority:99;
 	mso-style-link:"Balloon Text Char";
@@ -255,68 +346,18 @@ p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	margin-bottom:.0001pt;
 	font-size:8.0pt;
 	font-family:"Tahoma","sans-serif";}
-p.ecxmsonormal, li.ecxmsonormal, div.ecxmsonormal
-	{mso-style-name:ecxmsonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.ecxmsochpdefault, li.ecxmsochpdefault, div.ecxmsochpdefault
-	{mso-style-name:ecxmsochpdefault;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.ecxmsohyperlink
-	{mso-style-name:ecxmsohyperlink;}
-span.ecxmsohyperlinkfollowed
-	{mso-style-name:ecxmsohyperlinkfollowed;}
-span.ecxemailstyle18
-	{mso-style-name:ecxemailstyle18;}
-p.ecxmsonormal1, li.ecxmsonormal1, div.ecxmsonormal1
-	{mso-style-name:ecxmsonormal1;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.ecxmsohyperlink1
-	{mso-style-name:ecxmsohyperlink1;
-	color:blue;
-	text-decoration:underline;}
-span.ecxmsohyperlinkfollowed1
-	{mso-style-name:ecxmsohyperlinkfollowed1;
-	color:purple;
-	text-decoration:underline;}
-span.ecxemailstyle181
-	{mso-style-name:ecxemailstyle181;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-p.ecxmsochpdefault1, li.ecxmsochpdefault1, div.ecxmsochpdefault1
-	{mso-style-name:ecxmsochpdefault1;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:10.0pt;
-	font-family:"Times New Roman","serif";}
 span.BalloonTextChar
 	{mso-style-name:"Balloon Text Char";
 	mso-style-priority:99;
 	mso-style-link:"Balloon Text";
 	font-family:"Tahoma","sans-serif";}
-span.EmailStyle30
+span.EmailStyle19
 	{mso-style-type:personal-reply;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri","sans-serif";}
 @page WordSection1
 	{size:612.0pt 792.0pt;
 	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
@@ -332,19 +373,19 @@ div.WordSection1
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Tanassis,<o:p></o:p></=
-span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Satya,<o:p></o:p></spa=
+n></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 /p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Can you install your sysr=
-oot setup by following the steps of ADT manual, either download a prebuild =
-image.tar.gz file and use runqemu-extract-sdk to extract
- it under /home/user/sysroot_*** directory, or use adt_installer to set it =
-up?&nbsp; Any of the sysroot that you got by building&nbsp; toolchain is ju=
-st too minimum and we typically advise people to setup their sysroot base o=
-n target image rootfs.<o:p></o:p></span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">If bitbake meta_toolchain=
+ didn&#8217;t generate the correct cross compiler, then it&#8217;s a bug, w=
+ould you mind open a bug in bugzilla.yoctoproject.org for us with detailed
+ info e.g. what release, what are the cross toolchain that you were trying =
+to build, etc?&nbsp; As to your image particular toolchain, since we&#8217;=
+re lacking the data how you customize your image, it&#8217;s really hard fo=
+r us to nail down your issue unfortunately.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 /p>
@@ -357,224 +398,372 @@ libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 /p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
 <p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
 ;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Thanassi=
-s Silis [mailto:djnass_18@hotmail.com]
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> DAMARLA =
+Satya Swaroop [mailto:satyaswaroop.damarla@gmail.com]
 <br>
-<b>Sent:</b> Friday, June 14, 2013 10:13 AM<br>
-<b>To:</b> Zhang, Jessica; yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: [yocto] Can not build (configure) a simple Hello world =
-program in eclipse with ADT<o:p></o:p></span></p>
+<b>Sent:</b> Friday, June 14, 2013 4:21 AM<br>
+<b>To:</b> Zhang, Jessica<br>
+<b>Cc:</b> Jeff Osier-Mixon; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] No crosscompiler in Toolchain<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">Hi Everyone,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I solved the issue, but I don't know if its right or=
+ wrong but for the moment I am happy... The following didnot work for me<o:=
+p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>bitbake core-image-skidata -c populate_sdk</i><o:=
+p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+</i>nor<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>bitbake meta-toolchain</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">but <i>bitbake meta-toolchain-sdk </i>&nbsp;worked f=
+or me and created a toolchain with the crosscompiler... I have no idea why =
+the others didnot create a toolchain with cross compiler for me. I think th=
+is has to be discussed in more detail..<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">For now have a wonderful weekend<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Warm regards from Austria,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaro=
+op &lt;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">=
+satyaswaroop.damarla@gmail.com</a>&gt; wrote:<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Any updates on this issue why there is no cross comp=
+iler in the toolchain we build... I think this is pretty important unfortun=
+ately I am not able to find the cause.. Help is deeply appreciated..<o:p></=
+o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Greets,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaro=
+op &lt;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">=
+satyaswaroop.damarla@gmail.com</a>&gt; wrote:<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">Hi Jessica,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">By the sentence &quot;No crosscompiler for my target=
+ installed in my toolchain&quot;, I mean I don't find the binaries for cros=
+scompiling which are usually present in the directory as shown below<o:p></=
+o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><i>damarla@linuxbuildsrv:~/yocto/myToolchain/sysroot=
+s/x86_64-pokysdk-linux/usr/bin$ ls</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>aclocal &nbsp; &nbsp; &nbsp; &nbsp;autoreconf &nb=
+sp; &nbsp; &nbsp; &nbsp;flash2raw.terrier &nbsp; &nbsp; &nbsp; opkg-key &nb=
+sp; &nbsp;pseudolog &nbsp;qemu-mipsel &nbsp; &nbsp; &nbsp; qemu-system-mips=
+el &nbsp;raw2flash.terrier &nbsp; &nbsp; &nbsp; &nbsp;runqemu-ifup</i><o:p>=
+</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>aclocal-1.12 &nbsp; autoscan &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;gnu-configize &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; perl &nbsp; =
+&nbsp; &nbsp; &nbsp;qemu-arm &nbsp; qemu-mips.real &nbsp; &nbsp;qemu-system=
+-ppc &nbsp; &nbsp; runqemu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;runqemu-internal</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>autoconf &nbsp; &nbsp; &nbsp; autoupdate &nbsp; &=
+nbsp; &nbsp; &nbsp;ifnames &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; perl5.14.3 &nbsp;qemu-ga &nbsp; &nbsp;qemu-nbd &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;qemu-system-x86_64 &nbsp;runqemu-addptable2image &nbsp;tunctl=
+</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>autoheader &nbsp; &nbsp; dtc &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; libtoolize &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;perl.real &nbsp; qemu-i386 &nbsp;qemu-ppc &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;qemu-x86_64 &nbsp; &nbsp; &nbsp; &nbsp; runqemu-export-rootfs=
+ &nbsp; &nbsp;update-alternatives</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>autom4te &nbsp; &nbsp; &nbsp; flash2raw.akita &nb=
+sp; m4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp;pkg-config &nbsp;qemu-img &nbsp; qemu-system-arm &nbsp; raw2flash.a=
+kita &nbsp; &nbsp; runqemu-extract-sdk &nbsp; &nbsp; &nbsp;x86_64-pokysdk-l=
+inux-libtool</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>automake &nbsp; &nbsp; &nbsp; flash2raw.borzoi &n=
+bsp;oe-find-native-sysroot &nbsp;pseudo &nbsp; &nbsp; &nbsp;qemu-io &nbsp; =
+&nbsp;qemu-system-i386 &nbsp;raw2flash.borzoi &nbsp; &nbsp;runqemu-gen-tapd=
+evs</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>automake-1.12 &nbsp;flash2raw.spitz &nbsp; opkg-c=
+l &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pseudodb &nbsp; &=
+nbsp;qemu-mips &nbsp;qemu-system-mips &nbsp;raw2flash.spitz &nbsp; &nbsp; r=
+unqemu-ifdown</i><o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I don't have a directory and the list is empty<o:p><=
+/o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><i>damarla@linuxbuildsrv:~/yocto/myToolchain/sysroot=
+s/x86_64-pokysdk-linux/usr/bin$ ls -la| egrep '^d'</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>drwxr-xr-x 2 damarla damarla &nbsp; &nbsp;4096 Ju=
+n 11 14:27 .</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>drwxr-xr-x 7 damarla damarla &nbsp; &nbsp;4096 Ju=
+n 11 14:15 ..</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I want to know what could be the potential issue tha=
+t my toolchain has no crosscompiler for my target<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Greets,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<o:p></o:p></p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On Tue, Jun 11, 2013 at 9:05 PM, Zhang, Jessica &lt;=
+<a href=3D"mailto:jessica.zhang@intel.com" target=3D"_blank">jessica.zhang@=
+intel.com</a>&gt; wrote:<o:p></o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Hi Satya,</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">What is your cross compiler that you sa=
+id it&#8217;s not installed? For example, on my development host
+ e.g. x86, after I install the toolchain, there&#8217;s an environment-setu=
+p-*** file, inside it specifies what is your cross compiler, e.g. arm-poky-=
+linux-gnueabi-gcc for my case, after I source the environment file, and do =
+which arm-poky-linux-gnueabi-gcc, I can
+ see it&#8217;s under path_to_toolchain/sysroots/i686_pokysdk_linux/usr/bin=
+/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc&#8230; so you&#8217;=
+re seeing things differently?</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Jessica</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,=
+&quot;sans-serif&quot;">From:</span></b><span style=3D"font-size:10.0pt;fon=
+t-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
+<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
+ounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctopr=
+oject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+<b>On Behalf Of </b>DAMARLA Satya Swaroop<br>
+<b>Sent:</b> Tuesday, June 11, 2013 11:55 AM<br>
+<b>To:</b> Jeff Osier-Mixon; <a href=3D"mailto:yocto@yoctoproject.org" targ=
+et=3D"_blank">
+yocto@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] No crosscompiler in Toolchain</span><o:p></o:p>=
+</p>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">First I am sorry about the Gentlemen.... Next time it would be Lad=
+ies &amp; Gentlemen... ;-)<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Let me explain the situation better ...
+<i>core-image-skidata</i>&nbsp;(arm) is customized image which I build and =
+I want to build a toolchain for this image on my x86_64 with should consist=
+ of cross compiler (which I assume a toolchain should contain). The build f=
+or the toolchain went successfull but
+ when I installed the toolchain on my system, I didnot find the crosscompil=
+er installed...<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Hope you understood my problem..<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Greets,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Satya<o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
+t">&nbsp;<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon &lt;<a href=3D"m=
+ailto:jefro@jefro.net" target=3D"_blank">jefro@jefro.net</a>&gt; wrote:<o:p=
+></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
+t">On Tue, Jun 11, 2013 at 5:59 AM, DAMARLA Satya Swaroop<br>
+&lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blank">swaroop.=
+damarla@gmail.com</a>&gt; wrote:<br>
+&gt; Gentlemen! We have a problem here...<o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Not all here are gentlemen :)<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
+t"><br>
+&gt; I compiled the toolchain using the command bitbake core-image-skidata =
+-c<br>
+&gt; populate_sdk and installed the toolchain but I have to tell you that I=
+ dont<br>
+&gt; see any cross-compiler installed with the toolchain...<br>
+&gt;<br>
+&gt; Any guesses what could be the reason.. The image is customized x11 ima=
+ge...<o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">I'm not sure I understand. It looks like you are using Host A to b=
+uild<br>
+a toolchain and install it into an image (core-image-skidata) on<br>
+Target A. Are you then expecting to use Target A as Host B to compile<br>
+for Target B? &nbsp;Is it possible that the skidata image recipe does not<b=
+r>
+contain the cross-compiler recipes?<br>
+<br>
+--<br>
+Jeff Osier-Mixon <a href=3D"http://jefro.net/blog" target=3D"_blank">http:/=
+/jefro.net/blog</a><br>
+Yocto Project Community Manager @Intel <a href=3D"http://yoctoproject.org" =
+target=3D"_blank">
+http://yoctoproject.org</a><o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-f=
-amily:&quot;Calibri&quot;,&quot;sans-serif&quot;">Hi Jessica,<br>
-well I selected the toolchain from build dir and pointed both paths (toolch=
-ain and sysroots) to<br>
-/home/&lt;user&gt;/&lt;yocto_root&gt;/build/tmp/<br>
-<br>
-The rest is appended automatically I guess. <br>
-The target showed up&nbsp; correctly in the dropdown box ( armv7a-vfp-neon-=
-poky-linux-gnueabi ) .<br>
-<br>
-Following your advice, I changed the toolchain and sysroots to point to /op=
-t/poky/1.4.1/ (changed the radio button to point to &quot;standalone prebui=
-lt toolchain&quot; - i bitbaked from the same build the meta-toolchain-sdk =
-as well.
-<br>
-<br>
-I then recreated the hello world autotools example and the problem persists=
-.....<br>
-<br>
-Thank you for your help!<br>
-Tanassis<o:p></o:p></span></p>
-<div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
- style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">
-<hr size=3D"2" width=3D"100%" align=3D"center" id=3D"stopSpelling">
-</span></div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-f=
-amily:&quot;Calibri&quot;,&quot;sans-serif&quot;">From:
-<a href=3D"mailto:jessica.zhang@intel.com">jessica.zhang@intel.com</a><br>
-To: <a href=3D"mailto:djnass_18@hotmail.com">djnass_18@hotmail.com</a>; <a =
-href=3D"mailto:yocto@yoctoproject.org">
-yocto@yoctoproject.org</a><br>
-Subject: RE: [yocto] Can not build (configure) a simple Hello world program=
- in eclipse with ADT<br>
-Date: Fri, 14 Jun 2013 16:36:59 &#43;0000<o:p></o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Thanassis,</span><span=
- style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">How did you configure you=
-r toolchain and sysroot, in the windows-&gt;preference for ADT? I noticed f=
-rom the commandling that your sysroot is sysroot=3D/home/nass/yocto/build/t=
-mp/sysroots/imx6qsabrelite</span><span style=3D"font-family:&quot;Calibri&q=
-uot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Typically we&#8217;d advi=
-se people not to directly use the sysroot under the build environment.&nbsp=
-; If you follow the ADT manual there&#8217;re couple ways for you to setup
- sysroot, either extract from image rootfs or use adt_installer.</span><spa=
-n style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,</span><span style=
-=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica</span><span style=
-=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;</span><span style=
-=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></sp=
-an></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
-<a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoprojec=
-t.org</a> [<a href=3D"mailto:yocto-bounces@yoctoproject.org">mailto:yocto-b=
-ounces@yoctoproject.org</a>]
-<b>On Behalf Of </b>Thanassis Silis<br>
-<b>Sent:</b> Friday, June 14, 2013 9:20 AM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org=
-</a><br>
-<b>Subject:</b> [yocto] Can not build (configure) a simple Hello world prog=
-ram in eclipse with ADT</span><span style=3D"font-family:&quot;Calibri&quot=
-;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;">hello everyone,<br>
-I am following the yocto Project Devel Manual ( <a href=3D"http://www.yocto=
-project.org/docs/1.4/dev-manual/dev-manual.html#adt-eclipse" target=3D"_bla=
-nk">
-http://www.yoctoproject.org/docs/1.4/dev-manual/dev-manual.html#adt-eclipse=
-</a> ) to set up eclipse for use with an embedded target . I am stuck in se=
-ction 4.2.2.2 trying to make a simple autotools hello world application. Th=
-e build fails at configure stage
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">checking for style of include used by make... GNU</span><s=
-pan style=3D"font-family:&quot;Courier New&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->checking for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc&nbsp=
-; -march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sy=
-sroot=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite</span><span styl=
-e=3D"font-family:&quot;Courier New&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->checking whether the C compiler works... no</span><span style=3D"font-fami=
-ly:&quot;Courier New&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->configure: error: in `/home/nass/eclipse/adt_hello/':</span><span style=3D=
-"font-family:&quot;Courier New&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->configure: error: in `/home/nass/eclipse/adt_hello/':</span><span style=3D=
-"font-family:&quot;Courier New&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->configure: error: C compiler cannot create executables</span><span style=
-=3D"font-family:&quot;Courier New&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->configure: error: C compiler cannot create executables</span><span style=
-=3D"font-family:&quot;Courier New&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->See `config.log' for more details</span><span style=3D"font-family:&quot;C=
-ourier New&quot;"><br>
-<br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->Configuration failed with error</span><span style=3D"font-family:&quot;Cal=
-ibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;"><br>
-config.log looks fairly similar to this post: <a href=3D"https://lists.yoct=
-oproject.org/pipermail/yocto/2013-January/013860.html" target=3D"_blank">
-https://lists.yoctoproject.org/pipermail/yocto/2013-January/013860.html</a>=
-<br>
-<br>
-I have configured to use the toolchain from the build directory. In fact th=
-e paths to the toolchain and sysroots are (both):
-<br>
-&quot;/home/nass/yocto/build/tmp/&quot; .<br>
-<br>
-I went on to try the slightly more manual in CLI :&nbsp; <a href=3D"http://=
-www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#creating-and-runni=
-ng-a-project-based-on-gnu-autotools" target=3D"_blank">
-http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#creating-an=
-d-running-a-project-based-on-gnu-autotools</a>
-<br>
-<br>
-again at configure&nbsp; stage, I get:<br>
-&nbsp;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">checking for gcc... arm-poky-linux-gnueabi-gcc&nbsp; -marc=
-h=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysroot=
-=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite</span><span style=3D"=
-font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->checking whether the C compiler works... yes</span><span style=3D"font-fam=
-ily:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->checking for C compiler default output file name... a.out</span><span styl=
-e=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->checking for suffix of executables...
-</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot=
-;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->checking whether we are cross compiling... configure: error: in `/home/nas=
-s/appz/dev/yoctauto':</span><span style=3D"font-family:&quot;Calibri&quot;,=
-&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->configure: error: cannot run C compiled programs.</span><span style=3D"fon=
-t-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->If you meant to cross compile, use `--host'.</span><span style=3D"font-fam=
-ily:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->See `config.log' for more details</span><span style=3D"font-family:&quot;C=
-alibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;"><br>
-Should I really use --host? Wouldn't it be in the plugin setup options alre=
-ady if that was necessary? OR wouldn't the environment-setup* file contain =
-the necessary declarations?<br>
-<br>
-Any ideas how to avert it?<br>
-<br>
-Thank you for your help! <o:p></o:p></span></p>
 </div>
 </div>
 </div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 </div>
 </body>
 </html>
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C3B188ORSMSX103amrcor_--
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C3B199ORSMSX103amrcor_--
