@@ -1,25 +1,36 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <jessica.zhang@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4029CE013A8
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 09:35:11 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0C58E013A8
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 09:38:28 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 14 Jun 2013 09:35:11 -0700
+	by orsmga101.jf.intel.com with ESMTP; 14 Jun 2013 09:38:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,867,1363158000"; d="scan'208";a="329554423"
-Received: from unknown (HELO helios.localnet) ([10.252.122.5])
-	by orsmga001.jf.intel.com with ESMTP; 14 Jun 2013 09:35:10 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Dat Tran <dtran11@gmail.com>, Edward Vidal <vidal.develone@gmail.com>
-Date: Fri, 14 Jun 2013 17:35:08 +0100
-Message-ID: <1571616.VWc8oWtlLJ@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.3 (Linux/3.8.0-23-generic; KDE/4.10.3; i686; ; )
-In-Reply-To: <loom.20130614T060308-378@post.gmane.org>
-References: <CANwz6nxO25BCt2B-H8T9_SO5F3DqfE1w2QDSoXPVnP-qxq994Q@mail.gmail.com>
-	<loom.20130614T060308-378@post.gmane.org>
+X-IronPort-AV: E=Sophos;i="4.87,867,1363158000"; 
+	d="scan'208,217";a="329556852"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by orsmga001.jf.intel.com with ESMTP; 14 Jun 2013 09:38:27 -0700
+Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 14 Jun 2013 09:38:27 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.22]) by
+	ORSMSX157.amr.corp.intel.com ([169.254.9.198]) with mapi id
+	14.03.0123.003; Fri, 14 Jun 2013 09:37:00 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Thanassis Silis <djnass_18@hotmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Can not build (configure) a simple Hello world program
+	in eclipse with ADT
+Thread-Index: AQHOaRs4kuWst/+wiUmz8Yx9RIPqRJk1Z+Fg
+Date: Fri, 14 Jun 2013 16:36:59 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C3B0A6@ORSMSX103.amr.corp.intel.com>
+References: <DUB116-W9038BE05D96B60298CC60C98800@phx.gbl>
+In-Reply-To: <DUB116-W9038BE05D96B60298CC60C98800@phx.gbl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: gcc enable-languages
+Subject: Re: Can not build (configure) a simple Hello world program in eclipse with ADT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,49 +42,324 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 16:35:12 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Fri, 14 Jun 2013 16:38:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C3B0A6ORSMSX103amrcor_"
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C3B0A6ORSMSX103amrcor_
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Friday 14 June 2013 04:04:07 Dat Tran wrote:
-> Anyone know of any clues that will help us? Thanks.
-> 
-> Edward Vidal <vidal.develone@...> writes:
-> > Dat Tran <dtran11 at gmail.com> wrote 
-> > > Hello,
-> > > 
-> > > I want to add support for FORTRAN in my image.
-> > > On target gcc -v shows --enable-languages=c,c++
-> > > This needs to --enable-languages=c,c++,fortran.based on my host system.
-> > > How does the variable FORTRAN in
-> > 
-> > /home/vidal/POKY/build032813_panda/poky/meta/recipes-devtools/gcc/gcc-
-> > configure-common.inc get set?  Can this be done in the local.conf file?
-> > 
-> > > Does the FORTRAN ?= ",f77" this need to be FORTRAN ?= ",fortran" since
-> > > we are building gcc4.7?
+Hi Thanassis,
 
-I have no direct knowledge of how to enable language support, but if you look 
-at meta/recipes-devtools/gcc/gcc-4.7.inc you'll see it sets FORTRAN = "", 
-which means setting it with = in local.conf won't work (since local.conf 
-parsing comes before recipes) nor will the FORTRAN ?= setting in meta/recipes-
-devtools/gcc/gcc-configure-common.inc. 
 
-I'd suggest bbappending the appropriate gcc recipe and set FORTRAN there 
-(which one depends on where you want to compile fortran code; gcc-cross would 
-be the right one for building a recipe for fortran software to run on the 
-target). You may need to set other variables in the bbappend as well, I'm not 
-entirely sure.
 
-An example of a layer that does something similar would be the meta-ada layer:
+How did you configure your toolchain and sysroot, in the windows->preferenc=
+e for ADT? I noticed from the commandling that your sysroot is sysroot=3D/h=
+ome/nass/yocto/build/tmp/sysroots/imx6qsabrelite
 
-https://github.com/Lucretia/meta-ada
 
-Cheers,
-Paul
 
--- 
+Typically we'd advise people not to directly use the sysroot under the buil=
+d environment.  If you follow the ADT manual there're couple ways for you t=
+o setup sysroot, either extract from image rootfs or use adt_installer.
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
+
+Thanks,
+
+Jessica
+
+
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Thanassis Silis
+Sent: Friday, June 14, 2013 9:20 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Can not build (configure) a simple Hello world program in =
+eclipse with ADT
+
+
+
+hello everyone,
+I am following the yocto Project Devel Manual ( http://www.yoctoproject.org=
+/docs/1.4/dev-manual/dev-manual.html#adt-eclipse ) to set up eclipse for us=
+e with an embedded target . I am stuck in section 4.2.2.2 trying to make a =
+simple autotools hello world application. The build fails at configure stag=
+e
+
+checking for style of include used by make... GNU
+checking for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc  -mar=
+ch=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysroot=
+=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite
+checking whether the C compiler works... no
+configure: error: in `/home/nass/eclipse/adt_hello/':
+configure: error: in `/home/nass/eclipse/adt_hello/':
+configure: error: C compiler cannot create executables
+configure: error: C compiler cannot create executables
+See `config.log' for more details
+
+Configuration failed with error
+
+
+config.log looks fairly similar to this post: https://lists.yoctoproject.or=
+g/pipermail/yocto/2013-January/013860.html
+
+I have configured to use the toolchain from the build directory. In fact th=
+e paths to the toolchain and sysroots are (both):
+"/home/nass/yocto/build/tmp/" .
+
+I went on to try the slightly more manual in CLI :  http://www.yoctoproject=
+.org/docs/1.4/adt-manual/adt-manual.html#creating-and-running-a-project-bas=
+ed-on-gnu-autotools
+
+again at configure  stage, I get:
+
+
+checking for gcc... arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-in=
+terwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysroot=3D/home/nass/yocto/buil=
+d/tmp/sysroots/imx6qsabrelite
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... configure: error: in `/home/nass=
+/appz/dev/yoctauto':
+configure: error: cannot run C compiled programs.
+If you meant to cross compile, use `--host'.
+See `config.log' for more details
+
+
+Should I really use --host? Wouldn't it be in the plugin setup options alre=
+ady if that was necessary? OR wouldn't the environment-setup* file contain =
+the necessary declarations?
+
+Any ideas how to avert it?
+
+Thank you for your help!
+
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C3B0A6ORSMSX103amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Thanassis,<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">How did you configure you=
+r toolchain and sysroot, in the windows-&gt;preference for ADT? I noticed f=
+rom the commandling that your sysroot is sysroot=3D/home/nass/yocto/build/t=
+mp/sysroots/imx6qsabrelite<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Typically we&#8217;d advi=
+se people not to directly use the sysroot under the build environment.&nbsp=
+; If you follow the ADT manual there&#8217;re couple ways for you to setup
+ sysroot, either extract from image rootfs or use adt_installer.<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Thanassis Silis<br>
+<b>Sent:</b> Friday, June 14, 2013 9:20 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Can not build (configure) a simple Hello world prog=
+ram in eclipse with ADT<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-f=
+amily:&quot;Calibri&quot;,&quot;sans-serif&quot;">hello everyone,<br>
+I am following the yocto Project Devel Manual ( <a href=3D"http://www.yocto=
+project.org/docs/1.4/dev-manual/dev-manual.html#adt-eclipse" target=3D"_bla=
+nk">
+http://www.yoctoproject.org/docs/1.4/dev-manual/dev-manual.html#adt-eclipse=
+</a> ) to set up eclipse for use with an embedded target . I am stuck in se=
+ction 4.2.2.2 trying to make a simple autotools hello world application. Th=
+e build fails at configure stage
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">checking for style of include used by make... GNU</span><s=
+pan style=3D"font-family:&quot;Courier New&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>checking for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc&nbsp=
+; -march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sy=
+sroot=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite</span><span styl=
+e=3D"font-family:&quot;Courier New&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>checking whether the C compiler works... no</span><span style=3D"font-fami=
+ly:&quot;Courier New&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>configure: error: in `/home/nass/eclipse/adt_hello/':</span><span style=3D=
+"font-family:&quot;Courier New&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>configure: error: in `/home/nass/eclipse/adt_hello/':</span><span style=3D=
+"font-family:&quot;Courier New&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>configure: error: C compiler cannot create executables</span><span style=
+=3D"font-family:&quot;Courier New&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>configure: error: C compiler cannot create executables</span><span style=
+=3D"font-family:&quot;Courier New&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>See `config.log' for more details</span><span style=3D"font-family:&quot;C=
+ourier New&quot;"><br>
+<br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>Configuration failed with error</span><span style=3D"font-family:&quot;Cal=
+ibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;"><br>
+config.log looks fairly similar to this post: <a href=3D"https://lists.yoct=
+oproject.org/pipermail/yocto/2013-January/013860.html" target=3D"_blank">
+https://lists.yoctoproject.org/pipermail/yocto/2013-January/013860.html</a>=
+<br>
+<br>
+I have configured to use the toolchain from the build directory. In fact th=
+e paths to the toolchain and sysroots are (both):
+<br>
+&quot;/home/nass/yocto/build/tmp/&quot; .<br>
+<br>
+I went on to try the slightly more manual in CLI :&nbsp; <a href=3D"http://=
+www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#creating-and-runni=
+ng-a-project-based-on-gnu-autotools">
+http://www.yoctoproject.org/docs/1.4/adt-manual/adt-manual.html#creating-an=
+d-running-a-project-based-on-gnu-autotools</a>
+<br>
+<br>
+again at configure&nbsp; stage, I get:<br>
+&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">checking for gcc... arm-poky-linux-gnueabi-gcc&nbsp; -marc=
+h=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysroot=
+=3D/home/nass/yocto/build/tmp/sysroots/imx6qsabrelite</span><span style=3D"=
+font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>checking whether the C compiler works... yes</span><span style=3D"font-fam=
+ily:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>checking for C compiler default output file name... a.out</span><span styl=
+e=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>checking for suffix of executables...
+</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot=
+;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>checking whether we are cross compiling... configure: error: in `/home/nas=
+s/appz/dev/yoctauto':</span><span style=3D"font-family:&quot;Calibri&quot;,=
+&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>configure: error: cannot run C compiled programs.</span><span style=3D"fon=
+t-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>If you meant to cross compile, use `--host'.</span><span style=3D"font-fam=
+ily:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>See `config.log' for more details</span><span style=3D"font-family:&quot;C=
+alibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;"><br>
+Should I really use --host? Wouldn't it be in the plugin setup options alre=
+ady if that was necessary? OR wouldn't the environment-setup* file contain =
+the necessary declarations?<br>
+<br>
+Any ideas how to avert it?<br>
+<br>
+Thank you for your help! <o:p></o:p></span></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C3B0A6ORSMSX103amrcor_--
