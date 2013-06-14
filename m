@@ -1,27 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 607E7E013A8
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 12:40:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5EJefq2027991
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 14 Jun 2013 12:40:41 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Fri, 14 Jun 2013 12:40:41 -0700
-Message-ID: <51BB71B6.8000104@windriver.com>
-Date: Fri, 14 Jun 2013 15:40:38 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07833E013A8
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 12:42:28 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 14 Jun 2013 12:42:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,868,1363158000"; d="scan'208";a="255166640"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by AZSMGA002.ch.intel.com with ESMTP; 14 Jun 2013 12:42:27 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 14 Jun 2013 12:42:26 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.22]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.69]) with mapi id
+	14.03.0123.003; Fri, 14 Jun 2013 12:42:26 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH 0/7][eclipse-poky] Add target profile quick switch
+Thread-Index: AQHOaDpGEtburWAjf0S5gTVmY0IYtpk1m/SQ
+Date: Fri, 14 Jun 2013 19:42:26 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C3B28D@ORSMSX103.amr.corp.intel.com>
+References: <cover.1371123125.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1371123125.git.timo.mueller@bmw-carit.de>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Javi Roman <javiroman@kernel-labs.org>
-References: <CACWQdqAfZ98fe9TW4R0aAQo2rL7Eshoyhqbe3Bd+Pp7AEi9k=w@mail.gmail.com>
-	<CACWQdqAEcv-M9r19DtWpCUtHvWEVVShKwXCXnjbVc24m-1HOSg@mail.gmail.com>
-In-Reply-To: <CACWQdqAEcv-M9r19DtWpCUtHvWEVVShKwXCXnjbVc24m-1HOSg@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Custom recipe kernel 2.6.32 and depmodwrapper
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: Re: [PATCH 0/7][eclipse-poky] Add target profile quick switch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,117 +41,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 19:40:44 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Jun 2013 19:42:31 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 13-06-14 04:21 AM, Javi Roman wrote:
-> Problably the issue about modules.builtin was a nosense, becasuse
-> patching the kernel Makefile in order to include this file dosen't fix
-> the problem.
->
+Hi Timo,
 
-I can't recall. Did you say this was with yocto master ?
+First thanks for continuous making improvement.  Most of the patches looked=
+ fine, but when I tested the functionality, I noticed that in either cases,=
+ your list contains:
+Project Specific and my customized profiles e.g. Standard Profile and profi=
+le_static.  I can toggle my customized profiles with no issue.  But if I cl=
+ick on the radio button for "project specific", I'm getting:
 
-> That said, I am unable to make work properly the /lib/modules folder.
-> The problem is the "make modules_install" is not putting all the files
-> in the target folder (I mean the modules.dep files an so on). This is
-> the log output when the task do_install of the kernel.bbclass:
->
-> [...]
->
->    DEPMOD  2.6.32-abacus
->
-> + bbnote 'JAVI -> ls INSTALL_MOD_PATH'
-> + echo 'NOTE: JAVI -> ls INSTALL_MOD_PATH'
-> NOTE: JAVI -> ls INSTALL_MOD_PATH
-> + ls -l /home/jroman/poky.git/build/tmp/work/romley-poky-linux/linux-yocto-abacus/2.6.32+gitAUTOINC+459b3d520991ec1b8e5ba68fbc4b206d602fee6e-r1/image/lib/modules/2.6.32-abacus/
->
-> total 40
-> lrwxrwxrwx 1 root root   163 Jun 14 10:08 build ->
-> /home/jroman/poky.git/build/tmp/work/romley-poky-linux/linux-yocto-abacus/2.6.32+gitAUTOINC+459b3d520991ec1b8e5ba68fbc4b206d602fee6e-r1/linux-romley-standard-build
-> drwxr-xr-x 9 root root  4096 Jun 14 10:08 kernel
-> -rw-r--r-- 1 root root  6380 Jun 14 10:08 modules.builtin
-> -rw-r--r-- 1 root root 16509 Jun 14 10:08 modules.order
-> lrwxrwxrwx 1 root root   141 Jun 14 10:08 source ->
-> /home/jroman/poky.git/build/tmp/work/romley-poky-linux/linux-yocto-abacus/2.6.32+gitAUTOINC+459b3d520991ec1b8e5ba68fbc4b206d602fee6e-r1/linux
->
-> [...]
->
-> The make modules_install uses the target folder INSTALL_MOD_PATH in
-> order to install the modules, however you can see only the files
-> "modules.builtin" and "modules.order" are properly installed. The
-> "make modules_install" work fine if I run this command from a
-> "devshell", however from the "bitbake virtual/kernel -c install" is
-> not properly working.
+The project specific target profile is not defined for the project "YHWC".
+You can define it in the projects property page
 
- From your log, you've been looking around and instrumenting the install
-routine.
+Reason:
+Specified Toolchain Root Location is empty.
 
-The DEPMOD=echo in the modules_install call is likely the source of
-why you aren't seeing some files in the install phase. Or did you
-already rule that out ?
+So I'm a little lost here,do we really need this project specific option? T=
+he other nit picking is, you have "projectSpeficic.label", is that a typo?
 
-We are re-creating the .dep with all modules taken into account with
-the depwrapper, which takes you back to your original question, if
-I'm not mistaken.
+Thanks,
+Jessica
 
-Mark Hatle did a lot of work with the depmodwrapper, but as far as I
-can recall, nothing of the 2.6.x vintage was tested. I'd suggest that
-patches against depmodwrapper to use the right files for a kernel
-of that vintage would be possible, but I'm not aware of anyone working
-on them at the moment.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Timo Mueller
+Sent: Thursday, June 13, 2013 6:30 AM
+To: yocto@yoctoproject.org
+Cc: Timo Mueller
+Subject: [yocto] [PATCH 0/7][eclipse-poky] Add target profile quick switch
 
-Cheers,
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Bruce
+Hi,
 
->
-> Can anybody give me a hint?
->
-> Many thanks.
-> Javi Roman
->
->
-> On Thu, Jun 13, 2013 at 3:03 PM, Javi Roman <javiroman@kernel-labs.org> wrote:
->> Hi!
->>
->> I've found a possible issue with the depmodwrapper (in image.bbclass
->> -> do_rootfs) and the old kernel tree 2.6.32.
->>
->> The final rootfs image is not properly populated with the necessary
->> kernel module files for the module-init-tools utility:
->>
->> /lib/modules/<kernel-version/
->> modules.alias
->> modules.alias.bin
->> modules.builtin
->> modules.builtin.bin
->> modules.dep
->> modules.dep.bin
->> modules.devname
->> modules.order
->> modules.softdep
->> modules.symbols
->> modules.symbols.bin
->>
->> This tool depmodwrapper is using the kernel Makefile generated file
->> "modules.builtin", this file is not generated by the kbuild kernel
->> system in the 2.6.32 kernel. This feature was included in the 2.6.33
->> branch [1].
->>
->> So the image.bbclass is broken for kernel trees below 2.6.33 version.
->> However the bitbake.conf shows the variable OLDEST_KERNEL = "2.6.16".
->>
->> Many thanks!
->>
->> [1] https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=bc081dd6e9f622c73334dc465359168543ccaabf
->>
->> Javi Roman
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+if a user wants to change the used target profile of a project he currently=
+ has to open the project preferences. This can be tedious if he has to swit=
+ch the profile often.
 
+This is a small addition which allows the user to quickly switch the used t=
+arget profile of a project. Instead of having to open the project preferenc=
+es the user can select the project in the navigator and then choose the des=
+ired target profile from a drop-down menu in the toolbar or from the projec=
+t menu.
+
+01: Small i18n fix
+02..04: Refactoring the project specific utils
+05..06: Introduce the target profile toolbar switch
+07: Adds the target profile switch to the project menu
+
+Best regards,
+Timo
+
+Timo Mueller (7):
+  plugins/sdk.ide: Use an internationalized dialog title
+  plugins/sdk.ide: Extract project specific util methods
+  plugins/sdk.ide: Move project specific util methods
+  plugins/sdk.ide: Remove project context from method names
+  plugins/sdk.ide: Add command to switch the target profile
+  plugins/sdk.ide: Add profile switch menu to the toolbar
+  plugins/sdk.ide: Add profile switch menu to the project menu
+
+ .../OSGI-INF/l10n/bundle.properties                |   5 +
+ plugins/org.yocto.sdk.ide/plugin.xml               | 105 +++++++++
+ .../sdk/ide/TargetProfileContributionItem.java     | 121 +++++++++++
+ .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |   3 +
+ .../src/org/yocto/sdk/ide/YoctoUISetting.java      |   3 +-
+ .../sdk/ide/actions/ProfileSwitchHandler.java      | 154 +++++++++++++
+ .../natures/YoctoSDKAutotoolsProjectNature.java    |   3 +-
+ .../ide/preferences/YoctoSDKPreferencePage.java    |  11 +-
+ .../preferences/YoctoSDKProjectPropertyPage.java   | 130 ++---------
+ .../sdk/ide/utils/ProjectPreferenceUtils.java      | 240 +++++++++++++++++=
+++++
+ .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java | 118 ----------
+ .../ide/wizard/NewYoctoProjectTemplateProcess.java |   3 +-
+ 12 files changed, 651 insertions(+), 245 deletions(-)  create mode 100644 =
+plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContributionIt=
+em.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/actions=
+/ProfileSwitchHandler.java
+ create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/P=
+rojectPreferenceUtils.java
+
+--
+1.8.1.4
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
