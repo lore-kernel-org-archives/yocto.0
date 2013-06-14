@@ -1,25 +1,25 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D385FE005B3
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 05:30:22 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 14 Jun 2013 05:30:21 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88D42E005B3
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 05:34:03 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 14 Jun 2013 05:34:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,866,1363158000"; d="scan'208";a="255005711"
+X-IronPort-AV: E=Sophos;i="4.87,866,1363158000"; d="scan'208";a="353306624"
 Received: from unknown (HELO helios.localnet) ([10.252.122.5])
-	by AZSMGA002.ch.intel.com with ESMTP; 14 Jun 2013 05:30:20 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 14 Jun 2013 05:34:01 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Rohit2 Jindal <rohit2.jindal@aricent.com>
-Date: Fri, 14 Jun 2013 13:30:20 +0100
-Message-ID: <14746932.1IgOpEMSZM@helios>
+To: yocto@yoctoproject.org
+Date: Fri, 14 Jun 2013 13:34 +0100
+Message-ID: <342806016.xqFbCBQS4Q@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.10.3 (Linux/3.8.0-23-generic; KDE/4.10.3; i686; ; )
-In-Reply-To: <17797116383D4341B029FDF34C22BF6A52C4CCB36E@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.11.1371063601.16784.yocto@yoctoproject.org>
-	<17797116383D4341B029FDF34C22BF6A52C4CCB36E@GUREXMB01.ASIAN.AD.ARICENT.COM>
+In-Reply-To: <CAJTo0LYb8pL5O_1yj-6FwvhsU1mfxdFpmeLTpXg_K0Py0mJKnQ@mail.gmail.com>
+References: <CAM1ZcoU1VZLQeKCt=xySb8ji0v-dYTQkiXwPDG_oDOwafUdgjg@mail.gmail.com>
+	<CAM1ZcoVjQ83ecfrQasDY29CYs+RNEUmUqJbjg6XseS-qBF-n1g@mail.gmail.com>
+	<CAJTo0LYb8pL5O_1yj-6FwvhsU1mfxdFpmeLTpXg_K0Py0mJKnQ@mail.gmail.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Recompile the recipe everytime
+Subject: Re: recipe using waf installation location
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,46 +31,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 12:30:27 -0000
+X-List-Received-Date: Fri, 14 Jun 2013 12:34:03 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Rohit,
-
-On Thursday 13 June 2013 20:54:08 Rohit2 Jindal wrote:
-> Please help me out I am stuck in some issue, actually I want my recipe to do
-> compilation everytime on every run of
+On Friday 14 June 2013 12:36:22 Burton, Ross wrote:
+> On 13 June 2013 17:08, Katu Txakur <katutxakurra@gmail.com> wrote:
+> > Thanks a lot Ross,
+> > you are absolutely right. Just that the --prefix in waf it's done in the
+> > configure so I now have
+> > 
+> > do_configure() {
+> > ./waf configure --prefix=${prefix} --debug --alsa --clients=128
+> > }
 > 
-> Bitbake linux-yocto
-> 
-> ie can I remove stamping or sstate-cache that it allows me to run
-> compilation everytime on every run of bitbake linux-yocto.
-> 
-> 
-> I tried do_compile[nostamp] ="1" but it did not work but same thing worked
-> for do_install[nostamp]="1"
+> At this point it would be sensible to write a waf class so that
+> someone else doesn't have to do the same again.
 
-If you really want to do this, I think you'll need to mark all tasks in the 
-normal flow from do_compile onwards as nostamp i.e.:
+I agree. FWIW, I stumbled across this some months ago but forgot to follow up 
+on it:
 
-do_compile
-do_compile_kernelmodules
-do_kernel_link_vmlinux
-do_install
-do_package
-do_packagedata
-do_package_write
-do_package_write_rpm
-do_populate_sysroot
-do_strip
-do_deploy
-do_uboot_mkimage
-do_sizecheck
-
-I have to say I don't recommend doing this. I would strongly suggest you use 
-"bitbake -c compile -f linux-yocto" or "bitbake -C compile linux-yocto" (the 
-latter will force compile and then automatically run all the needed tasks up 
-to the default task).
+http://fastr.github.io/articles/WAF-on-OpenEmbedded.html
 
 Cheers,
 Paul
