@@ -1,32 +1,32 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A602CE013A8
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 19:24:11 -0700 (PDT)
-Received: by mail-ie0-f175.google.com with SMTP id a13so182536iee.34
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 19:24:10 -0700 (PDT)
+Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A15A4E013A8
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 19:31:02 -0700 (PDT)
+Received: by mail-ie0-f171.google.com with SMTP id qd12so203849ieb.2
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2013 19:31:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=CWr+DvbiCuVOX2+dLANMkkkqI689H4Lkh8OmN+LbYJ8=;
-	b=cUqAn0jR6AHnTAta1LLTZrtvyqW8DTcaTr1S71gtf3ylAEkBZsrbboT/GqwkyjsySW
-	bh2KaJyKpRqoxgQYXzP1TrnqZwRDK0yRJEMFnHTIEom+S6L22R4USR4wc0XMupJYcekV
-	a6+Z9MbY7oCI8BoW5/uqYTkr1mhycjyMxhiYBjSg39A6pw/vaSxpQ2WOA1KlB6ts41dc
-	eewt9MRoKsBnLNnvy+ShKfbSG5qEYVLKzU/ENITvL0lGGyqeP9y4z7niDkQyotfQa1+d
-	JflFI7mrEHOXmIpGjY5McxJwPJ/BJC50p43P5UZGBKfhQjptrhLWPRqc555BSjpNiRou
-	MlaA==
-X-Received: by 10.50.8.65 with SMTP id p1mr116729iga.19.1371176650662; Thu, 13
-	Jun 2013 19:24:10 -0700 (PDT)
+	bh=LOy67naNZOLeFmx+RYOiOpdR+9rmBlskDpoGe5EQE3g=;
+	b=hsXJe++TdbHGWIoosZwIZfq645fuqzUETd8xtUszrRguWzQwVykoiE5mFvwVn/4CO6
+	Zs3t5+1v7EmfnULs7u+hhwumsDlPK2Ypz3UKQi/3nj4tCBYXDxRno7MWAzrM+t0m2/MA
+	l4oIijsGMSgbFkqxTDyzInrf0OzXTM/dB+m3O5C/1skjRcODPPssiSvdk8B4ho+C0E5h
+	u4Pun+Oc2+xZYELHezWY1IDMEikICwXQQld0tCGbq8diCthPMsxGE5IBgGSORPa7NaiK
+	11T2alIg00f3jGk6kKoVZNe+/xQ91DUxAYCkNoGM9Gxw6Ithv5yDT5Dc0G654KubEqHU
+	oPbA==
+X-Received: by 10.50.65.9 with SMTP id t9mr116199igs.102.1371177062627; Thu,
+	13 Jun 2013 19:31:02 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.4.168 with HTTP; Thu, 13 Jun 2013 19:23:40 -0700 (PDT)
-In-Reply-To: <1370952018-31698-1-git-send-email-noor_ahsan@mentor.com>
-References: <1370952018-31698-1-git-send-email-noor_ahsan@mentor.com>
+Received: by 10.50.4.168 with HTTP; Thu, 13 Jun 2013 19:30:32 -0700 (PDT)
+In-Reply-To: <1370964638-30649-1-git-send-email-muhammad_shakeel@mentor.com>
+References: <1370964638-30649-1-git-send-email-muhammad_shakeel@mentor.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 13 Jun 2013 19:23:40 -0700
-Message-ID: <CAMKF1spC1Rvx8bmM1ApiYsFRGzQs51dH7fALX92rQye4gP0Rkg@mail.gmail.com>
-To: "Noor, Ahsan" <noor_ahsan@mentor.com>
+Date: Thu, 13 Jun 2013 19:30:32 -0700
+Message-ID: <CAMKF1sp_7WmGp02EeyFFe5imLja43=s8US-eJ5C3XP=-=fNX6w@mail.gmail.com>
+To: "Shakeel, Muhammad" <muhammad_shakeel@mentor.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] dlt-daemon: Fix multiple issues with service files.
+Subject: Re: [PATCH 1/3] [meta-ivi] portmap: Use systemd service type forking instead of oneshot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,23 +38,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 02:24:13 -0000
+X-List-Received-Date: Fri, 14 Jun 2013 02:31:05 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Jun 11, 2013 at 5:00 AM, Noor, Ahsan <noor_ahsan@mentor.com> wrote:
-> +do_install_append() {
-> +    # Remove "User=genivi" option from systemd service files, as we want this to go to default setting
-> +    sed -i '/User/d' ${D}/${systemd_unitdir}/system/*.service
-> +
-> +    # Install the required systemd services links
-> +    install -d ${D}${base_libdir}/systemd/system/basic.target.wants
-> +    ln -sf ../dlt.service ${D}${base_libdir}/systemd/system/basic.target.wants/dlt.service
-> +    ln -sf ../dlt-system.service ${D}${base_libdir}/systemd/system/basic.target.wants/dlt-system.service
-> +}
+On Tue, Jun 11, 2013 at 8:30 AM, Shakeel, Muhammad
+<muhammad_shakeel@mentor.com> wrote:
+> From: Muhammad Shakeel <muhammad_shakeel@mentor.com>
+>
+> portmap is a resident program and we want to start it in background.
+> With service type 'forking' systemd knows that the executable is a daemon.
+> Although in this case 'oneshot' + 'RemainAfterExit=yes' works but it
+> is intended for non-resident programs.
+>
+
+I wonder why is rpcbind not replacing portmap for ivi ?
 
 
-shouldnt this be done only when system is in DISTRO_FEATURES ?
-secondly install into ${D}${base_libdir}/systemd/system should be
-enough and you can use ${systemd_unitdir}/system
-since thats multilib safe.
+> Signed-off-by: Muhammad Shakeel <muhammad_shakeel@mentor.com>
+> ---
+>  .../portmap/portmap/portmap.service                |    4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/recipes-connectivity/portmap/portmap/portmap.service b/recipes-connectivity/portmap/portmap/portmap.service
+> index 7f9bc94..a76754f 100644
+> --- a/recipes-connectivity/portmap/portmap/portmap.service
+> +++ b/recipes-connectivity/portmap/portmap/portmap.service
+> @@ -3,9 +3,9 @@ Description=Portmap
+>  After=connman.service
+>
+>  [Service]
+> -Type=oneshot
+> +Type=forking
+>  ExecStart=/sbin/portmap -l
+> -RemainAfterExit=yes
+> +PIDFile=/var/run/portmap.pid
+>
+>  [Install]
+>  WantedBy=multi-user.target
+> --
+> 1.7.9.5
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
