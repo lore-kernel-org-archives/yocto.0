@@ -1,35 +1,37 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-vb0-f54.google.com (mail-vb0-f54.google.com
-	[209.85.212.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50D85E005B3
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 04:21:00 -0700 (PDT)
-Received: by mail-vb0-f54.google.com with SMTP id q12so329532vbe.41
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 04:21:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=tfAJeWUEPzPdBuZ/WNAek0MToAitxXVWU0xWRcDwO88=;
-	b=Agw+hqbiAEGfz5s0jttAlzRdvfamgQxHQO+gUVY23DXHuCZkv6QmmwD0EH4W1RW01N
-	bvaU0P58FhM9kyf7kiIfPGJxjqy6gGtZ66vfwlFdIsmxagsdUAW+WaWLt6zlqvZsn9+Q
-	0q+71fu6tPvChUgAUP0N+92jTq3WscDLJfDw7ZFGRWAU7yzCNLQBdesk6JpF54RK8NxE
-	rW1QaYbW3SV1vaxI5tCZhptRu7KnNGzHh7l9rt0A1rPnLqC37nEqheFm4bf9LozSt7oe
-	o+XnQPaZwiW4ZUDQSuWdnXhZCX/zRFodAQIBVjJWOcOCJQCefLXwKDVUzSPYb+1zRHDr
-	XRiQ==
-MIME-Version: 1.0
-X-Received: by 10.52.89.234 with SMTP id br10mr631943vdb.103.1371208859974;
-	Fri, 14 Jun 2013 04:20:59 -0700 (PDT)
-Received: by 10.52.179.33 with HTTP; Fri, 14 Jun 2013 04:20:59 -0700 (PDT)
-In-Reply-To: <CAFMfyzJiqRGsU+xjjt+htvHrCok1UyZijz2_0Z+40gXiebAQgQ@mail.gmail.com>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24099E005B3
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 04:32:41 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 14 Jun 2013 04:30:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,865,1363158000"; 
+	d="scan'208,217";a="353399355"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga002.jf.intel.com with ESMTP; 14 Jun 2013 04:32:17 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.64]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.224]) with mapi id
+	14.03.0123.003; Fri, 14 Jun 2013 04:32:17 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>, "Zhang, Jessica"
+	<jessica.zhang@intel.com>
+Thread-Topic: [yocto] No crosscompiler in Toolchain
+Thread-Index: AQHOZqOPK/mVIpNNSkGbq9kGmioAP5kxP9gAgAASrYCAAALeAIAAqZmAgAG07oCAAdalgP//jYwA
+Date: Fri, 14 Jun 2013 11:32:16 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF4961D@ORSMSX101.amr.corp.intel.com>
 References: <CAFMfyz+_j-mWj4C0YJUnOBcCX-oMGc8196pmPcQcD8XbK6r0xA@mail.gmail.com>
 	<CA+YB3rYq6_o_Sc50t0TVm5rnEeG2MD2qo=Ya6WKyG=c5vy_vHg@mail.gmail.com>
 	<CAFMfyzKzvBDTxPoLN6=fFkP=Rbd_KWVpLk=352F6OxB3e5-iWg@mail.gmail.com>
 	<C6510F6D410BB64A8C15398EDC6B847C73C39CA0@ORSMSX103.amr.corp.intel.com>
 	<CAFMfyz+km6mQctRO5d52+p4+4hKuE9qzv755EjTOW7Zc3KEb0Q@mail.gmail.com>
 	<CAFMfyzJiqRGsU+xjjt+htvHrCok1UyZijz2_0Z+40gXiebAQgQ@mail.gmail.com>
-Date: Fri, 14 Jun 2013 13:20:59 +0200
-Message-ID: <CAFMfyz+OM4EJwTWda16WNOPtUbX6e2UWuvaHXFEWOf2Wd2qE-A@mail.gmail.com>
-From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
+	<CAFMfyz+OM4EJwTWda16WNOPtUbX6e2UWuvaHXFEWOf2Wd2qE-A@mail.gmail.com>
+In-Reply-To: <CAFMfyz+OM4EJwTWda16WNOPtUbX6e2UWuvaHXFEWOf2Wd2qE-A@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: No crosscompiler in Toolchain
 X-BeenThere: yocto@yoctoproject.org
@@ -43,381 +45,566 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 11:21:01 -0000
-Content-Type: multipart/alternative; boundary=20cf307f37d60302da04df1b7161
+X-List-Received-Date: Fri, 14 Jun 2013 11:32:42 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF4961DORSMSX101amrcor_"
 
---20cf307f37d60302da04df1b7161
-Content-Type: text/plain; charset=windows-1252
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF4961DORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Glad the problem was solved.  I am currently working on a detailed section =
+to address toolchain concepts and generation that will eventually reside in=
+ the reference manual.
+
+Thanks,
+Scott
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of DAMARLA Satya Swaroop
+Sent: Friday, June 14, 2013 4:21 AM
+To: Zhang, Jessica
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] No crosscompiler in Toolchain
 
 Hi Everyone,
 
-I solved the issue, but I don't know if its right or wrong but for the
-moment I am happy... The following didnot work for me
+I solved the issue, but I don't know if its right or wrong but for the mome=
+nt I am happy... The following didnot work for me
 
-*bitbake core-image-skidata -c populate_sdk*
-*              *nor
-*bitbake meta-toolchain*
-*
-*
-but *bitbake meta-toolchain-sdk * worked for me and created a toolchain
-with the crosscompiler... I have no idea why the others didnot create a
-toolchain with cross compiler for me. I think this has to be discussed in
-more detail..
+bitbake core-image-skidata -c populate_sdk
+              nor
+bitbake meta-toolchain
+
+but bitbake meta-toolchain-sdk  worked for me and created a toolchain with =
+the crosscompiler... I have no idea why the others didnot create a toolchai=
+n with cross compiler for me. I think this has to be discussed in more deta=
+il..
 
 For now have a wonderful weekend
 
 Warm regards from Austria,
 Satya
 
+On Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaroop <satyaswaroop.damarl=
+a@gmail.com<mailto:satyaswaroop.damarla@gmail.com>> wrote:
+Hi,
 
-On Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaroop <
-satyaswaroop.damarla@gmail.com> wrote:
+Any updates on this issue why there is no cross compiler in the toolchain w=
+e build... I think this is pretty important unfortunately I am not able to =
+find the cause.. Help is deeply appreciated..
 
-> Hi,
->
-> Any updates on this issue why there is no cross compiler in the toolchain
-> we build... I think this is pretty important unfortunately I am not able =
-to
-> find the cause.. Help is deeply appreciated..
->
-> Greets,
-> Satya
->
->
-> On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaroop <
-> satyaswaroop.damarla@gmail.com> wrote:
->
->> Hi Jessica,
->>
->> By the sentence "No crosscompiler for my target installed in my
->> toolchain", I mean I don't find the binaries for crosscompiling which ar=
-e
->> usually present in the directory as shown below
->>
->> *damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux=
-/usr/bin$
->> ls*
->> *aclocal        autoreconf        flash2raw.terrier       opkg-key
->>  pseudolog  qemu-mipsel       qemu-system-mipsel  raw2flash.terrier
->>  runqemu-ifup*
->> *aclocal-1.12   autoscan          gnu-configize           perl
->>  qemu-arm   qemu-mips.real    qemu-system-ppc     runqemu
->>  runqemu-internal*
->> *autoconf       autoupdate        ifnames                 perl5.14.3
->>  qemu-ga    qemu-nbd          qemu-system-x86_64  runqemu-addptable2imag=
-e
->>  tunctl*
->> *autoheader     dtc               libtoolize              perl.real
->> qemu-i386  qemu-ppc          qemu-x86_64         runqemu-export-rootfs
->>  update-alternatives*
->> *autom4te       flash2raw.akita   m4                      pkg-config
->>  qemu-img   qemu-system-arm   raw2flash.akita     runqemu-extract-sdk
->>  x86_64-pokysdk-linux-libtool*
->> *automake       flash2raw.borzoi  oe-find-native-sysroot  pseudo
->>  qemu-io    qemu-system-i386  raw2flash.borzoi    runqemu-gen-tapdevs*
->> *automake-1.12  flash2raw.spitz   opkg-cl                 pseudodb
->>  qemu-mips  qemu-system-mips  raw2flash.spitz     runqemu-ifdown*
->>
->>
->> I don't have a directory and the list is empty
->>
->> *damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux=
-/usr/bin$
->> ls -la| egrep '^d'*
->> *drwxr-xr-x 2 damarla damarla    4096 Jun 11 14:27 .*
->> *drwxr-xr-x 7 damarla damarla    4096 Jun 11 14:15 ..*
->> *
->> *
->> I want to know what could be the potential issue that my toolchain has n=
-o
->> crosscompiler for my target
->>
->> Greets,
->> Satya
->>
->>
->> On Tue, Jun 11, 2013 at 9:05 PM, Zhang, Jessica <jessica.zhang@intel.com=
->wrote:
->>
->>>  Hi Satya,****
->>>
->>> ** **
->>>
->>> What is your cross compiler that you said it=92s not installed? For
->>> example, on my development host e.g. x86, after I install the toolchain=
-,
->>> there=92s an environment-setup-*** file, inside it specifies what is yo=
-ur
->>> cross compiler, e.g. arm-poky-linux-gnueabi-gcc for my case, after I so=
-urce
->>> the environment file, and do which arm-poky-linux-gnueabi-gcc, I can se=
-e
->>> it=92s under
->>> path_to_toolchain/sysroots/i686_pokysdk_linux/usr/bin/armv5te-poky-linu=
-x-gnueabi/arm-poky-linux-gnueabi-gcc=85
->>> so you=92re seeing things differently?****
->>>
->>> ** **
->>>
->>> Jessica****
->>>
->>> ** **
->>>
->>> *From:* yocto-bounces@yoctoproject.org [mailto:
->>> yocto-bounces@yoctoproject.org] *On Behalf Of *DAMARLA Satya Swaroop
->>> *Sent:* Tuesday, June 11, 2013 11:55 AM
->>> *To:* Jeff Osier-Mixon; yocto@yoctoproject.org
->>> *Subject:* Re: [yocto] No crosscompiler in Toolchain****
->>>
->>> ** **
->>>
->>> First I am sorry about the Gentlemen.... Next time it would be Ladies &
->>> Gentlemen... ;-)****
->>>
->>> ** **
->>>
->>> Let me explain the situation better ... *core-image-skidata* (arm) is
->>> customized image which I build and I want to build a toolchain for this
->>> image on my x86_64 with should consist of cross compiler (which I assum=
-e a
->>> toolchain should contain). The build for the toolchain went successfull=
- but
->>> when I installed the toolchain on my system, I didnot find the
->>> crosscompiler installed...****
->>>
->>> ** **
->>>
->>> Hope you understood my problem..****
->>>
->>> ** **
->>>
->>> Greets,****
->>>
->>> Satya****
->>>
->>> ** **
->>>
->>> On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon <jefro@jefro.net>
->>> wrote:****
->>>
->>> On Tue, Jun 11, 2013 at 5:59 AM, DAMARLA Satya Swaroop
->>> <swaroop.damarla@gmail.com> wrote:
->>> > Gentlemen! We have a problem here...****
->>>
->>> Not all here are gentlemen :)****
->>>
->>>
->>> > I compiled the toolchain using the command bitbake core-image-skidata
->>> -c
->>> > populate_sdk and installed the toolchain but I have to tell you that =
-I
->>> dont
->>> > see any cross-compiler installed with the toolchain...
->>> >
->>> > Any guesses what could be the reason.. The image is customized x11
->>> image...****
->>>
->>> I'm not sure I understand. It looks like you are using Host A to build
->>> a toolchain and install it into an image (core-image-skidata) on
->>> Target A. Are you then expecting to use Target A as Host B to compile
->>> for Target B?  Is it possible that the skidata image recipe does not
->>> contain the cross-compiler recipes?
->>>
->>> --
->>> Jeff Osier-Mixon http://jefro.net/blog
->>> Yocto Project Community Manager @Intel http://yoctoproject.org****
->>>
->>> ** **
->>>
->>
->>
->
+Greets,
+Satya
 
---20cf307f37d60302da04df1b7161
-Content-Type: text/html; charset=windows-1252
+On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaroop <satyaswaroop.damarl=
+a@gmail.com<mailto:satyaswaroop.damarla@gmail.com>> wrote:
+Hi Jessica,
+
+By the sentence "No crosscompiler for my target installed in my toolchain",=
+ I mean I don't find the binaries for crosscompiling which are usually pres=
+ent in the directory as shown below
+
+damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux/usr=
+/bin$ ls
+aclocal        autoreconf        flash2raw.terrier       opkg-key    pseudo=
+log  qemu-mipsel       qemu-system-mipsel  raw2flash.terrier        runqemu=
+-ifup
+aclocal-1.12   autoscan          gnu-configize           perl        qemu-a=
+rm   qemu-mips.real    qemu-system-ppc     runqemu                  runqemu=
+-internal
+autoconf       autoupdate        ifnames                 perl5.14.3  qemu-g=
+a    qemu-nbd          qemu-system-x86_64  runqemu-addptable2image  tunctl
+autoheader     dtc               libtoolize              perl.real   qemu-i=
+386  qemu-ppc          qemu-x86_64         runqemu-export-rootfs    update-=
+alternatives
+autom4te       flash2raw.akita   m4                      pkg-config  qemu-i=
+mg   qemu-system-arm   raw2flash.akita     runqemu-extract-sdk      x86_64-=
+pokysdk-linux-libtool
+automake       flash2raw.borzoi  oe-find-native-sysroot  pseudo      qemu-i=
+o    qemu-system-i386  raw2flash.borzoi    runqemu-gen-tapdevs
+automake-1.12  flash2raw.spitz   opkg-cl                 pseudodb    qemu-m=
+ips  qemu-system-mips  raw2flash.spitz     runqemu-ifdown
+
+
+I don't have a directory and the list is empty
+
+damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux/usr=
+/bin$ ls -la| egrep '^d'
+drwxr-xr-x 2 damarla damarla    4096 Jun 11 14:27 .
+drwxr-xr-x 7 damarla damarla    4096 Jun 11 14:15 ..
+
+I want to know what could be the potential issue that my toolchain has no c=
+rosscompiler for my target
+
+Greets,
+Satya
+
+On Tue, Jun 11, 2013 at 9:05 PM, Zhang, Jessica <jessica.zhang@intel.com<ma=
+ilto:jessica.zhang@intel.com>> wrote:
+Hi Satya,
+
+What is your cross compiler that you said it's not installed? For example, =
+on my development host e.g. x86, after I install the toolchain, there's an =
+environment-setup-*** file, inside it specifies what is your cross compiler=
+, e.g. arm-poky-linux-gnueabi-gcc for my case, after I source the environme=
+nt file, and do which arm-poky-linux-gnueabi-gcc, I can see it's under path=
+_to_toolchain/sysroots/i686_pokysdk_linux/usr/bin/armv5te-poky-linux-gnueab=
+i/arm-poky-linux-gnueabi-gcc... so you're seeing things differently?
+
+Jessica
+
+From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
+ [mailto:yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.o=
+rg>] On Behalf Of DAMARLA Satya Swaroop
+Sent: Tuesday, June 11, 2013 11:55 AM
+To: Jeff Osier-Mixon; yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+Subject: Re: [yocto] No crosscompiler in Toolchain
+
+First I am sorry about the Gentlemen.... Next time it would be Ladies & Gen=
+tlemen... ;-)
+
+Let me explain the situation better ... core-image-skidata (arm) is customi=
+zed image which I build and I want to build a toolchain for this image on m=
+y x86_64 with should consist of cross compiler (which I assume a toolchain =
+should contain). The build for the toolchain went successfull but when I in=
+stalled the toolchain on my system, I didnot find the crosscompiler install=
+ed...
+
+Hope you understood my problem..
+
+Greets,
+Satya
+
+On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon <jefro@jefro.net<mailto:j=
+efro@jefro.net>> wrote:
+On Tue, Jun 11, 2013 at 5:59 AM, DAMARLA Satya Swaroop
+<swaroop.damarla@gmail.com<mailto:swaroop.damarla@gmail.com>> wrote:
+> Gentlemen! We have a problem here...
+Not all here are gentlemen :)
+
+> I compiled the toolchain using the command bitbake core-image-skidata -c
+> populate_sdk and installed the toolchain but I have to tell you that I do=
+nt
+> see any cross-compiler installed with the toolchain...
+>
+> Any guesses what could be the reason.. The image is customized x11 image.=
+..
+I'm not sure I understand. It looks like you are using Host A to build
+a toolchain and install it into an image (core-image-skidata) on
+Target A. Are you then expecting to use Target A as Host B to compile
+for Target B?  Is it possible that the skidata image recipe does not
+contain the cross-compiler recipes?
+
+--
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
+
+
+
+
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF4961DORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Everyone,<div><br></div><div style>I solved the issue, =
-but I don&#39;t know if its right or wrong but for the moment I am happy...=
- The following didnot work for me</div><div style><br></div><div style><i>b=
-itbake core-image-skidata -c populate_sdk</i></div>
-<div style><i>=A0 =A0 =A0 =A0 =A0 =A0 =A0 </i>nor</div><div style><i>bitbak=
-e meta-toolchain</i></div><div style><i><br></i></div><div style>but <i>bit=
-bake meta-toolchain-sdk </i>=A0worked for me and created a toolchain with t=
-he crosscompiler... I have no idea why the others didnot create a toolchain=
- with cross compiler for me. I think this has to be discussed in more detai=
-l..</div>
-<div style><br></div><div style>For now have a wonderful weekend</div><div =
-style><br></div><div style>Warm regards from Austria,</div><div style>Satya=
-</div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">O=
-n Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaroop <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">satyas=
-waroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi,<div><br></div><div>Any =
-updates on this issue why there is no cross compiler in the toolchain we bu=
-ild... I think this is pretty important unfortunately I am not able to find=
- the cause.. Help is deeply appreciated..</div>
-
-<div><br></div><div>Greets,</div><div>Satya</div></div><div class=3D"HOEnZb=
-"><div class=3D"h5"><div class=3D"gmail_extra"><br><br><div class=3D"gmail_=
-quote">On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaroop <span dir=3D"=
-ltr">&lt;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank=
-">satyaswaroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi Jessica,<div><br></div><=
-div>By the sentence &quot;No crosscompiler for my target installed in my to=
-olchain&quot;, I mean I don&#39;t find the binaries for crosscompiling whic=
-h are usually present in the directory as shown below</div>
-
-
-<div><br></div><div><div><i>damarla@linuxbuildsrv:~/yocto/myToolchain/sysro=
-ots/x86_64-pokysdk-linux/usr/bin$ ls</i></div><div><i>aclocal =A0 =A0 =A0 =
-=A0autoreconf =A0 =A0 =A0 =A0flash2raw.terrier =A0 =A0 =A0 opkg-key =A0 =A0=
-pseudolog =A0qemu-mipsel =A0 =A0 =A0 qemu-system-mipsel =A0raw2flash.terrie=
-r =A0 =A0 =A0 =A0runqemu-ifup</i></div>
-
-
-<div><i>aclocal-1.12 =A0 autoscan =A0 =A0 =A0 =A0 =A0gnu-configize =A0 =A0 =
-=A0 =A0 =A0 perl =A0 =A0 =A0 =A0qemu-arm =A0 qemu-mips.real =A0 =A0qemu-sys=
-tem-ppc =A0 =A0 runqemu =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0runqemu-internal=
-</i></div><div><i>autoconf =A0 =A0 =A0 autoupdate =A0 =A0 =A0 =A0ifnames =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 perl5.14.3 =A0qemu-ga =A0 =A0qemu-nbd =A0 =
-=A0 =A0 =A0 =A0qemu-system-x86_64 =A0runqemu-addptable2image =A0tunctl</i><=
-/div>
-
-
-<div><i>autoheader =A0 =A0 dtc =A0 =A0 =A0 =A0 =A0 =A0 =A0 libtoolize =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0perl.real =A0 qemu-i386 =A0qemu-ppc =A0 =A0 =A0 =A0 =
-=A0qemu-x86_64 =A0 =A0 =A0 =A0 runqemu-export-rootfs =A0 =A0update-alternat=
-ives</i></div><div><i>autom4te =A0 =A0 =A0 flash2raw.akita =A0 m4 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0pkg-config =A0qemu-img =A0 qemu-system-a=
-rm =A0 raw2flash.akita =A0 =A0 runqemu-extract-sdk =A0 =A0 =A0x86_64-pokysd=
-k-linux-libtool</i></div>
-
-
-<div><i>automake =A0 =A0 =A0 flash2raw.borzoi =A0oe-find-native-sysroot =A0=
-pseudo =A0 =A0 =A0qemu-io =A0 =A0qemu-system-i386 =A0raw2flash.borzoi =A0 =
-=A0runqemu-gen-tapdevs</i></div><div><i>automake-1.12 =A0flash2raw.spitz =
-=A0 opkg-cl =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 pseudodb =A0 =A0qemu-mips =A0qe=
-mu-system-mips =A0raw2flash.spitz =A0 =A0 runqemu-ifdown</i></div>
-
-
-</div><div><br></div><div><br></div><div>I don&#39;t have a directory and t=
-he list is empty</div><div><br></div><div><div><i>damarla@linuxbuildsrv:~/y=
-octo/myToolchain/sysroots/x86_64-pokysdk-linux/usr/bin$ ls -la| egrep &#39;=
-^d&#39;</i></div>
-
-
-<div><i>drwxr-xr-x 2 damarla damarla =A0 =A04096 Jun 11 14:27 .</i></div><d=
-iv><i>drwxr-xr-x 7 damarla damarla =A0 =A04096 Jun 11 14:15 ..</i></div><di=
-v><i><br></i></div><div>I want to know what could be the potential issue th=
-at my toolchain has no crosscompiler for my target</div>
-
-
-<div><br></div><div>Greets,</div><div>Satya</div></div></div><div><div><div=
- class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tue, Jun 11, 2=
-013 at 9:05 PM, Zhang, Jessica <span dir=3D"ltr">&lt;<a href=3D"mailto:jess=
-ica.zhang@intel.com" target=3D"_blank">jessica.zhang@intel.com</a>&gt;</spa=
-n> wrote:<br>
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Glad the problem was solv=
+ed.&nbsp; I am currently working on a detailed section to address toolchain=
+ concepts and generation that will eventually reside in the reference
+ manual.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Satya,<u></u><u></u></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">What is your cross compil=
-er that you said it=92s not installed? For example, on my development host =
-e.g. x86, after I install the toolchain, there=92s an environment-setup-***
- file, inside it specifies what is your cross compiler, e.g. arm-poky-linux=
--gnueabi-gcc for my case, after I source the environment file, and do which=
- arm-poky-linux-gnueabi-gcc, I can see it=92s under path_to_toolchain/sysro=
-ots/i686_pokysdk_linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gn=
-ueabi-gcc=85
- so you=92re seeing things differently?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Jessica<u></u><u></u></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
 <p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
 ;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
-=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@=
-yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.o=
-rg" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>DAMARLA Satya Swaroop<br>
+<b>Sent:</b> Friday, June 14, 2013 4:21 AM<br>
+<b>To:</b> Zhang, Jessica<br>
+<b>Cc:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] No crosscompiler in Toolchain<o:p></o:p></span>=
+</p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">Hi Everyone,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I solved the issue, but I don't know if its right or=
+ wrong but for the moment I am happy... The following didnot work for me<o:=
+p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>bitbake core-image-skidata -c populate_sdk</i><o:=
+p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+</i>nor<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>bitbake meta-toolchain</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">but <i>bitbake meta-toolchain-sdk </i>&nbsp;worked f=
+or me and created a toolchain with the crosscompiler... I have no idea why =
+the others didnot create a toolchain with cross compiler for me. I think th=
+is has to be discussed in more detail..<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">For now have a wonderful weekend<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Warm regards from Austria,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaro=
+op &lt;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">=
+satyaswaroop.damarla@gmail.com</a>&gt; wrote:<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Any updates on this issue why there is no cross comp=
+iler in the toolchain we build... I think this is pretty important unfortun=
+ately I am not able to find the cause.. Help is deeply appreciated..<o:p></=
+o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Greets,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<o:p></o:p></p>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaro=
+op &lt;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">=
+satyaswaroop.damarla@gmail.com</a>&gt; wrote:<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">Hi Jessica,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">By the sentence &quot;No crosscompiler for my target=
+ installed in my toolchain&quot;, I mean I don't find the binaries for cros=
+scompiling which are usually present in the directory as shown below<o:p></=
+o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><i>damarla@linuxbuildsrv:~/yocto/myToolchain/sysroot=
+s/x86_64-pokysdk-linux/usr/bin$ ls</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>aclocal &nbsp; &nbsp; &nbsp; &nbsp;autoreconf &nb=
+sp; &nbsp; &nbsp; &nbsp;flash2raw.terrier &nbsp; &nbsp; &nbsp; opkg-key &nb=
+sp; &nbsp;pseudolog &nbsp;qemu-mipsel &nbsp; &nbsp; &nbsp; qemu-system-mips=
+el &nbsp;raw2flash.terrier &nbsp; &nbsp; &nbsp; &nbsp;runqemu-ifup</i><o:p>=
+</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>aclocal-1.12 &nbsp; autoscan &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;gnu-configize &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; perl &nbsp; =
+&nbsp; &nbsp; &nbsp;qemu-arm &nbsp; qemu-mips.real &nbsp; &nbsp;qemu-system=
+-ppc &nbsp; &nbsp; runqemu &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;runqemu-internal</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>autoconf &nbsp; &nbsp; &nbsp; autoupdate &nbsp; &=
+nbsp; &nbsp; &nbsp;ifnames &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; perl5.14.3 &nbsp;qemu-ga &nbsp; &nbsp;qemu-nbd &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;qemu-system-x86_64 &nbsp;runqemu-addptable2image &nbsp;tunctl=
+</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>autoheader &nbsp; &nbsp; dtc &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; libtoolize &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;perl.real &nbsp; qemu-i386 &nbsp;qemu-ppc &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;qemu-x86_64 &nbsp; &nbsp; &nbsp; &nbsp; runqemu-export-rootfs=
+ &nbsp; &nbsp;update-alternatives</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>autom4te &nbsp; &nbsp; &nbsp; flash2raw.akita &nb=
+sp; m4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp;pkg-config &nbsp;qemu-img &nbsp; qemu-system-arm &nbsp; raw2flash.a=
+kita &nbsp; &nbsp; runqemu-extract-sdk &nbsp; &nbsp; &nbsp;x86_64-pokysdk-l=
+inux-libtool</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>automake &nbsp; &nbsp; &nbsp; flash2raw.borzoi &n=
+bsp;oe-find-native-sysroot &nbsp;pseudo &nbsp; &nbsp; &nbsp;qemu-io &nbsp; =
+&nbsp;qemu-system-i386 &nbsp;raw2flash.borzoi &nbsp; &nbsp;runqemu-gen-tapd=
+evs</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>automake-1.12 &nbsp;flash2raw.spitz &nbsp; opkg-c=
+l &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pseudodb &nbsp; &=
+nbsp;qemu-mips &nbsp;qemu-system-mips &nbsp;raw2flash.spitz &nbsp; &nbsp; r=
+unqemu-ifdown</i><o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I don't have a directory and the list is empty<o:p><=
+/o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><i>damarla@linuxbuildsrv:~/yocto/myToolchain/sysroot=
+s/x86_64-pokysdk-linux/usr/bin$ ls -la| egrep '^d'</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>drwxr-xr-x 2 damarla damarla &nbsp; &nbsp;4096 Ju=
+n 11 14:27 .</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><i>drwxr-xr-x 7 damarla damarla &nbsp; &nbsp;4096 Ju=
+n 11 14:15 ..</i><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I want to know what could be the potential issue tha=
+t my toolchain has no crosscompiler for my target<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Greets,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<o:p></o:p></p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On Tue, Jun 11, 2013 at 9:05 PM, Zhang, Jessica &lt;=
+<a href=3D"mailto:jessica.zhang@intel.com" target=3D"_blank">jessica.zhang@=
+intel.com</a>&gt; wrote:<o:p></o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Hi Satya,</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">What is your cross compiler that you sa=
+id it&#8217;s not installed? For example, on my development host
+ e.g. x86, after I install the toolchain, there&#8217;s an environment-setu=
+p-*** file, inside it specifies what is your cross compiler, e.g. arm-poky-=
+linux-gnueabi-gcc for my case, after I source the environment file, and do =
+which arm-poky-linux-gnueabi-gcc, I can
+ see it&#8217;s under path_to_toolchain/sysroots/i686_pokysdk_linux/usr/bin=
+/armv5te-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc&#8230; so you&#8217;=
+re seeing things differently?</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">Jessica</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,=
+&quot;sans-serif&quot;">From:</span></b><span style=3D"font-size:10.0pt;fon=
+t-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
+<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
+ounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctopr=
+oject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
 <b>On Behalf Of </b>DAMARLA Satya Swaroop<br>
 <b>Sent:</b> Tuesday, June 11, 2013 11:55 AM<br>
 <b>To:</b> Jeff Osier-Mixon; <a href=3D"mailto:yocto@yoctoproject.org" targ=
-et=3D"_blank">yocto@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] No crosscompiler in Toolchain<u></u><u></u></sp=
-an></p><div><div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+et=3D"_blank">
+yocto@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] No crosscompiler in Toolchain</span><o:p></o:p>=
+</p>
 <div>
-<p class=3D"MsoNormal">First I am sorry about the Gentlemen.... Next time i=
-t would be Ladies &amp; Gentlemen... ;-)<u></u><u></u></p>
 <div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">First I am sorry about the Gentlemen.... Next time it would be Lad=
+ies &amp; Gentlemen... ;-)<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
 </div>
 <div>
-<p class=3D"MsoNormal">Let me explain the situation better ... <i>core-imag=
-e-skidata</i>=A0(arm) is customized image which I build and I want to build=
- a toolchain for this image on my x86_64 with should consist of cross compi=
-ler (which I assume a toolchain should
- contain). The build for the toolchain went successfull but when I installe=
-d the toolchain on my system, I didnot find the crosscompiler installed...<=
-u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Let me explain the situation better ...
+<i>core-image-skidata</i>&nbsp;(arm) is customized image which I build and =
+I want to build a toolchain for this image on my x86_64 with should consist=
+ of cross compiler (which I assume a toolchain should contain). The build f=
+or the toolchain went successfull but
+ when I installed the toolchain on my system, I didnot find the crosscompil=
+er installed...<o:p></o:p></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
 </div>
 <div>
-<p class=3D"MsoNormal">Hope you understood my problem..<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Hope you understood my problem..<o:p></o:p></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
 </div>
 <div>
-<p class=3D"MsoNormal">Greets,<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Greets,<o:p></o:p></p>
 </div>
 <div>
-<p class=3D"MsoNormal">Satya<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Satya<o:p></o:p></p>
 </div>
 </div>
 <div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
+t">&nbsp;<o:p></o:p></p>
 <div>
-<p class=3D"MsoNormal">On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon &l=
-t;<a href=3D"mailto:jefro@jefro.net" target=3D"_blank">jefro@jefro.net</a>&=
-gt; wrote:<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon &lt;<a href=3D"m=
+ailto:jefro@jefro.net" target=3D"_blank">jefro@jefro.net</a>&gt; wrote:<o:p=
+></o:p></p>
 <div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Tue, Jun 11, 2013 =
-at 5:59 AM, DAMARLA Satya Swaroop<br>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
+t">On Tue, Jun 11, 2013 at 5:59 AM, DAMARLA Satya Swaroop<br>
 &lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blank">swaroop.=
 damarla@gmail.com</a>&gt; wrote:<br>
-&gt; Gentlemen! We have a problem here...<u></u><u></u></p>
+&gt; Gentlemen! We have a problem here...<o:p></o:p></p>
 </div>
-<p class=3D"MsoNormal">Not all here are gentlemen :)<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">Not all here are gentlemen :)<o:p></o:p></p>
 <div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
+t"><br>
 &gt; I compiled the toolchain using the command bitbake core-image-skidata =
 -c<br>
 &gt; populate_sdk and installed the toolchain but I have to tell you that I=
@@ -425,13 +612,15 @@ damarla@gmail.com</a>&gt; wrote:<br>
 &gt; see any cross-compiler installed with the toolchain...<br>
 &gt;<br>
 &gt; Any guesses what could be the reason.. The image is customized x11 ima=
-ge...<u></u><u></u></p>
+ge...<o:p></o:p></p>
 </div>
-<p class=3D"MsoNormal">I&#39;m not sure I understand. It looks like you are=
- using Host A to build<br>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">I'm not sure I understand. It looks like you are using Host A to b=
+uild<br>
 a toolchain and install it into an image (core-image-skidata) on<br>
 Target A. Are you then expecting to use Target A as Host B to compile<br>
-for Target B? =A0Is it possible that the skidata image recipe does not<br>
+for Target B? &nbsp;Is it possible that the skidata image recipe does not<b=
+r>
 contain the cross-compiler recipes?<br>
 <br>
 --<br>
@@ -439,15 +628,31 @@ Jeff Osier-Mixon <a href=3D"http://jefro.net/blog" target=3D"_blank">http:/=
 /jefro.net/blog</a><br>
 Yocto Project Community Manager @Intel <a href=3D"http://yoctoproject.org" =
 target=3D"_blank">
-http://yoctoproject.org</a><u></u><u></u></p>
+http://yoctoproject.org</a><o:p></o:p></p>
 </div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto">&nbsp;<o:p></o:p></p>
 </div>
-</div></div></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
 
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-
---20cf307f37d60302da04df1b7161--
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB123797FF4961DORSMSX101amrcor_--
