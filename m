@@ -1,35 +1,37 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-wg0-f45.google.com (mail-wg0-f45.google.com [74.125.82.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D06A5E005B3
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 01:59:07 -0700 (PDT)
-Received: by mail-wg0-f45.google.com with SMTP id j13so260469wgh.24
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 01:59:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-type:x-gm-message-state;
-	bh=aouB1AfH1xZmKSejl5EOhnJCXsSl+mS3nxgHNWESuDg=;
-	b=L77M4HznkD84zKQdkF49zMpr3QUlsszirBPWHHllJ9HRg56hZEV7+0uvsPFuqEk41I
-	8L5lE33y04Nty0up8gTbpCOh0jr6TtZAnNiSjDCCGCbsw0v8l9coM6gEGNioygtTs4RY
-	PRSHnLmGDrwSTvoWZjT0RmvRc2fmTpTA9Vy+MtAfIlYyNu/JHxnj8v033Z/PHPAIKQUt
-	sntjUU/ZIQy0HVJrQwfrM0EVKj0ExlcQEzWR3wxau+L3zJjkgJd1f+SvVUWkLecR7g9C
-	jMzti7emP5tcNvQI+9ye0kvbHJGJdR3yGufzTM6T0u78uy9gVT650DfWLzUdE+VfOly0
-	0UBg==
-X-Received: by 10.180.189.68 with SMTP id gg4mr741160wic.27.1371200346808;
-	Fri, 14 Jun 2013 01:59:06 -0700 (PDT)
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-vb0-f54.google.com (mail-vb0-f54.google.com
+	[209.85.212.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50D85E005B3
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 04:21:00 -0700 (PDT)
+Received: by mail-vb0-f54.google.com with SMTP id q12so329532vbe.41
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2013 04:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=tfAJeWUEPzPdBuZ/WNAek0MToAitxXVWU0xWRcDwO88=;
+	b=Agw+hqbiAEGfz5s0jttAlzRdvfamgQxHQO+gUVY23DXHuCZkv6QmmwD0EH4W1RW01N
+	bvaU0P58FhM9kyf7kiIfPGJxjqy6gGtZ66vfwlFdIsmxagsdUAW+WaWLt6zlqvZsn9+Q
+	0q+71fu6tPvChUgAUP0N+92jTq3WscDLJfDw7ZFGRWAU7yzCNLQBdesk6JpF54RK8NxE
+	rW1QaYbW3SV1vaxI5tCZhptRu7KnNGzHh7l9rt0A1rPnLqC37nEqheFm4bf9LozSt7oe
+	o+XnQPaZwiW4ZUDQSuWdnXhZCX/zRFodAQIBVjJWOcOCJQCefLXwKDVUzSPYb+1zRHDr
+	XRiQ==
 MIME-Version: 1.0
-Received: by 10.180.83.1 with HTTP; Fri, 14 Jun 2013 01:58:45 -0700 (PDT)
-In-Reply-To: <CAOT3miJv+tGHkA=BAPb2x4oXdnYV2QR7-ff8nHxC4b-2PRDMew@mail.gmail.com>
-References: <CAOT3miJ_akhKUidZi-0NsA-h7bMtOSrFm+BxGadopC-4qDb1gw@mail.gmail.com>
-	<CA+YB3rZELOm4yvYoFeR7==W-Kzi=Xye3hN3XKcV+wJBHXXwuWQ@mail.gmail.com>
-	<CAOT3miLe3ZF3ZggpvMfZ=jbH+zjww_UBBJ0vN3F2R_o2_Mq9zA@mail.gmail.com>
-	<CAOT3miJv+tGHkA=BAPb2x4oXdnYV2QR7-ff8nHxC4b-2PRDMew@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 14 Jun 2013 10:58:45 +0200
-Message-ID: <CAP71WjzuWLRG0+_i9vbGWmVAVj_--t9SxWGEdr=nZuCWXLFRdA@mail.gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQkLcIo51H8xS9PGa9H5Q+gm6lP7p9YaJUebmX7zM4Ee045KQdFPhlJB/lc78u0wWd2f7AP4
-Subject: Re: Compliance program questions
+X-Received: by 10.52.89.234 with SMTP id br10mr631943vdb.103.1371208859974;
+	Fri, 14 Jun 2013 04:20:59 -0700 (PDT)
+Received: by 10.52.179.33 with HTTP; Fri, 14 Jun 2013 04:20:59 -0700 (PDT)
+In-Reply-To: <CAFMfyzJiqRGsU+xjjt+htvHrCok1UyZijz2_0Z+40gXiebAQgQ@mail.gmail.com>
+References: <CAFMfyz+_j-mWj4C0YJUnOBcCX-oMGc8196pmPcQcD8XbK6r0xA@mail.gmail.com>
+	<CA+YB3rYq6_o_Sc50t0TVm5rnEeG2MD2qo=Ya6WKyG=c5vy_vHg@mail.gmail.com>
+	<CAFMfyzKzvBDTxPoLN6=fFkP=Rbd_KWVpLk=352F6OxB3e5-iWg@mail.gmail.com>
+	<C6510F6D410BB64A8C15398EDC6B847C73C39CA0@ORSMSX103.amr.corp.intel.com>
+	<CAFMfyz+km6mQctRO5d52+p4+4hKuE9qzv755EjTOW7Zc3KEb0Q@mail.gmail.com>
+	<CAFMfyzJiqRGsU+xjjt+htvHrCok1UyZijz2_0Z+40gXiebAQgQ@mail.gmail.com>
+Date: Fri, 14 Jun 2013 13:20:59 +0200
+Message-ID: <CAFMfyz+OM4EJwTWda16WNOPtUbX6e2UWuvaHXFEWOf2Wd2qE-A@mail.gmail.com>
+From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: No crosscompiler in Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,288 +43,411 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2013 08:59:09 -0000
-Content-Type: multipart/alternative; boundary=001a11c3530096750504df197504
+X-List-Received-Date: Fri, 14 Jun 2013 11:21:01 -0000
+Content-Type: multipart/alternative; boundary=20cf307f37d60302da04df1b7161
 
---001a11c3530096750504df197504
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi there,
-
-
-
->
->
-> Jeff,
->
-> On Thu, Apr 25, 2013 at 7:52 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
-> > Hi Nicolas, thanks for asking these questions. We are in the process
-> > of revising the documentation and application forms for that program,
-> > so your questions come at a very good time.
->
-> thanks a lot for your quick answer, and I am glad that it's right on time!
->
-
-trying to revive this thread, and check if there is any update on the
-revised documentation/forms.
-
-Also, i have an additional question. It is not clear from the 'registration
-form' whether or not a commercial project can be (or not) registered as
-Yocto Project Compatible. I am talking here about a commercial project that
-includes non-free s/w (isolated in proper layers) allthough:
- - all changes to oe-core, bitbake, meta-oe, ... are contributed back
- - all processes/recommendations are followed properly (distro policies
-isolated, README, ...)
-
-Can such a project be 'branded' as Yocto?
-
-I was initially under the impression that non free (and commercial) s/w was
-prohibited, but then I noticed Enea Linux which does seem to be commercial
-(i don't know if it included non free, though).
-
-Looking at the registration form again, it seems that "all" it might take
-is to be a Yocto Project member.
-
-is that correct?
-
-
-
->
-> >
-> > I have a few answers:
-> >
-> > On Thu, Apr 25, 2013 at 8:36 AM, Nicolas Dechesne <ndec13@gmail.com>
-> wrote:
-> >> Hi there,
-> >>
-> >> I have a couple of questions regarding the compliance program. If
-> >> there is a better place for asking such questions, please let me know.
-> >>
-> >> I have studied the Yocto compliance documentation, [1] on the website,
-> >> and I have the following questions:
-> >>
-> >>  - is there any 'practical' guide with "do's and don'ts" to help make
-> >> a sucessful Yocto Project Compatible registration?
-> >
-> > We don't have a guide like this, but I can create one. I'm guessing
-> > you are looking for guidance on how to answer individual questions as
-> > well as how one answer affects the others, is that correct?
->
-> Yes my questions below are clearly good target for such a 'compliance'
-> tutorial.
->
-> >
-> >>  - i understand that while the project should build with the OE core
-> >> toolchain, it is not required to use the OE core toolchain 'by
-> >> default', so we should be able to provide our own modified/customized
-> >> toolchain in our layers, is my understanding correct?
-> >
-> > Yes - the project needs to be able to build with the standard
-> > toolchain, but you can provide your own as well.
->
-> ok.
->
-> >
-> >>  - it is recommended, but not mandatory not use the Yocto kernel, so
-> >> we can use any mainline version in our BSP layers, right?
-> >
-> > I believe this is the case, but I'll need to research & get back to you.
->
-> at least meta-arago seems to provide a couple of kernel, so i expect
-> it should be ok, but worth checking.
->
-> >
-> >>  - is it tolerated to change the versions of some components from
-> >> OE-core or meta-oe? Not just add patches through .bbappend, but
-> >> actually use an older or a more recent version of components, let's
-> >> say Gstreamer for example?
-> >
-> > I don't think we require specific versions of any packages, but again
-> > I'll have to research first.
->
-> that question is currently the most important for me, so please let me
-> know. again, just to avoid any confusion, we would need to downgrade
-> several recipes to older versions. the idea would be to import such
-> recipes from OE tree history if they ever existed, or create them from
-> scratch, if needed.
->
-> >
-> >>  - can we included new recipes for software programs not already
-> >> included in oe-core or meta-oe in our layers, or do we have to
-> >> contribute them back into oe-core or meta-oe before registration?
-> >
-> > Yes, you can include new recipes (and packages).
->
-> ok.
->
-> >
-> >>  - the Yocto project compatible registration is made against a
-> >> specific version of Yocto. What happens when a new Yocto version is
-> >> released? Should we go through the registration process again?
-> >
-> > That is a question we have discussed quite a lot. The plan of record
-> > is for YP Compatible products/projects to resubmit the form after
-> > testing with the new version. However, that does create a problem if
-> > someone has, for example, a dozen YP Compatible products. Plus, what
-> > happens with point releases? These issues are under discussion & I'll
-> > report back as soon as I have clear answers.
->
-> ok, thanks again. looking forward for your next set of answers.
->
-
---001a11c3530096750504df197504
-Content-Type: text/html; charset=ISO-8859-1
+--20cf307f37d60302da04df1b7161
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi there,<div><br></div><div><div class=3D"gmail_extra"><b=
-r><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,2=
-04);border-left-style:solid;padding-left:1ex">
+Hi Everyone,
 
-<br>
-<br>
-<br>
-Jeff,<br>
-<br>
-On Thu, Apr 25, 2013 at 7:52 PM, Jeff Osier-Mixon &lt;<a href=3D"mailto:jef=
-ro@jefro.net">jefro@jefro.net</a>&gt; wrote:<br>
-&gt; Hi Nicolas, thanks for asking these questions. We are in the process<b=
-r>
-&gt; of revising the documentation and application forms for that program,<=
-br>
-&gt; so your questions come at a very good time.<br>
-<br>
-thanks a lot for your quick answer, and I am glad that it&#39;s right on ti=
-me!<br></blockquote><div><br></div><div>trying to revive this thread, and c=
-heck if there is any update on the revised documentation/forms.</div><div>
+I solved the issue, but I don't know if its right or wrong but for the
+moment I am happy... The following didnot work for me
 
-<br></div><div style>Also, i have an additional question. It is not clear f=
-rom the &#39;registration form&#39; whether or not a commercial project can=
- be (or not) registered as Yocto Project Compatible. I am talking here abou=
-t a commercial project that includes non-free s/w (isolated in proper layer=
-s) allthough:=A0</div>
+*bitbake core-image-skidata -c populate_sdk*
+*              *nor
+*bitbake meta-toolchain*
+*
+*
+but *bitbake meta-toolchain-sdk * worked for me and created a toolchain
+with the crosscompiler... I have no idea why the others didnot create a
+toolchain with cross compiler for me. I think this has to be discussed in
+more detail..
 
-<div style>=A0- all changes to oe-core, bitbake, meta-oe, ... are contribut=
-ed back</div><div style>=A0- all processes/recommendations are followed pro=
-perly (distro policies isolated, README, ...)</div><div style><br></div><di=
-v style>
+For now have a wonderful weekend
 
-Can such a project be &#39;branded&#39; as Yocto?=A0</div><div style><br></=
-div><div style>I was initially under the impression that non free (and comm=
-ercial) s/w was prohibited, but then I noticed Enea Linux which does seem t=
-o be commercial (i don&#39;t know if it included non free, though).</div>
+Warm regards from Austria,
+Satya
 
-<div style><br></div><div style>Looking at the registration form again, it =
-seems that &quot;all&quot; it might take is to be a Yocto Project member.=
-=A0</div><div style><br></div><div style>is that correct?</div><div style>
-=A0</div>
-<div>=A0<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-=
-left-style:solid;padding-left:1ex">
-<br>
-&gt;<br>
-&gt; I have a few answers:<br>
-&gt;<br>
-&gt; On Thu, Apr 25, 2013 at 8:36 AM, Nicolas Dechesne &lt;<a href=3D"mailt=
-o:ndec13@gmail.com">ndec13@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; Hi there,<br>
-&gt;&gt;<br>
-&gt;&gt; I have a couple of questions regarding the compliance program. If<=
-br>
-&gt;&gt; there is a better place for asking such questions, please let me k=
-now.<br>
-&gt;&gt;<br>
-&gt;&gt; I have studied the Yocto compliance documentation, [1] on the webs=
-ite,<br>
-&gt;&gt; and I have the following questions:<br>
-&gt;&gt;<br>
-&gt;&gt; =A0- is there any &#39;practical&#39; guide with &quot;do&#39;s an=
-d don&#39;ts&quot; to help make<br>
-&gt;&gt; a sucessful Yocto Project Compatible registration?<br>
-&gt;<br>
-&gt; We don&#39;t have a guide like this, but I can create one. I&#39;m gue=
-ssing<br>
-&gt; you are looking for guidance on how to answer individual questions as<=
-br>
-&gt; well as how one answer affects the others, is that correct?<br>
-<br>
-Yes my questions below are clearly good target for such a &#39;compliance&#=
-39; tutorial.<br>
-<br>
-&gt;<br>
-&gt;&gt; =A0- i understand that while the project should build with the OE =
-core<br>
-&gt;&gt; toolchain, it is not required to use the OE core toolchain &#39;by=
-<br>
-&gt;&gt; default&#39;, so we should be able to provide our own modified/cus=
-tomized<br>
-&gt;&gt; toolchain in our layers, is my understanding correct?<br>
-&gt;<br>
-&gt; Yes - the project needs to be able to build with the standard<br>
-&gt; toolchain, but you can provide your own as well.<br>
-<br>
-ok.<br>
-<br>
-&gt;<br>
-&gt;&gt; =A0- it is recommended, but not mandatory not use the Yocto kernel=
-, so<br>
-&gt;&gt; we can use any mainline version in our BSP layers, right?<br>
-&gt;<br>
-&gt; I believe this is the case, but I&#39;ll need to research &amp; get ba=
-ck to you.<br>
-<br>
-at least meta-arago seems to provide a couple of kernel, so i expect<br>
-it should be ok, but worth checking.<br>
-<div class=3D"im"><br>
-&gt;<br>
-&gt;&gt; =A0- is it tolerated to change the versions of some components fro=
-m<br>
-&gt;&gt; OE-core or meta-oe? Not just add patches through .bbappend, but<br=
+
+On Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaroop <
+satyaswaroop.damarla@gmail.com> wrote:
+
+> Hi,
 >
-&gt;&gt; actually use an older or a more recent version of components, let&=
-#39;s<br>
-&gt;&gt; say Gstreamer for example?<br>
-&gt;<br>
-</div>&gt; I don&#39;t think we require specific versions of any packages, =
-but again<br>
-&gt; I&#39;ll have to research first.<br>
-<br>
-that question is currently the most important for me, so please let me<br>
-know. again, just to avoid any confusion, we would need to downgrade<br>
-several recipes to older versions. the idea would be to import such<br>
-recipes from OE tree history if they ever existed, or create them from<br>
-scratch, if needed.<br>
-<br>
-&gt;<br>
-&gt;&gt; =A0- can we included new recipes for software programs not already=
-<br>
-&gt;&gt; included in oe-core or meta-oe in our layers, or do we have to<br>
-&gt;&gt; contribute them back into oe-core or meta-oe before registration?<=
-br>
-&gt;<br>
-&gt; Yes, you can include new recipes (and packages).<br>
-<br>
-ok.<br>
-<br>
-&gt;<br>
-&gt;&gt; =A0- the Yocto project compatible registration is made against a<b=
-r>
-&gt;&gt; specific version of Yocto. What happens when a new Yocto version i=
-s<br>
-&gt;&gt; released? Should we go through the registration process again?<br>
-&gt;<br>
-&gt; That is a question we have discussed quite a lot. The plan of record<b=
-r>
-&gt; is for YP Compatible products/projects to resubmit the form after<br>
-&gt; testing with the new version. However, that does create a problem if<b=
-r>
-&gt; someone has, for example, a dozen YP Compatible products. Plus, what<b=
-r>
-&gt; happens with point releases? These issues are under discussion &amp; I=
-&#39;ll<br>
-&gt; report back as soon as I have clear answers.<br>
-<br>
-ok, thanks again. looking forward for your next set of answers.<br>
-</blockquote></div><br></div></div></div>
+> Any updates on this issue why there is no cross compiler in the toolchain
+> we build... I think this is pretty important unfortunately I am not able =
+to
+> find the cause.. Help is deeply appreciated..
+>
+> Greets,
+> Satya
+>
+>
+> On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaroop <
+> satyaswaroop.damarla@gmail.com> wrote:
+>
+>> Hi Jessica,
+>>
+>> By the sentence "No crosscompiler for my target installed in my
+>> toolchain", I mean I don't find the binaries for crosscompiling which ar=
+e
+>> usually present in the directory as shown below
+>>
+>> *damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux=
+/usr/bin$
+>> ls*
+>> *aclocal        autoreconf        flash2raw.terrier       opkg-key
+>>  pseudolog  qemu-mipsel       qemu-system-mipsel  raw2flash.terrier
+>>  runqemu-ifup*
+>> *aclocal-1.12   autoscan          gnu-configize           perl
+>>  qemu-arm   qemu-mips.real    qemu-system-ppc     runqemu
+>>  runqemu-internal*
+>> *autoconf       autoupdate        ifnames                 perl5.14.3
+>>  qemu-ga    qemu-nbd          qemu-system-x86_64  runqemu-addptable2imag=
+e
+>>  tunctl*
+>> *autoheader     dtc               libtoolize              perl.real
+>> qemu-i386  qemu-ppc          qemu-x86_64         runqemu-export-rootfs
+>>  update-alternatives*
+>> *autom4te       flash2raw.akita   m4                      pkg-config
+>>  qemu-img   qemu-system-arm   raw2flash.akita     runqemu-extract-sdk
+>>  x86_64-pokysdk-linux-libtool*
+>> *automake       flash2raw.borzoi  oe-find-native-sysroot  pseudo
+>>  qemu-io    qemu-system-i386  raw2flash.borzoi    runqemu-gen-tapdevs*
+>> *automake-1.12  flash2raw.spitz   opkg-cl                 pseudodb
+>>  qemu-mips  qemu-system-mips  raw2flash.spitz     runqemu-ifdown*
+>>
+>>
+>> I don't have a directory and the list is empty
+>>
+>> *damarla@linuxbuildsrv:~/yocto/myToolchain/sysroots/x86_64-pokysdk-linux=
+/usr/bin$
+>> ls -la| egrep '^d'*
+>> *drwxr-xr-x 2 damarla damarla    4096 Jun 11 14:27 .*
+>> *drwxr-xr-x 7 damarla damarla    4096 Jun 11 14:15 ..*
+>> *
+>> *
+>> I want to know what could be the potential issue that my toolchain has n=
+o
+>> crosscompiler for my target
+>>
+>> Greets,
+>> Satya
+>>
+>>
+>> On Tue, Jun 11, 2013 at 9:05 PM, Zhang, Jessica <jessica.zhang@intel.com=
+>wrote:
+>>
+>>>  Hi Satya,****
+>>>
+>>> ** **
+>>>
+>>> What is your cross compiler that you said it=92s not installed? For
+>>> example, on my development host e.g. x86, after I install the toolchain=
+,
+>>> there=92s an environment-setup-*** file, inside it specifies what is yo=
+ur
+>>> cross compiler, e.g. arm-poky-linux-gnueabi-gcc for my case, after I so=
+urce
+>>> the environment file, and do which arm-poky-linux-gnueabi-gcc, I can se=
+e
+>>> it=92s under
+>>> path_to_toolchain/sysroots/i686_pokysdk_linux/usr/bin/armv5te-poky-linu=
+x-gnueabi/arm-poky-linux-gnueabi-gcc=85
+>>> so you=92re seeing things differently?****
+>>>
+>>> ** **
+>>>
+>>> Jessica****
+>>>
+>>> ** **
+>>>
+>>> *From:* yocto-bounces@yoctoproject.org [mailto:
+>>> yocto-bounces@yoctoproject.org] *On Behalf Of *DAMARLA Satya Swaroop
+>>> *Sent:* Tuesday, June 11, 2013 11:55 AM
+>>> *To:* Jeff Osier-Mixon; yocto@yoctoproject.org
+>>> *Subject:* Re: [yocto] No crosscompiler in Toolchain****
+>>>
+>>> ** **
+>>>
+>>> First I am sorry about the Gentlemen.... Next time it would be Ladies &
+>>> Gentlemen... ;-)****
+>>>
+>>> ** **
+>>>
+>>> Let me explain the situation better ... *core-image-skidata* (arm) is
+>>> customized image which I build and I want to build a toolchain for this
+>>> image on my x86_64 with should consist of cross compiler (which I assum=
+e a
+>>> toolchain should contain). The build for the toolchain went successfull=
+ but
+>>> when I installed the toolchain on my system, I didnot find the
+>>> crosscompiler installed...****
+>>>
+>>> ** **
+>>>
+>>> Hope you understood my problem..****
+>>>
+>>> ** **
+>>>
+>>> Greets,****
+>>>
+>>> Satya****
+>>>
+>>> ** **
+>>>
+>>> On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon <jefro@jefro.net>
+>>> wrote:****
+>>>
+>>> On Tue, Jun 11, 2013 at 5:59 AM, DAMARLA Satya Swaroop
+>>> <swaroop.damarla@gmail.com> wrote:
+>>> > Gentlemen! We have a problem here...****
+>>>
+>>> Not all here are gentlemen :)****
+>>>
+>>>
+>>> > I compiled the toolchain using the command bitbake core-image-skidata
+>>> -c
+>>> > populate_sdk and installed the toolchain but I have to tell you that =
+I
+>>> dont
+>>> > see any cross-compiler installed with the toolchain...
+>>> >
+>>> > Any guesses what could be the reason.. The image is customized x11
+>>> image...****
+>>>
+>>> I'm not sure I understand. It looks like you are using Host A to build
+>>> a toolchain and install it into an image (core-image-skidata) on
+>>> Target A. Are you then expecting to use Target A as Host B to compile
+>>> for Target B?  Is it possible that the skidata image recipe does not
+>>> contain the cross-compiler recipes?
+>>>
+>>> --
+>>> Jeff Osier-Mixon http://jefro.net/blog
+>>> Yocto Project Community Manager @Intel http://yoctoproject.org****
+>>>
+>>> ** **
+>>>
+>>
+>>
+>
 
---001a11c3530096750504df197504--
+--20cf307f37d60302da04df1b7161
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Everyone,<div><br></div><div style>I solved the issue, =
+but I don&#39;t know if its right or wrong but for the moment I am happy...=
+ The following didnot work for me</div><div style><br></div><div style><i>b=
+itbake core-image-skidata -c populate_sdk</i></div>
+<div style><i>=A0 =A0 =A0 =A0 =A0 =A0 =A0 </i>nor</div><div style><i>bitbak=
+e meta-toolchain</i></div><div style><i><br></i></div><div style>but <i>bit=
+bake meta-toolchain-sdk </i>=A0worked for me and created a toolchain with t=
+he crosscompiler... I have no idea why the others didnot create a toolchain=
+ with cross compiler for me. I think this has to be discussed in more detai=
+l..</div>
+<div style><br></div><div style>For now have a wonderful weekend</div><div =
+style><br></div><div style>Warm regards from Austria,</div><div style>Satya=
+</div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">O=
+n Thu, Jun 13, 2013 at 9:16 AM, DAMARLA Satya Swaroop <span dir=3D"ltr">&lt=
+;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">satyas=
+waroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi,<div><br></div><div>Any =
+updates on this issue why there is no cross compiler in the toolchain we bu=
+ild... I think this is pretty important unfortunately I am not able to find=
+ the cause.. Help is deeply appreciated..</div>
+
+<div><br></div><div>Greets,</div><div>Satya</div></div><div class=3D"HOEnZb=
+"><div class=3D"h5"><div class=3D"gmail_extra"><br><br><div class=3D"gmail_=
+quote">On Wed, Jun 12, 2013 at 7:12 AM, DAMARLA Satya Swaroop <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank=
+">satyaswaroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi Jessica,<div><br></div><=
+div>By the sentence &quot;No crosscompiler for my target installed in my to=
+olchain&quot;, I mean I don&#39;t find the binaries for crosscompiling whic=
+h are usually present in the directory as shown below</div>
+
+
+<div><br></div><div><div><i>damarla@linuxbuildsrv:~/yocto/myToolchain/sysro=
+ots/x86_64-pokysdk-linux/usr/bin$ ls</i></div><div><i>aclocal =A0 =A0 =A0 =
+=A0autoreconf =A0 =A0 =A0 =A0flash2raw.terrier =A0 =A0 =A0 opkg-key =A0 =A0=
+pseudolog =A0qemu-mipsel =A0 =A0 =A0 qemu-system-mipsel =A0raw2flash.terrie=
+r =A0 =A0 =A0 =A0runqemu-ifup</i></div>
+
+
+<div><i>aclocal-1.12 =A0 autoscan =A0 =A0 =A0 =A0 =A0gnu-configize =A0 =A0 =
+=A0 =A0 =A0 perl =A0 =A0 =A0 =A0qemu-arm =A0 qemu-mips.real =A0 =A0qemu-sys=
+tem-ppc =A0 =A0 runqemu =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0runqemu-internal=
+</i></div><div><i>autoconf =A0 =A0 =A0 autoupdate =A0 =A0 =A0 =A0ifnames =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 perl5.14.3 =A0qemu-ga =A0 =A0qemu-nbd =A0 =
+=A0 =A0 =A0 =A0qemu-system-x86_64 =A0runqemu-addptable2image =A0tunctl</i><=
+/div>
+
+
+<div><i>autoheader =A0 =A0 dtc =A0 =A0 =A0 =A0 =A0 =A0 =A0 libtoolize =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0perl.real =A0 qemu-i386 =A0qemu-ppc =A0 =A0 =A0 =A0 =
+=A0qemu-x86_64 =A0 =A0 =A0 =A0 runqemu-export-rootfs =A0 =A0update-alternat=
+ives</i></div><div><i>autom4te =A0 =A0 =A0 flash2raw.akita =A0 m4 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0pkg-config =A0qemu-img =A0 qemu-system-a=
+rm =A0 raw2flash.akita =A0 =A0 runqemu-extract-sdk =A0 =A0 =A0x86_64-pokysd=
+k-linux-libtool</i></div>
+
+
+<div><i>automake =A0 =A0 =A0 flash2raw.borzoi =A0oe-find-native-sysroot =A0=
+pseudo =A0 =A0 =A0qemu-io =A0 =A0qemu-system-i386 =A0raw2flash.borzoi =A0 =
+=A0runqemu-gen-tapdevs</i></div><div><i>automake-1.12 =A0flash2raw.spitz =
+=A0 opkg-cl =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 pseudodb =A0 =A0qemu-mips =A0qe=
+mu-system-mips =A0raw2flash.spitz =A0 =A0 runqemu-ifdown</i></div>
+
+
+</div><div><br></div><div><br></div><div>I don&#39;t have a directory and t=
+he list is empty</div><div><br></div><div><div><i>damarla@linuxbuildsrv:~/y=
+octo/myToolchain/sysroots/x86_64-pokysdk-linux/usr/bin$ ls -la| egrep &#39;=
+^d&#39;</i></div>
+
+
+<div><i>drwxr-xr-x 2 damarla damarla =A0 =A04096 Jun 11 14:27 .</i></div><d=
+iv><i>drwxr-xr-x 7 damarla damarla =A0 =A04096 Jun 11 14:15 ..</i></div><di=
+v><i><br></i></div><div>I want to know what could be the potential issue th=
+at my toolchain has no crosscompiler for my target</div>
+
+
+<div><br></div><div>Greets,</div><div>Satya</div></div></div><div><div><div=
+ class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tue, Jun 11, 2=
+013 at 9:05 PM, Zhang, Jessica <span dir=3D"ltr">&lt;<a href=3D"mailto:jess=
+ica.zhang@intel.com" target=3D"_blank">jessica.zhang@intel.com</a>&gt;</spa=
+n> wrote:<br>
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Satya,<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">What is your cross compil=
+er that you said it=92s not installed? For example, on my development host =
+e.g. x86, after I install the toolchain, there=92s an environment-setup-***
+ file, inside it specifies what is your cross compiler, e.g. arm-poky-linux=
+-gnueabi-gcc for my case, after I source the environment file, and do which=
+ arm-poky-linux-gnueabi-gcc, I can see it=92s under path_to_toolchain/sysro=
+ots/i686_pokysdk_linux/usr/bin/armv5te-poky-linux-gnueabi/arm-poky-linux-gn=
+ueabi-gcc=85
+ so you=92re seeing things differently?<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Jessica<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
+=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.o=
+rg" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+<b>On Behalf Of </b>DAMARLA Satya Swaroop<br>
+<b>Sent:</b> Tuesday, June 11, 2013 11:55 AM<br>
+<b>To:</b> Jeff Osier-Mixon; <a href=3D"mailto:yocto@yoctoproject.org" targ=
+et=3D"_blank">yocto@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] No crosscompiler in Toolchain<u></u><u></u></sp=
+an></p><div><div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">First I am sorry about the Gentlemen.... Next time i=
+t would be Ladies &amp; Gentlemen... ;-)<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Let me explain the situation better ... <i>core-imag=
+e-skidata</i>=A0(arm) is customized image which I build and I want to build=
+ a toolchain for this image on my x86_64 with should consist of cross compi=
+ler (which I assume a toolchain should
+ contain). The build for the toolchain went successfull but when I installe=
+d the toolchain on my system, I didnot find the crosscompiler installed...<=
+u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Hope you understood my problem..<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Greets,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Satya<u></u><u></u></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><u></u>=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">On Tue, Jun 11, 2013 at 7:48 PM, Jeff Osier-Mixon &l=
+t;<a href=3D"mailto:jefro@jefro.net" target=3D"_blank">jefro@jefro.net</a>&=
+gt; wrote:<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Tue, Jun 11, 2013 =
+at 5:59 AM, DAMARLA Satya Swaroop<br>
+&lt;<a href=3D"mailto:swaroop.damarla@gmail.com" target=3D"_blank">swaroop.=
+damarla@gmail.com</a>&gt; wrote:<br>
+&gt; Gentlemen! We have a problem here...<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">Not all here are gentlemen :)<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+&gt; I compiled the toolchain using the command bitbake core-image-skidata =
+-c<br>
+&gt; populate_sdk and installed the toolchain but I have to tell you that I=
+ dont<br>
+&gt; see any cross-compiler installed with the toolchain...<br>
+&gt;<br>
+&gt; Any guesses what could be the reason.. The image is customized x11 ima=
+ge...<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">I&#39;m not sure I understand. It looks like you are=
+ using Host A to build<br>
+a toolchain and install it into an image (core-image-skidata) on<br>
+Target A. Are you then expecting to use Target A as Host B to compile<br>
+for Target B? =A0Is it possible that the skidata image recipe does not<br>
+contain the cross-compiler recipes?<br>
+<br>
+--<br>
+Jeff Osier-Mixon <a href=3D"http://jefro.net/blog" target=3D"_blank">http:/=
+/jefro.net/blog</a><br>
+Yocto Project Community Manager @Intel <a href=3D"http://yoctoproject.org" =
+target=3D"_blank">
+http://yoctoproject.org</a><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+
+--20cf307f37d60302da04df1b7161--
