@@ -1,18 +1,18 @@
 Return-Path: <djnass_18@hotmail.com>
-Received: from dub0-omc3-s31.dub0.hotmail.com (dub0-omc3-s31.dub0.hotmail.com
-	[157.55.2.40])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3737AE006E2
-	for <yocto@yoctoproject.org>; Sat, 15 Jun 2013 08:50:03 -0700 (PDT)
-Received: from DUB116-W83 ([157.55.2.7]) by dub0-omc3-s31.dub0.hotmail.com
+Received: from dub0-omc3-s10.dub0.hotmail.com (dub0-omc3-s10.dub0.hotmail.com
+	[157.55.2.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E68DE006E2
+	for <yocto@yoctoproject.org>; Sat, 15 Jun 2013 08:56:53 -0700 (PDT)
+Received: from DUB116-W92 ([157.55.2.8]) by dub0-omc3-s10.dub0.hotmail.com
 	with Microsoft SMTPSVC(6.0.3790.4675); 
-	Sat, 15 Jun 2013 08:50:01 -0700
-X-TMN: [sDIgZXtNztFFWbXR/viZbg1pBWkDJgPc]
+	Sat, 15 Jun 2013 08:56:51 -0700
+X-TMN: [QRW2rA+IaoQgSxKkiHb+vOhO8LRyVnPA]
 X-Originating-Email: [djnass_18@hotmail.com]
-Message-ID: <DUB116-W836EC26234F96510430D8398810@phx.gbl>
+Message-ID: <DUB116-W929E05390BAB13E261F23D98810@phx.gbl>
 From: Thanassis Silis <djnass_18@hotmail.com>
 To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Date: Sat, 15 Jun 2013 15:50:01 +0000
+Date: Sat, 15 Jun 2013 15:56:51 +0000
 Importance: Normal
 In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C3B188@ORSMSX103.amr.corp.intel.com>
 References: <DUB116-W9038BE05D96B60298CC60C98800@phx.gbl>,
@@ -20,8 +20,8 @@ References: <DUB116-W9038BE05D96B60298CC60C98800@phx.gbl>,
 	<DUB116-W136485E174295132673564498800@phx.gbl>,
 	<C6510F6D410BB64A8C15398EDC6B847C73C3B188@ORSMSX103.amr.corp.intel.com>
 MIME-Version: 1.0
-X-OriginalArrivalTime: 15 Jun 2013 15:50:01.0940 (UTC)
-	FILETIME=[FF228940:01CE69DF]
+X-OriginalArrivalTime: 15 Jun 2013 15:56:51.0301 (UTC)
+	FILETIME=[F3221150:01CE69E0]
 Subject: Re: Can not build (configure) a simple Hello world program in eclipse with ADT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,11 +34,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Jun 2013 15:50:04 -0000
+X-List-Received-Date: Sat, 15 Jun 2013 15:56:55 -0000
 Content-Type: multipart/alternative;
-	boundary="_e22c1822-505e-4966-bc06-4bb1892ac99b_"
+	boundary="_7593955e-372c-4c1e-bd8c-75f34d1de1bb_"
 
---_e22c1822-505e-4966-bc06-4bb1892ac99b_
+--_7593955e-372c-4c1e-bd8c-75f34d1de1bb_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -266,7 +266,7 @@ Thank you for your help! =0A=
 =0A=
  		 	   		  =
 
---_e22c1822-505e-4966-bc06-4bb1892ac99b_
+--_7593955e-372c-4c1e-bd8c-75f34d1de1bb_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -662,4 +662,4 @@ Thank you for your help! </span></p>=0A=
 </div></div></div> 		 	   		  </div></body>
 </html>=
 
---_e22c1822-505e-4966-bc06-4bb1892ac99b_--
+--_7593955e-372c-4c1e-bd8c-75f34d1de1bb_--
