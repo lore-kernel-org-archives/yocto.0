@@ -1,29 +1,30 @@
-Return-Path: <diego.ml@zoho.com>
-Received: from sender1.zohomail.com (sender1.zohomail.com [72.5.230.95])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47977E01547
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 03:47:18 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=zapps768; d=zoho.com; 
-	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to:references:mime-version:content-type;
-	b=DiYw/Ap4yXyJisDsi15TeQj0FFCezRRZLGF9mXYoSOB7mKp0nrfiNVJOoN/tvbFAzZg1knta13Je
-	ETrgRhD8Nq+uwlg87DqzLV7eIn5flzwSSZClaY+sDSugRCECHmMo  
-Received: from localhost.localdomain (static-217-133-170-65.clienti.tiscali.it
-	[217.133.170.65]) by mx.zohomail.com
-	with SMTPS id 1371466033976298.76237933533537;
-	Mon, 17 Jun 2013 03:47:13 -0700 (PDT)
-From: Diego <diego.ml@zoho.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Mon, 17 Jun 2013 12:47:09 +0200
-Message-ID: <15073618.ieBUYuGgYp@localhost.localdomain>
-User-Agent: KMail/4.10.3 (Linux/3.8.13-100.fc17.x86_64; KDE/4.10.3; x86_64; ; )
-In-Reply-To: <CAPhnLPCEbtR=8Wa+odYJ197-Nqa6DHwRbPRY8V_OWrbE4bGjSw@mail.gmail.com>
-References: <1810497.uZE9ivf2T0@localhost.localdomain>
-	<2975064.NgcQZYsAKT@localhost.localdomain>
-	<CAPhnLPCEbtR=8Wa+odYJ197-Nqa6DHwRbPRY8V_OWrbE4bGjSw@mail.gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B065E01547
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 04:00:09 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5HB085R008596
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 04:00:08 -0700 (PDT)
+Received: from [128.224.162.233] (128.224.162.233) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Mon, 17 Jun 2013 04:00:08 -0700
+Message-ID: <51BEEC3B.7060807@windriver.com>
+Date: Mon, 17 Jun 2013 19:00:11 +0800
+From: ChenQi <Qi.Chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Zoho-Virus-Status: 2
-Cc: yocto@yoctoproject.org
-Subject: Re: How to deal with non-standard license.
+To: <yocto@yoctoproject.org>
+References: <loom.20130616T115549-619@post.gmane.org>
+	<51BE98F8.3040903@windriver.com>
+	<loom.20130617T071650-37@post.gmane.org>
+	<51BE9DF5.1090200@windriver.com>
+	<loom.20130617T110444-837@post.gmane.org>
+In-Reply-To: <loom.20130617T110444-837@post.gmane.org>
+X-Originating-IP: [128.224.162.233]
+Subject: Re: Modify udev
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,83 +36,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 10:47:21 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="ISO-8859-1"
+X-List-Received-Date: Mon, 17 Jun 2013 11:00:10 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-In data mercoled=EC 12 giugno 2013 14:17:05, Flanagan, Elizabeth ha scr=
-itto:
-> On Wed, Jun 12, 2013 at 9:41 AM, Diego <diego.ml@zoho.com> wrote:
-> > In data marted=EC 11 giugno 2013 15:10:42, Flanagan, Elizabeth ha s=
-critto:
-> >> On Tue, Jun 11, 2013 at 5:28 AM, Diego <diego.ml@zoho.com> wrote:
-> >> > Hi everybody,
-> >> >=20
-> >> > I have written a recipe which I'd like to contribute for glmark2=
-:
-> >> > https://launchpad.net/glmark2
-> >> >=20
-> >> > The last thing that puzzles me before submitting it is that it's=
- partly
-> >> > GPL3+, and partly under this license:
-> >> > https://github.com/rafalmiel/glmark2-wl/blob/master/COPYING.SGI
-> >> > which is not in this list:
-> >> > https://wiki.yoctoproject.org/wiki/License_Infrastructure_Intere=
-st_Grou
-> >> > p#L
-> >> > icenses Is there any way to deal with that license? What should =
-I put
-> >> > in
-> >> > the LICENSE field in my recipe?
-> >>=20
-> >> So, you will need to add a custom license or submit a patch OE-Cor=
-e to
-> >> add that license. Where are you contributing this to?
-> >>=20
-> >> If it's to a layer, you'll want to add the license to a custom lic=
-ense
-> >> path. You'll want that file to be unique and descriptive. Please m=
-ake
-> >> sure the license filename has a version in the file name. eg SGI-1=
-.
-> >> Within the layer you'll make a directory (in this example I use
-> >> custom-licenses), add the license text to a file named SGI-1, then=
- add
-> >> this to your layer.conf:
-> >>=20
-> >> LICENSE_PATH +=3D "${LAYERDIR}/custom-licenses"
-> >> SPDXLICENSEMAP[SGIv1] =3D "SGI-1"
-> >>=20
-> >> That should get you what you want.
-> >=20
-> > Hi Elizabeth,
-> >=20
-> > I'm trying to integrate glmark2 into openembedded (meta-oe layer). =
-I know
-> > this is not the right mailing list for that task, but I'm still on =
-the
-> > license problem.
->=20
-> Ah, ok. In that case, ignore what I just said and patch oe-core's
-> files/common-licenses with the SGI license and
-> files/conf/licenses.conf with:
->=20
-> SPDXLICENSEMAP[SGIv1] =3D "SGI-1"
-> SRC_DISTRIBUTE_LICENSES +=3D "SGI-1"
->=20
-> That's the right way to do this, IMHO
->=20
+On 06/17/2013 05:10 PM, Jack wrote:
+> ChenQi <Qi.Chen@...> writes:
+>
+>> On 06/17/2013 01:19 PM, jack wrote:
+>>> ChenQi <Qi.Chen <at> ...> writes:
+>>>
+>>>> On 06/16/2013 07:45 PM, Jack wrote:
+>>>>> Hi,
+>>>>>
+>>>>> In my imageو starting udev take a long time about 6 seconds whereas
+> the time
+>>>> If the performance is important, what about using udev-cache to speed up
+>>>> the boot process?
+>>>>
+>>> How should I use udev-cache ?
+>>>
+>> To add udev-cache to your image, add the following line to your local.conf.
+>> IMAGE_INSTALL_append += "udev-cache"
+> I add this line to my local.conf but starting udev take about 6 seconds in
+> boot process yet. What solution do you propose ?
+>
+I've just filed a bug for the udev-cache.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=4738
 
-Hi Elizabeth,
+The patch is still under review. If you want to use it now, please visit 
+the following link and take the patch.
+http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=ChenQi/udev-cache-fix
 
-I've tried posting the patch here:
-https://lists.yoctoproject.org/pipermail/poky/2013-June/009008.html
+I've made some simple tests myself. With udev-cache enabled, the udev 
+takes less than 1s to start (not the first boot).
 
-But I did not receive a reply. Maybe I did something wrong? Should the =
-patch=20
-go to poky ml or to openembedded-core@lists.openembedded.org ?
-
-Thanks,
-Diego
+//Chen Qi
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
