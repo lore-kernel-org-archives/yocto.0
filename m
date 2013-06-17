@@ -1,23 +1,28 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
-	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77BABE01483
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 09:50:59 -0700 (PDT)
-Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Mon, 17 Jun 2013 12:50:58 -0400
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 17 Jun 2013 12:49:35 -0400
-Thread-Topic: Creating a core-image-minimal image with package support
-Thread-Index: Ac5reqXMouXSXAACQ3GZHVq38/P5RQ==
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE4013B910EC9FD@pluto.melinkcorp.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 011A023700496A011A0384
-acceptlanguage: en-US
+Return-Path: <varun292006@gmail.com>
+Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
+	[209.85.192.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7555EE01483
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 10:08:13 -0700 (PDT)
+Received: by mail-pd0-f175.google.com with SMTP id 4so2988584pdd.20
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 10:08:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=giLIj4MubBYsTTyyZVuU6r9rrVlZ3RZS5s1zbBy6izQ=;
+	b=tyPFcuLYney63cH1GC9Q2N/NYZc8LMuydMw9dBXhXwhG4TdOU7MVXqVu47hSn220ox
+	vNKJoEIAAbnvd6BxLFamzli8GiGuxQI3Ux+BrHu3l9slgFSdRrWfOSIN0BMHM6hWmaqA
+	h24nIfs8Elui59xQWPBE0/SX06ObFE/YAe4IeiTyrEkxZETQuIOc7Ki6LJV5WhUHV86y
+	pClY0PLMN+MeG70Dw7iGRc8q8C50EBdkGJq698TiTgIgDbHEXMS+ggnKphsJVeRawjU6
+	QVU49XOty3rKeglJvoKb/9MpNmraQZLkXB972X8PM+oYNXYtg11RShmXdYNSs8eQ9AkR
+	nrqg==
 MIME-Version: 1.0
-Subject: Creating a core-image-minimal image with package support
+X-Received: by 10.68.189.194 with SMTP id gk2mr13634370pbc.193.1371488893637; 
+	Mon, 17 Jun 2013 10:08:13 -0700 (PDT)
+Received: by 10.68.112.65 with HTTP; Mon, 17 Jun 2013 10:08:13 -0700 (PDT)
+Date: Mon, 17 Jun 2013 22:38:13 +0530
+Message-ID: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
+From: varun bhatnagar <varun292006@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Yocto Layers not getting recognized by bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,46 +34,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 16:51:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 17 Jun 2013 17:08:14 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff1cc225198fd04df5ca4a2
+
+--e89a8ff1cc225198fd04df5ca4a2
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+I am trying to compile my code using yocto. For that I have created two
+layers: "meta-networking" and "meta-oe". I have added these dependencies in
+bblayer.conf too. But these are not getting build. Can anyone please tell
+me what should I do to make this work.
+
+//
+Varun
+
+--e89a8ff1cc225198fd04df5ca4a2
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-All,
+<div dir=3D"ltr">Hi,<div><br></div><div style>I am trying to compile my cod=
+e using yocto. For that I have created two layers: &quot;meta-networking&qu=
+ot; and &quot;meta-oe&quot;. I have added these dependencies in bblayer.con=
+f too. But these are not getting build. Can anyone please tell me what shou=
+ld I do to make this work.</div>
+<div style><br></div><div style>//</div><div style>Varun</div></div>
 
-I am working with the core-image-minimal image from poky/danny as a startin=
-g point, but would like to include packaging support.  I have tried creatin=
-g a separate recipe called core-image-opkg.bb which, from what I read in th=
-e mega-manual, should include all the parts I need for opkg support.  Here =
-is a copy of the image recipe so far:
-
-DESCRIPTION =3D "A small image just capable of allowing a device to boot, w=
-ith opkg support."
-
-IMAGE_INSTALL =3D "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} ${C=
-ORE_IMAGE_EXTRA_INSTALL} opkg opkg-collateral"
-
-IMAGE_FEATURES +=3D "package-management"
-
-IMAGE_LINGUAS =3D " "
-
-LICENSE =3D "MIT"
-
-inherit core-image
-
-IMAGE_ROOTFS_SIZE =3D "8192"
-
-The above recipe yields an image that is includes the opkg executable, but =
-opkg support is incomplete.  Namely, calling opkg yields the error " * opkg=
-_conf_load: Could not create lock file /var/lib/opkg/lock: No such file or =
-directory."  I can see that the folder /var/lib/opkg was not created on my =
-filesystem.  If I create this directory and then call "opkg list-installed"=
-, I get an empty list back.
-
-What more do I need to add to the image recipe so that the image knows what=
- packages were installed on it?  And what do I need to add so that the /var=
-/lib/opkg directory is created?
-
-Thanks,
-Bryan
-
+--e89a8ff1cc225198fd04df5ca4a2--
