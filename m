@@ -1,33 +1,19 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
-	[209.85.215.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 900B7E01547
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 05:29:45 -0700 (PDT)
-Received: by mail-ea0-f180.google.com with SMTP id k10so1789728eaj.39
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 05:29:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=/KdTzbD8qcTrs41M+G+YaQrqstuNfm0ogb/V0K+tPdI=;
-	b=v/dO+aWH9MaVx+7Lq3GyMdJ9X6rNPiCGP7hrRjcg0KOfh8k3kdeisrY/E3hLEdh84Z
-	m4HLArdMKy1Uaj/JDvObveEgcUXd88qBR8goefX8QLTYmYtr2sxI0pEEXb0cWvnGprrF
-	Q088VE6GMUZhUsC5ZeWOzR2mh+RWAlKzR23xwzA6I/sWnNaTH+YOpvniK9K9F2z87avV
-	nyOXOIHdJ+4DpmXG1DoQM1PcAMyMivPk4bmJTTf/PHBXlTrnLaXB98mftOqrTt21bvlc
-	HSbYnbaMj06vZJ3YltgKp46q5efnlj06TBsdjD1FABngGywS/aiVBVr2dS2Ba2qJa1Pd
-	aA6w==
+Return-Path: <Adrian.Dudau@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id EFCBBE01547
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 05:37:57 -0700 (PDT)
+Received: from sestows827.enea.se (172.16.141.147) by SESTOEX03.enea.se
+	(172.21.1.38) with Microsoft SMTP Server (TLS) id 14.2.318.1;
+	Mon, 17 Jun 2013 14:37:53 +0200
+From: Adrian Dudau <adrian.dudau@enea.com>
+To: <jessica.zhang@intel.com>
+Date: Mon, 17 Jun 2013 14:37:41 +0200
+Message-ID: <1371472662-30136-1-git-send-email-adrian.dudau@enea.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Received: by 10.14.100.2 with SMTP id y2mr11725903eef.75.1371472184508; Mon,
-	17 Jun 2013 05:29:44 -0700 (PDT)
-Received: by 10.223.159.195 with HTTP; Mon, 17 Jun 2013 05:29:44 -0700 (PDT)
-In-Reply-To: <CAMKF1sr474Z7GXRueV7S2Op=jL3ap7zmjynrifNmaXn62X7mUg@mail.gmail.com>
-References: <CANwz6ny8-LnE7-weEJnp5BAyR=j4Gbs4HXb29EPM0e4uNx1X4A@mail.gmail.com>
-	<CAMKF1sr474Z7GXRueV7S2Op=jL3ap7zmjynrifNmaXn62X7mUg@mail.gmail.com>
-Date: Mon, 17 Jun 2013 06:29:44 -0600
-Message-ID: <CANwz6nyV4RUX--k==-MuNQxzxMPqXTCoD5mH_kQpUvy+T6OqLw@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: libstdc++-static impacts yocto builds fedora18
+X-Originating-IP: [172.16.141.147]
+Cc: yocto@yoctoproject.org
+Subject: [PATCH 1/1][eclipse-poky] systemtap: add button to browse to build folder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,67 +25,200 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 12:29:48 -0000
-Content-Type: multipart/alternative; boundary=001a11c2b85060a63604df58c089
+X-List-Received-Date: Mon, 17 Jun 2013 12:38:00 -0000
+Content-Type: text/plain
 
---001a11c2b85060a63604df58c089
-Content-Type: text/plain; charset=ISO-8859-1
+[Yocto #4223]
+Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
+---
+ .../src/org/yocto/remote/utils/ShellSession.java   |    4 ++-
+ .../src/org/yocto/sdk/remotetools/Messages.java    |    1 +
+ .../sdk/remotetools/actions/SystemtapHandler.java  |    3 ++-
+ .../sdk/remotetools/actions/SystemtapModel.java    |    6 +++--
+ .../actions/SystemtapSettingDialog.java            |   28 ++++++++++++++++++++
+ .../org/yocto/sdk/remotetools/messages.properties  |    1 +
+ 6 files changed, 39 insertions(+), 4 deletions(-)
 
-Khem,
-Are you building the compiler or just the jre?  I believe you need
-libstdc++-static-4.7.2-8.fc18.x86_64 for
-openjdk-7-jdk-03b21+2.1.8-r5.0.armv7a_vfp_neon.rpm
-core-image-sato-sdk-ex.bb
-IMAGE_INSTALL += "kernel-dev boost qt-mobility-x11 gsl gnuplot gnuradio \
-openjdk-7-jdk openjdk-7-jre openjdk-7-vm-jamvm openjdk-7-vm-cacao "
-I also thought this would fix the gfortran problem but when I tried the
-earlier chgs to gcc-configure-common.inc and gcc-configure-runtime.inc I
-still get errors.
-Thanks for all the help
+diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
+index 4ac8001..10cdf94 100644
+--- a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
+@@ -46,6 +46,7 @@ public class ShellSession {
+ 	private String shellPath = null;
+ 	private final String initCmd;
+ 	private final File root;
++	private final File builddir;
+ 
+ 	private OutputStreamWriter out;
+ 
+@@ -70,6 +71,7 @@ public class ShellSession {
+ 
+ 	public ShellSession(int shellType, File root, String initCmd, OutputStream out) throws IOException {
+ 		this.root = root;
++		this.builddir = builddir;
+ 		this.initCmd  = initCmd;
+ 		if (out == null) {
+ 			this.out = new OutputStreamWriter(null);
+@@ -93,7 +95,7 @@ public class ShellSession {
+ 		}
+ 
+ 		if (initCmd != null) {
+-			execute("source " + initCmd);
++			execute("source " + initCmd + " " + builddir.getAbsolutePath());
+ 		}
+ 	}
+ 
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
+index 66ba62b..cbf2b05 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
+@@ -40,6 +40,7 @@ public class Messages extends NLS {
+ 	public static String TerminalViewer_text;
+ 	//public static String Systemtap_KO_Text;
+ 	public static String Metadata_Location;
++	public static String Builddir_Location;
+ 	public static String User_ID;
+ 	public static String Remote_Host;
+ 	public static String Systemtap_Script;
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
+index 9d27e5a..9f45d05 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
+@@ -34,6 +34,7 @@ public class SystemtapHandler extends AbstractHandler {
+ 				);
+ 		
+ 		String metadata_location = ((SystemtapSettingDialog)setting).getMetadataLocation();
++		String builddir_location = ((SystemtapSettingDialog)setting).getBuilddirLocation();
+ 		String remote_host = ((SystemtapSettingDialog)setting).getRemoteHost();
+ 		String user_id = ((SystemtapSettingDialog)setting).getUserID();
+ 		String systemtap_script = ((SystemtapSettingDialog)setting).getSystemtapScript();
+@@ -41,7 +42,7 @@ public class SystemtapHandler extends AbstractHandler {
+ 
+ 		if(setting.open() == BaseSettingDialog.OK) {
+ 			IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
+-			SystemtapModel op = new SystemtapModel(metadata_location,remote_host, user_id, systemtap_script,
++			SystemtapModel op = new SystemtapModel(metadata_location, builddir_location, remote_host, user_id, systemtap_script,
+ 					systemtap_args,window.getShell().getDisplay());
+ 			try {
+ 				progressService.busyCursorWhile(op);
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
+index f443e00..bb2fa2d 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
+@@ -29,6 +29,7 @@ public class SystemtapModel extends BaseModel {
+ 
+ 	protected MessageConsole sessionConsole;
+ 	private String metadata_location;
++	private String builddir_location;
+ 	private String remote_host;
+ 	private String user_id;
+ 	private String systemtap_script;
+@@ -36,9 +37,10 @@ public class SystemtapModel extends BaseModel {
+ 
+ 	Display display;
+ 	
+-	public SystemtapModel(String metadata_location, String remote_host, String user_id, String systemtap_script, String systemtap_args, Display display) {
++	public SystemtapModel(String metadata_location, String builddir_location, String remote_host, String user_id, String systemtap_script, String systemtap_args, Display display) {
+ 		super(null, TASK_NAME, "", "");
+ 		this.metadata_location = metadata_location;
++		this.builddir_location = builddir_location;
+ 		this.remote_host = remote_host;
+ 		this.user_id = user_id;
+ 		this.systemtap_script = systemtap_script;
+@@ -70,7 +72,7 @@ public class SystemtapModel extends BaseModel {
+ 			throws InvocationTargetException, InterruptedException {
+ 		try {
+ 			ShellSession shell = new ShellSession(ShellSession.SHELL_TYPE_BASH, 
+-												new File(this.metadata_location),
++												new File(this.metadata_location), new File(this.builddir_location),
+ 												DEFAULT_INIT_SCRIPT, sessionConsole.newOutputStream());
+ 			boolean acceptedKey = shell.ensureKnownHostKey(user_id, remote_host);
+ 			if (acceptedKey) {
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
+index c447569..760715c 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
+@@ -37,18 +37,21 @@ public class SystemtapSettingDialog extends Dialog {
+ 	static protected String TITLE="Systemtap Crosstap";
+ 	protected String title;
+ 	protected String metadata_location;
++	protected String builddir_location;
+ 	protected String systemtap_script;
+ 	protected String user_id;
+ 	protected String remote_host;
+ 	protected String systemtap_args;
+ 	protected boolean okPressed;
+ 	protected Button metadataLocationBtn;
++	protected Button builddirLocationBtn;
+ 	protected Button systemtapScriptBtn;
+ 	protected Text userIDText;
+ 	protected Text remoteHostText;
+ 	protected Text systemtapArgsText;
+ 	protected Text systemtapScriptText;
+ 	protected Text metadataLocationText;
++	protected Text builddirLocationText;
+ 	
+ 	protected SystemtapSettingDialog(Shell parentShell, String title) {
+ 		super(parentShell);
+@@ -75,6 +78,10 @@ public class SystemtapSettingDialog extends Dialog {
+ 		return metadata_location;
+ 	}
+ 	
++	public String getBuilddirLocation() {
++		return builddir_location;
++	}
++
+ 	public String getRemoteHost() {
+ 		return remote_host;
+ 	}
+@@ -119,6 +126,14 @@ public class SystemtapSettingDialog extends Dialog {
+ 		metadataLocationBtn = addDirSelectButton(textContainer, metadataLocationText);
+ 		
+ 		label = new Label(projComp, SWT.NONE);
++		label.setText(Messages.Builddir_Location);
++		textContainer = new Composite(projComp, SWT.NONE);
++		textContainer.setLayout(new GridLayout(2, false));
++		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
++		builddirLocationText = (Text)addTextControl(textContainer, builddir_location);
++		builddirLocationBtn = addDirSelectButton(textContainer, builddirLocationText);
++
++		label = new Label(projComp, SWT.NONE);
+ 		label.setText(Messages.User_ID);
+ 		userIDText = new Text(projComp, SWT.SINGLE | SWT.BORDER);
+ 		
+@@ -219,6 +234,19 @@ public class SystemtapSettingDialog extends Dialog {
+ 			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified metadata location is not a directory!");
+ 			return;
+ 		}
++		builddir_location = builddirLocationText.getText();
++		if ( (builddir_location == null) || builddir_location.isEmpty()) {
++			CommonHelper.showErrorDialog("SystemTap Error", null, "Please specify your builddir location!");
++			return;
++		}
++		File builddir_dir = new File(builddir_location);
++		if (!builddir_dir.exists()) {
++			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified builddir location does not exist!");
++		}
++		if (!metadata_dir.isDirectory()) {
++			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified builddir location is not a directory!");
++			return;
++		}
+ 		user_id = userIDText.getText();
+ 		if ( (user_id == null) || user_id.isEmpty()) {
+ 			CommonHelper.showErrorDialog("SystemTap Error", null, "Please specify remote user id!");
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
+index 7bbf987..2d6d8af 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
+@@ -35,6 +35,7 @@ Powertop_ShowPid_Text=show pids in wakeups list
+ TerminalViewer_text=This view is dedicated to Yocto Remote tools. Please use the "Yocto Remote Tools" menu to open the view.
+ //Systemtap_KO_Text=Kernel Module:
+ Metadata_Location=Metadata Location:
++Builddir_Location=Build dir Location:
+ User_ID=User ID:
+ Remote_Host=Remote Host:
+ Systemtap_Script=Systemtap Script:
+-- 
+1.7.9.5
 
 
-On Sun, Jun 16, 2013 at 11:22 PM, Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Sun, Jun 2, 2013 at 2:35 PM, Edward Vidal <vidal.develone@gmail.com>
-> wrote:
-> > Please note that libstdc++ static is needed on your host to compile
-> > icedtea6/7-native
-> > (install libstdc++-static on a Fedora).
->
-> is that still valid ? I dont have it installed and it builds without
-> issues. may be meta-java/readme should be updated.
->
-
---001a11c2b85060a63604df58c089
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Khem,<br>Are you building the compiler or just t=
-he jre?=A0 I believe you need libstdc++-static-4.7.2-8.fc18.x86_64 for<br>o=
-penjdk-7-jdk-03b21+2.1.8-r5.0.armv7a_vfp_neon.rpm<br><a href=3D"http://core=
--image-sato-sdk-ex.bb">core-image-sato-sdk-ex.bb</a><br>
-IMAGE_INSTALL +=3D &quot;kernel-dev boost qt-mobility-x11 gsl gnuplot gnura=
-dio \<br>openjdk-7-jdk openjdk-7-jre openjdk-7-vm-jamvm openjdk-7-vm-cacao =
-&quot;<br></div>I also thought this would fix the gfortran problem but when=
- I tried the earlier chgs to gcc-configure-common.inc and gcc-configure-run=
-time.inc I still get errors.<br>
-</div>Thanks for all the help<br></div><div class=3D"gmail_extra"><br><br><=
-div class=3D"gmail_quote">On Sun, Jun 16, 2013 at 11:22 PM, Khem Raj <span =
-dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj=
-.khem@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On Sun, Jun 2, 2013 at 2:3=
-5 PM, Edward Vidal &lt;<a href=3D"mailto:vidal.develone@gmail.com">vidal.de=
-velone@gmail.com</a>&gt; wrote:<br>
-
-</div><div class=3D"im">&gt; Please note that libstdc++ static is needed on=
- your host to compile<br>
-&gt; icedtea6/7-native<br>
-&gt; (install libstdc++-static on a Fedora).<br>
-<br>
-</div>is that still valid ? I dont have it installed and it builds without<=
-br>
-issues. may be meta-java/readme should be updated.<br>
-</blockquote></div><br></div>
-
---001a11c2b85060a63604df58c089--
