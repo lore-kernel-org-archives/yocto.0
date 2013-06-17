@@ -1,27 +1,29 @@
-Return-Path: <mail@timomueller.eu>
-Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
-	[85.214.246.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BF39E01547
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 03:04:42 -0700 (PDT)
-Received: from mysterion.bmw-carit.intra (mail.bmw-carit.de [62.245.222.98])
-	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: mail@timomueller.eu)
-	by h1954115.stratoserver.net (mailserver) with ESMTPSA id C59DA6E941F3; 
-	Mon, 17 Jun 2013 12:04:38 +0200 (CEST)
-Message-ID: <51BEDF35.9000508@timomueller.eu>
-Date: Mon, 17 Jun 2013 12:04:37 +0200
-From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+Return-Path: <diego.ml@zoho.com>
+Received: from sender1.zohomail.com (sender1.zohomail.com [72.5.230.95])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47977E01547
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 03:47:18 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=zapps768; d=zoho.com; 
+	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to:references:mime-version:content-type;
+	b=DiYw/Ap4yXyJisDsi15TeQj0FFCezRRZLGF9mXYoSOB7mKp0nrfiNVJOoN/tvbFAzZg1knta13Je
+	ETrgRhD8Nq+uwlg87DqzLV7eIn5flzwSSZClaY+sDSugRCECHmMo  
+Received: from localhost.localdomain (static-217-133-170-65.clienti.tiscali.it
+	[217.133.170.65]) by mx.zohomail.com
+	with SMTPS id 1371466033976298.76237933533537;
+	Mon, 17 Jun 2013 03:47:13 -0700 (PDT)
+From: Diego <diego.ml@zoho.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Mon, 17 Jun 2013 12:47:09 +0200
+Message-ID: <15073618.ieBUYuGgYp@localhost.localdomain>
+User-Agent: KMail/4.10.3 (Linux/3.8.13-100.fc17.x86_64; KDE/4.10.3; x86_64; ; )
+In-Reply-To: <CAPhnLPCEbtR=8Wa+odYJ197-Nqa6DHwRbPRY8V_OWrbE4bGjSw@mail.gmail.com>
+References: <1810497.uZE9ivf2T0@localhost.localdomain>
+	<2975064.NgcQZYsAKT@localhost.localdomain>
+	<CAPhnLPCEbtR=8Wa+odYJ197-Nqa6DHwRbPRY8V_OWrbE4bGjSw@mail.gmail.com>
 MIME-Version: 1.0
-To: "Zhang, Jessica" <jessica.zhang@intel.com>
-References: <cover.1371123125.git.timo.mueller@bmw-carit.de>
-	<C6510F6D410BB64A8C15398EDC6B847C73C3B28D@ORSMSX103.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C3B28D@ORSMSX103.amr.corp.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [PATCH 0/7][eclipse-poky] Add target profile quick switch
+X-ZohoMailClient: External
+X-Zoho-Virus-Status: 2
+Cc: yocto@yoctoproject.org
+Subject: Re: How to deal with non-standard license.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,131 +35,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 10:04:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 17 Jun 2013 10:47:21 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="ISO-8859-1"
 
-Hi Jessica,
+In data mercoled=EC 12 giugno 2013 14:17:05, Flanagan, Elizabeth ha scr=
+itto:
+> On Wed, Jun 12, 2013 at 9:41 AM, Diego <diego.ml@zoho.com> wrote:
+> > In data marted=EC 11 giugno 2013 15:10:42, Flanagan, Elizabeth ha s=
+critto:
+> >> On Tue, Jun 11, 2013 at 5:28 AM, Diego <diego.ml@zoho.com> wrote:
+> >> > Hi everybody,
+> >> >=20
+> >> > I have written a recipe which I'd like to contribute for glmark2=
+:
+> >> > https://launchpad.net/glmark2
+> >> >=20
+> >> > The last thing that puzzles me before submitting it is that it's=
+ partly
+> >> > GPL3+, and partly under this license:
+> >> > https://github.com/rafalmiel/glmark2-wl/blob/master/COPYING.SGI
+> >> > which is not in this list:
+> >> > https://wiki.yoctoproject.org/wiki/License_Infrastructure_Intere=
+st_Grou
+> >> > p#L
+> >> > icenses Is there any way to deal with that license? What should =
+I put
+> >> > in
+> >> > the LICENSE field in my recipe?
+> >>=20
+> >> So, you will need to add a custom license or submit a patch OE-Cor=
+e to
+> >> add that license. Where are you contributing this to?
+> >>=20
+> >> If it's to a layer, you'll want to add the license to a custom lic=
+ense
+> >> path. You'll want that file to be unique and descriptive. Please m=
+ake
+> >> sure the license filename has a version in the file name. eg SGI-1=
+.
+> >> Within the layer you'll make a directory (in this example I use
+> >> custom-licenses), add the license text to a file named SGI-1, then=
+ add
+> >> this to your layer.conf:
+> >>=20
+> >> LICENSE_PATH +=3D "${LAYERDIR}/custom-licenses"
+> >> SPDXLICENSEMAP[SGIv1] =3D "SGI-1"
+> >>=20
+> >> That should get you what you want.
+> >=20
+> > Hi Elizabeth,
+> >=20
+> > I'm trying to integrate glmark2 into openembedded (meta-oe layer). =
+I know
+> > this is not the right mailing list for that task, but I'm still on =
+the
+> > license problem.
+>=20
+> Ah, ok. In that case, ignore what I just said and patch oe-core's
+> files/common-licenses with the SGI license and
+> files/conf/licenses.conf with:
+>=20
+> SPDXLICENSEMAP[SGIv1] =3D "SGI-1"
+> SRC_DISTRIBUTE_LICENSES +=3D "SGI-1"
+>=20
+> That's the right way to do this, IMHO
+>=20
 
-Zhang, Jessica wrote, On 14.06.2013 21:42:
-> Hi Timo,
->
-> First thanks for continuous making improvement.  Most of the patches
-> looked fine, but when I tested the functionality, I noticed that in
-> either cases, your list contains: Project Specific and my customized
-> profiles e.g. Standard Profile and profile_static.  I can toggle my
-> customized profiles with no issue.  But if I click on the radio
-> button for "project specific", I'm getting:
->
-> The project specific target profile is not defined for the project
-> "YHWC". You can define it in the projects property page
->
-> Reason: Specified Toolchain Root Location is empty.
->
-> So I'm a little lost here,do we really need this project specific
-> option?
+Hi Elizabeth,
 
-The "project specific" option correlates to the checkbox in the project
-properties. The error you get is thrown if you haven't configured the
-project specific profile in you project. I think in general this is
-needed as otherwise the project specific would be kind of a
-second-class profile
+I've tried posting the patch here:
+https://lists.yoctoproject.org/pipermail/poky/2013-June/009008.html
 
-However, I think we can handle this error case more gracefully. I have
-two possible ideas in mind, both with pros and cons:
+But I did not receive a reply. Maybe I did something wrong? Should the =
+patch=20
+go to poky ml or to openembedded-core@lists.openembedded.org ?
 
-1) disable/hide the project specific option, if it is not defined
-in the project
-* Pro: Only valid options are shown and accessible.
-* Con: Might be confusing if the option is only available with some
-projects. Especially if you haven't heard of the project specific
-settings yet.
+Thanks,
+Diego
 
-2) open the project properties to allow the user to do the configuration
-* Pro: Forwards the user to the configuration page, allowing him to
-quickly create the configuration.
-* Con: Opens a new window. As there's no hint about the state of the
-project specific configuration. The user might enter the configuration
-page unintended.
-
-I'm slightly in favour of option two. Maybe the cons can be worked
-around by changing the label according to the state of the project
-specific configuration. E.g. "Configure project specific" and "project
-specific". I'll rework the patches to see how this feels like.
-
-What do you think about this? Something I miss?
-
- > The other nit picking is, you have "projectSpeficic.label",
-> is that a typo?
-
-Yes, that's a typo. I will fix it along with the reworks mentioned
-above.
-
->
-> Thanks, Jessica
->
-> -----Original Message----- From: yocto-bounces@yoctoproject.org
-> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Timo Mueller
-> Sent: Thursday, June 13, 2013 6:30 AM To: yocto@yoctoproject.org Cc:
-> Timo Mueller Subject: [yocto] [PATCH 0/7][eclipse-poky] Add target
-> profile quick switch
->
-> From: Timo Mueller <timo.mueller@bmw-carit.de>
->
-> Hi,
->
-> if a user wants to change the used target profile of a project he
-> currently has to open the project preferences. This can be tedious if
-> he has to switch the profile often.
->
-> This is a small addition which allows the user to quickly switch the
-> used target profile of a project. Instead of having to open the
-> project preferences the user can select the project in the navigator
-> and then choose the desired target profile from a drop-down menu in
-> the toolbar or from the project menu.
->
-> 01: Small i18n fix 02..04: Refactoring the project specific utils
-> 05..06: Introduce the target profile toolbar switch 07: Adds the
-> target profile switch to the project menu
->
-> Best regards, Timo
->
-> Timo Mueller (7): plugins/sdk.ide: Use an internationalized dialog
-> title plugins/sdk.ide: Extract project specific util methods
-> plugins/sdk.ide: Move project specific util methods plugins/sdk.ide:
-> Remove project context from method names plugins/sdk.ide: Add command
-> to switch the target profile plugins/sdk.ide: Add profile switch menu
-> to the toolbar plugins/sdk.ide: Add profile switch menu to the
-> project menu
->
-> .../OSGI-INF/l10n/bundle.properties                |   5 +
-> plugins/org.yocto.sdk.ide/plugin.xml               | 105 +++++++++
-> .../sdk/ide/TargetProfileContributionItem.java     | 121 +++++++++++
-> .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |   3 +
-> .../src/org/yocto/sdk/ide/YoctoUISetting.java      |   3 +-
-> .../sdk/ide/actions/ProfileSwitchHandler.java      | 154
-> +++++++++++++ .../natures/YoctoSDKAutotoolsProjectNature.java    |
-> 3 +- .../ide/preferences/YoctoSDKPreferencePage.java    |  11 +-
-> .../preferences/YoctoSDKProjectPropertyPage.java   | 130 ++---------
-> .../sdk/ide/utils/ProjectPreferenceUtils.java      | 240
-> +++++++++++++++++++++
-> .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java | 118 ----------
-> .../ide/wizard/NewYoctoProjectTemplateProcess.java |   3 +- 12 files
-> changed, 651 insertions(+), 245 deletions(-)  create mode 100644
-> plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContributionItem.java
->
->
-create mode 100644 
-plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/actions/ProfileSwitchHandler.java
-> create mode 100644
-> plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
->
->  -- 1.8.1.4
->
-> _______________________________________________ yocto mailing list
-> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
->
-
-Best regards,
-Timo
 
