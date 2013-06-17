@@ -1,32 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A988E0152B
-	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:23:25 -0700 (PDT)
-Received: by mail-ie0-f169.google.com with SMTP id 10so6050030ied.0
-	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:23:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=zMBsG5wOsMvI6qcvAwy+fLqve9pBAqDRqXddl+zJvDY=;
-	b=uf/PPe5LPQE9WQhn0AwXPoYAPgx+Wqmqg0Z/rQ7w1GKCAHdexj5vcnmgpJw421rFl1
-	WTzBfU4/ThYZaFVtJQKvz+IxQqCeJb8k12hbs5E/I8EY4hUjDE/YqoXY4wQoS7dqyT2I
-	9raj6sAq7AzVPi3YsMvGdnJoUXRxMBTqocGLgiLv8Hc2HFimb60yqkfQvl2MiMX7rxpP
-	WVWkWx00lphlMjcW4y5uC9VL5+XO/6JghmbJfTRxj/MVClKhSaq9ZpNoj4awRP2QEbfB
-	gc56lYh0XKHNaETxeoCuhKgw+/4V4sna03X7/rFwjgbgQ8WYZmEgSB129nTV5e64jtDO
-	ziqg==
-X-Received: by 10.50.78.100 with SMTP id a4mr3837176igx.102.1371446604579;
-	Sun, 16 Jun 2013 22:23:24 -0700 (PDT)
+Return-Path: <Qi.Chen@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69A09E01547
+	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:26:10 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r5H5QBxE007824
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:26:11 -0700 (PDT)
+Received: from [128.224.162.233] (128.224.162.233) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Sun, 16 Jun 2013 22:26:10 -0700
+Message-ID: <51BE9DF5.1090200@windriver.com>
+Date: Mon, 17 Jun 2013 13:26:13 +0800
+From: ChenQi <Qi.Chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-Received: by 10.50.4.168 with HTTP; Sun, 16 Jun 2013 22:22:54 -0700 (PDT)
-In-Reply-To: <CANwz6ny8-LnE7-weEJnp5BAyR=j4Gbs4HXb29EPM0e4uNx1X4A@mail.gmail.com>
-References: <CANwz6ny8-LnE7-weEJnp5BAyR=j4Gbs4HXb29EPM0e4uNx1X4A@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 16 Jun 2013 22:22:54 -0700
-Message-ID: <CAMKF1sr474Z7GXRueV7S2Op=jL3ap7zmjynrifNmaXn62X7mUg@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: libstdc++-static impacts yocto builds fedora18
+To: <yocto@yoctoproject.org>
+References: <loom.20130616T115549-619@post.gmane.org>
+	<51BE98F8.3040903@windriver.com>
+	<loom.20130617T071650-37@post.gmane.org>
+In-Reply-To: <loom.20130617T071650-37@post.gmane.org>
+X-Originating-IP: [128.224.162.233]
+Subject: Re: Modify udev
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,14 +34,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 05:23:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 17 Jun 2013 05:26:11 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jun 2, 2013 at 2:35 PM, Edward Vidal <vidal.develone@gmail.com> wrote:
-> Please note that libstdc++ static is needed on your host to compile
-> icedtea6/7-native
-> (install libstdc++-static on a Fedora).
+On 06/17/2013 01:19 PM, jack wrote:
+> ChenQi <Qi.Chen@...> writes:
+>
+>> On 06/16/2013 07:45 PM, Jack wrote:
+>>> Hi,
+>>>
+>>> In my imageو starting udev take a long time about 6 seconds whereas the time
+>> If the performance is important, what about using udev-cache to speed up
+>> the boot process?
+>>
+> How should I use udev-cache ?
+>
+To add udev-cache to your image, add the following line to your local.conf.
+IMAGE_INSTALL_append += "udev-cache"
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-is that still valid ? I dont have it installed and it builds without
-issues. may be meta-java/readme should be updated.
 
