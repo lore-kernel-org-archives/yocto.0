@@ -1,25 +1,30 @@
-Return-Path: <Qi.Chen@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D73CE013B8
-	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:04:57 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r5H54rLa007652
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:04:53 -0700 (PDT)
-Received: from [128.224.162.233] (128.224.162.233) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Sun, 16 Jun 2013 22:04:53 -0700
-Message-ID: <51BE98F8.3040903@windriver.com>
-Date: Mon, 17 Jun 2013 13:04:56 +0800
-From: ChenQi <Qi.Chen@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE0F8E0152B
+	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:19:43 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1UoRqv-0003oP-6K
+	for yocto@yoctoproject.org; Mon, 17 Jun 2013 07:19:41 +0200
+Received: from 212.50.246.123 ([212.50.246.123])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 07:19:41 +0200
+Received: from jackrubby2010 by 212.50.246.123 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 07:19:41 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: jack <jackrubby2010@gmail.com>
+Date: Mon, 17 Jun 2013 05:19:25 +0000 (UTC)
+Message-ID: <loom.20130617T071650-37@post.gmane.org>
 References: <loom.20130616T115549-619@post.gmane.org>
-In-Reply-To: <loom.20130616T115549-619@post.gmane.org>
-X-Originating-IP: [128.224.162.233]
+	<51BE98F8.3040903@windriver.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 212.50.246.123 (Mozilla/5.0 (Windows NT 5.1;
+	rv:15.0) Gecko/20100101 Firefox/15.0.1)
 Subject: Re: Modify udev
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,30 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 05:04:59 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Mon, 17 Jun 2013 05:19:44 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
-On 06/16/2013 07:45 PM, Jack wrote:
-> Hi,
->
-> In my imageو starting udev take a long time about 6 seconds whereas the time
-If the performance is important, what about using udev-cache to speed up 
-the boot process?
+ChenQi <Qi.Chen@...> writes:
 
-Cheers,
-Chen Qi
-> is so important for me. Therefore, I decide to remove udev from
-> task-core-boot but I get a problem in mounting SATA drive. So, I add udev to
-> task-core-boot. In addition to mount SATA drive by udev some other packages
-> like libusb, pciutils,... will install. I want only to mount SATA drive by
-> udev. How can I modify udev that it only install hdd drive ?
->
-> Thanks.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> 
+> On 06/16/2013 07:45 PM, Jack wrote:
+> > Hi,
+> >
+> > In my imageو starting udev take a long time about 6 seconds whereas the time
+> If the performance is important, what about using udev-cache to speed up 
+> the boot process?
+> 
+
+How should I use udev-cache ?
+
+
+
+
 
 
