@@ -1,19 +1,23 @@
-Return-Path: <Adrian.Dudau@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id EFCBBE01547
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 05:37:57 -0700 (PDT)
-Received: from sestows827.enea.se (172.16.141.147) by SESTOEX03.enea.se
-	(172.21.1.38) with Microsoft SMTP Server (TLS) id 14.2.318.1;
-	Mon, 17 Jun 2013 14:37:53 +0200
-From: Adrian Dudau <adrian.dudau@enea.com>
-To: <jessica.zhang@intel.com>
-Date: Mon, 17 Jun 2013 14:37:41 +0200
-Message-ID: <1371472662-30136-1-git-send-email-adrian.dudau@enea.com>
-X-Mailer: git-send-email 1.7.9.5
+Return-Path: <bevenson@melinkcorp.com>
+Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
+	[98.100.91.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77BABE01483
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 09:50:59 -0700 (PDT)
+Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
+	([10.0.2.4]) with mapi; Mon, 17 Jun 2013 12:50:58 -0400
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 17 Jun 2013 12:49:35 -0400
+Thread-Topic: Creating a core-image-minimal image with package support
+Thread-Index: Ac5reqXMouXSXAACQ3GZHVq38/P5RQ==
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE4013B910EC9FD@pluto.melinkcorp.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 011A023700496A011A0384
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Originating-IP: [172.16.141.147]
-Cc: yocto@yoctoproject.org
-Subject: [PATCH 1/1][eclipse-poky] systemtap: add button to browse to build folder
+Subject: Creating a core-image-minimal image with package support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,200 +29,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 12:38:00 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 17 Jun 2013 16:51:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-[Yocto #4223]
-Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
----
- .../src/org/yocto/remote/utils/ShellSession.java   |    4 ++-
- .../src/org/yocto/sdk/remotetools/Messages.java    |    1 +
- .../sdk/remotetools/actions/SystemtapHandler.java  |    3 ++-
- .../sdk/remotetools/actions/SystemtapModel.java    |    6 +++--
- .../actions/SystemtapSettingDialog.java            |   28 ++++++++++++++++++++
- .../org/yocto/sdk/remotetools/messages.properties  |    1 +
- 6 files changed, 39 insertions(+), 4 deletions(-)
+All,
 
-diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
-index 4ac8001..10cdf94 100644
---- a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
-+++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/ShellSession.java
-@@ -46,6 +46,7 @@ public class ShellSession {
- 	private String shellPath = null;
- 	private final String initCmd;
- 	private final File root;
-+	private final File builddir;
- 
- 	private OutputStreamWriter out;
- 
-@@ -70,6 +71,7 @@ public class ShellSession {
- 
- 	public ShellSession(int shellType, File root, String initCmd, OutputStream out) throws IOException {
- 		this.root = root;
-+		this.builddir = builddir;
- 		this.initCmd  = initCmd;
- 		if (out == null) {
- 			this.out = new OutputStreamWriter(null);
-@@ -93,7 +95,7 @@ public class ShellSession {
- 		}
- 
- 		if (initCmd != null) {
--			execute("source " + initCmd);
-+			execute("source " + initCmd + " " + builddir.getAbsolutePath());
- 		}
- 	}
- 
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
-index 66ba62b..cbf2b05 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/Messages.java
-@@ -40,6 +40,7 @@ public class Messages extends NLS {
- 	public static String TerminalViewer_text;
- 	//public static String Systemtap_KO_Text;
- 	public static String Metadata_Location;
-+	public static String Builddir_Location;
- 	public static String User_ID;
- 	public static String Remote_Host;
- 	public static String Systemtap_Script;
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-index 9d27e5a..9f45d05 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapHandler.java
-@@ -34,6 +34,7 @@ public class SystemtapHandler extends AbstractHandler {
- 				);
- 		
- 		String metadata_location = ((SystemtapSettingDialog)setting).getMetadataLocation();
-+		String builddir_location = ((SystemtapSettingDialog)setting).getBuilddirLocation();
- 		String remote_host = ((SystemtapSettingDialog)setting).getRemoteHost();
- 		String user_id = ((SystemtapSettingDialog)setting).getUserID();
- 		String systemtap_script = ((SystemtapSettingDialog)setting).getSystemtapScript();
-@@ -41,7 +42,7 @@ public class SystemtapHandler extends AbstractHandler {
- 
- 		if(setting.open() == BaseSettingDialog.OK) {
- 			IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
--			SystemtapModel op = new SystemtapModel(metadata_location,remote_host, user_id, systemtap_script,
-+			SystemtapModel op = new SystemtapModel(metadata_location, builddir_location, remote_host, user_id, systemtap_script,
- 					systemtap_args,window.getShell().getDisplay());
- 			try {
- 				progressService.busyCursorWhile(op);
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-index f443e00..bb2fa2d 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapModel.java
-@@ -29,6 +29,7 @@ public class SystemtapModel extends BaseModel {
- 
- 	protected MessageConsole sessionConsole;
- 	private String metadata_location;
-+	private String builddir_location;
- 	private String remote_host;
- 	private String user_id;
- 	private String systemtap_script;
-@@ -36,9 +37,10 @@ public class SystemtapModel extends BaseModel {
- 
- 	Display display;
- 	
--	public SystemtapModel(String metadata_location, String remote_host, String user_id, String systemtap_script, String systemtap_args, Display display) {
-+	public SystemtapModel(String metadata_location, String builddir_location, String remote_host, String user_id, String systemtap_script, String systemtap_args, Display display) {
- 		super(null, TASK_NAME, "", "");
- 		this.metadata_location = metadata_location;
-+		this.builddir_location = builddir_location;
- 		this.remote_host = remote_host;
- 		this.user_id = user_id;
- 		this.systemtap_script = systemtap_script;
-@@ -70,7 +72,7 @@ public class SystemtapModel extends BaseModel {
- 			throws InvocationTargetException, InterruptedException {
- 		try {
- 			ShellSession shell = new ShellSession(ShellSession.SHELL_TYPE_BASH, 
--												new File(this.metadata_location),
-+												new File(this.metadata_location), new File(this.builddir_location),
- 												DEFAULT_INIT_SCRIPT, sessionConsole.newOutputStream());
- 			boolean acceptedKey = shell.ensureKnownHostKey(user_id, remote_host);
- 			if (acceptedKey) {
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-index c447569..760715c 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/SystemtapSettingDialog.java
-@@ -37,18 +37,21 @@ public class SystemtapSettingDialog extends Dialog {
- 	static protected String TITLE="Systemtap Crosstap";
- 	protected String title;
- 	protected String metadata_location;
-+	protected String builddir_location;
- 	protected String systemtap_script;
- 	protected String user_id;
- 	protected String remote_host;
- 	protected String systemtap_args;
- 	protected boolean okPressed;
- 	protected Button metadataLocationBtn;
-+	protected Button builddirLocationBtn;
- 	protected Button systemtapScriptBtn;
- 	protected Text userIDText;
- 	protected Text remoteHostText;
- 	protected Text systemtapArgsText;
- 	protected Text systemtapScriptText;
- 	protected Text metadataLocationText;
-+	protected Text builddirLocationText;
- 	
- 	protected SystemtapSettingDialog(Shell parentShell, String title) {
- 		super(parentShell);
-@@ -75,6 +78,10 @@ public class SystemtapSettingDialog extends Dialog {
- 		return metadata_location;
- 	}
- 	
-+	public String getBuilddirLocation() {
-+		return builddir_location;
-+	}
-+
- 	public String getRemoteHost() {
- 		return remote_host;
- 	}
-@@ -119,6 +126,14 @@ public class SystemtapSettingDialog extends Dialog {
- 		metadataLocationBtn = addDirSelectButton(textContainer, metadataLocationText);
- 		
- 		label = new Label(projComp, SWT.NONE);
-+		label.setText(Messages.Builddir_Location);
-+		textContainer = new Composite(projComp, SWT.NONE);
-+		textContainer.setLayout(new GridLayout(2, false));
-+		textContainer.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-+		builddirLocationText = (Text)addTextControl(textContainer, builddir_location);
-+		builddirLocationBtn = addDirSelectButton(textContainer, builddirLocationText);
-+
-+		label = new Label(projComp, SWT.NONE);
- 		label.setText(Messages.User_ID);
- 		userIDText = new Text(projComp, SWT.SINGLE | SWT.BORDER);
- 		
-@@ -219,6 +234,19 @@ public class SystemtapSettingDialog extends Dialog {
- 			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified metadata location is not a directory!");
- 			return;
- 		}
-+		builddir_location = builddirLocationText.getText();
-+		if ( (builddir_location == null) || builddir_location.isEmpty()) {
-+			CommonHelper.showErrorDialog("SystemTap Error", null, "Please specify your builddir location!");
-+			return;
-+		}
-+		File builddir_dir = new File(builddir_location);
-+		if (!builddir_dir.exists()) {
-+			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified builddir location does not exist!");
-+		}
-+		if (!metadata_dir.isDirectory()) {
-+			CommonHelper.showErrorDialog("SystemTap Error", null, "The specified builddir location is not a directory!");
-+			return;
-+		}
- 		user_id = userIDText.getText();
- 		if ( (user_id == null) || user_id.isEmpty()) {
- 			CommonHelper.showErrorDialog("SystemTap Error", null, "Please specify remote user id!");
-diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
-index 7bbf987..2d6d8af 100644
---- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
-+++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/messages.properties
-@@ -35,6 +35,7 @@ Powertop_ShowPid_Text=show pids in wakeups list
- TerminalViewer_text=This view is dedicated to Yocto Remote tools. Please use the "Yocto Remote Tools" menu to open the view.
- //Systemtap_KO_Text=Kernel Module:
- Metadata_Location=Metadata Location:
-+Builddir_Location=Build dir Location:
- User_ID=User ID:
- Remote_Host=Remote Host:
- Systemtap_Script=Systemtap Script:
--- 
-1.7.9.5
+I am working with the core-image-minimal image from poky/danny as a startin=
+g point, but would like to include packaging support.  I have tried creatin=
+g a separate recipe called core-image-opkg.bb which, from what I read in th=
+e mega-manual, should include all the parts I need for opkg support.  Here =
+is a copy of the image recipe so far:
 
+DESCRIPTION =3D "A small image just capable of allowing a device to boot, w=
+ith opkg support."
+
+IMAGE_INSTALL =3D "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} ${C=
+ORE_IMAGE_EXTRA_INSTALL} opkg opkg-collateral"
+
+IMAGE_FEATURES +=3D "package-management"
+
+IMAGE_LINGUAS =3D " "
+
+LICENSE =3D "MIT"
+
+inherit core-image
+
+IMAGE_ROOTFS_SIZE =3D "8192"
+
+The above recipe yields an image that is includes the opkg executable, but =
+opkg support is incomplete.  Namely, calling opkg yields the error " * opkg=
+_conf_load: Could not create lock file /var/lib/opkg/lock: No such file or =
+directory."  I can see that the folder /var/lib/opkg was not created on my =
+filesystem.  If I create this directory and then call "opkg list-installed"=
+, I get an empty list back.
+
+What more do I need to add to the image recipe so that the image knows what=
+ packages were installed on it?  And what do I need to add so that the /var=
+/lib/opkg directory is created?
+
+Thanks,
+Bryan
 
