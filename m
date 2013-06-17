@@ -1,28 +1,26 @@
-Return-Path: <Qi.Chen@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69A09E01547
-	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:26:10 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r5H5QBxE007824
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 16 Jun 2013 22:26:11 -0700 (PDT)
-Received: from [128.224.162.233] (128.224.162.233) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Sun, 16 Jun 2013 22:26:10 -0700
-Message-ID: <51BE9DF5.1090200@windriver.com>
-Date: Mon, 17 Jun 2013 13:26:13 +0800
-From: ChenQi <Qi.Chen@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <Adrian.Dudau@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 3EAF2E01547
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 00:31:30 -0700 (PDT)
+Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.02.0318.001; Mon, 17 Jun 2013 09:31:24 +0200
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: Thanassis Silis <djnass_18@hotmail.com>
+Thread-Topic: [yocto] eclipse error in downloading file when trying to debug
+	on the actual target
+Thread-Index: AQHOaecq3hALo/OMy02boisHUPz8HZk5Y/8A
+Date: Mon, 17 Jun 2013 07:31:23 +0000
+Message-ID: <C35DE6E3665B10419D70F74D9884ABD403DE3AF9@sestoex05.enea.se>
+References: <DUB116-W11741B9D094589E5132592398810@phx.gbl>
+In-Reply-To: <DUB116-W11741B9D094589E5132592398810@phx.gbl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.141.147]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <loom.20130616T115549-619@post.gmane.org>
-	<51BE98F8.3040903@windriver.com>
-	<loom.20130617T071650-37@post.gmane.org>
-In-Reply-To: <loom.20130617T071650-37@post.gmane.org>
-X-Originating-IP: [128.224.162.233]
-Subject: Re: Modify udev
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: eclipse error in downloading file when trying to debug on the actual target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,30 +32,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2013 05:26:11 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 17 Jun 2013 07:31:33 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <76091CA8212DF543BEF44C9A4B7A46AA@local>
+Content-Transfer-Encoding: base64
 
-On 06/17/2013 01:19 PM, jack wrote:
-> ChenQi <Qi.Chen@...> writes:
->
->> On 06/16/2013 07:45 PM, Jack wrote:
->>> Hi,
->>>
->>> In my imageو starting udev take a long time about 6 seconds whereas the time
->> If the performance is important, what about using udev-cache to speed up
->> the boot process?
->>
-> How should I use udev-cache ?
->
-To add udev-cache to your image, add the following line to your local.conf.
-IMAGE_INSTALL_append += "udev-cache"
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+T24gU2F0LCAyMDEzLTA2LTE1IGF0IDE2OjQwICswMDAwLCBUaGFuYXNzaXMgU2lsaXMgd3JvdGU6
+DQo+IEhlbGxvIGV2ZXJ5b25lLA0KPiBJIGNyZWF0ZWQgYSAiaGVsbG8gd29ybGQiIEFEVCBDIGFw
+cGxpY2F0aW9uIChiYXNpY2FsbHkgZm9sbG93aW5nIHRoZQ0KPiBQRE0gaHR0cDovL3d3dy55b2N0
+b3Byb2plY3Qub3JnL2RvY3MvbGF0ZXN0L2Rldi1tYW51YWwvZGV2LW1hbnVhbC5odG1sI2FwcGxp
+Y2F0aW9uLWRldmVsb3BtZW50LXdvcmtmbG93ICkNCj4gDQo+IA0KPiBUaGUgZ3VpZGUgZ2l2ZXMg
+ZGlyZWN0aW9ucyB0byBydW4gdGhlIGJ1aWx0IGFwcGxpY2F0aW9uIGluIGEgcWVtdQ0KPiBpbnN0
+YW5jZS4gSG93ZXZlciwgdGhpcyBmYWlscy4gIFRoZSByZWFzb24gc2VlbXMgdG8gYmUgcmVsYXRl
+ZCB0byB0aGUNCj4gaW14NiB1SW1hZ2UuIA0KPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5v
+cmcvcGlwZXJtYWlsL21ldGEtZnJlZXNjYWxlLzIwMTItRGVjZW1iZXIvMDAwMzYwLmh0bWwNCj4g
+c28gSSBkaWRuJ3QgdHJ5IHRvIG11Y2ggdG8gcGxheSBhcm91bmQgd2l0aCBxZW11IGFuZCBzd2l0
+Y2hlZCB0byB0cnkNCj4gYW5kIGRvIGRlYnVnZ2luZyBkaXJlY3RseSBvbiB0aGUgYm9hcmQgKHRo
+ZSByZWFsIHRhcmdldCkuDQo+IA0KPiANCj4gSSBwcmVzdW1lIHBhcmFncmFwaCA0LjIuMi42LiBp
+cyB0aGUgc2FtZSBmb3IgYm90aCBjYXNlcyAocWVtdSB2cyByZWFsDQo+IHRhcmdldCkgLSBvbmx5
+IGluIHN0ZXAgMTAsIGkgcHJvdmlkZWQgdGhlIHJlYWwgdGFyZ2V0cyBpcCBhZGRyZXNzIChJDQo+
+IGNhbiBzc2ggdG8gdGhpcyBhZGRyZXNzIHdpdGhvdXQgYW55IHByb2JsZW0gYW5kIGluZGVlZCBj
+b25uZWN0IHRvIG15DQo+IHRhcmdldCBib2FyZCAtIGEgZnJlZXNjYWxlIGlteDZxIHNhYnJlbGl0
+ZSBib2FyZCkuDQo+IA0KPiANCj4gV2hlbiBJIHByZXNzIGRlYnVnIGhvd2V2ZXIsIHRoaXMgbXNn
+IHBvcHMgdXA6DQo+IA0KPiANCj4gICAgICAgICAiTGF1bmNoaW5nDQo+ICAgICAgICAgPHByb2pl
+Y3RuYW1lPl9nZGJfYXJtdjdhLXZmcC1uZW9uLXBva3ktbGludXgtZ251ZWFiaSIgaGFzDQo+ICAg
+ICAgICAgZW5jb3VudGVyZWQgYW4gZXJyb3IuDQo+IA0KPiANCj4gYW5kIHRoZSBkZXRhaWxzIGFy
+ZToNCj4gDQo+IA0KPiAgICAgICAgIEVycm9yIGR1cmluZyBmaWxlIHVwbG9hZC4NCj4gICAgICAg
+ICBDb25uZWN0aW9uIHJlZnVzZWQNCj4gICAgICAgICBDb25uZWN0aW9uIHJlZnVzZWQNCj4gICAg
+ICAgICBDb25uZWN0aW9uIHJlZnVzZWQNCj4gICAgICAgICANCj4gICAgICAgICANCj4gYW55IGlk
+ZWEgYWJvdXQgd2hhdCBjb3VsZCBjYXVzZSB0aGlzIGVycm9yPw0KPiANCj4gDQo+IFRoYW5rIHlv
+dSBmb3IgeW91ciBoZWxwIA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9y
+Zw0KPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0KSGks
+DQoNCkNhbiB5b3UgYnJvd3NlIHRoZSB0YXJnZXQgZnJvbSBFY2xpcHNlPyBUcnkgb3BlbmluZyB0
+aGUgVENGIGNvbm5lY3Rpb24NCmluIHRoZSBSU0UgcGVycGVjdGl2ZSBhbmQgc2VlIGlmIHlvdSBj
+YW4gYWNjZXNzIHRoZSBmaWxlcy4gWW91eSBtaWdodA0KaGF2ZSB0byBwcm92aWRlIHNvbWUgbG9n
+aW4gZGV0YWlscyAodXNlcitwYXNzKS4NCg0KYnIsDQotLUFkcmlhbg0K
 
