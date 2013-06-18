@@ -1,37 +1,42 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f170.google.com (mail-pd0-f170.google.com
-	[209.85.192.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB59FE01541
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 08:27:14 -0700 (PDT)
-Received: by mail-pd0-f170.google.com with SMTP id x11so4026168pdj.29
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 08:27:13 -0700 (PDT)
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B6EEE01541
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 08:27:30 -0700 (PDT)
+Received: by mail-qa0-f48.google.com with SMTP id cm16so2183985qab.7
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 08:27:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=references:mime-version:in-reply-to:content-type
-	:content-transfer-encoding:message-id:cc:x-mailer:from:subject:date
-	:to; bh=dXpLbsaiplSNZDtigDVTfyLeyw2n2JvgC/1a2zH0ekc=;
-	b=J96nc1pDybc8jcaH/DKQOeJLyy2aDKAlb0F6qWJoPfaxMucs21Nu3Dq6wUqv0qfk2x
-	9kf380GscZGL/QvvE+4I0O+M6eqjbcupH0reo5w0hmrgOHVDfjvoGqMsVXgY4+OfU04Q
-	SXC0u3rBRnfG/TWcNEEyoUcIPGK5TCm6YWKAS0PdgK7iLI9Vy0wITgN1OHYAPf/d0tPg
-	9AnXgS/Aem1h9XGLmKNWsbVT+BHK9mDsX0f5aQjX1IkhTr0Bdo2a6GFikfIHhzkf8CsV
-	FwfZy3wvMi03ubD5q5b5iBTqIRHs1OJxDkcBIiw0j7OGo3EmJeLZME42NexczzSbwDQ3
-	KhWw==
-X-Received: by 10.68.194.8 with SMTP id hs8mr18094084pbc.84.1371569233871;
-	Tue, 18 Jun 2013 08:27:13 -0700 (PDT)
-Received: from [192.168.0.6] (99-57-140-209.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.209]) by mx.google.com with ESMTPSA id
-	pb5sm18714039pbc.29.2013.06.18.08.27.12 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 18 Jun 2013 08:27:13 -0700 (PDT)
-References: <DUB116-W535D2739FAA722F6E3D6BB988C0@phx.gbl>
-Mime-Version: 1.0 (1.0)
-In-Reply-To: <DUB116-W535D2739FAA722F6E3D6BB988C0@phx.gbl>
-Message-Id: <56FE8FC4-73F6-48FE-A7AA-5069E03FF6E4@gmail.com>
-X-Mailer: iPad Mail (10B329)
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 18 Jun 2013 08:27:13 -0700
-To: Thanassis Silis <djnass_18@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: toolchain's environment-setup file that includes the image generated rootfs
+	h=sender:from:to:subject:references:date:in-reply-to:message-id
+	:user-agent:mime-version:content-type:content-transfer-encoding;
+	bh=wdyW+6a0dd2bL6WRX11I7cct0q3bMhL8s3Fx/A21Ju4=;
+	b=bORHvR2RbBm9zP75J5/RKu9DAYlZAIK10VgI3K0nTsYFmpssPoPExiZzo57NVVfAHq
+	C7n1H8pGeUIeZegjyOV2EvWdsRKY/xend6XdTWwuea3nET/D4Ezf/ZoTukEBYZnuyddx
+	OIfkxEwtJsxlJF6XpG0NuBxoVnyVo7Cu6fa8r5iOnyjf14nfPzNtD2ajbLct195hWohs
+	K/Sqyp394HGl/9Ryig4diK2gNqlqoHPKDLXGT+HmboftfeiUAY2X8bswgxN0yOlCyZTE
+	a3G3Muw08Hp61NidQOIJ4UyTYw4iM+ZaXSnAqGBJ40IGMVLgAex3yk+6r37YYuCcEVf5
+	PBTg==
+X-Received: by 10.229.10.65 with SMTP id o1mr7378265qco.87.1371569250147;
+	Tue, 18 Jun 2013 08:27:30 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPSA id 11sm28328739qek.1.2013.06.18.08.27.27
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Tue, 18 Jun 2013 08:27:29 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Tue, 18 Jun 2013 11:27:26 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: yocto@yoctoproject.org
+References: <9BACABF0C6B14A4D8C33B42A795119BE1BA55B7D@POCITMSEXMB05.LntUniverse.com>
+	<CA+Z6RkWkUiy0omM_fYteVco1r_RQTbJdRpoqURrvrTAbB4ACgA@mail.gmail.com>
+Date: Tue, 18 Jun 2013 11:27:26 -0400
+In-Reply-To: <CA+Z6RkWkUiy0omM_fYteVco1r_RQTbJdRpoqURrvrTAbB4ACgA@mail.gmail.com>
+	(Navani Srivastava's message of "Tue, 18 Jun 2013 19:58:12 +0530")
+Message-ID: <87obb3a17l.fsf@sonatest.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.2 (gnu/linux)
+MIME-Version: 1.0
+Subject: Re: Qt build error for Debug and Release mode
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,16 +48,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 15:27:16 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Jun 2013 15:27:31 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Navani Srivastava <navani.srivastava@gmail.com> writes:
 
+> Hi,
+>
+> I am using poky-danny (Poky-8.0). I am facing problem in building Qt
+> application.
+>
+> =C2=A0When we are building Qt application with =E2=80=9Cqmake CONFIG+=3Dd=
+ebug &&
+> make=E2=80=9D it appends =E2=80=9C-g=E2=80=9D to build the application in=
+ debug mode but when
+> we are building application in release mode by issuing following
+> command =C2=A0=E2=80=9Cqmake CONFIG+=3Ddebug && make=E2=80=9D, then also =
+it appends =E2=80=9C-g=E2=80=9D to
+> it.
+>
+> So building Qt application in release mode also results in debug mode
+> output.
+>
+> Any fix for this?
+>
+You could override the OE_QMAKE_CFLAGS env variable like this:
+OE_QMAKE_CFLAGS=3D"-O2 -pipe -feliminate-unused-debug-types" make
 
-On Jun 18, 2013, at 7:19 AM, Thanassis Silis <djnass_18@hotmail.com> wrote:
+If you look in the Makefile generated by qmake you should see something
+like:
 
-> /opt/poky/1.4.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi".
+CFLAGS =3D -pipe -pipe $(OE_QMAKE_CFLAGS) -O2 ....
 
-If this dir exists on your build host then it doesn't need change
+This OE_QMAKE_CFLAGS variable is evaluated by make from the
+environment. Also look at your environment-setup-* file from the
+SDK, this is where all OE_QMAKE variables are sourced from.
+
+Marc
 
