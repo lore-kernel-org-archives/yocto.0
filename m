@@ -1,27 +1,31 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B230DE01493
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 14:00:37 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r5IL0aVk018819
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 18 Jun 2013 14:00:36 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Tue, 18 Jun 2013 14:00:36 -0700
-Message-ID: <51C0CA73.7090606@windriver.com>
-Date: Tue, 18 Jun 2013 16:00:35 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:17.0) Gecko/20130509 Thunderbird/17.0.6
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-qe0-f46.google.com (mail-qe0-f46.google.com
+	[209.85.128.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 321B8E01493
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 15:00:28 -0700 (PDT)
+Received: by mail-qe0-f46.google.com with SMTP id nd7so2806472qeb.19
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 15:00:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=2BJSGyC/cCnhAER8hBgh7BlwLyVwJXSdxHGKx8iA8sU=;
+	b=lA+n/xnf71kk4q1niIPuzQf7Slhy1PMlXqPjuvZiWUoL8JwM+h9Yq/ThVO3RY0N5BL
+	2Hpvfnyd/xN0twkcTJ5veFek+r0kjOh5quyAOVOlWg7Mjl3mgCrRrAvfXlaxr+7yWmng
+	IYbvo7W5f1kRNclyhVLa1TmvR4gOnWk4VBaWyFvf8djV2XHPlo9Vs79qWrJav/hx7Xt5
+	Jc6c+3svjZ3tWwmFNHgD3Os2VwZq5QYUpWhljHP5FoVi6w4Lj+92EVye9qgYyJUeNJgu
+	pRhygEYodEQ84Es+T9MX/BfKYUbFgG9URSIE95v8+o8OD6TlTviTK+FL2caRV5ITJXkn
+	GAtw==
 MIME-Version: 1.0
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	<openembedded-devel@lists.openembedded.org>, Yocto Project
-	<yocto@yoctoproject.org>
-Subject: [RFC] eglibc / glibc and option-groups being deprecated?
+X-Received: by 10.229.62.136 with SMTP id x8mr6715497qch.146.1371592827670;
+	Tue, 18 Jun 2013 15:00:27 -0700 (PDT)
+Received: by 10.49.14.228 with HTTP; Tue, 18 Jun 2013 15:00:27 -0700 (PDT)
+Date: Tue, 18 Jun 2013 15:00:27 -0700
+Message-ID: <CAPhnLPB-rZ51f+c4g8_EeriJqfBJK+O0qtxKRoxs=CpQ7cqLDA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
+X-Gm-Message-State: ALoCoQnQBkr4Zi5/DCRdUC/AAliQA3qvCnQOu3Pslp7eAYU7lJ1Ddcz+oCyT2FOGHXsWWV3f4p8y
+Subject: [Announcement] 1.5_M1 released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,50 +37,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 21:00:38 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Jun 2013 22:00:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Recently on the eglibc mailing list there has been a discussion about removing 
-the option groups.  See: http://www.eglibc.org/archives/patches/msg01268.html
+The first milestone for the upcoming Yocto Project 1.5 release is now
+available at:
 
-For folks who don't know what option-groups are, it's a patch that went into 
-eglibc a number of years ago that allows you to disable various components 
-(effectively altering the API) in order to shrink the size of glibc.
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/poky-yocto-1.5-m1.tar.gz
 
-It was created as an attempt to get into glibc the same type of configuration 
-ability that uclibc has.
+Thanks to everyone for all their hard work.
 
-In OpenEmbedded Core, it is currently being used to enable the ability to shrink 
-the LibC footprint to a smaller size.  The Yocto Project's Poky-tiny 
-distribution uses it as part of the mechanism to create a smaller filesystem.
+- --
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-I encourage you to read the original thread, and if it affects you, please speak 
-up.  The following is my attempt at summarizing the thread.
+- --------------------
+yocto-1.5-m1 Errata
+- --------------------
 
-Currently the maintainer(s) of eglibc are working on syncing up glibc and eglibc 
-to the point that there will no longer be a need for eglibc.  (See 
-http://www.eglibc.org/archives/patches/msg01261.html)
+Release Name: eclipse-poky-yocto-1.5-m1
+Branch:  1.4_M5
+Tag:  1.5_M1.final
+Hash: 0b2dc574b1b08eab2102b37f3b64ab7bd70d9595
+md5sum: 4ab42c570cef09dd17fce5a73667c49d
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/eclipse-poky-yocto-1.5-m1.tar.gz
+http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/eclipse-poky-yocto-1.5-m1.tar.gz
 
-EGlibc was originally developed to house various architecture ports and other 
-embedded friendly features were not allowed into glibc.  The majority of the 
-differences between eglibc and glibc have disappeared, with only a few major 
-exceptions.  One of which is the option-groups support.  This item is taking a 
-significant amount of resources to keep up to date, and it's unclear as to the 
-number of users for this functionality.
+Release Name: meta-intel-yocto-1.5-m1
+Branch:  1.4_M5
+Tag:  1.5_M1.final
+Hash: 24d63bd57269f3142c57c2d697c56101f73b23dc
+md5sum: aa097c8a3e70060b77dffa5c265c6fd8
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/meta-intel-yocto-1.5-m1.tar.gz
+http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/meta-intel-yocto-1.5-m1.tar.gz
 
-The belief of the maintainers is that the days of truly small footprint systems, 
-where even 1 MB of storage was a large number are coming to an end.  As such, 
-the time and effort to maintain the option groups is likely not worth the effort.
+Release Name: meta-qt3-yocto-1.5-m1
+Branch:  1.4_M5
+Tag:  1.5_M1.final
+Hash: 4c27cce6688aa39852f3cba5e7b80ec279019605
+md5sum: 264df1a025fc299b5d2065f61540d37d
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/meta-qt3-yocto-1.5-m1.tar.gz
+http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/meta-qt3-yocto-1.5-m1.tar.gz
 
-I expect that between OpenEmbedded and the Yocto Project, a large percentage of 
-the users would be represented in some way.  But beyond that, I don't have any 
-idea as to how many people actually benefit from this technology.
+Release Name: poky-yocto-1.5-m1
+Branch:  1.4_M5
+Tag:  1.5_M1.final
+Hash: a62aed41f2d8f874f7ae24d0e5be5dbc66ea2199
+md5sum: 549bb637f7d50af4734149d63a15aba9
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/poky-yocto-1.5-m1.tar.gz
+http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/poky-yocto-1.5-m1.tar.gz
 
-During the discussion the results were that either assistance with maintaining 
-the option-groups is needed, or the feature will be deprecated and eventually 
-removed.  The last part of the thread it was suggested that in eglibc 2.19 it 
-would be deprecated, and then removed in 2.20.
+- --------------------
+Features
+- --------------------
+* Lots of fixes, updates and improvements to systemd, postinstall logging,
+  HOB, buildhistory, etc.
+* Some bitbake infrastructure change to support webhob.
+* Various package update: openssh, ltp, apt, connman, sqlite, dpkg, binutils,
+  gdb, etc.
 
---Mark
+- --------------------
+Known Issues
+- --------------------
+* Bug 4566 - routerstation pro cannot bootup with NFS in yocto 1.5
+20130521-1 build
+* Bug 4620 - cannot build oprofileui
+* Bug 4626 - Createrepo is not working
 
