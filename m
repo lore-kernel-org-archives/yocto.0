@@ -1,26 +1,40 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55528E01493
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 13:08:51 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 18 Jun 2013 13:08:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,891,1363158000"; d="scan'208";a="355730961"
-Received: from unknown (HELO [10.255.13.120]) ([10.255.13.120])
-	by orsmga002.jf.intel.com with ESMTP; 18 Jun 2013 13:08:50 -0700
-Message-ID: <1371586129.1569.34.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Chris Tapp <opensource@keylevel.com>
-Date: Tue, 18 Jun 2013 15:08:49 -0500
-In-Reply-To: <8C2CFCE0-38EE-40E0-8AAF-490DC3B6837E@keylevel.com>
-References: <394F6C8A37E5424BB91439BABFA30180@PAULD>
-	<1371564241.1569.26.camel@empanada>
-	<8C2CFCE0-38EE-40E0-8AAF-490DC3B6837E@keylevel.com>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, "Paul D. DeRocco" <pderocco@ix.netcom.com>,
-	foo.chien.haw@intel.com
-Subject: Re: Cedartrail and Dylan?
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17BC3E01493
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 13:41:14 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id kp12so4351168pab.7
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 13:41:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=3PW8j9TkpBsG182rJ+WCxqDML54+v6xC3Kgohhu4A60=;
+	b=O9XmklWVgeDGx/gxskQFM8MpQyFQvbdbfNyPQp/5sA/aIIpPca7VbxdHPlDOjz5Zck
+	//M9SE0ntMTqPoaKiaAGsUuIZR/X0WO5qEozJVRigwX/3aixHCFtx/H5pJLEonbSnI76
+	/BaqgZXNFlj5OhUvM7eOH4F65zwquOmHMS40cIQ3rm2bHh+3adAyKiIc4j00i9wwhmJ4
+	tuWolnYka+jxULuGG0nJ9r92YKxRCOgKbe+3NxoYb7HTkmreULAeojsDcl7OnZzmsR7E
+	6iS59yn9pc1IzaA6SPW7YDPM58VCX4NHlYqsRNj/c0bjeA8TnwFXIrBh84mgzjMezC5C
+	ZLEw==
+X-Received: by 10.66.172.172 with SMTP id bd12mr3524109pac.139.1371588074488; 
+	Tue, 18 Jun 2013 13:41:14 -0700 (PDT)
+Received: from scoonan-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	yj2sm19696753pbb.40.2013.06.18.13.41.12 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 18 Jun 2013 13:41:13 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CA+Z6RkUqGZS7bcrdLHokC8a8ZwuZx1ETF9gRqhm8bvRWZSbXNw@mail.gmail.com>
+Date: Tue, 18 Jun 2013 13:41:10 -0700
+Message-Id: <968299F3-E07A-4ABD-8C29-1E12ABFABC44@gmail.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE1BA55B7D@POCITMSEXMB05.LntUniverse.com>
+	<CA+Z6RkWkUiy0omM_fYteVco1r_RQTbJdRpoqURrvrTAbB4ACgA@mail.gmail.com>
+	<CA+Z6RkUqGZS7bcrdLHokC8a8ZwuZx1ETF9gRqhm8bvRWZSbXNw@mail.gmail.com>
+To: Navani Srivastava <navani.srivastava@gmail.com>
+X-Mailer: Apple Mail (2.1508)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Re: Qt build error for Debug and Release mode
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,69 +46,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 20:08:52 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Jun 2013 20:41:15 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_D6B4E13B-5DAC-4926-8A04-242FED89AB6D"
 
-On Tue, 2013-06-18 at 20:50 +0100, Chris Tapp wrote:
-> Hi Tom,
-> 
-> On 18 Jun 2013, at 15:04, Tom Zanussi wrote:
-> 
-> > On Mon, 2013-06-17 at 16:56 -0700, Paul D. DeRocco wrote:
-> >> I've been using the Intel meta-cedartrail layer with Danny 8.0.1. Is this
-> >> layer likely to be unusable with Dylan 9.0? Or unusable without lots of
-> >> tinkering that's probably beyond my abilities?
-> >> 
-> >> And if I were to try Dylan, is it best to start from scratch, in a
-> >> completely new directory?
-> >> 
-> > 
-> > Hi,
-> > 
-> > I believe the main problem would be the graphics driver - it would need
-> > porting to the 3.8 kernel - the rest would probably be straightforward.
-> > 
-> > The cedartrail BSP was discontinued following danny, but I'm cc:ing the
-> > maintainers in case they might have any further input.
-> > 
-> > I was thinking of creating a meta-intel/staging area for things like
-> > this i.e. discontinued BSPs that people are still using, which would
-> > contain best-effort updates but completely without promise of any kind
-> > of support.  If there's enough interest, and there seems to be judging
-> > from the number of questions about cedartrail we continue to keep
-> > getting, I'll try to find some free time to take a stab at moving it to
-> > dylan...
-> 
-> I'm certainly interested and happy to help out if I can.
-> 
-> I also see that ASRock are now making a board (http://www.asrock.com/IPC/overview.asp?Model=DN2800MT) that looks exactly the same as the Intel one with the same name aimed at signage and thin-client applications, so hardware will be about for a good few years yet,
-> 
-
-OK, good to know.  The only Cedar Trail hardware I have access to is the
-Acer Aspire One I have here - let me see if I can get something going on
-that...
-
-Tom
-
-> > Thanks,
-> > 
-> > Tom
-> > 
-> > 
-> > 
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> 
-> Chris Tapp
-> 
-> opensource@keylevel.com
-> www.keylevel.com
-> 
-> 
-> 
+--Apple-Mail=_D6B4E13B-5DAC-4926-8A04-242FED89AB6D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=windows-1252
 
 
+On Jun 18, 2013, at 9:15 AM, Navani Srivastava =
+<navani.srivastava@gmail.com> wrote:
 
+> Hi,
+>=20
+> I am using poky-danny (Poky-8.0). I am facing problem in building Qt =
+application.
+>=20
+> When we are building Qt application with =93qmake CONFIG+=3Ddebug && =
+make=94 it appends =93-g=94 to build the application in debug mode but =
+when we are building application in release mode by issuing following =
+command  =93qmake CONFIG+=3Drelease && make=94, then also it appends =
+=93-g=94 to it.
+>=20
+> So building Qt application in release mode also results in debug mode =
+output.
+>=20
+>=20
+
+While it will be stripped in the end and won't make much difference as =
+far as the packages are concerned it probably coming from
+SELECTED_OPTIMIZATION variable which cmake is using to construct the =
+release cflags
+
+You can set DEBUG_FLAGS =3D "" in your local.conf and it will not show =
+up=20
+
+> Any fix for this?
+>=20
+> Thanks and Regards
+> Navani Kamal Srivastava
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--Apple-Mail=_D6B4E13B-5DAC-4926-8A04-242FED89AB6D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=windows-1252
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+"><br><div><div>On Jun 18, 2013, at 9:15 AM, Navani Srivastava &lt;<a =
+href=3D"mailto:navani.srivastava@gmail.com">navani.srivastava@gmail.com</a=
+>&gt; wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div dir=3D"ltr"><div class=3D"gmail_quote"><div =
+class=3D"HOEnZb"><div class=3D"h5"><p>Hi,</p><p>I am using poky-danny =
+(Poky-8.0). I am facing problem in building Qt application.</p><p>When =
+we are building Qt application with =93qmake CONFIG+=3Ddebug &amp;&amp; =
+make=94 it appends =93-g=94 to build the application in debug mode but =
+when we are building application in release mode by issuing following =
+command &nbsp;=93qmake CONFIG+=3Drelease &amp;&amp; make=94, then also =
+it appends =93-g=94 to it.</p><p>So building Qt application in release =
+mode also results in debug mode =
+output.</p><div><br></div></div></div></div></div></blockquote><div><br></=
+div><div>While it will be stripped in the end and won't make much =
+difference as far as the packages are concerned it probably coming =
+from</div><div>SELECTED_OPTIMIZATION variable which cmake is using to =
+construct the release cflags</div><div><br></div><div>You can =
+set&nbsp;DEBUG_FLAGS =3D "" in your local.conf and it will not show =
+up&nbsp;</div><br><blockquote type=3D"cite"><div dir=3D"ltr"><div =
+class=3D"gmail_quote"><div class=3D"HOEnZb"><div class=3D"h5"><p>Any fix =
+for this?</p><p>Thanks and Regards<br>
+Navani Kamal Srivastava<br>
+</p>
+</div></div></div><br></div>
+_______________________________________________<br>yocto mailing =
+list<br><a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>https=
+://lists.yoctoproject.org/listinfo/yocto<br></blockquote></div><br></body>=
+</html>=
+
+--Apple-Mail=_D6B4E13B-5DAC-4926-8A04-242FED89AB6D--
