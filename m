@@ -1,37 +1,38 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6247E013B8
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 17:20:49 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 17 Jun 2013 17:18:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,884,1363158000"; d="scan'208";a="355188005"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by orsmga002.jf.intel.com with ESMTP; 17 Jun 2013 17:20:41 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 17 Jun 2013 16:57:20 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.83]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.23]) with mapi id
-	14.03.0123.003; Mon, 17 Jun 2013 16:54:29 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: =?iso-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
-Thread-Topic: [yocto] [PATCH 0/7][eclipse-poky] Add target profile quick switch
-Thread-Index: AQHOaDpGEtburWAjf0S5gTVmY0IYtpk1m/SQgASNFoCAAHGkcA==
-Date: Mon, 17 Jun 2013 23:54:28 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C45480@ORSMSX103.amr.corp.intel.com>
-References: <cover.1371123125.git.timo.mueller@bmw-carit.de>
-	<C6510F6D410BB64A8C15398EDC6B847C73C3B28D@ORSMSX103.amr.corp.intel.com>
-	<51BEDF35.9000508@timomueller.eu>
-In-Reply-To: <51BEDF35.9000508@timomueller.eu>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [PATCH 0/7][eclipse-poky] Add target profile quick switch
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f178.google.com (mail-pd0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 265DDE01483
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 20:30:48 -0700 (PDT)
+Received: by mail-pd0-f178.google.com with SMTP id w11so3399142pde.23
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 20:30:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:cc:to:mime-version:x-mailer;
+	bh=dMhBhVH5Ux8IECR21pBd4cKPmBVZrXnYSgtDjiNSRNY=;
+	b=kpRGF/0KTkVNHRNQWc74vA4NxTu47+rt2il0l7aSG7QOwqQDmHpUuUpRy0usxH8pjm
+	GtcgC8WSN1m0LElYDSynSULOemhxWrMvKVf8mdzuDMGrjZtuUIWH9rtruifRLT+3St+R
+	2jWaMnf9BQLJ7m/nrXfxXXCplUr8AqFg2S4tmYf4aEDEJF7wjC8QbUyraCLE7KP9dWFa
+	dYP6qNsb1y+75a0nXiR/515jaqxWMprYbslafxsCiUUBiLIzdgvOzTzwGEYVk5sK8x4U
+	LD5JlQ7XdY7p87+LImAAAyxJAHheee9xOQ6aphq3SPNsEHDtgY8cZAmFWZ6l76FpmFys
+	EuhQ==
+X-Received: by 10.66.145.98 with SMTP id st2mr419843pab.24.1371526248226;
+	Mon, 17 Jun 2013 20:30:48 -0700 (PDT)
+Received: from scoonan-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	fp2sm16201647pbb.36.2013.06.17.20.30.46 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 17 Jun 2013 20:30:47 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 17 Jun 2013 20:30:45 -0700
+Message-Id: <A6E8629E-ED47-4DD7-8C53-B0D467BADA39@gmail.com>
+To: "<openembedded-core@lists.openembedded.org> oe-core layer"
+	<Openembedded-core@lists.openembedded.org>, 
+	Bruce Ashfield <bruce.ashfield@windriver.com>
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+X-Mailer: Apple Mail (2.1508)
+Cc: "yocto@yoctoproject.org \(yocto@yoctoproject.org\)"
+	<yocto@yoctoproject.org>
+Subject: Fix for kernel 3.8/gcc-4.8 segfault on qemuarm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,152 +44,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 00:20:52 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 18 Jun 2013 03:30:49 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi Timo,
+Hi Bruce and All
 
-I'd opt for if user is not check the "Project Specific settings" which is a=
- valid case that he/she just chooses one of defined profiles. Just grey out=
- the option in the drop down list instead of totally hiding it.  This way, =
-it'll show but we don't enforce user to set it and also avoid the situation=
- that user click on it by accident and got an error as what happened to me.=
-  Make sense?
+Finally after a long innings I have diagnosed the mystery behind the =
+below segfault that we see on kernel 3.8 which compiled with gcc 4.8 but =
+don't show when compiled with gcc 4.7
 
-Thanks,
-Jessica
 
------Original Message-----
-From: Timo M=FCller [mailto:mail@timomueller.eu]
-Sent: Monday, June 17, 2013 3:05 AM
-To: Zhang, Jessica
-Cc: yocto@yoctoproject.org; Timo Mueller
-Subject: Re: [yocto] [PATCH 0/7][eclipse-poky] Add target profile quick swi=
-tch
+Unable to handle kernel paging request at virtual address ffffffff
+pgd =3D c0004000
+[ffffffff] *pgd=3D07ffe831, *pte=3D00000000, *ppte=3D00000000
+Internal error: Oops: 17 [#1] PREEMPT ARM
+Modules linked in:
+CPU: 0    Not tainted  (3.8.0-yocto-standard+ #32)
+PC is at kmem_cache_alloc+0x38/0x154
+LR is at subsys_system_register+0x34/0xd8
+pc : [<c00bd4d8>]    lr : [<c0327244>]    psr: a0000153
+sp : c7835ef0  ip : c7904590  fp : 00000000
+r10: c0688dc4  r9 : c06db900  r8 : c0327244
+r7 : 00000000  r6 : 000080d0  r5 : c7801380  r4 : ffffffff
+r3 : 00000000  r2 : 00000078  r1 : 000080d0  r0 : c7801380
+Flags: NzCv  IRQs on  FIQs off  Mode SVC_32  ISA ARM  Segment kernel
+Control: 00093177  Table: 00004000  DAC: 00000017
+Process swapper (pid: 1, stack limit =3D 0xc78341b8)
+Stack: (0xc7835ef0 to 0xc7836000)
+5ee0:                                     c06a5564 c06b8b8c c7834028 =
+00000000
+5f00: c0680218 c0327244 c7835f28 c06a5564 00000006 c7834028 c06db900 =
+c0688dd4
+5f20: c7835f28 c00089a0 c0657f44 00000006 c086e561 00000006 00000000 =
+c06a5534
+5f40: c06a5564 00000006 c06db900 c0680218 c069fd68 0000008e c069fd5c =
+c0680924
+5f60: 00000006 00000006 c0680218 00000000 00000000 00000000 00000000 =
+00000000
+5f80: c04f5e68 00000000 00000000 00000000 00000000 00000000 00000000 =
+c04f5e70
+5fa0: 00000000 00000000 c04f5e68 c000deb0 00000000 00000000 00000000 =
+00000000
+5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 =
+00000000
+5fe0: 00000000 00000000 00000000 00000000 00000013 00000000 00000000 =
+00000000
+[<c00bd4d8>] (kmem_cache_alloc+0x38/0x154) from [<c0327244>] =
+(subsys_system_register+0x34/0xd8)
+[<c0327244>] (subsys_system_register+0x34/0xd8) from [<c0688dd4>] =
+(init_clocksource_sysfs+0x10/0x54)
+[<c0688dd4>] (init_clocksource_sysfs+0x10/0x54) from [<c00089a0>] =
+(do_one_initcall+0x10c/0x17c)
+[<c00089a0>] (do_one_initcall+0x10c/0x17c) from [<c0680924>] =
+(kernel_init_freeable+0x164/0x224)
+[<c0680924>] (kernel_init_freeable+0x164/0x224) from [<c04f5e70>] =
+(kernel_init+0x8/0x150)
+[<c04f5e70>] (kernel_init+0x8/0x150) from [<c000deb0>] =
+(ret_from_fork+0x14/0x24)
+Code: e5934000 e3540000 0a00001a e5953014 (e7941003)
+---[ end trace f4d187650e17fc5c ]---
+Kernel panic - not syncing: Attempted to kill init! exitcode=3D0x0000000b
 
-Hi Jessica,
 
-Zhang, Jessica wrote, On 14.06.2013 21:42:
-> Hi Timo,
->
-> First thanks for continuous making improvement.  Most of the patches
-> looked fine, but when I tested the functionality, I noticed that in
-> either cases, your list contains: Project Specific and my customized
-> profiles e.g. Standard Profile and profile_static.  I can toggle my
-> customized profiles with no issue.  But if I click on the radio button
-> for "project specific", I'm getting:
->
-> The project specific target profile is not defined for the project
-> "YHWC". You can define it in the projects property page
->
-> Reason: Specified Toolchain Root Location is empty.
->
-> So I'm a little lost here,do we really need this project specific
-> option?
+Please apply the patch below to linux-yocto-3.8
 
-The "project specific" option correlates to the checkbox in the project pro=
-perties. The error you get is thrown if you haven't configured the project =
-specific profile in you project. I think in general this is needed as other=
-wise the project specific would be kind of a second-class profile
+=
+http://sakrah.dontexist.org/files/patches/0001-ARM-7668-1-fix-memset-relat=
+ed-crashes-caused-by-rece.patch
 
-However, I think we can handle this error case more gracefully. I have two =
-possible ideas in mind, both with pros and cons:
+This is a back port from 3.9 therefore safe. The problem is not limited =
+to linux-yocto it also impacts upstream 3.8 stable
+but 3.8 stable is end of life so why bother. If linux-yocto upgrades to =
+3.9 or 3.10 and drops 3.8 in 1.5 then we are ok too.
 
-1) disable/hide the project specific option, if it is not defined in the pr=
-oject
-* Pro: Only valid options are shown and accessible.
-* Con: Might be confusing if the option is only available with some project=
-s. Especially if you haven't heard of the project specific settings yet.
+Let me know how it goes
 
-2) open the project properties to allow the user to do the configuration
-* Pro: Forwards the user to the configuration page, allowing him to quickly=
- create the configuration.
-* Con: Opens a new window. As there's no hint about the state of the projec=
-t specific configuration. The user might enter the configuration page unint=
-ended.
+Thanks
 
-I'm slightly in favour of option two. Maybe the cons can be worked around b=
-y changing the label according to the state of the project specific configu=
-ration. E.g. "Configure project specific" and "project specific". I'll rewo=
-rk the patches to see how this feels like.
+-Khem
 
-What do you think about this? Something I miss?
-
- > The other nit picking is, you have "projectSpeficic.label",
-> is that a typo?
-
-Yes, that's a typo. I will fix it along with the reworks mentioned above.
-
->
-> Thanks, Jessica
->
-> -----Original Message----- From: yocto-bounces@yoctoproject.org
-> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Timo Mueller
-> Sent: Thursday, June 13, 2013 6:30 AM To: yocto@yoctoproject.org Cc:
-> Timo Mueller Subject: [yocto] [PATCH 0/7][eclipse-poky] Add target
-> profile quick switch
->
-> From: Timo Mueller <timo.mueller@bmw-carit.de>
->
-> Hi,
->
-> if a user wants to change the used target profile of a project he
-> currently has to open the project preferences. This can be tedious if
-> he has to switch the profile often.
->
-> This is a small addition which allows the user to quickly switch the
-> used target profile of a project. Instead of having to open the
-> project preferences the user can select the project in the navigator
-> and then choose the desired target profile from a drop-down menu in
-> the toolbar or from the project menu.
->
-> 01: Small i18n fix 02..04: Refactoring the project specific utils
-> 05..06: Introduce the target profile toolbar switch 07: Adds the
-> target profile switch to the project menu
->
-> Best regards, Timo
->
-> Timo Mueller (7): plugins/sdk.ide: Use an internationalized dialog
-> title plugins/sdk.ide: Extract project specific util methods
-> plugins/sdk.ide: Move project specific util methods plugins/sdk.ide:
-> Remove project context from method names plugins/sdk.ide: Add command
-> to switch the target profile plugins/sdk.ide: Add profile switch menu
-> to the toolbar plugins/sdk.ide: Add profile switch menu to the project
-> menu
->
-> .../OSGI-INF/l10n/bundle.properties                |   5 +
-> plugins/org.yocto.sdk.ide/plugin.xml               | 105 +++++++++
-> .../sdk/ide/TargetProfileContributionItem.java     | 121 +++++++++++
-> .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |   3 +
-> .../src/org/yocto/sdk/ide/YoctoUISetting.java      |   3 +-
-> .../sdk/ide/actions/ProfileSwitchHandler.java      | 154
-> +++++++++++++ .../natures/YoctoSDKAutotoolsProjectNature.java    |
-> 3 +- .../ide/preferences/YoctoSDKPreferencePage.java    |  11 +-
-> .../preferences/YoctoSDKProjectPropertyPage.java   | 130 ++---------
-> .../sdk/ide/utils/ProjectPreferenceUtils.java      | 240
-> +++++++++++++++++++++
-> .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java | 118 ----------
-> .../ide/wizard/NewYoctoProjectTemplateProcess.java |   3 +- 12 files
-> changed, 651 insertions(+), 245 deletions(-)  create mode 100644
-> plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContribut
-> ionItem.java
->
->
-create mode 100644
-plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/actions/ProfileSwitchHandle=
-r.java
-> create mode 100644
-> plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenc
-> eUtils.java
->
->  -- 1.8.1.4
->
-> _______________________________________________ yocto mailing list
-> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
->
-
-Best regards,
-Timo
 
