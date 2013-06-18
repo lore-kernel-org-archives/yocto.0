@@ -1,17 +1,17 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D64E1E01493
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 20:32:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r5I3WwaY029782
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 786C5E01483
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2013 21:37:42 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5I4bfXj000644
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 17 Jun 2013 20:32:58 -0700 (PDT)
+	Mon, 17 Jun 2013 21:37:41 -0700 (PDT)
 Received: from bruce-ashfields-macbook.local (128.224.22.77) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.342.3; Mon, 17 Jun 2013 20:32:57 -0700
-Message-ID: <51BFD4E8.3020901@windriver.com>
-Date: Mon, 17 Jun 2013 23:32:56 -0400
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.2.342.3; Mon, 17 Jun 2013 21:37:40 -0700
+Message-ID: <51BFE413.2020303@windriver.com>
+Date: Tue, 18 Jun 2013 00:37:39 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
 	rv:17.0) Gecko/20130509 Thunderbird/17.0.6
@@ -35,7 +35,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 03:33:04 -0000
+X-List-Received-Date: Tue, 18 Jun 2013 04:37:43 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -45,6 +45,42 @@ On 13-06-17 11:30 PM, Khem Raj wrote:
 > Finally after a long innings I have diagnosed the mystery behind the below segfault that we see on kernel 3.8 which compiled with gcc 4.8 but don't show when compiled with gcc 4.7
 >
 >
+
+There also seems to be a follow up patch:
+
+commit 418df63adac56841ef6b0f1fcf435bc64d4ed177
+Author: Nicolas Pitre <nicolas.pitre@linaro.org>
+Date:   Tue Mar 12 13:00:42 2013 +0100
+
+     ARM: 7670/1: fix the memset fix
+
+     Commit 455bd4c430b0 ("ARM: 7668/1: fix memset-related crashes caused by
+     recent GCC (4.7.2) optimizations") attempted to fix a compliance issue
+     with the memset return value.  However the memset itself became broken
+     by that patch for misaligned pointers.
+
+     This fixes the above by branching over the entry code from the
+     misaligned fixup code to avoid reloading the original pointer.
+
+     Also, because the function entry alignment is wrong in the Thumb mode
+     compilation, that fixup code is moved to the end.
+
+     While at it, the entry instructions are slightly reworked to help dual
+     issue pipelines.
+
+     Signed-off-by: Nicolas Pitre <nico@linaro.org>
+     Tested-by: Alexander Holler <holler@ahsoftware.de>
+     Signed-off-by: Russell King <rmk+kernel@arm.linux.org.uk>
+
+:100644 100644 d912e73... 94b0650... M  arch/arm/lib/memset.S
+
+--------
+
+I've staged it as well, and will do a boot test in the morning once
+my build has completed. Time to call it a night here.
+
+Bruce
+
 > Unable to handle kernel paging request at virtual address ffffffff
 > pgd = c0004000
 > [ffffffff] *pgd=07ffe831, *pte=00000000, *ppte=00000000
@@ -89,14 +125,6 @@ On 13-06-17 11:30 PM, Khem Raj wrote:
 > This is a back port from 3.9 therefore safe. The problem is not limited to linux-yocto it also impacts upstream 3.8 stable
 > but 3.8 stable is end of life so why bother. If linux-yocto upgrades to 3.9 or 3.10 and drops 3.8 in 1.5 then we are ok too.
 >
-
-That's interesting. I got the same crash on linux-yocto-dev, so I kept
-debugging here.
-
-Did linux-yocto-dev boot out of the box for you with gcc 4.8 ?
-
-Bruce
-
 > Let me know how it goes
 >
 > Thanks
