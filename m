@@ -1,39 +1,23 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-la0-f53.google.com (mail-la0-f53.google.com
-	[209.85.215.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A263E01493
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 04:12:03 -0700 (PDT)
-Received: by mail-la0-f53.google.com with SMTP id fs12so3410300lab.12
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 04:12:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=UvzvPfLuuDH7YL0tmn0ub4bR8ysd1Pjp4YXkvOo308k=;
-	b=urstDsF0Pu86iccVEztuk1CBkGY1mWepZ9yIHkw357oTc0ZUv4SxDdgdu+EZTrWtl4
-	WrCuhEBYsapXUA/Z8+GnH3sUV8JAncYPuwin8L31Uvjr3DNAPdGlQW+eNQ726axGnu7f
-	by1c9YuqS8sVblM1ZvK0lUm1oehuL6WWNg0Nvin0XFC55qjPn0ObarVbHx7gCW+nKUar
-	41MlGzonko2AQJrTdKhvxs01Qp1UZmPofpDpIZLbrSrNin7yJjED4Mj3u/9tlur37H2b
-	Fkxlk+w3vpvpomkoFfQ4NQtLh6Z1MQcKmczYQ++2p33YtP1NlyK83VlUqwUVetB/yMvW
-	EWaw==
+Return-Path: <djnass_18@hotmail.com>
+Received: from dub0-omc3-s4.dub0.hotmail.com (dub0-omc3-s4.dub0.hotmail.com
+	[157.55.2.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25611E01541;
+	Tue, 18 Jun 2013 06:55:53 -0700 (PDT)
+Received: from DUB116-W138 ([157.55.2.8]) by dub0-omc3-s4.dub0.hotmail.com
+	with Microsoft SMTPSVC(6.0.3790.4675); 
+	Tue, 18 Jun 2013 06:55:51 -0700
+X-TMN: [6R1WZk34SEXfSPa/aRoyxO8I7BiqE8xQHKEVKRQIiYE=]
+X-Originating-Email: [djnass_18@hotmail.com]
+Message-ID: <DUB116-W138390BF0B4871C803B01A5988C0@phx.gbl>
+From: Thanassis Silis <djnass_18@hotmail.com>
+To: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 18 Jun 2013 13:55:51 +0000
+Importance: Normal
 MIME-Version: 1.0
-X-Received: by 10.152.44.170 with SMTP id f10mr8770941lam.68.1371553921641;
-	Tue, 18 Jun 2013 04:12:01 -0700 (PDT)
-Received: by 10.112.71.14 with HTTP; Tue, 18 Jun 2013 04:12:01 -0700 (PDT)
-In-Reply-To: <40EAB0BD-784A-4DBB-A8E1-8A4E81E0B41C@gmail.com>
-References: <A6E8629E-ED47-4DD7-8C53-B0D467BADA39@gmail.com>
-	<51BFE413.2020303@windriver.com>
-	<99677DAA-0C63-481C-9499-0E4F00188725@gmail.com>
-	<51BFE8D9.8010002@windriver.com>
-	<40EAB0BD-784A-4DBB-A8E1-8A4E81E0B41C@gmail.com>
-Date: Tue, 18 Jun 2013 07:12:01 -0400
-Message-ID: <CADkTA4O3CGSOgF2MqAqEAcTZJfUssF29bftdKqaky7CR9H84yg@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org \(yocto@yoctoproject.org\)"
-	<yocto@yoctoproject.org>,
-	"<openembedded-core@lists.openembedded.org> oe-core layer"
-	<Openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Fix for kernel 3.8/gcc-4.8 segfault on qemuarm
+X-OriginalArrivalTime: 18 Jun 2013 13:55:51.0844 (UTC)
+	FILETIME=[8B661640:01CE6C2B]
+Subject: cannot bitbake/build.compile tcf-agent for use with fsl-image-gui-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,103 +29,190 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 11:12:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 18 Jun 2013 13:55:54 -0000
+Content-Type: multipart/alternative;
+	boundary="_df91afdd-be7b-4433-a96d-96c690a04aab_"
 
-On Tue, Jun 18, 2013 at 1:25 AM, Khem Raj <raj.khem@gmail.com> wrote:
->
-> On Jun 17, 2013, at 9:58 PM, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
->
->> On 13-06-18 12:41 AM, Khem Raj wrote:
->>>
->>> On Jun 17, 2013, at 9:37 PM, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
->>>
->>>> On 13-06-17 11:30 PM, Khem Raj wrote:
->>>>> Hi Bruce and All
->>>>>
->>>>> Finally after a long innings I have diagnosed the mystery behind the below segfault that we see on kernel 3.8 which compiled with gcc 4.8 but don't show when compiled with gcc 4.7
->>>>>
->>>>>
->>>>
->>>> There also seems to be a follow up patch:
->>>>
->>>> commit 418df63adac56841ef6b0f1fcf435bc64d4ed177
->>>> Author: Nicolas Pitre <nicolas.pitre@linaro.org>
->>>> Date:   Tue Mar 12 13:00:42 2013 +0100
->>>>
->>>>    ARM: 7670/1: fix the memset fix
->>>>
->>>>    Commit 455bd4c430b0 ("ARM: 7668/1: fix memset-related crashes caused by
->>>>    recent GCC (4.7.2) optimizations") attempted to fix a compliance issue
->>>>    with the memset return value.  However the memset itself became broken
->>>>    by that patch for misaligned pointers.
->>>>
->>>>    This fixes the above by branching over the entry code from the
->>>>    misaligned fixup code to avoid reloading the original pointer.
->>>>
->>>>    Also, because the function entry alignment is wrong in the Thumb mode
->>>>    compilation, that fixup code is moved to the end.
->>>>
->>>>    While at it, the entry instructions are slightly reworked to help dual
->>>>    issue pipelines.
->>>>
->>>>    Signed-off-by: Nicolas Pitre <nico@linaro.org>
->>>>    Tested-by: Alexander Holler <holler@ahsoftware.de>
->>>>    Signed-off-by: Russell King <rmk+kernel@arm.linux.org.uk>
->>>>
->>>> :100644 100644 d912e73... 94b0650... M  arch/arm/lib/memset.S
->>>>
->>>> --------
->>>>
->>>> I've staged it as well, and will do a boot test in the morning once
->>>> my build has completed. Time to call it a night here.
->>>
->>> I did not need anything other than the first patch to get over the segfault. but yes it completes the fix
->>> so having both is better
->>
->> So very strange. I got one segfault, and then this:
->>
->> Linux version 3.8.13-yocto-standard (bruce@yow-bashfiel-d2) (gcc version 4.8.1 (GCC) ) #2 PREEMPT Tue Jun 18 00:36:55 EDT 2013
->>
->> <snip>
->>
->> qemuarm login: root
->> root@qemuarm:~# uname -a
->> Linux qemuarm 3.8.13-yocto-standard #2 PREEMPT Tue Jun 18 00:36:55 EDT 2013 armv5tejl GNU/Linux
->>
->> ----------------
->>
->> Which means I may have just been unlucky on my testing with 3.10, or something
->> else is going on.
->
-> Well I have been booting latest linus's (3.10-rc6) master compiled with gcc 4.8 just one patch from linux-yocto see below
->
+--_df91afdd-be7b-4433-a96d-96c690a04aab_
+Content-Type: text/plain; charset="iso-8859-7"
+Content-Transfer-Encoding: quoted-printable
 
-Very odd. I would have just done the bisection myself, but my starting known
-point "good" point .. was a fail. So I've instead been looking at assembly dumps
-of memory management routines.
+Hello everyone=2C
+it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
+nd that is where my problems start:
 
-> http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-3.8/commit/?h=standard/arm-versatile-926ejs&id=351d133943b50a9dfeee07661d44254722a19f04
->
-> I wonder why this patch hasn't made upstream yet.
+using this in my local.conf: IMAGE_INSTALL_append =3D " tcf-agent"
+I expected to be able to automate the process of generating the tcf-agent a=
+nd deploying it in my image with command:
+bitbake fsl-image-gui-sdk
 
-It was sent upstream, and rmk wanted to go to ARM ltd to rework the patch after
-getting some boards specs. Looks like the process is still ongoing.
+this fails with:
+| Reading package lists...
+| Building dependency tree...
+| Reading state information...
+| Some packages could not be installed. This may mean that you have
+| requested an impossible situation or if you are using the unstable
+| distribution that some required packages have not yet been created
+| or been moved out of Incoming.
+| The following information may help to resolve the situation:
+|=20
+| The following packages have unmet dependencies:
+|  packagegroup-core-x11-base : Depends: packagegroup-core-x11-utils but it=
+ is not going to be installed
+| W: Ignoring Provides line with DepCompareOp for package pkgconfig__pkg-co=
+nfig__
+| W: You may want to run apt-get update to correct these problems
+| E: Unable to correct problems=2C you have held broken packages.
+| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/tmp/work/im=
+x6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootfs=
+.26945 for further information)
+ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/f=
+sl-image-gui-sdk.bb=2C do_rootfs) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be r=
+erun and 1 failed.
+No currently running tasks (7417 of 7419)
 
-Cheers,
-
-Bruce
-
->
->
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+Summary: 1 task failed:
+  /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/fsl-image-gui-=
+sdk.bb=2C do_rootfs
+Summary: There was 1 ERROR message shown=2C returning a non-zero exit code.
 
 
+I then went on to try and compile it manually:
+bitbake fsl-image-gui-sdk -c compile tcf-agent
+bitbake fsl-image-gui-sdk -c deploy
 
---
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+this fails with:
+ERROR: Task do_deploy does not exist for target fsl-image-gui-sdk
 
+Then I tried compiling it manually using this info http://www.yoctoproject.=
+org/docs/current/adt-manual/adt-manual.html#getting-the-images =2C by sourc=
+ing my toolchain from /opt/poky/1.4.1/env* file=2C and then
+runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
+MACHINE variable to be 'arm' in the beginning of the Makefile.inc.
+
+this fails with
+arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-interwork -mfloat-abi=
+=3Dsoftfp -mfpu=3Dneon --sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon=
+-poky-linux-gnueabi  -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE=
+_OFFSET_BITS=3D64 -Wall -Wmissing-prototypes -I./. -I./system/GNU/Linux -I.=
+/machine/arm -o obj/GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/=
+framework/channel_tcp.c
+tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No such file=
+ or directory
+compilation terminated.
+
+=20
+At this point I have run out of ideas about how to prepare tcf-agent to ins=
+tall on my sabrelite fsl-image-gui-sdk rootfs....
+Any help would be most welcome.
+
+for example in the 1st case how could I run apt-get as is suggested in a ma=
+nner that would be appropriate to update yocto sources?
+
+Thank you.
+ 		 	   		  =
+
+--_df91afdd-be7b-4433-a96d-96c690a04aab_
+Content-Type: text/html; charset="iso-8859-7"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>Hello everyone=2C<br>it seems tc=
+f-agent is not provided. Not even in the -sdk image I created. And that is =
+where my problems start:<br><br>using this in my local.conf: IMAGE_INSTALL_=
+append =3D " tcf-agent"<br>I expected to be able to automate the process of=
+ generating the tcf-agent and deploying it in my image with command:<br><bl=
+ockquote><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2"=
+>bitbake fsl-image-gui-sdk</font><font style=3D"font-size: 10pt=3B" face=3D=
+"Courier New" size=3D"2"><br></font></blockquote><br>this fails with:<br><b=
+lockquote><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2=
+">| Reading package lists...</font><br><font style=3D"font-size: 10pt=3B" f=
+ace=3D"Courier New" size=3D"2">| Building dependency tree...</font><br><fon=
+t style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">| Reading st=
+ate information...</font><br><font style=3D"font-size: 10pt=3B" face=3D"Cou=
+rier New" size=3D"2">| Some packages could not be installed. This may mean =
+that you have</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courier =
+New" size=3D"2">| requested an impossible situation or if you are using the=
+ unstable</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courier New"=
+ size=3D"2">| distribution that some required packages have not yet been cr=
+eated</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courier New" siz=
+e=3D"2">| or been moved out of Incoming.</font><br><font style=3D"font-size=
+: 10pt=3B" face=3D"Courier New" size=3D"2">| The following information may =
+help to resolve the situation:</font><br><font style=3D"font-size: 10pt=3B"=
+ face=3D"Courier New" size=3D"2">| </font><br><font style=3D"font-size: 10p=
+t=3B" face=3D"Courier New" size=3D"2">| The following packages have unmet d=
+ependencies:</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courier N=
+ew" size=3D"2">|&nbsp=3B packagegroup-core-x11-base : Depends: packagegroup=
+-core-x11-utils but it is not going to be installed</font><br><font style=
+=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">| W: Ignoring Provi=
+des line with DepCompareOp for package pkgconfig__pkg-config__</font><br><f=
+ont style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">| W: You m=
+ay want to run apt-get update to correct these problems</font><br><font sty=
+le=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">| E: Unable to co=
+rrect problems=2C you have held broken packages.</font><br><font style=3D"f=
+ont-size: 10pt=3B" face=3D"Courier New" size=3D"2">| ERROR: Function failed=
+: do_rootfs (see /home/nass/yocto/build/tmp/work/imx6qsabrelite-poky-linux-=
+gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootfs.26945 for further infor=
+mation)</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courier New" s=
+ize=3D"2">ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fs=
+l/images/fsl-image-gui-sdk.bb=2C do_rootfs) failed with exit code '1'</font=
+><br><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">NOT=
+E: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be reru=
+n and 1 failed.</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courie=
+r New" size=3D"2">No currently running tasks (7417 of 7419)</font><br><br><=
+font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">Summary: =
+1 task failed:</font><br><font style=3D"font-size: 10pt=3B" face=3D"Courier=
+ New" size=3D"2">&nbsp=3B /home/nass/yocto/sources/meta-fsl-demos/recipes-f=
+sl/images/fsl-image-gui-sdk.bb=2C do_rootfs</font><br><font style=3D"font-s=
+ize: 10pt=3B" face=3D"Courier New" size=3D"2">Summary: There was 1 ERROR me=
+ssage shown=2C returning a non-zero exit code.</font><br></blockquote><br><=
+br>I then went on to try and compile it manually:<br><blockquote><font styl=
+e=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">bitbake fsl-image-=
+gui-sdk -c compile tcf-agent</font><font style=3D"font-size: 10pt=3B" size=
+=3D"2"><br></font><font style=3D"font-size: 10pt=3B" face=3D"Courier New" s=
+ize=3D"2">bitbake fsl-image-gui-sdk -c deploy</font><font style=3D"font-siz=
+e: 10pt=3B" size=3D"2"><br></font></blockquote><br>this fails with:<br><blo=
+ckquote><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">=
+ERROR: Task do_deploy does not exist for target fsl-image-gui-sdk</font><fo=
+nt style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2"><br><br></f=
+ont></blockquote>Then I tried compiling it manually using this info <a href=
+=3D"http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#get=
+ting-the-images" target=3D"_blank">http://www.yoctoproject.org/docs/current=
+/adt-manual/adt-manual.html#getting-the-images</a> =2C by sourcing my toolc=
+hain from /opt/poky/1.4.1/env* file=2C and then<br>runnning 'make' in org.e=
+clipse.tcf.agent/agent/ . I explicitly assign the $MACHINE variable to be '=
+arm' in the beginning of the Makefile.inc.<br><br>this fails with<br><block=
+quote><font style=3D"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">ar=
+m-poky-linux-gnueabi-gcc&nbsp=3B -march=3Darmv7-a -mthumb-interwork -mfloat=
+-abi=3Dsoftfp -mfpu=3Dneon --sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-=
+neon-poky-linux-gnueabi&nbsp=3B -O2 -pipe -g -feliminate-unused-debug-types=
+ -g -D_FILE_OFFSET_BITS=3D64 -Wall -Wmissing-prototypes -I./. -I./system/GN=
+U/Linux -I./machine/arm -o obj/GNU/Linux/arm/Debug/tcf/framework/channel_tc=
+p.o -c tcf/framework/channel_tcp.c</font><br><font style=3D"font-size: 10pt=
+=3B" face=3D"Courier New" size=3D"2">tcf/framework/channel_tcp.c:38:27: fat=
+al error: openssl/ssl.h: No such file or directory</font><br><font style=3D=
+"font-size: 10pt=3B" face=3D"Courier New" size=3D"2">compilation terminated=
+.</font><br><br></blockquote><font style=3D"" face=3D"Calibri">&nbsp=3B</fo=
+nt><font style=3D"" face=3D"Calibri"><br></font>At this point I have run ou=
+t of ideas about how to prepare tcf-agent to install on my sabrelite fsl-im=
+age-gui-sdk rootfs....<br>Any help would be most welcome.<br><br>for exampl=
+e in the 1st case how could I run apt-get as is suggested in a manner that =
+would be appropriate to update yocto sources?<br><br>Thank you.<br> 		 	   =
+		  </div></body>
+</html>=
+
+--_df91afdd-be7b-4433-a96d-96c690a04aab_--
