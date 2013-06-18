@@ -1,33 +1,30 @@
-Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
-	[209.85.214.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92F38E01493
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 09:16:02 -0700 (PDT)
-Received: by mail-ob0-f178.google.com with SMTP id fb19so4797146obc.37
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 09:16:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=UKTGWBamNP0pOkyJ+OBjxH8VydGlaP7k8+9oW7bI3d0=;
-	b=YKNH+LtLEiErrVx1OTevlvaBUCYvR+UpaXNnFbPiQp9DOLq890HRaDXSb8LoAkg4af
-	TfhnfPfpNOpiAFEUIG7mLYhHPYeyjEtW2a9bhPIErD+YyuZsbO1s7WJk6vJgxRsWN+fX
-	gXGS2dovM0Cr+hD74mvvbLtDvb7ZRSdYEHexN2rhYZ2cxljVII2zQPo/uNwee4B2Eoi4
-	1/rYs2s9cdb41cDhBgNm7YUnMsBOpTOqN368S10PyHDInV26BmAhwjD8hF4XH4/aTY4m
-	AOUEnmnHDyquWyy1Y7v2Oe3Z1xqMmOdE98/x1iZiUkZT1ak6UL7AT3DyXeK0JNwrZrdV
-	XzkQ==
-X-Received: by 10.182.106.130 with SMTP id gu2mr12610236obb.0.1371572158511;
-	Tue, 18 Jun 2013 09:15:58 -0700 (PDT)
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-curtail.atl.sa.earthlink.net
+	(elasmtp-curtail.atl.sa.earthlink.net [209.86.89.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DBE0E01493
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 09:17:55 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=QhpLUMitBMrFLCyetBvsg9NuaRPF+srsYXZrMGQyl9p/U7HEPdeIahRoaFUtBO/G;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-curtail.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UoybR-0005oX-UU; Tue, 18 Jun 2013 12:17:54 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Tom Zanussi'" <tom.zanussi@intel.com>
+References: <394F6C8A37E5424BB91439BABFA30180@PAULD>
+	<1371564241.1569.26.camel@empanada>
+In-Reply-To: <1371564241.1569.26.camel@empanada>
+Date: Tue, 18 Jun 2013 09:17:56 -0700
+Message-ID: <1F376671550B4DE9B7B9CC081C2CAF53@PAULD>
 MIME-Version: 1.0
-Received: by 10.182.221.5 with HTTP; Tue, 18 Jun 2013 09:15:38 -0700 (PDT)
-In-Reply-To: <CA+Z6RkWkUiy0omM_fYteVco1r_RQTbJdRpoqURrvrTAbB4ACgA@mail.gmail.com>
-References: <9BACABF0C6B14A4D8C33B42A795119BE1BA55B7D@POCITMSEXMB05.LntUniverse.com>
-	<CA+Z6RkWkUiy0omM_fYteVco1r_RQTbJdRpoqURrvrTAbB4ACgA@mail.gmail.com>
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Tue, 18 Jun 2013 21:45:38 +0530
-Message-ID: <CA+Z6RkUqGZS7bcrdLHokC8a8ZwuZx1ETF9gRqhm8bvRWZSbXNw@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: "navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Qt build error for Debug and Release mode
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac5sLMY0thTvbwdHR9a4fexWuwkAfAAEnNog
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606882002f3c543b3dfe814c962851b8fe7f0350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org, foo.chien.haw@intel.com
+Subject: Re: Cedartrail and Dylan?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,54 +36,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 16:16:04 -0000
-Content-Type: multipart/alternative; boundary=089e015370f44ac4d904df70071b
+X-List-Received-Date: Tue, 18 Jun 2013 16:17:55 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
---089e015370f44ac4d904df70071b
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+> From: Tom Zanussi
+> 
+> I believe the main problem would be the graphics driver - it 
+> would need
+> porting to the 3.8 kernel - the rest would probably be 
+> straightforward.
+> 
+> The cedartrail BSP was discontinued following danny, but I'm 
+> cc:ing the maintainers in case they might have any further input.
 
-Hi,
+Is this graphics issue likely to be a problem if I'm making the non-graphics
+image? My app is headless.
 
-I am using poky-danny (Poky-8.0). I am facing problem in building Qt
-application.
+-- 
 
-When we are building Qt application with =93qmake CONFIG+=3Ddebug && make=
-=94 it
-appends =93-g=94 to build the application in debug mode but when we are
-building application in release mode by issuing following command  =93qmake
-CONFIG+=3Drelease && make=94, then also it appends =93-g=94 to it.
-
-So building Qt application in release mode also results in debug mode
-output.
-
-Any fix for this?
-
-Thanks and Regards
-Navani Kamal Srivastava
-
---089e015370f44ac4d904df70071b
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div class=3D"HOEnZb"><div clas=
-s=3D"h5"><p>Hi,</p>
-<p>I am using poky-danny (Poky-8.0). I am facing problem in building Qt app=
-lication.</p>
-<p>When we are building Qt application with =93qmake CONFIG+=3Ddebug &amp;&=
-amp; make=94 it appends =93-g=94 to build the application in debug mode but=
- when we are building application in release mode by issuing following comm=
-and =A0=93qmake CONFIG+=3Drelease &amp;&amp; make=94, then also it appends =
-=93-g=94 to it.</p>
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
-
-<p>So building Qt application in release mode also results in debug mode ou=
-tput.</p>
-<p>Any fix for this?</p>
-<p>Thanks and Regards<br>
-Navani Kamal Srivastava<br>
-</p>
-</div></div></div><br></div>
-
---089e015370f44ac4d904df70071b--
