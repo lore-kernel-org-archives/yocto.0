@@ -1,31 +1,32 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-qe0-f46.google.com (mail-qe0-f46.google.com
-	[209.85.128.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 321B8E01493
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 15:00:28 -0700 (PDT)
-Received: by mail-qe0-f46.google.com with SMTP id nd7so2806472qeb.19
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 15:00:27 -0700 (PDT)
+Received: from mail-qa0-f50.google.com (mail-qa0-f50.google.com
+	[209.85.216.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 962DAE01493
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 16:03:19 -0700 (PDT)
+Received: by mail-qa0-f50.google.com with SMTP id l18so45826qak.9
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 16:03:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
+	h=mime-version:date:message-id:subject:from:to:cc:content-type
 	:x-gm-message-state;
-	bh=2BJSGyC/cCnhAER8hBgh7BlwLyVwJXSdxHGKx8iA8sU=;
-	b=lA+n/xnf71kk4q1niIPuzQf7Slhy1PMlXqPjuvZiWUoL8JwM+h9Yq/ThVO3RY0N5BL
-	2Hpvfnyd/xN0twkcTJ5veFek+r0kjOh5quyAOVOlWg7Mjl3mgCrRrAvfXlaxr+7yWmng
-	IYbvo7W5f1kRNclyhVLa1TmvR4gOnWk4VBaWyFvf8djV2XHPlo9Vs79qWrJav/hx7Xt5
-	Jc6c+3svjZ3tWwmFNHgD3Os2VwZq5QYUpWhljHP5FoVi6w4Lj+92EVye9qgYyJUeNJgu
-	pRhygEYodEQ84Es+T9MX/BfKYUbFgG9URSIE95v8+o8OD6TlTviTK+FL2caRV5ITJXkn
-	GAtw==
+	bh=hP8wGRPgSuRTfRpIQ5kx94RqxFmFEiLJF+UdohnfIdk=;
+	b=jTvHOvD9G8nE6+5LlhMHf+2oDOlX1ukkJ4CBmTWbntbckjTcjW/JguHDWs9qpYu/qV
+	QOyFIs87p61VSGLVmWEzuhCOlh0OREqWnelgo38v36NqlHrMdtprdohA+fo76Ba/gEJL
+	088L5DXGr/+8FBRmWdga4e3Yemyuy1E/w3s6SoXyT2q5ceRWpwSThTPM3KkDklCgbNdj
+	T2KLnL4PrxaIGCgIA9XXNXQlmzYk8i5/IarJgnTiLA3yWGm68zgPZR4AtKfP9uUG5JOa
+	0YY2jg0vdgoQtqLenYArQbDmKI2p1jZO+7MqrJRCklJSv1sbrzrLvTYyfnJGYHQokM7B
+	ywRw==
 MIME-Version: 1.0
-X-Received: by 10.229.62.136 with SMTP id x8mr6715497qch.146.1371592827670;
-	Tue, 18 Jun 2013 15:00:27 -0700 (PDT)
-Received: by 10.49.14.228 with HTTP; Tue, 18 Jun 2013 15:00:27 -0700 (PDT)
-Date: Tue, 18 Jun 2013 15:00:27 -0700
-Message-ID: <CAPhnLPB-rZ51f+c4g8_EeriJqfBJK+O0qtxKRoxs=CpQ7cqLDA@mail.gmail.com>
+X-Received: by 10.224.22.197 with SMTP id o5mr908886qab.52.1371596599160; Tue,
+	18 Jun 2013 16:03:19 -0700 (PDT)
+Received: by 10.49.14.228 with HTTP; Tue, 18 Jun 2013 16:03:19 -0700 (PDT)
+Date: Tue, 18 Jun 2013 16:03:19 -0700
+Message-ID: <CAPhnLPAjXjsN8foe-8cyYFys-tc+U=pQ8KfF2aQd=2N+iQ19cw@mail.gmail.com>
 From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
-X-Gm-Message-State: ALoCoQnQBkr4Zi5/DCRdUC/AAliQA3qvCnQOu3Pslp7eAYU7lJ1Ddcz+oCyT2FOGHXsWWV3f4p8y
-Subject: [Announcement] 1.5_M1 released
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQm43z3plYH8GUxOcCheIRQfL4/2pgKhsD4POrP54Jir7582KL+kYDkZ0Lvxxi7xWC5Ivw5j
+Cc: SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>
+Subject: Weekly build availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,75 +38,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 22:00:34 -0000
+X-List-Received-Date: Tue, 18 Jun 2013 23:03:22 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-The first milestone for the upcoming Yocto Project 1.5 release is now
-available at:
+The weekly build will soon be available at:
 
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/poky-yocto-1.5-m1.tar.gz
+http://autobuilder.yoctoproject.org/pub/nightly/20130618-2
 
-Thanks to everyone for all their hard work.
+eclipse-poky    	60e99763dc9b77307d46eae4f43343948fa49757
+meta-fsl-arm 	976ce7acf4e2b8b8ebf61cb2488c11c2c74e0af8 	
+meta-fsl-ppc 	52b906c448f275719f241c634fe6e412e917b67a 	
+meta-intel 	c8856e41a418da8080a515c6fbcf4c46765301e3 	
+meta-minnow 	286a72ba3f5e29432be1dd77127de5bdc2d988c3 	
+meta-qt3 	4c27cce6688aa39852f3cba5e7b80ec279019605 	
+poky 	590010a6525b0e1bc1de73e794764e23404591df 	
 
-- --
+Please begin QA as soon as possible. Thanks!
+
+-- 
 Elizabeth Flanagan
 Yocto Project
 Build and Release
-
-- --------------------
-yocto-1.5-m1 Errata
-- --------------------
-
-Release Name: eclipse-poky-yocto-1.5-m1
-Branch:  1.4_M5
-Tag:  1.5_M1.final
-Hash: 0b2dc574b1b08eab2102b37f3b64ab7bd70d9595
-md5sum: 4ab42c570cef09dd17fce5a73667c49d
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/eclipse-poky-yocto-1.5-m1.tar.gz
-http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/eclipse-poky-yocto-1.5-m1.tar.gz
-
-Release Name: meta-intel-yocto-1.5-m1
-Branch:  1.4_M5
-Tag:  1.5_M1.final
-Hash: 24d63bd57269f3142c57c2d697c56101f73b23dc
-md5sum: aa097c8a3e70060b77dffa5c265c6fd8
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/meta-intel-yocto-1.5-m1.tar.gz
-http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/meta-intel-yocto-1.5-m1.tar.gz
-
-Release Name: meta-qt3-yocto-1.5-m1
-Branch:  1.4_M5
-Tag:  1.5_M1.final
-Hash: 4c27cce6688aa39852f3cba5e7b80ec279019605
-md5sum: 264df1a025fc299b5d2065f61540d37d
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/meta-qt3-yocto-1.5-m1.tar.gz
-http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/meta-qt3-yocto-1.5-m1.tar.gz
-
-Release Name: poky-yocto-1.5-m1
-Branch:  1.4_M5
-Tag:  1.5_M1.final
-Hash: a62aed41f2d8f874f7ae24d0e5be5dbc66ea2199
-md5sum: 549bb637f7d50af4734149d63a15aba9
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m1/poky-yocto-1.5-m1.tar.gz
-http://mirrors.kernel.org/yocto/yocto/milestones/yocto-1.5-m1/poky-yocto-1.5-m1.tar.gz
-
-- --------------------
-Features
-- --------------------
-* Lots of fixes, updates and improvements to systemd, postinstall logging,
-  HOB, buildhistory, etc.
-* Some bitbake infrastructure change to support webhob.
-* Various package update: openssh, ltp, apt, connman, sqlite, dpkg, binutils,
-  gdb, etc.
-
-- --------------------
-Known Issues
-- --------------------
-* Bug 4566 - routerstation pro cannot bootup with NFS in yocto 1.5
-20130521-1 build
-* Bug 4620 - cannot build oprofileui
-* Bug 4626 - Createrepo is not working
 
