@@ -1,21 +1,33 @@
-Return-Path: <djnass_18@hotmail.com>
-Received: from dub0-omc3-s4.dub0.hotmail.com (dub0-omc3-s4.dub0.hotmail.com
-	[157.55.2.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97B33E01541
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 07:19:11 -0700 (PDT)
-Received: from DUB116-W53 ([157.55.2.7]) by dub0-omc3-s4.dub0.hotmail.com with
-	Microsoft SMTPSVC(6.0.3790.4675); Tue, 18 Jun 2013 07:19:10 -0700
-X-TMN: [Z12Cn0czwT2uWhEDmSYMaouWqAyDrWPOm6Oa1P2ysdU=]
-X-Originating-Email: [djnass_18@hotmail.com]
-Message-ID: <DUB116-W535D2739FAA722F6E3D6BB988C0@phx.gbl>
-From: Thanassis Silis <djnass_18@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 18 Jun 2013 14:19:10 +0000
-Importance: Normal
+Return-Path: <navani.srivastava@gmail.com>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A759CE0155E
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 07:28:12 -0700 (PDT)
+Received: by mail-ob0-f176.google.com with SMTP id v19so4638991obq.21
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 07:28:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=zIq9fyuXSxdhuMSadAR4sYo04Y+lhKXF7vcFn2s1uIw=;
+	b=xHkWwq/jbCuV7u4+7GW+Tr6+4SaHsACclnvKfodihgykRG+BEckInP/D50Bg1acwHZ
+	Y9mAI95tmn4lzLvQiWLgkQurLiKJzOm/tIGGG02kEMea5qAzcXobR6PJGB6cp8XEJuV4
+	zGn1zcHC6YeUyA2u61kPY4MKuoUpUVKQFASqDOdlxKAOCRR3IlkeqJY9MeGj7XDkhv3D
+	FO4ej/Q4gHPB25o6iYwopBfgHai/HbDcKPfEyxTwHeUrv/ESOxJNev1o2aUxGEKlrlZw
+	3WeRMI+wJIUGQtzV+ALTLz/oSgh7QijNdDfCRneNSyk5RXLcxGpCaaGcOCgXfMYULu/v
+	giVg==
 MIME-Version: 1.0
-X-OriginalArrivalTime: 18 Jun 2013 14:19:10.0105 (UTC)
-	FILETIME=[CCD3C890:01CE6C2E]
-Subject: toolchain's environment-setup file that includes the image generated rootfs
+X-Received: by 10.60.145.239 with SMTP id sx15mr12140355oeb.57.1371565692388; 
+	Tue, 18 Jun 2013 07:28:12 -0700 (PDT)
+Received: by 10.182.221.5 with HTTP; Tue, 18 Jun 2013 07:28:12 -0700 (PDT)
+Received: by 10.182.221.5 with HTTP; Tue, 18 Jun 2013 07:28:12 -0700 (PDT)
+In-Reply-To: <9BACABF0C6B14A4D8C33B42A795119BE1BA55B7D@POCITMSEXMB05.LntUniverse.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE1BA55B7D@POCITMSEXMB05.LntUniverse.com>
+Date: Tue, 18 Jun 2013 19:58:12 +0530
+Message-ID: <CA+Z6RkWkUiy0omM_fYteVco1r_RQTbJdRpoqURrvrTAbB4ACgA@mail.gmail.com>
+From: Navani Srivastava <navani.srivastava@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: "navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Qt build error for Debug and Release mode
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,69 +39,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 14:19:14 -0000
-Content-Type: multipart/alternative;
-	boundary="_8e5e9efb-6e45-4ad1-89a2-1be84cfabda4_"
+X-List-Received-Date: Tue, 18 Jun 2013 14:28:13 -0000
+Content-Type: multipart/alternative; boundary=047d7b5d474ee18f2404df6e85a5
 
---_8e5e9efb-6e45-4ad1-89a2-1be84cfabda4_
-Content-Type: text/plain; charset="iso-8859-7"
+--047d7b5d474ee18f2404df6e85a5
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-hello everyone=2C
-tampering with eclipse I was advised to use the image generated rootfs for =
-sysroot entry=2C under window->preferences->Yocto Project ADT. I also used =
-the meta-toolchain=2C which is extracted under /opt/poky/
+Hi,
 
-If I copy extract the same toolchain and sysroots to another pc=2C I should=
- alter the environment-setup file.
-Looking into this file some changes are obvious. Variables:
+I am using poky-danny (Poky-8.0). I am facing problem in building Qt
+application.
 
-CC=2C CXX=2C CPP=2C LD should be appended with " --sysroot=3D/path/to/image=
--rootfs/"=2C next to the already existing "--sysroot=3D/opt/poky/1.4.1/sysr=
-oots/armv7a-vfp-neon-poky-linux-gnueabi".
+ When we are building Qt application with =93qmake CONFIG+=3Ddebug && make=
+=94 it
+appends =93-g=94 to build the application in debug mode but when we are
+building application in release mode by issuing following command  =93qmake
+CONFIG+=3Ddebug && make=94, then also it appends =93-g=94 to it.
 
-It is not clear if the above should be appended in the CONFIGURE_FLAGS=3D"-=
--target=3Darm-poky-linux-gnueabi --host=3Darm-poky-linux-gnueabi --build=3D=
-x86_64-linux --with-libtool-sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-n=
-eon-poky-linux-gnueabi"
+So building Qt application in release mode also results in debug mode
+output.
 
-as well.
+Any fix for this?
 
-Thank you.
- 		 	   		  =
+ Thanks and Regards
+Navani Kamal Srivastava
 
---_8e5e9efb-6e45-4ad1-89a2-1be84cfabda4_
-Content-Type: text/html; charset="iso-8859-7"
+--047d7b5d474ee18f2404df6e85a5
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>hello everyone=2C<br>tampering w=
-ith eclipse I was advised to use the image generated rootfs for sysroot ent=
-ry=2C under window-&gt=3Bpreferences-&gt=3BYocto Project ADT. I also used t=
-he meta-toolchain=2C which is extracted under /opt/poky/<br><br>If I copy e=
-xtract the same toolchain and sysroots to another pc=2C I should alter the =
-environment-setup file.<br>Looking into this file some changes are obvious.=
- Variables:<br><br>CC=2C CXX=2C CPP=2C LD should be appended with " --sysro=
-ot=3D/path/to/image-rootfs/"=2C next to the already existing "--sysroot=3D/=
-opt/poky/1.4.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi".<br><br>It is n=
-ot clear if the above should be appended in the CONFIGURE_FLAGS=3D"--target=
-=3Darm-poky-linux-gnueabi --host=3Darm-poky-linux-gnueabi --build=3Dx86_64-=
-linux --with-libtool-sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon-pok=
-y-linux-gnueabi"<br><br>as well.<br><br>Thank you.<br> 		 	   		  </div></b=
-ody>
-</html>=
+<p>Hi,</p>
+<p>I am using poky-danny (Poky-8.0). I am facing problem in building Qt app=
+lication.</p>
+<p>=A0When we are building Qt application with =93qmake CONFIG+=3Ddebug &am=
+p;&amp; make=94 it appends =93-g=94 to build the application in debug mode =
+but when we are building application in release mode by issuing following c=
+ommand =A0=93qmake CONFIG+=3Ddebug &amp;&amp; make=94, then also it appends=
+ =93-g=94 to it.</p>
 
---_8e5e9efb-6e45-4ad1-89a2-1be84cfabda4_--
+<p>So building Qt application in release mode also results in debug mode ou=
+tput.</p>
+<p>Any fix for this?</p>
+<p>=A0Thanks and Regards<br>
+Navani Kamal Srivastava<br>
+</p>
+
+--047d7b5d474ee18f2404df6e85a5--
