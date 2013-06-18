@@ -1,28 +1,23 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-curtail.atl.sa.earthlink.net
-	(elasmtp-curtail.atl.sa.earthlink.net [209.86.89.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DBE0E01493
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 09:17:55 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=QhpLUMitBMrFLCyetBvsg9NuaRPF+srsYXZrMGQyl9p/U7HEPdeIahRoaFUtBO/G;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-curtail.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UoybR-0005oX-UU; Tue, 18 Jun 2013 12:17:54 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Tom Zanussi'" <tom.zanussi@intel.com>
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD6C4E0155E
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2013 09:25:27 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 18 Jun 2013 09:25:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,890,1363158000"; d="scan'208";a="351825613"
+Received: from unknown (HELO [10.255.13.120]) ([10.255.13.120])
+	by fmsmga001.fm.intel.com with ESMTP; 18 Jun 2013 09:26:02 -0700
+Message-ID: <1371572725.1569.30.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Date: Tue, 18 Jun 2013 11:25:25 -0500
+In-Reply-To: <1F376671550B4DE9B7B9CC081C2CAF53@PAULD>
 References: <394F6C8A37E5424BB91439BABFA30180@PAULD>
 	<1371564241.1569.26.camel@empanada>
-In-Reply-To: <1371564241.1569.26.camel@empanada>
-Date: Tue, 18 Jun 2013 09:17:56 -0700
-Message-ID: <1F376671550B4DE9B7B9CC081C2CAF53@PAULD>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-Thread-Index: Ac5sLMY0thTvbwdHR9a4fexWuwkAfAAEnNog
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606882002f3c543b3dfe814c962851b8fe7f0350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
+	<1F376671550B4DE9B7B9CC081C2CAF53@PAULD>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org, foo.chien.haw@intel.com
 Subject: Re: Cedartrail and Dylan?
 X-BeenThere: yocto@yoctoproject.org
@@ -36,27 +31,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2013 16:17:55 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Tue, 18 Jun 2013 16:25:27 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-> From: Tom Zanussi
+On Tue, 2013-06-18 at 09:17 -0700, Paul D. DeRocco wrote:
+> > From: Tom Zanussi
+> > 
+> > I believe the main problem would be the graphics driver - it 
+> > would need
+> > porting to the 3.8 kernel - the rest would probably be 
+> > straightforward.
+> > 
+> > The cedartrail BSP was discontinued following danny, but I'm 
+> > cc:ing the maintainers in case they might have any further input.
 > 
-> I believe the main problem would be the graphics driver - it 
-> would need
-> porting to the 3.8 kernel - the rest would probably be 
-> straightforward.
+> Is this graphics issue likely to be a problem if I'm making the non-graphics
+> image? My app is headless.
 > 
-> The cedartrail BSP was discontinued following danny, but I'm 
-> cc:ing the maintainers in case they might have any further input.
 
-Is this graphics issue likely to be a problem if I'm making the non-graphics
-image? My app is headless.
+I wouldn't think so - my guess would be that the -nopvr wouldn't be a
+problem.
 
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+Tom
 
 
