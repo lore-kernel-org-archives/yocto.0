@@ -1,35 +1,37 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [121.241.96.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A562E014E2;
-	Wed, 19 Jun 2013 02:51:57 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 281BF36B4C;
-	Wed, 19 Jun 2013 15:21:38 +0530 (IST)
-Received: from GUREXHT02.ASIAN.AD.ARICENT.COM (gurexht02.asian.ad.aricent.com
-	[10.203.171.138])
-	by jaguar.aricent.com (Postfix) with ESMTP id 1199836B27;
-	Wed, 19 Jun 2013 15:21:38 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT02.ASIAN.AD.ARICENT.COM ([10.203.171.138]) with mapi;
-	Wed, 19 Jun 2013 15:21:38 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-owner@yoctoproject.org" <yocto-owner@yoctoproject.org>
-Date: Wed, 19 Jun 2013 15:21:37 +0530
-Thread-Topic: Yocto root permission issue
-Thread-Index: AQHObNKXxuzfcjBN30qxPRIPGINTRA==
-Message-ID: <17797116383D4341B029FDF34C22BF6A52C4BE0FA9@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.11.1371063601.16784.yocto@yoctoproject.org>
-	<17797116383D4341B029FDF34C22BF6A52C4CCB36E@GUREXMB01.ASIAN.AD.ARICENT.COM>,
-	<1371227894.20823.90.camel@ted>
-In-Reply-To: <1371227894.20823.90.camel@ted>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0840E014E2
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 03:06:11 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id ht10so3633995vcb.18
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 03:06:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=FJVlNv636L0kuE6fxbyszDb5dUMLHjYgqMQcX2woY7Q=;
+	b=tg3fRge/cR7sLtJ6CiYBRoQHOulMmFh8GrrKt5HGPzaPPeLPuUAjHmOhjYm+vI0mmy
+	BSvid+u+YECqA39M2c/gUkMkID67UbGNzs+4g0PYn5FocytAIgIxCzqX8ouB2KpEwcT2
+	94KEt/gsR0C26V4zpJrPII3EbJz6/Q7Sj5BlX50QT2QYKiJNU+zDGs4whzD8QGIBN+DY
+	1x66IGa8/JRWLXDEh6bUnE3WoQ0HEw0AQ+di1Qd1LYtJ3y3mTo2ynjX9vaczT31UoOIN
+	ArGyFbJQ0kwENmj4WEOX9/pBexHdS+i4/m3nkdo4Y8Czd+84i34nvMjEaNv2DeqSgigp
+	YH6g==
+X-Received: by 10.58.54.70 with SMTP id h6mr707638vep.36.1371636370500; Wed,
+	19 Jun 2013 03:06:10 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Yocto root permission issue
+Sender: paul.betafive@gmail.com
+Received: by 10.220.195.201 with HTTP; Wed, 19 Jun 2013 03:05:30 -0700 (PDT)
+In-Reply-To: <17797116383D4341B029FDF34C22BF6A52C4BE0FA9@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <mailman.11.1371063601.16784.yocto@yoctoproject.org>
+	<17797116383D4341B029FDF34C22BF6A52C4CCB36E@GUREXMB01.ASIAN.AD.ARICENT.COM>
+	<1371227894.20823.90.camel@ted>
+	<17797116383D4341B029FDF34C22BF6A52C4BE0FA9@GUREXMB01.ASIAN.AD.ARICENT.COM>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Wed, 19 Jun 2013 11:05:30 +0100
+X-Google-Sender-Auth: -aVt2DGTlwJjTNrJJP57xFNVm4A
+Message-ID: <CANyK_8dcH02Agd_aHpOrihut4nBv_EEZRLv8J07E1rrjOAxDFQ@mail.gmail.com>
+To: Rohit2 Jindal <rohit2.jindal@aricent.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto root permission issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,72 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 09:51:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 19 Jun 2013 10:06:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
-
-I am facing issue in building sysconfig. Actually i want to compile everyth=
-ing with root permissions in yocto. Is there anything that supports it.
-
-Eg say i have binary called build-ucore with root permission but i am not a=
-ble to execute this binary using default yocto permissions in do_compile or=
- do_configure
-Can i change yocto default permission or run yocto with SU permissions .
-
-Please help me out!
-
-________________________________________
-From: Richard Purdie [richard.purdie@linuxfoundation.org]
-Sent: Friday, June 14, 2013 10:08 PM
-To: Rohit2 Jindal
-Cc: yocto@yoctoproject.org; yocto-owner@yoctoproject.org
-Subject: Re: Recompile the recipe everytime
-
-On Thu, 2013-06-13 at 20:54 +0530, Rohit2 Jindal wrote:
-> Please help me out I am stuck in some issue, actually I want my recipe to=
- do compilation everytime on every run of
+On 19 June 2013 10:51, Rohit2 Jindal <rohit2.jindal@aricent.com> wrote:
+> Hi,
 >
-> Bitbake linux-yocto
+> I am facing issue in building sysconfig. Actually i want to compile everything with root permissions in yocto. Is there anything that supports it.
 >
-> ie can I remove stamping or sstate-cache that it allows me to run compila=
-tion everytime on every run of bitbake linux-yocto.
+> Eg say i have binary called build-ucore with root permission but i am not able to execute this binary using default yocto permissions in do_compile or do_configure
+> Can i change yocto default permission or run yocto with SU permissions .
 >
+
+What does your binary need root permissions for? The yocto build steps
+are executed under pseudo which basically means they're pretending to
+be root. Are you sure you need root permissions on the host (not the
+target filesystem) to run your binary?
+
 >
-> I tried do_compile[nostamp] =3D"1" but it did not work but same thing wor=
-ked for do_install[nostamp]=3D"1"
+> ===============================================================================
+> Please refer to http://www.aricent.com/legal/email_disclaimer.html
+> for important disclosures regarding this electronic communication.
+> ===============================================================================
+>
 
-If you just want to rerun the compilation:
+May be worth noting that yocto@yoctoproject.org is a public mailing
+list with a public archive.
 
-do_compile[nostamp] =3D "1"
+--
+Paul Barker
 
-should do what you want, not sure why that wouldn't work.
-
-bitbake linux-yocto -c compile -f
-
-or
-
-bitbake linux-yocto -C compile -f
-
-are also commands which might help.
-
-Cheers,
-
-Richard
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
