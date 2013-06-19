@@ -1,34 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93747E014E2
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 05:11:43 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id ib11so3759816vcb.3
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 05:11:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=hf+3UAISkslmQVsYRbz7GzY2pb7IexDSxYSG2tbChWQ=;
-	b=McIQnyu28xC4IUXIgzRitR47DJDBZbI50FeQT6yqFuV1nCN/5yfvyoFFd27d6M0g28
-	vStLOjtJpQA1lX4cWgGfGXZtFglS8M40RJ+w9IUb6jAQSq5tgWb+kKxbJgqJYO426etp
-	AcYGPmuLUuO9OCR8ziH2/+a6E/qwCn4obZupEmXR7cbIvfDUwGzkz8dScVhsTXyViOLB
-	qqRoaDinhxne1IL9ZDbBSm8Fogk9uYpRaIfraPP7vFuMgvUTIvY48Z3xT/OfgcImaMMy
-	UbcMPwVI/INgHBXp6hb0Rk7NTbpp+oHr9MfmT7aL3FECjO76XqU+Dy99VVD8B6urfQV1
-	DTLQ==
-X-Received: by 10.220.42.147 with SMTP id s19mr523315vce.46.1371643902484;
-	Wed, 19 Jun 2013 05:11:42 -0700 (PDT)
+Return-Path: <0xf777@gmail.com>
+Received: from mail-la0-f47.google.com (mail-la0-f47.google.com
+	[209.85.215.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCEB7E014E2
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 05:33:44 -0700 (PDT)
+Received: by mail-la0-f47.google.com with SMTP id fe20so4569936lab.34
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 05:33:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=l8dVDT1PkVPP0g3NZxgR8ppPW9rKWFbU96W/xfXHKhI=;
+	b=UbNb6zg2OD7D72BVNP+uo27hF2n/j58NkSOjktPL8cqrKmXgOh28nbP7LYMoMiLHTd
+	cat0Yx6j89UjfmmaEPzwQv0xwWDMUN7OtUoz0qZu0Sr+yrgy64ETyirnmdwcb1IMrqiA
+	opkHof59arLNPLYOziE9IauQNQkXEGoWLtrRGd4XIVB9nFcDmo2vhMoOpsYpSsqvUdt4
+	NwRupG1WalKbwMtImnFCG18YS/cTazOTcxcKBsus/E/HH1YzNp1mAmf6ytnC78S7UFBk
+	BGw37bkQFgkSQc13FQfLlOO18ntLu7KfCfXeKREAjqRPhYmFH2DH88MgVJ0LWs+OtBR0
+	Ot7w==
 MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Wed, 19 Jun 2013 05:11:22 -0700 (PDT)
-In-Reply-To: <CAFMfyzKMgx_6gJLO13ei7nr3fxaJg0-A3nG0=BCWQk5rH9p4TQ@mail.gmail.com>
-References: <CAFMfyzKMgx_6gJLO13ei7nr3fxaJg0-A3nG0=BCWQk5rH9p4TQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 19 Jun 2013 13:11:22 +0100
-Message-ID: <CAJTo0LbzcSMRwoowq00MZr1G=+Vo-M6=VA=6HRuTBf6YMiBnAg@mail.gmail.com>
-To: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
-X-Gm-Message-State: ALoCoQm7sE8QGCOoHwy7TV7+mv+bhqF+FYa5s9Zk0dgI9/rI1sgVS6qqBIQLT205ttBzph8HsGn8
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Toolchain... Issues with systemd (probably)
+X-Received: by 10.152.4.137 with SMTP id k9mr1302560lak.11.1371645222601; Wed,
+	19 Jun 2013 05:33:42 -0700 (PDT)
+Received: by 10.152.27.161 with HTTP; Wed, 19 Jun 2013 05:33:42 -0700 (PDT)
+Date: Wed, 19 Jun 2013 16:33:42 +0400
+Message-ID: <CAHyyKN=uJoee1pchKtEMbKT8paYrwiewrPKS8wWZQ5g5RHwpSA@mail.gmail.com>
+From: Alex M <0xf777@gmail.com>
+To: yocto@yoctoproject.org
+Subject: core-image-x11 works on QEMU and not on real hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,27 +34,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 12:11:47 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 19 Jun 2013 12:33:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 19 June 2013 13:08, DAMARLA Satya Swaroop <swaroop.damarla@gmail.com> wrote:
-> I think I had to open the issue as its not closed... Here is more
-> clarity....
->
-> The issue is I decided the problem may be with init_manager. I did two
-> builds one with sysvinit using traditional Poky distro and other one is
-> uisng systemd using new distribution which is different as we need a new
-> distribution for using systemd
->
-> .. I didno t get any errors when i build using bitbake -c populate_sdk
-> rootfs-smartcpu with sysvinit and got build errors using systemd...
->
-> Any possible resons what could have caused failure to build the toolchain?
+Hello!
+I'm using poky-dylan-9.0.0.tar.bz2
 
-It really helps when you tell us what the errors are.
+I just built core-image-x11 and able to run it on qemux86, but all my
+attempts to run image on real hardware with nVidia GTX465 or AMD
+HD6320 - failed. In X11 logs I see errors about GLX module.
 
-Note that changing DISTRO_FEATURES in an existing build directory
-isn't supported and may well cause problems.
+What I should do to add GLX and OpenGL 2.1 3D acceleration with Mesa
+and opensource drivers for nVidia, Intel and AMD cards at the same
+time?
 
-Ross
+P.S.
+Strange, I expected to see working graphics with plain software VGA
+driver not only with QEMU but on all hardware... BTW, when starting
+Yocto I see graphic logo and progress bar.
 
