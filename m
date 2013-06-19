@@ -1,35 +1,37 @@
-Return-Path: <varun292006@gmail.com>
-Received: from mail-pb0-f47.google.com (mail-pb0-f47.google.com
-	[209.85.160.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E1DE00348
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 09:10:35 -0700 (PDT)
-Received: by mail-pb0-f47.google.com with SMTP id rr13so5222456pbb.34
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 09:10:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=2sie6WWUirFiEDu3AGcL3tGIjz3+HbGMgXSdxUUgivM=;
-	b=pW0YurvISNdaSNtxmtO6Sq53Q+HQ0dPD1OqpxevMvCYwbs0BSXRpO67M3AhhtTnauX
-	IjqDWWKlKzMX3wN2uVSdoFjLsnlEp5s2A7roCB5uwdse9nUBmIDh2fFTlUFgvyhPUSpj
-	KeVTWSjH9Coq9RGCCiXX/Sa1f/epG6kHM/RmLRZCn9eFk5v5PpW3uOVnfy+WlsqKJMVp
-	N7zJ5AkIFW9H4grBBzDYHRM6DcA+9mdLmCJP+41IwDeenCjPVgnHYcju+gWDCgvNELMf
-	GbZAEMGBgCxOpqcxhz5Fnf5cN0RFHpUX2xJUbGwUTI9L+/oQGQHkdSV30Dy04VkLCuel
-	6lmg==
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94436E00348;
+	Wed, 19 Jun 2013 09:25:19 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Jun 2013 09:25:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,898,1363158000"; 
+	d="scan'208,217";a="356156463"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Jun 2013 09:25:05 -0700
+Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 19 Jun 2013 09:25:05 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.83]) by
+	ORSMSX154.amr.corp.intel.com ([169.254.11.240]) with mapi id
+	14.03.0123.003; Wed, 19 Jun 2013 09:25:03 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Thanassis Silis <djnass_18@hotmail.com>, "meta-freescale@yoctoproject.org"
+	<meta-freescale@yoctoproject.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] cannot bitbake/build.compile tcf-agent for use with
+	fsl-image-gui-sdk
+Thread-Index: AQHObCu/F3WNlzN88UGl79O6rIxiOpk9Oj4w
+Date: Wed, 19 Jun 2013 16:25:03 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C4628B@ORSMSX103.amr.corp.intel.com>
+References: <DUB116-W138390BF0B4871C803B01A5988C0@phx.gbl>
+In-Reply-To: <DUB116-W138390BF0B4871C803B01A5988C0@phx.gbl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.66.120.164 with SMTP id ld4mr7413186pab.187.1371658235589;
-	Wed, 19 Jun 2013 09:10:35 -0700 (PDT)
-Received: by 10.68.112.65 with HTTP; Wed, 19 Jun 2013 09:10:35 -0700 (PDT)
-In-Reply-To: <51C08D9C.6010405@mlbassoc.com>
-References: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
-	<51BF484F.9070009@mlbassoc.com>
-	<CAGxOggHuW93fygtGt037LLX1PFzgGzqDr3au1GV76hAaSnka6w@mail.gmail.com>
-	<CAGX3a98bY4yx21Wj8ciSeDcz_=ew+6Zvn1+Ciwm-ou8a_MF48A@mail.gmail.com>
-	<CAGxOggFiUojWMpYUd7J0BfpRhPnwbu+pH89p9CEkjdDjRs6BgQ@mail.gmail.com>
-	<51C08D9C.6010405@mlbassoc.com>
-Date: Wed, 19 Jun 2013 21:40:35 +0530
-Message-ID: <CAGxOggH4UzCDOE5m=qFTPMDYmO1-jdtV1KtTn0XmyAnEd_pSfg@mail.gmail.com>
-From: varun bhatnagar <varun292006@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Layers not getting recognized by bitbake
+Subject: Re: cannot bitbake/build.compile tcf-agent for use with fsl-image-gui-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,385 +43,387 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 16:10:36 -0000
-X-Groupsio-MsgNum: 14477
-Content-Type: multipart/mixed; boundary=047d7b0721cee2b94604df84115c
+X-List-Received-Date: Wed, 19 Jun 2013 16:25:21 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_"
 
---047d7b0721cee2b94604df84115c
-Content-Type: multipart/alternative; boundary=047d7b0721cee2b94304df84115a
-
---047d7b0721cee2b94304df84115a
-Content-Type: text/plain; charset=ISO-8859-1
-
-Thanks for the reply Gary. I am attaching recipe file below. Please have a
-look at it. And yes, there is a line where in all the dependencies are
-given.
-And this is the link from where I created the layer :
-http://cgit.openembedded.org/meta-openembedded/tree/
-
-//
-Varun
-
-
-On Tue, Jun 18, 2013 at 10:11 PM, Gary Thomas <gary@mlbassoc.com> wrote:
-
-> On 2013-06-18 17:28, varun bhatnagar wrote:
->
->> I am building one of my application using yocto by giving bitbake -k
->> core-image-minimal command but I am facing some errors as this application
->> requires two libraries
->> *1) net-snmp*
->> *2) fuse*
->> *
->>
->> *
->> I have one link where in they are asking to add these two libraries in
->> the form of layers and then execute bitbake -k core-image-minimal command.
->>
->> I am pasting one screenshot below:
->>
->> As you can I have added two layers meta-networking (contains net-snmp)
->> and meta-oe(contains fuse). After this I added these layers in
->> *build/conf/bblayer.conf.*
->> *
->> *
->> *
->>
->> *
->> After this I again executed bitbake -k core-image-minimal command but I
->> faced the same error as before... :(
->> Is there anyway that these layers get recognized? Do I need to execute
->> some other command?
->>
->
-> Obviously, this is a recipe that you made.
->
-> Does it show these dependencies?  e.g. a line like this in your recipe
-> file:
->   DEPENDS = "net-snmp fuse"
-> (or whatever the *packages* that you need are)
->
-> Bitbake can't read your mind; it will only build the recipes you ask and
-> the
-> dependencies which are explicitly specified in that build chain.
->
-> If you still have trouble, try sending your recipe (.bb file and all other
-> components you might have), bblayers.conf, etc to the list because we're
-> not
-> mind readers either :-)
->
->
->> On Tue, Jun 18, 2013 at 2:32 AM, Sudhangathan B S <sudhangathan@gmail.com<mailto:
->> sudhangathan@gmail.com**>> wrote:
->>
->>     Can you please paste your command and it's output here..! If you
->> don't mind..!! Or explain with equivalent clarity. It
->>     l will good if you can also put in your directory structure.
->>
->>     ------------------------------**---
->>     Sudhangathan BS
->>     Ph:(+91) 9731-905-205
->>     ------------------------------**---
->>
->>
->>     On Mon, Jun 17, 2013 at 11:33 PM, varun bhatnagar <
->> varun292006@gmail.com <mailto:varun292006@gmail.com>**> wrote:
->>
->>         Actually the package which I am building is having some
->> dependencies on some libraries. So I provided those libraries with the help
->> of creating layers. I did not extract
->>         those from meta-openembedded, instead, I manually created two
->> layers and added them in bblayer.conf file. Now, after configuring all this
->> stuff I am again trying to
->>         recompile my code but still I am getting the same error saying
->> that it is not able to find those libraries provided by me in the form of
->> layers.
->>
->>
->>         On Mon, Jun 17, 2013 at 11:03 PM, Gary Thomas <gary@mlbassoc.com<mailto:
->> gary@mlbassoc.com>> wrote:
->>
->>             On 2013-06-17 18:08, varun bhatnagar wrote:
->>
->>                 Hi,
->>
->>                 I am trying to compile my code using yocto. For that I
->> have created two layers: "meta-networking" and "meta-oe". I have added
->> these dependencies in bblayer.conf
->>                 too. But these are
->>                 not getting build. Can anyone please tell me what should
->> I do to make this work.
->>
->>
->>             More details are needed to be able to help.
->>
->>             What do you mean "not getting built"?  Do you mean that if you
->>             try to build recipe XYZ which is in one of those layers that
->> it's
->>             not being built?  Or perhaps you mean something else?
->>
->>             What do you mean "created two layers: ..."?  Did you just
->> extract
->>             these from meta-openembedded?  or something else?
->>
->>             --
->>             ------------------------------**
->> __----------------------------**--
->>
->>             Gary Thomas                 |  Consulting for the
->>             MLB Associates              |    Embedded world
->>             ------------------------------**
->> __----------------------------**--
->>             ______________________________**___________________
->>             yocto mailing list
->>             yocto@yoctoproject.org <mailto:yocto@yoctoproject.org**>
->>             https://lists.yoctoproject.__**org/listinfo/yocto <
->> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->> >
->>
->>
->>
->>         ______________________________**_________________
->>         yocto mailing list
->>         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org**>
->>
->>         https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
->>
->>
->>
->> ______________________________**_________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
-> --
-> ------------------------------**------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------**------------------------------
-> ______________________________**_________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
-
---047d7b0721cee2b94304df84115a
-Content-Type: text/html; charset=ISO-8859-1
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for the reply Gary. I am attaching recipe file belo=
-w. Please have a look at it. And yes, there is a line where in all the depe=
-ndencies are given.=A0<div>And this is the link from where I created the la=
-yer :=A0<a href=3D"http://cgit.openembedded.org/meta-openembedded/tree/">ht=
-tp://cgit.openembedded.org/meta-openembedded/tree/</a><br>
-<div><br></div><div><div>//</div><div style>Varun</div><div><div class=3D"g=
-mail_extra"><br><br><div class=3D"gmail_quote">On Tue, Jun 18, 2013 at 10:1=
-1 PM, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com=
-" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>On 2013-06-18 17:28, varun bhatnagar wrote:<br>
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:s=
-olid;padding-left:1ex"><div>
-I am building one of my application using yocto by giving bitbake -k core-i=
-mage-minimal command but I am facing some errors as this application requir=
-es two libraries<br></div>
-*1) net-snmp*<br>
-*2) fuse*<br>
-*<div><br>
-*<br>
-I have one link where in they are asking to add these two libraries in the =
-form of layers and then execute bitbake -k core-image-minimal command.<br>
-<br>
-I am pasting one screenshot below:<br>
-<br></div>
-As you can I have added two layers meta-networking (contains net-snmp) and =
-meta-oe(contains fuse). After this I added these layers in *build/conf/bbla=
-yer.conf.*<br>
-*<br>
-*<br>
-*<div><br>
-*<br>
-After this I again executed bitbake -k core-image-minimal command but I fac=
-ed the same error as before... :(<br>
-Is there anyway that these layers get recognized? Do I need to execute some=
- other command?<br>
-</div></blockquote>
-<br>
-Obviously, this is a recipe that you made.<br>
-<br>
-Does it show these dependencies? =A0e.g. a line like this in your recipe fi=
-le:<br>
-=A0 DEPENDS =3D &quot;net-snmp fuse&quot;<br>
-(or whatever the *packages* that you need are)<br>
-<br>
-Bitbake can&#39;t read your mind; it will only build the recipes you ask an=
-d the<br>
-dependencies which are explicitly specified in that build chain.<br>
-<br>
-If you still have trouble, try sending your recipe (.bb file and all other<=
-br>
-components you might have), bblayers.conf, etc to the list because we&#39;r=
-e not<br>
-mind readers either :-)<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>
-<br>
-On Tue, Jun 18, 2013 at 2:32 AM, Sudhangathan B S &lt;<a href=3D"mailto:sud=
-hangathan@gmail.com" target=3D"_blank">sudhangathan@gmail.com</a> &lt;mailt=
-o:<a href=3D"mailto:sudhangathan@gmail.com" target=3D"_blank">sudhangathan@=
-gmail.com</a><u></u>&gt;&gt; wrote:<br>
+Hi Thanassis,
 
 
-<br>
-=A0 =A0 Can you please paste your command and it&#39;s output here..! If yo=
-u don&#39;t mind..!! Or explain with equivalent clarity. It<br>
-=A0 =A0 l will good if you can also put in your directory structure.<br>
-<br>
-=A0 =A0 ------------------------------<u></u>---<br>
-=A0 =A0 Sudhangathan BS<br>
-=A0 =A0 Ph:(+91) 9731-905-205<br>
-=A0 =A0 ------------------------------<u></u>---<br>
-<br>
-<br></div><div>
-=A0 =A0 On Mon, Jun 17, 2013 at 11:33 PM, varun bhatnagar &lt;<a href=3D"ma=
-ilto:varun292006@gmail.com" target=3D"_blank">varun292006@gmail.com</a> &lt=
-;mailto:<a href=3D"mailto:varun292006@gmail.com" target=3D"_blank">varun292=
-006@gmail.com</a>&gt;<u></u>&gt; wrote:<br>
+
+I don't know why tcf-agent  is not included in your sdk image.  But you als=
+o can use ssh to create a rse remote connection that allows you to do remot=
+e interaction.  When you create remote connection, instead of choosing tcf,=
+ use ssh.  You'll need openssh in your target image for this to work.
 
 
-<br>
-=A0 =A0 =A0 =A0 Actually the package which I am building is having some dep=
-endencies on some libraries. So I provided those libraries with the help of=
- creating layers. I did not extract<br>
-=A0 =A0 =A0 =A0 those from meta-openembedded, instead, I manually created t=
-wo layers and added them in bblayer.conf file. Now, after configuring all t=
-his stuff I am again trying to<br>
-=A0 =A0 =A0 =A0 recompile my code but still I am getting the same error say=
-ing that it is not able to find those libraries provided by me in the form =
-of layers.<br>
-<br>
-<br></div><div>
-=A0 =A0 =A0 =A0 On Mon, Jun 17, 2013 at 11:03 PM, Gary Thomas &lt;<a href=
-=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a> &lt;m=
-ailto:<a href=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.=
-com</a>&gt;&gt; wrote:<br>
+
+Cheers,
+
+Jessica
 
 
-<br>
-=A0 =A0 =A0 =A0 =A0 =A0 On 2013-06-17 18:08, varun bhatnagar wrote:<br>
-<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 Hi,<br>
-<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 I am trying to compile my code using yocto.=
- For that I have created two layers: &quot;meta-networking&quot; and &quot;=
-meta-oe&quot;. I have added these dependencies in bblayer.conf<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 too. But these are<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 not getting build. Can anyone please tell m=
-e what should I do to make this work.<br>
-<br>
-<br>
-=A0 =A0 =A0 =A0 =A0 =A0 More details are needed to be able to help.<br>
-<br>
-=A0 =A0 =A0 =A0 =A0 =A0 What do you mean &quot;not getting built&quot;? =A0=
-Do you mean that if you<br>
-=A0 =A0 =A0 =A0 =A0 =A0 try to build recipe XYZ which is in one of those la=
-yers that it&#39;s<br>
-=A0 =A0 =A0 =A0 =A0 =A0 not being built? =A0Or perhaps you mean something e=
-lse?<br>
-<br>
-=A0 =A0 =A0 =A0 =A0 =A0 What do you mean &quot;created two layers: ...&quot=
-;? =A0Did you just extract<br>
-=A0 =A0 =A0 =A0 =A0 =A0 these from meta-openembedded? =A0or something else?=
-<br>
-<br>
-=A0 =A0 =A0 =A0 =A0 =A0 --<br></div>
-=A0 =A0 =A0 =A0 =A0 =A0 ------------------------------<u></u>__------------=
-----------------<u></u>--<div><br>
-=A0 =A0 =A0 =A0 =A0 =A0 Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Co=
-nsulting for the<br>
-=A0 =A0 =A0 =A0 =A0 =A0 MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0=
-Embedded world<br></div>
-=A0 =A0 =A0 =A0 =A0 =A0 ------------------------------<u></u>__------------=
-----------------<u></u>--<br>
-=A0 =A0 =A0 =A0 =A0 =A0 ______________________________<u></u>______________=
-_____<br>
-=A0 =A0 =A0 =A0 =A0 =A0 yocto mailing list<br>
-=A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"mailto:yocto@yoctoproject.org" target=3D=
-"_blank">yocto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@yoct=
-oproject.org" target=3D"_blank">yocto@yoctoproject.org</a><u></u>&gt;<br>
-=A0 =A0 =A0 =A0 =A0 =A0 <a href=3D"https://lists.yoctoproject." target=3D"_=
-blank">https://lists.yoctoproject.</a>__<u></u>org/listinfo/yocto &lt;<a hr=
-ef=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">http=
-s://lists.yoctoproject.<u></u>org/listinfo/yocto</a>&gt;<br>
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Thanassis Silis
+Sent: Tuesday, June 18, 2013 6:56 AM
+To: meta-freescale@yoctoproject.org; yocto@yoctoproject.org
+Subject: [yocto] cannot bitbake/build.compile tcf-agent for use with fsl-im=
+age-gui-sdk
 
 
-<br>
-<br>
-<br>
-=A0 =A0 =A0 =A0 ______________________________<u></u>_________________<br>
-=A0 =A0 =A0 =A0 yocto mailing list<br>
-=A0 =A0 =A0 =A0 <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank"=
->yocto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@yoctoproject=
-.org" target=3D"_blank">yocto@yoctoproject.org</a><u></u>&gt;<div><br>
-=A0 =A0 =A0 =A0 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" t=
-arget=3D"_blank">https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><b=
-r>
-<br>
-<br>
-<br>
-<br>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-<br>
-</div></blockquote><div><div>
-<br>
--- <br>
-------------------------------<u></u>------------------------------<br>
-Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the<br>
-MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world<br>
-------------------------------<u></u>------------------------------<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br></div></div></div></div></div>
 
---047d7b0721cee2b94304df84115a--
+Hello everyone,
+it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
+nd that is where my problems start:
 
---047d7b0721cee2b94604df84115c
-Content-Type: text/plain; charset=US-ASCII; name="myRecipe.bb.txt"
-Content-Disposition: attachment; filename="myRecipe.bb.txt"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_hi4ptvni0
+using this in my local.conf: IMAGE_INSTALL_append =3D " tcf-agent"
+I expected to be able to automate the process of generating the tcf-agent a=
+nd deploying it in my image with command:
 
-REVTQ1JJUFRJT04gPSAiYml0YWtlIGZpbGUiDQpERVBFTkRTID0gIm5ldC1zbm1wIGZ1c2UiDQpS
-REVQRU5EUyA9ICJjdXJsIHJwbSBvcGVuc3NoIG9wZW5sZGFwIHByb2NwcyBwc21pc2Mgc2VkIG5l
-dC1zbm1wLXNlcnZlciINCkxJQ0VOU0UgPSAiR1BMdjIrIg0KUFIgPSAicjAiDQpTUkNfVVJJID0g
-ImZpbGU6Ly8vaG9tZS91c2VyL015YXBwLnRhci5neiINCkVYVFJBX09FQ01BS0UgKz0gIi1EQ01B
-S0VfRklORF9ST09UX1BBVEg9JHtTVEFHSU5HX0RJUl9IT1NUfSAiDQpFWFRSQV9PRUNNQUtFICs9
-ICItRFRBUkdFVF9BUkNISVRFQ1RVUkU9JHtUQVJHRVRfQVJDSH0gIg0KRVhUUkFfT0VDTUFLRSAr
-PSAiLURDTUFLRV9TWVNURU1fTkFNRT1MaW51eCAiDQpFWFRSQV9PRUNNQUtFICs9ICItRENNQUtF
-X1NZU1RFTV9WRVJTSU9OPTEgIg0KRVhUUkFfT0VDTUFLRSArPSAiLURSU1RBVEU9JHtQUn0gIg0K
-RVhUUkFfT0VDTUFLRSArPSAiLURDTUFLRV9GSU5EX1JPT1RfUEFUSF9NT0RFX1BST0dSQU09TkVW
-RVIgIg0KRVhUUkFfT0VDTUFLRSArPSAiLURDTUFLRV9GSU5EX1JPT1RfUEFUSF9NT0RFX0xJQlJB
-Ulk9T05MWSAiDQpFWFRSQV9PRUNNQUtFICs9ICItRENNQUtFX0ZJTkRfUk9PVF9QQVRIX01PREVf
-SU5DTFVERT1PTkxZICINCkVYVFJBX09FQ01BS0UgKz0gIi1EUlBNPTEgIg0KIA0KaW5oZXJpdCBj
-bWFrZQ0KIA0KZG9fY29uZmlndXJlKCl7DQogICAgICAgIGNtYWtlIC4uJHtFWFRSQV9PRUNNQUtF
-fQ0KfQ0KIA0KZG9fY29tcGlsZSgpew0KICAgICAgICBvZV9ydW5tYWtlIGFsbA0KfQ==
+bitbake fsl-image-gui-sdk
 
---047d7b0721cee2b94604df84115c--
+
+this fails with:
+
+| Reading package lists...
+| Building dependency tree...
+| Reading state information...
+| Some packages could not be installed. This may mean that you have
+| requested an impossible situation or if you are using the unstable
+| distribution that some required packages have not yet been created
+| or been moved out of Incoming.
+| The following information may help to resolve the situation:
+|
+| The following packages have unmet dependencies:
+|  packagegroup-core-x11-base : Depends: packagegroup-core-x11-utils but it=
+ is not going to be installed
+| W: Ignoring Provides line with DepCompareOp for package pkgconfig__pkg-co=
+nfig__
+| W: You may want to run apt-get update to correct these problems
+| E: Unable to correct problems, you have held broken packages.
+| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/tmp/work/im=
+x6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootfs=
+.26945 for further information)
+ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/f=
+sl-image-gui-sdk.bb, do_rootfs) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be r=
+erun and 1 failed.
+No currently running tasks (7417 of 7419)
+
+Summary: 1 task failed:
+  /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/fsl-image-gui-=
+sdk.bb, do_rootfs
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+
+
+I then went on to try and compile it manually:
+
+bitbake fsl-image-gui-sdk -c compile tcf-agent
+bitbake fsl-image-gui-sdk -c deploy
+
+
+this fails with:
+
+ERROR: Task do_deploy does not exist for target fsl-image-gui-sdk
+
+Then I tried compiling it manually using this info http://www.yoctoproject.=
+org/docs/current/adt-manual/adt-manual.html#getting-the-images , by sourcin=
+g my toolchain from /opt/poky/1.4.1/env* file, and then
+runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
+MACHINE variable to be 'arm' in the beginning of the Makefile.inc.
+
+this fails with
+
+arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-interwork -mfloat-abi=
+=3Dsoftfp -mfpu=3Dneon --sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon=
+-poky-linux-gnueabi  -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE=
+_OFFSET_BITS=3D64 -Wall -Wmissing-prototypes -I./. -I./system/GNU/Linux -I.=
+/machine/arm -o obj/GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/=
+framework/channel_tcp.c
+tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No such file=
+ or directory
+compilation terminated.
+
+
+At this point I have run out of ideas about how to prepare tcf-agent to ins=
+tall on my sabrelite fsl-image-gui-sdk rootfs....
+Any help would be most welcome.
+
+for example in the 1st case how could I run apt-get as is suggested in a ma=
+nner that would be appropriate to update yocto sources?
+
+Thank you.
+
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Thanassis,<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I don&#8217;t know why tc=
+f-agent&nbsp; is not included in your sdk image.&nbsp; But you also can use=
+ ssh to create a rse remote connection that allows you to do remote interac=
+tion.
+ &nbsp;When you create remote connection, instead of choosing tcf, use ssh.=
+&nbsp; You&#8217;ll need openssh in your target image for this to work.<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cheers,<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Thanassis Silis<br>
+<b>Sent:</b> Tuesday, June 18, 2013 6:56 AM<br>
+<b>To:</b> meta-freescale@yoctoproject.org; yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] cannot bitbake/build.compile tcf-agent for use with=
+ fsl-image-gui-sdk<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;">Hello everyone,<br>
+it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
+nd that is where my problems start:<br>
+<br>
+using this in my local.conf: IMAGE_INSTALL_append =3D &quot; tcf-agent&quot=
+;<br>
+I expected to be able to automate the process of generating the tcf-agent a=
+nd deploying it in my image with command:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">bitbake fsl-image-gui-sdk</span><span style=3D"font-family=
+:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;"><br>
+this fails with:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">| Reading package lists...</span><span style=3D"font-famil=
+y:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| Building dependency tree...</span><span style=3D"font-family:&quot;Calib=
+ri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| Reading state information...</span><span style=3D"font-family:&quot;Cali=
+bri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| Some packages could not be installed. This may mean that you have</span>=
+<span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| requested an impossible situation or if you are using the unstable</span=
+><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br=
+>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| distribution that some required packages have not yet been created</span=
+><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br=
+>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| or been moved out of Incoming.</span><span style=3D"font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| The following information may help to resolve the situation:</span><span=
+ style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| </span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&q=
+uot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| The following packages have unmet dependencies:</span><span style=3D"fon=
+t-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>|&nbsp; packagegroup-core-x11-base : Depends: packagegroup-core-x11-utils =
+but it is not going to be installed</span><span style=3D"font-family:&quot;=
+Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| W: Ignoring Provides line with DepCompareOp for package pkgconfig__pkg-c=
+onfig__</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-ser=
+if&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| W: You may want to run apt-get update to correct these problems</span><s=
+pan style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| E: Unable to correct problems, you have held broken packages.</span><spa=
+n style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/tmp/work/i=
+mx6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootf=
+s.26945 for further information)</span><span style=3D"font-family:&quot;Cal=
+ibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/=
+fsl-image-gui-sdk.bb, do_rootfs) failed with exit code '1'</span><span styl=
+e=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be =
+rerun and 1 failed.</span><span style=3D"font-family:&quot;Calibri&quot;,&q=
+uot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>No currently running tasks (7417 of 7419)</span><span style=3D"font-family=
+:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+<br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>Summary: 1 task failed:</span><span style=3D"font-family:&quot;Calibri&quo=
+t;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>&nbsp; /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/fsl-imag=
+e-gui-sdk.bb, do_rootfs</span><span style=3D"font-family:&quot;Calibri&quot=
+;,&quot;sans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>Summary: There was 1 ERROR message shown, returning a non-zero exit code.<=
+/span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
+"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;"><br>
+<br>
+I then went on to try and compile it manually:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;">bitbake fsl-image-gui-sdk -c compile tcf-agent</span><span=
+ style=3D"font-size:10.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif=
+&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>bitbake fsl-image-gui-sdk -c deploy</span><span style=3D"font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;"><br>
+this fails with:<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Courier New&quot;">ERROR: Task do_deploy does =
+not exist for target fsl-image-gui-sdk</span><span style=3D"font-family:&qu=
+ot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;">Then I tried compiling it manually using this info
+<a href=3D"http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.h=
+tml#getting-the-images" target=3D"_blank">
+http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#getting=
+-the-images</a> , by sourcing my toolchain from /opt/poky/1.4.1/env* file, =
+and then<br>
+runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
+MACHINE variable to be 'arm' in the beginning of the Makefile.inc.<br>
+<br>
+this fails with<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Courier New&quot;">arm-poky-linux-gnueabi-gcc&=
+nbsp; -march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon =
+--sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi&nbs=
+p;
+ -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE_OFFSET_BITS=3D64 -W=
+all -Wmissing-prototypes -I./. -I./system/GNU/Linux -I./machine/arm -o obj/=
+GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/framework/channel_tc=
+p.c</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&q=
+uot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No such fil=
+e or directory</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;s=
+ans-serif&quot;"><br>
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
+>compilation terminated.</span><span style=3D"font-family:&quot;Calibri&quo=
+t;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
+;sans-serif&quot;">&nbsp;<br>
+At this point I have run out of ideas about how to prepare tcf-agent to ins=
+tall on my sabrelite fsl-image-gui-sdk rootfs....<br>
+Any help would be most welcome.<br>
+<br>
+for example in the 1st case how could I run apt-get as is suggested in a ma=
+nner that would be appropriate to update yocto sources?<br>
+<br>
+Thank you.<o:p></o:p></span></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_--
