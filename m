@@ -1,33 +1,36 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECE8FE006E9
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 09:26:16 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 19 Jun 2013 09:26:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,898,1363158000"; 
-	d="scan'208,217";a="356157069"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Jun 2013 09:26:15 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.83]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.217]) with mapi id
-	14.03.0123.003; Wed, 19 Jun 2013 09:26:15 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Thanassis Silis <djnass_18@hotmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] toolchain's environment-setup file that includes the
-	image generated rootfs
-Thread-Index: AQHObC7eU72lrLJF/Eu8QM5oAk0YOpk9OszA
-Date: Wed, 19 Jun 2013 16:26:14 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C4629B@ORSMSX103.amr.corp.intel.com>
-References: <DUB116-W535D2739FAA722F6E3D6BB988C0@phx.gbl>
-In-Reply-To: <DUB116-W535D2739FAA722F6E3D6BB988C0@phx.gbl>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <navani.srivastava@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06C4AE00348
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 10:12:40 -0700 (PDT)
+Received: by mail-oa0-f51.google.com with SMTP id i4so6857413oah.38
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 10:12:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=0b9yBQGqXYjIiig2R4jXI5DkmkyZ85pOKRt1Ae45LuA=;
+	b=W+1KRzHFaPjAYXa+hN+4Ol4T/ZBLMl3US1aknUKqtUX48oH9vQJpR1CCk2T5RLoDjq
+	fSWMyuEIZCHZvAbW/X5TXThsMYvThZYocyseQI34y3GzyJ6gOn0aKU9HkaY+Co7Q70pX
+	dwZObQMPhuV/P6xzZJY1s7cP0nrTQMLOxv8pextbtdbufhguasUEisE1OkobLgCrwmqo
+	n8Fd1AyUKBwWICUMTLKiTZO8bD6mZJyP4WVOdfmIFq2UOrqhS9s6pl4O52P3koj/nZeN
+	NOutYPRyiUKIPHR80qAP8QbExZFdqah6ZM/li3J35gSkZaPEmdGWAzeXdPTaPnQ4faT7
+	alWQ==
+X-Received: by 10.60.144.129 with SMTP id sm1mr2801803oeb.21.1371661959747;
+	Wed, 19 Jun 2013 10:12:39 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: toolchain's environment-setup file that includes the image generated rootfs
+Received: by 10.182.221.5 with HTTP; Wed, 19 Jun 2013 10:12:19 -0700 (PDT)
+In-Reply-To: <968299F3-E07A-4ABD-8C29-1E12ABFABC44@gmail.com>
+References: <9BACABF0C6B14A4D8C33B42A795119BE1BA55B7D@POCITMSEXMB05.LntUniverse.com>
+	<CA+Z6RkWkUiy0omM_fYteVco1r_RQTbJdRpoqURrvrTAbB4ACgA@mail.gmail.com>
+	<CA+Z6RkUqGZS7bcrdLHokC8a8ZwuZx1ETF9gRqhm8bvRWZSbXNw@mail.gmail.com>
+	<968299F3-E07A-4ABD-8C29-1E12ABFABC44@gmail.com>
+From: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Wed, 19 Jun 2013 22:42:19 +0530
+Message-ID: <CA+Z6RkUH736Lg76qE4B2HhyeH24wE6=rw22_1F9Pm=W+BFk6Ew@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Re: Qt build error for Debug and Release mode
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,172 +42,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 16:26:19 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_"
+X-List-Received-Date: Wed, 19 Jun 2013 17:12:41 -0000
+Content-Type: multipart/alternative; boundary=047d7b339f15dce4b004df84efba
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--047d7b339f15dce4b004df84efba
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Overall, we don't suggest user to copy and alter the environment-setup file=
- manually.
+It Worked :)
+Thanks
 
 
+On Wed, Jun 19, 2013 at 2:11 AM, Khem Raj <raj.khem@gmail.com> wrote:
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Thanassis Silis
-Sent: Tuesday, June 18, 2013 7:19 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] toolchain's environment-setup file that includes the image=
- generated rootfs
-
-
-
-hello everyone,
-tampering with eclipse I was advised to use the image generated rootfs for =
-sysroot entry, under window->preferences->Yocto Project ADT. I also used th=
-e meta-toolchain, which is extracted under /opt/poky/
-
-If I copy extract the same toolchain and sysroots to another pc, I should a=
-lter the environment-setup file.
-Looking into this file some changes are obvious. Variables:
-
-CC, CXX, CPP, LD should be appended with " --sysroot=3D/path/to/image-rootf=
-s/", next to the already existing "--sysroot=3D/opt/poky/1.4.1/sysroots/arm=
-v7a-vfp-neon-poky-linux-gnueabi".
-
-It is not clear if the above should be appended in the CONFIGURE_FLAGS=3D"-=
--target=3Darm-poky-linux-gnueabi --host=3Darm-poky-linux-gnueabi --build=3D=
-x86_64-linux --with-libtool-sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-n=
-eon-poky-linux-gnueabi"
-
-as well.
-
-Thank you.
-
-
---_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Overall, we don&#8217;t s=
-uggest user to copy and alter the environment-setup file manually.<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Thanassis Silis<br>
-<b>Sent:</b> Tuesday, June 18, 2013 7:19 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] toolchain's environment-setup file that includes th=
-e image generated rootfs<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;">hello everyone,<br>
-tampering with eclipse I was advised to use the image generated rootfs for =
-sysroot entry, under window-&gt;preferences-&gt;Yocto Project ADT. I also u=
-sed the meta-toolchain, which is extracted under /opt/poky/<br>
-<br>
-If I copy extract the same toolchain and sysroots to another pc, I should a=
-lter the environment-setup file.<br>
-Looking into this file some changes are obvious. Variables:<br>
-<br>
-CC, CXX, CPP, LD should be appended with &quot; --sysroot=3D/path/to/image-=
-rootfs/&quot;, next to the already existing &quot;--sysroot=3D/opt/poky/1.4=
-.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi&quot;.<br>
-<br>
-It is not clear if the above should be appended in the CONFIGURE_FLAGS=3D&q=
-uot;--target=3Darm-poky-linux-gnueabi --host=3Darm-poky-linux-gnueabi --bui=
-ld=3Dx86_64-linux --with-libtool-sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-=
-vfp-neon-poky-linux-gnueabi&quot;<br>
-<br>
-as well.<br>
-<br>
-Thank you.<o:p></o:p></span></p>
-</div>
-</div>
-</body>
-</html>
+> On Jun 18, 2013, at 9:15 AM, Navani Srivastava <
+> navani.srivastava@gmail.com> wrote:
+>
+> Hi,
+>
+> I am using poky-danny (Poky-8.0). I am facing problem in building Qt
+> application.
+>
+> When we are building Qt application with =93qmake CONFIG+=3Ddebug && make=
+=94 it
+> appends =93-g=94 to build the application in debug mode but when we are
+> building application in release mode by issuing following command  =93qma=
+ke
+> CONFIG+=3Drelease && make=94, then also it appends =93-g=94 to it.
+>
+> So building Qt application in release mode also results in debug mode
+> output.
+>
+>
+> While it will be stripped in the end and won't make much difference as fa=
+r
+> as the packages are concerned it probably coming from
+> SELECTED_OPTIMIZATION variable which cmake is using to construct the
+> release cflags
+>
+> You can set DEBUG_FLAGS =3D "" in your local.conf and it will not show up
+>
+> Any fix for this?
+>
+> Thanks and Regards
+> Navani Kamal Srivastava
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_--
+--047d7b339f15dce4b004df84efba
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>It Worked :)<br></div>Thanks<br></div><div class=3D"g=
+mail_extra"><br><br><div class=3D"gmail_quote">On Wed, Jun 19, 2013 at 2:11=
+ AM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" t=
+arget=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word"><br><div=
+><div class=3D"im"><div>On Jun 18, 2013, at 9:15 AM, Navani Srivastava &lt;=
+<a href=3D"mailto:navani.srivastava@gmail.com" target=3D"_blank">navani.sri=
+vastava@gmail.com</a>&gt; wrote:</div>
+
+<br><blockquote type=3D"cite"><div dir=3D"ltr"><div class=3D"gmail_quote"><=
+div><div><p>Hi,</p><p>I am using poky-danny (Poky-8.0). I am facing problem=
+ in building Qt application.</p><p>When we are building Qt application with=
+ =93qmake CONFIG+=3Ddebug &amp;&amp; make=94 it appends =93-g=94 to build t=
+he application in debug mode but when we are building application in releas=
+e mode by issuing following command =A0=93qmake CONFIG+=3Drelease &amp;&amp=
+; make=94, then also it appends =93-g=94 to it.</p>
+
+<p>So building Qt application in release mode also results in debug mode ou=
+tput.</p><div><br></div></div></div></div></div></blockquote><div><br></div=
+></div><div>While it will be stripped in the end and won&#39;t make much di=
+fference as far as the packages are concerned it probably coming from</div>
+
+<div>SELECTED_OPTIMIZATION variable which cmake is using to construct the r=
+elease cflags</div><div><br></div><div>You can set=A0DEBUG_FLAGS =3D &quot;=
+&quot; in your local.conf and it will not show up=A0</div><br><blockquote t=
+ype=3D"cite">
+
+<div class=3D"im"><div dir=3D"ltr"><div class=3D"gmail_quote"><div><div><p>=
+Any fix for this?</p><p>Thanks and Regards<br>
+Navani Kamal Srivastava<br>
+</p>
+</div></div></div><br></div></div>
+_______________________________________________<br>yocto mailing list<br><a=
+ href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoprojec=
+t.org</a><br><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" targ=
+et=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+
+</blockquote></div><br></div></blockquote></div><br></div>
+
+--047d7b339f15dce4b004df84efba--
