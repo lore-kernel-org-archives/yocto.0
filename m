@@ -1,37 +1,33 @@
 Return-Path: <jessica.zhang@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94436E00348;
-	Wed, 19 Jun 2013 09:25:19 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECE8FE006E9
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 09:26:16 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 19 Jun 2013 09:25:05 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 19 Jun 2013 09:26:15 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.87,898,1363158000"; 
-	d="scan'208,217";a="356156463"
+	d="scan'208,217";a="356157069"
 Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Jun 2013 09:25:05 -0700
-Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 19 Jun 2013 09:25:05 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 19 Jun 2013 09:26:15 -0700
 Received: from orsmsx103.amr.corp.intel.com ([169.254.2.83]) by
-	ORSMSX154.amr.corp.intel.com ([169.254.11.240]) with mapi id
-	14.03.0123.003; Wed, 19 Jun 2013 09:25:03 -0700
+	ORSMSX105.amr.corp.intel.com ([169.254.4.217]) with mapi id
+	14.03.0123.003; Wed, 19 Jun 2013 09:26:15 -0700
 From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Thanassis Silis <djnass_18@hotmail.com>, "meta-freescale@yoctoproject.org"
-	<meta-freescale@yoctoproject.org>, "yocto@yoctoproject.org"
+To: Thanassis Silis <djnass_18@hotmail.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] cannot bitbake/build.compile tcf-agent for use with
-	fsl-image-gui-sdk
-Thread-Index: AQHObCu/F3WNlzN88UGl79O6rIxiOpk9Oj4w
-Date: Wed, 19 Jun 2013 16:25:03 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C4628B@ORSMSX103.amr.corp.intel.com>
-References: <DUB116-W138390BF0B4871C803B01A5988C0@phx.gbl>
-In-Reply-To: <DUB116-W138390BF0B4871C803B01A5988C0@phx.gbl>
+Thread-Topic: [yocto] toolchain's environment-setup file that includes the
+	image generated rootfs
+Thread-Index: AQHObC7eU72lrLJF/Eu8QM5oAk0YOpk9OszA
+Date: Wed, 19 Jun 2013 16:26:14 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C4629B@ORSMSX103.amr.corp.intel.com>
+References: <DUB116-W535D2739FAA722F6E3D6BB988C0@phx.gbl>
+In-Reply-To: <DUB116-W535D2739FAA722F6E3D6BB988C0@phx.gbl>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: cannot bitbake/build.compile tcf-agent for use with fsl-image-gui-sdk
+Subject: Re: toolchain's environment-setup file that includes the image generated rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,126 +39,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 16:25:21 -0000
+X-List-Received-Date: Wed, 19 Jun 2013 16:26:19 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_"
+	boundary="_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_"
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Thanassis,
-
-
-
-I don't know why tcf-agent  is not included in your sdk image.  But you als=
-o can use ssh to create a rse remote connection that allows you to do remot=
-e interaction.  When you create remote connection, instead of choosing tcf,=
- use ssh.  You'll need openssh in your target image for this to work.
-
-
-
-Cheers,
-
-Jessica
+Overall, we don't suggest user to copy and alter the environment-setup file=
+ manually.
 
 
 
 From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
 ] On Behalf Of Thanassis Silis
-Sent: Tuesday, June 18, 2013 6:56 AM
-To: meta-freescale@yoctoproject.org; yocto@yoctoproject.org
-Subject: [yocto] cannot bitbake/build.compile tcf-agent for use with fsl-im=
-age-gui-sdk
+Sent: Tuesday, June 18, 2013 7:19 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] toolchain's environment-setup file that includes the image=
+ generated rootfs
 
 
 
-Hello everyone,
-it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
-nd that is where my problems start:
+hello everyone,
+tampering with eclipse I was advised to use the image generated rootfs for =
+sysroot entry, under window->preferences->Yocto Project ADT. I also used th=
+e meta-toolchain, which is extracted under /opt/poky/
 
-using this in my local.conf: IMAGE_INSTALL_append =3D " tcf-agent"
-I expected to be able to automate the process of generating the tcf-agent a=
-nd deploying it in my image with command:
+If I copy extract the same toolchain and sysroots to another pc, I should a=
+lter the environment-setup file.
+Looking into this file some changes are obvious. Variables:
 
-bitbake fsl-image-gui-sdk
+CC, CXX, CPP, LD should be appended with " --sysroot=3D/path/to/image-rootf=
+s/", next to the already existing "--sysroot=3D/opt/poky/1.4.1/sysroots/arm=
+v7a-vfp-neon-poky-linux-gnueabi".
 
+It is not clear if the above should be appended in the CONFIGURE_FLAGS=3D"-=
+-target=3Darm-poky-linux-gnueabi --host=3Darm-poky-linux-gnueabi --build=3D=
+x86_64-linux --with-libtool-sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-n=
+eon-poky-linux-gnueabi"
 
-this fails with:
-
-| Reading package lists...
-| Building dependency tree...
-| Reading state information...
-| Some packages could not be installed. This may mean that you have
-| requested an impossible situation or if you are using the unstable
-| distribution that some required packages have not yet been created
-| or been moved out of Incoming.
-| The following information may help to resolve the situation:
-|
-| The following packages have unmet dependencies:
-|  packagegroup-core-x11-base : Depends: packagegroup-core-x11-utils but it=
- is not going to be installed
-| W: Ignoring Provides line with DepCompareOp for package pkgconfig__pkg-co=
-nfig__
-| W: You may want to run apt-get update to correct these problems
-| E: Unable to correct problems, you have held broken packages.
-| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/tmp/work/im=
-x6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootfs=
-.26945 for further information)
-ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/f=
-sl-image-gui-sdk.bb, do_rootfs) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be r=
-erun and 1 failed.
-No currently running tasks (7417 of 7419)
-
-Summary: 1 task failed:
-  /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/fsl-image-gui-=
-sdk.bb, do_rootfs
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-
-
-
-I then went on to try and compile it manually:
-
-bitbake fsl-image-gui-sdk -c compile tcf-agent
-bitbake fsl-image-gui-sdk -c deploy
-
-
-this fails with:
-
-ERROR: Task do_deploy does not exist for target fsl-image-gui-sdk
-
-Then I tried compiling it manually using this info http://www.yoctoproject.=
-org/docs/current/adt-manual/adt-manual.html#getting-the-images , by sourcin=
-g my toolchain from /opt/poky/1.4.1/env* file, and then
-runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
-MACHINE variable to be 'arm' in the beginning of the Makefile.inc.
-
-this fails with
-
-arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-interwork -mfloat-abi=
-=3Dsoftfp -mfpu=3Dneon --sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon=
--poky-linux-gnueabi  -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE=
-_OFFSET_BITS=3D64 -Wall -Wmissing-prototypes -I./. -I./system/GNU/Linux -I.=
-/machine/arm -o obj/GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/=
-framework/channel_tcp.c
-tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No such file=
- or directory
-compilation terminated.
-
-
-At this point I have run out of ideas about how to prepare tcf-agent to ins=
-tall on my sabrelite fsl-image-gui-sdk rootfs....
-Any help would be most welcome.
-
-for example in the 1st case how could I run apt-get as is suggested in a ma=
-nner that would be appropriate to update yocto sources?
+as well.
 
 Thank you.
 
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -235,28 +158,9 @@ div.WordSection1
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Thanassis,<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I don&#8217;t know why tc=
-f-agent&nbsp; is not included in your sdk image.&nbsp; But you also can use=
- ssh to create a rse remote connection that allows you to do remote interac=
-tion.
- &nbsp;When you create remote connection, instead of choosing tcf, use ssh.=
-&nbsp; You&#8217;ll need openssh in your target image for this to work.<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cheers,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Jessica<o:p></o:p></span>=
-</p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Overall, we don&#8217;t s=
+uggest user to copy and alter the environment-setup file manually.<o:p></o:=
+p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 /p>
@@ -268,157 +172,34 @@ libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
 unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
 <b>On Behalf Of </b>Thanassis Silis<br>
-<b>Sent:</b> Tuesday, June 18, 2013 6:56 AM<br>
-<b>To:</b> meta-freescale@yoctoproject.org; yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] cannot bitbake/build.compile tcf-agent for use with=
- fsl-image-gui-sdk<o:p></o:p></span></p>
+<b>Sent:</b> Tuesday, June 18, 2013 7:19 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] toolchain's environment-setup file that includes th=
+e image generated rootfs<o:p></o:p></span></p>
 </div>
 </div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;">Hello everyone,<br>
-it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
-nd that is where my problems start:<br>
+;sans-serif&quot;">hello everyone,<br>
+tampering with eclipse I was advised to use the image generated rootfs for =
+sysroot entry, under window-&gt;preferences-&gt;Yocto Project ADT. I also u=
+sed the meta-toolchain, which is extracted under /opt/poky/<br>
 <br>
-using this in my local.conf: IMAGE_INSTALL_append =3D &quot; tcf-agent&quot=
-;<br>
-I expected to be able to automate the process of generating the tcf-agent a=
-nd deploying it in my image with command:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">bitbake fsl-image-gui-sdk</span><span style=3D"font-family=
-:&quot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;"><br>
-this fails with:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">| Reading package lists...</span><span style=3D"font-famil=
-y:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| Building dependency tree...</span><span style=3D"font-family:&quot;Calib=
-ri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| Reading state information...</span><span style=3D"font-family:&quot;Cali=
-bri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| Some packages could not be installed. This may mean that you have</span>=
-<span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| requested an impossible situation or if you are using the unstable</span=
-><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br=
->
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| distribution that some required packages have not yet been created</span=
-><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br=
->
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| or been moved out of Incoming.</span><span style=3D"font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| The following information may help to resolve the situation:</span><span=
- style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| </span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&q=
-uot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| The following packages have unmet dependencies:</span><span style=3D"fon=
-t-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->|&nbsp; packagegroup-core-x11-base : Depends: packagegroup-core-x11-utils =
-but it is not going to be installed</span><span style=3D"font-family:&quot;=
-Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| W: Ignoring Provides line with DepCompareOp for package pkgconfig__pkg-c=
-onfig__</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-ser=
-if&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| W: You may want to run apt-get update to correct these problems</span><s=
-pan style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| E: Unable to correct problems, you have held broken packages.</span><spa=
-n style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/tmp/work/i=
-mx6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootf=
-s.26945 for further information)</span><span style=3D"font-family:&quot;Cal=
-ibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/=
-fsl-image-gui-sdk.bb, do_rootfs) failed with exit code '1'</span><span styl=
-e=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be =
-rerun and 1 failed.</span><span style=3D"font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->No currently running tasks (7417 of 7419)</span><span style=3D"font-family=
-:&quot;Calibri&quot;,&quot;sans-serif&quot;"><br>
+If I copy extract the same toolchain and sysroots to another pc, I should a=
+lter the environment-setup file.<br>
+Looking into this file some changes are obvious. Variables:<br>
 <br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->Summary: 1 task failed:</span><span style=3D"font-family:&quot;Calibri&quo=
-t;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->&nbsp; /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/fsl-imag=
-e-gui-sdk.bb, do_rootfs</span><span style=3D"font-family:&quot;Calibri&quot=
-;,&quot;sans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->Summary: There was 1 ERROR message shown, returning a non-zero exit code.<=
-/span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;"><br>
+CC, CXX, CPP, LD should be appended with &quot; --sysroot=3D/path/to/image-=
+rootfs/&quot;, next to the already existing &quot;--sysroot=3D/opt/poky/1.4=
+.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi&quot;.<br>
 <br>
-I then went on to try and compile it manually:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;">bitbake fsl-image-gui-sdk -c compile tcf-agent</span><span=
- style=3D"font-size:10.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif=
-&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->bitbake fsl-image-gui-sdk -c deploy</span><span style=3D"font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;"><br>
-this fails with:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Courier New&quot;">ERROR: Task do_deploy does =
-not exist for target fsl-image-gui-sdk</span><span style=3D"font-family:&qu=
-ot;Calibri&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;">Then I tried compiling it manually using this info
-<a href=3D"http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.h=
-tml#getting-the-images" target=3D"_blank">
-http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#getting=
--the-images</a> , by sourcing my toolchain from /opt/poky/1.4.1/env* file, =
-and then<br>
-runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
-MACHINE variable to be 'arm' in the beginning of the Makefile.inc.<br>
+It is not clear if the above should be appended in the CONFIGURE_FLAGS=3D&q=
+uot;--target=3Darm-poky-linux-gnueabi --host=3Darm-poky-linux-gnueabi --bui=
+ld=3Dx86_64-linux --with-libtool-sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-=
+vfp-neon-poky-linux-gnueabi&quot;<br>
 <br>
-this fails with<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Courier New&quot;">arm-poky-linux-gnueabi-gcc&=
-nbsp; -march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon =
---sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi&nbs=
-p;
- -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE_OFFSET_BITS=3D64 -W=
-all -Wmissing-prototypes -I./. -I./system/GNU/Linux -I./machine/arm -o obj/=
-GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/framework/channel_tc=
-p.c</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&q=
-uot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No such fil=
-e or directory</span><span style=3D"font-family:&quot;Calibri&quot;,&quot;s=
-ans-serif&quot;"><br>
-</span><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;"=
->compilation terminated.</span><span style=3D"font-family:&quot;Calibri&quo=
-t;,&quot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,&quot=
-;sans-serif&quot;">&nbsp;<br>
-At this point I have run out of ideas about how to prepare tcf-agent to ins=
-tall on my sabrelite fsl-image-gui-sdk rootfs....<br>
-Any help would be most welcome.<br>
-<br>
-for example in the 1st case how could I run apt-get as is suggested in a ma=
-nner that would be appropriate to update yocto sources?<br>
+as well.<br>
 <br>
 Thank you.<o:p></o:p></span></p>
 </div>
@@ -426,4 +207,4 @@ Thank you.<o:p></o:p></span></p>
 </body>
 </html>
 
---_000_C6510F6D410BB64A8C15398EDC6B847C73C4628BORSMSX103amrcor_--
+--_000_C6510F6D410BB64A8C15398EDC6B847C73C4629BORSMSX103amrcor_--
