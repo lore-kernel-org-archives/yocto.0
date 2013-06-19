@@ -1,28 +1,33 @@
-Return-Path: <gschmottlach@gmail.com>
-Received: from mail-wi0-f193.google.com (mail-wi0-f193.google.com
-	[209.85.212.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B70FBE00496
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 14:05:02 -0700 (PDT)
-Received: by mail-wi0-f193.google.com with SMTP id k10so429299wiv.8
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 14:05:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=rwr9lvVS1GDgV8LFSMXr+CoSpoqj3vzDEnZUwo66pas=;
-	b=nIsC1X1uPKr0tSXwUz881hXPJmKyWGSO86bwAOSIFo7uDtg0xDB/DlxkfXeE34tT+S
-	MGkyUJwCdaGTdjqSqkcrFw+6P9UKqoCF3P9YGZghctgXMRqtvSjAhhDVv2d+HuTkWK9f
-	IUAog/iKvCCnsPCN7tSg6KrDsdFSXo5CfuNAOBWeZF5QGVpCLQ157l7Am+jHxq3yC4Ye
-	tw5/sd4O5npM4Tvl2dei/p4vYjsxuwHRsimUWzJFQSR+Dy+U671KjNMfjySThDyfGqBy
-	FuLktBvZOoDwxkjfg8Vyn2cyYAma9VB3i5BSgDXotQmMyY6o5Sa2y3lvt9N5KH3Fm0Cl
-	UDww==
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61AD3E006E9
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 14:14:55 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Jun 2013 14:14:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,899,1363158000"; 
+	d="scan'208,217";a="356303525"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Jun 2013 14:14:54 -0700
+Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 19 Jun 2013 14:14:54 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.219]) by
+	ORSMSX155.amr.corp.intel.com ([169.254.7.224]) with mapi id
+	14.03.0123.003; Wed, 19 Jun 2013 14:14:54 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, June
+	18, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac5tMdcbZgoPnpjBRX63+6FW16X0EQAACwug
+Date: Wed, 19 Jun 2013 21:14:53 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EE44EC4@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.180.105.231 with SMTP id gp7mr5713700wib.23.1371675900654;
-	Wed, 19 Jun 2013 14:05:00 -0700 (PDT)
-Received: by 10.195.12.116 with HTTP; Wed, 19 Jun 2013 14:05:00 -0700 (PDT)
-Date: Wed, 19 Jun 2013 17:05:00 -0400
-Message-ID: <CAMS2kBGbttiHR76+GTBCPO_vh8SZXh56sGVajB-6srrnc2EBcQ@mail.gmail.com>
-From: Glenn Schmottlach <gschmottlach@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Trying to Integrate QNX's Neutrino 6.5.0 toolcain into OE/Yocto as a foreign (external) tool-chain
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, June 18, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,84 +39,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 21:05:03 -0000
-Content-Type: multipart/alternative; boundary=f46d0442881ace3c6504df882efe
+X-List-Received-Date: Wed, 19 Jun 2013 21:14:58 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EE44EC4ORSMSX108amrcor_"
 
---f46d0442881ace3c6504df882efe
-Content-Type: text/plain; charset=ISO-8859-1
-
-The company I work for tends to do a fair amount of work in both Linux and
-QNX. Primarily we use the Bitbake/OpenEmbedded/Yocto build framework to
-build individual recipes (packages, e.g. libraries, apps, etc...) and
-ultimately Linux BSP images for several HW platforms and CPUs. As I
-understand it the OpenEmbedded framework supports external (binary)
-tool-chains (e.g. like those provided with QNX's Linux host tools which are
-gcc based) so my thoughts have been focused on integrating the QNX
-tool-chain into the OpenEmbedded/Yocto framework. Ideally, with suitable
-recipes and the layering system provided by the framework, it seems
-plausible that I *should* be able to generate QNX
-executables/libraries/images using this build framework on a Linux host.
-
-Has anyone out there attempted this? Is this even feasible since OE/Yocto
-tends to be so Linux focused. I suspect it could be a great option for
-people (like myself) who must do development under both platforms and want
-to create a common build/packaging processes. For my first attempt, I'm not
-as interested in a full QNX image as selectively building several
-middle-ware components that are very portable (mostly 'C' code only - no
-strict Linux dependencies).
-
-So far I've examined the Linaro and Code Sourcery toolchain meta-layers.
-I've tried to to implement my own QNX tool-chain but it's not clear if it's
-possible to selectively apply this to specific recipes. I've found
-instructions here for OE:
-
-http://www.openembedded.org/wiki/Adding_a_secondary_toolchain
-
-but these seems significantly different from the approaches I've seen
-implemented for Linaro and Code Sourcery. Which one is the correct approach
-. . . will they both work under Yocto? Also, QNX is *not* eglibc based (it
-uses Dinkumware C/C++ libraries) so I'm not sure how that might impact the
-layer. Likewise there are no Linux headers, etc... Also, it's not real
-clear on how to "enable" this external tool-chain and if it can be done
-selectively per recipe. I've been racking my brain on this topic. Any
-helpful guidance would be appreciated.
-
---f46d0442881ace3c6504df882efe
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE44EC4ORSMSX108amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>The company I work for tends to do a fair amount=
- of work in both Linux and QNX. Primarily we use the Bitbake/OpenEmbedded/Y=
-octo build framework to build individual recipes (packages, e.g. libraries,=
- apps, etc...) and ultimately Linux BSP images for several HW platforms and=
- CPUs. As I understand it the OpenEmbedded framework supports external (bin=
-ary) tool-chains (e.g. like those provided with QNX&#39;s Linux host tools =
-which are gcc based) so my thoughts have been focused on integrating the QN=
-X tool-chain into the OpenEmbedded/Yocto framework. Ideally, with suitable =
-recipes and the layering system provided by the framework, it seems plausib=
-le that I *should* be able to generate QNX executables/libraries/images usi=
-ng this build framework on a Linux host.<br>
-<br>Has anyone out there attempted this? Is this even feasible since OE/Yoc=
-to tends to be so Linux focused. I suspect it could be a great option for p=
-eople (like myself) who must do development under both platforms and want t=
-o create a common build/packaging processes. For my first attempt, I&#39;m =
-not as interested in a full QNX image as selectively building several middl=
-e-ware components that are very portable (mostly &#39;C&#39; code only - no=
- strict Linux dependencies).<br>
-<br></div>So far I&#39;ve examined the Linaro and Code Sourcery toolchain m=
-eta-layers. I&#39;ve tried to to implement my own QNX tool-chain but it&#39=
-;s not clear if it&#39;s possible to selectively apply this to specific rec=
-ipes. I&#39;ve found instructions here for OE:<br>
-<br><a href=3D"http://www.openembedded.org/wiki/Adding_a_secondary_toolchai=
-n">http://www.openembedded.org/wiki/Adding_a_secondary_toolchain</a><br><br=
-></div>but these seems significantly different from the approaches I&#39;ve=
- seen implemented for Linaro and Code Sourcery. Which one is the correct ap=
-proach . . . will they both work under Yocto? Also, QNX is *not* eglibc bas=
-ed (it uses Dinkumware C/C++ libraries) so I&#39;m not sure how that might =
-impact the layer. Likewise there are no Linux headers, etc... Also, it&#39;=
-s not real clear on how to &quot;enable&quot; this external tool-chain and =
-if it can be done selectively per recipe. I&#39;ve been racking my brain on=
- this topic. Any helpful guidance would be appreciated.<br>
-=A0 <br></div>
+Attendees:
+David Wolf, Cristiana, Nitin, Richard, Paul, TomZ, Bj=F6rnS, Kevin, Ross, M=
+ichaelH, MarkH, AlexG, Beth, Song
 
---f46d0442881ace3c6504df882efe--
+Agenda:
+
+* Opens collection - 5 min (Song)
+* Yocto 1.4.1 status (Paul)
+  - It's still in QA. Eclipse plug in issue, error message in Bluetooth. Wi=
+ll know more.
+  - RP: it's looking good so far.
+  - Paul: Will send the feature/know issue list after QA report.
+* Yocto 1.5 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
+  - Open bug: 299. Same as last week. Bug fixing last week: 12. WDD chart l=
+ittle changed from last week. Ask the team to put more effort into bug fixi=
+ng. We still have a lot of bugs to fix. Let's bring the WDD number down.
+  - 1.4.1 and weekly build: If 1.4.1 QA report is good. Let's start weekly =
+build and testing
+  - kernel is breaking on gcc 4.8. Bug #4549. Bruce on it.
+  - Beth: M1, releasing this morning.
+
+* SWAT team rotation: Andrei Dinu -> Cristiana Voicu
+* Opens - 10 min
+  - RP: being away. Mentioned in the email a little bit. Beginning of July =
+for 6 weeks. Will be spending some time handling pull request. Saul will me=
+rge and propose. RP will then pull. Won't be in meetings.
+  - Bitbake changes: minimum version increment. Improve support for externa=
+l build tools and tarball. Any issues, please do let me know.
+  - QA plan headsup. Will be reviewing 1.5 QA plan in the next week or so.
+* Team Sharing - 20 min
+  - MarkH: Had a meeting. Coming up with a mechanism to introduce SPDX lice=
+nse validation. It's prototype only now. Making progress. If you need infor=
+mation, let me/Beth know.
+  - Bjorn: coming weeks will be focusing on upstreaming ptest change. Patch=
+es will be coming from several people. Ptest in autobuilder, post some comm=
+ents in the bug testing, how to do this in a more standard way? We have don=
+e a lot ourselves. Would like to collaborate. Paul/RP: it's in bug# 4114. Y=
+P team is working on QA automation in steps, when we get to this point, we =
+will schedule a meeting with Bjorn. Bjorn: There is no rush, whenever you a=
+re ready.
+  - RP: looking at QA auto test infrastructure. Shell script is limiting. G=
+etting architecture in place, We will be definitely getting the ptest in QA=
+.
+  - Ramana: working on offline configuration format. Fixed some bugs. In bu=
+gzilla, would like feedback. Have something working now. Will be sending th=
+e patches soon.
+  - DavidW: user experience is good for Yocto. Made a build yesterday. Went=
+ really smoothly. Lots of the rough edges have been fixed.
+  - MichaelH: Bitbacke requiring 2.7.3. It's setup in AB. Saul and I have w=
+orked that out. Layer index server is using bitbake too, will upgrade Pytho=
+n on that server. The SDK python does not seem to be a complete python. May=
+ need pull in some modules. May just need to fix the SDK tarball. Paul will=
+ fire a bug and working on it.
+
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE44EC4ORSMSX108amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>David Wolf, Cristiana, Nitin, Richard, Paul, TomZ, <font size=3D"2"><s=
+pan style=3D"font-size:10pt;">Bj=F6rnS, </span></font>Kevin, Ross, MichaelH=
+, MarkH, AlexG, Beth, Song</div>
+<div>&nbsp;</div>
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.4.1 status (Paul)</div>
+<div>&nbsp; - It's still in QA. Eclipse plug in issue, error message in Blu=
+etooth. Will know more.</div>
+<div>&nbsp; - RP: it's looking good so far.</div>
+<div>&nbsp; - Paul: Will send the feature/know issue list after QA report.<=
+/div>
+<div>* Yocto 1.5 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status</u></font></a></div>
+<div>&nbsp; - Open bug: 299. Same as last week. Bug fixing last week: 12. W=
+DD chart little changed from last week. Ask the team to put more effort int=
+o bug fixing. We still have a lot of bugs to fix. Let's bring the WDD numbe=
+r down.</div>
+<div>&nbsp; - 1.4.1 and weekly build: If 1.4.1 QA report is good. Let's sta=
+rt weekly build and testing</div>
+<div>&nbsp; - kernel is breaking on gcc 4.8. Bug #4549. Bruce on it.</div>
+<div>&nbsp; - Beth: M1, releasing this morning. </div>
+<div>&nbsp;</div>
+<div>* SWAT team rotation: Andrei Dinu -&gt; Cristiana Voicu</div>
+<div>* Opens - 10 min </div>
+<div>&nbsp; - RP: being away. Mentioned in the email a little bit. Beginnin=
+g of July for 6 weeks. Will be spending some time handling pull request. Sa=
+ul will merge and propose. RP will then pull. Won&#8217;t be in meetings.</=
+div>
+<div>&nbsp; - Bitbake changes: minimum version increment. Improve support f=
+or external build tools and tarball. Any issues, please do let me know.</di=
+v>
+<div>&nbsp; - QA plan headsup. Will be reviewing 1.5 QA plan in the next we=
+ek or so.</div>
+<div>* Team Sharing - 20 min</div>
+<div>&nbsp; - MarkH: Had a meeting. Coming up with a mechanism to introduce=
+ SPDX license validation. It's prototype only now. Making progress. If you =
+need information, let me/Beth know. </div>
+<div>&nbsp; - Bjorn: coming weeks will be focusing on upstreaming ptest cha=
+nge. Patches will be coming from several people. Ptest in autobuilder, post=
+ some comments in the bug testing, how to do this in a more standard way? W=
+e have done a lot ourselves. Would like
+to collaborate. Paul/RP: it's in bug# 4114. YP team is working on QA automa=
+tion in steps, when we get to this point, we will schedule a meeting with B=
+jorn. Bjorn: There is no rush, whenever you are ready.</div>
+<div>&nbsp; - RP: looking at QA auto test infrastructure. Shell script is l=
+imiting. Getting architecture in place, We will be definitely getting the p=
+test in QA. </div>
+<div>&nbsp; - Ramana: working on offline configuration format. Fixed some b=
+ugs. In bugzilla, would like feedback. Have something working now. Will be =
+sending the patches soon.</div>
+<div>&nbsp; - DavidW: user experience is good for Yocto. Made a build yeste=
+rday. Went really smoothly. Lots of the rough edges have been fixed.</div>
+<div>&nbsp; - MichaelH: Bitbacke requiring 2.7.3. It's setup in AB. Saul an=
+d I have worked that out. Layer index server is using bitbake too, will upg=
+rade Python on that server. The SDK python does not seem to be a complete p=
+ython. May need pull in some modules.
+May just need to fix the SDK tarball. Paul will fire a bug and working on i=
+t.</div>
+<div><font face=3D"Calibri" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE44EC4ORSMSX108amrcor_--
