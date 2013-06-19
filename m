@@ -1,31 +1,26 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82439E014BF
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 06:56:02 -0700 (PDT)
-Received: from firewall.ctxuk.citrix.com ([46.33.159.2] helo=[172.16.2.10])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1UpIrf-00056a-Ut; Wed, 19 Jun 2013 13:56:00 +0000
-Message-ID: <51C1B7C5.8000408@twobit.us>
-Date: Wed, 19 Jun 2013 09:53:09 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:10.0.12) Gecko/20130116 Icedove/10.0.12
-MIME-Version: 1.0
-To: mark.hatle@windriver.com
-References: <51B67550.7070306@twobit.us>
-In-Reply-To: <51B67550.7070306@twobit.us>
-X-Enigmail-Version: 1.4.1
-X-SA-Exim-Connect-IP: 46.33.159.2
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.analogue-micro.com (mail.analogue-micro.com
+	[217.144.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3342EE014BF
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 07:03:21 -0700 (PDT)
+Received: by mail.analogue-micro.com (Postfix, from userid 999)
+	id 9FFF768A01C; Wed, 19 Jun 2013 15:03:18 +0100 (BST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	loki.analogue-micro-ltd.com
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-selinux make ALLOW_EMPTY package specific
+	autolearn=ham version=3.3.2
+Received: from [192.168.12.145] (unknown [192.168.12.145])
+	by mail.analogue-micro.com (Postfix) with ESMTP id C9B0868A019;
+	Wed, 19 Jun 2013 15:03:17 +0100 (BST)
+Message-ID: <51C1BA25.6080200@mlbassoc.com>
+Date: Wed, 19 Jun 2013 15:03:17 +0100
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Cross building question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,45 +32,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 13:56:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 19 Jun 2013 14:03:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Ping.  Any interest in taking this (and the other patch I sent) into
-meta-selinux?
+I'm asking on this list since this is a pretty general question.
+If it's more appropriate for another venue, just let me know.
 
-Regards
-- Philip
+I'm trying to build a new package for my target which has never
+been ported to OpenEmbedded/Yocto/...  (It's the Amanda backup
+server if anyone has ever looked at this).  The code is a
+giant mass that I'd hoped not to have to delve into very deeply.
+Basic configuration (autoolized) went well, but one of the
+first things it wants to do is run a [target] program which
+has been linked against the [target] libraries that were just
+built.  In this case, it's just a utility to interrogate the
+libraries and CONFIG.h files and print a user summary.
 
-On 06/10/2013 08:54 PM, Philip Tricca wrote:
-> Hello again,
-> 
-> Again a quick patch to get meta-selinux dylan branch building with oe-core dylan.  The QA scripts error'd out complaining that ALLOW_EMPTY in the task-core-selinux wasn't packages specific.  Not sure if it's relevant but this was with the latest bitbake release branch 1.18.  One line fix below.
-> 
-> Regards,
-> - Philip
-> 
-> From: Philip Tricca <flihp@twobit.us>
-> Date: Mon, 10 Jun 2013 20:33:32 -0400
-> Subject: [PATCH 2/2] Make ALLOW_EMPTY package specific to keep QA scripts
->  happy.
-> 
-> ---
->  recipes-security/tasks/task-core-selinux.bb |    2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/recipes-security/tasks/task-core-selinux.bb b/recipes-security/tasks/task-core-selinux.bb
-> index 05f8dfc..dda9c50 100644
-> --- a/recipes-security/tasks/task-core-selinux.bb
-> +++ b/recipes-security/tasks/task-core-selinux.bb
-> @@ -8,7 +8,7 @@ PACKAGES = "\
->      task-core-selinux \
->      "
->  
-> -ALLOW_EMPTY = "1"
-> +ALLOW_EMPTY_${PN} = "1"
->  
->  RDEPENDS_task-core-selinux = " \
->  	ustr \
+What's the best way to handle this and how?  I recall in the
+dark old days that there were many such things that relied on
+running QEMU to actually execute target code.  Is this still
+possible (and being done)?  If so, is that a solution and how
+might I force it to happen?
 
+It may turn out that this is just a small problem that I can
+patch my way through, but I fear there may be other such utilities
+that get built and used, so I'd like to understand my way forward.
+
+Thanks for any pointers/ideas
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
