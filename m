@@ -1,26 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3342EE014BF
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 07:03:21 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 9FFF768A01C; Wed, 19 Jun 2013 15:03:18 +0100 (BST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	loki.analogue-micro-ltd.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.12.145] (unknown [192.168.12.145])
-	by mail.analogue-micro.com (Postfix) with ESMTP id C9B0868A019;
-	Wed, 19 Jun 2013 15:03:17 +0100 (BST)
-Message-ID: <51C1BA25.6080200@mlbassoc.com>
-Date: Wed, 19 Jun 2013 15:03:17 +0100
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AC96E014BF
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 07:14:39 -0700 (PDT)
+Received: by mail-vc0-f180.google.com with SMTP id gf11so3783202vcb.25
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 07:14:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=/sYXD9hEWoRiGE1ZEBXZ8E0aKgOJ8STlIFmfkhVSPUo=;
+	b=LJGMV/ndL2SrDAbfnLPf4yOLgY/W+Ub4A//j3ddZRSoj4woFaPmMmANbuFqeij0rrr
+	kGQI2qTW/W1fm0qGdYB7pHg83xpQwiZuGYqbT01MIFxa3BcfJv6jo8PZsw3o/3XdU+jz
+	7Jf22qrHpmxJmZ/gpedNoxdHV4IEvFxNOoCB/Z2DXPpmbEvZzHncLZwG0XTfJO1BiEyo
+	RW5qvcl8A/7gYpGIyAEYT2TDwxBuJr+mJ70y9bNo0c5DsdXoxHrtd7wueqjXBg88d2jh
+	o/CZTYwnrtlEaQd6am67icHIwjoMPrQr+Ht9E/QlYvZr0V7aON/3GPkinGt3e5WFHlJ/
+	m7dA==
+X-Received: by 10.52.21.232 with SMTP id y8mr831708vde.6.1371651279273; Wed,
+	19 Jun 2013 07:14:39 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Cross building question
+Received: by 10.220.13.144 with HTTP; Wed, 19 Jun 2013 07:14:19 -0700 (PDT)
+In-Reply-To: <51C1BA25.6080200@mlbassoc.com>
+References: <51C1BA25.6080200@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 19 Jun 2013 15:14:19 +0100
+Message-ID: <CAJTo0LZ5y1wXXh7wN04k+z=KUz79wjS=ESBBtVoYbJzNd7a0mg@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQkLa3ed5WkJZ9Tu1s+2QNKOcylg2dMjxordplsekrvH7p0WSwiOJSX7M4hGpYAfNOqUE5Vk
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Cross building question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,38 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 14:03:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 19 Jun 2013 14:14:40 -0000
+Content-Type: text/plain; charset=UTF-8
 
-I'm asking on this list since this is a pretty general question.
-If it's more appropriate for another venue, just let me know.
+On 19 June 2013 15:03, Gary Thomas <gary@mlbassoc.com> wrote:
+> What's the best way to handle this and how?  I recall in the
+> dark old days that there were many such things that relied on
+> running QEMU to actually execute target code.  Is this still
+> possible (and being done)?  If so, is that a solution and how
+> might I force it to happen?
 
-I'm trying to build a new package for my target which has never
-been ported to OpenEmbedded/Yocto/...  (It's the Amanda backup
-server if anyone has ever looked at this).  The code is a
-giant mass that I'd hoped not to have to delve into very deeply.
-Basic configuration (autoolized) went well, but one of the
-first things it wants to do is run a [target] program which
-has been linked against the [target] libraries that were just
-built.  In this case, it's just a utility to interrogate the
-libraries and CONFIG.h files and print a user summary.
+You can use qemu, for example the fontconfig cache generation is done
+at image construction time using qemu running the target binaries.
+The alternative solution is to use the host compiler ($BUILD_CC etc)
+and build the tool natively - either by patching the build system or
+building it manually yourself before invoking make.
 
-What's the best way to handle this and how?  I recall in the
-dark old days that there were many such things that relied on
-running QEMU to actually execute target code.  Is this still
-possible (and being done)?  If so, is that a solution and how
-might I force it to happen?
+Of course, if this binary is just used to print some stuff for the
+user, you could just patch it out. :)
 
-It may turn out that this is just a small problem that I can
-patch my way through, but I fear there may be other such utilities
-that get built and used, so I'd like to understand my way forward.
-
-Thanks for any pointers/ideas
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
