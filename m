@@ -1,26 +1,34 @@
-Return-Path: <djnass_18@hotmail.com>
-Received: from dub0-omc3-s14.dub0.hotmail.com (dub0-omc3-s14.dub0.hotmail.com
-	[157.55.2.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C76E4E00348
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 10:48:59 -0700 (PDT)
-Received: from DUB116-W119 ([157.55.2.9]) by dub0-omc3-s14.dub0.hotmail.com
-	with Microsoft SMTPSVC(6.0.3790.4675); 
-	Thu, 20 Jun 2013 10:48:58 -0700
-X-TMN: [TLTkIR+fnlCtL9zW5Trd3V8Ox6/NB0cbtXr8yuuaUy8=]
-X-Originating-Email: [djnass_18@hotmail.com]
-Message-ID: <DUB116-W11924FDD6C4599DA3B9E831988E0@phx.gbl>
-From: Thanassis Silis <djnass_18@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 20 Jun 2013 17:48:58 +0000
-Importance: Normal
-In-Reply-To: <DUB116-W44BD641BF261A178D1E9E6988E0@phx.gbl>
-References: <DUB116-W138390BF0B4871C803B01A5988C0@phx.gbl>,
-	<C6510F6D410BB64A8C15398EDC6B847C73C4628B@ORSMSX103.amr.corp.intel.com>,
-	<DUB116-W44BD641BF261A178D1E9E6988E0@phx.gbl>
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B0BCE00348
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 11:22:34 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 20 Jun 2013 11:20:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,906,1363158000"; d="scan'208";a="332910017"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga001.jf.intel.com with ESMTP; 20 Jun 2013 11:22:33 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.217]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.125]) with mapi id
+	14.03.0123.003; Thu, 20 Jun 2013 11:22:33 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, Bill Traynor
+	<btraynor@gmail.com>, Richard Purdie <richard.purdie@linuxfoundation.org>
+Thread-Topic: [yocto] Documenting YP Development Environment in more detail
+Thread-Index: Ac5tkd0duYC0LbJ2S7eCu7XiMMowxAAZdE+AAAE/VQAAAaGIAAAOXloA//9M6oA=
+Date: Thu, 20 Jun 2013 18:22:32 +0000
+Message-ID: <CDE892AD.36CA0%david.c.stewart@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50C1A@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.4.130416
+x-originating-ip: [10.24.0.244]
 MIME-Version: 1.0
-X-OriginalArrivalTime: 20 Jun 2013 17:48:58.0590 (UTC)
-	FILETIME=[70F9A7E0:01CE6DDE]
-Subject: FW: cannot bitbake/build.compile tcf-agent for use with fsl-image-gui-sdk
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>, "Osier-mixon,
+	Jeffrey" <jeffrey.osier-mixon@intel.com>
+Subject: Re: Documenting YP Development Environment in more detail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,486 +40,262 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2013 17:49:03 -0000
-Content-Type: multipart/alternative;
-	boundary="_aa2a76ae-76bb-4331-9453-c7438709cac6_"
-
---_aa2a76ae-76bb-4331-9453-c7438709cac6_
-Content-Type: text/plain; charset="Windows-1252"
+X-List-Received-Date: Thu, 20 Jun 2013 18:22:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <C66D5D1C94866B44A8D795BD261073A0@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
 
 
-From: djnass_18@hotmail.com
-To: jessica.zhang@intel.com
-Subject: RE: [yocto] cannot bitbake/build.compile tcf-agent for use with fs=
-l-image-gui-sdk
-Date: Thu=2C 20 Jun 2013 17:48:14 +0000
+On 6/20/13 8:23 AM, "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+wrote:
 
-=0A=
-=0A=
-=0A=
-Hi jessica=2C
-I will try with SSH too=2C
-but for now it seems there are some bugs with "packages_deb " being the pri=
-mary packaging scheme.
-so apart from adding=20
-    IMAGE_INSTALL_append =3D " tcf-agent"
+>
+>
+>>-----Original Message-----
+>>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>bounces@yoctoproject.org] On Behalf Of Bill Traynor
+>>Sent: Thursday, June 20, 2013 8:12 AM
+>>To: Richard Purdie
+>>Cc: yocto@yoctoproject.org; Paul Eggleton; Osier-mixon, Jeffrey
+>>Subject: Re: [yocto] Documenting YP Development Environment in more
+>>detail
+>>
+>>On Thu, Jun 20, 2013 at 10:25 AM, Richard Purdie
+>><richard.purdie@linuxfoundation.org> wrote:
+>>> On Thu, 2013-06-20 at 09:49 -0400, Bruce Ashfield wrote:
+>>>> On 13-06-20 04:40 AM, Rifenbark, Scott M wrote:
+>>>> > Hi,
+>>>> >
+>>>> > Recently, Paul, Ross, Richard and I had a video conference meeting
+>>where we had some initial discussion on how to satisfy YOCTO #2808
+>>(https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D2808), which calls
+>>for an illustration showing source and destination directories during a
+>>build using YP.  This bug originated from a discussion Dave Stewart and
+>>I had a while back around an idea of a more detailed "flow diagram" that
+>>would go into greater detail than the now famous and ubiquitous "The
+>>Yocto Project Development Environment" illustration, which appears in
+>>the YP Quick Start (http://www.yoctoproject.org/docs/1.4/yocto-project-
+>>qs/yocto-project-qs.html) and has been used in many other places and in
+>>many other forms (some quite elaborate).
+>>>> >
+>>>> > We can't really create a completely accurate, all-encompassing
+>>illustration that breaks apart the entire build process.  It is not a
+>>static thing and it is quite complicated inside the BitBake process.  We
+>>can, however, show where metadata comes from, how it is provided, what
+>>it defines, where and how source files are found, what processes occur,
+>>what output is produced, and where it ends up.  We can also provide some
+>>sort of idea of how key BitBake and environment variables affect things
+>>along the way.  The idea here is to dig deeper into this conceptual
+>>figure and root out the details to a level that would be useful to the
+>>user but not impossible to maintain or develop. This type of information
+>>can be communicated through a mix of several illustrations with
+>>supporting text.
+>>>> >
+>>>> > This first meeting started with some detailed discussion of the
+>>configuration inputs for a typical YP build but soon migrated to
+>>discussing the bigger picture and possible ways to provide more
+>>information.  It became obvious we were not going to dig the solution
+>>and all the needed information out in one short meeting. Consequently, I
+>>am sending out this email to help open up some discussion on the issue
+>>and to also solicit information for some basic blocks of information.
 
-moving "packages_rpm" to be the primary scheme ended up succeeding in makin=
-g an image that had tcf-agent included.
+I would recommend that we don't over-engineer this thing if we can avoid
+it.
+Remember the goal: People have told me that they are confused about which
+directories
+are "active" in the build process, i.e. Where does stuff come from and
+where does it go?
+My advice would be to think of bitbake as a black box with inputs and
+outputs.
+I know that any directory could be *potentially* an input or output (why
+else would it be there?)
+But I'm hoping we can up level a little.
 
-Thank you for your help.
-I will post back when I generate an image with openssh (I have dropbear ena=
-bled ATM).=20
+>>>> >
+>>>> > Two things are needed at this point:  1) a presentation solution
+>>for this new and more detailed information, and 2) a starting point on
+>>some of the information itself.
+>>>> >
+>>>> > PRESENTATION SOLUTION
+>>>> >
+>>>> > Here are some thoughts on how to present this information.  There
+>>>> are disadvantages and advantages to each of these methods of which I
+>>>> will not list.  I would like to see what people think about them:
+>>>> >
+>>>> >   * Manual - Create a section in the "Technical Details" Chapter of
+>>>> the YP Reference Manual that holds this information.  The section
+>>>> would be pretty much self-contained and would consist of several
+>>>> illustrations that would stem from an overall figure that is similar
+>>>> to the figure we now have in the YP Quick Start.  However, we would
+>>>> use a drill-down strategy that would progressively reveal more detail
+>>>> through subsequent figures.  This method is similar to how hardware
+>>>> devices used to be documented where functional blocks would be
+>>>> connected and described in one area and then subsequent areas would
+>>>> elaborate more deeply on a particular block.  Linking within the
+>>>> manual could connect up the various functional blocks (inputs,
+>>>> outputs, and tasks) that comprise the overall flow.
+>>>> >
+>>>> > * Manual / Website Mix - Devise a mix between the YP Reference
+>>>> Manual and some pages in the YP Website that provide the information.
+>>>> Create a section in the "Technical details" Chapter of the YP
+>>>> Reference Manual that covers this information at a high level.  For
+>>>> example, the overall flow of the system with its "big-block" inputs
+>>>> and outputs and tasks could be discussed at some length.  Links in
+>>the
+>>>> text could go to the YP website where more detail would be revealed.
+>>>> This strategy effectively splits the content into "overview" and
+>>>> "details" between the manual and website, respectively.
+>>>> >
+>>>> > * Website - With this strategy, everything is pretty much in the YP
+>>>> website.  This area would exist in a stand-alone fashion.  However,
+>>>> you could link to the website from within the existing YP
+>>>> documentation set from existing areas that deal with the build
+>>>> process.  Several exit points from within the manual set already
+>>>> exist.  We would obviously add a primary one as well that would
+>>likely
+>>>> originate from the YP Reference Manual's "Technical Details" Chapter.
+>>>
+>>> I'm wondering if a hybrid is possible here. Can we for example embed
+>>> image maps into the docbook so that if you hover over areas of the
+>>> image, you can then have links to the different sections?
+>>
+>>FWIW, docbook supports image maps via the mediaobject tag but they are
+>>somewhat limited in their usefulness.
+>>
+>>http://docbook.org/tdg5/en/html/mediaobject.html
+>>http://www.sagehill.net/docbookxsl/Imagemaps.html
+>>
+>>Scott, you may run into trouble when converting the docs between doc
+>>types, in particular with scaling of images.
+>
+>I will do some playing around with image maps and see what comes up.
+>It would be nice to see if we could make some "hot-spots" within
+>Illustrations.
+>
+>
+>>
+>>>
+>>>> > SOLICITATION FOR INFORMATION
+>>>> >
+>>>> > We can get started now on this by starting to define details for
+>>>> some obvious points or large areas of the flow.  What would be nice
+>>to
+>>>> get would be some graphical breakdowns of these areas of concern:
+>>>> >
+>>>> > * User-defined layers
+>>>> > * YP provided layers
+>>>> > * User configuration
+>>>> > * Machine Configuration
+>>>> > * Policy Configuration
+>>>> > * Patches
+>>>> > * YP provided recipes
+>>>> > * User provided source code
+>>>> > * YP provided source code
+>>>> > * SCMs
+>>>> > * Generated images
+>>>> > * Generated SDKs/toolchains
+>>>> > * Package Output
+>>>> > * Source fetching process
+>>>> > * Patch application process
+>>>> > * Configuration process (fragments, etc.)
+>>>>
+>>>> Just so I'm clear .. are you looking for graphical breakdowns to be
+>>>> created and sent,
+>>>> or information offered so graphical breakdowns can be created ?
+>
+>Bruce - any kind of information in any form is useful.  If you need to
+>hack up a drawing to get a point across... do so.  Or, if you can send
+>textual information that is good too.
+>
+>>>>
+>>>> The reason I ask, is that if there's any interest in the linux-yocto
+>>>> (for lack of a better term) flow being described graphically, I'm
+>>>> happy to offer up information, but my graphical skills are limited
+>>>> to what you find in a typical hackers bag of ticks :)
+>>>
+>>> I suggested that Scott try and accumulate information for each topic
+>>> like the following:
+>>>
+>>> Fetcher:
+>>>
+>>> Code Areas: Bitbake Fetch Module (bitbake/lib/bb/fetch2, called from
+>>> classes/base.bbclass)
+>>> Tasks Covered: do_fetch/do_unpack
+>>> Key Variables: SRC_URI, checksums etc
+>>>
+>>> Generated images:
+>>>
+>>> Code Areas: classes/image*.bbclass classes/rootfs*.bbclass
+>>> Tasks Covered: do_rootfs
+>>> Key Variables: PACKAGE_INSTALL
+>>>
+>>> along with a description about what the function
+>>>> Cheers,
+>>>>
+>>>> Bruce
+>>>>
+>>>> > * Key variable use and effects
+>>>> > * User-initiated commands along the way
+>>>> >
+>>>> > Much of this list is directly from our existing "The Yocto Project
+>>> Development Environment" illustration.
+>>>> >
+>>>> > Thanks,
+>>>> > Scott R.
+>>>> >
+>>>> >
+>>>> >
+>>>> > Scott Rifenbark
+>>>> > Intel Corporation
+>>>> > Yocto Project Documentation
+>>>> > 503.712.2702
+>>>> > 503.341.0418 (cell)
+>>>> >
+>>>> > _______________________________________________
+>>>> > yocto mailing list
+>>>> > yocto@yoctoproject.org
+>>>> > https://lists.yoctoproject.org/listinfo/yocto
+>>>> >
+>>>>
+>>>> al block does and when its used. The above would then link into the
+>>> class reference, the variable glossary and so on. So its less about
+>>> graphics and more about giving Scott the information to create a kind
+>>of
+>>> details index of some of these parts of the system like an expanded
+>>> table of contents.
+>>>
+>>> I've suggested a good start would be picking a few areas (like the
+>>> above) and trying to create the info and maybe see what kind of
+>>diagram
+>>> would present itself from that. If successful, it could then be
+>>expanded
+>>> to each area. I'd certainly hope that linux-yocto would be one area
+>>> covered.
+>>>
+>>> Cheers,
+>>>
+>>> Richard
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>_______________________________________________
+>>yocto mailing list
+>>yocto@yoctoproject.org
+>>https://lists.yoctoproject.org/listinfo/yocto
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
-From: jessica.zhang@intel.com
-To: djnass_18@hotmail.com=3B meta-freescale@yoctoproject.org=3B yocto@yocto=
-project.org
-Subject: RE: [yocto] cannot bitbake/build.compile tcf-agent for use with fs=
-l-image-gui-sdk
-Date: Wed=2C 19 Jun 2013 16:25:03 +0000
 
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-=0A=
-Hi Thanassis=2C=0A=
- =0A=
-I don=92t know why tcf-agent  is not included in your sdk image.  But you a=
-lso can use ssh to create a rse remote connection that allows you to do rem=
-ote interaction.=0A=
-  When you create remote connection=2C instead of choosing tcf=2C use ssh. =
- You=92ll need openssh in your target image for this to work.=0A=
- =0A=
-Cheers=2C=0A=
-Jessica=0A=
- =0A=
-=0A=
-=0A=
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-]=0A=
-On Behalf Of Thanassis Silis
-=0A=
-Sent: Tuesday=2C June 18=2C 2013 6:56 AM
-=0A=
-To: meta-freescale@yoctoproject.org=3B yocto@yoctoproject.org
-=0A=
-Subject: [yocto] cannot bitbake/build.compile tcf-agent for use with fsl-im=
-age-gui-sdk=0A=
-=0A=
-=0A=
- =0A=
-=0A=
-Hello everyone=2C
-=0A=
-it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
-nd that is where my problems start:
-=0A=
-
-=0A=
-using this in my local.conf: IMAGE_INSTALL_append =3D " tcf-agent"
-=0A=
-I expected to be able to automate the process of generating the tcf-agent a=
-nd deploying it in my image with command:=0A=
-bitbake fsl-image-gui-sdk=0A=
-
-=0A=
-this fails with:=0A=
-| Reading package lists...
-=0A=
-| Building dependency tree...
-=0A=
-| Reading state information...
-=0A=
-| Some packages could not be installed. This may mean that you have
-=0A=
-| requested an impossible situation or if you are using the unstable
-=0A=
-| distribution that some required packages have not yet been created
-=0A=
-| or been moved out of Incoming.
-=0A=
-| The following information may help to resolve the situation:
-=0A=
-|=20
-=0A=
-| The following packages have unmet dependencies:
-=0A=
-|  packagegroup-core-x11-base : Depends: packagegroup-core-x11-utils but it=
- is not going to be installed
-=0A=
-| W: Ignoring Provides line with DepCompareOp for package pkgconfig__pkg-co=
-nfig__
-=0A=
-| W: You may want to run apt-get update to correct these problems
-=0A=
-| E: Unable to correct problems=2C you have held broken packages.
-=0A=
-| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/tmp/work/im=
-x6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootfs=
-.26945 for further information)
-=0A=
-ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/f=
-sl-image-gui-sdk.bb=2C do_rootfs) failed with exit code '1'
-=0A=
-NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be r=
-erun and 1 failed.
-=0A=
-No currently running tasks (7417 of 7419)
-=0A=
-
-=0A=
-Summary: 1 task failed:
-=0A=
-  /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/fsl-image-gui-=
-sdk.bb=2C do_rootfs
-=0A=
-Summary: There was 1 ERROR message shown=2C returning a non-zero exit code.=
-=0A=
-
-=0A=
-
-=0A=
-I then went on to try and compile it manually:=0A=
-bitbake fsl-image-gui-sdk -c compile tcf-agent
-=0A=
-bitbake fsl-image-gui-sdk -c deploy=0A=
-
-=0A=
-this fails with:=0A=
-ERROR: Task do_deploy does not exist for target fsl-image-gui-sdk=0A=
-Then I tried compiling it manually using this info=0A=
-=0A=
-http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#getting=
--the-images =2C by sourcing my toolchain from /opt/poky/1.4.1/env* file=2C =
-and then
-=0A=
-runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
-MACHINE variable to be 'arm' in the beginning of the Makefile.inc.
-=0A=
-
-=0A=
-this fails with=0A=
-arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-interwork -mfloat-abi=
-=3Dsoftfp -mfpu=3Dneon --sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon=
--poky-linux-gnueabi =0A=
- -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE_OFFSET_BITS=3D64 -W=
-all -Wmissing-prototypes -I./. -I./system/GNU/Linux -I./machine/arm -o obj/=
-GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/framework/channel_tc=
-p.c
-=0A=
-tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No such file=
- or directory
-=0A=
-compilation terminated.=0A=
-=20
-=0A=
-At this point I have run out of ideas about how to prepare tcf-agent to ins=
-tall on my sabrelite fsl-image-gui-sdk rootfs....
-=0A=
-Any help would be most welcome.
-=0A=
-
-=0A=
-for example in the 1st case how could I run apt-get as is suggested in a ma=
-nner that would be appropriate to update yocto sources?
-=0A=
-
-=0A=
-Thank you.=0A=
-=0A=
- 		 	   		   		 	   		  =
-
---_aa2a76ae-76bb-4331-9453-c7438709cac6_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'><br><br><div><hr id=3D"stopSpell=
-ing">From: djnass_18@hotmail.com<br>To: jessica.zhang@intel.com<br>Subject:=
- RE: [yocto] cannot bitbake/build.compile tcf-agent for use with fsl-image-=
-gui-sdk<br>Date: Thu=2C 20 Jun 2013 17:48:14 +0000<br><br>=0A=
-=0A=
-<style><!--=0A=
-.ExternalClass .ecxhmmessage P {=0A=
-padding:0px=3B=0A=
-}=0A=
-=0A=
-.ExternalClass body.ecxhmmessage {=0A=
-font-size:12pt=3B=0A=
-font-family:Calibri=3B=0A=
-}=0A=
-=0A=
---></style>=0A=
-<div dir=3D"ltr">Hi jessica=2C<br>I will try with SSH too=2C<br>but for now=
- it seems there are some bugs with "packages_deb " being the primary packag=
-ing scheme.<br>so apart from adding <br>&nbsp=3B&nbsp=3B&nbsp=3B IMAGE_INST=
-ALL_append =3D " tcf-agent"<br><br>moving "packages_rpm" to be the primary =
-scheme ended up succeeding in making an image that had tcf-agent included.<=
-br><br>Thank you for your help.<br>I will post back when I generate an imag=
-e with openssh (I have dropbear enabled ATM). <br><br><div><hr id=3D"ecxsto=
-pSpelling">From: jessica.zhang@intel.com<br>To: djnass_18@hotmail.com=3B me=
-ta-freescale@yoctoproject.org=3B yocto@yoctoproject.org<br>Subject: RE: [yo=
-cto] cannot bitbake/build.compile tcf-agent for use with fsl-image-gui-sdk<=
-br>Date: Wed=2C 19 Jun 2013 16:25:03 +0000<br><br>=0A=
-=0A=
-=0A=
-=0A=
-<style><!--=0A=
-.ExternalClass p.ecxMsoNormal=2C .ExternalClass li.ecxMsoNormal=2C .Externa=
-lClass div.ecxMsoNormal {=0A=
-font-size:12.0pt=3B=0A=
-font-family:"Times New Roman"=2C"serif"=3B=0A=
-}=0A=
-=0A=
-.ExternalClass a:link=2C .ExternalClass span.ecxMsoHyperlink {=0A=
-color:blue=3B=0A=
-text-decoration:underline=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxMsoHyperlinkFollowed {=0A=
-color:purple=3B=0A=
-text-decoration:underline=3B=0A=
-}=0A=
-=0A=
-.ExternalClass p {=0A=
-font-size:12.0pt=3B=0A=
-font-family:"Times New Roman"=2C"serif"=3B=0A=
-}=0A=
-=0A=
-.ExternalClass span.ecxEmailStyle18 {=0A=
-font-family:"Calibri"=2C"sans-serif"=3B=0A=
-color:#1F497D=3B=0A=
-}=0A=
-=0A=
-.ExternalClass .ecxMsoChpDefault {=0A=
-font-size:10.0pt=3B=0A=
-}=0A=
-=0A=
-.ExternalClass div.ecxWordSection1 {=0A=
-}=0A=
-=0A=
-=0A=
---></style>=0A=
-=0A=
-=0A=
-<div class=3D"ecxWordSection1">=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
-ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">Hi Th=
-anassis=2C</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
-ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">&nbsp=
-=3B</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
-ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">I don=
-=92t know why tcf-agent&nbsp=3B is not included in your sdk image.&nbsp=3B =
-But you also can use ssh to create a rse remote connection that allows you =
-to do remote interaction.=0A=
- &nbsp=3BWhen you create remote connection=2C instead of choosing tcf=2C us=
-e ssh.&nbsp=3B You=92ll need openssh in your target image for this to work.=
-</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
-ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">&nbsp=
-=3B</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
-ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">Cheer=
-s=2C</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
-ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">Jessi=
-ca</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
-ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">&nbsp=
-=3B</span></p>=0A=
-<div>=0A=
-<div style=3D"border:none=3Bborder-top:solid #B5C4DF 1.0pt=3Bpadding:3.0pt =
-0cm 0cm 0cm=3B">=0A=
-<p class=3D"ecxMsoNormal"><b><span style=3D"font-size:10.0pt=3Bfont-family:=
-&quot=3BTahoma&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B">From:</span></b><sp=
-an style=3D"font-size:10.0pt=3Bfont-family:&quot=3BTahoma&quot=3B=2C&quot=
-=3Bsans-serif&quot=3B=3B"> yocto-bounces@yoctoproject.org [mailto:yocto-bou=
-nces@yoctoproject.org]=0A=
-<b>On Behalf Of </b>Thanassis Silis<br>=0A=
-<b>Sent:</b> Tuesday=2C June 18=2C 2013 6:56 AM<br>=0A=
-<b>To:</b> meta-freescale@yoctoproject.org=3B yocto@yoctoproject.org<br>=0A=
-<b>Subject:</b> [yocto] cannot bitbake/build.compile tcf-agent for use with=
- fsl-image-gui-sdk</span></p>=0A=
-</div>=0A=
-</div>=0A=
-<p class=3D"ecxMsoNormal">&nbsp=3B</p>=0A=
-<div>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2C&quot=3Bsans-serif&quot=3B=3B">Hello everyone=2C<br>=0A=
-it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
-nd that is where my problems start:<br>=0A=
-<br>=0A=
-using this in my local.conf: IMAGE_INSTALL_append =3D " tcf-agent"<br>=0A=
-I expected to be able to automate the process of generating the tcf-agent a=
-nd deploying it in my image with command:</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:10.0pt=3Bfont-family:&qu=
-ot=3BCourier New&quot=3B=3B">bitbake fsl-image-gui-sdk</span><span style=3D=
-"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></spa=
-n></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-this fails with:</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:10.0pt=3Bfont-family:&qu=
-ot=3BCourier New&quot=3B=3B">| Reading package lists...</span><span style=
-=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><b=
-r>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| Building dependency tree...</span><span style=3D"font-family:&q=
-uot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| Reading state information...</span><span style=3D"font-family:&=
-quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| Some packages could not be installed. This may mean that you ha=
-ve</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-=
-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| requested an impossible situation or if you are using the unsta=
-ble</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans=
--serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| distribution that some required packages have not yet been crea=
-ted</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans=
--serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| or been moved out of Incoming.</span><span style=3D"font-family=
-:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| The following information may help to resolve the situation:</s=
-pan><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif=
-&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| </span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&qu=
-ot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| The following packages have unmet dependencies:</span><span sty=
-le=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B">=
-<br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">|&nbsp=3B packagegroup-core-x11-base : Depends: packagegroup-core=
--x11-utils but it is not going to be installed</span><span style=3D"font-fa=
-mily:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| W: Ignoring Provides line with DepCompareOp for package pkgconf=
-ig__pkg-config__</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=
-=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| W: You may want to run apt-get update to correct these problems=
-</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-se=
-rif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| E: Unable to correct problems=2C you have held broken packages.=
-</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-se=
-rif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/t=
-mp/work/imx6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log=
-.do_rootfs.26945 for further information)</span><span style=3D"font-family:=
-&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fs=
-l/images/fsl-image-gui-sdk.bb=2C do_rootfs) failed with exit code '1'</span=
-><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&qu=
-ot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't ne=
-ed to be rerun and 1 failed.</span><span style=3D"font-family:&quot=3BCalib=
-ri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">No currently running tasks (7417 of 7419)</span><span style=3D"fo=
-nt-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-<br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">Summary: 1 task failed:</span><span style=3D"font-family:&quot=3B=
-Calibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">&nbsp=3B /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/imag=
-es/fsl-image-gui-sdk.bb=2C do_rootfs</span><span style=3D"font-family:&quot=
-=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">Summary: There was 1 ERROR message shown=2C returning a non-zero =
-exit code.</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=
-=3Bsans-serif&quot=3B=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-<br>=0A=
-I then went on to try and compile it manually:</span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-size:10.0pt=3Bfont-family:&qu=
-ot=3BCourier New&quot=3B=3B">bitbake fsl-image-gui-sdk -c compile tcf-agent=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCalibri&quot=
-=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">bitbake fsl-image-gui-sdk -c deploy</span><span style=3D"font-fam=
-ily:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-this fails with:</span></p>=0A=
-<p class=3D"ecxMsoNormal" style=3D""><span style=3D"font-size:10.0pt=3Bfont=
--family:&quot=3BCourier New&quot=3B=3B">ERROR: Task do_deploy does not exis=
-t for target fsl-image-gui-sdk</span><span style=3D"font-family:&quot=3BCal=
-ibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2C&quot=3Bsans-serif&quot=3B=3B">Then I tried compiling it manually usi=
-ng this info=0A=
-<a href=3D"http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.h=
-tml#getting-the-images" target=3D"_blank">=0A=
-http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#getting=
--the-images</a> =2C by sourcing my toolchain from /opt/poky/1.4.1/env* file=
-=2C and then<br>=0A=
-runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
-MACHINE variable to be 'arm' in the beginning of the Makefile.inc.<br>=0A=
-<br>=0A=
-this fails with</span></p>=0A=
-<p class=3D"ecxMsoNormal" style=3D""><span style=3D"font-size:10.0pt=3Bfont=
--family:&quot=3BCourier New&quot=3B=3B">arm-poky-linux-gnueabi-gcc&nbsp=3B =
--march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysr=
-oot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi&nbsp=3B=
-=0A=
- -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE_OFFSET_BITS=3D64 -W=
-all -Wmissing-prototypes -I./. -I./system/GNU/Linux -I./machine/arm -o obj/=
-GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/framework/channel_tc=
-p.c</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans=
--serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No=
- such file or directory</span><span style=3D"font-family:&quot=3BCalibri&qu=
-ot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
-</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
-ot=3B=3B">compilation terminated.</span><span style=3D"font-family:&quot=3B=
-Calibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></span></p>=0A=
-<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
-=3B=2C&quot=3Bsans-serif&quot=3B=3B">&nbsp=3B<br>=0A=
-At this point I have run out of ideas about how to prepare tcf-agent to ins=
-tall on my sabrelite fsl-image-gui-sdk rootfs....<br>=0A=
-Any help would be most welcome.<br>=0A=
-<br>=0A=
-for example in the 1st case how could I run apt-get as is suggested in a ma=
-nner that would be appropriate to update yocto sources?<br>=0A=
-<br>=0A=
-Thank you.</span></p>=0A=
-</div>=0A=
-</div></div> 		 	   		  </div></div> 		 	   		  </div></body>
-</html>=
-
---_aa2a76ae-76bb-4331-9453-c7438709cac6_--
