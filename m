@@ -1,39 +1,24 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f46.google.com (mail-vb0-f46.google.com
-	[209.85.212.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAE6BE0141B
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 03:06:48 -0700 (PDT)
-Received: by mail-vb0-f46.google.com with SMTP id 10so4443397vbe.5
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 03:06:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=GGFEDcbanLfGC1ISu5l6lxn5l3cWgjx0fDuzOeg1Ms8=;
-	b=iKgtN+hHwRxsoON1q9I0jfFY55wkVL5BKTqA+q5qpzj3D1yLyZ5mHguaQetzqOIaks
-	8x/Ml7BWWNWTvfRmz577T9BAY4T3b+CzrIPGTP0p87kQESiZXuZG6e3DNHb+6B0W9m0C
-	1mkvdqAxAoz0r4NHSLwTI5CTburn2nAZX5uU9lyaDj3gLx5OW48IzF09MtY8bCllp/8r
-	JwXm0mY8vmXh4lfA/KsPboTyChPAtFP49ahHXZyZOTB/sary601U31vkyNiQjPHaQ2PF
-	epyGkImBeWCX2ca3DmD+X98Hb9cJlaR3KdMQXdA56Y/iIL1qs8k5c+S7IxLQZbVDdwWd
-	uPYw==
-X-Received: by 10.58.118.70 with SMTP id kk6mr2668219veb.1.1371722808076; Thu,
-	20 Jun 2013 03:06:48 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Thu, 20 Jun 2013 03:06:27 -0700 (PDT)
-In-Reply-To: <CAFMfyzLvQfmmpNGAD+8YpP8axv7EX9ev8M-SR9a=z3oMsBB1Mg@mail.gmail.com>
-References: <CAFMfyzKMgx_6gJLO13ei7nr3fxaJg0-A3nG0=BCWQk5rH9p4TQ@mail.gmail.com>
-	<CAFMfyzK9CusGuo40vWHdrq1dbD2fna-zTrBaiEQccfXUvhuBzg@mail.gmail.com>
-	<F7494A5B-922D-43A9-A63B-4F1C83F93E81@gmail.com>
-	<1526680.2T1uIfLeRH@helios>
-	<CAFMfyzLvQfmmpNGAD+8YpP8axv7EX9ev8M-SR9a=z3oMsBB1Mg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 20 Jun 2013 11:06:27 +0100
-Message-ID: <CAJTo0Lb-1D4EY+RLkcs8DybmPSAfm3-r=ZWA=OUyA8BiozNfOQ@mail.gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50890E0141B
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 03:09:52 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 20 Jun 2013 03:09:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,903,1363158000"; d="scan'208";a="257661996"
+Received: from unknown (HELO helios.localnet) ([10.252.122.59])
+	by AZSMGA002.ch.intel.com with ESMTP; 20 Jun 2013 03:09:51 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
-X-Gm-Message-State: ALoCoQlnC0L3+w6oWBAqZwtrGiVf0eLf1jM1PTqAQx7NFzRxGbkAONNBawCIbDscWof24u5JurMm
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Toolchain... Issues with systemd (probably)
+Date: Thu, 20 Jun 2013 11:09:48 +0100
+Message-ID: <2169568.OdCe6aKEne@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.3 (Linux/3.8.0-25-generic; KDE/4.10.3; i686; ; )
+In-Reply-To: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
+References: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Installing .deb file in Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,20 +30,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2013 10:06:53 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 20 Jun 2013 10:09:56 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 20 June 2013 10:07, DAMARLA Satya Swaroop <swaroop.damarla@gmail.com> wrote:
-> The udev version to ve installed is 182-r7 bu I dont understand why 1:204-r0
-> is trying to get installed..
+On Wednesday 19 June 2013 09:10:20 DAMARLA Satya Swaroop wrote:
+> I have a .deb file which has to be installed. It installs properly on the
+> target image but I want to install it at the build itself by creating a
+> bitbake recipe.. Is it possible to install .deb files or not? If possible,
+> please suggest me so that I can make it..
 
-This is because your deploy directory contains the systemd "udev"
-package, which is version 204 and so newer than the sysvinit "udev"
-package, version 182.  This is why we say that switching distro
-features in an existing build directory isn't supported.
+I think the bin_package class is designed explicitly to help with this. Have a 
+look at classes/bin_package.bbclass.
 
-If you delete your tmp directory it will rebuild everything quickly
-using the sstate-cache (don't delete that!).
+Cheers,
+Paul
 
-Ross
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
