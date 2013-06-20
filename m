@@ -1,31 +1,37 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-mealy.atl.sa.earthlink.net
-	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3CFEE013A7
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 16:09:26 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=OnuGROOs33nvhHu2O2o+AfQQWa29A39Z3TGJvKHk7fMt6ykM/Irb5YG8poYQbRCe;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UpRVE-0004U4-K3; Wed, 19 Jun 2013 19:09:24 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Tom Zanussi'" <tom.zanussi@intel.com>,
-	"'Chris Tapp'" <opensource@keylevel.com>
-References: <394F6C8A37E5424BB91439BABFA30180@PAULD><1371564241.1569.26.camel@empanada><8C2CFCE0-38EE-40E0-8AAF-490DC3B6837E@keylevel.com>
-	<1371586129.1569.34.camel@empanada>
-In-Reply-To: <1371586129.1569.34.camel@empanada>
-Date: Wed, 19 Jun 2013 16:09:28 -0700
-Message-ID: <C3BF3ACA6A914084A2081A64B2BAF286@PAULD>
-MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-Thread-Index: Ac5sX62R7B6BJJ8wRZuTY6r5vxQ3wgA38PcA
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688684ae19a9ba4cda7b09375b81895dc70350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Cc: yocto@yoctoproject.org, foo.chien.haw@intel.com
-Subject: Re: Cedartrail and Dylan?
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
+	[209.85.160.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7A00E01400
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 19:06:25 -0700 (PDT)
+Received: by mail-pb0-f49.google.com with SMTP id jt11so5606923pbb.8
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 19:06:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=trkud65Zu82oWrSiWHtDT3h4mmFPllHoGUsYVPkr6n0=;
+	b=WH5i/GzsWiWh8Y32IDpYnXkdpq7aTJu+5RRSmCHB20eIbK+QhLB2wLkTohIrg5lk7V
+	WK6I6LkE8TvREnlQRA/9DIr+u9qt4g9rB/fC00TBc6/0OTdnMeVNgw3M4Bh1iycafVIA
+	SiOodLFpOQgoZUCyIV1QZAJVmmZ8mM35tK2XnCn3rH31TxfRXPAAKYfTTILEFTV8T3qP
+	wYF7mvcMplj8bxz03ev5BMqWcUeMNbVpRzqIFVxzkUG79eDciJJmWhijTqtWSAnE0PqM
+	P3jnJAs1X1V+5lxlPjxoa6gro9E6xRz+4dyNK+4MVhNE9KMTEax/IC75vZ4I3PQWmTZO
+	FRcg==
+X-Received: by 10.68.211.36 with SMTP id mz4mr5221977pbc.191.1371693985465;
+	Wed, 19 Jun 2013 19:06:25 -0700 (PDT)
+Received: from bjupudi-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	qp4sm25434461pbc.41.2013.06.19.19.06.24 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 19 Jun 2013 19:06:24 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
+Date: Wed, 19 Jun 2013 19:06:22 -0700
+Message-Id: <F99A80BE-ADC7-482B-95F6-F73A06409EAD@gmail.com>
+References: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
+To: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
+X-Mailer: Apple Mail (2.1508)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Installing .deb file in Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,78 +43,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2013 23:09:27 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Jun 2013 02:06:27 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-> From: Tom Zanussi
-> 
-> On Tue, 2013-06-18 at 20:50 +0100, Chris Tapp wrote:
-> > Hi Tom,
-> > 
-> > On 18 Jun 2013, at 15:04, Tom Zanussi wrote:
-> > 
-> > > On Mon, 2013-06-17 at 16:56 -0700, Paul D. DeRocco wrote:
-> > >> I've been using the Intel meta-cedartrail layer with 
-> Danny 8.0.1. Is this
-> > >> layer likely to be unusable with Dylan 9.0? Or unusable 
-> without lots of
-> > >> tinkering that's probably beyond my abilities?
-> > >> 
-> > >> And if I were to try Dylan, is it best to start from 
-> scratch, in a
-> > >> completely new directory?
-> > >> 
-> > > 
-> > > Hi,
-> > > 
-> > > I believe the main problem would be the graphics driver - 
-> it would need
-> > > porting to the 3.8 kernel - the rest would probably be 
-> straightforward.
-> > > 
-> > > The cedartrail BSP was discontinued following danny, but 
-> I'm cc:ing the
-> > > maintainers in case they might have any further input.
-> > > 
-> > > I was thinking of creating a meta-intel/staging area for 
-> things like
-> > > this i.e. discontinued BSPs that people are still using, 
-> which would
-> > > contain best-effort updates but completely without 
-> promise of any kind
-> > > of support.  If there's enough interest, and there seems 
-> to be judging
-> > > from the number of questions about cedartrail we continue to keep
-> > > getting, I'll try to find some free time to take a stab 
-> at moving it to
-> > > dylan...
-> > 
-> > I'm certainly interested and happy to help out if I can.
-> > 
-> > I also see that ASRock are now making a board 
-> (http://www.asrock.com/IPC/overview.asp?Model=DN2800MT) that 
-> looks exactly the same as the Intel one with the same name 
-> aimed at signage and thin-client applications, so hardware 
-> will be about for a good few years yet,
-> > 
-> 
-> OK, good to know.  The only Cedar Trail hardware I have 
-> access to is the
-> Acer Aspire One I have here - let me see if I can get 
-> something going on
-> that...
 
-My first attempt to build cedartrail-nopvr finds that meta-intel has an
-unmatched mesa_9.1.3.bbappend, but I suppose I can configure it to ignore
-that since I'm not building graphics. However, meta-cedartrail contains an
-unmatched linux-yocto_3.0.bbappend and linux-yocto-rt_3.0.bbappend. I don't
-know how to fix that.
+On Jun 19, 2013, at 12:10 AM, DAMARLA Satya Swaroop =
+<swaroop.damarla@gmail.com> wrote:
 
--- 
+> Hey,
+>=20
+> I have a .deb file which has to be installed. It installs properly on =
+the target image but I want to install it at the build itself by =
+creating a bitbake recipe.. Is it possible to install .deb files or not? =
+If possible, please suggest me so that I can make it..
+>=20
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+
+you can extract the contents of  deb by something like below
+
+ar p <debfile> data.tar.gz | tar -xvz=20
+
+
+> Greets,
+> Satya
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
