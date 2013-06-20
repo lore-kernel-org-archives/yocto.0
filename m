@@ -1,27 +1,37 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42932E01400
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 19:16:32 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 19 Jun 2013 19:16:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,901,1363158000"; d="scan'208";a="257517040"
-Received: from unknown (HELO [10.255.12.238]) ([10.255.12.238])
-	by AZSMGA002.ch.intel.com with ESMTP; 19 Jun 2013 19:16:30 -0700
-Message-ID: <1371694589.32324.31.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Date: Wed, 19 Jun 2013 21:16:29 -0500
-In-Reply-To: <C3BF3ACA6A914084A2081A64B2BAF286@PAULD>
-References: <394F6C8A37E5424BB91439BABFA30180@PAULD>
-	<1371564241.1569.26.camel@empanada>
-	<8C2CFCE0-38EE-40E0-8AAF-490DC3B6837E@keylevel.com>
-	<1371586129.1569.34.camel@empanada>
-	<C3BF3ACA6A914084A2081A64B2BAF286@PAULD>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, foo.chien.haw@intel.com
-Subject: Re: Cedartrail and Dylan?
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEE08E01400
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 19:31:38 -0700 (PDT)
+Received: by mail-pd0-f182.google.com with SMTP id r10so5704026pdi.13
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 19:31:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=xgsVRXPZuemwuQHkksJVdOX1MIz/d61m0ij8eyqQgmI=;
+	b=l2i5rJQAG3ccZgJXciWewKN5U8n1uPUifuv8seTqn2mjz1z9vCPFJQV2U+HPVb8QCu
+	rEY2wtAJIMpr8w49ddjNaEIGz9+wHCDqBO8Mv53chQ/XmBP1D9BwWLXS9JxT6EpMBCmc
+	gLzeDjYKbQThoJ1qnZBvcbIDn7UJAWykHnZ5Z0f4Xlg2P0iJdmNjooW2Wqt36Oit/C8x
+	LxcMIqPp8f6yowavs8C7uRnyzrKe32RR0wUsnVnvuSU2lPRkie2f+GWqmQzmsVcwb1rL
+	ZizmCxGaWQt2A9kQRkkzmUjYI0Wxckk5CxuhJn2sTaK1j7Q405n7EzbfIF/PhzL6tYwU
+	BrAA==
+X-Received: by 10.66.162.135 with SMTP id ya7mr4726288pab.173.1371695497632;
+	Wed, 19 Jun 2013 19:31:37 -0700 (PDT)
+Received: from bjupudi-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	re16sm27342104pac.16.2013.06.19.19.31.35 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 19 Jun 2013 19:31:35 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1371639211-3726-1-git-send-email-noor_ahsan@mentor.com>
+Date: Wed, 19 Jun 2013 19:31:34 -0700
+Message-Id: <746BB1A1-A592-4FFB-9A3F-B9D6C904451A@gmail.com>
+References: <1371639211-3726-1-git-send-email-noor_ahsan@mentor.com>
+To: "Noor, Ahsan" <noor_ahsan@mentor.com>
+X-Mailer: Apple Mail (2.1508)
+Cc: yocto@yoctoproject.org, Mikhail Durnev <mikhail_durnev@mentor.com>
+Subject: Re: [PATCH] ecryptfs-utils: Modify systemd service file to 'simple'.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,92 +43,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2013 02:16:34 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Jun 2013 02:31:39 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 2013-06-19 at 16:09 -0700, Paul D. DeRocco wrote:
-> > From: Tom Zanussi
-> > 
-> > On Tue, 2013-06-18 at 20:50 +0100, Chris Tapp wrote:
-> > > Hi Tom,
-> > > 
-> > > On 18 Jun 2013, at 15:04, Tom Zanussi wrote:
-> > > 
-> > > > On Mon, 2013-06-17 at 16:56 -0700, Paul D. DeRocco wrote:
-> > > >> I've been using the Intel meta-cedartrail layer with 
-> > Danny 8.0.1. Is this
-> > > >> layer likely to be unusable with Dylan 9.0? Or unusable 
-> > without lots of
-> > > >> tinkering that's probably beyond my abilities?
-> > > >> 
-> > > >> And if I were to try Dylan, is it best to start from 
-> > scratch, in a
-> > > >> completely new directory?
-> > > >> 
-> > > > 
-> > > > Hi,
-> > > > 
-> > > > I believe the main problem would be the graphics driver - 
-> > it would need
-> > > > porting to the 3.8 kernel - the rest would probably be 
-> > straightforward.
-> > > > 
-> > > > The cedartrail BSP was discontinued following danny, but 
-> > I'm cc:ing the
-> > > > maintainers in case they might have any further input.
-> > > > 
-> > > > I was thinking of creating a meta-intel/staging area for 
-> > things like
-> > > > this i.e. discontinued BSPs that people are still using, 
-> > which would
-> > > > contain best-effort updates but completely without 
-> > promise of any kind
-> > > > of support.  If there's enough interest, and there seems 
-> > to be judging
-> > > > from the number of questions about cedartrail we continue to keep
-> > > > getting, I'll try to find some free time to take a stab 
-> > at moving it to
-> > > > dylan...
-> > > 
-> > > I'm certainly interested and happy to help out if I can.
-> > > 
-> > > I also see that ASRock are now making a board 
-> > (http://www.asrock.com/IPC/overview.asp?Model=DN2800MT) that 
-> > looks exactly the same as the Intel one with the same name 
-> > aimed at signage and thin-client applications, so hardware 
-> > will be about for a good few years yet,
-> > > 
-> > 
-> > OK, good to know.  The only Cedar Trail hardware I have 
-> > access to is the
-> > Acer Aspire One I have here - let me see if I can get 
-> > something going on
-> > that...
-> 
-> My first attempt to build cedartrail-nopvr finds that meta-intel has an
-> unmatched mesa_9.1.3.bbappend, but I suppose I can configure it to ignore
-> that since I'm not building graphics. However, meta-cedartrail contains an
-> unmatched linux-yocto_3.0.bbappend and linux-yocto-rt_3.0.bbappend. I don't
-> know how to fix that.
-> 
+reasoning why it is being turned into simple service would be nice
 
-You should just be able to delete those 3.0 .bbappends - they're of no
-use at this point.
+On Jun 19, 2013, at 3:53 AM, "Noor, Ahsan" <noor_ahsan@mentor.com> =
+wrote:
 
-I actually used yocto-bsp to create a brand new cedartrail BSP, called
-meta-cdt, with just a vesa graphics machine called 'cdt-vesa':
-
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-contrib/log/?h=tzanussi/meta-cdt-v0
-
-It built fine here, but it wouldn't boot on my Aspire One, but I
-couldn't boot either of the official 'danny' cedartrail (cedartrail and
-cedartrail-nopvr) images I built either.
-
-I'd be curious if the meta-cdt layer would work for you, though.
-
-Tom
-
-
+> From: Noor <noor_ahsan@mentor.com>
+>=20
+> Signed-off-by: Mikhail Durnev <mikhail_durnev@mentor.com>
+> Signed-off-by: Noor Ahsan <noor_ahsan@mentor.com>
+> ---
+> .../ecryptfs-utils/ecryptfs-utils/ecryptfs.service |    4 +---
+> 1 file changed, 1 insertion(+), 3 deletions(-)
+>=20
+> diff --git =
+a/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.service =
+b/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.service
+> index ba12aa3..52f3397 100644
+> --- =
+a/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.service
+> +++ =
+b/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.service
+> @@ -3,9 +3,7 @@ Description=3DA userspace daemon that runs as the user =
+perform file operations und
+> After=3Dudev.service
+>=20
+> [Service]
+> -Type=3Doneshot
+> -ExecStart=3D/usr/bin/ecryptfsd
+> -RemainAfterExit=3Dyes
+> +ExecStart=3D/usr/bin/ecryptfsd -f
+>=20
+> [Install]
+> WantedBy=3Dmulti-user.target
+> --=20
+> 1.7.9.5
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
