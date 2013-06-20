@@ -1,34 +1,26 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
-	[209.85.128.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44190E00348
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 13:10:03 -0700 (PDT)
-Received: by mail-ve0-f172.google.com with SMTP id jz10so5516735veb.3
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 13:10:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=lXk4HE7euv1urBNTtIoXN/rs4qXtExrjcoKdOHUkvZA=;
-	b=WtReldtMLtFjDwycTOshBSkqZmg6ayE4u2o2v9so7M43tstFMuDRBXT/n7Mhvv3OdU
-	pgcx6+BvH1JeYqsFvtznylTQJtbCX+MrYIpwLVioFRNzVn/huAWl+2ouU7Czn+MCAA9H
-	SsPjDOXZD4SkLi+DbdeiSkK197khB+a0yDhASq6eT2FsB3Z5XG3idCRI5UhVfwJAWWjS
-	bv53zBbP6begiEwQn9ZWD1DdkoMJV6iYjnQ5gsvOMscIOUvZKn3aIb3WcJD4rGr3jvWq
-	ZKgAoZu3RJhXHGjwd9g0yqX5vUwOcUbGlF/lw2NJG1Gru8cnlMu1doBRycZrRbaFWmPc
-	/MaA==
-X-Received: by 10.221.42.138 with SMTP id ty10mr3569464vcb.42.1371759003026;
-	Thu, 20 Jun 2013 13:10:03 -0700 (PDT)
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-mealy.atl.sa.earthlink.net
+	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D44E0E00348
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 15:08:52 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=QgpdYlben9HCpGUDFKH4NFEZmVaPUxhaRLSHrcZgwVZ5vqYLxLrkrNHt7SJjku03;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1Upn2B-00039E-E0
+	for yocto@yoctoproject.org; Thu, 20 Jun 2013 18:08:51 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 20 Jun 2013 15:08:57 -0700
+Message-ID: <8DA5A3FB8F6D4E29B99BD61C40AF9442@PAULD>
 MIME-Version: 1.0
-Received: by 10.58.24.129 with HTTP; Thu, 20 Jun 2013 13:09:42 -0700 (PDT)
-X-Originating-IP: [5.13.222.51]
-In-Reply-To: <1371758887-5092-1-git-send-email-andrei@gherzan.ro>
-References: <1371758887-5092-1-git-send-email-andrei@gherzan.ro>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 20 Jun 2013 23:09:42 +0300
-Message-ID: <CAK18fxH4H5ia19Vkst4_2U3nqy7TM5EKkhnioQDpoo1SFnwoEA@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQmaqaBkq4kzH7+z/tBk9l47p2uHn18BNr6TTmUL4/5O4qo/cTH4pXRLvWIe9o/o8oyegXxd
-Subject: Re: [meta-ivi][PATCH v2 1/1] gpu-viv-bin-mx6q.inc: Add linked libraries to libGAL to DEPENDS
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac5uAsJvkpOJSvcoQnKNp1XKpasTbg==
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688265dc522cb29954fda31964111ec7c4c350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Compiling a simple command
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,94 +32,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2013 20:10:04 -0000
-Content-Type: multipart/alternative; boundary=001a11339d9218040f04df9b880a
+X-List-Received-Date: Thu, 20 Jun 2013 22:08:55 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
---001a11339d9218040f04df9b880a
-Content-Type: text/plain; charset=ISO-8859-1
+I've tried to add a single small executable to my image, based on what it
+says in 5.3.1. of the Project Development Manual, and while the image gets
+built with no error messages, it never compiles my executable. I'm not doing
+_exactly_ what it says, so I assume some difference is accounting for this
+failure. What I'm doing different:
 
-Sorry for this. Please disregard.
+1) Since I'm only adding one tiny little program to an otherwise default
+image, I'm not creating a separate .bb file for it, but placing it in the
+top-level .bb file that I invoke with the bitbake command.
 
+2) Since I only have one .bb file, I'm sticking it in the layer directory,
+not two levels down, and adding ${LAYERDIR}/*.bb to BBFILES.
 
-On Thu, Jun 20, 2013 at 11:08 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> ---
->  recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc
-> b/recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc
-> index e1f10b6..91d93e6 100644
-> --- a/recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc
-> +++ b/recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc
-> @@ -126,6 +126,7 @@ FILES_libegl-mx6-dbg =
-> "${libdir}/.debug/libEGL${SOLIBS}"
->  FILES_libgal-mx6 = "${libdir}/libGAL${SOLIBS}"
->  FILES_libgal-mx6-dev = "${libdir}/libGAL${SOLIBSDEV}"
->  FILES_libgal-mx6-dbg = "${libdir}/.debug/libGAL${SOLIBS}"
-> +DEPENDS += "${@base_contains('DISTRO_FEATURES', 'x11', 'virtual/libx11
-> libxdamage libxext libxfixes', '', d)}"
->
->  FILES_libgl-mx6 = "${libdir}/libGL${SOLIBS}"
->  FILES_libgl-mx6-dbg = "${libdir}/.debug/libGL.${SOLIBS}"
-> --
-> 1.8.1.4
->
->
-
+It's finding the recipe okay, because the image is being built, but it's
+never executing do_compile or do_install. The recipe looks like this:
 
 -- 
-*Andrei Gherzan*
-m: +40.744.478.414 |  f: +40.31.816.28.12
+require recipes-core/images/core-image-base.bb
 
---001a11339d9218040f04df9b880a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+DESCRIPTION = "A basic image with a realtime kernel."
+DEPENDS = "linux-yocto-rt"
+LICENSE = "MIT"
+PR = "r0"
 
-<div dir=3D"ltr">Sorry for this. Please disregard.=A0</div><div class=3D"gm=
-ail_extra"><br><br><div class=3D"gmail_quote">On Thu, Jun 20, 2013 at 11:08=
- PM, Andrei Gherzan <span dir=3D"ltr">&lt;<a href=3D"mailto:andrei@gherzan.=
-ro" target=3D"_blank">andrei@gherzan.ro</a>&gt;</span> wrote:<br>
+SRC_URI = "file://fastuart.cpp"
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Signed-off-by: Andrei Gherzan &lt;<a href=3D=
-"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt;<br>
----<br>
-=A0recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc | 1 +<br>
-=A01 file changed, 1 insertion(+)<br>
-<br>
-diff --git a/recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc b/recip=
-es-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc<br>
-index e1f10b6..91d93e6 100644<br>
---- a/recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc<br>
-+++ b/recipes-graphics/gpu-viv-bin-mx6q/gpu-viv-bin-mx6q.inc<br>
-@@ -126,6 +126,7 @@ FILES_libegl-mx6-dbg =3D &quot;${libdir}/.debug/libEGL$=
-{SOLIBS}&quot;<br>
-=A0FILES_libgal-mx6 =3D &quot;${libdir}/libGAL${SOLIBS}&quot;<br>
-=A0FILES_libgal-mx6-dev =3D &quot;${libdir}/libGAL${SOLIBSDEV}&quot;<br>
-=A0FILES_libgal-mx6-dbg =3D &quot;${libdir}/.debug/libGAL${SOLIBS}&quot;<br=
->
-+DEPENDS +=3D &quot;${@base_contains(&#39;DISTRO_FEATURES&#39;, &#39;x11&#3=
-9;, &#39;virtual/libx11 libxdamage libxext libxfixes&#39;, &#39;&#39;, d)}&=
-quot;<br>
-<br>
-=A0FILES_libgl-mx6 =3D &quot;${libdir}/libGL${SOLIBS}&quot;<br>
-=A0FILES_libgl-mx6-dbg =3D &quot;${libdir}/.debug/libGL.${SOLIBS}&quot;<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.8.1.4<br>
-<br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r><div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"tex=
-t-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Rom=
-an&#39;;font-size:medium">
+S = "${WORKDIR}"
 
-<b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
-n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
--1"><br></font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.74=
-4.478.414 | =A0f: +40.31.816.28.12</font><br>
+do_compile() {
+    ${CC} fastuart.cpp -o fastuart
+}
 
-</div></div></div>
-</div>
+do_install() {
+    install -d ${D}${bindir}
+    install -m 0755 fastuart ${D}${bindir}
+}
+-- 
 
---001a11339d9218040f04df9b880a--
+The source is one level down from the recipe file, in files/fastuart.cpp. Is
+there some reason that one can't do a compilation from a top-level recipe
+that makes an image? Or is it because of the location of the .bb file in the
+tree? Or am I doing something else wrong?
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+ 
+
+
