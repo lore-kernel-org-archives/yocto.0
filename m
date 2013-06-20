@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50890E0141B
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 03:09:52 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 20 Jun 2013 03:09:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,903,1363158000"; d="scan'208";a="257661996"
-Received: from unknown (HELO helios.localnet) ([10.252.122.59])
-	by AZSMGA002.ch.intel.com with ESMTP; 20 Jun 2013 03:09:51 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
-Date: Thu, 20 Jun 2013 11:09:48 +0100
-Message-ID: <2169568.OdCe6aKEne@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.3 (Linux/3.8.0-25-generic; KDE/4.10.3; i686; ; )
-In-Reply-To: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
-References: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6165E0141B
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 03:23:31 -0700 (PDT)
+Received: by mail-vc0-f180.google.com with SMTP id gf11so4566278vcb.25
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 03:23:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=8TcOoTZ0DpCVdDpD6UmA+++LRIat6OprUmY+7QdTRfc=;
+	b=HDDYiPj6n0yZYiKcOLr77SFKiGhz+WYPPtqMsoV0jAkf2zhMFekiWUpp/HH+y2cLuw
+	eOTySydRNphULY8G7VQPCuWpIS8pVNIOuhVA3L+M3ezNZfVfX5779W2rh2tmeSN57Ce7
+	Ga6N4C/y2/AQcnqxwX2w1hiyJpTUJS3Zit8ZqUE5IsPyXLt4eYm3CQ+tzrSXWulIh9ha
+	3r3oZSlya1IbAhyS3gw2hX4HDrluBhBnalfZ9w2HFU0OpBaY4Opw3fdItxNpp9U0R7IZ
+	SMEBKBKPOnlTihSOvtyXnso8mIRXgWEBPennNdBqUPkHHf/y5IfBvXvBf7DhaPgvDAdr
+	bL0g==
+X-Received: by 10.220.1.9 with SMTP id 9mr2380833vcd.37.1371723811008; Thu, 20
+	Jun 2013 03:23:31 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.220.13.144 with HTTP; Thu, 20 Jun 2013 03:23:10 -0700 (PDT)
+In-Reply-To: <CAHyyKN=uJoee1pchKtEMbKT8paYrwiewrPKS8wWZQ5g5RHwpSA@mail.gmail.com>
+References: <CAHyyKN=uJoee1pchKtEMbKT8paYrwiewrPKS8wWZQ5g5RHwpSA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 20 Jun 2013 11:23:10 +0100
+Message-ID: <CAJTo0LYQ+K6LU9BbakmgZASmFaPY2mKrAb-E=VthA3m+XPr_kg@mail.gmail.com>
+To: Alex M <0xf777@gmail.com>
+X-Gm-Message-State: ALoCoQkKUe0i7UxbfOyBE8qou0UkpIA5QswLuGKwU/Q7mfcEWLSfs7+hLvOYlIbX88u89ttLSv5g
 Cc: yocto@yoctoproject.org
-Subject: Re: Installing .deb file in Build
+Subject: Re: core-image-x11 works on QEMU and not on real hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,24 +40,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2013 10:09:56 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 20 Jun 2013 10:23:33 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wednesday 19 June 2013 09:10:20 DAMARLA Satya Swaroop wrote:
-> I have a .deb file which has to be installed. It installs properly on the
-> target image but I want to install it at the build itself by creating a
-> bitbake recipe.. Is it possible to install .deb files or not? If possible,
-> please suggest me so that I can make it..
+On 19 June 2013 13:33, Alex M <0xf777@gmail.com> wrote:
+> I just built core-image-x11 and able to run it on qemux86, but all my
+> attempts to run image on real hardware with nVidia GTX465 or AMD
+> HD6320 - failed. In X11 logs I see errors about GLX module.
+>
+> What I should do to add GLX and OpenGL 2.1 3D acceleration with Mesa
+> and opensource drivers for nVidia, Intel and AMD cards at the same
+> time?
 
-I think the bin_package class is designed explicitly to help with this. Have a 
-look at classes/bin_package.bbclass.
+Details of the errors are always useful.  We don't have a machine
+(yet) that supported nVidia or AMD hardware out of the box which is
+why it's probably not working very well, so you'll have to add the
+Mesa drivers to the image yourself, such as mesa-driver-radeon or
+mesa-driver-nouveau-vieux.
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Ross
 
