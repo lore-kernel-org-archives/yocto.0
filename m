@@ -1,29 +1,38 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.analogue-micro.com (mail.analogue-micro.com
-	[217.144.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49C21E0144E
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 03:25:22 -0700 (PDT)
-Received: by mail.analogue-micro.com (Postfix, from userid 999)
-	id 4424968A01B; Thu, 20 Jun 2013 11:25:21 +0100 (BST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	loki.analogue-micro-ltd.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.12.145] (phobos.analogue-micro-ltd.com
-	[192.168.12.145])
-	by mail.analogue-micro.com (Postfix) with ESMTP id CA58D68A01A;
-	Thu, 20 Jun 2013 11:25:19 +0100 (BST)
-Message-ID: <51C2D88F.5030900@mlbassoc.com>
-Date: Thu, 20 Jun 2013 11:25:19 +0100
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-vb0-f47.google.com (mail-vb0-f47.google.com
+	[209.85.212.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 959EFE0141B
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 05:32:20 -0700 (PDT)
+Received: by mail-vb0-f47.google.com with SMTP id x14so4547674vbb.20
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 05:32:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ZVCaTFKgq/n4sHVaMaSf8HhOthajeVj3Sr+5EibS9FE=;
+	b=u0eYdWercOYAVa8b37MOM8fJ738cKM87LruTlgU/odE9vY300UakbmE9flGSrQuKFm
+	v8ale2alJdVcM2GBZeDrNOWRvtxT3h6rzppVGMKMDdS1mNIaDvv1zf+YsXDBiv7KGhqr
+	RaYbkzwFuuA59Cpj36ZkHgZqHi8acmfw7BPz1wGn0H6jLfWYX+jBFujTUukWUUFdOV4i
+	7IZrCuJoAV/k44tZNw8Bi5fJ8f/8ueMOJgyja5X+tXvGFPamcJJtOLMiq10kA2ktmj4j
+	fO3HgjIV+G62JlMuFZ8VsrL5piXcBoOh1Mr9eB9/WYHZXQ4pCRm9lU85GZbO+myqZci+
+	ddSw==
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-References: <51C291AF.1070508@mlbassoc.com>
-In-Reply-To: <51C291AF.1070508@mlbassoc.com>
-Subject: Re: Build doesn't interrupt cleanly
+X-Received: by 10.58.198.44 with SMTP id iz12mr2851449vec.85.1371731539204;
+	Thu, 20 Jun 2013 05:32:19 -0700 (PDT)
+Received: by 10.52.179.33 with HTTP; Thu, 20 Jun 2013 05:32:19 -0700 (PDT)
+In-Reply-To: <CAJTo0Lb-1D4EY+RLkcs8DybmPSAfm3-r=ZWA=OUyA8BiozNfOQ@mail.gmail.com>
+References: <CAFMfyzKMgx_6gJLO13ei7nr3fxaJg0-A3nG0=BCWQk5rH9p4TQ@mail.gmail.com>
+	<CAFMfyzK9CusGuo40vWHdrq1dbD2fna-zTrBaiEQccfXUvhuBzg@mail.gmail.com>
+	<F7494A5B-922D-43A9-A63B-4F1C83F93E81@gmail.com>
+	<1526680.2T1uIfLeRH@helios>
+	<CAFMfyzLvQfmmpNGAD+8YpP8axv7EX9ev8M-SR9a=z3oMsBB1Mg@mail.gmail.com>
+	<CAJTo0Lb-1D4EY+RLkcs8DybmPSAfm3-r=ZWA=OUyA8BiozNfOQ@mail.gmail.com>
+Date: Thu, 20 Jun 2013 14:32:19 +0200
+Message-ID: <CAFMfyz++3OMfdOkjcbw6wLCKPEMi420Rgdb7JwrpZXuXy7f_Mg@mail.gmail.com>
+From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Toolchain... Issues with systemd (probably)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,33 +44,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2013 10:25:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Jun 2013 12:32:20 -0000
+Content-Type: multipart/alternative; boundary=047d7b6dcb9c1f520404df952354
 
-On 2013-06-20 06:22, Gary Thomas wrote:
-> Using Yocto master (1dd643b142c69ac9035e29bff11d02201638dc65)
+--047d7b6dcb9c1f520404df952354
+Content-Type: text/plain; charset=ISO-8859-1
+
+I think you guys are right.... and now I am able to build the toolchain
+perfectly....
+
+
+On Thu, Jun 20, 2013 at 12:06 PM, Burton, Ross <ross.burton@intel.com>wrote:
+
+> On 20 June 2013 10:07, DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
+> wrote:
+> > The udev version to ve installed is 182-r7 bu I dont understand why
+> 1:204-r0
+> > is trying to get installed..
 >
-> I forcefully interrupted a bitbake build with ^C^C.  When it
-> shut down, I made some changes to my local.conf and then tried
-> to fire it up again, only to get this error:
->    ERROR: Only one copy of bitbake should be run against a build directory
+> This is because your deploy directory contains the systemd "udev"
+> package, which is version 204 and so newer than the sysvinit "udev"
+> package, version 182.  This is why we say that switching distro
+> features in an existing build directory isn't supported.
 >
-> It looks like bitbake didn't totally get cleaned up in this case.
->    $ ps ax | grep bit
->    16319 pts/4    S      0:01 python /home/local/poky-multi/bitbake/bin/bitbake-worker decafbad
+> If you delete your tmp directory it will rebuild everything quickly
+> using the sstate-cache (don't delete that!).
 >
-> Killing this left over worker let me continue.
->
-> I've never seen this before, so perhaps it's new behaviour.
-> If it happens again, I'll file a bug.
+> Ross
 >
 
-Looks like this was reported as bug #4750 only yesterday :-)
+--047d7b6dcb9c1f520404df952354
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+<div dir=3D"ltr">I think you guys are right.... and now I am able to build =
+the toolchain perfectly....</div><div class=3D"gmail_extra"><br><br><div cl=
+ass=3D"gmail_quote">On Thu, Jun 20, 2013 at 12:06 PM, Burton, Ross <span di=
+r=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ro=
+ss.burton@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 20 June 2013 10:07, DAM=
+ARLA Satya Swaroop &lt;<a href=3D"mailto:swaroop.damarla@gmail.com">swaroop=
+.damarla@gmail.com</a>&gt; wrote:<br>
 
+&gt; The udev version to ve installed is 182-r7 bu I dont understand why 1:=
+204-r0<br>
+&gt; is trying to get installed..<br>
+<br>
+</div>This is because your deploy directory contains the systemd &quot;udev=
+&quot;<br>
+package, which is version 204 and so newer than the sysvinit &quot;udev&quo=
+t;<br>
+package, version 182. =A0This is why we say that switching distro<br>
+features in an existing build directory isn&#39;t supported.<br>
+<br>
+If you delete your tmp directory it will rebuild everything quickly<br>
+using the sstate-cache (don&#39;t delete that!).<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br></div>
+
+--047d7b6dcb9c1f520404df952354--
