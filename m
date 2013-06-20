@@ -1,35 +1,32 @@
-Return-Path: <btraynor@gmail.com>
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AF57E005B3
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 08:12:45 -0700 (PDT)
-Received: by mail-wi0-f169.google.com with SMTP id c10so2013163wiw.0
-	for <yocto@yoctoproject.org>; Thu, 20 Jun 2013 08:12:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=+jHKqE99Up0NrU3Dr8LN9VU52/pBT/24n9s30ziOxks=;
-	b=HeNMenZIT9vWHrl8dmf4djrsAQv34aN+RyIJ9JTyUQ8JqLvQw8FniQSNBQYAH60tH2
-	TM79qUpOhlWPO+oHysePnzpV2WSZIqyGfdjfLOa//i4rrxKRZQCMRg2vkXk1Fxo264Ur
-	Aw+g7aJ+5eTTQKtSbGW0urDzHIwadhQfv9WomIovl2z6+/4bMQUSaMO7iXlWjf3fzXMH
-	tEewyozQ/3pd/3fmNQT282nXcBZ/kzjBrM1ADooe7+mRgEgmOgnN1rZwazjZJMFK+ibt
-	wTw+8bGTuUNDmvPCf8mb2MCRKSeb52jMahm2M0L4tGcVmAaqvXuAFZEOJiZQ1N9oS3q/
-	YI7Q==
-X-Received: by 10.180.20.208 with SMTP id p16mr5797905wie.59.1371741164230;
-	Thu, 20 Jun 2013 08:12:44 -0700 (PDT)
+Return-Path: <Mikhail_Durnev@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D96EFE01400
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2013 21:17:30 -0700 (PDT)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1UpWJK-0000UB-7V from Mikhail_Durnev@mentor.com ;
+	Wed, 19 Jun 2013 21:17:26 -0700
+Received: from SVR-ORW-FEM-05.mgc.mentorg.com ([147.34.97.43]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Wed, 19 Jun 2013 21:17:26 -0700
+Received: from mdurnev (147.34.91.1) by svr-orw-fem-05.mgc.mentorg.com
+	(147.34.97.43) with Microsoft SMTP Server id 14.2.247.3;
+	Wed, 19 Jun 2013 21:17:24 -0700
+From: Mikhail Durnev <Mikhail_Durnev@mentor.com>
+To: 'Khem Raj' <raj.khem@gmail.com>, "'Noor, Ahsan'" <noor_ahsan@mentor.com>
+References: <1371639211-3726-1-git-send-email-noor_ahsan@mentor.com>
+	<746BB1A1-A592-4FFB-9A3F-B9D6C904451A@gmail.com>
+In-Reply-To: <746BB1A1-A592-4FFB-9A3F-B9D6C904451A@gmail.com>
+Date: Thu, 20 Jun 2013 15:17:03 +1100
+Message-ID: <119b01ce6d6d$06c6ae70$14540b50$@com>
 MIME-Version: 1.0
-Received: by 10.194.16.69 with HTTP; Thu, 20 Jun 2013 08:12:04 -0700 (PDT)
-In-Reply-To: <1371738322.20823.240.camel@ted>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50B40@ORSMSX101.amr.corp.intel.com>
-	<51C30873.3030108@windriver.com> <1371738322.20823.240.camel@ted>
-From: Bill Traynor <btraynor@gmail.com>
-Date: Thu, 20 Jun 2013 11:12:04 -0400
-Message-ID: <CAN20qYo0PCzAHnd3_T78=pKVTcO0-VG4iaX+DiTXM50Vs8KcnQ@mail.gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>, "Osier-mixon,
-	Jeffrey" <jeffrey.osier-mixon@intel.com>
-Subject: Re: Documenting YP Development Environment in more detail
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: Ac5tXkwDZPSPGnqMQweCCFHq6+z+TAADGUig
+X-OriginalArrivalTime: 20 Jun 2013 04:17:26.0169 (UTC)
+	FILETIME=[1207D890:01CE6D6D]
+X-Mailman-Approved-At: Thu, 20 Jun 2013 08:13:37 -0700
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] ecryptfs-utils: Modify systemd service file to 'simple'.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,203 +38,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2013 15:12:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 20 Jun 2013 04:17:31 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-On Thu, Jun 20, 2013 at 10:25 AM, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> On Thu, 2013-06-20 at 09:49 -0400, Bruce Ashfield wrote:
->> On 13-06-20 04:40 AM, Rifenbark, Scott M wrote:
->> > Hi,
->> >
->> > Recently, Paul, Ross, Richard and I had a video conference meeting whe=
-re we had some initial discussion on how to satisfy YOCTO #2808 (https://bu=
-gzilla.yoctoproject.org/show_bug.cgi?id=3D2808), which calls for an illustr=
-ation showing source and destination directories during a build using YP.  =
-This bug originated from a discussion Dave Stewart and I had a while back a=
-round an idea of a more detailed "flow diagram" that would go into greater =
-detail than the now famous and ubiquitous "The Yocto Project Development En=
-vironment" illustration, which appears in the YP Quick Start (http://www.yo=
-ctoproject.org/docs/1.4/yocto-project-qs/yocto-project-qs.html) and has bee=
-n used in many other places and in many other forms (some quite elaborate).
->> >
->> > We can't really create a completely accurate, all-encompassing illustr=
-ation that breaks apart the entire build process.  It is not a static thing=
- and it is quite complicated inside the BitBake process.  We can, however, =
-show where metadata comes from, how it is provided, what it defines, where =
-and how source files are found, what processes occur, what output is produc=
-ed, and where it ends up.  We can also provide some sort of idea of how key=
- BitBake and environment variables affect things along the way.  The idea h=
-ere is to dig deeper into this conceptual figure and root out the details t=
-o a level that would be useful to the user but not impossible to maintain o=
-r develop. This type of information can be communicated through a mix of se=
-veral illustrations with supporting text.
->> >
->> > This first meeting started with some detailed discussion of the config=
-uration inputs for a typical YP build but soon migrated to discussing the b=
-igger picture and possible ways to provide more information.  It became obv=
-ious we were not going to dig the solution and all the needed information o=
-ut in one short meeting. Consequently, I am sending out this email to help =
-open up some discussion on the issue and to also solicit information for so=
-me basic blocks of information.
->> >
->> > Two things are needed at this point:  1) a presentation solution for t=
-his new and more detailed information, and 2) a starting point on some of t=
-he information itself.
->> >
->> > PRESENTATION SOLUTION
->> >
->> > Here are some thoughts on how to present this information.  There
->> are disadvantages and advantages to each of these methods of which I
->> will not list.  I would like to see what people think about them:
->> >
->> >   * Manual - Create a section in the "Technical Details" Chapter of
->> the YP Reference Manual that holds this information.  The section
->> would be pretty much self-contained and would consist of several
->> illustrations that would stem from an overall figure that is similar
->> to the figure we now have in the YP Quick Start.  However, we would
->> use a drill-down strategy that would progressively reveal more detail
->> through subsequent figures.  This method is similar to how hardware
->> devices used to be documented where functional blocks would be
->> connected and described in one area and then subsequent areas would
->> elaborate more deeply on a particular block.  Linking within the
->> manual could connect up the various functional blocks (inputs,
->> outputs, and tasks) that comprise the overall flow.
->> >
->> > * Manual / Website Mix - Devise a mix between the YP Reference
->> Manual and some pages in the YP Website that provide the information.
->> Create a section in the "Technical details" Chapter of the YP
->> Reference Manual that covers this information at a high level.  For
->> example, the overall flow of the system with its "big-block" inputs
->> and outputs and tasks could be discussed at some length.  Links in the
->> text could go to the YP website where more detail would be revealed.
->> This strategy effectively splits the content into "overview" and
->> "details" between the manual and website, respectively.
->> >
->> > * Website - With this strategy, everything is pretty much in the YP
->> website.  This area would exist in a stand-alone fashion.  However,
->> you could link to the website from within the existing YP
->> documentation set from existing areas that deal with the build
->> process.  Several exit points from within the manual set already
->> exist.  We would obviously add a primary one as well that would likely
->> originate from the YP Reference Manual's "Technical Details" Chapter.
->
-> I'm wondering if a hybrid is possible here. Can we for example embed
-> image maps into the docbook so that if you hover over areas of the
-> image, you can then have links to the different sections?
+ecryptfsd is a resident program, i.e. daemon. According to systemd
+documentation, Type=oneshot/RemainAfterExit=yes should be used for programs
+that do not remain working after exit. But for daemons we should use
+Type=forked to indicate that the service remains running in background.
+ecryptfs provides option -f to run in foreground. This option is preferred
+when the service is started from init/systemd. That is why we use
+Type=simple (default) to indicate that the service runs in foreground. To
+manage the service properly systemd uses its type. E.g. if ecryptfsd
+silently dies, systemd will recognize its failure in case of simple or
+forked, but not in case of oneshot.
 
-FWIW, docbook supports image maps via the mediaobject tag but they are
-somewhat limited in their usefulness.
+Best regards,
+Mikhail
 
-http://docbook.org/tdg5/en/html/mediaobject.html
-http://www.sagehill.net/docbookxsl/Imagemaps.html
+-----Original Message-----
+From: Khem Raj [mailto:raj.khem@gmail.com] 
+Sent: Thursday, 20 June, 2013 13:32
+To: Noor, Ahsan
+Cc: holger.behrens@windriver.com; florin.sarbu@windriver.com;
+yocto@yoctoproject.org; Mikhail Durnev
+Subject: Re: [yocto] [PATCH] ecryptfs-utils: Modify systemd service file to
+'simple'.
 
-Scott, you may run into trouble when converting the docs between doc
-types, in particular with scaling of images.
+reasoning why it is being turned into simple service would be nice
 
->
->> > SOLICITATION FOR INFORMATION
->> >
->> > We can get started now on this by starting to define details for
->> some obvious points or large areas of the flow.  What would be nice to
->> get would be some graphical breakdowns of these areas of concern:
->> >
->> > * User-defined layers
->> > * YP provided layers
->> > * User configuration
->> > * Machine Configuration
->> > * Policy Configuration
->> > * Patches
->> > * YP provided recipes
->> > * User provided source code
->> > * YP provided source code
->> > * SCMs
->> > * Generated images
->> > * Generated SDKs/toolchains
->> > * Package Output
->> > * Source fetching process
->> > * Patch application process
->> > * Configuration process (fragments, etc.)
->>
->> Just so I'm clear .. are you looking for graphical breakdowns to be
->> created and sent,
->> or information offered so graphical breakdowns can be created ?
->>
->> The reason I ask, is that if there's any interest in the linux-yocto
->> (for lack of a better term) flow being described graphically, I'm
->> happy to offer up information, but my graphical skills are limited
->> to what you find in a typical hackers bag of ticks :)
->
-> I suggested that Scott try and accumulate information for each topic
-> like the following:
->
-> Fetcher:
->
-> Code Areas: Bitbake Fetch Module (bitbake/lib/bb/fetch2, called from
-> classes/base.bbclass)
-> Tasks Covered: do_fetch/do_unpack
-> Key Variables: SRC_URI, checksums etc
->
-> Generated images:
->
-> Code Areas: classes/image*.bbclass classes/rootfs*.bbclass
-> Tasks Covered: do_rootfs
-> Key Variables: PACKAGE_INSTALL
->
-> along with a description about what the function
->> Cheers,
->>
->> Bruce
->>
->> > * Key variable use and effects
->> > * User-initiated commands along the way
->> >
->> > Much of this list is directly from our existing "The Yocto Project
-> Development Environment" illustration.
->> >
->> > Thanks,
->> > Scott R.
->> >
->> >
->> >
->> > Scott Rifenbark
->> > Intel Corporation
->> > Yocto Project Documentation
->> > 503.712.2702
->> > 503.341.0418 (cell)
->> >
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->> >
->>
->> al block does and when its used. The above would then link into the
-> class reference, the variable glossary and so on. So its less about
-> graphics and more about giving Scott the information to create a kind of
-> details index of some of these parts of the system like an expanded
-> table of contents.
->
-> I've suggested a good start would be picking a few areas (like the
-> above) and trying to create the info and maybe see what kind of diagram
-> would present itself from that. If successful, it could then be expanded
-> to each area. I'd certainly hope that linux-yocto would be one area
-> covered.
->
-> Cheers,
->
-> Richard
->
->
->
->
->
->
->
->
+On Jun 19, 2013, at 3:53 AM, "Noor, Ahsan" <noor_ahsan@mentor.com> wrote:
+
+> From: Noor <noor_ahsan@mentor.com>
+> 
+> Signed-off-by: Mikhail Durnev <mikhail_durnev@mentor.com>
+> Signed-off-by: Noor Ahsan <noor_ahsan@mentor.com>
+> ---
+> .../ecryptfs-utils/ecryptfs-utils/ecryptfs.service |    4 +---
+> 1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git 
+> a/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.service 
+> b/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.service
+> index ba12aa3..52f3397 100644
+> --- 
+> a/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.service
+> +++ b/recipes-support-ivi/ecryptfs-utils/ecryptfs-utils/ecryptfs.servi
+> +++ ce
+> @@ -3,9 +3,7 @@ Description=A userspace daemon that runs as the user 
+> perform file operations und After=udev.service
+> 
+> [Service]
+> -Type=oneshot
+> -ExecStart=/usr/bin/ecryptfsd
+> -RemainAfterExit=yes
+> +ExecStart=/usr/bin/ecryptfsd -f
+> 
+> [Install]
+> WantedBy=multi-user.target
+> --
+> 1.7.9.5
+> 
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+
+
+
 
