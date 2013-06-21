@@ -1,20 +1,20 @@
 Return-Path: <ioanax.grigoropol@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6132E01409
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 07:54:10 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga101.ch.intel.com with ESMTP; 21 Jun 2013 07:53:50 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05A89E01409
+	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 08:25:35 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 21 Jun 2013 08:23:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,913,1363158000"; d="scan'208";a="353569058"
+X-IronPort-AV: E=Sophos;i="4.87,913,1363158000"; d="scan'208";a="333409023"
 Received: from ideapad.rb.intel.com ([10.237.105.63])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Jun 2013 07:54:29 -0700
+	by orsmga001.jf.intel.com with ESMTP; 21 Jun 2013 08:25:33 -0700
 From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Date: Fri, 21 Jun 2013 17:32:40 +0300
-Message-Id: <1371825160-17508-1-git-send-email-ioanax.grigoropol@intel.com>
+Date: Fri, 21 Jun 2013 18:04:22 +0300
+Message-Id: <1371827062-17852-1-git-send-email-ioanax.grigoropol@intel.com>
 X-Mailer: git-send-email 1.7.9.5
-Cc: Ioana Grigoropol <ioana.grigoropol@gmail.com>
-Subject: [RFC PATCH upstream org.eclipse.tm] [411343]Provide access to readers in host shell
+Cc: Ioana Grigoropol <ioanax.grigoropol@gmail.com>
+Subject: [RFC PATCH upstream org.eclipse.ptp] [411387] SystemRemoteFolderDialog should return a path when selecting 'My Home' or 'Root'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,109 +26,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2013 14:54:10 -0000
+X-List-Received-Date: Fri, 21 Jun 2013 15:25:38 -0000
 
-From: Ioana Grigoropol <ioana.grigoropol@gmail.com>
+- when browsing to pick the project location, if "My Home" or "Root" get picked the project location remains empty
+- this is caused by the RSEUIFileManager browseDirectory method
+   - the selection made in the SystemRemoteFolderDialog is an SystemFilterReference, and thus not a instance of IRemoteFile.
+   - if the selection is of type ISystemFilterReference:
+	- make sure that the children of the system filter are populated
+		- retrieve the adapter for the filter and populate the children list
+	- retrieve first child from the list & return parent path
+	- if the parent path is null for the first child:
+		- this is actually the root of the file system -> return path of this child
 
-- add a plain getter in the AbstractHostShell class:
-	- the compilation is not broken for subclasses of this class since it always returns null
-	- the targeted classes (local and remote) can implement the getter (local implementation is already there)
-	- the reader can be accessed and the output can be read in a synchronous way
-- add implementation of getReader in TerminaServiceHostShell
-	- store the underlying reader as a field of this class & return it
-
-Signed-off-by: Ioana Grigoropol <ioana.grigoropol@gmail.com>
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@gmail.com>
 ---
- .../services/shells/TerminalServiceHostShell.java  |   20 ++++++++++++--------
- .../rse/services/shells/AbstractHostShell.java     |    9 +++++++--
- 2 files changed, 19 insertions(+), 10 deletions(-)
+ .../ptp/remote/rse/ui/RSEUIFileManager.java        |   27 +++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java
-index 2a461ad..0775894 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceHostShell.java
-@@ -22,6 +22,7 @@
-  * Anna Dushistova  (MontaVista) - [258720] SshHostShell fails to run command if initialWorkingDirectory supplied
-  * Rob Stryker (JBoss) - [335059] TerminalServiceShellOutputReader logs error when hostShell.exit() is called
-  * Martin Oberhuber (Wind River) - [356132] wait for initial output
-+ * Ioana Grigoropol (Intel)      - [411343] Provide access to readers in host shell
-  *******************************************************************************/
- 
- package org.eclipse.rse.internal.services.shells;
-@@ -47,7 +48,7 @@ public class TerminalServiceHostShell extends AbstractHostShell {
- 	public static final String SHELL_INVOCATION = ">"; //$NON-NLS-1$
- 
- 	ITerminalShell fTerminalShell;
--	
-+	BufferedReader fBufReader;
- 	private TerminalServiceShellOutputReader fStdoutHandler;
- 	
- 	private TerminalServiceShellOutputReader fStderrHandler;
-@@ -60,21 +61,21 @@ public class TerminalServiceHostShell extends AbstractHostShell {
- 		try {
- 			fTerminalShell = terminalShell;
- 			String encoding = fTerminalShell.getDefaultEncoding();
--			BufferedReader bufReader;
-+
- 			if (encoding != null) {
--				bufReader = new BufferedReader(new InputStreamReader(fTerminalShell
-+				fBufReader = new BufferedReader(new InputStreamReader(fTerminalShell
- 						.getInputStream(), encoding)); 
- 			} else {
--				bufReader = new BufferedReader(new InputStreamReader(fTerminalShell
-+				fBufReader = new BufferedReader(new InputStreamReader(fTerminalShell
- 								.getInputStream()));
- 			}
- 			//bug 356132: wait for initial output before sending any command
- 			//FIXME this should likely move into the TerminalServiceShellWriterThread, so wait can be canceled
--			bufReader.mark(1);
--			bufReader.read();
--			bufReader.reset();
-+			fBufReader.mark(1);
-+			fBufReader.read();
-+			fBufReader.reset();
- 			
--			fStdoutHandler = new TerminalServiceShellOutputReader(this, bufReader, false);
-+			fStdoutHandler = new TerminalServiceShellOutputReader(this, fBufReader, false);
- 			fStderrHandler = new TerminalServiceShellOutputReader(this, null, true);
- 			OutputStream outputStream = fTerminalShell.getOutputStream();
- 			if (encoding != null) {
-@@ -170,4 +171,7 @@ public class TerminalServiceHostShell extends AbstractHostShell {
- 		return "echo $PWD'>'"; //$NON-NLS-1$
- 	}
- 
-+	public BufferedReader getReader(boolean isErrorReader) {
-+		return fBufReader;
-+	}
- }
-diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/AbstractHostShell.java b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/AbstractHostShell.java
-index 0ac8e3f..4d189b6 100644
---- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/AbstractHostShell.java
-+++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/shells/AbstractHostShell.java
-@@ -11,11 +11,13 @@
-  * Emily Bruner, Mazen Faraj, Adrian Storisteanu, Li Ding, and Kent Hawley.
-  * 
+diff --git a/core/org.eclipse.ptp.remote.rse.ui/src/org/eclipse/ptp/remote/rse/ui/RSEUIFileManager.java b/core/org.eclipse.ptp.remote.rse.ui/src/org/eclipse/ptp/remote/rse/ui/RSEUIFileManager.java
+index dd0e097..e3f1423 100644
+--- a/core/org.eclipse.ptp.remote.rse.ui/src/org/eclipse/ptp/remote/rse/ui/RSEUIFileManager.java
++++ b/core/org.eclipse.ptp.remote.rse.ui/src/org/eclipse/ptp/remote/rse/ui/RSEUIFileManager.java
+@@ -7,21 +7,27 @@
+  *
   * Contributors:
-- * {Name} (company) - description of contribution.
-+ *   Ioana Grigoropol (Intel)      - [411343] Provide access to readers in host shell
-  ********************************************************************************/
+  * IBM Corporation - Initial API and implementation
++ * Ioana Grigoropol (Intel) - browseDirectory should return a path when selecting 'My Home' or 'Root'
+  *******************************************************************************/
+ package org.eclipse.ptp.remote.rse.ui;
  
- package org.eclipse.rse.services.shells;
+ import java.util.Vector;
  
-+import java.io.BufferedReader;
++import org.eclipse.core.runtime.IAdapterFactory;
+ import org.eclipse.jface.window.Window;
+ import org.eclipse.ptp.remote.core.IRemoteConnection;
+ import org.eclipse.ptp.remote.core.IRemoteConnectionManager;
+ import org.eclipse.ptp.remote.core.IRemoteServices;
+ import org.eclipse.ptp.remote.rse.core.RSEConnection;
+ import org.eclipse.ptp.remote.ui.IRemoteUIFileManager;
++import org.eclipse.rse.core.filters.ISystemFilterReference;
+ import org.eclipse.rse.core.model.IHost;
++import org.eclipse.rse.core.model.SystemChildrenContentsType;
+ import org.eclipse.rse.files.ui.dialogs.SystemRemoteFileDialog;
+ import org.eclipse.rse.files.ui.dialogs.SystemRemoteFolderDialog;
++import org.eclipse.rse.internal.ui.view.SystemViewFilterReferenceAdapter;
+ import org.eclipse.rse.subsystems.files.core.subsystems.IRemoteFile;
++import org.eclipse.rse.ui.RSEUIPlugin;
+ import org.eclipse.swt.widgets.Shell;
+ 
+ public class RSEUIFileManager implements IRemoteUIFileManager {
+@@ -51,6 +57,25 @@ public class RSEUIFileManager implements IRemoteUIFileManager {
+ 			if (retObj instanceof IRemoteFile) {
+ 				IRemoteFile selectedFile = (IRemoteFile) retObj;
+ 				return selectedFile.getAbsolutePath();
++			} else if (retObj instanceof ISystemFilterReference){
++				ISystemFilterReference selectedFile = (ISystemFilterReference)retObj;
 +
- 
- public abstract class AbstractHostShell implements IHostShell
- {
-@@ -34,4 +36,7 @@ public abstract class AbstractHostShell implements IHostShell
++				RSEUIPlugin plugin = RSEUIPlugin.getDefault();
++				if (selectedFile.getContents(SystemChildrenContentsType.getInstance()) == null) {
++					// in order to make sure that the children of this SystemFilterReference are populated
++					// the method getChildren() of the underlying adapter must be invoked
++					IAdapterFactory factory = plugin.getSystemViewAdapterFactory();
++					SystemViewFilterReferenceAdapter adapter = (SystemViewFilterReferenceAdapter)factory.getAdapter(selectedFile, ISystemFilterReference.class);
++					adapter.getChildren(selectedFile);
++				}
++				// now that the children are cached for the filter references we can try and access them
++				Object[] con = selectedFile.getContents(SystemChildrenContentsType.getInstance());
++				if (con != null && con[0] instanceof IRemoteFile) {
++					IRemoteFile file = (IRemoteFile)con[0];
++					if (file.getParentPath() == null)
++						return file.getAbsolutePath();// this is actually the root of the file system
++					return file.getParentPath();
++				}
+ 			}
  		}
+ 		return null;
+@@ -134,4 +159,4 @@ public class RSEUIFileManager implements IRemoteUIFileManager {
+ 	public void showConnections(boolean enable) {
+ 		onlyConnection = !enable;
  	}
- 
 -}
 \ No newline at end of file
-+	public BufferedReader getReader(boolean isErrorReader){
-+		return null;
-+	}
 +}
 -- 
 1.7.10.4
