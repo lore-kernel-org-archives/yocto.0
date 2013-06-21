@@ -1,20 +1,24 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95309E005B3
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A1D8E013DE
 	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 05:44:52 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.105])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 9C05240084;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id BBCB0400B5;
 	Fri, 21 Jun 2013 13:48:30 +0200 (CEST)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri, 21 Jun 2013 14:44:39 +0200
-Message-Id: <cover.1371818609.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Jun 2013 14:44:40 +0200
+Message-Id: <8747086bfca592129ab38a4f0a90182488e5cc9c.1371818609.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.8.1.4
+In-Reply-To: <cover.1371818609.git.timo.mueller@bmw-carit.de>
+References: <cover.1371818609.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <cover.1371818609.git.timo.mueller@bmw-carit.de>
+References: <cover.1371818609.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 0/8][eclipse-poky] Add target profile quick switch
+Subject: [PATCHv2 1/8] plugins/sdk.ide: Use an internationalized dialog title
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,71 +34,33 @@ X-List-Received-Date: Fri, 21 Jun 2013 12:44:55 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Changes in v2:
-Handle error when project specific profile is not configured more
-gracefully. Instead of showing an error message the button is now
-greyed out.
 
-Patches 01..07 contain the implementation with the greyed out menu
-button.
+Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
+---
+ plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-After playing around with the two options discussed in the first patch
-series, I started to prefer inserting a different button in the menu
-allowing the user to quickly navigate to the project preferences
-instead of just greying it out. I've added this in the last patch of
-the series, so you can compare yourself.
-
-From original cover letter
-<snip>
-if a user wants to change the used target profile of a project he
-currently has to open the project preferences. This can be tedious if
-he has to switch the profile often.
-
-This is a small addition which allows the user to quickly switch the
-used target profile of a project. Instead of having to open the
-project preferences the user can select the project in the navigator
-and then choose the desired target profile from a drop-down menu in
-the toolbar or from the project menu.
-</snip>
-
-01: Small i18n fix
-02..04: Refactoring the project specific utils
-05..06: Introduce the target profile toolbar switch
-07: Adds the target profile switch to the project menu
-08: Experimental: Add button to open project preferences
-
-Best regards,
-Timo
-
-Timo Mueller (8):
-  plugins/sdk.ide: Use an internationalized dialog title
-  plugins/sdk.ide: Extract project specific util methods
-  plugins/sdk.ide: Move project specific util methods
-  plugins/sdk.ide: Remove project context from method names
-  plugins/sdk.ide: Add command to switch the target profile
-  plugins/sdk.ide: Add profile switch menu to the toolbar
-  plugins/sdk.ide: Add profile switch menu to the project menu
-  plugins/sdk.ide: Add project configuration button
-
- .../OSGI-INF/l10n/bundle.properties                |   4 +
- plugins/org.yocto.sdk.ide/plugin.xml               |  96 ++++++++-
- .../sdk/ide/ProjectSpecificContributionItem.java   |  91 ++++++++
- .../sdk/ide/TargetProfileContributionItem.java     | 125 +++++++++++
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |   5 +
- .../src/org/yocto/sdk/ide/YoctoUISetting.java      |   3 +-
- .../sdk/ide/actions/ProfileSwitchHandler.java      | 134 ++++++++++++
- .../natures/YoctoSDKAutotoolsProjectNature.java    |   3 +-
- .../ide/preferences/YoctoSDKPreferencePage.java    |  11 +-
- .../preferences/YoctoSDKProjectPropertyPage.java   | 130 ++---------
- .../sdk/ide/utils/ProjectPreferenceUtils.java      | 240 +++++++++++++++++++++
- .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java | 118 ----------
- .../ide/wizard/NewYoctoProjectTemplateProcess.java |   3 +-
- 13 files changed, 717 insertions(+), 246 deletions(-)
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/ProjectSpecificContributionItem.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContributionItem.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/actions/ProfileSwitchHandler.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
-
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
+index e5a7897..d192538 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
+@@ -42,7 +42,6 @@ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
+ import org.yocto.sdk.ide.preferences.PreferenceConstants;
+ 
+ public class YoctoUISetting {
+-
+ 	private static final String ENV_SCRIPT_FILE_PREFIX = "environment-setup-";
+ 
+ 	private SelectionListener fSelectionListener;
+@@ -375,7 +374,7 @@ public class YoctoUISetting {
+ 		if ((result != SDKCheckResults.SDK_PASS) && showErrorDialog) {
+ 			Display display = Display.getCurrent();
+ 			ErrorDialog.openError(display.getActiveShell(),
+-									"Yocto Project Configuration Error",
++									YoctoSDKChecker.SDKCheckRequestFrom.Other.getErrorMessage(),
+ 									YoctoSDKChecker.getErrorMessage(result, from),
+ 									new Status(Status.ERROR, YoctoSDKPlugin.PLUGIN_ID, result.getMessage()));
+ 
 -- 
 1.8.1.4
 
