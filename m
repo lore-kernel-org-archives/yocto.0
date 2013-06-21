@@ -1,26 +1,30 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98E26E013AE
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 05:44:52 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75FDAE01400
+	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 05:44:56 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.105])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 10CFD40275;
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 922CA402D6;
 	Fri, 21 Jun 2013 13:48:31 +0200 (CEST)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri, 21 Jun 2013 14:44:42 +0200
-Message-Id: <eb8b7614daafd5a2c359a83dae533c62e2667bf6.1371818609.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Jun 2013 14:44:46 +0200
+Message-Id: <0d5013a2d71595ba90a8bf18066d62b8c83d0cad.1371818609.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.8.1.4
-In-Reply-To: <3febae446e2129227471238802a4185719bddc99.1371818609.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <2424730fff49a5becf5921c4df6d01a4c9c5d78a.1371818609.git.timo.mueller@bmw-carit.de>
 References: <cover.1371818609.git.timo.mueller@bmw-carit.de>
 	<8747086bfca592129ab38a4f0a90182488e5cc9c.1371818609.git.timo.mueller@bmw-carit.de>
 	<3febae446e2129227471238802a4185719bddc99.1371818609.git.timo.mueller@bmw-carit.de>
+	<eb8b7614daafd5a2c359a83dae533c62e2667bf6.1371818609.git.timo.mueller@bmw-carit.de>
+	<8759d4ba2272a2f923431e7d761c8957ac594d60.1371818609.git.timo.mueller@bmw-carit.de>
+	<bf0b2d82c7810aac76794cc7ce511e217d447ec3.1371818609.git.timo.mueller@bmw-carit.de>
+	<2424730fff49a5becf5921c4df6d01a4c9c5d78a.1371818609.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1371818609.git.timo.mueller@bmw-carit.de>
 References: <cover.1371818609.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 3/8] plugins/sdk.ide: Move project specific util methods
+Subject: [PATCHv2 7/8] plugins/sdk.ide: Add profile switch menu to the project menu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,315 +40,58 @@ X-List-Received-Date: Fri, 21 Jun 2013 12:44:56 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Move project specific methods to the new util class to allow public
-usage of theses methods.
+If a project with a yocto nature is selected, the project menu will
+show a target profile menu which allows the user to switch the used
+target profile of the project.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../preferences/YoctoSDKProjectPropertyPage.java   | 121 ++-------------------
- .../sdk/ide/utils/ProjectPreferenceUtils.java      | 102 +++++++++++++++++
- 2 files changed, 109 insertions(+), 114 deletions(-)
+ plugins/org.yocto.sdk.ide/plugin.xml | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
-index f075c5b..1f82fe1 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
-@@ -13,12 +13,8 @@
- package org.yocto.sdk.ide.preferences;
- 
- import org.eclipse.core.resources.IProject;
--import org.eclipse.core.resources.ProjectScope;
- import org.eclipse.core.runtime.IAdaptable;
--import org.eclipse.core.runtime.preferences.IEclipsePreferences;
--import org.eclipse.core.runtime.preferences.IScopeContext;
- import org.eclipse.jface.dialogs.Dialog;
--import org.eclipse.jface.preference.IPreferenceStore;
- import org.eclipse.swt.SWT;
- import org.eclipse.swt.layout.GridLayout;
- import org.eclipse.swt.widgets.Composite;
-@@ -27,19 +23,17 @@ import org.eclipse.swt.widgets.Event;
- import org.eclipse.swt.widgets.Listener;
- import org.eclipse.ui.IWorkbenchPropertyPage;
- import org.eclipse.ui.dialogs.PropertyPage;
--import org.osgi.service.prefs.BackingStoreException;
- import org.yocto.sdk.ide.YoctoProfileElement;
- import org.yocto.sdk.ide.YoctoProfileSetting;
- import org.yocto.sdk.ide.YoctoProjectSpecificSetting;
- import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;
- import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
- import org.yocto.sdk.ide.YoctoSDKMessages;
--import org.yocto.sdk.ide.utils.ProjectPreferenceUtils;
--import org.yocto.sdk.ide.utils.YoctoSDKUtils;
--import org.yocto.sdk.ide.utils.YoctoSDKUtilsConstants;
- import org.yocto.sdk.ide.YoctoSDKPlugin;
- import org.yocto.sdk.ide.YoctoUIElement;
- import org.yocto.sdk.ide.YoctoUISetting;
-+import org.yocto.sdk.ide.utils.ProjectPreferenceUtils;
-+import org.yocto.sdk.ide.utils.YoctoSDKUtils;
- 
- public class YoctoSDKProjectPropertyPage extends PropertyPage implements
- 		IWorkbenchPropertyPage {
-@@ -79,10 +73,10 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
- 
- 		yoctoProfileSetting = new YoctoProfileSetting(
- 				new YoctoProfileElement(globalProfileElement.getProfilesAsString(), selectedProfile), this, false);
--		boolean useProjectSpecificSetting = getUseProjectSpecificOptionFromProjectPreferences(project);
-+		boolean useProjectSpecificSetting = ProjectPreferenceUtils.getUseProjectSpecificOptionFromProjectPreferences(project);
- 
- 		if (useProjectSpecificSetting) {
--			yoctoUISetting = new YoctoUISetting(getElemFromProjectPreferences(project));
-+			yoctoUISetting = new YoctoUISetting(ProjectPreferenceUtils.getElemFromProjectPreferences(project));
- 		} else {
- 			yoctoUISetting = new YoctoUISetting(YoctoSDKUtils.getElemFromStore(YoctoSDKPlugin.getProfilePreferenceStore(selectedProfile)));
- 		}
-@@ -160,11 +154,11 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
- 				return false;
- 			}
- 
--			saveUseProjectSpecificOptionToProjectPreferences(project, true);
-+			ProjectPreferenceUtils.saveUseProjectSpecificOptionToProjectPreferences(project, true);
- 			ProjectPreferenceUtils.saveProfilesToProjectPreferences(yoctoProfileSetting.getCurrentInput(), project);
--			saveElemToProjectPreferences(yoctoUISetting.getCurrentInput(), project);
-+			ProjectPreferenceUtils.saveElemToProjectPreferences(yoctoUISetting.getCurrentInput(), project);
- 		} else {
--			saveUseProjectSpecificOptionToProjectPreferences(project, false);
-+			ProjectPreferenceUtils.saveUseProjectSpecificOptionToProjectPreferences(project, false);
- 			ProjectPreferenceUtils.saveProfilesToProjectPreferences(yoctoProfileSetting.getCurrentInput(), project);
- 		}
- 
-@@ -173,107 +167,6 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
- 		return super.performOk();
- 	}
- 
--	private void saveUseProjectSpecificOptionToProjectPreferences(IProject project, boolean useProjectSpecificSetting) {
--		IScopeContext projectScope = new ProjectScope(project);
--		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
--		if (projectNode == null) {
--			return;
--		}
--
--		if (useProjectSpecificSetting) {
--			projectNode.put(PreferenceConstants.PROJECT_SPECIFIC_PROFILE, IPreferenceStore.TRUE);
--		} else {
--			projectNode.put(PreferenceConstants.PROJECT_SPECIFIC_PROFILE, IPreferenceStore.FALSE);
--		}
--
--		try {
--			projectNode.flush();
--		} catch (BackingStoreException e) {
--			e.printStackTrace();
--		}
--	}
--
--	private boolean getUseProjectSpecificOptionFromProjectPreferences(IProject project) {
--		IScopeContext projectScope = new ProjectScope(project);
--		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
--		if (projectNode == null) {
--			return false;
--		}
--
--		String useProjectSpecificSettingString = projectNode.get(PreferenceConstants.PROJECT_SPECIFIC_PROFILE, IPreferenceStore.FALSE);
--
--		if (useProjectSpecificSettingString.equals(IPreferenceStore.FALSE)) {
--			return false;
--		}
--		return true;
--	}
--
--	/* Save POKY Preference settings to project's preference store */
--	private void saveElemToProjectPreferences(YoctoUIElement elem, IProject project) {
--		IScopeContext projectScope = new ProjectScope(project);
--		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
--		if (projectNode == null) {
--			return;
--		}
--
--		projectNode.putInt(PreferenceConstants.TARGET_ARCH_INDEX, elem.getIntTargetIndex());
--		if (elem.getEnumPokyMode() == YoctoUIElement.PokyMode.POKY_SDK_MODE) {
--			projectNode.put(PreferenceConstants.SDK_MODE, IPreferenceStore.TRUE);
--		} else {
--			projectNode.put(PreferenceConstants.SDK_MODE, IPreferenceStore.FALSE);
--		}
--		projectNode.put(PreferenceConstants.QEMU_KERNEL, elem.getStrQemuKernelLoc());
--		projectNode.put(PreferenceConstants.QEMU_OPTION, elem.getStrQemuOption());
--		projectNode.put(PreferenceConstants.SYSROOT, elem.getStrSysrootLoc());
--
--		if (elem.getEnumDeviceMode() == YoctoUIElement.DeviceMode.QEMU_MODE) {
--			projectNode.put(PreferenceConstants.TARGET_MODE, IPreferenceStore.TRUE);
--		} else {
--			projectNode.put(PreferenceConstants.TARGET_MODE, IPreferenceStore.FALSE);
--		}
--		projectNode.put(PreferenceConstants.TOOLCHAIN_ROOT, elem.getStrToolChainRoot());
--		projectNode.put(PreferenceConstants.TOOLCHAIN_TRIPLET, elem.getStrTarget());
--
--		try {
--			projectNode.flush();
--		} catch (BackingStoreException e) {
--			e.printStackTrace();
--		}
--	}
--
--	/* Get POKY Preference settings from project's preference store */
--	private YoctoUIElement getElemFromProjectPreferences(IProject project) {
--		IScopeContext projectScope = new ProjectScope(project);
--		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
--		if (projectNode == null) {
--			return ProjectPreferenceUtils.getElemFromProjectEnv(project);
--		}
--
--		YoctoUIElement elem = new YoctoUIElement();
--		elem.setStrToolChainRoot(projectNode.get(PreferenceConstants.TOOLCHAIN_ROOT,""));
--		elem.setStrTarget(projectNode.get(PreferenceConstants.TOOLCHAIN_TRIPLET,""));
--		elem.setStrQemuKernelLoc(projectNode.get(PreferenceConstants.QEMU_KERNEL,""));
--		elem.setStrSysrootLoc(projectNode.get(PreferenceConstants.SYSROOT,""));
--		elem.setStrQemuOption(projectNode.get(PreferenceConstants.QEMU_OPTION,""));
--		String sTemp = projectNode.get(PreferenceConstants.TARGET_ARCH_INDEX,"");
--		if (!sTemp.isEmpty()) {
--			elem.setIntTargetIndex(Integer.valueOf(sTemp).intValue());
--		}
--
--		if (projectNode.get(PreferenceConstants.SDK_MODE,"").equalsIgnoreCase(IPreferenceStore.TRUE)) {
--			elem.setEnumPokyMode(YoctoUIElement.PokyMode.POKY_SDK_MODE);
--		} else {
--			elem.setEnumPokyMode(YoctoUIElement.PokyMode.POKY_TREE_MODE);
--		}
--
--		if(projectNode.get(PreferenceConstants.TARGET_MODE,"").equalsIgnoreCase(IPreferenceStore.TRUE)) {
--			elem.setEnumDeviceMode(YoctoUIElement.DeviceMode.QEMU_MODE);
--		} else {
--			elem.setEnumDeviceMode(YoctoUIElement.DeviceMode.DEVICE_MODE);
--		}
--		return elem;
--	}
--
- 	private void clearMessages() {
- 		setErrorMessage(null);
- 		setMessage(null);
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
-index 0f84912..50904c1 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
-@@ -35,6 +35,39 @@ import org.yocto.sdk.ide.preferences.PreferenceConstants;
- public class ProjectPreferenceUtils {
- 	private static final String CONSOLE_MESSAGE  = "Menu.SDK.Console.Configure.Message";
- 
-+	/* Get POKY Preference settings from project's preference store */
-+	public static YoctoUIElement getElemFromProjectPreferences(IProject project) {
-+		IScopeContext projectScope = new ProjectScope(project);
-+		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
-+		if (projectNode == null) {
-+			return getElemFromProjectEnv(project);
-+		}
-+
-+		YoctoUIElement elem = new YoctoUIElement();
-+		elem.setStrToolChainRoot(projectNode.get(PreferenceConstants.TOOLCHAIN_ROOT,""));
-+		elem.setStrTarget(projectNode.get(PreferenceConstants.TOOLCHAIN_TRIPLET,""));
-+		elem.setStrQemuKernelLoc(projectNode.get(PreferenceConstants.QEMU_KERNEL,""));
-+		elem.setStrSysrootLoc(projectNode.get(PreferenceConstants.SYSROOT,""));
-+		elem.setStrQemuOption(projectNode.get(PreferenceConstants.QEMU_OPTION,""));
-+		String sTemp = projectNode.get(PreferenceConstants.TARGET_ARCH_INDEX,"");
-+		if (!sTemp.isEmpty()) {
-+			elem.setIntTargetIndex(Integer.valueOf(sTemp).intValue());
-+		}
-+
-+		if (projectNode.get(PreferenceConstants.SDK_MODE,"").equalsIgnoreCase(IPreferenceStore.TRUE)) {
-+			elem.setEnumPokyMode(YoctoUIElement.PokyMode.POKY_SDK_MODE);
-+		} else {
-+			elem.setEnumPokyMode(YoctoUIElement.PokyMode.POKY_TREE_MODE);
-+		}
-+
-+		if(projectNode.get(PreferenceConstants.TARGET_MODE,"").equalsIgnoreCase(IPreferenceStore.TRUE)) {
-+			elem.setEnumDeviceMode(YoctoUIElement.DeviceMode.QEMU_MODE);
-+		} else {
-+			elem.setEnumDeviceMode(YoctoUIElement.DeviceMode.DEVICE_MODE);
-+		}
-+		return elem;
-+	}
-+
- 	/* Get POKY Preference settings from project's environment */
- 	public static YoctoUIElement getElemFromProjectEnv(IProject project) {
- 		YoctoUIElement elem = new YoctoUIElement();
-@@ -79,6 +112,55 @@ public class ProjectPreferenceUtils {
- 		return new YoctoProfileElement(profiles, selectedProfile);
- 	}
- 
-+	public static boolean getUseProjectSpecificOptionFromProjectPreferences(IProject project) {
-+		IScopeContext projectScope = new ProjectScope(project);
-+		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
-+		if (projectNode == null) {
-+			return false;
-+		}
-+
-+		String useProjectSpecificSettingString = projectNode.get(PreferenceConstants.PROJECT_SPECIFIC_PROFILE,
-+																	IPreferenceStore.FALSE);
-+
-+		if (useProjectSpecificSettingString.equals(IPreferenceStore.FALSE)) {
-+			return false;
-+		}
-+
-+		return true;
-+	}
-+
-+	/* Save POKY Preference settings to project's preference store */
-+	public static void saveElemToProjectPreferences(YoctoUIElement elem, IProject project) {
-+		IScopeContext projectScope = new ProjectScope(project);
-+		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
-+		if (projectNode == null) {
-+			return;
-+		}
-+
-+		projectNode.putInt(PreferenceConstants.TARGET_ARCH_INDEX, elem.getIntTargetIndex());
-+		if (elem.getEnumPokyMode() == YoctoUIElement.PokyMode.POKY_SDK_MODE) {
-+			projectNode.put(PreferenceConstants.SDK_MODE, IPreferenceStore.TRUE);
-+		} else {
-+			projectNode.put(PreferenceConstants.SDK_MODE, IPreferenceStore.FALSE);
-+		}
-+		projectNode.put(PreferenceConstants.QEMU_KERNEL, elem.getStrQemuKernelLoc());
-+		projectNode.put(PreferenceConstants.QEMU_OPTION, elem.getStrQemuOption());
-+		projectNode.put(PreferenceConstants.SYSROOT, elem.getStrSysrootLoc());
-+		if (elem.getEnumDeviceMode() == YoctoUIElement.DeviceMode.QEMU_MODE) {
-+			projectNode.put(PreferenceConstants.TARGET_MODE, IPreferenceStore.TRUE);
-+		} else {
-+			projectNode.put(PreferenceConstants.TARGET_MODE, IPreferenceStore.FALSE);
-+		}
-+		projectNode.put(PreferenceConstants.TOOLCHAIN_ROOT, elem.getStrToolChainRoot());
-+		projectNode.put(PreferenceConstants.TOOLCHAIN_TRIPLET, elem.getStrTarget());
-+
-+		try {
-+			projectNode.flush();
-+		} catch (BackingStoreException e) {
-+			e.printStackTrace();
-+		}
-+	}
-+
- 	/* Save POKY Preference settings to project's environment */
- 	public static void saveElemToProjectEnv(YoctoUIElement elem, IProject project) {
- 		ConsoleOutputStream consoleOutStream = null;
-@@ -135,4 +217,24 @@ public class ProjectPreferenceUtils {
- 			e.printStackTrace();
- 		}
- 	}
-+
-+	public static void saveUseProjectSpecificOptionToProjectPreferences(IProject project, boolean useProjectSpecificSetting) {
-+		IScopeContext projectScope = new ProjectScope(project);
-+		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
-+		if (projectNode == null) {
-+			return;
-+		}
-+
-+		if (useProjectSpecificSetting) {
-+			projectNode.put(PreferenceConstants.PROJECT_SPECIFIC_PROFILE, IPreferenceStore.TRUE);
-+		} else {
-+			projectNode.put(PreferenceConstants.PROJECT_SPECIFIC_PROFILE, IPreferenceStore.FALSE);
-+		}
-+
-+		try {
-+			projectNode.flush();
-+		} catch (BackingStoreException e) {
-+			e.printStackTrace();
-+		}
-+	}
- }
+diff --git a/plugins/org.yocto.sdk.ide/plugin.xml b/plugins/org.yocto.sdk.ide/plugin.xml
+index aaa0a35..c082c3a 100644
+--- a/plugins/org.yocto.sdk.ide/plugin.xml
++++ b/plugins/org.yocto.sdk.ide/plugin.xml
+@@ -251,6 +251,15 @@
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             allPopups="true"
++            locationURI="menu:project">
++         <menu
++               id="org.yocto.sdk.ide.profiles.menu"
++               label="%command.targetProfileSwitch.label"
++               tooltip="%command.targetProfileSwitch.description">
++         </menu>
++      </menuContribution>
++      <menuContribution
++            allPopups="true"
+             locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+          <toolbar
+                id="org.yocto.sdk.ide.profiles.toolbar">
+@@ -284,6 +293,22 @@
+       </menuContribution>
+       <menuContribution
+             allPopups="false"
++            locationURI="menu:org.yocto.sdk.ide.profiles.menu">
++         <dynamic
++               class="org.yocto.sdk.ide.ProjectSpecificContributionItem"
++               id="org.yocto.sdk.ide.dynamic.projectSpecific.targetProfile">
++         </dynamic>
++         <separator
++               name="org.yocto.sdk.ide.profiles.separator"
++               visible="true">
++         </separator>
++         <dynamic
++               class="org.yocto.sdk.ide.TargetProfileContributionItem"
++               id="org.yocto.sdk.ide.dynamic.targetProfile">
++         </dynamic>
++      </menuContribution>
++      <menuContribution
++            allPopups="false"
+             locationURI="menu:org.yocto.sdk.ide.profiles.toolbar.dropdown">
+          <dynamic
+                class="org.yocto.sdk.ide.ProjectSpecificContributionItem"
 -- 
 1.8.1.4
 
