@@ -1,28 +1,20 @@
-Return-Path: <gschmottlach@gmail.com>
-Received: from mail-we0-f193.google.com (mail-we0-f193.google.com
-	[74.125.82.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 238E9E01409
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 07:12:43 -0700 (PDT)
-Received: by mail-we0-f193.google.com with SMTP id q58so2361758wes.8
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 07:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=mXvrA+27kFWoDAsBkbyfRtbYWJlYZdUGPM79R3AT+7o=;
-	b=apm4BbCuYH8Hf4kibK7u6zmTPLDLB4GTkaLgHWcFdCAl3XjYIa5OE3KA3xwIoy3B/i
-	l3YlhzYXKAsD+pZR4zwNxNvjcL4a849+GBemfUch+8PgKPQFXggGf8laO3I/TW7wT85G
-	QCxMlO2iTVne0jlRwI0v7D5DAwBfESfSySwzMuxsYjvwLWFpW0ShUAZwcRSHkfzhmomN
-	9d6/hK9Um0wzRsnoys/bytnUrL5zTI79+9rxJqwTpr/CCMmDnXA1Ke/sz41fBtxVGkRC
-	kAS2HHPlI0aZM0EWmWdJMsK0Fs9VqHcLhajSwgG1UFV0HxOYP2psEfxmniXrkEKIOiDA
-	5jzg==
-MIME-Version: 1.0
-X-Received: by 10.180.108.168 with SMTP id hl8mr2939626wib.23.1371823962240;
-	Fri, 21 Jun 2013 07:12:42 -0700 (PDT)
-Received: by 10.195.12.116 with HTTP; Fri, 21 Jun 2013 07:12:42 -0700 (PDT)
-Date: Fri, 21 Jun 2013 10:12:42 -0400
-Message-ID: <CAMS2kBEOG6OjrwcRguCjnctsa4OPgv6M=5st8-Vi09i3XO2aUA@mail.gmail.com>
-From: Glenn Schmottlach <gschmottlach@gmail.com>
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20915E01409
+	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 07:48:24 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 21 Jun 2013 07:48:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,913,1363158000"; d="scan'208";a="320586254"
+Received: from ideapad.rb.intel.com ([10.237.105.63])
+	by azsmga001.ch.intel.com with ESMTP; 21 Jun 2013 07:47:49 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Subject: Creating a meta-layer for a third-party GCC-based binary tool-chain - how?
+Date: Fri, 21 Jun 2013 17:26:47 +0300
+Message-Id: <1371824807-17259-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Cc: Ioana Grigoropol <ioana.grigoropol@gmail.com>
+Subject: [PATCH v2] Fix Eclipse workspace deadlock when restoring
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,157 +26,334 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2013 14:12:44 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3ba2f3f6bcba04dfaaa762
+X-List-Received-Date: Fri, 21 Jun 2013 14:48:36 -0000
 
---e89a8f3ba2f3f6bcba04dfaaa762
-Content-Type: text/plain; charset=ISO-8859-1
+From: Ioana Grigoropol <ioana.grigoropol@gmail.com>
 
-I'm trying to create a meta-layer for a third-party GCC-based proprietary
-tool-chain. I need to be able to select this tool-chain on a per-recipe
-basis while other recipes may either the standard Yocto
-native/cross-tool-chain. This proprietary tool chain is divided into a
-host-tool part (where all the cross-tools are located, e.g.
-arm-unknown-nto-qnx6.5.0-gcc/ar/g++ etc...) and the associated target
-sysroot that includes common headers and target (arm, mips, ppc, sh4, x86)
-specific libraries. This tool-chain on my system is sitting in /opt outside
-of the Yocto environment and is not re-distributable in a third-party SDK
-(e.g. you have to license it from the manufacturer and install it
-separately).
+- when creating a new bitbake commander project, a bunch of information relevant for the project is set in the project information map
+- when closing & restarting Eclipse, having a Bitbake commander project in the workspace an deadlock occurs due to the following:
+	- Eclipse Resources container tries to restore all projects that were previously in the workspace
+	- when trying to restore our BB project, we will try to determine what was the remote connection for that specific project, given its URI
+		- we can only determine the connection by calling RSE plugin & we must wait for it to be initialized
+	- the RSE plugin is initialized after the Resource container is finishes, and since this process is blocked waiting for a later one, a deadlock occurs
 
-I seem to have come across two approaches to this problem. One solution
-appears to be recommended by the OE community and it is described here:
+- in order to fix this problem, perform the following steps:
+	- when the Eclipse Resource container asks for the store of our project
+		- return a NullFileStore
+		- register as a listener of the RSEInitJob in order to get notified when the job is finished
+		- restore the project information when the RSE API is up by triggering the internal file system core manager
+	- restoring the information:
+		- for the local implementation:
+			- the connection of the project is missing -> retrive it by invoking RSE
+		- for the remote implementation:
+			- the only URI for the project is the oefs one
+			- we cannot change this uri to point to the real one since it will block the refresh on the project
+			- we cannot determine the real URI form the oefs one since we have no clue what is the host(ip)
+		   -> solution:
+			- when creating the BBC project
+				- save the information about the real URI of the project in the metadata of the workspace
+			- when restoring the project
+				- retrieve the information from the metadata location
+- fixed also the Project Description of the Location to display the real URI of the files
 
-http://www.openembedded.org/wiki/Adding_a_secondary_toolchain
+Signed-off-by: Ioana Grigoropol <ioana.grigoropol@gmail.com>
+---
+ .../src/org/yocto/bc/bitbake/ShellSession.java     |    2 +-
+ .../src/org/yocto/bc/ui/Activator.java             |    4 +-
+ .../org/yocto/bc/ui/filesystem/OEFileSystem.java   |   10 +--
+ .../src/org/yocto/bc/ui/model/ProjectInfo.java     |   11 ++-
+ .../src/org/yocto/bc/ui/model/YoctoHostFile.java   |   10 +++
+ .../yocto/bc/ui/wizards/install/InstallWizard.java |    1 +
+ .../org.yocto.remote.utils/META-INF/MANIFEST.MF    |    6 +-
+ .../src/org/yocto/remote/utils/RemoteHelper.java   |   79 ++++++++++++++++++++
+ 8 files changed, 113 insertions(+), 10 deletions(-)
 
-This approach *seems* to offer the ability to selectively (per recipe)
-enable/disable a secondary tool-chain. What is not clear is whether Yocto
-supports this approach.
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
+index 11d677a..724b7d0 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/bitbake/ShellSession.java
+@@ -18,7 +18,7 @@ import java.io.InputStream;
+ import java.io.InputStreamReader;
+ import java.io.OutputStream;
+ import java.io.Writer;
+-
++	
+ import org.eclipse.core.runtime.IProgressMonitor;
+ import org.eclipse.core.runtime.NullProgressMonitor;
+ import org.eclipse.rse.core.model.IHost;
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/Activator.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/Activator.java
+index 5c43ba8..f53592c 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/Activator.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/Activator.java
+@@ -108,7 +108,7 @@ public class Activator extends AbstractUIPlugin {
+ 		
+ 		BBSession bbs = (BBSession) bbSessionMap.get(projectRoot);
+ 		
+-		if (bbs == null) {
++		if (bbs == null || bbs.getShell() == null) {
+ 			bbs = new BBSession(getShellSession(projectInfo, null, monitor), projectRoot);
+ 			bbSessionMap.put(projectRoot, bbs);
+ 		}
+@@ -190,7 +190,7 @@ public class Activator extends AbstractUIPlugin {
+ 		
+ 		ShellSession ss = (ShellSession) shellMap.get(absolutePath);
+ 		
+-		if (ss == null) {
++		if (ss == null && RemoteHelper.isInitialized(projInfo.getOriginalURI())) {
+ 			IHostFile remoteHostFile = RemoteHelper.getRemoteHostFile(projInfo.getConnection(), absolutePath.getPath(), monitor);
+ 			ss = new ShellSession(projInfo, remoteHostFile, ProjectInfoHelper.getInitScriptPath(absolutePath));
+ 		}
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/filesystem/OEFileSystem.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/filesystem/OEFileSystem.java
+index 357edc1..b814c4c 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/filesystem/OEFileSystem.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/filesystem/OEFileSystem.java
+@@ -11,7 +11,6 @@
+  *******************************************************************************/
+ package org.yocto.bc.ui.filesystem;
+ 
+-import java.io.File;
+ import java.lang.reflect.InvocationTargetException;
+ import java.net.URI;
+ import java.util.ArrayList;
+@@ -22,14 +21,16 @@ import java.util.Map;
+ import org.eclipse.core.filesystem.IFileStore;
+ import org.eclipse.core.filesystem.IFileSystem;
+ import org.eclipse.core.filesystem.provider.FileSystem;
++import org.eclipse.core.internal.filesystem.NullFileStore;
++import org.eclipse.core.internal.resources.LocalMetaArea;
++import org.eclipse.core.resources.ResourcesPlugin;
+ import org.eclipse.core.runtime.CoreException;
+ import org.eclipse.core.runtime.NullProgressMonitor;
++import org.eclipse.core.runtime.Path;
+ import org.eclipse.rse.services.clientserver.messages.SystemMessageException;
+-
+ import org.yocto.bc.bitbake.BBSession;
+ import org.yocto.bc.ui.Activator;
+ import org.yocto.bc.ui.model.ProjectInfo;
+-import org.yocto.bc.ui.model.YoctoHostFile;
+ 
+ /**
+  * A filesystem that ignores specific OE directories that contain derived information.
+@@ -64,8 +65,7 @@ public class OEFileSystem extends FileSystem {
+ 				config = Activator.getBBSession(projInfo, new NullProgressMonitor());
+ 				config.initialize();
+ 			} catch (Exception e) {
+-				e.printStackTrace();
+-				return new OEIgnoreFile(new YoctoHostFile(projInfo, uri));
++				return new NullFileStore(new Path(uri.getPath()));
+ 			}
+ 
+ 			if (config.get("TMPDIR") == null || config.get("DL_DIR") == null || config.get("SSTATE_DIR")== null) {
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/ProjectInfo.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/ProjectInfo.java
+index 79e5f87..119782d 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/ProjectInfo.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/ProjectInfo.java
+@@ -61,6 +61,13 @@ public class ProjectInfo implements IModelElement {
+ 	public void setLocationURI(URI location) {
+ 		if (this.location == null)
+ 			this.location = new YoctoLocation();
++		if (location.getScheme().equalsIgnoreCase("oefs")) {
++			if (this.name ==  null) {
++				String path = location.getPath();
++				this.name = path.substring(path.lastIndexOf("/") + 1);
++			}
++			location = RemoteHelper.retrieveURIFromMetaArea(this.name);
++		}
+ 		this.location.setOriginalURI(location);
+ 		try {
+ 			this.location.setOEFSURI(new URI(ProjectInfoHelper.OEFS_SCHEME + location.getPath() ));
+@@ -79,7 +86,7 @@ public class ProjectInfo implements IModelElement {
+ 	}
+ 
+ 	public IHost getConnection() {
+-		if (connection == null) {
++		if (connection == null && RemoteHelper.isInitialized(getOriginalURI())) {
+ 			connection = RemoteHelper.getRemoteConnectionForURI(location.getOriginalURI(), new NullProgressMonitor());
+ 		}
+ 		return connection;
+@@ -99,6 +106,8 @@ public class ProjectInfo implements IModelElement {
+ 
+ 	public IFileService getFileService(IProgressMonitor monitor){
+ 		try {
++			if (!RemoteHelper.isInitialized(getOriginalURI()))
++				return null;
+ 			return RemoteHelper.getConnectedRemoteFileService(connection, monitor);
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/YoctoHostFile.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/YoctoHostFile.java
+index eaa26df..7113efb 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/YoctoHostFile.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/model/YoctoHostFile.java
+@@ -313,4 +313,14 @@ public class YoctoHostFile implements IHostFile{
+ 	public void setFileService(IFileService fileService) {
+ 		this.fileService = fileService;
+ 	}
++
++	@Override
++	public String toString() {
++		URI uri = this.projectInfo.getOriginalURI();
++		try {
++			return new URI(uri.getScheme(), uri.getHost(), fileURI.getPath(), uri.getFragment()).toString();
++		} catch (URISyntaxException e) {
++			return fileURI.toString();
++		}
++	}
+ }
+diff --git a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
+index 5df375e..f3ecfc4 100644
+--- a/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
++++ b/plugins/org.yocto.bc.ui/src/org/yocto/bc/ui/wizards/install/InstallWizard.java
+@@ -195,6 +195,7 @@ public class InstallWizard extends FiniteStateWizard implements
+ 				Activator.putProjInfo(pinfo.getOEFSURI(), pinfo);
+ 
+ 				container.run(false, false, new CreateBBCProjectOperation(pinfo));
++				RemoteHelper.storeURIInMetaArea(pinfo.getProjectName(), uri);
+ 				return true;
+ 			}
+ 		} catch (Exception e) {
+diff --git a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+index 06d14f8..08a76cc 100644
+--- a/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
++++ b/plugins/org.yocto.remote.utils/META-INF/MANIFEST.MF
+@@ -8,9 +8,13 @@ Require-Bundle: org.eclipse.ui,
+  org.eclipse.core.runtime
+ Bundle-ActivationPolicy: lazy
+ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+-Import-Package: org.eclipse.rse.core,
++Import-Package: org.eclipse.core.internal.filesystem,
++ org.eclipse.core.internal.resources,
++ org.eclipse.core.resources,
++ org.eclipse.rse.core,
+  org.eclipse.rse.core.model,
+  org.eclipse.rse.core.subsystems,
++ org.eclipse.rse.internal.core,
+  org.eclipse.rse.internal.services.local.shells,
+  org.eclipse.rse.internal.services.shells,
+  org.eclipse.rse.internal.terminals.ui,
+diff --git a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteHelper.java b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteHelper.java
+index e9118d6..cd33d29 100644
+--- a/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteHelper.java
++++ b/plugins/org.yocto.remote.utils/src/org/yocto/remote/utils/RemoteHelper.java
+@@ -13,19 +13,30 @@ package org.yocto.remote.utils;
+ 
+ import java.io.BufferedInputStream;
+ import java.io.BufferedOutputStream;
++import java.io.BufferedReader;
+ import java.io.File;
++import java.io.FileNotFoundException;
+ import java.io.FileOutputStream;
++import java.io.FileReader;
++import java.io.IOException;
+ import java.io.InputStream;
++import java.io.PrintWriter;
+ import java.net.URI;
+ import java.net.URISyntaxException;
+ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.HashMap;
+ import java.util.Iterator;
++import java.util.List;
+ import java.util.Map;
+ 
++import org.eclipse.core.internal.filesystem.InternalFileSystemCore;
++import org.eclipse.core.internal.resources.LocalMetaArea;
++import org.eclipse.core.internal.resources.Workspace;
++import org.eclipse.core.resources.ResourcesPlugin;
+ import org.eclipse.core.runtime.CoreException;
+ import org.eclipse.core.runtime.FileLocator;
++import org.eclipse.core.runtime.IPath;
+ import org.eclipse.core.runtime.IProgressMonitor;
+ import org.eclipse.core.runtime.IStatus;
+ import org.eclipse.core.runtime.MultiStatus;
+@@ -34,12 +45,14 @@ import org.eclipse.core.runtime.Status;
+ import org.eclipse.core.runtime.SubProgressMonitor;
+ import org.eclipse.osgi.util.NLS;
+ import org.eclipse.rse.core.IRSECoreStatusCodes;
++import org.eclipse.rse.core.IRSEInitListener;
+ import org.eclipse.rse.core.IRSESystemType;
+ import org.eclipse.rse.core.RSECorePlugin;
+ import org.eclipse.rse.core.model.IHost;
+ import org.eclipse.rse.core.model.ISubSystemConfigurationCategories;
+ import org.eclipse.rse.core.model.ISystemRegistry;
+ import org.eclipse.rse.core.subsystems.ISubSystem;
++import org.eclipse.rse.internal.core.RSEInitJob;
+ import org.eclipse.rse.services.IService;
+ import org.eclipse.rse.services.clientserver.messages.SystemMessageException;
+ import org.eclipse.rse.services.files.IFileService;
+@@ -62,6 +75,72 @@ public class RemoteHelper {
+ 	public static final int TOTALWORKLOAD = 100;
+ 	private static Map<IHost, RemoteMachine> machines;
+ 
++	public static IPath getWorkspaceMetaArea(){
++		Workspace workspace = (Workspace)ResourcesPlugin.getWorkspace();
++		LocalMetaArea metaDataArea = workspace.getMetaArea();
++		return metaDataArea.getLocation();
++	}
++
++	public static void storeURIInMetaArea(String projName, URI uri){
++		IPath path = getWorkspaceMetaArea();
++		String sep = File.separator;
++		File f = new File(path.toString() + sep + ".projects" + sep + projName + sep + ".originalURI");
++		PrintWriter writer;
++		try {
++			writer = new PrintWriter(f);
++			writer.println(uri.getScheme());
++			writer.println(uri.getHost());
++			writer.println(uri.getPath());
++			writer.println(uri.getFragment());
++			writer.close();
++		} catch (FileNotFoundException e) {
++			e.printStackTrace();
++		}
++	}
++
++	public static URI retrieveURIFromMetaArea(String projName){
++		IPath path = getWorkspaceMetaArea();
++		String sep = File.separator;
++		File f = new File(path.toString() + sep + ".projects" + sep + projName + sep + ".originalURI");
++		try {
++			BufferedReader buf = new BufferedReader(new FileReader(f));
++			String line = null;
++			List<String> elems = new ArrayList<String>();
++			while((line = buf.readLine()) != null){
++				if (line.equals("null"))
++					line = null;
++				elems.add(line);
++			}
++			buf.close();
++			if (elems.size() == 4){
++				URI uri = new URI(elems.get(0), elems.get(1), elems.get(2), elems.get(3));
++				return uri;
++			}
++		} catch (IOException e) {
++			e.printStackTrace();
++		} catch (URISyntaxException e) {
++			e.printStackTrace();
++		}
++		return null;
++	}
++
++	public static boolean isInitialized(final URI uri){
++		boolean init = RSECorePlugin.isInitComplete(RSECorePlugin.INIT_MODEL);
++		if (!init) {
++			RSEInitJob.getInstance().addInitListener(new IRSEInitListener() {
++				@Override
++				public void phaseComplete(int arg0) {
++					try {
++						InternalFileSystemCore.getInstance().getStore(uri);
++					} catch (CoreException e) {
++						e.printStackTrace();
++					}
++				}
++			});
++		}
++		return init;
++	}
++
+ 	public static IHost getRemoteConnectionByName(String remoteConnection) {
+ 		if (remoteConnection == null)
+ 			return null;
+-- 
+1.7.10.4
 
-The second approach seems to be the one used by Linaro and CodeSourcery and
-involves setting the TCMODE/TCLIB variables and may be more extensive.
-What's not clear is whether the Linaro/CodeSourcery tool-chain can
-selectively be turned on/off per recipe.
 
-I've done some prototyping with both approach but I've had mixed success .
-. . partly due to my in-experience with BitBake/Yocto. So I hope someone
-can take pity on me and answer a few questions:
-
-1) Is the OE approach of adding a secondary tool-chain work-able under
-Yocto? Is the Yocto (TCMODE/TCLIB) approach more acceptable (e.g.
-recommended) and does it allow the recipe itself (or some other white/black
-listing approach) to decide which recipes are compiled with the alternate
-tool-chain? If so, how does a recipe specify the tool-chain that should be
-used? It's not clear by examining the meta-layers provided by those
-tool-chains.
-
-2) Since my proprietary tool-chain has it's own sysroot outside Yocto, I
-believe the recommended approach is to copy this sysroot into the a Yocto
-generated sysroot. If so, where do I do that? Do create a second recipe to
-do that? Is it done in the meta-toolchain  .conf files or .bbclass files?
-How do I make sure these system files are copied to the Yocto sysroot
-before building the recipes that depend on it?
-
-3) What will be the name of the sysroot where I should copy the external
-binary tool-chain to? I can't figure out who/how that name is generated and
-used . . . is it based off the tool-chain prefix (e.g.
-arm-unknown-nto-6.5.0)? Is it something I can specify?
-
-4) The external tool-chain has a non-e/glibc based C library (it's
-Dinkumware based). Do I have to do anything special to keep it from linking
-against the one created/used by Yocto?
-
-5) Ultimately, the target machine and OS is not Linux but very similar
-(e.g. posix based). At this point I'm not concerned about building a
-boot-able image but rather just building individual recipes and packing the
-resulting libraries/applications into a convenient tarball (or opkg
-archive). So I'm thinking I just need to specify a very rudimentary/simple
-"machine" in order to specify the CPU architecture so the right external
-cross-tool is selected. Is there any such meta-layer available . . . a very
-minimal machine? I could accept a QEMU based machine (if necessary) because
-the OS I'm targeting can be run under QEMU. Of course the question may be
-whether I really need to specify a machine/distro for my use-case?
-
-At this time, I just want to use my tool-chain meta-layer to help me
-port/build/package several middle-ware and library components using an
-external (non-distributable) binary tool-chain. In this sense, I'm only
-using Yocto to do half of it's customary job which (usually) results in a
-Linux image for a target.
-
-This request for assistance is long. Any answers that could be provided
-(even if they don't address all of my questions) would be extremely
-helpful. Links to previous discussions would be useful as well.
-
-Thanks for your time and consideration . . .
-
---e89a8f3ba2f3f6bcba04dfaaa762
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div><div><div>I&#=
-39;m trying to create a meta-layer for a third-party GCC-based proprietary =
-tool-chain. I need to be able to select this tool-chain on a per-recipe bas=
-is while other recipes may either the standard Yocto native/cross-tool-chai=
-n. This proprietary tool chain is divided into a host-tool part (where all =
-the cross-tools are located, e.g. arm-unknown-nto-qnx6.5.0-gcc/ar/g++ etc..=
-.) and the associated target sysroot that includes common headers and targe=
-t (arm, mips, ppc, sh4, x86) specific libraries. This tool-chain on my syst=
-em is sitting in /opt outside of the Yocto environment and is not re-distri=
-butable in a third-party SDK (e.g. you have to license it from the manufact=
-urer and install it separately).<br>
-<br></div>I seem to have come across two approaches to this problem. One so=
-lution appears to be recommended by the OE community and it is described he=
-re:<br><br><a href=3D"http://www.openembedded.org/wiki/Adding_a_secondary_t=
-oolchain">http://www.openembedded.org/wiki/Adding_a_secondary_toolchain</a>=
-<br>
-<br></div>This approach *seems* to offer the ability to selectively (per re=
-cipe) enable/disable a secondary tool-chain. What is not clear is whether Y=
-octo supports this approach.<br><br></div>The second approach seems to be t=
-he one used by Linaro and CodeSourcery and involves setting the TCMODE/TCLI=
-B variables and may be more extensive. What&#39;s not clear is whether the =
-Linaro/CodeSourcery tool-chain can selectively be turned on/off per recipe.=
-<br>
-<br></div>I&#39;ve done some prototyping with both approach but I&#39;ve ha=
-d mixed success . . . partly due to my in-experience with BitBake/Yocto. So=
- I hope someone can take pity on me and answer a few questions:<br><br>
-</div>1) Is the OE approach of adding a secondary tool-chain work-able unde=
-r Yocto? Is the Yocto (TCMODE/TCLIB) approach more acceptable (e.g. recomme=
-nded) and does it allow the recipe itself (or some other white/black listin=
-g approach) to decide which recipes are compiled with the alternate tool-ch=
-ain? If so, how does a recipe specify the tool-chain that should be used? I=
-t&#39;s not clear by examining the meta-layers provided by those tool-chain=
-s.<br>
-<br></div>2) Since my proprietary tool-chain has it&#39;s own sysroot outsi=
-de Yocto, I believe the recommended approach is to copy this sysroot into t=
-he a Yocto generated sysroot. If so, where do I do that? Do create a second=
- recipe to do that? Is it done in the meta-toolchain=A0 .conf files or .bbc=
-lass files? How do I make sure these system files are copied to the Yocto s=
-ysroot before building the recipes that depend on it?<br>
-<br></div>3) What will be the name of the sysroot where I should copy the e=
-xternal binary tool-chain to? I can&#39;t figure out who/how that name is g=
-enerated and used . . . is it based off the tool-chain prefix (e.g. arm-unk=
-nown-nto-6.5.0)? Is it something I can specify?<br>
-<br></div>4) The external tool-chain has a non-e/glibc based C library (it&=
-#39;s Dinkumware based). Do I have to do anything special to keep it from l=
-inking against the one created/used by Yocto?<br><br></div>5) Ultimately, t=
-he target machine and OS is not Linux but very similar (e.g. posix based). =
-At this point I&#39;m not concerned about building a boot-able image but ra=
-ther just building individual recipes and packing the resulting libraries/a=
-pplications into a convenient tarball (or opkg archive). So I&#39;m thinkin=
-g I just need to specify a very rudimentary/simple &quot;machine&quot; in o=
-rder to specify the CPU architecture so the right external cross-tool is se=
-lected. Is there any such meta-layer available . . . a very minimal machine=
-? I could accept a QEMU based machine (if necessary) because the OS I&#39;m=
- targeting can be run under QEMU. Of course the question may be whether I r=
-eally need to specify a machine/distro for my use-case?<br>
-<br>At this time, I just want to use my tool-chain meta-layer to help me po=
-rt/build/package several middle-ware and library components using an extern=
-al (non-distributable) binary tool-chain. In this sense, I&#39;m only using=
- Yocto to do half of it&#39;s customary job which (usually) results in a Li=
-nux image for a target.<br>
-<br></div>This request for assistance is long. Any answers that could be pr=
-ovided (even if they don&#39;t address all of my questions) would be extrem=
-ely helpful. Links to previous discussions would be useful as well.<br>
-<br></div>Thanks for your time and consideration . . .<br></div>
-
---e89a8f3ba2f3f6bcba04dfaaa762--
