@@ -1,26 +1,26 @@
 Return-Path: <jessica.zhang@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1E75E01409
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 12:40:24 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga101.ch.intel.com with ESMTP; 21 Jun 2013 12:40:08 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90427E01409
+	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 12:43:48 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 21 Jun 2013 12:41:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,915,1363158000"; d="scan'208";a="353709424"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by fmsmga001.fm.intel.com with ESMTP; 21 Jun 2013 12:40:47 -0700
-Received: from orsmsx109.amr.corp.intel.com (10.22.240.7) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Fri, 21 Jun 2013 12:40:06 -0700
+X-IronPort-AV: E=Sophos;i="4.87,915,1363158000"; d="scan'208";a="357545820"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by orsmga002.jf.intel.com with ESMTP; 21 Jun 2013 12:43:47 -0700
+Received: from orsmsx110.amr.corp.intel.com (10.22.240.8) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 21 Jun 2013 12:43:47 -0700
 Received: from orsmsx103.amr.corp.intel.com ([169.254.2.83]) by
-	ORSMSX109.amr.corp.intel.com ([169.254.2.7]) with mapi id
-	14.03.0123.003; Fri, 21 Jun 2013 12:40:07 -0700
+	ORSMSX110.amr.corp.intel.com ([169.254.3.195]) with mapi id
+	14.03.0123.003; Fri, 21 Jun 2013 12:43:47 -0700
 From: "Zhang, Jessica" <jessica.zhang@intel.com>
 To: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: [yocto] [PATCH v2] Fix Eclipse workspace deadlock when restoring
-Thread-Index: AQHObo6DTGL5oV5OYk+dh6hKZZ7HhJlAkOCQ
-Date: Fri, 21 Jun 2013 19:40:05 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C46E75@ORSMSX103.amr.corp.intel.com>
+Thread-Index: AQHObo6DTGL5oV5OYk+dh6hKZZ7HhJlAkhWg
+Date: Fri, 21 Jun 2013 19:43:45 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C46E88@ORSMSX103.amr.corp.intel.com>
 References: <1371824807-17259-1-git-send-email-ioanax.grigoropol@intel.com>
 In-Reply-To: <1371824807-17259-1-git-send-email-ioanax.grigoropol@intel.com>
 Accept-Language: en-US
@@ -41,25 +41,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2013 19:40:28 -0000
+X-List-Received-Date: Fri, 21 Jun 2013 19:43:49 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ioana,
+OK more info. It seems if the project is remote, first we'll get the projec=
+t description failure since we haven't restored the remote connection, afte=
+r we dismiss the error and double click on the project and restore the RSE =
+connection, the project will be able to restore.  We should change the erro=
+r message into warning and tell user to restore their RSE connection.
 
-With the latest changes, now with a remote project if I want to restore the=
- project, I'm getting following errors:
-
-
-Failed to read the project description file (.project) for 'poky'.  The fil=
-e has been changed on disk, and it now contains invalid information.  The p=
-roject will not function properly until the description file is restored to=
- a valid state.
-
-This is when I tried on my windows machine.
-
-Thanks,
 Jessica
 
 -----Original Message-----
