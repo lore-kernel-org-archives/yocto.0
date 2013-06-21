@@ -1,24 +1,27 @@
 Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A1D8E013DE
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 05:44:52 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97A79E013A7
+	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 05:44:53 -0700 (PDT)
 Received: from localhost (mysterion.bmw-carit.intra [192.168.101.105])
 	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
 	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id BBCB0400B5;
-	Fri, 21 Jun 2013 13:48:30 +0200 (CEST)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 37FED402B1;
+	Fri, 21 Jun 2013 13:48:31 +0200 (CEST)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Fri, 21 Jun 2013 14:44:40 +0200
-Message-Id: <8747086bfca592129ab38a4f0a90182488e5cc9c.1371818609.git.timo.mueller@bmw-carit.de>
+Date: Fri, 21 Jun 2013 14:44:43 +0200
+Message-Id: <8759d4ba2272a2f923431e7d761c8957ac594d60.1371818609.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.8.1.4
-In-Reply-To: <cover.1371818609.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <eb8b7614daafd5a2c359a83dae533c62e2667bf6.1371818609.git.timo.mueller@bmw-carit.de>
 References: <cover.1371818609.git.timo.mueller@bmw-carit.de>
+	<8747086bfca592129ab38a4f0a90182488e5cc9c.1371818609.git.timo.mueller@bmw-carit.de>
+	<3febae446e2129227471238802a4185719bddc99.1371818609.git.timo.mueller@bmw-carit.de>
+	<eb8b7614daafd5a2c359a83dae533c62e2667bf6.1371818609.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1371818609.git.timo.mueller@bmw-carit.de>
 References: <cover.1371818609.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv2 1/8] plugins/sdk.ide: Use an internationalized dialog title
+Subject: [PATCHv2 4/8] plugins/sdk.ide: Remove project context from method names
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,37 +33,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2013 12:44:55 -0000
+X-List-Received-Date: Fri, 21 Jun 2013 12:44:56 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
+Through the context of the ProjectPreferenceUtil class we can infer
+that all methods act on project preferences. Having this context
+information duplicated in the method name is not needed anymore and
+can be removed to get a cleaner API.
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ .../sdk/ide/preferences/YoctoSDKPreferencePage.java      |  6 +++---
+ .../sdk/ide/preferences/YoctoSDKProjectPropertyPage.java | 16 ++++++++--------
+ .../org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java  | 12 ++++++------
+ .../sdk/ide/wizard/NewYoctoProjectTemplateProcess.java   |  2 +-
+ 4 files changed, 18 insertions(+), 18 deletions(-)
 
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
-index e5a7897..d192538 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/YoctoUISetting.java
-@@ -42,7 +42,6 @@ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
- import org.yocto.sdk.ide.preferences.PreferenceConstants;
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
+index e8123e2..4e6ca2a 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKPreferencePage.java
+@@ -241,7 +241,7 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
  
- public class YoctoUISetting {
--
- 	private static final String ENV_SCRIPT_FILE_PREFIX = "environment-setup-";
+ 		for (IProject project : yoctoProjects)
+ 		{
+-			ProjectPreferenceUtils.saveProfilesToProjectPreferences(profileElement, project);
++			ProjectPreferenceUtils.saveProfiles(profileElement, project);
+ 			YoctoUIElement elem = YoctoSDKUtils.getElemFromStore(
+ 											YoctoSDKPlugin.getProfilePreferenceStore(PreferenceConstants.STANDARD_PROFILE_NAME));
+ 			ProjectPreferenceUtils.saveElemToProjectEnv(elem, project);
+@@ -255,7 +255,7 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
  
- 	private SelectionListener fSelectionListener;
-@@ -375,7 +374,7 @@ public class YoctoUISetting {
- 		if ((result != SDKCheckResults.SDK_PASS) && showErrorDialog) {
- 			Display display = Display.getCurrent();
- 			ErrorDialog.openError(display.getActiveShell(),
--									"Yocto Project Configuration Error",
-+									YoctoSDKChecker.SDKCheckRequestFrom.Other.getErrorMessage(),
- 									YoctoSDKChecker.getErrorMessage(result, from),
- 									new Status(Status.ERROR, YoctoSDKPlugin.PLUGIN_ID, result.getMessage()));
+ 		for (IProject project : yoctoProjects)
+ 		{
+-			ProjectPreferenceUtils.saveProfilesToProjectPreferences(profileElement, project);
++			ProjectPreferenceUtils.saveProfiles(profileElement, project);
+ 		}
+ 	}
  
+@@ -296,7 +296,7 @@ public class YoctoSDKPreferencePage extends PreferencePage implements IWorkbench
+ 
+ 	private boolean projectUsesProfile(IProject project, String profile)
+ 	{
+-		YoctoProfileElement profileElement = ProjectPreferenceUtils.getProfilesFromProjectPreferences(project);
++		YoctoProfileElement profileElement = ProjectPreferenceUtils.getProfiles(project);
+ 
+ 		if (!profileElement.getSelectedProfile().equals(profile)) {
+ 			return false;
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+index 1f82fe1..f6026ee 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+@@ -64,7 +64,7 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+ 		IProject project = getProject();
+ 
+ 		YoctoProfileElement globalProfileElement= YoctoSDKUtils.getProfilesFromDefaultStore();
+-		YoctoProfileElement profileElement = ProjectPreferenceUtils.getProfilesFromProjectPreferences(project);
++		YoctoProfileElement profileElement = ProjectPreferenceUtils.getProfiles(project);
+ 
+ 		String selectedProfile = profileElement.getSelectedProfile();
+ 		if (!globalProfileElement.contains(selectedProfile)) {
+@@ -73,10 +73,10 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+ 
+ 		yoctoProfileSetting = new YoctoProfileSetting(
+ 				new YoctoProfileElement(globalProfileElement.getProfilesAsString(), selectedProfile), this, false);
+-		boolean useProjectSpecificSetting = ProjectPreferenceUtils.getUseProjectSpecificOptionFromProjectPreferences(project);
++		boolean useProjectSpecificSetting = ProjectPreferenceUtils.getUseProjectSpecificOption(project);
+ 
+ 		if (useProjectSpecificSetting) {
+-			yoctoUISetting = new YoctoUISetting(ProjectPreferenceUtils.getElemFromProjectPreferences(project));
++			yoctoUISetting = new YoctoUISetting(ProjectPreferenceUtils.getElem(project));
+ 		} else {
+ 			yoctoUISetting = new YoctoUISetting(YoctoSDKUtils.getElemFromStore(YoctoSDKPlugin.getProfilePreferenceStore(selectedProfile)));
+ 		}
+@@ -154,12 +154,12 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+ 				return false;
+ 			}
+ 
+-			ProjectPreferenceUtils.saveUseProjectSpecificOptionToProjectPreferences(project, true);
+-			ProjectPreferenceUtils.saveProfilesToProjectPreferences(yoctoProfileSetting.getCurrentInput(), project);
+-			ProjectPreferenceUtils.saveElemToProjectPreferences(yoctoUISetting.getCurrentInput(), project);
++			ProjectPreferenceUtils.saveUseProjectSpecificOption(project, true);
++			ProjectPreferenceUtils.saveProfiles(yoctoProfileSetting.getCurrentInput(), project);
++			ProjectPreferenceUtils.saveElem(yoctoUISetting.getCurrentInput(), project);
+ 		} else {
+-			ProjectPreferenceUtils.saveUseProjectSpecificOptionToProjectPreferences(project, false);
+-			ProjectPreferenceUtils.saveProfilesToProjectPreferences(yoctoProfileSetting.getCurrentInput(), project);
++			ProjectPreferenceUtils.saveUseProjectSpecificOption(project, false);
++			ProjectPreferenceUtils.saveProfiles(yoctoProfileSetting.getCurrentInput(), project);
+ 		}
+ 
+ 		ProjectPreferenceUtils.saveElemToProjectEnv(yoctoUISetting.getCurrentInput(), getProject());
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
+index 50904c1..a06a03c 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/ProjectPreferenceUtils.java
+@@ -36,7 +36,7 @@ public class ProjectPreferenceUtils {
+ 	private static final String CONSOLE_MESSAGE  = "Menu.SDK.Console.Configure.Message";
+ 
+ 	/* Get POKY Preference settings from project's preference store */
+-	public static YoctoUIElement getElemFromProjectPreferences(IProject project) {
++	public static YoctoUIElement getElem(IProject project) {
+ 		IScopeContext projectScope = new ProjectScope(project);
+ 		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
+ 		if (projectNode == null) {
+@@ -98,7 +98,7 @@ public class ProjectPreferenceUtils {
+ 	}
+ 
+ 	/* Get profiles and selected profile from the project's preference store */
+-	public static YoctoProfileElement getProfilesFromProjectPreferences(IProject project) {
++	public static YoctoProfileElement getProfiles(IProject project) {
+ 		IScopeContext projectScope = new ProjectScope(project);
+ 		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
+ 
+@@ -112,7 +112,7 @@ public class ProjectPreferenceUtils {
+ 		return new YoctoProfileElement(profiles, selectedProfile);
+ 	}
+ 
+-	public static boolean getUseProjectSpecificOptionFromProjectPreferences(IProject project) {
++	public static boolean getUseProjectSpecificOption(IProject project) {
+ 		IScopeContext projectScope = new ProjectScope(project);
+ 		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
+ 		if (projectNode == null) {
+@@ -130,7 +130,7 @@ public class ProjectPreferenceUtils {
+ 	}
+ 
+ 	/* Save POKY Preference settings to project's preference store */
+-	public static void saveElemToProjectPreferences(YoctoUIElement elem, IProject project) {
++	public static void saveElem(YoctoUIElement elem, IProject project) {
+ 		IScopeContext projectScope = new ProjectScope(project);
+ 		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
+ 		if (projectNode == null) {
+@@ -199,7 +199,7 @@ public class ProjectPreferenceUtils {
+ 	}
+ 
+ 	/* Save profiles and selected profile to the project's preference store */
+-	public static void saveProfilesToProjectPreferences(YoctoProfileElement profileElement, IProject project) {
++	public static void saveProfiles(YoctoProfileElement profileElement, IProject project) {
+ 		IScopeContext projectScope = new ProjectScope(project);
+ 		IEclipsePreferences projectPreferences = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
+ 
+@@ -218,7 +218,7 @@ public class ProjectPreferenceUtils {
+ 		}
+ 	}
+ 
+-	public static void saveUseProjectSpecificOptionToProjectPreferences(IProject project, boolean useProjectSpecificSetting) {
++	public static void saveUseProjectSpecificOption(IProject project, boolean useProjectSpecificSetting) {
+ 		IScopeContext projectScope = new ProjectScope(project);
+ 		IEclipsePreferences projectNode = projectScope.getNode(YoctoSDKUtilsConstants.PROJECT_SCOPE);
+ 		if (projectNode == null) {
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
+index f64043d..d8c1232 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/wizard/NewYoctoProjectTemplateProcess.java
+@@ -206,7 +206,7 @@ public class NewYoctoProjectTemplateProcess extends ProcessRunner {
+ 		YoctoSDKChecker.checkIfGloballySelectedYoctoProfileIsValid();
+ 
+ 		YoctoProfileElement profileElement = YoctoSDKUtils.getProfilesFromDefaultStore();
+-		ProjectPreferenceUtils.saveProfilesToProjectPreferences(profileElement, project);
++		ProjectPreferenceUtils.saveProfiles(profileElement, project);
+ 
+ 		IPreferenceStore selecteProfileStore = YoctoSDKPlugin.getProfilePreferenceStore(profileElement.getSelectedProfile());
+ 		YoctoUIElement elem = YoctoSDKUtils.getElemFromStore(selecteProfileStore);
 -- 
 1.8.1.4
 
