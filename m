@@ -1,38 +1,29 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AECEE0140A
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 10:02:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=n6eSi8ieiMNgBOTtXt6sUckwu5SpWcnInf5KX/bemq4=; 
-	b=PwO9hu/8eEHz0GhRY0TX5af8uz5vrx4NENTG2+KOre4UQr1gRSrZJfB63jG5fprzlDw9DrolaOZYiRJV8kr3PuaCPem64S4mXxbFAIrCGzE8IAue0hFi9FDzh0c2L15oTMHxm2wzQzKBP3YC6njv1gDO7j7g3+MA+KM+s3AptAw=;
-Received: from [109.224.129.17] (port=5870
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1Uq4j1-0010dB-Hk; Fri, 21 Jun 2013 18:02:15 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <2225944.Df6aZdSxGh@helios>
-Date: Fri, 21 Jun 2013 18:02:17 +0100
-Message-Id: <DEB8F889-0695-4A27-86D6-353469368852@keylevel.com>
-References: <AE80DF1D-A094-4F9F-96BE-8A782F1DB5FE@keylevel.com>
-	<2225944.Df6aZdSxGh@helios>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: yocto@yoctoproject.org
-Subject: Re: Openembedded-core
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-mealy.atl.sa.earthlink.net
+	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B39FE0140A
+	for <yocto@yoctoproject.org>; Fri, 21 Jun 2013 10:17:30 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=jEDVeo9mCn5fyIVMhPs9RR0viSnSNkPTVY5/pmP6aNy/XY4MqG4t0bCqMQB+CMqU;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1Uq4xl-0007D4-2m; Fri, 21 Jun 2013 13:17:29 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Tomas Frydrych'" <tf+lists.yocto@r-finger.com>, <yocto@yoctoproject.org>
+References: <F509B6E140614CC390C878276D4AE429@PAULD>
+	<51C41F65.6040804@r-finger.com>
+In-Reply-To: <51C41F65.6040804@r-finger.com>
+Date: Fri, 21 Jun 2013 10:17:36 -0700
+Message-ID: <ED654F8EBE3C4BE3B77C87CB95EC5183@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac5uY0pwmP8LG44+Q+C822JZ30UzfgAP5KkQ
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688ee1ed45c172c6d63673bdcc3870b67c4350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: -rt and COMPATIBLE_MACHINES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,42 +35,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2013 17:02:19 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 21 Jun 2013 17:17:33 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Thanks Paul / Elizabeth,
+> From: Tomas Frydrych
+> 
+> On 20/06/13 20:40, Paul D. DeRocco wrote:
+> > My question is this: why was I able to build core-image base without
+> > complaint in the first place? The kernel recipes it has available
+> > (linux-yocto_*) also set COMPATIBLE_MACHINE to a list of 
+> qemu machines.
+> 
+> It probably built the linux-dummy recipe. An easy way to see which
+> recipe is being used is to run 'bitbake virtual/kernel'.
 
-On 21 Jun 2013, at 17:53, Paul Eggleton wrote:
+I'm not sure what linux-dummy is for, but given that it's full of empty
+tasks, that looks like something that won't boot. But the resulting image
+booted fine.
 
-> On Friday 21 June 2013 17:47:13 Chris Tapp wrote:
->> Simple question - Is openembedded-core included in one of the Yocto =
-meta
->> layers, or do I need to download it from the OE git repository?
->=20
-> It comes as part of the poky repository if you're using that. The =
-alternative=20
-> is to use bitbake and OE-Core separately.
+-- 
 
-I thought it was, but I can't get meta-fsl-arm-extras to build and =
-thought it was worth checking this out first ;-)
-
-Time to dig...
-
-
-> Cheers,
-> Paul
->=20
-> --=20
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
