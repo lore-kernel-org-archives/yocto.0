@@ -1,31 +1,32 @@
 Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ee0-f43.google.com (mail-ee0-f43.google.com [74.125.83.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50B21E014F1
-	for <yocto@yoctoproject.org>; Sat, 22 Jun 2013 21:01:50 -0700 (PDT)
-Received: by mail-ee0-f43.google.com with SMTP id l10so5274475eei.16
-	for <yocto@yoctoproject.org>; Sat, 22 Jun 2013 21:01:50 -0700 (PDT)
+Received: from mail-ee0-f51.google.com (mail-ee0-f51.google.com [74.125.83.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D6E8E014F5
+	for <yocto@yoctoproject.org>; Sat, 22 Jun 2013 21:04:28 -0700 (PDT)
+Received: by mail-ee0-f51.google.com with SMTP id e52so5323053eek.24
+	for <yocto@yoctoproject.org>; Sat, 22 Jun 2013 21:04:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type:x-gm-message-state;
-	bh=64bN+605pMuENVKS66gA6tZuIkefic4Cu6e2C5ZhmRo=;
-	b=PacLerFKF3FklGY5NIy9jc/roq4/5GMFa+RQAvU0T6dmXTGtS9kglVA3+OLR4uHecu
-	4GKrff4fP4WTos+6Fta4ce7OKTZDOJJV7YXmpAbKff3sc1oIsDxiecXS+hANNlOdTmKq
-	lOOcK707aBTtSZbHKRd0cyYT6tli0wYRFTy5qTv0w3F5M9fIeGFWumkv4HwVNtsqqbRh
-	hCC8SmxFMz1aHapTNutEh1LymOu7xh82OY02L+IO5bnQKGVcxk+FsX9/b0Yr0Sb0LPJM
-	Odvo8SHguUCVHxekBSdFAmfihdSi/OpQQvALRuXYndGEplFkHll/9GRbOO53kLzq7qGu
-	cIZg==
+	bh=alZPdx73ImzbKcGkzm+UZYa0eMu+M4S7b2DIyZbk9tw=;
+	b=RSdDhqquL6UeXCdA9z6rXZcxN9pMRThJ+wKRANpcTaXrI2aqxevXUBjXNQt/Rv1fjo
+	fORIgnH21KDIcdtl5NtvXIicyB2k0K+MYo/8r7WBfb8os46PMs4mCcTRHxXlTXU+h6oI
+	MHz2okvU01tuKvQ2N6ACXGNUHMNvQVUy/5BjzQ1iEvyfeYG5unGah9MrcucQwtEsComO
+	vT9mrrD04JI3XBkI1cV9y4MRrx9vvZXk9mvI8JDx7Hs5lm5Pk4/SlWCtfanCXd4Jzo7o
+	6tP36OBH4XJyN3wB58OQuWbu1igJvQWjz64s0+RBojnk133UppOgcX7F2U1B0WwJIwD0
+	DW2Q==
 MIME-Version: 1.0
-X-Received: by 10.14.53.75 with SMTP id f51mr19086427eec.30.1371960109924;
-	Sat, 22 Jun 2013 21:01:49 -0700 (PDT)
-Received: by 10.14.117.65 with HTTP; Sat, 22 Jun 2013 21:01:49 -0700 (PDT)
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50B40@ORSMSX101.amr.corp.intel.com>
+X-Received: by 10.15.26.68 with SMTP id m44mr19081822eeu.110.1371960267439;
+	Sat, 22 Jun 2013 21:04:27 -0700 (PDT)
+Received: by 10.14.117.65 with HTTP; Sat, 22 Jun 2013 21:04:27 -0700 (PDT)
+In-Reply-To: <CALmOhgmP1CHSYj0NiX0wkr9w8p8MvosbB3decqEp2yd7ZcKi7A@mail.gmail.com>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50B40@ORSMSX101.amr.corp.intel.com>
-Date: Sun, 23 Jun 2013 00:01:49 -0400
-Message-ID: <CALmOhgmP1CHSYj0NiX0wkr9w8p8MvosbB3decqEp2yd7ZcKi7A@mail.gmail.com>
+	<CALmOhgmP1CHSYj0NiX0wkr9w8p8MvosbB3decqEp2yd7ZcKi7A@mail.gmail.com>
+Date: Sun, 23 Jun 2013 00:04:27 -0400
+Message-ID: <CALmOhgnfZs35LQ3HBpWTqES7N=Gw5H_JidQQ=2WnrXWcohy51w@mail.gmail.com>
 From: Trevor Woerner <trevor.woerner@linaro.org>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQlOLh01IwOmY5sLWE8FxvkbiD9B8w295vEjIDzkJBk0I62ZmHlklgW+fZUhCxiyHRpVLMMh
+X-Gm-Message-State: ALoCoQlgBgKtP0oAnEtEBV/0jxBrn32UUXq6gFdbfskS+Y19BvKl38GbxGzgoOeBo84PnmAI680I
 Subject: Re: Documenting YP Development Environment in more detail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,14 +39,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 23 Jun 2013 04:01:52 -0000
+X-List-Received-Date: Sun, 23 Jun 2013 04:04:34 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Has anyone else heard of vimcasts.org?
+On 23 June 2013 00:01, Trevor Woerner <trevor.woerner@linaro.org> wrote:
+> Has anyone else heard of vimcasts.org?
 
-Short, concise, detailed screen-casts of specific Yocto tasks coupled
-with "show notes", I think, would be an awesome other way of
-delivering this information.
+    http://vimcasts.org/episodes/archive
 
-yoctocasts.org anyone?
+is a good example of what I'm thinking about.
 
