@@ -1,28 +1,26 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC68DE01517
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2013 16:09:16 -0700 (PDT)
-Received: by mail-wg0-f51.google.com with SMTP id e11so7912744wgh.30
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2013 16:09:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:cc:content-type;
-	bh=XES1jWSD8L/R2sZ8TTm6mOemN0pKqJ3R69KfTEDvYi8=;
-	b=GhmTCZyd6unctfPu9BnJ0sXksaKIgwTslo5uX1f0s8EiI0E8ZT+SJlL+gzCPCYL5rI
-	mOYdhB5tbh2ayqWD+S0GGVjo74p4QJh8WFup45SdYoMkE527Ic+OurHQ74da1btwOtOd
-	0ShEEHaN4Mgkt8p36WBgkZm8CkdgfmL9mJOaZCtEhzzephTI4ldvaH0dqCFwHFqJgduA
-	OAI1AOwfQazWoMfrzrLhsQMUd/MRUZvVi6rAm+tDn4DbxsDENtEP22hLPuHSkvRvl3nR
-	Diva1HJcs5p6ZXl34snQcbfA49DohQwtw6yCcUeweq63Q5YKYfmClnRTzqy4gjybaSZ6
-	jEEw==
-X-Received: by 10.180.108.232 with SMTP id hn8mr4326911wib.54.1372028954918;
-	Sun, 23 Jun 2013 16:09:14 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B4A6E01403
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2013 20:25:58 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5O3PtLd009881
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 23 Jun 2013 20:25:56 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.22.168) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.342.3; Sun, 23 Jun 2013 20:25:55 -0700
+Message-ID: <51C7BC42.7010304@windriver.com>
+Date: Sun, 23 Jun 2013 23:25:54 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:17.0) Gecko/20130509 Thunderbird/17.0.6
 MIME-Version: 1.0
-Received: by 10.194.0.227 with HTTP; Sun, 23 Jun 2013 16:08:54 -0700 (PDT)
-From: Insop Song <insop.song@gmail.com>
-Date: Sun, 23 Jun 2013 16:08:54 -0700
-Message-ID: <CACzyEJ97cTe5x7OOqQVjkCeUa1NBv750-=y=7tSWgcaoQnEa7A@mail.gmail.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Cc: Darren Hart <darren.hart@intel.com>, zhenhua.luo@freescale.com
-Subject: How NOT to include kernel image to the rootfs?
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+References: <05209F2D24AD48348599D707CB5F659F@PAULD>
+In-Reply-To: <05209F2D24AD48348599D707CB5F659F@PAULD>
+Cc: yocto@yoctoproject.org
+Subject: Re: linux-yocto-rt and cgroups
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,54 +32,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 23 Jun 2013 23:09:17 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3b9c4d7ac6df04dfda62fe
+X-List-Received-Date: Mon, 24 Jun 2013 03:25:59 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---e89a8f3b9c4d7ac6df04dfda62fe
-Content-Type: text/plain; charset=ISO-8859-1
+On 13-06-23 3:48 PM, Paul D. DeRocco wrote:
+> I built core-image-base with Tom Zanussi's Cedartrail BSP for Dylan, which
+> worked fine. (Thanks, Tom.) Then, I switched over to linux-yocto-rt, and it
+> still worked fine. Then, I tried to switch to systemd, and it complains
+> bitterly on startup that there is no cgroup support in the kernel.
+>
+> I'd like to use an RT kernel, so that I can squeeze out as many notes as
+> possible (it's a musical instrument) before getting sound driver underruns.
+> And I'd like to use systemd, so that it boots fast. Do I have to choose one
+> or the other? Is there some reason cgroups are left out of linux-yocto-rt?
+> If not, is there an easy way to put it back in, without becoming an expert
+> in kernel configuration?
 
-Hi,
+There's no technical reason at all. In fact, pre 3.8 the -rt kernel used
+to inherit more of the standard kernel's configuration and hence enabled
+cgroups. In 3.8, we defined a new policy for the -rt kernel, that used
+parts of the standard kernel's configuration, but not all.
 
-- Question
-"How NOT to include kernel image to the rootfs?"
+We can definitely add functionality to this baseline, and I'll be adding
+more in the upcoming dev cycle for yocto 1.5.
 
-- Background
-In our application, we use u-boot to load kernel and rootfs from nand flash
-separately.
+In the meantime you can enable it, and let me know how it goes. I can then
+update the -rt baseline config, knowing that someone else is testing it
+too.
 
-I don't want to include kernel image inside /boot as I don't need it over
-there.
-I could untar the rootfs, remove, and tar it up again, but I would like to
-find a way within the yocto framework.
+To enable it, create a linux-yocto_3.8.bbappend, and add:
 
-I was not able to find a way by looking up the recipies and googling on
-this topic.
+  KERNEL_FEATURES_append = " features/cgroups/cgroups.scc"
 
-Could any one help me?
+And you'll get the same cgroups config that you have with the standard
+linux-yocto kernel.
 
-Thank you,
+Cheers,
 
-Insop
+Bruce
 
---e89a8f3b9c4d7ac6df04dfda62fe
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+>
 
-<div dir=3D"ltr">Hi,<div><br></div><div style>- Question</div><div>&quot;Ho=
-w NOT to include kernel image to the rootfs?&quot;<br></div><div><br></div>=
-<div style>- Background</div><div style>In our application, we use u-boot t=
-o load kernel and rootfs from nand flash separately.</div>
 
-<div style><br></div><div style>I don&#39;t want to include kernel image in=
-side /boot as I don&#39;t need it over there.</div><div style>I could untar=
- the rootfs, remove, and tar it up again, but I would like to find a way wi=
-thin the yocto framework.</div>
-
-<div style><br></div><div style>I was not able to find a way by looking up =
-the recipies and googling on this topic.</div><div style><br></div><div sty=
-le>Could any one help me?</div><div style><br></div><div style>Thank you,</=
-div>
-
-<div style><br></div><div style>Insop</div></div>
-
---e89a8f3b9c4d7ac6df04dfda62fe--
