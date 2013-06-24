@@ -1,24 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FA1DE01403
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 08:40:57 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 24 Jun 2013 08:40:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,929,1363158000"; d="scan'208";a="321754027"
-Received: from unknown (HELO helios.localnet) ([10.252.122.47])
-	by azsmga001.ch.intel.com with ESMTP; 24 Jun 2013 08:40:55 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Brian Karcz <briank@russound.com>
-Date: Mon, 24 Jun 2013 16:40:54 +0100
-Message-ID: <1409977.06We3GSB1m@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.3 (Linux/3.8.0-25-generic; KDE/4.10.3; i686; ; )
-In-Reply-To: <7941E07E1E020448937ACA7D4279E632018398AF5AA8@powerhog>
-References: <7941E07E1E020448937ACA7D4279E632018398AF5AA8@powerhog>
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-qa0-f51.google.com (mail-qa0-f51.google.com
+	[209.85.216.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7699BE01403
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 08:59:47 -0700 (PDT)
+Received: by mail-qa0-f51.google.com with SMTP id f11so2314580qae.17
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 08:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=wQMeSqNDxtmfguP4J78Cy0Hqg0JCOmBE75uXXB6gypU=;
+	b=ICxzPZJ0klCu4fyrCiaWmcq5hUKDYnj2jNzvdzFMnAUPrFHe35/SCqhmXlP3TY2k27
+	gVh0LnUpnAAXaMEj37i0VfrhjZ8vamMu9NBLZcSGxOB9vpBoIucaVpsiznETb/gIgBj9
+	5oX+oQNMICtkIFNDMiu+ljxcTMR50lixWxB/NhGfk8XJbXTFehxIUsn7LOBAi8NGD1Wa
+	wmRi7Tvza8eRYhnOzvc4t4yAUeX5VptoCKFPsXTwbPR2zz9GO5CszvArNkJoBSsR8c3P
+	UFoVZrc2dF+lNFwLiyXeJdYsn8COK+xG40zsLYzlmb8vREsl821VQEbgdiJmvH8Tyx1K
+	elHw==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Image recipes in Yocto 1.4 (dylan-9.0.0)
+X-Received: by 10.49.82.234 with SMTP id l10mr27956897qey.17.1372089587321;
+	Mon, 24 Jun 2013 08:59:47 -0700 (PDT)
+Received: by 10.49.97.68 with HTTP; Mon, 24 Jun 2013 08:59:47 -0700 (PDT)
+Date: Mon, 24 Jun 2013 17:59:47 +0200
+Message-ID: <CAFyqS9q5Z283rVhuDkdM4AUGeyEdfvUqJjj4qG3diVf83JY6Tg@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: linux-libc-header version mismatch?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,45 +34,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 15:40:58 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 24 Jun 2013 15:59:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Brian,
+Hi. We are using a 3.6 based kernel in our builds using a custom
+kernel recipe. However, I can see that the linux-libc-headers built
+but based on a 3.8 kernel?
+Is this really how it should be? Are we supposed to also make a custom
+recipe for the linux-libc-headers? The image seems to be executing
+fine but I am a bit worried about the version mismatch :(
 
-On Monday 24 June 2013 11:01:31 Brian Karcz wrote:
-> I have a question regarding the shared state code optimizations in yocto
-> 1.4. I'm in the process of upgrading one of our projects from Edison (6.0)
-> to Dylan (9.0.0) and am running into an issue with our existing image
-> recipe.
-> 
-> The recipe brings in files from a "files" directory in the image area. It
-> also adds an image preprocess command that takes action on those files in
-> the work area. After reading the version 1.4 migration guidelines and
-> examining both the old and new builds, it looks like the do_unpack task has
-> been optimized out of the way images are built in the new release. The
-> files listed in the SRC_URI variable don't get populated in the work
-> directory, and actions taken in the image preprocess command fail.
-> 
-> Is there a way to stop this optimization and have the image build populate
-> the work directory as it has in the past?
+Hans
 
-You should be able to do this in your image recipe:
-
-python () {
-        d.delVarFlag("do_fetch", "noexec")
-        d.delVarFlag("do_unpack", "noexec")
-}
-
-This isn't related to shared state, btw, just that image.bbclass disables 
-these tasks by default as of version 1.2 (denzil).
-
-Cheers,
-Paul
-
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+PS. I believe I posted this question before but I am no longer 100%
+convinced it actually left my outbox. At least I never got a response,
+which usually happens very quickly :)
 
