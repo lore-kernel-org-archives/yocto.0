@@ -1,37 +1,39 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35A9AE01525
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 05:56:21 -0700 (PDT)
-Received: by mail-ee0-f52.google.com with SMTP id c50so5967925eek.39
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 05:56:20 -0700 (PDT)
+Return-Path: <peachj@lexmark.com>
+Received: from exprod8og120.obsmtp.com (exprod8og120.obsmtp.com [64.18.3.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0682FE01528
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 05:59:57 -0700 (PDT)
+Received: from mail-ob0-f178.google.com ([209.85.214.178]) (using TLSv1) by
+	exprod8ob120.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKUchCzBecrux2jMedHHFCXx24YnrruCsl@postini.com;
+	Mon, 24 Jun 2013 06:00:01 PDT
+Received: by mail-ob0-f178.google.com with SMTP id fb19so10731332obc.37
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 05:59:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type:x-gm-message-state;
-	bh=6Mh1RZMi7bfiJshqN1U1gqTu/kicBIamennxT6WKEco=;
-	b=PXuLEOMt0VvczjHtxhhS0HmCGFug0uFfyPJhco5mkSMQVkGBLDTk2wzXlU2mFG+H6H
-	h4nW0DW588IotWQGdBrSH781CrjSYk0Bw1BFmtlUYKCDbVeW5ioyGe2dC6P5LTfHVT3N
-	EnLlhRMYfJx0/7C1CMNjFSRmZ7apiI/dvCaI8C7jCFt+REsZU3esWRPk/4HyF3u3bS0p
-	9n+MiTSj7+s2GGT2kXN1Jr6NAUL9MxJfg8lF1jbizTb6bYrx2ea1w2JI1qM3Z0g7SbBw
-	hkamz6u1KKYJgrmjRjZRJILrE9dcLrU6QhFh9X2nxgsDF5PSxpocohISqWrhIKfJoRMM
-	LCLQ==
+	bh=8hSUvN/mw+Z2LULcWyrVOmVB7CB4HZuB4bRgzo7wH6M=;
+	b=cUNE/rut4NvkR44KeMcdPpQe9HTOpzhT/fx5Fxh02r5n1zS/QB/XmqmVqR89dUNI85
+	FzeBnyMvpdyDwTB5Wi8VOoMdVt5uJy0tX7aDMmFTZ0mGto57Mljq+yx094xJ+yROHgqs
+	Hlcg+nudeIjMFZKbQ/V5Bl7Ujy8rQo3fnU/whoZpZccaHM/JLudWHJLbVyxJQoPZOgIL
+	7CqIaW2SSxNEfXs8i2qvyKpKr+bOT3lZoqcXW4gxnbe3DnjrlaVu1DxXsj197DqGN82I
+	ZKDezCFG0Hc56XMKI1PKPpzJWhcUnmKn2UpJAKSpVOOXbUsomcaNwy5fMWEixnHMukmG
+	x3pA==
+X-Received: by 10.60.23.69 with SMTP id k5mr1544101oef.73.1372078796412;
+	Mon, 24 Jun 2013 05:59:56 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.15.102.68 with SMTP id bq44mr24756979eeb.89.1372078580156;
-	Mon, 24 Jun 2013 05:56:20 -0700 (PDT)
-Received: by 10.14.117.65 with HTTP; Mon, 24 Jun 2013 05:56:20 -0700 (PDT)
-In-Reply-To: <CA+gsK-orLA13kBxTSj-E451GQKKdy8L6hUHQxKQgFqg-VNiK8Q@mail.gmail.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50C1A@ORSMSX101.amr.corp.intel.com>
-	<CDE892AD.36CA0%david.c.stewart@intel.com>
-	<000001ce6de8$70639de0$512ad9a0$@annabooks.com>
-	<CALmOhg=h=j+uHiPdGShjZwtL97jsnhz1v6T4GRfcge0jJypTKQ@mail.gmail.com>
-	<CA+gsK-orLA13kBxTSj-E451GQKKdy8L6hUHQxKQgFqg-VNiK8Q@mail.gmail.com>
-Date: Mon, 24 Jun 2013 08:56:20 -0400
-Message-ID: <CALmOhgmpSjx-D-EycMX9AJv1Rwgrvv3VE2jKqakd4kUtbXYHJg@mail.gmail.com>
-From: Trevor Woerner <trevor.woerner@linaro.org>
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-X-Gm-Message-State: ALoCoQllf26Y7xQ99Z+jl8e16qBCfky8h2dgX7IyRfo33iiOgHfUhG6e3wYL7P4MqyceL9bnHfvi
+X-Received: by 10.60.23.69 with SMTP id k5mr1544097oef.73.1372078796298; Mon,
+	24 Jun 2013 05:59:56 -0700 (PDT)
+Received: by 10.76.163.70 with HTTP; Mon, 24 Jun 2013 05:59:56 -0700 (PDT)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
+Date: Mon, 24 Jun 2013 08:59:56 -0400
+Message-ID: <CA+QkY1A5haUkuhPGteJuyEE11JZ1Gdsr2_wA6x_ajzYbWzko1g@mail.gmail.com>
+From: Jerrod Peach <peachj@lexmark.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+X-Gm-Message-State: ALoCoQl0gnMi4p3rfnhQNzo+3US1Tzl9yPKIgoj4rtjMieco4RVJxXa2abYLy7sUzuX6HKbNwj9W/A7QMzuyu4CdJj7fSLhYuPHhIMSI60oW5fthderghpiZ1Ru9ViO883eRPtNPHLgfzeUXlYE9s3cJYSNntDX+fI3jTr2zAMaBuJrAO5Bmtfs=
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Documenting YP Development Environment in more detail
+Subject: Re: Documenting YP Development Environment in more detail - user configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,29 +45,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 12:56:22 -0000
+X-List-Received-Date: Mon, 24 Jun 2013 13:00:01 -0000
+Content-Type: multipart/alternative; boundary=047d7b33caaa41f32604dfe5fdec
+
+--047d7b33caaa41f32604dfe5fdec
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Rudi,
+Scott,
 
-On 24 June 2013 01:41, Rudolf Streif <rstreif@linuxfoundation.org> wrote:
->> If I were writing a book about Yocto/OE,
-> This is a project I am currently working on, a book about the Yocto Project.
+I think the general diagram looks pretty good, although I'd argue there's a
+little too much detail in the file list being shown, or else some of this
+new stuff is going to be useful in 1.5 when it's not doing anything in 1.4.
+ Here are the files I see as excessive:
 
-Awesome! That's great news! I was hoping someone would "beat me to it"
-:-) I look forward to reading it once it's done. Do you have a
-publisher or an expected release date?
+In meta-yocto:
 
-An appendix on Android's "repo" tool might make for an excellent
-addition; it seems some Yocto projects are showing lots of interest in
-using it.
+   - local.conf.example.extended
+   - site.conf.sample
+   - auto.conf (That's not even present in my 1.4 workspace.  Is this going
+   to be something new in 1.5?)
+
+In the build directory (these files aren't even present for me in 1.4):
+
+   - site.conf
+   - auto.conf
+
+Also, I don't see anything specifying machines.  Do you want to break that
+out here, or are you thinking that's going to come into play somewhere
+else?  If you're thinking of breaking out machines elsewhere, I'd argue
+that distros are on a similar level of detail and then also don't belong on
+this chart.
+
+Kind regards,
+
+Jerrod
 
 
->> in the first chapter I would
->> have the readers build their own filesystem/kernel from scratch
+On Sun, Jun 23, 2013 at 11:52 PM, Rifenbark, Scott M <
+scott.m.rifenbark@intel.com> wrote:
+
+> Hi,
 >
-> I thought about that too but I found it distracting.
+> I am going to start throwing these diagrams out to the mailing list and
+> see if I can get any feedback.  This attached figure dives into user
+> configuration.  Any and all discussion, correction, suggestions are welcome.
+>
+> Scott
+>
+> >-----Original Message-----
+> >From: Rifenbark, Scott M
+> >Sent: Friday, June 21, 2013 1:22 AM
+> >To: Paul Eggleton; Burton, Ross
+> >Subject: user configuration
+> >
+> >Paul and Ross,
+> >
+> >Attached is a sample figure that focuses on "User Configuration."  The
+> >illustration attempts to reveal where user configuration data comes from
+> >and what processes and user-driven commands are related to it.  Right
+> >now, BitBake is simply a box.
+> >
+> >If you can, give me some comments on this.  I would like to hear on
+> >level of detail as well as technical accuracy.
+> >
+> >Thanks,
+> >Scott
+> >
+> >Scott Rifenbark
+> >Intel Corporation
+> >Yocto Project Documentation
+> >503.712.2702
+> >503.341.0418 (cell)
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-Fair enough. Maybe I'll write some blog-ish post about it for those
-rare few who would like to see a bottom-up perspective :-)
+--047d7b33caaa41f32604dfe5fdec
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Scott,<div><br></div><div>I think the general diagram look=
+s pretty good, although I&#39;d argue there&#39;s a little too much detail =
+in the file list being shown, or else some of this new stuff is going to be=
+ useful in 1.5 when it&#39;s not doing anything in 1.4. =A0Here are the fil=
+es I see as excessive:</div>
+<div><br></div><div style>In meta-yocto:</div><div style><ul style><li styl=
+e>local.conf.example.extended<br></li><li style>site.conf.sample<br></li><l=
+i style>auto.conf (That&#39;s not even present in my 1.4 workspace. =A0Is t=
+his going to be something new in 1.5?)</li>
+</ul><div style>In the build directory (these files aren&#39;t even present=
+ for me in 1.4):</div><div style><ul style><li style>site.conf</li><li styl=
+e>auto.conf</li></ul><div style>Also, I don&#39;t see anything specifying m=
+achines. =A0Do you want to break that out here, or are you thinking that&#3=
+9;s going to come into play somewhere else? =A0If you&#39;re thinking of br=
+eaking out machines elsewhere, I&#39;d argue that distros are on a similar =
+level of detail and then also don&#39;t belong on this chart.</div>
+<div style><br></div><div style>Kind regards,</div><div style><br></div><di=
+v style>Jerrod</div></div></div></div><div class=3D"gmail_extra"><br><br><d=
+iv class=3D"gmail_quote">On Sun, Jun 23, 2013 at 11:52 PM, Rifenbark, Scott=
+ M <span dir=3D"ltr">&lt;<a href=3D"mailto:scott.m.rifenbark@intel.com" tar=
+get=3D"_blank">scott.m.rifenbark@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi,<br>
+<br>
+I am going to start throwing these diagrams out to the mailing list and see=
+ if I can get any feedback. =A0This attached figure dives into user configu=
+ration. =A0Any and all discussion, correction, suggestions are welcome.<br>
+
+<br>
+Scott<br>
+<br>
+&gt;-----Original Message-----<br>
+&gt;From: Rifenbark, Scott M<br>
+&gt;Sent: Friday, June 21, 2013 1:22 AM<br>
+&gt;To: Paul Eggleton; Burton, Ross<br>
+&gt;Subject: user configuration<br>
+&gt;<br>
+&gt;Paul and Ross,<br>
+&gt;<br>
+&gt;Attached is a sample figure that focuses on &quot;User Configuration.&q=
+uot; =A0The<br>
+&gt;illustration attempts to reveal where user configuration data comes fro=
+m<br>
+&gt;and what processes and user-driven commands are related to it. =A0Right=
+<br>
+&gt;now, BitBake is simply a box.<br>
+&gt;<br>
+&gt;If you can, give me some comments on this. =A0I would like to hear on<b=
+r>
+&gt;level of detail as well as technical accuracy.<br>
+&gt;<br>
+&gt;Thanks,<br>
+&gt;Scott<br>
+&gt;<br>
+&gt;Scott Rifenbark<br>
+&gt;Intel Corporation<br>
+&gt;Yocto Project Documentation<br>
+&gt;<a href=3D"tel:503.712.2702" value=3D"+15037122702">503.712.2702</a><br=
+>
+&gt;<a href=3D"tel:503.341.0418" value=3D"+15033410418">503.341.0418</a> (c=
+ell)<br>
+<br>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--047d7b33caaa41f32604dfe5fdec--
