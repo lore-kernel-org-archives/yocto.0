@@ -1,48 +1,34 @@
-Return-Path: <B19537@freescale.com>
-Received: from db8outboundpool.messaging.microsoft.com
-	(mail-db8lp0184.outbound.messaging.microsoft.com [213.199.154.184])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF5D4E01403
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 02:12:18 -0700 (PDT)
-Received: from mail148-db8-R.bigfish.com (10.174.8.242) by
-	DB8EHSOBE018.bigfish.com (10.174.4.81) with Microsoft SMTP Server id
-	14.1.225.23; Mon, 24 Jun 2013 09:12:16 +0000
-Received: from mail148-db8 (localhost [127.0.0.1])	by
-	mail148-db8-R.bigfish.com (Postfix) with ESMTP id 87722A033E;
-	Mon, 24 Jun 2013 09:12:16 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -2
-X-BigFish: VS-2(zz9371I542I1432Izz1f42h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ah1fc6hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3h947hd25hf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1d0ch1d2eh1d3fh1dfeh1dffh1e1dhbe9i1155h)
-Received: from mail148-db8 (localhost.localdomain [127.0.0.1]) by mail148-db8
-	(MessageSwitch) id 1372065134125060_13628;
-	Mon, 24 Jun 2013 09:12:14 +0000 (UTC)
-Received: from DB8EHSMHS029.bigfish.com (unknown [10.174.8.253])	by
-	mail148-db8.bigfish.com (Postfix) with ESMTP id 1ACFEC02DF;
-	Mon, 24 Jun 2013 09:12:14 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by DB8EHSMHS029.bigfish.com
-	(10.174.4.39) with Microsoft SMTP Server (TLS) id 14.16.227.3;
-	Mon, 24 Jun 2013 09:12:11 +0000
-Received: from 039-SN2MPN1-022.039d.mgd.msft.net ([169.254.2.148]) by
-	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
-	14.02.0328.011; Mon, 24 Jun 2013 09:12:09 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: "insop.song@gmail.com" <insop.song@gmail.com>
-Thread-Topic: [yocto] How NOT to include kernel image to the rootfs?
-Thread-Index: AQHOcLiM1nk9T8wbFkWxqWZ4eL0rbZlEklwAgAABcyA=
-Date: Mon, 24 Jun 2013 09:12:08 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A015BCAFD@039-SN2MPN1-022.039d.mgd.msft.net>
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 854FEE01525
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 05:05:51 -0700 (PDT)
+Received: by mail-wi0-f170.google.com with SMTP id ey16so2570549wid.5
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 05:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=0zHRz5P97tsJOghQ7Fnapgc16enf22KuX0ePDNRg0Gc=;
+	b=JhSREYX2OlrpYHClI4lAQ4OSVTV5qmczABixqs2EV3Fldf2Y5vqm8ZcbSRSuVhh8Hd
+	JM9r3DLZ7M8yXX3TTJW2YeNGeFlP49z8qJnURFIVaO6CB6M7WLqi/1JAI7GzvK7j1zOP
+	us32xnAPNcGkgP9iSoGsZMqzVaCIGeyqMlcYhKHEhNtNDH8sGBbLXEn+vR/rO+mupojN
+	+iL85cAJasBHmc2PJd5wnl0FE0HQeg7vEY5duqc8Bwy9FX1j0pKuYNhooWqrN6da3JNw
+	yX2gEABafkuzTFZJgUq36uRB0nWQP3+bRlGEgRs0R5d31P2r7TmQJZ5nlIyef2NmIpCV
+	clxw==
+X-Received: by 10.194.19.3 with SMTP id a3mr16890774wje.54.1372075550595; Mon,
+	24 Jun 2013 05:05:50 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.194.0.227 with HTTP; Mon, 24 Jun 2013 05:05:29 -0700 (PDT)
+In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A015BCAFD@039-SN2MPN1-022.039d.mgd.msft.net>
 References: <CACzyEJ97cTe5x7OOqQVjkCeUa1NBv750-=y=7tSWgcaoQnEa7A@mail.gmail.com>
 	<51C7BD29.6060607@windriver.com>
 	<CACzyEJ-A-U=0XV3qUxV-14+Cxn+r8aZOrM+g7EKBXJWdHD=T=A@mail.gmail.com>
 	<20130624090457.GA22807@ad.chargestorm.se>
-In-Reply-To: <20130624090457.GA22807@ad.chargestorm.se>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.208.134]
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+	<CA452391058F6D4E9715FB2C29D9312A015BCAFD@039-SN2MPN1-022.039d.mgd.msft.net>
+From: Insop Song <insop.song@gmail.com>
+Date: Mon, 24 Jun 2013 05:05:29 -0700
+Message-ID: <CACzyEJ88FZyH1Qx=j+f2p-5Cs5hGYqcBfpu03jEB_icnafnTqQ@mail.gmail.com>
+To: Luo Zhenhua-B19537 <B19537@freescale.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How NOT to include kernel image to the rootfs?
 X-BeenThere: yocto@yoctoproject.org
@@ -56,53 +42,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 09:12:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 24 Jun 2013 12:05:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Insop,=20
+Thank you all for the help.
 
-You can check the actual dependency in the output file of "bitbake -g fsl-i=
-mage-min-net2".=20
+I've added "RDEPENDS_kernel-base = """ at conf/local.conf
+Also I had to take out "oprofile" in my image, as oprofile needs
+kernel-vmlinux ...
 
+Then it worked.
 
-Best Regards,
+Thank you all.
 
-Zhenhua
+Regards,
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Anders Darander
-> Sent: Monday, June 24, 2013 5:05 PM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] How NOT to include kernel image to the rootfs?
->=20
-> * Insop Song <insop.song@gmail.com> [130624 10:56]:
-> > I've tried
-> > - by commenting "RDEPENDS_kernel-base ?=3D "kernel-image"" from
-> > kernel.bbclass
-> > - and/or adding=A0"RDEPENDS_kernel-base =3D "" in my image definition
->=20
-> You should add this line in either your local.conf, or in a .bbappend for
-> the kernel recipe in question.
->=20
-> > But neither worked.
->=20
-> That should make it work.
->=20
->=20
-> Cheers,
-> Anders
->=20
->=20
-> --
-> Anders Darander
-> ChargeStorm AB / eStorm AB
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Insop
 
 
+On Mon, Jun 24, 2013 at 2:12 AM, Luo Zhenhua-B19537
+<B19537@freescale.com> wrote:
+> Insop,
+>
+> You can check the actual dependency in the output file of "bitbake -g fsl-image-min-net2".
+>
+>
+> Best Regards,
+>
+> Zhenhua
+>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Anders Darander
+>> Sent: Monday, June 24, 2013 5:05 PM
+>> To: yocto@yoctoproject.org
+>> Subject: Re: [yocto] How NOT to include kernel image to the rootfs?
+>>
+>> * Insop Song <insop.song@gmail.com> [130624 10:56]:
+>> > I've tried
+>> > - by commenting "RDEPENDS_kernel-base ?= "kernel-image"" from
+>> > kernel.bbclass
+>> > - and/or adding "RDEPENDS_kernel-base = "" in my image definition
+>>
+>> You should add this line in either your local.conf, or in a .bbappend for
+>> the kernel recipe in question.
+>>
+>> > But neither worked.
+>>
+>> That should make it work.
+>>
+>>
+>> Cheers,
+>> Anders
+>>
+>>
+>> --
+>> Anders Darander
+>> ChargeStorm AB / eStorm AB
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
