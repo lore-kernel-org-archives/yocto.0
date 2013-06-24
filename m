@@ -1,42 +1,34 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-la0-f53.google.com (mail-la0-f53.google.com
-	[209.85.215.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EACF1E01513
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 11:38:20 -0700 (PDT)
-Received: by mail-la0-f53.google.com with SMTP id fs12so10757803lab.26
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 11:38:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=y/ldx8fPCO6iqSSpUpSK3YPAstnXc+y6GqYbhnj9vdk=;
-	b=OQ+ZcKEukunFBPMRttV2a6ZOTYam04VrmsDZNj9tqpRvsgOMxTQAEorHyMh8VSIQ5A
-	0U4XwvXtyJZISyFLNTghBfneUbjkOAji3AzkkzJlEjiFwVw2TZKJKmwLS81gByeTa2dc
-	pOnr2CY6m2J3lij6B/gbNpWZdoRwDG+WE8S0pU/9uoPKTz01465YeG6qZzGuqmrhbTUj
-	LfPIBBYZW7PIwJRdCAZSlh+5JiW585LITWDQ825JhrxJi9C25WWrjByjGWlj9Obf8jzM
-	Khmkc1r4uVt9g/CP++CwYMlukRXw2LMqWHG0swjrHYbjL7BuWa8Zhu5X9HVAO9cgvzeF
-	9P5g==
-X-Received: by 10.152.27.195 with SMTP id v3mr11982115lag.73.1372099097303;
-	Mon, 24 Jun 2013 11:38:17 -0700 (PDT)
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A440EE01408;
+	Mon, 24 Jun 2013 12:55:55 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 24 Jun 2013 12:57:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,930,1363158000"; d="scan'208";a="359711190"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga002.fm.intel.com with ESMTP; 24 Jun 2013 12:55:54 -0700
+Received: from orsmsx109.amr.corp.intel.com (10.22.240.7) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 24 Jun 2013 12:55:53 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.217]) by
+	ORSMSX109.amr.corp.intel.com ([169.254.2.7]) with mapi id
+	14.03.0123.003; Mon, 24 Jun 2013 12:55:54 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: Michael Halstead <michael@yoctoproject.org>, Yocto Project Discussion
+	<yocto@yoctoproject.org>
+Thread-Topic: Yocto Project bug trends for 2013 WW25
+Thread-Index: AQHOcQoD35Pha9S7EUykeVwlKota/ZlFR5UA
+Date: Mon, 24 Jun 2013 19:55:53 +0000
+Message-ID: <CDEDF23E.371C6%david.c.stewart@intel.com>
+In-Reply-To: <51C89206.70903@yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.4.130416
+x-originating-ip: [10.24.4.64]
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.30.146 with HTTP; Mon, 24 Jun 2013 11:37:57 -0700 (PDT)
-In-Reply-To: <51C88F22.6030605@balister.org>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
-	<51C8466F.8040808@balister.org>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF514AE@ORSMSX101.amr.corp.intel.com>
-	<alpine.DEB.2.02.1306241046210.24762@oneiric>
-	<CAJTo0Lb8mXhsma_8XvWp2B68QQ9tcS6PVGj9QWqMENgeCt8h5g@mail.gmail.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF514E7@ORSMSX101.amr.corp.intel.com>
-	<51C87A0C.1050003@balister.org>
-	<CAJTo0LbwiP-WR1uetxLgMxC0beO198kg-ubO_oWd85JRv4eaqg@mail.gmail.com>
-	<51C88F22.6030605@balister.org>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Mon, 24 Jun 2013 11:37:57 -0700
-X-Google-Sender-Auth: XcgzsvqBGcLB4bdTTyMU7B4kdGI
-Message-ID: <CA+YB3rbnUOssFc-w5Ak-X_rVPqhJnkJ+NiWEyJDJXL61gGJ0Gg@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Documenting YP Development Environment in more detail - user configuration
+Subject: Re: Yocto Project bug trends for 2013 WW25
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,25 +40,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 18:38:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 24 Jun 2013 19:55:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <7D6F07994CFCC64FA5845640B7E7F15F@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 24, 2013 at 11:25 AM, Philip Balister <philip@balister.org> wrote:
-> Showing how Poky (the reference distribution) is built would be a nice
-> way to introduce people to building their own custom distributions using
-> OpenEmbedded.
+Thanks for sending these out! Nice to see it before the meeting tomorrow
 
-Totally agree, but I would relegate that to a separate effort. The
-main problem with diagrams like this is trying to squeeze in too much
-information in order to preserve completeness, at the expense of
-clarity. It would be more ideal to start with a very simple diagram,
-then move on to other diagrams to zoom in on pertinent detail. It is a
-delicate balancing act. In this case, I would say to put "how Poky is
-built" into the 3rd or 4th diagram in a series.
+On 6/24/13 11:37 AM, "Michael Halstead" <michael@yoctoproject.org> wrote:
 
-I'm glad to see this conversation happening!
+>The trend graphs for work week 25 are up at
+>https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend with two new charts.
+>Versions of the weighted defect density trend-lines with Yocto Project
+>release dates and several additional controls have been added.
+>
+>Screenshots of the graphs are attached for people who need a copy while
+>offline. These are large images and you may need to open them outside of
+>your e-mail client to see all the detail.
+>
+>--=20
+>Michael Halstead
+>Yocto Project / System Administrator
+>
 
---
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
 
