@@ -1,22 +1,33 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id D609DE013A2
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 06:15:30 -0700 (PDT)
-Received: (qmail 1914 invoked by uid 1003); 24 Jun 2013 12:50:09 -0000
-Received: from unknown (HELO ?192.168.1.122?) (philip@opensdr.com@71.171.20.82)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	24 Jun 2013 12:50:09 -0000
-Message-ID: <51C8466F.8040808@balister.org>
-Date: Mon, 24 Jun 2013 09:15:27 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f52.google.com (mail-vb0-f52.google.com
+	[209.85.212.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E8CEE01408
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 07:08:35 -0700 (PDT)
+Received: by mail-vb0-f52.google.com with SMTP id f12so8085927vbg.25
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 07:08:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=FDTWrWNUbPiKQgWYGo3fIeQc1gVO0cJmkFfHPgMuB3s=;
+	b=FVHmI2ycZAG/5EJvcvqx+io91Om+YEa1jqw70FBCTGBL2SWz37aQM0PJZ5Z9oYGRjW
+	4GrlO/EuoBjtrtC5/b8QFwj7eUEzcG3HuIVDlbbxvcZ6adeV5LdHp8AzuA/sQe+dsMmb
+	BrFPQHJB+iHDdpzb1tml57D+eb5vUoTEV1ZaGQtklnvlKJ3wkJHClqC9NyMGnR/7HaAk
+	bL+iNvCkjnJ2pFM41a8QzBycWlUMx3yqaC/cz5KBzOuYq35Mj/v5RDY4lNi70yIhDOex
+	LPuU35cjcmUL5owbndSS1AbBjFGgzkt22De+T48sxj+/c84jFhHUK+hC9pxKvHY5k52J
+	e44g==
+X-Received: by 10.52.21.232 with SMTP id y8mr9479535vde.6.1372082914079; Mon,
+	24 Jun 2013 07:08:34 -0700 (PDT)
 MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Received: by 10.220.13.144 with HTTP; Mon, 24 Jun 2013 07:08:14 -0700 (PDT)
+In-Reply-To: <CA+QkY1A5haUkuhPGteJuyEE11JZ1Gdsr2_wA6x_ajzYbWzko1g@mail.gmail.com>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
-X-Enigmail-Version: 1.5.1
+	<CA+QkY1A5haUkuhPGteJuyEE11JZ1Gdsr2_wA6x_ajzYbWzko1g@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 24 Jun 2013 15:08:14 +0100
+Message-ID: <CAJTo0LZtUyRpov4Czi8C7TyZutXxfDpv2ovBoU_vmYKcJYTBTA@mail.gmail.com>
+To: Jerrod Peach <peachj@lexmark.com>
+X-Gm-Message-State: ALoCoQmxHdEp9CvYaAiP3JzJLjaqkjYXCEzjCmXGG5bYD6AI3zQFrtxwVRfNmExIzNYDE+93H3Gs
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Documenting YP Development Environment in more detail - user configuration
 X-BeenThere: yocto@yoctoproject.org
@@ -30,55 +41,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 13:15:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 24 Jun 2013 14:08:36 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 06/23/2013 11:52 PM, Rifenbark, Scott M wrote:
-> Hi, 
-> 
-> I am going to start throwing these diagrams out to the mailing list and see if I can get any feedback.  This attached figure dives into user configuration.  Any and all discussion, correction, suggestions are welcome. 
+On 24 June 2013 13:59, Jerrod Peach <peachj@lexmark.com> wrote:
+> auto.conf (That's not even present in my 1.4 workspace.  Is this going to be
+> something new in 1.5?)
 
-It appears the diagram says that the oe-init-build-env script creates
-the files in the users conf dir from the meta-yocto layer. These files
-(and the script) are in meta. This diagram creates the misleading idea
-that the meta-yocto layer is mandatory in order to create a working build.
+auto.conf is read along with site.conf and local.conf, and is intended
+to be automatically created and maintained by autobuilders.  That's
+why you don't have it locally.
 
-Philip
+(I only discovered about this file when we were talking about inputs last week)
 
-> 
-> Scott
-> 
->> -----Original Message-----
->> From: Rifenbark, Scott M
->> Sent: Friday, June 21, 2013 1:22 AM
->> To: Paul Eggleton; Burton, Ross
->> Subject: user configuration
->>
->> Paul and Ross,
->>
->> Attached is a sample figure that focuses on "User Configuration."  The
->> illustration attempts to reveal where user configuration data comes from
->> and what processes and user-driven commands are related to it.  Right
->> now, BitBake is simply a box.
->>
->> If you can, give me some comments on this.  I would like to hear on
->> level of detail as well as technical accuracy.
->>
->> Thanks,
->> Scott
->>
->> Scott Rifenbark
->> Intel Corporation
->> Yocto Project Documentation
->> 503.712.2702
->> 503.341.0418 (cell)
-> 
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
+Ross
 
