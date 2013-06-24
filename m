@@ -1,28 +1,24 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47582E0152A
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 06:08:27 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5OD8P9s016012
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 24 Jun 2013 06:08:25 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 24 Jun 2013 06:08:25 -0700
-Message-ID: <51C844C3.6040505@windriver.com>
-Date: Mon, 24 Jun 2013 09:08:19 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id D609DE013A2
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 06:15:30 -0700 (PDT)
+Received: (qmail 1914 invoked by uid 1003); 24 Jun 2013 12:50:09 -0000
+Received: from unknown (HELO ?192.168.1.122?) (philip@opensdr.com@71.171.20.82)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	24 Jun 2013 12:50:09 -0000
+Message-ID: <51C8466F.8040808@balister.org>
+Date: Mon, 24 Jun 2013 09:15:27 -0400
+From: Philip Balister <philip@balister.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
 MIME-Version: 1.0
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-References: <05209F2D24AD48348599D707CB5F659F@PAULD>
-	<51C7BC42.7010304@windriver.com>
-	<ECD2F1B71F2647AE85B7BDC7B89D84ED@PAULD>
-In-Reply-To: <ECD2F1B71F2647AE85B7BDC7B89D84ED@PAULD>
-Cc: yocto@yoctoproject.org
-Subject: Re: linux-yocto-rt and cgroups
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
+X-Enigmail-Version: 1.5.1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Documenting YP Development Environment in more detail - user configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,49 +30,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 13:08:31 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Mon, 24 Jun 2013 13:15:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 13-06-24 03:09 AM, Paul D. DeRocco wrote:
->> From: Bruce Ashfield
+On 06/23/2013 11:52 PM, Rifenbark, Scott M wrote:
+> Hi, 
+> 
+> I am going to start throwing these diagrams out to the mailing list and see if I can get any feedback.  This attached figure dives into user configuration.  Any and all discussion, correction, suggestions are welcome. 
+
+It appears the diagram says that the oe-init-build-env script creates
+the files in the users conf dir from the meta-yocto layer. These files
+(and the script) are in meta. This diagram creates the misleading idea
+that the meta-yocto layer is mandatory in order to create a working build.
+
+Philip
+
+> 
+> Scott
+> 
+>> -----Original Message-----
+>> From: Rifenbark, Scott M
+>> Sent: Friday, June 21, 2013 1:22 AM
+>> To: Paul Eggleton; Burton, Ross
+>> Subject: user configuration
 >>
->> There's no technical reason at all. In fact, pre 3.8 the -rt
->> kernel used
->> to inherit more of the standard kernel's configuration and
->> hence enabled
->> cgroups. In 3.8, we defined a new policy for the -rt kernel, that used
->> parts of the standard kernel's configuration, but not all.
+>> Paul and Ross,
 >>
->> We can definitely add functionality to this baseline, and
->> I'll be adding
->> more in the upcoming dev cycle for yocto 1.5.
+>> Attached is a sample figure that focuses on "User Configuration."  The
+>> illustration attempts to reveal where user configuration data comes from
+>> and what processes and user-driven commands are related to it.  Right
+>> now, BitBake is simply a box.
 >>
->> In the meantime you can enable it, and let me know how it
->> goes. I can then
->> update the -rt baseline config, knowing that someone else is
->> testing it
->> too.
+>> If you can, give me some comments on this.  I would like to hear on
+>> level of detail as well as technical accuracy.
 >>
->> To enable it, create a linux-yocto_3.8.bbappend, and add:
+>> Thanks,
+>> Scott
 >>
->>    KERNEL_FEATURES_append = " features/cgroups/cgroups.scc"
->>
->> And you'll get the same cgroups config that you have with the standard
->> linux-yocto kernel.
->
-> Yes, that builds and boots fine (except it's linux-yocto-rt_3.8.bbappend).
-
-Hah. Indeed!
-
-> Thanks a million.
-
-Great news.
-
-Cheers,
-
-Bruce
-
->
-
+>> Scott Rifenbark
+>> Intel Corporation
+>> Yocto Project Documentation
+>> 503.712.2702
+>> 503.341.0418 (cell)
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
