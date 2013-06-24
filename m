@@ -1,34 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D64FAE01408
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 07:27:35 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 24 Jun 2013 07:27:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,928,1363158000"; d="scan'208";a="354889500"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Jun 2013 07:28:17 -0700
-Received: from orsmsx107.amr.corp.intel.com (10.22.240.5) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 24 Jun 2013 07:27:20 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.181]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.130]) with mapi id
-	14.03.0123.003; Mon, 24 Jun 2013 07:27:20 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Philip Balister <philip@balister.org>
-Thread-Topic: [yocto] Documenting YP Development Environment in more detail
-	- user configuration
-Thread-Index: Ac5uWGop+mI2fmjhR1eciv3x50rfAQCNXcvQACJr5oAADJ05QA==
-Date: Mon, 24 Jun 2013 14:27:20 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF514AE@ORSMSX101.amr.corp.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 105D1E01408
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 07:47:17 -0700 (PDT)
+Received: from cpec03f0ed08c7f-cm001ac318e826.cpe.net.cable.rogers.com
+	([174.115.5.73]:47720 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Ur830-0006c2-OH; Mon, 24 Jun 2013 10:47:14 -0400
+Date: Mon, 24 Jun 2013 10:47:07 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF514AE@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1306241046210.24762@oneiric>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
 	<51C8466F.8040808@balister.org>
-In-Reply-To: <51C8466F.8040808@balister.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF514AE@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Documenting YP Development Environment in more detail - user configuration
 X-BeenThere: yocto@yoctoproject.org
@@ -42,79 +41,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 14:27:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 24 Jun 2013 14:47:18 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-What I was trying to convey here is that oe-init-build-env draws on some fi=
-les in the meta-yocto layer.  The script oe-init-build-env is in the poky r=
-epository (or refered to as "Source Directory" in the documentation).  The =
-sample files are in the meta-yocto layer.  I thought the meta-yocto layer w=
-as needed... maybe I am wrong.  Can I get more clarification on this?
+On Mon, 24 Jun 2013, Rifenbark, Scott M wrote:
 
-Thanks,
-Scott
+> What I was trying to convey here is that oe-init-build-env draws on
+> some files in the meta-yocto layer.  The script oe-init-build-env is
+> in the poky repository (or refered to as "Source Directory" in the
+> documentation).  The sample files are in the meta-yocto layer.  I
+> thought the meta-yocto layer was needed... maybe I am wrong.  Can I
+> get more clarification on this?
 
->-----Original Message-----
->From: Philip Balister [mailto:philip@balister.org]
->Sent: Monday, June 24, 2013 6:15 AM
->To: Rifenbark, Scott M
->Cc: yocto@yoctoproject.org
->Subject: Re: [yocto] Documenting YP Development Environment in more
->detail - user configuration
->
->On 06/23/2013 11:52 PM, Rifenbark, Scott M wrote:
->> Hi,
->>
->> I am going to start throwing these diagrams out to the mailing list
->and see if I can get any feedback.  This attached figure dives into user
->configuration.  Any and all discussion, correction, suggestions are
->welcome.
->
->It appears the diagram says that the oe-init-build-env script creates
->the files in the users conf dir from the meta-yocto layer. These files
->(and the script) are in meta. This diagram creates the misleading idea
->that the meta-yocto layer is mandatory in order to create a working
->build.
->
->Philip
->
->>
->> Scott
->>
->>> -----Original Message-----
->>> From: Rifenbark, Scott M
->>> Sent: Friday, June 21, 2013 1:22 AM
->>> To: Paul Eggleton; Burton, Ross
->>> Subject: user configuration
->>>
->>> Paul and Ross,
->>>
->>> Attached is a sample figure that focuses on "User Configuration."
->The
->>> illustration attempts to reveal where user configuration data comes
->from
->>> and what processes and user-driven commands are related to it.  Right
->>> now, BitBake is simply a box.
->>>
->>> If you can, give me some comments on this.  I would like to hear on
->>> level of detail as well as technical accuracy.
->>>
->>> Thanks,
->>> Scott
->>>
->>> Scott Rifenbark
->>> Intel Corporation
->>> Yocto Project Documentation
->>> 503.712.2702
->>> 503.341.0418 (cell)
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
+  i regularly build images without any "*yocto*"-named layer, unless
+i'm misunderstanding the issue here.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
