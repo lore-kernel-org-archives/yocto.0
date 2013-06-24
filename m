@@ -1,44 +1,29 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ee0-f41.google.com (mail-ee0-f41.google.com [74.125.83.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6ECAE006B5
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2013 22:41:12 -0700 (PDT)
-Received: by mail-ee0-f41.google.com with SMTP id d17so5774319eek.0
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2013 22:41:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=584LgZ6QQscYzCFB/GHCNilr3D09m7Uke4f2T5JBeSw=;
-	b=enCS+ESP1CfWoRwbkZikfyplkKCGyk1wyIb6nFulTt9qGeZ4ezjHbpQRiQAEMaX0RC
-	EJKRXhfqQKX1TMV7OEySywP9iJq9zClhQBIctgXM2SA7WOS/cs2yhrPEzpaON2hmbg6V
-	bbEc8ZXlrZwxR9Rq/rlc9RlKpjo5zYxelErRw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=584LgZ6QQscYzCFB/GHCNilr3D09m7Uke4f2T5JBeSw=;
-	b=Pgmy766wWekOpKEaghyHQI9x1g7xGzMapHb90c5uLaja43QPGxwswjTK/iT57gvCRa
-	9tjK27IvX08s/uM8D+Osiw3cC2axdCPDHLecriOulgKJLKLl/YzF/XAmS3MFvmHiUYg1
-	7UaOn4dHX7QPj6MZjVF93g+rEkc9cu5PCq6FnLw0R5wo1r/zVawlp8A/Dvw1x5KtWfxB
-	t4RA9bVU0vhBF+KyK+Ysup6LVPnlj/mawhTeS0zb02ulw9jXKNtlOhAlwHjuIUUwmBZI
-	9W0ahggqYPE1ExNvzWhrH18g51hn/KQGlv9ZLEdKissxL2z6oKF45hL6mhfPVib/mZUB
-	gDjQ==
+Return-Path: <mail@timomueller.eu>
+Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
+	[85.214.246.27])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAB8BE01403
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2013 23:52:08 -0700 (PDT)
+Received: from mysterion.bmw-carit.intra (mail.bmw-carit.de [62.245.222.98])
+	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: mail@timomueller.eu)
+	by h1954115.stratoserver.net (mailserver) with ESMTPSA id D8E4A6E941F3; 
+	Mon, 24 Jun 2013 08:52:04 +0200 (CEST)
+Message-ID: <51C7EC93.2070004@timomueller.eu>
+Date: Mon, 24 Jun 2013 08:52:03 +0200
+From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
 MIME-Version: 1.0
-X-Received: by 10.14.219.2 with SMTP id l2mr21903390eep.109.1372052471881;
-	Sun, 23 Jun 2013 22:41:11 -0700 (PDT)
-Received: by 10.223.160.197 with HTTP; Sun, 23 Jun 2013 22:41:11 -0700 (PDT)
-In-Reply-To: <CALmOhg=h=j+uHiPdGShjZwtL97jsnhz1v6T4GRfcge0jJypTKQ@mail.gmail.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50C1A@ORSMSX101.amr.corp.intel.com>
-	<CDE892AD.36CA0%david.c.stewart@intel.com>
-	<000001ce6de8$70639de0$512ad9a0$@annabooks.com>
-	<CALmOhg=h=j+uHiPdGShjZwtL97jsnhz1v6T4GRfcge0jJypTKQ@mail.gmail.com>
-Date: Sun, 23 Jun 2013 22:41:11 -0700
-Message-ID: <CA+gsK-orLA13kBxTSj-E451GQKKdy8L6hUHQxKQgFqg-VNiK8Q@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: Trevor Woerner <trevor.woerner@linaro.org>
-X-Gm-Message-State: ALoCoQmQX5iuYWYn6sjoQihlnib96h4s+5GdhCfkZBbkHNWFP/6f5arqNI4ibUFhNagl5ogVWB8n
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Documenting YP Development Environment in more detail
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+References: <cover.1371818609.git.timo.mueller@bmw-carit.de>
+	<C6510F6D410BB64A8C15398EDC6B847C73C46EEE@ORSMSX103.amr.corp.intel.com>
+	<51C6B388.4010406@timomueller.eu>
+	<C6510F6D410BB64A8C15398EDC6B847C73C47461@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C47461@ORSMSX103.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: Re: [PATCHv2 0/8][eclipse-poky] Add target profile quick switch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,86 +35,164 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 05:41:15 -0000
-Content-Type: multipart/alternative; boundary=047d7b6041a03353e704dfdfdcc6
+X-List-Received-Date: Mon, 24 Jun 2013 06:52:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7b6041a03353e704dfdfdcc6
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Jessica
 
-Hi Trever et al:
+Zhang, Jessica wrote, On 24.06.2013 07:25:
+> Hi Timo,
+>
+> For case 1, I think we probably should bring back the grey out
+> option.  In my opinion, it's more consistent.  The property window
+> should be the centralized place for user to setup the settings.  The
+> drop down list is for user to quickly toggle between the different
+> settings.  So the behavior should be:
+>
+> If there's no project specific settings, that option will be greyed
+> out.  I don't think it'll make it secondary as long as it's still
+> visible.  Once user 1st time check the project specific setting in
+> the project properties window, we copy the prior profile settings as
+> start point then the user can further customize if there's the need.
+> Once a project has its own specific settings, the option will be
+> enabled in the drop down list and the selection will be consistent
+> between the drop down list selection and project properties
+> settings.
+>
+> What do you think?
 
+I get your point. I'll kick out the last patch to restore the greyed out
+version.
 
+I tried to reproduce case 3. And I haven't been able to bring the menu
+to a state where two menu items are checked. I tried all sorts of
+combinations without success. Could you maybe tell me the exact steps
+on how you get this behaviour?
 
-> If I were writing a book about Yocto/OE,
+However, when trying the different options I realized that there's a
+bug in the project preferences. Maybe you've already pointed it out
+and I didn't get it. But if you've configured a project specific profile
+and change to a target profile, when you enable the project
+specific profile again, your settings are lost. Instead the selected
+profile is copied all of the time, instead of only at the first time of
+configuration.
 
+I'll send a fix and a v3 of the menu with the greyed out menu item.
 
-This is a project I am currently working on, a book about the Yocto
-Project. The goal is to enable readers to do practical projects with YP. As
-the subject matter for the project described in the book I have chosen a
-home automation project. Reason being, it interests me personally and it
-uses different devices such as a UI-less controller, remotes with touch
-screens etc.
+>
+> Jessica -----Original Message----- From: Timo Mueller
+> [mailto:mail@timomueller.eu] Sent: Sunday, June 23, 2013 1:36 AM To:
+> Zhang, Jessica Cc: yocto@yoctoproject.org; Timo Mueller Subject: Re:
+> [yocto] [PATCHv2 0/8][eclipse-poky] Add target profile quick switch
+>
+> Hi Jessica,
+>
+> Am 21.06.2013 23:47, schrieb Zhang, Jessica:
+>> Hi Timo,
+>>
+>> So what's the purpose of "Project Specific Settings", my  >
+>> understanding is it's something that only local to project instead
+>> of  > global name space, e.g. profile?
+>
+> Yes, that's the main idea.
+>
+>> OK, I've played a little bit  of toggling between profiles, and
+>> project specific setting and notice  > the following behaviors that
+>> can be confusing:
+>>
+>> 1. As your preference that user can specify "project specific  >
+>> settings".  I've noticed for this case, if I haven't entered any  >
+>> project specific settings via the preference wizard, it'll always
+>> > copy the profile settings prior to its selection, then in this
+>> case I  > don't think it makes much sense since we already have the
+>> profiles to  > cover all the settings
+>
+> That's independent of this patch set, right?
+>
+> The original idea behind copying the settings of the currently
+> selected profile was to give the user a starting point for creating
+> the project specific settings. The assumption was that the user most
+> of the times only does small modifications to an existing profile.
+>
+> Sure, if the user doesn't alter the settings, the project specific
+> ones match an already defined target profile. One difference remains,
+> if he changes the target profile it will update all projects that use
+> this profile. The project that is using it's own configuration won't
+> be changed, although the settings are similar.
+>
+> An alternative to copying the inital settings would be to blank out
+> the form, when the checkbox is checked. If the assumption is not
+> correct and we think that this is easier to understand for the user,
+> I'll provide a patch set changing this behaviour.
+>
+>>
+>> 2.  OK, now let's move to the case of that I do have explicit setup
+>> a  > project specific settings in the project property view apply
+>> it and  > exit the window.  After that, in the drop down list, when
+>> I toggle  > between the options, e.g. I have two profiles besides
+>> the project  > specific settings, then every time after I made the
+>> selection and  > check in the project properties view, the settings
+>> matches my  > selection.  So this is good and consistent behavior.
+>>
+>> 3. If  inside the project properties window, I uncheck the "Use  >
+>> project specific settings" box, and select a profile then apply the
+>> > changes close the window.  Now in the drop down list I will see
+>> both  > the "project specific setting" and the selected profile are
+>> selected. Then next time when I go back, and re-check "Use project
+>> specific  > settings" box, my project specific setting will be
+>> gone, instead the  > settings will show as my previous profile
+>> settings.
+>
+> That's a bug in my implementation. They should always be in sink as
+> you explained in your second point.
+>
+>>
+>> Overall, I think we still need to play a little bit more of
+>> different  > setting selections via different approaches, some of
+>> the inconsistent  > behavior can get user lost.
+>>
+>> Thanks, Jessica -----Original Message----- From:
+>> yocto-bounces@yoctoproject.org
+>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Timo Mueller
+>> > Sent: Friday, June 21, 2013 5:45 AM To: yocto@yoctoproject.org
+>> Cc: Timo Mueller Subject: [yocto] [PATCHv2 0/8][eclipse-poky] Add
+>> target  > profile quick switch  >  > From: Timo Mueller
+>> <timo.mueller@bmw-carit.de>  >  > Changes in v2: Handle error when
+>> project specific profile is not  > configured more gracefully.
+>> Instead of showing an error message the  > button is now greyed
+>> out.
+>>
+>> Patches 01..07 contain the implementation with the greyed out menu
+>> > button.
+>>
+>> After playing around with the two options discussed in the first  >
+>> patch series, I started to prefer inserting a different button in
+>> the  > menu allowing the user to quickly navigate to the project
+>> preferences  > instead of just greying it out. I've added this in
+>> the last patch of  > the series, so you can compare yourself.
+>>
+>> From original cover letter <snip> if a user wants to change the
+>> used  > target profile of a project he currently has to open the
+>> project  > preferences. This can be tedious if he has to switch the
+>> profile  > often.
+>>
+>> This is a small addition which allows the user to quickly switch
+>> the  > used target profile of a project. Instead of having to open
+>> the  > project preferences the user can select the project in the
+>> navigator  > and then choose the desired target profile from a
+>> drop-down menu in  > the toolbar or from the project menu. </snip>
+>> >  > 01: Small i18n fix 02..04: Refactoring the project specific
+>> utils  > 05..06: Introduce the target profile toolbar switch 07:
+>> Adds the  > target profile switch to the project menu 08:
+>> Experimental: Add  > button to open project preferences  >  > Best
+>> regards, Timo
+>
+> Thanks, for the input. I'll fix the bug and send a v3.
+>
+> Best regards, Timo
+>
 
-I have gotten a lot of feedback from the YP training class I have developed
-and been teaching for the Linux Foundation. I am putting this out here to
-solicit more feedback from the community on what you think a book on YP
-should include. For instance as an advanced topic I included a chapter on
-how to run YP on AWS EC2 and I will be adding Autobuilder to it too.
+Best regards,
+Timo
 
-
-> in the first chapter I would
-> have the readers build their own filesystem/kernel from scratch (I
-> can't decide if I would also have them build their own cross-compiler
-> from scratch or if I'd cheat and let them use crosstool-NG).
-
-
-I thought about that too but I found it distracting. It's like "let me show
-you the hard way with crosstool-ng and buildroot and then I show you a
-better way with YP." What I am doing though is an intro into Bitbake: how
-to use just Bitbake to build something. That proved valuable during the
-training classes. It's like a HelloWorld (and I published that before on
-this mailing list) introducing the concepts of Bitbake with it's layers,
-recipes, syntax etc.
-
-
-Cheers,
-Rudi
-
---047d7b6041a03353e704dfdfdcc6
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Trever et al:<div class=3D"gmail_extra"><br><br><div cl=
-ass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
-If I were writing a book about Yocto/OE,</blockquote><div><br></div><div>Th=
-is is a project I am currently working on, a book about the Yocto Project. =
-The goal is to enable readers to do practical projects with YP. As the subj=
-ect matter for the project described in the book I have chosen a home autom=
-ation project. Reason being, it interests me personally and it uses differe=
-nt devices such as a UI-less controller, remotes with touch screens etc.</d=
-iv>
-<div><br></div><div>I have gotten a lot of feedback from the YP training cl=
-ass I have developed and been teaching for the Linux Foundation. I am putti=
-ng this out here to solicit more feedback from the community on what you th=
-ink a book on YP should include. For instance as an advanced topic I includ=
-ed a chapter on how to run YP on AWS EC2 and I will be adding Autobuilder t=
-o it too.=A0</div>
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"> in the first chapter I would<=
-br>
-have the readers build their own filesystem/kernel from scratch (I<br>
-can&#39;t decide if I would also have them build their own cross-compiler<b=
-r>
-from scratch or if I&#39;d cheat and let them use crosstool-NG).</blockquot=
-e><div><br></div><div>I thought about that too but I found it distracting. =
-It&#39;s like &quot;let me show you the hard way with crosstool-ng and buil=
-droot and then I show you a better way with YP.&quot; What I am doing thoug=
-h is an intro into Bitbake: how to use just Bitbake to build something. Tha=
-t proved valuable during the training classes. It&#39;s like a HelloWorld (=
-and I published that before on this mailing list) introducing the concepts =
-of Bitbake with it&#39;s layers, recipes, syntax etc.</div>
-<div><br></div><div><br></div><div>Cheers,</div><div>Rudi</div></div>
-</div></div>
-
---047d7b6041a03353e704dfdfdcc6--
