@@ -1,33 +1,35 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4271E01403
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 01:55:13 -0700 (PDT)
-Received: by mail-wi0-f180.google.com with SMTP id c10so2247538wiw.13
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 01:55:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
+	[209.85.214.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22B37E01403
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 01:56:14 -0700 (PDT)
+Received: by mail-ob0-f171.google.com with SMTP id dn14so10545897obc.2
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 01:56:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=iK/ptQTuBRGfDdDaxzztSWffuA+Y8Izp64Ki1cRUTco=;
-	b=OAwz8KP6MFZpLhwTF3fAehe9x1masnnLO/tWCDB3ufb4uU4CVykq5pL7GTNmkIvasa
-	jtBAUL+XuVxo1d9Kp40ct85WVIRmJ6pKY3D4NN2yc1FPtMV4vNM6I8z1ng2G/TEUR2rJ
-	45CyePQIxOiQhfBH1pIiD2QuqXD9iIhRHcBzBB3pQQPFy4GJVStpQu5L0EGFkJnLNY7x
-	xKPJabRVQYZ7Wj7HGuVEnlnWwMqOsfjzbqeYRE2Vjvfrjx7hHlVxK8mzV/b4eE5mFwGS
-	hZ1aX7gK2iPrWTrVo3qVEWDJ1OmWKhwRDwtjaXnRjQnRMf8TMukS7OmR8kOc8J/eVneJ
-	Q88w==
-X-Received: by 10.180.109.48 with SMTP id hp16mr5327337wib.24.1372064112168;
-	Mon, 24 Jun 2013 01:55:12 -0700 (PDT)
+	:cc:content-type:x-gm-message-state;
+	bh=r7SzMvG/GGsEVucA9BJVC1xy1uBt4P19V210zEsWtDo=;
+	b=jdEIfrS2xqpRWJmMU8fRNU8vLlXQTXFlg3P76ahenc0IGc+hjSGrq3rXZNbkCBdXZ1
+	o/UhP2e5HlAmiy92SVpjov1KmUPY1Y+p9R3mPyml9nLr9rPU9COBJfkqV6sUnD2WOo0q
+	0uZnr1TnCFWnpDC91e7rcRExVRsEMFVVsJ9/iFnb46vz4XBmVUkRLTsoRz6i2XqgeBtt
+	haBKmF+PwKEfEMwXAqBvtJqfn3Ma9SVmjlfpS7kOHOjyPlMimmR9u8D3NqReNk+1jZAm
+	dTbhqRiZVKKKpaQarszCZ8sDpZnMxvom0in2ZN5wEkW5m8TPq2XqXOkUfys2hqOOT9a2
+	R04Q==
+X-Received: by 10.60.34.196 with SMTP id b4mr1456061oej.62.1372064173991; Mon,
+	24 Jun 2013 01:56:13 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.194.0.227 with HTTP; Mon, 24 Jun 2013 01:54:52 -0700 (PDT)
+Received: by 10.76.27.165 with HTTP; Mon, 24 Jun 2013 01:55:53 -0700 (PDT)
 In-Reply-To: <51C7BD29.6060607@windriver.com>
 References: <CACzyEJ97cTe5x7OOqQVjkCeUa1NBv750-=y=7tSWgcaoQnEa7A@mail.gmail.com>
 	<51C7BD29.6060607@windriver.com>
-From: Insop Song <insop.song@gmail.com>
-Date: Mon, 24 Jun 2013 01:54:52 -0700
-Message-ID: <CACzyEJ-A-U=0XV3qUxV-14+Cxn+r8aZOrM+g7EKBXJWdHD=T=A@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Mon, 24 Jun 2013 10:55:53 +0200
+Message-ID: <CAP71WjwRKvPqXpREmhPEx1KW+w-hz-7Ji3=Nhg1wwVPrFvF57g@mail.gmail.com>
 To: Bruce Ashfield <bruce.ashfield@windriver.com>
+X-Gm-Message-State: ALoCoQkBC0YeJG+f+iqcAnfICQ8eJ80CviXM03kpMe36qMVLug3wovlnFVVUtQ+TpY5BANzbqBjC
 Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	zhenhua.luo@freescale.com, Darren Hart <darren.hart@intel.com>
+	Darren Hart <darren.hart@intel.com>, zhenhua.luo@freescale.com
 Subject: Re: How NOT to include kernel image to the rootfs?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,49 +42,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 08:55:16 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3ba91d03d77004dfe2925f
+X-List-Received-Date: Mon, 24 Jun 2013 08:56:17 -0000
+Content-Type: multipart/alternative; boundary=089e013c7020b3395a04dfe29553
 
---e89a8f3ba91d03d77004dfe2925f
+--089e013c7020b3395a04dfe29553
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
-
-Thank you for the answer.
-
-I've tried
-- by commenting "RDEPENDS_kernel-base ?= "kernel-image"" from kernel.bbclass
-- and/or adding "RDEPENDS_kernel-base = "" in my image definition
-
-But neither worked.
-
-For confirmation, this bitbake -e outptut and it doesn't have the
-kernel-base
-
-insop@neon /opt/build-fsl-yocto-1.3.2 $ time bitbake -e fsl-image-min-net2
-| grep kernel-base
-
-real 0m10.691s
-user 0m6.476s
-sys 0m0.844s
-insop@neon /opt/bui
-
-
-Also, though it was not concluded, I found this mail thread also said that
-it didn't work
-http://comments.gmane.org/gmane.linux.embedded.yocto.general/12694
-
-Any other thought?
-
-Thank you,
-
-Insop
-
-
-
-
-
-On Sun, Jun 23, 2013 at 8:29 PM, Bruce Ashfield <
+On Mon, Jun 24, 2013 at 5:29 AM, Bruce Ashfield <
 bruce.ashfield@windriver.com> wrote:
 
 > On 13-06-23 7:08 PM, Insop Song wrote:
@@ -115,6 +81,23 @@ bruce.ashfield@windriver.com> wrote:
 > # not wanted in images as standard
 > RDEPENDS_kernel-base ?= "kernel-image"
 >
+
+
+please look at this machine configuration file that we use at Linaro:
+
+https://git.linaro.org/gitweb?p=openembedded/meta-linaro.git;a=blob;f=meta-linaro/conf/machine/genericarmv7a.conf;h=d2577f69868d599f114063a7c6a3d8d0a93c532b;hb=c383e63617469dce76411249dba384aad21a3d9c
+
+we use such 'generic' machines to build our 'generic' ARM rootfs. the trick
+is indeed:
+
+
+# Don't include kernels in standard images
+RDEPENDS_kernel-base = ""
+
+
+
+
+>
 > Cheers,
 >
 > Bruce
@@ -128,75 +111,30 @@ bruce.ashfield@windriver.com> wrote:
 >> Insop
 >>
 >
+> ______________________________**_________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
 >
 
---e89a8f3ba91d03d77004dfe2925f
+--089e013c7020b3395a04dfe29553
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>Thank you for the answer.</div><div=
-><br></div><div>I&#39;ve tried=A0</div><div>- by commenting &quot;<span sty=
-le=3D"font-family:arial,sans-serif;font-size:13.333333015441895px">RDEPENDS=
-_kernel-base ?=3D &quot;kernel-image&quot;&quot; from kernel.bbclass</span>=
-</div>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Mon, Jun 24, 2013 at 5:29 AM, Bruce Ashfield <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce.=
+ashfield@windriver.com</a>&gt;</span> wrote:<br>
 
-<div style><span style=3D"font-family:arial,sans-serif;font-size:13.3333330=
-15441895px">- and/or adding=A0</span>&quot;<span style=3D"font-size:13.3333=
-33015441895px;font-family:arial,sans-serif">RDEPENDS_kernel-base =3D &quot;=
-&quot; in my image definition</span></div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div class=3D""><div class=3D"h5">On 13-06-23 7:08 PM, Ins=
+op Song wrote:<br>
 
-<div style><span style=3D"font-size:13.333333015441895px;font-family:arial,=
-sans-serif"><br></span></div><div style><span style=3D"font-size:13.3333330=
-15441895px;font-family:arial,sans-serif">But neither worked.</span></div><d=
-iv style>
 
-<span style=3D"font-size:13.333333015441895px;font-family:arial,sans-serif"=
-><br></span></div><div style><span style=3D"font-size:13.333333015441895px;=
-font-family:arial,sans-serif">For confirmation, this bitbake -e outptut and=
- it doesn&#39;t have the kernel-base</span></div>
-
-<div style><span style=3D"font-size:13.333333015441895px;font-family:arial,=
-sans-serif"><br></span></div><div style><div><font face=3D"arial, sans-seri=
-f">insop@neon /opt/build-fsl-yocto-1.3.2 $ time bitbake -e fsl-image-min-ne=
-t2 | grep kernel-base</font></div>
-
-<div><font face=3D"arial, sans-serif"><br></font></div><div><font face=3D"a=
-rial, sans-serif">real<span class=3D"" style=3D"white-space:pre">	</span>0m=
-10.691s</font></div><div><font face=3D"arial, sans-serif">user<span class=
-=3D"" style=3D"white-space:pre">	</span>0m6.476s</font></div>
-
-<div><font face=3D"arial, sans-serif">sys<span class=3D"" style=3D"white-sp=
-ace:pre">	</span>0m0.844s</font></div><div><font face=3D"arial, sans-serif"=
->insop@neon /opt/bui</font></div><div><font face=3D"arial, sans-serif"><br>=
-</font></div>
-
-<div><font face=3D"arial, sans-serif"><br></font></div><div style><font fac=
-e=3D"arial, sans-serif">Also, though it was not concluded, I found this mai=
-l thread also said that it didn&#39;t work</font></div><div style><a href=
-=3D"http://comments.gmane.org/gmane.linux.embedded.yocto.general/12694">htt=
-p://comments.gmane.org/gmane.linux.embedded.yocto.general/12694</a><font fa=
-ce=3D"arial, sans-serif"><br>
-
-</font></div><div style><br></div><div style>Any other thought?</div><div s=
-tyle><br></div><div style>Thank you,</div><div style><br></div><div style>I=
-nsop</div><div><font face=3D"arial, sans-serif"><br></font></div></div><div=
- style>
-
-<span style=3D"font-size:13.333333015441895px;font-family:arial,sans-serif"=
-><br></span></div><div style><span style=3D"font-size:13.333333015441895px;=
-font-family:arial,sans-serif"><br></span></div></div><div class=3D"gmail_ex=
-tra">
-
-<br><br><div class=3D"gmail_quote">On Sun, Jun 23, 2013 at 8:29 PM, Bruce A=
-shfield <span dir=3D"ltr">&lt;<a href=3D"mailto:bruce.ashfield@windriver.co=
-m" target=3D"_blank">bruce.ashfield@windriver.com</a>&gt;</span> wrote:<br>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-
-<div class=3D"HOEnZb"><div class=3D"h5">On 13-06-23 7:08 PM, Insop Song wro=
-te:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex">
 Hi,<br>
 <br>
 - Question<br>
@@ -224,7 +162,26 @@ From kernel.bbclass:<br>
 <br>
 # Allow machines to override this dependency if kernel image files are<br>
 # not wanted in images as standard<br>
-RDEPENDS_kernel-base ?=3D &quot;kernel-image&quot;<br>
+RDEPENDS_kernel-base ?=3D &quot;kernel-image&quot;<br></blockquote><div><br=
+></div><div><br></div><div style>please look at this machine configuration =
+file that we use at Linaro:</div><div style><br></div><div style><a href=3D=
+"https://git.linaro.org/gitweb?p=3Dopenembedded/meta-linaro.git;a=3Dblob;f=
+=3Dmeta-linaro/conf/machine/genericarmv7a.conf;h=3Dd2577f69868d599f114063a7=
+c6a3d8d0a93c532b;hb=3Dc383e63617469dce76411249dba384aad21a3d9c">https://git=
+.linaro.org/gitweb?p=3Dopenembedded/meta-linaro.git;a=3Dblob;f=3Dmeta-linar=
+o/conf/machine/genericarmv7a.conf;h=3Dd2577f69868d599f114063a7c6a3d8d0a93c5=
+32b;hb=3Dc383e63617469dce76411249dba384aad21a3d9c</a></div>
+
+<div style><br></div><div style>we use such &#39;generic&#39; machines to b=
+uild our &#39;generic&#39; ARM rootfs. the trick is indeed:</div><div style=
+><br></div><pre style=3D"color:rgb(0,0,0);word-wrap:break-word;white-space:=
+pre-wrap">
+
+# Don&#39;t include kernels in standard images
+RDEPENDS_kernel-base =3D &quot;&quot;
+</pre><div style>=A0</div><div>=A0</div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rg=
+b(204,204,204);border-left-style:solid;padding-left:1ex">
 <br>
 Cheers,<br>
 <br>
@@ -233,14 +190,21 @@ Bruce<br>
 <br>
 <br>
 <br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex">
 <br>
 Thank you,<br>
 <br>
 Insop<br>
 </blockquote>
 <br>
-</blockquote></div><br></div>
+______________________________<u></u>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
+</blockquote></div><br></div></div>
 
---e89a8f3ba91d03d77004dfe2925f--
+--089e013c7020b3395a04dfe29553--
