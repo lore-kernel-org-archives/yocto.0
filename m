@@ -1,34 +1,26 @@
-Return-Path: <david.c.stewart@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A440EE01408;
-	Mon, 24 Jun 2013 12:55:55 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 24 Jun 2013 12:57:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,930,1363158000"; d="scan'208";a="359711190"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga002.fm.intel.com with ESMTP; 24 Jun 2013 12:55:54 -0700
-Received: from orsmsx109.amr.corp.intel.com (10.22.240.7) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 24 Jun 2013 12:55:53 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.217]) by
-	ORSMSX109.amr.corp.intel.com ([169.254.2.7]) with mapi id
-	14.03.0123.003; Mon, 24 Jun 2013 12:55:54 -0700
-From: "Stewart, David C" <david.c.stewart@intel.com>
-To: Michael Halstead <michael@yoctoproject.org>, Yocto Project Discussion
-	<yocto@yoctoproject.org>
-Thread-Topic: Yocto Project bug trends for 2013 WW25
-Thread-Index: AQHOcQoD35Pha9S7EUykeVwlKota/ZlFR5UA
-Date: Mon, 24 Jun 2013 19:55:53 +0000
-Message-ID: <CDEDF23E.371C6%david.c.stewart@intel.com>
-In-Reply-To: <51C89206.70903@yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.3.4.130416
-x-originating-ip: [10.24.4.64]
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-dupuy.atl.sa.earthlink.net
+	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CAD6E0051D
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 17:18:07 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=Odel9pVZMGAHfgs7qjPqKYof3VlPVaM/oJcNuFTJaP65SUlaO9oCtr2M5r8b+XEd;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UrGxT-0007mw-8t
+	for yocto@yoctoproject.org; Mon, 24 Jun 2013 20:18:07 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 24 Jun 2013 17:18:05 -0700
+Message-ID: <07EC680C643544CEB3DB605D0478EB01@PAULD>
 MIME-Version: 1.0
-Subject: Re: Yocto Project bug trends for 2013 WW25
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac5xOXZBgSXxtuRwRbW3XtrV1jnLPQ==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068801811563cb3644f9c38b4453d6c31e16350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: The simplest possible recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,28 +32,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jun 2013 19:55:55 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <7D6F07994CFCC64FA5845640B7E7F15F@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 25 Jun 2013 00:18:08 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Thanks for sending these out! Nice to see it before the meeting tomorrow
+That would be to copy a single file, provided in the files subdirectory of
+the recipe, into a particular place in the target tree. Is there any bbclass
+that automates this? Or do I just write a recipe with a do_install function
+that executes the "install" command?
 
-On 6/24/13 11:37 AM, "Michael Halstead" <michael@yoctoproject.org> wrote:
+My only guide is 5.3.1 in the Development Manual, which performs a simple
+compilation, but I'm very hazy about how recipes are interpreted, so I'd
+like it if someone can tell me if I've gotten the following stuff right or
+not.
 
->The trend graphs for work week 25 are up at
->https://wiki.yoctoproject.org/wiki/Yocto_Bug_Trend with two new charts.
->Versions of the weighted defect density trend-lines with Yocto Project
->release dates and several additional controls have been added.
->
->Screenshots of the graphs are attached for people who need a copy while
->offline. These are large images and you may need to open them outside of
->your e-mail client to see all the detail.
->
->--=20
->Michael Halstead
->Yocto Project / System Administrator
->
+SRC_URI tells bitbake what files must be gotten from somewhere and copied
+somewhere else in order to carry out the build process. And according to the
+Ref Manual, the "file://" prefix tells it to fetch a local file by searching
+some directories including the "files" subdirectory next to the .bb file.
+And apparently, there is a "subdir" option (whose syntax is unexplained)
+which may be used to tell bitbake to put it somewhere specific relative to
+${WORKDIR}.
+
+Is the default value of the "subdir" option the S variable? Is that the
+purpose of S, to tell bitbake where to put things that it fetches? The Ref
+Manual says that S defaults to ${WORKDIR}/${PN}/${PV}, but then the sample
+compile recipe sets S to ${WORKDIR}. Is that what one does when one doesn't
+need to have a bunch of versioned subdirectories under ${WORKDIR}? (I'm not
+sure why one would ever want that, or why that would be the default.)
+
+So if I want to install a file somewhere, do I even need a do_install task,
+or can I just set S equal to the desired target location, like
+"${etcdir}/foo" and be done with it? Or is that a no-no, and should I always
+use do_install?
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+ 
 
 
