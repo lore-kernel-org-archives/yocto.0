@@ -1,33 +1,40 @@
 Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86AE7E01530
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 23:58:55 -0700 (PDT)
-Received: by mail-wg0-f43.google.com with SMTP id z11so9100886wgg.22
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 23:58:54 -0700 (PDT)
+Received: from mail-we0-f177.google.com (mail-we0-f177.google.com
+	[74.125.82.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6112E013E8
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 00:03:18 -0700 (PDT)
+Received: by mail-we0-f177.google.com with SMTP id m19so8576777wev.8
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 00:03:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type:x-gm-message-state;
-	bh=ndTnMfaTG+SX7uEEsCruMbWCtas2DvxHM7bAm903C9c=;
-	b=JizTNvFaYfg9T4nI/jZjHo0Dl14N7R2Sckodv/SGBfM8/XnH/vidltxTxk35rXGc66
-	NPnrjNphu++xrBvJclKO9oVEW/C/tphcT0Cv7YJl9ergd3VI6LzSyb3rlTcXRQI4D0Ga
-	kIiuj9nwp5fyK0jJ5YIXdOgo5IX09tqHGdXyN50ntQWQhAVu6Lcs+lvH6X7qylwT/eUd
-	XDjuY3G3zsWkSsT+G0ATIDLuXUww7PXs6PycmF/UN8u/AK2dHsdQrxvYeNkWHwQ7eX6V
-	ekZQChU8aA9RImg3YgccsifSZrPm/4ZpfWlwhJUKG7maFUNHClAZqAH/fgiJcMaJdSA9
-	iw1A==
-X-Received: by 10.194.239.225 with SMTP id vv1mr18856429wjc.63.1372143534639; 
-	Mon, 24 Jun 2013 23:58:54 -0700 (PDT)
+	bh=xWilSSBvwXU8oZMkEHP2m85MnkJBlYT4v5vXcwjqW/Q=;
+	b=YkAUpLDuymxAw/uOICwRkzPLMnmpkJeMPcqi7hlycKLEemoXxp3xE/aKxr9HGFJC0y
+	g0UgFh/ExeLfU5yQ6FqEPRHK3p4ud1dlRpKhKUobscJE4zFqci+9vR2/rWAGB9fhddPp
+	b3b6sq3QCbVPyNmdpRmI+FltJFtznIJxVklCJcCGUA4HWvEps4fN8qYXTwpPTMGRMTTD
+	ohGLqEFFK93hsVwO1U/OYgR1WzqzxoYYlPA4Jsj9OsJ9OnUSauIA7JofQwif3mxjA2it
+	EhgUHOPmnOzS7s7xYvMm6uFnCWYo//e9CP/LOILCDEuzFG3vUL39cu2LnbWQ2aBYgXjg
+	rUMQ==
+X-Received: by 10.180.19.200 with SMTP id h8mr5218768wie.17.1372143797354;
+	Tue, 25 Jun 2013 00:03:17 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.180.83.1 with HTTP; Mon, 24 Jun 2013 23:58:34 -0700 (PDT)
-In-Reply-To: <CAFMfyzLGoJ0iys=Cd3vzJRPCXOO11y=hMnyayB7u-jNwkzE+Mw@mail.gmail.com>
-References: <CAFMfyzLGoJ0iys=Cd3vzJRPCXOO11y=hMnyayB7u-jNwkzE+Mw@mail.gmail.com>
+Received: by 10.180.83.1 with HTTP; Tue, 25 Jun 2013 00:02:57 -0700 (PDT)
+In-Reply-To: <CA+gsK-phin-6EsfXixkC1OWfpg6J4oK22NOp+duP7aXAgvbM5w@mail.gmail.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50C1A@ORSMSX101.amr.corp.intel.com>
+	<CDE892AD.36CA0%david.c.stewart@intel.com>
+	<000001ce6de8$70639de0$512ad9a0$@annabooks.com>
+	<CALmOhg=h=j+uHiPdGShjZwtL97jsnhz1v6T4GRfcge0jJypTKQ@mail.gmail.com>
+	<CA+gsK-orLA13kBxTSj-E451GQKKdy8L6hUHQxKQgFqg-VNiK8Q@mail.gmail.com>
+	<CALmOhgmpSjx-D-EycMX9AJv1Rwgrvv3VE2jKqakd4kUtbXYHJg@mail.gmail.com>
+	<CA+gsK-phin-6EsfXixkC1OWfpg6J4oK22NOp+duP7aXAgvbM5w@mail.gmail.com>
 From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 25 Jun 2013 08:58:34 +0200
-Message-ID: <CAP71Wjxr0hz-_hNEat8o-=T91HNWbWfdNUNuzh43Fs9NHcVOkg@mail.gmail.com>
-To: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
-X-Gm-Message-State: ALoCoQkaW0tyr76aCXIIgDBSzjS/cOKg70DRk+NIHy5vstR8CojHbFzQCrAs0RQK0AFSNUd0tnV6
+Date: Tue, 25 Jun 2013 09:02:57 +0200
+Message-ID: <CAP71Wjwk=_B=p1WxT+svbDouZp2bX+aYW=at+Q_AOM7wGo+pFA@mail.gmail.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+X-Gm-Message-State: ALoCoQndkfyFvMwsYt6gPJJDI6AOPeGdgEJQYcwcdE88envtG02GmVpC0VESrOQ5JnELdRsmf8cE
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Adding users and their rights
+Subject: Re: Documenting YP Development Environment in more detail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,55 +46,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 06:58:58 -0000
-Content-Type: multipart/alternative; boundary=089e01493384f6a18404dff50f37
+X-List-Received-Date: Tue, 25 Jun 2013 07:03:21 -0000
+Content-Type: multipart/alternative; boundary=bcaec53d5eb79f53b704dff51fa8
 
---089e01493384f6a18404dff50f37
+--bcaec53d5eb79f53b704dff51fa8
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Jun 25, 2013 at 8:38 AM, DAMARLA Satya Swaroop <
-satyaswaroop.damarla@gmail.com> wrote:
+On Tue, Jun 25, 2013 at 7:15 AM, Rudolf Streif
+<rstreif@linuxfoundation.org>wrote:
 
-> I would like to know if its possible to add users and theri rights at the
-> build itself... I know tinylogin provides the adduser to the target but how
-> can I do it at the build is the issue here..
 >
-> Suggestions are deeply appreciated
+>
+>> An appendix on Android's "repo" tool might make for an excellent
+>> addition; it seems some Yocto projects are showing lots of interest in
+>> using it.
+>>
+>> The idea is to integrate/use it with YP? I know what repo does and that
+> it is built on top of git but I have not looked behind the scenes to figure
+> out how it does its job and how it can be used with something else like YP
+> instead of with the Android repositories and review system.
 >
 
-not sure if i understand the question correctly, but isn't 'useradd' what
-you are looking for:
+not integrate with yocto directly. but use it to 'manage' the set of trees
+that are required when using OE/Yocto. The gumstix guys are using it, see
+[1], and we are moving toward it at linaro too, to manage our builds [2]
 
-http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#ref-classes-useradd
+[1] https://github.com/gumstix/Gumstix-YoctoProject-Repo
+[2] http://lists.linaro.org/pipermail/linaro-dev/2013-May/015998.html
 
-cheers
+then for organization that might need it, repo can be integrated with
+gerrit too, but repo 'standalone' can still be used to manage set of trees.
 
---089e01493384f6a18404dff50f37
+--bcaec53d5eb79f53b704dff51fa8
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Jun 25, 2013 at 8:38 AM, DAMARLA Satya Swaroop <span dir=3D"ltr">&l=
-t;<a href=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">satya=
-swaroop.damarla@gmail.com</a>&gt;</span> wrote:<br>
+On Tue, Jun 25, 2013 at 7:15 AM, Rudolf Streif <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blank">rstreif@linuxfou=
+ndation.org</a>&gt;</span> wrote:<br>
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
 left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>I would like to know if its possible to add users and=
- theri rights at the build itself... I know tinylogin provides the adduser =
-to the target but how can I do it at the build is the issue here..</div>
+adding-left:1ex"><div class=3D"im"><div>=A0</div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left=
+-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
 
 
-<div><br></div><div>Suggestions are deeply appreciated</div></blockquote></=
-div><br>not sure if i understand the question correctly, but isn&#39;t &#39=
-;useradd&#39; what you are looking for:=A0</div><div class=3D"gmail_extra">
 
-<br></div><div class=3D"gmail_extra"><a href=3D"http://www.yoctoproject.org=
-/docs/current/mega-manual/mega-manual.html#ref-classes-useradd">http://www.=
-yoctoproject.org/docs/current/mega-manual/mega-manual.html#ref-classes-user=
-add</a><br>
+An appendix on Android&#39;s &quot;repo&quot; tool might make for an excell=
+ent<br>
+addition; it seems some Yocto projects are showing lots of interest in<br>
+using it.<br>
+<div><br></div></blockquote></div><div>The idea is to integrate/use it with=
+ YP? I know what repo does and that it is built on top of git but I have no=
+t looked behind the scenes to figure out how it does its job and how it can=
+ be used with something else like YP instead of with the Android repositori=
+es and review system.=A0</div>
 
-</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra" style=
->cheers</div></div>
 
---089e01493384f6a18404dff50f37--
+<div></div></blockquote></div><br>not integrate with yocto directly. but us=
+e it to &#39;manage&#39; the set of trees that are required when using OE/Y=
+octo. The gumstix guys are using it, see [1], and we are moving toward it a=
+t linaro too, to manage our builds [2]</div>
+
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">[1]=A0<a hr=
+ef=3D"https://github.com/gumstix/Gumstix-YoctoProject-Repo">https://github.=
+com/gumstix/Gumstix-YoctoProject-Repo</a></div><div class=3D"gmail_extra">[=
+2]=A0<a href=3D"http://lists.linaro.org/pipermail/linaro-dev/2013-May/01599=
+8.html">http://lists.linaro.org/pipermail/linaro-dev/2013-May/015998.html</=
+a></div>
+
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra" style>then =
+for organization that might need it, repo can be integrated with gerrit too=
+, but repo &#39;standalone&#39; can still be used to manage set of trees.</=
+div>
+
+<div class=3D"gmail_extra" style><br></div></div>
+
+--bcaec53d5eb79f53b704dff51fa8--
