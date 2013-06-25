@@ -1,26 +1,36 @@
-Return-Path: <Adrian.Dudau@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id F0E6AE00734
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 01:04:01 -0700 (PDT)
-Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.02.0318.001; Tue, 25 Jun 2013 10:03:58 +0200
-From: Adrian Dudau <Adrian.Dudau@enea.com>
-To: "jessica.zhang@intel.com" <jessica.zhang@intel.com>
-Thread-Topic: [PATCH 1/1][eclipse-poky] systemtap: add button to browse to
-	build folder
-Thread-Index: AQHOa1d8RHPwgIc/QkqvcgqAd56C25lF/NcA
-Date: Tue, 25 Jun 2013 08:03:57 +0000
-Message-ID: <C35DE6E3665B10419D70F74D9884ABD403E3F1F5@sestoex05.enea.se>
-References: <1371472662-30136-1-git-send-email-adrian.dudau@enea.com>
-In-Reply-To: <1371472662-30136-1-git-send-email-adrian.dudau@enea.com>
-Accept-Language: en-US, sv-SE
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15A42E00734
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 01:46:03 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 25 Jun 2013 01:46:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,935,1363158000"; d="scan'208";a="355347152"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga001.fm.intel.com with ESMTP; 25 Jun 2013 01:46:32 -0700
+Received: from irsmsx106.ger.corp.intel.com (163.33.3.31) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 25 Jun 2013 09:45:44 +0100
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.204]) by
+	IRSMSX106.ger.corp.intel.com ([169.254.8.91]) with mapi id
+	14.03.0123.003; Tue, 25 Jun 2013 09:45:44 +0100
+From: "Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [RFC PATCH v2 upstream org.eclipse.tm] [411343]Provide
+	access to readers in host shell
+Thread-Index: AQHObqawVx9//FLLWku5CtP3FIGVxZlGIuuq
+Date: Tue, 25 Jun 2013 08:45:43 +0000
+Message-ID: <3E179CF0D7162B4AA4E2B324209A4639160097AA@IRSMSX101.ger.corp.intel.com>
+References: <1371827919-18181-1-git-send-email-ioanax.grigoropol@intel.com>,
+	<C6510F6D410BB64A8C15398EDC6B847C73C46E28@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C46E28@ORSMSX103.amr.corp.intel.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.141.147]
+x-originating-ip: [10.3.86.135]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/1][eclipse-poky] systemtap: add button to browse to build folder
+Subject: Re: [RFC PATCH v2 upstream org.eclipse.tm] [411343]Provide	access to readers in host shell
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,193 +42,195 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 08:04:03 -0000
+X-List-Received-Date: Tue, 25 Jun 2013 08:46:12 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C8A1EF3D6B8D3245BE5D1AA56AF56706@local>
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgSmVzc2ljYSwNCg0KQ2FuIHlvdSBwbGVhc2UgaGF2ZSBhIGxvb2sgYXQgdGhpcyBwYXRjaD8g
-SXQncyBiZWVuIHBlbmRpbmcgZm9yIGEgd2hpbGUuDQoNClRoYW5rcywNCi0tQWRyaWFuDQoNCg0K
-T24gTW9uLCAyMDEzLTA2LTE3IGF0IDE0OjM3ICswMjAwLCBBZHJpYW4gRHVkYXUgd3JvdGU6DQo+
-IFtZb2N0byAjNDIyM10NCj4gU2lnbmVkLW9mZi1ieTogQWRyaWFuIER1ZGF1IDxhZHJpYW4uZHVk
-YXVAZW5lYS5jb20+DQo+IC0tLQ0KPiAgLi4uL3NyYy9vcmcveW9jdG8vcmVtb3RlL3V0aWxzL1No
-ZWxsU2Vzc2lvbi5qYXZhICAgfCAgICA0ICsrLQ0KPiAgLi4uL3NyYy9vcmcveW9jdG8vc2RrL3Jl
-bW90ZXRvb2xzL01lc3NhZ2VzLmphdmEgICAgfCAgICAxICsNCj4gIC4uLi9zZGsvcmVtb3RldG9v
-bHMvYWN0aW9ucy9TeXN0ZW10YXBIYW5kbGVyLmphdmEgIHwgICAgMyArKy0NCj4gIC4uLi9zZGsv
-cmVtb3RldG9vbHMvYWN0aW9ucy9TeXN0ZW10YXBNb2RlbC5qYXZhICAgIHwgICAgNiArKystLQ0K
-PiAgLi4uL2FjdGlvbnMvU3lzdGVtdGFwU2V0dGluZ0RpYWxvZy5qYXZhICAgICAgICAgICAgfCAg
-IDI4ICsrKysrKysrKysrKysrKysrKysrDQo+ICAuLi4vb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29s
-cy9tZXNzYWdlcy5wcm9wZXJ0aWVzICB8ICAgIDEgKw0KPiAgNiBmaWxlcyBjaGFuZ2VkLCAzOSBp
-bnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL3BsdWdpbnMv
-b3JnLnlvY3RvLnJlbW90ZS51dGlscy9zcmMvb3JnL3lvY3RvL3JlbW90ZS91dGlscy9TaGVsbFNl
-c3Npb24uamF2YSBiL3BsdWdpbnMvb3JnLnlvY3RvLnJlbW90ZS51dGlscy9zcmMvb3JnL3lvY3Rv
-L3JlbW90ZS91dGlscy9TaGVsbFNlc3Npb24uamF2YQ0KPiBpbmRleCA0YWM4MDAxLi4xMGNkZjk0
-IDEwMDY0NA0KPiAtLS0gYS9wbHVnaW5zL29yZy55b2N0by5yZW1vdGUudXRpbHMvc3JjL29yZy95
-b2N0by9yZW1vdGUvdXRpbHMvU2hlbGxTZXNzaW9uLmphdmENCj4gKysrIGIvcGx1Z2lucy9vcmcu
-eW9jdG8ucmVtb3RlLnV0aWxzL3NyYy9vcmcveW9jdG8vcmVtb3RlL3V0aWxzL1NoZWxsU2Vzc2lv
-bi5qYXZhDQo+IEBAIC00Niw2ICs0Niw3IEBAIHB1YmxpYyBjbGFzcyBTaGVsbFNlc3Npb24gew0K
-PiAgCXByaXZhdGUgU3RyaW5nIHNoZWxsUGF0aCA9IG51bGw7DQo+ICAJcHJpdmF0ZSBmaW5hbCBT
-dHJpbmcgaW5pdENtZDsNCj4gIAlwcml2YXRlIGZpbmFsIEZpbGUgcm9vdDsNCj4gKwlwcml2YXRl
-IGZpbmFsIEZpbGUgYnVpbGRkaXI7DQo+ICANCj4gIAlwcml2YXRlIE91dHB1dFN0cmVhbVdyaXRl
-ciBvdXQ7DQo+ICANCj4gQEAgLTcwLDYgKzcxLDcgQEAgcHVibGljIGNsYXNzIFNoZWxsU2Vzc2lv
-biB7DQo+ICANCj4gIAlwdWJsaWMgU2hlbGxTZXNzaW9uKGludCBzaGVsbFR5cGUsIEZpbGUgcm9v
-dCwgU3RyaW5nIGluaXRDbWQsIE91dHB1dFN0cmVhbSBvdXQpIHRocm93cyBJT0V4Y2VwdGlvbiB7
-DQo+ICAJCXRoaXMucm9vdCA9IHJvb3Q7DQo+ICsJCXRoaXMuYnVpbGRkaXIgPSBidWlsZGRpcjsN
-Cj4gIAkJdGhpcy5pbml0Q21kICA9IGluaXRDbWQ7DQo+ICAJCWlmIChvdXQgPT0gbnVsbCkgew0K
-PiAgCQkJdGhpcy5vdXQgPSBuZXcgT3V0cHV0U3RyZWFtV3JpdGVyKG51bGwpOw0KPiBAQCAtOTMs
-NyArOTUsNyBAQCBwdWJsaWMgY2xhc3MgU2hlbGxTZXNzaW9uIHsNCj4gIAkJfQ0KPiAgDQo+ICAJ
-CWlmIChpbml0Q21kICE9IG51bGwpIHsNCj4gLQkJCWV4ZWN1dGUoInNvdXJjZSAiICsgaW5pdENt
-ZCk7DQo+ICsJCQlleGVjdXRlKCJzb3VyY2UgIiArIGluaXRDbWQgKyAiICIgKyBidWlsZGRpci5n
-ZXRBYnNvbHV0ZVBhdGgoKSk7DQo+ICAJCX0NCj4gIAl9DQo+ICANCj4gZGlmZiAtLWdpdCBhL3Bs
-dWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0
-b29scy9NZXNzYWdlcy5qYXZhIGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3Ny
-Yy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL01lc3NhZ2VzLmphdmENCj4gaW5kZXggNjZiYTYy
-Yi4uY2JmMmIwNSAxMDA2NDQNCj4gLS0tIGEvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRv
-b2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL01lc3NhZ2VzLmphdmENCj4gKysrIGIv
-cGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90
-ZXRvb2xzL01lc3NhZ2VzLmphdmENCj4gQEAgLTQwLDYgKzQwLDcgQEAgcHVibGljIGNsYXNzIE1l
-c3NhZ2VzIGV4dGVuZHMgTkxTIHsNCj4gIAlwdWJsaWMgc3RhdGljIFN0cmluZyBUZXJtaW5hbFZp
-ZXdlcl90ZXh0Ow0KPiAgCS8vcHVibGljIHN0YXRpYyBTdHJpbmcgU3lzdGVtdGFwX0tPX1RleHQ7
-DQo+ICAJcHVibGljIHN0YXRpYyBTdHJpbmcgTWV0YWRhdGFfTG9jYXRpb247DQo+ICsJcHVibGlj
-IHN0YXRpYyBTdHJpbmcgQnVpbGRkaXJfTG9jYXRpb247DQo+ICAJcHVibGljIHN0YXRpYyBTdHJp
-bmcgVXNlcl9JRDsNCj4gIAlwdWJsaWMgc3RhdGljIFN0cmluZyBSZW1vdGVfSG9zdDsNCj4gIAlw
-dWJsaWMgc3RhdGljIFN0cmluZyBTeXN0ZW10YXBfU2NyaXB0Ow0KPiBkaWZmIC0tZ2l0IGEvcGx1
-Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRv
-b2xzL2FjdGlvbnMvU3lzdGVtdGFwSGFuZGxlci5qYXZhIGIvcGx1Z2lucy9vcmcueW9jdG8uc2Rr
-LnJlbW90ZXRvb2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL2FjdGlvbnMvU3lzdGVt
-dGFwSGFuZGxlci5qYXZhDQo+IGluZGV4IDlkMjdlNWEuLjlmNDVkMDUgMTAwNjQ0DQo+IC0tLSBh
-L3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1v
-dGV0b29scy9hY3Rpb25zL1N5c3RlbXRhcEhhbmRsZXIuamF2YQ0KPiArKysgYi9wbHVnaW5zL29y
-Zy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvYWN0
-aW9ucy9TeXN0ZW10YXBIYW5kbGVyLmphdmENCj4gQEAgLTM0LDYgKzM0LDcgQEAgcHVibGljIGNs
-YXNzIFN5c3RlbXRhcEhhbmRsZXIgZXh0ZW5kcyBBYnN0cmFjdEhhbmRsZXIgew0KPiAgCQkJCSk7
-DQo+ICAJCQ0KPiAgCQlTdHJpbmcgbWV0YWRhdGFfbG9jYXRpb24gPSAoKFN5c3RlbXRhcFNldHRp
-bmdEaWFsb2cpc2V0dGluZykuZ2V0TWV0YWRhdGFMb2NhdGlvbigpOw0KPiArCQlTdHJpbmcgYnVp
-bGRkaXJfbG9jYXRpb24gPSAoKFN5c3RlbXRhcFNldHRpbmdEaWFsb2cpc2V0dGluZykuZ2V0QnVp
-bGRkaXJMb2NhdGlvbigpOw0KPiAgCQlTdHJpbmcgcmVtb3RlX2hvc3QgPSAoKFN5c3RlbXRhcFNl
-dHRpbmdEaWFsb2cpc2V0dGluZykuZ2V0UmVtb3RlSG9zdCgpOw0KPiAgCQlTdHJpbmcgdXNlcl9p
-ZCA9ICgoU3lzdGVtdGFwU2V0dGluZ0RpYWxvZylzZXR0aW5nKS5nZXRVc2VySUQoKTsNCj4gIAkJ
-U3RyaW5nIHN5c3RlbXRhcF9zY3JpcHQgPSAoKFN5c3RlbXRhcFNldHRpbmdEaWFsb2cpc2V0dGlu
-ZykuZ2V0U3lzdGVtdGFwU2NyaXB0KCk7DQo+IEBAIC00MSw3ICs0Miw3IEBAIHB1YmxpYyBjbGFz
-cyBTeXN0ZW10YXBIYW5kbGVyIGV4dGVuZHMgQWJzdHJhY3RIYW5kbGVyIHsNCj4gIA0KPiAgCQlp
-ZihzZXR0aW5nLm9wZW4oKSA9PSBCYXNlU2V0dGluZ0RpYWxvZy5PSykgew0KPiAgCQkJSVByb2dy
-ZXNzU2VydmljZSBwcm9ncmVzc1NlcnZpY2UgPSBQbGF0Zm9ybVVJLmdldFdvcmtiZW5jaCgpLmdl
-dFByb2dyZXNzU2VydmljZSgpOw0KPiAtCQkJU3lzdGVtdGFwTW9kZWwgb3AgPSBuZXcgU3lzdGVt
-dGFwTW9kZWwobWV0YWRhdGFfbG9jYXRpb24scmVtb3RlX2hvc3QsIHVzZXJfaWQsIHN5c3RlbXRh
-cF9zY3JpcHQsDQo+ICsJCQlTeXN0ZW10YXBNb2RlbCBvcCA9IG5ldyBTeXN0ZW10YXBNb2RlbCht
-ZXRhZGF0YV9sb2NhdGlvbiwgYnVpbGRkaXJfbG9jYXRpb24sIHJlbW90ZV9ob3N0LCB1c2VyX2lk
-LCBzeXN0ZW10YXBfc2NyaXB0LA0KPiAgCQkJCQlzeXN0ZW10YXBfYXJncyx3aW5kb3cuZ2V0U2hl
-bGwoKS5nZXREaXNwbGF5KCkpOw0KPiAgCQkJdHJ5IHsNCj4gIAkJCQlwcm9ncmVzc1NlcnZpY2Uu
-YnVzeUN1cnNvcldoaWxlKG9wKTsNCj4gZGlmZiAtLWdpdCBhL3BsdWdpbnMvb3JnLnlvY3RvLnNk
-ay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29scy9hY3Rpb25zL1N5c3Rl
-bXRhcE1vZGVsLmphdmEgYi9wbHVnaW5zL29yZy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29y
-Zy95b2N0by9zZGsvcmVtb3RldG9vbHMvYWN0aW9ucy9TeXN0ZW10YXBNb2RlbC5qYXZhDQo+IGlu
-ZGV4IGY0NDNlMDAuLmJiMmZhMmQgMTAwNjQ0DQo+IC0tLSBhL3BsdWdpbnMvb3JnLnlvY3RvLnNk
-ay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9yZW1vdGV0b29scy9hY3Rpb25zL1N5c3Rl
-bXRhcE1vZGVsLmphdmENCj4gKysrIGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xz
-L3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL2FjdGlvbnMvU3lzdGVtdGFwTW9kZWwuamF2
-YQ0KPiBAQCAtMjksNiArMjksNyBAQCBwdWJsaWMgY2xhc3MgU3lzdGVtdGFwTW9kZWwgZXh0ZW5k
-cyBCYXNlTW9kZWwgew0KPiAgDQo+ICAJcHJvdGVjdGVkIE1lc3NhZ2VDb25zb2xlIHNlc3Npb25D
-b25zb2xlOw0KPiAgCXByaXZhdGUgU3RyaW5nIG1ldGFkYXRhX2xvY2F0aW9uOw0KPiArCXByaXZh
-dGUgU3RyaW5nIGJ1aWxkZGlyX2xvY2F0aW9uOw0KPiAgCXByaXZhdGUgU3RyaW5nIHJlbW90ZV9o
-b3N0Ow0KPiAgCXByaXZhdGUgU3RyaW5nIHVzZXJfaWQ7DQo+ICAJcHJpdmF0ZSBTdHJpbmcgc3lz
-dGVtdGFwX3NjcmlwdDsNCj4gQEAgLTM2LDkgKzM3LDEwIEBAIHB1YmxpYyBjbGFzcyBTeXN0ZW10
-YXBNb2RlbCBleHRlbmRzIEJhc2VNb2RlbCB7DQo+ICANCj4gIAlEaXNwbGF5IGRpc3BsYXk7DQo+
-ICAJDQo+IC0JcHVibGljIFN5c3RlbXRhcE1vZGVsKFN0cmluZyBtZXRhZGF0YV9sb2NhdGlvbiwg
-U3RyaW5nIHJlbW90ZV9ob3N0LCBTdHJpbmcgdXNlcl9pZCwgU3RyaW5nIHN5c3RlbXRhcF9zY3Jp
-cHQsIFN0cmluZyBzeXN0ZW10YXBfYXJncywgRGlzcGxheSBkaXNwbGF5KSB7DQo+ICsJcHVibGlj
-IFN5c3RlbXRhcE1vZGVsKFN0cmluZyBtZXRhZGF0YV9sb2NhdGlvbiwgU3RyaW5nIGJ1aWxkZGly
-X2xvY2F0aW9uLCBTdHJpbmcgcmVtb3RlX2hvc3QsIFN0cmluZyB1c2VyX2lkLCBTdHJpbmcgc3lz
-dGVtdGFwX3NjcmlwdCwgU3RyaW5nIHN5c3RlbXRhcF9hcmdzLCBEaXNwbGF5IGRpc3BsYXkpIHsN
-Cj4gIAkJc3VwZXIobnVsbCwgVEFTS19OQU1FLCAiIiwgIiIpOw0KPiAgCQl0aGlzLm1ldGFkYXRh
-X2xvY2F0aW9uID0gbWV0YWRhdGFfbG9jYXRpb247DQo+ICsJCXRoaXMuYnVpbGRkaXJfbG9jYXRp
-b24gPSBidWlsZGRpcl9sb2NhdGlvbjsNCj4gIAkJdGhpcy5yZW1vdGVfaG9zdCA9IHJlbW90ZV9o
-b3N0Ow0KPiAgCQl0aGlzLnVzZXJfaWQgPSB1c2VyX2lkOw0KPiAgCQl0aGlzLnN5c3RlbXRhcF9z
-Y3JpcHQgPSBzeXN0ZW10YXBfc2NyaXB0Ow0KPiBAQCAtNzAsNyArNzIsNyBAQCBwdWJsaWMgY2xh
-c3MgU3lzdGVtdGFwTW9kZWwgZXh0ZW5kcyBCYXNlTW9kZWwgew0KPiAgCQkJdGhyb3dzIEludm9j
-YXRpb25UYXJnZXRFeGNlcHRpb24sIEludGVycnVwdGVkRXhjZXB0aW9uIHsNCj4gIAkJdHJ5IHsN
-Cj4gIAkJCVNoZWxsU2Vzc2lvbiBzaGVsbCA9IG5ldyBTaGVsbFNlc3Npb24oU2hlbGxTZXNzaW9u
-LlNIRUxMX1RZUEVfQkFTSCwgDQo+IC0JCQkJCQkJCQkJCQluZXcgRmlsZSh0aGlzLm1ldGFkYXRh
-X2xvY2F0aW9uKSwNCj4gKwkJCQkJCQkJCQkJCW5ldyBGaWxlKHRoaXMubWV0YWRhdGFfbG9jYXRp
-b24pLCBuZXcgRmlsZSh0aGlzLmJ1aWxkZGlyX2xvY2F0aW9uKSwNCj4gIAkJCQkJCQkJCQkJCURF
-RkFVTFRfSU5JVF9TQ1JJUFQsIHNlc3Npb25Db25zb2xlLm5ld091dHB1dFN0cmVhbSgpKTsNCj4g
-IAkJCWJvb2xlYW4gYWNjZXB0ZWRLZXkgPSBzaGVsbC5lbnN1cmVLbm93bkhvc3RLZXkodXNlcl9p
-ZCwgcmVtb3RlX2hvc3QpOw0KPiAgCQkJaWYgKGFjY2VwdGVkS2V5KSB7DQo+IGRpZmYgLS1naXQg
-YS9wbHVnaW5zL29yZy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVt
-b3RldG9vbHMvYWN0aW9ucy9TeXN0ZW10YXBTZXR0aW5nRGlhbG9nLmphdmEgYi9wbHVnaW5zL29y
-Zy55b2N0by5zZGsucmVtb3RldG9vbHMvc3JjL29yZy95b2N0by9zZGsvcmVtb3RldG9vbHMvYWN0
-aW9ucy9TeXN0ZW10YXBTZXR0aW5nRGlhbG9nLmphdmENCj4gaW5kZXggYzQ0NzU2OS4uNzYwNzE1
-YyAxMDA2NDQNCj4gLS0tIGEvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xzL3NyYy9v
-cmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL2FjdGlvbnMvU3lzdGVtdGFwU2V0dGluZ0RpYWxvZy5q
-YXZhDQo+ICsrKyBiL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lv
-Y3RvL3Nkay9yZW1vdGV0b29scy9hY3Rpb25zL1N5c3RlbXRhcFNldHRpbmdEaWFsb2cuamF2YQ0K
-PiBAQCAtMzcsMTggKzM3LDIxIEBAIHB1YmxpYyBjbGFzcyBTeXN0ZW10YXBTZXR0aW5nRGlhbG9n
-IGV4dGVuZHMgRGlhbG9nIHsNCj4gIAlzdGF0aWMgcHJvdGVjdGVkIFN0cmluZyBUSVRMRT0iU3lz
-dGVtdGFwIENyb3NzdGFwIjsNCj4gIAlwcm90ZWN0ZWQgU3RyaW5nIHRpdGxlOw0KPiAgCXByb3Rl
-Y3RlZCBTdHJpbmcgbWV0YWRhdGFfbG9jYXRpb247DQo+ICsJcHJvdGVjdGVkIFN0cmluZyBidWls
-ZGRpcl9sb2NhdGlvbjsNCj4gIAlwcm90ZWN0ZWQgU3RyaW5nIHN5c3RlbXRhcF9zY3JpcHQ7DQo+
-ICAJcHJvdGVjdGVkIFN0cmluZyB1c2VyX2lkOw0KPiAgCXByb3RlY3RlZCBTdHJpbmcgcmVtb3Rl
-X2hvc3Q7DQo+ICAJcHJvdGVjdGVkIFN0cmluZyBzeXN0ZW10YXBfYXJnczsNCj4gIAlwcm90ZWN0
-ZWQgYm9vbGVhbiBva1ByZXNzZWQ7DQo+ICAJcHJvdGVjdGVkIEJ1dHRvbiBtZXRhZGF0YUxvY2F0
-aW9uQnRuOw0KPiArCXByb3RlY3RlZCBCdXR0b24gYnVpbGRkaXJMb2NhdGlvbkJ0bjsNCj4gIAlw
-cm90ZWN0ZWQgQnV0dG9uIHN5c3RlbXRhcFNjcmlwdEJ0bjsNCj4gIAlwcm90ZWN0ZWQgVGV4dCB1
-c2VySURUZXh0Ow0KPiAgCXByb3RlY3RlZCBUZXh0IHJlbW90ZUhvc3RUZXh0Ow0KPiAgCXByb3Rl
-Y3RlZCBUZXh0IHN5c3RlbXRhcEFyZ3NUZXh0Ow0KPiAgCXByb3RlY3RlZCBUZXh0IHN5c3RlbXRh
-cFNjcmlwdFRleHQ7DQo+ICAJcHJvdGVjdGVkIFRleHQgbWV0YWRhdGFMb2NhdGlvblRleHQ7DQo+
-ICsJcHJvdGVjdGVkIFRleHQgYnVpbGRkaXJMb2NhdGlvblRleHQ7DQo+ICAJDQo+ICAJcHJvdGVj
-dGVkIFN5c3RlbXRhcFNldHRpbmdEaWFsb2coU2hlbGwgcGFyZW50U2hlbGwsIFN0cmluZyB0aXRs
-ZSkgew0KPiAgCQlzdXBlcihwYXJlbnRTaGVsbCk7DQo+IEBAIC03NSw2ICs3OCwxMCBAQCBwdWJs
-aWMgY2xhc3MgU3lzdGVtdGFwU2V0dGluZ0RpYWxvZyBleHRlbmRzIERpYWxvZyB7DQo+ICAJCXJl
-dHVybiBtZXRhZGF0YV9sb2NhdGlvbjsNCj4gIAl9DQo+ICAJDQo+ICsJcHVibGljIFN0cmluZyBn
-ZXRCdWlsZGRpckxvY2F0aW9uKCkgew0KPiArCQlyZXR1cm4gYnVpbGRkaXJfbG9jYXRpb247DQo+
-ICsJfQ0KPiArDQo+ICAJcHVibGljIFN0cmluZyBnZXRSZW1vdGVIb3N0KCkgew0KPiAgCQlyZXR1
-cm4gcmVtb3RlX2hvc3Q7DQo+ICAJfQ0KPiBAQCAtMTE5LDYgKzEyNiwxNCBAQCBwdWJsaWMgY2xh
-c3MgU3lzdGVtdGFwU2V0dGluZ0RpYWxvZyBleHRlbmRzIERpYWxvZyB7DQo+ICAJCW1ldGFkYXRh
-TG9jYXRpb25CdG4gPSBhZGREaXJTZWxlY3RCdXR0b24odGV4dENvbnRhaW5lciwgbWV0YWRhdGFM
-b2NhdGlvblRleHQpOw0KPiAgCQkNCj4gIAkJbGFiZWwgPSBuZXcgTGFiZWwocHJvakNvbXAsIFNX
-VC5OT05FKTsNCj4gKwkJbGFiZWwuc2V0VGV4dChNZXNzYWdlcy5CdWlsZGRpcl9Mb2NhdGlvbik7
-DQo+ICsJCXRleHRDb250YWluZXIgPSBuZXcgQ29tcG9zaXRlKHByb2pDb21wLCBTV1QuTk9ORSk7
-DQo+ICsJCXRleHRDb250YWluZXIuc2V0TGF5b3V0KG5ldyBHcmlkTGF5b3V0KDIsIGZhbHNlKSk7
-DQo+ICsJCXRleHRDb250YWluZXIuc2V0TGF5b3V0RGF0YShuZXcgR3JpZERhdGEoU1dULkZJTEws
-IFNXVC5DRU5URVIsIHRydWUsIGZhbHNlKSk7DQo+ICsJCWJ1aWxkZGlyTG9jYXRpb25UZXh0ID0g
-KFRleHQpYWRkVGV4dENvbnRyb2wodGV4dENvbnRhaW5lciwgYnVpbGRkaXJfbG9jYXRpb24pOw0K
-PiArCQlidWlsZGRpckxvY2F0aW9uQnRuID0gYWRkRGlyU2VsZWN0QnV0dG9uKHRleHRDb250YWlu
-ZXIsIGJ1aWxkZGlyTG9jYXRpb25UZXh0KTsNCj4gKw0KPiArCQlsYWJlbCA9IG5ldyBMYWJlbChw
-cm9qQ29tcCwgU1dULk5PTkUpOw0KPiAgCQlsYWJlbC5zZXRUZXh0KE1lc3NhZ2VzLlVzZXJfSUQp
-Ow0KPiAgCQl1c2VySURUZXh0ID0gbmV3IFRleHQocHJvakNvbXAsIFNXVC5TSU5HTEUgfCBTV1Qu
-Qk9SREVSKTsNCj4gIAkJDQo+IEBAIC0yMTksNiArMjM0LDE5IEBAIHB1YmxpYyBjbGFzcyBTeXN0
-ZW10YXBTZXR0aW5nRGlhbG9nIGV4dGVuZHMgRGlhbG9nIHsNCj4gIAkJCUNvbW1vbkhlbHBlci5z
-aG93RXJyb3JEaWFsb2coIlN5c3RlbVRhcCBFcnJvciIsIG51bGwsICJUaGUgc3BlY2lmaWVkIG1l
-dGFkYXRhIGxvY2F0aW9uIGlzIG5vdCBhIGRpcmVjdG9yeSEiKTsNCj4gIAkJCXJldHVybjsNCj4g
-IAkJfQ0KPiArCQlidWlsZGRpcl9sb2NhdGlvbiA9IGJ1aWxkZGlyTG9jYXRpb25UZXh0LmdldFRl
-eHQoKTsNCj4gKwkJaWYgKCAoYnVpbGRkaXJfbG9jYXRpb24gPT0gbnVsbCkgfHwgYnVpbGRkaXJf
-bG9jYXRpb24uaXNFbXB0eSgpKSB7DQo+ICsJCQlDb21tb25IZWxwZXIuc2hvd0Vycm9yRGlhbG9n
-KCJTeXN0ZW1UYXAgRXJyb3IiLCBudWxsLCAiUGxlYXNlIHNwZWNpZnkgeW91ciBidWlsZGRpciBs
-b2NhdGlvbiEiKTsNCj4gKwkJCXJldHVybjsNCj4gKwkJfQ0KPiArCQlGaWxlIGJ1aWxkZGlyX2Rp
-ciA9IG5ldyBGaWxlKGJ1aWxkZGlyX2xvY2F0aW9uKTsNCj4gKwkJaWYgKCFidWlsZGRpcl9kaXIu
-ZXhpc3RzKCkpIHsNCj4gKwkJCUNvbW1vbkhlbHBlci5zaG93RXJyb3JEaWFsb2coIlN5c3RlbVRh
-cCBFcnJvciIsIG51bGwsICJUaGUgc3BlY2lmaWVkIGJ1aWxkZGlyIGxvY2F0aW9uIGRvZXMgbm90
-IGV4aXN0ISIpOw0KPiArCQl9DQo+ICsJCWlmICghbWV0YWRhdGFfZGlyLmlzRGlyZWN0b3J5KCkp
-IHsNCj4gKwkJCUNvbW1vbkhlbHBlci5zaG93RXJyb3JEaWFsb2coIlN5c3RlbVRhcCBFcnJvciIs
-IG51bGwsICJUaGUgc3BlY2lmaWVkIGJ1aWxkZGlyIGxvY2F0aW9uIGlzIG5vdCBhIGRpcmVjdG9y
-eSEiKTsNCj4gKwkJCXJldHVybjsNCj4gKwkJfQ0KPiAgCQl1c2VyX2lkID0gdXNlcklEVGV4dC5n
-ZXRUZXh0KCk7DQo+ICAJCWlmICggKHVzZXJfaWQgPT0gbnVsbCkgfHwgdXNlcl9pZC5pc0VtcHR5
-KCkpIHsNCj4gIAkJCUNvbW1vbkhlbHBlci5zaG93RXJyb3JEaWFsb2coIlN5c3RlbVRhcCBFcnJv
-ciIsIG51bGwsICJQbGVhc2Ugc3BlY2lmeSByZW1vdGUgdXNlciBpZCEiKTsNCj4gZGlmZiAtLWdp
-dCBhL3BsdWdpbnMvb3JnLnlvY3RvLnNkay5yZW1vdGV0b29scy9zcmMvb3JnL3lvY3RvL3Nkay9y
-ZW1vdGV0b29scy9tZXNzYWdlcy5wcm9wZXJ0aWVzIGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJl
-bW90ZXRvb2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL21lc3NhZ2VzLnByb3BlcnRp
-ZXMNCj4gaW5kZXggN2JiZjk4Ny4uMmQ2ZDhhZiAxMDA2NDQNCj4gLS0tIGEvcGx1Z2lucy9vcmcu
-eW9jdG8uc2RrLnJlbW90ZXRvb2xzL3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL21lc3Nh
-Z2VzLnByb3BlcnRpZXMNCj4gKysrIGIvcGx1Z2lucy9vcmcueW9jdG8uc2RrLnJlbW90ZXRvb2xz
-L3NyYy9vcmcveW9jdG8vc2RrL3JlbW90ZXRvb2xzL21lc3NhZ2VzLnByb3BlcnRpZXMNCj4gQEAg
-LTM1LDYgKzM1LDcgQEAgUG93ZXJ0b3BfU2hvd1BpZF9UZXh0PXNob3cgcGlkcyBpbiB3YWtldXBz
-IGxpc3QNCj4gIFRlcm1pbmFsVmlld2VyX3RleHQ9VGhpcyB2aWV3IGlzIGRlZGljYXRlZCB0byBZ
-b2N0byBSZW1vdGUgdG9vbHMuIFBsZWFzZSB1c2UgdGhlICJZb2N0byBSZW1vdGUgVG9vbHMiIG1l
-bnUgdG8gb3BlbiB0aGUgdmlldy4NCj4gIC8vU3lzdGVtdGFwX0tPX1RleHQ9S2VybmVsIE1vZHVs
-ZToNCj4gIE1ldGFkYXRhX0xvY2F0aW9uPU1ldGFkYXRhIExvY2F0aW9uOg0KPiArQnVpbGRkaXJf
-TG9jYXRpb249QnVpbGQgZGlyIExvY2F0aW9uOg0KPiAgVXNlcl9JRD1Vc2VyIElEOg0KPiAgUmVt
-b3RlX0hvc3Q9UmVtb3RlIEhvc3Q6DQo+ICBTeXN0ZW10YXBfU2NyaXB0PVN5c3RlbXRhcCBTY3Jp
-cHQ6DQoNCg==
+Hi Jessica,=0A=
+=0A=
+I have just tested with a clean master & my upstream patch. Everything comp=
+iles fine.=0A=
+There are no changes made to IHostShell what so ever. In this patch, I only=
+ change AbstractHostShell and TerminalServiceHostShell.=0A=
+=0A=
+Please make sure that your TM &Yocto plugin sources are up to date and refr=
+eshed in you workspace.=0A=
+=0A=
+Thanks,=0A=
+Ioana=0A=
+________________________________________=0A=
+From: Zhang, Jessica=0A=
+Sent: Friday, June 21, 2013 8:42 PM=0A=
+To: Grigoropol, IoanaX; yocto@yoctoproject.org=0A=
+Subject: RE: [yocto] [RFC PATCH v2 upstream org.eclipse.tm] [411343]Provide=
+     access to readers in host shell=0A=
+=0A=
+Hi Ioana,=0A=
+=0A=
+Unfortunately we have to introduce the API getReader in IHostShell interfac=
+e, otherwise, when I applied the patch to my clean upstream RSE master and =
+open a project I'm getting:=0A=
+=0A=
+An internal error occurred during "Open Project"=0A=
+Unresolved compilation problems:=0A=
+The method getReader(Boolean) is undefined for the type IHostShell....=0A=
+=0A=
+Please do some local verification when sending patches upstream.=0A=
+=0A=
+Thanks,=0A=
+Jessica=0A=
+=0A=
+-----Original Message-----=0A=
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Ioana Grigoropol=0A=
+Sent: Friday, June 21, 2013 8:19 AM=0A=
+To: yocto@yoctoproject.org=0A=
+Subject: [yocto] [RFC PATCH v2 upstream org.eclipse.tm] [411343]Provide acc=
+ess to readers in host shell=0A=
+=0A=
+- add a plain getter in the AbstractHostShell class:=0A=
+        - the compilation is not broken for subclasses of this class since =
+it always returns null=0A=
+        - the targeted classes (local and remote) can implement the getter =
+(local implementation is already there)=0A=
+        - the reader can be accessed and the output can be read in a synchr=
+onous way=0A=
+- add implementation of getReader in TerminaServiceHostShell=0A=
+        - store the underlying reader as a field of this class & return it=
+=0A=
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>=0A=
+---=0A=
+ .../services/shells/TerminalServiceHostShell.java  |   20 ++++++++++++----=
+----=0A=
+ .../rse/services/shells/AbstractHostShell.java     |    9 +++++++--=0A=
+ 2 files changed, 19 insertions(+), 10 deletions(-)=0A=
+=0A=
+diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/inter=
+nal/services/shells/TerminalServiceHostShell.java b/rse/plugins/org.eclipse=
+.rse.services/src/org/eclipse/rse/internal/services/shells/TerminalServiceH=
+ostShell.java=0A=
+index 2a461ad..0775894 100644=0A=
+--- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/ser=
+vices/shells/TerminalServiceHostShell.java=0A=
++++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/internal/=0A=
++++ services/shells/TerminalServiceHostShell.java=0A=
+@@ -22,6 +22,7 @@=0A=
+  * Anna Dushistova  (MontaVista) - [258720] SshHostShell fails to run comm=
+and if initialWorkingDirectory supplied=0A=
+  * Rob Stryker (JBoss) - [335059] TerminalServiceShellOutputReader logs er=
+ror when hostShell.exit() is called=0A=
+  * Martin Oberhuber (Wind River) - [356132] wait for initial output=0A=
++ * Ioana Grigoropol (Intel)      - [411343] Provide access to readers in h=
+ost shell=0A=
+  *************************************************************************=
+******/=0A=
+=0A=
+ package org.eclipse.rse.internal.services.shells;=0A=
+@@ -47,7 +48,7 @@ public class TerminalServiceHostShell extends AbstractHos=
+tShell {=0A=
+        public static final String SHELL_INVOCATION =3D ">"; //$NON-NLS-1$=
+=0A=
+=0A=
+        ITerminalShell fTerminalShell;=0A=
+-=0A=
++       BufferedReader fBufReader;=0A=
+        private TerminalServiceShellOutputReader fStdoutHandler;=0A=
+=0A=
+        private TerminalServiceShellOutputReader fStderrHandler; @@ -60,21 =
++61,21 @@ public class TerminalServiceHostShell extends AbstractHostShell {=
+=0A=
+                try {=0A=
+                        fTerminalShell =3D terminalShell;=0A=
+                        String encoding =3D fTerminalShell.getDefaultEncodi=
+ng();=0A=
+-                       BufferedReader bufReader;=0A=
++=0A=
+                        if (encoding !=3D null) {=0A=
+-                               bufReader =3D new BufferedReader(new InputS=
+treamReader(fTerminalShell=0A=
++                               fBufReader =3D new BufferedReader(new=0A=
++InputStreamReader(fTerminalShell=0A=
+                                                .getInputStream(), encoding=
+));=0A=
+                        } else {=0A=
+-                               bufReader =3D new BufferedReader(new InputS=
+treamReader(fTerminalShell=0A=
++                               fBufReader =3D new BufferedReader(new=0A=
++InputStreamReader(fTerminalShell=0A=
+                                                                .getInputSt=
+ream()));=0A=
+                        }=0A=
+                        //bug 356132: wait for initial output before sendin=
+g any command=0A=
+                        //FIXME this should likely move into the TerminalSe=
+rviceShellWriterThread, so wait can be canceled=0A=
+-                       bufReader.mark(1);=0A=
+-                       bufReader.read();=0A=
+-                       bufReader.reset();=0A=
++                       fBufReader.mark(1);=0A=
++                       fBufReader.read();=0A=
++                       fBufReader.reset();=0A=
+=0A=
+-                       fStdoutHandler =3D new TerminalServiceShellOutputRe=
+ader(this, bufReader, false);=0A=
++                       fStdoutHandler =3D new TerminalServiceShellOutputRe=
+ader(this,=0A=
++fBufReader, false);=0A=
+                        fStderrHandler =3D new TerminalServiceShellOutputRe=
+ader(this, null, true);=0A=
+                        OutputStream outputStream =3D fTerminalShell.getOut=
+putStream();=0A=
+                        if (encoding !=3D null) {=0A=
+@@ -170,4 +171,7 @@ public class TerminalServiceHostShell extends AbstractH=
+ostShell {=0A=
+                return "echo $PWD'>'"; //$NON-NLS-1$=0A=
+        }=0A=
+=0A=
++       public BufferedReader getReader(boolean isErrorReader) {=0A=
++               return fBufReader;=0A=
++       }=0A=
+ }=0A=
+diff --git a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/servi=
+ces/shells/AbstractHostShell.java b/rse/plugins/org.eclipse.rse.services/sr=
+c/org/eclipse/rse/services/shells/AbstractHostShell.java=0A=
+index 0ac8e3f..4d189b6 100644=0A=
+--- a/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/she=
+lls/AbstractHostShell.java=0A=
++++ b/rse/plugins/org.eclipse.rse.services/src/org/eclipse/rse/services/=0A=
++++ shells/AbstractHostShell.java=0A=
+@@ -11,11 +11,13 @@=0A=
+  * Emily Bruner, Mazen Faraj, Adrian Storisteanu, Li Ding, and Kent Hawley=
+.=0A=
+  *=0A=
+  * Contributors:=0A=
+- * {Name} (company) - description of contribution.=0A=
++ *   Ioana Grigoropol (Intel)      - [411343] Provide access to readers in=
+ host shell=0A=
+  *************************************************************************=
+*******/=0A=
+=0A=
+ package org.eclipse.rse.services.shells;=0A=
+=0A=
++import java.io.BufferedReader;=0A=
++=0A=
+=0A=
+ public abstract class AbstractHostShell implements IHostShell  { @@ -34,4 =
++36,7 @@ public abstract class AbstractHostShell implements IHostShell=0A=
+                }=0A=
+        }=0A=
+=0A=
+-}=0A=
+\ No newline at end of file=0A=
++       public BufferedReader getReader(boolean isErrorReader){=0A=
++               return null;=0A=
++       }=0A=
++}=0A=
+--=0A=
+1.7.10.4=0A=
+=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
