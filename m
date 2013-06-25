@@ -1,31 +1,37 @@
-Return-Path: <timo.mueller@oss.bmw-carit.de>
-Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58394E01561
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 08:33:49 -0700 (PDT)
-Received: from localhost (mysterion.bmw-carit.intra [192.168.101.105])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: timo.mueller)
-	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id 10D6440087;
-	Tue, 25 Jun 2013 16:37:09 +0200 (CEST)
-From: Timo Mueller <mail@timomueller.eu>
-To: yocto@yoctoproject.org
-Date: Tue, 25 Jun 2013 17:33:46 +0200
-Message-Id: <f80f48fe2add2c749fdc292574ec5774ffda3826.1372170704.git.timo.mueller@bmw-carit.de>
-X-Mailer: git-send-email 1.8.1.4
-In-Reply-To: <cc65d2199349f7d98c4cbe2c7e5aaaede68fd3dc.1372170704.git.timo.mueller@bmw-carit.de>
-References: <cover.1372170704.git.timo.mueller@bmw-carit.de>
-	<8919d96da8a2ff55ff0bea99af6ba4f931e79300.1372170704.git.timo.mueller@bmw-carit.de>
-	<773e9adacf475c19c2ff25d8812b54a417415dc6.1372170704.git.timo.mueller@bmw-carit.de>
-	<38f1a1a86e0d37470ef7779e0be4bf04f941ce10.1372170704.git.timo.mueller@bmw-carit.de>
-	<3136367127ec958a69d3f812bf6f6cffb3d23b42.1372170704.git.timo.mueller@bmw-carit.de>
-	<9301cceee7ee98f3d4b306ffc7e4df37de2f32c5.1372170704.git.timo.mueller@bmw-carit.de>
-	<3fbc6a267e19288877aeef93675ec0628d139c3d.1372170704.git.timo.mueller@bmw-carit.de>
-	<cc65d2199349f7d98c4cbe2c7e5aaaede68fd3dc.1372170704.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1372170704.git.timo.mueller@bmw-carit.de>
-References: <cover.1372170704.git.timo.mueller@bmw-carit.de>
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [PATCHv3 8/8] TESTING: add tracing for radio menu
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail12c40.carrierzone.com (mail75c40.carrierzone.com
+	[209.235.156.215])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4826E01517
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 08:39:01 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail12c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r5PFcvwi029440; Tue, 25 Jun 2013 15:38:58 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Paul D. DeRocco'" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
+References: <07EC680C643544CEB3DB605D0478EB01@PAULD>
+In-Reply-To: <07EC680C643544CEB3DB605D0478EB01@PAULD>
+Date: Tue, 25 Jun 2013 08:38:54 -0700
+Message-ID: <001801ce71ba$1ae87220$50b95660$@annabooks.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQKNv16dm98dCcayp5xp/leCeXzrx5fH8znA
+X-CSC: 0
+X-CHA: v=2.0 cv=bbDcppzB c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=D62qybIL4ngA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
+	a=-sbK2jI_RQ4A:10 a=iGHA9ds3AAAA:8 a=QrVWhbZvAAAA:8
+	a=bNCOzp0r2yNfMMgqsvkA:9 a=CjuIK1q_8ugA:10 a=FCaQVidmf_IA:10
+	a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10 a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020202.51C9B993.01F5, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Subject: Re: The simplest possible recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,73 +43,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 15:33:49 -0000
+X-List-Received-Date: Tue, 25 Jun 2013 15:39:04 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-From: Timo Mueller <timo.mueller@bmw-carit.de>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Paul D. DeRocco
+> Sent: Monday, June 24, 2013 5:18 PM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] The simplest possible recipe
+> 
+> That would be to copy a single file, provided in the files subdirectory of
+the
+> recipe, into a particular place in the target tree. Is there any bbclass
+that
+> automates this? Or do I just write a recipe with a do_install function
+that
+> executes the "install" command?
+> 
+> My only guide is 5.3.1 in the Development Manual, which performs a simple
+> compilation, but I'm very hazy about how recipes are interpreted, so I'd
+like it
+> if someone can tell me if I've gotten the following stuff right or not.
+> 
+> SRC_URI tells bitbake what files must be gotten from somewhere and copied
+> somewhere else in order to carry out the build process. And according to
+the
+> Ref Manual, the "file://" prefix tells it to fetch a local file by
+searching some
+> directories including the "files" subdirectory next to the .bb file.
+> And apparently, there is a "subdir" option (whose syntax is unexplained)
+> which may be used to tell bitbake to put it somewhere specific relative to
+> ${WORKDIR}.
+> 
+> Is the default value of the "subdir" option the S variable? Is that the
+purpose
+> of S, to tell bitbake where to put things that it fetches? The Ref Manual
+says
+> that S defaults to ${WORKDIR}/${PN}/${PV}, but then the sample compile
+> recipe sets S to ${WORKDIR}. Is that what one does when one doesn't need
+> to have a bunch of versioned subdirectories under ${WORKDIR}? (I'm not
+> sure why one would ever want that, or why that would be the default.)
+> 
+> So if I want to install a file somewhere, do I even need a do_install
+task, or
+> can I just set S equal to the desired target location, like
+"${etcdir}/foo" and be
+> done with it? Or is that a no-no, and should I always use do_install?
+> 
+> --
+> 
+> Ciao,               Paul D. DeRocco
+> Paul                mailto:pderocco@ix.netcom.com
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
----
- plugins/org.yocto.sdk.ide/.options                        |  2 ++
- .../org/yocto/sdk/ide/TargetProfileContributionItem.java  | 15 ++++++++++++++-
- 2 files changed, 16 insertions(+), 1 deletion(-)
- create mode 100644 plugins/org.yocto.sdk.ide/.options
+From my book, I demonstrated two ways to create a receipt with and without
+Autotools. Without Autotools:
 
-diff --git a/plugins/org.yocto.sdk.ide/.options b/plugins/org.yocto.sdk.ide/.options
-new file mode 100644
-index 0000000..30ba9c2
---- /dev/null
-+++ b/plugins/org.yocto.sdk.ide/.options
-@@ -0,0 +1,2 @@
-+org.yocto.sdk.ide/debug=false
-+org.yocto.sdk.ide/debug/profileMenu=true
-diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContributionItem.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContributionItem.java
-index 95d8229..755005d 100644
---- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContributionItem.java
-+++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetProfileContributionItem.java
-@@ -21,6 +21,7 @@ import org.eclipse.core.commands.ExecutionException;
- import org.eclipse.core.resources.IProject;
- import org.eclipse.core.resources.IResource;
- import org.eclipse.core.runtime.IAdaptable;
-+import org.eclipse.core.runtime.Platform;
- import org.eclipse.jface.action.IContributionItem;
- import org.eclipse.jface.viewers.ISelection;
- import org.eclipse.jface.viewers.ITreeSelection;
-@@ -38,6 +39,9 @@ import org.yocto.sdk.ide.utils.ProjectPreferenceUtils;
- import org.yocto.sdk.ide.utils.YoctoSDKUtils;
- 
- public class TargetProfileContributionItem extends CompoundContributionItem implements IWorkbenchContribution {
-+	private static final boolean DEBUG = YoctoSDKPlugin.getDefault().isDebugging() &&
-+								"true".equalsIgnoreCase(Platform.getDebugOption("org.yocto.sdk.ide/debug/profileMenu"));
-+
- 	private IServiceLocator serviceLocator;
- 
- 	public TargetProfileContributionItem() {}
-@@ -114,13 +118,22 @@ public class TargetProfileContributionItem extends CompoundContributionItem impl
- 		try {
- 			if (ProjectPreferenceUtils.getUseProjectSpecificOption(project)) {
- 				HandlerUtil.updateRadioState(command, ProfileSwitchHandler.PROJECT_SPECIFIC_PARAMETER);
-+
-+				if (DEBUG)
-+					System.out.println("Enabling project specific menu item");
-+
- 				return;
- 			}
- 
- 			String selectedProfile = ProjectPreferenceUtils.getProfiles(project).getSelectedProfile();
- 			HandlerUtil.updateRadioState(command, selectedProfile);
-+			if (DEBUG)
-+				System.out.println("Enabling menu item of profile: " + selectedProfile);
- 		} catch (ExecutionException e) {
--			// ignore
-+			if (DEBUG) {
-+				System.out.println("An error occurred when trying to enable a menu item");
-+				e.printStackTrace();
-+			}
- 		}
- 	}
- }
--- 
-1.8.1.4
+DESCRIPTION = "Hello World C file recipe"
+SECTION = "base"
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = 
+    file://${WORKDIR}/COPYRIGHT;md5=349c872e0066155e1818b786938876a4"
+PR = "r0"
+
+SRC_URI = "file://helloyp.c \
+          file://COPYRIGHT \ "
+
+do_compile () {
+         ${CC} ${WORKDIR}/helloyp.c -o ${WORKDIR}/helloyp
+}
+
+do_install () {
+
+       install -d ${D}${bindir}
+       install -m 0755 ${WORKDIR}/helloyp ${D}${bindir}/
+}
+
+
+The following is the recipe is with autotools:
+
+
+DESCRIPTION = "Hello World Application with Autotools"
+SECTION = "examples"
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM =
+"file://${WORKDIR}/COPYING;md5=92bf9743cf0f1e6d9306478e118e432f"
+
+PR = "r0"
+
+SRC_URI = "file:///home/sean/workspace/helloyp-${PV}.tar.gz"
+inherit autotools gettext
+
+SRC_URI[md5sum] = "934bd36a4a3b1e7912fdff3ae764c7b6"
+SRC_URI[sha256sum] =
+"09810190e0cf9ebf141ad780b994fce8198098fbeca418ec51df59eb51747182"
+
+
+The application was placed in the /usr/bin folder. From there it could be
+moved or link to someplace else.
+
+
+Regards,
+
+Sean Liming
+Owner
+
+Tel: 714-970-7523 / Cell: 858-774-3176
+
 
 
