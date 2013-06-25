@@ -1,26 +1,22 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51891E014DF
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 08:16:11 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 25 Jun 2013 08:13:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,937,1363158000"; d="scan'208";a="359320944"
-Received: from unknown (HELO helios.localnet) ([10.252.122.97])
-	by orsmga002.jf.intel.com with ESMTP; 25 Jun 2013 08:16:09 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
-Date: Tue, 25 Jun 2013 16:16:08 +0100
-Message-ID: <7888643.66nBCjdCFc@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.3 (Linux/3.8.0-25-generic; KDE/4.10.3; i686; ; )
-In-Reply-To: <CAFMfyz+y6yEJqQao26EJ3beQhjFZmv7DiJ_BA9EKrQKrGt5+RQ@mail.gmail.com>
-References: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
-	<2169568.OdCe6aKEne@helios>
-	<CAFMfyz+y6yEJqQao26EJ3beQhjFZmv7DiJ_BA9EKrQKrGt5+RQ@mail.gmail.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Installing .deb file in Build
+Return-Path: <timo.mueller@oss.bmw-carit.de>
+Received: from linuxmail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D29D5E014DF
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 08:32:55 -0700 (PDT)
+Received: from localhost (mysterion.bmw-carit.intra [192.168.101.105])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id DFB5940087;
+	Tue, 25 Jun 2013 16:36:14 +0200 (CEST)
+From: Timo Mueller <mail@timomueller.eu>
+To: yocto@yoctoproject.org
+Date: Tue, 25 Jun 2013 17:32:48 +0200
+Message-Id: <4cc66f41f5df55001702d867e511ab5d83d58b2c.1372173542.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.8.1.4
+In-Reply-To: <cover.1372173542.git.timo.mueller@bmw-carit.de>
+References: <cover.1372173542.git.timo.mueller@bmw-carit.de>
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: [PATCH][eclipse-poky] plugin/sdk.ide: Pre-populate project specific profile form
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,61 +28,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 15:16:15 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 25 Jun 2013 15:32:57 -0000
 
-On Tuesday 25 June 2013 15:20:19 DAMARLA Satya Swaroop wrote:
-> I am trying to install .deb file and the recipe is as follows... may I ask
-> you what is the mistake that is not allowing it to build it into the
-> rootfilesystem....
-> 
-> *UMMARY = "Bootstrapper from Skidata"*
-> *DESCRIPTION = "For the moment it just installs the .deb file"*
-> *LICENSE = "CLOSED"*
-> *
-> *
-> *SRC_URI[md5sum] = "7835334732d1704765e52168994b09a6"*
-> *SRC_URI[sha256sum] =
-> "11bda24a487da08ef6d3133cc0bf55862e6ae75891c7d08433341f2f3a0dc740"*
-> *
-> *
-> *
-> *
-> *SRC_URI =
-> "file:///home/damarla/openYocto/downloads/skidata-bootstraploader-1.0.0.14.d
-> eb" *
-> *
-> *
-> *inherit bin_package*
-> *
-> *
-> *INITSCRIPT_PACKAGES = "${PN}-bsd"*
-> *INITSCRIPT_NAME_${PN}-bsp = "bootstraploader"*
-> *INITSCRIPT_PARAMS_${PN}-bsp = "defaults 90"*
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-You have a mismatch here, "bsp" in the last two lines and "bsd" everywhere 
-else.
+On initial setup the profile form is populated with the values from
+the previously selected target profile. This allows the user to
+quickly make project specific adaptions of an existing profile.
 
-> *PACKAGES =+ "${PN} ${PN}-bsd"*
-> *
-> *
-> *FILES_${PN}-bsd = "${sysconfdir}/init.d/bootstraploader"*
-> *FILES_${PN} = "${D}/usr/skidata/bootstraploader/*.sh
-> ${D}/usr/skidata/bootstraploader/*.pm"*
+If a project specific profile is already defined the form will show the
+values from this configuration.
 
-You should not include ${D} in FILES values. Because of the invalid path the 
-desired files are not being picked up.
+Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
+---
+ .../sdk/ide/preferences/YoctoSDKProjectPropertyPage.java   | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-The reason you're likely getting an error at do_rootfs is that because of the 
-above, the package is empty and therefore is not produced, thus it can't be 
-found when it comes to installing it into the image.
-
-Cheers,
-Paul
-
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+index 9f99caf..408ce76 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+@@ -31,14 +31,15 @@ import org.osgi.service.prefs.BackingStoreException;
+ import org.yocto.sdk.ide.YoctoProfileElement;
+ import org.yocto.sdk.ide.YoctoProfileSetting;
+ import org.yocto.sdk.ide.YoctoProjectSpecificSetting;
++import org.yocto.sdk.ide.YoctoSDKChecker;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
+ import org.yocto.sdk.ide.YoctoSDKMessages;
+-import org.yocto.sdk.ide.utils.YoctoSDKUtils;
+-import org.yocto.sdk.ide.utils.YoctoSDKUtilsConstants;
+ import org.yocto.sdk.ide.YoctoSDKPlugin;
+ import org.yocto.sdk.ide.YoctoUIElement;
+ import org.yocto.sdk.ide.YoctoUISetting;
++import org.yocto.sdk.ide.utils.YoctoSDKUtils;
++import org.yocto.sdk.ide.utils.YoctoSDKUtilsConstants;
+ 
+ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+ 		IWorkbenchPropertyPage {
+@@ -288,6 +289,15 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+ 	public void switchToProjectSpecificProfile()
+ 	{
+ 		YoctoUIElement profileElement = getElemFromProjectPreferences(getProject());
++		SDKCheckResults result = YoctoSDKChecker.checkYoctoSDK(profileElement);
++
++		if ((result != SDKCheckResults.SDK_PASS)) {
++			/* Project specific profile has not yet been defined,
++			 * leave settings from previously selected profile
++			 */
++			return;
++		}
++
+ 		yoctoUISetting.setCurrentInput(profileElement);
+ 	}
+ 
 -- 
+1.8.1.4
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
