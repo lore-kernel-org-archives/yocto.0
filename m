@@ -1,36 +1,26 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
-	[209.85.212.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 199D1E0155D
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 12:59:37 -0700 (PDT)
-Received: by mail-vb0-f42.google.com with SMTP id i3so10003278vbh.29
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 12:59:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:mime-version:content-type;
-	bh=9Egvl3x+JcMW4bj4wy8Rh/sAGcHwicbvYqsnP+CBXdU=;
-	b=yx/xWq91diUAFU1GOrp3cuYnwKNElMpjzwu+BRo1bZxX6DTIxztgvEuvaxpzoY78BY
-	BsgmLojx9QYM7KEtqGPWL9X4vIbFoXwPESS/M8ZH+uU9vw/q0HmuuJFASfwwYWrx5z1N
-	EiAcEt0N35yErGxkTs6GORmCdndvxD009VPhOnzetMObg9/bMV+1yo63LFoOBihtmDDy
-	qYh7aVHTff+c5Pij1RwEWnSu6ieG1YKSOQfDZ6554HGSSfVYnKRRG7f2Eh0csofA+izb
-	1tay/kna+T5N3hS0ZqnQqwhNpRhpz9nuHoi4GoUSNeSTFkDnZC+eUtPmogZN0jKw9Ddn
-	jhMw==
-X-Received: by 10.220.83.138 with SMTP id f10mr430720vcl.7.1372190377176;
-	Tue, 25 Jun 2013 12:59:37 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPSA id tu6sm25402949vec.2.2013.06.25.12.59.35
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Tue, 25 Jun 2013 12:59:36 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Tue, 25 Jun 2013 15:59:48 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
-To: yocto@yoctoproject.org
-Date: Tue, 25 Jun 2013 15:59:48 -0400
-Message-ID: <87fvw6arm3.fsf@sonatest.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7FAFE0155D
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 13:13:42 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r5PKDdOK000456
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 25 Jun 2013 13:13:39 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Tue, 25 Jun 2013 13:13:38 -0700
+Message-ID: <51C9F9EC.6070305@windriver.com>
+Date: Tue, 25 Jun 2013 16:13:32 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-Subject: variable override question
+To: Marc Ferland <ferlandm@sonatest.com>
+References: <87fvw6arm3.fsf@sonatest.com>
+In-Reply-To: <87fvw6arm3.fsf@sonatest.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: variable override question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,22 +32,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 19:59:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 25 Jun 2013 20:13:46 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 13-06-25 03:59 PM, Marc Ferland wrote:
+> Hi,
+>
+> I have a linux-yocto_3.4.bbappend file in which I try to override the
+> KERNEL_FEATURES variable. I want it to be empty (I don't want the
+> netfilter stuff that's there by default).
+>
+> So I've tried (in my bbappend):
+>
+> KERNEL_FEATURES = ""
+>
+> but somehow the netfilter.scc file still gets merged in.
+>
+> What am I doing wrong?
 
-I have a linux-yocto_3.4.bbappend file in which I try to override the
-KERNEL_FEATURES variable. I want it to be empty (I don't want the
-netfilter stuff that's there by default).
+Nothing. It's an artifact of the _appends that are present
+in the linux-yocto recipe bbappends. You can clear it, but they'll
+still append.
 
-So I've tried (in my bbappend):
+Those config fragments weren't optional when the recipes were
+created, we've since evolved to the point where they are.
 
-KERNEL_FEATURES = ""
+I squeezed in a change to linux-yocto_3.8 before the yocto 1.4
+cutoff, and have changed linux-yocto_3.4 to match, and strangely,
+was about to send a consolidated pull request that contains the
+change.
 
-but somehow the netfilter.scc file still gets merged in.
+You can either locally make the same change, and clear:
 
-What am I doing wrong?
+  KERNEL_EXTRA_FEATURES
 
-Marc
+or wait for my latest update.
+
+Cheers,
+
+Bruce
+
+>
+> Marc
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
