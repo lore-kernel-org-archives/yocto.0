@@ -1,36 +1,28 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
-	[209.85.212.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3859BE01530
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 06:20:20 -0700 (PDT)
-Received: by mail-vb0-f42.google.com with SMTP id i3so9445336vbh.1
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 06:20:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
-	bh=rwuBNurK5l7tkNzKrnFYk4P2/JZvZWWHQwdanh5MwLc=;
-	b=Nmct+/vYmopPlx6Kr5GKyVozyrtXJqKcYFyzHYvUrHVUyJq9GAXD8f9n5n/QsMqyhw
-	tImlPZIqt+GUVtEekN9xY6xh74pZ3HyjqCZtEkprjzySrafR+1yflUpnz08whfrLai7o
-	1tbit85M26aHWE8sq3xk727127ALxau4S41RJQagpUnlQZZmegCmxJaLHkjZ2Pf9PxKA
-	PbWZhh4Da3WhaWauNlEqQ9v/Yu8zEzh7xUDba7JF0AbOUadQttoV8SFCUlZnxevW6qIg
-	i/MuCBfYarcE0avPVczbilnRvkcmdBcwpyJ1dwbZPrWRrkI8DCEt7gg6fPr5DLmNRE9w
-	83kA==
+Return-Path: <djnass_18@hotmail.com>
+Received: from dub0-omc3-s11.dub0.hotmail.com (dub0-omc3-s11.dub0.hotmail.com
+	[157.55.2.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A56DE014E2
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 06:58:13 -0700 (PDT)
+Received: from DUB116-W140 ([157.55.2.9]) by dub0-omc3-s11.dub0.hotmail.com
+	with Microsoft SMTPSVC(6.0.3790.4675); 
+	Tue, 25 Jun 2013 06:58:11 -0700
+X-TMN: [ZkGsKcFVrmItgbz59us4/0hzHfQhEPzo4I5UsQ+r1I8=]
+X-Originating-Email: [djnass_18@hotmail.com]
+Message-ID: <DUB116-W1402B4B2A5D3B56140846E0988B0@phx.gbl>
+From: Thanassis Silis <djnass_18@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"jessica.zhang@intel.com" <jessica.zhang@intel.com>
+Date: Tue, 25 Jun 2013 13:58:11 +0000
+Importance: Normal
+In-Reply-To: <DUB116-W11924FDD6C4599DA3B9E831988E0@phx.gbl>
+References: <DUB116-W138390BF0B4871C803B01A5988C0@phx.gbl>, ,
+	<C6510F6D410BB64A8C15398EDC6B847C73C4628B@ORSMSX103.amr.corp.intel.com>,
+	, <DUB116-W44BD641BF261A178D1E9E6988E0@phx.gbl>,
+	<DUB116-W11924FDD6C4599DA3B9E831988E0@phx.gbl>
 MIME-Version: 1.0
-X-Received: by 10.58.97.199 with SMTP id ec7mr14250530veb.72.1372166419488;
-	Tue, 25 Jun 2013 06:20:19 -0700 (PDT)
-Sender: satyaswaroop.damarla@gmail.com
-Received: by 10.52.94.241 with HTTP; Tue, 25 Jun 2013 06:20:19 -0700 (PDT)
-In-Reply-To: <2169568.OdCe6aKEne@helios>
-References: <CAFMfyzLWjR6s7B_XYqU-5QJZTv3dMf0KeZgvGsfAPUisdiwXKg@mail.gmail.com>
-	<2169568.OdCe6aKEne@helios>
-Date: Tue, 25 Jun 2013 15:20:19 +0200
-X-Google-Sender-Auth: xrPtguU_tNcbKU2KhpusnQsht40
-Message-ID: <CAFMfyz+y6yEJqQao26EJ3beQhjFZmv7DiJ_BA9EKrQKrGt5+RQ@mail.gmail.com>
-From: DAMARLA Satya Swaroop <swaroop.damarla@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Installing .deb file in Build
+X-OriginalArrivalTime: 25 Jun 2013 13:58:11.0626 (UTC)
+	FILETIME=[079B60A0:01CE71AC]
+Subject: Re: FW: cannot bitbake/build.compile tcf-agent for use with fsl-image-gui-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,336 +34,572 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 13:20:23 -0000
-Content-Type: multipart/alternative; boundary=089e013a069601a4fa04dffa6459
+X-List-Received-Date: Tue, 25 Jun 2013 13:58:15 -0000
+Content-Type: multipart/alternative;
+	boundary="_a854fbfc-5145-4edf-bb74-7e21545f953d_"
 
---089e013a069601a4fa04dffa6459
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi Guys,
-
-I am trying to install .deb file and the recipe is as follows... may I ask
-you what is the mistake that is not allowing it to build it into the
-rootfilesystem....
-
-*UMMARY = "Bootstrapper from Skidata"*
-*DESCRIPTION = "For the moment it just installs the .deb file"*
-*LICENSE = "CLOSED"*
-*
-*
-*SRC_URI[md5sum] = "7835334732d1704765e52168994b09a6"*
-*SRC_URI[sha256sum] =
-"11bda24a487da08ef6d3133cc0bf55862e6ae75891c7d08433341f2f3a0dc740"*
-*
-*
-*
-*
-*SRC_URI =
-"file:///home/damarla/openYocto/downloads/skidata-bootstraploader-1.0.0.14.deb"
-*
-*
-*
-*inherit bin_package*
-*
-*
-*INITSCRIPT_PACKAGES = "${PN}-bsd"*
-*INITSCRIPT_NAME_${PN}-bsp = "bootstraploader"*
-*INITSCRIPT_PARAMS_${PN}-bsp = "defaults 90"*
-*
-*
-*PACKAGES =+ "${PN} ${PN}-bsd"*
-*
-*
-*FILES_${PN}-bsd = "${sysconfdir}/init.d/bootstraploader"*
-*FILES_${PN} = "${D}/usr/skidata/bootstraploader/*.sh
-${D}/usr/skidata/bootstraploader/*.pm"*
-
-and the error I get is
-
-*ERROR: Function failed: do_rootfs (log file is located at
-/home/damarla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.30357)
-*
-*ERROR: Logfile of failure stored in:
-/home/damarla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.30357
-*
-*Log data follows:*
-*| DEBUG: Executing shell function do_rootfs*
-*| dpkg-scanpackages: info: Wrote 33 entries to output Packages file.*
-*| dpkg-scanpackages: info: Wrote 5352 entries to output Packages file.*
-*| dpkg-scanpackages: info: Wrote 157 entries to output Packages file.*
-*| dpkg-scanpackages: info: Wrote 33 entries to output Packages file.*
-*| Ign file: ./ InRelease*
-*| Ign file: ./ InRelease*
-*| Ign file: ./ InRelease*
-*| Ign file: ./ Release.gpg*
-*| Ign file: ./ Release.gpg*
-*| Ign file: ./ Release.gpg*
-*| Get:1 file: ./ Release [16 B]*
-*| Get:2 file: ./ Release [29 B]*
-*| Get:3 file: ./ Release [11 B]*
-*| Ign file: ./ Translation-en*
-*| Ign file: ./ Translation-en*
-*| Ign file: ./ Translation-en*
-*| Reading package lists...*
-*| Reading package lists...*
-*| Building dependency tree...*
-*| Reading state information...*
-*| The following extra packages will be installed:*
-*|   eglibc-binary-localedata-en-us*
-*| The following NEW packages will be installed:*
-*|   eglibc-binary-localedata-en-us locale-base-en-us*
-*| 0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.*
-*| Need to get 0 B/327 kB of archives.*
-*| After this operation, 0 B of additional disk space will be used.*
-*| WARNING: The following packages cannot be authenticated!*
-*|   eglibc-binary-localedata-en-us locale-base-en-us*
-*| Authentication warning overridden.*
-*| dpkg: warning: overriding problem because --force enabled:*
-*|  package architecture (armel) does not match system (amd64)*
-*| Selecting previously unselected package eglibc-binary-localedata-en-us.*
-*| (Reading database ... 0 files and directories currently installed.)*
-*| Unpacking eglibc-binary-localedata-en-us (from
-.../eglibc-binary-localedata-en-us_2.17-r0_armel.deb) ...*
-*| dpkg: warning: overriding problem because --force enabled:*
-*|  package architecture (armel) does not match system (amd64)*
-*| Selecting previously unselected package locale-base-en-us.*
-*| Unpacking locale-base-en-us (from
-.../locale-base-en-us_2.17-r0_armel.deb) ...*
-*| Reading package lists...*
-*| Building dependency tree...*
-*| Reading state information...*
-*| The following extra packages will be installed:*
-*|   eglibc-binary-localedata-en-gb*
-*| The following NEW packages will be installed:*
-*|   eglibc-binary-localedata-en-gb locale-base-en-gb*
-*| 0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.*
-*| 2 not fully installed or removed.*
-*| Need to get 0 B/327 kB of archives.*
-*| After this operation, 0 B of additional disk space will be used.*
-*| WARNING: The following packages cannot be authenticated!*
-*|   eglibc-binary-localedata-en-gb locale-base-en-gb*
-*| Authentication warning overridden.*
-*| dpkg: warning: overriding problem because --force enabled:*
-*|  package architecture (armel) does not match system (amd64)*
-*| Selecting previously unselected package eglibc-binary-localedata-en-gb.*
-*| (Reading database ... 18 files and directories currently installed.)*
-*| Unpacking eglibc-binary-localedata-en-gb (from
-.../eglibc-binary-localedata-en-gb_2.17-r0_armel.deb) ...*
-*| dpkg: warning: overriding problem because --force enabled:*
-*|  package architecture (armel) does not match system (amd64)*
-*| Selecting previously unselected package locale-base-en-gb.*
-*| Unpacking locale-base-en-gb (from
-.../locale-base-en-gb_2.17-r0_armel.deb) ...*
-*| Reading package lists...*
-*| Building dependency tree...*
-*| Reading state information...*
-*| Package bootstrapper is not available, but is referred to by another
-package.*
-*| This may mean that the package is missing, has been obsoleted, or*
-*| is only available from another source*
-*| *
-*| E: Package 'bootstrapper' has no installation candidate*
-*| E: Unable to locate package bootstrapper-bsd*
-*| ERROR: Function failed: do_rootfs (log file is located at
-/home/damarla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.30357)
-*
-*ERROR: Task 7
-(/home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/images/
-rootfs-smartcpu.bb, do_rootfs) failed with exit code '1'*
-*NOTE: Tasks Summary: Attempted 5162 tasks of which 5160 didn't need to be
-rerun and 1 failed.*
-*No currently running tasks (5161 of 5163)*
-*
-*
-*Summary: 1 task failed:*
-*  /home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/images/
-rootfs-smartcpu.bb, do_rootfs*
-*Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
-
-Where did I make the error. I created two packages here and I put those
-packages in my rootfs...
-Suggestions please,
-
-Greets,
-Satya
-
-
-On Thu, Jun 20, 2013 at 12:09 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
-
-> On Wednesday 19 June 2013 09:10:20 DAMARLA Satya Swaroop wrote:
-> > I have a .deb file which has to be installed. It installs properly on the
-> > target image but I want to install it at the build itself by creating a
-> > bitbake recipe.. Is it possible to install .deb files or not? If
-> possible,
-> > please suggest me so that I can make it..
->
-> I think the bin_package class is designed explicitly to help with this.
-> Have a
-> look at classes/bin_package.bbclass.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---089e013a069601a4fa04dffa6459
-Content-Type: text/html; charset=ISO-8859-1
+--_a854fbfc-5145-4edf-bb74-7e21545f953d_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Guys,=A0<div><br></div><div>I am trying to install .deb=
- file and the recipe is as follows... may I ask you what is the mistake tha=
-t is not allowing it to build it into the rootfilesystem....</div><div><br>=
-</div>
-<div><div><i>UMMARY =3D &quot;Bootstrapper from Skidata&quot;</i></div><div=
-><i>DESCRIPTION =3D &quot;For the moment it just installs the .deb file&quo=
-t;</i></div><div><i>LICENSE =3D &quot;CLOSED&quot;</i></div><div><i><br></i=
-></div>
-<div><i>SRC_URI[md5sum] =3D &quot;7835334732d1704765e52168994b09a6&quot;</i=
-></div><div><i>SRC_URI[sha256sum] =3D &quot;11bda24a487da08ef6d3133cc0bf558=
-62e6ae75891c7d08433341f2f3a0dc740&quot;</i></div><div><i><br></i></div><div=
->
-<i><br></i></div><div><i>SRC_URI =3D &quot;file:///home/damarla/openYocto/d=
-ownloads/skidata-bootstraploader-1.0.0.14.deb&quot;</i></div><div><i><br></=
-i></div><div><i>inherit bin_package</i></div><div><i><br></i></div><div><i>=
-INITSCRIPT_PACKAGES =3D &quot;${PN}-bsd&quot;</i></div>
-<div><i>INITSCRIPT_NAME_${PN}-bsp =3D &quot;bootstraploader&quot;</i></div>=
-<div><i>INITSCRIPT_PARAMS_${PN}-bsp =3D &quot;defaults 90&quot;</i></div><d=
-iv><i><br></i></div><div><i>PACKAGES =3D+ &quot;${PN} ${PN}-bsd&quot;</i></=
-div>
-<div><i><br></i></div><div><i>FILES_${PN}-bsd =3D &quot;${sysconfdir}/init.=
-d/bootstraploader&quot;</i></div><div><i>FILES_${PN} =3D &quot;${D}/usr/ski=
-data/bootstraploader/*.sh ${D}/usr/skidata/bootstraploader/*.pm&quot;</i></=
-div>
-</div><div><br></div><div>and the error I get is</div><div><br></div><div><=
-div><i>ERROR: Function failed: do_rootfs (log file is located at /home/dama=
-rla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi=
-/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.30357)</i></div>
-<div><i>ERROR: Logfile of failure stored in: /home/damarla/openYocto/poky/b=
-uildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/rootfs-smartcpu/1.0=
--r0/temp/log.do_rootfs.30357</i></div><div><i>Log data follows:</i></div>
-<div><i>| DEBUG: Executing shell function do_rootfs</i></div><div><i>| dpkg=
--scanpackages: info: Wrote 33 entries to output Packages file.</i></div><di=
-v><i>| dpkg-scanpackages: info: Wrote 5352 entries to output Packages file.=
-</i></div>
-<div><i>| dpkg-scanpackages: info: Wrote 157 entries to output Packages fil=
-e.</i></div><div><i>| dpkg-scanpackages: info: Wrote 33 entries to output P=
-ackages file.</i></div><div><i>| Ign file: ./ InRelease</i></div><div><i>| =
-Ign file: ./ InRelease</i></div>
-<div><i>| Ign file: ./ InRelease</i></div><div><i>| Ign file: ./ Release.gp=
-g</i></div><div><i>| Ign file: ./ Release.gpg</i></div><div><i>| Ign file: =
-./ Release.gpg</i></div><div><i>| Get:1 file: ./ Release [16 B]</i></div>
-<div><i>| Get:2 file: ./ Release [29 B]</i></div><div><i>| Get:3 file: ./ R=
-elease [11 B]</i></div><div><i>| Ign file: ./ Translation-en</i></div><div>=
-<i>| Ign file: ./ Translation-en</i></div><div><i>| Ign file: ./ Translatio=
-n-en</i></div>
-<div><i>| Reading package lists...</i></div><div><i>| Reading package lists=
-...</i></div><div><i>| Building dependency tree...</i></div><div><i>| Readi=
-ng state information...</i></div><div><i>| The following extra packages wil=
-l be installed:</i></div>
-<div><i>| =A0 eglibc-binary-localedata-en-us</i></div><div><i>| The followi=
-ng NEW packages will be installed:</i></div><div><i>| =A0 eglibc-binary-loc=
-aledata-en-us locale-base-en-us</i></div><div><i>| 0 upgraded, 2 newly inst=
-alled, 0 to remove and 0 not upgraded.</i></div>
-<div><i>| Need to get 0 B/327 kB of archives.</i></div><div><i>| After this=
- operation, 0 B of additional disk space will be used.</i></div><div><i>| W=
-ARNING: The following packages cannot be authenticated!</i></div><div><i>| =
-=A0 eglibc-binary-localedata-en-us locale-base-en-us</i></div>
-<div><i>| Authentication warning overridden.</i></div><div><i>| dpkg: warni=
-ng: overriding problem because --force enabled:</i></div><div><i>| =A0packa=
-ge architecture (armel) does not match system (amd64)</i></div><div><i>| Se=
-lecting previously unselected package eglibc-binary-localedata-en-us.</i></=
-div>
-<div><i>| (Reading database ... 0 files and directories currently installed=
-.)</i></div><div><i>| Unpacking eglibc-binary-localedata-en-us (from .../eg=
-libc-binary-localedata-en-us_2.17-r0_armel.deb) ...</i></div><div><i>| dpkg=
-: warning: overriding problem because --force enabled:</i></div>
-<div><i>| =A0package architecture (armel) does not match system (amd64)</i>=
-</div><div><i>| Selecting previously unselected package locale-base-en-us.<=
-/i></div><div><i>| Unpacking locale-base-en-us (from .../locale-base-en-us_=
-2.17-r0_armel.deb) ...</i></div>
-<div><i>| Reading package lists...</i></div><div><i>| Building dependency t=
-ree...</i></div><div><i>| Reading state information...</i></div><div><i>| T=
-he following extra packages will be installed:</i></div><div><i>| =A0 eglib=
-c-binary-localedata-en-gb</i></div>
-<div><i>| The following NEW packages will be installed:</i></div><div><i>| =
-=A0 eglibc-binary-localedata-en-gb locale-base-en-gb</i></div><div><i>| 0 u=
-pgraded, 2 newly installed, 0 to remove and 0 not upgraded.</i></div><div>
-<i>| 2 not fully installed or removed.</i></div><div><i>| Need to get 0 B/3=
-27 kB of archives.</i></div><div><i>| After this operation, 0 B of addition=
-al disk space will be used.</i></div><div><i>| WARNING: The following packa=
-ges cannot be authenticated!</i></div>
-<div><i>| =A0 eglibc-binary-localedata-en-gb locale-base-en-gb</i></div><di=
-v><i>| Authentication warning overridden.</i></div><div><i>| dpkg: warning:=
- overriding problem because --force enabled:</i></div><div><i>| =A0package =
-architecture (armel) does not match system (amd64)</i></div>
-<div><i>| Selecting previously unselected package eglibc-binary-localedata-=
-en-gb.</i></div><div><i>| (Reading database ... 18 files and directories cu=
-rrently installed.)</i></div><div><i>| Unpacking eglibc-binary-localedata-e=
-n-gb (from .../eglibc-binary-localedata-en-gb_2.17-r0_armel.deb) ...</i></d=
-iv>
-<div><i>| dpkg: warning: overriding problem because --force enabled:</i></d=
-iv><div><i>| =A0package architecture (armel) does not match system (amd64)<=
-/i></div><div><i>| Selecting previously unselected package locale-base-en-g=
-b.</i></div>
-<div><i>| Unpacking locale-base-en-gb (from .../locale-base-en-gb_2.17-r0_a=
-rmel.deb) ...</i></div><div><i>| Reading package lists...</i></div><div><i>=
-| Building dependency tree...</i></div><div><i>| Reading state information.=
-..</i></div>
-<div><i>| Package bootstrapper is not available, but is referred to by anot=
-her package.</i></div><div><i>| This may mean that the package is missing, =
-has been obsoleted, or</i></div><div><i>| is only available from another so=
-urce</i></div>
-<div><i>|=A0</i></div><div><i>| E: Package &#39;bootstrapper&#39; has no in=
-stallation candidate</i></div><div><i>| E: Unable to locate package bootstr=
-apper-bsd</i></div><div><i>| ERROR: Function failed: do_rootfs (log file is=
- located at /home/damarla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-un=
-tersberg-linux-gnueabi/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.30357)</i>=
-</div>
-<div><i>ERROR: Task 7 (/home/damarla/openYocto/poky/meta-skidata/recipes-sm=
-artcpu/images/<a href=3D"http://rootfs-smartcpu.bb">rootfs-smartcpu.bb</a>,=
- do_rootfs) failed with exit code &#39;1&#39;</i></div><div><i>NOTE: Tasks =
-Summary: Attempted 5162 tasks of which 5160 didn&#39;t need to be rerun and=
- 1 failed.</i></div>
-<div><i>No currently running tasks (5161 of 5163)</i></div><div><i><br></i>=
-</div><div><i>Summary: 1 task failed:</i></div><div><i>=A0 /home/damarla/op=
-enYocto/poky/meta-skidata/recipes-smartcpu/images/<a href=3D"http://rootfs-=
-smartcpu.bb">rootfs-smartcpu.bb</a>, do_rootfs</i></div>
-<div><i>Summary: There was 1 ERROR message shown, returning a non-zero exit=
- code.</i></div></div><div><br></div><div>Where did I make the error. I cre=
-ated two packages here and I put those packages in my rootfs...=A0</div><di=
-v>
-Suggestions please,</div><div><br></div><div>Greets,</div><div>Satya</div><=
-/div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu, =
-Jun 20, 2013 at 12:09 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.i=
-ntel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On W=
-ednesday 19 June 2013 09:10:20 DAMARLA Satya Swaroop wrote:<br>
-&gt; I have a .deb file which has to be installed. It installs properly on =
-the<br>
-&gt; target image but I want to install it at the build itself by creating =
-a<br>
-&gt; bitbake recipe.. Is it possible to install .deb files or not? If possi=
-ble,<br>
-&gt; please suggest me so that I can make it..<br>
-<br>
-</div></div>I think the bin_package class is designed explicitly to help wi=
-th this. Have a<br>
-look at classes/bin_package.bbclass.<br>
-<br>
-Cheers,<br>
-Paul<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</font></span></blockquote></div><br></div>
+Hi Jessica=2C
+I have rebuilt an image with "IMAGE_INSTALL_append =3D " openssh" in my loc=
+al.conf
+which led to the generation of the image with openssh as expected.
 
---089e013a069601a4fa04dffa6459--
+However=2C the sftp-server executable was never included in the deployed im=
+age. I am wondering why this is.
+
+searching for the executable gives enough results:
+
+- there are .deb=2C .ipk=2C .rpm packages generated under <build_dir>/tmp/d=
+eploy/[deb|ipk|rpm] folders
+- the executable has been installed in : <build_dir>/tmp/work/armv7a-vfp-ne=
+on-poky-linux-gnueabi/openssh/6.1p1-r0/sysroot-destdir/usr/lib/openssh/sftp=
+-server
+
+still it was never transfered to the image. so I wanted to do that manually=
+ following:
+http://www.yoctoproject.org/docs/1.3.1/adt-manual/adt-manual.html#configuri=
+ng-the-pms
+ unfortunately=2C I am stuck at not finding a packaging suitable applicatio=
+n (opkg-cl) in my sourced environment.
+
+this is really a single executable file and I did just copy it manually to =
+the target in the end (and debugging through openssh works fine too)=2C but=
+ I would surely like to know if I have missed any steps and fail to use "sm=
+art" or "opkg-cl" in order to install packages in my image (or extracted im=
+age for that matter)
+
+Thank you for your help.
+
+From: djnass_18@hotmail.com
+To: yocto@yoctoproject.org
+Date: Thu=2C 20 Jun 2013 17:48:58 +0000
+Subject: [yocto] FW: cannot bitbake/build.compile tcf-agent for use with fs=
+l-image-gui-sdk
+
+=0A=
+=0A=
+=0A=
+
+
+From: djnass_18@hotmail.com
+To: jessica.zhang@intel.com
+Subject: RE: [yocto] cannot bitbake/build.compile tcf-agent for use with fs=
+l-image-gui-sdk
+Date: Thu=2C 20 Jun 2013 17:48:14 +0000
+
+=0A=
+=0A=
+=0A=
+Hi jessica=2C
+I will try with SSH too=2C
+but for now it seems there are some bugs with "packages_deb " being the pri=
+mary packaging scheme.
+so apart from adding=20
+    IMAGE_INSTALL_append =3D " tcf-agent"
+
+moving "packages_rpm" to be the primary scheme ended up succeeding in makin=
+g an image that had tcf-agent included.
+
+Thank you for your help.
+I will post back when I generate an image with openssh (I have dropbear ena=
+bled ATM).=20
+
+From: jessica.zhang@intel.com
+To: djnass_18@hotmail.com=3B meta-freescale@yoctoproject.org=3B yocto@yocto=
+project.org
+Subject: RE: [yocto] cannot bitbake/build.compile tcf-agent for use with fs=
+l-image-gui-sdk
+Date: Wed=2C 19 Jun 2013 16:25:03 +0000
+
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+=0A=
+Hi Thanassis=2C=0A=
+ =0A=
+I don=92t know why tcf-agent  is not included in your sdk image.  But you a=
+lso can use ssh to create a rse remote connection that allows you to do rem=
+ote interaction.=0A=
+  When you create remote connection=2C instead of choosing tcf=2C use ssh. =
+ You=92ll need openssh in your target image for this to work.=0A=
+ =0A=
+Cheers=2C=0A=
+Jessica=0A=
+ =0A=
+=0A=
+=0A=
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+]=0A=
+On Behalf Of Thanassis Silis
+=0A=
+Sent: Tuesday=2C June 18=2C 2013 6:56 AM
+=0A=
+To: meta-freescale@yoctoproject.org=3B yocto@yoctoproject.org
+=0A=
+Subject: [yocto] cannot bitbake/build.compile tcf-agent for use with fsl-im=
+age-gui-sdk=0A=
+=0A=
+=0A=
+ =0A=
+=0A=
+Hello everyone=2C
+=0A=
+it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
+nd that is where my problems start:
+=0A=
+
+=0A=
+using this in my local.conf: IMAGE_INSTALL_append =3D " tcf-agent"
+=0A=
+I expected to be able to automate the process of generating the tcf-agent a=
+nd deploying it in my image with command:=0A=
+bitbake fsl-image-gui-sdk=0A=
+
+=0A=
+this fails with:=0A=
+| Reading package lists...
+=0A=
+| Building dependency tree...
+=0A=
+| Reading state information...
+=0A=
+| Some packages could not be installed. This may mean that you have
+=0A=
+| requested an impossible situation or if you are using the unstable
+=0A=
+| distribution that some required packages have not yet been created
+=0A=
+| or been moved out of Incoming.
+=0A=
+| The following information may help to resolve the situation:
+=0A=
+|=20
+=0A=
+| The following packages have unmet dependencies:
+=0A=
+|  packagegroup-core-x11-base : Depends: packagegroup-core-x11-utils but it=
+ is not going to be installed
+=0A=
+| W: Ignoring Provides line with DepCompareOp for package pkgconfig__pkg-co=
+nfig__
+=0A=
+| W: You may want to run apt-get update to correct these problems
+=0A=
+| E: Unable to correct problems=2C you have held broken packages.
+=0A=
+| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/tmp/work/im=
+x6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log.do_rootfs=
+.26945 for further information)
+=0A=
+ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/f=
+sl-image-gui-sdk.bb=2C do_rootfs) failed with exit code '1'
+=0A=
+NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't need to be r=
+erun and 1 failed.
+=0A=
+No currently running tasks (7417 of 7419)
+=0A=
+
+=0A=
+Summary: 1 task failed:
+=0A=
+  /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/images/fsl-image-gui-=
+sdk.bb=2C do_rootfs
+=0A=
+Summary: There was 1 ERROR message shown=2C returning a non-zero exit code.=
+=0A=
+
+=0A=
+
+=0A=
+I then went on to try and compile it manually:=0A=
+bitbake fsl-image-gui-sdk -c compile tcf-agent
+=0A=
+bitbake fsl-image-gui-sdk -c deploy=0A=
+
+=0A=
+this fails with:=0A=
+ERROR: Task do_deploy does not exist for target fsl-image-gui-sdk=0A=
+Then I tried compiling it manually using this info=0A=
+=0A=
+http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#getting=
+-the-images =2C by sourcing my toolchain from /opt/poky/1.4.1/env* file=2C =
+and then
+=0A=
+runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
+MACHINE variable to be 'arm' in the beginning of the Makefile.inc.
+=0A=
+
+=0A=
+this fails with=0A=
+arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -mthumb-interwork -mfloat-abi=
+=3Dsoftfp -mfpu=3Dneon --sysroot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon=
+-poky-linux-gnueabi =0A=
+ -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE_OFFSET_BITS=3D64 -W=
+all -Wmissing-prototypes -I./. -I./system/GNU/Linux -I./machine/arm -o obj/=
+GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/framework/channel_tc=
+p.c
+=0A=
+tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No such file=
+ or directory
+=0A=
+compilation terminated.=0A=
+=20
+=0A=
+At this point I have run out of ideas about how to prepare tcf-agent to ins=
+tall on my sabrelite fsl-image-gui-sdk rootfs....
+=0A=
+Any help would be most welcome.
+=0A=
+
+=0A=
+for example in the 1st case how could I run apt-get as is suggested in a ma=
+nner that would be appropriate to update yocto sources?
+=0A=
+
+=0A=
+Thank you.=0A=
+=0A=
+ 		 	   		   		 	   		  =0A=
+
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto 		 	   		  =
+
+--_a854fbfc-5145-4edf-bb74-7e21545f953d_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>Hi Jessica=2C<br>I have rebuilt =
+an image with "IMAGE_INSTALL_append =3D " openssh" in my local.conf<br>whic=
+h led to the generation of the image with openssh as expected.<br><br>Howev=
+er=2C the sftp-server executable was never included in the deployed image. =
+I am wondering why this is.<br><br>searching for the executable gives enoug=
+h results:<br><br>- there are .deb=2C .ipk=2C .rpm packages generated under=
+ &lt=3Bbuild_dir&gt=3B/tmp/deploy/[deb|ipk|rpm] folders<br>- the executable=
+ has been installed in : &lt=3Bbuild_dir&gt=3B/tmp/work/armv7a-vfp-neon-pok=
+y-linux-gnueabi/openssh/6.1p1-r0/sysroot-destdir/usr/lib/openssh/sftp-serve=
+r<br><br>still it was never transfered to the image. so I wanted to do that=
+ manually following:<br><a href=3D"http://www.yoctoproject.org/docs/1.3.1/a=
+dt-manual/adt-manual.html#configuring-the-pms" target=3D"_blank">http://www=
+.yoctoproject.org/docs/1.3.1/adt-manual/adt-manual.html#configuring-the-pms=
+</a><br>&nbsp=3Bunfortunately=2C I am stuck at not finding a packaging suit=
+able application (opkg-cl) in my sourced environment.<br><br>this is really=
+ a single executable file and I did just copy it manually to the target in =
+the end (and debugging through openssh works fine too)=2C but I would surel=
+y like to know if I have missed any steps and fail to use "smart" or "opkg-=
+cl" in order to install packages in my image (or extracted image for that m=
+atter)<br><br>Thank you for your help.<br><br><div><hr id=3D"stopSpelling">=
+From: djnass_18@hotmail.com<br>To: yocto@yoctoproject.org<br>Date: Thu=2C 2=
+0 Jun 2013 17:48:58 +0000<br>Subject: [yocto] FW: cannot bitbake/build.comp=
+ile tcf-agent for use with fsl-image-gui-sdk<br><br>=0A=
+=0A=
+<style><!--=0A=
+.ExternalClass .ecxhmmessage P {=0A=
+padding:0px=3B=0A=
+}=0A=
+=0A=
+.ExternalClass body.ecxhmmessage {=0A=
+font-size:12pt=3B=0A=
+font-family:Calibri=3B=0A=
+}=0A=
+=0A=
+--></style>=0A=
+<div dir=3D"ltr"><br><br><div><hr id=3D"ecxstopSpelling">From: djnass_18@ho=
+tmail.com<br>To: jessica.zhang@intel.com<br>Subject: RE: [yocto] cannot bit=
+bake/build.compile tcf-agent for use with fsl-image-gui-sdk<br>Date: Thu=2C=
+ 20 Jun 2013 17:48:14 +0000<br><br>=0A=
+=0A=
+<style><!--=0A=
+.ExternalClass .ecxhmmessage P {=0A=
+padding:0px=3B=0A=
+}=0A=
+=0A=
+.ExternalClass body.ecxhmmessage {=0A=
+font-size:12pt=3B=0A=
+font-family:Calibri=3B=0A=
+}=0A=
+=0A=
+=0A=
+--></style>=0A=
+<div dir=3D"ltr">Hi jessica=2C<br>I will try with SSH too=2C<br>but for now=
+ it seems there are some bugs with "packages_deb " being the primary packag=
+ing scheme.<br>so apart from adding <br>&nbsp=3B&nbsp=3B&nbsp=3B IMAGE_INST=
+ALL_append =3D " tcf-agent"<br><br>moving "packages_rpm" to be the primary =
+scheme ended up succeeding in making an image that had tcf-agent included.<=
+br><br>Thank you for your help.<br>I will post back when I generate an imag=
+e with openssh (I have dropbear enabled ATM). <br><br><div><hr id=3D"ecxsto=
+pSpelling">From: jessica.zhang@intel.com<br>To: djnass_18@hotmail.com=3B me=
+ta-freescale@yoctoproject.org=3B yocto@yoctoproject.org<br>Subject: RE: [yo=
+cto] cannot bitbake/build.compile tcf-agent for use with fsl-image-gui-sdk<=
+br>Date: Wed=2C 19 Jun 2013 16:25:03 +0000<br><br>=0A=
+=0A=
+=0A=
+=0A=
+<style><!--=0A=
+.ExternalClass p.ecxMsoNormal=2C .ExternalClass li.ecxMsoNormal=2C .Externa=
+lClass div.ecxMsoNormal {=0A=
+font-size:12.0pt=3B=0A=
+font-family:"Times New Roman"=2C"serif"=3B=0A=
+}=0A=
+=0A=
+.ExternalClass a:link=2C .ExternalClass span.ecxMsoHyperlink {=0A=
+color:blue=3B=0A=
+text-decoration:underline=3B=0A=
+}=0A=
+=0A=
+.ExternalClass span.ecxMsoHyperlinkFollowed {=0A=
+color:purple=3B=0A=
+text-decoration:underline=3B=0A=
+}=0A=
+=0A=
+.ExternalClass p {=0A=
+font-size:12.0pt=3B=0A=
+font-family:"Times New Roman"=2C"serif"=3B=0A=
+}=0A=
+=0A=
+.ExternalClass span.ecxEmailStyle18 {=0A=
+font-family:"Calibri"=2C"sans-serif"=3B=0A=
+color:#1F497D=3B=0A=
+}=0A=
+=0A=
+.ExternalClass .ecxMsoChpDefault {=0A=
+font-size:10.0pt=3B=0A=
+}=0A=
+=0A=
+.ExternalClass div.ecxWordSection1 {=0A=
+}=0A=
+=0A=
+=0A=
+--></style>=0A=
+=0A=
+=0A=
+<div class=3D"ecxWordSection1">=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
+ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">Hi Th=
+anassis=2C</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
+ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">&nbsp=
+=3B</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
+ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">I don=
+=92t know why tcf-agent&nbsp=3B is not included in your sdk image.&nbsp=3B =
+But you also can use ssh to create a rse remote connection that allows you =
+to do remote interaction.=0A=
+ &nbsp=3BWhen you create remote connection=2C instead of choosing tcf=2C us=
+e ssh.&nbsp=3B You=92ll need openssh in your target image for this to work.=
+</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
+ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">&nbsp=
+=3B</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
+ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">Cheer=
+s=2C</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
+ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">Jessi=
+ca</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:11.0pt=3Bfont-family:&qu=
+ot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3Bcolor:#1F497D=3B">&nbsp=
+=3B</span></p>=0A=
+<div>=0A=
+<div style=3D"border:none=3Bborder-top:solid #B5C4DF 1.0pt=3Bpadding:3.0pt =
+0cm 0cm 0cm=3B">=0A=
+<p class=3D"ecxMsoNormal"><b><span style=3D"font-size:10.0pt=3Bfont-family:=
+&quot=3BTahoma&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B">From:</span></b><sp=
+an style=3D"font-size:10.0pt=3Bfont-family:&quot=3BTahoma&quot=3B=2C&quot=
+=3Bsans-serif&quot=3B=3B"> yocto-bounces@yoctoproject.org [mailto:yocto-bou=
+nces@yoctoproject.org]=0A=
+<b>On Behalf Of </b>Thanassis Silis<br>=0A=
+<b>Sent:</b> Tuesday=2C June 18=2C 2013 6:56 AM<br>=0A=
+<b>To:</b> meta-freescale@yoctoproject.org=3B yocto@yoctoproject.org<br>=0A=
+<b>Subject:</b> [yocto] cannot bitbake/build.compile tcf-agent for use with=
+ fsl-image-gui-sdk</span></p>=0A=
+</div>=0A=
+</div>=0A=
+<p class=3D"ecxMsoNormal">&nbsp=3B</p>=0A=
+<div>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
+=3B=2C&quot=3Bsans-serif&quot=3B=3B">Hello everyone=2C<br>=0A=
+it seems tcf-agent is not provided. Not even in the -sdk image I created. A=
+nd that is where my problems start:<br>=0A=
+<br>=0A=
+using this in my local.conf: IMAGE_INSTALL_append =3D " tcf-agent"<br>=0A=
+I expected to be able to automate the process of generating the tcf-agent a=
+nd deploying it in my image with command:</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:10.0pt=3Bfont-family:&qu=
+ot=3BCourier New&quot=3B=3B">bitbake fsl-image-gui-sdk</span><span style=3D=
+"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></spa=
+n></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
+=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+this fails with:</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:10.0pt=3Bfont-family:&qu=
+ot=3BCourier New&quot=3B=3B">| Reading package lists...</span><span style=
+=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><b=
+r>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| Building dependency tree...</span><span style=3D"font-family:&q=
+uot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| Reading state information...</span><span style=3D"font-family:&=
+quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| Some packages could not be installed. This may mean that you ha=
+ve</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-=
+serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| requested an impossible situation or if you are using the unsta=
+ble</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans=
+-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| distribution that some required packages have not yet been crea=
+ted</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans=
+-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| or been moved out of Incoming.</span><span style=3D"font-family=
+:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| The following information may help to resolve the situation:</s=
+pan><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif=
+&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| </span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&qu=
+ot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| The following packages have unmet dependencies:</span><span sty=
+le=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B">=
+<br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">|&nbsp=3B packagegroup-core-x11-base : Depends: packagegroup-core=
+-x11-utils but it is not going to be installed</span><span style=3D"font-fa=
+mily:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| W: Ignoring Provides line with DepCompareOp for package pkgconf=
+ig__pkg-config__</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=
+=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| W: You may want to run apt-get update to correct these problems=
+</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-se=
+rif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| E: Unable to correct problems=2C you have held broken packages.=
+</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-se=
+rif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">| ERROR: Function failed: do_rootfs (see /home/nass/yocto/build/t=
+mp/work/imx6qsabrelite-poky-linux-gnueabi/fsl-image-gui-sdk/1.0-r0/temp/log=
+.do_rootfs.26945 for further information)</span><span style=3D"font-family:=
+&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">ERROR: Task 7 (/home/nass/yocto/sources/meta-fsl-demos/recipes-fs=
+l/images/fsl-image-gui-sdk.bb=2C do_rootfs) failed with exit code '1'</span=
+><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&qu=
+ot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">NOTE: Tasks Summary: Attempted 7418 tasks of which 7417 didn't ne=
+ed to be rerun and 1 failed.</span><span style=3D"font-family:&quot=3BCalib=
+ri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">No currently running tasks (7417 of 7419)</span><span style=3D"fo=
+nt-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+<br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">Summary: 1 task failed:</span><span style=3D"font-family:&quot=3B=
+Calibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">&nbsp=3B /home/nass/yocto/sources/meta-fsl-demos/recipes-fsl/imag=
+es/fsl-image-gui-sdk.bb=2C do_rootfs</span><span style=3D"font-family:&quot=
+=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">Summary: There was 1 ERROR message shown=2C returning a non-zero =
+exit code.</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=
+=3Bsans-serif&quot=3B=3B"></span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
+=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+<br>=0A=
+I then went on to try and compile it manually:</span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-size:10.0pt=3Bfont-family:&qu=
+ot=3BCourier New&quot=3B=3B">bitbake fsl-image-gui-sdk -c compile tcf-agent=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCalibri&quot=
+=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">bitbake fsl-image-gui-sdk -c deploy</span><span style=3D"font-fam=
+ily:&quot=3BCalibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
+=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+this fails with:</span></p>=0A=
+<p class=3D"ecxMsoNormal" style=3D""><span style=3D"font-size:10.0pt=3Bfont=
+-family:&quot=3BCourier New&quot=3B=3B">ERROR: Task do_deploy does not exis=
+t for target fsl-image-gui-sdk</span><span style=3D"font-family:&quot=3BCal=
+ibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
+=3B=2C&quot=3Bsans-serif&quot=3B=3B">Then I tried compiling it manually usi=
+ng this info=0A=
+<a href=3D"http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.h=
+tml#getting-the-images" target=3D"_blank">=0A=
+http://www.yoctoproject.org/docs/current/adt-manual/adt-manual.html#getting=
+-the-images</a> =2C by sourcing my toolchain from /opt/poky/1.4.1/env* file=
+=2C and then<br>=0A=
+runnning 'make' in org.eclipse.tcf.agent/agent/ . I explicitly assign the $=
+MACHINE variable to be 'arm' in the beginning of the Makefile.inc.<br>=0A=
+<br>=0A=
+this fails with</span></p>=0A=
+<p class=3D"ecxMsoNormal" style=3D""><span style=3D"font-size:10.0pt=3Bfont=
+-family:&quot=3BCourier New&quot=3B=3B">arm-poky-linux-gnueabi-gcc&nbsp=3B =
+-march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dsoftfp -mfpu=3Dneon --sysr=
+oot=3D/opt/poky/1.4.1/sysroots/armv7a-vfp-neon-poky-linux-gnueabi&nbsp=3B=
+=0A=
+ -O2 -pipe -g -feliminate-unused-debug-types -g -D_FILE_OFFSET_BITS=3D64 -W=
+all -Wmissing-prototypes -I./. -I./system/GNU/Linux -I./machine/arm -o obj/=
+GNU/Linux/arm/Debug/tcf/framework/channel_tcp.o -c tcf/framework/channel_tc=
+p.c</span><span style=3D"font-family:&quot=3BCalibri&quot=3B=2C&quot=3Bsans=
+-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">tcf/framework/channel_tcp.c:38:27: fatal error: openssl/ssl.h: No=
+ such file or directory</span><span style=3D"font-family:&quot=3BCalibri&qu=
+ot=3B=2C&quot=3Bsans-serif&quot=3B=3B"><br>=0A=
+</span><span style=3D"font-size:10.0pt=3Bfont-family:&quot=3BCourier New&qu=
+ot=3B=3B">compilation terminated.</span><span style=3D"font-family:&quot=3B=
+Calibri&quot=3B=2C&quot=3Bsans-serif&quot=3B=3B"></span></p>=0A=
+<p class=3D"ecxMsoNormal"><span style=3D"font-family:&quot=3BCalibri&quot=
+=3B=2C&quot=3Bsans-serif&quot=3B=3B">&nbsp=3B<br>=0A=
+At this point I have run out of ideas about how to prepare tcf-agent to ins=
+tall on my sabrelite fsl-image-gui-sdk rootfs....<br>=0A=
+Any help would be most welcome.<br>=0A=
+<br>=0A=
+for example in the 1st case how could I run apt-get as is suggested in a ma=
+nner that would be appropriate to update yocto sources?<br>=0A=
+<br>=0A=
+Thank you.</span></p>=0A=
+</div>=0A=
+</div></div> 		 	   		  </div></div> 		 	   		  </div>=0A=
+<br>_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto</div> 		 	   		  </div></body=
+>
+</html>=
+
+--_a854fbfc-5145-4edf-bb74-7e21545f953d_--
