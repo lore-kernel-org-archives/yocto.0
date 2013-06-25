@@ -1,37 +1,34 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail12c40.carrierzone.com (mail75c40.carrierzone.com
-	[209.235.156.215])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4826E01517
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 08:39:01 -0700 (PDT)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail12c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	r5PFcvwi029440; Tue, 25 Jun 2013 15:38:58 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: "'Paul D. DeRocco'" <pderocco@ix.netcom.com>, <yocto@yoctoproject.org>
-References: <07EC680C643544CEB3DB605D0478EB01@PAULD>
-In-Reply-To: <07EC680C643544CEB3DB605D0478EB01@PAULD>
-Date: Tue, 25 Jun 2013 08:38:54 -0700
-Message-ID: <001801ce71ba$1ae87220$50b95660$@annabooks.com>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQKNv16dm98dCcayp5xp/leCeXzrx5fH8znA
-X-CSC: 0
-X-CHA: v=2.0 cv=bbDcppzB c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=D62qybIL4ngA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
-	a=-sbK2jI_RQ4A:10 a=iGHA9ds3AAAA:8 a=QrVWhbZvAAAA:8
-	a=bNCOzp0r2yNfMMgqsvkA:9 a=CjuIK1q_8ugA:10 a=FCaQVidmf_IA:10
-	a=nHK3ipOpxeAA:10 a=XDKM753qmDAA:10 a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A020202.51C9B993.01F5, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Subject: Re: The simplest possible recipe
+Return-Path: <ross.burton@intel.com>
+Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
+	[74.125.82.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44FF0E0155A
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 09:47:09 -0700 (PDT)
+Received: by mail-we0-f172.google.com with SMTP id q56so9612984wes.3
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 09:47:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=OOjzh0g1KpHQwLYh1rPjNQRC3dQWdero1NF3KFj9j7Y=;
+	b=Jl2Roykw8GnPTyAoC8hSqffRvDJ4ZLtlBSH9wxrvqF1y6mIsBmeHSrH28c9dFg0Ir7
+	q0zyhd5aeublM87YAYR//FXxfYYYbi0z9PJMELY1+HX30C+Tc72a4X5oUz546wptdNIn
+	YnkKXSTfXi8ALZiUUozF6LSMvz42EaGYPpl749X3q6UrBR15gA+dcgZ5lDeLk0J4+ucq
+	D6ymcFXWYMJmaY2Ce66uFlR0imgmCqwzF+jd0OZrjaBwTOC/wKlRt0hM5EbIyRpqt1Ca
+	BTZ3R01CT3pUN4kELlZJyJhhg3XlXB7GOtXEaY1E3+gjumXwvfIp6z1G1nDUgaK+6bkJ
+	ro9w==
+X-Received: by 10.180.205.200 with SMTP id li8mr9766053wic.15.1372178828397;
+	Tue, 25 Jun 2013 09:47:08 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPSA id r9sm5334668wik.1.2013.06.25.09.47.06
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 25 Jun 2013 09:47:07 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 25 Jun 2013 17:43:30 +0100
+Message-Id: <1372178610-19243-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10.4
+X-Gm-Message-State: ALoCoQn3nh1XnxAftx2jWRAbDvh5Sa002WZoEGqR1ZXm4js3YJvMU9eLo245lD3/+tTP2bNVpCLU
+Subject: [meta-intel][PATCH] intel-gpu-tools: add new package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,122 +40,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 15:39:04 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Tue, 25 Jun 2013 16:47:10 -0000
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Paul D. DeRocco
-> Sent: Monday, June 24, 2013 5:18 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] The simplest possible recipe
-> 
-> That would be to copy a single file, provided in the files subdirectory of
-the
-> recipe, into a particular place in the target tree. Is there any bbclass
-that
-> automates this? Or do I just write a recipe with a do_install function
-that
-> executes the "install" command?
-> 
-> My only guide is 5.3.1 in the Development Manual, which performs a simple
-> compilation, but I'm very hazy about how recipes are interpreted, so I'd
-like it
-> if someone can tell me if I've gotten the following stuff right or not.
-> 
-> SRC_URI tells bitbake what files must be gotten from somewhere and copied
-> somewhere else in order to carry out the build process. And according to
-the
-> Ref Manual, the "file://" prefix tells it to fetch a local file by
-searching some
-> directories including the "files" subdirectory next to the .bb file.
-> And apparently, there is a "subdir" option (whose syntax is unexplained)
-> which may be used to tell bitbake to put it somewhere specific relative to
-> ${WORKDIR}.
-> 
-> Is the default value of the "subdir" option the S variable? Is that the
-purpose
-> of S, to tell bitbake where to put things that it fetches? The Ref Manual
-says
-> that S defaults to ${WORKDIR}/${PN}/${PV}, but then the sample compile
-> recipe sets S to ${WORKDIR}. Is that what one does when one doesn't need
-> to have a bunch of versioned subdirectories under ${WORKDIR}? (I'm not
-> sure why one would ever want that, or why that would be the default.)
-> 
-> So if I want to install a file somewhere, do I even need a do_install
-task, or
-> can I just set S equal to the desired target location, like
-"${etcdir}/foo" and be
-> done with it? Or is that a no-no, and should I always use do_install?
-> 
-> --
-> 
-> Ciao,               Paul D. DeRocco
-> Paul                mailto:pderocco@ix.netcom.com
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+This package contains numerous useful tools for working with Intel GPUs.  Add a
+patch to install intel_panel_fitter as it's genuinely useful and not just a
+debugging tool.
 
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ .../intel-gpu-tools/files/install-fitter.patch     |   26 ++++++++++++++++++++
+ .../intel-gpu-tools/intel-gpu-tools_1.3.bb         |   15 +++++++++++
+ 2 files changed, 41 insertions(+)
+ create mode 100644 common/recipes-graphics/intel-gpu-tools/files/install-fitter.patch
+ create mode 100644 common/recipes-graphics/intel-gpu-tools/intel-gpu-tools_1.3.bb
 
-From my book, I demonstrated two ways to create a receipt with and without
-Autotools. Without Autotools:
-
-DESCRIPTION = "Hello World C file recipe"
-SECTION = "base"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = 
-    file://${WORKDIR}/COPYRIGHT;md5=349c872e0066155e1818b786938876a4"
-PR = "r0"
-
-SRC_URI = "file://helloyp.c \
-          file://COPYRIGHT \ "
-
-do_compile () {
-         ${CC} ${WORKDIR}/helloyp.c -o ${WORKDIR}/helloyp
-}
-
-do_install () {
-
-       install -d ${D}${bindir}
-       install -m 0755 ${WORKDIR}/helloyp ${D}${bindir}/
-}
-
-
-The following is the recipe is with autotools:
-
-
-DESCRIPTION = "Hello World Application with Autotools"
-SECTION = "examples"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM =
-"file://${WORKDIR}/COPYING;md5=92bf9743cf0f1e6d9306478e118e432f"
-
-PR = "r0"
-
-SRC_URI = "file:///home/sean/workspace/helloyp-${PV}.tar.gz"
-inherit autotools gettext
-
-SRC_URI[md5sum] = "934bd36a4a3b1e7912fdff3ae764c7b6"
-SRC_URI[sha256sum] =
-"09810190e0cf9ebf141ad780b994fce8198098fbeca418ec51df59eb51747182"
-
-
-The application was placed in the /usr/bin folder. From there it could be
-moved or link to someplace else.
-
-
-Regards,
-
-Sean Liming
-Owner
-
-Tel: 714-970-7523 / Cell: 858-774-3176
-
+diff --git a/common/recipes-graphics/intel-gpu-tools/files/install-fitter.patch b/common/recipes-graphics/intel-gpu-tools/files/install-fitter.patch
+new file mode 100644
+index 0000000..2a344c5
+--- /dev/null
++++ b/common/recipes-graphics/intel-gpu-tools/files/install-fitter.patch
+@@ -0,0 +1,26 @@
++The panel_fitter is genuinely useful but not installed, so install it.
++
++Upstream-Status: Inappropriate
++Signed-off-by: Ross Burton <ross.burton@intel.com>
++
++Index: tools/Makefile.am
++===================================================================
++--- a/tools.orig/Makefile.am	2012-08-21 08:30:29.000000000 +0100
+++++ b/tools/Makefile.am	2013-06-25 16:52:34.220504579 +0100
++@@ -17,13 +17,13 @@
++ 	intel_forcewaked		\
++ 	intel_dpio_read			\
++ 	intel_dpio_write		\
++-	intel_l3_parity
+++	intel_l3_parity			\
+++	intel_panel_fitter
++ 
++ noinst_PROGRAMS = 			\
++ 	intel_dump_decode 		\
++ 	intel_infoframes		\
++-	intel_lid			\
++-	intel_panel_fitter
+++	intel_lid
++ 
++ dist_bin_SCRIPTS = intel_gpu_abrt
++ 
+diff --git a/common/recipes-graphics/intel-gpu-tools/intel-gpu-tools_1.3.bb b/common/recipes-graphics/intel-gpu-tools/intel-gpu-tools_1.3.bb
+new file mode 100644
+index 0000000..893c418
+--- /dev/null
++++ b/common/recipes-graphics/intel-gpu-tools/intel-gpu-tools_1.3.bb
+@@ -0,0 +1,15 @@
++require ${COREBASE}/meta/recipes-graphics/xorg-app/xorg-app-common.inc
++
++SUMMARY = "Intel GPU tools"
++DESCRIPTION = "Variety of small tools for testing intel graphics."
++
++SRC_URI += "file://install-fitter.patch"
++
++SRC_URI[md5sum] = "67facd6241e26e2c68614728e3a932e9"
++SRC_URI[sha256sum] = "51d22fdb3d415a1b3b7d0a172c1bb24dec6f16116e80a9ce49873f44527f20a0"
++
++LIC_FILES_CHKSUM = "file://COPYING;md5=0918806acfedc3e8c0488f2dd61616dd"
++
++DEPENDS += "libdrm libpciaccess cairo udev glib-2.0"
++
++EXTRA_OECONF = "--disable-nouveau --disable-shader-debugger"
+-- 
+1.7.10.4
 
 
