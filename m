@@ -1,29 +1,36 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6193AE0154F
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 12:13:19 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 25 Jun 2013 12:10:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,939,1363158000"; d="scan'208";a="359448025"
-Received: from unknown (HELO [10.255.13.89]) ([10.255.13.89])
-	by orsmga002.jf.intel.com with ESMTP; 25 Jun 2013 12:13:18 -0700
-Message-ID: <51C9EBCE.40501@linux.intel.com>
-Date: Tue, 25 Jun 2013 12:13:18 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
+	[209.85.212.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 199D1E0155D
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 12:59:37 -0700 (PDT)
+Received: by mail-vb0-f42.google.com with SMTP id i3so10003278vbh.29
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 12:59:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:mime-version:content-type;
+	bh=9Egvl3x+JcMW4bj4wy8Rh/sAGcHwicbvYqsnP+CBXdU=;
+	b=yx/xWq91diUAFU1GOrp3cuYnwKNElMpjzwu+BRo1bZxX6DTIxztgvEuvaxpzoY78BY
+	BsgmLojx9QYM7KEtqGPWL9X4vIbFoXwPESS/M8ZH+uU9vw/q0HmuuJFASfwwYWrx5z1N
+	EiAcEt0N35yErGxkTs6GORmCdndvxD009VPhOnzetMObg9/bMV+1yo63LFoOBihtmDDy
+	qYh7aVHTff+c5Pij1RwEWnSu6ieG1YKSOQfDZ6554HGSSfVYnKRRG7f2Eh0csofA+izb
+	1tay/kna+T5N3hS0ZqnQqwhNpRhpz9nuHoi4GoUSNeSTFkDnZC+eUtPmogZN0jKw9Ddn
+	jhMw==
+X-Received: by 10.220.83.138 with SMTP id f10mr430720vcl.7.1372190377176;
+	Tue, 25 Jun 2013 12:59:37 -0700 (PDT)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPSA id tu6sm25402949vec.2.2013.06.25.12.59.35
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Tue, 25 Jun 2013 12:59:36 -0700 (PDT)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Tue, 25 Jun 2013 15:59:48 -0400
+From: Marc Ferland <ferlandm@sonatest.com>
+To: yocto@yoctoproject.org
+Date: Tue, 25 Jun 2013 15:59:48 -0400
+Message-ID: <87fvw6arm3.fsf@sonatest.com>
 MIME-Version: 1.0
-To: varun bhatnagar <varun292006@gmail.com>
-References: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
-	<CAGxOggH4UzCDOE5m=qFTPMDYmO1-jdtV1KtTn0XmyAnEd_pSfg@mail.gmail.com>
-	<CAGxOggH_6stRyaVVvY3ZrzZjOMZPQR17TMhbnnsY2RaOeH-vWQ@mail.gmail.com>
-	<1690360.8lqJBmT90c@helios>
-	<CAGxOggFQL2ehH4XBGD+L9k773hgJu5hx61rmnUqxCn033W9GXA@mail.gmail.com>
-In-Reply-To: <CAGxOggFQL2ehH4XBGD+L9k773hgJu5hx61rmnUqxCn033W9GXA@mail.gmail.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Layers not getting recognized by bitbake
+Subject: variable override question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,163 +42,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 19:13:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Jun 2013 19:59:43 -0000
+Content-Type: text/plain
 
-On 06/25/2013 12:04 PM, varun bhatnagar wrote:
-> Thanks a ton for the reply Paul.... :)
-> But how to clone the meta-openembedded repository. I am not very clear
-> on the suggestion given by you.  :(
-> Can you please provide some steps on how to do this (cloning
-> open-embedded repository).
->
-Paul is suggesting that you use the git tools to clone the repo.
+Hi,
 
-you can get man pages for git, but the summary is:
+I have a linux-yocto_3.4.bbappend file in which I try to override the
+KERNEL_FEATURES variable. I want it to be empty (I don't want the
+netfilter stuff that's there by default).
 
-git clone git://git.openembedded.org/meta-openembedded
+So I've tried (in my bbappend):
 
-in the poky directory, this will bring everything you need.
+KERNEL_FEATURES = ""
 
-Sau!
+but somehow the netfilter.scc file still gets merged in.
 
-> //
-> Varun
->
->
-> On Tue, Jun 25, 2013 at 4:16 PM, Paul Eggleton
-> <paul.eggleton@linux.intel.com <mailto:paul.eggleton@linux.intel.com>>
-> wrote:
->
->     On Sunday 23 June 2013 00:34:17 varun bhatnagar wrote:
->      > I am trying to compile my code using yocto. For that I have
->     created two
->      > layers: "meta-networking" and "meta-oe". I have added these
->     dependencies in
->      > bblayer.conf too. But these are not getting build. Can anyone
->     please tell
->      > me what should I do to make this work.
->      >
->      > //
->      > Varun
->      >
->      > ----------
->      > From: *Gary Thomas* <gary@mlbassoc.com <mailto:gary@mlbassoc.com>>
->      > Date: Mon, Jun 17, 2013 at 11:03 PM
->      > To: yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->      >
->      >
->      > More details are needed to be able to help.
->      >
->      > What do you mean "not getting built"?  Do you mean that if you
->      > try to build recipe XYZ which is in one of those layers that it's
->      > not being built?  Or perhaps you mean something else?
->      >
->      > What do you mean "created two layers: ..."?  Did you just extract
->      > these from meta-openembedded?  or something else?
->      >
->      > > I am building one of my application using yocto by giving
->     bitbake -k
->      > > core-image-minimal command but I am facing some errors as this
->     application
->      > > requires two libraries
->      > > *1) net-snmp*
->      > > *2) fuse*
->      > > *
->      > >
->      > > *
->      > > I have one link where in they are asking to add these two
->     libraries in the
->      > > form of layers and then execute bitbake -k core-image-minimal
->     command.
->      > >
->      > > I am pasting one screenshot below:
->      > >
->      > > As you can I have added two layers meta-networking (contains
->     net-snmp) and
->      > > meta-oe(contains fuse). After this I added these layers in
->      > > *build/conf/bblayer.conf.*
->      > > *
->      > > *
->      > > *
->      > >
->      > > *
->      > > After this I again executed bitbake -k core-image-minimal
->     command but I
->      > > faced the same error as before... :(
->      > > Is there anyway that these layers get recognized? Do I need to
->     execute
->      > > some other command?
->      >
->      > Obviously, this is a recipe that you made.
->      >
->      > Does it show these dependencies?  e.g. a line like this in your
->     recipe file:
->      > DEPENDS = "net-snmp fuse"
->      > (or whatever the *packages* that you need are)
->      >
->      > Bitbake can't read your mind; it will only build the recipes you
->     ask and the
->      > dependencies which are explicitly specified in that build chain.
->      >
->      > If you still have trouble, try sending your recipe (.bb file and
->     all other
->      > components you might have), bblayers.conf, etc to the list
->     because we're not
->      > mind readers either :-)
->      >
->      > > On Tue, Jun 18, 2013 at 2:32 AM, Sudhangathan B S
->      > > <sudhangathan@gmail.com <mailto:sudhangathan@gmail.com><mailto:>
->      > > sudhangathan@gmail.com <mailto:sudhangathan@gmail.com>**>> wrote:
->      > >     Can you please paste your command and it's output here..!
->     If you don't
->      > >
->      > > mind..!! Or explain with equivalent clarity. It
->      > >
->      > >     l will good if you can also put in your directory structure.
->      > >
->      > >     ------------------------------**---
->      > >     Sudhangathan BS
->      > >     Ph:(+91) 9731-905-205
->      > >     ------------------------------**---
->      > >
->      > >
->      > >     On Mon, Jun 17, 2013 at 11:33 PM, varun bhatnagar <
->      > >
->      > > varun292006@gmail.com <mailto:varun292006@gmail.com>
->     <mailto:varun292006@gmail.com <mailto:varun292006@gmail.com>>**> wrote:
->      > >         Actually the package which I am building is having some
->      > >
->      > > dependencies on some libraries. So I provided those libraries
->     with the
->      > > help of creating layers. I did not extract those from
->     meta-openembedded,
->      > > instead, I manually created two layers and added them in
->     bblayer.conf file.
->
->     Rather than creating these layers from scratch (which I think is the
->     most
->     likely source of the problem) I'd suggest starting by cloning the
->     original
->     meta-openembedded repository and building your recipe with the
->     meta-networking
->     and meta-oe layers enabled in your bblayers.conf file.
->
->     Cheers,
->     Paul
->
->     --
->
->     Paul Eggleton
->     Intel Open Source Technology Centre
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+What am I doing wrong?
+
+Marc
 
