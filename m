@@ -1,26 +1,32 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-dupuy.atl.sa.earthlink.net
-	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CAD6E0051D
-	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 17:18:07 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=Odel9pVZMGAHfgs7qjPqKYof3VlPVaM/oJcNuFTJaP65SUlaO9oCtr2M5r8b+XEd;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1UrGxT-0007mw-8t
-	for yocto@yoctoproject.org; Mon, 24 Jun 2013 20:18:07 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 24 Jun 2013 17:18:05 -0700
-Message-ID: <07EC680C643544CEB3DB605D0478EB01@PAULD>
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id BF7F8E0051D
+	for <yocto@yoctoproject.org>; Mon, 24 Jun 2013 17:39:10 -0700 (PDT)
+Received: (qmail 16202 invoked by uid 1003); 25 Jun 2013 00:39:09 -0000
+Received: from unknown (HELO ?192.168.1.122?) (philip@opensdr.com@71.171.20.82)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	25 Jun 2013 00:39:09 -0000
+Message-ID: <51C8E6AC.5000704@balister.org>
+Date: Mon, 24 Jun 2013 20:39:08 -0400
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac5xOXZBgSXxtuRwRbW3XtrV1jnLPQ==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068801811563cb3644f9c38b4453d6c31e16350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: The simplest possible recipe
+To: Jeff Osier-Mixon <jefro@jefro.net>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
+	<51C8466F.8040808@balister.org>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF514AE@ORSMSX101.amr.corp.intel.com>
+	<alpine.DEB.2.02.1306241046210.24762@oneiric>
+	<CAJTo0Lb8mXhsma_8XvWp2B68QQ9tcS6PVGj9QWqMENgeCt8h5g@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF514E7@ORSMSX101.amr.corp.intel.com>
+	<51C87A0C.1050003@balister.org>
+	<CAJTo0LbwiP-WR1uetxLgMxC0beO198kg-ubO_oWd85JRv4eaqg@mail.gmail.com>
+	<51C88F22.6030605@balister.org>
+	<CA+YB3rbnUOssFc-w5Ak-X_rVPqhJnkJ+NiWEyJDJXL61gGJ0Gg@mail.gmail.com>
+In-Reply-To: <CA+YB3rbnUOssFc-w5Ak-X_rVPqhJnkJ+NiWEyJDJXL61gGJ0Gg@mail.gmail.com>
+X-Enigmail-Version: 1.5.1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Documenting YP Development Environment in more detail - user configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,45 +38,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 00:18:08 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Tue, 25 Jun 2013 00:39:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-That would be to copy a single file, provided in the files subdirectory of
-the recipe, into a particular place in the target tree. Is there any bbclass
-that automates this? Or do I just write a recipe with a do_install function
-that executes the "install" command?
+On 06/24/2013 02:37 PM, Jeff Osier-Mixon wrote:
+> On Mon, Jun 24, 2013 at 11:25 AM, Philip Balister <philip@balister.org> wrote:
+>> Showing how Poky (the reference distribution) is built would be a nice
+>> way to introduce people to building their own custom distributions using
+>> OpenEmbedded.
+> 
+> Totally agree, but I would relegate that to a separate effort. The
+> main problem with diagrams like this is trying to squeeze in too much
+> information in order to preserve completeness, at the expense of
+> clarity. It would be more ideal to start with a very simple diagram,
+> then move on to other diagrams to zoom in on pertinent detail. It is a
+> delicate balancing act. In this case, I would say to put "how Poky is
+> built" into the 3rd or 4th diagram in a series.
+> 
+> I'm glad to see this conversation happening!
 
-My only guide is 5.3.1 in the Development Manual, which performs a simple
-compilation, but I'm very hazy about how recipes are interpreted, so I'd
-like it if someone can tell me if I've gotten the following stuff right or
-not.
+I totally agree we drifted way beyond the initial discussion of the
+figure. The key thought here is understanding how Poky differs from a
+typical use of oe-core + other layers.
 
-SRC_URI tells bitbake what files must be gotten from somewhere and copied
-somewhere else in order to carry out the build process. And according to the
-Ref Manual, the "file://" prefix tells it to fetch a local file by searching
-some directories including the "files" subdirectory next to the .bb file.
-And apparently, there is a "subdir" option (whose syntax is unexplained)
-which may be used to tell bitbake to put it somewhere specific relative to
-${WORKDIR}.
-
-Is the default value of the "subdir" option the S variable? Is that the
-purpose of S, to tell bitbake where to put things that it fetches? The Ref
-Manual says that S defaults to ${WORKDIR}/${PN}/${PV}, but then the sample
-compile recipe sets S to ${WORKDIR}. Is that what one does when one doesn't
-need to have a bunch of versioned subdirectories under ${WORKDIR}? (I'm not
-sure why one would ever want that, or why that would be the default.)
-
-So if I want to install a file somewhere, do I even need a do_install task,
-or can I just set S equal to the desired target location, like
-"${etcdir}/foo" and be done with it? Or is that a no-no, and should I always
-use do_install?
-
--- 
-
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
- 
-
+Philip
 
