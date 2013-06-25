@@ -1,42 +1,37 @@
-Return-Path: <marc.ferland@gmail.com>
-Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
-	[74.125.82.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0540CE0155D
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 14:27:56 -0700 (PDT)
-Received: by mail-we0-f174.google.com with SMTP id q58so9652622wes.19
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 14:27:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:references:date:in-reply-to:message-id
-	:user-agent:mime-version:content-type;
-	bh=rFn5LMjDrERXBlEIb7s/EdUi1rt9ZRAjgT0jRt4Q7Tg=;
-	b=b8HB2uyhtGgjCmmKD9YRzaQV0Ip+FqGPgFuqxCkf62c1jInut+elePYhQNEfG9ri50
-	M4L02cJzURZAgnjcnk6z/y/5icAhELsqoi+TThEp8bUJYUKXaLxDJiJ7rdptPwtvKVai
-	LINinn457cdg4glBpZhwzW2sYsZTfVZA1PMhLb9JIrmadEDzLuCXYwtEbdiVFtlZShKj
-	mkNPUAVV2iozUNS2P+2Qbrcdj7PHllWYDuvahbD+mQmC3RgkPApGdJtJe7uqEEb2+uZd
-	3mWQRt4aKGqCjdkXIUslFEz93u+2wDCAafIwiNOxy3+lntEtSBeAFOE1AGeQYVmyPWnf
-	qs0A==
-X-Received: by 10.194.21.231 with SMTP id y7mr532640wje.94.1372195675068;
-	Tue, 25 Jun 2013 14:27:55 -0700 (PDT)
-Received: from ferlandm@sonatest.com
-	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
-	by mx.google.com with ESMTPSA id f8sm6992780wiv.0.2013.06.25.14.27.52
-	for <multiple recipients>
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Tue, 25 Jun 2013 14:27:54 -0700 (PDT)
-Sender: Marc Ferland <marc.ferland@gmail.com>
-Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
-	Tue, 25 Jun 2013 17:28:04 -0400
-From: Marc Ferland <ferlandm@sonatest.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <87fvw6arm3.fsf@sonatest.com> <51C9F9EC.6070305@windriver.com>
-Date: Tue, 25 Jun 2013 17:28:04 -0400
-In-Reply-To: <51C9F9EC.6070305@windriver.com> (Bruce Ashfield's message of
-	"Tue, 25 Jun 2013 16:13:32 -0400")
-Message-ID: <874nclc23f.fsf@sonatest.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.2 (gnu/linux)
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4221E01560
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 14:55:44 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 25 Jun 2013 14:55:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,939,1363158000"; d="scan'208";a="355704577"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga001.fm.intel.com with ESMTP; 25 Jun 2013 14:56:29 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 25 Jun 2013 14:55:43 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.117]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.12.24]) with mapi id
+	14.03.0123.003; Tue, 25 Jun 2013 14:52:57 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH][eclipse-poky] plugin/sdk.ide: Pre-populate
+	project	specific profile form
+Thread-Index: AQHOcblUA3P/SSY4aUqohlEXjfxgeZlG9fxA
+Date: Tue, 25 Jun 2013 21:52:57 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C4F55E@ORSMSX103.amr.corp.intel.com>
+References: <cover.1372173542.git.timo.mueller@bmw-carit.de>
+	<4cc66f41f5df55001702d867e511ab5d83d58b2c.1372173542.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <4cc66f41f5df55001702d867e511ab5d83d58b2c.1372173542.git.timo.mueller@bmw-carit.de>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: variable override question
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: Re: [PATCH][eclipse-poky] plugin/sdk.ide: Pre-populate project	specific profile form
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,47 +43,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2013 21:27:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 25 Jun 2013 21:55:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Bruce Ashfield <bruce.ashfield@windriver.com> writes:
+Hi Timo,
 
-> On 13-06-25 03:59 PM, Marc Ferland wrote:
->> Hi,
->>
->> I have a linux-yocto_3.4.bbappend file in which I try to override the
->> KERNEL_FEATURES variable. I want it to be empty (I don't want the
->> netfilter stuff that's there by default).
->>
->> So I've tried (in my bbappend):
->>
->> KERNEL_FEATURES = ""
->>
->> but somehow the netfilter.scc file still gets merged in.
->>
->> What am I doing wrong?
->
-> Nothing. It's an artifact of the _appends that are present
-> in the linux-yocto recipe bbappends. You can clear it, but they'll
-> still append.
->
-> Those config fragments weren't optional when the recipes were
-> created, we've since evolved to the point where they are.
->
-> I squeezed in a change to linux-yocto_3.8 before the yocto 1.4
-> cutoff, and have changed linux-yocto_3.4 to match, and strangely,
-> was about to send a consolidated pull request that contains the
-> change.
->
-> You can either locally make the same change, and clear:
->
->  KERNEL_EXTRA_FEATURES
->
-> or wait for my latest update.
->
-Nice, exactly what I was looking for!
+How am I supposed to apply this patch?  I tried to apply it against master =
+first, then the patch2 of your v3 patch series won't apply.  If I apply you=
+r v3 patch series first, then this patch won't apply after that...
 
 Thanks,
+Jessica
 
-Marc
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Timo Mueller
+Sent: Tuesday, June 25, 2013 8:33 AM
+To: yocto@yoctoproject.org
+Cc: Timo Mueller
+Subject: [yocto] [PATCH][eclipse-poky] plugin/sdk.ide: Pre-populate project=
+ specific profile form
+
+From: Timo Mueller <timo.mueller@bmw-carit.de>
+
+On initial setup the profile form is populated with the values from the pre=
+viously selected target profile. This allows the user to quickly make proje=
+ct specific adaptions of an existing profile.
+
+If a project specific profile is already defined the form will show the val=
+ues from this configuration.
+
+Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
+---
+ .../sdk/ide/preferences/YoctoSDKProjectPropertyPage.java   | 14 ++++++++++=
+++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/Yo=
+ctoSDKProjectPropertyPage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sd=
+k/ide/preferences/YoctoSDKProjectPropertyPage.java
+index 9f99caf..408ce76 100644
+--- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKP=
+rojectPropertyPage.java
++++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoS
++++ DKProjectPropertyPage.java
+@@ -31,14 +31,15 @@ import org.osgi.service.prefs.BackingStoreException;
+ import org.yocto.sdk.ide.YoctoProfileElement;
+ import org.yocto.sdk.ide.YoctoProfileSetting;
+ import org.yocto.sdk.ide.YoctoProjectSpecificSetting;
++import org.yocto.sdk.ide.YoctoSDKChecker;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;
+ import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
+ import org.yocto.sdk.ide.YoctoSDKMessages;
+-import org.yocto.sdk.ide.utils.YoctoSDKUtils;
+-import org.yocto.sdk.ide.utils.YoctoSDKUtilsConstants;
+ import org.yocto.sdk.ide.YoctoSDKPlugin;  import org.yocto.sdk.ide.YoctoUI=
+Element;  import org.yocto.sdk.ide.YoctoUISetting;
++import org.yocto.sdk.ide.utils.YoctoSDKUtils;
++import org.yocto.sdk.ide.utils.YoctoSDKUtilsConstants;
+
+ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+                IWorkbenchPropertyPage {
+@@ -288,6 +289,15 @@ public class YoctoSDKProjectPropertyPage extends Prope=
+rtyPage implements
+        public void switchToProjectSpecificProfile()
+        {
+                YoctoUIElement profileElement =3D getElemFromProjectPrefere=
+nces(getProject());
++               SDKCheckResults result =3D
++YoctoSDKChecker.checkYoctoSDK(profileElement);
++
++               if ((result !=3D SDKCheckResults.SDK_PASS)) {
++                       /* Project specific profile has not yet been define=
+d,
++                        * leave settings from previously selected profile
++                        */
++                       return;
++               }
++
+                yoctoUISetting.setCurrentInput(profileElement);
+        }
+
+--
+1.8.1.4
+
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
