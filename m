@@ -1,22 +1,25 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CD74E01403
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 08:37:31 -0700 (PDT)
-Received: from [192.168.0.2] (host86-137-81-157.range86-137.btcentralplus.com
-	[86.137.81.157]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 03EF3952B
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 16:37:29 +0100 (BST)
-Message-ID: <51CB0AB3.2070107@r-finger.com>
-Date: Wed, 26 Jun 2013 16:37:23 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEE18E013B0
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 09:12:38 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 69FD4F811FB; Wed, 26 Jun 2013 10:12:37 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id D84B5F811FA;
+	Wed, 26 Jun 2013 10:12:36 -0600 (MDT)
+Message-ID: <51CB12F8.5090203@mlbassoc.com>
+Date: Wed, 26 Jun 2013 10:12:40 -0600
+From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
-In-Reply-To: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
-Subject: Re: run commands after installation
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Strange IPK naming
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,23 +31,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 15:37:33 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 26 Jun 2013 16:12:42 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 26/06/13 15:32, Katu Txakur wrote:
-> I want to create a user after adding the snmp recipe. The command to do
-> that is:
-> 
-> net-snmp-config --create-snmpv3-user -a "my_password" myuser
-> 
-> What's the best way to do it? I have tried from do_install_append and
-> also from ROOTFS_POSTPROCESS_COMMAND but no luck so far.
+I have a target machine whose name contains a '-', e.g. MACHINE="xyz-99"
+When I build packages, the tmp/deploy/ipk directory is munged to be
+tmp/deploy/ipk/xyz_99
 
-You need a postinst script for that sort of a thing.
+Can someone tell me why this happens (where)? and can I do something
+about it?  It makes it hard to set up the package database (/etc/opkg/base-feeds.conf)
+automatically in my image.
 
-Tomas
+Thanks
 
 -- 
-http://sleepfive.com
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
