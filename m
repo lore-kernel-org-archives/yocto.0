@@ -1,34 +1,35 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 123A4E0154F
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 18:04:49 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id 14so10895707vea.1
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 18:04:49 -0700 (PDT)
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ie0-f179.google.com (mail-ie0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ACF9E01562
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 19:38:12 -0700 (PDT)
+Received: by mail-ie0-f179.google.com with SMTP id c10so30132530ieb.10
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 19:38:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=cawB450dd1z6RuV0QrjUQ3noM2on55wPJpHz/C6ijQI=;
-	b=m7156FJi9QjGsy52a9YVo+/7w4olF8KYEtU2doHheodSHJPjF3DFZhhd/o1ohDwQI7
-	5YAPrupx7+CIQcQGSeApw75tkaV1qMSqiCLCT+v9sAbnwyGKMRhhQoiv1gVQJ81oMhFP
-	utanTc7rNYfT/rn4utR3ODOkmUwgHNg9kt1qePtpp8CWI9iemct+AAG/XWqumk024tn3
-	ZEW9XRcxHv2DfmaKgpaQmmzPwZE865QBieJPCiJVOlbpaxH0tkTTH3Geu/X7MhyPYfcG
-	3AcD/TuulWoimIWRBr2Fcz8+z1xuOtd7W+QxA1tJC52eGWHCsTC3eIesGdDI4dwbA7uJ
-	gmAQ==
-MIME-Version: 1.0
-X-Received: by 10.220.169.146 with SMTP id z18mr809559vcy.80.1372208688916;
-	Tue, 25 Jun 2013 18:04:48 -0700 (PDT)
-Received: by 10.52.114.170 with HTTP; Tue, 25 Jun 2013 18:04:48 -0700 (PDT)
-Date: Tue, 25 Jun 2013 18:04:48 -0700
-Message-ID: <CAPhnLPD+ZNKrJ5i=mM-S8eD8iTbEqpKeOMG++Eb7=o_zbQ8NWg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>, 
-	SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>
-X-Gm-Message-State: ALoCoQmuUgcrzk15XNJhZkhNwKfi4Ih1o5BWWD5YpqnrnrrmWc4fXXdlbfhmopuQ/2ScKD+YxHvQ
-Subject: Weekly build now available
+	h=from:to:cc:subject:date:message-id:x-mailer:x-gm-message-state;
+	bh=d1XiZSdJCLz9p7kMcKqL2kpIjGpJKpUJrSbhRd3lcrE=;
+	b=o+y064lyoGOxAvRTPEEJzhgP+FoNtQrQdJTS9SDOLhhhITwTONvXCxgk+ZJ9KtRPj1
+	f/+n/0yM1SPVd+vXimzB2RwhdssNOfEp8Cw3J3qxFDQU6fa7kOvTvnttOsCogDeZtdpf
+	kRobXXyyx5CYADk2tOWwb1I6QBSRsuz+Q4Pkytux3jn9pgwKms07GHATZfl5KrYIHaA/
+	+ymJ3nfJa9fdZkJuvwkTeOpX/S8/2aY/SqJdw6wub7iAQcLyOKsJcNMkY7fdEy+rTTPM
+	xLG99O1e+eDqmC5Z5mvPfQqn02jvk9WDE3roOt4toIDbOniabV7qpwdWyBsyDkGoZCnD
+	2Rbg==
+X-Received: by 10.50.114.229 with SMTP id jj5mr1080899igb.36.1372214291979;
+	Tue, 25 Jun 2013 19:38:11 -0700 (PDT)
+Received: from suse64-i7.site (dsl-67-55-9-50.acanac.net. [67.55.9.50])
+	by mx.google.com with ESMTPSA id ri10sm6335026igc.1.2013.06.25.19.38.10
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 25 Jun 2013 19:38:11 -0700 (PDT)
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: yocto@yoctoproject.org
+Date: Tue, 25 Jun 2013 22:37:49 -0400
+Message-Id: <1372214269-16897-1-git-send-email-trevor.woerner@linaro.org>
+X-Mailer: git-send-email 1.8.3.rc1.44.gb387c77
+X-Gm-Message-State: ALoCoQlbNvT8tzxIZGxKbiW1HuKgEwAWHe8lunwutRyDVrkcWMzDlSFKbx2ZWAY29CFapD0pxR4P
+Cc: patches@linaro.org
+Subject: [yocto-docs][PATCH] dev-manual: referencing bugzilla issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,22 +41,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 01:04:50 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 26 Jun 2013 02:38:13 -0000
 
-The weekly build is now available:
-http://autobuilder.yoctoproject.org/pub/nightly/20130625-2
+Based on observations from the various mailing lists, it is obvious that
+bugzilla issues are almost always referenced using square brackets.
 
-eclipse-poky    60e99763dc9b77307d46eae4f43343948fa49757
-meta-fsl-arm 	3b4c20c4f683b721994ea2e4e364c38601cd3c6b 	
-meta-fsl-ppc 	d75b5c38492f5fa821b5b2cca89217bef6868420 	
-meta-intel 	f6dbf42654aeec5f36dddedda6433a87e01ae726 	
-meta-minnow 	286a72ba3f5e29432be1dd77127de5bdc2d988c3 	
-meta-qt3 	4c27cce6688aa39852f3cba5e7b80ec279019605
-poky 	8e9501ffa8726d69412d669580d787ffedb88d34
+Signed-off-by: Trevor Woerner <trevor.woerner@linaro.org>
+---
+ documentation/dev-manual/dev-manual-newbie.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/documentation/dev-manual/dev-manual-newbie.xml b/documentation/dev-manual/dev-manual-newbie.xml
+index 0c849f5..55e0c58 100644
+--- a/documentation/dev-manual/dev-manual-newbie.xml
++++ b/documentation/dev-manual/dev-manual-newbie.xml
+@@ -1405,7 +1405,7 @@
+                 references - any commit that addresses a specific bug should include the
+                 bug ID in the description (typically at the beginning) as follows:
+                 <literallayout class='monospaced'>
+-     Fixes YOCTO #&lt;bug-id&gt;
++     [YOCTO #&lt;bug-id&gt;]
+ 
+      &lt;detailed description of change&gt;
+                 </literallayout></para></listitem>
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+1.8.3.rc1.44.gb387c77
+
 
