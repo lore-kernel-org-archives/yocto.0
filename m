@@ -1,34 +1,28 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62D01E01562
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 21:26:32 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 25 Jun 2013 21:26:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,941,1363158000"; d="scan'208";a="355839744"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Jun 2013 21:27:16 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.181]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.244]) with mapi id
-	14.03.0123.003; Tue, 25 Jun 2013 21:26:30 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [yocto-docs][PATCH] dev-manual: referencing bugzilla
-	issues
-Thread-Index: AQHOchZTwBOE/Rt210q+ZktYKL8qrZlHZdeQ
-Date: Wed, 26 Jun 2013 04:26:29 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF51ADC@ORSMSX101.amr.corp.intel.com>
-References: <1372214269-16897-1-git-send-email-trevor.woerner@linaro.org>
-In-Reply-To: <1372214269-16897-1-git-send-email-trevor.woerner@linaro.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <mail@timomueller.eu>
+Received: from h1954115.stratoserver.net (h1954115.stratoserver.net
+	[85.214.246.27])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13029E01561
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2013 23:47:07 -0700 (PDT)
+Received: from mysterion.bmw-carit.intra (mail.bmw-carit.de [62.245.222.98])
+	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: mail@timomueller.eu)
+	by h1954115.stratoserver.net (mailserver) with ESMTPSA id B6ED16E941F3; 
+	Wed, 26 Jun 2013 08:47:01 +0200 (CEST)
+Message-ID: <51CA8E5F.1090803@timomueller.eu>
+Date: Wed, 26 Jun 2013 08:46:55 +0200
+From: =?ISO-8859-1?Q?Timo_M=FCller?= <mail@timomueller.eu>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
 MIME-Version: 1.0
-Cc: "Wold, Saul" <saul.wold@intel.com>,
-	"patches@linaro.org" <patches@linaro.org>
-Subject: Re: [yocto-docs][PATCH] dev-manual: referencing bugzilla issues
+To: "Zhang, Jessica" <jessica.zhang@intel.com>
+References: <cover.1372173542.git.timo.mueller@bmw-carit.de>
+	<4cc66f41f5df55001702d867e511ab5d83d58b2c.1372173542.git.timo.mueller@bmw-carit.de>
+	<C6510F6D410BB64A8C15398EDC6B847C73C4F55E@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C4F55E@ORSMSX103.amr.corp.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: Re: [PATCH][eclipse-poky] plugin/sdk.ide: Pre-populate project specific profile form
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,59 +34,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 04:26:33 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 26 Jun 2013 06:47:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Trevor,=20
+Hi Jessica,
 
-I use to have [YOCTO #<bug-id>] in the manual just as you do here.  I was t=
-old by Saul though that I was not to use the brackets in the commit descrip=
-tion.  That is when I took them out of the manual.  Maybe Saul can add more=
- to this explanation.
+Zhang, Jessica wrote, On 25.06.2013 23:52:
+> Hi Timo,
+>
+> How am I supposed to apply this patch? I tried to apply it against
+master first, then the patch2 of your v3 patch series won't apply. If I
+apply your v3 patch series first, then this patch won't apply after that...
 
-Thanks,
-Scott
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Trevor Woerner
->Sent: Tuesday, June 25, 2013 7:38 PM
->To: yocto@yoctoproject.org
->Cc: patches@linaro.org
->Subject: [yocto] [yocto-docs][PATCH] dev-manual: referencing bugzilla
->issues
+I've messed up with the prefix, that's why it didn't apply. Sorry about 
+that. I'll resend the patch that will apply to the master.
+
 >
->Based on observations from the various mailing lists, it is obvious that
->bugzilla issues are almost always referenced using square brackets.
+> Thanks,
+> Jessica
 >
->Signed-off-by: Trevor Woerner <trevor.woerner@linaro.org>
->---
-> documentation/dev-manual/dev-manual-newbie.xml | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Timo Mueller
+> Sent: Tuesday, June 25, 2013 8:33 AM
+> To: yocto@yoctoproject.org
+> Cc: Timo Mueller
+> Subject: [yocto] [PATCH][eclipse-poky] plugin/sdk.ide: Pre-populate project specific profile form
 >
->diff --git a/documentation/dev-manual/dev-manual-newbie.xml
->b/documentation/dev-manual/dev-manual-newbie.xml
->index 0c849f5..55e0c58 100644
->--- a/documentation/dev-manual/dev-manual-newbie.xml
->+++ b/documentation/dev-manual/dev-manual-newbie.xml
->@@ -1405,7 +1405,7 @@
->                 references - any commit that addresses a specific bug
->should include the
->                 bug ID in the description (typically at the beginning)
->as follows:
->                 <literallayout class=3D'monospaced'>
->-     Fixes YOCTO #&lt;bug-id&gt;
->+     [YOCTO #&lt;bug-id&gt;]
+> From: Timo Mueller <timo.mueller@bmw-carit.de>
 >
->      &lt;detailed description of change&gt;
->                 </literallayout></para></listitem>
->--
->1.8.3.rc1.44.gb387c77
+> On initial setup the profile form is populated with the values from the previously selected target profile. This allows the user to quickly make project specific adaptions of an existing profile.
 >
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+> If a project specific profile is already defined the form will show the values from this configuration.
+>
+> Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
+> ---
+>   .../sdk/ide/preferences/YoctoSDKProjectPropertyPage.java   | 14 ++++++++++++--
+>   1 file changed, 12 insertions(+), 2 deletions(-)
+>
+> diff --git a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+> index 9f99caf..408ce76 100644
+> --- a/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoSDKProjectPropertyPage.java
+> +++ b/plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/preferences/YoctoS
+> +++ DKProjectPropertyPage.java
+> @@ -31,14 +31,15 @@ import org.osgi.service.prefs.BackingStoreException;
+>   import org.yocto.sdk.ide.YoctoProfileElement;
+>   import org.yocto.sdk.ide.YoctoProfileSetting;
+>   import org.yocto.sdk.ide.YoctoProjectSpecificSetting;
+> +import org.yocto.sdk.ide.YoctoSDKChecker;
+>   import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckRequestFrom;
+>   import org.yocto.sdk.ide.YoctoSDKChecker.SDKCheckResults;
+>   import org.yocto.sdk.ide.YoctoSDKMessages;
+> -import org.yocto.sdk.ide.utils.YoctoSDKUtils;
+> -import org.yocto.sdk.ide.utils.YoctoSDKUtilsConstants;
+>   import org.yocto.sdk.ide.YoctoSDKPlugin;  import org.yocto.sdk.ide.YoctoUIElement;  import org.yocto.sdk.ide.YoctoUISetting;
+> +import org.yocto.sdk.ide.utils.YoctoSDKUtils;
+> +import org.yocto.sdk.ide.utils.YoctoSDKUtilsConstants;
+>
+>   public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+>                  IWorkbenchPropertyPage {
+> @@ -288,6 +289,15 @@ public class YoctoSDKProjectPropertyPage extends PropertyPage implements
+>          public void switchToProjectSpecificProfile()
+>          {
+>                  YoctoUIElement profileElement = getElemFromProjectPreferences(getProject());
+> +               SDKCheckResults result =
+> +YoctoSDKChecker.checkYoctoSDK(profileElement);
+> +
+> +               if ((result != SDKCheckResults.SDK_PASS)) {
+> +                       /* Project specific profile has not yet been defined,
+> +                        * leave settings from previously selected profile
+> +                        */
+> +                       return;
+> +               }
+> +
+>                  yoctoUISetting.setCurrentInput(profileElement);
+>          }
+>
+> --
+> 1.8.1.4
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+If this is merged, the "Add target profile quick switch" patch series 
+has to be adapted slightly. I'll send a rework of the series in that case.
+
+Best regards,
+Timo
 
