@@ -1,39 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2668E01403
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 14:06:50 -0700 (PDT)
-Received: by mail-pd0-f173.google.com with SMTP id v14so1670846pde.18
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 14:06:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:date:message-id
-	:cc:to:mime-version:x-mailer;
-	bh=XO11pN8irO/fus1xlOeaHAEnP5HXJt22iAsKFwca9rE=;
-	b=X4O1JN924FtE7imHcmPlnRMyP1PnO20sJxejFYFlmgVLnSyil9XAZrI6iEhVtLlo/6
-	P/0punUezUJlncXZvbq0Iiq0arn3dNpK9yXunECuNZwqB42C8nAVFZp0JTYayUNmEd8c
-	iqQKrkfp6QDW6bCmBdYTPPHUPtwGy+LDCntDAfSDpcK6sDEGO8uY1uX2oQgyA36x3Lrm
-	UPlI8mEteo/45YFpPH4LZ+I9xP+aDXyPsZByh8bgRCGr1tbSYRnVTi/Sop9lG8yuI1FL
-	GW1jDc50lqUDAPtTE74Qs/5CkGW04yRM2Rorz8qKK/OMiIsnQN3ReINTjhJ1/9i1rL6c
-	36Jg==
-X-Received: by 10.68.245.200 with SMTP id xq8mr2567853pbc.32.1372280809243;
-	Wed, 26 Jun 2013 14:06:49 -0700 (PDT)
-Received: from kosborne-sslvpn-nc.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id dc3sm29900102pbc.9.2013.06.26.14.06.47
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 26 Jun 2013 14:06:48 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 26 Jun 2013 14:06:46 -0700
-Message-Id: <1831F7C6-54BC-4E5F-BC00-1B8C17E8D1FD@gmail.com>
-To: Patches and discussions about the oe-core layer
-	<Openembedded-core@lists.openembedded.org>
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-X-Mailer: Apple Mail (2.1508)
-Cc: "yocto@yoctoproject.org \(yocto@yoctoproject.org\)"
-	<yocto@yoctoproject.org>, "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>
-Subject: eglibc (would be 2.18) recipes
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
+	[209.85.220.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF50DE01403
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 14:17:11 -0700 (PDT)
+Received: by mail-vc0-f171.google.com with SMTP id gd11so1363378vcb.16
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 14:17:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=z7IPx6BFkSIMLzq6vDc/7/aPdqqezB+T8beHL3qJPFo=;
+	b=m8UnIsnejAHzAfWVqPJdIlYVsaOJH3e+WyaJ47XlWChWSi7pPZxybZs7jJkuWpHs0Q
+	xqDxndepWsEp1JXBetkyqe7Le53SkZ7NIXcsZ6iV4EtiC32VPZu4658ZY/QtiClTL2KY
+	qdKUSOIZRvd18A+hl+RehHsTn0MxAU6Z6LuQ/0UOogSVoYbtlklZviRclpF6wjMWhnJv
+	uR79HGSUTV5ypZhaabX5BgZQ+LsseIlKW5UgEBpQBN697EaKGgNAg04SeI2I4cwRFj3V
+	NFrvIVRokjCMbCTDStQqYc5r74wxUCgHNUtIg/Q6EhFu7Lp4MtZh6XGAiPHaimCEicHB
+	301w==
+MIME-Version: 1.0
+X-Received: by 10.58.108.8 with SMTP id hg8mr2449093veb.6.1372281430245; Wed,
+	26 Jun 2013 14:17:10 -0700 (PDT)
+Received: by 10.52.114.170 with HTTP; Wed, 26 Jun 2013 14:17:10 -0700 (PDT)
+In-Reply-To: <CE7F8427-5728-4299-BFC3-0C3A03C7A914@keylevel.com>
+References: <CE7F8427-5728-4299-BFC3-0C3A03C7A914@keylevel.com>
+Date: Wed, 26 Jun 2013 14:17:10 -0700
+Message-ID: <CAPhnLPDgmgzPhqFcVAsbWbeZSz_CFWV2sQAaE==43_r83bxj1A@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+X-Gm-Message-State: ALoCoQlYu+e3VFb9zYHZZ3igk6HHz2AruZ2bmbqDLUHcA7Vw/bb4l04JHsUBXsTZnTveEyURoeDF
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Using meta-fsl-arm with 'danny'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,28 +40,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 21:06:50 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 26 Jun 2013 21:17:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi All
+On Wed, Jun 26, 2013 at 1:59 PM, Chris Tapp <opensource@keylevel.com> wrote:
+> I'm trying to get core-image-minimal to build using meta-fsl-arm / meta-fsl-arm-extras under 'danny' for the 'wandboard-dual' machine.
+>
+> However, I can't find a tag/branch that works with 'danny'. Specifically, when I use the 'danny' branch there is a udev_173.bbappend in meta-fsl-arm, but 'danny' only supports udev_164.
 
-I have put together eglibc recipes for upcoming 2.18 release and pushed =
-to a contrib tree here
 
-=
-http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/eglibc=
--2.18
+Is this perhaps what you are hitting?
 
-They built angstrom/systemd-images fine and booted OK on all supported =
-qemu machines
-on OE-Core
+from the meta-fsl-arm danny branch:
 
-Please test them out in your configurations and machines and provide =
-feedback, lets weed out
-the issue early
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-arm/tree/README?h=danny
 
-Thanks
+To avoid the meta-oe dependency add to local.conf:
 
--Khem=
+BBMASK = "udev_.*\.bbappend$"
+
+
+-b
+
+>
+> I also find a similar problem with meta-fsl-arm-extras.
+>
+> I must be missing something here...
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
