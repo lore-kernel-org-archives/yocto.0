@@ -1,28 +1,22 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AC50E0141B
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 08:08:49 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id 14so11549057vea.15
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 08:08:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Yy0jQarMCFRArau1N4l9awDe/gEK1yKnnJzBIr6xc1s=;
-	b=K6AfbEfOITT5WY9pfs/9yyB9W21YWxXhcak3YA71uXuWNthrFqZ9q69INSLwC9/+No
-	w9WKrzjuVeILRrQcmmmcWHPKfdnimK0JDNZOCOpb/x+dQMeZ+6FYK9pacbRLz681SEfy
-	CUQta8PzECeA5JoA2t4nFIm8697Z2iw0ckRgDx8AvQH2Rsm8XR0bXAfmzSyG4/i0tZya
-	5J+qqeLJCAZRf2pDaL6r8UT6cYmrTc1+s14V5fSEzOdFe/rO/AwyWahqoN+Q/AffpKTi
-	rXcOoZo8fP53cZDa+okCJjPjBqIHgBSulGwXiAwNfisXS5/4FNchh5k5yPq5V/VdTKyT
-	0zmw==
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CD74E01403
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 08:37:31 -0700 (PDT)
+Received: from [192.168.0.2] (host86-137-81-157.range86-137.btcentralplus.com
+	[86.137.81.157]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id 03EF3952B
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 16:37:29 +0100 (BST)
+Message-ID: <51CB0AB3.2070107@r-finger.com>
+Date: Wed, 26 Jun 2013 16:37:23 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:10.0.5) Gecko/20120624 Icedove/10.0.5
 MIME-Version: 1.0
-X-Received: by 10.58.97.199 with SMTP id ec7mr1826850veb.72.1372259328747;
-	Wed, 26 Jun 2013 08:08:48 -0700 (PDT)
-Received: by 10.52.94.241 with HTTP; Wed, 26 Jun 2013 08:08:48 -0700 (PDT)
-Date: Wed, 26 Jun 2013 17:08:48 +0200
-Message-ID: <CAFMfyzJJYFEHe580kndOndgDMe_nvcVxEZzx2J3cvHASQaZf9Q@mail.gmail.com>
-From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: NAND Filesystems
+To: yocto@yoctoproject.org
+References: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
+In-Reply-To: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
+Subject: Re: run commands after installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +28,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 15:08:51 -0000
-Content-Type: multipart/alternative; boundary=089e013a0696d46cf404e0100515
+X-List-Received-Date: Wed, 26 Jun 2013 15:37:33 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---089e013a0696d46cf404e0100515
-Content-Type: text/plain; charset=ISO-8859-1
+On 26/06/13 15:32, Katu Txakur wrote:
+> I want to create a user after adding the snmp recipe. The command to do
+> that is:
+> 
+> net-snmp-config --create-snmpv3-user -a "my_password" myuser
+> 
+> What's the best way to do it? I have tried from do_install_append and
+> also from ROOTFS_POSTPROCESS_COMMAND but no luck so far.
 
-Hi Guys,
+You need a postinst script for that sort of a thing.
 
-Google doesnot provide a good link but may I ask you where can I search for
-NAND filesystems that yocto supports for the target
+Tomas
 
-Greets,
-Satya
+-- 
+http://sleepfive.com
 
---089e013a0696d46cf404e0100515
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Guys,<div><br></div><div>Google doesnot provide a good =
-link but may I ask you where can I search for NAND filesystems that yocto s=
-upports for the target=A0</div><div><br></div><div>Greets,</div><div>Satya<=
-/div>
-</div>
-
---089e013a0696d46cf404e0100515--
