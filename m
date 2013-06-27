@@ -1,43 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2CEBE00722
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 08:10:31 -0700 (PDT)
-Received: by mail-pd0-f177.google.com with SMTP id p10so444474pdj.8
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 08:10:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=pBM5T7Qp94ZgrFYLj/b9rkAGh0Oz2hKixFt1DuaHN/8=;
-	b=QycBp/8NVCaN18bgyeXEAzPZUV/kYmM27W7ZQ3H1CQPl3X7a60t0zwm2s8DZtx+Oa8
-	pe5/5mSg+C6qOgdWiZqm5mOLv/BdWCP3MIfSiZUTqm2cjPIz+VsnDzNV4C6yzNwcsiRt
-	KRjOepQsTxJV/ivnBsmLjji5oJh/O5ZwwttBnC5cqyKDzpDU2ZYLmZw+YmFB0CsdKR0i
-	5CymqvNg7tJM79+8V9grZBd8ty14RJtPyP9W9cvSSJ0dCyAwM29byugEeT+Imn+y4vfZ
-	rtiiXsxZ+1OvPRlDy3a1qoqZSU9c3HkFqXlxsgdPArU7pdDFogyp4yb0QkLHua6p05s0
-	2Edg==
-X-Received: by 10.66.251.202 with SMTP id zm10mr6582948pac.53.1372345830659;
-	Thu, 27 Jun 2013 08:10:30 -0700 (PDT)
-Received: from kosborne-sslvpn-nc.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id yj2sm3520002pbb.40.2013.06.27.08.10.28
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 27 Jun 2013 08:10:29 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1372317615.9930.180.camel@ted>
-Date: Thu, 27 Jun 2013 08:10:30 -0700
-Message-Id: <9D33DF95-E667-4BD8-9D3B-7E87826795A8@gmail.com>
-References: <1831F7C6-54BC-4E5F-BC00-1B8C17E8D1FD@gmail.com>
-	<1372317615.9930.180.camel@ted>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-Mailer: Apple Mail (2.1508)
-Cc: "yocto@yoctoproject.org \(yocto@yoctoproject.org\)"
-	<yocto@yoctoproject.org>, "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<Openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] eglibc (would be 2.18) recipes
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81FD3E00722
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 08:19:57 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5RFJsu3015592
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 27 Jun 2013 08:19:54 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Thu, 27 Jun 2013 08:19:54 -0700
+Message-ID: <51CC5813.8080506@windriver.com>
+Date: Thu, 27 Jun 2013 11:19:47 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+MIME-Version: 1.0
+To: Bryan Evenson <bevenson@melinkcorp.com>
+References: <91586D499ADFD74FBCFB8425266A5DE4013B91292051@pluto.melinkcorp.local>
+	<51CBB4A8.80200@windriver.com> <51CBCC7C.3080107@windriver.com>
+	<91586D499ADFD74FBCFB8425266A5DE4013B9129209C@pluto.melinkcorp.local>
+In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE4013B9129209C@pluto.melinkcorp.local>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Kernel patch is unpacked but not applied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,47 +34,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 15:10:32 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 27 Jun 2013 15:20:01 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 13-06-27 08:50 AM, Bryan Evenson wrote:
+>> -----Original Message-----
+>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+>> Sent: Thursday, June 27, 2013 1:24 AM
+>> To: Bryan Evenson
+>> Cc: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Kernel patch is unpacked but not applied
+>>
+>> On 13-06-26 11:42 PM, Bruce Ashfield wrote:
+>>> On 13-06-26 11:08 PM, Bryan Evenson wrote:
+>>>> I am building a custom Linux kernel under poky-dylan and I am having
+>>>> an issue with patches being unpacked but not applied.  I have two
+>>>> layers that have a bbappend file for the kernel.  Generally, this is
+>>>> what each bbappend file looks like:
+>>>>
+>>>> #First .bbappend
+>>>>
+>>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>>> COMPATIBLE_MACHINE_mach1 = "mach1"
+>>>> COMPATIBLE_MACHINE_mach2 = "mach2"
+>>>> SRC_URI_append_mach2 = " file://${MACHINE}/${KBRANCH}/0001-
+>> blah.patch \
+>>>>       file://${MACHINE}/${KBRANCH}/0002-blah.patch \
+>>>>       "
+>>>>
+>>>> # Increment the recipe revision
+>>>> PRINC := "${@int(PRINC) + 1}"
+>>>>
+>>>> # Second .bbappend
+>>>>
+>>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>>> COMPATIBLE_MACHINE_mach1 = "mach1"
+>>>> COMPATIBLE_MACHINE_mach2 = "mach2"
+>>>> SRC_URI_append_mach2 = " file://${MACHINE}/${KBRANCH}/0003-
+>> blah.patch \
+>>>>       file://${MACHINE}/${KBRANCH}/0004-blah.patch \
+>>>>       "
+>>>>
+>>>> # Increment the recipe revision
+>>>> PRINC := "${@int(PRINC) + 1}"
+>>>>
+>>>> All of the patch files are properly unpacked, but the last two
+>>>> patches are not being applied.  If I open the devshell for the
+>> kernel
+>>>> (bitbake -c devshell linux-yocto-custom) I can see in the git log
+>>>> that the first patch set was applied.  The second patch set exists
+>>>> but is not applied.  If I call "guilt push" repeatedly from the
+>>>> devshell, the patches from the second set are cleanly applied.  My
+>>>> guess is that something doesn't like the second SRC_URI_append call.
+>>>> Any ideas on how to fix it?
+>>>
+>>> It shouldn't matter. Let me try and set up something that reproduces
+>>> the problem and get back to you.
+>>>
+>>> Strangely .. I'm actively debugging something similar here already,
+>> so
+>>> I may be able to re-use it.
+>>>
+>>> Stay tuned.
+>>>
+>>> Out of curiosity, have you tried this on master ?
+>>
+>
+> I have not tried this on master.  Here is the relevant build information:
+>
+> Build Configuration:
+> BB_VERSION        = "1.18.0"
+> BUILD_SYS         = "i686-linux"
+> NATIVELSBSTRING   = "Ubuntu-12.04"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "at91sam9x5ek"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.4.1"
+> TUNE_FEATURES     = "armv5 thumb dsp arm926ejs"
+> TARGET_FPU        = "soft"
+> meta-melink       = "dylan:e4a0a4c5e419154a34710a1b6c28d4180c6304c3"
+> meta-atmel        = "master:b2a9c072730b0f6b2a669a8de613e5e1d59453e6"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "dylan:e4a0a4c5e419154a34710a1b6c28d4180c6304c3"
+> meta-oe           = "dylan:13ae5105ee30410136beeae66ec41ee4a8a2e2b0"
+>
+> So I'm at the HEAD of the Dylan branch for both poky and meta-oe.
+> The kernel patches are in both the meta-atmel layer and the meta-melink
+> Layter.  Ignore that version string for meta-melink; it's not a git
+> repository so it's just grabbing the info from poky.
+>
+>> So I tried to recreate this on master, and things worked for me. Which
+>> I figured would happen, since this will make it harder to fix ... and
+>> that's how it always works out.
+>>
+>> I created two layers, with four patches to the main linux Makefile.
+>> They all add something to the description:
+>>
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>>
+>> SRC_URI_append = " file://0001-makefile-one.patch \
+>>                      file://0002-makefile-two.patch"
+>>
+>>
+>>
+>> PRINC := "${@int(PRINC) + 1}"
+>>
+>> and
+>>
+>>
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> SRC_URI_append = " file://0003-makefile-three.patch \
+>>                      file://0004-makefile-four.patch"
+>>
+>>
+>>
+>> PRINC := "${@int(PRINC) + 1}"
+>>
+>> .. and alas, the all were applied:
+>>
+>>   > grep NAME Makefile
+>> NAME = Displaced Humerus Anterior one two three four
+>>
+>> ....
+>>
+>> Can you send me the exact names of your patches ? I'm wondering if an
+>> already applied check is triggering and preventing the auto push.
+>>
+>
+> Here are the patch names in the first layer (meta-atmel):
+>
+> " file://${MACHINE}/${KBRANCH}/UBI.cfg \
+>      file://${MACHINE}/${KBRANCH}/dma.cfg \
+>      file://${MACHINE}/${KBRANCH}/usb-c.patch \
+>      file://${MACHINE}/${KBRANCH}/usart3.patch \
+>      file://${MACHINE}/${KBRANCH}/rtc.patch \
+>      file://${MACHINE}/${KBRANCH}/serial_dma.patch \
+>      ${@base_contains("MACHINE_FEATURES", "watchdog", "file://${MACHINE}/${KBRANCH}/watchdog.patch", " ", d)} \
+>      "
+>
+> If you're wondering about that last line, I added a watchdog
+> feature to the meta-atmel layer to enable or disable the watchdog
+> for the kernel, U-Boot and the AT91Bootstrap.
+>
+> And here are the patch names for the second layer (meta-melink):
+>
+> SRC_URI_append_at91sam9x5ek = " file://${MACHINE}/${KBRANCH}/mq.cfg \
+>      file://${MACHINE}/${KBRANCH}/gpio.cfg \
+>      file://${MACHINE}/${KBRANCH}/ad5446.cfg \
+>      file://${MACHINE}/${KBRANCH}/rs485.patch;apply=yes \
+>      file://${MACHINE}/${KBRANCH}/usart1.patch;apply=yes \
+>      file://${MACHINE}/${KBRANCH}/mmc.patch;apply=yes \
+>      file://${MACHINE}/${KBRANCH}/one-wire.patch;apply=yes \
+>      "
+>
+> I tried adding the "apply=yes" to the second layer patches, and they still
+> were not applied.  Incidentally, the configuration changes (.cfg files)
+> *are* being applied.  So if I understand correctly, do_unpack is getting
+> the correct files, do_patch is not applying all the patches, but
+> do_configure is applying all the configuration changes.
+>
+> If it helps, the meta-atmel layer I am using is available here:
+> https://github.com/evensonbryan/meta-atmel.  I just pushed an update a few
+> minutes ago, so it has what I am using.
+
+I've got a working baseline, using the meta-atmel layer, I see the
+5 patches applied:
+
+  f3864ee Add watchdog support.
+  d8a2978dc Add DMA support for USARTs.
+  c31d2cd Turn on RTC
+  6d7277d Add USART3 to SAM9G25 device tree.
+  9b38b15 Add USB-C to device tree.
+
+But I of course don't have your meta-melink layer, so I'll have a go
+at adding some similarly named, but different patches and see if the
+problem
 
 
-On Jun 27, 2013, at 12:20 AM, Richard Purdie =
-<richard.purdie@linuxfoundation.org> wrote:
-
-> On Wed, 2013-06-26 at 14:06 -0700, Khem Raj wrote:
->> Hi All
->>=20
->> I have put together eglibc recipes for upcoming 2.18 release and =
-pushed to a contrib tree here
->>=20
->> =
-http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/eglibc=
--2.18
->>=20
->> They built angstrom/systemd-images fine and booted OK on all =
-supported qemu machines
->> on OE-Core
->>=20
->> Please test them out in your configurations and machines and provide =
-feedback, lets weed out
->> the issue early
->=20
-> You have a fix for bug 4168 in there that nobody else can reproduce or
-> understand:
-
-that was an oversite during rebase. I have refresh the tree and dropped =
-it from there.
-
->=20
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4168
->=20
-> I'd really like to better understand what is happening there before we
-> pull that one in.
->=20
-> Cheers,
->=20
-> Richard
->=20
+>
+> I'll let you know if I discover anything new.
+>
+> Thanks,
+> Bryan
+>
+>> Bruce
+>>
+>>>
+>>> Cheers,
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> Thanks,
+>>>> Bryan
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
