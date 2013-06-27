@@ -1,27 +1,42 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
-	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C4FCE0144E
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 05:50:26 -0700 (PDT)
-Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Thu, 27 Jun 2013 08:50:24 -0400
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Thu, 27 Jun 2013 08:50:23 -0400
-Thread-Topic: [yocto] Kernel patch is unpacked but not applied
-Thread-Index: Ac5y9pOWsteZz5ElRDyOX8PrS5ebVwAORFtA
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE4013B9129209C@pluto.melinkcorp.local>
-References: <91586D499ADFD74FBCFB8425266A5DE4013B91292051@pluto.melinkcorp.local>
-	<51CBB4A8.80200@windriver.com> <51CBCC7C.3080107@windriver.com>
-In-Reply-To: <51CBCC7C.3080107@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 003B510D004A70003B525A
-acceptlanguage: en-US
+Return-Path: <peachj@lexmark.com>
+Received: from exprod8og113.obsmtp.com (exprod8og113.obsmtp.com [64.18.3.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E05D9E0144E
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 05:56:22 -0700 (PDT)
+Received: from mail-oa0-f43.google.com ([209.85.219.43]) (using TLSv1) by
+	exprod8ob113.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKUcw2dWy1DiwJ1T8FamjZZU+UJo6Oe5F+@postini.com;
+	Thu, 27 Jun 2013 05:56:24 PDT
+Received: by mail-oa0-f43.google.com with SMTP id i7so791472oag.16
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 05:56:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=8Yix01mDUa8CV5C+ZwQt4oTbXzKVBx91IOQgsxj73hk=;
+	b=SEZZNCQ80IGAjCAtDU6qLFA9AInuaWMrYJAJLOu54Ulr0sbk8NWyDDmcbexlu/kISr
+	MOhyJS5Xs1XbJqxfcPHvk3/HqSp+aKHXPx6h3PjU2bcNC9EcvbqFkq4cmKcPS5HC35QC
+	CDRK5Th+GKkeA79IMGSduWFH5bERfBt/ZnIs84I78/62K+9H3Sg32ZkcKiwUOZS00ea9
+	mui/D1MQNb6d/BfcMamBOoO+lb3G47kRz+ZWLGs8RRBJZ4QbW0ybclL4X5ngSj7rmrVf
+	r9sylgW02jRGwve4JVRkXCjWxRVzz0ykqGAITc1/IeerkL8+VNmRBwVQTG4ZFXe+fBq3
+	8y9Q==
+X-Received: by 10.60.131.171 with SMTP id on11mr2779343oeb.71.1372337781177;
+	Thu, 27 Jun 2013 05:56:21 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel patch is unpacked but not applied
+X-Received: by 10.60.131.171 with SMTP id on11mr2779333oeb.71.1372337781035;
+	Thu, 27 Jun 2013 05:56:21 -0700 (PDT)
+Received: by 10.76.163.70 with HTTP; Thu, 27 Jun 2013 05:56:20 -0700 (PDT)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF51E45@ORSMSX101.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5182B@ORSMSX101.amr.corp.intel.com>
+	<CA+QkY1BKJqnLcbJq786d3LjA6D7gDLLQifccMA4m9m0cKOXj+g@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF51E45@ORSMSX101.amr.corp.intel.com>
+Date: Thu, 27 Jun 2013 08:56:20 -0400
+Message-ID: <CA+QkY1Ap11Z1Juwqhgur3yxZNhUOeZYtwSx0fch4UMqWO6frOg@mail.gmail.com>
+From: Jerrod Peach <peachj@lexmark.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+X-Gm-Message-State: ALoCoQl1Lj15HYrs1wG/eOe6vZCveSeOxryaZbXLUUiVXrQXOHQ6+RMj5kHhaGlrjlGWr25bIYTg6DBBlqFrMR/la9BJleNGnibbJMbyWGl0MKgjpEImQBvrdjH016kfPjvZ9/69EcR956IV25LzwNAzZ48JX73055a4eEcOZ4eLvk3DFntIxv4=
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: Layer input
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,197 +48,336 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 12:50:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 27 Jun 2013 12:56:25 -0000
+Content-Type: multipart/alternative; boundary=047d7b471da4f363db04e0224995
+
+--047d7b471da4f363db04e0224995
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Thursday, June 27, 2013 1:24 AM
-> To: Bryan Evenson
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Kernel patch is unpacked but not applied
->=20
-> On 13-06-26 11:42 PM, Bruce Ashfield wrote:
-> > On 13-06-26 11:08 PM, Bryan Evenson wrote:
-> >> I am building a custom Linux kernel under poky-dylan and I am having
-> >> an issue with patches being unpacked but not applied.  I have two
-> >> layers that have a bbappend file for the kernel.  Generally, this is
-> >> what each bbappend file looks like:
-> >>
-> >> #First .bbappend
-> >>
-> >> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> >> COMPATIBLE_MACHINE_mach1 =3D "mach1"
-> >> COMPATIBLE_MACHINE_mach2 =3D "mach2"
-> >> SRC_URI_append_mach2 =3D " file://${MACHINE}/${KBRANCH}/0001-
-> blah.patch \
-> >>      file://${MACHINE}/${KBRANCH}/0002-blah.patch \
-> >>      "
-> >>
-> >> # Increment the recipe revision
-> >> PRINC :=3D "${@int(PRINC) + 1}"
-> >>
-> >> # Second .bbappend
-> >>
-> >> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> >> COMPATIBLE_MACHINE_mach1 =3D "mach1"
-> >> COMPATIBLE_MACHINE_mach2 =3D "mach2"
-> >> SRC_URI_append_mach2 =3D " file://${MACHINE}/${KBRANCH}/0003-
-> blah.patch \
-> >>      file://${MACHINE}/${KBRANCH}/0004-blah.patch \
-> >>      "
-> >>
-> >> # Increment the recipe revision
-> >> PRINC :=3D "${@int(PRINC) + 1}"
-> >>
-> >> All of the patch files are properly unpacked, but the last two
-> >> patches are not being applied.  If I open the devshell for the
-> kernel
-> >> (bitbake -c devshell linux-yocto-custom) I can see in the git log
-> >> that the first patch set was applied.  The second patch set exists
-> >> but is not applied.  If I call "guilt push" repeatedly from the
-> >> devshell, the patches from the second set are cleanly applied.  My
-> >> guess is that something doesn't like the second SRC_URI_append call.
-> >> Any ideas on how to fix it?
-> >
-> > It shouldn't matter. Let me try and set up something that reproduces
-> > the problem and get back to you.
-> >
-> > Strangely .. I'm actively debugging something similar here already,
-> so
-> > I may be able to re-use it.
-> >
-> > Stay tuned.
-> >
-> > Out of curiosity, have you tried this on master ?
->=20
+Scott,
 
-I have not tried this on master.  Here is the relevant build information:
+Getting closer to what I was thinking, but I still have a couple questions,
+primarily regarding the BSP layer.
 
-Build Configuration:
-BB_VERSION        =3D "1.18.0"
-BUILD_SYS         =3D "i686-linux"
-NATIVELSBSTRING   =3D "Ubuntu-12.04"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "at91sam9x5ek"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.4.1"
-TUNE_FEATURES     =3D "armv5 thumb dsp arm926ejs"
-TARGET_FPU        =3D "soft"
-meta-melink       =3D "dylan:e4a0a4c5e419154a34710a1b6c28d4180c6304c3"
-meta-atmel        =3D "master:b2a9c072730b0f6b2a669a8de613e5e1d59453e6"
-meta             =20
-meta-yocto       =20
-meta-yocto-bsp    =3D "dylan:e4a0a4c5e419154a34710a1b6c28d4180c6304c3"
-meta-oe           =3D "dylan:13ae5105ee30410136beeae66ec41ee4a8a2e2b0"
+   - There are still a few references to <name>.  Shouldn't those also be
+   <recipe>?
+   - I'm still confused by the presence of all the specifically-named
+   recipes-* directories.  I tried running yocto-layer and I didn't get any=
+ of
+   those present.  I couldn't find the bsp-layer tool, but I'll grant I did=
+n't
+   search really hard.  (I only checked out master of poky and searched aro=
+und
+   a bit.)  What's making you want to put them all in this diagram?
 
-So I'm at the HEAD of the Dylan branch for both poky and meta-oe.
-The kernel patches are in both the meta-atmel layer and the meta-melink
-Layter.  Ignore that version string for meta-melink; it's not a git
-repository so it's just grabbing the info from poky.
+Also, it strikes me that bblayers.conf needs to show up in this diagram
+somewhere, I think, since it controls what layers bitbake sees.
 
-> So I tried to recreate this on master, and things worked for me. Which
-> I figured would happen, since this will make it harder to fix ... and
-> that's how it always works out.
->=20
-> I created two layers, with four patches to the main linux Makefile.
-> They all add something to the description:
->=20
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->=20
-> SRC_URI_append =3D " file://0001-makefile-one.patch \
->                     file://0002-makefile-two.patch"
->=20
->=20
->=20
-> PRINC :=3D "${@int(PRINC) + 1}"
->=20
-> and
->=20
->=20
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> SRC_URI_append =3D " file://0003-makefile-three.patch \
->                     file://0004-makefile-four.patch"
->=20
->=20
->=20
-> PRINC :=3D "${@int(PRINC) + 1}"
->=20
-> .. and alas, the all were applied:
->=20
->  > grep NAME Makefile
-> NAME =3D Displaced Humerus Anterior one two three four
->=20
-> ....
->=20
-> Can you send me the exact names of your patches ? I'm wondering if an
-> already applied check is triggering and preventing the auto push.
->=20
+Kind regards,
 
-Here are the patch names in the first layer (meta-atmel):
-
-" file://${MACHINE}/${KBRANCH}/UBI.cfg \
-    file://${MACHINE}/${KBRANCH}/dma.cfg \
-    file://${MACHINE}/${KBRANCH}/usb-c.patch \
-    file://${MACHINE}/${KBRANCH}/usart3.patch \
-    file://${MACHINE}/${KBRANCH}/rtc.patch \
-    file://${MACHINE}/${KBRANCH}/serial_dma.patch \
-    ${@base_contains("MACHINE_FEATURES", "watchdog", "file://${MACHINE}/${K=
-BRANCH}/watchdog.patch", " ", d)} \
-    "
-
-If you're wondering about that last line, I added a watchdog
-feature to the meta-atmel layer to enable or disable the watchdog
-for the kernel, U-Boot and the AT91Bootstrap.
-
-And here are the patch names for the second layer (meta-melink):
-
-SRC_URI_append_at91sam9x5ek =3D " file://${MACHINE}/${KBRANCH}/mq.cfg \
-    file://${MACHINE}/${KBRANCH}/gpio.cfg \
-    file://${MACHINE}/${KBRANCH}/ad5446.cfg \
-    file://${MACHINE}/${KBRANCH}/rs485.patch;apply=3Dyes \
-    file://${MACHINE}/${KBRANCH}/usart1.patch;apply=3Dyes \
-    file://${MACHINE}/${KBRANCH}/mmc.patch;apply=3Dyes \
-    file://${MACHINE}/${KBRANCH}/one-wire.patch;apply=3Dyes \
-    "
-
-I tried adding the "apply=3Dyes" to the second layer patches, and they stil=
-l
-were not applied.  Incidentally, the configuration changes (.cfg files)
-*are* being applied.  So if I understand correctly, do_unpack is getting
-the correct files, do_patch is not applying all the patches, but
-do_configure is applying all the configuration changes.
-
-If it helps, the meta-atmel layer I am using is available here:
-https://github.com/evensonbryan/meta-atmel.  I just pushed an update a few
-minutes ago, so it has what I am using.
-
-I'll let you know if I discover anything new.
-
-Thanks,
-Bryan=20
-
-> Bruce
->=20
-> >
-> > Cheers,
-> >
-> > Bruce
-> >
-> >>
-> >> Thanks,
-> >> Bryan
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >>
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+Jerrod
 
 
+On Thu, Jun 27, 2013 at 3:41 AM, Rifenbark, Scott M <
+scott.m.rifenbark@intel.com> wrote:
+
+>  Hi, ****
+>
+> ** **
+>
+> I have tweaked this figure some based on Bruce and Jerrod=92s input.  To
+> help me figure out some of the basics, I ran the yocto-layer and bsp-laye=
+r
+> scripts to create a general and BSP layer, respectively.  Please look ove=
+r
+> the contents of these layers and comment.  General comments on the whole
+> concept of how I am presenting the layers are welcome along with any othe=
+r
+> observations.  ****
+>
+> ** **
+>
+> Thanks, ****
+>
+> Scott****
+>
+> ** **
+>
+> *From:* Jerrod Peach [mailto:peachj@lexmark.com]
+> *Sent:* Tuesday, June 25, 2013 11:07 AM
+>
+> *To:* Rifenbark, Scott M
+> *Cc:* yocto@yoctoproject.org; Paul Eggleton
+> *Subject:* Re: [yocto] Layer input****
+>
+>  ** **
+>
+> Scott,****
+>
+>    - Distro Layer****
+>
+>
+>     - I'm unclear on what <name> is.  Is that supposed to be <distro>?
+>        <recipe>?  It probably shouldn't just be <name>, should it?****
+>
+>
+>    - Software Layer****
+>
+>
+>     - Should COPYING.MIT just be COPYING to be more generically
+>       applicable?****
+>       - conf/<layer_name>.conf should be just layer.conf, right?****
+>
+>
+>    - BSP Layer****
+>
+>
+>     - COPYING.MIT file again.****
+>       - machine/<name>.conf should probably be machine/<machine*>.conf.
+>        You can probably drop the non-asterisk version, since an asterisk =
+implies,
+>       "There might be more stuff, there might not."****
+>       - recipes-bsp/formfactor shouldn't also have another formfactor
+>       directory, should it?  Or is the "files" directory in 1.4 replaced =
+with
+>       another formfactor-named directory?  Also, <name> should be <machin=
+e> again.
+>       ****
+>       - What's everything from recipes-core down?  I can buy
+>       recipes-kernel being in a bsp, but are any other directories really
+>       necessary?****
+>
+>  Kind regards,****
+>
+> ** **
+>
+> Jerrod****
+>
+> ** **
+>
+> On Tue, Jun 25, 2013 at 8:35 AM, Rifenbark, Scott M <
+> scott.m.rifenbark@intel.com> wrote:****
+>
+> Hi,
+>
+> This next illustration attempting to dive deeper in the YP Development
+> Process takes the remaining left-side input from that figure in the Quick
+> Start (metadata, Machine, and Policy).  Note that when the original figur=
+e
+> was created that appears in the QS, the layer stuff had not yet been
+> established.  This figure I am attaching is rough.  I am unsure as to the
+> contents of these layers.  Right now it is detailed but with generic name=
+s.
+>  The idea is that individual layers are preferred to do things such as
+> provide software, configure policy, and configure machines.  I am includi=
+ng
+> some notes at the bottom of the figure that would not be part of the figu=
+re
+> but might help to get across what I am trying to accomplish here.
+>
+> Any suggestions and feedback is really appreciated.
+>
+> Thanks,
+> Scott
+>
+> Scott Rifenbark
+> Intel Corporation
+> Yocto Project Documentation
+> 503.712.2702
+> 503.341.0418 (cell)
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto****
+>
+> ** **
+>
+
+--047d7b471da4f363db04e0224995
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div style>Scott,</div><div><br></div>Getting closer to wh=
+at I was thinking, but I still have a couple questions, primarily regarding=
+ the BSP layer.<div><ul style><li style>There are still a few references to=
+ &lt;name&gt;. =A0Shouldn&#39;t those also be &lt;recipe&gt;?</li>
+<li style>I&#39;m still confused by the presence of all the specifically-na=
+med recipes-* directories. =A0I tried running yocto-layer and I didn&#39;t =
+get any of those present. =A0I couldn&#39;t find the bsp-layer tool, but I&=
+#39;ll grant I didn&#39;t search really hard. =A0(I only checked out master=
+ of poky and searched around a bit.) =A0What&#39;s making you want to put t=
+hem all in this diagram?</li>
+</ul><div style>Also, it strikes me that bblayers.conf needs to show up in =
+this diagram somewhere, I think, since it controls what layers bitbake sees=
+.</div><div><br></div><div style>Kind regards,</div></div><div style><br>
+</div><div style>Jerrod</div></div><div class=3D"gmail_extra"><br><br><div =
+class=3D"gmail_quote">On Thu, Jun 27, 2013 at 3:41 AM, Rifenbark, Scott M <=
+span dir=3D"ltr">&lt;<a href=3D"mailto:scott.m.rifenbark@intel.com" target=
+=3D"_blank">scott.m.rifenbark@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi,
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I have tweaked this figur=
+e some based on Bruce and Jerrod=92s input.=A0 To help me figure out some o=
+f the basics, I ran the yocto-layer and bsp-layer scripts to
+ create a general and BSP layer, respectively.=A0 Please look over the cont=
+ents of these layers and comment. =A0General comments on the whole concept =
+of how I am presenting the layers are welcome along with any other observat=
+ions.=A0
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks,
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Scott<u></u><u></u></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Jerrod P=
+each [mailto:<a href=3D"mailto:peachj@lexmark.com" target=3D"_blank">peachj=
+@lexmark.com</a>]
+<br>
+<b>Sent:</b> Tuesday, June 25, 2013 11:07 AM</span></p><div class=3D"im"><b=
+r>
+<b>To:</b> Rifenbark, Scott M<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a>; Paul Eggleton<br>
+<b>Subject:</b> Re: [yocto] Layer input<u></u><u></u></div><p></p><span cla=
+ss=3D"HOEnZb"><font color=3D"#888888">
+</font></span></div><span class=3D"HOEnZb"><font color=3D"#888888">
+</font></span></div><span class=3D"HOEnZb"><font color=3D"#888888">
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</font></span><div><span class=3D"HOEnZb"><font color=3D"#888888">
+<div>
+<p class=3D"MsoNormal">Scott,<u></u><u></u></p>
+</div></font></span><div><div class=3D"h5">
+<ul type=3D"disc">
+<li class=3D"MsoNormal">
+Distro Layer<u></u><u></u></li></ul>
+<ul type=3D"disc">
+<ul type=3D"circle">
+<li class=3D"MsoNormal">
+I&#39;m unclear on what &lt;name&gt; is. =A0Is that supposed to be &lt;dist=
+ro&gt;? =A0&lt;recipe&gt;? =A0It probably shouldn&#39;t just be &lt;name&gt=
+;, should it?<u></u><u></u></li></ul>
+</ul>
+<ul type=3D"disc">
+<li class=3D"MsoNormal">
+Software Layer<u></u><u></u></li></ul>
+<ul type=3D"disc">
+<ul type=3D"circle">
+<li class=3D"MsoNormal">
+Should COPYING.MIT just be COPYING to be more generically applicable?<u></u=
+><u></u></li><li class=3D"MsoNormal">
+conf/&lt;layer_name&gt;.conf should be just layer.conf, right?<u></u><u></u=
+></li></ul>
+</ul>
+<ul type=3D"disc">
+<li class=3D"MsoNormal">
+BSP Layer<u></u><u></u></li></ul>
+<ul type=3D"disc">
+<ul type=3D"circle">
+<li class=3D"MsoNormal">
+COPYING.MIT file again.<u></u><u></u></li><li class=3D"MsoNormal">
+machine/&lt;name&gt;.conf should probably be machine/&lt;machine*&gt;.conf.=
+ =A0You can probably drop the non-asterisk version, since an asterisk impli=
+es, &quot;There might be more stuff, there might not.&quot;<u></u><u></u></=
+li>
+<li class=3D"MsoNormal">
+recipes-bsp/formfactor shouldn&#39;t also have another formfactor directory=
+, should it? =A0Or is the &quot;files&quot; directory in 1.4 replaced with =
+another formfactor-named directory? =A0Also, &lt;name&gt; should be &lt;mac=
+hine&gt; again.<u></u><u></u></li>
+<li class=3D"MsoNormal">
+What&#39;s everything from recipes-core down? =A0I can buy recipes-kernel b=
+eing in a bsp, but are any other directories really necessary?<u></u><u></u=
+></li></ul>
+</ul>
+<div>
+<p class=3D"MsoNormal">Kind regards,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Jerrod<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><u></u>=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">On Tue, Jun 25, 2013 at 8:35 AM, Rifenbark, Scott M =
+&lt;<a href=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott.=
+m.rifenbark@intel.com</a>&gt; wrote:<u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Hi,<br>
+<br>
+This next illustration attempting to dive deeper in the YP Development Proc=
+ess takes the remaining left-side input from that figure in the Quick Start=
+ (metadata, Machine, and Policy). =A0Note that when the original figure was=
+ created that appears in the QS, the
+ layer stuff had not yet been established. =A0This figure I am attaching is=
+ rough. =A0I am unsure as to the contents of these layers. =A0Right now it =
+is detailed but with generic names. =A0The idea is that individual layers a=
+re preferred to do things such as provide
+ software, configure policy, and configure machines. =A0I am including some=
+ notes at the bottom of the figure that would not be part of the figure but=
+ might help to get across what I am trying to accomplish here.<br>
+<br>
+Any suggestions and feedback is really appreciated.<br>
+<br>
+Thanks,<br>
+Scott<br>
+<br>
+Scott Rifenbark<br>
+Intel Corporation<br>
+Yocto Project Documentation<br>
+<a href=3D"tel:503.712.2702" target=3D"_blank">503.712.2702</a><br>
+<a href=3D"tel:503.341.0418" target=3D"_blank">503.341.0418</a>=A0(cell)<br=
+>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+</div>
+</div></div></div>
+</div>
+</div>
+</div>
+
+</blockquote></div><br></div>
+
+--047d7b471da4f363db04e0224995--
