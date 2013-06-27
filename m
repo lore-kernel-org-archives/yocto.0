@@ -1,32 +1,34 @@
-Return-Path: <arvind5@cox.net>
-Received: from eastrmfepo102.cox.net (eastrmfepo102.cox.net [68.230.241.214])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EF8FE014E2
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:19:58 -0700 (PDT)
-Received: from eastrmimpo109 ([68.230.241.222]) by eastrmfepo102.cox.net
-	(InterMail vM.8.01.05.09 201-2260-151-124-20120717) with ESMTP
-	id <20130627071957.DZWK3897.eastrmfepo102.cox.net@eastrmimpo109>
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 03:19:57 -0400
-Received: from [192.168.10.17] ([98.166.103.254]) by eastrmimpo109 with cox
-	id tKKx1l0075VLCh601KKxsd; Thu, 27 Jun 2013 03:19:57 -0400
-X-CT-Class: Clean
-X-CT-Score: 0.00
-X-CT-RefID: str=0001.0A020203.51CBE79D.003B,ss=1,re=0.000,fgs=0
-X-CT-Spam: 0
-X-Authority-Analysis: v=2.0 cv=Dv2IDhD+ c=1 sm=1
-	a=CsJSbO8veJ9A4sF1tZWhnw==:17 a=IFp0okviOtUA:10 a=A-_4KuYWSnQA:10
-	a=G8Uczd0VNMoA:10 a=8nJEP1OIZ-IA:10 a=kviXuzpPAAAA:8 a=38ZEvjSVdUIA:10
-	a=hl5Mdc1mHG7u_XB0gw8A:9 a=wPNLvfGTeEIA:10 a=5aStTE2sOrwA:10
-	a=CsJSbO8veJ9A4sF1tZWhnw==:117
-X-CM-Score: 0.00
-Authentication-Results: cox.net; none
-Message-ID: <51CBE799.9090305@cox.net>
-Date: Thu, 27 Jun 2013 03:19:53 -0400
-From: Arvind <arvind5@cox.net>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:20.0) Gecko/20100101 Firefox/20.0 SeaMonkey/2.17.1
-MIME-Version: 1.0
-To: satyaswaroop.damarla@gmail.com, yocto@yoctoproject.org
-Subject: Poky Support for creation of DTS
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DAF0E014E2
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:20:39 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r5R7RKSq029260; Thu, 27 Jun 2013 08:27:21 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id qIZUxk7dP2Fb; Thu, 27 Jun 2013 08:27:20 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r5R7RF7W029236
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Thu, 27 Jun 2013 08:27:17 +0100
+Message-ID: <1372317615.9930.180.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 27 Jun 2013 08:20:15 +0100
+In-Reply-To: <1831F7C6-54BC-4E5F-BC00-1B8C17E8D1FD@gmail.com>
+References: <1831F7C6-54BC-4E5F-BC00-1B8C17E8D1FD@gmail.com>
+X-Mailer: Evolution 3.6.4-0ubuntu1 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org
+	\(yocto@yoctoproject.org\)" <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<Openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] eglibc (would be 2.18) recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,15 +40,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 07:20:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 27 Jun 2013 07:20:41 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-I would like to know  if any one has successfully created .dts file 
-using tool to create .dts file for implementation of 8 guest Linux OS 
-interfaced to 8 NIC ports on PCIe slot 0 and 1 using intel i350-T4 
-controller.
+On Wed, 2013-06-26 at 14:06 -0700, Khem Raj wrote:
+> Hi All
+> 
+> I have put together eglibc recipes for upcoming 2.18 release and pushed to a contrib tree here
+> 
+> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/eglibc-2.18
+> 
+> They built angstrom/systemd-images fine and booted OK on all supported qemu machines
+> on OE-Core
+> 
+> Please test them out in your configurations and machines and provide feedback, lets weed out
+> the issue early
 
-Arvind
-757-897-5101
+You have a fix for bug 4168 in there that nobody else can reproduce or
+understand:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=4168
+
+I'd really like to better understand what is happening there before we
+pull that one in.
+
+Cheers,
+
+Richard
+
 
