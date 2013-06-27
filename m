@@ -1,17 +1,17 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81FD3E00722
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 08:19:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E642FE00722
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 08:20:13 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5RFJsu3015592
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5RFKBki015757
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 27 Jun 2013 08:19:54 -0700 (PDT)
+	Thu, 27 Jun 2013 08:20:11 -0700 (PDT)
 Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 27 Jun 2013 08:19:54 -0700
-Message-ID: <51CC5813.8080506@windriver.com>
-Date: Thu, 27 Jun 2013 11:19:47 -0400
+	Thu, 27 Jun 2013 08:20:11 -0700
+Message-ID: <51CC5824.90604@windriver.com>
+Date: Thu, 27 Jun 2013 11:20:04 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
@@ -34,7 +34,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 15:20:01 -0000
+X-List-Received-Date: Thu, 27 Jun 2013 15:20:14 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -210,7 +210,11 @@ I've got a working baseline, using the meta-atmel layer, I see the
 
 But I of course don't have your meta-melink layer, so I'll have a go
 at adding some similarly named, but different patches and see if the
-problem
+problem can be reproduced.
+
+Cheers,
+
+Bruce
 
 
 >
