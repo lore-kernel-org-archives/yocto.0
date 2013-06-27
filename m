@@ -1,36 +1,36 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34187E00722
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 10:18:47 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 27 Jun 2013 10:18:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,953,1363158000"; d="scan'208";a="360597051"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga002.jf.intel.com with ESMTP; 27 Jun 2013 10:18:25 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 27 Jun 2013 10:18:25 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.117]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.23]) with mapi id
-	14.03.0123.003; Thu, 27 Jun 2013 10:18:25 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: Timo Mueller <mail@timomueller.eu>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCHv4 0/7][eclipse-poky] Add target profile quick
-	switch
-Thread-Index: AQHOcw/FVS+iw0cYxEquAZFbUeW4eZlJznJQ
-Date: Thu, 27 Jun 2013 17:18:24 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C4FFA9@ORSMSX103.amr.corp.intel.com>
-References: <cover.1372314464.git.timo.mueller@bmw-carit.de>
-In-Reply-To: <cover.1372314464.git.timo.mueller@bmw-carit.de>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <varun292006@gmail.com>
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EB91E013CB
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 10:58:05 -0700 (PDT)
+Received: by mail-pa0-f46.google.com with SMTP id fa11so1378982pad.33
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 10:58:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=xDdRlkggBcs/wpZMCp1Hr0Ldmi+MzBSMh9s0sRLHHM0=;
+	b=XvmKJBT7CIJJBsKgtUU79HUUn0G05D8Pl//rO9edd8ze7g0PfncnED07UngYIlDmxq
+	KtbLwA2f0Td3vl0ipBY6zaoYCXa52z31T6Mb5z2MP5TChl26hpbCQnkcb0JkwUi9gCxi
+	+ib7KwsQwlDktHr9vr/XlWcXjvS7gJvZIpBuQbTiDycPL40dJPW71H2koEtAVHVuzVhc
+	H6RSY5xsx8ALH+ghxW0D5SMT33bw05RcMVu3T45Ug/HtetLqN50OJqJ/LvJv1IR8h36J
+	lBrwunP2BwaTCMgyrqeCSbctyXb6G0FmAx9IpZM/Ao8Omg6ernQxbgQmey+bDBZn9FD6
+	1lDg==
 MIME-Version: 1.0
-Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: Re: [PATCHv4 0/7][eclipse-poky] Add target profile quick switch
+X-Received: by 10.68.164.69 with SMTP id yo5mr7288661pbb.96.1372355885716;
+	Thu, 27 Jun 2013 10:58:05 -0700 (PDT)
+Received: by 10.68.129.134 with HTTP; Thu, 27 Jun 2013 10:58:05 -0700 (PDT)
+In-Reply-To: <51C9EBCE.40501@linux.intel.com>
+References: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
+	<CAGxOggH4UzCDOE5m=qFTPMDYmO1-jdtV1KtTn0XmyAnEd_pSfg@mail.gmail.com>
+	<CAGxOggH_6stRyaVVvY3ZrzZjOMZPQR17TMhbnnsY2RaOeH-vWQ@mail.gmail.com>
+	<1690360.8lqJBmT90c@helios>
+	<CAGxOggFQL2ehH4XBGD+L9k773hgJu5hx61rmnUqxCn033W9GXA@mail.gmail.com>
+	<51C9EBCE.40501@linux.intel.com>
+Date: Thu, 27 Jun 2013 23:28:05 +0530
+Message-ID: <CAGxOggG7R-5rLHg3H_WH9wtgSnf0EZfRAYs2jtQvGK+DeQfTiA@mail.gmail.com>
+From: varun bhatnagar <varun292006@gmail.com>
+To: Saul Wold <sgw@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Layers not getting recognized by bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,99 +42,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 17:18:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 27 Jun 2013 17:58:08 -0000
+Content-Type: multipart/alternative; boundary=047d7b6764e612dad904e02681e6
+
+--047d7b6764e612dad904e02681e6
+Content-Type: text/plain; charset=ISO-8859-1
+
+ Thanks a ton Paul and Saul for the reply. Your suggestion worked. :)
+But after building my recipe file I executed bitbake -k core-image-minimal
+and I got the following error:
+
+NOTE: Resolving any missing task queue dependencies
+Missing or unbuildable dependency chain was: ['app-ea']
+ERROR: Nothing RPROVIDES 'app-ea' (but
+/local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/
+core-image-minimal.bb RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'com-ea' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['test-ea']
+ERROR: Nothing RPROVIDES 'tipcutils' (but
+/local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/
+core-image-minimal.bb RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'tipcutils' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['tipcutils']
+NOTE: Preparing runqueue
+ERROR: All buildable tasks have been run but the build is incomplete
+(--continue mode). Errors for the tasks that failed will have been printed
+above.
+
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+
+
+Any idea how to resolve this one?
+
+//
+Varun
+
+--047d7b6764e612dad904e02681e6
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Merged to eclipse-poky master.
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
+xtra">=A0Thanks a ton Paul and Saul for the reply. Your suggestion worked. =
+:)</div><div class=3D"gmail_extra">But after building my recipe file I exec=
+uted bitbake -k core-image-minimal and I got the following error:</div>
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">NOTE: Resol=
+ving any missing task queue dependencies</div><div class=3D"gmail_extra">Mi=
+ssing or unbuildable dependency chain was: [&#39;app-ea&#39;]</div><div cla=
+ss=3D"gmail_extra">
+ERROR: Nothing RPROVIDES &#39;app-ea&#39; (but /local/varun/poky-yocto-1.4-=
+m3/meta/recipes-core/images/<a href=3D"http://core-image-minimal.bb">core-i=
+mage-minimal.bb</a> RDEPENDS on or otherwise requires it)</div><div class=
+=3D"gmail_extra">
+NOTE: Runtime target &#39;com-ea&#39; is unbuildable, removing...</div><div=
+ class=3D"gmail_extra">Missing or unbuildable dependency chain was: [&#39;t=
+est-ea&#39;]</div><div class=3D"gmail_extra">ERROR: Nothing RPROVIDES &#39;=
+tipcutils&#39; (but /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images=
+/<a href=3D"http://core-image-minimal.bb">core-image-minimal.bb</a> RDEPEND=
+S on or otherwise requires it)</div>
+<div class=3D"gmail_extra">NOTE: Runtime target &#39;tipcutils&#39; is unbu=
+ildable, removing...</div><div class=3D"gmail_extra">Missing or unbuildable=
+ dependency chain was: [&#39;tipcutils&#39;]</div><div class=3D"gmail_extra=
+">
+NOTE: Preparing runqueue</div><div class=3D"gmail_extra">ERROR: All buildab=
+le tasks have been run but the build is incomplete (--continue mode). Error=
+s for the tasks that failed will have been printed above.</div><div class=
+=3D"gmail_extra">
+<br></div><div class=3D"gmail_extra">Summary: There were 3 ERROR messages s=
+hown, returning a non-zero exit code.</div><div class=3D"gmail_extra"><br><=
+/div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Any id=
+ea how to resolve this one?</div>
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">//</div><di=
+v class=3D"gmail_extra">Varun</div></div>
 
-Thanks,
-Jessica
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Timo Mueller
-Sent: Thursday, June 27, 2013 1:24 AM
-To: yocto@yoctoproject.org
-Cc: Timo Mueller
-Subject: [yocto] [PATCHv4 0/7][eclipse-poky] Add target profile quick switc=
-h
-
-From: Timo Mueller <timo.mueller@bmw-carit.de>
-
-Hi,
-
-Changes in v4:
-- Rebase of patch series
-
-Changes in v3:
-- Only grey out project specific profile if not configured.
-- Fix Bug where multiple menu item could be selected at the same time
-
-Changes in v2:
-Handle error when project specific profile is not configure more gracefully=
-. Instead of showing an error message the button is now greyed out.
-
-From original cover letter
-<snip>
-if a user wants to change the used target profile of a project he currently=
- has to open the project preferences. This can be tedious if he has to swit=
-ch the profile often.
-
-This is a small addition which allows the user to quickly switch the used t=
-arget profile of a project. Instead of having to open the project preferenc=
-es the user can select the project in the navigator and then choose the des=
-ired target profile from a drop-down menu in the toolbar or from the projec=
-t menu.
-</snip>
-
-01: Small i18n fix
-02..04: Refactoring the project specific utils
-05..06: Introduce the target profile toolbar switch
-07: Adds the target profile switch to the project menu
-
-Best regards,
-Timo
-
-Timo Mueller (7):
-  plugins/sdk.ide: Use an internationalized dialog title
-  plugins/sdk.ide: Extract project specific util methods
-  plugins/sdk.ide: Move project specific util methods
-  plugins/sdk.ide: Remove project context from method names
-  plugins/sdk.ide: Add command to switch the target profile
-  plugins/sdk.ide: Add profile switch menu to the toolbar
-  plugins/sdk.ide: Add profile switch menu to the project menu
-
- .../OSGI-INF/l10n/bundle.properties                |   4 +
- plugins/org.yocto.sdk.ide/plugin.xml               | 100 ++++++++-
- .../sdk/ide/ProjectSpecificContributionItem.java   |  69 ++++++
- .../sdk/ide/TargetProfileContributionItem.java     | 126 +++++++++++
- .../org/yocto/sdk/ide/YoctoSDKMessages.properties  |   4 +
- .../src/org/yocto/sdk/ide/YoctoUISetting.java      |   3 +-
- .../sdk/ide/actions/ProfileSwitchHandler.java      | 134 ++++++++++++
- .../natures/YoctoSDKAutotoolsProjectNature.java    |   3 +-
- .../ide/preferences/YoctoSDKPreferencePage.java    |  11 +-
- .../preferences/YoctoSDKProjectPropertyPage.java   | 128 +----------
- .../sdk/ide/utils/ProjectPreferenceUtils.java      | 240 +++++++++++++++++=
-++++
- .../src/org/yocto/sdk/ide/utils/YoctoSDKUtils.java | 118 ----------
- .../ide/wizard/NewYoctoProjectTemplateProcess.java |   3 +-
- 13 files changed, 698 insertions(+), 245 deletions(-)  create mode 100644 =
-plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/ProjectSpecificContribution=
-Item.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/TargetP=
-rofileContributionItem.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/actions=
-/ProfileSwitchHandler.java
- create mode 100644 plugins/org.yocto.sdk.ide/src/org/yocto/sdk/ide/utils/P=
-rojectPreferenceUtils.java
-
---
-1.8.1.4
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--047d7b6764e612dad904e02681e6--
