@@ -1,28 +1,33 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF4B6E014E2
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 02:01:12 -0700 (PDT)
-Received: by mail-ve0-f174.google.com with SMTP id oz10so407838veb.5
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 02:01:11 -0700 (PDT)
+Return-Path: <katutxakurra@gmail.com>
+Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7929AE014E2
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 02:37:54 -0700 (PDT)
+Received: by mail-ie0-f175.google.com with SMTP id a13so1096290iee.34
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 02:37:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=2Xlgd2hSA7eBbdL6Tyrr63YuLMvwLTCED7JvWzJQwuE=;
-	b=xreBEUPmvq3tKh8CKqiDplIJ8HXOcvk9PbFpOTcEHdf/jYk3AzTwrPUcHYHKiijfP2
-	M/aM9OCnpamfM4N1UVY31Gwf0K7Aw8WlwmiJMXaM0bCdB8AtLFxSFmq0PRTQ4+7SU/I5
-	K+MAy/NoSwG/DMamaFmfili/vVUzDg2fqcw5UtEAksJYADtIGn4z3WXuBEHy0yVCOx6F
-	BmsVgZaMUgUAMMazqrTbLKVNIq5buVIOfq0CeC37c5dQctnywt5xrw4ctV3X+OzSQGHc
-	6IP1hm5J5GSiJf8r/OSxpkyYBQoyw2u650nhC77i278v8x39nMe9kfsISYeY14//My/X
-	Ze+g==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=cssWXfyAVIXgTRN+qOnpmPxUkXMgeo6iYLU5tM7zG9M=;
+	b=KJlbbfphrqr6JQWA0HJ//cvY4jHi7Wl/Se9op6BpoR/dRSQ2nBQNghhDQHFuvkczD7
+	H8PsytOPM/tSpUhGtHcVnmclsrUEJvfCLiq5Z4MlUlI3Aeby+RtoRVdDIIEDYlshR8+F
+	P3RBxn66yzKHb2qMj/OxwXAX+FNkOn4+u/v2VFPn+NQztrmOwFveyFbIO1XMRmiK1fdY
+	c6G2zdY3BA+p3Xq3GQwdbJT0H3xQK2GO6AY7BVwDCknXmB1HHUEW/pg5fBj3ugKc6DiQ
+	iMTb2WGSv8jfieVytivukexh6i8St7uRzirT7bZLCMaqLEsr8Oq6nJXK8K3DPRJBmAT3
+	j2ig==
 MIME-Version: 1.0
-X-Received: by 10.220.77.141 with SMTP id g13mr3033890vck.24.1372323671508;
-	Thu, 27 Jun 2013 02:01:11 -0700 (PDT)
-Received: by 10.52.94.241 with HTTP; Thu, 27 Jun 2013 02:01:11 -0700 (PDT)
-Date: Thu, 27 Jun 2013 11:01:11 +0200
-Message-ID: <CAFMfyzL4zn208FJUOsBq8ZqCU3RejEJ0F8-XzEDVf0xSrGGWrw@mail.gmail.com>
-From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Qt4 - qmake in toolchain for Qt/X11
+X-Received: by 10.50.1.20 with SMTP id 20mr1718599igi.56.1372325873708; Thu,
+	27 Jun 2013 02:37:53 -0700 (PDT)
+Received: by 10.50.43.167 with HTTP; Thu, 27 Jun 2013 02:37:53 -0700 (PDT)
+In-Reply-To: <51CB0AB3.2070107@r-finger.com>
+References: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
+	<51CB0AB3.2070107@r-finger.com>
+Date: Thu, 27 Jun 2013 10:37:53 +0100
+Message-ID: <CAM1ZcoVs-utQDKn8wkup_xOK77Kk=ko3=KuRxuisMP4Uw6Nk2Q@mail.gmail.com>
+From: Katu Txakur <katutxakurra@gmail.com>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: run commands after installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,79 +39,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 09:01:13 -0000
-Content-Type: multipart/alternative; boundary=047d7b344186f50c9204e01f009d
+X-List-Received-Date: Thu, 27 Jun 2013 09:37:55 -0000
+Content-Type: multipart/alternative; boundary=e89a8f64303437f55e04e01f840a
 
---047d7b344186f50c9204e01f009d
+--e89a8f64303437f55e04e01f840a
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hello Guys,
+Thanks Tomas, it was as easy as
 
-I have a small confusion.... In my image, I have normal Qt4 packages
-installed and they are working good. Now, when I wanted to develop a Qt
-application for my image, I compiled a toolchain but unfortunately, I don't
-find qmake installed.
+pkg_postinst_${PN} () {
+     #!/bin/sh -e
+     net-snmp-config --create-snmpv3-user -a "my_password" myuser
+}
 
-After browsing the directories I found the following
 
-damarla@linuxbuildsrv:~/openYocto/poky/meta/recipes-qt/packagegroups$ ls -la
-total 40
-drwxrwxr-x 2 damarla damarla 4096 Jun 17 13:50 .
-drwxrwxr-x 9 damarla damarla 4096 Jun 17 13:50 ..
--rw-rw-r-- 1 damarla damarla  104 Jun 17 13:50
-nativesdk-packagegroup-qte-toolchain-host.bb
--rw-rw-r-- 1 damarla damarla   95 Jun 17 13:50
-nativesdk-packagegroup-qt-toolchain-host.bb
--rw-rw-r-- 1 damarla damarla  178 Jun 17 13:50
-nativesdk-packagegroup-qt-toolchain-host.inc
--rw-rw-r-- 1 damarla damarla 1458 Jun 17 13:50 packagegroup-core-qt4e.bb
--rw-rw-r-- 1 damarla damarla  501 Jun 17 13:50 packagegroup-core-qt.bb
--rw-rw-r-- 1 damarla damarla  136 Jun 17 13:50
-packagegroup-qte-toolchain-target.bb
--rw-rw-r-- 1 damarla damarla  335 Jun 17 13:50
-packagegroup-qt-toolchain-target.bb
--rw-rw-r-- 1 damarla damarla 1123 Jun 17 13:50
-packagegroup-qt-toolchain-target.inc
 
-Now in order to get "qmake" for my toolchain I am not able to understand
-which package group should I include from the above.
+2013/6/26 Tomas Frydrych <tf+lists.yocto@r-finger.com>
 
-Cheers,
-Sati
+> On 26/06/13 15:32, Katu Txakur wrote:
+> > I want to create a user after adding the snmp recipe. The command to do
+> > that is:
+> >
+> > net-snmp-config --create-snmpv3-user -a "my_password" myuser
+> >
+> > What's the best way to do it? I have tried from do_install_append and
+> > also from ROOTFS_POSTPROCESS_COMMAND but no luck so far.
+>
+> You need a postinst script for that sort of a thing.
+>
+> Tomas
+>
+> --
+> http://sleepfive.com
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---047d7b344186f50c9204e01f009d
+--e89a8f64303437f55e04e01f840a
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Guys,<div><br></div><div>I have a small confusion...=
-. In my image, I have normal Qt4 packages installed and they are working go=
-od. Now, when I wanted to develop a Qt application for my image, I compiled=
- a toolchain but unfortunately, I don&#39;t find qmake installed.</div>
-<div><br></div><div>After browsing the directories I found the following</d=
-iv><div><br></div><div><div>damarla@linuxbuildsrv:~/openYocto/poky/meta/rec=
-ipes-qt/packagegroups$ ls -la</div><div>total 40</div><div>drwxrwxr-x 2 dam=
-arla damarla 4096 Jun 17 13:50 .</div>
-<div>drwxrwxr-x 9 damarla damarla 4096 Jun 17 13:50 ..</div><div>-rw-rw-r--=
- 1 damarla damarla =A0104 Jun 17 13:50 <a href=3D"http://nativesdk-packageg=
-roup-qte-toolchain-host.bb">nativesdk-packagegroup-qte-toolchain-host.bb</a=
-></div>
-<div>-rw-rw-r-- 1 damarla damarla =A0 95 Jun 17 13:50 <a href=3D"http://nat=
-ivesdk-packagegroup-qt-toolchain-host.bb">nativesdk-packagegroup-qt-toolcha=
-in-host.bb</a></div><div>-rw-rw-r-- 1 damarla damarla =A0178 Jun 17 13:50 n=
-ativesdk-packagegroup-qt-toolchain-host.inc</div>
-<div>-rw-rw-r-- 1 damarla damarla 1458 Jun 17 13:50 <a href=3D"http://packa=
-gegroup-core-qt4e.bb">packagegroup-core-qt4e.bb</a></div><div>-rw-rw-r-- 1 =
-damarla damarla =A0501 Jun 17 13:50 <a href=3D"http://packagegroup-core-qt.=
-bb">packagegroup-core-qt.bb</a></div>
-<div>-rw-rw-r-- 1 damarla damarla =A0136 Jun 17 13:50 <a href=3D"http://pac=
-kagegroup-qte-toolchain-target.bb">packagegroup-qte-toolchain-target.bb</a>=
-</div><div>-rw-rw-r-- 1 damarla damarla =A0335 Jun 17 13:50 <a href=3D"http=
-://packagegroup-qt-toolchain-target.bb">packagegroup-qt-toolchain-target.bb=
-</a></div>
-<div>-rw-rw-r-- 1 damarla damarla 1123 Jun 17 13:50 packagegroup-qt-toolcha=
-in-target.inc</div></div><div><br></div><div>Now in order to get &quot;qmak=
-e&quot; for my toolchain I am not able to understand which package group sh=
-ould I include from the above.</div>
-<div><br></div><div>Cheers,</div><div>Sati</div></div>
+<div dir=3D"ltr">Thanks Tomas, it was as easy as<div><br></div><div><div>pk=
+g_postinst_${PN} () {</div><div>=A0 =A0 =A0#!/bin/sh -e</div><div>=A0 =A0 =
+=A0net-snmp-config --create-snmpv3-user -a &quot;my_password&quot; myuser</=
+div><div>}<br>
+</div><div><br></div></div></div><div class=3D"gmail_extra"><br><br><div cl=
+ass=3D"gmail_quote">2013/6/26 Tomas Frydrych <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:tf+lists.yocto@r-finger.com" target=3D"_blank">tf+lists.yocto@r-=
+finger.com</a>&gt;</span><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 2=
+6/06/13 15:32, Katu Txakur wrote:<br>
+&gt; I want to create a user after adding the snmp recipe. The command to d=
+o<br>
+&gt; that is:<br>
+&gt;<br>
+&gt; net-snmp-config --create-snmpv3-user -a &quot;my_password&quot; myuser=
+<br>
+&gt;<br>
+&gt; What&#39;s the best way to do it? I have tried from do_install_append =
+and<br>
+&gt; also from ROOTFS_POSTPROCESS_COMMAND but no luck so far.<br>
+<br>
+</div></div>You need a postinst script for that sort of a thing.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Tomas<br>
+<br>
+--<br>
+<a href=3D"http://sleepfive.com" target=3D"_blank">http://sleepfive.com</a>=
+<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
 
---047d7b344186f50c9204e01f009d--
+--e89a8f64303437f55e04e01f840a--
