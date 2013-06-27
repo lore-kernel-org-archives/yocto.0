@@ -1,36 +1,32 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
-	[209.85.219.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF310E014E2
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:16:38 -0700 (PDT)
-Received: by mail-oa0-f49.google.com with SMTP id n9so415865oag.36
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:16:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=5sDFacsMHX3Bw5CVO6n331jp8YT6a4Rsd4L42mK8ksI=;
-	b=Ez+r6kFkU7u+trxhIL5SRiQSdRL19BRJNMnYkcYqdfGCz3LeL0W2V9E/6Nq/Fg1dbt
-	0V6OyycH95+43xxkGdJ3BVBxE62PKHxpa3ZUzhXb/n3S9wApXzlzzUVuRHUsSMDC5OSg
-	MDsXVVhHWW9+QOGKCyrY1KBcjoEgct1HB3WDdUDyDiCm9wHkU12SzfG6RyoNa8qoqo5f
-	GPNRaaKXhQL2OhM4v9xU0MjWPkTDgYNtElrpC5KLFWMIvhM4VOWLU4mzhq3H5LUC6/FA
-	cBtjjiQOf6QjrjMGK5xYDjXxKGx/B4fkyPYSEAl+inzNh3V8HV8fRnFhOc1CgT1Du2Il
-	Dd2g==
-X-Received: by 10.182.61.46 with SMTP id m14mr3518087obr.58.1372317397695;
-	Thu, 27 Jun 2013 00:16:37 -0700 (PDT)
+Return-Path: <arvind5@cox.net>
+Received: from eastrmfepo102.cox.net (eastrmfepo102.cox.net [68.230.241.214])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EF8FE014E2
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:19:58 -0700 (PDT)
+Received: from eastrmimpo109 ([68.230.241.222]) by eastrmfepo102.cox.net
+	(InterMail vM.8.01.05.09 201-2260-151-124-20120717) with ESMTP
+	id <20130627071957.DZWK3897.eastrmfepo102.cox.net@eastrmimpo109>
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 03:19:57 -0400
+Received: from [192.168.10.17] ([98.166.103.254]) by eastrmimpo109 with cox
+	id tKKx1l0075VLCh601KKxsd; Thu, 27 Jun 2013 03:19:57 -0400
+X-CT-Class: Clean
+X-CT-Score: 0.00
+X-CT-RefID: str=0001.0A020203.51CBE79D.003B,ss=1,re=0.000,fgs=0
+X-CT-Spam: 0
+X-Authority-Analysis: v=2.0 cv=Dv2IDhD+ c=1 sm=1
+	a=CsJSbO8veJ9A4sF1tZWhnw==:17 a=IFp0okviOtUA:10 a=A-_4KuYWSnQA:10
+	a=G8Uczd0VNMoA:10 a=8nJEP1OIZ-IA:10 a=kviXuzpPAAAA:8 a=38ZEvjSVdUIA:10
+	a=hl5Mdc1mHG7u_XB0gw8A:9 a=wPNLvfGTeEIA:10 a=5aStTE2sOrwA:10
+	a=CsJSbO8veJ9A4sF1tZWhnw==:117
+X-CM-Score: 0.00
+Authentication-Results: cox.net; none
+Message-ID: <51CBE799.9090305@cox.net>
+Date: Thu, 27 Jun 2013 03:19:53 -0400
+From: Arvind <arvind5@cox.net>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:20.0) Gecko/20100101 Firefox/20.0 SeaMonkey/2.17.1
 MIME-Version: 1.0
-Received: by 10.76.25.133 with HTTP; Thu, 27 Jun 2013 00:16:17 -0700 (PDT)
-In-Reply-To: <CAE_REAvJT8ViDcJuHTUUheE795xzMpfFWKB-fEHZn5tiZkHuGQ@mail.gmail.com>
-References: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
-	<51CB0AB3.2070107@r-finger.com>
-	<CAE_REAvJT8ViDcJuHTUUheE795xzMpfFWKB-fEHZn5tiZkHuGQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 27 Jun 2013 09:16:17 +0200
-Message-ID: <CAP71Wjxdu0+kt5GtKkmkM-uCzic+yvz+FrN40Prh9DMbdhpu8g@mail.gmail.com>
-To: Gaurang Shastri <gmshastri@gmail.com>
-X-Gm-Message-State: ALoCoQn4ZrofcMgQWhkFtQQy+A5v+lhNSfcY56AKt8hbBsMG91zTI/VnvFmHWs64wnbqmLn8KAAa
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: run commands after installation
+To: satyaswaroop.damarla@gmail.com, yocto@yoctoproject.org
+Subject: Poky Support for creation of DTS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,67 +38,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 07:16:39 -0000
-Content-Type: multipart/alternative; boundary=e89a8fb1ede20253dd04e01d8b78
+X-List-Received-Date: Thu, 27 Jun 2013 07:20:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---e89a8fb1ede20253dd04e01d8b78
-Content-Type: text/plain; charset=ISO-8859-1
+I would like to know  if any one has successfully created .dts file 
+using tool to create .dts file for implementation of 8 guest Linux OS 
+interfaced to 8 NIC ports on PCIe slot 0 and 1 using intel i350-T4 
+controller.
 
-On Thu, Jun 27, 2013 at 8:38 AM, Gaurang Shastri <gmshastri@gmail.com>wrote:
+Arvind
+757-897-5101
 
-> Hi,
->
-> You need to do something like below:
->
-> pkg_postinst() {
->
-> net-snmp-config --create-snmpv3-user -a "my_password" myuser
-> }
->
-> try with above and it should work :)
->
-
-note it should be
-
-pkg_postinst_PACKAGENAME(), so in most cases: pkg_postinst_${PN}()
-
-also, see:
-
-http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#post-installation-scripts
-http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#usingpoky-extend-addpkg-postinstalls
-
---e89a8fb1ede20253dd04e01d8b78
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Jun 27, 2013 at 8:38 AM, Gaurang Shastri <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:gmshastri@gmail.com" target=3D"_blank">gmshastri@gmail.com</a=
->&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div><div>Hi,<br><br></div>You need to do something like b=
-elow:<br>
-
-<br></div>pkg_postinst() {<div class=3D"im"><br><div>net-snmp-config --crea=
-te-snmpv3-user -a &quot;my_password&quot; myuser<br>
-</div><div>}<br><br></div></div><div>try with above and it should work :)</=
-div></blockquote></div><div class=3D"gmail_extra"><br></div><div class=3D"g=
-mail_extra">note it should be=A0</div><div class=3D"gmail_extra"><br></div>=
-<div class=3D"gmail_extra">
-
-pkg_postinst_PACKAGENAME(), so in most cases: pkg_postinst_${PN}()</div><di=
-v class=3D"gmail_extra"><br></div>also, see:</div><div class=3D"gmail_extra=
-"><br><a href=3D"http://www.yoctoproject.org/docs/current/mega-manual/mega-=
-manual.html#post-installation-scripts">http://www.yoctoproject.org/docs/cur=
-rent/mega-manual/mega-manual.html#post-installation-scripts</a><br>
-
-</div><div class=3D"gmail_extra"><a href=3D"http://www.yoctoproject.org/doc=
-s/current/mega-manual/mega-manual.html#usingpoky-extend-addpkg-postinstalls=
-">http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#usi=
-ngpoky-extend-addpkg-postinstalls</a><br>
-
-</div></div>
-
---e89a8fb1ede20253dd04e01d8b78--
