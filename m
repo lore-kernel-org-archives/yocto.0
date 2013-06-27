@@ -1,46 +1,48 @@
-Return-Path: <B19537@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe006.messaging.microsoft.com [216.32.180.189])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45389E01518
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:21:03 -0700 (PDT)
-Received: from mail54-co1-R.bigfish.com (10.243.78.229) by
-	CO1EHSOBE012.bigfish.com (10.243.66.75) with Microsoft SMTP Server id
-	14.1.225.23; Thu, 27 Jun 2013 07:21:02 +0000
-Received: from mail54-co1 (localhost [127.0.0.1])	by mail54-co1-R.bigfish.com
-	(Postfix) with ESMTP id 83E87C60FC1;
-	Thu, 27 Jun 2013 07:21:02 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 0
-X-BigFish: VS0(zz9371Ic85fhzz1f42h1ee6h1de0h1fdah1202h1e76h1d1ah1d2ah1fc6hzz1d7338h177df4h17326ah18c673h1c8fb4h1954cbh1d68deh8275bh8275dhz2dh2a8h668h839h8e2h8e3hd25hf0ah1288h12a5h12bdh137ah1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1bceh1d0ch1d2eh1d3fh1dfeh1dffh1e1dhbe9i1155h)
-Received: from mail54-co1 (localhost.localdomain [127.0.0.1]) by mail54-co1
-	(MessageSwitch) id 1372317660645198_846; Thu, 27 Jun 2013 07:21:00 +0000
-	(UTC)
-Received: from CO1EHSMHS016.bigfish.com (unknown [10.243.78.232])	by
-	mail54-co1.bigfish.com (Postfix) with ESMTP id 919D82C0057;
-	Thu, 27 Jun 2013 07:21:00 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS016.bigfish.com
-	(10.243.66.26) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Thu, 27 Jun 2013 07:21:00 +0000
-Received: from 039-SN2MPN1-022.039d.mgd.msft.net ([169.254.2.148]) by
-	039-SN1MMR1-004.039d.mgd.msft.net ([::1]) with mapi id 14.02.0328.011;
-	Thu, 27 Jun 2013 07:20:59 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
-Thread-Topic: [yocto] First UBI build
-Thread-Index: AQHOcwSWof1LTt5aRkuP6BRU7pDCv5lJJoOg
-Date: Thu, 27 Jun 2013 07:20:58 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A015BEE44@039-SN2MPN1-022.039d.mgd.msft.net>
-References: <CAFMfyzLw9nOseL_zBZ8BDLOf2EqRp3rKpnN+QEdBB534q5Usvg@mail.gmail.com>
-In-Reply-To: <CAFMfyzLw9nOseL_zBZ8BDLOf2EqRp3rKpnN+QEdBB534q5Usvg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.208.134]
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ee0-f43.google.com (mail-ee0-f43.google.com [74.125.83.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BBEBE014E2
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:40:35 -0700 (PDT)
+Received: by mail-ee0-f43.google.com with SMTP id l10so193199eei.30
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:40:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=3HcwMdXYOoXFKaMt1E/mBZCn8o0dYRJkbRRrtQwohyo=;
+	b=WEA+BpNu8Dy5wB9E+bTFlVhVl/ClUJS19Hbgv/5gfENiAUyQ4WbvWK6cTk9rrCpAtN
+	OfHmDCb0Xq3Mpx14PH30UK2xYYgA3KDcoA78AExijht6i+ydvPI2jGpxahohhHlNfZW/
+	HI0vODL9t2fwDnur18SwM9sueb6pOIlO20VDU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=3HcwMdXYOoXFKaMt1E/mBZCn8o0dYRJkbRRrtQwohyo=;
+	b=H6hYvP1/AkS9toQ2b4ALFiWdIjk/3i3bSt8q2Cf+iruk1cKF7Dg321zEj+rxJy+9As
+	g7YwLXBhrQiA4R1NwYgYdwJvzhX/xDZFQytDtgeqGku8v6awzfv8wdOlmk/WCFJOxPC3
+	zueMkbAi4shnBL7Bt44eCrhQhTJqusqfOpNgxctjGwQ9rGQ8xQOPxZiYidSiEvsnM1Hd
+	FHHg3QJaZXYn5bIpMu0XStdly3dFIqGfWqCeTRG62Muzd3swkr4ez7l+byVSt+u6QLVc
+	tLvjG2INagFih5SILtAh8mLNsoLX8P384ThbvJYZhZyt+GctC5pBbQn5KX+THATGQ3Wv
+	jrsA==
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
+X-Received: by 10.15.32.67 with SMTP id z43mr7766783eeu.24.1372318833913; Thu,
+	27 Jun 2013 00:40:33 -0700 (PDT)
+Received: by 10.223.160.197 with HTTP; Thu, 27 Jun 2013 00:40:33 -0700 (PDT)
+In-Reply-To: <CAP71Wjwk=_B=p1WxT+svbDouZp2bX+aYW=at+Q_AOM7wGo+pFA@mail.gmail.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50C1A@ORSMSX101.amr.corp.intel.com>
+	<CDE892AD.36CA0%david.c.stewart@intel.com>
+	<000001ce6de8$70639de0$512ad9a0$@annabooks.com>
+	<CALmOhg=h=j+uHiPdGShjZwtL97jsnhz1v6T4GRfcge0jJypTKQ@mail.gmail.com>
+	<CA+gsK-orLA13kBxTSj-E451GQKKdy8L6hUHQxKQgFqg-VNiK8Q@mail.gmail.com>
+	<CALmOhgmpSjx-D-EycMX9AJv1Rwgrvv3VE2jKqakd4kUtbXYHJg@mail.gmail.com>
+	<CA+gsK-phin-6EsfXixkC1OWfpg6J4oK22NOp+duP7aXAgvbM5w@mail.gmail.com>
+	<CAP71Wjwk=_B=p1WxT+svbDouZp2bX+aYW=at+Q_AOM7wGo+pFA@mail.gmail.com>
+Date: Thu, 27 Jun 2013 00:40:33 -0700
+Message-ID: <CA+gsK-qNiUyUB_+crccLb62qWyHD5z5emdjpHBOP7YsbyWVbNA@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+X-Gm-Message-State: ALoCoQmBRVYeqS3eGASGxc7EySHAoXnz0yTDKhzgMkmh7qxi3nc84bEhLTplVzZ31MDbRQa/crb5
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: First UBI build
+Subject: Re: Documenting YP Development Environment in more detail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,284 +54,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 07:21:04 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CA452391058F6D4E9715FB2C29D9312A015BEE44039SN2MPN102203_"
+X-List-Received-Date: Thu, 27 Jun 2013 07:40:37 -0000
+Content-Type: multipart/alternative; boundary=089e016350469d631a04e01de08d
 
---_000_CA452391058F6D4E9715FB2C29D9312A015BEE44039SN2MPN102203_
-Content-Type: text/plain; charset="us-ascii"
+--089e016350469d631a04e01de08d
+Content-Type: text/plain; charset=ISO-8859-1
+
+> not integrate with yocto directly. but use it to 'manage' the set of trees
+> that are required when using OE/Yocto. The gumstix guys are using it, see
+> [1], and we are moving toward it at linaro too, to manage our builds [2]
+>
+> [1] https://github.com/gumstix/Gumstix-YoctoProject-Repo
+> [2] http://lists.linaro.org/pipermail/linaro-dev/2013-May/015998.html
+>
+> then for organization that might need it, repo can be integrated with
+> gerrit too, but repo 'standalone' can still be used to manage set of trees.
+>
+>
+Thanks for the input. That's a good idea.
+
+Rudi
+
+--089e016350469d631a04e01de08d
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Add below two variables in conf/local.conf, the value is just for sample an=
-d might need change.
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><div class=3D"gmail_quote">=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra">=
+not integrate with yocto directly. but use it to &#39;manage&#39; the set o=
+f trees that are required when using OE/Yocto. The gumstix guys are using i=
+t, see [1], and we are moving toward it at linaro too, to manage our builds=
+ [2]</div>
 
-MKUBIFS_ARGS =3D " -m 512 -e 15360 -c 3600 "
-UBINIZE_ARGS =3D " -p 16KiB -m 512 -s 512 "
 
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">[1]=A0<a hr=
+ef=3D"https://github.com/gumstix/Gumstix-YoctoProject-Repo" target=3D"_blan=
+k">https://github.com/gumstix/Gumstix-YoctoProject-Repo</a></div><div class=
+=3D"gmail_extra">
+[2]=A0<a href=3D"http://lists.linaro.org/pipermail/linaro-dev/2013-May/0159=
+98.html" target=3D"_blank">http://lists.linaro.org/pipermail/linaro-dev/201=
+3-May/015998.html</a></div>
 
-Best Regards,
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">then for or=
+ganization that might need it, repo can be integrated with gerrit too, but =
+repo &#39;standalone&#39; can still be used to manage set of trees.</div>
 
-Zhenhua
+<div class=3D"gmail_extra"><br></div></div>
+</blockquote></div><br>Thanks for the input. That&#39;s a good idea.
+</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Rudi<=
+/div></div>
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of DAMARLA Satya Swaroop
-Sent: Thursday, June 27, 2013 3:04 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] First UBI build
-
-Hi Guys,
-
-I had great success and actually feel yocto with building images. Now I wan=
-t to run the image from the flash drive and trying to build a UBIFS but I g=
-et strange errors which I didnot get when I am building a normal tar.gz fil=
-e for the SDCARD. The error is as follows... Can you guys please tell me wh=
-at is the new stuff I had to add to overcome this issue?
-
-| Size after prelinking 276884.
-| Error: min. I/O unit was not specified (use -h for help)
-| ERROR: Function failed: do_rootfs (log file is located at /home/damarla/o=
-penYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/root=
-fs-smartcpu/1.0-r0/temp/log.do_rootfs.13924)
-ERROR: Task 7 (/home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/i=
-mages/rootfs-smartcpu.bb<http://rootfs-smartcpu.bb>, do_rootfs) failed with=
- exit code '1'
-NOTE: Tasks Summary: Attempted 5188 tasks of which 4394 didn't need to be r=
-erun and 1 failed.
-No currently running tasks (5187 of 5189)
-
-Summary: 1 task failed:
-  /home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/images/rootfs-=
-smartcpu.bb<http://rootfs-smartcpu.bb>, do_rootfs
-Summary: There was 1 WARNING message shown.
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-
-Cheers.
-Sati
-
---_000_CA452391058F6D4E9715FB2C29D9312A015BEE44039SN2MPN102203_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Add below two variables i=
-n conf/local.conf, the value is just for sample and might need change.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">MKUBIFS_ARGS =3D &quot; -=
-m 512 -e 15360 -c 3600 &quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">UBINIZE_ARGS =3D &quot; -=
-p 16KiB -m 512 -s 512 &quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Best Regards,<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Zhenhua<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>DAMARLA Satya Swaroop<br>
-<b>Sent:</b> Thursday, June 27, 2013 3:04 PM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] First UBI build<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I had great success and actually feel yocto with bui=
-lding images. Now I want to run the image from the flash drive and trying t=
-o build a UBIFS but I get strange errors which I didnot get when I am build=
-ing a normal tar.gz file for the SDCARD.
- The error is as follows... Can you guys please tell me what is the new stu=
-ff I had to add to overcome this issue?<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal"><i>| Size after prelinking 276884.</i><o:p></o:p></p=
->
-</div>
-<div>
-<p class=3D"MsoNormal"><i>| Error: min. I/O unit was not specified (use -h =
-for help)</i><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>| ERROR: Function failed: do_rootfs (log file is =
-located at /home/damarla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-unt=
-ersberg-linux-gnueabi/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.13924)</i><=
-o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>ERROR: Task 7 (/home/damarla/openYocto/poky/meta-=
-skidata/recipes-smartcpu/images/<a href=3D"http://rootfs-smartcpu.bb">rootf=
-s-smartcpu.bb</a>, do_rootfs) failed with exit code '1'</i><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>NOTE: Tasks Summary: Attempted 5188 tasks of whic=
-h 4394 didn't need to be rerun and 1 failed.</i><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>No currently running tasks (5187 of 5189)</i><o:p=
-></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>Summary: 1 task failed:</i><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>&nbsp; /home/damarla/openYocto/poky/meta-skidata/=
-recipes-smartcpu/images/<a href=3D"http://rootfs-smartcpu.bb">rootfs-smartc=
-pu.bb</a>, do_rootfs</i><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>Summary: There was 1 WARNING message shown.</i><o=
-:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><i>Summary: There was 1 ERROR message shown, returni=
-ng a non-zero exit code.</i><o:p></o:p></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Cheers.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Sati<o:p></o:p></p>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_CA452391058F6D4E9715FB2C29D9312A015BEE44039SN2MPN102203_--
+--089e016350469d631a04e01de08d--
