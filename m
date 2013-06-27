@@ -1,28 +1,36 @@
-Return-Path: <satyaswaroop.damarla@gmail.com>
-Received: from mail-ve0-f173.google.com (mail-ve0-f173.google.com
-	[209.85.128.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52E5BE014E2
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:04:09 -0700 (PDT)
-Received: by mail-ve0-f173.google.com with SMTP id jw11so323426veb.32
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:04:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=4weCCs3T59jMVK75pTUQNvQiXUyBJpKFtFLpZdMtGTo=;
-	b=MrctrhEh+Dst9PsVX2Ll1iRBhzSCuFFTO4JJSfa32SWFfP50HKtcaz6y3iPkYc04xT
-	y6l02qWRp1pgyPyaXGZeX4iLMujkFMSThVYh8GiZZGY0Cw3vBkSGbnoR0WvOHXDOdQd/
-	tBbRfBULdClGH/tRuZ6mCZcNdo4AwN8Qxz5iKW8KpoHwvS0pI2VBmco8cj1c1Q2Mqi+w
-	FTm3moQdcF4PQUh4S2RjGgh/m/2ymv2VblnaE2jdiCGPv0hDVE3MiTWR8UhuB6MEuGTD
-	XEkPGZ+904aBn4I2ZjzELgKNZULqggyDYzWqrcyhKxwM9vGv3AnZ954ODlO8NFgFqMzm
-	3PFA==
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
+	[209.85.219.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF310E014E2
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:16:38 -0700 (PDT)
+Received: by mail-oa0-f49.google.com with SMTP id n9so415865oag.36
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:16:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=5sDFacsMHX3Bw5CVO6n331jp8YT6a4Rsd4L42mK8ksI=;
+	b=Ez+r6kFkU7u+trxhIL5SRiQSdRL19BRJNMnYkcYqdfGCz3LeL0W2V9E/6Nq/Fg1dbt
+	0V6OyycH95+43xxkGdJ3BVBxE62PKHxpa3ZUzhXb/n3S9wApXzlzzUVuRHUsSMDC5OSg
+	MDsXVVhHWW9+QOGKCyrY1KBcjoEgct1HB3WDdUDyDiCm9wHkU12SzfG6RyoNa8qoqo5f
+	GPNRaaKXhQL2OhM4v9xU0MjWPkTDgYNtElrpC5KLFWMIvhM4VOWLU4mzhq3H5LUC6/FA
+	cBtjjiQOf6QjrjMGK5xYDjXxKGx/B4fkyPYSEAl+inzNh3V8HV8fRnFhOc1CgT1Du2Il
+	Dd2g==
+X-Received: by 10.182.61.46 with SMTP id m14mr3518087obr.58.1372317397695;
+	Thu, 27 Jun 2013 00:16:37 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.220.70.212 with SMTP id e20mr3096720vcj.45.1372316648841;
-	Thu, 27 Jun 2013 00:04:08 -0700 (PDT)
-Received: by 10.52.94.241 with HTTP; Thu, 27 Jun 2013 00:04:08 -0700 (PDT)
-Date: Thu, 27 Jun 2013 09:04:08 +0200
-Message-ID: <CAFMfyzLw9nOseL_zBZ8BDLOf2EqRp3rKpnN+QEdBB534q5Usvg@mail.gmail.com>
-From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: First UBI build
+Received: by 10.76.25.133 with HTTP; Thu, 27 Jun 2013 00:16:17 -0700 (PDT)
+In-Reply-To: <CAE_REAvJT8ViDcJuHTUUheE795xzMpfFWKB-fEHZn5tiZkHuGQ@mail.gmail.com>
+References: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
+	<51CB0AB3.2070107@r-finger.com>
+	<CAE_REAvJT8ViDcJuHTUUheE795xzMpfFWKB-fEHZn5tiZkHuGQ@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 27 Jun 2013 09:16:17 +0200
+Message-ID: <CAP71Wjxdu0+kt5GtKkmkM-uCzic+yvz+FrN40Prh9DMbdhpu8g@mail.gmail.com>
+To: Gaurang Shastri <gmshastri@gmail.com>
+X-Gm-Message-State: ALoCoQn4ZrofcMgQWhkFtQQy+A5v+lhNSfcY56AKt8hbBsMG91zTI/VnvFmHWs64wnbqmLn8KAAa
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: run commands after installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,68 +42,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 07:04:14 -0000
-Content-Type: multipart/alternative; boundary=047d7b3a8ef85fa5e504e01d5e83
+X-List-Received-Date: Thu, 27 Jun 2013 07:16:39 -0000
+Content-Type: multipart/alternative; boundary=e89a8fb1ede20253dd04e01d8b78
 
---047d7b3a8ef85fa5e504e01d5e83
+--e89a8fb1ede20253dd04e01d8b78
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Guys,
+On Thu, Jun 27, 2013 at 8:38 AM, Gaurang Shastri <gmshastri@gmail.com>wrote:
 
-I had great success and actually feel yocto with building images. Now I
-want to run the image from the flash drive and trying to build a UBIFS but
-I get strange errors which I didnot get when I am building a normal tar.gz
-file for the SDCARD. The error is as follows... Can you guys please tell me
-what is the new stuff I had to add to overcome this issue?
+> Hi,
+>
+> You need to do something like below:
+>
+> pkg_postinst() {
+>
+> net-snmp-config --create-snmpv3-user -a "my_password" myuser
+> }
+>
+> try with above and it should work :)
+>
 
-*| Size after prelinking 276884.*
-*| Error: min. I/O unit was not specified (use -h for help)*
-*| ERROR: Function failed: do_rootfs (log file is located at
-/home/damarla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.13924)
-*
-*ERROR: Task 7
-(/home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/images/
-rootfs-smartcpu.bb, do_rootfs) failed with exit code '1'*
-*NOTE: Tasks Summary: Attempted 5188 tasks of which 4394 didn't need to be
-rerun and 1 failed.*
-*No currently running tasks (5187 of 5189)*
-*
-*
-*Summary: 1 task failed:*
-*  /home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/images/
-rootfs-smartcpu.bb, do_rootfs*
-*Summary: There was 1 WARNING message shown.*
-*Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
+note it should be
 
-Cheers.
-Sati
+pkg_postinst_PACKAGENAME(), so in most cases: pkg_postinst_${PN}()
 
---047d7b3a8ef85fa5e504e01d5e83
+also, see:
+
+http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#post-installation-scripts
+http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#usingpoky-extend-addpkg-postinstalls
+
+--e89a8fb1ede20253dd04e01d8b78
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Guys,<div><br></div><div>I had great success and actual=
-ly feel yocto with building images. Now I want to run the image from the fl=
-ash drive and trying to build a UBIFS but I get strange errors which I didn=
-ot get when I am building a normal tar.gz file for the SDCARD. The error is=
- as follows... Can you guys please tell me what is the new stuff I had to a=
-dd to overcome this issue?</div>
-<div><br></div><div><div><i>| Size after prelinking 276884.</i></div><div><=
-i>| Error: min. I/O unit was not specified (use -h for help)</i></div><div>=
-<i>| ERROR: Function failed: do_rootfs (log file is located at /home/damarl=
-a/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/r=
-ootfs-smartcpu/1.0-r0/temp/log.do_rootfs.13924)</i></div>
-<div><i>ERROR: Task 7 (/home/damarla/openYocto/poky/meta-skidata/recipes-sm=
-artcpu/images/<a href=3D"http://rootfs-smartcpu.bb">rootfs-smartcpu.bb</a>,=
- do_rootfs) failed with exit code &#39;1&#39;</i></div><div><i>NOTE: Tasks =
-Summary: Attempted 5188 tasks of which 4394 didn&#39;t need to be rerun and=
- 1 failed.</i></div>
-<div><i>No currently running tasks (5187 of 5189)</i></div><div><i><br></i>=
-</div><div><i>Summary: 1 task failed:</i></div><div><i>=A0 /home/damarla/op=
-enYocto/poky/meta-skidata/recipes-smartcpu/images/<a href=3D"http://rootfs-=
-smartcpu.bb">rootfs-smartcpu.bb</a>, do_rootfs</i></div>
-<div><i>Summary: There was 1 WARNING message shown.</i></div><div><i>Summar=
-y: There was 1 ERROR message shown, returning a non-zero exit code.</i></di=
-v></div><div><br></div><div>Cheers.</div><div>Sati</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Thu, Jun 27, 2013 at 8:38 AM, Gaurang Shastri <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:gmshastri@gmail.com" target=3D"_blank">gmshastri@gmail.com</a=
+>&gt;</span> wrote:<br>
 
---047d7b3a8ef85fa5e504e01d5e83--
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div><div>Hi,<br><br></div>You need to do something like b=
+elow:<br>
+
+<br></div>pkg_postinst() {<div class=3D"im"><br><div>net-snmp-config --crea=
+te-snmpv3-user -a &quot;my_password&quot; myuser<br>
+</div><div>}<br><br></div></div><div>try with above and it should work :)</=
+div></blockquote></div><div class=3D"gmail_extra"><br></div><div class=3D"g=
+mail_extra">note it should be=A0</div><div class=3D"gmail_extra"><br></div>=
+<div class=3D"gmail_extra">
+
+pkg_postinst_PACKAGENAME(), so in most cases: pkg_postinst_${PN}()</div><di=
+v class=3D"gmail_extra"><br></div>also, see:</div><div class=3D"gmail_extra=
+"><br><a href=3D"http://www.yoctoproject.org/docs/current/mega-manual/mega-=
+manual.html#post-installation-scripts">http://www.yoctoproject.org/docs/cur=
+rent/mega-manual/mega-manual.html#post-installation-scripts</a><br>
+
+</div><div class=3D"gmail_extra"><a href=3D"http://www.yoctoproject.org/doc=
+s/current/mega-manual/mega-manual.html#usingpoky-extend-addpkg-postinstalls=
+">http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#usi=
+ngpoky-extend-addpkg-postinstalls</a><br>
+
+</div></div>
+
+--e89a8fb1ede20253dd04e01d8b78--
