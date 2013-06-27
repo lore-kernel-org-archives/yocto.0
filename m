@@ -1,33 +1,28 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-la0-f46.google.com (mail-la0-f46.google.com
-	[209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83260E014E2
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 23:38:17 -0700 (PDT)
-Received: by mail-la0-f46.google.com with SMTP id eg20so372108lab.5
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 23:38:15 -0700 (PDT)
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-ve0-f173.google.com (mail-ve0-f173.google.com
+	[209.85.128.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52E5BE014E2
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:04:09 -0700 (PDT)
+Received: by mail-ve0-f173.google.com with SMTP id jw11so323426veb.32
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 00:04:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=jkeOiHZSRZlGjpZp47HBmw+MJGlbViV4xHhM4p51mqs=;
-	b=Iz5r36tu8YCuekpUarVZwrt/fXi0913Kc7gtFdHhSjIbZ/4b76hXXCc3SmAkGtmoMk
-	KroD9AkcrGBK94FHRxoP4ww7DRemNPKNLxVYkvpaxm1r/U1tyVOhLQT2t9avNekEy01b
-	Y1r3vYFxVOJuyKR6ZSOZesgQFeaJ3tOQ97mwqXN9vBzdSipRltRc9QTXzo82z3w7RAF1
-	Z5FD1COUIW10KFyl7AuxoEcIqtA6Y0AP+4sCShozu3wsPvVmBACB1tDpFMD1iW4AHsF6
-	3FHxl8ymM9T9P69/7UmfIz8kl4qseVG7nVBPHl/CGzf5oLWPqI5xVp6LKSGMt8I/QRtt
-	Dqxw==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=4weCCs3T59jMVK75pTUQNvQiXUyBJpKFtFLpZdMtGTo=;
+	b=MrctrhEh+Dst9PsVX2Ll1iRBhzSCuFFTO4JJSfa32SWFfP50HKtcaz6y3iPkYc04xT
+	y6l02qWRp1pgyPyaXGZeX4iLMujkFMSThVYh8GiZZGY0Cw3vBkSGbnoR0WvOHXDOdQd/
+	tBbRfBULdClGH/tRuZ6mCZcNdo4AwN8Qxz5iKW8KpoHwvS0pI2VBmco8cj1c1Q2Mqi+w
+	FTm3moQdcF4PQUh4S2RjGgh/m/2ymv2VblnaE2jdiCGPv0hDVE3MiTWR8UhuB6MEuGTD
+	XEkPGZ+904aBn4I2ZjzELgKNZULqggyDYzWqrcyhKxwM9vGv3AnZ954ODlO8NFgFqMzm
+	3PFA==
 MIME-Version: 1.0
-X-Received: by 10.112.133.137 with SMTP id pc9mr3355638lbb.27.1372315095683;
-	Wed, 26 Jun 2013 23:38:15 -0700 (PDT)
-Received: by 10.114.174.144 with HTTP; Wed, 26 Jun 2013 23:38:15 -0700 (PDT)
-In-Reply-To: <51CB0AB3.2070107@r-finger.com>
-References: <CAM1ZcoUioyojYfHot5ue+2qfpiYm884T7psN8aSg+XLdUjH+-Q@mail.gmail.com>
-	<51CB0AB3.2070107@r-finger.com>
-Date: Thu, 27 Jun 2013 12:08:15 +0530
-Message-ID: <CAE_REAvJT8ViDcJuHTUUheE795xzMpfFWKB-fEHZn5tiZkHuGQ@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: run commands after installation
+X-Received: by 10.220.70.212 with SMTP id e20mr3096720vcj.45.1372316648841;
+	Thu, 27 Jun 2013 00:04:08 -0700 (PDT)
+Received: by 10.52.94.241 with HTTP; Thu, 27 Jun 2013 00:04:08 -0700 (PDT)
+Date: Thu, 27 Jun 2013 09:04:08 +0200
+Message-ID: <CAFMfyzLw9nOseL_zBZ8BDLOf2EqRp3rKpnN+QEdBB534q5Usvg@mail.gmail.com>
+From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: First UBI build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,90 +34,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 06:38:24 -0000
-Content-Type: multipart/alternative; boundary=047d7b3439a4cc5b9204e01d0163
+X-List-Received-Date: Thu, 27 Jun 2013 07:04:14 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a8ef85fa5e504e01d5e83
 
---047d7b3439a4cc5b9204e01d0163
+--047d7b3a8ef85fa5e504e01d5e83
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Hi Guys,
 
-You need to do something like below:
+I had great success and actually feel yocto with building images. Now I
+want to run the image from the flash drive and trying to build a UBIFS but
+I get strange errors which I didnot get when I am building a normal tar.gz
+file for the SDCARD. The error is as follows... Can you guys please tell me
+what is the new stuff I had to add to overcome this issue?
 
-pkg_postinst() {
-net-snmp-config --create-snmpv3-user -a "my_password" myuser
-}
+*| Size after prelinking 276884.*
+*| Error: min. I/O unit was not specified (use -h for help)*
+*| ERROR: Function failed: do_rootfs (log file is located at
+/home/damarla/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/rootfs-smartcpu/1.0-r0/temp/log.do_rootfs.13924)
+*
+*ERROR: Task 7
+(/home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/images/
+rootfs-smartcpu.bb, do_rootfs) failed with exit code '1'*
+*NOTE: Tasks Summary: Attempted 5188 tasks of which 4394 didn't need to be
+rerun and 1 failed.*
+*No currently running tasks (5187 of 5189)*
+*
+*
+*Summary: 1 task failed:*
+*  /home/damarla/openYocto/poky/meta-skidata/recipes-smartcpu/images/
+rootfs-smartcpu.bb, do_rootfs*
+*Summary: There was 1 WARNING message shown.*
+*Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
 
-try with above and it should work :)
+Cheers.
+Sati
 
-//Gaurang Shastri
-
-
-
-
-On Wed, Jun 26, 2013 at 9:07 PM, Tomas Frydrych <tf+lists.yocto@r-finger.com
-> wrote:
-
-> On 26/06/13 15:32, Katu Txakur wrote:
-> > I want to create a user after adding the snmp recipe. The command to do
-> > that is:
-> >
-> > net-snmp-config --create-snmpv3-user -a "my_password" myuser
-> >
-> > What's the best way to do it? I have tried from do_install_append and
-> > also from ROOTFS_POSTPROCESS_COMMAND but no luck so far.
->
-> You need a postinst script for that sort of a thing.
->
-> Tomas
->
-> --
-> http://sleepfive.com
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---047d7b3439a4cc5b9204e01d0163
+--047d7b3a8ef85fa5e504e01d5e83
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hi,<br><br></div>You need to do something like b=
-elow:<br><br></div>pkg_postinst() {<br><div>net-snmp-config --create-snmpv3=
--user -a &quot;my_password&quot; myuser<br>
-</div><div>}<br><br></div><div>try with above and it should work :)<br><br>=
-</div><div>//Gaurang Shastri<br></div><br><br></div><div class=3D"gmail_ext=
-ra"><br><br><div class=3D"gmail_quote">On Wed, Jun 26, 2013 at 9:07 PM, Tom=
-as Frydrych <span dir=3D"ltr">&lt;<a href=3D"mailto:tf+lists.yocto@r-finger=
-.com" target=3D"_blank">tf+lists.yocto@r-finger.com</a>&gt;</span> wrote:<b=
-r>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 2=
-6/06/13 15:32, Katu Txakur wrote:<br>
-&gt; I want to create a user after adding the snmp recipe. The command to d=
-o<br>
-&gt; that is:<br>
-&gt;<br>
-&gt; net-snmp-config --create-snmpv3-user -a &quot;my_password&quot; myuser=
-<br>
-&gt;<br>
-&gt; What&#39;s the best way to do it? I have tried from do_install_append =
-and<br>
-&gt; also from ROOTFS_POSTPROCESS_COMMAND but no luck so far.<br>
-<br>
-</div></div>You need a postinst script for that sort of a thing.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Tomas<br>
-<br>
---<br>
-<a href=3D"http://sleepfive.com" target=3D"_blank">http://sleepfive.com</a>=
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div>
+<div dir=3D"ltr">Hi Guys,<div><br></div><div>I had great success and actual=
+ly feel yocto with building images. Now I want to run the image from the fl=
+ash drive and trying to build a UBIFS but I get strange errors which I didn=
+ot get when I am building a normal tar.gz file for the SDCARD. The error is=
+ as follows... Can you guys please tell me what is the new stuff I had to a=
+dd to overcome this issue?</div>
+<div><br></div><div><div><i>| Size after prelinking 276884.</i></div><div><=
+i>| Error: min. I/O unit was not specified (use -h for help)</i></div><div>=
+<i>| ERROR: Function failed: do_rootfs (log file is located at /home/damarl=
+a/openYocto/poky/buildSmartCPU/tmp/work/smartcpu-untersberg-linux-gnueabi/r=
+ootfs-smartcpu/1.0-r0/temp/log.do_rootfs.13924)</i></div>
+<div><i>ERROR: Task 7 (/home/damarla/openYocto/poky/meta-skidata/recipes-sm=
+artcpu/images/<a href=3D"http://rootfs-smartcpu.bb">rootfs-smartcpu.bb</a>,=
+ do_rootfs) failed with exit code &#39;1&#39;</i></div><div><i>NOTE: Tasks =
+Summary: Attempted 5188 tasks of which 4394 didn&#39;t need to be rerun and=
+ 1 failed.</i></div>
+<div><i>No currently running tasks (5187 of 5189)</i></div><div><i><br></i>=
+</div><div><i>Summary: 1 task failed:</i></div><div><i>=A0 /home/damarla/op=
+enYocto/poky/meta-skidata/recipes-smartcpu/images/<a href=3D"http://rootfs-=
+smartcpu.bb">rootfs-smartcpu.bb</a>, do_rootfs</i></div>
+<div><i>Summary: There was 1 WARNING message shown.</i></div><div><i>Summar=
+y: There was 1 ERROR message shown, returning a non-zero exit code.</i></di=
+v></div><div><br></div><div>Cheers.</div><div>Sati</div></div>
 
---047d7b3439a4cc5b9204e01d0163--
+--047d7b3a8ef85fa5e504e01d5e83--
