@@ -1,30 +1,27 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 984F2E01565
-	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 13:44:16 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5RKiDKf011756
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 27 Jun 2013 13:44:13 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
-	Thu, 27 Jun 2013 13:44:13 -0700
-Message-ID: <51CCA415.9010501@windriver.com>
-Date: Thu, 27 Jun 2013 16:44:05 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 993B0E01565
+	for <yocto@yoctoproject.org>; Thu, 27 Jun 2013 14:02:13 -0700 (PDT)
+Received: (qmail 7347 invoked by uid 1003); 27 Jun 2013 21:02:11 -0000
+Received: from unknown (HELO ?192.168.1.122?)
+	(philip@opensdr.com@96.240.165.115)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	27 Jun 2013 21:02:11 -0000
+Message-ID: <51CCA852.5080305@balister.org>
+Date: Thu, 27 Jun 2013 17:02:10 -0400
+From: Philip Balister <philip@balister.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
 MIME-Version: 1.0
-To: Bryan Evenson <bevenson@melinkcorp.com>
-References: <91586D499ADFD74FBCFB8425266A5DE4013B91292051@pluto.melinkcorp.local>
-	<51CBB4A8.80200@windriver.com> <51CBCC7C.3080107@windriver.com>
-	<91586D499ADFD74FBCFB8425266A5DE4013B9129209C@pluto.melinkcorp.local>
-	<51CC5824.90604@windriver.com>
-	<91586D499ADFD74FBCFB8425266A5DE4013B91292173@pluto.melinkcorp.local>
-In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE4013B91292173@pluto.melinkcorp.local>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel patch is unpacked but not applied
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5182B@ORSMSX101.amr.corp.intel.com>
+	<CA+QkY1BKJqnLcbJq786d3LjA6D7gDLLQifccMA4m9m0cKOXj+g@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF51E45@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF51E45@ORSMSX101.amr.corp.intel.com>
+X-Enigmail-Version: 1.5.1
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Layer input
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,282 +33,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 20:44:17 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 27 Jun 2013 21:02:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 13-06-27 11:41 AM, Bryan Evenson wrote:
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Thursday, June 27, 2013 11:20 AM
->> To: Bryan Evenson
->> Cc: yocto@yoctoproject.org
->> Subject: Re: [yocto] Kernel patch is unpacked but not applied
->>
->> On 13-06-27 08:50 AM, Bryan Evenson wrote:
->>>> -----Original Message-----
->>>> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->>>> Sent: Thursday, June 27, 2013 1:24 AM
->>>> To: Bryan Evenson
->>>> Cc: yocto@yoctoproject.org
->>>> Subject: Re: [yocto] Kernel patch is unpacked but not applied
->>>>
->>>> On 13-06-26 11:42 PM, Bruce Ashfield wrote:
->>>>> On 13-06-26 11:08 PM, Bryan Evenson wrote:
->>>>>> I am building a custom Linux kernel under poky-dylan and I am
->>>>>> having an issue with patches being unpacked but not applied.  I
->>>>>> have two layers that have a bbappend file for the kernel.
->>>>>> Generally, this is what each bbappend file looks like:
->>>>>>
->>>>>> #First .bbappend
->>>>>>
->>>>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>>>> COMPATIBLE_MACHINE_mach1 = "mach1"
->>>>>> COMPATIBLE_MACHINE_mach2 = "mach2"
->>>>>> SRC_URI_append_mach2 = " file://${MACHINE}/${KBRANCH}/0001-
->>>> blah.patch \
->>>>>>        file://${MACHINE}/${KBRANCH}/0002-blah.patch \
->>>>>>        "
->>>>>>
->>>>>> # Increment the recipe revision
->>>>>> PRINC := "${@int(PRINC) + 1}"
->>>>>>
->>>>>> # Second .bbappend
->>>>>>
->>>>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>>>> COMPATIBLE_MACHINE_mach1 = "mach1"
->>>>>> COMPATIBLE_MACHINE_mach2 = "mach2"
->>>>>> SRC_URI_append_mach2 = " file://${MACHINE}/${KBRANCH}/0003-
->>>> blah.patch \
->>>>>>        file://${MACHINE}/${KBRANCH}/0004-blah.patch \
->>>>>>        "
->>>>>>
->>>>>> # Increment the recipe revision
->>>>>> PRINC := "${@int(PRINC) + 1}"
->>>>>>
->>>>>> All of the patch files are properly unpacked, but the last two
->>>>>> patches are not being applied.  If I open the devshell for the
->>>> kernel
->>>>>> (bitbake -c devshell linux-yocto-custom) I can see in the git log
->>>>>> that the first patch set was applied.  The second patch set exists
->>>>>> but is not applied.  If I call "guilt push" repeatedly from the
->>>>>> devshell, the patches from the second set are cleanly applied.  My
->>>>>> guess is that something doesn't like the second SRC_URI_append
->> call.
->>>>>> Any ideas on how to fix it?
->>>>>
->>>>> It shouldn't matter. Let me try and set up something that
->> reproduces
->>>>> the problem and get back to you.
->>>>>
->>>>> Strangely .. I'm actively debugging something similar here already,
->>>> so
->>>>> I may be able to re-use it.
->>>>>
->>>>> Stay tuned.
->>>>>
->>>>> Out of curiosity, have you tried this on master ?
->>>>
->>>
->>> I have not tried this on master.  Here is the relevant build
->> information:
->>>
->>> Build Configuration:
->>> BB_VERSION        = "1.18.0"
->>> BUILD_SYS         = "i686-linux"
->>> NATIVELSBSTRING   = "Ubuntu-12.04"
->>> TARGET_SYS        = "arm-poky-linux-gnueabi"
->>> MACHINE           = "at91sam9x5ek"
->>> DISTRO            = "poky"
->>> DISTRO_VERSION    = "1.4.1"
->>> TUNE_FEATURES     = "armv5 thumb dsp arm926ejs"
->>> TARGET_FPU        = "soft"
->>> meta-melink       = "dylan:e4a0a4c5e419154a34710a1b6c28d4180c6304c3"
->>> meta-atmel        = "master:b2a9c072730b0f6b2a669a8de613e5e1d59453e6"
->>> meta
->>> meta-yocto
->>> meta-yocto-bsp    = "dylan:e4a0a4c5e419154a34710a1b6c28d4180c6304c3"
->>> meta-oe           = "dylan:13ae5105ee30410136beeae66ec41ee4a8a2e2b0"
->>>
->>> So I'm at the HEAD of the Dylan branch for both poky and meta-oe.
->>> The kernel patches are in both the meta-atmel layer and the
->>> meta-melink Layter.  Ignore that version string for meta-melink; it's
->>> not a git repository so it's just grabbing the info from poky.
->>>
->>>> So I tried to recreate this on master, and things worked for me.
->>>> Which I figured would happen, since this will make it harder to fix
->>>> ... and that's how it always works out.
->>>>
->>>> I created two layers, with four patches to the main linux Makefile.
->>>> They all add something to the description:
->>>>
->>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>>
->>>> SRC_URI_append = " file://0001-makefile-one.patch \
->>>>                       file://0002-makefile-two.patch"
->>>>
->>>>
->>>>
->>>> PRINC := "${@int(PRINC) + 1}"
->>>>
->>>> and
->>>>
->>>>
->>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>> SRC_URI_append = " file://0003-makefile-three.patch \
->>>>                       file://0004-makefile-four.patch"
->>>>
->>>>
->>>>
->>>> PRINC := "${@int(PRINC) + 1}"
->>>>
->>>> .. and alas, the all were applied:
->>>>
->>>>    > grep NAME Makefile
->>>> NAME = Displaced Humerus Anterior one two three four
->>>>
->>>> ....
->>>>
->>>> Can you send me the exact names of your patches ? I'm wondering if
->> an
->>>> already applied check is triggering and preventing the auto push.
->>>>
->>>
->>> Here are the patch names in the first layer (meta-atmel):
->>>
->>> " file://${MACHINE}/${KBRANCH}/UBI.cfg \
->>>       file://${MACHINE}/${KBRANCH}/dma.cfg \
->>>       file://${MACHINE}/${KBRANCH}/usb-c.patch \
->>>       file://${MACHINE}/${KBRANCH}/usart3.patch \
->>>       file://${MACHINE}/${KBRANCH}/rtc.patch \
->>>       file://${MACHINE}/${KBRANCH}/serial_dma.patch \
->>>       ${@base_contains("MACHINE_FEATURES", "watchdog",
->> "file://${MACHINE}/${KBRANCH}/watchdog.patch", " ", d)} \
->>>       "
->>>
->>> If you're wondering about that last line, I added a watchdog feature
->>> to the meta-atmel layer to enable or disable the watchdog for the
->>> kernel, U-Boot and the AT91Bootstrap.
->>>
->>> And here are the patch names for the second layer (meta-melink):
->>>
->>> SRC_URI_append_at91sam9x5ek = " file://${MACHINE}/${KBRANCH}/mq.cfg \
->>>       file://${MACHINE}/${KBRANCH}/gpio.cfg \
->>>       file://${MACHINE}/${KBRANCH}/ad5446.cfg \
->>>       file://${MACHINE}/${KBRANCH}/rs485.patch;apply=yes \
->>>       file://${MACHINE}/${KBRANCH}/usart1.patch;apply=yes \
->>>       file://${MACHINE}/${KBRANCH}/mmc.patch;apply=yes \
->>>       file://${MACHINE}/${KBRANCH}/one-wire.patch;apply=yes \
->>>       "
->>>
->>> I tried adding the "apply=yes" to the second layer patches, and they
->>> still were not applied.  Incidentally, the configuration changes
->> (.cfg
->>> files)
->>> *are* being applied.  So if I understand correctly, do_unpack is
->>> getting the correct files, do_patch is not applying all the patches,
->>> but do_configure is applying all the configuration changes.
->>>
->>> If it helps, the meta-atmel layer I am using is available here:
->>> https://github.com/evensonbryan/meta-atmel.  I just pushed an update
->> a
->>> few minutes ago, so it has what I am using.
->>
->> I've got a working baseline, using the meta-atmel layer, I see the
->> 5 patches applied:
->>
->>    f3864ee Add watchdog support.
->>    d8a2978dc Add DMA support for USARTs.
->>    c31d2cd Turn on RTC
->>    6d7277d Add USART3 to SAM9G25 device tree.
->>    9b38b15 Add USB-C to device tree.
->>
->> But I of course don't have your meta-melink layer, so I'll have a go at
->> adding some similarly named, but different patches and see if the
->> problem can be reproduced.
->>
->> Cheers,
->>
->> Bruce
->>
->>
->
-> I'm closer to a working solution.  I switched both the meta-atmel layer
-> and the meta-melink layer to use a single .scc file, and I changed the
-> SRC_URI in each bbappend as follows:
->
-> In the meta-atmel layer's linux-yocto-custom-3.9.0.bbappend:
-> SRC_URI += "file://${MACHINE}/${KBRANCH}/meta-atmel-${KBRANCH}.scc \
->      "
->
-> In the meta-melink layer's linux-yocto-custom-3.9.0.bbappend:
-> SRC_URI += "file://${MACHINE}/${KBRANCH}/meta-melink-${KBRANCH}.scc \
->      "
->
-> However, no matter how I've tried setting layer priority or ordering
-> these layers in bblayers.conf, do_patch always tries to apply the patches
-> from the meta-melink layer first.  This is incorrect for my setup, as my
-> patches build on the ones from the meta-atmel layer.
->
-> Just for fun, I tried changing the SRC_URI in the meta-melink layer to:
->
-> SRC_URI += " file://${MACHINE}/${KBRANCH}/meta-atmel-${KBRANCH}.scc \
->      file://${MACHINE}/${KBRANCH}/meta-melink-${KBRANCH}.scc \
->      "
->
-> With this change, I'm back where I started; all 9 patches show up in the
-> series, but only the first five are applied.  And no errors are reported
-> for the patched not being applied.
->
-> In the short term, with things at this state I've found I can call
-> bitbake -c devshell linux-yocto-custom, then while in the devshell call
-> "guilt push -a", then it applies all the patches.  Then I exit the devshell
-> and the rest of the build works without issues.
+On 06/27/2013 03:41 AM, Rifenbark, Scott M wrote:
+> Hi,
+> 
+> I have tweaked this figure some based on Bruce and Jerrod's input.  To help me figure out some of the basics, I ran the yocto-layer and bsp-layer scripts to create a general and BSP layer, respectively.  Please look over the contents of these layers and comment.  General comments on the whole concept of how I am presenting the layers are welcome along with any other observations.
 
-I have a patch to the kern tools that *may* help your test case. I was
-able to use meta-atmel, plus a second layer that has your exact .cfg
-and patch names (but with different content) to patch the kernel. 
-Everything was applied, and nothing ignored.
+I'm confused by the last line of test about Yocto project layers and
+layers exclusive to oe-core. All layers should play together, so the
+concept of layers exclusive to oe-core does not make sense to me.
 
-You'll need to point your kern-tools recipe at a temporary branch to
-try it out, so if you are ok with that. Let me know and I'll send the
-details.
+Philip
 
-Cheers,
-
-Bruce
-
-
->
-> -Bryan
->
->>>
->>> I'll let you know if I discover anything new.
->>>
->>> Thanks,
->>> Bryan
->>>
->>>> Bruce
->>>>
->>>>>
->>>>> Cheers,
->>>>>
->>>>> Bruce
->>>>>
->>>>>>
->>>>>> Thanks,
->>>>>> Bryan
->>>>>> _______________________________________________
->>>>>> yocto mailing list
->>>>>> yocto@yoctoproject.org
->>>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>>
->>>>>
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->
-
+> 
+> Thanks,
+> Scott
+> 
+> From: Jerrod Peach [mailto:peachj@lexmark.com]
+> Sent: Tuesday, June 25, 2013 11:07 AM
+> To: Rifenbark, Scott M
+> Cc: yocto@yoctoproject.org; Paul Eggleton
+> Subject: Re: [yocto] Layer input
+> 
+> Scott,
+> 
+>   *   Distro Layer
+> 
+>      *   I'm unclear on what <name> is.  Is that supposed to be <distro>?  <recipe>?  It probably shouldn't just be <name>, should it?
+> 
+>   *   Software Layer
+> 
+>      *   Should COPYING.MIT just be COPYING to be more generically applicable?
+>      *   conf/<layer_name>.conf should be just layer.conf, right?
+> 
+>   *   BSP Layer
+> 
+>      *   COPYING.MIT file again.
+>      *   machine/<name>.conf should probably be machine/<machine*>.conf.  You can probably drop the non-asterisk version, since an asterisk implies, "There might be more stuff, there might not."
+>      *   recipes-bsp/formfactor shouldn't also have another formfactor directory, should it?  Or is the "files" directory in 1.4 replaced with another formfactor-named directory?  Also, <name> should be <machine> again.
+>      *   What's everything from recipes-core down?  I can buy recipes-kernel being in a bsp, but are any other directories really necessary?
+> Kind regards,
+> 
+> Jerrod
+> 
+> On Tue, Jun 25, 2013 at 8:35 AM, Rifenbark, Scott M <scott.m.rifenbark@intel.com<mailto:scott.m.rifenbark@intel.com>> wrote:
+> Hi,
+> 
+> This next illustration attempting to dive deeper in the YP Development Process takes the remaining left-side input from that figure in the Quick Start (metadata, Machine, and Policy).  Note that when the original figure was created that appears in the QS, the layer stuff had not yet been established.  This figure I am attaching is rough.  I am unsure as to the contents of these layers.  Right now it is detailed but with generic names.  The idea is that individual layers are preferred to do things such as provide software, configure policy, and configure machines.  I am including some notes at the bottom of the figure that would not be part of the figure but might help to get across what I am trying to accomplish here.
+> 
+> Any suggestions and feedback is really appreciated.
+> 
+> Thanks,
+> Scott
+> 
+> Scott Rifenbark
+> Intel Corporation
+> Yocto Project Documentation
+> 503.712.2702<tel:503.712.2702>
+> 503.341.0418<tel:503.341.0418> (cell)
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
