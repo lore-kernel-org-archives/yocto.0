@@ -1,38 +1,38 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CA48E01408
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 14:23:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=kBqTCImmK6ow+4sB8cjnaWnyN+oCKkPBMBQfnN8MI8A=; 
-	b=TUj+40WicI6CLfB5RtD8ZCgEVh5QoSNFwkFNwIasD3yTfx846CDHZJkW3JDo14JDSVFsfDQ6TczILkY7JIfgX6liMzYNgHNXiI9dtlj3Aqp0sMpNER0zby0//iuT6enhJKAq+7NLJWrQ3Imum3pMoVNoauCwRAujugITiNuzpyo=;
-Received: from [109.224.129.17] (port=13625
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80)
-	(envelope-from <opensource@keylevel.com>)
-	id 1UrxBf-003ovE-J5; Wed, 26 Jun 2013 22:23:35 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAPhnLPDgmgzPhqFcVAsbWbeZSz_CFWV2sQAaE==43_r83bxj1A@mail.gmail.com>
-Date: Wed, 26 Jun 2013 22:23:40 +0100
-Message-Id: <C739FA9A-AC1A-4E16-B3F6-625AB7A44CEA@keylevel.com>
-References: <CE7F8427-5728-4299-BFC3-0C3A03C7A914@keylevel.com>
-	<CAPhnLPDgmgzPhqFcVAsbWbeZSz_CFWV2sQAaE==43_r83bxj1A@mail.gmail.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Using meta-fsl-arm with 'danny'
+Return-Path: <otavio.salvador@gmail.com>
+Received: from mail-oa0-f41.google.com (mail-oa0-f41.google.com
+	[209.85.219.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5A48E0145C
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 18:46:20 -0700 (PDT)
+Received: by mail-oa0-f41.google.com with SMTP id n10so174518oag.0
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 18:46:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date
+	:x-google-sender-auth:message-id:subject:from:to:cc:content-type;
+	bh=wtR2dE0eXYmz6A7RbtTFs2hdagqIYxJmBaIakqH/pjc=;
+	b=RWj3m03+0WVtHunI9+DzpSGh3TV78wInKYACgaz0buhJ2/f1q3z/+9C4XWtSfSi6TW
+	/9OX9HZ/W86RK1viAjkn5KTNdpxpwX3CkiHzLiVg0n2UYZN9YeZhMsX/qiTwFWy+M+BR
+	BHdaTdLs47hpD9PrAihd8s6kPw1SWJfTFOu8Aaa+67RMr0izK2rt/FfQ8COpCWM/6Otq
+	lDoYuwFEndb/uEc8TxeRsE+mzYDWuDn1kGTN6Bv877DH5wP12xDFNc0/02L8worW1/64
+	askjP5L953qK94p/K4svrjMsv4c4GuOwtD0PR82MqH+YSQp0Ncz50Ja9boPsc60EliWn
+	cqTg==
+MIME-Version: 1.0
+X-Received: by 10.60.97.74 with SMTP id dy10mr1799502oeb.27.1372297579120;
+	Wed, 26 Jun 2013 18:46:19 -0700 (PDT)
+Sender: otavio.salvador@gmail.com
+Received: by 10.182.98.133 with HTTP; Wed, 26 Jun 2013 18:46:19 -0700 (PDT)
+In-Reply-To: <1831F7C6-54BC-4E5F-BC00-1B8C17E8D1FD@gmail.com>
+References: <1831F7C6-54BC-4E5F-BC00-1B8C17E8D1FD@gmail.com>
+Date: Wed, 26 Jun 2013 22:46:19 -0300
+X-Google-Sender-Auth: 9cvKmBZ-CkSCx5ViWVnYk_JNCCI
+Message-ID: <CAP9ODKqVqLxQ8QNY_1DDJGjRSrW=6YsiHdwPjpzE9EKmybQ4+Q@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org \(yocto@yoctoproject.org\)"
+	<yocto@yoctoproject.org>, "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<Openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] eglibc (would be 2.18) recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,68 +44,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2013 21:23:38 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 27 Jun 2013 01:46:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+On Wed, Jun 26, 2013 at 6:06 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> Hi All
+>
+> I have put together eglibc recipes for upcoming 2.18 release and pushed to a contrib tree here
+>
+> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/eglibc-2.18
+>
+> They built angstrom/systemd-images fine and booted OK on all supported qemu machines
+> on OE-Core
+>
+> Please test them out in your configurations and machines and provide feedback, lets weed out
+> the issue early
 
-On 26 Jun 2013, at 22:17, Flanagan, Elizabeth wrote:
+Could you also make a tree based on poky?
 
-> On Wed, Jun 26, 2013 at 1:59 PM, Chris Tapp <opensource@keylevel.com> =
-wrote:
->> I'm trying to get core-image-minimal to build using meta-fsl-arm / =
-meta-fsl-arm-extras under 'danny' for the 'wandboard-dual' machine.
->>=20
->> However, I can't find a tag/branch that works with 'danny'. =
-Specifically, when I use the 'danny' branch there is a udev_173.bbappend =
-in meta-fsl-arm, but 'danny' only supports udev_164.
->=20
->=20
-> Is this perhaps what you are hitting?
->=20
-> from the meta-fsl-arm danny branch:
->=20
-> =
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-arm/tree/README?h=3Ddan=
-ny
->=20
-> To avoid the meta-oe dependency add to local.conf:
->=20
-> BBMASK =3D "udev_.*\.bbappend$"
-
-Thanks, that's it. Not sure how I missed that one !
-
-> -b
->=20
->>=20
->> I also find a similar problem with meta-fsl-arm-extras.
->>=20
->> I must be missing something here...
->>=20
->> Chris Tapp
->>=20
->> opensource@keylevel.com
->> www.keylevel.com
->>=20
->>=20
->>=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
->=20
-> --=20
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+--
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://projetos.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
