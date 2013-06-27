@@ -1,27 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C670EE0145C
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 22:24:21 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r5R5OHmw007721
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 26 Jun 2013 22:24:17 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.22.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.342.3; Wed, 26 Jun 2013 22:24:17 -0700
-Message-ID: <51CBCC7C.3080107@windriver.com>
-Date: Thu, 27 Jun 2013 01:24:12 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
+Return-Path: <satyaswaroop.damarla@gmail.com>
+Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
+	[209.85.212.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5010E0145C
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 22:57:58 -0700 (PDT)
+Received: by mail-vb0-f42.google.com with SMTP id i3so275157vbh.29
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2013 22:57:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=jHq91l82SmOTmsxSF7bRxqvwGQEtoj1eycnZhX2UEX0=;
+	b=VzfiQn5g9PBTI4v9VynKCA1YOomS0VRoos7dBQRiERSwqyLhQNG4/QoIm48wpVCVcR
+	wBMSmlgznxfLyBSBOXbdXC1FkEEuCFJouq9OchsDpDqNFR0vKr/y9O1yY+MMu0kFhLjp
+	YtgyC2VAc43In0FvuQ+cLXxKyM8OxxwO4CYec+L3892M9+hP0TsRzfoGP/0hUhmta6BL
+	vCRIqe+UMXDrl8qtGaUd1khsqpvk9gu8QKlHeCgoilnsT1fw2hhojmAFA4cjQpUSf/xS
+	qtgVrc2xY///7MdXiBRwzjDPjaocSMd11VHXUIXS5VI93wX9j/Q0m3TBvXADDKeSJMSR
+	/JXg==
 MIME-Version: 1.0
-To: Bryan Evenson <bevenson@melinkcorp.com>
-References: <91586D499ADFD74FBCFB8425266A5DE4013B91292051@pluto.melinkcorp.local>
-	<51CBB4A8.80200@windriver.com>
-In-Reply-To: <51CBB4A8.80200@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel patch is unpacked but not applied
+X-Received: by 10.221.49.134 with SMTP id va6mr3035349vcb.14.1372312678157;
+	Wed, 26 Jun 2013 22:57:58 -0700 (PDT)
+Received: by 10.52.94.241 with HTTP; Wed, 26 Jun 2013 22:57:58 -0700 (PDT)
+In-Reply-To: <CAFMfyzJJYFEHe580kndOndgDMe_nvcVxEZzx2J3cvHASQaZf9Q@mail.gmail.com>
+References: <CAFMfyzJJYFEHe580kndOndgDMe_nvcVxEZzx2J3cvHASQaZf9Q@mail.gmail.com>
+Date: Thu, 27 Jun 2013 07:57:58 +0200
+Message-ID: <CAFMfyzKBeQCVcjKVMJAz19Y+yDEm6dw5JOzDzonpc6VKUPq_vA@mail.gmail.com>
+From: DAMARLA Satya Swaroop <satyaswaroop.damarla@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: NAND Filesystems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,116 +36,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2013 05:24:22 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 27 Jun 2013 05:57:59 -0000
+Content-Type: multipart/alternative; boundary=001a11339edab3d2fb04e01c71b5
 
-On 13-06-26 11:42 PM, Bruce Ashfield wrote:
-> On 13-06-26 11:08 PM, Bryan Evenson wrote:
->> I am building a custom Linux kernel under poky-dylan and I am having
->> an issue with patches being unpacked but not applied.  I have two
->> layers that have a bbappend file for the kernel.  Generally, this is
->> what each bbappend file looks like:
->>
->> #First .bbappend
->>
->> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->> COMPATIBLE_MACHINE_mach1 = "mach1"
->> COMPATIBLE_MACHINE_mach2 = "mach2"
->> SRC_URI_append_mach2 = " file://${MACHINE}/${KBRANCH}/0001-blah.patch \
->>      file://${MACHINE}/${KBRANCH}/0002-blah.patch \
->>      "
->>
->> # Increment the recipe revision
->> PRINC := "${@int(PRINC) + 1}"
->>
->> # Second .bbappend
->>
->> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->> COMPATIBLE_MACHINE_mach1 = "mach1"
->> COMPATIBLE_MACHINE_mach2 = "mach2"
->> SRC_URI_append_mach2 = " file://${MACHINE}/${KBRANCH}/0003-blah.patch \
->>      file://${MACHINE}/${KBRANCH}/0004-blah.patch \
->>      "
->>
->> # Increment the recipe revision
->> PRINC := "${@int(PRINC) + 1}"
->>
->> All of the patch files are properly unpacked, but the last two patches
->> are not being applied.  If I open the devshell for the kernel (bitbake
->> -c devshell linux-yocto-custom) I can see in the git log that the
->> first patch set was applied.  The second patch set exists but is not
->> applied.  If I call "guilt push" repeatedly from the devshell, the
->> patches from the second set are cleanly applied.  My guess is that
->> something doesn't like the second SRC_URI_append call.  Any ideas on
->> how to fix it?
+--001a11339edab3d2fb04e01c71b5
+Content-Type: text/plain; charset=ISO-8859-1
+
+I think I found the solution... Its in image_types.bbclass
+
+
+On Wed, Jun 26, 2013 at 5:08 PM, DAMARLA Satya Swaroop <
+satyaswaroop.damarla@gmail.com> wrote:
+
+> Hi Guys,
 >
-> It shouldn't matter. Let me try and set up something that reproduces the
-> problem and get back to you.
+> Google doesnot provide a good link but may I ask you where can I search
+> for NAND filesystems that yocto supports for the target
 >
-> Strangely .. I'm actively debugging something similar here already, so I
-> may be able to re-use it.
+> Greets,
+> Satya
 >
-> Stay tuned.
->
-> Out of curiosity, have you tried this on master ?
 
-So I tried to recreate this on master, and things worked for me. Which
-I figured would happen, since this will make it harder to fix ... and
-that's how it always works out.
+--001a11339edab3d2fb04e01c71b5
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-I created two layers, with four patches to the main linux Makefile. They
-all add something to the description:
+<div dir=3D"ltr">I think I found the solution... Its in image_types.bbclass=
+</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed,=
+ Jun 26, 2013 at 5:08 PM, DAMARLA Satya Swaroop <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:satyaswaroop.damarla@gmail.com" target=3D"_blank">satyaswaroop=
+.damarla@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi Guys,<div><br></div><div=
+>Google doesnot provide a good link but may I ask you where can I search fo=
+r NAND filesystems that yocto supports for the target=A0</div>
+<div><br></div><div>Greets,</div><div>Satya</div>
+</div>
+</blockquote></div><br></div>
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-
-SRC_URI_append = " file://0001-makefile-one.patch \
-                    file://0002-makefile-two.patch"
- 
- 
-
-PRINC := "${@int(PRINC) + 1}"
-
-and
-
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-SRC_URI_append = " file://0003-makefile-three.patch \
-                    file://0004-makefile-four.patch"
- 
- 
-
-PRINC := "${@int(PRINC) + 1}"
-
-.. and alas, the all were applied:
-
- > grep NAME Makefile
-NAME = Displaced Humerus Anterior one two three four
-
-....
-
-Can you send me the exact names of your patches ? I'm wondering if
-an already applied check is triggering and preventing the auto push.
-
-Bruce
-
->
-> Cheers,
->
-> Bruce
->
->>
->> Thanks,
->> Bryan
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--001a11339edab3d2fb04e01c71b5--
