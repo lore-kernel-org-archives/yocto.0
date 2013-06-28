@@ -1,28 +1,34 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECF22E01482
-	for <yocto@yoctoproject.org>; Fri, 28 Jun 2013 01:51:57 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r5S8waZr020272; Fri, 28 Jun 2013 09:58:36 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id Y6aHkTeDBoXq; Fri, 28 Jun 2013 09:58:35 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r5S8wU3X020264
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Fri, 28 Jun 2013 09:58:32 +0100
-Message-ID: <1372409484.9930.245.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Ashfield, Bruce" <Bruce.Ashfield@windriver.com>, "Hart, Darren"
-	<darren.hart@intel.com>
-Date: Fri, 28 Jun 2013 09:51:24 +0100
-X-Mailer: Evolution 3.6.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: yocto <yocto@yoctoproject.org>
-Subject: poky-extras
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39671E01482
+	for <yocto@yoctoproject.org>; Fri, 28 Jun 2013 01:55:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
+	bh=Lio5ABp/+bBsO+kNivV0nIgALzXKgFLgNLxZZrknT3Y=; 
+	b=S55yM6CMSl4LuQhf7PqEHBSMkLRMkIFjPQXkkjJXFgqxIMEow5hD1+JdqRFls2MBar4aXc8Qi41wF/3wSKRBB+aZcfNOHGytb3OxrXkdHngK8ehJ/c3nafY9yF5z2b9N6bvsbOkQEKUn5EYYRPHkpxJtE3N2CDBBxmJq/L6VoIQ=;
+Received: from [109.224.129.17] (port=42535
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80)
+	(envelope-from <opensource@keylevel.com>) id 1UsUT2-000ju1-8x
+	for yocto@yoctoproject.org; Fri, 28 Jun 2013 09:55:44 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Fri, 28 Jun 2013 09:55:42 +0100
+Message-Id: <14A8E2D5-FF50-4903-A839-806D77B12FF8@keylevel.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1283)
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Subject: Bitbake requires Python 2.7.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,31 +40,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jun 2013 08:52:00 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 28 Jun 2013 08:55:53 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Bruce/Darren,
+I'm experimenting with meta-fsl-arm and I need to use 'master' for some =
+of the latest updates. However, when I build I get told that "Bitbake =
+requires Python 2.7.3".
 
-My attention was drawn to the existence of poky-extras. This was really
-a short term gap filling repository and I think the time has come to
-remove it. There are basically two chunks of code in there.
+My development system is Ubuntu 11.10, which only has 2.7.2 (and is out =
+of support, so no updates!) and the "latest" "Quick Start" manual simply =
+says that 2.7 is required.
 
-The meta-linaro pieces in there haven't been touched in two years and
-are therefore dead. I think we should delete them to alleviate any
-confusion.
+Is 2.7.3 now a hard requirement (in which case the documentation could =
+do with a minor change), or is the version test being too specific?
 
-The kernel pieces have been touched more recently. Some moved into the
-core, mostly its just example boiler plate type code now. I think this
-needs moving to a better named repository if its still wanted/useful, or
-we delete it. I personally don't have a strong preference.
+Chris Tapp
 
-Can someone take care of sorting this out?
+opensource@keylevel.com
+www.keylevel.com
 
-I did notice there is an empty checksums.ini file in there!
 
-Cheers,
-
-Richard
 
 
