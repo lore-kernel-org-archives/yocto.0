@@ -1,32 +1,34 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C338FE00348;
-	Fri, 28 Jun 2013 06:56:52 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r5SE3XvT002618; Fri, 28 Jun 2013 15:03:33 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id LpldzHm1J0CF; Fri, 28 Jun 2013 15:03:33 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r5SE3UqX002614
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Fri, 28 Jun 2013 15:03:31 +0100
-Message-ID: <1372427783.9930.258.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Fri, 28 Jun 2013 14:56:23 +0100
-In-Reply-To: <51CD9264.2040609@windriver.com>
-References: <1372409484.9930.245.camel@ted> <51CD86F1.7090409@windriver.com>
-	<1372424223.9930.257.camel@ted> <51CD8973.7020704@windriver.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF5244E@ORSMSX101.amr.corp.intel.com>
-	<51CD9264.2040609@windriver.com>
-X-Mailer: Evolution 3.6.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: "Hart, Darren" <darren.hart@intel.com>, yocto <yocto@yoctoproject.org>
-Subject: Re: poky-extras
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ea0-f179.google.com (mail-ea0-f179.google.com
+	[209.85.215.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F82CE00348
+	for <yocto@yoctoproject.org>; Fri, 28 Jun 2013 09:01:40 -0700 (PDT)
+Received: by mail-ea0-f179.google.com with SMTP id b15so1152716eae.10
+	for <yocto@yoctoproject.org>; Fri, 28 Jun 2013 09:01:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=t/l+GJuIISSlw+1EEQPLYtiwK4/6BDz1JCEkm+YTAIo=;
+	b=b63D32KHKv/J/1owXeYN+o0VBlesTt2jzXikbZv97mE34R5533peCt6cLsr6vJlomV
+	ggzB0oe39zGWUhEfJXCya9bVtYFdv//o0J5HMywmA0li7pLa0STLoVcfJh2/dWl+yCje
+	AzJnQ7nZii1DeisJuQEdf6oDxRn4iyg0aL6GfXKEcMm9LCL8yLF8V2Zxf2f4CShcXEDq
+	M+Qnu1UQJS8gdeCN3jT+XkcCcgV3TMkQFCzKvt/RwctUzQ9vpkK5Rn3vUXBTg8a7aaNh
+	ODwjTG1s8CGAlLg9FSmoRrI/2hZU8Uj2Ypo8A2hvNYvUuLN9Q/4SbgnbUOFM+NgyrzOG
+	BZCg==
+MIME-Version: 1.0
+X-Received: by 10.15.111.135 with SMTP id cj7mr14429138eeb.144.1372435299337; 
+	Fri, 28 Jun 2013 09:01:39 -0700 (PDT)
+Received: by 10.14.117.65 with HTTP; Fri, 28 Jun 2013 09:01:39 -0700 (PDT)
+In-Reply-To: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
+References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
+Date: Fri, 28 Jun 2013 12:01:39 -0400
+Message-ID: <CALmOhgmENvPECpf-L4w8q0cTmLhuvJuYeCyFjaRN6bN=XLx_-Q@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: Ross Burton <ross.burton@intel.com>
+X-Gm-Message-State: ALoCoQmseahphvXGqMK5WggL/z2eU1Ffo1DkalVjKZPDVTyfkqf0YYMrGmaaK6x90Aks7Y0EQfBY
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,30 +40,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jun 2013 13:56:57 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 28 Jun 2013 16:01:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, 2013-06-28 at 09:40 -0400, Bruce Ashfield wrote:
-> On 13-06-28 09:22 AM, Rifenbark, Scott M wrote:
-> > All I need is the name to make some initial changes.
-> 
-> Personally, I'm fine with 'meta-yocto-kernel'. Naming things is
-> never easy, so I won't agonize over whether or not an "extras"
-> should be on the end. But the name should be clear that it isn't
-> the main yocto kernel, it's just a few crappy bbappends that make
-> working with it locally easier for some :)
-> 
-> So my only counter proposal is: meta-yocto-kernel-extras
-> 
-> I'm going to de-crapify the bbappends so they are more useful, and
-> have started on that work, but haven't finished it yet.
+Just out of curiosity...
 
-No strong feelings here. I just wiped out meta-linaro from there (hoping
-Darren won't mind) and that checksums.ini file.
+On 27 June 2013 06:06, Ross Burton <ross.burton@intel.com> wrote:
+>  buildset-config/nightly-arm.conf     |    2 ++
+>  buildset-config/nightly-fsl-arm.conf |    2 ++
+>  buildset-config/nightly-fsl-ppc.conf |    2 ++
+>  buildset-config/nightly-mips.conf    |    2 ++
+>  buildset-config/nightly-oecore.conf  |    2 ++
+>  buildset-config/nightly-ppc.conf     |    2 ++
+>  buildset-config/nightly-x86-64.conf  |    2 ++
+>  buildset-config/nightly-x86.conf     |    2 ++
 
-Cheers,
 
-Richard
-
+Against which repository do these apply?
 
