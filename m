@@ -1,36 +1,34 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D95E1E01492
-	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 05:26:13 -0700 (PDT)
-Received: by mail-wi0-f176.google.com with SMTP id ey16so1654618wid.3
-	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 05:26:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
+Return-Path: <varun292006@gmail.com>
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28CE5E01206
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
+Received: by mail-pa0-f51.google.com with SMTP id lf11so3601841pab.10
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=N3baqD2Jjy62a/U0ehKAgWYYVipZS0MCiK8nYtnmjoU=;
-	b=jyC1UaD9Fb3sfTTVKf48AMLzgSvafjJmy5M9iylpXX17T9ChFq7wleBm6hknl+juNI
-	PWrJFTw5PlmVTtR4M5MzZPTFpWQLx12JZKKfLlTF0BeNvnPsoLpVNTuOnznc98e4fZtz
-	DY9sfRNE/boVpDIdz3W3893xNCYxSbzhoQFwB46yMIvIIBlsWojcXIbZTtVbghLoB+n4
-	4TcjJz+vZRhfSvdgT52aiveQ+zYtAaWqHjYm3qgCJxDXkogKM00DxgXiCiTGOPSG/Hda
-	tzmh+lqNaTQ96LP38uBuRGqjv8wJBGDlsi4CPR3cEVjUbp2Ig72g1Jpmx/74oEEP7qGB
-	9D5A==
+	:content-type; bh=NGtDQ1RTqxWUSZsTyJ3wDTgxY6u0G/xrMmkhxSjOoTc=;
+	b=SNfJ6w2w6WgAYA/24I1iK/PDXE4/mHx6sL+aqe1e50ZFoRPoq4p/xUxnQtYewvM/Bu
+	A5GHkku8A9IE2ERAcn4eudray5FnjyxI0wvk5YkEGAPA22XJ739D0WKIAGmnHnSg22g3
+	3f2a6ydBojn8PainwO8vQgFwbR/lG3TQ3EEjzyTkDnnnaU6Q/flVxHCEySU27DMj1R89
+	JYTZ40OJeniRNsvk3dJLB0Um2RYFyLDg39WDx7iTfl12eSWDtZwsmmQxU76agXoKWscl
+	rVpHMK1XFicpq+gkZdEkcBMkI9XVCRFJ5Fq+/TmLU0zjnqkYXhjJ1bdu60haczpT8Us9
+	GJ+w==
 MIME-Version: 1.0
-X-Received: by 10.180.76.206 with SMTP id m14mr6112365wiw.38.1372508772279;
-	Sat, 29 Jun 2013 05:26:12 -0700 (PDT)
-Received: by 10.14.117.65 with HTTP; Sat, 29 Jun 2013 05:26:12 -0700 (PDT)
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF51ADC@ORSMSX101.amr.corp.intel.com>
-References: <1372214269-16897-1-git-send-email-trevor.woerner@linaro.org>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF51ADC@ORSMSX101.amr.corp.intel.com>
-Date: Sat, 29 Jun 2013 08:26:12 -0400
-Message-ID: <CALmOhg=evL-vyWc5q3Fd=y2GnUz3gfWSUyJDVFG5J=1k2w2L7g@mail.gmail.com>
-From: Trevor Woerner <trevor.woerner@linaro.org>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-X-Gm-Message-State: ALoCoQmFkCD885jEAISNOkkJSy5LfhVYaEIXVOsNC4M0izw8m+Ltp6uUFTWpy71uk289YDHXlgOA
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
-	Saul" <saul.wold@intel.com>, "patches@linaro.org" <patches@linaro.org>
-Subject: Re: [yocto-docs][PATCH] dev-manual: referencing bugzilla issues
+X-Received: by 10.68.224.136 with SMTP id rc8mr16944284pbc.109.1372530958314; 
+	Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
+Received: by 10.68.129.134 with HTTP; Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
+In-Reply-To: <2897880.FC0dZLhceG@helios>
+References: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
+	<51C9EBCE.40501@linux.intel.com>
+	<CAGxOggG7R-5rLHg3H_WH9wtgSnf0EZfRAYs2jtQvGK+DeQfTiA@mail.gmail.com>
+	<2897880.FC0dZLhceG@helios>
+Date: Sun, 30 Jun 2013 00:05:58 +0530
+Message-ID: <CAGxOggHBwsZ5f5f9x12-pOLGJY9bRNkAu6G27kz4Qgp-4ztdqA@mail.gmail.com>
+From: varun bhatnagar <varun292006@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Layers not getting recognized by bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,65 +40,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Jun 2013 12:26:16 -0000
+X-List-Received-Date: Sat, 29 Jun 2013 18:35:59 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff2438b36b08704e04f4495
+
+--e89a8ff2438b36b08704e04f4495
 Content-Type: text/plain; charset=ISO-8859-1
 
-What's odd is that here:
+Yes Paul that was the entry was there in CORE_IMAGE_EXTRA_INSTALL. I have
+removed it from there but I need to add the command provided by these
+packages in my image. So I have added one line in my layer.conf file
+"IMAGE_INSTALL_append= test-ea ". Now if I try to run bitbake -k
+core-image-minimal, it gives me a message saying "Nothing provides
+test-ea". What shall I do? (I have build the recipe file of test-ea without
+any error.)
 
-http://lists.linuxtogo.org/pipermail/openembedded-core/2013-April/037826.html
 
-Saul explicitly tells Radu that using the brackets is the correct
-format (which is what, I think, caused me to send this patch in the
-first place).
+On Fri, Jun 28, 2013 at 1:55 AM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
 
-I hope Saul notices this thread and comments :-)
-
-On 26 June 2013 00:26, Rifenbark, Scott M <scott.m.rifenbark@intel.com> wrote:
-> Trevor,
+> On Thursday 27 June 2013 23:28:05 varun bhatnagar wrote:
+> >  Thanks a ton Paul and Saul for the reply. Your suggestion worked. :)
+> > But after building my recipe file I executed bitbake -k
+> core-image-minimal
+> > and I got the following error:
+> >
+> > NOTE: Resolving any missing task queue dependencies
+> > Missing or unbuildable dependency chain was: ['app-ea']
+> > ERROR: Nothing RPROVIDES 'app-ea' (but
+> > /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/
+> > core-image-minimal.bb RDEPENDS on or otherwise requires it)
+> > NOTE: Runtime target 'com-ea' is unbuildable, removing...
+> > Missing or unbuildable dependency chain was: ['test-ea']
+> > ERROR: Nothing RPROVIDES 'tipcutils' (but
+> > /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/
+> > core-image-minimal.bb RDEPENDS on or otherwise requires it)
+> > NOTE: Runtime target 'tipcutils' is unbuildable, removing...
+> > Missing or unbuildable dependency chain was: ['tipcutils']
+> > NOTE: Preparing runqueue
+> > ERROR: All buildable tasks have been run but the build is incomplete
+> > (--continue mode). Errors for the tasks that failed will have been
+> printed
+> > above.
+> >
+> > Summary: There were 3 ERROR messages shown, returning a non-zero exit
+> code.
+> >
+> >
+> > Any idea how to resolve this one?
 >
-> I use to have [YOCTO #<bug-id>] in the manual just as you do here.  I was told by Saul though that I was not to use the brackets in the commit description.  That is when I took them out of the manual.  Maybe Saul can add more to this explanation.
+> None of "com-ea", "test-ea" or "tipcutils" are normally in
+> core-image-minimal
+> nor are they in any OE layer that I am aware of. I can only suggest that
+> you
+> might have added these to CORE_IMAGE_EXTRA_INSTALL, is that correct? If so,
+> either remove these or ensure they actually exist somewhere in an enabled
+> layer where that layer has BBFILES correctly set up in its conf/layer.conf
+> file
+> to match the directory structure of the layer.
 >
-> Thanks,
-> Scott
+> Cheers,
+> Paul
 >
->>-----Original Message-----
->>From: yocto-bounces@yoctoproject.org [mailto:yocto-
->>bounces@yoctoproject.org] On Behalf Of Trevor Woerner
->>Sent: Tuesday, June 25, 2013 7:38 PM
->>To: yocto@yoctoproject.org
->>Cc: patches@linaro.org
->>Subject: [yocto] [yocto-docs][PATCH] dev-manual: referencing bugzilla
->>issues
->>
->>Based on observations from the various mailing lists, it is obvious that
->>bugzilla issues are almost always referenced using square brackets.
->>
->>Signed-off-by: Trevor Woerner <trevor.woerner@linaro.org>
->>---
->> documentation/dev-manual/dev-manual-newbie.xml | 2 +-
->> 1 file changed, 1 insertion(+), 1 deletion(-)
->>
->>diff --git a/documentation/dev-manual/dev-manual-newbie.xml
->>b/documentation/dev-manual/dev-manual-newbie.xml
->>index 0c849f5..55e0c58 100644
->>--- a/documentation/dev-manual/dev-manual-newbie.xml
->>+++ b/documentation/dev-manual/dev-manual-newbie.xml
->>@@ -1405,7 +1405,7 @@
->>                 references - any commit that addresses a specific bug
->>should include the
->>                 bug ID in the description (typically at the beginning)
->>as follows:
->>                 <literallayout class='monospaced'>
->>-     Fixes YOCTO #&lt;bug-id&gt;
->>+     [YOCTO #&lt;bug-id&gt;]
->>
->>      &lt;detailed description of change&gt;
->>                 </literallayout></para></listitem>
->>--
->>1.8.3.rc1.44.gb387c77
->>
->>_______________________________________________
->>yocto mailing list
->>yocto@yoctoproject.org
->>https://lists.yoctoproject.org/listinfo/yocto
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+>
 
+--e89a8ff2438b36b08704e04f4495
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Yes Paul that was the entry was there in CORE_IMAGE_EXTRA_=
+INSTALL. I have removed it from there but I need to add the command provide=
+d by these packages in my image. So I have added one line in my layer.conf =
+file &quot;IMAGE_INSTALL_append=3D test-ea &quot;. Now if I try to run bitb=
+ake -k core-image-minimal, it gives me a message saying &quot;Nothing provi=
+des test-ea&quot;. What shall I do? (I have build the recipe file of test-e=
+a without any error.)</div>
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Jun 2=
+8, 2013 at 1:55 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:p=
+aul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.c=
+om</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On T=
+hursday 27 June 2013 23:28:05 varun bhatnagar wrote:<br>
+&gt; =A0Thanks a ton Paul and Saul for the reply. Your suggestion worked. :=
+)<br>
+&gt; But after building my recipe file I executed bitbake -k core-image-min=
+imal<br>
+&gt; and I got the following error:<br>
+&gt;<br>
+&gt; NOTE: Resolving any missing task queue dependencies<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;app-ea&#39;]<br>
+&gt; ERROR: Nothing RPROVIDES &#39;app-ea&#39; (but<br>
+&gt; /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/<br>
+&gt; <a href=3D"http://core-image-minimal.bb" target=3D"_blank">core-image-=
+minimal.bb</a> RDEPENDS on or otherwise requires it)<br>
+&gt; NOTE: Runtime target &#39;com-ea&#39; is unbuildable, removing...<br>
+&gt; Missing or unbuildable dependency chain was: [&#39;test-ea&#39;]<br>
+&gt; ERROR: Nothing RPROVIDES &#39;tipcutils&#39; (but<br>
+&gt; /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/<br>
+&gt; <a href=3D"http://core-image-minimal.bb" target=3D"_blank">core-image-=
+minimal.bb</a> RDEPENDS on or otherwise requires it)<br>
+&gt; NOTE: Runtime target &#39;tipcutils&#39; is unbuildable, removing...<b=
+r>
+&gt; Missing or unbuildable dependency chain was: [&#39;tipcutils&#39;]<br>
+&gt; NOTE: Preparing runqueue<br>
+&gt; ERROR: All buildable tasks have been run but the build is incomplete<b=
+r>
+&gt; (--continue mode). Errors for the tasks that failed will have been pri=
+nted<br>
+&gt; above.<br>
+&gt;<br>
+&gt; Summary: There were 3 ERROR messages shown, returning a non-zero exit =
+code.<br>
+&gt;<br>
+&gt;<br>
+&gt; Any idea how to resolve this one?<br>
+<br>
+</div></div>None of &quot;com-ea&quot;, &quot;test-ea&quot; or &quot;tipcut=
+ils&quot; are normally in core-image-minimal<br>
+nor are they in any OE layer that I am aware of. I can only suggest that yo=
+u<br>
+might have added these to CORE_IMAGE_EXTRA_INSTALL, is that correct? If so,=
+<br>
+either remove these or ensure they actually exist somewhere in an enabled<b=
+r>
+layer where that layer has BBFILES correctly set up in its conf/layer.conf =
+file<br>
+to match the directory structure of the layer.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+Cheers,<br>
+Paul<br>
+<br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</div></div></blockquote></div><br></div>
+
+--e89a8ff2438b36b08704e04f4495--
