@@ -1,27 +1,37 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B38CE014E4
-	for <yocto@yoctoproject.org>; Fri, 28 Jun 2013 14:44:52 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 24D97F811E2; Fri, 28 Jun 2013 15:44:51 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id AFFF1F811D9;
-	Fri, 28 Jun 2013 15:44:49 -0600 (MDT)
-Message-ID: <51CE03D9.6070202@mlbassoc.com>
-Date: Fri, 28 Jun 2013 15:44:57 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADE13E01492
+	for <yocto@yoctoproject.org>; Fri, 28 Jun 2013 21:50:25 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 28 Jun 2013 21:48:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,963,1363158000"; d="scan'208";a="337385051"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by orsmga001.jf.intel.com with ESMTP; 28 Jun 2013 21:50:24 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.181]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.22]) with mapi id
+	14.03.0123.003; Fri, 28 Jun 2013 21:50:24 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Khem Raj <raj.khem@gmail.com>, "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Documenting YP Development Environment in more detail
+	-	user configuration
+Thread-Index: AQHOdDoDwN932uhI/kuL/ds+caZQY5lMH+XA
+Date: Sat, 29 Jun 2013 04:50:23 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF525A1@ORSMSX101.amr.corp.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5130F@ORSMSX101.amr.corp.intel.com>
+	<51C8466F.8040808@balister.org>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF514AE@ORSMSX101.amr.corp.intel.com>
+	<alpine.DEB.2.02.1306241046210.24762@oneiric>
+	<CAJTo0Lb8mXhsma_8XvWp2B68QQ9tcS6PVGj9QWqMENgeCt8h5g@mail.gmail.com>
+	<04E09382-C8B6-4703-88B7-099564791B09@gmail.com>
+In-Reply-To: <04E09382-C8B6-4703-88B7-099564791B09@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
-In-Reply-To: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
-Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Documenting YP Development Environment in more detail -	user configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,22 +43,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jun 2013 21:44:55 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 29 Jun 2013 04:50:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2013-06-27 04:06, Ross Burton wrote:
-> The meta-toolchain* recipes are deprecated, so when building meta-toolchain-gmae
-> also build the SDK for core-image-sato.
+Thanks Khem for this extra insight.
+
+Scott
+
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Khem Raj
+>Sent: Friday, June 28, 2013 12:59 PM
+>To: Burton, Ross
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] Documenting YP Development Environment in more
+>detail - user configuration
 >
-> Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-If/when the meta-toolchain recipes go away, how do I create a stand-alone toolchain
-derived from Poky/Yocto (which I use all the time!)?
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+>
+>On Jun 24, 2013, at 7:57 AM, "Burton, Ross" <ross.burton@intel.com>
+>wrote:
+>
+>> meta-yocto is what makes Poky Poky, otherwise it would be just oe-core
+>> + bitbake.  oe-init-build-env looks for sample files in $TEMPLATECONF,
+>> which is one of the things that get munged as
+>> bitbake+oe-core+meta-yocto becomes poky.
+>
+>yeah, meta-yocto could have been better name meta-poky that would have
+>aligned the name
+>a bit. Its a distro layer much like other distro layers out there on
+>layerindex and then there is meta-yocto-bsp
+>layers which is much like any other machine layers out there.
+>a difference to point out is that poky uses the tooling to fudge all
+>layers together and create a single view
+>and is a leading user of combo-layer tooling provided by OE-Core. Other
+>distros keep the layers intact
+>slugos e.g. uses git submodules to maintain its layer setup. angstrom
+>has home-brew toolings and so on an so
+>forth. Both approaches have its own merits.
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
