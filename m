@@ -1,26 +1,36 @@
-Return-Path: <darren.hart@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68524E01492;
-	Fri, 28 Jun 2013 22:08:13 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 28 Jun 2013 22:05:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,963,1363158000"; d="scan'208";a="357641875"
-Received: from unknown (HELO [10.255.13.149]) ([10.255.13.149])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Jun 2013 22:08:52 -0700
-Message-ID: <1372482483.9243.42.camel@envy.home>
-From: Darren Hart <darren.hart@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date: Fri, 28 Jun 2013 22:08:03 -0700
-In-Reply-To: <1372427783.9930.258.camel@ted>
-References: <1372409484.9930.245.camel@ted> <51CD86F1.7090409@windriver.com>
-	<1372424223.9930.257.camel@ted> <51CD8973.7020704@windriver.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF5244E@ORSMSX101.amr.corp.intel.com>
-	<51CD9264.2040609@windriver.com> <1372427783.9930.258.camel@ted>
-X-Mailer: Evolution 3.6.4 (3.6.4-2.fc18) 
-Mime-Version: 1.0
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: poky-extras
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D95E1E01492
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 05:26:13 -0700 (PDT)
+Received: by mail-wi0-f176.google.com with SMTP id ey16so1654618wid.3
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 05:26:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=N3baqD2Jjy62a/U0ehKAgWYYVipZS0MCiK8nYtnmjoU=;
+	b=jyC1UaD9Fb3sfTTVKf48AMLzgSvafjJmy5M9iylpXX17T9ChFq7wleBm6hknl+juNI
+	PWrJFTw5PlmVTtR4M5MzZPTFpWQLx12JZKKfLlTF0BeNvnPsoLpVNTuOnznc98e4fZtz
+	DY9sfRNE/boVpDIdz3W3893xNCYxSbzhoQFwB46yMIvIIBlsWojcXIbZTtVbghLoB+n4
+	4TcjJz+vZRhfSvdgT52aiveQ+zYtAaWqHjYm3qgCJxDXkogKM00DxgXiCiTGOPSG/Hda
+	tzmh+lqNaTQ96LP38uBuRGqjv8wJBGDlsi4CPR3cEVjUbp2Ig72g1Jpmx/74oEEP7qGB
+	9D5A==
+MIME-Version: 1.0
+X-Received: by 10.180.76.206 with SMTP id m14mr6112365wiw.38.1372508772279;
+	Sat, 29 Jun 2013 05:26:12 -0700 (PDT)
+Received: by 10.14.117.65 with HTTP; Sat, 29 Jun 2013 05:26:12 -0700 (PDT)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF51ADC@ORSMSX101.amr.corp.intel.com>
+References: <1372214269-16897-1-git-send-email-trevor.woerner@linaro.org>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF51ADC@ORSMSX101.amr.corp.intel.com>
+Date: Sat, 29 Jun 2013 08:26:12 -0400
+Message-ID: <CALmOhg=evL-vyWc5q3Fd=y2GnUz3gfWSUyJDVFG5J=1k2w2L7g@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+X-Gm-Message-State: ALoCoQmFkCD885jEAISNOkkJSy5LfhVYaEIXVOsNC4M0izw8m+Ltp6uUFTWpy71uk289YDHXlgOA
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>, "patches@linaro.org" <patches@linaro.org>
+Subject: Re: [yocto-docs][PATCH] dev-manual: referencing bugzilla issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,35 +42,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Jun 2013 05:08:16 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 29 Jun 2013 12:26:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, 2013-06-28 at 14:56 +0100, Richard Purdie wrote:
-> On Fri, 2013-06-28 at 09:40 -0400, Bruce Ashfield wrote:
-> > On 13-06-28 09:22 AM, Rifenbark, Scott M wrote:
-> > > All I need is the name to make some initial changes.
-> > 
-> > Personally, I'm fine with 'meta-yocto-kernel'. Naming things is
-> > never easy, so I won't agonize over whether or not an "extras"
-> > should be on the end. But the name should be clear that it isn't
-> > the main yocto kernel, it's just a few crappy bbappends that make
-> > working with it locally easier for some :)
-> > 
-> > So my only counter proposal is: meta-yocto-kernel-extras
-> > 
-> > I'm going to de-crapify the bbappends so they are more useful, and
-> > have started on that work, but haven't finished it yet.
-> 
-> No strong feelings here. I just wiped out meta-linaro from there (hoping
-> Darren won't mind) and that checksums.ini file.
+What's odd is that here:
 
-That's fine, I was just thinking about that last week when I saw Linaro
-has a meta-linaro. That's where it belongs, so buh-bye. :-)
+http://lists.linuxtogo.org/pipermail/openembedded-core/2013-April/037826.html
 
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Technical Lead - Linux Kernel
+Saul explicitly tells Radu that using the brackets is the correct
+format (which is what, I think, caused me to send this patch in the
+first place).
 
+I hope Saul notices this thread and comments :-)
+
+On 26 June 2013 00:26, Rifenbark, Scott M <scott.m.rifenbark@intel.com> wrote:
+> Trevor,
+>
+> I use to have [YOCTO #<bug-id>] in the manual just as you do here.  I was told by Saul though that I was not to use the brackets in the commit description.  That is when I took them out of the manual.  Maybe Saul can add more to this explanation.
+>
+> Thanks,
+> Scott
+>
+>>-----Original Message-----
+>>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>>bounces@yoctoproject.org] On Behalf Of Trevor Woerner
+>>Sent: Tuesday, June 25, 2013 7:38 PM
+>>To: yocto@yoctoproject.org
+>>Cc: patches@linaro.org
+>>Subject: [yocto] [yocto-docs][PATCH] dev-manual: referencing bugzilla
+>>issues
+>>
+>>Based on observations from the various mailing lists, it is obvious that
+>>bugzilla issues are almost always referenced using square brackets.
+>>
+>>Signed-off-by: Trevor Woerner <trevor.woerner@linaro.org>
+>>---
+>> documentation/dev-manual/dev-manual-newbie.xml | 2 +-
+>> 1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>>diff --git a/documentation/dev-manual/dev-manual-newbie.xml
+>>b/documentation/dev-manual/dev-manual-newbie.xml
+>>index 0c849f5..55e0c58 100644
+>>--- a/documentation/dev-manual/dev-manual-newbie.xml
+>>+++ b/documentation/dev-manual/dev-manual-newbie.xml
+>>@@ -1405,7 +1405,7 @@
+>>                 references - any commit that addresses a specific bug
+>>should include the
+>>                 bug ID in the description (typically at the beginning)
+>>as follows:
+>>                 <literallayout class='monospaced'>
+>>-     Fixes YOCTO #&lt;bug-id&gt;
+>>+     [YOCTO #&lt;bug-id&gt;]
+>>
+>>      &lt;detailed description of change&gt;
+>>                 </literallayout></para></listitem>
+>>--
+>>1.8.3.rc1.44.gb387c77
+>>
+>>_______________________________________________
+>>yocto mailing list
+>>yocto@yoctoproject.org
+>>https://lists.yoctoproject.org/listinfo/yocto
 
