@@ -1,34 +1,43 @@
-Return-Path: <varun292006@gmail.com>
-Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
-	[209.85.220.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28CE5E01206
-	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
-Received: by mail-pa0-f51.google.com with SMTP id lf11so3601841pab.10
-	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EEBDE01206
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 18:56:14 -0700 (PDT)
+Received: by mail-wi0-f179.google.com with SMTP id hj3so2044541wib.0
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2013 18:56:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=NGtDQ1RTqxWUSZsTyJ3wDTgxY6u0G/xrMmkhxSjOoTc=;
-	b=SNfJ6w2w6WgAYA/24I1iK/PDXE4/mHx6sL+aqe1e50ZFoRPoq4p/xUxnQtYewvM/Bu
-	A5GHkku8A9IE2ERAcn4eudray5FnjyxI0wvk5YkEGAPA22XJ739D0WKIAGmnHnSg22g3
-	3f2a6ydBojn8PainwO8vQgFwbR/lG3TQ3EEjzyTkDnnnaU6Q/flVxHCEySU27DMj1R89
-	JYTZ40OJeniRNsvk3dJLB0Um2RYFyLDg39WDx7iTfl12eSWDtZwsmmQxU76agXoKWscl
-	rVpHMK1XFicpq+gkZdEkcBMkI9XVCRFJ5Fq+/TmLU0zjnqkYXhjJ1bdu60haczpT8Us9
-	GJ+w==
+	:cc:content-type:x-gm-message-state;
+	bh=xl/PegfY+OhA1rnLEu+PC0glanvI6PyNa9Rn4Ht9JYo=;
+	b=l8e7rLZGzaIwGWS++kFNaaIzzsNtgLWd9n/QSGHMg+t14134vumKhn5ivPjrIMfTWX
+	ifjAGlbJkyOMgkK0h3uSf3M93TgvBlvxhbeC99sK06AEaDw22xViA/6/qOPvA4z3hVYQ
+	V2VrlWWZ8UCwiGlsSpdmgDbATucmkItnu2nbUuRz4OwqAg/Zf0eG/m/kne2vr+rQoT5y
+	enfHvOMRxxwz4q02UVHgE0BwSDB72l2evWvxhYWTLzy6g5eZTlAt1Oux7YLkHcJOaunC
+	nNh8WCmLS0R/f3Rp0wnFiZiewOowyxEFNHyo0EUwStmGwVvjND8cDG8apghjmGe9KqJw
+	pggQ==
 MIME-Version: 1.0
-X-Received: by 10.68.224.136 with SMTP id rc8mr16944284pbc.109.1372530958314; 
-	Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
-Received: by 10.68.129.134 with HTTP; Sat, 29 Jun 2013 11:35:58 -0700 (PDT)
-In-Reply-To: <2897880.FC0dZLhceG@helios>
-References: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
-	<51C9EBCE.40501@linux.intel.com>
-	<CAGxOggG7R-5rLHg3H_WH9wtgSnf0EZfRAYs2jtQvGK+DeQfTiA@mail.gmail.com>
-	<2897880.FC0dZLhceG@helios>
-Date: Sun, 30 Jun 2013 00:05:58 +0530
-Message-ID: <CAGxOggHBwsZ5f5f9x12-pOLGJY9bRNkAu6G27kz4Qgp-4ztdqA@mail.gmail.com>
-From: varun bhatnagar <varun292006@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Layers not getting recognized by bitbake
+X-Received: by 10.180.211.49 with SMTP id mz17mr1962838wic.23.1372557373507;
+	Sat, 29 Jun 2013 18:56:13 -0700 (PDT)
+Received: by 10.14.117.65 with HTTP; Sat, 29 Jun 2013 18:56:13 -0700 (PDT)
+In-Reply-To: <CAP71WjyBMQY338qym=wSpptbo2CyXaxosF4YgC7GEkMhxUSMsg@mail.gmail.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF50C1A@ORSMSX101.amr.corp.intel.com>
+	<CDE892AD.36CA0%david.c.stewart@intel.com>
+	<000001ce6de8$70639de0$512ad9a0$@annabooks.com>
+	<CALmOhg=h=j+uHiPdGShjZwtL97jsnhz1v6T4GRfcge0jJypTKQ@mail.gmail.com>
+	<CA+gsK-orLA13kBxTSj-E451GQKKdy8L6hUHQxKQgFqg-VNiK8Q@mail.gmail.com>
+	<CALmOhgmpSjx-D-EycMX9AJv1Rwgrvv3VE2jKqakd4kUtbXYHJg@mail.gmail.com>
+	<CA+gsK-phin-6EsfXixkC1OWfpg6J4oK22NOp+duP7aXAgvbM5w@mail.gmail.com>
+	<D4BD4C7E-8D99-4C55-821D-DF8C2BF9F6EB@gmail.com>
+	<CAP71WjyBMQY338qym=wSpptbo2CyXaxosF4YgC7GEkMhxUSMsg@mail.gmail.com>
+Date: Sat, 29 Jun 2013 21:56:13 -0400
+Message-ID: <CALmOhgnaKkTxBko81RvKjRc+imfarpSaY8bXj4ZOCFeLZ8hGog@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+X-Gm-Message-State: ALoCoQngKroYpbZIaOgfhq9LsJndB321/iaCURQhRPCqNDx5LtxL0KOjovPF2xI8P+ldHhfTkCvJ
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rudolf Streif <rstreif@linuxfoundation.org>
+Subject: Re: Documenting YP Development Environment in more detail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,144 +49,9 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Jun 2013 18:35:59 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff2438b36b08704e04f4495
-
---e89a8ff2438b36b08704e04f4495
+X-List-Received-Date: Sun, 30 Jun 2013 01:56:17 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Yes Paul that was the entry was there in CORE_IMAGE_EXTRA_INSTALL. I have
-removed it from there but I need to add the command provided by these
-packages in my image. So I have added one line in my layer.conf file
-"IMAGE_INSTALL_append= test-ea ". Now if I try to run bitbake -k
-core-image-minimal, it gives me a message saying "Nothing provides
-test-ea". What shall I do? (I have build the recipe file of test-ea without
-any error.)
+It looks like the community freescale work at github is using it too:
+https://github.com/Freescale/fsl-community-bsp-platform
 
-
-On Fri, Jun 28, 2013 at 1:55 AM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
-
-> On Thursday 27 June 2013 23:28:05 varun bhatnagar wrote:
-> >  Thanks a ton Paul and Saul for the reply. Your suggestion worked. :)
-> > But after building my recipe file I executed bitbake -k
-> core-image-minimal
-> > and I got the following error:
-> >
-> > NOTE: Resolving any missing task queue dependencies
-> > Missing or unbuildable dependency chain was: ['app-ea']
-> > ERROR: Nothing RPROVIDES 'app-ea' (but
-> > /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/
-> > core-image-minimal.bb RDEPENDS on or otherwise requires it)
-> > NOTE: Runtime target 'com-ea' is unbuildable, removing...
-> > Missing or unbuildable dependency chain was: ['test-ea']
-> > ERROR: Nothing RPROVIDES 'tipcutils' (but
-> > /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/
-> > core-image-minimal.bb RDEPENDS on or otherwise requires it)
-> > NOTE: Runtime target 'tipcutils' is unbuildable, removing...
-> > Missing or unbuildable dependency chain was: ['tipcutils']
-> > NOTE: Preparing runqueue
-> > ERROR: All buildable tasks have been run but the build is incomplete
-> > (--continue mode). Errors for the tasks that failed will have been
-> printed
-> > above.
-> >
-> > Summary: There were 3 ERROR messages shown, returning a non-zero exit
-> code.
-> >
-> >
-> > Any idea how to resolve this one?
->
-> None of "com-ea", "test-ea" or "tipcutils" are normally in
-> core-image-minimal
-> nor are they in any OE layer that I am aware of. I can only suggest that
-> you
-> might have added these to CORE_IMAGE_EXTRA_INSTALL, is that correct? If so,
-> either remove these or ensure they actually exist somewhere in an enabled
-> layer where that layer has BBFILES correctly set up in its conf/layer.conf
-> file
-> to match the directory structure of the layer.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---e89a8ff2438b36b08704e04f4495
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Yes Paul that was the entry was there in CORE_IMAGE_EXTRA_=
-INSTALL. I have removed it from there but I need to add the command provide=
-d by these packages in my image. So I have added one line in my layer.conf =
-file &quot;IMAGE_INSTALL_append=3D test-ea &quot;. Now if I try to run bitb=
-ake -k core-image-minimal, it gives me a message saying &quot;Nothing provi=
-des test-ea&quot;. What shall I do? (I have build the recipe file of test-e=
-a without any error.)</div>
-<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Jun 2=
-8, 2013 at 1:55 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:p=
-aul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.c=
-om</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On T=
-hursday 27 June 2013 23:28:05 varun bhatnagar wrote:<br>
-&gt; =A0Thanks a ton Paul and Saul for the reply. Your suggestion worked. :=
-)<br>
-&gt; But after building my recipe file I executed bitbake -k core-image-min=
-imal<br>
-&gt; and I got the following error:<br>
-&gt;<br>
-&gt; NOTE: Resolving any missing task queue dependencies<br>
-&gt; Missing or unbuildable dependency chain was: [&#39;app-ea&#39;]<br>
-&gt; ERROR: Nothing RPROVIDES &#39;app-ea&#39; (but<br>
-&gt; /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/<br>
-&gt; <a href=3D"http://core-image-minimal.bb" target=3D"_blank">core-image-=
-minimal.bb</a> RDEPENDS on or otherwise requires it)<br>
-&gt; NOTE: Runtime target &#39;com-ea&#39; is unbuildable, removing...<br>
-&gt; Missing or unbuildable dependency chain was: [&#39;test-ea&#39;]<br>
-&gt; ERROR: Nothing RPROVIDES &#39;tipcutils&#39; (but<br>
-&gt; /local/varun/poky-yocto-1.4-m3/meta/recipes-core/images/<br>
-&gt; <a href=3D"http://core-image-minimal.bb" target=3D"_blank">core-image-=
-minimal.bb</a> RDEPENDS on or otherwise requires it)<br>
-&gt; NOTE: Runtime target &#39;tipcutils&#39; is unbuildable, removing...<b=
-r>
-&gt; Missing or unbuildable dependency chain was: [&#39;tipcutils&#39;]<br>
-&gt; NOTE: Preparing runqueue<br>
-&gt; ERROR: All buildable tasks have been run but the build is incomplete<b=
-r>
-&gt; (--continue mode). Errors for the tasks that failed will have been pri=
-nted<br>
-&gt; above.<br>
-&gt;<br>
-&gt; Summary: There were 3 ERROR messages shown, returning a non-zero exit =
-code.<br>
-&gt;<br>
-&gt;<br>
-&gt; Any idea how to resolve this one?<br>
-<br>
-</div></div>None of &quot;com-ea&quot;, &quot;test-ea&quot; or &quot;tipcut=
-ils&quot; are normally in core-image-minimal<br>
-nor are they in any OE layer that I am aware of. I can only suggest that yo=
-u<br>
-might have added these to CORE_IMAGE_EXTRA_INSTALL, is that correct? If so,=
-<br>
-either remove these or ensure they actually exist somewhere in an enabled<b=
-r>
-layer where that layer has BBFILES correctly set up in its conf/layer.conf =
-file<br>
-to match the directory structure of the layer.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
-
---e89a8ff2438b36b08704e04f4495--
