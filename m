@@ -1,39 +1,32 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-wi0-f171.google.com (mail-wi0-f171.google.com
-	[209.85.212.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E95E5E0153F
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 02:17:12 -0700 (PDT)
-Received: by mail-wi0-f171.google.com with SMTP id hj3so2817540wib.4
-	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 02:17:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:content-type:x-mailer:mime-version:content-transfer-encoding
-	:x-gm-message-state;
-	bh=zcW1Vbot7ZRmQjqr+BBszAZkEU0h3Yw3zU9KiAs5xd8=;
-	b=EorFWWRkz/gOaBsfQ5xYT8ttpsFthNe8JPAskLmFDNum110J56bvoyWMaRr9sAR7tD
-	EVy5d3YpcqAiIPOI4ctoxkwDv/tm0unpmGPlr/3eQz5wBCQxsDfBKPU7e3zmimeljzde
-	V7lXfWLwwAec9ctfK5XTOc/KSjVea4fpMM++kojWVFesOg6ag8EcoOq/16pAw4iiOxdS
-	Ybcbnf1g9/bMVbTugNygDy6wfNyd+P/EQ5B+Lp6ACtBkVrvJAF5LQwd05wVsAK3o/X68
-	zZ1jgcCUwYBhBNz/cPz6qGpaIoDLRMMop+KijNT0tgcrGLb3ap0GiUCZfJMGc2otYt2U
-	DEaw==
-X-Received: by 10.180.38.45 with SMTP id d13mr11323466wik.62.1372670231295;
-	Mon, 01 Jul 2013 02:17:11 -0700 (PDT)
-Received: from [192.168.1.9] (35.106.2.81.in-addr.arpa. [81.2.106.35])
-	by mx.google.com with ESMTPSA id b20sm14958341wiw.4.2013.07.01.02.17.09
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 01 Jul 2013 02:17:10 -0700 (PDT)
-Message-ID: <1372670218.7808.4.camel@flashheart.burtonini.com>
-From: Ross Burton <ross.burton@intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Mon, 01 Jul 2013 10:16:58 +0100
-In-Reply-To: <51CE03D9.6070202@mlbassoc.com>
+Return-Path: <bruce.kumita@gmail.com>
+Received: from mail-qe0-f47.google.com (mail-qe0-f47.google.com
+	[209.85.128.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E31E3E013B8
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 02:24:44 -0700 (PDT)
+Received: by mail-qe0-f47.google.com with SMTP id 1so1546373qec.6
+	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 02:24:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=kYIJGWzz3880Pzgt6QkRyKo3Y1ceH9Y0YL7OL5ha7kU=;
+	b=mo68J0erqpIDsXIyKnmXo2Ul2SxXfDxADT6JLKEIcNsabyuO294upoD4MGUmlpHJT1
+	YGOiJNufioRbxIxfdK/vDFm2Nifv4lwiMx3MRjihAyvyAP1jWHpQ4CjRtuuV74HMhKYe
+	X1b7kNnausuqHlwUpCR+WYCay11Bqx/u5lIoFSH0ob9rVO/ms2219AqKwm4vAP9RRw0R
+	uM5xQu9Y2dJCecEozdWlVsrMnuvtvP6zwIHX7Koec+GUC28VQ5Vn7dQE8unHkxtHFSjx
+	Gjqy+zUtWUwjS8bDhQ16I4ODtBzuoYh8LzApuBw8f9+QVpTU2utzR0WfJr2sI3aBlELh
+	mDIQ==
+MIME-Version: 1.0
+X-Received: by 10.224.22.8 with SMTP id l8mr4626505qab.45.1372670683547; Mon,
+	01 Jul 2013 02:24:43 -0700 (PDT)
+Received: by 10.229.13.105 with HTTP; Mon, 1 Jul 2013 02:24:43 -0700 (PDT)
+In-Reply-To: <1372670218.7808.4.camel@flashheart.burtonini.com>
 References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
 	<51CE03D9.6070202@mlbassoc.com>
-X-Mailer: Evolution 3.6.3-1 
-Mime-Version: 1.0
-X-Gm-Message-State: ALoCoQlnZNu4rPo3kxfGDO3Mfz4T2Xv5f4tGWJIkY8/gjAlKH6RA69Hv1WLAZxSTjNxaFu7riLUL
+	<1372670218.7808.4.camel@flashheart.burtonini.com>
+Date: Mon, 1 Jul 2013 17:24:43 +0800
+Message-ID: <CALaXJ9kPeBKf0u2pnbso_+P97ZWtVz8ZhffUL9JaLC+gqvm4vA@mail.gmail.com>
+From: Kumita Bruce <bruce.kumita@gmail.com>
+To: Ross Burton <ross.burton@intel.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
 X-BeenThere: yocto@yoctoproject.org
@@ -47,28 +40,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 09:17:14 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 01 Jul 2013 09:24:50 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc8cc67c8ea704e06fccb4
 
-On Fri, 2013-06-28 at 15:44 -0600, Gary Thomas wrote:
-> On 2013-06-27 04:06, Ross Burton wrote:
-> > The meta-toolchain* recipes are deprecated, so when building meta-toolchain-gmae
-> > also build the SDK for core-image-sato.
+--047d7bdc8cc67c8ea704e06fccb4
+Content-Type: text/plain; charset=ISO-8859-1
+
+What's the reason to deprecate meta-toolchain that is for standalone
+cross-compiler generation? Is there a replacement?
+
+
+Cheers,
+
+Bruce
+
+
+
+On Mon, Jul 1, 2013 at 5:16 PM, Ross Burton <ross.burton@intel.com> wrote:
+
+> On Fri, 2013-06-28 at 15:44 -0600, Gary Thomas wrote:
+> > On 2013-06-27 04:06, Ross Burton wrote:
+> > > The meta-toolchain* recipes are deprecated, so when building
+> meta-toolchain-gmae
+> > > also build the SDK for core-image-sato.
+> > >
+> > > Signed-off-by: Ross Burton <ross.burton@intel.com>
 > >
-> > Signed-off-by: Ross Burton <ross.burton@intel.com>
-> 
-> If/when the meta-toolchain recipes go away, how do I create a stand-alone toolchain
-> derived from Poky/Yocto (which I use all the time!)?
+> > If/when the meta-toolchain recipes go away, how do I create a
+> stand-alone toolchain
+> > derived from Poky/Yocto (which I use all the time!)?
+>
+> The idiom is to pick an image to base the SDK on, and use the
+> "populate_sdk" task:
+>
+> $ bitbake core-image-sato -c populate_sdk
+>
+> If you want just the compiler and no userspace, then I'm not sure what
+> the best solution going forwards is.
+>
+> Ross
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-The idiom is to pick an image to base the SDK on, and use the
-"populate_sdk" task:
+--047d7bdc8cc67c8ea704e06fccb4
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-$ bitbake core-image-sato -c populate_sdk
+<div dir=3D"ltr"><p class=3D"" style>What&#39;s the reason to deprecate met=
+a-toolchain that is for
+standalone cross-compiler generation? Is there a replacement?<br></p><p cla=
+ss=3D""><br></p><p class=3D"" style>Cheers,</p><p class=3D"" style>Bruce</p=
+><p class=3D""></p></div><div class=3D"gmail_extra"><br><br><div class=3D"g=
+mail_quote">
+On Mon, Jul 1, 2013 at 5:16 PM, Ross Burton <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div class=3D"im">On Fri, 2013-06-28 at 15:44 -0600, Gary Thomas wrote:<br>
+&gt; On 2013-06-27 04:06, Ross Burton wrote:<br>
+&gt; &gt; The meta-toolchain* recipes are deprecated, so when building meta=
+-toolchain-gmae<br>
+&gt; &gt; also build the SDK for core-image-sato.<br>
+&gt; &gt;<br>
+&gt; &gt; Signed-off-by: Ross Burton &lt;<a href=3D"mailto:ross.burton@inte=
+l.com">ross.burton@intel.com</a>&gt;<br>
+&gt;<br>
+&gt; If/when the meta-toolchain recipes go away, how do I create a stand-al=
+one toolchain<br>
+&gt; derived from Poky/Yocto (which I use all the time!)?<br>
+<br>
+</div>The idiom is to pick an image to base the SDK on, and use the<br>
+&quot;populate_sdk&quot; task:<br>
+<br>
+$ bitbake core-image-sato -c populate_sdk<br>
+<br>
+If you want just the compiler and no userspace, then I&#39;m not sure what<=
+br>
+the best solution going forwards is.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span><div class=3D"HOEnZb"><div class=3D"h5"><br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br></div>
 
-If you want just the compiler and no userspace, then I'm not sure what
-the best solution going forwards is.
-
-Ross
-
-
+--047d7bdc8cc67c8ea704e06fccb4--
