@@ -1,34 +1,41 @@
 Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f47.google.com (mail-vb0-f47.google.com
-	[209.85.212.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03B7FE013B8
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 01:16:32 -0700 (PDT)
-Received: by mail-vb0-f47.google.com with SMTP id x14so3284300vbb.6
-	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 01:16:31 -0700 (PDT)
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C001AE0153D
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 02:14:49 -0700 (PDT)
+Received: by mail-wi0-f169.google.com with SMTP id c10so3802070wiw.0
+	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 02:14:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=K6IPIfeeirHeFnJ7yXbtlihxs45PMEJKjQwEqAba4yM=;
-	b=dprWDZKIPzJeYeF2A5fGOpqFEOLxKrUnTGSRVxkMaGI/G8hLOIRxO+TcuNK30a6oa6
-	HtX9ZXQ938SkkP3G/T2nyNpwFhh+MPgGi2vfPS9MbniDzpVyAe9mcHAfva7upaaPlPfN
-	AQhe4Nr6w2jRrqhomOV+3AmQCZyA9XLU83KchG5IiSL6+y0ZuFUSa9JV/HmNgtFOeBeI
-	MeCrvkRpUkXsL39+MDPG2W5YoZLE3ouwDLY2SVT7lglYARhD8Ajcffbs2DJSMVqOgk1P
-	CYvExC0l100/HUar4bm5d4Nf2rJM+igg8jj00UGJ9Wwm+rrJGkxOHC0PRAKC6mRAvUzf
-	O/Nw==
-X-Received: by 10.220.192.4 with SMTP id do4mr9095087vcb.91.1372666591835;
-	Mon, 01 Jul 2013 01:16:31 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Mon, 1 Jul 2013 01:16:11 -0700 (PDT)
-In-Reply-To: <CAPhnLPA1beCo03kmSq-T61ZgY_ouTp5n5DCKeFcM=DF-qQb1LA@mail.gmail.com>
-References: <CAPhnLPA1beCo03kmSq-T61ZgY_ouTp5n5DCKeFcM=DF-qQb1LA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 1 Jul 2013 09:16:11 +0100
-Message-ID: <CAJTo0LZQ+vVN5ddfBF1pTBATOmsFARRQmPqbqSf7hhk_D7vEyw@mail.gmail.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-X-Gm-Message-State: ALoCoQlrIXxxWDaHQpJDXvorGF3KNI1JHiGGpF6IDrJctS/HDvYgan6LKOAz+Qq42/FH/Ef3iKo/
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:content-type:x-mailer:mime-version:content-transfer-encoding
+	:x-gm-message-state;
+	bh=XkOV2Vj9hkOVWYv9IAbhusbub3a8yQgVNbA7qI5vri0=;
+	b=d/ol+AMwkP1SQUi8ipo3um6TCUEgnUNbTNhpAoleINUYDDhrbtOcBQppgxjZYHTXfz
+	1/1IXO15Tb9w5O2JPjUf0uaMfh2BoxTQl6tuwi6ifGXs+jXOy22HVS7zFgcG5QotXniC
+	PK9dj2RzaqdT3e+oP12/+mJO9zgDcbt91ohIkFcV9A8DT+oc34jzYBzJVKdhQjaWARE3
+	vf6zlzC/TL1hY1zRGyeNUGTvji5Po9HBna0OcKhPdCk0vaC5F3t63tr2bumh5ekUXZJk
+	ub8sV/LXDKWZpx1FNK98s8VJNp4/mZSPc6b5RK+l4fs9VzcO9re7vyHEF0TlXvAD8O4Y
+	7wEg==
+X-Received: by 10.194.108.73 with SMTP id hi9mr19159040wjb.85.1372670088485;
+	Mon, 01 Jul 2013 02:14:48 -0700 (PDT)
+Received: from [192.168.1.9] (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPSA id fb9sm14963181wid.2.2013.07.01.02.14.46
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 01 Jul 2013 02:14:47 -0700 (PDT)
+Message-ID: <1372670074.7808.1.camel@flashheart.burtonini.com>
+From: Ross Burton <ross.burton@intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 01 Jul 2013 10:14:34 +0100
+In-Reply-To: <23674701-2217-4CFC-88CF-8E4C3709E576@gmail.com>
+References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
+	<23674701-2217-4CFC-88CF-8E4C3709E576@gmail.com>
+X-Mailer: Evolution 3.6.3-1 
+Mime-Version: 1.0
+X-Gm-Message-State: ALoCoQnkv5/XydkSoeBl+llkFQINMVROJt0j0tvK/qIbSksB3J3jFrpDzU/zfpjotACMRj3Rd9NO
 Cc: yocto@yoctoproject.org
-Subject: Re: Recent autobuilder changes
+Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,19 +47,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 08:16:34 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 01 Jul 2013 09:14:51 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 30 June 2013 23:40, Flanagan, Elizabeth <elizabeth.flanagan@intel.com> wrote:
-> This weekend I brought down the autobuilder to implement the new build
-> failure email formatter. This *should* provide a bit more detailed
-> information in a much easier to read format. Please, let me know of
-> any tweaks people might like to see in the message format.
+On Fri, 2013-06-28 at 14:24 -0700, Khem Raj wrote:
+> as an aside, if meta-toolchain is deprecated why should we carry
+> meta-toolchain-gmae as well? it seems a special SDK
+> only target. I think it will be better to have sdks from images all
+> the time.
 
-Much improved!  The one thing I'd love to see though is the relevant
-branch_* values right at the top, so it's trivial to spot a master vs
-MUT vs 1.4.1 build.
+Because the QA testing for Danny and likely Dylan will continue to use
+meta-toolchain-gmae because that's what their test plan is.  Hopefully
+we can change the autobuilder so that it only builds meta-toolchain-gmae
+for those releases and not master.
 
-Cheers,
 Ross
+
 
