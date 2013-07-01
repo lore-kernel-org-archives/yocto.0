@@ -1,37 +1,26 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 521C8E013B8
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 02:30:20 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id ib11so1841831vcb.3
-	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 02:30:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=lUnQtvGPEY5VfcCTlHm1sql/Zr6fzYecKKycMzMzd58=;
-	b=Bk9UH2B8q5R6VOJCWBWVcW1WxrnNnYbvf5yTRl+a9T4wv68rqxdsYA+rKziilEYBv4
-	deMb0i4sX/5MSPZ0qfI2z7MsDVKStGgUEsvuNQ1iNGLXZX5No2CNOO6iA9hON6o1kXOs
-	rsGh4TnOL3nk6vIAmSTFOm8ZJCUVarXx+d80eSYRQrJ2UpXkAHWH+e2tUqzr2+7V2Svg
-	QLOL4NfSolcom7lG0CD8R28lXcj3pLeGrTsrPnpHhXtYaKcVmh4UxEi3uzK3hZlSqqF9
-	MKy83Z18dqsH1g3vfE6YcDSHFsYoKrrMwT4SaCmfvEFLyfLhCTNb/k0kj00KmJhDLvJW
-	B2Zg==
-X-Received: by 10.52.21.232 with SMTP id y8mr7544169vde.6.1372671020034; Mon,
-	01 Jul 2013 02:30:20 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B330AE013B8
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 02:54:47 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 01 Jul 2013 02:54:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,973,1363158000"; d="scan'208";a="262331855"
+Received: from unknown (HELO helios.localnet) ([10.252.121.225])
+	by AZSMGA002.ch.intel.com with ESMTP; 01 Jul 2013 02:48:47 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: varun bhatnagar <varun292006@gmail.com>
+Date: Mon, 01 Jul 2013 10:48:46 +0100
+Message-ID: <3624548.VBuVOLK5Yg@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.3 (Linux/3.8.0-25-generic; KDE/4.10.3; i686; ; )
+In-Reply-To: <CAGxOggHBwsZ5f5f9x12-pOLGJY9bRNkAu6G27kz4Qgp-4ztdqA@mail.gmail.com>
+References: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
+	<2897880.FC0dZLhceG@helios>
+	<CAGxOggHBwsZ5f5f9x12-pOLGJY9bRNkAu6G27kz4Qgp-4ztdqA@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Mon, 1 Jul 2013 02:29:59 -0700 (PDT)
-In-Reply-To: <CALaXJ9kPeBKf0u2pnbso_+P97ZWtVz8ZhffUL9JaLC+gqvm4vA@mail.gmail.com>
-References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
-	<51CE03D9.6070202@mlbassoc.com>
-	<1372670218.7808.4.camel@flashheart.burtonini.com>
-	<CALaXJ9kPeBKf0u2pnbso_+P97ZWtVz8ZhffUL9JaLC+gqvm4vA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 1 Jul 2013 10:29:59 +0100
-Message-ID: <CAJTo0LYX_89+yYyS_3ChQPb3k3jgqitWwmwbGtjGJDhmVAwvrg@mail.gmail.com>
-To: Kumita Bruce <bruce.kumita@gmail.com>
-X-Gm-Message-State: ALoCoQl0V1aYEIeTghXMA16RUXHAF5+dI9EmHaXPXRXLEHfEQ2oWHWGYld3ajlb/eN21l9l9f0Ad
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Layers not getting recognized by bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,16 +32,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 09:30:21 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 01 Jul 2013 09:54:49 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 1 July 2013 10:24, Kumita Bruce <bruce.kumita@gmail.com> wrote:
-> What's the reason to deprecate meta-toolchain that is for standalone
-> cross-compiler generation? Is there a replacement?
+On Sunday 30 June 2013 00:05:58 varun bhatnagar wrote:
+> Yes Paul that was the entry was there in CORE_IMAGE_EXTRA_INSTALL. I have
+> removed it from there but I need to add the command provided by these
+> packages in my image. So I have added one line in my layer.conf file
+> "IMAGE_INSTALL_append= test-ea ". Now if I try to run bitbake -k
+> core-image-minimal, it gives me a message saying "Nothing provides
+> test-ea". What shall I do? (I have build the recipe file of test-ea without
+> any error.)
 
-For full SDKs, generation from images is trivial now and means you
-don't need to replicate everything.  I've no idea about the production
-of standalone cross-compilers.
+Can you show me what the test-ea recipe contains?
 
-Ross
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
