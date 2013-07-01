@@ -1,17 +1,17 @@
 Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
 	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F454E0140D
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6C3DE01470
 	for <yocto@yoctoproject.org>; Sun, 30 Jun 2013 19:00:14 -0700 (PDT)
 Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 9464E407EF; Mon,  1 Jul 2013 02:00:14 +0000 (UTC)
+	id A4D27407EF; Mon,  1 Jul 2013 02:00:14 +0000 (UTC)
 Date: Mon, 1 Jul 2013 02:00:14 +0000
 From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
 To: yocto@yoctoproject.org
-Message-ID: <20130701020014.GA12054@ab01.i.yoctoproject.org>
+Message-ID: <20130701020014.GA12062@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: Warning! Some failures happened on pkg-report system!
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,7 +24,7 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 01 Jul 2013 02:00:14 -0000
-X-Groupsio-MsgNum: 14762
+X-Groupsio-MsgNum: 14763
 Content-Type: multipart/mixed; boundary="5vNYLRcllDrimb99"
 Content-Disposition: inline
 
@@ -32,25 +32,22 @@ Content-Disposition: inline
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-fatal: Refusing to fetch into current branch refs/heads/stage of non-bare repository
-Now updating daily_check database, please wait for a minute......
-Now updating pkginfotable,please wait a minute........
-['Package', 'Version', 'Upver', 'License', 'Section', 'Home', 'Release', 'Depends', 'BugTracker', 'PE', 'Description', 'Status', 'Tracking', 'URI', 'MAINTAINER', 'NoUpReason']
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
-Database update successful!
-From git://git.yoctoproject.org/poky-contrib
- * [new branch]      stage/master_under_test -> stage
-Now updating daily_check database, please wait for a minute......
-Now updating pkgrecord table and generate new upgr_hist table, please wait a minute......
-['milestone_target_to_db.py', '2013-04-30']
-SERVER_PATH: /srv/www/vhosts/packages.yoctoproject.org/python-function/../newserver/webserver/
-Database update successful!
-Connecting to database /srv/www/vhosts/packages.yoctoproject.org/newserver/webserver/pkginfobackup.sqlite
-Traceback (most recent call last):
-  File "history_upgrade_number_chart.py", line 45, in <module>
-    upgr_count = cu.execute(querry).fetchall()[0][0]
-sqlite3.OperationalError: no such table: upgr_hist
-REPORT-SYSTEM-UPDATE ERROR: Draw barchart faild!
+
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+Upgradable Count: 0
+Upgrade Total Count: 0
+The based commit merge time is:
+Fri Jun 28 12:29:26 2013 -0700
+The based commit is:
+commit e916fc74e078ce5630198191cefba6cdded82b67
+Author: Andreas Oberritter <obi@opendreambox.org>
+Date:   Wed Mar 6 00:20:46 2013 +0100
 Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
 --5vNYLRcllDrimb99
