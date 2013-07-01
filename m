@@ -1,36 +1,39 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
-	[209.85.220.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E3F9E014A1
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 06:18:32 -0700 (PDT)
-Received: by mail-vc0-f182.google.com with SMTP id id13so1964898vcb.13
-	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 06:18:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=rSlMU3sB7k8s068K/WIeRdYDBsG+6jP6Nxj6mfmn0So=;
-	b=dS1AQ+JC15B/yaZD8kYoFZcf7ZrEJS0pvRF1RX0iXAmra08pwJKS3JNgMbahiKDByD
-	nBo1UtMGmd+qy8UcvR05Jsj99oacWgTE5IfICL1qMqmEq67GtzXQuZMcnIWmXNyzdDre
-	9+64pb3/fplw47z+HZkZrE8ck+GFg9FU9pyla5qPUMtHhSxlvtSgishOvk+TAodkQZWJ
-	LnbMMzC0zo09QeJVk7C81gW2q9f91PT2+JPxlRaM2JuhfUvWqov+mwiON9i6az8n68bI
-	D3eDNz5c+Y5l3eJ1HS10TtDGn0y2v76cdzOvhWARFQoxaaL/oat3vDjjP+rsCBZW8r98
-	gk+A==
-X-Received: by 10.58.255.229 with SMTP id at5mr9478818ved.44.1372684712226;
-	Mon, 01 Jul 2013 06:18:32 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Mon, 1 Jul 2013 06:18:12 -0700 (PDT)
-In-Reply-To: <CANwz6nxGkJQkvZv_gbP4sDpsuHOBXRqULS03Vc50a3HQ+1ktbA@mail.gmail.com>
-References: <CANwz6nwTb=h0mMevpb07eHGjtaf+fKv3R7-KR=MaAhPNscQOZg@mail.gmail.com>
-	<CAJTo0Lbr=eHoKyMVikEM5rkRMwqGVX187d=jU7awZqPfMo5axw@mail.gmail.com>
-	<CANwz6nxGkJQkvZv_gbP4sDpsuHOBXRqULS03Vc50a3HQ+1ktbA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 1 Jul 2013 14:18:12 +0100
-Message-ID: <CAJTo0LbZGH6KuvHnfA3xD2tj6Y2OL4tHfo6goJqG=4X+quJCCg@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-X-Gm-Message-State: ALoCoQkOKPnHF+Il6+T7S9IL+gemYlIXetJ+pf9izd2GY1xStdDDY3DWjD+DgXGg4TWs55dZk8Zs
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6552E013DE
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 07:24:29 -0700 (PDT)
+Received: by mail-pa0-f52.google.com with SMTP id kq13so5038745pab.25
+	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 07:24:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=WhoI5dp4W7k+PJ5Fcw5lWzUXD3SzUHsHJENguGwjCQE=;
+	b=giNnbDy4B0AD0b5hJo616no/TZtTjVPrRtWhzTshX5rX+ptZxRqomnPI2wKXz2VVKG
+	vcfhVrCqQiDK2JC8ng5uldehsrBVXpQqttP2lT1/mwNspxeFISrHQ0vnZcsH2Rp3l4La
+	uh7l+6MBtM8yDot3eeO4UATZ+VDBhDsje1sCZ8aXsvjjUZOJFaAaYNQJvQlZyBArwYk0
+	QY5aV6wBHDsZyp4EVwqLiW+aU6Y9k2T4zKDL2AW4NTZaMPW07gO1M7XpFVs6EsfO6ig6
+	OkIJtPDqeqWaZwJeqXHhYMCj6r7VG7BKAP6tNgjhm4J0FuAHsCDW4vjXotm4HPZpS0js
+	hv8w==
+X-Received: by 10.68.245.200 with SMTP id xq8mr23772080pbc.32.1372688668821;
+	Mon, 01 Jul 2013 07:24:28 -0700 (PDT)
+Received: from kosborne-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	hu6sm16343380pbc.28.2013.07.01.07.24.27 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 01 Jul 2013 07:24:27 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1372670218.7808.4.camel@flashheart.burtonini.com>
+Date: Mon, 1 Jul 2013 07:24:25 -0700
+Message-Id: <5E3EC5FD-B654-417C-9791-0349B2DCAA7A@gmail.com>
+References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
+	<51CE03D9.6070202@mlbassoc.com>
+	<1372670218.7808.4.camel@flashheart.burtonini.com>
+To: Ross Burton <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.1508)
 Cc: yocto@yoctoproject.org
-Subject: Re: Fedora 18 CentOS 6.4 yocto difference
+Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,22 +45,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 13:18:34 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 01 Jul 2013 14:24:30 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 1 July 2013 14:16, Edward Vidal <vidal.develone@gmail.com> wrote:
-> /usr/bin/gfortran -Wall -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed
-> build/temp.linux-x86_64-2.7/numpy/linalg/lapack_litemodule.o
-> build/temp.linux-x86_64-2.7/numpy/linalg/python_xerbla.o -L/usr/lib64
-> -L/home/vidal/POKY/build062913_dylan/poky/build/tmp/sysroots/beagleboard/usr/lib
-> -Lbuild/temp.linux-x86_64-2.7 -llapack -lblas -lpython2.7 -lgfortran -o
-> build/lib.linux-x86_64-2.7/numpy/linalg/lapack_lite.so
->  ERROR: Function failed: do_compile (see
-> /home/vidal/POKY/build062913_dylan/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/python-numpy/1.7.0-r0/temp/log.do_compile.11041
-> for further information)
 
-That's still not the full log.  The full log is at
-/home/vidal/POKY/build062913_dylan/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/python-numpy/1.7.0-r0/temp/log.do_compile.11041.
+On Jul 1, 2013, at 2:16 AM, Ross Burton <ross.burton@intel.com> wrote:
 
-Ross
+> On Fri, 2013-06-28 at 15:44 -0600, Gary Thomas wrote:
+>> On 2013-06-27 04:06, Ross Burton wrote:
+>>> The meta-toolchain* recipes are deprecated, so when building =
+meta-toolchain-gmae
+>>> also build the SDK for core-image-sato.
+>>>=20
+>>> Signed-off-by: Ross Burton <ross.burton@intel.com>
+>>=20
+>> If/when the meta-toolchain recipes go away, how do I create a =
+stand-alone toolchain
+>> derived from Poky/Yocto (which I use all the time!)?
+
+pick core-image-minimal.
+
+
+>=20
+> The idiom is to pick an image to base the SDK on, and use the
+> "populate_sdk" task:
+>=20
+> $ bitbake core-image-sato -c populate_sdk
+>=20
+> If you want just the compiler and no userspace, then I'm not sure what
+> the best solution going forwards is.
+>=20
+> Ross
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
