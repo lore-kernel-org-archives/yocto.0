@@ -1,35 +1,38 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
-	[209.85.128.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80ED5E013DE
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 08:26:20 -0700 (PDT)
-Received: by mail-ve0-f177.google.com with SMTP id cz10so3813904veb.8
-	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 08:26:20 -0700 (PDT)
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ee0-f41.google.com (mail-ee0-f41.google.com [74.125.83.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B0A8E013EC
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2013 08:35:59 -0700 (PDT)
+Received: by mail-ee0-f41.google.com with SMTP id d17so2172711eek.28
+	for <yocto@yoctoproject.org>; Mon, 01 Jul 2013 08:35:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type:x-gm-message-state;
-	bh=rJmGISG4qs418SxpfDHVnLrnp9bW+x8uBj1k2J6869c=;
-	b=L83uDgHO4eXk/NfyFtnwNuZHdoEefr851Svq9R9sE2Ts23mZ9kjCggnb3gU/MgIa9c
-	Rwv0kdwcdsOtFzoU1RWtEgMbmVCh218ME+4L8/wkCHDHz55CYbRzILRtTig+22phnc3r
-	OIXSBBryFJwBdGktZ+ERzoacCVFK5iYMmisY9jc7+VgqoXjwxP+6+PdTuDmkv5VtsATa
-	edg7gpcUmLdbOhymdI/bXvFXzvGEDz7T7j+UYjB/ZY8KKAQd70IHF1mfSk9rq4jY1eDt
-	+QM+e0s/8C5YvHHJUhwNk5hSnzSxzBWYN2du0bxJ1cv1u6niWVM8nBLlotj660HSOTTf
-	nfNg==
+	bh=APA9XXUNDhFmQALDLNsO8UIRbas8jVWnRjyEXCWT5vw=;
+	b=n41+DYxQuP+rjv7LgM0P8yv2Z2+jwlMaqa7Bct5LL8zcxoGbB5a1RU6S0Hi10rHDhj
+	m29nBzZJhxCVA9UqhJVGNLnsYb3Tb3SLB2O/L/BY4oTyYT0C6aGtIF3+tZ+yclbWdDAd
+	53OSyXiAROUwDQqHJaKUAHb5lY+WnanTYylT9DuSBBRZOU7Y2wGCTJiDMfN2tHBtkUfq
+	BqzAedJGnx+lML8JczPfeUMjKgvsiEfqhsGelwzfgs2rwSh7hWBD5XpQqjnzJgYb0Mjq
+	hNmnmM+PKndSFLP8gb9Jx1H+n1faK4rWjVqZqQj2VRGX/whZVgLoVvh5bdL8y1+WjEk4
+	T0nw==
 MIME-Version: 1.0
-X-Received: by 10.58.216.97 with SMTP id op1mr9810948vec.60.1372692380315;
-	Mon, 01 Jul 2013 08:26:20 -0700 (PDT)
-Received: by 10.52.114.170 with HTTP; Mon, 1 Jul 2013 08:26:20 -0700 (PDT)
-In-Reply-To: <CAJTo0LZQ+vVN5ddfBF1pTBATOmsFARRQmPqbqSf7hhk_D7vEyw@mail.gmail.com>
-References: <CAPhnLPA1beCo03kmSq-T61ZgY_ouTp5n5DCKeFcM=DF-qQb1LA@mail.gmail.com>
-	<CAJTo0LZQ+vVN5ddfBF1pTBATOmsFARRQmPqbqSf7hhk_D7vEyw@mail.gmail.com>
-Date: Mon, 1 Jul 2013 08:26:20 -0700
-Message-ID: <CAPhnLPB0HW_rBffGYiaHY+afVH9v43PV-jOq=vM2A=D925XzrQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Gm-Message-State: ALoCoQl6RMY1b8QyRqGRyWvHLlO7t5cG02iAMHXpVSUpygCWpft0SVn4svvlpuvLMrX1E0TFIGJl
-Cc: yocto@yoctoproject.org
-Subject: Re: Recent autobuilder changes
+X-Received: by 10.14.173.70 with SMTP id u46mr21560333eel.92.1372692958614;
+	Mon, 01 Jul 2013 08:35:58 -0700 (PDT)
+Received: by 10.14.117.65 with HTTP; Mon, 1 Jul 2013 08:35:58 -0700 (PDT)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5286C@ORSMSX101.amr.corp.intel.com>
+References: <1372214269-16897-1-git-send-email-trevor.woerner@linaro.org>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF51ADC@ORSMSX101.amr.corp.intel.com>
+	<CALmOhg=evL-vyWc5q3Fd=y2GnUz3gfWSUyJDVFG5J=1k2w2L7g@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF527FE@ORSMSX101.amr.corp.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF5286C@ORSMSX101.amr.corp.intel.com>
+Date: Mon, 1 Jul 2013 11:35:58 -0400
+Message-ID: <CALmOhg=bV1t1OxiVTYOC3fxq4T2XD=D1-ZQBSKHMOjZPYueaCg@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+X-Gm-Message-State: ALoCoQmKY6IEhBshbdjt+mbVLDc+aI2EyHIeQbE/sxRRJZ69PpgT46zV7O9Vwzy6S+Ivb95t4kVa
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"patches@linaro.org" <patches@linaro.org>
+Subject: Re: [yocto-docs][PATCH] dev-manual: referencing bugzilla issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,40 +44,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2013 15:26:23 -0000
+X-List-Received-Date: Mon, 01 Jul 2013 15:36:02 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, Jul 1, 2013 at 1:16 AM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 30 June 2013 23:40, Flanagan, Elizabeth <elizabeth.flanagan@intel.com> wrote:
->> This weekend I brought down the autobuilder to implement the new build
->> failure email formatter. This *should* provide a bit more detailed
->> information in a much easier to read format. Please, let me know of
->> any tweaks people might like to see in the message format.
->
-> Much improved!  The one thing I'd love to see though is the relevant
-> branch_* values right at the top, so it's trivial to spot a master vs
-> MUT vs 1.4.1 build.
-
-Ok, let me bang on that today. I still have a few tweaks I have to do still.
-
->
-> Cheers,
-> Ross
-> ---------------------------------------------------------------------
-> Intel Corporation (UK) Limited
-> Registered No. 1134945 (England)
-> Registered Office: Pipers Way, Swindon SN3 1RJ
-> VAT No: 860 2173 47
->
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
+On 1 July 2013 02:37, Rifenbark, Scott M <scott.m.rifenbark@intel.com> wrote:
+> I got a hold of Saul and confirmed that you are right.  I have been entering these strings incorrectly for a good while now.  I have applied your patch to the tip of the yocto-docs repository and republished in our development area for the manuals.
 
 
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Great! Thank _you_ :-)
 
