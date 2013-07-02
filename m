@@ -1,37 +1,33 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C983E013CB
-	for <yocto@yoctoproject.org>; Tue,  2 Jul 2013 15:59:56 -0700 (PDT)
-Received: by mail-vc0-f181.google.com with SMTP id lf11so3141505vcb.40
-	for <yocto@yoctoproject.org>; Tue, 02 Jul 2013 15:59:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:x-gm-message-state;
-	bh=9Gvrgy2XlOkuwrYneiycng2fwpa2+VyJejUqoWjE54E=;
-	b=nYJ/TjnCs9Te2M2VEC7nVNNRJtozG8xS1MwwZogpGUO1IWk+k0jv12m9i3exoZlw1S
-	8uLeOOD4ZaSbVc5LRqGPUmwgJz7zEb5SlPuu7QBzZ6Uw8jXNCndaRySzlSpxK61SWIJU
-	K05hBBTIRbbHBjAks03tDNhoq8WQ98rCi4OGzinArPp6+zpGGjWRh1SJS0CTWblYV6Kd
-	zhX/zgZj6oY9bPdmFrr6O/ZQpAjwzAV8Y5M847YRC2tez7bDXtlsIbSEQ4qmN53AGA1u
-	EU6c9prbJ5WRFSlicMOdtmH4IB9i/T95PpSelBidic6b02E/aVynVa6zVxDVQAW6dCpZ
-	uVQg==
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4E34E013B0
+	for <yocto@yoctoproject.org>; Tue,  2 Jul 2013 16:38:29 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Jul 2013 16:38:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,983,1363158000"; 
+	d="scan'208,217";a="364412765"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga002.fm.intel.com with ESMTP; 02 Jul 2013 16:38:28 -0700
+Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 2 Jul 2013 16:38:28 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.229]) by
+	ORSMSX157.amr.corp.intel.com ([169.254.9.23]) with mapi id
+	14.03.0123.003; Tue, 2 Jul 2013 16:38:28 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, July
+	02, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac53fSpfyM6C7IsoSEiTbfKTsIjUIwAAAhGA
+Date: Tue, 2 Jul 2013 23:38:26 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EE6662D@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-X-Received: by 10.52.33.162 with SMTP id s2mr10387656vdi.37.1372805996314;
-	Tue, 02 Jul 2013 15:59:56 -0700 (PDT)
-Received: by 10.52.114.170 with HTTP; Tue, 2 Jul 2013 15:59:56 -0700 (PDT)
-In-Reply-To: <CAPhnLPCDq8yRw=Bz6TAwR85kpPKJucTYE7hZ5kDEK3qJ2utOkA@mail.gmail.com>
-References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
-	<CALmOhgmENvPECpf-L4w8q0cTmLhuvJuYeCyFjaRN6bN=XLx_-Q@mail.gmail.com>
-	<CAPhnLPCDq8yRw=Bz6TAwR85kpPKJucTYE7hZ5kDEK3qJ2utOkA@mail.gmail.com>
-Date: Tue, 2 Jul 2013 15:59:56 -0700
-Message-ID: <CAPhnLPBC4EgahMeKpQ-guukK0VGcm8rK2BP9pdo3RP5pDKGm+w@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>, 
-	StefanX Stanacar <stefanx.stanacar@intel.com>
-X-Gm-Message-State: ALoCoQlsiZq5DpBxmjfCOFFe1qWxTR6f4HlbuDvWZnSlMbm4QqB10RarG7EsiNOOG9tREDo/KglX
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, July 02, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,52 +39,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2013 22:59:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 02 Jul 2013 23:38:29 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EE6662DORSMSX108amrcor_"
 
-I'm going to pull these for now, but I'll probably end up doing this
-significantly different when we settle on whatever solution (be it
-LAYERVERSION or whatever) to identify build process breakage.
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE6662DORSMSX108amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
--b
+Attendees:
+Nitin, Matthew Weigel,  Dave, Eren, Mark, Saul, ScottR, Denys, Corneliu, Ro=
+ss, Belen, Paul, TomZ, MichaelH, AlexG, LaurentiuP, MihaiL, Beth, Song
+
+Agenda:
+
+* Opens collection - 5 min (Song)
+* Yocto 1.5 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
+  - Feature development:
+    . 1584/3867, security feature. They are in a layer. Mostly done, will b=
+e released separately.
+    . 4267: Fenrus updater, Ionut Radu. Stability issues, reconsidering pri=
+ority or target milestone. Any technical questions, please let Saul know.
+    . 3169: Shuku implementation, Ross. It's in progress, not yet ready. Ho=
+pe to close in a couple of weeks.
+    . 4753: Need to document buildtools-tarball. Just about to complete. Wa=
+iting for url from Beth. Beth has it ready, sending
+  - Bug fix: Bug number is down, we fixed more bugs last week. Thanks to Ri=
+chard/Saul and the team, please keep the good work up.
+
+* Yocto Project 1.5 QA plan review - 20 min (AlexG/MihaiL)
+  https://wiki.yoctoproject.org/wiki/1.5_Overall_Test_Plan
+  - Please take a look at the test cases in testopia, especially those in y=
+our area or areas you have concerns. Make sure we have enough coverage.
+* SWAT team rotation: Radu M -> Ioana
+* Opens - 10 min
+* Team Sharing - 15 min
+  - Saul: M2 freeze happened on last Sunday. Master pull will happen this m=
+orning. Will start RC1 build after that.
+  - Beth: Build failure emails gone out. Format changed, making it easier. =
+Trimming unnecessary info. Changed the milestone release process. We do not=
+ create branches, we create tags. Will be out until 13th, Michael will cove=
+r for Beth.
+  - Eren: working on a project, hamradio, for 3 month until Sep. Just creat=
+e the layer, if you are interested, please send emails to me. I may also co=
+ntribute to security things too.
 
 
-On Tue, Jul 2, 2013 at 8:28 AM, Flanagan, Elizabeth
-<elizabeth.flanagan@intel.com> wrote:
-> On Fri, Jun 28, 2013 at 9:01 AM, Trevor Woerner
-> <trevor.woerner@linaro.org> wrote:
->> Just out of curiosity...
->>
->> On 27 June 2013 06:06, Ross Burton <ross.burton@intel.com> wrote:
->>>  buildset-config/nightly-arm.conf     |    2 ++
->>>  buildset-config/nightly-fsl-arm.conf |    2 ++
->>>  buildset-config/nightly-fsl-ppc.conf |    2 ++
->>>  buildset-config/nightly-mips.conf    |    2 ++
->>>  buildset-config/nightly-oecore.conf  |    2 ++
->>>  buildset-config/nightly-ppc.conf     |    2 ++
->>>  buildset-config/nightly-x86-64.conf  |    2 ++
->>>  buildset-config/nightly-x86.conf     |    2 ++
->>
->>
->> Against which repository do these apply?
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE6662DORSMSX108amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> These apply to the yocto-autobuilder eflanagan/yocto-autobuilder-refactor branch
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>Nitin, Matthew Weigel,&nbsp; Dave, Eren, Mark, Saul, ScottR, Denys, Co=
+rneliu, Ross, Belen, Paul, TomZ, MichaelH, AlexG, LaurentiuP, MihaiL, Beth,=
+ Song</div>
+<div>&nbsp;</div>
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.5 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status</u></font></a></div>
+<div>&nbsp; - Feature development: </div>
+<div>&nbsp;&nbsp;&nbsp; . 1584/3867, security feature. They are in a layer.=
+ Mostly done, will be released separately. </div>
+<div>&nbsp;&nbsp;&nbsp; . 4267: Fenrus updater, Ionut Radu. Stability issue=
+s, reconsidering priority or target milestone. Any technical questions, ple=
+ase let Saul know.</div>
+<div>&nbsp;&nbsp;&nbsp; . 3169: Shuku implementation, Ross. It's in progres=
+s, not yet ready. Hope to close in a couple of weeks. </div>
+<div>&nbsp;&nbsp;&nbsp; . 4753: Need to document buildtools-tarball. Just a=
+bout to complete. Waiting for url from Beth. Beth has it ready, sending</di=
+v>
+<div>&nbsp; - Bug fix: Bug number is down, we fixed more bugs last week. Th=
+anks to Richard/Saul and the team, please keep the good work up.</div>
+<div>&nbsp;</div>
+<div>* Yocto Project 1.5 QA plan review - 20 min (AlexG/MihaiL)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/1.5_Overall_Test_=
+Plan"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/1.5_Overal=
+l_Test_Plan</u></font></a></div>
+<div>&nbsp; - Please take a look at the test cases in testopia, especially =
+those in your area or areas you have concerns. Make sure we have enough cov=
+erage. </div>
+<div>* SWAT team rotation: Radu M -&gt; Ioana</div>
+<div>* Opens - 10 min </div>
+<div>* Team Sharing - 15 min</div>
+<div>&nbsp; - Saul: M2 freeze happened on last Sunday. Master pull will hap=
+pen this morning. Will start RC1 build after that.</div>
+<div>&nbsp; - Beth: Build failure emails gone out. Format changed, making i=
+t easier. Trimming unnecessary info. Changed the milestone release process.=
+ We do not create branches, we create tags. Will be out until 13th, Michael=
+ will cover for Beth.</div>
+<div>&nbsp; - Eren: working on a project, hamradio, for 3 month until Sep. =
+Just create the layer, if you are interested, please send emails to me. I m=
+ay also contribute to security things too.</div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
 
-We've moved the old yocto-autobuilder master to old-master and the
-refactor branch is now master. I will be working from master from now
-on (except for private branches, etc)
-
->
->
-> --
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
-
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EE6662DORSMSX108amrcor_--
