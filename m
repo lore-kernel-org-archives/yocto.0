@@ -1,24 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2698DE013CB
-	for <yocto@yoctoproject.org>; Tue,  2 Jul 2013 15:17:18 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 02 Jul 2013 15:17:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,983,1363158000"; d="scan'208";a="325954639"
-Received: from unknown (HELO helios.localnet) ([10.252.121.242])
-	by azsmga001.ch.intel.com with ESMTP; 02 Jul 2013 15:17:16 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Date: Tue, 02 Jul 2013 23:17:15 +0100
-Message-ID: <5920025.Pkuta78FWt@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.4 (Linux/3.8.0-25-generic; KDE/4.10.4; i686; ; )
-In-Reply-To: <7AFA3235764547DFB27795FD58368F44@PAULD>
-References: <7AFA3235764547DFB27795FD58368F44@PAULD>
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C983E013CB
+	for <yocto@yoctoproject.org>; Tue,  2 Jul 2013 15:59:56 -0700 (PDT)
+Received: by mail-vc0-f181.google.com with SMTP id lf11so3141505vcb.40
+	for <yocto@yoctoproject.org>; Tue, 02 Jul 2013 15:59:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=9Gvrgy2XlOkuwrYneiycng2fwpa2+VyJejUqoWjE54E=;
+	b=nYJ/TjnCs9Te2M2VEC7nVNNRJtozG8xS1MwwZogpGUO1IWk+k0jv12m9i3exoZlw1S
+	8uLeOOD4ZaSbVc5LRqGPUmwgJz7zEb5SlPuu7QBzZ6Uw8jXNCndaRySzlSpxK61SWIJU
+	K05hBBTIRbbHBjAks03tDNhoq8WQ98rCi4OGzinArPp6+zpGGjWRh1SJS0CTWblYV6Kd
+	zhX/zgZj6oY9bPdmFrr6O/ZQpAjwzAV8Y5M847YRC2tez7bDXtlsIbSEQ4qmN53AGA1u
+	EU6c9prbJ5WRFSlicMOdtmH4IB9i/T95PpSelBidic6b02E/aVynVa6zVxDVQAW6dCpZ
+	uVQg==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: systemd configuration
+X-Received: by 10.52.33.162 with SMTP id s2mr10387656vdi.37.1372805996314;
+	Tue, 02 Jul 2013 15:59:56 -0700 (PDT)
+Received: by 10.52.114.170 with HTTP; Tue, 2 Jul 2013 15:59:56 -0700 (PDT)
+In-Reply-To: <CAPhnLPCDq8yRw=Bz6TAwR85kpPKJucTYE7hZ5kDEK3qJ2utOkA@mail.gmail.com>
+References: <1372327574-32009-1-git-send-email-ross.burton@intel.com>
+	<CALmOhgmENvPECpf-L4w8q0cTmLhuvJuYeCyFjaRN6bN=XLx_-Q@mail.gmail.com>
+	<CAPhnLPCDq8yRw=Bz6TAwR85kpPKJucTYE7hZ5kDEK3qJ2utOkA@mail.gmail.com>
+Date: Tue, 2 Jul 2013 15:59:56 -0700
+Message-ID: <CAPhnLPBC4EgahMeKpQ-guukK0VGcm8rK2BP9pdo3RP5pDKGm+w@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Trevor Woerner <trevor.woerner@linaro.org>, 
+	StefanX Stanacar <stefanx.stanacar@intel.com>
+X-Gm-Message-State: ALoCoQlsiZq5DpBxmjfCOFFe1qWxTR6f4HlbuDvWZnSlMbm4QqB10RarG7EsiNOOG9tREDo/KglX
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] buildset-config: build core-image-sato SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,70 +43,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2013 22:17:19 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 02 Jul 2013 22:59:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tuesday 02 July 2013 10:40:06 Paul D. DeRocco wrote:
-> I've switched to systemd, in a core-image-base build for an Atom
-> (Cedartrail), and it boots fine. Now I want to make my own daemon start up.
-> I'm new to systemd, and the way it seems to be set up is different from the
-> way the systemd docs say it is usually set up.
-> 
-> The docs say that systemd, when booting up, usually activates a target
-> called default.target, which is symlinked to either multi-user.target or
-> graphical.target. (It would be the former in this GUI-less system.) Then, if
-> I want to cause my daemon to be started, I would add a symlink to its
-> systemd unit file to the .wants directory associated with
-> multi-user.target.
-> 
-> But I can't find these things. They're not in the trees under /etc/systemd
-> or /run/systemd. Oh, and when I do "systemctl list-unit-files", it shows
-> both default.target and multi-user.target as disabled.
-> 
-> What makes this difficult to figure out is that the tools I have for
-> perusing the target system are so primitive. There's no editor in the target
-> that I'm aware of
+I'm going to pull these for now, but I'll probably end up doing this
+significantly different when we settle on whatever solution (be it
+LAYERVERSION or whatever) to identify build process breakage.
 
-That's entirely up to what you put into your image. busybox should provide a 
-very basic version of "vi" out of the box.
+-b
 
-> , and I can't network into the system and use an external
-> editor to examine various files. 
 
-Again, that's up to what you enable in the image. You could use NFS for 
-example.
+On Tue, Jul 2, 2013 at 8:28 AM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> On Fri, Jun 28, 2013 at 9:01 AM, Trevor Woerner
+> <trevor.woerner@linaro.org> wrote:
+>> Just out of curiosity...
+>>
+>> On 27 June 2013 06:06, Ross Burton <ross.burton@intel.com> wrote:
+>>>  buildset-config/nightly-arm.conf     |    2 ++
+>>>  buildset-config/nightly-fsl-arm.conf |    2 ++
+>>>  buildset-config/nightly-fsl-ppc.conf |    2 ++
+>>>  buildset-config/nightly-mips.conf    |    2 ++
+>>>  buildset-config/nightly-oecore.conf  |    2 ++
+>>>  buildset-config/nightly-ppc.conf     |    2 ++
+>>>  buildset-config/nightly-x86-64.conf  |    2 ++
+>>>  buildset-config/nightly-x86.conf     |    2 ++
+>>
+>>
+>> Against which repository do these apply?
+>
+> These apply to the yocto-autobuilder eflanagan/yocto-autobuilder-refactor branch
 
-> So my question is this: is there someplace
-> in build/tmp on my build system where the full target file system exists as
-> a directory tree, so that I can pore through it and see how systemd is
-> really configured?
+We've moved the old yocto-autobuilder master to old-master and the
+refactor branch is now master. I will be working from master from now
+on (except for private branches, etc)
 
-Sure, you can find in the "rootfs" subdirectory of the image's WORKDIR (which 
-you can find out using:
+>
+>
+> --
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
 
- bitbake -e imagename | grep ^WORKDIR=
 
-One way to look at this is to launch a devshell for the image:
-
- bitbake -c devshell imagename
-
-In 1.4+ using a devshell has the advantage of showing you the correct 
-permission/ownership of files within the root filesystem.
-
-> Or perhaps someone can just tell me what target gets activated on bootup,
-> where its .wants directory is, and what directory I should put my daemon's
-> unit file into.
-
-I'm sure someone more knowledgeable about systemd will pipe up with further 
-information, but I would suggest looking at other recipes for examples. AFAICT 
-systemd units for daemons should be installed into ${systemd_unitdir}/system.
-
-Cheers,
-Paul
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
