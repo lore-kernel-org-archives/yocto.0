@@ -1,38 +1,33 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42D58E013CB
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 05:31:16 -0700 (PDT)
-Received: by mail-ee0-f52.google.com with SMTP id c50so42872eek.39
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 05:31:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=c4uyhZJalnFaVHpl80WUpW6w8Z2coSC8izULY4LukHY=;
-	b=w0GW9pjRAeHzWXPTKe6XezxkfpdtCi30nR3clscN8u0SFVE4QDp1TZrH64hO3Vvx1a
-	1FhTiw+jqAP75YZ2ZEl852EKyjC+BG+E6DnSTDv/8iQQmFo0yZyjAuR2TBJUajT7zYLU
-	dSK0A5x0gFDqhrjAJi5R+CgeGe1pf0pxH7HyGElPd98ApuwFrxte5e3uQyKYIgjp26dn
-	mVtutRvxnTsTbZD6mUKxSK1Kus55IERsNgWOImUhH9bJYjdkzYQ5SuT32awI4zFnJj6o
-	wBZOXZzbuCZeXTQRdeTw67aFzAqB6qWZHvD+WKD4oVgS5Yix3KLyz1hIaWrKo5bhip42
-	lnRQ==
-X-Received: by 10.15.36.133 with SMTP id i5mr912803eev.52.1372854675456;
-	Wed, 03 Jul 2013 05:31:15 -0700 (PDT)
-Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
-	by mx.google.com with ESMTPSA id
-	n5sm43894532eed.9.2013.07.03.05.31.14 for <multiple recipients>
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Wed, 03 Jul 2013 05:31:14 -0700 (PDT)
-Date: Wed, 3 Jul 2013 14:31:16 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Message-ID: <20130703123116.GA3452@jama>
+Return-Path: <Holger.Behrens@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E4F4E013CB
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 05:38:13 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r63Cc9HC013480
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 3 Jul 2013 05:38:10 -0700 (PDT)
+Received: from ALA-MBA.corp.ad.wrs.com ([169.254.2.34]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.02.0342.003;
+	Wed, 3 Jul 2013 05:38:07 -0700
+From: "Behrens, Holger" <Holger.Behrens@windriver.com>
+To: Sergey Matyukevich <Sergey_Matyukevich@mentor.com>
+Thread-Topic: [meta-ivi] [PATCHv2] connman: do not delete init scripts in
+	bbappend
+Thread-Index: AQHOd+S93bnF8uIOtEGQBspmz+z5b5lTUfqA//+O2RA=
+Date: Wed, 3 Jul 2013 12:38:06 +0000
+Message-ID: <7A688B48FC95D148BFE83E098348BE50393435C4@ALA-MBA.corp.ad.wrs.com>
 References: <1372850887-10185-1-git-send-email-sergey_matyukevich@mentor.com>
 	<CAJTo0LYDTjrq+aSQK638pedtiCpX+_a7uzYwd1Gbe0F41T7p6A@mail.gmail.com>
 	<51D4120F.6040306@mentor.com>
 	<CAJTo0LagT0i=JkkxEkd1mPbNH-F17vV9z4Pw9-bf8yNAUE0XHA@mail.gmail.com>
-MIME-Version: 1.0
 In-Reply-To: <CAJTo0LagT0i=JkkxEkd1mPbNH-F17vV9z4Pw9-bf8yNAUE0XHA@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.224.204.208]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-ivi] [PATCHv2] connman: do not delete init scripts in bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,53 +40,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2013 12:31:17 -0000
-X-Groupsio-MsgNum: 14816
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="cWoXeonUoKmBZSoM"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 03 Jul 2013 12:38:14 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---cWoXeonUoKmBZSoM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+SGksDQoNCj4gT24gMyBKdWx5IDIwMTMgMTI6NTksIFNlcmdleSBNYXR5dWtldmljaA0KPiA8U2Vy
+Z2V5X01hdHl1a2V2aWNoQG1lbnRvci5jb20+IHdyb3RlOg0KPiA+IEhtbS4uLiBUaGFua3MgZm9y
+IGNvbW1lbnQuIEl0IGlzIGdvb2QgaWRlYSB0byB0YWtlIGEgYnJlYWsgYW5kIHRvIHNlZSB0aGUN
+Cj4gPiBmb3Jlc3QgZm9yIHRoZSB0cmVlcy4gSGVyZSBpcyB0aGUgc2Vjb25kIHBhdGNoIHJldmlz
+aW9uLg0KPiA+DQo+ID4gQ29ubm1hbiBpbml0IHNjcmlwdHMgYXJlIG5vdyBpbnN0YWxsZWQgb25s
+eSB3aGVuICdzeXN2aW5pdCcgZmVhdHVyZSBpcw0KPiA+IGVuYWJsZWQgaW4gRElTVFJPX0ZFQVRV
+UkVTOiBjb21taXQNCj4gN2M4MTYwY2NiZTE3ZDZlMTBiZDdhMDliOTE4NDMxODJhODliOTA1NQ0K
+PiA+IGluDQo+ID4gcG9reS4gTm8gbmVlZCB0byByZW1vdmUgdGhlbSBpbiBiYmFwcGVuZDogdGhl
+eSBhcmUgbm90IGluc3RhbGxlZCBmb3INCj4gPiAnc3lzdGVtZCctZW5hYmxlZA0KPiA+IHN5c3Rl
+bXMgYW5kIHRoZXkgYXJlIG5lZWRlZCBmb3IgJ3N5c3Zpbml0Jy1lbmFibGVkIHN5c3RlbXMuDQo+
+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBTZXJnZXkgTWF0eXVrZXZpY2ggPHNlcmdleV9tYXR5dWtl
+dmljaEBtZW50b3IuY29tPg0KPiA+IC0tLQ0KPiA+ICByZWNpcGVzLWNvbm5lY3Rpdml0eS9jb25u
+bWFuL2Nvbm5tYW5fMS4xNS5iYmFwcGVuZCB8ICAgIDUgLS0tLS0NCj4gPiAgMSBmaWxlcyBjaGFu
+Z2VkLCAwIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0
+IGEvcmVjaXBlcy1jb25uZWN0aXZpdHkvY29ubm1hbi9jb25ubWFuXzEuMTUuYmJhcHBlbmQNCj4g
+PiBiL3JlY2lwZXMtY29ubmVjdGl2aXR5L2Nvbm5tYW4vY29ubm1hbl8xLjE1LmJiYXBwZW5kDQo+
+ID4gaW5kZXggY2RhNjEyYi4uODNlNGI1MSAxMDA2NDQNCj4gPiAtLS0gYS9yZWNpcGVzLWNvbm5l
+Y3Rpdml0eS9jb25ubWFuL2Nvbm5tYW5fMS4xNS5iYmFwcGVuZA0KPiA+ICsrKyBiL3JlY2lwZXMt
+Y29ubmVjdGl2aXR5L2Nvbm5tYW4vY29ubm1hbl8xLjE1LmJiYXBwZW5kDQo+ID4gQEAgLTIsOCAr
+MiwzIEBAIFBSSU5DIDo9ICIke0BpbnQoUFJJTkMpICsgMn0iDQo+ID4NCj4gPiAgSU5JVFNDUklQ
+VF9OQU1FID0gIiINCj4gPiAgSU5JVFNDUklQVF9QQVJBTVMgPSAiIg0KPiA+IC0NCj4gPiAtZG9f
+aW5zdGFsbF9hcHBlbmQoKSB7DQo+ID4gLSAgICAgICAjIFJlbW92ZSBpbml0IHNjcmlwdHMNCj4g
+PiAtICAgICAgIHJtIC1yICR7RH0ke3N5c2NvbmZkaXJ9L2luaXQuZA0KPiA+IC19DQo+ID4gLS0N
+Cj4gPiAxLjcuMi41DQo+IA0KPiBJbiB0aGF0IGNhc2UsIHlvdSBjYW4gZGVsZXRlIElOSVRTQ1JJ
+UFRfTkFNRSBhbmQgSU5JVFNDUklQVF9QQVJBTVMgdG9vDQo+IHN1cmVseS4gIFRoZW4gYWxsIHlv
+dSdyZSBsZWZ0IGlzIHRoZSBQUklOQywgc28geW91IGNhbiBkZWxldGUgdGhhdCBpZg0KPiB5b3Ug
+ZG9uJ3QgY2FyZS9hcmUgdXNpbmcgdGhlIFBSIHNlcnZpY2UsIG9yIGRlbGV0ZSB0aGF0IGJiYXBw
+ZW5kIHdoZW4NCj4gY29ubm1hbiAxLjE2IGlzIGludGVncmF0ZWQuDQoNCkkgYWdyZWUgdGhhdCB3
+ZSBjb3VsZCBub3cgc3RhcnQgd2l0aCB0aGUgY2xlYW4tdXAgb2YgdGhlIG1ldGEtaXZpIGxheWVy
+LCBnaXZlbiB0aGUgZmFjdCB0aGF0IHN5c3RlbWQgaXMgbm93IHN1cHBvcnRlZCBieSBvZS1jb3Jl
+LiAgV2hpY2ggbWFrZXMgdGhpcyAuYmJhcHBlbmQgb2Jzb2xldGUuIEFuZCBzbyBhZ3JlZSB3aXRo
+IFJvc3MgdG8gImRlbGV0ZSB0aGF0IGJiYXBwZW5kIHdoZW4gY29ubm1hbiAxLjE2IGlzIGludGVn
+cmF0ZWQiLiAgSSBjcmVhdGVkIGEgY2FyZCBbMV0gYW5kIGFkZGVkIGl0IHRvIHRoZSAiTmV4dCBV
+cCIgc3RhY2sgaW4gVHJlbGxvLCBzbyB0aGF0IHdlIGRvbid0IGZvcmdldC4NCg0KUmVnYXJkcywN
+CkhvbGdlcg0KDQpbMV0gaHR0cHM6Ly90cmVsbG8uY29tL2MvYm1XcFQ2bFUNCg==
 
-On Wed, Jul 03, 2013 at 01:09:47PM +0100, Burton, Ross wrote:
-> In that case, you can delete INITSCRIPT_NAME and INITSCRIPT_PARAMS too
-> surely.  Then all you're left is the PRINC, so you can delete that if
-> you don't care/are using the PR service, or delete that bbappend when
-> connman 1.16 is integrated.
-
-Using PR service isn't enough to keep binary feed sane after removing
-PRINC.
-
-PR service bumps least significant number in PKGR value. PRINC bumps
-most significant (even from INC_PR when used).
-
-INC_PR =3D "r1"
-PR =3D "${INC_PR}.1"
-PRINC :=3D "${@int(PRINC) + 1}"
-EXTENDPRAUTO =3D ".1"
-
-PKGR =3D "r2.1.1"
-
-After removing PRINC, EXTENDPRAUTO is bumped, but still PKGR is lower:
-
-PKGR =3D "r1.1.2"
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---cWoXeonUoKmBZSoM
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.20 (GNU/Linux)
-
-iEYEARECAAYFAlHUGZQACgkQN1Ujt2V2gBypUwCgmHq8LqvlBYLxMrnKp+OvsXq/
-ThsAnifAlbF/F8QcXTRQpson43pX9Orj
-=Bx61
------END PGP SIGNATURE-----
-
---cWoXeonUoKmBZSoM--
