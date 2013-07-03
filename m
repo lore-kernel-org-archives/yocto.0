@@ -1,34 +1,32 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E503CE0140D
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 04:36:29 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id ib11so9143vcb.31
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 04:36:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=3TJBl24eZ1Dk6lP7WwpYVnfZ/yfYZg4TceJzXZacRHQ=;
-	b=CHoz7Om7b+DTNXZKcIt8GCvQKkIo/bXFeguc5w60R/Miuo0uBrltSXkzlvglkQl53o
-	HiLnKqzxxf0TTp0yOi8l1zkm92l3UnwOOzkEdefPEm5r5Tox7SCwS+UtT8eB6oIqnFcY
-	Spr2CIZAVbx9hSqY4IHfIum5NEa2AXyH8uu74elPT/fym0zTRJPjtuQoh/ado+g6SJzT
-	baO9m4SbsF5JEg3w/EFue1YH0V2N3QL9E86gQ9Co8coMsTBbh2dVoOr503U7Wkqp5mPr
-	rCLgyxsk53cmzGvPIdwxkXBeaOMa7Yuvl62UIsgYTlfsH+b5iDb/2QSO+XIHKtC+46wB
-	Zckw==
-X-Received: by 10.58.181.225 with SMTP id dz1mr104912vec.95.1372851388249;
-	Wed, 03 Jul 2013 04:36:28 -0700 (PDT)
+Return-Path: <Sergey_Matyukevich@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA6D9E013CB
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 04:59:14 -0700 (PDT)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1UuLiL-0004lP-UE from Sergey_Matyukevich@mentor.com ;
+	Wed, 03 Jul 2013 04:59:13 -0700
+Received: from SVR-IES-FEM-01.mgc.mentorg.com ([137.202.0.104]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Wed, 3 Jul 2013 04:59:13 -0700
+Received: from [137.202.140.158] (137.202.0.76) by
+	SVR-IES-FEM-01.mgc.mentorg.com (137.202.0.104) with Microsoft SMTP
+	Server id 14.2.247.3; Wed, 3 Jul 2013 12:59:12 +0100
+Message-ID: <51D4120F.6040306@mentor.com>
+Date: Wed, 3 Jul 2013 15:59:11 +0400
+From: Sergey Matyukevich <Sergey_Matyukevich@mentor.com>
+Organization: Mentor Graphics
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.16) Gecko/20121216 Iceowl/1.0b1 Icedove/3.0.11
 MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Wed, 3 Jul 2013 04:36:08 -0700 (PDT)
-In-Reply-To: <1372850887-10185-1-git-send-email-sergey_matyukevich@mentor.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 References: <1372850887-10185-1-git-send-email-sergey_matyukevich@mentor.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 3 Jul 2013 12:36:08 +0100
-Message-ID: <CAJTo0LYDTjrq+aSQK638pedtiCpX+_a7uzYwd1Gbe0F41T7p6A@mail.gmail.com>
-To: Sergey Matyukevich <sergey_matyukevich@mentor.com>
-X-Gm-Message-State: ALoCoQmACpxNt/o8JgANwIxOp/0ewdPs3Fg77dGmXT4fS5hTFee3UQ7sd3DCNAuFNtYXmGOtpgYa
+	<CAJTo0LYDTjrq+aSQK638pedtiCpX+_a7uzYwd1Gbe0F41T7p6A@mail.gmail.com>
+In-Reply-To: <CAJTo0LYDTjrq+aSQK638pedtiCpX+_a7uzYwd1Gbe0F41T7p6A@mail.gmail.com>
+X-OriginalArrivalTime: 03 Jul 2013 11:59:13.0884 (UTC)
+	FILETIME=[BC7C61C0:01CE77E4]
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-ivi] [PATCH] connman: delete init scripts if 'sysvinit' feature is enabled
+Subject: [meta-ivi] [PATCHv2] connman: do not delete init scripts in bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,19 +38,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2013 11:36:31 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 03 Jul 2013 11:59:14 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 3 July 2013 12:28, Sergey Matyukevich <sergey_matyukevich@mentor.com> wrote:
-> connman bbappend: delete init scripts if 'sysvinit' feature is enabled
+>> Connman init scripts are installed only if 'sysvinit' feature is enabled
+>> in DISTRO_FEATURES: see commit 7c8160ccbe17d6e10bd7a09b91843182a89b9055 in
+>> poky.
+>>
+>> Signed-off-by: Sergey Matyukevich<sergey_matyukevich@mentor.com>
 >
-> Connman init scripts are installed only if 'sysvinit' feature is enabled
-> in DISTRO_FEATURES: see commit 7c8160ccbe17d6e10bd7a09b91843182a89b9055 in
-> poky.
+> I'm curious as to why you're deleting the connman init scripts in meta-ivi...
 >
-> Signed-off-by: Sergey Matyukevich <sergey_matyukevich@mentor.com>
+> Ross
 
-I'm curious as to why you're deleting the connman init scripts in meta-ivi...
+Hmm... Thanks for comment. It is good idea to take a break and to see 
+the forest for the trees. Here is the second patch revision.
 
-Ross
+Connman init scripts are now installed only when 'sysvinit' feature is
+enabled in DISTRO_FEATURES: commit 
+7c8160ccbe17d6e10bd7a09b91843182a89b9055 in
+poky. No need to remove them in bbappend: they are not installed for 
+'systemd'-enabled
+systems and they are needed for 'sysvinit'-enabled systems.
+
+Signed-off-by: Sergey Matyukevich <sergey_matyukevich@mentor.com>
+---
+  recipes-connectivity/connman/connman_1.15.bbappend |    5 -----
+  1 files changed, 0 insertions(+), 5 deletions(-)
+
+diff --git a/recipes-connectivity/connman/connman_1.15.bbappend 
+b/recipes-connectivity/connman/connman_1.15.bbappend
+index cda612b..83e4b51 100644
+--- a/recipes-connectivity/connman/connman_1.15.bbappend
++++ b/recipes-connectivity/connman/connman_1.15.bbappend
+@@ -2,8 +2,3 @@ PRINC := "${@int(PRINC) + 2}"
+
+  INITSCRIPT_NAME = ""
+  INITSCRIPT_PARAMS = ""
+-
+-do_install_append() {
+-	# Remove init scripts
+-	rm -r ${D}${sysconfdir}/init.d
+-}
+-- 
+1.7.2.5
 
