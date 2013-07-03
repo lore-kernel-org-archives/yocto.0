@@ -1,33 +1,35 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
-	[209.85.215.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F8CEE003E3
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 16:25:30 -0700 (PDT)
-Received: by mail-ea0-f180.google.com with SMTP id k10so406681eaj.39
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 16:25:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ldevM6obLUKbovSAnS+Y+olN+/qFo8ENevWeqjncB8M=;
-	b=FCPAYpcIjlEYozYm83hUp8e9oapKkAe27xCtv1RaavOf0jLrdjcmCqoJ4g/lmYfAbk
-	fW1stMyE0IaobNMgiy31sS34H4wH0Sf1CoAvUmxgI7k0KzGeGmSNdqpoB/T3Ynaf0hg/
-	390Ft4mzddHWklSITHSgNI/B8UOnHzFvI4EO/7fhJvZ2+sZwFG5bpUzYXt8KMCPDXUgL
-	wPKBdLvlepiIMHOhjrns1yAbnThhVyolP9i74k/Gy7utqWxzQa0T9ClCFdRqftWWE3sI
-	Yx12t9JIzYTeQQcHnAIZvA7wE32g5JNHk0sThCkcyjNVgbu/VUD/rKr23G6tkNPMwISI
-	ycOQ==
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail22c40.carrierzone.com (mail22c40.carrierzone.com
+	[209.235.156.162])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8936E003E3
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 16:36:57 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail22c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r63NasN9007642
+	for <yocto@yoctoproject.org>; Wed, 3 Jul 2013 23:36:56 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 3 Jul 2013 16:36:47 -0700
+Message-ID: <000601ce7846$3167e7a0$9437b6e0$@annabooks.com>
 MIME-Version: 1.0
-X-Received: by 10.15.31.198 with SMTP id y46mr3311960eeu.135.1372893928779;
-	Wed, 03 Jul 2013 16:25:28 -0700 (PDT)
-Received: by 10.223.74.139 with HTTP; Wed, 3 Jul 2013 16:25:28 -0700 (PDT)
-In-Reply-To: <7B6DB0F2-A890-4A2B-B6DA-DEB57257A020@gmail.com>
-References: <CANwz6nz2obpC75mXTYtK3roMczmNfHUEt84cj58Wjq5vGAFdaw@mail.gmail.com>
-	<7B6DB0F2-A890-4A2B-B6DA-DEB57257A020@gmail.com>
-Date: Wed, 3 Jul 2013 17:25:28 -0600
-Message-ID: <CANwz6nz+UwUyiNebT=AQk2t7Fe_dAXgK1ftsPMcbdgSeKW-X=Q@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: Elvis Dowson <elvis.dowson@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Fedora 18 CentOS 6.4 yocto difference zc702
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: Ac54RfEiRZ1Fgd4NQoG7vtymGw8fDQ==
+X-CSC: 0
+X-CHA: v=2.0 cv=RPEE6fe+ c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=_DgR7O7FQkkA:10 a=IjdlZ_XXAAAA:8 a=pyD5Ij0hbIIA:10 a=VwQbUJbxAAAA:8
+	a=UaVmjPp_IwVcphfqAiAA:9 a=CjuIK1q_8ugA:10 a=cfzGRmEXdFsgoQDE0w8A:9
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020205.51D4B598.00F0, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Subject: How to add WiFi support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,242 +41,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2013 23:25:31 -0000
-Content-Type: multipart/alternative; boundary=089e0160c5cef093b604e0a3c682
+X-List-Received-Date: Wed, 03 Jul 2013 23:36:59 -0000
+X-Groupsio-MsgNum: 14823
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_0007_01CE780B.85090FA0"
+Content-Language: en-us
 
---089e0160c5cef093b604e0a3c682
-Content-Type: text/plain; charset=ISO-8859-1
+------=_NextPart_000_0007_01CE780B.85090FA0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hello,
+I have searched and spotted different discussion on adding wireless support
+but have not found a solution. I have a Intel Centrino Wireless-N 1000 card
+plugged into a Intel Atom N2800 (Cedar Trail) platform. I am using Yocto
+Project 1.3.1, Cedar Trail BSP, core-image-x11
 
-*Where do you find the boot.scr or uEnv.txt for the zc702?
-*
+BB_VERSION        = "1.16.0"
+TARGET_ARCH       = "i586"
+TARGET_OS         = "linux"
+MACHINE           = "cedartrail-nopvr"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.3.1"
+TUNE_FEATURES     = "m32 core2"
+Core-image-x11
+
+Following the instructions to use menuconfig and create configuration
+fragment, I have enabled the various kernel options to include the iwlagn
+driver. The configuration fragment called mydiff.cfg (attached) was placed
+in the meta-intel/meta-cedartrail/recipes-kernel/Linux/files folder. The
+Linux-yocto_3.0.bbappend was modified with the following:
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SRC_URI += "file://mydiff.cfg"
+
+After building the image, ifconfig didn't show wireless and neither does
+iwconfig. The adapter is found when I do a lspci. The kernel wireless
+website - http://wireless.kernel.org/en/users/Drivers/iwlwifi  lists a
+firmware package needed for installation. I tried to create a recipe to
+place the firmware file in the /lib/firmware folder, but it doesn't get put
+in. The lack of what to do for the LICENSE might be a problem. Here is the
+recipe:
+
+DESCRIPTION = "Intel WiFi 1000 Adapter"
+LICENSE = "GPL"-?????
+LIC_FILES_CHKSUM =
+"file://${WORKDIR}/LICENSE.iwlwifi-1000-ucode;md5=aa2bfb02c7e0712680334b9f47
+f8dc61"
+
+SRC_URI = "file://LICENSE.iwlwifi-1000-ucode \
+	   file://iwlwifi-1000-3.ucode \ 
+	   "
+FWPATH = "lib/firmware"
+do_install_apped() {
+	install -m 0644 LICENSE.iwlwifi-1000-ucode ${D}${FWPATH}
+	install -m 0644 iwlwifi-1000-3.ucode ${D}${FWPATH}
+}
+
+I manually created the /lib/firmware folder and copied the firmware file
+(iwlwifi-1000-3.ucode) to the folder. Nothing changed after a reboot. I also
+tried a Intel Centrino Ultimate-N 6300 same result.
+
+1. Was a kernel modification the right direction to enable support for this
+driver?
+2. Did I miss anything with regards to the configuration fragment setup?
+3. Is the firmware really needed? If so why is there no /lib/firmware folder
+and what should be used for the LICENSE ?
 
 
+Regards,
+
+Sean Liming
 
 
-On Wed, Jul 3, 2013 at 1:35 PM, Elvis Dowson <elvis.dowson@gmail.com> wrote:
-
-> Hi Edward,
->
-> On Jul 3, 2013, at 11:05 PM, Edward Vidal <vidal.develone@gmail.com>
-> wrote:
->
-> Hello,
-> I recently built core-image-minimal for zc702.
-> This generated a file with a  dtb extension that I have not seen before
-> uImage--3.8-xilinx+git0+6a0bedad60-r1-zynq-zc702-20130703173428.dtb.  Can
-> anyone tell me more about the this extension.
->
->
-> The *.dts and *.dtb files are related to the device tree source and binary
-> formats. When you work with a hardware project using the Xilinx ISE
-> 14.6/Vivado 2013.2 tools, a dts file will be create. This contains the base
-> address and other parameters for each device peripheral, e.g. serial ports,
-> video controller, etc.
->
-> The yocto build system takes these files and generates the required *.dtb
-> file.
->
-> Please refer the Zynq Base TRD 14.6 document, (you can quickly scan
-> through the document and fast forward to section 8.2, for building a dtb
-> file from a dts file)
->
-> http://www.wiki.xilinx.com/Zynq+Base+TRD+14.6-beta
->
-> Where do you find the boot.scr or uEnv.txt for the zc702?   I built this
-> on both a CentOS 6.4 and a Fedora18 x86_64 system.
->
-> meta-yocto        = "(nobranch):04af378874f38d1200bea2fa191beeae94232d6e"
-> meta-xilinx
-> meta-kc705
-> meta-zc702
-> meta-zedboard     = "(nobranch):b065f091f10060f2bb68b58f1d618e26a966fee2"
-> meta-yocto-bsp    = "(nobranch):04af378874f38d1200bea2fa191beeae94232d6e"
->
-> The latest version of poky that I downloaded
-> commit 8a186a6b3853fc1a7dcf342d421c8926c38949c9
-> Author: Cristiana Voicu <cristiana.voicu@intel.com>
-> Date:   Mon Jul 1 08:09:52 2013 +0000
->
->     bitbake: hob: save button from settings called a nonexisting method
->
->     The method was removed when the process for saving configuration
->     in Hob was changed. Replace the call with the right function.
->
->     [YOCTO #4793]
->     (Bitbake rev: b6aa2b63d71cbe82850a375381b2dbc750cf1905)
->
->     Signed-off-by: Cristiana Voicu <cristiana.voicu@intel.com>
->     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
->
-> causes the following error on both CentOS 6.4 and Fedora 18
-> . oe-init-build-env
->
-> BitBake requires Python 2.7.3 or later
-> CentOS 6.4 has a non standard location of python.  Does anyone know how to
-> tell bitbake of the non standard location of python.
->
-> This latest version of poky that I downloaded on fedora18
-> causes the following error.
->  MACHINE=zc702 bitbake core-image-minimal -vDD
-> ERROR:  OE-core's config sanity checker detected a potential
-> misconfiguration.
->     Either fix the cause of this error or at your own risk disable the
-> checker (see sanity.conf).
->     Following is the list of potential problems / advisories:
->
->     Your version of make 3.82 is broken. Please revert to 3.81 or install
-> a patched version.
->
-> ERROR: Execution of event handler 'check_sanity_eventhandler' failed
->
-> This version of poky and meta-xilinx worked okay.
->
-> meta
-> meta-yocto        = "(nobranch):04af378874f38d1200bea2fa191beeae94232d6e"
-> meta-xilinx
-> meta-kc705
-> meta-zc702
-> meta-zedboard     = "(nobranch):b065f091f10060f2bb68b58f1d618e26a966fee2"
-> meta-yocto-bsp    = "(nobranch):04af378874f38d1200bea2fa191beeae94232d6e"
->
-> MACHINE=zc702 bitbake core-image-minimal -vDD
->
-> NOTE: Tasks Summary: Attempted 1530 tasks of which 306 didn't need to be
-> rerun and all succeeded.
-> We are trying to determine which board to purchase the
-> Xilinx Zynq-7000 SoC ZC702 Evaluation Kit
-> EK-Z7-ZC702-G
-> $895.00 or
-> AES-Z7EV-7Z020-G
-> ZEDBOARD ZYNQ BOARD
-> AES-Z7EV-7Z020-G
-> ECCN
-> Avnet Design Services - Custom
-> $395.00
-> Does anyone have any experience with either of these boards?
->
->
-> From a support standpoint, both the ZC702 and Zedboard are supported
-> really well. You will find that most of the Xilinx reference design and
-> application notes usually always target the ZC702. If you get a Zedboard
-> you'll need to take the extra effort to adapt the pin constraints file.
-> Also the ZC702 has two FMC LPC connectors rather than 1 FMC LPC connector,
-> if that's more important for you.
->
-> My recommendation would be to go in for the ZC702 or the ZC706 if you need
-> more logic density.
->
-> Best regards,
->
-> Elvis Dowson
->
-
---089e0160c5cef093b604e0a3c682
-Content-Type: text/html; charset=ISO-8859-1
+------=_NextPart_000_0007_01CE780B.85090FA0
+Content-Type: application/octet-stream;
+	name="mydiff.cfg"
 Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="mydiff.cfg"
 
-<div dir=3D"ltr"><div><br></div>Hello,<br><pre><i>Where do you find the boo=
-t.scr or uEnv.txt for the zc702? <br></i></pre><br></div><div class=3D"gmai=
-l_extra"><br><br><div class=3D"gmail_quote">On Wed, Jul 3, 2013 at 1:35 PM,=
- Elvis Dowson <span dir=3D"ltr">&lt;<a href=3D"mailto:elvis.dowson@gmail.co=
-m" target=3D"_blank">elvis.dowson@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div style=3D"word-wrap:break-word">Hi Edwar=
-d,<div><br><div><div class=3D"im"><div>On Jul 3, 2013, at 11:05 PM, Edward =
-Vidal &lt;<a href=3D"mailto:vidal.develone@gmail.com" target=3D"_blank">vid=
-al.develone@gmail.com</a>&gt; wrote:</div>
-<br><blockquote type=3D"cite"><div dir=3D"ltr">Hello,<br>I recently built c=
-ore-image-minimal for zc702.<br>This generated a file with a=A0 dtb extensi=
-on that I have not seen before uImage--3.8-xilinx+git0+6a0bedad60-r1-zynq-z=
-c702-20130703173428.dtb.=A0 Can anyone tell me more about the this extensio=
-n.=A0 </div>
-</blockquote><div><br></div></div><div>The *.dts and *.dtb files are relate=
-d to the device tree source and binary formats. When you work with a hardwa=
-re project using the Xilinx ISE 14.6/Vivado 2013.2 tools, a dts file will b=
-e create. This contains the base address and other parameters for each devi=
-ce peripheral, e.g. serial ports, video controller, etc.</div>
-<div><br></div><div>The yocto build system takes these files and generates =
-the required *.dtb file.</div><div><br></div><div>Please refer the Zynq Bas=
-e TRD 14.6 document, (you can quickly scan through the document and fast fo=
-rward to section 8.2, for building a dtb file from a dts file)</div>
-<div><br></div><div><a href=3D"http://www.wiki.xilinx.com/Zynq+Base+TRD+14.=
-6-beta" target=3D"_blank">http://www.wiki.xilinx.com/Zynq+Base+TRD+14.6-bet=
-a</a></div><div><div class=3D"h5"><br><blockquote type=3D"cite"><div dir=3D=
-"ltr">
-Where do you find the boot.scr or uEnv.txt for the zc702?=A0=A0 I built thi=
-s on both a CentOS 6.4 and a Fedora18 x86_64 system.<br>
-<br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):04af378874f38d1200=
-bea2fa191beeae94232d6e&quot;
-<br>meta-xilinx=A0=A0=A0=A0=A0=A0=A0
-<br>meta-kc705=A0=A0=A0=A0=A0=A0=A0=A0
-<br>meta-zc702=A0=A0=A0=A0=A0=A0=A0=A0
-<br>meta-zedboard=A0=A0=A0=A0 =3D &quot;(nobranch):b065f091f10060f2bb68b58f=
-1d618e26a966fee2&quot;
-<br>meta-yocto-bsp=A0=A0=A0 =3D &quot;(nobranch):04af378874f38d1200bea2fa19=
-1beeae94232d6e&quot;<br><br>The latest version of poky that I downloaded <b=
-r>commit 8a186a6b3853fc1a7dcf342d421c8926c38949c9<br>Author: Cristiana Voic=
-u &lt;<a href=3D"mailto:cristiana.voicu@intel.com" target=3D"_blank">cristi=
-ana.voicu@intel.com</a>&gt;<br>
+++ .confignew	2013-07-03 14:56:58.000000000 -0700
+# CONFIG_NETFILTER_XT_TARGET_LED is not set
+CONFIG_WEXT_CORE=3Dy
+CONFIG_WEXT_PROC=3Dy
+CONFIG_CFG80211=3Dy
+# CONFIG_NL80211_TESTMODE is not set
+# CONFIG_CFG80211_DEVELOPER_WARNINGS is not set
+# CONFIG_CFG80211_REG_DEBUG is not set
+CONFIG_CFG80211_DEFAULT_PS=3Dy
+# CONFIG_CFG80211_DEBUGFS is not set
+# CONFIG_CFG80211_INTERNAL_REGDB is not set
+CONFIG_CFG80211_WEXT=3Dy
+CONFIG_WIRELESS_EXT_SYSFS=3Dy
+CONFIG_MAC80211=3Dy
+CONFIG_MAC80211_HAS_RC=3Dy
+# CONFIG_MAC80211_RC_PID is not set
+CONFIG_MAC80211_RC_MINSTREL=3Dy
+CONFIG_MAC80211_RC_MINSTREL_HT=3Dy
+CONFIG_MAC80211_RC_DEFAULT_MINSTREL=3Dy
+CONFIG_MAC80211_RC_DEFAULT=3D"minstrel_ht"
+# CONFIG_MAC80211_MESH is not set
+CONFIG_MAC80211_LEDS=3Dy
+# CONFIG_MAC80211_DEBUGFS is not set
+# CONFIG_MAC80211_DEBUG_MENU is not set
+# CONFIG_LIBERTAS_THINFIRM is not set
+# CONFIG_AT76C50X_USB is not set
+# CONFIG_USB_NET_RNDIS_WLAN is not set
+# CONFIG_RTL8180 is not set
+# CONFIG_RTL8187 is not set
+# CONFIG_ADM8211 is not set
+# CONFIG_MAC80211_HWSIM is not set
+# CONFIG_MWL8K is not set
+# CONFIG_ATH_COMMON is not set
+# CONFIG_B43 is not set
+# CONFIG_B43LEGACY is not set
+# CONFIG_IPW2100 is not set
+# CONFIG_IPW2200 is not set
+CONFIG_IWLAGN=3Dy
 
-Date:=A0=A0 Mon Jul 1 08:09:52 2013 +0000<br><br>=A0=A0=A0 bitbake: hob: sa=
-ve button from settings called a nonexisting method<br>=A0=A0=A0 <br>=A0=A0=
-=A0 The method was removed when the process for saving configuration<br>=A0=
-=A0=A0 in Hob was changed. Replace the call with the right function.<br>
+#
+# Debugging Options
+#
+# CONFIG_IWLWIFI_DEBUG is not set
+# CONFIG_IWLWIFI_DEVICE_TRACING is not set
+# CONFIG_IWLWIFI_DEVICE_SVTOOL is not set
+# CONFIG_IWL_P2P is not set
+# CONFIG_IWL4965 is not set
+# CONFIG_IWL3945 is not set
+# CONFIG_IWM is not set
+# CONFIG_LIBERTAS is not set
+# CONFIG_HERMES is not set
+# CONFIG_P54_COMMON is not set
+# CONFIG_RT2X00 is not set
+# CONFIG_RTL8192CE is not set
+# CONFIG_RTL8192SE is not set
+# CONFIG_RTL8192CU is not set
+# CONFIG_WL1251 is not set
+# CONFIG_WL12XX_MENU is not set
+# CONFIG_ZD1211RW is not set
+# CONFIG_MWIFIEX is not set
+CONFIG_NEW_LEDS=3Dy
+CONFIG_LEDS_CLASS=3Dy
 
-=A0=A0=A0 <br>=A0=A0=A0 [YOCTO #4793]<br>=A0=A0=A0 (Bitbake rev: b6aa2b63d7=
-1cbe82850a375381b2dbc750cf1905)<br>=A0=A0=A0 <br>=A0=A0=A0 Signed-off-by: C=
-ristiana Voicu &lt;<a href=3D"mailto:cristiana.voicu@intel.com" target=3D"_=
-blank">cristiana.voicu@intel.com</a>&gt;<br>
-=A0=A0=A0 Signed-off-by: Richard Purdie &lt;<a href=3D"mailto:richard.purdi=
-e@linuxfoundation.org" target=3D"_blank">richard.purdie@linuxfoundation.org=
-</a>&gt;<br>
-<br>causes the following error on both CentOS 6.4 and Fedora 18 <br>. oe-in=
-it-build-env <br><br>BitBake requires Python 2.7.3 or later<br>CentOS 6.4 h=
-as a non standard location of python.=A0 Does anyone know how to tell bitba=
-ke of the non standard location of python.<br>
+#
+# LED drivers
+#
+# CONFIG_LEDS_ALIX2 is not set
+# CONFIG_LEDS_CLEVO_MAIL is not set
+# CONFIG_LEDS_INTEL_SS4200 is not set
+CONFIG_LEDS_TRIGGERS=3Dy
 
-<br>This latest version of poky that I downloaded on fedora18 <br>causes th=
-e following error.<br>=A0MACHINE=3Dzc702 bitbake core-image-minimal -vDD
-<br>ERROR:=A0 OE-core&#39;s config sanity checker detected a potential misc=
-onfiguration.
-<br>=A0=A0=A0 Either fix the cause of this error or at your own risk disabl=
-e the checker (see sanity.conf).
-<br>=A0=A0=A0 Following is the list of potential problems / advisories:
-<br>=A0<br>=A0=A0=A0 Your version of make 3.82 is broken. Please revert to =
-3.81 or install a patched version.
-<br>=A0<br>ERROR: Execution of event handler &#39;check_sanity_eventhandler=
-&#39; failed<br><br>This version of poky and meta-xilinx worked okay.<br><b=
-r>meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0
-<br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):04af378874f38d1200=
-bea2fa191beeae94232d6e&quot;
-<br>meta-xilinx=A0=A0=A0=A0=A0=A0=A0
-<br>meta-kc705=A0=A0=A0=A0=A0=A0=A0=A0
-<br>meta-zc702=A0=A0=A0=A0=A0=A0=A0=A0
-<br>meta-zedboard=A0=A0=A0=A0 =3D &quot;(nobranch):b065f091f10060f2bb68b58f=
-1d618e26a966fee2&quot;
-<br>meta-yocto-bsp=A0=A0=A0 =3D &quot;(nobranch):04af378874f38d1200bea2fa19=
-1beeae94232d6e&quot;<br><br>MACHINE=3Dzc702 bitbake core-image-minimal -vDD=
-<br><br>NOTE: Tasks Summary: Attempted 1530 tasks of which 306 didn&#39;t n=
-eed to be rerun and all succeeded.<br>
+#
+# LED Triggers
+#
+# CONFIG_LEDS_TRIGGER_TIMER is not set
+# CONFIG_LEDS_TRIGGER_HEARTBEAT is not set
+# CONFIG_LEDS_TRIGGER_BACKLIGHT is not set
+# CONFIG_LEDS_TRIGGER_DEFAULT_ON is not set
 
-We are trying to determine which board to purchase the <br>Xilinx Zynq-7000=
- SoC ZC702 Evaluation Kit<br>EK-Z7-ZC702-G<br>$895.00 or<br>AES-Z7EV-7Z020-=
-G<br>ZEDBOARD ZYNQ BOARD<br>AES-Z7EV-7Z020-G<br>ECCN<br>Avnet Design Servic=
-es - Custom<br>
+#
+# iptables trigger is under Netfilter config (LED target)
+#
+CONFIG_CRYPTO_AES=3Dy
+CONFIG_CRYPTO_ARC4=3Dy
+CONFIG_AVERAGE=3Dy
 
-$395.00<br>Does anyone have any experience with either of these boards?<br>=
-</div></blockquote><br></div></div></div><div>From a support standpoint, bo=
-th the ZC702 and Zedboard are supported really well. You will find that mos=
-t of the Xilinx reference design and application notes usually always targe=
-t the ZC702. If you get a Zedboard you&#39;ll need to take the extra effort=
- to adapt the pin constraints file. Also the ZC702 has two FMC LPC connecto=
-rs rather than 1 FMC LPC connector, if that&#39;s more important for you.</=
-div>
-<div><br></div><div>My recommendation would be to go in for the ZC702 or th=
-e ZC706 if you need more logic density.</div><div><br></div><div>Best regar=
-ds,</div></div><div><br></div><div>Elvis Dowson</div></div></blockquote>
-</div><br></div>
-
---089e0160c5cef093b604e0a3c682--
+------=_NextPart_000_0007_01CE780B.85090FA0--
