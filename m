@@ -1,32 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
-	[209.85.128.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A18F8E0140D
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 01:14:45 -0700 (PDT)
-Received: by mail-ve0-f171.google.com with SMTP id b10so5642857vea.30
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 01:14:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=svPwcJUmInsxWFVdP53ZLTz41cO5DK6YqIKsl9wSJZ0=;
-	b=gblL8Kx6ZpRPfSJRba0/eu6RD3/Ny4IsiKpzBpnnzkTtPPQNN1Aiy4AwIrRwYQBf+D
-	aFWLOocuzxV/9dZiHtj6icUAlt7x9CWz+FgvK/HgvMMliXtggfXtre/lo5VHt2ArrhIy
-	L+rx3OkuMjZ52nxxeWM5FakVLxe0HwyzHYP8hUMd5yRHS/k1drohHBj+RgUCV6QhaFqa
-	2eXDmA16FvNKzc98tw7foAxVUPRQAj/1RoacgP+RCyUmLLlASFN4/U4CeBW7mjY+AYMZ
-	YVLByKnxcMXywK22ieErl23WpZjP4Nbk1rNyHUHus66GZOr4sD0FiFKdz6E6uhJKVahR
-	nppg==
-X-Received: by 10.52.29.106 with SMTP id j10mr10212723vdh.77.1372839284567;
-	Wed, 03 Jul 2013 01:14:44 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Wed, 3 Jul 2013 01:14:24 -0700 (PDT)
-In-Reply-To: <6915E88EED1243A0989D0097AC115254@PAULD>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-scoter.atl.sa.earthlink.net
+	(elasmtp-scoter.atl.sa.earthlink.net [209.86.89.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE2A3E013CB
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 01:26:02 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=XPwJwBeBRsMn6OtWPNUXFRbcLmmq/C5kVEjoYvSqys2JWeasI/VPKZDI6JEhBUmp;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-scoter.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UuIO1-0003J5-Dk; Wed, 03 Jul 2013 04:26:01 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>
 References: <6915E88EED1243A0989D0097AC115254@PAULD>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 3 Jul 2013 09:14:24 +0100
-Message-ID: <CAJTo0LbEzXwXK5MCvRqFeotATAgnBpJGboLH4KvebyNZbKAFzg@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-X-Gm-Message-State: ALoCoQlJB1hkiN6ih/H65YSVGsV8eviFKDC60AHzCnuKKfaBPNs0C/XNQ4oWsA+p5IPlfuQIALSJ
+	<CAJTo0LbEzXwXK5MCvRqFeotATAgnBpJGboLH4KvebyNZbKAFzg@mail.gmail.com>
+In-Reply-To: <CAJTo0LbEzXwXK5MCvRqFeotATAgnBpJGboLH4KvebyNZbKAFzg@mail.gmail.com>
+Date: Wed, 3 Jul 2013 01:26:04 -0700
+Message-ID: <698B637504BE4C3C83BA8EC60B0D77E8@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac53xWLKZahCl1HmQteT/aLINbgaaAAAP6BQ
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068833465a7235fae53ba1c16675f25211fe350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
 Subject: Re: Creating a volatile image
 X-BeenThere: yocto@yoctoproject.org
@@ -40,18 +36,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2013 08:14:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 03 Jul 2013 08:26:05 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On 3 July 2013 08:48, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
-> Alternatively, is it practical to make the existing file system readonly? My
-> system is based on core-image-base, with no graphics. What will break if it
-> can't write to anything outside of /tmp or /run or /media/ram or
-> /var/volatile? And is there a built-in way to do that?
+> From: Burton, Ross
+> 
+> You can set the "read-only-rootfs" image feature (never tried it
+> myself, so YMMV), 
 
-You can set the "read-only-rootfs" image feature (never tried it
-myself, so YMMV), but if you turn off atime writes to / you won't be
-making that many writes to / anyway.
+That would certainly be the simplest thing to try.
 
-Ross
+> but if you turn off atime writes to / you won't be
+> making that many writes to / anyway.
+
+How does one turn off atime? By modifying /etc/fstab? How is that done? By
+supplying a different source file to get copied into the image, or by
+overwriting the built-in one in my own recipe? I need to do that anyway,
+since I have a second partition to mount.
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
