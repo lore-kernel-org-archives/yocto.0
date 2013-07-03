@@ -1,34 +1,37 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
-	[209.85.212.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04444E0140D
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 05:10:08 -0700 (PDT)
-Received: by mail-vb0-f42.google.com with SMTP id i3so37301vbh.29
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 05:10:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=Qjm7qK8t1c8eW8EaXWlr4UI+Zwoennyvusvd0dgQqPo=;
-	b=gvEJOPqKwzRfjox0eKNBlyfS+3OellQAsoc4bK1Z1bL7KQHro5d13c6hQpTBs3OIEK
-	n5LCT3ynKbQlTQBlYnq6P92iiKsHZi3CT0p5zFhsq/gPKbp5qiICkny+qA6oEVnwKcFE
-	MxGfFC5eHiOgV1nwx/lRBXe83Fq8sCz+hpGU63gNmWlHGqX3Hw/NFaxYCW+T8noZO8T9
-	imF8CSQlosEnBfVkljmTZpvToHg1ukbSZA1MPh3QgDscZ8MgMW4KFq/iQQ7GLcAT+kZr
-	uFs/FvCv/UzjJLTVONrWYbgUqUFOIp6v0QefI/9LWi472o67b6ilYCL9e96Eq82J4ccV
-	HCug==
-X-Received: by 10.220.58.195 with SMTP id i3mr184382vch.38.1372853407587; Wed,
-	03 Jul 2013 05:10:07 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Wed, 3 Jul 2013 05:09:47 -0700 (PDT)
-In-Reply-To: <51D4120F.6040306@mentor.com>
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42D58E013CB
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 05:31:16 -0700 (PDT)
+Received: by mail-ee0-f52.google.com with SMTP id c50so42872eek.39
+	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 05:31:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=c4uyhZJalnFaVHpl80WUpW6w8Z2coSC8izULY4LukHY=;
+	b=w0GW9pjRAeHzWXPTKe6XezxkfpdtCi30nR3clscN8u0SFVE4QDp1TZrH64hO3Vvx1a
+	1FhTiw+jqAP75YZ2ZEl852EKyjC+BG+E6DnSTDv/8iQQmFo0yZyjAuR2TBJUajT7zYLU
+	dSK0A5x0gFDqhrjAJi5R+CgeGe1pf0pxH7HyGElPd98ApuwFrxte5e3uQyKYIgjp26dn
+	mVtutRvxnTsTbZD6mUKxSK1Kus55IERsNgWOImUhH9bJYjdkzYQ5SuT32awI4zFnJj6o
+	wBZOXZzbuCZeXTQRdeTw67aFzAqB6qWZHvD+WKD4oVgS5Yix3KLyz1hIaWrKo5bhip42
+	lnRQ==
+X-Received: by 10.15.36.133 with SMTP id i5mr912803eev.52.1372854675456;
+	Wed, 03 Jul 2013 05:31:15 -0700 (PDT)
+Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
+	by mx.google.com with ESMTPSA id
+	n5sm43894532eed.9.2013.07.03.05.31.14 for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Wed, 03 Jul 2013 05:31:14 -0700 (PDT)
+Date: Wed, 3 Jul 2013 14:31:16 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Message-ID: <20130703123116.GA3452@jama>
 References: <1372850887-10185-1-git-send-email-sergey_matyukevich@mentor.com>
 	<CAJTo0LYDTjrq+aSQK638pedtiCpX+_a7uzYwd1Gbe0F41T7p6A@mail.gmail.com>
 	<51D4120F.6040306@mentor.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 3 Jul 2013 13:09:47 +0100
-Message-ID: <CAJTo0LagT0i=JkkxEkd1mPbNH-F17vV9z4Pw9-bf8yNAUE0XHA@mail.gmail.com>
-To: Sergey Matyukevich <Sergey_Matyukevich@mentor.com>
-X-Gm-Message-State: ALoCoQkK9M9fo01DsCJ2aq+Ve81BE8i8IOQGhrHRc5p0YJdNFr+jORxVqqIqmsk12kd6iEESVK+n
+	<CAJTo0LagT0i=JkkxEkd1mPbNH-F17vV9z4Pw9-bf8yNAUE0XHA@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0LagT0i=JkkxEkd1mPbNH-F17vV9z4Pw9-bf8yNAUE0XHA@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
 Subject: Re: [meta-ivi] [PATCHv2] connman: do not delete init scripts in bbappend
 X-BeenThere: yocto@yoctoproject.org
@@ -42,46 +45,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2013 12:10:09 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 03 Jul 2013 12:31:17 -0000
+X-Groupsio-MsgNum: 14816
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="cWoXeonUoKmBZSoM"
+Content-Disposition: inline
 
-On 3 July 2013 12:59, Sergey Matyukevich <Sergey_Matyukevich@mentor.com> wrote:
-> Hmm... Thanks for comment. It is good idea to take a break and to see the
-> forest for the trees. Here is the second patch revision.
->
-> Connman init scripts are now installed only when 'sysvinit' feature is
-> enabled in DISTRO_FEATURES: commit 7c8160ccbe17d6e10bd7a09b91843182a89b9055
-> in
-> poky. No need to remove them in bbappend: they are not installed for
-> 'systemd'-enabled
-> systems and they are needed for 'sysvinit'-enabled systems.
->
-> Signed-off-by: Sergey Matyukevich <sergey_matyukevich@mentor.com>
-> ---
->  recipes-connectivity/connman/connman_1.15.bbappend |    5 -----
->  1 files changed, 0 insertions(+), 5 deletions(-)
->
-> diff --git a/recipes-connectivity/connman/connman_1.15.bbappend
-> b/recipes-connectivity/connman/connman_1.15.bbappend
-> index cda612b..83e4b51 100644
-> --- a/recipes-connectivity/connman/connman_1.15.bbappend
-> +++ b/recipes-connectivity/connman/connman_1.15.bbappend
-> @@ -2,8 +2,3 @@ PRINC := "${@int(PRINC) + 2}"
->
->  INITSCRIPT_NAME = ""
->  INITSCRIPT_PARAMS = ""
-> -
-> -do_install_append() {
-> -       # Remove init scripts
-> -       rm -r ${D}${sysconfdir}/init.d
-> -}
-> --
-> 1.7.2.5
+--cWoXeonUoKmBZSoM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In that case, you can delete INITSCRIPT_NAME and INITSCRIPT_PARAMS too
-surely.  Then all you're left is the PRINC, so you can delete that if
-you don't care/are using the PR service, or delete that bbappend when
-connman 1.16 is integrated.
+On Wed, Jul 03, 2013 at 01:09:47PM +0100, Burton, Ross wrote:
+> In that case, you can delete INITSCRIPT_NAME and INITSCRIPT_PARAMS too
+> surely.  Then all you're left is the PRINC, so you can delete that if
+> you don't care/are using the PR service, or delete that bbappend when
+> connman 1.16 is integrated.
 
-Ross
+Using PR service isn't enough to keep binary feed sane after removing
+PRINC.
 
+PR service bumps least significant number in PKGR value. PRINC bumps
+most significant (even from INC_PR when used).
+
+INC_PR =3D "r1"
+PR =3D "${INC_PR}.1"
+PRINC :=3D "${@int(PRINC) + 1}"
+EXTENDPRAUTO =3D ".1"
+
+PKGR =3D "r2.1.1"
+
+After removing PRINC, EXTENDPRAUTO is bumped, but still PKGR is lower:
+
+PKGR =3D "r1.1.2"
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--cWoXeonUoKmBZSoM
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.20 (GNU/Linux)
+
+iEYEARECAAYFAlHUGZQACgkQN1Ujt2V2gBypUwCgmHq8LqvlBYLxMrnKp+OvsXq/
+ThsAnifAlbF/F8QcXTRQpson43pX9Orj
+=Bx61
+-----END PGP SIGNATURE-----
+
+--cWoXeonUoKmBZSoM--
