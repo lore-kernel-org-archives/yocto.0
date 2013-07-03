@@ -1,32 +1,33 @@
-Return-Path: <Holger.Behrens@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E4F4E013CB
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 05:38:13 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r63Cc9HC013480
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 3 Jul 2013 05:38:10 -0700 (PDT)
-Received: from ALA-MBA.corp.ad.wrs.com ([169.254.2.34]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.02.0342.003;
-	Wed, 3 Jul 2013 05:38:07 -0700
-From: "Behrens, Holger" <Holger.Behrens@windriver.com>
-To: Sergey Matyukevich <Sergey_Matyukevich@mentor.com>
-Thread-Topic: [meta-ivi] [PATCHv2] connman: do not delete init scripts in
-	bbappend
-Thread-Index: AQHOd+S93bnF8uIOtEGQBspmz+z5b5lTUfqA//+O2RA=
-Date: Wed, 3 Jul 2013 12:38:06 +0000
-Message-ID: <7A688B48FC95D148BFE83E098348BE50393435C4@ALA-MBA.corp.ad.wrs.com>
+Return-Path: <Sergey_Matyukevich@mentor.com>
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D08BFE01479
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 09:13:44 -0700 (PDT)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1UuPgY-00017R-9F from Sergey_Matyukevich@mentor.com ;
+	Wed, 03 Jul 2013 09:13:38 -0700
+Received: from SVR-IES-FEM-01.mgc.mentorg.com ([137.202.0.104]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Wed, 3 Jul 2013 09:13:38 -0700
+Received: from [137.202.140.158] (137.202.0.76) by
+	SVR-IES-FEM-01.mgc.mentorg.com (137.202.0.104) with Microsoft SMTP
+	Server id 14.2.247.3; Wed, 3 Jul 2013 17:13:36 +0100
+Message-ID: <51D44DAF.2010305@mentor.com>
+Date: Wed, 3 Jul 2013 20:13:35 +0400
+From: Sergey Matyukevich <Sergey_Matyukevich@mentor.com>
+Organization: Mentor Graphics
+User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US;
+	rv:1.9.1.16) Gecko/20121216 Iceowl/1.0b1 Icedove/3.0.11
+MIME-Version: 1.0
+To: "Behrens, Holger" <Holger.Behrens@windriver.com>
 References: <1372850887-10185-1-git-send-email-sergey_matyukevich@mentor.com>
 	<CAJTo0LYDTjrq+aSQK638pedtiCpX+_a7uzYwd1Gbe0F41T7p6A@mail.gmail.com>
 	<51D4120F.6040306@mentor.com>
 	<CAJTo0LagT0i=JkkxEkd1mPbNH-F17vV9z4Pw9-bf8yNAUE0XHA@mail.gmail.com>
-In-Reply-To: <CAJTo0LagT0i=JkkxEkd1mPbNH-F17vV9z4Pw9-bf8yNAUE0XHA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [128.224.204.208]
-MIME-Version: 1.0
+	<7A688B48FC95D148BFE83E098348BE50393435C4@ALA-MBA.corp.ad.wrs.com>
+In-Reply-To: <7A688B48FC95D148BFE83E098348BE50393435C4@ALA-MBA.corp.ad.wrs.com>
+X-OriginalArrivalTime: 03 Jul 2013 16:13:38.0572 (UTC)
+	FILETIME=[46F2ECC0:01CE7808]
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-ivi] [PATCHv2] connman: do not delete init scripts in bbappend
 X-BeenThere: yocto@yoctoproject.org
@@ -40,44 +41,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2013 12:38:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 03 Jul 2013 16:13:49 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-SGksDQoNCj4gT24gMyBKdWx5IDIwMTMgMTI6NTksIFNlcmdleSBNYXR5dWtldmljaA0KPiA8U2Vy
-Z2V5X01hdHl1a2V2aWNoQG1lbnRvci5jb20+IHdyb3RlOg0KPiA+IEhtbS4uLiBUaGFua3MgZm9y
-IGNvbW1lbnQuIEl0IGlzIGdvb2QgaWRlYSB0byB0YWtlIGEgYnJlYWsgYW5kIHRvIHNlZSB0aGUN
-Cj4gPiBmb3Jlc3QgZm9yIHRoZSB0cmVlcy4gSGVyZSBpcyB0aGUgc2Vjb25kIHBhdGNoIHJldmlz
-aW9uLg0KPiA+DQo+ID4gQ29ubm1hbiBpbml0IHNjcmlwdHMgYXJlIG5vdyBpbnN0YWxsZWQgb25s
-eSB3aGVuICdzeXN2aW5pdCcgZmVhdHVyZSBpcw0KPiA+IGVuYWJsZWQgaW4gRElTVFJPX0ZFQVRV
-UkVTOiBjb21taXQNCj4gN2M4MTYwY2NiZTE3ZDZlMTBiZDdhMDliOTE4NDMxODJhODliOTA1NQ0K
-PiA+IGluDQo+ID4gcG9reS4gTm8gbmVlZCB0byByZW1vdmUgdGhlbSBpbiBiYmFwcGVuZDogdGhl
-eSBhcmUgbm90IGluc3RhbGxlZCBmb3INCj4gPiAnc3lzdGVtZCctZW5hYmxlZA0KPiA+IHN5c3Rl
-bXMgYW5kIHRoZXkgYXJlIG5lZWRlZCBmb3IgJ3N5c3Zpbml0Jy1lbmFibGVkIHN5c3RlbXMuDQo+
-ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBTZXJnZXkgTWF0eXVrZXZpY2ggPHNlcmdleV9tYXR5dWtl
-dmljaEBtZW50b3IuY29tPg0KPiA+IC0tLQ0KPiA+ICByZWNpcGVzLWNvbm5lY3Rpdml0eS9jb25u
-bWFuL2Nvbm5tYW5fMS4xNS5iYmFwcGVuZCB8ICAgIDUgLS0tLS0NCj4gPiAgMSBmaWxlcyBjaGFu
-Z2VkLCAwIGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0
-IGEvcmVjaXBlcy1jb25uZWN0aXZpdHkvY29ubm1hbi9jb25ubWFuXzEuMTUuYmJhcHBlbmQNCj4g
-PiBiL3JlY2lwZXMtY29ubmVjdGl2aXR5L2Nvbm5tYW4vY29ubm1hbl8xLjE1LmJiYXBwZW5kDQo+
-ID4gaW5kZXggY2RhNjEyYi4uODNlNGI1MSAxMDA2NDQNCj4gPiAtLS0gYS9yZWNpcGVzLWNvbm5l
-Y3Rpdml0eS9jb25ubWFuL2Nvbm5tYW5fMS4xNS5iYmFwcGVuZA0KPiA+ICsrKyBiL3JlY2lwZXMt
-Y29ubmVjdGl2aXR5L2Nvbm5tYW4vY29ubm1hbl8xLjE1LmJiYXBwZW5kDQo+ID4gQEAgLTIsOCAr
-MiwzIEBAIFBSSU5DIDo9ICIke0BpbnQoUFJJTkMpICsgMn0iDQo+ID4NCj4gPiAgSU5JVFNDUklQ
-VF9OQU1FID0gIiINCj4gPiAgSU5JVFNDUklQVF9QQVJBTVMgPSAiIg0KPiA+IC0NCj4gPiAtZG9f
-aW5zdGFsbF9hcHBlbmQoKSB7DQo+ID4gLSAgICAgICAjIFJlbW92ZSBpbml0IHNjcmlwdHMNCj4g
-PiAtICAgICAgIHJtIC1yICR7RH0ke3N5c2NvbmZkaXJ9L2luaXQuZA0KPiA+IC19DQo+ID4gLS0N
-Cj4gPiAxLjcuMi41DQo+IA0KPiBJbiB0aGF0IGNhc2UsIHlvdSBjYW4gZGVsZXRlIElOSVRTQ1JJ
-UFRfTkFNRSBhbmQgSU5JVFNDUklQVF9QQVJBTVMgdG9vDQo+IHN1cmVseS4gIFRoZW4gYWxsIHlv
-dSdyZSBsZWZ0IGlzIHRoZSBQUklOQywgc28geW91IGNhbiBkZWxldGUgdGhhdCBpZg0KPiB5b3Ug
-ZG9uJ3QgY2FyZS9hcmUgdXNpbmcgdGhlIFBSIHNlcnZpY2UsIG9yIGRlbGV0ZSB0aGF0IGJiYXBw
-ZW5kIHdoZW4NCj4gY29ubm1hbiAxLjE2IGlzIGludGVncmF0ZWQuDQoNCkkgYWdyZWUgdGhhdCB3
-ZSBjb3VsZCBub3cgc3RhcnQgd2l0aCB0aGUgY2xlYW4tdXAgb2YgdGhlIG1ldGEtaXZpIGxheWVy
-LCBnaXZlbiB0aGUgZmFjdCB0aGF0IHN5c3RlbWQgaXMgbm93IHN1cHBvcnRlZCBieSBvZS1jb3Jl
-LiAgV2hpY2ggbWFrZXMgdGhpcyAuYmJhcHBlbmQgb2Jzb2xldGUuIEFuZCBzbyBhZ3JlZSB3aXRo
-IFJvc3MgdG8gImRlbGV0ZSB0aGF0IGJiYXBwZW5kIHdoZW4gY29ubm1hbiAxLjE2IGlzIGludGVn
-cmF0ZWQiLiAgSSBjcmVhdGVkIGEgY2FyZCBbMV0gYW5kIGFkZGVkIGl0IHRvIHRoZSAiTmV4dCBV
-cCIgc3RhY2sgaW4gVHJlbGxvLCBzbyB0aGF0IHdlIGRvbid0IGZvcmdldC4NCg0KUmVnYXJkcywN
-CkhvbGdlcg0KDQpbMV0gaHR0cHM6Ly90cmVsbG8uY29tL2MvYm1XcFQ2bFUNCg==
+Hi,
+
+On 07/03/2013 04:38 PM, Behrens, Holger wrote:
+> Hi,
+>
+>> On 3 July 2013 12:59, Sergey Matyukevich
+>> <Sergey_Matyukevich@mentor.com>  wrote:
+>>> Hmm... Thanks for comment. It is good idea to take a break and to see the
+>>> forest for the trees. Here is the second patch revision.
+>>>
+>>> Connman init scripts are now installed only when 'sysvinit' feature is
+>>> enabled in DISTRO_FEATURES: commit
+>> 7c8160ccbe17d6e10bd7a09b91843182a89b9055
+>>> in
+>>> poky. No need to remove them in bbappend: they are not installed for
+>>> 'systemd'-enabled
+>>> systems and they are needed for 'sysvinit'-enabled systems.
+>>>
+>>> Signed-off-by: Sergey Matyukevich<sergey_matyukevich@mentor.com>
+>>> ---
+>>>   recipes-connectivity/connman/connman_1.15.bbappend |    5 -----
+>>>   1 files changed, 0 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/recipes-connectivity/connman/connman_1.15.bbappend
+>>> b/recipes-connectivity/connman/connman_1.15.bbappend
+>>> index cda612b..83e4b51 100644
+>>> --- a/recipes-connectivity/connman/connman_1.15.bbappend
+>>> +++ b/recipes-connectivity/connman/connman_1.15.bbappend
+>>> @@ -2,8 +2,3 @@ PRINC := "${@int(PRINC) + 2}"
+>>>
+>>>   INITSCRIPT_NAME = ""
+>>>   INITSCRIPT_PARAMS = ""
+>>> -
+>>> -do_install_append() {
+>>> -       # Remove init scripts
+>>> -       rm -r ${D}${sysconfdir}/init.d
+>>> -}
+>>> --
+>>> 1.7.2.5
+>>
+>> In that case, you can delete INITSCRIPT_NAME and INITSCRIPT_PARAMS too
+>> surely.  Then all you're left is the PRINC, so you can delete that if
+>> you don't care/are using the PR service, or delete that bbappend when
+>> connman 1.16 is integrated.
+>
+> I agree that we could now start with the clean-up of the meta-ivi layer, given the fact that systemd is now supported by oe-core.  Which makes this .bbappend obsolete. And so agree with Ross to "delete that bbappend when connman 1.16 is integrated".  I created a card [1] and added it to the "Next Up" stack in Trello, so that we don't forget.
+>
+> Regards,
+> Holger
+>
+> [1] https://trello.com/c/bmWpT6lU
+
+Does it make sense to fix the current connman bbappend which is going to 
+be in use for a while ? In its current state it affects distros which 
+enable 'systemd' feature and disable 'sysvinit'. One of the following 
+two options can be chosen. The first one was finalized in this thread:
+
+diff --git a/recipes-connectivity/connman/connman_1.15.bbappend 
+b/recipes-connectivity/connman/connman_1.15.bbappend
+index cda612b..f1deaf2 100644
+--- a/recipes-connectivity/connman/connman_1.15.bbappend
++++ b/recipes-connectivity/connman/connman_1.15.bbappend
+@@ -1,9 +1 @@
+  PRINC := "${@int(PRINC) + 2}"
+-
+-INITSCRIPT_NAME = ""
+-INITSCRIPT_PARAMS = ""
+-
+-do_install_append() {
+-       # Remove init scripts
+-       rm -r ${D}${sysconfdir}/init.d
+-}
+
+
+There is also another [minimalistic and failsafe] option:
+
+diff --git a/recipes-connectivity/connman/connman_1.15.bbappend 
+b/recipes-connectivity/connman/connman_1.15.bbappend
+index cda612b..2e5f355 100644
+--- a/recipes-connectivity/connman/connman_1.15.bbappend
++++ b/recipes-connectivity/connman/connman_1.15.bbappend
+@@ -5,5 +5,5 @@ INITSCRIPT_PARAMS = ""
+
+  do_install_append() {
+         # Remove init scripts
+-       rm -r ${D}${sysconfdir}/init.d
++       rm -rf ${D}${sysconfdir}/init.d
+  }
+
+Thanks,
+Sergey
 
