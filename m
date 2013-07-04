@@ -1,35 +1,52 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail22c40.carrierzone.com (mail22c40.carrierzone.com
-	[209.235.156.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8936E003E3
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 16:36:57 -0700 (PDT)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail22c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	r63NasN9007642
-	for <yocto@yoctoproject.org>; Wed, 3 Jul 2013 23:36:56 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 3 Jul 2013 16:36:47 -0700
-Message-ID: <000601ce7846$3167e7a0$9437b6e0$@annabooks.com>
+Return-Path: <mhalstead@linuxfoundation.org>
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5F06E003E3
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 17:36:29 -0700 (PDT)
+Received: by mail-pa0-f46.google.com with SMTP id fa11so754037pad.5
+	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 17:36:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:x-enigmail-version:content-type;
+	bh=RynlVq5w2gdJo/1TUynMF4T/qB1ud189Zb/OXDUmNeo=;
+	b=haGYxJmAKECmjvhss6fr04bKGDZl0mzpwPscf8L/15cVhoBgl1FHgsNedhRV3i/xum
+	7DufhneyMXUpz4AKjl29jBJOWTsWqEFwcpCtNV80BsG7gMXtBYK91g8HqfnrpcJ/CHkd
+	AQl1/Q/SxKpnwh+KGTGpIjpxaguvWINVIX0S8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:x-enigmail-version:content-type
+	:x-gm-message-state;
+	bh=RynlVq5w2gdJo/1TUynMF4T/qB1ud189Zb/OXDUmNeo=;
+	b=o89ZfO/m0KURQD4tzpfuV6M4NJUi6+rXwgzdDobXBK1QYn4ROs0B5DgTS8dHexC9nu
+	FW57h/E6ZiUmcg+5bnfVHvfkPckBJs7AQKHaz4DVyfWIkASPUNohFtBFBnTfnOAxvz0D
+	bMXXNLtFfbfJMQW+ymv2WyuXiXuBmInj7vP9vpxJoxylzFH5bQygl37+o94lZ9kQ9L3S
+	HKMnACBVP1IfOamQnohGCVnoPgDp0y5Xlohutm+IBJwWfYa8Hhl9ikLj5HuLTIFD3Vpj
+	sKXLSss6sX/RpendyIfrTYjhH557C6BrAorKPFyPcRpZSU356QEQ+lWO4ojYOrnY+d19
+	HvbQ==
+X-Received: by 10.66.150.40 with SMTP id uf8mr4645054pab.66.1372898188882;
+	Wed, 03 Jul 2013 17:36:28 -0700 (PDT)
+Received: from pride.localdomain (static-50-43-57-222.bvtn.or.frontiernet.net.
+	[50.43.57.222])
+	by mx.google.com with ESMTPSA id x8sm391284pbb.39.2013.07.03.17.36.26
+	for <multiple recipients>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Wed, 03 Jul 2013 17:36:27 -0700 (PDT)
+Sender: Michael Halstead <mhalstead@linuxfoundation.org>
+Message-ID: <51D4C38A.2090800@yoctoproject.org>
+Date: Wed, 03 Jul 2013 17:36:26 -0700
+From: Michael Halstead <michael@yoctoproject.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: Ac54RfEiRZ1Fgd4NQoG7vtymGw8fDQ==
-X-CSC: 0
-X-CHA: v=2.0 cv=RPEE6fe+ c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=_DgR7O7FQkkA:10 a=IjdlZ_XXAAAA:8 a=pyD5Ij0hbIIA:10 a=VwQbUJbxAAAA:8
-	a=UaVmjPp_IwVcphfqAiAA:9 a=CjuIK1q_8ugA:10 a=cfzGRmEXdFsgoQDE0w8A:9
-	a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A020205.51D4B598.00F0, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Subject: How to add WiFi support
+To: yocto@yoctoproject.org
+References: <51D39006.5000000@yoctoproject.org>
+	<51D3A0A2.2040008@yoctoproject.org>
+In-Reply-To: <51D3A0A2.2040008@yoctoproject.org>
+X-Enigmail-Version: 1.5.1
+X-Gm-Message-State: ALoCoQmxB2FijuV/WMZeRYgslk73WCiZYAGGXEqdrPh1jxvyl7fKmq7/sIQSftShprAAVDNB/9a0
+Subject: Re: Yocto Project 1.5_M2.rc1 build status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,170 +58,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2013 23:36:59 -0000
-X-Groupsio-MsgNum: 14823
-Content-Type: multipart/mixed;
-	boundary="----=_NextPart_000_0007_01CE780B.85090FA0"
-Content-Language: en-us
+X-List-Received-Date: Thu, 04 Jul 2013 00:36:29 -0000
+X-Groupsio-MsgNum: 14824
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms060508070506070802000207"
 
-------=_NextPart_000_0007_01CE780B.85090FA0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+--------------ms060508070506070802000207
+Content-Type: multipart/alternative;
+ boundary="------------070609040309020605050603"
 
-I have searched and spotted different discussion on adding wireless support
-but have not found a solution. I have a Intel Centrino Wireless-N 1000 card
-plugged into a Intel Atom N2800 (Cedar Trail) platform. I am using Yocto
-Project 1.3.1, Cedar Trail BSP, core-image-x11
-
-BB_VERSION        = "1.16.0"
-TARGET_ARCH       = "i586"
-TARGET_OS         = "linux"
-MACHINE           = "cedartrail-nopvr"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.3.1"
-TUNE_FEATURES     = "m32 core2"
-Core-image-x11
-
-Following the instructions to use menuconfig and create configuration
-fragment, I have enabled the various kernel options to include the iwlagn
-driver. The configuration fragment called mydiff.cfg (attached) was placed
-in the meta-intel/meta-cedartrail/recipes-kernel/Linux/files folder. The
-Linux-yocto_3.0.bbappend was modified with the following:
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-SRC_URI += "file://mydiff.cfg"
-
-After building the image, ifconfig didn't show wireless and neither does
-iwconfig. The adapter is found when I do a lspci. The kernel wireless
-website - http://wireless.kernel.org/en/users/Drivers/iwlwifi  lists a
-firmware package needed for installation. I tried to create a recipe to
-place the firmware file in the /lib/firmware folder, but it doesn't get put
-in. The lack of what to do for the LICENSE might be a problem. Here is the
-recipe:
-
-DESCRIPTION = "Intel WiFi 1000 Adapter"
-LICENSE = "GPL"-?????
-LIC_FILES_CHKSUM =
-"file://${WORKDIR}/LICENSE.iwlwifi-1000-ucode;md5=aa2bfb02c7e0712680334b9f47
-f8dc61"
-
-SRC_URI = "file://LICENSE.iwlwifi-1000-ucode \
-	   file://iwlwifi-1000-3.ucode \ 
-	   "
-FWPATH = "lib/firmware"
-do_install_apped() {
-	install -m 0644 LICENSE.iwlwifi-1000-ucode ${D}${FWPATH}
-	install -m 0644 iwlwifi-1000-3.ucode ${D}${FWPATH}
-}
-
-I manually created the /lib/firmware folder and copied the firmware file
-(iwlwifi-1000-3.ucode) to the folder. Nothing changed after a reboot. I also
-tried a Intel Centrino Ultimate-N 6300 same result.
-
-1. Was a kernel modification the right direction to enable support for this
-driver?
-2. Did I miss anything with regards to the configuration fragment setup?
-3. Is the firmware really needed? If so why is there no /lib/firmware folder
-and what should be used for the LICENSE ?
-
-
-Regards,
-
-Sean Liming
-
-
-------=_NextPart_000_0007_01CE780B.85090FA0
-Content-Type: application/octet-stream;
-	name="mydiff.cfg"
+--------------070609040309020605050603
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
-	filename="mydiff.cfg"
 
-++ .confignew	2013-07-03 14:56:58.000000000 -0700
-# CONFIG_NETFILTER_XT_TARGET_LED is not set
-CONFIG_WEXT_CORE=3Dy
-CONFIG_WEXT_PROC=3Dy
-CONFIG_CFG80211=3Dy
-# CONFIG_NL80211_TESTMODE is not set
-# CONFIG_CFG80211_DEVELOPER_WARNINGS is not set
-# CONFIG_CFG80211_REG_DEBUG is not set
-CONFIG_CFG80211_DEFAULT_PS=3Dy
-# CONFIG_CFG80211_DEBUGFS is not set
-# CONFIG_CFG80211_INTERNAL_REGDB is not set
-CONFIG_CFG80211_WEXT=3Dy
-CONFIG_WIRELESS_EXT_SYSFS=3Dy
-CONFIG_MAC80211=3Dy
-CONFIG_MAC80211_HAS_RC=3Dy
-# CONFIG_MAC80211_RC_PID is not set
-CONFIG_MAC80211_RC_MINSTREL=3Dy
-CONFIG_MAC80211_RC_MINSTREL_HT=3Dy
-CONFIG_MAC80211_RC_DEFAULT_MINSTREL=3Dy
-CONFIG_MAC80211_RC_DEFAULT=3D"minstrel_ht"
-# CONFIG_MAC80211_MESH is not set
-CONFIG_MAC80211_LEDS=3Dy
-# CONFIG_MAC80211_DEBUGFS is not set
-# CONFIG_MAC80211_DEBUG_MENU is not set
-# CONFIG_LIBERTAS_THINFIRM is not set
-# CONFIG_AT76C50X_USB is not set
-# CONFIG_USB_NET_RNDIS_WLAN is not set
-# CONFIG_RTL8180 is not set
-# CONFIG_RTL8187 is not set
-# CONFIG_ADM8211 is not set
-# CONFIG_MAC80211_HWSIM is not set
-# CONFIG_MWL8K is not set
-# CONFIG_ATH_COMMON is not set
-# CONFIG_B43 is not set
-# CONFIG_B43LEGACY is not set
-# CONFIG_IPW2100 is not set
-# CONFIG_IPW2200 is not set
-CONFIG_IWLAGN=3Dy
+Adidtional autobuilder configuration errors were corrected and a third
+spin of 1.5_M2.rc1 started. Please find the build at the new location:
 
-#
-# Debugging Options
-#
-# CONFIG_IWLWIFI_DEBUG is not set
-# CONFIG_IWLWIFI_DEVICE_TRACING is not set
-# CONFIG_IWLWIFI_DEVICE_SVTOOL is not set
-# CONFIG_IWL_P2P is not set
-# CONFIG_IWL4965 is not set
-# CONFIG_IWL3945 is not set
-# CONFIG_IWM is not set
-# CONFIG_LIBERTAS is not set
-# CONFIG_HERMES is not set
-# CONFIG_P54_COMMON is not set
-# CONFIG_RT2X00 is not set
-# CONFIG_RTL8192CE is not set
-# CONFIG_RTL8192SE is not set
-# CONFIG_RTL8192CU is not set
-# CONFIG_WL1251 is not set
-# CONFIG_WL12XX_MENU is not set
-# CONFIG_ZD1211RW is not set
-# CONFIG_MWIFIEX is not set
-CONFIG_NEW_LEDS=3Dy
-CONFIG_LEDS_CLASS=3Dy
+http://autobuilder.yoctoproject.org/pub/nightly/20130703-3
 
-#
-# LED drivers
-#
-# CONFIG_LEDS_ALIX2 is not set
-# CONFIG_LEDS_CLEVO_MAIL is not set
-# CONFIG_LEDS_INTEL_SS4200 is not set
-CONFIG_LEDS_TRIGGERS=3Dy
+poky                	eaa5df34af42b6a37f6506847d0f3ef6ba0d298a <https://gi=
+t.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3Deaa5df34af42b6a37f6506=
+847d0f3ef6ba0d298a>
+meta-fsl-arm    	daf582c93a7283fb0af3b25fe2ada48f4c9985c4 <https://git.yo=
+ctoproject.org/cgit/cgit.cgi/meta-fsl-arm/commit/?id=3Ddaf582c93a7283fb0a=
+f3b25fe2ada48f4c9985c4>
+meta-fsl-ppc    	a2bcb25c53f935ae9a423c57ca5e2f7a2f7b1a69 (Changed since =
+last build)
+meta-intel        	e0d6134ed2e2687ff9f2ee77701666447842bf33 <https://git.=
+yoctoproject.org/cgit/cgit.cgi/meta-intel/commit/?id=3De0d6134ed2e2687ff9=
+f2ee77701666447842bf33>
+meta-minnow  		286a72ba3f5e29432be1dd77127de5bdc2d988c3 <https://git.yoct=
+oproject.org/cgit/cgit.cgi/meta-minnow/commit/?id=3D286a72ba3f5e29432be1d=
+d77127de5bdc2d988c3>=20
+meta-qt3         	b73552fb998fd30a01dbee5a172e432a16078222 <https://git.y=
+octoproject.org/cgit/cgit.cgi/meta-qt3/commit/?id=3Db73552fb998fd30a01dbe=
+e5a172e432a16078222>
+eclipse-poky    	e35dfd79e3970f88a8273125890a54f75f108b97 <https://git.yo=
+ctoproject.org/cgit/cgit.cgi/eclipse-poky/commit/?id=3De35dfd79e3970f88a8=
+273125890a54f75f108b97>=20
 
-#
-# LED Triggers
-#
-# CONFIG_LEDS_TRIGGER_TIMER is not set
-# CONFIG_LEDS_TRIGGER_HEARTBEAT is not set
-# CONFIG_LEDS_TRIGGER_BACKLIGHT is not set
-# CONFIG_LEDS_TRIGGER_DEFAULT_ON is not set
+Please begin QA as soon as possible. Thank you.
 
-#
-# iptables trigger is under Netfilter config (LED target)
-#
-CONFIG_CRYPTO_AES=3Dy
-CONFIG_CRYPTO_ARC4=3Dy
-CONFIG_AVERAGE=3Dy
+--------------070609040309020605050603
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-------=_NextPart_000_0007_01CE780B.85090FA0--
+<html>
+  <head>
+    <meta content=3D"text/html; charset=3DISO-8859-1"
+      http-equiv=3D"Content-Type">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    Adidtional autobuilder configuration errors were corrected and a
+    third spin of 1.5_M2.rc1 started. Please find the build at the new
+    location:<br>
+    <a href=3D"http://autobuilder.yoctoproject.org/pub/nightly/20130703-3=
+"><br>
+      <span class=3D"moz-txt-link-freetext">http://autobuilder.yoctoproje=
+ct.org/pub/nightly/20130703-3</span></a><br>
+    <br>
+    <pre wrap=3D"">poky                	<a href=3D"https://git.yoctoproje=
+ct.org/cgit/cgit.cgi/poky/commit/?id=3Deaa5df34af42b6a37f6506847d0f3ef6ba=
+0d298a">eaa5df34af42b6a37f6506847d0f3ef6ba0d298a</a>
+meta-fsl-arm    	<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/me=
+ta-fsl-arm/commit/?id=3Ddaf582c93a7283fb0af3b25fe2ada48f4c9985c4">daf582c=
+93a7283fb0af3b25fe2ada48f4c9985c4</a>
+meta-fsl-ppc    	a2bcb25c53f935ae9a423c57ca5e2f7a2f7b1a69 (Changed since =
+last build)
+meta-intel        	<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/=
+meta-intel/commit/?id=3De0d6134ed2e2687ff9f2ee77701666447842bf33">e0d6134=
+ed2e2687ff9f2ee77701666447842bf33</a>
+meta-minnow  		<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/meta=
+-minnow/commit/?id=3D286a72ba3f5e29432be1dd77127de5bdc2d988c3">286a72ba3f=
+5e29432be1dd77127de5bdc2d988c3</a>=20
+meta-qt3         	<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/m=
+eta-qt3/commit/?id=3Db73552fb998fd30a01dbee5a172e432a16078222">b73552fb99=
+8fd30a01dbee5a172e432a16078222</a>
+eclipse-poky    	<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/ec=
+lipse-poky/commit/?id=3De35dfd79e3970f88a8273125890a54f75f108b97">e35dfd7=
+9e3970f88a8273125890a54f75f108b97</a> </pre>
+    Please begin QA as soon as possible. Thank you.
+  </body>
+</html>
+
+--------------070609040309020605050603--
+
+--------------ms060508070506070802000207
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINjDCCBjQw
+ggQcoAMCAQICASAwDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
+Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
+BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDI1NVoX
+DTE3MTAyNDIxMDI1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
+KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
+dENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMsohUWcASz7GfKrpTOMKqANy9BV7V0igWdGxA8IU77L3aTxErQ+
+fcxtDYZ36Z6GH0YFn7fq5RADteP0AYzrCA+EQTfi8q1+kA3m0nwtwXG94M5sIqsvs7lRP1aycBke
+/s5g9hJHryZ2acScnzczjBCAo7X1v5G3yw8MDP2m2RCye0KfgZ4nODerZJVzhAlOD9YejvAXZqHk
+sw56HzElVIoYSZ3q4+RJuPXXfIoyby+Y2m1E+YzX5iCZXBx05gk6MKAW1vaw4/v2OOLy6FZH3XHH
+tOkzUreG//CsFnB9+uaYSlR65cdGzTsmoIK8WH1ygoXhRBm98SD7Hf/r3FELNvUCAwEAAaOCAa0w
+ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSuVYNv7DHKufcd
++q9rMfPIHeOsuzAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
+MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
+aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
+Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
+b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
+dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
+c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBADqpJw3I07QW
+ke9plNBpxUxcffc7nUrIQpJHDci91DFG7fVhHRkMZ1J+BKg5UNUxIFJ2Z9B90Micc/NXcs7kPBRd
+n6XGO/vPc87Y6R+cWS9Nc9+fp3Enmsm94OxOwI9wn8qnr/6o3mD4noP9JphwUPTXwHovjavRnhUQ
+HLfo/i2NG0XXgTHXS2Xm0kVUozXqpYpAdumMiB/vezj1QHQJDmUdPYMcp+reg9901zkyT3fDW/iv
+JVv6pWtkh6Pw2ytZT7mvg7YhX3V50Nv860cV11mocUVcqBLv0gcT+HBDYtbuvexNftwNQKD5193A
+7zN4vG7CTYkXxytSjKuXrpEatEiFPxWgb84nVj25SU5q/r1Xhwby6mLhkbaXslkVtwEWT3Van49r
+KjlK4XrUKYYWtnfzq6aSak5u0Vpxd1rY79tWhD3EdCvOhNz/QplNa+VkIsrcp7+8ZhP1l1b2U6Ma
+xIVteuVMD3X0vziIwr7jxYae9FZjbxlpUemqXjcC0QaFfN7qI0JsQMALL7iGRBg7K0CoOBzECdD3
+fuZil5kU/LP9cr1BK31U0Uy651bFnAMMMkqhAChIbn0ei72VnbpSsrrSdF0BAGYQ8vyHae5aCg+H
+75dVCV33K6FuxZrf09yTz+Vx/PkdRUYkXmZz/OTfyJXsUOUXrym6KvI2rYpccSk5MIIHUDCCBjig
+AwIBAgICIgMwDQYJKoZIhvcNAQEFBQAwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENv
+bSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYD
+VQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTAeFw0x
+MjA2MTMwNDU5MjlaFw0xNDA2MTQxNjE4MzBaMIGRMRkwFwYDVQQNExBnMDFwWTYwMWJGM1BrRTY3
+MQswCQYDVQQGEwJVUzEPMA0GA1UECBMGT3JlZ29uMRIwEAYDVQQHEwlIaWxsc2Jvcm8xGTAXBgNV
+BAMTEE1pY2hhZWwgSGFsc3RlYWQxJzAlBgkqhkiG9w0BCQEWGG1pY2hhZWxAeW9jdG9wcm9qZWN0
+Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMFZ+GW0VKdiyuQy3hlOvwcHxcm0
+8ZwNGGah4zipYky5wVFZO7p9LjJfyF6rvd24xdkaTluxTMmd9pfq2cOVQ6c3RsPufv1yBUbytk6F
+4Wk+qD0qEGjuHh5FfakcLIEsHiSn3nzaQZHaolS/yzx/A3coQS8pQrshZYqAF/ME5OxMyL8KDdtk
+xatt1reDPqzvI5rKYdeEbmHsTYgd9WWHvs8MfZFHidZoAXMXU+PcsKCUxEYhgP/h9NKcTApu/Mhd
+IPKn11pD+gfDM+ochGu1uxuW/t1tNJyRYDVQSDV+rpliQ7mrimSmyktIKkow02pUk4Xw3OqdYq7/
+/HpVOUs5nk8CAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0GA1UdJQQWMBQG
+CCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUcZFNotb1OfDmPE6GQ6MQIBh7meUwHwYDVR0j
+BBgwFoAUrlWDb+wxyrn3HfqvazHzyB3jrLswIwYDVR0RBBwwGoEYbWljaGFlbEB5b2N0b3Byb2pl
+Y3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCCAf8wLgYIKwYBBQUHAgEW
+Imh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93
+d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUFBwICMIHqMCcWIFN0YXJ0
+Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmljYXRlIHdhcyBp
+c3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAyIFZhbGlkYXRpb24gcmVxdWlyZW1lbnRzIG9m
+IHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBpbnRlbmRlZCBw
+dXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdhdGlvbnMuMIGc
+BggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTADAgECGmRM
+aWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBzZWN0aW9uICJMZWdhbCBh
+bmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3kuMDYGA1UdHwQvMC0wK6Ap
+oCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUyLWNybC5jcmwwgY4GCCsGAQUFBwEBBIGB
+MH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9zdWIvY2xhc3MyL2NsaWVu
+dC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc3ViLmNsYXNz
+Mi5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tLzANBgkq
+hkiG9w0BAQUFAAOCAQEANR/d6M8GHL/rkx3Kz9ILDxYMcekmFgefaDXNQMicUHiUw5TsIl5af1pS
+Y2AvbKlA2/FZnyG8w42FuK6ZQBZJxs4/N10NW8qDmuuFTi6TyJgurj73tx9RogW50miDHMZLoMRe
+avB1h8zy99L2lRPZSebpSFkrQdYDHaGRVhYMjEcWNW9cLxhR8BaAEw/KlpERv3hUQpwGMppYOE66
+M7KJ3HpeR7DXfa4njL9W2hukTQNsskdWtzejHp5iQ65+5Mv+NXLmYP4uLJcR9AbttgNhwStc0P1b
+LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA9owggPWAgEBMIGT
+MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
+IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
+cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIbMBgGCSqGSIb3
+DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEzMDcwNDAwMzYyNlowIwYJKoZIhvcN
+AQkEMRYEFL/yfSNKFXMgaMK85FydR3PsQsHhMGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
+MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
+BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaQGCSsGAQQBgjcQBDGBljCBkzCBjDELMAkGA1UEBhMC
+SUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRp
+ZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1l
+ZGlhdGUgQ2xpZW50IENBAgIiAzCBpgYLKoZIhvcNAQkQAgsxgZaggZMwgYwxCzAJBgNVBAYTAklM
+MRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZp
+Y2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRp
+YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAg1i0SDaSVihWPfSoW2mdYVAl/2ru
+X1LfX/H6XO80MhC9ySZhgPhAPCtnRvUxhLXLDFbJ4Iw9ZGmUbmdffPD/YykFfHkvK3BfbrgIAADH
+9BhYFv0foHI2k1DSbPawtR4mJdN//OngGMQjlqr74FTzzy316DhqdteMfp0G/06V4r3nxAfS+fAT
+TfV0LGMXuvFrBAD00YJcVkvGquuPKFbA+fDZIo/UK+yDr6TCIL+Z+7K7K3DNA4Ryaup8esUbEUNZ
+MEah5SMXs+O6IGwX6uOTsFwFiUTdAvVJ1bAHkZ1eSjWjZbDAho8ChjvTinkLDx+cJfcEUsuWoJgb
+4pwQOlVeYgAAAAAAAA==
+
+--------------ms060508070506070802000207--
