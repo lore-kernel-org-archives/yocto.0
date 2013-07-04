@@ -1,38 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
-	[209.85.192.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A65DE01409
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 22:13:20 -0700 (PDT)
-Received: by mail-pd0-f172.google.com with SMTP id z10so748076pdj.17
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 22:13:20 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f172.google.com (mail-lb0-f172.google.com
+	[209.85.217.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6A0AE003E3
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 22:50:42 -0700 (PDT)
+Received: by mail-lb0-f172.google.com with SMTP id v20so869986lbc.3
+	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 22:50:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to:x-mailer;
-	bh=vbYRIG/vse0poxfgck5BECB/A0ghVKMRQT6bmF/0/tw=;
-	b=M8oK2MKIK34rFtFnYY3cNkcKk3JCZOJkbhrngwsSWhPrRUF53IlqRKiZJ76R3r0ESh
-	7s81c7gh4GjZs13/RAkMHpETam2YKOfTL/8JCp50lQGYoufEiQaWGyu4j9PMUgNEumXF
-	23NJo4x3JLqPFixFTfBOxplsl5hfwlmDLq/0hvtyNmQcFYMNZRO92q4tGmvkkzOBvpAu
-	0O80jAukD4F6ZeUhdUKb9AjfRk0Y9pUlwOVj+71SiiS/xYCfijfj/71Wm1Re5qOsAB8U
-	bvb7aS5nrhl5vTDdpJ3Y+PWCJnXmvi/lvDcgRds5LeuZwzLaYhJpAjz9eY9p3XSdGPP0
-	p4yA==
-X-Received: by 10.66.224.73 with SMTP id ra9mr5505171pac.163.1372914800185;
-	Wed, 03 Jul 2013 22:13:20 -0700 (PDT)
-Received: from kosborne-sslvpn-nc.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id mr3sm1277705pbb.27.2013.07.03.22.13.18
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 03 Jul 2013 22:13:19 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CALmOhgkzZGa2YDYpkC7znMAikeJJGubUUMWnGv8gwUwaRNBoLw@mail.gmail.com>
-Date: Wed, 3 Jul 2013 22:13:19 -0700
-Message-Id: <FA8AB326-A1B9-4F57-AF8F-E89B3B78AE01@gmail.com>
-References: <CALmOhgkzZGa2YDYpkC7znMAikeJJGubUUMWnGv8gwUwaRNBoLw@mail.gmail.com>
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=Pp6YkorR99KiPAZAd4YAVhDuGLPfAK0A7f99YjWQcSk=;
+	b=Q+PBIs0d87Zx30pBHRO+oT+k5nMnu1sweQWc8wGIwshFR4XEuB0V+QrNoshSohgFBN
+	Lfuthxo4ON3UB4WmuimfURf8kyNZYuWE+7QktOVbY/Wd/h9dKISML0vH7gjVit5m+MkJ
+	U3ne3J/OMyD93XVockq/PT88ag2ZGNXYlsOk4RMG1oOvmocFQCjR3Woy2eOooWHq2LTM
+	veTF+IGzM/UsI81CHXnD8WgjS+l9r+x294uWh67wwLZl1jMImdSgsojzqdXHf6THHmSS
+	S1mNMjk6+n8pKBSxHu8Bn6J6hk5/rQRtDVzVlH2rJV/pB/7rrosVIRdzTdsyH3gPTXik
+	PdLA==
+X-Received: by 10.112.140.231 with SMTP id rj7mr2808500lbb.16.1372917041610;
+	Wed, 03 Jul 2013 22:50:41 -0700 (PDT)
+MIME-Version: 1.0
+Sender: kergoth@gmail.com
+Received: by 10.112.3.5 with HTTP; Wed, 3 Jul 2013 22:50:20 -0700 (PDT)
+In-Reply-To: <CALmOhgk03z=B1aAuav0DmN31FW_EhnV9mXMbxDHKtpF4-0RmPQ@mail.gmail.com>
+References: <CALmOhgk03z=B1aAuav0DmN31FW_EhnV9mXMbxDHKtpF4-0RmPQ@mail.gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Wed, 3 Jul 2013 22:50:20 -0700
+X-Google-Sender-Auth: tDtGxtNR1kGzwydsIezSrGnSolQ
+Message-ID: <CABcZANmw1DkHKxctfeesF8RwN_AmG0iuxV-dHGnq-t_MO2fYJA@mail.gmail.com>
 To: Trevor Woerner <trevor.woerner@linaro.org>
-X-Mailer: Apple Mail (2.1508)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: sstate-cache clobbering
+Subject: Re: sstate-cache hit/miss
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,60 +40,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Jul 2013 05:13:23 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 04 Jul 2013 05:50:44 -0000
+Content-Type: multipart/alternative; boundary=001a11c26a3092476c04e0a9286a
+
+--001a11c26a3092476c04e0a9286a
+Content-Type: text/plain; charset=UTF-8
+
+On Wed, Jul 3, 2013 at 8:54 PM, Trevor Woerner <trevor.woerner@linaro.org>wrote:
+
+> Is there a simple way to determine how well (or not) the sstate-cache
+> is being hit during a build?
+>
+
+It's not ideal, but we're using
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-mentor/tree/classes/buildstats-summary.bbclass
+at
+the moment, which displays, at the end of a build, the number of
+do_populate_sysroot tasks run vs do_populate_sysroot_setscene, as an
+indicator of what % of recipes were built from scratch.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--001a11c26a3092476c04e0a9286a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
+ed, Jul 3, 2013 at 8:54 PM, Trevor Woerner <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:trevor.woerner@linaro.org" target=3D"_blank">trevor.woerner@linaro.=
+org</a>&gt;</span> wrote:<br>
 
-On Jul 3, 2013, at 10:06 PM, Trevor Woerner <trevor.woerner@linaro.org> =
-wrote:
-
-> Let's say I have two build machines (A and B), both running the exact
-> same version of a given distribution. Also assume both machines have a
-> fully populated "downloads" directory but otherwise have not performed
-> any OE/Yocto builds.
->=20
-> On machine A I perform a fresh "bitbake core-image-minimal" and end up
-> with a sstate-cache of 733MB and I receive a message saying 324/1621
-> tasks didn't need to be (re)run.
->=20
-> I then take this sstate-cache directory, copy it to machine B and
-> perform a "bitbake core-image-minimal". This build takes under 5
-> minutes, and didn't need to run 1374/1621 tasks.
->=20
-> So far this makes good sense. The sstate-cache is getting hit quite a
-> lot and the performance of the second build shows considerable
-> improvement (relative to the first build on machine A) to reflect this
-> fact.
->=20
-> Now I wipe machine B then get it ready for a fresh build (i.e. put the
-> "downloads" directory in place, make sure it has all the necessary
-> host packages, etc). Then on machine A I perform a "bitbake
-> core-image-minimal -c populate_sdk". Now, on machine A, I end up with
-> a sstate-cache that is 1.6GB in size. I take machine A's 1.6GB
-> sstate-cache and copy it to machine B. Then on machine B I perform a
-> "bitbake core-image-minimal".
->=20
-> I would have expected this build on machine B to take the same "under
-> 5 minutes, and didn't need to run 1374/1621 tasks". But instead I find
-> this build takes 27 minutes and only 781/1621 tasks didn't need to be
-> run.
-
-hmm you need to compare signatures( bitbake-diffsigs is your friend),
-may be there is a variable that should be added
-to ignore list which is causing unnecessary rebuilds.
-
-secondly, why are you copying sstate, set up a nfssever/http on machine =
-A
-and let it server sstate to machine B via NFS or http
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div id=3D":5h" style=3D"overflow:hidden">Is there a simpl=
+e way to determine how well (or not) the sstate-cache<br>
 
 
->=20
-> Doesn't it seem strange that a larger sstate-cache involving the same
-> base image has such a lower sstate-cache hit rate?
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+is being hit during a build?<br></div></blockquote><div><br></div><div styl=
+e>It&#39;s not ideal, but we&#39;re using=C2=A0<a href=3D"http://git.yoctop=
+roject.org/cgit/cgit.cgi/meta-mentor/tree/classes/buildstats-summary.bbclas=
+s">http://git.yoctoproject.org/cgit/cgit.cgi/meta-mentor/tree/classes/build=
+stats-summary.bbclass</a>=C2=A0at the moment, which displays, at the end of=
+ a build, the number of do_populate_sysroot tasks run vs do_populate_sysroo=
+t_setscene, as an indicator of what % of recipes were built from scratch.</=
+div>
 
+</div>-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - =
+BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software =
+Engineer, Mentor Graphics
+</div></div>
 
+--001a11c26a3092476c04e0a9286a--
