@@ -1,39 +1,30 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-ea0-f178.google.com (mail-ea0-f178.google.com
-	[209.85.215.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80FAEE01409
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 20:31:36 -0700 (PDT)
-Received: by mail-ea0-f178.google.com with SMTP id l15so463148eak.37
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 20:31:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to:x-mailer;
-	bh=zcHiGGJH/AA0bFjYUgsFFtpbzEtFJVQEeX7Au4k9gk4=;
-	b=ReYPVN7TjgqgXKdcO+7azanPJVa/5djCufACCog1XQARxKivVXPl7Bk3AKLezXRAHC
-	SLvz9ydR0h2+SMl7CkCX2KQYfri8d1OFBVXL+Ozawb6XtqVe2HUApV0W70NkFSK/C+hi
-	9vYcRRV2cwHawQ7QiJgZvF8LuuJWHEHn6eIQTOi6/s6TG7bjPKEJu3sx1AT/EKj/kazz
-	CuFABgl34KXyl0dN6IMKfobXgFZdfFWgYYdY+rEN1vftSK9NAqysbTM2+U2HmNm6ymG0
-	1VVxtO7EfagzLJtxxz73H39OvCITWbGJ7h4mVdqbl064+sPiBci7hU0DK0tA+YVP9ac3
-	jF9A==
-X-Received: by 10.15.63.67 with SMTP id l43mr4304573eex.5.1372908695770;
-	Wed, 03 Jul 2013 20:31:35 -0700 (PDT)
-Received: from [192.168.1.104] ([94.205.109.186])
-	by mx.google.com with ESMTPSA id
-	bj46sm1687254eeb.13.2013.07.03.20.31.32 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 03 Jul 2013 20:31:34 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.1 \(1498\))
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <CANwz6nz+UwUyiNebT=AQk2t7Fe_dAXgK1ftsPMcbdgSeKW-X=Q@mail.gmail.com>
-Date: Thu, 4 Jul 2013 07:31:28 +0400
-Message-Id: <37C64EA6-B4E3-432E-8BE1-50EDEF07F023@gmail.com>
-References: <CANwz6nz2obpC75mXTYtK3roMczmNfHUEt84cj58Wjq5vGAFdaw@mail.gmail.com>
-	<7B6DB0F2-A890-4A2B-B6DA-DEB57257A020@gmail.com>
-	<CANwz6nz+UwUyiNebT=AQk2t7Fe_dAXgK1ftsPMcbdgSeKW-X=Q@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-X-Mailer: Apple Mail (2.1498)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Fedora 18 CentOS 6.4 yocto difference zc702
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ee0-f53.google.com (mail-ee0-f53.google.com [74.125.83.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D7B2E01409
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2013 20:54:05 -0700 (PDT)
+Received: by mail-ee0-f53.google.com with SMTP id c41so474478eek.40
+	for <yocto@yoctoproject.org>; Wed, 03 Jul 2013 20:54:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=IRjRN9XcD7HwT40U9RHW/3YNY/Xvn9tmu6GjhMSwHdw=;
+	b=bHHgVURbywPHe5bw2i5dk5+hU3IuxFynGNxBIX+eJGi1tRrsIIHxGS5q53mfFcqe7S
+	JI3bjM11WOBNtVmSdNUXwwnfdsD+sxfqe48XI8YU+VpVY/VNBQjVAz9LH6YNOLIGzfdw
+	kLlky9Jp3vKhBGjf8CPUx4iDY7CjikYv6goDlKAM2AfpimCvhLHYx6I4kwSZtun8gFrK
+	Z5/2YR9vPgDq9zSoGQNgtVGOxaM+/4DfblR4MwKc0G5dHhwND9fmlJig+aWN63+iRTFe
+	dyYLKhmPayeHYjNrBaVV36kL3jnGRDz5jgk/GvkHdL9FybXgyZdY39vpgvcFCwp7Ldkt
+	KoMg==
+MIME-Version: 1.0
+X-Received: by 10.14.173.70 with SMTP id u46mr4127006eel.92.1372910044303;
+	Wed, 03 Jul 2013 20:54:04 -0700 (PDT)
+Received: by 10.14.117.65 with HTTP; Wed, 3 Jul 2013 20:54:04 -0700 (PDT)
+Date: Wed, 3 Jul 2013 23:54:04 -0400
+Message-ID: <CALmOhgk03z=B1aAuav0DmN31FW_EhnV9mXMbxDHKtpF4-0RmPQ@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQlsg7xWLjaNL5zOnoJ5RxCtsXKkbcPMMJLEH+PCov7R2/W4rqdL/I+wYKj2Fim+tFAxUBq1
+Subject: sstate-cache hit/miss
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,56 +36,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Jul 2013 03:31:38 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_4135B481-7EA9-4B21-A036-26F7D07F8BCC"
+X-List-Received-Date: Thu, 04 Jul 2013 03:54:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---Apple-Mail=_4135B481-7EA9-4B21-A036-26F7D07F8BCC
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
+Is there a simple way to determine how well (or not) the sstate-cache
+is being hit during a build?
 
-Hi,
+At the end of a build there is always that line saying (something
+along the lines of):
 
-On Jul 4, 2013, at 3:25 AM, Edward Vidal <vidal.develone@gmail.com> =
-wrote:
+    NOTE: Tasks Summary: Attempted X tasks of which Y didn't need to
+be rerun and all succeeded.
 
-> Where do you find the boot.scr or uEnv.txt for the zc702?=20
+How good of an indication of sstate-cache use is this information? If
+I perform a successful build, delete sstate-cache, and then perform
+the same build again Y is always some value greater-than zero. If this
+NOTE at the end of a build was 100% a report of the sstate-cache
+hit/miss rate, I would assume Y to be zero after a fresh build with no
+sstate-cache, no?
 
-I haven't seen one for the ZC702. You could use one of the prebuilt boot =
-images (e.g. the Base TRD 14.5 or 14.6 beta packages), put it into the =
-SD card slot, interrupt the boot process and type printenv, and list out =
-all the u-boot environment variables and copy it out to create your own =
-boot.scr file.
-
-The boot args are stored in the *.dts file, so look up the dts file for =
-the zynq board in the TRD or the Xilinx linux kernel distro.
-
-Best regards,
-
-Elvis Dowson=
-
---Apple-Mail=_4135B481-7EA9-4B21-A036-26F7D07F8BCC
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Hi,<div><br><div><div>On Jul 4, 2013, at 3:25 AM, Edward Vidal &lt;<a =
-href=3D"mailto:vidal.develone@gmail.com">vidal.develone@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div dir=3D"ltr"><div><i>Where do you find the boot.scr or =
-uEnv.txt for the =
-zc702?&nbsp;</i></div></div></blockquote></div><br><div>I haven't seen =
-one for the ZC702. You could use one of the prebuilt boot images (e.g. =
-the Base TRD 14.5 or 14.6 beta packages), put it into the SD card slot, =
-interrupt the boot process and type printenv, and list out all the =
-u-boot environment variables and copy it out to create your own boot.scr =
-file.</div><div><br></div><div>The boot args are stored in the *.dts =
-file, so look up the dts file for the zynq board in the TRD or the =
-Xilinx linux kernel distro.</div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></div></body></html>=
-
---Apple-Mail=_4135B481-7EA9-4B21-A036-26F7D07F8BCC--
