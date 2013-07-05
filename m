@@ -1,45 +1,29 @@
-Return-Path: <B19537@freescale.com>
-Received: from co1outboundpool.messaging.microsoft.com
-	(co1ehsobe003.messaging.microsoft.com [216.32.180.186])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D361DE0140D
-	for <yocto@yoctoproject.org>; Thu,  4 Jul 2013 22:54:58 -0700 (PDT)
-Received: from mail177-co1-R.bigfish.com (10.243.78.249) by
-	CO1EHSOBE015.bigfish.com (10.243.66.78) with Microsoft SMTP Server id
-	14.1.225.22; Fri, 5 Jul 2013 05:54:56 +0000
-Received: from mail177-co1 (localhost [127.0.0.1])	by
-	mail177-co1-R.bigfish.com (Postfix) with ESMTP id 046F59802FE;
-	Fri,  5 Jul 2013 05:54:56 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 1
-X-BigFish: VS1(zz9371I542I1432I853kzz1f42h1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz8275bh8275dhz2dh2a8h668h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1d0ch1d2eh1d3fh1dfeh1dffh1e1dhbe9i1155h)
-Received: from mail177-co1 (localhost.localdomain [127.0.0.1]) by mail177-co1
-	(MessageSwitch) id 1373003693931006_3466;
-	Fri,  5 Jul 2013 05:54:53 +0000 (UTC)
-Received: from CO1EHSMHS026.bigfish.com (unknown [10.243.78.246])	by
-	mail177-co1.bigfish.com (Postfix) with ESMTP id DFCC3900049;
-	Fri,  5 Jul 2013 05:54:53 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS026.bigfish.com
-	(10.243.66.36) with Microsoft SMTP Server (TLS) id 14.1.225.23;
-	Fri, 5 Jul 2013 05:54:53 +0000
-Received: from 039-SN2MPN1-022.039d.mgd.msft.net ([169.254.2.148]) by
-	039-SN1MMR1-004.039d.mgd.msft.net ([::1]) with mapi id 14.02.0328.011;
-	Fri, 5 Jul 2013 05:54:52 +0000
-From: Luo Zhenhua-B19537 <B19537@freescale.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Thread-Topic: [yocto] Another in a seemingly infinite chain of errors
-Thread-Index: Ac55QwUeat5KrLe1TDKEXTuxEmXHNAAAJ+KQ
-Date: Fri, 5 Jul 2013 05:54:52 +0000
-Message-ID: <CA452391058F6D4E9715FB2C29D9312A015D2FE9@039-SN2MPN1-022.039d.mgd.msft.net>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-mealy.atl.sa.earthlink.net
+	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A8E7E0140D
+	for <yocto@yoctoproject.org>; Thu,  4 Jul 2013 23:20:19 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=QKrxoIijAfT9skGFQnw263aqymKqdeBvI4qfNe25X2S6w9aY8E/8gHmwFL4BVj8A;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UuzNS-0006Pk-Ms; Fri, 05 Jul 2013 02:20:18 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Luo Zhenhua-B19537'" <B19537@freescale.com>
 References: <91F05D61B900467F8FB43D4ACE5DF0F2@PAULD>
-In-Reply-To: <91F05D61B900467F8FB43D4ACE5DF0F2@PAULD>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.208.134]
+	<CA452391058F6D4E9715FB2C29D9312A015D2FE9@039-SN2MPN1-022.039d.mgd.msft.net>
+In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A015D2FE9@039-SN2MPN1-022.039d.mgd.msft.net>
+Date: Thu, 4 Jul 2013 23:20:24 -0700
+Message-ID: <E8B4C4D9890F4CDF8C8EE768634ED6C3@PAULD>
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac55QwUeat5KrLe1TDKEXTuxEmXHNAAAJ+KQAACP5yA=
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688fa469864a98b6cc6c7e8fb0b239fe843350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org
 Subject: Re: Another in a seemingly infinite chain of errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -52,48 +36,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jul 2013 05:54:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 05 Jul 2013 06:20:23 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-FILES_${PN}_append =3D " xxx" should useful, xxx is the file which is liste=
-d in the "were installed but not shipped" message.=20
+> From: Zhenhua-B19537
+> 
+> FILES_${PN}_append = " xxx" should useful, xxx is the file 
+> which is listed in the "were installed but not shipped" message. 
+> 
+> More info of FILES can be found in 
+>
+https://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.ht
+ml#var-FILES
 
-More info of FILES can be found in https://www.yoctoproject.org/docs/curren=
-t/poky-ref-manual/poky-ref-manual.html#var-FILES
+Thanks for the quick response.
 
+The problem is that every directory that I create in this one recipe is in
+that list, not just the files. This includes things like
+/lib/systemd/system.
 
-Best Regards,
+I have another recipe, which is basically the same as the hello.c example,
+except that it is a real program. It works fine without a FILES_${PN}
+variable. So what is it about my failing recipe that makes it need a
+FILES_${PN} variable? It has no do_compile, just a do_install script with a
+bunch of install and ln commands.
 
-Zhenhua
+By the way, I also notice it says to use things like ${bindir} for standard
+directories. Is there a comprehensive list of these anywhere? I don't find
+them in the Yocto Dev Manual or Ref Manual.
 
+-- 
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Paul D. DeRocco
-> Sent: Friday, July 05, 2013 1:47 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Another in a seemingly infinite chain of errors
->=20
-> The latest is two things: a warning that the files and directories I
-> created in my do_install "were installed but not shipped", followed by an
-> error saying that my layer is "not found in the base feeds". Googling
-> those two phrases turned up lots of patches intended to fix those errors
-> in specific obscure cases, but nothing that explains what they mean, or
-> what I should do when it happens to my layer. I don't think I've
-> forgotten anything that the Dev Manual says that I need in order to add a
-> simple layer.
->=20
-> --
->=20
-> Ciao,               Paul D. DeRocco
-> Paul                mailto:pderocco@ix.netcom.com
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
