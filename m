@@ -1,26 +1,30 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3ECDBE01488;
-	Fri,  5 Jul 2013 10:33:10 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 05 Jul 2013 10:34:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,1003,1363158000"; d="scan'208";a="365812703"
-Received: from unknown (HELO helios.localnet) ([10.252.122.22])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Jul 2013 10:33:08 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Michael Halstead <michael@yoctoproject.org>
-Date: Fri, 05 Jul 2013 18:33:07 +0100
-Message-ID: <10484040.Vh0tWtMikW@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.4 (Linux/3.8.0-25-generic; KDE/4.10.4; i686; ; )
-In-Reply-To: <51D6FC09.4000506@yoctoproject.org>
-References: <51D39006.5000000@yoctoproject.org>
-	<1FFB62CE8AEB0D4298B51122D8903E9619F0E894@IRSMSX104.ger.corp.intel.com>
-	<51D6FC09.4000506@yoctoproject.org>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-dupuy.atl.sa.earthlink.net
+	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CB78E00343
+	for <yocto@yoctoproject.org>; Fri,  5 Jul 2013 13:02:36 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=nXkaF+SqSIGNpFIn697/uyfYa/YKnGQI5z7bNQ0CpSCID9YdUKiS32tIAvWww18p;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1UvCDD-0002Bc-5U; Fri, 05 Jul 2013 16:02:35 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Luo Zhenhua-B19537'" <B19537@freescale.com>
+References: <91F05D61B900467F8FB43D4ACE5DF0F2@PAULD><CA452391058F6D4E9715FB2C29D9312A015D2FE9@039-SN2MPN1-022.039d.mgd.msft.net><E8B4C4D9890F4CDF8C8EE768634ED6C3@PAULD>
+	<CA452391058F6D4E9715FB2C29D9312A015D3241@039-SN2MPN1-022.039d.mgd.msft.net>
+In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A015D3241@039-SN2MPN1-022.039d.mgd.msft.net>
+Date: Fri, 5 Jul 2013 13:02:41 -0700
+Message-ID: <2A7CCA2D35894EC3A75FE6153BE2307D@PAULD>
 MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac55QwUeat5KrLe1TDKEXTuxEmXHNAAAJ+KQAACP5yAABSpIEAAX2xCQ
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068851ed40247c8dfb621c54e626392dd13f350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
-Subject: Re: Yocto Project 1.5_M2.rc1 build status
+Subject: Re: Another in a seemingly infinite chain of errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,25 +36,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jul 2013 17:33:14 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 05 Jul 2013 20:02:39 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Friday 05 July 2013 10:02:01 Michael Halstead wrote:
-> Thank you. The final steps of
-> http://autobuilder.yoctoproject.org/pub/nightly/20130703-3/ were blocked
-> and never completed so there may be other things missing as well. We
-> probably need to do another build before releasing but it will hopefully
-> be from the same commit as well.
+> From: Luo Zhenhua-B19537
+> 
+> [Luo Zhenhua-B19537] Seems like the similar issue as 
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=4309
 
-Feel free to stop the dylan-next build I started about an hour ago on the AB, 
-I had a dodgy commit in there so it's mostly failed.
+Just adding everything to FILES_${PN} solves the problem, although it's
+still a mystery to me why the helloworld.c example doesn't need to do that.
 
-Cheers,
-Paul
+> > By the way, I also notice it says to use things like ${bindir} for
+> > standard directories. Is there a comprehensive list of 
+> these anywhere? I
+> > don't find them in the Yocto Dev Manual or Ref Manual.
+>
+> [Luo Zhenhua-B19537] I am not sure whether such variables are 
+> documented in a unified doc, I always check it in 
+> meta/conf/bitbake.conf or "bitbake -e | grep xxx". 
+
+Thanks. I think I'll create my own little text file listing them all, along
+with the default values they expand into.
+
+If anyone involved in upgrading the docs is reading this, that really should
+go into the Ref Manual, in a single table.
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
