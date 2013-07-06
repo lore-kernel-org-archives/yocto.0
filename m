@@ -1,26 +1,31 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-dupuy.atl.sa.earthlink.net
-	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6571E00343
-	for <yocto@yoctoproject.org>; Fri,  5 Jul 2013 18:23:48 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=VjwuwWE4w/S5X4A4ewGP8uWToriZkoQ7AhwFaSM57v3jFdVP50LjYLTbEAJkumX4;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1UvHE3-0006gT-SG
-	for yocto@yoctoproject.org; Fri, 05 Jul 2013 21:23:48 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 5 Jul 2013 18:23:54 -0700
-Message-ID: <9C4B6D7C047D4970BA9248AA4264E8A6@PAULD>
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
+	[209.85.128.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 058D4E00343
+	for <yocto@yoctoproject.org>; Sat,  6 Jul 2013 04:22:51 -0700 (PDT)
+Received: by mail-ve0-f181.google.com with SMTP id db10so2410233veb.12
+	for <yocto@yoctoproject.org>; Sat, 06 Jul 2013 04:22:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:x-google-sender-auth:message-id
+	:subject:to:content-type;
+	bh=kKJTd6oztpylDx6NfG7GpFzYdRnSGWffXfAJgOaenHw=;
+	b=U+HaIJce2rf95BjWaB+xwAf/2+d32apzsNmtFqpwVa0SycqIMGiutDvdF/dRTp5uYG
+	ICoKO0eDVLu+knNx4rK5MSOrwaU9moksu+Sh8/uxlYYE+U+dNzbV1LoEtbQgcr0GlWqb
+	YEXv1zkqMRpg3LKWIlW9Ty3nxOdmPDV0rvFspPiLWIs9oG442My98LZzyvlAtrMWrctY
+	IWpyZmLH4uQoqmgCD7+svQ+qCFtk+aV2JBIC6dp+Xb8ooqljIOkQpejdNdIutZrJOyOD
+	x3r5Ccn3+U9wEXGHevKZ7sPe2OAUcTDiPmDGkRlduIxi2JgVaSVqFi3CDKgxtbcHbX2S
+	xVHw==
+X-Received: by 10.220.98.68 with SMTP id p4mr9860515vcn.28.1373109770651; Sat,
+	06 Jul 2013 04:22:50 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-Thread-Index: Ac5553rRZBijTYGKTBihWqsllb9vrg==
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688a5ea08e1585bfbc3c37cb4f6969df61a350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: Changing syslinux configuration
+Sender: paul.betafive@gmail.com
+Received: by 10.220.195.201 with HTTP; Sat, 6 Jul 2013 04:22:10 -0700 (PDT)
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Sat, 6 Jul 2013 12:22:10 +0100
+X-Google-Sender-Auth: 264Bb2LmOEkNc3coT1T6pcr-nMs
+Message-ID: <CANyK_8fZbLNj8zi3AUiUdGU-rVQEHYMPvyp5nMKndvV02LrFQg@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: [meta-raspberrypi] Userland and vc-graphics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,36 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Jul 2013 01:23:48 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 06 Jul 2013 11:22:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-For my system (something similar to core-image-base running on a Cedartrail
-Atom mobo), the syslinux.cfg file needs to be tweaked. It is built by a
-script in syslinux.bbclass, which is controlled by various variables. First
-of all, it's important that it not try to use a serial port as a console, so
-that means I'm supposed to set SYSLINUX_SERIAL to "". Second, it's providing
-two choices called "boot" and "install", and I'd like to eliminate the
-latter, which involves setting the LABELS variable to "boot".
+The meta-raspberrypi repository has separate recipes for 'userland',
+'vc-graphics' and 'vc-graphics-hardfp'. To my understanding, the
+vc-graphics files in the raspberrypi firmware repo
+(https://github.com/raspberrypi/firmware) are simply compiled from the
+userland sources (https://github.com/raspberrypi/userland). All three
+recipes PROVIDE 'virtual/libgles2' and 'virtual/egl'.
 
-I see that syslinux.bbclass has default value of "0 115200", but it has no
-default value for LABELS, which would cause a failure if something else
-wasn't setting it to "boot install". I see that it is inherited by
-boot-directdisk.bbclass, but it doesn't provide a default value for LABELS,
-either.
+So if there recipes are fulfilling the exact same purpose, I think we
+should strip out vc-graphics completely and always build from source.
+I've never seen a use case for the pre-compiled vc-graphics recipes
+within OpenEmbedded/Yocto.
 
-Does anyone know what recipe actually sets LABELS? And then, do I override
-these variables by creating a .bbappend file for that recipe? Or are these
-two symbols global symbols that I can somehow supply values for in my layer
-file? I really have no understanding of the scope of all the multiplicity of
-variables in the Bitbake system. Does each recipe have its own namespace for
-variables, or is everything global?
+Does anyone else who's worked with meta-raspberrypi agree with this?
+If so I'll throw together patches to achieve this.
 
--- 
+--
+Paul Barker
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
- 
-
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
