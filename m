@@ -1,30 +1,26 @@
 Return-Path: <pderocco@ix.netcom.com>
 Received: from elasmtp-dupuy.atl.sa.earthlink.net
 	(elasmtp-dupuy.atl.sa.earthlink.net [209.86.89.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CB78E00343
-	for <yocto@yoctoproject.org>; Fri,  5 Jul 2013 13:02:36 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6571E00343
+	for <yocto@yoctoproject.org>; Fri,  5 Jul 2013 18:23:48 -0700 (PDT)
 DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=nXkaF+SqSIGNpFIn697/uyfYa/YKnGQI5z7bNQ0CpSCID9YdUKiS32tIAvWww18p;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+	b=VjwuwWE4w/S5X4A4ewGP8uWToriZkoQ7AhwFaSM57v3jFdVP50LjYLTbEAJkumX4;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
 Received: from [76.173.239.98] (helo=PAULD)
 	by elasmtp-dupuy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UvCDD-0002Bc-5U; Fri, 05 Jul 2013 16:02:35 -0400
+	(envelope-from <pderocco@ix.netcom.com>) id 1UvHE3-0006gT-SG
+	for yocto@yoctoproject.org; Fri, 05 Jul 2013 21:23:48 -0400
 From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Luo Zhenhua-B19537'" <B19537@freescale.com>
-References: <91F05D61B900467F8FB43D4ACE5DF0F2@PAULD><CA452391058F6D4E9715FB2C29D9312A015D2FE9@039-SN2MPN1-022.039d.mgd.msft.net><E8B4C4D9890F4CDF8C8EE768634ED6C3@PAULD>
-	<CA452391058F6D4E9715FB2C29D9312A015D3241@039-SN2MPN1-022.039d.mgd.msft.net>
-In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A015D3241@039-SN2MPN1-022.039d.mgd.msft.net>
-Date: Fri, 5 Jul 2013 13:02:41 -0700
-Message-ID: <2A7CCA2D35894EC3A75FE6153BE2307D@PAULD>
+To: <yocto@yoctoproject.org>
+Date: Fri, 5 Jul 2013 18:23:54 -0700
+Message-ID: <9C4B6D7C047D4970BA9248AA4264E8A6@PAULD>
 MIME-Version: 1.0
 X-Mailer: Microsoft Office Outlook 11
 X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-Thread-Index: Ac55QwUeat5KrLe1TDKEXTuxEmXHNAAAJ+KQAACP5yAABSpIEAAX2xCQ
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068851ed40247c8dfb621c54e626392dd13f350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+Thread-Index: Ac5553rRZBijTYGKTBihWqsllb9vrg==
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688a5ea08e1585bfbc3c37cb4f6969df61a350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
 X-Originating-IP: 76.173.239.98
-Cc: yocto@yoctoproject.org
-Subject: Re: Another in a seemingly infinite chain of errors
+Subject: Changing syslinux configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,37 +32,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jul 2013 20:02:39 -0000
+X-List-Received-Date: Sat, 06 Jul 2013 01:23:48 -0000
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-> From: Luo Zhenhua-B19537
-> 
-> [Luo Zhenhua-B19537] Seems like the similar issue as 
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=4309
+For my system (something similar to core-image-base running on a Cedartrail
+Atom mobo), the syslinux.cfg file needs to be tweaked. It is built by a
+script in syslinux.bbclass, which is controlled by various variables. First
+of all, it's important that it not try to use a serial port as a console, so
+that means I'm supposed to set SYSLINUX_SERIAL to "". Second, it's providing
+two choices called "boot" and "install", and I'd like to eliminate the
+latter, which involves setting the LABELS variable to "boot".
 
-Just adding everything to FILES_${PN} solves the problem, although it's
-still a mystery to me why the helloworld.c example doesn't need to do that.
+I see that syslinux.bbclass has default value of "0 115200", but it has no
+default value for LABELS, which would cause a failure if something else
+wasn't setting it to "boot install". I see that it is inherited by
+boot-directdisk.bbclass, but it doesn't provide a default value for LABELS,
+either.
 
-> > By the way, I also notice it says to use things like ${bindir} for
-> > standard directories. Is there a comprehensive list of 
-> these anywhere? I
-> > don't find them in the Yocto Dev Manual or Ref Manual.
->
-> [Luo Zhenhua-B19537] I am not sure whether such variables are 
-> documented in a unified doc, I always check it in 
-> meta/conf/bitbake.conf or "bitbake -e | grep xxx". 
-
-Thanks. I think I'll create my own little text file listing them all, along
-with the default values they expand into.
-
-If anyone involved in upgrading the docs is reading this, that really should
-go into the Ref Manual, in a single table.
+Does anyone know what recipe actually sets LABELS? And then, do I override
+these variables by creating a .bbappend file for that recipe? Or are these
+two symbols global symbols that I can somehow supply values for in my layer
+file? I really have no understanding of the scope of all the multiplicity of
+variables in the Bitbake system. Does each recipe have its own namespace for
+variables, or is everything global?
 
 -- 
 
 Ciao,               Paul D. DeRocco
 Paul                mailto:pderocco@ix.netcom.com 
+ 
 
 
