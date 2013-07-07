@@ -1,40 +1,30 @@
-Return-Path: <sean.liming@annabooks.com>
-Received: from mail28c40.carrierzone.com (mail92c40.carrierzone.com
-	[209.235.156.232])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CAD7E01437
-	for <yocto@yoctoproject.org>; Sat,  6 Jul 2013 19:36:06 -0700 (PDT)
-X-Authenticated-User: sean.liming.annabooks.com
-Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
-	(authenticated bits=0)
-	by mail28c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
-	r672a2qF005689
-	for <yocto@yoctoproject.org>; Sun, 7 Jul 2013 02:36:04 +0000
-From: "Sean Liming" <sean.liming@annabooks.com>
-To: <yocto@yoctoproject.org>
-References: <000601ce7846$3167e7a0$9437b6e0$@annabooks.com>
-	<000901ce78e3$df25f880$9d71e980$@annabooks.com>
-In-Reply-To: <000901ce78e3$df25f880$9d71e980$@annabooks.com>
-Date: Sat, 6 Jul 2013 19:35:51 -0700
-Message-ID: <000001ce7aba$b3e15d80$1ba41880$@annabooks.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 979B7E00715
+	for <yocto@yoctoproject.org>; Sun,  7 Jul 2013 12:11:38 -0700 (PDT)
+Received: from [174.115.5.73] (port=60813 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1UvuMz-0005e0-Ur
+	for yocto@yoctoproject.org; Sun, 07 Jul 2013 15:11:38 -0400
+Date: Sun, 7 Jul 2013 15:11:33 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1307071507120.30670@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 14.0
-Thread-Index: AQHoUwMOOHadh+wd7ktRhug7GfOnhQHs88fNmRVms8A=
-X-CSC: 0
-X-CHA: v=2.0 cv=G5ir5aY5 c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
-	a=txLOX-etOBgA:10 a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8
-	a=eaLoddcW_fMA:10 a=iGHA9ds3AAAA:8 a=VwQbUJbxAAAA:8
-	a=yuZCy7tsakmoUk5dKkIA:9 a=CjuIK1q_8ugA:10 a=XDKM753qmDAA:10
-	a=aV87CDa5FLAYw_bt:21 a=Rw7nuqYR96WXxJVv:21
-	a=RqNIojzclRO/fVsPhA7IgQ==:117
-X-CTCH-RefID: str=0001.0A020204.51D8D415.000B, ss=1, re=0.000, recu=0.000,
-	reip=0.000, cl=1, cld=1, fgs=0
-X-CTCH-VOD: Unknown
-X-CTCH-Spam: Unknown
-X-CTCH-Score: 0.000
-X-CTCH-Rules: 
-X-CTCH-Flags: 0
-X-CTCH-ScoreCust: 0.000
-Subject: Re: How to add WiFi support
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: possible variations on building bootable SD card for BBB?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,130 +36,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 07 Jul 2013 02:36:12 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Sun, 07 Jul 2013 19:11:39 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+  i'm currently working on (and documenting) the variations for
+building a minimal, bootable SD card for the beaglebone black (BBB)
+for upcoming embedded linux classes, so i'm curious as to what others
+are doing.
 
+  for the last while, i've been using the layers:
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Sean Liming
-> Sent: Thursday, July 04, 2013 11:26 AM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] How to add WiFi support
-> 
-> > -----Original Message-----
-> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> > bounces@yoctoproject.org] On Behalf Of Sean Liming
-> > Sent: Wednesday, July 03, 2013 4:37 PM
-> > To: yocto@yoctoproject.org
-> > Subject: [yocto] How to add WiFi support
-> >
-> > I have searched and spotted different discussion on adding wireless
-> support
-> > but have not found a solution. I have a Intel Centrino Wireless-N 1000
-> card
-> > plugged into a Intel Atom N2800 (Cedar Trail) platform. I am using
-> > Yocto Project 1.3.1, Cedar Trail BSP, core-image-x11
-> >
-> > BB_VERSION        = "1.16.0"
-> > TARGET_ARCH       = "i586"
-> > TARGET_OS         = "linux"
-> > MACHINE           = "cedartrail-nopvr"
-> > DISTRO            = "poky"
-> > DISTRO_VERSION    = "1.3.1"
-> > TUNE_FEATURES     = "m32 core2"
-> > Core-image-x11
-> >
-> > Following the instructions to use menuconfig and create configuration
-> > fragment, I have enabled the various kernel options to include the
-> > iwlagn driver. The configuration fragment called mydiff.cfg (attached)
-> > was placed
-> in
-> > the meta-intel/meta-cedartrail/recipes-kernel/Linux/files folder. The
-> Linux-
-> > yocto_3.0.bbappend was modified with the following:
-> >
-> > FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> > SRC_URI += "file://mydiff.cfg"
-> >
-> > After building the image, ifconfig didn't show wireless and neither
-> > does iwconfig. The adapter is found when I do a lspci. The kernel
-> > wireless
-> website
-> > - http://wireless.kernel.org/en/users/Drivers/iwlwifi  lists a
-> > firmware package needed for installation. I tried to create a recipe
-> > to place the firmware file in the /lib/firmware folder, but it doesn't
-> > get put in. The
-> lack of
-> > what to do for the LICENSE might be a problem. Here is the
-> > recipe:
-> >
-> > DESCRIPTION = "Intel WiFi 1000 Adapter"
-> > LICENSE = "GPL"-?????
-> > LIC_FILES_CHKSUM =
-> > "file://${WORKDIR}/LICENSE.iwlwifi-1000-
-> > ucode;md5=aa2bfb02c7e0712680334b9f47
-> > f8dc61"
-> >
-> > SRC_URI = "file://LICENSE.iwlwifi-1000-ucode \
-> > 	   file://iwlwifi-1000-3.ucode \
-> > 	   "
-> > FWPATH = "lib/firmware"
-> > do_install_apped() {
-> > 	install -m 0644 LICENSE.iwlwifi-1000-ucode ${D}${FWPATH}
-> > 	install -m 0644 iwlwifi-1000-3.ucode ${D}${FWPATH} }
-> >
-> > I manually created the /lib/firmware folder and copied the firmware
-> > file
-> > (iwlwifi-1000-3.ucode) to the folder. Nothing changed after a reboot.
-> > I
-> also
-> > tried a Intel Centrino Ultimate-N 6300 same result.
-> >
-> > 1. Was a kernel modification the right direction to enable support for
-> this
-> > driver?
-> > 2. Did I miss anything with regards to the configuration fragment setup?
-> > 3. Is the firmware really needed? If so why is there no /lib/firmware
-> folder
-> > and what should be used for the LICENSE ?
-> >
-> >
-> > Regards,
-> >
-> > Sean Liming
-> 
-> Update: After checking the /proc/config.gz, I noticed that the custom
-kernel
-> settings are not being set. Is there specific location for the
-configuration
-> fragment to be placed? I put it in the BSP's recipes-kernel/Linux/files
-folder.
-> 
-> After installing Ubuntu on the target, iwlwifi is being used rather than
-iwlagn.
-> I have a updated my custom config.
-> 
-> Regards,
-> 
-> Sean Liming
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+  * oe-core (naturally)
+  * meta-oe
+  * meta-beagleboard
 
-SOLVED: Deviated from the documentation to get the configuration fragment
-working, and found a Linux-firmware package that pulls in the firmware.
+with which i could generate all the appropriate artifacts and manually
+populate an SD card.
 
-Regards,
+  recent perusal suggests that i should be using the "official"
+meta-ti layer rather than meta-beagleboard but if i do that and try to
+populate a formatted SD card the same way, i don't even get to the
+u-boot prompt.
 
-Sean Liming
+  so -- short form of the question -- how many ways are there to build
+a bootable SD card for the BBB using different layers? which are
+recommended? i'm after just enough of a system to act as the basis for
+some classes, so i'm currently building just a core-image-minimal, but
+i'm interested in what others are doing, thanks.
 
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
