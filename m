@@ -1,22 +1,30 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0061BE01409
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 02:13:26 -0700 (PDT)
-Received: from [192.168.0.2] (host86-137-86-109.range86-137.btcentralplus.com
-	[86.137.86.109]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 933749530
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 10:13:25 +0100 (BST)
-Message-ID: <51DA82B4.2090207@r-finger.com>
-Date: Mon, 08 Jul 2013 10:13:24 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130630 Icedove/17.0.7
-MIME-Version: 1.0
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9200CE01409
+	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 04:10:05 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Uw9KW-0000wr-63
+	for yocto@yoctoproject.org; Mon, 08 Jul 2013 13:10:04 +0200
+Received: from p5099b24a.dip0.t-ipconnect.de ([80.153.178.74])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 13:10:04 +0200
+Received: from m.meier by p5099b24a.dip0.t-ipconnect.de with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 13:10:04 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-References: <9C4B6D7C047D4970BA9248AA4264E8A6@PAULD>
-In-Reply-To: <9C4B6D7C047D4970BA9248AA4264E8A6@PAULD>
-Subject: Re: Changing syslinux configuration
+From: Michael <m.meier@plusoptix.de>
+Date: Mon, 08 Jul 2013 13:05:53 +0200
+Message-ID: <kre6ei$f78$1@ger.gmane.org>
+References: <0342A6AD36648742A199353A51DDC70311546C9C@ESESSMB305.ericsson.se>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: p5099b24a.dip0.t-ipconnect.de
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130211 Thunderbird/17.0.2
+In-Reply-To: <0342A6AD36648742A199353A51DDC70311546C9C@ESESSMB305.ericsson.se>
+Subject: Re: SSTATE_MIRRORS problems, libpthread.so.0 not found ...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,18 +36,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jul 2013 09:13:27 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 08 Jul 2013 11:10:07 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-On 06/07/13 02:23, Paul D. DeRocco wrote:
-> Does anyone know what recipe actually sets LABELS?
+Am 11.04.2013 15:19, schrieb Jonas Jonsson L:
 
-The relevant image classes do.
+> The package that I’ve built builds clean without any warnings in the
+> ‘clean’ build.  However, if I _don’t_ build my package in the clean
+> image, but in one of my ‘configured’ images, it fails.  All of a sudden,
+> the linker can’t find neither /lib/libpthread.so.0 nor
+> /usr/lib/libpthread_nonshared.a L
 
-Tomas
+Same problem here. Already any solution for this problem?
+
+Best regards,
+Michael Meier
 
 
--- 
-http://sleepfive.com
 
