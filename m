@@ -1,31 +1,42 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DA53E01440
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 06:48:06 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 08 Jul 2013 06:45:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,1020,1363158000"; d="scan'208";a="342149479"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga001.jf.intel.com with ESMTP; 08 Jul 2013 06:48:02 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.127]) by
-	IRSMSX101.ger.corp.intel.com ([169.254.1.204]) with mapi id
-	14.03.0123.003; Mon, 8 Jul 2013 14:48:00 +0100
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: Norman Cheung <brjerome.1@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Help with installing Eclipse ADT Plug-in
-Thread-Index: AQHOenj+ogCswxONR0KsJToCWmtMoJlazZ7g
-Date: Mon, 8 Jul 2013 13:48:00 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F0FEA3@IRSMSX104.ger.corp.intel.com>
-References: <51D86559.7060903@gmail.com>
-In-Reply-To: <51D86559.7060903@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
+	[209.85.215.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 331D4E01440
+	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 07:30:36 -0700 (PDT)
+Received: by mail-ea0-f180.google.com with SMTP id k10so3040532eaj.11
+	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 07:30:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=VG5rSSo86eChLiFZiNhgLecag7I6yBmolEmZiWRMMHM=;
+	b=FfXIOYpodg7QpfmMTqtYFWcIVMoMsufuJ/8BtH7UAFlbJB4rGBqV1JEEQDiAgLOpgu
+	UCbW80LzN5mnKR/2u/j76kViZ/qPBtIa2Qz5vPYVEXPrCx2kYqo/XmZC6nT+HNNf9HY2
+	H+CO76N1cJGzOlL5yYRC8hYdWtwvxy0sluGP0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=VG5rSSo86eChLiFZiNhgLecag7I6yBmolEmZiWRMMHM=;
+	b=OC4CUFSVXmnHEtQA5yXDk4hefCKJ5Ebc5CwKT1p+ZRXMDQ+eWixY57yZ4ZMMq30PlI
+	H+TRcK2Hp6HrPmANVKs1m5glVtMeSYcDZKUVocDnrTV4PdvVVUak/toRSTgPUVACzNbm
+	rudNyyUOzn1bKDKXH1F1kImMbyFPTe88MlUAm0MxV01MxoeO7r+vqhZeHIqbpbw6sOqI
+	kKkViolmQLdRRH6IA7PqB9tXZOml2rJirFOJzpBGUGKZ9EH53EtJSPNJ1D2IkF/ipAhT
+	tjwDnx4tmq4zRoqKC2K3Io2eleFJiExe3W/DRgFFw8mMgmJHIs/Zn2i535txt5t8AsNB
+	FU3w==
 MIME-Version: 1.0
-Subject: Re: Help with installing Eclipse ADT Plug-in
+X-Received: by 10.15.45.194 with SMTP id b42mr25512818eew.51.1373293834991;
+	Mon, 08 Jul 2013 07:30:34 -0700 (PDT)
+Received: by 10.223.143.202 with HTTP; Mon, 8 Jul 2013 07:30:34 -0700 (PDT)
+In-Reply-To: <alpine.DEB.2.02.1307071507120.30670@oneiric>
+References: <alpine.DEB.2.02.1307071507120.30670@oneiric>
+Date: Mon, 8 Jul 2013 07:30:34 -0700
+Message-ID: <CA+gsK-quhsGwZ3LqpqbfHUVKxoXZ9-GHukBXtxORiatycxNR1Q@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-Gm-Message-State: ALoCoQmNCJGYX4DOtuHQbLqqb2NG3G/duPkDx5V9QxQxUKhRhV8yymJCCYULNsMQUf395jxn1fEf
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: possible variations on building bootable SD card for BBB?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,54 +48,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jul 2013 13:48:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 08 Jul 2013 14:30:37 -0000
+Content-Type: multipart/alternative; boundary=089e0160d0e235284d04e100e35a
+
+--089e0160d0e235284d04e100e35a
+Content-Type: text/plain; charset=ISO-8859-1
+
+>   so -- short form of the question -- how many ways are there to build
+> a bootable SD card for the BBB using different layers?
+
+
+
+There are many ways to skin a cat. I created my own BeagleBone BSP layer
+that builds u-boot and a 3.2 kernel. The idea being to demonstrate how to
+create a BSP layer. The recipes pull the sources from the Arago Project git
+repository and apply some patches. That may not be necessary anymore
+because patches for the am33x may be upstreamed to respective projects by
+now.
+
+Rudi
+
+--089e0160d0e235284d04e100e35a
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi Norman,
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><div class=3D"gmail_quote">=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+=A0 so -- short form of the question -- how many ways are there to build<br=
+>
+a bootable SD card for the BBB using different layers?</blockquote><div><br=
+></div><div><br></div><div>There are many ways to skin a cat. I created my =
+own BeagleBone BSP layer that builds u-boot and a 3.2 kernel. The idea bein=
+g to demonstrate how to create a BSP layer. The recipes pull the sources fr=
+om the Arago Project git repository and apply some patches. That may not be=
+ necessary anymore because patches for the am33x may be upstreamed to respe=
+ctive projects by now.</div>
+<div><br></div><div>Rudi</div></div>
+</div></div>
 
-There may be some items that you have missed, or you can try another way by=
- running a headless build and then trying to install the plugin. The headle=
-ss build should be able to install the required items needed by the plugin.=
-=20
-To run the headless build, you have to have the eclipse-poky source code (e=
-.g.: git://git.yoctoproject.org/eclipse-poky) and then run the setup.sh scr=
-ipt under the scripts folder.
-
-Regards,
---
-Alexandru Georgescu
-
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Norman Cheung
-Sent: Saturday, July 06, 2013 21:44
-To: yocto@yoctoproject.org
-Subject: [yocto] Help with installing Eclipse ADT Plug-in
-
-I followed the steps to install ADT plug-in in the Development Manual secti=
-on 4.2.2.1.
-
-The error is:
-Cannot complete the install because one or more required items could not be=
- found.
-   Software being installed: Yocto Project ADT Plug-in
-1.4.0.201306120814 (org.yocto.sdk.feature.group 1.4.0.201306120814)
-
-In installing the pre-requisites, the only item that failed was RSE WincE S=
-ervices (step 12 in 4.2.2.1.3).
-
-I also tried compile the plug-in from source same error.  How can I locate =
-what items are missing?
-
-Thanks,
-Norman
-
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--089e0160d0e235284d04e100e35a--
