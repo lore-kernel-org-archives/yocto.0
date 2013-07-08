@@ -1,30 +1,35 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9200CE01409
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 04:10:05 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Uw9KW-0000wr-63
-	for yocto@yoctoproject.org; Mon, 08 Jul 2013 13:10:04 +0200
-Received: from p5099b24a.dip0.t-ipconnect.de ([80.153.178.74])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 13:10:04 +0200
-Received: from m.meier by p5099b24a.dip0.t-ipconnect.de with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 13:10:04 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Michael <m.meier@plusoptix.de>
-Date: Mon, 08 Jul 2013 13:05:53 +0200
-Message-ID: <kre6ei$f78$1@ger.gmane.org>
-References: <0342A6AD36648742A199353A51DDC70311546C9C@ESESSMB305.ericsson.se>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: p5099b24a.dip0.t-ipconnect.de
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130211 Thunderbird/17.0.2
-In-Reply-To: <0342A6AD36648742A199353A51DDC70311546C9C@ESESSMB305.ericsson.se>
-Subject: Re: SSTATE_MIRRORS problems, libpthread.so.0 not found ...
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
+	[209.85.212.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61063E01409
+	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 04:12:49 -0700 (PDT)
+Received: by mail-vb0-f44.google.com with SMTP id e15so3274344vbg.31
+	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 04:12:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=td9J0ttNeNNki2Ut6LZ+I1E+Z8Li5FgMLlhW7vrQzcY=;
+	b=kKF2bpTPy7mv2XRQl+BKMQyBIacjn8t9OTklXTaFMJuV9wmUKkHEvZTggd0MDvoafk
+	qhw2m9gxLydsaRh2UQhX2euzDC3gI40yWqbP5p3Cbq5Xg56VI4j2Mua62pS8m24QUOyx
+	DavXm7Va114go68P0zN3MJn61QuawJemIjoUKJe5fES9HDVvU8OAgjAybhTgKgG/qjw1
+	RSyZ2gAsfgwCiOUWBEFSqvDJfPaRizeospPp6Ghi9a6s0EkqX+TG+6s4fZsDwBKeRU96
+	xtzzTjdT3Tg6SoOTH7sJcuZrPu5xKxZHp7+D4ZAH0myPEmMhAywaFPY/hjeZp+lqID25
+	0Qow==
+X-Received: by 10.52.18.171 with SMTP id x11mr11280636vdd.92.1373281968735;
+	Mon, 08 Jul 2013 04:12:48 -0700 (PDT)
+MIME-Version: 1.0
+Sender: paul.betafive@gmail.com
+Received: by 10.220.195.201 with HTTP; Mon, 8 Jul 2013 04:12:08 -0700 (PDT)
+In-Reply-To: <51DA7FFA.2060900@r-finger.com>
+References: <CANyK_8fZbLNj8zi3AUiUdGU-rVQEHYMPvyp5nMKndvV02LrFQg@mail.gmail.com>
+	<51DA7FFA.2060900@r-finger.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Mon, 8 Jul 2013 12:12:08 +0100
+X-Google-Sender-Auth: f9PX-F7PQcH0TfuT1nE36r2B-cU
+Message-ID: <CANyK_8dd-2amNRAQoP9Wqqy5veSyUbWShm0pnien5DNu-yt3aQ@mail.gmail.com>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Userland and vc-graphics
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,22 +41,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jul 2013 11:10:07 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 08 Jul 2013 11:12:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Am 11.04.2013 15:19, schrieb Jonas Jonsson L:
+On 8 July 2013 10:01, Tomas Frydrych <tf+lists.yocto@r-finger.com> wrote:
+> On 06/07/13 12:22, Paul Barker wrote:
+>>
+>> Does anyone else who's worked with meta-raspberrypi agree with this?
+>> If so I'll throw together patches to achieve this.
+>
+> vc-graphics is the original package before the userland sources were
+> made available; in principle the two should be equivalent, but the last
+> time I tried to build userland, which admittedly is two or three months
+> back, it was failing miserably due to some missing broadcom headers that
+> were nowhere to be found among the released sources. I assume the
+> userland packages now build OK?
+>
 
-> The package that I’ve built builds clean without any warnings in the
-> ‘clean’ build.  However, if I _don’t_ build my package in the clean
-> image, but in one of my ‘configured’ images, it fails.  All of a sudden,
-> the linker can’t find neither /lib/libpthread.so.0 nor
-> /usr/lib/libpthread_nonshared.a L
+It all builds and installs correctly for me (I'm using core-image-sato
+for testing). It would probably be good to put together a simple test
+plan to ensure that it does run correctly.
 
-Same problem here. Already any solution for this problem?
+I must admit to being happier working on console applications rather
+GUIs and especially OpenGL/EGL type things but there are probably a
+few basic tests I can do. I could see if glxgears runs correctly. I
+could also look at EGL/GLES output from gstreamer.
 
-Best regards,
-Michael Meier
+Any other suggestions?
 
+--
+Paul Barker
 
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
