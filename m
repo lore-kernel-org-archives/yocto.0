@@ -1,25 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4C7EE01440
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 08:16:45 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 08 Jul 2013 08:16:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,1020,1363158000"; d="scan'208";a="265451333"
-Received: from unknown (HELO helios.localnet) ([10.252.122.28])
-	by AZSMGA002.ch.intel.com with ESMTP; 08 Jul 2013 08:16:15 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 08 Jul 2013 16:16:13 +0100
-Message-ID: <68667435.cRfdglprjW@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.4 (Linux/3.8.0-26-generic; KDE/4.10.4; i686; ; )
-In-Reply-To: <23FC58C0-D2D3-4977-A04E-3C9E14C9EBA9@gmail.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5182B@ORSMSX101.amr.corp.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF52416@ORSMSX101.amr.corp.intel.com>
-	<23FC58C0-D2D3-4977-A04E-3C9E14C9EBA9@gmail.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67BF1E01440
+	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 08:33:55 -0700 (PDT)
+Received: by mail-vc0-f175.google.com with SMTP id hr11so3378891vcb.6
+	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 08:33:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=WObrS5OPmrEyTJbvhH+DOgGPZE3sWrH2paHhQC2LPxc=;
+	b=I+ebuN5IgxoDfUUPbLAxxq+AXQYxHAf0LTzZSVbRszS9o3idwa32dI8XTbeVcmTZz5
+	AIMg/gx4fzP2oOfv3WzZobJxL6RfFOjp91GgvFeoctiY51VW/+TwvpQXmcwCk4I/0H8R
+	HxD/Y1GixEu4+3/Bti4oe9dCUGLB8irzxA9js09AzKFzbhxCEAxubCKBzjfZ6yR1I+jR
+	TIE6+nAdxs1d9vGWkStW9XU2tnC6ePFut72ma4BUuDLrbhlotYHKbhQ0Zk3fou/gVgUe
+	bhQxuB0Yf+uDkxELBF3vSXfPTZAAfoEs6BjIC/xu8k4CoS8MWp2x8CXZKxUs5AC/QUbQ
+	RpYg==
+X-Received: by 10.58.118.70 with SMTP id kk6mr14111674veb.1.1373297634913;
+	Mon, 08 Jul 2013 08:33:54 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Layer input
+Received: by 10.220.13.144 with HTTP; Mon, 8 Jul 2013 08:33:34 -0700 (PDT)
+In-Reply-To: <1373295729-21133-1-git-send-email-andrei.gherzan@windriver.com>
+References: <1373295729-21133-1-git-send-email-andrei.gherzan@windriver.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 8 Jul 2013 16:33:34 +0100
+Message-ID: <CAJTo0LYnob+XE-FbxyP1CshoRw9tY=iMfsLA+mgQq31t1-=UDg@mail.gmail.com>
+To: Andrei Gherzan <andrei.gherzan@windriver.com>
+X-Gm-Message-State: ALoCoQl/0J8e1qvbIGqwEkaK/IuR+hSRUrQLPQoPHYxXm+asf7JUiQQZQhomEyViY6RpOpfbrxLd
+Cc: yocto@yoctoproject.org, theodor.gherzan@windriver.com
+Subject: Re: [meta-ivi][PATCH 1/2] busybox: Sync recipe's version with upstream
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,60 +40,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jul 2013 15:16:49 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 08 Jul 2013 15:33:57 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Friday 28 June 2013 14:36:48 Khem Raj wrote:
-> On Jun 28, 2013, at 4:22 AM, "Rifenbark, Scott M"
-> <scott.m.rifenbark@intel.com> wrote:
-> > I count eight meta-* layers in the YP repositories that don't exist in the
-> > OE area.  I understand what you are saying though and I can word it that
-> > way to dampen the existence of the "many" differences :)
->
-> hmm may be they should be added to layer index. at least the ones which are
-> still maintained.
+On 8 July 2013 16:02, Andrei Gherzan <andrei.gherzan@windriver.com> wrote:
+>  recipes-core-ivi/busybox/busybox-1.20.2/defconfig | 1012 ---------------------
+>  recipes-core-ivi/busybox/busybox-1.21.1/defconfig | 1012 +++++++++++++++++++++
 
-This is down to me, I've been keeping the layer index up-to-date for the 
-layers on yoctoproject.org. Listing the ones that aren't there, with comments 
-as to why not:
+I'm curious as to what IVI needs tweaked in busybox and why this can't
+go into oe-core.
 
-experimental/meta-darwin
-    - ancient, unmaintained, no conf/layer.conf
-experimental/meta-m2
-    - ancient, unmaintained
-experimental/meta-maemo
-    - ancient, unmaintained, no conf/layer.conf
-experimental/meta-trusted
-    - not actively maintained
-experimental/meta-x32       
-    - ancient, we should probably just delete this
-meta-dlna
-    - replaced by collaboration with meta-guacamayo
-meta-extras
-    - not usable as a layer, most recipes unbuildable; I'm slowly whittling it
-      down as bits of it reappear in OE layers until one day hopefully it'll
-      become empty
-meta-intel-contrib
-    - contrib repo for meta-intel
-meta-jarvis
-    - joke layer
-meta-meson
-    - (probably could add)
-meta-meson-bsp
-    - (probably could add)
-meta-minnow
-    - (was waiting for hardware availability)
-meta-yocto-kernel-extras
-    - now submitted to the layer index
-meta-zynq
-    - status not entirely clear, but seems to have been superseded?
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Ross
 
