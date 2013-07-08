@@ -1,27 +1,29 @@
-Return-Path: <Andrei.Gherzan@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF0E9E01512
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 08:02:26 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r68F2R41008980
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 8 Jul 2013 08:02:27 -0700 (PDT)
-Received: from localhost.localdomain (128.224.171.81) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.2.342.3; Mon, 8 Jul 2013 08:02:26 -0700
-From: Andrei Gherzan <andrei.gherzan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 8 Jul 2013 18:02:09 +0300
-Message-ID: <1373295729-21133-2-git-send-email-andrei.gherzan@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1373295729-21133-1-git-send-email-andrei.gherzan@windriver.com>
-References: <1373295729-21133-1-git-send-email-andrei.gherzan@windriver.com>
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EED7E01440
+	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 08:02:59 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 08 Jul 2013 08:00:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.87,1020,1363158000"; d="scan'208";a="342180311"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by orsmga001.jf.intel.com with ESMTP; 08 Jul 2013 08:02:57 -0700
+Received: from irsmsx106.ger.corp.intel.com ([169.254.8.91]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.127]) with mapi id
+	14.03.0123.003; Mon, 8 Jul 2013 16:02:56 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: naming .bb files
+Thread-Index: AQHOe+w6WT76XSofL0CBFrwRICwFJg==
+Date: Mon, 8 Jul 2013 15:02:56 +0000
+Message-ID: <CE00932F.2D481%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.2.130206
+x-originating-ip: [10.237.224.165]
 MIME-Version: 1.0
-X-Originating-IP: [128.224.171.81]
-Cc: theodor.gherzan@windriver.com,
-	Andrei Gherzan <andrei.gherzan@windriver.com>
-Subject: [meta-ivi][PATCH 2/2] qt4: Sync recipe's version with upstream
+Subject: naming .bb files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,78 +35,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jul 2013 15:02:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 08 Jul 2013 15:03:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <73A3DF874A558649BBF9EC96A7FAF625@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Andrei Gherzan <andrei.gherzan@windriver.com>
----
- recipes-qt/qt4/qt4-embedded_4.8.4.bbappend |   24 ------------------------
- recipes-qt/qt4/qt4-embedded_4.8.5.bbappend |   24 ++++++++++++++++++++++++
- 2 files changed, 24 insertions(+), 24 deletions(-)
- delete mode 100644 recipes-qt/qt4/qt4-embedded_4.8.4.bbappend
- create mode 100644 recipes-qt/qt4/qt4-embedded_4.8.5.bbappend
+Bug 4193 will allow Hob users to save their customised images into a .bb
+file. As part of the saving flow, users will need to give their .bb file a
+name, and we need to ensure such names are valid.
 
-diff --git a/recipes-qt/qt4/qt4-embedded_4.8.4.bbappend b/recipes-qt/qt4/qt4-embedded_4.8.4.bbappend
-deleted file mode 100644
-index ac6760e..0000000
---- a/recipes-qt/qt4/qt4-embedded_4.8.4.bbappend
-+++ /dev/null
-@@ -1,24 +0,0 @@
--PRINC := "${@int(PRINC) + 1}"
--
--OTHER_PACKAGES_ivi = "\
--    ${QT_BASE_NAME}-tools \
--    ${QT_BASE_NAME}-assistant \
--    ${QT_BASE_NAME}-common \
--    ${QT_BASE_NAME}-dbus \
--    ${QT_BASE_NAME}-designer \
--    ${QT_BASE_NAME}-fonts \
--    ${QT_BASE_NAME}-fonts-ttf-vera \
--    ${QT_BASE_NAME}-fonts-ttf-dejavu \
--    ${QT_BASE_NAME}-fonts-pfa \
--    ${QT_BASE_NAME}-fonts-pfb \
--    ${QT_BASE_NAME}-fonts-qpf \
--    ${QT_BASE_NAME}-linguist \
--    ${QT_BASE_NAME}-makeqpf \
--    ${QT_BASE_NAME}-mkspecs \
--    ${QT_BASE_NAME}-pixeltool \
--    ${QT_BASE_NAME}-qmlviewer \
--    ${QT_BASE_NAME}-xmlpatterns \
--    ${QT_BASE_NAME}-qt3to4 \
--    ${QT_BASE_NAME}-qml-plugins"
--
--RRECOMMENDS_${PN} = "${LIB_PACKAGES} ${OTHER_PACKAGES_ivi}"
-diff --git a/recipes-qt/qt4/qt4-embedded_4.8.5.bbappend b/recipes-qt/qt4/qt4-embedded_4.8.5.bbappend
-new file mode 100644
-index 0000000..ac6760e
---- /dev/null
-+++ b/recipes-qt/qt4/qt4-embedded_4.8.5.bbappend
-@@ -0,0 +1,24 @@
-+PRINC := "${@int(PRINC) + 1}"
-+
-+OTHER_PACKAGES_ivi = "\
-+    ${QT_BASE_NAME}-tools \
-+    ${QT_BASE_NAME}-assistant \
-+    ${QT_BASE_NAME}-common \
-+    ${QT_BASE_NAME}-dbus \
-+    ${QT_BASE_NAME}-designer \
-+    ${QT_BASE_NAME}-fonts \
-+    ${QT_BASE_NAME}-fonts-ttf-vera \
-+    ${QT_BASE_NAME}-fonts-ttf-dejavu \
-+    ${QT_BASE_NAME}-fonts-pfa \
-+    ${QT_BASE_NAME}-fonts-pfb \
-+    ${QT_BASE_NAME}-fonts-qpf \
-+    ${QT_BASE_NAME}-linguist \
-+    ${QT_BASE_NAME}-makeqpf \
-+    ${QT_BASE_NAME}-mkspecs \
-+    ${QT_BASE_NAME}-pixeltool \
-+    ${QT_BASE_NAME}-qmlviewer \
-+    ${QT_BASE_NAME}-xmlpatterns \
-+    ${QT_BASE_NAME}-qt3to4 \
-+    ${QT_BASE_NAME}-qml-plugins"
-+
-+RRECOMMENDS_${PN} = "${LIB_PACKAGES} ${OTHER_PACKAGES_ivi}"
--- 
-1.7.9.5
+There seem to be certain rules regarding .bb files naming, but apparently
+those are not written anywhere. Some of those rules seem to be:
+
+* No spaces
+* Underscores can only by used to separate name and version
+* No ASCII special characters
+* No non-ASCII characters
+* No uppercase letters
+
+Does anybody know of any others we should be aware of?
+
+Thanks!
+
+Bel=E9n
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
