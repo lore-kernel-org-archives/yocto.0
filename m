@@ -1,33 +1,35 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4526E01512
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 15:31:23 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 08 Jul 2013 15:28:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,1022,1363158000"; 
-	d="scan'208,217";a="362260840"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by fmsmga001.fm.intel.com with ESMTP; 08 Jul 2013 15:32:23 -0700
-Received: from orsmsx109.amr.corp.intel.com (10.22.240.7) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 8 Jul 2013 15:31:22 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.229]) by
-	ORSMSX109.amr.corp.intel.com ([169.254.2.7]) with mapi id
-	14.03.0123.003; Mon, 8 Jul 2013 15:31:22 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, July
-	09, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac58KsiEyLwpcd50TY2bYss2pMl+2wAAAbXA
-Date: Mon, 8 Jul 2013 22:31:21 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EE68C67@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-la0-f50.google.com (mail-la0-f50.google.com
+	[209.85.215.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2593DE00715
+	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 18:33:35 -0700 (PDT)
+Received: by mail-la0-f50.google.com with SMTP id dy20so4316310lab.9
+	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 18:33:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=uKPTGIIRPHpVS1jfe+cCPMV7PRJ5RdKkrA4NfaoyxjU=;
+	b=0SYSG9xnUc1n4k7Ojb3e0+mLwU62mdXsT8+5COdNDoytF83F/Iuk0D6QWNLn+8r9zJ
+	GO0RrFIjOVL9lGw9Qb8d6LDiLY7reda3Z+Mf4jjfl9rxN8KFGO8isCiPXsEbfXMR2vio
+	prhgCHlrMIV7iaIXHhnwOmyAGS2m81ir97d2Ll9gzUBzbOCFrKMfpqiUfNkVH4TwGMv0
+	KjghKYMSL9BWGxyOP9ulIr/o1kqtCZodXLHTVqY/BRScTt3/b8H5urOoX51mM00N4yTL
+	XhvCLVfvyJU8ig7T73TgK11KfKdA6t4vK3xAL8ikS8JSEUOvwcl8uQfylKGlVx8M1wYu
+	FL3g==
+X-Received: by 10.152.88.5 with SMTP id bc5mr11432367lab.81.1373333613687;
+	Mon, 08 Jul 2013 18:33:33 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, July 09, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Sender: jefro.net@gmail.com
+Received: by 10.112.30.146 with HTTP; Mon, 8 Jul 2013 18:33:13 -0700 (PDT)
+In-Reply-To: <DUB116-W73285008B0CC36C2A0AD7D987C0@phx.gbl>
+References: <DUB116-W8529D2D1871A90B56A5591987C0@phx.gbl>
+	<DUB116-W73285008B0CC36C2A0AD7D987C0@phx.gbl>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Mon, 8 Jul 2013 18:33:13 -0700
+X-Google-Sender-Auth: q2hHKwQPXAbR6vTYHqQp-KASKj4
+Message-ID: <CA+YB3ra1gO-bEVbk+AYBMUz+JryU_cCk8y3mJxGcoz81khRE7g@mail.gmail.com>
+To: Thanassis Silis <djnass_18@hotmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: FW: [meta-freescale] serial port timeout before expected # of bytes arrives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,553 +41,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jul 2013 22:31:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EE68C67ORSMSX108amrcor_"
+X-List-Received-Date: Tue, 09 Jul 2013 01:33:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EE68C67ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Thanassis - if there is no reply here, you might try joining and
+posting on the meta-freescale mailing list
+(https://lists.yoctoproject.org/listinfo/meta-freescale)
 
-Agenda:
-
-* Opens collection - 5 min (Song)
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-* SWAT team rotation: Ioana -> Laurentiu Palcu
-* Opens - 10 min
-* Team Sharing - 20 min
-
-
------Original Appointment-----
-
-
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-Conference details
-Conference name:        Yocto Project Technical Team
-Conference date/start time:     Tue Jun 25, 2013 at 11:00 AM Eastern Daylig=
-ht Time (GMT-0400)
-Participants:   30
-Duration:       60 minutes
-Participant passcode:   42001078
-Dial-in number: 1.972.995.7777
-US Toll Free number:    1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:=
-     1.972.995.7777x42001078#
-        Depending on where you are dialing from, either your BlackBerry wil=
-l pause and enter the passcode automatically or you will be prompted to cli=
-ck again to dial the passcode.
-
-
-Local and Global Access Numbers
-
-
-
-
-Country
-Dial-in number
-
-Australia:
-1800 636 843
-
-Czech Republic:
-242 430 350
-
-China (Beijing):
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-
-China (Shanghai):
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-
-China (Shenzen):
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-
-China (Other Cities):
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-
-Denmark:
-8060 1400
-
-Finland:
-09 41333477
-
-France:
-0497 275888
-
-Germany:
-08161 803232
-
-Holland:
-030 2417490
-
-India:
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-
-Israel:
-09 790 6715
-
-Italy:
-039 69061234 (039 is local city code not country code)
-
-Japan:
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-
-Malaysia:
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-
-Norway:
-2 295 8744
-
-Philippines:
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-
-Singapore:
-From IP phone dial 3894777
-Outside TI use 6389 4777
-
-South Korea:
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-
-Sweden:
-08 58755577
-
-Taiwan:
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-
-Turkey:
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-
-UK:
-01908 355599
-
-US:
-972 995 7777 or 1877 561 6828
-
-
-Recurring conferences
-First scheduled conference:     Tue Jun 25, 2013
-Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:        End after 52 occurrences
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EE68C67ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Jul 4, 2013 at 7:24 AM, Thanassis Silis <djnass_18@hotmail.com> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>* SWAT team rotation: Ioana -&gt; Laurentiu Palcu</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
-Original Appointment-----<br>
+>
+> ________________________________
+> From: djnass_18@hotmail.com
+> To: meta-freescale@yoctoproject.org
+> Date: Thu, 4 Jul 2013 13:40:10 +0000
+> Subject: [meta-freescale] serial port timeout before expected # of bytes
+> arrives
+>
+> Hello everyone,
+> I am trying to port an application that is receiving/sending data through
+> the serial port.
+> On the sabrelite board that is the /dev/ttymxc0 port, ie the 2ndary serial
+> port (the primary being /dev/ttymxc1).
+>
+> I am using the functions select() and read() to read from the serial port ,
+> in order to implement a timeout mechanism that is waiting for a few seconds
+> for bytes to arrive and if should they not arrive, then the timeout is
+> reached.
+>
+> The receiving loop works like this:
+>
+> I wait for 2 bytes - the opcode of the command.
+> Once I resolve a code, I wait for 4 bytes designating the length of data
+> that will follow (depending on the command)
+> I create a buffer in my application of size equal to the length I received
+> above.
+> I start receiving the data.
+>
+>
+>
+> Note that I have implemented reception of the data in 2 ways (since the 1st
+> way used to work, it was tried as is. Then, I tried the next as well):
+>
+>
+>
+> a)receive my data using a for loop, reading() one byte at time. until all
+> the expected bytes arrive , or a timeout is reached.
+>
+> b)receive my data using a while loop where I ask for all the remaining bytes
+> to be read(). Read() returns how many bytes have actually arrived, so I
+> update the remaining Bytes and re-read(). Again if a select() times-out
+> without any data arriving, the loop will exit.
+>
+>
+> Now, my problem is that while applications seem to be using this port
+> without any problem (f.e. minicom, rx, cat /dev/ttymxc0, echo "something" >
+> /dev/ttymxc0 ) , through the application I get timeouts for any file that is
+> bigger than 3-4kBytes.
+>
+>
+> Say I am trying to send a file 138kB. I may fail at byte ~40k, ~56k, or even
+> ~12k. This is very weird. And I don't know what to assume is going wrong.
+> Slow processing on the local end seems to not be a problem, as I can read
+> (in (b) above) approx 58 bytes in the beginning and then 1 byte at a time.
+> Could it be the memory buffer? If yes, how can I increase its size? Could
+> another application be interfering with /dev/ttymxc0?
+>
+>
+>
+> I am running fsl-image-test with all -dev, -sdk & -dbg options enabled.
+>
+>
+> Thank you for your help.
+>
+>
+>
+>
+>
+>
+>
+> _______________________________________________ meta-freescale mailing list
+> meta-freescale@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/meta-freescale
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-</span></font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
- attending the meeting to logon the Yocto IRC chancel during the meeting (o=
-ptional):</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
-=3D"http://webchat.freenode.net/?channels=3D#yocto"><font color=3D"blue"><u=
->http://webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
-ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
-><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
-/font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Conference deta=
-ils</b></span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference name:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Yocto Project Technical Team</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference date/start time:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 25, 2013 at 11:00 AM Eastern Daylight Time (GMT-04=
-00)</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participants:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>30</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Duration:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>60 minutes</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participant passcode:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>42001078</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Dial-in number:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">US Toll Free number:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.877.561.6828</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BlackBerry users, click this link to join your conference as =
-a&nbsp;<b>participant</b>:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777x42001078#</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">&nbsp;</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
-ry will pause and enter the passcode automatically or you will be prompted =
-to click again to dial the passcode.</span></font></td>
-</tr>
-<tr>
-<td colspan=3D"2">
-<table width=3D"273" style=3D"width:164.25pt;margin-left:5.55pt;">
-<col width=3D"273" style=3D"width:164.25pt;">
-<tr>
-<td><font face=3D"Times New Roman"></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#428CC6;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#CFCFCF"><span style=3D"font-size:8.5pt;background-color:#428CC6;">=
-<b>Local and Global Access Numbers</b></span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
-<table width=3D"576" style=3D"width:345.6pt;margin-left:5.55pt;">
-<col width=3D"172" style=3D"width:103.4pt;">
-<col width=3D"403" style=3D"width:242.2pt;">
-<tr>
-<td><font face=3D"Times New Roman"></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-ountry</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
-ial-in number</b></span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Australia:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-1800 636 843</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Czech Republic:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">242 430 350</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Beijing):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 8784277&nbsp;<br>
 
-Beijing Out of Office dial 5878 4277</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shanghai):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 3073322&nbsp;<br>
 
-Shanghai Out of Office dial 2307 3322</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shenzen):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 6007877&nbsp;<br>
+-- 
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
-Shenzen Out of Office dial 2600 7877</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Other Cities):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 8-9957777&nbsp;<br>
-
-Other cities - Non IP phone dial 021-23073322</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Denmark:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">8060 1400</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Finland:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-09 41333477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>France:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">0497 275888</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Germany:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-08161 803232</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Holland:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">030 2417490</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>India:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-BSNL subscribers use 1800 425 9996 (Toll Free)<br>
-
-Airtel subscribers use 0008 009 861 212 (Toll Free)<br>
-
-From TI Campus use 89957777<br>
-
-Others use 2509 9555 (Landline within Bangalore) or<br>
-
-80 2509 9555 (Outside Bangalore)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Israel:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 790 6715</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Italy:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-039 69061234 (039 is local city code not country code)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Japan:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From TI Campus use 8 995 7777&nbsp;<br>
-
-Outside TI use 03 4331 3777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Malaysia:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 2643799&nbsp;<br>
-
-From Kuala Lumpur dial 4264 3799&nbsp;<br>
-
-Outside Kuala Lumpur dial (03)4264 3799</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Norway:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">2 295 8744</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Philippines:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From Baguio City use 4471177&nbsp;<br>
-
-From Metro Manila area use 8702477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Singapore:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 3894777&nbsp;<br>
-
-Outside TI use 6389 4777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>South Korea:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 5606998&nbsp;<br>
-
-From Seoul dial 5606998&nbsp;<br>
-
-Outside Seoul dial (02)5606998</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Sweden:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08 58755577</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Taiwan:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 1363&nbsp;<br>
-
-From Taipei dial 2241 1363&nbsp;<br>
-
-Outside Taipei dial (02)2241 1363</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Turkey:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Landline Only</b>&nbsp;dial 0811 288 0001&nbsp;<br>
-
-then enter 877 633 1123</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>UK:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-01908 355599</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>US:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
-</td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Recurring confe=
-rences</b></span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">First scheduled conference:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 25, 2013</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence frequency:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence ends:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>End after 52 occurrences</b></span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EE68C67ORSMSX108amrcor_--
