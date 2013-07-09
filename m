@@ -1,29 +1,34 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6D5BE00715
-	for <yocto@yoctoproject.org>; Tue,  9 Jul 2013 03:27:37 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Jul 2013 03:27:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,1027,1363158000"; d="scan'208";a="367053472"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga002.jf.intel.com with ESMTP; 09 Jul 2013 03:27:35 -0700
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.91]) by
-	IRSMSX103.ger.corp.intel.com ([169.254.3.35]) with mapi id
-	14.03.0123.003; Tue, 9 Jul 2013 11:27:32 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] naming .bb files
-Thread-Index: AQHOe/OjqOqpcNibyUm3D3F9nwKgCplcJe6A
-Date: Tue, 9 Jul 2013 10:27:32 +0000
-Message-ID: <CE0199EC.2D583%belen.barros.pena@intel.com>
-In-Reply-To: <CAJTo0LaoiT4=q2f51NH3UFt50c7D5-gVLZJcjs91vaGGNDRG5Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.3.2.130206
-x-originating-ip: [10.237.224.165]
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
+	[209.85.128.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35C93E00715
+	for <yocto@yoctoproject.org>; Tue,  9 Jul 2013 03:36:23 -0700 (PDT)
+Received: by mail-ve0-f172.google.com with SMTP id jz10so4488369veb.17
+	for <yocto@yoctoproject.org>; Tue, 09 Jul 2013 03:36:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=zBGLWOSyDuoJipsb4Gwxkq6K20hXT0blP4kqFw3kpVw=;
+	b=fvcBbCbMZ5O8JCHiIOvXRre2VcPWzq5Actxd6sT8/m02fVLzyvOAHEKYMxUqH9Mn1L
+	LnUBRoeQMTgzy9gx5zwh1ng8cc2T7XHhYwbtJvclxxj7dprafguc+GqoiE83ARFd3nLi
+	jBtiiXY/XZQ9I1AyTJEiVev4FPoNaxXN9QvOhHII6E+2geQ7ZOQeyjyQljiN37lpXp1G
+	ebXnb2e1Uiam3vg1Nfo1UINO6H6RA2rq7nDeu9inpGE+dUi+n3M5+PWr93WKyALOALq8
+	9thcZe4ir3cpYsJA4Bplo8WjsjMuvONbJGFW4hMiHv8BRqBiXOkHnMFGPagt6UITxvqh
+	sOiw==
+X-Received: by 10.220.162.200 with SMTP id w8mr15978892vcx.90.1373366182739;
+	Tue, 09 Jul 2013 03:36:22 -0700 (PDT)
 MIME-Version: 1.0
+Sender: paul.betafive@gmail.com
+Received: by 10.220.195.201 with HTTP; Tue, 9 Jul 2013 03:35:42 -0700 (PDT)
+In-Reply-To: <CE0199EC.2D583%belen.barros.pena@intel.com>
+References: <CAJTo0LaoiT4=q2f51NH3UFt50c7D5-gVLZJcjs91vaGGNDRG5Q@mail.gmail.com>
+	<CE0199EC.2D583%belen.barros.pena@intel.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Tue, 9 Jul 2013 11:35:42 +0100
+X-Google-Sender-Auth: pKLlbSE4f-VxgzooOE7YaXyNf4s
+Message-ID: <CANyK_8e+0BLNcfbTcXWt-oHn9-Mh+K+PNddjPfw-Uu+42aWxqA@mail.gmail.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: naming .bb files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,53 +41,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jul 2013 10:27:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <06A9BEFB230DB74EBB8C53B4A5A84744@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 09 Jul 2013 10:36:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks Ross!
-
-I've tried a .bb file name with capital letters and Hob is not liking it
-at all. So it looks like uppercase might also be a problem.
-
-Belen
-
-On 08/07/2013 16:37, "Burton, Ross" <ross.burton@intel.com> wrote:
-
->On 8 July 2013 16:02, Barros Pena, Belen <belen.barros.pena@intel.com>
->wrote:
->> There seem to be certain rules regarding .bb files naming, but
->>apparently
->> those are not written anywhere. Some of those rules seem to be:
->>
->> * No spaces
->> * Underscores can only by used to separate name and version
->> * No ASCII special characters
->> * No non-ASCII characters
->> * No uppercase letters
->>
->> Does anybody know of any others we should be aware of?
+On 9 July 2013 11:27, Barros Pena, Belen <belen.barros.pena@intel.com> wrote:
+> Thanks Ross!
 >
->I wasn't aware of any restrictions on uppercase, but the recipe name
->part is probably restricted to ASCII alphanumeric (a-z, 0-9) and ASCII
->hyphens, then a underscore for the version separator, which is
->alphanumeric and periods.
->
->Ross
->
+> I've tried a .bb file name with capital letters and Hob is not liking it
+> at all. So it looks like uppercase might also be a problem.
 >
 
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
+This is from memory and a month or so back but I think the problem
+with capital letters is that opkg rejects .ipk files with capital
+letters. I didn't have any problems with it when producing .deb files.
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+--
+Paul Barker
 
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
