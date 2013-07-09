@@ -1,35 +1,29 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-la0-f50.google.com (mail-la0-f50.google.com
-	[209.85.215.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2593DE00715
-	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 18:33:35 -0700 (PDT)
-Received: by mail-la0-f50.google.com with SMTP id dy20so4316310lab.9
-	for <yocto@yoctoproject.org>; Mon, 08 Jul 2013 18:33:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=uKPTGIIRPHpVS1jfe+cCPMV7PRJ5RdKkrA4NfaoyxjU=;
-	b=0SYSG9xnUc1n4k7Ojb3e0+mLwU62mdXsT8+5COdNDoytF83F/Iuk0D6QWNLn+8r9zJ
-	GO0RrFIjOVL9lGw9Qb8d6LDiLY7reda3Z+Mf4jjfl9rxN8KFGO8isCiPXsEbfXMR2vio
-	prhgCHlrMIV7iaIXHhnwOmyAGS2m81ir97d2Ll9gzUBzbOCFrKMfpqiUfNkVH4TwGMv0
-	KjghKYMSL9BWGxyOP9ulIr/o1kqtCZodXLHTVqY/BRScTt3/b8H5urOoX51mM00N4yTL
-	XhvCLVfvyJU8ig7T73TgK11KfKdA6t4vK3xAL8ikS8JSEUOvwcl8uQfylKGlVx8M1wYu
-	FL3g==
-X-Received: by 10.152.88.5 with SMTP id bc5mr11432367lab.81.1373333613687;
-	Mon, 08 Jul 2013 18:33:33 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B47F2E00715
+	for <yocto@yoctoproject.org>; Mon,  8 Jul 2013 18:37:01 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r691axUG029766
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 8 Jul 2013 18:36:59 -0700 (PDT)
+Received: from [128.224.23.65] (128.224.23.65) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.342.3;
+	Mon, 8 Jul 2013 18:36:59 -0700
+Message-ID: <51DB693A.7010805@windriver.com>
+Date: Mon, 8 Jul 2013 21:36:58 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130510 Thunderbird/17.0.6
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.30.146 with HTTP; Mon, 8 Jul 2013 18:33:13 -0700 (PDT)
-In-Reply-To: <DUB116-W73285008B0CC36C2A0AD7D987C0@phx.gbl>
-References: <DUB116-W8529D2D1871A90B56A5591987C0@phx.gbl>
-	<DUB116-W73285008B0CC36C2A0AD7D987C0@phx.gbl>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Mon, 8 Jul 2013 18:33:13 -0700
-X-Google-Sender-Auth: q2hHKwQPXAbR6vTYHqQp-KASKj4
-Message-ID: <CA+YB3ra1gO-bEVbk+AYBMUz+JryU_cCk8y3mJxGcoz81khRE7g@mail.gmail.com>
-To: Thanassis Silis <djnass_18@hotmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: FW: [meta-freescale] serial port timeout before expected # of bytes arrives
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB123797FF5182B@ORSMSX101.amr.corp.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB123797FF52416@ORSMSX101.amr.corp.intel.com>
+	<23FC58C0-D2D3-4977-A04E-3C9E14C9EBA9@gmail.com>
+	<68667435.cRfdglprjW@helios>
+In-Reply-To: <68667435.cRfdglprjW@helios>
+Cc: yocto@yoctoproject.org
+Subject: Re: Layer input
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,98 +35,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jul 2013 01:33:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 09 Jul 2013 01:37:01 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Thanassis - if there is no reply here, you might try joining and
-posting on the meta-freescale mailing list
-(https://lists.yoctoproject.org/listinfo/meta-freescale)
+On 13-07-08 11:16 AM, Paul Eggleton wrote:
+> On Friday 28 June 2013 14:36:48 Khem Raj wrote:
+>> On Jun 28, 2013, at 4:22 AM, "Rifenbark, Scott M"
+>> <scott.m.rifenbark@intel.com> wrote:
+>>> I count eight meta-* layers in the YP repositories that don't exist in the
+>>> OE area.  I understand what you are saying though and I can word it that
+>>> way to dampen the existence of the "many" differences :)
+>>
+>> hmm may be they should be added to layer index. at least the ones which are
+>> still maintained.
+>
+> This is down to me, I've been keeping the layer index up-to-date for the
+> layers on yoctoproject.org. Listing the ones that aren't there, with comments
+> as to why not:
+>
+> experimental/meta-darwin
+>      - ancient, unmaintained, no conf/layer.conf
+> experimental/meta-m2
+>      - ancient, unmaintained
+> experimental/meta-maemo
+>      - ancient, unmaintained, no conf/layer.conf
+> experimental/meta-trusted
+>      - not actively maintained
+> experimental/meta-x32
+>      - ancient, we should probably just delete this
+> meta-dlna
+>      - replaced by collaboration with meta-guacamayo
+> meta-extras
+>      - not usable as a layer, most recipes unbuildable; I'm slowly whittling it
+>        down as bits of it reappear in OE layers until one day hopefully it'll
+>        become empty
+> meta-intel-contrib
+>      - contrib repo for meta-intel
+> meta-jarvis
+>      - joke layer
+> meta-meson
+>      - (probably could add)
+> meta-meson-bsp
+>      - (probably could add)
+> meta-minnow
+>      - (was waiting for hardware availability)
+> meta-yocto-kernel-extras
+>      - now submitted to the layer index
+> meta-zynq
+>      - status not entirely clear, but seems to have been superseded?
 
-On Thu, Jul 4, 2013 at 7:24 AM, Thanassis Silis <djnass_18@hotmail.com> wrote:
+Superseded. The xilinx guys have linux-yocto support in hand in their
+layers no, so we can mark this as dead.
+
+Bruce
+
 >
->
-> ________________________________
-> From: djnass_18@hotmail.com
-> To: meta-freescale@yoctoproject.org
-> Date: Thu, 4 Jul 2013 13:40:10 +0000
-> Subject: [meta-freescale] serial port timeout before expected # of bytes
-> arrives
->
-> Hello everyone,
-> I am trying to port an application that is receiving/sending data through
-> the serial port.
-> On the sabrelite board that is the /dev/ttymxc0 port, ie the 2ndary serial
-> port (the primary being /dev/ttymxc1).
->
-> I am using the functions select() and read() to read from the serial port ,
-> in order to implement a timeout mechanism that is waiting for a few seconds
-> for bytes to arrive and if should they not arrive, then the timeout is
-> reached.
->
-> The receiving loop works like this:
->
-> I wait for 2 bytes - the opcode of the command.
-> Once I resolve a code, I wait for 4 bytes designating the length of data
-> that will follow (depending on the command)
-> I create a buffer in my application of size equal to the length I received
-> above.
-> I start receiving the data.
->
->
->
-> Note that I have implemented reception of the data in 2 ways (since the 1st
-> way used to work, it was tried as is. Then, I tried the next as well):
->
->
->
-> a)receive my data using a for loop, reading() one byte at time. until all
-> the expected bytes arrive , or a timeout is reached.
->
-> b)receive my data using a while loop where I ask for all the remaining bytes
-> to be read(). Read() returns how many bytes have actually arrived, so I
-> update the remaining Bytes and re-read(). Again if a select() times-out
-> without any data arriving, the loop will exit.
->
->
-> Now, my problem is that while applications seem to be using this port
-> without any problem (f.e. minicom, rx, cat /dev/ttymxc0, echo "something" >
-> /dev/ttymxc0 ) , through the application I get timeouts for any file that is
-> bigger than 3-4kBytes.
->
->
-> Say I am trying to send a file 138kB. I may fail at byte ~40k, ~56k, or even
-> ~12k. This is very weird. And I don't know what to assume is going wrong.
-> Slow processing on the local end seems to not be a problem, as I can read
-> (in (b) above) approx 58 bytes in the beginning and then 1 byte at a time.
-> Could it be the memory buffer? If yes, how can I increase its size? Could
-> another application be interfering with /dev/ttymxc0?
->
->
->
-> I am running fsl-image-test with all -dev, -sdk & -dbg options enabled.
->
->
-> Thank you for your help.
->
->
->
->
->
->
->
-> _______________________________________________ meta-freescale mailing list
-> meta-freescale@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-freescale
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Cheers,
+> Paul
 >
 
-
-
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
 
