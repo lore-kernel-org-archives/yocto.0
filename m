@@ -1,30 +1,28 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDBAAE013CB
-	for <yocto@yoctoproject.org>; Tue,  9 Jul 2013 16:46:33 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Jul 2013 16:46:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,1031,1363158000"; 
-	d="scan'208,217";a="367459280"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga002.jf.intel.com with ESMTP; 09 Jul 2013 16:46:28 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.229]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.217]) with mapi id
-	14.03.0123.003; Tue, 9 Jul 2013 16:46:28 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, July
-	09, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac58/m1hG9ZJ6WLhQL2aWaLO2JWplgAAArBw
-Date: Tue, 9 Jul 2013 23:46:28 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EE69FE5@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ea0-f169.google.com (mail-ea0-f169.google.com
+	[209.85.215.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2634AE013CB
+	for <yocto@yoctoproject.org>; Tue,  9 Jul 2013 17:38:44 -0700 (PDT)
+Received: by mail-ea0-f169.google.com with SMTP id h15so4388512eak.14
+	for <yocto@yoctoproject.org>; Tue, 09 Jul 2013 17:38:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=izEOP/GsnWOZRHdE8+OWwpP1NZ6pFWJ7hUAUZ5C09Lw=;
+	b=BNGqPLsMF0jJIw1xMrAeqb+IXz0ZOobMbQ8LQjGb5hlHDz3m+F5l3TvvOsngQLrd34
+	vtOgK3EPiFQwEiYT+d9gK6FB7vbiG/fEfGQLb6tLWpbDGIyRnRQe1w7xPGwenp7ehKnS
+	yS8PNX3I2IeRpv33WGG7Ozu3if+QvIBqItJ4Mj9iCuEzGlp2Mj/lzYcArC36EysIFhXg
+	rfo7ds+Y8WiogF6qHDzb/icRRo4Mr2gAr2IF/16WoTbdTwodGjO1XgKUIdmwoJzr4uTv
+	V6Hyd948OqMouoqL0yUHrgmrF8bYXzwFl1ob26A51uXRyNykYcIZ/W9bFR57cY9DTIm+
+	4KoA==
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, July 09, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.14.100.2 with SMTP id y2mr33311831eef.75.1373416722955; Tue,
+	09 Jul 2013 17:38:42 -0700 (PDT)
+Received: by 10.223.74.139 with HTTP; Tue, 9 Jul 2013 17:38:42 -0700 (PDT)
+Date: Tue, 9 Jul 2013 18:38:42 -0600
+Message-ID: <CANwz6nyMFGQXZ3w5wPrpJTb+aEQNXO_eqp_5aRvB_dyXmCj2Dw@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: poky and gnuradio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,121 +34,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jul 2013 23:46:34 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EE69FE5ORSMSX108amrcor_"
+X-List-Received-Date: Wed, 10 Jul 2013 00:38:47 -0000
+Content-Type: multipart/alternative; boundary=001a11c2b850e6a20b04e11d7fb1
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EE69FE5ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--001a11c2b850e6a20b04e11d7fb1
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+What is the best method to you the dylan branch of meta-oe with an gnuradio
+from meta-oe           =
+"(nobranch):ed84e64d22400595b68da4e75b48ab7ecc342aa9"?
+
+Any and all help will be appreciated.
+
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beagleboard"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4.1"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "dylan:64273e53f2789d2ea8393fc80909ac7086f168a7"
+meta-oe           = "dylan:13ae5105ee30410136beeae66ec41ee4a8a2e2b0"
+meta-java         = "master:59696d89fd33df6953dcb2dd54ccd3b362513f28"
+meta-yocto-bsp    = "dylan:64273e53f2789d2ea8393fc80909ac7086f168a7"
+
+The above build gets the following errors.
+
+ERROR: Fetcher failure for URL: '
+http://files.ettus.com/binaries/uhd_stable/releases/uhd_003.005.002-release/uhd-images_003.005.002-release.tar.gz'.
+Checksum mismatch!
+ERROR: Function failed: Fetcher failure for URL: '
+http://files.ettus.com/binaries/uhd_stable/releases/uhd_003.005.002-release/uhd-images_003.005.002-release.tar.gz'.
+Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in:
+/home/vidal/POKY/build070913_dylan/poky/build/tmp/work/all-poky-linux/uhd-firmware/1_003.005.002-r0/temp/log.do_fetch.28656
+ERROR: Task 3499
+(/home/vidal/POKY/build070913_dylan/poky/meta-oe/meta-oe/recipes-connectivity/uhd/
+uhd-firmware_003.005.002.bb, do_fetch) failed with exit code '1'
+
+I went back to a meta-oe branch that I had built for the beagleboard,
+beaglebone, and pandaboard.
+
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beagleboard"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4.1"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "dylan:64273e53f2789d2ea8393fc80909ac7086f168a7"
+meta-oe           = "(nobranch):ed84e64d22400595b68da4e75b48ab7ecc342aa9"
+meta-java         = "master:59696d89fd33df6953dcb2dd54ccd3b362513f28"
+meta-yocto-bsp    = "dylan:64273e53f2789d2ea8393fc80909ac7086f168a7"
+
+Thanks
+
+--001a11c2b850e6a20b04e11d7fb1
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:
-AlexG, MichaelH, ScottR, PaulE, AnnM, Saul, JeffP, Denys, Darren, TomZ, Ale=
-xG, LaurentiuP, NitinK, Cristian, Belen, Ross, Mark, SeanH, MatthewW, Song
+<div dir=3D"ltr"><div>Hello,<br>What is the best method to you the dylan br=
+anch of meta-oe with an gnuradio from meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+ =3D &quot;(nobranch):ed84e64d22400595b68da4e75b48ab7ecc342aa9&quot;?<br><b=
+r>Any and all help will be appreciated. <br>
+<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.18.=
+0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<b=
+r>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>TARGET_SYS=A0=A0=A0=A0=
+=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>
+MACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;beagleboard&quot;<br>DISTRO=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
+=A0=A0 =3D &quot;1.4.1&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a =
+vfp neon&quot;<br>TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<=
+br>
+meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=
+=A0=A0 =3D &quot;dylan:64273e53f2789d2ea8393fc80909ac7086f168a7&quot;<br>me=
+ta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;dylan:13ae5105ee30410136beeae=
+66ec41ee4a8a2e2b0&quot;<br>meta-java=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;mast=
+er:59696d89fd33df6953dcb2dd54ccd3b362513f28&quot;<br>
+meta-yocto-bsp=A0=A0=A0 =3D &quot;dylan:64273e53f2789d2ea8393fc80909ac7086f=
+168a7&quot;<br><br>The above build gets the following errors.<br><br>ERROR:=
+ Fetcher failure for URL: &#39;<a href=3D"http://files.ettus.com/binaries/u=
+hd_stable/releases/uhd_003.005.002-release/uhd-images_003.005.002-release.t=
+ar.gz">http://files.ettus.com/binaries/uhd_stable/releases/uhd_003.005.002-=
+release/uhd-images_003.005.002-release.tar.gz</a>&#39;. Checksum mismatch!<=
+br>
+ERROR: Function failed: Fetcher failure for URL: &#39;<a href=3D"http://fil=
+es.ettus.com/binaries/uhd_stable/releases/uhd_003.005.002-release/uhd-image=
+s_003.005.002-release.tar.gz">http://files.ettus.com/binaries/uhd_stable/re=
+leases/uhd_003.005.002-release/uhd-images_003.005.002-release.tar.gz</a>&#3=
+9;. Unable to fetch URL from any source.<br>
+ERROR: Logfile of failure stored in: /home/vidal/POKY/build070913_dylan/pok=
+y/build/tmp/work/all-poky-linux/uhd-firmware/1_003.005.002-r0/temp/log.do_f=
+etch.28656<br>ERROR: Task 3499 (/home/vidal/POKY/build070913_dylan/poky/met=
+a-oe/meta-oe/recipes-connectivity/uhd/<a href=3D"http://uhd-firmware_003.00=
+5.002.bb">uhd-firmware_003.005.002.bb</a>, do_fetch) failed with exit code =
+&#39;1&#39;<br>
+<br>I went back to a meta-oe branch that I had built for the beagleboard, b=
+eaglebone, and pandaboard.=A0 <br><br>Build Configuration:<br>BB_VERSION=A0=
+=A0=A0=A0=A0=A0=A0 =3D &quot;1.18.0&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=
+=A0 =3D &quot;x86_64-linux&quot;<br>
+NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>TARGET_SYS=A0=A0=A0=A0=
+=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 =3D &quot;beagleboard&quot;<br>DISTRO=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=A0=A0 =3D &quot;1.4.=
+1&quot;<br>
+TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a vfp neon&quot;<br>TARGET_FPU=A0=
+=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;dylan:64273e5=
+3f2789d2ea8393fc80909ac7086f168a7&quot;<br>meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 =3D &quot;(nobranch):ed84e64d22400595b68da4e75b48ab7ecc342aa9&quot;<=
+br>
+meta-java=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:59696d89fd33df6953dcb2dd=
+54ccd3b362513f28&quot;<br>meta-yocto-bsp=A0=A0=A0 =3D &quot;dylan:64273e53f=
+2789d2ea8393fc80909ac7086f168a7&quot;<br><br></div>Thanks<br></div>
 
-Agenda:
-
-* Opens collection - 5 min (Song)
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-  . RC1 QA is almost done. QA report is available here:https://wiki.yoctopr=
-oject.org/wiki/WW27_-_2013-07-03-3_-_Fullpass_Yocto_1.5_M2.RC1
-  . Saul and the triage team will look at the bugs we have and decide if we=
- need RC2.
-  . Bug fixing is slow last week, mostly due to the US holidays. Call the t=
-eam to focus more on bug fixing and bring the wdd number down.
-  . Please update Bugzilla with your feature/bug status. Move items to futu=
-re milestones if they did not get done in the target milestone. (Do not mov=
-e high features/bugs by yourself)
-* SWAT team rotation: Ioana -> Laurentiu Palcu
-* Opens - 10 min
-  - AlexG: Doc changes for feature verification. Michael started working on=
- that. ETA the end of this week. RFC sent out weeks ago. No comments or obj=
-ection so far. but Saul/Darren has concerns now. Song: please reply to the =
-email asap. We need to resolve this really soon.
-* Team Sharing - 20 min
-  - Paul: automated runtime testing framework from Stephan is merged in mas=
-ter. If you are interested, please take a look. More patches are coming. A =
-new series of patches for 1.4 backporting. In preparation for 1.4.2.
-  - Saul: pulling patches and doing review now. Trying to determine whether=
- we should have M2 RC2. Will be doing that later today.
-  - AlexD: Finally we reached a point where we can demonstrate the basic wo=
-rkflow of WebHOB.
-  - Michael: heading down open source lab. Will be working with Saul on RC2=
- if there is. Package reporting system is working.
-  - Sean: encourage people to comment on Richard's comment on TSC. OE board=
- is considering recommendations we would like to make regarding that topic.
-
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EE69FE5ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>AlexG, MichaelH, ScottR, PaulE, AnnM, Saul, JeffP, Denys, Darren, TomZ=
-, AlexG, LaurentiuP, NitinK, Cristian, Belen, Ross, Mark, SeanH, MatthewW, =
-Song</div>
-<div>&nbsp;</div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>&nbsp; . RC1 QA is almost done. QA report is available here:<a href=3D=
-"https://wiki.yoctoproject.org/wiki/WW27_-_2013-07-03-3_-_Fullpass_Yocto_1.=
-5_M2.RC1"><font size=3D"2" color=3D"blue"><span style=3D"font-size:10pt;"><=
-u>https://wiki.yoctoproject.org/wiki/WW27_-_2013-07-03-3_-_Fullpass_Yocto_1=
-.5_M2.RC1</u></span></font></a></div>
-<div>&nbsp; . Saul and the triage team will look at the bugs we have and de=
-cide if we need RC2.&nbsp; </div>
-<div>&nbsp; . Bug fixing is slow last week, mostly due to the US holidays. =
-Call the team to focus more on bug fixing and bring the wdd number down.</d=
-iv>
-<div>&nbsp; . Please update Bugzilla with your feature/bug status. Move ite=
-ms to future milestones if they did not get done in the target milestone. (=
-Do not move high features/bugs by yourself)</div>
-<div>* SWAT team rotation: Ioana -&gt; Laurentiu Palcu</div>
-<div>* Opens - 10 min </div>
-<div>&nbsp; - AlexG: Doc changes for feature verification. Michael started =
-working on that. ETA the end of this week. RFC sent out weeks ago. No comme=
-nts or objection so far. but Saul/Darren has concerns now. Song: please rep=
-ly to the email asap. We need to resolve
-this really soon.</div>
-<div>* Team Sharing - 20 min</div>
-<div>&nbsp; - Paul: automated runtime testing framework from Stephan is mer=
-ged in master. If you are interested, please take a look. More patches are =
-coming. A new series of patches for 1.4 backporting. In preparation for 1.4=
-.2.</div>
-<div>&nbsp; - Saul: pulling patches and doing review now. Trying to determi=
-ne whether we should have M2 RC2. Will be doing that later today.</div>
-<div>&nbsp; - AlexD: Finally we reached a point where we can demonstrate th=
-e basic workflow of WebHOB. </div>
-<div>&nbsp; - Michael: heading down open source lab. Will be working with S=
-aul on RC2 if there is. Package reporting system is working. </div>
-<div>&nbsp; - Sean: encourage people to comment on Richard's comment on TSC=
-. OE board is considering recommendations we would like to make regarding t=
-hat topic.</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EE69FE5ORSMSX108amrcor_--
+--001a11c2b850e6a20b04e11d7fb1--
