@@ -1,27 +1,23 @@
 Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69E4AE00722
-	for <yocto@yoctoproject.org>; Wed, 10 Jul 2013 10:52:44 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 10 Jul 2013 10:52:44 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 830C8E01476
+	for <yocto@yoctoproject.org>; Wed, 10 Jul 2013 10:52:56 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 10 Jul 2013 10:52:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.87,1037,1363158000"; d="scan'208";a="367947971"
+X-IronPort-AV: E=Sophos;i="4.87,1037,1363158000"; d="scan'208";a="329444986"
 Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga002.jf.intel.com with ESMTP; 10 Jul 2013 10:52:44 -0700
+	by azsmga001.ch.intel.com with ESMTP; 10 Jul 2013 10:52:41 -0700
 Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.73])
-	by linux.intel.com (Postfix) with ESMTP id 1CF666A4093;
-	Wed, 10 Jul 2013 10:52:42 -0700 (PDT)
+	by linux.intel.com (Postfix) with ESMTP id 144B06A4093;
+	Wed, 10 Jul 2013 10:52:38 -0700 (PDT)
 From: Stefan Stanacar <stefanx.stanacar@intel.com>
 To: yocto@yoctoproject.org,
 	elizabeth.flanagan@intel.com
-Date: Wed, 10 Jul 2013 20:32:37 +0300
-Message-Id: <e15d6185251e4c6f163577c7263239936d76e5b3.1373474163.git.stefanx.stanacar@intel.com>
+Date: Wed, 10 Jul 2013 20:32:34 +0300
+Message-Id: <cover.1373474163.git.stefanx.stanacar@intel.com>
 X-Mailer: git-send-email 1.8.1.4
-In-Reply-To: <cover.1373474163.git.stefanx.stanacar@intel.com>
-References: <cover.1373474163.git.stefanx.stanacar@intel.com>
-In-Reply-To: <cover.1373474163.git.stefanx.stanacar@intel.com>
-References: <cover.1373474163.git.stefanx.stanacar@intel.com>
-Subject: [yocto-autobuilder][PATCH 3/3] buildsets: run sanity tests for core-image-sato-sdk images
+Subject: [yocto-autobuilder][PATCH 0/3] Enabling of the new testimage class for sanity tests
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,86 +29,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jul 2013 17:52:47 -0000
+X-List-Received-Date: Wed, 10 Jul 2013 17:52:56 -0000
 
-We build sato-sdk images in these nightly targets
-(and now we have a gcc test in the new testimage class),
-so for a few more minutes added we should test these images too.
+Hi Beth,
 
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
----
- buildset-config/nightly-arm.conf    | 2 +-
- buildset-config/nightly-mips.conf   | 2 +-
- buildset-config/nightly-ppc.conf    | 2 +-
- buildset-config/nightly-x86-64.conf | 2 +-
- buildset-config/nightly-x86.conf    | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+The first two patches enable the new testimage class that has just been merged in master,
+and it needs a real AB shakedown ;). 
 
-diff --git a/buildset-config/nightly-arm.conf b/buildset-config/nightly-arm.conf
-index 90e5332..1168596 100644
---- a/buildset-config/nightly-arm.conf
-+++ b/buildset-config/nightly-arm.conf
-@@ -16,7 +16,7 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'beagleboard', 'SDKMACHINE' : 'i686', 'distro': 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'CreateAutoConf': {'machine': 'qemuarm', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False}},
-diff --git a/buildset-config/nightly-mips.conf b/buildset-config/nightly-mips.conf
-index c5c24d3..14c2c7c 100644
---- a/buildset-config/nightly-mips.conf
-+++ b/buildset-config/nightly-mips.conf
-@@ -16,7 +16,7 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'routerstationpro', 'SDKMACHINE' : 'i686', 'distro': 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'CreateAutoConf': {'machine': 'qemumips', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False}},
-diff --git a/buildset-config/nightly-ppc.conf b/buildset-config/nightly-ppc.conf
-index c446b30..3b2dd73 100644
---- a/buildset-config/nightly-ppc.conf
-+++ b/buildset-config/nightly-ppc.conf
-@@ -16,7 +16,7 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'mpc8315e-rdb', 'SDKMACHINE' : 'i686', 'distro': 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'CreateAutoConf': {'machine': 'qemuppc', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False}},
-diff --git a/buildset-config/nightly-x86-64.conf b/buildset-config/nightly-x86-64.conf
-index ab25610..92868f4 100644
---- a/buildset-config/nightly-x86-64.conf
-+++ b/buildset-config/nightly-x86-64.conf
-@@ -16,7 +16,7 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False}},
-         {'BuildImages': {'images': 'meta-toolchain-gmae'}},
-         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86-64', 'distro': 'poky', 'buildhistory' : False}},
-diff --git a/buildset-config/nightly-x86.conf b/buildset-config/nightly-x86.conf
-index 6920cad..f83e995 100644
---- a/buildset-config/nightly-x86.conf
-+++ b/buildset-config/nightly-x86.conf
-@@ -16,7 +16,7 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'atom-pc', 'SDKMACHINE' : 'i686', 'distro': 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False}},
+On my local AB one of the problems I've had were timeouts
+for qemu booting (when the machine was really loaded), and I've sent a patch to increase the timeout, but
+this might need a little more tweaking for the Yocto AB. Also, one more setup issue could be DISPLAY / vnc server. 
+I've had some trouble with DISPLAY=localhost:1 that's why you'll notice
+I've used DISPLAY=:1, that fixed the problem out on my machine. It has something to do with how the new class starts the runqemu script
+and the enviroment.
+
+
+The last patch has nothing to do with enabling, I just thought that we should run the sanity tests
+for the sdk images too given that the new class has a gcc test. It adds a few minutes to the builds, 
+keep this one out if that's problem.
+
+Cheers,
+Stefan
+
+The following changes since commit b26b257e16fddb7730d3b2a0c55c4b43a48ae54c:
+
+  Revert "buildset-config: build core-image-sato SDK" (2013-07-02 17:10:05 -0700)
+
+are available in the git repository at:
+
+  git://mirror.rb.intel.com/git.yoctoproject.org/poky-contrib stefans/yab-newsanity3
+
+for you to fetch changes up to e15d6185251e4c6f163577c7263239936d76e5b3:
+
+  buildsets: run sanity tests for core-image-sato-sdk images (2013-07-10 19:07:27 +0300)
+
+----------------------------------------------------------------
+Stefan Stanacar (3):
+      RunSanityTests: add support for the new testimage class
+      nightly-multilib,qa-systemd.conf: enable specific tests with the new class
+      buildsets: run sanity tests for core-image-sato-sdk images
+
+ buildset-config/nightly-arm.conf                   |  2 +-
+ buildset-config/nightly-mips.conf                  |  2 +-
+ buildset-config/nightly-multilib.conf              |  8 +++----
+ buildset-config/nightly-ppc.conf                   |  2 +-
+ buildset-config/nightly-qa-systemd.conf            |  4 ++--
+ buildset-config/nightly-x86-64.conf                |  2 +-
+ buildset-config/nightly-x86.conf                   |  2 +-
+ .../autobuilder/buildsteps/RunSanityTests.py       | 27 ++++++++++++++++------
+ 8 files changed, 31 insertions(+), 18 deletions(-)
+
+Stefan Stanacar (3):
+  RunSanityTests: add support for the new testimage class
+  nightly-multilib,qa-systemd.conf: enable specific tests with the new
+    class
+  buildsets: run sanity tests for core-image-sato-sdk images
+
+ buildset-config/nightly-arm.conf                   |  2 +-
+ buildset-config/nightly-mips.conf                  |  2 +-
+ buildset-config/nightly-multilib.conf              |  8 +++----
+ buildset-config/nightly-ppc.conf                   |  2 +-
+ buildset-config/nightly-qa-systemd.conf            |  4 ++--
+ buildset-config/nightly-x86-64.conf                |  2 +-
+ buildset-config/nightly-x86.conf                   |  2 +-
+ .../autobuilder/buildsteps/RunSanityTests.py       | 27 ++++++++++++++++------
+ 8 files changed, 31 insertions(+), 18 deletions(-)
+
 -- 
 1.8.1.4
 
