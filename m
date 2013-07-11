@@ -1,27 +1,31 @@
 Return-Path: <opensource@keylevel.com>
 Received: from r109.websiteservername.com (r109.websiteservername.com
 	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C37DFE013D6
-	for <yocto@yoctoproject.org>; Thu, 11 Jul 2013 12:35:26 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13454E0140D;
+	Thu, 11 Jul 2013 12:38:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
 	s=default; 
-	h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=WcO/D83FKsNQtlHNoAM80rROXe2cLPJ36pWVxdrhsSw=; 
-	b=onyGDnwSGdMMR9oR26M9h8T75/55Cxbf9qYe6Y5Kd249bJEla2rSuUOMOd4RY5Iz/ncgi5TIWg8UJ/qdDM8C4pKdqOORX9VAH7RNq517DqWFGmwqVcKplC9VGzFCklvmAKVxUAfbek18iXsp+K8jU8PmMw0pw4S1UmFensAUYvQ=;
-Received: from [109.224.129.17] (port=63558
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=wjJ1vs/Kf/ejwZVW3SmJ4hAFoupV7McYhA0/OJs9cbc=; 
+	b=p7VN3oQHnWXWk1NkYgHKPfdgamw4Ho1sdW12dyYJ8yzjMc/hTjrbCNJwoSNtVpd+09rwwMP9rc9p6ZpYk/vUtL4esWvg4bRcutsHLywZABv9i36jO6F0BGy8Lchm91uLu4OSu/HMNGlEsvBo0umJWMWYN4j5WrBaTzEzngxB2BM=;
+Received: from [109.224.129.17] (port=23975
 	helo=macbook-pro.durham.keylevel.com)
 	by r109.websiteservername.com with esmtpa (Exim 4.80)
 	(envelope-from <opensource@keylevel.com>)
-	id 1UxMeC-003Yrc-UQ; Thu, 11 Jul 2013 20:35:25 +0100
+	id 1UxMgn-003ZOu-JP; Thu, 11 Jul 2013 20:38:05 +0100
 Mime-Version: 1.0 (Apple Message framework v1283)
 From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAE_REAtBbcO=22Qj=75thh6bBjfVEmGQwt=aenrsmCTkV-x=zw@mail.gmail.com>
-Date: Thu, 11 Jul 2013 20:35:23 +0100
-Message-Id: <D5FC6EB3-E785-4E1C-AE37-9CFECB9D0EFA@keylevel.com>
-References: <FCD3D60D-CC00-48A3-89DD-7C73AB3C8404@keylevel.com>
-	<20130711120628.GA4028@gmail.com>
-	<CAE_REAtBbcO=22Qj=75thh6bBjfVEmGQwt=aenrsmCTkV-x=zw@mail.gmail.com>
-To: Gaurang Shastri <gmshastri@gmail.com>
+In-Reply-To: <51DF0711.1040905@linux.intel.com>
+Date: Thu, 11 Jul 2013 20:38:04 +0100
+Message-Id: <78605569-E5F4-42B0-84EA-2A2C1E030D0E@keylevel.com>
+References: <6C54348E-3ADA-4621-9F72-3663C23B5445@keylevel.com>
+	<045D8888-C821-4AB7-81B7-75A5C94E2962@keylevel.com>
+	<CAP9ODKoK2JktR+3D0FjZZM5KUCsQue-cVCO0Ch7ebKrA5hs2wA@mail.gmail.com>
+	<38DD74DA-F7B4-4D72-B00B-4B81076D784B@keylevel.com>
+	<20130709205006.GW3288@jama>
+	<C2C2584F-0108-426E-9303-4921E97E4D92@gmail.com>
+	<51DF0711.1040905@linux.intel.com>
+To: Saul Wold <sgw@linux.intel.com>
 X-Mailer: Apple Mail (2.1283)
 X-AntiAbuse: This header was added to track abuse,
 	please include it with any abuse report
@@ -32,8 +36,10 @@ X-AntiAbuse: Sender Address Domain - keylevel.com
 X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
 	chris.tapp+keylevel.com/only user confirmed/virtual account not
 	confirmed
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Ubuntu 11.10 to 12.04 upgrade
+Cc: meta-freescale@yoctoproject.org,
+	Yocto Discussion Mailing List <yocto@yoctoproject.org>,
+	Otavio Salvador <otavio@ossystems.com.br>
+Subject: Re: [meta-freescale] Compile error for boost_1.54.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,56 +51,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jul 2013 19:35:27 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_1351136F-780E-4A37-8DA8-0549FDC2AC7D"
-
---Apple-Mail=_1351136F-780E-4A37-8DA8-0549FDC2AC7D
+X-List-Received-Date: Thu, 11 Jul 2013 19:38:08 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
 
-Thanks for the feedback. Just waiting for a backup to complete and then =
-I'll run the update...
 
-On 11 Jul 2013, at 13:20, Gaurang Shastri wrote:
+On 11 Jul 2013, at 20:27, Saul Wold wrote:
 
-> No problems at all...I am running since long.... :)
 >=20
-> //Gaurang Shastri
+> OK, I finally tracked this bugger down to the eglibc update to 2.18 =
+and specifically
+>=20
+>> ../../../eglibc/2.18-r0/eglibc-2.18/libc/ChangeLog:     * =
+include/features.h (__GLIBC_HAVE_LONG_LONG): Remove.
+>=20
+> Turns out that in boost code there is a check for the =
+__GLIBC_HAVE_LONG_LONG in cstdint.hpp and this was not getting triggered =
+any more.
+>=20
+> The include issue for g++ was kind of a red herring in this case, that =
+issue still exists, but this is a different problem.  And there is a =
+patch for that in the SVN master, I will pull it!
+
+Thanks Saul :-)
+
+> Sau!
 >=20
 >=20
-> On Thu, Jul 11, 2013 at 5:36 PM, Eren T=FCrkay <eren@hambedded.org> =
+> On 07/09/2013 10:04 PM, Khem Raj wrote:
+>>=20
+>> On Jul 9, 2013, at 1:50 PM, Martin Jansa <martin.jansa@gmail.com> =
 wrote:
-> On Thu, Jul 11, 2013 at 11:49:47AM +0100, Chris Tapp wrote:
-> > My current build system is an Ubuntu 11.10 64-bit (server). This is
-> > now out of support, so I plan to upgrade to 12.04 (LTS).
->=20
-> Hello,
->=20
-> > Is this likely to go smoothly, or are there some gotchas to worry
-> > about? I'm currently building for Poky 8 if that makes a difference.
->=20
-> I am using 12.04 without a problem. Once you install build-essential =
-and
-> other required packages by bitbake, there shouldn't be any problem.
->=20
-> > Thanks!
-> > Chris Tapp
->=20
-> Regards,
-> Eren
->=20
-> --
->     . 73! DE TA1AET
->       http://linkedin.com/in/erenturkay
->=20
+>>=20
+>>> On Tue, Jul 09, 2013 at 09:25:30PM +0100, Chris Tapp wrote:
+>>>> Forwarding to Yocto mailing list:
+>>>>=20
+>>>> On 9 Jul 2013, at 21:21, Otavio Salvador wrote:
+>>>>=20
+>>>>> On Tue, Jul 9, 2013 at 5:19 PM, Chris Tapp =
+<opensource@keylevel.com> wrote:
+>>>>>>=20
+>>>>>> On 9 Jul 2013, at 20:09, Chris Tapp wrote:
+>>>>>>=20
+>>>>>>> I'm getting a failure in do_compile when building boost_1.54.0 =
+using master-next for the wandboard-quad.
+>>>>>>>=20
+>>>>>>> The log is about 1.5MB, but the important bit seems to be that =
+uintptr_t isn't defined but is required by /boost/atomic/atomic.hpp.
+>>>>>>>=20
+>>>>>>> Has anyone seen this before?
+>>>>>>=20
+>>>>>> I also meant to say that adding:
+>>>>>>=20
+>>>>>> typedef unsigned long long uintptr_t;
+>>>>>>=20
+>>>>>> to atomic.hpp 'fixes' the build, but this is not a good solution =
+;-)
+>>>>>=20
+>>>>> It needs to be checked against normal Poky to ensure it is BSP
+>>>>> specific; I doubt it is.
+>>>=20
+>>> See
+>>> =
+http://lists.openembedded.org/pipermail/openembedded-devel/2013-July/09133=
+1.html
+>>=20
+>> in above thread answering to your question if you want to include =
+<cstblib> you need to specify
+>> -std=3Dgnu++0x or -std=3Dc++0x to cppflags. above container is not =
+supported prior to c++0x standard
+>>=20
+>>=20
+>>>=20
+>>> But maybe it wasn't caused by eglibc upgrade (and header cleanup in
+>>> eglibc) but by boost upgrade.
+>>>=20
+>>> --
+>>> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>=20
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>=20
+>>=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
 
 Chris Tapp
 
@@ -104,72 +152,3 @@ www.keylevel.com
 
 
 
---Apple-Mail=_1351136F-780E-4A37-8DA8-0549FDC2AC7D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
-
-<html><head></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-">Thanks for the feedback. Just waiting for a backup to complete and =
-then I'll run the update...<div><br><div><div>On 11 Jul 2013, at 13:20, =
-Gaurang Shastri wrote:</div><br =
-class=3D"Apple-interchange-newline"><blockquote type=3D"cite"><div =
-dir=3D"ltr"><div>No problems at all...I am running since long.... =
-:)<br><br></div>//Gaurang Shastri<br></div><div =
-class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu, Jul 11, =
-2013 at 5:36 PM, Eren T=FCrkay <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:eren@hambedded.org" =
-target=3D"_blank">eren@hambedded.org</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"im">On =
-Thu, Jul 11, 2013 at 11:49:47AM +0100, Chris Tapp wrote:<br>
-&gt; My current build system is an Ubuntu 11.10 64-bit (server). This =
-is<br>
-&gt; now out of support, so I plan to upgrade to 12.04 (LTS).<br>
-<br>
-</div>Hello,<br>
-<div class=3D"im"><br>
-&gt; Is this likely to go smoothly, or are there some gotchas to =
-worry<br>
-&gt; about? I'm currently building for Poky 8 if that makes a =
-difference.<br>
-<br>
-</div>I am using 12.04 without a problem. Once you install =
-build-essential and<br>
-other required packages by bitbake, there shouldn't be any problem.<br>
-<br>
-&gt; Thanks!<br>
-&gt; Chris Tapp<br>
-<br>
-Regards,<br>
-Eren<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-&nbsp; &nbsp; . 73! DE TA1AET<br>
-&nbsp; &nbsp; &nbsp; <a href=3D"http://linkedin.com/in/erenturkay" =
-target=3D"_blank">http://linkedin.com/in/erenturkay</a><br>
-</font></span><br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-</blockquote></div><br><div apple-content-edited=3D"true">
-<span class=3D"Apple-style-span" style=3D"border-collapse: separate; =
-color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: =
-0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: =
-auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris =
-Tapp</div><div><br></div><div><a =
-href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><=
-div><a =
-href=3D"http://www.keylevel.com">www.keylevel.com</a></div><div><br></div>=
-</span><br class=3D"Apple-interchange-newline">
-</div>
-<br></div></body></html>=
-
---Apple-Mail=_1351136F-780E-4A37-8DA8-0549FDC2AC7D--
