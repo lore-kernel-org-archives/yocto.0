@@ -1,34 +1,35 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f46.google.com (mail-vb0-f46.google.com
-	[209.85.212.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11D79E013D6
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 02:53:36 -0700 (PDT)
-Received: by mail-vb0-f46.google.com with SMTP id 10so1390779vbe.33
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 02:53:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:x-gm-message-state;
-	bh=EU4mxrzxyyFRjp1pNT+aEHtThExEr73ZhNVWJAOQJsU=;
-	b=aHcX64x1TChzf2wGEe/EmZ/OdihIe1eBeZPOjX3wnuTDjQg8LDE7/qJBfOvexvOzPf
-	zlvJOL+pfl7DVi9BomoX59oRO9EBFfW3cmIj7e4BHz4QClnCezNjfhHg+qWNW50EHcvC
-	mMiA88srrsWFzzyuUgXYKVIuqj4t8zIenioLnsra3ZmiuKuThODbBGbEPw7c5tinExhN
-	iraULv07THoVB73nkec5M/yCHLIwJcvhBKKsVmm8UhImWNo1R9/6DE4q5szsxmvUbRoe
-	fH3UUeVU+w2yDzLD+EFtzK1GMbdkySQJLwlxxGndnah3shj4ce4nGDSFjlRa928CspcF
-	8lqw==
-X-Received: by 10.58.181.225 with SMTP id dz1mr23996591vec.95.1373622815733;
-	Fri, 12 Jul 2013 02:53:35 -0700 (PDT)
+Return-Path: <rjiejie@gmail.com>
+Received: from mail-pd0-f169.google.com (mail-pd0-f169.google.com
+	[209.85.192.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC8EFE013D6;
+	Fri, 12 Jul 2013 03:35:26 -0700 (PDT)
+Received: by mail-pd0-f169.google.com with SMTP id y10so8550896pdj.28
+	for <multiple recipients>; Fri, 12 Jul 2013 03:35:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:message-id:subject:x-mailer:mime-version
+	:content-type; bh=LBYG4jsmDDTnALMhNKmkMbJbX5gApfE6oE+3h261YAA=;
+	b=pUNF7gyKwu7Aw8MhbehK1UdPib/q7sJHWpqjrKYiyNAUpS5XjawIy4LKHBYNbn/MN5
+	A0QMQbLQBlAoXZe9byBsw0SLv/R8AGTikbp1JfqgB3bXNCPSJZ7UQ7nASAbujb/RXskO
+	coA8GESZaW2wD1LlhTW2DcP9NPEy/tHp1WtyoHRqi4g91EB8SDNFInuy7rlB3r+16Opt
+	5K0+BD13mWhaklPM0zfMmZnH0AIWLjrN2JevLxRq+gORVh5gemPLDtKbZgs8Qns9Qqy7
+	uOj8oG3odg8uke1AT45KB1hVnw7Pr5eSNHetmEhxi8CslgLreAaSU3U91AloJeyJSzxk
+	Vx5A==
+X-Received: by 10.67.14.100 with SMTP id ff4mr41953560pad.174.1373625326537;
+	Fri, 12 Jul 2013 03:35:26 -0700 (PDT)
+Received: from [192.168.10.135] ([115.236.28.242])
+	by mx.google.com with ESMTPSA id
+	re16sm47394600pac.16.2013.07.12.03.35.22 for <multiple recipients>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Fri, 12 Jul 2013 03:35:25 -0700 (PDT)
+Date: Fri, 12 Jul 2013 18:35:17 +0800
+From: jojo <rjiejie@gmail.com>
+To: "=?utf-8?Q?meta-freescale=40yoctoproject.org?="
+	<meta-freescale@yoctoproject.org>
+Message-ID: <666645F4EAA9483CB526943CA6FA6428@gmail.com>
+X-Mailer: sparrow 1.6.4 (build 1176)
 MIME-Version: 1.0
-Received: by 10.220.13.144 with HTTP; Fri, 12 Jul 2013 02:53:15 -0700 (PDT)
-In-Reply-To: <5CD486E4007E48769ED69BB9205D327F@PAULD>
-References: <5CD486E4007E48769ED69BB9205D327F@PAULD>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 12 Jul 2013 10:53:15 +0100
-Message-ID: <CAJTo0LYDLhLtd1gn3-t2vAhNgaWb2+ngQLbFpSjuTdgNBMwNsg@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-X-Gm-Message-State: ALoCoQmYO80gW1ZeHxDvXoX0RTwuxEktO5k6EtwwRk0v5n74BDnLlmysqLXRb5aS4wH6yq68S8Qa
 Cc: yocto@yoctoproject.org
-Subject: Re: Mount options for removable drives
+Subject: [meta-freescale] how to install pulseaudio completely
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,19 +41,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jul 2013 09:53:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 12 Jul 2013 10:35:28 -0000
+Content-Type: multipart/alternative; boundary="51dfdbe5_3f6ab60f_254"
 
-On 12 July 2013 09:30, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
-> Can someone point me to the configuration for how removable drives are
-> mounted? When I plug in a flash drive, it mounts /dev/sdb1 as /media/sdb1,
-> but it uses "relatime" and I'd like to use "noatime". I'd also like it to
-> mount in "sync" mode, which I would think would be the default for such a
-> drive, but I've gotten a corrupted FAT when I've yanked the drive.
+--51dfdbe5_3f6ab60f_254
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-As I understand it, the caveat with "sync" is that you do a *lot* more
-writes to the disk which dramatically reduces the lifespan of
-flash-based media.
+Hi, 
+My yocto version/tag is dylan.
 
-Ross
+I have compiled fsl-image-gui to testing the the audio output, but i can not find
+anything about for pulseaudio server to start up daemon.
 
+I saw the build code in the path about for "build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/pulseaudio/3.0-r0/image/"
+and it really have built all things of pulseaudio. but when i create the fsl-image-gui to start up, i just find "libpulse*" in the
+rootfs.
+
+I think that something wrong with pulseaudio configure so that it do not install completely by default.
+
+someone know about that how to install pulseaudio completely ? 
+
+Thanks,
+
+- Jojo
+
+
+--51dfdbe5_3f6ab60f_254
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+
+                <div>Hi,
+                </div><div><span class=3D=22Apple-tab-span=22 style=3D=22=
+white-space:pre=22>	</span>My yocto version/tag is dylan.</div><div><span=
+ class=3D=22Apple-tab-span=22 style=3D=22white-space:pre=22>	</span></div=
+><div><span class=3D=22Apple-tab-span=22 style=3D=22white-space:pre=22>	<=
+/span>I have compiled fsl-image-gui to testing the the audio output, but =
+i can not find</div><div><span class=3D=22Apple-tab-span=22 style=3D=22wh=
+ite-space:pre=22>	</span>anything about for pulseaudio server to start up=
+ daemon.</div><div><br></div><div><span class=3D=22Apple-tab-span=22 styl=
+e=3D=22white-space:pre=22>	</span>I saw the build code in the path about =
+for =22build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/pulseaudio/3.0-r=
+0/image/=22</div><div><span class=3D=22Apple-tab-span=22 style=3D=22white=
+-space:pre=22>	</span>and it really have built all things of pulseaudio. =
+but when i create the fsl-image-gui to start up, i just find =22libpulse*=
+=22 in the</div><div><span class=3D=22Apple-tab-span=22 style=3D=22white-=
+space:pre=22>	</span>rootfs.</div><div><br></div><div><span class=3D=22Ap=
+ple-tab-span=22 style=3D=22white-space:pre=22>	</span>I think that someth=
+ing wrong with pulseaudio configure so that it do not install completely =
+by default.</div><div><br></div><div><span class=3D=22Apple-tab-span=22 s=
+tyle=3D=22white-space:pre=22>	</span>someone know about that how to insta=
+ll pulseaudio completely =3F</div>
+                <div><div><br></div><div>Thanks,</div><div><br></div><div=
+>- Jojo</div><div><br></div></div>
+            
+
+--51dfdbe5_3f6ab60f_254--
