@@ -1,26 +1,34 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-galgo.atl.sa.earthlink.net
-	(elasmtp-galgo.atl.sa.earthlink.net [209.86.89.61])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A36CDE013D6
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 01:30:42 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=E3ijNV7AJasi7WEIhxI20K4i4sghVd88OYe7YRcvhgm+FA1ZFPWVk5ymyTVZdap6;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-galgo.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1UxYkT-0002pf-DM
-	for yocto@yoctoproject.org; Fri, 12 Jul 2013 04:30:41 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 12 Jul 2013 01:30:37 -0700
-Message-ID: <5CD486E4007E48769ED69BB9205D327F@PAULD>
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vb0-f54.google.com (mail-vb0-f54.google.com
+	[209.85.212.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F0ADE013D6
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 01:57:24 -0700 (PDT)
+Received: by mail-vb0-f54.google.com with SMTP id q12so1353607vbe.13
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 01:57:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:cc:content-type;
+	bh=RKEsldvFr+n/8VouFF0T5MyxB/mvj39YJHfIknlAZe0=;
+	b=XpZ6c1yyi0Xh/FA/HWdsvBVVxEerz6d8z88OKA0hRwLGNOWAHJ2SvcVT4i/cIGUHH7
+	/AWgi6Wq2ognBSO9TQlG6zQPEnoFeA7SZdeCXA1+s3Qsi/JUKwxARctN/lGazaPvPFPc
+	0I0yJ1Pk5DcdBmlCnBjCscv1G3EgZLKVAoiiT3HI17Cpbb6nloz6Cy1nBPDFrdwiQsxf
+	k9qfMOGxuxw6rXB/4/8ZwaABvFe2S3HByOXizhedQcRb4C6cHIwZwWgnnBaIoPcsXPsb
+	FUI8EVG1j2e5KORwzsA6Jy96BCW+cs+dgqIsCH1faQC4WrRAmzPBiBWE13ZMLWLtiSZu
+	d1Ng==
+X-Received: by 10.220.1.9 with SMTP id 9mr24115710vcd.37.1373619443731; Fri,
+	12 Jul 2013 01:57:23 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac5+2hXtmuHFDZJ4TUe9Xr5epvVXug==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688097361063285e3459ff0af9c30ce0fa5350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: Mount options for removable drives
+Sender: paul.betafive@gmail.com
+Received: by 10.220.195.201 with HTTP; Fri, 12 Jul 2013 01:56:43 -0700 (PDT)
+In-Reply-To: <5CD486E4007E48769ED69BB9205D327F@PAULD>
+References: <5CD486E4007E48769ED69BB9205D327F@PAULD>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 12 Jul 2013 09:56:43 +0100
+X-Google-Sender-Auth: GaWf9z8Z6KtMYiqWKWLe3syG_Ho
+Message-ID: <CANyK_8cCMwSxKmaQvRNmuceOxRwXRun7qaAywaa0sbXQ_g5F3A@mail.gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Mount options for removable drives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,24 +40,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jul 2013 08:30:43 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Jul 2013 08:57:25 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Can someone point me to the configuration for how removable drives are
-mounted? When I plug in a flash drive, it mounts /dev/sdb1 as /media/sdb1,
-but it uses "relatime" and I'd like to use "noatime". I'd also like it to
-mount in "sync" mode, which I would think would be the default for such a
-drive, but I've gotten a corrupted FAT when I've yanked the drive.
+On 12 July 2013 09:30, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
+> Can someone point me to the configuration for how removable drives are
+> mounted? When I plug in a flash drive, it mounts /dev/sdb1 as /media/sdb1,
+> but it uses "relatime" and I'd like to use "noatime". I'd also like it to
+> mount in "sync" mode, which I would think would be the default for such a
+> drive, but I've gotten a corrupted FAT when I've yanked the drive.
+>
+> This is basically a core-image-base build, modified to use systemd, but I
+> don't see any systemd mount unit that handles it, so it must be some other
+> part of the system.
+>
 
-This is basically a core-image-base build, modified to use systemd, but I
-don't see any systemd mount unit that handles it, so it must be some other
-part of the system.
+Look in /etc/udev on the image, this is handled by udev.
 
--- 
+--
+Paul Barker
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
-
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
