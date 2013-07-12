@@ -1,30 +1,26 @@
-Return-Path: <ziomackipiotr@gmail.com>
-Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A173E013D6
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 00:57:40 -0700 (PDT)
-Received: by mail-la0-f42.google.com with SMTP id eb20so7535925lab.1
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 00:57:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=imlNzHLkM+lGLBG/E6dJkXCVXvEh8PHMdL/Rv29oCpk=;
-	b=v//yAlpsK7pxFNv8M5uuiCnnog6TE0WeH+Pg/TKW6sfwBf3PV85Sj2BRzTlh+ynxCj
-	txywJrOaUywY7rad+1IP9l0WRBqmRxE65kyFKTFdbWt/YbFV2H2Kc24BBGhnw7hMyFJj
-	V5eC7zLJjxnCGCmxb53ORDB74xq9AsWFNdKQ2qDYcJ6mkLXRoRh01oCm4OGP94M7JSW6
-	8qQZHi9aBkVq9sYTqyGk5ZVhauccLoib24PuNF5U9pWEDQHkgbiLKH6fPJPJHPchNLmZ
-	YJaS38EfjvNr4aw2MxV9q4Er8NRuWwpuEJWYwErI2EjSrU9bo2+mzj4JScoj1IXvP+HO
-	N16A==
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-galgo.atl.sa.earthlink.net
+	(elasmtp-galgo.atl.sa.earthlink.net [209.86.89.61])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A36CDE013D6
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 01:30:42 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=E3ijNV7AJasi7WEIhxI20K4i4sghVd88OYe7YRcvhgm+FA1ZFPWVk5ymyTVZdap6;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-galgo.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1UxYkT-0002pf-DM
+	for yocto@yoctoproject.org; Fri, 12 Jul 2013 04:30:41 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 12 Jul 2013 01:30:37 -0700
+Message-ID: <5CD486E4007E48769ED69BB9205D327F@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.152.4.232 with SMTP id n8mr19112822lan.29.1373615859726;
-	Fri, 12 Jul 2013 00:57:39 -0700 (PDT)
-Received: by 10.112.219.102 with HTTP; Fri, 12 Jul 2013 00:57:39 -0700 (PDT)
-In-Reply-To: <CAF0cEJTK9Y-HZaYev37a82v9Ys9BqukCcfK4hqvCHtL7bcSzzA@mail.gmail.com>
-References: <CAF0cEJTK9Y-HZaYev37a82v9Ys9BqukCcfK4hqvCHtL7bcSzzA@mail.gmail.com>
-Date: Fri, 12 Jul 2013 09:57:39 +0200
-Message-ID: <CAF0cEJQOHYwO1eiyoyCbsSbw929DD=2jjOB2Ses5ejzZk+wSyA@mail.gmail.com>
-From: Piotr Ziomacki <ziomackipiotr@gmail.com>
-To: yocto@yoctoproject.org
-Subject: DO PACKAGE QA error during compilation of FireFox OS on Raspberry Pi
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac5+2hXtmuHFDZJ4TUe9Xr5epvVXug==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688097361063285e3459ff0af9c30ce0fa5350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Mount options for removable drives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,171 +32,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jul 2013 07:57:44 -0000
-X-Groupsio-MsgNum: 14930
-Content-Type: multipart/mixed; boundary=089e013d1eb860804704e14bdd0c
+X-List-Received-Date: Fri, 12 Jul 2013 08:30:43 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
---089e013d1eb860804704e14bdd0c
-Content-Type: multipart/alternative; boundary=089e013d1eb860804304e14bdd0a
+Can someone point me to the configuration for how removable drives are
+mounted? When I plug in a flash drive, it mounts /dev/sdb1 as /media/sdb1,
+but it uses "relatime" and I'd like to use "noatime". I'd also like it to
+mount in "sync" mode, which I would think would be the default for such a
+drive, but I've gotten a corrupted FAT when I've yanked the drive.
 
---089e013d1eb860804304e14bdd0a
-Content-Type: text/plain; charset=ISO-8859-1
+This is basically a core-image-base build, modified to use systemd, but I
+don't see any systemd mount unit that handles it, so it must be some other
+part of the system.
 
-Hi,
+-- 
 
-I try to compile source code for FF OS released by Philipp Wagner at
-http://www.philipp-wagner.com/blog/2013/04/firefox-os-for-raspberry-pi-now-available/#more-251.
-Unfortunately i get error during compilation. I was suggested that it seems
-like anOpenEmbedded/Yocto issue so I'm sending post it here. I attached the
-log file for this. Can someone please help me get rid of this error?
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
-Regards,
-Piotr Ziomacki
 
---089e013d1eb860804304e14bdd0a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div><div>Hi,<=
-br><br></div>I try to compile source code for FF OS released by Philipp Wag=
-ner at <a href=3D"http://www.philipp-wagner.com/blog/2013/04/firefox-os-for=
--raspberry-pi-now-available/#more-251" target=3D"_blank">http://www.philipp=
--wagner.com/blog/2013/04/firefox-os-for-raspberry-pi-now-available/#more-25=
-1</a>. Unfortunately i get error during compilation. I was suggested that i=
-t s<span style=3D"font-family:arial,sans-serif;font-size:13px">eems like an=
-</span><span style=3D"font-family:arial,sans-serif;font-size:13px">OpenEmbe=
-dded/Yocto issue</span> so I&#39;m sending post it here. I attached the log=
- file for this. Can someone please help me get rid of this error?<br>
-
-<br></div>Regards,<br>Piotr Ziomacki<br></div>
-</div><br></div>
-
---089e013d1eb860804304e14bdd0a--
-
---089e013d1eb860804704e14bdd0c
-Content-Type: application/octet-stream; name="log.do_package.808"
-Content-Disposition: attachment; filename="log.do_package.808"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_hj0x618d0
-
-REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcHJlZnVuYwpERUJV
-RzogUHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3ByZWZ1bmMgZmluaXNoZWQKREVCVUc6IEV4
-ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZG9fcGFja2FnZQpERUJVRzogRXhlY3V0aW5nIHB5dGhv
-biBmdW5jdGlvbiBwYWNrYWdlX2dldF9hdXRvX3ByCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gcGFj
-a2FnZV9nZXRfYXV0b19wciBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlv
-biBwZXJmb3JtX3BhY2thZ2Vjb3B5CkRFQlVHOiBQeXRob24gZnVuY3Rpb24gcGVyZm9ybV9wYWNr
-YWdlY29weSBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBzcGxpdF9h
-bmRfc3RyaXBfZmlsZXMKREVCVUc6IHJ1bnN0cmlwOiAnYXJtLXBva3ktbGludXgtZ251ZWFiaS1z
-dHJpcCcgLS1yZW1vdmUtc2VjdGlvbj0uY29tbWVudCAtLXJlbW92ZS1zZWN0aW9uPS5ub3RlICcv
-aG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5L3JwaS1idWlsZC90bXAv
-d29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIuNnA1LXI2LjAvcGFja2Fn
-ZS91c3IvYmluL250cGRhdGUnCkRFQlVHOiBydW5zdHJpcDogJ2FybS1wb2t5LWxpbnV4LWdudWVh
-Ymktc3RyaXAnIC0tcmVtb3ZlLXNlY3Rpb249LmNvbW1lbnQgLS1yZW1vdmUtc2VjdGlvbj0ubm90
-ZSAnL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9ycGktYnVpbGQv
-dG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZwNS1yNi4wL3Bh
-Y2thZ2UvdXNyL2Jpbi9udHBxJwpERUJVRzogcnVuc3RyaXA6ICdhcm0tcG9reS1saW51eC1nbnVl
-YWJpLXN0cmlwJyAtLXJlbW92ZS1zZWN0aW9uPS5jb21tZW50IC0tcmVtb3ZlLXNlY3Rpb249Lm5v
-dGUgJy9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxk
-L3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9w
-YWNrYWdlL3Vzci9iaW4vbnRwLWtleWdlbicKREVCVUc6IHJ1bnN0cmlwOiAnYXJtLXBva3ktbGlu
-dXgtZ251ZWFiaS1zdHJpcCcgLS1yZW1vdmUtc2VjdGlvbj0uY29tbWVudCAtLXJlbW92ZS1zZWN0
-aW9uPS5ub3RlICcvaG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5L3Jw
-aS1idWlsZC90bXAvd29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIuNnA1
-LXI2LjAvcGFja2FnZS91c3IvYmluL3NudHAnCkRFQlVHOiBydW5zdHJpcDogJ2FybS1wb2t5LWxp
-bnV4LWdudWVhYmktc3RyaXAnIC0tcmVtb3ZlLXNlY3Rpb249LmNvbW1lbnQgLS1yZW1vdmUtc2Vj
-dGlvbj0ubm90ZSAnL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9y
-cGktYnVpbGQvdG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZw
-NS1yNi4wL3BhY2thZ2UvdXNyL2Jpbi90aWNrYWRqJwpERUJVRzogcnVuc3RyaXA6ICdhcm0tcG9r
-eS1saW51eC1nbnVlYWJpLXN0cmlwJyAtLXJlbW92ZS1zZWN0aW9uPS5jb21tZW50IC0tcmVtb3Zl
-LXNlY3Rpb249Lm5vdGUgJy9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bv
-a3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQu
-Mi42cDUtcjYuMC9wYWNrYWdlL3Vzci9iaW4vbnRwZGMnCkRFQlVHOiBydW5zdHJpcDogJ2FybS1w
-b2t5LWxpbnV4LWdudWVhYmktc3RyaXAnIC0tcmVtb3ZlLXNlY3Rpb249LmNvbW1lbnQgLS1yZW1v
-dmUtc2VjdGlvbj0ubm90ZSAnL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kv
-cG9reS9ycGktYnVpbGQvdG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAv
-NC4yLjZwNS1yNi4wL3BhY2thZ2UvdXNyL2Jpbi9udHBkJwpERUJVRzogcnVuc3RyaXA6ICdhcm0t
-cG9reS1saW51eC1nbnVlYWJpLXN0cmlwJyAtLXJlbW92ZS1zZWN0aW9uPS5jb21tZW50IC0tcmVt
-b3ZlLXNlY3Rpb249Lm5vdGUgJy9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5
-L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRw
-LzQuMi42cDUtcjYuMC9wYWNrYWdlL3Vzci9iaW4vbnRwdGltZScKREVCVUc6IFB5dGhvbiBmdW5j
-dGlvbiBzcGxpdF9hbmRfc3RyaXBfZmlsZXMgZmluaXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRo
-b24gZnVuY3Rpb24gZml4dXBfcGVybXMKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBmaXh1cF9wZXJt
-cyBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBzeXN0ZW1kX3BvcHVs
-YXRlX3BhY2thZ2VzCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gc3lzdGVtZF9wb3B1bGF0ZV9wYWNr
-YWdlcyBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBwb3B1bGF0ZV9w
-YWNrYWdlc191cGRhdGVyY2QKREVCVUc6IGFkZGluZyB1cGRhdGUtcmMuZCBjYWxscyB0byBwb3N0
-aW5zdC9wb3N0cm0gZm9yIG50cApERUJVRzogUHl0aG9uIGZ1bmN0aW9uIHBvcHVsYXRlX3BhY2th
-Z2VzX3VwZGF0ZXJjZCBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBw
-YWNrYWdlX2RvX3NwbGl0X2xvY2FsZXMKREVCVUc6IE5vIGxvY2FsZSBmaWxlcyBpbiB0aGlzIHBh
-Y2thZ2UKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBwYWNrYWdlX2RvX3NwbGl0X2xvY2FsZXMgZmlu
-aXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gcG9wdWxhdGVfcGFja2FnZXMK
-RVJST1I6IFFBIElzc3VlOiBudHA6IEZpbGVzL2RpcmVjdG9yaWVzIHdlcmUgaW5zdGFsbGVkIGJ1
-dCBub3Qgc2hpcHBlZAogIC9saWIvc3lzdGVtZC9zeXN0ZW0vbnRwZC5zZXJ2aWNlCiAgL2xpYi9z
-eXN0ZW1kL3N5c3RlbS9zbnRwLnNlcnZpY2UKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBwb3B1bGF0
-ZV9wYWNrYWdlcyBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBkb19w
-YWNrYWdlX3FhCk5PVEU6IERPIFBBQ0tBR0UgUUEKTk9URTogQ2hlY2tpbmcgUGFja2FnZTogbnRw
-LWRiZwpOT1RFOiBhcm0tcG9reS1saW51eC1nbnVlYWJpLW9iamR1bXAgLXAgL2hvbWUvcGlvdHIv
-RGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9ycGktYnVpbGQvdG1wL3dvcmsvYXJtdjYt
-dmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZwNS1yNi4wL3BhY2thZ2VzLXNwbGl0L250
-cC1kYmcvdXNyL2Jpbi8uZGVidWcvbnRwZGMKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1v
-YmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBp
-LWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUt
-cjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL3RpY2thZGoKTk9URTog
-YXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmly
-ZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxp
-bnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9i
-aW4vLmRlYnVnL250cHEKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9o
-b21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93
-b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdl
-cy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL250cGQKTk9URTogYXJtLXBva3ktbGludXgt
-Z251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5
-L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRw
-LzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL250cC1r
-ZXlnZW4KTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3Ry
-L0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2
-LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9u
-dHAtZGJnL3Vzci9iaW4vLmRlYnVnL250cHRpbWUKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFi
-aS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kv
-cnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42
-cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL3NudHAKTk9URTog
-YXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmly
-ZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxp
-bnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9i
-aW4vLmRlYnVnL250cGRhdGUKTk9URTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLXN0YXRpY2RldgpO
-T1RFOiBDaGVja2luZyBQYWNrYWdlOiBudHAtZGV2Ck5PVEU6IENoZWNraW5nIFBhY2thZ2U6IG50
-cC1kb2MKTk9URTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLWxvY2FsZQpOT1RFOiBDaGVja2luZyBQ
-YWNrYWdlOiBudHAKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21l
-L3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3Jr
-L2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1z
-cGxpdC9udHAvdXNyL2Jpbi9udHBkCk5PVEU6IENoZWNraW5nIFBhY2thZ2U6IG50cGRhdGUKTk9U
-RTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3Av
-RmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5
-LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHBkYXRlL3Vz
-ci9iaW4vbnRwZGF0ZQpOT1RFOiBDaGVja2luZyBQYWNrYWdlOiBzbnRwCk5PVEU6IGFybS1wb2t5
-LWxpbnV4LWdudWVhYmktb2JqZHVtcCAtcCAvaG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jh
-c3AvcG9reS9wb2t5L3JwaS1idWlsZC90bXAvd29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVl
-YWJpL250cC80LjIuNnA1LXI2LjAvcGFja2FnZXMtc3BsaXQvc250cC91c3IvYmluL3NudHAKTk9U
-RTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLXRpY2thZGoKTk9URTogYXJtLXBva3ktbGludXgtZ251
-ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bv
-a3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQu
-Mi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtdGlja2Fkai91c3IvYmluL3RpY2thZGoKTk9U
-RTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLXV0aWxzCk5PVEU6IGFybS1wb2t5LWxpbnV4LWdudWVh
-Ymktb2JqZHVtcCAtcCAvaG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5
-L3JwaS1idWlsZC90bXAvd29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIu
-NnA1LXI2LjAvcGFja2FnZXMtc3BsaXQvbnRwLXV0aWxzL3Vzci9iaW4vbnRwZGMKTk9URTogYXJt
-LXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZv
-eE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4
-LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtdXRpbHMvdXNyL2Jp
-bi9udHBxCk5PVEU6IGFybS1wb2t5LWxpbnV4LWdudWVhYmktb2JqZHVtcCAtcCAvaG9tZS9waW90
-ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5L3JwaS1idWlsZC90bXAvd29yay9hcm12
-Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIuNnA1LXI2LjAvcGFja2FnZXMtc3BsaXQv
-bnRwLXV0aWxzL3Vzci9iaW4vbnRwLWtleWdlbgpOT1RFOiBhcm0tcG9reS1saW51eC1nbnVlYWJp
-LW9iamR1bXAgLXAgL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9y
-cGktYnVpbGQvdG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZw
-NS1yNi4wL3BhY2thZ2VzLXNwbGl0L250cC11dGlscy91c3IvYmluL250cHRpbWUKRVJST1I6IFFB
-IHJ1biBmb3VuZCBmYXRhbCBlcnJvcnMuIFBsZWFzZSBjb25zaWRlciBmaXhpbmcgdGhlbS4KREVC
-VUc6IFB5dGhvbiBmdW5jdGlvbiBkb19wYWNrYWdlX3FhIGZpbmlzaGVkCkRFQlVHOiBQeXRob24g
-ZnVuY3Rpb24gZG9fcGFja2FnZSBmaW5pc2hlZApFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19w
-YWNrYWdlX3FhCg==
-
---089e013d1eb860804704e14bdd0c--
