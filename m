@@ -1,32 +1,30 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97762E013D6
-	for <yocto@yoctoproject.org>; Thu, 11 Jul 2013 23:15:00 -0700 (PDT)
-Received: by mail-la0-f45.google.com with SMTP id fr10so7469195lab.4
-	for <yocto@yoctoproject.org>; Thu, 11 Jul 2013 23:14:58 -0700 (PDT)
+Return-Path: <ziomackipiotr@gmail.com>
+Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A173E013D6
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 00:57:40 -0700 (PDT)
+Received: by mail-la0-f42.google.com with SMTP id eb20so7535925lab.1
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 00:57:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=TJtIZB2oajSvNDeN/4aeCAwTTzrqrOLhIg4s+rv09Ro=;
-	b=aMYOTGIMI5CYAZmIrb164nJeqeRWG9goZdxQ5BCQ9D3g+L1vZBpQADdcVgDhVlmtCq
-	f/RRCQueYXt5XbZihhpnMQDTyfsW4iwXLv8jMUGjVRChXswsorG4+OTv3+E+jMBRB4NV
-	zLF1jOdwIB8SGd38Im1BID8uoHp/1Y9Ji4xSHsQDFXnuFFl1GDgvQjg+8jeJ4PlDtmIi
-	xP8d13Bx6UVpe0gzWCwX5qorE9CDMy8g6j7UaApZ902DxgAzGSSonbviILJ6awdfrzIw
-	tuAOGSDVP2lz+WfAt1AOqN1i/lxoPnqDkv60Dt+8aJwJUHGZ7nweFhu7pJeeZrkwZGSR
-	1ZsA==
+	:content-type; bh=imlNzHLkM+lGLBG/E6dJkXCVXvEh8PHMdL/Rv29oCpk=;
+	b=v//yAlpsK7pxFNv8M5uuiCnnog6TE0WeH+Pg/TKW6sfwBf3PV85Sj2BRzTlh+ynxCj
+	txywJrOaUywY7rad+1IP9l0WRBqmRxE65kyFKTFdbWt/YbFV2H2Kc24BBGhnw7hMyFJj
+	V5eC7zLJjxnCGCmxb53ORDB74xq9AsWFNdKQ2qDYcJ6mkLXRoRh01oCm4OGP94M7JSW6
+	8qQZHi9aBkVq9sYTqyGk5ZVhauccLoib24PuNF5U9pWEDQHkgbiLKH6fPJPJHPchNLmZ
+	YJaS38EfjvNr4aw2MxV9q4Er8NRuWwpuEJWYwErI2EjSrU9bo2+mzj4JScoj1IXvP+HO
+	N16A==
 MIME-Version: 1.0
-X-Received: by 10.112.55.104 with SMTP id r8mr18362171lbp.49.1373609698625;
-	Thu, 11 Jul 2013 23:14:58 -0700 (PDT)
-Received: by 10.114.174.144 with HTTP; Thu, 11 Jul 2013 23:14:58 -0700 (PDT)
-In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C5E364015@BLRINMSMBX01.bglrodc.lntinfotech.com>
-References: <AF0985D076EB244693F2CCD71AAB10BC2C5E364015@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Date: Fri, 12 Jul 2013 11:44:58 +0530
-Message-ID: <CAE_REAvr-rY_rS-mPx7dvr1kD9stQ6W3or8Zb0-KsR87j7Xz2Q@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Amit Kumar <Amit.Kumar@lntinfotech.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error to Build Arago Yocto Project
+X-Received: by 10.152.4.232 with SMTP id n8mr19112822lan.29.1373615859726;
+	Fri, 12 Jul 2013 00:57:39 -0700 (PDT)
+Received: by 10.112.219.102 with HTTP; Fri, 12 Jul 2013 00:57:39 -0700 (PDT)
+In-Reply-To: <CAF0cEJTK9Y-HZaYev37a82v9Ys9BqukCcfK4hqvCHtL7bcSzzA@mail.gmail.com>
+References: <CAF0cEJTK9Y-HZaYev37a82v9Ys9BqukCcfK4hqvCHtL7bcSzzA@mail.gmail.com>
+Date: Fri, 12 Jul 2013 09:57:39 +0200
+Message-ID: <CAF0cEJQOHYwO1eiyoyCbsSbw929DD=2jjOB2Ses5ejzZk+wSyA@mail.gmail.com>
+From: Piotr Ziomacki <ziomackipiotr@gmail.com>
+To: yocto@yoctoproject.org
+Subject: DO PACKAGE QA error during compilation of FireFox OS on Raspberry Pi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,292 +36,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jul 2013 06:15:08 -0000
-Content-Type: multipart/alternative; boundary=001a11c3ed3425948604e14a6e5c
+X-List-Received-Date: Fri, 12 Jul 2013 07:57:44 -0000
+X-Groupsio-MsgNum: 14930
+Content-Type: multipart/mixed; boundary=089e013d1eb860804704e14bdd0c
 
---001a11c3ed3425948604e14a6e5c
-Content-Type: text/plain; charset=windows-1252
+--089e013d1eb860804704e14bdd0c
+Content-Type: multipart/alternative; boundary=089e013d1eb860804304e14bdd0a
+
+--089e013d1eb860804304e14bdd0a
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+I try to compile source code for FF OS released by Philipp Wagner at
+http://www.philipp-wagner.com/blog/2013/04/firefox-os-for-raspberry-pi-now-available/#more-251.
+Unfortunately i get error during compilation. I was suggested that it seems
+like anOpenEmbedded/Yocto issue so I'm sending post it here. I attached the
+log file for this. Can someone please help me get rid of this error?
+
+Regards,
+Piotr Ziomacki
+
+--089e013d1eb860804304e14bdd0a
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I think what you miss is the top layer (yocto or openembedded) ...because
-your BSP will build using the top layer from yocto or OE. So check that the
-core layer is available or downloaded by you...
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div><div>Hi,<=
+br><br></div>I try to compile source code for FF OS released by Philipp Wag=
+ner at <a href=3D"http://www.philipp-wagner.com/blog/2013/04/firefox-os-for=
+-raspberry-pi-now-available/#more-251" target=3D"_blank">http://www.philipp=
+-wagner.com/blog/2013/04/firefox-os-for-raspberry-pi-now-available/#more-25=
+1</a>. Unfortunately i get error during compilation. I was suggested that i=
+t s<span style=3D"font-family:arial,sans-serif;font-size:13px">eems like an=
+</span><span style=3D"font-family:arial,sans-serif;font-size:13px">OpenEmbe=
+dded/Yocto issue</span> so I&#39;m sending post it here. I attached the log=
+ file for this. Can someone please help me get rid of this error?<br>
 
-As your error message suggests, "OSError: [Errno 2] No such file or
-directory: '/home/amit/tisdk/sources/oe-
+<br></div>Regards,<br>Piotr Ziomacki<br></div>
+</div><br></div>
 
-core/meta/recipes-qt/qt4/qt4-4.8.4.inc'", so this file will come from the
-top layer of Yocto or OE.
+--089e013d1eb860804304e14bdd0a--
 
-//Gaurang Shastri
+--089e013d1eb860804704e14bdd0c
+Content-Type: application/octet-stream; name="log.do_package.808"
+Content-Disposition: attachment; filename="log.do_package.808"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_hj0x618d0
 
+REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3N0YXRlX3Rhc2tfcHJlZnVuYwpERUJV
+RzogUHl0aG9uIGZ1bmN0aW9uIHNzdGF0ZV90YXNrX3ByZWZ1bmMgZmluaXNoZWQKREVCVUc6IEV4
+ZWN1dGluZyBweXRob24gZnVuY3Rpb24gZG9fcGFja2FnZQpERUJVRzogRXhlY3V0aW5nIHB5dGhv
+biBmdW5jdGlvbiBwYWNrYWdlX2dldF9hdXRvX3ByCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gcGFj
+a2FnZV9nZXRfYXV0b19wciBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlv
+biBwZXJmb3JtX3BhY2thZ2Vjb3B5CkRFQlVHOiBQeXRob24gZnVuY3Rpb24gcGVyZm9ybV9wYWNr
+YWdlY29weSBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBzcGxpdF9h
+bmRfc3RyaXBfZmlsZXMKREVCVUc6IHJ1bnN0cmlwOiAnYXJtLXBva3ktbGludXgtZ251ZWFiaS1z
+dHJpcCcgLS1yZW1vdmUtc2VjdGlvbj0uY29tbWVudCAtLXJlbW92ZS1zZWN0aW9uPS5ub3RlICcv
+aG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5L3JwaS1idWlsZC90bXAv
+d29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIuNnA1LXI2LjAvcGFja2Fn
+ZS91c3IvYmluL250cGRhdGUnCkRFQlVHOiBydW5zdHJpcDogJ2FybS1wb2t5LWxpbnV4LWdudWVh
+Ymktc3RyaXAnIC0tcmVtb3ZlLXNlY3Rpb249LmNvbW1lbnQgLS1yZW1vdmUtc2VjdGlvbj0ubm90
+ZSAnL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9ycGktYnVpbGQv
+dG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZwNS1yNi4wL3Bh
+Y2thZ2UvdXNyL2Jpbi9udHBxJwpERUJVRzogcnVuc3RyaXA6ICdhcm0tcG9reS1saW51eC1nbnVl
+YWJpLXN0cmlwJyAtLXJlbW92ZS1zZWN0aW9uPS5jb21tZW50IC0tcmVtb3ZlLXNlY3Rpb249Lm5v
+dGUgJy9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxk
+L3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9w
+YWNrYWdlL3Vzci9iaW4vbnRwLWtleWdlbicKREVCVUc6IHJ1bnN0cmlwOiAnYXJtLXBva3ktbGlu
+dXgtZ251ZWFiaS1zdHJpcCcgLS1yZW1vdmUtc2VjdGlvbj0uY29tbWVudCAtLXJlbW92ZS1zZWN0
+aW9uPS5ub3RlICcvaG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5L3Jw
+aS1idWlsZC90bXAvd29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIuNnA1
+LXI2LjAvcGFja2FnZS91c3IvYmluL3NudHAnCkRFQlVHOiBydW5zdHJpcDogJ2FybS1wb2t5LWxp
+bnV4LWdudWVhYmktc3RyaXAnIC0tcmVtb3ZlLXNlY3Rpb249LmNvbW1lbnQgLS1yZW1vdmUtc2Vj
+dGlvbj0ubm90ZSAnL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9y
+cGktYnVpbGQvdG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZw
+NS1yNi4wL3BhY2thZ2UvdXNyL2Jpbi90aWNrYWRqJwpERUJVRzogcnVuc3RyaXA6ICdhcm0tcG9r
+eS1saW51eC1nbnVlYWJpLXN0cmlwJyAtLXJlbW92ZS1zZWN0aW9uPS5jb21tZW50IC0tcmVtb3Zl
+LXNlY3Rpb249Lm5vdGUgJy9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bv
+a3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQu
+Mi42cDUtcjYuMC9wYWNrYWdlL3Vzci9iaW4vbnRwZGMnCkRFQlVHOiBydW5zdHJpcDogJ2FybS1w
+b2t5LWxpbnV4LWdudWVhYmktc3RyaXAnIC0tcmVtb3ZlLXNlY3Rpb249LmNvbW1lbnQgLS1yZW1v
+dmUtc2VjdGlvbj0ubm90ZSAnL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kv
+cG9reS9ycGktYnVpbGQvdG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAv
+NC4yLjZwNS1yNi4wL3BhY2thZ2UvdXNyL2Jpbi9udHBkJwpERUJVRzogcnVuc3RyaXA6ICdhcm0t
+cG9reS1saW51eC1nbnVlYWJpLXN0cmlwJyAtLXJlbW92ZS1zZWN0aW9uPS5jb21tZW50IC0tcmVt
+b3ZlLXNlY3Rpb249Lm5vdGUgJy9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5
+L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRw
+LzQuMi42cDUtcjYuMC9wYWNrYWdlL3Vzci9iaW4vbnRwdGltZScKREVCVUc6IFB5dGhvbiBmdW5j
+dGlvbiBzcGxpdF9hbmRfc3RyaXBfZmlsZXMgZmluaXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRo
+b24gZnVuY3Rpb24gZml4dXBfcGVybXMKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBmaXh1cF9wZXJt
+cyBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBzeXN0ZW1kX3BvcHVs
+YXRlX3BhY2thZ2VzCkRFQlVHOiBQeXRob24gZnVuY3Rpb24gc3lzdGVtZF9wb3B1bGF0ZV9wYWNr
+YWdlcyBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBwb3B1bGF0ZV9w
+YWNrYWdlc191cGRhdGVyY2QKREVCVUc6IGFkZGluZyB1cGRhdGUtcmMuZCBjYWxscyB0byBwb3N0
+aW5zdC9wb3N0cm0gZm9yIG50cApERUJVRzogUHl0aG9uIGZ1bmN0aW9uIHBvcHVsYXRlX3BhY2th
+Z2VzX3VwZGF0ZXJjZCBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBw
+YWNrYWdlX2RvX3NwbGl0X2xvY2FsZXMKREVCVUc6IE5vIGxvY2FsZSBmaWxlcyBpbiB0aGlzIHBh
+Y2thZ2UKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBwYWNrYWdlX2RvX3NwbGl0X2xvY2FsZXMgZmlu
+aXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gcG9wdWxhdGVfcGFja2FnZXMK
+RVJST1I6IFFBIElzc3VlOiBudHA6IEZpbGVzL2RpcmVjdG9yaWVzIHdlcmUgaW5zdGFsbGVkIGJ1
+dCBub3Qgc2hpcHBlZAogIC9saWIvc3lzdGVtZC9zeXN0ZW0vbnRwZC5zZXJ2aWNlCiAgL2xpYi9z
+eXN0ZW1kL3N5c3RlbS9zbnRwLnNlcnZpY2UKREVCVUc6IFB5dGhvbiBmdW5jdGlvbiBwb3B1bGF0
+ZV9wYWNrYWdlcyBmaW5pc2hlZApERUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBkb19w
+YWNrYWdlX3FhCk5PVEU6IERPIFBBQ0tBR0UgUUEKTk9URTogQ2hlY2tpbmcgUGFja2FnZTogbnRw
+LWRiZwpOT1RFOiBhcm0tcG9reS1saW51eC1nbnVlYWJpLW9iamR1bXAgLXAgL2hvbWUvcGlvdHIv
+RGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9ycGktYnVpbGQvdG1wL3dvcmsvYXJtdjYt
+dmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZwNS1yNi4wL3BhY2thZ2VzLXNwbGl0L250
+cC1kYmcvdXNyL2Jpbi8uZGVidWcvbnRwZGMKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1v
+YmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBp
+LWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUt
+cjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL3RpY2thZGoKTk9URTog
+YXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmly
+ZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxp
+bnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9i
+aW4vLmRlYnVnL250cHEKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9o
+b21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93
+b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdl
+cy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL250cGQKTk9URTogYXJtLXBva3ktbGludXgt
+Z251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5
+L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRw
+LzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL250cC1r
+ZXlnZW4KTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3Ry
+L0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2
+LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9u
+dHAtZGJnL3Vzci9iaW4vLmRlYnVnL250cHRpbWUKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFi
+aS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kv
+cnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42
+cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9iaW4vLmRlYnVnL3NudHAKTk9URTog
+YXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmly
+ZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxp
+bnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtZGJnL3Vzci9i
+aW4vLmRlYnVnL250cGRhdGUKTk9URTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLXN0YXRpY2RldgpO
+T1RFOiBDaGVja2luZyBQYWNrYWdlOiBudHAtZGV2Ck5PVEU6IENoZWNraW5nIFBhY2thZ2U6IG50
+cC1kb2MKTk9URTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLWxvY2FsZQpOT1RFOiBDaGVja2luZyBQ
+YWNrYWdlOiBudHAKTk9URTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21l
+L3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3Jr
+L2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1z
+cGxpdC9udHAvdXNyL2Jpbi9udHBkCk5PVEU6IENoZWNraW5nIFBhY2thZ2U6IG50cGRhdGUKTk9U
+RTogYXJtLXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3Av
+RmlyZUZveE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5
+LWxpbnV4LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHBkYXRlL3Vz
+ci9iaW4vbnRwZGF0ZQpOT1RFOiBDaGVja2luZyBQYWNrYWdlOiBzbnRwCk5PVEU6IGFybS1wb2t5
+LWxpbnV4LWdudWVhYmktb2JqZHVtcCAtcCAvaG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jh
+c3AvcG9reS9wb2t5L3JwaS1idWlsZC90bXAvd29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVl
+YWJpL250cC80LjIuNnA1LXI2LjAvcGFja2FnZXMtc3BsaXQvc250cC91c3IvYmluL3NudHAKTk9U
+RTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLXRpY2thZGoKTk9URTogYXJtLXBva3ktbGludXgtZ251
+ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZveE9TUmFzcC9wb2t5L3Bv
+a3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4LWdudWVhYmkvbnRwLzQu
+Mi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtdGlja2Fkai91c3IvYmluL3RpY2thZGoKTk9U
+RTogQ2hlY2tpbmcgUGFja2FnZTogbnRwLXV0aWxzCk5PVEU6IGFybS1wb2t5LWxpbnV4LWdudWVh
+Ymktb2JqZHVtcCAtcCAvaG9tZS9waW90ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5
+L3JwaS1idWlsZC90bXAvd29yay9hcm12Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIu
+NnA1LXI2LjAvcGFja2FnZXMtc3BsaXQvbnRwLXV0aWxzL3Vzci9iaW4vbnRwZGMKTk9URTogYXJt
+LXBva3ktbGludXgtZ251ZWFiaS1vYmpkdW1wIC1wIC9ob21lL3Bpb3RyL0RldmVsb3AvRmlyZUZv
+eE9TUmFzcC9wb2t5L3Bva3kvcnBpLWJ1aWxkL3RtcC93b3JrL2FybXY2LXZmcC1wb2t5LWxpbnV4
+LWdudWVhYmkvbnRwLzQuMi42cDUtcjYuMC9wYWNrYWdlcy1zcGxpdC9udHAtdXRpbHMvdXNyL2Jp
+bi9udHBxCk5PVEU6IGFybS1wb2t5LWxpbnV4LWdudWVhYmktb2JqZHVtcCAtcCAvaG9tZS9waW90
+ci9EZXZlbG9wL0ZpcmVGb3hPU1Jhc3AvcG9reS9wb2t5L3JwaS1idWlsZC90bXAvd29yay9hcm12
+Ni12ZnAtcG9reS1saW51eC1nbnVlYWJpL250cC80LjIuNnA1LXI2LjAvcGFja2FnZXMtc3BsaXQv
+bnRwLXV0aWxzL3Vzci9iaW4vbnRwLWtleWdlbgpOT1RFOiBhcm0tcG9reS1saW51eC1nbnVlYWJp
+LW9iamR1bXAgLXAgL2hvbWUvcGlvdHIvRGV2ZWxvcC9GaXJlRm94T1NSYXNwL3Bva3kvcG9reS9y
+cGktYnVpbGQvdG1wL3dvcmsvYXJtdjYtdmZwLXBva3ktbGludXgtZ251ZWFiaS9udHAvNC4yLjZw
+NS1yNi4wL3BhY2thZ2VzLXNwbGl0L250cC11dGlscy91c3IvYmluL250cHRpbWUKRVJST1I6IFFB
+IHJ1biBmb3VuZCBmYXRhbCBlcnJvcnMuIFBsZWFzZSBjb25zaWRlciBmaXhpbmcgdGhlbS4KREVC
+VUc6IFB5dGhvbiBmdW5jdGlvbiBkb19wYWNrYWdlX3FhIGZpbmlzaGVkCkRFQlVHOiBQeXRob24g
+ZnVuY3Rpb24gZG9fcGFja2FnZSBmaW5pc2hlZApFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19w
+YWNrYWdlX3FhCg==
 
-
-
-On Fri, Jul 12, 2013 at 10:46 AM, Amit Kumar <Amit.Kumar@lntinfotech.com>wr=
-ote:
-
->  Hi,****
->
->             I am building the Arago Yocto Project first time. I have
-> follow the steps given in the Arago Project link =96****
->
->
-> http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment#Deta=
-iled_Setup
-> ****
->
-> ** **
->
-> Error Log is =96 ****
->
-> ** **
->
-> amit@amit-HP:~/tisdk/build$ MACHINE=3Dam335x-evm bitbake core-image-minim=
-al
-> Pseudo is not present but is required, building this first before the mai=
-n
-> build
-> ERROR: Unable to parse
-> /home/amit/tisdk/sources/meta-arago/meta-arago-extras/recipes-qt/qt4/
-> qt4-embedded-gles_4.8.4.bb                       | ETA:  --:--:--
-> Traceback (most recent call last):
->   File
-> "/home/amit/tisdk/sources/bitbake/lib/bb/parse/parse_py/ConfHandler.py",
-> line 68, in
-> include(oldfn=3D'/home/amit/tisdk/sources/meta-arago/meta-arago-extras/re=
-cipes-qt/qt4/
-> qt4-embedded-gles_4.8.4.bb',
-> fn=3D'/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt4/qt4-4.8.4.inc'=
-,
-> lineno=3D1, data=3D<bb.data_smart.DataSmart object at 0xa14f12c>,
-> error_out=3D'include required'):
->          try:
->     >        ret =3D handle(fn, data, True)
->          except IOError:
->   File "/home/amit/tisdk/sources/bitbake/lib/bb/parse/__init__.py", line
-> 90, in
-> handle(fn=3D'/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt4/qt4-4.8=
-.4.inc',
-> data=3D<bb.data_smart.DataSmart object at 0xa14f12c>, include=3DTrue):
->              if h['supports'](fn, data):
->     >            return h['handle'](fn, data, include)
->          raise ParseError("not a BitBake file", fn)
->   File
-> "/home/amit/tisdk/sources/bitbake/lib/bb/parse/parse_py/BBHandler.py", li=
-ne
-> 142, in
-> handle(fn=3D'/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt4/qt4-4.8=
-.4.inc',
-> d=3D<bb.data_smart.DataSmart object at 0xa14f12c>, include=3DTrue):
->          if include:
->     >        bb.parse.mark_dependency(d, abs_fn)
->
->   File "/home/amit/tisdk/sources/bitbake/lib/bb/parse/__init__.py", line
-> 76, in mark_dependency(d=3D<bb.data_smart.DataSmart object at 0xa14f12c>,
-> f=3D'/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt4/qt4-4.8.4.inc')=
-:
->              f =3D "%s/%s" % (os.getcwd(), f[2:])
->     >    deps =3D (d.getVar('__depends') or []) + [(f, cached_mtime(f))]
->          d.setVar('__depends', deps)
->   File "/home/amit/tisdk/sources/bitbake/lib/bb/parse/__init__.py", line
-> 58, in
-> cached_mtime(f=3D'/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt4/qt=
-4-4.8.4.inc'):
->          if f not in __mtime_cache:
->     >        __mtime_cache[f] =3D os.stat(f)[stat.ST_MTIME]
->          return __mtime_cache[f]
-> OSError: [Errno 2] No such file or directory:
-> '/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt4/qt4-4.8.4.inc'
->
-> ERROR: Command execution failed: Exited with 1
->
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit cod=
-e.
-> amit@amit-HP:~/tisdk/build$ cd ../sources/oe-core/meta/recipes-qt/****
->
-> ** **
->
-> ** **
->
-> Is anybody have faced the same error or anybody know the reason of this
-> error? ****
->
-> Please help me out for the same.****
->
-> ** **
->
-> ** **
->
-> Thanks ****
->
-> AmitK ****
->
-> ** **
->
-> ------------------------------
-> The contents of this e-mail and any attachment(s) may contain confidentia=
-l
-> or privileged information for the intended recipient(s). Unintended
-> recipients are prohibited from taking action on the basis of information =
-in
-> this e-mail and using or disseminating the information, and must notify t=
-he
-> sender and delete it from their system. L&T Infotech will not accept
-> responsibility or liability for the accuracy or completeness of, or the
-> presence of any virus or disabling code in this e-mail"
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---001a11c3ed3425948604e14a6e5c
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I think what you miss is the top layer (yocto or open=
-embedded) ...because your BSP will build using the top layer from yocto or =
-OE. So check that the core layer is available or downloaded by you...<br><b=
-r>
-</div>As your error message suggests, &quot;OSError: [Errno 2] No such file=
- or directory: &#39;/home/amit/tisdk/sources/oe-<p class=3D"">core/meta/rec=
-ipes-qt/qt4/qt4-4.8.4.inc&#39;&quot;, so this file will come from the top l=
-ayer of Yocto or OE.</p>
-<p class=3D"">//Gaurang Shastri<br></p><p class=3D""><br></p></div><div cla=
-ss=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Jul 12, 2013 =
-at 10:46 AM, Amit Kumar <span dir=3D"ltr">&lt;<a href=3D"mailto:Amit.Kumar@=
-lntinfotech.com" target=3D"_blank">Amit.Kumar@lntinfotech.com</a>&gt;</span=
-> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div link=3D"blue" vlink=3D"purple" lang=3D"EN-US">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Hi,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =
-I am building the Arago Yocto Project first time. I have follow the steps g=
-iven in the Arago Project link =96<u></u><u></u></span></p>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><a href=3D"http://arago-project.or=
-g/wiki/index.php/Setting_Up_Build_Environment#Detailed_Setup" target=3D"_bl=
-ank">http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment#D=
-etailed_Setup</a>
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><u></u>=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Error Log is =96
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><u></u>=A0<u></u></span></p>
-<p class=3D"MsoNormal">amit@amit-HP:~/tisdk/build$ MACHINE=3Dam335x-evm bit=
-bake core-image-minimal<br>
-Pseudo is not present but is required, building this first before the main =
-build<br>
-ERROR: Unable to parse /home/amit/tisdk/sources/meta-arago/meta-arago-extra=
-s/recipes-qt/qt4/<a href=3D"http://qt4-embedded-gles_4.8.4.bb" target=3D"_b=
-lank">qt4-embedded-gles_4.8.4.bb</a>=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0 | ETA:=A0 --:--:--<br>
-
-Traceback (most recent call last):<br>
-=A0 File &quot;/home/amit/tisdk/sources/bitbake/lib/bb/parse/parse_py/ConfH=
-andler.py&quot;, line 68, in include(oldfn=3D&#39;/home/amit/tisdk/sources/=
-meta-arago/meta-arago-extras/recipes-qt/qt4/<a href=3D"http://qt4-embedded-=
-gles_4.8.4.bb" target=3D"_blank">qt4-embedded-gles_4.8.4.bb</a>&#39;, fn=3D=
-&#39;/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt4/qt4-4.8.4.inc&#39=
-;,
- lineno=3D1, data=3D&lt;bb.data_smart.DataSmart object at 0xa14f12c&gt;, er=
-ror_out=3D&#39;include required&#39;):<br>
-=A0=A0=A0=A0=A0=A0=A0=A0 try:<br>
-=A0=A0=A0 &gt;=A0=A0=A0=A0=A0=A0=A0 ret =3D handle(fn, data, True)<br>
-=A0=A0=A0=A0=A0=A0=A0=A0 except IOError:<br>
-=A0 File &quot;/home/amit/tisdk/sources/bitbake/lib/bb/parse/__init__.py&qu=
-ot;, line 90, in handle(fn=3D&#39;/home/amit/tisdk/sources/oe-core/meta/rec=
-ipes-qt/qt4/qt4-4.8.4.inc&#39;, data=3D&lt;bb.data_smart.DataSmart object a=
-t 0xa14f12c&gt;, include=3DTrue):<br>
-
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 if h[&#39;supports&#39;](fn, data):<br=
->
-=A0=A0=A0 &gt;=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return h[&#39;handle&#39;](=
-fn, data, include)<br>
-=A0=A0=A0=A0=A0=A0=A0=A0 raise ParseError(&quot;not a BitBake file&quot;, f=
-n)<br>
-=A0 File &quot;/home/amit/tisdk/sources/bitbake/lib/bb/parse/parse_py/BBHan=
-dler.py&quot;, line 142, in handle(fn=3D&#39;/home/amit/tisdk/sources/oe-co=
-re/meta/recipes-qt/qt4/qt4-4.8.4.inc&#39;, d=3D&lt;bb.data_smart.DataSmart =
-object at 0xa14f12c&gt;, include=3DTrue):<br>
-
-=A0=A0=A0=A0=A0=A0=A0=A0 if include:<br>
-=A0=A0=A0 &gt;=A0=A0=A0=A0=A0=A0=A0 bb.parse.mark_dependency(d, abs_fn)<br>
-=A0=A0=A0=A0 <br>
-=A0 File &quot;/home/amit/tisdk/sources/bitbake/lib/bb/parse/__init__.py&qu=
-ot;, line 76, in mark_dependency(d=3D&lt;bb.data_smart.DataSmart object at =
-0xa14f12c&gt;, f=3D&#39;/home/amit/tisdk/sources/oe-core/meta/recipes-qt/qt=
-4/qt4-4.8.4.inc&#39;):<br>
-
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 f =3D &quot;%s/%s&quot; % (os.getcwd()=
-, f[2:])<br>
-=A0=A0=A0 &gt;=A0=A0=A0 deps =3D (d.getVar(&#39;__depends&#39;) or []) + [(=
-f, cached_mtime(f))]<br>
-=A0=A0=A0=A0=A0=A0=A0=A0 d.setVar(&#39;__depends&#39;, deps)<br>
-=A0 File &quot;/home/amit/tisdk/sources/bitbake/lib/bb/parse/__init__.py&qu=
-ot;, line 58, in cached_mtime(f=3D&#39;/home/amit/tisdk/sources/oe-core/met=
-a/recipes-qt/qt4/qt4-4.8.4.inc&#39;):<br>
-=A0=A0=A0=A0=A0=A0=A0=A0 if f not in __mtime_cache:<br>
-=A0=A0=A0 &gt;=A0=A0=A0=A0=A0=A0=A0 __mtime_cache[f] =3D os.stat(f)[stat.ST=
-_MTIME]<br>
-=A0=A0=A0=A0=A0=A0=A0=A0 return __mtime_cache[f]<br>
-OSError: [Errno 2] No such file or directory: &#39;/home/amit/tisdk/sources=
-/oe-core/meta/recipes-qt/qt4/qt4-4.8.4.inc&#39;<br>
-<br>
-ERROR: Command execution failed: Exited with 1<br>
-<br>
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.=
-<br>
-amit@amit-HP:~/tisdk/build$ cd ../sources/oe-core/meta/recipes-qt/<u></u><u=
-></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">Is anybody have faced the same error or anybody know=
- the reason of this error?
-<u></u><u></u></p>
-<p class=3D"MsoNormal">Please help me out for the same.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks <u></u><u></u></p>
-<p class=3D"MsoNormal">AmitK <u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><u></u>=A0<u></u></span></p>
-</div>
-<br>
-<hr>
-<font color=3D"Black" face=3D"Arial" size=3D"3">The contents of this e-mail=
- and any attachment(s) may contain confidential or privileged information f=
-or the intended recipient(s). Unintended recipients are prohibited from tak=
-ing action on the basis of information
- in this e-mail and using or disseminating the information, and must notify=
- the sender and delete it from their system. L&amp;T Infotech will not acce=
-pt responsibility or liability for the accuracy or completeness of, or the =
-presence of any virus or disabling code
- in this e-mail&quot;<br>
-</font>
-</div>
-
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---001a11c3ed3425948604e14a6e5c--
+--089e013d1eb860804704e14bdd0c--
