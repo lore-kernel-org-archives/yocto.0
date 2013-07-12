@@ -1,34 +1,31 @@
-Return-Path: <varun292006@gmail.com>
-Received: from mail-pd0-f181.google.com (mail-pd0-f181.google.com
-	[209.85.192.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33A6EE014E2
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 11:23:33 -0700 (PDT)
-Received: by mail-pd0-f181.google.com with SMTP id 14so8840820pdj.26
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 11:23:33 -0700 (PDT)
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D236E014E2;
+	Fri, 12 Jul 2013 11:44:02 -0700 (PDT)
+Received: by mail-la0-f45.google.com with SMTP id fr10so7986920lab.32
+	for <multiple recipients>; Fri, 12 Jul 2013 11:44:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=IRpBZDMR4Yb98nR2Ws5Yd1eQfP6N5eCG80fAhmA7AqU=;
-	b=n586MPBv4emVunj+Gbmq0YSR8dsYwEdcGJXZNJQw/bfLIoD2Bcdrsm4HrbAhN7M2cN
-	R2LETbEQyeKrbqaGiFhgJp7tW8RZM8Nnxdc0ZvEL6qT8LhCC642OFnytLBNQvo8fjvPd
-	2pm0R+VQnitRS9VgI/8vFvWJDrbqmSyopZrFCs0r0siApv5ioiD7jUlt1cZJKihYdc6z
-	n24YgiXX4MAOHlMV0XlKO/Ku6oDkx3WOqunBpd+YvX/1p+i+1GnPszBWxkdV/IejJhxb
-	i63+cpeEklKX6RLGThNkFohkMl9vT8Bh0NMYcISbs4Rpwp/jNmMQAH8KLM6PWaiQodEz
-	S+2A==
+	h=mime-version:sender:from:date:x-google-sender-auth:message-id
+	:subject:to:content-type;
+	bh=yzqmpu6X+J/JZkTUKTLWtT2GTgnjFB7nob8xap7Ym9E=;
+	b=AbcxqL4dgZJO6Tp/eldY1dS1bhrRvy3GrN6dyNmEoLVFN8wZ710vFX7oU0W5uPzDop
+	KHZCcQKifXcirP1C3W2QghEzE3JHZ1KGX1UMc+52vlkbhHBURfGtch5oyLfURlysSlrF
+	dY5rrRTtln+UKxnW2Hwh+Df+Rm8TfMeOeA1B2BR0izBjrFZ+lLsA1enNMSN93ajV6E1/
+	f9h8zwRNhNuzt07bgVQ9YtzHfY7mnM50eNCu8aHPUhyvHkldIjn9ISS3OJd5IpJnA0/y
+	zq0JfaVCrGasbLhbbP8t5Kjd/baRFdXLSdGuJLevjA4Joihdu/NFxa+4M0qSrKzWoGbm
+	o+kg==
+X-Received: by 10.112.235.104 with SMTP id ul8mr19716675lbc.36.1373654641671; 
+	Fri, 12 Jul 2013 11:44:01 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.68.164.69 with SMTP id yo5mr42926361pbb.96.1373653413008;
-	Fri, 12 Jul 2013 11:23:33 -0700 (PDT)
-Received: by 10.68.73.196 with HTTP; Fri, 12 Jul 2013 11:23:32 -0700 (PDT)
-In-Reply-To: <3624548.VBuVOLK5Yg@helios>
-References: <CAGxOggHpJNSb6vetbD40+ww-iyVxS3cUaZVhOF1t_OFCfQ4zSw@mail.gmail.com>
-	<2897880.FC0dZLhceG@helios>
-	<CAGxOggHBwsZ5f5f9x12-pOLGJY9bRNkAu6G27kz4Qgp-4ztdqA@mail.gmail.com>
-	<3624548.VBuVOLK5Yg@helios>
-Date: Fri, 12 Jul 2013 23:53:32 +0530
-Message-ID: <CAGxOggGH0mpoV=KqgGc=yEpNbdht5=L1WAzFvcm0za-TEC-FkQ@mail.gmail.com>
-From: varun bhatnagar <varun292006@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Layers not getting recognized by bitbake
+Sender: jefro.net@gmail.com
+Received: by 10.112.30.146 with HTTP; Fri, 12 Jul 2013 11:43:41 -0700 (PDT)
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Fri, 12 Jul 2013 11:43:41 -0700
+X-Google-Sender-Auth: ffHWvtO-IrcJ2KvH-mkAkRiyl5o
+Message-ID: <CA+YB3rYaryy71L3b8Ou=1+wgCU8tR=bKxapAuqYkB4C=wCAhmA@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>, yocto-announce@yoctoproject.org
+Subject: meta-security Layer Now Available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,176 +37,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jul 2013 18:23:34 -0000
-Content-Type: multipart/alternative; boundary=047d7b6764e6ba1e9e04e1549b0e
-
---047d7b6764e6ba1e9e04e1549b0e
+X-List-Received-Date: Fri, 12 Jul 2013 18:44:03 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Paul,
+[thanks to Andrei Dinu for writing this]
 
-I am pasting the content of my recipe file below, please have a look at it.
-
-
-DESCRIPTION = "bitake file"
-*DEPENDS = "net-snmp fuse"*
-RDEPENDS = "curl rpm openssh openldap procps psmisc sed net-snmp-server"
-LICENSE = "GPLv2+"
-PR = "r0"
-SRC_URI = "*file:///home/user/Myapp.tar.gz"*<file:///home/user/Myapp.tar.gz%22>
-;
-EXTRA_OECMAKE += "-DCMAKE_FIND_ROOT_PATH=${STAGING_DIR_HOST} "
-EXTRA_OECMAKE += "-DTARGET_ARCHITECTURE=${TARGET_ARCH} "
-EXTRA_OECMAKE += "-DCMAKE_SYSTEM_NAME=Linux "
-EXTRA_OECMAKE += "-DCMAKE_SYSTEM_VERSION=1 "
-EXTRA_OECMAKE += "-DRSTATE=${PR} "
-EXTRA_OECMAKE += "-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=NEVER "
-EXTRA_OECMAKE += "-DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY "
-EXTRA_OECMAKE += "-DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY "
-EXTRA_OECMAKE += "-DRPM=1 "
-
-inherit cmake
-
-do_configure(){
-        cmake ..${EXTRA_OECMAKE}
-}
-
-do_compile(){
-        oe_runmake all
-}
-
-//
-Varun
+_______________________________________________________________
+meta-security Layer Now Available
 
 
-On Mon, Jul 1, 2013 at 3:18 PM, Paul Eggleton <paul.eggleton@linux.intel.com
-> wrote:
+Can embedded devices have the same type of security that normal
+desktops run? Can the security be enhanced in some way? The answer is
+yes! With the new meta-security-layer which can be used with the Yocto
+Project. Now it's very simple to build a Linux distribution with the
+Yocto Project and use all the security tools to harden, protect, and
+detect vulnerabilities on embedded devices.
 
-> On Sunday 30 June 2013 00:05:58 varun bhatnagar wrote:
-> > Yes Paul that was the entry was there in CORE_IMAGE_EXTRA_INSTALL. I have
-> > removed it from there but I need to add the command provided by these
-> > packages in my image. So I have added one line in my layer.conf file
-> > "IMAGE_INSTALL_append= test-ea ". Now if I try to run bitbake -k
-> > core-image-minimal, it gives me a message saying "Nothing provides
-> > test-ea". What shall I do? (I have build the recipe file of test-ea
-> without
-> > any error.)
->
-> Can you show me what the test-ea recipe contains?
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
 
---047d7b6764e6ba1e9e04e1549b0e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Why the security layer?
 
-<div dir=3D"ltr">Hi Paul,<div><br></div><div style>I am pasting the content=
- of my recipe file below, please have a look at it.</div><div style><br></d=
-iv><div style><br></div><div style><font color=3D"#0000ff"><font face=3D"Ca=
-libri" style=3D"font-size:medium">DESCRIPTION =3D &quot;bitake file&quot;</=
-font><br style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium">
-<b style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><font f=
-ace=3D"Calibri">DEPENDS =3D &quot;net-snmp fuse&quot;</font></b><br style=
-=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><font face=3D"C=
-alibri" style=3D"font-size:medium">RDEPENDS =3D &quot;curl rpm openssh open=
-ldap procps psmisc sed net-snmp-server&quot;</font><br style=3D"font-family=
-:&#39;Times New Roman&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">LICENSE =3D &quot;GPLv2+&=
-quot;</font><br style=3D"font-family:&#39;Times New Roman&#39;;font-size:me=
-dium"><font face=3D"Calibri" style=3D"font-size:medium">PR =3D &quot;r0&quo=
-t;</font><br style=3D"font-family:&#39;Times New Roman&#39;;font-size:mediu=
-m">
-<font face=3D"Calibri" style=3D"font-size:medium">SRC_URI =3D &quot;</font>=
-<a href=3D"file:///home/user/Myapp.tar.gz%22" style=3D"font-family:&#39;Tim=
-es New Roman&#39;;font-size:medium"><u><font face=3D"Calibri">file:///home/=
-user/Myapp.tar.gz&quot;</font></u></a><font face=3D"Calibri" style=3D"font-=
-size:medium">;</font><br style=3D"font-family:&#39;Times New Roman&#39;;fon=
-t-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">EXTRA_OECMAKE +=3D &quot;=
--DCMAKE_FIND_ROOT_PATH=3D${STAGING_DIR_HOST} &quot;</font><br style=3D"font=
--family:&#39;Times New Roman&#39;;font-size:medium"><font face=3D"Calibri" =
-style=3D"font-size:medium">EXTRA_OECMAKE +=3D &quot;-DTARGET_ARCHITECTURE=
-=3D${TARGET_ARCH} &quot;</font><br style=3D"font-family:&#39;Times New Roma=
-n&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">EXTRA_OECMAKE +=3D &quot;=
--DCMAKE_SYSTEM_NAME=3DLinux &quot;</font><br style=3D"font-family:&#39;Time=
-s New Roman&#39;;font-size:medium"><font face=3D"Calibri" style=3D"font-siz=
-e:medium">EXTRA_OECMAKE +=3D &quot;-DCMAKE_SYSTEM_VERSION=3D1 &quot;</font>=
-<br style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">EXTRA_OECMAKE +=3D &quot;=
--DRSTATE=3D${PR} &quot;</font><br style=3D"font-family:&#39;Times New Roman=
-&#39;;font-size:medium"><font face=3D"Calibri" style=3D"font-size:medium">E=
-XTRA_OECMAKE +=3D &quot;-DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM=3DNEVER &quot;<=
-/font><br style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">EXTRA_OECMAKE +=3D &quot;=
--DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=3DONLY &quot;</font><br style=3D"font-f=
-amily:&#39;Times New Roman&#39;;font-size:medium"><font face=3D"Calibri" st=
-yle=3D"font-size:medium">EXTRA_OECMAKE +=3D &quot;-DCMAKE_FIND_ROOT_PATH_MO=
-DE_INCLUDE=3DONLY &quot;</font><br style=3D"font-family:&#39;Times New Roma=
-n&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">EXTRA_OECMAKE +=3D &quot;=
--DRPM=3D1 &quot;</font><br style=3D"font-family:&#39;Times New Roman&#39;;f=
-ont-size:medium"><font face=3D"Calibri" style=3D"font-size:medium">=A0</fon=
-t><br style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">inherit cmake</font><br s=
-tyle=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><font face=
-=3D"Calibri" style=3D"font-size:medium">=A0</font><br style=3D"font-family:=
-&#39;Times New Roman&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">do_configure(){</font><br=
- style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><font fac=
-e=3D"Calibri" style=3D"font-size:medium">=A0=A0=A0=A0=A0=A0=A0 cmake ..${EX=
-TRA_OECMAKE}</font><br style=3D"font-family:&#39;Times New Roman&#39;;font-=
-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">}</font><br style=3D"font=
--family:&#39;Times New Roman&#39;;font-size:medium"><font face=3D"Calibri" =
-style=3D"font-size:medium">=A0</font><br style=3D"font-family:&#39;Times Ne=
-w Roman&#39;;font-size:medium">
-<font face=3D"Calibri" style=3D"font-size:medium">do_compile(){</font><br s=
-tyle=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><font face=
-=3D"Calibri" style=3D"font-size:medium">=A0=A0=A0=A0=A0=A0=A0 oe_runmake al=
-l</font><br style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium=
-">
-<font face=3D"Calibri" style=3D"font-size:medium">}</font></font><br></div>=
-<div style><font color=3D"#0000ff"><font face=3D"Calibri" style=3D"font-siz=
-e:medium"><br></font></font></div><div style>//</div><div style>Varun</div>=
-</div>
-<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon, Jul 1=
-, 2013 at 3:18 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:pa=
-ul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.co=
-m</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On Sunday 30 June 2013 00:=
-05:58 varun bhatnagar wrote:<br>
-&gt; Yes Paul that was the entry was there in CORE_IMAGE_EXTRA_INSTALL. I h=
-ave<br>
-&gt; removed it from there but I need to add the command provided by these<=
-br>
-&gt; packages in my image. So I have added one line in my layer.conf file<b=
-r>
-&gt; &quot;IMAGE_INSTALL_append=3D test-ea &quot;. Now if I try to run bitb=
-ake -k<br>
-&gt; core-image-minimal, it gives me a message saying &quot;Nothing provide=
-s<br>
-&gt; test-ea&quot;. What shall I do? (I have build the recipe file of test-=
-ea without<br>
-&gt; any error.)<br>
-<br>
-</div>Can you show me what the test-ea recipe contains?<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
+As embedded devices keep getting more and more powerful, there must be
+some concern regarding the security of that device. Maybe some devices
+are in a closed environment, with no access from outside, but that is
+not the case for all of them. If someone is running a webserver on a
+router for example, or uses a device that is permanently connected to
+the internet, it can be susceptible to hijacking. With this security
+layer we wanted to give the users the chance to enhance the security
+on every device that uses the Yocto Project.
 
---047d7b6764e6ba1e9e04e1549b0e--
+
+What does it contain?
+
+After searching the internet looking for open source security packages
+that can be used on embedded devices, we came down to a list that
+covers a wide range of functionalities useful for the user. At the
+moment the security layer contains hardening tools, security checking
+tools, a library for syscall filtering, webserver security, port
+scanners, and other features that are targeted to different levels of
+system security, from low-level to high level.
+
+The packages included in this layer are described below, along with
+some usage examples.
+
+We are going to start with Bastille, which is a hardening program used
+to secure the system and environment in order to make it
+non-penetrable and non-exploitable. It is an easy to use, rule-based
+hardening tool, which has an interactive way of configuring it. On the
+first run with "bastille -c", the user must go through a list of
+questions. After all questions are answered, a config file is created
+and run. After running the config file, the system is hardened based
+on the answers to the questions. Also, if a config file is already
+present on the system, it can be run by simply writing "bastille -b".
+
+Next in line are the redhat-security tools. This is a collection of
+scripts that analyzes security problems ranging from file permissions
+to correctness of code. Here are some items from that list:
+
+- find-chroot.sh - This script scans the whole file system looking for
+ELF files that calls chroot(2) that also do not include a call to
+chdir. Programs that fail to do this do not have the cwd inside the
+chroot. This means the app can escape the protection that was
+intended.
+
+- find-nodrop-groups.sh - This script scans a whole file system to see
+if a program makes calls to change UID and GID without also calling
+setgroups or initgroups.
+
+- find-hidden-exec.sh - This script scans the whole file system
+looking for excutables that are hidden. Anything found must be
+investigated since its highly unusual for executables to be hidden.
+
+Another tool that is included is pax-utils. This package also includes
+a list of scripts that scan ELF files for consistency and not only.
+One of the most popular ones is scanelf. With this script you can
+print out the information specific to the ELF structure of a binary.
+Also, very useful for developers is dumpelf. This is a user space
+utility that dumps all of the internal ELF structures into the
+equivalent C structures for debugging or reference purposes.
+
+Buck-security is a security scanner that checks and reports any
+vulnerabilities. Unlike bastille which also hardens your system,
+buck-security runs a series of scripts present in the configuration
+file. The user can add or remove some checks if they are not
+necessary.
+
+Libseccomp is a library that provides a platform independent, easy to
+use, interface to the Linux Kernel's syscall filtering mechanism. The
+libseccomp API is designed to abstract away the underlying BPF based
+syscall filter language and present a more conventional function-call
+based filtering interface that should be familiar to, and easily
+adopted by application developers.
+
+Checksecurity - check for changes to setuid programs - command scans
+the mounted files systems (subject to the filter defined in
+/etc/checksecurity.conf) and compares the list of setuid programs  to
+the list created on the previous run. Any changes are printed to
+standard output. Also, it generates a list  of  nfs  and afs
+filesystems that are mounted insecurely (i.e. they are missing the
+nodev and either the noexec or nosuid flags).
+
+Nikto - This tool is very useful if you have a web server running on
+your device. Nikto is a scanner which performs comprehensive tests
+against web servers for potentially dangerous files or CGI's, checks
+for outdated versions of over 1250 servers and version specific
+problems.
+
+And last but not least : Nmap - This famous tool used for network
+discovery and security auditing is very useful for system and network
+administrators. Now, you can monitor anything on the network via your
+embedded device with the usage of this tool.
+
+
+Conclusion
+
+The best way to have a secure embedded device is to "keep it simple".
+That means, if you want to be bulletproof, don't include tools that
+can bring security holes to your device. But when you really need
+those programs, it is best to bring them along with a security
+checking tool that assures you the security you need.
+
+[https://www.yoctoproject.org/blogs/andrei-dinu/2013/meta-security-layer-now-available]
+
+--
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
+
