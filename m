@@ -1,33 +1,33 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f54.google.com (mail-vb0-f54.google.com
-	[209.85.212.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F0ADE013D6
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 01:57:24 -0700 (PDT)
-Received: by mail-vb0-f54.google.com with SMTP id q12so1353607vbe.13
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 01:57:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=RKEsldvFr+n/8VouFF0T5MyxB/mvj39YJHfIknlAZe0=;
-	b=XpZ6c1yyi0Xh/FA/HWdsvBVVxEerz6d8z88OKA0hRwLGNOWAHJ2SvcVT4i/cIGUHH7
-	/AWgi6Wq2ognBSO9TQlG6zQPEnoFeA7SZdeCXA1+s3Qsi/JUKwxARctN/lGazaPvPFPc
-	0I0yJ1Pk5DcdBmlCnBjCscv1G3EgZLKVAoiiT3HI17Cpbb6nloz6Cy1nBPDFrdwiQsxf
-	k9qfMOGxuxw6rXB/4/8ZwaABvFe2S3HByOXizhedQcRb4C6cHIwZwWgnnBaIoPcsXPsb
-	FUI8EVG1j2e5KORwzsA6Jy96BCW+cs+dgqIsCH1faQC4WrRAmzPBiBWE13ZMLWLtiSZu
-	d1Ng==
-X-Received: by 10.220.1.9 with SMTP id 9mr24115710vcd.37.1373619443731; Fri,
-	12 Jul 2013 01:57:23 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f46.google.com (mail-vb0-f46.google.com
+	[209.85.212.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11D79E013D6
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 02:53:36 -0700 (PDT)
+Received: by mail-vb0-f46.google.com with SMTP id 10so1390779vbe.33
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 02:53:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=EU4mxrzxyyFRjp1pNT+aEHtThExEr73ZhNVWJAOQJsU=;
+	b=aHcX64x1TChzf2wGEe/EmZ/OdihIe1eBeZPOjX3wnuTDjQg8LDE7/qJBfOvexvOzPf
+	zlvJOL+pfl7DVi9BomoX59oRO9EBFfW3cmIj7e4BHz4QClnCezNjfhHg+qWNW50EHcvC
+	mMiA88srrsWFzzyuUgXYKVIuqj4t8zIenioLnsra3ZmiuKuThODbBGbEPw7c5tinExhN
+	iraULv07THoVB73nkec5M/yCHLIwJcvhBKKsVmm8UhImWNo1R9/6DE4q5szsxmvUbRoe
+	fH3UUeVU+w2yDzLD+EFtzK1GMbdkySQJLwlxxGndnah3shj4ce4nGDSFjlRa928CspcF
+	8lqw==
+X-Received: by 10.58.181.225 with SMTP id dz1mr23996591vec.95.1373622815733;
+	Fri, 12 Jul 2013 02:53:35 -0700 (PDT)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.195.201 with HTTP; Fri, 12 Jul 2013 01:56:43 -0700 (PDT)
+Received: by 10.220.13.144 with HTTP; Fri, 12 Jul 2013 02:53:15 -0700 (PDT)
 In-Reply-To: <5CD486E4007E48769ED69BB9205D327F@PAULD>
 References: <5CD486E4007E48769ED69BB9205D327F@PAULD>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 12 Jul 2013 09:56:43 +0100
-X-Google-Sender-Auth: GaWf9z8Z6KtMYiqWKWLe3syG_Ho
-Message-ID: <CANyK_8cCMwSxKmaQvRNmuceOxRwXRun7qaAywaa0sbXQ_g5F3A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 12 Jul 2013 10:53:15 +0100
+Message-ID: <CAJTo0LYDLhLtd1gn3-t2vAhNgaWb2+ngQLbFpSjuTdgNBMwNsg@mail.gmail.com>
 To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQmYO80gW1ZeHxDvXoX0RTwuxEktO5k6EtwwRk0v5n74BDnLlmysqLXRb5aS4wH6yq68S8Qa
+Cc: yocto@yoctoproject.org
 Subject: Re: Mount options for removable drives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,8 +40,8 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jul 2013 08:57:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 12 Jul 2013 09:53:37 -0000
+Content-Type: text/plain; charset=UTF-8
 
 On 12 July 2013 09:30, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
 > Can someone point me to the configuration for how removable drives are
@@ -49,17 +49,10 @@ On 12 July 2013 09:30, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
 > but it uses "relatime" and I'd like to use "noatime". I'd also like it to
 > mount in "sync" mode, which I would think would be the default for such a
 > drive, but I've gotten a corrupted FAT when I've yanked the drive.
->
-> This is basically a core-image-base build, modified to use systemd, but I
-> don't see any systemd mount unit that handles it, so it must be some other
-> part of the system.
->
 
-Look in /etc/udev on the image, this is handled by udev.
+As I understand it, the caveat with "sync" is that you do a *lot* more
+writes to the disk which dramatically reduces the lifespan of
+flash-based media.
 
---
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Ross
 
