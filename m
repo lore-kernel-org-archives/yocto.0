@@ -1,30 +1,32 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-spurfowl.atl.sa.earthlink.net
-	(elasmtp-spurfowl.atl.sa.earthlink.net [209.86.89.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05824E0140D
-	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 17:28:38 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=eI19ksDArJp+JHcoD/nw6BcoYvhRAHe45K3gf3vYonEz1mYZZG7d9pi8UEIkfF7E;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-spurfowl.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1UxnhV-0002HK-EA; Fri, 12 Jul 2013 20:28:37 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Paul Barker'" <paul@paulbarker.me.uk>
-References: <5CD486E4007E48769ED69BB9205D327F@PAULD>
-	<CANyK_8cCMwSxKmaQvRNmuceOxRwXRun7qaAywaa0sbXQ_g5F3A@mail.gmail.com>
-In-Reply-To: <CANyK_8cCMwSxKmaQvRNmuceOxRwXRun7qaAywaa0sbXQ_g5F3A@mail.gmail.com>
-Date: Fri, 12 Jul 2013 17:28:35 -0700
-Message-ID: <B2EEEC6F05C0450CBEB0BD24085177C0@PAULD>
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C656DE01445
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 19:30:10 -0700 (PDT)
+Received: by mail-la0-f41.google.com with SMTP id fn20so8304224lab.28
+	for <yocto@yoctoproject.org>; Fri, 12 Jul 2013 19:30:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=7aI4Uut3D6OZ+Fc1mO7FNmb4IiH1Smm2ILe3jIOTuE0=;
+	b=j2lhoKtd0bJtH8upIzyn72lW0Y1CLfHT9Uz7Q1eP70m0UXm4Edv6SVVKgKKwoautVy
+	78nwEnxKXaVX33ZV8qJTE+X4nnrOT+870UKhpZayL9qLXxwi3c5AsrqGJmh6RwheES9J
+	knvqTb+xXyHM2XkXWBd/6qQW8ALWE5213TRfBoMiiNpejftUjEtCRK9pFo4dL8gPgrmF
+	KxPqDM4tbAbW1hM9odkmjBx/evOTDHtG/gteiiF5veSGRi70f8A8VzJ8Qz60RTG21kWW
+	Eal5/4kfY63zgzle7hmL+TWE0InAgxi6ZlFIXe9SddLtB8FBzFZ+/QFmTWLTVyckw/Tx
+	y60w==
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac5+3d67EzxMmgA5SmeyBmkt/qXxNwAgaX8w
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606881a835967660976679188de011ea82528350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Cc: 'Yocto discussion list' <yocto@yoctoproject.org>
-Subject: Re: Mount options for removable drives
+X-Received: by 10.152.27.40 with SMTP id q8mr20505934lag.75.1373682608387;
+	Fri, 12 Jul 2013 19:30:08 -0700 (PDT)
+Received: by 10.112.133.234 with HTTP; Fri, 12 Jul 2013 19:30:08 -0700 (PDT)
+In-Reply-To: <6E525492-7C48-4AE0-8F90-C910E194FD41@keylevel.com>
+References: <6E525492-7C48-4AE0-8F90-C910E194FD41@keylevel.com>
+Date: Fri, 12 Jul 2013 22:30:08 -0400
+Message-ID: <CADkTA4NYXP4O_gGMVkOtZ-xo76vJKRtAz0ZMWSbD21jv+UevRQ@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: CONFIG_HID_APPLE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,40 +38,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Jul 2013 00:28:39 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 13 Jul 2013 02:30:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-> > On 12 July 2013 09:30, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
-> >
-> > Can someone point me to the configuration for how removable 
-> > drives are
-> > mounted? When I plug in a flash drive, it mounts /dev/sdb1 
-> > as /media/sdb1,
-> > but it uses "relatime" and I'd like to use "noatime". I'd 
-> > also like it to
-> > mount in "sync" mode, which I would think would be the 
-> > default for such a
-> > drive, but I've gotten a corrupted FAT when I've yanked the drive.
-> >
-> > This is basically a core-image-base build, modified to use 
-> > systemd, but I
-> > don't see any systemd mount unit that handles it, so it 
-> > must be some other
-> > part of the system.
+On Fri, Jul 12, 2013 at 4:39 PM, Chris Tapp <opensource@keylevel.com> wrote:
+> Can CONFIG_HID_APPLE=m please be added to the kernel defconfigs? Apple keyboards don't work without it.
+>
 
-> From: Paul Barker
-> 
-> Look in /etc/udev on the image, this is handled by udev.
+That's not something that most boards need. So it belongs in a feature
+fragment that can
+be activated via a custom layer (KERNEL_FEATURES), or the entire
+fragment can exist in
+recipe space (via a bbappend).
 
-Thanks. Changing /etc/fstab does bupkis, so I provided my own slightly
-modified version of the mount.sh script in udev-extraconf, and that seems to
-work fine.
+Cheers,
 
--- 
+Bruce
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+
+
+--
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
