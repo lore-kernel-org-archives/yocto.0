@@ -1,54 +1,37 @@
-Return-Path: <Michael.Fainstein@ecitele.com>
-Received: from mail1.bemta3.messagelabs.com (mail1.bemta3.messagelabs.com
-	[195.245.230.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96020E013E8
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2013 08:28:24 -0700 (PDT)
-Received: from [85.158.137.99:16342] by server-15.bemta-3.messagelabs.com id
-	17/7A-03817-61514E15; Mon, 15 Jul 2013 15:28:22 +0000
-X-Env-Sender: Michael.Fainstein@ecitele.com
-X-Msg-Ref: server-13.tower-217.messagelabs.com!1373902100!3372492!1
-X-Originating-IP: [147.234.242.234]
-X-StarScan-Received: 
-X-StarScan-Version: 6.9.9; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 20736 invoked from network); 15 Jul 2013 15:28:21 -0000
-Received: from ilptbmg01-out.ecitele.com (HELO ilptbmg01-out.ecitele.com)
-	(147.234.242.234)
-	by server-13.tower-217.messagelabs.com with DHE-RSA-AES256-SHA
-	encrypted SMTP; 15 Jul 2013 15:28:21 -0000
-X-AuditID: 93eaf2e7-b7fc46d000007ecf-09-51e4151438df
-Received: from ILPTWPVEXCA02.ecitele.com ( [172.31.244.232])
-	by ilptbmg01-out.ecitele.com (Symantec Messaging Gateway) with SMTP id
-	A4.4A.32463.41514E15; Mon, 15 Jul 2013 18:28:20 +0300 (IDT)
-Received: from ILPTWPVEXMB02.ecitele.com ([fe80::5979:ca8d:419f:56df]) by
-	ILPTWPVEXCA02.ecitele.com ([fe80::c473:490d:3a7e:e34a%12]) with mapi id
-	14.03.0123.003; Mon, 15 Jul 2013 18:28:19 +0300
-From: Michael Fainstein <Michael.Fainstein@ecitele.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: MACHINE setting
-Thread-Index: Ac6Bb+0Mz5AWcqNOQBOsKL8XFH0f8w==
-Date: Mon, 15 Jul 2013 15:28:19 +0000
-Message-ID: <62673661A504604B856269DAADA8BC2820C765D5@ILPTWPVEXMB02.ecitele.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.4.62.0]
-MIME-Version: 1.0
-X-CFilter-Loop: Reflected
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrPIsWRmVeSWpSXmKPExsUy+dWnL7oiok8CDRpXalpMermGzYHRo/1E
-	H1sAY1QDo01iXl5+SWJJqkJKanGyrVJAUWZZYnKlkkJmiq2SoZJCQU5icmpual6JrVJiQUFq
-	XoqSHZcCBrABKsvMU0jNS85PycxLt1XyDPbXtbAwtdQ1VLJTUzY0tuYKycgsVkjVzU3MzFHI
-	TS0uTkxPVQCKJGxhzrg2h6/ghGTFz2dHWRoYt4l1MXJySAiYSPzc9pkVwhaTuHBvPVsXIxeH
-	kMBBRomPiz9BOUcZJe4evsoMUsUmYC5xfuF7dhBbRMBU4sWxL2wgtrCAhMTsGa+YIOKyEmtO
-	fGWFsPUkbuz7wghiswioSjR+6QLr5RUIkHi6fhfYTEagzd9PrQHrZRYQl7j1ZD4TxEUCEkv2
-	nGeGsEUlXj7+B3WprMSPF6tZIOrzJebfncwMMVNQ4uTMJywQNZISB1fcYJnAKDwLydhZSFpm
-	IWmBiOtILNj9iQ3C1pZYtvA1M4x95sBjJmTxBYzsqxhFM3MKSpJy0w0M9VKTM0tSc1L1kvNz
-	NzFCUsPzHYy/5qscYgwC+nsisxR3cj4wteSVxBsbGBDJURLnXd4Q7i8kkA5MONmpqQWpRfFF
-	pTmpxYcYmTg4pRoYY17NE87MKAidv/7bv+7ZYY4WqgrMnlsF7nPaCAWX80fr9uTcUzFnuN7c
-	uubG1yX/tlpXpQecuHK7ef+WWg6NO70eFxo/6CdML/6a+3om65fJj1j1Ju90XdLc6FefeUvM
-	V6p++6y6L5dP2rd/2iPW8O20zpnU1QUWhrNYFvmHPX/PF9AfF1emxFKckWioxVxUnAgAUT41
-	DhIDAAA=
-Subject: MACHINE setting
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2E7AE01525
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2013 09:44:53 -0700 (PDT)
+Received: by mail-pd0-f172.google.com with SMTP id z10so10952191pdj.17
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2013 09:44:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=OER0AbjLZ1dYHyXGu6+CV9DGXMzvJ58fF/cBkCsfdpA=;
+	b=hIcJpFu4QFsLNH6G/lvZh8SKcFJhbQGUuddkas15MI7p11GYVLzrxG30a/vwn6/hRs
+	+s39J8eFt/xZ+bn20YqheufVFjADDuKIPY+ZDLxE2uwlxcCrmx2K31NttKvbZeSW8aQJ
+	T0p3NSxkVHJl8xlhqMiS7i91jBmW2kRaWjvkEzOlRyt4UgmFlNg3hFrgx/b70lvuPnS6
+	SLsAWT1SZzumvMFe25L0CbymwFgEsysgZjmR0ruTcM8n2ormBf7dstt2tuAos6zRchTK
+	0C2S03nF0znSqlGr/pm/6lv2EcQyBEE5RO9y5S6krhmdYOuHxx/YTBVcI/s6WjmbH15z
+	WQpw==
+X-Received: by 10.66.118.227 with SMTP id kp3mr54926026pab.190.1373906692919; 
+	Mon, 15 Jul 2013 09:44:52 -0700 (PDT)
+Received: from ddeviny-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	pv5sm60663361pac.14.2013.07.15.09.44.50 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 15 Jul 2013 09:44:52 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <62673661A504604B856269DAADA8BC2820C765D5@ILPTWPVEXMB02.ecitele.com>
+Date: Mon, 15 Jul 2013 09:44:55 -0700
+Message-Id: <38FB7F71-DE66-4034-A905-6E803914E9FE@gmail.com>
+References: <62673661A504604B856269DAADA8BC2820C765D5@ILPTWPVEXMB02.ecitele.com>
+To: Michael Fainstein <Michael.Fainstein@ecitele.com>
+X-Mailer: Apple Mail (2.1508)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: MACHINE setting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,112 +43,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jul 2013 15:28:26 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 15 Jul 2013 16:44:53 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_62673661A504604B856269DAADA8BC2820C765D5ILPTWPVEXMB02ec_"
+	boundary="Apple-Mail=_883A7549-3394-46B5-B0DE-4A2F45A5DAE8"
 
---_000_62673661A504604B856269DAADA8BC2820C765D5ILPTWPVEXMB02ec_
-Content-Type: text/plain; charset="us-ascii"
-content-transfer-encoding: quoted-printable
-
-Hi,
-
-I have several similar boards with different PPC CPUs.
-How can I build packages for different MACHINEs without changing local.conf?
-I tried setting MACHINE and/or MACHINEOVERRIDES in my recipe that lists all=
- my other recipes in DEPENDS. However, MACHINE setting affected only the mai=
-n recipe, all other packages were built according to MACHINE in local.conf.
-
-What am I missing?
-
-Thanks,
-Michael F.
+--Apple-Mail=_883A7549-3394-46B5-B0DE-4A2F45A5DAE8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=windows-1252
 
 
-This e-mail message is intended for the recipient only and contains informat=
-ion which is CONFIDENTIAL and which may be proprietary to ECI Telecom. If yo=
-u have received this transmission in error, please inform us by e-mail, phon=
-e or fax, and then delete the original and all copies thereof.
+On Jul 15, 2013, at 8:28 AM, Michael Fainstein =
+<Michael.Fainstein@ecitele.com> wrote:
+
+> Hi,
+> =20
+> I have several similar boards with different PPC CPUs.
+> How can I build packages for different MACHINEs without changing =
+local.conf?
+> I tried setting MACHINE and/or MACHINEOVERRIDES in my recipe that =
+lists all my other recipes in DEPENDS. However, MACHINE setting affected =
+only the main recipe, all other packages were built according to MACHINE =
+in local.conf.
+> =20
+> What am I missing?
+
+you have to set it in env e.g
+
+MACHINE=3Dx bitbake <image>
+MACHINE=3Dy bitbake <image>
+=85.
+
+> =20
+> Thanks,
+> Michael F.
+> This e-mail message is intended for the recipient only and contains =
+information which is CONFIDENTIAL and which may be proprietary to ECI =
+Telecom. If you have received this transmission in error, please inform =
+us by e-mail, phone or fax, and then delete the original and all copies =
+thereof.
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
---_000_62673661A504604B856269DAADA8BC2820C765D5ILPTWPVEXMB02ec_
-Content-Type: text/html; charset="us-ascii"
-content-transfer-encoding: quoted-printable
+--Apple-Mail=_883A7549-3394-46B5-B0DE-4A2F45A5DAE8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=windows-1252
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micro=
-soft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" xm=
-lns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://w=
-ww.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have several similar boards with different PPC CPUs=
-.<o:p></o:p></p>
-<p class=3D"MsoNormal">How can I build packages for different MACHINEs witho=
-ut changing local.conf?
-<o:p></o:p></p>
-<p class=3D"MsoNormal">I tried setting MACHINE and/or MACHINEOVERRIDES in my=
- recipe that lists all my other recipes in DEPENDS. However, MACHINE setting=
- affected only the main recipe, all other packages were built according to M=
-ACHINE in local.conf.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What am I missing?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Michael F.<o:p></o:p></p>
-</div>
-<p>
-This e-mail message is intended for the recipient only and contains informat=
-ion which is CONFIDENTIAL and which may be proprietary to ECI Telecom. If yo=
-u have received this transmission in error, please inform us by e-mail, phon=
-e or fax, and then delete the original and all copies thereof.
-</p>
-</body>
-</html>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dwindows-1252"><base href=3D"x-msg://570/"></head><body =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; "><br><div><div>On Jul 15, 2013, =
+at 8:28 AM, Michael Fainstein &lt;<a =
+href=3D"mailto:Michael.Fainstein@ecitele.com">Michael.Fainstein@ecitele.co=
+m</a>&gt; wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div lang=3D"EN-US" link=3D"blue" vlink=3D"purple" =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div class=3D"WordSection1" style=3D"page: WordSection1; "><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; ">Hi,<o:p></o:p></div><div style=3D"margin: 0cm 0cm =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif; =
+"><o:p>&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif; ">I have several =
+similar boards with different PPC CPUs.<o:p></o:p></div><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; ">How can I build packages for different MACHINEs =
+without changing local.conf?<o:p></o:p></div><div style=3D"margin: 0cm =
+0cm 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif; ">I =
+tried setting MACHINE and/or MACHINEOVERRIDES in my recipe that lists =
+all my other recipes in DEPENDS. However, MACHINE setting affected only =
+the main recipe, all other packages were built according to MACHINE in =
+local.conf.<o:p></o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif; =
+"><o:p>&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif; ">What am I =
+missing?</div></div></div></blockquote><div><br></div><div>you have to =
+set it in env e.g</div><div><br></div><div>MACHINE=3Dx bitbake =
+&lt;image&gt;</div><div>MACHINE=3Dy bitbake =
+&lt;image&gt;</div><div>=85.</div><br><blockquote type=3D"cite"><div =
+lang=3D"EN-US" link=3D"blue" vlink=3D"purple" style=3D"font-family: =
+Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><div =
+class=3D"WordSection1" style=3D"page: WordSection1; "><div =
+style=3D"margin: 0cm 0cm 0.0001pt; font-size: 11pt; font-family: =
+Calibri, sans-serif; "><o:p></o:p></div><div style=3D"margin: 0cm 0cm =
+0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif; =
+"><o:p>&nbsp;</o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif; =
+">Thanks,<o:p></o:p></div><div style=3D"margin: 0cm 0cm 0.0001pt; =
+font-size: 11pt; font-family: Calibri, sans-serif; ">Michael =
+F.<o:p></o:p></div></div><p>This e-mail message is intended for the =
+recipient only and contains information which is CONFIDENTIAL and which =
+may be proprietary to ECI Telecom. If you have received this =
+transmission in error, please inform us by e-mail, phone or fax, and =
+then delete the original and all copies =
+thereof.</p>_______________________________________________<br>yocto =
+mailing list<br><a href=3D"mailto:yocto@yoctoproject.org" style=3D"color: =
+purple; text-decoration: underline; ">yocto@yoctoproject.org</a><br><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
+purple; text-decoration: underline; =
+">https://lists.yoctoproject.org/listinfo/yocto</a><br></div></blockquote>=
+</div><br></body></html>=
 
---_000_62673661A504604B856269DAADA8BC2820C765D5ILPTWPVEXMB02ec_--
+--Apple-Mail=_883A7549-3394-46B5-B0DE-4A2F45A5DAE8--
