@@ -1,25 +1,28 @@
-Return-Path: <Lee_Ballard@Dell.com>
-Received: from ausc60ps301.us.dell.com (ausc60ps301.us.dell.com
-	[143.166.148.206])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B10DE013B0
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:27:58 -0700 (PDT)
-X-LoopCount0: from 10.175.216.250
-X-IronPort-AV: E=Sophos;i="4.89,677,1367989200"; 
-	d="scan'208,217";a="198173577"
-From: <Lee_Ballard@Dell.com>
-To: <Amit.Kumar@lntinfotech.com>, <yocto@yoctoproject.org>
-Date: Tue, 16 Jul 2013 09:27:57 -0500
-Thread-Topic: Regarding offline build
-Thread-Index: Ac6CFkymgRXO6FWXTG2mk09tVJ4OrgAGflMg
-Message-ID: <6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8@AUSX7MCPC110.AMER.DELL.COM>
-References: <AF0985D076EB244693F2CCD71AAB10BC2C5E364AEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
-In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C5E364AEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D7F3E013B0
+	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:47:04 -0700 (PDT)
+Received: by mail-ea0-f176.google.com with SMTP id z15so431623ead.35
+	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:47:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=SOFnxg48rxFSc8rsFQbiHKufQOJ74gEUJ5EyzJ6os4w=;
+	b=QpoLPdu+uCkxSRHjWbEThAjpMCrFc6pamPzrJfdgcaIjRRdrl09taQLLegj4kdZ3jg
+	9IkZzbX3JIp+koazIh6Xb7jXdmlZaRRVQn5MHR6M98TdqiRPfaLN1Wg5U4QU/XhzRRia
+	sKunvD2lmOkICksPrLXJrgMe8Zt2Dvj24gZndO5cB4cnSFQg5u6lbJv6Cp7PA62RJwtS
+	HZWTvg4caHqcKRml+Q5GdUm88+KYd6nT9oI5h+aIoUoMFaRdPa5UZB42Ckc2S+JQS+oJ
+	uSPtGjkzKxTmzGFcSOslgG8Nd94FpIJNV1FdptZEQgJJ3lMV7c+qHzBBD9rkwkdMoeWT
+	GCFQ==
 MIME-Version: 1.0
-Subject: Re: Regarding offline build
+X-Received: by 10.14.0.131 with SMTP id 3mr1882723eeb.98.1373986023352; Tue,
+	16 Jul 2013 07:47:03 -0700 (PDT)
+Received: by 10.223.74.139 with HTTP; Tue, 16 Jul 2013 07:47:03 -0700 (PDT)
+Date: Tue, 16 Jul 2013 08:47:03 -0600
+Message-ID: <CANwz6nzHiBrXscuZS2Y1xXUThiwyo4AT7bD90VfVsh=Lt_cfLQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: zedboard & gnuradio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,181 +34,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 14:28:00 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_"
+X-List-Received-Date: Tue, 16 Jul 2013 14:47:05 -0000
+Content-Type: multipart/alternative; boundary=047d7b6042bed94b1404e1a20cf1
 
---_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_
-Content-Type: text/plain; charset="us-ascii"
+--047d7b6042bed94b1404e1a20cf1
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+Any and all help will be appreciated.
+testing not having to revert back to boost-1.53.0 The new pull of poky,
+meta-oe, boost-1.54.0 compiled okay.
+pull on 07/16/13 of all meta_data_from_remotes
+cd POKY/build071613_zedboard/
+cp -R ~/POKY/meta_data_from_remotes/poky/ .
+cd poky/
+cp -R ~/POKY/meta_data_from_remotes/meta-oe/ .
+cp -R ~/POKY/meta_data_from_remotes/meta-xilinx/ .
+p -R ~/POKY/meta_data_from_remotes/meta-java .
+. oe-init-build-env
+cp ~/POKY/build071613_zedboard/local.conf conf/
+cp ~/POKY/build071613_zedboard/bblayers.conf conf/
+cp ../../core-image-minimal-ex.bb ../meta/recipes-core/images/
+/home/vidal/POKY/poky/patch_sato_gnuplot
+MACHINE=zedboard bitbake core-image-minimal-ex 4333 tasks
+Build Configuration:
+BB_VERSION        = "1.19.1"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "zedboard"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4+snapshot-20130716"
+TUNE_FEATURES     = " armv7a vfp neon zynq"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "master:3dee534f1e25109e0bdb681de0746c336f4b8840"
+meta-xilinx
+meta-kc705
+meta-zc702
+meta-zedboard     = "master:46f4c79d6d55b556a90bb0fd89c2c09acf2aebff"
+meta-oe           = "master:c383d6230942bb1558cee02764bced09031cb70f"
+meta-java         = "master:59696d89fd33df6953dcb2dd54ccd3b362513f28"
+meta-yocto-bsp    = "master:3dee534f1e25109e0bdb681de0746c336f4b8840"
+WARNING: QA Issue: Found library in wrong location:
+/usr/bin/qt4/examples/tools/plugandpaint/plugins/libpnp_extrafilters.so
+Found library in wrong location:
+/usr/bin/qt4/examples/tools/plugandpaint/plugins/.debug/libpnp_extrafilters.so
+Found library in wrong location:
+/usr/bin/qt4/examples/tools/styleplugin/styles/libsimplestyleplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/tools/styleplugin/styles/.debug/libsimplestyleplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/tools/echoplugin/plugin/libechoplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/tools/echoplugin/plugin/.debug/libechoplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/qwidgets/QWidgets/libqmlqwidgetsplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/qwidgets/QWidgets/.debug/libqmlqwidgetsplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/plugins/libqmlqwidgetsplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/plugins/.debug/libqmlqwidgetsplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/plugins/com/nokia/TimeExample/libqmlqtimeexampleplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/plugins/com/nokia/TimeExample/.debug/libqmlqtimeexampleplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/imageprovider/ImageProviderCore/libqmlimageproviderplugin.so
+Found library in wrong location:
+/usr/bin/qt4/examples/declarative/cppextensions/imageprovider/ImageProviderCore/.debug/libqmlimageproviderplugin.so
+
+
+ERROR: QA Issue: File '/usr/plugins/designer/libqwt_designer_plugin.so'
+from qwt was already stripped, this will prevent future debugging!
+ERROR: QA Issue: File '/usr/lib/libqwt.so.6.0.1' from qwt was already
+stripped, this will prevent future debugging!
+ERROR: QA Issue: File '/usr/lib/libqwtmathml.so.6.0.1' from qwt was already
+stripped, this will prevent future debugging!
+WARNING: QA Issue: Found library in wrong location:
+/usr/plugins/designer/libqwt_designer_plugin.so
+ERROR: QA run found fatal errors. Please consider fixing them.
+ERROR: Function failed: do_package_qa
+ERROR: Logfile of failure stored in:
+/home/vidal/POKY/build071613_zedboard/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/qwt/6.0.1-r1/temp/log.do_package.27159
+ERROR: Task 1126
+(/home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-oe/recipes-qt/qwt/
+qwt_6.0.1.bb, do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 4315 tasks of which 368 didn't need to be
+rerun and 1 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 1 task failed:
+  /home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-oe/recipes-qt/qwt/
+qwt_6.0.1.bb, do_package
+Summary: There were 5 WARNING messages shown.
+Summary: There were 5 ERROR messages shown, returning a non-zero exit code.
+I will be looking where the qt libs need to be installed.
+
+Thanks
+
+--047d7b6042bed94b1404e1a20cf1
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-We do offline builds.  You need to download all the tar balls for all the o=
-pen source recipes you build, or you can download pre-build images and SDK.=
-  Another way is to create a local mirror of all the tar balls you need.
+<div dir=3D"ltr"><div>Hello,<br>Any and all help will be appreciated.<br>te=
+sting not having to revert back to boost-1.53.0 The new pull of poky, meta-=
+oe, boost-1.54.0 compiled okay. <br>pull on 07/16/13 of all meta_data_from_=
+remotes<br>
+cd POKY/build071613_zedboard/<br>cp -R ~/POKY/meta_data_from_remotes/poky/ =
+.<br>cd poky/<br>cp -R ~/POKY/meta_data_from_remotes/meta-oe/ .<br>cp -R ~/=
+POKY/meta_data_from_remotes/meta-xilinx/ .<br>p -R ~/POKY/meta_data_from_re=
+motes/meta-java .<br>
+. oe-init-build-env <br>cp ~/POKY/build071613_zedboard/local.conf conf/<br>=
+cp ~/POKY/build071613_zedboard/bblayers.conf conf/<br>cp ../../<a href=3D"h=
+ttp://core-image-minimal-ex.bb">core-image-minimal-ex.bb</a> ../meta/recipe=
+s-core/images/<br>
+/home/vidal/POKY/poky/patch_sato_gnuplot<br>MACHINE=3Dzedboard bitbake core=
+-image-minimal-ex 4333 tasks<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=
+=A0=A0=A0=A0 =3D &quot;1.19.1&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =
+=3D &quot;x86_64-linux&quot;<br>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&q=
+uot;<br>
+TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>M=
+ACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;zedboard&quot;<br>DISTRO=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=A0=
+=A0 =3D &quot;1.4+snapshot-20130716&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D =
+&quot; armv7a vfp neon zynq&quot;<br>
+TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
+t;master:3dee534f1e25109e0bdb681de0746c336f4b8840&quot;<br>meta-xilinx=A0=
+=A0=A0=A0=A0=A0 <br>meta-kc705=A0=A0=A0=A0=A0=A0=A0 <br>meta-zc702=A0=A0=A0=
+=A0=A0=A0=A0 <br>meta-zedboard=A0=A0=A0=A0 =3D &quot;master:46f4c79d6d55b55=
+6a90bb0fd89c2c09acf2aebff&quot;<br>
+meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:c383d6230942bb1558ce=
+e02764bced09031cb70f&quot;<br>meta-java=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;m=
+aster:59696d89fd33df6953dcb2dd54ccd3b362513f28&quot;<br>meta-yocto-bsp=A0=
+=A0=A0 =3D &quot;master:3dee534f1e25109e0bdb681de0746c336f4b8840&quot;<br>
+WARNING: QA Issue: Found library in wrong location: /usr/bin/qt4/examples/t=
+ools/plugandpaint/plugins/libpnp_extrafilters.so<br>Found library in wrong =
+location: /usr/bin/qt4/examples/tools/plugandpaint/plugins/.debug/libpnp_ex=
+trafilters.so<br>
+Found library in wrong location: /usr/bin/qt4/examples/tools/styleplugin/st=
+yles/libsimplestyleplugin.so<br>Found library in wrong location: /usr/bin/q=
+t4/examples/tools/styleplugin/styles/.debug/libsimplestyleplugin.so<br>
+Found library in wrong location: /usr/bin/qt4/examples/tools/echoplugin/plu=
+gin/libechoplugin.so<br>Found library in wrong location: /usr/bin/qt4/examp=
+les/tools/echoplugin/plugin/.debug/libechoplugin.so<br>Found library in wro=
+ng location: /usr/bin/qt4/examples/declarative/cppextensions/qwidgets/QWidg=
+ets/libqmlqwidgetsplugin.so<br>
+Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
+sions/qwidgets/QWidgets/.debug/libqmlqwidgetsplugin.so<br>Found library in =
+wrong location: /usr/bin/qt4/examples/declarative/cppextensions/plugins/lib=
+qmlqwidgetsplugin.so<br>
+Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
+sions/plugins/.debug/libqmlqwidgetsplugin.so<br>Found library in wrong loca=
+tion: /usr/bin/qt4/examples/declarative/cppextensions/plugins/com/nokia/Tim=
+eExample/libqmlqtimeexampleplugin.so<br>
+Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
+sions/plugins/com/nokia/TimeExample/.debug/libqmlqtimeexampleplugin.so<br>F=
+ound library in wrong location: /usr/bin/qt4/examples/declarative/cppextens=
+ions/imageprovider/ImageProviderCore/libqmlimageproviderplugin.so<br>
+Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
+sions/imageprovider/ImageProviderCore/.debug/libqmlimageproviderplugin.so<b=
+r><br><br>ERROR: QA Issue: File &#39;/usr/plugins/designer/libqwt_designer_=
+plugin.so&#39; from qwt was already stripped, this will prevent future debu=
+gging!<br>
+ERROR: QA Issue: File &#39;/usr/lib/libqwt.so.6.0.1&#39; from qwt was alrea=
+dy stripped, this will prevent future debugging!<br>ERROR: QA Issue: File &=
+#39;/usr/lib/libqwtmathml.so.6.0.1&#39; from qwt was already stripped, this=
+ will prevent future debugging!<br>
+WARNING: QA Issue: Found library in wrong location: /usr/plugins/designer/l=
+ibqwt_designer_plugin.so<br>ERROR: QA run found fatal errors. Please consid=
+er fixing them.<br>ERROR: Function failed: do_package_qa<br>ERROR: Logfile =
+of failure stored in: /home/vidal/POKY/build071613_zedboard/poky/build/tmp/=
+work/armv7a-vfp-neon-poky-linux-gnueabi/qwt/6.0.1-r1/temp/log.do_package.27=
+159<br>
+ERROR: Task 1126 (/home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-o=
+e/recipes-qt/qwt/<a href=3D"http://qwt_6.0.1.bb">qwt_6.0.1.bb</a>, do_packa=
+ge) failed with exit code &#39;1&#39;<br>NOTE: Tasks Summary: Attempted 431=
+5 tasks of which 368 didn&#39;t need to be rerun and 1 failed.<br>
+Waiting for 0 running tasks to finish:<br><br>Summary: 1 task failed:<br>=
+=A0 /home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-oe/recipes-qt/q=
+wt/<a href=3D"http://qwt_6.0.1.bb">qwt_6.0.1.bb</a>, do_package<br>Summary:=
+ There were 5 WARNING messages shown.<br>
+Summary: There were 5 ERROR messages shown, returning a non-zero exit code.=
+<br></div><div>I will be looking where the qt libs need to be installed.<br=
+><br></div>Thanks<br></div>
 
-Lee Ballard
-Platform Software Principal Engineer
-Dell | Enterprise Product Group
-
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Amit Kumar
-Sent: Tuesday, July 16, 2013 6:22 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Regarding offline build
-
-Hi,
-            I have quarry regarding the Yocto Project build offline.
-Is that possible to build the Yocto Project with internet access?
-I have download the poky-<latest>.tar.bz2, now I wants to build it independ=
-ently without having internet connection.
-Do I need to download any other packages also to build it offline?
-
-
-
-Thanks & Regards
-Amit K
-
-________________________________
-The contents of this e-mail and any attachment(s) may contain confidential =
-or privileged information for the intended recipient(s). Unintended recipie=
-nts are prohibited from taking action on the basis of information in this e=
--mail and using or disseminating the information, and must notify the sende=
-r and delete it from their system. L&T Infotech will not accept responsibil=
-ity or liability for the accuracy or completeness of, or the presence of an=
-y virus or disabling code in this e-mail"
-
---_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; charset=
-=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 (filtered =
-medium)"><!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Trebuchet MS";
-	panose-1:2 11 6 3 2 2 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Trebuchet MS","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'c=
-olor:#1F497D'>We do offline builds.&nbsp; You need to download all the tar =
-balls for all the open source recipes you build, or you can download pre-bu=
-ild images and SDK.&nbsp; Another way is to create a local mirror of all th=
-e tar balls you need.<o:p></o:p></span></p><p class=3DMsoNormal><span style=
-=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><spa=
-n style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#=
-444444'>Lee Ballard<o:p></o:p></span></b></p><p class=3DMsoNormal><span sty=
-le=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-serif";color:#444444=
-'>Platform Software Principal Engineer <o:p></o:p></span></p><p class=3DMso=
-Normal><b><span style=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-s=
-erif";color:#0085C3'>Dell</span></b><span style=3D'font-size:8.0pt;font-fam=
-ily:"Trebuchet MS","sans-serif";color:#444444'> | </span><span style=3D'fon=
-t-size:10.0pt;color:#1F497D'>Enterprise Product Group</span><b><span style=
-=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-serif";color:#444444'>=
- <o:p></o:p></span></b></p><p class=3DMsoNormal><span style=3D'color:#1F497=
-D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'color:#1=
-F497D'><o:p>&nbsp;</o:p></span></p><div><div style=3D'border:none;border-to=
-p:solid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><s=
-pan style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</spa=
-n></b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> y=
-octo-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>On=
- Behalf Of </b>Amit Kumar<br><b>Sent:</b> Tuesday, July 16, 2013 6:22 AM<br=
-><b>To:</b> yocto@yoctoproject.org<br><b>Subject:</b> [yocto] Regarding off=
-line build<o:p></o:p></span></p></div></div><p class=3DMsoNormal><o:p>&nbsp=
-;</o:p></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family=
-:"Trebuchet MS","sans-serif"'>Hi,<o:p></o:p></span></p><p class=3DMsoNormal=
-><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have qu=
-arry regarding the Yocto Project build offline. <o:p></o:p></span></p><p cl=
-ass=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS",=
-"sans-serif"'>Is that possible to build the Yocto Project with internet acc=
-ess?<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.=
-0pt;font-family:"Trebuchet MS","sans-serif"'>I have download the poky-&lt;l=
-atest&gt;.tar.bz2, now I wants to build it independently without having int=
-ernet connection.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'=
-font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>Do I need to down=
-load any other packages also to build it offline?<o:p></o:p></span></p><p c=
-lass=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS"=
-,"sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=
-=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'><o:p>&nbsp;</=
-o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-fa=
-mily:"Trebuchet MS","sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMs=
-oNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-se=
-rif"'>Thanks &amp; Regards<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>Amit K<o=
-:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:12.0pt;fo=
-nt-family:"Times New Roman","serif"'><o:p>&nbsp;</o:p></span></p><div class=
-=3DMsoNormal align=3Dcenter style=3D'text-align:center'><span style=3D'font=
--size:12.0pt;font-family:"Times New Roman","serif"'><hr size=3D2 width=3D"1=
-00%" align=3Dcenter></span></div><p class=3DMsoNormal><span style=3D'font-s=
-ize:12.0pt;font-family:"Arial","sans-serif";color:black'>The contents of th=
-is e-mail and any attachment(s) may contain confidential or privileged info=
-rmation for the intended recipient(s). Unintended recipients are prohibited=
- from taking action on the basis of information in this e-mail and using or=
- disseminating the information, and must notify the sender and delete it fr=
-om their system. L&amp;T Infotech will not accept responsibility or liabili=
-ty for the accuracy or completeness of, or the presence of any virus or dis=
-abling code in this e-mail&quot;</span><span style=3D'font-size:12.0pt;font=
--family:"Times New Roman","serif"'><o:p></o:p></span></p></div></body></htm=
-l>=
-
---_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_--
+--047d7b6042bed94b1404e1a20cf1--
