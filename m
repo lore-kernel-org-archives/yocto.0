@@ -1,28 +1,40 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D7F3E013B0
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:47:04 -0700 (PDT)
-Received: by mail-ea0-f176.google.com with SMTP id z15so431623ead.35
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:47:03 -0700 (PDT)
+Return-Path: <rjiejie@gmail.com>
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50286E0071F;
+	Tue, 16 Jul 2013 08:32:46 -0700 (PDT)
+Received: by mail-pd0-f171.google.com with SMTP id y14so794376pdi.2
+	for <multiple recipients>; Tue, 16 Jul 2013 08:32:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=SOFnxg48rxFSc8rsFQbiHKufQOJ74gEUJ5EyzJ6os4w=;
-	b=QpoLPdu+uCkxSRHjWbEThAjpMCrFc6pamPzrJfdgcaIjRRdrl09taQLLegj4kdZ3jg
-	9IkZzbX3JIp+koazIh6Xb7jXdmlZaRRVQn5MHR6M98TdqiRPfaLN1Wg5U4QU/XhzRRia
-	sKunvD2lmOkICksPrLXJrgMe8Zt2Dvj24gZndO5cB4cnSFQg5u6lbJv6Cp7PA62RJwtS
-	HZWTvg4caHqcKRml+Q5GdUm88+KYd6nT9oI5h+aIoUoMFaRdPa5UZB42Ckc2S+JQS+oJ
-	uSPtGjkzKxTmzGFcSOslgG8Nd94FpIJNV1FdptZEQgJJ3lMV7c+qHzBBD9rkwkdMoeWT
-	GCFQ==
+	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
+	:mime-version:content-type;
+	bh=iUL7cp++jgqLkQzJ8yXkHH5Ps8Sn200F0wRNucPwqFU=;
+	b=jkWo88Bg1z1aDBm1UZ3iQEV6OE/+F4VQFbgdWk5tIple7dyzjxA2BwFlXPnPnoKGEC
+	FfOT7u9PD6d0fpOMTlXZiG45Q7IaXxLacBrZyaiWxQokCEV4h1Y30E6+3HXx2N2C49Zc
+	jVLjWtIUirrAkJRC0AWYA6GanHpeSABiOw3yInGBrBbdqycHTQo8eHJwzlbv02QBeqLf
+	+BRiGZrogfKTQdlvfUrpBK3jvkJtSLSphj79IgGkyMIwZ2pL3SgStDr9egrATGJUTO9F
+	CXBnTKdnJopVvKse8oskjwsG4orQyeGyZJBANKFfFg4Y0efsYI1JA1RMBdNHtSXqAlih
+	x4tg==
+X-Received: by 10.66.122.67 with SMTP id lq3mr3179418pab.147.1373988766232;
+	Tue, 16 Jul 2013 08:32:46 -0700 (PDT)
+Received: from [192.168.1.104] ([115.199.240.44])
+	by mx.google.com with ESMTPSA id kc8sm2580393pbc.18.2013.07.16.08.32.36
+	for <multiple recipients>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Tue, 16 Jul 2013 08:32:45 -0700 (PDT)
+Date: Tue, 16 Jul 2013 23:32:27 +0800
+From: jojo <rjiejie@gmail.com>
+To: =?utf-8?Q?Erik_Bot=C3=B6?= <erik.boto@pelagicore.com>
+Message-ID: <8AFAD819783F4C2CB04F1D5A9CA05C48@gmail.com>
+In-Reply-To: <CA+AhUGxEebNBYp64mBh3TbCrn2_n4GDsi1KB3O_Tk0mpwj7jMQ@mail.gmail.com>
+References: <666645F4EAA9483CB526943CA6FA6428@gmail.com>
+	<CA+AhUGxEebNBYp64mBh3TbCrn2_n4GDsi1KB3O_Tk0mpwj7jMQ@mail.gmail.com>
+X-Mailer: sparrow 1.6.4 (build 1176)
 MIME-Version: 1.0
-X-Received: by 10.14.0.131 with SMTP id 3mr1882723eeb.98.1373986023352; Tue,
-	16 Jul 2013 07:47:03 -0700 (PDT)
-Received: by 10.223.74.139 with HTTP; Tue, 16 Jul 2013 07:47:03 -0700 (PDT)
-Date: Tue, 16 Jul 2013 08:47:03 -0600
-Message-ID: <CANwz6nzHiBrXscuZS2Y1xXUThiwyo4AT7bD90VfVsh=Lt_cfLQ@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: zedboard & gnuradio
+Cc: "=?utf-8?Q?meta-freescale=40yoctoproject.org?="
+	<meta-freescale@yoctoproject.org>,
+	"=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Subject: =?UTF-8?B?5Zue5aSN77yaIG1ldGEtZnJlZXNjYWxlXSBob3cgdG8gaW5zdGFsbCBwdWxzZWF1ZGlvIGNvbXBsZXRlbHk=?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,191 +46,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 14:47:05 -0000
-Content-Type: multipart/alternative; boundary=047d7b6042bed94b1404e1a20cf1
+X-List-Received-Date: Tue, 16 Jul 2013 15:32:47 -0000
+Content-Type: multipart/alternative; boundary="51e5678b_6ceaf087_1dc7"
 
---047d7b6042bed94b1404e1a20cf1
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-Any and all help will be appreciated.
-testing not having to revert back to boost-1.53.0 The new pull of poky,
-meta-oe, boost-1.54.0 compiled okay.
-pull on 07/16/13 of all meta_data_from_remotes
-cd POKY/build071613_zedboard/
-cp -R ~/POKY/meta_data_from_remotes/poky/ .
-cd poky/
-cp -R ~/POKY/meta_data_from_remotes/meta-oe/ .
-cp -R ~/POKY/meta_data_from_remotes/meta-xilinx/ .
-p -R ~/POKY/meta_data_from_remotes/meta-java .
-. oe-init-build-env
-cp ~/POKY/build071613_zedboard/local.conf conf/
-cp ~/POKY/build071613_zedboard/bblayers.conf conf/
-cp ../../core-image-minimal-ex.bb ../meta/recipes-core/images/
-/home/vidal/POKY/poky/patch_sato_gnuplot
-MACHINE=zedboard bitbake core-image-minimal-ex 4333 tasks
-Build Configuration:
-BB_VERSION        = "1.19.1"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Fedora-18"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "zedboard"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.4+snapshot-20130716"
-TUNE_FEATURES     = " armv7a vfp neon zynq"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto        = "master:3dee534f1e25109e0bdb681de0746c336f4b8840"
-meta-xilinx
-meta-kc705
-meta-zc702
-meta-zedboard     = "master:46f4c79d6d55b556a90bb0fd89c2c09acf2aebff"
-meta-oe           = "master:c383d6230942bb1558cee02764bced09031cb70f"
-meta-java         = "master:59696d89fd33df6953dcb2dd54ccd3b362513f28"
-meta-yocto-bsp    = "master:3dee534f1e25109e0bdb681de0746c336f4b8840"
-WARNING: QA Issue: Found library in wrong location:
-/usr/bin/qt4/examples/tools/plugandpaint/plugins/libpnp_extrafilters.so
-Found library in wrong location:
-/usr/bin/qt4/examples/tools/plugandpaint/plugins/.debug/libpnp_extrafilters.so
-Found library in wrong location:
-/usr/bin/qt4/examples/tools/styleplugin/styles/libsimplestyleplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/tools/styleplugin/styles/.debug/libsimplestyleplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/tools/echoplugin/plugin/libechoplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/tools/echoplugin/plugin/.debug/libechoplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/qwidgets/QWidgets/libqmlqwidgetsplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/qwidgets/QWidgets/.debug/libqmlqwidgetsplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/plugins/libqmlqwidgetsplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/plugins/.debug/libqmlqwidgetsplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/plugins/com/nokia/TimeExample/libqmlqtimeexampleplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/plugins/com/nokia/TimeExample/.debug/libqmlqtimeexampleplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/imageprovider/ImageProviderCore/libqmlimageproviderplugin.so
-Found library in wrong location:
-/usr/bin/qt4/examples/declarative/cppextensions/imageprovider/ImageProviderCore/.debug/libqmlimageproviderplugin.so
-
-
-ERROR: QA Issue: File '/usr/plugins/designer/libqwt_designer_plugin.so'
-from qwt was already stripped, this will prevent future debugging!
-ERROR: QA Issue: File '/usr/lib/libqwt.so.6.0.1' from qwt was already
-stripped, this will prevent future debugging!
-ERROR: QA Issue: File '/usr/lib/libqwtmathml.so.6.0.1' from qwt was already
-stripped, this will prevent future debugging!
-WARNING: QA Issue: Found library in wrong location:
-/usr/plugins/designer/libqwt_designer_plugin.so
-ERROR: QA run found fatal errors. Please consider fixing them.
-ERROR: Function failed: do_package_qa
-ERROR: Logfile of failure stored in:
-/home/vidal/POKY/build071613_zedboard/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/qwt/6.0.1-r1/temp/log.do_package.27159
-ERROR: Task 1126
-(/home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-oe/recipes-qt/qwt/
-qwt_6.0.1.bb, do_package) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4315 tasks of which 368 didn't need to be
-rerun and 1 failed.
-Waiting for 0 running tasks to finish:
-
-Summary: 1 task failed:
-  /home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-oe/recipes-qt/qwt/
-qwt_6.0.1.bb, do_package
-Summary: There were 5 WARNING messages shown.
-Summary: There were 5 ERROR messages shown, returning a non-zero exit code.
-I will be looking where the qt libs need to be installed.
-
-Thanks
-
---047d7b6042bed94b1404e1a20cf1
-Content-Type: text/html; charset=ISO-8859-1
+--51e5678b_6ceaf087_1dc7
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-<div dir=3D"ltr"><div>Hello,<br>Any and all help will be appreciated.<br>te=
-sting not having to revert back to boost-1.53.0 The new pull of poky, meta-=
-oe, boost-1.54.0 compiled okay. <br>pull on 07/16/13 of all meta_data_from_=
-remotes<br>
-cd POKY/build071613_zedboard/<br>cp -R ~/POKY/meta_data_from_remotes/poky/ =
-.<br>cd poky/<br>cp -R ~/POKY/meta_data_from_remotes/meta-oe/ .<br>cp -R ~/=
-POKY/meta_data_from_remotes/meta-xilinx/ .<br>p -R ~/POKY/meta_data_from_re=
-motes/meta-java .<br>
-. oe-init-build-env <br>cp ~/POKY/build071613_zedboard/local.conf conf/<br>=
-cp ~/POKY/build071613_zedboard/bblayers.conf conf/<br>cp ../../<a href=3D"h=
-ttp://core-image-minimal-ex.bb">core-image-minimal-ex.bb</a> ../meta/recipe=
-s-core/images/<br>
-/home/vidal/POKY/poky/patch_sato_gnuplot<br>MACHINE=3Dzedboard bitbake core=
--image-minimal-ex 4333 tasks<br>Build Configuration:<br>BB_VERSION=A0=A0=A0=
-=A0=A0=A0=A0 =3D &quot;1.19.1&quot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =
-=3D &quot;x86_64-linux&quot;<br>NATIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&q=
-uot;<br>
-TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>M=
-ACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;zedboard&quot;<br>DISTRO=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=A0=
-=A0 =3D &quot;1.4+snapshot-20130716&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D =
-&quot; armv7a vfp neon zynq&quot;<br>
-TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quo=
-t;master:3dee534f1e25109e0bdb681de0746c336f4b8840&quot;<br>meta-xilinx=A0=
-=A0=A0=A0=A0=A0 <br>meta-kc705=A0=A0=A0=A0=A0=A0=A0 <br>meta-zc702=A0=A0=A0=
-=A0=A0=A0=A0 <br>meta-zedboard=A0=A0=A0=A0 =3D &quot;master:46f4c79d6d55b55=
-6a90bb0fd89c2c09acf2aebff&quot;<br>
-meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:c383d6230942bb1558ce=
-e02764bced09031cb70f&quot;<br>meta-java=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;m=
-aster:59696d89fd33df6953dcb2dd54ccd3b362513f28&quot;<br>meta-yocto-bsp=A0=
-=A0=A0 =3D &quot;master:3dee534f1e25109e0bdb681de0746c336f4b8840&quot;<br>
-WARNING: QA Issue: Found library in wrong location: /usr/bin/qt4/examples/t=
-ools/plugandpaint/plugins/libpnp_extrafilters.so<br>Found library in wrong =
-location: /usr/bin/qt4/examples/tools/plugandpaint/plugins/.debug/libpnp_ex=
-trafilters.so<br>
-Found library in wrong location: /usr/bin/qt4/examples/tools/styleplugin/st=
-yles/libsimplestyleplugin.so<br>Found library in wrong location: /usr/bin/q=
-t4/examples/tools/styleplugin/styles/.debug/libsimplestyleplugin.so<br>
-Found library in wrong location: /usr/bin/qt4/examples/tools/echoplugin/plu=
-gin/libechoplugin.so<br>Found library in wrong location: /usr/bin/qt4/examp=
-les/tools/echoplugin/plugin/.debug/libechoplugin.so<br>Found library in wro=
-ng location: /usr/bin/qt4/examples/declarative/cppextensions/qwidgets/QWidg=
-ets/libqmlqwidgetsplugin.so<br>
-Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
-sions/qwidgets/QWidgets/.debug/libqmlqwidgetsplugin.so<br>Found library in =
-wrong location: /usr/bin/qt4/examples/declarative/cppextensions/plugins/lib=
-qmlqwidgetsplugin.so<br>
-Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
-sions/plugins/.debug/libqmlqwidgetsplugin.so<br>Found library in wrong loca=
-tion: /usr/bin/qt4/examples/declarative/cppextensions/plugins/com/nokia/Tim=
-eExample/libqmlqtimeexampleplugin.so<br>
-Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
-sions/plugins/com/nokia/TimeExample/.debug/libqmlqtimeexampleplugin.so<br>F=
-ound library in wrong location: /usr/bin/qt4/examples/declarative/cppextens=
-ions/imageprovider/ImageProviderCore/libqmlimageproviderplugin.so<br>
-Found library in wrong location: /usr/bin/qt4/examples/declarative/cppexten=
-sions/imageprovider/ImageProviderCore/.debug/libqmlimageproviderplugin.so<b=
-r><br><br>ERROR: QA Issue: File &#39;/usr/plugins/designer/libqwt_designer_=
-plugin.so&#39; from qwt was already stripped, this will prevent future debu=
-gging!<br>
-ERROR: QA Issue: File &#39;/usr/lib/libqwt.so.6.0.1&#39; from qwt was alrea=
-dy stripped, this will prevent future debugging!<br>ERROR: QA Issue: File &=
-#39;/usr/lib/libqwtmathml.so.6.0.1&#39; from qwt was already stripped, this=
- will prevent future debugging!<br>
-WARNING: QA Issue: Found library in wrong location: /usr/plugins/designer/l=
-ibqwt_designer_plugin.so<br>ERROR: QA run found fatal errors. Please consid=
-er fixing them.<br>ERROR: Function failed: do_package_qa<br>ERROR: Logfile =
-of failure stored in: /home/vidal/POKY/build071613_zedboard/poky/build/tmp/=
-work/armv7a-vfp-neon-poky-linux-gnueabi/qwt/6.0.1-r1/temp/log.do_package.27=
-159<br>
-ERROR: Task 1126 (/home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-o=
-e/recipes-qt/qwt/<a href=3D"http://qwt_6.0.1.bb">qwt_6.0.1.bb</a>, do_packa=
-ge) failed with exit code &#39;1&#39;<br>NOTE: Tasks Summary: Attempted 431=
-5 tasks of which 368 didn&#39;t need to be rerun and 1 failed.<br>
-Waiting for 0 running tasks to finish:<br><br>Summary: 1 task failed:<br>=
-=A0 /home/vidal/POKY/build071613_zedboard/poky/meta-oe/meta-oe/recipes-qt/q=
-wt/<a href=3D"http://qwt_6.0.1.bb">qwt_6.0.1.bb</a>, do_package<br>Summary:=
- There were 5 WARNING messages shown.<br>
-Summary: There were 5 ERROR messages shown, returning a non-zero exit code.=
-<br></div><div>I will be looking where the qt libs need to be installed.<br=
-><br></div>Thanks<br></div>
+Hi, =20
+Ok & i will have a try, thanks for your reply :)
 
---047d7b6042bed94b1404e1a20cf1--
+Thanks,
+
+- Jojo
+
+
+=E5=9C=A8 2013=E5=B9=B47=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=94=EF=
+=BC=8C=E4=B8=8B=E5=8D=886:45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=93=EF=
+=BC=9A
+
+> Hi, =20
+> On =46ri, Jul 12, 2013 at 12:35 PM, jojo <rjiejie=40gmail.com (mailto:r=
+jiejie=40gmail.com)> wrote:
+> > Hi, =20
+> > My yocto version/tag is dylan.
+> > =20
+> > I have compiled fsl-image-gui to testing the the audio output, but i =
+can not find
+> > anything about for pulseaudio server to start up daemon.
+> > =20
+> > I saw the build code in the path about for =22build/tmp/work/armv7a-v=
+fp-neon-poky-linux-gnueabi/pulseaudio/3.0-r0/image/=22 =20
+> > and it really have built all things of pulseaudio. but when i create =
+the fsl-image-gui to start up, i just find =22libpulse*=22 in the
+> > rootfs.
+> > =20
+> > I think that something wrong with pulseaudio configure so that it do =
+not install completely by default.
+> =20
+> The pulseaudio daemon is packaged as pulseaudio-server, maybe the image=
+ doesn't install that package by default=3F =20
+>  =20
+> Cheers, =20
+> Erik Bot=C3=B6
+> =20
+> > =20
+> > someone know about that how to install pulseaudio completely =3F =20
+> > =20
+> > Thanks,
+> > =20
+> > - Jojo
+> > =20
+> > =20
+> > =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+> > meta-freescale mailing list
+> > meta-freescale=40yoctoproject.org (mailto:meta-freescale=40yoctoproje=
+ct.org)
+> > https://lists.yoctoproject.org/listinfo/meta-freescale
+> > =20
+> =20
+
+
+--51e5678b_6ceaf087_1dc7
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+
+                <div>Hi,
+                </div><div><span class=3D=22Apple-tab-span=22 style=3D=22=
+white-space:pre=22>	</span>Ok &amp; i will have a try, thanks for your re=
+ply :)</div>
+                <div><div><br></div><div>Thanks,</div><div><br></div><div=
+>- Jojo</div><div><br></div></div>
+                =20
+                <p style=3D=22color: =23A0A0A8;=22>=E5=9C=A8 2013=E5=B9=B4=
+7=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=94=EF=BC=8C=E4=B8=8B=E5=8D=88=
+6:45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=93=EF=BC=9A</p>
+                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
+e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
+                    <span><div><div><div dir=3D=22ltr=22>Hi,&nbsp;<br><di=
+v><div>On =46ri, Jul 12, 2013 at 12:35 PM, jojo <span dir=3D=22ltr=22>&lt=
+;<a href=3D=22mailto:rjiejie=40gmail.com=22 target=3D=22=5Fblank=22>rjiej=
+ie=40gmail.com</a>&gt;</span> wrote:<br><blockquote type=3D=22cite=22><di=
+v>
+                <div>Hi,
+                </div><div><span style=3D=22white-space:pre-wrap=22>	</sp=
+an>My yocto version/tag is dylan.</div><div><span style=3D=22white-space:=
+pre-wrap=22>	</span></div><div><span style=3D=22white-space:pre-wrap=22>	=
+</span>I have compiled fsl-image-gui to testing the the audio output, but=
+ i can not find</div>
+<div><span style=3D=22white-space:pre-wrap=22>	</span>anything about for =
+pulseaudio server to start up daemon.</div><div><br></div><div><span styl=
+e=3D=22white-space:pre-wrap=22>	</span>I saw the build code in the path a=
+bout for =22build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/pulseaudio/=
+3.0-r0/image/=22</div>
+<div><span style=3D=22white-space:pre-wrap=22>	</span>and it really have =
+built all things of pulseaudio. but when i create the fsl-image-gui to st=
+art up, i just find =22libpulse*=22 in the</div><div><span style=3D=22whi=
+te-space:pre-wrap=22>	</span>rootfs.</div>
+<div><br></div><div><span style=3D=22white-space:pre-wrap=22>	</span>I th=
+ink that something wrong with pulseaudio configure so that it do not inst=
+all completely by default.</div></div></blockquote><div><br></div><div>Th=
+e pulseaudio daemon is packaged as pulseaudio-server, maybe the image doe=
+sn't install that package by default=3F</div>
+<div>&nbsp;</div><div>Cheers,&nbsp;</div><div>Erik Bot=C3=B6</div><div><b=
+r></div><blockquote type=3D=22cite=22><div><div><br></div><div><span styl=
+e=3D=22white-space:pre-wrap=22>	</span>someone know about that how to ins=
+tall pulseaudio completely =3F</div>
+
+                <div><div><br></div><div>Thanks,</div><div><br></div><div=
+>- Jojo</div><div><br></div></div>
+            <br>=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F<br>
+meta-freescale mailing list<br>
+<a href=3D=22mailto:meta-freescale=40yoctoproject.org=22>meta-freescale=40=
+yoctoproject.org</a><br>
+<a href=3D=22https://lists.yoctoproject.org/listinfo/meta-freescale=22 ta=
+rget=3D=22=5Fblank=22>https://lists.yoctoproject.org/listinfo/meta-freesc=
+ale</a><br>
+<br></div></blockquote></div><br></div></div>
+</div></div></span>
+                =20
+                =20
+                =20
+                =20
+                </blockquote>
+                =20
+                <div>
+                    <br>
+                </div>
+            
+
+--51e5678b_6ceaf087_1dc7--
