@@ -1,28 +1,25 @@
-Return-Path: <maregt0@gmail.com>
-Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
-	[209.85.215.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC8E1E013B0
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:24:05 -0700 (PDT)
-Received: by mail-la0-f43.google.com with SMTP id gw10so585206lab.16
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:24:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=zmwn/iUPoqmbBPU1Od70gjIRiqn1CbRscCodjWDj1EU=;
-	b=qZ5t+WN0E6RDDIo7RbqCdskWSsPSf8434zK4PgadSXxCtEurlAASB1Kxzby9kpJHwZ
-	KUX6V+ehvy/aYXYZZ8x2AMrEjWh+DpJYKCh3nX5mJ7gTDkMPFXD6vcFLEvtnciSgftCS
-	fIURBcCJmSEHA2tWmTce4HvZ7Rlgh+ZqplbAQgcNwfgz28nNDzbac4Qc9LRRI2NtsKoG
-	kiVZ/9RMQ0iJ8v1bOPQ2dHOjs/XzUQvjiCqMacPv1keZb7801hwz7xgWcW1BPnMKT3kh
-	lBEqnDvv6KbPp9B//W+kTw+PLXdmRI99ukh4uUaYv1ljZeVmR95UmaO+zr7IB/3saxav
-	3ojQ==
+Return-Path: <Lee_Ballard@Dell.com>
+Received: from ausc60ps301.us.dell.com (ausc60ps301.us.dell.com
+	[143.166.148.206])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B10DE013B0
+	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 07:27:58 -0700 (PDT)
+X-LoopCount0: from 10.175.216.250
+X-IronPort-AV: E=Sophos;i="4.89,677,1367989200"; 
+	d="scan'208,217";a="198173577"
+From: <Lee_Ballard@Dell.com>
+To: <Amit.Kumar@lntinfotech.com>, <yocto@yoctoproject.org>
+Date: Tue, 16 Jul 2013 09:27:57 -0500
+Thread-Topic: Regarding offline build
+Thread-Index: Ac6CFkymgRXO6FWXTG2mk09tVJ4OrgAGflMg
+Message-ID: <6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8@AUSX7MCPC110.AMER.DELL.COM>
+References: <AF0985D076EB244693F2CCD71AAB10BC2C5E364AEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
+In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C5E364AEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.152.27.40 with SMTP id q8mr815159lag.75.1373984644030; Tue,
-	16 Jul 2013 07:24:04 -0700 (PDT)
-Received: by 10.114.70.50 with HTTP; Tue, 16 Jul 2013 07:24:03 -0700 (PDT)
-Date: Tue, 16 Jul 2013 16:24:03 +0200
-Message-ID: <CAC3ARNy1XTJ=fJCCGKRfRw_Jr0qePBVvOujWR3+Bo7sBKLw_Ag@mail.gmail.com>
-From: Matthias Van Gestel <maregt0@gmail.com>
-To: yocto@yoctoproject.org
-Subject: SDK generation
+Subject: Re: Regarding offline build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,115 +31,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 14:24:07 -0000
-Content-Type: multipart/alternative; boundary=089e0158c5aaa2671f04e1a1baaf
+X-List-Received-Date: Tue, 16 Jul 2013 14:28:00 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_"
 
---089e0158c5aaa2671f04e1a1baaf
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi I'm having some trouble generating a Qt(4) SDK that I can use on a host
-system. We generate our own image edna-image-minimal:
-
-PR="2"
-####################################################################
-# Copied from meta/recipes-core/images/core-image-minibal.bb
-####################################################################
-DESCRIPTION = "A small image just capable of allowing a device to boot."
-
-IMAGE_INSTALL = "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP}
-${CORE_IMAGE_EXTRA_INSTALL}"
-
-IMAGE_LINGUAS = " "
-
-LICENSE = "MIT"
-
-inherit core-image
-
-# remove not needed ipkg informations
-ROOTFS_POSTPROCESS_COMMAND += "remove_packaging_data_files ; "
-####################################################################
-# Copied from meta/recipes-graphics/images/core-image-x11.bb
-####################################################################
-IMAGE_FEATURES += "splash package-management x11-base xserver-xf86-config"
-####################################################################
-# IMAGE_INSTALL += "qtbase qtbase-tools qtbase-plugins"
-# qtbase-tools qtbase-plugins"
-
-IMAGE_FEATURES += "qt4-pkgs"
-IMAGE_INSTALL += "mini-x-session"
-TOOLCHAIN_HOST_TASK += "nativesdk-qemu"
-----------------------------------------------------------------------
-Now when I try to generate a SDK with the following command:
-MACHINE="qemuarm" bitbake edna-image-minimal -c populate_sdk
-The SDK script gets generated, I execute it and it extracts itself.
-
-Now I'd like to know where I can find the native tools to cross compile my
-application, I have no qmake or cross-gcc.
-
-Another issue is about the eclipse adt plugin, I installed the plugin
-configured the sysroot path and the cross compiler path (it uses scripts
-from /opt/poky/1.4.1) and then in the Qemu part I picked the kernel
-generated in the build/tmp/deploy/images, but then it complains about a
-pseudo and asks about qemu-extract-sdk. So to cut the story short I'm stuck
-at generating a decent cross sdk.
-(I used the official
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#configuring-the-eclipse-ide-juno
- guide).
-
-How do I proceed, or are there other ways I can do to get a decent SDK
-working?
-
---089e0158c5aaa2671f04e1a1baaf
-Content-Type: text/html; charset=ISO-8859-1
+--_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi I&#39;m having some trouble generating a Qt(4) SDK that=
- I can use on a host system. We generate our own image edna-image-minimal:<=
-div><br><div><div>PR=3D&quot;2&quot;</div><div>############################=
-########################################</div>
-<div># Copied from meta/recipes-core/images/<a href=3D"http://core-image-mi=
-nibal.bb">core-image-minibal.bb</a></div><div>#############################=
-#######################################</div><div>DESCRIPTION =3D &quot;A s=
-mall image just capable of allowing a device to boot.&quot;</div>
-<div><br></div><div>IMAGE_INSTALL =3D &quot;packagegroup-core-boot ${ROOTFS=
-_PKGMANAGE_BOOTSTRAP} ${CORE_IMAGE_EXTRA_INSTALL}&quot;</div><div><br></div=
-><div>IMAGE_LINGUAS =3D &quot; &quot;</div><div><br></div><div>LICENSE =3D =
-&quot;MIT&quot;</div>
-<div><br></div><div>inherit core-image</div><div><br></div><div># remove no=
-t needed ipkg informations</div><div>ROOTFS_POSTPROCESS_COMMAND +=3D &quot;=
-remove_packaging_data_files ; &quot;</div><div>############################=
-########################################</div>
-<div># Copied from meta/recipes-graphics/images/<a href=3D"http://core-imag=
-e-x11.bb">core-image-x11.bb</a></div><div>#################################=
-###################################</div><div>IMAGE_FEATURES +=3D &quot;spl=
-ash package-management x11-base xserver-xf86-config&quot;</div>
-<div>####################################################################</=
-div><div># IMAGE_INSTALL +=3D &quot;qtbase qtbase-tools qtbase-plugins&quot=
-;=A0</div><div># qtbase-tools qtbase-plugins&quot;</div><div><br></div><div=
->
-IMAGE_FEATURES +=3D &quot;qt4-pkgs&quot;<br></div><div>IMAGE_INSTALL +=3D &=
-quot;mini-x-session&quot;</div><div>TOOLCHAIN_HOST_TASK +=3D &quot;nativesd=
-k-qemu&quot;<br>-----------------------------------------------------------=
------------</div>
-</div><div>Now when I try to generate a SDK with the following command: MAC=
-HINE=3D&quot;qemuarm&quot; bitbake edna-image-minimal -c populate_sdk</div>=
-<div>The SDK script gets generated, I execute it and it extracts itself.</d=
-iv>
-<div><br></div><div>Now I&#39;d like to know where I can find the native to=
-ols to cross compile my application, I have no qmake or cross-gcc.</div><di=
-v><br></div><div>Another issue is about the eclipse adt plugin, I installed=
- the plugin configured the sysroot path and the cross compiler path (it use=
-s scripts from /opt/poky/1.4.1) and then in the Qemu part I picked the kern=
-el generated in the build/tmp/deploy/images, but then it complains about a =
-pseudo and asks about qemu-extract-sdk. So to cut the story short I&#39;m s=
-tuck at generating a decent cross sdk.</div>
-<div>(I used the official=A0<span style=3D"color:rgb(0,0,255);font-family:&=
-#39;Times New Roman&#39;"><a href=3D"http://www.yoctoproject.org/docs/curre=
-nt/dev-manual/dev-manual.html#configuring-the-eclipse-ide-juno">http://www.=
-yoctoproject.org/docs/current/dev-manual/dev-manual.html#configuring-the-ec=
-lipse-ide-juno</a>=A0</span><span style=3D"font-family:&#39;Times New Roman=
-&#39;"><font color=3D"#000000">guide).</font></span></div>
-<div><br></div><div>How do I proceed, or are there other ways I can do to g=
-et a decent SDK working?</div><div><br></div><div><br></div></div></div>
+We do offline builds.  You need to download all the tar balls for all the o=
+pen source recipes you build, or you can download pre-build images and SDK.=
+  Another way is to create a local mirror of all the tar balls you need.
 
---089e0158c5aaa2671f04e1a1baaf--
+Lee Ballard
+Platform Software Principal Engineer
+Dell | Enterprise Product Group
+
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Amit Kumar
+Sent: Tuesday, July 16, 2013 6:22 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Regarding offline build
+
+Hi,
+            I have quarry regarding the Yocto Project build offline.
+Is that possible to build the Yocto Project with internet access?
+I have download the poky-<latest>.tar.bz2, now I wants to build it independ=
+ently without having internet connection.
+Do I need to download any other packages also to build it offline?
+
+
+
+Thanks & Regards
+Amit K
+
+________________________________
+The contents of this e-mail and any attachment(s) may contain confidential =
+or privileged information for the intended recipient(s). Unintended recipie=
+nts are prohibited from taking action on the basis of information in this e=
+-mail and using or disseminating the information, and must notify the sende=
+r and delete it from their system. L&T Infotech will not accept responsibil=
+ity or liability for the accuracy or completeness of, or the presence of an=
+y virus or disabling code in this e-mail"
+
+--_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; charset=
+=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 (filtered =
+medium)"><!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Trebuchet MS";
+	panose-1:2 11 6 3 2 2 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Trebuchet MS","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'c=
+olor:#1F497D'>We do offline builds.&nbsp; You need to download all the tar =
+balls for all the open source recipes you build, or you can download pre-bu=
+ild images and SDK.&nbsp; Another way is to create a local mirror of all th=
+e tar balls you need.<o:p></o:p></span></p><p class=3DMsoNormal><span style=
+=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><spa=
+n style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#=
+444444'>Lee Ballard<o:p></o:p></span></b></p><p class=3DMsoNormal><span sty=
+le=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-serif";color:#444444=
+'>Platform Software Principal Engineer <o:p></o:p></span></p><p class=3DMso=
+Normal><b><span style=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-s=
+erif";color:#0085C3'>Dell</span></b><span style=3D'font-size:8.0pt;font-fam=
+ily:"Trebuchet MS","sans-serif";color:#444444'> | </span><span style=3D'fon=
+t-size:10.0pt;color:#1F497D'>Enterprise Product Group</span><b><span style=
+=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-serif";color:#444444'>=
+ <o:p></o:p></span></b></p><p class=3DMsoNormal><span style=3D'color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'color:#1=
+F497D'><o:p>&nbsp;</o:p></span></p><div><div style=3D'border:none;border-to=
+p:solid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><s=
+pan style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</spa=
+n></b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> y=
+octo-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] <b>On=
+ Behalf Of </b>Amit Kumar<br><b>Sent:</b> Tuesday, July 16, 2013 6:22 AM<br=
+><b>To:</b> yocto@yoctoproject.org<br><b>Subject:</b> [yocto] Regarding off=
+line build<o:p></o:p></span></p></div></div><p class=3DMsoNormal><o:p>&nbsp=
+;</o:p></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family=
+:"Trebuchet MS","sans-serif"'>Hi,<o:p></o:p></span></p><p class=3DMsoNormal=
+><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have qu=
+arry regarding the Yocto Project build offline. <o:p></o:p></span></p><p cl=
+ass=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS",=
+"sans-serif"'>Is that possible to build the Yocto Project with internet acc=
+ess?<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.=
+0pt;font-family:"Trebuchet MS","sans-serif"'>I have download the poky-&lt;l=
+atest&gt;.tar.bz2, now I wants to build it independently without having int=
+ernet connection.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'=
+font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>Do I need to down=
+load any other packages also to build it offline?<o:p></o:p></span></p><p c=
+lass=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS"=
+,"sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=
+=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'><o:p>&nbsp;</=
+o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-fa=
+mily:"Trebuchet MS","sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMs=
+oNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-se=
+rif"'>Thanks &amp; Regards<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>Amit K<o=
+:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:12.0pt;fo=
+nt-family:"Times New Roman","serif"'><o:p>&nbsp;</o:p></span></p><div class=
+=3DMsoNormal align=3Dcenter style=3D'text-align:center'><span style=3D'font=
+-size:12.0pt;font-family:"Times New Roman","serif"'><hr size=3D2 width=3D"1=
+00%" align=3Dcenter></span></div><p class=3DMsoNormal><span style=3D'font-s=
+ize:12.0pt;font-family:"Arial","sans-serif";color:black'>The contents of th=
+is e-mail and any attachment(s) may contain confidential or privileged info=
+rmation for the intended recipient(s). Unintended recipients are prohibited=
+ from taking action on the basis of information in this e-mail and using or=
+ disseminating the information, and must notify the sender and delete it fr=
+om their system. L&amp;T Infotech will not accept responsibility or liabili=
+ty for the accuracy or completeness of, or the presence of any virus or dis=
+abling code in this e-mail&quot;</span><span style=3D'font-size:12.0pt;font=
+-family:"Times New Roman","serif"'><o:p></o:p></span></p></div></body></htm=
+l>=
+
+--_000_6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8AUSX7MCPC110A_--
