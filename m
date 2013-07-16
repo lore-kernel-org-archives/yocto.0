@@ -1,40 +1,34 @@
-Return-Path: <rjiejie@gmail.com>
-Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
-	[209.85.192.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50286E0071F;
-	Tue, 16 Jul 2013 08:32:46 -0700 (PDT)
-Received: by mail-pd0-f171.google.com with SMTP id y14so794376pdi.2
-	for <multiple recipients>; Tue, 16 Jul 2013 08:32:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:message-id:in-reply-to:references:subject:x-mailer
-	:mime-version:content-type;
-	bh=iUL7cp++jgqLkQzJ8yXkHH5Ps8Sn200F0wRNucPwqFU=;
-	b=jkWo88Bg1z1aDBm1UZ3iQEV6OE/+F4VQFbgdWk5tIple7dyzjxA2BwFlXPnPnoKGEC
-	FfOT7u9PD6d0fpOMTlXZiG45Q7IaXxLacBrZyaiWxQokCEV4h1Y30E6+3HXx2N2C49Zc
-	jVLjWtIUirrAkJRC0AWYA6GanHpeSABiOw3yInGBrBbdqycHTQo8eHJwzlbv02QBeqLf
-	+BRiGZrogfKTQdlvfUrpBK3jvkJtSLSphj79IgGkyMIwZ2pL3SgStDr9egrATGJUTO9F
-	CXBnTKdnJopVvKse8oskjwsG4orQyeGyZJBANKFfFg4Y0efsYI1JA1RMBdNHtSXqAlih
-	x4tg==
-X-Received: by 10.66.122.67 with SMTP id lq3mr3179418pab.147.1373988766232;
-	Tue, 16 Jul 2013 08:32:46 -0700 (PDT)
-Received: from [192.168.1.104] ([115.199.240.44])
-	by mx.google.com with ESMTPSA id kc8sm2580393pbc.18.2013.07.16.08.32.36
-	for <multiple recipients>
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Tue, 16 Jul 2013 08:32:45 -0700 (PDT)
-Date: Tue, 16 Jul 2013 23:32:27 +0800
-From: jojo <rjiejie@gmail.com>
-To: =?utf-8?Q?Erik_Bot=C3=B6?= <erik.boto@pelagicore.com>
-Message-ID: <8AFAD819783F4C2CB04F1D5A9CA05C48@gmail.com>
-In-Reply-To: <CA+AhUGxEebNBYp64mBh3TbCrn2_n4GDsi1KB3O_Tk0mpwj7jMQ@mail.gmail.com>
-References: <666645F4EAA9483CB526943CA6FA6428@gmail.com>
-	<CA+AhUGxEebNBYp64mBh3TbCrn2_n4GDsi1KB3O_Tk0mpwj7jMQ@mail.gmail.com>
-X-Mailer: sparrow 1.6.4 (build 1176)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A587E0071F
+	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 09:12:44 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id ox1so637927veb.41
+	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 09:12:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=nOyWEUNuQ2/kMvDQsWETLm2zZ11r9rBHIpZCew546C4=;
+	b=WVKljcU4jPdWaGx8YwkPfx2xLKurUIP493LnzFy80vX4ymG37RuLXbowKuc2NtAayu
+	Anz/JWDNe8OOTpwYDDRf+rg1tWCCYaIZ7Ol43HJLUbWJmxzPeDIC77OEjXUkynCAcYNX
+	lmYnsWRS+ofVU8Nkq3Bb7q0qSELL7OSTYtYxL+7h1t7fT0fLLySgJj3YRcC94XOfsnJr
+	r+lFNjZ1M8dnYWbhnpXRPEO5LLY9o8SitA97JM5qHIzcZtamsKLL2Xy8psVR3JAV0IV+
+	4ZcXix+FW8iqrYyWZxkJVaTBVkiPS8dFF1yF7bv6sMnLav/i63GSG1swRWIU827ERGmw
+	VSbw==
 MIME-Version: 1.0
-Cc: "=?utf-8?Q?meta-freescale=40yoctoproject.org?="
-	<meta-freescale@yoctoproject.org>,
-	"=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
-Subject: =?UTF-8?B?5Zue5aSN77yaIG1ldGEtZnJlZXNjYWxlXSBob3cgdG8gaW5zdGFsbCBwdWxzZWF1ZGlvIGNvbXBsZXRlbHk=?=
+X-Received: by 10.58.249.236 with SMTP id yx12mr676274vec.25.1373991163993;
+	Tue, 16 Jul 2013 09:12:43 -0700 (PDT)
+Received: by 10.52.73.168 with HTTP; Tue, 16 Jul 2013 09:12:43 -0700 (PDT)
+In-Reply-To: <cover.1373474163.git.stefanx.stanacar@intel.com>
+References: <cover.1373474163.git.stefanx.stanacar@intel.com>
+Date: Tue, 16 Jul 2013 09:12:43 -0700
+Message-ID: <CAPhnLPAqCMf889z8HNzhGEPNiaERgRc-nFBGaLG+zDavpFtkLg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Stefan Stanacar <stefanx.stanacar@intel.com>
+X-Gm-Message-State: ALoCoQkKJS3ijKE6G3yB77Zy32LCq6RaJl4GAc3lcptrVlTDTkYCOIC7g29nzSuQb1+4VAjyJ9vC
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto-autobuilder][PATCH 0/3] Enabling of the new testimage class for sanity tests
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,139 +40,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 15:32:47 -0000
-Content-Type: multipart/alternative; boundary="51e5678b_6ceaf087_1dc7"
+X-List-Received-Date: Tue, 16 Jul 2013 16:12:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---51e5678b_6ceaf087_1dc7
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+Merged into master and production. Thanks.
 
-Hi, =20
-Ok & i will have a try, thanks for your reply :)
+-b
 
-Thanks,
+On Wed, Jul 10, 2013 at 10:32 AM, Stefan Stanacar
+<stefanx.stanacar@intel.com> wrote:
+> Hi Beth,
+>
+> The first two patches enable the new testimage class that has just been merged in master,
+> and it needs a real AB shakedown ;).
+>
+> On my local AB one of the problems I've had were timeouts
+> for qemu booting (when the machine was really loaded), and I've sent a patch to increase the timeout, but
+> this might need a little more tweaking for the Yocto AB. Also, one more setup issue could be DISPLAY / vnc server.
+> I've had some trouble with DISPLAY=localhost:1 that's why you'll notice
+> I've used DISPLAY=:1, that fixed the problem out on my machine. It has something to do with how the new class starts the runqemu script
+> and the enviroment.
+>
+>
+> The last patch has nothing to do with enabling, I just thought that we should run the sanity tests
+> for the sdk images too given that the new class has a gcc test. It adds a few minutes to the builds,
+> keep this one out if that's problem.
+>
+> Cheers,
+> Stefan
+>
+> The following changes since commit b26b257e16fddb7730d3b2a0c55c4b43a48ae54c:
+>
+>   Revert "buildset-config: build core-image-sato SDK" (2013-07-02 17:10:05 -0700)
+>
+> are available in the git repository at:
+>
+>   git://mirror.rb.intel.com/git.yoctoproject.org/poky-contrib stefans/yab-newsanity3
+>
+> for you to fetch changes up to e15d6185251e4c6f163577c7263239936d76e5b3:
+>
+>   buildsets: run sanity tests for core-image-sato-sdk images (2013-07-10 19:07:27 +0300)
+>
+> ----------------------------------------------------------------
+> Stefan Stanacar (3):
+>       RunSanityTests: add support for the new testimage class
+>       nightly-multilib,qa-systemd.conf: enable specific tests with the new class
+>       buildsets: run sanity tests for core-image-sato-sdk images
+>
+>  buildset-config/nightly-arm.conf                   |  2 +-
+>  buildset-config/nightly-mips.conf                  |  2 +-
+>  buildset-config/nightly-multilib.conf              |  8 +++----
+>  buildset-config/nightly-ppc.conf                   |  2 +-
+>  buildset-config/nightly-qa-systemd.conf            |  4 ++--
+>  buildset-config/nightly-x86-64.conf                |  2 +-
+>  buildset-config/nightly-x86.conf                   |  2 +-
+>  .../autobuilder/buildsteps/RunSanityTests.py       | 27 ++++++++++++++++------
+>  8 files changed, 31 insertions(+), 18 deletions(-)
+>
+> Stefan Stanacar (3):
+>   RunSanityTests: add support for the new testimage class
+>   nightly-multilib,qa-systemd.conf: enable specific tests with the new
+>     class
+>   buildsets: run sanity tests for core-image-sato-sdk images
+>
+>  buildset-config/nightly-arm.conf                   |  2 +-
+>  buildset-config/nightly-mips.conf                  |  2 +-
+>  buildset-config/nightly-multilib.conf              |  8 +++----
+>  buildset-config/nightly-ppc.conf                   |  2 +-
+>  buildset-config/nightly-qa-systemd.conf            |  4 ++--
+>  buildset-config/nightly-x86-64.conf                |  2 +-
+>  buildset-config/nightly-x86.conf                   |  2 +-
+>  .../autobuilder/buildsteps/RunSanityTests.py       | 27 ++++++++++++++++------
+>  8 files changed, 31 insertions(+), 18 deletions(-)
+>
+> --
+> 1.8.1.4
+>
 
-- Jojo
 
 
-=E5=9C=A8 2013=E5=B9=B47=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=94=EF=
-=BC=8C=E4=B8=8B=E5=8D=886:45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=93=EF=
-=BC=9A
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-> Hi, =20
-> On =46ri, Jul 12, 2013 at 12:35 PM, jojo <rjiejie=40gmail.com (mailto:r=
-jiejie=40gmail.com)> wrote:
-> > Hi, =20
-> > My yocto version/tag is dylan.
-> > =20
-> > I have compiled fsl-image-gui to testing the the audio output, but i =
-can not find
-> > anything about for pulseaudio server to start up daemon.
-> > =20
-> > I saw the build code in the path about for =22build/tmp/work/armv7a-v=
-fp-neon-poky-linux-gnueabi/pulseaudio/3.0-r0/image/=22 =20
-> > and it really have built all things of pulseaudio. but when i create =
-the fsl-image-gui to start up, i just find =22libpulse*=22 in the
-> > rootfs.
-> > =20
-> > I think that something wrong with pulseaudio configure so that it do =
-not install completely by default.
-> =20
-> The pulseaudio daemon is packaged as pulseaudio-server, maybe the image=
- doesn't install that package by default=3F =20
->  =20
-> Cheers, =20
-> Erik Bot=C3=B6
-> =20
-> > =20
-> > someone know about that how to install pulseaudio completely =3F =20
-> > =20
-> > Thanks,
-> > =20
-> > - Jojo
-> > =20
-> > =20
-> > =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
-> > meta-freescale mailing list
-> > meta-freescale=40yoctoproject.org (mailto:meta-freescale=40yoctoproje=
-ct.org)
-> > https://lists.yoctoproject.org/listinfo/meta-freescale
-> > =20
-> =20
-
-
---51e5678b_6ceaf087_1dc7
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
-
-
-                <div>Hi,
-                </div><div><span class=3D=22Apple-tab-span=22 style=3D=22=
-white-space:pre=22>	</span>Ok &amp; i will have a try, thanks for your re=
-ply :)</div>
-                <div><div><br></div><div>Thanks,</div><div><br></div><div=
->- Jojo</div><div><br></div></div>
-                =20
-                <p style=3D=22color: =23A0A0A8;=22>=E5=9C=A8 2013=E5=B9=B4=
-7=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=94=EF=BC=8C=E4=B8=8B=E5=8D=88=
-6:45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=93=EF=BC=9A</p>
-                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
-e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
-                    <span><div><div><div dir=3D=22ltr=22>Hi,&nbsp;<br><di=
-v><div>On =46ri, Jul 12, 2013 at 12:35 PM, jojo <span dir=3D=22ltr=22>&lt=
-;<a href=3D=22mailto:rjiejie=40gmail.com=22 target=3D=22=5Fblank=22>rjiej=
-ie=40gmail.com</a>&gt;</span> wrote:<br><blockquote type=3D=22cite=22><di=
-v>
-                <div>Hi,
-                </div><div><span style=3D=22white-space:pre-wrap=22>	</sp=
-an>My yocto version/tag is dylan.</div><div><span style=3D=22white-space:=
-pre-wrap=22>	</span></div><div><span style=3D=22white-space:pre-wrap=22>	=
-</span>I have compiled fsl-image-gui to testing the the audio output, but=
- i can not find</div>
-<div><span style=3D=22white-space:pre-wrap=22>	</span>anything about for =
-pulseaudio server to start up daemon.</div><div><br></div><div><span styl=
-e=3D=22white-space:pre-wrap=22>	</span>I saw the build code in the path a=
-bout for =22build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/pulseaudio/=
-3.0-r0/image/=22</div>
-<div><span style=3D=22white-space:pre-wrap=22>	</span>and it really have =
-built all things of pulseaudio. but when i create the fsl-image-gui to st=
-art up, i just find =22libpulse*=22 in the</div><div><span style=3D=22whi=
-te-space:pre-wrap=22>	</span>rootfs.</div>
-<div><br></div><div><span style=3D=22white-space:pre-wrap=22>	</span>I th=
-ink that something wrong with pulseaudio configure so that it do not inst=
-all completely by default.</div></div></blockquote><div><br></div><div>Th=
-e pulseaudio daemon is packaged as pulseaudio-server, maybe the image doe=
-sn't install that package by default=3F</div>
-<div>&nbsp;</div><div>Cheers,&nbsp;</div><div>Erik Bot=C3=B6</div><div><b=
-r></div><blockquote type=3D=22cite=22><div><div><br></div><div><span styl=
-e=3D=22white-space:pre-wrap=22>	</span>someone know about that how to ins=
-tall pulseaudio completely =3F</div>
-
-                <div><div><br></div><div>Thanks,</div><div><br></div><div=
->- Jojo</div><div><br></div></div>
-            <br>=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F<br>
-meta-freescale mailing list<br>
-<a href=3D=22mailto:meta-freescale=40yoctoproject.org=22>meta-freescale=40=
-yoctoproject.org</a><br>
-<a href=3D=22https://lists.yoctoproject.org/listinfo/meta-freescale=22 ta=
-rget=3D=22=5Fblank=22>https://lists.yoctoproject.org/listinfo/meta-freesc=
-ale</a><br>
-<br></div></blockquote></div><br></div></div>
-</div></div></span>
-                =20
-                =20
-                =20
-                =20
-                </blockquote>
-                =20
-                <div>
-                    <br>
-                </div>
-            
-
---51e5678b_6ceaf087_1dc7--
