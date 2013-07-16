@@ -1,31 +1,22 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB216E013E8
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 04:53:45 -0700 (PDT)
-Received: from [64.134.230.127] (port=46619 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Uz3p9-0006X5-N5; Tue, 16 Jul 2013 07:53:43 -0400
-Date: Tue, 16 Jul 2013 04:53:38 -0700 (PDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Laurentiu Palcu <laurentiu.palcu@intel.com>
-In-Reply-To: <20130716112141.GC2859@lpalcu-linux>
-Message-ID: <alpine.DEB.2.02.1307160453200.5561@oneiric>
+Return-Path: <laurentiu.palcu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8554E013E8
+	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 05:21:22 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 16 Jul 2013 05:18:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,676,1367996400"; d="scan'208";a="371114453"
+Received: from lpalcu-linux.rb.intel.com (HELO lpalcu-linux) ([10.237.105.165])
+	by orsmga002.jf.intel.com with ESMTP; 16 Jul 2013 05:21:05 -0700
+Date: Tue, 16 Jul 2013 15:21:04 +0300
+From: Laurentiu Palcu <laurentiu.palcu@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Message-ID: <20130716122104.GD2859@lpalcu-linux>
 References: <alpine.DEB.2.02.1307160415290.4884@oneiric>
-	<20130716112141.GC2859@lpalcu-linux>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+	<alpine.DEB.2.02.1307160440010.5415@oneiric>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+In-Reply-To: <alpine.DEB.2.02.1307160440010.5415@oneiric>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: pre-built yocto toolchains don't install cleanly on fedora 19
 X-BeenThere: yocto@yoctoproject.org
@@ -39,26 +30,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2013 11:53:48 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 16 Jul 2013 12:21:23 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Tue, 16 Jul 2013, Laurentiu Palcu wrote:
+There a fix for this on oe-core ML:
+http://patches.openembedded.org/patch/53761/
 
-> I'm on it. The issue is tracked here:
->
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=4853
+Thanks,
+Laurentiu
 
-  ok, just added myself to CC list, thanks.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+On Tue, Jul 16, 2013 at 04:40:38AM -0700, Robert P. J. Day wrote:
+> On Tue, 16 Jul 2013, Robert P. J. Day wrote:
+> 
+> >
+> >   the current yocto arm toolchain here:
+> >
+> > http://downloads.yoctoproject.org/releases/yocto/yocto-1.0/toolchain/i686/
+> >
+> > doesn't install cleanly on fedora 19, a number of people who tried it
+> > got a relocation error. i'll try it again later today and document it
+> > more completely but i'm teaching all week so my testing time is
+> > limited.
+> 
+>   whoops, sorry, link to wrong directory, the toolchain in question is
+> here:
+> 
+> http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.1/toolchain/i686/
+> 
+> rday
+> 
+> -- 
+> 
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+> 
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
