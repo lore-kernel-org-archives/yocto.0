@@ -1,32 +1,30 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f46.google.com (mail-vb0-f46.google.com
-	[209.85.212.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57E83E01466
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 23:35:07 -0700 (PDT)
-Received: by mail-vb0-f46.google.com with SMTP id 10so1112473vbe.33
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2013 23:35:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=HQa/CGkOmD50Jn2iSiy5oSIkk9bT1/IzMfA8PEcW0fA=;
-	b=U2otKTkj4vESUk7NqKkMi/0sdqHhvo5rje9s1XRHX6fxYsxHMgCfgY0ph3LWCNfMhj
-	TKhHEGGQTlNKuUsAK3op2cWMrL/6Ne0irjy16beGBfis9PI3LDaXQ5o+WlssxkThQZKb
-	X+y1NCZyV6hCnhM4zeCvh2XXedxEHqnOZhFvmjrS/dvVqg7e9mwqnhDhraluRBPk3z6y
-	Jzh1YGmF+8gJHpwjrmZ2LyVgy5pPov7GI9ueZDrMO8DvPPk1zs8kuoBeOy7ic8ebzChU
-	4HFR6SvA54wGtVnYgdVN+r+QUE+2g8uMKHMyOw8QjF5ZHtjVa7icjO8CjlWV2bri2kUH
-	GAYg==
+Return-Path: <sbabic@denx.de>
+Received: from smtpi4.ngi.it (smtpi4.ngi.it [88.149.128.104])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6BD2E013B0
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 03:17:25 -0700 (PDT)
+Received: from babic.homelinux.org (88-149-182-160.v4.ngi.it [88.149.182.160])
+	by smtpi4.ngi.it (Postfix) with ESMTP id 3606E423D7
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 12:17:21 +0200 (CEST)
+Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
+	by babic.homelinux.org (Postfix) with ESMTP id DF1EA4540561
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 12:17:20 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
+Received: from babic.homelinux.org ([127.0.0.1])
+	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id mnEmaob8oZDw for <yocto@yoctoproject.org>;
+	Wed, 17 Jul 2013 12:17:18 +0200 (CEST)
+Received: from [192.168.2.247] (papero.lan [192.168.2.247])
+	by babic.homelinux.org (Postfix) with ESMTP id E7AE545402DC
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 12:17:17 +0200 (CEST)
+Message-ID: <51E66F2F.8090204@denx.de>
+Date: Wed, 17 Jul 2013 12:17:19 +0200
+From: Stefano Babic <sbabic@denx.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Received: by 10.58.24.201 with SMTP id w9mr1602850vef.82.1374042906751; Tue,
-	16 Jul 2013 23:35:06 -0700 (PDT)
-Received: by 10.52.73.168 with HTTP; Tue, 16 Jul 2013 23:35:06 -0700 (PDT)
-Date: Tue, 16 Jul 2013 23:35:06 -0700
-Message-ID: <CAPhnLPCeQ7N4qqbe71jbN=yVY3OJhxH5No49zEL7WCDK-L=2PA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQk6J/6nok24xu6c8GMnJnU4loc40LnNRyR2DWCOqpOTiGlAzPnmT2YqHI+YZzhhwepZet4i
-Cc: SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>
-Subject: Weekly build availability
+X-Enigmail-Version: 1.4.6
+Subject: Qt4.8 - qt4-x11-free does not compile if host has qt-mobility installed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,24 +36,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jul 2013 06:35:10 -0000
+X-List-Received-Date: Wed, 17 Jul 2013 10:17:28 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Sorry for the lateness of the build. The artifacts should be available soon at:
+Hi all,
 
-http://autobuilder.yoctoproject.org/pub/nightly/20130717-2
+I have found that qt4 does not compile clean if the host PC (in my case
+a Ubuntu 12.04) has the library libQtSensors installed (package
+qtmobility-dev).
 
-meta-fsl-arm 	e2f010bec19aef73b4731cb4f66c7412d59b265c
-meta-fsl-ppc 	93c57323edc118eb8905980348ad3888664f2382
-meta-intel 	32a8205cebd5dbd65847c63721dc5df70c4d1c35
-meta-minnow 	286a72ba3f5e29432be1dd77127de5bdc2d988c3
-meta-qt3 	b73552fb998fd30a01dbee5a172e432a16078222
-poky 	3dee534f1e25109e0bdb681de0746c336f4b8840
+The issue is related to the package qt4-x11-free
+(qt4-x11-free-4.8.4-r50.3), and it is related to QtWebkit.
 
-Please begin weekly testing as soon as artifacts become available.
+For some reasons I have not yet understood, local paths /usr/include and
+/usr/lib are passed to the crosscompiler when the host library is
+installed (I am crosscompiling for ARM), and of course, at the end the
+linker fails when it tries to link the x86 library.
+
+Removing the package qtmobility-dev from the host solves without fixing
+the issue.
+
+Any hints to solve this ?
+
+Best regards,
+Stefano Babic
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+=====================================================================
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
