@@ -1,30 +1,27 @@
-Return-Path: <sbabic@denx.de>
-Received: from smtpi4.ngi.it (smtpi4.ngi.it [88.149.128.104])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6BD2E013B0
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 03:17:25 -0700 (PDT)
-Received: from babic.homelinux.org (88-149-182-160.v4.ngi.it [88.149.182.160])
-	by smtpi4.ngi.it (Postfix) with ESMTP id 3606E423D7
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 12:17:21 +0200 (CEST)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id DF1EA4540561
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 12:17:20 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([127.0.0.1])
-	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id mnEmaob8oZDw for <yocto@yoctoproject.org>;
-	Wed, 17 Jul 2013 12:17:18 +0200 (CEST)
-Received: from [192.168.2.247] (papero.lan [192.168.2.247])
-	by babic.homelinux.org (Postfix) with ESMTP id E7AE545402DC
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 12:17:17 +0200 (CEST)
-Message-ID: <51E66F2F.8090204@denx.de>
-Date: Wed, 17 Jul 2013 12:17:19 +0200
-From: Stefano Babic <sbabic@denx.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-wg0-f41.google.com (mail-wg0-f41.google.com [74.125.82.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCCE3E01466
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 04:24:16 -0700 (PDT)
+Received: by mail-wg0-f41.google.com with SMTP id y10so4609143wgg.0
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 04:24:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=8VdyoIP2TaNejVQyWUAKC1mQDqq+VRN2c0SjDmdp5SE=;
+	b=eBY5gBCqhyfnFnPbqNJNFItIN+sfK5rmMX+mw2SWqLFtYdN5YWalSBMaSce3sIOt6h
+	WD7ZrNX76DKxiM2fDfNRMC+2vGB3575LHO/JG0FSKRnB4tCfJnF7/fMSk9xJfrzfyNH1
+	6nndlt6cxjoMi+ifvgWGrp4f7VV0RvulFfkWoxJphCJ4kB+1F3KjlxA6w43zrXR2Y4vZ
+	kO4bos59pqJLLRpQGTpKYQXXrI3lDzS/mIFW45JZr1VYzW/pScBEy3afIRhLeZjZFSID
+	2pprjR18Gm7Fp/YV5+Ca9GHVIk+ZiLA29sjD8V2hY+Ay4Htqr/v4mE55QSwzBRjUM/rG
+	1OqQ==
+X-Received: by 10.194.179.33 with SMTP id dd1mr4477791wjc.51.1374060254954;
+	Wed, 17 Jul 2013 04:24:14 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-Enigmail-Version: 1.4.6
-Subject: Qt4.8 - qt4-x11-free does not compile if host has qt-mobility installed
+Received: by 10.194.241.233 with HTTP; Wed, 17 Jul 2013 04:23:54 -0700 (PDT)
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Wed, 17 Jul 2013 13:23:54 +0200
+Message-ID: <CAAGt+t25rfwYgOhA3xqpSsGaEpoZNmk0m541CCmJbwB5haZ6KA@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: OpenCV libraries missing after build is successful
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,36 +33,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jul 2013 10:17:28 -0000
+X-List-Received-Date: Wed, 17 Jul 2013 11:24:17 -0000
+Content-Type: multipart/alternative; boundary=089e013d0f80658ea604e1b35590
+
+--089e013d0f80658ea604e1b35590
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
 Hi all,
 
-I have found that qt4 does not compile clean if the host PC (in my case
-a Ubuntu 12.04) has the library libQtSensors installed (package
-qtmobility-dev).
+I appended OpenCV and Gstreamer plugins to Image and made a build. Build is
+successful without any errors but OpenCV libraries are missing in
+rootfs.tar.bz2
 
-The issue is related to the package qt4-x11-free
-(qt4-x11-free-4.8.4-r50.3), and it is related to QtWebkit.
+I searched for libs( libopencv_core.so, libhighgui.so, libOpenCV.so ) in
+/usr/bin, /usr/lib and the whole archive but unable to find any libraries.
 
-For some reasons I have not yet understood, local paths /usr/include and
-/usr/lib are passed to the crosscompiler when the host library is
-installed (I am crosscompiling for ARM), and of course, at the end the
-linker fails when it tries to link the x86 library.
+In /yocto/build/downloads, I can
+see OpenCV-2.4.3.tar.bz2, OpenCV-2.4.3.tar.bz2.done files.
 
-Removing the package qtmobility-dev from the host solves without fixing
-the issue.
+In /yocto/build/tmp/deploy/licenses, I can see OpenCV folder.
 
-Any hints to solve this ?
+In /yocto/build/tmp/deploy/rpm/armv7a_vfp_neon, I can see .rpm packages.
 
-Best regards,
-Stefano Babic
+Log file after build says this:
+(Pasted only start and success logs)
 
--- 
-=====================================================================
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+NOTE: recipe opencv-2.4.3-r2: task do_compile: Succeeded
+NOTE: recipe opencv-2.4.3-r2: task do_install: Started
+NOTE: recipe opencv-2.4.3-r2: task do_install: Succeeded
+NOTE: recipe opencv-2.4.3-r2: task do_package: Started
+NOTE: recipe opencv-2.4.3-r2: task do_populate_sysroot: Started
+NOTE: recipe opencv-2.4.3-r2: task do_populate_sysroot: Succeeded
+NOTE: recipe opencv-2.4.3-r2: task do_package: Succeeded
+NOTE: recipe opencv-2.4.3-r2: task do_package_write_rpm: Started
+NOTE: recipe opencv-2.4.3-r2: task do_package_write_rpm: Succeeded
+NOTE: recipe opencv-2.4.3-r2: task do_generate_toolchain_file: Started
+NOTE: recipe opencv-2.4.3-r2: task do_generate_toolchain_file: Succeeded
+NOTE: recipe opencv-2.4.3-r2: task do_populate_lic: Started
+NOTE: recipe opencv-2.4.3-r2: task do_populate_lic: Succeeded
 
+Any Idea/hints where these files are and why they are missing?
+
+Regards,
+Zafrullah Syed.
+
+--089e013d0f80658ea604e1b35590
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><span style=3D"font-family:arial,sans-serif;font-size=
+:13px">Hi all,</span></div><div><span style=3D"font-family:arial,sans-serif=
+;font-size:13px"><br></span></div><div><span style=3D"font-family:arial,san=
+s-serif;font-size:13px">I appended OpenCV and Gstreamer plugins to Image an=
+d made a build. Build is successful without any errors but OpenCV libraries=
+ are missing in rootfs.tar.bz2=A0</span><div style=3D"font-family:arial,san=
+s-serif;font-size:13px">
+
+<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">I sear=
+ched for libs(=A0<span style=3D"color:rgb(68,68,68);line-height:16px">libop=
+encv_core</span><span style=3D"color:rgb(68,68,68);line-height:16px">.so,=
+=A0</span><span style=3D"color:rgb(68,68,68);line-height:16px">libhighgui</=
+span><span style=3D"color:rgb(68,68,68);line-height:16px">.so,=A0</span><sp=
+an style=3D"color:rgb(68,68,68);line-height:16px">libOpenCV</span><span sty=
+le=3D"color:rgb(68,68,68);line-height:16px">.so=A0</span>) in /usr/bin, /us=
+r/lib and the whole archive but unable to find any libraries.</div>
+
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><div><br></div><=
+div>In /yocto/build/downloads, I can see=A0OpenCV-2.4.3.tar.bz2,=A0OpenCV-2=
+.4.3.tar.bz2.done files.</div><div><br></div><div>In /yocto/build/tmp/deplo=
+y/licenses, I can see OpenCV folder.</div>
+
+<div><br></div><div>In /yocto/build/tmp/deploy/rpm/armv7a_vfp_neon, I can s=
+ee .rpm packages.</div><div><br></div><div>Log file after build says this:<=
+/div><div>(Pasted only start and success logs)</div><div><br></div><div>
+
+<div>NOTE: recipe opencv-2.4.3-r2: task do_compile: Succeeded</div><div>NOT=
+E: recipe opencv-2.4.3-r2: task do_install: Started</div><div>NOTE: recipe =
+opencv-2.4.3-r2: task do_install: Succeeded</div><div>NOTE: recipe opencv-2=
+.4.3-r2: task do_package: Started</div>
+
+<div>NOTE: recipe opencv-2.4.3-r2: task do_populate_sysroot: Started</div><=
+div>NOTE: recipe opencv-2.4.3-r2: task do_populate_sysroot: Succeeded</div>=
+<div>NOTE: recipe opencv-2.4.3-r2: task do_package: Succeeded</div><div>
+
+NOTE: recipe opencv-2.4.3-r2: task do_package_write_rpm: Started</div><div>=
+NOTE: recipe opencv-2.4.3-r2: task do_package_write_rpm: Succeeded</div><di=
+v><div>NOTE: recipe opencv-2.4.3-r2: task do_generate_toolchain_file: Start=
+ed</div>
+
+<div>NOTE: recipe opencv-2.4.3-r2: task do_generate_toolchain_file: Succeed=
+ed</div></div><div><div>NOTE: recipe opencv-2.4.3-r2: task do_populate_lic:=
+ Started</div><div>NOTE: recipe opencv-2.4.3-r2: task do_populate_lic: Succ=
+eeded</div>
+
+</div><div><br></div><div>Any Idea/hints where these files are and why they=
+ are missing?</div><div><br></div><div>Regards,</div><div>Zafrullah Syed.</=
+div></div></div></div>
+</div>
+
+--089e013d0f80658ea604e1b35590--
