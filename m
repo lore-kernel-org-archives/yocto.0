@@ -1,28 +1,48 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ea0-f175.google.com (mail-ea0-f175.google.com
-	[209.85.215.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46985E013A2
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 08:12:51 -0700 (PDT)
-Received: by mail-ea0-f175.google.com with SMTP id z7so1109840eaf.20
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 08:12:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Uof9JPwxjQ2+npdnrlVyifuz01z/uQNm4RH0+u7BELc=;
-	b=BCwb+izyzyPpBD80/SHWyZDQpBD4QbWQ2V1Qmj+YLzGAPNXTGlRc2SxBt2xFVbNkLl
-	YZ/EqOiALX3AHthn4LMO6RWebtwF9kqTG2aguj4Kgo1HAvAlD0iVElFFc7C5K/ClD37Q
-	oBhxsMNLvtfk+lrX8JYkGwjO/EsrTo22lhA+owm2L/C28vSAmaJ6+A0MIT+xv5PnUsqV
-	eS4yyqFLaNsSOlDbuEXMepPsInYh5noWoANRtPkxSuXainOUnjGchNsi8VLSJRkaUpv3
-	VANgY+wRte5hYvV8Hkcn5OK3KyLZrmnI/nh801qKcpb5BVwuDXMna7CyMPwlnTTid7qC
-	Go6Q==
+Return-Path: <tbreddin@tpip.net>
+Received: from mail.tpip.net (mail.tpip.net [92.43.49.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68BEBE013B0
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 04:14:20 -0700 (PDT)
+Received: from office.tpip.net (port-87-193-171-186.static.qsc.de
+	[87.193.171.186]) by mail.tpip.net (Postfix) with ESMTP id 7B84C4F578
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 11:14:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=tpip.net; s=k2011;
+	t=1374059658; bh=BuEl7DjHnSH7PWFYegdLyi/7Yz+e24DG87w3UeGXbUE=;
+	h=Date:From:To:Message-ID:In-Reply-To:Subject:MIME-Version:
+	Content-Type:Content-Transfer-Encoding;
+	b=SZGXAsb3ZcxehP2HJlOEMG3GlTmB/1m2rriyqHmc+dgA3AJ1dyJeyJoCiJ2vUmRu4
+	/Vc0aJu/Oiypiuq2vis/TLS+c7ZHwpcWsiTRVEBJPnY6oreDh2+lGeiLxFRqPW67H4
+	tp5wMzWcV3+Jb2S4Hr25L9VcotX1bJH6hZQsxfh0=
+Received: from localhost (localhost [127.0.0.1])
+	by office.tpip.net (Postfix) with ESMTP id AFD214BD63
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 13:14:17 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at tpip.net
+Received: from office.tpip.net ([127.0.0.1])
+	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ESrnsq975dR6 for <yocto@yoctoproject.org>;
+	Wed, 17 Jul 2013 13:14:17 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by office.tpip.net (Postfix) with ESMTP id 563514BD66
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 13:14:17 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at tpip.net
+Received: from office.tpip.net ([127.0.0.1])
+	by localhost (office.tpip.net [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id Oip2fCDAq4_M for <yocto@yoctoproject.org>;
+	Wed, 17 Jul 2013 13:14:16 +0200 (CEST)
+Received: from office.tpip.net (office.tpip.net [192.168.2.9])
+	by office.tpip.net (Postfix) with ESMTP id CC7874BD63
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2013 13:14:16 +0200 (CEST)
+Date: Wed, 17 Jul 2013 13:14:16 +0200 (CEST)
+From: Tino Breddin <tbreddin@tpip.net>
+To: yocto@yoctoproject.org
+Message-ID: <2109127027.634544.1374059656770.JavaMail.root@tpip.net>
+In-Reply-To: <2018085420.634497.1374059058554.JavaMail.root@tpip.net>
 MIME-Version: 1.0
-X-Received: by 10.14.193.199 with SMTP id k47mr6870429een.83.1374073970554;
-	Wed, 17 Jul 2013 08:12:50 -0700 (PDT)
-Received: by 10.223.74.139 with HTTP; Wed, 17 Jul 2013 08:12:50 -0700 (PDT)
-Date: Wed, 17 Jul 2013 09:12:50 -0600
-Message-ID: <CANwz6nxjcoXU8fH1uTjxSLEsQVnYbYLAvxg9i2ToRqFx8qFONA@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Qt4.8 - qt4-x11-free does not compile if host has qt-mobility installed
+X-Originating-IP: [87.151.70.49]
+X-Mailer: Zimbra 8.0.2_GA_5569 (ZimbraWebClient - GC28 (Linux)/8.0.2_GA_5569)
+Thread-Topic: Problem with AUTOINC and ipk
+Thread-Index: 0OeMyqpRz/udizz+AoPgLhRHG8xLpA==
+X-Mailman-Approved-At: Wed, 17 Jul 2013 08:15:00 -0700
+Subject: Problem with AUTOINC and ipk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,26 +54,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jul 2013 15:12:52 -0000
-Content-Type: multipart/alternative; boundary=047d7b342fbee923a604e1b686f9
+X-List-Received-Date: Wed, 17 Jul 2013 11:14:21 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---047d7b342fbee923a604e1b686f9
-Content-Type: text/plain; charset=ISO-8859-1
+Hi there,
 
-Hello,
-see my post zedboard & gnuradio.  see the reply provided by Paul
-I know gnuradio depends on qt-mobile
-Let me know if this helps.
-cheers
+We are having problems with using AUTOINC together with the ipk package format. I'm not sure whether this issue applies to rpm and deb as well.
 
---047d7b342fbee923a604e1b686f9
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Given the following configuration in a recipe:
 
-<div dir=3D"ltr"><div><div><div><div>Hello,<br></div>see my post zedboard &=
-amp; gnuradio.=A0 see the reply provided by Paul <br></div>I know gnuradio =
-depends on qt-mobile<br></div>Let me know if this helps.<br></div>cheers<br=
->
-</div>
+SRCREV = "AUTOINC"
+PV = "git${SRCPV}"
+PR = "r0"
 
---047d7b342fbee923a604e1b686f9--
+The generated package will have a version like this:
+
+git0+e6d1870200802f32e17e334272191397e15aec53-r0
+
+In case the latest Git revision changes, the new package would have the version:
+
+git0+30249a36b39482a98772c881334ee703715a54cc-r0
+
+My understanding is that the first integer before the + is meant to be incremented monotonically to allow the package manager to figure out that a upgrade is available. Where is the state for this integer kept? Obviously if 2 developers build the package independent from each other it would always be 0 initially. But it will stay 0 for a single developer too if the package is cleaned first. At least that is what we are seeing.
+
+I'd appreciate any feedback on how to handle recipes which should follow the Git HEAD.
+
+Cheers,
+Tino
+
