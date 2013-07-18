@@ -1,36 +1,24 @@
-Return-Path: <richbayliss@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98296E01440
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2013 07:07:01 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id ar20so7002639iec.21
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2013 07:07:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ELdx+4F75XINdx/D2YxgzAg+BhUH3zxwtMUhalv9wY4=;
-	b=At8B7Uun4bvpSAeHAOibIYb0rY5s5DCg3N+vlr/y+AmnH7G8I9WcjpXQM7HaHbDI06
-	ueaJAo2ZlFpaWWsYVZSTEcvViuf5EpTX6sGJgOUHCi1y30YZijE+v0HFn82J00yu3HEw
-	PtS+3sf9MpmUpMLwL5lcB8EAGYDdXJML5dBHpTzMqnNbvZgBHpjdk7t3tFM4uGgEXd5t
-	neeBepANoE52XuagUSTQnnHAFzTaL8oTvmZ+oSDkU6p0Kjj2Xt7gcobxIFA7Cc2UXfQt
-	TgKSVXYsYHFPiwtChPz4eVmPuzW8Sx0x8wfDsBkmQ4s86GejhlTKX8Ov3g8YNb7AMV3K
-	tnqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ELdx+4F75XINdx/D2YxgzAg+BhUH3zxwtMUhalv9wY4=;
-	b=BnOBtyv1RzUx6hGOri6VaRJkHafEh99sVqSOLA4AltIkjgH+FehQnsfsJC5lARgwKG
-	DxYxmnYqhDN0VIX4jseQ78e9XEuEKsqGQfa5O76CWjTzCGqU3B8lpxynuiu3fAZgKD0i
-	Gl9PX1huC4DlUPXzGcGlAAX0T8CoVFcry5pgbBS1s21W01isN/kdUkKuQro/gNmYBdwF
-	Hk+J+O9kCQ3SlxSn6Nwmi5dXRlFy1Ospzp87iwnKEvM0aU08VcVFzKM4aIJMuCy43LEa
-	LOIZIo6K+lGmgVRV0vtruS48dG68DrrGIKuRc/0E9Hhsf5p4yyq7cDnTX3V15VNy/S3N
-	2tdA==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18539E013D6
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2013 07:10:20 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id DDE95F8120A; Thu, 18 Jul 2013 08:10:19 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id B6E18F811F6;
+	Thu, 18 Jul 2013 08:10:18 -0600 (MDT)
+Message-ID: <51E7F74A.1060408@mlbassoc.com>
+Date: Thu, 18 Jul 2013 08:10:18 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Received: by 10.50.111.4 with SMTP id ie4mr1415959igb.1.1374156421655; Thu,
-	18 Jul 2013 07:07:01 -0700 (PDT)
-Received: by 10.64.23.165 with HTTP; Thu, 18 Jul 2013 07:07:01 -0700 (PDT)
-In-Reply-To: <CAHLvMfYLErYGHiqoAeDR-huW_0+AToErJ46EK=SQykZ1FBgL5Q@mail.gmail.com>
+To: yocto@yoctoproject.org
 References: <CAHLvMfaELf9WAjgZJ_wLqGr1wv-wZK++5S27XYbs5ffu668ZRw@mail.gmail.com>
 	<CAHLvMfaO2Ve+Z4D8_bKWSMAbskqwwJYjzLsVPvPy8z557Wesug@mail.gmail.com>
 	<CAK18fxHz5rHig5tbLN4VjZAr6itpMUVmfem7bjYzbttbT6wN9g@mail.gmail.com>
@@ -38,11 +26,7 @@ References: <CAHLvMfaELf9WAjgZJ_wLqGr1wv-wZK++5S27XYbs5ffu668ZRw@mail.gmail.com>
 	<CANyK_8exV4-B3sKZMrqCz5fabn-Fzn22v-9L16BywEHsQE2XbA@mail.gmail.com>
 	<CAHLvMfbLE6=inX1HB7K5UuOPakB=od-2v_hk=Bz-cviuBixT2A@mail.gmail.com>
 	<CAHLvMfYLErYGHiqoAeDR-huW_0+AToErJ46EK=SQykZ1FBgL5Q@mail.gmail.com>
-Date: Thu, 18 Jul 2013 15:07:01 +0100
-Message-ID: <CAHLvMfaV1fbPYip2Cf9cF4_f0S4UDuNUo=rTK-6zzaQPt1MT7w@mail.gmail.com>
-From: Rich Bayliss <richbayliss@gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: Yocto Project <yocto@yoctoproject.org>
+In-Reply-To: <CAHLvMfYLErYGHiqoAeDR-huW_0+AToErJ46EK=SQykZ1FBgL5Q@mail.gmail.com>
 Subject: Re: [meta-raspberrypi] Network not working after first boot success
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -55,10 +39,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jul 2013 14:07:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 18 Jul 2013 14:10:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 18 July 2013 14:50, Rich Bayliss <richbayliss@gmail.com> wrote:
+On 2013-07-18 07:50, Rich Bayliss wrote:
 > On 18 July 2013 12:28, Rich Bayliss <richbayliss@gmail.com> wrote:
 >> On 18 July 2013 12:07, Paul Barker <paul@paulbarker.me.uk> wrote:
 >>> On 18 July 2013 11:55, Rich Bayliss <richbayliss@gmail.com> wrote:
@@ -87,7 +72,7 @@ On 18 July 2013 14:50, Rich Bayliss <richbayliss@gmail.com> wrote:
 >>
 >> Working:
 >> root@raspberrypi:~# lsmod
->>     Not tainted
+>>      Not tainted
 >> ipv6 281069 12 - Live 0xbf02c000
 >> spidev 5343 0 - Live 0xbf022000
 >> joydev 9477 0 - Live 0xbf01c000
@@ -99,7 +84,7 @@ On 18 July 2013 14:50, Rich Bayliss <richbayliss@gmail.com> wrote:
 >>
 >> Not working:
 >> root@raspberrypi:~# lsmod
->>     Not tainted
+>>      Not tainted
 >> ipv6 281069 12 - Live 0xbf00d000
 >> joydev 9477 0 - Live 0xbf007000
 >> evdev 9486 0 - Live 0xbf000000
@@ -141,33 +126,26 @@ On 18 July 2013 14:50, Rich Bayliss <richbayliss@gmail.com> wrote:
 > errors=remount-ro,data=ordered
 >
 > udevadm settle - timeout of 3 seconds reached, the event queue contains:
->   /sys/devices/platform/bcm2708_usb/usb1/1-1/1-1.1/1-1.1:1.0/net/eth0 (980)
->   /sys/devices/platform/mmc_host/mmc0/mmc0:8fe4/block/mmcblk0/mmcblk0p1 (985)
->   /sys/devices/platform/mmc_host/mmc0/mmc0:8fe4/block/mmcblk0/mmcblk0p2 (986)
+>    /sys/devices/platform/bcm2708_usb/usb1/1-1/1-1.1/1-1.1:1.0/net/eth0 (980)
+>    /sys/devices/platform/mmc_host/mmc0/mmc0:8fe4/block/mmcblk0/mmcblk0p1 (985)
+>    /sys/devices/platform/mmc_host/mmc0/mmc0:8fe4/block/mmcblk0/mmcblk0p2 (986)
 > Configuring network interfaces... ifup: interface lo already configured
 > ifup: interface eth0 already configured
 > done.
 >
-> --
-> Rich Bayliss
 
-Could be a total wildcard, but I have managed to reliably reproduce
-this behavior:
+This looks more like there is some state information left around
+that is keeping the network from coming up - it thinks that it
+already is up.
 
-1) Boot from fresh SD image - network working.
-2) run "dmesg | grep recovery" - no results
-3) pull the power
-4) Boots without network
-5) run "dmesg | grep recovery" - 1 result "EXT4-fs (mmcblk0p2):
-recovery complete"
-6) run "reboot"
-7) Boots with network
-8) run "dmesg | grep recovery" - no results
+In your original post, you mentioned 'I pull the power/reboot'.  Is that
+how you are rebooting the board, by just yanking the power?  If so, that
+could definitely explain such a case where state information says one
+thing and real life doesn't match.
 
-I wonder if the dirty reboot by power pull as making the boot process
-longer, and thus UDEV is failing to bring eth0 up in time? What do you
-guys think?
-
---
-Rich Bayliss
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
