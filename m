@@ -1,42 +1,25 @@
-Return-Path: <richbayliss@gmail.com>
-Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89D24E01440
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2013 07:41:58 -0700 (PDT)
-Received: by mail-ie0-f173.google.com with SMTP id k13so7106686iea.18
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2013 07:41:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=2gjw6IT2w/ET7kUKsPIWVLfuD5Tag0sVP0bYNyIvGVY=;
-	b=KCeCk1o39qx2I44N9mSm4wdSGL8VhxUP+vGEmaC5kNMaoaEd/Yqf5h3FQeTZ/UDbiJ
-	6Nyis7QYNy04sHIIbC/zwFYqY/EeMc/MEXzQfBmX0H1lgbbxGDX7ktJklVq7R3tWhsv6
-	fca7N9o7RnWjKJOXURMbAVII053+wCGJN4uQHw9HiEfOSJ9WQutoSOtM6eTqPYzBKihn
-	r3S7f5CKQmlazbyCXtrkhjNyBU8P/Vafq5zGuDSOolVlQD42spPvVULnqoIwDK9E6b/Q
-	C4auELjjPI0OmpLU5YtOqmy8YqKgrMQMIjGyqRunh1lT6N+q8s7ROHlNqB1Yy6rXGywo
-	IOHA==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAF48E01440
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2013 07:44:34 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 0E93FF81209; Thu, 18 Jul 2013 08:44:33 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id E7329F811F6;
+	Thu, 18 Jul 2013 08:44:32 -0600 (MDT)
+Message-ID: <51E7FF51.60207@mlbassoc.com>
+Date: Thu, 18 Jul 2013 08:44:33 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Received: by 10.42.52.201 with SMTP id k9mr6550015icg.47.1374158518284; Thu,
-	18 Jul 2013 07:41:58 -0700 (PDT)
-Received: by 10.64.23.165 with HTTP; Thu, 18 Jul 2013 07:41:58 -0700 (PDT)
-In-Reply-To: <51E7FDC9.6090601@mlbassoc.com>
-References: <CAHLvMfaELf9WAjgZJ_wLqGr1wv-wZK++5S27XYbs5ffu668ZRw@mail.gmail.com>
-	<CAHLvMfaO2Ve+Z4D8_bKWSMAbskqwwJYjzLsVPvPy8z557Wesug@mail.gmail.com>
-	<CAK18fxHz5rHig5tbLN4VjZAr6itpMUVmfem7bjYzbttbT6wN9g@mail.gmail.com>
-	<CAHLvMfbsKb1gGPNxc9jprU0oDZDBtEVTp2sHyQOHgLDukdbXpQ@mail.gmail.com>
-	<CANyK_8exV4-B3sKZMrqCz5fabn-Fzn22v-9L16BywEHsQE2XbA@mail.gmail.com>
-	<CAHLvMfbLE6=inX1HB7K5UuOPakB=od-2v_hk=Bz-cviuBixT2A@mail.gmail.com>
-	<CAHLvMfYLErYGHiqoAeDR-huW_0+AToErJ46EK=SQykZ1FBgL5Q@mail.gmail.com>
-	<CAHLvMfaV1fbPYip2Cf9cF4_f0S4UDuNUo=rTK-6zzaQPt1MT7w@mail.gmail.com>
-	<51E7F7F8.7050601@mlbassoc.com>
-	<CAHLvMfaU1mpxJuAvh0POrbFTdnAk9P8WzjKOzSgJGcwP84bUjw@mail.gmail.com>
-	<51E7FDC9.6090601@mlbassoc.com>
-Date: Thu, 18 Jul 2013 15:41:58 +0100
-Message-ID: <CAHLvMfb4Tjsx8jjnMzcxqowtQvLtQ6i1FhUAB7mVQYVm9BRZ-g@mail.gmail.com>
-From: Rich Bayliss <richbayliss@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Network not working after first boot success
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Board SDK runs differently than bitbake build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,41 +31,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jul 2013 14:42:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 18 Jul 2013 14:44:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 18 July 2013 15:38, Gary Thomas <gary@mlbassoc.com> wrote:
-> On 2013-07-18 08:20, Rich Bayliss wrote:
->>
->> Indeed. However the usage requirement of the system rely on being
->> headless, and thus a power-pull is likely to happen.
->>
->> I guess the only way to rule this in/out would be run with a RO rootfs
->> - and mount a sperate partition for user files. Do you know how I can
->> achieve this?
->
->
-> There is some support in recent OE-core for read-only rootfs.  Search
-> the Yocto project archives for more information (I've not tried it yet).
->
-> The more interesting thing is that I have systems other than the RPI
-> that are built using Poky/Yocto where the power is often the cause
-> of a reboot and I've never seen this error/situation occur!  Maybe
-> I can experiment a bit and compare the RPI build with my other systems
-> (I have both) and see why.  Not sure when I can get to it though...
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
+I'm trying to get a fairly large project to build/run using
+OpenEmbedded and running into a number of problems.  The project
+is the Automated Maryland backup system, amanda, which is quite
+extensive and uses a lot of C+perl code.
 
-OK Gary, thanks. I have found an article which states including
-"read-only-rootfs" in the IMAGE_FEATURES will provide me with just
-that. I am building now, so let's see what happens.
+The biggest problem I have is that the result when compiled via
+bitbake doesn't run properly on my board.  To try and narrow down
+the problem, I wanted to build the package directly on my hardware,
+removing any cross-build issues that might exist.  I imported the
+same source tree as used in my bitbake build, including all patches,
+etc, to my board and run 'configure' using the same options minus the
+cross-build options (no build/host/target settings).
 
-In my opinion, although a power-failure reboot is undesirable from the
-OS perspective, I would expect it to come back with networking up - or
-at least auto-magically reboot if they aren't for some reason.
+However, when I run 'make' it fails with an error like this:
 
---
-Rich Bayliss
+libtool: compile:  gcc -DHAVE_CONFIG_H -I. -I../config -I../common-src -I../common-src -I../amandad-src -I../amar-src -
+I../xfer-src -I../perl/amglue -I../gnulib -I../ndmp-src -I/usr/lib/perl/5.14.2/CORE -I../device-src -I../server-src -I.
+./client-src -I../recover-src -fno-strict-aliasing -D_GNU_SOURCE -pthread -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/i
+nclude -DSWIG -g -O2 -fno-strict-aliasing -c Amanda/Xfer.c  -fPIC -DPIC -o .libs/Xfer.o
+/bin/sh ../libtool --tag=CC   --mode=link gcc -DSWIG  -g -O2 -fno-strict-aliasing  -avoid-version -shared   -o libXfer.
+la -rpath /usr/lib/perl/5.14.2/auto/Amanda/Xfer Xfer.lo  amglue/libamglue.la ../xfer-src/libamxfer.la -lcrypto -lm -Wl,
+--export-dynamic -pthread -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lrt -lglib-2.0   -lnsl -lresolv
+libtool: link: gcc -shared  -fPIC -DPIC .libs/libXfer.la.lnkscript  -Wl,-rpath -Wl,/home/root/amanda-3.3.3/perl/amglue/
+.libs -Wl,-rpath -Wl,/home/root/amanda-3.3.3/xfer-src/.libs -Wl,-rpath -Wl,/home/root/amanda-3.3.3/common-src/.libs -L/
+home/root/amanda-3.3.3/xfer-src/.libs -L/home/root/amanda-3.3.3/common-src/.libs amglue/.libs/libamglue.so -L/usr/lib /
+home/root/amanda-3.3.3/xfer-src/.libs/libamxfer.so ../xfer-src/.libs/libamxfer.so /home/root/amanda-3.3.3/common-src/.l
+ibs/libamanda.so -lcrypto -lm /usr/lib/libgmodule-2.0.so -ldl /usr/lib/libgobject-2.0.so /usr/lib/libffi.so /usr/lib/li
+bgthread-2.0.so /usr/lib/libglib-2.0.so -lpthread -lrt -lnsl -lresolv  -O2 -Wl,--export-dynamic -pthread   -pthread -Wl
+,-soname -Wl,libXfer.so -o .libs/libXfer.so
+libtool: link: rm -f .libs/libXfer.la.lnkscript
+/bin/sed: can't read =/usr/lib/libgthread-2.0.la: No such file or directory
+libtool: link: `=/usr/lib/libgthread-2.0.la' is not a valid libtool archive
+
+The interesting thing is that library/file *is* present.  If I
+simply rerun 'make', this step runs properly and it carries on,
+only to fail again with a similar error in some other part of
+the build.  Eventually, the build completes after about 20 make/retry
+cycles.  When I run 'make install', a new set of errors occurs:
+
+make[5]: Leaving directory `/home/root/amanda-3.3.3/common-src'
+  /bin/mkdir -p '/usr/lib'
+  /bin/sh ../libtool   --mode=install /usr/bin/install -c   libamanda.la '/usr/lib'
+libtool: install: /usr/bin/install -c .libs/libamanda-3.3.3.so /usr/lib/libamanda-3.3.3.so
+libtool: install: (cd /usr/lib && { ln -s -f libamanda-3.3.3.so libamanda.so || { rm -f libamanda.so && ln -s libamanda
+-3.3.3.so libamanda.so; }; })
+libtool: install: /usr/bin/install -c .libs/libamanda.lai /usr/lib/libamanda.la
+/usr/bin/install: cannot stat `.libs/libamanda.lai': No such file or directory
+
+Neither of these [class of] errors happen when I build using 'bitbake'.
+
+Both environments are in total sync - I've built the package using
+the same build tree where I built my system image + SDK - so I don't
+understand why the difference in behaviour.
+
+An even more interesting thing is that I've build amanda on my BeagleBoneBlack
+running Angstrom (also OE-core based and only a tiny bit older than the current
+Poky/Yocto tree I use).  I still had the build issues as above, but the resulting
+code actually runs.  I used the exact same 'configure' setup, same sources, etc.
+The differences may be with the tools:
+        Poky/Yocto    Angstrom
+perl     5.14.3        5.14.2
+gcc      4.7.2         4.7.3
+
+I've also tried this on vastly different architectures - ARM & PowerPC - with
+the same failures.
+
+Any ideas/help/comments?
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
