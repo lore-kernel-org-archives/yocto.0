@@ -1,25 +1,36 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E7A7E0140D
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 08:09:35 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Jul 2013 08:09:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,702,1367996400"; d="scan'208";a="348441519"
-Received: from unknown (HELO helios.localnet) ([10.252.122.96])
-	by orsmga001.jf.intel.com with ESMTP; 19 Jul 2013 08:09:32 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: r10kindsofpeople <r10kindsofpeople@gmail.com>
-Date: Fri, 19 Jul 2013 16:09:31 +0100
-Message-ID: <2173803.768kMi5SBz@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.4 (Linux/3.8.0-26-generic; KDE/4.10.4; i686; ; )
-In-Reply-To: <CAPhnLPBanJ=CHZdzAwGNriUOH5UeNn-CggWntNbML8gw+6_V_A@mail.gmail.com>
-References: <CAE8H0+XntiXZNiZg4ZJhf+uLusWLu+ddQpXPuKru5epugR4W2Q@mail.gmail.com>
-	<CAPhnLPBanJ=CHZdzAwGNriUOH5UeNn-CggWntNbML8gw+6_V_A@mail.gmail.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: 9.0.1 release tarball requires bitbake 1.19.1 but provides 1.18.0?
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4989E0140D
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 09:09:33 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1V0DFB-0003ez-Ry
+	for yocto@yoctoproject.org; Fri, 19 Jul 2013 18:09:22 +0200
+Received: from 12.221.11.42 ([12.221.11.42])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 18:09:21 +0200
+Received: from squirem by 12.221.11.42 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 18:09:21 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Saddam Quirem <squirem@fbdfrozen.com>
+Date: Fri, 19 Jul 2013 16:09:03 +0000 (UTC)
+Message-ID: <loom.20130719T173339-251@post.gmane.org>
+References: <6E33FFB9BDF84745959E176E9A6B59BE4078954D@FBDLP-EX2010.fbdlp.local>
+	<CA452391058F6D4E9715FB2C29D9312A01625D60@039-SN2MPN1-023.039d.mgd.msft.net>
+	<loom.20130717T172709-633@post.gmane.org>
+	<CA452391058F6D4E9715FB2C29D9312A01627246@039-SN2MPN1-023.039d.mgd.msft.net>
+	<loom.20130718T174414-697@post.gmane.org>
+	<alpine.DEB.2.00.1307181950150.21940@tvnag.unkk.fr>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 12.221.11.42 (Mozilla/5.0 (X11;
+	Linux x86_64) AppleWebKit/537.31 (KHTML, like Gecko)
+	Chrome/26.0.1410.43 Safari/537.31)
+Subject: Re: Enabling SFTP on libcurl package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,52 +42,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2013 15:09:35 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 19 Jul 2013 16:09:37 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On Friday 19 July 2013 07:52:03 Flanagan, Elizabeth wrote:
-> On Fri, Jul 19, 2013 at 6:07 AM, r10kindsofpeople
-> <r10kindsofpeople@gmail.com> wrote:
-> > I've run into another issue when trying to upgrade my system from Denzil
-> > to Dylan using the released packages.  I extracted the 9.0.1 released
-> > tarball, added the crownbay BSP, then moved my layers over from Denzil. 
-> > Sourced the build directory, then modified bblayers.conf and local.conf to
-> > merge my specifics with the new formats.
-> > 
-> > 'bitbake core-image-minimal' results in an error... "OE-core's config
-> > sanity checker detected a potential misconfiguration." and "Bitbake
-> > version 1.19.1 is required and version 1.18.0 was found".
-> > 
-> > A contributing factor may be that I also have a git snapshot from 2 days
-> > ago on the same system (that builds), but I've tried to keep them in
-> > separate directories and be careful about running the source script in
-> > it's own shell.
-> > 
-> > Is this a problem with the release tarball or a PICNIC problem?
-> 
-> It shouldn't be a problem with the tarball as the download tarball is
-> 
-> http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.1/poky-73f103bf9b
-> 2cdf985464dc53bf4f1cfd71d4531f.tar.bz2
-> 
-> which corresponds with the tagged release at:
-> 
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=dylan&id=73f103bf9b
-> 2cdf985464dc53bf4f1cfd71d4531f
-> 
-> I just validated the tarball and can't reproduce so my guess is that
-> this is probably a dirty env issue.
+Daniel Stenberg <daniel@...> writes:
 
-It does sound that way. John, you haven't perhaps changed the path to the 
-metadata but re-used the build directory, such that BBLAYERS in bblayers.conf 
-still points to the development snapshot?
+> libssh2 is a rather standard autotools-using library that itself depends on a 
+> crypto backend (OpenSSL or gcrypt). There should be plenty of recipes for 
+> similar libs to get inspiration from.
 
-Cheers,
-Paul
+Appreciate the response.
 
--- 
+I added a libssh2 recipe in poky/meta/recipes-support/libssh2.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+####Here are the contents of libssh2_1.4.3.bb:####
+DESCRIPTION = "A client-side C library implementing the SSH2 protocol"
+HOMEPAGE = "http://www.libssh2.org/"
+BUGTRACKER = ""
+LICENSE = "BSD"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d00afe44f336a79a2ca7e1681ce14509"
+SECTION = "libs"
+SRC_URI = "http://www.libssh2.org/download/${BPN}-${PV}.tar.gz"
+DEPENDS = "libgcrypt"
+SRC_URI[md5sum] = "071004c60c5d6f90354ad1b701013a0b"
+SRC_URI[sha256sum] = "eac6f85f9df9db2e6386906a6227eb2cd7b3245739561cad7d6dc1d \
+                      5d021b96d"
+inherit autotools
+#################################################
+
+I'm not exactly sure where the bugtracker site is, 
+but it's not necessary for bitbake.
+
+In the curl recipe, I changed these lines:
+    DEPENDS = "zlib gnutls"
+    --without-libssh2 \
+To this:
+    DEPENDS = "zlib gnutls libssh2"
+    --with-libssh2=${STAGING_LIBDIR} \
+
+I'm using poky-dylan w/ Freesacale ARM BSP. There were no issues reported.
+My application, which uses libcurl, now runs fine and can use SFTP to
+upload to a remote site.
+
+I've noticed that the master-next branch of poky does not include libssh2
+and curl does not yet support SSH.
+
+Since you're the author and maintainer of cURL, I was wondering why SSH
+is not yet supported in the Yocto cURL package and if it will be?
+
 
