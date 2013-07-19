@@ -1,28 +1,24 @@
-Return-Path: <r10kindsofpeople@gmail.com>
-Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
-	[209.85.214.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 470F5E01492
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 06:07:03 -0700 (PDT)
-Received: by mail-ob0-f178.google.com with SMTP id fb19so5346261obc.9
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 06:07:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=721g8xYFpgjwEU7ohKPg+QtbhO14SinjzD776dSUvHw=;
-	b=HVW3TpsF//ajzST8axoAkhLKsKOi+/gr9gumywgzGgwvtsVOZgYlkIAOEyEWFM6X39
-	mj3NMf+mWG/cfuO2Im3y5GfFE58caAp+IO+hsgk/sN79DQJMXCLyG0o3JrNbr7BdxD7C
-	Zki4FW8jrQu8vxEJ13Y/bCwNB2+CqsJGL2xgN4jQeWmYzpsVv2DI4Eykk4fpikGPotj2
-	7N62Olt7Ykn/r4So8hl8UDZNKRg4oyLp327G7WY9R0/guXoRVi1oEkAVDR+uAiKDp6wG
-	6eg605sNQEPkjs8/Tl/mq41RrRVgmGmQF2x9KzE1k1na2g/6wuruE+jV4CIwwrIa2uR4
-	uADw==
-MIME-Version: 1.0
-X-Received: by 10.182.181.73 with SMTP id du9mr12106455obc.106.1374239222431; 
-	Fri, 19 Jul 2013 06:07:02 -0700 (PDT)
-Received: by 10.76.86.138 with HTTP; Fri, 19 Jul 2013 06:07:02 -0700 (PDT)
-Date: Fri, 19 Jul 2013 09:07:02 -0400
-Message-ID: <CAE8H0+XntiXZNiZg4ZJhf+uLusWLu+ddQpXPuKru5epugR4W2Q@mail.gmail.com>
-From: r10kindsofpeople <r10kindsofpeople@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: 9.0.1 release tarball requires bitbake 1.19.1 but provides 1.18.0?
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19E9AE0140D
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 06:33:54 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Jul 2013 06:33:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,701,1367996400"; d="scan'208";a="348399339"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by orsmga001.jf.intel.com with ESMTP; 19 Jul 2013 06:33:54 -0700
+Received: from thunderbird.rb.intel.com (thunderbird.rb.intel.com
+	[10.237.105.57])
+	by linux.intel.com (Postfix) with ESMTP id 9A8F02C8001;
+	Fri, 19 Jul 2013 06:33:52 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org,
+	elizabeth.flanagan@intel.com
+Date: Fri, 19 Jul 2013 16:31:45 +0300
+Message-Id: <1374240705-11529-1-git-send-email-stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [yocto-autobuilder][PATCH] buildset-config: update remaining targets to layerversion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,49 +30,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2013 13:07:06 -0000
-Content-Type: multipart/alternative; boundary=089e010d9b76b0874104e1dd001a
+X-List-Received-Date: Fri, 19 Jul 2013 13:33:55 -0000
 
---089e010d9b76b0874104e1dd001a
-Content-Type: text/plain; charset=ISO-8859-1
+Update remaining targets to use the new layerversion check,
+otherwise the old qemuimagetest will be used for RunSanityTests.
 
-I've run into another issue when trying to upgrade my system from Denzil to
-Dylan using the released packages.  I extracted the 9.0.1 released tarball,
-added the crownbay BSP, then moved my layers over from Denzil.  Sourced the
-build directory, then modified bblayers.conf and local.conf to merge my
-specifics with the new formats.
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
+ buildset-config/nightly-multilib.conf   | 2 +-
+ buildset-config/nightly-qa-extras.conf  | 2 +-
+ buildset-config/nightly-qa-systemd.conf | 2 +-
+ buildset-config/nightly-x32.conf        | 3 +--
+ 4 files changed, 4 insertions(+), 5 deletions(-)
 
-'bitbake core-image-minimal' results in an error... "OE-core's config
-sanity checker detected a potential misconfiguration." and "Bitbake version
-1.19.1 is required and version 1.18.0 was found".
+diff --git a/buildset-config/nightly-multilib.conf b/buildset-config/nightly-multilib.conf
+index cc01797..bf045a7 100644
+--- a/buildset-config/nightly-multilib.conf
++++ b/buildset-config/nightly-multilib.conf
+@@ -2,7 +2,7 @@
+ builders: 'builder1'
+ repos: [{'poky': 
+             {'repourl':'git://git.yoctoproject.org/poky', 
+-             'bbpriority':'1', 
++             'layerversion':'core',
+              'branch':'master'}}, 
+         {'meta-qt3': 
+             {'repourl':'git://git.yoctoproject.org/meta-qt3', 
+diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
+index 23c955c..943d010 100644
+--- a/buildset-config/nightly-qa-extras.conf
++++ b/buildset-config/nightly-qa-extras.conf
+@@ -2,7 +2,7 @@
+ builders: 'builder1'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+-             'bbpriority':'1',
++             'layerversion':'core',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config/nightly-qa-systemd.conf b/buildset-config/nightly-qa-systemd.conf
+index 0467040..97f8a4a 100644
+--- a/buildset-config/nightly-qa-systemd.conf
++++ b/buildset-config/nightly-qa-systemd.conf
+@@ -2,7 +2,7 @@
+ builders: 'builder1'
+ repos: [{'poky':
+             {'repourl':'git://git.yoctoproject.org/poky',
+-             'bbpriority':'1',
++             'layerversion':'core',
+              'branch':'master'}}]
+ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+diff --git a/buildset-config/nightly-x32.conf b/buildset-config/nightly-x32.conf
+index 636b1c3..2943ef6 100644
+--- a/buildset-config/nightly-x32.conf
++++ b/buildset-config/nightly-x32.conf
+@@ -2,11 +2,10 @@
+ builders: 'builder1'
+ repos: [{'poky': 
+             {'repourl':'git://git.yoctoproject.org/poky', 
+-             'bbpriority':'1', 
++             'layerversion':'core',
+              'branch':'master'}}, 
+         {'meta-qt3': 
+             {'repourl':'git://git.yoctoproject.org/meta-qt3', 
+-             'bbpriority':'2', 
+              'branch':'master'}}] 
+ steps: [{'SetDest':{}}, 
+         {'CheckOutLayers': {}}, 
+-- 
+1.8.1.4
 
-A contributing factor may be that I also have a git snapshot from 2 days
-ago on the same system (that builds), but I've tried to keep them in
-separate directories and be careful about running the source script in it's
-own shell.
 
-Is this a problem with the release tarball or a PICNIC problem?
-
-John
-
---089e010d9b76b0874104e1dd001a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I&#39;ve run into another issue when trying to upgrade my =
-system from Denzil to Dylan using the released packages. =A0I extracted the=
- 9.0.1 released tarball, added the crownbay BSP, then moved my layers over =
-from Denzil. =A0Sourced the build directory, then modified bblayers.conf an=
-d local.conf to merge my specifics with the new formats. =A0<div>
-<br></div><div>&#39;bitbake core-image-minimal&#39; results in an error... =
-&quot;OE-core&#39;s config sanity checker detected a potential misconfigura=
-tion.&quot; and &quot;Bitbake version 1.19.1 is required and version 1.18.0=
- was found&quot;.</div>
-<div><br></div><div>A contributing factor may be that I also have a git sna=
-pshot from 2 days ago on the same system (that builds), but I&#39;ve tried =
-to keep them in separate directories and be careful about running the sourc=
-e script in it&#39;s own shell. =A0</div>
-<div><br></div><div>Is this a problem with the release tarball or a PICNIC =
-problem? =A0</div><div><br></div><div>John</div></div>
-
---089e010d9b76b0874104e1dd001a--
