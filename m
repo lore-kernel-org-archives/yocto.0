@@ -1,24 +1,34 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19E9AE0140D
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 06:33:54 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Jul 2013 06:33:54 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,701,1367996400"; d="scan'208";a="348399339"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga001.jf.intel.com with ESMTP; 19 Jul 2013 06:33:54 -0700
-Received: from thunderbird.rb.intel.com (thunderbird.rb.intel.com
-	[10.237.105.57])
-	by linux.intel.com (Postfix) with ESMTP id 9A8F02C8001;
-	Fri, 19 Jul 2013 06:33:52 -0700 (PDT)
-From: Stefan Stanacar <stefanx.stanacar@intel.com>
-To: yocto@yoctoproject.org,
-	elizabeth.flanagan@intel.com
-Date: Fri, 19 Jul 2013 16:31:45 +0300
-Message-Id: <1374240705-11529-1-git-send-email-stefanx.stanacar@intel.com>
-X-Mailer: git-send-email 1.8.1.4
-Subject: [yocto-autobuilder][PATCH] buildset-config: update remaining targets to layerversion
+Return-Path: <richbayliss@gmail.com>
+Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B70AE01419
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 07:19:03 -0700 (PDT)
+Received: by mail-ie0-f180.google.com with SMTP id f4so9379437iea.39
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 07:19:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=wi+P3CI27HKwgPhisXNFYnycQT9mbmgJpeygyfE6ki8=;
+	b=NzTSnmuEG9IhlD5MhdBoQik98Mve8IxwonI85OhYF3OHell1jd3oINuncx43jvne6e
+	u1JxBDa2hqSjK9ICQ0KQQZS9MWRAJ6vQRnR97a09SsYBwpCNyDD0vSiBJb34K8QSBzEJ
+	CVZGnQtVKU5crswtSYElvbFOhVd8yTIVzsuf6jvstql8qyOGwWu2X2fKv2GZKrUeG1af
+	G4kBCVqGDo0aAQB3cCDKAaljYe5p+8zgKzzVy+3XoTDYR7u8mjI54tCbwPTm7vF60O0C
+	kPFLjx7bAkdMJ2T9yGoWCSK1mf8xQWwOOeGVrIUdNlHnqKTogkmb6jn00JUuCR487CeG
+	VPFQ==
+MIME-Version: 1.0
+X-Received: by 10.42.79.142 with SMTP id r14mr11020414ick.51.1374243543034;
+	Fri, 19 Jul 2013 07:19:03 -0700 (PDT)
+Received: by 10.64.23.165 with HTTP; Fri, 19 Jul 2013 07:19:02 -0700 (PDT)
+Received: by 10.64.23.165 with HTTP; Fri, 19 Jul 2013 07:19:02 -0700 (PDT)
+In-Reply-To: <20130719125447.GA37574@sestofb10.enea.se>
+References: <CAHLvMfaDVCOe925=5LK_p_M+wUNf7CzbvBXC0p97tnS1SqEBig@mail.gmail.com>
+	<20130719125447.GA37574@sestofb10.enea.se>
+Date: Fri, 19 Jul 2013 15:19:02 +0100
+Message-ID: <CAHLvMfaSA4VbZ=GntbDbsxj-n2BWPB9eLZHG3Xp+BJ2nc6vgmQ@mail.gmail.com>
+From: Rich Bayliss <richbayliss@gmail.com>
+To: "Maxin B. John" <maxin.john@enea.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Adding Python support to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,76 +40,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2013 13:33:55 -0000
+X-List-Received-Date: Fri, 19 Jul 2013 14:19:04 -0000
+Content-Type: multipart/alternative; boundary=20cf3010ea0937ba9904e1de028a
 
-Update remaining targets to use the new layerversion check,
-otherwise the old qemuimagetest will be used for RunSanityTests.
+--20cf3010ea0937ba9904e1de028a
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
----
- buildset-config/nightly-multilib.conf   | 2 +-
- buildset-config/nightly-qa-extras.conf  | 2 +-
- buildset-config/nightly-qa-systemd.conf | 2 +-
- buildset-config/nightly-x32.conf        | 3 +--
- 4 files changed, 4 insertions(+), 5 deletions(-)
+On 19 Jul 2013 13:54, "Maxin B. John" <maxin.john@enea.com> wrote:
+>
+> Hi,
+>
+> > I have added a recipe to my build which RDEPENDS_${PN} = "python".
+> > Although the package doesn't "need" python to run, it exposes a Python
+> > library which I would like to use on the system in a Python script.
+> RDEPENDS on "python-math" should do the trick.
+>
+> RDEPENDS_${PN} = "python-math"
+>
+> <snip>
+> > Rich Bayliss
+>
+> Best Regards,
+> Maxin
 
-diff --git a/buildset-config/nightly-multilib.conf b/buildset-config/nightly-multilib.conf
-index cc01797..bf045a7 100644
---- a/buildset-config/nightly-multilib.conf
-+++ b/buildset-config/nightly-multilib.conf
-@@ -2,7 +2,7 @@
- builders: 'builder1'
- repos: [{'poky': 
-             {'repourl':'git://git.yoctoproject.org/poky', 
--             'bbpriority':'1', 
-+             'layerversion':'core',
-              'branch':'master'}}, 
-         {'meta-qt3': 
-             {'repourl':'git://git.yoctoproject.org/meta-qt3', 
-diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
-index 23c955c..943d010 100644
---- a/buildset-config/nightly-qa-extras.conf
-+++ b/buildset-config/nightly-qa-extras.conf
-@@ -2,7 +2,7 @@
- builders: 'builder1'
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
--             'bbpriority':'1',
-+             'layerversion':'core',
-              'branch':'master'}}]
- steps: [{'SetDest':{}},
-         {'CheckOutLayers': {}},
-diff --git a/buildset-config/nightly-qa-systemd.conf b/buildset-config/nightly-qa-systemd.conf
-index 0467040..97f8a4a 100644
---- a/buildset-config/nightly-qa-systemd.conf
-+++ b/buildset-config/nightly-qa-systemd.conf
-@@ -2,7 +2,7 @@
- builders: 'builder1'
- repos: [{'poky':
-             {'repourl':'git://git.yoctoproject.org/poky',
--             'bbpriority':'1',
-+             'layerversion':'core',
-              'branch':'master'}}]
- steps: [{'SetDest':{}},
-         {'CheckOutLayers': {}},
-diff --git a/buildset-config/nightly-x32.conf b/buildset-config/nightly-x32.conf
-index 636b1c3..2943ef6 100644
---- a/buildset-config/nightly-x32.conf
-+++ b/buildset-config/nightly-x32.conf
-@@ -2,11 +2,10 @@
- builders: 'builder1'
- repos: [{'poky': 
-             {'repourl':'git://git.yoctoproject.org/poky', 
--             'bbpriority':'1', 
-+             'layerversion':'core',
-              'branch':'master'}}, 
-         {'meta-qt3': 
-             {'repourl':'git://git.yoctoproject.org/meta-qt3', 
--             'bbpriority':'2', 
-              'branch':'master'}}] 
- steps: [{'SetDest':{}}, 
-         {'CheckOutLayers': {}}, 
--- 
-1.8.1.4
+Thanks. That did the trick. I also needed 'select' so I added
+'python-modules' for now. Will fine tune later.
 
+--20cf3010ea0937ba9904e1de028a
+Content-Type: text/html; charset=ISO-8859-1
 
+<p dir="ltr"><br>
+On 19 Jul 2013 13:54, &quot;Maxin B. John&quot; &lt;<a href="mailto:maxin.john@enea.com">maxin.john@enea.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; &gt; I have added a recipe to my build which RDEPENDS_${PN} = &quot;python&quot;.<br>
+&gt; &gt; Although the package doesn&#39;t &quot;need&quot; python to run, it exposes a Python<br>
+&gt; &gt; library which I would like to use on the system in a Python script.<br>
+&gt; RDEPENDS on &quot;python-math&quot; should do the trick.<br>
+&gt;<br>
+&gt; RDEPENDS_${PN} = &quot;python-math&quot;<br>
+&gt;<br>
+&gt; &lt;snip&gt;<br>
+&gt; &gt; Rich Bayliss<br>
+&gt;<br>
+&gt; Best Regards,<br>
+&gt; Maxin</p>
+<p dir="ltr">Thanks. That did the trick. I also needed &#39;select&#39; so I added &#39;python-modules&#39; for now. Will fine tune later. </p>
+
+--20cf3010ea0937ba9904e1de028a--
