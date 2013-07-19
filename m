@@ -1,40 +1,26 @@
-Return-Path: <richbayliss@gmail.com>
-Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3CF6E01492
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 01:08:09 -0700 (PDT)
-Received: by mail-ie0-f180.google.com with SMTP id f4so8797937iea.39
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 01:08:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=7i/TwIhbOSj5KCOKea4/uVRUdVvUlFnQq7Vrdl5LP6E=;
-	b=dBV+ef2gZDZOxD7zlYbf64jseXS6DBsnsADZIFX5k/XzHWq6pSbz8ltLP1TkHnWQhF
-	bgcmKaMioKooxFotKZhtaz8OVyhzoj+z6CBg9VchXRhGWLjJjCTPd542S+XDD1snVggN
-	gNMTWN7yuGpkQL76mutBCrv/jiuaTH0AbAmrLKtxpOhhRAanlnuzyijCJ9ykmF9Wy7vM
-	Ao2Or8ql4Ks+NkV3MVy+sNV7wlx03jQoVWcvvB+er4FdqIFtNyQ2IFUXteOvYWFEJEP+
-	70eceUTxavWN4uYK4paHTOKFI5io65OMKaXji2gpcTnDJ+Mu2DyklRfHBCQ907N8fxDq
-	norw==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF42E01492
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 03:20:31 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 19 Jul 2013 03:20:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,700,1367996400"; d="scan'208";a="333792084"
+Received: from unknown (HELO helios.localnet) ([10.252.122.96])
+	by azsmga001.ch.intel.com with ESMTP; 19 Jul 2013 03:20:29 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Fri, 19 Jul 2013 11:20:28 +0100
+Message-ID: <1511282.kM2X9Mm5Th@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.4 (Linux/3.8.0-26-generic; KDE/4.10.4; i686; ; )
+In-Reply-To: <CAPhnLPAGFX+SLWp8yFh8N=HpkpTxFZHAicr+kjFGp4D3is=EBQ@mail.gmail.com>
+References: <cover.1373474163.git.stefanx.stanacar@intel.com>
+	<1994317.voCf2gl0Ax@helios>
+	<CAPhnLPAGFX+SLWp8yFh8N=HpkpTxFZHAicr+kjFGp4D3is=EBQ@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.43.14.74 with SMTP id pp10mr8998271icb.87.1374221288893;
-	Fri, 19 Jul 2013 01:08:08 -0700 (PDT)
-Received: by 10.64.23.165 with HTTP; Fri, 19 Jul 2013 01:08:08 -0700 (PDT)
-In-Reply-To: <20130719002713.6e68781c@e6520eb>
-References: <CAHLvMfaELf9WAjgZJ_wLqGr1wv-wZK++5S27XYbs5ffu668ZRw@mail.gmail.com>
-	<CAHLvMfaO2Ve+Z4D8_bKWSMAbskqwwJYjzLsVPvPy8z557Wesug@mail.gmail.com>
-	<CAK18fxHz5rHig5tbLN4VjZAr6itpMUVmfem7bjYzbttbT6wN9g@mail.gmail.com>
-	<CAHLvMfbsKb1gGPNxc9jprU0oDZDBtEVTp2sHyQOHgLDukdbXpQ@mail.gmail.com>
-	<CANyK_8exV4-B3sKZMrqCz5fabn-Fzn22v-9L16BywEHsQE2XbA@mail.gmail.com>
-	<CAHLvMfbLE6=inX1HB7K5UuOPakB=od-2v_hk=Bz-cviuBixT2A@mail.gmail.com>
-	<CAHLvMfYLErYGHiqoAeDR-huW_0+AToErJ46EK=SQykZ1FBgL5Q@mail.gmail.com>
-	<CAHLvMfaV1fbPYip2Cf9cF4_f0S4UDuNUo=rTK-6zzaQPt1MT7w@mail.gmail.com>
-	<20130719002713.6e68781c@e6520eb>
-Date: Fri, 19 Jul 2013 09:08:08 +0100
-Message-ID: <CAHLvMfarB66ebAdbKNWHvQ18Dx-h28N3KHoM-WgenFxxQjR-4g@mail.gmail.com>
-From: Rich Bayliss <richbayliss@gmail.com>
-To: =?ISO-8859-1?Q?Eric_B=E9nard?= <eric@eukrea.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Network not working after first boot success
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto-autobuilder][PATCH 0/3] Enabling of the new testimage class for sanity tests
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,32 +32,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2013 08:08:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 19 Jul 2013 10:20:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 18 July 2013 23:27, Eric B=E9nard <eric@eukrea.com> wrote:
+On Thursday 18 July 2013 08:32:11 Flanagan, Elizabeth wrote:
+> On Thu, Jul 18, 2013 at 5:37 AM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+> > On Wednesday 17 July 2013 14:30:27 Flanagan, Elizabeth wrote:
+> >> So, after the oe-core failure last night that was due to how we
+> >> determine when to use the new testimage, this has kind of bumped up
+> >> the need for the autobuilder to start using LAYERVERSION_* as a means
+> >> of determinating major functionality changes.
+> >> 
+> >> In this example, we've essentially broken backwards compatibility for
+> >> oe-core builds on the autobuilder. I put in a quick and dirty patch
+> >> last night just to get it so oe-core sanity will run using the old
+> >> sanity testing framework. I'm working on getting a GetLayerVersion
+> >> buildstep working so we can utilize it both for the new test framework
+> >> as well as to differentiate the toolchain image builds (prior to 2 we
+> >> build meta-toolchain-gmae, post core-image-sato-sdk).
+> > 
+> > Wouldn't the simplest thing be to just check for the presence of
+> > meta/classes/testimage.bbclass?
+> 
+> Actually, no. What I would need to do here in buildbot land is either
+> script out the conditional in the bash that executes (ick, kind of a
+> pain to debug) or make an entirely new buildstep to check for the
+> existence of that one file, set a property and then check for that
+> property in RunSanityTesting. And that's just for sanity testing. For
+> meta-toolchain-gmae, I'd have to have yet another way of doing it.
+> 
+> It's so much easier to just have a GetLayerVersion step for each layer and
+> then:
+> 
+> layerversion = self.getProperty("layerversion_core")
+> if layerversion and int(layerversion) > 1:
+>   #do one thing
+> else:
+>   #do something else.
 
-> this problem occured here when /var/run/network/ifstate is on a RW
-> persistent storage and not in a tmpfs : the interface state can exist
-> when booting after a dirty reboot.
->
-> A workaround is to hack
-> meta/recipes-core/init-ifupdown/init-ifupdown-1.0/init and add
-> ifdown -a
-> just before ifup -a in the start) section
->
-> Eric
+OK, I can see that being easier assuming you can't just do the path check in 
+the python code itself (and it's not clear to me if you have the path to the 
+metadata or not at that point, based on the variable printout from a recent 
+build). I'm still a little bit concerned about changing the meaning of 
+LAYERVERSION, but I'm willing to admit defeat at this point in the absence of 
+another acceptable solution.
 
-I will try this hack Eric, but I suppose this opens another question -
-why /var/run is held on a non-TMPFS? I would think (and this is not
-based on any authority) that since /var/run is mainly for tracking
-state, that after a reboot of any kind it should remain blank.
+Cheers,
+Paul
 
-I have tested deleting /var/run/ifstate and pulling the plug, and it
-returns on next reboot. I think this might be the EXT4 recovery
-kicking in and putting the file back?
+-- 
 
---
-Rich Bayliss
+Paul Eggleton
+Intel Open Source Technology Centre
 
