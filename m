@@ -1,28 +1,37 @@
-Return-Path: <zafrullahmehdi@gmail.com>
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04003E0140D
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 10:21:16 -0700 (PDT)
-Received: by mail-wi0-f170.google.com with SMTP id ey16so890414wid.5
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 10:21:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=WGzFnsRk5aALafXH/7SPNMcyZLXEM94QKqCXX9X6AF0=;
-	b=JngMw3dcivADkhSK1+47kYJHm40jjTuVsa7WTqg5LiF6pYq9hhIj7mT8xBpHmXTSZC
-	1HzUFCWJ1hZmYcLpRYRm3ht2OBhRuaNBmJlq+nKSCiDv3qK+ktX99hCg8D1QSb8VcbCG
-	Hz8jXs7lT9jkuEtrf7z+4OzLhwCcngRaK4bCmx7NFpd4Jx4ILWMHTOyfij31NjG9gJsg
-	EyJ6M5b7zIskU7zLkzGXCdjzEV3dyBnG9ByEMDGLCilJp6b5BTIvI98f108H0bSrWUaJ
-	Yu/ODk9kQW3tU+bjmEk2ig1bXUugkJ0qeqJL2l6FMn0A/LekHI8/+yOaF2sWx2GBqwYr
-	qEZA==
-X-Received: by 10.180.74.8 with SMTP id p8mr1950737wiv.32.1374254475498; Fri,
-	19 Jul 2013 10:21:15 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
+	[209.85.128.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B2ECE0140D
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 10:41:15 -0700 (PDT)
+Received: by mail-ve0-f181.google.com with SMTP id db10so3527903veb.26
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 10:41:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=It7Rqmzs+KwrrxqKOo96RDvXwZPxIzCd/j2DlQyoM1w=;
+	b=olmY3yN4hLp3kNq4I1vY9ODVbIjF9y9wmwCUgbfpmdw178YVfQKdn1+FltH9npKre8
+	xQqkyHEN51AzUisi0tFZgHGnH+GQR6FkbTkguCDcU8smEXzPZWlT1hkEpaxu8fG1zfbF
+	g+rpeBsvxcg8Ot/ULe0DSPcxmBoh1SXSwYI++AhtoeW5NTHhPtIFWA6zkH9DmfH4xJI7
+	HNI9V/WsNJe/A/wYhStuqLfSFmICm0Mp/Dzl7lmhi0sEN237PqS1FUatLeebqldBvkus
+	vpDmHpg3O8X19b42Nv32eFAk6dnIvA9M9yc/PM2S9QIGphQ0AfzU2d8zi8sbskP4jAB/
+	O/gw==
 MIME-Version: 1.0
-Received: by 10.194.241.233 with HTTP; Fri, 19 Jul 2013 10:20:55 -0700 (PDT)
-From: Zafrullah Syed <zafrullahmehdi@gmail.com>
-Date: Fri, 19 Jul 2013 19:20:55 +0200
-Message-ID: <CAAGt+t3cZgGVwORrw1hk5jSSTJ+51c7QoEAQmUMg66evAdzfwA@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: MLO, u-boot and uImage are same for any rootfs created?
+X-Received: by 10.220.119.77 with SMTP id y13mr6056876vcq.13.1374255675073;
+	Fri, 19 Jul 2013 10:41:15 -0700 (PDT)
+Received: by 10.52.73.168 with HTTP; Fri, 19 Jul 2013 10:41:14 -0700 (PDT)
+In-Reply-To: <CAE8H0+VAnPwjKFA__a3EuMTF9sJVdbmoB_kxVtVz9hvhiskzMg@mail.gmail.com>
+References: <CAE8H0+WxtwacYF8chdJi2hum6XDRAzciSk20PcG6h1qNUmwfSQ@mail.gmail.com>
+	<1374159667.1624.42.camel@empanada>
+	<1374176459.1624.48.camel@empanada>
+	<CAE8H0+VAnPwjKFA__a3EuMTF9sJVdbmoB_kxVtVz9hvhiskzMg@mail.gmail.com>
+Date: Fri, 19 Jul 2013 10:41:14 -0700
+Message-ID: <CAPhnLPDNOz4w8Xc7HT4jq++_=rTWEtj61MvsnE28AmAc4pj7UQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: r10kindsofpeople <r10kindsofpeople@gmail.com>
+X-Gm-Message-State: ALoCoQkrCR5/Xf8yq/dftg7idCBARZ+J0AUjzxRO1vDNMI3/kDzHsGrB5yRI3koRaOmJHBasIeWr
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to get released BSP that contains meta-intel ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,36 +43,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2013 17:21:19 -0000
-Content-Type: multipart/alternative; boundary=f46d043c7b9ed7dd8e04e1e08d97
-
---f46d043c7b9ed7dd8e04e1e08d97
+X-List-Received-Date: Fri, 19 Jul 2013 17:41:16 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all,
+I'm moving the correct tarballs now. This was due to an error in my
+release scripts. I'm depreciating those scripts anyway, so I'll make
+sure they're fixed in the new ones that are almost complete.
+Thanks for finding this!
 
-I am integrating some packages and building Images and I need to create
-separate rootfs for each package.
+-b
 
-My doubt: Does MLO, u-boot, uImage and modules.tgz are same for any rootfs
-created? or do i need to create again all of them for every package i add?
+On Fri, Jul 19, 2013 at 5:48 AM, r10kindsofpeople
+<r10kindsofpeople@gmail.com> wrote:
+> Thanks, Tom,
+>
+> FWIW, I did try to confirm by renaming and running my build, but I ran into
+> another issue not apparently related to the BSP that deserves its own
+> thread.
+>
+> John
+>
+>
+> On Thu, Jul 18, 2013 at 3:40 PM, Tom Zanussi <tom.zanussi@intel.com> wrote:
+>>
+>> On Thu, 2013-07-18 at 10:01 -0500, Tom Zanussi wrote:
+>> > Hi,
+>> >
+>> > On Thu, 2013-07-18 at 10:21 -0400, r10kindsofpeople wrote:
+>> > > I've been working with denzil, but decided to try and upgrade to
+>> > > dylan...
+>> > >
+>> > >
+>> > > Downloading and installing poky-dylan-9.0.1.tar.bz2 went fine.
+>> > > Finding and downloading meta-crownbay-dylan-9.0.0.tar.bz2 was easy
+>> > > enough.
+>> > >
+>> > >
+>> > > But neither of these give me meta-intel.
+>> > >
+>> >
+>> > Actually, what's in the meta-crownbay-dylan tarball is meta-intel, with
+>> > just the meta-crownbay BSP included.  But it looks like there's a
+>> > problem with the naming of the top-level directory in the tarball:
+>> >
+>> > $ ls meta-crownbay
+>> > binary  common  conf  MAINTAINERS  meta-crownbay  meta-tlk  README
+>> >
+>> > whereas after untarring, I should have been able to do:
+>> >
+>> > $ ls meta-intel
+>> > binary  common  conf  MAINTAINERS  meta-crownbay  meta-tlk  README
+>> >
+>> > Beth or Nitin, can you please fix the tarballs so that the top-level
+>> > directory isn't the meta-BSPname but meta-intel (like they are for the
+>> > previous releases).
+>> >
+>> > >
+>> > > So the central question is: how do I find and download a released
+>> > > package that contains meta-intel that's required by meta-crownbay?  A
+>> >
+>> > If you just rename the top-level directory to meta-intel rather than
+>> > meta-crownbay, things should be fine..
+>> >
+>>
+>> Filed bug 4868 for this.
+>>
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=4868
+>>
+>> Tom
+>>
+>> > >  second question is whether I'd have had problems anyway, given that
+>> > > dylan is 9.0.1 and the BSP is 9.0.0.
+>> > >
+>> >
+>> > No, you shouldn't have problems - a given BSP should be good for the
+>> > same major release and all its point releases...
+>> >
+>> > Thanks,
+>> >
+>> > Tom
+>> >
+>> > >
+>> > > I can do a git of meta-intel, but that apparently gives me a snapshot
+>> > > that doesn't play well with the released poky.  I can do a git of
+>> > > poky, then a git of meta-intel...I still needed to do a bit of
+>> > > tweaking but I could bitbake core-image-minimal.  Now I'm having
+>> > > problems with adt_install, apparently because the scripts all think my
+>> > > release is 1.4+snapshot, which breaks the repository links and the
+>> > > opkg install.  I seem to have gotten around these, too, but if someone
+>> > > has something for me to test using released packages, I'm willing, at
+>> > > the moment, to start from scratch.
+>> > >
+>> > >
+>> > > John
+>> > >
+>> > > _______________________________________________
+>> > > yocto mailing list
+>> > > yocto@yoctoproject.org
+>> > > https://lists.yoctoproject.org/listinfo/yocto
+>> >
+>>
+>>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Thanks and Regards,
-Zafrullah Syed
 
---f46d043c7b9ed7dd8e04e1e08d97
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all,<div><br></div><div>I am integrating some packages =
-and building Images and I need to create separate rootfs for each package.<=
-/div><div><br></div><div>My doubt: Does MLO, u-boot, uImage and modules.tgz=
- are same for any rootfs created? or do i need to create again all of them =
-for every package i add?<br clear=3D"all">
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-<div><br></div><div>Thanks and Regards,</div><div>Zafrullah Syed</div><div>=
-<font color=3D"#888888" face=3D"arial, sans-serif"><span style=3D"border-co=
-llapse:collapse"><br></span></font></div>
-</div></div>
-
---f46d043c7b9ed7dd8e04e1e08d97--
