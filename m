@@ -1,31 +1,36 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC1C2E0140D
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 15:38:39 -0700 (PDT)
-Received: by mail-ve0-f182.google.com with SMTP id ox1so3788186veb.27
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 15:38:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=ArYjNQkYGcJTk9MkHLgCclCkYTANexC9UyhA4CGBe5I=;
-	b=gRAfHfXi+1dkTJE8JDc16VBdjhnaiYshbKgAN9nN1ABPS0n2Sq2vA1rp2Bg/1V50Nm
-	yBCJgO/9t+f+LzerQ0K9cDtGlX+eHqr99hirtI1o1f68q6pP+yVffJlMEfo63+ZLmkWP
-	XVkd+GpXOzhYsvMu2JHHiAy3XnAujUhGrMU4OdbU8s70HnHfHORh3UVDIUI16Lfx2Ley
-	QIsDoJH26dhBXus0F/PfyqnEpcB6wgxHzqBaahKlXUQG6St2rPdvc985bVg11Rf2IM/j
-	X0dMXT29mqFsxcpXm2N2idAl/BVgc3eUuN2CXzHBqEwqFW65piKlnP7vEbJ0UndB42xG
-	O7bA==
+Return-Path: <sudhangathan@gmail.com>
+Received: from mail-pb0-f41.google.com (mail-pb0-f41.google.com
+	[209.85.160.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA390E01437
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 19:58:13 -0700 (PDT)
+Received: by mail-pb0-f41.google.com with SMTP id rp16so5118784pbb.28
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2013 19:58:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=user-agent:in-reply-to:references:mime-version:content-type:subject
+	:from:date:to:message-id;
+	bh=8rFmyEJ80vmQcp7o++P2BZvO8D8icl2ziUOZOhoJO44=;
+	b=F1TciNDPaGtHhtqnmYoEYeVjo21E2kcHhc8lhs+JMik5J+NEQHfA9Mti6Qf0CzlfBp
+	+n5K7yjJl509o6VA7WXgmvIN3sxjm6Dpiqg9qLCOncKq+QZ4qIxh12DPcV/NOKW1k1lV
+	JHAL2VklHntWYne9PGe64BmLkCvAGA0WX/p1mFTyMMFIJfetMnnauHx99VG5tTuTifwf
+	xTeF+ZgU+dxIDieMFzGKHWZnIeIk95msM7yDs5cfiAlfOzVZXHxwd9mG7F0uzsHB2Axl
+	n52iYP9AKPxq0FZ/rfYWiP0LpkZicxKDaIEtdfcHf62jORE0NHCiVSbnn18RcDDgUPyk
+	N7wQ==
+X-Received: by 10.68.242.105 with SMTP id wp9mr19978786pbc.153.1374289092996; 
+	Fri, 19 Jul 2013 19:58:12 -0700 (PDT)
+Received: from [223.228.17.191] ([223.228.17.191])
+	by mx.google.com with ESMTPSA id
+	kc8sm22481709pbc.18.2013.07.19.19.58.10 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 19 Jul 2013 19:58:11 -0700 (PDT)
+User-Agent: Kaiten Mail
+In-Reply-To: <CAAGt+t3cZgGVwORrw1hk5jSSTJ+51c7QoEAQmUMg66evAdzfwA@mail.gmail.com>
+References: <CAAGt+t3cZgGVwORrw1hk5jSSTJ+51c7QoEAQmUMg66evAdzfwA@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.52.66.242 with SMTP id i18mr5281345vdt.3.1374273518476; Fri,
-	19 Jul 2013 15:38:38 -0700 (PDT)
-Received: by 10.52.73.168 with HTTP; Fri, 19 Jul 2013 15:38:38 -0700 (PDT)
-Date: Fri, 19 Jul 2013 15:38:38 -0700
-Message-ID: <CAPhnLPCRRORNpdxAsFZ8foqGXH_41eOe0mrfOiUAm1g1QQi4fA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQnaxeXpWxTtmR5wHOCcvX20StKnHC7mL7jghet1xwsEmFYVukWU988l02ASyMEehL6LBrJS
-Subject: Where in the world is the 1.5_M2 release?
+From: Sudhangathan BS <sudhangathan@gmail.com>
+Date: Sat, 20 Jul 2013 08:26:46 +0530
+To: Zafrullah Syed <zafrullahmehdi@gmail.com>,yocto <yocto@yoctoproject.org>
+Message-ID: <10ef064e-1ee7-4bd3-9689-4a5ee6bd030f@email.android.com>
+Subject: Re: MLO, u-boot and uImage are same for any rootfs created?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,54 +42,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2013 22:38:41 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 20 Jul 2013 02:58:15 -0000
+Content-Type: multipart/alternative;
+	boundary="----IPTK341PMRCIY73Z6V9YSCIBO0WFLV"
 
-All,
+------IPTK341PMRCIY73Z6V9YSCIBO0WFLV
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-We have built out and tested the 1.5 milestone 2 release and after
-quite a bit of discussion have decided not to release it. I want to
-spend a few moments to explain what happened with M2 and why this is
-actually a good thing.
+Hi Zafrullah,
 
-One of the things that we wanted to do early in the 1.5 time period is
-upgrade the toolchain. Whenever you do a major upgrade of something
-that just about everything requires, you end up exposing a lot issues.
-In the case of M2 this caused quite a number of issues, most of which
-have been already sorted out in master. (see
-https://wiki.yoctoproject.org/wiki/WW27_-_2013-07-03-3_-_Fullpass_Yocto_1.5_M2.RC1
-for the full details).
+MLO, u-boot, will remain unchanged unless you change the source code of MLO and u-boot or your hardware... 
+uImage and modules too will remain unchanged as long as you don't change the source code of kernel or add any extra modules/drivers. 
 
-Specifically, this upgrade caused two very major issues:
+In your case, as long as you are adding/removing packages, you only need to rebuild the rootfs.. And that too, Yocto will mostly take care of rebuilding the uImage/modules if necessary.. 
 
-- Two of the four core BSPs failed to boot. This was a combination of
-an updated gcc not playing nice with an updated kernel. This has been
-fixed.
+Best,
 
-- udev-cache failed for all poky-lsb images (and the build appliance).
-This was fixed at:
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=f1f5f7d3b45adb4e6d52dec11462fa658ccda1ec
+Zafrullah Syed <zafrullahmehdi@gmail.com> wrote:
+>Hi all,
+>
+>I am integrating some packages and building Images and I need to create
+>separate rootfs for each package.
+>
+>My doubt: Does MLO, u-boot, uImage and modules.tgz are same for any
+>rootfs
+>created? or do i need to create again all of them for every package i
+>add?
+>
+>Thanks and Regards,
+>Zafrullah Syed
+>
+>
+>------------------------------------------------------------------------
+>
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
-With the average Yocto Project release build containing 14 machine
-types, with multiple distro definitions (poky, poky-lsb, poky-tiny) we
-build out a very large number of build artifacts (the average size is
-about a quarter terabyte of build artifacts). With this many
-artifacts, the QA task is herculean. The time needed to fix these
-issues would have pushed out an rc2 spin of M2 into the M3 time
-period, and this would have greatly impacted our QA effort on M3. As
-we've fixed these issues in master and as M3 is quickly approaching it
-made little sense to release something of limited utility.
+--
+Sudhangathan BS
+Sent from Kaiten Mail. Please excuse my brevity.
 
-So, while I'm a bit disappointed that we've missed this milestone,
-it's actually a good thing, in that, a very vital piece of OE-Core was
-upreved early enough in the 1.5 cycle so that any issues that is
-caused can and will be resolved early. In the end, this will make 1.5
-a better release.
+------IPTK341PMRCIY73Z6V9YSCIBO0WFLV
+Content-Type: text/html;
+ charset=utf-8
+Content-Transfer-Encoding: 8bit
 
--b
+<html><head></head><body><p dir=ltr>Hi Zafrullah,</p>
+<p dir=ltr>MLO, u-boot, will remain unchanged unless you change the source code of MLO and u-boot or your hardware... <br>
+uImage and modules too will remain unchanged as long as you don't change the source code of kernel or add any extra modules/drivers. </p>
+<p dir=ltr>In your case, as long as you are adding/removing packages, you only need to rebuild the rootfs.. And that too, Yocto will mostly take care of rebuilding the uImage/modules if necessary.. </p>
+<p dir=ltr>Best,</p>
+<br><br><div class="gmail_quote">Zafrullah Syed &lt;zafrullahmehdi@gmail.com&gt; wrote:<blockquote class="gmail_quote" style="margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: 1ex;">
+<div dir="ltr">Hi all,<div><br /></div><div>I am integrating some packages and building Images and I need to create separate rootfs for each package.</div><div><br /></div><div>My doubt: Does MLO, u-boot, uImage and modules.tgz are same for any rootfs created? or do i need to create again all of them for every package i add?<br clear="all" />
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+<div><br /></div><div>Thanks and Regards,</div><div>Zafrullah Syed</div><div><font color="#888888" face="arial, sans-serif"><span style="border-collapse:collapse"><br /></span></font></div>
+</div></div>
+<p style="margin-top: 2.5em; margin-bottom: 1em; border-bottom: 1px solid #000"></p><pre class="k9mail"><hr /><br />yocto mailing list<br />yocto@yoctoproject.org<br /><a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br /></pre></blockquote></div><br>
+--<br>
+Sudhangathan BS<br>
+Sent from Kaiten Mail. Please excuse my brevity.</body></html>
 
+------IPTK341PMRCIY73Z6V9YSCIBO0WFLV--
