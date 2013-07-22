@@ -1,19 +1,19 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0D40E01422
-	for <yocto@yoctoproject.org>; Mon, 22 Jul 2013 15:01:22 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 22 Jul 2013 15:01:21 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3133E0143C
+	for <yocto@yoctoproject.org>; Mon, 22 Jul 2013 15:01:45 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 22 Jul 2013 15:01:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,721,1367996400"; d="scan'208";a="335223065"
+X-IronPort-AV: E=Sophos;i="4.89,721,1367996400"; d="scan'208";a="271764583"
 Received: from qana.jf.intel.com ([10.7.201.146])
-	by azsmga001.ch.intel.com with ESMTP; 22 Jul 2013 15:01:21 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 22 Jul 2013 15:01:21 -0700
 Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id 754995F825B8; Mon, 22 Jul 2013 14:45:30 -0700 (PDT)
-From: elizabeth.flanagan@intel.com
+	id 64A895F825C9; Mon, 22 Jul 2013 14:50:51 -0700 (PDT)
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 22 Jul 2013 14:45:29 -0700
-Message-Id: <1374529529-2920-1-git-send-email-elizabeth.flanagan@intel.com>
+Date: Mon, 22 Jul 2013 14:50:49 -0700
+Message-Id: <1374529849-3336-1-git-send-email-elizabeth.flanagan@intel.com>
 X-Mailer: git-send-email 1.8.1.2
 Subject: [PATCH] poky.conf: Change SDK_NAME to include machine
 X-BeenThere: yocto@yoctoproject.org
@@ -27,7 +27,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2013 22:01:24 -0000
+X-List-Received-Date: Mon, 22 Jul 2013 22:01:48 -0000
 
 From: Beth Flanagan <elizabeth.flanagan@intel.com>
 
