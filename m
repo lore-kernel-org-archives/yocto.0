@@ -1,19 +1,19 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADECBE01422
-	for <yocto@yoctoproject.org>; Mon, 22 Jul 2013 15:06:46 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 22 Jul 2013 15:06:45 -0700
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1346FE0143C
+	for <yocto@yoctoproject.org>; Mon, 22 Jul 2013 15:16:32 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 22 Jul 2013 15:16:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,721,1367996400"; d="scan'208";a="374756657"
+X-IronPort-AV: E=Sophos;i="4.89,721,1367996400"; d="scan'208";a="374344130"
 Received: from qana.jf.intel.com ([10.7.201.146])
-	by orsmga002.jf.intel.com with ESMTP; 22 Jul 2013 15:06:21 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 22 Jul 2013 15:16:21 -0700
 Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id 839525F825C3; Mon, 22 Jul 2013 14:49:53 -0700 (PDT)
+	id 64EE75F8259B; Mon, 22 Jul 2013 14:38:10 -0700 (PDT)
 From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 22 Jul 2013 14:49:45 -0700
-Message-Id: <1374529785-3141-1-git-send-email-elizabeth.flanagan@intel.com>
+Date: Mon, 22 Jul 2013 14:38:09 -0700
+Message-Id: <1374529089-2392-1-git-send-email-elizabeth.flanagan@intel.com>
 X-Mailer: git-send-email 1.8.1.2
 Subject: [PATCH] poky.conf: Change SDK_NAME to include machine
 X-BeenThere: yocto@yoctoproject.org
@@ -27,7 +27,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2013 22:06:47 -0000
+X-List-Received-Date: Mon, 22 Jul 2013 22:16:33 -0000
 
 From: Beth Flanagan <elizabeth.flanagan@intel.com>
 
