@@ -1,40 +1,53 @@
-Return-Path: <Amit.Kumar@lntinfotech.com>
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A86ACE013AE
-	for <yocto@yoctoproject.org>; Sun, 21 Jul 2013 21:43:49 -0700 (PDT)
-Received: from [216.82.241.100:44033] by server-6.bemta-8.messagelabs.com id
-	75/20-27210-388BCE15; Mon, 22 Jul 2013 04:43:47 +0000
-X-Env-Sender: Amit.Kumar@lntinfotech.com
-X-Msg-Ref: server-14.tower-220.messagelabs.com!1374468223!3291149!1
-X-Originating-IP: [203.101.96.8]
-X-StarScan-Received: 
-X-StarScan-Version: 6.9.9; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 4589 invoked from network); 22 Jul 2013 04:43:45 -0000
-Received: from unknown (HELO BLRINMSHTCAS02.bglrodc.lntinfotech.com)
-	(203.101.96.8)
-	by server-14.tower-220.messagelabs.com with AES128-SHA encrypted SMTP;
-	22 Jul 2013 04:43:45 -0000
-Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.2.40]) by
-	BLRINMSHTCAS02.bglrodc.lntinfotech.com ([172.28.0.83]) with mapi;
-	Mon, 22 Jul 2013 10:12:42 +0530
-From: Amit Kumar <Amit.Kumar@lntinfotech.com>
-To: "Lee_Ballard@Dell.com" <Lee_Ballard@Dell.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Mon, 22 Jul 2013 10:13:42 +0530
-Thread-Topic: Regarding offline build
-Thread-Index: Ac6CFkymgRXO6FWXTG2mk09tVJ4OrgAGflMgAJBUBpA=
-Message-ID: <AF0985D076EB244693F2CCD71AAB10BC2C5E53DAE6@BLRINMSMBX01.bglrodc.lntinfotech.com>
-References: <AF0985D076EB244693F2CCD71AAB10BC2C5E364AEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
-	<6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8@AUSX7MCPC110.AMER.DELL.COM>
-In-Reply-To: <6D31A433FC4A6747B1AD836EB116AA2C02BF4FF5E8@AUSX7MCPC110.AMER.DELL.COM>
-Accept-Language: en-US
+Return-Path: <sipke.vriend@xilinx.com>
+Received: from am1outboundpool.messaging.microsoft.com
+	(am1ehsobe005.messaging.microsoft.com [213.199.154.208])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AC4CE013AE;
+	Sun, 21 Jul 2013 22:12:16 -0700 (PDT)
+Received: from mail1-am1-R.bigfish.com (10.3.201.238) by
+	AM1EHSOBE014.bigfish.com (10.3.207.136) with Microsoft SMTP Server id
+	14.1.225.22; Mon, 22 Jul 2013 05:12:15 +0000
+Received: from mail1-am1 (localhost [127.0.0.1])	by mail1-am1-R.bigfish.com
+	(Postfix) with ESMTP id 101253C026C;
+	Mon, 22 Jul 2013 05:12:15 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:149.199.60.83; KIP:(null); UIP:(null); IPV:NLI;
+	H:xsj-gw1; RD:unknown-60-83.xilinx.com; EFVD:NLI
+X-SpamScore: 1
+X-BigFish: VPS1(zzc89bhzz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz1de097hz2fh95h668h839h93fhd24hf0ah119dh1288h12a5h12a9h12bdh137ah13b6h1441h14ddh1504h1537h153bh162dh1631h1758h18e1h1946h19b5h1b0ah1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e1dh906i1155h192ch)
+Received-SPF: pass (mail1-am1: domain of xilinx.com designates 149.199.60.83
+	as permitted sender) client-ip=149.199.60.83;
+	envelope-from=sipke.vriend@xilinx.com; helo=xsj-gw1 ;
+	helo=xsj-gw1 ; 
+Received: from mail1-am1 (localhost.localdomain [127.0.0.1]) by mail1-am1
+	(MessageSwitch) id 1374469933348174_7969;
+	Mon, 22 Jul 2013 05:12:13 +0000 (UTC)
+Received: from AM1EHSMHS016.bigfish.com (unknown [10.3.201.252])	by
+	mail1-am1.bigfish.com (Postfix) with ESMTP id 47C35A0047;
+	Mon, 22 Jul 2013 05:12:13 +0000 (UTC)
+Received: from xsj-gw1 (149.199.60.83) by AM1EHSMHS016.bigfish.com
+	(10.3.207.154) with Microsoft SMTP Server id 14.16.227.3;
+	Mon, 22 Jul 2013 05:12:12 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66]
+	helo=xsj-smtp1.xilinx.com)	by xsj-gw1 with esmtp (Exim
+	4.63)	(envelope-from <sipke.vriend@xilinx.com>)	id 1V18Pr-0007w6-Rb;
+	Sun, 21 Jul 2013 22:12:11 -0700
+From: Sipke Vriend <sipke.vriend@xilinx.com>
+To: "Bruce Ashfield (bruce.ashfield@windriver.com)"
+	<bruce.ashfield@windriver.com>
+Thread-Topic: linux-yocto fragments meta branch
+Thread-Index: Ac6GfX0Hlqrc+a4eQxes714vWRFi0w==
+Date: Mon, 22 Jul 2013 05:12:10 +0000
+Accept-Language: en-AU, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [172.16.164.9]
 MIME-Version: 1.0
-Subject: Re: Regarding offline build
+X-RCIS-Action: ALLOW
+Message-ID: <f3d58573-6847-4a3d-b374-f4fca920d921@AM1EHSMHS016.ehs.local>
+X-OriginatorOrg: xilinx.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"meta-xilinx@yoctoproject.org" <meta-xilinx@yoctoproject.org>
+Subject: linux-yocto fragments meta branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,250 +59,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2013 04:43:51 -0000
+X-List-Received-Date: Mon, 22 Jul 2013 05:12:18 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AF0985D076EB244693F2CCD71AAB10BC2C5E53DAE6BLRINMSMBX01b_"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---_000_AF0985D076EB244693F2CCD71AAB10BC2C5E53DAE6BLRINMSMBX01b_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+SGkgQnJ1Y2UsDQoNClRoZSBsaW51eC15b2N0byBvcnBoYW5lZCBtZXRhIGJyYW5jaCBjb21taXQg
+DQo4ZWY5MTM2NTM5NDY0YzE0NTk2M2FjMmI4ZWUwMTk2ZmVhMWMyMzM3IA0KLmdpdGlnbm9yZTog
+ZG8gbm90IGlnbm9yZSBtZXRhIGRpcmVjdG9yeQ0KDQpjYXVzZXMgdGhlIGxpbnV4LXlvY3RvIHRh
+cmdldHMgaW4gbWV0YS14aWxpbngvbWFzdGVyIHRvIGZhaWwgd2l0aCB0aGUgZm9sbG93aW5nIA0K
+ZXJyb3Iocyk6DQotLS0tIHNuaXAgLS0tDQpbRVJST1JdIHVuYWJsZSB0byBjb21wbGV0ZSBwdXNo
+DQp8IEVSUk9SLiBjb3VsZCBub3QgdXBkYXRlIGdpdCB0cmVlDQp8IEVSUk9SLiBDb3VsZCBub3Qg
+YXBwbHkgcGF0Y2hlcyBmb3IgemVkYm9hcmQuDQp8ICAgICAgICBQYXRjaCBmYWlsdXJlcyBjYW4g
+YmUgcmVzb2x2ZWQgaW4gdGhlIGRldnNoZWxsIChiaXRiYWtlIC1jIGRldnNoZWxsIGxpbnV4LXlv
+Y3RvKQ0KfCBFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19wYXRjaCAobG9nIGZpbGUgaXMgbG9j
+YXRlZCBhdCAvaG9tZS9zaXBrZXYveW9jdG8vNS1wb2t5L2J1aWxkL3RtcC93b3JrL3plZGJvYXJk
+LXBva3ktbGludXgtZ251ZWFiaS9saW51eC15b2N0by8zLjguMTMrZ2l0QVVUT0lOQys4ZWY5MTM2
+NTM5X2YyMDA0NzUyMGEtcjQuMi90ZW1wL2xvZy5kb19wYXRjaC40NDAzKQ0KLS0tIHNuaXAgLS0t
+DQooU2VlIGZ1bGwgQlVJTEQgTE9HIGJlbG93KS4NCg0KSXQgc2VlbXMgdGhlIGtlcm5lbCB0b29s
+cyBzY3JpcHRzIGFyZSBzZWVpbmcgYSBjaGFuZ2UgaW4gdGhlIC5naXRpZ25vcmUgZmlsZSAoc2Vl
+IA0KVEVSTUlOQUwgT1VUUFVUIGJlbG93KSBhbmQgYXR0ZW1wdCBhIGdpdCBwdXNoIGZvciB3aGlj
+aCB3ZSBkb27igJl0IGhhdmUgYWNjZXNzLg0KDQpUaGUgZGlmZiBvZiAuZ2l0aWdub3JlIGluIHRo
+ZSB3b3JraW5nIGxpbnV4IGRpcmVjdG9yeSAoc2VlIFRFUk1JTkFMIE9VVFBVVA0KYmVsb3cpIGlz
+IHRoYXQgb2YgdGhlIGNvbW1pdCBhYm92ZS4gDQpDaGVja2luZyBsaW51eC15b2N0by0zLjggcmVw
+b3NpdG9yeSBzaG93cyB0aGF0IHRoZSBtZXRhIGJyYW5jaCAuZ2l0aWdub3JlDQpjb250YWlucyB0
+aGUgY29tbWl0LCBidXQgdGhlIC5naXRpZ25vcmUgaW4gdGhlIG1hc3RlciAob3Igc3RhbmRhcmQv
+bWV0YSkgZG9lcw0Kbm90Lg0KDQpTaG91bGQgdGhlIC5naXRpZ25vcmUgZmlsZXMgbWF0Y2ggYmV0
+d2VlbiB0aGUgbGludXgteW9jdG8tMy44IGJyYW5jaGVzPyANCklmIG5vdCwgY2FuIHdlIGRvIHNv
+bWV0aGluZyBpbiBtZXRhLXhpbGlueCB0byBhdm9pZCB0aGUgYXR0ZW1wdGVkIGdpdCBwdXNoPw0K
+DQpDaGVlcnMNClNpcGtlDQoNCg0KPT09IEJVSUxEIExPRyA9PT09PQ0KYnVpbGQkIGJpdGJha2Ug
+bGludXgteW9jdG8NCldBUk5JTkc6IEhvc3QgZGlzdHJpYnV0aW9uICJVYnVudHUtMTEuMTAiIGhh
+cyBub3QgYmVlbiB2YWxpZGF0ZWQgd2l0aCB0aGlzIHZlcnNpb24gb2YgdGhlIGJ1aWxkIHN5c3Rl
+bTsgeW91IG1heSBwb3NzaWJseSBleHBlcmllbmNlIHVuZXhwZWN0ZWQgZmFpbHVyZXMuIEl0IGlz
+IHJlY29tbWVuZGVkIHRoYXQgeW91IHVzZSBhIHRlc3RlZCBkaXN0cmlidXRpb24uDQpQYXJzaW5n
+IHJlY2lwZXM6IDEwMCUgfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjI3wgVGltZTogMDA6MDA6NDANClBhcnNpbmcgb2YgODUwIC5iYiBmaWxl
+cyBjb21wbGV0ZSAoMCBjYWNoZWQsIDg1MCBwYXJzZWQpLiAxMTc3IHRhcmdldHMsIDQ3IHNraXBw
+ZWQsIDAgbWFza2VkLCAwIGVycm9ycy4NCg0KQnVpbGQgQ29uZmlndXJhdGlvbjoNCkJCX1ZFUlNJ
+T04gICAgICAgID0gIjEuMTkuMSINCkJVSUxEX1NZUyAgICAgICAgID0gIng4Nl82NC1saW51eCIN
+Ck5BVElWRUxTQlNUUklORyAgID0gIlVidW50dS0xMS4xMCINClRBUkdFVF9TWVMgICAgICAgID0g
+ImFybS1wb2t5LWxpbnV4LWdudWVhYmkiDQpNQUNISU5FICAgICAgICAgICA9ICJ6ZWRib2FyZCIN
+CkRJU1RSTyAgICAgICAgICAgID0gInBva3kiDQpESVNUUk9fVkVSU0lPTiAgICA9ICIxLjQrc25h
+cHNob3QtMjAxMzA3MjIiDQpUVU5FX0ZFQVRVUkVTICAgICA9ICIgYXJtdjdhIHZmcCBuZW9uIHp5
+bnEiDQpUQVJHRVRfRlBVICAgICAgICA9ICJ2ZnAtbmVvbiINCm1ldGENCm1ldGEteW9jdG8NCm1l
+dGEteW9jdG8tYnNwICAgID0gIm1hc3RlcjozMWU2ZWVlODYwYjVmOWY0YWM5ZWYwODg5YmNmZjU2
+NDhkZTZlM2Y5Ig0KbWV0YS14aWxpbngNCm1ldGEtemVkYm9hcmQNCm1ldGEtemM3MDINCm1ldGEt
+a2M3MDUgICAgICAgID0gIm1hc3Rlcjo2ZTNiYTA0ZGJhY2MxZDFkNWJjYWQ4MGY1ZTU1NGU3ZmNj
+NTFmNjAyIg0KDQpOT1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRl
+bmNpZXMNCk5PVEU6IFByZXBhcmluZyBydW5xdWV1ZQ0KTk9URTogRXhlY3V0aW5nIFNldFNjZW5l
+IFRhc2tzDQpOT1RFOiBFeGVjdXRpbmcgUnVuUXVldWUgVGFza3MNCkVSUk9SOiBGdW5jdGlvbiBm
+YWlsZWQ6IGRvX3BhdGNoIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21lL3NpcGtldi95b2N0
+by81LXBva3kvYnVpbGQvdG1wL3dvcmsvemVkYm9hcmQtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4
+LXlvY3RvLzMuOC4xMytnaXRBVVRPSU5DKzhlZjkxMzY1MzlfZjIwMDQ3NTIwYS1yNC4yL3RlbXAv
+bG9nLmRvX3BhdGNoLjQ0MDMpDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjog
+L2hvbWUvc2lwa2V2L3lvY3RvLzUtcG9reS9idWlsZC90bXAvd29yay96ZWRib2FyZC1wb2t5LWxp
+bnV4LWdudWVhYmkvbGludXgteW9jdG8vMy44LjEzK2dpdEFVVE9JTkMrOGVmOTEzNjUzOV9mMjAw
+NDc1MjBhLXI0LjIvdGVtcC9sb2cuZG9fcGF0Y2guNDQwMw0KTG9nIGRhdGEgZm9sbG93czoNCnwg
+REVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBkb19wYXRjaA0KfCBCcmFuY2ggbWV0YS10
+ZW1wIHNldCB1cCB0byB0cmFjayByZW1vdGUgYnJhbmNoIG1ldGEgZnJvbSBvcmlnaW4gYnkgcmVi
+YXNpbmcuDQp8IFVuc3RhZ2VkIGNoYW5nZXMgYWZ0ZXIgcmVzZXQ6DQp8IE0gICAgIC5naXRpZ25v
+cmUNCnwgRGVsZXRlZCBicmFuY2ggbWV0YS10ZW1wICh3YXMgMzdmZGIwYykuDQp8IFtJTkZPXSB2
+YWxpZGF0aW5nIGFnYWluc3Qga25vd24gcGF0Y2hlcyAgKHplZGJvYXJkLXN0YW5kYXJkLW1ldGEp
+DQpCcmFuY2ggc3RhbmRhcmQvbWV0YSBzZXQgdXAgdG8gdHJhY2sgcmVtb3RlIGJyYW5jaCBzdGFu
+ZGFyZC9iYXNlIGZyb20gb3JpZ2luIGJ5IHJlYmFzaW5nLg0KVW5jb21taXRlZCBjaGFuZ2VzIGRl
+dGVjdGVkLiBSZWZyZXNoIGZpcnN0LiMjIyMjIyMjIyNdICgtKSgxMDEgJSkpDQp8IFtFUlJPUl0g
+dW5hYmxlIHRvIGNvbXBsZXRlIHB1c2gNCnwgcGVuZGluZyBwYXRjaGVzIGFyZToNCnwgbGlua3Mv
+bGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMDEtWnlucS1zcGVjaWZpYy1jaGFuZ2VzLXRvLWFy
+Y2gtYXJtLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8wMDAyLU1pY3Jv
+YmxhemUtY2hhbmdlcy10by1hcmNoLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12
+MTQuNS8wMDAzLVBvd2VyUEMtY2hhbmdlcy10by1hcmNoLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlv
+Y3RvL3hpbGlueC12MTQuNS8wMDA0LVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlci1ibG9j
+ay1hbmQtZHJpdmVyLWNoYXIucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41
+LzAwMDUtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1jbGstY3B1ZnJlcS1taXNjLnBh
+dGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8wMDA2LVhpbGlueC1tb2RpZmlj
+YXRpb25zLXRvLWRyaXZlcnMtZG1hLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12
+MTQuNS8wMDA3LVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlcnMtZ3Bpby5wYXRjaA0KfCBs
+aW5rcy9saW51eC15b2N0by94aWxpbngtdjE0LjUvMDAwOC1YaWxpbngtbW9kaWZpY2F0aW9ucy10
+by1kcml2ZXJzLWh3bW9uLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8w
+MDA5LVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlcnMtbWVkaWEucGF0Y2gNCnwgbGlua3Mv
+bGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMTAtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJp
+dmVycy1tZW1vcnkucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMTEt
+WGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1tbWMucGF0Y2gNCnwgbGlua3MvbGludXgt
+eW9jdG8veGlsaW54LXYxNC41LzAwMTItWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1t
+dGQucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMTMtWGlsaW54LW1v
+ZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1uZXQucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGls
+aW54LXYxNC41LzAwMTQtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1yZW1vdGVwcm9j
+LnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8wMDE1LVhpbGlueC1tb2Rp
+ZmljYXRpb25zLXRvLWRyaXZlcnMtcnBtc2cucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGls
+aW54LXYxNC41LzAwMTYtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1zcGktbWZkLWFu
+ZC10aW1lcmRhbC5wYXRjaA0KfCBsaW5rcy9saW51eC15b2N0by94aWxpbngtdjE0LjUvMDAxNy1Y
+aWxpbngtbW9kaWZpY2F0aW9ucy10by1kcml2ZXJzLXR0eS5wYXRjaA0KfCBsaW5rcy9saW51eC15
+b2N0by94aWxpbngtdjE0LjUvMDAxOC1YaWxpbngtbW9kaWZpY2F0aW9ucy10by1kcml2ZXJzLXVp
+by5wYXRjaA0KfCBsaW5rcy9saW51eC15b2N0by94aWxpbngtdjE0LjUvMDAxOS1YaWxpbngtbW9k
+aWZpY2F0aW9ucy10by1kcml2ZXJzLXVzYi1hbmQtaTJjLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlv
+Y3RvL3hpbGlueC12MTQuNS8wMDIwLVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlcnMtdmlk
+ZW8ucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMjEtWGlsaW54LW1v
+ZGlmaWNhdGlvbnMtdG8tZHJpdmVycy13YXRjaGRvZy5wYXRjaA0KfCBsaW5rcy9saW51eC15b2N0
+by94aWxpbngtdjE0LjUvMDAyMi1BZGRpdGlvbi1vZi1kcml2ZXJzLXhpbGlueF9jb21tb24ucGF0
+Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMjMtWGlsaW54LXNwZWNpZmlj
+LWRvY3VtZW50YXRpb24tdXBkYXRlLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12
+MTQuNS8wMDI0LVJlbW92ZS1yZWR1bmRhbnQtZHJpdmVyLWZpbGVzLnBhdGNoDQp8IGxpbmtzL2xp
+bnV4LXhsbngvbWljcm9ibGF6ZV9Eb19ub3RfdXNlX3I2X2luX2hlYWQuUy5wYXRjaA0KfCBsaW5r
+cy9saW51eC14bG54L21pY3JvYmxhemVfRml4X2ZyZWVfaW5pdF9wYWdlc19mdW5jdGlvbi5wYXRj
+aA0KfCBsaW5rcy9saW51eC14bG54L21pY3JvYmxhemVfRml4X2luaXRyZF9zdXBwb3J0LnBhdGNo
+DQp8IGxpbmtzL2xpbnV4LXhsbngvYXJjaF9taWNyb2JsYXplX0FkZF9saW51eC5iaW4udWJfdGFy
+Z2V0LnBhdGNoDQp8IEVSUk9SLiBjb3VsZCBub3QgdXBkYXRlIGdpdCB0cmVlDQp8IEVSUk9SLiBD
+b3VsZCBub3QgYXBwbHkgcGF0Y2hlcyBmb3IgemVkYm9hcmQuDQp8ICAgICAgICBQYXRjaCBmYWls
+dXJlcyBjYW4gYmUgcmVzb2x2ZWQgaW4gdGhlIGRldnNoZWxsIChiaXRiYWtlIC1jIGRldnNoZWxs
+IGxpbnV4LXlvY3RvKQ0KfCBFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19wYXRjaCAobG9nIGZp
+bGUgaXMgbG9jYXRlZCBhdCAvaG9tZS9zaXBrZXYveW9jdG8vNS1wb2t5L2J1aWxkL3RtcC93b3Jr
+L3plZGJvYXJkLXBva3ktbGludXgtZ251ZWFiaS9saW51eC15b2N0by8zLjguMTMrZ2l0QVVUT0lO
+Qys4ZWY5MTM2NTM5X2YyMDA0NzUyMGEtcjQuMi90ZW1wL2xvZy5kb19wYXRjaC40NDAzKQ0KRVJS
+T1I6IFRhc2sgMyAoL2hvbWUvc2lwa2V2L3lvY3RvLzUtcG9reS9wb2t5L21ldGEvcmVjaXBlcy1r
+ZXJuZWwvbGludXgvbGludXgteW9jdG9fMy44LmJiLCBkb19wYXRjaCkgZmFpbGVkIHdpdGggZXhp
+dCBjb2RlICcxJw0KTk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1wdGVkIDI4NiB0YXNrcyBvZiB3
+aGljaCAzMiBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMSBmYWlsZWQuDQpXYWl0aW5nIGZv
+ciAwIHJ1bm5pbmcgdGFza3MgdG8gZmluaXNoOg0KDQpTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOg0K
+ICAvaG9tZS9zaXBrZXYveW9jdG8vNS1wb2t5L3Bva3kvbWV0YS9yZWNpcGVzLWtlcm5lbC9saW51
+eC9saW51eC15b2N0b18zLjguYmIsIGRvX3BhdGNoDQpTdW1tYXJ5OiBUaGVyZSB3YXMgMSBXQVJO
+SU5HIG1lc3NhZ2Ugc2hvd24uDQpTdW1tYXJ5OiBUaGVyZSB3YXMgMSBFUlJPUiBtZXNzYWdlIHNo
+b3duLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuDQo9PT09PSBFTkQgQlVJTEQgTE9H
+ID09PT09PT0NCg0KDQo9PT0gVEVSTUlOQUwgT1VUUFVUID09PQ0KJDpidWlsZC90bXAvd29yay96
+ZWRib2FyZC1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgteW9jdG8vMy44LjEzK2dpdEFVVE9JTkMr
+OGVmOTEzNjUzOV9mMjAwNDc1MjBhLXI0LjIvbGludXgkIGdpdCBzdGF0dXMNCiMgT24gYnJhbmNo
+IHN0YW5kYXJkL21ldGENCiMgQ2hhbmdlcyBub3Qgc3RhZ2VkIGZvciBjb21taXQ6DQojICAgKHVz
+ZSAiZ2l0IGFkZCA8ZmlsZT4uLi4iIHRvIHVwZGF0ZSB3aGF0IHdpbGwgYmUgY29tbWl0dGVkKQ0K
+IyAgICh1c2UgImdpdCBjaGVja291dCAtLSA8ZmlsZT4uLi4iIHRvIGRpc2NhcmQgY2hhbmdlcyBp
+biB3b3JraW5nIGRpcmVjdG9yeSkNCiMNCiMgICAgICAgbW9kaWZpZWQ6ICAgLmdpdGlnbm9yZQ0K
+Iw0KIyBVbnRyYWNrZWQgZmlsZXM6DQojICAgKHVzZSAiZ2l0IGFkZCA8ZmlsZT4uLi4iIHRvIGlu
+Y2x1ZGUgaW4gd2hhdCB3aWxsIGJlIGNvbW1pdHRlZCkNCiMNCiMgICAgICAgbWV0YS8NCm5vIGNo
+YW5nZXMgYWRkZWQgdG8gY29tbWl0ICh1c2UgImdpdCBhZGQiIGFuZC9vciAiZ2l0IGNvbW1pdCAt
+YSIpDQokOmJ1aWxkL3RtcC93b3JrL3plZGJvYXJkLXBva3ktbGludXgtZ251ZWFiaS9saW51eC15
+b2N0by8zLjguMTMrZ2l0QVVUT0lOQys4ZWY5MTM2NTM5X2YyMDA0NzUyMGEtcjQuMi9saW51eCQg
+Z2l0IGRpZmYNCmRpZmYgLS1naXQgYS8uZ2l0aWdub3JlIGIvLmdpdGlnbm9yZQ0KaW5kZXggOTJj
+N2E2Ny4uNWU3YmM5OCAxMDA2NDQNCi0tLSBhLy5naXRpZ25vcmUNCisrKyBiLy5naXRpZ25vcmUN
+CkBAIC05MSw0ICs5MSw0IEBAIGV4dHJhX2NlcnRpZmljYXRlcw0KIHNpZ25pbmdfa2V5LnByaXYN
+CiBzaWduaW5nX2tleS54NTA5DQogeDUwOS5nZW5rZXkNCi0vbWV0YQ0KKyMvbWV0YQ0KJDpidWls
+ZC90bXAvd29yay96ZWRib2FyZC1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgteW9jdG8vMy44LjEz
+K2dpdEFVVE9JTkMrOGVmOTEzNjUzOV9mMjAwNDc1MjBhLXI0LjIvbGludXgkIHRhaWwgLmdpdGln
+bm9yZQ0KXCMqIw0KDQojDQojIExlYXZpbmdzIGZyb20gbW9kdWxlIHNpZ25pbmcNCiMNCmV4dHJh
+X2NlcnRpZmljYXRlcw0Kc2lnbmluZ19rZXkucHJpdg0Kc2lnbmluZ19rZXkueDUwOQ0KeDUwOS5n
+ZW5rZXkNCiMvbWV0YQ0KJDpidWlsZC90bXAvd29yay96ZWRib2FyZC1wb2t5LWxpbnV4LWdudWVh
+YmkvbGludXgteW9jdG8vMy44LjEzK2dpdEFVVE9JTkMrOGVmOTEzNjUzOV9mMjAwNDc1MjBhLXI0
+LjIvbGludXgkIGdpdCBicmFuY2gNCiAgZWcyMHQNCiAgZW1nZC0xLjE2DQogIGVtZ2QtMS4xOA0K
+ICBtYXN0ZXINCiAgbWV0YQ0KICBzdGFuZGFyZC9hcm0tdmVyc2F0aWxlLTkyNmVqcw0KICBzdGFu
+ZGFyZC9iYXNlDQogIHN0YW5kYXJkL2JlYWdsZWJvYXJkDQogIHN0YW5kYXJkL2NrDQogIHN0YW5k
+YXJkL2NvbW1vbi1wYy02NC9iYXNlDQogIHN0YW5kYXJkL2NvbW1vbi1wYy02NC9jaGllZnJpdmVy
+DQogIHN0YW5kYXJkL2NvbW1vbi1wYy02NC9jcnlzdGFsZm9yZXN0DQogIHN0YW5kYXJkL2NvbW1v
+bi1wYy02NC9qYXNwZXJmb3Jlc3QNCiAgc3RhbmRhcmQvY29tbW9uLXBjLTY0L3JhbmdlbGV5DQog
+IHN0YW5kYXJkL2NvbW1vbi1wYy02NC9yb21sZXkNCiAgc3RhbmRhcmQvY29tbW9uLXBjLTY0L3N1
+Z2FyYmF5DQogIHN0YW5kYXJkL2NvbW1vbi1wYy9hdG9tLXBjDQogIHN0YW5kYXJkL2NvbW1vbi1w
+Yy9iYXNlDQogIHN0YW5kYXJkL2Nyb3duYmF5DQogIHN0YW5kYXJkL2VkZg0KICBzdGFuZGFyZC9l
+bWVubG93DQogIHN0YW5kYXJkL2ZyaTINCiAgc3RhbmRhcmQvZnNsLW1wYzgzMTVlLXJkYg0KKiBz
+dGFuZGFyZC9tZXRhDQogIHN0YW5kYXJkL21pbm5vdw0KICBzdGFuZGFyZC9tdGktbWFsdGEzMg0K
+ICBzdGFuZGFyZC9tdGktbWFsdGE2NA0KICBzdGFuZGFyZC9wcmVlbXB0LXJ0L2Jhc2UNCiAgc3Rh
+bmRhcmQvcHJlZW1wdC1ydC9mcmkyDQogIHN0YW5kYXJkL3ByZWVtcHQtcnQvcWVtdXBwYw0KICBz
+dGFuZGFyZC9wcmVlbXB0LXJ0L3JvdXRlcnN0YXRpb25wcm8NCiAgc3RhbmRhcmQvcWVtdXBwYw0K
+ICBzdGFuZGFyZC9yb3V0ZXJzdGF0aW9ucHJvDQogIHN0YW5kYXJkL3N5czk0MHgNCiAgc3RhbmRh
+cmQvdGlueS9iYXNlDQogIHN0YW5kYXJkL3RpbnkvY29tbW9uLXBjDQogIHN0YW5kYXJkL3Rpbnkv
+ZnJpMg0KPT09IEVORCBURVJNSU5BTCBPVVRQVVQgPT09DQoKCg==
 
-Hi Mr. Lee,
-            Thanks for replay.
-I have still doubt to build offline. I have downloaded all the tar files, n=
-ow what I should have to do? Do I need to modify all the *.bb files.
-Do you have any example to build it offline.
-
-I wants to build the MCSDK uses the Yocto Project. So for that I have downl=
-oad the mcsdk tar ball, which gives me all tar balls.
-Now I am not getting how to process to build Yocto project.
-
-If you have any idea please let me know.
-
-Thanks & regards
-Amit K
 
 
-From: Lee_Ballard@Dell.com [mailto:Lee_Ballard@Dell.com]
-Sent: Tuesday, July 16, 2013 7:58 PM
-To: Amit Kumar; yocto@yoctoproject.org
-Subject: RE: Regarding offline build
-
-We do offline builds.  You need to download all the tar balls for all the o=
-pen source recipes you build, or you can download pre-build images and SDK.=
-  Another way is to create a local mirror of all the tar balls you need.
-
-Lee Ballard
-Platform Software Principal Engineer
-Dell | Enterprise Product Group
-
-
-From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
- [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Amit Kumar
-Sent: Tuesday, July 16, 2013 6:22 AM
-To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-Subject: [yocto] Regarding offline build
-
-Hi,
-            I have quarry regarding the Yocto Project build offline.
-Is that possible to build the Yocto Project with internet access?
-I have download the poky-<latest>.tar.bz2, now I wants to build it independ=
-ently without having internet connection.
-Do I need to download any other packages also to build it offline?
-
-
-
-Thanks & Regards
-Amit K
-
-________________________________
-The contents of this e-mail and any attachment(s) may contain confidential =
-or privileged information for the intended recipient(s). Unintended recipie=
-nts are prohibited from taking action on the basis of information in this e=
--mail and using or disseminating the information, and must notify the sende=
-r and delete it from their system. L&T Infotech will not accept responsibil=
-ity or liability for the accuracy or completeness of, or the presence of an=
-y virus or disabling code in this e-mail"
-
---_000_AF0985D076EB244693F2CCD71AAB10BC2C5E53DAE6BLRINMSMBX01b_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 14 (filtered medium)"><!--[if !mso]><style>v\:* {behavior:url(#def=
-ault#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Trebuchet MS";
-	panose-1:2 11 6 3 2 2 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Trebuchet MS","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Trebuchet MS","sans-serif";
-	color:#1F497D;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'f=
-ont-size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#1F497D'>Hi M=
-r. Lee,<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:=
-10.0pt;font-family:"Trebuchet MS","sans-serif";color:#1F497D'>&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thanks for replay.<o:=
-p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;fon=
-t-family:"Trebuchet MS","sans-serif";color:#1F497D'>I have still doubt to b=
-uild offline. I have downloaded all the tar files, now what I should have t=
-o do? Do I need to modify all the *.bb files.<o:p></o:p></span></p><p class=
-=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sa=
-ns-serif";color:#1F497D'>Do you have any example to build it offline.<o:p><=
-/o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-f=
-amily:"Trebuchet MS","sans-serif";color:#1F497D'><o:p>&nbsp;</o:p></span></=
-p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuch=
-et MS","sans-serif";color:#1F497D'>I wants to build the MCSDK uses the Yoct=
-o Project. So for that I have download the mcsdk tar ball, which gives me a=
-ll tar balls.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font=
--size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#1F497D'>Now I a=
-m not getting how to process to build Yocto project.<o:p></o:p></span></p><=
-p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet =
-MS","sans-serif";color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoN=
-ormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-seri=
-f";color:#1F497D'>If you have any idea please let me know.<o:p></o:p></span=
-></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Treb=
-uchet MS","sans-serif";color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=
-=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sa=
-ns-serif";color:#1F497D'>Thanks &amp; regards<o:p></o:p></span></p><p class=
-=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sa=
-ns-serif";color:#1F497D'>Amit K<o:p></o:p></span></p><p class=3DMsoNormal><=
-span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";colo=
-r:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'=
-font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#1F497D'><o:=
-p>&nbsp;</o:p></span></p><div><div style=3D'border:none;border-top:solid #B=
-5C4DF 1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><span style=
-=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span></b><sp=
-an style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> Lee_Ballar=
-d@Dell.com [mailto:Lee_Ballard@Dell.com] <br><b>Sent:</b> Tuesday, July 16,=
- 2013 7:58 PM<br><b>To:</b> Amit Kumar; yocto@yoctoproject.org<br><b>Subjec=
-t:</b> RE: Regarding offline build<o:p></o:p></span></p></div></div><p clas=
-s=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span style=3D'colo=
-r:#1F497D'>We do offline builds.&nbsp; You need to download all the tar bal=
-ls for all the open source recipes you build, or you can download pre-build=
- images and SDK.&nbsp; Another way is to create a local mirror of all the t=
-ar balls you need.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D=
-'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><span s=
-tyle=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#444=
-444'>Lee Ballard<o:p></o:p></span></b></p><p class=3DMsoNormal><span style=
-=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-serif";color:#444444'>=
-Platform Software Principal Engineer <o:p></o:p></span></p><p class=3DMsoNo=
-rmal><b><span style=3D'font-size:8.0pt;font-family:"Trebuchet MS","sans-ser=
-if";color:#0085C3'>Dell</span></b><span style=3D'font-size:8.0pt;font-famil=
-y:"Trebuchet MS","sans-serif";color:#444444'> | </span><span style=3D'font-=
-size:10.0pt;color:#1F497D'>Enterprise Product Group</span><b><span style=3D=
-'font-size:8.0pt;font-family:"Trebuchet MS","sans-serif";color:#444444'> <o=
-:p></o:p></span></b></p><p class=3DMsoNormal><span style=3D'color:#1F497D'>=
-<o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span style=3D'color:#1F49=
-7D'><o:p>&nbsp;</o:p></span></p><div><div style=3D'border:none;border-top:s=
-olid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><span=
- style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span><=
-/b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> <a h=
-ref=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoproject.or=
-g</a> [<a href=3D"mailto:yocto-bounces@yoctoproject.org">mailto:yocto-bounc=
-es@yoctoproject.org</a>] <b>On Behalf Of </b>Amit Kumar<br><b>Sent:</b> Tue=
-sday, July 16, 2013 6:22 AM<br><b>To:</b> <a href=3D"mailto:yocto@yoctoproj=
-ect.org">yocto@yoctoproject.org</a><br><b>Subject:</b> [yocto] Regarding of=
-fline build<o:p></o:p></span></p></div></div><p class=3DMsoNormal><o:p>&nbs=
-p;</o:p></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-famil=
-y:"Trebuchet MS","sans-serif"'>Hi,<o:p></o:p></span></p><p class=3DMsoNorma=
-l><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have q=
-uarry regarding the Yocto Project build offline. <o:p></o:p></span></p><p c=
-lass=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS"=
-,"sans-serif"'>Is that possible to build the Yocto Project with internet ac=
-cess?<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10=
-.0pt;font-family:"Trebuchet MS","sans-serif"'>I have download the poky-&lt;=
-latest&gt;.tar.bz2, now I wants to build it independently without having in=
-ternet connection.<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D=
-'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>Do I need to dow=
-nload any other packages also to build it offline?<o:p></o:p></span></p><p =
-class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS=
-","sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span styl=
-e=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'><o:p>&nbsp;<=
-/o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-f=
-amily:"Trebuchet MS","sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DM=
-soNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-s=
-erif"'>Thanks &amp; Regards<o:p></o:p></span></p><p class=3DMsoNormal><span=
- style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>Amit K<=
-o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:12.0pt;f=
-ont-family:"Times New Roman","serif"'><o:p>&nbsp;</o:p></span></p><div clas=
-s=3DMsoNormal align=3Dcenter style=3D'text-align:center'><span style=3D'fon=
-t-size:12.0pt;font-family:"Times New Roman","serif"'><hr size=3D2 width=3D"=
-100%" align=3Dcenter></span></div><p class=3DMsoNormal><span style=3D'font-=
-size:12.0pt;font-family:"Arial","sans-serif";color:black'>The contents of t=
-his e-mail and any attachment(s) may contain confidential or privileged inf=
-ormation for the intended recipient(s). Unintended recipients are prohibite=
-d from taking action on the basis of information in this e-mail and using o=
-r disseminating the information, and must notify the sender and delete it f=
-rom their system. L&amp;T Infotech will not accept responsibility or liabil=
-ity for the accuracy or completeness of, or the presence of any virus or di=
-sabling code in this e-mail&quot;</span><span style=3D'font-size:12.0pt;fon=
-t-family:"Times New Roman","serif"'><o:p></o:p></span></p></div></body></ht=
-ml>=
-
---_000_AF0985D076EB244693F2CCD71AAB10BC2C5E53DAE6BLRINMSMBX01b_--
