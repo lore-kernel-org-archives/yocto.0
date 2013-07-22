@@ -1,53 +1,27 @@
-Return-Path: <sipke.vriend@xilinx.com>
-Received: from am1outboundpool.messaging.microsoft.com
-	(am1ehsobe005.messaging.microsoft.com [213.199.154.208])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AC4CE013AE;
-	Sun, 21 Jul 2013 22:12:16 -0700 (PDT)
-Received: from mail1-am1-R.bigfish.com (10.3.201.238) by
-	AM1EHSOBE014.bigfish.com (10.3.207.136) with Microsoft SMTP Server id
-	14.1.225.22; Mon, 22 Jul 2013 05:12:15 +0000
-Received: from mail1-am1 (localhost [127.0.0.1])	by mail1-am1-R.bigfish.com
-	(Postfix) with ESMTP id 101253C026C;
-	Mon, 22 Jul 2013 05:12:15 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:149.199.60.83; KIP:(null); UIP:(null); IPV:NLI;
-	H:xsj-gw1; RD:unknown-60-83.xilinx.com; EFVD:NLI
-X-SpamScore: 1
-X-BigFish: VPS1(zzc89bhzz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz1de097hz2fh95h668h839h93fhd24hf0ah119dh1288h12a5h12a9h12bdh137ah13b6h1441h14ddh1504h1537h153bh162dh1631h1758h18e1h1946h19b5h1b0ah1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e1dh906i1155h192ch)
-Received-SPF: pass (mail1-am1: domain of xilinx.com designates 149.199.60.83
-	as permitted sender) client-ip=149.199.60.83;
-	envelope-from=sipke.vriend@xilinx.com; helo=xsj-gw1 ;
-	helo=xsj-gw1 ; 
-Received: from mail1-am1 (localhost.localdomain [127.0.0.1]) by mail1-am1
-	(MessageSwitch) id 1374469933348174_7969;
-	Mon, 22 Jul 2013 05:12:13 +0000 (UTC)
-Received: from AM1EHSMHS016.bigfish.com (unknown [10.3.201.252])	by
-	mail1-am1.bigfish.com (Postfix) with ESMTP id 47C35A0047;
-	Mon, 22 Jul 2013 05:12:13 +0000 (UTC)
-Received: from xsj-gw1 (149.199.60.83) by AM1EHSMHS016.bigfish.com
-	(10.3.207.154) with Microsoft SMTP Server id 14.16.227.3;
-	Mon, 22 Jul 2013 05:12:12 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66]
-	helo=xsj-smtp1.xilinx.com)	by xsj-gw1 with esmtp (Exim
-	4.63)	(envelope-from <sipke.vriend@xilinx.com>)	id 1V18Pr-0007w6-Rb;
-	Sun, 21 Jul 2013 22:12:11 -0700
-From: Sipke Vriend <sipke.vriend@xilinx.com>
-To: "Bruce Ashfield (bruce.ashfield@windriver.com)"
-	<bruce.ashfield@windriver.com>
-Thread-Topic: linux-yocto fragments meta branch
-Thread-Index: Ac6GfX0Hlqrc+a4eQxes714vWRFi0w==
-Date: Mon, 22 Jul 2013 05:12:10 +0000
-Accept-Language: en-AU, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.164.9]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7902E013AE;
+	Sun, 21 Jul 2013 22:26:40 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r6M5Qakl011419
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 21 Jul 2013 22:26:36 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.20.26) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.342.3; Sun, 21 Jul 2013 22:26:36 -0700
+Message-ID: <51ECC28B.80607@windriver.com>
+Date: Mon, 22 Jul 2013 01:26:35 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-RCIS-Action: ALLOW
-Message-ID: <f3d58573-6847-4a3d-b374-f4fca920d921@AM1EHSMHS016.ehs.local>
-X-OriginatorOrg: xilinx.com
-X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+To: Sipke Vriend <sipke.vriend@xilinx.com>
+References: <f3d58573-6847-4a3d-b374-f4fca920d921@AM1EHSMHS016.ehs.local>
+In-Reply-To: <f3d58573-6847-4a3d-b374-f4fca920d921@AM1EHSMHS016.ehs.local>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"meta-xilinx@yoctoproject.org" <meta-xilinx@yoctoproject.org>
-Subject: linux-yocto fragments meta branch
+Subject: Re: linux-yocto fragments meta branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,167 +33,223 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2013 05:12:18 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 22 Jul 2013 05:26:40 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-SGkgQnJ1Y2UsDQoNClRoZSBsaW51eC15b2N0byBvcnBoYW5lZCBtZXRhIGJyYW5jaCBjb21taXQg
-DQo4ZWY5MTM2NTM5NDY0YzE0NTk2M2FjMmI4ZWUwMTk2ZmVhMWMyMzM3IA0KLmdpdGlnbm9yZTog
-ZG8gbm90IGlnbm9yZSBtZXRhIGRpcmVjdG9yeQ0KDQpjYXVzZXMgdGhlIGxpbnV4LXlvY3RvIHRh
-cmdldHMgaW4gbWV0YS14aWxpbngvbWFzdGVyIHRvIGZhaWwgd2l0aCB0aGUgZm9sbG93aW5nIA0K
-ZXJyb3Iocyk6DQotLS0tIHNuaXAgLS0tDQpbRVJST1JdIHVuYWJsZSB0byBjb21wbGV0ZSBwdXNo
-DQp8IEVSUk9SLiBjb3VsZCBub3QgdXBkYXRlIGdpdCB0cmVlDQp8IEVSUk9SLiBDb3VsZCBub3Qg
-YXBwbHkgcGF0Y2hlcyBmb3IgemVkYm9hcmQuDQp8ICAgICAgICBQYXRjaCBmYWlsdXJlcyBjYW4g
-YmUgcmVzb2x2ZWQgaW4gdGhlIGRldnNoZWxsIChiaXRiYWtlIC1jIGRldnNoZWxsIGxpbnV4LXlv
-Y3RvKQ0KfCBFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19wYXRjaCAobG9nIGZpbGUgaXMgbG9j
-YXRlZCBhdCAvaG9tZS9zaXBrZXYveW9jdG8vNS1wb2t5L2J1aWxkL3RtcC93b3JrL3plZGJvYXJk
-LXBva3ktbGludXgtZ251ZWFiaS9saW51eC15b2N0by8zLjguMTMrZ2l0QVVUT0lOQys4ZWY5MTM2
-NTM5X2YyMDA0NzUyMGEtcjQuMi90ZW1wL2xvZy5kb19wYXRjaC40NDAzKQ0KLS0tIHNuaXAgLS0t
-DQooU2VlIGZ1bGwgQlVJTEQgTE9HIGJlbG93KS4NCg0KSXQgc2VlbXMgdGhlIGtlcm5lbCB0b29s
-cyBzY3JpcHRzIGFyZSBzZWVpbmcgYSBjaGFuZ2UgaW4gdGhlIC5naXRpZ25vcmUgZmlsZSAoc2Vl
-IA0KVEVSTUlOQUwgT1VUUFVUIGJlbG93KSBhbmQgYXR0ZW1wdCBhIGdpdCBwdXNoIGZvciB3aGlj
-aCB3ZSBkb27igJl0IGhhdmUgYWNjZXNzLg0KDQpUaGUgZGlmZiBvZiAuZ2l0aWdub3JlIGluIHRo
-ZSB3b3JraW5nIGxpbnV4IGRpcmVjdG9yeSAoc2VlIFRFUk1JTkFMIE9VVFBVVA0KYmVsb3cpIGlz
-IHRoYXQgb2YgdGhlIGNvbW1pdCBhYm92ZS4gDQpDaGVja2luZyBsaW51eC15b2N0by0zLjggcmVw
-b3NpdG9yeSBzaG93cyB0aGF0IHRoZSBtZXRhIGJyYW5jaCAuZ2l0aWdub3JlDQpjb250YWlucyB0
-aGUgY29tbWl0LCBidXQgdGhlIC5naXRpZ25vcmUgaW4gdGhlIG1hc3RlciAob3Igc3RhbmRhcmQv
-bWV0YSkgZG9lcw0Kbm90Lg0KDQpTaG91bGQgdGhlIC5naXRpZ25vcmUgZmlsZXMgbWF0Y2ggYmV0
-d2VlbiB0aGUgbGludXgteW9jdG8tMy44IGJyYW5jaGVzPyANCklmIG5vdCwgY2FuIHdlIGRvIHNv
-bWV0aGluZyBpbiBtZXRhLXhpbGlueCB0byBhdm9pZCB0aGUgYXR0ZW1wdGVkIGdpdCBwdXNoPw0K
-DQpDaGVlcnMNClNpcGtlDQoNCg0KPT09IEJVSUxEIExPRyA9PT09PQ0KYnVpbGQkIGJpdGJha2Ug
-bGludXgteW9jdG8NCldBUk5JTkc6IEhvc3QgZGlzdHJpYnV0aW9uICJVYnVudHUtMTEuMTAiIGhh
-cyBub3QgYmVlbiB2YWxpZGF0ZWQgd2l0aCB0aGlzIHZlcnNpb24gb2YgdGhlIGJ1aWxkIHN5c3Rl
-bTsgeW91IG1heSBwb3NzaWJseSBleHBlcmllbmNlIHVuZXhwZWN0ZWQgZmFpbHVyZXMuIEl0IGlz
-IHJlY29tbWVuZGVkIHRoYXQgeW91IHVzZSBhIHRlc3RlZCBkaXN0cmlidXRpb24uDQpQYXJzaW5n
-IHJlY2lwZXM6IDEwMCUgfCMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjI3wgVGltZTogMDA6MDA6NDANClBhcnNpbmcgb2YgODUwIC5iYiBmaWxl
-cyBjb21wbGV0ZSAoMCBjYWNoZWQsIDg1MCBwYXJzZWQpLiAxMTc3IHRhcmdldHMsIDQ3IHNraXBw
-ZWQsIDAgbWFza2VkLCAwIGVycm9ycy4NCg0KQnVpbGQgQ29uZmlndXJhdGlvbjoNCkJCX1ZFUlNJ
-T04gICAgICAgID0gIjEuMTkuMSINCkJVSUxEX1NZUyAgICAgICAgID0gIng4Nl82NC1saW51eCIN
-Ck5BVElWRUxTQlNUUklORyAgID0gIlVidW50dS0xMS4xMCINClRBUkdFVF9TWVMgICAgICAgID0g
-ImFybS1wb2t5LWxpbnV4LWdudWVhYmkiDQpNQUNISU5FICAgICAgICAgICA9ICJ6ZWRib2FyZCIN
-CkRJU1RSTyAgICAgICAgICAgID0gInBva3kiDQpESVNUUk9fVkVSU0lPTiAgICA9ICIxLjQrc25h
-cHNob3QtMjAxMzA3MjIiDQpUVU5FX0ZFQVRVUkVTICAgICA9ICIgYXJtdjdhIHZmcCBuZW9uIHp5
-bnEiDQpUQVJHRVRfRlBVICAgICAgICA9ICJ2ZnAtbmVvbiINCm1ldGENCm1ldGEteW9jdG8NCm1l
-dGEteW9jdG8tYnNwICAgID0gIm1hc3RlcjozMWU2ZWVlODYwYjVmOWY0YWM5ZWYwODg5YmNmZjU2
-NDhkZTZlM2Y5Ig0KbWV0YS14aWxpbngNCm1ldGEtemVkYm9hcmQNCm1ldGEtemM3MDINCm1ldGEt
-a2M3MDUgICAgICAgID0gIm1hc3Rlcjo2ZTNiYTA0ZGJhY2MxZDFkNWJjYWQ4MGY1ZTU1NGU3ZmNj
-NTFmNjAyIg0KDQpOT1RFOiBSZXNvbHZpbmcgYW55IG1pc3NpbmcgdGFzayBxdWV1ZSBkZXBlbmRl
-bmNpZXMNCk5PVEU6IFByZXBhcmluZyBydW5xdWV1ZQ0KTk9URTogRXhlY3V0aW5nIFNldFNjZW5l
-IFRhc2tzDQpOT1RFOiBFeGVjdXRpbmcgUnVuUXVldWUgVGFza3MNCkVSUk9SOiBGdW5jdGlvbiBm
-YWlsZWQ6IGRvX3BhdGNoIChsb2cgZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21lL3NpcGtldi95b2N0
-by81LXBva3kvYnVpbGQvdG1wL3dvcmsvemVkYm9hcmQtcG9reS1saW51eC1nbnVlYWJpL2xpbnV4
-LXlvY3RvLzMuOC4xMytnaXRBVVRPSU5DKzhlZjkxMzY1MzlfZjIwMDQ3NTIwYS1yNC4yL3RlbXAv
-bG9nLmRvX3BhdGNoLjQ0MDMpDQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjog
-L2hvbWUvc2lwa2V2L3lvY3RvLzUtcG9reS9idWlsZC90bXAvd29yay96ZWRib2FyZC1wb2t5LWxp
-bnV4LWdudWVhYmkvbGludXgteW9jdG8vMy44LjEzK2dpdEFVVE9JTkMrOGVmOTEzNjUzOV9mMjAw
-NDc1MjBhLXI0LjIvdGVtcC9sb2cuZG9fcGF0Y2guNDQwMw0KTG9nIGRhdGEgZm9sbG93czoNCnwg
-REVCVUc6IEV4ZWN1dGluZyBzaGVsbCBmdW5jdGlvbiBkb19wYXRjaA0KfCBCcmFuY2ggbWV0YS10
-ZW1wIHNldCB1cCB0byB0cmFjayByZW1vdGUgYnJhbmNoIG1ldGEgZnJvbSBvcmlnaW4gYnkgcmVi
-YXNpbmcuDQp8IFVuc3RhZ2VkIGNoYW5nZXMgYWZ0ZXIgcmVzZXQ6DQp8IE0gICAgIC5naXRpZ25v
-cmUNCnwgRGVsZXRlZCBicmFuY2ggbWV0YS10ZW1wICh3YXMgMzdmZGIwYykuDQp8IFtJTkZPXSB2
-YWxpZGF0aW5nIGFnYWluc3Qga25vd24gcGF0Y2hlcyAgKHplZGJvYXJkLXN0YW5kYXJkLW1ldGEp
-DQpCcmFuY2ggc3RhbmRhcmQvbWV0YSBzZXQgdXAgdG8gdHJhY2sgcmVtb3RlIGJyYW5jaCBzdGFu
-ZGFyZC9iYXNlIGZyb20gb3JpZ2luIGJ5IHJlYmFzaW5nLg0KVW5jb21taXRlZCBjaGFuZ2VzIGRl
-dGVjdGVkLiBSZWZyZXNoIGZpcnN0LiMjIyMjIyMjIyNdICgtKSgxMDEgJSkpDQp8IFtFUlJPUl0g
-dW5hYmxlIHRvIGNvbXBsZXRlIHB1c2gNCnwgcGVuZGluZyBwYXRjaGVzIGFyZToNCnwgbGlua3Mv
-bGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMDEtWnlucS1zcGVjaWZpYy1jaGFuZ2VzLXRvLWFy
-Y2gtYXJtLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8wMDAyLU1pY3Jv
-YmxhemUtY2hhbmdlcy10by1hcmNoLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12
-MTQuNS8wMDAzLVBvd2VyUEMtY2hhbmdlcy10by1hcmNoLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlv
-Y3RvL3hpbGlueC12MTQuNS8wMDA0LVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlci1ibG9j
-ay1hbmQtZHJpdmVyLWNoYXIucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41
-LzAwMDUtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1jbGstY3B1ZnJlcS1taXNjLnBh
-dGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8wMDA2LVhpbGlueC1tb2RpZmlj
-YXRpb25zLXRvLWRyaXZlcnMtZG1hLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12
-MTQuNS8wMDA3LVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlcnMtZ3Bpby5wYXRjaA0KfCBs
-aW5rcy9saW51eC15b2N0by94aWxpbngtdjE0LjUvMDAwOC1YaWxpbngtbW9kaWZpY2F0aW9ucy10
-by1kcml2ZXJzLWh3bW9uLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8w
-MDA5LVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlcnMtbWVkaWEucGF0Y2gNCnwgbGlua3Mv
-bGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMTAtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJp
-dmVycy1tZW1vcnkucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMTEt
-WGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1tbWMucGF0Y2gNCnwgbGlua3MvbGludXgt
-eW9jdG8veGlsaW54LXYxNC41LzAwMTItWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1t
-dGQucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMTMtWGlsaW54LW1v
-ZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1uZXQucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGls
-aW54LXYxNC41LzAwMTQtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1yZW1vdGVwcm9j
-LnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12MTQuNS8wMDE1LVhpbGlueC1tb2Rp
-ZmljYXRpb25zLXRvLWRyaXZlcnMtcnBtc2cucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGls
-aW54LXYxNC41LzAwMTYtWGlsaW54LW1vZGlmaWNhdGlvbnMtdG8tZHJpdmVycy1zcGktbWZkLWFu
-ZC10aW1lcmRhbC5wYXRjaA0KfCBsaW5rcy9saW51eC15b2N0by94aWxpbngtdjE0LjUvMDAxNy1Y
-aWxpbngtbW9kaWZpY2F0aW9ucy10by1kcml2ZXJzLXR0eS5wYXRjaA0KfCBsaW5rcy9saW51eC15
-b2N0by94aWxpbngtdjE0LjUvMDAxOC1YaWxpbngtbW9kaWZpY2F0aW9ucy10by1kcml2ZXJzLXVp
-by5wYXRjaA0KfCBsaW5rcy9saW51eC15b2N0by94aWxpbngtdjE0LjUvMDAxOS1YaWxpbngtbW9k
-aWZpY2F0aW9ucy10by1kcml2ZXJzLXVzYi1hbmQtaTJjLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlv
-Y3RvL3hpbGlueC12MTQuNS8wMDIwLVhpbGlueC1tb2RpZmljYXRpb25zLXRvLWRyaXZlcnMtdmlk
-ZW8ucGF0Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMjEtWGlsaW54LW1v
-ZGlmaWNhdGlvbnMtdG8tZHJpdmVycy13YXRjaGRvZy5wYXRjaA0KfCBsaW5rcy9saW51eC15b2N0
-by94aWxpbngtdjE0LjUvMDAyMi1BZGRpdGlvbi1vZi1kcml2ZXJzLXhpbGlueF9jb21tb24ucGF0
-Y2gNCnwgbGlua3MvbGludXgteW9jdG8veGlsaW54LXYxNC41LzAwMjMtWGlsaW54LXNwZWNpZmlj
-LWRvY3VtZW50YXRpb24tdXBkYXRlLnBhdGNoDQp8IGxpbmtzL2xpbnV4LXlvY3RvL3hpbGlueC12
-MTQuNS8wMDI0LVJlbW92ZS1yZWR1bmRhbnQtZHJpdmVyLWZpbGVzLnBhdGNoDQp8IGxpbmtzL2xp
-bnV4LXhsbngvbWljcm9ibGF6ZV9Eb19ub3RfdXNlX3I2X2luX2hlYWQuUy5wYXRjaA0KfCBsaW5r
-cy9saW51eC14bG54L21pY3JvYmxhemVfRml4X2ZyZWVfaW5pdF9wYWdlc19mdW5jdGlvbi5wYXRj
-aA0KfCBsaW5rcy9saW51eC14bG54L21pY3JvYmxhemVfRml4X2luaXRyZF9zdXBwb3J0LnBhdGNo
-DQp8IGxpbmtzL2xpbnV4LXhsbngvYXJjaF9taWNyb2JsYXplX0FkZF9saW51eC5iaW4udWJfdGFy
-Z2V0LnBhdGNoDQp8IEVSUk9SLiBjb3VsZCBub3QgdXBkYXRlIGdpdCB0cmVlDQp8IEVSUk9SLiBD
-b3VsZCBub3QgYXBwbHkgcGF0Y2hlcyBmb3IgemVkYm9hcmQuDQp8ICAgICAgICBQYXRjaCBmYWls
-dXJlcyBjYW4gYmUgcmVzb2x2ZWQgaW4gdGhlIGRldnNoZWxsIChiaXRiYWtlIC1jIGRldnNoZWxs
-IGxpbnV4LXlvY3RvKQ0KfCBFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19wYXRjaCAobG9nIGZp
-bGUgaXMgbG9jYXRlZCBhdCAvaG9tZS9zaXBrZXYveW9jdG8vNS1wb2t5L2J1aWxkL3RtcC93b3Jr
-L3plZGJvYXJkLXBva3ktbGludXgtZ251ZWFiaS9saW51eC15b2N0by8zLjguMTMrZ2l0QVVUT0lO
-Qys4ZWY5MTM2NTM5X2YyMDA0NzUyMGEtcjQuMi90ZW1wL2xvZy5kb19wYXRjaC40NDAzKQ0KRVJS
-T1I6IFRhc2sgMyAoL2hvbWUvc2lwa2V2L3lvY3RvLzUtcG9reS9wb2t5L21ldGEvcmVjaXBlcy1r
-ZXJuZWwvbGludXgvbGludXgteW9jdG9fMy44LmJiLCBkb19wYXRjaCkgZmFpbGVkIHdpdGggZXhp
-dCBjb2RlICcxJw0KTk9URTogVGFza3MgU3VtbWFyeTogQXR0ZW1wdGVkIDI4NiB0YXNrcyBvZiB3
-aGljaCAzMiBkaWRuJ3QgbmVlZCB0byBiZSByZXJ1biBhbmQgMSBmYWlsZWQuDQpXYWl0aW5nIGZv
-ciAwIHJ1bm5pbmcgdGFza3MgdG8gZmluaXNoOg0KDQpTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOg0K
-ICAvaG9tZS9zaXBrZXYveW9jdG8vNS1wb2t5L3Bva3kvbWV0YS9yZWNpcGVzLWtlcm5lbC9saW51
-eC9saW51eC15b2N0b18zLjguYmIsIGRvX3BhdGNoDQpTdW1tYXJ5OiBUaGVyZSB3YXMgMSBXQVJO
-SU5HIG1lc3NhZ2Ugc2hvd24uDQpTdW1tYXJ5OiBUaGVyZSB3YXMgMSBFUlJPUiBtZXNzYWdlIHNo
-b3duLCByZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuDQo9PT09PSBFTkQgQlVJTEQgTE9H
-ID09PT09PT0NCg0KDQo9PT0gVEVSTUlOQUwgT1VUUFVUID09PQ0KJDpidWlsZC90bXAvd29yay96
-ZWRib2FyZC1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgteW9jdG8vMy44LjEzK2dpdEFVVE9JTkMr
-OGVmOTEzNjUzOV9mMjAwNDc1MjBhLXI0LjIvbGludXgkIGdpdCBzdGF0dXMNCiMgT24gYnJhbmNo
-IHN0YW5kYXJkL21ldGENCiMgQ2hhbmdlcyBub3Qgc3RhZ2VkIGZvciBjb21taXQ6DQojICAgKHVz
-ZSAiZ2l0IGFkZCA8ZmlsZT4uLi4iIHRvIHVwZGF0ZSB3aGF0IHdpbGwgYmUgY29tbWl0dGVkKQ0K
-IyAgICh1c2UgImdpdCBjaGVja291dCAtLSA8ZmlsZT4uLi4iIHRvIGRpc2NhcmQgY2hhbmdlcyBp
-biB3b3JraW5nIGRpcmVjdG9yeSkNCiMNCiMgICAgICAgbW9kaWZpZWQ6ICAgLmdpdGlnbm9yZQ0K
-Iw0KIyBVbnRyYWNrZWQgZmlsZXM6DQojICAgKHVzZSAiZ2l0IGFkZCA8ZmlsZT4uLi4iIHRvIGlu
-Y2x1ZGUgaW4gd2hhdCB3aWxsIGJlIGNvbW1pdHRlZCkNCiMNCiMgICAgICAgbWV0YS8NCm5vIGNo
-YW5nZXMgYWRkZWQgdG8gY29tbWl0ICh1c2UgImdpdCBhZGQiIGFuZC9vciAiZ2l0IGNvbW1pdCAt
-YSIpDQokOmJ1aWxkL3RtcC93b3JrL3plZGJvYXJkLXBva3ktbGludXgtZ251ZWFiaS9saW51eC15
-b2N0by8zLjguMTMrZ2l0QVVUT0lOQys4ZWY5MTM2NTM5X2YyMDA0NzUyMGEtcjQuMi9saW51eCQg
-Z2l0IGRpZmYNCmRpZmYgLS1naXQgYS8uZ2l0aWdub3JlIGIvLmdpdGlnbm9yZQ0KaW5kZXggOTJj
-N2E2Ny4uNWU3YmM5OCAxMDA2NDQNCi0tLSBhLy5naXRpZ25vcmUNCisrKyBiLy5naXRpZ25vcmUN
-CkBAIC05MSw0ICs5MSw0IEBAIGV4dHJhX2NlcnRpZmljYXRlcw0KIHNpZ25pbmdfa2V5LnByaXYN
-CiBzaWduaW5nX2tleS54NTA5DQogeDUwOS5nZW5rZXkNCi0vbWV0YQ0KKyMvbWV0YQ0KJDpidWls
-ZC90bXAvd29yay96ZWRib2FyZC1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgteW9jdG8vMy44LjEz
-K2dpdEFVVE9JTkMrOGVmOTEzNjUzOV9mMjAwNDc1MjBhLXI0LjIvbGludXgkIHRhaWwgLmdpdGln
-bm9yZQ0KXCMqIw0KDQojDQojIExlYXZpbmdzIGZyb20gbW9kdWxlIHNpZ25pbmcNCiMNCmV4dHJh
-X2NlcnRpZmljYXRlcw0Kc2lnbmluZ19rZXkucHJpdg0Kc2lnbmluZ19rZXkueDUwOQ0KeDUwOS5n
-ZW5rZXkNCiMvbWV0YQ0KJDpidWlsZC90bXAvd29yay96ZWRib2FyZC1wb2t5LWxpbnV4LWdudWVh
-YmkvbGludXgteW9jdG8vMy44LjEzK2dpdEFVVE9JTkMrOGVmOTEzNjUzOV9mMjAwNDc1MjBhLXI0
-LjIvbGludXgkIGdpdCBicmFuY2gNCiAgZWcyMHQNCiAgZW1nZC0xLjE2DQogIGVtZ2QtMS4xOA0K
-ICBtYXN0ZXINCiAgbWV0YQ0KICBzdGFuZGFyZC9hcm0tdmVyc2F0aWxlLTkyNmVqcw0KICBzdGFu
-ZGFyZC9iYXNlDQogIHN0YW5kYXJkL2JlYWdsZWJvYXJkDQogIHN0YW5kYXJkL2NrDQogIHN0YW5k
-YXJkL2NvbW1vbi1wYy02NC9iYXNlDQogIHN0YW5kYXJkL2NvbW1vbi1wYy02NC9jaGllZnJpdmVy
-DQogIHN0YW5kYXJkL2NvbW1vbi1wYy02NC9jcnlzdGFsZm9yZXN0DQogIHN0YW5kYXJkL2NvbW1v
-bi1wYy02NC9qYXNwZXJmb3Jlc3QNCiAgc3RhbmRhcmQvY29tbW9uLXBjLTY0L3JhbmdlbGV5DQog
-IHN0YW5kYXJkL2NvbW1vbi1wYy02NC9yb21sZXkNCiAgc3RhbmRhcmQvY29tbW9uLXBjLTY0L3N1
-Z2FyYmF5DQogIHN0YW5kYXJkL2NvbW1vbi1wYy9hdG9tLXBjDQogIHN0YW5kYXJkL2NvbW1vbi1w
-Yy9iYXNlDQogIHN0YW5kYXJkL2Nyb3duYmF5DQogIHN0YW5kYXJkL2VkZg0KICBzdGFuZGFyZC9l
-bWVubG93DQogIHN0YW5kYXJkL2ZyaTINCiAgc3RhbmRhcmQvZnNsLW1wYzgzMTVlLXJkYg0KKiBz
-dGFuZGFyZC9tZXRhDQogIHN0YW5kYXJkL21pbm5vdw0KICBzdGFuZGFyZC9tdGktbWFsdGEzMg0K
-ICBzdGFuZGFyZC9tdGktbWFsdGE2NA0KICBzdGFuZGFyZC9wcmVlbXB0LXJ0L2Jhc2UNCiAgc3Rh
-bmRhcmQvcHJlZW1wdC1ydC9mcmkyDQogIHN0YW5kYXJkL3ByZWVtcHQtcnQvcWVtdXBwYw0KICBz
-dGFuZGFyZC9wcmVlbXB0LXJ0L3JvdXRlcnN0YXRpb25wcm8NCiAgc3RhbmRhcmQvcWVtdXBwYw0K
-ICBzdGFuZGFyZC9yb3V0ZXJzdGF0aW9ucHJvDQogIHN0YW5kYXJkL3N5czk0MHgNCiAgc3RhbmRh
-cmQvdGlueS9iYXNlDQogIHN0YW5kYXJkL3RpbnkvY29tbW9uLXBjDQogIHN0YW5kYXJkL3Rpbnkv
-ZnJpMg0KPT09IEVORCBURVJNSU5BTCBPVVRQVVQgPT09DQoKCg==
+On 13-07-22 1:12 AM, Sipke Vriend wrote:
+> Hi Bruce,
+>
+> The linux-yocto orphaned meta branch commit
+> 8ef9136539464c145963ac2b8ee0196fea1c2337
+> .gitignore: do not ignore meta directory
+>
+> causes the linux-yocto targets in meta-xilinx/master to fail with the following
+> error(s):
+> ---- snip ---
+> [ERROR] unable to complete push
+> | ERROR. could not update git tree
+> | ERROR. Could not apply patches for zedboard.
+> |        Patch failures can be resolved in the devshell (bitbake -c devshell linux-yocto)
+> | ERROR: Function failed: do_patch (log file is located at /home/sipkev/yocto/5-poky/build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/temp/log.do_patch.4403)
+> --- snip ---
+> (See full BUILD LOG below).
+>
+> It seems the kernel tools scripts are seeing a change in the .gitignore file (see
+> TERMINAL OUTPUT below) and attempt a git push for which we don’t have access.
+>
+> The diff of .gitignore in the working linux directory (see TERMINAL OUTPUT
+> below) is that of the commit above.
+> Checking linux-yocto-3.8 repository shows that the meta branch .gitignore
+> contains the commit, but the .gitignore in the master (or standard/meta) does
+> not.
+>
+> Should the .gitignore files match between the linux-yocto-3.8 branches?
+> If not, can we do something in meta-xilinx to avoid the attempted git push?
+>
 
+Aha. I don't have all the tweaks to the tools in place, I knew I should
+have wait on merging that change .. but yet, my tests passed.
+
+You can't avoid the git push, or you won't have any changes made to the
+tree :)
+
+I'll revert that change for now, and synchronize it with my tools 
+update. But yes, they really should match since with the meta directory
+being untracked on purpose in the non-meta branches, we can't have the
+gitignore different between the two.
+
+I've pushed the change and will send a pull request later. But if you
+update your SRCREV_meta to my latest for now, you should be good to go.
+
+Cheers,
+
+Bruce
+
+> Cheers
+> Sipke
+>
+>
+> === BUILD LOG =====
+> build$ bitbake linux-yocto
+> WARNING: Host distribution "Ubuntu-11.10" has not been validated with this version of the build system; you may possibly experience unexpected failures. It is recommended that you use a tested distribution.
+> Parsing recipes: 100% |###########################################################################################################################################################################| Time: 00:00:40
+> Parsing of 850 .bb files complete (0 cached, 850 parsed). 1177 targets, 47 skipped, 0 masked, 0 errors.
+>
+> Build Configuration:
+> BB_VERSION        = "1.19.1"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Ubuntu-11.10"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "zedboard"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.4+snapshot-20130722"
+> TUNE_FEATURES     = " armv7a vfp neon zynq"
+> TARGET_FPU        = "vfp-neon"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "master:31e6eee860b5f9f4ac9ef0889bcff5648de6e3f9"
+> meta-xilinx
+> meta-zedboard
+> meta-zc702
+> meta-kc705        = "master:6e3ba04dbacc1d1d5bcad80f5e554e7fcc51f602"
+>
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> ERROR: Function failed: do_patch (log file is located at /home/sipkev/yocto/5-poky/build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/temp/log.do_patch.4403)
+> ERROR: Logfile of failure stored in: /home/sipkev/yocto/5-poky/build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/temp/log.do_patch.4403
+> Log data follows:
+> | DEBUG: Executing shell function do_patch
+> | Branch meta-temp set up to track remote branch meta from origin by rebasing.
+> | Unstaged changes after reset:
+> | M     .gitignore
+> | Deleted branch meta-temp (was 37fdb0c).
+> | [INFO] validating against known patches  (zedboard-standard-meta)
+> Branch standard/meta set up to track remote branch standard/base from origin by rebasing.
+> Uncommited changes detected. Refresh first.##########] (-)(101 %))
+> | [ERROR] unable to complete push
+> | pending patches are:
+> | links/linux-yocto/xilinx-v14.5/0001-Zynq-specific-changes-to-arch-arm.patch
+> | links/linux-yocto/xilinx-v14.5/0002-Microblaze-changes-to-arch.patch
+> | links/linux-yocto/xilinx-v14.5/0003-PowerPC-changes-to-arch.patch
+> | links/linux-yocto/xilinx-v14.5/0004-Xilinx-modifications-to-driver-block-and-driver-char.patch
+> | links/linux-yocto/xilinx-v14.5/0005-Xilinx-modifications-to-drivers-clk-cpufreq-misc.patch
+> | links/linux-yocto/xilinx-v14.5/0006-Xilinx-modifications-to-drivers-dma.patch
+> | links/linux-yocto/xilinx-v14.5/0007-Xilinx-modifications-to-drivers-gpio.patch
+> | links/linux-yocto/xilinx-v14.5/0008-Xilinx-modifications-to-drivers-hwmon.patch
+> | links/linux-yocto/xilinx-v14.5/0009-Xilinx-modifications-to-drivers-media.patch
+> | links/linux-yocto/xilinx-v14.5/0010-Xilinx-modifications-to-drivers-memory.patch
+> | links/linux-yocto/xilinx-v14.5/0011-Xilinx-modifications-to-drivers-mmc.patch
+> | links/linux-yocto/xilinx-v14.5/0012-Xilinx-modifications-to-drivers-mtd.patch
+> | links/linux-yocto/xilinx-v14.5/0013-Xilinx-modifications-to-drivers-net.patch
+> | links/linux-yocto/xilinx-v14.5/0014-Xilinx-modifications-to-drivers-remoteproc.patch
+> | links/linux-yocto/xilinx-v14.5/0015-Xilinx-modifications-to-drivers-rpmsg.patch
+> | links/linux-yocto/xilinx-v14.5/0016-Xilinx-modifications-to-drivers-spi-mfd-and-timerdal.patch
+> | links/linux-yocto/xilinx-v14.5/0017-Xilinx-modifications-to-drivers-tty.patch
+> | links/linux-yocto/xilinx-v14.5/0018-Xilinx-modifications-to-drivers-uio.patch
+> | links/linux-yocto/xilinx-v14.5/0019-Xilinx-modifications-to-drivers-usb-and-i2c.patch
+> | links/linux-yocto/xilinx-v14.5/0020-Xilinx-modifications-to-drivers-video.patch
+> | links/linux-yocto/xilinx-v14.5/0021-Xilinx-modifications-to-drivers-watchdog.patch
+> | links/linux-yocto/xilinx-v14.5/0022-Addition-of-drivers-xilinx_common.patch
+> | links/linux-yocto/xilinx-v14.5/0023-Xilinx-specific-documentation-update.patch
+> | links/linux-yocto/xilinx-v14.5/0024-Remove-redundant-driver-files.patch
+> | links/linux-xlnx/microblaze_Do_not_use_r6_in_head.S.patch
+> | links/linux-xlnx/microblaze_Fix_free_init_pages_function.patch
+> | links/linux-xlnx/microblaze_Fix_initrd_support.patch
+> | links/linux-xlnx/arch_microblaze_Add_linux.bin.ub_target.patch
+> | ERROR. could not update git tree
+> | ERROR. Could not apply patches for zedboard.
+> |        Patch failures can be resolved in the devshell (bitbake -c devshell linux-yocto)
+> | ERROR: Function failed: do_patch (log file is located at /home/sipkev/yocto/5-poky/build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/temp/log.do_patch.4403)
+> ERROR: Task 3 (/home/sipkev/yocto/5-poky/poky/meta/recipes-kernel/linux/linux-yocto_3.8.bb, do_patch) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 286 tasks of which 32 didn't need to be rerun and 1 failed.
+> Waiting for 0 running tasks to finish:
+>
+> Summary: 1 task failed:
+>    /home/sipkev/yocto/5-poky/poky/meta/recipes-kernel/linux/linux-yocto_3.8.bb, do_patch
+> Summary: There was 1 WARNING message shown.
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> ===== END BUILD LOG =======
+>
+>
+> === TERMINAL OUTPUT ===
+> $:build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/linux$ git status
+> # On branch standard/meta
+> # Changes not staged for commit:
+> #   (use "git add <file>..." to update what will be committed)
+> #   (use "git checkout -- <file>..." to discard changes in working directory)
+> #
+> #       modified:   .gitignore
+> #
+> # Untracked files:
+> #   (use "git add <file>..." to include in what will be committed)
+> #
+> #       meta/
+> no changes added to commit (use "git add" and/or "git commit -a")
+> $:build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/linux$ git diff
+> diff --git a/.gitignore b/.gitignore
+> index 92c7a67..5e7bc98 100644
+> --- a/.gitignore
+> +++ b/.gitignore
+> @@ -91,4 +91,4 @@ extra_certificates
+>   signing_key.priv
+>   signing_key.x509
+>   x509.genkey
+> -/meta
+> +#/meta
+> $:build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/linux$ tail .gitignore
+> \#*#
+>
+> #
+> # Leavings from module signing
+> #
+> extra_certificates
+> signing_key.priv
+> signing_key.x509
+> x509.genkey
+> #/meta
+> $:build/tmp/work/zedboard-poky-linux-gnueabi/linux-yocto/3.8.13+gitAUTOINC+8ef9136539_f20047520a-r4.2/linux$ git branch
+>    eg20t
+>    emgd-1.16
+>    emgd-1.18
+>    master
+>    meta
+>    standard/arm-versatile-926ejs
+>    standard/base
+>    standard/beagleboard
+>    standard/ck
+>    standard/common-pc-64/base
+>    standard/common-pc-64/chiefriver
+>    standard/common-pc-64/crystalforest
+>    standard/common-pc-64/jasperforest
+>    standard/common-pc-64/rangeley
+>    standard/common-pc-64/romley
+>    standard/common-pc-64/sugarbay
+>    standard/common-pc/atom-pc
+>    standard/common-pc/base
+>    standard/crownbay
+>    standard/edf
+>    standard/emenlow
+>    standard/fri2
+>    standard/fsl-mpc8315e-rdb
+> * standard/meta
+>    standard/minnow
+>    standard/mti-malta32
+>    standard/mti-malta64
+>    standard/preempt-rt/base
+>    standard/preempt-rt/fri2
+>    standard/preempt-rt/qemuppc
+>    standard/preempt-rt/routerstationpro
+>    standard/qemuppc
+>    standard/routerstationpro
+>    standard/sys940x
+>    standard/tiny/base
+>    standard/tiny/common-pc
+>    standard/tiny/fri2
+> === END TERMINAL OUTPUT ===
+>
+>
 
 
