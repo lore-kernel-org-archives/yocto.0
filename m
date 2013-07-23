@@ -1,36 +1,24 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f51.google.com (mail-pb0-f51.google.com
-	[209.85.160.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79DF5E0152B
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 10:31:43 -0700 (PDT)
-Received: by mail-pb0-f51.google.com with SMTP id um15so8723454pbc.10
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 10:31:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to:x-mailer;
-	bh=FriXyLVl7NuuHgYtLSH7KYCopuqFD2BatbBQrQZRYP4=;
-	b=bTunGC/LOK8sr3roUkeyvgNk8ZwvIRdcOqi4eWaSpjnruf69QYm7d05R63ryG5+6y7
-	PyMHURz96AzYQYtVTcJUrLazV7AnUOQkcU8CA4STqnVfkxaQcLQwrytigqzBqXz5VD/6
-	fp8EEGfY4IVjV8qMCF8+35PEruXhxw+TxRr8GRqaAEAb4OBgtoH8+MAuYYyxwAefvcAE
-	ngn+odM39UGIOpK/X0QK6dWw+G8TA4WmnicMyw6mS6yHGxqkvzZELy53kchkXPatUwSk
-	TVZkwOMTqPDgghtkcc+BXXpHVhwF+P1uUVOcpK7p8JzMph4L8fiRQiAhjE9FvjCTwTFv
-	b4Og==
-X-Received: by 10.68.104.196 with SMTP id gg4mr38429421pbb.25.1374600703052;
-	Tue, 23 Jul 2013 10:31:43 -0700 (PDT)
-Received: from ddeviny-sslvpn-nc.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id bp12sm5206142pac.1.2013.07.23.10.31.39
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 23 Jul 2013 10:31:42 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAFZh4h9-+XQBWxHh22zQ+jwQBYiaUwifzcdpLPF2kU+kn5Pg9A@mail.gmail.com>
-Date: Tue, 23 Jul 2013 10:31:38 -0700
-Message-Id: <5397EB6B-0A0C-44D7-A762-1966460DFD41@gmail.com>
-References: <CAFZh4h9-+XQBWxHh22zQ+jwQBYiaUwifzcdpLPF2kU+kn5Pg9A@mail.gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEE32E01528
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 10:36:23 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 23 Jul 2013 10:36:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,729,1367996400"; d="scan'208";a="272165204"
+Received: from unknown (HELO helios.localnet) ([10.252.122.157])
+	by AZSMGA002.ch.intel.com with ESMTP; 23 Jul 2013 10:35:52 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: Brian Hutchinson <b.hutchman@gmail.com>
-X-Mailer: Apple Mail (2.1508)
+Date: Tue, 23 Jul 2013 18:35:51 +0100
+Message-ID: <1406887.iQETxedpIY@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-26-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAFZh4h_PG+MAFjgyq-RyTRs-NX9DqJ46hggBqbrN8m1K=J-bog@mail.gmail.com>
+References: <CAFZh4h9-+XQBWxHh22zQ+jwQBYiaUwifzcdpLPF2kU+kn5Pg9A@mail.gmail.com>
+	<4860044.KltMD8WHhS@helios>
+	<CAFZh4h_PG+MAFjgyq-RyTRs-NX9DqJ46hggBqbrN8m1K=J-bog@mail.gmail.com>
+MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: Should I be worried about this nativesdk-packagegroup-sdk-host warning while building meta-toolchain
 X-BeenThere: yocto@yoctoproject.org
@@ -44,114 +32,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2013 17:31:48 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_120D2D1B-B418-456C-80FE-803BC7EAA848"
+X-List-Received-Date: Tue, 23 Jul 2013 17:36:24 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---Apple-Mail=_120D2D1B-B418-456C-80FE-803BC7EAA848
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
+On Tuesday 23 July 2013 13:23:46 Brian Hutchinson wrote:
+> On Tue, Jul 23, 2013 at 1:19 PM, Paul Eggleton <
+> paul.eggleton@linux.intel.com> wrote:
+> > Hi Brian,
+> > 
+> > Did you perhaps build meta-toolchain and then change MACHINE and build it
+> > again? What happened prior to this build?
+> > 
+> > 
+> > I ran bitbake meta-toolchain and when that was complete I edited my
+> 
+> local.conf and uncommented the following line so I would get a 32 bit
+> toolchain:
+> SDKMACHINE ?= "i686"
+> 
+> ... and then I ran bitbake meta-toolchain again and that is when the
+> messages appeared that I copied in the OP.
 
+OK, so I can see what's happening here. The package name does not change 
+depending on what SDKMACHINE is set to and thus it sees two "different" writes 
+to the same file.
 
-On Jul 23, 2013, at 7:13 AM, Brian Hutchinson <b.hutchman@gmail.com> =
-wrote:
+I'd need to verify in the case of where you switched back and rebuilt meta-
+toolchain again for x86-64, but I think in this instance you'll find that it 
+isn't a problem since it should build (or restore from shared state) the 
+appropriate version of  nativesdk-packagegroup-sdk-host.
 
-> WARNING: The recipe nativesdk-packagegroup-sdk-host is trying to =
-install files into a shared area when those files already exist. Those =
-files and their manifest location are:
->    =
-/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-lin=
-ux/nativesdk-packagegroup-sdk-host
->    Matched in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata
->    =
-/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-lin=
-ux/runtime/nativesdk-packagegroup-sdk-host.packaged
->    Matched in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata
->    =
-/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-lin=
-ux/runtime/nativesdk-packagegroup-sdk-host
->    Matched in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata
->    =
-/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-lin=
-ux/runtime-reverse/nativesdk-packagegroup-sdk-host
->    Matched in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata
-> Please verify which package should provide the above files.
->=20
->=20
-> Should I be worried or do I need to do something about the =
-nativesdk-packagegroup-sdk-host warnings?
->=20
+Cheers,
+Paul
 
-since they are getting installed on all-*-*,  I wouldn't be too much =
-worried. but it would be interesting to see if these files are different =
-in anyway=
+-- 
 
---Apple-Mail=_120D2D1B-B418-456C-80FE-803BC7EAA848
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><br><div><div>On Jul 23, 2013, at 7:13 AM, Brian Hutchinson &lt;<a =
-href=3D"mailto:b.hutchman@gmail.com">b.hutchman@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; "><div>WARNING: The recipe =
-nativesdk-packagegroup-sdk-host is trying to install files into a shared =
-area when those files already exist. Those files and their manifest =
-location are:</div><div>&nbsp; =
-&nbsp;/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokys=
-dk-linux/nativesdk-packagegroup-sdk-host</div><div>&nbsp; &nbsp;Matched =
-in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata</div><div>&nbs=
-p; =
-&nbsp;/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokys=
-dk-linux/runtime/nativesdk-packagegroup-sdk-host.packaged</div><div>&nbsp;=
- &nbsp;Matched in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata</div><div>&nbs=
-p; =
-&nbsp;/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokys=
-dk-linux/runtime/nativesdk-packagegroup-sdk-host</div><div>&nbsp; =
-&nbsp;Matched in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata</div><div>&nbs=
-p; =
-&nbsp;/home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokys=
-dk-linux/runtime-reverse/nativesdk-packagegroup-sdk-host</div><div>&nbsp; =
-&nbsp;Matched in =
-manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata</div><div>Plea=
-se verify which package should provide the above files.</div></div><div =
-style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
-0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
-0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-"><br></div><div style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; "><br></div><div style=3D"font-family: =
-Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">Should =
-I be worried or do I need to do something about the =
-nativesdk-packagegroup-sdk-host warnings?</div><br =
-class=3D"Apple-interchange-newline"></blockquote></div><br><div>since =
-they are getting installed on all-*-*, &nbsp;I wouldn't be too much =
-worried. but it would be interesting to see if these files are different =
-in anyway</div></body></html>=
-
---Apple-Mail=_120D2D1B-B418-456C-80FE-803BC7EAA848--
