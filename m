@@ -1,27 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33126E0145C
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 03:35:48 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 23 Jul 2013 03:35:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,726,1367996400"; d="scan'208";a="335468103"
-Received: from unknown (HELO helios.localnet) ([10.252.122.115])
-	by azsmga001.ch.intel.com with ESMTP; 23 Jul 2013 03:35:29 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Amit Kumar <Amit.Kumar@lntinfotech.com>
-Date: Tue, 23 Jul 2013 11:35:28 +0100
-Message-ID: <13093998.oFjvbLO2OA@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-26-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C5E6AB4AB@BLRINMSMBX01.bglrodc.lntinfotech.com>
-References: <AF0985D076EB244693F2CCD71AAB10BC2C5E364AEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
-	<687289320.4zlV4NqfiV@helios>
-	<AF0985D076EB244693F2CCD71AAB10BC2C5E6AB4AB@BLRINMSMBX01.bglrodc.lntinfotech.com>
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Lee_Ballard@Dell.com" <Lee_Ballard@dell.com>
-Subject: Re: Regarding offline build
+Return-Path: <djszapi@archlinux.us>
+Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50871E0143C
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 04:04:39 -0700 (PDT)
+Received: by mail-wg0-f49.google.com with SMTP id a12so6803521wgh.4
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 04:04:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id:x-mailer
+	:x-gm-message-state;
+	bh=qK7iLRFTmwJJBTla9hjJqzRRXm4rIDfjr6MWdltom7Q=;
+	b=pxQarAlV1LAo/Bcayvist0uYh1yfGRcjAcLOdL5lG3yoK+0GNkkRbqlRdVuNjXYUHM
+	HWRPYP0/qrVmZW8fWGzn87g6EQl3tLAWLHvABx88eq3VMzcwRJfo+iHsPP2SV33p7Q4b
+	D/RUBiBVaoIwd2LfeXJja2BegFUiRr4pGzeZsjKm5000iYe/hMsRru+Bq1OXr4XZzBBf
+	vP0K2XPW451wLU670Jj5SzRjY2gF21/9EuPB3QUtBCz9uMjLNzbauyZIXgneEB6N9WXN
+	3E8zl9K+xn2qw9dt9RjAmJDhcRa2so8bK207FxVCVRRp4Wpj55dd//l6dCFWGHG2GMHE
+	GjyQ==
+X-Received: by 10.180.74.232 with SMTP id x8mr32436200wiv.48.1374577478405;
+	Tue, 23 Jul 2013 04:04:38 -0700 (PDT)
+Received: from djszapi@archlinux.us ([212.44.19.228])
+	by mx.google.com with ESMTPSA id u9sm5048498wif.6.2013.07.23.04.04.35
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 23 Jul 2013 04:04:37 -0700 (PDT)
+Sender: Laszlo Papp <djszapi@archlinux.us>
+Received: by djszapi@archlinux.us (sSMTP sendmail emulation);
+	Tue, 23 Jul 2013 12:02:58 +0100
+From: Laszlo Papp <lpapp@kde.org>
+To: yocto@yoctoproject.org
+Date: Tue, 23 Jul 2013 12:02:57 +0100
+Message-Id: <1374577377-2614-1-git-send-email-lpapp@kde.org>
+X-Mailer: git-send-email 1.8.3.3
+X-Gm-Message-State: ALoCoQkiEigovqPjrM1OM2olp1sjEZajY459LZ24sIZXwRJDXio8/lkfp6nFMuHGng2m2X5kXJFb
+Subject: [PATCH] Make the yocto layer dependent on oe-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,43 +43,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2013 10:35:51 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 23 Jul 2013 11:04:44 -0000
 
-Amit Kumar wrote:
-> > To build the Yocot Project offline, i have done the following- 
-> > [1] Downloaded the Poky-<latest>.tar.bz2 
-> > [2] Untar it. and enter the poky
-> > dir.
-> > [3] execute the - source oe-init-build-env 
-> > [4] edit the
-> > conf/local.conf file as per ur suggesion.
-> > [5] Build the image - bitbake core-image-minimal
-> > 
-> > But still i am getting an error-
-> > To have to look into the error plz find the attached error log-
+Signed-off-by: Laszlo Papp <lpapp@kde.org>
+---
+ meta-yocto/conf/layer.conf | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-The missing step is you haven't populated DL_DIR (defaults to downloads/ under 
-the build directory) with files that would normally be downloaded by the 
-system, so it is attempting to download them and stopping because 
-BB_NO_NETWORK is set, hence:
-
-| ERROR: Function failed: Network access disabled through BB_NO_NETWORK 
-
-The easiest thing to do is to go to a machine that does have full internet 
-access, untar poky, source oe-init-build-env and then run:
-
- bitbake -c fetchall <imagename>
-
-Then copy the contents of DL_DIR to the machine without network access and you 
-should be ready to go. 
-
-Cheers,
-Paul
-
+diff --git a/meta-yocto/conf/layer.conf b/meta-yocto/conf/layer.conf
+index e012f24..e326aad 100644
+--- a/meta-yocto/conf/layer.conf
++++ b/meta-yocto/conf/layer.conf
+@@ -9,3 +9,8 @@ BBFILE_COLLECTIONS += "yocto"
+ BBFILE_PATTERN_yocto = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_yocto = "5"
+ 
++# This should only be incremented on significant changes that will
++# cause compatibility issues with other layers
++LAYERVERSION_yocto = "1"
++
++LAYERDEPENDS_yocto = "core"
 -- 
+1.8.3.3
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
