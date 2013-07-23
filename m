@@ -1,21 +1,27 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1346FE0143C
-	for <yocto@yoctoproject.org>; Mon, 22 Jul 2013 15:16:32 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 22 Jul 2013 15:16:29 -0700
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05DDEE0143C
+	for <yocto@yoctoproject.org>; Mon, 22 Jul 2013 17:02:37 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga102.ch.intel.com with ESMTP; 22 Jul 2013 17:02:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,721,1367996400"; d="scan'208";a="374344130"
-Received: from qana.jf.intel.com ([10.7.201.146])
-	by fmsmga002.fm.intel.com with ESMTP; 22 Jul 2013 15:16:21 -0700
-Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id 64EE75F8259B; Mon, 22 Jul 2013 14:38:10 -0700 (PDT)
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 22 Jul 2013 14:38:09 -0700
-Message-Id: <1374529089-2392-1-git-send-email-elizabeth.flanagan@intel.com>
-X-Mailer: git-send-email 1.8.1.2
-Subject: [PATCH] poky.conf: Change SDK_NAME to include machine
+X-IronPort-AV: E=Sophos;i="4.89,722,1367996400"; d="scan'208";a="369393967"
+Received: from unknown (HELO [10.255.14.5]) ([10.255.14.5])
+	by fmsmga001.fm.intel.com with ESMTP; 22 Jul 2013 17:02:36 -0700
+Message-ID: <51EDC81B.8060203@linux.intel.com>
+Date: Mon, 22 Jul 2013 17:02:35 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+MIME-Version: 1.0
+To: Venkata ramana gollamudi <ramana.gollamudi@huawei.com>
+References: <36ED13F3654AE54CA763E6821D93A5712C6FA1DF@szxeml534-mbx.china.huawei.com>
+In-Reply-To: <36ED13F3654AE54CA763E6821D93A5712C6FA1DF@szxeml534-mbx.china.huawei.com>
+Cc: Sanil kumar <sanil.kumar@huawei.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"dvhart@linux.intel.com" <dvhart@linux.intel.com>,
+	Irfan rehman <irfan.rehman@huawei.com>
+Subject: Re: [RFC] Binary Configuration support design
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,38 +33,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2013 22:16:33 -0000
+X-List-Received-Date: Tue, 23 Jul 2013 00:02:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Beth Flanagan <elizabeth.flanagan@intel.com>
+On 07/18/2013 06:57 AM, Venkata ramana gollamudi wrote:
+> Hi,
+>      I have intiated few discussions earlier to support binary configuration tool,
+>     which allows configuration of post built binaries to generate custom image, without a need to rebuild from source.
+>
+Ramana:
 
-When building for multiple arches, you can tromp all over the toolchain
-that lives in the deploy directory as the naming is not granular enough.
+I am starting to review this, please be aware that RP is away for a few 
+more weeks so he might review it until he returns.
 
-This patch adds MACHINE to the SDK_NAME so that:
+>      It is being tracked under bug 3252.
+>      Design to realize the same is updated in wiki. https://wiki.yoctoproject.org/wiki/Binary_configuration_support
+>      Please go through it and provide comments, so that I can proceed to submit patches.
+>
+There has already been one pull request that is pending currently (in 
+the Consolidated Pull) for added users via a config option, please take 
+a look at the extrausers, it's different than what you have started to 
+go with.
 
-poky-eglibc-arm-toolchain-gmae-1.4+snapshot-20130717.sh
+We should sync up on this and ensure all needs are met without creating 
+conflicting interfaces.
 
-becomes:
+Sau!
 
-poky-eglibc-qemuarm-x86_64-arm-toolchain-gmae-1.4+snapshot-20130717.sh
----
- meta-yocto/conf/distro/poky.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index 7be7d92..4005c1a 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -22,7 +22,7 @@ PREFERRED_VERSION_linux-yocto_qemumips ?= "3.8%"
- PREFERRED_VERSION_linux-yocto_qemumips64 ?= "3.8%"
- PREFERRED_VERSION_linux-yocto_qemuppc ?= "3.8%"
- 
--SDK_NAME = "${DISTRO}-${TCLIBC}-${SDK_ARCH}-${TARGET_ARCH}"
-+SDK_NAME = "${DISTRO}-${TCLIBC}-${MACHINE}-${SDK_ARCH}-${TARGET_ARCH}"
- SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
- 
- EXTRAOPKGCONFIG = "poky-feed-config-opkg"
--- 
-1.8.1.2
-
+> Regards,
+> Ramana
+>
 
