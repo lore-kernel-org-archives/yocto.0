@@ -1,26 +1,28 @@
 Return-Path: <denis@denix.org>
-Received: from vms173003pub.verizon.net (vms173003pub.verizon.net
-	[206.46.173.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D067E01525
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 08:35:09 -0700 (PDT)
+Received: from vms173011pub.verizon.net (vms173011pub.verizon.net
+	[206.46.173.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8DCEE01525
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 08:49:49 -0700 (PDT)
 Received: from gandalf.denix.org ([unknown] [108.45.150.102])
-	by vms173003.mailsrvcs.net
+	by vms173011.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0MQE002PNB9S6E41@vms173003.mailsrvcs.net> for
-	yocto@yoctoproject.org; Tue, 23 Jul 2013 10:34:47 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 7684B205B3; Tue,
-	23 Jul 2013 11:34:40 -0400 (EDT)
-Date: Tue, 23 Jul 2013 11:34:40 -0400
+	2009)) with ESMTPA id <0MQE00H17BYIBWM0@vms173011.mailsrvcs.net> for
+	yocto@yoctoproject.org; Tue, 23 Jul 2013 10:49:30 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 4006F2009B; Tue,
+	23 Jul 2013 11:49:29 -0400 (EDT)
+Date: Tue, 23 Jul 2013 11:49:29 -0400
 From: Denys Dmytriyenko <denis@denix.org>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-id: <20130723153440.GC21440@denix.org>
-References: <CAFZh4h9-+XQBWxHh22zQ+jwQBYiaUwifzcdpLPF2kU+kn5Pg9A@mail.gmail.com>
-	<1503447.VStvRngV5W@helios>
+Message-id: <20130723154929.GD21440@denix.org>
+References: <CAFZh4h-cZH_CU--Vsjq7=97HDbQXH67SCO5aKYR9cX7h4uNxuQ@mail.gmail.com>
+	<59742333.4mCOApeMVS@helios>
+	<CAFZh4h9NzZwLSm5wmnqs8WU5A1hfpBY4z8ryH14eg724QhZvQg@mail.gmail.com>
+	<1443099.tO82y7b3tx@helios>
 MIME-version: 1.0
-In-reply-to: <1503447.VStvRngV5W@helios>
+In-reply-to: <1443099.tO82y7b3tx@helios>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: yocto@yoctoproject.org, Denys Dmytriyenko <denys@ti.com>
-Subject: Re: Should I be worried about this nativesdk-packagegroup-sdk-host warning while building meta-toolchain
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto + meta-networking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,79 +34,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2013 15:35:09 -0000
+X-List-Received-Date: Tue, 23 Jul 2013 15:49:50 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Tue, Jul 23, 2013 at 04:13:18PM +0100, Paul Eggleton wrote:
-> On Tuesday 23 July 2013 10:13:10 Brian Hutchinson wrote:
-> > I'm using master branch of Yocto and meta-ti (and meta-openembedded).
-> > 
-> > I built meta-toolchain for beaglebone machine type and then I went into my
-> > local.conf and changed sdkmachine to i686 as I need both 64bit & 32bit
-> > toolchains.  After modifying my local.conf I ran bitbake meta-toolchain
-> > again and received these warnings:
-> > 
-> > hutch@neo:~/yocto_master_beaglebone/poky/build$ bitbake meta-toolchain
-> > WARNING: Host distribution "Debian-7.1" has not been validated with this
-> > version of the build system; you may possibly experience unexpected
-> > failures. It is recommended that you use a tested distribution.
-> > WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
-> > ${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
-> > ${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
-> > ${base_libdir}/*.la) replaces original key FILES_ti-ipc-dev (${libdir}/*).
-> > 
-> > WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
-> > ${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
-> > ${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
-> > ${base_libdir}/*.la) replaces original key FILES_ti-syslink-dev
-> > (${libdir}/*).
-
-These FILES_${PN}-dev warnings indeed come from meta-ti and so far harmless - 
-I haven't had bandwidth to fix them, as they seem low priority.
-
-
-> > Parsing recipes: 100%
-> > 
-> > NOTE: Resolving any missing task queue dependencies
-> > NOTE: Preparing runqueue
-> > NOTE: Executing SetScene Tasks
-> > NOTE: Executing RunQueue Tasks
-> > WARNING: The recipe nativesdk-packagegroup-sdk-host is trying to install
-> > files into a shared area when those files already exist. Those files and
-> > their manifest location are:
-> > 
-> >  /home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-linu
-> > x/nativesdk-packagegroup-sdk-host Matched in
-> > manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata
-> > 
-> >  /home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-linu
-> > x/runtime/nativesdk-packagegroup-sdk-host.packaged Matched in
-> > manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata
-> > 
-> >  /home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-linu
-> > x/runtime/nativesdk-packagegroup-sdk-host Matched in
-> > manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata
-> > 
-> >  /home/hutch/yocto_master_beaglebone/poky/build/tmp/pkgdata/all-pokysdk-linu
-> > x/runtime-reverse/nativesdk-packagegroup-sdk-host Matched in
-> > manifest-x86_64-nativesdk-packagegroup-sdk-host.packagedata Please verify
-> > which package should provide the above files.
-> > 
-> > 
-> > Should I be worried or do I need to do something about the
-> > nativesdk-packagegroup-sdk-host warnings?
-> > 
-> > I've never seen them before and I couldn't find anyone else talking about
-> > them so I thought I'd ask.
+On Wed, Jul 17, 2013 at 02:03:41PM +0100, Paul Eggleton wrote:
+> On Wednesday 17 July 2013 08:56:34 Brian Hutchinson wrote:
+> > Thanks Paul, I worried about mixing branches since I've never tried that
+> > before.  The only reason I picked Denzil is because I need ti816x support
+> > and Dylan and Danny don't have machine confs for it in meta-ti.  So what
+> > would be easier, getting the machine support I need in Dylan or back
+> > porting the net-snmp recipe to Denzil?
 > 
-> Depends. Without looking at the recipe and output closely it's hard to tell 
-> whether this is indicative or a problem or not, but it should be resolved by 
-> the meta-ti maintainers. Denys, you might want to take a closer look at this.
+> I don't have a feel for the former - if the reason is not already clear you'd 
+> probably want to ask the meta-ti folks why that machine isn't supported in 
+> later branches and how hard it would be to update support. This might be worth 
 
-And the warnings in question about nativesdk-packagegroup-sdk-host have 
-absolutely nothing to do with meta-ti - there are no SDK packagegroup recipes 
-in meta-ti.
+Just to update everyone on this list - the issue with ti81x has been discussed 
+on meta-ti list multiple times before and Brian already knew the answer to that.
+
+
+> doing if you're starting something new with denzil, since that's two versions 
+> behind current stable.
+> 
+> Having said that, backporting the net-snmp recipe should be fairly trivial 
+> though.
 
 -- 
 Denys
