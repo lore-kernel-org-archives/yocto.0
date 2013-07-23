@@ -1,24 +1,38 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEE32E01528
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 10:36:23 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 23 Jul 2013 10:36:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,729,1367996400"; d="scan'208";a="272165204"
-Received: from unknown (HELO helios.localnet) ([10.252.122.157])
-	by AZSMGA002.ch.intel.com with ESMTP; 23 Jul 2013 10:35:52 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Date: Tue, 23 Jul 2013 18:35:51 +0100
-Message-ID: <1406887.iQETxedpIY@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-26-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAFZh4h_PG+MAFjgyq-RyTRs-NX9DqJ46hggBqbrN8m1K=J-bog@mail.gmail.com>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
+	[209.85.160.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7D87E0152B
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 10:45:01 -0700 (PDT)
+Received: by mail-pb0-f48.google.com with SMTP id md4so781010pbc.7
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 10:45:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to:x-mailer;
+	bh=U8EboSieawxKJUMOhsAc8R2czY9swQsfpO+0/maxANw=;
+	b=fzZa3xTaqOzV6c4f96rXemBSgGyj5umvzbb9sPsNI1M5/elboMnAu+gzgLXm+rkd96
+	bo4mZzoEQIUtzg1wliUPQdx95PGhNsWc+90vcRUTSo5n0NPr3U1vyRjenXnUtkmEA5ab
+	7xAfoiggM2N+5yMVVr6gM1S7Y5nowx0Iw+gnUjOpCvjTWRRH6UUeLGTj0CCmgK4riWv/
+	KUvJU3Sa3FDs/YtR74qQ1fCWnLEcmgtZ0vWQruS9WWp6wl8KGC7YqxlH0v4J5pFKMTtM
+	YyI5eusN5/s5DxbK3sSdvyUs3Cu6QbJhPVnQiMAVJT0maJhOEz+7BoJvre7sbCx76QAH
+	P/Ag==
+X-Received: by 10.68.131.133 with SMTP id om5mr37972868pbb.148.1374601501412; 
+	Tue, 23 Jul 2013 10:45:01 -0700 (PDT)
+Received: from ddeviny-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	bs3sm42919718pbc.42.2013.07.23.10.44.58 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 23 Jul 2013 10:44:59 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1406887.iQETxedpIY@helios>
+Date: Tue, 23 Jul 2013 10:44:56 -0700
+Message-Id: <D8BD52D3-76F0-4835-BA78-3672272531B3@gmail.com>
 References: <CAFZh4h9-+XQBWxHh22zQ+jwQBYiaUwifzcdpLPF2kU+kn5Pg9A@mail.gmail.com>
 	<4860044.KltMD8WHhS@helios>
 	<CAFZh4h_PG+MAFjgyq-RyTRs-NX9DqJ46hggBqbrN8m1K=J-bog@mail.gmail.com>
-MIME-Version: 1.0
+	<1406887.iQETxedpIY@helios>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+X-Mailer: Apple Mail (2.1508)
 Cc: yocto@yoctoproject.org
 Subject: Re: Should I be worried about this nativesdk-packagegroup-sdk-host warning while building meta-toolchain
 X-BeenThere: yocto@yoctoproject.org
@@ -32,42 +46,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2013 17:36:24 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 23 Jul 2013 17:45:01 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Tuesday 23 July 2013 13:23:46 Brian Hutchinson wrote:
-> On Tue, Jul 23, 2013 at 1:19 PM, Paul Eggleton <
-> paul.eggleton@linux.intel.com> wrote:
-> > Hi Brian,
-> > 
-> > Did you perhaps build meta-toolchain and then change MACHINE and build it
-> > again? What happened prior to this build?
-> > 
-> > 
-> > I ran bitbake meta-toolchain and when that was complete I edited my
-> 
-> local.conf and uncommented the following line so I would get a 32 bit
-> toolchain:
-> SDKMACHINE ?= "i686"
-> 
-> ... and then I ran bitbake meta-toolchain again and that is when the
-> messages appeared that I copied in the OP.
 
-OK, so I can see what's happening here. The package name does not change 
-depending on what SDKMACHINE is set to and thus it sees two "different" writes 
-to the same file.
+On Jul 23, 2013, at 10:35 AM, Paul Eggleton =
+<paul.eggleton@linux.intel.com> wrote:
 
-I'd need to verify in the case of where you switched back and rebuilt meta-
-toolchain again for x86-64, but I think in this instance you'll find that it 
-isn't a problem since it should build (or restore from shared state) the 
-appropriate version of  nativesdk-packagegroup-sdk-host.
+>=20
+> OK, so I can see what's happening here. The package name does not =
+change=20
+> depending on what SDKMACHINE is set to and thus it sees two =
+"different" writes=20
+> to the same file.
+>=20
+> I'd need to verify in the case of where you switched back and rebuilt =
+meta-
+> toolchain again for x86-64, but I think in this instance you'll find =
+that it=20
+> isn't a problem since it should build (or restore from shared state) =
+the=20
+> appropriate version of  nativesdk-packagegroup-sdk-host.
 
-Cheers,
-Paul
+if the package is same despite the sdk host being different then issue =
+is to make sure
+that shared state reuses the is packages irrespective of SDK host then =
+the issue should disappear too
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
