@@ -1,33 +1,32 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E325EE013A2
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 14:00:20 -0700 (PDT)
-Received: by mail-la0-f45.google.com with SMTP id ev20so730634lab.32
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 14:00:18 -0700 (PDT)
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
+	[209.85.214.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 099DEE01363
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 14:07:46 -0700 (PDT)
+Received: by mail-ob0-f169.google.com with SMTP id up14so14395736obb.0
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 14:07:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date
-	:x-google-sender-auth:message-id:subject:to:cc:content-type;
-	bh=9ViT9JN9lQWRvLFp18QeYo0royrLaPQJpvtypWj0THs=;
-	b=g5b1WKbSPnyI80p3ZlW7ZqbAwouroW1c2TVw4TkRj4avGTdHx0MdhTYNSX7bjdiiks
-	hw48bWDkA7Jb8NQSVxxVAhJIiAdcBERN2jSMdHXMMLOM/jm5YOtCaG9RwO6Jmo3a6uc/
-	IFkRJn53XXIXM9f4jPChO+owGCASd1y3U+X4DzpfUY+ufBxXxkffZ8+tn4614oYJgzZa
-	pY6fwutBfXY56MxkI4tHIQppZUMnswLobiaPJiF/JHJ0ICtv8UrnvG4NDvGMx2H24tw9
-	1p/r+/L/Uc2WC9fSb8/AYDJjIq1bSHezhnpLzcN0qfUebrkMp4/DI94MVALPkOlg2CkE
-	+cYw==
-X-Received: by 10.152.18.129 with SMTP id w1mr17724658lad.10.1374699618445;
-	Wed, 24 Jul 2013 14:00:18 -0700 (PDT)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=/xw9zmkeP61ix2I18aYePdUljfK4gdzvREb++X51if8=;
+	b=pOQWvM9z+QIDLhtx169Y7kwU18SU8mHrjvlEtiH62+SndLjQrbMwT5tapidk69RoMP
+	sM+BTFmIZIubLQjxQLuWeSgR2MjMbANeH9Fau8koScvHOLtbWWEBIibIGFr5yRMk34/c
+	QuV1uNOPwdaDyxuu16ijSAzXZ269IcvbKNqoqoVGOHABcBceh/C4IF+hXUnezfC8zAoW
+	elPr+OyKhQWXpor8q/DHHqa238LnOJo230K+eOsB0mgiTYioOeEVrTvNAM7eLDyLodyO
+	rDhWEPjMjQIg0Jt7auUo+ThgUinOJBLJy4LH0Ymc/SivKF6V0a5RJ7HX4u3McisRsh6M
+	VSxA==
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.17.67 with HTTP; Wed, 24 Jul 2013 13:59:58 -0700 (PDT)
-In-Reply-To: <CAFZh4h-TnF1J9j_AaWF4tSt4=oWD=tAttmrGLiT7ux7Nxs429A@mail.gmail.com>
+X-Received: by 10.60.97.1 with SMTP id dw1mr38569467oeb.1.1374700065522; Wed,
+	24 Jul 2013 14:07:45 -0700 (PDT)
+Received: by 10.60.26.225 with HTTP; Wed, 24 Jul 2013 14:07:45 -0700 (PDT)
+In-Reply-To: <CAOMwXhPXW4_vf6ResX-BJcpvxp6Dv3YhKV4MkoksMBcD45qv=w@mail.gmail.com>
 References: <CAOMwXhMEn64Yw7GQbUKccg8_wSUaRpEDALAHwGj7BEWpiK+rsQ@mail.gmail.com>
 	<CAFZh4h-TnF1J9j_AaWF4tSt4=oWD=tAttmrGLiT7ux7Nxs429A@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 24 Jul 2013 13:59:58 -0700
-X-Google-Sender-Auth: gkGQ-m_ZInWT2MJ-IVhltlDMgjk
-Message-ID: <CABcZANn2msXg+0iZLuW=u5+9vHzuDGaLkzaAzipDkf-q6rVfRQ@mail.gmail.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
+	<CAOMwXhPXW4_vf6ResX-BJcpvxp6Dv3YhKV4MkoksMBcD45qv=w@mail.gmail.com>
+Date: Wed, 24 Jul 2013 17:07:45 -0400
+Message-ID: <CAFZh4h-Rk_zgN6AZrRyaVcDJGy4HEMQXaoJ1VF2gs66jP99U1w@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Laszlo Papp <lpapp@kde.org>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: External toolchain (sourcery)
 X-BeenThere: yocto@yoctoproject.org
@@ -41,69 +40,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 21:00:23 -0000
-Content-Type: multipart/alternative; boundary=089e014939686e31b904e24832d3
+X-List-Received-Date: Wed, 24 Jul 2013 21:07:48 -0000
+Content-Type: multipart/alternative; boundary=089e011774cd140ca204e2484d5a
 
---089e014939686e31b904e24832d3
-Content-Type: text/plain; charset=UTF-8
+--089e011774cd140ca204e2484d5a
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Jul 24, 2013 at 1:55 PM, Brian Hutchinson <b.hutchman@gmail.com>wrote:
+On Wed, Jul 24, 2013 at 4:59 PM, Laszlo Papp <lpapp@kde.org> wrote:
 
-> On Wed, Jul 24, 2013 at 10:49 AM, Laszlo Papp <lpapp@kde.org> wrote:
+> 1) Is that really from sourcery?
+> 2) What documentation?
+> 3) BTW, the question was whether sourcery is officially supported.
 >
->> is this officially supported by the Yocto project? I would not like to
->> use Yocto for my own purposes if it is something unsupported, and I would
->> need to put a significant investment into to it to make the releases
->> buildable, et cetera.
->>
 >
-I'm not certain as to the official Yocto support stance on
-external-sourcery as it exists in or-core at this time, but if you do want
-to use the Sourcery G++ toolchain rather than one of the alternatives
-suggested by others in this thread, you can use the meta-sourcery layer,
-which while it isn't officially supported by Yocto, is officially supported
-by Mentor Graphics, the company which provides the aforementioned toolchain.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+> Yocto's default action is to build the toolchain from source and no it
+isn't Code Sourcery if that is what you are wanting to know.  You can
+configure Yocto to not build the toolchain and use one you provide but I've
+never tried it.
 
---089e014939686e31b904e24832d3
-Content-Type: text/html; charset=UTF-8
+https://www.yoctoproject.org/documentation/current should give you light
+bedtime reading material.
+
+Angstrom & Arago as mentioned before use Linaro which has all the latest
+ARM patches.
+
+Regards,
+
+Brian
+
+--089e011774cd140ca204e2484d5a
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">On Wed, Jul 24, 2013 at 1:55 PM=
-, Brian Hutchinson <span dir=3D"ltr">&lt;<a href=3D"mailto:b.hutchman@gmail=
-.com" target=3D"_blank">b.hutchman@gmail.com</a>&gt;</span> wrote:<br><div =
-class=3D"gmail_quote">
+On Wed, Jul 24, 2013 at 4:59 PM, Laszlo Papp <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:lpapp@kde.org" target=3D"_blank">lpapp@kde.org</a>&gt;</span> wr=
+ote:<br><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr"><div class=3D"im"><span style=3D"font-family:arial,sans-se=
+rif;font-size:12.727272033691406px">1) Is that really from sourcery?</span>=
+<div style=3D"font-family:arial,sans-serif;font-size:12.727272033691406px">=
+2) What documentation?</div>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On W=
-ed, Jul 24, 2013 at 10:49 AM, Laszlo Papp <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:lpapp@kde.org" target=3D"_blank">lpapp@kde.org</a>&gt;</span> wrote:=
-<br>
+</div><div style=3D"font-family:arial,sans-serif;font-size:12.7272720336914=
+06px">3) BTW, the question was whether sourcery is officially supported.</d=
+iv></div><div class=3D"gmail_extra"><br><br></div></blockquote><div>Yocto&#=
+39;s default action is to build the toolchain from source and no it isn&#39=
+;t Code Sourcery if that is what you are wanting to know. =A0You can config=
+ure Yocto to not build the toolchain and use one you provide but I&#39;ve n=
+ever tried it.</div>
+<div><br></div><div><a href=3D"https://www.yoctoproject.org/documentation/c=
+urrent">https://www.yoctoproject.org/documentation/current</a>=A0should giv=
+e you light bedtime reading material.</div><div><br></div><div>Angstrom &am=
+p; Arago as mentioned before use Linaro which has all the latest ARM patche=
+s. =A0</div>
+<div><br></div><div>Regards,</div><div><br></div><div>Brian</div><div>=A0</=
+div></div>
 
-</div></div><div class=3D"gmail_quote"><div><div class=3D"h5"><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
-<div dir=3D"ltr"><div>is this officially supported by the Yocto project? I =
-would not like to use Yocto for my own purposes if it is something unsuppor=
-ted, and I would need to put a significant investment into to it to make th=
-e releases buildable, et cetera.</div>
-
-</div></blockquote></div></div></div></blockquote><div><br></div><div style=
->I&#39;m not certain as to the official Yocto support stance on external-so=
-urcery as it exists in or-core at this time, but if you do want to use the =
-Sourcery G++ toolchain rather than one of the alternatives suggested by oth=
-ers in this thread, you can use the meta-sourcery layer, which while it isn=
-&#39;t officially supported by Yocto, is officially supported by Mentor Gra=
-phics, the company which provides the aforementioned toolchain.</div>
-
-</div>-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - =
-BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software =
-Engineer, Mentor Graphics
-</div></div>
-
---089e014939686e31b904e24832d3--
+--089e011774cd140ca204e2484d5a--
