@@ -1,29 +1,32 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8627AE01363
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 07:30:34 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 4A964F811F5; Wed, 24 Jul 2013 08:30:34 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 01966F811E5;
-	Wed, 24 Jul 2013 08:30:32 -0600 (MDT)
-Message-ID: <51EFE508.8060004@mlbassoc.com>
-Date: Wed, 24 Jul 2013 08:30:32 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <gopikrishnans@pec.edu>
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61460E01440
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 23:44:17 -0700 (PDT)
+Received: by mail-pa0-f52.google.com with SMTP id kq13so287781pab.25
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 23:44:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type
+	:x-gm-message-state;
+	bh=UFxvGF32vuNjAynTpuhRfUQoqDVMlJwm3SeeHc8h1kQ=;
+	b=PqCTsSpdfHdK9c8NwAdU+ewdCYQhRuzXnXDwaF1+260bdcgm7nI/gMbA551eT1Pi3g
+	VPr3C6p7WeGfZJw2VoiV/9jUS3yrJiPDIslv9wMf8s4/YryrQPe5D1h3jp2QeI+wjQOJ
+	pKuuaIOPJJLRzgMku1aR2aPKSyuC652jfplB20bL7jRSOfd1uYTN39SzVBmT4S2Pf7vJ
+	nzCfGEYgPqNAgzMobi7QqEVyA/wTTD8tXGcp01dPeCqHuvghj1UKzfsLaOsyyuYzsUIM
+	NPog8HLjhKuzFqD9YXYGKZpvSYJD6w8Kxgd7BDpUT9wpEIYSxfLVGlWyaDM5RDAKowfe
+	WOug==
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <51EFDD09.3030909@mlbassoc.com>
-	<CAJTo0LaHOJtt=RvofQEvuZ+K1fYL3u8acv5dUD3XNZvx+pH9wg@mail.gmail.com>
-In-Reply-To: <CAJTo0LaHOJtt=RvofQEvuZ+K1fYL3u8acv5dUD3XNZvx+pH9wg@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Packaging questions
+X-Received: by 10.68.164.97 with SMTP id yp1mr39710607pbb.77.1374648257063;
+	Tue, 23 Jul 2013 23:44:17 -0700 (PDT)
+Received: by 10.66.27.76 with HTTP; Tue, 23 Jul 2013 23:44:16 -0700 (PDT)
+Date: Wed, 24 Jul 2013 12:14:16 +0530
+Message-ID: <CAOkC3RYC3hg6sUGwt7SZrfygU5x21UWqvD2diNJUTP9TFtV2iQ@mail.gmail.com>
+From: Gopikrishnan S <gopikrishnans@pec.edu>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Gm-Message-State: ALoCoQn5qOpWqcSgIL9+VRVcI3sBBWRkaARubZ2HwVdHd0xxE5Td3wsqakxu+mFvmUSMCra/bknM
+X-Mailman-Approved-At: Wed, 24 Jul 2013 07:32:51 -0700
+Subject: Reg: PERL Module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,56 +38,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 14:30:35 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Jul 2013 06:44:19 -0000
+Content-Type: multipart/alternative; boundary=047d7bae446e0dbdb404e23c3d9c
 
-On 2013-07-24 08:12, Burton, Ross wrote:
-> On 24 July 2013 14:56, Gary Thomas <gary@mlbassoc.com> wrote:
->> I'm [still] trying to set up a package for Amanda.  I'd like
->> the end result to match how it's done on other systems, e.g.
->> my desktop Fedora box.  However, this layout is causing some
->> QA errors which I don't know how to fix, e.g.
->>
->> ERROR: QA Issue: non debug package contains .debug directory: amanda path
->> /work/armv7a-vfp-neon-amltd-linux-gnueabi/amanda/3.3.3-r0/packages-split/amanda/usr/lib/perl/5.14.2/auto/Amanda/MainLoop/.debug/libMainLoop.so
->
-> This is resolved by fiddling with your FILES lines, the problem being
-> that PN is packaging that entire tree when it should be split up.
-> $PN-dbg collects files before $PN so you can add something like
-> "$(libdir)/perl/*/auto/Amanda/*/.debug" to FILES_$PN-dbg and $PN will
-> continue to take the rest.
+--047d7bae446e0dbdb404e23c3d9c
+Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks, this worked a treat.
+Hi I want to install spamassassin to my image.
 
->
->> ERROR: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so:
->> amanda path
->> '/work/armv7a-vfp-neon-amltd-linux-gnueabi/amanda/3.3.3-r0/packages-split/amanda/usr/lib/amanda/libamar.so'
->
-> I'm curious, what does the symlink point to?  It's possible that we
-> can refine the check to reduce the number of false positives, because
-> this is a fairly common one that needs to be skipped.
+already I ran bitbake fal-image-full with following line on my
+conf/local.conf
 
-The .so symlink points to a fully qualified library, e.g.
--rwxr-xr-x 1 gthomas gthomas 1383729 Jul 24 06:35 libamanda-3.3.3.so
-lrwxrwxrwx 1 gthomas gthomas      18 Jul 24 06:35 libamanda.so -> libamanda-3.3.3.so
+IMAGE_INSTALL_append = " perl-modules"
 
-The problem seems to be that this is the unqualified .so name and not a
-version qualified name like 'libamanda.so.3'.  The package isn't building
-the version qualified names, just the fully unqualified one.
 
->
-> You can skip this QA test by setting INSANE_SKIP.  In this case,
-> INSANE_SKIP_${PN} = "dev-so" (you can identify the tag to use by
-> looking through classes/insane.bbclass for the error message).
->
-> Ross
->
+But still building spamassassing is complaining about PERL modules.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing PROVIDES 'libarchive-tar-perl-native' (but
+/media/sdk/QorIQ-SDK-V1.3-20121114-yocto/meta-fsl-ppc/recipes-test/spamassassin/
+spamassassin_3.3.1.bb DEPENDS on or otherwise requires it)
+ERROR: Required build target 'spamassassin' has no buildable providers.
+Missing or unbuildable dependency chain was: ['spamassassin',
+'libarchive-tar-perl-native']
 
+Summary: There was 1 WARNING message shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+--047d7bae446e0dbdb404e23c3d9c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi I want to install spamassassin to my image.<div><br></d=
+iv><div><div style>already I ran bitbake fal-image-full with following line=
+ on my conf/local.conf</div><div><br></div><div>IMAGE_INSTALL_append =3D &q=
+uot; perl-modules&quot;</div>
+</div><div><br></div><div><br></div><div style>But still building spamassas=
+sing is complaining about PERL modules.</div><div style><br></div><div styl=
+e>NOTE: Resolving any missing task queue dependencies</div><div>ERROR: Noth=
+ing PROVIDES &#39;libarchive-tar-perl-native&#39; (but /media/sdk/QorIQ-SDK=
+-V1.3-20121114-yocto/meta-fsl-ppc/recipes-test/spamassassin/<a href=3D"http=
+://spamassassin_3.3.1.bb">spamassassin_3.3.1.bb</a> DEPENDS on or otherwise=
+ requires it)</div>
+<div>ERROR: Required build target &#39;spamassassin&#39; has no buildable p=
+roviders.</div><div>Missing or unbuildable dependency chain was: [&#39;spam=
+assassin&#39;, &#39;libarchive-tar-perl-native&#39;]</div><div><br></div>
+<div>Summary: There was 1 WARNING message shown.</div><div>Summary: There w=
+ere 2 ERROR messages shown, returning a non-zero exit code.</div><div><br><=
+/div></div>
+
+--047d7bae446e0dbdb404e23c3d9c--
