@@ -1,25 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD2BBE01363
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 06:56:27 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id E5400F811F5; Wed, 24 Jul 2013 07:56:26 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 4ADB7F811F4;
-	Wed, 24 Jul 2013 07:56:24 -0600 (MDT)
-Message-ID: <51EFDD09.3030909@mlbassoc.com>
-Date: Wed, 24 Jul 2013 07:56:25 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f52.google.com (mail-vb0-f52.google.com
+	[209.85.212.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DE93E01363
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 07:12:25 -0700 (PDT)
+Received: by mail-vb0-f52.google.com with SMTP id f12so6429580vbg.11
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 07:12:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=ginj1xjw7lILxirB+HqnObZokm6E4SPo9+nvNaY93po=;
+	b=lbcbwaEday0ihK+ThWv+5dnhsjLDxcTKptbJCFLcp5F4nPdeNyQ9g5WVegSHkIZq3j
+	eRIOJsf2ELyzzRLq68cZ7Dw/feHMlt7u/WfLOOJLdkhwXmIGEw5NGISMA3oyXdaix+0i
+	NdyhS8AJTi4SF6fScJU43sbly2yKJPEL7YkA+j6yAg5bnexrgSGLwU69L2w3PL/kevVG
+	5OipePA/qkjhFB2vDuYkL9kpNrXHv/uJBnymtogQXTHvODF7GrmaVh8WgnT+ajhNXN5g
+	XrlMgZsypNrUTWTJ4+jCMQ3qIGS5ZfqvA1O9qdZOcvs3TV1vW0uhFW5hxhC3vysD6LR7
+	kRXA==
+X-Received: by 10.52.121.7 with SMTP id lg7mr11975669vdb.68.1374675145110;
+	Wed, 24 Jul 2013 07:12:25 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Packaging questions
+Received: by 10.58.30.15 with HTTP; Wed, 24 Jul 2013 07:12:05 -0700 (PDT)
+In-Reply-To: <51EFDD09.3030909@mlbassoc.com>
+References: <51EFDD09.3030909@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 24 Jul 2013 15:12:05 +0100
+Message-ID: <CAJTo0LaHOJtt=RvofQEvuZ+K1fYL3u8acv5dUD3XNZvx+pH9wg@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQlf4S+v7ql5d1mHXKZCrm+v/IGMRT56gorSbO4fIrm2dYn/M/R6iQb/dFHlVAqtS+l0ictM
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Packaging questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,35 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 13:56:30 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Jul 2013 14:12:27 -0000
+Content-Type: text/plain; charset=UTF-8
 
-I'm [still] trying to set up a package for Amanda.  I'd like
-the end result to match how it's done on other systems, e.g.
-my desktop Fedora box.  However, this layout is causing some
-QA errors which I don't know how to fix, e.g.
+On 24 July 2013 14:56, Gary Thomas <gary@mlbassoc.com> wrote:
+> I'm [still] trying to set up a package for Amanda.  I'd like
+> the end result to match how it's done on other systems, e.g.
+> my desktop Fedora box.  However, this layout is causing some
+> QA errors which I don't know how to fix, e.g.
+>
+> ERROR: QA Issue: non debug package contains .debug directory: amanda path
+> /work/armv7a-vfp-neon-amltd-linux-gnueabi/amanda/3.3.3-r0/packages-split/amanda/usr/lib/perl/5.14.2/auto/Amanda/MainLoop/.debug/libMainLoop.so
 
-ERROR: QA Issue: non debug package contains .debug directory: amanda path 
-/work/armv7a-vfp-neon-amltd-linux-gnueabi/amanda/3.3.3-r0/packages-split/amanda/usr/lib/perl/5.14.2/auto/Amanda/MainLoop/.debug/libMainLoop.so
-ERROR: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so: amanda path 
-'/work/armv7a-vfp-neon-amltd-linux-gnueabi/amanda/3.3.3-r0/packages-split/amanda/usr/lib/amanda/libamar.so'
+This is resolved by fiddling with your FILES lines, the problem being
+that PN is packaging that entire tree when it should be split up.
+$PN-dbg collects files before $PN so you can add something like
+"$(libdir)/perl/*/auto/Amanda/*/.debug" to FILES_$PN-dbg and $PN will
+continue to take the rest.
 
-I understand the first one but don't know the workaround.  How
-do I tell bitbake that the directory /usr/lib/perl/5.14.2/auto/Amanda/MainLoop
-contains executable code (and that's OK)?
+> ERROR: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so:
+> amanda path
+> '/work/armv7a-vfp-neon-amltd-linux-gnueabi/amanda/3.3.3-r0/packages-split/amanda/usr/lib/amanda/libamar.so'
 
-The second issue I think is one of philosophy.  The symbolic link
-is important to the package - how can I set this up to be OK?
+I'm curious, what does the symlink point to?  It's possible that we
+can refine the check to reduce the number of false positives, because
+this is a fairly common one that needs to be skipped.
 
-Thanks for any pointers
+You can skip this QA test by setting INSANE_SKIP.  In this case,
+INSANE_SKIP_${PN} = "dev-so" (you can identify the tag to use by
+looking through classes/insane.bbclass for the error message).
 
-Note: of course there are many of each of these classes of errors,
-this is just a representative example.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
