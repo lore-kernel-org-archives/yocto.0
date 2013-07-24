@@ -1,19 +1,34 @@
-Return-Path: <andrei.adrianx.dinu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7440CE0152B
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 05:55:06 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 24 Jul 2013 05:55:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,735,1367996400"; d="scan'208";a="375228918"
-Received: from adinu-vostro-460.rb.intel.com ([10.237.105.146])
-	by fmsmga002.fm.intel.com with ESMTP; 24 Jul 2013 05:55:04 -0700
-From: Andrei Dinu <andrei.adrianx.dinu@intel.com>
+Return-Path: <lothar@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5900EE01528
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 06:05:07 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3c0cGp1vN8z4KK3g
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 15:05:06 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3c0cGn73yBzbbhV
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 15:05:05 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id VYKRRHTbzuQF for <yocto@yoctoproject.org>;
+	Wed, 24 Jul 2013 15:05:04 +0200 (CEST)
+X-Auth-Info: hjTb6bHdKk62enoJu8rFkuAq/9zDa1sYwlda8TTFQKo=
+Received: from webmail.mnet-online.de (webmail1.mnet-online.de [212.18.5.57])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 15:05:04 +0200 (CEST)
+Received: from p4FD638F0.dip0.t-ipconnect.de (p4FD638F0.dip0.t-ipconnect.de
+	[79.214.56.240]) by webmail.mnet-online.de (Horde Framework) with HTTP; 
+	Wed, 24 Jul 2013 15:05:04 +0200
+Message-ID: <20130724150504.17793cvsxo9h0y04@webmail.mnet-online.de>
+Date: Wed, 24 Jul 2013 15:05:04 +0200
+From: lothar@denx.de
 To: yocto@yoctoproject.org
-Date: Wed, 24 Jul 2013 15:55:37 +0300
-Message-Id: <1374670537-30657-1-git-send-email-andrei.adrianx.dinu@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [PATCH] libcap-ng - new recipe needed for meta-security
+MIME-Version: 1.0
+User-Agent: Internet Messaging Program (IMP) H3 (4.3.5)
+Subject: how to set particular changes to a default kernel config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,36 +40,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 12:55:06 -0000
+X-List-Received-Date: Wed, 24 Jul 2013 13:05:08 -0000
+Content-Type: text/plain;
+ charset=ISO-8859-1;
+ DelSp="Yes";
+ format="flowed"
+Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
 
-A script from the meta-security layer had a missing
-dependency that prevented it to work correctly.
+Dear Yocto Team,
 
-Signed-off-by: Andrei Dinu <andrei.adrianx.dinu@intel.com>
----
- meta/recipes-support/libcap-ng/libcap-ng_0.7.3.bb |   12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 meta/recipes-support/libcap-ng/libcap-ng_0.7.3.bb
+For an ARM based board (MACHINE = "myboard"), I use a default kernel  
+config from arch/arm/configs and want now to change some particular  
+CONFIG_ options.
 
-diff --git a/meta/recipes-support/libcap-ng/libcap-ng_0.7.3.bb b/meta/recipes-support/libcap-ng/libcap-ng_0.7.3.bb
-new file mode 100644
-index 0000000..a377ddd
---- /dev/null
-+++ b/meta/recipes-support/libcap-ng/libcap-ng_0.7.3.bb
-@@ -0,0 +1,12 @@
-+DESCRIPTION = "The libcap-ng library is intended to make programming with posix capabilities much easier than the traditional libcap library."
-+HOMEPAGE = "http://people.redhat.com/sgrubb/libcap-ng/index.html"
-+LICENSE = "GPL-2.0"
-+DEPENDS = "libcap"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
-+
-+SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/${PN}-${PV}.tar.gz"
-+
-+SRC_URI[md5sum] = "610afb774f80a8032b711281df126283"
-+SRC_URI[sha256sum] = "5ca441c8d3a1e4cfe8a8151907977662679457311ccaa7eaac91447c33a35bb1"
-+
-+inherit autotools
--- 
-1.7.9.5
+Trying to follow the documentation, I currently have the following files:
+.
++- linux-acme
+|   |
+|   +- additional.cfg
+|
++- linux-acme_3.8.bb
+
+
+
+...in linux-acme_3.8.bb I have
+(...)
+S = "${WORKDIR}/git"
+(...)
+KERNEL_DEFCONFIG_myboard = "blabla_defconfig"
+do_configure_prepend_myboard() {
+      install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} \
+            ${WORKDIR}/defconfig || die "no default config"
+}
+SRC_URI_myboard = "git://kernel.ubuntu.com/ubuntu/linux.git;protocol=git \
+            file://additional.cfg"
+(...)
+
+
+...and in additional.cfg I have
+CONFIG_DEVTMPFS_MOUNT=y
+CONFIG_MTD_CMDLINE_PARTS=y
+CONFIG_MTD_BLOCK=y
+CONFIG_MTD_M25P80=y
+
+
+When I run something like...
+$ bitbake -b /yocto/meta-myboard/recipes-kernel/linux/linux-acme_3.8.bb -f
+...it seems to find the .cfg file, since it stoped complaining (after  
+I fixed some paths) and now compiles/builds smoothely.
+
+Anyway, I can't see the changes in the .config in
+$BDIR/tmp/work/myboard-linux-gnueabi/linux-acme/3.8+..../git/.config
+
+I imagine something like mixing both configs and running "make  
+oldconfig" in behind. Anyway before compilation, the changes should be  
+in the .config, right?
+
+Questions:
+1) How can I add single additional options to a default kernel config?
+2) What is the best way to check if the options were applied?
+3) Do I need another approach, e.g. through a patch, using echo, or  
+using a .scc file (I tried, but with the same result)?
+
+Best Regards,
+Lothar Rubusch
 
 
