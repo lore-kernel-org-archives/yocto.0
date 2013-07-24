@@ -1,38 +1,39 @@
-Return-Path: <djszapi@archlinux.us>
-Received: from mail-pd0-f176.google.com (mail-pd0-f176.google.com
-	[209.85.192.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26732E01363
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 13:16:55 -0700 (PDT)
-Received: by mail-pd0-f176.google.com with SMTP id t12so795449pdi.21
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 13:16:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=440FP7foFrQkMWYrysW8jy3Snc/RtL+btZAf9IC+Cyo=;
-	b=QQdRprzA3eAq2o8Zdj4PrlKATTJ/nkDAWMRRr8KK17TDPzyu84KrY8oSK6Nhxx5unN
-	WzlZazv7CDciU8geBXtnojsQmgcVssgR7Cm8yfY4BeucIhC3XL+1JRWUe6ajPhjZsEt9
-	cDEzQO1d1a4gHdopYde7GrxhuVoNoaY7cRHc0wXa+83IotNrqLFS4YYizR83Hxa6ziir
-	2vj+G30SGMZJmmsvD9TX+jDb20H9uuLG9RrzcAoK+fr8n4/GOovh9mQzkeud7ksLW+5J
-	/rvlVRKSDOWNBuFsoE/3h1Q46S6UllSKJxqOTKCtzIfXIlPSsj0sLrkSfS1lBTcZPTLp
-	VXgQ==
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pa0-f44.google.com (mail-pa0-f44.google.com
+	[209.85.220.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89470E01363
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 13:48:49 -0700 (PDT)
+Received: by mail-pa0-f44.google.com with SMTP id jh10so1109365pab.31
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 13:48:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=W1hCwfWY8CY4458KoXwhzu51IIdxiu6yFWGu8Hl5bP4=;
+	b=IysT/IVVaWJM6G8rPMKMcQbfry70BL2Squ9BGQ1xkvn8qkaKRLj7fEN9jwWcRLxr6H
+	LYPG9uMf4Pgs11lMccD+Nvjr306V6KWhjr3mh4hJsBdaldW5b1drhQUIJPhtGug7ILxr
+	DaILpLkwgSlnW2PeDW47ik3C8zvlxigGRDhQbF4umMbq0y6zYT6iU3xQXO1X7KO0UlrW
+	9whlCYjOXLyGuJB1VIEOW4uGY6lotGfOjym5YGvVSSejYnkOtrp89nO6ACjPY4mT6wl5
+	ZUvPblFN2g3+r2F+V00XH3FcE6vQ6OMxU8+TP1XEN8SuaJGkuChrryhQK3VagQHHRt29
+	aDMA==
+X-Received: by 10.66.186.79 with SMTP id fi15mr44297672pac.160.1374698929437; 
+	Wed, 24 Jul 2013 13:48:49 -0700 (PDT)
+Received: from krys-red.trunet.local ([210.48.94.225])
+	by mx.google.com with ESMTPSA id
+	ep4sm49686706pbd.35.2013.07.24.13.48.47 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 24 Jul 2013 13:48:48 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <51F03DAD.6080400@gna.org>
+Date: Thu, 25 Jul 2013 08:48:45 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Received: by 10.66.155.102 with SMTP id vv6mr9730205pab.89.1374697015040;
-	Wed, 24 Jul 2013 13:16:55 -0700 (PDT)
-Sender: djszapi@archlinux.us
-Received: by 10.70.37.237 with HTTP; Wed, 24 Jul 2013 13:16:54 -0700 (PDT)
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F06185@ORSMSX106.amr.corp.intel.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F06185@ORSMSX106.amr.corp.intel.com>
-Date: Wed, 24 Jul 2013 21:16:54 +0100
-X-Google-Sender-Auth: t582eqC-Sb2uJZq8Csu6_E8uDUk
-Message-ID: <CAOMwXhNnhaYrnJDPgX4JXTOMc-bHfph3v1f0bxis6F3cunLnhA@mail.gmail.com>
-From: Laszlo Papp <lpapp@kde.org>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-X-Gm-Message-State: ALoCoQlia0QrrWjacpRJ2c2jobT6jqPTnwQbKxLgq7ZAxI6vZ75nuMtiSkFfAgv7/H79IyCFSrGc
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
-	Saul" <saul.wold@intel.com>
-Subject: Re: FW: FW: [OE-core] Doc: external toolchain
+To: yocto@yoctoproject.org
+References: <CAOMwXhMEn64Yw7GQbUKccg8_wSUaRpEDALAHwGj7BEWpiK+rsQ@mail.gmail.com>
+In-Reply-To: <CAOMwXhMEn64Yw7GQbUKccg8_wSUaRpEDALAHwGj7BEWpiK+rsQ@mail.gmail.com>
+Subject: Re: External toolchain (sourcery)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,468 +45,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 20:16:58 -0000
-Content-Type: multipart/alternative; boundary=047d7b86e3a841715f04e24797a3
+X-List-Received-Date: Wed, 24 Jul 2013 20:48:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7b86e3a841715f04e24797a3
-Content-Type: text/plain; charset=ISO-8859-1
+On 25/07/13 02:49, Laszlo Papp wrote:
+> Hi,
+>
+> is this officially supported by the Yocto project? I would not like to
+> use Yocto for my own purposes if it is something unsupported, and I
+> would need to put a significant investment into to it to make the
+> releases buildable, et cetera.
 
-This issue is fixed by not having the default MACHINE ??= "qemux86", but a
-real arm machine, like beagleboard.
+FYI, The arago project uses an external Linaro toolchain [1]
 
+Chris
 
-On Wed, Jul 24, 2013 at 8:47 AM, Rifenbark, Scott M <
-scott.m.rifenbark@intel.com> wrote:
+[1] http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
 
->  Hi, ****
 >
-> ** **
->
-> Can anyone address the toolchain questions here for Laszlo?****
->
-> ** **
->
-> Thanks, ****
->
-> Scott****
->
-> ** **
->
-> *From:* djszapi@archlinux.us [mailto:djszapi@archlinux.us] *On Behalf Of *Laszlo
-> Papp
-> *Sent:* Tuesday, July 23, 2013 11:52 PM
-> *To:* Rifenbark, Scott M
-> *Cc:* Wold, Saul
-> *Subject:* Re: FW: [OE-core] Doc: external toolchain****
->
-> ** **
->
-> OK, thanks.****
->
-> ** **
->
-> I am facing this issue, any clue?****
->
-> ** **
->
-> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of
-> '/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found****
->
-> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of
-> '/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found****
->
-> ** **
->
-> This is what I have in my build/conf/local.conf:****
->
-> ** **
->
-> ...****
->
-> TCMODE = "external-sourcery"****
->
-> EXTERNAL_TOOLCHAIN = "/usr"****
->
-> TARGET_PREFIX = "arm-none-linux-gnueabi-"****
->
-> ...****
->
-> ** **
->
-> The external toolchain does exist:****
->
-> ** **
->
-> /usr/bin/arm-none-linux-gnueabi-gcc -v****
->
-> Using built-in specs.****
->
-> COLLECT_GCC=/usr/bin/arm-none-linux-gnueabi-gcc****
+> Many thanks,
+> Laszlo
 >
 >
-> COLLECT_LTO_WRAPPER=/usr/bin/../libexec/gcc/arm-none-linux-gnueabi/4.7.3/lto-wrapper
-> ****
->
-> Target: arm-none-linux-gnueabi****
->
-> Configured with:
-> /scratch/jbrown/2013.05-arm-linux-release/src/gcc-4.7-2013.05/configure
-> --build=i686-pc-linux-gnu --host=i686-pc-linux-gnu
-> --target=arm-none-linux-gnueabi --enable-threads --disable-libmudflap
-> --disable-libssp --disable-libstdcxx-pch --enable-extra-sgxxlite-multilibs
-> --with-arch=armv5te --with-gnu-as --with-gnu-ld --with-specs='%{save-temps:
-> -fverbose-asm}
-> %{funwind-tables|fno-unwind-tables|mabi=*|ffreestanding|nostdlib:;:-funwind-tables}
-> -D__CS_SOURCERYGXX_MAJ__=2013 -D__CS_SOURCERYGXX_MIN__=5
-> -D__CS_SOURCERYGXX_REV__=24 %{O2:%{!fno-remove-local-statics:
-> -fremove-local-statics}}
-> %{O*:%{O|O0|O1|O2|Os:;:%{!fno-remove-local-statics:
-> -fremove-local-statics}}}' --enable-languages=c,c++ --enable-shared
-> --enable-lto --enable-symvers=gnu --enable-__cxa_atexit
-> --with-pkgversion='Sourcery CodeBench Lite 2013.05-24' --with-bugurl=
-> https://sourcery.mentor.com/GNUToolchain/ --disable-nls
-> --prefix=/opt/codesourcery
-> --with-sysroot=/opt/codesourcery/arm-none-linux-gnueabi/libc
-> --with-build-sysroot=/scratch/jbrown/2013.05-arm-linux-release/install/arm-none-linux-gnueabi/libc
-> --with-gmp=/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
-> --with-mpfr=/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
-> --with-mpc=/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
-> --with-ppl=/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
-> --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm'
-> --with-cloog=/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
-> --with-libelf=/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
-> --disable-libgomp --disable-libitm --enable-poison-system-directories
-> --with-build-time-tools=/scratch/jbrown/2013.05-arm-linux-release/install/arm-none-linux-gnueabi/bin
-> --with-build-time-tools=/scratch/jbrown/2013.05-arm-linux-release/install/arm-none-linux-gnueabi/bin
-> ****
->
-> Thread model: posix****
->
-> gcc version 4.7.3 (Sourcery CodeBench Lite 2013.05-24) ****
->
-> ** **
->
-> On Wed, Jul 24, 2013 at 7:19 AM, Rifenbark, Scott M <
-> scott.m.rifenbark@intel.com> wrote:****
->
-> Laszlo,
->
-> Saul forwarded me this email regarding external toolchains.  The "In
-> Progress" version of the YP Reference Manual has a new section on
-> toolchains in general.  This section, combined with the TCMODE glossary
-> entry and a FAQ entry, both in the reference manual, comprise our
-> information on the external toolchain topic.  Let me know what specifically
-> would need additionally addressed and I can get that on my plate to improve
-> the doc set.
->
-> Thanks,
-> Scott
->
->
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#cross-development-toolchain-generation
->
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-TCMODE
->
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#idm622640
->
->
->
->
-> >-----Original Message-----
-> >From: Saul Wold [mailto:sgw@linux.intel.com]
-> >Sent: Tuesday, July 23, 2013 3:52 PM
-> >To: Rifenbark, Scott M
-> >Subject: Fwd: [OE-core] Doc: external toolchain
-> >
-> >
-> >
-> >
-> >-------- Original Message --------
-> >Subject:       [OE-core] Doc: external toolchain
-> >Date:  Tue, 23 Jul 2013 23:45:28 +0100
-> >From:  Laszlo Papp <lpapp@kde.org>
-> >To:    openembedded-core@lists.openembedded.org
-> >
-> >
-> >
-> >Dear gents and ladies,
-> >
-> >it would be nice to get some documentation about this subject. There is
-> >only one presentation with only a few short slides about the topic:
-> >http://events.linuxfoundation.org/images/stories/slides/elc2013_denys.pd
-> >f
-> >
-> >I am now having some issues currently, and hard time to figure out what
-> >is going on. Note, this thread is not about getting help with that
-> >particular issue, but encouraging you to document this, for me,
-> >fundamental feature more thoroughly.
-> >
-> >Thank you for your understanding.
-> >
-> >Many thanks,
-> >Laszlo
-> >
-> >
-> >****
->
-> ** **
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---047d7b86e3a841715f04e24797a3
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">This issue is fixed by not having the default MACHINE ??=
-=3D &quot;qemux86&quot;, but a real arm machine, like beagleboard.</div><di=
-v class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, Jul 24, =
-2013 at 8:47 AM, Rifenbark, Scott M <span dir=3D"ltr">&lt;<a href=3D"mailto=
-:scott.m.rifenbark@intel.com" target=3D"_blank">scott.m.rifenbark@intel.com=
-</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi,
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Can anyone address the to=
-olchain questions here for Laszlo?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks,
-<u></u><u></u></span></p><div><div class=3D"h5">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Scott<u></u><u></u></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
-=3D"mailto:djszapi@archlinux.us" target=3D"_blank">djszapi@archlinux.us</a>=
- [mailto:<a href=3D"mailto:djszapi@archlinux.us" target=3D"_blank">djszapi@=
-archlinux.us</a>]
-<b>On Behalf Of </b>Laszlo Papp<br>
-<b>Sent:</b> Tuesday, July 23, 2013 11:52 PM<br>
-<b>To:</b> Rifenbark, Scott M<br>
-<b>Cc:</b> Wold, Saul<br>
-<b>Subject:</b> Re: FW: [OE-core] Doc: external toolchain<u></u><u></u></sp=
-an></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">OK, thanks.<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I am facing this issue, any clue?<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">ERROR: Failed to obtain CodeSourcery toolchain versi=
-on: Execution of &#39;/usr/bin/i686-pc-linux-gnu-gcc -v&#39; failed: comman=
-d not found<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">ERROR: Failed to obtain CodeSourcery toolchain versi=
-on: Execution of &#39;/usr/bin/i686-pc-linux-gnu-gcc -v&#39; failed: comman=
-d not found<u></u><u></u></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">This is what I have in my build/conf/local.conf:<u><=
-/u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">...<u></u><u></u></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">TCMODE =3D &quot;external-sourcery&quot;<u></u><u></=
-u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">EXTERNAL_TOOLCHAIN =3D &quot;/usr&quot;<u></u><u></u=
-></p>
-</div>
-<div>
-<p class=3D"MsoNormal">TARGET_PREFIX =3D &quot;arm-none-linux-gnueabi-&quot=
-;<u></u><u></u></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal">...<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">The external toolchain does exist:<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal">/usr/bin/arm-none-linux-gnueabi-gcc -v<u></u><u></u>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal">Using built-in specs.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">COLLECT_GCC=3D/usr/bin/arm-none-linux-gnueabi-gcc<u>=
-</u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">COLLECT_LTO_WRAPPER=3D/usr/bin/../libexec/gcc/arm-no=
-ne-linux-gnueabi/4.7.3/lto-wrapper<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Target: arm-none-linux-gnueabi<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Configured with: /scratch/jbrown/2013.05-arm-linux-r=
-elease/src/gcc-4.7-2013.05/configure --build=3Di686-pc-linux-gnu --host=3Di=
-686-pc-linux-gnu --target=3Darm-none-linux-gnueabi --enable-threads --disab=
-le-libmudflap --disable-libssp --disable-libstdcxx-pch
- --enable-extra-sgxxlite-multilibs --with-arch=3Darmv5te --with-gnu-as --wi=
-th-gnu-ld --with-specs=3D&#39;%{save-temps: -fverbose-asm} %{funwind-tables=
-|fno-unwind-tables|mabi=3D*|ffreestanding|nostdlib:;:-funwind-tables} -D__C=
-S_SOURCERYGXX_MAJ__=3D2013 -D__CS_SOURCERYGXX_MIN__=3D5
- -D__CS_SOURCERYGXX_REV__=3D24 %{O2:%{!fno-remove-local-statics: -fremove-l=
-ocal-statics}} %{O*:%{O|O0|O1|O2|Os:;:%{!fno-remove-local-statics: -fremove=
--local-statics}}}&#39; --enable-languages=3Dc,c++ --enable-shared --enable-=
-lto --enable-symvers=3Dgnu --enable-__cxa_atexit
- --with-pkgversion=3D&#39;Sourcery CodeBench Lite 2013.05-24&#39; --with-bu=
-gurl=3D<a href=3D"https://sourcery.mentor.com/GNUToolchain/" target=3D"_bla=
-nk">https://sourcery.mentor.com/GNUToolchain/</a> --disable-nls --prefix=3D=
-/opt/codesourcery --with-sysroot=3D/opt/codesourcery/arm-none-linux-gnueabi=
-/libc
- --with-build-sysroot=3D/scratch/jbrown/2013.05-arm-linux-release/install/a=
-rm-none-linux-gnueabi/libc --with-gmp=3D/scratch/jbrown/2013.05-arm-linux-r=
-elease/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-li=
-nux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
- --with-mpfr=3D/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24=
--arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-l=
-ibs-i686-pc-linux-gnu/usr --with-mpc=3D/scratch/jbrown/2013.05-arm-linux-re=
-lease/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-lin=
-ux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
- --with-ppl=3D/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-24-=
-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host-li=
-bs-i686-pc-linux-gnu/usr --with-host-libstdcxx=3D&#39;-static-libgcc -Wl,-B=
-static,-lstdc++,-Bdynamic -lm&#39; --with-cloog=3D/scratch/jbrown/2013.05-a=
-rm-linux-release/obj/pkg-2013.05-24-arm-none-linux-gnueabi/arm-2013.05-24-a=
-rm-none-linux-gnueabi.extras/host-libs-i686-pc-linux-gnu/usr
- --with-libelf=3D/scratch/jbrown/2013.05-arm-linux-release/obj/pkg-2013.05-=
-24-arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.extras/host=
--libs-i686-pc-linux-gnu/usr --disable-libgomp --disable-libitm --enable-poi=
-son-system-directories --with-build-time-tools=3D/scratch/jbrown/2013.05-ar=
-m-linux-release/install/arm-none-linux-gnueabi/bin
- --with-build-time-tools=3D/scratch/jbrown/2013.05-arm-linux-release/instal=
-l/arm-none-linux-gnueabi/bin<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Thread model: posix<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">gcc version 4.7.3 (Sourcery CodeBench Lite 2013.05-2=
-4)=A0<u></u><u></u></p>
-</div>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><u></u>=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">On Wed, Jul 24, 2013 at 7:19 AM, Rifenbark, Scott M =
-&lt;<a href=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott.=
-m.rifenbark@intel.com</a>&gt; wrote:<u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Laszlo,<br>
-<br>
-Saul forwarded me this email regarding external toolchains. =A0The &quot;In=
- Progress&quot; version of the YP Reference Manual has a new section on too=
-lchains in general. =A0This section, combined with the TCMODE glossary entr=
-y and a FAQ entry, both in the reference manual,
- comprise our information on the external toolchain topic. =A0Let me know w=
-hat specifically would need additionally addressed and I can get that on my=
- plate to improve the doc set.<br>
-<br>
-Thanks,<br>
-Scott<br>
-<br>
-<a href=3D"http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.ht=
-ml#cross-development-toolchain-generation" target=3D"_blank">http://www.yoc=
-toproject.org/docs/latest/ref-manual/ref-manual.html#cross-development-tool=
-chain-generation</a><br>
-
-<a href=3D"http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.ht=
-ml#var-TCMODE" target=3D"_blank">http://www.yoctoproject.org/docs/latest/re=
-f-manual/ref-manual.html#var-TCMODE</a><br>
-<a href=3D"http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.ht=
-ml#idm622640" target=3D"_blank">http://www.yoctoproject.org/docs/latest/ref=
--manual/ref-manual.html#idm622640</a><br>
-<br>
-<br>
-<br>
-<br>
-&gt;-----Original Message-----<br>
-&gt;From: Saul Wold [mailto:<a href=3D"mailto:sgw@linux.intel.com" target=
-=3D"_blank">sgw@linux.intel.com</a>]<br>
-&gt;Sent: Tuesday, July 23, 2013 3:52 PM<br>
-&gt;To: Rifenbark, Scott M<br>
-&gt;Subject: Fwd: [OE-core] Doc: external toolchain<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;-------- Original Message --------<br>
-&gt;Subject: =A0 =A0 =A0 [OE-core] Doc: external toolchain<br>
-&gt;Date: =A0Tue, 23 Jul 2013 23:45:28 +0100<br>
-&gt;From: =A0Laszlo Papp &lt;<a href=3D"mailto:lpapp@kde.org" target=3D"_bl=
-ank">lpapp@kde.org</a>&gt;<br>
-&gt;To: =A0 =A0<a href=3D"mailto:openembedded-core@lists.openembedded.org" =
-target=3D"_blank">openembedded-core@lists.openembedded.org</a><br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;Dear gents and ladies,<br>
-&gt;<br>
-&gt;it would be nice to get some documentation about this subject. There is=
-<br>
-&gt;only one presentation with only a few short slides about the topic:<br>
-&gt;<a href=3D"http://events.linuxfoundation.org/images/stories/slides/elc2=
-013_denys.pd" target=3D"_blank">http://events.linuxfoundation.org/images/st=
-ories/slides/elc2013_denys.pd</a><br>
-&gt;f<br>
-&gt;<br>
-&gt;I am now having some issues currently, and hard time to figure out what=
-<br>
-&gt;is going on. Note, this thread is not about getting help with that<br>
-&gt;particular issue, but encouraging you to document this, for me,<br>
-&gt;fundamental feature more thoroughly.<br>
-&gt;<br>
-&gt;Thank you for your understanding.<br>
-&gt;<br>
-&gt;Many thanks,<br>
-&gt;Laszlo<br>
-&gt;<br>
-&gt;<br>
-&gt;<u></u><u></u></p>
-</div>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
-</div>
-</div>
-</div></div></div>
-</div>
-
-</blockquote></div><br></div>
-
---047d7b86e3a841715f04e24797a3--
