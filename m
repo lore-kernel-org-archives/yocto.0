@@ -1,32 +1,36 @@
-Return-Path: <gopikrishnans@pec.edu>
-Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
-	[209.85.220.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61460E01440
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 23:44:17 -0700 (PDT)
-Received: by mail-pa0-f52.google.com with SMTP id kq13so287781pab.25
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2013 23:44:17 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
+	[209.85.212.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9192CE013A2
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 07:39:01 -0700 (PDT)
+Received: by mail-vb0-f48.google.com with SMTP id w15so6479045vbf.35
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 07:39:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type
-	:x-gm-message-state;
-	bh=UFxvGF32vuNjAynTpuhRfUQoqDVMlJwm3SeeHc8h1kQ=;
-	b=PqCTsSpdfHdK9c8NwAdU+ewdCYQhRuzXnXDwaF1+260bdcgm7nI/gMbA551eT1Pi3g
-	VPr3C6p7WeGfZJw2VoiV/9jUS3yrJiPDIslv9wMf8s4/YryrQPe5D1h3jp2QeI+wjQOJ
-	pKuuaIOPJJLRzgMku1aR2aPKSyuC652jfplB20bL7jRSOfd1uYTN39SzVBmT4S2Pf7vJ
-	nzCfGEYgPqNAgzMobi7QqEVyA/wTTD8tXGcp01dPeCqHuvghj1UKzfsLaOsyyuYzsUIM
-	NPog8HLjhKuzFqD9YXYGKZpvSYJD6w8Kxgd7BDpUT9wpEIYSxfLVGlWyaDM5RDAKowfe
-	WOug==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=pKgz9sgAJ5fjaCzaoMwH+798gG3N5oCC50d7Rgyvpnc=;
+	b=bvgHB6U2i2fVfWUyx5HAWEFr9qteNgoSG6gKqO7sew/q5+QYKl7FW9f0lexPWiSRqT
+	bgWcr4GpXb2Xsiq7mIiw/byyR3ATNQ6Rv9sRZ9oJCYy1fehuyvYG95b7kScLQ/xRP1xz
+	M6LK8cwNvzbWK0u174/c4uOuSi598d5XFLHuSIjL3x7ffokA/NQS25UuMKDynpTBgdmn
+	DCj9OZX0+AMtNSXeB3veVoFJFN9sj2Pg9KdyBsqjfFKmwEuhIF0VnFx6VYI89N6huo+c
+	6h9bAV1iEiyZZq+dH+8gGsOC2g6jvHqpo3wuEzi92ASw1Y50EPdXDPLZC+0TuHSuifQK
+	WU9A==
+X-Received: by 10.58.224.102 with SMTP id rb6mr14265613vec.43.1374676741048;
+	Wed, 24 Jul 2013 07:39:01 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.68.164.97 with SMTP id yp1mr39710607pbb.77.1374648257063;
-	Tue, 23 Jul 2013 23:44:17 -0700 (PDT)
-Received: by 10.66.27.76 with HTTP; Tue, 23 Jul 2013 23:44:16 -0700 (PDT)
-Date: Wed, 24 Jul 2013 12:14:16 +0530
-Message-ID: <CAOkC3RYC3hg6sUGwt7SZrfygU5x21UWqvD2diNJUTP9TFtV2iQ@mail.gmail.com>
-From: Gopikrishnan S <gopikrishnans@pec.edu>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Gm-Message-State: ALoCoQn5qOpWqcSgIL9+VRVcI3sBBWRkaARubZ2HwVdHd0xxE5Td3wsqakxu+mFvmUSMCra/bknM
-X-Mailman-Approved-At: Wed, 24 Jul 2013 07:32:51 -0700
-Subject: Reg: PERL Module
+Received: by 10.58.30.15 with HTTP; Wed, 24 Jul 2013 07:38:41 -0700 (PDT)
+In-Reply-To: <51EFE508.8060004@mlbassoc.com>
+References: <51EFDD09.3030909@mlbassoc.com>
+	<CAJTo0LaHOJtt=RvofQEvuZ+K1fYL3u8acv5dUD3XNZvx+pH9wg@mail.gmail.com>
+	<51EFE508.8060004@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 24 Jul 2013 15:38:41 +0100
+Message-ID: <CAJTo0LbYYzeG0-kti7sj_cH7ji_b8xXJxYxSu6T=Snq++wJeUQ@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Gm-Message-State: ALoCoQlxt8yxVv6eXO/Yfr9Z1TmHoyGbbjQF4aq8yqokFI22a4hJqIVkjZBi0YwAViksl/chPCgo
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Packaging questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,53 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 06:44:19 -0000
-Content-Type: multipart/alternative; boundary=047d7bae446e0dbdb404e23c3d9c
+X-List-Received-Date: Wed, 24 Jul 2013 14:39:04 -0000
+Content-Type: text/plain; charset=UTF-8
 
---047d7bae446e0dbdb404e23c3d9c
-Content-Type: text/plain; charset=ISO-8859-1
+On 24 July 2013 15:30, Gary Thomas <gary@mlbassoc.com> wrote:
+>>> ERROR: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so:
+>>> amanda path
+>>>
+>>> '/work/armv7a-vfp-neon-amltd-linux-gnueabi/amanda/3.3.3-r0/packages-split/amanda/usr/lib/amanda/libamar.so'
+>>
+>>
+>> I'm curious, what does the symlink point to?  It's possible that we
+>> can refine the check to reduce the number of false positives, because
+>> this is a fairly common one that needs to be skipped.
+>
+>
+> The .so symlink points to a fully qualified library, e.g.
+> -rwxr-xr-x 1 gthomas gthomas 1383729 Jul 24 06:35 libamanda-3.3.3.so
+> lrwxrwxrwx 1 gthomas gthomas      18 Jul 24 06:35 libamanda.so ->
+> libamanda-3.3.3.so
+>
+> The problem seems to be that this is the unqualified .so name and not a
+> version qualified name like 'libamanda.so.3'.  The package isn't building
+> the version qualified names, just the fully unqualified one.
+>
+>
+>>
+>> You can skip this QA test by setting INSANE_SKIP.  In this case,
+>> INSANE_SKIP_${PN} = "dev-so" (you can identify the tag to use by
+>> looking through classes/insane.bbclass for the error message).
 
-Hi I want to install spamassassin to my image.
+So that's not the pattern that the test was designed for (not that
+it's actually implementing that design).  I'm sure Amanda developers
+have a reason for this, but the presence of a .so symlink in a non-dev
+package is enough to trip this test, so INSANE_SKIP is the best thing
+to do.
 
-already I ran bitbake fal-image-full with following line on my
-conf/local.conf
+Ross
 
-IMAGE_INSTALL_append = " perl-modules"
-
-
-But still building spamassassing is complaining about PERL modules.
-
-NOTE: Resolving any missing task queue dependencies
-ERROR: Nothing PROVIDES 'libarchive-tar-perl-native' (but
-/media/sdk/QorIQ-SDK-V1.3-20121114-yocto/meta-fsl-ppc/recipes-test/spamassassin/
-spamassassin_3.3.1.bb DEPENDS on or otherwise requires it)
-ERROR: Required build target 'spamassassin' has no buildable providers.
-Missing or unbuildable dependency chain was: ['spamassassin',
-'libarchive-tar-perl-native']
-
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
---047d7bae446e0dbdb404e23c3d9c
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi I want to install spamassassin to my image.<div><br></d=
-iv><div><div style>already I ran bitbake fal-image-full with following line=
- on my conf/local.conf</div><div><br></div><div>IMAGE_INSTALL_append =3D &q=
-uot; perl-modules&quot;</div>
-</div><div><br></div><div><br></div><div style>But still building spamassas=
-sing is complaining about PERL modules.</div><div style><br></div><div styl=
-e>NOTE: Resolving any missing task queue dependencies</div><div>ERROR: Noth=
-ing PROVIDES &#39;libarchive-tar-perl-native&#39; (but /media/sdk/QorIQ-SDK=
--V1.3-20121114-yocto/meta-fsl-ppc/recipes-test/spamassassin/<a href=3D"http=
-://spamassassin_3.3.1.bb">spamassassin_3.3.1.bb</a> DEPENDS on or otherwise=
- requires it)</div>
-<div>ERROR: Required build target &#39;spamassassin&#39; has no buildable p=
-roviders.</div><div>Missing or unbuildable dependency chain was: [&#39;spam=
-assassin&#39;, &#39;libarchive-tar-perl-native&#39;]</div><div><br></div>
-<div>Summary: There was 1 WARNING message shown.</div><div>Summary: There w=
-ere 2 ERROR messages shown, returning a non-zero exit code.</div><div><br><=
-/div></div>
-
---047d7bae446e0dbdb404e23c3d9c--
