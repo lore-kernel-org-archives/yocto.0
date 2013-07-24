@@ -1,24 +1,39 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3124CE013A2
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 08:23:08 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 24 Jul 2013 08:23:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,736,1367996400"; d="scan'208";a="272612268"
-Received: from unknown (HELO [10.255.14.43]) ([10.255.14.43])
-	by AZSMGA002.ch.intel.com with ESMTP; 24 Jul 2013 08:23:05 -0700
-Message-ID: <51EFF159.4080203@linux.intel.com>
-Date: Wed, 24 Jul 2013 08:23:05 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+Return-Path: <lothar@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BDBAE013A2
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 08:23:53 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3c0gLv1rwGz3hhwt;
+	Wed, 24 Jul 2013 17:23:48 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3c0gLr4TFnzbbnM;
+	Wed, 24 Jul 2013 17:23:48 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id Tt3n54nNQADF; Wed, 24 Jul 2013 17:23:46 +0200 (CEST)
+X-Auth-Info: Icf6eiDdnbCIiWCf6iNZkqxS5QqrSMoNkfH79a2Yw5U=
+Received: from webmail.mnet-online.de (webmail1.mnet-online.de [212.18.5.57])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA;
+	Wed, 24 Jul 2013 17:23:46 +0200 (CEST)
+Received: from p4FD638F0.dip0.t-ipconnect.de (p4FD638F0.dip0.t-ipconnect.de
+	[79.214.56.240]) by webmail.mnet-online.de (Horde Framework) with HTTP; 
+	Wed, 24 Jul 2013 17:23:46 +0200
+Message-ID: <20130724172346.18894xbfvnwcubgg@webmail.mnet-online.de>
+Date: Wed, 24 Jul 2013 17:23:46 +0200
+From: lothar@denx.de
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+References: <20130724150504.17793cvsxo9h0y04@webmail.mnet-online.de>
+	<51EFD395.3080009@windriver.com>
+In-Reply-To: <51EFD395.3080009@windriver.com>
 MIME-Version: 1.0
-To: Emilia Ciobanu <emilia.maria.silvia.ciobanu@intel.com>
-References: <1374665079-11266-1-git-send-email-emilia.maria.silvia.ciobanu@intel.com>
-In-Reply-To: <1374665079-11266-1-git-send-email-emilia.maria.silvia.ciobanu@intel.com>
+User-Agent: Internet Messaging Program (IMP) H3 (4.3.5)
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH v2] package_reges.inc: Add/Update REGEX and PRSPV variable
+Subject: Re: how to set particular changes to a default kernel config
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,114 +45,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 15:23:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 24 Jul 2013 15:23:54 -0000
+Content-Type: text/plain;
+ charset=ISO-8859-1;
+ DelSp="Yes";
+ format="flowed"
+Content-Disposition: inline
 Content-Transfer-Encoding: 7bit
 
+Hi, thank you very much for your answer!
 
-Typo in the file name should be regex
+So, you mean something like this in the kernel .bb:
+   require recipes-kernel/linux/linux-yocto.inc
+This is definitely missing. I'm including linux.inc changing it to  
+linux-yocto.inc breaks other patches that I'd like to apply (perhaps  
+the path?). This means more work, and more doubts, too.
 
-Sau!
+Now I'm asking myself, actually, should I change it from linux.inc to  
+linux-yocto.inc generally?
 
-On 07/24/2013 04:24 AM, Emilia Ciobanu wrote:
-> The PRSPV variable is used for the packages:
-> 	* zip
-> 	* unzip
-> 	* docbook-sgml-dtd-3.1-native
-> 	* docbook-sgml-dtd-4.1-native
+At the moment, I'll apply the CONFIG_'s with "echo", which seems  
+easier for the simple case.
+BR,
+L
+
+
+Zitat von Bruce Ashfield <bruce.ashfield@windriver.com>:
+
+> On 13-07-24 09:05 AM, lothar@denx.de wrote:
+>> Dear Yocto Team,
+>>
+>> For an ARM based board (MACHINE = "myboard"), I use a default kernel
+>> config from arch/arm/configs and want now to change some particular
+>> CONFIG_ options.
+>>
+>> Trying to follow the documentation, I currently have the following files:
+>> .
+>> +- linux-acme
+>> |   |
+>> |   +- additional.cfg
+>> |
+>> +- linux-acme_3.8.bb
+>>
+>>
+>>
+>> ...in linux-acme_3.8.bb I have
+>> (...)
+>> S = "${WORKDIR}/git"
+>> (...)
+>> KERNEL_DEFCONFIG_myboard = "blabla_defconfig"
+>> do_configure_prepend_myboard() {
+>>      install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} \
+>>            ${WORKDIR}/defconfig || die "no default config"
+>> }
+>> SRC_URI_myboard = "git://kernel.ubuntu.com/ubuntu/linux.git;protocol=git \
+>>            file://additional.cfg"
+>> (...)
+>>
+>>
+>> ...and in additional.cfg I have
+>> CONFIG_DEVTMPFS_MOUNT=y
+>> CONFIG_MTD_CMDLINE_PARTS=y
+>> CONFIG_MTD_BLOCK=y
+>> CONFIG_MTD_M25P80=y
+>>
+>>
+>> When I run something like...
+>> $ bitbake -b /yocto/meta-myboard/recipes-kernel/linux/linux-acme_3.8.bb -f
+>> ...it seems to find the .cfg file, since it stoped complaining (after I
+>> fixed some paths) and now compiles/builds smoothely.
+>>
+>> Anyway, I can't see the changes in the .config in
+>> $BDIR/tmp/work/myboard-linux-gnueabi/linux-acme/3.8+..../git/.config
+>>
+>> I imagine something like mixing both configs and running "make
+>> oldconfig" in behind. Anyway before compilation, the changes should be
+>> in the .config, right?
+>>
+>> Questions:
+>> 1) How can I add single additional options to a default kernel config?
 >
-> The REGEX variable has been added/changed for the following packages:
-> 	* btrfs-tools
-> 	* bjam-native
-> 	* build-appliance-image
-> 	* mpeg2dec
-> 	* mpfr-native
-> 	* nativesdk-mpfr
-> 	* xf86-video-omap
-> 	* remake
+> Just like you have above, but does your recipe inherit linux-yocto ?
+> You of course also need to have the dependencies of the options
+> you are trying to add, otherwise, they won't make the final .config.
 >
-> Signed-off-by: Emilia Ciobanu <emilia.maria.silvia.ciobanu@intel.com>
-> ---
->   meta-yocto/conf/distro/include/package_regex.inc |   20 ++++++++++++++------
->   1 file changed, 14 insertions(+), 6 deletions(-)
+>> 2) What is the best way to check if the options were applied?
 >
-> diff --git a/meta-yocto/conf/distro/include/package_regex.inc b/meta-yocto/conf/distro/include/package_regex.inc
-> index 42d17e5..1572729 100644
-> --- a/meta-yocto/conf/distro/include/package_regex.inc
-> +++ b/meta-yocto/conf/distro/include/package_regex.inc
-> @@ -24,11 +24,13 @@ REGEX_URI_pn-beecrypt-native = "http://sourceforge.net/projects/beecrypt/files/b
->   REGEX_pn-beecrypt-native = "[hH][rR][eE][fF]=\"/projects/beecrypt/files/beecrypt/(?P<pver>((\d+[\.\-_]*)+))/\""
->   REGEX_pn-bdwgc = "[hH][rR][eE][fF]=\"gc\-(?P<pver>((\d+[a-z]?[\.\-_]*)+))\.tar\.gz\""
->   REGEX_URI_pn-bjam-native = "http://sourceforge.net/projects/boost/files/boost/"
-> +REGEX_pn-bjam-native = "[hH][rR][eE][fF]=\"/projects/boost/files/boost/(?P<pver>((\d+[\.\-_]*)+))/\""
->   REGEX_URI_pn-blktool = "ftp://ftp.debian.org/debian/pool/main/b/blktool/"
->   REGEX_pn-blktool = "[hH][rR][eE][fF]=\"ftp://ftp.debian.org:21/debian/pool/main/b/blktool/blktool_(?P<pver>((\d+[\.\-_]*)+))\.(diff|orig\.tar)\.gz\""
->   REGEX_URI_pn-boost = "http://sourceforge.net/projects/boost/files/boost/"
->   REGEX_pn-boost = "[hH][rR][eE][fF]=\"/projects/boost/files/boost/(?P<pver>((\d+[\.\-_]*)+))/\""
-> -REGEX_pn-btrfs-tools = "(\d+(\.\d+)*(\-rc\d+)*)"
-> +REGEX_pn-btrfs-tools = "(?P<pver>(\d+(\.\d+)*(\-rc\d+)*))"
-> +REGEX_pn-build-appliance-image = "(?P<pver>([0-9][\.|_]?)+)$"
->   REGEX_pn-chkconfig-alternatives-native = "chkconfig\-(?P<pver>((\d+[\.\-_]*)+))"
->   REGEX_URI_pn-chrpath = "http://alioth.debian.org/frs/?group_id=31052"
->   REGEX_pn-chrpath = "[hH][rR][eE][fF]=\"/frs/download.php/file/\d+/chrpath-(?P<pver>((\d+[\.\-_]*)+))\.tar\.gz\""
-> @@ -165,13 +167,13 @@ REGEX_pn-minicom = "[hH][rR][eE][fF]=\"/frs/download.php/file/\d+/minicom\-(?P<p
->   REGEX_URI_pn-mingetty = "http://sourceforge.net/projects/mingetty/files/mingetty"
->   REGEX_pn-mingetty = "[hH][rR][eE][fF]=\"/projects/mingetty/files/mingetty/(?P<pver>((\d+[\.\-_]*)+))/\""
->   REGEX_URI_pn-mpeg2dec = "http://libmpeg2.sourceforge.net/downloads.html"
-> -REGEX_pn-mpeg2dec = "[hH][rR][eE][fF]=\"/files/mpeg2dec-(?P<pver>((\d+[\.\-_]*)+)).tar.gz""
-> +REGEX_pn-mpeg2dec = "[hH][rR][eE][fF]=\"/files/mpeg2dec-(?P<pver>((\d+[\.\-_]*)+)).tar.gz\""
->   REGEX_URI_pn-mpfr = "http://ftp.gnu.org/gnu/mpfr/"
->   REGEX_pn-mpfr = "[hH][rR][eE][fF]=\"mpfr-(?P<pver>((\d+[\.\-_]*)+)).tar.gz""
->   REGEX_URI_pn-mpfr-native = "http://ftp.gnu.org/gnu/mpfr/"
-> -REGEX_pn-mpfr-native = "[hH][rR][eE][fF]=\"mpfr-(?P<pver>((\d+[\.\-_]*)+)).tar.gz""
-> +REGEX_pn-mpfr-native = "[hH][rR][eE][fF]=\"mpfr-(?P<pver>((\d+[\.\-_]*)+)).tar.gz\""
->   REGEX_URI_pn-nativesdk-mpfr = "http://ftp.gnu.org/gnu/mpfr/"
-> -REGEX_pn-nativesdk-mpfr = "[hH][rR][eE][fF]=\"mpfr-(?P<pver>((\d+[\.\-_]*)+)).tar.gz""
-> +REGEX_pn-nativesdk-mpfr = "[hH][rR][eE][fF]=\"mpfr-(?P<pver>((\d+[\.\-_]*)+)).tar.gz\""
->   REGEX_URI_pn-nfs-utils = "http://sourceforge.net/projects/nfs/files/nfs-utils/"
->   REGEX_pn-nfs-utils = "[hH][rR][eE][fF]=\"/projects/nfs/files/nfs-utils/(?P<pver>((\d+[\.\-_]*)+))/\""
->   REGEX_URI_pn-ocf-linux = "http://sourceforge.net/projects/ocf-linux/files/ocf-linux/"
-> @@ -244,8 +246,10 @@ REGEX_URI_pn-tzdata = "ftp://ftp.iana.org/tz/releases/"
->   REGEX_pn-tzdata = "[hH][rR][eE][fF]=\"ftp://ftp.iana.org:21/tz/releases/tzdata(?P<pver>((\d+[a-z])+))\.tar\.gz\""
->   REGEX_URI_pn-unzip = "http://sourceforge.net/projects/infozip/files/UnZip%206.x%20%28latest%29/UnZip%206.0/"
->   REGEX_pn-unzip = "[hH][rR][eE][fF]=\"http://sourceforge.net/projects/infozip/files/UnZip%206.x%20%28latest%29/UnZip%206.0/unzip(?P<pver>(\d+))\.tar\.gz/download\""
-> +PRSPV_pn-unzip = "${@d.getVar('PV',1).replace('.','')}"
->   REGEX_URI_pn-unzip-native = "http://sourceforge.net/projects/infozip/files/UnZip%206.x%20%28latest%29/UnZip%206.0/"
->   REGEX_pn-unzip-native = "[hH][rR][eE][fF]=\"http://sourceforge.net/projects/infozip/files/UnZip%206.x%20%28latest%29/UnZip%206.0/unzip(?P<pver>(\d+))\.tar\.gz/download\""
-> +PRSPV_pn-unzip-native = "${@d.getVar('PV',1).replace('.','')}"
->   REGEX_URI_pn-v86d = "http://dev.gentoo.org/~spock/projects/uvesafb/archive/"
->   REGEX_pn-v86d = "[hH][rR][eE][fF]=\"v86d\-(?P<pver>((\d+[\.]*)+))\.tar\.bz2\""
->   REGEX_URI_pn-watchdog = "http://sourceforge.net/projects/watchdog/files/watchdog/"
-> @@ -255,16 +259,18 @@ REGEX_pn-wireless-tools = "[hH][rR][eE][fF]=\"wireless_tools\.(?P<pver>(\d+))\.t
->   REGEX_URI_pn-x11vnc = "http://sourceforge.net/projects/libvncserver/files/x11vnc/"
->   REGEX_pn-x11vnc = "[hH][rR][eE][fF]=\"/projects/libvncserver/files/x11vnc/(?P<pver>((\d+[\.\-_]*)+))/\""
->   REGEX_pn-xdg-utils = "[hH][rR][eE][fF]=\"xdg\-utils\-(?P<pver>((\d+[\.\-_]*)+))\.(tar\.gz|tgz)\""
-> -REGEX_pn-xf86-video-omap = "\d+\.(\d\.?)*"
-> +REGEX_pn-xf86-video-omap = "(?P<pver>(\d+\.(\d\.?)*))"
->   REGEX_URI_pn-zip = "http://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/"
->   REGEX_pn-zip = "[hH][rR][eE][fF]=\"http://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/zip(?P<pver>(\d+))\.tar\.gz/download\""
-> +PRSPV_pn-zip = "${@d.getVar('PV',1).replace('.','')}"
->   REGEX_URI_pn-zip-native = "http://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/"
->   REGEX_pn-zip-native = "[hH][rR][eE][fF]=\"http://sourceforge.net/projects/infozip/files/Zip%203.x%20%28latest%29/3.0/zip(?P<pver>(\d+))\.tar\.gz/download\""
-> +PRSPV_pn-zip-native = "${@d.getVar('PV',1).replace('.','')}"
->   REGEX_URI_pn-msmtp = "http://sourceforge.net/projects/msmtp/files/msmtp/"
->   REGEX_pn-msmtp = "[hH][rR][eE][fF]=\"/projects/msmtp/files/msmtp/(?P<pver>((\d+[\.\-_]*)+))/\""
->   REGEX_URI_pn-docbook-dsssl-stylesheets-native = "http://sourceforge.net/projects/docbook/files/docbook-dsssl/"
->   REGEX_pn-docbook-dsssl-stylesheets-native = "[hH][rR][eE][fF]=\"/projects/docbook/files/docbook-dsssl/(?P<pver>((\d+[\.\-_]*)+))/\""
-> -REGEX_pn-remake = "(\d+\.(\d+\.)*\d*(\+dbg\-\d+(\.\d+)*)*)"
-> +REGEX_pn-remake = "(?P<pver>(\d+\.(\d+\.)*\d*(\+dbg\-\d+(\.\d+)*)*))"
->   REGEX_URI_pn-libical = "http://sourceforge.net/projects/libical/files/libical/"
->   REGEX_pn-libical = "[hH][rR][eE][fF]=\"/projects/libical/files/libical/libical-(?P<pver>((\d+[\.\-_]*)+))/\""
->   REGEX_URI_pn-telepathy-mission-control = "http://telepathy.freedesktop.org/releases/telepathy-mission-control/"
-> @@ -316,7 +322,9 @@ REGEX_pn-cmake = "[hH][rR][eE][fF]=\"cmake\-(?P<pver>((\d+[\.\-_]*)+))\.tar\.gz\
->   REGEX_pn-cmake-native = "[hH][rR][eE][fF]=\"cmake\-(?P<pver>((\d+[\.\-_]*)+))\.tar\.gz\""
->   REGEX_pn-nativeesdk-cmake = "[hH][rR][eE][fF]=\"cmake\-(?P<pver>((\d+[\.\-_]*)+))\.tar\.gz\""
->   REGEX_URI_pn-docbook-sgml-dtd-3.1-native = "http://docbook.org/sgml/3.1/"
-> +PRSPV_pn-docbook-sgml-dtd-3.1-native = "${@d.getVar('PV',1).replace('.','')}"
->   REGEX_URI_pn-docbook-sgml-dtd-4.1-native = "http://docbook.org/sgml/4.1/"
-> +PRSPV_pn-docbook-sgml-dtd-4.1-native = "${@d.getVar('PV',1).replace('.','')}"
->   REGEX_URI_pn-docbook-sgml-dtd-4.5-native = "http://docbook.org/sgml/4.5/"
->   REGEX_pn-libxml2 = "[hH][rR][eE][fF]=\"ftp://xmlsoft.org:21/libxml2/libxml2\-(?P<pver>((\d+[\.\-_]*)+))\.tar\.gz\""
->   REGEX_pn-python-setuptools = "[hH][rR][eE][fF]=\"setuptools\-(?P<pver>((\d+([a-z]\d+)?[\.\-_]*)+))\.(tar\.gz|\.zip)\""
+> There's an audit phase that runs after configuration has completed, but
+> if you are using a different tree than the linux-yocto tree, it will
+> do it's best to tell you what is missing, but needs to sift through
+> a lot of data.
 >
+> A faster way for small changes is likely just what you are doing,
+> checking the .config in the build dir.
+>
+>> 3) Do I need another approach, e.g. through a patch, using echo, or
+>> using a .scc file (I tried, but with the same result)?
+>
+> Those will work as well, but the system will detect lonely .cfg files
+> and apply them to the tree after the default configuration.
+>
+> Cheers,
+>
+> Bruce
+>
+>>
+>> Best Regards,
+>> Lothar Rubusch
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+
+
+
 
