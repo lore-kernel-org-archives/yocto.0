@@ -1,27 +1,36 @@
-Return-Path: <zafrullahmehdi@gmail.com>
-Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D8E8E0152B
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 04:18:52 -0700 (PDT)
-Received: by mail-wg0-f43.google.com with SMTP id z12so271606wgg.10
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 04:18:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=av51qIAeG8T0fhNDO29V1Ym6nb4P5zZRWxHU3boO6p4=;
-	b=xYGOHIjAWZbtLq/n5bZtg4kFBHum8n/wpA1lURmvwfAjRvVMn6IqLMzUHM4EhBudsc
-	1vmg68262kCkfyF05sJxmv2ytaLLkL5KbSB9ZWReNhNWMo+J6NEclMPhc2D2Yl8TgKqS
-	IAGtL6EwmSQGpfmqvVmvEzRDcDQ4VXEwpYVWjbEhyj0YtsI7dMNBcEUqt/yVSXkidOpI
-	T7OIVRQhM8Bw4WpfOE5uaG/+0t0Ie3HRpkjD4IWBYCtqtXDEN8g7EvkONAi+aQnDIIKw
-	/unpyxq4CfSddqBppkZMqxwX1xw+uR9bfAkr5b9rPAXxAYxslL/9YDQ6Zz4nicdHCrHA
-	GLpA==
-X-Received: by 10.194.81.39 with SMTP id w7mr4938962wjx.51.1374664731453; Wed,
-	24 Jul 2013 04:18:51 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.194.241.233 with HTTP; Wed, 24 Jul 2013 04:18:31 -0700 (PDT)
-From: Zafrullah Syed <zafrullahmehdi@gmail.com>
-Date: Wed, 24 Jul 2013 13:18:31 +0200
-Message-ID: <CAAGt+t1ZSMcDv2RvomcXNLkjifWaoi_panY4w8nD+gSnTL6aGA@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: bitbake CaspaVL
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2F79E01528
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 05:41:27 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1V1yHX-0001Z9-Pv
+	for yocto@yoctoproject.org; Wed, 24 Jul 2013 14:35:03 +0200
+Received: from 193.146.28.111 ([193.146.28.111])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 14:35:03 +0200
+Received: from mvalleavila by 193.146.28.111 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 14:35:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Marcelo Valle <mvalleavila@gmail.com>
+Date: Wed, 24 Jul 2013 11:39:06 +0000 (UTC)
+Message-ID: <loom.20130724T132956-99@post.gmane.org>
+References: <CANwz6nxO25BCt2B-H8T9_SO5F3DqfE1w2QDSoXPVnP-qxq994Q@mail.gmail.com>
+	<loom.20130614T060308-378@post.gmane.org>
+	<1571616.VWc8oWtlLJ@helios>
+	<loom.20130614T195255-724@post.gmane.org>
+	<CE727E34-D6D2-4B25-840A-0D2F32318C0A@gmail.com>
+	<loom.20130614T200317-354@post.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 193.146.28.111 (Mozilla/5.0 (X11;
+	Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+	Chrome/28.0.1500.71 Safari/537.36)
+Subject: Re: gcc enable-languages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,31 +42,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2013 11:18:53 -0000
-Content-Type: multipart/alternative; boundary=047d7bb70e1200f38204e2401319
+X-List-Received-Date: Wed, 24 Jul 2013 12:41:29 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
---047d7bb70e1200f38204e2401319
-Content-Type: text/plain; charset=ISO-8859-1
+Dat Tran <dtran11@...> writes:
 
-Hi all,
 
-How do CaspaVL driver can be integrated into Yocto project? Any ideas?
 
--- 
-Regards,
-Zafrullah Syed
+> 
+> This is the error I get:
+> 
+> configure: WARNING: unrecognized options: --disable-silent-rules, --with-
+> sysroot 
+> DEBUG: Shell function do_configure finished 
+> DEBUG: Executing python function do_qa_configure 
+> NOTE: Checking autotools environment for common misconfiguration 
+> ERROR: This autoconf log indicates errors, it looked at host include 
+and/or 
+> library paths while determining system capabilities. 
+> Rerun configure task after fixing this. The path was 
+> '/home/appusr/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-
+> gnueabi/libtool-cross-2.4.2-r5.1/libtool-2.4.2' 
+> DEBUG: Python function do_qa_configure finished 
+> ERROR: Function failed: do_qa_configure 
+> 
+> Thanks
+> 
+> 
 
---047d7bb70e1200f38204e2401319
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Hello, 
 
-<div dir=3D"ltr">Hi all,<div><br></div><div>How do CaspaVL driver can be in=
-tegrated into Yocto project? Any ideas?<br clear=3D"all"><div><br></div>-- =
-<br><span style=3D"font-family:arial,sans-serif;font-size:13px;border-colla=
-pse:collapse;color:rgb(136,136,136)">Regards,<br>
+I followed the same steps to use fortran with Yocto, but get a similar 
+error:
 
-Zafrullah Syed</span><div><font color=3D"#888888" face=3D"arial, sans-serif=
-"><span style=3D"border-collapse:collapse"><br></span></font></div>
-</div></div>
+ERROR: This autoconf log indicates errors, it looked at host include and/or 
+library paths while determining system capabilities.
+Rerun configure task after fixing this. The path was '/home/mvalle/poky-
+dylan-9.0.0/build/tmp/work/x86_64-poky-linux/gcc-runtime/4.7.2-r19/gcc-
+4.7.2/build.x86_64-poky-linux.x86_64-poky-linux/x86_64-poky-
+linux/libgfortran'
+ERROR: Function failed: do_qa_configure
 
---047d7bb70e1200f38204e2401319--
+You finally could fix this error?
+
+Thanks in advance.
+
+
