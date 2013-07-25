@@ -1,33 +1,40 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13E8EE01363
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 17:10:25 -0700 (PDT)
-Received: by mail-ve0-f178.google.com with SMTP id pb11so17877veb.23
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 17:10:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=SZvhfVVeXoSVim4FmTD8d/xpHmMW6GjPkg/FV90jXEA=;
-	b=YYfqXrg7+2tw30S5D5SF0UtRvvqiwehfej5AGeJ8HuWtsYber0kEE0d18G+med9Rsy
-	45S3RTr4KHh49iQng6o4awEFiuFY1pM0/FFBQ4/z/yWUN2/gmT2HHVEUziyfeOaqBdA6
-	FsGjMzfj2mAtv8kxqiu6bnahEmYz2jlFr71gGPHtAJYVCffxR0QSavwJ3/QAsOR9z3R8
-	pEGLzJpmJMC00Fv24v4dSwYjH7lISx1czaldNw38oi9OiU2zvCnGKioktBxMvy0rSCgA
-	BUsbtTfcoX8zWWOXeNzCz1zL2CAB2eNEPLIQ9K+3vjwUX9njKs17C67KUA4PTsc869Zx
-	rycg==
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
+	[209.85.220.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 415A0E01363
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 17:55:36 -0700 (PDT)
+Received: by mail-pa0-f45.google.com with SMTP id bg4so1312057pad.18
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 17:55:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=ns4HIxg+UCaFDNKBKZK4YUEVzYIr35EmTsp5mXUrbpw=;
+	b=mFX4BoZxYfTajb60/2LilVr5dpea4yaWT+dh1+Rch4u0To5LIK00OuTGZSb36xJ9PY
+	ZP04PEeBqVdaKoR/C5Y83Yw7q6l5j+/pQAh/VEw/4g98MBz/4zm4YdfnF4voRfOt+W0C
+	wxoddCQkqrbeRvSNQwLKdohze3qL0MbRTf6VgaBh860RfiYS8FfZwXwIB8/yk2HU2j7u
+	eeTiACyfiKgWogAdL4Uiz1M1MX92JMcOFpDTXx36aua1hRFLJCQSH9F4+8QvQZ9bZ+IY
+	bEiz11MLR+e+05O49kQvkn+8JTUkTQRnwe2CPWfEj/+jf8s8A2hVHRhalcTqxR1u/rKA
+	BxPw==
+X-Received: by 10.66.246.66 with SMTP id xu2mr46520229pac.134.1374713735813;
+	Wed, 24 Jul 2013 17:55:35 -0700 (PDT)
+Received: from krys-red.trunet.local ([210.48.94.225])
+	by mx.google.com with ESMTPSA id
+	qh10sm10607508pbb.33.2013.07.24.17.55.33 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 24 Jul 2013 17:55:34 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <51F07782.9070107@gna.org>
+Date: Thu, 25 Jul 2013 12:55:30 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Received: by 10.52.249.52 with SMTP id yr20mr4681999vdc.35.1374711024382;
-	Wed, 24 Jul 2013 17:10:24 -0700 (PDT)
-Received: by 10.52.73.168 with HTTP; Wed, 24 Jul 2013 17:10:24 -0700 (PDT)
-Date: Wed, 24 Jul 2013 17:10:24 -0700
-Message-ID: <CAPhnLPBj69yx04Y=kXkY6sjqu7HP4nWqLmB5vVZR_OETyMEH_Q@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-X-Gm-Message-State: ALoCoQlCqL1pD8REkL1Q5DFQOPHLAURFdSsYsIlX802DfgSh7xz4wgDSG4SuNE1QrEfNKYwLiELS
-Cc: SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>,
-	Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly build is now available.
+To: Jukka Rissanen <jukka.rissanen@linux.intel.com>
+References: <51EF4137.80107@gna.org> <51EF82D3.1010305@linux.intel.com>
+In-Reply-To: <51EF82D3.1010305@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Generating an image with systemd and connman
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,33 +46,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 00:10:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 25 Jul 2013 00:55:37 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The weekly build is now available. Please being weekly testing as soon
-as possible.
+On 24/07/13 19:31, Jukka Rissanen wrote:
+> Hi Christian,
+>
+> On 24.07.2013 05:51, Christian Gagneraud wrote:
+>> Hi there,
+>>
+>> I have successfully generated Dylan core-image-minimal with the meta-ti
+>> layer. I would like to know what is the procedure to select systemd for
+>> the init process and connman as the network manager.
+>>
+>> It seems to me that systemd can be selected using EXTRA_IMAGE_FEATURES
+>> from local.conf (at least with the poky distro)
+>> The Yocto dev manual mention using DISTRO_FEATURES_append but it is
+>> usable when creating a custom distro.
+>
+> I have
+>
+> VIRTUAL-RUNTIME_init_manager = "systemd"
+> VIRTUAL-RUNTIME_initscripts = ""
+> DISTRO_FEATURES_append = " systemd"
+> DISTRO_FEATURES_BACKFILL_CONSIDERED="sysvinit"
+>
+> in my distro conf file and after that the generated system does only
+> systemd. But I am creating a custom distro so I am not sure if these
+> settings are any help for you.
 
-Known issues:
+Thanks, I might have to go this way at some point anyway.
+Are you using the meta-systemd layer? If so, could you give me more 
+details about your setup please?
 
-- nightly-arm appears to have a hung bitbake process due to a timed
-out sanity test.
-- nightly-qa-systemd sanity tests failed to start qemu
+Chris
 
--b
+>
+>
+> Cheers,
+> Jukka
+>
 
-
-http://autobuilder.yoctoproject.org/pub/nightly/20130724-2
-
-eclipse-poky    76df60597ae7cce069a5f1fd45089ea04c7394cd
-meta-fsl-arm 	4b8f1b4f11f21043d4a37b1c294fafb8f37f8498 	
-meta-fsl-ppc 	5d98580e7b366ef25e917b3c446308de28c8cbd4 	
-meta-intel 	bd34513dc12c412f40328001c09fa5407041e912 	
-meta-minnow 	a1cfe0e7fc59eb1e430db07840d6b6d54b8733e2 	
-meta-qt3 	b73552fb998fd30a01dbee5a172e432a16078222 	
-poky 	67864ca79da08df752487a3a4e1a975546da123d
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
 
