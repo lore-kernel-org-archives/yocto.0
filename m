@@ -1,41 +1,38 @@
-Return-Path: <djszapi@archlinux.us>
-Received: from mail-pb0-f45.google.com (mail-pb0-f45.google.com
-	[209.85.160.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62242E01363
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 21:53:55 -0700 (PDT)
-Received: by mail-pb0-f45.google.com with SMTP id mc8so268224pbc.32
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 21:53:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=KZ9YfjxLHixtd5jgc7pvGQpKyZ8tEF0iYT29sV6st38=;
-	b=ARtvZyIwq7o0LPMmy2fHJ9sXToQaEFvkWvvAEXe2B7uWzyXr74f9oWwjePf0Q6anlD
-	cuEcgOPpHRnTFNwC8pP+LXJ863d3OCfBD/PKkA3bZPlJyjTBpLA0TiQ3lbzV5WSV36VN
-	+E82zE3omxHBxuyw52Vaq08qUteVsXQCRT64R9rxSlIM3ce+Kyv6asCJ0MRzhPwMlxxD
-	OZsGqv3HGalMau5CfMQ8NJEbURYKmA1REBptRj30TcFrgVcygU6xkBX9Qt9Gm0gdmSp2
-	YlQ5ufSqsRP5qb/8jhjV3XsMX5ybXEgGGnzhc3PLHpTQ8+c1oVc70pXKviTFwM5XAtvF
-	QMIg==
-MIME-Version: 1.0
-X-Received: by 10.66.192.132 with SMTP id hg4mr12886340pac.84.1374728034401;
-	Wed, 24 Jul 2013 21:53:54 -0700 (PDT)
-Sender: djszapi@archlinux.us
-Received: by 10.70.37.237 with HTTP; Wed, 24 Jul 2013 21:53:54 -0700 (PDT)
-In-Reply-To: <CAOMwXhOVVQcdExysOk_MfXmgE1w=OKpznLfbNyMZqf8bDMU3cA@mail.gmail.com>
-References: <CAOMwXhMEn64Yw7GQbUKccg8_wSUaRpEDALAHwGj7BEWpiK+rsQ@mail.gmail.com>
-	<CAFZh4h-TnF1J9j_AaWF4tSt4=oWD=tAttmrGLiT7ux7Nxs429A@mail.gmail.com>
-	<CABcZANn2msXg+0iZLuW=u5+9vHzuDGaLkzaAzipDkf-q6rVfRQ@mail.gmail.com>
-	<CAOMwXhOMqt9AWxi7pceZ=KqacxXC81CmxFm3FkC1AgS-hoRBJQ@mail.gmail.com>
-	<CAOMwXhOVVQcdExysOk_MfXmgE1w=OKpznLfbNyMZqf8bDMU3cA@mail.gmail.com>
-Date: Thu, 25 Jul 2013 05:53:54 +0100
-X-Google-Sender-Auth: Hbrv70lB-zy6LzBy287ClAiPs9k
-Message-ID: <CAOMwXhPARqDrYYxRw8Ay1GbxRX-8cXcnyAy+KWK4fh+npZ3CeA@mail.gmail.com>
-From: Laszlo Papp <lpapp@kde.org>
-To: Chris Larson <clarson@kergoth.com>
-X-Gm-Message-State: ALoCoQlKPVMqNU+TnGT1VB1ChDx2vuNFRzAJGXBfwswkazCokYxMziUMtg5TRrP091QySqg6CQJP
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: External toolchain (sourcery)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f174.google.com (mail-pd0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DF7BE01363
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 22:48:00 -0700 (PDT)
+Received: by mail-pd0-f174.google.com with SMTP id 3so232492pdj.19
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 22:47:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=Ci6HbOUEAEA4lYnFEifB1KXlrolaHxWsRsLTteWOpcc=;
+	b=VncN7f75D6Wto7hkEHBMhXqvB3p+kQSga4//9CP5TVVjlAZ1zvqeWV1y9aZnHrIjw+
+	PXyBbcIE23GuLXee7Dru+MC6oNBcH/jsEmLtwHjwAXAPLin7HbEQfhWykUDW8j3tn1Ja
+	NN7YTVEkbn0kzu6Cbl8nnR47Lm98Au11fdkYBcMryiP7rqOH0Z8D9QQNpVWkMZ/5gVNe
+	mHmoQL4dwJt5DZuTWnYAWCg6cVbdpeOQ/hXnvYZX5Twpn+rlJaDqYf9OZjtEWPANU5+9
+	rznUwRJMDZcCQ0TofIyBymdz5xZGdgHQ1sMi5qt5pyfZmai4DHjrf97eZaDnkSrz8sek
+	mnwg==
+X-Received: by 10.68.189.228 with SMTP id gl4mr46369794pbc.57.1374731279712;
+	Wed, 24 Jul 2013 22:47:59 -0700 (PDT)
+Received: from ddeviny-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	ot4sm55466795pac.17.2013.07.24.22.47.58 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 24 Jul 2013 22:47:59 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F06185@ORSMSX106.amr.corp.intel.com>
+Date: Wed, 24 Jul 2013 22:47:56 -0700
+Message-Id: <B848B5A5-9108-4509-81BA-5FE014BB413C@gmail.com>
+References: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F06185@ORSMSX106.amr.corp.intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+X-Mailer: Apple Mail (2.1508)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: [OE-core] Doc: external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,154 +44,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 04:53:56 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc93ca2755f604e24ed090
+X-List-Received-Date: Thu, 25 Jul 2013 05:48:01 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_737D8A80-DB1E-43C7-9100-80B00EEF27B8"
 
---047d7bdc93ca2755f604e24ed090
-Content-Type: text/plain; charset=ISO-8859-1
-
-So, is there any workaround in any way to get unblocked or I should just
-switch away from Yocto for now? Unfortunately, if no workaround comes, I do
-not have any other option because then it just does not work. :(
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=4899
-
-Note, I have no clue how to use the meta-sourcery layer, and it has no any
-proper documentation about that, nor example, like the Linaro guys nicely
-made one for their solution.
-
-
-On Wed, Jul 24, 2013 at 10:32 PM, Laszlo Papp <lpapp@kde.org> wrote:
-
-> Also, it seems to be a bit less lightweight than what we have in oe-core.
-> I would not like to pull unnecessary recipes in. Is it possible to work the
-> oe-core stuff around?
->
->
-> On Wed, Jul 24, 2013 at 10:23 PM, Laszlo Papp <lpapp@kde.org> wrote:
->
->> I believe the developer story would be simpler with oe-core as opposed to
->> meta-sourcery. Besides, some documentation would be nice to have how to use
->> it, how it will work alongside the oe-core "example", and so forth.
->>
->> You know, something similar to what the Linaro people seem to have.
->>
->>
->> On Wed, Jul 24, 2013 at 9:59 PM, Chris Larson <clarson@kergoth.com>wrote:
->>
->>> On Wed, Jul 24, 2013 at 1:55 PM, Brian Hutchinson <b.hutchman@gmail.com>wrote:
->>>
->>>> On Wed, Jul 24, 2013 at 10:49 AM, Laszlo Papp <lpapp@kde.org> wrote:
->>>>
->>>>> is this officially supported by the Yocto project? I would not like to
->>>>> use Yocto for my own purposes if it is something unsupported, and I would
->>>>> need to put a significant investment into to it to make the releases
->>>>> buildable, et cetera.
->>>>>
->>>>
->>> I'm not certain as to the official Yocto support stance on
->>> external-sourcery as it exists in or-core at this time, but if you do want
->>> to use the Sourcery G++ toolchain rather than one of the alternatives
->>> suggested by others in this thread, you can use the meta-sourcery layer,
->>> which while it isn't officially supported by Yocto, is officially supported
->>> by Mentor Graphics, the company which provides the aforementioned toolchain.
->>>  --
->>> Christopher Larson
->>> clarson at kergoth dot com
->>> Founder - BitBake, OpenEmbedded, OpenZaurus
->>> Maintainer - Tslib
->>> Senior Software Engineer, Mentor Graphics
->>>
->>
->>
->
-
---047d7bdc93ca2755f604e24ed090
-Content-Type: text/html; charset=ISO-8859-1
+--Apple-Mail=_737D8A80-DB1E-43C7-9100-80B00EEF27B8
 Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">So, is there any workaround in any way to get unblocked or=
- I should just switch away from Yocto for now? Unfortunately, if no workaro=
-und comes, I do not have any other option because then it just does not wor=
-k. :(<div>
-<br></div><div><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=
-=3D4899">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4899</a><br></=
-div><div><br></div><div>Note, I have no clue how to use the meta-sourcery l=
-ayer, and it has no any proper documentation about that, nor example, like =
-the Linaro guys nicely made one for their solution.</div>
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed,=
- Jul 24, 2013 at 10:32 PM, Laszlo Papp <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:lpapp@kde.org" target=3D"_blank">lpapp@kde.org</a>&gt;</span> wrote:<br=
-><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1=
-px #ccc solid;padding-left:1ex">
-<div dir=3D"ltr">Also, it seems to be a bit less lightweight than what we h=
-ave in oe-core. I would not like to pull unnecessary recipes in. Is it poss=
-ible to work the oe-core stuff around?</div><div class=3D"HOEnZb"><div clas=
-s=3D"h5">
-<div class=3D"gmail_extra"><br><br>
-<div class=3D"gmail_quote">On Wed, Jul 24, 2013 at 10:23 PM, Laszlo Papp <s=
-pan dir=3D"ltr">&lt;<a href=3D"mailto:lpapp@kde.org" target=3D"_blank">lpap=
-p@kde.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-<div dir=3D"ltr">I believe the developer story would be simpler with oe-cor=
-e as opposed to meta-sourcery. Besides, some documentation would be nice to=
- have how to use it, how it will work alongside the oe-core &quot;example&q=
-uot;, and so forth.<div>
+Content-Type: text/plain;
+	charset=us-ascii
 
 
-<br></div><div>You know, something similar to what the Linaro people seem t=
-o have.</div></div><div><div><div class=3D"gmail_extra"><br><br><div class=
-=3D"gmail_quote">On Wed, Jul 24, 2013 at 9:59 PM, Chris Larson <span dir=3D=
-"ltr">&lt;<a href=3D"mailto:clarson@kergoth.com" target=3D"_blank">clarson@=
-kergoth.com</a>&gt;</span> wrote:<br>
+On Jul 24, 2013, at 12:47 AM, "Rifenbark, Scott M" =
+<scott.m.rifenbark@intel.com> wrote:
 
+> I am facing this issue, any clue?
+> =20
+> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of =
+'/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found
+> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of =
+'/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found
+> =20
+> This is what I have in my build/conf/local.conf:
+> =20
+> ...
+> TCMODE =3D "external-sourcery"
+> EXTERNAL_TOOLCHAIN =3D "/usr"
+> TARGET_PREFIX =3D "arm-none-linux-gnueabi-"
+> ...
+>=20
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra">=
-<div>On Wed, Jul 24, 2013 at 1:55 PM, Brian Hutchinson <span dir=3D"ltr">&l=
-t;<a href=3D"mailto:b.hutchman@gmail.com" target=3D"_blank">b.hutchman@gmai=
-l.com</a>&gt;</span> wrote:<br>
+what machine are you building for? it seems you are building for a x86 =
+target and expect arm cross toolchain to build it aint gonna work.
+chose a proper arm'ish machine and it should work.=
 
+--Apple-Mail=_737D8A80-DB1E-43C7-9100-80B00EEF27B8
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
-</div><div class=3D"gmail_quote">
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+"><br><div><div>On Jul 24, 2013, at 12:47 AM, "Rifenbark, Scott M" =
+&lt;<a =
+href=3D"mailto:scott.m.rifenbark@intel.com">scott.m.rifenbark@intel.com</a=
+>&gt; wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div style=3D"font-family: Helvetica; font-size: medium; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
+-webkit-auto; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; "><div style=3D"margin: 0in 0in =
+0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif; ">I am =
+facing this issue, any clue?<o:p></o:p></div></div><div =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: =
+'Times New Roman', serif; "><o:p>&nbsp;</o:p></div></div><div =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif; ">ERROR: Failed to obtain =
+CodeSourcery toolchain version: Execution of =
+'/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not =
+found<o:p></o:p></div></div><div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif; ">ERROR: Failed =
+to obtain CodeSourcery toolchain version: Execution of =
+'/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not =
+found<o:p></o:p></div></div></div><div style=3D"font-family: Helvetica; =
+font-size: medium; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif; "><o:p>&nbsp;</o:p></div></div><div =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: =
+'Times New Roman', serif; ">This is what I have in my =
+build/conf/local.conf:<o:p></o:p></div></div><div style=3D"font-family: =
+Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; "><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif; "><o:p>&nbsp;</o:p></div></div><div =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: =
+'Times New Roman', serif; ">...<o:p></o:p></div></div><div =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif; ">TCMODE =3D =
+"external-sourcery"<o:p></o:p></div></div><div><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif; =
+">EXTERNAL_TOOLCHAIN =3D "/usr"<o:p></o:p></div></div><div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif; ">TARGET_PREFIX =3D =
+"arm-none-linux-gnueabi-"<o:p></o:p></div></div></div><div =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: =
+'Times New Roman', serif; ">...<o:p></o:p></div></div><div =
+style=3D"font-family: Helvetica; font-size: medium; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+"><br =
+class=3D"Apple-interchange-newline"></div></blockquote></div><br><div>what=
+ machine are you building for? it seems you are building for a x86 =
+target and expect arm cross toolchain to build it aint gonna =
+work.</div><div>chose a proper arm'ish machine and it should =
+work.</div></body></html>=
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><div><div>On Wed, Jul 24, 2013 at 10:49=
- AM, Laszlo Papp <span dir=3D"ltr">&lt;<a href=3D"mailto:lpapp@kde.org" tar=
-get=3D"_blank">lpapp@kde.org</a>&gt;</span> wrote:<br>
-
-
-
-
-</div></div></div><div><div class=3D"gmail_quote"><div><div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex">
-<div dir=3D"ltr"><div>is this officially supported by the Yocto project? I =
-would not like to use Yocto for my own purposes if it is something unsuppor=
-ted, and I would need to put a significant investment into to it to make th=
-e releases buildable, et cetera.</div>
-
-
-
-
-</div></blockquote></div></div></div></div></blockquote><div><br></div><div=
->I&#39;m not certain as to the official Yocto support stance on external-so=
-urcery as it exists in or-core at this time, but if you do want to use the =
-Sourcery G++ toolchain rather than one of the alternatives suggested by oth=
-ers in this thread, you can use the meta-sourcery layer, which while it isn=
-&#39;t officially supported by Yocto, is officially supported by Mentor Gra=
-phics, the company which provides the aforementioned toolchain.</div>
-
-
-<span><font color=3D"#888888">
-
-</font></span></div><span><font color=3D"#888888">-- <br>Christopher Larson=
-<br>clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaur=
-us<br>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics
-</font></span></div></div>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-
---047d7bdc93ca2755f604e24ed090--
+--Apple-Mail=_737D8A80-DB1E-43C7-9100-80B00EEF27B8--
