@@ -1,37 +1,38 @@
-Return-Path: <djszapi@archlinux.us>
-Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5262E013A2
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 23:02:58 -0700 (PDT)
-Received: by mail-pd0-f173.google.com with SMTP id bv13so1284797pdb.4
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 23:02:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=ArCL2MMZg4xu/IYnm1NRLXVamn0rxaZGCcWmKV86uOU=;
-	b=Bs+ym9Sdqe5+KgH4k4NTZP+SkTAkTAkliw9j0S3JURaDtTVaQk8D7Qk3zRwCp0Ehe0
-	PmgAmZTVg5HQP0Zo1HUz4qcixS/j6oNkH8emygSkwQoqlAtKpOs+2Vdl0Wt8aFwiIrat
-	3QuG4harJkSthm+edeE2kxQTRe9UtToW0AsNKccqxdiqPgBS53WUPU9SnmRwOfkCXCSa
-	8kegx66fd8//dut1mW7wT+Gd6XBlTWQX0pDV+Gn1Mh9GY+0ENV+99YZswWl9yB/JxJsU
-	ze+mp1T9Nr6R6XdIepr4furB/42HkepkiO2lyuQQceQdtr+TI8K9ALnlZMmWsqO6GH0x
-	DMHg==
-MIME-Version: 1.0
-X-Received: by 10.66.154.1 with SMTP id vk1mr39577682pab.85.1374732177849;
-	Wed, 24 Jul 2013 23:02:57 -0700 (PDT)
-Sender: djszapi@archlinux.us
-Received: by 10.70.37.237 with HTTP; Wed, 24 Jul 2013 23:02:57 -0700 (PDT)
-In-Reply-To: <CAOMwXhP8p2=qK2jC+cATw5LuMjydL2YT3PGk=qQUNgJuLOR52w@mail.gmail.com>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f174.google.com (mail-pd0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F2F5E01363
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 23:11:33 -0700 (PDT)
+Received: by mail-pd0-f174.google.com with SMTP id 3so251523pdj.5
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2013 23:11:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:message-id:references:to:x-mailer;
+	bh=mfmHnSiZjKdYFnkIPR6W41ZD05Yi6MC2EH/Kl05fAGo=;
+	b=nx3zLlU1kS6H9b940SonLJjK0dRuq2V/dqHd04kC8mjRUqQcP91JLGJA3UeXAuft5n
+	d9FBQF6gDfnvgl0ouFah/A1DKUeocsyn8/irWJAdojKsNIt1Kw1Rg45y7zUOMIudA/RW
+	v66IYGu0ddceooTBaOycogQX/lE5sDOTFt1IzRDWHqAOO1ZE7Dp7Hrs3SRDSPNgxqdDF
+	appEqCwNUkxr4CvMGTX5ryD50gOikK77MThnNV9En6NgMqcEx/gt7xyX6A//BTRRnHpF
+	rRG3AvJgS0PkrOMAm9WY0qIerpXUD4du6lmUNziZQ30r4NI/LF27zRItyJNROVg0H3RK
+	bnJQ==
+X-Received: by 10.66.229.106 with SMTP id sp10mr47776613pac.117.1374732693157; 
+	Wed, 24 Jul 2013 23:11:33 -0700 (PDT)
+Received: from ddeviny-sslvpn-nc.jnpr.net (natint3.juniper.net.
+	[66.129.224.36]) by mx.google.com with ESMTPSA id
+	ib9sm51900005pbc.43.2013.07.24.23.11.29 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 24 Jul 2013 23:11:31 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAOMwXhNLwA5Rod1uz6KTu4Em55ekvORK4_OfE-LYZRvCeFitTg@mail.gmail.com>
+Date: Wed, 24 Jul 2013 23:11:29 -0700
+Message-Id: <87A93D93-46EB-49B9-B924-FFE60C6348CB@gmail.com>
 References: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F06185@ORSMSX106.amr.corp.intel.com>
 	<B848B5A5-9108-4509-81BA-5FE014BB413C@gmail.com>
 	<CAOMwXhP8p2=qK2jC+cATw5LuMjydL2YT3PGk=qQUNgJuLOR52w@mail.gmail.com>
-Date: Thu, 25 Jul 2013 07:02:57 +0100
-X-Google-Sender-Auth: wzreQZl9gzYrUV4Nlq8npU18MV8
-Message-ID: <CAOMwXhNLwA5Rod1uz6KTu4Em55ekvORK4_OfE-LYZRvCeFitTg@mail.gmail.com>
-From: Laszlo Papp <lpapp@kde.org>
-To: Khem Raj <raj.khem@gmail.com>
-X-Gm-Message-State: ALoCoQlPXiIgvinxzRxSIMXFUhehtX9xNyx/I8PYcNw1AYPfp9alHnwZMwI52iXam/2FPc+pONNy
+	<CAOMwXhNLwA5Rod1uz6KTu4Em55ekvORK4_OfE-LYZRvCeFitTg@mail.gmail.com>
+To: Laszlo Papp <lpapp@kde.org>
+X-Mailer: Apple Mail (2.1508)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Wold,
 	Saul" <saul.wold@intel.com>
 Subject: Re: [OE-core] Doc: external toolchain
@@ -46,164 +47,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 06:02:58 -0000
-Content-Type: multipart/alternative; boundary=047d7b6d908a1f6cbd04e24fc798
+X-List-Received-Date: Thu, 25 Jul 2013 06:11:34 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_8276600B-48D8-4637-A5AD-7CE4732452BD"
 
---047d7b6d908a1f6cbd04e24fc798
-Content-Type: text/plain; charset=ISO-8859-1
-
-I also filed a bugreport with regards to this:
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=4901
-
-
-On Thu, Jul 25, 2013 at 6:57 AM, Laszlo Papp <lpapp@kde.org> wrote:
-
-> You seem to have missed this email:
-> https://lists.yoctoproject.org/pipermail/yocto/2013-July/017416.html
->
->
-> On Thu, Jul 25, 2013 at 6:47 AM, Khem Raj <raj.khem@gmail.com> wrote:
->
->>
->> On Jul 24, 2013, at 12:47 AM, "Rifenbark, Scott M" <
->> scott.m.rifenbark@intel.com> wrote:
->>
->> I am facing this issue, any clue?****
->> ** **
->> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of
->> '/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found****
->> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of
->> '/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found****
->>  ** **
->> This is what I have in my build/conf/local.conf:****
->> ** **
->> ...****
->> TCMODE = "external-sourcery"****
->> EXTERNAL_TOOLCHAIN = "/usr"****
->> TARGET_PREFIX = "arm-none-linux-gnueabi-"****
->>  ...****
->>
->>
->> what machine are you building for? it seems you are building for a x86
->> target and expect arm cross toolchain to build it aint gonna work.
->> chose a proper arm'ish machine and it should work.
->>
->
->
-
---047d7b6d908a1f6cbd04e24fc798
-Content-Type: text/html; charset=ISO-8859-1
+--Apple-Mail=_8276600B-48D8-4637-A5AD-7CE4732452BD
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=iso-8859-1
 
-<div dir=3D"ltr">I also filed a bugreport with regards to this:=A0<a href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4901">https://bugzi=
-lla.yoctoproject.org/show_bug.cgi?id=3D4901</a></div><div class=3D"gmail_ex=
-tra"><br><br>
-<div class=3D"gmail_quote">On Thu, Jul 25, 2013 at 6:57 AM, Laszlo Papp <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:lpapp@kde.org" target=3D"_blank">lpapp=
-@kde.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<div dir=3D"ltr">You seem to have missed this email:=A0<a href=3D"https://l=
-ists.yoctoproject.org/pipermail/yocto/2013-July/017416.html" target=3D"_bla=
-nk">https://lists.yoctoproject.org/pipermail/yocto/2013-July/017416.html</a=
-></div>
-<div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">On Thu, Jul 25, 2013 at 6:47 AM, Khem Ra=
-j <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_bl=
-ank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail=
-_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
-1ex">
 
-<div style=3D"word-wrap:break-word"><div><br><div><div>On Jul 24, 2013, at =
-12:47 AM, &quot;Rifenbark, Scott M&quot; &lt;<a href=3D"mailto:scott.m.rife=
-nbark@intel.com" target=3D"_blank">scott.m.rifenbark@intel.com</a>&gt; wrot=
-e:</div>
+On Jul 24, 2013, at 11:02 PM, Laszlo Papp <lpapp@kde.org> wrote:
 
-<br><blockquote type=3D"cite"><div style=3D"font-family:Helvetica;font-size=
-:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spa=
-cing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text=
--transform:none;white-space:normal;word-spacing:0px">
+> I also filed a bugreport with regards to this: =
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4901
 
-<div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times=
- New Roman&#39;,serif">I am facing this issue, any clue?<u></u><u></u></div=
-></div><div style=3D"font-family:Helvetica;font-size:medium;font-style:norm=
-al;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height=
-:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-s=
-pace:normal;word-spacing:0px">
+OK thanks.
 
-<div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times=
- New Roman&#39;,serif"><u></u>=A0<u></u></div></div><div style=3D"font-fami=
-ly:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-we=
-ight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-aut=
-o;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+>=20
+>=20
+> On Thu, Jul 25, 2013 at 6:57 AM, Laszlo Papp <lpapp@kde.org> wrote:
+> You seem to have missed this email: =
+https://lists.yoctoproject.org/pipermail/yocto/2013-July/017416.html
 
-<div><div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;=
-Times New Roman&#39;,serif">ERROR: Failed to obtain CodeSourcery toolchain =
-version: Execution of &#39;/usr/bin/i686-pc-linux-gnu-gcc -v&#39; failed: c=
-ommand not found<u></u><u></u></div>
 
-</div><div><div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family=
-:&#39;Times New Roman&#39;,serif">ERROR: Failed to obtain CodeSourcery tool=
-chain version: Execution of &#39;/usr/bin/i686-pc-linux-gnu-gcc -v&#39; fai=
-led: command not found<u></u><u></u></div>
+yes I was reading the digest serially
 
-</div></div><div style=3D"font-family:Helvetica;font-size:medium;font-style=
-:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-h=
-eight:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px">
+>=20
+>=20
+> On Thu, Jul 25, 2013 at 6:47 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>=20
+> On Jul 24, 2013, at 12:47 AM, "Rifenbark, Scott M" =
+<scott.m.rifenbark@intel.com> wrote:
+>=20
+>> I am facing this issue, any clue?
+>> =20
+>> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of =
+'/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found
+>> ERROR: Failed to obtain CodeSourcery toolchain version: Execution of =
+'/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found
+>> =20
+>> This is what I have in my build/conf/local.conf:
+>> =20
+>> ...
+>> TCMODE =3D "external-sourcery"
+>> EXTERNAL_TOOLCHAIN =3D "/usr"
+>> TARGET_PREFIX =3D "arm-none-linux-gnueabi-"
+>> ...
+>>=20
+>=20
+> what machine are you building for? it seems you are building for a x86 =
+target and expect arm cross toolchain to build it aint gonna work.
+> chose a proper arm'ish machine and it should work.
+>=20
+>=20
 
-<div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times=
- New Roman&#39;,serif"><u></u>=A0<u></u></div></div><div style=3D"font-fami=
-ly:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-we=
-ight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-aut=
-o;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
 
-<div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times=
- New Roman&#39;,serif">This is what I have in my build/conf/local.conf:<u><=
-/u><u></u></div></div><div style=3D"font-family:Helvetica;font-size:medium;=
-font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:nor=
-mal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transfo=
-rm:none;white-space:normal;word-spacing:0px">
+--Apple-Mail=_8276600B-48D8-4637-A5AD-7CE4732452BD
+Content-Transfer-Encoding: 7bit
+Content-Type: text/html;
+	charset=iso-8859-1
 
-<div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times=
- New Roman&#39;,serif"><u></u>=A0<u></u></div></div><div style=3D"font-fami=
-ly:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-we=
-ight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-aut=
-o;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+<html><head><meta http-equiv="Content-Type" content="text/html charset=iso-8859-1"></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><br><div><div>On Jul 24, 2013, at 11:02 PM, Laszlo Papp &lt;<a href="mailto:lpapp@kde.org">lpapp@kde.org</a>&gt; wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite"><div dir="ltr">I also filed a bugreport with regards to this:&nbsp;<a href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4901">https://bugzilla.yoctoproject.org/show_bug.cgi?id=4901</a></div></blockquote><div><br></div><div>OK thanks.</div><br><blockquote type="cite"><div class="gmail_extra"><br><br>
+<div class="gmail_quote">On Thu, Jul 25, 2013 at 6:57 AM, Laszlo Papp <span dir="ltr">&lt;<a href="mailto:lpapp@kde.org" target="_blank">lpapp@kde.org</a>&gt;</span> wrote:<br><blockquote class="gmail_quote" style="margin: 0px 0px 0px 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, 204); border-left-style: solid; padding-left: 1ex; position: static; z-index: auto; ">
+<div dir="ltr">You seem to have missed this email:&nbsp;<a href="https://lists.yoctoproject.org/pipermail/yocto/2013-July/017416.html" target="_blank">https://lists.yoctoproject.org/pipermail/yocto/2013-July/017416.html</a></div></blockquote></div></div></blockquote><div><br></div><div><br></div><div>yes I was reading the digest serially</div><br><blockquote type="cite"><div class="gmail_extra"><div class="gmail_quote"><blockquote class="gmail_quote" style="margin: 0px 0px 0px 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, 204); border-left-style: solid; padding-left: 1ex; position: static; z-index: auto; ">
+<div class="HOEnZb"><div class="h5"><div class="gmail_extra">
+<br><br><div class="gmail_quote">On Thu, Jul 25, 2013 at 6:47 AM, Khem Raj <span dir="ltr">&lt;<a href="mailto:raj.khem@gmail.com" target="_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
-<div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times=
- New Roman&#39;,serif">...<u></u><u></u></div></div><div style=3D"font-fami=
-ly:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-we=
-ight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-aut=
-o;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+<div style="word-wrap:break-word"><div><br><div><div>On Jul 24, 2013, at 12:47 AM, "Rifenbark, Scott M" &lt;<a href="mailto:scott.m.rifenbark@intel.com" target="_blank">scott.m.rifenbark@intel.com</a>&gt; wrote:</div>
 
-<div><div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;=
-Times New Roman&#39;,serif">TCMODE =3D &quot;external-sourcery&quot;<u></u>=
-<u></u></div></div><div><div style=3D"margin:0in 0in 0.0001pt;font-size:12p=
-t;font-family:&#39;Times New Roman&#39;,serif">
+<br><blockquote type="cite"><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
 
-EXTERNAL_TOOLCHAIN =3D &quot;/usr&quot;<u></u><u></u></div></div><div><div =
-style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times New =
-Roman&#39;,serif">TARGET_PREFIX =3D &quot;arm-none-linux-gnueabi-&quot;<u><=
-/u><u></u></div>
+<div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">I am facing this issue, any clue?<u></u><u></u></div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
 
-</div></div><div style=3D"font-family:Helvetica;font-size:medium;font-style=
-:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-h=
-eight:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;wh=
-ite-space:normal;word-spacing:0px">
+<div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif"><u></u>&nbsp;<u></u></div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
 
-<div style=3D"margin:0in 0in 0.0001pt;font-size:12pt;font-family:&#39;Times=
- New Roman&#39;,serif">...<u></u><u></u></div></div><div style=3D"font-fami=
-ly:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-we=
-ight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-aut=
-o;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+<div><div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found<u></u><u></u></div>
 
-<br></div></blockquote></div><br></div><div>what machine are you building f=
-or? it seems you are building for a x86 target and expect arm cross toolcha=
-in to build it aint gonna work.</div><div>chose a proper arm&#39;ish machin=
-e and it should work.</div>
+</div><div><div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/usr/bin/i686-pc-linux-gnu-gcc -v' failed: command not found<u></u><u></u></div>
+
+</div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+
+<div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif"><u></u>&nbsp;<u></u></div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+
+<div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">This is what I have in my build/conf/local.conf:<u></u><u></u></div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+
+<div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif"><u></u>&nbsp;<u></u></div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+
+<div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">...<u></u><u></u></div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+
+<div><div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">TCMODE = "external-sourcery"<u></u><u></u></div></div><div><div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">
+
+EXTERNAL_TOOLCHAIN = "/usr"<u></u><u></u></div></div><div><div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">TARGET_PREFIX = "arm-none-linux-gnueabi-"<u></u><u></u></div>
+
+</div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+
+<div style="margin:0in 0in 0.0001pt;font-size:12pt;font-family:'Times New Roman',serif">...<u></u><u></u></div></div><div style="font-family:Helvetica;font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px">
+
+<br></div></blockquote></div><br></div><div>what machine are you building for? it seems you are building for a x86 target and expect arm cross toolchain to build it aint gonna work.</div><div>chose a proper arm'ish machine and it should work.</div>
 
 </div></blockquote></div><br></div>
 </div></div></blockquote></div><br></div>
+</blockquote></div><br></body></html>
 
---047d7b6d908a1f6cbd04e24fc798--
+--Apple-Mail=_8276600B-48D8-4637-A5AD-7CE4732452BD--
