@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FB1BE013A2
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 02:24:24 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 25 Jul 2013 02:24:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,742,1367996400"; d="scan'208";a="370724645"
-Received: from unknown (HELO helios.localnet) ([10.252.122.176])
-	by fmsmga001.fm.intel.com with ESMTP; 25 Jul 2013 02:24:11 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Ash Charles <ashcharles@gmail.com>
-Date: Thu, 25 Jul 2013 10:24:10 +0100
-Message-ID: <1500336.365Z9OCVSV@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-26-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAK8F28k_8VR0qdC8JY2W020gx4EA4fGpw0yesodnLJ6j5WfT6A@mail.gmail.com>
-References: <CAK8F28k_8VR0qdC8JY2W020gx4EA4fGpw0yesodnLJ6j5WfT6A@mail.gmail.com>
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ea0-f172.google.com (mail-ea0-f172.google.com
+	[209.85.215.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57299E013A2
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 04:52:21 -0700 (PDT)
+Received: by mail-ea0-f172.google.com with SMTP id q10so883865eaj.31
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 04:52:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=kqIP8BBddOncFnIGzIee8WRDN+P8UXpKcLlOCTuscoM=;
+	b=gi0koXLQWfyzpuLGL2yg/f0I4EU8oTyo/a42v7+Pr8EhW6VgheJ/a/NGMZxZKKH7e/
+	56TOcfmrLjcp8YIGoQyF5PQZNmR92lxj2VANsR5vKKzlpHgzd/Ce209mbnUQc+MARkAD
+	LvvwcxUnH5X2qUL6lg+qF5JVf0kEIwVZycdoKzwOLejy2XuZK9jLx8pspxbroIVtF1Av
+	0u2/XIVUD2hUW6+ReWRgjJsjJeap4V9yNxZICLrGmdAQAxen78OvLi0PjHoIkURbSp6P
+	zkkIjSOBNQimUQPylPMd6cHhz5YnRlJR4W9r1eVPaljTeN74U8u5zdnyAraBkqblWa9u
+	4G/w==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Configuring Channels for Smart PM
+X-Received: by 10.14.173.70 with SMTP id u46mr41771501eel.92.1374753130178;
+	Thu, 25 Jul 2013 04:52:10 -0700 (PDT)
+Received: by 10.14.117.65 with HTTP; Thu, 25 Jul 2013 04:52:10 -0700 (PDT)
+In-Reply-To: <CADM5y7v6DT9Ls=UZNRc_uYPdrgh2AtrY_HMRPbEss=CYxOWxoQ@mail.gmail.com>
+References: <CADM5y7v6DT9Ls=UZNRc_uYPdrgh2AtrY_HMRPbEss=CYxOWxoQ@mail.gmail.com>
+Date: Thu, 25 Jul 2013 07:52:10 -0400
+Message-ID: <CALmOhg=b9JaHpH9+bRsebAoE+pq9K0QYziwT7Ji7uYjsCfOtCQ@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: mulhern <mulhern@gmail.com>
+X-Gm-Message-State: ALoCoQlCvT2TbCo8zFqFKQd8RyVztdKgJOuGpcXgvG05/EAgRHVtVGE/35jKLeomtwqFoS/P2LyN
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Discovering available Perl modules OR writing recipes for your own
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,44 +40,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 09:24:25 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 25 Jul 2013 11:52:25 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Ash,
+On 24 July 2013 11:30, mulhern <mulhern@gmail.com> wrote:
+> pulledpork tries to use the module Crypt::SSLeay and in my current
+> configuration it can't find it.
 
-On Wednesday 24 July 2013 18:59:30 Ash Charles wrote:
-> I'm looking to use a bbappend to add a repository/channel that the
-> smart package manager can use out of the box.  For zypper, this was
-> just a question of adding a configuration file to the recipe.
-> 
-> How might I preconfigure Smart?  The only way I've come up with so far
-> is a postinst 'smart channel --add....'
-
-It does seem like Smart is geared more to configuration via the command line 
-rather than editing the configuration file directly.
-
-One approach you could take would be to add a shell function to your image 
-recipe (or some class that multiple image recipes can inherit) that adds the 
-feeds, and trigger that from ROOTFS_POSTPROCESS_COMMAND; this would add the 
-feeds to your image when the image is generated. Something like this:
-
-
-add_custom_smart_config() {
-	smart --data-dir=${IMAGE_ROOTFS}/var/lib/smart channel --add ... -y
-}
-
-ROOTFS_POSTPROCESS_COMMAND += "add_custom_smart_config ; "
-
-
-It would be nice to have something built-in for this. I'll add it to my todo 
-list.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+It looks like this module has a recipe in the meta-security layer:
+http://layers.openembedded.org/layerindex/recipes/?q=perl
 
