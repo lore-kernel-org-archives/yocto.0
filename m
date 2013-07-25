@@ -1,26 +1,37 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-mealy.atl.sa.earthlink.net
-	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 812C7E01363
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 13:19:48 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=s3+OxBJ2xfUX/1Lnc5O/3lkdlPnqQVrBNJAHMR9OaQ4+ofM5MrZtt4EC5DHBJJu+;
-	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>) id 1V2S0p-0004Tf-9z
-	for yocto@yoctoproject.org; Thu, 25 Jul 2013 16:19:47 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 25 Jul 2013 13:19:53 -0700
-Message-ID: <4BBE71D4458246399621B90F7774B917@PAULD>
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2246EE014E4
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 16:57:33 -0700 (PDT)
+Received: by mail-pd0-f172.google.com with SMTP id z10so2260267pdj.31
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 16:57:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=IaoVSnZFN3B6TDxD9hVJmNv9l7Yz641eFdKXlJQ55Bk=;
+	b=CtfzTBOPo5Oq2Y3NyAJfOKb9Mbz30HT0DGiFJzVTnYxxCbOug/IeFLW0KCKNc1Zw6Q
+	iDU7tcEJ5GKMoBrZeEMn9AiPaoBUmx31b1qh4xM1Ig+46H2wzVBPWhC6NERGIJlC2Jo8
+	i2wZX5xfmvslAR94nTD0UPH8bdZbFl28fgKV9Uhmv7zkdC6ik/Wkn86FRrQgU3u2drls
+	LNWYlBSa8gv4l0ufWiBS2P0/nbC7j+vGYzG/iaVk9dQxg2QkU6r5q/GHalGZTJAFRnaT
+	SFNYYGjT3a4cYY9RjKFo0jQFn/KOHSi8cCSwlE2Yit10nFTBnetgWuAdr8eDURPYuWry
+	OqpA==
+X-Received: by 10.68.76.34 with SMTP id h2mr50846832pbw.20.1374796652910;
+	Thu, 25 Jul 2013 16:57:32 -0700 (PDT)
+Received: from krys-red.trunet.local ([210.48.94.225])
+	by mx.google.com with ESMTPSA id y6sm56481416pbl.23.2013.07.25.16.57.30
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 25 Jul 2013 16:57:32 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <51F1BB68.6010204@gna.org>
+Date: Fri, 26 Jul 2013 11:57:28 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac6JdFKPwqpx3724TXmSDgfnhzVg8g==
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606889bd14a56188bd04e48fd67830104247f350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Subject: How to enable UDHCP?
+To: yocto@yoctoproject.org
+Subject: Detecting build type within recipe (target, native or nativesdk)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,22 +43,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 20:19:51 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Thu, 25 Jul 2013 23:57:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-My build is an Intel Cedartrail system based on Dylan, using systemd. It
-appears to have udhcp available from busybox, but it's not running. systemd
-reports that it is "masked", because
-/etc/systemd/system/busybox-udhcpc.service is linked to /dev/null. What
-creates this link, and how do I get the DHCP client enabled in my build? Is
-there something else I need to include?
+Hi there,
 
--- 
+Is there a way to detect what kind of build is going on (target, native 
+or nativesdk) from within a recipe or a class?
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
- 
+Basically when using 'BBCLASSEXTEND = "native nativesdk"', how can I 
+tweak the build behaviour depending of the build type?
 
+Does anyone know an example recipe I could use as a reference for doing 
+these kind of things?
+
+Regards,
+Chris
 
