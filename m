@@ -1,37 +1,26 @@
-Return-Path: <chgans@googlemail.com>
-Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
-	[209.85.192.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2246EE014E4
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 16:57:33 -0700 (PDT)
-Received: by mail-pd0-f172.google.com with SMTP id z10so2260267pdj.31
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 16:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=IaoVSnZFN3B6TDxD9hVJmNv9l7Yz641eFdKXlJQ55Bk=;
-	b=CtfzTBOPo5Oq2Y3NyAJfOKb9Mbz30HT0DGiFJzVTnYxxCbOug/IeFLW0KCKNc1Zw6Q
-	iDU7tcEJ5GKMoBrZeEMn9AiPaoBUmx31b1qh4xM1Ig+46H2wzVBPWhC6NERGIJlC2Jo8
-	i2wZX5xfmvslAR94nTD0UPH8bdZbFl28fgKV9Uhmv7zkdC6ik/Wkn86FRrQgU3u2drls
-	LNWYlBSa8gv4l0ufWiBS2P0/nbC7j+vGYzG/iaVk9dQxg2QkU6r5q/GHalGZTJAFRnaT
-	SFNYYGjT3a4cYY9RjKFo0jQFn/KOHSi8cCSwlE2Yit10nFTBnetgWuAdr8eDURPYuWry
-	OqpA==
-X-Received: by 10.68.76.34 with SMTP id h2mr50846832pbw.20.1374796652910;
-	Thu, 25 Jul 2013 16:57:32 -0700 (PDT)
-Received: from krys-red.trunet.local ([210.48.94.225])
-	by mx.google.com with ESMTPSA id y6sm56481416pbl.23.2013.07.25.16.57.30
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 25 Jul 2013 16:57:32 -0700 (PDT)
-Sender: Chris Gagneraud <chgans@googlemail.com>
-Message-ID: <51F1BB68.6010204@gna.org>
-Date: Fri, 26 Jul 2013 11:57:28 +1200
-From: Christian Gagneraud <chgans@gna.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
+Return-Path: <Qi.Chen@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABEDEE01524
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 19:04:54 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r6Q24qbB004171
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 19:04:52 -0700 (PDT)
+Received: from [128.224.162.233] (128.224.162.233) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Thu, 25 Jul 2013 19:04:52 -0700
+Message-ID: <51F1D946.4090207@windriver.com>
+Date: Fri, 26 Jul 2013 10:04:54 +0800
+From: ChenQi <Qi.Chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Detecting build type within recipe (target, native or nativesdk)
+To: <yocto@yoctoproject.org>
+References: <51F1BB68.6010204@gna.org>
+In-Reply-To: <51F1BB68.6010204@gna.org>
+X-Originating-IP: [128.224.162.233]
+Subject: Re: Detecting build type within recipe (target, native or nativesdk)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,21 +32,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2013 23:57:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Fri, 26 Jul 2013 02:04:54 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi there,
+On 07/26/2013 07:57 AM, Christian Gagneraud wrote:
+> Hi there,
+>
+> Is there a way to detect what kind of build is going on (target, 
+> native or nativesdk) from within a recipe or a class?
+>
+> Basically when using 'BBCLASSEXTEND = "native nativesdk"', how can I 
+> tweak the build behaviour depending of the build type?
+>
+> Does anyone know an example recipe I could use as a reference for 
+> doing these kind of things?
+>
+> Regards,
+> Chris
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+1. Use suffixes such as _class-native, _class-target, etc.
+I think this is the preferred way.
+Please grep the repo for more info.
 
-Is there a way to detect what kind of build is going on (target, native 
-or nativesdk) from within a recipe or a class?
+2. Use ${PN} value.
+e.g. (from dpkg.inc)
+do_install_append () {
+         if [ "${PN}" = "dpkg-native" ]; then
+                 # update-alternatives doesn't have an offline mode
+                 rm ${D}${bindir}/update-alternatives
+                 sed -i -e 
+'s|^#!.*${bindir}/perl-native.*/perl|#!/usr/bin/env nativeperl|' 
+${D}${bindir}/dpkg-*
+         else
+                 mv ${D}${bindir}/update-alternatives ${D}${sbindir}
+                 sed -i -e 
+'s|^#!.*${bindir}/perl-native.*/perl|#!/usr/bin/env perl|' 
+${D}${bindir}/dpkg-*
+         fi
+}
 
-Basically when using 'BBCLASSEXTEND = "native nativesdk"', how can I 
-tweak the build behaviour depending of the build type?
+Best Regards,
+Chen Qi
 
-Does anyone know an example recipe I could use as a reference for doing 
-these kind of things?
-
-Regards,
-Chris
 
