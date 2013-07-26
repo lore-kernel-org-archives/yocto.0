@@ -1,26 +1,28 @@
-Return-Path: <Qi.Chen@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABEDEE01524
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 19:04:54 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r6Q24qbB004171
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2013 19:04:52 -0700 (PDT)
-Received: from [128.224.162.233] (128.224.162.233) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Thu, 25 Jul 2013 19:04:52 -0700
-Message-ID: <51F1D946.4090207@windriver.com>
-Date: Fri, 26 Jul 2013 10:04:54 +0800
-From: ChenQi <Qi.Chen@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
-MIME-Version: 1.0
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-curtail.atl.sa.earthlink.net
+	(elasmtp-curtail.atl.sa.earthlink.net [209.86.89.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB046E014E4
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 00:52:24 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=nCibchVtv+ekNdqCJpVem0SXuW+XxeD9DpdjIKh7nj+2Qn58gpjoKPy395SgockE;
+	h=Received:From:To:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-curtail.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1V2cp6-00006p-7D
+	for yocto@yoctoproject.org; Fri, 26 Jul 2013 03:52:24 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
 To: <yocto@yoctoproject.org>
-References: <51F1BB68.6010204@gna.org>
-In-Reply-To: <51F1BB68.6010204@gna.org>
-X-Originating-IP: [128.224.162.233]
-Subject: Re: Detecting build type within recipe (target, native or nativesdk)
+References: <4BBE71D4458246399621B90F7774B917@PAULD>
+In-Reply-To: <4BBE71D4458246399621B90F7774B917@PAULD>
+Date: Fri, 26 Jul 2013 00:52:31 -0700
+Message-ID: <D72F16BEC5FB4DA3A3BAD8544CA18AF5@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6JdFKPwqpx3724TXmSDgfnhzVg8gAXFAng
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606885a630e3a9f6739900457754f71618405350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Re: How to enable UDHCP?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,52 +34,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jul 2013 02:04:54 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 26 Jul 2013 07:52:25 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On 07/26/2013 07:57 AM, Christian Gagneraud wrote:
-> Hi there,
->
-> Is there a way to detect what kind of build is going on (target, 
-> native or nativesdk) from within a recipe or a class?
->
-> Basically when using 'BBCLASSEXTEND = "native nativesdk"', how can I 
-> tweak the build behaviour depending of the build type?
->
-> Does anyone know an example recipe I could use as a reference for 
-> doing these kind of things?
->
-> Regards,
-> Chris
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-1. Use suffixes such as _class-native, _class-target, etc.
-I think this is the preferred way.
-Please grep the repo for more info.
+> From: Paul D. DeRocco
+> 
+> My build is an Intel Cedartrail system based on Dylan, using 
+> systemd. It
+> appears to have udhcp available from busybox, but it's not 
+> running. systemd
+> reports that it is "masked", because
+> /etc/systemd/system/busybox-udhcpc.service is linked to 
+> /dev/null. What
+> creates this link, and how do I get the DHCP client enabled 
+> in my build? Is
+> there something else I need to include?
 
-2. Use ${PN} value.
-e.g. (from dpkg.inc)
-do_install_append () {
-         if [ "${PN}" = "dpkg-native" ]; then
-                 # update-alternatives doesn't have an offline mode
-                 rm ${D}${bindir}/update-alternatives
-                 sed -i -e 
-'s|^#!.*${bindir}/perl-native.*/perl|#!/usr/bin/env nativeperl|' 
-${D}${bindir}/dpkg-*
-         else
-                 mv ${D}${bindir}/update-alternatives ${D}${sbindir}
-                 sed -i -e 
-'s|^#!.*${bindir}/perl-native.*/perl|#!/usr/bin/env perl|' 
-${D}${bindir}/dpkg-*
-         fi
-}
+It appears this is masked by a post-install script in
+meta/recipes-core/systemd/system-compat-units.bb. The comment says "Units to
+make systemd work better with existing sysvinit scripts." Doesn't seem like
+it's doing that in this case. However, if I tweak the recipe so that the
+systemd service unit for busybox-udhcpc isn't masked, it doesn't reveal a
+valid service unit, I wind up with nothing. That suggests that there should
+be a sysvinit script somewhere else for starting udhcpc, but I can't find
+anything under /etc that contains the string "udhcpc" other than the script
+that udhcpc calls when an interface changes state.
 
-Best Regards,
-Chen Qi
+I also find that I can manually run udhcpc with the appropriate interface
+parameter, and it works fine; my Samba server from OE becomes accessible
+from a Windows machine, and everything seems happy. So how is udhcpc
+normally supposed to be launched? I could hack it in any number of ways, but
+I'd like to know the right way, because I'd like it to be able to assign an
+address if someone plugs in a USB WiFi dongle, too, and that's beyond my
+ability.
+
+Or is this just something that works with sysvinit, but no one's gotten
+around to figuring out how to integrate it into systemd, and I'm on my own?
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
