@@ -1,27 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F0DAE013EC
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 13:27:46 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 603A9F81207; Fri, 26 Jul 2013 14:27:46 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id A6A67F81206;
-	Fri, 26 Jul 2013 14:27:43 -0600 (MDT)
-Message-ID: <51F2DBC1.4010907@mlbassoc.com>
-Date: Fri, 26 Jul 2013 14:27:45 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <ashcharles@gmail.com>
+Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
+	[209.85.128.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DA3DE013DE
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 15:22:56 -0700 (PDT)
+Received: by mail-ve0-f180.google.com with SMTP id pb11so350240veb.25
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 15:22:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=nES6Tl2hsyGHyul6iztr9K2r3InVRRej2TbBv2PaWYw=;
+	b=Rb0pvRVcvems0/9SRoY/VaFvUEEDxirph1DeElsUjlCI/rHoszfFyd8Qh+lKtoaW9Y
+	TwCgNCxLTdbOZYUJwZi9nrjf0Gc8TiO4zHlubZKD+4uzIKN9nMNiIUO/zbaG/S3dFzkT
+	AZMXQmEIvVUNgl2ZmpDGjlVAgXDw33cpOVh7NeaYzoYPz5khun9l/zsN2zLMxXTF0b5E
+	QVk1o7GkJp/qxKAbmTy1AGCQZ4AhaVaHByAhyIKE//WgS4OP1/4LFajBwAXoiGJIdvoA
+	ZZ/hJWHk9MP5+Wxub/eY7MIKxoyfsxw8Gn2URI500aiZ4iWr/CmllHvx5KeLN6IytvM9
+	bTtg==
+X-Received: by 10.58.118.200 with SMTP id ko8mr21592285veb.94.1374877376075;
+	Fri, 26 Jul 2013 15:22:56 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-References: <51F2A0A7.4060202@mlbassoc.com>
-In-Reply-To: <51F2A0A7.4060202@mlbassoc.com>
-Subject: Re: Build/install question
+Received: by 10.58.180.133 with HTTP; Fri, 26 Jul 2013 15:22:25 -0700 (PDT)
+In-Reply-To: <1500336.365Z9OCVSV@helios>
+References: <CAK8F28k_8VR0qdC8JY2W020gx4EA4fGpw0yesodnLJ6j5WfT6A@mail.gmail.com>
+	<1500336.365Z9OCVSV@helios>
+From: Ash Charles <ashcharles@gmail.com>
+Date: Fri, 26 Jul 2013 15:22:25 -0700
+Message-ID: <CAK8F28kBgAxR4gauo8F1L9RyOYa4s_vU9Sq+=jOZbPpbm=D5qg@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Configuring Channels for Smart PM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,108 +39,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jul 2013 20:27:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 26 Jul 2013 22:22:59 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2013-07-26 10:15, Gary Thomas wrote:
-> One final tidy-up for my Amanda recipe.  In do_install() I have:
->      install -d -m 0777 -o amandabackup -g amandabackup ${D}/amanda
->      install -d -m 0777 -o amandabackup -g amandabackup ${D}/amanda/vtapes/slot{1,2,3,4}
->      install -d -m 0777 -o amandabackup -g amandabackup ${D}/amanda/holding
->      install -d -m 0777 -o amandabackup -g amandabackup ${D}/amanda/state/{curinfo,log,index}
->
-> The problem I have is that /amanda and /amanda/holding end up with
-> the correct file owner/group, but the others (anything that has
-> multiple names) end up being owned by 'root'. When I install my package,
-> I get this on the target:
->     # ls -lR /amanda/
->     /amanda/:
->     total 3
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 holding
->     drwxr-xr-x 5 root         root         1024 Jul 26 15:44 state
->     drwxr-xr-x 6 root         root         1024 Jul 26 15:44 vtapes
->
->     /amanda/holding:
->     total 0
->
->     /amanda/state:
->     total 3
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 curinfo
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 index
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 log
->
->     /amanda/state/curinfo:
->     total 0
->
->     /amanda/state/index:
->     total 0
->
->     /amanda/state/log:
->     total 0
->
->     /amanda/vtapes:
->     total 4
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 slot1
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 slot2
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 slot3
->     drwxr-xr-x 2 amandabackup amandabackup 1024 Jul 26  2013 slot4
->
->     /amanda/vtapes/slot1:
->     total 0
->
->     /amanda/vtapes/slot2:
->     total 0
->
->     /amanda/vtapes/slot3:
->     total 0
->
->     /amanda/vtapes/slot4:
->     total 0
->
-> Is this to be expected, or is it a bug?  If so, where do I look
-> and/or report it?
->
+Hi Paul,
 
-A little experiment shows that the problem is only with the directories
-that are implicitly created, e.g. /amanda/state/
+Thanks very much for your help.  This worked like a charm for me.
 
-Indeed, this seems to be how install works and bitbake is using the
-native host version:
+For future people searching:
+- this didn't work (don't know why):
+https://github.com/gumstix/meta-gumstix-extras/blob/02709f4fc5db1c4be6e5fc77e5e9630749a6daf7/recipes-devtools/python/python-smartpm/python-smartpm_1.4.1.bbappend
 
-   root@zeus:/tmp# install -d -m 0755 -o gthomas -g gthomas /tmp/this/is/a/long/dir/tree
-   root@zeus:/tmp# ls -lR /tmp/this
-   /tmp/this:
-   total 4
-   drwxr-xr-x 3 root root 4096 Jul 26 14:24 is
+- this worked:
+https://github.com/gumstix/meta-gumstix-extras/commit/acff007afffb19269e21bfd4cc1398fe23f00160
 
-   /tmp/this/is:
-   total 4
-   drwxr-xr-x 3 root root 4096 Jul 26 14:24 a
+Hurrah!
+--Ash
 
-   /tmp/this/is/a:
-   total 4
-   drwxr-xr-x 3 root root 4096 Jul 26 14:24 long
-
-   /tmp/this/is/a/long:
-   total 4
-   drwxr-xr-x 3 root root 4096 Jul 26 14:24 dir
-
-   /tmp/this/is/a/long/dir:
-   total 4
-   drwxr-xr-x 2 gthomas gthomas 4096 Jul 26 14:24 tree
-
-   /tmp/this/is/a/long/dir/tree:
-   total 0
-
-All of the intermediate directories are owned by 'root', not
-the designated owner.
-
-Looks like I'll just work around this one...
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+On Thu, Jul 25, 2013 at 2:24 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> Hi Ash,
+>
+> On Wednesday 24 July 2013 18:59:30 Ash Charles wrote:
+>> I'm looking to use a bbappend to add a repository/channel that the
+>> smart package manager can use out of the box.  For zypper, this was
+>> just a question of adding a configuration file to the recipe.
+>>
+>> How might I preconfigure Smart?  The only way I've come up with so far
+>> is a postinst 'smart channel --add....'
+>
+> It does seem like Smart is geared more to configuration via the command line
+> rather than editing the configuration file directly.
+>
+> One approach you could take would be to add a shell function to your image
+> recipe (or some class that multiple image recipes can inherit) that adds the
+> feeds, and trigger that from ROOTFS_POSTPROCESS_COMMAND; this would add the
+> feeds to your image when the image is generated. Something like this:
+>
+>
+> add_custom_smart_config() {
+>         smart --data-dir=${IMAGE_ROOTFS}/var/lib/smart channel --add ... -y
+> }
+>
+> ROOTFS_POSTPROCESS_COMMAND += "add_custom_smart_config ; "
+>
+>
+> It would be nice to have something built-in for this. I'll add it to my todo
+> list.
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
