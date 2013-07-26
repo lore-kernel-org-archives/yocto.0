@@ -1,25 +1,25 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6FD9E01569
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 08:49:40 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 26 Jul 2013 08:49:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,752,1367996400"; d="scan'208";a="376634770"
-Received: from unknown (HELO helios.localnet) ([10.252.122.182])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Jul 2013 08:49:39 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 26 Jul 2013 16:49:37 +0100
-Message-ID: <1961165.AMxETSbCgv@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-26-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CA+Z6RkUS6gZw3-fzW_muVBC5Cq5Wz7Bo3P+YEVJKf+1OV9=sKg@mail.gmail.com>
-References: <CA+Z6RkUS6gZw3-fzW_muVBC5Cq5Wz7Bo3P+YEVJKf+1OV9=sKg@mail.gmail.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0030E01567
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 08:49:46 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 52B6BF811FF; Fri, 26 Jul 2013 09:49:46 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id DA511F81205;
+	Fri, 26 Jul 2013 09:49:42 -0600 (MDT)
+Message-ID: <51F29A98.4030006@mlbassoc.com>
+Date: Fri, 26 Jul 2013 09:49:44 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-Cc: "navani.srivastava@lnties.com" <navani.srivastava@lnties.com>,
-	Navani Srivastava <navani.srivastava@gmail.com>
-Subject: Re: bitbake -c populate_sdk -v poky-image
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: It's a [PERL] lie...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +31,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jul 2013 15:49:46 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 26 Jul 2013 15:49:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Navani,
+After three weeks, I've finally figured out why my PERL based
+programs (Amanda in particular) don't run on my Poky/Yocto system.
 
-On Monday 22 July 2013 16:33:48 Navani Srivastava wrote:
-> I want to build meta-toolchain-qte.bb as sdk while running
-> 
-> "bitbake -c populate_sdk -v core-image-minimal" ..
-> 
-> Please suggest what changes need to be done to provide this feature?
+I have my own distribution, derived from Poky, with some minor
+tweaks.  In particular, I have some reduced DISTRO_FEATURES(*).
+One of them that I had removed, 'largefile', was the root cause
+of my PERL problems.  It turns out that PERL is the only package
+that cares about this DISTRO_FEATURE and it builds incorrectly
+if it's left out :-(  Adding this feature back into my settings
+made PERL build properly and now Amanda runs as well.
 
-At the moment you'll have to add something like the following to your image, 
-after the "inherit image" or "inherit core-image" line:
+My point/query is that if this setting is only used by PERL *and*
+leaving it out breaks things anyway, shouldn't it just be removed
+and the PERL recipes changed to assume that it was set?
 
-TOOLCHAIN_HOST_TASK += "nativesdk-packagegroup-qte-toolchain-host"
-
-You'll also need to append to the toolchain environment setup script. See what 
-meta/recipes-qt/meta/meta-toolchain-qt.inc does and you should be able to do 
-the same in your image recipe.
-
-(I'd like to make this easier at some point in future, so that this extra stuff 
-isn't needed.)
-
-Cheers,
-Paul
+* Note: I made these changes years ago, when I was new to OE/Poky
+and still quite naive, and I don't recall why I removed 'largefile'.
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
