@@ -1,37 +1,34 @@
-Return-Path: <djszapi@archlinux.us>
-Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
-	[209.85.220.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67504E014E4
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 03:48:58 -0700 (PDT)
-Received: by mail-pa0-f50.google.com with SMTP id fb10so2617298pad.9
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 03:48:57 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f54.google.com (mail-vb0-f54.google.com
+	[209.85.212.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82615E014E4
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 03:52:31 -0700 (PDT)
+Received: by mail-vb0-f54.google.com with SMTP id q16so1098652vbe.41
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 03:52:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date
-	:x-google-sender-auth:message-id:subject:from:to:cc:content-type
-	:x-gm-message-state;
-	bh=s/zG8+CcXI8BwZVHQRPwopU5f2hpDpPgFWFcEGq4V2I=;
-	b=INm81jQofV+CdOsWaoj/Ju9dSdnVFFw791SdQZlf8VTWDTkvb/VKWcQa6t1Hdsn7KM
-	LjQQZ7WuGsGsGIndUNe+T3bU4LJfCl3bgDZne5RtyLHHUeQ2fI0IrmubPH3nZ8+Gjn4m
-	Zlt3fqmk+1B1SHuqHR48TO5z59s/buizkTPq1Eqi7DAbKzMS4EtMgQVoUBObeY36GaAv
-	ndrV0+c039t8HK3h6wy84So2z5CsLVkMPVhXVMyPkM9jg19au04k3ajPcfi+cClN+/qg
-	QvMgwoy22GoLYSEXRC8ofPN+cKBR1c/xHA58fzlVu2PhGjeFiYDncIu5OQ4fInYRUoWW
-	QOeg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:x-gm-message-state;
+	bh=Kq63umpC+7lCxgSUoa1EWdRNu/cjDmevp5t2svWzirE=;
+	b=lJZADYt1HY63F2lPQCD5tcaL6GJpJ0f4hxczPVpDIVmnnp5jha2w+IgZectakRqBGG
+	cc2tAF6yHlv32WVUHCHtdTQkzxig7wxJGG6pP4grkUKyXzhRYfPy7/M4JOmf2DFSunhN
+	/fdl2SjYwYNldXzbQ+Xrxp7ijBZxhMXSg+jKpY4/A3PJsEuIPLDe769fr+SjTLqJqFSr
+	66PhxPbPBexFP2sVMHyFSxLkOhGtVmo720H4Fqyr9cxYrSo7KqLKsi7DPQy5TN+ldgdz
+	2Q+KxS23b3nzf795WiRU1w1MJ+o8iBpHwYO92oRkZdM2K6bCRyK75GqwoJRRIk8f7nso
+	XuUg==
+X-Received: by 10.59.0.131 with SMTP id ay3mr19687379ved.78.1374835951040;
+	Fri, 26 Jul 2013 03:52:31 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.66.141.232 with SMTP id rr8mr35584850pab.184.1374835737672; 
-	Fri, 26 Jul 2013 03:48:57 -0700 (PDT)
-Sender: djszapi@archlinux.us
-Received: by 10.70.37.237 with HTTP; Fri, 26 Jul 2013 03:48:57 -0700 (PDT)
-In-Reply-To: <CAJTo0LaYEEXizu74FpjPYTLT9Jbaf8BG05oJZprowdDC7zxu6w@mail.gmail.com>
+Received: by 10.58.30.15 with HTTP; Fri, 26 Jul 2013 03:52:10 -0700 (PDT)
+In-Reply-To: <CAOMwXhNnJH9E6OyD0ch364G0WF58E4ZsU08DM4Bm8eOaqiSOeg@mail.gmail.com>
 References: <CAOMwXhMAvqvs2TF_Wc2btWfEnWmvQQJ3RNJiTDw7A1D01RSXyw@mail.gmail.com>
 	<CANyK_8fZbN9d0JmbcOhSo+4-xxvqDy29vWnXcgwms6OGFSJkrQ@mail.gmail.com>
-	<CAJTo0LaYEEXizu74FpjPYTLT9Jbaf8BG05oJZprowdDC7zxu6w@mail.gmail.com>
-Date: Fri, 26 Jul 2013 11:48:57 +0100
-X-Google-Sender-Auth: BH9r5nDAlp4Yds2Hr-V-BSvjleQ
-Message-ID: <CAOMwXhNqxTC8uP4BhKULxwX+AyDT1bdyujBeesVaCGOhEb6cgQ@mail.gmail.com>
-From: Laszlo Papp <lpapp@kde.org>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Gm-Message-State: ALoCoQnaSwRVPFm+IvB9I9+0x4B+F6URzgOmZmcLEO+9Cp/JXibDL22ybTrTkAzOfJjLp/nCqclI
+	<CAOMwXhNnJH9E6OyD0ch364G0WF58E4ZsU08DM4Bm8eOaqiSOeg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 26 Jul 2013 11:52:10 +0100
+Message-ID: <CAJTo0LbZ1mbPkznRn_nMw-aNqc4MB7qAZKas-+uH6NaHODhN5Q@mail.gmail.com>
+To: Laszlo Papp <lpapp@kde.org>
+X-Gm-Message-State: ALoCoQl+ib79pN64SpE1m+jZlF4BC7OMiJ/KHlDXOcJ9AL9TvHn5kgZ95lsV74WfI/bGRA6BZzRc
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Criteria for proposing a host distribution supported
 X-BeenThere: yocto@yoctoproject.org
@@ -45,81 +42,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jul 2013 10:48:59 -0000
-Content-Type: multipart/alternative; boundary=001a11330f14c4d42504e267e3d1
+X-List-Received-Date: Fri, 26 Jul 2013 10:52:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
---001a11330f14c4d42504e267e3d1
-Content-Type: text/plain; charset=ISO-8859-1
+On 26 July 2013 11:39, Laszlo Papp <lpapp@kde.org> wrote:
+> If you do not trust Arch, you can use something else. That does not mean
+> there would not be people who update (daily for instance) and fix the issues
+> coming up.
 
-On Fri, Jul 26, 2013 at 11:44 AM, Burton, Ross <ross.burton@intel.com>wrote:
+And that already happens - I'm running Debian Unstable, others may be
+running Rawhide, or Arch.  You'll see numerous commits in master
+fixing issues where updates on the *host* have broken the build[1].
 
-> Personally speaking, what Paul said.
->
+Let's imagine we are testing Arch or any other rolling/development
+distribution.  The day we freeze oe-core 1.5 we could write that Arch
+Linux is a tested and supported distribution, and we release. A week
+later Arch integrates (for example) a newer gcc that introduces some
+new errors, so we can't bootstrap anymore.  The documentation says
+that Arch is tested, yet someone using Arch will discover that it
+doesn't work.  They'll rightly complain that the documentation is
+wrong, and Arch doesn't work.
 
-I already replied why I think it is more blocking than helping certain part
-of the community.
+Of course if ArchLinux decided to have a maintained stable branch,
+then that would be something worth testing on.
 
+Ross
 
-> We don't "support" any other
-> unstable/rolling distribution such as Rawhide, Debian Sid/Unstable,
-> etc either as they routinely change daily and therefore the testing
-> that needs to be done to classify it as supported would have to be
-> done daily.
->
-> Note that the warning is entirely advisory, you can feel free to
-> ignore it.  I do so on one of my machines which runs Debian Unstable.
-> You can even disable it by setting SANITY_TESTED_DISTROS = "" in your
-> configuration.  Supported here means "in a normal configuration we've
-> verified that it works", nothing more.
->
+[1] The latest I can recall of the top of my head is
+8db36429ef328b97340ee1d9fc2e697cfdd68bff.
 
-This is not different for Arch, especially with ARM (not the architecture)
-and similar helpers for grabbing older versions. As I wrote in a previous
-email of this thread: it is the matter of CI node documentation. Not to
-mention, it is easier to grab certain bugfixes and so forth in Arch due to
-the quick integration of those. If you try to do that with a stable
-distribution, you will end up having troubles when waiting for a fix, or
-going yourself to fix it.
-
-Laszlo
-
---001a11330f14c4d42504e267e3d1
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">On Fri, Jul 26, 2013 at 11:44 AM, Burton, Ross <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ros=
-s.burton@intel.com</a>&gt;</span> wrote:<br><div class=3D"gmail_extra"><div=
- class=3D"gmail_quote">
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im"><span style=3D"color:rgb(3=
-4,34,34)">Personally speaking, what Paul said.</span></div></blockquote><di=
-v><br>
-</div><div>I already replied why I think it is more blocking than helping c=
-ertain part of the community.</div><div>=A0</div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
-1ex">
-<div class=3D"im"><span style=3D"color:rgb(34,34,34)">We don&#39;t &quot;su=
-pport&quot; any other</span><br></div>
-unstable/rolling distribution such as Rawhide, Debian Sid/Unstable,<br>
-etc either as they routinely change daily and therefore the testing<br>
-that needs to be done to classify it as supported would have to be<br>
-done daily.<br>
-<br>
-Note that the warning is entirely advisory, you can feel free to<br>
-ignore it. =A0I do so on one of my machines which runs Debian Unstable.<br>
-You can even disable it by setting SANITY_TESTED_DISTROS =3D &quot;&quot; i=
-n your<br>
-configuration. =A0Supported here means &quot;in a normal configuration we&#=
-39;ve<br>
-verified that it works&quot;, nothing more.<br></blockquote><div><br></div>=
-<div>This is not different for Arch, especially with ARM (not the architect=
-ure) and similar helpers for grabbing older versions. As I wrote in a previ=
-ous email of this thread: it is the matter of CI node documentation. Not to=
- mention, it is easier to grab certain bugfixes and so forth in Arch due to=
- the quick integration of those. If you try to do that with a stable distri=
-bution, you will end up having troubles when waiting for a fix, or going yo=
-urself to fix it.</div>
-<div><br></div><div>Laszlo</div></div></div></div>
-
---001a11330f14c4d42504e267e3d1--
