@@ -1,28 +1,26 @@
-Return-Path: <mulhern@gmail.com>
-Received: from mail-ob0-f182.google.com (mail-ob0-f182.google.com
-	[209.85.214.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 497AFE013EC
-	for <yocto@yoctoproject.org>; Sat, 27 Jul 2013 05:50:54 -0700 (PDT)
-Received: by mail-ob0-f182.google.com with SMTP id wo10so6269171obc.41
-	for <yocto@yoctoproject.org>; Sat, 27 Jul 2013 05:50:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=KX/TpNcXjbHzbCEHT79C1alKCzib8IRXGMAlI+GkMK4=;
-	b=dKGZbN53CcAQY64lizrexUfh1VgWyq7GIVpGjuAaGXt71E7CCT7PrBm08ftQ02UuCp
-	v1KzHxYHV1zbEHMnfnvbU2eeebdQ0P5eKNMwykRrnfprytst/3HKy1lG951GoUFmeTXA
-	/1LdZ5DCQQjP2MOREE/JHJw1Z5CgNB1CBsOn5fUmCEzKC/OFeezk3r2l7Ep6wkNvfVph
-	qKc9z7S6x6bx0UAnDbPQqdo17GEK4u2+EGbNbP1b2AgiujLQyOYVrUy8TaDtDZRUEulm
-	EoG+hnyKeI51hvJC1BREL/hHguTn8bRF0TMzkKibcNDqxlipWPh1ysy7JMiRyui2lcFp
-	vS9g==
-MIME-Version: 1.0
-X-Received: by 10.182.27.74 with SMTP id r10mr46110900obg.63.1374929453896;
-	Sat, 27 Jul 2013 05:50:53 -0700 (PDT)
-Received: by 10.76.154.97 with HTTP; Sat, 27 Jul 2013 05:50:53 -0700 (PDT)
-Date: Sat, 27 Jul 2013 08:50:53 -0400
-Message-ID: <CADM5y7tDgTXVp5b4_9UH5Q_Fx7w2p2js2Yw-Naqk+PM4Ko_OHg@mail.gmail.com>
-From: mulhern <mulhern@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Setting up Perl modules
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6940E0044E;
+	Sat, 27 Jul 2013 07:17:37 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 27 Jul 2013 07:17:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,757,1367996400"; d="scan'208";a="274167504"
+Received: from unknown (HELO [10.255.14.58]) ([10.255.14.58])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 Jul 2013 07:17:35 -0700
+Message-ID: <1374934654.1586.10.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Felix01 Fischer <felix01.fischer@iav.de>
+Date: Sat, 27 Jul 2013 09:17:34 -0500
+In-Reply-To: <OF9AE9D621.3F293DD7-ONC1257BB4.0029E8ED-C1257BB4.002AD720@retarus.de>
+References: <OF4EE7C2B2.6E6969A5-ONC1257BB3.002ECED6-C1257BB3.00316E7B@retarus.de>
+	<1374771477.6515.31.camel@empanada>
+	<OF9AE9D621.3F293DD7-ONC1257BB4.0029E8ED-C1257BB4.002AD720@retarus.de>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: meta-intel@yoctoproject.org, yocto@yoctoproject.org,
+	genivi-meta-ivi@lists.genivi.org
+Subject: Re: Antwort: Re: [meta-intel] Boot failure when using meta-intel and meta-ivi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,62 +32,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Jul 2013 12:50:56 -0000
-Content-Type: multipart/alternative; boundary=089e01184b2eb0dd0a04e27db55f
+X-List-Received-Date: Sat, 27 Jul 2013 14:17:38 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---089e01184b2eb0dd0a04e27db55f
-Content-Type: text/plain; charset=ISO-8859-1
+On Fri, 2013-07-26 at 09:48 +0200, Felix01 Fischer wrote:
+> Tom Zanussi <tom.zanussi@intel.com> schrieb am 25.07.2013 18:57:57:
+> 
+> > Von: Tom Zanussi <tom.zanussi@intel.com> 
+> > An: Felix01 Fischer <felix01.fischer@iav.de>, 
+> > Kopie: yocto@yoctoproject.org, meta-intel@yoctoproject.org, genivi-
+> > meta-ivi@lists.genivi.org 
+> > Datum: 25.07.2013 18:58 
+> > Betreff: Re: [meta-intel] Boot failure when using meta-intel and
+> meta-ivi 
+> > 
+> > On Thu, 2013-07-25 at 11:00 +0200, Felix01 Fischer wrote:
+> > > Hi, 
+> > > I haven written regarding this issues before. So maybe it sounds
+> > > familiar :-)
+> > > 
+> > > I'm unable to produce a booting image when combining a machine
+> from
+> > > the meta-intel layer with "DISTRO ?= "poky-ivi-systemd" from the
+> > > meta-ivi layer.
+> > > You will find a photograph of my screen attached, but I will
+> describe
+> > > the error anyway. 
+> > > 
+> > > 
+> > > Which error do I get? 
+> > > 
+> > > When I'm booting my image the machine fails to boot. The relevant
+> > > information (IMHO) are the lines:
+> > >        /init: line 98: mount: not found 
+> > >         /init: line 98: mount: not found 
+> > >         /init: line 98: mount: not found 
+> > > and 
+> > >         cat: can't open '/proc/cmdline': No such file or
+> directory 
+> > >         Waiting for removable media... 
+> > > 
+> > > 
+> > > When does the error occur?
+> > > 
+> > > Every image built with the local.conf options 
+> > > MACHINE ?= "crownbay"        OR        MACHINE ?= "chiefriver" 
+> > > AND 
+> > > DISTRO ?= "poky-ivi-systemd" 
+> > > 
+> > > failed to boot. 
+> > > 
+> > I guess more information is needed to even build this.  Using the
+> poky
+> > commit id in the README, using either meta-intel/master or
+> > meta-intel/dylan gives errors like this:
+> > 
+> > trz@elmorro:/usr/local/dev/yocto/ivi-test/build$ bitbake foton-image
+> > Pseudo is not present but is required, building this first before
+> the
+> > main build
+> > Loading cache: 100% |###########################################|
+> ETA:
+> > 00:00:00
+> > Loaded 1162 entries from dependency cache.
+> > ERROR: No recipes available for:
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-extended/common-
+> > api/dbus_1.6.10.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/dbus/
+> > dbus_1.6.10.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-connectivity/
+> > connman/connman_1.15.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-graphics/xorg-
+> > xserver/xserver-xorg_1.14.0.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/busybox/
+> > busybox_1.21.1.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/eglibc/
+> > eglibc_2.18.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-intel/meta-crownbay/recipes-
+> > kernel/linux/linux-yocto-rt_3.8.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-qt/qt4/qt4-
+> > embedded_4.8.5.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-intel/common/recipes-graphics/
+> > mesa/mesa_9.0.2.bbappend
+> >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/netbase/
+> > netbase_5.1.bbappend
+> > ERROR: Command execution failed: Exited with 1
+> > 
+> > So, please supply the relevant commits for all layers used..
+> > 
+> 
+> First, thank you for your help. 
+> I guess your meta-ivi is not up to date. You have to "git checkout
+> 4.0.2", which is the latest meta-ivi release
+> I have been building non-booting images for quite some time now using
+> various releases of poky, meta-intel and meta-ivi, so it shouldn't
+> rely on one special commit. 
+> Currently I'm using "git checkout 4.0.2" for meta-ivi and the dylan
+> branch for poky and meta-intel aswell.
+> 
+OK, with those commits, I was able to get a good build (the README is
+also misleading about adding the INCOMPATIBLE_LICENSE line - it doesn't
+build if you do what it says).
 
-Hi all,
+Anyway, from your error message:
+   /init: line 98: mount: not found
 
-Pulled pork is a Perl script for downloading rules for Snort. It has
-dependencies on a lot of little non-standard modules which in turn have
-dependencies, etc.
+it can't find mount, which prompted me to look in the rootfs for 'mount'
+and indeed it's not there, so that causes the init script to fail as
+above.
 
-I believe that in theory the modules in the BUILD_REQUIRES variable in
-Makefile.PL corresponds to the modules that I should put in the DEPENDS
-variable in the corresponding bitbake recipe file. And the modules in the
-PREREQ_PM variable in Makefile.PL correspond to the modules that I should
-put in the RDEPENDS_${PN} variable in the recipe file. Could someone
-correct me if this is wrong, and if so, explain why?
+The mount command isn't there because meta-ivi applies its own busybox
+defconfig.  From that defconfig, we can see that it excludes mount:
 
-Here's my second question. I will need to be able to have
-pulledpork.plavailable to use during the installation of Snort. For
-this reason, I have
-given the pulledpork recipe and all the modules on which it depends a
-native variant. How can I be sure that pulledpork and all the modules on
-which it depends will be available for use in the directory for my build
-machine when building snort for my target machine? Should getting all the
-RDEPENDS_${PN} correct and putting pulledpork-native in the DEPENDS
-variable for Snort do it? Or must I do something else?
+# CONFIG_MOUNT is not set
 
-Thanks!
+which is why the live image init script can't find mount and fails like
+it does.
 
-- mulhern
+Removing the busybox_1.20.2.bbappend in the meta-ivi layer fixes the
+problem - rebuilding after doing that I'm able to boot crownbay fine
+with the meta-ivi layer applied.
 
---089e01184b2eb0dd0a04e27db55f
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Tom
 
-<div dir=3D"ltr">Hi all,<div><br></div><div>Pulled pork is a Perl script fo=
-r downloading rules for Snort. It has dependencies on a lot of little non-s=
-tandard modules which in turn have dependencies, etc.</div><div><br></div>
-<div>I believe that in theory the modules in the BUILD_REQUIRES variable in=
- Makefile.PL corresponds to the modules that I should put in the DEPENDS va=
-riable in the corresponding bitbake recipe file. And the modules in the PRE=
-REQ_PM variable in Makefile.PL correspond to the modules that I should put =
-in the RDEPENDS_${PN} variable in the recipe file. Could someone correct me=
- if this is wrong, and if so, explain why?</div>
-<div><br></div><div>Here&#39;s my second question. I will need to be able t=
-o have <a href=3D"http://pulledpork.pl">pulledpork.pl</a> available to use =
-during the installation of Snort. For this reason, I have given the pulledp=
-ork recipe and all the modules on which it depends a native variant. How ca=
-n I be sure that pulledpork and all the modules on which it depends will be=
- available for use in the directory for my build machine when building snor=
-t for my target machine? Should getting all the RDEPENDS_${PN} correct and =
-putting pulledpork-native in the DEPENDS variable for Snort do it? Or must =
-I do something else?</div>
-<div><br></div><div>Thanks!</div><div><br></div><div>- mulhern</div><div><b=
-r></div></div>
+> The exact commits are (copied from the crownbay build):
+> 
+> Build Configuration: 
+> BB_VERSION        = "1.18.0" 
+> BUILD_SYS         = "x86_64-linux" 
+> NATIVELSBSTRING   = "Ubuntu-12.04" 
+> TARGET_SYS        = "i586-oe-linux" 
+> MACHINE           = "crownbay" 
+> DISTRO            = "poky-ivi-systemd" 
+> DISTRO_VERSION    = "4.0.2" 
+> TUNE_FEATURES     = "m32 core2" 
+> TARGET_FPU        = "" 
+> meta               
+> meta-yocto         
+> meta-yocto-bsp    = "dylan:64273e53f2789d2ea8393fc80909ac7086f168a7" 
+> meta-ivi          =
+> "(nobranch):f906b053e56c3aa009b29359ea12d2a7b8a25d57" 
+> meta-intel         
+> meta-crownbay     = "dylan:048def7bae8e3e1a11c91f5071f99bdcf8e6dd16" 
+> meta-qt5          = "dylan:806fedcc155e28ff1d802cf8d5af9c6d67c210c7"
+> 
+> 
+> 
+> > > I have tried builds with meta-ivi excalibur (not 100% sure) and
+> foton
+> > > releases and the master branch aswell 
+> > > Similar applies to poky and meta-intel. I tried the danny and
+> dylan
+> > > releases and the master branch. 
+> > > 
+> > > The boot happens from an USB stick on which I dd'ed
+> > > "foton-image-$MACHINE-$BUILDDATE.hddimg" 
+> > > 
+> > > All other builds are booting fine.
+> > > 
+> > > Addind "EXTRA_IMAGE_FEATURE = "udev-extraconf" did not change this
+> > > behauviour. 
+> > > 
+> > > Building only with meta-intel OR meta-ivi results in a booting
+> image.
+> > > 
+> > Not sure what this means - if using only meta-ivi, which machine are
+> you
+> > building?
+> > 
+> 
+> 
+> if using only meta-ivi. I'm building Qemu images. 
+> They have been booting fine all the time. 
+> 
+> 
+> 
+> > Tom
+> > 
+> > 
+> > > So, any ideas?
+> > > 
+> > > regards,
+> > > 
+> > > Viele Grüße
+> > > 
+> > > Felix Fischer
+> > > 
+> > > Studentischer Mitarbeiter (VC-D1)
+> > > Vehicle Cockpit Electronics Devices
+> > > 
+> > > IAV GmbH
+> > > Carnotstr. 1
+> > > 10587 BERLIN
+> > > GERMANY
+> > > 
+> > > Phone: +49 30 39978-9540
+> > > Fax:      +49 30 39978-9411
+> > > E-Mail:  <mailto:felix01.fischer@iav.de>
+> > > Internet: http://www.iav.com
+> > > 
+> > > Sitz/Registered Office: Berlin, 
+> > > Registergericht/Registration Court: Amtsgericht Charlottenburg, 
+> > > Registernummer/Company Registration Number: HRB 21 280, 
+> > > Geschäftsführer/Managing Directors: Kurt Blumenröder, Michael
+> > > Schubert, Dr. Rüdiger Goyk
+> > > _______________________________________________
+> > > meta-intel mailing list
+> > > meta-intel@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/meta-intel
+> > 
+> > 
 
---089e01184b2eb0dd0a04e27db55f--
+
+
