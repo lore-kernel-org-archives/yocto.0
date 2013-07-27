@@ -1,33 +1,32 @@
-Return-Path: <ashcharles@gmail.com>
-Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
-	[209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DA3DE013DE
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 15:22:56 -0700 (PDT)
-Received: by mail-ve0-f180.google.com with SMTP id pb11so350240veb.25
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 15:22:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=nES6Tl2hsyGHyul6iztr9K2r3InVRRej2TbBv2PaWYw=;
-	b=Rb0pvRVcvems0/9SRoY/VaFvUEEDxirph1DeElsUjlCI/rHoszfFyd8Qh+lKtoaW9Y
-	TwCgNCxLTdbOZYUJwZi9nrjf0Gc8TiO4zHlubZKD+4uzIKN9nMNiIUO/zbaG/S3dFzkT
-	AZMXQmEIvVUNgl2ZmpDGjlVAgXDw33cpOVh7NeaYzoYPz5khun9l/zsN2zLMxXTF0b5E
-	QVk1o7GkJp/qxKAbmTy1AGCQZ4AhaVaHByAhyIKE//WgS4OP1/4LFajBwAXoiGJIdvoA
-	ZZ/hJWHk9MP5+Wxub/eY7MIKxoyfsxw8Gn2URI500aiZ4iWr/CmllHvx5KeLN6IytvM9
-	bTtg==
-X-Received: by 10.58.118.200 with SMTP id ko8mr21592285veb.94.1374877376075;
-	Fri, 26 Jul 2013 15:22:56 -0700 (PDT)
+Return-Path: <david.c.stewart@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4ACDE01405
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2013 21:03:20 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 26 Jul 2013 21:00:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,755,1367996400"; d="scan'208";a="372041756"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by fmsmga001.fm.intel.com with ESMTP; 26 Jul 2013 21:03:19 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.220]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.4.149]) with mapi id
+	14.03.0123.003; Fri, 26 Jul 2013 21:03:19 -0700
+From: "Stewart, David C" <david.c.stewart@intel.com>
+To: mulhern <mulhern@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Discovering available Perl modules OR writing recipes
+	for your own
+Thread-Index: AQHOin467TkG8EqEiEyBThjkywlTjQ==
+Date: Sat, 27 Jul 2013 04:03:18 +0000
+Message-ID: <CE189489.3F40C%david.c.stewart@intel.com>
+In-Reply-To: <CADM5y7v6DT9Ls=UZNRc_uYPdrgh2AtrY_HMRPbEss=CYxOWxoQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.6.130613
+x-originating-ip: [10.254.82.165]
 MIME-Version: 1.0
-Received: by 10.58.180.133 with HTTP; Fri, 26 Jul 2013 15:22:25 -0700 (PDT)
-In-Reply-To: <1500336.365Z9OCVSV@helios>
-References: <CAK8F28k_8VR0qdC8JY2W020gx4EA4fGpw0yesodnLJ6j5WfT6A@mail.gmail.com>
-	<1500336.365Z9OCVSV@helios>
-From: Ash Charles <ashcharles@gmail.com>
-Date: Fri, 26 Jul 2013 15:22:25 -0700
-Message-ID: <CAK8F28kBgAxR4gauo8F1L9RyOYa4s_vU9Sq+=jOZbPpbm=D5qg@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Configuring Channels for Smart PM
+Subject: Re: Discovering available Perl modules OR writing recipes for your own
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,59 +38,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jul 2013 22:22:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 27 Jul 2013 04:03:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <45E10CDF7CB3F44EB18723D13628A0EC@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
+Did you get an answer? I'm not seeing it.
 
-Thanks very much for your help.  This worked like a charm for me.
+From: mulhern <mulhern@gmail.com<mailto:mulhern@gmail.com>>
+Date: Wednesday, July 24, 2013 8:30 AM
+To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
+ject.org<mailto:yocto@yoctoproject.org>>
+Subject: [yocto] Discovering available Perl modules OR writing recipes for =
+your own
 
-For future people searching:
-- this didn't work (don't know why):
-https://github.com/gumstix/meta-gumstix-extras/blob/02709f4fc5db1c4be6e5fc77e5e9630749a6daf7/recipes-devtools/python/python-smartpm/python-smartpm_1.4.1.bbappend
+Hi all,
 
-- this worked:
-https://github.com/gumstix/meta-gumstix-extras/commit/acff007afffb19269e21bfd4cc1398fe23f00160
+I'm working on a recipe for pullledpork, which is a Perl app which grabs an=
+d combines Snort rules from various sites.
 
-Hurrah!
---Ash
+My questions all revolve around pulledpork's various module dependencies.
 
-On Thu, Jul 25, 2013 at 2:24 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> Hi Ash,
->
-> On Wednesday 24 July 2013 18:59:30 Ash Charles wrote:
->> I'm looking to use a bbappend to add a repository/channel that the
->> smart package manager can use out of the box.  For zypper, this was
->> just a question of adding a configuration file to the recipe.
->>
->> How might I preconfigure Smart?  The only way I've come up with so far
->> is a postinst 'smart channel --add....'
->
-> It does seem like Smart is geared more to configuration via the command line
-> rather than editing the configuration file directly.
->
-> One approach you could take would be to add a shell function to your image
-> recipe (or some class that multiple image recipes can inherit) that adds the
-> feeds, and trigger that from ROOTFS_POSTPROCESS_COMMAND; this would add the
-> feeds to your image when the image is generated. Something like this:
->
->
-> add_custom_smart_config() {
->         smart --data-dir=${IMAGE_ROOTFS}/var/lib/smart channel --add ... -y
-> }
->
-> ROOTFS_POSTPROCESS_COMMAND += "add_custom_smart_config ; "
->
->
-> It would be nice to have something built-in for this. I'll add it to my todo
-> list.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
+pulledpork tries to use the module Crypt::SSLeay and in my current configur=
+ation it can't find it. It is very easy to write a little recipes that prov=
+ides this module and forge ahead.
+
+But I'm not sure that that is the correct thing to do...especially as it lo=
+oks like I'll have to do the same thing for another ten or so tiny modules =
+if I take that approach.
+
+First, is there some way that I can find out whether that or any particular=
+ Perl module is provided by some recipe somewhere? My plan would be to RDEP=
+END on every available Perl module, forcing them all to be installed in the=
+ right place, run the pulledpork script, do the right think to provide any =
+modules still missing until the script can actually complete, and then remo=
+ve from RDEPENDS all previously included modules that don't show up a value=
+s in %INC. So far, so good, but I don't know how to even locate all the Per=
+l modules that are already available.
+
+Second, if the modules really are not available is there a better way to pa=
+ckage them up than writing individual recipes for each and every missing mo=
+dule?
+
+Third, are there naming conventions that should be followed? For example th=
+ere is a recipe for liburi-perl that provides the very simply named Perl mo=
+dule URI.
+
+Thanks!
+
+- mulhern
+
+
 
