@@ -1,32 +1,83 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EDA9E013DE
-	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 15:37:53 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2013 15:37:53 -0700
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEA10E0044E
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 15:37:21 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 29 Jul 2013 15:37:20 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.89,773,1367996400"; 
-	d="scan'208,217";a="353871062"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga001.jf.intel.com with ESMTP; 29 Jul 2013 15:37:52 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 29 Jul 2013 15:37:52 -0700
+	d="scan'208,217";a="338692300"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by azsmga001.ch.intel.com with ESMTP; 29 Jul 2013 15:37:18 -0700
+Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 29 Jul 2013 15:37:18 -0700
 Received: from orsmsx108.amr.corp.intel.com ([169.254.4.194]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.12.253]) with mapi id
-	14.03.0123.003; Mon, 29 Jul 2013 15:37:52 -0700
+	ORSMSX155.amr.corp.intel.com ([169.254.7.247]) with mapi id
+	14.03.0123.003; Mon, 29 Jul 2013 15:37:17 -0700
 From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
+	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
+	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
+	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
+	<joshua.lock@intel.com>, "'McCombe, Kevin'" <kevin.mccombe@windriver.com>, 
+	"Moeller, Thorsten" <thorsten.moeller@intel.com>, 'Sanjay Raina'
+	<sraina@mvista.com>, "Osier-mixon,
+	Jeffrey" <jeffrey.osier-mixon@intel.com>, 
+	"'Polk, Jeffrey'" <jeff.polk@windriver.com>, "Purdie, Richard"
+	<richard.purdie@intel.com>, "'Ranslam, Rob'" <Rob.Ranslam@windriver.com>,
+	"Saxena, Rahul" <rahul.saxena@intel.com>, "Stewart, David C"
+	<david.c.stewart@intel.com>, "Wold, Saul" <saul.wold@intel.com>, "Zanussi, 
+	Tom" <tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>,
+	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Hudson, Sean'"
+	<Sean_Hudson@mentor.com>, "Serban,
+	Laurentiu" <laurentiu.serban@intel.com>, 
+	"Petrisor, Ileana" <ileana.petrisor@intel.com>, "Damian, Alexandru"
+	<alexandru.damian@intel.com>, "Burton, Ross" <ross.burton@intel.com>,
+	"Mueller, Robert" <robert.mueller@intel.com>, "Arce Moreno, Abraham"
+	<abraham.arce.moreno@intel.com>,
+	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
+	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
+	<mario.a.santana.lopez@intel.com>, "Calles Palacios, Osvaldo"
+	<osvaldo.calles.palacios@intel.com>, "Patel, Keyur R"
+	<keyur.r.patel@intel.com>, "'achaudha@mvista.com'" <achaudha@mvista.com>,
+	"Popa, Valentin" <valentin.popa@intel.com>, "Moses, Fred"
+	<fred.moses@intel.com>, "Iorga, Cristian" <cristian.iorga@intel.com>,
+	"Palalau, AlexandruX" <alexandrux.palalau@intel.com>, "'Butler, Paul'"
+	<Paul.Butler@windriver.com>, "Mirea, Viorel" <viorel.mirea@intel.com>, 
+	"Kamble, Nitin A" <nitin.a.kamble@intel.com>, "Szankin, Maciej"
+	<maciej.szankin@intel.com>, "Moisan, Radu" <radu.moisan@intel.com>,
+	"Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>, Olivia Salisbury
+	<olivia.salisbury@tobias.tv>, 'Chris Kaminski' <chris.kaminski@tobias.tv>, 
+	"'Maupin, Chase'" <chase.maupin@ti.com>, "Georgescu, Alexandru C"
+	<alexandru.c.georgescu@intel.com>, "Gavaz, Ionut A"
+	<ionut.a.gavaz@intel.com>, "Pruteanu, Codrin C"
+	<codrin.c.pruteanu@intel.com>, "Letnes, Thaddeus C"
+	<thaddeus.c.letnes@intel.com>, "Ong,
+	Boon Leong" <boon.leong.ong@intel.com>, 
+	"Seow, Chen Yong" <chen.yong.seow@intel.com>, "Haw, Foo Chien"
+	<foo.chien.haw@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, July
 	30, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac6MrCypvn7XHcgOTgKa/PHD67W6iAAAAnXA
-Date: Mon, 29 Jul 2013 22:37:52 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EEA8909@ORSMSX108.amr.corp.intel.com>
+Thread-Index: Ac6MrCypvn7XHcgOTgKa/PHD67W6iA==
+Date: Mon, 29 Jul 2013 22:37:15 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EEA88E4@ORSMSX108.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
+X-Mailman-Approved-At: Mon, 29 Jul 2013 16:34:41 -0700
+Cc: 'Chris Kaminski' <chris.kaminski@tobiasandtobias.com>
 Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, July 30, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,12 +90,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jul 2013 22:37:55 -0000
+X-List-Received-Date: Mon, 29 Jul 2013 22:37:23 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA8909ORSMSX108amrcor_"
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA88E4ORSMSX108amrcor_"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA8909ORSMSX108amrcor_
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA88E4ORSMSX108amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -191,7 +242,7 @@ Recurrence ends:        End after 52 occurrences
 
 
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA8909ORSMSX108amrcor_
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA88E4ORSMSX108amrcor_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -585,4 +636,4 @@ rences</b></span></font></td>
 </body>
 </html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA8909ORSMSX108amrcor_--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EEA88E4ORSMSX108amrcor_--
