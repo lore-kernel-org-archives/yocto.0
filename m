@@ -1,32 +1,41 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AFC8E0044E
-	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 11:42:55 -0700 (PDT)
-Received: by mail-vc0-f175.google.com with SMTP id ia10so2385734vcb.34
-	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 11:42:54 -0700 (PDT)
+Return-Path: <jamesnuss@nanometrics.ca>
+Received: from mail-we0-f170.google.com (mail-we0-f170.google.com
+	[74.125.82.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2960BE0044E
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 12:04:28 -0700 (PDT)
+Received: by mail-we0-f170.google.com with SMTP id w60so4388182wes.29
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 12:04:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=nanometrics.ca; s=google;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=/SIlGidQpQppRapIp9MwAWbnQdQn0s1Pu8/GmhITu7I=;
+	b=FM14pnWSENf+WlOlCEh1HWes6g5fAvo8Igkf49qGoTkwqXJHLCt8iREQ9RE/TWxGtB
+	fMSeaqw37LI3Z1E4R4yPTDy6zTOkwTWmxmirTd9mRg+AiGHsrx8hLGxI2ZI2q1XN69eD
+	DwFdc8Y7cvMfEuKnzVfW5Sd2WKvQni3JJZQQg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type:x-gm-message-state;
-	bh=eP8yBGibwBCb94IWmpsMpuImkFqm9s8fVm6HX4FBGaU=;
-	b=V0sfp+/1MQpIljCe95d2tFzU3BU46mNfalXMqdR5FuISeS6tFuaQu6W+8LzNQMQOgT
-	IzaywtmW7JIOev7INS+QqVKrXcihqF+/y7ogbQgDtRMh9xc5Z0c5yiSooxGAArguToaj
-	cpP7YvMfarLjXPlTLeuecJy644zuXDf/mWxzt6jqAD2oFRfZ6oLdtgIm37wMQA5vX6h5
-	+O3T+urvlq5ejZzjWr/AKHHfdS+jA1hZvpWRAVkc3JB7y/faBWAV6bk8D74fOQgcCRGR
-	OwmhoLv28TC3xYjg20buibgV4EmDw9pErt7SXfeOmyTunmslmbW8UntOT5LFnwCHeMEb
-	+4fA==
-X-Received: by 10.58.233.8 with SMTP id ts8mr25837178vec.44.1375123374846;
-	Mon, 29 Jul 2013 11:42:54 -0700 (PDT)
+	bh=/SIlGidQpQppRapIp9MwAWbnQdQn0s1Pu8/GmhITu7I=;
+	b=cEuO/XGN49f84BDLS7pqh3Eu5Gg6xsScE+z5bC8L+OpeVn8G2T0VWpXPalYin0Opyv
+	9mN1i9DGSGn2tR3esrEagLIK7LP5+pJnYAGTn1WQINK5g5PA0r5hmh2RnubL3p+5V/DF
+	0JjcMOa6uX5o4bPI8zQJKtjPdmnzQVTbNlLvGRgJvml+p5DIe4oTCzicZm0lu/os6ACK
+	v1oZV9Yve8Grmuasz+43GAuGmVLMwX9g/ny+lM/KsEPCpi1F3k+kfsbiSmwYjxVNqGVS
+	ZPVNKTluY4sUbm8sb86mp6N5ChLIwKRAD+HYDAJ+7JkctKq92zVLQGn23Z7Iy2yIVx0k
+	GRkw==
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Mon, 29 Jul 2013 11:42:34 -0700 (PDT)
-In-Reply-To: <CALgcdhiOgJ-sL4nDNEr+HbfoRDH7GHOhmXUhmS-UYO4tjfdf1Q@mail.gmail.com>
+X-Received: by 10.180.90.240 with SMTP id bz16mr8114057wib.24.1375124667723;
+	Mon, 29 Jul 2013 12:04:27 -0700 (PDT)
+Received: by 10.216.162.70 with HTTP; Mon, 29 Jul 2013 12:04:27 -0700 (PDT)
+In-Reply-To: <CAJTo0LaoBhuOaDVXKGQssE-sL7SvRTq6R4f3aQga-vTm=AmX=A@mail.gmail.com>
 References: <CALgcdhiOgJ-sL4nDNEr+HbfoRDH7GHOhmXUhmS-UYO4tjfdf1Q@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 29 Jul 2013 19:42:34 +0100
-Message-ID: <CAJTo0LaoBhuOaDVXKGQssE-sL7SvRTq6R4f3aQga-vTm=AmX=A@mail.gmail.com>
-To: James Nuss <jamesnuss@nanometrics.ca>
-X-Gm-Message-State: ALoCoQmtf28FT63tu2q33QSuiZe6MZVdAKe622Dp0M1hFD9NYRPzWXkIjIXez/+LXfF8jnIIzgFK
+	<CAJTo0LaoBhuOaDVXKGQssE-sL7SvRTq6R4f3aQga-vTm=AmX=A@mail.gmail.com>
+Date: Mon, 29 Jul 2013 15:04:27 -0400
+Message-ID: <CALgcdhiojzaky=uro0Xd053TVCkmiNkLQePYO8L3JuHDMU2HLw@mail.gmail.com>
+From: James Nuss <jamesnuss@nanometrics.ca>
+To: "Burton, Ross" <ross.burton@intel.com>
+X-Gm-Message-State: ALoCoQkt61ycd3Sgr1kBjRrJN3Q2aYOsu4NJ72pxhDGI5QTwhMlKOg/UnptEsNulnvMKeDXHvJyv
 Cc: yocto@yoctoproject.org
 Subject: Re: eglibc and Oracle embedded JRE compatibility
 X-BeenThere: yocto@yoctoproject.org
@@ -40,19 +49,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jul 2013 18:42:56 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 29 Jul 2013 19:04:30 -0000
+Content-Type: multipart/alternative; boundary=f46d043c7b405785d104e2ab2944
 
-On 29 July 2013 19:20, James Nuss <jamesnuss@nanometrics.ca> wrote:
-> Does anybody know if eglibc is supported as a libc implementation for
-> Oracle's embedded JRE?
-> Since Yocto only supports eglibc rather than GNU glibc [1], I'd like to know
-> if there are any issues running Oracle's embedded JRE on a Yocto build.
+--f46d043c7b405785d104e2ab2944
+Content-Type: text/plain; charset=ISO-8859-1
 
-eglibc is/was a fork of glibc so I'd be surprised if there were any
-problems using JRE on eglibc.  Note that several major desktop
-distributions (Debian, for example) have been using eglibc for quite
-some time.
+On Mon, Jul 29, 2013 at 2:42 PM, Burton, Ross <ross.burton@intel.com> wrote:
 
-Ross
+> On 29 July 2013 19:20, James Nuss <jamesnuss@nanometrics.ca> wrote:
+> > Does anybody know if eglibc is supported as a libc implementation for
+> > Oracle's embedded JRE?
+> > Since Yocto only supports eglibc rather than GNU glibc [1], I'd like to
+> know
+> > if there are any issues running Oracle's embedded JRE on a Yocto build.
+>
+> eglibc is/was a fork of glibc so I'd be surprised if there were any
+> problems using JRE on eglibc.  Note that several major desktop
+> distributions (Debian, for example) have been using eglibc for quite
+> some time.
+>
 
+It's encouraging to know that major distributions are using eglibc, since
+their is a fair assumption that they should also support major JRE's as
+well - thanks for pointing this out.
+
+
+>
+> Ross
+>
+
+--f46d043c7b405785d104e2ab2944
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<font face=3D"courier new,monospace"><br></font><br><div class=3D"gmail_quo=
+te">On Mon, Jul 29, 2013 at 2:42 PM, Burton, Ross <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.c=
+om</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 29 July 2013 19:20, Jam=
+es Nuss &lt;<a href=3D"mailto:jamesnuss@nanometrics.ca">jamesnuss@nanometri=
+cs.ca</a>&gt; wrote:<br>
+
+&gt; Does anybody know if eglibc is supported as a libc implementation for<=
+br>
+&gt; Oracle&#39;s embedded JRE?<br>
+&gt; Since Yocto only supports eglibc rather than GNU glibc [1], I&#39;d li=
+ke to know<br>
+&gt; if there are any issues running Oracle&#39;s embedded JRE on a Yocto b=
+uild.<br>
+<br>
+</div>eglibc is/was a fork of glibc so I&#39;d be surprised if there were a=
+ny<br>
+problems using JRE on eglibc. =A0Note that several major desktop<br>
+distributions (Debian, for example) have been using eglibc for quite<br>
+some time.<br></blockquote><div><br>It&#39;s encouraging to know that major=
+ distributions are using eglibc, since their is a fair assumption that they=
+ should also support major JRE&#39;s as well - thanks for pointing this out=
+.<br>
+=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex">
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br>
+
+--f46d043c7b405785d104e2ab2944--
