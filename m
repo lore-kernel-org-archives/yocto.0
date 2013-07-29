@@ -1,43 +1,17 @@
-Return-Path: <felix01.fischer@iav.de>
-Received: from mailout03.rmx.de (mailout03.rmx.de [217.111.120.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A1E3E0044E;
-	Mon, 29 Jul 2013 01:21:57 -0700 (PDT)
-Received: from cryptout01.retarus.com ([172.19.21.78])
-	by mailout03.rmx.de (8.14.4/8.14.5/retarus.custom) with ESMTP id
-	r6T8Lhut019331; Mon, 29 Jul 2013 10:21:44 +0200
-Received: from cryptout01 (localhost [127.0.0.1])
-	by cryptout01.retarus.com (Postfix) with ESMTP id 094FD14D5FA;
-	Mon, 29 Jul 2013 10:21:43 +0200 (CEST)
-Received: from cryptrouter02.dmz2.retloc (unknown [172.19.21.37])
-	by cryptout01.retarus.com (Postfix) with SMTP id 2126F14D5E6;
-	Mon, 29 Jul 2013 10:21:41 +0200 (CEST)
-X-RMX-Split: 2013-07-29 10:21:38 +0200
-In-Reply-To: <7A688B48FC95D148BFE83E098348BE503C507792@ALA-MBB.corp.ad.wrs.com>
-References: <OF4EE7C2B2.6E6969A5-ONC1257BB3.002ECED6-C1257BB3.00316E7B@retarus.de>	<1374771477.6515.31.camel@empanada>
-	<OF9AE9D621.3F293DD7-ONC1257BB4.0029E8ED-C1257BB4.002AD720@retarus.de>
-	<1374934654.1586.10.camel@empanada>
-	<7A688B48FC95D148BFE83E098348BE503C507792@ALA-MBB.corp.ad.wrs.com>
-To: "Behrens, Holger" <Holger.Behrens@windriver.com>
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81A70E013DE
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 04:34:36 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id 749ED40B22; Mon, 29 Jul 2013 11:34:36 +0000 (UTC)
+Date: Mon, 29 Jul 2013 11:34:36 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20130729113436.GA15186@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
-X-KeepSent: 99407F03:B84552DB-C1257BB7:002656CB;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP1 March 08, 2012
-From: Felix01 Fischer <felix01.fischer@iav.de>
-Message-ID: <OF99407F03.B84552DB-ONC1257BB7.002656CB-C1257BB7.002C7BB9@retarus.de>
-Date: Mon, 29 Jul 2013 10:05:52 +0200
-X-RouteServers: CN=SRVB02M/O=IAV;CN=SRVHUB1/O=IAV
-X-MIMETrack: Serialize by Router on jaja/RetarusMail(Release 8.5.3FP3|November
-	15, 2012) at 07/29/2013 10:21:02,
-	Serialize complete at 07/29/2013 10:21:02
-X-RMX-ID: 20130729-102102-r6T8L0qr030823-0@kdin02
-X-RMX-TRACE: 2013-07-29 10:21:03 KdIn2013@kdin02/mailcc08 [0.5s]
-	20130729-102102-r6T8L0qr030823-0@kdin02 0:00:00
-X-RMX-TRACE: 2013-07-29 10:21:03 RmxMSO@kdin02/mailcc06 [0.1s]
-	20130729-102102-r6T8L0qr030823-0@kdin02 0:00:01
-Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	"genivi-meta-ivi@lists.genivi.org" <genivi-meta-ivi@lists.genivi.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Antwort: RE: Antwort: Re: [meta-intel] Boot failure when using meta-intel and meta-ivi
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,657 +23,287 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jul 2013 08:22:00 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 002C7BB7C1257BB7_="
+X-List-Received-Date: Mon, 29 Jul 2013 11:34:36 -0000
+X-Groupsio-MsgNum: 15215
+Content-Type: multipart/mixed; boundary="cWoXeonUoKmBZSoM"
+Content-Disposition: inline
 
---=_alternative 002C7BB7C1257BB7_=
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--cWoXeonUoKmBZSoM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-"Behrens, Holger" <Holger.Behrens@windriver.com> schrieb am 29.07.2013=20
-08:54:40:
-
-> Von: "Behrens, Holger" <Holger.Behrens@windriver.com>
-> An: Tom Zanussi <tom.zanussi@intel.com>, Felix01 Fischer=20
-> <felix01.fischer@iav.de>,=20
-> Kopie: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,=20
-> "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "genivi-meta-
-> ivi@lists.genivi.org" <genivi-meta-ivi@lists.genivi.org>
-> Datum: 29.07.2013 08:55
-> Betreff: RE: [yocto] Antwort: Re: [meta-intel] Boot failure when=20
-> using meta-intel and meta-ivi
->=20
-> Hi,
->=20
-> > On Fri, 2013-07-26 at 09:48 +0200, Felix01 Fischer wrote:
-> > > Tom Zanussi <tom.zanussi@intel.com> schrieb am 25.07.2013 18:57:57:
-> > >
-> > > > Von: Tom Zanussi <tom.zanussi@intel.com>
-> > > > An: Felix01 Fischer <felix01.fischer@iav.de>,
-> > > > Kopie: yocto@yoctoproject.org, meta-intel@yoctoproject.org,=20
-genivi-
-> > > > meta-ivi@lists.genivi.org
-> > > > Datum: 25.07.2013 18:58
-> > > > Betreff: Re: [meta-intel] Boot failure when using meta-intel and
-> > > meta-ivi
-> > > >
-> > > > On Thu, 2013-07-25 at 11:00 +0200, Felix01 Fischer wrote:
-> > > > > Hi,
-> > > > > I haven written regarding this issues before. So maybe it sounds
-> > > > > familiar :-)
-> > > > >
-> > > > > I'm unable to produce a booting image when combining a machine
-> > > from
-> > > > > the meta-intel layer with "DISTRO ?=3D "poky-ivi-systemd" from the
-> > > > > meta-ivi layer.
-> > > > > You will find a photograph of my screen attached, but I will
-> > > describe
-> > > > > the error anyway.
-> > > > >
-> > > > >
-> > > > > Which error do I get?
-> > > > >
-> > > > > When I'm booting my image the machine fails to boot. The=20
-relevant
-> > > > > information (IMHO) are the lines:
-> > > > >        /init: line 98: mount: not found
-> > > > >         /init: line 98: mount: not found
-> > > > >         /init: line 98: mount: not found
-> > > > > and
-> > > > >         cat: can't open '/proc/cmdline': No such file or
-> > > directory
-> > > > >         Waiting for removable media...
-> > > > >
-> > > > >
-> > > > > When does the error occur?
-> > > > >
-> > > > > Every image built with the local.conf options
-> > > > > MACHINE ?=3D "crownbay"        OR        MACHINE ?=3D "chiefriver"
-> > > > > AND
-> > > > > DISTRO ?=3D "poky-ivi-systemd"
-> > > > >
-> > > > > failed to boot.
-> > > > >
-> > > > I guess more information is needed to even build this.  Using the
-> > > poky
-> > > > commit id in the README, using either meta-intel/master or
-> > > > meta-intel/dylan gives errors like this:
-> > > >
-> > > > trz@elmorro:/usr/local/dev/yocto/ivi-test/build$ bitbake=20
-foton-image
-> > > > Pseudo is not present but is required, building this first before
-> > > the
-> > > > main build
-> > > > Loading cache: 100%
-> > |###########################################|
-> > > ETA:
-> > > > 00:00:00
-> > > > Loaded 1162 entries from dependency cache.
-> > > > ERROR: No recipes available for:
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-extended/common-
-> > > > api/dbus=5F1.6.10.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/dbus/
-> > > > dbus=5F1.6.10.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-connectivity/
-> > > > connman/connman=5F1.15.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-graphics/xorg-
-> > > > xserver/xserver-xorg=5F1.14.0.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/busybox/
-> > > > busybox=5F1.21.1.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/eglibc/
-> > > > eglibc=5F2.18.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-intel/meta-crownbay/recipes-
-> > > > kernel/linux/linux-yocto-rt=5F3.8.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-qt/qt4/qt4-
-> > > > embedded=5F4.8.5.bbappend
-> > > > /usr/local/dev/yocto/ivi-test/meta-intel/common/recipes-graphics/
-> > > > mesa/mesa=5F9.0.2.bbappend
-> > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/netbase/
-> > > > netbase=5F5.1.bbappend
-> > > > ERROR: Command execution failed: Exited with 1
-> > > >
-> > > > So, please supply the relevant commits for all layers used..
-> > > >
-> > >
-> > > First, thank you for your help.
-> > > I guess your meta-ivi is not up to date. You have to "git checkout
-> > > 4.0.2", which is the latest meta-ivi release
-> > > I have been building non-booting images for quite some time now=20
-using
-> > > various releases of poky, meta-intel and meta-ivi, so it shouldn't
-> > > rely on one special commit.
-> > > Currently I'm using "git checkout 4.0.2" for meta-ivi and the dylan
-> > > branch for poky and meta-intel aswell.
-> > >
-> > OK, with those commits, I was able to get a good build (the README is
-> > also misleading about adding the INCOMPATIBLE=5FLICENSE line - it=20
-doesn't
-> > build if you do what it says).
->=20
-> Can you share where it did lead you and why?
->
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
 
-meta-intel depends on parted which is GPLv3+
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+lsb                           4.1                           1.4                           Yi Zhao <yi.zhao@windriver.com>                   
+ccache                        3.1.8                         3.1.9                         Wenzong Fan <wenzong.fan@windriver.com>           
+gettext                       0.18.2                        0.18.3                        Wenzong Fan <wenzong.fan@windriver.com>           
+blktrace                      1.0.5+gitAUTOINC+d6918c8      1.0.5+gitAUTOINC+cd0ae0f      Tom Zanussi <tom.zanussi@intel.com>               
+systemtap-uprobes             2.1+gitAUTOINC+addec813fe     2.3+gitAUTOINC+eada930        Tom Zanussi <tom.zanussi@intel.com>               
+sysprof                       1.2.0+gitAUTOINC+cd44ee6      1.2.0+gitAUTOINC+6901897      Tom Zanussi <tom.zanussi@intel.com>               
+xorg-cf-files                 1.0.4                         1.0.5                         Saul Wold <sgw@linux.intel.com>                   
+acl                           2.2.51                        2.2.52                        Saul Wold <sgw@linux.intel.com>                   
+mkelfimage                    4.0+gitAUTOINC+686a48a339     4.0+gitAUTOINC+933b5df        Saul Wold <sgw@linux.intel.com>                   
+consolekit                    0.4.5                         0.4.6                         Saul Wold <sgw@linux.intel.com>                   
+glew                          1.9.0                         1.10.0                        Saul Wold <sgw@linux.intel.com>                   
+cups                          1.6.2                         1.6.3                         Saul Wold <sgw@linux.intel.com>                   
+dpkg                          1.16.10                       1.17.1                        Saul Wold <sgw@linux.intel.com>                   
+glib-networking               2.36.2                        2.37.4                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
+docbook-sgml-dtd-4.1-native   1.0                           41                            Saul Wold <sgw@linux.intel.com>                   PRS Reports Incorrectly       
+docbook-sgml-dtd-3.1-native   1.0                           31                            Saul Wold <sgw@linux.intel.com>                   PRS Reports Incorrectly       
+createrepo                    0.4.11                        0.9.9                         Saul Wold <sgw@linux.intel.com>                   Versions after 0.9.* use YUM,...
+guilt-native                  0.33                          0.35                          Saul Wold <sgw@linux.intel.com>                   
+vte                           0.28.2                        0.34.7                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
+libgcrypt                     1.5.2                         1.5.3                         Saul Wold <sgw@linux.intel.com>                   
+resolvconf                    1.73                          1.74                          Saul Wold <sgw@linux.intel.com>                   
+texinfo                       4.13a                         5.1                           Saul Wold <sgw@linux.intel.com>                   Checking script parses direct...
+mklibs-native                 0.1.37                        0.1.38                        Saul Wold <sgw@linux.intel.com>                   
+mx-1.0                        1.4.7+gitAUTOINC+9b1db6b      1.99.4+gitAUTOINC+6a43d10     Saul Wold <sgw@linux.intel.com>                   PRS 1.99 is dev version       
+attr                          2.4.46                        2.4.47                        Saul Wold <sgw@linux.intel.com>                   
+clutter-gst-1.0               1.6.0                         2.0.6                         Ross Burton <ross.burton@intel.com>               
+wayland                       1.1.0                         1.2.0                         Ross Burton <ross.burton@intel.com>               
+clutter-gtk-1.0               1.4.2                         1.4.4                         Ross Burton <ross.burton@intel.com>               
+mtdev                         1.1.2                         1.1.3                         Ross Burton <ross.burton@intel.com>               
+weston                        1.1.0                         1.2.0                         Ross Burton <ross.burton@intel.com>               
+unzip                         6.0                           60                            Radu Moisan <radu.moisan@intel.com>               
+elfutils                      0.148                         1.7.4                         Radu Moisan <radu.moisan@intel.com>               
+gawk                          4.0.2                         4.1.0                         Radu Moisan <radu.moisan@intel.com>               
+zip                           3.0                           30                            Radu Moisan <radu.moisan@intel.com>               
+tzdata                        2013b                         2013d                         Radu Moisan <radu.moisan@intel.com>               
+pango                         1.32.5                        1.35.0                        Radu Moisan <radu.moisan@intel.com>               
+opkg                          0.1.8+svnr649                 0.1.8+svnr650                 Radu Moisan <radu.moisan@intel.com>               
+ed                            1.8                           1.9                           Radu Moisan <radu.moisan@intel.com>               
+u-boot-fw-utils               2011.06                       2013.07                       Radu Moisan <radu.moisan@intel.com>               
+mkfontscale                   1.1.0                         1.1.1                         Radu Moisan <radu.moisan@intel.com>               
+atk                           2.8.0                         2.9.3                         Radu Moisan <radu.moisan@intel.com>               
+u-boot-mkimage                2011.06                       2013.07                       Radu Moisan <radu.moisan@intel.com>               
+imake                         1.0.5                         1.0.6                         Radu Moisan <radu.moisan@intel.com>               
+kmod                          9+gitAUTOINC+62081c0f68       14+gitAUTOINC+b3e19ce         Radu Moisan <radu.moisan@intel.com>               
+systemtap                     2.1+gitAUTOINC+addec813fe     2.3+gitAUTOINC+eada930        Radu Moisan <radu.moisan@intel.com>               
+libunique                     1.1.6                         3.0.2                         Radu Moisan <radu.moisan@intel.com>               Do not upgrade to version: 2....
+liburcu                       0.7.6                         0.7.7                         Radu Moisan <radu.moisan@intel.com>               
+babeltrace                    1.1+gitAUTOINC+a386e24609     1.1.1+gitAUTOINC+91ce4fc      Radu Moisan <radu.moisan@intel.com>               
+curl                          7.30.0                        7.31.0                        Radu Moisan <radu.moisan@intel.com>               
+mobile-broadband-provider-info20120614+gitrAUTOINC+4ed      20120614+gitrAUTOINC+b1f      Radu Moisan <radu.moisan@intel.com>               
+clutter-1.0                   1.14.4                        1.15.2                        No Maintainer info                                
+cogl-1.0                      1.14.0                        1.15.2                        No Maintainer info                                
+gsettings-desktop-schemas     3.7.3                         3.9.3                         No Maintainer info                                
+at-spi2-core                  2.8.0                         2.9.4                         No Maintainer info                                
+libbsd                        0.5.2                         0.6.0                         No Maintainer info                                
+at-spi2-atk                   2.8.1                         2.9.4                         No Maintainer info                                
+rpm                           5.4.9                         5.4.12-0.20130725             Mark Hatle <mark.hatle@windriver.com>             
+xserver-xorg                  1.14.0                        1.14.99.1                     Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-intel              2.21.9                        2.21.13                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xrandr                        1.4.0                         1.4.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+fontconfig                    2.10.2                        2.10.93                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
+libpciaccess                  0.13.1                        0.13.2                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-input-evdev              2.8.0                         2.8.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+libdrm                        2.4.45                        2.4.46                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xhost                         1.0.5                         1.0.6                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+bind                          9.8.1                         9.9.3-P2                      Kai Kang <kai.kang@windriver.com>                 
+libarchive                    2.8.5                         3.1.2                         Kai Kang <kai.kang@windriver.com>                 
+libsdl                        1.2.15                        1.2.15-1                      Kai Kang <kai.kang@windriver.com>                 
+qmmp                          0.6.6                         0.7.1                         Kai Kang <kai.kang@windriver.com>                 
+alsa-tools                    1.0.26.1                      1.0.27                        Kai Kang <kai.kang@windriver.com>                 
+libx11-diet                   1.5.0                         1.6.0                         Kai Kang <kai.kang@windriver.com>                 
+directfb                      1.6.1                         1.6.3                         Kai Kang <kai.kang@windriver.com>                 
+directfb-examples             1.6.0                         1.7.0                         Kai Kang <kai.kang@windriver.com>                 
+adt-installer                 0.1.8+svnr596                 0.1.8+svnr650                 Jessica Zhang <jessica.zhang@intel.com>           
+trace-cmd                     1.2+gitAUTOINC+7055ffd37b     2.2.1+gitAUTOINC+07f0eee      Darren Hart <dvhart@linux.intel.com>              
+kernelshark                   1.2+gitAUTOINC+7055ffd37b     2.2.1+gitAUTOINC+07f0eee      Darren Hart <dvhart@linux.intel.com>              0.2 is the latest version.    
+syslinux                      4.06                          4.07                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
+telepathy-mission-control     5.14.0                        5.15.0                        Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-good     1.0.7                         1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-bad               0.10.23                       1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
+telepathy-idle                0.1.14                        0.1.16                        Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-libav            1.0.7                         1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         
+tremor                        20120314                      18906                         Cristian Iorga <cristian.iorga@intel.com>         Same revision on different SV...
+alsa-utils                    1.0.26                        1.0.27.2                      Cristian Iorga <cristian.iorga@intel.com>         
+bluez4                        4.101                         5.7                           Cristian Iorga <cristian.iorga@intel.com>         BlueZ 5.x is not backward-com...
+neard                         0.10+gitAUTOINC+eb486bf3      0.12+gitAUTOINC+3c92a37       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-bad      1.0.7                         1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         
+alsa-lib                      1.0.26                        1.0.27.2                      Cristian Iorga <cristian.iorga@intel.com>         
+alsa-utils-alsaconf           1.0.26                        1.0.27.2                      Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-good              0.10.31                       1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
+connman                       1.15                          1.16                          Cristian Iorga <cristian.iorga@intel.com>         
+harfbuzz                      0.9.17                        0.9.19                        Cristian Iorga <cristian.iorga@intel.com>         
+glib-2.0                      2.36.3                        2.37.4                        Cristian Iorga <cristian.iorga@intel.com>         2.35.8 is unstable            
+gst-ffmpeg                    0.10.13                       0.11.2                        Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
+telepathy-glib                0.20.1                        0.21.1                        Cristian Iorga <cristian.iorga@intel.com>         
+iproute2                      3.9.0                         3.10.0                        Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0                  1.0.7                         1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-base     1.0.7                         1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         
+db                            5.3.21                        6.0.20                        Cristian Iorga <cristian.iorga@intel.com>         API compatibility issue       
+gst-plugin-bluetooth          4.101                         5.7                           Cristian Iorga <cristian.iorga@intel.com>         
+net-tools                     1.60-24.2                     1.60-25                       Cristian Iorga <cristian.iorga@intel.com>         
+gst-fluendo-mp3               0.10.19                       0.10.22                       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-ugly     1.0.7                         1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         
+linux-firmware                0.0+gitAUTOINC+c530a75c1e     0.0+gitAUTOINC+931e446        Cristian Iorga <cristian.iorga@intel.com>         
+gst-fluendo-mpegdemux         0.10.71                       0.10.72                       Cristian Iorga <cristian.iorga@intel.com>         
+dbus-ptest                    1.6.10                        1.7.4                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-plugins-base              0.10.36                       1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
+gst-plugins-ugly              0.10.19                       1.1.2                         Cristian Iorga <cristian.iorga@intel.com>         not compatible with gst-fluen...
+gstreamer                     0.10.36                       1.1.2                         Cristian Iorga <cristian.iorga@intel.com>          not compatible with gst-flue...
+pulseaudio                    3.0                           4.0                           Cristian Iorga <cristian.iorga@intel.com>         
+libxfont                      1.4.5                         1.4.6                         Constantin Musca <constantinx.musca@intel.com>    
+puzzles                       r9765                         9893                          Constantin Musca <constantinx.musca@intel.com>    
+gtk+                          2.24.18                       3.9.8                         Constantin Musca <constantinx.musca@intel.com>    Do not upgrade to version: 2....
+apt                           0.9.8.2                       0.9.9.4                       Constantin Musca <constantinx.musca@intel.com>    
+qemu                          1.5.0                         1.5.2                         Constantin Musca <constantinx.musca@intel.com>    
+libxrandr                     1.4.0                         1.4.1                         Constantin Musca <constantinx.musca@intel.com>    
+librsvg                       2.32.1                        2.37.0                        Constantin Musca <constantinx.musca@intel.com>    
+libx11                        1.5.0                         1.6.0                         Constantin Musca <constantinx.musca@intel.com>    
+libuser                       0.58                          0.59                          Constantin Musca <constantinx.musca@intel.com>    
+libsoup-2.4                   2.42.1                        2.43.4                        Constantin Musca <constantinx.musca@intel.com>    
+gdk-pixbuf                    2.28.1                        2.29.2                        Constantin Musca <constantinx.musca@intel.com>    2.27.2 is unstable            
+gtk-update-icon-cache-native  3.4.4                         3.9.8                         Constantin Musca <constantinx.musca@intel.com>    
+libxxf86dga                   1.1.3                         1.1.4                         Constantin Musca <constantinx.musca@intel.com>    
+gnome-desktop                 2.32.1                        3.9.1.1                       Constantin Musca <constantinx.musca@intel.com>    waiting for the sato gtk3 port
+freetype                      2.4.12                        2.5.0                         Constantin Musca <constantinx.musca@intel.com>    
+gnome-icon-theme              2.31.0                        3.8.2                         Constantin Musca <constantinx.musca@intel.com>    waiting for the sato gtk3 port
+liberation-fonts              1.04                          1.05.2.20091019               Constantin Musca <constantinx.musca@intel.com>    2.00.0 - fontforge package re...
+xdg-utils                     1.1.0-rc1                     1.0.2                         Constantin Musca <constantinx.musca@intel.com>    only release candidates avail...
+js                            1.7.0+1.8.0rc1                185-1.0.0                     Constantin Musca <constantinx.musca@intel.com>    
+gtk+3                         3.8.2                         3.9.8                         Constantin Musca <constantinx.musca@intel.com>    
+matchbox-panel-2              2.0+gitAUTOINC+26a3a67b41     2.0+gitAUTOINC+bd69c21        Constantin Musca <constantinx.musca@intel.com>    
+pcmanfm                       1.1.0                         1.1.1                         Constantin Musca <constantinx.musca@intel.com>    
+webkit-gtk                    1.8.3                         2.1.3                         Constantin Musca <constantinx.musca@intel.com>    >= 1.10.2 needs ruby          
+matchbox-desktop              2.0+gitAUTOINC+71e3e6e042     2.0+gitAUTOINC+09170f4        Constantin Musca <constantinx.musca@intel.com>    
+videoproto                    2.3.1                         2.3.2                         Constantin Musca <constantinx.musca@intel.com>    
+libfm                         1.1.0                         1.1.1                         Constantin Musca <constantinx.musca@intel.com>    
+matchbox-keyboard             0.0+gitAUTOINC+b38f24036c     0.0+gitAUTOINC+a17b113        Constantin Musca <constantinx.musca@intel.com>    
+linux-libc-headers-yocto      3.4+git-AUTOINC+a1cdb607      3.4.52+git-AUTOINC+7eb5f      Bruce Ashfield <bruce.ashfield@windriver.com>     
+linux-libc-headers            3.8                           3.10.4                        Bruce Ashfield <bruce.ashfield@windriver.com>     
+lttng-modules                 2.2.0+gitAUTOINC+1b26381      2.3.0+gitAUTOINC+5420784      Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+flex                          2.5.35                        2.5.37                        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+python                        2.7.3                         3.3.2                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+powertop                      2.3                           2.4                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   Do not upgrade to version 1.9...
+tcf-agent                     0.4.0+gitAUTOINC+4ef94ec      8.0+gitAUTOINC+e76f240        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+autogen-native                5.17.4                        5.17.4-5                      Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+bison                         2.7.1                         3.0                           Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+python-pygobject              2.27.91                       3.9.5                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   Newer versions of python-pygo...
+subversion                    1.7.10                        1.8.1                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+makedepend                    1.0.4                         1.0.5                         Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+intltool                      0.50.2                        0.51.0                        Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+automake                      1.12.6                        1.14                          Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+git                           1.8.3                         1.8.3.4                       Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+nasm                          2.10.07                       2.10.09                       Bogdan Marinescu <bogdan.a.marinescu@intel.com>   
+sudo                          1.8.6p8                       1.8.7                         Andrei Dinu <andrei.adrianx.dinu@intel.com>       
+openjade-native               1.3.2                         1.3.3                         Andrei Dinu <andrei.adrianx.dinu@intel.com>       
+libpng                        1.6.2                         1.6.3                         Andrei Dinu <andrei.adrianx.dinu@intel.com>       1.4.3 and later changes the A...
+shadow                        4.1.4.3                       4.1.5.1                       Andrei Dinu <andrei.adrianx.dinu@intel.com>       
+Upgradable Count: 127
+Upgrade Total Count: 157
+The based commit merge time is:
+Wed Jul 24 11:35:39 2013 +0100
+The based commit is:
+commit 67864ca79da08df752487a3a4e1a975546da123d
+Author: Muhammad Shakeel <muhammad_shakeel@mentor.com>
+Date:   Fri Jul 19 16:53:25 2013 +0500
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
+--cWoXeonUoKmBZSoM
+Content-Type: image/png
+Content-Disposition: attachment; filename="weekly_upgrde_history_chart.png"
+Content-Transfer-Encoding: base64
 
+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
+rkJggg==
 
-=20
-> > Anyway, from your error message:
-> >    /init: line 98: mount: not found
-> >=20
-> > it can't find mount, which prompted me to look in the rootfs for=20
-'mount'
-> > and indeed it's not there, so that causes the init script to fail as
-> > above.
-> >=20
-> > The mount command isn't there because meta-ivi applies its own busybox
-> > defconfig.  From that defconfig, we can see that it excludes mount:
->=20
-> Because /bin/mount is provided by util-linux, and we therefore do=20
-> not need the one from busybox.
->=20
-> > # CONFIG=5FMOUNT is not set
-> >=20
-> > which is why the live image init script can't find mount and fails=20
-like
-> > it does.
-> >=20
-> > Removing the busybox=5F1.20.2.bbappend in the meta-ivi layer fixes the
-> > problem - rebuilding after doing that I'm able to boot crownbay fine
-> > with the meta-ivi layer applied.
->=20
-> That's a workaround yes.  Not sure why meta-intel BSPs can't use the
-> mount command that comes with util-linux.
+--cWoXeonUoKmBZSoM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
 
+recipe_color.inc/17: RECIPE_COLOR = "green"
 
-
-
-Just for my understanding:
-
-I did search for mount in my rootfs and I found a symlink to util-linux.
-So I assumed this would be right.
-Now two Questione come to my mind.
-First, how to recognize this as a bug? Do I need more experience or is=20
-there a another way to hunt this bug down?
-Second, how to find the root cause? Did you use grep or similiar to find=20
-the right .bbappend or is it experience again to look for the=20
-busybox.bpappend file?
-
-
-
->=20
-> Regards,
-> Holger
->=20
-> > Tom
-> >=20
-> > > The exact commits are (copied from the crownbay build):
-> > >
-> > > Build Configuration:
-> > > BB=5FVERSION        =3D "1.18.0"
-> > > BUILD=5FSYS         =3D "x86=5F64-linux"
-> > > NATIVELSBSTRING   =3D "Ubuntu-12.04"
-> > > TARGET=5FSYS        =3D "i586-oe-linux"
-> > > MACHINE           =3D "crownbay"
-> > > DISTRO            =3D "poky-ivi-systemd"
-> > > DISTRO=5FVERSION    =3D "4.0.2"
-> > > TUNE=5FFEATURES     =3D "m32 core2"
-> > > TARGET=5FFPU        =3D ""
-> > > meta
-> > > meta-yocto
-> > > meta-yocto-bsp    =3D "dylan:64273e53f2789d2ea8393fc80909ac7086f168a7"
-> > > meta-ivi          =3D
-> > > "(nobranch):f906b053e56c3aa009b29359ea12d2a7b8a25d57"
-> > > meta-intel
-> > > meta-crownbay     =3D "dylan:048def7bae8e3e1a11c91f5071f99bdcf8e6dd16"
-> > > meta-qt5          =3D "dylan:806fedcc155e28ff1d802cf8d5af9c6d67c210c7"
-> > >
-> > >
-> > >
-> > > > > I have tried builds with meta-ivi excalibur (not 100% sure) and
-> > > foton
-> > > > > releases and the master branch aswell
-> > > > > Similar applies to poky and meta-intel. I tried the danny and
-> > > dylan
-> > > > > releases and the master branch.
-> > > > >
-> > > > > The boot happens from an USB stick on which I dd'ed
-> > > > > "foton-image-$MACHINE-$BUILDDATE.hddimg"
-> > > > >
-> > > > > All other builds are booting fine.
-> > > > >
-> > > > > Addind "EXTRA=5FIMAGE=5FFEATURE =3D "udev-extraconf" did not chan=
-ge
-> > this
-> > > > > behauviour.
-> > > > >
-> > > > > Building only with meta-intel OR meta-ivi results in a booting
-> > > image.
-> > > > >
-> > > > Not sure what this means - if using only meta-ivi, which machine=20
-are
-> > > you
-> > > > building?
-> > > >
-> > >
-> > >
-> > > if using only meta-ivi. I'm building Qemu images.
-> > > They have been booting fine all the time.
-> > >
-> > >
-> > >
-> > > > Tom
-> > > >
-> > > >
-> > > > > So, any ideas?
-> > > > >
-> > > > > regards,
-> > > > >
-> > > > > Viele Gr=FC=DFe
-> > > > >
-> > > > > Felix Fischer
-> > > > >
-> > > > > Studentischer Mitarbeiter (VC-D1)
-> > > > > Vehicle Cockpit Electronics Devices
-> > > > >
-> > > > > IAV GmbH
-> > > > > Carnotstr. 1
-> > > > > 10587 BERLIN
-> > > > > GERMANY
-> > > > >
-> > > > > Phone: +49 30 39978-9540
-> > > > > Fax:      +49 30 39978-9411
-> > > > > E-Mail:  <mailto:felix01.fischer@iav.de>
-> > > > > Internet: http://www.iav.com
-> > > > >
-> > > > > Sitz/Registered Office: Berlin,
-> > > > > Registergericht/Registration Court: Amtsgericht Charlottenburg,
-> > > > > Registernummer/Company Registration Number: HRB 21 280,
-> > > > > Gesch=E4ftsf=FChrer/Managing Directors: Kurt Blumenr=F6der, Micha=
-el
-> > > > > Schubert, Dr. R=FCdiger Goyk
-> > > > > =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F
-> > > > > meta-intel mailing list
-> > > > > meta-intel@yoctoproject.org
-> > > > > https://lists.yoctoproject.org/listinfo/meta-intel
-> > > >
-> > > >
-> >=20
-> >=20
-> > =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-
---=_alternative 002C7BB7C1257BB7_=
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<tt><font size=3D2>&quot;Behrens, Holger&quot; &lt;Holger.Behrens@windriver=
-.com&gt;
-schrieb am 29.07.2013 08:54:40:<br>
-<br>
-&gt; Von: &quot;Behrens, Holger&quot; &lt;Holger.Behrens@windriver.com&gt;<=
-/font></tt>
-<br><tt><font size=3D2>&gt; An: Tom Zanussi &lt;tom.zanussi@intel.com&gt;,
-Felix01 Fischer <br>
-&gt; &lt;felix01.fischer@iav.de&gt;, </font></tt>
-<br><tt><font size=3D2>&gt; Kopie: &quot;meta-intel@yoctoproject.org&quot;
-&lt;meta-intel@yoctoproject.org&gt;, <br>
-&gt; &quot;yocto@yoctoproject.org&quot; &lt;yocto@yoctoproject.org&gt;,
-&quot;genivi-meta-<br>
-&gt; ivi@lists.genivi.org&quot; &lt;genivi-meta-ivi@lists.genivi.org&gt;</f=
-ont></tt>
-<br><tt><font size=3D2>&gt; Datum: 29.07.2013 08:55</font></tt>
-<br><tt><font size=3D2>&gt; Betreff: RE: [yocto] Antwort: Re: [meta-intel]
-Boot failure when <br>
-&gt; using meta-intel and meta-ivi</font></tt>
-<br><tt><font size=3D2>&gt; <br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; &gt; On Fri, 2013-07-26 at 09:48 +0200, Felix01 Fischer wrote:<br>
-&gt; &gt; &gt; Tom Zanussi &lt;tom.zanussi@intel.com&gt; schrieb am 25.07.2=
-013
-18:57:57:<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Von: Tom Zanussi &lt;tom.zanussi@intel.com&gt;<br>
-&gt; &gt; &gt; &gt; An: Felix01 Fischer &lt;felix01.fischer@iav.de&gt;,<br>
-&gt; &gt; &gt; &gt; Kopie: yocto@yoctoproject.org, meta-intel@yoctoproject.=
-org,
-genivi-<br>
-&gt; &gt; &gt; &gt; meta-ivi@lists.genivi.org<br>
-&gt; &gt; &gt; &gt; Datum: 25.07.2013 18:58<br>
-&gt; &gt; &gt; &gt; Betreff: Re: [meta-intel] Boot failure when using meta-=
-intel
-and<br>
-&gt; &gt; &gt; meta-ivi<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; On Thu, 2013-07-25 at 11:00 +0200, Felix01 Fischer
-wrote:<br>
-&gt; &gt; &gt; &gt; &gt; Hi,<br>
-&gt; &gt; &gt; &gt; &gt; I haven written regarding this issues before.
-So maybe it sounds<br>
-&gt; &gt; &gt; &gt; &gt; familiar :-)<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; I'm unable to produce a booting image when combini=
-ng
-a machine<br>
-&gt; &gt; &gt; from<br>
-&gt; &gt; &gt; &gt; &gt; the meta-intel layer with &quot;DISTRO ?=3D &quot;=
-poky-ivi-systemd&quot;
-from the<br>
-&gt; &gt; &gt; &gt; &gt; meta-ivi layer.<br>
-&gt; &gt; &gt; &gt; &gt; You will find a photograph of my screen attached,
-but I will<br>
-&gt; &gt; &gt; describe<br>
-&gt; &gt; &gt; &gt; &gt; the error anyway.<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Which error do I get?<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; When I'm booting my image the machine fails to
-boot. The relevant<br>
-&gt; &gt; &gt; &gt; &gt; information (IMHO) are the lines:<br>
-&gt; &gt; &gt; &gt; &gt; &nbsp; &nbsp; &nbsp; &nbsp;/init: line 98: mount:
-not found<br>
-&gt; &gt; &gt; &gt; &gt; &nbsp; &nbsp; &nbsp; &nbsp; /init: line 98: mount:
-not found<br>
-&gt; &gt; &gt; &gt; &gt; &nbsp; &nbsp; &nbsp; &nbsp; /init: line 98: mount:
-not found<br>
-&gt; &gt; &gt; &gt; &gt; and<br>
-&gt; &gt; &gt; &gt; &gt; &nbsp; &nbsp; &nbsp; &nbsp; cat: can't open '/proc=
-/cmdline':
-No such file or<br>
-&gt; &gt; &gt; directory<br>
-&gt; &gt; &gt; &gt; &gt; &nbsp; &nbsp; &nbsp; &nbsp; Waiting for removable
-media...<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; When does the error occur?<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Every image built with the local.conf options<br>
-&gt; &gt; &gt; &gt; &gt; MACHINE ?=3D &quot;crownbay&quot; &nbsp; &nbsp;
-&nbsp; &nbsp;OR &nbsp; &nbsp; &nbsp; &nbsp;MACHINE ?=3D &quot;chiefriver&qu=
-ot;<br>
-&gt; &gt; &gt; &gt; &gt; AND<br>
-&gt; &gt; &gt; &gt; &gt; DISTRO ?=3D &quot;poky-ivi-systemd&quot;<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; failed to boot.<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; I guess more information is needed to even build this.
-&nbsp;Using the<br>
-&gt; &gt; &gt; poky<br>
-&gt; &gt; &gt; &gt; commit id in the README, using either meta-intel/master
-or<br>
-&gt; &gt; &gt; &gt; meta-intel/dylan gives errors like this:<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; trz@elmorro:/usr/local/dev/yocto/ivi-test/build$ bitbake
-foton-image<br>
-&gt; &gt; &gt; &gt; Pseudo is not present but is required, building this
-first before<br>
-&gt; &gt; &gt; the<br>
-&gt; &gt; &gt; &gt; main build<br>
-&gt; &gt; &gt; &gt; Loading cache: 100%<br>
-&gt; &gt; |###########################################|<br>
-&gt; &gt; &gt; ETA:<br>
-&gt; &gt; &gt; &gt; 00:00:00<br>
-&gt; &gt; &gt; &gt; Loaded 1162 entries from dependency cache.<br>
-&gt; &gt; &gt; &gt; ERROR: No recipes available for:<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-e=
-xtended/common-<br>
-&gt; &gt; &gt; &gt; api/dbus=5F1.6.10.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-c=
-ore-ivi/dbus/<br>
-&gt; &gt; &gt; &gt; dbus=5F1.6.10.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-c=
-onnectivity/<br>
-&gt; &gt; &gt; &gt; connman/connman=5F1.15.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-g=
-raphics/xorg-<br>
-&gt; &gt; &gt; &gt; xserver/xserver-xorg=5F1.14.0.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-c=
-ore-ivi/busybox/<br>
-&gt; &gt; &gt; &gt; busybox=5F1.21.1.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-c=
-ore-ivi/eglibc/<br>
-&gt; &gt; &gt; &gt; eglibc=5F2.18.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-intel/meta-cr=
-ownbay/recipes-<br>
-&gt; &gt; &gt; &gt; kernel/linux/linux-yocto-rt=5F3.8.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-q=
-t/qt4/qt4-<br>
-&gt; &gt; &gt; &gt; embedded=5F4.8.5.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-intel/common/=
-recipes-graphics/<br>
-&gt; &gt; &gt; &gt; mesa/mesa=5F9.0.2.bbappend<br>
-&gt; &gt; &gt; &gt; &nbsp; /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-c=
-ore-ivi/netbase/<br>
-&gt; &gt; &gt; &gt; netbase=5F5.1.bbappend<br>
-&gt; &gt; &gt; &gt; ERROR: Command execution failed: Exited with 1<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; So, please supply the relevant commits for all layers
-used..<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; First, thank you for your help.<br>
-&gt; &gt; &gt; I guess your meta-ivi is not up to date. You have to &quot;g=
-it
-checkout<br>
-&gt; &gt; &gt; 4.0.2&quot;, which is the latest meta-ivi release<br>
-&gt; &gt; &gt; I have been building non-booting images for quite some time
-now using<br>
-&gt; &gt; &gt; various releases of poky, meta-intel and meta-ivi, so it
-shouldn't<br>
-&gt; &gt; &gt; rely on one special commit.<br>
-&gt; &gt; &gt; Currently I'm using &quot;git checkout 4.0.2&quot; for meta-=
-ivi
-and the dylan<br>
-&gt; &gt; &gt; branch for poky and meta-intel aswell.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; OK, with those commits, I was able to get a good build (the README
-is<br>
-&gt; &gt; also misleading about adding the INCOMPATIBLE=5FLICENSE line -
-it doesn't<br>
-&gt; &gt; build if you do what it says).<br>
-&gt; <br>
-&gt; Can you share where it did lead you and why?<br>
-&gt;</font></tt>
-<br>
-<br>
-<br><tt><font size=3D2>meta-intel depends on parted which is GPLv3+<br>
-</font></tt>
-<br>
-<br>
-<br><tt><font size=3D2>&nbsp;<br>
-&gt; &gt; Anyway, from your error message:<br>
-&gt; &gt; &nbsp; &nbsp;/init: line 98: mount: not found<br>
-&gt; &gt; <br>
-&gt; &gt; it can't find mount, which prompted me to look in the rootfs
-for 'mount'<br>
-&gt; &gt; and indeed it's not there, so that causes the init script to
-fail as<br>
-&gt; &gt; above.<br>
-&gt; &gt; <br>
-&gt; &gt; The mount command isn't there because meta-ivi applies its own
-busybox<br>
-&gt; &gt; defconfig. &nbsp;From that defconfig, we can see that it excludes
-mount:<br>
-&gt; <br>
-&gt; Because /bin/mount is provided by util-linux, and we therefore do
-<br>
-&gt; not need the one from busybox.<br>
-&gt; <br>
-&gt; &gt; # CONFIG=5FMOUNT is not set<br>
-&gt; &gt; <br>
-&gt; &gt; which is why the live image init script can't find mount and
-fails like<br>
-&gt; &gt; it does.<br>
-&gt; &gt; <br>
-&gt; &gt; Removing the busybox=5F1.20.2.bbappend in the meta-ivi layer fixes
-the<br>
-&gt; &gt; problem - rebuilding after doing that I'm able to boot crownbay
-fine<br>
-&gt; &gt; with the meta-ivi layer applied.<br>
-&gt; <br>
-&gt; That's a workaround yes. &nbsp;Not sure why meta-intel BSPs can't
-use the<br>
-&gt; mount command that comes with util-linux.</font></tt>
-<br>
-<br>
-<br>
-<br>
-<br><tt><font size=3D2>Just for my understanding:<br>
-<br>
-I did search for mount in my rootfs and I found a symlink to util-linux.<br>
-So I assumed this would be right.<br>
-Now two Questione come to my mind.<br>
-First, how to recognize this as a bug? Do I need more experience or is
-there a another way to hunt this bug down?<br>
-Second, how to find the root cause? Did you use grep or similiar to find
-the right .bbappend or is it experience again to look for the busybox.bpapp=
-end
-file?<br>
-</font></tt>
-<br>
-<br><tt><font size=3D2><br>
-&gt; <br>
-&gt; Regards,<br>
-&gt; Holger<br>
-&gt; <br>
-&gt; &gt; Tom<br>
-&gt; &gt; <br>
-&gt; &gt; &gt; The exact commits are (copied from the crownbay build):<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Build Configuration:<br>
-&gt; &gt; &gt; BB=5FVERSION &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;1.18.0&quo=
-t;<br>
-&gt; &gt; &gt; BUILD=5FSYS &nbsp; &nbsp; &nbsp; &nbsp; =3D &quot;x86=5F64-l=
-inux&quot;<br>
-&gt; &gt; &gt; NATIVELSBSTRING &nbsp; =3D &quot;Ubuntu-12.04&quot;<br>
-&gt; &gt; &gt; TARGET=5FSYS &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;i586-oe-li=
-nux&quot;<br>
-&gt; &gt; &gt; MACHINE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D &quot;crownba=
-y&quot;<br>
-&gt; &gt; &gt; DISTRO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;po=
-ky-ivi-systemd&quot;<br>
-&gt; &gt; &gt; DISTRO=5FVERSION &nbsp; &nbsp;=3D &quot;4.0.2&quot;<br>
-&gt; &gt; &gt; TUNE=5FFEATURES &nbsp; &nbsp; =3D &quot;m32 core2&quot;<br>
-&gt; &gt; &gt; TARGET=5FFPU &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;&quot;<br>
-&gt; &gt; &gt; meta<br>
-&gt; &gt; &gt; meta-yocto<br>
-&gt; &gt; &gt; meta-yocto-bsp &nbsp; &nbsp;=3D &quot;dylan:64273e53f2789d2e=
-a8393fc80909ac7086f168a7&quot;<br>
-&gt; &gt; &gt; meta-ivi &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D<br>
-&gt; &gt; &gt; &quot;(nobranch):f906b053e56c3aa009b29359ea12d2a7b8a25d57&qu=
-ot;<br>
-&gt; &gt; &gt; meta-intel<br>
-&gt; &gt; &gt; meta-crownbay &nbsp; &nbsp; =3D &quot;dylan:048def7bae8e3e1a=
-11c91f5071f99bdcf8e6dd16&quot;<br>
-&gt; &gt; &gt; meta-qt5 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D &quot;dylan:8=
-06fedcc155e28ff1d802cf8d5af9c6d67c210c7&quot;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; I have tried builds with meta-ivi excalibur (not
-100% sure) and<br>
-&gt; &gt; &gt; foton<br>
-&gt; &gt; &gt; &gt; &gt; releases and the master branch aswell<br>
-&gt; &gt; &gt; &gt; &gt; Similar applies to poky and meta-intel. I tried
-the danny and<br>
-&gt; &gt; &gt; dylan<br>
-&gt; &gt; &gt; &gt; &gt; releases and the master branch.<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; The boot happens from an USB stick on which I
-dd'ed<br>
-&gt; &gt; &gt; &gt; &gt; &quot;foton-image-$MACHINE-$BUILDDATE.hddimg&quot;=
-<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; All other builds are booting fine.<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Addind &quot;EXTRA=5FIMAGE=5FFEATURE =3D &quot;ude=
-v-extraconf&quot;
-did not change<br>
-&gt; &gt; this<br>
-&gt; &gt; &gt; &gt; &gt; behauviour.<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Building only with meta-intel OR meta-ivi results
-in a booting<br>
-&gt; &gt; &gt; image.<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Not sure what this means - if using only meta-ivi,
-which machine are<br>
-&gt; &gt; &gt; you<br>
-&gt; &gt; &gt; &gt; building?<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; if using only meta-ivi. I'm building Qemu images.<br>
-&gt; &gt; &gt; They have been booting fine all the time.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; Tom<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; So, any ideas?<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; regards,<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Viele Gr=FC=DFe<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Felix Fischer<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Studentischer Mitarbeiter (VC-D1)<br>
-&gt; &gt; &gt; &gt; &gt; Vehicle Cockpit Electronics Devices<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; IAV GmbH<br>
-&gt; &gt; &gt; &gt; &gt; Carnotstr. 1<br>
-&gt; &gt; &gt; &gt; &gt; 10587 BERLIN<br>
-&gt; &gt; &gt; &gt; &gt; GERMANY<br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Phone: +49 30 39978-9540<br>
-&gt; &gt; &gt; &gt; &gt; Fax: &nbsp; &nbsp; &nbsp;+49 30 39978-9411<br>
-&gt; &gt; &gt; &gt; &gt; E-Mail: &nbsp;&lt;</font></tt><a href=3Dmailto:fel=
-ix01.fischer@iav.de><tt><font size=3D2>mailto:felix01.fischer@iav.de</font>=
-</tt></a><tt><font size=3D2>&gt;<br>
-&gt; &gt; &gt; &gt; &gt; Internet: </font></tt><a href=3Dhttp://www.iav.com=
-/><tt><font size=3D2>http://www.iav.com</font></tt></a><tt><font size=3D2><=
-br>
-&gt; &gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt; &gt; Sitz/Registered Office: Berlin,<br>
-&gt; &gt; &gt; &gt; &gt; Registergericht/Registration Court: Amtsgericht
-Charlottenburg,<br>
-&gt; &gt; &gt; &gt; &gt; Registernummer/Company Registration Number: HRB
-21 280,<br>
-&gt; &gt; &gt; &gt; &gt; Gesch=E4ftsf=FChrer/Managing Directors: Kurt Blume=
-nr=F6der,
-Michael<br>
-&gt; &gt; &gt; &gt; &gt; Schubert, Dr. R=FCdiger Goyk<br>
-&gt; &gt; &gt; &gt; &gt; =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F<br>
-&gt; &gt; &gt; &gt; &gt; meta-intel mailing list<br>
-&gt; &gt; &gt; &gt; &gt; meta-intel@yoctoproject.org<br>
-&gt; &gt; &gt; &gt; &gt; </font></tt><a href=3D"https://lists.yoctoproject.=
-org/listinfo/meta-intel"><tt><font size=3D2>https://lists.yoctoproject.org/=
-listinfo/meta-intel</font></tt></a><tt><font size=3D2><br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; &gt; &gt;<br>
-&gt; &gt; <br>
-&gt; &gt; <br>
-&gt; &gt; =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F<br>
-&gt; &gt; yocto mailing list<br>
-&gt; &gt; yocto@yoctoproject.org<br>
-&gt; &gt; </font></tt><a href=3Dhttps://lists.yoctoproject.org/listinfo/yoc=
-to><tt><font size=3D2>https://lists.yoctoproject.org/listinfo/yocto</font><=
-/tt></a><tt><font size=3D2><br>
-</font></tt>
-
---=_alternative 002C7BB7C1257BB7_=--
+--cWoXeonUoKmBZSoM--
