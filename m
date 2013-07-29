@@ -1,17 +1,19 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84F4FE013DF
-	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 04:34:36 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 814F840B24; Mon, 29 Jul 2013 11:34:36 +0000 (UTC)
-Date: Mon, 29 Jul 2013 11:34:36 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+Return-Path: <ioanax.grigoropol@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47A7DE013D1
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2013 06:35:29 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 29 Jul 2013 06:35:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,769,1367996400"; d="scan'208";a="274786744"
+Received: from ideapad.rb.intel.com ([10.237.105.140])
+	by AZSMGA002.ch.intel.com with ESMTP; 29 Jul 2013 06:35:27 -0700
+From: Ioana Grigoropol <ioanax.grigoropol@intel.com>
 To: yocto@yoctoproject.org
-Message-ID: <20130729113436.GA15192@ab01.i.yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+Date: Mon, 29 Jul 2013 16:12:36 +0300
+Message-Id: <1375103556-22885-1-git-send-email-ioanax.grigoropol@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [PATCH] [Upstream patch: org.eclipse.ui]Adjust project location for non-default location
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,20 +25,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jul 2013 11:34:36 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 29 Jul 2013 13:35:35 -0000
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Signed-off-by: Ioana Grigoropol <ioanax.grigoropol@intel.com>
+---
+ .../ide/dialogs/ProjectContentsLocationArea.java   |   19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
+diff --git a/bundles/org.eclipse.ui.ide/src/org/eclipse/ui/internal/ide/dialogs/ProjectContentsLocationArea.java b/bundles/org.eclipse.ui.ide/src/org/eclipse/ui/internal/ide/dialogs/ProjectContentsLocationArea.java
+index 35cd387..7de5255 100644
+--- a/bundles/org.eclipse.ui.ide/src/org/eclipse/ui/internal/ide/dialogs/ProjectContentsLocationArea.java
++++ b/bundles/org.eclipse.ui.ide/src/org/eclipse/ui/internal/ide/dialogs/ProjectContentsLocationArea.java
+@@ -23,7 +23,9 @@ import org.eclipse.core.filesystem.IFileInfo;
+ import org.eclipse.core.filesystem.URIUtil;
+ import org.eclipse.core.resources.IProject;
+ import org.eclipse.core.resources.ResourcesPlugin;
++import org.eclipse.core.runtime.IPath;
+ import org.eclipse.core.runtime.IStatus;
++import org.eclipse.core.runtime.Path;
+ import org.eclipse.core.runtime.Platform;
+ import org.eclipse.jface.dialogs.IDialogSettings;
+ import org.eclipse.osgi.util.TextProcessor;
+@@ -471,10 +473,27 @@ public class ProjectContentsLocationArea {
+ 	 *            existing project name.
+ 	 */
+ 	public void updateProjectName(String newName) {
++		boolean append = false;
++		if (projectName.isEmpty())
++			append = true;
+ 		projectName = newName;
+ 		if (isDefault()) {
+ 			locationPathField.setText(TextProcessor
+ 					.process(getDefaultPathDisplayString()));
++		} else {
++			try {
++				URI uri = new URI(locationPathField.getText());
++				IPath path = new Path(uri.getPath());
++				if (!append)
++					path = path.removeLastSegments(1);
++				path = path.addTrailingSeparator();
++				path = path.append(projectName);
++			    URI newURI = new URI(uri.getScheme(), uri.getAuthority(), path.toPortableString(), uri.getQuery(), uri.getFragment());
++				locationPathField.setText(TextProcessor
++						.process(newURI.toString()));
++			} catch (URISyntaxException e) {
++				e.printStackTrace();
++			}
+ 		}
+ 
+ 	}
+-- 
+1.7.9.5
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-bjam-native              1.54.0              N/A                 41482 d                  No Maintainer info                      No data                       
-minicom                  2.6.2               2.6.2               49 days                  Cristian Iorga <cristian.iorg...        No data                       
-libpng12                 1.2.50              1.2.50              49 days                  Andrei Dinu <andrei.adrianx.d...        No data                       
-Manual Check Count: 3
-Manual Need Check Count: 3
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
