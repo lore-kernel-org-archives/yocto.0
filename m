@@ -1,28 +1,27 @@
-Return-Path: <richbayliss@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41A8CE01431
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
-Received: by mail-ob0-f179.google.com with SMTP id fb19so2734191obc.24
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=OgpesjwehnnrTTa5E/N/Nlhj5sQvCWG77ZV77A646rU=;
-	b=Ea9ZN/KCRgGmMkZeRj3ktWUxLd14K6W7k+iK//Q6CbzmOItmByd4XxrgqctyvgUrMq
-	Oq6j7a4e3v8AGdhuexi/FExbtSy0tc+XE8Kfr+ezqJWIL6kpr+8XlLVwpHRqOHMIrajT
-	0qRhwLMtj6mXGCo9Yo953AyAoOceu0msaiMEpQ1hMHSf2lvG1bVFBER7URAcKFhETJMm
-	5CQuc20wrcq//XLUdo6aHjxoF7Atr7I+NDmAsM8H3UYFr5mt/cUcUzj7rPTPO96bsZ0O
-	+mey0aFxpwYObZjblBrxxOiUVpu2FSjZUpqDmrsd7g0tkKErv6K0aQ/tRFy+Tq0+rf2q
-	TAHA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF30DE013AE
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 03:48:37 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 30 Jul 2013 03:48:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,777,1367996400"; d="scan'208";a="373380340"
+Received: from unknown (HELO helios.localnet) ([10.252.122.217])
+	by fmsmga001.fm.intel.com with ESMTP; 30 Jul 2013 03:48:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Tue, 30 Jul 2013 11:48:35 +0100
+Message-ID: <1843652.5ibqSWhFnV@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-26-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CA+Z6RkWUnice-MrWSXpfA1_+cuFYXgukbfK69oFgmPjWow4W9g@mail.gmail.com>
+References: <CA+Z6RkUS6gZw3-fzW_muVBC5Cq5Wz7Bo3P+YEVJKf+1OV9=sKg@mail.gmail.com>
+	<4728393.KjK4Yh0aOO@helios>
+	<CA+Z6RkWUnice-MrWSXpfA1_+cuFYXgukbfK69oFgmPjWow4W9g@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.43.139.133 with SMTP id iw5mr22337499icc.0.1375181023156;
-	Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
-Received: by 10.64.25.1 with HTTP; Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
-Date: Tue, 30 Jul 2013 11:43:43 +0100
-Message-ID: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
-From: Rich Bayliss <richbayliss@gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] Read-Only RootFS is not read only
+Cc: yocto@yoctoproject.org,
+	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Re: bitbake -c populate_sdk -v poky-image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,21 +33,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jul 2013 10:43:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 30 Jul 2013 10:48:37 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-I am trying to build for Raspberry Pi including "read-only-rootfs" in
-my image features. My aim is to have my SD Card read-only and at some
-point add a read-write overlay to certain directories. This should
-enable my system to boot fresh each time, and have some persistent
-storage for user files etc.
+On Tuesday 30 July 2013 14:35:40 Navani Srivastava wrote:
+> > I think the problem is this:
+> > require recipes-core/meta/meta-toolchain.bb
+> 
+> Yes, it worked.. Thanks
+> 
+> > You shouldn't be adding this to an image recipe, and definitely not poky-
+> > image.bbclass.
+> then? Is it possible to create .bbappend kind of file for .bbclass which
+> can append the information or I have to duplicate toolchain-script.bbclass
+> in my layer?
 
-However, after building my image I can SSH into the system and issue
-"touch test" to create a file in my home directory, then after a
-reboot it is still there. That isn't very read-only :)
+Sure, you can add the script append and the additional TOOLCHAIN_HOST_TASK 
+items in an additional bbclass in your layer and then inherit that in your 
+image recipe; just don't require meta-toolchain.bb because that has other 
+side-effects.
 
-Am I missing something, or is this working incorrectly?
+> >>What version of the build system are you using?
+> 
+> I am using poky danny (8.0.2)
+
+OK, in that case why are you using poky-image.bbclass? That was replaced by 
+core-image.bbclass in the edison release if I recall correctly, which was 
+quite a while ago.
+
+Cheers,
+Paul
 
 -- 
-Rich Bayliss
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
