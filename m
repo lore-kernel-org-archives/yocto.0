@@ -1,35 +1,33 @@
-Return-Path: <lothar@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 191D1E002E2
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 09:04:51 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3c4MzQ3Yg1z4KK6l
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 18:04:50 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3c4MzQ3RLwzbbfK
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 18:04:50 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024) with ESMTP id R4YFnKk7MPPm for <yocto@yoctoproject.org>;
-	Tue, 30 Jul 2013 18:04:49 +0200 (CEST)
-X-Auth-Info: mL3RlkSmUJc6/26MpApmKgd4UDOrFbppBkx1UNeVuQE=
-Received: from webmail.mnet-online.de (webmail1.mnet-online.de [212.18.5.57])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 18:04:49 +0200 (CEST)
-Received: from host-82-135-33-74.customer.m-online.net
-	(host-82-135-33-74.customer.m-online.net [82.135.33.74]) by
-	webmail.mnet-online.de (Horde Framework) with HTTP; Tue, 30 Jul 2013
-	18:04:49 +0200
-Message-ID: <20130730180449.64971389c5lrpxdw@webmail.mnet-online.de>
-Date: Tue, 30 Jul 2013 18:04:49 +0200
-From: lothar@denx.de
-To: yocto@yoctoproject.org
+Return-Path: <r10kindsofpeople@gmail.com>
+Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
+	[209.85.214.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B545CE002E3
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 10:03:54 -0700 (PDT)
+Received: by mail-ob0-f171.google.com with SMTP id tb18so12812951obb.30
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 10:03:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=WcU/SXjantNhcw+SnbaId0t9HEoYNwdmv+MKIVi8T+g=;
+	b=iUhREzIUic8EcN6ICULpC054qPvwi/Dxu9uRTcp5ftr+3DM8b7R3TYvpOiocWtH0qq
+	8vZE6Rewf7xdfbU9qgsfZmwYFmvmSBk/EkZrWPyb726CBH/DlOdDjP9dbUEx8kzLhWQW
+	TYvFfVIenYo3hmio1Y8SmoFRBWWxjnZnvr1pHqGgevetOxQM2mJdFN7C2v++pfc7zRRV
+	/BVMxRUrTFhgjiTCRxNJH8M8ZLxsCEnDir8h3arlWpMC0rAsNz8VMch+4JVR5zybu0Tq
+	vPblGqCufy2bY7uU9JA35xiuqDRFsPxYGGC1gWnz6xuG4ZkBklni6zxaQc/RXhJN+3BY
+	/fXQ==
 MIME-Version: 1.0
-User-Agent: Internet Messaging Program (IMP) H3 (4.3.5)
-Subject: /lib/ld-linux.so.3: No such file or directory
+X-Received: by 10.60.96.170 with SMTP id dt10mr63134493oeb.81.1375203827716;
+	Tue, 30 Jul 2013 10:03:47 -0700 (PDT)
+Received: by 10.76.86.138 with HTTP; Tue, 30 Jul 2013 10:03:47 -0700 (PDT)
+In-Reply-To: <2010302.ipSdHH7rJ3@helios>
+References: <CAE8H0+WMNPphz89i8WUeAwExPDxgFHHgc4FuLxVyx8pMR2esvw@mail.gmail.com>
+	<2010302.ipSdHH7rJ3@helios>
+Date: Tue, 30 Jul 2013 13:03:47 -0400
+Message-ID: <CAE8H0+UYuO=4Dg88PPmG05cuCf77odGjDTn+fBm0ZPd7LkXLKg@mail.gmail.com>
+From: r10kindsofpeople <r10kindsofpeople@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: denzil to dylan, netbase recipe broken?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,118 +39,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jul 2013 16:04:53 -0000
-Content-Type: text/plain;
- charset=ISO-8859-1;
- DelSp="Yes";
- format="flowed"
-Content-Disposition: inline
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 30 Jul 2013 17:03:54 -0000
+Content-Type: multipart/alternative; boundary=089e01228cf6a5175904e2bd9727
 
-Hi Yocto community,
+--089e01228cf6a5175904e2bd9727
+Content-Type: text/plain; charset=ISO-8859-1
 
-I guess my problem is quite trivial with a little bit of yocto experience. I'm
-still quite new to Yocto, though, maybe you can help me, I would appreciate!!
+On Tue, Jul 30, 2013 at 11:29 AM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
 
-I'm writing a recipe firmware_HEAD.bb. The actions shall be checkout from git,
-run "make", copy the result to ${D}/lib/firmware.
+> Hi John,
+>
+> On Tuesday 30 July 2013 11:15:26 r10kindsofpeople wrote:
+> > Under Denzil 7.0.1, I had a recipe
+> > mylayer/recipes-core/netbase/netbase_4.47.bbappend that contained:
+> >
+> > FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >
+> > SRC_URI += " file://interfaces \
+> >             "
+> > To put my own interface file in the root file system from
+> > mylayer/recipes-core/netbase/netbase/interfaces
+> >
+> > Under Dylan 9.0.1, I tried the same technique, except renaming to
+> > netbase_5.0.bbappend, but I don't get my copy of interfaces, I get some
+> > default.
+> >
+> > I've hacked at the recipe a bit, trying to add a do_install step (based
+> on
+> > the recipe in meta), and know at least that the recipe is getting parsed,
+> > because of the errors I created.  I was able to clear up the errors, but
+> > still don't get my copy.  Right now, the recipe reads:
+> >
+> > FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >
+> > SRC_URI_prepend = " file://interfaces \
+> >             "
+> >
+> > do_install_append () {
+> > install -d ${D}/${sysconfdir}/network
+> > install -m 0644 ${WORKDIR}/interfaces
+> ${D}${sysconfdir}/network/interfaces
+> > }
+> >
+> > PRINC := "${@int(PRINC) + 1}"
+> >
+> > Can anyone help me understand why the old recipe no longer works, and
+> what
+> > needs to be done to remedy?
+>
+> The functionality for starting interfaces has been moved to a separate
+> init-ifupdown recipe for dylan. This should have been noted in the
+> migration
+> information in the reference manual but did not make it in in time; I
+> hadn't
+> realised it still hasn't been updated in the "current" version of the
+> documentation on the website and the dylan branch so I will now make sure
+> that
+> happens.
+>
+> Basically you just need to move your bbappend across to init-ifupdown and
+> it
+> should work.
+>
+> Cheers,
+> Paul
+>
 
-DESCRIPTION = "external sdma-firmware blob"
-LICENSE = "GPLv2"
-LIC_FILES_CHKSUM =  
-"file://sdma-gen-image.c;beginline=1;endline=19;md5=8db9f935666ba755af54af9d8611b857"
-PR = "r1"
-SRC_URI = "git://git.pengutronix.de/git/imx/sdma-firmware.git/"
-## curr HEAD: "4aede1eb121e8199d33fe6697f4c91405086000a"
-SRCREV = "4aede1eb121e8199d33fe6697f4c91405086000a"
-S = "${WORKDIR}/git"
-do_install(){
-     install -d ${D}/lib/firmware
-# TODO
-}
+Thanks, Paul, that worked.
 
-
-
-Actually an easy task, I thought. Checkout works fine, but the implicit make
-fails, having /lib/ld-linux.so.3 already installed under ${sysroot}/lib.
-
-
-
-$ MACHINE="m53evk" bitbake -b  
-/work/lothar/acme/meta-acme/recipes-kernel/sdma-firmware/sdma-firmware_HEAD.bb  
--f
-WARNING: Buildfile specified, dependencies will not be handled. If  
-this is not what you want, do not use -b / --buildfile.
-NOTE: Tainting hash to force rebuild of task  
-/work/lothar/acme/meta-acme/recipes-kernel/sdma-firmware/sdma-firmware_HEAD.bb,  
-do_build
-
-Build Configuration:
-BB_VERSION        = "1.18.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Fedora-17"
-TARGET_SYS        = "arm-linux-gnueabi"
-MACHINE           = "m53evk"
-DISTRO            = "acme"
-DISTRO_VERSION    = "5.4"
-TUNE_FEATURES     = "armv7a vfp"
-TARGET_FPU        = "vfp"
-meta
-meta-yocto
-meta-yocto-bsp
-meta-acme         =  
-"sandbox-rel-v5.4-2013-06-28:370842ae6e8018c1b1c9094cffaf50b8c8b6eb43"
-
-NOTE: Preparing runqueue
-NOTE: Tainting hash to force rebuild of task  
-/work/lothar/acme/meta-acme/recipes-kernel/sdma-firmware/sdma-firmware_HEAD.bb,  
-do_build
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: Function failed: do_compile (see  
-/work/lothar/BUILD__XXX__m53evk/tmp/work/armv7a-vfp-linux-gnueabi/sdma-firmware/HEAD-r1/temp/log.do_compile.1413 for further  
-information)
-ERROR: Logfile of failure stored in:  
-/work/lothar/BUILD__XXX__m53evk/tmp/work/armv7a-vfp-linux-gnueabi/sdma-firmware/HEAD-r1/temp/log.do_compile.1413
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| NOTE: make -j 8 -e MAKEFLAGS=
-| /lib/ld-linux.so.3: No such file or directory
-| make: *** [all] Error 255
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_compile (see  
-/work/lothar/BUILD__XXX__m53evk/tmp/work/armv7a-vfp-linux-gnueabi/sdma-firmware/HEAD-r1/temp/log.do_compile.1413 for further  
-information)
-ERROR: Task 6  
-(/work/lothar/acme/meta-acme/recipes-kernel/sdma-firmware/sdma-firmware_HEAD.bb, do_compile) failed with exit code  
-'1'
-NOTE: Tasks Summary: Attempted 6 tasks of which 5 didn't need to be  
-rerun and 1 failed.
-No currently running tasks (5 of 14)
-
-Summary: 1 task failed:
-    
-/work/lothar/acme/meta-acme/recipes-kernel/sdma-firmware/sdma-firmware_HEAD.bb,  
-do_compile
-Summary: There was 1 WARNING message shown.
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+John
 
 
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+>
 
-Today I already tried several approaches, I had a look into the logs, I set
-DEPENDS declarations to libc6-dev, setting LD_LIBRARY_PATH as  
-EXTRA_OEMAKE, etc.
-Under run.do_compile... I learned the problem has to do with setting  
-the CC, but
-actually --sysroot is set correctly to /work/lothar/BUILD_.../m53evk  
-here exists
-already a /work/lothar/BUILD_.../m53evk/lib/ld-linux.so.3 file/link.
+--089e01228cf6a5175904e2bd9727
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-My question is now how to solve and fix this recipe and make the cc  
-take the correct ld-linux.so.3?
+<div dir=3D"ltr">On Tue, Jul 30, 2013 at 11:29 AM, Paul Eggleton <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_bl=
+ank">paul.eggleton@linux.intel.com</a>&gt;</span> wrote:<br><div class=3D"g=
+mail_extra">
+<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi John,<br>
+<br>
+On Tuesday 30 July 2013 11:15:26 r10kindsofpeople wrote:<br>
+&gt; Under Denzil 7.0.1, I had a recipe<br>
+&gt; mylayer/recipes-core/netbase/netbase_4.47.bbappend that contained:<br>
+&gt;<br>
+&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
+&gt;<br>
+&gt; SRC_URI +=3D &quot; file://interfaces \<br>
+&gt; =A0 =A0 =A0 =A0 =A0 =A0 &quot;<br>
+&gt; To put my own interface file in the root file system from<br>
+&gt; mylayer/recipes-core/netbase/netbase/interfaces<br>
+&gt;<br>
+&gt; Under Dylan 9.0.1, I tried the same technique, except renaming to<br>
+&gt; netbase_5.0.bbappend, but I don&#39;t get my copy of interfaces, I get=
+ some<br>
+&gt; default.<br>
+&gt;<br>
+&gt; I&#39;ve hacked at the recipe a bit, trying to add a do_install step (=
+based on<br>
+&gt; the recipe in meta), and know at least that the recipe is getting pars=
+ed,<br>
+&gt; because of the errors I created. =A0I was able to clear up the errors,=
+ but<br>
+&gt; still don&#39;t get my copy. =A0Right now, the recipe reads:<br>
+&gt;<br>
+&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
+&gt;<br>
+&gt; SRC_URI_prepend =3D &quot; file://interfaces \<br>
+&gt; =A0 =A0 =A0 =A0 =A0 =A0 &quot;<br>
+&gt;<br>
+&gt; do_install_append () {<br>
+&gt; install -d ${D}/${sysconfdir}/network<br>
+&gt; install -m 0644 ${WORKDIR}/interfaces ${D}${sysconfdir}/network/interf=
+aces<br>
+&gt; }<br>
+&gt;<br>
+&gt; PRINC :=3D &quot;${@int(PRINC) + 1}&quot;<br>
+&gt;<br>
+&gt; Can anyone help me understand why the old recipe no longer works, and =
+what<br>
+&gt; needs to be done to remedy?<br>
+<br>
+The functionality for starting interfaces has been moved to a separate<br>
+init-ifupdown recipe for dylan. This should have been noted in the migratio=
+n<br>
+information in the reference manual but did not make it in in time; I hadn&=
+#39;t<br>
+realised it still hasn&#39;t been updated in the &quot;current&quot; versio=
+n of the<br>
+documentation on the website and the dylan branch so I will now make sure t=
+hat<br>
+happens.<br>
+<br>
+Basically you just need to move your bbappend across to init-ifupdown and i=
+t<br>
+should work.<br>
+<br>
+Cheers,<br>
+Paul<br></blockquote><div><br></div><div>Thanks, Paul, that worked. =A0</di=
+v><div><br></div><div>John</div><div>=A0</div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+">
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</font></span></blockquote></div><br></div></div>
 
-Thank you in advance,
-Lothar
-
-
-
+--089e01228cf6a5175904e2bd9727--
