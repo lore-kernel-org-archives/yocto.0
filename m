@@ -1,24 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26BF3E01431
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 03:42:25 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 30 Jul 2013 03:42:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,777,1367996400"; d="scan'208";a="378296853"
-Received: from unknown (HELO helios.localnet) ([10.252.122.217])
-	by fmsmga002.fm.intel.com with ESMTP; 30 Jul 2013 03:42:24 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Tue, 30 Jul 2013 11:42:23 +0100
-Message-ID: <1523931.rJmFDsbDNv@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-26-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1307300512280.7428@oneiric>
-References: <alpine.DEB.2.02.1307300512280.7428@oneiric>
+Return-Path: <richbayliss@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41A8CE01431
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
+Received: by mail-ob0-f179.google.com with SMTP id fb19so2734191obc.24
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=OgpesjwehnnrTTa5E/N/Nlhj5sQvCWG77ZV77A646rU=;
+	b=Ea9ZN/KCRgGmMkZeRj3ktWUxLd14K6W7k+iK//Q6CbzmOItmByd4XxrgqctyvgUrMq
+	Oq6j7a4e3v8AGdhuexi/FExbtSy0tc+XE8Kfr+ezqJWIL6kpr+8XlLVwpHRqOHMIrajT
+	0qRhwLMtj6mXGCo9Yo953AyAoOceu0msaiMEpQ1hMHSf2lvG1bVFBER7URAcKFhETJMm
+	5CQuc20wrcq//XLUdo6aHjxoF7Atr7I+NDmAsM8H3UYFr5mt/cUcUzj7rPTPO96bsZ0O
+	+mey0aFxpwYObZjblBrxxOiUVpu2FSjZUpqDmrsd7g0tkKErv6K0aQ/tRFy+Tq0+rf2q
+	TAHA==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: any ETA for when the downloadable toolchains will be updated?
+X-Received: by 10.43.139.133 with SMTP id iw5mr22337499icc.0.1375181023156;
+	Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
+Received: by 10.64.25.1 with HTTP; Tue, 30 Jul 2013 03:43:43 -0700 (PDT)
+Date: Tue, 30 Jul 2013 11:43:43 +0100
+Message-ID: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
+From: Rich Bayliss <richbayliss@gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: [meta-raspberrypi] Read-Only RootFS is not read only
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,30 +34,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jul 2013 10:42:27 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 30 Jul 2013 10:43:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tuesday 30 July 2013 05:14:37 Robert P. J. Day wrote:
->   based simply on the timestamps, it would appear that the toolchains
-> here:
-> 
-> http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.1/toolchain/
-> 
-> still contain the script bug involving the now-dead "find" option in
-> fedora 19 where -perm no longer accepts a value starting with "+". is
-> there any plan to replace those packages with updated versions that
-> work properly on fedora 19?
+I am trying to build for Raspberry Pi including "read-only-rootfs" in
+my image features. My aim is to have my SD Card read-only and at some
+point add a read-write overlay to certain directories. This should
+enable my system to boot fresh each time, and have some persistent
+storage for user files etc.
 
-The fix in question has only just been backported to the dylan branch. We're 
-currently figuring out when the next 1.4 point release (1.4.2) should be 
-scheduled, the current thinking is mid-August.
+However, after building my image I can SSH into the system and issue
+"touch test" to create a file in my home directory, then after a
+reboot it is still there. That isn't very read-only :)
 
-Cheers,
-Paul
+Am I missing something, or is this working incorrectly?
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Rich Bayliss
 
