@@ -1,27 +1,30 @@
-Return-Path: <anielsen@vitesse.com>
-Received: from na3sys009aog122.obsmtp.com (na3sys009aog122.obsmtp.com
-	[74.125.149.147])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 4F98DE01431
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 02:54:47 -0700 (PDT)
-Received: from smtp.vitesse.com ([67.78.86.101]) (using TLSv1) by
-	na3sys009aob122.postini.com ([74.125.148.12]) with SMTP
-	ID DSNKUfeNYuIeqNklphicerwk9Raeoo4n9IDp@postini.com;
-	Tue, 30 Jul 2013 02:54:48 PDT
-Received: from MBOX-TXA4.vitesse.com ([fe80::20c4:5fb8:c4c4:b418]) by
-	cash-txa3.vitesse.com ([::1]) with mapi id 14.02.0309.002;
-	Tue, 30 Jul 2013 04:54:41 -0500
-From: Allan Nielsen <anielsen@vitesse.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Build yocto debug images
-Thread-Index: Ac6NCs8oHkEVAJ1MRWefQiyOIlfvrg==
-Date: Tue, 30 Jul 2013 09:54:40 +0000
-Message-ID: <63BEC3E3AFFFE545A6A066C1E23BBDB9DF867AEE@mbox-txa4.vitesse.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.64.2]
-MIME-Version: 1.0
-Subject: Build yocto debug images
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FB6DE01431
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 03:30:06 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1V47Bs-0004LT-NR
+	for yocto@yoctoproject.org; Tue, 30 Jul 2013 12:30:04 +0200
+Received: from 220.227.185.53 ([220.227.185.53])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 12:30:04 +0200
+Received: from kirankumar.bobbu by 220.227.185.53 with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2013 12:30:04 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: kiranbobbu <kirankumar.bobbu@smartplayin.com>
+Date: Tue, 30 Jul 2013 10:27:04 +0000 (UTC)
+Message-ID: <loom.20130730T122304-969@post.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 220.227.185.53 (Mozilla/5.0 (X11;
+	Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+	Chrome/28.0.1500.71 Safari/537.36)
+Subject: build crash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,102 +36,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jul 2013 09:54:48 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_63BEC3E3AFFFE545A6A066C1E23BBDB9DF867AEEmboxtxa4vitesse_"
+X-List-Received-Date: Tue, 30 Jul 2013 10:30:07 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
---_000_63BEC3E3AFFFE545A6A066C1E23BBDB9DF867AEEmboxtxa4vitesse_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+I got following errors while building the yocto layers:
+please help
 
-Hi,
+Build Configuration:
+BB_VERSION        = "1.17.0"
+TARGET_ARCH       = "arm"
+TARGET_OS         = "linux-gnueabi"
+MACHINE           = "omap5-evm"
+DISTRO            = "arago"
+DISTRO_VERSION    = "2013.06"
+TUNE_FEATURES     = "${TUNE_FEATURES_tune-cortexa8thf-neon}"
+TARGET_FPU        = "soft"
+meta-arago-distro 
+meta-arago-extras = "(nobranch):d08f424bd078d9a0c88a94ac92f859c8efaf06d4"
+toolchain-layer   
+meta-oe           = "(nobranch):f00028caf257e386c0f3ae46bd4b3ba53dd0729d"
+meta-ti           = "(nobranch):af9632689392ea03fd14879ca33b3c6c6ed2e347"
+meta-linaro       = "(nobranch):d0558fa4304592622423582f8b464e1c22cfe6f1"
+meta              = "(nobranch):0785489d558c34cacf5cb349949a15e27084efbf"
 
-I'm new to Yocto and I'm trying to build a debug image.
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+WARNING: Failed to fetch URL ftp://ftp.ossp.org/pkg/lib/uuid/uuid-
+1.6.2.tar.gz, attempting MIRRORS if available
+WARNING: Failed to fetch URL ftp://ftp.gnu.org/gnu/binutils/binutils-
+2.20.1a.tar.bz2, attempting MIRRORS if available
+ERROR: Fetcher failure: Fetch command failed with exit code 4, output:
+Error in server response, closing control connection.
+Error in server response, closing control connection.
 
-My image recipe looks like this:
-
-IMAGE_INSTALL =3D "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP} u-b=
-oot webstax3 vtss-uio-mod"
-IMAGE_LINGUAS =3D " "
-
-LICENSE =3D "MIT"
-
-inherit core-image
-
-DEBUG_BUILD =3D "1"
-
-DEBUG_FLAGS =3D "-ggdb3 -O0 -fno-omit-frame-pointer"
-DEBUG_OPTIMIZATION =3D "-ggdb3 -O0 -fno-omit-frame-pointer"
-
-IMAGE_ROOTFS_SIZE =3D "16384"
-IMAGE_FEATURES =3D "debug-tweaks tools-debug dbg-pkgs"
-
-# remove not needed ipkg informations
-ROOTFS_POSTPROCESS_COMMAND +=3D "remove_packaging_data_files ; "
-
-IMAGE_FSTYPES =3D "tar.gz ext2.gz.u-boot"
+ERROR: Function failed: Fetcher failure for URL: 
+'ftp://ftp.gnu.org/gnu/binutils/binutils-2.20.1a.tar.bz2'. Unable to fetch 
+URL from any source.
+ERROR: Logfile of failure stored in: /home/bkiran/ti-glsdk_omap5-
+uevm_6_01_00_01/yocto-layers/build/arago-tmp-external-linaro-
+toolchain/work/x86_64-linux/binutils-native-2.20.1-
+r9/temp/log.do_fetch.31242
+ERROR: Task 527 (virtual:native:/home/bkiran/ti-glsdk_omap5-
+uevm_6_01_00_01/yocto-layers/sources/meta-arago/meta-arago-extras/recipes-
+devtools/binutils/binutils_2.20.1.bb, do_fetch) failed with exit code '1'
 
 
-But when I inspect the build logs of my packets I see that they have not be=
-en build with "-ggdb3 -O0 -fno-omit-frame-pointer"
+thanks 
+kiran 
 
-So, please advice me on how to do this.
 
-Best regards
-Allan W. Nielsen
-
---_000_63BEC3E3AFFFE545A6A066C1E23BBDB9DF867AEEmboxtxa4vitesse_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Hi,<br>
-<br>
-I'm new to Yocto and I'm trying to build a debug image.<br>
-<br>
-My image recipe looks like this:<br>
-<br>
-IMAGE_INSTALL =3D &quot;packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP=
-} u-boot webstax3 vtss-uio-mod&quot;<br>
-IMAGE_LINGUAS =3D &quot; &quot;<br>
-<br>
-LICENSE =3D &quot;MIT&quot;<br>
-<br>
-inherit core-image<br>
-<br>
-DEBUG_BUILD =3D &quot;1&quot;<br>
-<br>
-DEBUG_FLAGS =3D &quot;-ggdb3 -O0 -fno-omit-frame-pointer&quot;<br>
-DEBUG_OPTIMIZATION =3D &quot;-ggdb3 -O0 -fno-omit-frame-pointer&quot;<br>
-<br>
-IMAGE_ROOTFS_SIZE =3D &quot;16384&quot;<br>
-IMAGE_FEATURES =3D &quot;debug-tweaks tools-debug dbg-pkgs&quot;<br>
-<br>
-# remove not needed ipkg informations<br>
-ROOTFS_POSTPROCESS_COMMAND &#43;=3D &quot;remove_packaging_data_files ; &qu=
-ot;<br>
-<br>
-IMAGE_FSTYPES =3D &quot;tar.gz ext2.gz.u-boot&quot;<br>
-<br>
-<br>
-But when I inspect the build logs of my packets I see that they have not be=
-en build with &quot;-ggdb3 -O0 -fno-omit-frame-pointer&quot;<br>
-<br>
-So, please advice me on how to do this.<br>
-<br>
-Best regards<br>
-Allan W. Nielsen<br>
-</div>
-</body>
-</html>
-
---_000_63BEC3E3AFFFE545A6A066C1E23BBDB9DF867AEEmboxtxa4vitesse_--
