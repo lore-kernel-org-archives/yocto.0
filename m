@@ -1,35 +1,32 @@
-Return-Path: <martiert@gmail.com>
-Received: from mail-ee0-f43.google.com (mail-ee0-f43.google.com [74.125.83.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D15DE002E9
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 00:18:11 -0700 (PDT)
-Received: by mail-ee0-f43.google.com with SMTP id e52so154601eek.2
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 00:18:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:content-type:content-transfer-encoding;
-	bh=Ft+Q9zyDoJziy2ohczF6wFUFXCnVWINDZy9+J+ycN/o=;
-	b=FTJtSgJrqso7B9WLHXKhdeq6Vs0NEOp6s8hyYscSBmA0LIVdTqZNZLOb+yepz/bK5T
-	fdgD31PxY3ZKSi4GXvbOFFxjnyhFhv/nG1qrXb6YdNWqJhz1qFAhYPYk53jME/42hc7L
-	1M+FdwhnCvhuSrvbrtUtx3zLmtySKLsxr7vPeMkP2aGv8MN6peg0nOo+Swz0tPSC+oIu
-	4Cm2v7WpMrFOgzcfv5F9RUKEvzoC5ZJmJESia51yGaz3qdS9xhJTz4d54VsbFl3bQB+i
-	ihlRGQ6V4kTJKm1CHscSf4PHHj2dP5nLmUCSQWD79cUkVQsd4fFVpI5DuEv04TnDksG1
-	9nXA==
-X-Received: by 10.14.37.7 with SMTP id x7mr17995771eea.38.1375255089982;
-	Wed, 31 Jul 2013 00:18:09 -0700 (PDT)
-Received: from ?IPv6:2001:420:44ff:fd0e:52e5:49ff:fe32:d20b?
-	([2001:420:44ff:fd0e:52e5:49ff:fe32:d20b])
-	by mx.google.com with ESMTPSA id i2sm399899eeu.4.2013.07.31.00.18.08
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 31 Jul 2013 00:18:09 -0700 (PDT)
-Message-ID: <51F8BAE8.3090805@gmail.com>
-Date: Wed, 31 Jul 2013 09:21:12 +0200
-From: Martin Ertsaas <martiert@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130705 Thunderbird/17.0.7
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
+	[209.85.128.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A65BCE002E9
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 01:00:47 -0700 (PDT)
+Received: by mail-ve0-f181.google.com with SMTP id jz10so392299veb.40
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 01:00:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type
+	:x-gm-message-state;
+	bh=yHWnKpJfvxh1tXaKxjHLrN9lnv17KRIbJXlrqptqdic=;
+	b=M6PdTmw2XS3frE3FPnFIkh1+rSIiDSXJyg/vsCVtHWswhT2K6cBcFe5/HVDu7mqNmQ
+	+FB+JwV4GQqlHlf0De0L121Gre2VPy6SigRQvILTh/duZLA61s0UKoinnhv0zpL/F4Vv
+	tJS6naZRYnqu7WnGxJGz6iSFX1nFpj+7Ym3UM7aWS+dIi4N1t4MuGKmulhYEPXsSR5t7
+	XUfeSMsjs3ZmGFo7tluEk4i2XwJzhLtqqrCgCvEOuJ8duEuSZEty/heXMi3aphZFvYun
+	VwJAPkpqFBNJCc4PdEN/8Y4sFAl9NYuhILB/i9triHndjg14Kd1ehvtOCvXsqjMbBC21
+	g1Qw==
 MIME-Version: 1.0
+X-Received: by 10.220.82.9 with SMTP id z9mr11180057vck.0.1375257646459; Wed,
+	31 Jul 2013 01:00:46 -0700 (PDT)
+Received: by 10.52.73.168 with HTTP; Wed, 31 Jul 2013 01:00:46 -0700 (PDT)
+Date: Wed, 31 Jul 2013 01:00:46 -0700
+Message-ID: <CAPhnLPCBvA21qDdJhT-wUqEJYBvvJYo0jBe6+G3pM76g4H5qkw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Subject: Building linux-yocto kernel in own bsp layer
+X-Gm-Message-State: ALoCoQmCIktTJraj6eOvek7qO5kWFSb9RZZb4qeB4/CK228YE56ZWhiUgYTfjsS/h+0fWAvot/I0
+Cc: SSD-OTC Romania Yocto QA <ssd-otc.romania.yocto.qa@intel.com>
+Subject: 1.5_M3.rc1 is being built
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,40 +38,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 07:18:13 -0000
+X-List-Received-Date: Wed, 31 Jul 2013 08:00:47 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-Hi.
+We should have artifacts in a few hours at
+autobuilder.yoctoproject.org/pub/nightly/20130731-1
 
-I'm creating my own bsp layer for omap4 chips (Yes, I know of meta-ti,
-but I want to learn how to do this myself :)). I'm trying to use the
-linux-yocto 3.4 kernel,
-and have gotten it to work locally. I then made a
-linux-yocto_3.4.bbappend which contains the following:
+meta-fsl-arm 	fdf3fe6296790b0c0817a58c064d7da1cca7dd0a
+meta-fsl-ppc 	399c1ab5e86cf6dbb7c0c48d5253ac8798d6bfe4
+meta-intel 	ce8f48d28c8d6d99b860e3f6480d9d3a6fc0b301
+meta-minnow 	a1cfe0e7fc59eb1e430db07840d6b6d54b8733e2
+meta-qt3 	b73552fb998fd30a01dbee5a172e432a16078222
+poky 	9de0ad47462c13ac4a2d73e12e92be6c1b4e0415
 
-COMPATIBLE_MACHINE_pandaboard = "pandaboard"
-
-SRCREV_machine_pandaboard ?= "7eb5fbf903d9db90c3cf371b65e1f2a68d5676d7"
-
-THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.4"
-
-SRC_URI += "file://defconfig"
-
-do_configure_prepend() {
-        cp ${WORKDIR}/defconfig ${S}/.config
-}
-
-Problem I get is, without this configure_prepend, my defconfig is not
-copied into .config the kernel folder. With this however, I get a
-complaint from the kernel that the kernel directory is not clean and I
-have to run make mrproper.
-
-I would greatly appreciate any pointer/help/explanations as to what I
-have done wrong here, and how to fix it. Have been struggling for this
-for a while now, and have no idea what I have done wrong.
-
-Best regards
-Martin Ertsaas
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
