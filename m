@@ -1,38 +1,55 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BC5AE01583
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 14:36:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=yL0HeHMemvZr8/KE1kHxxuvHwHaJS2wJYTWtut3/ZZM=; 
-	b=ZkkamASS78CrEJUiVpyVatCtTsMlXyzy3HrCmjO6oW9ZkwHyoyNT0DQV2Hpy3dRbQP8eH9nu+4AKnsWn2MfobtFC3xTiMZ9CZTb34EnaWaWcTIwewQAg//hzt5P2GhRakF64l8QZ+8vm/L8nHaQAmxDzSp4UOrY1KN2FZgSUutQ=;
-Received: from [109.224.129.17] (port=23409
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80.1)
-	(envelope-from <opensource@keylevel.com>)
-	id 1V4e45-0038rh-KD; Wed, 31 Jul 2013 22:36:13 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CA+gsK-oGhS4HXd2c3v=MAyouk=rwPPL+zKtZnJxAAojDB9YomA@mail.gmail.com>
-Date: Wed, 31 Jul 2013 22:36:12 +0100
-Message-Id: <E6985885-E5DC-45B9-88FC-151A70F1DE5D@keylevel.com>
-References: <DFD53149-25C0-410A-A5E3-FD95F38E907B@keylevel.com>
-	<CA+gsK-oGhS4HXd2c3v=MAyouk=rwPPL+zKtZnJxAAojDB9YomA@mail.gmail.com>
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: Network booting
+Return-Path: <bradl@taser.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD4DE01572
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 15:39:36 -0700 (PDT)
+X-ASG-Debug-ID: 1375310373-0499bf565a4dea00001-yzSStA
+Received: from LOKI.atmoss (loki.atmoss [10.10.20.113]) by email.taser.com
+	with ESMTP id 56LHYG50bFgk8Fi4; Wed, 31 Jul 2013 15:39:33 -0700 (MST)
+X-Barracuda-Envelope-From: bradl@taser.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.113) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Wed, 31 Jul 2013 15:39:33 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Wed, 31 Jul 2013 15:39:32 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
+From: Brad Litterell <bradl@taser.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Trying to add new recipe - getting QA error I don't
+	understand
+X-ASG-Orig-Subj: Re: [yocto] Trying to add new recipe - getting QA error I
+	don't understand
+Thread-Index: AQHOjhaqK43GESdm30u/u0JCpsTpV5l/lVCAgABBgIA=
+Date: Wed, 31 Jul 2013 22:39:32 +0000
+Message-ID: <CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
+References: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
+	<CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
+In-Reply-To: <CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
+MIME-Version: 1.0
+X-Barracuda-Connect: loki.atmoss[10.10.20.113]
+X-Barracuda-Start-Time: 1375310373
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0
+	tests=BSF_SC0_MISMATCH_TO, HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.137467
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 BSF_SC0_MISMATCH_TO    Envelope rcpt doesn't match header
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Trying to add new recipe - getting QA error I don't understand
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,99 +61,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 21:36:15 -0000
+X-List-Received-Date: Wed, 31 Jul 2013 22:39:38 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_036BE03B-CCAF-49C2-8EFE-0B177FF79522"
+	boundary="_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_"
 
---Apple-Mail=_036BE03B-CCAF-49C2-8EFE-0B177FF79522
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
+--_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Rudolf,
+SGkgUm9zcywNCg0KDQpUaGFua3MgZm9yIHlvdXIgcmVwbHkuDQoNCg0KRmlyc3QsIGl0IGFwcGVh
+cnMgeW91IGFyZSBjb3JyZWN0IHRoYXQgVUNJIGlzIG5vdCBmb2xsb3dpbmcgdGhlIG5vcm1hbCBw
+YXR0ZXJuLiAgSGVyZSBpcyB0aGUgaW1hZ2UgZm9yIHRoZSBwYWNrYWdlOg0KDQouDQrilJTilIDi
+lIAgdXNyDQogICAg4pSc4pSA4pSAIGJpbg0KICAgIOKUgiAgIOKUnOKUgOKUgCB1Y2kNCiAgICDi
+lIIgICDilJTilIDilIAgdWNpLXN0YXRpYw0KICAgIOKUnOKUgOKUgCBpbmNsdWRlDQogICAg4pSC
+ICAg4pSc4pSA4pSAIHVjaV9jb25maWcuaA0KICAgIOKUgiAgIOKUnOKUgOKUgCB1Y2kuaA0KICAg
+IOKUgiAgIOKUlOKUgOKUgCB1Y2ltYXAuaA0KICAgIOKUlOKUgOKUgCBsaWINCiAgICAgICAg4pSc
+4pSA4pSAIGxpYnVjaS5hDQogICAgICAgIOKUlOKUgOKUgCBsaWJ1Y2kuc28NCg0KDQpTbywgSSBh
+ZGRlZCB0aGlzOg0KDQoNCkZJTEVTXyR7UE59ICs9Ii91c3IvbGliLyoiDQoNCkhvd2V2ZXIgdGhh
+dCBkb2Vzbid0IHJlbW92ZSB0aGUgbWVzc2FnZS4gIERpZCBJIGRvIGl0IHJpZ2h0Pw0KDQpBbHNv
+LCBpbiB0aGUgZXJyb3IgbWVzc2FnZSAidWNpIGRlcGVuZHMgb24gdWNpLWRldiIgZG9lcyAidWNp
+IiByZWZlcnMgdG8gdGhlIHBhY2thZ2UgbmFtZSBvciB0aGUgZXhlY3V0YWJsZSBuYW1lPw0KDQpJ
+IHdhc24ndCBhYmxlIHRvIHJlbW92ZSBQViwgaXQgcmFuIGludG8gYSBkaWZmZXJlbnQgYnVpbGQg
+YnJlYWsgc2luY2UgdGhlIHRhci5neiBlbWl0cyB0aGUgc291cmNlIGZvbGRlciB3aXRoIHRoYXQg
+bmFtZS4gIEknbSB1c2luZyB0aGUgdGFyLmd6IHRvIG1ha2Ugc3VyZSBJJ20gYnVpbGRpbmcgdGhl
+IHNhbWUgc291cmNlIGFzIHRoZSBwcm9qZWN0IGZvciBteSBvbGQgYm9hcmQuICBUaGF0IHByb2pl
+Y3QgdXNlZCBhIHZhcmlhbnQgb2YgYnVpbGQgcm9vdCwgYnV0IHdlJ3JlIHRyeWluZyB0byBtb3Zl
+IHRvIFlvY3RvIGJlY2F1c2UgaXQgc2VlbXMgdG8gaGF2ZSBhIGJldHRlciBzdXBwb3J0ZWQgZnV0
+dXJlLiAgSU9XLCB1c2luZyB0aGUgdGFyIGJhbGwgaXMgYSB3YXkgdG8gY2hhbmdlIG9ubHkgb25l
+IHRoaW5nIGF0IGEgdGltZSB1bnRpbCB0aGUgcmVzdCBvZiB0aGUgYnVpbGQgaXMgaGFwcHkuDQoN
+ClRoYW5rcyBhZ2FpbiwNCkJyYWQNCg0KDQpPbiBKdWwgMzEsIDIwMTMsIGF0IDExOjQ1IEFNLCAi
+QnVydG9uLCBSb3NzIiA8cm9zcy5idXJ0b25AaW50ZWwuY29tPG1haWx0bzpyb3NzLmJ1cnRvbkBp
+bnRlbC5jb20+PiB3cm90ZToNCg0KSGkgQnJhZCwNCg0KT24gMzEgSnVseSAyMDEzIDE4OjUyLCBC
+cmFkIExpdHRlcmVsbCA8YnJhZGxAdGFzZXIuY29tPG1haWx0bzpicmFkbEB0YXNlci5jb20+PiB3
+cm90ZToNCkknbSBuZXcgdG8gWW9jdG8sIHNvIHBsZWFzZSBsZXQgbWUga25vdyBpZiB0aGlzIGlz
+IHRoZSB3cm9uZyBsaXN0IGZvcg0KcXVlc3Rpb25zIGxpa2UgdGhpcy4NCg0KWW91J3ZlIGdvdCB0
+aGUgcmlnaHQgbGlzdCBmb3Igc3VwcG9ydCBxdWVzdGlvbi4NCg0KSSdtIHRyeWluZyB0byBhZGQg
+YSByZWNpcGUgZm9yIGEgbmV3IGNtYWtlIHByb2plY3QgKGZvciBVQ0kpLiAgVGhlDQpkb19wYWNr
+YWdlX3FhIHRhc2sgcmVwb3J0cyB0aGlzIHByb2JsZW06DQoNCkVSUk9SOiBRQSBJc3N1ZTogdWNp
+IHJkZXBlbmRzIG9uIHVjaS1kZXYNCkVSUk9SOiBRQSBydW4gZm91bmQgZmF0YWwgZXJyb3JzLiBQ
+bGVhc2UgY29uc2lkZXIgZml4aW5nIHRoZW0uDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19w
+YWNrYWdlX3FhDQoNCnVjaS1kZXYgYXBwZWFycyB0byBiZSBhdXRvbWF0aWNhbGx5IGdlbmVyYXRl
+ZCBwYWNrYWdlIC0gdGhlcmUgaXMgbm8gcmVjaXBlDQpmb3IgaXQsIGFuZCBJIGNhbid0IGZpbmQg
+YW55IHJlZmVyZW5jZSB0byBpdCBpbiB0aGUgYWN0dWFsIHNvdXJjZSBjb2RlIGZvcg0KdGhlIHBh
+Y2thZ2UuICBJbiBvdGhlciB3b3JkcywgaXQgYXBwZWFycyBhcyBpZiBZb2N0byBpdHNlbGYgaXMg
+Z2VuZXJhdGluZw0KdGhpcyBkZXBlbmRlbmN5IHNvbWVob3cuDQoNCkNvcnJlY3QsIG9lLWNvcmUg
+d2lsbCBnZW5lcmF0ZSBhIC1kZXYgcGFja2FnZSBieSBkZWZhdWx0IHRoYXQgY29udGFpbnMNCih0
+eXBpY2FsbHkpIC91c3IvaW5jbHVkZSBhbmQgL3Vzci9saWIvbGliKi5zby4NCg0KVGhpcyB3YXJu
+aW5nIGluZGljYXRlcyB0aGF0IHRoZSBhdXRvbWF0aWMgbGlicmFyeSBkZXBlbmRlbmN5DQpnZW5l
+cmF0aW9uIGFkZGVkIGEgZGVwZW5kZW5jeSBmcm9tIHVjaSB0byB1Y2ktZGV2LiAgSXQgc291bmRz
+IGxpa2UNCnRoYXQgVUNJIGlzbid0IGluc3RhbGxpbmcgdmVyc2lvbmVkIGxpYnJhcmllcyAoc28g
+ZWcNCi91c3IvbGliL2xpYnVjaS5zbyBpcyB0aGUgZnVsbCBsaWJyYXJ5LCBub3QgYSBzeW1saW5r
+KSBhbmQgdGhlIG1haW4NCnVjaSBwYWNrYWdlIGlzIHNoaXBwaW5nIGEgYmluYXJ5IHRoYXQgbGlu
+a3MgdG8gaXQuDQoNCklmIHRoYXQncyB0aGUgY2FzZSB0aGVuIGJhc2ljYWxseSBVQ0kgaXMgZG9p
+bmcgc2hhcmVkIGxpYnJhcmllcyBiYWRseSwNCmFuZCB5b3UnbGwgaGF2ZSB0byB0d2VhayB0aGUg
+cGFja2FnaW5nLiAgQWRkaW5nIHRvIEZJTEVTXyR7UE59IHRvDQppbmNsdWRlIGFsbCBvZiAvdXNy
+L2xpYiBzaG91bGQgcHV0IGFsbCB0aGUgbGlicmFyaWVzIGludG8gInVjaSIuDQoNClBWID0gIjIw
+MTEtMDctMTguMyINCg0KSSB0aGluayBoeXBoZW4gaW4gUFYgaXNuJ3QgcmVjb21tZW5kZWQsIGJ1
+dCB5b3UgY2FuIGF2b2lkIHNldHRpbmcgdGhpcw0KaWYgeW91IGVtYmVkIHRoZSB2ZXJzaW9uIGlu
+IHRoZSBmaWxlbmFtZS4NCg0KI3NlZSBodHRwczovL2ZvcnVtLm9wZW53cnQub3JnL3ZpZXd0b3Bp
+Yy5waHA/aWQ9MTUyNDMgZm9yIGdpdA0KU1JDX1VSSSA9ICJmaWxlOi8vdWNpLSR7UFZ9LnRhci5n
+ejxmaWxlOi8vL3VjaS0ke1BWfS50YXIuZ3o+Ig0KDQpJIHByZXN1bWUgeW91IGhhdmUgYSByZWFz
+b24gdG8gaGF2ZSBhIGxvY2FsIHNuYXBzaG90IG9mIHRoZSByZXBvIGFuZA0KYXJlIG5vdCB1c2lu
+ZyBhIGdpdCBVUkkgaW4gU1JDX1VSSSBkaXJlY3RseT8NCg0KUm9zcw0KDQo=
 
-On 31 Jul 2013, at 22:29, Rudolf Streif wrote:
+--_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <1230D9FA8CCD504CA804CFFB5EE60C51@taser.com>
+Content-Transfer-Encoding: base64
 
->=20
-> Is there an easy way to have a system boot and load the rootfs from a =
-network server?
->=20
-> The classic way is to serve the root file system from an NFS server. =
-You will have to pass the root=3D/dev/nfs and =
-nfsroot=3D[<server-ip>:]<root-dir>[,<nfs-options>] to your kernel via =
-boot loader.
->=20
-> Every system you want to boot this way will need to have its own root =
-file system on the NFS server. However, there is the nfsroot project [1] =
-that reportedly allows booting entire clusters sharing one root file =
-system. I have not used that though.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
+YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
+ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxwcmUgc3R5bGU9Im1hcmdpbi10b3A6IDBweDsg
+bWFyZ2luLWJvdHRvbTogMHB4OyAiPkhpIFJvc3MsPC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4t
+dG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj48YnI+PC9wcmU+DQo8cHJlIHN0eWxlPSJt
+YXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj5UaGFua3MgZm9yIHlvdXIgcmVw
+bHkuPC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBw
+eDsgIj48YnI+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0
+b206IDBweDsgIj5GaXJzdCwgaXQgYXBwZWFycyB5b3UgYXJlIGNvcnJlY3QgdGhhdCBVQ0kgaXMg
+bm90IGZvbGxvd2luZyB0aGUgbm9ybWFsIHBhdHRlcm4uICBIZXJlIGlzIHRoZSBpbWFnZSBmb3Ig
+dGhlIHBhY2thZ2U6PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1i
+b3R0b206IDBweDsgIj4uDQrilJTilIDilIAgdXNyDQogICAg4pSc4pSA4pSAIGJpbg0KICAgIOKU
+giZuYnNwOyZuYnNwOyDilJzilIDilIAgdWNpDQogICAg4pSCJm5ic3A7Jm5ic3A7IOKUlOKUgOKU
+gCB1Y2ktc3RhdGljDQogICAg4pSc4pSA4pSAIGluY2x1ZGUNCiAgICDilIImbmJzcDsmbmJzcDsg
+4pSc4pSA4pSAIHVjaV9jb25maWcuaA0KICAgIOKUgiZuYnNwOyZuYnNwOyDilJzilIDilIAgdWNp
+LmgNCiAgICDilIImbmJzcDsmbmJzcDsg4pSU4pSA4pSAIHVjaW1hcC5oDQogICAg4pSU4pSA4pSA
+IGxpYg0KICAgICAgICDilJzilIDilIAgbGlidWNpLmENCiAgICAgICAg4pSU4pSA4pSAIGxpYnVj
+aS5zbw0KPC9wcmU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5TbywmbmJzcDtJIGFkZGVkIHRo
+aXM6PC9kaXY+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBw
+eDsgIj48YnI+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0
+b206IDBweDsgIj48IS0tU3RhcnRGcmFnbWVudC0tPkZJTEVTXyR7UE59PHNwYW4gc3R5bGU9IiBj
+b2xvcjojYzBjMGMwOyI+IDwvc3Bhbj4mIzQzOz0mcXVvdDsvdXNyL2xpYi8qJnF1b3Q7PCEtLUVu
+ZEZyYWdtZW50LS0+PC9wcmU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5Ib3dldmVyIHRoYXQg
+ZG9lc24ndCByZW1vdmUgdGhlIG1lc3NhZ2UuICZuYnNwO0RpZCBJIGRvIGl0IHJpZ2h0PzwvZGl2
+Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+QWxzbywgaW4gdGhlIGVycm9yIG1lc3NhZ2UgJnF1
+b3Q7dWNpIGRlcGVuZHMgb24gdWNpLWRldiZxdW90OyBkb2VzICZxdW90O3VjaSZxdW90OyByZWZl
+cnMgdG8gdGhlIHBhY2thZ2UgbmFtZSBvciB0aGUgZXhlY3V0YWJsZSBuYW1lPzwvZGl2Pg0KPGRp
+dj48YnI+DQo8L2Rpdj4NCjxkaXY+SSB3YXNuJ3QgYWJsZSB0byByZW1vdmUgUFYsIGl0IHJhbiBp
+bnRvIGEgZGlmZmVyZW50IGJ1aWxkIGJyZWFrIHNpbmNlIHRoZSB0YXIuZ3ogZW1pdHMgdGhlIHNv
+dXJjZSBmb2xkZXIgd2l0aCB0aGF0IG5hbWUuICZuYnNwO0knbSB1c2luZyB0aGUgdGFyLmd6IHRv
+IG1ha2Ugc3VyZSBJJ20gYnVpbGRpbmcgdGhlIHNhbWUgc291cmNlIGFzIHRoZSBwcm9qZWN0IGZv
+ciBteSBvbGQgYm9hcmQuICZuYnNwO1RoYXQgcHJvamVjdCB1c2VkIGEgdmFyaWFudCBvZiBidWls
+ZA0KIHJvb3QsIGJ1dCB3ZSdyZSB0cnlpbmcgdG8gbW92ZSB0byBZb2N0byBiZWNhdXNlIGl0IHNl
+ZW1zIHRvIGhhdmUgYSBiZXR0ZXIgc3VwcG9ydGVkIGZ1dHVyZS4gJm5ic3A7SU9XLCB1c2luZyB0
+aGUgdGFyIGJhbGwgaXMgYSB3YXkgdG8gY2hhbmdlIG9ubHkgb25lIHRoaW5nIGF0IGEgdGltZSB1
+bnRpbCB0aGUgcmVzdCBvZiB0aGUgYnVpbGQgaXMgaGFwcHkuPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
+ZGl2Pg0KPGRpdj5UaGFua3MgYWdhaW4sPC9kaXY+DQo8ZGl2PkJyYWQ8L2Rpdj4NCjxkaXY+PGJy
+Pg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+T24gSnVsIDMxLCAyMDEz
+LCBhdCAxMTo0NSBBTSwgJnF1b3Q7QnVydG9uLCBSb3NzJnF1b3Q7ICZsdDs8YSBocmVmPSJtYWls
+dG86cm9zcy5idXJ0b25AaW50ZWwuY29tIj5yb3NzLmJ1cnRvbkBpbnRlbC5jb208L2E+Jmd0OyB3
+cm90ZTo8L2Rpdj4NCjxiciBjbGFzcz0iQXBwbGUtaW50ZXJjaGFuZ2UtbmV3bGluZSI+DQo8Ymxv
+Y2txdW90ZSB0eXBlPSJjaXRlIj5IaSBCcmFkLDxicj4NCjxicj4NCk9uIDMxIEp1bHkgMjAxMyAx
+ODo1MiwgQnJhZCBMaXR0ZXJlbGwgJmx0OzxhIGhyZWY9Im1haWx0bzpicmFkbEB0YXNlci5jb20i
+PmJyYWRsQHRhc2VyLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNp
+dGUiPkknbSBuZXcgdG8gWW9jdG8sIHNvIHBsZWFzZSBsZXQgbWUga25vdyBpZiB0aGlzIGlzIHRo
+ZSB3cm9uZyBsaXN0IGZvcjxicj4NCnF1ZXN0aW9ucyBsaWtlIHRoaXMuPGJyPg0KPC9ibG9ja3F1
+b3RlPg0KPGJyPg0KWW91J3ZlIGdvdCB0aGUgcmlnaHQgbGlzdCBmb3Igc3VwcG9ydCBxdWVzdGlv
+bi48YnI+DQo8YnI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj5JJ20gdHJ5aW5nIHRvIGFkZCBh
+IHJlY2lwZSBmb3IgYSBuZXcgY21ha2UgcHJvamVjdCAoZm9yIFVDSSkuICZuYnNwO1RoZTxicj4N
+CmRvX3BhY2thZ2VfcWEgdGFzayByZXBvcnRzIHRoaXMgcHJvYmxlbTo8YnI+DQo8YnI+DQpFUlJP
+UjogUUEgSXNzdWU6IHVjaSByZGVwZW5kcyBvbiB1Y2ktZGV2PGJyPg0KRVJST1I6IFFBIHJ1biBm
+b3VuZCBmYXRhbCBlcnJvcnMuIFBsZWFzZSBjb25zaWRlciBmaXhpbmcgdGhlbS48YnI+DQpFUlJP
+UjogRnVuY3Rpb24gZmFpbGVkOiBkb19wYWNrYWdlX3FhPGJyPg0KPGJyPg0KdWNpLWRldiBhcHBl
+YXJzIHRvIGJlIGF1dG9tYXRpY2FsbHkgZ2VuZXJhdGVkIHBhY2thZ2UgLSB0aGVyZSBpcyBubyBy
+ZWNpcGU8YnI+DQpmb3IgaXQsIGFuZCBJIGNhbid0IGZpbmQgYW55IHJlZmVyZW5jZSB0byBpdCBp
+biB0aGUgYWN0dWFsIHNvdXJjZSBjb2RlIGZvcjxicj4NCnRoZSBwYWNrYWdlLiAmbmJzcDtJbiBv
+dGhlciB3b3JkcywgaXQgYXBwZWFycyBhcyBpZiBZb2N0byBpdHNlbGYgaXMgZ2VuZXJhdGluZzxi
+cj4NCnRoaXMgZGVwZW5kZW5jeSBzb21laG93Ljxicj4NCjwvYmxvY2txdW90ZT4NCjxicj4NCkNv
+cnJlY3QsIG9lLWNvcmUgd2lsbCBnZW5lcmF0ZSBhIC1kZXYgcGFja2FnZSBieSBkZWZhdWx0IHRo
+YXQgY29udGFpbnM8YnI+DQoodHlwaWNhbGx5KSAvdXNyL2luY2x1ZGUgYW5kIC91c3IvbGliL2xp
+Yiouc28uPGJyPg0KPGJyPg0KVGhpcyB3YXJuaW5nIGluZGljYXRlcyB0aGF0IHRoZSBhdXRvbWF0
+aWMgbGlicmFyeSBkZXBlbmRlbmN5PGJyPg0KZ2VuZXJhdGlvbiBhZGRlZCBhIGRlcGVuZGVuY3kg
+ZnJvbSB1Y2kgdG8gdWNpLWRldi4gJm5ic3A7SXQgc291bmRzIGxpa2U8YnI+DQp0aGF0IFVDSSBp
+c24ndCBpbnN0YWxsaW5nIHZlcnNpb25lZCBsaWJyYXJpZXMgKHNvIGVnPGJyPg0KL3Vzci9saWIv
+bGlidWNpLnNvIGlzIHRoZSBmdWxsIGxpYnJhcnksIG5vdCBhIHN5bWxpbmspIGFuZCB0aGUgbWFp
+bjxicj4NCnVjaSBwYWNrYWdlIGlzIHNoaXBwaW5nIGEgYmluYXJ5IHRoYXQgbGlua3MgdG8gaXQu
+PGJyPg0KPGJyPg0KSWYgdGhhdCdzIHRoZSBjYXNlIHRoZW4gYmFzaWNhbGx5IFVDSSBpcyBkb2lu
+ZyBzaGFyZWQgbGlicmFyaWVzIGJhZGx5LDxicj4NCmFuZCB5b3UnbGwgaGF2ZSB0byB0d2VhayB0
+aGUgcGFja2FnaW5nLiAmbmJzcDtBZGRpbmcgdG8gRklMRVNfJHtQTn0gdG88YnI+DQppbmNsdWRl
+IGFsbCBvZiAvdXNyL2xpYiBzaG91bGQgcHV0IGFsbCB0aGUgbGlicmFyaWVzIGludG8gJnF1b3Q7
+dWNpJnF1b3Q7Ljxicj4NCjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPlBWID0gJnF1b3Q7
+MjAxMS0wNy0xOC4zJnF1b3Q7PGJyPg0KPC9ibG9ja3F1b3RlPg0KPGJyPg0KSSB0aGluayBoeXBo
+ZW4gaW4gUFYgaXNuJ3QgcmVjb21tZW5kZWQsIGJ1dCB5b3UgY2FuIGF2b2lkIHNldHRpbmcgdGhp
+czxicj4NCmlmIHlvdSBlbWJlZCB0aGUgdmVyc2lvbiBpbiB0aGUgZmlsZW5hbWUuPGJyPg0KPGJy
+Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+I3NlZSA8YSBocmVmPSJodHRwczovL2ZvcnVtLm9w
+ZW53cnQub3JnL3ZpZXd0b3BpYy5waHA/aWQ9MTUyNDMiPg0KaHR0cHM6Ly9mb3J1bS5vcGVud3J0
+Lm9yZy92aWV3dG9waWMucGhwP2lkPTE1MjQzPC9hPiBmb3IgZ2l0PGJyPg0KU1JDX1VSSSA9ICZx
+dW90OzxhIGhyZWY9ImZpbGU6Ly8vdWNpLSR7UFZ9LnRhci5neiI+ZmlsZTovL3VjaS0ke1BWfS50
+YXIuZ3o8L2E+JnF1b3Q7PGJyPg0KPC9ibG9ja3F1b3RlPg0KPGJyPg0KSSBwcmVzdW1lIHlvdSBo
+YXZlIGEgcmVhc29uIHRvIGhhdmUgYSBsb2NhbCBzbmFwc2hvdCBvZiB0aGUgcmVwbyBhbmQ8YnI+
+DQphcmUgbm90IHVzaW5nIGEgZ2l0IFVSSSBpbiBTUkNfVVJJIGRpcmVjdGx5Pzxicj4NCjxicj4N
+ClJvc3M8YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4NCjwvYm9keT4NCjwvaHRtbD4N
+Cg==
 
-Ah. I forgot to mention that it has to boot from a Windows server and =
-NFS will not be available. Sorry about that.
-
->=20
->=20
-> =20
-> I'm using an x86 system and can have the kernel and an initrd on it. I =
-would use bootp, but a lot of end users either don't have this or will =
-not allow it to be used. I think it needs to go something like:
->=20
-> 1) Kernel loads the initrd and bring the network up (static or DHCP);
-> 2) The rootfs image can then be download;
-> 3) Some magic then makes this run...
->=20
-> This looks like you want to start up the system, download a root file =
-system tarball, extract it to somewhere and then use that as the root =
-file system by chroot'ing to it.
-> =20
->=20
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
->=20
->=20
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
-
---Apple-Mail=_036BE03B-CCAF-49C2-8EFE-0B177FF79522
-Content-Transfer-Encoding: 7bit
-Content-Type: text/html;
-	charset=iso-8859-1
-
-<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; "><div><div>Hi Rudolf,</div><div><br></div><div>On 31 Jul 2013, at 22:29, Rudolf Streif wrote:</div><br class="Apple-interchange-newline"><blockquote type="cite"><div dir="ltr"><div><div class="gmail_extra"><br><div class="gmail_quote"><blockquote class="gmail_quote" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, 204); border-left-style: solid; padding-left: 1ex; position: static; z-index: auto; ">
-Is there an easy way to have a system boot and load the rootfs from a network server?<br>
-<br></blockquote><div>The classic way is to serve the root file system from an NFS server. You will have to pass the root=/dev/nfs and&nbsp;<span style="color:rgb(0,0,0);white-space:pre-wrap">nfsroot=[&lt;server-ip&gt;:]&lt;root-dir&gt;[,&lt;nfs-options&gt;] to your kernel via boot loader.</span><div>
-<font color="#000000"><span style="white-space:pre-wrap"><br></span></font></div><div><font color="#000000"><span style="white-space:pre-wrap">Every system you want to boot this way will need to have its own root file system on the NFS server. However, there is the nfsroot project [1] that reportedly allows booting entire clusters sharing one root file system. I have not used that though.<br></span></font></div></div></div></div></div></div></blockquote><div><br></div><div>Ah. I forgot to mention that it has to boot from a Windows server and NFS will not be available. Sorry about that.</div><br><blockquote type="cite"><div dir="ltr"><div><div class="gmail_extra"><div class="gmail_quote"><div><div><font color="#000000"><span style="white-space:pre-wrap">
-</span></font><div class="gmail_extra"><br></div></div></div><div>&nbsp;</div><blockquote class="gmail_quote" style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0.8ex; border-left-width: 1px; border-left-color: rgb(204, 204, 204); border-left-style: solid; padding-left: 1ex; position: static; z-index: auto; ">
-
-I'm using an x86 system and can have the kernel and an initrd on it. I would use bootp, but a lot of end users either don't have this or will not allow it to be used. I think it needs to go something like:<br>
-<br>
-1) Kernel loads the initrd and bring the network up (static or DHCP);<br>
-2) The rootfs image can then be download;<br>
-3) Some magic then makes this run...<br>
-<br></blockquote><div>This looks like you want to start up the system, download a root file system tarball, extract it to somewhere and then use that as the root file system by chroot'ing to it.</div><div>&nbsp;</div><blockquote class="gmail_quote" style="margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
-
-<br>
-<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href="https://lists.yoctoproject.org/listinfo/yocto" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br><br clear="all"><div><br></div><div><font face="garamond, serif"><span style="border-collapse:collapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px"><br></span></font></div>
-</div></div></div>
-</blockquote></div><br><div apple-content-edited="true">
-<span class="Apple-style-span" style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium; "><div>Chris Tapp</div><div><br></div><div><a href="mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><div><a href="http://www.keylevel.com">www.keylevel.com</a></div><div><br></div></span><br class="Apple-interchange-newline">
-</div>
-<br></body></html>
-
---Apple-Mail=_036BE03B-CCAF-49C2-8EFE-0B177FF79522--
+--_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_--
