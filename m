@@ -1,28 +1,32 @@
-Return-Path: <ilovetogetspamed@gmail.com>
-Received: from mail-oa0-f67.google.com (mail-oa0-f67.google.com
-	[209.85.219.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A744E002E2
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 10:33:33 -0700 (PDT)
-Received: by mail-oa0-f67.google.com with SMTP id n12so644124oag.10
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 10:33:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Kj7r7ZBw57to+7BW87Shbr5H3rFi/6wHZmpkkG9UXvQ=;
-	b=VW3jXir7302rQGOWKw6zLxKjbLtK07KGPkhW/wMSkygFlwLttkOgn8jKyFHWZ8Kc3I
-	LoQ4x08D80azPD29PGFCnLe4pF1BYnCQuTsYw0aDsg8epca/5YObdFQGQbL4IJCYm6GW
-	k6ixeuy0qlBBjkBksDCeuyu6nKjHL5qNhpavqU9nJHiOZ74Il/H1qGJGJJer2xP8bexM
-	e6pYti9+ikpAenvm1UZV7uU3bx5b3TN5q+x2tezQMnHZBYlFuEY3OqOqx2pnyH+OlCwc
-	7p+5kpE+jw3ALvRsYzlu1WoRZSFpfNac2ipXFM5RMoem71igm92CmJJRvpWsTtIUEk+g
-	hrmQ==
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail42c40.carrierzone.com (mail42c40.carrierzone.com
+	[209.235.156.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA76CE013B0
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 10:36:35 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail42c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r6VHaGiM027696; Wed, 31 Jul 2013 17:36:20 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Paul Barker'" <paul@paulbarker.me.uk>,
+	"'Yocto discussion list'" <yocto@yoctoproject.org>
+References: <CANyK_8fY=7P0MvFOJ1mSxwL0N7xDBQetfaoCiLZZTMU5khcKdg@mail.gmail.com>
+In-Reply-To: <CANyK_8fY=7P0MvFOJ1mSxwL0N7xDBQetfaoCiLZZTMU5khcKdg@mail.gmail.com>
+Date: Wed, 31 Jul 2013 10:36:12 -0700
+Message-ID: <000c01ce8e14$762fb050$628f10f0$@annabooks.com>
 MIME-Version: 1.0
-X-Received: by 10.60.50.106 with SMTP id b10mr68345865oeo.16.1375292012953;
-	Wed, 31 Jul 2013 10:33:32 -0700 (PDT)
-Received: by 10.76.112.198 with HTTP; Wed, 31 Jul 2013 10:33:32 -0700 (PDT)
-Date: Wed, 31 Jul 2013 13:33:32 -0400
-Message-ID: <CAHv4ZcNerC-VBQhG8m1jTN7tTsncA+tjLaKSBLhAM6TGRoUL9A@mail.gmail.com>
-From: I Love To Get Spamed <ilovetogetspamed@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Can't seem to get the SD Card working with BBB after building new kernel.
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQF3m+MBOB9jQ01rWWKZMJK7ugGIKpos8O4Q
+X-CSC: 0
+X-CHA: v=2.0 cv=QorpKyOd c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=_DgR7O7FQkkA:10 a=kj9zAlcOel0A:10 a=IjdlZ_XXAAAA:8 a=0IiY7qeEOFsA:10
+	a=iGHA9ds3AAAA:8 a=CBV8Sz_GAAAA:8 a=Idv6Z6YtAAAA:8
+	a=B9FSIGkEcD7AjAddUeMA:9
+	a=CjuIK1q_8ugA:10 a=FCaQVidmf_IA:10 a=nHK3ipOpxeAA:10 a=20lNC_KMuTQA:10
+	a=XDKM753qmDAA:10 a=CMpwFuDvM_ego1bt:21 a=eKhHyqIr_YN4DRuQ:21
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+Subject: Re: Minnowboard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,66 +38,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 17:33:34 -0000
-Content-Type: multipart/alternative; boundary=001a11c1cbc0e5532f04e2d21fdb
+X-List-Received-Date: Wed, 31 Jul 2013 17:36:37 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
---001a11c1cbc0e5532f04e2d21fdb
-Content-Type: text/plain; charset=ISO-8859-1
+There is a BSP layer that is part of the meta-intel layer:
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/ 
 
-Greetings:
+Regards,
 
-I have used Yocto Project HOB to compile a new kernel using meta-ti (target
-was am335x-evm) layer for my Beaglebone BLACK (not white).
+Sean Liming
+Owner
+Annabooks
+Tel: 714-970-7523 / Cell: 858-774-3176
 
-This created the pertinent files for the /boot and /rootfs partitions on
-the SD card.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Paul Barker
+> Sent: Wednesday, July 31, 2013 10:33 AM
+> To: Yocto discussion list
+> Subject: [yocto] Minnowboard
+> 
+> Hi all,
+> 
+> So I've just read about the Minnowboard, an Atom E640T single-board
+> computer.
+> 
+> http://uk.farnell.com/circuitco/minnowboard/atom-e640t-platform-
+> sbc/dp/2319581
+> 
+> The datasheet says "Yocto Project 1.3 compatible" so I think I'll be
+buying
+> one!
+> 
+> Does anyone know what layer the support for this will be in? I'm wondering
+> whether it's in meta-yocto, meta-intel or something Angstrom-specific.
+> 
+> Cheers,
+> 
+> --
+> Paul Barker
+> 
+> Email: paul@paulbarker.me.uk
+> http://www.paulbarker.me.uk
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I've added the files to the said partitions and added the basic uEnv.txt
-file (optargs=quiet).
 
-The system won't boot from the SD Card.
-
-What am I missing?  Anyone?
-
-Thanks in advance.
-
---001a11c1cbc0e5532f04e2d21fdb
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span style=3D"font-family:Arial,Helvetica,sans-serif;font=
--size:13px">Greetings:</span><div style=3D"margin:0px;padding:0px;border:0p=
-x;vertical-align:baseline;font-family:Arial,Helvetica,sans-serif;font-size:=
-13px">
-<br></div><div style=3D"margin:0px;padding:0px;border:0px;vertical-align:ba=
-seline;font-family:Arial,Helvetica,sans-serif;font-size:13px">I have used Y=
-octo Project HOB to compile a new kernel using meta-ti (target was am335x-e=
-vm) layer for my Beaglebone BLACK (not white).</div>
-<div style=3D"margin:0px;padding:0px;border:0px;vertical-align:baseline;fon=
-t-family:Arial,Helvetica,sans-serif;font-size:13px"><br></div><div style=3D=
-"margin:0px;padding:0px;border:0px;vertical-align:baseline;font-family:Aria=
-l,Helvetica,sans-serif;font-size:13px">
-This created the pertinent files for the /boot and /rootfs partitions on th=
-e SD card.</div><div style=3D"margin:0px;padding:0px;border:0px;vertical-al=
-ign:baseline;font-family:Arial,Helvetica,sans-serif;font-size:13px"><br></d=
-iv>
-<div style=3D"margin:0px;padding:0px;border:0px;vertical-align:baseline;fon=
-t-family:Arial,Helvetica,sans-serif;font-size:13px">I&#39;ve added the file=
-s to the said partitions and added the basic uEnv.txt file (optargs=3Dquiet=
-).</div>
-<div style=3D"margin:0px;padding:0px;border:0px;vertical-align:baseline;fon=
-t-family:Arial,Helvetica,sans-serif;font-size:13px"><br></div><div style=3D=
-"margin:0px;padding:0px;border:0px;vertical-align:baseline;font-family:Aria=
-l,Helvetica,sans-serif;font-size:13px">
-The system won&#39;t boot from the SD Card.</div><div style=3D"margin:0px;p=
-adding:0px;border:0px;vertical-align:baseline;font-family:Arial,Helvetica,s=
-ans-serif;font-size:13px"><br></div><div style=3D"margin:0px;padding:0px;bo=
-rder:0px;vertical-align:baseline;font-family:Arial,Helvetica,sans-serif;fon=
-t-size:13px">
-What am I missing? =A0Anyone?</div><div style=3D"margin:0px;padding:0px;bor=
-der:0px;vertical-align:baseline;font-family:Arial,Helvetica,sans-serif;font=
--size:13px"><br></div><div style=3D"margin:0px;padding:0px;border:0px;verti=
-cal-align:baseline;font-family:Arial,Helvetica,sans-serif;font-size:13px">
-Thanks in advance.</div></div>
-
---001a11c1cbc0e5532f04e2d21fdb--
