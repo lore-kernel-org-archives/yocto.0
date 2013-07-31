@@ -1,55 +1,33 @@
-Return-Path: <bradl@taser.com>
-Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD4DE01572
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 15:39:36 -0700 (PDT)
-X-ASG-Debug-ID: 1375310373-0499bf565a4dea00001-yzSStA
-Received: from LOKI.atmoss (loki.atmoss [10.10.20.113]) by email.taser.com
-	with ESMTP id 56LHYG50bFgk8Fi4; Wed, 31 Jul 2013 15:39:33 -0700 (MST)
-X-Barracuda-Envelope-From: bradl@taser.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
-Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
-	(10.10.20.113) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Wed, 31 Jul 2013 15:39:33 -0700
-Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
-	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
-	14.02.0342.003; Wed, 31 Jul 2013 15:39:32 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
-From: Brad Litterell <bradl@taser.com>
-X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Trying to add new recipe - getting QA error I don't
-	understand
-X-ASG-Orig-Subj: Re: [yocto] Trying to add new recipe - getting QA error I
-	don't understand
-Thread-Index: AQHOjhaqK43GESdm30u/u0JCpsTpV5l/lVCAgABBgIA=
-Date: Wed, 31 Jul 2013 22:39:32 +0000
-Message-ID: <CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
-References: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
-	<CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
-In-Reply-To: <CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.103]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01EEEE01572
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 15:57:40 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id m1so1520197ves.41
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 15:57:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:x-gm-message-state;
+	bh=x1QGohOjZN9/uZfgcAEEUOykr81CmfBWS4IYVQItrGY=;
+	b=c4l63k9jjg3IwOJtmrLXwA6uU4uCnfq6colea1jBKmnmKM3c8Ww1D7y4x/u65IsWLL
+	HiAm8KS/WlZRplZPnwyDZlUBKUiba5b9GUtewzwqjzm3rx7V2TE6JmVXXjlByxvniuIn
+	UH7RNRwfZ8IxEwi+lidaIqW8IhDo6I5kFYdANAfWyuX4/fHYQTnKfewotZ3r7kLWPjtC
+	6aZWaXtN/u6JqwhTh0kFibhtBGicY3YWpJz8hpim0XVM13jt740KQrPWM01XezKtHtxZ
+	QKmeHXYy/Gscq48L+LZZhj4AI5qbBojjhrH4y/6eAY/6pDaV3+b05Dp0vF71tBqkO/67
+	p5+A==
 MIME-Version: 1.0
-X-Barracuda-Connect: loki.atmoss[10.10.20.113]
-X-Barracuda-Start-Time: 1375310373
-X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at taser.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0
-	tests=BSF_SC0_MISMATCH_TO, HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.137467
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 BSF_SC0_MISMATCH_TO    Envelope rcpt doesn't match header
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trying to add new recipe - getting QA error I don't understand
+X-Received: by 10.220.98.68 with SMTP id p4mr12215505vcn.28.1375311459455;
+	Wed, 31 Jul 2013 15:57:39 -0700 (PDT)
+Received: by 10.52.73.168 with HTTP; Wed, 31 Jul 2013 15:57:39 -0700 (PDT)
+In-Reply-To: <CAPhnLPCBvA21qDdJhT-wUqEJYBvvJYo0jBe6+G3pM76g4H5qkw@mail.gmail.com>
+References: <CAPhnLPCBvA21qDdJhT-wUqEJYBvvJYo0jBe6+G3pM76g4H5qkw@mail.gmail.com>
+Date: Wed, 31 Jul 2013 15:57:39 -0700
+Message-ID: <CAPhnLPCFG0_PgPB=49TaWDZL1xrW=a-6+PM+ijY8FB4g+uzF+A@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+X-Gm-Message-State: ALoCoQlUNToiAWewH3AwPBR+c1qizlIcaaT4W7mltBE4XiO+uTwmhO8IPbENJOH8EkOiiE7cy6bU
+Subject: Re: 1.5_M3.rc1 is being built
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,158 +39,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 22:39:38 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_"
+X-List-Received-Date: Wed, 31 Jul 2013 22:57:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+All,
 
-SGkgUm9zcywNCg0KDQpUaGFua3MgZm9yIHlvdXIgcmVwbHkuDQoNCg0KRmlyc3QsIGl0IGFwcGVh
-cnMgeW91IGFyZSBjb3JyZWN0IHRoYXQgVUNJIGlzIG5vdCBmb2xsb3dpbmcgdGhlIG5vcm1hbCBw
-YXR0ZXJuLiAgSGVyZSBpcyB0aGUgaW1hZ2UgZm9yIHRoZSBwYWNrYWdlOg0KDQouDQrilJTilIDi
-lIAgdXNyDQogICAg4pSc4pSA4pSAIGJpbg0KICAgIOKUgiAgIOKUnOKUgOKUgCB1Y2kNCiAgICDi
-lIIgICDilJTilIDilIAgdWNpLXN0YXRpYw0KICAgIOKUnOKUgOKUgCBpbmNsdWRlDQogICAg4pSC
-ICAg4pSc4pSA4pSAIHVjaV9jb25maWcuaA0KICAgIOKUgiAgIOKUnOKUgOKUgCB1Y2kuaA0KICAg
-IOKUgiAgIOKUlOKUgOKUgCB1Y2ltYXAuaA0KICAgIOKUlOKUgOKUgCBsaWINCiAgICAgICAg4pSc
-4pSA4pSAIGxpYnVjaS5hDQogICAgICAgIOKUlOKUgOKUgCBsaWJ1Y2kuc28NCg0KDQpTbywgSSBh
-ZGRlZCB0aGlzOg0KDQoNCkZJTEVTXyR7UE59ICs9Ii91c3IvbGliLyoiDQoNCkhvd2V2ZXIgdGhh
-dCBkb2Vzbid0IHJlbW92ZSB0aGUgbWVzc2FnZS4gIERpZCBJIGRvIGl0IHJpZ2h0Pw0KDQpBbHNv
-LCBpbiB0aGUgZXJyb3IgbWVzc2FnZSAidWNpIGRlcGVuZHMgb24gdWNpLWRldiIgZG9lcyAidWNp
-IiByZWZlcnMgdG8gdGhlIHBhY2thZ2UgbmFtZSBvciB0aGUgZXhlY3V0YWJsZSBuYW1lPw0KDQpJ
-IHdhc24ndCBhYmxlIHRvIHJlbW92ZSBQViwgaXQgcmFuIGludG8gYSBkaWZmZXJlbnQgYnVpbGQg
-YnJlYWsgc2luY2UgdGhlIHRhci5neiBlbWl0cyB0aGUgc291cmNlIGZvbGRlciB3aXRoIHRoYXQg
-bmFtZS4gIEknbSB1c2luZyB0aGUgdGFyLmd6IHRvIG1ha2Ugc3VyZSBJJ20gYnVpbGRpbmcgdGhl
-IHNhbWUgc291cmNlIGFzIHRoZSBwcm9qZWN0IGZvciBteSBvbGQgYm9hcmQuICBUaGF0IHByb2pl
-Y3QgdXNlZCBhIHZhcmlhbnQgb2YgYnVpbGQgcm9vdCwgYnV0IHdlJ3JlIHRyeWluZyB0byBtb3Zl
-IHRvIFlvY3RvIGJlY2F1c2UgaXQgc2VlbXMgdG8gaGF2ZSBhIGJldHRlciBzdXBwb3J0ZWQgZnV0
-dXJlLiAgSU9XLCB1c2luZyB0aGUgdGFyIGJhbGwgaXMgYSB3YXkgdG8gY2hhbmdlIG9ubHkgb25l
-IHRoaW5nIGF0IGEgdGltZSB1bnRpbCB0aGUgcmVzdCBvZiB0aGUgYnVpbGQgaXMgaGFwcHkuDQoN
-ClRoYW5rcyBhZ2FpbiwNCkJyYWQNCg0KDQpPbiBKdWwgMzEsIDIwMTMsIGF0IDExOjQ1IEFNLCAi
-QnVydG9uLCBSb3NzIiA8cm9zcy5idXJ0b25AaW50ZWwuY29tPG1haWx0bzpyb3NzLmJ1cnRvbkBp
-bnRlbC5jb20+PiB3cm90ZToNCg0KSGkgQnJhZCwNCg0KT24gMzEgSnVseSAyMDEzIDE4OjUyLCBC
-cmFkIExpdHRlcmVsbCA8YnJhZGxAdGFzZXIuY29tPG1haWx0bzpicmFkbEB0YXNlci5jb20+PiB3
-cm90ZToNCkknbSBuZXcgdG8gWW9jdG8sIHNvIHBsZWFzZSBsZXQgbWUga25vdyBpZiB0aGlzIGlz
-IHRoZSB3cm9uZyBsaXN0IGZvcg0KcXVlc3Rpb25zIGxpa2UgdGhpcy4NCg0KWW91J3ZlIGdvdCB0
-aGUgcmlnaHQgbGlzdCBmb3Igc3VwcG9ydCBxdWVzdGlvbi4NCg0KSSdtIHRyeWluZyB0byBhZGQg
-YSByZWNpcGUgZm9yIGEgbmV3IGNtYWtlIHByb2plY3QgKGZvciBVQ0kpLiAgVGhlDQpkb19wYWNr
-YWdlX3FhIHRhc2sgcmVwb3J0cyB0aGlzIHByb2JsZW06DQoNCkVSUk9SOiBRQSBJc3N1ZTogdWNp
-IHJkZXBlbmRzIG9uIHVjaS1kZXYNCkVSUk9SOiBRQSBydW4gZm91bmQgZmF0YWwgZXJyb3JzLiBQ
-bGVhc2UgY29uc2lkZXIgZml4aW5nIHRoZW0uDQpFUlJPUjogRnVuY3Rpb24gZmFpbGVkOiBkb19w
-YWNrYWdlX3FhDQoNCnVjaS1kZXYgYXBwZWFycyB0byBiZSBhdXRvbWF0aWNhbGx5IGdlbmVyYXRl
-ZCBwYWNrYWdlIC0gdGhlcmUgaXMgbm8gcmVjaXBlDQpmb3IgaXQsIGFuZCBJIGNhbid0IGZpbmQg
-YW55IHJlZmVyZW5jZSB0byBpdCBpbiB0aGUgYWN0dWFsIHNvdXJjZSBjb2RlIGZvcg0KdGhlIHBh
-Y2thZ2UuICBJbiBvdGhlciB3b3JkcywgaXQgYXBwZWFycyBhcyBpZiBZb2N0byBpdHNlbGYgaXMg
-Z2VuZXJhdGluZw0KdGhpcyBkZXBlbmRlbmN5IHNvbWVob3cuDQoNCkNvcnJlY3QsIG9lLWNvcmUg
-d2lsbCBnZW5lcmF0ZSBhIC1kZXYgcGFja2FnZSBieSBkZWZhdWx0IHRoYXQgY29udGFpbnMNCih0
-eXBpY2FsbHkpIC91c3IvaW5jbHVkZSBhbmQgL3Vzci9saWIvbGliKi5zby4NCg0KVGhpcyB3YXJu
-aW5nIGluZGljYXRlcyB0aGF0IHRoZSBhdXRvbWF0aWMgbGlicmFyeSBkZXBlbmRlbmN5DQpnZW5l
-cmF0aW9uIGFkZGVkIGEgZGVwZW5kZW5jeSBmcm9tIHVjaSB0byB1Y2ktZGV2LiAgSXQgc291bmRz
-IGxpa2UNCnRoYXQgVUNJIGlzbid0IGluc3RhbGxpbmcgdmVyc2lvbmVkIGxpYnJhcmllcyAoc28g
-ZWcNCi91c3IvbGliL2xpYnVjaS5zbyBpcyB0aGUgZnVsbCBsaWJyYXJ5LCBub3QgYSBzeW1saW5r
-KSBhbmQgdGhlIG1haW4NCnVjaSBwYWNrYWdlIGlzIHNoaXBwaW5nIGEgYmluYXJ5IHRoYXQgbGlu
-a3MgdG8gaXQuDQoNCklmIHRoYXQncyB0aGUgY2FzZSB0aGVuIGJhc2ljYWxseSBVQ0kgaXMgZG9p
-bmcgc2hhcmVkIGxpYnJhcmllcyBiYWRseSwNCmFuZCB5b3UnbGwgaGF2ZSB0byB0d2VhayB0aGUg
-cGFja2FnaW5nLiAgQWRkaW5nIHRvIEZJTEVTXyR7UE59IHRvDQppbmNsdWRlIGFsbCBvZiAvdXNy
-L2xpYiBzaG91bGQgcHV0IGFsbCB0aGUgbGlicmFyaWVzIGludG8gInVjaSIuDQoNClBWID0gIjIw
-MTEtMDctMTguMyINCg0KSSB0aGluayBoeXBoZW4gaW4gUFYgaXNuJ3QgcmVjb21tZW5kZWQsIGJ1
-dCB5b3UgY2FuIGF2b2lkIHNldHRpbmcgdGhpcw0KaWYgeW91IGVtYmVkIHRoZSB2ZXJzaW9uIGlu
-IHRoZSBmaWxlbmFtZS4NCg0KI3NlZSBodHRwczovL2ZvcnVtLm9wZW53cnQub3JnL3ZpZXd0b3Bp
-Yy5waHA/aWQ9MTUyNDMgZm9yIGdpdA0KU1JDX1VSSSA9ICJmaWxlOi8vdWNpLSR7UFZ9LnRhci5n
-ejxmaWxlOi8vL3VjaS0ke1BWfS50YXIuZ3o+Ig0KDQpJIHByZXN1bWUgeW91IGhhdmUgYSByZWFz
-b24gdG8gaGF2ZSBhIGxvY2FsIHNuYXBzaG90IG9mIHRoZSByZXBvIGFuZA0KYXJlIG5vdCB1c2lu
-ZyBhIGdpdCBVUkkgaW4gU1JDX1VSSSBkaXJlY3RseT8NCg0KUm9zcw0KDQo=
+This release candidate had a few failures some of which I've fixed due
+to them being autobuilder issues:
 
---_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <1230D9FA8CCD504CA804CFFB5EE60C51@taser.com>
-Content-Transfer-Encoding: base64
+build-appliance: was including meta-intel (which it shouldn't have
+been) which failed. We've rebuilt the BA and updated it in the
+download directory
+eclipse-plugins: all failed. This was caused by the updated buildset.
+I've corrected them and rebuilt. Kepler fails but it's relatively new.
+Juno passed and I copied it over.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxwcmUgc3R5bGU9Im1hcmdpbi10b3A6IDBweDsg
-bWFyZ2luLWJvdHRvbTogMHB4OyAiPkhpIFJvc3MsPC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4t
-dG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj48YnI+PC9wcmU+DQo8cHJlIHN0eWxlPSJt
-YXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj5UaGFua3MgZm9yIHlvdXIgcmVw
-bHkuPC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBw
-eDsgIj48YnI+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0
-b206IDBweDsgIj5GaXJzdCwgaXQgYXBwZWFycyB5b3UgYXJlIGNvcnJlY3QgdGhhdCBVQ0kgaXMg
-bm90IGZvbGxvd2luZyB0aGUgbm9ybWFsIHBhdHRlcm4uICBIZXJlIGlzIHRoZSBpbWFnZSBmb3Ig
-dGhlIHBhY2thZ2U6PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1i
-b3R0b206IDBweDsgIj4uDQrilJTilIDilIAgdXNyDQogICAg4pSc4pSA4pSAIGJpbg0KICAgIOKU
-giZuYnNwOyZuYnNwOyDilJzilIDilIAgdWNpDQogICAg4pSCJm5ic3A7Jm5ic3A7IOKUlOKUgOKU
-gCB1Y2ktc3RhdGljDQogICAg4pSc4pSA4pSAIGluY2x1ZGUNCiAgICDilIImbmJzcDsmbmJzcDsg
-4pSc4pSA4pSAIHVjaV9jb25maWcuaA0KICAgIOKUgiZuYnNwOyZuYnNwOyDilJzilIDilIAgdWNp
-LmgNCiAgICDilIImbmJzcDsmbmJzcDsg4pSU4pSA4pSAIHVjaW1hcC5oDQogICAg4pSU4pSA4pSA
-IGxpYg0KICAgICAgICDilJzilIDilIAgbGlidWNpLmENCiAgICAgICAg4pSU4pSA4pSAIGxpYnVj
-aS5zbw0KPC9wcmU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5TbywmbmJzcDtJIGFkZGVkIHRo
-aXM6PC9kaXY+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBw
-eDsgIj48YnI+PC9wcmU+DQo8cHJlIHN0eWxlPSJtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0
-b206IDBweDsgIj48IS0tU3RhcnRGcmFnbWVudC0tPkZJTEVTXyR7UE59PHNwYW4gc3R5bGU9IiBj
-b2xvcjojYzBjMGMwOyI+IDwvc3Bhbj4mIzQzOz0mcXVvdDsvdXNyL2xpYi8qJnF1b3Q7PCEtLUVu
-ZEZyYWdtZW50LS0+PC9wcmU+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5Ib3dldmVyIHRoYXQg
-ZG9lc24ndCByZW1vdmUgdGhlIG1lc3NhZ2UuICZuYnNwO0RpZCBJIGRvIGl0IHJpZ2h0PzwvZGl2
-Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+QWxzbywgaW4gdGhlIGVycm9yIG1lc3NhZ2UgJnF1
-b3Q7dWNpIGRlcGVuZHMgb24gdWNpLWRldiZxdW90OyBkb2VzICZxdW90O3VjaSZxdW90OyByZWZl
-cnMgdG8gdGhlIHBhY2thZ2UgbmFtZSBvciB0aGUgZXhlY3V0YWJsZSBuYW1lPzwvZGl2Pg0KPGRp
-dj48YnI+DQo8L2Rpdj4NCjxkaXY+SSB3YXNuJ3QgYWJsZSB0byByZW1vdmUgUFYsIGl0IHJhbiBp
-bnRvIGEgZGlmZmVyZW50IGJ1aWxkIGJyZWFrIHNpbmNlIHRoZSB0YXIuZ3ogZW1pdHMgdGhlIHNv
-dXJjZSBmb2xkZXIgd2l0aCB0aGF0IG5hbWUuICZuYnNwO0knbSB1c2luZyB0aGUgdGFyLmd6IHRv
-IG1ha2Ugc3VyZSBJJ20gYnVpbGRpbmcgdGhlIHNhbWUgc291cmNlIGFzIHRoZSBwcm9qZWN0IGZv
-ciBteSBvbGQgYm9hcmQuICZuYnNwO1RoYXQgcHJvamVjdCB1c2VkIGEgdmFyaWFudCBvZiBidWls
-ZA0KIHJvb3QsIGJ1dCB3ZSdyZSB0cnlpbmcgdG8gbW92ZSB0byBZb2N0byBiZWNhdXNlIGl0IHNl
-ZW1zIHRvIGhhdmUgYSBiZXR0ZXIgc3VwcG9ydGVkIGZ1dHVyZS4gJm5ic3A7SU9XLCB1c2luZyB0
-aGUgdGFyIGJhbGwgaXMgYSB3YXkgdG8gY2hhbmdlIG9ubHkgb25lIHRoaW5nIGF0IGEgdGltZSB1
-bnRpbCB0aGUgcmVzdCBvZiB0aGUgYnVpbGQgaXMgaGFwcHkuPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
-ZGl2Pg0KPGRpdj5UaGFua3MgYWdhaW4sPC9kaXY+DQo8ZGl2PkJyYWQ8L2Rpdj4NCjxkaXY+PGJy
-Pg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+T24gSnVsIDMxLCAyMDEz
-LCBhdCAxMTo0NSBBTSwgJnF1b3Q7QnVydG9uLCBSb3NzJnF1b3Q7ICZsdDs8YSBocmVmPSJtYWls
-dG86cm9zcy5idXJ0b25AaW50ZWwuY29tIj5yb3NzLmJ1cnRvbkBpbnRlbC5jb208L2E+Jmd0OyB3
-cm90ZTo8L2Rpdj4NCjxiciBjbGFzcz0iQXBwbGUtaW50ZXJjaGFuZ2UtbmV3bGluZSI+DQo8Ymxv
-Y2txdW90ZSB0eXBlPSJjaXRlIj5IaSBCcmFkLDxicj4NCjxicj4NCk9uIDMxIEp1bHkgMjAxMyAx
-ODo1MiwgQnJhZCBMaXR0ZXJlbGwgJmx0OzxhIGhyZWY9Im1haWx0bzpicmFkbEB0YXNlci5jb20i
-PmJyYWRsQHRhc2VyLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNp
-dGUiPkknbSBuZXcgdG8gWW9jdG8sIHNvIHBsZWFzZSBsZXQgbWUga25vdyBpZiB0aGlzIGlzIHRo
-ZSB3cm9uZyBsaXN0IGZvcjxicj4NCnF1ZXN0aW9ucyBsaWtlIHRoaXMuPGJyPg0KPC9ibG9ja3F1
-b3RlPg0KPGJyPg0KWW91J3ZlIGdvdCB0aGUgcmlnaHQgbGlzdCBmb3Igc3VwcG9ydCBxdWVzdGlv
-bi48YnI+DQo8YnI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj5JJ20gdHJ5aW5nIHRvIGFkZCBh
-IHJlY2lwZSBmb3IgYSBuZXcgY21ha2UgcHJvamVjdCAoZm9yIFVDSSkuICZuYnNwO1RoZTxicj4N
-CmRvX3BhY2thZ2VfcWEgdGFzayByZXBvcnRzIHRoaXMgcHJvYmxlbTo8YnI+DQo8YnI+DQpFUlJP
-UjogUUEgSXNzdWU6IHVjaSByZGVwZW5kcyBvbiB1Y2ktZGV2PGJyPg0KRVJST1I6IFFBIHJ1biBm
-b3VuZCBmYXRhbCBlcnJvcnMuIFBsZWFzZSBjb25zaWRlciBmaXhpbmcgdGhlbS48YnI+DQpFUlJP
-UjogRnVuY3Rpb24gZmFpbGVkOiBkb19wYWNrYWdlX3FhPGJyPg0KPGJyPg0KdWNpLWRldiBhcHBl
-YXJzIHRvIGJlIGF1dG9tYXRpY2FsbHkgZ2VuZXJhdGVkIHBhY2thZ2UgLSB0aGVyZSBpcyBubyBy
-ZWNpcGU8YnI+DQpmb3IgaXQsIGFuZCBJIGNhbid0IGZpbmQgYW55IHJlZmVyZW5jZSB0byBpdCBp
-biB0aGUgYWN0dWFsIHNvdXJjZSBjb2RlIGZvcjxicj4NCnRoZSBwYWNrYWdlLiAmbmJzcDtJbiBv
-dGhlciB3b3JkcywgaXQgYXBwZWFycyBhcyBpZiBZb2N0byBpdHNlbGYgaXMgZ2VuZXJhdGluZzxi
-cj4NCnRoaXMgZGVwZW5kZW5jeSBzb21laG93Ljxicj4NCjwvYmxvY2txdW90ZT4NCjxicj4NCkNv
-cnJlY3QsIG9lLWNvcmUgd2lsbCBnZW5lcmF0ZSBhIC1kZXYgcGFja2FnZSBieSBkZWZhdWx0IHRo
-YXQgY29udGFpbnM8YnI+DQoodHlwaWNhbGx5KSAvdXNyL2luY2x1ZGUgYW5kIC91c3IvbGliL2xp
-Yiouc28uPGJyPg0KPGJyPg0KVGhpcyB3YXJuaW5nIGluZGljYXRlcyB0aGF0IHRoZSBhdXRvbWF0
-aWMgbGlicmFyeSBkZXBlbmRlbmN5PGJyPg0KZ2VuZXJhdGlvbiBhZGRlZCBhIGRlcGVuZGVuY3kg
-ZnJvbSB1Y2kgdG8gdWNpLWRldi4gJm5ic3A7SXQgc291bmRzIGxpa2U8YnI+DQp0aGF0IFVDSSBp
-c24ndCBpbnN0YWxsaW5nIHZlcnNpb25lZCBsaWJyYXJpZXMgKHNvIGVnPGJyPg0KL3Vzci9saWIv
-bGlidWNpLnNvIGlzIHRoZSBmdWxsIGxpYnJhcnksIG5vdCBhIHN5bWxpbmspIGFuZCB0aGUgbWFp
-bjxicj4NCnVjaSBwYWNrYWdlIGlzIHNoaXBwaW5nIGEgYmluYXJ5IHRoYXQgbGlua3MgdG8gaXQu
-PGJyPg0KPGJyPg0KSWYgdGhhdCdzIHRoZSBjYXNlIHRoZW4gYmFzaWNhbGx5IFVDSSBpcyBkb2lu
-ZyBzaGFyZWQgbGlicmFyaWVzIGJhZGx5LDxicj4NCmFuZCB5b3UnbGwgaGF2ZSB0byB0d2VhayB0
-aGUgcGFja2FnaW5nLiAmbmJzcDtBZGRpbmcgdG8gRklMRVNfJHtQTn0gdG88YnI+DQppbmNsdWRl
-IGFsbCBvZiAvdXNyL2xpYiBzaG91bGQgcHV0IGFsbCB0aGUgbGlicmFyaWVzIGludG8gJnF1b3Q7
-dWNpJnF1b3Q7Ljxicj4NCjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPlBWID0gJnF1b3Q7
-MjAxMS0wNy0xOC4zJnF1b3Q7PGJyPg0KPC9ibG9ja3F1b3RlPg0KPGJyPg0KSSB0aGluayBoeXBo
-ZW4gaW4gUFYgaXNuJ3QgcmVjb21tZW5kZWQsIGJ1dCB5b3UgY2FuIGF2b2lkIHNldHRpbmcgdGhp
-czxicj4NCmlmIHlvdSBlbWJlZCB0aGUgdmVyc2lvbiBpbiB0aGUgZmlsZW5hbWUuPGJyPg0KPGJy
-Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+I3NlZSA8YSBocmVmPSJodHRwczovL2ZvcnVtLm9w
-ZW53cnQub3JnL3ZpZXd0b3BpYy5waHA/aWQ9MTUyNDMiPg0KaHR0cHM6Ly9mb3J1bS5vcGVud3J0
-Lm9yZy92aWV3dG9waWMucGhwP2lkPTE1MjQzPC9hPiBmb3IgZ2l0PGJyPg0KU1JDX1VSSSA9ICZx
-dW90OzxhIGhyZWY9ImZpbGU6Ly8vdWNpLSR7UFZ9LnRhci5neiI+ZmlsZTovL3VjaS0ke1BWfS50
-YXIuZ3o8L2E+JnF1b3Q7PGJyPg0KPC9ibG9ja3F1b3RlPg0KPGJyPg0KSSBwcmVzdW1lIHlvdSBo
-YXZlIGEgcmVhc29uIHRvIGhhdmUgYSBsb2NhbCBzbmFwc2hvdCBvZiB0aGUgcmVwbyBhbmQ8YnI+
-DQphcmUgbm90IHVzaW5nIGEgZ2l0IFVSSSBpbiBTUkNfVVJJIGRpcmVjdGx5Pzxicj4NCjxicj4N
-ClJvc3M8YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4NCjwvYm9keT4NCjwvaHRtbD4N
-Cg==
+Assorted sanity failures. There were systemd failures, but the ones
+I'm really concerned about only happened on ab06 and was due to being
+unable to access a free tapdev. I've not had time to look at this, but
+will try to look at it tomorrow if someone else doesn't get to it
+first.
 
---_000_CE1312C1039E4F91BA03163FDC9E4CD4tasercom_--
+-b
+
+On Wed, Jul 31, 2013 at 1:00 AM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> We should have artifacts in a few hours at
+> autobuilder.yoctoproject.org/pub/nightly/20130731-1
+>
+> meta-fsl-arm    fdf3fe6296790b0c0817a58c064d7da1cca7dd0a
+> meta-fsl-ppc    399c1ab5e86cf6dbb7c0c48d5253ac8798d6bfe4
+> meta-intel      ce8f48d28c8d6d99b860e3f6480d9d3a6fc0b301
+> meta-minnow     a1cfe0e7fc59eb1e430db07840d6b6d54b8733e2
+> meta-qt3        b73552fb998fd30a01dbee5a172e432a16078222
+> poky    9de0ad47462c13ac4a2d73e12e92be6c1b4e0415
+>
+> --
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
