@@ -1,30 +1,31 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 421CCE002F9;
-	Tue, 30 Jul 2013 20:44:32 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 30 Jul 2013 20:44:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,783,1367996400"; d="scan'208";a="354656300"
-Received: from unknown (HELO [10.255.14.37]) ([10.255.14.37])
-	by orsmga001.jf.intel.com with ESMTP; 30 Jul 2013 20:44:24 -0700
-Message-ID: <1375242263.1574.62.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Felix01 Fischer <felix01.fischer@iav.de>
-Date: Tue, 30 Jul 2013 22:44:23 -0500
-In-Reply-To: <OF99407F03.B84552DB-ONC1257BB7.002656CB-C1257BB7.002C7BB9@retarus.de>
-References: <OF4EE7C2B2.6E6969A5-ONC1257BB3.002ECED6-C1257BB3.00316E7B@retarus.de>
-	<1374771477.6515.31.camel@empanada>
-	<OF9AE9D621.3F293DD7-ONC1257BB4.0029E8ED-C1257BB4.002AD720@retarus.de>
-	<1374934654.1586.10.camel@empanada>
-	<7A688B48FC95D148BFE83E098348BE503C507792@ALA-MBB.corp.ad.wrs.com>
-	<OF99407F03.B84552DB-ONC1257BB7.002656CB-C1257BB7.002C7BB9@retarus.de>
-X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
-Mime-Version: 1.0
-Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"genivi-meta-ivi@lists.genivi.org" <genivi-meta-ivi@lists.genivi.org>
-Subject: Re: Antwort: RE: Antwort: Re: [meta-intel] Boot failure when using meta-intel and meta-ivi
+Return-Path: <anielsen@vitesse.com>
+Received: from na3sys009aog117.obsmtp.com (na3sys009aog117.obsmtp.com
+	[74.125.149.242])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 09B6EE002FB
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 00:04:49 -0700 (PDT)
+Received: from smtp.vitesse.com ([67.78.86.101]) (using TLSv1) by
+	na3sys009aob117.postini.com ([74.125.148.12]) with SMTP
+	ID DSNKUfi3EN14lelfVEHa+a40K05lJvBRlcD9@postini.com;
+	Wed, 31 Jul 2013 00:04:52 PDT
+Received: from MBOX-TXA4.vitesse.com ([fe80::20c4:5fb8:c4c4:b418]) by
+	cash-txa4.vitesse.com ([::1]) with mapi id 14.02.0309.002;
+	Wed, 31 Jul 2013 02:04:47 -0500
+From: Allan Nielsen <anielsen@vitesse.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] Build yocto debug images
+Thread-Index: Ac6NCs8oHkEVAJ1MRWefQiyOIlfvrgAhdzIAAArPbL8=
+Date: Wed, 31 Jul 2013 07:04:46 +0000
+Message-ID: <63BEC3E3AFFFE545A6A066C1E23BBDB9DF86F784@mbox-txa4.vitesse.com>
+References: <63BEC3E3AFFFE545A6A066C1E23BBDB9DF867AEE@mbox-txa4.vitesse.com>,
+	<36192541.OoqkZU033c@helios>
+In-Reply-To: <36192541.OoqkZU033c@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.9.64.2]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Build yocto debug images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,353 +37,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 03:44:33 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 31 Jul 2013 07:04:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2013-07-29 at 10:05 +0200, Felix01 Fischer wrote:
-> "Behrens, Holger" <Holger.Behrens@windriver.com> schrieb am 29.07.2013
-> 08:54:40:
-> 
-> > Von: "Behrens, Holger" <Holger.Behrens@windriver.com> 
-> > An: Tom Zanussi <tom.zanussi@intel.com>, Felix01 Fischer 
-> > <felix01.fischer@iav.de>, 
-> > Kopie: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>, 
-> > "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "genivi-meta-
-> > ivi@lists.genivi.org" <genivi-meta-ivi@lists.genivi.org> 
-> > Datum: 29.07.2013 08:55 
-> > Betreff: RE: [yocto] Antwort: Re: [meta-intel] Boot failure when 
-> > using meta-intel and meta-ivi 
-> > 
-> > Hi,
-> > 
-> > > On Fri, 2013-07-26 at 09:48 +0200, Felix01 Fischer wrote:
-> > > > Tom Zanussi <tom.zanussi@intel.com> schrieb am 25.07.2013
-> 18:57:57:
-> > > >
-> > > > > Von: Tom Zanussi <tom.zanussi@intel.com>
-> > > > > An: Felix01 Fischer <felix01.fischer@iav.de>,
-> > > > > Kopie: yocto@yoctoproject.org, meta-intel@yoctoproject.org,
-> genivi-
-> > > > > meta-ivi@lists.genivi.org
-> > > > > Datum: 25.07.2013 18:58
-> > > > > Betreff: Re: [meta-intel] Boot failure when using meta-intel
-> and
-> > > > meta-ivi
-> > > > >
-> > > > > On Thu, 2013-07-25 at 11:00 +0200, Felix01 Fischer wrote:
-> > > > > > Hi,
-> > > > > > I haven written regarding this issues before. So maybe it
-> sounds
-> > > > > > familiar :-)
-> > > > > >
-> > > > > > I'm unable to produce a booting image when combining a
-> machine
-> > > > from
-> > > > > > the meta-intel layer with "DISTRO ?= "poky-ivi-systemd" from
-> the
-> > > > > > meta-ivi layer.
-> > > > > > You will find a photograph of my screen attached, but I will
-> > > > describe
-> > > > > > the error anyway.
-> > > > > >
-> > > > > >
-> > > > > > Which error do I get?
-> > > > > >
-> > > > > > When I'm booting my image the machine fails to boot. The
-> relevant
-> > > > > > information (IMHO) are the lines:
-> > > > > >        /init: line 98: mount: not found
-> > > > > >         /init: line 98: mount: not found
-> > > > > >         /init: line 98: mount: not found
-> > > > > > and
-> > > > > >         cat: can't open '/proc/cmdline': No such file or
-> > > > directory
-> > > > > >         Waiting for removable media...
-> > > > > >
-> > > > > >
-> > > > > > When does the error occur?
-> > > > > >
-> > > > > > Every image built with the local.conf options
-> > > > > > MACHINE ?= "crownbay"        OR        MACHINE ?=
-> "chiefriver"
-> > > > > > AND
-> > > > > > DISTRO ?= "poky-ivi-systemd"
-> > > > > >
-> > > > > > failed to boot.
-> > > > > >
-> > > > > I guess more information is needed to even build this.  Using
-> the
-> > > > poky
-> > > > > commit id in the README, using either meta-intel/master or
-> > > > > meta-intel/dylan gives errors like this:
-> > > > >
-> > > > > trz@elmorro:/usr/local/dev/yocto/ivi-test/build$ bitbake
-> foton-image
-> > > > > Pseudo is not present but is required, building this first
-> before
-> > > > the
-> > > > > main build
-> > > > > Loading cache: 100%
-> > > |###########################################|
-> > > > ETA:
-> > > > > 00:00:00
-> > > > > Loaded 1162 entries from dependency cache.
-> > > > > ERROR: No recipes available for:
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-extended/common-
-> > > > > api/dbus_1.6.10.bbappend
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/dbus/
-> > > > > dbus_1.6.10.bbappend
-> > > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-connectivity/
-> > > > > connman/connman_1.15.bbappend
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-graphics/xorg-
-> > > > > xserver/xserver-xorg_1.14.0.bbappend
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/busybox/
-> > > > > busybox_1.21.1.bbappend
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/eglibc/
-> > > > > eglibc_2.18.bbappend
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-intel/meta-crownbay/recipes-
-> > > > > kernel/linux/linux-yocto-rt_3.8.bbappend
-> > > > >   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-qt/qt4/qt4-
-> > > > > embedded_4.8.5.bbappend
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-intel/common/recipes-graphics/
-> > > > > mesa/mesa_9.0.2.bbappend
-> > > > >
->   /usr/local/dev/yocto/ivi-test/meta-ivi/recipes-core-ivi/netbase/
-> > > > > netbase_5.1.bbappend
-> > > > > ERROR: Command execution failed: Exited with 1
-> > > > >
-> > > > > So, please supply the relevant commits for all layers used..
-> > > > >
-> > > >
-> > > > First, thank you for your help.
-> > > > I guess your meta-ivi is not up to date. You have to "git
-> checkout
-> > > > 4.0.2", which is the latest meta-ivi release
-> > > > I have been building non-booting images for quite some time now
-> using
-> > > > various releases of poky, meta-intel and meta-ivi, so it
-> shouldn't
-> > > > rely on one special commit.
-> > > > Currently I'm using "git checkout 4.0.2" for meta-ivi and the
-> dylan
-> > > > branch for poky and meta-intel aswell.
-> > > >
-> > > OK, with those commits, I was able to get a good build (the README
-> is
-> > > also misleading about adding the INCOMPATIBLE_LICENSE line - it
-> doesn't
-> > > build if you do what it says).
-> > 
-> > Can you share where it did lead you and why?
-> > 
-> 
-> 
-> meta-intel depends on parted which is GPLv3+
-> 
-> 
-> 
->  
-> > > Anyway, from your error message:
-> > >    /init: line 98: mount: not found
-> > > 
-> > > it can't find mount, which prompted me to look in the rootfs for
-> 'mount'
-> > > and indeed it's not there, so that causes the init script to fail
-> as
-> > > above.
-> > > 
-> > > The mount command isn't there because meta-ivi applies its own
-> busybox
-> > > defconfig.  From that defconfig, we can see that it excludes
-> mount:
-> > 
-> > Because /bin/mount is provided by util-linux, and we therefore do 
-> > not need the one from busybox.
-> > 
-> > > # CONFIG_MOUNT is not set
-> > > 
-> > > which is why the live image init script can't find mount and fails
-> like
-> > > it does.
-> > > 
-> > > Removing the busybox_1.20.2.bbappend in the meta-ivi layer fixes
-> the
-> > > problem - rebuilding after doing that I'm able to boot crownbay
-> fine
-> > > with the meta-ivi layer applied.
-> > 
-> > That's a workaround yes.  Not sure why meta-intel BSPs can't use the
-> > mount command that comes with util-linux. 
-> 
-> 
-> 
-> 
-> Just for my understanding:
-> 
-> I did search for mount in my rootfs and I found a symlink to
-> util-linux.
-> So I assumed this would be right.
-> Now two Questione come to my mind.
-> First, how to recognize this as a bug? Do I need more experience or is
-> there a another way to hunt this bug down?
-> Second, how to find the root cause? Did you use grep or similiar to
-> find the right .bbappend or is it experience again to look for the
-> busybox.bpappend file?
-> 
-
-No, there's no magic to it, I actually didn't know much off the top of
-my head about the details of where mount comes from until I started
-digging around.
-
-Basically starting with the error message '/init: line 98: mount: not
-found' on a system that won't boot tells me there's a bug.  Furthermore,
-it tells me that the init script can't find mount for some reason.
-
-Looking at the rootfs, I noticed mount was missing in that build, and so
-I compared it with a build that did boot i.e one without meta-ivi
-included in the layers, and I did see mount, and that it was soft-linked
-to mount.busybox.  So that tells me the mount that's missing is
-apparently the busybox, which lead me to the busybox recipe and at the
-same time the busybox bbappend in meta-ivi.  A quick look at the
-defconfig showed indeed that the CONFIG_MOUNT option (along with several
-others) was unset, and a quick comparison with the defconfig in the main
-recipe confirmed that.
-
-And finally a quick rebuild after removing the busybox bbappend did boot
-for me.  Which stops short of suggesting a fix or a workaround, but at
-least solves the mystery...
-
-I'm sure I did use grep at certain points to locate things (actually I
-index the whole poky layer and a bunch of other layers as well, instead
-of actually grepping through the whole thing every time, but same thing
-basically), but yeah, I guess it's experience that leads to looking
-for .bbappends if you've isolated the problem to a particular package or
-recipe...
-
-HTH,
-
-Tom
-
-> 
-> 
-> > 
-> > Regards,
-> > Holger
-> > 
-> > > Tom
-> > > 
-> > > > The exact commits are (copied from the crownbay build):
-> > > >
-> > > > Build Configuration:
-> > > > BB_VERSION        = "1.18.0"
-> > > > BUILD_SYS         = "x86_64-linux"
-> > > > NATIVELSBSTRING   = "Ubuntu-12.04"
-> > > > TARGET_SYS        = "i586-oe-linux"
-> > > > MACHINE           = "crownbay"
-> > > > DISTRO            = "poky-ivi-systemd"
-> > > > DISTRO_VERSION    = "4.0.2"
-> > > > TUNE_FEATURES     = "m32 core2"
-> > > > TARGET_FPU        = ""
-> > > > meta
-> > > > meta-yocto
-> > > > meta-yocto-bsp    =
-> "dylan:64273e53f2789d2ea8393fc80909ac7086f168a7"
-> > > > meta-ivi          =
-> > > > "(nobranch):f906b053e56c3aa009b29359ea12d2a7b8a25d57"
-> > > > meta-intel
-> > > > meta-crownbay     =
-> "dylan:048def7bae8e3e1a11c91f5071f99bdcf8e6dd16"
-> > > > meta-qt5          =
-> "dylan:806fedcc155e28ff1d802cf8d5af9c6d67c210c7"
-> > > >
-> > > >
-> > > >
-> > > > > > I have tried builds with meta-ivi excalibur (not 100% sure)
-> and
-> > > > foton
-> > > > > > releases and the master branch aswell
-> > > > > > Similar applies to poky and meta-intel. I tried the danny
-> and
-> > > > dylan
-> > > > > > releases and the master branch.
-> > > > > >
-> > > > > > The boot happens from an USB stick on which I dd'ed
-> > > > > > "foton-image-$MACHINE-$BUILDDATE.hddimg"
-> > > > > >
-> > > > > > All other builds are booting fine.
-> > > > > >
-> > > > > > Addind "EXTRA_IMAGE_FEATURE = "udev-extraconf" did not
-> change
-> > > this
-> > > > > > behauviour.
-> > > > > >
-> > > > > > Building only with meta-intel OR meta-ivi results in a
-> booting
-> > > > image.
-> > > > > >
-> > > > > Not sure what this means - if using only meta-ivi, which
-> machine are
-> > > > you
-> > > > > building?
-> > > > >
-> > > >
-> > > >
-> > > > if using only meta-ivi. I'm building Qemu images.
-> > > > They have been booting fine all the time.
-> > > >
-> > > >
-> > > >
-> > > > > Tom
-> > > > >
-> > > > >
-> > > > > > So, any ideas?
-> > > > > >
-> > > > > > regards,
-> > > > > >
-> > > > > > Viele Grüße
-> > > > > >
-> > > > > > Felix Fischer
-> > > > > >
-> > > > > > Studentischer Mitarbeiter (VC-D1)
-> > > > > > Vehicle Cockpit Electronics Devices
-> > > > > >
-> > > > > > IAV GmbH
-> > > > > > Carnotstr. 1
-> > > > > > 10587 BERLIN
-> > > > > > GERMANY
-> > > > > >
-> > > > > > Phone: +49 30 39978-9540
-> > > > > > Fax:      +49 30 39978-9411
-> > > > > > E-Mail:  <mailto:felix01.fischer@iav.de>
-> > > > > > Internet: http://www.iav.com
-> > > > > >
-> > > > > > Sitz/Registered Office: Berlin,
-> > > > > > Registergericht/Registration Court: Amtsgericht
-> Charlottenburg,
-> > > > > > Registernummer/Company Registration Number: HRB 21 280,
-> > > > > > Geschäftsführer/Managing Directors: Kurt Blumenröder,
-> Michael
-> > > > > > Schubert, Dr. Rüdiger Goyk
-> > > > > > _______________________________________________
-> > > > > > meta-intel mailing list
-> > > > > > meta-intel@yoctoproject.org
-> > > > > > https://lists.yoctoproject.org/listinfo/meta-intel
-> > > > >
-> > > > >
-> > > 
-> > > 
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
-
-
+> > I'm new to Yocto and I'm trying to build a debug image.=0A=
+> >=0A=
+> > My image recipe looks like this:=0A=
+> >=0A=
+> > IMAGE_INSTALL =3D "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP}=
+ u-boot=0A=
+> > webstax3 vtss-uio-mod"=0A=
+> > IMAGE_LINGUAS =3D " "=0A=
+> >=0A=
+> > LICENSE =3D "MIT"=0A=
+> >=0A=
+> > inherit core-image=0A=
+> >=0A=
+> > DEBUG_BUILD =3D "1"=0A=
+> >=0A=
+> > DEBUG_FLAGS =3D "-ggdb3 -O0 -fno-omit-frame-pointer"=0A=
+> > DEBUG_OPTIMIZATION =3D "-ggdb3 -O0 -fno-omit-frame-pointer"=0A=
+> >=0A=
+> > IMAGE_ROOTFS_SIZE =3D "16384"=0A=
+> > IMAGE_FEATURES =3D "debug-tweaks tools-debug dbg-pkgs"=0A=
+> >=0A=
+> > # remove not needed ipkg informations=0A=
+> > ROOTFS_POSTPROCESS_COMMAND +=3D "remove_packaging_data_files ; "=0A=
+> >=0A=
+> > IMAGE_FSTYPES =3D "tar.gz ext2.gz.u-boot"=0A=
+> >=0A=
+> >=0A=
+> > But when I inspect the build logs of my packets I see that they have no=
+t=0A=
+> > been build with "-ggdb3 -O0 -fno-omit-frame-pointer"=0A=
+>=0A=
+> You can't set variables in an image recipe that need to be picked up by o=
+ther=0A=
+> recipes (in this specific case DEBUG_BUILD, DEBUG_FLAGS and=0A=
+> DEBUG_OPTIMISATION); you need to set these at a higher level i.e. local.c=
+onf=0A=
+> or a custom distro configuration.=0A=
+=0A=
+Ahh... Inserting this into local.conf is working perfect.=0A=
+=0A=
+Thanks you.=0A=
+=0A=
+Best regards=0A=
+Allan W. Nielsen=0A=
 
