@@ -1,31 +1,35 @@
-Return-Path: <anielsen@vitesse.com>
-Received: from na3sys009aog117.obsmtp.com (na3sys009aog117.obsmtp.com
-	[74.125.149.242])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 09B6EE002FB
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 00:04:49 -0700 (PDT)
-Received: from smtp.vitesse.com ([67.78.86.101]) (using TLSv1) by
-	na3sys009aob117.postini.com ([74.125.148.12]) with SMTP
-	ID DSNKUfi3EN14lelfVEHa+a40K05lJvBRlcD9@postini.com;
-	Wed, 31 Jul 2013 00:04:52 PDT
-Received: from MBOX-TXA4.vitesse.com ([fe80::20c4:5fb8:c4c4:b418]) by
-	cash-txa4.vitesse.com ([::1]) with mapi id 14.02.0309.002;
-	Wed, 31 Jul 2013 02:04:47 -0500
-From: Allan Nielsen <anielsen@vitesse.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Build yocto debug images
-Thread-Index: Ac6NCs8oHkEVAJ1MRWefQiyOIlfvrgAhdzIAAArPbL8=
-Date: Wed, 31 Jul 2013 07:04:46 +0000
-Message-ID: <63BEC3E3AFFFE545A6A066C1E23BBDB9DF86F784@mbox-txa4.vitesse.com>
-References: <63BEC3E3AFFFE545A6A066C1E23BBDB9DF867AEE@mbox-txa4.vitesse.com>,
-	<36192541.OoqkZU033c@helios>
-In-Reply-To: <36192541.OoqkZU033c@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.9.64.2]
+Return-Path: <martiert@gmail.com>
+Received: from mail-ee0-f43.google.com (mail-ee0-f43.google.com [74.125.83.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D15DE002E9
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 00:18:11 -0700 (PDT)
+Received: by mail-ee0-f43.google.com with SMTP id e52so154601eek.2
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 00:18:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:content-type:content-transfer-encoding;
+	bh=Ft+Q9zyDoJziy2ohczF6wFUFXCnVWINDZy9+J+ycN/o=;
+	b=FTJtSgJrqso7B9WLHXKhdeq6Vs0NEOp6s8hyYscSBmA0LIVdTqZNZLOb+yepz/bK5T
+	fdgD31PxY3ZKSi4GXvbOFFxjnyhFhv/nG1qrXb6YdNWqJhz1qFAhYPYk53jME/42hc7L
+	1M+FdwhnCvhuSrvbrtUtx3zLmtySKLsxr7vPeMkP2aGv8MN6peg0nOo+Swz0tPSC+oIu
+	4Cm2v7WpMrFOgzcfv5F9RUKEvzoC5ZJmJESia51yGaz3qdS9xhJTz4d54VsbFl3bQB+i
+	ihlRGQ6V4kTJKm1CHscSf4PHHj2dP5nLmUCSQWD79cUkVQsd4fFVpI5DuEv04TnDksG1
+	9nXA==
+X-Received: by 10.14.37.7 with SMTP id x7mr17995771eea.38.1375255089982;
+	Wed, 31 Jul 2013 00:18:09 -0700 (PDT)
+Received: from ?IPv6:2001:420:44ff:fd0e:52e5:49ff:fe32:d20b?
+	([2001:420:44ff:fd0e:52e5:49ff:fe32:d20b])
+	by mx.google.com with ESMTPSA id i2sm399899eeu.4.2013.07.31.00.18.08
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 31 Jul 2013 00:18:09 -0700 (PDT)
+Message-ID: <51F8BAE8.3090805@gmail.com>
+Date: Wed, 31 Jul 2013 09:21:12 +0200
+From: Martin Ertsaas <martiert@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130705 Thunderbird/17.0.7
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build yocto debug images
+To: yocto@yoctoproject.org
+Subject: Building linux-yocto kernel in own bsp layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,53 +41,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 07:04:52 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 31 Jul 2013 07:18:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-> > I'm new to Yocto and I'm trying to build a debug image.=0A=
-> >=0A=
-> > My image recipe looks like this:=0A=
-> >=0A=
-> > IMAGE_INSTALL =3D "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP}=
- u-boot=0A=
-> > webstax3 vtss-uio-mod"=0A=
-> > IMAGE_LINGUAS =3D " "=0A=
-> >=0A=
-> > LICENSE =3D "MIT"=0A=
-> >=0A=
-> > inherit core-image=0A=
-> >=0A=
-> > DEBUG_BUILD =3D "1"=0A=
-> >=0A=
-> > DEBUG_FLAGS =3D "-ggdb3 -O0 -fno-omit-frame-pointer"=0A=
-> > DEBUG_OPTIMIZATION =3D "-ggdb3 -O0 -fno-omit-frame-pointer"=0A=
-> >=0A=
-> > IMAGE_ROOTFS_SIZE =3D "16384"=0A=
-> > IMAGE_FEATURES =3D "debug-tweaks tools-debug dbg-pkgs"=0A=
-> >=0A=
-> > # remove not needed ipkg informations=0A=
-> > ROOTFS_POSTPROCESS_COMMAND +=3D "remove_packaging_data_files ; "=0A=
-> >=0A=
-> > IMAGE_FSTYPES =3D "tar.gz ext2.gz.u-boot"=0A=
-> >=0A=
-> >=0A=
-> > But when I inspect the build logs of my packets I see that they have no=
-t=0A=
-> > been build with "-ggdb3 -O0 -fno-omit-frame-pointer"=0A=
->=0A=
-> You can't set variables in an image recipe that need to be picked up by o=
-ther=0A=
-> recipes (in this specific case DEBUG_BUILD, DEBUG_FLAGS and=0A=
-> DEBUG_OPTIMISATION); you need to set these at a higher level i.e. local.c=
-onf=0A=
-> or a custom distro configuration.=0A=
-=0A=
-Ahh... Inserting this into local.conf is working perfect.=0A=
-=0A=
-Thanks you.=0A=
-=0A=
-Best regards=0A=
-Allan W. Nielsen=0A=
+Hi.
+
+I'm creating my own bsp layer for omap4 chips (Yes, I know of meta-ti,
+but I want to learn how to do this myself :)). I'm trying to use the
+linux-yocto 3.4 kernel,
+and have gotten it to work locally. I then made a
+linux-yocto_3.4.bbappend which contains the following:
+
+COMPATIBLE_MACHINE_pandaboard = "pandaboard"
+
+SRCREV_machine_pandaboard ?= "7eb5fbf903d9db90c3cf371b65e1f2a68d5676d7"
+
+THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.4"
+
+SRC_URI += "file://defconfig"
+
+do_configure_prepend() {
+        cp ${WORKDIR}/defconfig ${S}/.config
+}
+
+Problem I get is, without this configure_prepend, my defconfig is not
+copied into .config the kernel folder. With this however, I get a
+complaint from the kernel that the kernel directory is not clean and I
+have to run make mrproper.
+
+I would greatly appreciate any pointer/help/explanations as to what I
+have done wrong here, and how to fix it. Have been struggling for this
+for a while now, and have no idea what I have done wrong.
+
+Best regards
+Martin Ertsaas
 
