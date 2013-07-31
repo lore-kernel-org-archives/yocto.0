@@ -1,24 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D11D1E003F8
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 02:11:19 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 31 Jul 2013 02:11:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,785,1367996400"; d="scan'208";a="339454962"
-Received: from unknown (HELO helios.localnet) ([10.252.122.226])
-	by azsmga001.ch.intel.com with ESMTP; 31 Jul 2013 02:11:18 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Martin Ertsaas <martiert@gmail.com>
-Date: Wed, 31 Jul 2013 10:11:17 +0100
-Message-ID: <4482295.q3u6A1t33j@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <51F8BAE8.3090805@gmail.com>
-References: <51F8BAE8.3090805@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5B9CE00407
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 02:11:44 -0700 (PDT)
+Received: from [174.115.5.73] (port=39966 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1V4SRb-0005dY-Mp; Wed, 31 Jul 2013 05:11:43 -0400
+Date: Wed, 31 Jul 2013 05:11:40 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <1523931.rJmFDsbDNv@helios>
+Message-ID: <alpine.DEB.2.02.1307310509410.13616@oneiric>
+References: <alpine.DEB.2.02.1307300512280.7428@oneiric>
+	<1523931.rJmFDsbDNv@helios>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: yocto@yoctoproject.org
-Subject: Re: Building linux-yocto kernel in own bsp layer
+Subject: Re: any ETA for when the downloadable toolchains will be updated?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,28 +39,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 09:11:22 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 31 Jul 2013 09:11:48 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi Martin,
+On Tue, 30 Jul 2013, Paul Eggleton wrote:
 
-On Wednesday 31 July 2013 09:21:12 Martin Ertsaas wrote:
-> THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+> On Tuesday 30 July 2013 05:14:37 Robert P. J. Day wrote:
+> >   based simply on the timestamps, it would appear that the toolchains
+> > here:
+> >
+> > http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.1/toolchain/
+> >
+> > still contain the script bug involving the now-dead "find" option in
+> > fedora 19 where -perm no longer accepts a value starting with "+". is
+> > there any plan to replace those packages with updated versions that
+> > work properly on fedora 19?
+>
+> The fix in question has only just been backported to the dylan
+> branch. We're currently figuring out when the next 1.4 point release
+> (1.4.2) should be scheduled, the current thinking is mid-August.
 
-You should not set THISDIR, it's already set automatically.
+  just started downloading the nightly build and the arm .sh script is
+*noticeably* larger than the older 1.4.1 versions -- 270M versus 160M.
+what else is packed in there? (i can't check yet as the download is in
+progress, and rogers is determined to screw up every download i try.)
 
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.4"
-
-You should have a colon at the end of that value.
-
-I'm not sure if this will fix your problem, though.
-
-Cheers,
-Paul
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
