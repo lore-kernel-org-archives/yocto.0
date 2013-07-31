@@ -1,33 +1,34 @@
-Return-Path: <btraynor@gmail.com>
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FBF6E013B0
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 10:54:30 -0700 (PDT)
-Received: by mail-wi0-f170.google.com with SMTP id hi8so3902838wib.5
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 10:54:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f43.google.com (mail-vb0-f43.google.com
+	[209.85.212.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66059E002E2
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 11:45:26 -0700 (PDT)
+Received: by mail-vb0-f43.google.com with SMTP id h11so1137311vbh.16
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 11:45:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=DzeV7FoZZSzYcK7V3ptI7Geu5L6c9E51dpH5qAlCtN4=;
-	b=S6VhQ4VSlbqUXct+YuqiHeFD5y755NEUX7cz/dq0ih83FwPX7CjTj8AQRWDzQ16nvS
-	JRELRWX+gVVFpp5kK/7lOVzwS6gAeNB0MFc4h45KWxZUn0pCsghM6515JtY7gixdJy3C
-	e7YTibVq8B75vz6XPSik9/2pEvoVlvZdLF9E27xJiW8XHGlvCipXGqFzZAwwfHIrI35R
-	T1men3uDNW1JEd9rcEbC13pgpny8hnGGHXgkAyiBsKCQ3HjBgDZbcEiED+S074LXCVLT
-	eL8XAmH/NxfLfNGhGWyshlPItGH1xF+Gb0Coa8oymzu4g3tvF+aylM61uccDl5aSiKzZ
-	dYSA==
-X-Received: by 10.180.21.229 with SMTP id y5mr5090575wie.17.1375293269900;
-	Wed, 31 Jul 2013 10:54:29 -0700 (PDT)
+	:cc:content-type:x-gm-message-state;
+	bh=yIqsdFrTeyE7ylEqyac3OR3YvisbDAURtCL/csNGVcc=;
+	b=gH4NCvfcOHiRHr4oNkdgnw1fxqC6CvXiF0pNK+mbpT/GESTrNL8beFUqBUNBorNgYX
+	uCAeRPAoUJhpQAE3Y4/5noHRIsfbxoh5t1fWa8LlFG6MxecWj2O1L6pFomTZIZHtbxpM
+	4+kqFTqvIeP6aPVaB6LY7fytkte19KZCVG4hXyAjxXFboGvaEdI/l6Gv5xmxbEv/R/Sr
+	nSg2G84zhCxhLjOI+VO3aPV4srHsT8eE5I/iYTmGOdU87msMDoxh61hWA/zoYODSOxXP
+	VXuaaqz69qn5Is1D8Aa8+e9OBChPm/QIKO1jhp19nPB52ztG0VEL5yKRrjN3rvKKt4KM
+	260A==
+X-Received: by 10.58.118.70 with SMTP id kk6mr29076211veb.1.1375296325875;
+	Wed, 31 Jul 2013 11:45:25 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.194.85.166 with HTTP; Wed, 31 Jul 2013 10:53:49 -0700 (PDT)
-In-Reply-To: <000c01ce8e14$762fb050$628f10f0$@annabooks.com>
-References: <CANyK_8fY=7P0MvFOJ1mSxwL0N7xDBQetfaoCiLZZTMU5khcKdg@mail.gmail.com>
-	<000c01ce8e14$762fb050$628f10f0$@annabooks.com>
-From: Bill Traynor <btraynor@gmail.com>
-Date: Wed, 31 Jul 2013 13:53:49 -0400
-Message-ID: <CAN20qYq25FEDAvYZJR3onLDbyVWbuQkaFz36-Cw-g_fYLZdofQ@mail.gmail.com>
-To: Sean Liming <sean.liming@annabooks.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Minnowboard
+Received: by 10.220.71.201 with HTTP; Wed, 31 Jul 2013 11:45:05 -0700 (PDT)
+In-Reply-To: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
+References: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 31 Jul 2013 19:45:05 +0100
+Message-ID: <CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
+To: Brad Litterell <bradl@taser.com>
+X-Gm-Message-State: ALoCoQm2mh9ZMDh0J3w1BomMzS5GyIGLalOrC3eEyNCzwFHFgEe1iFOilANyT79/PJpDeDLQLQxQ
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Trying to add new recipe - getting QA error I don't understand
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,60 +40,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 17:54:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 31 Jul 2013 18:45:28 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wed, Jul 31, 2013 at 1:36 PM, Sean Liming <sean.liming@annabooks.com> wrote:
-> There is a BSP layer that is part of the meta-intel layer:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/
+Hi Brad,
 
-There's also the meta-minnow layer:
-http://layers.openembedded.org/layerindex/layer/meta-minnow/
+On 31 July 2013 18:52, Brad Litterell <bradl@taser.com> wrote:
+> I'm new to Yocto, so please let me know if this is the wrong list for
+> questions like this.
 
+You've got the right list for support question.
+
+> I'm trying to add a recipe for a new cmake project (for UCI).  The
+> do_package_qa task reports this problem:
 >
-> Regards,
+> ERROR: QA Issue: uci rdepends on uci-dev
+> ERROR: QA run found fatal errors. Please consider fixing them.
+> ERROR: Function failed: do_package_qa
 >
-> Sean Liming
-> Owner
-> Annabooks
-> Tel: 714-970-7523 / Cell: 858-774-3176
->
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of Paul Barker
->> Sent: Wednesday, July 31, 2013 10:33 AM
->> To: Yocto discussion list
->> Subject: [yocto] Minnowboard
->>
->> Hi all,
->>
->> So I've just read about the Minnowboard, an Atom E640T single-board
->> computer.
->>
->> http://uk.farnell.com/circuitco/minnowboard/atom-e640t-platform-
->> sbc/dp/2319581
->>
->> The datasheet says "Yocto Project 1.3 compatible" so I think I'll be
-> buying
->> one!
->>
->> Does anyone know what layer the support for this will be in? I'm wondering
->> whether it's in meta-yocto, meta-intel or something Angstrom-specific.
->>
->> Cheers,
->>
->> --
->> Paul Barker
->>
->> Email: paul@paulbarker.me.uk
->> http://www.paulbarker.me.uk
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> uci-dev appears to be automatically generated package - there is no recipe
+> for it, and I can't find any reference to it in the actual source code for
+> the package.  In other words, it appears as if Yocto itself is generating
+> this dependency somehow.
+
+Correct, oe-core will generate a -dev package by default that contains
+(typically) /usr/include and /usr/lib/lib*.so.
+
+This warning indicates that the automatic library dependency
+generation added a dependency from uci to uci-dev.  It sounds like
+that UCI isn't installing versioned libraries (so eg
+/usr/lib/libuci.so is the full library, not a symlink) and the main
+uci package is shipping a binary that links to it.
+
+If that's the case then basically UCI is doing shared libraries badly,
+and you'll have to tweak the packaging.  Adding to FILES_${PN} to
+include all of /usr/lib should put all the libraries into "uci".
+
+> PV = "2011-07-18.3"
+
+I think hyphen in PV isn't recommended, but you can avoid setting this
+if you embed the version in the filename.
+
+> #see https://forum.openwrt.org/viewtopic.php?id=15243 for git
+> SRC_URI = "file://uci-${PV}.tar.gz"
+
+I presume you have a reason to have a local snapshot of the repo and
+are not using a git URI in SRC_URI directly?
+
+Ross
 
