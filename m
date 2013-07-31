@@ -1,33 +1,24 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5B9CE00407
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 02:11:44 -0700 (PDT)
-Received: from [174.115.5.73] (port=39966 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1V4SRb-0005dY-Mp; Wed, 31 Jul 2013 05:11:43 -0400
-Date: Wed, 31 Jul 2013 05:11:40 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <1523931.rJmFDsbDNv@helios>
-Message-ID: <alpine.DEB.2.02.1307310509410.13616@oneiric>
-References: <alpine.DEB.2.02.1307300512280.7428@oneiric>
-	<1523931.rJmFDsbDNv@helios>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7AFDE003F8
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 02:51:53 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 31 Jul 2013 02:49:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,786,1367996400"; d="scan'208";a="379387023"
+Received: from unknown (HELO helios.localnet) ([10.252.122.226])
+	by orsmga002.jf.intel.com with ESMTP; 31 Jul 2013 02:51:51 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Brian Karcz <briank@russound.com>
+Date: Wed, 31 Jul 2013 10:51:50 +0100
+Message-ID: <1549593.BXXGrf3Qbm@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <0a4bf31ea87549a1bf22c3d6e740804a@HERMES.RUSSOUND.com>
+References: <0a4bf31ea87549a1bf22c3d6e740804a@HERMES.RUSSOUND.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Cc: yocto@yoctoproject.org
-Subject: Re: any ETA for when the downloadable toolchains will be updated?
+Subject: Re: recipe dependency on externally built binaries?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,40 +30,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 09:11:48 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 31 Jul 2013 09:51:54 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 30 Jul 2013, Paul Eggleton wrote:
+Hi Brian,
 
-> On Tuesday 30 July 2013 05:14:37 Robert P. J. Day wrote:
-> >   based simply on the timestamps, it would appear that the toolchains
-> > here:
-> >
-> > http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.1/toolchain/
-> >
-> > still contain the script bug involving the now-dead "find" option in
-> > fedora 19 where -perm no longer accepts a value starting with "+". is
-> > there any plan to replace those packages with updated versions that
-> > work properly on fedora 19?
->
-> The fix in question has only just been backported to the dylan
-> branch. We're currently figuring out when the next 1.4 point release
-> (1.4.2) should be scheduled, the current thinking is mid-August.
+On Monday 29 July 2013 19:05:04 Brian Karcz wrote:
+> I'm curious if there is a way to tell a package recipe that its resulting
+> package output is dependent on the pieces it's assembling. The scenario I
+> have is as follows. I created a series of recipes that assemble an
+> externally built executable, and some configurations files that are local
+> to the recipe:
+> 
+> xyz-app.bb
+> 
+>     SRC_URI = "file://<path to xyz-app executable> \
+>                File://xyz-app.config<File:///\\xyz-app.config>"
+> 
+>     do_install () {
+>         <make the required directories>
+>         <put the files in their places>
+>     }
+> 
+> abc-image.bb
+> 
+>     POKY_EXTRA_INSTALL += "xyz-app"
+> 
+> This setup works for assembling all the pieces I need, but unless the app
+> recipe revision gets bumped, it's not able to tell when the xyz-app
+> executable or xyz-app.config get changed and create a new xyz-app package
+> file. Is there a way to tell the recipe that there is a dependency for its
+> output package on the contents of the SRC_URI line without having to bump
+> the revision?
 
-  just started downloading the nightly build and the arm .sh script is
-*noticeably* larger than the older 1.4.1 versions -- 270M versus 160M.
-what else is packed in there? (i can't check yet as the download is in
-progress, and rogers is determined to screw up every download i try.)
+It depends on which version of the build system you are using. In danny (1.3) 
+and later a checksum is performed on every local file referred to in SRC_URI 
+(and the checksum will be refreshed if the file's mtime changes); if the 
+checksum is different then do_fetch for the recipe and all tasks that depend 
+upon it should be re-executed.
 
-rday
+However, the fact that you refer to POKY_EXTRA_INSTALL suggests you might be 
+using an older version of the build system - the current equivalent variable 
+is called CORE_IMAGE_EXTRA_INSTALL. Which version are you currently working 
+with?
+
+Cheers,
+Paul
 
 -- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Paul Eggleton
+Intel Open Source Technology Centre
 
