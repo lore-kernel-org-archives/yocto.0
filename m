@@ -1,38 +1,24 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84FBCE01572
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 15:58:14 -0700 (PDT)
-Received: by mail-pa0-f42.google.com with SMTP id lj1so1423409pab.1
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 15:58:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to:x-mailer;
-	bh=ncpMl+IBhaiHsnHir2b+02m59GKMhJ0ipFiYbN4aOqA=;
-	b=LCGhkODMXh6duX4BYC/xC6We4YroxFWch1zuffsgQKE/RkN6NIwitS/ZFi+vXDLMhg
-	NEbqS6teoDYZaDV4RH3oAxyRHSpEwZm7sUg4V8nMMhi2QOcSB0V0Ke8CudZnDa/5+6eE
-	N0i92uTwNkciZsx6YtqabuuLFlrNpr2GeQBGlgqaG2INaMZDiqgOMdTFVu6D35Io/pxe
-	yYcFqonH6/exILxt296X+hfQI0FP9El6lUCLD/YhVyBFg2flRWKuZIQv8nO0XNkJivkL
-	PBbUqCnEoPiZNpVfjUraxkg7ppiEDYmhqkrKlI2XBOOgR2YsB4h+jIKwsCkvhgpmFu2D
-	Nj0A==
-X-Received: by 10.68.169.97 with SMTP id ad1mr81290175pbc.84.1375311494352;
-	Wed, 31 Jul 2013 15:58:14 -0700 (PDT)
-Received: from sa-nc-spg-213.static.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id tr10sm7023pbc.22.2013.07.31.15.58.13
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 31 Jul 2013 15:58:13 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
-Date: Wed, 31 Jul 2013 15:58:12 -0700
-Message-Id: <3822EF35-AD96-4F3A-B278-E08E5F79B8CE@gmail.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5339CE01584
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 16:00:44 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 31 Jul 2013 16:00:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,790,1367996400"; d="scan'208";a="379186662"
+Received: from unknown (HELO [10.255.13.203]) ([10.255.13.203])
+	by fmsmga002.fm.intel.com with ESMTP; 31 Jul 2013 16:00:19 -0700
+Message-ID: <51F99703.5060900@linux.intel.com>
+Date: Wed, 31 Jul 2013 16:00:19 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+MIME-Version: 1.0
+To: Brad Litterell <bradl@taser.com>
 References: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
 	<CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
 	<CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
-To: Brad Litterell <bradl@taser.com>
-X-Mailer: Apple Mail (2.1508)
+In-Reply-To: <CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Trying to add new recipe - getting QA error I don't understand
 X-BeenThere: yocto@yoctoproject.org
@@ -46,111 +32,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 22:58:15 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_615C7BC0-6B39-41F3-9874-01A9BE5B2446"
+X-List-Received-Date: Wed, 31 Jul 2013 23:00:45 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---Apple-Mail=_615C7BC0-6B39-41F3-9874-01A9BE5B2446
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-
-On Jul 31, 2013, at 3:39 PM, Brad Litterell <bradl@taser.com> wrote:
-
->     =E2=94=94=E2=94=80=E2=94=80 lib
->         =E2=94=9C=E2=94=80=E2=94=80 libuci.a
->         =E2=94=94=E2=94=80=E2=94=80 libuci.so
->=20
+On 07/31/2013 03:39 PM, Brad Litterell wrote:
+> Hi Ross,
+>
+>
+> Thanks for your reply.
+>
+>
+> First, it appears you are correct that UCI is not following the normal pattern.  Here is the image for the package:
+>
+> .
+> └── usr
+>      ├── bin
+>      │   ├── uci
+>      │   └── uci-static
+>      ├── include
+>      │   ├── uci_config.h
+>      │   ├── uci.h
+>      │   └── ucimap.h
+>      └── lib
+>          ├── libuci.a
+>          └── libuci.so
+>
+>
 > So, I added this:
->=20
-> FILES_${PN} +=3D"/usr/lib/*"
+>
+>
+> FILES_${PN}  +="/usr/lib/*"
+>
+Brad,
 
-Try something like
-
-FILES_${PN} =3D+ "${libdir}/libuci.so"
-
-
->=20
+This should be using the ${libdir}, which is the variable that defines 
+the correct "/usr/lib"
+>
 > However that doesn't remove the message.  Did I do it right?
->=20
+>
+> Also, in the error message "uci depends on uci-dev" does "uci" refers to
+> the package name or the executable name?
+>
+> I wasn't able to remove PV, it ran into a different build break since
+> the tar.gz emits the source folder with that name.  I'm using the tar.gz
+> to make sure I'm building the same source as the project for my old
+> board.  That project used a variant of build root, but we're trying to
+> move to Yocto because it seems to have a better supported future.  IOW,
+> using the tar ball is a way to change only one thing at a time until the
+> rest of the build is happy.
+>
+What's the name of your recipe?  Normally the PV is parsed from the 
+recipename <recipename>_<version>.bb recipename goes into BPN (PN) and 
+version goes into PV.
+
+You can set the a SRCREV to a specific git hash and that will be stable 
+also. But you can start this way and then move to using a true git based 
+recipe.
+
+Hope this helps.
+
+Sau!
 
 
-usually .so are symlinks which then go into -dev packages via the =
-default package sieve engine
-but I am thinking if we find out that file is not a symlink but a normal =
-shared object then probably
-we could stop shoving it into -dev package and instead put it into ${PN}
+> Thanks again,
+> Brad
+>
+>
+> On Jul 31, 2013, at 11:45 AM, "Burton, Ross" <ross.burton@intel.com
+> <mailto:ross.burton@intel.com>> wrote:
+>
+>> Hi Brad,
+>>
+>> On 31 July 2013 18:52, Brad Litterell <bradl@taser.com
+>> <mailto:bradl@taser.com>> wrote:
+>>> I'm new to Yocto, so please let me know if this is the wrong list for
+>>> questions like this.
+>>
+>> You've got the right list for support question.
+>>
+>>> I'm trying to add a recipe for a new cmake project (for UCI).  The
+>>> do_package_qa task reports this problem:
+>>>
+>>> ERROR: QA Issue: uci rdepends on uci-dev
+>>> ERROR: QA run found fatal errors. Please consider fixing them.
+>>> ERROR: Function failed: do_package_qa
+>>>
+>>> uci-dev appears to be automatically generated package - there is no
+>>> recipe
+>>> for it, and I can't find any reference to it in the actual source
+>>> code for
+>>> the package.  In other words, it appears as if Yocto itself is generating
+>>> this dependency somehow.
+>>
+>> Correct, oe-core will generate a -dev package by default that contains
+>> (typically) /usr/include and /usr/lib/lib*.so.
+>>
+>> This warning indicates that the automatic library dependency
+>> generation added a dependency from uci to uci-dev.  It sounds like
+>> that UCI isn't installing versioned libraries (so eg
+>> /usr/lib/libuci.so is the full library, not a symlink) and the main
+>> uci package is shipping a binary that links to it.
+>>
+>> If that's the case then basically UCI is doing shared libraries badly,
+>> and you'll have to tweak the packaging.  Adding to FILES_${PN} to
+>> include all of /usr/lib should put all the libraries into "uci".
+>>
+>>> PV = "2011-07-18.3"
+>>
+>> I think hyphen in PV isn't recommended, but you can avoid setting this
+>> if you embed the version in the filename.
+>>
+>>> #see https://forum.openwrt.org/viewtopic.php?id=15243 for git
+>>> SRC_URI = "file://uci-${PV}.tar.gz <file:///uci-${PV}.tar.gz>"
+>>
+>> I presume you have a reason to have a local snapshot of the repo and
+>> are not using a git URI in SRC_URI directly?
+>>
+>> Ross
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-may be you should file an enhancement bug for it in Yocto bugzilla
-
-
---Apple-Mail=_615C7BC0-6B39-41F3-9874-01A9BE5B2446
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><br><div><div>On Jul 31, 2013, at 3:39 PM, Brad Litterell &lt;<a =
-href=3D"mailto:bradl@taser.com">bradl@taser.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><blockquote type=3D"cite"><pre =
-style=3D"font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; margin-top: 0px; margin-bottom: 0px; ">  =
-  =E2=94=94=E2=94=80=E2=94=80 lib
-        =E2=94=9C=E2=94=80=E2=94=80 libuci.a
-        =E2=94=94=E2=94=80=E2=94=80 libuci.so
-</pre><div style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; "><br></div><div style=3D"font-family: =
-Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-">So,&nbsp;I added this:</div><pre style=3D"font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; widows: 2; =
-word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; margin-top: 0px; margin-bottom: 0px; =
-"><br></pre><pre style=3D"font-size: medium; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: =
-0px; text-transform: none; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-margin-top: 0px; margin-bottom: 0px; ">FILES_${PN}<span style=3D"color: =
-rgb(192, 192, 192); "> =
-</span>+=3D"/usr/lib/*"</pre></blockquote><div><br></div><div>Try =
-something like</div><div><br></div><div>FILES_${PN} =3D+ =
-"${libdir}/libuci.so"</div><div><br></div><div><br></div><blockquote =
-type=3D"cite"><div style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; "><br></div><div style=3D"font-family: =
-Helvetica; font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
-">However that doesn't remove the message. &nbsp;Did I do it =
-right?</div><br =
-class=3D"Apple-interchange-newline"></blockquote></div><br><div><br></div>=
-<div>usually .so are symlinks which then go into -dev packages via the =
-default package sieve engine</div><div>but I am thinking if we find out =
-that file is not a symlink but a normal shared object then =
-probably</div><div>we could stop shoving it into -dev package and =
-instead put it into ${PN}</div><div><br></div><div>may be you should =
-file an enhancement bug for it in Yocto =
-bugzilla</div><div><br></div></body></html>=
-
---Apple-Mail=_615C7BC0-6B39-41F3-9874-01A9BE5B2446--
