@@ -1,27 +1,38 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
-	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9CBEE015BA
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2013 11:51:29 -0700 (PDT)
-Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Thu, 1 Aug 2013 14:51:29 -0400
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>
-Date: Thu, 1 Aug 2013 14:51:27 -0400
-Thread-Topic: [yocto] Creating a core-image-minimal image with package support
-Thread-Index: Ac6O3lVnlXknAFREScamIscYmOMIQQACQBjw
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153ADA9D49E@pluto.melinkcorp.local>
-References: <91586D499ADFD74FBCFB8425266A5DE4013B910EC9FD@pluto.melinkcorp.local>
-	<CALmOhg=kywWNAFeKac4kVT-f9QBTjKjV0Uqzr7it2Go5imO56g@mail.gmail.com>
-In-Reply-To: <CALmOhg=kywWNAFeKac4kVT-f9QBTjKjV0Uqzr7it2Go5imO56g@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 0183679F004E5A018368EC
-acceptlanguage: en-US
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Creating a core-image-minimal image with package support
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCBB8E0152B
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2013 11:53:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=6OK8j52oJSqaJ3Eh1spbLFiwLjkaBgmVmcAT+fhgp7A=; 
+	b=MrzUrKysixKv9mRX2SlkNHTny/yKnrORdzf06bA1ZNkT6d2yep3wBLiUUtqNJi1MchRO8QdqiVznuEqgQS9TOx7Z4y8tyvPbH/d5E2hIz94Mr8VROS7pu6Z0I1/jCX4M2dq1EaziQHr55/8kAX4pvtfT8GamT8RBmX8oQ+IP2qQ=;
+Received: from [109.224.129.17] (port=32372
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80.1)
+	(envelope-from <opensource@keylevel.com>)
+	id 1V4y0T-002UFL-Q6; Thu, 01 Aug 2013 19:53:49 +0100
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <51FA6B80.8030207@r-finger.com>
+Date: Thu, 1 Aug 2013 19:53:48 +0100
+Message-Id: <5C4C9EC7-1F17-4ED9-BCC7-C88C7514F41B@keylevel.com>
+References: <DFD53149-25C0-410A-A5E3-FD95F38E907B@keylevel.com>
+	<51FA1764.4060408@r-finger.com> <51FA6B80.8030207@r-finger.com>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: yocto@yoctoproject.org
+Subject: Re: Network booting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,131 +44,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2013 18:51:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 01 Aug 2013 18:53:51 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
+Hi Tomas,
+
+On 1 Aug 2013, at 15:06, Tomas Frydrych wrote:
+
+> Hi Chris,
+>=20
+> On 01/08/13 09:08, Tomas Frydrych wrote:
+>> On 31/07/13 21:30, Chris Tapp wrote:
+>> It's relatively easy to add support for tftp to the yocto live image
+>> scripts; this allows you to either boot from the network, or install
+>> from the network. I have have some raw patches kicking around, that =
+add
+>> support for both tftp and scp, I have been meaning to clean it up and
+>> post an rfc to the list, I'll try to get that done this week.
+>=20
+> I am attaching the patches I have, it's a bit raw, and needs more work
+> before submitting for consideration in oe-core, but I think out of the
+> box tftp support would be useful to have somewhere.
+>=20
+> The patches include changes to the live/install scripts from the =
+oe-core
+> initramfs recipes and an image recipe for an initrd image with the
+> necessary tools (I initially started to write separate recipes for the
+> scripts, but realized quickly that the differences from the standard
+> live image bits are so small that's hardly justified in comparison to
+> the increased maintenance burden.)
+>=20
+> The main changes to the scripts are:
+>=20
+> * use syslinux instead of grub, makes life lot simpler, 'naf said,
+> * rework the install script so that unassisted install is possible,
+> * support tfpt for kernel/rootfs loading, and scp for rootfs loading,
+
+Thanks, these look very useful.
+
+> The test-ssh-key recipe provides a dummy (i.e., compromised) ssh key
+> that can be used for rudimentary testing of using scp for kernel
+> loading; scp is potentially useful for remote system updates from
+> outside of LAN boundaries, but a real set up would need bit of thought
+> on how to manage the real keys, etc.
+>=20
+> The net-image also generates a sample config file for PXELinux in the
+> deploy/images directory (net-image.pxelinux.cfg), which documents =
+fairly
+> well how to set it up. I hope this is of some use, at least to foster
+> more discussion. :)
+
+I think it is ;-) I think I'll still need to use ipxe as I need to be =
+able to boot without DHCP support as well.
+
+> Tomas
+>=20
+> --=20
+> http://sleepfive.com
+> =
+<0001-test-ssh-key-dummy-ssh-key-for-testing-of-scp-functi.patch><0002-ini=
+tramfs-live-install-improve-install-script-for-un.patch><0003-initramfs-li=
+ve-boot-improve-script-to-support-tftp-b.patch><0004-net-image-initrd-imag=
+e-for-tfpt-booting.patch>_______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
 
 
-> -----Original Message-----
-> From: Trevor Woerner [mailto:trevor.woerner@linaro.org]
-> Sent: Thursday, August 01, 2013 1:41 PM
-> To: Bryan Evenson
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Creating a core-image-minimal image with package
-> support
->=20
-> On 17 June 2013 12:49, Bryan Evenson <bevenson@melinkcorp.com> wrote:
-> > The above recipe yields an image that is includes the opkg
-> executable, but opkg support is incomplete.  Namely, calling opkg
-> yields the error " * opkg_conf_load: Could not create lock file
-> /var/lib/opkg/lock: No such file or directory."  I can see that the
-> folder /var/lib/opkg was not created on my filesystem.  If I create
-> this directory and then call "opkg list-installed", I get an empty list
-> back.
-> >
-> > What more do I need to add to the image recipe so that the image
-> knows what packages were installed on it?  And what do I need to add so
-> that the /var/lib/opkg directory is created?
->=20
-> If I follow the instructions in Yocto's quick-start-guide and perform a
-> simple build of core-image-minimal using today's master and make almost
-> no changes to the configuration (other than to switch to ipk), the
-> resulting image:
-> - will not contain the opkg tools
-> - will have an empty /var/lib/opkg directory (this directory exists,
-> but is empty)
->=20
-> Build Configuration:
-> BB_VERSION        =3D "1.19.1"
-> BUILD_SYS         =3D "x86_64-linux"
-> NATIVELSBSTRING   =3D "openSUSE-project-12.3"
-> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-> MACHINE           =3D "qemuarm"
-> DISTRO            =3D "poky"
-> DISTRO_VERSION    =3D "1.4+snapshot-20130801"
-> TUNE_FEATURES     =3D "armv5 thumb dsp"
-> TARGET_FPU        =3D "soft"
-> meta
-> meta-yocto
-> meta-yocto-bsp    =3D "master:9de0ad47462c13ac4a2d73e12e92be6c1b4e0415"
->=20
-> If I then modify the configuration to add "package-management" to the
-> EXTRA_IMAGE_FEATURES variable and rebuild, the resulting image:
-> - will have the opkg tools
-> - will have a non-empty /var/lib/opkg directory
-> - I can issue a command such as "$ opkg list" and get:
-> root@qemuarm:~# opkg list
-> base-files - 3.0.14-r73
-> base-passwd - 3.5.26-r2
-> busybox - 1.21.1-r0
-> busybox-hwclock - 1.21.1-r0
-> busybox-syslog - 1.21.1-r0
-> busybox-udhcpc - 1.21.1-r0
-> init-ifupdown - 1.0-r3
-> initscripts - 1.0-r141
-> libblkid1 - 2.23.1-r0
-> libc6 - 2.18-r0
-> libcrypto1.0.0 - 1.0.1e-r15.0
-> libkmod2 - 9+git0+62081c0f68-r0.0
-> libopkg1 - 1:0.1.8+svnr649-r13.0
-> libuuid1 - 2.23.1-r0
-> libwrap0 - 7.6-r10
-> libz1 - 1.2.8-r0
-> modutils-initscripts - 1.0-r6
-> netbase - 1:5.1-r0
-> openssh - 6.2p2-r0
-> openssh-keygen - 6.2p2-r0
-> openssh-scp - 6.2p2-r0
-> openssh-ssh - 6.2p2-r0
-> openssh-sshd - 6.2p2-r0
-> opkg - 1:0.1.8+svnr649-r13.0
-> opkg-collateral - 1.0-r2
-> opkg-config-base - 1.0-r1
-> packagegroup-core-boot - 1.0-r11
-> packagegroup-core-ssh-openssh - 1.0-r1
-> poky-feed-config-opkg - 1.0-r2
-> run-postinsts - 1.0-r9
-> shadow - 4.1.4.3-r13
-> shadow-securetty - 4.1.4.3-r2
-> sysvinit - 2.88dsf-r11
-> sysvinit-inittab - 2.88dsf-r9
-> sysvinit-pidof - 2.88dsf-r11
-> udev - 182-r7
-> udev-cache - 182-r7
-> udev-utils - 182-r7
-> update-alternatives-cworth - 1:0.1.8+svnr649-r13.0 update-rc.d - 0.7-r5
->=20
->=20
-> When I perform these same steps using dylan, it does not work
->=20
-> Build Configuration:
-> BB_VERSION        =3D "1.18.0"
-> BUILD_SYS         =3D "x86_64-linux"
-> NATIVELSBSTRING   =3D "openSUSE-project-12.3"
-> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-> MACHINE           =3D "qemuarm"
-> DISTRO            =3D "poky"
-> DISTRO_VERSION    =3D "1.4.1"
-> TUNE_FEATURES     =3D "armv5 thumb dsp"
-> TARGET_FPU        =3D "soft"
-> meta
-> meta-yocto
-> meta-yocto-bsp    =3D "dylan:899e5cca99ec952ff72c81b74a731150841122f4"
->=20
-> Without "package-management" in the configuration opkg is not installed
-> in the image (as expected). However, with "package-management" in the
-> configuration the opkg tools are installed in the image, but
-> /var/lib/opkg is still empty and the "$ opkg list"
-> command returns empty.
-
-I'm also working off of poky/dylan.  I added "opkg opkg-collateral" to the =
-IMAGE_INSTALL variable, in addition to having the "package-management" feat=
-ure in IMAGE_FEATURES.  With that setup, my image contains opkg and has the=
- list of packages installed.
-
-Regards,
-Bryan
 
 
