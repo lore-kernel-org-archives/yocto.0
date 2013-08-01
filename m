@@ -1,38 +1,57 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCBB8E0152B
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2013 11:53:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
-	bh=6OK8j52oJSqaJ3Eh1spbLFiwLjkaBgmVmcAT+fhgp7A=; 
-	b=MrzUrKysixKv9mRX2SlkNHTny/yKnrORdzf06bA1ZNkT6d2yep3wBLiUUtqNJi1MchRO8QdqiVznuEqgQS9TOx7Z4y8tyvPbH/d5E2hIz94Mr8VROS7pu6Z0I1/jCX4M2dq1EaziQHr55/8kAX4pvtfT8GamT8RBmX8oQ+IP2qQ=;
-Received: from [109.224.129.17] (port=32372
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80.1)
-	(envelope-from <opensource@keylevel.com>)
-	id 1V4y0T-002UFL-Q6; Thu, 01 Aug 2013 19:53:49 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <51FA6B80.8030207@r-finger.com>
-Date: Thu, 1 Aug 2013 19:53:48 +0100
-Message-Id: <5C4C9EC7-1F17-4ED9-BCC7-C88C7514F41B@keylevel.com>
-References: <DFD53149-25C0-410A-A5E3-FD95F38E907B@keylevel.com>
-	<51FA1764.4060408@r-finger.com> <51FA6B80.8030207@r-finger.com>
-To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Cc: yocto@yoctoproject.org
-Subject: Re: Network booting
+Return-Path: <bradl@taser.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AC07E014E4
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2013 13:25:51 -0700 (PDT)
+X-ASG-Debug-ID: 1375388749-0499bf56584f2510001-yzSStA
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id HDams7pvBTB0tYSp; Thu, 01 Aug 2013 13:25:49 -0700 (MST)
+X-Barracuda-Envelope-From: bradl@taser.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Thu, 1 Aug 2013 13:25:49 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Thu, 1 Aug 2013 13:25:48 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+From: Brad Litterell <bradl@taser.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Trying to add new recipe - getting QA error I don't
+	understand
+X-ASG-Orig-Subj: Re: [yocto] Trying to add new recipe - getting QA error I
+	don't understand
+Thread-Index: AQHOjhaqK43GESdm30u/u0JCpsTpV5l/lVCAgABBgICAAAU4AIAAH+6AgAA+ZoCAAQlqAA==
+Date: Thu, 1 Aug 2013 20:25:47 +0000
+Message-ID: <19F3F563-37C0-4198-91FA-A4EC5E2481DA@taser.com>
+References: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
+	<CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
+	<CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
+	<3822EF35-AD96-4F3A-B278-E08E5F79B8CE@gmail.com>
+	<DD906C04-6DCD-420D-A07D-32D211571BA7@taser.com>
+	<2C3DF530-8261-4914-9CFB-FAEEB78ED305@gmail.com>
+In-Reply-To: <2C3DF530-8261-4914-9CFB-FAEEB78ED305@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
+MIME-Version: 1.0
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1375388749
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.137493
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Trying to add new recipe - getting QA error I don't understand
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,78 +63,224 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2013 18:53:51 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 01 Aug 2013 20:25:51 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_19F3F56337C0419891FAA4EC5E2481DAtasercom_"
 
-Hi Tomas,
+--_000_19F3F56337C0419891FAA4EC5E2481DAtasercom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 1 Aug 2013, at 15:06, Tomas Frydrych wrote:
+DQpPbiBKdWwgMzEsIDIwMTMsIGF0IDk6MzUgUE0sIEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5j
+b208bWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbT4+IHdyb3RlOg0KDQoNCk9uIEp1bCAzMSwgMjAx
+MywgYXQgNTo1MiBQTSwgQnJhZCBMaXR0ZXJlbGwgPGJyYWRsQHRhc2VyLmNvbTxtYWlsdG86YnJh
+ZGxAdGFzZXIuY29tPj4gd3JvdGU6DQoNCkhpLA0KDQpJIHRyaWVkDQoNCkZJTEVTXyR7UE59ID0r
+ICIke2xpYmRpcn0vbGlidWNpLnNvIg0KDQpidXQgdW5kZXIgcGFja2FnZS1zcGxpdCwgdGhlIC5z
+byBmaWxlIGlzIHN0aWxsIG9ubHkgbGlzdGVkIGluIHRoZSAtZGV2IHBhY2thZ2UuDQoNCklzIGl0
+IHBvc3NpYmxlIHRoYXQgdGhlIGxpYiouc28gZmlsZXMgYXJlIGFsd2F5cyBmb3JjaWJseSByZW1v
+dmVkIGZyb20gRklMRVNfJHtQTn0/DQoNCndoYXQgaXMgbmFtZSBvZiB5b3VyIHJlY2lwZSA/DQoN
+CnVjaS5iYg0KDQoNCg0KDQpJIHdhcyBhYmxlIHRvIGhhY2sgdGhlIENNYWtlTGlzdC50eHQgZmls
+ZSBhcyBmb2xsb3dzLiAgSWYgSSBzZXQgU09WRVJTSU9OIG9uIHRoZSBzaGFyZWQgbGlicmFyeSB0
+aGUgZXhwZWN0ZWQgbGlidWNpLnNvLjEgZmlsZSBhcHBlYXJzIHdpdGggdGhlIGxpYnVjaS5zbyBs
+aW5rIHdoaWNoIHNvbHZlcyB0aGUgcHJvYmxlbS4gIEknbSBhIGxpdHRsZSBjb25jZXJuZWQgSSBt
+aWdodCBoYXZlIHByb2JsZW1zIHdpdGggb3RoZXIgcGFja2FnZXMgdGhhdCBJIGhhdmVuJ3QgcG9y
+dGVkIHlldCB0aGF0IGRlcGVuZCBvbiBVQ0ksIGJ1dCBJIHdpbGwgc2VlLg0KDQoNCnRoYXRzIGlu
+dGFjdCBjb3JyZWN0IHdheSB0byBmaXggaXQgaW4gdmlldyBvZiBPRSdzIGV5ZXMuDQoNCm1heSBi
+ZSB5b3Ugc2hvdWxkIGZpbGUgYW4gZW5oYW5jZW1lbnQgYnVnIGZvciBpdCBpbiBZb2N0byBidWd6
+aWxsYQ0KDQpJIHByb2JhYmx5IHNob3VsZCBoYXZlIG1lbnRpb25lZCB0aGlzIGVhcmxpZXIsIGJ1
+dCBJJ20gdXNpbmcgdGhlIDEuMyB2ZXJzaW9uIG9mIFlvY3RvIHRoYXQncyBlbWJlZGRlZCBpbiBU
+SSdzIEFyYWdvIFNESy4gIENhbiBJIHNhZmVseSBwdWxsIHBva3kgb24gdG9wIG9mIHRoYXQgYW5k
+IHNlZSBpZiBpdCBmaXhlcyB0aGUgcHJvYmxlbSBvciBtaWdodCBJIGhhdmUgY29uZmxpY3RzIGJl
+dHdlZW4gQXJhZ28gQlNQIGxheWVycyBhbmQgdGhlIDEuNCBQb2t5IHJlY2lwZXM/DQoNCkRvdWJ0
+IHRoYXQNCg0KRG91YnRpbmcgdGhhdCBJIGNhbiB1c2UgUG9reSwgb3IgZG91YnRpbmcgdGhhdCBQ
+b2t5IHdpbGwgY29uZmxpY3Qgd2l0aCBUSSdzIGFyYWdvPyAgT3IgZG91YnRpbmcgdGhhdCB1c2lu
+ZyAxLjMgaGFzIGFueSByZWxldmFuY2UgdG8gdGhpcyBpc3N1ZT8NCg0KDQoNClRoYW5rcywNCkJy
+YWQNCg0KDQoNCk9uIEp1bCAzMSwgMjAxMywgYXQgMzo1OCBQTSwgS2hlbSBSYWogPHJhai5raGVt
+QGdtYWlsLmNvbTxtYWlsdG86cmFqLmtoZW1AZ21haWwuY29tPj4gd3JvdGU6DQoNCg0KT24gSnVs
+IDMxLCAyMDEzLCBhdCAzOjM5IFBNLCBCcmFkIExpdHRlcmVsbCA8YnJhZGxAdGFzZXIuY29tPG1h
+aWx0bzpicmFkbEB0YXNlci5jb20+PiB3cm90ZToNCg0KDQogICAg4pSU4pSA4pSAIGxpYg0KICAg
+ICAgICDilJzilIDilIAgbGlidWNpLmENCiAgICAgICAg4pSU4pSA4pSAIGxpYnVjaS5zbw0KDQoN
+ClNvLCBJIGFkZGVkIHRoaXM6DQoNCg0KRklMRVNfJHtQTn0gKz0iL3Vzci9saWIvKiINCg0KVHJ5
+IHNvbWV0aGluZyBsaWtlDQoNCkZJTEVTXyR7UE59ID0rICIke2xpYmRpcn0vbGlidWNpLnNvIg0K
+DQoNCg0KSG93ZXZlciB0aGF0IGRvZXNuJ3QgcmVtb3ZlIHRoZSBtZXNzYWdlLiAgRGlkIEkgZG8g
+aXQgcmlnaHQ/DQoNCg0KDQp1c3VhbGx5IC5zbyBhcmUgc3ltbGlua3Mgd2hpY2ggdGhlbiBnbyBp
+bnRvIC1kZXYgcGFja2FnZXMgdmlhIHRoZSBkZWZhdWx0IHBhY2thZ2Ugc2lldmUgZW5naW5lDQpi
+dXQgSSBhbSB0aGlua2luZyBpZiB3ZSBmaW5kIG91dCB0aGF0IGZpbGUgaXMgbm90IGEgc3ltbGlu
+ayBidXQgYSBub3JtYWwgc2hhcmVkIG9iamVjdCB0aGVuIHByb2JhYmx5DQp3ZSBjb3VsZCBzdG9w
+IHNob3ZpbmcgaXQgaW50byAtZGV2IHBhY2thZ2UgYW5kIGluc3RlYWQgcHV0IGl0IGludG8gJHtQ
+Tn0NCg0KbWF5IGJlIHlvdSBzaG91bGQgZmlsZSBhbiBlbmhhbmNlbWVudCBidWcgZm9yIGl0IGlu
+IFlvY3RvIGJ1Z3ppbGxhDQoNCg0KDQoNCg==
 
-> Hi Chris,
->=20
-> On 01/08/13 09:08, Tomas Frydrych wrote:
->> On 31/07/13 21:30, Chris Tapp wrote:
->> It's relatively easy to add support for tftp to the yocto live image
->> scripts; this allows you to either boot from the network, or install
->> from the network. I have have some raw patches kicking around, that =
-add
->> support for both tftp and scp, I have been meaning to clean it up and
->> post an rfc to the list, I'll try to get that done this week.
->=20
-> I am attaching the patches I have, it's a bit raw, and needs more work
-> before submitting for consideration in oe-core, but I think out of the
-> box tftp support would be useful to have somewhere.
->=20
-> The patches include changes to the live/install scripts from the =
-oe-core
-> initramfs recipes and an image recipe for an initrd image with the
-> necessary tools (I initially started to write separate recipes for the
-> scripts, but realized quickly that the differences from the standard
-> live image bits are so small that's hardly justified in comparison to
-> the increased maintenance burden.)
->=20
-> The main changes to the scripts are:
->=20
-> * use syslinux instead of grub, makes life lot simpler, 'naf said,
-> * rework the install script so that unassisted install is possible,
-> * support tfpt for kernel/rootfs loading, and scp for rootfs loading,
+--_000_19F3F56337C0419891FAA4EC5E2481DAtasercom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <4DC6C0DFF2721E4F81D58692267F1F1C@taser.com>
+Content-Transfer-Encoding: base64
 
-Thanks, these look very useful.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
+YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
+ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjxkaXY+DQo8ZGl2Pk9uIEp1bCAzMSwg
+MjAxMywgYXQgOTozNSBQTSwgS2hlbSBSYWogJmx0OzxhIGhyZWY9Im1haWx0bzpyYWoua2hlbUBn
+bWFpbC5jb20iPnJhai5raGVtQGdtYWlsLmNvbTwvYT4mZ3Q7IHdyb3RlOjwvZGl2Pg0KPGJyIGNs
+YXNzPSJBcHBsZS1pbnRlcmNoYW5nZS1uZXdsaW5lIj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUi
+Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTog
+c3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQo8YnI+DQo8
+ZGl2Pg0KPGRpdj5PbiBKdWwgMzEsIDIwMTMsIGF0IDU6NTIgUE0sIEJyYWQgTGl0dGVyZWxsICZs
+dDs8YSBocmVmPSJtYWlsdG86YnJhZGxAdGFzZXIuY29tIj5icmFkbEB0YXNlci5jb208L2E+Jmd0
+OyB3cm90ZTo8L2Rpdj4NCjxiciBjbGFzcz0iQXBwbGUtaW50ZXJjaGFuZ2UtbmV3bGluZSI+DQo8
+YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29y
+ZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdo
+aXRlLXNwYWNlOyAiPg0KSGksDQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5JIHRyaWVkJm5ic3A7
+PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUi
+Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTog
+c3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQpGSUxFU18k
+e1BOfSA9JiM0MzsgJnF1b3Q7JHtsaWJkaXJ9L2xpYnVjaS5zbyZxdW90OzwvZGl2Pg0KPC9ibG9j
+a3F1b3RlPg0KPGRpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtp
+dC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNl
+OyAiPg0KPGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWst
+d29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVy
+LXdoaXRlLXNwYWNlOyAiPg0KYnV0IHVuZGVyIHBhY2thZ2Utc3BsaXQsIHRoZSAuc28gZmlsZSBp
+cyBzdGlsbCBvbmx5IGxpc3RlZCBpbiB0aGUgLWRldiBwYWNrYWdlLjwvZGl2Pg0KPC9kaXY+DQo8
+ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFj
+ZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2
+Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTog
+c3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQpJcyBpdCBw
+b3NzaWJsZSB0aGF0IHRoZSBsaWIqLnNvIGZpbGVzIGFyZSBhbHdheXMgZm9yY2libHkgcmVtb3Zl
+ZCBmcm9tIEZJTEVTXyR7UE59PzwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pjxi
+cj4NCjwvZGl2Pg0KPGRpdj53aGF0IGlzIG5hbWUgb2YgeW91ciByZWNpcGUgPzwvZGl2Pg0KPC9k
+aXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PnVjaS5i
+YjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUi
+Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTog
+c3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQo8ZGl2Pg0K
+PGRpdj48YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBzdHlsZT0i
+d29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQt
+bGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6
+IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFr
+OiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13
+cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1i
+cmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQpJIHdhcyBhYmxlIHRvIGhhY2sgdGhlIENNYWtl
+TGlzdC50eHQgZmlsZSBhcyBmb2xsb3dzLiAmbmJzcDtJZiBJIHNldCBTT1ZFUlNJT04gb24gdGhl
+IHNoYXJlZCBsaWJyYXJ5IHRoZSBleHBlY3RlZCBsaWJ1Y2kuc28uMSBmaWxlIGFwcGVhcnMgd2l0
+aCB0aGUgbGlidWNpLnNvIGxpbmsgd2hpY2ggc29sdmVzIHRoZSBwcm9ibGVtLiAmbmJzcDtJJ20g
+YSBsaXR0bGUgY29uY2VybmVkIEkgbWlnaHQgaGF2ZSBwcm9ibGVtcyB3aXRoIG90aGVyIHBhY2th
+Z2VzIHRoYXQgSQ0KIGhhdmVuJ3QgcG9ydGVkIHlldCB0aGF0IGRlcGVuZCBvbiBVQ0ksIGJ1dCBJ
+IHdpbGwgc2VlLjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Vi
+a2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3Bh
+Y2U7ICI+DQo8YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGRpdj48YnI+DQo8
+L2Rpdj4NCjxkaXY+dGhhdHMgaW50YWN0IGNvcnJlY3Qgd2F5IHRvIGZpeCBpdCBpbiB2aWV3IG9m
+IE9FJ3MgZXllcy48L2Rpdj4NCjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBz
+dHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13
+ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQo8ZGl2IHN0eWxlPSJ3b3Jk
+LXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5l
+LWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13
+cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1i
+cmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxk
+aXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNl
+OyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0KbWF5IGJlIHlvdSBz
+aG91bGQgZmlsZSBhbiBlbmhhbmNlbWVudCBidWcgZm9yIGl0IGluIFlvY3RvIGJ1Z3ppbGxhPC9k
+aXY+DQo8L2Jsb2NrcXVvdGU+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDog
+YnJlYWstd29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6
+IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0KSSBwcm9iYWJseSBzaG91bGQgaGF2ZSBtZW50aW9uZWQg
+dGhpcyBlYXJsaWVyLCBidXQgSSdtIHVzaW5nIHRoZSAxLjMgdmVyc2lvbiBvZiBZb2N0byB0aGF0
+J3MgZW1iZWRkZWQgaW4gVEkncyBBcmFnbyBTREsuICZuYnNwO0NhbiBJIHNhZmVseSBwdWxsIHBv
+a3kgb24gdG9wIG9mIHRoYXQgYW5kIHNlZSBpZiBpdCBmaXhlcyB0aGUgcHJvYmxlbSBvciBtaWdo
+dCBJIGhhdmUgY29uZmxpY3RzIGJldHdlZW4gQXJhZ28gQlNQIGxheWVycyBhbmQgdGhlIDEuNCBQ
+b2t5DQogcmVjaXBlcz88L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGRpdj48YnI+DQo8
+L2Rpdj4NCjxkaXY+RG91YnQgdGhhdDwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90
+ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkRvdWJ0aW5nIHRoYXQgSSBjYW4gdXNlIFBva3ks
+IG9yIGRvdWJ0aW5nIHRoYXQgUG9reSB3aWxsIGNvbmZsaWN0IHdpdGggVEkncyBhcmFnbz8gJm5i
+c3A7T3IgZG91YnRpbmcgdGhhdCB1c2luZyAxLjMgaGFzIGFueSByZWxldmFuY2UgdG8gdGhpcyBp
+c3N1ZT88L2Rpdj4NCjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBzdHlsZT0i
+d29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQt
+bGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQo8ZGl2Pjxicj4NCjxibG9ja3F1b3Rl
+IHR5cGU9ImNpdGUiPg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0
+LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7
+ICI+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2Rl
+OiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxicj4N
+CjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3At
+bW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQpU
+aGFua3MsPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQt
+bmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsg
+Ij4NCkJyYWQ8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtp
+dC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNl
+OyAiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13
+ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1z
+cGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3Jk
+OyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hp
+dGUtc3BhY2U7ICI+DQo8YnI+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pk9uIEp1bCAzMSwgMjAxMywg
+YXQgMzo1OCBQTSwgS2hlbSBSYWogJmx0OzxhIGhyZWY9Im1haWx0bzpyYWoua2hlbUBnbWFpbC5j
+b20iPnJhai5raGVtQGdtYWlsLmNvbTwvYT4mZ3Q7IHdyb3RlOjwvZGl2Pg0KPGJyIGNsYXNzPSJB
+cHBsZS1pbnRlcmNoYW5nZS1uZXdsaW5lIj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRp
+diBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7
+IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+DQo8YnI+DQo8ZGl2Pg0K
+PGRpdj5PbiBKdWwgMzEsIDIwMTMsIGF0IDM6MzkgUE0sIEJyYWQgTGl0dGVyZWxsICZsdDs8YSBo
+cmVmPSJtYWlsdG86YnJhZGxAdGFzZXIuY29tIj5icmFkbEB0YXNlci5jb208L2E+Jmd0OyB3cm90
+ZTo8L2Rpdj4NCjxiciBjbGFzcz0iQXBwbGUtaW50ZXJjaGFuZ2UtbmV3bGluZSI+DQo8YmxvY2tx
+dW90ZSB0eXBlPSJjaXRlIj4NCjxwcmUgc3R5bGU9ImZvbnQtc2l6ZTogbWVkaXVtOyBmb250LXN0
+eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudDogbm9ybWFsOyBmb250LXdlaWdodDogbm9ybWFsOyBs
+ZXR0ZXItc3BhY2luZzogbm9ybWFsOyBsaW5lLWhlaWdodDogbm9ybWFsOyBvcnBoYW5zOiAyOyB0
+ZXh0LWFsaWduOiAtd2Via2l0LWF1dG87IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3Jt
+OiBub25lOyB3aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQtc2l6ZS1h
+ZGp1c3Q6IGF1dG87IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgbWFyZ2luLXRvcDog
+MHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7ICI+ICAgIOKUlOKUgOKUgCBsaWINCiAgICAgICAg4pSc
+4pSA4pSAIGxpYnVjaS5hDQogICAgICAgIOKUlOKUgOKUgCBsaWJ1Y2kuc28NCjwvcHJlPg0KPGRp
+diBzdHlsZT0iZm9udC1mYW1pbHk6IEhlbHZldGljYTsgZm9udC1zaXplOiBtZWRpdW07IGZvbnQt
+c3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiBub3JtYWw7
+IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IG9ycGhhbnM6IDI7
+IHRleHQtYWxpZ246IC13ZWJraXQtYXV0bzsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zv
+cm06IG5vbmU7IHdoaXRlLXNwYWNlOiBub3JtYWw7IHdpZG93czogMjsgd29yZC1zcGFjaW5nOiAw
+cHg7IC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogYXV0bzsgLXdlYmtpdC10ZXh0LXN0cm9rZS13
+aWR0aDogMHB4OyAiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogSGVs
+dmV0aWNhOyBmb250LXNpemU6IG1lZGl1bTsgZm9udC1zdHlsZTogbm9ybWFsOyBmb250LXZhcmlh
+bnQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IG5vcm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsg
+bGluZS1oZWlnaHQ6IG5vcm1hbDsgb3JwaGFuczogMjsgdGV4dC1hbGlnbjogLXdlYmtpdC1hdXRv
+OyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5v
+cm1hbDsgd2lkb3dzOiAyOyB3b3JkLXNwYWNpbmc6IDBweDsgLXdlYmtpdC10ZXh0LXNpemUtYWRq
+dXN0OiBhdXRvOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7ICI+DQpTbywmbmJzcDtJ
+IGFkZGVkIHRoaXM6PC9kaXY+DQo8cHJlIHN0eWxlPSJmb250LXNpemU6IG1lZGl1bTsgZm9udC1z
+dHlsZTogbm9ybWFsOyBmb250LXZhcmlhbnQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IG5vcm1hbDsg
+bGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgb3JwaGFuczogMjsg
+dGV4dC1hbGlnbjogLXdlYmtpdC1hdXRvOyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRyYW5zZm9y
+bTogbm9uZTsgd2lkb3dzOiAyOyB3b3JkLXNwYWNpbmc6IDBweDsgLXdlYmtpdC10ZXh0LXNpemUt
+YWRqdXN0OiBhdXRvOyAtd2Via2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7IG1hcmdpbi10b3A6
+IDBweDsgbWFyZ2luLWJvdHRvbTogMHB4OyAiPjxicj48L3ByZT4NCjxwcmUgc3R5bGU9ImZvbnQt
+c2l6ZTogbWVkaXVtOyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudDogbm9ybWFsOyBm
+b250LXdlaWdodDogbm9ybWFsOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyBsaW5lLWhlaWdodDog
+bm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0LWFsaWduOiAtd2Via2l0LWF1dG87IHRleHQtaW5kZW50
+OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4
+OyAtd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6IGF1dG87IC13ZWJraXQtdGV4dC1zdHJva2Utd2lk
+dGg6IDBweDsgbWFyZ2luLXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7ICI+RklMRVNfJHtQ
+Tn08c3BhbiBzdHlsZT0iY29sb3I6IHJnYigxOTIsIDE5MiwgMTkyKTsgIj4gPC9zcGFuPiYjNDM7
+PSZxdW90Oy91c3IvbGliLyomcXVvdDs8L3ByZT4NCjwvYmxvY2txdW90ZT4NCjxkaXY+PGJyPg0K
+PC9kaXY+DQo8ZGl2PlRyeSBzb21ldGhpbmcgbGlrZTwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4N
+CjxkaXY+RklMRVNfJHtQTn0gPSYjNDM7ICZxdW90OyR7bGliZGlyfS9saWJ1Y2kuc28mcXVvdDs8
+L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUg
+dHlwZT0iY2l0ZSI+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogSGVsdmV0aWNhOyBmb250LXNp
+emU6IG1lZGl1bTsgZm9udC1zdHlsZTogbm9ybWFsOyBmb250LXZhcmlhbnQ6IG5vcm1hbDsgZm9u
+dC13ZWlnaHQ6IG5vcm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgbGluZS1oZWlnaHQ6IG5v
+cm1hbDsgb3JwaGFuczogMjsgdGV4dC1hbGlnbjogLXdlYmtpdC1hdXRvOyB0ZXh0LWluZGVudDog
+MHB4OyB0ZXh0LXRyYW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1hbDsgd2lkb3dzOiAy
+OyB3b3JkLXNwYWNpbmc6IDBweDsgLXdlYmtpdC10ZXh0LXNpemUtYWRqdXN0OiBhdXRvOyAtd2Vi
+a2l0LXRleHQtc3Ryb2tlLXdpZHRoOiAwcHg7ICI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9
+ImZvbnQtZmFtaWx5OiBIZWx2ZXRpY2E7IGZvbnQtc2l6ZTogbWVkaXVtOyBmb250LXN0eWxlOiBu
+b3JtYWw7IGZvbnQtdmFyaWFudDogbm9ybWFsOyBmb250LXdlaWdodDogbm9ybWFsOyBsZXR0ZXIt
+c3BhY2luZzogbm9ybWFsOyBsaW5lLWhlaWdodDogbm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0LWFs
+aWduOiAtd2Via2l0LWF1dG87IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25l
+OyB3aGl0ZS1zcGFjZTogbm9ybWFsOyB3aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Vi
+a2l0LXRleHQtc2l6ZS1hZGp1c3Q6IGF1dG87IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBw
+eDsgIj4NCkhvd2V2ZXIgdGhhdCBkb2Vzbid0IHJlbW92ZSB0aGUgbWVzc2FnZS4gJm5ic3A7RGlk
+IEkgZG8gaXQgcmlnaHQ/PC9kaXY+DQo8YnIgY2xhc3M9IkFwcGxlLWludGVyY2hhbmdlLW5ld2xp
+bmUiPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8YnI+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRp
+dj51c3VhbGx5IC5zbyBhcmUgc3ltbGlua3Mgd2hpY2ggdGhlbiBnbyBpbnRvIC1kZXYgcGFja2Fn
+ZXMgdmlhIHRoZSBkZWZhdWx0IHBhY2thZ2Ugc2lldmUgZW5naW5lPC9kaXY+DQo8ZGl2PmJ1dCBJ
+IGFtIHRoaW5raW5nIGlmIHdlIGZpbmQgb3V0IHRoYXQgZmlsZSBpcyBub3QgYSBzeW1saW5rIGJ1
+dCBhIG5vcm1hbCBzaGFyZWQgb2JqZWN0IHRoZW4gcHJvYmFibHk8L2Rpdj4NCjxkaXY+d2UgY291
+bGQgc3RvcCBzaG92aW5nIGl0IGludG8gLWRldiBwYWNrYWdlIGFuZCBpbnN0ZWFkIHB1dCBpdCBp
+bnRvICR7UE59PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5tYXkgYmUgeW91IHNob3Vs
+ZCBmaWxlIGFuIGVuaGFuY2VtZW50IGJ1ZyBmb3IgaXQgaW4gWW9jdG8gYnVnemlsbGE8L2Rpdj4N
+CjxkaXY+PGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJyPg0K
+PC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3Rl
+Pg0KPC9kaXY+DQo8YnI+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-> The test-ssh-key recipe provides a dummy (i.e., compromised) ssh key
-> that can be used for rudimentary testing of using scp for kernel
-> loading; scp is potentially useful for remote system updates from
-> outside of LAN boundaries, but a real set up would need bit of thought
-> on how to manage the real keys, etc.
->=20
-> The net-image also generates a sample config file for PXELinux in the
-> deploy/images directory (net-image.pxelinux.cfg), which documents =
-fairly
-> well how to set it up. I hope this is of some use, at least to foster
-> more discussion. :)
-
-I think it is ;-) I think I'll still need to use ipxe as I need to be =
-able to boot without DHCP support as well.
-
-> Tomas
->=20
-> --=20
-> http://sleepfive.com
-> =
-<0001-test-ssh-key-dummy-ssh-key-for-testing-of-scp-functi.patch><0002-ini=
-tramfs-live-install-improve-install-script-for-un.patch><0003-initramfs-li=
-ve-boot-improve-script-to-support-tftp-b.patch><0004-net-image-initrd-imag=
-e-for-tfpt-booting.patch>_______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
-
+--_000_19F3F56337C0419891FAA4EC5E2481DAtasercom_--
