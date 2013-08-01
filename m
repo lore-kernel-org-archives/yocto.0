@@ -1,40 +1,55 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
-	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B14B2E0158A
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 16:05:19 -0700 (PDT)
-Received: by mail-pd0-f182.google.com with SMTP id r10so1304819pdi.41
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 16:05:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to:x-mailer;
-	bh=6HfLQQyKQ8EXkmO61LTCU8dvOn6c6VTU6CfDwGlve/M=;
-	b=SlEzT9KXRCfKl+QWtUbatMq1iSzb+mMV0s04Gez86H09txYkISm9MpBhpq/7NKGoOu
-	vC4qPeqMP118D9ipe9nPU7rwElcFwiEJFIFAgERgXivw2Z+On9TaJMNIfnBZg8YYCV0V
-	9OkrOmo9oSQ+KdtWd5/+4KysfVn7sU7cCGe6FOG1L3gqjrHhP0AWF98WOeWjTyBIb4rD
-	RZ7KtYYwvcrz3qiSwBAmUdGqCIZsrdEYQ7+kDOdCVcvhCgO2IbIigCnR4hh2ZhS1JCG9
-	gGq0mXvvj41gF7K0yqE4MsvcXvgYIJaUrT8NXPg3Jlk6o3p06TqFDjQWGC9gtFo8lUQo
-	jlGg==
-X-Received: by 10.68.143.199 with SMTP id sg7mr83094449pbb.13.1375311918906;
-	Wed, 31 Jul 2013 16:05:18 -0700 (PDT)
-Received: from sa-nc-spg-213.static.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id z14sm54689pbt.0.2013.07.31.16.05.17
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 31 Jul 2013 16:05:18 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CA+Z6RkV9ZL57uYyuaCVXKJG52EbMb72ZnPP5KKXKVoJvjehdZg@mail.gmail.com>
-Date: Wed, 31 Jul 2013 16:05:16 -0700
-Message-Id: <7B7D6E03-F812-4C76-B482-205D42D00DA1@gmail.com>
-References: <9BACABF0C6B14A4D8C33B42A795119BE1C406793@POCITMSEXMB06.LntUniverse.com>
-	<CA+Z6RkV9ZL57uYyuaCVXKJG52EbMb72ZnPP5KKXKVoJvjehdZg@mail.gmail.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>
-X-Mailer: Apple Mail (2.1508)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Re: Cleaning dependent package
+Return-Path: <bradl@taser.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22AB8E01572
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 17:52:32 -0700 (PDT)
+X-ASG-Debug-ID: 1375318351-0499bf565a4e06e0001-yzSStA
+Received: from LOKI.atmoss (loki.atmoss [10.10.20.113]) by email.taser.com
+	with ESMTP id POLEvCEcWtjpJuRz; Wed, 31 Jul 2013 17:52:31 -0700 (MST)
+X-Barracuda-Envelope-From: bradl@taser.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.113) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Wed, 31 Jul 2013 17:52:31 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Wed, 31 Jul 2013 17:52:30 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
+From: Brad Litterell <bradl@taser.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Trying to add new recipe - getting QA error I don't
+	understand
+X-ASG-Orig-Subj: Re: [yocto] Trying to add new recipe - getting QA error I
+	don't understand
+Thread-Index: AQHOjhaqK43GESdm30u/u0JCpsTpV5l/lVCAgABBgICAAAU4AIAAH+6A
+Date: Thu, 1 Aug 2013 00:52:29 +0000
+Message-ID: <DD906C04-6DCD-420D-A07D-32D211571BA7@taser.com>
+References: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
+	<CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
+	<CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
+	<3822EF35-AD96-4F3A-B278-E08E5F79B8CE@gmail.com>
+In-Reply-To: <3822EF35-AD96-4F3A-B278-E08E5F79B8CE@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
+MIME-Version: 1.0
+X-Barracuda-Connect: loki.atmoss[10.10.20.113]
+X-Barracuda-Start-Time: 1375318351
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.137472
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Trying to add new recipe - getting QA error I don't understand
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,74 +61,180 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2013 23:05:21 -0000
+X-List-Received-Date: Thu, 01 Aug 2013 00:52:35 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_E4C98C38-D18D-42C5-BB6F-D22C1ED16101"
+	boundary="_000_DD906C046DCD420DA07D32D211571BA7tasercom_"
 
---Apple-Mail=_E4C98C38-D18D-42C5-BB6F-D22C1ED16101
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=windows-1252
+--_000_DD906C046DCD420DA07D32D211571BA7tasercom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+SGksDQoNCkkgdHJpZWQNCg0KRklMRVNfJHtQTn0gPSsgIiR7bGliZGlyfS9saWJ1Y2kuc28iDQoN
+CmJ1dCB1bmRlciBwYWNrYWdlLXNwbGl0LCB0aGUgLnNvIGZpbGUgaXMgc3RpbGwgb25seSBsaXN0
+ZWQgaW4gdGhlIC1kZXYgcGFja2FnZS4NCg0KSXMgaXQgcG9zc2libGUgdGhhdCB0aGUgbGliKi5z
+byBmaWxlcyBhcmUgYWx3YXlzIGZvcmNpYmx5IHJlbW92ZWQgZnJvbSBGSUxFU18ke1BOfT8NCg0K
+SSB3YXMgYWJsZSB0byBoYWNrIHRoZSBDTWFrZUxpc3QudHh0IGZpbGUgYXMgZm9sbG93cy4gIElm
+IEkgc2V0IFNPVkVSU0lPTiBvbiB0aGUgc2hhcmVkIGxpYnJhcnkgdGhlIGV4cGVjdGVkIGxpYnVj
+aS5zby4xIGZpbGUgYXBwZWFycyB3aXRoIHRoZSBsaWJ1Y2kuc28gbGluayB3aGljaCBzb2x2ZXMg
+dGhlIHByb2JsZW0uICBJJ20gYSBsaXR0bGUgY29uY2VybmVkIEkgbWlnaHQgaGF2ZSBwcm9ibGVt
+cyB3aXRoIG90aGVyIHBhY2thZ2VzIHRoYXQgSSBoYXZlbid0IHBvcnRlZCB5ZXQgdGhhdCBkZXBl
+bmQgb24gVUNJLCBidXQgSSB3aWxsIHNlZS4NCg0KbWF5IGJlIHlvdSBzaG91bGQgZmlsZSBhbiBl
+bmhhbmNlbWVudCBidWcgZm9yIGl0IGluIFlvY3RvIGJ1Z3ppbGxhDQoNCkkgcHJvYmFibHkgc2hv
+dWxkIGhhdmUgbWVudGlvbmVkIHRoaXMgZWFybGllciwgYnV0IEknbSB1c2luZyB0aGUgMS4zIHZl
+cnNpb24gb2YgWW9jdG8gdGhhdCdzIGVtYmVkZGVkIGluIFRJJ3MgQXJhZ28gU0RLLiAgQ2FuIEkg
+c2FmZWx5IHB1bGwgcG9reSBvbiB0b3Agb2YgdGhhdCBhbmQgc2VlIGlmIGl0IGZpeGVzIHRoZSBw
+cm9ibGVtIG9yIG1pZ2h0IEkgaGF2ZSBjb25mbGljdHMgYmV0d2VlbiBBcmFnbyBCU1AgbGF5ZXJz
+IGFuZCB0aGUgMS40IFBva3kgcmVjaXBlcz8NCg0KVGhhbmtzLA0KQnJhZA0KDQoNCg0KT24gSnVs
+IDMxLCAyMDEzLCBhdCAzOjU4IFBNLCBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPG1haWx0
+bzpyYWoua2hlbUBnbWFpbC5jb20+PiB3cm90ZToNCg0KDQpPbiBKdWwgMzEsIDIwMTMsIGF0IDM6
+MzkgUE0sIEJyYWQgTGl0dGVyZWxsIDxicmFkbEB0YXNlci5jb208bWFpbHRvOmJyYWRsQHRhc2Vy
+LmNvbT4+IHdyb3RlOg0KDQoNCiAgICDilJTilIDilIAgbGliDQogICAgICAgIOKUnOKUgOKUgCBs
+aWJ1Y2kuYQ0KICAgICAgICDilJTilIDilIAgbGlidWNpLnNvDQoNCg0KU28sIEkgYWRkZWQgdGhp
+czoNCg0KDQpGSUxFU18ke1BOfSArPSIvdXNyL2xpYi8qIg0KDQpUcnkgc29tZXRoaW5nIGxpa2UN
+Cg0KRklMRVNfJHtQTn0gPSsgIiR7bGliZGlyfS9saWJ1Y2kuc28iDQoNCg0KDQpIb3dldmVyIHRo
+YXQgZG9lc24ndCByZW1vdmUgdGhlIG1lc3NhZ2UuICBEaWQgSSBkbyBpdCByaWdodD8NCg0KDQoN
+CnVzdWFsbHkgLnNvIGFyZSBzeW1saW5rcyB3aGljaCB0aGVuIGdvIGludG8gLWRldiBwYWNrYWdl
+cyB2aWEgdGhlIGRlZmF1bHQgcGFja2FnZSBzaWV2ZSBlbmdpbmUNCmJ1dCBJIGFtIHRoaW5raW5n
+IGlmIHdlIGZpbmQgb3V0IHRoYXQgZmlsZSBpcyBub3QgYSBzeW1saW5rIGJ1dCBhIG5vcm1hbCBz
+aGFyZWQgb2JqZWN0IHRoZW4gcHJvYmFibHkNCndlIGNvdWxkIHN0b3Agc2hvdmluZyBpdCBpbnRv
+IC1kZXYgcGFja2FnZSBhbmQgaW5zdGVhZCBwdXQgaXQgaW50byAke1BOfQ0KDQptYXkgYmUgeW91
+IHNob3VsZCBmaWxlIGFuIGVuaGFuY2VtZW50IGJ1ZyBmb3IgaXQgaW4gWW9jdG8gYnVnemlsbGEN
+Cg0KDQo=
 
-On Jul 29, 2013, at 6:54 AM, Navani Srivastava =
-<navani.srivastava@gmail.com> wrote:
+--_000_DD906C046DCD420DA07D32D211571BA7tasercom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <0227B3E74254ED48ADFA364681A73E86@taser.com>
+Content-Transfer-Encoding: base64
 
-> Is it possible to clean any dependent package from some other recipe?
->=20
-> As an example-
->=20
-> =93bitbake core-image-minimal.bb=94 will build u-boot and linux =
-package as a part of dependent package. Is it possible to clean u-boot =
-and linux by making changes in core-image-minimal.bb recipe?
->=20
->=20
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
+YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
+ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCkhpLA0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+
+SSB0cmllZCZuYnNwOzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8YmxvY2txdW90
+ZSB0eXBlPSJjaXRlIj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtp
+dC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNl
+OyAiPg0KRklMRVNfJHtQTn0gPSYjNDM7ICZxdW90OyR7bGliZGlyfS9saWJ1Y2kuc28mcXVvdDs8
+L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFr
+LXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRl
+ci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3Jk
+LXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5l
+LWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCmJ1dCB1bmRlciBwYWNrYWdlLXNwbGl0LCB0
+aGUgLnNvIGZpbGUgaXMgc3RpbGwgb25seSBsaXN0ZWQgaW4gdGhlIC1kZXYgcGFja2FnZS48L2Rp
+dj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5i
+c3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+
+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtp
+dC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNl
+OyAiPg0KSXMgaXQgcG9zc2libGUgdGhhdCB0aGUgbGliKi5zbyBmaWxlcyBhcmUgYWx3YXlzIGZv
+cmNpYmx5IHJlbW92ZWQgZnJvbSBGSUxFU18ke1BOfT88L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQt
+d3JhcDogYnJlYWstd29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUt
+YnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3
+b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1s
+aW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCkkgd2FzIGFibGUgdG8gaGFjayB0aGUg
+Q01ha2VMaXN0LnR4dCBmaWxlIGFzIGZvbGxvd3MuICZuYnNwO0lmIEkgc2V0IFNPVkVSU0lPTiBv
+biB0aGUgc2hhcmVkIGxpYnJhcnkgdGhlIGV4cGVjdGVkIGxpYnVjaS5zby4xIGZpbGUgYXBwZWFy
+cyB3aXRoIHRoZSBsaWJ1Y2kuc28gbGluayB3aGljaCBzb2x2ZXMgdGhlIHByb2JsZW0uICZuYnNw
+O0knbSBhIGxpdHRsZSBjb25jZXJuZWQgSSBtaWdodCBoYXZlIHByb2JsZW1zIHdpdGggb3RoZXIg
+cGFja2FnZXMgdGhhdCBJDQogaGF2ZW4ndCBwb3J0ZWQgeWV0IHRoYXQgZGVwZW5kIG9uIFVDSSwg
+YnV0IEkgd2lsbCBzZWUuPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7
+IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0
+ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13
+b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXIt
+d2hpdGUtc3BhY2U7ICI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgc3R5bGU9Indv
+cmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxp
+bmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0KbWF5IGJlIHlvdSBzaG91bGQgZmlsZSBh
+biBlbmhhbmNlbWVudCBidWcgZm9yIGl0IGluIFlvY3RvIGJ1Z3ppbGxhPC9kaXY+DQo8L2Jsb2Nr
+cXVvdGU+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsg
+LXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRl
+LXNwYWNlOyAiPg0KSSBwcm9iYWJseSBzaG91bGQgaGF2ZSBtZW50aW9uZWQgdGhpcyBlYXJsaWVy
+LCBidXQgSSdtIHVzaW5nIHRoZSAxLjMgdmVyc2lvbiBvZiBZb2N0byB0aGF0J3MgZW1iZWRkZWQg
+aW4gVEkncyBBcmFnbyBTREsuICZuYnNwO0NhbiBJIHNhZmVseSBwdWxsIHBva3kgb24gdG9wIG9m
+IHRoYXQgYW5kIHNlZSBpZiBpdCBmaXhlcyB0aGUgcHJvYmxlbSBvciBtaWdodCBJIGhhdmUgY29u
+ZmxpY3RzIGJldHdlZW4gQXJhZ28gQlNQIGxheWVycyBhbmQgdGhlIDEuNCBQb2t5DQogcmVjaXBl
+cz88L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtpdC1uYnNw
+LW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0K
+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQt
+bmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsg
+Ij4NClRoYW5rcyw8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdl
+YmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNw
+YWNlOyAiPg0KQnJhZDwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAt
+d2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUt
+c3BhY2U7ICI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29y
+ZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdo
+aXRlLXNwYWNlOyAiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFr
+LXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRl
+ci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+T24gSnVsIDMxLCAy
+MDEzLCBhdCAzOjU4IFBNLCBLaGVtIFJhaiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnJhai5raGVtQGdt
+YWlsLmNvbSI+cmFqLmtoZW1AZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PC9kaXY+DQo8YnIgY2xh
+c3M9IkFwcGxlLWludGVyY2hhbmdlLW5ld2xpbmUiPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+
+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBz
+cGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjxk
+aXY+DQo8ZGl2Pk9uIEp1bCAzMSwgMjAxMywgYXQgMzozOSBQTSwgQnJhZCBMaXR0ZXJlbGwgJmx0
+OzxhIGhyZWY9Im1haWx0bzpicmFkbEB0YXNlci5jb20iPmJyYWRsQHRhc2VyLmNvbTwvYT4mZ3Q7
+IHdyb3RlOjwvZGl2Pg0KPGJyIGNsYXNzPSJBcHBsZS1pbnRlcmNoYW5nZS1uZXdsaW5lIj4NCjxi
+bG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPHByZSBzdHlsZT0iZm9udC1zaXplOiBtZWRpdW07IGZv
+bnQtc3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiBub3Jt
+YWw7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IG9ycGhhbnM6
+IDI7IHRleHQtYWxpZ246IC13ZWJraXQtYXV0bzsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFu
+c2Zvcm06IG5vbmU7IHdpZG93czogMjsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGV4dC1z
+aXplLWFkanVzdDogYXV0bzsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyBtYXJnaW4t
+dG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj4gICAg4pSU4pSA4pSAIGxpYg0KICAgICAg
+ICDilJzilIDilIAgbGlidWNpLmENCiAgICAgICAg4pSU4pSA4pSAIGxpYnVjaS5zbw0KPC9wcmU+
+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogSGVsdmV0aWNhOyBmb250LXNpemU6IG1lZGl1bTsg
+Zm9udC1zdHlsZTogbm9ybWFsOyBmb250LXZhcmlhbnQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IG5v
+cm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgb3JwaGFu
+czogMjsgdGV4dC1hbGlnbjogLXdlYmtpdC1hdXRvOyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRy
+YW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1hbDsgd2lkb3dzOiAyOyB3b3JkLXNwYWNp
+bmc6IDBweDsgLXdlYmtpdC10ZXh0LXNpemUtYWRqdXN0OiBhdXRvOyAtd2Via2l0LXRleHQtc3Ry
+b2tlLXdpZHRoOiAwcHg7ICI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5
+OiBIZWx2ZXRpY2E7IGZvbnQtc2l6ZTogbWVkaXVtOyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQt
+dmFyaWFudDogbm9ybWFsOyBmb250LXdlaWdodDogbm9ybWFsOyBsZXR0ZXItc3BhY2luZzogbm9y
+bWFsOyBsaW5lLWhlaWdodDogbm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0LWFsaWduOiAtd2Via2l0
+LWF1dG87IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFj
+ZTogbm9ybWFsOyB3aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQtc2l6
+ZS1hZGp1c3Q6IGF1dG87IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgIj4NClNvLCZu
+YnNwO0kgYWRkZWQgdGhpczo8L2Rpdj4NCjxwcmUgc3R5bGU9ImZvbnQtc2l6ZTogbWVkaXVtOyBm
+b250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudDogbm9ybWFsOyBmb250LXdlaWdodDogbm9y
+bWFsOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyBsaW5lLWhlaWdodDogbm9ybWFsOyBvcnBoYW5z
+OiAyOyB0ZXh0LWFsaWduOiAtd2Via2l0LWF1dG87IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJh
+bnNmb3JtOiBub25lOyB3aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQt
+c2l6ZS1hZGp1c3Q6IGF1dG87IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgbWFyZ2lu
+LXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7ICI+PGJyPjwvcHJlPg0KPHByZSBzdHlsZT0i
+Zm9udC1zaXplOiBtZWRpdW07IGZvbnQtc3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50OiBub3Jt
+YWw7IGZvbnQtd2VpZ2h0OiBub3JtYWw7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IGxpbmUtaGVp
+Z2h0OiBub3JtYWw7IG9ycGhhbnM6IDI7IHRleHQtYWxpZ246IC13ZWJraXQtYXV0bzsgdGV4dC1p
+bmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdpZG93czogMjsgd29yZC1zcGFjaW5n
+OiAwcHg7IC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogYXV0bzsgLXdlYmtpdC10ZXh0LXN0cm9r
+ZS13aWR0aDogMHB4OyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj5GSUxF
+U18ke1BOfTxzcGFuIHN0eWxlPSJjb2xvcjogcmdiKDE5MiwgMTkyLCAxOTIpOyAiPiA8L3NwYW4+
+JiM0Mzs9JnF1b3Q7L3Vzci9saWIvKiZxdW90OzwvcHJlPg0KPC9ibG9ja3F1b3RlPg0KPGRpdj48
+YnI+DQo8L2Rpdj4NCjxkaXY+VHJ5IHNvbWV0aGluZyBsaWtlPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
+ZGl2Pg0KPGRpdj5GSUxFU18ke1BOfSA9JiM0MzsgJnF1b3Q7JHtsaWJkaXJ9L2xpYnVjaS5zbyZx
+dW90OzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8YmxvY2tx
+dW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBIZWx2ZXRpY2E7IGZv
+bnQtc2l6ZTogbWVkaXVtOyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudDogbm9ybWFs
+OyBmb250LXdlaWdodDogbm9ybWFsOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyBsaW5lLWhlaWdo
+dDogbm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0LWFsaWduOiAtd2Via2l0LWF1dG87IHRleHQtaW5k
+ZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFjZTogbm9ybWFsOyB3aWRv
+d3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6IGF1dG87
+IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBz
+dHlsZT0iZm9udC1mYW1pbHk6IEhlbHZldGljYTsgZm9udC1zaXplOiBtZWRpdW07IGZvbnQtc3R5
+bGU6IG5vcm1hbDsgZm9udC12YXJpYW50OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiBub3JtYWw7IGxl
+dHRlci1zcGFjaW5nOiBub3JtYWw7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IG9ycGhhbnM6IDI7IHRl
+eHQtYWxpZ246IC13ZWJraXQtYXV0bzsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06
+IG5vbmU7IHdoaXRlLXNwYWNlOiBub3JtYWw7IHdpZG93czogMjsgd29yZC1zcGFjaW5nOiAwcHg7
+IC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogYXV0bzsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0
+aDogMHB4OyAiPg0KSG93ZXZlciB0aGF0IGRvZXNuJ3QgcmVtb3ZlIHRoZSBtZXNzYWdlLiAmbmJz
+cDtEaWQgSSBkbyBpdCByaWdodD88L2Rpdj4NCjxiciBjbGFzcz0iQXBwbGUtaW50ZXJjaGFuZ2Ut
+bmV3bGluZSI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4NCjxkaXY+PGJyPg0KPC9kaXY+
+DQo8ZGl2PnVzdWFsbHkgLnNvIGFyZSBzeW1saW5rcyB3aGljaCB0aGVuIGdvIGludG8gLWRldiBw
+YWNrYWdlcyB2aWEgdGhlIGRlZmF1bHQgcGFja2FnZSBzaWV2ZSBlbmdpbmU8L2Rpdj4NCjxkaXY+
+YnV0IEkgYW0gdGhpbmtpbmcgaWYgd2UgZmluZCBvdXQgdGhhdCBmaWxlIGlzIG5vdCBhIHN5bWxp
+bmsgYnV0IGEgbm9ybWFsIHNoYXJlZCBvYmplY3QgdGhlbiBwcm9iYWJseTwvZGl2Pg0KPGRpdj53
+ZSBjb3VsZCBzdG9wIHNob3ZpbmcgaXQgaW50byAtZGV2IHBhY2thZ2UgYW5kIGluc3RlYWQgcHV0
+IGl0IGludG8gJHtQTn08L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pm1heSBiZSB5b3Ug
+c2hvdWxkIGZpbGUgYW4gZW5oYW5jZW1lbnQgYnVnIGZvciBpdCBpbiBZb2N0byBidWd6aWxsYTwv
+ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8
+YnI+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-vice versa is possible where you make changes to one of u-boot and it =
-rebuilds core-image-minimal. any package will not interfere cleaning =
-another
-one, it could be rebuild as part of another dependency=
-
---Apple-Mail=_E4C98C38-D18D-42C5-BB6F-D22C1ED16101
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=windows-1252
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><br><div><div>On Jul 29, 2013, at 6:54 AM, Navani Srivastava &lt;<a =
-href=3D"mailto:navani.srivastava@gmail.com">navani.srivastava@gmail.com</a=
->&gt; wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><p style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; ">Is it possible to clean any dependent =
-package from some other recipe?</p><p style=3D"font-family: Helvetica; =
-font-size: medium; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: 2; word-spacing: 0px; =
--webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; ">As an =
-example-</p><p style=3D"font-family: Helvetica; font-size: medium; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: 2; text-align: =
--webkit-auto; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; =
--webkit-text-stroke-width: 0px; ">=93bitbake<span =
-class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"http://core-image-minimal.bb/">core-image-minimal.bb</a>=94 will =
-build u-boot and linux package as a part of dependent package. Is it =
-possible to clean u-boot and linux by making changes in<span =
-class=3D"Apple-converted-space">&nbsp;</span><a =
-href=3D"http://core-image-minimal.bb/">core-image-minimal.bb</a><span =
-class=3D"Apple-converted-space">&nbsp;</span>recipe?</p><br =
-class=3D"Apple-interchange-newline"></blockquote></div><br><div>vice =
-versa is possible where you make changes to one of u-boot and it =
-rebuilds core-image-minimal. any package will not interfere cleaning =
-another</div><div>one, it could be rebuild as part of another =
-dependency</div></body></html>=
-
---Apple-Mail=_E4C98C38-D18D-42C5-BB6F-D22C1ED16101--
+--_000_DD906C046DCD420DA07D32D211571BA7tasercom_--
