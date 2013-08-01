@@ -1,55 +1,49 @@
-Return-Path: <bradl@taser.com>
-Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22AB8E01572
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 17:52:32 -0700 (PDT)
-X-ASG-Debug-ID: 1375318351-0499bf565a4e06e0001-yzSStA
-Received: from LOKI.atmoss (loki.atmoss [10.10.20.113]) by email.taser.com
-	with ESMTP id POLEvCEcWtjpJuRz; Wed, 31 Jul 2013 17:52:31 -0700 (MST)
-X-Barracuda-Envelope-From: bradl@taser.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
-Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
-	(10.10.20.113) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Wed, 31 Jul 2013 17:52:31 -0700
-Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
-	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
-	14.02.0342.003; Wed, 31 Jul 2013 17:52:30 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
-From: Brad Litterell <bradl@taser.com>
-X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Trying to add new recipe - getting QA error I don't
-	understand
-X-ASG-Orig-Subj: Re: [yocto] Trying to add new recipe - getting QA error I
-	don't understand
-Thread-Index: AQHOjhaqK43GESdm30u/u0JCpsTpV5l/lVCAgABBgICAAAU4AIAAH+6A
-Date: Thu, 1 Aug 2013 00:52:29 +0000
-Message-ID: <DD906C04-6DCD-420D-A07D-32D211571BA7@taser.com>
-References: <E94D6C02-CADD-4109-97AE-6979171970FA@taser.com>
-	<CAJTo0LbpwbUwjRmytE-jiJ2OBihvQt5eUkQbZBpsork69jHg_w@mail.gmail.com>
-	<CE1312C1-039E-4F91-BA03-163FDC9E4CD4@taser.com>
-	<3822EF35-AD96-4F3A-B278-E08E5F79B8CE@gmail.com>
-In-Reply-To: <3822EF35-AD96-4F3A-B278-E08E5F79B8CE@gmail.com>
+Return-Path: <B19537@freescale.com>
+Received: from db8outboundpool.messaging.microsoft.com
+	(mail-db8lp0184.outbound.messaging.microsoft.com [213.199.154.184])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45341E01584
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2013 19:15:51 -0700 (PDT)
+Received: from mail82-db8-R.bigfish.com (10.174.8.237) by
+	DB8EHSOBE027.bigfish.com (10.174.4.90) with Microsoft SMTP Server id
+	14.1.225.22; Thu, 1 Aug 2013 02:15:50 +0000
+Received: from mail82-db8 (localhost [127.0.0.1])	by mail82-db8-R.bigfish.com
+	(Postfix) with ESMTP id 0A54FB40131;
+	Thu,  1 Aug 2013 02:15:50 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -5
+X-BigFish: VS-5(zz9371Ic85fh14e3Mzz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz1d7338h1de098h17326ah18c673h1c8fb4h1de096h1954cbh8275bh8275dh1de097hz2dh2a8h668h839h8e2h8e3hd25hf0ah1288h12a5h12bdh137ah1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1b2fh1bceh1fb3h1d0ch1d2eh1d3fh1dfeh1dffh1e1dhbe9i1155h)
+Received: from mail82-db8 (localhost.localdomain [127.0.0.1]) by mail82-db8
+	(MessageSwitch) id 1375323347525884_28354;
+	Thu,  1 Aug 2013 02:15:47 +0000 (UTC)
+Received: from DB8EHSMHS003.bigfish.com (unknown [10.174.8.236])	by
+	mail82-db8.bigfish.com (Postfix) with ESMTP id 716C2D8004D;
+	Thu,  1 Aug 2013 02:15:47 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by DB8EHSMHS003.bigfish.com
+	(10.174.4.13) with Microsoft SMTP Server (TLS) id 14.16.227.3;
+	Thu, 1 Aug 2013 02:15:47 +0000
+Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.43]) by
+	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.03.0136.001;
+	Thu, 1 Aug 2013 02:15:45 +0000
+From: Luo Zhenhua-B19537 <B19537@freescale.com>
+To: Aman Sharma <amansh.sharma5@gmail.com>
+Thread-Topic: [yocto] Integrate java with yocto
+Thread-Index: AQHOjdUl/6Jx4uNimUaYMmD9o9T2Vpl+kkwggAAwsoCAANqqsA==
+Date: Thu, 1 Aug 2013 02:15:46 +0000
+Message-ID: <CA452391058F6D4E9715FB2C29D9312A01657971@039-SN2MPN1-021.039d.mgd.msft.net>
+References: <CAPMH7--cJ6ZOM_s3EzbQjBYCrYn90sAMSEvTLaDMuHmx+LapKQ@mail.gmail.com>
+	<CA452391058F6D4E9715FB2C29D9312A016522AF@039-SN2MPN1-021.039d.mgd.msft.net>
+	<CAPMH7-8ebq6KLtA7dtTBtrB6_vnXgEVY9ZY7hc0cLBz228wsog@mail.gmail.com>
+In-Reply-To: <CAPMH7-8ebq6KLtA7dtTBtrB6_vnXgEVY9ZY7hc0cLBz228wsog@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.103]
+x-originating-ip: [10.192.208.134]
 MIME-Version: 1.0
-X-Barracuda-Connect: loki.atmoss[10.10.20.113]
-X-Barracuda-Start-Time: 1375318351
-X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at taser.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.137472
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
+X-OriginatorOrg: freescale.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Trying to add new recipe - getting QA error I don't understand
+Subject: Re: Integrate java with yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,180 +55,302 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2013 00:52:35 -0000
+X-List-Received-Date: Thu, 01 Aug 2013 02:15:56 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_DD906C046DCD420DA07D32D211571BA7tasercom_"
+	boundary="_000_CA452391058F6D4E9715FB2C29D9312A01657971039SN2MPN102103_"
 
---_000_DD906C046DCD420DA07D32D211571BA7tasercom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_CA452391058F6D4E9715FB2C29D9312A01657971039SN2MPN102103_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGksDQoNCkkgdHJpZWQNCg0KRklMRVNfJHtQTn0gPSsgIiR7bGliZGlyfS9saWJ1Y2kuc28iDQoN
-CmJ1dCB1bmRlciBwYWNrYWdlLXNwbGl0LCB0aGUgLnNvIGZpbGUgaXMgc3RpbGwgb25seSBsaXN0
-ZWQgaW4gdGhlIC1kZXYgcGFja2FnZS4NCg0KSXMgaXQgcG9zc2libGUgdGhhdCB0aGUgbGliKi5z
-byBmaWxlcyBhcmUgYWx3YXlzIGZvcmNpYmx5IHJlbW92ZWQgZnJvbSBGSUxFU18ke1BOfT8NCg0K
-SSB3YXMgYWJsZSB0byBoYWNrIHRoZSBDTWFrZUxpc3QudHh0IGZpbGUgYXMgZm9sbG93cy4gIElm
-IEkgc2V0IFNPVkVSU0lPTiBvbiB0aGUgc2hhcmVkIGxpYnJhcnkgdGhlIGV4cGVjdGVkIGxpYnVj
-aS5zby4xIGZpbGUgYXBwZWFycyB3aXRoIHRoZSBsaWJ1Y2kuc28gbGluayB3aGljaCBzb2x2ZXMg
-dGhlIHByb2JsZW0uICBJJ20gYSBsaXR0bGUgY29uY2VybmVkIEkgbWlnaHQgaGF2ZSBwcm9ibGVt
-cyB3aXRoIG90aGVyIHBhY2thZ2VzIHRoYXQgSSBoYXZlbid0IHBvcnRlZCB5ZXQgdGhhdCBkZXBl
-bmQgb24gVUNJLCBidXQgSSB3aWxsIHNlZS4NCg0KbWF5IGJlIHlvdSBzaG91bGQgZmlsZSBhbiBl
-bmhhbmNlbWVudCBidWcgZm9yIGl0IGluIFlvY3RvIGJ1Z3ppbGxhDQoNCkkgcHJvYmFibHkgc2hv
-dWxkIGhhdmUgbWVudGlvbmVkIHRoaXMgZWFybGllciwgYnV0IEknbSB1c2luZyB0aGUgMS4zIHZl
-cnNpb24gb2YgWW9jdG8gdGhhdCdzIGVtYmVkZGVkIGluIFRJJ3MgQXJhZ28gU0RLLiAgQ2FuIEkg
-c2FmZWx5IHB1bGwgcG9reSBvbiB0b3Agb2YgdGhhdCBhbmQgc2VlIGlmIGl0IGZpeGVzIHRoZSBw
-cm9ibGVtIG9yIG1pZ2h0IEkgaGF2ZSBjb25mbGljdHMgYmV0d2VlbiBBcmFnbyBCU1AgbGF5ZXJz
-IGFuZCB0aGUgMS40IFBva3kgcmVjaXBlcz8NCg0KVGhhbmtzLA0KQnJhZA0KDQoNCg0KT24gSnVs
-IDMxLCAyMDEzLCBhdCAzOjU4IFBNLCBLaGVtIFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPG1haWx0
-bzpyYWoua2hlbUBnbWFpbC5jb20+PiB3cm90ZToNCg0KDQpPbiBKdWwgMzEsIDIwMTMsIGF0IDM6
-MzkgUE0sIEJyYWQgTGl0dGVyZWxsIDxicmFkbEB0YXNlci5jb208bWFpbHRvOmJyYWRsQHRhc2Vy
-LmNvbT4+IHdyb3RlOg0KDQoNCiAgICDilJTilIDilIAgbGliDQogICAgICAgIOKUnOKUgOKUgCBs
-aWJ1Y2kuYQ0KICAgICAgICDilJTilIDilIAgbGlidWNpLnNvDQoNCg0KU28sIEkgYWRkZWQgdGhp
-czoNCg0KDQpGSUxFU18ke1BOfSArPSIvdXNyL2xpYi8qIg0KDQpUcnkgc29tZXRoaW5nIGxpa2UN
-Cg0KRklMRVNfJHtQTn0gPSsgIiR7bGliZGlyfS9saWJ1Y2kuc28iDQoNCg0KDQpIb3dldmVyIHRo
-YXQgZG9lc24ndCByZW1vdmUgdGhlIG1lc3NhZ2UuICBEaWQgSSBkbyBpdCByaWdodD8NCg0KDQoN
-CnVzdWFsbHkgLnNvIGFyZSBzeW1saW5rcyB3aGljaCB0aGVuIGdvIGludG8gLWRldiBwYWNrYWdl
-cyB2aWEgdGhlIGRlZmF1bHQgcGFja2FnZSBzaWV2ZSBlbmdpbmUNCmJ1dCBJIGFtIHRoaW5raW5n
-IGlmIHdlIGZpbmQgb3V0IHRoYXQgZmlsZSBpcyBub3QgYSBzeW1saW5rIGJ1dCBhIG5vcm1hbCBz
-aGFyZWQgb2JqZWN0IHRoZW4gcHJvYmFibHkNCndlIGNvdWxkIHN0b3Agc2hvdmluZyBpdCBpbnRv
-IC1kZXYgcGFja2FnZSBhbmQgaW5zdGVhZCBwdXQgaXQgaW50byAke1BOfQ0KDQptYXkgYmUgeW91
-IHNob3VsZCBmaWxlIGFuIGVuaGFuY2VtZW50IGJ1ZyBmb3IgaXQgaW4gWW9jdG8gYnVnemlsbGEN
-Cg0KDQo=
+Aman,
 
---_000_DD906C046DCD420DA07D32D211571BA7tasercom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <0227B3E74254ED48ADFA364681A73E86@taser.com>
-Content-Transfer-Encoding: base64
+"jre-related-pkg-list" is just a description, you need to replace it with a=
+ctually package name(e.g. openjdk-7-jre).
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCkhpLA0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+
-SSB0cmllZCZuYnNwOzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+DQo8YmxvY2txdW90
-ZSB0eXBlPSJjaXRlIj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtp
-dC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNl
-OyAiPg0KRklMRVNfJHtQTn0gPSYjNDM7ICZxdW90OyR7bGliZGlyfS9saWJ1Y2kuc28mcXVvdDs8
-L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFr
-LXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRl
-ci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3Jk
-LXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5l
-LWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCmJ1dCB1bmRlciBwYWNrYWdlLXNwbGl0LCB0
-aGUgLnNvIGZpbGUgaXMgc3RpbGwgb25seSBsaXN0ZWQgaW4gdGhlIC1kZXYgcGFja2FnZS48L2Rp
-dj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAtd2Via2l0LW5i
-c3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2U7ICI+
-DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtp
-dC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNl
-OyAiPg0KSXMgaXQgcG9zc2libGUgdGhhdCB0aGUgbGliKi5zbyBmaWxlcyBhcmUgYWx3YXlzIGZv
-cmNpYmx5IHJlbW92ZWQgZnJvbSBGSUxFU18ke1BOfT88L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQt
-d3JhcDogYnJlYWstd29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUt
-YnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3
-b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1s
-aW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCkkgd2FzIGFibGUgdG8gaGFjayB0aGUg
-Q01ha2VMaXN0LnR4dCBmaWxlIGFzIGZvbGxvd3MuICZuYnNwO0lmIEkgc2V0IFNPVkVSU0lPTiBv
-biB0aGUgc2hhcmVkIGxpYnJhcnkgdGhlIGV4cGVjdGVkIGxpYnVjaS5zby4xIGZpbGUgYXBwZWFy
-cyB3aXRoIHRoZSBsaWJ1Y2kuc28gbGluayB3aGljaCBzb2x2ZXMgdGhlIHByb2JsZW0uICZuYnNw
-O0knbSBhIGxpdHRsZSBjb25jZXJuZWQgSSBtaWdodCBoYXZlIHByb2JsZW1zIHdpdGggb3RoZXIg
-cGFja2FnZXMgdGhhdCBJDQogaGF2ZW4ndCBwb3J0ZWQgeWV0IHRoYXQgZGVwZW5kIG9uIFVDSSwg
-YnV0IEkgd2lsbCBzZWUuPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7
-IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0
-ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13
-b3JkOyAtd2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXIt
-d2hpdGUtc3BhY2U7ICI+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgc3R5bGU9Indv
-cmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxp
-bmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0KbWF5IGJlIHlvdSBzaG91bGQgZmlsZSBh
-biBlbmhhbmNlbWVudCBidWcgZm9yIGl0IGluIFlvY3RvIGJ1Z3ppbGxhPC9kaXY+DQo8L2Jsb2Nr
-cXVvdGU+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsg
-LXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRl
-LXNwYWNlOyAiPg0KSSBwcm9iYWJseSBzaG91bGQgaGF2ZSBtZW50aW9uZWQgdGhpcyBlYXJsaWVy
-LCBidXQgSSdtIHVzaW5nIHRoZSAxLjMgdmVyc2lvbiBvZiBZb2N0byB0aGF0J3MgZW1iZWRkZWQg
-aW4gVEkncyBBcmFnbyBTREsuICZuYnNwO0NhbiBJIHNhZmVseSBwdWxsIHBva3kgb24gdG9wIG9m
-IHRoYXQgYW5kIHNlZSBpZiBpdCBmaXhlcyB0aGUgcHJvYmxlbSBvciBtaWdodCBJIGhhdmUgY29u
-ZmxpY3RzIGJldHdlZW4gQXJhZ28gQlNQIGxheWVycyBhbmQgdGhlIDEuNCBQb2t5DQogcmVjaXBl
-cz88L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdlYmtpdC1uYnNw
-LW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNwYWNlOyAiPg0K
-PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQt
-bmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsg
-Ij4NClRoYW5rcyw8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29yZDsgLXdl
-YmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdoaXRlLXNw
-YWNlOyAiPg0KQnJhZDwvZGl2Pg0KPGRpdiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOyAt
-d2Via2l0LW5ic3AtbW9kZTogc3BhY2U7IC13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUt
-c3BhY2U7ICI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9IndvcmQtd3JhcDogYnJlYWstd29y
-ZDsgLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNlOyAtd2Via2l0LWxpbmUtYnJlYWs6IGFmdGVyLXdo
-aXRlLXNwYWNlOyAiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFr
-LXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRl
-ci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+T24gSnVsIDMxLCAy
-MDEzLCBhdCAzOjU4IFBNLCBLaGVtIFJhaiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnJhai5raGVtQGdt
-YWlsLmNvbSI+cmFqLmtoZW1AZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PC9kaXY+DQo8YnIgY2xh
-c3M9IkFwcGxlLWludGVyY2hhbmdlLW5ld2xpbmUiPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+
-DQo8ZGl2IHN0eWxlPSJ3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBz
-cGFjZTsgLXdlYmtpdC1saW5lLWJyZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgIj4NCjxicj4NCjxk
-aXY+DQo8ZGl2Pk9uIEp1bCAzMSwgMjAxMywgYXQgMzozOSBQTSwgQnJhZCBMaXR0ZXJlbGwgJmx0
-OzxhIGhyZWY9Im1haWx0bzpicmFkbEB0YXNlci5jb20iPmJyYWRsQHRhc2VyLmNvbTwvYT4mZ3Q7
-IHdyb3RlOjwvZGl2Pg0KPGJyIGNsYXNzPSJBcHBsZS1pbnRlcmNoYW5nZS1uZXdsaW5lIj4NCjxi
-bG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPHByZSBzdHlsZT0iZm9udC1zaXplOiBtZWRpdW07IGZv
-bnQtc3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiBub3Jt
-YWw7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IG9ycGhhbnM6
-IDI7IHRleHQtYWxpZ246IC13ZWJraXQtYXV0bzsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFu
-c2Zvcm06IG5vbmU7IHdpZG93czogMjsgd29yZC1zcGFjaW5nOiAwcHg7IC13ZWJraXQtdGV4dC1z
-aXplLWFkanVzdDogYXV0bzsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4OyBtYXJnaW4t
-dG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj4gICAg4pSU4pSA4pSAIGxpYg0KICAgICAg
-ICDilJzilIDilIAgbGlidWNpLmENCiAgICAgICAg4pSU4pSA4pSAIGxpYnVjaS5zbw0KPC9wcmU+
-DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogSGVsdmV0aWNhOyBmb250LXNpemU6IG1lZGl1bTsg
-Zm9udC1zdHlsZTogbm9ybWFsOyBmb250LXZhcmlhbnQ6IG5vcm1hbDsgZm9udC13ZWlnaHQ6IG5v
-cm1hbDsgbGV0dGVyLXNwYWNpbmc6IG5vcm1hbDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgb3JwaGFu
-czogMjsgdGV4dC1hbGlnbjogLXdlYmtpdC1hdXRvOyB0ZXh0LWluZGVudDogMHB4OyB0ZXh0LXRy
-YW5zZm9ybTogbm9uZTsgd2hpdGUtc3BhY2U6IG5vcm1hbDsgd2lkb3dzOiAyOyB3b3JkLXNwYWNp
-bmc6IDBweDsgLXdlYmtpdC10ZXh0LXNpemUtYWRqdXN0OiBhdXRvOyAtd2Via2l0LXRleHQtc3Ry
-b2tlLXdpZHRoOiAwcHg7ICI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5
-OiBIZWx2ZXRpY2E7IGZvbnQtc2l6ZTogbWVkaXVtOyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQt
-dmFyaWFudDogbm9ybWFsOyBmb250LXdlaWdodDogbm9ybWFsOyBsZXR0ZXItc3BhY2luZzogbm9y
-bWFsOyBsaW5lLWhlaWdodDogbm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0LWFsaWduOiAtd2Via2l0
-LWF1dG87IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFj
-ZTogbm9ybWFsOyB3aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQtc2l6
-ZS1hZGp1c3Q6IGF1dG87IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgIj4NClNvLCZu
-YnNwO0kgYWRkZWQgdGhpczo8L2Rpdj4NCjxwcmUgc3R5bGU9ImZvbnQtc2l6ZTogbWVkaXVtOyBm
-b250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudDogbm9ybWFsOyBmb250LXdlaWdodDogbm9y
-bWFsOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyBsaW5lLWhlaWdodDogbm9ybWFsOyBvcnBoYW5z
-OiAyOyB0ZXh0LWFsaWduOiAtd2Via2l0LWF1dG87IHRleHQtaW5kZW50OiAwcHg7IHRleHQtdHJh
-bnNmb3JtOiBub25lOyB3aWRvd3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQt
-c2l6ZS1hZGp1c3Q6IGF1dG87IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgbWFyZ2lu
-LXRvcDogMHB4OyBtYXJnaW4tYm90dG9tOiAwcHg7ICI+PGJyPjwvcHJlPg0KPHByZSBzdHlsZT0i
-Zm9udC1zaXplOiBtZWRpdW07IGZvbnQtc3R5bGU6IG5vcm1hbDsgZm9udC12YXJpYW50OiBub3Jt
-YWw7IGZvbnQtd2VpZ2h0OiBub3JtYWw7IGxldHRlci1zcGFjaW5nOiBub3JtYWw7IGxpbmUtaGVp
-Z2h0OiBub3JtYWw7IG9ycGhhbnM6IDI7IHRleHQtYWxpZ246IC13ZWJraXQtYXV0bzsgdGV4dC1p
-bmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06IG5vbmU7IHdpZG93czogMjsgd29yZC1zcGFjaW5n
-OiAwcHg7IC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogYXV0bzsgLXdlYmtpdC10ZXh0LXN0cm9r
-ZS13aWR0aDogMHB4OyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0b206IDBweDsgIj5GSUxF
-U18ke1BOfTxzcGFuIHN0eWxlPSJjb2xvcjogcmdiKDE5MiwgMTkyLCAxOTIpOyAiPiA8L3NwYW4+
-JiM0Mzs9JnF1b3Q7L3Vzci9saWIvKiZxdW90OzwvcHJlPg0KPC9ibG9ja3F1b3RlPg0KPGRpdj48
-YnI+DQo8L2Rpdj4NCjxkaXY+VHJ5IHNvbWV0aGluZyBsaWtlPC9kaXY+DQo8ZGl2Pjxicj4NCjwv
-ZGl2Pg0KPGRpdj5GSUxFU18ke1BOfSA9JiM0MzsgJnF1b3Q7JHtsaWJkaXJ9L2xpYnVjaS5zbyZx
-dW90OzwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8YmxvY2tx
-dW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBIZWx2ZXRpY2E7IGZv
-bnQtc2l6ZTogbWVkaXVtOyBmb250LXN0eWxlOiBub3JtYWw7IGZvbnQtdmFyaWFudDogbm9ybWFs
-OyBmb250LXdlaWdodDogbm9ybWFsOyBsZXR0ZXItc3BhY2luZzogbm9ybWFsOyBsaW5lLWhlaWdo
-dDogbm9ybWFsOyBvcnBoYW5zOiAyOyB0ZXh0LWFsaWduOiAtd2Via2l0LWF1dG87IHRleHQtaW5k
-ZW50OiAwcHg7IHRleHQtdHJhbnNmb3JtOiBub25lOyB3aGl0ZS1zcGFjZTogbm9ybWFsOyB3aWRv
-d3M6IDI7IHdvcmQtc3BhY2luZzogMHB4OyAtd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6IGF1dG87
-IC13ZWJraXQtdGV4dC1zdHJva2Utd2lkdGg6IDBweDsgIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBz
-dHlsZT0iZm9udC1mYW1pbHk6IEhlbHZldGljYTsgZm9udC1zaXplOiBtZWRpdW07IGZvbnQtc3R5
-bGU6IG5vcm1hbDsgZm9udC12YXJpYW50OiBub3JtYWw7IGZvbnQtd2VpZ2h0OiBub3JtYWw7IGxl
-dHRlci1zcGFjaW5nOiBub3JtYWw7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IG9ycGhhbnM6IDI7IHRl
-eHQtYWxpZ246IC13ZWJraXQtYXV0bzsgdGV4dC1pbmRlbnQ6IDBweDsgdGV4dC10cmFuc2Zvcm06
-IG5vbmU7IHdoaXRlLXNwYWNlOiBub3JtYWw7IHdpZG93czogMjsgd29yZC1zcGFjaW5nOiAwcHg7
-IC13ZWJraXQtdGV4dC1zaXplLWFkanVzdDogYXV0bzsgLXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0
-aDogMHB4OyAiPg0KSG93ZXZlciB0aGF0IGRvZXNuJ3QgcmVtb3ZlIHRoZSBtZXNzYWdlLiAmbmJz
-cDtEaWQgSSBkbyBpdCByaWdodD88L2Rpdj4NCjxiciBjbGFzcz0iQXBwbGUtaW50ZXJjaGFuZ2Ut
-bmV3bGluZSI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4NCjxkaXY+PGJyPg0KPC9kaXY+
-DQo8ZGl2PnVzdWFsbHkgLnNvIGFyZSBzeW1saW5rcyB3aGljaCB0aGVuIGdvIGludG8gLWRldiBw
-YWNrYWdlcyB2aWEgdGhlIGRlZmF1bHQgcGFja2FnZSBzaWV2ZSBlbmdpbmU8L2Rpdj4NCjxkaXY+
-YnV0IEkgYW0gdGhpbmtpbmcgaWYgd2UgZmluZCBvdXQgdGhhdCBmaWxlIGlzIG5vdCBhIHN5bWxp
-bmsgYnV0IGEgbm9ybWFsIHNoYXJlZCBvYmplY3QgdGhlbiBwcm9iYWJseTwvZGl2Pg0KPGRpdj53
-ZSBjb3VsZCBzdG9wIHNob3ZpbmcgaXQgaW50byAtZGV2IHBhY2thZ2UgYW5kIGluc3RlYWQgcHV0
-IGl0IGludG8gJHtQTn08L2Rpdj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pm1heSBiZSB5b3Ug
-c2hvdWxkIGZpbGUgYW4gZW5oYW5jZW1lbnQgYnVnIGZvciBpdCBpbiBZb2N0byBidWd6aWxsYTwv
-ZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8
-YnI+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_DD906C046DCD420DA07D32D211571BA7tasercom_--
+Best Regards,
+
+Zhenhua
+
+From: Aman Sharma [mailto:amansh.sharma5@gmail.com]
+Sent: Wednesday, July 31, 2013 9:10 PM
+To: Luo Zhenhua-B19537
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Integrate java with yocto
+
+Hi Luo,
+
+I am getting this error message.
+freescale@freescale-sdk:~/SDK/QorIQ-SDK-V1.4-20130625-yocto/build_t4240qds_=
+release$ bitbake fsl-image-core
+Loading cache: 100% |######################################################=
+###########################################################################=
+#| ETA:  00:00:00
+Loaded 3302 entries from dependency cache.
+
+Build Configuration:
+BB_VERSION        =3D "1.18.0"
+BUILD_SYS         =3D "i686-linux"
+NATIVELSBSTRING   =3D "Ubuntu-10.04"
+TARGET_SYS        =3D "powerpc-fsl_networking-linux"
+MACHINE           =3D "t4240qds"
+DISTRO            =3D "fsl-networking"
+DISTRO_VERSION    =3D "1.4"
+TUNE_FEATURES     =3D "m32 fpu-hard e6500 altivec"
+TARGET_FPU        =3D "hard"
+meta
+meta-yocto
+meta-yocto-bsp    =3D "sdk-v1.4.x:5a7532143a49f59a5c85b08d3daf574fb1eccd8d"
+meta-fsl-ppc      =3D "sdk-v1.4.x:f9fd0a617eb6913f87335c551918315ff4ebe18c"
+meta-fsl-ppc-toolchain =3D "sdk-v1.4.x:8ec94cec04527cb971c125b1ddd2c5375034=
+d723"
+meta-virtualization =3D "sdk-v1.4.x:ad6df4f59cd7646f61db29e8fa51f878329d6f9=
+3"
+meta-fsl-networking =3D "(nobranch):00f7a535029ca7ef8c96ba8e9916d4742166bab=
+0"
+meta-oe
+meta-networking   =3D "sdk-v1.4.x:7c8dd8f096b64a709175d37a08a4fb02ca263616"
+meta-java         =3D "master:59696d89fd33df6953dcb2dd54ccd3b362513f28"
+
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'jre-related-pkg-list' (but /home/freescale/SDK/Qo=
+rIQ-SDK-V1.4-20130625-yocto/meta-fsl-networking/images/fsl-image-core.bb<ht=
+tp://fsl-image-core.bb> RDEPENDS on or otherwise requires it)
+NOTE: Runtime target 'jre-related-pkg-list' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['jre-related-pkg-list']
+ERROR: Required build target 'fsl-image-core' has no buildable providers.
+Missing or unbuildable dependency chain was: ['fsl-image-core', 'jre-relate=
+d-pkg-list']
+
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+I added the following line in local.conf file:
+# Java preferences.  Could also be in distro config.
+PREFERRED_PROVIDER_virtual/java-native =3D "jamvm-native"
+PREFERRED_PROVIDER_virtual/javac-native =3D "ecj-bootstrap-native"
+PREFERRED_VERSION_openjdk-7-jre =3D "03b21-2.1.8"
+PREFERRED_VERSION_icedtea7-native =3D "2.1.3"
+PREFERRED_PROVIDER_openjdk-7-jre =3D "openjdk-7-jre"
+
+
+#By aman
+IMAGE_INSTALL_append =3D "jre-related-pkg-list"
+
+Can you please help me in this.
+Thanks for your Response.
+
+--
+regards
+Aman
+
+
+
+--_000_CA452391058F6D4E9715FB2C29D9312A01657971039SN2MPN102103_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Aman,
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">&#8220;jre-related-pkg-li=
+st&#8221; is just a description, you need to replace it with actually packa=
+ge name(e.g. openjdk-7-jre).
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Best Regards,<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Zhenhua<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Aman Sha=
+rma [mailto:amansh.sharma5@gmail.com]
+<br>
+<b>Sent:</b> Wednesday, July 31, 2013 9:10 PM<br>
+<b>To:</b> Luo Zhenhua-B19537<br>
+<b>Cc:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] Integrate java with yocto<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi Luo,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">I am getting this err=
+or message.<o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">freescale@freescale-s=
+dk:~/SDK/QorIQ-SDK-V1.4-20130625-yocto/build_t4240qds_release$ bitbake fsl-=
+image-core<br>
+Loading cache: 100% |######################################################=
+###########################################################################=
+#| ETA:&nbsp; 00:00:00<br>
+Loaded 3302 entries from dependency cache.<br>
+<br>
+Build Configuration:<br>
+BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;1.18.0&quot;=
+<br>
+BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;i686-li=
+nux&quot;<br>
+NATIVELSBSTRING&nbsp;&nbsp; =3D &quot;Ubuntu-10.04&quot;<br>
+TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;powerpc-fsl_=
+networking-linux&quot;<br>
+MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &qu=
+ot;t4240qds&quot;<br>
+DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=3D &quot;fsl-networking&quot;<br>
+DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D &quot;1.4&quot;<br>
+TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;m32 fpu-hard e6500 altivec&=
+quot;<br>
+TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;hard&quot;<b=
+r>
+meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; &nbsp;<br>
+meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+meta-yocto-bsp&nbsp;&nbsp;&nbsp; =3D &quot;sdk-v1.4.x:5a7532143a49f59a5c85b=
+08d3daf574fb1eccd8d&quot;<br>
+meta-fsl-ppc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;sdk-v1.4.x:f9fd0a617eb=
+6913f87335c551918315ff4ebe18c&quot;<br>
+meta-fsl-ppc-toolchain =3D &quot;sdk-v1.4.x:8ec94cec04527cb971c125b1ddd2c53=
+75034d723&quot;<br>
+meta-virtualization =3D &quot;sdk-v1.4.x:ad6df4f59cd7646f61db29e8fa51f87832=
+9d6f93&quot;<br>
+meta-fsl-networking =3D &quot;(nobranch):00f7a535029ca7ef8c96ba8e9916d47421=
+66bab0&quot;<br>
+meta-oe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br>
+meta-networking&nbsp;&nbsp; =3D &quot;sdk-v1.4.x:7c8dd8f096b64a709175d37a08=
+a4fb02ca263616&quot;<br>
+meta-java&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;master:=
+59696d89fd33df6953dcb2dd54ccd3b362513f28&quot;<br>
+<br>
+NOTE: Resolving any missing task queue dependencies<br>
+ERROR: Nothing RPROVIDES 'jre-related-pkg-list' (but /home/freescale/SDK/Qo=
+rIQ-SDK-V1.4-20130625-yocto/meta-fsl-networking/images/<a href=3D"http://fs=
+l-image-core.bb">fsl-image-core.bb</a> RDEPENDS on or otherwise requires it=
+)<br>
+NOTE: Runtime target 'jre-related-pkg-list' is unbuildable, removing...<br>
+Missing or unbuildable dependency chain was: ['jre-related-pkg-list']<br>
+ERROR: Required build target 'fsl-image-core' has no buildable providers.<b=
+r>
+Missing or unbuildable dependency chain was: ['fsl-image-core', 'jre-relate=
+d-pkg-list']<br>
+<br>
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.=
+<br>
+<br>
+I added the following line in local.conf file:<br>
+# Java preferences.&nbsp; Could also be in distro config.<br>
+PREFERRED_PROVIDER_virtual/java-native =3D &quot;jamvm-native&quot;<br>
+PREFERRED_PROVIDER_virtual/javac-native =3D &quot;ecj-bootstrap-native&quot=
+;<br>
+PREFERRED_VERSION_openjdk-7-jre =3D &quot;03b21-2.1.8&quot;<br>
+PREFERRED_VERSION_icedtea7-native =3D &quot;2.1.3&quot;<br>
+PREFERRED_PROVIDER_openjdk-7-jre =3D &quot;openjdk-7-jre&quot;<br>
+<br>
+<br>
+#By aman<br>
+IMAGE_INSTALL_append =3D &quot;jre-related-pkg-list&quot;<br>
+<br>
+Can you please help me in this.<br>
+Thanks for your Response.<br>
+<br>
+--<br>
+regards<br>
+Aman<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ <o:p></o:p></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_CA452391058F6D4E9715FB2C29D9312A01657971039SN2MPN102103_--
