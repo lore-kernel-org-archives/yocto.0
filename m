@@ -1,34 +1,24 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1421E013EC
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 06:37:02 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3c68YS4LKyz4KK3g
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:37:00 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3c68YS2QHgzbbmb
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:37:00 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024) with ESMTP id tCO2LC9Wp9LI for <yocto@yoctoproject.org>;
-	Fri,  2 Aug 2013 15:36:51 +0200 (CEST)
-X-Auth-Info: UQ/N+M96sjk3WXSaSJke6yQJMQcPelQ1binJTUNmY+8=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:36:51 +0200 (CEST)
-Received: from gemini.denx.de (unknown [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id D5BF21A77EF
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:36:50 +0200 (CEST)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id C2420380BF8
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:36:50 +0200 (MEST)
-To: yocto@yoctoproject.org
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52B88E013EC
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 08:01:27 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 Aug 2013 08:01:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,802,1367996400"; d="scan'208";a="380827521"
+Received: from unknown (HELO helios.localnet) ([10.252.122.201])
+	by orsmga002.jf.intel.com with ESMTP; 02 Aug 2013 08:01:21 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Wolfgang Denk <wd@denx.de>
+Date: Fri, 02 Aug 2013 16:01:19 +0100
+Message-ID: <2678601.4p0jHcujVX@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <20130802133650.C2420380BF8@gemini.denx.de>
+References: <20130802133650.C2420380BF8@gemini.denx.de>
 MIME-Version: 1.0
-Date: Fri, 02 Aug 2013 15:36:50 +0200
-Message-Id: <20130802133650.C2420380BF8@gemini.denx.de>
-Subject: Unhandled dependency checking
+Cc: yocto@yoctoproject.org
+Subject: Re: Unhandled dependency checking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,37 +30,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2013 13:37:04 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Fri, 02 Aug 2013 15:01:30 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hello,
+Hi Wolfgang,
 
-I'm looking ofr a good way to deal with some build breakages caused by
-missing dependency checking.
+On Friday 02 August 2013 15:36:50 Wolfgang Denk wrote:
+> I'm looking ofr a good way to deal with some build breakages caused by
+> missing dependency checking.
+>
+> The problem: some packages require certain capabilities, without
+> checking for these, and actually I can;t see a good way how to
+> implement such checking.
+> 
+> For example, the "lttng" package requires module support.  But when
+> you modify the defconfig for the Linux kernel and disable module
+> support there, then the build for "lttng" will break.
 
-The problem: some packages require certain capabilities, without
-checking for these, and actually I can;t see a good way how to
-implement such checking.
+It's true that specifically for the kernel we have no intrinsic way of 
+verifying from the recipe that appropriate kernel functionality is enabled. It 
+probably wouldn't be too hard to add a mechanism that looked at 
+${STAGING_KERNEL_DIR}/.config for specific values; in fact I notice that the 
+systemtap-uprobes recipe does this. However this is only really appropriate 
+for recipes that are specific to the machine and that have virtual/kernel in 
+DEPENDS.
 
-For example, the "lttng" package requires module support.  But when
-you modify the defconfig for the Linux kernel and disable module
-support there, then the build for "lttng" will break.
+> Is there some good way to handle or at least to test for such "hidden"
+> dependencies on features provided by other packages, so we could at
+> least issue more useful error messages to the end user?
 
-Is there some good way to handle or at least to test for such "hidden"
-dependencies on features provided by other packages, so we could at
-least issue more useful error messages to the end user?
+So in the general case, not really; usually there is no way to introspect 
+these dependencies if they have not been explicitly declared. We do now 
+however have a script that can be used to find undeclared dependencies 
+(scripts/test-dependencies.sh), but the way this operates is to run several 
+builds and it does take quite a bit of time.
 
-Thanks in advance.
+I've thought about the possibility of doing a comparison of runtime 
+dependencies after packaging and DEPENDS as a QA check to see if anything was 
+missing; I don't know how practical this would be however.
 
-Best regards,
+Also, over the years there has also been discussion about using per-recipe 
+sysroots, so that the sysroot used by an individual recipe only ever contains 
+what has been declared in DEPENDS and thus wouldn't be able to auto-detect 
+anything else. Of course this would significantly increase both build system 
+complexity and disk space requirements.
 
-Wolfgang Denk
+Cheers,
+Paul
 
 -- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-The rule on staying alive as a program manager is to give 'em a  num-
-ber or give 'em a date, but never give 'em both at once.
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
