@@ -1,27 +1,27 @@
 Return-Path: <mark.hatle@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2A31E0152B
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2013 17:00:24 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 507DAE0152B
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2013 18:26:33 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r7200CM2025289
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 1 Aug 2013 17:00:12 -0700 (PDT)
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r721QWsU010527
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 1 Aug 2013 18:26:32 -0700 (PDT)
 Received: from Marks-MacBook-Pro.local (172.25.36.230) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.342.3; Thu, 1 Aug 2013 17:00:11 -0700
-Message-ID: <51FAF68A.8030305@windriver.com>
-Date: Thu, 1 Aug 2013 19:00:10 -0500
+	14.2.342.3; Thu, 1 Aug 2013 18:26:32 -0700
+Message-ID: <51FB0AC7.70008@windriver.com>
+Date: Thu, 1 Aug 2013 20:26:31 -0500
 From: Mark Hatle <mark.hatle@windriver.com>
 Organization: Wind River Systems
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
 	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
 MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>
-References: <51B67550.7070306@twobit.us> <51C1B7C5.8000408@twobit.us>
-In-Reply-To: <51C1B7C5.8000408@twobit.us>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-selinux make ALLOW_EMPTY package specific
+To: Joe Slater <jslater@windriver.com>
+References: <1375377906-6266-1-git-send-email-jslater@windriver.com>
+In-Reply-To: <1375377906-6266-1-git-send-email-jslater@windriver.com>
+Cc: yocto@yoctoproject.org, joe.slater@windriver.com
+Subject: Re: [meta-selinux][PATCH 1/1] policycoreutils: fix genhomedircon construction
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,56 +33,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2013 00:00:25 -0000
+X-List-Received-Date: Fri, 02 Aug 2013 01:26:34 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 6/19/13 8:53 AM, Philip Tricca wrote:
-> Ping.  Any interest in taking this (and the other patch I sent) into
-> meta-selinux?
+On 8/1/13 12:25 PM, Joe Slater wrote:
+> CQID: 418197
+>
+> Reference /usr/sbin instead of the directory into which
+> the script is installed on the host.
 
-My apologies, I thought this had been integrated already.  A similar patch has 
-been pushed to the repository for the 'master' branch.  I have not yet validated 
-the dylan, but as you indicated it should be needed there as well.
-
-I should have the Dylan version ready and pushed within a few hours.
+This patch and the related audit patch have been applied to both master and 
+dylan branches.  Thanks!
 
 --Mark
 
-> Regards
-> - Philip
+> Signed-off-by: Joe Slater <jslater@windriver.com>
+> ---
+>   .../selinux/policycoreutils/scripts_makefile.patch |   26 ++++++++++++++++++++
+>   recipes-security/selinux/policycoreutils_2.1.13.bb |    3 +-
+>   2 files changed, 28 insertions(+), 1 deletions(-)
+>   create mode 100644 recipes-security/selinux/policycoreutils/scripts_makefile.patch
 >
-> On 06/10/2013 08:54 PM, Philip Tricca wrote:
->> Hello again,
->>
->> Again a quick patch to get meta-selinux dylan branch building with oe-core dylan.  The QA scripts error'd out complaining that ALLOW_EMPTY in the task-core-selinux wasn't packages specific.  Not sure if it's relevant but this was with the latest bitbake release branch 1.18.  One line fix below.
->>
->> Regards,
->> - Philip
->>
->> From: Philip Tricca <flihp@twobit.us>
->> Date: Mon, 10 Jun 2013 20:33:32 -0400
->> Subject: [PATCH 2/2] Make ALLOW_EMPTY package specific to keep QA scripts
->>   happy.
->>
->> ---
->>   recipes-security/tasks/task-core-selinux.bb |    2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/recipes-security/tasks/task-core-selinux.bb b/recipes-security/tasks/task-core-selinux.bb
->> index 05f8dfc..dda9c50 100644
->> --- a/recipes-security/tasks/task-core-selinux.bb
->> +++ b/recipes-security/tasks/task-core-selinux.bb
->> @@ -8,7 +8,7 @@ PACKAGES = "\
->>       task-core-selinux \
->>       "
->>
->> -ALLOW_EMPTY = "1"
->> +ALLOW_EMPTY_${PN} = "1"
->>
->>   RDEPENDS_task-core-selinux = " \
->>   	ustr \
+> diff --git a/recipes-security/selinux/policycoreutils/scripts_makefile.patch b/recipes-security/selinux/policycoreutils/scripts_makefile.patch
+> new file mode 100644
+> index 0000000..8972474
+> --- /dev/null
+> +++ b/recipes-security/selinux/policycoreutils/scripts_makefile.patch
+> @@ -0,0 +1,26 @@
+> +policycoreutils: fix genhomedircon generation
+> +
+> +The script is put on the target and needs to reference
+> +the directory in which semodule is installed.
+> +
+> +Upstream Status: pending
+> +
+> +Signed-off-by: Joe Slater <jslater@windriver.com>
+> +
+> +--- a/scripts/Makefile
+> ++++ b/scripts/Makefile
+> +@@ -8,11 +8,12 @@ LOCALEDIR ?= $(PREFIX)/share/locale
+> +
+> + all: fixfiles genhomedircon chcat
+> +
+> ++# we want the script to use the user sbin directory on the target
+> ++#
+> + genhomedircon:
+> + 	@echo "#!/bin/sh" > genhomedircon
+> + 	@echo >> genhomedircon
+> +-	@if [ ! -e semodule_path ]; then echo -n "$(USRSBINDIR)/" >> genhomedircon; fi
+> +-	@if [ -e semodule_path ]; then echo -n "`cat semodule_path`/" >> genhomedircon; fi
+> ++	@echo -n "$(sbindir)/" >> genhomedircon
+> + 	@echo "semodule -Bn" >> genhomedircon
+> +
+> + install: all
+> diff --git a/recipes-security/selinux/policycoreutils_2.1.13.bb b/recipes-security/selinux/policycoreutils_2.1.13.bb
+> index 6696357..687347c 100644
+> --- a/recipes-security/selinux/policycoreutils_2.1.13.bb
+> +++ b/recipes-security/selinux/policycoreutils_2.1.13.bb
+> @@ -1,4 +1,4 @@
+> -PR = "r2"
+> +PR = "r3"
 >
+>   include selinux_20120924.inc
+>   include ${BPN}.inc
+> @@ -11,4 +11,5 @@ SRC_URI[sha256sum] = "34040f06f3111d9ee957576e4095841d35b9ca9141ee8d80aab036cbef
+>   SRC_URI += "\
+>   	file://policycoreutils-revert-restorecon-update-type.patch \
+>   	file://policycoreutils-revert-run_init-open_init_pty.patch \
+> +	file://scripts_makefile.patch \
+>   	"
 >
 
 
