@@ -1,26 +1,24 @@
-Return-Path: <tf+lists.yocto@r-finger.com>
-Received: from r-finger.com (r-finger.com [178.79.160.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 038D7E0152B
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 01:07:18 -0700 (PDT)
-Received: from [147.229.64.182] (p182.fei.wifi.vutbr.cz [147.229.64.182])
-	(using TLSv1 with cipher AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by r-finger.com (Postfix) with ESMTPSA id 3A0F79570
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 09:07:17 +0100 (BST)
-Message-ID: <51FB6940.5090402@r-finger.com>
-Date: Fri, 02 Aug 2013 09:09:36 +0100
-From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:10.0.11) Gecko/20121122 Icedove/10.0.11
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2793CE003FA
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 05:47:10 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga101.ch.intel.com with ESMTP; 02 Aug 2013 05:47:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,801,1367996400"; d="scan'208";a="375141248"
+Received: from unknown (HELO helios.localnet) ([10.252.122.201])
+	by fmsmga001.fm.intel.com with ESMTP; 02 Aug 2013 05:47:08 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Rich Bayliss <richbayliss@gmail.com>, Andrei Gherzan <andrei@gherzan.ro>
+Date: Fri, 02 Aug 2013 13:47:07 +0100
+Message-ID: <11658953.R2RoUsbsuX@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
+References: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <DFD53149-25C0-410A-A5E3-FD95F38E907B@keylevel.com>
-	<51FA1764.4060408@r-finger.com> <51FA6B80.8030207@r-finger.com>
-	<5C4C9EC7-1F17-4ED9-BCC7-C88C7514F41B@keylevel.com>
-	<51FB5E1B.9010607@r-finger.com>
-	<5D039805-3E13-436E-BEC0-66FD9570532F@keylevel.com>
-In-Reply-To: <5D039805-3E13-436E-BEC0-66FD9570532F@keylevel.com>
-Subject: Re: Network booting
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] Read-Only RootFS is not read only
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,38 +30,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2013 08:07:20 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 Aug 2013 12:47:12 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 02/08/13 08:35, Chris Tapp wrote:
->> Depends on the bios, if your machine's bios supports PXE, then you
->> do not need ipxe, just a tftp server set up on the LAN that serves
->> PXELinux.
+Hi Rich,
+
+On Tuesday 30 July 2013 11:43:43 Rich Bayliss wrote:
+> I am trying to build for Raspberry Pi including "read-only-rootfs" in
+> my image features. My aim is to have my SD Card read-only and at some
+> point add a read-write overlay to certain directories. This should
+> enable my system to boot fresh each time, and have some persistent
+> storage for user files etc.
 > 
-> My case is a bit more complicated as I also can't have non-secure
-> (t)ftp! Are you saying that PXE can work without DHCP/BOOTP?
+> However, after building my image I can SSH into the system and issue
+> "touch test" to create a file in my home directory, then after a
+> reboot it is still there. That isn't very read-only :)
+> 
+> Am I missing something, or is this working incorrectly?
 
-It probably depends on the BIOS, iirc, standard PXE does not support
-anything other than tfpt, but you can probably configure the IP settings
-manually, and I think the bios on the machine I was working with
-supported https (but I am not 100% sure, and can't check at the moment).
-iPXE supports https, of course, so we definitely want iPXE recipe and
-documentation.
+It sounds like it's working incorrectly. Since meta-raspberrypi constructs the 
+SD card image using its own custom class I wonder if it has anything to do 
+with that. Andrei, do you know anything about this?
 
+BTW, are you using sysvinit or systemd in this image?
 
-> It would benefit from some scripting support in the image to
-> personalise it as it boots (e.g. setting IP configuration, hostname,
-> etc.) - I'm currently looking to do this by passing parameters back
-> from the server through the kernel command line.
-
-Yeah, but keep in mind that the stuff only happens 'in the image' when
-you have already booted, so you can only script stuff to do with the
-rootfs in the image; the kernel and initrd is loaded by the PXE
-bootloader so the control here is whatever the PXE bootloader gives you.
-
-Tomas
+Cheers,
+Paul
 
 -- 
-http://sleepfive.com
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
