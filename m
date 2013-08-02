@@ -1,24 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2793CE003FA
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 05:47:10 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga101.ch.intel.com with ESMTP; 02 Aug 2013 05:47:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,801,1367996400"; d="scan'208";a="375141248"
-Received: from unknown (HELO helios.localnet) ([10.252.122.201])
-	by fmsmga001.fm.intel.com with ESMTP; 02 Aug 2013 05:47:08 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Rich Bayliss <richbayliss@gmail.com>, Andrei Gherzan <andrei@gherzan.ro>
-Date: Fri, 02 Aug 2013 13:47:07 +0100
-Message-ID: <11658953.R2RoUsbsuX@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
-References: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1421E013EC
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 06:37:02 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3c68YS4LKyz4KK3g
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:37:00 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3c68YS2QHgzbbmb
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:37:00 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id tCO2LC9Wp9LI for <yocto@yoctoproject.org>;
+	Fri,  2 Aug 2013 15:36:51 +0200 (CEST)
+X-Auth-Info: UQ/N+M96sjk3WXSaSJke6yQJMQcPelQ1binJTUNmY+8=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:36:51 +0200 (CEST)
+Received: from gemini.denx.de (unknown [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id D5BF21A77EF
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:36:50 +0200 (CEST)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id C2420380BF8
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2013 15:36:50 +0200 (MEST)
+To: yocto@yoctoproject.org
+From: Wolfgang Denk <wd@denx.de>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] Read-Only RootFS is not read only
+Date: Fri, 02 Aug 2013 15:36:50 +0200
+Message-Id: <20130802133650.C2420380BF8@gemini.denx.de>
+Subject: Unhandled dependency checking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,36 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2013 12:47:12 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 02 Aug 2013 13:37:04 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Hi Rich,
+Hello,
 
-On Tuesday 30 July 2013 11:43:43 Rich Bayliss wrote:
-> I am trying to build for Raspberry Pi including "read-only-rootfs" in
-> my image features. My aim is to have my SD Card read-only and at some
-> point add a read-write overlay to certain directories. This should
-> enable my system to boot fresh each time, and have some persistent
-> storage for user files etc.
-> 
-> However, after building my image I can SSH into the system and issue
-> "touch test" to create a file in my home directory, then after a
-> reboot it is still there. That isn't very read-only :)
-> 
-> Am I missing something, or is this working incorrectly?
+I'm looking ofr a good way to deal with some build breakages caused by
+missing dependency checking.
 
-It sounds like it's working incorrectly. Since meta-raspberrypi constructs the 
-SD card image using its own custom class I wonder if it has anything to do 
-with that. Andrei, do you know anything about this?
+The problem: some packages require certain capabilities, without
+checking for these, and actually I can;t see a good way how to
+implement such checking.
 
-BTW, are you using sysvinit or systemd in this image?
+For example, the "lttng" package requires module support.  But when
+you modify the defconfig for the Linux kernel and disable module
+support there, then the build for "lttng" will break.
 
-Cheers,
-Paul
+Is there some good way to handle or at least to test for such "hidden"
+dependencies on features provided by other packages, so we could at
+least issue more useful error messages to the end user?
+
+Thanks in advance.
+
+Best regards,
+
+Wolfgang Denk
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+The rule on staying alive as a program manager is to give 'em a  num-
+ber or give 'em a date, but never give 'em both at once.
 
