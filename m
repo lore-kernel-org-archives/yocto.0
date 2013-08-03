@@ -1,31 +1,33 @@
 Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f47.google.com (mail-vb0-f47.google.com
-	[209.85.212.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8912E015C6
-	for <yocto@yoctoproject.org>; Sat,  3 Aug 2013 03:53:39 -0700 (PDT)
-Received: by mail-vb0-f47.google.com with SMTP id h10so1488287vbh.20
-	for <yocto@yoctoproject.org>; Sat, 03 Aug 2013 03:53:38 -0700 (PDT)
+Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
+	[209.85.128.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BFFBE015C6
+	for <yocto@yoctoproject.org>; Sat,  3 Aug 2013 04:08:22 -0700 (PDT)
+Received: by mail-ve0-f171.google.com with SMTP id pa12so1665322veb.2
+	for <yocto@yoctoproject.org>; Sat, 03 Aug 2013 04:08:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:x-google-sender-auth:message-id
-	:subject:to:content-type;
-	bh=6j1Yco6oP4/WHseYxhxIZs5RsdiqQilTtSkRx5L48YQ=;
-	b=KRu4d3gFTYUqqI4jJZyjG+eAaB9T6UEdFkh1I7RCP0wDHg3BayUxRzZVjzeHKCR36G
-	ShQNrPRSMS164/1O+qe62j4qsBSww4EzIZCLK5XVEHtNwI4fkYW7JJy/pp5xM7llGN1U
-	mvI7TWmeSPd+O0xM6v+ZMk4e9r4it0BAM7njdUBUQ57UHmvbQ4UEb+Cjm2avSk375ll3
-	WXrcuDQ594HKukXeTxkoIHVgWC7QH3SljKpt0lVCbkwdGNwo3Bh7t9Q4EYkgqdPUsFug
-	W5gUweBesyM+PyQXycKQP9I7GdG+G32mF5rWzsMNo/3SAiicfS1ImFZZSrhWnhuc4cyC
-	FCAQ==
-X-Received: by 10.58.127.202 with SMTP id ni10mr3263046veb.27.1375527218119;
-	Sat, 03 Aug 2013 03:53:38 -0700 (PDT)
+	h=mime-version:sender:in-reply-to:references:from:date
+	:x-google-sender-auth:message-id:subject:to:content-type;
+	bh=Nv2D9JLbn5B2oBB3JzXqfnGZ7/R/zYD/XGJ5PFLFBrM=;
+	b=Z9GKdOPRgpNS+6Y1uK4C7oDM9wC3IW1AmuFMPexwdq1r38RvmPbZUFBH/cHwLRP2la
+	5ppWXsGfJSANX9KcJ8o5mnxNoS/tREj+NbLm4XqTY69W1Tq5RzyYniiRtXkACd43pqMD
+	Oizu1M3SYZ9SF4UkbX0JQqT6mnp8UQ6bD6T4/HZa+Gtz+PaIo0eSoaWdAjaaOso3J115
+	IejuLOn7oyOY4td+K4WoH9kVXSyqJH6fPbVuk3LQBTSqm8Mv9aIgQHQcl+mbx3jWhYyP
+	hdHJKil0Wz0KfkQ5cKBmz8fN8XMvds84+vvJV5n3u3GoyVhy9DeP4ciRsqNSIPCtIeI0
+	MhDQ==
+X-Received: by 10.220.98.68 with SMTP id p4mr3364820vcn.28.1375528101783; Sat,
+	03 Aug 2013 04:08:21 -0700 (PDT)
 MIME-Version: 1.0
 Sender: paul.betafive@gmail.com
-Received: by 10.220.195.201 with HTTP; Sat, 3 Aug 2013 03:52:57 -0700 (PDT)
+Received: by 10.220.195.201 with HTTP; Sat, 3 Aug 2013 04:07:41 -0700 (PDT)
+In-Reply-To: <CANyK_8e_1LtgJeFu=7m4qhepV-hZ=9Ji5H7hTuhbexs40qv5NQ@mail.gmail.com>
+References: <CANyK_8e_1LtgJeFu=7m4qhepV-hZ=9Ji5H7hTuhbexs40qv5NQ@mail.gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
-Date: Sat, 3 Aug 2013 11:52:57 +0100
-X-Google-Sender-Auth: lNbW7rAUOSAnxceSKaTNmr4DlTU
-Message-ID: <CANyK_8e_1LtgJeFu=7m4qhepV-hZ=9Ji5H7hTuhbexs40qv5NQ@mail.gmail.com>
+Date: Sat, 3 Aug 2013 12:07:41 +0100
+X-Google-Sender-Auth: ObRLgtn4Sperzn8F2vGVkjtOib8
+Message-ID: <CANyK_8dfwsyoSd0eKncA59UbNFm_nUov6nOBs-kzqXUKO4wwFw@mail.gmail.com>
 To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Recipe naming
+Subject: Re: Recipe naming
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +39,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Aug 2013 10:53:40 -0000
+X-List-Received-Date: Sat, 03 Aug 2013 11:08:23 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-I've looked at the OE versionning policy
-(http://www.openembedded.org/wiki/Versioning_Policy) and I can't quite
-figure out the correct name for my recipe from that.
+On 3 August 2013 11:52, Paul Barker <paul@paulbarker.me.uk> wrote:
+> Should I call this:
+>
+>     "opkg_testing.bb"
+>     set PREFERRED_VERSION_opkg = "testing" to use
+>
 
-I have a testing branch for opkg which I would like to put a recipe
-for in a meta-opkg layer to simplify testing. The testing branch will
-be fetched from git. Should I call this:
+Martin has just commented elsewhere that having this recipe in a meta-opkg layer
+will always override the recipe in oe-core:
 
-    "opkg_testing.bb"
-    set PREFERRED_VERSION_opkg = "testing" to use
+> You probably know about this already, but for other possible users of this
+> layer:
+>
+> bitbake will always select "devel" version from meta-opkg layer if it has
+> higher BBFILE_PRIORITY even if you put negative DEFAULT_PREFERRENCE into
+> "devel" recipes. Only if you put lower-than-oe-core BBFILE_PRIORITY in
+> layer.conf then it will force user to select "devel" version by
+> PREFERRED_VERSION.
 
-or
-
-    "opkg-testing_git.bb", PROVIDES opkg
-    set PREFERRED_PROVIDER_opkg = "opkg-testing" to use
-
-I'd lean towards the former as it is a version of opkg not a separate fork.
-
-Is there a convention for this or should I just make my own decision?
+So maybe opkg-testing_{version} would work better.
 
 -- 
 Paul Barker
