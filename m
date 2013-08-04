@@ -1,40 +1,26 @@
-Return-Path: <martiert@gmail.com>
-Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
-	[209.85.215.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F68FE00747
-	for <yocto@yoctoproject.org>; Sun,  4 Aug 2013 14:23:40 -0700 (PDT)
-Received: by mail-la0-f51.google.com with SMTP id fp13so1562915lab.38
-	for <yocto@yoctoproject.org>; Sun, 04 Aug 2013 14:23:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=references:mime-version:in-reply-to:content-type
-	:content-transfer-encoding:message-id:cc:x-mailer:from:subject:date
-	:to; bh=0QyuRO4/IAl47j/TCmzGA/rpIIDDp5so+nrogncpcN0=;
-	b=zR98N/Y40us901Mtjf7acTGsve8KrL73lc126XOVuJhtWatNAg/cj/+QecEbTROGMP
-	Uxvml0dG2U+Uru3SBK2z/Sy4qAhrQts57G01GHtHyCvnePJ1/4+jxtWOlv+m9+UNkrsi
-	WSCWLARmR3XavXQG0Q37+/c7XA5gMoPXf5SslEzmuGIq5meD9nXj+KnA1w2n7UGmTybX
-	toT86w/gJHjL9SGlhC4dMXdoQy21mMz3F9Q1ku63xkvG+v+fCijvCKY5dL3f5RIVpohI
-	n7ZYErGWWYHcg0SUdn70A1dQDoT9fVOyV9b9OlAB8t2tOTSnod81VLKEZ8rSHQ4ZJaSu
-	D6yQ==
-X-Received: by 10.152.115.146 with SMTP id jo18mr7260646lab.56.1375651419328; 
-	Sun, 04 Aug 2013 14:23:39 -0700 (PDT)
-Received: from [192.168.1.140] (59.37-191-128.fiber.lynet.no. [37.191.128.59])
-	by mx.google.com with ESMTPSA id 8sm7743384lbq.4.2013.08.04.14.23.37
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 04 Aug 2013 14:23:38 -0700 (PDT)
-References: <51F8BAE8.3090805@gmail.com>
-	<CAAQYJAvPts390fqheZoHPN1XF3VtSZ8YaNuFp5P8f3fp_5r=ag@mail.gmail.com>
-	<51F8EDB2.4020001@gmail.com>
-	<CADkTA4NbutoU4AXyfQ84VQNCUmYv1PZwTFhYDBX8ENbOhCL0Gw@mail.gmail.com>
-Mime-Version: 1.0 (1.0)
-In-Reply-To: <CADkTA4NbutoU4AXyfQ84VQNCUmYv1PZwTFhYDBX8ENbOhCL0Gw@mail.gmail.com>
-Message-Id: <8FA37C33-DF65-4B96-BD90-4D3B784E4A57@gmail.com>
-X-Mailer: iPad Mail (10B329)
-From: martiert@gmail.com
-Date: Sun, 4 Aug 2013 23:23:36 +0200
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building linux-yocto kernel in own bsp layer
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CAECE00747
+	for <yocto@yoctoproject.org>; Sun,  4 Aug 2013 15:35:56 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 04 Aug 2013 15:35:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,814,1367996400"; d="scan'208";a="357344690"
+Received: from unknown (HELO helios.localnet) ([10.252.122.197])
+	by orsmga001.jf.intel.com with ESMTP; 04 Aug 2013 15:35:54 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Rich Bayliss <richbayliss@gmail.com>
+Date: Sun, 04 Aug 2013 23:35:53 +0100
+Message-ID: <1680213.YPjXP0RsTC@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAHLvMfZwQj6B9uzZC9wPbSqr+n8609FA90tAy7jPHp9mqDjPfw@mail.gmail.com>
+References: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
+	<11658953.R2RoUsbsuX@helios>
+	<CAHLvMfZwQj6B9uzZC9wPbSqr+n8609FA90tAy7jPHp9mqDjPfw@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] Read-Only RootFS is not read only
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,126 +32,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 04 Aug 2013 21:23:43 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 04 Aug 2013 22:35:57 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Sunday 04 August 2013 01:27:01 Rich Bayliss wrote:
+> On 2 August 2013 13:47, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
+> > On Tuesday 30 July 2013 11:43:43 Rich Bayliss wrote:
+> >> I am trying to build for Raspberry Pi including "read-only-rootfs" in
+> >> my image features. My aim is to have my SD Card read-only and at some
+> >> point add a read-write overlay to certain directories. This should
+> >> enable my system to boot fresh each time, and have some persistent
+> >> storage for user files etc.
+> >> 
+> >> However, after building my image I can SSH into the system and issue
+> >> "touch test" to create a file in my home directory, then after a
+> >> reboot it is still there. That isn't very read-only :)
+> >> 
+> >> Am I missing something, or is this working incorrectly?
+> > 
+> > It sounds like it's working incorrectly. Since meta-raspberrypi constructs
+> > the SD card image using its own custom class I wonder if it has anything
+> > to do with that. Andrei, do you know anything about this?
+> > 
+> > BTW, are you using sysvinit or systemd in this image?
+>
+> I am using the standard sysvinit/systemd - I haven't specified either,
+> so whichever is default.
 
+Except the default depends upon what DISTRO you are using. Which DISTRO are 
+you using - "poky" or something else?
 
-On 31. juli 2013, at 14:42, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:=
+Cheers,
+Paul
 
+-- 
 
-> On Wed, Jul 31, 2013 at 6:57 AM, Martin Ertsaas <martiert@gmail.com> wrote=
-:
->> On 07/31/13 10:57, Andrea Adami wrote:
->>> On Wed, Jul 31, 2013 at 9:21 AM, Martin Ertsaas <martiert@gmail.com> wro=
-te:
->>>> Hi.
->>>>=20
->>>> I'm creating my own bsp layer for omap4 chips (Yes, I know of meta-ti,
->>>> but I want to learn how to do this myself :)). I'm trying to use the
->>>> linux-yocto 3.4 kernel,
->>>> and have gotten it to work locally. I then made a
->>>> linux-yocto_3.4.bbappend which contains the following:
->>>>=20
->>>> COMPATIBLE_MACHINE_pandaboard =3D "pandaboard"
->>>>=20
->>>> SRCREV_machine_pandaboard ?=3D "7eb5fbf903d9db90c3cf371b65e1f2a68d5676d=
-7"
->>>>=20
->>>> THISDIR :=3D "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
->>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-3.4"
->>=20
->> The defconfig is found. I can see a defconfig in ${WORKDIR} with zero
->> diff to my defconfig. It is, however, not copied from there into
->> ${WORKDIR}/linux.
->=20
-> If you are looking in ${WORKDIR}/linux, you'll never see the defconfig. Ev=
-en
-> in the base kernel class it is copied to the build directory, which is
-> linux-$MACHINE-build.
->=20
-> Even after the copy, it is pulled into a secondary set of
-> configuration steps that
-> allow configuration fragments to be processed and layered on top of
-> that baseline
-> configuration.
->=20
-> Are you determining that it isn't being used by the existence or non
-> existence of a
-> file, or are you seeing other issues with the resulting .config ?
-
-What I see is that I have a ${WORKDIR}/defconfig. The .config in linux-${MAC=
-HINE}-build is for a different architecture (x86) than my defconfig, the sam=
-e holds for the .config.old in the same place. Tried adding B=3D${WORKDIR}/l=
-inux-${MACHINE}-build to my append, but no difference.
-
->=20
-> Technically you don't even need a defconfig, you can just use a .cfg
-> with h/w options
-> for the board, but that's a different topic.
->=20
-> Cheers,
->=20
-> Bruce
->=20
->>=20
->> I changed it so it uses the colon though, and removed THISDIR as
->> suggested by Paul, but didn't help. I still don't get the config copied
->> in, and if I add the do_configure_prepend myself to do this, I get a
->> message from the kernel building saying my folder is unclean.
->>=20
->> - Martin
->>=20
->>> Martin,
->>>=20
->>> the code in kernel.bbclass does already copy defonfig to .config, see
->>> http://cgit.openembedded.org/openembedded-core/tree/meta/classes/kernel.=
-bbclass#n216
->>>=20
->>> I think your problem is the deconfig is not found,  you miss a colon at t=
-he end.
->>> Use something like
->>>=20
->>> FILESEXTRAPATHS_prepend :=3D
->>> "${THISDIR}/${PN}-3.4:${THISDIR}/${PN}:${THISDIR}/files:"
->>>=20
->>> Cheers
->>>=20
->>> Andrea
->>>=20
->>>=20
->>>> SRC_URI +=3D "file://defconfig"
->>>>=20
->>>> do_configure_prepend() {
->>>>        cp ${WORKDIR}/defconfig ${S}/.config
->>>> }
->>>>=20
->>>> Problem I get is, without this configure_prepend, my defconfig is not
->>>> copied into .config the kernel folder. With this however, I get a
->>>> complaint from the kernel that the kernel directory is not clean and I
->>>> have to run make mrproper.
->>>>=20
->>>> I would greatly appreciate any pointer/help/explanations as to what I
->>>> have done wrong here, and how to fix it. Have been struggling for this
->>>> for a while now, and have no idea what I have done wrong.
->>>>=20
->>>> Best regards
->>>> Martin Ertsaas
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>=20
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
->=20
-> --=20
-> "Thou shalt not follow the NULL pointer, for chaos and madness await
-> thee at its end"
+Paul Eggleton
+Intel Open Source Technology Centre
 
