@@ -1,39 +1,37 @@
-Return-Path: <lothar@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D98EE003D4
-	for <yocto@yoctoproject.org>; Mon,  5 Aug 2013 05:41:08 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3c7z9Z36lTz4KK6F;
-	Mon,  5 Aug 2013 14:41:06 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3c7z9Z0LNrzbbj6;
-	Mon,  5 Aug 2013 14:41:06 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id VVSMaFNE8Npp; Mon,  5 Aug 2013 14:41:04 +0200 (CEST)
-X-Auth-Info: oswYcCQ7MehaxnvYTa1fz8Djwcp3O6A8CRFXlGmi3aI=
-Received: from webmail.mnet-online.de (webmail1.mnet-online.de [212.18.5.57])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA;
-	Mon,  5 Aug 2013 14:41:04 +0200 (CEST)
-Received: from host-82-135-33-74.customer.m-online.net
-	(host-82-135-33-74.customer.m-online.net [82.135.33.74]) by
-	webmail.mnet-online.de (Horde Framework) with HTTP; Mon, 05 Aug 2013
-	14:41:04 +0200
-Message-ID: <20130805144104.17162h9fc56bibfk@webmail.mnet-online.de>
-Date: Mon, 05 Aug 2013 14:41:04 +0200
-From: lothar@denx.de
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <20130805114222.15220qh2lyd417dw@webmail.mnet-online.de>
-	<7243158.LY4yQ1ssbD@helios>
-In-Reply-To: <7243158.LY4yQ1ssbD@helios>
-MIME-Version: 1.0
-User-Agent: Internet Messaging Program (IMP) H3 (4.3.5)
-Cc: yocto@yoctoproject.org
-Subject: Re: how to build external firmware for kernel
+Return-Path: <otavio.salvador@gmail.com>
+Received: from mail-yh0-f54.google.com (mail-yh0-f54.google.com
+	[209.85.213.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6123E003D4
+	for <yocto@yoctoproject.org>; Mon,  5 Aug 2013 07:01:15 -0700 (PDT)
+Received: by mail-yh0-f54.google.com with SMTP id f10so1473874yha.41
+	for <yocto@yoctoproject.org>; Mon, 05 Aug 2013 07:01:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id:x-mailer;
+	bh=wjx7UrneR2ujT89beKBr2wWlyNnXCbEAewe8fGqPb1s=;
+	b=fBG0db1Rr1Rfo3BgFG26BUa3LpwvZXFLuXWO41+IcwHL2zIHLYAVv0Qe7CfOLNaay8
+	l5cM9axe5jd93PG0H+aWpd/mHfUetODV9MQREqJkVQzHa/ieTFNVX/xXV4L2Rn+XI4vS
+	PjQ33oFanbS+mCAjfXAnTJhM9tdNvkxNrvtAMxC0aqLzgu/PjPPrUesNbKFYG/eMzHGa
+	tZAens3GQ4bqvna0e2XpaQaCtwTRVuWkT/CMzpCQN+xrPKEBSHkYl4GyKaW4BFiFW5Us
+	RgM7QTvW4jesiGqcrbQPFPgWYVhhjvkqMWcGwxrBi/85Ss97pII5ExFWj3TggyR/+WWE
+	4eqg==
+X-Received: by 10.236.99.38 with SMTP id w26mr11014273yhf.239.1375711273908;
+	Mon, 05 Aug 2013 07:01:13 -0700 (PDT)
+Received: from nano.lab.ossystems.com.br ([187.23.155.55])
+	by mx.google.com with ESMTPSA id
+	g66sm36766537yhd.11.2013.08.05.07.01.11 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 05 Aug 2013 07:01:13 -0700 (PDT)
+Sender: Otavio Salvador <otavio.salvador@gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: yocto@yoctoproject.org
+Date: Mon,  5 Aug 2013 11:00:57 -0300
+Message-Id: <1375711257-18041-1-git-send-email-otavio@ossystems.com.br>
+X-Mailer: git-send-email 1.8.3.2
+Cc: Evan Kotara <evan.kotara@freescale.com>,
+	Lauren Post <lauren.post@freescale.com>,
+	Otavio Salvador <otavio@ossystems.com.br>,
+	Daiane Angolini <daiane.angolini@freescale.com>
+Subject: [PATCH] poky.conf: Don't force the addition of extra DISTRO_FEATURES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,104 +43,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Aug 2013 12:41:09 -0000
-Content-Type: text/plain;
- charset=ISO-8859-1;
- DelSp="Yes";
- format="flowed"
-Content-Disposition: inline
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 05 Aug 2013 14:01:17 -0000
 
-Zitat von Paul Eggleton <paul.eggleton@linux.intel.com>:
+The DISTRO_FEATURES shouldn't unconditionally append items to it. This
+makes it impossible to override it inside of local.conf or in a distro
+based on Poky.
 
-> Hi Lothar,
->
-> On Monday 05 August 2013 11:42:22 lothar@denx.de wrote:
->> I have a linux kernel and a external firmware. Building manually,
->> first I have to checkout and build the firmware "native" to obtain a
->> firmware blob, then I need this firmware blob to build the kernel for
->> the target.
->>
->> So far I tried to do this in yocto with separate recipes: a
->> firmware.bb and a mylinux.bb. In firmware.bb, I check out the firmware
->> via git and let it run "make" on native (this is necessary, since the
->> Makefile builds a tool which then automatically gets called inside the
->> Makefile to create the firmware blob).
->>
->> In the kernel recipe, I declare a DEPEND on firmware.bb. I set the
->> .config options to load an extra firmware blob. But now, I have a
->> problem: I need actually to have the firmware blob within the kernel's
->> file hierarchy. Ideally I would copy/move it from the firmware's
->> destination directory into the kernel's source directory.
->
-> Shouldn't firmware go into /lib/firmware?
+This moved the definition to poky.conf and created a new variable
+(POKY_DEFAULT_DISTRO_FEATURES) which easy overriding of this, for Poky
+based distros.
 
-Hi Paul, yes, so my first approach was indeed in the firmware.bb  
-something like:
-     install -d ${D}/lib/firmware/imx/sdma/
-     install -m 755 sdma-imx53.bin ${D}/lib/firmware/imx/sdma/sdma-imx53.bin
-...and to set in the kernel.bb (I'm aware of the existens of other  
-ways to set .config using yocto)
-     echo 'CONFIG_EXTRA_FIRMWARE="imx/sdma/sdma-imx53.bin"' >>  
-${WORKDIR}/defconfig
+Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
+---
+ meta-yocto/conf/distro/poky.conf | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-But, compiling I got something as follows:
-(...)
-| DEBUG: Executing shell function do_compile
-| NOTE: make -j 8 uImage CC=arm-linux-gnueabi-gcc   
--mno-thumb-interwork -marm LD=arm-linux-gnueabi-ld   LOADADDR=0x70008000
-| scripts/kconfig/conf --silentoldconfig Kconfig
-|   CHK     include/generated/uapi/linux/version.h
-|   CHK     include/generated/utsrelease.h
-| make[1]: `include/generated/mach-types.h' is up to date.
-|   CC      scripts/mod/devicetable-offsets.s
-|   CALL    scripts/checksyscalls.sh
-|   GEN     scripts/mod/devicetable-offsets.h
-|   HOSTCC  scripts/mod/file2alias.o
-|   HOSTLD  scripts/mod/modpost
-|   CHK     include/generated/compile.h
-| make[1]: *** No rule to make target  
-`/lib/firmware/imx/sdma/sdma-imx53.bin', needed by  
-`firmware/imx/sdma/sdma-imx53.bin.gen.o'.  Stop.
-| make[1]: *** Waiting for unfinished jobs....
-|   MK_FW   firmware/imx/sdma/sdma-imx53.bin.gen.S
-| make: *** [firmware] Error 2
-| make: *** Waiting for unfinished jobs....
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_compile (see  
-/work/lothar/BUILD__XXX__m53evk/tmp/work/m53evk-linux-gnueabi(...)
-
-Honestly, I already expected some trouble, because of firmware.bb  
-being built for "native", and the kernel not. I sort of played around  
-with CONFIG_EXTRA_FIRMWARE and CONFIG_EXTRA_FIRMWARE_DIR without  
-success.
-
-I also tried to build it manually by the approach specified here:
-https://community.freescale.com/thread/302880
-...means, just copying the firmware blob into the kernel source's  
-"firmware" folder and running make afterwards. Since this worked just  
-perfectly, I thought of doing it like this, since it seemed easier  
-than messing with /lib/firmware and yocto/bitbake. But with this  
-approach I'm stuck at getting the firmware blob into the firmware  
-folder.
-
-Can you please tell me, is this the wrong approach?
-
-
-
->> Questions:
->> How can I achieve this kind of setup working out with yocto or
->> bitbake, respectively? What might be the best approach in my situation?
->
-> You can get the kernel version name from ${STAGING_KERNEL_DIR}/kernel-
-> abiversion if that helps, but I wouldn't have thought you'd need it if the
-> firmware is installed to /lib/firmware instead.
-
-How may I work with the STAGING_KERNEL_DIR, since I first run the  
-firmware.bb and then the kernel.bb. I think I did not understand well,  
-how I may achieve this. Do I need to install the firmware blob into  
-something like $STAGING_KERNEL_DIR/firmware? How may I proceed here,  
-could you please explain a bit more?
-
+diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+index 7be7d92..3538588 100644
+--- a/meta-yocto/conf/distro/poky.conf
++++ b/meta-yocto/conf/distro/poky.conf
+@@ -12,7 +12,12 @@ TARGET_VENDOR = "-poky"
+ LOCALCONF_VERSION = "1"
+ LAYER_CONF_VERSION ?= "6"
+ 
+-DISTRO_FEATURES_append = " largefile opengl multiarch wayland"
++# Override these in poky based distros
++POKY_DEFAULT_DISTRO_FEATURES = "largefile opengl multiarch wayland"
++POKY_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
++POKY_DEFAULT_EXTRA_RRECOMMENDS = "kernel-module-af-packet"
++
++DISTRO_FEATURES ?= "alsa argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g nfc x11 ${DISTRO_FEATURES_LIBC} ${POKY_DEFAULT_DISTRO_FEATURES}"
+ 
+ PREFERRED_VERSION_linux-yocto ?= "3.4%"
+ PREFERRED_VERSION_linux-yocto_qemux86 ?= "3.8%"
+@@ -27,10 +32,6 @@ SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
+ 
+ EXTRAOPKGCONFIG = "poky-feed-config-opkg"
+ 
+-# Override these in poky based distros to modify DISTRO_EXTRA_R*
+-POKY_DEFAULT_EXTRA_RDEPENDS = "packagegroup-core-boot"
+-POKY_DEFAULT_EXTRA_RRECOMMENDS = "kernel-module-af-packet"
+-
+ DISTRO_EXTRA_RDEPENDS += " ${POKY_DEFAULT_EXTRA_RDEPENDS}"
+ DISTRO_EXTRA_RRECOMMENDS += " ${POKY_DEFAULT_EXTRA_RRECOMMENDS}"
+ 
+-- 
+1.8.3.2
 
 
