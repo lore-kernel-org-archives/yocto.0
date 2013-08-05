@@ -1,40 +1,39 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
-	[74.125.82.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CF36E003D4
-	for <yocto@yoctoproject.org>; Mon,  5 Aug 2013 03:12:50 -0700 (PDT)
-Received: by mail-we0-f181.google.com with SMTP id p58so2203253wes.26
-	for <yocto@yoctoproject.org>; Mon, 05 Aug 2013 03:12:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:x-originating-ip:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:x-gm-message-state;
-	bh=AfCOX4L42smGUoUnqddWJHrY1vwtr4Klv1XgYpHWVMA=;
-	b=MY36OB4IvC6l96Zv8qZvzWsvbJexcGChc0OYRi6H56Bm32SvKxylFoaCK7p8dBWArL
-	AaPcdil5K76+L17ZE/mJ1DwJ4QBKOrKvY0JFEfmX8Aso9PjrFTHSVd1FiIM0nM2l9KvE
-	+FPbmqLmvbQAjf2PN6uhXLrwd6KBcXAPzj1DJT/QNIeuXkh4Pdsp9yc9Pg2J4+/0Bbde
-	g8IKcCApzND5VBYS4yxrC0jTn13VwC3v/qat8Zrb0OyiMmzZriFjiVVSi4nO9rtadFLp
-	18fUap5QzW5HPlwKFveCx0T52EpxmvG+swWfIdf2ICPwFJefsQqrj/0BFAnB23eGQvgC
-	Cigw==
-X-Received: by 10.194.192.1 with SMTP id hc1mr9679899wjc.39.1375697569534;
-	Mon, 05 Aug 2013 03:12:49 -0700 (PDT)
+Return-Path: <lothar@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D98EE003D4
+	for <yocto@yoctoproject.org>; Mon,  5 Aug 2013 05:41:08 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3c7z9Z36lTz4KK6F;
+	Mon,  5 Aug 2013 14:41:06 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3c7z9Z0LNrzbbj6;
+	Mon,  5 Aug 2013 14:41:06 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id VVSMaFNE8Npp; Mon,  5 Aug 2013 14:41:04 +0200 (CEST)
+X-Auth-Info: oswYcCQ7MehaxnvYTa1fz8Djwcp3O6A8CRFXlGmi3aI=
+Received: from webmail.mnet-online.de (webmail1.mnet-online.de [212.18.5.57])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA;
+	Mon,  5 Aug 2013 14:41:04 +0200 (CEST)
+Received: from host-82-135-33-74.customer.m-online.net
+	(host-82-135-33-74.customer.m-online.net [82.135.33.74]) by
+	webmail.mnet-online.de (Horde Framework) with HTTP; Mon, 05 Aug 2013
+	14:41:04 +0200
+Message-ID: <20130805144104.17162h9fc56bibfk@webmail.mnet-online.de>
+Date: Mon, 05 Aug 2013 14:41:04 +0200
+From: lothar@denx.de
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <20130805114222.15220qh2lyd417dw@webmail.mnet-online.de>
+	<7243158.LY4yQ1ssbD@helios>
+In-Reply-To: <7243158.LY4yQ1ssbD@helios>
 MIME-Version: 1.0
-Received: by 10.216.51.201 with HTTP; Mon, 5 Aug 2013 03:12:29 -0700 (PDT)
-X-Originating-IP: [5.14.140.223]
-In-Reply-To: <CAHLvMfb9FStHeLgHTzTGf13XWDqbLeoQi6BKXW=f5UV1S1w0EA@mail.gmail.com>
-References: <CAHLvMfbjrLfbxt-9oa+WRgobux+o5B8RM6uDeLh+wB4GKN_nfQ@mail.gmail.com>
-	<11658953.R2RoUsbsuX@helios>
-	<CAHLvMfZwQj6B9uzZC9wPbSqr+n8609FA90tAy7jPHp9mqDjPfw@mail.gmail.com>
-	<1680213.YPjXP0RsTC@helios>
-	<CAHLvMfb9FStHeLgHTzTGf13XWDqbLeoQi6BKXW=f5UV1S1w0EA@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 5 Aug 2013 13:12:29 +0300
-Message-ID: <CAK18fxGgq4EjVZjr=1K6qTveoer6NedsRs0DyXDfBUdHvfz+6Q@mail.gmail.com>
-To: Rich Bayliss <richbayliss@gmail.com>
-X-Gm-Message-State: ALoCoQnuoki40ErGgmWU2MsslRsCFSkWi/ZwSJ0tVQfMlUc9BYpA9cvLRzVB+9e0f8Qk8RWhTgOS
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Read-Only RootFS is not read only
+User-Agent: Internet Messaging Program (IMP) H3 (4.3.5)
+Cc: yocto@yoctoproject.org
+Subject: Re: how to build external firmware for kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,141 +45,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Aug 2013 10:12:51 -0000
-Content-Type: multipart/alternative; boundary=047d7bacc154f3661e04e3308c00
+X-List-Received-Date: Mon, 05 Aug 2013 12:41:09 -0000
+Content-Type: text/plain;
+ charset=ISO-8859-1;
+ DelSp="Yes";
+ format="flowed"
+Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
 
---047d7bacc154f3661e04e3308c00
-Content-Type: text/plain; charset=ISO-8859-1
+Zitat von Paul Eggleton <paul.eggleton@linux.intel.com>:
 
-On Mon, Aug 5, 2013 at 2:51 AM, Rich Bayliss <richbayliss@gmail.com> wrote:
-
-> Sorry Paul - I am new to all this. I have checked and I am using Poky (1.4)
+> Hi Lothar,
 >
-> Rich
+> On Monday 05 August 2013 11:42:22 lothar@denx.de wrote:
+>> I have a linux kernel and a external firmware. Building manually,
+>> first I have to checkout and build the firmware "native" to obtain a
+>> firmware blob, then I need this firmware blob to build the kernel for
+>> the target.
+>>
+>> So far I tried to do this in yocto with separate recipes: a
+>> firmware.bb and a mylinux.bb. In firmware.bb, I check out the firmware
+>> via git and let it run "make" on native (this is necessary, since the
+>> Makefile builds a tool which then automatically gets called inside the
+>> Makefile to create the firmware blob).
+>>
+>> In the kernel recipe, I declare a DEPEND on firmware.bb. I set the
+>> .config options to load an extra firmware blob. But now, I have a
+>> problem: I need actually to have the firmware blob within the kernel's
+>> file hierarchy. Ideally I would copy/move it from the firmware's
+>> destination directory into the kernel's source directory.
 >
-> On 4 August 2013 23:35, Paul Eggleton <paul.eggleton@linux.intel.com>
-> wrote:
-> > On Sunday 04 August 2013 01:27:01 Rich Bayliss wrote:
-> >> On 2 August 2013 13:47, Paul Eggleton <paul.eggleton@linux.intel.com>
-> wrote:
-> >> > On Tuesday 30 July 2013 11:43:43 Rich Bayliss wrote:
-> >> >> I am trying to build for Raspberry Pi including "read-only-rootfs" in
-> >> >> my image features. My aim is to have my SD Card read-only and at some
-> >> >> point add a read-write overlay to certain directories. This should
-> >> >> enable my system to boot fresh each time, and have some persistent
-> >> >> storage for user files etc.
-> >> >>
-> >> >> However, after building my image I can SSH into the system and issue
-> >> >> "touch test" to create a file in my home directory, then after a
-> >> >> reboot it is still there. That isn't very read-only :)
-> >> >>
-> >> >> Am I missing something, or is this working incorrectly?
-> >> >
-> >> > It sounds like it's working incorrectly. Since meta-raspberrypi
-> constructs
-> >> > the SD card image using its own custom class I wonder if it has
-> anything
-> >> > to do with that. Andrei, do you know anything about this?
-> >> >
-> >> > BTW, are you using sysvinit or systemd in this image?
-> >>
-> >> I am using the standard sysvinit/systemd - I haven't specified either,
-> >> so whichever is default.
-> >
-> > Except the default depends upon what DISTRO you are using. Which DISTRO
-> are
-> > you using - "poky" or something else?
-> >
-> > Cheers,
-> > Paul
-> >
-> > --
-> >
-> > Paul Eggleton
-> > Intel Open Source Technology Centre
+> Shouldn't firmware go into /lib/firmware?
+
+Hi Paul, yes, so my first approach was indeed in the firmware.bb  
+something like:
+     install -d ${D}/lib/firmware/imx/sdma/
+     install -m 755 sdma-imx53.bin ${D}/lib/firmware/imx/sdma/sdma-imx53.bin
+...and to set in the kernel.bb (I'm aware of the existens of other  
+ways to set .config using yocto)
+     echo 'CONFIG_EXTRA_FIRMWARE="imx/sdma/sdma-imx53.bin"' >>  
+${WORKDIR}/defconfig
+
+But, compiling I got something as follows:
+(...)
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 8 uImage CC=arm-linux-gnueabi-gcc   
+-mno-thumb-interwork -marm LD=arm-linux-gnueabi-ld   LOADADDR=0x70008000
+| scripts/kconfig/conf --silentoldconfig Kconfig
+|   CHK     include/generated/uapi/linux/version.h
+|   CHK     include/generated/utsrelease.h
+| make[1]: `include/generated/mach-types.h' is up to date.
+|   CC      scripts/mod/devicetable-offsets.s
+|   CALL    scripts/checksyscalls.sh
+|   GEN     scripts/mod/devicetable-offsets.h
+|   HOSTCC  scripts/mod/file2alias.o
+|   HOSTLD  scripts/mod/modpost
+|   CHK     include/generated/compile.h
+| make[1]: *** No rule to make target  
+`/lib/firmware/imx/sdma/sdma-imx53.bin', needed by  
+`firmware/imx/sdma/sdma-imx53.bin.gen.o'.  Stop.
+| make[1]: *** Waiting for unfinished jobs....
+|   MK_FW   firmware/imx/sdma/sdma-imx53.bin.gen.S
+| make: *** [firmware] Error 2
+| make: *** Waiting for unfinished jobs....
+| ERROR: oe_runmake failed
+| ERROR: Function failed: do_compile (see  
+/work/lothar/BUILD__XXX__m53evk/tmp/work/m53evk-linux-gnueabi(...)
+
+Honestly, I already expected some trouble, because of firmware.bb  
+being built for "native", and the kernel not. I sort of played around  
+with CONFIG_EXTRA_FIRMWARE and CONFIG_EXTRA_FIRMWARE_DIR without  
+success.
+
+I also tried to build it manually by the approach specified here:
+https://community.freescale.com/thread/302880
+...means, just copying the firmware blob into the kernel source's  
+"firmware" folder and running make afterwards. Since this worked just  
+perfectly, I thought of doing it like this, since it seemed easier  
+than messing with /lib/firmware and yocto/bitbake. But with this  
+approach I'm stuck at getting the firmware blob into the firmware  
+folder.
+
+Can you please tell me, is this the wrong approach?
+
+
+
+>> Questions:
+>> How can I achieve this kind of setup working out with yocto or
+>> bitbake, respectively? What might be the best approach in my situation?
 >
+> You can get the kernel version name from ${STAGING_KERNEL_DIR}/kernel-
+> abiversion if that helps, but I wouldn't have thought you'd need it if the
+> firmware is installed to /lib/firmware instead.
 
-Will check on this tomorrow. I've been on the roads these days.
+How may I work with the STAGING_KERNEL_DIR, since I first run the  
+firmware.bb and then the kernel.bb. I think I did not understand well,  
+how I may achieve this. Do I need to install the firmware blob into  
+something like $STAGING_KERNEL_DIR/firmware? How may I proceed here,  
+could you please explain a bit more?
 
--- 
-*Andrei Gherzan*
-m: +40.744.478.414 |  f: +40.31.816.28.12
 
---047d7bacc154f3661e04e3308c00
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Mon, Aug 5, 2013 at 2:51 AM, Rich Bayliss <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:richbayliss@gmail.com" target=3D"_blank">richbayliss@gmai=
-l.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Sorry Paul - I am new to all this. I have ch=
-ecked and I am using Poky (1.4)<br>
-<br>
-Rich<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-On 4 August 2013 23:35, Paul Eggleton &lt;<a href=3D"mailto:paul.eggleton@l=
-inux.intel.com">paul.eggleton@linux.intel.com</a>&gt; wrote:<br>
-&gt; On Sunday 04 August 2013 01:27:01 Rich Bayliss wrote:<br>
-&gt;&gt; On 2 August 2013 13:47, Paul Eggleton &lt;<a href=3D"mailto:paul.e=
-ggleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt; wrote:<br>
-&gt;&gt; &gt; On Tuesday 30 July 2013 11:43:43 Rich Bayliss wrote:<br>
-&gt;&gt; &gt;&gt; I am trying to build for Raspberry Pi including &quot;rea=
-d-only-rootfs&quot; in<br>
-&gt;&gt; &gt;&gt; my image features. My aim is to have my SD Card read-only=
- and at some<br>
-&gt;&gt; &gt;&gt; point add a read-write overlay to certain directories. Th=
-is should<br>
-&gt;&gt; &gt;&gt; enable my system to boot fresh each time, and have some p=
-ersistent<br>
-&gt;&gt; &gt;&gt; storage for user files etc.<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; However, after building my image I can SSH into the syste=
-m and issue<br>
-&gt;&gt; &gt;&gt; &quot;touch test&quot; to create a file in my home direct=
-ory, then after a<br>
-&gt;&gt; &gt;&gt; reboot it is still there. That isn&#39;t very read-only :=
-)<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; Am I missing something, or is this working incorrectly?<b=
-r>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; It sounds like it&#39;s working incorrectly. Since meta-raspb=
-errypi constructs<br>
-&gt;&gt; &gt; the SD card image using its own custom class I wonder if it h=
-as anything<br>
-&gt;&gt; &gt; to do with that. Andrei, do you know anything about this?<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; BTW, are you using sysvinit or systemd in this image?<br>
-&gt;&gt;<br>
-&gt;&gt; I am using the standard sysvinit/systemd - I haven&#39;t specified=
- either,<br>
-&gt;&gt; so whichever is default.<br>
-&gt;<br>
-&gt; Except the default depends upon what DISTRO you are using. Which DISTR=
-O are<br>
-&gt; you using - &quot;poky&quot; or something else?<br>
-&gt;<br>
-&gt; Cheers,<br>
-&gt; Paul<br>
-&gt;<br>
-&gt; --<br>
-&gt;<br>
-&gt; Paul Eggleton<br>
-&gt; Intel Open Source Technology Centre<br></div></div></blockquote><div><=
-br></div><div style>Will check on this tomorrow. I&#39;ve been on the roads=
- these days.=A0</div></div><div><br></div>-- <br><div dir=3D"ltr"><div styl=
-e=3D"text-align:center">
-
-</div><div style=3D"text-align:center"><div align=3D"left" style=3D"font-fa=
-mily:&#39;Times New Roman&#39;;font-size:medium"><b style=3D"color:rgb(51,5=
-1,51);font-family:Arial;font-size:small;text-align:center">Andrei Gherzan</=
-b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
-
-</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
-4 | =A0f: +40.31.816.28.12</font><br></div></div></div>
-</div></div>
-
---047d7bacc154f3661e04e3308c00--
