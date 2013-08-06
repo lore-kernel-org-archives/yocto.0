@@ -1,28 +1,24 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4B05E0156E
-	for <yocto@yoctoproject.org>; Tue,  6 Aug 2013 01:00:09 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1V6cBX-0006JD-RJ
-	for yocto@yoctoproject.org; Tue, 06 Aug 2013 10:00:03 +0200
-Received: from 2-227-90-218.ip185.fastwebnet.it ([2.227.90.218])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 06 Aug 2013 10:00:03 +0200
-Received: from f.deldegan by 2-227-90-218.ip185.fastwebnet.it with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 06 Aug 2013 10:00:03 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Francesco Del Degan <f.deldegan@endian.com>
-Date: Tue, 06 Aug 2013 09:55:06 +0200
-Message-ID: <87iozjfe3p.fsf@endian.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 2-227-90-218.ip185.fastwebnet.it
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.2 (gnu/linux)
-Cancel-Lock: sha1:pTdxFS8sHUXPHaILkN7PCAAjtCQ=
-Subject: Package specific version dependencies
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB207E0156E
+	for <yocto@yoctoproject.org>; Tue,  6 Aug 2013 02:07:23 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 06 Aug 2013 02:04:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,825,1367996400"; d="scan'208";a="376827851"
+Received: from unknown (HELO helios.localnet) ([10.252.122.203])
+	by fmsmga001.fm.intel.com with ESMTP; 06 Aug 2013 02:07:19 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Francesco Del Degan <f.deldegan@endian.com>
+Date: Tue, 06 Aug 2013 10:07:17 +0100
+Message-ID: <1711663.0D350BQnql@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <87iozjfe3p.fsf@endian.com>
+References: <87iozjfe3p.fsf@endian.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Package specific version dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,35 +30,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2013 08:00:14 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 06 Aug 2013 09:07:23 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi all,
+Hi Francesco,
 
-Playing with RDEPENDS variable i'm facing the needs to
-specify a dependency based on specific version of a package
-(greather than, in my specific case).
+On Tuesday 06 August 2013 09:55:06 Francesco Del Degan wrote:
+> Playing with RDEPENDS variable i'm facing the needs to
+> specify a dependency based on specific version of a package
+> (greather than, in my specific case).
+> 
+> The underlying package managers supports declaring dependencies
+> including version relationships, for example:
+> 
+> Rpm:  Requires: package_xxx >= 1.0.27
+> Deb:  Depends: libc6 (>= 2.2.1)
+> Okpg: Depends: xfree (>= 6.0), glib2
+> 
+> Is this feature just missing in yocto or it's explicitly denied
+> for some reason?
 
-The underlying package managers supports declaring dependencies
-including version relationships, for example:
+This should work, in fact we use it (with =) in conjunction with EXTENDPKGV 
+when we want to force packages from the same recipe to upgrade in lock-step.
 
-Rpm:  Requires: package_xxx >= 1.0.27
-Deb:  Depends: libc6 (>= 2.2.1)
-Okpg: Depends: xfree (>= 6.0), glib2
+Have you tried adding these specifications to an RDEPENDS value?
 
-Is this feature just missing in yocto or it's explicitly denied
-for some reason?
+Cheers,
+Paul
 
-In first case:
-Could a patch (I will need to work on package*.bbclass i guess)
-be useful for Yocto/OE?
+-- 
 
-What could be a good syntax for bitbake variable in order to specify
-this?
-
-Thanks,
-  Francesco 'pr0gg3d' Del Degan
-
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
