@@ -1,23 +1,27 @@
-Return-Path: <ml@communistcode.co.uk>
-Received: from owm.eumx.net (eumx.net [91.82.101.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69E87E003F8
-	for <yocto@yoctoproject.org>; Tue,  6 Aug 2013 08:00:58 -0700 (PDT)
-Message-ID: <52010FA8.1000101@communistcode.co.uk>
-Date: Tue, 06 Aug 2013 16:00:56 +0100
-From: Jack Mitchell <ml@communistcode.co.uk>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF280E003F8
+	for <yocto@yoctoproject.org>; Tue,  6 Aug 2013 08:13:44 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 06 Aug 2013 08:13:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,827,1367996400"; d="scan'208";a="382121577"
+Received: from unknown (HELO helios.localnet) ([10.252.122.203])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Aug 2013 08:13:43 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Tue, 06 Aug 2013 16:13:42 +0100
+Message-ID: <1573170.9CYLaRJux4@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <520108A5.7090806@mlbassoc.com>
 References: <520108A5.7090806@mlbassoc.com>
-	<52010B1F.3060901@communistcode.co.uk>
-	<52010D4E.4090009@windriver.com>
-In-Reply-To: <52010D4E.4090009@windriver.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: Sending mail from embedded device
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: ml@communistcode.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -26,40 +30,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2013 15:01:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 Aug 2013 15:13:48 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 06/08/13 15:50, Mark Hatle wrote:
-> On 8/6/13 9:41 AM, Jack Mitchell wrote:
->> On 06/08/13 15:31, Gary Thomas wrote:
->>> My embedded device needs to send out email.
->>>
->>> I've looked around a bit and I don't see any recipes for a
->>> mail sender, e.g. sendmail or postfix, for Yocto (OE-core).
->>>
->>> Have I missed something?  Does anyone have any suggestions?
->>>
->>> Surely my application isn't the first that wants to send email...
->>>
->>
->> Would recipes-extended/msmtp do the job? Do you need to run the whole
->> mail stack or is pushing out emails to an smtp server adequate?
->>
+On Tuesday 06 August 2013 08:31:01 Gary Thomas wrote:
+> My embedded device needs to send out email.
 > 
-> msmtp is provided specifically to be able to send email out.  It should
-> produce a binary called "sendmail" that is capable of simply sending
-> email (and conforming to LSB requirements.)
+> I've looked around a bit and I don't see any recipes for a
+> mail sender, e.g. sendmail or postfix, for Yocto (OE-core).
 > 
-> --Mark
+> Have I missed something?  Does anyone have any suggestions?
+> 
+> Surely my application isn't the first that wants to send email...
 
-Colour me impressed, I didn't realise it was also a drop-in for sendmail.
+Is msmtp of any use? It's not a full MTA, but it should be basically useful 
+for sending and is in the core.
 
+Cheers,
+Paul
 
 -- 
-  Jack Mitchell (jack@embed.me.uk)
-  Embedded Systems Engineer
-  Cambrideshire, UK
-  http://www.embed.me.uk
---
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
