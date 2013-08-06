@@ -1,39 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
-	[209.85.192.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0714E01576
-	for <yocto@yoctoproject.org>; Mon,  5 Aug 2013 21:59:49 -0700 (PDT)
-Received: by mail-pd0-f175.google.com with SMTP id 5so4055979pdd.20
-	for <yocto@yoctoproject.org>; Mon, 05 Aug 2013 21:59:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=Dv+FMtL2LAjJzVSng/aRbNaUixqC2sczZ5VMM+eL9Ek=;
-	b=b4eI5nsHZnZk0RLENa6l18wEW/c6PrhtaJJazyEtpq164p2kifYAfgZZ+aNW5XFUbZ
-	Qw95aOc0tX2yDD1KQUVzYj6F1rY4rClg3YREe+A5/FEw8PLtXy4QHB2/aNW0FVp5dsXs
-	jOXO4FLi/Qa1hrIdKx6OJSPQtOBDlHLVkxohKs6AIpxbCA6FtbQcr0X+DRuRUTHgfnuK
-	TLuTqnqm7mJuZenZ9rXSopOhOkitQxwmq8iBYN2hsi9EJyjMwUXc0f5Mvwb+nsd9dtRG
-	80tHZxvyGf+Vd2e96xEN1wvtbFyzEJiR/rUaMXe+4iB3rGNMklL1fP2WPO/PiK5tckkm
-	od/g==
-X-Received: by 10.66.154.162 with SMTP id vp2mr1152142pab.34.1375765189450;
-	Mon, 05 Aug 2013 21:59:49 -0700 (PDT)
-Received: from gourish-sslvpn-nc.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id ef10sm1549071pac.1.2013.08.05.21.59.47
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 05 Aug 2013 21:59:48 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CA+Z6RkW8+sjJYW3sB4Pgwv6nW_QRHhshkDaXAKu6SwKy1DwThw@mail.gmail.com>
-Date: Mon, 5 Aug 2013 21:59:46 -0700
-Message-Id: <0BC011CA-EFC4-4F0D-BD49-5D6E5795C4EE@gmail.com>
-References: <CA+Z6RkW8+sjJYW3sB4Pgwv6nW_QRHhshkDaXAKu6SwKy1DwThw@mail.gmail.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>
-X-Mailer: Apple Mail (2.1508)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Re: Access ssh repository
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4B05E0156E
+	for <yocto@yoctoproject.org>; Tue,  6 Aug 2013 01:00:09 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1V6cBX-0006JD-RJ
+	for yocto@yoctoproject.org; Tue, 06 Aug 2013 10:00:03 +0200
+Received: from 2-227-90-218.ip185.fastwebnet.it ([2.227.90.218])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 06 Aug 2013 10:00:03 +0200
+Received: from f.deldegan by 2-227-90-218.ip185.fastwebnet.it with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 06 Aug 2013 10:00:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Francesco Del Degan <f.deldegan@endian.com>
+Date: Tue, 06 Aug 2013 09:55:06 +0200
+Message-ID: <87iozjfe3p.fsf@endian.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 2-227-90-218.ip185.fastwebnet.it
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.2 (gnu/linux)
+Cancel-Lock: sha1:pTdxFS8sHUXPHaILkN7PCAAjtCQ=
+Subject: Package specific version dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,88 +34,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2013 04:59:51 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_2A16DF1E-A236-4E9A-A5F3-0877F792CF91"
+X-List-Received-Date: Tue, 06 Aug 2013 08:00:14 -0000
+Content-Type: text/plain
 
---Apple-Mail=_2A16DF1E-A236-4E9A-A5F3-0877F792CF91
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=windows-1252
+Hi all,
 
+Playing with RDEPENDS variable i'm facing the needs to
+specify a dependency based on specific version of a package
+(greather than, in my specific case).
 
-On Aug 5, 2013, at 9:48 PM, Navani Srivastava =
-<navani.srivastava@gmail.com> wrote:
+The underlying package managers supports declaring dependencies
+including version relationships, for example:
 
-> Hi,
->=20
-> I am using Poky danny for development.I have a query related to =
-repository fetching.
-> Is it possible to fetch any repository using ssh? As an example, =
-suppose if recipe contains something like-
->=20
-> SRC_URI=3D"ssh://__________.git "
+Rpm:  Requires: package_xxx >= 1.0.27
+Deb:  Depends: libc6 (>= 2.2.1)
+Okpg: Depends: xfree (>= 6.0), glib2
 
-well you would have to use correct syntax.
+Is this feature just missing in yocto or it's explicitly denied
+for some reason?
 
-SRC_URI =3D "git://.=85..git;protocol=3Dssh;"
+In first case:
+Could a patch (I will need to work on package*.bbclass i guess)
+be useful for Yocto/OE?
 
->=20
-> When I tried accessing it in the this manner encountered following =
-error-
->=20
-> ERROR: ExpansionError during parsing =
-/home/user/poky/meta/recipes-core/initscripts/initscripts_1.0.bb: =
-Failure expanding expression ${@bb.fetch.get_checksum_file_list(d)} =
-which triggered exception NoMethodError: Could not find a fetcher which =
-supports the URL: 'ssh://___.git'
-> ERROR: Command execution failed: Exited with 1
->=20
->=20
-> Thanks
-> Navani
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+What could be a good syntax for bitbake variable in order to specify
+this?
+
+Thanks,
+  Francesco 'pr0gg3d' Del Degan
 
 
---Apple-Mail=_2A16DF1E-A236-4E9A-A5F3-0877F792CF91
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=windows-1252
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
-"><br><div><div>On Aug 5, 2013, at 9:48 PM, Navani Srivastava &lt;<a =
-href=3D"mailto:navani.srivastava@gmail.com">navani.srivastava@gmail.com</a=
->&gt; wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div dir=3D"ltr"><div><div><div><div>Hi,<br><br></div>I am =
-using Poky danny for development.I have a query related to repository =
-fetching.<br>Is it possible to fetch any repository using ssh? As an =
-example, suppose if recipe contains something like-<br>
 
-</div><br>SRC_URI=3D"<a =
-href=3D"ssh://__________.git">ssh://__________.git</a> =
-"<br></div></div></div></blockquote><div><br></div><div>well you would =
-have to use correct syntax.</div><div><br></div><div>SRC_URI =3D =
-"git://.=85..git;protocol=3Dssh;"</div><br><blockquote type=3D"cite"><div =
-dir=3D"ltr"><div><div><br></div><div>When I tried accessing it in the =
-this manner encountered following error-<br></div><div><br>ERROR: =
-ExpansionError during parsing =
-/home/user/poky/meta/recipes-core/initscripts/<a =
-href=3D"http://initscripts_1.0.bb/">initscripts_1.0.bb</a>: Failure =
-expanding expression ${@bb.fetch.get_checksum_file_list(d)} which =
-triggered exception NoMethodError: Could not find a fetcher which =
-supports the URL: '<a href=3D"ssh://___.git'">ssh://___.git'</a><br>
-
-ERROR: Command execution failed: Exited with =
-1<br><br><br></div>Thanks<br></div>Navani<br></div>
-_______________________________________________<br>yocto mailing =
-list<br><a =
-href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>https=
-://lists.yoctoproject.org/listinfo/yocto<br></blockquote></div><br></body>=
-</html>=
-
---Apple-Mail=_2A16DF1E-A236-4E9A-A5F3-0877F792CF91--
