@@ -1,29 +1,42 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C8B1E006E9
-	for <yocto@yoctoproject.org>; Tue,  6 Aug 2013 15:22:06 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 06 Aug 2013 15:22:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,828,1367996400"; 
-	d="scan'208,217";a="382917805"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga002.jf.intel.com with ESMTP; 06 Aug 2013 15:22:01 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.194]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.238]) with mapi id
-	14.03.0123.003; Tue, 6 Aug 2013 15:22:01 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project 1.5 M3 release readiness meeting
-Thread-Index: Ac6S8zJj+NtJLuQsTZijNx6YceQWkQAABMdA
-Date: Tue, 6 Aug 2013 22:22:00 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EEB0428@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Subject: FW: Yocto Project 1.5 M3 release readiness meeting
+Return-Path: <martiert@gmail.com>
+Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 074B2E0052E
+	for <yocto@yoctoproject.org>; Wed,  7 Aug 2013 09:31:40 -0700 (PDT)
+Received: by mail-la0-f51.google.com with SMTP id fp13so1354092lab.38
+	for <yocto@yoctoproject.org>; Wed, 07 Aug 2013 09:31:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=references:mime-version:in-reply-to:content-type
+	:content-transfer-encoding:message-id:cc:from:subject:date:to;
+	bh=tMrb89fRmwFdezsEqFrCue+TEs+mGIvDV+6rT03ZDW0=;
+	b=te2NCGIqwavrAfapZ+HjS4BHWugu4PkcpHjJQLg1GVT0IgHoz2mWpI8QlPVN5Atnse
+	PNPcwPM+XuPR3+OfPuqSfwV1R5uBkwsaw8xWXjku912fFOWB6y/wVuZ7dmA2biyeo7Sr
+	/22Ysu2pNmbKAdzlJO65fdcN7zx8dCFXZeiP6FGTreb5g9cDKlHdIlkSLY6y4BdM2KI6
+	aJyi5+ze1QMshugTH5YdNS7R4Z4J+SLz1ZZ063/oGonOH3+0AY8alM6rudbCxtGzEvuI
+	tNd8kBomLclMjo6q2CpegIQjvmcwWOT47CRWrZ1pfgtPh/jyczQ3DUh4GKM6SpqrC1dn
+	2veQ==
+X-Received: by 10.152.26.104 with SMTP id k8mr1706569lag.85.1375893099294;
+	Wed, 07 Aug 2013 09:31:39 -0700 (PDT)
+Received: from [192.168.1.140] (59.37-191-128.fiber.lynet.no. [37.191.128.59])
+	by mx.google.com with ESMTPSA id
+	gh5sm3495365lbc.12.2013.08.07.09.31.37 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 07 Aug 2013 09:31:38 -0700 (PDT)
+References: <51F8BAE8.3090805@gmail.com>
+	<CAAQYJAvPts390fqheZoHPN1XF3VtSZ8YaNuFp5P8f3fp_5r=ag@mail.gmail.com>
+	<51F8EDB2.4020001@gmail.com>
+	<CADkTA4NbutoU4AXyfQ84VQNCUmYv1PZwTFhYDBX8ENbOhCL0Gw@mail.gmail.com>
+	<8FA37C33-DF65-4B96-BD90-4D3B784E4A57@gmail.com>
+	<51FF1602.8040805@windriver.com>
+Mime-Version: 1.0 (1.0)
+In-Reply-To: <51FF1602.8040805@windriver.com>
+Message-Id: <BD3A762D-ACE6-4DB3-971F-B5CC975C0D69@gmail.com>
+X-Mailer: iPad Mail (10B329)
+From: martiert@gmail.com
+Date: Wed, 7 Aug 2013 18:31:38 +0200
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Building linux-yocto kernel in own bsp layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,137 +48,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2013 22:22:11 -0000
-X-Groupsio-MsgNum: 15384
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB0428ORSMSX108amrcor_"
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB0428ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 07 Aug 2013 16:31:42 -0000
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
+Bruce, have you had the opportunity to look at this yet?
 
+- Martin
 
------Original Appointment-----
-From: Liu, Song
-Sent: Tuesday, August 06, 2013 3:21 PM
-Subject: Yocto Project 1.5 M3 release readiness meeting
-When: Thursday, August 08, 2013 8:30 AM-9:00 AM (UTC-08:00) Pacific Time (U=
-S & Canada).
-Where: Bridge Info Enclosed
+On 5. aug. 2013, at 05:03, Bruce Ashfield <bruce.ashfield@windriver.com> wro=
+te:
 
+> On 13-08-04 5:23 PM, martiert@gmail.com wrote:
+>>=20
+>>=20
+>> On 31. juli 2013, at 14:42, Bruce Ashfield <bruce.ashfield@gmail.com> wro=
+te:
+>>=20
+>>> On Wed, Jul 31, 2013 at 6:57 AM, Martin Ertsaas <martiert@gmail.com> wro=
+te:
+>>>> On 07/31/13 10:57, Andrea Adami wrote:
+>>>>> On Wed, Jul 31, 2013 at 9:21 AM, Martin Ertsaas <martiert@gmail.com> w=
+rote:
+>>>>>> Hi.
+>>>>>>=20
+>>>>>> I'm creating my own bsp layer for omap4 chips (Yes, I know of meta-ti=
+,
+>>>>>> but I want to learn how to do this myself :)). I'm trying to use the
+>>>>>> linux-yocto 3.4 kernel,
+>>>>>> and have gotten it to work locally. I then made a
+>>>>>> linux-yocto_3.4.bbappend which contains the following:
+>>>>>>=20
+>>>>>> COMPATIBLE_MACHINE_pandaboard =3D "pandaboard"
+>>>>>>=20
+>>>>>> SRCREV_machine_pandaboard ?=3D "7eb5fbf903d9db90c3cf371b65e1f2a68d567=
+6d7"
+>>>>>>=20
+>>>>>> THISDIR :=3D "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+>>>>>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-3.4"
+>>>>=20
+>>>> The defconfig is found. I can see a defconfig in ${WORKDIR} with zero
+>>>> diff to my defconfig. It is, however, not copied from there into
+>>>> ${WORKDIR}/linux.
+>>>=20
+>>> If you are looking in ${WORKDIR}/linux, you'll never see the defconfig. E=
+ven
+>>> in the base kernel class it is copied to the build directory, which is
+>>> linux-$MACHINE-build.
+>>>=20
+>>> Even after the copy, it is pulled into a secondary set of
+>>> configuration steps that
+>>> allow configuration fragments to be processed and layered on top of
+>>> that baseline
+>>> configuration.
+>>>=20
+>>> Are you determining that it isn't being used by the existence or non
+>>> existence of a
+>>> file, or are you seeing other issues with the resulting .config ?
+>>=20
+>> What I see is that I have a ${WORKDIR}/defconfig. The .config in linux-${=
+MACHINE}-build is for a different architecture (x86) than my defconfig, the s=
+ame holds for the .config.old in the same place. Tried adding B=3D${WORKDIR}=
+/linux-${MACHINE}-build to my append, but no difference.
+>=20
+> Can you make your BSP layer available to me ? I need to see this
+> happening on my machines, since all my tests worked here :(
+>=20
+> B=3D${WORKDIR}/linux-${MACHINE}-build would already be set by the
+> base classes, so I wouldn't have expected it to make much of a
+> difference.
+>=20
+> Bruce
+>=20
+>>>=20
+>>> Technically you don't even need a defconfig, you can just use a .cfg
+>>> with h/w options
+>>> for the board, but that's a different topic.
+>>>=20
+>>> Cheers,
+>>>=20
+>>> Bruce
+>>>=20
+>>>>=20
+>>>> I changed it so it uses the colon though, and removed THISDIR as
+>>>> suggested by Paul, but didn't help. I still don't get the config copied=
 
-Release criteria review: https://wiki.yoctoproject.org/wiki/Yocto_Project_v=
-1.5_Status#Milestone_3<https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status>
-QA report: https://wiki.yoctoproject.org/wiki/WW31_-_2013-07-31-1_-_Full_Pa=
-ss_Yocto_1.5_M3.rc1
+>>>> in, and if I add the do_configure_prepend myself to do this, I get a
+>>>> message from the kernel building saying my folder is unclean.
+>>>>=20
+>>>> - Martin
+>>>>=20
+>>>>> Martin,
+>>>>>=20
+>>>>> the code in kernel.bbclass does already copy defonfig to .config, see
+>>>>> http://cgit.openembedded.org/openembedded-core/tree/meta/classes/kerne=
+l.bbclass#n216
+>>>>>=20
+>>>>> I think your problem is the deconfig is not found,  you miss a colon a=
+t the end.
+>>>>> Use something like
+>>>>>=20
+>>>>> FILESEXTRAPATHS_prepend :=3D
+>>>>> "${THISDIR}/${PN}-3.4:${THISDIR}/${PN}:${THISDIR}/files:"
+>>>>>=20
+>>>>> Cheers
+>>>>>=20
+>>>>> Andrea
+>>>>>=20
+>>>>>=20
+>>>>>> SRC_URI +=3D "file://defconfig"
+>>>>>>=20
+>>>>>> do_configure_prepend() {
+>>>>>>        cp ${WORKDIR}/defconfig ${S}/.config
+>>>>>> }
+>>>>>>=20
+>>>>>> Problem I get is, without this configure_prepend, my defconfig is not=
 
-Thursday, August 08, 2013, 08:30 AM US Pacific Time
-916-356-2663, 8-356-2663, Bridge: 2, Passcode: 3897033
-Speed dialer: inteldialer://2,3897033 | Learn more<http://it.intel.com/prod=
-ucts/handhelds/speeddial.htm>
+>>>>>> copied into .config the kernel folder. With this however, I get a
+>>>>>> complaint from the kernel that the kernel directory is not clean and I=
 
+>>>>>> have to run make mrproper.
+>>>>>>=20
+>>>>>> I would greatly appreciate any pointer/help/explanations as to what I=
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB0428ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+>>>>>> have done wrong here, and how to fix it. Have been struggling for thi=
+s
+>>>>>> for a while now, and have no idea what I have done wrong.
+>>>>>>=20
+>>>>>> Best regards
+>>>>>> Martin Ertsaas
+>>>>>> _______________________________________________
+>>>>>> yocto mailing list
+>>>>>> yocto@yoctoproject.org
+>>>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>=20
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>=20
+>>>=20
+>>>=20
+>>> --
+>>> "Thou shalt not follow the NULL pointer, for chaos and madness await
+>>> thee at its end"
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>=20
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Times New Roman" size=3D"2"><span style=3D"font-size:11pt;">
-<div><font color=3D"#1F497D">&nbsp;</font></div>
-<div><font color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
-Original Appointment-----<br>
-
-<b>From:</b> Liu, Song <br>
-
-<b>Sent:</b> Tuesday, August 06, 2013 3:21 PM<br>
-
-<b>Subject:</b> Yocto Project 1.5 M3 release readiness meeting<br>
-
-<b>When:</b> Thursday, August 08, 2013 8:30 AM-9:00 AM (UTC-08:00) Pacific =
-Time (US &amp; Canada).<br>
-
-<b>Where:</b> Bridge Info Enclosed</span></font></div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div><font face=3D"Calibri">Release criteria review: <a href=3D"https://wik=
-i.yoctoproject.org/wiki/Yocto_Project_v1.5_Status"><font color=3D"blue"><u>=
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status#Milestone_3</u=
-></font></a></font></div>
-<div><font face=3D"Calibri">QA report: <a href=3D"https://wiki.yoctoproject=
-.org/wiki/WW31_-_2013-07-31-1_-_Full_Pass_Yocto_1.5_M3.rc1"><font color=3D"=
-blue"><u>https://wiki.yoctoproject.org/wiki/WW31_-_2013-07-31-1_-_Full_Pass=
-_Yocto_1.5_M3.rc1</u></font></a> </font></div>
-<div><font face=3D"Calibri">&nbsp;</font></div>
-<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
-t-size:8.5pt;"><b>Thursday, August 08, 2013, 08:30 AM US Pacific Time
-<br>
-
-</b>916-356-2663, 8-356-2663, Bridge: 2, Passcode: 3897033<br>
-
-Speed dialer: inteldialer://2,3897033 | <a href=3D"http://it.intel.com/prod=
-ucts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font>=
-</a></span></font></div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB0428ORSMSX108amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=REQUEST
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
-ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
-IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
-VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
-TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
-R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
-VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
-PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
-Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
-b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
-VElPTjtMQU5HVUFHRT1lbi1VUzpcblxuLS0tLS1PcmlnaW5hbCBBcHBvaW50bWVudC0tLS0tXG5G
-cm9tOiBMaXVcLCANCiBTb25nXG5TZW50OiBUdWVzZGF5XCwgQXVndXN0IDA2XCwgMjAxMyAzOjIx
-IFBNXG5TdWJqZWN0OiBZb2N0byBQcm9qZWN0IDEuNQ0KICBNMyByZWxlYXNlIHJlYWRpbmVzcyBt
-ZWV0aW5nXG5XaGVuOiBUaHVyc2RheVwsIEF1Z3VzdCAwOFwsIDIwMTMgODozMCBBTS05DQogOjAw
-IEFNIChVVEMtMDg6MDApIFBhY2lmaWMgVGltZSAoVVMgJiBDYW5hZGEpLlxuV2hlcmU6IEJyaWRn
-ZSBJbmZvIEVuY2xvc2UNCiBkXG5cblxuUmVsZWFzZSBjcml0ZXJpYSByZXZpZXc6IGh0dHBzOi8v
-d2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvWW9jdG9fUA0KIHJvamVjdF92MS41X1N0YXR1cyNN
-aWxlc3RvbmVfMzxodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lvY3RvX1ByDQog
-b2plY3RfdjEuNV9TdGF0dXM+XG5RQSByZXBvcnQ6IGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qu
-b3JnL3dpa2kvV1czMV8tXzINCiAwMTMtMDctMzEtMV8tX0Z1bGxfUGFzc19Zb2N0b18xLjVfTTMu
-cmMxXG5cblRodXJzZGF5XCwgQXVndXN0IDA4XCwgMjAxM1wsIA0KIDA4OjMwIEFNIFVTIFBhY2lm
-aWMgVGltZVxuOTE2LTM1Ni0yNjYzXCwgOC0zNTYtMjY2M1wsIEJyaWRnZTogMlwsIFBhc3Njb2Rl
-DQogOiAzODk3MDMzXG5TcGVlZCBkaWFsZXI6IGludGVsZGlhbGVyOi8vMlwsMzg5NzAzMyB8IExl
-YXJuIG1vcmU8aHR0cDovL2l0LmkNCiBudGVsLmNvbS9wcm9kdWN0cy9oYW5kaGVsZHMvc3BlZWRk
-aWFsLmh0bT5cblxuDQpTVU1NQVJZO0xBTkdVQUdFPWVuLVVTOkZXOiBZb2N0byBQcm9qZWN0IDEu
-NSBNMyByZWxlYXNlIHJlYWRpbmVzcyBtZWV0aW5nDQpEVFNUQVJUO1RaSUQ9UGFjaWZpYyBTdGFu
-ZGFyZCBUaW1lOjIwMTMwODA4VDA4MzAwMA0KRFRFTkQ7VFpJRD1QYWNpZmljIFN0YW5kYXJkIFRp
-bWU6MjAxMzA4MDhUMDkwMDAwDQpVSUQ6MDQwMDAwMDA4MjAwRTAwMDc0QzVCNzEwMUE4MkUwMDgw
-MDAwMDAwMDYwMkJBMUY2QjA5MkNFMDEwMDAwMDAwMDAwMDAwMDANCiAwMTAwMDAwMDBFOEQ4MDRB
-Q0YyMEFDRjRDOTZCMDlGRERDNDBDMDAxRg0KQ0xBU1M6UFVCTElDDQpQUklPUklUWTo1DQpEVFNU
-QU1QOjIwMTMwODA2VDIyMjA0NloNClRSQU5TUDpPUEFRVUUNClNUQVRVUzpDT05GSVJNRUQNClNF
-UVVFTkNFOjENCkxPQ0FUSU9OO0xBTkdVQUdFPWVuLVVTOkJyaWRnZSBJbmZvIEVuY2xvc2VkDQpY
-LU1JQ1JPU09GVC1DRE8tQVBQVC1TRVFVRU5DRToxDQpYLU1JQ1JPU09GVC1DRE8tT1dORVJBUFBU
-SUQ6MTE5MTYxMDMzMw0KWC1NSUNST1NPRlQtQ0RPLUJVU1lTVEFUVVM6VEVOVEFUSVZFDQpYLU1J
-Q1JPU09GVC1DRE8tSU5URU5ERURTVEFUVVM6QlVTWQ0KWC1NSUNST1NPRlQtQ0RPLUFMTERBWUVW
-RU5UOkZBTFNFDQpYLU1JQ1JPU09GVC1DRE8tSU1QT1JUQU5DRToxDQpYLU1JQ1JPU09GVC1DRE8t
-SU5TVFRZUEU6MA0KWC1NSUNST1NPRlQtRElTQUxMT1ctQ09VTlRFUjpGQUxTRQ0KQkVHSU46VkFM
-QVJNDQpBQ1RJT046RElTUExBWQ0KREVTQ1JJUFRJT046UkVNSU5ERVINClRSSUdHRVI7UkVMQVRF
-RD1TVEFSVDotUFQ1TQ0KRU5EOlZBTEFSTQ0KRU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRBUg0K
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB0428ORSMSX108amrcor_--
