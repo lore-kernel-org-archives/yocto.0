@@ -1,45 +1,26 @@
-Return-Path: <martiert@gmail.com>
-Received: from mail-ee0-f51.google.com (mail-ee0-f51.google.com [74.125.83.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D04D8E01575
-	for <yocto@yoctoproject.org>; Wed,  7 Aug 2013 23:01:11 -0700 (PDT)
-Received: by mail-ee0-f51.google.com with SMTP id c1so1307012eek.10
-	for <yocto@yoctoproject.org>; Wed, 07 Aug 2013 23:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=I9snuBNY8KGbMSWTA5y4EBONL8G/k/PZXsGcsdd4/vE=;
-	b=i6rPtr8NtA2pXD+yJsJof1++q+t8W307YCBI5I349TxsCIGOErtThDyNXnQimOAMo0
-	+x+hCKOcV5NySuUV1mX1Tk7UEJG948EZGb5u+vwqw0sBqSQho5ybsJGgQ6Wk7Ov4ECMd
-	3F/4YYORQT5epYFBIJgd4TDLXNQb3GE6L0lScutl0JLZ/cfEOPNQz8ewCgu5WiXRVqJj
-	BaIHfIoFXPnzqmPyEPNZ9fwc583/OQlbuM7zp/UunZLe9QBlimRKFUVZT9S+xxXQpvH1
-	aYJtG4cfuqSWl1mPzoJU2r2gIGC7UtrxmEAkbBHvOWWMnyJvw4svcI6RkCt9DhY1wYj7
-	IKJA==
-X-Received: by 10.14.47.73 with SMTP id s49mr6529319eeb.71.1375941670231;
-	Wed, 07 Aug 2013 23:01:10 -0700 (PDT)
-Received: from ?IPv6:2001:420:44ff:fd0e:52e5:49ff:fe32:d20b?
-	([2001:420:44ff:fd0e:52e5:49ff:fe32:d20b])
-	by mx.google.com with ESMTPSA id k7sm16156791eeg.13.2013.08.07.23.01.08
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 07 Aug 2013 23:01:09 -0700 (PDT)
-Message-ID: <520334EE.2090704@gmail.com>
-Date: Thu, 08 Aug 2013 08:04:30 +0200
-From: Martin Ertsaas <martiert@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130705 Thunderbird/17.0.7
-MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <51F8BAE8.3090805@gmail.com>
-	<CAAQYJAvPts390fqheZoHPN1XF3VtSZ8YaNuFp5P8f3fp_5r=ag@mail.gmail.com>
-	<51F8EDB2.4020001@gmail.com>
-	<CADkTA4NbutoU4AXyfQ84VQNCUmYv1PZwTFhYDBX8ENbOhCL0Gw@mail.gmail.com>
-	<8FA37C33-DF65-4B96-BD90-4D3B784E4A57@gmail.com>
-	<51FF1602.8040805@windriver.com>
-	<BD3A762D-ACE6-4DB3-971F-B5CC975C0D69@gmail.com>
-	<52028282.8020207@windriver.com>
-In-Reply-To: <52028282.8020207@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building linux-yocto kernel in own bsp layer
+Return-Path: <tim+yoctoproject.org@coote.org>
+Received: from mercury.coote.org (mail.coote.org [46.65.100.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B1EBE006E9
+	for <yocto@yoctoproject.org>; Thu,  8 Aug 2013 02:58:00 -0700 (PDT)
+Received: by mercury.coote.org (Postfix, from userid 500)
+	id D9F714373; Thu,  8 Aug 2013 10:57:58 +0100 (BST)
+Received: from [127.0.0.1] (fw.coote.org [172.17.1.1])
+	by mercury.coote.org (Postfix) with ESMTP id 19B3C4214;
+	Thu,  8 Aug 2013 10:57:57 +0100 (BST)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Tim Coote <tim+yoctoproject.org@coote.org>
+In-Reply-To: <520142D9.30209@r-finger.com>
+Date: Thu, 8 Aug 2013 10:58:01 +0100
+Message-Id: <694BCD52-4C60-41C6-8D5D-BCD1BA5BA512@coote.org>
+References: <520108A5.7090806@mlbassoc.com>
+	<52010B1F.3060901@communistcode.co.uk> <52010D4E.4090009@windriver.com>
+	<52010FA8.1000101@communistcode.co.uk> <52011DDF.5090807@windriver.com>
+	<5201320D.1010506@mlbassoc.com> <520142D9.30209@r-finger.com>
+To: Tomas Frydrych <tf+lists.yocto@r-finger.com>
+X-Mailer: Apple Mail (2.1508)
+X-Spambayes-Classification: ham; 0.00
+Cc: yocto@yoctoproject.org
+Subject: Re: Sending mail from embedded device
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,24 +32,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Aug 2013 06:01:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 08 Aug 2013 09:58:03 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 08/07/13 19:23, Bruce Ashfield wrote:
-> On 13-08-07 12:31 PM, martiert@gmail.com wrote:
->> Bruce, have you had the opportunity to look at this yet?
->>
->
-> I was about to email on this. I was out of the office last week, but
-> was just starting on this last night.
->
-> Cheers,
->
-> Bruce
->
-Great. Thanks for the help btw. It is greatly appreciated. I'm kind of
-stuck on what I have done wrong on this one.
 
-- Martin
+On 6 Aug 2013, at 19:39, Tomas Frydrych <tf+lists.yocto@r-finger.com> =
+wrote:
+
+> On 06/08/13 18:27, Gary Thomas wrote:
+>> On 2013-08-06 10:01, Mark Hatle wrote:
+>>> On 8/6/13 10:00 AM, Jack Mitchell wrote:
+>>>> On 06/08/13 15:50, Mark Hatle wrote:
+>>>>> On 8/6/13 9:41 AM, Jack Mitchell wrote:
+>>>>>> On 06/08/13 15:31, Gary Thomas wrote:
+>>>>>>> My embedded device needs to send out email.
+>>>>>>>=20
+>>>>>>> I've looked around a bit and I don't see any recipes for a
+>>>>>>> mail sender, e.g. sendmail or postfix, for Yocto (OE-core).
+>>>>>>>=20
+>>>>>>> Have I missed something?  Does anyone have any suggestions?
+>>>>>>>=20
+>>>>>>> Surely my application isn't the first that wants to send =
+email...
+>>>>>>>=20
+>>>>>>=20
+>>>>>> Would recipes-extended/msmtp do the job? Do you need to run the =
+whole
+>>>>>> mail stack or is pushing out emails to an smtp server adequate?
+>>>>>>=20
+>>>>>=20
+>>>>> msmtp is provided specifically to be able to send email out.  It =
+should
+>>>>> produce a binary called "sendmail" that is capable of simply =
+sending
+>>>>> email (and conforming to LSB requirements.)
+>>>>>=20
+>>>>> --Mark
+>>>>=20
+>>>> Colour me impressed, I didn't realise it was also a drop-in for
+>>>> sendmail.
+>>>=20
+>>> Drop in replacement for the 'sendmail' command, but it's not a =
+drop-in
+>>> for 'sendmail' the software.  (It only has sending capabilities from
+>>> what I've been told, which is all that
+>>> is required for the LSB certification.)
+>>=20
+>> And almost enough for my needs.  Amanda wants to use an MTA that
+>> works like the desktop 'mail', e.g.
+>>  mail -s "subject" TO <body
+>> I wrote a simple wrapper to use msmtp/sendmail and it works fine.
+>=20
+> I can confirm mstp works very well, and with all the necessary bells =
+and
+> whistles like TLS. If you need more complex messages (e.g.,
+> attachments), then libgmime makes composing the email messages to pipe
+> into mstmtp quite easy.
+>=20
+> Tomas
+>=20
+Am I being very obtuse if I think that an embedded device should not be =
+able to send email as it's embedded, which means disconnected from the =
+rest of the world?  Or have we reached the stage where the overlap =
+between yocto and a mainstream distro is vanishingly small?
+
+Tim=
 
