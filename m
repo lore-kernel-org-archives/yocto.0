@@ -1,38 +1,35 @@
-Return-Path: <eren@hambedded.org>
-Received: from mail-ee0-f44.google.com (mail-ee0-f44.google.com [74.125.83.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F8D6E003FA
-	for <yocto@yoctoproject.org>; Thu,  8 Aug 2013 09:12:02 -0700 (PDT)
-Received: by mail-ee0-f44.google.com with SMTP id b47so1605516eek.17
-	for <yocto@yoctoproject.org>; Thu, 08 Aug 2013 09:12:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:date:from:to:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=h0lnpTNVJbmRxsrvuVwhJw+StQD1rv5bMi6PhxnkL74=;
-	b=JsRD53Ce6v9XT11i6iczjri2erhxs86u64f3qCeGyfwNVXQA0sphGcbpywSMaMpR1V
-	ODwKp+YmxZnQXVgPiK5jcf3gdD3ccXxNR0KrKXYoGl36VNGSp2ehTGOfP/GWPp3kMFts
-	DdK0RXwUCzFwHFOrLq6fIfMIsNidsn/bajbbaJmUbAy0sDCn/uN0rGMZbkwNE2jqvO1g
-	8YNidDI5vyH7mqCqJCNeo6Z4JRHDRhWXoDRmUg8fJHzYth2X7eLMaM6iT4Mulu9Rv4FT
-	O7i+YPeJohcS8H6MsdThUnfvRXAgtsvxE69OGmsMazSYnLMFz2AS1xK/FYE0Pv+R8U8V
-	LU8A==
-X-Gm-Message-State: ALoCoQlVSWHcH+0BpsVn5KgnRdQd/4J6xZvtjeTjV63N6S+hYCwxhRTx2oZDCO1hzwCzKQIegthV
-X-Received: by 10.14.209.4 with SMTP id r4mr4572910eeo.131.1375978321204;
-	Thu, 08 Aug 2013 09:12:01 -0700 (PDT)
-Received: from gmail.com ([132.231.11.113])
-	by mx.google.com with ESMTPSA id a1sm20380238eem.1.2013.08.08.09.11.59
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 08 Aug 2013 09:12:00 -0700 (PDT)
-Date: Thu, 8 Aug 2013 18:11:52 +0200
-From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
-To: Yocto Discussion List <yocto@yoctoproject.org>
-Message-ID: <20130808161152.GA37566@gmail.com>
-References: <20130808131349.GA30527@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <20130808131349.GA30527@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Re: [FIXED] ALIX3D3 Live Image "Waiting for removable media" Problem
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B71F4E01480
+	for <yocto@yoctoproject.org>; Thu,  8 Aug 2013 10:30:12 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1V7U2J-0007BA-Tn
+	for yocto@yoctoproject.org; Thu, 08 Aug 2013 19:30:07 +0200
+Received: from 213.249.12.30 ([213.249.12.30])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 08 Aug 2013 19:30:07 +0200
+Received: from gmane by 213.249.12.30 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 08 Aug 2013 19:30:07 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Thu, 08 Aug 2013 20:29:56 +0300
+Message-ID: <5203D594.8090400@reliableembeddedsystems.com>
+References: <ku083q$oa8$1@ger.gmane.org>
+	<CABcZAN=mQ-LOVPeEoi5CUDndj2Xyi1BVq8J7deby+fZQxMFKSw@mail.gmail.com>
+	<5203B0D7.809@mlbassoc.com>
+	<5203B4AC.2030609@reliableembeddedsystems.com>
+	<5203B7F9.20001@mlbassoc.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 213.249.12.30
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+In-Reply-To: <5203B7F9.20001@mlbassoc.com>
+Cc: public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
+Subject: Re: can not build yocto on NFS mounted NAS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,60 +41,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Aug 2013 16:12:03 -0000
-X-Groupsio-MsgNum: 15397
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="TB36FDmn/VVEgNH/"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 08 Aug 2013 17:30:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---TB36FDmn/VVEgNH/
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-On Thu, Aug 08, 2013 at 03:13:49PM +0200, Eren T=FCrkay wrote:
-> output, I see that all geode specific features are OK. The kernel probes
-> CF Card and finds it as "sda", I can see sound card and framebuffer
-> works as expected. However, udevadm complains about not finding
-> /dev/sda*
+On 08/08/2013 06:23 PM, Gary Thomas wrote:
+>>
+>> How you do this?
+>>
+>> Do you use some magic build setting for this or a symlink to the nfs?
+> 
+> 
+> I used the standard setup script, like this:
+>   % . /local/poky/oe-init-build-env /MY_NFS_VOLUME/build_dir
+> 
+> This will create a build tree on MY_NFS_VOLUME named 'build_dir'.  Then
+> I adjusted /MY_NFS_VOLUME/build_dir/conf/local.conf as needed and ran
+> bitbake...
+> 
+> Note: I NEVER build inside of my Poky/Yocto tree - always in a separate
+> build directory and quite often on a separate file system.
+> 
 
-After hours of reading udev output and trying to figure out the problem,
-I learned that udev requires CONFIG_DEVTMPFS to work properly. After
-adding the following fragments to my kernel configuration, I was able to
-boot "live" image properly.
+I just tried this and with Ubuntu 12.04.2 LTS it does __NOT__ work (as
+expected). I'm really surprised that you can have
+/MY_NFS_VOLUME/build_dir due to the fact that there are hard links
+required between the /MY_NFS_VOLUME/build_dir and where your host Linux
+rootfs resides.
 
-CONFIG_DEVTMPFS=3Dy
-CONFIG_DEVTMPFS_MOUNT=3Dy
+So either we have a different NFS setup or cp -al behaves differently.
 
-Message to the future: I hope this information will be beneficial for
-anyone who is struggling with that problem.
+Do you happen to have an Ubuntu build machine to test? I'm currently on
+the road so it's a bit tricky for me to try with Fedora.
 
-Best regards,
-Eren
+Regards,
 
---=20
-    . 73! DE TA1AET
-      http://linkedin.com/in/erenturkay
+Robert
 
---TB36FDmn/VVEgNH/
-Content-Type: application/pgp-signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (Darwin)
 
-iQIcBAEBAgAGBQJSA8NIAAoJEOM7bMm6HhcT8bMP/2aiKHARc/uujucBIu0t0zKK
-xTkF4pRXVjtqQAzH7/4bTL3XrosGispKGUSheMI8VQFkMwFPsxi6tnvxkShE3NH8
-ExoF/SOUZ2qqV3Qhu6cMAcj3EKskGtoxFTraLsIcSprnWcWDpR+RFQ42NoOMZ0aZ
-Q8b7Pfm8w5w1v4HZOYJOJu1QgPthStDqZPp3e2zsGXQwlXBiAWsd/55V/hwVQyHy
-dgyri/wWjZMTq9nJQ0g7OStFtXY/Owl2af5LywGwPoTmQGNw8Kt1816ZEsOyCuiK
-+RWneVD1CC/W8tQObWjZkG9OR07Ney7lSULcD+iQ24LTasrjaWBvqYdz7PMiPzbw
-h9V8/iBftEt8TnVGOnJaOGC16qaowc8zKHsvqq2VtbAy79y0WKwV8ioleJQEEM4s
-lpM079aLvmU84rRhQhF0DJSvZUipUVTaTAxCzCvecG47IVH4Q+KzEGRCljSEga0M
-+EDnHr6n7UArdiSnWANDF/b+6yVRIc3IosnMhABpXnfv4xrjE0hmZmPtRWoXWRXY
-n1scfWi+sF7tDJ+Z9M4hab0cs25nyoEMl00/XVZuIR/vo3Sv8P7uGl5c+S5eELIW
-oHBhZ8zdRlx4Gc5bAROWFls4sq4PTTTxnw6lvJ1CX9M3HkxPb7fJLQMd0f6UpbK1
-85ln9PiL0uUJFOLENm1f
-=3Vgu
------END PGP SIGNATURE-----
+..."As far as I know we never had an undetected error." - Anonymous
 
---TB36FDmn/VVEgNH/--
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+
+
+
