@@ -1,27 +1,32 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E9CDE003FA
-	for <yocto@yoctoproject.org>; Thu,  8 Aug 2013 07:53:09 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 36167F811EE; Thu,  8 Aug 2013 08:53:09 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 564AEF811E3;
-	Thu,  8 Aug 2013 08:53:06 -0600 (MDT)
-Message-ID: <5203B0D7.809@mlbassoc.com>
-Date: Thu, 08 Aug 2013 08:53:11 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
-MIME-Version: 1.0
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 075BBE003FA
+	for <yocto@yoctoproject.org>; Thu,  8 Aug 2013 08:09:45 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1V7RqS-0007Qr-3j
+	for yocto@yoctoproject.org; Thu, 08 Aug 2013 17:09:44 +0200
+Received: from 213.249.12.88 ([213.249.12.88])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 08 Aug 2013 17:09:44 +0200
+Received: from gmane by 213.249.12.88 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 08 Aug 2013 17:09:44 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Thu, 08 Aug 2013 18:09:32 +0300
+Message-ID: <5203B4AC.2030609@reliableembeddedsystems.com>
 References: <ku083q$oa8$1@ger.gmane.org>
 	<CABcZAN=mQ-LOVPeEoi5CUDndj2Xyi1BVq8J7deby+fZQxMFKSw@mail.gmail.com>
-In-Reply-To: <CABcZAN=mQ-LOVPeEoi5CUDndj2Xyi1BVq8J7deby+fZQxMFKSw@mail.gmail.com>
+	<5203B0D7.809@mlbassoc.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 213.249.12.88
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+In-Reply-To: <5203B0D7.809@mlbassoc.com>
+Cc: public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
 Subject: Re: can not build yocto on NFS mounted NAS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,30 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Aug 2013 14:53:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 08 Aug 2013 15:09:46 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 2013-08-08 08:03, Chris Larson wrote:
-> On Thu, Aug 8, 2013 at 6:57 AM, Robert Berger <gmane@reliableembeddedsystems.com <mailto:gmane@reliableembeddedsystems.com>> wrote:
->
->     Is it like this by design, or should I file a bug in bugzilla?
->
->     Previous experiments (only SSTATE and DL from NFS/NAS) seem to work and
->     I guess that's also your autobuilder cluster setup.
->
->
-> TMPDIR on NFS has never been supported with oe/yocto, and I doubt it will be at any time in the near future, but if that's changed, I'm sure someone will jump into the thread and
-> mention it.
->
-> As you say, SSTATE_DIR and DL_DIR work fine there.
+Hi,
 
-Interesting.  I'm building now - OEROOT on a local ext3 file system,
-build/tmp on NFS - and it's working just fine.  My host is Fedora (15).
+On 08/08/2013 05:53 PM, Gary Thomas wrote:
+> 
+> Interesting.  I'm building now - OEROOT on a local ext3 file system,
+> build/tmp on NFS - and it's working just fine.  My host is Fedora (15).
+> 
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+/poky
+  /beagle-xm
+    /cache
+    /conf
+    /tmp    <--- this /tmp?
+
+How you do this?
+
+Do you use some magic build setting for this or a symlink to the nfs?
+
+Regards,
+
+Robert
+..."It is practically impossible to teach good programming style to
+students that have had prior exposure to BASIC; as potential programmers
+they are mentally mutilated beyond hope of regeneration." - Edsger Dijkstra
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+
+
 
