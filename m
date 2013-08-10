@@ -1,38 +1,31 @@
-Return-Path: <otavio.salvador@gmail.com>
-Received: from mail-oa0-f41.google.com (mail-oa0-f41.google.com
-	[209.85.219.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F279E00404
-	for <yocto@yoctoproject.org>; Fri,  9 Aug 2013 11:40:03 -0700 (PDT)
-Received: by mail-oa0-f41.google.com with SMTP id j6so3192728oag.0
-	for <yocto@yoctoproject.org>; Fri, 09 Aug 2013 11:40:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=2fCrUQllmCFvCa4bSszlMx2bhzAv8K3rRx+47xF9dSo=;
-	b=OJbixbL0WgAyIIoLsJNm/d+O3fkGVYDHmo2MP4+QYnzl9s4r5rZqPog2798FN0euTA
-	P7oc4z6fUFq2H4YdfSRrCsC8hhiNpGxYNsrKSB99gKWZhCWx20JCaoLSJ8t1BGp1APeB
-	BhyELdN6k6VHzWwHLpcMOpVKdEVjZj/e2N7bIWIhz/HwtNFIN5jTkQzj1lW0vfBsx9gc
-	zNehe6UzxU3VG+UbGYLJvKk6Zp168R9vWwAg9ebdEpZIJ7jHk77Lgh0rS7+ojcGygb29
-	rSwFAuyJwUgbiygecw58iqRUxEus8nJV/XycyszoWy444J62bsU2SPrdvezsyeOikCZQ
-	JW/g==
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
+	[209.85.128.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF6C0E00406
+	for <yocto@yoctoproject.org>; Fri,  9 Aug 2013 17:22:57 -0700 (PDT)
+Received: by mail-ve0-f169.google.com with SMTP id db10so4446181veb.0
+	for <yocto@yoctoproject.org>; Fri, 09 Aug 2013 17:22:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=8MrEdv0kwh+YcwB+kGmH5F+ZUh1V0/u4Xu0icIHseF4=;
+	b=opNgc3YgNqroaZMLGR4QMgxBbPIJsEtSmcwXt03rybezmPyLiw3UEjb+rwJmc604iz
+	PqfbutZg7tPtoU8TdhSxn3mJDUSs05gbK/IDpExsnUOI85BALdsK/PLAl4xisR7WLfHD
+	XGtzCuRWiKVGP6h86ensC88HLKKofA2jrrbGkTB4fXZGkIT6URNhaWrjOUoJviWJY0UP
+	hq+Ss8Aq2TCQECtOpmCFBi2Pk3ilxFMWgzvUd/lpgnImsw9+i7aQSGI6w1M/qWVgyug8
+	2ADQQQ7s/Vp1VCy2vGD6WMEjSy8EkOAfY/DNy6gFb1ROmLygEi7KYHqa2K3FfC3GuEAe
+	rI8w==
+X-Gm-Message-State: ALoCoQluqzesZG9GGyzb4QIph8qE3nDh2IZoqZuPU7+x9Bxl1i+A3Tsn3ocgNDwsc/3UJ87V0UoE
 MIME-Version: 1.0
-X-Received: by 10.60.96.169 with SMTP id dt9mr1452739oeb.27.1376073603093;
-	Fri, 09 Aug 2013 11:40:03 -0700 (PDT)
-Sender: otavio.salvador@gmail.com
-Received: by 10.182.232.166 with HTTP; Fri, 9 Aug 2013 11:40:03 -0700 (PDT)
-In-Reply-To: <52053376.3070104@linux.intel.com>
-References: <1375711257-18041-1-git-send-email-otavio@ossystems.com.br>
-	<CAP9ODKpjs-4X0ctJfqYB95t=xPg9sn+LA-_HrpzPqO98viFLnQ@mail.gmail.com>
-	<52053376.3070104@linux.intel.com>
-Date: Fri, 9 Aug 2013 15:40:03 -0300
-X-Google-Sender-Auth: OJvfTOM4I39SU03hB8uA5ZJ_PYI
-Message-ID: <CAP9ODKrRgtoes=jmTGcJVT6=QuoTLBhjxtLv91-QeUL0xREMSg@mail.gmail.com>
-From: Otavio Salvador <otavio@ossystems.com.br>
-To: Saul Wold <sgw@linux.intel.com>
-Cc: yocto <yocto@yoctoproject.org>, Evan Kotara <evan.kotara@freescale.com>,
-	Lauren Post <lauren.post@freescale.com>,
-	Daiane Angolini <daiane.angolini@freescale.com>
-Subject: Re: [PATCH] poky.conf: Don't force the addition of extra DISTRO_FEATURES
+X-Received: by 10.221.44.136 with SMTP id ug8mr8150502vcb.13.1376094176450;
+	Fri, 09 Aug 2013 17:22:56 -0700 (PDT)
+Received: by 10.52.244.109 with HTTP; Fri, 9 Aug 2013 17:22:56 -0700 (PDT)
+Date: Fri, 9 Aug 2013 17:22:56 -0700
+Message-ID: <CAPhnLPBbv232S0htae3WvEJ2A8UWRWH4Aj7og-bRGySkOqu+tA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org, yocto-announce@yoctoproject.org
+Subject: [Announcement] Yocto Project 1.5 Milestone 3 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,41 +37,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Aug 2013 18:40:04 -0000
+X-List-Received-Date: Sat, 10 Aug 2013 00:22:57 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, Aug 9, 2013 at 3:22 PM, Saul Wold <sgw@linux.intel.com> wrote:
-> On 08/09/2013 10:49 AM, Otavio Salvador wrote:
->>
->> On Mon, Aug 5, 2013 at 11:00 AM, Otavio Salvador
->> <otavio@ossystems.com.br> wrote:
->>>
->>> The DISTRO_FEATURES shouldn't unconditionally append items to it. This
->>> makes it impossible to override it inside of local.conf or in a distro
->>> based on Poky.
->>>
->>> This moved the definition to poky.conf and created a new variable
->>> (POKY_DEFAULT_DISTRO_FEATURES) which easy overriding of this, for Poky
->>> based distros.
->>>
->>> Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
->>
->>
->> Saul,
->>
->> Did you queued this one? Is there any feedback about this patch?
->>
-> This was missed becuase it went to the Yocto list not the
-> Poky@yoctoproject.org list.
->
-> I will queue it.
+Hello,
 
-Arrg; -ETOOMANYLISTS! ;-)
+The latest milestone release of the Yocto Project's upcoming 1.5 release, is now
+available for download at:
 
-Thanks
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m3/poky.tar.bz2
 
--- 
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://projetos.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+Thanks go out to everyone for all their hard work during this milestone release!
+
+Sincerely,
+
+Elizabeth Flanagan
+Yocto Build and Release
+<elizabeth.flanagan@intel.com>
+
+--------------------
+yocto-1.5_M3 Errata
+--------------------
+Release Name: poky-1.5_M3
+Branch:  master
+Tag:  1.5_M3
+Hash:  9de0ad47462c13ac4a2d73e12e92be6c1b4e0415
+md5: d34596ae2f14056a02fb0fb4b4ebb63c
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m3/poky.tar.bz2
+
+Release Name: eclipse-poky-juno-1.5_M3
+Branch:  master
+Tag:  1.5_M3
+Hash:  76df60597ae7cce069a5f1fd45089ea04c7394cd
+md5: 4059d198768f9f8dc9372dc1c54bc3c3
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m3/eclipse-poky-juno.tar.bz2
+
+Release Name: eclipse-poky-kepler-1.5_M3
+Branch:  master
+Tag:  1.5_M3
+Hash:  73cb94acdc81fd876c7da1c49334da9e714b11ee
+md5: 4059d198768f9f8dc9372dc1c54bc3cr
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m3/eclipse-poky-kepler.tar.bz2
+
+Release Name: meta-qt3-1.5_M3
+Branch:  master
+Tag:  1.5_M3
+Hash:  b73552fb998fd30a01dbee5a172e432a16078222
+md5: bbe92eeccf520f18f067f8f40f891774
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m3/meta-qt3.tar.bz2
+
+--------------------
+Features
+--------------------
+* Major tool chain upgrade: gcc 4.8, eglibc 2.18 recipes.
+* Generic x86 BSP supporting most of the graphic solutions. More
+hardware will be supported.
+* Bitbake refactoring including task execution structure change to use
+worker process (bitbake-worker) and the separation of configuration
+from data.
+* Eliminated the double bitbake execution of psuedo.
+* gcc security flags enabled to improve security level of images/binaries
+* meta-security layer to support Bastille Linux and other security tools.
+* Eclipse plugin has been upgraded to support Eclipse Kepler .
+* Infrastructure for automated QA testing. More testcases will be
+automated in the next milestone release.
+* Improvement and refactoring of sanity testing the package sanity
+test (insane.bbclass, package.bbclass)
+* User experience improvement including improved SMART package
+management tool error reporting, package date and bitbake error
+messages.
+* ptest added for more packages including busybox, python, kmod,
+libxml2, bzip2, etc. to enable automated testing (from the community)
+* Replaced Tinylogin with Busybox as the login manager.
+* More improvement and fixes for Wayland and systemd, etc.
+
+--------------------
+Known issues:
+--------------------
+- 3908        Kernel panic on qemux86-64 when using runqemu kvm and cpu host
+- 4529        x32 build fails with gmp_5.1.1 do_configure
+- 4783        [adt-installer] ARM: target arch change from armv5te to
+armv7a-vfp-neon in environment setting script
+- 4977        [Build Appliance] An error message when launch hob
 
