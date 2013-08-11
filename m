@@ -1,35 +1,41 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D01DDE003D4
-	for <yocto@yoctoproject.org>; Sun, 11 Aug 2013 00:03:27 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1V8PgT-0004Bo-SG
-	for yocto@yoctoproject.org; Sun, 11 Aug 2013 09:03:25 +0200
-Received: from 213.249.12.26 ([213.249.12.26])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sun, 11 Aug 2013 09:03:25 +0200
-Received: from gmane by 213.249.12.26 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sun, 11 Aug 2013 09:03:25 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Sun, 11 Aug 2013 10:03:12 +0300
-Message-ID: <52073730.8080203@reliableembeddedsystems.com>
-References: <CAPhnLPBbv232S0htae3WvEJ2A8UWRWH4Aj7og-bRGySkOqu+tA@mail.gmail.com>
-	<5205E9D6.6020408@reliableembeddedsystems.com>
-	<3217805.kYDiUIXKQu@helios>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 213.249.12.26
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
-In-Reply-To: <3217805.kYDiUIXKQu@helios>
-Cc: Robert Berger
-	<public-gmane-G/ASJRsgvFgvW+L+VdN226ESeJV5RFUqQQ4Iyu8u01E@plane.gmane.org>,
-	public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
-Subject: Re: [Announcement] Yocto Project 1.5 Milestone 3 now available.
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
+	[209.85.217.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59354E013A7
+	for <yocto@yoctoproject.org>; Sun, 11 Aug 2013 07:16:30 -0700 (PDT)
+Received: by mail-lb0-f180.google.com with SMTP id a16so4217952lbj.11
+	for <yocto@yoctoproject.org>; Sun, 11 Aug 2013 07:16:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=6a9AgaeTMXASmFbR4h9ETPHFT6taxGfPjTqIcdddMBo=;
+	b=JhdVOBYgppMM3kL291warmSDqVB+DcfJWbIDzj43DX481dYUtqonnTOOv0A/I6Z6Ui
+	oKB1XZnZMf3DyJ/C7ijfommK8nK/1Z8gkA6hn+8/gS3QAyCqFJi1FvmOjBhd+y1u+9MQ
+	9eqi9BgVkwwaq6CME29Jhr/7tp10T/Z8vufF3evYbxgOyoXFRJSlA+UmLzQNdfnMOHOI
+	+QtjkjXbGFrwLGgA2X5TY9JLpv4WtAVMjVW/KyU3U0i3cWQRB2lFTvIPJ4EYXFCSthZf
+	MdkU904Dea1S6MY4DU0nIaP6eRD2OwVbOmosjla6+c5G7KSNbOGBsgKWS+voUttF6EgE
+	bxsg==
+MIME-Version: 1.0
+X-Received: by 10.112.72.100 with SMTP id c4mr7887707lbv.57.1376230588534;
+	Sun, 11 Aug 2013 07:16:28 -0700 (PDT)
+Received: by 10.112.158.229 with HTTP; Sun, 11 Aug 2013 07:16:28 -0700 (PDT)
+In-Reply-To: <8371A058-7AA9-4799-B734-98EB7CA7E278@gmail.com>
+References: <51F8BAE8.3090805@gmail.com>
+	<CAAQYJAvPts390fqheZoHPN1XF3VtSZ8YaNuFp5P8f3fp_5r=ag@mail.gmail.com>
+	<51F8EDB2.4020001@gmail.com>
+	<CADkTA4NbutoU4AXyfQ84VQNCUmYv1PZwTFhYDBX8ENbOhCL0Gw@mail.gmail.com>
+	<8FA37C33-DF65-4B96-BD90-4D3B784E4A57@gmail.com>
+	<51FF1602.8040805@windriver.com>
+	<BD3A762D-ACE6-4DB3-971F-B5CC975C0D69@gmail.com>
+	<52028282.8020207@windriver.com> <520334EE.2090704@gmail.com>
+	<5203913D.8090606@windriver.com> <52071D37.9020009@windriver.com>
+	<8371A058-7AA9-4799-B734-98EB7CA7E278@gmail.com>
+Date: Sun, 11 Aug 2013 10:16:28 -0400
+Message-ID: <CADkTA4O2gKdLWebDpsbUiVvCgD9D3XEFbOtu5L_4K1QO+xjNLw@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: =?ISO-8859-1?Q?Martin_Erts=E5s?= <martiert@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Building linux-yocto kernel in own bsp layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,70 +47,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 11 Aug 2013 07:03:31 -0000
+X-List-Received-Date: Sun, 11 Aug 2013 14:16:32 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-Hi,
+On Sun, Aug 11, 2013 at 2:51 AM,  <martiert@gmail.com> wrote:
+> Btw. Is this yocto-kernel specifics, or is it relatively new in oe? I worked quite a bit in oe about a year ago, and we never used such a file then. But this was not a derivative of yocto-kernel.
 
-On 08/10/2013 01:02 PM, Paul Eggleton wrote:
-> 
-> The new framework replaces the old, is written in python and makes writing 
-> tests much easier. As a result we are going through a process of adding many 
-> more runtime tests than we had previously.
+It's been around since yocto 0.9, in one form or another, with tweaks
+to make things
+more "under the covers" as time progresses. It is inherent to kernel's
+that inherit
+kernel-yocto, which adds functionality around config fragments and
+patch management,
+etc. If I my latest rounds of tweaks would have been complete, it
+would have been
+nicely hidden here as well :) It wouldn't hurt other kernels, it would
+just be ignored.
 
-I'm confused now. Is it autobuilder + new stuff in python and/or ptest
-or something completely different? Are there already some examples in
-git I could have a look at?
+Bruce
 
-> 
-> 
-> We do definitely want automated testing on real hardware; it's just that that 
-> it presents a number of problems that need solving:
-> 
->  * How do you deploy the image/kernel/bootloader onto the board in an 
-> automated manner? 
+>
+> On 11. aug. 2013, at 07:12, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
+>
+>> On 13-08-08 8:38 AM, Bruce Ashfield wrote:
+>>> On 13-08-08 02:04 AM, Martin Ertsaas wrote:
+>>>> On 08/07/13 19:23, Bruce Ashfield wrote:
+>>>>> On 13-08-07 12:31 PM, martiert@gmail.com wrote:
+>>>>>> Bruce, have you had the opportunity to look at this yet?
+>>>>>
+>>>>> I was about to email on this. I was out of the office last week, but
+>>>>> was just starting on this last night.
+>>>>>
+>>>>> Cheers,
+>>>>>
+>>>>> Bruce
+>>>> Great. Thanks for the help btw. It is greatly appreciated. I'm kind of
+>>>> stuck on what I have done wrong on this one.
+>>>
+>>> Understood. I'm bumping this up to my list and have started a test build.
+>>
+>> I've sorted this out. You didn't do anything wrong, outside of not
+>> defining a BSP description for the board you are building.
+>>
+>> I've had a patch queued for 1.5 that would have detected this mismatch
+>> and adapted, but that change is held up on the 3.10 kernel and some
+>> other changes .. but I digress.
+>>
+>> This also should have been in the docs, since it is what the yocto-bsp
+>> tool generates for new BSPs. But it's probably not obvious enough, and
+>> with my pending patches, that should be ok .. but I digress again.
+>>
+>> What basically happened is that the atom-pc BSP description was picked
+>> to match your pandaboard build. That's why you see the different architecture
+>> and what looks like an ignored defconfig. The tools will shortly
+>> generate you a skeleton config, but for now, you need to define your
+>> own that will be found and used.
+>>
+>> I've attached a patch that does just that, and when I configured,
+>> everything was applied properly.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>>
+>>> Bruce
+>>>
+>>>>
+>>>> - Martin
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>> <0001-pandaboard-add-BSP-description.patch>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-I use kernel over tftp and rootfs over nfs. The trivial example of a
-boot loader upgrade is when you have a running (Linux) system just scp
-it over. It's getting non trivial in case you manage to screw up the
-boot loader. For the generic case maybe some update strategy with a
-fallback solution to a known good boot loader might be needed.
-
-> To different kinds of boards?
-
-kernel over tftp and rootfs over nfs should work with all boards.
-
->  * How do you manage access to the boards when you have multiple autobuilders 
-> potentially wanting to make use of them at around the same time?
-
-Mutual exclusive access to the (serial) console can be handled by
-conserver. Mutual exclusive via ssh gets more tricky.
-
-I don't think it makes much sense to access the same board from multiple
-autobuilders. This is most likely an error case which you would like to
-catch.
-
-> 
-> We'll be working through these but the likelihood is that we won't have this 
-> part of it for 1.5. Once we do though, connecting the currently QEMU-based 
-> testing framework to it should be trivial.
-
-OK understood. Please keep me updated.
-
-> 
-> Cheers,
-> Paul
-
-Regards,
-
-Robert
-
-...If you think good architecture is expensive, try bad architecture -
-Brian Foote and Joseph Yoder
-
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
