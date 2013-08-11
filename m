@@ -1,27 +1,27 @@
 Return-Path: <martiert@gmail.com>
-Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
-	[209.85.215.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17803E003D4
-	for <yocto@yoctoproject.org>; Sat, 10 Aug 2013 23:30:20 -0700 (PDT)
-Received: by mail-ea0-f170.google.com with SMTP id h14so2774291eak.15
-	for <yocto@yoctoproject.org>; Sat, 10 Aug 2013 23:30:19 -0700 (PDT)
+Received: from mail-ea0-f171.google.com (mail-ea0-f171.google.com
+	[209.85.215.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54FEDE003D4
+	for <yocto@yoctoproject.org>; Sat, 10 Aug 2013 23:51:50 -0700 (PDT)
+Received: by mail-ea0-f171.google.com with SMTP id n15so2797541ead.2
+	for <yocto@yoctoproject.org>; Sat, 10 Aug 2013 23:51:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=references:mime-version:in-reply-to:content-type
 	:content-transfer-encoding:message-id:cc:from:subject:date:to;
-	bh=QLAcE/2NNgKJRMqXAanzCD6ygvNKDkvV0GxJklevKvs=;
-	b=MIHUt/LAWz2+ywtRjQjQfnfaMz3zH4nir2KY1EmV+i0vQgJDODLdT9+6zeOQdjnOIp
-	5WIJEmxXwkrSABXQgaeArFUbUJhxvbCCZrZ+Kv6UpatZCDpE2lqkrA1XPIxQcChPVlZf
-	roD9ROFNfIl9GgR+daLGC70c5TTkOT4PVAwdRFYCkGF5PbnQJgRyscKSMlMM2oofGGtf
-	hJ318K5s4n1LTzf2rNI+2PkbbYj91btmybFYT07lbJmVUDhQ1OsFyuYVnTGw3soqPOeW
-	gt/v3D9h6AYgd630745WasAfIv5y5+JJ0cUdevgvBLD0jXgvatlcvO6+F7mcqC/lfk+y
-	W4tA==
-X-Received: by 10.14.110.194 with SMTP id u42mr20134433eeg.112.1376202619200; 
-	Sat, 10 Aug 2013 23:30:19 -0700 (PDT)
+	bh=rHKm0jMG8yk8UAMceA5eFQ6Q5v7GjHSfoM56OWVZ6IM=;
+	b=CMhjUMhMRq95VLnJcuMWiRymY39sp3EMafV577MP6vDEpNEiVs7R9YRQiEQkBMfA+x
+	Diz97FwWnyvuxf3hMrNCuCpag4X9O6riAXt3+dXTuvVWKYDi1ElblIudmwV2EZhYFdFZ
+	kNy044niF/cw9ooIyB0pdOqwfbCT/kPkqBPJTydA/FJZcpKAuoRcDXwLSFHVKSKzpfzr
+	jn8rPvJm29X8tVBzm54vtaRUi/0geyalRwNzuPlwE4oxo5ooMdU2yUO9qx5WFkrP1Ja/
+	FadEZ2X9sxoFo6xINpYKpyptBlOt8LhNVXyYa7HJDiaF23WoXbGxrcubv6IgxCEUyoT+
+	kFxQ==
+X-Received: by 10.14.214.136 with SMTP id c8mr19855982eep.6.1376203909294;
+	Sat, 10 Aug 2013 23:51:49 -0700 (PDT)
 Received: from [192.168.1.141] ([95.169.53.65])
-	by mx.google.com with ESMTPSA id p5sm45306541eeg.5.2013.08.10.23.30.17
+	by mx.google.com with ESMTPSA id a4sm45462713eez.0.2013.08.10.23.51.47
 	for <multiple recipients>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 10 Aug 2013 23:30:18 -0700 (PDT)
+	Sat, 10 Aug 2013 23:51:48 -0700 (PDT)
 References: <51F8BAE8.3090805@gmail.com>
 	<CAAQYJAvPts390fqheZoHPN1XF3VtSZ8YaNuFp5P8f3fp_5r=ag@mail.gmail.com>
 	<51F8EDB2.4020001@gmail.com>
@@ -33,10 +33,10 @@ References: <51F8BAE8.3090805@gmail.com>
 	<5203913D.8090606@windriver.com> <52071D37.9020009@windriver.com>
 Mime-Version: 1.0 (1.0)
 In-Reply-To: <52071D37.9020009@windriver.com>
-Message-Id: <6E97B830-76B6-4D29-993B-D73A7732E044@gmail.com>
+Message-Id: <8371A058-7AA9-4799-B734-98EB7CA7E278@gmail.com>
 X-Mailer: iPad Mail (10B329)
 From: martiert@gmail.com
-Date: Sun, 11 Aug 2013 08:30:18 +0200
+Date: Sun, 11 Aug 2013 08:51:48 +0200
 To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Building linux-yocto kernel in own bsp layer
@@ -51,16 +51,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 11 Aug 2013 06:30:21 -0000
+X-List-Received-Date: Sun, 11 Aug 2013 06:51:52 -0000
 Content-Type: text/plain;
 	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Cool. Thank you so much for the help. Looking forward to getting home tomorr=
-ow and testing it out. Can't help but love this community and the help one g=
-ets here.
-
-- Martin
+Btw. Is this yocto-kernel specifics, or is it relatively new in oe? I worked=
+ quite a bit in oe about a year ago, and we never used such a file then. But=
+ this was not a derivative of yocto-kernel.
 
 On 11. aug. 2013, at 07:12, Bruce Ashfield <bruce.ashfield@windriver.com> wr=
 ote:
