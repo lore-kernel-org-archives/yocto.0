@@ -1,24 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8570DE0157B
-	for <yocto@yoctoproject.org>; Mon, 12 Aug 2013 02:28:14 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 12 Aug 2013 02:28:14 -0700
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B75ECE0157B
+	for <yocto@yoctoproject.org>; Mon, 12 Aug 2013 02:44:07 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 12 Aug 2013 02:44:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,861,1367996400"; d="scan'208";a="379542802"
+X-IronPort-AV: E=Sophos;i="4.89,861,1367996400"; d="scan'208";a="384904142"
 Received: from timevans-mobl.ger.corp.intel.com (HELO helios.localnet)
 	([10.252.122.221])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Aug 2013 02:28:13 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 12 Aug 2013 02:44:06 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
-Date: Mon, 12 Aug 2013 10:28:11 +0100
-Message-ID: <3375908.sLNS3qEgcB@helios>
+To: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Mon, 12 Aug 2013 10:44:05 +0100
+Message-ID: <4160632.rshblPy5ts@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <20130812091145.GE12589@sestofb10.enea.se>
+In-Reply-To: <52073730.8080203@reliableembeddedsystems.com>
 References: <CAPhnLPBbv232S0htae3WvEJ2A8UWRWH4Aj7og-bRGySkOqu+tA@mail.gmail.com>
 	<3217805.kYDiUIXKQu@helios>
-	<20130812091145.GE12589@sestofb10.enea.se>
+	<52073730.8080203@reliableembeddedsystems.com>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: [Announcement] Yocto Project 1.5 Milestone 3 now available.
@@ -33,86 +33,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Aug 2013 09:28:17 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 12 Aug 2013 09:44:10 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Bj=F6rn,
+On Sunday 11 August 2013 10:03:12 Robert Berger wrote:
+> On 08/10/2013 01:02 PM, Paul Eggleton wrote:
+> > The new framework replaces the old, is written in python and makes writing
+> > tests much easier. As a result we are going through a process of adding
+> > many more runtime tests than we had previously.
+> 
+> I'm confused now. Is it autobuilder + new stuff in python and/or ptest
+> or something completely different? Are there already some examples in
+> git I could have a look at?
 
-On Monday 12 August 2013 11:11:45 Bj=F6rn Stenberg wrote:
-> Paul Eggleton wrote:
-> > We do definitely want automated testing on real hardware; it's just=
- that
+This is largely unrelated to ptest although at some point in the near future 
+we'll need to have a discussion about how ptest should be integrated. It's 
+really about being able to easily define tests that verify functionality of 
+multiple installed packages together, e.g. whether smart can install an rpm 
+package from a feed.
+
+There's not much on the autobuilder side apart from ensuring the appropriate 
+configuration is set - one of the aims was to avoid too much intrusion into the 
+autobuilder code. The main class is testimage.bbclass, so you can just do 
+INHERIT += "testimage" in local.conf and then run bitbake -c testimage 
+<imagename>. The tests are in meta/lib/oeqa/runtime/ and utility code under 
+meta/lib/oeqa/utils. 
+
+There's no documentation for this yet other than what's in the code (and there 
+are some comments there), but it's coming soon.
+
+> > We do definitely want automated testing on real hardware; it's just that
 > > that it presents a number of problems that need solving:
-> >  * How do you deploy the image/kernel/bootloader onto the board in =
-an
-> > automated manner? To different kinds of boards?
+> >  * How do you deploy the image/kernel/bootloader onto the board in an
+> > automated manner?
+> 
+> I use kernel over tftp and rootfs over nfs. The trivial example of a
+> boot loader upgrade is when you have a running (Linux) system just scp
+> it over. It's getting non trivial in case you manage to screw up the
+> boot loader. For the generic case maybe some update strategy with a
+> fallback solution to a known good boot loader might be needed.
+> 
+> > To different kinds of boards?
+> 
+> kernel over tftp and rootfs over nfs should work with all boards.
+
+Sounds like a sensible approach then.
+ 
 > >  * How do you manage access to the boards when you have multiple
-> > autobuilders potentially wanting to make use of them at around the =
-same
-> > time?
->=20
-> These are all solved problems. We build and auto-test Yocto nightly o=
-n a
-> bunch of different hardware using tftp and nfs. I'm sure other teams =
-do
-> something similar. However, since there is no Yocto standard for this=
- yet
-> we all do it slightly differently.
+> >  autobuilders potentially wanting to make use of them at around the same
+> >  time?
+> 
+> Mutual exclusive access to the (serial) console can be handled by
+> conserver. Mutual exclusive via ssh gets more tricky.
 
-Right, that's what we would be aiming for. Perhaps you could talk a lit=
-tle bit=20
-about how you manage your hardware testing and any additional software =
-and=20
-scripts you make use of there?
+The point is I think at least for how we run the YP autobuilders you'd want 
+there to be a queueing mechanism.
+ 
+> I don't think it makes much sense to access the same board from multiple
+> autobuilders. This is most likely an error case which you would like to
+> catch.
 
-> Also, even when/if Intel sets up an automated hardware lab for Yocto,=
- it
-> will necessarily only have a limited selection of boards. Perhaps we =
-could
-> have a system where we pool community test results into one place rat=
-her
-> than depend on a single test lab.
-
-I agree. In fact our test lab would probably be limited to the referenc=
-e=20
-boards that the Yocto Project officially supports within meta-yocto i.e=
-. what we=20
-currently test on manually.
-
-> I have said it before, and I'll remind/nag about it again: Please don=
-'t run
-> off and do this on your own. This is something that touches the daily=
- work
-> of many community members and it should be done with open discussion.=
-
-
-Good point, but this is one of the reasons we haven't done anything oth=
-er than=20
-some thinking about it on my part :) FWIW we still haven't started anyt=
-hing on=20
-ptest automation either so it's not the case that work is being done on=
- these=20
-things outside of community channels. In either case, we can definitely=
- start=20
-talking about it now if folks are ready but it's likely the implementat=
-ion=20
-work won't get done until 1.6.
-
-The automated testing work we have done so far for 1.5 is just about en=
-suring=20
-there is a simple way to define runtime tests (completely separate from=
- ptest)=20
-and make that easy for people to extend to cover their own use cases. T=
-his in=20
-turn makes it easier runtime tests to be written to automate a large po=
-rtion=20
-of our existing manual QA process.
+I agree, but equally I think it would be preferable for an autobuilder task 
+that requires access to a board to wait until any other users have finished 
+rather than just failing immediately, and if possible to know the difference 
+between waiting for access and timing out because the device isn't responding.
 
 Cheers,
 Paul
 
---=20
+-- 
 
 Paul Eggleton
 Intel Open Source Technology Centre
