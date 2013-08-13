@@ -1,33 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFA05E01405
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:37:15 -0700 (PDT)
-Received: by mail-vc0-f173.google.com with SMTP id id13so3583569vcb.4
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:37:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=DtAdRfebzLbh0abl/aRuFPo4W/0HKuFDyhsEj3Em7jc=;
-	b=JTAHg72IQ6YWqVqdUrX/EHTS5zNbNg2ZuQIACheT++jAv9+w3xG0Suj6rX662X24gK
-	tC6b5dFmD6X6xCYy+YPPOtaUlwDZJ8Lr/0cBWxTr8MWBItwEh09eUbtTiYutHBHBS4g0
-	WA9h6Vlty7Vb9ayb+6BzXw5IDpQ9TeKTIuj9m1sydcwL2AXh2r1bGuGh2XhsWoAokPZz
-	QQRMa9OW97eU2fXW5UyQNeCHBcHGHIGhVxKcA2StfhGh0ul1AHjylhvjZRauVs/J8XmP
-	88Y5I67LqZfXpHG9sswoxPLo3kX+Ib87Ij09uXUlA9VqjblNIHctSUtlkgu/02q/zjZG
-	ULjQ==
-X-Gm-Message-State: ALoCoQkMi8+zJh2GZ7UZj57+YCXLyieavoMWkO/JSyJDbXQghl9m9Ju5qlXZokGaL8Hluecl2oRS
-X-Received: by 10.52.35.171 with SMTP id i11mr2829715vdj.4.1376383035000; Tue,
-	13 Aug 2013 01:37:15 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Tue, 13 Aug 2013 01:36:54 -0700 (PDT)
-In-Reply-To: <CAHwX21qDOwpi-ea2Eh4=EXJpEv7k9Em_2PMGvURVstK409MmpQ@mail.gmail.com>
+Return-Path: <tomschuring@gmail.com>
+Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
+	[209.85.192.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDE53E01405
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 02:05:28 -0700 (PDT)
+Received: by mail-pd0-f177.google.com with SMTP id y10so4575633pdj.8
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 02:05:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date
+	:content-transfer-encoding:message-id:references:to;
+	bh=K/XSuFTgHjekrVjTX7Lw7I5Ej5mauEaRccaLwFJGFH8=;
+	b=EICoQv5b22OFtl3rYSgXXqhktAl9FxukHGfs5q+J47Sq0jddtnbzWor3mzqYQoPwzZ
+	ay56bk9kRByfOleWKwBtPpa1qA+mE9v/oH7xIEfQrFgwSJg2qrzivgXE8XX8MjyHVPDE
+	XKfFBfd3f9PmKgGqtUFmf7fp01/XN5RGetw2ZZDgPNEX8lph5m/2pc0seTlu/EBoC7e4
+	PvPIrkCRLGEbiqmtGUX5VS7OgPDA7RQiDtcYLW9ADNX7q2rQb9lIs6zx1zve/hiFw3wH
+	R90vj+0gHsB6wrCU4REXLq7nxasDAdTKvnuOWPjQmf1KNNuqLwfyMz0Z9hzfnVIC3nVJ
+	vVwQ==
+X-Received: by 10.66.27.143 with SMTP id t15mr928545pag.171.1376384727989;
+	Tue, 13 Aug 2013 02:05:27 -0700 (PDT)
+Received: from [10.1.1.9] (124-148-182-130.dyn.iinet.net.au. [124.148.182.130])
+	by mx.google.com with ESMTPSA id
+	yk10sm45387429pac.16.2013.08.13.02.05.25 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 13 Aug 2013 02:05:26 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: tom schuring <tomschuring@gmail.com>
+In-Reply-To: <CAJTo0LaQKN60TuMYnLe9e3V=LJzyeJCgNKNPtd_OGDb0GvdD5Q@mail.gmail.com>
+Date: Tue, 13 Aug 2013 19:05:21 +1000
+Message-Id: <F5407ED9-9AE1-4C40-A9E6-63E7D3B2FF8A@gmail.com>
 References: <CAHwX21qDOwpi-ea2Eh4=EXJpEv7k9Em_2PMGvURVstK409MmpQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 13 Aug 2013 09:36:54 +0100
-Message-ID: <CAJTo0LaQKN60TuMYnLe9e3V=LJzyeJCgNKNPtd_OGDb0GvdD5Q@mail.gmail.com>
-To: tom schuring <tom@clogwog.net>
-Cc: yocto@yoctoproject.org
+	<CAJTo0LaQKN60TuMYnLe9e3V=LJzyeJCgNKNPtd_OGDb0GvdD5Q@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailer: Apple Mail (2.1508)
 Subject: Re: matchbox-keyboard documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,16 +43,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 08:37:16 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 13 Aug 2013 09:05:33 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On 13 August 2013 07:08, tom schuring <tom@clogwog.net> wrote:
-> could you please point me in the right location of where i could find some
-> documentation about the matchbox-keyboard ? for example is there an API for
-> the keyboard ?
+thanks Ross,
 
-There isn't any real documentation, but the latest version of the
-keyboard has an embedded API available.
+is there an example that uses the API ? is it the matchbox-keyboard-im ?
 
-Ross
+
+> There isn't any real documentation, but the latest version of the
+> keyboard has an embedded API available.
+> 
+> Ross
+
 
