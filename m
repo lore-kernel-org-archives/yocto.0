@@ -1,39 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
-	[209.85.214.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EC68E002F9
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 09:43:37 -0700 (PDT)
-Received: by mail-ob0-f180.google.com with SMTP id up14so10527363obb.39
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 09:43:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=Cvza40zf4vXc4PHy8XHUhP/1y62r4bas78xYVqbY5Xc=;
-	b=z84V01fcl7E6T0qxnKGcn1HaQ/qw4lWgz01+m/NrD+5z/fuG+XdI0Fc1wOnes6XGzI
-	hrJwzpudhsiD0I6zCm6i68omq4tleAYyf/xTHiZG+ksDELtnyy4lsVroJNt6+3MAgn9j
-	2fvHNfRSvzyrO+Dse3vrntT4OJadOwPLkBzZej95LXlEzRSfRE9pm4TTChdMqJPv+PVD
-	NgZ7fm5SeSP1vE5ajLxlzIZclUAYd6PfYdCFG25G/5BbssMvg9ulzOZIbMQkhkRSR6kS
-	bAQ8veCRF8RGk3+727eJK4Uxjk/6K/lTReLR+af/g02Um4FdO9pwNt2Yj79IBMjs9vEH
-	T5bg==
-X-Received: by 10.60.58.71 with SMTP id o7mr5303016oeq.51.1376412217046;
-	Tue, 13 Aug 2013 09:43:37 -0700 (PDT)
-Received: from [172.23.7.190] (natint3.juniper.net. [66.129.224.36])
-	by mx.google.com with ESMTPSA id a18sm39890205obf.7.2013.08.13.09.43.34
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 13 Aug 2013 09:43:35 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAJTo0LY-7xFkBT7B4zWA3FTGE+smpWsujrCeLVZHuVPpgbO_aQ@mail.gmail.com>
-Date: Tue, 13 Aug 2013 09:43:35 -0700
-Message-Id: <DF8021D0-7106-4D06-8F4B-F0386D5AA37C@gmail.com>
-References: <CAJTo0LbWwCShYjVUfemPkiXP5fZjLwQoM2HNdYuqorXv_UNt8g@mail.gmail.com>
-	<D9E64E73-EE3C-45F2-BC68-766D4CD45BDC@gmail.com>
-	<CAJTo0LY-7xFkBT7B4zWA3FTGE+smpWsujrCeLVZHuVPpgbO_aQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1508)
-Cc: yocto@yoctoproject.org
-Subject: Re: Using tmpfs for WORKDIR
+Return-Path: <song.liu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8259BE003D3
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 13:17:26 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 13 Aug 2013 13:17:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,872,1367996400"; 
+	d="scan'208,217";a="281531084"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by AZSMGA002.ch.intel.com with ESMTP; 13 Aug 2013 13:17:25 -0700
+Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 13 Aug 2013 13:17:24 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.212]) by
+	ORSMSX156.amr.corp.intel.com ([169.254.8.154]) with mapi id
+	14.03.0123.003; Tue, 13 Aug 2013 13:17:24 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	August 13, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac6YYgvMWLBYbuhlRGCdPumjpQ05FQAAAsaA
+Date: Tue, 13 Aug 2013 20:17:24 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A7EEB5BDC@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, August 13, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,34 +39,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 16:43:38 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Tue, 13 Aug 2013 20:17:30 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB5BDCORSMSX108amrcor_"
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB5BDCORSMSX108amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Attendees:
+DavidW, Nitin, SteveL, Saul, DaveST, Beth, ChrisL, ScottR, TomZ, MichaelH, =
+MarkH, Denys, BruceA, Cristian, Cristiana, Richard, JeffP, Darren, Belen, S=
+imar, PaulE, Song
 
-On Aug 13, 2013, at 9:39 AM, "Burton, Ross" <ross.burton@intel.com> =
-wrote:
+Welcome back, Richard!
 
-> On 13 August 2013 17:37, Khem Raj <raj.khem@gmail.com> wrote:
->> This seems reasonable especially for folks who don't want to keep =
-intermediate objects around
->> in build tree. I also have a setup where I build in tmpfs. I think it =
-would be a nice step
->> to write a wiki document explaining steps that are needed to =
-configure your system to use tmpfs so anyone can
->> try it out and with a bit of added explanation on how much ram is =
-minimally needed and so on.
->> and we can then keep improving this document.
->=20
-> Agreed.  It's interesting that so many people are building this way,
-> so we should consolidate the best practises.
->=20
-> Do you build with TMPDIR in tmpfs, or just WORKDIR in tmpfs?
+Agenda:
 
-I usually keep everything in tmpfs and use sstate over network this is =
-on a machine with 128G RAM
+* Opens collection - 5 min (Song)
+* Yocto 1.5 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
+  - Bug fixing: 32 bugs fixed in the past week. WDD number is coming down. =
+Reiterate the priority: bug fixing and package update. Wondering if we can =
+have a bug squashing contest for the release. Anyone has any ideas?
+  - feature development:
+    . 3429. Duplicate of Fenrus updater moving to the future.
+    . 3847/Tom: Design ready, waiting for Darren to review. It seems risky =
+to make M4. Kernel team will discuss tomorrow.
+    . 3867/Saul: Saul is working with Mulhern on this. Not sure if it can m=
+ake M4.
+    . 4072/Bruce: in progress, several people working on it. So far, it is =
+on track.
+    . 4079/Paul/Mark: Mark is working with Paul on this. Today there will b=
+e some patches for the first phase. Mark will work on the second pass which=
+ involves package group, figuring out the solution.
+  - Nitin 4444:video encode/transcode, depending on some work to be upstrea=
+med, is trending toward late August or early Sep.
+  - M4 cut-off date, feature complete: 8/25. Please get your code in asap.
+  - Ramana: Richard is back, would like him to review the binary configurat=
+ion tool.
+    .Richard: Many things on hand, trying to take a look at this.
+* SWAT team rotation: Ross -> Cristiana
+* Opens - 10 min
+  - Paul: 1.4.2. Final patch sets have been merged. But noticed Saul just s=
+ent more fixed we would like to have.
+    . Song/Alex: a short window this week and next. If we can get the build=
+ done this week, then QA can test. Otherwise, we will have to wait until 1.=
+5 releases (Oct. 18th).
+* Team Sharing - 20 min
+  -Beth: there is a new feature in AB. If a build is a release, you need to=
+ indicate it is a release, it will be marked, and won't be deleted. Bug #44=
+81, human readable release, you need to name the release. Will be sending o=
+ut a note/email on this.
 
->=20
-> Ross
 
 
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB5BDCORSMSX108amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>DavidW, Nitin, SteveL, Saul, DaveST, Beth, ChrisL, ScottR, TomZ, Micha=
+elH, MarkH, Denys, BruceA, Cristian, Cristiana, Richard, JeffP, Darren, Bel=
+en, Simar, PaulE, Song&nbsp; </div>
+<div>&nbsp;</div>
+<div>Welcome back, Richard!</div>
+<div><font face=3D"Calibri">&nbsp;</font></div>
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.5 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status</u></font></a></div>
+<div>&nbsp; - Bug fixing: 32 bugs fixed in the past week. WDD number is com=
+ing down. Reiterate the priority: bug fixing and package update. Wondering =
+if we can have a bug squashing contest for the release. Anyone has any idea=
+s?</div>
+<div>&nbsp; - feature development:</div>
+<div>&nbsp;&nbsp;&nbsp; . 3429. Duplicate of Fenrus updater moving to the f=
+uture.</div>
+<div>&nbsp;&nbsp;&nbsp; . 3847/Tom: Design ready, waiting for Darren to rev=
+iew. It seems risky to make M4. Kernel team will discuss tomorrow.</div>
+<div>&nbsp;&nbsp;&nbsp; . 3867/Saul: Saul is working with Mulhern on this. =
+Not sure if it can make M4.</div>
+<div>&nbsp;&nbsp;&nbsp; . 4072/Bruce: in progress, several people working o=
+n it. So far, it is on track. </div>
+<div>&nbsp;&nbsp;&nbsp; . 4079/Paul/Mark: Mark is working with Paul on this=
+. Today there will be some patches for the first phase. Mark will work on t=
+he second pass which involves package group, figuring out the solution.</di=
+v>
+<div>&nbsp; - Nitin 4444:video encode/transcode, depending on some work to =
+be upstreamed, is trending toward late August or early Sep.</div>
+<div>&nbsp; - M4 cut-off date, feature complete: 8/25. Please get your code=
+ in asap. </div>
+<div>&nbsp; - Ramana: Richard is back, would like him to review the binary =
+configuration tool.</div>
+<div>&nbsp;&nbsp;&nbsp; .Richard: Many things on hand, trying to take a loo=
+k at this. </div>
+<div>* SWAT team rotation: Ross -&gt; Cristiana</div>
+<div>* Opens - 10 min </div>
+<div>&nbsp; - Paul: 1.4.2. Final patch sets have been merged. But noticed S=
+aul just sent more fixed we would like to have.</div>
+<div>&nbsp;&nbsp;&nbsp; . Song/Alex: a short window this week and next. If =
+we can get the build done this week, then QA can test. Otherwise, we will h=
+ave to wait until 1.5 releases (Oct. 18th).</div>
+<div>* Team Sharing - 20 min</div>
+<div>&nbsp; -Beth: there is a new feature in AB. If a build is a release, y=
+ou need to indicate it is a release, it will be marked, and won't be delete=
+d. Bug #4481, human readable release, you need to name the release. Will be=
+ sending out a note/email on this.</div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A7EEB5BDCORSMSX108amrcor_--
