@@ -1,35 +1,33 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f178.google.com (mail-ea0-f178.google.com
-	[209.85.215.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1CABE01405
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 04:32:03 -0700 (PDT)
-Received: by mail-ea0-f178.google.com with SMTP id a15so3993615eae.37
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 04:32:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=SUaLbs22C0B7HRQpGRZx7zlTTL1cptomGWeu/EhOncw=;
-	b=PL5QlEiiSBr0HO6eilY032s/TcJjDgU9UTfu4E09wSFQ3lILaMmkl86mTbLsyGvjVA
-	Gy7JjkU9Gos1c/Qbkng7MvJ4Mb792vDA4LXBiCb7Yyz12yTot3zq9uqpd10wOHgPt+o9
-	lmyWhkyTHZSjnmDeIjUisk3ImotUs0lIWRSvvJNUz78NMBZQoymnoZQeI2OLWOtrozQ6
-	4kkguVOYjsNljwm9SQyVZfDLpfjU3l4V35epoDlh7k2T4mBl75LcVTp6A4mm5PA1590g
-	NgWHYP9vbo/cem1ZylMjycAxVEMI9bEXZobteQDxhqcOm0BmKXO8DsWrlVfBmb6eTbR5
-	Va4g==
-X-Received: by 10.15.109.135 with SMTP id cf7mr6124417eeb.0.1376393522832;
-	Tue, 13 Aug 2013 04:32:02 -0700 (PDT)
-Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
-	by mx.google.com with ESMTPSA id
-	bn13sm65606235eeb.11.2013.08.13.04.32.01 for <multiple recipients>
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Tue, 13 Aug 2013 04:32:02 -0700 (PDT)
-Date: Tue, 13 Aug 2013 13:32:52 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Message-ID: <20130813113252.GM17945@jama>
-References: <CAJTo0LbWwCShYjVUfemPkiXP5fZjLwQoM2HNdYuqorXv_UNt8g@mail.gmail.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
+	[209.85.128.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 331E5E002F9
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 06:27:31 -0700 (PDT)
+Received: by mail-ve0-f180.google.com with SMTP id pb11so6623274veb.39
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 06:27:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=po+8xz7dc199l8gDf52Sz0EP1846Rj/LdOgBaxjU/Yc=;
+	b=mep2ZVmTswQFtEMvkPfhMlGGqk9qAT4+S+v7JFhW2ogaIseNNOngf5lGRyQSqxDm/C
+	ZFJxdmkooGPvsWUZy6etYA53EaFbH8t9Qmh/F4fmgmNbQLPGRlU521v2bBe1D747VKxJ
+	gQSjMK3Tw9us8h2N8Z1NL5QWWzl2muJ1TvelL3l75dHXTDuJAp7KDD77wp5FQ3uR5E93
+	EnZi0+TNxhMLVZRZCq4Cbc933z8pcTKIoOGNEVzr1UBnRVde4BfTOQDw73eB/KMuyP9W
+	IlxWlzMjMN8qa0P36O5HRLluXRpH/fR/L0P8RMbIJ0XTgLTEyOjFuBsE8OIu/22g97dR
+	x92A==
+X-Gm-Message-State: ALoCoQkkpAPxcX+RkWVEGH8MAfqhmFbNblVotMSjsO6tVbd8KkUlayDzyKxSlyXzK2BE1PF/iqJJ
+X-Received: by 10.52.94.115 with SMTP id db19mr832113vdb.38.1376400449615;
+	Tue, 13 Aug 2013 06:27:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LbWwCShYjVUfemPkiXP5fZjLwQoM2HNdYuqorXv_UNt8g@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Received: by 10.220.71.201 with HTTP; Tue, 13 Aug 2013 06:27:09 -0700 (PDT)
+In-Reply-To: <20130813113252.GM17945@jama>
+References: <CAJTo0LbWwCShYjVUfemPkiXP5fZjLwQoM2HNdYuqorXv_UNt8g@mail.gmail.com>
+	<20130813113252.GM17945@jama>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 13 Aug 2013 14:27:09 +0100
+Message-ID: <CAJTo0LZNin6vVixi7G3kNsCo=WRE4JYF4VSep14vd51+Fh_apg@mail.gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Using tmpfs for WORKDIR
 X-BeenThere: yocto@yoctoproject.org
@@ -43,101 +41,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 11:32:06 -0000
-X-Groupsio-MsgNum: 15449
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="m+utxuhC6KVTvgNz"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 13 Aug 2013 13:27:35 -0000
+Content-Type: text/plain; charset=UTF-8
 
---m+utxuhC6KVTvgNz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Martin,
 
-On Tue, Aug 13, 2013 at 11:40:03AM +0100, Burton, Ross wrote:
-> Hi,
->=20
-> For a while I've been wondering about the possible performance
-> improvement from using a tmpfs as $WORKDIR, so each package is
-> unpacked, compiled, installed, and packaged in a tmpfs and then the
-> final packages moved to the deploy/sstate/sysroot in persistent
-> storage.  In theory with lots of RAM and a relatively long file system
-> commit duration this should be what effectively happens, but there is
-> a lot of I/O still happening during builds (and occasionally pausing
-> the build whilst buffers empty here) which I was trying to mitigate,
-> despite 12G of my 16G RAM being used as the page cache.
->=20
-> Last night I finally got around to testing this.  Unless you've an
-> ungodly amount of RAM the use of rm_work is mandatory (a 6G tmpfs
-> wasn't sufficient as a kernel build almost fills that, 8G was
-> sufficient for me) so I did the HDD times with and without rm_work for
-> fair comparisons.  Each build was only done once but the machine was
-> otherwise idle so error margins should be respectable.  The benchmark
-> was core-image-sato for atom-pc from scratch (with cached downloads).
->=20
-> Work in HDD without rm_work: ~68 minutes
-> Work in HDD with rm_work: ~71 minutes
-> Work in tmpfs with rm_work: ~64 minutes
->=20
-> Everyone loves graphs, so here's one I knocked up:  http://bit.ly/146B0Xo
->=20
-> Conclusion: even with the overhead of rm_work there's a performance
-> advantage to using a tmpfs for the workdir, but the build isn't
-> massively I/O bound on commodity hardware (i7 with WD Caviar Green
-> disks).  It's definitely a quick and easy test (assuming enough RAM)
-> to see how I/O bound your own builds are.
+On 13 August 2013 12:32, Martin Jansa <martin.jansa@gmail.com> wrote:
+> 1) with 64GB ram + rm_work I can do my huge world builds (with 20+ layers)
+> in tmpfs (whole TMPDIR not only WORKDIR)
 
-I'm building in tmpfs for long time so I can add few more comments.
+As I said, ungodly amounts. ;)
 
-1) with 64GB ram + rm_work I can do my huge world builds (with 20+ layers)
-in tmpfs (whole TMPDIR not only WORKDIR), before
-http://git.openembedded.org/openembedded-core/commit/meta/classes/rm_work.b=
-bclass?id=3D4067afcda78d17058f2aa8d7f82173d181e0aae4
-I had to build in "steps"
+I expect tmpfs for $WORKDIR or $TMPDIR is incredibly useful to remove
+I/O limits from CPU-heavy systems.  I've only a i7 but I expect you've
+got quite a bit more CPU available for builds.
 
-2) rm_work.bbclass sets BB_SCHEDULER ?=3D "completion", but it doesn't
-work as I would expect, it still keeps many build directories around,
-before rm_work task is executed, simple solution for lazy people is to
-build in "steps", instead of
-bitbake my-big-image
-do
-bitbake gcc-cross
-bitbake virtual/kernel
-bitbake webkit-gtk
-bitbake my-big-image
-it will force rm_work to be executed sooner (before each target is
-finished and will clean more space in tmpfs with each step). This way
-I'm able to use 14GB tmpfs WORKDIR on my poor desktop with only 16GB RAM
-to build anything (webkit builds for x86-64 MACHINE are the worst)
+> 4) using tmpfs has 2 more advantages
+>    - disks don't wear off so fast
 
-3) there is bug in sstate dependency handling that too many
-do_package_setscene tasks are executed in each build with rm_work, which
-also causes package/packages-split directories to be created again in
-tmpfs, see
-http://git.openembedded.org/openembedded-core/commit/?id=3D6107ee294afde395=
-e39d084c33e8e94013c625a9
+Definitely.  I had a paragraph along these lines in my drafts but
+deleted it.  Even with just WORKDIR in tmpfs I was seeing massively
+reduced disk use as it was only used to read the source tarball from
+downloads, reading the sysroot (likely entirely cached), and writing
+the results to sysroot/sstate/deploy.
 
-4) using tmpfs has 2 more advantages
-   - disks don't wear off so fast
-   - system is more responsible when you're using the same disk for
-     something else e.g. to edit recipes when some build is already
-     running or when night backup starts when build is still running
+Ross
 
-Regards,
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---m+utxuhC6KVTvgNz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.20 (GNU/Linux)
-
-iEYEARECAAYFAlIKGWQACgkQN1Ujt2V2gBwgaACfZuRJYo0Jf+kGUb1XQfHl+IXc
-FxAAoJHMLr9enHXgWLKb1WpaVaDyf1P6
-=WauP
------END PGP SIGNATURE-----
-
---m+utxuhC6KVTvgNz--
