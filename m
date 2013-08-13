@@ -1,36 +1,34 @@
 Return-Path: <gley-yocto@m.gmane.org>
 Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B776BE01405
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:15:53 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EA26E01405
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:20:04 -0700 (PDT)
 Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1V99lb-00023C-T3
-	for yocto@yoctoproject.org; Tue, 13 Aug 2013 10:15:47 +0200
+	(envelope-from <gley-yocto@m.gmane.org>) id 1V99pj-0005HY-S8
+	for yocto@yoctoproject.org; Tue, 13 Aug 2013 10:20:03 +0200
 Received: from 213.249.12.88 ([213.249.12.88])
 	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
 	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:15:47 +0200
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:20:03 +0200
 Received: from gmane by 213.249.12.88 with local (Gmexim 0.1 (Debian))
 	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:15:47 +0200
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:20:03 +0200
 X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
 From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Tue, 13 Aug 2013 11:15:36 +0300
-Message-ID: <5209EB28.40200@reliableembeddedsystems.com>
+Date: Tue, 13 Aug 2013 11:18:25 +0300
+Message-ID: <5209EBD1.6040403@reliableembeddedsystems.com>
 References: <CAPhnLPBbv232S0htae3WvEJ2A8UWRWH4Aj7og-bRGySkOqu+tA@mail.gmail.com>
 	<3217805.kYDiUIXKQu@helios>
 	<20130812091145.GE12589@sestofb10.enea.se>
 	<3375908.sLNS3qEgcB@helios>
-	<20130812113011.GF12589@sestofb10.enea.se>
 Mime-Version: 1.0
 X-Complaints-To: usenet@ger.gmane.org
 X-Gmane-NNTP-Posting-Host: 213.249.12.88
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
-In-Reply-To: <20130812113011.GF12589@sestofb10.enea.se>
-Cc: Paul Eggleton
-	<public-paul.eggleton-VuQAYsv1563Yd54FQh9/CA@plane.gmane.org>,
-	public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
+In-Reply-To: <3375908.sLNS3qEgcB@helios>
+Cc: public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org,
+	=?ISO-8859-1?Q?Bj=F6rn_Stenberg?= <public-bjst-AM1FMPraTHU@plane.gmane.org>
 Subject: Re: [Announcement] Yocto Project 1.5 Milestone 3 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,49 +41,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 08:15:57 -0000
+X-List-Received-Date: Tue, 13 Aug 2013 08:20:09 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-On 08/12/2013 02:30 PM, Björn Stenberg wrote:
-> Paul Eggleton wrote:
->> Right, that's what we would be aiming for. Perhaps you could talk a little
->> bit about how you manage your hardware testing and any additional software
->> and scripts you make use of there?
+On 08/12/2013 12:28 PM, Paul Eggleton wrote:
 > 
-> We run our tests from buildbot, using an expect script 
+> I agree. In fact our test lab would probably be limited to the reference 
+> boards that the Yocto Project officially supports within meta-yocto i.e. what we 
+> currently test on manually.
 
-I currently run my tests manually, but the plan was to implement
-something in expect as well, since this seems to be made exactly for
-this kind of stuff.
+I have the Yocto reference boards as well, but will add boards on
+customer request (some are already on the queue).
 
-... but instead of something proprietary I would rather prefer to have a
-generic solution where "the community" solves problems together with me.
+BTW what should be defined what kind of extra hardware/software is
+needed for remote hardware testing. As I said I have some infrastructure
+to power on/off boards and monitor the serial over conserver(s).
 
-> to allocate the right serial port (and wait if it is busy), fetch the built files, unpack the rootfs to an NFS disk, reset the board, tftp the kernel and dtb, boot the kernel and start the test suite.
-> 
-> A line-based timeout is used for for the test suites, meaning that the timeout is reset for each new line of output. This allows us to handle very long-running test cases while still being able detect hung tests rather quickly.
-> 
-> Multiple images and test suites are built and ran in parallell, which is why the script waits for the serial port. One of the test suites we run is ptest-runner.
-> 
-> The output of all tests is parsed and stored in a database, cross-referenced with the buildbot build info. We have written an extension to the buildbot web interface presenting the test results as they relate to each build.
-> 
-
-Are your scripts available somewhere to give it a try? Do they integrate
-into autobuilder?
+Is that's it?
 
 Regards,
 
 Robert
-
-
-
-
-..."German programmers tend to take it as a personal insult when a fault
-is detected in code that they have written." - Debora Weber-Wulff
-weberwu@tfh-berlin.de [comp.risks 16.94]
+..."100% test coverage is insufficient. 35% of the faults are missing
+logic paths." - Robert Glass
 
 My public pgp key is available,at:
 http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
