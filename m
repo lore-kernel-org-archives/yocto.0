@@ -1,35 +1,26 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EA26E01405
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:20:04 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1V99pj-0005HY-S8
-	for yocto@yoctoproject.org; Tue, 13 Aug 2013 10:20:03 +0200
-Received: from 213.249.12.88 ([213.249.12.88])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:20:03 +0200
-Received: from gmane by 213.249.12.88 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:20:03 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Tue, 13 Aug 2013 11:18:25 +0300
-Message-ID: <5209EBD1.6040403@reliableembeddedsystems.com>
-References: <CAPhnLPBbv232S0htae3WvEJ2A8UWRWH4Aj7og-bRGySkOqu+tA@mail.gmail.com>
-	<3217805.kYDiUIXKQu@helios>
-	<20130812091145.GE12589@sestofb10.enea.se>
-	<3375908.sLNS3qEgcB@helios>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 213.249.12.88
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
-In-Reply-To: <3375908.sLNS3qEgcB@helios>
-Cc: public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org,
-	=?ISO-8859-1?Q?Bj=F6rn_Stenberg?= <public-bjst-AM1FMPraTHU@plane.gmane.org>
-Subject: Re: [Announcement] Yocto Project 1.5 Milestone 3 now available.
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-junco.atl.sa.earthlink.net
+	(elasmtp-junco.atl.sa.earthlink.net [209.86.89.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28E7CE01405
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:23:27 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=Xm4I/nHwrps7Rc9qnpMKzW6GTEkhoyTtEhyqdpBaOVPJr6HlEVaTrh8YksavP2zM;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-junco.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1V99t0-0001wF-GQ
+	for yocto@yoctoproject.org; Tue, 13 Aug 2013 04:23:26 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 13 Aug 2013 01:23:27 -0700
+Message-ID: <786BA08D82F34C369B54F9C7F14533C9@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6X/mMEvWyOi0hMRTa61v890VQ9jA==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068860c6541737c17fee79830d2a263dc5b5350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: Another X11 without a desktop
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,35 +32,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 08:20:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 13 Aug 2013 08:23:28 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Hi,
+I'm also trying to do something similar. I want an X server, but no desktop,
+so I can run GTK (actually PyGTK) programs from the serial console that
+essentially own the screen. In my case, I'm running a Gumstix board with a
+4.3" LCD and a touchscreen.
 
-On 08/12/2013 12:28 PM, Paul Eggleton wrote:
-> 
-> I agree. In fact our test lab would probably be limited to the reference 
-> boards that the Yocto Project officially supports within meta-yocto i.e. what we 
-> currently test on manually.
+I began with the gumstix-xfce-image, with a few irrelevant additions, like
+Samba. Out of the box, it puts up a "greeter" login screen. However, at the
+serial console prompt, I can set DISPLAY to :0 and then run a PyGTK program,
+and it puts its stuff on top of the greeter screen.
 
-I have the Yocto reference boards as well, but will add boards on
-customer request (some are already on the queue).
+The greeter is provided by GDM. I killed that process, and the display
+reverted to its own text-based pseudo-terminal. In this state, PyGTK
+couldn't access the screen, because there was no X session running.
 
-BTW what should be defined what kind of extra hardware/software is
-needed for remote hardware testing. As I said I have some infrastructure
-to power on/off boards and monitor the serial over conserver(s).
+After a bunch of tinkering, I found that the minimum I needed to do to
+create a dummy X session, so that PyGTK had something available to scribble
+on, was to run xinit like this:
 
-Is that's it?
+    xinit /bin/sleep 1000000d -- /usr/bin/X :0
 
-Regards,
+This uses the sleep command as a dummy "client". And it all works fine.
 
-Robert
-..."100% test coverage is insufficient. 35% of the faults are missing
-logic paths." - Robert Glass
+So now: how do I build a system that doesn't have all that useless XFCE and
+GDM crud? I looked at gumstix-xfce-image, and it basically adds a whole lot
+of XFCE-related stuff, and a few X utilities, to gumstix-console-image. I
+changed my image so that it is based on gumstix-console-image, and found
+that the latter utilities aren't enough to pull in the X server.
 
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+Poking around, I found something called packagegroup-core-x11-base, whose
+comment says "Packages required to set up a basic working X11 session". I
+included it in my build, and it did indeed give me an X server. But when I
+run the above xinit command, I get a bunch of errors about a failure to load
+modules extmod, dbe, glx, record, dri and dri2. The log file indicates that
+these modules are "enabled by default", and some are also specified in
+xorg.conf. Then I get an error saying it can't open /dev/fb, no such file or
+directory. (The right name should be /dev/fb0.) Oh, and there were error
+messages about font directories not existing, resulting in an empty font
+path.
 
+So it appears a bunch of stuff is missing. I guess the idea that these
+dependencies are all handled automatically isn't really true. Does anyone
+know what I should be specifying in order to get a functional X server?
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+ 
 
 
