@@ -1,30 +1,34 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04BA1E01405
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:28:52 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1V99yF-0003jv-4Q
-	for yocto@yoctoproject.org; Tue, 13 Aug 2013 10:28:51 +0200
-Received: from 93-58-90-146.ip157.fastwebnet.it ([93.58.90.146])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:28:51 +0200
-Received: from f.deldegan by 93-58-90-146.ip157.fastwebnet.it with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 10:28:51 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Francesco Del Degan <f.deldegan@endian.com>
-Date: Tue, 13 Aug 2013 10:28:39 +0200
-Message-ID: <87r4dy2dvs.fsf@endian.com>
-References: <87iozjfe3p.fsf@endian.com> <1711663.0D350BQnql@helios>
-	<5200F116.2010108@windriver.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 93-58-90-146.ip157.fastwebnet.it
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.2 (gnu/linux)
-Cancel-Lock: sha1:U6lbMOnPZ5/L3TzRGdZw9CGV81o=
-Subject: Re: Package specific version dependencies
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFA05E01405
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:37:15 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id id13so3583569vcb.4
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 01:37:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=DtAdRfebzLbh0abl/aRuFPo4W/0HKuFDyhsEj3Em7jc=;
+	b=JTAHg72IQ6YWqVqdUrX/EHTS5zNbNg2ZuQIACheT++jAv9+w3xG0Suj6rX662X24gK
+	tC6b5dFmD6X6xCYy+YPPOtaUlwDZJ8Lr/0cBWxTr8MWBItwEh09eUbtTiYutHBHBS4g0
+	WA9h6Vlty7Vb9ayb+6BzXw5IDpQ9TeKTIuj9m1sydcwL2AXh2r1bGuGh2XhsWoAokPZz
+	QQRMa9OW97eU2fXW5UyQNeCHBcHGHIGhVxKcA2StfhGh0ul1AHjylhvjZRauVs/J8XmP
+	88Y5I67LqZfXpHG9sswoxPLo3kX+Ib87Ij09uXUlA9VqjblNIHctSUtlkgu/02q/zjZG
+	ULjQ==
+X-Gm-Message-State: ALoCoQkMi8+zJh2GZ7UZj57+YCXLyieavoMWkO/JSyJDbXQghl9m9Ju5qlXZokGaL8Hluecl2oRS
+X-Received: by 10.52.35.171 with SMTP id i11mr2829715vdj.4.1376383035000; Tue,
+	13 Aug 2013 01:37:15 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.220.71.201 with HTTP; Tue, 13 Aug 2013 01:36:54 -0700 (PDT)
+In-Reply-To: <CAHwX21qDOwpi-ea2Eh4=EXJpEv7k9Em_2PMGvURVstK409MmpQ@mail.gmail.com>
+References: <CAHwX21qDOwpi-ea2Eh4=EXJpEv7k9Em_2PMGvURVstK409MmpQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 13 Aug 2013 09:36:54 +0100
+Message-ID: <CAJTo0LaQKN60TuMYnLe9e3V=LJzyeJCgNKNPtd_OGDb0GvdD5Q@mail.gmail.com>
+To: tom schuring <tom@clogwog.net>
+Cc: yocto@yoctoproject.org
+Subject: Re: matchbox-keyboard documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,55 +40,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 08:28:53 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 13 Aug 2013 08:37:16 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Mark Hatle <mark.hatle@windriver.com> writes:
+On 13 August 2013 07:08, tom schuring <tom@clogwog.net> wrote:
+> could you please point me in the right location of where i could find some
+> documentation about the matchbox-keyboard ? for example is there an API for
+> the keyboard ?
 
-> On 8/6/13 4:07 AM, Paul Eggleton wrote:
->> Hi Francesco,
->>
->> On Tuesday 06 August 2013 09:55:06 Francesco Del Degan wrote:
->>> Playing with RDEPENDS variable i'm facing the needs to
->>> specify a dependency based on specific version of a package
->>> (greather than, in my specific case).
->>>
->>> The underlying package managers supports declaring dependencies
->>> including version relationships, for example:
->>>
->>> Rpm:  Requires: package_xxx >= 1.0.27
->>> Deb:  Depends: libc6 (>= 2.2.1)
->>> Okpg: Depends: xfree (>= 6.0), glib2
->>>
->>> Is this feature just missing in yocto or it's explicitly denied
->>> for some reason?
->>
->> This should work, in fact we use it (with =) in conjunction with EXTENDPKGV
->> when we want to force packages from the same recipe to upgrade in lock-step.
->
-> The format for RDEPENDS is slightly different from all three.
->
-> dep (= ver)
-> dep (< ver)
-> dep (> ver)
-> dep (<= ver)
-> dep (>= ver)
->
-> (For those familiar with deb style, >> and << is not supported by the
-> oe-core dependency set.  This is to avoid confusion as > and < are a
-> lot more obvious.)
->
-> The items above are then mapped into their respective format depending
-> on the package manager you have selected.
->
-> Note:  The version dependency items are not evaluated by bitbake, it
-> only pays attention to the package name when determining build
-> dependencies.  You would also need to specify (in your distribution or
-> local .conf file) a PREFERRED_VERSION_dep = "ver" to ensure the right
-> version is built.
+There isn't any real documentation, but the latest version of the
+keyboard has an embedded API available.
 
-Got it! Thank you for explanation.
-
-Francesco
-
+Ross
 
