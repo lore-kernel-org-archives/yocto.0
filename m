@@ -1,36 +1,29 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B421E01405
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 02:09:26 -0700 (PDT)
-Received: by mail-vc0-f178.google.com with SMTP id ha12so3699490vcb.9
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 02:09:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=7+j3CEilFyu6Ju7dbBT70aZuR9I9K09V5pVq7XAKEOE=;
-	b=EuCm5EmLgCP18APt+zv9KPUJQ/GEHvYQgzHETp4lC+bJH7EDuJzBs90aDfwyixeh5P
-	OJeziWOY0+MuYIe1AOjTMAqmwUbgfW725anVw6yahjCXw8BqhmoaPuYgrZM2eGlptg39
-	6UzPg7+rqjCWJXT1E21b8XQRkKxZsB5ZY7lysjHp3xB+31SACIpnn9N5iW4Zz7PSoJmN
-	wBaDe/EeehL5q/0WVvvBKEoSFFzEPZrQ21sIbJgGPD97v5BDZSpoitZPIpeUKuGQreqF
-	SoZvysdSimzWFPg8E1sScKaKBdPCFtP07xF/qgLtJmIUIWkWzrYYsO4jfvSL8CZczYSM
-	fDYw==
-X-Gm-Message-State: ALoCoQnk9M7tJ2V58gof+O3zIUd05HyKMxY4cAOgcrgnTwtoKEGQeH9HaH3ofiTc43wzE7VzrelW
-X-Received: by 10.52.117.79 with SMTP id kc15mr18729vdb.45.1376384965236; Tue,
-	13 Aug 2013 02:09:25 -0700 (PDT)
+Return-Path: <Bjoern.Stenberg@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 61B76E01405
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 03:33:15 -0700 (PDT)
+Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.2.318.1;
+	Tue, 13 Aug 2013 12:33:09 +0200
+Received: by sestofb10.enea.se (Postfix, from userid 4331)	id 6841D28B66D;
+	Tue, 13 Aug 2013 12:33:09 +0200 (CEST)
+Date: Tue, 13 Aug 2013 12:33:09 +0200
+From: =?iso-8859-1?Q?Bj=F6rn?= Stenberg <bjst@enea.com>
+To: Robert Berger <gmane@reliableembeddedsystems.com>
+Message-ID: <20130813103309.GH12589@sestofb10.enea.se>
+References: <CAPhnLPBbv232S0htae3WvEJ2A8UWRWH4Aj7og-bRGySkOqu+tA@mail.gmail.com>
+	<3217805.kYDiUIXKQu@helios>
+	<20130812091145.GE12589@sestofb10.enea.se>
+	<3375908.sLNS3qEgcB@helios>
+	<20130812113011.GF12589@sestofb10.enea.se>
+	<5209EB28.40200@reliableembeddedsystems.com>
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Tue, 13 Aug 2013 02:09:05 -0700 (PDT)
-In-Reply-To: <F5407ED9-9AE1-4C40-A9E6-63E7D3B2FF8A@gmail.com>
-References: <CAHwX21qDOwpi-ea2Eh4=EXJpEv7k9Em_2PMGvURVstK409MmpQ@mail.gmail.com>
-	<CAJTo0LaQKN60TuMYnLe9e3V=LJzyeJCgNKNPtd_OGDb0GvdD5Q@mail.gmail.com>
-	<F5407ED9-9AE1-4C40-A9E6-63E7D3B2FF8A@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 13 Aug 2013 10:09:05 +0100
-Message-ID: <CAJTo0LYX0HXYi9emcQGcKLO+d+WphvMR4iP8=Sfzj_Ffs5xPxQ@mail.gmail.com>
-To: tom schuring <tomschuring@gmail.com>
+In-Reply-To: <5209EB28.40200@reliableembeddedsystems.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Received-SPF: None (SESTOEX08.enea.se: bjst@enea.com does not designate
+	permitted sender hosts)
 Cc: yocto@yoctoproject.org
-Subject: Re: matchbox-keyboard documentation
+Subject: Re: [Announcement] Yocto Project 1.5 Milestone 3 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,17 +35,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 09:09:29 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 13 Aug 2013 10:33:18 -0000
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 13 August 2013 10:05, tom schuring <tomschuring@gmail.com> wrote:
-> thanks Ross,
->
-> is there an example that uses the API ? is it the matchbox-keyboard-im ?
+Robert Berger wrote:
+> Are your scripts available somewhere to give it a try? Do they integrate
+> into autobuilder?
 
-The only example I'm aware of is a piece of closed source software,
-sorry.  You can try contacting the maintainer of matchbox-keyboard,
-tomas@sleepfive.com.
+The scripts are hardcoded for our environment and our modified autobuilder =
+and are therefore not published anywhere.
 
-Ross
+While I could see us publishing these or similar snippets, I think it's bet=
+ter to start with a general discussion. Perhaps there is a slight risk of c=
+hicken-and-egg here, with discussions not taking off until code is proposed=
+. But I believe it is the best path for now.
+
+--=20
+Bj=F6rn
 
