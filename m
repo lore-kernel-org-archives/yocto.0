@@ -1,33 +1,49 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-lb0-f177.google.com (mail-lb0-f177.google.com
-	[209.85.217.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D66E5E003D3
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 14:24:42 -0700 (PDT)
-Received: by mail-lb0-f177.google.com with SMTP id n6so469426lbi.8
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 14:24:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:content-type;
-	bh=Lm/u86/ooxdEtY9bmEpo5D0iwZOsrk/1xHo1TCFLk0U=;
-	b=0+G0jU9g+zhH/gt6U0yrH5PO2oo+D9AJ0YgrvnWDypRChqci2tOHL0pq+nEpILcVn7
-	QI5vSGni3th1iuiv4CsScBfcB3TMnOVJEHfmm8AdVigduZc9NaFAZ20gOIsv0GWtoCOs
-	8iKgdnUhPBnD43A7HIT4krrKnd1wdsQGi1xcpYzOetlGFhAzyWBJNqa/4Zjlb+gociUP
-	r0M0E0Ix5HQawc07gEzy9w73fZf7fdj59GKUdVP1kGRRINX60V8vUCEZNii+F/crZUj7
-	YraO7Wt9xRSKPoe72YVrK2DAKGqGBubezgSD0F9LfVZJYbX/EzCP2Bw8YAnyCRkkD0+S
-	9kBw==
-X-Received: by 10.112.18.198 with SMTP id y6mr5094495lbd.14.1376429080542;
-	Tue, 13 Aug 2013 14:24:40 -0700 (PDT)
+Return-Path: <bradl@taser.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98647E003D3
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 17:15:34 -0700 (PDT)
+X-ASG-Debug-ID: 1376439332-0499bf02591b7e0001-yzSStA
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id 4rrFM3UfAE1shljc for <yocto@yoctoproject.org>;
+	Tue, 13 Aug 2013 17:15:32 -0700 (MST)
+X-Barracuda-Envelope-From: bradl@taser.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Tue, 13 Aug 2013 17:15:32 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Tue, 13 Aug 2013 17:15:31 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+From: Brad Litterell <bradl@taser.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Is there a recipe class that simply installs files to the target?
+X-ASG-Orig-Subj: Is there a recipe class that simply installs files to the
+	target?
+Thread-Index: AQHOmINjxeOBRuWIg06cpCpo8b7OCw==
+Date: Wed, 14 Aug 2013 00:15:31 +0000
+Message-ID: <A322536D-FFE3-4631-919E-32AFFC538287@taser.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.57.105 with HTTP; Tue, 13 Aug 2013 14:24:20 -0700 (PDT)
-In-Reply-To: <20130813135702.GD4688@ad.chargestorm.se>
-References: <20130813135702.GD4688@ad.chargestorm.se>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Tue, 13 Aug 2013 14:24:20 -0700
-X-Google-Sender-Auth: lGFNI0RlbuPlZLpX1v3MwCPgyjQ
-Message-ID: <CA+YB3rZiKEBNtZVdaF+GEEy6XYSwwP+fPYOia_k=XjsDOzQs0w@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: YP Dev.Day in Edinburgh?
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1376439332
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.138315
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Is there a recipe class that simply installs files to the target?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,36 +55,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2013 21:24:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 14 Aug 2013 00:15:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A322536DFFE34631919E32AFFC538287tasercom_"
 
-Hi Anders - we are still in the planning stages for Dev Day. I'll be
-sure to announce on this list as soon as we get anything established,
-hopefully later this week. For those planning travel, if we do have a
-DevDay it will likely be Weds 23 October, all day.
+--_000_A322536DFFE34631919E32AFFC538287tasercom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 13, 2013 at 6:57 AM, Anders Darander <anders@chargestorm.se> wrote:
+I have some scripts I'd like to copy to the target to a simple folder, e.g.=
+ /lib/foo
+
+Ideally I'd like to just create a simple recipe something like this:
+
+
+SRC_URI =3D "file://lib/foo/foo.sh<file:///lib/foo/foo.sh>"
+
+inherit install_only
+
+
+Is there a class like this?
+
+
+It seems like most recipes of this form accomplish this by a custom do_inst=
+all step, such as this:
+
+
+do_install() {
+
+   install -D -m 755 ${S}/lib/foo/foo.sh ${D}/lib/foo
+
+}
+
+
+and I was just hoping there might be a base class for examining the input f=
+iles and generating the install steps?
+
+
+Thanks,
+
+Brad
+
+--_000_A322536DFFE34631919E32AFFC538287tasercom_
+Content-Type: text/html; charset="us-ascii"
+Content-ID: <356C24E39717F1448536C8375410A4D6@taser.com>
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Time flies fast, and the travel schedules for fall will likely need to
-> be set soon...
+</head>
+<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-lin=
+e-break: after-white-space; ">
+<font face=3D"Arial Unicode MS">I have some scripts I'd like to copy to the=
+ target to a simple folder, e.g. /lib/foo</font>
+<div><font face=3D"Arial Unicode MS"><br>
+</font></div>
+<div><font face=3D"Arial Unicode MS">Ideally I'd like to just create a simp=
+le recipe something like this:</font></div>
+<div><font face=3D"Arial Unicode MS"><br>
+</font></div>
+<div>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><!--StartFragment--><f=
+ont face=3D"Arial Unicode MS">SRC_URI<span style=3D" color:#c0c0c0;"> </spa=
+n>=3D<span style=3D" color:#c0c0c0;"> </span>&quot;<a href=3D"file:///lib/f=
+oo/foo.sh">file://lib/foo/foo.sh</a>&quot;</font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">inherit install_only<!--EndFragment--></font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS"><br></font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">Is there a class like this? &nbsp;</font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS"><br></font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">It seems like most recipes of this form accomplish this by a cust=
+om do_install step, such as this:</font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS"><br></font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">do_install() {</font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">   install -D -m 755 ${S}/lib/foo/foo.sh ${D}/lib/foo</font></pre=
 >
-> Are there any plans for a YP Dev.Day in Edinburgh, and if so, any dates
-> set?
->
-> Cheers,
-> Anders
->
-> --
-> Anders Darander
-> ChargeStorm AB / eStorm AB
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">}</font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS"><br></font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">and I was just hoping there might be a base class for examining t=
+he input files and generating the install steps?</font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS"><br></font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">Thanks,</font></pre>
+<pre style=3D"margin-top: 0px; margin-bottom: 0px; "><font face=3D"Arial Un=
+icode MS">Brad</font></pre>
+</div>
+</body>
+</html>
 
-
-
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
-
+--_000_A322536DFFE34631919E32AFFC538287tasercom_--
