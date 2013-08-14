@@ -1,34 +1,36 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
-	[209.85.212.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A696E003D3
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 22:11:16 -0700 (PDT)
-Received: by mail-vb0-f42.google.com with SMTP id e12so3390888vbg.15
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 22:11:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=Ml9ONI8xn9voxMUyJeIu5dcIxd2ZE3lEwqmz6keBsNg=;
-	b=BrGG5cS/bsYSb7zaZgVWHBtEam5z6acQMTjs3U4Irj4IWLcMrXPIHnjF6ZiH1GtMKP
-	Erfo6Nk8J7iB2vpDvf9XqzSnwKiENpqVw6oBimjrYfqNScf8XOcicXB1f6Ws5H1IL9dB
-	bMHBIQ+nWfnLaUk2ZYfngcnDP96uo9Ud9nNr7EdmLW1T5a0QDrSyyIv2XI+ATp1ZC8Mx
-	ZHyOsGKeYIJlll0TF35iNEKt2HTwSN8TkLGKePy/Y0n3UqdTTtgr+YzL+X/WE4jW9K7C
-	eEiWK6hldTtv6Lerac/Hx5v/fTMsP+vXS9TWAclUduaf7C+71NgIfgcY+0AnWZewF+4s
-	wfvw==
-X-Gm-Message-State: ALoCoQmS08HExgdYt49bRW9sVY3r1P/oLXclY87mZDsQUviwTTsn9HaSPORZzwsyyZ8upT6I/tW4
+Return-Path: <Amit.Kumar@lntinfotech.com>
+Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
+	[216.82.243.205])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FA61E003D3
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2013 22:52:20 -0700 (PDT)
+Received: from [216.82.241.100:17329] by server-13.bemta-8.messagelabs.com id
+	89/F7-25873-31B1B025; Wed, 14 Aug 2013 05:52:19 +0000
+X-Env-Sender: Amit.Kumar@lntinfotech.com
+X-Msg-Ref: server-9.tower-220.messagelabs.com!1376459534!3702005!1
+X-Originating-IP: [203.101.96.7]
+X-StarScan-Received: 
+X-StarScan-Version: 6.9.11; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 30911 invoked from network); 14 Aug 2013 05:52:17 -0000
+Received: from unknown (HELO BLRINMSHTCAS01.bglrodc.lntinfotech.com)
+	(203.101.96.7)
+	by server-9.tower-220.messagelabs.com with AES128-SHA encrypted SMTP;
+	14 Aug 2013 05:52:17 -0000
+Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.2.40]) by
+	BLRINMSHTCAS01.bglrodc.lntinfotech.com ([172.28.0.81]) with mapi;
+	Wed, 14 Aug 2013 11:22:12 +0530
+From: Amit Kumar <Amit.Kumar@lntinfotech.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 14 Aug 2013 11:19:30 +0530
+Thread-Topic: Build packages-ssh,telnet,alsa and other package for arm
+Thread-Index: Ac6Ysft+ux58Xaz6RdaeZGEwkDxl0Q==
+Message-ID: <AF0985D076EB244693F2CCD71AAB10BC2C5EA3BEEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.58.119.233 with SMTP id kx9mr7750315veb.3.1376457075978;
-	Tue, 13 Aug 2013 22:11:15 -0700 (PDT)
-Received: by 10.52.244.109 with HTTP; Tue, 13 Aug 2013 22:11:15 -0700 (PDT)
-Date: Tue, 13 Aug 2013 22:11:15 -0700
-Message-ID: <CAPhnLPAePTqR+nWMuAYtC1CqP3xjxnqed7Q5=_XRMqsKx=8ZTw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio@ossystems.com.br>, 
-	Zhao Yi <yi.zhao@windriver.com>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>
-Subject: Weekly build available.
+Subject: Build packages-ssh,telnet,alsa and other package for arm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +42,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Aug 2013 05:11:26 -0000
-Content-Type: multipart/alternative; boundary=001a11c391be10079804e3e163f1
+X-List-Received-Date: Wed, 14 Aug 2013 05:52:21 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AF0985D076EB244693F2CCD71AAB10BC2C5EA3BEEFBLRINMSMBX01b_"
 
---001a11c391be10079804e3e163f1
-Content-Type: text/plain; charset=ISO-8859-1
+--_000_AF0985D076EB244693F2CCD71AAB10BC2C5EA3BEEFBLRINMSMBX01b_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The weekly build should be available soon at:
+Hi,
 
-http://autobuilder.yoctoproject.org/pub/nightly/20130813-3
-
-Known issues:
-
-- Both eclipse buildouts are using the wrong repo. I'll have the issue
-fixed in the morning.
-- nightly-ppc sanity failure
-- nightly-qa-systemd sanity failure
-
-meta-fsl-arm c29042a130fc1f2201a7e4728c868d4946024235
-meta-fsl-ppc 399c1ab5e86cf6dbb7c0c48d5253ac8798d6bfe4
-meta-intel ddbbbf3a5a601703117c3f37f436b9437d46dde4
-meta-minnow e862f8c44cd8ef375181909cfcdd63756913f318
-meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
-poky ff10f72abda52315b892c64f711096772d9a4c1c
+            Using the Yocto Project 1.4, I want to build the packages like =
+ssh, telnet, alias and other library packages for arm. I am not getting an =
+idea how I should have to add those packages in my build environment. I wan=
+t to build them and test, using the QEMU, is that possible? I want to build=
+ them for arm.
 
 
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
 
---001a11c391be10079804e3e163f1
-Content-Type: text/html; charset=ISO-8859-1
+Thanks & Regards
+Amit K
 
-<div dir="ltr"><div><div><div><div><br>The weekly build should be available soon at:<br><br><a href="http://autobuilder.yoctoproject.org/pub/nightly/20130813-3">http://autobuilder.yoctoproject.org/pub/nightly/20130813-3</a><br>
-<br></div>Known issues:<br><br></div>- Both eclipse buildouts are using the wrong repo. I&#39;ll have the issue fixed in the morning.<br></div>- nightly-ppc sanity failure<br></div>- nightly-qa-systemd sanity failure<br><div>
-<div><div><div><br>meta-fsl-arm c29042a130fc1f2201a7e4728c868d4946024235<br>meta-fsl-ppc 399c1ab5e86cf6dbb7c0c48d5253ac8798d6bfe4<br>meta-intel ddbbbf3a5a601703117c3f37f436b9437d46dde4<br>meta-minnow e862f8c44cd8ef375181909cfcdd63756913f318<br>
-meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222<br>poky ff10f72abda52315b892c64f711096772d9a4c1c<br><br><br>--<br>Elizabeth Flanagan<br>Yocto Project<br>Build and Release</div></div></div></div></div>
+________________________________
+The contents of this e-mail and any attachment(s) may contain confidential =
+or privileged information for the intended recipient(s). Unintended recipie=
+nts are prohibited from taking action on the basis of information in this e=
+-mail and using or disseminating the information, and must notify the sende=
+r and delete it from their system. L&T Infotech will not accept responsibil=
+ity or liability for the accuracy or completeness of, or the presence of an=
+y virus or disabling code in this e-mail"
 
---001a11c391be10079804e3e163f1--
+--_000_AF0985D076EB244693F2CCD71AAB10BC2C5EA3BEEFBLRINMSMBX01b_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Trebuchet MS";
+	panose-1:2 11 6 3 2 2 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Trebuchet MS","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif=
+&quot;">Using the Yocto Project 1.4, I want to build the packages like ssh,=
+ telnet, alias and other library packages for arm. I am not getting an idea=
+ how I should have to add those packages in my build environment.
+ I want to build them and test, using the QEMU, is that possible? I want to=
+ build them for arm.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;">Thanks &amp; Regards
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;">Amit K</span><span style=3D"font-size:10.0pt;font-f=
+amily:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;"><o:p></o:p></span></=
+p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"3">The contents of this e-mail=
+ and any attachment(s) may contain confidential or privileged information f=
+or the intended recipient(s). Unintended recipients are prohibited from tak=
+ing action on the basis of information
+ in this e-mail and using or disseminating the information, and must notify=
+ the sender and delete it from their system. L&amp;T Infotech will not acce=
+pt responsibility or liability for the accuracy or completeness of, or the =
+presence of any virus or disabling code
+ in this e-mail&quot;<br>
+</font>
+</body>
+</html>
+
+--_000_AF0985D076EB244693F2CCD71AAB10BC2C5EA3BEEFBLRINMSMBX01b_--
