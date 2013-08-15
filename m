@@ -1,33 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C080E0073F;
-	Thu, 15 Aug 2013 14:07:55 -0700 (PDT)
-Received: by mail-ie0-f182.google.com with SMTP id tp5so2171436ieb.27
-	for <multiple recipients>; Thu, 15 Aug 2013 14:07:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=05NhaoVJhmhBxzQUmrLTpX8XyYYUu6vcByLcaqTK9eM=;
-	b=YAbiClu2GR4fkWDB3YSzV8NTnbkKK6pXB3cepYURm2HnVankg0syorrovaXTCgpq1o
-	8c+uOtewHmZxrsWH+vsFhKOhqSyIlmB7yJCXNS4gWEpCbSZuQ4NaNLjKNrxRvRUUQqNE
-	6dQOcsO/5gC6Gp6cCHGJTDmePjoGyegpzA4rkBFEYvTTT8Ec37Jdcb5fvhCR3a8s2b+9
-	nFHZsqGzl1AI97uT2JS3LN0u9SY0A3Mweaph+6kwYXFJk9Rps1xiOhM8U0iMf6KZiV5/
-	gfAq9yH3Czq0MNLEbBHr0fE+I5Y5aixeFkR2GAaHd3CppFWAia4ijYCb19eyHeYY4TBQ
-	kfBw==
-X-Received: by 10.50.92.74 with SMTP id ck10mr3159410igb.3.1376600875359; Thu,
-	15 Aug 2013 14:07:55 -0700 (PDT)
+Return-Path: <bevenson@melinkcorp.com>
+Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
+	[98.100.91.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49CBCE0073F
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 14:12:11 -0700 (PDT)
+Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
+	([10.0.2.4]) with mapi; Thu, 15 Aug 2013 17:12:11 -0400
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "Zhang, Jessica" <jessica.zhang@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Thu, 15 Aug 2013 17:12:08 -0400
+Thread-Topic: [yocto] Error building meta-ide-support; 'SNDCTL_DSP_MAPINBUF'
+	undeclared here
+Thread-Index: Ac6YQZvm1/inciC/S1SlI4tH30qmCwBt/T/wAAByqNA=
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153ADC7E8B3@pluto.melinkcorp.local>
+References: <91586D499ADFD74FBCFB8425266A5DE40153ADC7DF00@pluto.melinkcorp.local>
+	<C6510F6D410BB64A8C15398EDC6B847C73C771D6@ORSMSX103.amr.corp.intel.com>
+In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73C771D6@ORSMSX103.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 0202B46A0050340202B5B7
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.50.216.195 with HTTP; Thu, 15 Aug 2013 14:07:25 -0700 (PDT)
-In-Reply-To: <e135a4c21162ddac7452bbb22986a3c0ef5cdeee.1376598685.git.mulhern@yoctoproject.org>
-References: <cover.1376598685.git.mulhern@yoctoproject.org>
-	<e135a4c21162ddac7452bbb22986a3c0ef5cdeee.1376598685.git.mulhern@yoctoproject.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 15 Aug 2013 14:07:25 -0700
-Message-ID: <CAMKF1srAEiY5EzzTqQhX==MnKBDkuer8yPGK9idzET4GnOQSqg@mail.gmail.com>
-To: mulhern <mulhern@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, mulhern@yoctoproject.org
-Subject: Re: [PATCH 1/2] curses-perl: Change description to match package.
+Subject: Re: Error building meta-ide-support; 'SNDCTL_DSP_MAPINBUF' undeclared here
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,52 +34,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 21:07:56 -0000
-Content-Type: multipart/alternative; boundary=047d7b10cac92c677404e402de93
-
---047d7b10cac92c677404e402de93
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 15 Aug 2013 21:12:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 15, 2013 at 1:36 PM, mulhern <mulhern@gmail.com> wrote:
-
-> -DESCRIPTION =3D "This package contains the URI.pm module with friends. \
-> -The module implements the URI class. URI objects can be used to access \
-> -and manipulate the various components that make up these strings."
-> +DESCRIPTION =3D "lib-curses provides an interface between Perl programs =
-and
-> \
-> +your system's curses library."
->
-
-'=E2=80=8Byour' is not appropriate here=E2=80=8B
-
---047d7b10cac92c677404e402de93
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Aug 15, 2013 at 1:36 PM, mulhern <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:mulhern@gmail.com" target=3D"_blank">mulhern@gmail.com</a>&gt;</span>=
- wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":2j8" style=3D"overflow:hidden">-=
-DESCRIPTION =3D &quot;This package contains the URI.pm module with friends.=
- \<br>
 
 
--The module implements the URI class. URI objects can be used to access \<b=
-r>
--and manipulate the various components that make up these strings.&quot;<br=
->
-+DESCRIPTION =3D &quot;lib-curses provides an interface between Perl progra=
-ms and \<br>
-+your system&#39;s curses library.&quot;<br></div></blockquote></div><br><d=
-iv style=3D"font-family:&#39;courier new&#39;,monospace;font-size:small" cl=
-ass=3D"gmail_default">&#39;=E2=80=8Byour&#39; is not appropriate here=E2=80=
-=8B</div><br></div>
+> -----Original Message-----
+> From: Zhang, Jessica [mailto:jessica.zhang@intel.com]
+> Sent: Thursday, August 15, 2013 4:55 PM
+> To: Bryan Evenson; yocto@yoctoproject.org
+> Subject: RE: [yocto] Error building meta-ide-support;
+> 'SNDCTL_DSP_MAPINBUF' undeclared here
+>=20
+> Hi Bryan,
+>=20
+> When you tried to setup your eclipse plugin, what is your toolchain and
+> what
+> is your sysroot.  Are they built by you or you download them?
+>=20
 
-</div>
+I built my own.  I'm using the meta-atmel layer located at https://github.c=
+om/evensonbryan/meta-atmel.git, using the instructions shown in the README =
+to download and build.  Only exception is that I have MACHINE set as "at91s=
+am9x5ek" in local.conf.  I did "bitbake core-image-minimal" as the initial =
+build to start off everything; never tried to bitbake meta-ide-support on t=
+his system.
 
---047d7b10cac92c677404e402de93--
+-Bryan
+
+> - Jessica
+>=20
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org]
+> On Behalf Of Bryan Evenson
+> Sent: Tuesday, August 13, 2013 9:25 AM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] Error building meta-ide-support; 'SNDCTL_DSP_MAPINBUF'
+> undeclared here
+>=20
+> I am working on installing and setting up the Eclipse IDE plug-in for
+> Eclipse Juno.  I am using poky/dylan (at the yocto-1.4.1 tag) for my
+> build
+> environment.  I am to the "Configuring the Cross-Compiler Options"
+> section
+> from the current Yocto Project mega-manual, and after setting up the
+> Toolchain Root Location and the Sysroot Location, I get the error
+> 'Specified
+> toolchain directory does not contain a toolchain generated with
+> "bitbake
+> meta-ide-support"'.  So, I went back and did "bitbake meta-ide-support"
+> as
+> requested and I am getting the following errors:
+>=20
+> DEBUG: Executing shell function do_compile
+> NOTE: make -j 2
+>   CC    arm-linux-user/linux-user/syscall.o
+> In file included from
+> /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> r0/qemu-1.
+> 4.0/linux-user/syscall.c:3705:0:
+> /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> r0/qemu-1.
+> 4.0/linux-user/ioctls.h:189:1: error: 'SNDCTL_DSP_MAPINBUF' undeclared
+> here
+> (not in a function)
+> /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> r0/qemu-1.
+> 4.0/linux-user/ioctls.h:190:1: error: 'SNDCTL_DSP_MAPOUTBUF' undeclared
+> here
+> (not in a function)
+> /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> r0/qemu-1.
+> 4.0/linux-user/ioctls.h:245:1: error: 'SOUND_MIXER_ACCESS' undeclared
+> here
+> (not in a function)
+> make[1]: *** [linux-user/syscall.o] Error 1
+> make: *** [subdir-arm-linux-user] Error 2
+> make: *** Waiting for unfinished jobs....
+> ERROR: oe_runmake failed
+> ERROR: Function failed: do_compile (see
+> /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> r0/temp/lo
+> g.do_compile.20276 for further information)
+>=20
+> I did a search and I cannot find these defines anywhere in the i686
+> sysroot
+> directory, but it exists in my target's sysroot directory.  Is there
+> something wrong with the i686 sysroot setup on my system?  If it
+> matters,
+> I'm doing the build machine is running Ubuntu 12.04.2 LTS.
+>=20
+> Thanks,
+> Bryan
+>=20
+>=20
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
