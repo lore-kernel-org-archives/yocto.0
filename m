@@ -1,36 +1,40 @@
-Return-Path: <lschwab@xeralux.com>
-Received: from mail-ee0-f50.google.com (mail-ee0-f50.google.com [74.125.83.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A027CE01440
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 13:21:49 -0700 (PDT)
-Received: by mail-ee0-f50.google.com with SMTP id d51so571568eek.23
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 13:21:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=0wbdTIoOPJS9SwDhGWq/6fWzVkOtXJk7GUkOwcIWYHo=;
-	b=HJAJEtTDHIFq4QJOdWHz+9/Xjk2jw4sueSa7o79DqpIU9XQS6IGlxZve0N39kzzoNe
-	L/3xGP+LY6WxB6QohNdQVLQitJxxlDAnW4oFY1T9Nw6VHLTUSwSRyFHD//Pf6Faatutm
-	BtkZOWEb8i50jOjjd8y++oM22tnbp6eGX38MrOxh/+FwD/6Az8/pGwPP5wHYuwOK91hY
-	76Hos9A1FSzOv4ynsGgJzkpJNWT3uwm3217mBir5nGkPyTLPHQmmS4KViehA8ueYeYoC
-	eUpZ6iIXHPRUB5Hijq72KG3BTUuJ9JQpz7oTcHp+VZ8BLvJ+HKA+Mu1cUlLPkBaKXf6z
-	DffA==
-X-Gm-Message-State: ALoCoQmhi2NiRabpXKwFLzpgZNWale/2LN5vmq0tX5mI+g2gsFXvDNBhydblG7308g371uM2QDGD
-MIME-Version: 1.0
-X-Received: by 10.15.54.199 with SMTP id t47mr24675075eew.46.1376598108382;
-	Thu, 15 Aug 2013 13:21:48 -0700 (PDT)
-Received: by 10.14.139.65 with HTTP; Thu, 15 Aug 2013 13:21:48 -0700 (PDT)
-In-Reply-To: <520D2EE7.30708@linux.intel.com>
-References: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
-	<520D205C.2060105@linux.intel.com>
-	<CALb224-nFp88Eq_NqoPUo9pcDJ7KS6ysQbgcKuORPqDH2nUP7w@mail.gmail.com>
-	<520D2EE7.30708@linux.intel.com>
-Date: Thu, 15 Aug 2013 13:21:48 -0700
-Message-ID: <CALb2248DaSMOHnP7EgXk9pBADkwsRWzuYaROyv6Nc5SZehJbAA@mail.gmail.com>
-From: Leo Schwab <lschwab@sensity.com>
-To: Saul Wold <sgw@linux.intel.com>
-Cc: yocto@yoctoproject.org, Leo Schwab <lschwab@sensity.com>
-Subject: Re: How Does Yocto Fill In UBOOT_MACHINE?
+Return-Path: <mulhern@gmail.com>
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97019E01440;
+	Thu, 15 Aug 2013 13:36:28 -0700 (PDT)
+Received: by mail-ve0-f177.google.com with SMTP id cz11so920549veb.22
+	for <multiple recipients>; Thu, 15 Aug 2013 13:36:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id:in-reply-to:references:in-reply-to
+	:references; bh=MxN1k7oTH1tFJ1ag9gmIqD+DDqoqByQ340LBXcFyfUg=;
+	b=JvJ3G3lBJR1pxqkX0Mwc4RhEqnRVNKhibjzjw3FHGFp7PCa34nFJuT2uW0BZ5mXyOO
+	o3H5ClbE9PvtC5K7E0sK4IQwi9z1XMjtbDTIqf2bp7g53ftP2wwl7Y0MXSYKXka6pH/e
+	uCHRiPKP5BzFJPWC0hlUR5xFqvyiTWCUoH++jIcKNK33+Vg6a5I7F+egNsAhbnWMJ45D
+	0X86lox7wn+xbMr2jvStjzB4lSHugR3hi1iWYrn1zTPWECkxWARfbdbjtU5Twe0BFHnO
+	Eb4GKETR2YVPaQYBdDV07mPYhn+MHtHRyDOPyzYuT5gda9LW/1UNiooMnFQ1YRJkRq/D
+	IpoA==
+X-Received: by 10.221.51.206 with SMTP id vj14mr16168849vcb.17.1376598988351; 
+	Thu, 15 Aug 2013 13:36:28 -0700 (PDT)
+Received: from mulhern-2010-ubuntu (c-24-128-153-12.hsd1.ma.comcast.net.
+	[24.128.153.12])
+	by mx.google.com with ESMTPSA id eu9sm1057078vdb.1.2013.08.15.13.36.26
+	for <multiple recipients>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Thu, 15 Aug 2013 13:36:27 -0700 (PDT)
+Received: by mulhern-2010-ubuntu (sSMTP sendmail emulation);
+	Thu, 15 Aug 2013 16:36:25 -0400
+From: mulhern <mulhern@gmail.com>
+To: yocto@yoctoproject.org,
+	mulhern@yoctoproject.org
+Date: Thu, 15 Aug 2013 16:36:17 -0400
+Message-Id: <e135a4c21162ddac7452bbb22986a3c0ef5cdeee.1376598685.git.mulhern@yoctoproject.org>
+X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <cover.1376598685.git.mulhern@yoctoproject.org>
+References: <cover.1376598685.git.mulhern@yoctoproject.org>
+In-Reply-To: <cover.1376598685.git.mulhern@yoctoproject.org>
+References: <cover.1376598685.git.mulhern@yoctoproject.org>
+Subject: [PATCH 1/2] curses-perl: Change description to match package.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,49 +46,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 20:21:51 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 15 Aug 2013 20:36:29 -0000
 
-On Thu, Aug 15, 2013 at 12:41 PM, Saul Wold <sgw@linux.intel.com> wrote:
-> What version of oe-core / bitbake are you working with?
->
-Umm...  Is 'dylan' a meaningful answer?
+[YOCTO #4196] -- https://bugzilla.yoctoproject.org/show_bug.cgi?id=4196
 
-> Sound likeyou are trying a clean build, you could just try "bitbake -e
-> u-boot" without doing a full build and check those two items, the -e will
-> also give you the do_compile() task.
->
-Ooo, interesting.  'bitbake -e' all by itself gives me this:
+The description field in the recipe was changed to match the package.
 
-----
-# $UBOOT_MACHINE
-#   set /home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/conf/machine/ourboard.conf:12
-#     "mx6dl_sabresd_config"
-UBOOT_MACHINE="mx6dl_sabresd_config"
-----
+Signed-off-by: mulhern <mulhern@yoctoproject.org>
+---
+ recipes-security/perl/curses-perl_1.28.bb |    5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-But 'bitbake -e u-boot' gives me this:
+diff --git a/recipes-security/perl/curses-perl_1.28.bb b/recipes-security/perl/curses-perl_1.28.bb
+index 5984ca7..ac10f60 100644
+--- a/recipes-security/perl/curses-perl_1.28.bb
++++ b/recipes-security/perl/curses-perl_1.28.bb
+@@ -1,6 +1,5 @@
+-DESCRIPTION = "This package contains the URI.pm module with friends. \
+-The module implements the URI class. URI objects can be used to access \
+-and manipulate the various components that make up these strings."
++DESCRIPTION = "lib-curses provides an interface between Perl programs and \
++your system's curses library."
+ 
+ SECTION = "libs"
+ LICENSE = "Artistic-1.0 | GPL-1.0+"
+-- 
+1.7.10.4
 
-----
-# $UBOOT_MACHINE [4 operations]
-#   set /home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/conf/machine/ourboard.conf:12
-#     "mx6dl_sabresd_config"
-#   finalize ast.py:331 [finalize]
-#     "was: mx6dl_sabresd_config"
-#   override[ourboard]:set
-/home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/recipes-bsp/u-boot/u-boot-imx_2009.08.bbappend:5
-#     "mx6_ourboard_config"
-#   finalize override[ourboard]:
-#     "mx6_ourboard_config"
-# computed:
-#   "mx6_ourboard_config"
-UBOOT_MACHINE="mx6_ourboard_config"
-----
-
-And the generated do_compile() script reflects this.  Still not
-entirely clear why the results differ.
-
-Thank you for all the suggestions so far.
-
-Schwab
 
