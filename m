@@ -1,32 +1,33 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D921E0073F
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 14:04:26 -0700 (PDT)
-Received: by mail-ie0-f178.google.com with SMTP id f4so2046353iea.23
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 14:04:26 -0700 (PDT)
+Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C080E0073F;
+	Thu, 15 Aug 2013 14:07:55 -0700 (PDT)
+Received: by mail-ie0-f182.google.com with SMTP id tp5so2171436ieb.27
+	for <multiple recipients>; Thu, 15 Aug 2013 14:07:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=dcjBavLzVUv9ackQIawmaI35uqV1csD5jdCXIfk+Whk=;
-	b=k1oxyLHwZrj1OWkQb8JWmSWt7s3Bjyd8/agjwhfnfT6lVCgZvF721yiHVRrmthqgMM
-	83XjlRlmP+lnBaIccwHdtdeq5jq5ZaAMZUO6CmPk+RAAsG+r9Uw+3KiAl/nixrrv66Sw
-	lYaSKSKYgTkR6lDb8UH2d/sRvxtChe8n/OwHqOwMep0P66gqnNaPL4MpoPioyyCfYgpg
-	g5jE8S1bmCQba/HVsflZBmMIXVm4+TWGzbAilhlKc4mHJAhGC/vv1eonFw4HgR2IGNaq
-	LngNK7eQxXHhPb+hhg+qlpHo8XF13IjFOaG2p2k+EU2v1JDV2O9G/GttbWVqNnoGAOTQ
-	AUXQ==
-X-Received: by 10.50.26.36 with SMTP id i4mr3083975igg.33.1376600666156; Thu,
-	15 Aug 2013 14:04:26 -0700 (PDT)
+	bh=05NhaoVJhmhBxzQUmrLTpX8XyYYUu6vcByLcaqTK9eM=;
+	b=YAbiClu2GR4fkWDB3YSzV8NTnbkKK6pXB3cepYURm2HnVankg0syorrovaXTCgpq1o
+	8c+uOtewHmZxrsWH+vsFhKOhqSyIlmB7yJCXNS4gWEpCbSZuQ4NaNLjKNrxRvRUUQqNE
+	6dQOcsO/5gC6Gp6cCHGJTDmePjoGyegpzA4rkBFEYvTTT8Ec37Jdcb5fvhCR3a8s2b+9
+	nFHZsqGzl1AI97uT2JS3LN0u9SY0A3Mweaph+6kwYXFJk9Rps1xiOhM8U0iMf6KZiV5/
+	gfAq9yH3Czq0MNLEbBHr0fE+I5Y5aixeFkR2GAaHd3CppFWAia4ijYCb19eyHeYY4TBQ
+	kfBw==
+X-Received: by 10.50.92.74 with SMTP id ck10mr3159410igb.3.1376600875359; Thu,
+	15 Aug 2013 14:07:55 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.216.195 with HTTP; Thu, 15 Aug 2013 14:03:56 -0700 (PDT)
-In-Reply-To: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
-References: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
+Received: by 10.50.216.195 with HTTP; Thu, 15 Aug 2013 14:07:25 -0700 (PDT)
+In-Reply-To: <e135a4c21162ddac7452bbb22986a3c0ef5cdeee.1376598685.git.mulhern@yoctoproject.org>
+References: <cover.1376598685.git.mulhern@yoctoproject.org>
+	<e135a4c21162ddac7452bbb22986a3c0ef5cdeee.1376598685.git.mulhern@yoctoproject.org>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 15 Aug 2013 14:03:56 -0700
-Message-ID: <CAMKF1sqWdxTaejsvtzwJVHjgxPNGrPJPRWVhJ=CoY6DdSKp5zw@mail.gmail.com>
-To: Leo Schwab <lschwab@sensity.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How Does Yocto Fill In UBOOT_MACHINE?
+Date: Thu, 15 Aug 2013 14:07:25 -0700
+Message-ID: <CAMKF1srAEiY5EzzTqQhX==MnKBDkuer8yPGK9idzET4GnOQSqg@mail.gmail.com>
+To: mulhern <mulhern@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, mulhern@yoctoproject.org
+Subject: Re: [PATCH 1/2] curses-perl: Change description to match package.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,115 +39,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 21:04:28 -0000
-Content-Type: multipart/alternative; boundary=047d7bd76fe0b435db04e402d125
+X-List-Received-Date: Thu, 15 Aug 2013 21:07:56 -0000
+Content-Type: multipart/alternative; boundary=047d7b10cac92c677404e402de93
 
---047d7bd76fe0b435db04e402d125
+--047d7b10cac92c677404e402de93
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 15, 2013 at 11:15 AM, Leo Schwab <lschwab@sensity.com> wrote:
+On Thu, Aug 15, 2013 at 1:36 PM, mulhern <mulhern@gmail.com> wrote:
 
-> meta-belis3/recipes-bsp/u-boot/u-boot-imx_2009.08.bbappend):
->
-> ----
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->
-> SRC_URI_append_ourboard =3D "file://u-boot-ourboard.patch"
->
-> UBOOT_MACHINE_ourboard =3D "mx6_ourboard_config"
->
-
-
-=E2=80=8Bthe above would mean when MACHINE is ourboard then value for UBOOT=
-_MACHINE
-will be mx6_ourboard_config=E2=80=8B
-
-
-
-> ----
->
-> I then ran 'bitbake u-boot', and was rewarded with a u-boot image
-> built for 'ourboard' -- the logs confirm it was built using the target
-> mx6_ourboard_config.
->
-> ...Except I never told it to build 'ourboard';
+> -DESCRIPTION =3D "This package contains the URI.pm module with friends. \
+> -The module implements the URI class. URI objects can be used to access \
+> -and manipulate the various components that make up these strings."
+> +DESCRIPTION =3D "lib-curses provides an interface between Perl programs =
+and
+> \
+> +your system's curses library."
 >
 
+'=E2=80=8Byour' is not appropriate here=E2=80=8B
 
-=E2=80=8BI doubt that. Whats your default MACHINE may be in your local.conf=
- ?=E2=80=8B
-
-
-
-> I haven't modified
-> conf/machine/ourboard.conf yet.  It should still be building
-> mx6dl_sabresd_config.  So UBOOT_MACHINE is magically picking up a
-> different value.  If I remove my .bbappend file, then it resumes using
-> the target mx6dl_sabresd_config.
->
-> So:  What are the rules governing how UBOOT_MACHINE acquires its final
-> value?  What did I neglect to consider?  Is my .bbappend bogus?  Is
-> there some magic setting buried somewhere else I need to be aware of?
-> Thank you in advance for all suggestions.
->
->
-
---047d7bd76fe0b435db04e402d125
+--047d7b10cac92c677404e402de93
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Aug 15, 2013 at 11:15 AM, Leo Schwab <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:lschwab@sensity.com" target=3D"_blank">lschwab@sensity.com</a>&g=
-t;</span> wrote:<br>
+On Thu, Aug 15, 2013 at 1:36 PM, mulhern <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:mulhern@gmail.com" target=3D"_blank">mulhern@gmail.com</a>&gt;</span>=
+ wrote:<br>
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":2ga" style=3D"overflow:hidden">m=
-eta-belis3/recipes-bsp/u-boot/u-boot-imx_2009.08.bbappend):<br>
-<br>
-----<br>
-FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:&quot;<br>
-<br>
-SRC_URI_append_ourboard =3D &quot;file://u-boot-ourboard.patch&quot;<br>
-<br>
-UBOOT_MACHINE_ourboard =3D &quot;mx6_ourboard_config&quot;<br></div></block=
-quote><div><br></div><div><br></div><div><div style=3D"font-family:&#39;cou=
-rier new&#39;,monospace;font-size:small" class=3D"gmail_default">=E2=80=8Bt=
-he above would mean when MACHINE is ourboard then value for UBOOT_MACHINE w=
-ill be mx6_ourboard_config=E2=80=8B</div>
+x #ccc solid;padding-left:1ex"><div id=3D":2j8" style=3D"overflow:hidden">-=
+DESCRIPTION =3D &quot;This package contains the URI.pm module with friends.=
+ \<br>
 
-<br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2ga" =
-style=3D"overflow:hidden">
-----<br>
-<br>
-I then ran &#39;bitbake u-boot&#39;, and was rewarded with a u-boot image<b=
+
+-The module implements the URI class. URI objects can be used to access \<b=
 r>
-built for &#39;ourboard&#39; -- the logs confirm it was built using the tar=
-get<br>
-mx6_ourboard_config.<br>
-<br>
-...Except I never told it to build &#39;ourboard&#39;; </div></blockquote><=
-div><br></div><div><br></div><div><div style=3D"font-family:&#39;courier ne=
-w&#39;,monospace;font-size:small" class=3D"gmail_default">=E2=80=8BI doubt =
-that. Whats your default MACHINE may be in your local.conf ?=E2=80=8B</div>
+-and manipulate the various components that make up these strings.&quot;<br=
+>
++DESCRIPTION =3D &quot;lib-curses provides an interface between Perl progra=
+ms and \<br>
++your system&#39;s curses library.&quot;<br></div></blockquote></div><br><d=
+iv style=3D"font-family:&#39;courier new&#39;,monospace;font-size:small" cl=
+ass=3D"gmail_default">&#39;=E2=80=8Byour&#39; is not appropriate here=E2=80=
+=8B</div><br></div>
 
-<br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2ga" =
-style=3D"overflow:hidden">I haven&#39;t modified<br>
-conf/machine/ourboard.conf yet. =C2=A0It should still be building<br>
-mx6dl_sabresd_config. =C2=A0So UBOOT_MACHINE is magically picking up a<br>
-different value. =C2=A0If I remove my .bbappend file, then it resumes using=
-<br>
-the target mx6dl_sabresd_config.<br>
-<br>
-So: =C2=A0What are the rules governing how UBOOT_MACHINE acquires its final=
-<br>
-value? =C2=A0What did I neglect to consider? =C2=A0Is my .bbappend bogus? =
-=C2=A0Is<br>
-there some magic setting buried somewhere else I need to be aware of?<br>
-Thank you in advance for all suggestions.<br>
-<br></div></blockquote></div><br><br></div></div>
+</div>
 
---047d7bd76fe0b435db04e402d125--
+--047d7b10cac92c677404e402de93--
