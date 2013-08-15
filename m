@@ -1,26 +1,26 @@
 Return-Path: <sgw@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2430AE0144E
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 12:41:28 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 15 Aug 2013 12:41:27 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A7C6E0144E
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 12:47:17 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 15 Aug 2013 12:47:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,887,1367996400"; d="scan'208";a="381547295"
+X-IronPort-AV: E=Sophos;i="4.89,887,1367996400"; d="scan'208";a="282541722"
 Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Aug 2013 12:41:27 -0700
-Message-ID: <520D2EE7.30708@linux.intel.com>
-Date: Thu, 15 Aug 2013 12:41:27 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 15 Aug 2013 12:47:16 -0700
+Message-ID: <520D3044.6000904@linux.intel.com>
+Date: Thu, 15 Aug 2013 12:47:16 -0700
 From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
 MIME-Version: 1.0
-To: Leo Schwab <lschwab@sensity.com>
-References: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
-	<520D205C.2060105@linux.intel.com>
-	<CALb224-nFp88Eq_NqoPUo9pcDJ7KS6ysQbgcKuORPqDH2nUP7w@mail.gmail.com>
-In-Reply-To: <CALb224-nFp88Eq_NqoPUo9pcDJ7KS6ysQbgcKuORPqDH2nUP7w@mail.gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+References: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD>
+	<520D242A.6040103@linux.intel.com>
+	<D4677E29EEA744F99ECD3BF698767C89@PAULD>
+In-Reply-To: <D4677E29EEA744F99ECD3BF698767C89@PAULD>
 Cc: yocto@yoctoproject.org
-Subject: Re: How Does Yocto Fill In UBOOT_MACHINE?
+Subject: Re: My stuff is missing from rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,104 +32,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 19:41:31 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-List-Received-Date: Thu, 15 Aug 2013 19:47:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/15/2013 12:02 PM, Leo Schwab wrote:
-> Thank you for replying:
->
-> On Thu, Aug 15, 2013 at 11:39 AM, Saul Wold <sgw@linux.intel.com> wrote:
->> On 08/15/2013 11:15 AM, Leo Schwab wrote:
->>> ...Except I never told it to build 'ourboard'; I haven't modified
->>> conf/machine/ourboard.conf yet.  It should still be building
->>> mx6dl_sabresd_config.  So UBOOT_MACHINE is magically picking up a
->>> different value.  If I remove my .bbappend file, then it resumes using
->>> the target mx6dl_sabresd_config.
->>>
->> But you did indirectly, I have to assume that your default MACHINE is set
->> for "ourboard"
->
-> Correct.
->
->> and what's happened here is when the bbappend was added, your
->> setting of UBOOT_MACHINE_ourboard is an override so it built using that
->> setting.
->> [ ... ]
->> You can see this in action by running a bitbake -e (prints the variable
->> contents and how they were determined).
+On 08/15/2013 12:30 PM, Paul D. DeRocco wrote:
+>> From: Saul Wold
 >>
-> Umm...  Actually, no I dont:
+>>> On 08/15/2013 11:37 AM, Paul D. DeRocco wrote:
+>>> I've done exactly this in a different Yocto-based project,
+>>> and it worked.
+>>> Now I'm trying to do the same thing in a Gumstix build, and it's not
+>>> working. I have a dumb little recipe that merely copies
+>>> some files into
+>>> particlar places in the rootfs. It adds a systemd service
+>>> unit, as well as
+>>> .bashrc and .inputrc to /home/root.
+>>>
+>>> The build logs show the recipe being processed, including
+>>> the do_install
+>>> task which copies the files. No errors are produced. If I
+>>> rummage through
+>>> build/tmp/work, I can find the fragment of the rootfs containing the
+>>> /home/root and /etc/systemd/system directories with my
+>>> files in them. Yet no
+>>> matter what I try, these things never wind up in the final rootfs.
+>>>
+>>> I've tried clean and cleansstate on the recipe, as well as
+>>> on my top-level
+>>> recipe. I've bumped PR from r0 to r1. It dutifully
+>>> reprocesses my recipe,
+>>> with no errors, and I end up with a perfectly functioning
+>>> rootfs without
+>>> these particular files.
+>>>
+>>> This is a slightly modified version of
+>>> gumstix-console-image. I believe it's
+>>> based on Danny, as the gumstix Dylan stuff is still a work
+>>> in progress.
+>>>
+>>> What could conceivably be wrong?
+>>>
+>> Where do you add your recipe's generated packages to the image, this
+>> could be in your custom image with an RDEPENDS or via something in
+>> local.conf like CORE_IMAGE_EXTRA_INSTALL_append = " <packagename>".
+>>
+>> Do you have other recipes that DEPEND or RDEPEND on your recipe?
+>>
+>> That might point you in the right direction.
 >
-> ---
-> $ bitbake -e
-> [ ...blah, blah, blah...]
-> # $UBOOT_MACHINE
-> #   set /home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/conf/machine/ourboard.conf:12
-> #     "mx6dl_sabresd_config"
-> UBOOT_MACHINE="mx6dl_sabresd_config"
-> [ ... ]
+> My top level recipe uses IMAGE_INSTALL to add a bunch of packages, including
+> one whose name matches the name of the recipe that's being processed but
+> whose output is being ignored. This is exactly what I did in a different
+> Yocto project, to get a similar recipe to install some similar files, and it
+> all worked fine.
 >
-> Which is what I expected.
+> I've attached the top level recipe and the problematic one, only changing
+> the project name to "foo" for proprietary reasons.
 >
-Not what I would expect, if you bbappend was in play correctly, here is 
-my example:
+Interesting, did you verify that the files are in the 
+tmp/work/.../foo/packages-split/foo directory.  You can also look in the 
+tmp/work/.../gumstix-foo-pyygtk-image/1.0-r0/installed_pkgs.txt file to 
+ensure your foo package is there.
 
-# $UBOOT_MACHINE [4 operations]
-#   set /srv/hdd/poky/meta/conf/machine/include/tune-ppce300c3.inc:13
-#     "bogus"
-#   finalize ast.py:328 [finalize]
-#     "was: bogus"
-#   override[mpc8315e-rdb]:set 
-/srv/hdd/poky/meta-yocto-bsp/conf/machine/mpc8315e-rdb.conf:11
-#     "MPC8315ERDB_config"
-#   finalize override[mpc8315e-rdb]:
-#     "MPC8315ERDB_config"
-# computed:
-#   "MPC8315ERDB_config"
-UBOOT_MACHINE="MPC8315ERDB_config"
+You can also look in the image temp dir for the log.do_rootfs and see if 
+there are any issues in it or it's missing your package.
 
-And the do_compile / oe_runmake is correct with the mpc...config
+Note in this case recipename == packagename, this is not always the case.
 
+Home this helps.
 
-> Meanwhile, in the build log
-> tmp/work/..../u-boot-imx/2009.08-r16/temp/run.do_compile.29091:
->
-> ----
-> do_compile() {
-> 	if [ "" = "ld-is-gold" ] ; then
-> 		sed -i 's/$(CROSS_COMPILE)ld/$(CROSS_COMPILE)ld.bfd/g' config.mk
-> 	fi
-> 	if [ "" = "ld-is-gold" ] ; then
-> 		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' config.mk
-> 	fi
->
-> 	unset LDFLAGS
-> 	unset CFLAGS
-> 	unset CPPFLAGS
-> 	oe_runmake mx6_ournode_config   # <---- ?!?!?!
-> 	oe_runmake u-boot.bin
->
-> }
-> ----
->
-> In the process of reproducing this output, some stuff happened that
-> makes me think that bitbake's cache is mildly confused.  I'll try
-> scrubbing it and see if things become more consistent.  I will also
-> look into the OVERRIDES mechanism.
->
+	Sau!
 
-Might be a cache issue, but it should recompute the hashes when you add 
-or remove the .bbappend.
-
-What version of oe-core / bitbake are you working with?
-
-Sound likeyou are trying a clean build, you could just try "bitbake -e 
-u-boot" without doing a full build and check those two items, the -e 
-will also give you the do_compile() task.
-
-Sau!
-> Schwab
->
->
 
