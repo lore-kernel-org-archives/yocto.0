@@ -1,24 +1,28 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A7C6E0144E
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 12:47:17 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 15 Aug 2013 12:47:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,887,1367996400"; d="scan'208";a="282541722"
-Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by AZSMGA002.ch.intel.com with ESMTP; 15 Aug 2013 12:47:16 -0700
-Message-ID: <520D3044.6000904@linux.intel.com>
-Date: Thu, 15 Aug 2013 12:47:16 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-spurfowl.atl.sa.earthlink.net
+	(elasmtp-spurfowl.atl.sa.earthlink.net [209.86.89.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A88A8E01440
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 13:01:49 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=hMgTSM/OduiAgxQTAsZ2M3+d8jzqAYGvO5EDsEOMlKhAyS7Q0QhaUsuoxoG5YcKo;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-spurfowl.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VA3jv-0002sA-UX; Thu, 15 Aug 2013 16:01:48 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Saul Wold'" <sgw@linux.intel.com>
+References: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD><520D242A.6040103@linux.intel.com><D4677E29EEA744F99ECD3BF698767C89@PAULD>
+	<520D3044.6000904@linux.intel.com>
+In-Reply-To: <520D3044.6000904@linux.intel.com>
+Date: Thu, 15 Aug 2013 13:01:54 -0700
+Message-ID: <AA5214DFE7484C72896D4D472906185A@PAULD>
 MIME-Version: 1.0
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-References: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD>
-	<520D242A.6040103@linux.intel.com>
-	<D4677E29EEA744F99ECD3BF698767C89@PAULD>
-In-Reply-To: <D4677E29EEA744F99ECD3BF698767C89@PAULD>
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6Z8F4VcrqHAo+PT/+JSSlJqpVZYgAASHkA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688452c186150dc55ca4fb53e8254c9c5ae350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
 Subject: Re: My stuff is missing from rootfs
 X-BeenThere: yocto@yoctoproject.org
@@ -32,76 +36,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 19:47:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 15 Aug 2013 20:01:49 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On 08/15/2013 12:30 PM, Paul D. DeRocco wrote:
->> From: Saul Wold
->>
->>> On 08/15/2013 11:37 AM, Paul D. DeRocco wrote:
->>> I've done exactly this in a different Yocto-based project,
->>> and it worked.
->>> Now I'm trying to do the same thing in a Gumstix build, and it's not
->>> working. I have a dumb little recipe that merely copies
->>> some files into
->>> particlar places in the rootfs. It adds a systemd service
->>> unit, as well as
->>> .bashrc and .inputrc to /home/root.
->>>
->>> The build logs show the recipe being processed, including
->>> the do_install
->>> task which copies the files. No errors are produced. If I
->>> rummage through
->>> build/tmp/work, I can find the fragment of the rootfs containing the
->>> /home/root and /etc/systemd/system directories with my
->>> files in them. Yet no
->>> matter what I try, these things never wind up in the final rootfs.
->>>
->>> I've tried clean and cleansstate on the recipe, as well as
->>> on my top-level
->>> recipe. I've bumped PR from r0 to r1. It dutifully
->>> reprocesses my recipe,
->>> with no errors, and I end up with a perfectly functioning
->>> rootfs without
->>> these particular files.
->>>
->>> This is a slightly modified version of
->>> gumstix-console-image. I believe it's
->>> based on Danny, as the gumstix Dylan stuff is still a work
->>> in progress.
->>>
->>> What could conceivably be wrong?
->>>
->> Where do you add your recipe's generated packages to the image, this
->> could be in your custom image with an RDEPENDS or via something in
->> local.conf like CORE_IMAGE_EXTRA_INSTALL_append = " <packagename>".
->>
->> Do you have other recipes that DEPEND or RDEPEND on your recipe?
->>
->> That might point you in the right direction.
->
-> My top level recipe uses IMAGE_INSTALL to add a bunch of packages, including
-> one whose name matches the name of the recipe that's being processed but
-> whose output is being ignored. This is exactly what I did in a different
-> Yocto project, to get a similar recipe to install some similar files, and it
-> all worked fine.
->
-> I've attached the top level recipe and the problematic one, only changing
-> the project name to "foo" for proprietary reasons.
->
-Interesting, did you verify that the files are in the 
-tmp/work/.../foo/packages-split/foo directory.  You can also look in the 
-tmp/work/.../gumstix-foo-pyygtk-image/1.0-r0/installed_pkgs.txt file to 
-ensure your foo package is there.
+> From: Saul Wold
+> 
+> > My top level recipe uses IMAGE_INSTALL to add a bunch of 
+> > packages, including
+> > one whose name matches the name of the recipe that's being 
+> > processed but
+> > whose output is being ignored. This is exactly what I did 
+> > in a different
+> > Yocto project, to get a similar recipe to install some 
+> > similar files, and it
+> > all worked fine.
+> >
+> > I've attached the top level recipe and the problematic one, 
+> > only changing
+> > the project name to "foo" for proprietary reasons.
+> >
+> Interesting, did you verify that the files are in the 
+> tmp/work/.../foo/packages-split/foo directory.  You can also 
+> look in the 
+> tmp/work/.../gumstix-foo-pyygtk-image/1.0-r0/installed_pkgs.tx
+> t file to 
+> ensure your foo package is there.
+> 
+> You can also look in the image temp dir for the log.do_rootfs 
+> and see if 
+> there are any issues in it or it's missing your package.
 
-You can also look in the image temp dir for the log.do_rootfs and see if 
-there are any issues in it or it's missing your package.
+The files are in tmp/work/.../foo_1.0-r1/packages-split/foo, and also in
+tmp/work/.../foo_1.0-r1/image, and the package is listed in that text
+file. And the logs show no errors.
 
-Note in this case recipename == packagename, this is not always the case.
+This smells like one of those situations where nuking tmp and rebuilding
+will fix it, and we'll never know what was wrong. I'll let you know if
+that fixes it.
 
-Home this helps.
+-- 
 
-	Sau!
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
 
