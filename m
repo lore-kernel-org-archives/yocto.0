@@ -1,24 +1,24 @@
 Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15D3CE01440
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 11:39:25 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 15 Aug 2013 11:36:38 -0700
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C07A0E01440
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 11:55:47 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 15 Aug 2013 11:55:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,886,1367996400"; d="scan'208";a="381526233"
+X-IronPort-AV: E=Sophos;i="4.89,887,1367996400"; d="scan'208";a="282523651"
 Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Aug 2013 11:39:24 -0700
-Message-ID: <520D205C.2060105@linux.intel.com>
-Date: Thu, 15 Aug 2013 11:39:24 -0700
+	by AZSMGA002.ch.intel.com with ESMTP; 15 Aug 2013 11:55:38 -0700
+Message-ID: <520D242A.6040103@linux.intel.com>
+Date: Thu, 15 Aug 2013 11:55:38 -0700
 From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
 MIME-Version: 1.0
-To: Leo Schwab <lschwab@sensity.com>
-References: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
-In-Reply-To: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
+To: pderocco@ix.netcom.com
+References: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD>
+In-Reply-To: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD>
 Cc: yocto@yoctoproject.org
-Subject: Re: How Does Yocto Fill In UBOOT_MACHINE?
+Subject: Re: My stuff is missing from rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,103 +30,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 18:39:28 -0000
+X-List-Received-Date: Thu, 15 Aug 2013 18:55:49 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/15/2013 11:15 AM, Leo Schwab wrote:
-> Two months ago I never heard of Yocto -- now I are one.  I'm
-> attempting to create a layer and pile of recipes that will allow us to
-> adapt Freescale's i.MX support to our custom board.  Right now we're
-> starting out with one of their evaluation boards, but will eventually
-> transition to our own.  In anticipation of arriving hardware, I
-> created a new config for u-boot by copying an existing config and
-> renaming it.  The new config builds properly, but I don't know why.
-> Grepping through the Yocto sources hasn't been very enlightening, and
-> I was hoping I could get some insights into what's going on.
+On 08/15/2013 11:37 AM, Paul D. DeRocco wrote:
+> I've done exactly this in a different Yocto-based project, and it worked.
+> Now I'm trying to do the same thing in a Gumstix build, and it's not
+> working. I have a dumb little recipe that merely copies some files into
+> particlar places in the rootfs. It adds a systemd service unit, as well as
+> .bashrc and .inputrc to /home/root.
 >
-> I will try to be as succinct as I can (some of the names have been
-> changed to protect the innocent).  We initially started by using the
-> Freescale-furnished build targets directly.  I created a new layer
-> (we'll call it meta-belis3), and in it created this
-> conf/machine/ourboard.conf (apologies in advance for inappropriate
-> line wrapping; GMail offers no control over this):
+> The build logs show the recipe being processed, including the do_install
+> task which copies the files. No errors are produced. If I rummage through
+> build/tmp/work, I can find the fragment of the rootfs containing the
+> /home/root and /etc/systemd/system directories with my files in them. Yet no
+> matter what I try, these things never wind up in the final rootfs.
 >
-> ----
-> #@TYPE: Machine
-> #@NAME: ourboard
-> #@DESCRIPTION: Based on machine configuration for Freescale i.MX6DL SABRE SD
+> I've tried clean and cleansstate on the recipe, as well as on my top-level
+> recipe. I've bumped PR from r0 to r1. It dutifully reprocesses my recipe,
+> with no errors, and I end up with a perfectly functioning rootfs without
+> these particular files.
 >
-> include conf/machine/include/imx-base.inc
-> include conf/machine/include/tune-cortexa9.inc
+> This is a slightly modified version of gumstix-console-image. I believe it's
+> based on Danny, as the gumstix Dylan stuff is still a work in progress.
 >
-> SOC_FAMILY = "mx6:mx6dl"
+> What could conceivably be wrong?
 >
-> PREFERRED_PROVIDER_u-boot = "u-boot-imx"
->
-> UBOOT_MACHINE = "mx6dl_sabresd_config"
-> UBOOT_SUFFIX = "bin"
-> UBOOT_PADDING = "2"
->
-> SERIAL_CONSOLE = "115200 ttymxc0"
->
-> MACHINE_FEATURES += " pci wifi"
-> ----
->
-> This is basically a copy of Freescale's
-> meta-fsl-arm/conf/machine/imx6dlsabresd.conf file, with trivial
-> changes.  Inside the build directory's conf/local.conf, I set MACHINE
-> to 'ourboard'.  This has worked for several weeks now.
->
-> Yesterday, following Freescale's docs, I started making mods to u-boot
-> to create a separate build target for our board.  The result is that I
-> now have a working u-boot build target named 'mx6_ourboard_config".
-> With that done, I created a .bbappend file to make the target
-> available (in a file named
-> meta-belis3/recipes-bsp/u-boot/u-boot-imx_2009.08.bbappend):
->
-> ----
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->
-> SRC_URI_append_ourboard = "file://u-boot-ourboard.patch"
->
-> UBOOT_MACHINE_ourboard = "mx6_ourboard_config"
-> ----
->
-> I then ran 'bitbake u-boot', and was rewarded with a u-boot image
-> built for 'ourboard' -- the logs confirm it was built using the target
-> mx6_ourboard_config.
->
-> ...Except I never told it to build 'ourboard'; I haven't modified
-> conf/machine/ourboard.conf yet.  It should still be building
-> mx6dl_sabresd_config.  So UBOOT_MACHINE is magically picking up a
-> different value.  If I remove my .bbappend file, then it resumes using
-> the target mx6dl_sabresd_config.
->
-But you did indirectly, I have to assume that your default MACHINE is 
-set for "ourboard" and what's happened here is when the bbappend was 
-added, your setting of UBOOT_MACHINE_ourboard is an override so it built 
-using that setting.
+Where do you add your recipe's generated packages to the image, this 
+could be in your custom image with an RDEPENDS or via something in 
+local.conf like CORE_IMAGE_EXTRA_INSTALL_append = " <packagename>".
 
-> So:  What are the rules governing how UBOOT_MACHINE acquires its final
-> value?  What did I neglect to consider?  Is my .bbappend bogus?  Is
-> there some magic setting buried somewhere else I need to be aware of?
-> Thank you in advance for all suggestions.
->
-The magic is the OVERRIDES mechanism in base.bbclass, so the _ourboard 
-is a machine override and takes presence over the default setting, in 
-this case of the UBOOT_MACHINE.
+Do you have other recipes that DEPEND or RDEPEND on your recipe?
 
-You can see this in action by running a bitbake -e (prints the variable 
-contents and how they were determined).
+That might point you in the right direction.
 
 Sau!
 
-> Schwab
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
 
