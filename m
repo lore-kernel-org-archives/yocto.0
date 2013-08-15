@@ -1,30 +1,36 @@
-Return-Path: <pderocco@ix.netcom.com>
-Received: from elasmtp-spurfowl.atl.sa.earthlink.net
-	(elasmtp-spurfowl.atl.sa.earthlink.net [209.86.89.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A88A8E01440
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 13:01:49 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
-	b=hMgTSM/OduiAgxQTAsZ2M3+d8jzqAYGvO5EDsEOMlKhAyS7Q0QhaUsuoxoG5YcKo;
-	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
-Received: from [76.173.239.98] (helo=PAULD)
-	by elasmtp-spurfowl.atl.sa.earthlink.net with esmtpa (Exim 4.67)
-	(envelope-from <pderocco@ix.netcom.com>)
-	id 1VA3jv-0002sA-UX; Thu, 15 Aug 2013 16:01:48 -0400
-From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-To: "'Saul Wold'" <sgw@linux.intel.com>
-References: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD><520D242A.6040103@linux.intel.com><D4677E29EEA744F99ECD3BF698767C89@PAULD>
-	<520D3044.6000904@linux.intel.com>
-In-Reply-To: <520D3044.6000904@linux.intel.com>
-Date: Thu, 15 Aug 2013 13:01:54 -0700
-Message-ID: <AA5214DFE7484C72896D4D472906185A@PAULD>
+Return-Path: <lschwab@xeralux.com>
+Received: from mail-ee0-f50.google.com (mail-ee0-f50.google.com [74.125.83.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A027CE01440
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 13:21:49 -0700 (PDT)
+Received: by mail-ee0-f50.google.com with SMTP id d51so571568eek.23
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 13:21:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=0wbdTIoOPJS9SwDhGWq/6fWzVkOtXJk7GUkOwcIWYHo=;
+	b=HJAJEtTDHIFq4QJOdWHz+9/Xjk2jw4sueSa7o79DqpIU9XQS6IGlxZve0N39kzzoNe
+	L/3xGP+LY6WxB6QohNdQVLQitJxxlDAnW4oFY1T9Nw6VHLTUSwSRyFHD//Pf6Faatutm
+	BtkZOWEb8i50jOjjd8y++oM22tnbp6eGX38MrOxh/+FwD/6Az8/pGwPP5wHYuwOK91hY
+	76Hos9A1FSzOv4ynsGgJzkpJNWT3uwm3217mBir5nGkPyTLPHQmmS4KViehA8ueYeYoC
+	eUpZ6iIXHPRUB5Hijq72KG3BTUuJ9JQpz7oTcHp+VZ8BLvJ+HKA+Mu1cUlLPkBaKXf6z
+	DffA==
+X-Gm-Message-State: ALoCoQmhi2NiRabpXKwFLzpgZNWale/2LN5vmq0tX5mI+g2gsFXvDNBhydblG7308g371uM2QDGD
 MIME-Version: 1.0
-X-Mailer: Microsoft Office Outlook 11
-Thread-Index: Ac6Z8F4VcrqHAo+PT/+JSSlJqpVZYgAASHkA
-X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
-X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688452c186150dc55ca4fb53e8254c9c5ae350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
-X-Originating-IP: 76.173.239.98
-Cc: yocto@yoctoproject.org
-Subject: Re: My stuff is missing from rootfs
+X-Received: by 10.15.54.199 with SMTP id t47mr24675075eew.46.1376598108382;
+	Thu, 15 Aug 2013 13:21:48 -0700 (PDT)
+Received: by 10.14.139.65 with HTTP; Thu, 15 Aug 2013 13:21:48 -0700 (PDT)
+In-Reply-To: <520D2EE7.30708@linux.intel.com>
+References: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
+	<520D205C.2060105@linux.intel.com>
+	<CALb224-nFp88Eq_NqoPUo9pcDJ7KS6ysQbgcKuORPqDH2nUP7w@mail.gmail.com>
+	<520D2EE7.30708@linux.intel.com>
+Date: Thu, 15 Aug 2013 13:21:48 -0700
+Message-ID: <CALb2248DaSMOHnP7EgXk9pBADkwsRWzuYaROyv6Nc5SZehJbAA@mail.gmail.com>
+From: Leo Schwab <lschwab@sensity.com>
+To: Saul Wold <sgw@linux.intel.com>
+Cc: yocto@yoctoproject.org, Leo Schwab <lschwab@sensity.com>
+Subject: Re: How Does Yocto Fill In UBOOT_MACHINE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,50 +42,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 20:01:49 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 15 Aug 2013 20:21:51 -0000
+Content-Type: text/plain; charset=UTF-8
 
-> From: Saul Wold
-> 
-> > My top level recipe uses IMAGE_INSTALL to add a bunch of 
-> > packages, including
-> > one whose name matches the name of the recipe that's being 
-> > processed but
-> > whose output is being ignored. This is exactly what I did 
-> > in a different
-> > Yocto project, to get a similar recipe to install some 
-> > similar files, and it
-> > all worked fine.
-> >
-> > I've attached the top level recipe and the problematic one, 
-> > only changing
-> > the project name to "foo" for proprietary reasons.
-> >
-> Interesting, did you verify that the files are in the 
-> tmp/work/.../foo/packages-split/foo directory.  You can also 
-> look in the 
-> tmp/work/.../gumstix-foo-pyygtk-image/1.0-r0/installed_pkgs.tx
-> t file to 
-> ensure your foo package is there.
-> 
-> You can also look in the image temp dir for the log.do_rootfs 
-> and see if 
-> there are any issues in it or it's missing your package.
+On Thu, Aug 15, 2013 at 12:41 PM, Saul Wold <sgw@linux.intel.com> wrote:
+> What version of oe-core / bitbake are you working with?
+>
+Umm...  Is 'dylan' a meaningful answer?
 
-The files are in tmp/work/.../foo_1.0-r1/packages-split/foo, and also in
-tmp/work/.../foo_1.0-r1/image, and the package is listed in that text
-file. And the logs show no errors.
+> Sound likeyou are trying a clean build, you could just try "bitbake -e
+> u-boot" without doing a full build and check those two items, the -e will
+> also give you the do_compile() task.
+>
+Ooo, interesting.  'bitbake -e' all by itself gives me this:
 
-This smells like one of those situations where nuking tmp and rebuilding
-will fix it, and we'll never know what was wrong. I'll let you know if
-that fixes it.
+----
+# $UBOOT_MACHINE
+#   set /home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/conf/machine/ourboard.conf:12
+#     "mx6dl_sabresd_config"
+UBOOT_MACHINE="mx6dl_sabresd_config"
+----
 
--- 
+But 'bitbake -e u-boot' gives me this:
 
-Ciao,               Paul D. DeRocco
-Paul                mailto:pderocco@ix.netcom.com 
+----
+# $UBOOT_MACHINE [4 operations]
+#   set /home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/conf/machine/ourboard.conf:12
+#     "mx6dl_sabresd_config"
+#   finalize ast.py:331 [finalize]
+#     "was: mx6dl_sabresd_config"
+#   override[ourboard]:set
+/home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/recipes-bsp/u-boot/u-boot-imx_2009.08.bbappend:5
+#     "mx6_ourboard_config"
+#   finalize override[ourboard]:
+#     "mx6_ourboard_config"
+# computed:
+#   "mx6_ourboard_config"
+UBOOT_MACHINE="mx6_ourboard_config"
+----
 
+And the generated do_compile() script reflects this.  Still not
+entirely clear why the results differ.
 
+Thank you for all the suggestions so far.
+
+Schwab
 
