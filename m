@@ -1,24 +1,34 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C07A0E01440
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 11:55:47 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 15 Aug 2013 11:55:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,887,1367996400"; d="scan'208";a="282523651"
-Received: from unknown (HELO [10.255.14.106]) ([10.255.14.106])
-	by AZSMGA002.ch.intel.com with ESMTP; 15 Aug 2013 11:55:38 -0700
-Message-ID: <520D242A.6040103@linux.intel.com>
-Date: Thu, 15 Aug 2013 11:55:38 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130514 Thunderbird/17.0.6
+Return-Path: <lschwab@xeralux.com>
+Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C608E0144E
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 12:02:28 -0700 (PDT)
+Received: by mail-ee0-f42.google.com with SMTP id b45so549739eek.15
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 12:02:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=mP/s7OrvNjQCtEt1nvj8TjTz6ZrOSoU8Lr0Q2WJfQ/8=;
+	b=bUHljoJSCnRsIJuttb/bXyo2SU7O6negRIB/WUEm3SHmj930Rb+sl/S7X1YBrnWetC
+	rwePoTaAus92ocxZ/NTl3flekDpHfQxRFTxi6MPX59osY7yuZtAGp97zJooXhv1UwKti
+	gbNA7HPXWNr6odenn12clQ4Fl/i6WK7hSoYwf57F7q9iem9K6c7T+aeKTO4fx5WAxIiG
+	PQM+kaJlQwyuzY/drzJ3Bbw7S+JR6sH6m9VDId0v1MDw85YnYEQCQYW/L1oLpajI5FeU
+	e/nrQyYexJsc+MeoawHbe4XCA4YfqR6wsCOzcoMkVvWJXU3I4Kft/A6f1rFOGG3D9Ooi
+	yPpg==
+X-Gm-Message-State: ALoCoQl/f1gmZzM/bnboEUZ6xqJ2WyGy3Udcn9Ov914mHl4iCJLuddYViuNVsI62z5t29RoH9CnR
 MIME-Version: 1.0
-To: pderocco@ix.netcom.com
-References: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD>
-In-Reply-To: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD>
-Cc: yocto@yoctoproject.org
-Subject: Re: My stuff is missing from rootfs
+X-Received: by 10.15.23.129 with SMTP id h1mr550766eeu.127.1376593347845; Thu,
+	15 Aug 2013 12:02:27 -0700 (PDT)
+Received: by 10.14.139.65 with HTTP; Thu, 15 Aug 2013 12:02:27 -0700 (PDT)
+In-Reply-To: <520D205C.2060105@linux.intel.com>
+References: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
+	<520D205C.2060105@linux.intel.com>
+Date: Thu, 15 Aug 2013 12:02:27 -0700
+Message-ID: <CALb224-nFp88Eq_NqoPUo9pcDJ7KS6ysQbgcKuORPqDH2nUP7w@mail.gmail.com>
+From: Leo Schwab <lschwab@sensity.com>
+To: Saul Wold <sgw@linux.intel.com>
+Cc: yocto@yoctoproject.org, Leo Schwab <lschwab@sensity.com>
+Subject: Re: How Does Yocto Fill In UBOOT_MACHINE?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +40,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 18:55:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 15 Aug 2013 19:02:31 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 08/15/2013 11:37 AM, Paul D. DeRocco wrote:
-> I've done exactly this in a different Yocto-based project, and it worked.
-> Now I'm trying to do the same thing in a Gumstix build, and it's not
-> working. I have a dumb little recipe that merely copies some files into
-> particlar places in the rootfs. It adds a systemd service unit, as well as
-> .bashrc and .inputrc to /home/root.
->
-> The build logs show the recipe being processed, including the do_install
-> task which copies the files. No errors are produced. If I rummage through
-> build/tmp/work, I can find the fragment of the rootfs containing the
-> /home/root and /etc/systemd/system directories with my files in them. Yet no
-> matter what I try, these things never wind up in the final rootfs.
->
-> I've tried clean and cleansstate on the recipe, as well as on my top-level
-> recipe. I've bumped PR from r0 to r1. It dutifully reprocesses my recipe,
-> with no errors, and I end up with a perfectly functioning rootfs without
-> these particular files.
->
-> This is a slightly modified version of gumstix-console-image. I believe it's
-> based on Danny, as the gumstix Dylan stuff is still a work in progress.
->
-> What could conceivably be wrong?
->
-Where do you add your recipe's generated packages to the image, this 
-could be in your custom image with an RDEPENDS or via something in 
-local.conf like CORE_IMAGE_EXTRA_INSTALL_append = " <packagename>".
+Thank you for replying:
 
-Do you have other recipes that DEPEND or RDEPEND on your recipe?
+On Thu, Aug 15, 2013 at 11:39 AM, Saul Wold <sgw@linux.intel.com> wrote:
+> On 08/15/2013 11:15 AM, Leo Schwab wrote:
+>> ...Except I never told it to build 'ourboard'; I haven't modified
+>> conf/machine/ourboard.conf yet.  It should still be building
+>> mx6dl_sabresd_config.  So UBOOT_MACHINE is magically picking up a
+>> different value.  If I remove my .bbappend file, then it resumes using
+>> the target mx6dl_sabresd_config.
+>>
+> But you did indirectly, I have to assume that your default MACHINE is set
+> for "ourboard"
 
-That might point you in the right direction.
+Correct.
 
-Sau!
+> and what's happened here is when the bbappend was added, your
+> setting of UBOOT_MACHINE_ourboard is an override so it built using that
+> setting.
+> [ ... ]
+> You can see this in action by running a bitbake -e (prints the variable
+> contents and how they were determined).
+>
+Umm...  Actually, no I dont:
 
+---
+$ bitbake -e
+[ ...blah, blah, blah...]
+# $UBOOT_MACHINE
+#   set /home/ewhac/devel/iMX6/fsl-community-bsp/sources/meta-belis3/conf/machine/ourboard.conf:12
+#     "mx6dl_sabresd_config"
+UBOOT_MACHINE="mx6dl_sabresd_config"
+[ ... ]
+
+Which is what I expected.
+
+Meanwhile, in the build log
+tmp/work/..../u-boot-imx/2009.08-r16/temp/run.do_compile.29091:
+
+----
+do_compile() {
+	if [ "" = "ld-is-gold" ] ; then
+		sed -i 's/$(CROSS_COMPILE)ld/$(CROSS_COMPILE)ld.bfd/g' config.mk
+	fi
+	if [ "" = "ld-is-gold" ] ; then
+		sed -i 's/$(CROSS_COMPILE)ld$/$(CROSS_COMPILE)ld.bfd/g' config.mk
+	fi
+
+	unset LDFLAGS
+	unset CFLAGS
+	unset CPPFLAGS
+	oe_runmake mx6_ournode_config   # <---- ?!?!?!
+	oe_runmake u-boot.bin
+
+}
+----
+
+In the process of reproducing this output, some stuff happened that
+makes me think that bitbake's cache is mildly confused.  I'll try
+scrubbing it and see if things become more consistent.  I will also
+look into the OVERRIDES mechanism.
+
+Schwab
 
