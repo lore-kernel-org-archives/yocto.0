@@ -1,30 +1,33 @@
 Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f48.google.com (mail-vb0-f48.google.com
-	[209.85.212.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DD07E0073F
-	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 03:22:12 -0700 (PDT)
-Received: by mail-vb0-f48.google.com with SMTP id w16so1451524vbf.7
-	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 03:22:11 -0700 (PDT)
+Received: from mail-we0-f178.google.com (mail-we0-f178.google.com
+	[74.125.82.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15232E0073F
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 03:49:41 -0700 (PDT)
+Received: by mail-we0-f178.google.com with SMTP id u57so1474624wes.37
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 03:49:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=Vu5Ax9DxFA7q2ZSSk24iqC6RPFKYKloSH32g4Ln/4Ag=;
-	b=YOXkkNoq7us5CWWc3Ph9wCMqS7Zbyo5rgsyEjfG3T5LiwPCipU2VzL/5E+DzNMZufl
-	3kQ9uPsuK+Q/nMF8jxrrDHN2TT3n+gmLAFa8C6a394EPg/0/81ceozLizBagIBAfCl4s
-	K7rMP7eQVPVnBIQNtA4BF9jMh7A8Awq7bfXT39Z6koGjapiBvvCWKLDJdernDumowZlz
-	JZQUCU0wLYVku20KytJE/ed7q9tVOZpSWa7Mn9AkCtUjgNDMY/6KYHQez/OJKG15Hx59
-	nu/410GtQdX/a5Nxuzg2igjnd5lPXPllanMpfhvnB2VamglahSAPtnnbSKkBsyyi3f4l
-	rtGQ==
-X-Received: by 10.58.73.202 with SMTP id n10mr567707vev.7.1376648531613; Fri,
-	16 Aug 2013 03:22:11 -0700 (PDT)
-MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.155.17 with HTTP; Fri, 16 Aug 2013 03:21:30 -0700 (PDT)
+	h=sender:from:to:cc:subject:date:message-id;
+	bh=WZayQbYqXakgWSTbpD9OPUaSKjn4p2XwLwxIsSszu4o=;
+	b=saDpNq1QEmFEIPDZwSh1nLcriCGLIXPN44mOf1jukRC3+hyXhyGW9tkdPvOElRkhLe
+	KprbGof8HsalFqJOAQEZTZYzbGkmTK6NrjVDQx4FeS2aPEdmR/ARjZAibbUQHLseAM2/
+	KDHsp3SuyAEx2cUpZ5unYK0G/MkOQ5cyooKo01ya9N5th/hJkXnP+wX67Y4Ud7B1vvJB
+	LtPxp0d9f8iPlnV0BB18tLXjdppqcR8HI6gnMx3qGG+bpJPkjQVlFARFTskw0cXpeMA8
+	UhLqHLKJXhrFAx84yPpSsBXdud3KKnsCb6MR/XMn5Q1wqWIlJWzxPQXRogtnOuWH789+
+	jQuA==
+X-Received: by 10.180.75.148 with SMTP id c20mr601227wiw.25.1376650180380;
+	Fri, 16 Aug 2013 03:49:40 -0700 (PDT)
+Received: from turn.betafive.co.uk (94-192-12-83.zone6.bethere.co.uk.
+	[94.192.12.83])
+	by mx.google.com with ESMTPSA id dt17sm7414870wic.1.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 16 Aug 2013 03:49:39 -0700 (PDT)
+Sender: Paul Barker <paul.betafive@gmail.com>
 From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 16 Aug 2013 11:21:30 +0100
-X-Google-Sender-Auth: 7suqv7cU4ko9xC2jcdG1NiMQYN0
-Message-ID: <CANyK_8d13jds+LeO8U==uOn2FAC5UXvqOWY+eLnxJNPp6Pi_xA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: [opkg-utils] Splitting package feed directories and where to send patches
+To: yocto@yoctoproject.org
+Date: Fri, 16 Aug 2013 11:48:36 +0100
+Message-Id: <1376650116-11855-1-git-send-email-paul@paulbarker.me.uk>
+X-Mailer: git-send-email 1.8.3.4
+Subject: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: Allow optional compression
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,35 +39,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Aug 2013 10:22:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 16 Aug 2013 10:49:43 -0000
 
-I'm planning a patch to opkg-utils to add an option to split packages
-into subdirectories in the same way as debian package feeds are often
-laid out. So you'd have 'a*' in a subdirectory 'a', 'b*' in 'b', etc.
-Packages beginning with 'lib' are put in 'liba', 'libb', etc as
-appropriate and packages matching 'l*' but not 'lib*' stay in 'l'.
-That's done to reduce the number of files in a single directory - I'm
-having trouble mirroring over 7000 files in one directory to my
-webserver. I shan't be changing the default, just want to add the
-option if I can and then add a way of enabling this behaviour in a
-distro config or local.conf.
+Image files will typically contain lots of null blocks and should compress well.
+This will help with distribution of images over slow network links.
 
-However, I can't see any info on where to send packages for opkg-utils
-and if there's a particular maintainer I need to CC on my emails. I'm
-guessing they probably go to this list or someone on this list. So I'm
-also going to propose adding a README file to opkg-utils with info on
-who's maintaining it and where to send patches.
+Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+---
+ classes/sdcard_image-rpi.bbclass | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-I now seem to be the de-facto maintainer of opkg itself so it would
-make sense for me to co-ordinate with whoever is looking after
-opkg-utils.
-
-Thanks,
-
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index a2fcd52..8d2a5f2 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -50,6 +50,11 @@ IMAGE_DEPENDS_rpi-sdimg = " \
+ # SD card image name
+ SDIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-sdimg"
+ 
++# Compression method to apply to SDIMG after it has been created. May be "none",
++# "gzip", "bzip2" or "xz". Setting this to something other than "none" will
++# cause SDIMG to be renamed.
++SDIMG_COMPRESSION ?= "none"
++
+ # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
+ FATPAYLOAD ?= ""
+ 
+@@ -107,6 +112,19 @@ IMAGE_CMD_rpi-sdimg () {
+ 	else
+ 		dd if=${SDIMG_ROOTFS} of=${SDIMG} conv=notrunc seek=1 bs=$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
+ 	fi
++
++	# Optionally apply compression
++	case "${SDIMG_COMPRESSION}" in
++	"gzip")
++		gzip -9 "${SDIMG}"
++		;;
++	"bzip2")
++		bzip2 -9 "${SDIMG}"
++		;;
++	"xz")
++		xz "${SDIMG}"
++		;;
++	esac
+ }
+ 
+ ROOTFS_POSTPROCESS_COMMAND += " rpi_generate_sysctl_config ; "
 -- 
-Paul Barker
+1.8.3.4
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
