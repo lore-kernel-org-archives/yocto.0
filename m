@@ -1,42 +1,55 @@
-Return-Path: <Brian.Wenholz@med.ge.com>
-Received: from exprod5og104.obsmtp.com (exprod5og104.obsmtp.com [64.18.0.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C81E4E00408
-	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 07:49:29 -0700 (PDT)
-Received: from cinmlip12.e2k.ad.ge.com ([12.71.149.1]) (using TLSv1) by
-	exprod5ob104.postini.com ([64.18.4.12]) with SMTP
-	ID DSNKUg47+OPwvoOos9RgtUXqk+iko+YKb8WO@postini.com;
-	Fri, 16 Aug 2013 07:49:32 PDT
-Received: from unknown (HELO alpmlef06.e2k.ad.ge.com) ([3.159.18.15])
-	by cinmlip12.e2k.ad.ge.com with ESMTP; 16 Aug 2013 10:49:25 -0400
-Received: from cinmlef17.e2k.ad.ge.com ([3.159.213.93]) by
-	alpmlef06.e2k.ad.ge.com with Microsoft SMTPSVC(6.0.3790.4675); 
-	Fri, 16 Aug 2013 10:49:24 -0400
-Received: from CINMLCH02.e2k.ad.ge.com ([3.159.212.51]) by
-	cinmlef17.e2k.ad.ge.com with Microsoft SMTPSVC(6.0.3790.4675); 
-	Fri, 16 Aug 2013 10:48:56 -0400
-Received: from ALPMBHT02.e2k.ad.ge.com (3.159.19.195) by
-	CINMLCH02.e2k.ad.ge.com (3.159.212.51) with Microsoft SMTP Server (TLS)
-	id 14.3.146.0; Fri, 16 Aug 2013 10:48:54 -0400
-Received: from ALPURAPA03.e2k.ad.ge.com (3.159.19.111) by
-	ALPMBHT02.e2k.ad.ge.com (3.159.19.195) with Microsoft SMTP Server (TLS)
-	id 14.3.146.0; Fri, 16 Aug 2013 10:48:54 -0400
-Received: from ALPURAPA22.e2k.ad.ge.com ([169.254.4.38]) by
-	ALPURAPA03.e2k.ad.ge.com ([169.254.3.44]) with mapi id 14.03.0146.000;
-	Fri, 16 Aug 2013 10:48:54 -0400
-From: "Wenholz, Brian (GE Healthcare)" <Brian.Wenholz@med.ge.com>
+Return-Path: <siva.alagarsamy@thermofisher.com>
+Received: from usmx01.thermofisher.com (usmx01.thermofisher.com
+	[12.199.218.160])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC829E002F9
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 09:14:30 -0700 (PDT)
+X-ASG-Debug-ID: 1376669668-04220e0e53d25760001-yzSStA
+Received: from mxvolt02.thermofisher.com ([12.199.217.100]) by
+	usmx01.thermofisher.com with ESMTP id uTH3fmL9tLzzXCKp
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=NO) for
+	<yocto@yoctoproject.org>; Fri, 16 Aug 2013 09:14:28 -0700 (MST)
+X-Barracuda-Envelope-From: siva.alagarsamy@thermofisher.com
+X-Barracuda-Apparent-Source-IP: 12.199.217.100
+Received: from uspho-mxet02.amer.thermo.com (uspho-mxet02.amer.thermo.com
+	[10.161.198.45])
+	by mxvolt02.thermofisher.com (8.14.4/8.14.4) with ESMTP id
+	r7GGESaQ013702
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 09:14:28 -0700
+Received: from uspho-mxht02.amer.thermo.com (10.161.196.46) by
+	uspho-mxet02.amer.thermo.com (10.161.198.45) with Microsoft SMTP Server
+	(TLS) id 8.3.298.1; Fri, 16 Aug 2013 09:14:36 -0700
+Received: from uspho-mxvs07.amer.thermo.com ([fe80::7078:51f0:98a7:3694]) by
+	uspho-mxht02.amer.thermo.com ([::1]) with mapi;
+	Fri, 16 Aug 2013 09:14:28 -0700
+From: "Alagarsamy, Siva" <siva.alagarsamy@thermofisher.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Full Screen Image Display Program
-Thread-Index: Ac6ajzBhU6M7wj6PQTiTV8IHz4Kjbw==
-Date: Fri, 16 Aug 2013 14:48:54 +0000
-Message-ID: <4F1B91CF7B31604FABE8442530201B7803E4FC@ALPURAPA22.e2k.ad.ge.com>
+Date: Fri, 16 Aug 2013 09:14:27 -0700
+Thread-Topic: Using boost in the cross compiler environment
+X-ASG-Orig-Subj: Using boost in the cross compiler environment
+Thread-Index: Ac6am65HiDZ0ae5gQKyP2OIKswC8Yg==
+Message-ID: <11F9467C4C2E4E4DBB8A7F440A5415718BCCC2DF27@USPHO-MXVS07.amer.thermo.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [3.159.19.192]
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-OriginalArrivalTime: 16 Aug 2013 14:48:56.0728 (UTC)
-	FILETIME=[BC1C1180:01CE9A8F]
-Subject: Full Screen Image Display Program
+X-Barracuda-Connect: UNKNOWN[12.199.217.100]
+X-Barracuda-Start-Time: 1376669668
+X-Barracuda-Encrypted: AES256-SHA
+X-Barracuda-URL: http://usmx01.thermofisher.com:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at thermofisher.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.138568
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+X-Mailman-Approved-At: Fri, 16 Aug 2013 09:19:19 -0700
+Subject: Using boost in the cross compiler environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,46 +61,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Aug 2013 14:49:33 -0000
+X-List-Received-Date: Fri, 16 Aug 2013 16:14:32 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_4F1B91CF7B31604FABE8442530201B7803E4FCALPURAPA22e2kadge_"
+	boundary="_000_11F9467C4C2E4E4DBB8A7F440A5415718BCCC2DF27USPHOMXVS07am_"
 
---_000_4F1B91CF7B31604FABE8442530201B7803E4FCALPURAPA22e2kadge_
+--_000_11F9467C4C2E4E4DBB8A7F440A5415718BCCC2DF27USPHOMXVS07am_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Does anyone have, or can point me to, a good recipe for qiv that will work =
-with Yocto 1.3?
+I am new to the Yocot.  I have was able succesffuly build a poky image for =
+a development board.  I was able to generate a adt-installer using "bitbake=
+ adt-installer" command.  I am able to compile a simple hello world program=
+ and run it on the development board. I need to use "Boost" library in my u=
+ser application. What is the proper procedure to install the boost in my cr=
+oss compiler environment?
 
-I found an obsolete qiv recipe via openembedded, but to update it will be b=
-asically writing a new recipe since the source locations and dependencies h=
-ave changed.
+Thanks,
+Siva
 
-I am open to other suggestions to meet my needs as well. I need a program t=
-hat will:
--Display PNG images in full screen mode
--Display the image without overlays
--Display to the X server (I do not have a user space accessible frame buffe=
-r device)
--Operate from the command line or a shell script
-
-Brian Wenholz
-
---_000_4F1B91CF7B31604FABE8442530201B7803E4FCALPURAPA22e2kadge_
+--_000_11F9467C4C2E4E4DBB8A7F440A5415718BCCC2DF27USPHOMXVS07am_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
 osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
+//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
+=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
+oft Word 12 (filtered medium)"><style><!--
 /* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
@@ -107,11 +113,10 @@ a:visited, span.MsoHyperlinkFollowed
 	text-decoration:underline;}
 span.EmailStyle17
 	{mso-style-type:personal-compose;
-	font-family:"Arial","sans-serif";
-	color:black;}
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
 .MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
+	{mso-style-type:export-only;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -122,47 +127,14 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">Does anyone have, or can poin=
-t me to, a good recipe for qiv that will work with Yocto 1.3?<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">I found an obsolete qiv recip=
-e via openembedded, but to update it will be basically writing a new recipe=
- since the source locations and dependencies have changed.<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">I am open to other suggestion=
-s to meet my needs as well. I need a program that will:<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">-Display PNG images in full s=
-creen mode<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">-Display the image without ov=
-erlays<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">-Display to the X server (I d=
-o not have a user space accessible frame buffer device)<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">-Operate from the command lin=
-e or a shell script<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,&quot;sans-serif&quot;;color:black">Brian Wenholz<o:p></o:p></spa=
-n></p>
-</div>
-</body>
-</html>
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>I am new to the =
+Yocot.&nbsp; I have was able succesffuly build a poky image for a developme=
+nt board.&nbsp; I was able to generate a adt-installer using &#8220;bitbake=
+ adt-installer&#8221; command. &nbsp;I am able to compile a simple hello wo=
+rld program and run it on the development board. I need to use &#8220;Boost=
+&#8221; library in my user application. What is the proper procedure to ins=
+tall the boost in my cross compiler environment? <o:p></o:p></p><p class=3D=
+MsoNormal><br>Thanks,<br>Siva<o:p></o:p></p></div></body></html>=
 
---_000_4F1B91CF7B31604FABE8442530201B7803E4FCALPURAPA22e2kadge_--
+--_000_11F9467C4C2E4E4DBB8A7F440A5415718BCCC2DF27USPHOMXVS07am_--
