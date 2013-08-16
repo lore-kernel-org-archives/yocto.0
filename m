@@ -1,37 +1,30 @@
-Return-Path: <lschwab@xeralux.com>
-Received: from mail-ee0-f44.google.com (mail-ee0-f44.google.com [74.125.83.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53931E0073F
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 16:47:54 -0700 (PDT)
-Received: by mail-ee0-f44.google.com with SMTP id b47so658831eek.3
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 16:47:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=PD+mnRnSsOu5OdvQI0DHpeo0ULtI143GcqN/JZ3FyfQ=;
-	b=jqFqoYyo3RWgXBrTvyeASoN9j8gbaKiBNN7dEB9EdM6VLlr6GCGFlzRs+nQV2lyUrt
-	BfG8M6+v2G4afkrWF5bsBvt/92L8PiWMmowI9FbIrt/Eq6/w/CE2ehrh6A+RcXCm2ALg
-	BXcyt1xsQUjf0GyWZUIxXwHcUEMAD2zXdHAbQFh1RU4OMISet+PO6ofB7Pldy4sDXBDK
-	iDrfulA7EeiJiL8KqiGgU+Vx6bNrur4MZcU7SeJNwLH7SxCjdTLjqiQU52d8uxLmHRwf
-	zsFqGPpkYsJaTSGQ03+iykTrMxFMqhfvvgQGl+pEiFz1ipURtF1XgOgoYXY47Ib5aCVk
-	ndAg==
-X-Gm-Message-State: ALoCoQmNqHqhaLZeb4Gkrs378Ae/s5d0TiCvWhZSM2BSdvt/7867akSNbp9uJ8U1XK0/bvbME7Qs
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-mealy.atl.sa.earthlink.net
+	(elasmtp-mealy.atl.sa.earthlink.net [209.86.89.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0A59E0073F
+	for <yocto@yoctoproject.org>; Thu, 15 Aug 2013 17:20:52 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=icY8UXijw4a6bAle2+XiL6inZwmO4wegnYA2khpXkDbUNJLG9cTa+Y4NAl+YltZy;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-mealy.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VA7mO-0006Qu-0v; Thu, 15 Aug 2013 20:20:36 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Mark Hatle'" <mark.hatle@windriver.com>
+References: <D2ED8A5A8E3F4F688EF59142D375B80B@PAULD><520D242A.6040103@linux.intel.com><D4677E29EEA744F99ECD3BF698767C89@PAULD>
+	<520D6431.2080105@windriver.com>
+In-Reply-To: <520D6431.2080105@windriver.com>
+Date: Thu, 15 Aug 2013 17:20:42 -0700
+Message-ID: <E7C5F907D16F437AB756BDEC599B01C4@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.14.241.74 with SMTP id f50mr26027972eer.29.1376610472951;
-	Thu, 15 Aug 2013 16:47:52 -0700 (PDT)
-Received: by 10.14.139.65 with HTTP; Thu, 15 Aug 2013 16:47:52 -0700 (PDT)
-In-Reply-To: <CALb2248DaSMOHnP7EgXk9pBADkwsRWzuYaROyv6Nc5SZehJbAA@mail.gmail.com>
-References: <CALb224_XTEf-9eX9d9ERZpHv7RRm_hGM8N8N6d+x-oSswrH-qA@mail.gmail.com>
-	<520D205C.2060105@linux.intel.com>
-	<CALb224-nFp88Eq_NqoPUo9pcDJ7KS6ysQbgcKuORPqDH2nUP7w@mail.gmail.com>
-	<520D2EE7.30708@linux.intel.com>
-	<CALb2248DaSMOHnP7EgXk9pBADkwsRWzuYaROyv6Nc5SZehJbAA@mail.gmail.com>
-Date: Thu, 15 Aug 2013 16:47:52 -0700
-Message-ID: <CALb2249f=iEeqpSG9-PtnVa=u2t-Qe-Nco=sF4iALa85EdHvfQ@mail.gmail.com>
-From: Leo Schwab <lschwab@sensity.com>
-To: Leo Schwab <lschwab@sensity.com>
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6aD0rFyfZsg9otSWWxnGzfKrb1vwABkbXQ
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688b2c54edab9d3fc922b20da4b02463fd0350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
-Subject: Re: How Does Yocto Fill In UBOOT_MACHINE?
+Subject: Re: My stuff is missing from rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,57 +36,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2013 23:47:55 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 16 Aug 2013 00:20:53 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 15, 2013 at 1:21 PM, Leo Schwab <lschwab@sensity.com> wrote:
-> Still not entirely clear why the results differ.
->
-I still haven't figured out why those two runs are different, but I
-think I see what I might have done wrong with the .bbappend file.  Put
-briefly: I copy-pasted Freescale's work.
+> From: Mark Hatle
+> 
+> A simple way to diagnose if your package is even in the 
+> install list is to do 
+> bitbake -e <image>, then scan the output for 
+> "PACKAGE_INSTALL".  If your package 
+> is not listed there, then something has either cleared your 
+> configuration or you 
+> have a typo.
+> 
+> IMAGE_INSTALL_append = " my_package" should work, and 
+> generally won't be cleared 
+> by a recipe.
 
-Again, my u-boot-imx_2009.08.bbappend file:
+It's there, and it's all working now. I've had things break in odd ways
+before, and recover when I rebuilt. This time it took a couple of tries.
 
-----
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+What makes it frustrating is that I'm building on a wimpy Atom system.
+I've been on the verge of buying a killer system just to do builds, but I
+keep thinking, maybe I'll only need to do this another dozen or so times
+and then I'll be done, in which case it wouldn't be a good investment.
 
-SRC_URI_append_ourboard = "file://u-boot-ourboard.patch"
+> (Note you should modify IMAGE_INSTALL, which is transformed 
+> by the system into 
+> PACKAGE_INSTALL... modifying PACKAGE_INSTALL can lead to problems.)
 
-UBOOT_MACHINE_ourboard = "mx6_ourboard_config"
-----
+I don't think that all the various ways to append stuff will ever make
+sense to me. Currently, I'm using IMAGE_INSTALL += "..." in my top level
+recipe, and it works. I don't know what IMAGE_INSTALL_append does
+differently.
 
-The reason I put a UBOOT_MACHINE_ourboard assignment in there at all
-is because Freescale does something similar in their
-meta-fsl-arm/recipes-bsp/u-boot/u-boot-imx_2009.08.bb file for all
-their development boards:
+-- 
 
-----
-[ ...blah, blah, blah... ]
-UBOOT_MACHINE_imx53qsb = "mx53_loco_config"
-UBOOT_MACHINE_imx53ard = "mx53_ard_ddr3_config"
-UBOOT_MACHINE_imx51evk = "mx51_bbg_config"
-UBOOT_MACHINE_imx6qsabrelite = "mx6q_sabrelite_config"
-UBOOT_MACHINE_imx6qsabreauto = "mx6q_sabreauto_config"
-UBOOT_MACHINE_imx6qsabresd = "mx6q_sabresd_config"
-UBOOT_MACHINE_imx6dlsabresd = "mx6dl_sabresd_config"
-UBOOT_MACHINE_imx6slevk = "mx6sl_evk_config"
-UBOOT_MACHINE_imx28evk = "mx28_evk_config"
-[ ... ]
-----
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
-Near as I can tell, however, these override assignments are redundant,
-as they have machine definitions located at
-meta-fsl-arm/conf/machine/*.conf, each of which assigns a value to
-UBOOT_MACHINE.  Indeed, if I'm reading the bitbake docs correctly, the
-above assignments will override any UBOOT_MACHINE assignment in any
-other machine/*.conf file (this potential gotcha is currently obscured
-by the fact that the same value is assigned in both places).
-
-From this, I conclude that I should remove the UBOOT_MACHINE_ourboard
-assignment from my .bbappend file entirely, since the OVERRIDES
-facility doesn't really buy me anything in this instance, and
-(manifestly) leads to confusion.  Does that seem reasonable?
-
-Schwab
 
