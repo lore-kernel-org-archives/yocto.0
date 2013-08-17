@@ -1,38 +1,32 @@
-Return-Path: <Amit.Kumar@lntinfotech.com>
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18D71E002F9
-	for <yocto@yoctoproject.org>; Fri, 16 Aug 2013 22:57:35 -0700 (PDT)
-Received: from [216.82.241.100:39297] by server-5.bemta-8.messagelabs.com id
-	FD/8B-05166-DC01F025; Sat, 17 Aug 2013 05:57:33 +0000
-X-Env-Sender: Amit.Kumar@lntinfotech.com
-X-Msg-Ref: server-11.tower-220.messagelabs.com!1376719049!4293687!1
-X-Originating-IP: [203.101.96.8]
-X-StarScan-Received: 
-X-StarScan-Version: 6.9.11; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 29066 invoked from network); 17 Aug 2013 05:57:32 -0000
-Received: from unknown (HELO BLRINMSHTCAS02.bglrodc.lntinfotech.com)
-	(203.101.96.8)
-	by server-11.tower-220.messagelabs.com with AES128-SHA encrypted SMTP;
-	17 Aug 2013 05:57:32 -0000
-Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.2.40]) by
-	BLRINMSHTCAS02.bglrodc.lntinfotech.com ([172.28.0.83]) with mapi;
-	Sat, 17 Aug 2013 11:26:28 +0530
-From: Amit Kumar <Amit.Kumar@lntinfotech.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 17 Aug 2013 11:24:40 +0530
-Thread-Topic: [yocto] Build packages-ssh,telnet,alsa and other package for arm
-Thread-Index: Ac6YtJsbKJKPO/K/T1WOZI2IVbmIrACVsdWg
-Message-ID: <AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Return-Path: <pcjegan@gmail.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DA86E003E2
+	for <yocto@yoctoproject.org>; Sat, 17 Aug 2013 08:46:13 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id m1so2110255ves.13
+	for <yocto@yoctoproject.org>; Sat, 17 Aug 2013 08:46:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=JiQoiZckLVRrobg6kbP1nqtAsL+cAe0ZzzNoB3w5SFE=;
+	b=mfP6JggWNb+refY7CianSuGdZx/kgnSG9LjtwPbM8dDg3xFNZd9NWmwCrk+M5j23dU
+	nXB9dFsyAdAbhhOOi8Q3bMCIUAc95/owP5PyYx3tlkQPxD7VDcbAut9SpVYNihm9UR3q
+	BzgCER3zs27grif6aNIPha3yo7N6t2gp8cDymxoWwmea7WrPGVOKQBtNP3/Qf96dQs08
+	LHSe8Ykl6lFTVsfai+v22anY5zVAbEdYiIttEWFJN73jD8g3Gwyzluc+yhNz4f1EUlFj
+	euWM9rRvpsj+65u/M7HbTDe7RT1GEAz8n3byrJTo2exmZKYVLoxV07NQdOl0XerwZd3r
+	ExCw==
+X-Received: by 10.58.73.202 with SMTP id n10mr3669251vev.7.1376754372385; Sat,
+	17 Aug 2013 08:46:12 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.220.24.4 with HTTP; Sat, 17 Aug 2013 08:45:47 -0700 (PDT)
+In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2@BLRINMSMBX01.bglrodc.lntinfotech.com>
 References: <AF0985D076EB244693F2CCD71AAB10BC2C5EA3BEEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
 	<37204F11-4EBA-42E9-8BC2-858EECFC2785@gmail.com>
-In-Reply-To: <37204F11-4EBA-42E9-8BC2-858EECFC2785@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
-MIME-Version: 1.0
+	<AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2@BLRINMSMBX01.bglrodc.lntinfotech.com>
+From: Jegan Chandru <pcjegan@gmail.com>
+Date: Sat, 17 Aug 2013 21:15:47 +0530
+Message-ID: <CAAA4K6K7N5GpP3sJYv4BzrXEkv9McPqDptX_0D=RpmXypneFGg@mail.gmail.com>
+To: Amit Kumar <Amit.Kumar@lntinfotech.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Build packages-ssh, telnet, alsa and other package for arm
 X-BeenThere: yocto@yoctoproject.org
@@ -46,255 +40,354 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Aug 2013 05:57:37 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2BLRINMSMBX01b_"
+X-List-Received-Date: Sat, 17 Aug 2013 15:46:14 -0000
+Content-Type: multipart/alternative; boundary=047d7bacbb5c4f218904e4269bd3
 
---_000_AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2BLRINMSMBX01b_
-Content-Type: text/plain; charset="us-ascii"
+--047d7bacbb5c4f218904e4269bd3
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Hi Raj,
-            Thanks for the suggestion, I have built the image as "core-imag=
-e-base" , now I got the ssh, sftp working with my image.
-But some more packages I need like- gtk+, I have taken those packages using=
- the "hob" and build the image "bitbake core-image-base",
-But when I check that image using QEMU the "libgtk" does not present. I am =
-not able to test or run my gtk app in QEMU.
+Hi Amit,
 
-How do I get it in my image. If I build core-image-sato the libgtk present =
-and I can test my app, but the image size is too big.
-Is there anyway either reduce the image-sato size or include the gtk suppor=
-t in core-image-base?
-
-
-Thanks & Regards
-Amit K
-
-From: Khem Raj [mailto:raj.khem@gmail.com]
-Sent: Wednesday, August 14, 2013 11:37 AM
-To: Amit Kumar
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Build packages-ssh,telnet,alsa and other package for a=
-rm
-
-
-On Aug 13, 2013, at 10:49 PM, Amit Kumar <Amit.Kumar@lntinfotech.com<mailto=
-:Amit.Kumar@lntinfotech.com>> wrote:
-
-
-Hi,
-
-            Using the Yocto Project 1.4, I want to build the packages like =
-ssh, telnet, alias and other library packages for arm. I am not getting an =
-idea how I should have to add those packages in my build environment. I wan=
-t to build them and test, using the QEMU, is that possible? I want to build=
- them for arm.
-
-
-You can start by building a reference image e.g. core-image-basic and then =
-add the packages as you want extra I would encourage to read through the
-manual
-
+Please refer,
 https://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.h=
-tml
+tml#var-IMAGE_INSTALL
+where u can add the packages u need in ur image.
 
-especially IMAGE_FEATURES and IMAGE_INSTALL and CORE_IMAGE_EXTRA_INSTALL va=
-riables.
+core-image-sato is a full linux system with GUI, it is obvious that the
+size will be somewhat big.
+About the image size, it really depends on what package system are you
+using(rpm, deb, ipk)
+If its rpm, the size would be big for a filesystem, and ipk would have the
+smallest size.
 
-
-
-
-
-Thanks & Regards
-Amit K
-
-________________________________
-The contents of this e-mail and any attachment(s) may contain confidential =
-or privileged information for the intended recipient(s). Unintended recipie=
-nts are prohibited from taking action on the basis of information in this e=
--mail and using or disseminating the information, and must notify the sende=
-r and delete it from their system. L&T Infotech will not accept responsibil=
-ity or liability for the accuracy or completeness of, or the presence of an=
-y virus or disabling code in this e-mail"
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
+-JC
 
 
---_000_AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2BLRINMSMBX01b_
-Content-Type: text/html; charset="us-ascii"
+
+
+On Sat, Aug 17, 2013 at 11:24 AM, Amit Kumar <Amit.Kumar@lntinfotech.com>wr=
+ote:
+
+> Hi Raj,****
+>
+>             Thanks for the suggestion, I have built the image as
+> =93core-image-base=94 , now I got the ssh, sftp working with my image.***=
+*
+>
+> But some more packages I need like- gtk+, I have taken those packages
+> using the =93hob=94 and build the image =93bitbake core-image-base=94, **=
+**
+>
+> But when I check that image using QEMU the =93libgtk=94 does not present.=
+ I am
+> not able to test or run my gtk app in QEMU.****
+>
+> ** **
+>
+> How do I get it in my image. If I build core-image-sato the libgtk presen=
+t
+> and I can test my app, but the image size is too big. ****
+>
+> Is there anyway either reduce the image-sato size or include the gtk
+> support in core-image-base?****
+>
+> ** **
+>
+> ** **
+>
+> Thanks & Regards****
+>
+> Amit K ****
+>
+> ** **
+>
+> *From:* Khem Raj [mailto:raj.khem@gmail.com]
+> *Sent:* Wednesday, August 14, 2013 11:37 AM
+> *To:* Amit Kumar
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Build packages-ssh,telnet,alsa and other package
+> for arm****
+>
+> ** **
+>
+> ** **
+>
+> On Aug 13, 2013, at 10:49 PM, Amit Kumar <Amit.Kumar@lntinfotech.com>
+> wrote:****
+>
+>
+>
+> ****
+>
+> Hi,****
+>
+>  ****
+>
+>             Using the Yocto Project 1.4, I want to build the packages
+> like ssh, telnet, alias and other library packages for arm. I am not
+> getting an idea how I should have to add those packages in my build
+> environment. I want to build them and test, using the QEMU, is that
+> possible? I want to build them for arm.****
+>
+> ** **
+>
+> ** **
+>
+> You can start by building a reference image e.g. core-image-basic and the=
+n
+> add the packages as you want extra I would encourage to read through the =
+*
+> ***
+>
+> manual****
+>
+> ** **
+>
+>
+> https://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual=
+.html
+> ****
+>
+> ** **
+>
+> especially IMAGE_FEATURES and IMAGE_INSTALL and CORE_IMAGE_EXTRA_INSTALL
+> variables.****
+>
+>
+>
+> ****
+>
+>  ****
+>
+>  ****
+>
+>  ****
+>
+> Thanks & Regards****
+>
+> Amit K****
+>
+> ** **
+> ------------------------------
+>
+> The contents of this e-mail and any attachment(s) may contain confidentia=
+l
+> or privileged information for the intended recipient(s). Unintended
+> recipients are prohibited from taking action on the basis of information =
+in
+> this e-mail and using or disseminating the information, and must notify t=
+he
+> sender and delete it from their system. L&T Infotech will not accept
+> responsibility or liability for the accuracy or completeness of, or the
+> presence of any virus or disabling code in this e-mail"
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto****
+>
+> ** **
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+
+--=20
+JCP
+
+--047d7bacbb5c4f218904e4269bd3
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 14 (filtered medium)"><base href=3D"x-msg://5038/"><!--[if !mso]><=
-style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Helvetica;
-	panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-	{font-family:Helvetica;
-	panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Trebuchet MS";
-	panose-1:2 11 6 3 2 2 2 2 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.apple-converted-space
-	{mso-style-name:apple-converted-space;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Trebuchet MS","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'f=
-ont-size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#1F497D'>Hi R=
-aj,<o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0=
-pt;font-family:"Trebuchet MS","sans-serif";color:#1F497D'>&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thanks for the suggestion=
-, I have built the image as &#8220;core-image-base&#8221; , now I got the s=
-sh, sftp working with my image.<o:p></o:p></span></p><p class=3DMsoNormal><=
-span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";colo=
-r:#1F497D'>But some more packages I need like- gtk+, I have taken those pac=
-kages using the &#8220;hob&#8221; and build the image &#8220;bitbake core-i=
-mage-base&#8221;, <o:p></o:p></span></p><p class=3DMsoNormal><span style=3D=
-'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";color:#1F497D'>Bu=
-t when I check that image using QEMU the &#8220;libgtk&#8221; does not pres=
-ent. I am not able to test or run my gtk app in QEMU.<o:p></o:p></span></p>=
-<p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet=
- MS","sans-serif";color:#1F497D'><o:p>&nbsp;</o:p></span></p><p class=3DMso=
-Normal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-ser=
-if";color:#1F497D'>How do I get it in my image. If I build core-image-sato =
-the libgtk present and I can test my app, but the image size is too big. <o=
-:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;fo=
-nt-family:"Trebuchet MS","sans-serif";color:#1F497D'>Is there anyway either=
- reduce the image-sato size or include the gtk support in core-image-base?<=
-o:p></o:p></span></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;f=
-ont-family:"Trebuchet MS","sans-serif";color:#1F497D'><o:p>&nbsp;</o:p></sp=
-an></p><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Tr=
-ebuchet MS","sans-serif";color:#1F497D'><o:p>&nbsp;</o:p></span></p><p clas=
-s=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","s=
-ans-serif";color:#1F497D'>Thanks &amp; Regards<o:p></o:p></span></p><p clas=
-s=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","s=
-ans-serif";color:#1F497D'> Amit K <o:p></o:p></span></p><p class=3DMsoNorma=
-l><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif";c=
-olor:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div style=3D'border:none;bo=
-rder-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNorma=
-l><b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>Fro=
-m:</span></b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-ser=
-if"'> Khem Raj [mailto:raj.khem@gmail.com] <br><b>Sent:</b> Wednesday, Augu=
-st 14, 2013 11:37 AM<br><b>To:</b> Amit Kumar<br><b>Cc:</b> yocto@yoctoproj=
-ect.org<br><b>Subject:</b> Re: [yocto] Build packages-ssh,telnet,alsa and o=
-ther package for arm<o:p></o:p></span></p></div></div><p class=3DMsoNormal>=
-<o:p>&nbsp;</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p=
- class=3DMsoNormal>On Aug 13, 2013, at 10:49 PM, Amit Kumar &lt;<a href=3D"=
-mailto:Amit.Kumar@lntinfotech.com">Amit.Kumar@lntinfotech.com</a>&gt; wrote=
-:<o:p></o:p></p></div><p class=3DMsoNormal><br><br><o:p></o:p></p><div><div=
-><p class=3DMsoNormal><span style=3D'font-size:10.0pt;font-family:"Trebuche=
-t MS","sans-serif"'>Hi,</span><span style=3D'font-size:11.0pt;font-family:"=
-Calibri","sans-serif"'><o:p></o:p></span></p></div><div><p class=3DMsoNorma=
-l><span style=3D'font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>=
-&nbsp;</span><span style=3D'font-size:11.0pt;font-family:"Calibri","sans-se=
-rif"'><o:p></o:p></span></p></div><div><p class=3DMsoNormal><span style=3D'=
-font-size:10.0pt;font-family:"Trebuchet MS","sans-serif"'>&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class=3Dapple-conver=
-ted-space>&nbsp;</span></span><span style=3D'font-size:11.0pt;font-family:"=
-Trebuchet MS","sans-serif"'>Using the Yocto Project 1.4, I want to build th=
-e packages like ssh, telnet, alias and other library packages for arm. I am=
- not getting an idea how I should have to add those packages in my build en=
-vironment. I want to build them and test, using the QEMU, is that possible?=
- I want to build them for arm.</span><span style=3D'font-size:11.0pt;font-f=
-amily:"Calibri","sans-serif"'><o:p></o:p></span></p></div></div><div><p cla=
-ss=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal><o:p>&n=
-bsp;</o:p></p></div><div><p class=3DMsoNormal>You can start by building a r=
-eference image e.g. core-image-basic and then add the packages as you want =
-extra I would encourage to read through the&nbsp;<o:p></o:p></p></div><div>=
-<p class=3DMsoNormal>manual<o:p></o:p></p></div><div><p class=3DMsoNormal><=
-o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal><a href=3D"https://www.=
-yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html">https:/=
-/www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html</a>=
-<o:p></o:p></p></div><div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><=
-div><p class=3DMsoNormal>especially IMAGE_FEATURES and IMAGE_INSTALL and&nb=
-sp;<span style=3D'font-family:"Verdana","sans-serif";color:#004444;backgrou=
-nd:white'>CORE_IMAGE_EXTRA_INSTALL variables.</span><o:p></o:p></p></div><p=
- class=3DMsoNormal><br><br><o:p></o:p></p><div><div><p class=3DMsoNormal><s=
-pan style=3D'font-size:11.0pt;font-family:"Trebuchet MS","sans-serif"'>&nbs=
-p;</span><span style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"=
-'><o:p></o:p></span></p></div><div><p class=3DMsoNormal><span style=3D'font=
--size:11.0pt;font-family:"Trebuchet MS","sans-serif"'>&nbsp;</span><span st=
-yle=3D'font-size:11.0pt;font-family:"Calibri","sans-serif"'><o:p></o:p></sp=
-an></p></div><div><p class=3DMsoNormal><span style=3D'font-size:11.0pt;font=
--family:"Trebuchet MS","sans-serif"'>&nbsp;</span><span style=3D'font-size:=
-11.0pt;font-family:"Calibri","sans-serif"'><o:p></o:p></span></p></div><div=
-><p class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Trebuche=
-t MS","sans-serif"'>Thanks &amp; Regards</span><span style=3D'font-size:11.=
-0pt;font-family:"Calibri","sans-serif"'><o:p></o:p></span></p></div><div><p=
- class=3DMsoNormal><span style=3D'font-size:11.0pt;font-family:"Trebuchet M=
-S","sans-serif"'>Amit K</span><span style=3D'font-size:11.0pt;font-family:"=
-Calibri","sans-serif"'><o:p></o:p></span></p></div><p class=3DMsoNormal><sp=
-an style=3D'font-size:13.5pt;font-family:"Helvetica","sans-serif"'><o:p>&nb=
-sp;</o:p></span></p><div class=3DMsoNormal align=3Dcenter style=3D'text-ali=
-gn:center'><span style=3D'font-size:13.5pt;font-family:"Helvetica","sans-se=
-rif"'><hr size=3D2 width=3D"100%" align=3Dcenter></span></div><p class=3DMs=
-oNormal><span style=3D'font-family:"Arial","sans-serif"'>The contents of th=
-is e-mail and any attachment(s) may contain confidential or privileged info=
-rmation for the intended recipient(s). Unintended recipients are prohibited=
- from taking action on the basis of information in this e-mail and using or=
- disseminating the information, and must notify the sender and delete it fr=
-om their system. L&amp;T Infotech will not accept responsibility or liabili=
-ty for the accuracy or completeness of, or the presence of any virus or dis=
-abling code in this e-mail&quot;<br></span><span style=3D'font-size:13.5pt;=
-font-family:"Helvetica","sans-serif"'>_____________________________________=
-__________<br>yocto mailing list<br><a href=3D"mailto:yocto@yoctoproject.or=
-g"><span style=3D'color:purple'>yocto@yoctoproject.org</span></a><br><a hre=
-f=3D"https://lists.yoctoproject.org/listinfo/yocto"><span style=3D'color:pu=
-rple'>https://lists.yoctoproject.org/listinfo/yocto</span></a><o:p></o:p></=
-span></p></div></div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body=
-></html>=
+<div dir=3D"ltr">Hi Amit,<div><br></div><div>Please refer,=A0<a href=3D"htt=
+ps://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-manual.html=
+#var-IMAGE_INSTALL">https://www.yoctoproject.org/docs/current/poky-ref-manu=
+al/poky-ref-manual.html#var-IMAGE_INSTALL</a></div>
 
---_000_AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2BLRINMSMBX01b_--
+<div>where u can add the packages u need in ur image.</div><div><br></div><=
+div>core-image-sato is a full linux system with GUI, it is obvious that the=
+ size will be somewhat big.</div><div>About the image size, it really depen=
+ds on what package system are you using(rpm, deb, ipk)</div>
+
+<div>If its rpm, the size would be big for a filesystem, and ipk would have=
+ the smallest size.</div><div><br></div><div>-JC</div><div><br></div><div><=
+br></div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote=
+">
+
+On Sat, Aug 17, 2013 at 11:24 AM, Amit Kumar <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:Amit.Kumar@lntinfotech.com" target=3D"_blank">Amit.Kumar@lntinfo=
+tech.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple"><div><p class=3D"MsoNorm=
+al"><span style=3D"font-size:10.0pt;font-family:&quot;Trebuchet MS&quot;,&q=
+uot;sans-serif&quot;;color:#1f497d">Hi Raj,<u></u><u></u></span></p><p clas=
+s=3D"MsoNormal">
+
+<span style=3D"font-size:10.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;=
+sans-serif&quot;;color:#1f497d">=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 Thanks fo=
+r the suggestion, I have built the image as =93core-image-base=94 , now I g=
+ot the ssh, sftp working with my image.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d">But some more packag=
+es I need like- gtk+, I have taken those packages using the =93hob=94 and b=
+uild the image =93bitbake core-image-base=94, <u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d">But when I check tha=
+t image using QEMU the =93libgtk=94 does not present. I am not able to test=
+ or run my gtk app in QEMU.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></s=
+pan></p><p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:=
+&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d">How do I get=
+ it in my image. If I build core-image-sato the libgtk present and I can te=
+st my app, but the image size is too big. <u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d">Is there anyway eith=
+er reduce the image-sato size or include the gtk support in core-image-base=
+?<u></u><u></u></span></p>
+
+<div class=3D"im"><p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;fo=
+nt-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d"><u=
+></u>=A0<u></u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:1=
+0.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f=
+497d"><u></u>=A0<u></u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks &amp; Regards=
+<u></u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:10=
+.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f4=
+97d"> Amit K <u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></s=
+pan></p></div><div><div style=3D"border:none;border-top:solid #b5c4df 1.0pt=
+;padding:3.0pt 0in 0in 0in">
+
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Khem Raj=
+ [mailto:<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+mail.com</a>] <br>
+
+<b>Sent:</b> Wednesday, August 14, 2013 11:37 AM<br><b>To:</b> Amit Kumar<b=
+r><b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yo=
+cto@yoctoproject.org</a><br><b>Subject:</b> Re: [yocto] Build packages-ssh,=
+telnet,alsa and other package for arm<u></u><u></u></span></p>
+
+</div></div><div><div class=3D"h5"><p class=3D"MsoNormal"><u></u>=A0<u></u>=
+</p><p class=3D"MsoNormal"><u></u>=A0<u></u></p><div><div><p class=3D"MsoNo=
+rmal">On Aug 13, 2013, at 10:49 PM, Amit Kumar &lt;<a href=3D"mailto:Amit.K=
+umar@lntinfotech.com" target=3D"_blank">Amit.Kumar@lntinfotech.com</a>&gt; =
+wrote:<u></u><u></u></p>
+
+</div><p class=3D"MsoNormal"><br><br><u></u><u></u></p><div><div><p class=
+=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">Hi,</span><span style=3D"font-size:11.0pt;=
+font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><u></u><u></u></spa=
+n></p>
+
+</div><div><p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-fami=
+ly:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;">=A0</span><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
+"><u></u><u></u></span></p>
+
+</div><div><p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-fami=
+ly:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;">=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0<span>=A0</span></span><span style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;">Using the Yocto Projec=
+t 1.4, I want to build the packages like ssh, telnet, alias and other libra=
+ry packages for arm. I am not getting an idea how I should have to add thos=
+e packages in my build environment. I want to build them and test, using th=
+e QEMU, is that possible? I want to build them for arm.</span><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
+"><u></u><u></u></span></p>
+
+</div></div><div><p class=3D"MsoNormal"><u></u>=A0<u></u></p></div><div><p =
+class=3D"MsoNormal"><u></u>=A0<u></u></p></div><div><p class=3D"MsoNormal">=
+You can start by building a reference image e.g. core-image-basic and then =
+add the packages as you want extra I would encourage to read through the=A0=
+<u></u><u></u></p>
+
+</div><div><p class=3D"MsoNormal">manual<u></u><u></u></p></div><div><p cla=
+ss=3D"MsoNormal"><u></u>=A0<u></u></p></div><div><p class=3D"MsoNormal"><a =
+href=3D"https://www.yoctoproject.org/docs/current/poky-ref-manual/poky-ref-=
+manual.html" target=3D"_blank">https://www.yoctoproject.org/docs/current/po=
+ky-ref-manual/poky-ref-manual.html</a><u></u><u></u></p>
+
+</div><div><p class=3D"MsoNormal"><u></u>=A0<u></u></p></div><div><p class=
+=3D"MsoNormal">especially IMAGE_FEATURES and IMAGE_INSTALL and=A0<span styl=
+e=3D"font-family:&quot;Verdana&quot;,&quot;sans-serif&quot;;color:#004444;b=
+ackground:white">CORE_IMAGE_EXTRA_INSTALL variables.</span><u></u><u></u></=
+p>
+
+</div><p class=3D"MsoNormal"><br><br><u></u><u></u></p><div><div><p class=
+=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">=A0</span><span style=3D"font-size:11.0pt;=
+font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;"><u></u><u></u></spa=
+n></p>
+
+</div><div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-fami=
+ly:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;">=A0</span><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
+"><u></u><u></u></span></p>
+
+</div><div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-fami=
+ly:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;">=A0</span><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
+"><u></u><u></u></span></p>
+
+</div><div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-fami=
+ly:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;">Thanks &amp; Regards</s=
+pan><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;s=
+ans-serif&quot;"><u></u><u></u></span></p>
+
+</div><div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-fami=
+ly:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;">Amit K</span><span styl=
+e=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot=
+;"><u></u><u></u></span></p>
+
+</div><p class=3D"MsoNormal"><span style=3D"font-size:13.5pt;font-family:&q=
+uot;Helvetica&quot;,&quot;sans-serif&quot;"><u></u>=A0<u></u></span></p><di=
+v class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span st=
+yle=3D"font-size:13.5pt;font-family:&quot;Helvetica&quot;,&quot;sans-serif&=
+quot;"><hr size=3D"2" width=3D"100%" align=3D"center">
+
+</span></div><p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&=
+quot;,&quot;sans-serif&quot;">The contents of this e-mail and any attachmen=
+t(s) may contain confidential or privileged information for the intended re=
+cipient(s). Unintended recipients are prohibited from taking action on the =
+basis of information in this e-mail and using or disseminating the informat=
+ion, and must notify the sender and delete it from their system. L&amp;T In=
+fotech will not accept responsibility or liability for the accuracy or comp=
+leteness of, or the presence of any virus or disabling code in this e-mail&=
+quot;<br>
+
+</span><span style=3D"font-size:13.5pt;font-family:&quot;Helvetica&quot;,&q=
+uot;sans-serif&quot;">_______________________________________________<br>yo=
+cto mailing list<br><a href=3D"mailto:yocto@yoctoproject.org" target=3D"_bl=
+ank"><span style=3D"color:purple">yocto@yoctoproject.org</span></a><br>
+
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+><span style=3D"color:purple">https://lists.yoctoproject.org/listinfo/yocto=
+</span></a><u></u><u></u></span></p></div></div><p class=3D"MsoNormal"><u><=
+/u>=A0<u></u></p>
+
+</div></div></div></div><br>_______________________________________________=
+<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>JCP
+</div>
+
+--047d7bacbb5c4f218904e4269bd3--
