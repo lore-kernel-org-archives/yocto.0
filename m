@@ -1,40 +1,34 @@
-Return-Path: <chgans@googlemail.com>
-Received: from mail-pd0-f176.google.com (mail-pd0-f176.google.com
-	[209.85.192.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80915E013DA
-	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 22:52:05 -0700 (PDT)
-Received: by mail-pd0-f176.google.com with SMTP id q10so4599696pdj.7
-	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 22:52:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=kb9dlaED4BjRy5iKH5I292iTqBOjJd+KxZtkIrDJoNo=;
-	b=QUR9GKPyRb+SZNh8bH4F+0VQr2IRDQmZaFzxq+uugCEwSMDIZO5fj289Wb5tEiEnYp
-	7IvXA/TJYKNHFMtcJzbZWDUOx0BzdtCBat1uFlRqwPLg2YILxRBwnUSuAxo+FL6eBduJ
-	B5EDrk5pdcgVI7a011+l42qoy5s2Bn6SPTFuKP8zGQgrPN6dJTvAN1T3BERlyjIravQo
-	fPPS/HE+/7oSIb/fmEOUu7wRYzPnL+1j+h0bTfn1YXpiUPyX5StxMphaC1+6F6VDlNCi
-	8UlBty0dmhQZnXg89D/GdqP0JUwwkoLancDaovnhfeT/yZ80bA3k5k+Px3jKokx8m63O
-	hBbQ==
-X-Received: by 10.66.248.198 with SMTP id yo6mr1155495pac.143.1376891525732;
-	Sun, 18 Aug 2013 22:52:05 -0700 (PDT)
-Received: from [0.0.0.0] ([210.48.94.225]) by mx.google.com with ESMTPSA id
-	qv4sm12846134pbc.16.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 18 Aug 2013 22:52:04 -0700 (PDT)
-Sender: Chris Gagneraud <chgans@googlemail.com>
-Message-ID: <5211B27F.9070707@gna.org>
-Date: Mon, 19 Aug 2013 17:51:59 +1200
-From: Christian Gagneraud <chgans@gna.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-oa0-f47.google.com (mail-oa0-f47.google.com
+	[209.85.219.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD341E0157A
+	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 22:57:13 -0700 (PDT)
+Received: by mail-oa0-f47.google.com with SMTP id g12so5172087oah.20
+	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 22:57:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=bClYvLzULiRDkxi0p1vtgOE4zO3yHUpbUhCecnrIdsc=;
+	b=R98w2GaHZ6VPmFhlrKoZmKeWCWTjwjpShVUwiZzhL42/55HlnqN7EQmeyFF3bm1+bv
+	QNerzZaka9P/R19wfNSILuj3ZkliMfRzEkeCLng0Iors2MwweerZnPS97Weuok/CWTJt
+	/e6Dhp2Ijo01xnSCBNoMRGLokyJI7JFtJta+gg4WKFR2581yqdYGpN11rh0sZgafgRm4
+	rW2NTmnF5ffZyXTVwCb22lXPiBpC+hHmIZ4h//cgydIQrLJGRp+Mx+ymKQFaN1KAhhRX
+	+rUMeGp14S2IMceOIl9voSP7YX+g7RTfiBJZIefIwctLdd97H8vwoR4FXieWnB3F7tWN
+	yVog==
+X-Received: by 10.50.92.74 with SMTP id ck10mr3502746igb.3.1376891832676; Sun,
+	18 Aug 2013 22:57:12 -0700 (PDT)
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
+Received: by 10.50.216.195 with HTTP; Sun, 18 Aug 2013 22:56:41 -0700 (PDT)
+In-Reply-To: <5211B27F.9070707@gna.org>
 References: <5211843D.5060805@gna.org>
 	<99393E6E-364E-486D-AAB3-6EB66BB9BF72@gmail.com>
-In-Reply-To: <99393E6E-364E-486D-AAB3-6EB66BB9BF72@gmail.com>
+	<5211B27F.9070707@gna.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 18 Aug 2013 22:56:41 -0700
+Message-ID: <CAMKF1soEJjWp5o8fa9kFCMWnrFH2pw5Kv6kS1cycv4kgF3d+Aw@mail.gmail.com>
+To: Christian Gagneraud <chgans@gna.org>
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
-	yocto@yoctoproject.org
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: GCC SVN repo too slow?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -47,72 +41,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2013 05:52:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Aug 2013 05:57:14 -0000
+Content-Type: text/plain; charset=UTF-8
 
-CC: meta-arago@arago-project.org
+On Sun, Aug 18, 2013 at 10:51 PM, Christian Gagneraud <chgans@gna.org> wrote:
+> Right now, I'm really stuck. The only solutions I can think of are:
+> - Ask kindly Arago not to use GCC code from SVN, or maybe to upload an
+> archive on yocto/oe mirrors.
+> - Check with GNU/GCC guys if they can do something about it (maybe it's a
+> temporary issue with their server)
+> - Wait and see, cross my fingers. :(
 
-
-On 19/08/13 17:16, Khem Raj wrote:
->
-> On Aug 18, 2013, at 7:34 PM, Christian Gagneraud <chgans@gna.org> wrote:
->
->> Hi all,
->>
->> I'm having problems with the GCC SVN repo being so slow to checkout, that svn failed (and so my build too).
->> I first suspected the proxy we have here, but i tried a checkout from an outside machine (but still in New Zealand) and it seems the problem comes from gcc.gnu.org.
->>
->> I am using the arago layer, which requires svn://gcc.gnu.org/svn/gcc/branches;module=gcc-4_5-branch;protocol=http for gcc-crosssdk-intermediate.
->>
->> By slow, I really mean slow: 1 to 2 files are checkout per second!?!
->>
->> Has anyone encountered the same kind of problems?
->
->
-> thats a known issue and one of pressing reasons to not use svn version on later versions if you see new recipes
-> best case you could hit a mirror from yocto project and download the source mirror
-
-
- From the logs, I can see that bitbake is trying (among others):
-downloads.yoctoproject.org
-sources.openembedded.org
-
-but hits a 404, so it fall-backs to GCC's SVN repo directly.
-
-On the side, from the bitbake logs, I end up with a rather obscure error:
-svn: E175002: REPORT of '/svn/gcc/!svn/vcc/default': 200 OK 
-(http://gcc.gnu.org)
-
-When trying a checkout manually from the outside machine, it fails too, 
-but the error message is a bit more friendly:
-svn: REPORT of '/svn/gcc/!svn/vcc/default': Could not read response 
-body: connection was closed by server (http://gcc.gnu.org)
-
-I found plenty of "black magic" workarounds on the web while looking for 
-the strange "Error: [...] 200 OK", among them was to increase Apache 
-time out! Which won't even really solve my problem, because the checkout 
-will takes hours, if not days!
-
-Right now, I'm really stuck. The only solutions I can think of are:
-- Ask kindly Arago not to use GCC code from SVN, or maybe to upload an 
-archive on yocto/oe mirrors.
-- Check with GNU/GCC guys if they can do something about it (maybe it's 
-a temporary issue with their server)
-- Wait and see, cross my fingers. :(
-
-Thanks,
-Chris
-
-
->
->>
->> Regards,
->> Chris
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-
+all of above. If someone has the archive. Please let us know we can
+populate it on one of
+the sourcemirrors.
 
