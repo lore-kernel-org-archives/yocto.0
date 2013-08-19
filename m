@@ -1,29 +1,35 @@
-Return-Path: <andreas2025@gmail.com>
-Received: from mail-we0-f195.google.com (mail-we0-f195.google.com
-	[74.125.82.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56AACE00443
-	for <yocto@yoctoproject.org>; Sat, 17 Aug 2013 22:42:06 -0700 (PDT)
-Received: by mail-we0-f195.google.com with SMTP id t59so1084233wes.2
-	for <yocto@yoctoproject.org>; Sat, 17 Aug 2013 22:42:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=FMArm3nauNsat/1vHHoeBBPxhjPA/vkEK0dAhcvlxVA=;
-	b=OI1pRWRbPXv3DI/TEPsYhrcrEq7TMZRjz+SdwfheOEQVcNhcScZuHEPCtX5+n0CH8t
-	dKj+O8gOnasbpB8erc2NoYvda0gJ3yHCl5WiNw0OA1V6bV9Df2UmHP1WjsKEVIZLKeUh
-	9I+BcNIOMI3bLetR7CPzF2Vy34KxHmoo8bT0tVXcqBwb0r0wv+BBb4TOHm71vzS/TuOU
-	nSuHXzlS4BK9ZLPYaX27po+aiRnXWOzfPEaMBZXO9OtCU8dOB7UXeeDmMuOm6ToDlHHR
-	69TlsoQb9COAlyqiG997rpO8EkPrHueTqURTsRTw2CnBy3OVFzOIvEAid6Eps5S3pQOM
-	aDLw==
+Return-Path: <chase.maupin@ti.com>
+Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8AEBE003E2
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2013 08:05:51 -0700 (PDT)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id r7JF5dqQ023251;
+	Mon, 19 Aug 2013 10:05:39 -0500
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id r7JF5d0k008415;
+	Mon, 19 Aug 2013 10:05:39 -0500
+Received: from DLEE11.ent.ti.com ([fe80::40fa:b936:da7c:d113]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.02.0342.003; Mon, 19 Aug 2013 10:05:39 -0500
+From: "Maupin, Chase" <chase.maupin@ti.com>
+To: Christian Gagneraud <chgans@gna.org>, Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [meta-arago] [yocto] GCC SVN repo too slow?
+Thread-Index: AQHOnKA/XIKDqkH7WkGpWppNCYPaspmcobzA
+Date: Mon, 19 Aug 2013 15:05:39 +0000
+Message-ID: <7D46E86EC0A8354091174257B2FED101596CBD0A@DLEE11.ent.ti.com>
+References: <5211843D.5060805@gna.org>
+	<99393E6E-364E-486D-AAB3-6EB66BB9BF72@gmail.com>
+	<5211B27F.9070707@gna.org>
+In-Reply-To: <5211B27F.9070707@gna.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.247.5.50]
 MIME-Version: 1.0
-X-Received: by 10.180.126.97 with SMTP id mx1mr3681178wib.10.1376804525139;
-	Sat, 17 Aug 2013 22:42:05 -0700 (PDT)
-Received: by 10.217.38.193 with HTTP; Sat, 17 Aug 2013 22:42:05 -0700 (PDT)
-Date: Sun, 18 Aug 2013 06:42:05 +0100
-Message-ID: <CAAVaN8zfs7_-fH7W0++xGFsa8CE1_POM5vzULMz5jNFqsP9Tzg@mail.gmail.com>
-From: Andy Ng <andreas2025@gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Mon, 19 Aug 2013 07:46:17 -0700
-Subject: file permissions
+X-Mailman-Approved-At: Mon, 19 Aug 2013 08:11:09 -0700
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-arago] GCC SVN repo too slow?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,82 +41,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Aug 2013 05:42:07 -0000
-Content-Type: multipart/alternative; boundary=e89a8f838997a56e4d04e43248c9
-
---e89a8f838997a56e4d04e43248c9
-Content-Type: text/plain; charset=ISO-8859-1
-
-Dear List,
-
-I try to build Poky and the final rootfs image doesn't not mount with the
-following problem:
-
-----------------------8<-------------------------8<------------------------------
-BIFS: mounted UBI device 0, volume 0, name "polatisnic-rootfs"
-UBIFS: mounted read-only
-UBIFS: file system size:   10737408 bytes (10485 KiB, 10 MiB, 82 LEBs)
-UBIFS: journal size:       1964160 bytes (1918 KiB, 1 MiB, 15 LEBs)
-UBIFS: media format:       w4/r0 (latest is w4/r0)
-UBIFS: default compressor: lzo
-UBIFS: reserved for root:  0 bytes (0 KiB)
-VFS: Mounted root (ubifs filesystem) readonly on device 0:14.
-devtmpfs: mounted
-Freeing init memory: 208K
-INIT: version 2.88 booting
-mount: permission denied (are you root?)
-mount: permission denied (are you root?)
-grep: /proc/filesystems: No such file or directory
-mount: permission denied (are you root?)
-grep: /proc/mounts: No such file or directory
-grep: /proc/mounts: No such file or directory
-Remounting root file system...
-mount: can't read '/etc/mtab': No such file or directory
-------------------------8<-----------------------------------8<------------------
-
-After a bit of research, I fount out that the busybox was populated in the
-rootfs
-under ownership of "andreas:andreas" instead of "root:root"
-
-I fixed manually the ownership and it booted  up.
-
-Does anyone knows what might be going wrong in my build process?
-
-Any guidance would be very helpful.
-
-TIA
-Andreas
-
---e89a8f838997a56e4d04e43248c9
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Mon, 19 Aug 2013 15:05:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Dear List,<br><br></div>I try to build Poky and =
-the final rootfs image doesn&#39;t not mount with the following problem:<br=
-><br>----------------------8&lt;-------------------------8&lt;-------------=
------------------<br>
-BIFS: mounted UBI device 0, volume 0, name &quot;polatisnic-rootfs&quot;<br=
->UBIFS: mounted read-only<br>UBIFS: file system size:=A0=A0 10737408 bytes =
-(10485 KiB, 10 MiB, 82 LEBs)<br>UBIFS: journal size:=A0=A0=A0=A0=A0=A0 1964=
-160 bytes (1918 KiB, 1 MiB, 15 LEBs)<br>
-UBIFS: media format:=A0=A0=A0=A0=A0=A0 w4/r0 (latest is w4/r0)<br>UBIFS: de=
-fault compressor: lzo<br>UBIFS: reserved for root:=A0 0 bytes (0 KiB)<br>VF=
-S: Mounted root (ubifs filesystem) readonly on device 0:14.<br>devtmpfs: mo=
-unted<br>Freeing init memory: 208K<br>
-INIT: version 2.88 booting<br>mount: permission denied (are you root?)<br>m=
-ount: permission denied (are you root?)<br>grep: /proc/filesystems: No such=
- file or directory<br>mount: permission denied (are you root?)<br>grep: /pr=
-oc/mounts: No such file or directory<br>
-grep: /proc/mounts: No such file or directory<br>Remounting root file syste=
-m...<br>mount: can&#39;t read &#39;/etc/mtab&#39;: No such file or director=
-y<br>------------------------8&lt;-----------------------------------8&lt;-=
------------------<br>
-<br></div><div>After a bit of research, I fount out that the busybox was po=
-pulated in the rootfs <br></div><div>under ownership of &quot;andreas:andre=
-as&quot; instead of &quot;root:root&quot;<br><br></div><div>I fixed manuall=
-y the ownership and it booted=A0 up.<br>
-<br></div><div>Does anyone knows what might be going wrong in my build proc=
-ess?<br><br></div><div>Any guidance would be very helpful.<br><br></div><di=
-v>TIA<br>Andreas<br></div><div><br></div></div>
 
---e89a8f838997a56e4d04e43248c9--
+>-----Original Message-----
+>From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+>bounces@arago-project.org] On Behalf Of Christian Gagneraud
+>Sent: Monday, August 19, 2013 12:52 AM
+>To: Khem Raj
+>Cc: meta-arago@arago-project.org; yocto@yoctoproject.org
+>Subject: Re: [meta-arago] [yocto] GCC SVN repo too slow?
+>
+>CC: meta-arago@arago-project.org
+>
+>
+>On 19/08/13 17:16, Khem Raj wrote:
+>>
+>> On Aug 18, 2013, at 7:34 PM, Christian Gagneraud
+><chgans@gna.org> wrote:
+>>
+>>> Hi all,
+>>>
+>>> I'm having problems with the GCC SVN repo being so slow to
+>checkout, that svn failed (and so my build too).
+>>> I first suspected the proxy we have here, but i tried a
+>checkout from an outside machine (but still in New Zealand) and it
+>seems the problem comes from gcc.gnu.org.
+>>>
+>>> I am using the arago layer, which requires
+>svn://gcc.gnu.org/svn/gcc/branches;module=3Dgcc-4_5-
+>branch;protocol=3Dhttp for gcc-crosssdk-intermediate.
+>>>
+>>> By slow, I really mean slow: 1 to 2 files are checkout per
+>second!?!
+>>>
+>>> Has anyone encountered the same kind of problems?
+>>
+>>
+>> thats a known issue and one of pressing reasons to not use svn
+>version on later versions if you see new recipes
+>> best case you could hit a mirror from yocto project and download
+>the source mirror
+>
+>
+> From the logs, I can see that bitbake is trying (among others):
+>downloads.yoctoproject.org
+>sources.openembedded.org
+>
+>but hits a 404, so it fall-backs to GCC's SVN repo directly.
+>
+>On the side, from the bitbake logs, I end up with a rather obscure
+>error:
+>svn: E175002: REPORT of '/svn/gcc/!svn/vcc/default': 200 OK
+>(http://gcc.gnu.org)
+>
+>When trying a checkout manually from the outside machine, it fails
+>too,
+>but the error message is a bit more friendly:
+>svn: REPORT of '/svn/gcc/!svn/vcc/default': Could not read
+>response
+>body: connection was closed by server (http://gcc.gnu.org)
+>
+>I found plenty of "black magic" workarounds on the web while
+>looking for
+>the strange "Error: [...] 200 OK", among them was to increase
+>Apache
+>time out! Which won't even really solve my problem, because the
+>checkout
+>will takes hours, if not days!
+>
+>Right now, I'm really stuck. The only solutions I can think of
+>are:
+>- Ask kindly Arago not to use GCC code from SVN, or maybe to
+>upload an
+>archive on yocto/oe mirrors.
+>- Check with GNU/GCC guys if they can do something about it (maybe
+>it's
+>a temporary issue with their server)
+>- Wait and see, cross my fingers. :(
+
+I think GCC has a git mirror as well.  I saw that once in that past.  Maybe=
+ try that.
+
+>
+>Thanks,
+>Chris
+>
+>
+>>
+>>>
+>>> Regards,
+>>> Chris
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>_______________________________________________
+>meta-arago mailing list
+>meta-arago@arago-project.org
+>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
