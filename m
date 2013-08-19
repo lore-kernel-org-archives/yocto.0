@@ -1,27 +1,28 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E0D5E00406
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2013 08:53:20 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id DFE84F811F3; Mon, 19 Aug 2013 09:53:17 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9602BF811EE;
-	Mon, 19 Aug 2013 09:53:16 -0600 (MDT)
-Message-ID: <52123F75.60500@mlbassoc.com>
-Date: Mon, 19 Aug 2013 09:53:25 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAAVaN8zfs7_-fH7W0++xGFsa8CE1_POM5vzULMz5jNFqsP9Tzg@mail.gmail.com>
-In-Reply-To: <CAAVaN8zfs7_-fH7W0++xGFsa8CE1_POM5vzULMz5jNFqsP9Tzg@mail.gmail.com>
-Subject: Re: file permissions
+Return-Path: <denis@denix.org>
+Received: from vms173001pub.verizon.net (vms173001pub.verizon.net
+	[206.46.173.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D195E013DE
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2013 08:53:34 -0700 (PDT)
+Received: from gandalf.denix.org ([unknown] [108.45.150.102])
+	by vms173001.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0MRS00IUMC4JIRS1@vms173001.mailsrvcs.net> for
+	yocto@yoctoproject.org; Mon, 19 Aug 2013 10:53:18 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id A34ED200D3; Mon,
+	19 Aug 2013 11:53:07 -0400 (EDT)
+Date: Mon, 19 Aug 2013 11:53:07 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Christian Gagneraud <chgans@gna.org>
+Message-id: <20130819155307.GA32524@denix.org>
+References: <5211843D.5060805@gna.org>
+	<99393E6E-364E-486D-AAB3-6EB66BB9BF72@gmail.com>
+	<5211B27F.9070707@gna.org>
+MIME-version: 1.0
+In-reply-to: <5211B27F.9070707@gna.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
+	yocto@yoctoproject.org
+Subject: Re: [meta-arago] GCC SVN repo too slow?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,56 +34,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2013 15:53:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Aug 2013 15:53:35 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-On 2013-08-17 23:42, Andy Ng wrote:
-> Dear List,
->
-> I try to build Poky and the final rootfs image doesn't not mount with the following problem:
->
-> ----------------------8<-------------------------8<------------------------------
-> BIFS: mounted UBI device 0, volume 0, name "polatisnic-rootfs"
-> UBIFS: mounted read-only
-> UBIFS: file system size:   10737408 bytes (10485 KiB, 10 MiB, 82 LEBs)
-> UBIFS: journal size:       1964160 bytes (1918 KiB, 1 MiB, 15 LEBs)
-> UBIFS: media format:       w4/r0 (latest is w4/r0)
-> UBIFS: default compressor: lzo
-> UBIFS: reserved for root:  0 bytes (0 KiB)
-> VFS: Mounted root (ubifs filesystem) readonly on device 0:14.
-> devtmpfs: mounted
-> Freeing init memory: 208K
-> INIT: version 2.88 booting
-> mount: permission denied (are you root?)
-> mount: permission denied (are you root?)
-> grep: /proc/filesystems: No such file or directory
-> mount: permission denied (are you root?)
-> grep: /proc/mounts: No such file or directory
-> grep: /proc/mounts: No such file or directory
-> Remounting root file system...
-> mount: can't read '/etc/mtab': No such file or directory
-> ------------------------8<-----------------------------------8<------------------
->
-> After a bit of research, I fount out that the busybox was populated in the rootfs
-> under ownership of "andreas:andreas" instead of "root:root"
->
-> I fixed manually the ownership and it booted  up.
->
-> Does anyone knows what might be going wrong in my build process?
+On Mon, Aug 19, 2013 at 05:51:59PM +1200, Christian Gagneraud wrote:
+> CC: meta-arago@arago-project.org
+> 
+> 
+> On 19/08/13 17:16, Khem Raj wrote:
+> >
+> >On Aug 18, 2013, at 7:34 PM, Christian Gagneraud <chgans@gna.org> wrote:
+> >
+> >>Hi all,
+> >>
+> >>I'm having problems with the GCC SVN repo being so slow to checkout, that svn failed (and so my build too).
+> >>I first suspected the proxy we have here, but i tried a checkout from an outside machine (but still in New Zealand) and it seems the problem comes from gcc.gnu.org.
+> >>
+> >>I am using the arago layer, which requires svn://gcc.gnu.org/svn/gcc/branches;module=gcc-4_5-branch;protocol=http for gcc-crosssdk-intermediate.
+> >>
+> >>By slow, I really mean slow: 1 to 2 files are checkout per second!?!
+> >>
+> >>Has anyone encountered the same kind of problems?
+> >
+> >
+> >thats a known issue and one of pressing reasons to not use svn version on later versions if you see new recipes
+> >best case you could hit a mirror from yocto project and download the source mirror
+> 
+> 
+> From the logs, I can see that bitbake is trying (among others):
+> downloads.yoctoproject.org
+> sources.openembedded.org
+> 
+> but hits a 404, so it fall-backs to GCC's SVN repo directly.
+> 
+> On the side, from the bitbake logs, I end up with a rather obscure error:
+> svn: E175002: REPORT of '/svn/gcc/!svn/vcc/default': 200 OK
+> (http://gcc.gnu.org)
+> 
+> When trying a checkout manually from the outside machine, it fails
+> too, but the error message is a bit more friendly:
+> svn: REPORT of '/svn/gcc/!svn/vcc/default': Could not read response
+> body: connection was closed by server (http://gcc.gnu.org)
+> 
+> I found plenty of "black magic" workarounds on the web while looking
+> for the strange "Error: [...] 200 OK", among them was to increase
+> Apache time out! Which won't even really solve my problem, because
+> the checkout will takes hours, if not days!
+> 
+> Right now, I'm really stuck. The only solutions I can think of are:
+> - Ask kindly Arago not to use GCC code from SVN, or maybe to upload
+> an archive on yocto/oe mirrors.
+> - Check with GNU/GCC guys if they can do something about it (maybe
+> it's a temporary issue with their server)
+> - Wait and see, cross my fingers. :(
 
-Once again, with enthusiasm, you'll need to explain your complete build process for
-anyone to be able to help you.
-   * What's your build host
-   * What version of Poky/Yocto are you using
-   * What is your target MACHINE
-   * What, if anything, have you added to local.conf
+Chris,
 
-Without this kind of information, answers would be only guesses...
+I'm just wondering why do you even need gcc-4.5? Unless you specifically use  
+gcc-4.5 based toolchain with meta-arago. That is the only reason I keep 
+gcc-4.5 recipes in meta-arago to support old products with old toolchains. 
+We've moved to 4.7 Linaro quite some time ago - when you use that, you won't  
+need to download 4.5 version.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+If you really need gcc-4.5 and it's not just a misconfiguration, then I have 
+a tarball available that can be uploaded to a mirror...
+
+--
+Denys
 
