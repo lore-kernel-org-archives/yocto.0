@@ -1,39 +1,17 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E45C2E013DA
-	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 13:44:21 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1VB9pi-000834-C8
-	for yocto@yoctoproject.org; Sun, 18 Aug 2013 22:44:18 +0200
-Received: from 213.249.12.85 ([213.249.12.85])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 22:44:18 +0200
-Received: from gmane by 213.249.12.85 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 22:44:18 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DF82E014E4
+	for <yocto@yoctoproject.org>; Sun, 18 Aug 2013 19:00:25 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id 05977408A8; Mon, 19 Aug 2013 02:00:25 +0000 (UTC)
+Date: Mon, 19 Aug 2013 02:00:24 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
 To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Sun, 18 Aug 2013 23:44:05 +0300
-Message-ID: <52113215.5090102@reliableembeddedsystems.com>
-References: <ku083q$oa8$1@ger.gmane.org>
-	<CABcZAN=mQ-LOVPeEoi5CUDndj2Xyi1BVq8J7deby+fZQxMFKSw@mail.gmail.com>
-	<5203B0D7.809@mlbassoc.com>
-	<5203B4AC.2030609@reliableembeddedsystems.com>
-	<5203B7F9.20001@mlbassoc.com>
-	<5203D594.8090400@reliableembeddedsystems.com>
-	<5203DAD9.9080101@mlbassoc.com>
-	<52040611.8020106@reliableembeddedsystems.com>
-	<52041846.8010201@mlbassoc.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 213.249.12.85
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
-In-Reply-To: <52041846.8010201@mlbassoc.com>
-Cc: public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
-Subject: Re: can not build yocto on NFS mounted NAS
+Message-ID: <20130819020024.GA3102@ab01.i.yoctoproject.org>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: Warning! Some failures happened on pkg-report system!
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,40 +23,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Aug 2013 20:44:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Aug 2013 02:00:25 -0000
+X-Groupsio-MsgNum: 15514
+Content-Type: multipart/mixed; boundary="a8Wt8u1KmwUX3Y2C"
+Content-Disposition: inline
 
-Hi,
+--a8Wt8u1KmwUX3Y2C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Just for the record I was able to remove the hard link with a small
-patch and now things look good (so far) - although it will consume more
-disk space.
+Already up-to-date.
+Already up-to-date.
+Now updating daily_check database, please wait for a minute......
+Now updating daily_check database, please wait for a minute......
+Now updating pkginfotable,please wait a minute........
+['Package', 'Version', 'Upver', 'License', 'Section', 'Home', 'Release', 'Depends', 'BugTracker', 'PE', 'Description', 'Status', 'Tracking', 'URI', 'MAINTAINER', 'NoUpReason']
 
-diff --git a/meta/lib/oe/path.py b/meta/lib/oe/path.py
-index faa0f61..3225993 100644
---- a/meta/lib/oe/path.py
-+++ b/meta/lib/oe/path.py
-@@ -90,7 +90,7 @@ def copyhardlinktree(src, dst):
-         if not len(os.listdir(src)):
-             return
-         src = src + "/*"
--    cmd = 'cp -al %s %s' % (src, dst)
-+    cmd = 'cp -a %s %s' % (src, dst)
-     check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+Database update successful!
+Now updating pkginfotable,please wait a minute........
+['Package', 'Version', 'Upver', 'License', 'Section', 'Home', 'Release', 'Depends', 'BugTracker', 'PE', 'Description', 'Status', 'Tracking', 'URI', 'MAINTAINER', 'NoUpReason']
 
- def remove(path, recurse=True):
+Traceback (most recent call last):
+  File "info_to_db.py", line 114, in <module>
+    cu.execute(cmd1)
+sqlite3.OperationalError: database is locked
+REPORT-SYSTEM-UPDATE ERROR: Update database faild!
+Now updating pkgrecord table and generate new upgr_hist table, please wait a minute......
+milestone_target_to_db.py date_parameter = 2013-07-29
+['milestone_target_to_db.py', '2013-07-29']
+SERVER_PATH: /srv/www/vhosts/packages.yoctoproject.org/python-function/../newserver/webserver/
+Traceback (most recent call last):
+  File "update_release_sdates_to_db.py", line 27, in <module>
+    cu.execute("create table if not exists release_dates (name varchar(50), start_date date, end_date date)")
+sqlite3.OperationalError: database is locked
+REPORT-SYSTEM-UPDATE ERROR: run update_release_sdates_to_db.py faild! Please release/milestone start_date, end_date and name format! 
+REPORT-SYSTEM-UPDATE ERROR: Didn't draw chart because some failures happend before
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
-Regards,
+--a8Wt8u1KmwUX3Y2C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
 
-Robert
-..."But I have a slowly coagulating theory that the size of a project is
-directly proportional to the possibility that significant bugs will crop
-up. Exponentiate for each additional programmer involved." - Steven K.
-Halliburton
+recipe_color.inc/17: RECIPE_COLOR = "green"
 
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
-
-
+--a8Wt8u1KmwUX3Y2C--
