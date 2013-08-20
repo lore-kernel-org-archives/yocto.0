@@ -1,36 +1,22 @@
-Return-Path: <pcjegan@gmail.com>
-Received: from mail-vb0-f43.google.com (mail-vb0-f43.google.com
-	[209.85.212.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3879CE00747
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 07:54:52 -0700 (PDT)
-Received: by mail-vb0-f43.google.com with SMTP id h11so302776vbh.30
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 07:54:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=pU8xYiqpvQRKqVYXnXETpQRFn+N6/PtYSyePlKdmP34=;
-	b=izsFI6Bjb+UZqK+10mQSnhwli0Eo9qNaWhqcq09N8mZXPyGFZu+81KAYo8zmubn05h
-	6Cd2O9vQE3VHNSnsJeItPaf/7QpiRMsxiXlOn7fvg1NU3Wm/NDtwQtJPAROJLXwZCjxF
-	QChX1O1KJ/kMZx6CyLo7TIfStWfR7bYYZIdIQWZbZGJjpP5k/xqBW2WGr03/NZRJsYFc
-	Ee/VTdfe5aBPZnZY13j9W3AXWRSR4uDHeehK3Q2yvu//cMj0pSO7fmitYifnYOsEmRTQ
-	5rK+J2LsLl5I4NRITo4YbvJa91q7L5C1nsEr0OcYTFjpNn53coXA0djqtplU7llPDjTr
-	0HyA==
-X-Received: by 10.58.248.40 with SMTP id yj8mr44421vec.40.1377010492082; Tue,
-	20 Aug 2013 07:54:52 -0700 (PDT)
+Return-Path: <sgw@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA405E00747
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 08:30:56 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 20 Aug 2013 08:28:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,921,1367996400"; 
+	d="scan'208,217";a="365623616"
+Received: from unknown (HELO [10.255.14.105]) ([10.255.14.105])
+	by orsmga001.jf.intel.com with ESMTP; 20 Aug 2013 08:30:55 -0700
+Message-ID: <52138BAE.9040104@linux.intel.com>
+Date: Tue, 20 Aug 2013 08:30:54 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130805 Thunderbird/17.0.8
 MIME-Version: 1.0
-Received: by 10.220.169.146 with HTTP; Tue, 20 Aug 2013 07:54:30 -0700 (PDT)
-In-Reply-To: <CAJTo0LYbRVtEc-iCv6p3ieY_ZtdcUnYpkcHdM_1OitXNWUOqDw@mail.gmail.com>
-References: <AF0985D076EB244693F2CCD71AAB10BC2C5EA3BEEF@BLRINMSMBX01.bglrodc.lntinfotech.com>
-	<37204F11-4EBA-42E9-8BC2-858EECFC2785@gmail.com>
-	<AF0985D076EB244693F2CCD71AAB10BC2C5EB168F2@BLRINMSMBX01.bglrodc.lntinfotech.com>
-	<CAAA4K6K7N5GpP3sJYv4BzrXEkv9McPqDptX_0D=RpmXypneFGg@mail.gmail.com>
-	<CAJTo0LYbRVtEc-iCv6p3ieY_ZtdcUnYpkcHdM_1OitXNWUOqDw@mail.gmail.com>
-From: Jegan Chandru <pcjegan@gmail.com>
-Date: Tue, 20 Aug 2013 20:24:30 +0530
-Message-ID: <CAAA4K6KMYGLbjY=yQokNCYghW=_hS=xrSFPYkFf0ubUi_kWN5Q@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build packages-ssh, telnet, alsa and other package for arm
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, August 20, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,81 +28,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Aug 2013 14:54:55 -0000
-Content-Type: multipart/alternative; boundary=047d7bf0ddf43b906204e4623d67
+X-List-Received-Date: Tue, 20 Aug 2013 15:30:56 -0000
+X-Groupsio-MsgNum: 15549
+Content-Type: multipart/mixed; boundary="------------010308030100090905080703"
 
---047d7bf0ddf43b906204e4623d67
-Content-Type: text/plain; charset=ISO-8859-1
-
-Yes. It depends on how one need the filesystem would be, regardless of the
-packaging format.
-It can be attained by looking in local.conf like EXTRA_IMAGE_FEATURES and
-so to remove that are not necessary, say for example.
-I meant by the above comment for a minimal filesystem albeit that is not
-making much difference as you say, leaving to look manually and try to
-reduce the image size.
-
-
-
-On Tue, Aug 20, 2013 at 2:53 PM, Burton, Ross <ross.burton@intel.com> wrote:
-
-> On 17 August 2013 16:45, Jegan Chandru <pcjegan@gmail.com> wrote:
-> > About the image size, it really depends on what package system are you
-> > using(rpm, deb, ipk)
-> > If its rpm, the size would be big for a filesystem, and ipk would have
-> the
-> > smallest size.
->
-> The choice of packaging format will only make a small difference to
-> the final image size, and only if you leave the packaging database
-> itself on the image (for example if you intend to use the package
-> manager to perform "in the field" updates).
->
-> Ross
->
-
-
-
--- 
-JCP
-
---047d7bf0ddf43b906204e4623d67
+--------------010308030100090905080703
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-<div dir=3D"ltr">Yes. It depends on how one need the filesystem would be, r=
-egardless of the packaging format.<div>It can be attained by looking in loc=
-al.conf like EXTRA_IMAGE_FEATURES and so to remove that are not necessary, =
-say for example.</div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=ISO-8859-1">
+    <meta name="Generator" content="Microsoft Exchange Server">
+    <!-- converted from rtf -->
+    <style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left: #800000 2px solid; } --></style>
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <font size="-1"></font>* SWAT team rotation: Ross -&gt; Cristiana<br>
+    <font size="-1">
+      <div>Attendees:</div>
+      <div>DavidW, Nitin, SteveL, Saul, DaveST, Beth, ChrisL, ScottR,
+        TomZ, MichaelH, MarkH, Denys, BruceA, Cristian, Cristiana,
+        Richard, JeffP, Darren, Belen, Simar, PaulE, Song&nbsp; </div>
+      <div>&nbsp;</div>
+      <div>Welcome back, Richard!</div>
+      <div>&nbsp;</div>
+      <div>Agenda:</div>
+      <div>&nbsp;</div>
+      <div>* Opens collection - 5 min (Song)</div>
+      <div>* Yocto 1.5 status - 10 min (Song/team)</div>
+      <div>&nbsp; <a
+          href="https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status"><font
+            color="blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status</u></font></a></div>
+      <div><font size="-1">&nbsp; M4 Freeze Date: Aug 25th<font size="-1">,
+            th<font size="-1">is also the 1.5 Feature Freeze!!</font></font><br>
+          &nbsp; Feature<font size="-1">s in flight: <br>
+            <font size="-1">&nbsp;&nbsp; - <font size="-1">Web Ho<font size="-1">b
+                  groundwork<br>
+                  <font size="-1">&nbsp;&nbsp; <font size="-1">- Package
+                      Exclusion (4079)<br>
+                      <font size="-1">&nbsp;&nbsp; - Bastille Security Testing in
+                        meta-security (3867 + 4600)<br>
+                        <font size="-1">&nbsp;&nbsp; - Deployment work -
+                          partitioning descript<font size="-1">ion and
+                            tooling (3847)</font></font><br>
+                      </font></font></font></font></font></font></font><font
+            size="-1">&nbsp; <font size="-1">Distro Testing - <br>
+              <font size="-1">&nbsp; - Issues with F19 and Qemu<font
+                  size="-1">, bu<font size="-1">g filed<font size="-1">
+                      (4973)</font><br>
+                    <font size="-1">&nbsp; <font size="-1">- Need to test
+                        Ubuntu 1<font size="-1">3.10 (Sau<font size="-1">cy
+                            Salamand<font size="-1">er)</font></font></font></font></font><br>
+                    <br>
+                  </font></font></font></font></font>SWAT Rotation: </font>Cristiana<font
+          size="-1"><font size="-1"> -&gt; </font>Cristian<br>
+          <br>
+        </font></div>
+      <div>* Opens - 10 min </div>
+      <div>&nbsp; - Paul: 1.4.2<font size="-1"> rc<font size="-1">1</font> is
+          in testing </font>now for Full past and will be re<font
+          size="-1">leased short if all goes well.<br>
+        </font><font size="-1"></font></div>
+      <br>
+      <div>* Team Sharing - 20 min<br>
+        <font size="-1">&nbsp; - Mark: Package Excl<font size="-1">usion Code
+            posted with comments from Paul about data st<font size="-1">o<font
+                size="-1">rage, wou<font size="-1">ld more comments on
+                  List<br>
+                  <font size="-1">&nbsp; - Michael: Security work on the
+                    infrastructure and firewalls</font>, need to <font
+                    size="-1">schedule<font size="-1"></font> a longer <font
+                      size="-1">downtime, as long as an hour<br>
+                      <font size="-1">&nbsp;&nbsp;&nbsp; for web<font size="-1">
+                          servers and up to 5 hours for the build
+                          Servers.</font></font><br>
+                    </font></font></font></font></font></font></font></div>
+      <div>&nbsp;</div>
+    </font>
+  </body>
+</html>
 
-<div>I meant by the above comment for a minimal filesystem albeit that is n=
-ot making much difference as you say, leaving to look manually and try to r=
-educe the image size.</div><div><br></div></div><div class=3D"gmail_extra">
+--------------010308030100090905080703
+Content-Type: text/plain; charset=UTF-8;
+ name="Attached Message Part"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="Attached Message Part"
 
-<br><br><div class=3D"gmail_quote">On Tue, Aug 20, 2013 at 2:53 PM, Burton,=
- Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=
-=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex">
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
-<div class=3D"im">On 17 August 2013 16:45, Jegan Chandru &lt;<a href=3D"mai=
-lto:pcjegan@gmail.com">pcjegan@gmail.com</a>&gt; wrote:<br>
-&gt; About the image size, it really depends on what package system are you=
-<br>
-&gt; using(rpm, deb, ipk)<br>
-&gt; If its rpm, the size would be big for a filesystem, and ipk would have=
- the<br>
-&gt; smallest size.<br>
-<br>
-</div>The choice of packaging format will only make a small difference to<b=
-r>
-the final image size, and only if you leave the packaging database<br>
-itself on the image (for example if you intend to use the package<br>
-manager to perform &quot;in the field&quot; updates).<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Ross<br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r>JCP
-</div>
 
---047d7bf0ddf43b906204e4623d67--
+--------------010308030100090905080703--
