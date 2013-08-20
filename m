@@ -1,35 +1,36 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33988E01584
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 10:02:53 -0700 (PDT)
-Received: by mail-ee0-f46.google.com with SMTP id c13so326078eek.5
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 10:02:52 -0700 (PDT)
+Received: from mail-ea0-f182.google.com (mail-ea0-f182.google.com
+	[209.85.215.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A69BE01584
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 10:02:55 -0700 (PDT)
+Received: by mail-ea0-f182.google.com with SMTP id o10so344407eaj.13
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 10:02:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=3XOUeP+gg1hBrzZUrEwda97/X+pRF+Auyrru9tTRmzc=;
-	b=fTCg2E0MuXp2fwaHeQfT+/IJjf7xwVy2TuSwZrcx+GzwfzBB3XVRq8ulHnacrtNfVA
-	64ZEaPqMVKf1JThQEx1zOfQ28QXoTkLRnqxJ6jdp16cxwrBFuCHG5Qq0mx8f44Pb/67c
-	eLw2cZSN/w4UqoHcmt41EsmwGpQY/ga+0cB/JAA/8CiM8oMkmGn1sXYSFGKNvV7QPF6K
-	nPs1HlbyG2hSPmCkX33yMb1yyJyinhtEmnrhYi4S7RVpGYKhOjDoWnVYccCnRwV1+73W
-	18sKbAR0nrVzhMdK3hZR/yr1rLM88V03phQfzTODJI0zuAVASo41XripDIi+Tl4RFVJo
-	LVTg==
-X-Gm-Message-State: ALoCoQk+St+52Fda7mcfME1/k3AduioO5rEQePpY6e+QtVGArUv2lSGomii3ZfrAL/wZHJz2BZqP
-X-Received: by 10.14.200.130 with SMTP id z2mr3503615een.14.1377018172628;
-	Tue, 20 Aug 2013 10:02:52 -0700 (PDT)
+	bh=OUzLssg/nXoz7BGemtKotjSXiVe6C08frAiY3ukJgkA=;
+	b=D6teWRGbFEZH8lj74RT8KymyBPYvEjuJD9gjcksAIgivsMrouiyMLoxH8bVvR//ARy
+	q3P9huZRfhnC+CaA+kSmidTL2Yst/gkTxK0cPvGJOnue91H7W2+XkszwBcXdrVMkpzoV
+	ztJZw44TpIj844zflC6u3GMcA+Hft73PVmt7IXVmZrhubpybyidLG61S57Sqo0uMcU0R
+	33D4D1OJD7WBYRdXcRdCtbkyD12crfZHU6xT4ImjyC82jDJwQxU7obIZZs0zfGJtTgdr
+	gWYe+XRgNlvxYjf214l+L1kiUzL/zmj2zyEVm2RgvceNYsoBAxyWsaOfRoqc8DPTSY/I
+	ypfQ==
+X-Gm-Message-State: ALoCoQmognyT4I3CnQGAp4i4rvbji5rC/RLe4muHIzQTMT2gAJgJE5CMIAZHH7X/AOrxnTh8H1gi
+X-Received: by 10.14.103.129 with SMTP id f1mr169502eeg.114.1377018174549;
+	Tue, 20 Aug 2013 10:02:54 -0700 (PDT)
 Received: from localhost.localdomain ([89.121.200.106])
 	by mx.google.com with ESMTPSA id l47sm3584186eex.15.1969.12.31.16.00.00
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 20 Aug 2013 10:02:52 -0700 (PDT)
+	Tue, 20 Aug 2013 10:02:54 -0700 (PDT)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Tue, 20 Aug 2013 20:02:31 +0300
-Message-Id: <1377018158-2983-4-git-send-email-andrei@gherzan.ro>
+Date: Tue, 20 Aug 2013 20:02:33 +0300
+Message-Id: <1377018158-2983-6-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <1377018158-2983-1-git-send-email-andrei@gherzan.ro>
 References: <1377018158-2983-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 04/11] rpi-config: Update to 2013-08-20 master's snapshot
+Subject: [meta-raspberrypi][PATCH 06/11] rpio: Integrate v0.10.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,144 +42,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Aug 2013 17:02:55 -0000
-
-Use git as package version. There is no package version for this script.
+X-List-Received-Date: Tue, 20 Aug 2013 17:02:56 -0000
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-bcm/bootfiles/rpi-config_0.1.bb |   57 -------------------------------
- recipes-bcm/bootfiles/rpi-config_git.bb |   57 +++++++++++++++++++++++++++++++
- 2 files changed, 57 insertions(+), 57 deletions(-)
- delete mode 100644 recipes-bcm/bootfiles/rpi-config_0.1.bb
- create mode 100644 recipes-bcm/bootfiles/rpi-config_git.bb
+ recipes-devtools/python/rpio_0.10.0.bb |   20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 recipes-devtools/python/rpio_0.10.0.bb
 
-diff --git a/recipes-bcm/bootfiles/rpi-config_0.1.bb b/recipes-bcm/bootfiles/rpi-config_0.1.bb
-deleted file mode 100644
-index a8938dc..0000000
---- a/recipes-bcm/bootfiles/rpi-config_0.1.bb
-+++ /dev/null
-@@ -1,57 +0,0 @@
--DESCRIPTION = "Commented config.txt file for the Raspberry Pi. \
--               The Raspberry Pi config.txt file is read by the GPU before \
--               the ARM core is initialised. It can be used to set various \
--               system configuration parameters."
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--
--COMPATIBLE_MACHINE = "raspberrypi"
--
--SRCREV = "62bf3e9db62f547eb1a2a352dde957d2f94bd216"
--SRC_URI = "git://github.com/Evilpaul/RPi-config.git;protocol=git;branch=master \
--          "
--
--S = "${WORKDIR}/git"
--
--PR = "r3"
--
--addtask deploy before do_package after do_install
--
--do_deploy() {
--	install -d ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles
--	cp config.txt ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/
--	if [ -n "${KEY_DECODE_MPG2}" ]; then
--		sed -i '/#decode_MPG2/ c\decode_MPG2=${KEY_DECODE_MPG2}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${KEY_DECODE_WVC1}" ]; then
--		sed -i '/#decode_WVC1/ c\decode_MVC1=${KEY_DECODE_WVC1}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${DISABLE_OVERSCAN}" ]; then
--		sed -i '/#disable_overscan/ c\disable_overscan=${DISABLE_OVERSCAN}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${ARM_FREQ}" ]; then
--		sed -i '/#arm_freq/ c\arm_freq=${ARM_FREQ}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${CORE_FREQ}" ]; then
--		sed -i '/#core_freq/ c\core_freq=${CORE_FREQ}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${SDRAM_FREQ}" ]; then
--		sed -i '/#sdram_freq/ c\sdram_freq=${SDRAM_FREQ}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${OVER_VOLTAGE}" ]; then
--		sed -i '/#over_voltage/ c\over_voltage=${OVER_VOLTAGE}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--
--	# GPU memory
--	if [ -n "${GPU_MEM}" ]; then
--		sed -i '/#gpu_mem=/ c\gpu_mem=${GPU_MEM}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${GPU_MEM_256}" ]; then
--		sed -i '/#gpu_mem_256/ c\gpu_mem_256=${GPU_MEM_256}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--	if [ -n "${GPU_MEM_512}" ]; then
--		sed -i '/#gpu_mem_512/ c\gpu_mem_512=${GPU_MEM_512}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
--	fi
--}
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
-diff --git a/recipes-bcm/bootfiles/rpi-config_git.bb b/recipes-bcm/bootfiles/rpi-config_git.bb
+diff --git a/recipes-devtools/python/rpio_0.10.0.bb b/recipes-devtools/python/rpio_0.10.0.bb
 new file mode 100644
-index 0000000..4328070
+index 0000000..1cc1661
 --- /dev/null
-+++ b/recipes-bcm/bootfiles/rpi-config_git.bb
-@@ -0,0 +1,57 @@
-+DESCRIPTION = "Commented config.txt file for the Raspberry Pi. \
-+               The Raspberry Pi config.txt file is read by the GPU before \
-+               the ARM core is initialised. It can be used to set various \
-+               system configuration parameters."
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++++ b/recipes-devtools/python/rpio_0.10.0.bb
+@@ -0,0 +1,20 @@
++DESCRIPTION = "Advanced GPIO for the Raspberry Pi. Extends RPi.GPIO with PWM, \
++GPIO interrups, TCP socket interrupts, command line tools and more"
++HOMEPAGE = "https://github.com/metachris/RPIO"
++SECTION = "devel/python"
++LICENSE = "LGPLv3+"
++LIC_FILES_CHKSUM = "file://README.rst;beginline=41;endline=53;md5=d5d95d7486a4d98c999675c23196b25a"
++
++SRCNAME = "RPIO"
++
++SRC_URI = "\
++          http://pypi.python.org/packages/source/R/RPIO/${SRCNAME}-${PV}.tar.gz \
++          "
++S = "${WORKDIR}/${SRCNAME}-${PV}"
++
++inherit setuptools
 +
 +COMPATIBLE_MACHINE = "raspberrypi"
 +
-+SRCREV = "5d2ca5f9bcb1b239c051e20c05a233fd79cf09d5"
-+SRC_URI = "git://github.com/Evilpaul/RPi-config.git;protocol=git;branch=master \
-+          "
-+
-+S = "${WORKDIR}/git"
-+
-+PR = "r4"
-+
-+addtask deploy before do_package after do_install
-+
-+do_deploy() {
-+	install -d ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles
-+	cp config.txt ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/
-+	if [ -n "${KEY_DECODE_MPG2}" ]; then
-+		sed -i '/#decode_MPG2/ c\decode_MPG2=${KEY_DECODE_MPG2}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${KEY_DECODE_WVC1}" ]; then
-+		sed -i '/#decode_WVC1/ c\decode_MVC1=${KEY_DECODE_WVC1}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${DISABLE_OVERSCAN}" ]; then
-+		sed -i '/#disable_overscan/ c\disable_overscan=${DISABLE_OVERSCAN}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${ARM_FREQ}" ]; then
-+		sed -i '/#arm_freq/ c\arm_freq=${ARM_FREQ}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${CORE_FREQ}" ]; then
-+		sed -i '/#core_freq/ c\core_freq=${CORE_FREQ}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${SDRAM_FREQ}" ]; then
-+		sed -i '/#sdram_freq/ c\sdram_freq=${SDRAM_FREQ}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${OVER_VOLTAGE}" ]; then
-+		sed -i '/#over_voltage/ c\over_voltage=${OVER_VOLTAGE}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+
-+	# GPU memory
-+	if [ -n "${GPU_MEM}" ]; then
-+		sed -i '/#gpu_mem=/ c\gpu_mem=${GPU_MEM}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${GPU_MEM_256}" ]; then
-+		sed -i '/#gpu_mem_256/ c\gpu_mem_256=${GPU_MEM_256}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+	if [ -n "${GPU_MEM_512}" ]; then
-+		sed -i '/#gpu_mem_512/ c\gpu_mem_512=${GPU_MEM_512}' ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/config.txt
-+	fi
-+}
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
++SRC_URI[md5sum] = "cefc45422833dcafcd59b78dffc540f4"
++SRC_URI[sha256sum] = "b89f75dec9de354681209ebfaedfe22b7c178aacd91a604a7bd6d92024e4cf7e"
 -- 
 1.7.9.5
 
