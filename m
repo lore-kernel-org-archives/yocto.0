@@ -1,22 +1,45 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA405E00747
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 08:30:56 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 20 Aug 2013 08:28:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,921,1367996400"; 
-	d="scan'208,217";a="365623616"
-Received: from unknown (HELO [10.255.14.105]) ([10.255.14.105])
-	by orsmga001.jf.intel.com with ESMTP; 20 Aug 2013 08:30:55 -0700
-Message-ID: <52138BAE.9040104@linux.intel.com>
-Date: Tue, 20 Aug 2013 08:30:54 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130805 Thunderbird/17.0.8
+Return-Path: <lothar@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38207E00747
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 09:46:11 -0700 (PDT)
+Received: from frontend3.mail.m-online.net (frontend3.mail.intern.m-online.net
+	[192.168.6.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3cKHvP2nyXz3hhcR
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 18:46:08 +0200 (CEST)
+Received: from localhost (dynscan3.mnet-online.de [192.168.6.84])
+	by mail.m-online.net (Postfix) with ESMTP id 3cKHvN6Cngzbbbw
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 18:46:08 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.6.180])
+	by localhost (dynscan3.mail.m-online.net [192.168.6.84]) (amavisd-new,
+	port 10024) with ESMTP id m8k6ah2eg0Qw for <yocto@yoctoproject.org>;
+	Tue, 20 Aug 2013 18:46:07 +0200 (CEST)
+X-Auth-Info: KDn/WUBiTnwXK8jvTI4ateK6eB0yLf8Ibyx17bMcAqQ=
+Received: from webmail.mnet-online.de (webmail1.mnet-online.de
+	[62.245.181.162]) by mail.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 18:46:07 +0200 (CEST)
+Received: from host-82-135-33-74.customer.m-online.net ([82.135.33.74])
+	by webmail.mnet-online.de
+	with HTTP (HTTP/1.1 POST); Tue, 20 Aug 2013 16:45:37 +0000
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, August 20, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Date: Tue, 20 Aug 2013 18:45:37 +0200
+From: lothar@denx.de
+To: yocto@yoctoproject.org
+In-Reply-To: <52113215.5090102@reliableembeddedsystems.com>
+References: <ku083q$oa8$1@ger.gmane.org>
+	<CABcZAN=mQ-LOVPeEoi5CUDndj2Xyi1BVq8J7deby+fZQxMFKSw@mail.gmail.com>
+	<5203B0D7.809@mlbassoc.com>
+	<5203B4AC.2030609@reliableembeddedsystems.com>
+	<5203B7F9.20001@mlbassoc.com>
+	<5203D594.8090400@reliableembeddedsystems.com>
+	<5203DAD9.9080101@mlbassoc.com>
+	<52040611.8020106@reliableembeddedsystems.com>
+	<52041846.8010201@mlbassoc.com>
+	<52113215.5090102@reliableembeddedsystems.com>
+Message-ID: <c98ff6d31f5118f8f3154ed5746e3fc7@denx.de>
+X-Sender: lothar@denx.de
+User-Agent: Roundcube Webmail/0.9.2
+Subject: Re: can not build yocto on NFS mounted NAS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,99 +51,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Aug 2013 15:30:56 -0000
-X-Groupsio-MsgNum: 15549
-Content-Type: multipart/mixed; boundary="------------010308030100090905080703"
-
---------------010308030100090905080703
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=ISO-8859-1">
-    <meta name="Generator" content="Microsoft Exchange Server">
-    <!-- converted from rtf -->
-    <style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left: #800000 2px solid; } --></style>
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <font size="-1"></font>* SWAT team rotation: Ross -&gt; Cristiana<br>
-    <font size="-1">
-      <div>Attendees:</div>
-      <div>DavidW, Nitin, SteveL, Saul, DaveST, Beth, ChrisL, ScottR,
-        TomZ, MichaelH, MarkH, Denys, BruceA, Cristian, Cristiana,
-        Richard, JeffP, Darren, Belen, Simar, PaulE, Song&nbsp; </div>
-      <div>&nbsp;</div>
-      <div>Welcome back, Richard!</div>
-      <div>&nbsp;</div>
-      <div>Agenda:</div>
-      <div>&nbsp;</div>
-      <div>* Opens collection - 5 min (Song)</div>
-      <div>* Yocto 1.5 status - 10 min (Song/team)</div>
-      <div>&nbsp; <a
-          href="https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status"><font
-            color="blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status</u></font></a></div>
-      <div><font size="-1">&nbsp; M4 Freeze Date: Aug 25th<font size="-1">,
-            th<font size="-1">is also the 1.5 Feature Freeze!!</font></font><br>
-          &nbsp; Feature<font size="-1">s in flight: <br>
-            <font size="-1">&nbsp;&nbsp; - <font size="-1">Web Ho<font size="-1">b
-                  groundwork<br>
-                  <font size="-1">&nbsp;&nbsp; <font size="-1">- Package
-                      Exclusion (4079)<br>
-                      <font size="-1">&nbsp;&nbsp; - Bastille Security Testing in
-                        meta-security (3867 + 4600)<br>
-                        <font size="-1">&nbsp;&nbsp; - Deployment work -
-                          partitioning descript<font size="-1">ion and
-                            tooling (3847)</font></font><br>
-                      </font></font></font></font></font></font></font><font
-            size="-1">&nbsp; <font size="-1">Distro Testing - <br>
-              <font size="-1">&nbsp; - Issues with F19 and Qemu<font
-                  size="-1">, bu<font size="-1">g filed<font size="-1">
-                      (4973)</font><br>
-                    <font size="-1">&nbsp; <font size="-1">- Need to test
-                        Ubuntu 1<font size="-1">3.10 (Sau<font size="-1">cy
-                            Salamand<font size="-1">er)</font></font></font></font></font><br>
-                    <br>
-                  </font></font></font></font></font>SWAT Rotation: </font>Cristiana<font
-          size="-1"><font size="-1"> -&gt; </font>Cristian<br>
-          <br>
-        </font></div>
-      <div>* Opens - 10 min </div>
-      <div>&nbsp; - Paul: 1.4.2<font size="-1"> rc<font size="-1">1</font> is
-          in testing </font>now for Full past and will be re<font
-          size="-1">leased short if all goes well.<br>
-        </font><font size="-1"></font></div>
-      <br>
-      <div>* Team Sharing - 20 min<br>
-        <font size="-1">&nbsp; - Mark: Package Excl<font size="-1">usion Code
-            posted with comments from Paul about data st<font size="-1">o<font
-                size="-1">rage, wou<font size="-1">ld more comments on
-                  List<br>
-                  <font size="-1">&nbsp; - Michael: Security work on the
-                    infrastructure and firewalls</font>, need to <font
-                    size="-1">schedule<font size="-1"></font> a longer <font
-                      size="-1">downtime, as long as an hour<br>
-                      <font size="-1">&nbsp;&nbsp;&nbsp; for web<font size="-1">
-                          servers and up to 5 hours for the build
-                          Servers.</font></font><br>
-                    </font></font></font></font></font></font></font></div>
-      <div>&nbsp;</div>
-    </font>
-  </body>
-</html>
-
---------------010308030100090905080703
+X-List-Received-Date: Tue, 20 Aug 2013 16:46:12 -0000
 Content-Type: text/plain; charset=UTF-8;
- name="Attached Message Part"
+ format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="Attached Message Part"
 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Am 2013-08-18 22:44, schrieb Robert Berger:
+> Hi,
+> 
+> Just for the record I was able to remove the hard link with a small
+> patch and now things look good (so far) - although it will consume more
+> disk space.
+> 
+> diff --git a/meta/lib/oe/path.py b/meta/lib/oe/path.py
+> index faa0f61..3225993 100644
+> --- a/meta/lib/oe/path.py
+> +++ b/meta/lib/oe/path.py
+> @@ -90,7 +90,7 @@ def copyhardlinktree(src, dst):
+>          if not len(os.listdir(src)):
+>              return
+>          src = src + "/*"
+> -    cmd = 'cp -al %s %s' % (src, dst)
+> +    cmd = 'cp -a %s %s' % (src, dst)
+>      check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+> 
+>  def remove(path, recurse=True):
+> 
+> Regards,
+> 
+> Robert
+> ..."But I have a slowly coagulating theory that the size of a project 
+> is
+> directly proportional to the possibility that significant bugs will 
+> crop
+> up. Exponentiate for each additional programmer involved." - Steven K.
+> Halliburton
+> 
+> My public pgp key is available,at:
+> http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Hi,
+  I have just two points here to ask:
+
+1) Wouldn't simply using SSTATE_MIRRORS be a better solution here, 
+instead?
+
+2) Patch: wouldn't it be nicer to try the cp -al, and catch the 
+CalledProcessError Exception, if it is thrown, and then run the brute 
+force cp -a? Perhaps even as a general approach?
+
+[I didn't test it either practically, just, sometimes one may get the 
+impression in yocto / bitbake, that a bit more exception handling and 
+directly related error messages already are one of the worlds most 
+expensive things to do.. pls, improve this situation!! ;) ]
+
+BR,
+Lothar
 
 
---------------010308030100090905080703--
