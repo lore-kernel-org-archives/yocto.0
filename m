@@ -1,34 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f179.google.com (mail-ve0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BEDEE01358
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 05:04:27 -0700 (PDT)
-Received: by mail-ve0-f179.google.com with SMTP id c13so199983vea.38
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 05:04:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=BUV3mmeaIrBsiHiGJwpIUtbAj1l3Jb2cHwVhi6FG0+Q=;
-	b=BgOANtunZK20QNc0TfY2XRAoKInQ328/zoAj2l+NoEtPKvzdemedBS+yEJleV55pdi
-	YgeCHYQKKYWJbjtKAJspZZ+GtNmtpowofY/paPZpJpMn9iP76Rq08nGTcG+oG7+0CemY
-	nG14oDiI+WTmsvrtDvhx6Efr3s5HWlHI9bHXN/9jIjrhyyvFjpwQ8fEUEboGVLh3hDmX
-	64kAN9oqJYqIJ06pxV3FivXzDOCM42bbgoXU79Hkw8UOlNSrNO6FpgIwEp1e3jWGGfmW
-	wHbhBfZ9ZAnIUUBi79+ClaiHBqgfK0/LXRdFtC5YZxngYh25efIxDgzE67wsSnk7xkx8
-	zY0A==
-X-Gm-Message-State: ALoCoQlZzhvSQkFUyFDnDydQ9BUlk/3vF/bKvie9SCUPE+1MBq0t5wxRFNGlUmDT6xK0Th3jHnNJ
-X-Received: by 10.52.165.111 with SMTP id yx15mr45276vdb.33.1377000266928;
-	Tue, 20 Aug 2013 05:04:26 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
+	[209.85.217.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D651E00747
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 07:33:20 -0700 (PDT)
+Received: by mail-lb0-f179.google.com with SMTP id v1so544201lbd.38
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 07:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=PTfBwjbg43bNiutp7oavsK3frdFjDi2XuZoZigW+Oh8=;
+	b=rCo1PFD8DmSYM8W4XQ4ak/v6qNup3eRyann2Y+5uIRFP1615mIIy8AJGvMFQG5eQX5
+	CwfkwiT5iHvtJiq4PN+jqVzbWaXRAyTtfX4Kyy25JKcPLTXFW3SES6uvWC16VcQ+HAQl
+	Krcn/pf1p5uYkRIkMr7TYPWrMXeNZYOljteXFnjTaNXqiTYSpYTrkUn2s+n8lcFZzJKt
+	dk2cfvtijRF4OOqUquR6aefDv2c1n34AHfPFFEhnBPrSB0Qs8oiN+tlIgFMyUlYzXo4D
+	9O1o0j6iceMjNnmaM0fHyqX6khFkYDrmO+fKX0JK1l3s2ohGbBtYYdqGeYAtITFw46ti
+	oVkA==
+X-Received: by 10.112.57.49 with SMTP id f17mr2962456lbq.26.1377009198862;
+	Tue, 20 Aug 2013 07:33:18 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Tue, 20 Aug 2013 05:04:06 -0700 (PDT)
-In-Reply-To: <C0360C54FF104163BE67C2C714409398@PAULD>
-References: <C0360C54FF104163BE67C2C714409398@PAULD>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 20 Aug 2013 13:04:06 +0100
-Message-ID: <CAJTo0LYbxT61+Dd_S2f+Det3vk-Fr2q1MgGKOgZ0AM9wxKsaeA@mail.gmail.com>
+Sender: kergoth@gmail.com
+Received: by 10.112.53.197 with HTTP; Tue, 20 Aug 2013 07:32:58 -0700 (PDT)
+In-Reply-To: <3B6DFE55BDC846AB8432B5A9E188EA98@PAULD>
+References: <A3D4719B266E4F519452EFCF893FEF4A@PAULD>
+	<CABcZANkcqBYLH+X07-o5Pn5=C8offw8eYr3e_FOtEqZxHu+s0Q@mail.gmail.com>
+	<3B6DFE55BDC846AB8432B5A9E188EA98@PAULD>
+From: Chris Larson <clarson@kergoth.com>
+Date: Tue, 20 Aug 2013 07:32:58 -0700
+X-Google-Sender-Auth: XpZ2di05fUyLMAABlQDNearUSsw
+Message-ID: <CABcZANn3ogPD0j6Xj4DookFwHxTRHT77-GD5OViyrMg3gYO_hA@mail.gmail.com>
 To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Building one package needs header from another
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Trying to tweak a build with a setup.cfg file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,27 +42,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Aug 2013 12:04:29 -0000
+X-List-Received-Date: Tue, 20 Aug 2013 14:33:24 -0000
+Content-Type: multipart/alternative; boundary=001a1133eaca26998104e461f077
+
+--001a1133eaca26998104e461f077
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 20 August 2013 08:29, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
-> I'm trying to build python-matplotlib, which is a plotting package for
-> PyGTK, and I need to compile the GDK rendering backend so that I can put
-> plots onto the screen. (This is for a Gumstix, and I'm using their Danny
-> branch metadata.) The backend source file needs to include pygtk/pygtk.h,
-> which is all over the place in the fragments of the target rootfs since
-> I've built that for the target system, but isn't anywhere to be found in
-> the cross-compilation environment, so the compilation fails.
+On Mon, Aug 19, 2013 at 11:40 PM, Paul D. DeRocco <pderocco@ix.netcom.com>w=
+rote:
 
-If you've built pygtk then the target sysroot should have the headers
-in, and for me it does:
+> I suspect what happened is that support for the "subdir=3D" option on loc=
+al
+> files was added in 2009, then someone thought, why have this obscure
+> syntax? Simpler to impose the directory structure on the local files in
+> the metadata, allow file:// to refer to any pathname, not just a filename=
+,
+> and have the file copy routine create any necessary subdirectories in the
+> build tree. So they took that option out. Just a guess.
+>
 
-ross@melchett /data/poky-master/tmp/sysroots/genericx86
-$ find . -name pygtk.h
-./usr/include/pygtk-2.0/pygtk/pygtk.h
+We've always supported directories in file:// uris. The unpacking process
+was moved from base.bbclass into the bitbake fetchers. See
+https://github.com/openembedded/bitbake/blob/master/lib/bb/fetch2/__init__.=
+py#L1234-L1240.
+Not sure why it didn't work for you, though. I'm guessing it has to do with
+the way it changes the current working directory before running the
+command, rather than directly altering the destination directory =E2=80=94 =
+if the
+command being run uses an absolute path, the current working directory
+wouldn't affect anything. *shrug*
+--=20
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
-This is probably a problem with python-matplotlib, can you share the
-configure and build logs?  It's probably looking in the wrong place.
+--001a1133eaca26998104e461f077
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Ross
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Mon, Aug 19, 2013 at 11:40 PM, Paul D. DeRocco <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:pderocco@ix.netcom.com" target=3D"_blank">pderocco@ix.netcom=
+.com</a>&gt;</span> wrote:<br>
 
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div id=3D":71" style=3D"overflow:hidden">I suspect what h=
+appened is that support for the &quot;subdir=3D&quot; option on local<br>
+
+
+files was added in 2009, then someone thought, why have this obscure<br>
+syntax? Simpler to impose the directory structure on the local files in<br>
+the metadata, allow file:// to refer to any pathname, not just a filename,<=
+br>
+and have the file copy routine create any necessary subdirectories in the<b=
+r>
+build tree. So they took that option out. Just a guess.</div></blockquote><=
+/div><br>We&#39;ve always supported directories in file:// uris. The unpack=
+ing process was moved from base.bbclass into the bitbake fetchers. See=C2=
+=A0<a href=3D"https://github.com/openembedded/bitbake/blob/master/lib/bb/fe=
+tch2/__init__.py#L1234-L1240">https://github.com/openembedded/bitbake/blob/=
+master/lib/bb/fetch2/__init__.py#L1234-L1240</a>. Not sure why it didn&#39;=
+t work for you, though. I&#39;m guessing it has to do with the way it chang=
+es the current working directory before running the command, rather than di=
+rectly altering the destination directory =E2=80=94 if the command being ru=
+n uses an absolute path, the current working directory wouldn&#39;t affect =
+anything. *shrug*<br>
+
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
+
+--001a1133eaca26998104e461f077--
