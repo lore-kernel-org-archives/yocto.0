@@ -1,25 +1,30 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E07FE00747
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 15:27:57 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Aug 2013 15:27:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,923,1367996400"; d="scan'208";a="383990077"
-Received: from akagikob-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.122.209])
-	by fmsmga001.fm.intel.com with ESMTP; 20 Aug 2013 15:27:55 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Brad Litterell <bradl@taser.com>
-Date: Tue, 20 Aug 2013 23:27:54 +0100
-Message-ID: <2234378.IGkL2KjiRV@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <66996BFE-C7A8-4986-9D47-B1EF6827AD1A@taser.com>
-References: <66996BFE-C7A8-4986-9D47-B1EF6827AD1A@taser.com>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-banded.atl.sa.earthlink.net
+	(elasmtp-banded.atl.sa.earthlink.net [209.86.89.70])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B243E00406
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 16:06:53 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=QBEdv52vDTq3iKMDLEee+M+Cr6hjNMRAW6txB23OH/sFRIZxV4d1Jyf3aumLJTGw;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-banded.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VBv0m-0006r3-Me; Tue, 20 Aug 2013 19:06:53 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>
+References: <C0360C54FF104163BE67C2C714409398@PAULD>
+	<CAJTo0LYbxT61+Dd_S2f+Det3vk-Fr2q1MgGKOgZ0AM9wxKsaeA@mail.gmail.com>
+In-Reply-To: <CAJTo0LYbxT61+Dd_S2f+Det3vk-Fr2q1MgGKOgZ0AM9wxKsaeA@mail.gmail.com>
+Date: Tue, 20 Aug 2013 16:06:54 -0700
+Message-ID: <194F81E112554215A78C3D22D34B2A58@PAULD>
 MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6dnWryDDWqfamYSGKwK/9KOoPOWAAVUcjQ
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068855a8f133671541c0064b623cce518187350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
-Subject: Re: What are _virtual providers? and other Suffixes?
+Subject: Re: Building one package needs header from another
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,99 +36,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Aug 2013 22:27:58 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 20 Aug 2013 23:06:54 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hi Brad,
-
-On Monday 19 August 2013 22:51:04 Brad Litterell wrote:
-> I searched the Yocto Mega Manual, but am still somewhat mystified by the
-> suffix formatting of various variable - especially virtual ones like this:
+> From: Burton, Ross [mailto:ross.burton@intel.com] 
 > 
+> If you've built pygtk then the target sysroot should have the headers
+> in, and for me it does:
 > 
-> PREFERRED_PROVIDER_virtual/gettext = "gettext"
+> ross@melchett /data/poky-master/tmp/sysroots/genericx86
+> $ find . -name pygtk.h
+> ./usr/include/pygtk-2.0/pygtk/pygtk.h
 > 
-> PREFERRED_PROVIDER_virtual/kernel_am335x-evm = "linux-ti-staging"
-> 
-> PREFERRED_PROVIDER_virtual/bootloader_am335x-evm = "u-boot-ti-staging"
+> This is probably a problem with python-matplotlib, can you share the
+> configure and build logs?  It's probably looking in the wrong place.
 
-These are setting PREFERRED_PROVIDER for a number of targets. "virtual/xyz" is
-a convention we use where there are multiple providers for a particular
-component, so a recipe that requires that component can have virtual/xyz in
-its DEPENDS, each provider declares virtual/xyz in its PROVIDES, and then in
-configuration the desired recipe to provide that can be selected via 
-PREFERRED_PROVIDER_virtual/xyz = "...".
+Yes, the include files are there. I'm only beginning to grasp a little
+about how builds work, and that sysroots/overo is the context in which the
+Gumstix cross tools run. But the appropriate directory,
+/home/pauld/yocto/build/tmp/sysroots/overo/usr/include/pygtk-2.0, is not
+on the compiler command line, and that causes the error.
 
-The second two examples have an additional override which makes them only
-applicable for a specific machine (am335x-evm). If you want to know how this
-mechanism works have a look at this:
+I've been trying to figure out how the setup.py/setup.cfg (and distutils)
+stuff works. The setup.cfg file lists only one possible option for adding
+directories, which is basedirlist, but setting that to foo adds
+foo/include to the include directories and foo/lib to the library
+directories, so that's not appropriate. I tried just setting include_dirs
+to the proper directory in the [directories] section, but it had no
+effect.
 
-http://docs.openembedded.org/bitbake/html/ch02.html#id439023
+The configure log shows nothing, but the compile log (which shows the
+compile error at the end), shows this DEBUG note right at the beginning:
 
-(We're in the process of updating the BitBake manual, so this old version will have to suffice.)
+/home/pauld/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/python
+-matplotlib-1.1.0-r3/temp/run.do_compile.14201: line 82:
+/home/pauld/yocto/build/tmp/sysroots/i686-linux/usr/bin/python: No such
+file or directory
+basedirlist is: ['/home/pauld/yocto/build/tmp/sysroots/overo/usr/lib']
 
-> Also, there seems to be some sort of prioritization going on with the
-> multiple levels underscore characters in places like this:
-> 
-> 
-> # Set the PREFERRED_PROVIDER for jpeg functionality based on the MACHINE
-> 
-> # architecture.  For armv7a devices libjpeg-turbo should be used to take
-> 
-> # advantage of the SIMD instructions.
-> 
-> PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
-> 
-> PREFERRED_PROVIDER_jpeg_armv5te = "jpeg"
-> 
-> 
-> (all examples from the arago project in arago-prefs.inc)
-> 
-> Is there a succinct way of viewing these suffixes that will allow me to wrap
-> my head around their various & myriad versions?
+The message refers to this script in run.do_compile (slightly
+reformatted):
 
-OVERRIDES is listed in order so that overrides for the later items are
-preferred. If you run bitbake -e | less and search for OVERRIDES (with the /
-key) you can see what the value is for the global environment; here is an
-example for my current configuration:
+do_compile() {
+  BUILD_SYS=i686-linux HOST_SYS=arm-poky-linux-gnueabi \
+  /home/pauld/yocto/build/tmp/sysroots/i686-linux/usr/bin/python \
+      setup.py build || true
+  distutils_do_compile
+}
 
-# $OVERRIDES [3 operations]
-#   set conf/bitbake.conf:670
-#     "${TARGET_OS}:${TRANSLATED_TARGET_ARCH}:build-${BUILD_OS}:pn-${PN}:${MACHINEOVERRIDES}:${DISTROOVERRIDES}:${CLASSOVERRIDE}:forcevariable"
-#   set conf/bitbake.conf:671
-#     [vardepsexclude] "MACHINEOVERRIDES"
-#   postdot /home/paul/poky/poky/meta/conf/distro/include/tclibc-eglibc.inc:9
-#     "${LIBCOVERRIDE}"
-# computed:
-#   "${TARGET_OS}:${TRANSLATED_TARGET_ARCH}:build-${BUILD_OS}:pn-${PN}:${MACHINEOVERRIDES}:${DISTROOVERRIDES}:${CLASSOVERRIDE}:forcevariable${LIBCOVERRIDE}"
-OVERRIDES="linux:i586:build-linux:pn-bblayers:x86:qemuall:qemux86:poky:class-target:forcevariable:libc-glibc"
+This would suggest that setup.py isn't even being run. Yet when I
+accidentally put a syntax error into setup.cfg, it barfed. Is setup.cfg
+read before setup.py is run, by something else?
 
-Putting the values of all these variables into OVERRIDES gives us a way of
-setting variable values per-machine, per-architecture etc. Based on the
-above value, if I had:
+So there are two questions: why is there no python in that directory?
+(There is a python-native subdirectory containing python.) And once that's
+dealt with, how does one add a specific include subdirectory to the
+command line via setup.cfg?
 
-SOMEVAR = "value1"
-SOMEVAR_qemux86 = "anothervalue"
-SOMEVAR_i586 = "yetanothervalue"
+Or maybe those aren't the questions. I understand about 0.1% of what's
+going on here.
 
-The computed value of SOMEVAR would be "anothervalue". If MACHINE were
-changed to, say, "qemumips", then OVERRIDES would change and the value 
-of SOMEVAR would become "value1".
-
-> Am I right in assuming the "variable name" consists of the uppercase parse
-> (regardless of number of underscores)?
-
-That is our (fairly strict) convention in OpenEmbedded, but FWIW I don't
-think bitbake itself enforces that; it's all dependent on what is in OVERRIDES
-and where the _ character appears in the left hand side of the assignment
-statement.
-
-Cheers,
-Paul
+I'm also curious if distutils is something that is used throughout the
+bitbake process, or is it something specific to building Python-related
+stuff? Can the setup.py/setup.cfg mechanism be used in any recipes?
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
