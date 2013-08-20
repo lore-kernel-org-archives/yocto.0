@@ -1,52 +1,40 @@
-Return-Path: <bradl@taser.com>
-Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF512E013DF
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 16:42:39 -0700 (PDT)
-X-ASG-Debug-ID: 1377042158-0499bf3773094a0001-yzSStA
-Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
-	with ESMTP id 4FiUnEdLvHxe4lts; Tue, 20 Aug 2013 16:42:38 -0700 (MST)
-X-Barracuda-Envelope-From: bradl@taser.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
-	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Tue, 20 Aug 2013 16:42:38 -0700
-Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
-	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
-	14.02.0342.003; Tue, 20 Aug 2013 16:42:37 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-From: Brad Litterell <bradl@taser.com>
-X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] What are _virtual providers? and other Suffixes?
-X-ASG-Orig-Subj: Re: [yocto] What are _virtual providers? and other Suffixes?
-Thread-Index: AQHOnS6V/to3o0BtQkmd1sK54dxWKJmfJAIAgAANsoCAAASYAIAAApOA
-Date: Tue, 20 Aug 2013 23:42:36 +0000
-Message-ID: <2C678312-32B2-4184-9839-73D77D06525A@taser.com>
-References: <66996BFE-C7A8-4986-9D47-B1EF6827AD1A@taser.com>
-	<2234378.IGkL2KjiRV@helios>
-	<78289786-2223-441A-B086-7E71B1314168@taser.com>
-	<7610515.7dZZ0L6LcG@helios>
-In-Reply-To: <7610515.7dZZ0L6LcG@helios>
+Return-Path: <jessica.zhang@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0456E013DF
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 16:51:24 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Aug 2013 16:51:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,923,1367996400"; 
+	d="p7s'?scan'208";a="384022831"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Aug 2013 16:51:23 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 20 Aug 2013 16:51:22 -0700
+Received: from orsmsx103.amr.corp.intel.com ([169.254.2.129]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.12.253]) with mapi id
+	14.03.0123.003; Tue, 20 Aug 2013 16:51:22 -0700
+From: "Zhang, Jessica" <jessica.zhang@intel.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Error building meta-ide-support; 'SNDCTL_DSP_MAPINBUF'
+	undeclared here
+Thread-Index: Ac6YQZvm1/inciC/S1SlI4tH30qmCwBt/T/wAAByqNAAAEk8kAAeejmgAOJgJVA=
+Date: Tue, 20 Aug 2013 23:51:22 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73C86152@ORSMSX103.amr.corp.intel.com>
+References: <91586D499ADFD74FBCFB8425266A5DE40153ADC7DF00@pluto.melinkcorp.local>
+	<C6510F6D410BB64A8C15398EDC6B847C73C771D6@ORSMSX103.amr.corp.intel.com>
+	<91586D499ADFD74FBCFB8425266A5DE40153ADC7E8B3@pluto.melinkcorp.local>
+	<C6510F6D410BB64A8C15398EDC6B847C73C772A3@ORSMSX103.amr.corp.intel.com>
+	<91586D499ADFD74FBCFB8425266A5DE40153AF2B5ECC@pluto.melinkcorp.local>
+In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153AF2B5ECC@pluto.melinkcorp.local>
 Accept-Language: en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.103]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-X-Barracuda-Connect: magni.atmoss[10.10.20.112]
-X-Barracuda-Start-Time: 1377042158
-X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at taser.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.138950
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-Cc: "<yocto@yoctoproject.org>" <yocto@yoctoproject.org>
-Subject: Re: What are _virtual providers? and other Suffixes?
+Subject: Re: Error building meta-ide-support; 'SNDCTL_DSP_MAPINBUF' undeclared here
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,115 +46,360 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Aug 2013 23:42:42 -0000
+X-List-Received-Date: Tue, 20 Aug 2013 23:51:26 -0000
+X-Groupsio-MsgNum: 15570
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <ABB76CA92203BD44B145B690A3AAA78A@taser.com>
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_007D_01CE9DC5.7FCECAE0"
 
-Hi Paul,
+------=_NextPart_000_007D_01CE9DC5.7FCECAE0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Thanks - that makes it clearer.  But now I have one other question to ask:
+Hi Bryan,
 
-if  virtual/xyz is added to overrides when the item is dealt with, then in =
-that case P_P_virtual/xyz_am335 has two overrides hanging off of the base v=
-ariable PREFERRED_PROVIDER.
+Probably the simplest way is to archive your whole project directory and for
+other user, they can import them to workspace, then do reconfigure and
+rebuild based on their cross toolchain setup.
 
-You also said earlier that the latest override applies, so is there some ru=
-le for multiple conditionals on a variable?
+Jessica
 
-E.g. What happens in a case like the following?
+-----Original Message-----
+From: Bryan Evenson [mailto:bevenson@melinkcorp.com] 
+Sent: Monday, August 19, 2013 6:54 AM
+To: Zhang, Jessica; yocto@yoctoproject.org
+Subject: RE: [yocto] Error building meta-ide-support; 'SNDCTL_DSP_MAPINBUF'
+undeclared here
 
-OVERRIDES=3D"foo1:bar2:car3"
+Jessica,
 
-VARIABLE_foo1_bar2 =3D "both"
-VARIABLE_car3 =3D "last one"
+> -----Original Message-----
+> From: Zhang, Jessica [mailto:jessica.zhang@intel.com]
+> Sent: Thursday, August 15, 2013 5:19 PM
+> To: Bryan Evenson; yocto@yoctoproject.org
+> Subject: RE: [yocto] Error building meta-ide-support; 
+> 'SNDCTL_DSP_MAPINBUF' undeclared here
+> 
+> Ok, 1st of all just build core-image-minimal won't give you libraries 
+> that you'll need to do cross development.  The simplest way to build a 
+> cross toolchain and sysroot that match your target image is to do 
+> "bitbake core-image-mininal -c populate_sdk".  That'll generate a SDK 
+> tarball for you.
 
-what does VARIABLE wind up?  The first is "more specific" in that it matche=
-s two values in overrides, whereas car is last, but less specific.
+For some reason on my setup, the command format "bitbake <recipe-name> -c
+<task>" never seems to work.  For example, running "bitbake
+core-image-minimal -c populate_sdk" produces the error "nothing PROVIDES
+'populate_sdk'".  But, issuing "bitbake -c populate_sdk core-image-minimal"
+did build the SDK tarball.
 
-Thanks & sorry if I'm missing something simple.
+And for my setup, I configured the Yocto ADT preferences as follows:
+- Standalone pre-built toolchain
+- Toolchain Root Location: <SDK tarball extract location>/opt/poky/1.4.1
+- Sysroot Location: <SDK tarball extract location>/opt/poky/1.4.1/sysroots
 
-Brad
+After these selections were made, then "arm926ejste-poky-linux-gnueabi"
+showed up as a Target Architecture option.  I saved these settings and
+created a simple project using the steps shown in the ADT manual.  After
+some minor modifications to configure.ac and Makefile.am for my source
+files, I was able to cross-compile a project for my system.
 
+And just to confirm, what files in the project are needed for someone else
+to build my project (assuming their toolchain is setup properly)?  Aside
+from my source and header files, I know I need configure.ac, autogen.sh, and
+Makefile.am from each directory.  And I also need .project and the .settings
+directory for the Eclipse project setup.  Anything else that I am missing?
 
+Thanks,
+Bryan
 
-On Aug 20, 2013, at 4:33 PM, Paul Eggleton <paul.eggleton@linux.intel.com>
- wrote:
+> You can follow the developer's manual on how to extract the tarball, 
+> then in eclipse your toolchain location should be the directory you 
+> extract the tarball at, and sysroot should be the sysroot directory 
+> underneath where you extracted your tar ball.
+> 
+> - Jessica
+> 
+> -----Original Message-----
+> From: Bryan Evenson [mailto:bevenson@melinkcorp.com]
+> Sent: Thursday, August 15, 2013 2:12 PM
+> To: Zhang, Jessica; yocto@yoctoproject.org
+> Subject: RE: [yocto] Error building meta-ide-support; 
+> 'SNDCTL_DSP_MAPINBUF'
+> undeclared here
+> 
+> 
+> 
+> > -----Original Message-----
+> > From: Zhang, Jessica [mailto:jessica.zhang@intel.com]
+> > Sent: Thursday, August 15, 2013 4:55 PM
+> > To: Bryan Evenson; yocto@yoctoproject.org
+> > Subject: RE: [yocto] Error building meta-ide-support; 
+> > 'SNDCTL_DSP_MAPINBUF' undeclared here
+> >
+> > Hi Bryan,
+> >
+> > When you tried to setup your eclipse plugin, what is your toolchain 
+> > and what is your sysroot.  Are they built by you or you download
+> them?
+> >
+> 
+> I built my own.  I'm using the meta-atmel layer located at 
+> https://github.com/evensonbryan/meta-atmel.git, using the instructions 
+> shown in the README to download and build.  Only exception is that I 
+> have MACHINE set as "at91sam9x5ek" in local.conf.  I did "bitbake 
+> core-image- minimal" as the initial build to start off everything; 
+> never tried to bitbake meta-ide-support on this system.
+> 
+> -Bryan
+> 
+> > - Jessica
+> >
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org [mailto:yocto- 
+> > bounces@yoctoproject.org] On Behalf Of Bryan Evenson
+> > Sent: Tuesday, August 13, 2013 9:25 AM
+> > To: yocto@yoctoproject.org
+> > Subject: [yocto] Error building meta-ide-support;
+> 'SNDCTL_DSP_MAPINBUF'
+> > undeclared here
+> >
+> > I am working on installing and setting up the Eclipse IDE plug-in 
+> > for Eclipse Juno.  I am using poky/dylan (at the yocto-1.4.1 tag) 
+> > for my build environment.  I am to the "Configuring the 
+> > Cross-Compiler Options"
+> > section
+> > from the current Yocto Project mega-manual, and after setting up the 
+> > Toolchain Root Location and the Sysroot Location, I get the error 
+> > 'Specified toolchain directory does not contain a toolchain 
+> > generated with "bitbake meta-ide-support"'.  So, I went back and did 
+> > "bitbake meta-ide-
+> support"
+> > as
+> > requested and I am getting the following errors:
+> >
+> > DEBUG: Executing shell function do_compile
+> > NOTE: make -j 2
+> >   CC    arm-linux-user/linux-user/syscall.o
+> > In file included from
+> > /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> > r0/qemu-1.
+> > 4.0/linux-user/syscall.c:3705:0:
+> > /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> > r0/qemu-1.
+> > 4.0/linux-user/ioctls.h:189:1: error: 'SNDCTL_DSP_MAPINBUF'
+> undeclared
+> > here
+> > (not in a function)
+> > /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> > r0/qemu-1.
+> > 4.0/linux-user/ioctls.h:190:1: error: 'SNDCTL_DSP_MAPOUTBUF'
+> undeclared
+> > here
+> > (not in a function)
+> > /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> > r0/qemu-1.
+> > 4.0/linux-user/ioctls.h:245:1: error: 'SOUND_MIXER_ACCESS' 
+> > undeclared here (not in a function)
+> > make[1]: *** [linux-user/syscall.o] Error 1
+> > make: *** [subdir-arm-linux-user] Error 2
+> > make: *** Waiting for unfinished jobs....
+> > ERROR: oe_runmake failed
+> > ERROR: Function failed: do_compile (see
+> > /media/sda3/poky/poky-build/tmp/work/i686-linux/qemu-native/1.4.0-
+> > r0/temp/lo
+> > g.do_compile.20276 for further information)
+> >
+> > I did a search and I cannot find these defines anywhere in the i686 
+> > sysroot directory, but it exists in my target's sysroot directory.  
+> > Is there something wrong with the i686 sysroot setup on my system?  
+> > If it matters, I'm doing the build machine is running Ubuntu 12.04.2 
+> > LTS.
+> >
+> > Thanks,
+> > Bryan
+> >
+> >
+> >
+> >
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 
-> On Tuesday 20 August 2013 23:16:56 Brad Litterell wrote:
->> Thanks for taking the time to explain, very enlightening.  I think I
->> understood it, please allow me to play back my understanding:
->>=20
->> 1.  _virtual is part of the variable name, and is not a special type of
->> override.=20
->=20
-> Actually, virtual/kernel is an override as well. The way a few variables,=
-=20
-> including PREFERRED_PROVIDER, are used is that OVERRIDES is set to includ=
-e the=20
-> item being dealt with when the variable is read, thus specifically with=20
-> PREFERRED_PROVIDER you always override it with the name of the target you=
- wish=20
-> to select the provider for.
->=20
->> 2.  PREFERRED_PROVIDER_virtual/kernel_am335x-evm breaks into:
->> "PREFERRED_PROVIDER_virtual/kernel" with an override condition of=20
->> "am335x-evm"
->=20
-> Outside of the part of the code where it's actually read, yes. Within tha=
-t=20
-> code the override "virtual/kernel" will be applied when it's looking to s=
-ee=20
-> what the provider for "virtual/kernel" should be, and thus it will get th=
-e=20
-> appropriate value for the PREFERRED_PROVIDER variable. So technically the=
-=20
-> variable is just PREFERRED_PROVIDER.
->=20
->> 3. So for the jpeg case:
->>>> PREFERRED_PROVIDER_jpeg =3D "libjpeg-turbo"
->>>>=20
->>>> PREFERRED_PROVIDER_jpeg_armv5te =3D "jpeg"
->>=20
->> Could this have also been _virtual/jpeg?  It's just that some components=
- use
->> the _virtual convention and others don't?
->=20
-> The prefix is virtual/ not _virtual, and as I mentioned earlier virtual/ =
-is=20
-> just a convention (although there are a few isolated parts of the code th=
-at=20
-> specifically look for the virtual/ prefix). The mechanism will work in th=
-e same=20
-> way here; recipes that need jpeg decoding have "jpeg" in DEPENDS and prov=
-iding=20
-> libjpeg-turbo has jpeg in its PROVIDES, which it does, we can select betw=
-een=20
-> two different recipes providing that - jpeg and libjpeg-turbo (where the =
-latter=20
-> is provided at all of course, i.e. when you have the meta-oe layer in you=
-r=20
-> configuration).=20
->=20
-> I don't think there's any special reason we don't have virtual/jpeg rathe=
-r=20
-> than jpeg here other than that having multiple jpeg decoding libraries is=
- a=20
-> relatively new situation compared to others such as virtual/kernel, and t=
-here=20
-> are already a bunch of recipes out there referring to "jpeg" in their DEP=
-ENDS.=20
-> (One wonders why there is a need for multiple jpeg decoding libraries in =
-the=20
-> first place, but that's a different can of worms...)
->=20
-> Cheers,
-> Paul
->=20
-> --=20
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
+------=_NextPart_000_007D_01CE9DC5.7FCECAE0
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIh7DCCAyAw
+ggKJoAMCAQICBDXe9M8wDQYJKoZIhvcNAQEFBQAwTjELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0Vx
+dWlmYXgxLTArBgNVBAsTJEVxdWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTAeFw05
+ODA4MjIxNjQxNTFaFw0xODA4MjIxNjQxNTFaME4xCzAJBgNVBAYTAlVTMRAwDgYDVQQKEwdFcXVp
+ZmF4MS0wKwYDVQQLEyRFcXVpZmF4IFNlY3VyZSBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAMFdsVhnCGLuoJotHwhtkRRomAoe/toEbxOEYiHD0XzOnwXg
+uAHwTjTs4oqVBGSs8WtTXwWzy2eAv0ICjv7dAQns4QAUT/z78AzdQ7pbK+EfgHCZFVeTFvEPl2q3
+wmgjHMxNWTCsUR47ryvW7mNFe8XZX1DS41APOojnvxT94Me5AgMBAAGjggEJMIIBBTBwBgNVHR8E
+aTBnMGWgY6BhpF8wXTELMAkGA1UEBhMCVVMxEDAOBgNVBAoTB0VxdWlmYXgxLTArBgNVBAsTJEVx
+dWlmYXggU2VjdXJlIENlcnRpZmljYXRlIEF1dGhvcml0eTENMAsGA1UEAxMEQ1JMMTAaBgNVHRAE
+EzARgQ8yMDE4MDgyMjE2NDE1MVowCwYDVR0PBAQDAgEGMB8GA1UdIwQYMBaAFEjmaPkr0rKV10fY
+IyAQTzOYkJ/UMB0GA1UdDgQWBBRI5mj5K9KylddH2CMgEE8zmJCf1DAMBgNVHRMEBTADAQH/MBoG
+CSqGSIb2fQdBAAQNMAsbBVYzLjBjAwIGwDANBgkqhkiG9w0BAQUFAAOBgQBYzinq/Pfetc4CuRe1
+hdG54+CVzCUxDQCmkm5/tpJjnlCV0Zpv5BHeY4VumO6o/1rI01WyZnFX3sAh6z0qpyNJAQSGQnv8
+7n+iFlK1Z2fTQNs7JliyKHc9rhR3Ydb6KmYnoA36p3Nc6nDxlCFlRF/6/O8paKmih3nvee9PrAd3
+ODCCAz0wggKmoAMCAQICAwWw/zANBgkqhkiG9w0BAQUFADBOMQswCQYDVQQGEwJVUzEQMA4GA1UE
+ChMHRXF1aWZheDEtMCsGA1UECxMkRXF1aWZheCBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5
+MB4XDTA2MDIxNjE4MDEzMFoXDTE2MDIxOTE4MDEzMFowUjELMAkGA1UEBhMCVVMxGjAYBgNVBAoT
+EUludGVsIENvcnBvcmF0aW9uMScwJQYDVQQDEx5JbnRlbCBFeHRlcm5hbCBCYXNpYyBQb2xpY3kg
+Q0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpd/XOb9QVqEZ8mQ1042TdOIq3ATD
+IsV2xDyt30yLyMR5Wjtus0bn3B+he89BiNO/LP6+rFzEwlD55PlX+HLGIKeNNG97dqyc30FElEUj
+ZzTZFq2N4e3kVJ/XAEEgANzV8v9qp7qWwxugPgfc3z9BkYot+CifozexHLb/hEZj+yISCU61kRZv
+uSQ0E11yYL4dRgcglJeaHo3oX57rvIckaLsYV5/1Aj+R8DM1Ppk965XQAKsHfnyT7C4S50T4lVn4
+lz36wOdNZn/zegG1zp41lnoTFfT4KuKVJH5x7YD1p6KbgJCKLovnujGuohquBNfdXKpZkvz6pGv+
+iC1HawJdAgMBAAGjgaAwgZ0wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBQaxgxKxEdvqNutK/D0
+Vgaj7TdUDDA6BgNVHR8EMzAxMC+gLaArhilodHRwOi8vY3JsLmdlb3RydXN0LmNvbS9jcmxzL3Nl
+Y3VyZWNhLmNybDAfBgNVHSMEGDAWgBRI5mj5K9KylddH2CMgEE8zmJCf1DAPBgNVHRMBAf8EBTAD
+AQH/MA0GCSqGSIb3DQEBBQUAA4GBABMQOK2kVKVIlUWwLTdywJ+e2O+PC/uQltK2F3lRyrPfBn69
+tOkIP4SgDJOfsxyobIrPLe75kBLw+Dom13OBDp/EMZJZ1CglQfVV8co9mT3aZMjSGGQiMgkJLR3j
+Mfr900fXZKj5XeqCJ+JP0mEhJGEdVCY+FFlksJjV86fDrq1QMIIENjCCAx6gAwIBAgIBATANBgkq
+hkiG9w0BAQUFADBvMQswCQYDVQQGEwJTRTEUMBIGA1UEChMLQWRkVHJ1c3QgQUIxJjAkBgNVBAsT
+HUFkZFRydXN0IEV4dGVybmFsIFRUUCBOZXR3b3JrMSIwIAYDVQQDExlBZGRUcnVzdCBFeHRlcm5h
+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
+BgEFBQcBAQQuMCwwKgYIKwYBBQUHMAGGHmh0dHA6Ly9vY3NwLnRydXN0LXByb3ZpZGVyLmNvbTA1
+BgNVHR4ELjAsoCowC4EJaW50ZWwuY29tMBugGQYKKwYBBAGCNxQCA6ALDAlpbnRlbC5jb20wDQYJ
+KoZIhvcNAQEFBQADggEBACnCzaP9kqNSZ6IvBu1uUOhUj6tX5silt7Eg39Wpr8h5IxIHduZ+zCkR
+xhJkccaM4jyqXJm312FPidIOetJwqOYDxe/Fne2Zs3JgnJtVBRXyMX8OkANfW0aUwvGzDGkkhJfM
+t/T4MGvhxDZqD2bDOtw3Wes4g5z6nEm3H2LPKnf5uXdtq6V6uSBlVLV+i1+0f4UksP97HwE5wS4I
+ibYpVcmOzhhpmCggEtiNOIrb0ktVrXnF07fTmQ8jW5ey7Tmwa4DC4WZKSVvqTkfX94eVRtkubipA
+O04fTQvRKEnHcEAgCMPlFim0kNCLI9lBS+3xyr5qlilUy/fLEc7yN7HjQuAwggWKMIIEcqADAgEC
+AgphHoC3AAAAAAAHMA0GCSqGSIb3DQEBBQUAMFIxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRl
+bCBDb3Jwb3JhdGlvbjEnMCUGA1UEAxMeSW50ZWwgRXh0ZXJuYWwgQmFzaWMgUG9saWN5IENBMB4X
+DTA5MDUxNTE5MjUxM1oXDTE1MDUxNTE5MzUxM1owVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUlu
+dGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENB
+IDNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwY+AYuc47kg7OUdF+vVd8JVv3tXg
+FHZBWk9nsKtwhD4UZrYocP/p0+PDE4iu0VN19bgFiKR0WbFRlUFZFZnlXJ7ZwJ0bMVaogQ4TV7Xu
+c3HWMzxnoZkSpsNRL68G4+UEUcpChWbkFo0genKfZdnGrCNX2Pn9ysh8+sIay2T7bO1SFVLw4cSD
+M7vzg+AP2k6AGecBtkeYQzUVhiZDqJtL6BUIfOhsNgb5hF5GIekUpYHGlS4/5fRZgXD8lrUlbs3y
+kQsAUPDRQUFYWCK/VAi6x0u9LLyZywsnnDLTnQ5VzFKGqhTGHD/C/K66hDG+YQ+OFFrULahIKYY3
+TTTcYyFBYwIDAQABo4ICXDCCAlgwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUqhZmr7c9VlNg
+rg3C7fPuB8tRYH4wCwYDVR0PBAQDAgGGMBIGCSsGAQQBgjcVAQQFAgMBAAEwIwYJKwYBBAGCNxUC
+BBYEFMIrCFPH6F0ywoKA6ZbAuCNCwBX5MBkGCSsGAQQBgjcUAgQMHgoAUwB1AGIAQwBBMB8GA1Ud
+IwQYMBaAFBrGDErER2+o260r8PRWBqPtN1QMMIG9BgNVHR8EgbUwgbIwga+ggayggamGTmh0dHA6
+Ly93d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUy
+MFBvbGljeSUyMENBLmNybIZXaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9y
+eS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0EuY3JsMIHjBggrBgEF
+BQcBAQSB1jCB0zBjBggrBgEFBQcwAoZXaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9j
+ZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwUG9saWN5JTIwQ0EuY3J0MGwG
+CCsGAQUFBzAChmBodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRp
+ZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBQb2xpY3klMjBDQS5jcnQwDQYJKoZI
+hvcNAQEFBQADggEBAJRj/V3QxLpU9OUhw6GjVdaHX3c8PmQkMlI92mEsdB0zWgoD7CEx0gGhjVXN
+MMMr4L4TLglzKdrt+kLy5Waf9HP+L0xm3Jzup7M+1lOf1TI5G8mZ10f47H9HJwbB7dqCzyNR2ykQ
+Kitg6QnJmSycMiVNVS9tHvDJj6AYlirFZeqtxUUSIyxa7z84iV/sXaABgwHDWRnnl2fiVYEgzRaq
+9F5ak++Fh43tj7cwoR1IyRDtNmI1t91nkP/wp9Y0xMnhUeW06AIvWUDm3H8XhHX3bSySkvl67dKP
+rnRFR7es5expXk3InMHAHfX7XOyaV5V0UPST8XD0fFdsBATfm5w3/sIwggZWMIIFPqADAgECAgoU
+k1n3AAEAAF9GMA0GCSqGSIb3DQEBBQUAMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBD
+b3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQTAe
+Fw0xMTA0MTAwNDUwMTVaFw0xNDAzMjUwNDUwMTVaMEExFzAVBgNVBAMTDlpoYW5nLCBKZXNzaWNh
+MSYwJAYJKoZIhvcNAQkBFhdqZXNzaWNhLnpoYW5nQGludGVsLmNvbTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAKa+dkoJ3IOg6wNoxQfo4QUiQ1Swy03i5fy/G2dZf1QUeTX7TRE0YxH5
+ddI5+3R012JQawhHDtAZTtCjH4vTGMYI9QqOQcHUUVTROJqgOm/Gww6PWZrw6pPtI6BioyqNROjU
+iYCncRh72Q7DApt/Xal90yLhU2rrgtxM87Ak5cKPdRJ7W6NcxI14KCO70pHMf7nOq+0EEweWrnz2
+fzdf+lwPmYG68J+2MrVlWZ8HtC3bFU8x5nxhbkAguWzn+5V/4uMigQoO/7XTY9FbeKzydZcz3qAe
+tA7tz2ghJHBdigr24h+aFUJb5smXhKlJbI3Lx8EofmXyyla0JCjpLId6XGcCAwEAAaOCAzkwggM1
+MAsGA1UdDwQEAwIEMDBEBgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0D
+BAICAIAwBwYFKw4DAgcwCgYIKoZIhvcNAwcwHQYDVR0OBBYEFFrRoBxGtuFe0cjYeTjWaC8mdRUc
+MD0GCSsGAQQBgjcVBwQwMC4GJisGAQQBgjcVCIbDjHWEmeVRg/2BKIWOn1OCkcAJZ4S52UGHhP9O
+AgFkAgEMMB8GA1UdIwQYMBaAFKoWZq+3PVZTYK4Nwu3z7gfLUWB+MIHPBgNVHR8EgccwgcQwgcGg
+gb6ggbuGV2h0dHA6Ly93d3cuaW50ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJu
+YWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDNBKDEpLmNybIZgaHR0cDovL2NlcnRpZmljYXRl
+cy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNz
+dWluZyUyMENBJTIwM0EoMSkuY3JsMIH1BggrBgEFBQcBAQSB6DCB5TBsBggrBgEFBQcwAoZgaHR0
+cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5h
+bCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwM0EoMSkuY3J0MHUGCCsGAQUFBzAChmlodHRwOi8v
+Y2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4
+dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjAzQSgxKS5jcnQwHwYDVR0lBBgwFgYIKwYB
+BQUHAwQGCisGAQQBgjcKAwQwKQYJKwYBBAGCNxUKBBwwGjAKBggrBgEFBQcDBDAMBgorBgEEAYI3
+CgMEMEsGA1UdEQREMEKgJwYKKwYBBAGCNxQCA6AZDBdqZXNzaWNhLnpoYW5nQGludGVsLmNvbYEX
+amVzc2ljYS56aGFuZ0BpbnRlbC5jb20wDQYJKoZIhvcNAQEFBQADggEBAAVrYvg2/Qva9YsjRnEm
+1ln0HxGtId6+oDLfa3iUD15fTM9WndhkFX5/RsKk0kQAknBr/DlzDs2h73gsfLvF4M/VHqfVJ5NM
+102Tja28805aat0rtarzs7QklHvfvlPj+nSmKJSLr0NyydaGKXqoftEKuhnyhVHLNBXTHcCTiitg
+WCUqnVibR+ezs3BRj3HELY6qmKnKt92ZRpzMldEfbj/Qn6ZdMteaq8Cd5jZlosNdvDd7+zRV5Wo4
+lFXwKeG+f4X/H6gTVxY79lK002Xz3RG7vsOIW6DdrvXc07W7oNS1ZsVz8tcG5H5LxniPeqR4Nwb9
+NeI/PbPwMgo4ETM4W5wwggZyMIIFWqADAgECAgofzX8BAAIAABdlMA0GCSqGSIb3DQEBBQUAMHkx
+CzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoT
+EUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5n
+IENBIDRBMB4XDTEzMDcyMjIyMzYyOVoXDTE2MDcwNjIyMzYyOVowQTEXMBUGA1UEAxMOWmhhbmcs
+IEplc3NpY2ExJjAkBgkqhkiG9w0BCQEWF2plc3NpY2EuemhhbmdAaW50ZWwuY29tMIIBIjANBgkq
+hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAus8+rXFM8Hk6niQ3hvGG0u4Scg0bT919KmcyohSpUB5c
+21TwlRzLyVPF91DX2dRBMuLK3RS52f/UC/FmP8PUehjLJUUQVhvdyb8PeqcSc203mX8IZgrEOIJj
+P88qNxDvey6DU8db4aKW2Gl3AHQFEY+9ewujp28NvxCB0rAea+B83CIqGjyk2gSizmBs8zR99cnw
+E76r3eiDUEa0PTjLRSUkvhGOpeesdqkbzJv1V2Zpf5UqIKcZ6Y482GpA5dv89CyWbAwQ4x2ezEEP
+2EjlWlyaqF3Eg+ecCOVr5ScUAGgqisjDh6Asi8US2jX6GIgZSxCqYxo4+v67QVGYhXgqwQIDAQAB
+o4IDMjCCAy4wRAYJKoZIhvcNAQkPBDcwNTAOBggqhkiG9w0DAgICAIAwDgYIKoZIhvcNAwQCAgCA
+MAcGBSsOAwIHMAoGCCqGSIb3DQMHMB0GA1UdDgQWBBRqasYYBj1SFQNYkQLBh9HD6hYU1DALBgNV
+HQ8EBAMCB4AwHwYDVR0jBBgwFoAUHmkqtNwo/kcYTiELP7ysES/wmPUwgckGA1UdHwSBwTCBvjCB
+u6CBuKCBtYZUaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRl
+cm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3Jshl1odHRwOi8vY2VydGlmaWNhdGVz
+LmludGVsLmNvbS9yZXBvc2l0b3J5L0NSTC9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1
+aW5nJTIwQ0ElMjA0QS5jcmwwgfUGCCsGAQUFBwEBBIHoMIHlMGwGCCsGAQUFBzAChmBodHRwOi8v
+d3d3LmludGVsLmNvbS9yZXBvc2l0b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIw
+QmFzaWMlMjBJc3N1aW5nJTIwQ0ElMjA0QSgyKS5jcnQwdQYIKwYBBQUHMAKGaWh0dHA6Ly9jZXJ0
+aWZpY2F0ZXMuaW50ZWwuY29tL3JlcG9zaXRvcnkvY2VydGlmaWNhdGVzL0ludGVsJTIwRXh0ZXJu
+YWwlMjBCYXNpYyUyMElzc3VpbmclMjBDQSUyMDRBKDIpLmNydDA8BgkrBgEEAYI3FQcELzAtBiUr
+BgEEAYI3FQiGw4x1hJnlUYP9gSiFjp9TgpHACWeB3r05lfBDAgFkAgEIMB8GA1UdJQQYMBYGCCsG
+AQUFBwMEBgorBgEEAYI3CgMMMCkGCSsGAQQBgjcVCgQcMBowCgYIKwYBBQUHAwQwDAYKKwYBBAGC
+NwoDDDBLBgNVHREERDBCoCcGCisGAQQBgjcUAgOgGQwXamVzc2ljYS56aGFuZ0BpbnRlbC5jb22B
+F2plc3NpY2EuemhhbmdAaW50ZWwuY29tMA0GCSqGSIb3DQEBBQUAA4IBAQCF84CjyCAe8e3a2LDc
+2s/FMs5/f3/n9XBhyufKMFbl69YKSGHzjR+nA3M3oS6CRJUyKk02WovgcnSu1OUcHb5aARn2f7He
+wLwHRatdtUD2QzDjOEbtn5vrvxHEY28cAmrQBgdg4FhjO2z7/eiAoUrj96P0cqeNfxHTu+ku24Jl
+5FSbr2YpSQdIoDCaLlMz4M349n/semekzJN00AjxGW6rls77R81ktfmJhcpBVLQdWjpJm2yJ0t5s
+NdiwigbAOfAtRmbyHPEpmQ0Z3enZWiYrw+VXNzCW4WL1WADt/9c4aAdfGcY75bI3oEK3oG8InWmZ
+2MfdADgxJxW1ZokJsHxiMYIDcDCCA2wCAQEwgYcweTELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNB
+MRQwEgYDVQQHEwtTYW50YSBDbGFyYTEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNV
+BAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3VpbmcgQ0EgNEECCh/NfwEAAgAAF2UwCQYFKw4D
+AhoFAKCCAb0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTMwODIw
+MjM1MTIxWjAjBgkqhkiG9w0BCQQxFgQUilm/0Ewwl1AZEC5CgdJPpIh6ymswcgYJKoZIhvcNAQkP
+MWUwYzALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAoGCCqGSIb3DQMHMAsGCWCGSAFlAwQBAjAH
+BgUrDgMCGjALBglghkgBZQMEAgMwCwYJYIZIAWUDBAICMAsGCWCGSAFlAwQCATBzBgkrBgEEAYI3
+EAQxZjBkMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UE
+AxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQQIKFJNZ9wABAABfRjB1BgsqhkiG
+9w0BCRACCzFmoGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSsw
+KQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBAgoUk1n3AAEAAF9GMA0G
+CSqGSIb3DQEBAQUABIIBAFiWfQgDbFVIBb0mrcdtsW5do424ej2e+ZgNuHxSwLkU6NDjZcINQbwf
+xCiHOZUeeWUzL9xGZOLOikIsjiEl5YGDhvBylqfLHucCkAI078bc+DC2E31FcvjR8vkDF6vXCo/7
+qXSHOVIka+yPelEz9box7hkbll9XvWI144Y0ZL54PP1H8yGauHpWNPpXwhD2iLv61a/GM07x+Uoq
+FfTNcuzxdQSyNtUYZF7Bsj/aY7PO/nQQB2wrErXbukeO++HLG0Aed/uWBlZ8ufAWMDvJ6eBa9vKJ
+69tjIqqg4VM4GUYhw2bxOpfMxZWpmr+1AbyQgzLggN6b66Bnjvh0ddi+q8EAAAAAAAA=
 
+------=_NextPart_000_007D_01CE9DC5.7FCECAE0--
