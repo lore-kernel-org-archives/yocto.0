@@ -1,34 +1,41 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
-	[209.85.192.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D1A7E013DF
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 19:10:46 -0700 (PDT)
-Received: by mail-pd0-f175.google.com with SMTP id q10so1183552pdj.20
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 19:10:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:from:content-type:message-id:date:to
-	:content-transfer-encoding:mime-version;
-	bh=Q0e1eo691VOubaLPg7USUXu5lHaS0ai5bEV8VG2HdSI=;
-	b=0HFgrtZVspkfvP6Ysg0JJPoaq9dqRue65cvBydowlwzCb8IUT1Gs/vpbQUn4CAJT5v
-	wMuHjreWpvl8x4YNpwmFV+dz7w0eoeX8ieb/M4LtQEAS3mvWLCTDzgx3Yr2U+hzHyzZ1
-	6HKLk8OinNZmKVOnfCO27vYyRuS+N3pvxbTRfmGOJzxnCFGCjxMayxY0qCS3S6OVeY9K
-	+tQMCDlWN5xHu8D3AFiN5T8+rxeob0i3YVzplglRrjqJJifQK8LwPW5uK7yhIUyZNBTq
-	wwk0PZ0gjZTDFTsouQNWh4mHZJFpC3qY/K/9oSmTkP48UjWcbSuaFG+a2QF2knMMXO4y
-	xdEg==
-X-Received: by 10.68.182.131 with SMTP id ee3mr5223079pbc.71.1377051046385;
-	Tue, 20 Aug 2013 19:10:46 -0700 (PDT)
-Received: from ?IPv6:2002:5ecd:6a1a::2d19:225b:9bb7:7d47?
-	([2002:5ecd:6a1a:0:2d19:225b:9bb7:7d47])
-	by mx.google.com with ESMTPSA id ut7sm5028191pbc.31.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 20 Aug 2013 19:10:45 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-X-Mailer: iPad Mail (10B329)
-Message-Id: <04A59E7C-4B1C-4880-9389-4A7C0B14FCAE@gmail.com>
-Date: Wed, 21 Aug 2013 06:10:41 +0400
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (1.0)
-Subject: Recipe for Gnome Unity Interface
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 037D2E00406
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2013 22:59:08 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1VC1Ri-0004JH-G0
+	for yocto@yoctoproject.org; Wed, 21 Aug 2013 07:59:06 +0200
+Received: from 213.249.12.21 ([213.249.12.21])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 07:59:06 +0200
+Received: from gmane by 213.249.12.21 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 07:59:06 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Wed, 21 Aug 2013 08:58:54 +0300
+Message-ID: <5214571E.7040904@reliableembeddedsystems.com>
+References: <ku083q$oa8$1@ger.gmane.org>
+	<CABcZAN=mQ-LOVPeEoi5CUDndj2Xyi1BVq8J7deby+fZQxMFKSw@mail.gmail.com>
+	<5203B0D7.809@mlbassoc.com>
+	<5203B4AC.2030609@reliableembeddedsystems.com>
+	<5203B7F9.20001@mlbassoc.com>
+	<5203D594.8090400@reliableembeddedsystems.com>
+	<5203DAD9.9080101@mlbassoc.com>
+	<52040611.8020106@reliableembeddedsystems.com>
+	<52041846.8010201@mlbassoc.com>
+	<52113215.5090102@reliableembeddedsystems.com>
+	<c98ff6d31f5118f8f3154ed5746e3fc7@denx.de>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 213.249.12.21
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+In-Reply-To: <c98ff6d31f5118f8f3154ed5746e3fc7@denx.de>
+Cc: public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
+Subject: Re: can not build yocto on NFS mounted NAS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,43 +47,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 02:10:48 -0000
-Content-Type: multipart/alternative;
-	boundary=Apple-Mail-1AE71812-F832-447C-9700-C08A3B1828C2
-Content-Transfer-Encoding: 7bit
-
---Apple-Mail-1AE71812-F832-447C-9700-C08A3B1828C2
-Content-Type: text/plain;
-	charset=us-ascii
+X-List-Received-Date: Wed, 21 Aug 2013 05:59:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
 Hi,
-Has anyone developed a recipe for building a Gnome Unity Interface?
 
-https://github.com/chenxiaolong/Unity-for-Arch
+On 08/20/2013 07:45 PM, lothar@denx.de wrote:
+> 
+> Hi,
+>  I have just two points here to ask:
+> 
+> 1) Wouldn't simply using SSTATE_MIRRORS be a better solution here, instead?
 
-Best regards,
+It's not the same.
 
-Elvis Dowson
+SSTATE and DL_DIR are on an nfs export anyhow and this works.
 
---Apple-Mail-1AE71812-F832-447C-9700-C08A3B1828C2
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+The problem here is with TMP dir (and an nfs server with a funny
+underlying filesystem like UFS) and hard links.
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><div><span style=3D"-webkit-text-size-adjus=
-t: auto; background-color: rgba(255, 255, 255, 0);">Hi,</span></div><div><sp=
-an style=3D"-webkit-text-size-adjust: auto; background-color: rgba(255, 255,=
- 255, 0);">Has anyone developed a recipe for building a Gnome Unity Interfac=
-e?</span></div><div><span style=3D"-webkit-text-size-adjust: auto; backgroun=
-d-color: rgba(255, 255, 255, 0);"><br></span></div><div><font color=3D"#0000=
-00"><span style=3D"-webkit-text-size-adjust: auto; background-color: rgba(25=
-5, 255, 255, 0);"><a href=3D"https://github.com/chenxiaolong/Unity-for-Arch"=
->https://github.com/chenxiaolong/Unity-for-Arch</a><br><br>Best regards,</sp=
-an></font></div><div><span style=3D"-webkit-text-size-adjust: auto; backgrou=
-nd-color: rgba(255, 255, 255, 0);"><br></span><div><span style=3D"-webkit-te=
-xt-size-adjust: auto; background-color: rgba(255, 255, 255, 0);">Elvis Dowso=
-n</span></div></div></body></html>=
+> 
+> 2) Patch: wouldn't it be nicer to try the cp -al, and catch the
+> CalledProcessError Exception, if it is thrown, and then run the brute
+> force cp -a? Perhaps even as a general approach?
 
---Apple-Mail-1AE71812-F832-447C-9700-C08A3B1828C2--
+In theory yes, in practice you will find out that if you build something
+like core-image-sato-sdk "cp -al" is not the only place which creates
+hard links.
+
+Regards,
+
+Robert
+..."There's an infinite number of ways to make a simple problem seem
+difficult; only a handful to make a difficult problem seem simple" -
+Jack Crenshaw's Law #1
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+
+
+
