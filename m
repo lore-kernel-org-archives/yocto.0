@@ -1,46 +1,36 @@
-Return-Path: <lothar@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 335E9E00406
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 01:17:39 -0700 (PDT)
-Received: from frontend3.mail.m-online.net (unknown [192.168.6.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3cKhZB3RP6z4KK66
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 10:17:38 +0200 (CEST)
-Received: from localhost (dynscan3.mnet-online.de [192.168.6.84])
-	by mail.m-online.net (Postfix) with ESMTP id 3cKhZB1Vwczbbbw
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 10:17:38 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.6.180])
-	by localhost (dynscan3.mail.m-online.net [192.168.6.84]) (amavisd-new,
-	port 10024) with ESMTP id y1WQXlM-jBo7 for <yocto@yoctoproject.org>;
-	Wed, 21 Aug 2013 10:17:36 +0200 (CEST)
-X-Auth-Info: LzOZNb4N75fBj1IClAS/vFUBtoT+9aJGnsYtia5jeYc=
-Received: from webmail.mnet-online.de (webmail1.mnet-online.de
-	[62.245.181.162]) by mail.mnet-online.de (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 10:17:36 +0200 (CEST)
-Received: from host-82-135-33-74.customer.m-online.net ([82.135.33.74])
-	by webmail.mnet-online.de
-	with HTTP (HTTP/1.1 POST); Wed, 21 Aug 2013 08:17:06 +0000
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f41.google.com (mail-oa0-f41.google.com
+	[209.85.219.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10FD6E00406
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 01:38:46 -0700 (PDT)
+Received: by mail-oa0-f41.google.com with SMTP id j6so227386oag.28
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 01:38:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=xptNrJ5Uzm/WYhCEhxVLjCuq07u/yz1fRGG1WpQIwSI=;
+	b=CvNfIIj/k7ROu+knPdhsUmMjtRRs8VzANKBdj978yntzrq7ks7JHdrMiDaQhCzXhai
+	w8x3OCLvCRcEB36+n7zWOoBQfeSXesiF7KFI28yR5iZARNeklaSkJh3jP9u0o2sOmroj
+	7wDox2z0na+vK6/VzMRMvjKevI92dfD5xc/KIH4UAfH4JBaldBafwDNHXBeoyMY4ynMy
+	QnYCRmiFJ6iVFoOQ7+qTrD7MzDQ4t4LjTGpw89mrN49ux9nR8uyQhSVXXMSygS0m71HN
+	koYi75zNTLPphCjst1S4ePshlKl9EQZq6gfs04+MO7zpZRUI+7TTwbjVkAnoB3dQ+kjX
+	Vb0g==
+X-Gm-Message-State: ALoCoQmrBF9OA/lNYxEbnPJSjC0dY/w5XEmgUH/uoXJsSgzqn/am6LRkOQ59M+KafllDaI5UzWvz
+X-Received: by 10.182.225.134 with SMTP id rk6mr6564410obc.40.1377074325777;
+	Wed, 21 Aug 2013 01:38:45 -0700 (PDT)
 MIME-Version: 1.0
-Date: Wed, 21 Aug 2013 10:17:06 +0200
-From: lothar@denx.de
-To: yocto@yoctoproject.org
-In-Reply-To: <5214571E.7040904@reliableembeddedsystems.com>
-References: <ku083q$oa8$1@ger.gmane.org>
-	<CABcZAN=mQ-LOVPeEoi5CUDndj2Xyi1BVq8J7deby+fZQxMFKSw@mail.gmail.com>
-	<5203B0D7.809@mlbassoc.com>
-	<5203B4AC.2030609@reliableembeddedsystems.com>
-	<5203B7F9.20001@mlbassoc.com>
-	<5203D594.8090400@reliableembeddedsystems.com>
-	<5203DAD9.9080101@mlbassoc.com>
-	<52040611.8020106@reliableembeddedsystems.com>
-	<52041846.8010201@mlbassoc.com>
-	<52113215.5090102@reliableembeddedsystems.com>
-	<c98ff6d31f5118f8f3154ed5746e3fc7@denx.de>
-	<5214571E.7040904@reliableembeddedsystems.com>
-Message-ID: <68565ff1f22cf29de1f668b22d5ce805@denx.de>
-X-Sender: lothar@denx.de
-User-Agent: Roundcube Webmail/0.9.2
-Subject: Re: can not build yocto on NFS mounted NAS
+Received: by 10.76.172.4 with HTTP; Wed, 21 Aug 2013 01:38:25 -0700 (PDT)
+In-Reply-To: <E8E33963-5422-4956-8C67-012CF78FFC38@gmail.com>
+References: <6AEB2375-D87A-413D-878C-EF46956B7D53@gmail.com>
+	<CAP71WjxRvEo+DBo41AmspUjgngQbu-AD4nxTfYB9T0kC+0V_wQ@mail.gmail.com>
+	<E8E33963-5422-4956-8C67-012CF78FFC38@gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 21 Aug 2013 10:38:25 +0200
+Message-ID: <CAP71WjyyRficsG+-bRs31EnHmpnaCnatVf6wdwgqT+X2Z_7rBw@mail.gmail.com>
+To: Elvis Dowson <elvis.dowson@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Recipe for building an Ubuntu-12.04 root filesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,92 +42,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 08:17:42 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 Aug 2013 08:38:49 -0000
+Content-Type: multipart/alternative; boundary=001a11c2f8000489fb04e4711add
 
-Am 2013-08-21 07:58, schrieb Robert Berger:
-> Hi,
-> 
-> On 08/20/2013 07:45 PM, lothar@denx.de wrote:
->> 
->> Hi,
->>  I have just two points here to ask:
->> 
->> 1) Wouldn't simply using SSTATE_MIRRORS be a better solution here, 
->> instead?
-> 
-> It's not the same.
-> 
-> SSTATE and DL_DIR are on an nfs export anyhow and this works.
-> 
-> The problem here is with TMP dir (and an nfs server with a funny
-> underlying filesystem like UFS) and hard links.
-> 
->> 
->> 2) Patch: wouldn't it be nicer to try the cp -al, and catch the
->> CalledProcessError Exception, if it is thrown, and then run the brute
->> force cp -a? Perhaps even as a general approach?
-> 
-> In theory yes, in practice you will find out that if you build 
-> something
-> like core-image-sato-sdk "cp -al" is not the only place which creates
-> hard links.
-> 
-> Regards,
-> 
-> Robert
-> ..."There's an infinite number of ways to make a simple problem seem
-> difficult; only a handful to make a difficult problem seem simple" -
-> Jack Crenshaw's Law #1
-> 
-> My public pgp key is available,at:
-> http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+--001a11c2f8000489fb04e4711add
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Robert,
+On Wed, Aug 21, 2013 at 3:04 AM, Elvis Dowson <elvis.dowson@gmail.com>wrote:
 
-Thank you for the answer. About my second point, I think you 
-missunderstood, or I do not get your answer correctly, respectively.
+> Is there a way to replicate the build infrastructure locally in my
+> environment? I have a quad core i.MX6 platform.
+>
 
-In brief, I mean:
-TRY.... CATCH... EXCEPTION
+do you mean the 'ubuntu' build infrastructure? if so, this might not be the
+most appropriate place to ask ;-)
 
-In detail:
-The issue you discovered here, IMHO is definitely a real problem, when 
-it comes to do hardlinks across filesystems.
+a quick answer is yes, it's possible to (re)build any ubuntu (or debian)
+package. you need to build 'natively'. so you are building against your
+'local' install of the distro, which means that you need to install the
+distro version you need (generally, you would do that in a chroot). once
+you have that running, any single package can be rebuild with
+dpkg-buildpackage. You can't rebuild Ubuntu (or debian) all at once. You
+only (re)build packages you care about. I suggest you get on ubuntu arm
+ IRC or mailing lists for more details.
 
-Grepping for 'cp -al', though, to me only reviels this single place 
-where hardlinks are done (do you know more?), which I showed you in the 
-chat we had apart and for which you posted the fix here in the ML. To my 
-understanding, it is only used by the sstate .bbclass, to refer to the 
-build products after recipe execution. Means, say, using for instance a 
-central SSTATE_DIR folder, you may remove the 'tmp' folder in a 
-particular build folder (referring to the SSTATE_DIR), and still be able 
-to build in your other build folders (having set SSTATE_DIR) relatively 
-fast, since the build products were referenced in SSTATE_DIR by 
-hardlinks. This is done by this 'cp -al', which is applied to every 
-single recipe's build, means it is pretty central!
+cheers
 
-Thus, simply exchanging 'cp -al' by 'cp -a' would affect all recipes' 
-execution. But running 'cp -al' and extending it by a fallback to 'cp 
--a' using the already thrown EXCEPTION, does not change the original 
-behavior, but extends it. Perhaps this remark seems a bit hairsplitting. 
-Ok, but, not handling any exception here, IMHO seems to be wrong, too, 
-since it will already be thrown. And if so, it should be fixed, or not? 
-This was my point about. Keeping in mind that if both approaches fail, 
-there could be at least e.g. printstacktrace() like output..
-AFAIR, the git fetcher uses a similar fallback approach for handling 
-unaccessable repositories.
+nicolas
 
-Just some remarks, maybe I'm wrong.. but, also currently messing a bit 
-with sstate.
-BR,
-Lothar Rubusch
+--001a11c2f8000489fb04e4711add
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Wed, Aug 21, 2013 at 3:04 AM, Elvis Dowson <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:elvis.dowson@gmail.com" target=3D"_blank">elvis.dowson@gmail.com=
+</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>Is there a way to replicate the build i=
+nfrastructure locally in my environment? I have a quad core i.MX6 platform.=
+</div>
+
+<div></div></blockquote></div><br>do you mean the &#39;ubuntu&#39; build in=
+frastructure? if so, this might not be the most appropriate place to ask ;-=
+)</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">a qu=
+ick answer is yes, it&#39;s possible to (re)build any ubuntu (or debian) pa=
+ckage. you need to build &#39;natively&#39;. so you are building against yo=
+ur &#39;local&#39; install of the distro, which means that you need to inst=
+all the distro version you need (generally, you would do that in a chroot).=
+ once you have that running, any single package can be rebuild with dpkg-bu=
+ildpackage. You can&#39;t rebuild Ubuntu (or debian) all at once. You only =
+(re)build packages you care about. I suggest you get on ubuntu arm =A0IRC o=
+r mailing lists for more details.</div>
+
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">cheers</div=
+><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">nicolas</d=
+iv></div>
+
+--001a11c2f8000489fb04e4711add--
