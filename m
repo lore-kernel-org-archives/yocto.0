@@ -1,18 +1,27 @@
-Return-Path: <eisenmenger@fmp-berlin.de>
-Received: from xmx2.fmp-berlin.de (xmx2.fmp-berlin.de [194.95.128.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4EE7E00406
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 01:57:52 -0700 (PDT)
-Received: from msw49.fmp-berlin.de (msw49.fmp-berlin.de [194.95.130.49])
-	by xmx2.fmp-berlin.de (Postfix) with ESMTP id B39E114AB41
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 10:57:45 +0200 (CEST)
-Message-Id: <52149D250200001D00010E02@gwsmtp.fmp-berlin.de>
-X-Mailer: Novell GroupWise Internet Agent 12.0.2 
-Date: Wed, 21 Aug 2013 10:57:41 +0200
-From: "Frank Eisenmenger" <eisenmenger@fmp-berlin.de>
-To: <yocto@yoctoproject.org>
-Mime-Version: 1.0
-X-Mailman-Approved-At: Wed, 21 Aug 2013 07:05:41 -0700
-Subject: Where are those images gone ?
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F3D9E00406
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 07:26:17 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 21 Aug 2013 07:26:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,928,1367996400"; d="scan'208";a="389784735"
+Received: from timevans-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.122.252])
+	by fmsmga002.fm.intel.com with ESMTP; 21 Aug 2013 07:26:16 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Brad Litterell <bradl@taser.com>
+Date: Wed, 21 Aug 2013 15:26:08 +0100
+Message-ID: <11108180.KlZSWrBJZD@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <2C678312-32B2-4184-9839-73D77D06525A@taser.com>
+References: <66996BFE-C7A8-4986-9D47-B1EF6827AD1A@taser.com>
+	<7610515.7dZZ0L6LcG@helios>
+	<2C678312-32B2-4184-9839-73D77D06525A@taser.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: What are _virtual providers? and other Suffixes?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,34 +33,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 08:57:52 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+X-List-Received-Date: Wed, 21 Aug 2013 14:26:18 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+Hi Brad,
 
-I've successfully used 'hob' (with poky-dylan-9.0.1) with atom-pc BSP in =
-order to create a bootable linux on my 4 GB sdhc flash for eeepc 901.
-Searching for an image-file to 'dd' to my sd-card, I found under my =
-build/tmp/deploy/:
+On Tuesday 20 August 2013 23:42:36 Brad Litterell wrote:
+> Thanks - that makes it clearer.  But now I have one other question to ask:
+> 
+> if  virtual/xyz is added to overrides when the item is dealt with, then in
+> that case P_P_virtual/xyz_am335 has two overrides hanging off of the base
+> variable PREFERRED_PROVIDER.
+> 
+> You also said earlier that the latest override applies, so is there some
+> rule for multiple conditionals on a variable?
 
-./images/core-image-x11-atom-pc.tar.bz2
-./images/core-image-x11-atom-pc.ext3
-./images/core-image-x11-atom-pc-20130820142138.rootfs.ext3
-./images/core-image-x11-atom-pc-20130820142138.rootfs.tar.bz2
+Yes, effectively all must be in OVERRIDES for the assignment statement to take 
+effect.
+ 
+> E.g. What happens in a case like the following?
+> 
+> OVERRIDES="foo1:bar2:car3"
+> 
+> VARIABLE_foo1_bar2 = "both"
+> VARIABLE_car3 = "last one"
+> 
+> what does VARIABLE wind up?  The first is "more specific" in that it matches
+> two values in overrides, whereas car is last, but less specific.
 
-I could not find any suitable docu how to use those.=20
+I would have thought that the value would have been "last one" however 
+experimentation shows that "both" is what you actually get. I'm not exactly 
+sure why. In practice I don't think we hit this kind of situation too often 
+though, i.e. a mix of double and single overrides where the single override 
+needs to take precedence.
+ 
+Cheers,
+Paul
 
-There're only texts to use 'hddimage' files (e.g. www.yoctoproject.org/down=
-load/intel-atom-based-pcs-and-devices ), I was unable to create using =
-'hob'.
+-- 
 
-Regards,
-
-Frank
-
-
-=20
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
