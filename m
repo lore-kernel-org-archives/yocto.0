@@ -1,52 +1,35 @@
-Return-Path: <bradl@taser.com>
-Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABAC8E01562
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 09:27:15 -0700 (PDT)
-X-ASG-Debug-ID: 1377102433-0499bf377117410001-yzSStA
-Received: from LOKI.atmoss (loki.atmoss [10.10.20.113]) by email.taser.com
-	with ESMTP id ymWRmM5kXffVvFT2; Wed, 21 Aug 2013 09:27:13 -0700 (MST)
-X-Barracuda-Envelope-From: bradl@taser.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
-Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
-	(10.10.20.113) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Wed, 21 Aug 2013 09:27:13 -0700
-Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
-	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
-	14.02.0342.003; Wed, 21 Aug 2013 09:27:13 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
-From: Brad Litterell <bradl@taser.com>
-X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] What are _virtual providers? and other Suffixes?
-X-ASG-Orig-Subj: Re: [yocto] What are _virtual providers? and other Suffixes?
-Thread-Index: AQHOnS6V/to3o0BtQkmd1sK54dxWKJmfJAIAgAANsoCAAASYAIAAApOAgAD23QCAACHYAA==
-Date: Wed, 21 Aug 2013 16:27:12 +0000
-Message-ID: <BFFC4468-023C-4575-9BDD-EBA6C1C5A401@taser.com>
-References: <66996BFE-C7A8-4986-9D47-B1EF6827AD1A@taser.com>
-	<7610515.7dZZ0L6LcG@helios>
-	<2C678312-32B2-4184-9839-73D77D06525A@taser.com>
-	<11108180.KlZSWrBJZD@helios>
-In-Reply-To: <11108180.KlZSWrBJZD@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.103]
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vb0-f41.google.com (mail-vb0-f41.google.com
+	[209.85.212.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0297E00747
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 13:13:10 -0700 (PDT)
+Received: by mail-vb0-f41.google.com with SMTP id g17so646922vbg.14
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 13:13:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=K1ty8BSW4I1LGMpeQ/7g8mkJlLra9jdi2/yCrygBjTM=;
+	b=UkM7ZTQRJLlIKjDQty8Odb2m0XjSErU44FemFBKsEfFy9PQlDblJEN9I3uxUHklRL5
+	BwYu2TNyoqm89l5WlUeY8AEZp2Pg+acp00etjmjWMdP7EGAu2946Mqf2QD6o68MbqRfF
+	6FWkqXYRgBUawkgsYGVky2lQDfEiXY01tpYl6XLTcjDi82rguL1ZMfF4gtoWxJQdUbAl
+	/f7YyctYaGmjRq8n80iE/h+D48hGgbortSkvba0c4jvpVYE/T8xyhG3DnJ0hfZQSV1nM
+	lGSu1RRTCXKsMYpU+IBeCiS80iq4KNK9Izjur92MbxCpCne7TNwrGoTSSsJjsVHgnjo7
+	uR3A==
+X-Received: by 10.52.30.48 with SMTP id p16mr6610675vdh.25.1377115990185; Wed,
+	21 Aug 2013 13:13:10 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: loki.atmoss[10.10.20.113]
-X-Barracuda-Start-Time: 1377102433
-X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at taser.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.139018
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-Cc: "<yocto@yoctoproject.org>" <yocto@yoctoproject.org>
-Subject: Re: What are _virtual providers? and other Suffixes?
+Sender: paul.betafive@gmail.com
+Received: by 10.220.155.17 with HTTP; Wed, 21 Aug 2013 13:12:30 -0700 (PDT)
+In-Reply-To: <CAK18fxE8JuUo3is2LbL42SEOsWfkDmr5CZFDuw9rOx_sgAvqaQ@mail.gmail.com>
+References: <1376650116-11855-1-git-send-email-paul@paulbarker.me.uk>
+	<CAK18fxE8JuUo3is2LbL42SEOsWfkDmr5CZFDuw9rOx_sgAvqaQ@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Wed, 21 Aug 2013 21:12:30 +0100
+X-Google-Sender-Auth: 3X8RberH-bmzVDEx1wmu2gv78Zs
+Message-ID: <CANyK_8dY=_=zTK+zq2oLq68=zOQuA9UkF=juJCRexo_rLWbzuA@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: Allow optional compression
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,62 +41,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 16:27:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <9020B5765022DC468DEFA0930F5463DB@taser.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 21 Aug 2013 20:13:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Paul, thanks so much!=20
+On 20 August 2013 18:11, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Fri, Aug 16, 2013 at 1:48 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>
+>> +# Compression method to apply to SDIMG after it has been created. May be
+>> "none",
+>> +# "gzip", "bzip2" or "xz". Setting this to something other than "none"
+>> will
+>> +# cause SDIMG to be renamed.
+>> +SDIMG_COMPRESSION ?= "none"
+>> +
+>
+>
+> One thing I don't understand here. Where is the SDIMG renamed if for example
+> I set by mistake SDIMG_COMPRESSION to something like "this-is-a-mistake"? If
+> I check your code this will be ignored as the case won't match any keywords.
+>
 
-On Aug 21, 2013, at 7:26 AM, Paul Eggleton <paul.eggleton@linux.intel.com> =
-wrote:
+Setting it to one of the other listed values will cause the SDIMG to
+be re-named. I think the code is as I intended, the documentation
+comment needs to be corrected though.
 
-> Hi Brad,
->=20
-> On Tuesday 20 August 2013 23:42:36 Brad Litterell wrote:
->> Thanks - that makes it clearer.  But now I have one other question to as=
-k:
->>=20
->> if  virtual/xyz is added to overrides when the item is dealt with, then =
-in
->> that case P_P_virtual/xyz_am335 has two overrides hanging off of the bas=
-e
->> variable PREFERRED_PROVIDER.
->>=20
->> You also said earlier that the latest override applies, so is there some
->> rule for multiple conditionals on a variable?
->=20
-> Yes, effectively all must be in OVERRIDES for the assignment statement to=
- take=20
-> effect.
->=20
->> E.g. What happens in a case like the following?
->>=20
->> OVERRIDES=3D"foo1:bar2:car3"
->>=20
->> VARIABLE_foo1_bar2 =3D "both"
->> VARIABLE_car3 =3D "last one"
->>=20
->> what does VARIABLE wind up?  The first is "more specific" in that it mat=
-ches
->> two values in overrides, whereas car is last, but less specific.
->=20
-> I would have thought that the value would have been "last one" however=20
-> experimentation shows that "both" is what you actually get. I'm not exact=
-ly=20
-> sure why. In practice I don't think we hit this kind of situation too oft=
-en=20
-> though, i.e. a mix of double and single overrides where the single overri=
-de=20
-> needs to take precedence.
->=20
-> Cheers,
-> Paul
->=20
-> --=20
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
+Actually I could just have the default be an empty string as anything
+other than the understood compression types is ignored rather than
+treated as an error.
 
+> Would you mind adding the variable explanation to README too?
+
+Will do.
+
+I'll give this another spin this weekend.
+
+-- 
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
