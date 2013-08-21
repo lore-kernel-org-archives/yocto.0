@@ -1,28 +1,37 @@
-Return-Path: <reeve.yang@gmail.com>
-Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
-	[209.85.217.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BD62E00747
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 15:03:53 -0700 (PDT)
-Received: by mail-lb0-f175.google.com with SMTP id 13so1078705lba.6
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 15:03:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=BCDygGoG+DovHpk6lr7lBSd8mRfMdZtVEpjySbJPQ1Q=;
-	b=AJDOSzLhBhEMHA7RVV1mwQi9LAWezsRKS6hP0AfjZrrznYO2IYkYxeUsopl6axrXe5
-	vUwAGuitNWMbg4KZCACuVxmg43+kK9MU/BtB1zrOEBRQZzBa/8qJQ1UWZ4RW9TxuIm9v
-	MAS0ayJuWr38I22bagMXaI766bhFpZ3VI8Tv/2lwxUq+s0MDCpzfSJf8Sq6/bMJd2uMh
-	MsaMuoSMjog/ENWIsU4Rn6EiHsnoQ/AWI4DSk78QyMwtQAZyhhiqFUpKw5hv6fcSbgpa
-	WvsaZB9fGf0RzDoVXlIi/J3Rxb0QOW4gLiobec2cK4ZUB0feGegh4Nu86pTIg+q3Mnh0
-	QcAQ==
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14412E0043C
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 15:41:53 -0700 (PDT)
+Received: by mail-wi0-f170.google.com with SMTP id hi8so34265wib.3
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2013 15:41:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=google.com; s=20120113;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=ueBdkyjfBU5lnZiPL7I/9tqek6hhbnGayg6KU3R1AtU=;
+	b=hjct1ucNkpFC50nqZ7rCRV3qEuyMVJ5lyVBKoNbFrSqkaSlb/47nQ8kIYm2ud4bdjw
+	m1yvPSiK5UKkMHUN+UJF8BT5+wzuMSzSKdr8UoUGpK2Wg5EF8yQ2tlW2ObXEoic4j49D
+	KzBDDrVG39f9WD7xs/s1o9ON+0DpU33v64TRcZ8u+xwvuwp0hCd0jOzS60TndYGLIrZ/
+	1WITrHvhtRHHnjH2ZfQGaoMV9PW0TDr2U94V2CmiQnK80pGSULxNMRPeSCcpusgBeviu
+	745W1u6iiMakzwG9alUexDaKZw7bobHJxVGBUmELQLudMEzWFw0jq3jM4uqpDduoLGTL
+	FAiw==
+X-Gm-Message-State: ALoCoQnC29cRzOZtx+6nC+yPWmkSkx6yJa4wU5/9WEFEk2Q5UQR8ykYhdu2nCvqHmU1wHqSHJ6Iw
+X-Received: by 10.180.104.33 with SMTP id gb1mr7176778wib.25.1377124912481;
+	Wed, 21 Aug 2013 15:41:52 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.152.37.103 with SMTP id x7mr7669306laj.28.1377122632710;
-	Wed, 21 Aug 2013 15:03:52 -0700 (PDT)
-Received: by 10.152.120.35 with HTTP; Wed, 21 Aug 2013 15:03:52 -0700 (PDT)
-Date: Wed, 21 Aug 2013 15:03:52 -0700
-Message-ID: <CAGNTBAWeb_JRGvJ4B1awDeHhE+KOSPk1Ea-G_R7JqqOX=CpafQ@mail.gmail.com>
-From: Reeve Yang <reeve.yang@gmail.com>
-To: yocto@yoctoproject.org
-Subject: an error when adding "snappy" package
+Received: by 10.217.91.198 with HTTP; Wed, 21 Aug 2013 15:41:32 -0700 (PDT)
+X-Originating-IP: [5.13.215.182]
+In-Reply-To: <CANyK_8dY=_=zTK+zq2oLq68=zOQuA9UkF=juJCRexo_rLWbzuA@mail.gmail.com>
+References: <1376650116-11855-1-git-send-email-paul@paulbarker.me.uk>
+	<CAK18fxE8JuUo3is2LbL42SEOsWfkDmr5CZFDuw9rOx_sgAvqaQ@mail.gmail.com>
+	<CANyK_8dY=_=zTK+zq2oLq68=zOQuA9UkF=juJCRexo_rLWbzuA@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Thu, 22 Aug 2013 01:41:32 +0300
+Message-ID: <CAK18fxHCirAdwfW5HBiDW3GNZt3oG-1xJ8FwHDf1z=baSU-VSw@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: Allow optional compression
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,154 +43,185 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2013 22:03:55 -0000
-Content-Type: multipart/alternative; boundary=089e0160b5e455c0bd04e47c59e6
+X-List-Received-Date: Wed, 21 Aug 2013 22:42:01 -0000
+Content-Type: multipart/alternative; boundary=f46d0442678e38611d04e47ce120
 
---089e0160b5e455c0bd04e47c59e6
+--f46d0442678e38611d04e47ce120
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Grus,
+On Wed, Aug 21, 2013 at 11:12 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
 
-I have been trying to add google snappy package into yocto (
-https://code.google.com/p/snappy/), here is my receipt file, nothing
-special:
+> On 20 August 2013 18:11, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> > On Fri, Aug 16, 2013 at 1:48 PM, Paul Barker <paul@paulbarker.me.uk>
+> wrote:
+> >>
+> >> +# Compression method to apply to SDIMG after it has been created. May
+> be
+> >> "none",
+> >> +# "gzip", "bzip2" or "xz". Setting this to something other than "none"
+> >> will
+> >> +# cause SDIMG to be renamed.
+> >> +SDIMG_COMPRESSION ?= "none"
+> >> +
+> >
+> >
+> > One thing I don't understand here. Where is the SDIMG renamed if for
+> example
+> > I set by mistake SDIMG_COMPRESSION to something like
+> "this-is-a-mistake"? If
+> > I check your code this will be ignored as the case won't match any
+> keywords.
+> >
+>
+> Setting it to one of the other listed values will cause the SDIMG to
+> be re-named. I think the code is as I intended, the documentation
+> comment needs to be corrected though.
+>
+>
+You are right. The comment confused me. So only if the COMPRESSION is "gzip",
+"bzip2" or "xz" the SDIMG will be renamed. Understood now.
 
-SUMMARY = "Snappy is a compression/decompression library."
-DESCRIPTION = "...."
-HOMEPAGE="https://code.google.com/p/snappy"
-SECTION = "console/utils"
-LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://COPYING;md5=b2c8cef4261c6377dcae51b2903d704b"
-PR = "r0"
-require ../uri.inc
-SRC_URI = "${URIPREFIX}/snappy-${PV}.tar.gz"
-SRC_URI[md5sum] = "c8f3ef29b5281e78f4946b2d739cea4f"
-SRC_URI[sha256sum] =
-"1fa82bc588bb93fa74dfc0e2e9b7d63b6e2a20ede323ef42bf0af0f947676160"
-inherit autotools
-BBCLASSEXTEND = "native"
-do_compile() {
-    oe_runmake all
-}
-do_install() {
-    oe_runmake DESTDIR=${D} install
-}
-BBCLASSEXTEND = "native"
+On the other hand, would it make sense to keep both uncompressed and
+compressed images?
 
-The package was built successfully, but when I try to build core-image-lsb
-(my own image but similar), I got following error:
 
-|  528:Installing libsnappy1      ########################################
-[ 44%]
-| Traceback (most recent call last):
-|   File
-"/home2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/site-packages/smart/backends/rpm/pm.py",
-line 312, in __call__
-|     self._process_rpmout()
-|   File
-"/home2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/site-packages/smart/backends/rpm/pm.py",
-line 297, in _process_rpmout
-|     output = self.rpmout.read()
-|   File
-"/home2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/codecs.py",
-line 477, in read
-|     newchars, decodedbytes = self.decode(data, self.errors)
-| UnicodeDecodeError: 'ascii' codec can't decode byte 0xa1 in position 740:
-ordinal not in range(128)
-|
-| Traceback (most recent call last):
-|   File
-"/home2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/site-packages/smart/backends/rpm/pm.py",
-line 312, in __call__
-|     self._process_rpmout()
-|   File
-"/home2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/site-packages/smart/backends/rpm/pm.py",
-line 297, in _process_rpmout
-|     output = self.rpmout.read()
-|   File
-"/home2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/codecs.py",
-line 477, in read
-|     newchars, decodedbytes = self.decode(data, self.errors)
-| UnicodeDecodeError: 'ascii' codec can't decode byte 0xa1 in position 740:
-ordinal not in range(128)
-|
-| ERROR: Function failed: do_rootfs (see
-/home2/reeve-ws/yocto-dylan-merge/build/tmp/work/rp-poky-linux/core-image-ssr/1.0-r0/temp/log.do_rootfs.2751
-for further information)
-ERROR: Task 7
-(/home2/reeve-ws/yocto-dylan-merge/meta-ericsson-ssr-rp/recipes-core-image/
-core-image-ssr.bb, do_rootfs) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4128 tasks of which 4114 didn't need to be
-rerun and 1 failed.
-No currently running tasks (4128 of 4129)
+> Actually I could just have the default be an empty string as anything
+> other than the understood compression types is ignored rather than
+> treated as an error.
+>
+>
+Indeed. Empty string would work without any issues.
 
-Can anyone help me out?
 
---089e0160b5e455c0bd04e47c59e6
+>  > Would you mind adding the variable explanation to README too?
+>
+> Will do.
+>
+> I'll give this another spin this weekend.
+>
+
+Great. So all we need is a better comment, fix default value and a line or
+two in readme.
+
+Another idea. Would be a great feature to have a tool that would configure
+the build interactively. Something like:
+
+# configure-build
+Want to have SD image compressed compressed? "y/n" y
+What compression you want? "x/y/z" x
+etc
+etc
+
+This script would just edit local.conf. This is because we defined a couple
+of variables for this board - i would say pretty many (codecs keys, GPU,
+mem etc etc) and it's pretty confusing for people who see this for the
+first time. What do you think?
+
+-- 
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
+
+--f46d0442678e38611d04e47ce120
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Grus,<div><br></div><div style>I have been trying to ad=
-d google snappy package into yocto (<a href=3D"https://code.google.com/p/sn=
-appy/">https://code.google.com/p/snappy/</a>), here is my receipt file, not=
-hing special:</div>
-<div style><br></div><div style><div>SUMMARY =3D &quot;Snappy is a compress=
-ion/decompression library.&quot;</div><div>DESCRIPTION =3D &quot;....&quot;=
-</div><div>HOMEPAGE=3D&quot;<a href=3D"https://code.google.com/p/snappy">ht=
-tps://code.google.com/p/snappy</a>&quot;</div>
-<div>SECTION =3D &quot;console/utils&quot;</div><div>LICENSE =3D &quot;BSD&=
-quot;</div><div>LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3Db2c8cef4261=
-c6377dcae51b2903d704b&quot;</div><div>PR =3D &quot;r0&quot;<br></div><div>r=
-equire ../uri.inc<br>
-</div><div>SRC_URI =3D &quot;${URIPREFIX}/snappy-${PV}.tar.gz&quot;</div><d=
-iv>SRC_URI[md5sum] =3D &quot;c8f3ef29b5281e78f4946b2d739cea4f&quot;<br></di=
-v><div>SRC_URI[sha256sum] =3D &quot;1fa82bc588bb93fa74dfc0e2e9b7d63b6e2a20e=
-de323ef42bf0af0f947676160&quot;</div>
-<div>inherit autotools<br></div><div>BBCLASSEXTEND =3D &quot;native&quot;</=
-div><div>do_compile() {<br></div><div>=A0 =A0 oe_runmake all</div><div>}</d=
-iv><div>do_install() {<br></div><div>=A0 =A0 oe_runmake DESTDIR=3D${D} inst=
-all=A0</div>
-<div>}</div><div>BBCLASSEXTEND =3D &quot;native&quot;<br></div><div><br></d=
-iv><div style>The package was built successfully, but when I try to build c=
-ore-image-lsb (my own image but similar), I got following error:</div><div =
-style>
-<br></div><div style><div>| =A0528:Installing libsnappy1 =A0 =A0 =A0#######=
-################################# [ 44%]</div><div>| Traceback (most recent=
- call last):</div><div>| =A0 File &quot;/home2/reeve-ws/yocto-dylan-merge/b=
-uild/tmp/sysroots/x86_64-linux/usr/lib/python2.7/site-packages/smart/backen=
-ds/rpm/pm.py&quot;, line 312, in __call__</div>
-<div>| =A0 =A0 self._process_rpmout()</div><div>| =A0 File &quot;/home2/ree=
-ve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/s=
-ite-packages/smart/backends/rpm/pm.py&quot;, line 297, in _process_rpmout</=
-div>
-<div>| =A0 =A0 output =3D self.rpmout.read()</div><div>| =A0 File &quot;/ho=
-me2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/pyth=
-on2.7/codecs.py&quot;, line 477, in read</div><div>| =A0 =A0 newchars, deco=
-dedbytes =3D self.decode(data, self.errors)</div>
-<div>| UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xa1=
- in position 740: ordinal not in range(128)</div><div>|=A0</div><div>| Trac=
-eback (most recent call last):</div><div>| =A0 File &quot;/home2/reeve-ws/y=
-octo-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/site-pac=
-kages/smart/backends/rpm/pm.py&quot;, line 312, in __call__</div>
-<div>| =A0 =A0 self._process_rpmout()</div><div>| =A0 File &quot;/home2/ree=
-ve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/python2.7/s=
-ite-packages/smart/backends/rpm/pm.py&quot;, line 297, in _process_rpmout</=
-div>
-<div>| =A0 =A0 output =3D self.rpmout.read()</div><div>| =A0 File &quot;/ho=
-me2/reeve-ws/yocto-dylan-merge/build/tmp/sysroots/x86_64-linux/usr/lib/pyth=
-on2.7/codecs.py&quot;, line 477, in read</div><div>| =A0 =A0 newchars, deco=
-dedbytes =3D self.decode(data, self.errors)</div>
-<div>| UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xa1=
- in position 740: ordinal not in range(128)</div><div>|=A0</div><div>| ERRO=
-R: Function failed: do_rootfs (see /home2/reeve-ws/yocto-dylan-merge/build/=
-tmp/work/rp-poky-linux/core-image-ssr/1.0-r0/temp/log.do_rootfs.2751 for fu=
-rther information)</div>
-<div>ERROR: Task 7 (/home2/reeve-ws/yocto-dylan-merge/meta-ericsson-ssr-rp/=
-recipes-core-image/<a href=3D"http://core-image-ssr.bb">core-image-ssr.bb</=
-a>, do_rootfs) failed with exit code &#39;1&#39;</div><div>NOTE: Tasks Summ=
-ary: Attempted 4128 tasks of which 4114 didn&#39;t need to be rerun and 1 f=
-ailed.</div>
-<div>No currently running tasks (4128 of 4129)</div><div><br></div><div sty=
-le>Can anyone help me out?</div></div></div></div>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Wed, Aug 21, 2013 at 11:12 PM, Paul Barker <span dir=3D"ltr">&lt=
+;<a href=3D"mailto:paul@paulbarker.me.uk" target=3D"_blank">paul@paulbarker=
+.me.uk</a>&gt;</span> wrote:<br>
 
---089e0160b5e455c0bd04e47c59e6--
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div class=3D"im">On 20 August 2013 18:11, Andrei Gherzan =
+&lt;<a href=3D"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt; wrote:<b=
+r>
+
+
+&gt; On Fri, Aug 16, 2013 at 1:48 PM, Paul Barker &lt;<a href=3D"mailto:pau=
+l@paulbarker.me.uk">paul@paulbarker.me.uk</a>&gt; wrote:<br>
+&gt;&gt;<br>
+</div><div class=3D"im">&gt;&gt; +# Compression method to apply to SDIMG af=
+ter it has been created. May be<br>
+&gt;&gt; &quot;none&quot;,<br>
+&gt;&gt; +# &quot;gzip&quot;, &quot;bzip2&quot; or &quot;xz&quot;. Setting =
+this to something other than &quot;none&quot;<br>
+&gt;&gt; will<br>
+&gt;&gt; +# cause SDIMG to be renamed.<br>
+&gt;&gt; +SDIMG_COMPRESSION ?=3D &quot;none&quot;<br>
+&gt;&gt; +<br>
+&gt;<br>
+&gt;<br>
+&gt; One thing I don&#39;t understand here. Where is the SDIMG renamed if f=
+or example<br>
+&gt; I set by mistake SDIMG_COMPRESSION to something like &quot;this-is-a-m=
+istake&quot;? If<br>
+&gt; I check your code this will be ignored as the case won&#39;t match any=
+ keywords.<br>
+&gt;<br>
+<br>
+</div>Setting it to one of the other listed values will cause the SDIMG to<=
+br>
+be re-named. I think the code is as I intended, the documentation<br>
+comment needs to be corrected though.<br>
+<br></blockquote><div><br></div><div><div>You are right. The comment confus=
+ed me. So only if the COMPRESSION is=A0<span style=3D"color:rgb(80,0,80)">&=
+quot;gzip&quot;, &quot;bzip2&quot; or &quot;xz&quot; the SDIMG will be rena=
+med. Understood now.</span></div>
+
+<div><span style=3D"color:rgb(80,0,80)"><br></span></div><div><span style=
+=3D"color:rgb(80,0,80)">On the other hand, would it make sense to keep both=
+ uncompressed and compressed images?</span></div></div><div>=A0</div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-w=
+idth:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding=
+-left:1ex">
+
+
+Actually I could just have the default be an empty string as anything<br>
+other than the understood compression types is ignored rather than<br>
+treated as an error.<br>
+<div class=3D"im"><br></div></blockquote><div>=A0</div><div style>Indeed. E=
+mpty string would work without any issues.</div><div>=A0</div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1p=
+x;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1=
+ex">
+
+<div class=3D"im">
+&gt; Would you mind adding the variable explanation to README too?<br>
+<br>
+</div>Will do.<br>
+<br>
+I&#39;ll give this another spin this weekend.<br></blockquote><div><br></di=
+v><div style>Great. So all we need is a better comment, fix default value a=
+nd a line or two in readme.</div><div style><span style=3D"color:rgb(80,0,8=
+0)"><br>
+
+</span></div><div style><font color=3D"#500050">Another idea. Would be a gr=
+eat feature to have a tool that would configure the build interactively. So=
+mething like:</font></div><div style><font color=3D"#500050"><br></font></d=
+iv>
+
+<div style><font color=3D"#500050"># configure-build</font></div><div style=
+><font color=3D"#500050">Want to have SD image compressed compressed? &quot=
+;y/n&quot; y</font></div><div style><font color=3D"#500050">What compressio=
+n you want? &quot;x/y/z&quot; x</font></div>
+
+<div style><font color=3D"#500050">etc</font></div><div style><font color=
+=3D"#500050">etc</font></div><div style><font color=3D"#500050"><br></font>=
+</div><div style><font color=3D"#500050">This script would just edit local.=
+conf.=A0</font><span style=3D"color:rgb(80,0,80)">This is because we define=
+d a couple of variables for this board - i would say pretty many (codecs ke=
+ys, GPU, mem etc etc) and it&#39;s pretty confusing for people who see this=
+ for the first time.=A0</span><span style=3D"color:rgb(80,0,80)">What do yo=
+u think?</span></div>
+
+</div><div><br></div>-- <br><div dir=3D"ltr"><div style=3D"text-align:cente=
+r"></div><div style=3D"text-align:center"><div align=3D"left" style=3D"font=
+-family:&#39;Times New Roman&#39;;font-size:medium"><b style=3D"color:rgb(5=
+1,51,51);font-family:Arial;font-size:small;text-align:center">Andrei Gherza=
+n</b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
+
+</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
+4 | =A0f: +40.31.816.28.12</font><br></div></div></div>
+</div></div>
+
+--f46d0442678e38611d04e47ce120--
