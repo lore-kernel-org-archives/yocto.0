@@ -1,33 +1,30 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
-	[209.85.214.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7C26E013D1
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 08:41:56 -0700 (PDT)
-Received: by mail-ob0-f171.google.com with SMTP id tb18so3973068obb.30
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 08:41:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=Do1UJOSwIynWsbbwRW8ridxjs0vp2rnx2q3l5Zjujww=;
-	b=ovw13B99RIbpnk6x8G5XYy2Y3Cfwt/KaNdn4yeYFeiCJYOjiqpntNg9bSX6wAXZkPl
-	0pxSj0GGS5eqYDnpM++gTBN8+UzoTULRuriQKrgjPZJE+7BK+kqqQ/tp9BIpsY4nSm8i
-	YKvgzIHGFh4+JodWfMfHGDnHh0OsrENuQ0Iq3kxV/de70StR3sXrOwapHM9rmT0Jv/hG
-	0TCjcFeQUst5KCl5lsb0Sl6O/7+75Zu6rA5qQWleHGbqMOWI7fTdvJ2HX+a8JgOu0zuA
-	4rjxd4hBay08FPYTyKrJFfCTC1uq6HJ+KuU++96XMFFgVZXWonQ0sJ4zk7yiN8Pyp37x
-	A3iw==
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-kukur.atl.sa.earthlink.net
+	(elasmtp-kukur.atl.sa.earthlink.net [209.86.89.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C65EE00406
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 10:58:54 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=Vr4TPgORBuCrZYBYQIOI/Ac7MnxmF1WltFnIs2IIFfUAZuHt4SvnHTDpXVFsup/A;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:X-MimeOLE:Thread-Index:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-kukur.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VCZ9p-0002Nu-Hi; Thu, 22 Aug 2013 13:58:53 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Paul Eggleton'" <paul.eggleton@linux.intel.com>
+References: <587F23315DEC485E8C9E59B4F24916CC@PAULD>
+	<2042870.WHnUqHPfUc@helios>
+In-Reply-To: <2042870.WHnUqHPfUc@helios>
+Date: Thu, 22 Aug 2013 10:58:48 -0700
+Message-ID: <2E350B209EEA4C3F8177BE64653DC4F3@PAULD>
 MIME-Version: 1.0
-X-Received: by 10.60.115.226 with SMTP id jr2mr1992722oeb.95.1377186115381;
-	Thu, 22 Aug 2013 08:41:55 -0700 (PDT)
-Received: by 10.182.109.36 with HTTP; Thu, 22 Aug 2013 08:41:55 -0700 (PDT)
-In-Reply-To: <CAMvUbCyNcRYvwWzFTQ0YUb7XcciWxx_bO4OsksUyF-4cBJvS4Q@mail.gmail.com>
-References: <CAFyqS9pM4d+HffKvW9NfFBSnqYVkTRuNMTx_pU2BsdOdwFd-_g@mail.gmail.com>
-	<CAMvUbCyNcRYvwWzFTQ0YUb7XcciWxx_bO4OsksUyF-4cBJvS4Q@mail.gmail.com>
-Date: Thu, 22 Aug 2013 17:41:55 +0200
-Message-ID: <CAFyqS9q8eS79byN-M3caXgayStMT5mah=mov-XFLPZNQwmxK+g@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: Leon Woestenberg <sidebranch.openembedded@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: cross-compilation of kernel does not work with the generated toolchain?
+X-Mailer: Microsoft Office Outlook 11
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+Thread-Index: Ac6fIltQqWasMpWGQBmqZAJWW1OyowAOw8WA
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e51960688ab1e9d27a13ed24a6bce70f00cce3b00350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org
+Subject: Re: bbappend on top of bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,60 +36,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2013 15:41:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 22 Aug 2013 17:58:55 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 22, 2013 at 5:19 PM, Leon Woestenberg
-<sidebranch.openembedded@gmail.com> wrote:
->
-> Hello Hans,
->
-> On Thu, Aug 22, 2013 at 5:10 PM, Hans Beck=E9rus <hans.beckerus@gmail.com=
->
-> wrote:
->>
->> Hi. I am trying to build a kernel using our bitbaked and populated
->> toolchain. It works fine for user-space application but when trying to
->> compile the kernel we get
->> ...
->>
->>   HOSTCC  scripts/dtc/srcpos.o
->> In file included from scripts/dtc/dtc.h:25,
->>                  from scripts/dtc/srcpos.c:24:
->> /usr/include/string.h:546: error: expected declaration specifiers or
->> '...' before '__locale_t'
->> /usr/include/string.h:547: error: nonnull argument with out-of-range
->> operand number (argument 1, operand 3)
->> /usr/include/string.h:550: error: expected declaration specifiers or
->> '...' before '__locale_t'
->> /usr/include/string.h:551: error: nonnull argument with out-of-range
->> operand number (argument 1, operand 4)
->> make[2]: *** [scripts/dtc/srcpos.o] Error 1
->> make[1]: *** [scripts/dtc] Error 2
->> make: *** [scripts] Error 2
->>
->> /usr/include/string.h ??? That must be wrong, or? I expected it to
->> pickup the standard headerfiles from our toolchain, not the ones on
->> the build host. That will surely clash with the version of the
->> compiler being used.
->>
->> Any ideas what might be wrong here?
->>
-> Note that the scripts/dtc/dtc tool is not built for the target, but is a
-> build host native tool to compile a device tree.
->
-Yes, you have a point there ;) That's it of course! It is my host
-compiler that is incorrectly setup not the Yocto toolchain. Thanks for
-the pointer! Funny how easy it is to overlook the obvious :)
+> From: Paul Eggleton
+> 
+> > On Friday 16 August 2013 16:22:00 Paul D. DeRocco wrote:
+> > In meta-oe/recipes-graphics/xinput-calibrator (Danny 
+> > branch, currently
+> > used by Gumstix), there's a recipe called 
+> > xinput-calibrator-git.bb, which
+> > installs a script for running a touchscreen calibration app 
+> > if not already calibrated.
+> > 
+> > In
+> > meta-openembedded/meta-systemd/meta-oe/recipes-graphics/xinput
+> > -calibrator,
+> > there's a bbappend for this recipe, which declares a local 
+> > file called
+> > xinput-calibrator.service, which is supposed to run the 
+> > above script on
+> > startup. It inherits the systemd bbclass, which I assume 
+> > knows how to
+> > install this service file automagically, since there's no explicit
+> > do_install copying the file anywhere.
+> 
+> The systemd.bbclass we now have in OE-Core (as of dylan) does 
+> not handle this 
+> automatically. The old one in meta-systemd does appear to though.
+> 
+> > The trouble is, on my Gumstix, the service fails because it needs a
+> > DISPLAY environment variable to tell it what display to calibrate. I
+> > figured the simplest thing to do would be to add an 
+> > Environment=DISPLAY=:0
+> > line to the service unit file.
+> 
+> FWIW, when xinput-calibrator was moved over to OE-Core it was 
+> determined that 
+> this shouldn't even be started as a service by systemd, but 
+> instead launched 
+> using Xsession.d. You may have better results if you bring in 
+> the recipe from 
+> OE-Core master and use that instead.
 
-> So it is expected it uses host includes.
->
-> Just to be sure, you are building the kernel outside  of Yocto, just usin=
-g
-> the cross toolchain from Yocto?
->
-> Regards,
->
-> Leon.
+Since I'm not running I GUI, but needed an X session, I created a systemd
+unit to start a dummy X session, using "sleep" as the dummy client. Then,
+I can scribble on the screen from my python scripts run from the root
+command line. So I solved it by having the xinput-calibrator service run
+after my X session starts. I'll look at putting it in Xsession.d instead,
+and see if that is cleaner.
+
+> > But I'd rather just provide my own
+> > version of the file, and use another .bbappend to prepend its file
+> > location to FILESEXTRAPATHS, overriding the one in the 
+> > systemd .bbappend file.
+> > 
+> > So I tried that, just putting the following two lines into my own
+> > .bbappend:
+> > 
+> >     FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> >     PRINC := "${@int(PRINC) + 1}"
+> > 
+> > and of course putting the tweaked service file into my 
+> > files subdirectory.
+
+<snip>
+
+> > I read somewhere that stacked bbappends are handled in the 
+> > order of layer
+> > priority. Mine is 5, the meta-systemd layer is 7. I don't 
+> > know which is
+> > "higher", or if one wants a higher or lower priority in 
+> > order to be the last one to prepend to the path. 
+> 
+> They will be applied in ascending order, so anything in the 
+> bbappend from a 
+> layer with a higher layer priority number takes precedence. 
+
+After I did a clean and a clean_sstate, the dual bbappends worked as
+expected.
+
+I'm learning from experience to clean things manually, to avoid problems,
+but sometimes I'm just waving a dead chicken over it. I don't really know
+what these things do, or in what situations they should or shouldn't be
+necessary. For instance, I've never found an explanation of what shared
+state really is, with sufficient specificity that I can predict, "Oh, for
+that I need to clean the sstate, not just the build tree." Second, it
+seems like clean_sstate does a clean, but I'm not sure clean doesn't do
+something else that clean_sstate doesn't do.
+
+One more thing puzzles me. The original bbappend, which creates a service
+unit, contained these six lines:
+
+    FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+    PRINC := "${@int(PRINC) + 2}"
+    inherit systemd
+    SRC_URI += "file://xinput-calibrator.service"
+    SYSTEMD_PACKAGES = "${PN}-systemd"
+    SYSTEMD_SERVICE = "${PN}.service"
+
+Since I only wanted to replace the file, I thought it should be sufficient
+to put the following in my bbappend:
+
+    FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+    PRINC := "${@int(PRINC) + 1}"
+
+It didn't work, though. I blindly copied all six lines into my bbappend,
+and it worked. I suspect the systemd lines were necessary, though. I'm
+wondering why adding another copy of the string
+"file://xinput-calibrator.service" to SRC_URI is necessary. Or am I
+imagining things? I do that sometimes.
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
