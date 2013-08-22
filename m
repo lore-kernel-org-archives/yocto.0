@@ -1,29 +1,28 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 61D1AE00747
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 07:20:19 -0700 (PDT)
-Received: (qmail 9926 invoked by uid 1003); 22 Aug 2013 14:20:18 -0000
-Received: from unknown (HELO ?192.168.1.103?)
-	(philip@opensdr.com@71.171.32.225)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	22 Aug 2013 14:20:18 -0000
-Message-ID: <52161E20.3010800@balister.org>
-Date: Thu, 22 Aug 2013 10:20:16 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-oa0-f54.google.com (mail-oa0-f54.google.com
+	[209.85.219.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2898BE00406
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 08:10:18 -0700 (PDT)
+Received: by mail-oa0-f54.google.com with SMTP id o6so3712615oag.13
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 08:10:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=pXOl0PRN5rFBX9GAdkLxCs/JFLvjD6+f9HNWKXdvKRQ=;
+	b=tV1TsWFypAJKnEqGgx900vJfpNQEwqur5Y9NNhBnqVzCE0jUa8OjpodmO+IHbqGFWp
+	pp9s2a/XobUH5OPgrWP7Aw6b/KQ6I5mDkEKNzxsqgfWKSudIJHrZb6cpDOGj7Ia5sOzk
+	e18pMaasneBvYNVfu8I1lh9+I/sDbHkGHUN9m1yUz3zM3RHuPhY6rYvx5sgJzA2mXUqj
+	gHO8W4//j3tFhhFj4V/O/hh+EgyYG68WGbzfyZWMXJ6dRf8FAlU2zlWk+JoVL8qXyHcH
+	aSgeML3uirEhIChXZBrzd1Kx5iDAdVUYKCd9r4EoLkSXKyS0K7mT7DyiTg9lR3gMoLG2
+	0wqw==
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <CAAGt+t0w9Rtia4vVJujgjTfmEU709WyhjCYSPP7PThMN+vpOdg@mail.gmail.com>
-	<CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
-	<CAAGt+t2gxfmg8cJ+izKmejXcywknPpOvYMrRPUgKN5fHHa-gmw@mail.gmail.com>
-	<CAAGt+t13OZ88fi_9foDDp+FeD9VOkBDip1RVQYxWkNejmvifeg@mail.gmail.com>
-	<CAJTo0LYqaCwHTLnxUwPVME_zFNbWEVXHZoJpiWTTw-wBWn5xeQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LYqaCwHTLnxUwPVME_zFNbWEVXHZoJpiWTTw-wBWn5xeQ@mail.gmail.com>
-X-Enigmail-Version: 1.5.2
-Cc: Zafrullah Syed <zafrullahmehdi@gmail.com>, yocto <yocto@yoctoproject.org>
-Subject: Re: bitbake with cmake recipe
+X-Received: by 10.60.44.240 with SMTP id h16mr14790541oem.2.1377184217534;
+	Thu, 22 Aug 2013 08:10:17 -0700 (PDT)
+Received: by 10.182.109.36 with HTTP; Thu, 22 Aug 2013 08:10:17 -0700 (PDT)
+Date: Thu, 22 Aug 2013 17:10:17 +0200
+Message-ID: <CAFyqS9pM4d+HffKvW9NfFBSnqYVkTRuNMTx_pU2BsdOdwFd-_g@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: cross-compilation of kernel does not work with the generated toolchain?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,33 +34,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2013 14:20:24 -0000
+X-List-Received-Date: Thu, 22 Aug 2013 15:10:19 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 08/22/2013 10:14 AM, Burton, Ross wrote:
-> On 22 August 2013 14:40, Zafrullah Syed <zafrullahmehdi@gmail.com> wrote:
->> Hi Ross,
->>
->> Is this the correct way to write my recipe with cmake?
-> 
-> You should be able to remove your do_configure().
+Hi. I am trying to build a kernel using our bitbaked and populated
+toolchain. It works fine for user-space application but when trying to
+compile the kernel we get
 
-This recipe uses cmake:
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/dtc/data.o
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtc/fstree.o
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/srcpos.o
+In file included from scripts/dtc/dtc.h:25,
+                 from scripts/dtc/srcpos.c:24:
+/usr/include/string.h:546: error: expected declaration specifiers or
+'...' before '__locale_t'
+/usr/include/string.h:547: error: nonnull argument with out-of-range
+operand number (argument 1, operand 3)
+/usr/include/string.h:550: error: expected declaration specifiers or
+'...' before '__locale_t'
+/usr/include/string.h:551: error: nonnull argument with out-of-range
+operand number (argument 1, operand 4)
+make[2]: *** [scripts/dtc/srcpos.o] Error 1
+make[1]: *** [scripts/dtc] Error 2
+make: *** [scripts] Error 2
 
-http://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connectivity/gnuradio/gnuradio_git.bb
+/usr/include/string.h ??? That must be wrong, or? I expected it to
+pickup the standard headerfiles from our toolchain, not the ones on
+the build host. That will surely clash with the version of the
+compiler being used.
 
-Hoepfully, it is more complicated than you need, but you should be able
-to see the cmake related parts.
+Any ideas what might be wrong here?
 
-Philip
-
-> 
-> Ross
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
+Thanks.
+Hans
 
