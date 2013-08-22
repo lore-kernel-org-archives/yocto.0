@@ -1,32 +1,27 @@
-Return-Path: <zafrullahmehdi@gmail.com>
-Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19CBDE013D6
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 03:35:51 -0700 (PDT)
-Received: by mail-wg0-f50.google.com with SMTP id m15so1450307wgh.5
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 03:35:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=dVC5j6EmjJTZ3zhiDefc4RSVmpN3p4D6480q2GfiUlU=;
-	b=Ldulp71q4XfnQl5lwzqTSP2N7qz1lCMHPIvHCRfCXZgWqbGkTwD74ftQ7NV3kD+s0m
-	Q8mbO6lEheoQps23xD1vPKtOp9f0Eag6LoirgEQvjDliuN4U0hpfZNd8BD2+Vw5hqhDH
-	n2cLV+nNrmqaiVy94ELgkaL6nVHNNTXVC8JpAa1EV5h07L2JSxObW/SpZBg+NYM4n5XJ
-	PXQDA7aFCVapY2kd4p/a1E7yjaUjLEU02c/NaziR8DkdQSQY60Dome2gDDsqvE7ZfGz+
-	QeeV2yJyU7yvYi1cU9+7PLe2atqj5f/1SRfZ2P+Arb7mzkYaWyJuzMa2rZmKU16WkcE+
-	BIcg==
-X-Received: by 10.194.94.101 with SMTP id db5mr362839wjb.67.1377167750297;
-	Thu, 22 Aug 2013 03:35:50 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C79BFE013D6
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 03:40:51 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 22 Aug 2013 03:40:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,933,1367996400"; d="scan'208";a="350094363"
+Received: from timevans-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.122.241])
+	by azsmga001.ch.intel.com with ESMTP; 22 Aug 2013 03:40:50 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Date: Thu, 22 Aug 2013 11:40:49 +0100
+Message-ID: <2275177.m6TO4hPgaX@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <194F81E112554215A78C3D22D34B2A58@PAULD>
+References: <C0360C54FF104163BE67C2C714409398@PAULD>
+	<CAJTo0LYbxT61+Dd_S2f+Det3vk-Fr2q1MgGKOgZ0AM9wxKsaeA@mail.gmail.com>
+	<194F81E112554215A78C3D22D34B2A58@PAULD>
 MIME-Version: 1.0
-Received: by 10.194.250.69 with HTTP; Thu, 22 Aug 2013 03:35:30 -0700 (PDT)
-In-Reply-To: <CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
-References: <CAAGt+t0w9Rtia4vVJujgjTfmEU709WyhjCYSPP7PThMN+vpOdg@mail.gmail.com>
-	<CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
-From: Zafrullah Syed <zafrullahmehdi@gmail.com>
-Date: Thu, 22 Aug 2013 12:35:30 +0200
-Message-ID: <CAAGt+t2gxfmg8cJ+izKmejXcywknPpOvYMrRPUgKN5fHHa-gmw@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: bitbake with cmake recipe
+Cc: yocto@yoctoproject.org
+Subject: Re: Building one package needs header from another
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,73 +33,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2013 10:35:52 -0000
-Content-Type: multipart/alternative; boundary=047d7beb93b48d7f2d04e486daa3
+X-List-Received-Date: Thu, 22 Aug 2013 10:40:56 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---047d7beb93b48d7f2d04e486daa3
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Paul,
 
-Hi,
+On Tuesday 20 August 2013 16:06:54 Paul D. DeRocco wrote:
+> > From: Burton, Ross [mailto:ross.burton@intel.com]
+> > If you've built pygtk then the target sysroot should have the headers
+> > in, and for me it does:
+> > 
+> > ross@melchett /data/poky-master/tmp/sysroots/genericx86
+> > $ find . -name pygtk.h
+> > ./usr/include/pygtk-2.0/pygtk/pygtk.h
+> > 
+> > This is probably a problem with python-matplotlib, can you share the
+> > configure and build logs?  It's probably looking in the wrong place.
+> 
+> Yes, the include files are there. I'm only beginning to grasp a little
+> about how builds work, and that sysroots/overo is the context in which the
+> Gumstix cross tools run. But the appropriate directory,
+> /home/pauld/yocto/build/tmp/sysroots/overo/usr/include/pygtk-2.0, is not
+> on the compiler command line, and that causes the error.
+> 
+> I've been trying to figure out how the setup.py/setup.cfg (and distutils)
+> stuff works. The setup.cfg file lists only one possible option for adding
+> directories, which is basedirlist, but setting that to foo adds
+> foo/include to the include directories and foo/lib to the library
+> directories, so that's not appropriate. 
 
-My recipe is: http://pastebin.com/xiFdYHNr
+Could you just send it ${STAGING_DIR_HOST}/${prefix} ? We do do that elsewhere 
+with similar-behaving configure scripts.
 
-Is the cmake recipe will be in this
-location? /home/siguser/yocto/poky/meta-openembedded/meta-oe/recipes-support/opencv
+> The configure log shows nothing, but the compile log (which shows the
+> compile error at the end), shows this DEBUG note right at the beginning:
+> 
+> /home/pauld/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/python
+> -matplotlib-1.1.0-r3/temp/run.do_compile.14201: line 82:
+> /home/pauld/yocto/build/tmp/sysroots/i686-linux/usr/bin/python: No such
+> file or directory
+> basedirlist is: ['/home/pauld/yocto/build/tmp/sysroots/overo/usr/lib']
+> 
+> The message refers to this script in run.do_compile (slightly
+> reformatted):
+> 
+> do_compile() {
+>   BUILD_SYS=i686-linux HOST_SYS=arm-poky-linux-gnueabi \
+>   /home/pauld/yocto/build/tmp/sysroots/i686-linux/usr/bin/python \
+>       setup.py build || true
+>   distutils_do_compile
+> }
+> 
+> This would suggest that setup.py isn't even being run. Yet when I
+> accidentally put a syntax error into setup.cfg, it barfed. Is setup.cfg
+> read before setup.py is run, by something else?
+> 
+> So there are two questions: why is there no python in that directory?
+> (There is a python-native subdirectory containing python.)
 
+To be honest, I'm not sure if it is appropriate, but you could inherit 
+pythonnative in the recipe, that might fix this.
 
-On Thu, Aug 22, 2013 at 12:31 PM, Burton, Ross <ross.burton@intel.com>wrote:
+> I'm also curious if distutils is something that is used throughout the
+> bitbake process, or is it something specific to building Python-related
+> stuff? Can the setup.py/setup.cfg mechanism be used in any recipes?
 
-> On 22 August 2013 11:30, Zafrullah Syed <zafrullahmehdi@gmail.com> wrote:
-> > I am trying to integrate my own package which should use cmake.
-> > I regularly use do_compile() and do_install().
->
-> Pasting your recipe would be useful, but there's a cmake class you can
-> simply inherit that should just work.
->
-> Ross
->
+distutils is python-specific, so no.
 
-
+Cheers,
+Paul
 
 -- 
-Regards,
-Zafrullah Syed
 
---047d7beb93b48d7f2d04e486daa3
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<div dir=3D"ltr">Hi,<div><br></div><div>My recipe is:=A0<a href=3D"http://p=
-astebin.com/xiFdYHNr">http://pastebin.com/xiFdYHNr</a></div><div><br></div>=
-<div>Is the cmake recipe will be in this location?=A0/home/siguser/yocto/po=
-ky/meta-openembedded/meta-oe/recipes-support/opencv</div>
-
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu,=
- Aug 22, 2013 at 12:31 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;=
-</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On 22 August 2013 11:30, Z=
-afrullah Syed &lt;<a href=3D"mailto:zafrullahmehdi@gmail.com">zafrullahmehd=
-i@gmail.com</a>&gt; wrote:<br>
-
-
-&gt; I am trying to integrate my own package which should use cmake.<br>
-&gt; I regularly use do_compile() and do_install().<br>
-<br>
-</div>Pasting your recipe would be useful, but there&#39;s a cmake class yo=
-u can<br>
-simply inherit that should just work.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Ross<br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r><span style=3D"font-family:arial,sans-serif;font-size:13px;border-collaps=
-e:collapse;color:rgb(136,136,136)">Regards,<br>Zafrullah Syed</span><div><f=
-ont color=3D"#888888" face=3D"arial, sans-serif"><span style=3D"border-coll=
-apse:collapse"><br>
-
-</span></font></div>
-</div>
-
---047d7beb93b48d7f2d04e486daa3--
