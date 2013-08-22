@@ -1,26 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67D93E00747
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 03:33:03 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 22 Aug 2013 03:30:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,933,1367996400"; d="scan'208";a="366736949"
-Received: from timevans-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.122.241])
-	by orsmga001.jf.intel.com with ESMTP; 22 Aug 2013 03:32:57 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Barry G <mr.scada@gmail.com>
-Date: Thu, 22 Aug 2013 11:32:56 +0100
-Message-ID: <4868939.GRWcjUSgc3@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <4227060.Yf8nXQEr8V@helios>
-References: <CAFrvcAredx-8f=-4V1RYr=AM9vxeiuR8=52T6+aOjuEGQhwVbQ@mail.gmail.com>
-	<4227060.Yf8nXQEr8V@helios>
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19CBDE013D6
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 03:35:51 -0700 (PDT)
+Received: by mail-wg0-f50.google.com with SMTP id m15so1450307wgh.5
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 03:35:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=dVC5j6EmjJTZ3zhiDefc4RSVmpN3p4D6480q2GfiUlU=;
+	b=Ldulp71q4XfnQl5lwzqTSP2N7qz1lCMHPIvHCRfCXZgWqbGkTwD74ftQ7NV3kD+s0m
+	Q8mbO6lEheoQps23xD1vPKtOp9f0Eag6LoirgEQvjDliuN4U0hpfZNd8BD2+Vw5hqhDH
+	n2cLV+nNrmqaiVy94ELgkaL6nVHNNTXVC8JpAa1EV5h07L2JSxObW/SpZBg+NYM4n5XJ
+	PXQDA7aFCVapY2kd4p/a1E7yjaUjLEU02c/NaziR8DkdQSQY60Dome2gDDsqvE7ZfGz+
+	QeeV2yJyU7yvYi1cU9+7PLe2atqj5f/1SRfZ2P+Arb7mzkYaWyJuzMa2rZmKU16WkcE+
+	BIcg==
+X-Received: by 10.194.94.101 with SMTP id db5mr362839wjb.67.1377167750297;
+	Thu, 22 Aug 2013 03:35:50 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto Methods of Loading DB Schema
+Received: by 10.194.250.69 with HTTP; Thu, 22 Aug 2013 03:35:30 -0700 (PDT)
+In-Reply-To: <CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
+References: <CAAGt+t0w9Rtia4vVJujgjTfmEU709WyhjCYSPP7PThMN+vpOdg@mail.gmail.com>
+	<CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Thu, 22 Aug 2013 12:35:30 +0200
+Message-ID: <CAAGt+t2gxfmg8cJ+izKmejXcywknPpOvYMrRPUgKN5fHHa-gmw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: bitbake with cmake recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,45 +38,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2013 10:33:04 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 22 Aug 2013 10:35:52 -0000
+Content-Type: multipart/alternative; boundary=047d7beb93b48d7f2d04e486daa3
 
-On Thursday 22 August 2013 11:16:48 Paul Eggleton wrote:
-> Hi Barry,
-> 
-> On Wednesday 21 August 2013 16:21:22 Barry G wrote:
-> > The last big hurdle is how to load the database.  We are using
-> > Yocto 1.3 and I have ported in the postgresql recipies from
-> > gumstix-yocto.  Since I can't load the postgresql database schema
-> > without the cross-compiled postgresql database running, I assume
-> > this needs deferred to first device boot.  I can use pkg_postinstall
-> > to create/populate the postgresql databases, but this seems a little
-> > dirty since the text version of the sql would need to be on the
-> > device image to load.
-> > 
-> > Is anyone else doing anything like this?  Is there a best known
-> > method for performing these kind of operations?
-> 
-> I've not done anything like this myself, but if the process of loading the
-> database is specific to the target device/arch and can't be run directly on
-> the build host, I do know we have some support for running processes like
-> these under qemu on the host to avoid the need to run anything on first
-> boot - see meta/classes/pixbufcache.bbclass and
-> meta/classes/gtk-icon-cache.bbclass, as well as the intercept scripts in
-> scripts/postinst-intercepts/ that get used when these are run on the build
-> host during root filesystem construction.
+--047d7beb93b48d7f2d04e486daa3
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hmm, I missed that you said you were using 1.3. You won't find the above in 
-that version since IIRC that code was introduced in 1.4; however you could use 
-a similar technique (using QEMU in application emulation rather than system 
-emulation mode to run the appropriate tools for the target architecture).
+Hi,
 
-Cheers,
-Paul
+My recipe is: http://pastebin.com/xiFdYHNr
+
+Is the cmake recipe will be in this
+location? /home/siguser/yocto/poky/meta-openembedded/meta-oe/recipes-support/opencv
+
+
+On Thu, Aug 22, 2013 at 12:31 PM, Burton, Ross <ross.burton@intel.com>wrote:
+
+> On 22 August 2013 11:30, Zafrullah Syed <zafrullahmehdi@gmail.com> wrote:
+> > I am trying to integrate my own package which should use cmake.
+> > I regularly use do_compile() and do_install().
+>
+> Pasting your recipe would be useful, but there's a cmake class you can
+> simply inherit that should just work.
+>
+> Ross
+>
+
+
 
 -- 
+Regards,
+Zafrullah Syed
 
-Paul Eggleton
-Intel Open Source Technology Centre
+--047d7beb93b48d7f2d04e486daa3
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<div><br></div><div>My recipe is:=A0<a href=3D"http://p=
+astebin.com/xiFdYHNr">http://pastebin.com/xiFdYHNr</a></div><div><br></div>=
+<div>Is the cmake recipe will be in this location?=A0/home/siguser/yocto/po=
+ky/meta-openembedded/meta-oe/recipes-support/opencv</div>
+
+</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu,=
+ Aug 22, 2013 at 12:31 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;=
+</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 22 August 2013 11:30, Z=
+afrullah Syed &lt;<a href=3D"mailto:zafrullahmehdi@gmail.com">zafrullahmehd=
+i@gmail.com</a>&gt; wrote:<br>
+
+
+&gt; I am trying to integrate my own package which should use cmake.<br>
+&gt; I regularly use do_compile() and do_install().<br>
+<br>
+</div>Pasting your recipe would be useful, but there&#39;s a cmake class yo=
+u can<br>
+simply inherit that should just work.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><span style=3D"font-family:arial,sans-serif;font-size:13px;border-collaps=
+e:collapse;color:rgb(136,136,136)">Regards,<br>Zafrullah Syed</span><div><f=
+ont color=3D"#888888" face=3D"arial, sans-serif"><span style=3D"border-coll=
+apse:collapse"><br>
+
+</span></font></div>
+</div>
+
+--047d7beb93b48d7f2d04e486daa3--
