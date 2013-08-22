@@ -1,28 +1,25 @@
-Return-Path: <ivan.mercier@gmail.com>
-Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7DB4E00747
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 01:54:01 -0700 (PDT)
-Received: by mail-la0-f54.google.com with SMTP id ea20so1179197lab.27
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 01:54:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=e0arZ+j2FXJvPdecqSEAATEeg4W2peUe0uKajQtKMlU=;
-	b=IQHCmlxo6tkLU8ZnnN45eQb7LvP0Pr1RC2NEDocI7fcy4Qfk/5/Aiv+GjDlxrSPz/2
-	4joaMWPo4oMFuEuWMSk/jbM4lpWdNMABT3Vmwf+VeAdhvFdiPRTsNJARneXlnVodgT3i
-	h+xSsv6kJO79701nIk7eMfupJHfYS+WUBSlq/42dDwkdcXY3uMVPOnehGWev8DhmLPSJ
-	2uersP/SglNLjgCwrE8OiPW9TZTiAEc/H5Q1272eGhZnBZqOcgKMAOh80fnyUYMsO638
-	1whU1Xiv5Xl0g2OHR9ftSZHV5pn2ZB5PEWg1KQcMFkvHxDb8SF2K0MV9e0hp/l8k48Yb
-	SOSQ==
-X-Received: by 10.152.116.109 with SMTP id jv13mr1102261lab.30.1377161640376; 
-	Thu, 22 Aug 2013 01:54:00 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FD2EE00747
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2013 02:44:49 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 22 Aug 2013 02:41:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,933,1367996400"; d="scan'208";a="366714493"
+Received: from timevans-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.122.241])
+	by orsmga001.jf.intel.com with ESMTP; 22 Aug 2013 02:44:10 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Thu, 22 Aug 2013 10:44:08 +0100
+Message-ID: <3329107.pvXeOtFeDf@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAAGt+t0US6hq-4dTGqNrSLMZ6Gx3k0ikt0=MLxC4WTUcaoLe0g@mail.gmail.com>
+References: <CAAGt+t0US6hq-4dTGqNrSLMZ6Gx3k0ikt0=MLxC4WTUcaoLe0g@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.114.37.9 with HTTP; Thu, 22 Aug 2013 01:53:19 -0700 (PDT)
-From: Mercier Ivan <ivan.mercier@gmail.com>
-Date: Thu, 22 Aug 2013 10:53:19 +0200
-Message-ID: <CAMc2iepgcSVA9bddm9LQOxT40QQzF7Va1EsPaPc1=ebc1i1hXA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: How to build a custom ramdisk image
+Cc: yocto@yoctoproject.org
+Subject: Re: Package Revision number is mandatory?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +31,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2013 08:54:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 22 Aug 2013 09:44:50 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi everybody,
+On Wednesday 21 August 2013 12:46:00 Zafrullah Syed wrote:
+> Package revision number should be included in my bitbake file? I am trying
+> to build a basic hello world by downloading it from sourceforge. There is
+> no package revision number to it. It is just a regular hello world program.
+> 
+> How do I add in {PV} my bitbake recipe?
 
-I'm working on an yocto distrib with a freescale p3041 based board.
-I would like to modify the root file system, like hostname,udev rules
-and build my own ramdisk image.
-I use to create my image by
-$ bitbake fsl-image-core
+I'm not sure I fully understand the question. By default, PV is determined 
+from the recipe filename, if the filename contains an underscore. Alternatively 
+PV may be set within the recipe as with any variable. If it is not in the 
+recipe filename and not explicitly set in the recipe then it will default to 
+"1.0".
 
-is it corret?
+Cheers,
+Paul
 
-should I modidy fsl-image-core.bb?
+-- 
 
-I try to modify files in
-build_p3041ds_release/tmp/work/p3041ds-fsl_networking-linux/fsl-image-core/1.0-r20/rootfs
-
-but modifications are overwrited
-
-can anybody help me?
-
-thanks a lot
+Paul Eggleton
+Intel Open Source Technology Centre
 
