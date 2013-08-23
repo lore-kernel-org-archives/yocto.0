@@ -1,37 +1,30 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D38AE00343
-	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 10:21:48 -0700 (PDT)
-Received: by mail-pd0-f177.google.com with SMTP id y10so914015pdj.36
-	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 10:21:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=k4Y1wJ5xHJ3kz/lFtAjGwQqpOPjMcQTC9PcjnvJwhrY=;
-	b=N6hP8UsvRrLC20+yYyVzkI3EdlG9WQY31sQkyYvbM4SZNqcJ+qHU02eGGsc9Cv9URJ
-	/ONCai4/IFgO885Z/7zq+XnH+/t71cuGG63NfkJvZcEAFyJfXLsEz6M2iORkQtEEnQ22
-	+Mc+htTOx241UC5Aul0UNP2NM9ERDKyYRD/pDViBuvfzuaAdshJmkJq6TiQTemU+oiwR
-	wZ1bwNq9OPDERs5tFFP2Rux/xrADszxqoRgFBgONNnVyouRJlBTLE6kRn35z1O5lsgvw
-	61WjckqPhuqjgRYzeBfCK23yctdo4kc7PG+e+guRIKNbYqoIs9+jiEBSehWTcnsp5mpe
-	DLvw==
-X-Received: by 10.68.131.168 with SMTP id on8mr798959pbb.97.1377278507760;
-	Fri, 23 Aug 2013 10:21:47 -0700 (PDT)
-Received: from sa-nc-finance-109.static.jnpr.net (natint3.juniper.net.
-	[66.129.224.36])
-	by mx.google.com with ESMTPSA id ar5sm915770pbc.40.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 23 Aug 2013 10:21:46 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAMc2iepgcSVA9bddm9LQOxT40QQzF7Va1EsPaPc1=ebc1i1hXA@mail.gmail.com>
-Date: Fri, 23 Aug 2013 10:21:39 -0700
-Message-Id: <1B8240E1-8C82-4C69-800B-C7C4EF779C85@gmail.com>
-References: <CAMc2iepgcSVA9bddm9LQOxT40QQzF7Va1EsPaPc1=ebc1i1hXA@mail.gmail.com>
-To: Mercier Ivan <ivan.mercier@gmail.com>
-X-Mailer: Apple Mail (2.1508)
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-scoter.atl.sa.earthlink.net
+	(elasmtp-scoter.atl.sa.earthlink.net [209.86.89.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA053E003D2
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 12:53:00 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=XyZa+5laP0Acx0ZS6CwO3OyOy5JgJI7fHvi2vf81VMGbTxW5eYHpXhh0RJwKT78w;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-scoter.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VCxPn-00005x-A4; Fri, 23 Aug 2013 15:52:59 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Paul Eggleton'" <paul.eggleton@linux.intel.com>
+References: <C0360C54FF104163BE67C2C714409398@PAULD><CAJTo0LYbxT61+Dd_S2f+Det3vk-Fr2q1MgGKOgZ0AM9wxKsaeA@mail.gmail.com><194F81E112554215A78C3D22D34B2A58@PAULD>
+	<2275177.m6TO4hPgaX@helios>
+In-Reply-To: <2275177.m6TO4hPgaX@helios>
+Date: Fri, 23 Aug 2013 12:52:54 -0700
+Message-ID: <43B61B5F1FED4CD09156399DFDDA2D51@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6fJBwiky5m04m/R8a26mbgCPFaEgBEzIFQ
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068811fd79b56b3c95909dd96fc05bf4b5a5350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
 Cc: yocto@yoctoproject.org
-Subject: Re: How to build a custom ramdisk image
+Subject: Re: Building one package needs header from another
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,48 +36,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2013 17:21:50 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 23 Aug 2013 19:53:03 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
+> > On Tuesday 20 August 2013 16:06:54 Paul D. DeRocco wrote:
+> > 
+> > I've been trying to figure out how the setup.py/setup.cfg 
+> > (and distutils)
+> > stuff works. The setup.cfg file lists only one possible 
+> > option for adding
+> > directories, which is basedirlist, but setting that to foo adds
+> > foo/include to the include directories and foo/lib to the library
+> > directories, so that's not appropriate. 
 
-On Aug 22, 2013, at 1:53 AM, Mercier Ivan <ivan.mercier@gmail.com> =
-wrote:
+> From: Paul Eggleton
+> 
+> Could you just send it ${STAGING_DIR_HOST}/${prefix} ? We do 
+> do that elsewhere with similar-behaving configure scripts.
 
-> Hi everybody,
->=20
-> I'm working on an yocto distrib with a freescale p3041 based board.
-> I would like to modify the root file system, like hostname,udev rules
-> and build my own ramdisk image.
-> I use to create my image by
-> $ bitbake fsl-image-core
->=20
-> is it corret?
->=20
-> should I modidy fsl-image-core.bb?
->=20
-> I try to modify files in
-> =
-build_p3041ds_release/tmp/work/p3041ds-fsl_networking-linux/fsl-image-core=
-/1.0-r20/rootfs
->=20
-> but modifications are overwrited
->=20
-> can anybody help me?
+I think I've figured out what's going on. The whole distutils.bbclass
+interface to the Python distutils package involves the writing of a
+setup.py script to perform all the packaging and unpackaging processes.
+The setup.py script for matplotlib has to deal with the fact that
+matplotlib depends upon a varying set of libraries depending upon how you
+configure it. In this case, because I want to build the GTK rendering
+backend, it depends upon the pygtk library. It cleverly uses the
+pkg-config command to interrogate each dependent library to find out what
+compiler options are needed to compile modules that refer to the library,
+but unfortunately, pygtk-2.0 is not a "library" that can be searched by
+pkg-config, so the do_compile script coughs up the following nonfatal
+error message:
 
-You can do it in couple of ways, define rootfs post processing functions =
-and add them to ROOTFS_POSTPROCESS_COMMAND
-in a class or something and add the tweaks you want in image
+    pkg-config: looking for pygtk-2.0 gtk+-2.0
+        * Package pygtk-2.0 was not found in the pkg-config
+        * search path. Perhaps you should add the directory
+        * containing `pygtk-2.0.pc' to the PKG_CONFIG_PATH
+        * environment variable No package 'pygtk-2.0' found
 
-otherwise you can override the file with customized changes in a layer =
-and use bbappends to stich them into=20
-the recipe you want to modify.
+I think I'm just going to have to patch the setup.py file (actually a
+subsidiary setupext.py file) to hack the additional pygtk-2.0 include
+subdirectory into it. However, setupext.py and setup.py both already have
+small patches in the original matplotlib recipe. If I add another patch in
+my bbappend, will it always be applied after the one in the original
+recipe? Or should I just replace the patch file with one containing its
+fixes and my fix?
 
->=20
-> thanks a lot
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
