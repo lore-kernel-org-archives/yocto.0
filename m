@@ -1,25 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DDBFE00343
-	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 09:30:02 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 23 Aug 2013 09:29:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,942,1367996400"; d="scan'208";a="385542194"
-Received: from timevans-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.122.235])
-	by fmsmga001.fm.intel.com with ESMTP; 23 Aug 2013 09:29:26 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?M=E5rten?= Wikman <marten.wikman@novia.fi>
-Date: Fri, 23 Aug 2013 17:29:24 +0100
-Message-ID: <6178745.c8iZbFkBou@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAC0tyxMk05OLYkVWErMHAmEJnYBc8bgQMnX_zm6u3Td_POrfCA@mail.gmail.com>
-References: <CAC0tyxMk05OLYkVWErMHAmEJnYBc8bgQMnX_zm6u3Td_POrfCA@mail.gmail.com>
-MIME-Version: 1.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
+	[209.85.192.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D38AE00343
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 10:21:48 -0700 (PDT)
+Received: by mail-pd0-f177.google.com with SMTP id y10so914015pdj.36
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 10:21:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=k4Y1wJ5xHJ3kz/lFtAjGwQqpOPjMcQTC9PcjnvJwhrY=;
+	b=N6hP8UsvRrLC20+yYyVzkI3EdlG9WQY31sQkyYvbM4SZNqcJ+qHU02eGGsc9Cv9URJ
+	/ONCai4/IFgO885Z/7zq+XnH+/t71cuGG63NfkJvZcEAFyJfXLsEz6M2iORkQtEEnQ22
+	+Mc+htTOx241UC5Aul0UNP2NM9ERDKyYRD/pDViBuvfzuaAdshJmkJq6TiQTemU+oiwR
+	wZ1bwNq9OPDERs5tFFP2Rux/xrADszxqoRgFBgONNnVyouRJlBTLE6kRn35z1O5lsgvw
+	61WjckqPhuqjgRYzeBfCK23yctdo4kc7PG+e+guRIKNbYqoIs9+jiEBSehWTcnsp5mpe
+	DLvw==
+X-Received: by 10.68.131.168 with SMTP id on8mr798959pbb.97.1377278507760;
+	Fri, 23 Aug 2013 10:21:47 -0700 (PDT)
+Received: from sa-nc-finance-109.static.jnpr.net (natint3.juniper.net.
+	[66.129.224.36])
+	by mx.google.com with ESMTPSA id ar5sm915770pbc.40.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 23 Aug 2013 10:21:46 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.5 \(1508\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAMc2iepgcSVA9bddm9LQOxT40QQzF7Va1EsPaPc1=ebc1i1hXA@mail.gmail.com>
+Date: Fri, 23 Aug 2013 10:21:39 -0700
+Message-Id: <1B8240E1-8C82-4C69-800B-C7C4EF779C85@gmail.com>
+References: <CAMc2iepgcSVA9bddm9LQOxT40QQzF7Va1EsPaPc1=ebc1i1hXA@mail.gmail.com>
+To: Mercier Ivan <ivan.mercier@gmail.com>
+X-Mailer: Apple Mail (2.1508)
 Cc: yocto@yoctoproject.org
-Subject: Re: linux-firmware: add only rtl8192cufw.bin from rtlwifi
+Subject: Re: How to build a custom ramdisk image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,38 +43,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2013 16:30:04 -0000
+X-List-Received-Date: Fri, 23 Aug 2013 17:21:50 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Hi M=E5rten,
 
-On Friday 23 August 2013 15:24:43 M=E5rten Wikman wrote:
-> I want to install rtl8192cufw.bin from rtlwifi from linux-firmware bu=
-t
-> if I add linux-firmware to IMAGE_INSTALL_append it will of course
-> install whole linux-firmware to my rootfs and bloats my rootfs image.=
+On Aug 22, 2013, at 1:53 AM, Mercier Ivan <ivan.mercier@gmail.com> =
+wrote:
+
+> Hi everybody,
+>=20
+> I'm working on an yocto distrib with a freescale p3041 based board.
+> I would like to modify the root file system, like hostname,udev rules
+> and build my own ramdisk image.
+> I use to create my image by
+> $ bitbake fsl-image-core
+>=20
+> is it corret?
+>=20
+> should I modidy fsl-image-core.bb?
+>=20
+> I try to modify files in
+> =
+build_p3041ds_release/tmp/work/p3041ds-fsl_networking-linux/fsl-image-core=
+/1.0-r20/rootfs
+>=20
+> but modifications are overwrited
+>=20
+> can anybody help me?
+
+You can do it in couple of ways, define rootfs post processing functions =
+and add them to ROOTFS_POSTPROCESS_COMMAND
+in a class or something and add the tweaks you want in image
+
+otherwise you can override the file with customized changes in a layer =
+and use bbappends to stich them into=20
+the recipe you want to modify.
 
 >=20
-> What is the correct way to install rtl8192cufw.bin automatically to m=
-y
-> rootfs?
+> thanks a lot
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-If you have a look at the linux-firmware recipe (meta/recipes-kernel/li=
-nux-
-firmware/linux-firmware_git.bb) you'll see that it splits out this firm=
-ware blob=20
-to a separate package called "linux-firmware-rtl8192cu", so add this to=
- your=20
-IMAGE_INSTALL instead of "linux-firmware" (which will pull in all firmw=
-are) and=20
-you should be ready to go.
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
