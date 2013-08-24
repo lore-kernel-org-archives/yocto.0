@@ -1,31 +1,33 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E61BE00282
-	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 09:04:15 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r7OGGCQ4020697; Sat, 24 Aug 2013 17:16:12 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id yQT8kvwYzUku; Sat, 24 Aug 2013 17:16:12 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	r7OGG6Dj020693
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
-	verify=NOT); Sat, 24 Aug 2013 17:16:08 +0100
-Message-ID: <1377360234.6762.195.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Erik =?ISO-8859-1?Q?Bot=F6?= <erik.boto@pelagicore.com>
-Date: Sat, 24 Aug 2013 17:03:54 +0100
-In-Reply-To: <CA+AhUGz7SqxrfrmfDk+421viOUm3K=AbO-rAZF1+YqW7B=YB2A@mail.gmail.com>
-References: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
-	<CA+AhUGz7SqxrfrmfDk+421viOUm3K=AbO-rAZF1+YqW7B=YB2A@mail.gmail.com>
-X-Mailer: Evolution 3.6.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio.salvador@gmail.com>
-Subject: Re: [DYLAN] RPATH issue with qt5's qtwebkit
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37056E003BF
+	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 11:00:56 -0700 (PDT)
+Received: by mail-pd0-f171.google.com with SMTP id g10so1889097pdj.16
+	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 11:00:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:message-id:date
+	:to:mime-version;
+	bh=8DPAsIInmUYgyA/hWRlOJaq02EKL/t+UZUrVt8V67yg=;
+	b=kWSI9B2i0hrINDCn1p4DV1BAXNY76tC7GyutmmI3bMpnWFEBSeubm+s9nU3UmLwuO2
+	HPZ8/i/X8ZgVSR4Zh3Wqlh8WsIjyiCAPg4AaJ6wYBszKBnoNMapXq/ewtmdlS2dI+QHw
+	wETcWU1XRuXJhsczt/23cod8wqSFU9Uu49r4QJzva+vn+gwVQY+64aok+687/JgEbMdX
+	07x1K3wo8199w9gObkG7bPBTms6WOAd7ihKGrch9C7Gg6p+AgHQ2+MVcxHY3LLB2MLy2
+	UWqy7voPCAX7d5JPFAowXttlIdznSYlInhN82LbjazVG2LiQfgC+M+n6O0kxHQ5XWxhl
+	R/0w==
+X-Received: by 10.67.30.164 with SMTP id kf4mr5500071pad.13.1377367255886;
+	Sat, 24 Aug 2013 11:00:55 -0700 (PDT)
+Received: from [192.168.1.106] ([94.205.106.26])
+	by mx.google.com with ESMTPSA id mr3sm7407498pbb.27.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sat, 24 Aug 2013 11:00:55 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Message-Id: <A9C97D7F-9AB0-4F9A-B933-D09ED5B6748E@gmail.com>
+Date: Sat, 24 Aug 2013 22:00:50 +0400
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 6.1 \(1498\))
+X-Mailer: Apple Mail (2.1498)
+Subject: linux-yocto defaulting to 3.4.52 for new qemuarmhf.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,66 +39,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Aug 2013 16:04:16 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 24 Aug 2013 18:00:57 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 2013-08-24 at 15:06 +0200, Erik Botö wrote:
-> On Sat, Aug 24, 2013 at 3:36 AM, Trevor Woerner
-> <trevor.woerner@linaro.org> wrote:
-> > Hi,
-> >
-> > When I try to include "qtwebkit" in my image from the "dylan" branch I end
-> > up
-> > with the following QA do_package_qa error [note that this does not happen
-> > with "master"]:
-> >
-> > ERROR: QA Issue: package qtwebkit contains bad RPATH
-> > /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib
-> > in file
-> > /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/packages-split/qtwebkit/usr/lib/qt5/libexec/QtWebProcess
-> >
-> > And the QA test is correct. When I "objdump -x" this binary I get:
-> >
-> > Dynamic Section:
-> >   NEEDED               libQt5WebKitWidgets.so.5
-> >   NEEDED               libQt5WebKit.so.5
-> >   NEEDED               libQt5Widgets.so.5
-> >   NEEDED               libQt5Core.so.5
-> >   NEEDED               libstdc++.so.6
-> >   NEEDED               libc.so.6
-> >   RPATH
-> > /home/trevor/build/yocto/tmp/rdk/work/armv5te-rdk-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib
-> >
-> > Can anyone suggest any fixes or patches? Note I'm using 5.0.2.
-> 
-> Try adding a .bbappend with the following content:
-> 
-> #################
-> DEPENDS += "chrpath-replacement-native"
-> EXTRANATIVEPATH += "chrpath-native"
-> 
-> PRINC := "${@int(PRINC) + 1}"
-> 
-> do_install_append() {
->         # Remove rpath from the offending binaries
->         chrpath -d ${D}${OE_QMAKE_PATH_LIBEXECS}/QtWebProcess
-> }
-> #################
-> 
-> That should do it.
-> 
-> Is this something everyone building qtwebkit is seeing? I had just
-> assumed that it had something to do with other changes I do to
-> meta-qt5, but if it affect everyone I guess it could be done in
-> meta-qt5 instead of local bbappends.
+Hi,
+      I created a new qemuarmhf.conf, to build using armv7a vfp and =
+neon.=20
 
-The above is a workaround, the proper fix is to track down why this is
-making its way in there in the first place and fix the problem at
-source.
+In the linux-yocto_3.8.bb recipe, I explicitly specified =
+SRCREV_machine_qemuarmhf and added qemuarmhf to the list of =
+COMPATIBLE_MACHINES.
 
-Cheers,
+For some reason, it still refuses to build using kernel 3.8, and keeps =
+defaulting to 3.4.52.
 
-Richard
+I know I can over-ride it in my local.conf by setting a =
+PREFERRED_VERSION_virtual/linux =3D"3.8" , but I'd like to know what =
+I've missed, to get it to work by default, without setting the over-ride =
+in my local.conf.
 
+Thanks!
+
+Best regards,
+
+Elvis Dowson=
 
