@@ -1,39 +1,30 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f175.google.com (mail-ea0-f175.google.com
-	[209.85.215.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E7F4E00282
-	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 07:10:01 -0700 (PDT)
-Received: by mail-ea0-f175.google.com with SMTP id m14so780787eaj.34
-	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 07:10:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=Is7S2M1U0s8UroDaA4NpLaazG5HUDSZbOk10tW1oVRs=;
-	b=o50rQ02J1pgx9vX/MO9hxMjzNZx7piYbEXMcnL+TCnzgC1XQDJFezyuuh7ZXEvwFN3
-	4LvYbtAcsgjlUHic8HKtHXaUTW01TGEQqKrSjjn4tTSEew5+p9sOHZYC3OydMer5cudg
-	CKmKNE58pPyKjwUJPQG+jmpugXkEUO+Q+ZtLx6AeXwggEinBwLLa7tZ4JAHIWZ2yrxEN
-	EHPHQ8HSe4KMNcCZ7x8dbYloB43+TRC9HcP8oreljtlyRpXWQ62rBGH5cnz5WS5Wxdgo
-	YorXuhMRRJYJBkvQC4J8x/b2W2vr3HXJocogX7j/rmqbwhdUcUY+X/JiUCboL6B+UNzm
-	+igQ==
-X-Received: by 10.14.108.9 with SMTP id p9mr8279782eeg.8.1377353400349;
-	Sat, 24 Aug 2013 07:10:00 -0700 (PDT)
-Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
-	by mx.google.com with ESMTPSA id
-	a6sm7092279eei.10.1969.12.31.16.00.00
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Sat, 24 Aug 2013 07:09:59 -0700 (PDT)
-Date: Sat, 24 Aug 2013 16:11:07 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Erik =?iso-8859-1?Q?Bot=F6?= <erik.boto@pelagicore.com>
-Message-ID: <20130824141107.GG3544@jama>
-References: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
-	<CA+AhUGz7SqxrfrmfDk+421viOUm3K=AbO-rAZF1+YqW7B=YB2A@mail.gmail.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53E50E00282
+	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 08:32:22 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 5932EF81272; Sat, 24 Aug 2013 09:32:21 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id AE1C0F81270;
+	Sat, 24 Aug 2013 09:32:19 -0600 (MDT)
+Message-ID: <5218D214.1090301@mlbassoc.com>
+Date: Sat, 24 Aug 2013 09:32:36 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
 MIME-Version: 1.0
-In-Reply-To: <CA+AhUGz7SqxrfrmfDk+421viOUm3K=AbO-rAZF1+YqW7B=YB2A@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio.salvador@gmail.com>
-Subject: Re: [DYLAN] RPATH issue with qt5's qtwebkit
+To: Reeve Yang <reeve.yang@gmail.com>
+References: <CAGNTBAWeb_JRGvJ4B1awDeHhE+KOSPk1Ea-G_R7JqqOX=CpafQ@mail.gmail.com>
+	<521666EE.8070403@mlbassoc.com> <521670B4.5080905@mlbassoc.com>
+	<CAGNTBAXZhYXU01RiiF-CDdpc+64uFwSq-ZaM2tQjwGHdweMV8w@mail.gmail.com>
+In-Reply-To: <CAGNTBAXZhYXU01RiiF-CDdpc+64uFwSq-ZaM2tQjwGHdweMV8w@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: an error when adding "snappy" package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,120 +36,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Aug 2013 14:10:02 -0000
-X-Groupsio-MsgNum: 15645
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="ulDeV4rPMk/y39in"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 24 Aug 2013 15:32:25 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---ulDeV4rPMk/y39in
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2013-08-23 14:36, Reeve Yang wrote:
+> Hi Gary, the uri.inc is just my include file to point to local package storage location, and "native" extend I have taken it out.
+>
+> Yeah, I figured it out this is rpm specific. If I change the site-packages/smart/backends/rpm/pm.py, line 280 to:
+>
+>                  self.rpmout = reader(open(rpmoutpath), errors = "ignore")
+>
+> The error would be gone and my tarball is created successfully. My question is, why yocto assume default encoding is ascii? Is there anyway for me to specify the encoding in "utf8"?
 
-On Sat, Aug 24, 2013 at 03:06:21PM +0200, Erik Bot=F6 wrote:
-> On Sat, Aug 24, 2013 at 3:36 AM, Trevor Woerner
-> <trevor.woerner@linaro.org> wrote:
-> > Hi,
-> >
-> > When I try to include "qtwebkit" in my image from the "dylan" branch I =
-end
-> > up
-> > with the following QA do_package_qa error [note that this does not happ=
-en
-> > with "master"]:
-> >
-> > ERROR: QA Issue: package qtwebkit contains bad RPATH
-> > /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwe=
-bkit/5.0.2-r0.0/build/lib
-> > in file
-> > /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwe=
-bkit/5.0.2-r0.0/packages-split/qtwebkit/usr/lib/qt5/libexec/QtWebProcess
-> >
-> > And the QA test is correct. When I "objdump -x" this binary I get:
-> >
-> > Dynamic Section:
-> >   NEEDED               libQt5WebKitWidgets.so.5
-> >   NEEDED               libQt5WebKit.so.5
-> >   NEEDED               libQt5Widgets.so.5
-> >   NEEDED               libQt5Core.so.5
-> >   NEEDED               libstdc++.so.6
-> >   NEEDED               libc.so.6
-> >   RPATH
-> > /home/trevor/build/yocto/tmp/rdk/work/armv5te-rdk-linux-gnueabi/qtwebki=
-t/5.0.2-r0.0/build/lib
-> >
-> > Can anyone suggest any fixes or patches? Note I'm using 5.0.2.
->=20
-> Try adding a .bbappend with the following content:
->=20
-> #################
-> DEPENDS +=3D "chrpath-replacement-native"
-> EXTRANATIVEPATH +=3D "chrpath-native"
->=20
-> PRINC :=3D "${@int(PRINC) + 1}"
->=20
-> do_install_append() {
->         # Remove rpath from the offending binaries
->         chrpath -d ${D}${OE_QMAKE_PATH_LIBEXECS}/QtWebProcess
-> }
-> #################
->=20
-> That should do it.
->=20
-> Is this something everyone building qtwebkit is seeing? I had just
-> assumed that it had something to do with other changes I do to
-> meta-qt5, but if it affect everyone I guess it could be done in
-> meta-qt5 instead of local bbappends.
+This sounds like a bug to me.  It would be best if you file it as
+such with bugzilla so it gets looked at properly (I'm not the one
+to do that, sorry)
 
-Yes I think everyone is seeing it, but in many distro configs bad RPATH
-is only QA warning not error (that's why I was partially ignoring it
-until now, concentrating on other issues).
+> On Thu, Aug 22, 2013 at 1:12 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+>
+>     On 2013-08-22 13:30, Gary Thomas wrote:
+>
+>         On 2013-08-21 16:03, Reeve Yang wrote:
+>
+>             Hi Grus,
+>
+>             I have been trying to add google snappy package into yocto (https://code.google.com/p/__snappy/ <https://code.google.com/p/snappy/>), here is my receipt file, nothing
+>             special:
+>
+>             SUMMARY = "Snappy is a compression/decompression library."
+>             DESCRIPTION = "...."
+>             HOMEPAGE="https://code.google.__com/p/snappy <https://code.google.com/p/snappy>"
+>             SECTION = "console/utils"
+>             LICENSE = "BSD"
+>             LIC_FILES_CHKSUM = "file://COPYING;md5=__b2c8cef4261c6377dcae51b2903d70__4b"
+>             PR = "r0"
+>             require ../uri.inc
+>
+>
+>         What's in this file (uri.inc)?
+>
+>             SRC_URI = "${URIPREFIX}/snappy-${PV}.__tar.gz"
+>             SRC_URI[md5sum] = "__c8f3ef29b5281e78f4946b2d739cea__4f"
+>             SRC_URI[sha256sum] = "__1fa82bc588bb93fa74dfc0e2e9b7d6__3b6e2a20ede323ef42bf0af0f94767__6160"
+>             inherit autotools
+>             BBCLASSEXTEND = "native"
+>             do_compile() {
+>                   oe_runmake all
+>             }
+>             do_install() {
+>                   oe_runmake DESTDIR=${D} install
+>             }
+>             BBCLASSEXTEND = "native"
+>
+>
+>         Do you need this (is snappy-native used)?
+>
+>
+>     Note: I had no trouble building and installing this into a IPK based image, so
+>     it may be something special with the RPM packaging (which I don't use).
+>
+>
+>
+>
+>             The package was built successfully, but when I try to build core-image-lsb (my own image but similar), I got following error:
+>
+>             |  528:Installing libsnappy1      ##############################__########## [ 44%]
+>             | Traceback (most recent call last):
+>             |   File "/home2/reeve-ws/yocto-dylan-__merge/build/tmp/sysroots/x86___64-linux/usr/lib/python2.7/__site-packages/smart/backends/__rpm/pm.py", line 312, in __call__
+>             |     self._process_rpmout()
+>             |   File "/home2/reeve-ws/yocto-dylan-__merge/build/tmp/sysroots/x86___64-linux/usr/lib/python2.7/__site-packages/smart/backends/__rpm/pm.py", line 297, in _process_rpmout
+>             |     output = self.rpmout.read()
+>             |   File "/home2/reeve-ws/yocto-dylan-__merge/build/tmp/sysroots/x86___64-linux/usr/lib/python2.7/__codecs.py", line 477, in read
+>             |     newchars, decodedbytes = self.decode(data, self.errors)
+>             | UnicodeDecodeError: 'ascii' codec can't decode byte 0xa1 in position 740: ordinal not in range(128)
+>             |
+>             | Traceback (most recent call last):
+>             |   File "/home2/reeve-ws/yocto-dylan-__merge/build/tmp/sysroots/x86___64-linux/usr/lib/python2.7/__site-packages/smart/backends/__rpm/pm.py", line 312, in __call__
+>             |     self._process_rpmout()
+>             |   File "/home2/reeve-ws/yocto-dylan-__merge/build/tmp/sysroots/x86___64-linux/usr/lib/python2.7/__site-packages/smart/backends/__rpm/pm.py", line 297, in _process_rpmout
+>             |     output = self.rpmout.read()
+>             |   File "/home2/reeve-ws/yocto-dylan-__merge/build/tmp/sysroots/x86___64-linux/usr/lib/python2.7/__codecs.py", line 477, in read
+>             |     newchars, decodedbytes = self.decode(data, self.errors)
+>             | UnicodeDecodeError: 'ascii' codec can't decode byte 0xa1 in position 740: ordinal not in range(128)
+>             |
+>             | ERROR: Function failed: do_rootfs (see /home2/reeve-ws/yocto-dylan-__merge/build/tmp/work/rp-poky-__linux/core-image-ssr/1.0-r0/__temp/log.do_rootfs.2751 for further
+>             information)
+>             ERROR: Task 7 (/home2/reeve-ws/yocto-dylan-__merge/meta-ericsson-ssr-rp/__recipes-core-image/core-image-__ssr.bb <http://core-image-ssr.bb> <http://core-image-ssr.bb>,
+>             do_rootfs) failed with exit code '1'
+>             NOTE: Tasks Summary: Attempted 4128 tasks of which 4114 didn't need to be rerun and 1 failed.
+>             No currently running tasks (4128 of 4129)
+>
+>             Can anyone help me out?
+>
+>
+>             _________________________________________________
+>             yocto mailing list
+>             yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>             https://lists.yoctoproject.__org/listinfo/yocto <https://lists.yoctoproject.org/listinfo/yocto>
+>
+>
+>
+>     --
+>     ------------------------------__------------------------------
+>     Gary Thomas                 |  Consulting for the
+>     MLB Associates              |    Embedded world
+>     ------------------------------__------------------------------
+>     _________________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.__org/listinfo/yocto <https://lists.yoctoproject.org/listinfo/yocto>
+>
+>
 
-You can see do_configure_append in qtwebkit.inc which is removing bad
-rpath from qmake generated Makefile, this sometimes doesn't work, from
-similar Makefile issue in qtjsondb I know that "sometimes" Makefile
-generated in do_configure is regenerated later in do_compile or
-do_install task, I'm not sure yet why, but that's what breaks similar
-hack in qtjsondb_git.bb:do_configure_append().
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Of course the real fix for both issues would be to fix .pri/.prf files
-to prevent incorrect Makefile to be generated at all.
-
-Regards,
-
->=20
-> Cheers
-> Erik
->=20
->=20
-> >
-> > Best regards,
-> >     Trevor
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---ulDeV4rPMk/y39in
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.21 (GNU/Linux)
-
-iEYEARECAAYFAlIYvvsACgkQN1Ujt2V2gBxfngCgjxRBF6aq/VV5mtP/8mSK9e12
-bgcAn0CIFy2V3ja9h3KJKsjgjeH2HeX1
-=5ghq
------END PGP SIGNATURE-----
-
---ulDeV4rPMk/y39in--
