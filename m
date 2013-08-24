@@ -1,35 +1,30 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f45.google.com (mail-pb0-f45.google.com
-	[209.85.160.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C89FE003D2
-	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 01:10:12 -0700 (PDT)
-Received: by mail-pb0-f45.google.com with SMTP id mc17so1535018pbc.4
-	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 01:10:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date
-	:content-transfer-encoding:message-id:references:to;
-	bh=wy5SDOwt7En7xgEWi/ommb+8vbcKfTX7BF/iQAxH9Jg=;
-	b=zkubGM+s31/Gb9oE3dfQTqZEf3ZgERtj2Q3zf9AkK5g73KbbkE/2jJ9710vml5IEPm
-	Tj5eoVTjYGSkqgF6VjKiF5khkH7RTZ7CRrdDvSbVNci92qcAdcxI+3rWXxBmRt8ksBIR
-	xyfnxoJJP+u6Mt6pHSJOMeZZPOEhklyJWp7Vv8Fym8Sejen01Ov+tnqHIoXur1P3k2iB
-	xwPgycmho6BllPea+oZJiRMwoDNrzLelFzdDyyauuRQsJFQy/Phqy9+UlY/raotdC3fz
-	AB6t1GmCLx+mYQmXIG/zgNMyDzapGYo/poX6i0kHM8rP9J9GIzkVUudN9IDaYgQ0ZpaG
-	RWpw==
-X-Received: by 10.68.164.1 with SMTP id ym1mr4119606pbb.33.1377331812313;
-	Sat, 24 Aug 2013 01:10:12 -0700 (PDT)
-Received: from [192.168.1.106] ([94.205.106.26])
-	by mx.google.com with ESMTPSA id kd1sm6057152pab.20.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 24 Aug 2013 01:10:11 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.1 \(1498\))
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <1B0819AA-2F91-43E6-8199-5F0BC135BFDE@gmail.com>
-Date: Sat, 24 Aug 2013 12:10:04 +0400
-Message-Id: <C8BE43EC-6B9B-4015-A529-FFF928333958@gmail.com>
-References: <1B0819AA-2F91-43E6-8199-5F0BC135BFDE@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1498)
-Subject: Re: Installing yocto built qemu binaries and sdk toolchain to another machine
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6ECC1E003D2
+	for <yocto@yoctoproject.org>; Sat, 24 Aug 2013 01:48:34 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r7O90V45013809; Sat, 24 Aug 2013 10:00:31 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id PS2VYjp3YdCB; Sat, 24 Aug 2013 10:00:31 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r7O90R1M013805
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Sat, 24 Aug 2013 10:00:29 +0100
+Message-ID: <1377334097.6762.164.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Trevor Woerner <trevor.woerner@linaro.org>
+Date: Sat, 24 Aug 2013 09:48:17 +0100
+In-Reply-To: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
+References: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
+X-Mailer: Evolution 3.6.4-0ubuntu1 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Otavio Salvador <otavio.salvador@gmail.com>
+Subject: Re: [DYLAN] RPATH issue with qt5's qtwebkit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,31 +36,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Aug 2013 08:10:13 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 24 Aug 2013 08:48:36 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+On Fri, 2013-08-23 at 21:36 -0400, Trevor Woerner wrote:
+> When I try to include "qtwebkit" in my image from the "dylan" branch I end up
+> with the following QA do_package_qa error [note that this does not happen
+> with "master"]:
+> 
+> ERROR: QA Issue: package qtwebkit contains bad RPATH /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib in file /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/packages-split/qtwebkit/usr/lib/qt5/libexec/QtWebProcess
+> 
+> 
+> And the QA test is correct. When I "objdump -x" this binary I get:
+> 
+> Dynamic Section:
+>   NEEDED               libQt5WebKitWidgets.so.5
+>   NEEDED               libQt5WebKit.so.5
+>   NEEDED               libQt5Widgets.so.5
+>   NEEDED               libQt5Core.so.5
+>   NEEDED               libstdc++.so.6
+>   NEEDED               libc.so.6
+>   RPATH                /home/trevor/build/yocto/tmp/rdk/work/armv5te-rdk-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib
+> 
+> 
+> Can anyone suggest any fixes or patches? Note I'm using 5.0.2.
+
+Check the compile logs. Somewhere, something is passing a -rpath value
+to the linker which results in this. You'll have to find out where it
+gets passed in, then trace it back to the source of the problem.
+Sometimes this can get added by libtool but there will still be
+something on the commandline which triggers libtool to do that.
+
+Cheers,
+
+Richard
 
 
-On Aug 24, 2013, at 8:49 AM, Elvis Dowson <elvis.dowson@gmail.com> =
-wrote:
 
-> What should I do to relocate and install the qemu binaries and sdk =
-toolchain built using yocto, to another machine?=20
->=20
-> The target machine has a fresh Ubuntu 12.04 installation, and I'd like =
-to be able to run the Yocto generated qemu binaries inside it.
-
-I found the answer to this, the qemu images are located with the =
-meta-toolchain-sdk, so copy over the generated kernel and rootfilesystem =
-(ext3) images to the new machine, installing the toolchain SDK to /opt, =
-and running the following commands on the target machine worked.
-
-. '/opt/poky/1.4+snapshot/environment-setup-armv5te-poky-linux-gnueabi'
-runqemu qemuarm zImage-qemuarm.bin =
-core-image-minimal-qemuarm.rootfs.ext3
-
-Best regards,
-
-Elvis Dowson
 
 
