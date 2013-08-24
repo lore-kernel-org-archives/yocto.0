@@ -1,32 +1,24 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ee0-f47.google.com (mail-ee0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9E7CE003D2
-	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 18:36:22 -0700 (PDT)
-Received: by mail-ee0-f47.google.com with SMTP id d49so570456eek.6
-	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 18:36:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to:cc
-	:content-type;
-	bh=UpE9NeZ/I6VtrdLWkxPpElYVxqjsA/wkA7xiAYcOVbw=;
-	b=f1Pf4mHpMIq7/ce29gHZHsmzy1kvm5wm3mLKylTePgIV7c07HT526eacHcEHuQtIe6
-	7Bh949/SCae40zi8nmyUAe8VOzTOGe+ODZRZqQXXsL+EnEy+w+G1C9BabwPvMK8O6N8A
-	qkGg8UR0dU9ta9f17QmeXn600TZGBGyjQWtvQktH2atbbFxHR4YAEHkbq9jmK4I2z5Cd
-	W613+1WIDueURKxRjDGduaImqt1q0o/2FLf/Ww0KwiEPOTjaLYeKMuE6P9fYrbazfwbw
-	hsIUAeL6eckBBy46QN5kiDiXlrXbvl7/h44GkQNifFjNl2vsqZVnbJMoanyp5gIUbsl2
-	y0Rw==
-X-Gm-Message-State: ALoCoQn8WIYdt3W6vLa2El9krJ6/kjxCM0W2Z154TeNHgQ8z1DBREDQMc4txWnySFpYzgQ4WvRw5
-MIME-Version: 1.0
-X-Received: by 10.14.225.199 with SMTP id z47mr3411067eep.24.1377308180652;
-	Fri, 23 Aug 2013 18:36:20 -0700 (PDT)
-Received: by 10.14.117.67 with HTTP; Fri, 23 Aug 2013 18:36:20 -0700 (PDT)
-Date: Fri, 23 Aug 2013 21:36:20 -0400
-Message-ID: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
-From: Trevor Woerner <trevor.woerner@linaro.org>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: Otavio Salvador <otavio.salvador@gmail.com>
-Subject: [DYLAN] RPATH issue with qt5's qtwebkit
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99FB7E00408
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2013 20:52:42 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 23 Aug 2013 20:52:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,946,1367996400"; d="scan'208";a="286107964"
+Received: from unknown (HELO [10.255.14.153]) ([10.255.14.153])
+	by AZSMGA002.ch.intel.com with ESMTP; 23 Aug 2013 20:52:42 -0700
+Message-ID: <1377316361.5259.101.camel@dvhart-mobl4.amr.corp.intel.com>
+From: Darren Hart <dvhart@linux.intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Fri, 23 Aug 2013 20:52:41 -0700
+In-Reply-To: <2594690.j9UepmO1kG@helios>
+References: <2594690.j9UepmO1kG@helios>
+Organization: Intel
+X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: RFC: automated runtime testing on real hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,65 +30,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Aug 2013 01:36:25 -0000
-Content-Type: multipart/alternative; boundary=047d7b66fc0fdad1d804e4a78cf0
+X-List-Received-Date: Sat, 24 Aug 2013 03:52:45 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---047d7b66fc0fdad1d804e4a78cf0
-Content-Type: text/plain; charset=ISO-8859-1
+On Tue, 2013-08-13 at 12:00 +0100, Paul Eggleton wrote:
+> Hi all,
+> 
+> As part of the feature development work for 1.5, we've recently added the 
+> ability to easily define runtime tests written in python, replacing the old 
+> shell-based imagetest.bbclass. However, for 1.5 this is limited to running the 
+> tests within a QEMU environment; the obvious and desirable next step is to be 
+> able to have these run on real hardware. Clearly this presents some 
+> challenges, such as how to manage access to the hardware if you have multiple 
+> builders potentially wanting to use the same board at around the same time.
+> 
+> Automated testing on real hardware is something that a lot of us do already, 
+> but the likelihood is that we've all been coming up with our own solutions for 
+> this, so it would be really great if we could have a single working solution 
+> to cover the generally applicable use cases. As a start though it would be 
+> interesting to hear from people who have existing test setups or who are 
+> generally interested in this area. I'd like to hear feedback on the following:
+> 
+>  * What hardware setup do you use for automated testing?
 
-Hi,
+I am starting to put something together using a customized 19" rack
+along the lines of those used by OSADL for their real-time farm:
 
-When I try to include "qtwebkit" in my image from the "dylan" branch I end
-up
-with the following QA do_package_qa error [note that this does not happen
-with "master"]:
+https://www.osadl.org/Test-Rack.test-rack.0.html
 
-ERROR: QA Issue: package qtwebkit contains bad RPATH
-/home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib
-in file
-/home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/packages-split/qtwebkit/usr/lib/qt5/libexec/QtWebProcess
+This is a poor man's BladeCenter for embedded boards in that it provides
+a common interface to each board for the rack infrastructure. The board
+specific stuff sits on the trays themselves. The trays are easily
+removable to take a board to a desk for hands-on work.
 
-And the QA test is correct. When I "objdump -x" this binary I get:
+A smart-switch, web-power strip, and serial concentrator feed into a
+"gateway server" where services like conmux glue it all together.
 
-Dynamic Section:
-  NEEDED               libQt5WebKitWidgets.so.5
-  NEEDED               libQt5WebKit.so.5
-  NEEDED               libQt5Widgets.so.5
-  NEEDED               libQt5Core.so.5
-  NEEDED               libstdc++.so.6
-  NEEDED               libc.so.6
-  RPATH
-/home/trevor/build/yocto/tmp/rdk/work/armv5te-rdk-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib
+> 
+>  * Do you use any software to manage the hardware? Does this include any 
+> existing open source tools?
 
-Can anyone suggest any fixes or patches? Note I'm using 5.0.2.
+conmux
+dnsmasq
+udev (for static usb uart naming)
 
-Best regards,
-    Trevor
+The testrack has some early-stage tools to support it, but I'm still
+sorting those out and they aren't particularly robust for initial setup
+quite yet.
 
---047d7b66fc0fdad1d804e4a78cf0
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+> 
+>  * What would you like to see in a common framework to enable this kind of 
+> testing?
 
-<div dir=3D"ltr"><div><div><div>Hi,<br><br>When I try to include &quot;qtwe=
-bkit&quot; in my image from the &quot;dylan&quot; branch I end up<br>with t=
-he following QA do_package_qa error [note that this does not happen<br>with=
- &quot;master&quot;]:<br>
-<br>ERROR: QA Issue: package qtwebkit contains bad RPATH /home/trevor/build=
-/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/=
-lib in file /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnue=
-abi/qtwebkit/5.0.2-r0.0/packages-split/qtwebkit/usr/lib/qt5/libexec/QtWebPr=
-ocess<br>
-<br></div>And the QA test is correct. When I &quot;objdump -x&quot; this bi=
-nary I get:<br><br>Dynamic Section:<br>=A0 NEEDED=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 libQt5WebKitWidgets.so.5<br>=A0 NEEDED=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0 libQt5WebKit.so.5<br>=A0 NEEDED=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0 libQt5Widgets.so.5<br>
-=A0 NEEDED=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 libQt5Core.so.5<br>=A0=
- NEEDED=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 libstdc++.so.6<br>=A0 NEE=
-DED=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 libc.so.6<br>=A0 RPATH=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /home/trevor/build/yocto/tmp/rdk/wo=
-rk/armv5te-rdk-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib<br>
-<br></div>Can anyone suggest any fixes or patches? Note I&#39;m using 5.0.2=
-.<br><br>Best regards,<br></div>=A0=A0=A0 Trevor<br></div>
+To simplify the board management you allude to above, I believe a pull
+model, rather than a push, is a better architecture.
 
---047d7b66fc0fdad1d804e4a78cf0--
+Your builders can complete builds and inject test records into a
+database with a priority. The boards sit in a
+boot/check-db/deploy-test-img/reboot-to-test-image/run-tests loop and
+push the results back to the database. They select tests based on
+priority, and the builder doesn't have to do anything at all to manage
+the boards. This also decouples the builder from the test
+infrastructure.
+
+> 
+> For reference, some discussion on this started in another thread [1], but I'd 
+> like to throw this out to a more general audience.
+> 
+> Thanks,
+> Paul
+> 
+> [1] https://lists.yoctoproject.org/pipermail/yocto/2013-August/017687.html
+> 
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
+
+
+
