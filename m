@@ -1,41 +1,39 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
-	[209.85.160.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F2DEE003FB
-	for <yocto@yoctoproject.org>; Sun, 25 Aug 2013 07:25:23 -0700 (PDT)
-Received: by mail-pb0-f49.google.com with SMTP id xb4so2426035pbc.8
-	for <yocto@yoctoproject.org>; Sun, 25 Aug 2013 07:25:23 -0700 (PDT)
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-we0-f179.google.com (mail-we0-f179.google.com
+	[74.125.82.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BBEEE003FB
+	for <yocto@yoctoproject.org>; Sun, 25 Aug 2013 08:03:29 -0700 (PDT)
+Received: by mail-we0-f179.google.com with SMTP id t58so2009666wes.10
+	for <yocto@yoctoproject.org>; Sun, 25 Aug 2013 08:03:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=Q3YizK4b2rGg3n9Xg3HacneKrsTWtA5MRr1U3De8KIA=;
-	b=l9ClEjS6Ib9Dkn0opN2ZiiVxvFjDJWgb6MRCo7nS5ewpXFnSJ4QWOaPDLhzdJttrQ5
-	SGAL4r1i9Sb/D7JfqprSZOD59Hg6NsJEJdH9HQl1vhxbmzbwxJTQx8uHMmc0BY7G2MSt
-	Lly2iiOWJQc4DLuQqzAvs0gTuwpuOX6fdPHE/QulJSOCWDUgEHcQEPoV3AgtMbyPXvzQ
-	oWepCi6mcyUEsHt9pvIj/7kgXvnEu+RUL6sm60o5bFh3eY/5t88xxYlYqeyCyBZ9ftlR
-	q0ZPUm6oHHo2qvFOiqk4ByiHs5vEXM9t2TXw4H/cRt3vTPcTeAeLe9CzBxupXy82DhGf
-	982A==
-X-Received: by 10.68.241.6 with SMTP id we6mr990923pbc.174.1377440723370;
-	Sun, 25 Aug 2013 07:25:23 -0700 (PDT)
-Received: from [192.168.1.106] ([94.205.106.26])
-	by mx.google.com with ESMTPSA id
-	oc10sm12230372pbb.3.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 25 Aug 2013 07:25:22 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.1 \(1498\))
-From: Elvis Dowson <elvis.dowson@gmail.com>
-In-Reply-To: <521994A5.9060007@windriver.com>
-Date: Sun, 25 Aug 2013 18:25:14 +0400
-Message-Id: <53009902-3F9B-477F-ACA0-0DF7C43EBF27@gmail.com>
-References: <A9C97D7F-9AB0-4F9A-B933-D09ED5B6748E@gmail.com>
-	<F952BE32-0856-4531-962C-FC757917A8FE@gmail.com>
-	<CADkTA4NtzNb4pqKazvnfjO_2WawzCm_Zec1Dr9SQiPaybx+ndg@mail.gmail.com>
-	<6DD4027E-D34F-4211-92FD-1570F248D7F8@gmail.com>
-	<521994A5.9060007@windriver.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-X-Mailer: Apple Mail (2.1498)
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: linux-yocto defaulting to 3.4.52 for new qemuarmhf.conf
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=qcR/Jg2aGLoGLaek6fSvwTqhWC2RcbJEQ6iRqVI0rNU=;
+	b=TsKWknxHZ3p7zZuDTKul8E6bgZuR2V2hbqZY+f7uQjGaQ2UWUKtmXj0t3T3mNNwwhU
+	q2dRfTCF9HLTTYLVvQAHg2EHEbwVC/pveECdXWuYAtUPKMQe/FFVFXAUG31iMs/Pgj7X
+	vUkWHckXTw1RPUgbvDpVdhgZGc4r6YbtMILs7KlAvoF1giaLJx3CQtrqp2qZBpvqW5E9
+	VnZKdEnrgR7c1Gpxd3BA0fIxqEjM8SXgqotBQ2YllXcS37jmzelkLdsBd3CetgwfNNI8
+	pnLXi1lP6gsQBgG76TYmcv6fGlrXwCgenwg9zvW7GC+3AunjIeRuuvHQAdyiuYgB3be4
+	Fjhw==
+X-Received: by 10.180.80.229 with SMTP id u5mr4536702wix.59.1377443008063;
+	Sun, 25 Aug 2013 08:03:28 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.194.250.69 with HTTP; Sun, 25 Aug 2013 08:03:08 -0700 (PDT)
+In-Reply-To: <52170AA1.4000602@herbrechtsmeier.net>
+References: <CAAGt+t0w9Rtia4vVJujgjTfmEU709WyhjCYSPP7PThMN+vpOdg@mail.gmail.com>
+	<CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
+	<CAAGt+t2gxfmg8cJ+izKmejXcywknPpOvYMrRPUgKN5fHHa-gmw@mail.gmail.com>
+	<CAAGt+t13OZ88fi_9foDDp+FeD9VOkBDip1RVQYxWkNejmvifeg@mail.gmail.com>
+	<CAJTo0LYqaCwHTLnxUwPVME_zFNbWEVXHZoJpiWTTw-wBWn5xeQ@mail.gmail.com>
+	<52161E20.3010800@balister.org>
+	<CAAGt+t3Q3GaitOuGTob0faWa4PU1sqmBAwLrdNetMK1PZLDF5Q@mail.gmail.com>
+	<52170AA1.4000602@herbrechtsmeier.net>
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Sun, 25 Aug 2013 17:03:08 +0200
+Message-ID: <CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com>
+To: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: bitbake with cmake recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,143 +45,508 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Aug 2013 14:25:25 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_7A8717E2-DAB6-4BE1-955C-AED36E95A975"
+X-List-Received-Date: Sun, 25 Aug 2013 15:03:34 -0000
+Content-Type: multipart/alternative; boundary=f46d04428e4031af7b04e4c6f173
 
---Apple-Mail=_7A8717E2-DAB6-4BE1-955C-AED36E95A975
+--f46d04428e4031af7b04e4c6f173
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
 
-Hi Bruce,
+Hi Stefan,
 
-On Aug 25, 2013, at 9:22 AM, Bruce Ashfield =
-<bruce.ashfield@windriver.com> wrote:
+I updated my recipe:
 
->> Another quick question, why is it that when I create a new =
-qemuarmhf.conf machine configuration, it doesn't automatically pick up =
-the latest linux-yocto_3.8.bb recipe? Why does it attempt to use the 3.4 =
-recipe?
->=20
-> Are you working off master ?
->=20
-> Since you set the compatibility, it should have been picked. But =
-something
-> else must be changed in your layers, since if you didn't add
-> 3.4 compatibility via bbappends, it never would have been selected
-> at all.
+DESCRIPTION =3D "cameracapture application"
+SECTION =3D "examples"
+LICENSE =3D "CLOSED"
+PR =3D "r0"
+
+DEPENDS =3D "opencv"
+
+SRC_URI =3D "git://github.com/zafrullahsyed/cameracapture.git
+;protocol=3Dhttps;tag=3Dv0.1"
+
+S =3D "${WORKDIR}/git"
+inherit pkgconfig cmake
+
+I have my source file and CMakeLists.txt as tar on github. tar is not
+getting downloaded.
+
+--> If I remove tar and keep just source file and CMakeLists.txt, then also
+it is not getting downloaded. I am getting
+
+CMake Error: The source directory
+"/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/came=
+racapture-0.1-r0/cameracapture-0.1"
+does not appear to contain CMakeLists.txt.
+
+--> I copied my CMakeLists.txt file in ${WORKDIR}/git and tried the build,
+got this following error:
+
+ERROR: Function failed: do_configure (see
+/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/camer=
+acapture-0.1-r0/temp/log.do_configure.10784
+for further information)
+ERROR: Logfile of failure stored in:
+/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/camer=
+acapture-0.1-r0/temp/log.do_configure.10784
+Log data follows:
+| DEBUG: Executing python function sysroot_cleansstate
+| DEBUG: Python function sysroot_cleansstate finished
+| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common']
+| DEBUG: Executing shell function autotools_preconfigure
+| DEBUG: Shell function autotools_preconfigure finished
+| DEBUG: Executing shell function do_configure
+| CMake Error at
+/home/siguser/yocto/build/tmp/sysroots/x86_64-linux/usr/share/cmake-2.8/Mod=
+ules/CMakeDetermineSystem.cmake:95
+(MESSAGE):
+|   Could not find toolchain file:
+|
+/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/camer=
+acapture-0.1-r0/toolchain.cmake
+| Call Stack (most recent call first):
+|   CMakeLists.txt:2 (project)
+|
+|
+| CMake Error: Error required internal CMake variable not set, cmake may be
+not be built correctly.
+| Missing variable is:
+| CMAKE_C_COMPILER_ENV_VAR
+| CMake Error: Error required internal CMake variable not set, cmake may be
+not be built correctly.
+| Missing variable is:
+| CMAKE_C_COMPILER
+| CMake Error: Could not find cmake module
+file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/=
+cameracapture-0.1-r0/git/CMakeFiles/CMakeCCompiler.cmake
+| CMake Error: Error required internal CMake variable not set, cmake may be
+not be built correctly.
+| Missing variable is:
+| CMAKE_CXX_COMPILER_ENV_VAR
+| CMake Error: Error required internal CMake variable not set, cmake may be
+not be built correctly.
+| Missing variable is:
+| CMAKE_CXX_COMPILER
+| CMake Error: Could not find cmake module
+file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/=
+cameracapture-0.1-r0/git/CMakeFiles/CMakeCXXCompiler.cmake
+| CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+| CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+| -- Configuring incomplete, errors occurred!
+| ERROR: Function failed: do_configure (see
+/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/camer=
+acapture-0.1-r0/temp/log.do_configure.10784
+for further information)
+ERROR: Task 6
+(/home/siguser/yocto/poky/meta-bebot/recipes-bebot/cameracapture/
+cameracapture_0.1.bb, do_configure) failed with exit code '1'
+
+Do I need to set CXX Compiler in my CMakeLists.txt?
+
+My CmakeLists.txt file:
+
+cmake_minimum_required(VERSION 2.8)
+project(cameracapture)
+find_package( OpenCV REQUIRED )
+add_executable( cameracapture cameracapture.cpp )
+target_link_libraries( cameracapture ${OpenCV_LIBS} )
+
+Can you please give me some inputs?
+
+Thanks & Regards,
+
+Zafrullah
+Universit=E4t Paderborn.
 
 
-Yes, I'm currently working off master. If I add the following =
-qemuarmhf.conf file, and apply the patch to linux-yocto_3.8.bb, it still =
-tries to compile linux-yocto_3.4.bb recipe. You should be able to =
-reproduce this fairly easily at your end, with the current poky master. =
-I'm not using any additional layers, just the core yocto default layers.
+On Fri, Aug 23, 2013 at 9:09 AM, Stefan Herbrechtsmeier <
+stefan@herbrechtsmeier.net> wrote:
 
-Filename: qemuarmhf.conf
+>  Am 22.08.2013 20:13, schrieb Zafrullah Syed:
+>
+> Hi all,
+>
+>  I am newbie and I am learning stuff.
+>
+>  I have a c++ code and CMakeLists.txt on Github which needs to be run
+> with Cmake. I am trying to get that code embed into my build using my own
+> recipe. This is my first experience with Cmake. I have no clue what shoul=
+d
+> I write in my recipe.
+>
+>  My recipe is as follows:
+>
+>  DESCRIPTION =3D "cameracapture application"
+> SECTION =3D "examples"
+> LICENSE =3D "CLOSED"
+> PR =3D "r0"
+>
+>  DEPENDS +=3D "opencv"
+> inherit cmake pkgconfig
+>
+>  SRC_URI =3D "git://
+> github.com/zafrullahsyed/cameracapture.git;protocol=3Dhttps;tag=3Dv0.1"
+>
+>  do_configure() {
+>     ${BUILD_CXX} cameracapture.cpp -o cameracapture
+>     }
+>
+> Why you want to compile something during configure? Remove this function.
+>
+>
+>  EXTRA_OECMAKE=3D""
+>
+> You don't need this if you don't need to pass additional definitions to
+> cmake.
+>
+>
+>
+>  I know this recipe is wrong, I looked up many other recipes that use
+> Cmake
+>
+> http://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connec=
+tivity/gnuradio/gnuradio_git.bb
+>
+>  each of them have their own parameters and functions.
+>
+>  Everytime I build my system I get this error:
+>
+>  ERROR: Function failed: do_configure (see
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cam=
+eracapture-0.1-r0/temp/log.do_configure.1410
+> for further information)
+> ERROR: Logfile of failure stored in:
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cam=
+eracapture-0.1-r0/temp/log.do_configure.1410
+> Log data follows:
+> | DEBUG: Executing python function sysroot_cleansstate
+> | DEBUG: Python function sysroot_cleansstate finished
+> | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common=
+']
+> | DEBUG: Executing shell function autotools_preconfigure
+> | DEBUG: Shell function autotools_preconfigure finished
+> | DEBUG: Executing shell function do_configure
+> | CMake Error: The source directory
+> "/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/ca=
+meracapture-0.1-r0/cameracapture-0.1"
+> does not appear to contain CMakeLists.txt.
+>
+> Are you sure this directory exists and contain the CMakeLists.txt file?
+> Maybe you have to adjust the S variable to point to the directory of your
+> source code.
+>
+>
+>   | Specify --help for usage, or press the help button on the CMake GUI.
+> | ERROR: Function failed: do_configure (see
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cam=
+eracapture-0.1-r0/temp/log.do_configure.1410
+> for further information)
+> ERROR: Task 579
+> (/home/siguser/yocto/poky/meta-bebot/recipes-bebot/cameracapture/
+> cameracapture_0.1.bb, do_configure) failed with exit code '1'
+>
+>  I have no clue what I should write in my recipe file. Yocto doesn't have
+> any tutorial for this.
+>
+>  Can anyone give some hints where I am doing wrong or what should be
+> included in my recipe?
+>
+> You can take a look at one of my simple recipes:
+>
+> http://opensource.cit-ec.de/projects/meta-openrobotix/repository/revision=
+s/master/entry/recipes-connectivity/rsb/rsb_git.bb
+>
+>
 
-#@TYPE: Machine
-#@NAME: qemuarmhf
-#@DESCRIPTION: Machine configuration for QEMU ARM Cortex A9 hard float.
 
-require conf/machine/include/qemu.inc
-require conf/machine/include/tune-cortexa9.inc
+--=20
+Regards,
+Zafrullah Syed
 
-KERNEL_IMAGETYPE =3D "zImage"
-
-SERIAL_CONSOLE =3D "115200 ttyAMA0"
-
-
-Patch for linux-yocto_3.8.bb
-
-diff --git a/meta/recipes-kernel/linux/linux-yocto_3.8.bb =
-b/meta/recipes-kernel/linux/linux-yocto_3.8.bb
-index 790e3e3..787affe 100644
---- a/meta/recipes-kernel/linux/linux-yocto_3.8.bb
-+++ b/meta/recipes-kernel/linux/linux-yocto_3.8.bb
-@@ -4,6 +4,7 @@ KBRANCH_DEFAULT =3D "standard/base"
- KBRANCH =3D "${KBRANCH_DEFAULT}"
-=20
- SRCREV_machine_qemuarm ?=3D "aa76cc28408376814752bd36fb0dcf0e25aa5ba3"
-+SRCREV_machine_qemuarmhf ?=3D =
-"aa76cc28408376814752bd36fb0dcf0e25aa5ba3"
- SRCREV_machine_qemumips  ?=3D =
-"aa0affda03c955678b26b2fb586f1d9505127871"
- SRCREV_machine_qemumips64 ?=3D =
-"077bff22c9951db6b35470ba17b1df2f2a91fefb"
- SRCREV_machine_qemuppc ?=3D "698eada61d9385b42dd117858b943655b565084b"
-@@ -21,7 +22,7 @@ PV =3D "${LINUX_VERSION}+git${SRCPV}"
-=20
- KMETA =3D "meta"
-=20
--COMPATIBLE_MACHINE =3D =
-"qemuarm|qemux86|qemuppc|qemumips|qemumips64|qemux86-64"
-+COMPATIBLE_MACHINE =3D =
-"qemuarm|qemuarmhf|qemux86|qemuppc|qemumips|qemumips64|qemux86-64"
-=20
- # Functionality flags
- KERNEL_EXTRA_FEATURES ?=3D "features/netfilter/netfilter.scc"
-
-Best regards,
-
-Elvis Dowson=
-
---Apple-Mail=_7A8717E2-DAB6-4BE1-955C-AED36E95A975
+--f46d04428e4031af7b04e4c6f173
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">Hi =
-Bruce,<div><br><div><div>On Aug 25, 2013, at 9:22 AM, Bruce Ashfield =
-&lt;<a =
-href=3D"mailto:bruce.ashfield@windriver.com">bruce.ashfield@windriver.com<=
-/a>&gt; wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><blockquote type=3D"cite">Another quick question, why is =
-it that when I create a new qemuarmhf.conf machine configuration, it =
-doesn't automatically pick up the latest linux-yocto_3.8.bb recipe? Why =
-does it attempt to use the 3.4 recipe?<br></blockquote><br>Are you =
-working off master ?<br><br>Since you set the compatibility, it should =
-have been picked. But something<br>else must be changed in your layers, =
-since if you didn't add<br>3.4 compatibility via bbappends, it never =
-would have been selected<br>at =
-all.<br></blockquote></div><div><br></div><div>Yes, I'm currently =
-working off master. If I add the following qemuarmhf.conf file, and =
-apply the patch to linux-yocto_3.8.bb, it still tries to compile =
-linux-yocto_3.4.bb recipe. You should be able to reproduce this fairly =
-easily at your end, with the current poky master. I'm not using any =
-additional layers, just the core yocto default =
-layers.</div><div><br></div><div><b><u>Filename:&nbsp;qemuarmhf.conf</u></=
-b></div><div><br></div><div>#@TYPE: Machine<br>#@NAME: =
-qemuarmhf<br>#@DESCRIPTION: Machine configuration for QEMU ARM Cortex A9 =
-hard float.<br><br>require conf/machine/include/qemu.inc<br>require =
-conf/machine/include/tune-cortexa9.inc<br><br>KERNEL_IMAGETYPE =3D =
-"zImage"<br><br>SERIAL_CONSOLE =3D "115200 =
-ttyAMA0"<br><br></div></div><div><br></div><div><b><u>Patch for =
-linux-yocto_3.8.bb</u></b></div><div><br></div><div>diff --git =
-a/meta/recipes-kernel/linux/linux-yocto_3.8.bb =
-b/meta/recipes-kernel/linux/linux-yocto_3.8.bb<br>index 790e3e3..787affe =
-100644<br>--- a/meta/recipes-kernel/linux/linux-yocto_3.8.bb<br>+++ =
-b/meta/recipes-kernel/linux/linux-yocto_3.8.bb<br>@@ -4,6 +4,7 @@ =
-KBRANCH_DEFAULT =3D "standard/base"<br>&nbsp;KBRANCH =3D =
-"${KBRANCH_DEFAULT}"<br>&nbsp;<br>&nbsp;SRCREV_machine_qemuarm ?=3D =
-"aa76cc28408376814752bd36fb0dcf0e25aa5ba3"<br>+SRCREV_machine_qemuarmhf =
-?=3D =
-"aa76cc28408376814752bd36fb0dcf0e25aa5ba3"<br>&nbsp;SRCREV_machine_qemumip=
-s &nbsp;?=3D =
-"aa0affda03c955678b26b2fb586f1d9505127871"<br>&nbsp;SRCREV_machine_qemumip=
-s64 ?=3D =
-"077bff22c9951db6b35470ba17b1df2f2a91fefb"<br>&nbsp;SRCREV_machine_qemuppc=
- ?=3D "698eada61d9385b42dd117858b943655b565084b"<br>@@ -21,7 +22,7 @@ PV =
-=3D "${LINUX_VERSION}+git${SRCPV}"<br>&nbsp;<br>&nbsp;KMETA =3D =
-"meta"<br>&nbsp;<br>-COMPATIBLE_MACHINE =3D =
-"qemuarm|qemux86|qemuppc|qemumips|qemumips64|qemux86-64"<br>+COMPATIBLE_MA=
-CHINE =3D =
-"qemuarm|qemuarmhf|qemux86|qemuppc|qemumips|qemumips64|qemux86-64"<br>&nbs=
-p;<br>&nbsp;# Functionality flags<br>&nbsp;KERNEL_EXTRA_FEATURES ?=3D =
-"features/netfilter/netfilter.scc"</div><div><br></div><div>Best =
-regards,</div><div><br></div><div>Elvis Dowson</div></body></html>=
+<div dir=3D"ltr">Hi Stefan,<div><br></div><div>I updated my recipe:</div><d=
+iv><br></div><div><div>DESCRIPTION =3D &quot;cameracapture application&quot=
+;=A0</div><div>SECTION =3D &quot;examples&quot;=A0</div><div>LICENSE =3D &q=
+uot;CLOSED&quot;=A0</div>
 
---Apple-Mail=_7A8717E2-DAB6-4BE1-955C-AED36E95A975--
+
+
+<div>PR =3D &quot;r0&quot;=A0</div><div><br></div><div>DEPENDS =3D &quot;op=
+encv&quot;<br></div><div><br></div><div>SRC_URI =3D &quot;git://<a href=3D"=
+http://github.com/zafrullahsyed/cameracapture.git" target=3D"_blank">github=
+.com/zafrullahsyed/cameracapture.git</a>;protocol=3Dhttps;tag=3Dv0.1&quot;<=
+br>
+
+
+
+</div><div><br></div><div>S =3D &quot;${WORKDIR}/git&quot;<br></div><div>in=
+herit pkgconfig cmake<br></div></div><div><br></div><div>I have my source f=
+ile and CMakeLists.txt as tar on github. tar is not getting downloaded.</di=
+v>
+
+
+<div><br></div><div>--&gt; If I remove tar and keep just source file and CM=
+akeLists.txt, then also it is not getting downloaded. I am getting=A0</div>=
+<div><br></div><div>CMake Error: The source directory &quot;/home/siguser/y=
+octo/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0=
+/cameracapture-0.1&quot; does not appear to contain CMakeLists.txt.</div>
+
+
+<div><br></div><div>--&gt; I copied my CMakeLists.txt file in ${WORKDIR}/gi=
+t and tried the build, got this following error:</div><div><br></div><div><=
+div><div>ERROR: Function failed: do_configure (see /home/siguser/yocto/buil=
+d/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log=
+.do_configure.10784 for further information)</div>
+
+
+<div>ERROR: Logfile of failure stored in: /home/siguser/yocto/build/tmp/wor=
+k/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_confi=
+gure.10784</div><div>Log data follows:</div><div>| DEBUG: Executing python =
+function sysroot_cleansstate</div>
+
+
+<div>| DEBUG: Python function sysroot_cleansstate finished</div><div>| DEBU=
+G: SITE files [&#39;endian-little&#39;, &#39;bit-32&#39;, &#39;arm-common&#=
+39;, &#39;common-linux&#39;, &#39;common-glibc&#39;, &#39;arm-linux&#39;, &=
+#39;arm-linux-gnueabi&#39;, &#39;common&#39;]</div>
+
+
+<div>| DEBUG: Executing shell function autotools_preconfigure</div><div>| D=
+EBUG: Shell function autotools_preconfigure finished</div><div>| DEBUG: Exe=
+cuting shell function do_configure</div><div>| CMake Error at /home/siguser=
+/yocto/build/tmp/sysroots/x86_64-linux/usr/share/cmake-2.8/Modules/CMakeDet=
+ermineSystem.cmake:95 (MESSAGE):</div>
+
+
+<div>| =A0 Could not find toolchain file:</div><div>| =A0 /home/siguser/yoc=
+to/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/t=
+oolchain.cmake</div><div>| Call Stack (most recent call first):</div><div>
+
+| =A0 CMakeLists.txt:2 (project)</div>
+<div>|=A0</div><div>|=A0</div><div>| CMake Error: Error required internal C=
+Make variable not set, cmake may be not be built correctly.</div><div>| Mis=
+sing variable is:</div><div>| CMAKE_C_COMPILER_ENV_VAR</div><div>| CMake Er=
+ror: Error required internal CMake variable not set, cmake may be not be bu=
+ilt correctly.</div>
+
+
+<div>| Missing variable is:</div><div>| CMAKE_C_COMPILER</div><div>| CMake =
+Error: Could not find cmake module file:/home/siguser/yocto/build/tmp/work/=
+armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMak=
+eCCompiler.cmake</div>
+
+
+<div>| CMake Error: Error required internal CMake variable not set, cmake m=
+ay be not be built correctly.</div><div>| Missing variable is:</div><div>| =
+CMAKE_CXX_COMPILER_ENV_VAR</div><div>| CMake Error: Error required internal=
+ CMake variable not set, cmake may be not be built correctly.</div>
+
+
+<div>| Missing variable is:</div><div>| CMAKE_CXX_COMPILER</div><div>| CMak=
+e Error: Could not find cmake module file:/home/siguser/yocto/build/tmp/wor=
+k/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CM=
+akeCXXCompiler.cmake</div>
+
+
+<div>| CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage</div><di=
+v>| CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage</div><div=
+>| -- Configuring incomplete, errors occurred!</div><div>| ERROR: Function =
+failed: do_configure (see /home/siguser/yocto/build/tmp/work/armv7a-vfp-neo=
+n-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784 for f=
+urther information)</div>
+
+
+<div>ERROR: Task 6 (/home/siguser/yocto/poky/meta-bebot/recipes-bebot/camer=
+acapture/<a href=3D"http://cameracapture_0.1.bb" target=3D"_blank">cameraca=
+pture_0.1.bb</a>, do_configure) failed with exit code &#39;1&#39;</div></di=
+v>
+
+</div><div><br>
+</div><div>Do I need to set CXX Compiler in my CMakeLists.txt?=A0</div>
+<div><br></div><div>My CmakeLists.txt file:</div><div><br></div><div><div>c=
+make_minimum_required(VERSION 2.8)</div><div>project(cameracapture)</div><d=
+iv>find_package( OpenCV REQUIRED )</div><div>add_executable( cameracapture =
+cameracapture.cpp )</div>
+
+
+<div>target_link_libraries( cameracapture ${OpenCV_LIBS} )</div></div><div>=
+<br></div><div>Can you please give me some inputs?</div><div><br></div><div=
+>Thanks &amp; Regards,</div><div><br></div><div>Zafrullah</div><div>Univers=
+it=E4t Paderborn.</div>
+
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Aug 2=
+3, 2013 at 9:09 AM, Stefan Herbrechtsmeier <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:stefan@herbrechtsmeier.net" target=3D"_blank">stefan@herbrechtsmeie=
+r.net</a>&gt;</span> wrote:<br>
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div>Am 22.08.2013 20:13, schrieb Zafrullah
+      Syed:<br>
+    </div><div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">Hi all,
+        <div><br>
+        </div>
+        <div>I am newbie and I am learning stuff.</div>
+        <div><br>
+        </div>
+        <div>I have a c++ code and CMakeLists.txt on Github which needs
+          to be run with Cmake. I am trying to get that code embed into
+          my build using my own recipe. This is my first experience with
+          Cmake. I have no clue what should I write in my recipe.</div>
+        <div><br>
+        </div>
+        <div>My recipe is as follows:</div>
+        <div><br>
+        </div>
+        <div>DESCRIPTION =3D &quot;cameracapture application&quot;=A0</div>
+        <div>SECTION =3D &quot;examples&quot;=A0</div>
+        <div>LICENSE =3D &quot;CLOSED&quot;=A0</div>
+        <div>PR =3D &quot;r0&quot;=A0</div>
+        <div><br>
+        </div>
+        <div>DEPENDS +=3D &quot;opencv&quot;</div>
+        <div>inherit cmake pkgconfig</div>
+        <div><br>
+        </div>
+        <div>SRC_URI =3D &quot;git://<a href=3D"http://github.com/zafrullah=
+syed/cameracapture.git;protocol=3Dhttps;tag=3Dv0.1" target=3D"_blank">githu=
+b.com/zafrullahsyed/cameracapture.git;protocol=3Dhttps;tag=3Dv0.1</a>&quot;=
+</div>
+        <div><br>
+        </div>
+        <div>do_configure() {</div>
+        <div>=A0 =A0 ${BUILD_CXX} cameracapture.cpp -o cameracapture</div>
+        <div>=A0 =A0 }</div>
+      </div>
+    </blockquote></div>
+    Why you want to compile something during configure? Remove this
+    function.<br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div><br>
+        </div>
+        <div>EXTRA_OECMAKE=3D&quot;&quot; <br>
+        </div>
+      </div>
+    </blockquote>
+    You don&#39;t need this if you don&#39;t need to pass additional defini=
+tions
+    to cmake.<div><br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div><br>
+        </div>
+        <div>I know this recipe is wrong, I looked up many other recipes
+          that use Cmake</div>
+        <div><a href=3D"http://git.openembedded.org/meta-openembedded/tree/=
+meta-oe/recipes-connectivity/gnuradio/gnuradio_git.bb" target=3D"_blank">ht=
+tp://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connectivi=
+ty/gnuradio/gnuradio_git.bb</a><br>
+
+
+
+        </div>
+        <div><br>
+        </div>
+        <div>each of them have their own parameters and functions.<br>
+        </div>
+        <div><br>
+        </div>
+        <div>Everytime I build my system I get this error:<br>
+        </div>
+        <div><br>
+        </div>
+        <div>
+          <div>ERROR: Function failed: do_configure (see
+            /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-g=
+nueabi/cameracapture-0.1-r0/temp/log.do_configure.1410
+            for further information)</div>
+          <div>ERROR: Logfile of failure stored in:
+/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/camer=
+acapture-0.1-r0/temp/log.do_configure.1410</div>
+          <div>Log data follows:</div>
+          <div>| DEBUG: Executing python function sysroot_cleansstate</div>
+          <div>| DEBUG: Python function sysroot_cleansstate finished</div>
+          <div>| DEBUG: SITE files [&#39;endian-little&#39;, &#39;bit-32&#3=
+9;,
+            &#39;arm-common&#39;, &#39;common-linux&#39;, &#39;common-glibc=
+&#39;, &#39;arm-linux&#39;,
+            &#39;arm-linux-gnueabi&#39;, &#39;common&#39;]</div>
+          <div>| DEBUG: Executing shell function autotools_preconfigure</di=
+v>
+          <div>| DEBUG: Shell function autotools_preconfigure finished</div=
+>
+          <div>| DEBUG: Executing shell function do_configure</div>
+          <div>| CMake Error: The source directory
+            &quot;/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-l=
+inux-gnueabi/cameracapture-0.1-r0/cameracapture-0.1&quot;
+            does not appear to contain CMakeLists.txt.</div>
+        </div>
+      </div>
+    </blockquote></div>
+    Are you sure this directory exists and contain the CMakeLists.txt
+    file? Maybe you have to adjust the S variable to point to the
+    directory of your source code.<div><br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div>
+          <div>| Specify --help for usage, or press the help button on
+            the CMake GUI.</div>
+          <div>| ERROR: Function failed: do_configure (see
+            /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-g=
+nueabi/cameracapture-0.1-r0/temp/log.do_configure.1410
+            for further information)</div>
+          <div>ERROR: Task 579
+            (/home/siguser/yocto/poky/meta-bebot/recipes-bebot/cameracaptur=
+e/<a href=3D"http://cameracapture_0.1.bb" target=3D"_blank">cameracapture_0=
+.1.bb</a>,
+            do_configure) failed with exit code &#39;1&#39;</div>
+        </div>
+        <div><br>
+        </div>
+        <div>I have no clue what I should write in my recipe file. Yocto
+          doesn&#39;t have any tutorial for this.</div>
+        <div><br>
+        </div>
+        <div>Can anyone give some hints where I am doing wrong or what
+          should be included in my recipe?</div>
+      </div>
+    </blockquote></div>
+    You can take a look at one of my simple recipes:<br>
+<a href=3D"http://opensource.cit-ec.de/projects/meta-openrobotix/repository=
+/revisions/master/entry/recipes-connectivity/rsb/rsb_git.bb" target=3D"_bla=
+nk">http://opensource.cit-ec.de/projects/meta-openrobotix/repository/revisi=
+ons/master/entry/recipes-connectivity/rsb/rsb_git.bb</a><br>
+
+
+
+    <br>
+  </div>
+
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><span style=
+=3D"font-family:arial,sans-serif;font-size:13px;border-collapse:collapse;co=
+lor:rgb(136,136,136)">Regards,<br>Zafrullah Syed</span><div><font color=3D"=
+#888888" face=3D"arial, sans-serif"><span style=3D"border-collapse:collapse=
+"><br>
+
+
+</span></font></div>
+</div></div>
+
+--f46d04428e4031af7b04e4c6f173--
