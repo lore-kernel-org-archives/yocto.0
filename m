@@ -1,35 +1,52 @@
-Return-Path: <fathi.boudra@linaro.org>
-Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E458E00282
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 04:11:51 -0700 (PDT)
-Received: by mail-la0-f54.google.com with SMTP id ea20so2204540lab.41
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 04:11:50 -0700 (PDT)
+Return-Path: <javiroman@kernel-labs.org>
+Received: from paris.hostgo.com (unknown [64.71.164.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A12DAE00282
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:24:13 -0700 (PDT)
+Received: from mail-pa0-f46.google.com ([209.85.220.46]:41329)
+	by paris.hostgo.com with esmtpsa (TLSv1:RC4-SHA:128) (Exim 4.80.1)
+	(envelope-from <javiroman@kernel-labs.org>) id 1VDvq7-0006mk-N9
+	for yocto@yoctoproject.org; Mon, 26 Aug 2013 08:24:11 -0400
+Received: by mail-pa0-f46.google.com with SMTP id fa1so3362011pad.19
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:24:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=Gu/0YQj4vYXvgQMwOiIbAu949goRitoc6nKoytesVYg=;
-	b=bm2HadejntpK7wus7Bp9eTJ49nQuxS7shott0Q2UqVTwOrF3Q7UIqdQqrAZ9NouHVG
-	YNUgBO7g58DlIGyiPPkeUMtxfdisuX3frcbFxpkLPV0t2drPYi1WSf9T0oVXqZAA9gV6
-	AhWcNcpG7E0gShSY6YUZTqKkwBSVzTUKY06+F4SV8EiaUWu+bbcfvnUxsBb1M/Slz9xz
-	dp3IGnm/RHAxYM617p8RaOT36RGTnJbChS7uyw1aagvtLkzuaGO5gjQ9P4fV25iZCrFj
-	6LdwpPoK3KXWuS7wIeDw9AHgTOjp2RiRRPdVAemxN8xSc2tHDy9DasGy3EsIXpZAWJH4
-	MNgQ==
-X-Gm-Message-State: ALoCoQkx+7tquB6N9B/HLyYbIws68YV9WJP03uHbzIs2XkSBb4qYshCZvHF/Zl31hOPvG6qzDlIC
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=bXx/uVFdvHqCsUDoyFaTz/1VNtXe1rCiLZLbjuu5efU=;
+	b=ieQzXOruRb2tZi8ss6yqtjkcCtbvn2cXhHVBAyF2c3BZOMovWreUKREGj41JCmFDzF
+	GJepYI8fl9F7s2rWw/iLOnlkPazM7ioYKq62QKBRdGLGLrsPduxtCGlUVM91C9P14ngy
+	WL0X9X8SlsV8I62eq3hCwcZcwvyYONshVh7olIHVa9lXRpNkTYzZr3YcSvE8GrQ7GLbP
+	oLUPTg0kRM0oes1ty4LTgnDtt0ZFdHEmqwRoV1E3fhOwR8vTv9c2CzZVE8Y060Wfjh9y
+	eteJJXMAig2PCncf/tDn/KKOlLofNhPrvb3s3fyGJ2Js6Rp4x2mdXn+QjkbQDTfujZrS
+	9mdA==
+X-Received: by 10.68.232.166 with SMTP id tp6mr2772964pbc.153.1377519850771;
+	Mon, 26 Aug 2013 05:24:10 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.152.120.73 with SMTP id la9mr13312474lab.3.1377515510128;
-	Mon, 26 Aug 2013 04:11:50 -0700 (PDT)
-Received: by 10.112.160.73 with HTTP; Mon, 26 Aug 2013 04:11:50 -0700 (PDT)
-In-Reply-To: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
-References: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
-Date: Mon, 26 Aug 2013 14:11:50 +0300
-Message-ID: <CAGNsrLCvcW2WNSfmMm-DLQMxFXC5=rr9Sknj6ECdmuiZc=gHgg@mail.gmail.com>
-From: Fathi Boudra <fathi.boudra@linaro.org>
-To: Trevor Woerner <trevor.woerner@linaro.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio.salvador@gmail.com>
-Subject: Re: [DYLAN] RPATH issue with qt5's qtwebkit
+Received: by 10.68.130.163 with HTTP; Mon, 26 Aug 2013 05:23:30 -0700 (PDT)
+In-Reply-To: <loom.20130724T132956-99@post.gmane.org>
+References: <CANwz6nxO25BCt2B-H8T9_SO5F3DqfE1w2QDSoXPVnP-qxq994Q@mail.gmail.com>
+	<loom.20130614T060308-378@post.gmane.org> <1571616.VWc8oWtlLJ@helios>
+	<loom.20130614T195255-724@post.gmane.org>
+	<CE727E34-D6D2-4B25-840A-0D2F32318C0A@gmail.com>
+	<loom.20130614T200317-354@post.gmane.org>
+	<loom.20130724T132956-99@post.gmane.org>
+From: Javi Roman <javiroman@kernel-labs.org>
+Date: Mon, 26 Aug 2013 14:23:30 +0200
+Message-ID: <CACWQdqBLwYUR4+C4ico5ss08L_90ozKzvMiDL5bP_jKo2eC3tw@mail.gmail.com>
+To: Marcelo Valle <mvalleavila@gmail.com>
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - paris.hostgo.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - kernel-labs.org
+X-Get-Message-Sender-Via: paris.hostgo.com: authenticated_id:
+	javiroman@kernel-labs.org
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: gcc enable-languages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,42 +58,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2013 11:11:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 26 Aug 2013 12:24:14 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+I had the same issue. The problem seems the variable FC (Fortran
+Compiler) is not properly setup (in meta/conf/bitbake.conf).
 
-On 24 August 2013 04:36, Trevor Woerner <trevor.woerner@linaro.org> wrote:
-> Hi,
->
-> When I try to include "qtwebkit" in my image from the "dylan" branch I end
-> up
-> with the following QA do_package_qa error [note that this does not happen
-> with "master"]:
->
-> ERROR: QA Issue: package qtwebkit contains bad RPATH
-> /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib
-> in file
-> /home/trevor/build/yocto/tmp/dylan/work/armv5te-poky-linux-gnueabi/qtwebkit/5.0.2-r0.0/packages-split/qtwebkit/usr/lib/qt5/libexec/QtWebProcess
->
-> And the QA test is correct. When I "objdump -x" this binary I get:
->
-> Dynamic Section:
->   NEEDED               libQt5WebKitWidgets.so.5
->   NEEDED               libQt5WebKit.so.5
->   NEEDED               libQt5Widgets.so.5
->   NEEDED               libQt5Core.so.5
->   NEEDED               libstdc++.so.6
->   NEEDED               libc.so.6
->   RPATH
-> /home/trevor/build/yocto/tmp/rdk/work/armv5te-rdk-linux-gnueabi/qtwebkit/5.0.2-r0.0/build/lib
->
-> Can anyone suggest any fixes or patches? Note I'm using 5.0.2.
+The libtool-cross recipe shows QA problems with wrong include paths
+when uses x86_64-poky-linux-gfortran tests.
 
-I haven't checked how qtwebkit is built or meta-qt5, but the Qt's
-configure has -no-rpath option. A grep on meta-qt5 doesn't show any
-usage of it.
+This workaround works for me:
 
-Cheers,
-Fathi
+recipes-devtools/gcc
+=E2=94=94=E2=94=80=E2=94=80 gcc-cross_4.7.bbappend
+recipes-devtools/libtool/
+=E2=94=94=E2=94=80=E2=94=80 libtool-cross_2.4.2.bbappend
+
+With:
+
+$ cat recipes-devtools/gcc/gcc-cross_4.7.bbappend
+FORTRAN =3D ",fortran"
+
+$ cat recipes-devtools/libtool/libtool-cross_2.4.2.bbappend
+export FC =3D "${CCACHE}${HOST_PREFIX}gfortran ${HOST_CC_ARCH}
+--sysroot=3D${STAGING_DIR_HOST}"
+
+Javi Roman
+
+
+On Wed, Jul 24, 2013 at 1:39 PM, Marcelo Valle <mvalleavila@gmail.com> wrot=
+e:
+> Dat Tran <dtran11@...> writes:
+>
+>
+>
+>>
+>> This is the error I get:
+>>
+>> configure: WARNING: unrecognized options: --disable-silent-rules, --with=
+-
+>> sysroot
+>> DEBUG: Shell function do_configure finished
+>> DEBUG: Executing python function do_qa_configure
+>> NOTE: Checking autotools environment for common misconfiguration
+>> ERROR: This autoconf log indicates errors, it looked at host include
+> and/or
+>> library paths while determining system capabilities.
+>> Rerun configure task after fixing this. The path was
+>> '/home/appusr/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-
+>> gnueabi/libtool-cross-2.4.2-r5.1/libtool-2.4.2'
+>> DEBUG: Python function do_qa_configure finished
+>> ERROR: Function failed: do_qa_configure
+>>
+>> Thanks
+>>
+>>
+>
+> Hello,
+>
+> I followed the same steps to use fortran with Yocto, but get a similar
+> error:
+>
+> ERROR: This autoconf log indicates errors, it looked at host include and/=
+or
+> library paths while determining system capabilities.
+> Rerun configure task after fixing this. The path was '/home/mvalle/poky-
+> dylan-9.0.0/build/tmp/work/x86_64-poky-linux/gcc-runtime/4.7.2-r19/gcc-
+> 4.7.2/build.x86_64-poky-linux.x86_64-poky-linux/x86_64-poky-
+> linux/libgfortran'
+> ERROR: Function failed: do_qa_configure
+>
+> You finally could fix this error?
+>
+> Thanks in advance.
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
