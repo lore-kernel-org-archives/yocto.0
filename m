@@ -1,30 +1,35 @@
-Return-Path: <stefan@herbrechtsmeier.net>
-Received: from dd19416.kasserver.com (dd19416.kasserver.com [85.13.139.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5C5FE00282
-	for <yocto@yoctoproject.org>; Sun, 25 Aug 2013 11:10:55 -0700 (PDT)
-Received: from [192.168.1.100] (blfd-5d8211e4.pool.mediaWays.net
-	[93.130.17.228])
-	by dd19416.kasserver.com (Postfix) with ESMTPSA id 7B9301840389;
-	Sun, 25 Aug 2013 20:10:52 +0200 (CEST)
-Message-ID: <521A48AA.7060802@herbrechtsmeier.net>
-Date: Sun, 25 Aug 2013 20:10:50 +0200
-From: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
-MIME-Version: 1.0
-To: Zafrullah Syed <zafrullahmehdi@gmail.com>
-References: <CAAGt+t0w9Rtia4vVJujgjTfmEU709WyhjCYSPP7PThMN+vpOdg@mail.gmail.com>
-	<CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
-	<CAAGt+t2gxfmg8cJ+izKmejXcywknPpOvYMrRPUgKN5fHHa-gmw@mail.gmail.com>
-	<CAAGt+t13OZ88fi_9foDDp+FeD9VOkBDip1RVQYxWkNejmvifeg@mail.gmail.com>
-	<CAJTo0LYqaCwHTLnxUwPVME_zFNbWEVXHZoJpiWTTw-wBWn5xeQ@mail.gmail.com>
-	<52161E20.3010800@balister.org>
-	<CAAGt+t3Q3GaitOuGTob0faWa4PU1sqmBAwLrdNetMK1PZLDF5Q@mail.gmail.com>
-	<52170AA1.4000602@herbrechtsmeier.net>
-	<CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com>
-In-Reply-To: <CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: bitbake with cmake recipe
+Return-Path: <mulhern@gmail.com>
+Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
+	[209.85.216.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A227CE00282;
+	Sun, 25 Aug 2013 18:17:19 -0700 (PDT)
+Received: by mail-qa0-f42.google.com with SMTP id bn16so5877qab.15
+	for <multiple recipients>; Sun, 25 Aug 2013 18:17:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=k+gaZWqlUymkeN54j9yepUdafWrOA+0OTX1CBe+NlzU=;
+	b=GOnvaLB4JOpEdmCFcFxTReZE11l9aBt9XNKYfTGdt9bhcLvR+yOyfVsk1auMViNmAp
+	uL16dc/w7bp2H2cRP7BqZZrRr3wnY2ZqQCzQfFfeZH3EmPLDAdcl8rKDsLb75RIYyiEq
+	4hsmQtMjko/xSOts7I04m/SOic5NiQsCc/tH5gQ9oroA+vXHIxiF3WrWSGFskDauOTlK
+	vROAKVw3DRhgPL1e8DlXh4Jrzl1v7ycjyyP/BL3UInRF47z6BGvW2TuDQswYYOKkNIiy
+	9HA7+jup5obALaeD9KwuGibZ1+MYACIdtosAPpBi7oOedo0iz+8HVmOHGfyjOBnl5j5R
+	CuQw==
+X-Received: by 10.224.4.2 with SMTP id 2mr13358415qap.55.1377479838485;
+	Sun, 25 Aug 2013 18:17:18 -0700 (PDT)
+Received: from mulhern-2010-ubuntu (c-24-128-153-12.hsd1.ma.comcast.net.
+	[24.128.153.12])
+	by mx.google.com with ESMTPSA id t4sm18863960qas.1.1969.12.31.16.00.00
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Sun, 25 Aug 2013 18:17:17 -0700 (PDT)
+Received: by mulhern-2010-ubuntu (sSMTP sendmail emulation);
+	Sun, 25 Aug 2013 21:17:15 -0400
+From: mulhern <mulhern@gmail.com>
+To: yocto@yoctoproject.org,
+	mulhern@yoctoproject.org
+Date: Sun, 25 Aug 2013 21:17:07 -0400
+Message-Id: <cover.1377479358.git.mulhern@yoctoproject.org>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [PATCH 0/5] [meta-security] Bastille bug fixes and enhancements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,332 +41,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Aug 2013 18:10:58 -0000
-Content-Type: multipart/alternative;
-	boundary="------------080508040602090502050000"
+X-List-Received-Date: Mon, 26 Aug 2013 01:17:21 -0000
 
---------------080508040602090502050000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+The patches in this set consist of a number of actual bug fixes and a few
+enhancements. The two enhancements are:
 
-Am 25.08.2013 17:03, schrieb Zafrullah Syed:
-> Hi Stefan,
->
-> I updated my recipe:
->
-> DESCRIPTION = "cameracapture application"
-> SECTION = "examples"
-> LICENSE = "CLOSED"
-> PR = "r0"
->
-> DEPENDS = "opencv"
->
-> SRC_URI = "git://github.com/zafrullahsyed/cameracapture.git 
-> <http://github.com/zafrullahsyed/cameracapture.git>;protocol=https;tag=v0.1"
->
-> S = "${WORKDIR}/git"
-> inherit pkgconfig cmake
->
-> I have my source file and CMakeLists.txt as tar on github. tar is not 
-> getting downloaded.
-The tar should be in the "${WORKDIR}/git" directory but it will not work 
-as you don't tell bitbake to unpack it.
+1) A change in the semantics of the -l flag so that it lists configuration
+files even if Bastille has not been run previously.
+2) A change in the distributions are inferred, specified, and observed so that
+a distribution can always be specified and so that a specified distribution
+overrides an inferred distribution when they are different.
 
-You repository with tag "v0.1" contains only a README.md!
+At this point, the Bastille screens will show the appropriate questions and
+when the questions have been responded to it will write out the responses to
+the config file.
 
-The common use case is to put all sources into the git repository. Why 
-you want to save a tar in a git repository?
+The two significant things that it cannot do, but that the documentation claims
+that it does are:
 
->
-> --> If I remove tar and keep just source file and CMakeLists.txt, then 
-> also it is not getting downloaded.
-Have you check the content of the 
-/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git 
-directory?
+1) Test the system on which it is run for answers to the questions.
+2) Make changes to the system based on those answers. 
 
-> I am getting
->
-> CMake Error: The source directory 
-> "/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/cameracapture-0.1" 
-> does not appear to contain CMakeLists.txt.
-         ^^^
-Are you sure you have change the S variable? The error still reference 
-the common directory ("${WORKDIR}/${PN}-${PV}").
->
-> --> I copied my CMakeLists.txt file in ${WORKDIR}/git and tried the 
-> build, got this following error:
->
-> ERROR: Function failed: do_configure (see 
-> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784 
-> for further information)
-> ERROR: Logfile of failure stored in: 
-> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
-> Log data follows:
-> | DEBUG: Executing python function sysroot_cleansstate
-> | DEBUG: Python function sysroot_cleansstate finished
-> | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 
-> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 
-> 'common']
-> | DEBUG: Executing shell function autotools_preconfigure
-> | DEBUG: Shell function autotools_preconfigure finished
-> | DEBUG: Executing shell function do_configure
-> | CMake Error at 
-> /home/siguser/yocto/build/tmp/sysroots/x86_64-linux/usr/share/cmake-2.8/Modules/CMakeDetermineSystem.cmake:95 
-> (MESSAGE):
-> |   Could not find toolchain file:
-> | 
-> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/toolchain.cmake
-It looks as something went wrong. Please clear the old package and try 
-again or increment the PR number.
-bitbake -c cleansstate cameracapture && bitbake cameracapture
+Clearly, code has at one time been written to effect those changes on some
+systems. But the following things don't work, and appear to be due to bugs
+in the existing code base rather than errors in the set-up.
+1) After the answers have been given InteractiveBastille is supposed to 
+not only write out the responses to the config file but invoke BastilleBackEnd
+so that it makes the changes. The existing code does not do this correctly, and
+fails to make any changes. The method that is invoked for this purpose is
+Run_Bastille_with_Config. The definition of this comment has above it the
+comment "Not used in HP-UX. Run_Bastille_with_Config may be dead code in all
+OS-s." which does not inspire confidence.
+2) If it were the case that "bastille -b" were effective, i.e., if bastille
+could be run so as to apply the contents of the config file to the system,
+problem (1) would not be so serious. But this is not the case. Instead,
+Bastille encounters a variety of fatal errors in the Bastille source, arising,
+at least in part, from a propensity to invoke HP-UX specific code regardless
+of the distro.
+3) Bastille is quite unable even to assess the status of a system with regard
+to the questions asked. In its current state, the result of an assessment is
+a file with no entries. This can be changed with relative ease, so that the
+code that will attempt to discover the answers to the relevant questions is
+executed. However, in that case, the same fatal errors as described in point
+(2) are encountered.
+4) Generally speaking, the code appears to be bug-ridden. Attempting to fix it
+to the point that it actually works might actually be more expensive and less
+rewarding than starting from scratch.
 
-> | Call Stack (most recent call first):
-> |   CMakeLists.txt:2 (project)
-> |
-> |
-> | CMake Error: Error required internal CMake variable not set, cmake 
-> may be not be built correctly.
-> | Missing variable is:
-> | CMAKE_C_COMPILER_ENV_VAR
-> | CMake Error: Error required internal CMake variable not set, cmake 
-> may be not be built correctly.
-> | Missing variable is:
-> | CMAKE_C_COMPILER
-> | CMake Error: Could not find cmake module 
-> file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCCompiler.cmake
-> | CMake Error: Error required internal CMake variable not set, cmake 
-> may be not be built correctly.
-> | Missing variable is:
-> | CMAKE_CXX_COMPILER_ENV_VAR
-> | CMake Error: Error required internal CMake variable not set, cmake 
-> may be not be built correctly.
-> | Missing variable is:
-> | CMAKE_CXX_COMPILER
-> | CMake Error: Could not find cmake module 
-> file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCXXCompiler.cmake
-> | CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
-> | CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
-> | -- Configuring incomplete, errors occurred!
-> | ERROR: Function failed: do_configure (see 
-> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784 
-> for further information)
-> ERROR: Task 6 
-> (/home/siguser/yocto/poky/meta-bebot/recipes-bebot/cameracapture/cameracapture_0.1.bb 
-> <http://cameracapture_0.1.bb>, do_configure) failed with exit code '1'
->
-> Do I need to set CXX Compiler in my CMakeLists.txt?
-No, this are subsequent errors of the missing toolchain.cmake.
+Perhaps this version of Bastille could be kept as a record of
+decisions made about the appropriate issues to address for security on
+Yocto distributions, but no further effort be made to fix it. Instead, some
+other alternative could be found to achieve the same results. Here are two
+possibilities:
 
-> My CmakeLists.txt file:
->
-> cmake_minimum_required(VERSION 2.8)
-> project(cameracapture)
-> find_package( OpenCV REQUIRED )
-> add_executable( cameracapture cameracapture.cpp )
-> target_link_libraries( cameracapture ${OpenCV_LIBS} )
-This looks okay.
+1) OpenScap's oscap tool (open-scap.org). This tool is all about security
+and the source code repository was last updated a few days ago. It might
+work nicely with the Script Check Engine for XCCDF which is described at
+pvrabec.livejournal.com/887.html.
+
+2) Puppet (puppetlabs.com) is more general and is about configuring anything
+at all for various purposes. It has some associated applications, including
+Facter (which finds out facts about the system on which it is running. These
+applications have been written in Ruby.
+The following changes since commit 600a74468bf6d2e2f865e7d7c70e68c60c829234:
+
+  lib-perl: Change description to match package. (2013-08-20 08:39:35 -0700)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib mulhern/bastille-final
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=mulhern/bastille-final
+
+mulhern (5):
+  Bastille: Preliminary cleanup of existing patches.
+  Bastille: Miscellaneous fixes to the Bastille code base.
+  Bastille: change in behavior of bastille -l.
+  Bastille: accept and observe --os flag in multiple situations.
+  Bastille: set Yocto specific questions via config file.
+
+ recipes-security/bastille/bastille_3.2.1.bb        |   18 +-
+ .../files/Curses-and-IOLoader-changes.patch        |   50 ---
+ .../bastille/files/accept_os_flag_in_backend.patch |   28 ++
+ .../bastille/files/allow_os_with_assess.patch      |   37 ++
+ .../bastille/files/call_output_config.patch        |   13 +
+ .../bastille/files/edit_usage_message.patch        |   26 ++
+ .../bastille/files/find_existing_config.patch      |   58 +++
+ .../files/fix_missing_use_directives.patch         |   48 ++
+ .../bastille/files/fix_number_of_modules.patch     |   32 ++
+ ...rd-patch.patch => fixed_defined_warnings.patch} |   32 +-
+ .../bastille/files/organize_distro_discovery.patch |  470 ++++++++++++++++++++
+ .../remove_questions_text_file_references.patch    |   24 +
+ .../bastille/files/set_required_questions.py       |  135 ++++++
+ .../bastille/files/simplify_B_place.patch          |   34 ++
+ .../files/upgrade_options_processing.patch         |   85 ++++
+ 15 files changed, 1015 insertions(+), 75 deletions(-)
+ delete mode 100644 recipes-security/bastille/files/Curses-and-IOLoader-changes.patch
+ create mode 100644 recipes-security/bastille/files/accept_os_flag_in_backend.patch
+ create mode 100644 recipes-security/bastille/files/allow_os_with_assess.patch
+ create mode 100644 recipes-security/bastille/files/call_output_config.patch
+ create mode 100644 recipes-security/bastille/files/edit_usage_message.patch
+ create mode 100644 recipes-security/bastille/files/find_existing_config.patch
+ create mode 100644 recipes-security/bastille/files/fix_missing_use_directives.patch
+ create mode 100644 recipes-security/bastille/files/fix_number_of_modules.patch
+ rename recipes-security/bastille/files/{yocto-standard-patch.patch => fixed_defined_warnings.patch} (65%)
+ create mode 100644 recipes-security/bastille/files/organize_distro_discovery.patch
+ create mode 100644 recipes-security/bastille/files/remove_questions_text_file_references.patch
+ create mode 100755 recipes-security/bastille/files/set_required_questions.py
+ create mode 100644 recipes-security/bastille/files/simplify_B_place.patch
+ create mode 100644 recipes-security/bastille/files/upgrade_options_processing.patch
+
+-- 
+1.7.10.4
 
 
---------------080508040602090502050000
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">Am 25.08.2013 17:03, schrieb Zafrullah
-      Syed:<br>
-    </div>
-    <blockquote
-cite="mid:CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">Hi Stefan,
-        <div><br>
-        </div>
-        <div>I updated my recipe:</div>
-        <div><br>
-        </div>
-        <div>
-          <div>DESCRIPTION = "cameracapture application"&nbsp;</div>
-          <div>SECTION = "examples"&nbsp;</div>
-          <div>LICENSE = "CLOSED"&nbsp;</div>
-          <div>PR = "r0"&nbsp;</div>
-          <div><br>
-          </div>
-          <div>DEPENDS = "opencv"<br>
-          </div>
-          <div><br>
-          </div>
-          <div>SRC_URI = "git://<a moz-do-not-send="true"
-              href="http://github.com/zafrullahsyed/cameracapture.git"
-              target="_blank">github.com/zafrullahsyed/cameracapture.git</a>;protocol=https;tag=v0.1"<br>
-          </div>
-          <div><br>
-          </div>
-          <div>S = "${WORKDIR}/git"<br>
-          </div>
-          <div>inherit pkgconfig cmake<br>
-          </div>
-        </div>
-        <div><br>
-        </div>
-        <div>I have my source file and CMakeLists.txt as tar on github.
-          tar is not getting downloaded.</div>
-      </div>
-    </blockquote>
-    The tar should be in the "${WORKDIR}/git" directory but it will not
-    work as you don't tell bitbake to unpack it.<br>
-    <br>
-    You repository with tag "v0.1" contains only a README.md!<br>
-    <br>
-    The common use case is to put all sources into the git repository.
-    Why you want to save a tar in a git repository?<br>
-    <br>
-    <blockquote
-cite="mid:CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>--&gt; If I remove tar and keep just source file and
-          CMakeLists.txt, then also it is not getting downloaded.</div>
-      </div>
-    </blockquote>
-    Have you check the content of the
-    /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git
-    directory?<br>
-    <br>
-    <blockquote
-cite="mid:CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div> I am getting&nbsp;</div>
-        <div><br>
-        </div>
-        <div>CMake Error: The source directory
-          "/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/cameracapture-0.1"
-          does not appear to contain CMakeLists.txt.</div>
-      </div>
-    </blockquote>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^^^<br>
-    Are you sure you have change the S variable? The error still
-    reference the common directory ("${WORKDIR}/${PN}-${PV}").
-    <blockquote
-cite="mid:CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>--&gt; I copied my CMakeLists.txt file in ${WORKDIR}/git
-          and tried the build, got this following error:</div>
-        <div><br>
-        </div>
-        <div>
-          <div>
-            <div>ERROR: Function failed: do_configure (see
-              /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
-              for further information)</div>
-            <div>ERROR: Logfile of failure stored in:
-/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784</div>
-            <div>Log data follows:</div>
-            <div>| DEBUG: Executing python function sysroot_cleansstate</div>
-            <div>| DEBUG: Python function sysroot_cleansstate finished</div>
-            <div>| DEBUG: SITE files ['endian-little', 'bit-32',
-              'arm-common', 'common-linux', 'common-glibc', 'arm-linux',
-              'arm-linux-gnueabi', 'common']</div>
-            <div>| DEBUG: Executing shell function
-              autotools_preconfigure</div>
-            <div>| DEBUG: Shell function autotools_preconfigure finished</div>
-            <div>| DEBUG: Executing shell function do_configure</div>
-            <div>| CMake Error at
-              /home/siguser/yocto/build/tmp/sysroots/x86_64-linux/usr/share/cmake-2.8/Modules/CMakeDetermineSystem.cmake:95
-              (MESSAGE):</div>
-            <div>| &nbsp; Could not find toolchain file:</div>
-            <div>| &nbsp;
-/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/toolchain.cmake</div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    It looks as something went wrong. Please clear the old package and
-    try again or increment the PR number.<br>
-    bitbake -c cleansstate cameracapture &amp;&amp; bitbake
-    cameracapture<br>
-    <br>
-    <blockquote
-cite="mid:CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div>
-          <div>
-            <div>| Call Stack (most recent call first):</div>
-            <div>
-              | &nbsp; CMakeLists.txt:2 (project)</div>
-            <div>|&nbsp;</div>
-            <div>|&nbsp;</div>
-            <div>| CMake Error: Error required internal CMake variable
-              not set, cmake may be not be built correctly.</div>
-            <div>| Missing variable is:</div>
-            <div>| CMAKE_C_COMPILER_ENV_VAR</div>
-            <div>| CMake Error: Error required internal CMake variable
-              not set, cmake may be not be built correctly.</div>
-            <div>| Missing variable is:</div>
-            <div>| CMAKE_C_COMPILER</div>
-            <div>| CMake Error: Could not find cmake module
-<a class="moz-txt-link-freetext" href="file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCCompiler.cmake">file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCCompiler.cmake</a></div>
-            <div>| CMake Error: Error required internal CMake variable
-              not set, cmake may be not be built correctly.</div>
-            <div>| Missing variable is:</div>
-            <div>| CMAKE_CXX_COMPILER_ENV_VAR</div>
-            <div>| CMake Error: Error required internal CMake variable
-              not set, cmake may be not be built correctly.</div>
-            <div>| Missing variable is:</div>
-            <div>| CMAKE_CXX_COMPILER</div>
-            <div>| CMake Error: Could not find cmake module
-<a class="moz-txt-link-freetext" href="file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCXXCompiler.cmake">file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCXXCompiler.cmake</a></div>
-            <div>| CMake Error: CMAKE_C_COMPILER not set, after
-              EnableLanguage</div>
-            <div>| CMake Error: CMAKE_CXX_COMPILER not set, after
-              EnableLanguage</div>
-            <div>| -- Configuring incomplete, errors occurred!</div>
-            <div>| ERROR: Function failed: do_configure (see
-              /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
-              for further information)</div>
-            <div>ERROR: Task 6
-              (/home/siguser/yocto/poky/meta-bebot/recipes-bebot/cameracapture/<a
-                moz-do-not-send="true"
-                href="http://cameracapture_0.1.bb" target="_blank">cameracapture_0.1.bb</a>,
-              do_configure) failed with exit code '1'</div>
-          </div>
-        </div>
-        <div><br>
-        </div>
-        <div>Do I need to set CXX Compiler in my CMakeLists.txt?</div>
-      </div>
-    </blockquote>
-    No, this are subsequent errors of the missing toolchain.cmake.<br>
-    <br>
-    <blockquote
-cite="mid:CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">My CmakeLists.txt file:
-        <div><br>
-        </div>
-        <div>
-          <div>cmake_minimum_required(VERSION 2.8)</div>
-          <div>project(cameracapture)</div>
-          <div>find_package( OpenCV REQUIRED )</div>
-          <div>add_executable( cameracapture cameracapture.cpp )</div>
-          <div>target_link_libraries( cameracapture ${OpenCV_LIBS} )</div>
-        </div>
-      </div>
-    </blockquote>
-    This looks okay.<br>
-    <br>
-  </body>
-</html>
-
---------------080508040602090502050000--
