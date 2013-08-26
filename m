@@ -1,52 +1,28 @@
-Return-Path: <javiroman@kernel-labs.org>
-Received: from paris.hostgo.com (unknown [64.71.164.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A12DAE00282
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:24:13 -0700 (PDT)
-Received: from mail-pa0-f46.google.com ([209.85.220.46]:41329)
-	by paris.hostgo.com with esmtpsa (TLSv1:RC4-SHA:128) (Exim 4.80.1)
-	(envelope-from <javiroman@kernel-labs.org>) id 1VDvq7-0006mk-N9
-	for yocto@yoctoproject.org; Mon, 26 Aug 2013 08:24:11 -0400
-Received: by mail-pa0-f46.google.com with SMTP id fa1so3362011pad.19
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:24:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=bXx/uVFdvHqCsUDoyFaTz/1VNtXe1rCiLZLbjuu5efU=;
-	b=ieQzXOruRb2tZi8ss6yqtjkcCtbvn2cXhHVBAyF2c3BZOMovWreUKREGj41JCmFDzF
-	GJepYI8fl9F7s2rWw/iLOnlkPazM7ioYKq62QKBRdGLGLrsPduxtCGlUVM91C9P14ngy
-	WL0X9X8SlsV8I62eq3hCwcZcwvyYONshVh7olIHVa9lXRpNkTYzZr3YcSvE8GrQ7GLbP
-	oLUPTg0kRM0oes1ty4LTgnDtt0ZFdHEmqwRoV1E3fhOwR8vTv9c2CzZVE8Y060Wfjh9y
-	eteJJXMAig2PCncf/tDn/KKOlLofNhPrvb3s3fyGJ2Js6Rp4x2mdXn+QjkbQDTfujZrS
-	9mdA==
-X-Received: by 10.68.232.166 with SMTP id tp6mr2772964pbc.153.1377519850771;
-	Mon, 26 Aug 2013 05:24:10 -0700 (PDT)
+Return-Path: <sudhangathan@gmail.com>
+Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97759E00282
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:38:29 -0700 (PDT)
+Received: by mail-qc0-f174.google.com with SMTP id e10so1015409qcy.33
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:38:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=zZ0cS5jCzn6brKuVA5wqrNhGn+g48RCZAM2dNk4IvyE=;
+	b=hxImoYY9m/dUaK+MPIGk/MEc3NShl/ooUFY+DRhnrog6FWm3TzxGRCCOuOF6GfX6EC
+	3U1xELEcYC4cb5Q7HoF6Yeeflxx2kTCjDWj0OLC9BLunOsiE5NZdlGPfwRfqrbJ96Pon
+	oh0dswzXKw8Ux8TNZmuDIxI6k910HSjgv7Bhrh1E/5k+UmBUwhXZEf1cHu1yV+t9ZgMi
+	v6dP+rcgqgol2jvXdyCcmjBAZ5XBWsEVtSNIvNnD8gldWSgI/OTmeQWjpWys68Ur/M2p
+	vJ0thWvWvq82PVSRLyCDohRpOETirvSIAl6rkrUA9w+9vxt7LFX7wkcCet63pnb9ZYyM
+	Xk3w==
+X-Received: by 10.224.147.72 with SMTP id k8mr15676813qav.61.1377520708155;
+	Mon, 26 Aug 2013 05:38:28 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.68.130.163 with HTTP; Mon, 26 Aug 2013 05:23:30 -0700 (PDT)
-In-Reply-To: <loom.20130724T132956-99@post.gmane.org>
-References: <CANwz6nxO25BCt2B-H8T9_SO5F3DqfE1w2QDSoXPVnP-qxq994Q@mail.gmail.com>
-	<loom.20130614T060308-378@post.gmane.org> <1571616.VWc8oWtlLJ@helios>
-	<loom.20130614T195255-724@post.gmane.org>
-	<CE727E34-D6D2-4B25-840A-0D2F32318C0A@gmail.com>
-	<loom.20130614T200317-354@post.gmane.org>
-	<loom.20130724T132956-99@post.gmane.org>
-From: Javi Roman <javiroman@kernel-labs.org>
-Date: Mon, 26 Aug 2013 14:23:30 +0200
-Message-ID: <CACWQdqBLwYUR4+C4ico5ss08L_90ozKzvMiDL5bP_jKo2eC3tw@mail.gmail.com>
-To: Marcelo Valle <mvalleavila@gmail.com>
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - paris.hostgo.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - kernel-labs.org
-X-Get-Message-Sender-Via: paris.hostgo.com: authenticated_id:
-	javiroman@kernel-labs.org
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
-Subject: Re: gcc enable-languages
+Received: by 10.224.135.194 with HTTP; Mon, 26 Aug 2013 05:38:08 -0700 (PDT)
+From: Sudhangathan B S <sudhangathan@gmail.com>
+Date: Mon, 26 Aug 2013 18:08:08 +0530
+Message-ID: <CAGX3a9_a-3CU4owOJS+NfnEhMg=QkZ8JKqnG9=xLAhd6_qea4w@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Packaging 2.6.39 kernel also includes 3.5 kernel..! Why.?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,83 +34,195 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2013 12:24:14 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 26 Aug 2013 12:38:29 -0000
+Content-Type: multipart/alternative; boundary=089e0149cc8e7b1bc804e4d9084b
+
+--089e0149cc8e7b1bc804e4d9084b
+Content-Type: text/plain; charset=ISO-8859-1
+
+I have asked this question in the Gumstix-Users mailing list before, but
+got no reply..
+So just checking out here..!
+
+Why does Yocto include 3.5.0/ kernel folder too in the lib/modules/
+directory, while I have enabled 2.6.39 kernel recipe..?? I just extracted
+the file gumstix-console-image-overo-20130821225106.rootfs.tar.bz2 i  Now
+see there are two folders in the lib/modules/ directory namely "3.5.0/" and
+"2.6.39/" .
+
+Should it be like that.. Or is there a confusion internally..??
+Can I have an explanation please...?? How should I correct.?
+
+When booting, on the console i don't see anything more than "Done booting
+the kernel..." The serial port set in the uboot env is ttyO2.. This is
+correct for 2.6.39 kernel..! Isn't it..?
+
+
+This is the configuration:================
+
+OE Build Configuration:
+BB_VERSION        = "1.15.2"
+TARGET_ARCH       = "arm"
+TARGET_OS         = "linux-gnueabi"
+MACHINE           = "overo"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.2.1"
+TUNE_FEATURES     = "armv7a vfp neon cortexa8"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "(nobranch):846b7c388738f382e83576e77b705aa547c1dd9b"
+meta-gnome
+meta-oe
+meta-xfce         = "(nobranch):e77646bc2cf905fd671fc5c19ab6fd17f9b94b3f"
+meta-gumstix      = "(nobranch):9293374e7a6dba72ac3b7350659f9a1877739b39"
+meta-dese_iisc    = "(nobranch):846b7c388738f382e83576e77b705aa547c1dd9b"
+
+========This is my overo.inc file:==========
+
+desen555@desen555-UStudio:~/yocto/poky$ cat
+meta-dese_iisc/conf/machine/overo.inc
+require conf/machine/include/omap3.inc
+
+EXTRA_IMAGEDEPENDS = "u-boot-sakoman"
+
+PREFERRED_PROVIDER_virtual/bootloader = "u-boot-sakoman"
+UBOOT_MACHINE = "omap3_overo_config"
+#PREFERRED_VERSION_pn-u-boot = "2011.12"
+
+#PREFERRED_PROVIDER_virtual/kernel = "linux-omap3"
+PREFERRED_PROVIDER_ntp = "ntp"
+#PREFERRED_PROVIDER_virtual/kernel = "linux-sakoman"
+PREFERRED_PROVIDER_virtual/kernel = "linux-omap-pm"
+
+PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
+XSERVER = "xserver-xorg \
+           xf86-input-evdev \
+           xf86-input-mouse \
+           xf86-video-omapfb \
+           xf86-input-keyboard"
+
+PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
+PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
+
+SERIAL_CONSOLE = "115200 ttyO2"
+
+IMAGE_FSTYPES += "tar.bz2"
+
+MKUBIFS_ARGS = "-m 2048 -e 129024 -c 4044"
+UBINIZE_ARGS = "-m 2048 -p 128KiB -s 512"
+
+UBI_VOLNAME = "rootfs"
+
+MACHINE_EXTRA_RDEPENDS = "omap3-writeprom"
+MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
+
+MACHINE_FEATURES = "kernel26 alsa apm ext3 screen usbgadget usbhost vfat
+wifi"
+====================================================================
+---------------------------------
+Sudhangathan BS
+Ph:(+91) 9731-905-205
+---------------------------------
+
+--089e0149cc8e7b1bc804e4d9084b
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I had the same issue. The problem seems the variable FC (Fortran
-Compiler) is not properly setup (in meta/conf/bitbake.conf).
+<div dir=3D"ltr"><div style=3D"font-family:arial,sans-serif;font-size:13px"=
+>I have asked this question in the Gumstix-Users mailing list before, but g=
+ot no reply..=A0</div><div style=3D"font-family:arial,sans-serif;font-size:=
+13px">
 
-The libtool-cross recipe shows QA problems with wrong include paths
-when uses x86_64-poky-linux-gfortran tests.
+So just checking out here..!</div><div style=3D"font-family:arial,sans-seri=
+f;font-size:13px"><br></div><span style=3D"font-family:arial,sans-serif;fon=
+t-size:13px">Why does Yocto include 3.5.0/ kernel folder too in the lib/mod=
+ules/ directory, while I have enabled 2.6.39 kernel recipe..?? I just extra=
+cted the file gumstix-console-image-overo-</span><span style=3D"font-family=
+:arial,sans-serif;font-size:13px">20130821225106.rootfs.tar.bz2 i =A0Now se=
+e there are two folders in the lib/modules/ directory namely &quot;3.5.0/&q=
+uot; and &quot;2.6.39/&quot; .</span><div style=3D"font-family:arial,sans-s=
+erif;font-size:13px">
 
-This workaround works for me:
+<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">Should=
+ it be like that.. Or is there a confusion internally..??</div><div style=
+=3D"font-family:arial,sans-serif;font-size:13px">Can I have an explanation =
+please...?? How should I correct.?</div>
 
-recipes-devtools/gcc
-=E2=94=94=E2=94=80=E2=94=80 gcc-cross_4.7.bbappend
-recipes-devtools/libtool/
-=E2=94=94=E2=94=80=E2=94=80 libtool-cross_2.4.2.bbappend
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
+tyle=3D"font-family:arial,sans-serif;font-size:13px">When booting, on the c=
+onsole i don&#39;t see anything more than &quot;Done booting the kernel...&=
+quot; The serial port set in the uboot env is ttyO2.. This is correct for 2=
+.6.39 kernel..! Isn&#39;t it..?</div>
 
-With:
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
+tyle=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div style=
+=3D"font-family:arial,sans-serif;font-size:13px">This is the configuration:=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
 
-$ cat recipes-devtools/gcc/gcc-cross_4.7.bbappend
-FORTRAN =3D ",fortran"
+<div style=3D"font-family:arial,sans-serif;font-size:13px"><br><div><div>OE=
+ Build Configuration:</div><div>BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.15.2&=
+quot;</div><div>TARGET_ARCH =A0 =A0 =A0 =3D &quot;arm&quot;</div><div>TARGE=
+T_OS =A0 =A0 =A0 =A0 =3D &quot;linux-gnueabi&quot;</div>
 
-$ cat recipes-devtools/libtool/libtool-cross_2.4.2.bbappend
-export FC =3D "${CCACHE}${HOST_PREFIX}gfortran ${HOST_CC_ARCH}
---sysroot=3D${STAGING_DIR_HOST}"
+<div>MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;overo&quot;</div><div>DISTRO =A0=
+ =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;</div><div>DISTRO_VERSION =A0 =A0=
+=3D &quot;1.2.1&quot;</div><div>TUNE_FEATURES =A0 =A0 =3D &quot;armv7a vfp =
+neon cortexa8&quot;</div><div>TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp-neon&=
+quot;</div>
 
-Javi Roman
+<div>meta =A0 =A0 =A0 =A0 =A0 =A0 =A0</div><div>meta-yocto =A0 =A0 =A0 =A0=
+=3D &quot;(nobranch):846b7c388738f382e83576e77b705aa547c1dd9b&quot;</div><d=
+iv>meta-gnome =A0 =A0 =A0 =A0</div><div>meta-oe =A0 =A0 =A0 =A0 =A0=A0</div=
+><div>meta-xfce =A0 =A0 =A0 =A0 =3D &quot;(nobranch):e77646bc2cf905fd671fc5=
+c19ab6fd17f9b94b3f&quot;</div>
 
+<div>meta-gumstix =A0 =A0 =A0=3D &quot;(nobranch):9293374e7a6dba72ac3b73506=
+59f9a1877739b39&quot;</div><div>meta-dese_iisc =A0 =A0=3D &quot;(nobranch):=
+846b7c388738f382e83576e77b705aa547c1dd9b&quot;</div></div><div><br></div><d=
+iv>=3D=3D=3D=3D=3D=3D=3D=3DThis is my overo.inc file:=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D</div>
 
-On Wed, Jul 24, 2013 at 1:39 PM, Marcelo Valle <mvalleavila@gmail.com> wrot=
-e:
-> Dat Tran <dtran11@...> writes:
->
->
->
->>
->> This is the error I get:
->>
->> configure: WARNING: unrecognized options: --disable-silent-rules, --with=
--
->> sysroot
->> DEBUG: Shell function do_configure finished
->> DEBUG: Executing python function do_qa_configure
->> NOTE: Checking autotools environment for common misconfiguration
->> ERROR: This autoconf log indicates errors, it looked at host include
-> and/or
->> library paths while determining system capabilities.
->> Rerun configure task after fixing this. The path was
->> '/home/appusr/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-
->> gnueabi/libtool-cross-2.4.2-r5.1/libtool-2.4.2'
->> DEBUG: Python function do_qa_configure finished
->> ERROR: Function failed: do_qa_configure
->>
->> Thanks
->>
->>
->
-> Hello,
->
-> I followed the same steps to use fortran with Yocto, but get a similar
-> error:
->
-> ERROR: This autoconf log indicates errors, it looked at host include and/=
-or
-> library paths while determining system capabilities.
-> Rerun configure task after fixing this. The path was '/home/mvalle/poky-
-> dylan-9.0.0/build/tmp/work/x86_64-poky-linux/gcc-runtime/4.7.2-r19/gcc-
-> 4.7.2/build.x86_64-poky-linux.x86_64-poky-linux/x86_64-poky-
-> linux/libgfortran'
-> ERROR: Function failed: do_qa_configure
->
-> You finally could fix this error?
->
-> Thanks in advance.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<div><br></div><div><div>desen555@desen555-UStudio:~/yocto/poky$ cat meta-d=
+ese_iisc/conf/machine/overo.inc</div><div>require conf/machine/include/omap=
+3.inc</div><div><br></div><div>EXTRA_IMAGEDEPENDS =3D &quot;u-boot-sakoman&=
+quot;</div>
 
+<div><br></div><div>PREFERRED_PROVIDER_virtual/bootloader =3D &quot;u-boot-=
+sakoman&quot;</div><div>UBOOT_MACHINE =3D &quot;omap3_overo_config&quot;</d=
+iv><div>#PREFERRED_VERSION_pn-u-boot =3D &quot;2011.12&quot;</div><div><br>=
+</div>
+
+<div>#PREFERRED_PROVIDER_virtual/kernel =3D &quot;linux-omap3&quot;</div><d=
+iv>PREFERRED_PROVIDER_ntp =3D &quot;ntp&quot;</div><div>#PREFERRED_PROVIDER=
+_virtual/kernel =3D &quot;linux-sakoman&quot;</div><div>PREFERRED_PROVIDER_=
+virtual/kernel =3D &quot;linux-omap-pm&quot; =A0</div>
+
+<div><br></div><div>PREFERRED_PROVIDER_virtual/xserver =3D &quot;xserver-xo=
+rg&quot;</div><div>XSERVER =3D &quot;xserver-xorg \</div><div>=A0 =A0 =A0 =
+=A0 =A0 =A0xf86-input-evdev \</div><div>=A0 =A0 =A0 =A0 =A0 =A0xf86-input-m=
+ouse \</div><div>=A0 =A0 =A0 =A0 =A0 =A0xf86-video-omapfb \</div>
+
+<div>=A0 =A0 =A0 =A0 =A0 =A0xf86-input-keyboard&quot;</div><div><br></div><=
+div>PREFERRED_PROVIDER_jpeg =3D &quot;libjpeg-turbo&quot;</div><div>PREFERR=
+ED_PROVIDER_jpeg-native =3D &quot;libjpeg-turbo-native&quot;</div><div><br>=
+</div><div>
+SERIAL_CONSOLE =3D &quot;115200 ttyO2&quot;</div>
+<div><br></div><div>IMAGE_FSTYPES +=3D &quot;tar.bz2&quot;</div><div><br></=
+div><div>MKUBIFS_ARGS =3D &quot;-m 2048 -e 129024 -c 4044&quot;</div><div>U=
+BINIZE_ARGS =3D &quot;-m 2048 -p 128KiB -s 512&quot;</div><div><br></div><d=
+iv>
+
+UBI_VOLNAME =3D &quot;rootfs&quot;</div><div><br></div><div>MACHINE_EXTRA_R=
+DEPENDS =3D &quot;omap3-writeprom&quot;</div><div>MACHINE_EXTRA_RRECOMMENDS=
+ =3D &quot; kernel-modules&quot;</div><div><br></div><div>MACHINE_FEATURES =
+=3D &quot;kernel26 alsa apm ext3 screen usbgadget usbhost vfat wifi&quot;</=
+div>
+
+</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></d=
+iv><div>---------------------------------<br>Sudhangathan BS<br>Ph:(+91) 97=
+31-905-205<br>---------------------------------</div>
+</div>
+
+--089e0149cc8e7b1bc804e4d9084b--
