@@ -1,39 +1,31 @@
-Return-Path: <mulhern@gmail.com>
-Received: from mail-qa0-f54.google.com (mail-qa0-f54.google.com
-	[209.85.216.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9B9FE01532;
-	Sun, 25 Aug 2013 18:17:38 -0700 (PDT)
-Received: by mail-qa0-f54.google.com with SMTP id bn16so5875qab.13
-	for <multiple recipients>; Sun, 25 Aug 2013 18:17:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:references:in-reply-to
-	:references; bh=MnzWauwafFoHsQl29eVM6mdMdftg4pbj3GEujaHwMIs=;
-	b=GP1Y1+zRySXFna+ZSC8Nafkv1s37KQ81JT2+YbotFoPkdSVStJK3unYYJP0vt3X8+9
-	y4McYUiSAPgEl3O3SZ7ajZb6RMGljK/F1ghz8GQcLQmREacIHN7+6m38oa3+6X6s4Nrl
-	4s5Co2uNJjPAxN11tX4kH0F4J3QUbMfme7BbmIpiER5ggtLClv/va5v6xWOEqftTJM8q
-	x6YIJboKArxJAlICZ8pzhngyKyQzsLCD6W9KX5rVY0VRab3gtFq6Y/9N1IrHM4Qn8KNw
-	6uJXomfnfyDVoek6wiTAf65trKpZLKJfmQhpa0Rrv9hW56DE5RB2zwSFx08kU+ljl36z
-	sTZg==
-X-Received: by 10.224.96.194 with SMTP id i2mr13122832qan.26.1377479857846;
-	Sun, 25 Aug 2013 18:17:37 -0700 (PDT)
-Received: from mulhern-2010-ubuntu (c-24-128-153-12.hsd1.ma.comcast.net.
-	[24.128.153.12])
-	by mx.google.com with ESMTPSA id 9sm18858841qau.3.1969.12.31.16.00.00
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Sun, 25 Aug 2013 18:17:37 -0700 (PDT)
-Received: by mulhern-2010-ubuntu (sSMTP sendmail emulation);
-	Sun, 25 Aug 2013 21:17:35 -0400
-From: mulhern <mulhern@gmail.com>
-To: yocto@yoctoproject.org,
-	mulhern@yoctoproject.org
-Date: Sun, 25 Aug 2013 21:17:12 -0400
-Message-Id: <349e64db470d1dd1b87a1ee1ac45dbf698a88f2c.1377479358.git.mulhern@yoctoproject.org>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <cover.1377479358.git.mulhern@yoctoproject.org>
-References: <cover.1377479358.git.mulhern@yoctoproject.org>
-In-Reply-To: <cover.1377479358.git.mulhern@yoctoproject.org>
-References: <cover.1377479358.git.mulhern@yoctoproject.org>
-Subject: [PATCH 5/5] Bastille: set Yocto specific questions via config file.
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60CA5E00282
+	for <yocto@yoctoproject.org>; Sun, 25 Aug 2013 18:25:39 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r7Q1PbLC013960
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 25 Aug 2013 18:25:37 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.21.194) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Sun, 25 Aug 2013 18:25:36 -0700
+Message-ID: <521AAE90.3010307@windriver.com>
+Date: Sun, 25 Aug 2013 21:25:36 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+MIME-Version: 1.0
+To: Elvis Dowson <elvis.dowson@gmail.com>
+References: <A9C97D7F-9AB0-4F9A-B933-D09ED5B6748E@gmail.com>
+	<F952BE32-0856-4531-962C-FC757917A8FE@gmail.com>
+	<CADkTA4NtzNb4pqKazvnfjO_2WawzCm_Zec1Dr9SQiPaybx+ndg@mail.gmail.com>
+	<6DD4027E-D34F-4211-92FD-1570F248D7F8@gmail.com>
+	<521994A5.9060007@windriver.com>
+	<53009902-3F9B-477F-ACA0-0DF7C43EBF27@gmail.com>
+In-Reply-To: <53009902-3F9B-477F-ACA0-0DF7C43EBF27@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: linux-yocto defaulting to 3.4.52 for new qemuarmhf.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,183 +37,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2013 01:17:39 -0000
+X-List-Received-Date: Mon, 26 Aug 2013 01:25:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-[YOCTO #3867]
+On 13-08-25 10:25 AM, Elvis Dowson wrote:
+> Hi Bruce,
+>
+> On Aug 25, 2013, at 9:22 AM, Bruce Ashfield
+> <bruce.ashfield@windriver.com <mailto:bruce.ashfield@windriver.com>> wrote:
+>
+>>> Another quick question, why is it that when I create a new
+>>> qemuarmhf.conf machine configuration, it doesn't automatically pick
+>>> up the latest linux-yocto_3.8.bb recipe? Why does it attempt to use
+>>> the 3.4 recipe?
+>>
+>> Are you working off master ?
+>>
+>> Since you set the compatibility, it should have been picked. But something
+>> else must be changed in your layers, since if you didn't add
+>> 3.4 compatibility via bbappends, it never would have been selected
+>> at all.
+>
+> Yes, I'm currently working off master. If I add the following
+> qemuarmhf.conf file, and apply the patch to linux-yocto_3.8.bb, it still
+> tries to compile linux-yocto_3.4.bb recipe. You should be able to
+> reproduce this fairly easily at your end, with the current poky master.
+> I'm not using any additional layers, just the core yocto default layers.
 
-The python script, set_required_questions.py reads the list of questions and
-answers from the config file and edits the REQUIRE_DISTRO field for those
-questions in the questions file so that it includes "Yocto" if it is not
-already present. This has the effect of causing Bastille, when loading
-questions for the Yocto distribution, to load only those that are answered
-in the existing config file. Under the assumption that the exisitng config
-file contains question/answer pairs that are relevant to the Yocto project,
-this will cause the interactive question screen to have answers that are
-relevant to the Yocto project.
+If you are using yocto and poky as the reference distro:
 
-Signed-off-by: mulhern <mulhern@yoctoproject.org>
----
- recipes-security/bastille/bastille_3.2.1.bb        |    3 +
- .../bastille/files/set_required_questions.py       |  135 ++++++++++++++++++++
- 2 files changed, 138 insertions(+)
- create mode 100755 recipes-security/bastille/files/set_required_questions.py
+./conf/distro/poky.conf:PREFERRED_VERSION_linux-yocto ?= "3.4%"
 
-diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
-index 8969f6b..094f09c 100644
---- a/recipes-security/bastille/bastille_3.2.1.bb
-+++ b/recipes-security/bastille/bastille_3.2.1.bb
-@@ -139,6 +139,9 @@ do_install () {
- 	install -m 0644 OSMap/HP-UX.service    ${D}${datadir}/Bastille/OSMap
- 	install -m 0644 OSMap/OSX.bastille    ${D}${datadir}/Bastille/OSMap
- 	install -m 0644 OSMap/OSX.system    ${D}${datadir}/Bastille/OSMap
-+
-+        ${THISDIR}/files/set_required_questions.py ${WORKDIR}/config Questions
-+
- 	install -m 0777 ${WORKDIR}/config ${D}${sysconfdir}/Bastille/config
- 
- 	for file in `cat Modules.txt` ; do
-diff --git a/recipes-security/bastille/files/set_required_questions.py b/recipes-security/bastille/files/set_required_questions.py
-new file mode 100755
-index 0000000..a432dc5
---- /dev/null
-+++ b/recipes-security/bastille/files/set_required_questions.py
-@@ -0,0 +1,135 @@
-+#!/usr/bin/env python
-+
-+import argparse, os, shutil, sys, tempfile
-+from os import path
-+
-+
-+
-+def get_config(lines):
-+  """
-+  From a sequence of lines retrieve the question file name, question identifier
-+  pairs.
-+  """
-+  for l in lines:
-+    if not l.startswith("#"):
-+      try:
-+        (coord, value) = l.split("=")
-+        try:
-+          (fname, ident) = coord.split(".")
-+          yield fname, ident
-+        except ValueError as e:
-+          raise ValueError("Badly formatted coordinates %s in line %s." % (coord, l.strip()))
-+      except ValueError as e:
-+        raise ValueError("Skipping badly formatted line %s, %s" % (l.strip(), e))
-+
-+
-+
-+def check_contains(line, name):
-+  """
-+  Check if the value field for REQUIRE_DISTRO contains the given name.
-+  @param name line The REQUIRE_DISTRO line
-+  @param name name The name to look for in the value field of the line.
-+  """
-+  try:
-+    (label, distros) = line.split(":")
-+    return name in distros.split()
-+  except ValueError as e:
-+    raise ValueError("Error splitting REQUIRE_DISTRO line: %s" % e)
-+
-+
-+
-+def add_requires(the_ident, distro, lines):
-+
-+  """
-+  Yield a sequence of lines the same as lines except that where
-+  the_ident matches a question identifier change the REQUIRE_DISTRO so that
-+  it includes the specified distro.
-+
-+  @param name the_ident The question identifier to be matched.
-+  @param name distro The distribution to added to the questions REQUIRE_DISTRO
-+                     field.
-+  @param lines The sequence to be processed.
-+  """
-+  for l in lines:
-+    yield l
-+    if l.startswith("LABEL:"):
-+      try:
-+        (label, ident) = l.split(":")
-+        if ident.strip() == the_ident:
-+          break
-+      except ValueError as e:
-+        raise ValueError("Unexpected line %s in questions file." % l.strip())
-+  for l in lines:
-+    if l.startswith("REQUIRE_DISTRO"):
-+      if not check_contains(l, distro):
-+        yield l.rstrip() + " " + distro + "\n"
-+      else:
-+        yield l
-+      break;
-+    else:
-+      yield l
-+  for l in lines:
-+    yield l
-+
-+
-+
-+def xform_file(qfile, distro, qlabel):
-+  questions_in = open(qfile)
-+  questions_out = tempfile.NamedTemporaryFile(delete=False)
-+  for l in add_requires(qlabel, distro, questions_in):
-+    questions_out.write(l)
-+  questions_out.close()
-+  questions_in.close()
-+  shutil.move(questions_out.name, qfile)
-+
-+
-+
-+def handle_args(parser):
-+  parser.add_argument('config_file',
-+                      help = "Configuration file path.")
-+  parser.add_argument('questions_dir',
-+                      help = "Directory containing Questions files.")
-+  parser.add_argument('--distro', '-d',
-+                      help = "The distribution, the default is Yocto.",
-+                      default = "Yocto")
-+  return parser.parse_args()
-+
-+
-+
-+def check_args(args):
-+  args.config_file = os.path.abspath(args.config_file)
-+  args.questions_dir = os.path.abspath(args.questions_dir)
-+
-+  if not os.path.isdir(args.questions_dir):
-+    raise ValueError("Specified Questions directory %s does not exist or is not a directory." % args.questions_dir)
-+
-+  if not os.path.isfile(args.config_file):
-+    raise ValueError("Specified configuration file %s not found." % args.config_file)
-+
-+
-+
-+def main():
-+  opts = handle_args(argparse.ArgumentParser(description="A simple script that sets required questions based on the question/answer pairs in a configuration file."))
-+
-+  try:
-+    check_args(opts)
-+  except ValueError as e:
-+    sys.exit("Fatal error: %s" % e)
-+
-+
-+  try:
-+    config_in = open(opts.config_file)
-+    for qfile, qlabel in get_config(config_in):
-+      questions_file = os.path.join(opts.questions_dir, qfile + ".txt")
-+      xform_file(questions_file, opts.distro, qlabel)
-+    config_in.close()
-+
-+  except IOError as e:
-+    sys.exit("Fatal error reading config file: %s" % e)
-+  except ValueError as e:
-+    sys.exit("Fatal error: %s" % e)
-+
-+
-+
-+if __name__ == "__main__":
-+  main()
--- 
-1.7.10.4
+Is where you are getting the default to 3.4.
+
+I plan to bump that once we've shaken all the issues out of 3.10.
+
+Cheers,
+
+Bruce
+
+>
+> *_Filename: qemuarmhf.conf_*
+>
+> #@TYPE: Machine
+> #@NAME: qemuarmhf
+> #@DESCRIPTION: Machine configuration for QEMU ARM Cortex A9 hard float.
+>
+> require conf/machine/include/qemu.inc
+> require conf/machine/include/tune-cortexa9.inc
+>
+> KERNEL_IMAGETYPE = "zImage"
+>
+> SERIAL_CONSOLE = "115200 ttyAMA0"
+>
+>
+> *_Patch for linux-yocto_3.8.bb_*
+>
+> diff --git a/meta/recipes-kernel/linux/linux-yocto_3.8.bb
+> b/meta/recipes-kernel/linux/linux-yocto_3.8.bb
+> index 790e3e3..787affe 100644
+> --- a/meta/recipes-kernel/linux/linux-yocto_3.8.bb
+> +++ b/meta/recipes-kernel/linux/linux-yocto_3.8.bb
+> @@ -4,6 +4,7 @@ KBRANCH_DEFAULT = "standard/base"
+>   KBRANCH = "${KBRANCH_DEFAULT}"
+>
+>   SRCREV_machine_qemuarm ?= "aa76cc28408376814752bd36fb0dcf0e25aa5ba3"
+> +SRCREV_machine_qemuarmhf ?= "aa76cc28408376814752bd36fb0dcf0e25aa5ba3"
+>   SRCREV_machine_qemumips  ?= "aa0affda03c955678b26b2fb586f1d9505127871"
+>   SRCREV_machine_qemumips64 ?= "077bff22c9951db6b35470ba17b1df2f2a91fefb"
+>   SRCREV_machine_qemuppc ?= "698eada61d9385b42dd117858b943655b565084b"
+> @@ -21,7 +22,7 @@ PV = "${LINUX_VERSION}+git${SRCPV}"
+>
+>   KMETA = "meta"
+>
+> -COMPATIBLE_MACHINE =
+> "qemuarm|qemux86|qemuppc|qemumips|qemumips64|qemux86-64"
+> +COMPATIBLE_MACHINE =
+> "qemuarm|qemuarmhf|qemux86|qemuppc|qemumips|qemumips64|qemux86-64"
+>
+>   # Functionality flags
+>   KERNEL_EXTRA_FEATURES ?= "features/netfilter/netfilter.scc"
+>
+> Best regards,
+>
+> Elvis Dowson
 
 
