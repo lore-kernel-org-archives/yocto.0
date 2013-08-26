@@ -1,28 +1,41 @@
-Return-Path: <sudhangathan@gmail.com>
-Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
-	[209.85.216.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97759E00282
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:38:29 -0700 (PDT)
-Received: by mail-qc0-f174.google.com with SMTP id e10so1015409qcy.33
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:38:28 -0700 (PDT)
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-we0-f176.google.com (mail-we0-f176.google.com
+	[74.125.82.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 558C1E00282
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:42:26 -0700 (PDT)
+Received: by mail-we0-f176.google.com with SMTP id q56so2613482wes.7
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 05:42:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=zZ0cS5jCzn6brKuVA5wqrNhGn+g48RCZAM2dNk4IvyE=;
-	b=hxImoYY9m/dUaK+MPIGk/MEc3NShl/ooUFY+DRhnrog6FWm3TzxGRCCOuOF6GfX6EC
-	3U1xELEcYC4cb5Q7HoF6Yeeflxx2kTCjDWj0OLC9BLunOsiE5NZdlGPfwRfqrbJ96Pon
-	oh0dswzXKw8Ux8TNZmuDIxI6k910HSjgv7Bhrh1E/5k+UmBUwhXZEf1cHu1yV+t9ZgMi
-	v6dP+rcgqgol2jvXdyCcmjBAZ5XBWsEVtSNIvNnD8gldWSgI/OTmeQWjpWys68Ur/M2p
-	vJ0thWvWvq82PVSRLyCDohRpOETirvSIAl6rkrUA9w+9vxt7LFX7wkcCet63pnb9ZYyM
-	Xk3w==
-X-Received: by 10.224.147.72 with SMTP id k8mr15676813qav.61.1377520708155;
-	Mon, 26 Aug 2013 05:38:28 -0700 (PDT)
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=m0rcb9oqCPkuiUNc5Z0PKakgiCaGywyOWaWtUmXPk0k=;
+	b=P66WWYtU+wS3oW6ZTT+fpi9ibVIKJ3dYAOZtwodKTg0ZgZVq0jOHjIfQzGlXjmIbuM
+	FVT8Sk2WOwYsqjkSp5+qTHrpbVhPr+G3BgHNH0db9BdTbRf9pt2tmBC51h/rf9jQOo6p
+	u3XmTxMzzyMDZHvOwZISv7WSmzATGg7He4GqR3Oc3hd7Yqr+MN7qacfKjfa9nbTXpjgV
+	nmwSCjtDy+EzvIOO24QBzlQTXdUfR+JnNsX9sqqHneNtE3FtqutDYnjV6SCjCh3D++JP
+	OWbuPkDdVTtWSqQDtEnfhAIqBeENpAw0rUnwnCLHDMM4wb6S7ZgHn3z1nSTs7ydStVkq
+	JHmw==
+X-Received: by 10.194.75.165 with SMTP id d5mr9671922wjw.18.1377520944970;
+	Mon, 26 Aug 2013 05:42:24 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.224.135.194 with HTTP; Mon, 26 Aug 2013 05:38:08 -0700 (PDT)
-From: Sudhangathan B S <sudhangathan@gmail.com>
-Date: Mon, 26 Aug 2013 18:08:08 +0530
-Message-ID: <CAGX3a9_a-3CU4owOJS+NfnEhMg=QkZ8JKqnG9=xLAhd6_qea4w@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Packaging 2.6.39 kernel also includes 3.5 kernel..! Why.?
+Received: by 10.194.250.69 with HTTP; Mon, 26 Aug 2013 05:42:04 -0700 (PDT)
+In-Reply-To: <521A48AA.7060802@herbrechtsmeier.net>
+References: <CAAGt+t0w9Rtia4vVJujgjTfmEU709WyhjCYSPP7PThMN+vpOdg@mail.gmail.com>
+	<CAJTo0LYTB2eby76YsAtj+YM9jfAo1oia4TvRUXgiNU+DKiuOFQ@mail.gmail.com>
+	<CAAGt+t2gxfmg8cJ+izKmejXcywknPpOvYMrRPUgKN5fHHa-gmw@mail.gmail.com>
+	<CAAGt+t13OZ88fi_9foDDp+FeD9VOkBDip1RVQYxWkNejmvifeg@mail.gmail.com>
+	<CAJTo0LYqaCwHTLnxUwPVME_zFNbWEVXHZoJpiWTTw-wBWn5xeQ@mail.gmail.com>
+	<52161E20.3010800@balister.org>
+	<CAAGt+t3Q3GaitOuGTob0faWa4PU1sqmBAwLrdNetMK1PZLDF5Q@mail.gmail.com>
+	<52170AA1.4000602@herbrechtsmeier.net>
+	<CAAGt+t0Ff3VAeZGXZv3tqB1DNgmeeBa73uAfKHbQFGLOU8tqOg@mail.gmail.com>
+	<521A48AA.7060802@herbrechtsmeier.net>
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Mon, 26 Aug 2013 14:42:04 +0200
+Message-ID: <CAAGt+t3bC3E=MvL-=2o3ctKf3jKt0H41_JAF605nTY0Ebt2Qiw@mail.gmail.com>
+To: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: bitbake with cmake recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,195 +47,420 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2013 12:38:29 -0000
-Content-Type: multipart/alternative; boundary=089e0149cc8e7b1bc804e4d9084b
+X-List-Received-Date: Mon, 26 Aug 2013 12:42:32 -0000
+Content-Type: multipart/alternative; boundary=047d7bb04bc298843a04e4d9163d
 
---089e0149cc8e7b1bc804e4d9084b
+--047d7bb04bc298843a04e4d9163d
 Content-Type: text/plain; charset=ISO-8859-1
 
-I have asked this question in the Gumstix-Users mailing list before, but
-got no reply..
-So just checking out here..!
+Hi Stefan, Hi all,
 
-Why does Yocto include 3.5.0/ kernel folder too in the lib/modules/
-directory, while I have enabled 2.6.39 kernel recipe..?? I just extracted
-the file gumstix-console-image-overo-20130821225106.rootfs.tar.bz2 i  Now
-see there are two folders in the lib/modules/ directory namely "3.5.0/" and
-"2.6.39/" .
+My build was successful with CMake. I made some changes to my recipe:
 
-Should it be like that.. Or is there a confusion internally..??
-Can I have an explanation please...?? How should I correct.?
+DESCRIPTION = "cameracapture application"
+SECTION = "examples"
+LICENSE = "CLOSED"
+PR = "r0"
 
-When booting, on the console i don't see anything more than "Done booting
-the kernel..." The serial port set in the uboot env is ttyO2.. This is
-correct for 2.6.39 kernel..! Isn't it..?
+DEPENDS = "opencv"
+
+SRC_URI = "git://github.com/zafrullahsyed/cameracapture.git
+;protocol=https;tag=v0.1"
+
+S = "${WORKDIR}/git"
+
+inherit pkgconfig cmake
+
+do_install() {
+    install -d ${D}${bindir}
+    install -m 0755 cameracapture ${D}${bindir}
+}
+
+I didn't specify do_install, which caused the errors.
+
+Your inputs helped me very much. Thanks a ton.
+
+Regards,
+Zafrullah
 
 
-This is the configuration:================
+On Sun, Aug 25, 2013 at 8:10 PM, Stefan Herbrechtsmeier <
+stefan@herbrechtsmeier.net> wrote:
 
-OE Build Configuration:
-BB_VERSION        = "1.15.2"
-TARGET_ARCH       = "arm"
-TARGET_OS         = "linux-gnueabi"
-MACHINE           = "overo"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.2.1"
-TUNE_FEATURES     = "armv7a vfp neon cortexa8"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto        = "(nobranch):846b7c388738f382e83576e77b705aa547c1dd9b"
-meta-gnome
-meta-oe
-meta-xfce         = "(nobranch):e77646bc2cf905fd671fc5c19ab6fd17f9b94b3f"
-meta-gumstix      = "(nobranch):9293374e7a6dba72ac3b7350659f9a1877739b39"
-meta-dese_iisc    = "(nobranch):846b7c388738f382e83576e77b705aa547c1dd9b"
+>  Am 25.08.2013 17:03, schrieb Zafrullah Syed:
+>
+> Hi Stefan,
+>
+>  I updated my recipe:
+>
+>  DESCRIPTION = "cameracapture application"
+> SECTION = "examples"
+> LICENSE = "CLOSED"
+> PR = "r0"
+>
+>  DEPENDS = "opencv"
+>
+>  SRC_URI = "git://github.com/zafrullahsyed/cameracapture.git
+> ;protocol=https;tag=v0.1"
+>
+>  S = "${WORKDIR}/git"
+>  inherit pkgconfig cmake
+>
+>  I have my source file and CMakeLists.txt as tar on github. tar is not
+> getting downloaded.
+>
+> The tar should be in the "${WORKDIR}/git" directory but it will not work
+> as you don't tell bitbake to unpack it.
+>
+> You repository with tag "v0.1" contains only a README.md!
+>
+> The common use case is to put all sources into the git repository. Why you
+> want to save a tar in a git repository?
+>
+>
+>
+>  --> If I remove tar and keep just source file and CMakeLists.txt, then
+> also it is not getting downloaded.
+>
+> Have you check the content of the
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git
+> directory?
+>
+>
+>   I am getting
+>
+>  CMake Error: The source directory
+> "/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/cameracapture-0.1"
+> does not appear to contain CMakeLists.txt.
+>
+>         ^^^
+> Are you sure you have change the S variable? The error still reference the
+> common directory ("${WORKDIR}/${PN}-${PV}").
+>
+>
+>  --> I copied my CMakeLists.txt file in ${WORKDIR}/git and tried the
+> build, got this following error:
+>
+>   ERROR: Function failed: do_configure (see
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
+> for further information)
+> ERROR: Logfile of failure stored in:
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
+> Log data follows:
+> | DEBUG: Executing python function sysroot_cleansstate
+> | DEBUG: Python function sysroot_cleansstate finished
+> | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common']
+> | DEBUG: Executing shell function autotools_preconfigure
+> | DEBUG: Shell function autotools_preconfigure finished
+> | DEBUG: Executing shell function do_configure
+> | CMake Error at
+> /home/siguser/yocto/build/tmp/sysroots/x86_64-linux/usr/share/cmake-2.8/Modules/CMakeDetermineSystem.cmake:95
+> (MESSAGE):
+> |   Could not find toolchain file:
+> |
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/toolchain.cmake
+>
+> It looks as something went wrong. Please clear the old package and try
+> again or increment the PR number.
+> bitbake -c cleansstate cameracapture && bitbake cameracapture
+>
+>
+>   | Call Stack (most recent call first):
+>  |   CMakeLists.txt:2 (project)
+> |
+> |
+> | CMake Error: Error required internal CMake variable not set, cmake may
+> be not be built correctly.
+> | Missing variable is:
+> | CMAKE_C_COMPILER_ENV_VAR
+> | CMake Error: Error required internal CMake variable not set, cmake may
+> be not be built correctly.
+> | Missing variable is:
+> | CMAKE_C_COMPILER
+> | CMake Error: Could not find cmake module
+> file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCCompiler.cmake
+> | CMake Error: Error required internal CMake variable not set, cmake may
+> be not be built correctly.
+> | Missing variable is:
+> | CMAKE_CXX_COMPILER_ENV_VAR
+> | CMake Error: Error required internal CMake variable not set, cmake may
+> be not be built correctly.
+> | Missing variable is:
+> | CMAKE_CXX_COMPILER
+> | CMake Error: Could not find cmake module
+> file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCXXCompiler.cmake
+> | CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+> | CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+> | -- Configuring incomplete, errors occurred!
+> | ERROR: Function failed: do_configure (see
+> /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
+> for further information)
+> ERROR: Task 6
+> (/home/siguser/yocto/poky/meta-bebot/recipes-bebot/cameracapture/
+> cameracapture_0.1.bb, do_configure) failed with exit code '1'
+>
+>  Do I need to set CXX Compiler in my CMakeLists.txt?
+>
+> No, this are subsequent errors of the missing toolchain.cmake.
+>
+>
+>  My CmakeLists.txt file:
+>
+>  cmake_minimum_required(VERSION 2.8)
+> project(cameracapture)
+> find_package( OpenCV REQUIRED )
+> add_executable( cameracapture cameracapture.cpp )
+> target_link_libraries( cameracapture ${OpenCV_LIBS} )
+>
+> This looks okay.
+>
+>
 
-========This is my overo.inc file:==========
 
-desen555@desen555-UStudio:~/yocto/poky$ cat
-meta-dese_iisc/conf/machine/overo.inc
-require conf/machine/include/omap3.inc
+-- 
+Regards,
+Zafrullah Syed
 
-EXTRA_IMAGEDEPENDS = "u-boot-sakoman"
-
-PREFERRED_PROVIDER_virtual/bootloader = "u-boot-sakoman"
-UBOOT_MACHINE = "omap3_overo_config"
-#PREFERRED_VERSION_pn-u-boot = "2011.12"
-
-#PREFERRED_PROVIDER_virtual/kernel = "linux-omap3"
-PREFERRED_PROVIDER_ntp = "ntp"
-#PREFERRED_PROVIDER_virtual/kernel = "linux-sakoman"
-PREFERRED_PROVIDER_virtual/kernel = "linux-omap-pm"
-
-PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
-XSERVER = "xserver-xorg \
-           xf86-input-evdev \
-           xf86-input-mouse \
-           xf86-video-omapfb \
-           xf86-input-keyboard"
-
-PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
-PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
-
-SERIAL_CONSOLE = "115200 ttyO2"
-
-IMAGE_FSTYPES += "tar.bz2"
-
-MKUBIFS_ARGS = "-m 2048 -e 129024 -c 4044"
-UBINIZE_ARGS = "-m 2048 -p 128KiB -s 512"
-
-UBI_VOLNAME = "rootfs"
-
-MACHINE_EXTRA_RDEPENDS = "omap3-writeprom"
-MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
-
-MACHINE_FEATURES = "kernel26 alsa apm ext3 screen usbgadget usbhost vfat
-wifi"
-====================================================================
----------------------------------
-Sudhangathan BS
-Ph:(+91) 9731-905-205
----------------------------------
-
---089e0149cc8e7b1bc804e4d9084b
+--047d7bb04bc298843a04e4d9163d
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div style=3D"font-family:arial,sans-serif;font-size:13px"=
->I have asked this question in the Gumstix-Users mailing list before, but g=
-ot no reply..=A0</div><div style=3D"font-family:arial,sans-serif;font-size:=
-13px">
+<div dir=3D"ltr">Hi Stefan, Hi all,<div><br></div><div>My build was success=
+ful with CMake. I made some changes to my recipe:</div><div><br></div><div>=
+<div>DESCRIPTION =3D &quot;cameracapture application&quot;=A0</div><div>SEC=
+TION =3D &quot;examples&quot;=A0</div>
 
-So just checking out here..!</div><div style=3D"font-family:arial,sans-seri=
-f;font-size:13px"><br></div><span style=3D"font-family:arial,sans-serif;fon=
-t-size:13px">Why does Yocto include 3.5.0/ kernel folder too in the lib/mod=
-ules/ directory, while I have enabled 2.6.39 kernel recipe..?? I just extra=
-cted the file gumstix-console-image-overo-</span><span style=3D"font-family=
-:arial,sans-serif;font-size:13px">20130821225106.rootfs.tar.bz2 i =A0Now se=
-e there are two folders in the lib/modules/ directory namely &quot;3.5.0/&q=
-uot; and &quot;2.6.39/&quot; .</span><div style=3D"font-family:arial,sans-s=
-erif;font-size:13px">
+<div>LICENSE =3D &quot;CLOSED&quot;=A0</div><div>PR =3D &quot;r0&quot;=A0</=
+div><div><br></div><div>DEPENDS =3D &quot;opencv&quot;</div><div><br></div>=
+<div>SRC_URI =3D &quot;git://<a href=3D"http://github.com/zafrullahsyed/cam=
+eracapture.git">github.com/zafrullahsyed/cameracapture.git</a>;protocol=3Dh=
+ttps;tag=3Dv0.1&quot;</div>
 
-<br></div><div style=3D"font-family:arial,sans-serif;font-size:13px">Should=
- it be like that.. Or is there a confusion internally..??</div><div style=
-=3D"font-family:arial,sans-serif;font-size:13px">Can I have an explanation =
-please...?? How should I correct.?</div>
+<div><br></div><div>S =3D &quot;${WORKDIR}/git&quot;</div><div><br></div><d=
+iv>inherit pkgconfig cmake<br></div><div><br></div><div>do_install() {</div=
+><div>=A0 =A0 install -d ${D}${bindir}</div><div>=A0 =A0 install -m 0755 ca=
+meracapture ${D}${bindir}</div>
 
-<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
-tyle=3D"font-family:arial,sans-serif;font-size:13px">When booting, on the c=
-onsole i don&#39;t see anything more than &quot;Done booting the kernel...&=
-quot; The serial port set in the uboot env is ttyO2.. This is correct for 2=
-.6.39 kernel..! Isn&#39;t it..?</div>
-
-<div style=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div s=
-tyle=3D"font-family:arial,sans-serif;font-size:13px"><br></div><div style=
-=3D"font-family:arial,sans-serif;font-size:13px">This is the configuration:=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
-
-<div style=3D"font-family:arial,sans-serif;font-size:13px"><br><div><div>OE=
- Build Configuration:</div><div>BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.15.2&=
-quot;</div><div>TARGET_ARCH =A0 =A0 =A0 =3D &quot;arm&quot;</div><div>TARGE=
-T_OS =A0 =A0 =A0 =A0 =3D &quot;linux-gnueabi&quot;</div>
-
-<div>MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;overo&quot;</div><div>DISTRO =A0=
- =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;</div><div>DISTRO_VERSION =A0 =A0=
-=3D &quot;1.2.1&quot;</div><div>TUNE_FEATURES =A0 =A0 =3D &quot;armv7a vfp =
-neon cortexa8&quot;</div><div>TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp-neon&=
-quot;</div>
-
-<div>meta =A0 =A0 =A0 =A0 =A0 =A0 =A0</div><div>meta-yocto =A0 =A0 =A0 =A0=
-=3D &quot;(nobranch):846b7c388738f382e83576e77b705aa547c1dd9b&quot;</div><d=
-iv>meta-gnome =A0 =A0 =A0 =A0</div><div>meta-oe =A0 =A0 =A0 =A0 =A0=A0</div=
-><div>meta-xfce =A0 =A0 =A0 =A0 =3D &quot;(nobranch):e77646bc2cf905fd671fc5=
-c19ab6fd17f9b94b3f&quot;</div>
-
-<div>meta-gumstix =A0 =A0 =A0=3D &quot;(nobranch):9293374e7a6dba72ac3b73506=
-59f9a1877739b39&quot;</div><div>meta-dese_iisc =A0 =A0=3D &quot;(nobranch):=
-846b7c388738f382e83576e77b705aa547c1dd9b&quot;</div></div><div><br></div><d=
-iv>=3D=3D=3D=3D=3D=3D=3D=3DThis is my overo.inc file:=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D</div>
-
-<div><br></div><div><div>desen555@desen555-UStudio:~/yocto/poky$ cat meta-d=
-ese_iisc/conf/machine/overo.inc</div><div>require conf/machine/include/omap=
-3.inc</div><div><br></div><div>EXTRA_IMAGEDEPENDS =3D &quot;u-boot-sakoman&=
-quot;</div>
-
-<div><br></div><div>PREFERRED_PROVIDER_virtual/bootloader =3D &quot;u-boot-=
-sakoman&quot;</div><div>UBOOT_MACHINE =3D &quot;omap3_overo_config&quot;</d=
-iv><div>#PREFERRED_VERSION_pn-u-boot =3D &quot;2011.12&quot;</div><div><br>=
+<div>}</div></div><div><br></div><div>I didn&#39;t specify do_install, whic=
+h caused the errors.</div><div><br></div><div>Your inputs helped me very mu=
+ch. Thanks a ton.</div><div><br></div><div>Regards,<br></div><div>Zafrullah=
 </div>
 
-<div>#PREFERRED_PROVIDER_virtual/kernel =3D &quot;linux-omap3&quot;</div><d=
-iv>PREFERRED_PROVIDER_ntp =3D &quot;ntp&quot;</div><div>#PREFERRED_PROVIDER=
-_virtual/kernel =3D &quot;linux-sakoman&quot;</div><div>PREFERRED_PROVIDER_=
-virtual/kernel =3D &quot;linux-omap-pm&quot; =A0</div>
+</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Sun,=
+ Aug 25, 2013 at 8:10 PM, Stefan Herbrechtsmeier <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:stefan@herbrechtsmeier.net" target=3D"_blank">stefan@herbrech=
+tsmeier.net</a>&gt;</span> wrote:<br>
 
-<div><br></div><div>PREFERRED_PROVIDER_virtual/xserver =3D &quot;xserver-xo=
-rg&quot;</div><div>XSERVER =3D &quot;xserver-xorg \</div><div>=A0 =A0 =A0 =
-=A0 =A0 =A0xf86-input-evdev \</div><div>=A0 =A0 =A0 =A0 =A0 =A0xf86-input-m=
-ouse \</div><div>=A0 =A0 =A0 =A0 =A0 =A0xf86-video-omapfb \</div>
-
-<div>=A0 =A0 =A0 =A0 =A0 =A0xf86-input-keyboard&quot;</div><div><br></div><=
-div>PREFERRED_PROVIDER_jpeg =3D &quot;libjpeg-turbo&quot;</div><div>PREFERR=
-ED_PROVIDER_jpeg-native =3D &quot;libjpeg-turbo-native&quot;</div><div><br>=
-</div><div>
-SERIAL_CONSOLE =3D &quot;115200 ttyO2&quot;</div>
-<div><br></div><div>IMAGE_FSTYPES +=3D &quot;tar.bz2&quot;</div><div><br></=
-div><div>MKUBIFS_ARGS =3D &quot;-m 2048 -e 129024 -c 4044&quot;</div><div>U=
-BINIZE_ARGS =3D &quot;-m 2048 -p 128KiB -s 512&quot;</div><div><br></div><d=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div>Am 25.08.2013 17:03, schrieb Zafrullah
+      Syed:<br>
+    </div><div class=3D"im">
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">Hi Stefan,
+        <div><br>
+        </div>
+        <div>I updated my recipe:</div>
+        <div><br>
+        </div>
+        <div>
+          <div>DESCRIPTION =3D &quot;cameracapture application&quot;=A0</di=
+v>
+          <div>SECTION =3D &quot;examples&quot;=A0</div>
+          <div>LICENSE =3D &quot;CLOSED&quot;=A0</div>
+          <div>PR =3D &quot;r0&quot;=A0</div>
+          <div><br>
+          </div>
+          <div>DEPENDS =3D &quot;opencv&quot;<br>
+          </div>
+          <div><br>
+          </div>
+          <div>SRC_URI =3D &quot;git://<a href=3D"http://github.com/zafrull=
+ahsyed/cameracapture.git" target=3D"_blank">github.com/zafrullahsyed/camera=
+capture.git</a>;protocol=3Dhttps;tag=3Dv0.1&quot;<br>
+          </div>
+          <div><br>
+          </div>
+          <div>S =3D &quot;${WORKDIR}/git&quot;<br>
+          </div>
+          <div>inherit pkgconfig cmake<br>
+          </div>
+        </div>
+        <div><br>
+        </div>
+        <div>I have my source file and CMakeLists.txt as tar on github.
+          tar is not getting downloaded.</div>
+      </div>
+    </blockquote></div>
+    The tar should be in the &quot;${WORKDIR}/git&quot; directory but it wi=
+ll not
+    work as you don&#39;t tell bitbake to unpack it.<br>
+    <br>
+    You repository with tag &quot;v0.1&quot; contains only a README.md!<br>
+    <br>
+    The common use case is to put all sources into the git repository.
+    Why you want to save a tar in a git repository?<div class=3D"im"><br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div><br>
+        </div>
+        <div>--&gt; If I remove tar and keep just source file and
+          CMakeLists.txt, then also it is not getting downloaded.</div>
+      </div>
+    </blockquote></div>
+    Have you check the content of the
+    /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/c=
+ameracapture-0.1-r0/git
+    directory?<div class=3D"im"><br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div> I am getting=A0</div>
+        <div><br>
+        </div>
+        <div>CMake Error: The source directory
+          &quot;/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-lin=
+ux-gnueabi/cameracapture-0.1-r0/cameracapture-0.1&quot;
+          does not appear to contain CMakeLists.txt.</div>
+      </div>
+    </blockquote></div>
+    =A0=A0=A0=A0=A0=A0=A0 ^^^<br>
+    Are you sure you have change the S variable? The error still
+    reference the common directory (&quot;${WORKDIR}/${PN}-${PV}&quot;).
+    <div class=3D"im"><blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div><br>
+        </div>
+        <div>--&gt; I copied my CMakeLists.txt file in ${WORKDIR}/git
+          and tried the build, got this following error:</div>
+        <div><br>
+        </div>
+        <div>
+          <div>
+            <div>ERROR: Function failed: do_configure (see
+              /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux=
+-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
+              for further information)</div>
+            <div>ERROR: Logfile of failure stored in:
+/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/camer=
+acapture-0.1-r0/temp/log.do_configure.10784</div>
+            <div>Log data follows:</div>
+            <div>| DEBUG: Executing python function sysroot_cleansstate</di=
+v>
+            <div>| DEBUG: Python function sysroot_cleansstate finished</div=
+>
+            <div>| DEBUG: SITE files [&#39;endian-little&#39;, &#39;bit-32&=
+#39;,
+              &#39;arm-common&#39;, &#39;common-linux&#39;, &#39;common-gli=
+bc&#39;, &#39;arm-linux&#39;,
+              &#39;arm-linux-gnueabi&#39;, &#39;common&#39;]</div>
+            <div>| DEBUG: Executing shell function
+              autotools_preconfigure</div>
+            <div>| DEBUG: Shell function autotools_preconfigure finished</d=
 iv>
+            <div>| DEBUG: Executing shell function do_configure</div>
+            <div>| CMake Error at
+              /home/siguser/yocto/build/tmp/sysroots/x86_64-linux/usr/share=
+/cmake-2.8/Modules/CMakeDetermineSystem.cmake:95
+              (MESSAGE):</div>
+            <div>| =A0 Could not find toolchain file:</div>
+            <div>| =A0
+/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/camer=
+acapture-0.1-r0/toolchain.cmake</div>
+          </div>
+        </div>
+      </div>
+    </blockquote></div>
+    It looks as something went wrong. Please clear the old package and
+    try again or increment the PR number.<br>
+    bitbake -c cleansstate cameracapture &amp;&amp; bitbake
+    cameracapture<div class=3D"im"><br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div>
+          <div>
+            <div>| Call Stack (most recent call first):</div>
+            <div>
+              | =A0 CMakeLists.txt:2 (project)</div>
+            <div>|=A0</div>
+            <div>|=A0</div>
+            <div>| CMake Error: Error required internal CMake variable
+              not set, cmake may be not be built correctly.</div>
+            <div>| Missing variable is:</div>
+            <div>| CMAKE_C_COMPILER_ENV_VAR</div>
+            <div>| CMake Error: Error required internal CMake variable
+              not set, cmake may be not be built correctly.</div>
+            <div>| Missing variable is:</div>
+            <div>| CMAKE_C_COMPILER</div>
+            <div>| CMake Error: Could not find cmake module
+<a>file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnuea=
+bi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCCompiler.cmake</a></div>
+            <div>| CMake Error: Error required internal CMake variable
+              not set, cmake may be not be built correctly.</div>
+            <div>| Missing variable is:</div>
+            <div>| CMAKE_CXX_COMPILER_ENV_VAR</div>
+            <div>| CMake Error: Error required internal CMake variable
+              not set, cmake may be not be built correctly.</div>
+            <div>| Missing variable is:</div>
+            <div>| CMAKE_CXX_COMPILER</div>
+            <div>| CMake Error: Could not find cmake module
+<a>file:/home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux-gnuea=
+bi/cameracapture-0.1-r0/git/CMakeFiles/CMakeCXXCompiler.cmake</a></div>
+            <div>| CMake Error: CMAKE_C_COMPILER not set, after
+              EnableLanguage</div>
+            <div>| CMake Error: CMAKE_CXX_COMPILER not set, after
+              EnableLanguage</div>
+            <div>| -- Configuring incomplete, errors occurred!</div>
+            <div>| ERROR: Function failed: do_configure (see
+              /home/siguser/yocto/build/tmp/work/armv7a-vfp-neon-poky-linux=
+-gnueabi/cameracapture-0.1-r0/temp/log.do_configure.10784
+              for further information)</div>
+            <div>ERROR: Task 6
+              (/home/siguser/yocto/poky/meta-bebot/recipes-bebot/cameracapt=
+ure/<a href=3D"http://cameracapture_0.1.bb" target=3D"_blank">cameracapture=
+_0.1.bb</a>,
+              do_configure) failed with exit code &#39;1&#39;</div>
+          </div>
+        </div>
+        <div><br>
+        </div>
+        <div>Do I need to set CXX Compiler in my CMakeLists.txt?</div>
+      </div>
+    </blockquote></div>
+    No, this are subsequent errors of the missing toolchain.cmake.<div clas=
+s=3D"im"><br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">My CmakeLists.txt file:
+        <div><br>
+        </div>
+        <div>
+          <div>cmake_minimum_required(VERSION 2.8)</div>
+          <div>project(cameracapture)</div>
+          <div>find_package( OpenCV REQUIRED )</div>
+          <div>add_executable( cameracapture cameracapture.cpp )</div>
+          <div>target_link_libraries( cameracapture ${OpenCV_LIBS} )</div>
+        </div>
+      </div>
+    </blockquote></div>
+    This looks okay.<br>
+    <br>
+  </div>
 
-UBI_VOLNAME =3D &quot;rootfs&quot;</div><div><br></div><div>MACHINE_EXTRA_R=
-DEPENDS =3D &quot;omap3-writeprom&quot;</div><div>MACHINE_EXTRA_RRECOMMENDS=
- =3D &quot; kernel-modules&quot;</div><div><br></div><div>MACHINE_FEATURES =
-=3D &quot;kernel26 alsa apm ext3 screen usbgadget usbhost vfat wifi&quot;</=
-div>
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><span style=
+=3D"font-family:arial,sans-serif;font-size:13px;border-collapse:collapse;co=
+lor:rgb(136,136,136)">Regards,<br>Zafrullah Syed</span><div><font color=3D"=
+#888888" face=3D"arial, sans-serif"><span style=3D"border-collapse:collapse=
+"><br>
 
-</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></d=
-iv><div>---------------------------------<br>Sudhangathan BS<br>Ph:(+91) 97=
-31-905-205<br>---------------------------------</div>
+</span></font></div>
 </div>
 
---089e0149cc8e7b1bc804e4d9084b--
+--047d7bb04bc298843a04e4d9163d--
