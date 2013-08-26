@@ -1,30 +1,22 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB067E01358
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 13:57:14 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 26 Aug 2013 13:57:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,962,1367996400"; 
-	d="scan'208,217";a="392318907"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Aug 2013 13:57:13 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.144]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.216]) with mapi id
-	14.03.0123.003; Mon, 26 Aug 2013 13:57:12 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, August
-	27, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac6insPL1jtUmdaKSueKOeJoB/MB+AAAAbmQ
-Date: Mon, 26 Aug 2013 20:57:12 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF2B61B@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <Yang.Shi@windriver.com>
+Received: from mail7.windriver.com (mail7.windriver.com [128.224.252.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED1E7E01358
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 14:32:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail7.windriver.com (8.14.5/8.14.3) with ESMTP id r7QLWfxW025170
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 17:32:42 -0400 (EDT)
+Received: from localhost.localdomain (147.11.152.86) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Mon, 26 Aug 2013 14:32:41 -0700
+From: Yang Shi <yang.shi@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 26 Aug 2013 14:27:30 -0700
+Message-ID: <1377552450-29358-1-git-send-email-yang.shi@windriver.com>
+X-Mailer: git-send-email 1.7.5.4
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, August 27, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Subject: [meta-virtulization] [PATCH] irqbalance: Uprev to 1.0.6
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,57 +28,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2013 20:57:15 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF2B61BORSMSX108amrcor_"
+X-List-Received-Date: Mon, 26 Aug 2013 21:32:47 -0000
+Content-Type: text/plain
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF2B61BORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Add recipe for 1.0.6 version. And, add status and reload commands into
+init script.
 
-Agenda:
+Signed-off-by: Yang Shi <yang.shi@windriver.com>
+---
+ ...irqbalance-Add-status-and-reload-commands.patch |   55 ++++++++++++++++++++
+ recipes-extended/irqbalance/irqbalance_1.0.6.bb    |   15 +++++
+ 2 files changed, 70 insertions(+), 0 deletions(-)
+ create mode 100644 recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch
+ create mode 100644 recipes-extended/irqbalance/irqbalance_1.0.6.bb
 
-* Opens collection - 5 min (Song)
-* Yocto 1.4.2 release - 10 min (Paul/AlexG)
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-* SWAT team rotation: Cristian -> Laurentiu Palcu
-* Opens - 10 min
-* Team Sharing - 20 min
+diff --git a/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch
+new file mode 100644
+index 0000000..d853d0b
+--- /dev/null
++++ b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch
+@@ -0,0 +1,55 @@
++From dc7366896dd5a5bae82be4b11530bc9fdb7cbcdd Mon Sep 17 00:00:00 2001
++From: Yang Shi <yang.shi@windriver.com>
++Date: Mon, 26 Aug 2013 10:58:02 -0700
++Subject: [PATCH] irqbalance: Add status and reload commands
++
++Add status and reload commands for irqbalanced init script
++
++Signed-off-by: Yang Shi <yang.shi@windriver.com>
++---
++ irqbalance.init |   12 +++++++++---
++ 1 files changed, 9 insertions(+), 3 deletions(-)
++
++diff --git a/irqbalance.init b/irqbalance.init
++index d12d62c..f58bf55 100644
++--- a/irqbalance.init
+++++ b/irqbalance.init
++@@ -1,6 +1,6 @@
++ #!/bin/sh
++ #
++-# Copyright (c) 2012 Wind River Systems, Inc.
+++# Copyright (c) 2013 Wind River Systems, Inc.
++ #
++ ### BEGIN INIT INFO
++ # Provides:             irqbalance
++@@ -11,6 +11,8 @@
++ # Short-Description:    IRQ allocation daemon
++ ### END INIT INFO
++ 
+++. /etc/init.d/functions
+++
++ case "$1" in
++   start)
++ 	echo -n "Starting irqbalance: "
++@@ -22,12 +24,16 @@ case "$1" in
++ 	start-stop-daemon -K -n irqbalance
++ 	echo "done"
++ 	;;
++-  restart)
+++  restart|reload)
++ 	$0 stop
++ 	$0 start
++ 	;;
+++  status)
+++	status irqbalance
+++	echo "done"
+++	;;
++   *)
++-	echo "Usage: $0 {start | stop | restart}" >&2
+++	echo "Usage: $0 {start | stop | restart | reload | status}" >&2
++ 	exit 1
++ 	;;
++ esac
++-- 
++1.7.5.4
++
+diff --git a/recipes-extended/irqbalance/irqbalance_1.0.6.bb b/recipes-extended/irqbalance/irqbalance_1.0.6.bb
+new file mode 100644
+index 0000000..fd08b73
+--- /dev/null
++++ b/recipes-extended/irqbalance/irqbalance_1.0.6.bb
+@@ -0,0 +1,15 @@
++#
++# Copyright (C) 2013 Wind River Systems, Inc.
++#
++
++require irqbalance.inc
++
++PR = "r0"
++
++SRC_URI[md5sum] = "b73b1a5a9e1c3c428ae39024c711e41e"
++SRC_URI[sha256sum] = "95ac79992e6de501f613c781b0fc8aa17a4aaf6a3d865bb6e15ac6a46c6ab1fd"
++
++SRC_URI = "http://irqbalance.googlecode.com/files/irqbalance-${PV}.tar.gz \
++           file://add-initscript.patch \
++           file://irqbalance-Add-status-and-reload-commands.patch \
++          "
+-- 
+1.7.5.4
 
 
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF2B61BORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.4.2 release - 10 min (Paul/AlexG)</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>* SWAT team rotation: Cristian -&gt; Laurentiu Palcu</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF2B61BORSMSX108amrcor_--
