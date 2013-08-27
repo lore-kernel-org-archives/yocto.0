@@ -1,29 +1,27 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-oa0-f43.google.com (mail-oa0-f43.google.com
-	[209.85.219.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1F77E00441
-	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 15:56:15 -0700 (PDT)
-Received: by mail-oa0-f43.google.com with SMTP id i10so6749568oag.30
-	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 15:56:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=yzTP/KSPpq5blmG0He/WmYn6Bl6o41x/vOXIKU12F8M=;
-	b=tVRe6XmWWAdz1+ALRsmRCJ9HxDR0HE0Ly0Fq/lxokP8hAa2qIpQyQjxr1O7Zb918xI
-	y2odK5GPDOzeWoSf3Y6EXV7OJ4c/RUcC/1Qf2C6ZAyH5y2wr2WANXW9S1Cpe6EUC0unz
-	xo2VfnVNnBoKtHjd5zEMp1OF9XY9QOq+Y12QKgmQNvp+RIbrnFIqRFj6JZ1IZo9Ym+2j
-	nhkkltvg7sDwQTyGLfO9aeXI11n8oGBJWxKJoaoRnVHNtE7pSahCvYnsYDtt0pQzWwpM
-	dmeUQfcElFOwKWmSDYiSHpB7C98x8L+Rz7dZgw4tsYzebYNUpYmNh/1UmWM6Cf5KEekF
-	VBvw==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C7B0E01595
+	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 16:24:42 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 401FFF811EB; Tue, 27 Aug 2013 17:24:40 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 7F515F811EA;
+	Tue, 27 Aug 2013 17:24:39 -0600 (MDT)
+Message-ID: <521D354E.1020909@mlbassoc.com>
+Date: Tue, 27 Aug 2013 17:25:02 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.182.246.99 with SMTP id xv3mr1937773obc.47.1377644174973;
-	Tue, 27 Aug 2013 15:56:14 -0700 (PDT)
-Received: by 10.60.142.41 with HTTP; Tue, 27 Aug 2013 15:56:14 -0700 (PDT)
-Received: by 10.60.142.41 with HTTP; Tue, 27 Aug 2013 15:56:14 -0700 (PDT)
-Date: Tue, 27 Aug 2013 18:56:14 -0400
-Message-ID: <CAFZh4h_2zm=TU5Egmfxqkj9aUZoFf-zrXPB3TbtK03C3RfLFcg@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Is there a OE core based mgetty?
+References: <2C94F567F1334C30A5BBD2CA59576460@PAULD>
+In-Reply-To: <2C94F567F1334C30A5BBD2CA59576460@PAULD>
+Subject: Re: Can anything be done about do_rootfs speed?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,32 +33,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Aug 2013 22:56:16 -0000
-Content-Type: multipart/alternative; boundary=001a11c2f002ad223904e4f5c75e
+X-List-Received-Date: Tue, 27 Aug 2013 23:24:47 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11c2f002ad223904e4f5c75e
-Content-Type: text/plain; charset=ISO-8859-1
+On 2013-08-27 16:27, Paul D. DeRocco wrote:
+> I got really tired of waiting for builds on my lowly dual-core Atom
+> machine, so I went out and bought a nice fast machine with an i7-4770K and
+> a Samsung SSD. Full builds are now screechingly fast, over 10x compared to
+> the Atom.
+>
+> But when making a tiny change, I still have to wait for do_rootfs. Since
+> this is a single task, it runs on a single core, so it only runs maybe
+> three times as fast. For my Gumstix stuff, it takes five minutes instead
+> of something like 15. That's a meaningful improvement, but it still seems
+> long when the task implementing the minor change took, oh, five seconds.
+> Since it's the one task that _always_ gets executed, it seems like a
+> bottleneck that should be addressed.
+>
+> Is there any way, in the future, of breaking do_rootfs into multiple
+> threads, so they can take advantage of multiple cores? Or has something
+> like this been tried already, and found not to produce much of a speedup?
+> Or is the process intriniscally sequential?
+>
 
-Hi,
+As far as I understand, the 'do_rootfs' step in building an image is basically
+equivalent to running "${PKG_MGR} install <all_required_packages>", where PKG_MGR
+is your package management method of choice - ipk or rpm.  This seems to me to
+be a very single-threaded process.
 
-I need mgetty and don't see it anywhere in any of the OE core based
-layers.  Did something replace it?  I'm trying to migrate some OE classic
-work to OE core based distros.
+Perhaps you should think more about how you are using this.  If you don't need
+to rebuild the whole image every time, maybe you can use the package management
+tools instead?  For example, I routinely build images as well but I also try to
+use 'opkg' as much as possible to manage package updates, etc.   This is a huge
+time saver, especially when making small or incremental changes.  I only rely
+on the full image builds when I want to "checkpoint" the state of the system.
 
-Regards,
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Brian
-
---001a11c2f002ad223904e4f5c75e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">Hi,</p>
-<p dir=3D"ltr">I need mgetty and don&#39;t see it anywhere in any of the OE=
- core based layers.=A0 Did something replace it?=A0 I&#39;m trying to migra=
-te some OE classic work to OE core based distros.</p>
-<p dir=3D"ltr">Regards,</p>
-<p dir=3D"ltr">Brian<br>
-</p>
-
---001a11c2f002ad223904e4f5c75e--
