@@ -1,25 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC3EAE01358
-	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 01:33:42 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 27 Aug 2013 01:33:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,966,1367996400"; d="scan'208";a="392558145"
-Received: from unknown (HELO helios.localnet) ([10.252.123.40])
-	by fmsmga002.fm.intel.com with ESMTP; 27 Aug 2013 01:33:40 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: David =?ISO-8859-1?Q?Nystr=F6m?= <david.nystrom@enea.com>
-Date: Tue, 27 Aug 2013 09:33:38 +0100
-Message-ID: <2196360.bXPOIJBs5j@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <521C5608.3020202@enea.com>
-References: <1377552450-29358-1-git-send-email-yang.shi@windriver.com>
-	<521C5608.3020202@enea.com>
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-ob0-f175.google.com (mail-ob0-f175.google.com
+	[209.85.214.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FFBCE01358
+	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 02:08:38 -0700 (PDT)
+Received: by mail-ob0-f175.google.com with SMTP id xn12so4361030obc.6
+	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 02:08:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=aqAe19VGI2JqIiuqJ/fngwIUczV+pyn7GLaDVAeHMdY=;
+	b=J5SbDGuYUdBQjGJAacaoY8VKPQs4py5XK4c3ZmVDdV0xjiZFQa5ahGS3TiAciRMbAb
+	TyL0hUjR9uqWkusaFfcyIuJU0X8trYY9M6M5F6e4EuKMfH0WlWRuC7rBT7+zNHUOCXip
+	sZx52NkSuCnPzodujXMYvLTvintjjVG4y7v/A8jNPsSGCgw0JHlw4xNppvFKFmt33tfL
+	c/8gxtnM1ZxH7EPFNOeW2V2VNkJZhVngQAz8n9zRkf8Csl9OTYi3eT8S564lRZhLe4ZB
+	Ta/pGRylHodVRTQoeDG9TMEcWN/CQ1CQKVMkQ1noAQ4p8L7K8fgMHEcbAwYxqpx95bM3
+	o0Yg==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-virtulization] [PATCH] irqbalance: Uprev to 1.0.6
+X-Received: by 10.182.87.170 with SMTP id az10mr992322obb.10.1377594518325;
+	Tue, 27 Aug 2013 02:08:38 -0700 (PDT)
+Received: by 10.182.109.36 with HTTP; Tue, 27 Aug 2013 02:08:38 -0700 (PDT)
+Date: Tue, 27 Aug 2013 11:08:38 +0200
+Message-ID: <CAFyqS9oq7=v=H2VdH1mK_jznoqrQrCR3ZeS54NAT6g2zAxPk3w@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Kernel 3.9 uImage build problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,84 +34,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Aug 2013 08:33:42 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 27 Aug 2013 09:08:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tuesday 27 August 2013 09:32:24 David Nystr=F6m wrote:
-> On Mon 26 Aug 2013 11:27:30 PM CEST, Yang Shi wrote:
-> > Add recipe for 1.0.6 version. And, add status and reload commands i=
-nto
-> > init script.
-> >=20
-> > Signed-off-by: Yang Shi <yang.shi@windriver.com>
-> > ---
-> >=20
-> >   ...irqbalance-Add-status-and-reload-commands.patch |   55
-> >   ++++++++++++++++++++ recipes-extended/irqbalance/irqbalance_1.0.6=
-.bb  =20
-> >   |   15 +++++
-> >   2 files changed, 70 insertions(+), 0 deletions(-)
-> >   create mode 100644
-> >   recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-=
-reload
-> >   -commands.patch create mode 100644
-> >   recipes-extended/irqbalance/irqbalance_1.0.6.bb>=20
-> > diff --git
-> > a/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-=
-reload
-> > -commands.patch
-> > b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-=
-reload
-> > -commands.patch new file mode 100644
-> > index 0000000..d853d0b
-> > --- /dev/null
-> > +++
-> > b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-=
-reload
-> > -commands.patch @@ -0,0 +1,55 @@
-> > +From dc7366896dd5a5bae82be4b11530bc9fdb7cbcdd Mon Sep 17 00:00:00 =
-2001
-> > +From: Yang Shi <yang.shi@windriver.com>
-> > +Date: Mon, 26 Aug 2013 10:58:02 -0700
-> > +Subject: [PATCH] irqbalance: Add status and reload commands
-> > +
-> > +Add status and reload commands for irqbalanced init script
-> > +
-> > +Signed-off-by: Yang Shi <yang.shi@windriver.com>
-> > +---
-> > + irqbalance.init |   12 +++++++++---
-> > + 1 files changed, 9 insertions(+), 3 deletions(-)
-> > +
-> > +diff --git a/irqbalance.init b/irqbalance.init
-> > +index d12d62c..f58bf55 100644
-> > +--- a/irqbalance.init
-> > ++++ b/irqbalance.init
-> > +@@ -1,6 +1,6 @@
-> > + #!/bin/sh
-> > + #
-> > +-# Copyright (c) 2012 Wind River Systems, Inc.
-> > ++# Copyright (c) 2013 Wind River Systems, Inc
->=20
-> What is this ?, as far as I understand it, the script + recipe is
-> proprietary licensed to windriver.
->=20
-> I see the windriver copyright notice was introduced with commit:
-> 43b438f06897a390e16709b3f9e11355f325e2e9
-> I seem to remember that we agreed that all contents of
-> meta-virtualization should be MIT.
+Hi. We are trying to build a Linux 3.9 kernel (uplift from 3.6) and
+are suddenly facing a completely new error when creating the uImage.
 
-I'm not a lawyer, but as far as I am aware MIT licensing does not precl=
-ude=20
-having a copyright owner; in fact the standard form of the MIT license =
-text=20
-begins with a copyright statement.
+HOSTCC  scripts/mod/file2alias.o
+|   HOSTLD  scripts/mod/modpost
+| make[1]: `include/generated/mach-types.h' is up to date.
+|   CALL    scripts/checksyscalls.sh
+|   CHK     include/generated/compile.h
+|   CHK     kernel/config_data.h
+|   Kernel: arch/arm/boot/Image is ready
+|   Kernel: arch/arm/boot/zImage is ready
+| multiple (or no) load addresses:
+| This is incompatible with uImages
+| Specify LOADADDR on the commandline to build an uImage
+| make[1]: *** [arch/arm/boot/uImage] Error 1
+| make: *** [uImage] Error 2
 
-Cheers,
-Paul
+Any hints on where to start look for source of the problem?
+In our machine config UBOOT_LOADADDR is set.
 
---=20
+Build Configuration:
+BB_VERSION        = "1.19.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "SUSE-LINUX-11"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "zynq-zc706"
+DISTRO            = "poky-chris"
+DISTRO_VERSION    = "1.4+snapshot-20130827"
+TUNE_FEATURES     = "armv7a vfp cortexa9"
+TARGET_FPU        = "vfp"
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Thanks.
+Hans
 
