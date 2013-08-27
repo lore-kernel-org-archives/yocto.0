@@ -1,22 +1,34 @@
-Return-Path: <Yang.Shi@windriver.com>
-Received: from mail7.windriver.com (mail7.windriver.com [128.224.252.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED1E7E01358
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 14:32:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail7.windriver.com (8.14.5/8.14.3) with ESMTP id r7QLWfxW025170
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 17:32:42 -0400 (EDT)
-Received: from localhost.localdomain (147.11.152.86) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Mon, 26 Aug 2013 14:32:41 -0700
-From: Yang Shi <yang.shi@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 26 Aug 2013 14:27:30 -0700
-Message-ID: <1377552450-29358-1-git-send-email-yang.shi@windriver.com>
-X-Mailer: git-send-email 1.7.5.4
+Return-Path: <arunkr.linux@gmail.com>
+Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
+	[209.85.220.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D863EE0155B
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 20:26:41 -0700 (PDT)
+Received: by mail-pa0-f50.google.com with SMTP id fb10so4246174pad.37
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2013 20:26:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type; bh=DwEVVP1F6hXAzqDblFKOxxDutbws9Ba56By7ETEQJ6s=;
+	b=MZ+EQLfyqQaSl/83yn4AB//XxJtXXZ4qFMy9hketiJ5I45D+Hs0kgw/TigLeDNjwV8
+	Fpr/WnKlho7ivInu++ekz9UxN94FT+7TlOXF/JBkuEuy6yWpSgp9fDPfEXqXGxZ2HtNF
+	Zk/beeDMEYceRo1iPHcaMH5XC/pZz4JrrQJ3DXONbQRUnkHtCK0a4Cm08JNcV68HXf4L
+	7KlJ/2gC8YJ405Q76h4avrZss7BVLArFz2ZP39sbBgeOFYD8Iv7FyfYZTPDC/sUGQsGy
+	ZTpfYa1CfTmsHdlJ2RHIXd1oB5faO+BU/XX7teMwOaSrYOE+2B7zutmC3rkTpXmO48go
+	a9hQ==
+X-Received: by 10.66.232.39 with SMTP id tl7mr6633326pac.140.1377574000720;
+	Mon, 26 Aug 2013 20:26:40 -0700 (PDT)
+Received: from linux-ok2f.site ([123.201.193.33])
+	by mx.google.com with ESMTPSA id
+	om2sm21425134pbc.30.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 26 Aug 2013 20:26:40 -0700 (PDT)
+Message-ID: <521C1C4E.7020107@gmail.com>
+Date: Tue, 27 Aug 2013 08:56:06 +0530
+From: Arun M Kumar <arunkr.linux@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130620 Thunderbird/17.0.7
 MIME-Version: 1.0
-Subject: [meta-virtulization] [PATCH] irqbalance: Uprev to 1.0.6
+To: yocto@yoctoproject.org
+Subject: First build stuck at a Single Task..
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,103 +40,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2013 21:32:47 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 27 Aug 2013 03:26:42 -0000
+Content-Type: multipart/alternative;
+	boundary="------------090501010708000605010107"
 
-Add recipe for 1.0.6 version. And, add status and reload commands into
-init script.
+--------------090501010708000605010107
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Yang Shi <yang.shi@windriver.com>
----
- ...irqbalance-Add-status-and-reload-commands.patch |   55 ++++++++++++++++++++
- recipes-extended/irqbalance/irqbalance_1.0.6.bb    |   15 +++++
- 2 files changed, 70 insertions(+), 0 deletions(-)
- create mode 100644 recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch
- create mode 100644 recipes-extended/irqbalance/irqbalance_1.0.6.bb
+I am Building the recipe for the first time.
+Based on the Documentation, I clone the GIT repo of Poky and the other 
+tasks that were mentioned in the mega manual, (quick Start).
+I ran this command
 
-diff --git a/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch
-new file mode 100644
-index 0000000..d853d0b
---- /dev/null
-+++ b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-reload-commands.patch
-@@ -0,0 +1,55 @@
-+From dc7366896dd5a5bae82be4b11530bc9fdb7cbcdd Mon Sep 17 00:00:00 2001
-+From: Yang Shi <yang.shi@windriver.com>
-+Date: Mon, 26 Aug 2013 10:58:02 -0700
-+Subject: [PATCH] irqbalance: Add status and reload commands
-+
-+Add status and reload commands for irqbalanced init script
-+
-+Signed-off-by: Yang Shi <yang.shi@windriver.com>
-+---
-+ irqbalance.init |   12 +++++++++---
-+ 1 files changed, 9 insertions(+), 3 deletions(-)
-+
-+diff --git a/irqbalance.init b/irqbalance.init
-+index d12d62c..f58bf55 100644
-+--- a/irqbalance.init
-++++ b/irqbalance.init
-+@@ -1,6 +1,6 @@
-+ #!/bin/sh
-+ #
-+-# Copyright (c) 2012 Wind River Systems, Inc.
-++# Copyright (c) 2013 Wind River Systems, Inc.
-+ #
-+ ### BEGIN INIT INFO
-+ # Provides:             irqbalance
-+@@ -11,6 +11,8 @@
-+ # Short-Description:    IRQ allocation daemon
-+ ### END INIT INFO
-+ 
-++. /etc/init.d/functions
-++
-+ case "$1" in
-+   start)
-+ 	echo -n "Starting irqbalance: "
-+@@ -22,12 +24,16 @@ case "$1" in
-+ 	start-stop-daemon -K -n irqbalance
-+ 	echo "done"
-+ 	;;
-+-  restart)
-++  restart|reload)
-+ 	$0 stop
-+ 	$0 start
-+ 	;;
-++  status)
-++	status irqbalance
-++	echo "done"
-++	;;
-+   *)
-+-	echo "Usage: $0 {start | stop | restart}" >&2
-++	echo "Usage: $0 {start | stop | restart | reload | status}" >&2
-+ 	exit 1
-+ 	;;
-+ esac
-+-- 
-+1.7.5.4
-+
-diff --git a/recipes-extended/irqbalance/irqbalance_1.0.6.bb b/recipes-extended/irqbalance/irqbalance_1.0.6.bb
-new file mode 100644
-index 0000000..fd08b73
---- /dev/null
-+++ b/recipes-extended/irqbalance/irqbalance_1.0.6.bb
-@@ -0,0 +1,15 @@
-+#
-+# Copyright (C) 2013 Wind River Systems, Inc.
-+#
-+
-+require irqbalance.inc
-+
-+PR = "r0"
-+
-+SRC_URI[md5sum] = "b73b1a5a9e1c3c428ae39024c711e41e"
-+SRC_URI[sha256sum] = "95ac79992e6de501f613c781b0fc8aa17a4aaf6a3d865bb6e15ac6a46c6ab1fd"
-+
-+SRC_URI = "http://irqbalance.googlecode.com/files/irqbalance-${PV}.tar.gz \
-+           file://add-initscript.patch \
-+           file://irqbalance-Add-status-and-reload-commands.patch \
-+          "
--- 
-1.7.5.4
+  "bitbake -k core-image-sato"
+
+all is well, but the build process seems to be stuck at  this point.
+-------------------------------------------------------------------------------------------------------------
+
+Loading cache: 100% 
+|#################################################################################################################| 
+ETA:  00:00:00
+Loaded 1181 entries from dependency cache.
+
+Build Configuration:
+BB_VERSION        = "1.19.1"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "openSUSE-project-12.3"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "qemuarm"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.4+snapshot-20130827"
+TUNE_FEATURES     = "armv5 thumb dsp"
+TARGET_FPU        = "soft"
+meta
+meta-yocto
+meta-yocto-bsp    = "master:b2ff1add530b1fec2fb7f385227a03db47015c37"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: multiple providers are available for runtime 
+libasound-module-bluez (bluez4, bluez5)
+NOTE: consider defining a PREFERRED_PROVIDER entry to match 
+libasound-module-bluez
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+Currently 1 running tasks (1587 of 5917):
+*0: linux-yocto-3.8.13+gitAUTOINC+e7f42a416a_aa76cc2840-r4.2 do_fetch 
+(pid 2006)*
+-----------------------------------------------------------------------------------------------------------------------
 
 
+It has been like this for the past 4 Hours. Internet download Traffic is 
+around 124KB/s on system monitor (no other process using Internet).
+
+I have set the number of jobs in the local conf file as '9' and
+
+I have re-initialted the command from the same directory once the 
+previous build failed.
+
+--------------090501010708000605010107
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    I am Building the recipe for the first time.<br>
+    Based on the Documentation, I clone the GIT repo of Poky and the
+    other tasks that were mentioned in the mega manual, (quick Start).<br>
+    I ran this command<br>
+    <br>
+    &nbsp;"bitbake -k core-image-sato"<br>
+    <br>
+    all is well, but the build process seems to be stuck at&nbsp; this point.<br>
+-------------------------------------------------------------------------------------------------------------<br>
+    <br>
+    Loading cache: 100%
+    |#################################################################################################################|
+    ETA:&nbsp; 00:00:00<br>
+    Loaded 1181 entries from dependency cache.<br>
+    <br>
+    Build Configuration:<br>
+    BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "1.19.1"<br>
+    BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "x86_64-linux"<br>
+    NATIVELSBSTRING&nbsp;&nbsp; = "openSUSE-project-12.3"<br>
+    TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "arm-poky-linux-gnueabi"<br>
+    MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "qemuarm"<br>
+    DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "poky"<br>
+    DISTRO_VERSION&nbsp;&nbsp;&nbsp; = "1.4+snapshot-20130827"<br>
+    TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; = "armv5 thumb dsp"<br>
+    TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = "soft"<br>
+    meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+    meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+    meta-yocto-bsp&nbsp;&nbsp;&nbsp; =
+    "master:b2ff1add530b1fec2fb7f385227a03db47015c37"<br>
+    <br>
+    NOTE: Resolving any missing task queue dependencies<br>
+    NOTE: multiple providers are available for runtime
+    libasound-module-bluez (bluez4, bluez5)<br>
+    NOTE: consider defining a PREFERRED_PROVIDER entry to match
+    libasound-module-bluez<br>
+    NOTE: Preparing runqueue<br>
+    NOTE: Executing SetScene Tasks<br>
+    NOTE: Executing RunQueue Tasks<br>
+    Currently 1 running tasks (1587 of 5917):<br>
+    <b>0: linux-yocto-3.8.13+gitAUTOINC+e7f42a416a_aa76cc2840-r4.2
+      do_fetch (pid 2006)</b><br>
+-----------------------------------------------------------------------------------------------------------------------<br>
+    <br>
+    <br>
+    It has been like this for the past 4 Hours. Internet download
+    Traffic is around 124KB/s on system monitor (no other process using
+    Internet).<br>
+    <br>
+    I have set the number of jobs in the local conf file as '9' and<br>
+    <br>
+    I have re-initialted the command from the same directory once the
+    previous build failed.<br>
+  </body>
+</html>
+
+--------------090501010708000605010107--
