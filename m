@@ -1,25 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3383E0155B
-	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 04:11:59 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 27 Aug 2013 04:11:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,967,1367996400"; d="scan'208";a="394066437"
-Received: from unknown (HELO helios.localnet) ([10.252.123.40])
-	by orsmga002.jf.intel.com with ESMTP; 27 Aug 2013 04:11:57 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Darren Hart <dvhart@linux.intel.com>
-Date: Tue, 27 Aug 2013 12:11:56 +0100
-Message-ID: <2125395.dtpFFoXzek@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <1377316361.5259.101.camel@dvhart-mobl4.amr.corp.intel.com>
-References: <2594690.j9UepmO1kG@helios>
-	<1377316361.5259.101.camel@dvhart-mobl4.amr.corp.intel.com>
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
+	[209.85.217.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A371EE0155B
+	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 05:42:19 -0700 (PDT)
+Received: by mail-lb0-f179.google.com with SMTP id v1so3500560lbd.10
+	for <yocto@yoctoproject.org>; Tue, 27 Aug 2013 05:42:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=zx6f0cqEHVumIVqtvbYj/zMwpfeFHuZBqfcijpgsZG8=;
+	b=jXJOsahjV1l1mzq+21QuLFmkeChChZERBKUw3n2Hu765VZWGMNTH3c+uvBdQhRTym8
+	OPsdq8TWcQJuWb34Z1Gpmeh6xwFBVv4l42YBtm41jaF7QakE6W94ILHHC1XtxksCqsK/
+	5xO6LNJiyzImF8PvYGpU8w0xlTJGvROIdAL5imbuiRthKh053t/nQJFbhJSG1BsrgAkR
+	bPEtHH0tZLU1kaJy7iCjdgzQirmiXjZeoegsOh++9i8d6/ykX0iVJYjgriqXX65/w7Dj
+	ESBxyzCpCif1D/bjPu10JqGJBGglWbytB1+MYSqwvheZMSOgw8+EjSTunaaP2KNP8Ms/
+	ZKAQ==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: RFC: automated runtime testing on real hardware
+X-Received: by 10.152.26.72 with SMTP id j8mr18626030lag.19.1377607338301;
+	Tue, 27 Aug 2013 05:42:18 -0700 (PDT)
+Received: by 10.112.12.103 with HTTP; Tue, 27 Aug 2013 05:42:18 -0700 (PDT)
+In-Reply-To: <2196360.bXPOIJBs5j@helios>
+References: <1377552450-29358-1-git-send-email-yang.shi@windriver.com>
+	<521C5608.3020202@enea.com> <2196360.bXPOIJBs5j@helios>
+Date: Tue, 27 Aug 2013 08:42:18 -0400
+Message-ID: <CADkTA4OOqQvh7mBqQQo-GTikTsOmuZ-fZKV7t5aA-++-uGWWfw@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-virtulization] [PATCH] irqbalance: Uprev to 1.0.6
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,89 +39,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Aug 2013 11:12:00 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 27 Aug 2013 12:42:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hi Darren,
+On Tue, Aug 27, 2013 at 4:33 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Tuesday 27 August 2013 09:32:24 David Nystr=F6m wrote:
+>> On Mon 26 Aug 2013 11:27:30 PM CEST, Yang Shi wrote:
+>> > Add recipe for 1.0.6 version. And, add status and reload commands into
+>> > init script.
+>> >
+>> > Signed-off-by: Yang Shi <yang.shi@windriver.com>
+>> > ---
+>> >
+>> >   ...irqbalance-Add-status-and-reload-commands.patch |   55
+>> >   ++++++++++++++++++++ recipes-extended/irqbalance/irqbalance_1.0.6.bb
+>> >   |   15 +++++
+>> >   2 files changed, 70 insertions(+), 0 deletions(-)
+>> >   create mode 100644
+>> >   recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-rel=
+oad
+>> >   -commands.patch create mode 100644
+>> >   recipes-extended/irqbalance/irqbalance_1.0.6.bb>
+>> > diff --git
+>> > a/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-rel=
+oad
+>> > -commands.patch
+>> > b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-rel=
+oad
+>> > -commands.patch new file mode 100644
+>> > index 0000000..d853d0b
+>> > --- /dev/null
+>> > +++
+>> > b/recipes-extended/irqbalance/irqbalance/irqbalance-Add-status-and-rel=
+oad
+>> > -commands.patch @@ -0,0 +1,55 @@
+>> > +From dc7366896dd5a5bae82be4b11530bc9fdb7cbcdd Mon Sep 17 00:00:00 200=
+1
+>> > +From: Yang Shi <yang.shi@windriver.com>
+>> > +Date: Mon, 26 Aug 2013 10:58:02 -0700
+>> > +Subject: [PATCH] irqbalance: Add status and reload commands
+>> > +
+>> > +Add status and reload commands for irqbalanced init script
+>> > +
+>> > +Signed-off-by: Yang Shi <yang.shi@windriver.com>
+>> > +---
+>> > + irqbalance.init |   12 +++++++++---
+>> > + 1 files changed, 9 insertions(+), 3 deletions(-)
+>> > +
+>> > +diff --git a/irqbalance.init b/irqbalance.init
+>> > +index d12d62c..f58bf55 100644
+>> > +--- a/irqbalance.init
+>> > ++++ b/irqbalance.init
+>> > +@@ -1,6 +1,6 @@
+>> > + #!/bin/sh
+>> > + #
+>> > +-# Copyright (c) 2012 Wind River Systems, Inc.
+>> > ++# Copyright (c) 2013 Wind River Systems, Inc
+>>
+>> What is this ?, as far as I understand it, the script + recipe is
+>> proprietary licensed to windriver.
+>>
+>> I see the windriver copyright notice was introduced with commit:
+>> 43b438f06897a390e16709b3f9e11355f325e2e9
+>> I seem to remember that we agreed that all contents of
+>> meta-virtualization should be MIT.
+>
+> I'm not a lawyer, but as far as I am aware MIT licensing does not preclud=
+e
+> having a copyright owner; in fact the standard form of the MIT license te=
+xt
+> begins with a copyright statement.
 
-On Friday 23 August 2013 20:52:41 Darren Hart wrote:
-> On Tue, 2013-08-13 at 12:00 +0100, Paul Eggleton wrote:
-> > Automated testing on real hardware is something that a lot of us do
-> > already, but the likelihood is that we've all been coming up with our own
-> > solutions for this, so it would be really great if we could have a single
-> > working solution to cover the generally applicable use cases. As a start
-> > though it would be interesting to hear from people who have existing test
-> > setups or who are generally interested in this area. I'd like to hear
-> > feedback on the following:
-> >  * What hardware setup do you use for automated testing?
-> 
-> I am starting to put something together using a customized 19" rack
-> along the lines of those used by OSADL for their real-time farm:
-> 
-> https://www.osadl.org/Test-Rack.test-rack.0.html
-> 
-> This is a poor man's BladeCenter for embedded boards in that it provides
-> a common interface to each board for the rack infrastructure. The board
-> specific stuff sits on the trays themselves. The trays are easily
-> removable to take a board to a desk for hands-on work.
-> 
-> A smart-switch, web-power strip, and serial concentrator feed into a
-> "gateway server" where services like conmux glue it all together.
+Right. Copyright !=3D proprietary. You see copyright on pretty much any typ=
+e of
+licensed file, and I've seen plenty of MIT and GPL copyrighted files.
 
-All makes sense.
-
-> >  * Do you use any software to manage the hardware? Does this include any
-> > existing open source tools?
-> 
-> conmux
-> dnsmasq
-> udev (for static usb uart naming)
-> 
-> The testrack has some early-stage tools to support it, but I'm still
-> sorting those out and they aren't particularly robust for initial setup
-> quite yet.
-
-Having a standard way to set up the software side for this kind of 
-infrastructure would certainly be worthwhile I think. One tricky part would 
-perhaps be supporting variations of infrastructure hardware; doing some 
-searches I haven't found a completely definitive open source project for 
-controlling remotely accessible power strips for example, although there are a 
-few scattered projects for doing that with varying levels of recent 
-maintenance.
-
-> >  * What would you like to see in a common framework to enable this kind of
-> > testing?
-> 
-> To simplify the board management you allude to above, I believe a pull
-> model, rather than a push, is a better architecture.
-> 
-> Your builders can complete builds and inject test records into a
-> database with a priority. The boards sit in a
-> boot/check-db/deploy-test-img/reboot-to-test-image/run-tests loop and
-> push the results back to the database. They select tests based on
-> priority, and the builder doesn't have to do anything at all to manage
-> the boards. This also decouples the builder from the test
-> infrastructure.
-
-Interesting. This would present some challenges with the way the automated 
-tests are currently defined; there's nothing unsolvable that precludes them 
-being run outside of the build environment but they will have to be run 
-somewhere that has python and any required modules installed, presumably an 
-intermediate machine rather than the target machine itself (the latter would 
-not be impossible; but if we did do it that way you couldn't test an image 
-that didn't have python in it.)
-
-We'd also need to come up with a standard definition for the results database 
-and tools to generate reports out of it, but that's something that will likely 
-be needed regardless of the model used for running tests, especially when it 
-comes to recording the results from ptest.
+But otherwise, David is correct .. this should have gone to the
+meta-virtualization
+list, not the yocto list.
 
 Cheers,
-Paul
 
--- 
+Bruce
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
+
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+--=20
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
