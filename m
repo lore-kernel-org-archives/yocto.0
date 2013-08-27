@@ -1,39 +1,39 @@
 Return-Path: <mulhern@gmail.com>
-Received: from mail-qc0-f172.google.com (mail-qc0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0069E01591;
-	Tue, 27 Aug 2013 15:14:21 -0700 (PDT)
-Received: by mail-qc0-f172.google.com with SMTP id a1so2994767qcx.31
-	for <multiple recipients>; Tue, 27 Aug 2013 15:14:21 -0700 (PDT)
+Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
+	[209.85.216.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A637E01594;
+	Tue, 27 Aug 2013 15:14:24 -0700 (PDT)
+Received: by mail-qc0-f173.google.com with SMTP id z10so2985504qcx.18
+	for <multiple recipients>; Tue, 27 Aug 2013 15:14:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id:in-reply-to:references:in-reply-to
-	:references; bh=Lb6HjrJQZsa6ogD/cs7adQou9T00laQYKAAqWjuKwok=;
-	b=gwvOGwCh1/SS0A06FMubxQPcHm5jlN4MAk+Ma867YU62UmozpxPc6T004lEXNGMQci
-	2CJ8OuMrphzGUOi8hhGKEsy7RLFDHFlfk2f0oNxwqVqlDTDhebddtNn1+S3FH3iXMCR2
-	YaCA6qK5eQImKt0fEkWNMHJr9AR4KuAN6PBQpBolpnHsB2hKXmM6s0qVz0O8kcSKO9vT
-	sWmvPVhshNe2t/TLlfbAKDSpzfnZU7q1ywfrxopGuutFJ3yq09cmS9NNiIJLMPp+SIyt
-	ANF6MGAaTBnHm+GwyESwDQvZRJAWuvGKu7hH9SsTEIxN8gVgaIqXe0WMEMM27dtukEGx
-	Y6Xw==
-X-Received: by 10.229.230.129 with SMTP id jm1mr4097570qcb.7.1377641660920;
-	Tue, 27 Aug 2013 15:14:20 -0700 (PDT)
+	:references; bh=koE15f3EiX9jS+PHiUZOmzvwCk491LCZrVab6lv8vgc=;
+	b=bFSAZyOqetC0De8CQn8ii+/SUe2jU6AnInbCpWInEbaMKPBwfWsMM4u3VnjI6oeT5b
+	4zMfZPriY1HhutpJ+k10YVPK3iOz9pkmG0/piZq1XHOqZF9k5G2BaARYi6U9A+7zqx3P
+	QVM8HxZQ0Nzau4+nPudSh5Q2qBd3sd9LgLt7YoyMJfzKXcloVueiOamvB0YFtevJA40m
+	ts+KSmLMxaoN9oQVA2/tz0tZf1Z3kN7jbMzszTuCuVPF1JxqVpisYYzWh9fvNavML3wN
+	iQGXOoDTgn8BmE1QY7zDYAjRqqRigDtKeea7a4j58s6jvUGEd0MqNfsUyJC7xsoPWani
+	fp2g==
+X-Received: by 10.49.24.207 with SMTP id w15mr26033061qef.51.1377641664434;
+	Tue, 27 Aug 2013 15:14:24 -0700 (PDT)
 Received: from mulhern-2010-ubuntu (c-67-186-188-91.hsd1.ma.comcast.net.
 	[67.186.188.91])
-	by mx.google.com with ESMTPSA id 2sm30710941qen.0.1969.12.31.16.00.00
+	by mx.google.com with ESMTPSA id p6sm3283204qai.0.1969.12.31.16.00.00
 	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Tue, 27 Aug 2013 15:14:20 -0700 (PDT)
+	Tue, 27 Aug 2013 15:14:23 -0700 (PDT)
 Received: by mulhern-2010-ubuntu (sSMTP sendmail emulation);
-	Tue, 27 Aug 2013 18:14:19 -0400
+	Tue, 27 Aug 2013 18:14:22 -0400
 From: mulhern <mulhern@gmail.com>
 To: yocto@yoctoproject.org,
 	mulhern@yoctoproject.org
-Date: Tue, 27 Aug 2013 18:14:01 -0400
-Message-Id: <d41b335680fcac5ce39ba2b14dca9e953edc6875.1377641309.git.mulhern@yoctoproject.org>
+Date: Tue, 27 Aug 2013 18:14:02 -0400
+Message-Id: <e31f5cdee8a5db18192131c77966b90a4273453b.1377641309.git.mulhern@yoctoproject.org>
 X-Mailer: git-send-email 1.7.10.4
 In-Reply-To: <cover.1377641309.git.mulhern@yoctoproject.org>
 References: <cover.1377641309.git.mulhern@yoctoproject.org>
 In-Reply-To: <cover.1377641309.git.mulhern@yoctoproject.org>
 References: <cover.1377641309.git.mulhern@yoctoproject.org>
-Subject: [PATCH 2/6] Bastille: Miscellaneous fixes to the Bastille code base.
+Subject: [PATCH 3/6] Bastille: change in behavior of bastille -l.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,221 +45,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Aug 2013 22:14:24 -0000
+X-List-Received-Date: Tue, 27 Aug 2013 22:14:25 -0000
 
 [YOCTO #3867]
 
-Adds four additional small patches which address miscellaneous small problems
-in Bastille.
-
-The four patches are:
-
-fix_missing_use_directives.patch: A number of use directives were missing from
-several files. These were added as discovered.
-
-fix_number_of_modules.patch: The curses interface includes a title for most
-screens which gives a module, a module number, and the number of modules in the
-series. Previously the last value was always 0, now it is simply
-omitted. It would be more desirable to give the correct number, but this would
-require a significant change to the code base.
-
-remove_questions_text_file_references.patch: This version of Bastille does
-not make use of a Questions.txt file, therefore the specification of the
-location of this file in the OSMap/*.bastille files has been removed.
-
-simplify_B_place.patch: This patch discards redundant variables, mostly
-defined but not used cases, and makes the error reporting more informative.
+bastille -l now reports existing configuration file paths even if it has
+not previously been run. Previously, it exited with an error if it detected
+an absence of log files indicating a previous run.
 
 Signed-off-by: mulhern <mulhern@yoctoproject.org>
 ---
- recipes-security/bastille/bastille_3.2.1.bb        |    4 ++
- .../files/fix_missing_use_directives.patch         |   48 ++++++++++++++++++++
- .../bastille/files/fix_number_of_modules.patch     |   32 +++++++++++++
- .../remove_questions_text_file_references.patch    |   24 ++++++++++
- .../bastille/files/simplify_B_place.patch          |   34 ++++++++++++++
- 5 files changed, 142 insertions(+)
- create mode 100644 recipes-security/bastille/files/fix_missing_use_directives.patch
- create mode 100644 recipes-security/bastille/files/fix_number_of_modules.patch
- create mode 100644 recipes-security/bastille/files/remove_questions_text_file_references.patch
- create mode 100644 recipes-security/bastille/files/simplify_B_place.patch
+ recipes-security/bastille/bastille_3.2.1.bb        |    1 +
+ .../bastille/files/find_existing_config.patch      |   58 ++++++++++++++++++++
+ 2 files changed, 59 insertions(+)
+ create mode 100644 recipes-security/bastille/files/find_existing_config.patch
 
 diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
-index 1af7b34..0165a4e 100644
+index 0165a4e..c8d0103 100644
 --- a/recipes-security/bastille/bastille_3.2.1.bb
 +++ b/recipes-security/bastille/bastille_3.2.1.bb
-@@ -19,6 +19,10 @@ SRC_URI = "http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3
-            file://fix_version_parse.patch \
-            file://fixed_defined_warnings.patch \
-            file://call_output_config.patch \
-+           file://fix_missing_use_directives.patch \
-+           file://fix_number_of_modules.patch \
-+           file://remove_questions_text_file_references.patch \
-+           file://simplify_B_place.patch \
+@@ -23,6 +23,7 @@ SRC_URI = "http://sourceforge.net/projects/bastille-linux/files/bastille-linux/3
+            file://fix_number_of_modules.patch \
+            file://remove_questions_text_file_references.patch \
+            file://simplify_B_place.patch \
++           file://find_existing_config.patch \
             "
  
  SRC_URI[md5sum] = "df803f7e38085aa5da79f85d0539f91b"
-diff --git a/recipes-security/bastille/files/fix_missing_use_directives.patch b/recipes-security/bastille/files/fix_missing_use_directives.patch
+diff --git a/recipes-security/bastille/files/find_existing_config.patch b/recipes-security/bastille/files/find_existing_config.patch
 new file mode 100644
-index 0000000..8bc8931
+index 0000000..73e346f
 --- /dev/null
-+++ b/recipes-security/bastille/files/fix_missing_use_directives.patch
-@@ -0,0 +1,48 @@
-+Index: Bastille/Bastille/Firewall.pm
++++ b/recipes-security/bastille/files/find_existing_config.patch
+@@ -0,0 +1,58 @@
++Index: Bastille/bin/bastille
 +===================================================================
-+--- Bastille.orig/Bastille/Firewall.pm	2008-09-14 19:56:54.000000000 -0400
-++++ Bastille/Bastille/Firewall.pm	2013-08-20 16:28:44.588378000 -0400
-+@@ -21,6 +21,7 @@
-+ package Bastille::Firewall;
++--- Bastille.orig/bin/bastille	2013-06-20 14:58:01.065796000 -0400
+++++ Bastille/bin/bastille	2013-08-20 15:16:18.472378000 -0400
++@@ -102,8 +102,9 @@
++     # defines OS specific file locations based on uname
++     systemFileLocations
 + 
-+ use Bastille::API;
-++use Bastille::API::AccountPermission;
-+ use Bastille::API::FileContent;
-+ use Bastille::API::ServiceAdmin;
+++    config_files=`find $config_repository -type f -name \*config 2>/dev/null`
+++
++     if [ -f $last_config ]; then
++-        config_files=`find $config_repository -type f -name \*config 2>/dev/null`
++ 	for config_cursor in `echo $config_files`
++ 	  do
++ 	  if /usr/bin/diff $last_config $config_cursor >/dev/null 2>&1
++@@ -112,8 +113,8 @@
++ 	  fi
++ 	done
++ 	if [ -n "$match" ]; then
++-	    echo "The last bastille run corresponds to the following profiles:"
++-	    echo "$match"
+++	    printf "The last Bastille run corresponds to the following profiles:\n"
+++	    printf "$match"
++ 	else
++             cat >&2 << EOF
++ NOTE:    The last config file applied,
++@@ -122,18 +123,28 @@
++ $ERRSPACES $config_repository.
++ $ERRSPACES This probably means that Bastille was last run interactively and
++ $ERRSPACES changes were made to the config file, but they have not yet been
++-$ERRSPACES applied, or that the source config file was moved.  If you do have pending 
+++$ERRSPACES applied, or that the source config file was moved.  If you do have pending
++ $ERRSPACES changes in a config file, you can apply them by running
++ $ERRSPACES 'bastille -b -f <config file>.'
++ EOF
 + 
-+Index: Bastille/Bastille/SecureInetd.pm
-+===================================================================
-+--- Bastille.orig/Bastille/SecureInetd.pm	2008-09-14 19:56:58.000000000 -0400
-++++ Bastille/Bastille/SecureInetd.pm	2013-08-20 16:45:02.252378001 -0400
-+@@ -12,6 +12,7 @@
-+ use lib "/usr/lib";
-+ 
-+ use Bastille::API;
-++use Bastille::API::AccountPermission;
-+ use Bastille::API::HPSpecific;
-+ use Bastille::API::ServiceAdmin;
-+ use Bastille::API::FileContent;
-+Index: Bastille/Bastille/ConfigureMiscPAM.pm
-+===================================================================
-+--- Bastille.orig/Bastille/ConfigureMiscPAM.pm	2005-09-12 23:47:28.000000000 -0400
-++++ Bastille/Bastille/ConfigureMiscPAM.pm	2013-08-20 18:36:07.340378001 -0400
-+@@ -5,6 +5,7 @@
-+ use lib "/usr/lib";
-+ 
-+ use Bastille::API;
-++use Bastille::API::FileContent;
-+ 
-+ # To DO:
-+ #
-+Index: Bastille/Bastille/Printing.pm
-+===================================================================
-+--- Bastille.orig/Bastille/Printing.pm	2008-09-14 19:56:58.000000000 -0400
-++++ Bastille/Bastille/Printing.pm	2013-08-20 19:05:01.532378002 -0400
-+@@ -5,6 +5,7 @@
-+ use lib "/usr/lib";
-+ 
-+ use Bastille::API;
-++use Bastille::API::AccountPermission;
-+ use Bastille::API::HPSpecific;
-+ use Bastille::API::ServiceAdmin;
-+ use Bastille::API::FileContent;
-diff --git a/recipes-security/bastille/files/fix_number_of_modules.patch b/recipes-security/bastille/files/fix_number_of_modules.patch
-new file mode 100644
-index 0000000..7fed0bd
---- /dev/null
-+++ b/recipes-security/bastille/files/fix_number_of_modules.patch
-@@ -0,0 +1,32 @@
-+Index: Bastille/Bastille_Curses.pm
-+===================================================================
-+--- Bastille.orig/Bastille_Curses.pm	2013-08-24 18:21:54.445288000 -0400
-++++ Bastille/Bastille_Curses.pm	2013-08-24 18:29:16.981288000 -0400
-+@@ -36,9 +36,6 @@
-+     use Curses;
-+     use Curses::Widgets;
-+ 
-+-    # Number_Modules is the number of modules loaded in by Load_Questions
-+-    $Number_Modules=0;
++ 	fi
++     else
++-	echo "NOTE:    The system is in its pre-bastilled state.\n"
+++	for config_cursor in `echo $config_files`
+++	  do
+++	  match="$match   $config_cursor\n"
+++	done
+++        if [ -n "$match" ]; then
+++            printf "The following Bastille profiles were located:\n"
+++            printf "$match"
+++        else
+++            printf "No Bastille profiles were located.\n"
+++        fi
+++        printf "No log files of profiles from previous executions of Bastille have been found. It is likely that Bastille has not been run on this machine.\n"
++     fi
 +-
-+     #
-+     # Highlighted button is the button currently chosen in the button bar
-+     #     We preserve this from question to question...
-+@@ -397,7 +394,7 @@
-+     my $title;
++ }
 + 
-+     if ($module) {
-+-	$title=$module . " of $Number_Modules";
-++	$title=$module;
-+     }
-+ 
-+     txt_field( 'window'       => $window,
-+@@ -488,7 +485,7 @@
-+     my $title;
-+ 
-+     if ($module) {
-+-	$title=$module . " of $Number_Modules";
-++	$title=$module;
-+     }
-+ 
-+     noecho;
-diff --git a/recipes-security/bastille/files/remove_questions_text_file_references.patch b/recipes-security/bastille/files/remove_questions_text_file_references.patch
-new file mode 100644
-index 0000000..5daf6b5
---- /dev/null
-+++ b/recipes-security/bastille/files/remove_questions_text_file_references.patch
-@@ -0,0 +1,24 @@
-+Index: Bastille/OSMap/LINUX.bastille
-+===================================================================
-+--- Bastille.orig/OSMap/LINUX.bastille	2008-01-25 18:31:35.000000000 -0500
-++++ Bastille/OSMap/LINUX.bastille	2013-08-22 04:48:32.677968002 -0400
-+@@ -12,7 +12,6 @@
-+ 
-+ bfile,InteractiveBastille,'/usr/sbin/InteractiveBastille'
-+ bfile,BastilleBackEnd,'/usr/sbin/BastilleBackEnd'
-+-bfile,Questions,'/usr/share/Bastille/Questions.txt'
-+ bfile,QuestionsModules,'/usr/share/Bastille/Modules.txt'
-+ bfile,TODO,'/var/log/Bastille/TODO'
-+ bfile,TODOFlag,'/var/log/Bastille/TODOFlag.txt'
-+Index: Bastille/OSMap/OSX.bastille
-+===================================================================
-+--- Bastille.orig/OSMap/OSX.bastille	2007-09-11 18:09:26.000000000 -0400
-++++ Bastille/OSMap/OSX.bastille	2013-08-22 04:48:47.245968001 -0400
-+@@ -10,7 +10,6 @@
-+ bdir,share,'/usr/share/Bastille'
-+ 
-+ bfile,BastilleBackEnd,'/var/root/Bastille/BastilleBackEnd'
-+-bfile,Questions,'/usr/share/Bastille/Questions.txt'
-+ bfile,QuestionsModules,'/usr/share/Bastille/Modules.txt'
-+ bfile,TODO,'/var/log/Bastille/TODO'
-+ bfile,TODOFlag,'/var/log/Bastille/TODOFlag.txt'
-diff --git a/recipes-security/bastille/files/simplify_B_place.patch b/recipes-security/bastille/files/simplify_B_place.patch
-new file mode 100644
-index 0000000..7c874f5
---- /dev/null
-+++ b/recipes-security/bastille/files/simplify_B_place.patch
-@@ -0,0 +1,34 @@
-+Index: Bastille/Bastille/API.pm
-+===================================================================
-+--- Bastille.orig/Bastille/API.pm	2013-08-21 08:59:17.939950001 -0400
-++++ Bastille/Bastille/API.pm	2013-08-21 08:59:30.983950001 -0400
-+@@ -1679,24 +1679,22 @@
-+ 
-+     use File::Copy;
-+ 
-+-    my $original_source=$source;
-+     $source  = &getGlobal('BDIR', "share") . $source;
-+-    my $original_target=$target;
-+ 
-+     if ( -e $target and -f $target ) {
-+-	&B_backup_file($original_target);
-+-	&B_log("ACTION","About to copy $original_source to $original_target -- had to backup target\n");
-++	&B_backup_file($target);
-++	&B_log("ACTION","About to copy $source to $target -- had to backup target\n");
-+ 	$had_to_backup_target=1;
-+     }
-+     $retval=copy($source,$target);
-+     if ($retval) {
-+-	&B_log("ACTION","placed file $original_source  as  $original_target\n");
-++	&B_log("ACTION","placed file $source  as  $target\n");
-+ 	#
-+ 	# We want to add a line to the &getGlobal('BFILE', "created-files") so that the
-+ 	# file we just put at $original_target gets deleted.
-+-	&B_revert_log(&getGlobal('BIN',"rm") . " $original_target\n");
-++	&B_revert_log(&getGlobal('BIN',"rm") . " $target\n");
-+     } else {
-+-	&B_log("ERROR","Failed to place $original_source as $original_target\n");
-++	&B_log("ERROR","Failed to place $source as $target\n");
-+     }
-+ 
-+     # We add the file to the GLOBAL_SUMS hash if it is not already present
+++
++ # First, make sure we're root
++ if [ `PATH="/usr/bin:/bin"; id -u` -ne 0 ]; then
++     echo "ERROR:   Bastille must be run as root user" >&2
 -- 
 1.7.10.4
 
