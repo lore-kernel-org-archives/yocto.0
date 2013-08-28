@@ -1,38 +1,34 @@
-Return-Path: <rstreif@linuxfoundation.org>
-Received: from mail-ea0-f173.google.com (mail-ea0-f173.google.com
-	[209.85.215.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CF51E0144E
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 09:34:19 -0700 (PDT)
-Received: by mail-ea0-f173.google.com with SMTP id g10so3068486eak.4
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 09:34:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=6eXSNOmJJkKxd5h3oIw+UgIOoSNPhhx3JiPT4YNBWY0=;
-	b=XBvmuXn8EnCf5ZdMYXirgSt2wMgKRrTe10em6uW/Icq0hFgNt62T1JOgaHOf00P+So
-	N8WBYEypx5kzQqWyiqgPDXuGgrJLgbl50joe99lm7TjeTSLgAwQL3xST6nSuWdbgDIPJ
-	bF7C4HfNhhB+1HNKYKU6xYue41eOXRct95tUo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=6eXSNOmJJkKxd5h3oIw+UgIOoSNPhhx3JiPT4YNBWY0=;
-	b=AShPUiaeLrdaYS8+NfaCI7U2CZ1cnmHBWPK5Ef7y6D9fpaxPtAzUh2OXWkJb870bGr
-	SmXPqmhaX5pV/xwu9DjqIM9B8kr0FwfrFRSH/SKNPR0ZgITsAk6hFsScpfWwIgcgvmZk
-	ym/WF5wKItWOcrW/EuGLppAsNeglO1cBZUdXb4OTIW0dsYk1MS90sSswnXBHnffA4Hnt
-	droOpLxQDsi6LvfEgdHXZG7cbhLNQtDvs0xYMImBqleujMIazAsyEDg5E/4uTtUea8BH
-	HLMlJPexbZt4rRaimSSLfVowvHybwcsPMjmv8Up9W6+wB1JMBi2m3LE6/tlLpq08sQgu
-	Usyw==
-X-Gm-Message-State: ALoCoQnv7Oon4K4P23dJIlSQresa9RWqtbD8OKS+Z8Nzmur+Glc6XEk5L/VSz5ecJEXQZZZK/ePq
-MIME-Version: 1.0
-X-Received: by 10.15.73.134 with SMTP id h6mr3466009eey.76.1377707658253; Wed,
-	28 Aug 2013 09:34:18 -0700 (PDT)
-Received: by 10.223.3.66 with HTTP; Wed, 28 Aug 2013 09:34:18 -0700 (PDT)
-Date: Wed, 28 Aug 2013 09:34:18 -0700
-Message-ID: <CA+gsK-ogYkoRW0RFgGveiB6oHM-FKhF_KLg7L5JEM-k7r0omUA@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: [meta-freescale] [meta-fsl-ppc] MPC8572 Machine with Dylan
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pd0-f181.google.com (mail-pd0-f181.google.com
+	[209.85.192.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 166A3E0144E
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 09:48:16 -0700 (PDT)
+Received: by mail-pd0-f181.google.com with SMTP id g10so6540224pdj.12
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 09:48:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:date:message-id
+	:cc:to:mime-version;
+	bh=I52hiQJcxI+CaZ0nF/cIzxeQrlS5iFkXUL5Vtrq1X9c=;
+	b=irWbHi3YY16RLeobsqf+c65k9mr52hAptW9bR3K1fiA/GFaZITXw3VyhWvr1+XALs6
+	5fM15vZMph7W7S0IoW8WJkH4WnRYc2NKJG5O20WIfLOUr1PyERqsXdozAQAnNllM40oW
+	ryO7ALcJrJOxtytqmwxeEurGIXgbHxXnzLD7NSeks72EaSSxLN3WK1WJG5N9WFhYWXRr
+	vZ80wk0swC2rmL7H7D1G+939iA7WBL+PbCcDeCmKgL/iyjh8ne3KIF0RZrBgfAYAgypW
+	RXLRWdJghLIyiBt30q7+5GpCXXMqV3C4AsAx46G/m6LQmS33r1MmLxTckdOIHDk3wy0A
+	tqKw==
+X-Received: by 10.68.143.199 with SMTP id sg7mr28860543pbb.13.1377708496154;
+	Wed, 28 Aug 2013 09:48:16 -0700 (PDT)
+Received: from [192.168.1.106] ([94.205.106.26])
+	by mx.google.com with ESMTPSA id xe9sm35013105pab.0.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 28 Aug 2013 09:48:15 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Wed, 28 Aug 2013 20:48:09 +0400
+Message-Id: <97D7BB3E-BAB9-4FD5-AD8C-EE57499ACBD9@gmail.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Mime-Version: 1.0 (Mac OS X Mail 6.1 \(1498\))
+X-Mailer: Apple Mail (2.1498)
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Yocto reference manual missing entries for MACHINE_DEVICETREE and KERNEL_DEVICETREE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,73 +40,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Aug 2013 16:34:20 -0000
-Content-Type: multipart/alternative; boundary=001a11c29acc93514e04e5048f79
-
---001a11c29acc93514e04e5048f79
-Content-Type: text/plain; charset=ISO-8859-1
-
-I am looking to build for MPC8572 with Dylan and checked out the
-meta-fsl-ppc BSP layer. Seems like support for that machine was removed in
-May [1]. The reason given was " *u-boot code base can not support mpc85xx
-for sdk 1.3.2". Howerver, that was contested in a follow-up e-mail.
-Interestingly, the QorIQ-SDK-V1.3.2-20130325-yocto does contain
-meta-fsl-ppc with support for that machine.
-
-I grepped through the git log but could not even find the commit that
-removed it.
-
-Could someone please comment on the status? Is the BSP layer contained in
-QorIQ-SDK-V1.3.2-20130325-yocto compatible with Dylan?
-
-
-Thanks,
-Rudi
-
-
-[1]
-https://lists.yoctoproject.org/pipermail/meta-freescale/2013-May/002679.html
-
---001a11c29acc93514e04e5048f79
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Wed, 28 Aug 2013 16:48:17 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><font face=3D"garamond, serif"><span style=3D"border-=
-collapse:collapse;color:rgb(102,102,102);font-family:arial,sans-serif;font-=
-size:13px">I am looking to build for MPC8572 with Dylan and checked out the=
- meta-fsl-ppc BSP layer. Seems like support for that machine was removed in=
- May [1]. The reason given was &quot;</span></font><span style=3D"color:rgb=
-(0,0,0);white-space:pre-wrap"> *u-boot code base can not support mpc85xx fo=
-r sdk 1.3.2&quot;. Howerver, that was contested in a follow-up e-mail. Inte=
-restingly, the </span><font color=3D"#000000"><span style=3D"white-space:pr=
-e-wrap">QorIQ-SDK-V1.3.2-20130325-yocto does contain meta-fsl-ppc with supp=
-ort for that machine.</span></font></div>
-<div><font face=3D"garamond, serif"><span style=3D"border-collapse:collapse=
-;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px"><br></=
-span></font></div><div><font face=3D"garamond, serif"><span style=3D"border=
--collapse:collapse;color:rgb(102,102,102);font-family:arial,sans-serif;font=
--size:13px">I grepped through the git log but could not even find the commi=
-t that removed it.</span></font></div>
-<div><font face=3D"garamond, serif"><span style=3D"border-collapse:collapse=
-;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px"><br></=
-span></font></div><div><font color=3D"#666666" face=3D"arial, sans-serif">C=
-ould someone please comment on the status? Is the BSP layer contained in Qo=
-rIQ-SDK-V1.3.2-20130325-yocto compatible with Dylan?</font></div>
-<div><font color=3D"#666666" face=3D"arial, sans-serif"><br></font></div><d=
-iv><font color=3D"#666666" face=3D"arial, sans-serif"><br></font></div><div=
-><font color=3D"#666666" face=3D"arial, sans-serif">Thanks,</font></div><di=
-v><font color=3D"#666666" face=3D"arial, sans-serif">Rudi</font></div>
-<div><font face=3D"garamond, serif"><span style=3D"border-collapse:collapse=
-;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px"><br></=
-span></font></div><div><font face=3D"garamond, serif"><span style=3D"border=
--collapse:collapse;color:rgb(102,102,102);font-family:arial,sans-serif;font=
--size:13px"><br>
-</span></font></div><div><font face=3D"garamond, serif"><span style=3D"bord=
-er-collapse:collapse;color:rgb(102,102,102);font-family:arial,sans-serif;fo=
-nt-size:13px">[1]=A0</span></font><a href=3D"https://lists.yoctoproject.org=
-/pipermail/meta-freescale/2013-May/002679.html">https://lists.yoctoproject.=
-org/pipermail/meta-freescale/2013-May/002679.html</a></div>
+Hi Scott,
+                I noticed that the yocto reference manual is missing =
+entries for MACHINE_DEVICETREE and KERNEL_DEVICETREE variables.
 
-</div>
+I was trying to find out what the difference between the two were, and =
+discovered that it's not described in the reference manual here:
 
---001a11c29acc93514e04e5048f79--
+http://www.yoctoproject.org/docs/1.5/ref-manual/ref-manual.html
+
+Best regards,
+
+Elvis Dowson=
+
