@@ -1,27 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2903E0144E
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 07:41:45 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 28 Aug 2013 07:38:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,976,1367996400"; d="scan'208";a="369770245"
-Received: from unknown (HELO helios.localnet) ([10.252.123.7])
-	by orsmga001.jf.intel.com with ESMTP; 28 Aug 2013 07:41:43 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Wed, 28 Aug 2013 15:41:42 +0100
-Message-ID: <29315361.frJshNW40m@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CA+Z6RkVO6-Szno9iG179ZEVk6DM0WMWYOHece6A_gCx89NoLFg@mail.gmail.com>
-References: <CA+Z6RkUS6gZw3-fzW_muVBC5Cq5Wz7Bo3P+YEVJKf+1OV9=sKg@mail.gmail.com>
-	<1843652.5ibqSWhFnV@helios>
-	<CA+Z6RkVO6-Szno9iG179ZEVk6DM0WMWYOHece6A_gCx89NoLFg@mail.gmail.com>
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-oa0-f47.google.com (mail-oa0-f47.google.com
+	[209.85.219.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4793E0144E
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 08:08:42 -0700 (PDT)
+Received: by mail-oa0-f47.google.com with SMTP id g12so7905951oah.34
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 08:08:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=DQv728FJPRogWsZwGdzUY1+2LmcxRgtbi8GLHiYa7bc=;
+	b=GqNYt3BPumkTs23QiN/pW8zJV6v+XC0hdd54JEfWuBmc0EtKv4oPwnhImks65zHj75
+	VougCUApn/+ttweC58kRtleBOM3HpQZcn+ouJqayTNjqzaq+vrxf/OACXxAIXPQGNzlh
+	5r0Ak7Zx29IEESCtu8iZC3TdLNCXDp3DenC7g+euz/lsVD411mEJ6Bjnbf3i1LwmraNp
+	QbfmgeBKZmX1rC7ZzTPMgWkkaFTYXP1veIQGoLLnbh4lZmq+MwnfHf5LyPqLIIggHyqg
+	GM38+D6UHJXWZ7WZ4XzVhDO02OFevQTPUu5dKpV2xyCiVN7RBm0egUJEMHxSDh+mdMS9
+	ZYwQ==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
-Subject: Re: bitbake -c populate_sdk -v poky-image
+X-Received: by 10.60.63.116 with SMTP id f20mr6257593oes.29.1377702521245;
+	Wed, 28 Aug 2013 08:08:41 -0700 (PDT)
+Received: by 10.182.109.36 with HTTP; Wed, 28 Aug 2013 08:08:41 -0700 (PDT)
+Date: Wed, 28 Aug 2013 17:08:41 +0200
+Message-ID: <CAFyqS9qRgLBFThnAETs1KXnMingG10U3o+3cooVeR4Zi8o5JVQ@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: confusion about DEPENDS vs RDEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,32 +34,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Aug 2013 14:41:47 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 28 Aug 2013 15:08:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wednesday 28 August 2013 13:23:04 Navani Srivastava wrote:
-> Following is my image file to generate rootfs image with SDK having Qt
-> support..
-> I am able to build SDK successfully but on building any Qt application with
-> generated SDK getting following error message-
-> 
-> /opt/poky/1.3.2/sysroots/EBboard-poky-linux-gnueabi//usr/include/qtopia/QtCo
-> re/qglobal.h:68:21: fatal error: algorithm: No such file or directory
-> compilation terminated.
-> make[2]: *** [obj_rel/AdjustedTime.o] Error 1
-> 
-> Please suggest..
+Hi, I am a little bit confused about how to handle these two and what
+they are supposed to solve. I have so far never used RDEPENDS but only
+DEPENDS.
+But I am also having severe problems when building a rootfs image when
+one of my user space libraries are changed from eg. libfoo.so.1 to
+libfoo.so.3. Even though all my packages that have dependencies to it
+includes it in a DEPENDS.
+The error I get during rootfs build is:
 
-I can't tell from the little amount of the error output you've given but it 
-sounds like either standard C++ headers are not installed, or they are but the 
-compiler can't find them for some reason.
+| Computing transaction...error: Can't install
+someapp-1.0-r0@cortexa9_vfp: no package provides libfoo.so.1
 
-Cheers,
-Paul
+But there is no libfoo.so.1 in my sysroot, it has been replaced by libfoo.so.3.
+I know for sure that 'someapp' was rebuilt, but still I got the error message.
+What do seem to help is to force a fetch of 'someapp' and then rebuild
+which sort of indicates that some garbage was left behind. But having
+a package listed in DEPENDS will not force a new fetch if I am not
+mistaken.
 
--- 
+Have I been using the DEPENDS variable incorrectly? Would it make a
+difference if I used RDEPENDS instead?
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Thanks.
+Hans
 
