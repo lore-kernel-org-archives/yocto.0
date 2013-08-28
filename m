@@ -1,37 +1,36 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f53.google.com (mail-vb0-f53.google.com
-	[209.85.212.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8668E01412
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 04:30:22 -0700 (PDT)
-Received: by mail-vb0-f53.google.com with SMTP id i3so3840911vbh.26
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 04:30:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=waiIDFfq5G/b3nebjNVd2fwpqS4B9eIXJbTJDTFwQVw=;
-	b=TffwSvTpoaDiYUz2TmS7ITNjbUHp2ZA4rTsKQx82WUCkIhL9ixII80VJ2zABEDz3NY
-	LKPklnZ7GzXRTZhcGLYDd7g2yiBlUJ/DdfKS6gXYV24IURPsEwstiL6GHOzCKNbgf8P9
-	E8nsWasNeM6S31ysFLW9qgqNczSJV8orDikYhk8xP1uXrgrM/bLiREoiEDwHkpdGz6xH
-	cSttdw462zIqZ5dfwVokn6GQdOZsPFmUlC7s889+xgbn6LVT+0fvCPJJV9HYc1yX0+Sw
-	HkSGZew04a/UJaD6a4P7fRkxEzIdDyihnuPNB15g/YIafFwG5cer0eaWGu7gnlmNBHKD
-	B0gg==
-X-Received: by 10.59.8.232 with SMTP id dn8mr24942831ved.8.1377689421737; Wed,
-	28 Aug 2013 04:30:21 -0700 (PDT)
+Return-Path: <s.stirtzel@googlemail.com>
+Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
+	[209.85.214.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF0C9E0157B
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 04:30:57 -0700 (PDT)
+Received: by mail-ob0-f177.google.com with SMTP id f8so6428383obp.8
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 04:30:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=VqHwbGJKJVESd7aEbA0QeVCzkLtY+eTcDztKnYc+poY=;
+	b=k9+QqO5z9nuXZKqZD/rU3z2HBiXcIWUiZiSO+msgt19MdjTKCdAgzEcRpta4fbEiCr
+	LAues9MqnskeEnnJBHf42oMqZtO60MYqibpbeK2AA8pl4bvYt6i738A4Hmo9HcZQ9L53
+	egzugdqqVDc77JusvJMhey7qFlHwyYrhSGp5XxjS0V+iFC+QQpQzGj57NQ9jyGM25Heo
+	/9uki/WTC6yLkeiGi48ceUXSlwS3Qo4QfrrOI2+1JFFYkJGZUk92BaW35UAa6OrmROKr
+	fRmWJpuxc11BSHUQ2GmQJeJWLjmKysM701GCA6XVvaBjjrygBfefwWFr257TMdCF40lG
+	RFxg==
+X-Received: by 10.60.80.167 with SMTP id s7mr14771058oex.38.1377689456426;
+	Wed, 28 Aug 2013 04:30:56 -0700 (PDT)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.155.17 with HTTP; Wed, 28 Aug 2013 04:29:41 -0700 (PDT)
-In-Reply-To: <521DD72D.2020102@mlbassoc.com>
+Received: by 10.60.44.66 with HTTP; Wed, 28 Aug 2013 04:30:36 -0700 (PDT)
+In-Reply-To: <CAGiJk9eztTXvCR4UjbtXTqRbjN+nKR6KKGgrFqKAvO4TSzSCAg@mail.gmail.com>
 References: <2C94F567F1334C30A5BBD2CA59576460@PAULD>
 	<521D354E.1020909@mlbassoc.com>
-	<8EB78E64DFE9436EAFB462E357C464EC@PAULD>
-	<521DD72D.2020102@mlbassoc.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Wed, 28 Aug 2013 12:29:41 +0100
-X-Google-Sender-Auth: jT6Xpih5UQhiFyLfPCkCBecMWcg
-Message-ID: <CANyK_8fvRsBtHxbH_=mdWvA5MMZH+pkkn6Yd7LWdWpy-T5d24Q@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	"Paul D. DeRocco" <pderocco@ix.netcom.com>
+	<8EB78E64DFE9436EAFB462E357C464EC@PAULD> <20130828072025.GC3544@jama>
+	<DB63579B404D457F9DF825A744067092@PAULD>
+	<CAGiJk9eztTXvCR4UjbtXTqRbjN+nKR6KKGgrFqKAvO4TSzSCAg@mail.gmail.com>
+From: Samuel Stirtzel <s.stirtzel@googlemail.com>
+Date: Wed, 28 Aug 2013 13:30:36 +0200
+Message-ID: <CAGiJk9chSv2CdBq4-TFJ77zeCtF-2QXjjh+WriQcUXJ5GgEEvA@mail.gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Can anything be done about do_rootfs speed?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,28 +43,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Aug 2013 11:30:28 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 28 Aug 2013 11:30:58 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 28 August 2013 11:55, Gary Thomas <gary@mlbassoc.com> wrote:
+2013/8/28 Samuel Stirtzel <s.stirtzel@googlemail.com>:
+> 2013/8/28 Paul D. DeRocco <pderocco@ix.netcom.com>:
+>>> From: Martin Jansa
+>>>
+>>> Are you sure that you're not building some unnecessary IMAGE_FSTYPES?
+>>
+>> No, I'm not sure.
+>>
+>>> Last time someone asked my why it takes so long I've added some debug
+>>> output to do_rootfs and found out that only half of the time was opkg
+>>> installing packages and the rest was various IMAGE_FSTYPES.
+>>>
+>>> e.g. tar.bz2 takes very long without pbzip2 or lbzip2
+>>
+>> Is there a standard way to use those in a build? Do I replace bzip2 with a
+>> link to one of those? Or does Yocto build its own bzip2?
+>>
 >
-> Not quite - you build the packages (recipes) on your build host, but manage
-> them directly on your target hardware.  Of course, this assumes that your
-> build host and target hardware are network connected.
+> Hi,
+>
+> look/grep for IMAGE_FSTYPE, if there is a += "tar.bz2" or multiple
+> identical += lines then you can be sure that do_rootfs is wasting
+> time.
+>
+>
+> A virtual package manager which only composes the package database in
+> a multi-threaded way could be seen as a silver bullet here.
+> Also pigz [1] and pbzip2 [2] could save some minutes / seconds
+> depending on the image size.
+>
+>
+> [1] http://zlib.net/pigz/
+> [2] http://compression.ca/pbzip2/
 >
 
-I threw together a minimal Raspberry Pi system image for a hobbyist
-group I run and do exactly this. I wrote a recipe to create the
-required feed config, it may be a useful template for others:
+Forgot to mention something important...
 
-https://bitbucket.org/homebrewtech/meta-mmmpi/src/master/recipes-core/mmmpi-feed/mmmpi-feed.bb
+If you change:
 
-You probably need to change the distro name, list of architectures and
-the URLs, but the structure is fine.
+COMPRESS_CMD_gz = "gzip -f -9 -c ${IMAGE_NAME}.rootfs.${type} >
+${IMAGE_NAME}.rootfs.${type}.gz"
+COMPRESS_CMD_bz2 = "bzip2 -f -k ${IMAGE_NAME}.rootfs.${type}"
+
+in [...]/meta/classes/image_types.bbclass, then can try pbzip2 / pigz.
+
+
 
 -- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Regards
+Samuel
 
