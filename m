@@ -1,35 +1,35 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71111E01570
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 14:22:33 -0700 (PDT)
-Received: by mail-wg0-f43.google.com with SMTP id z11so3518618wgg.22
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 14:22:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=google.com; s=20120113;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ofO2Y9x5NVnIT31zxNVwzN32O+3EFIRBxUvEWJ+lZkM=;
-	b=ppozxcSslCLQ4GRaGOCEkEQ99WTm2o8lSYum1NFuV87fl1dpUEwx0JjbwbwZ2mtP/C
-	q2eZEYLP8cxJFrEx0K1A8P9q1d6d6nia3ZRIdn81f88JSjgVpkOmw1dOP4DUnbgsZNGk
-	8sZdRedcDOFlq1iWhEt632XHEgZK9UJW249kYRAhy9Xc/LrWDdSGSpd2uEjEN7t7PDJ8
-	BKQiEx5Z2jhzm3xCkZcMFaAv+SVJtwwQs6jfLRcMGATV2J2Uftjm8pb2Q84ZiGsPT4mA
-	nch5n/6DDH+E69CJcsf4uTqYFL5SeVo55G6GocJjiOI7npI+dSJVmI50Tl75gLklpOAP
-	QC8Q==
-X-Gm-Message-State: ALoCoQmStjyLeheKH/u3ddRUP5IU13HoFOJnXx1nmm69mRiDZv9tZAuUOcVxDUFMGtevAGviIjgl
-X-Received: by 10.194.80.137 with SMTP id r9mr146687wjx.88.1377724952715; Wed,
-	28 Aug 2013 14:22:32 -0700 (PDT)
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
+	[209.85.219.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72BA3E01570
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 14:38:32 -0700 (PDT)
+Received: by mail-oa0-f44.google.com with SMTP id l17so3993965oag.31
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 14:38:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ByJq7tIdz+DxggdjjRd3d5uwYDu7CkNaZZHk9VTrPFA=;
+	b=cfDe3QStSQy8fTm/siog+zu8ydQExEa1l/kkFeyP2R9nZmovAOaOWEMebm0ZGrendx
+	IbcXpmiCIxiQ6kEjUtNSizU8ddXd2QS5cInC102aOnBvVzn1bNpxJu7NSROlLC/qPOzI
+	Dao3yW7kEN92BfwF6Fmowa4mRUC/RhtoU31ENyNnums7FU7B6siKyu8rgqJnh7cXZBTL
+	OK9U/TTOzaBVvyQMl80WDq+PrcTns1ZhlIN/Ht6vzmsilZrnHRB2VhiFLIGVOdKbZQcP
+	7/d03cig23x/JM1oN4ovcn478gY9ddlSST96aLNn5/rtxjgByRHZP1ll0W9ADoEpYVuP
+	gRww==
 MIME-Version: 1.0
-Received: by 10.180.218.200 with HTTP; Wed, 28 Aug 2013 14:22:12 -0700 (PDT)
-In-Reply-To: <521E4DFC.2040704@gmail.com>
-References: <CAFyqS9qRgLBFThnAETs1KXnMingG10U3o+3cooVeR4Zi8o5JVQ@mail.gmail.com>
-	<68887874.AzlMtbdLCe@helios> <521E4DFC.2040704@gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 28 Aug 2013 23:22:12 +0200
-Message-ID: <CAP71Wjx3uF=FFGfypOqw9w5HF0N6KEH9KJ6sGE_0zQ2AX3Dk6w@mail.gmail.com>
-To: Hans Beckerus <hans.beckerus@gmail.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: confusion about DEPENDS vs RDEPENDS
+X-Received: by 10.182.220.199 with SMTP id py7mr8266835obc.92.1377725911807;
+	Wed, 28 Aug 2013 14:38:31 -0700 (PDT)
+Received: by 10.60.142.41 with HTTP; Wed, 28 Aug 2013 14:38:31 -0700 (PDT)
+Received: by 10.60.142.41 with HTTP; Wed, 28 Aug 2013 14:38:31 -0700 (PDT)
+In-Reply-To: <521E6007.7090108@pabigot.com>
+References: <CAFZh4h_2zm=TU5Egmfxqkj9aUZoFf-zrXPB3TbtK03C3RfLFcg@mail.gmail.com>
+	<CAFZh4h_izMzmN-nzBLH7myJtiLWGz0EdKce7MJYw1KkjzPhpmA@mail.gmail.com>
+	<521E6007.7090108@pabigot.com>
+Date: Wed, 28 Aug 2013 17:38:31 -0400
+Message-ID: <CAFZh4h9ASkGGadMNTPCoj-qDbo3ednnawcEVYdzpp5CRcwQmYA@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: "Peter A. Bigot" <pab@pabigot.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Is there a OE core based mgetty?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,119 +41,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Aug 2013 21:22:34 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc8e8667c00604e50896a0
+X-List-Received-Date: Wed, 28 Aug 2013 21:38:33 -0000
+Content-Type: multipart/alternative; boundary=001a11c334aa923e1b04e508cfb3
 
---047d7bdc8e8667c00604e50896a0
+--001a11c334aa923e1b04e508cfb3
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Aug 28, 2013 at 9:22 PM, Hans Beckerus <hans.beckerus@gmail.com>wrote:
-
-> Well, I have been struggling before with packages not properly supporting
-> different build and source folders so I can definitely relate to what you
-> are saying. But, does that mean I actually *have* to do it this way for
-> build dependencies to work correctly? In my case we are talking two simple
-> autotools enabled packages and I (naively?) assumed this was not something
-> I had to take care of myself. What strikes me is that you say ""if recipe
-> "foo" changes"", which is actually not the case here! What is changed is
-> the actual source code only. Is that what is going wrong here? If I change
-> my "foo" recipe version, would that be different than to simply
-> fetch/unpack the "foo" package source code? Is "someapp" going to become
-> purged differently in such a  scenario?
+On Aug 28, 2013 4:39 PM, "Peter A. Bigot" <pab@pabigot.com> wrote:
 >
-
-if the source code changes, the version of the recipe needs to change too.
-if you change the source code without bumping the version, the package
-might not be rebuilt properly indeed. and that can explain the behavior you
-are seeing. if 'someapp' does not change, it would be rebuilt only if one
-of its dependencies was rebuilt.
-
-
->
->
->  Have I been using the DEPENDS variable incorrectly? Would it make a
->>> difference if I used RDEPENDS instead?
+> On 08/28/2013 03:19 PM, Brian Hutchinson wrote:
+>>
+>> On Tue, Aug 27, 2013 at 6:56 PM, Brian Hutchinson <b.hutchman@gmail.com>
+wrote:
 >>>
->> RDEPENDS would not be appropriate in this situation, since we're talking
->> about
->> a build-time dependency.
+>>> Hi,
+>>>
+>>> I need mgetty and don't see it anywhere in any of the OE core based
+layers.  Did something replace it?  I'm trying to migrate some OE classic
+work to OE core based distros.
+>>>
+>>> Regards,
+>>>
+>>> Brian
 >>
->> Hope that helps.
 >>
-> What is still somewhat unclear to me is the difference between DEPENDS and
-> RDEPENDS in a simple case as this.
-> A simple application needing a dynamic library is obviously a subject for
-> DEPENDS but to me that also sounds like a typical RDEPENDS?
-> However, when I build an image and include 'someapp', will 'libfoo.so.x'
-> automatically be installed or is that what I need to tell it to do using
-> RDEPENDS?
+>> Ping!  I'll take that as a "No" then.  :)
+>>
+>> So .... I'm working on adding this to OE Core based distros ... should
+it go in meta/recipes-connectivity?  The ppp stuff is in
+meta/recipes-connectivity so I'm thinking that's where it belongs???
 >
-some (most?) of the RDEPENDS are computed auto-magically. so bitbake will
-figure out the dependency between 'someapp' and 'libfoo.so.x' and will
-automatically update 'someapp' RDEPENDS, without the need to do it
-explicitely in the recipe!
+>
+> FWIW, linux-utils provides agetty; busybox also has a getty (was in
+tinylogin in earlier versions, but should be in busybox now).  Dunno if
+those would meet your needs.
+>
+> Peter
+>
 
---047d7bdc8e8667c00604e50896a0
+I need modem control.   I'm moving an existing product (OE Classic based)
+into the OE Core world and it uses mgetty with modems (cellular modems).
+
+Regards,
+
+Brian
+
+--001a11c334aa923e1b04e508cfb3
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Aug 28, 2013 at 9:22 PM, Hans Beckerus <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:hans.beckerus@gmail.com" target=3D"_blank">hans.beckerus@gmail.=
-com</a>&gt;</span> wrote:<br>
+<p dir=3D"ltr"><br>
+On Aug 28, 2013 4:39 PM, &quot;Peter A. Bigot&quot; &lt;<a href=3D"mailto:p=
+ab@pabigot.com">pab@pabigot.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On 08/28/2013 03:19 PM, Brian Hutchinson wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; On Tue, Aug 27, 2013 at 6:56 PM, Brian Hutchinson &lt;<a href=3D"m=
+ailto:b.hutchman@gmail.com">b.hutchman@gmail.com</a>&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Hi,<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; I need mgetty and don&#39;t see it anywhere in any of the OE c=
+ore based layers.=A0 Did something replace it?=A0 I&#39;m trying to migrate=
+ some OE classic work to OE core based distros.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Regards,<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Brian<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Ping!=A0 I&#39;ll take that as a &quot;No&quot; then.=A0 :)=A0 <br=
+>
+&gt;&gt;<br>
+&gt;&gt; So .... I&#39;m working on adding this to OE Core based distros ..=
+. should it go in meta/recipes-connectivity?=A0 The ppp stuff is in meta/re=
+cipes-connectivity so I&#39;m thinking that&#39;s where it belongs???<br>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":16l" style=3D"overflow:hidden">W=
-ell, I have been struggling before with packages not properly supporting di=
-fferent build and source folders so I can definitely relate to what you are=
- saying. But, does that mean I actually *have* to do it this way for build =
-dependencies to work correctly? In my case we are talking two simple autoto=
-ols enabled packages and I (naively?) assumed this was not something I had =
-to take care of myself. What strikes me is that you say &quot;&quot;if reci=
-pe &quot;foo&quot; changes&quot;&quot;, which is actually not the case here=
-! What is changed is the actual source code only. Is that what is going wro=
-ng here? If I change my &quot;foo&quot; recipe version, would that be diffe=
-rent than to simply fetch/unpack the &quot;foo&quot; package source code? I=
-s &quot;someapp&quot; going to become purged differently in such a =A0scena=
-rio?</div>
+&gt;<br>
+&gt;<br>
+&gt; FWIW, linux-utils provides agetty; busybox also has a getty (was in ti=
+nylogin in earlier versions, but should be in busybox now).=A0 Dunno if tho=
+se would meet your needs.<br>
+&gt;<br>
+&gt; Peter<br>
+&gt;</p>
+<p dir=3D"ltr">I need modem control.=A0=A0 I&#39;m moving an existing produ=
+ct (OE Classic based) into the OE Core world and it uses mgetty with modems=
+ (cellular modems).</p>
+<p dir=3D"ltr">Regards,</p>
+<p dir=3D"ltr">Brian<br>
+</p>
 
-</blockquote><div><br></div><div>if the source code changes, the version of=
- the recipe needs to change too. if you change the source code without bump=
-ing the version, the package might not be rebuilt properly indeed. and that=
- can explain the behavior you are seeing. if &#39;someapp&#39; does not cha=
-nge, it would be rebuilt only if one of its dependencies was rebuilt.=A0</d=
-iv>
-
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><div id=3D":16l" style=3D"over=
-flow:hidden"><div class=3D"im"><br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-Have I been using the DEPENDS variable incorrectly? Would it make a<br>
-difference if I used RDEPENDS instead?<br>
-</blockquote>
-RDEPENDS would not be appropriate in this situation, since we&#39;re talkin=
-g about<br>
-a build-time dependency.<br>
-<br>
-Hope that helps.<br>
-</blockquote></div>
-What is still somewhat unclear to me is the difference between DEPENDS and =
-RDEPENDS in a simple case as this.<br>
-A simple application needing a dynamic library is obviously a subject for D=
-EPENDS but to me that also sounds like a typical RDEPENDS?<br>
-However, when I build an image and include &#39;someapp&#39;, will &#39;lib=
-foo.so.x&#39; automatically be installed or is that what I need to tell it =
-to do using RDEPENDS?<br></div></blockquote></div><div class=3D"gmail_extra=
-">
-
-some (most?) of the RDEPENDS are computed auto-magically. so bitbake will f=
-igure out the dependency between &#39;someapp&#39; and &#39;libfoo.so.x&#39=
-; and will automatically update &#39;someapp&#39; RDEPENDS, without the nee=
-d to do it explicitely in the recipe! =A0</div>
-
-<br></div></div>
-
---047d7bdc8e8667c00604e50896a0--
+--001a11c334aa923e1b04e508cfb3--
