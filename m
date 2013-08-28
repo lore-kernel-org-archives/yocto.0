@@ -1,28 +1,33 @@
-Return-Path: <javier.fileiv@gmail.com>
-Received: from mail-oa0-f42.google.com (mail-oa0-f42.google.com
-	[209.85.219.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 364D8E0144E
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 10:10:24 -0700 (PDT)
-Received: by mail-oa0-f42.google.com with SMTP id j10so676880oah.1
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 10:10:24 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
+	[209.85.220.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A6A5E0144E
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 10:48:54 -0700 (PDT)
+Received: by mail-pa0-f41.google.com with SMTP id bj1so6582371pad.28
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 10:48:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=08RoDhM3IbGJG2CxSwTyL4h7W/lqGOWK+xbCq2bgxV0=;
-	b=HwVRZQL+lUaq3xli7IyGFnuTX/xCN6Jtaz04qZisdIjR7314UloQnWD8pABkgucOV9
-	eeZ8oy/VqIA4nIdW8plp+IBqaqaV+njTs/9MkuofTX/QFDWIyEb0Lqf7aoEXNWUxvo/M
-	hQn3tfNjFN04WResEHQxpiO2kiiodLYVdIzn5JBICkuFXtHXA90lthkI4800+lIhuWIx
-	JZV9QNlItWPnuCXE1+7Fw2GJKqHTYhPSqmOaR/vZWidmepnW9OdTSaTJzZLbi2FTsbxp
-	UpUaZkx+cHuxXO/UibPQa4+5OrEhkffq1YdJIUi1Sy4s5K5AWPUQfkMCWd0NWcLHovcJ
-	DmCA==
-MIME-Version: 1.0
-X-Received: by 10.182.227.136 with SMTP id sa8mr12743872obc.39.1377709824189; 
-	Wed, 28 Aug 2013 10:10:24 -0700 (PDT)
-Received: by 10.182.28.193 with HTTP; Wed, 28 Aug 2013 10:10:24 -0700 (PDT)
-Date: Wed, 28 Aug 2013 19:10:24 +0200
-Message-ID: <CABvwO2BKvsLhQ_6kH_OtmLB=ipa8YLBrmzp0nMeRXkv85R8qMw@mail.gmail.com>
-From: Javier Fileiv <javier.fileiv@gmail.com>
-To: yocto@yoctoproject.org
-Subject: IMAGE SATO BOOTARGS
+	h=from:content-type:subject:message-id:date:to:mime-version;
+	bh=Tbf7/7TxOB8sn7DHqJCJeMhIwB9kLl6ABuvzk2JaLXI=;
+	b=lh/eLRg94GislGxjTvKiDAHsE1QkOZqXIisHkyjrIjCzYZokn5DhdHFqgtiLYQ0Yh9
+	+EPPSfiUvfOBdgkbKbXqFlTzVOVkTOFpSndIfO89sjdneBRibuOc+mJ+7/PJ32tSuQB7
+	QlzXKqRCW4KUySyu/oSClLoOEjz4Po7IwgoqchV5RuXO9tqbzjIHxC8tJaCUeXkvcsvZ
+	pAJIRM74MRwekFS1FImWNWdICKBvv1W+cYDYnqTzSlL6xNUyrggPqDB020RAT1l5matD
+	fOG11RWYZb2OVHjsHCwDV2W687Jup55lNIWxgYZc8UpXqtS3x63JgJeKWjrlY9NCaBAp
+	ngzA==
+X-Received: by 10.68.228.230 with SMTP id sl6mr28626837pbc.98.1377712133969;
+	Wed, 28 Aug 2013 10:48:53 -0700 (PDT)
+Received: from [192.168.1.106] ([94.205.106.26])
+	by mx.google.com with ESMTPSA id
+	om2sm32555010pbb.34.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 28 Aug 2013 10:48:53 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Message-Id: <EE3AC7E0-3693-482F-94DB-278D1FD829D5@gmail.com>
+Date: Wed, 28 Aug 2013 21:48:47 +0400
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 6.1 \(1498\))
+X-Mailer: Apple Mail (2.1498)
+Subject: How to work with linux-yocto kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,44 +39,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Aug 2013 17:10:28 -0000
-Content-Type: multipart/alternative; boundary=001a11c30350acadc104e50510a3
+X-List-Received-Date: Wed, 28 Aug 2013 17:48:57 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_059B3E2E-7C9B-4215-A30D-B35B531E973B"
 
---001a11c30350acadc104e50510a3
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello all, Im newbi with linux embedded. I bought a mini2440 boards and I
-downloaded the yocto project. I found some recipes for the same board from
-this guy.
-https://github.com/sakhnik/meta-mini2440
-
-I have a kernel built for mini2440, and the
-core-image-sato-mini2440.rootfs.tar.bz2
-
-I have some question, I hope someone can help me.
-
--If the kernel was not build with HOB, would it work anyway?
--Which are the bootargs to pass to the kernel so it will start with the
-graphical mode?
-
-Thank you very much
-
-Javier (Bs As, Argentina)
-
---001a11c30350acadc104e50510a3
-Content-Type: text/html; charset=ISO-8859-1
+--Apple-Mail=_059B3E2E-7C9B-4215-A30D-B35B531E973B
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-<div dir=3D"ltr">Hello all, Im newbi with linux embedded. I bought a mini24=
-40 boards and I downloaded the yocto project. I found some recipes for the =
-same board from this guy.<div><a href=3D"https://github.com/sakhnik/meta-mi=
-ni2440">https://github.com/sakhnik/meta-mini2440</a><br>
-</div><div><br></div><div>I have a kernel built for mini2440, and the core-=
-image-sato-mini2440.rootfs.tar.bz2</div><div><br></div><div>I have some que=
-stion, I hope someone can help me.</div><div><br></div><div>-If the kernel =
-was not build with HOB, would it work anyway?</div>
-<div>-Which are the bootargs to pass to the kernel so it will start with th=
-e graphical mode?</div><div><br></div><div>Thank you very much</div><div><b=
-r></div><div>Javier (Bs As, Argentina)</div><div><br></div></div>
+Hi,
+     I just don't understand how to work with the linux-yocto kernel.
 
---001a11c30350acadc104e50510a3--
+For example, I created a local copy of the yocto kernel, and updated the =
+linux-yocto_3.8.bb recipe to point to the local copy =
+(git:///<path>;protocol=3Dfile, etc)
+
+Then I created a local branch meta, and another local branch =
+standard/qemuarma9 and then updated the machine definitions in the meta =
+branch for qemuarma9.
+
+When I run yocto, and bitbake linux-yocto, in the tmp folder, if I check =
+the git branch, it's checked out standard/common-pc/atom-pc.
+
+This is really weird.
+
+I've wasted a couple of days because the yocto build infrastructure was =
+checkout out the wrong branch.=20
+
+Elvis Dowson=
+
+--Apple-Mail=_059B3E2E-7C9B-4215-A30D-B35B531E973B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space; =
+">Hi,<div>&nbsp; &nbsp; &nbsp;I just don't understand how to work with =
+the linux-yocto kernel.</div><div><br></div><div>For example, I created =
+a local copy of the yocto kernel, and updated the linux-yocto_3.8.bb =
+recipe to point to the local copy (<a =
+href=3D"git:///&lt;path&gt;;protocol=3Dfile">git:///&lt;path&gt;;protocol=3D=
+file</a>, etc)</div><div><br></div><div>Then I created a local branch =
+meta, and another local branch standard/qemuarma9&nbsp;and then updated =
+the machine definitions in the meta branch for =
+qemuarma9.</div><div><br></div><div>When I run yocto, and bitbake =
+linux-yocto, in the tmp folder, if I check the git branch, it's checked =
+out =
+<b><u>standard/common-pc/atom-pc.</u></b></div><div><br></div><div>This =
+is really weird.</div><div><br></div><div>I've wasted a couple of days =
+because the yocto build infrastructure was checkout out the wrong =
+branch.&nbsp;</div><div><br></div><div>Elvis Dowson</div></body></html>=
+
+--Apple-Mail=_059B3E2E-7C9B-4215-A30D-B35B531E973B--
