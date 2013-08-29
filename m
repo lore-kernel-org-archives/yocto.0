@@ -1,26 +1,48 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A43D5E015A9
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 03:54:37 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 29 Aug 2013 03:54:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,982,1367996400"; d="scan'208";a="395328924"
-Received: from unknown (HELO helios.localnet) ([10.252.123.55])
-	by orsmga002.jf.intel.com with ESMTP; 29 Aug 2013 03:54:35 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Date: Thu, 29 Aug 2013 11:54:34 +0100
-Message-ID: <2462918.0uoppbURnB@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <634B5BDC80D342ABA055FCF109BBDE9C@PAULD>
-References: <CAFyqS9qRgLBFThnAETs1KXnMingG10U3o+3cooVeR4Zi8o5JVQ@mail.gmail.com>
-	<CAP71Wjx3uF=FFGfypOqw9w5HF0N6KEH9KJ6sGE_0zQ2AX3Dk6w@mail.gmail.com>
-	<634B5BDC80D342ABA055FCF109BBDE9C@PAULD>
+Return-Path: <vinayak.garad@einfochips.com>
+Received: from out11.sjc.mx.trendmicro.com (out11.sjc.mx.trendmicro.com
+	[216.99.131.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECAD4E002FB
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 06:20:54 -0700 (PDT)
+Received: from relay07.sjc.mx.trendmicro.com (unknown [10.30.239.6])
+	by out11.sjc.mx.trendmicro.com (Postfix) with ESMTP id C80AA980437
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 13:20:48 +0000 (UTC)
+Received: from pune.einfochips.com (unknown [121.241.186.85])
+	by relay07.sjc.mx.trendmicro.com (Postfix) with ESMTP id 37DD598041F
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 13:20:48 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by pune.einfochips.com (Postfix) with ESMTP id 74A5D4DE0009;
+	Thu, 29 Aug 2013 19:03:55 +0530 (IST)
+X-Virus-Scanned: amavisd-new at pune.einfochips.com
+Received: from pune.einfochips.com ([127.0.0.1])
+	by localhost (pune.einfochips.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id cuwJugMIQcW1; Thu, 29 Aug 2013 19:03:55 +0530 (IST)
+Received: from VINAYAKGPC (unknown [10.110.1.231])
+	by pune.einfochips.com (Postfix) with ESMTPA id E774F4DE0007;
+	Thu, 29 Aug 2013 19:03:54 +0530 (IST)
+From: "vinayak.garad" <vinayak.garad@einfochips.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 29 Aug 2013 18:51:52 +0530
+Message-ID: <002f01cea4ba$bae47610$30ad6230$@garad@einfochips.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: confusion about DEPENDS vs RDEPENDS
+X-Mailer: Microsoft Office Outlook 12.0
+Thread-Index: Ac6kurnANOA+yONJQuOuzRDjEnuBHQ==
+X-TM-AS-Product-Ver: IMHS-1.0.0.1418-7.0.0.1014-20112.007
+X-TM-AS-Result: No--14.5641-5.0-31-10
+X-TM-AS-Result-Detail: Spam:No-Score:-14.5641-Baseline:ModeratelyHigh-Other:Lowest
+X-TM-AS-URLRatingInfo: 81-38-=?us-ascii?B?aHR0cDovL3NjaGVtYXMubWljcm9zb2Z0Lm
+	NvbS9vZmZpY2UvMjAwNC8xMi9vbW1s?=
+X-TM-AS-URLRatingAct: 65-Stamped
+X-TMASE-MatchedRID: XCX1jWV9QFNx1XV+/0DNMIv73wEu0Nx7CI3p+Ju8mqqx81PvNZaDBCL8
+	HaC6OsQfxtA+gEM5mXcT1H6oNrGvV+ETiJzZYgN7Td1FGyH+HrI2O5Eh+45TR0+RqNNFkKfG7/+
+	9swuISRWd8KCdlHrmBehzKJYil63oo5RUoF1j1rj1NV6ZtjddkoJLRBMDwnOkSf6CBl8sl/LUwF
+	ANvZQmQvdN82ulzP0CFCOLNe0Jd9NZiostRfaYC0HrI6vFzzG7dwX/SSKrKHgPGMG6AkHPPJ9P6
+	0UPZK0R2PIYWVqxF5lw+w8svGnPjQ5VocU4CFzq2x/FmlC/aowXihc86lJ7e45czw/QO3fQtBER
+	hmbbLKeAPs2WwBXa0v++gjOGfzBmnEnP9v4KwegksSBZTGCrwrTrdaH1ZWqCdQgf7bli9LzDYOc
+	F3PbNX46HM5rqDwqteu6/JijTIolQ3PqFYU0lAiNCMj8uXynfd3+QFkOnhH4DASAYjj1vhYiiCk
+	U7rTtKZmC1a2ASPPHOXvv4knczIh3Sz+f5hSd4H8FerAT0dJY=
+X-TM-Deliver-Signature: 444b94e065810e86400fddab555eee05
+Cc: 'Shrinivas Hanchate - Embedded' <shrinivas.hanchate@einfochips.com>
+Subject: Lighttpd web server on BlueGiga's APx4 development board
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,81 +54,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2013 10:54:40 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 29 Aug 2013 13:20:55 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0030_01CEA4E8.D49CB210"
+Content-Language: en-us
 
-Hi Paul / Nicolas,
+------=_NextPart_000_0030_01CEA4E8.D49CB210
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Wednesday 28 August 2013 15:15:27 Paul D. DeRocco wrote:
-> From: Nicolas Dechesne
-> > if the source code changes, the version of the recipe needs
-> > to change too. if you change the source code without bumping
-> > the version, the package might not be rebuilt properly
-> > indeed. and that can explain the behavior you are seeing. if
-> > 'someapp' does not change, it would be rebuilt only if one of
-> > its dependencies was rebuilt.
-> 
-> If you're making lots of changes in the course of debugging, isn't it
-> reasonable just to do a cleansstate on the recipe to force it to be
-> rebuilt?
+Hi,
 
-Current versions of the build system (denzil/1.2+, although refinements have 
-been made since then) are task signature-based. That means as far as the build 
-system is able to determine its inputs, if those change it should be able to 
-rebuild all of the output to match. Known limitations:
+ 
 
-* Upstream software that doesn't properly rebuild when reconfigured. In most 
-cases this should be considered as a bug in the recipe. Separating S from B 
-can help here as I mentioned earlier, and you can see in dylan/1.4+ in 
-meta/conf/distro/include/seperatebuilddir.inc that we've been enabling 
-separate recipe build dirs for a number of recipes to help with this.
+I am using BlueGiga's APx4 development board which have Yocto BSP. It have
+Lighttpd web-server configured.
+I have seen that Lighttpd web-server on Yocto BSP uses cgi-bin and .json
+scripts for HTML. I would like to use cgi-bin and .xml tags for HTML.
+I visited Yocto's GIT server but didn't got any thing. I only got
+configuration files of Lighttpd, I neither got any thing related to cgi-bin,
+.xml or .json.
 
-* Editing the unpacked/patched source code in the recipe's work directory 
-(i.e. tmp/work/...). Note that this is not something that is discouraged - in 
-fact it can be a very useful development aid. However, you do need to be aware 
-of the need to force the appropriate tasks to re-execute after you have made 
-changes in there i.e. bitbake -c compile -f <recipe> or bitbake -C compile 
-<recipe>, since the build system cannot detect these kinds of changes on its 
-own.
+So, Yocto have any BSP which uses cgi-bin and .xml tags for HTML instead of
+cgi-bin and .json scripts for HTML? OR a web-server configure to use cgi-bin
+and .xml tags?
 
-* Items remaining in the sysroot when recipes are completely renamed (i.e. 
-when PN changes) or when a recipe is removed. We saw this recently with the 
-mesa-dri -> mesa rename. Currently there's no way for the system to know what 
-replaces what when PN changes or what to do when a recipe completely vanishes, 
-you just have to clean out the old recipe's files in the sysroot. This can of 
-course happen if you add and remove layers without deleting TMPDIR, so care 
-should be taken when doing that. This is an difficult issue to solve 
-practically; there is discussion of this issue here for those interested: 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=4102
+ 
 
-* If you use runtime packaging ("package-management" in IMAGE_FEATURES) and 
-you're putting the packages into a feed and expect on-target upgrades to work 
-consistently from those feeds without manually bumping PR in recipes on every 
-material change, you need to enable the PR service as described in the 
-development manual so that PR increments automatically.
-
-* Changes on the host system affecting native recipes - less likely to cause 
-issues, but worth being aware of. It can happen that adding or removing 
-packages on the host system changes the configuration of native recipes without 
-automatically triggering a rebuild - a good example is how we allow qemu-
-native to build on systems with and without X11; if you added SDL and X11 to a 
-system on which you'd already built qemu-native beforehand, in the absence of 
-other changes you'd have to cleansstate or otherwise force a rebuild of qemu-
-native to have a native QEMU that supported graphical output.
+Thanks and Regards, 
+Vinayak Garad
 
 
-However, with the caveats above, most of the time you can rely upon the build 
-system to determine what to do when things change. Of course, yes, if you want 
-to just force a recipe to rebuild you have the option of bitbake -c 
-cleansstate <recipe> before building it again, but most of the time that's 
-going to be more than is needed.
 
-Cheers,
-Paul
 
--- 
+---------------------------------------------------------------------------------------------
+Notice: 
+This message has been scanned by Trend Micro Mail Security scanner and is believed to be clean
+---------------------------------------------------------------------------------------------
 
-Paul Eggleton
-Intel Open Source Technology Centre
+------=_NextPart_000_0030_01CEA4E8.D49CB210
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html=20xmlns:v=3D"urn:schemas-microsoft-com:vml"=20xmlns:o=3D"urn:schema=
+s-microsoft-com:office:office"=20xmlns:w=3D"urn:schemas-microsoft-com:off=
+ice:word"=20xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml"=
+=20xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta=20http-equiv=3DContent-Type=20content=3D"text/html;=20charset=3Dus-=
+ascii">
+<meta=20name=3DGenerator=20content=3D"Microsoft=20Word=2012=20(filtered=
+=20medium)">
+<style>
+<!--
+=20/*=20Font=20Definitions=20*/
+=20@font-face
+=09{font-family:"Cambria=20Math";
+=09panose-1:2=204=205=203=205=204=206=203=202=204;}
+@font-face
+=09{font-family:Calibri;
+=09panose-1:2=2015=205=202=202=202=204=203=202=204;}
+=20/*=20Style=20Definitions=20*/
+=20p.MsoNormal,=20li.MsoNormal,=20div.MsoNormal
+=09{margin:0in;
+=09margin-bottom:.0001pt;
+=09font-size:11.0pt;
+=09font-family:"Calibri","sans-serif";}
+a:link,=20span.MsoHyperlink
+=09{mso-style-priority:99;
+=09color:blue;
+=09text-decoration:underline;}
+a:visited,=20span.MsoHyperlinkFollowed
+=09{mso-style-priority:99;
+=09color:purple;
+=09text-decoration:underline;}
+span.EmailStyle17
+=09{mso-style-type:personal-compose;
+=09font-family:"Calibri","sans-serif";
+=09color:windowtext;}
+.MsoChpDefault
+=09{mso-style-type:export-only;}
+@page=20Section1
+=09{size:8.5in=2011.0in;
+=09margin:1.0in=201.0in=201.0in=201.0in;}
+div.Section1
+=09{page:Section1;}
+-->
+</style>
+<!--[if=20gte=20mso=209]><xml>
+=20<o:shapedefaults=20v:ext=3D"edit"=20spidmax=3D"1026"=20/>
+</xml><![endif]--><!--[if=20gte=20mso=209]><xml>
+=20<o:shapelayout=20v:ext=3D"edit">
+=20=20<o:idmap=20v:ext=3D"edit"=20data=3D"1"=20/>
+=20</o:shapelayout></xml><![endif]-->
+</head>
+
+<body=20lang=3DEN-US=20link=3Dblue=20vlink=3Dpurple>
+
+<div=20class=3DSection1>
+
+<p=20class=3DMsoNormal><span=20style=3D'font-size:10.0pt;font-family:"Ari=
+al","sans-serif";
+color:#333399'>Hi,<o:p></o:p></span></p>
+
+<p=20class=3DMsoNormal><span=20style=3D'font-size:10.0pt;font-family:"Ari=
+al","sans-serif";
+color:#333399'><o:p>&nbsp;</o:p></span></p>
+
+<p=20class=3DMsoNormal><span=20style=3D'font-size:10.0pt;font-family:"Ari=
+al","sans-serif";
+color:#333399'>I=20am=20using=20BlueGiga's=20APx4=20development=20board=
+=20which=20have=20Yocto
+BSP.=20It=20have=20Lighttpd=20web-server=20configured.<br>
+I=20have=20seen=20that=20Lighttpd=20web-server=20on=20Yocto=20BSP=20uses=
+=20cgi-bin=20and=20.json=20scripts
+for=20HTML.=20I=20would=20like=20to=20use=20cgi-bin=20and=20.xml=20tags=
+=20for=20HTML.<br>
+I=20visited=20Yocto's=20GIT=20server=20but=20didn't=20got=20any=20thing.=
+=20I=20only=20got=20configuration
+files=20of=20Lighttpd,=20I=20neither=20got=20any=20thing=20related=20to=
+=20cgi-bin,=20.xml=20or=20.json.<br>
+<br>
+So,=20Yocto=20have=20any=20BSP=20which=20uses=20cgi-bin=20and=20.xml=20ta=
+gs=20for=20HTML=20instead=20of
+cgi-bin=20and=20.json=20scripts=20for=20HTML?=20OR=20a=20web-server=20con=
+figure=20to=20use=20cgi-bin
+and=20.xml=20tags?</span><o:p></o:p></p>
+
+<p=20class=3DMsoNormal><o:p>&nbsp;</o:p></p>
+
+<p=20class=3DMsoNormal><span=20style=3D'font-size:10.0pt;font-family:"Ari=
+al","sans-serif";
+color:#333399'>Thanks=20and=20Regards,=20<br>
+Vinayak=20Garad<br>
+<br>
+<o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
+
+<table><tr><td=20bgcolor=3D#ffffff><font=20color=3D#000000><pre>---------=
+-------------------------------------------------------------------------=
+-----------
+Notice:=20
+This=20message=20has=20been=20scanned=20by=20Trend=20Micro=20Mail=20Secur=
+ity=20scanner=20and=20is=20believed=20to=20be=20clean
+-------------------------------------------------------------------------=
+--------------------</pre></font></td></tr></table>
+
+------=_NextPart_000_0030_01CEA4E8.D49CB210--
