@@ -1,26 +1,21 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15890E00747
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 12:45:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r7TJjLkB020166
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 29 Aug 2013 12:45:21 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
-	Thu, 29 Aug 2013 12:45:20 -0700
-Message-ID: <521FA4C5.5010102@windriver.com>
-Date: Thu, 29 Aug 2013 15:45:09 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
-MIME-Version: 1.0
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B44CE013BA
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 12:46:29 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 29 Aug 2013 12:46:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,985,1367996400"; d="scan'208";a="388477675"
+Received: from unknown (HELO [10.255.15.104]) ([10.255.15.104])
+	by fmsmga001.fm.intel.com with ESMTP; 29 Aug 2013 12:46:12 -0700
+Message-ID: <1377805572.1643.90.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
 To: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>
+Date: Thu, 29 Aug 2013 14:46:12 -0500
+In-Reply-To: <6C2434209962DC46B88345CA85C334A201CAAD7035ED@Courier.syntech.org>
 References: <6C2434209962DC46B88345CA85C334A201CAAD7035ED@Courier.syntech.org>
-	<521F6E10.3090704@windriver.com>
-	<6C2434209962DC46B88345CA85C334A201CAAD7035EE@Courier.syntech.org>
-In-Reply-To: <6C2434209962DC46B88345CA85C334A201CAAD7035EE@Courier.syntech.org>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
 Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
 Subject: Re: yocto-bsp and kconf-check
 X-BeenThere: yocto@yoctoproject.org
@@ -34,69 +29,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2013 19:45:26 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Thu, 29 Aug 2013 19:46:31 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On 13-08-29 02:56 PM, Jate Sujjavanich wrote:
->> Which kernel version ?
->
-> This is linux-yocto-3.8 and the dylan-9.0.0 yocto.
->
->> It's not about them being common or not, it's about BSPs following a
->> base policy versus having wild, per-board behaviour.
->
-> I've cleaned up many items from the yocto-bsp generated {{machine}}.cfg that are already added by KTYPE. I have two remaining warnings for CONFIG_NET and CONFIG_NETDEVICES. Nested includes eventually lead to the line
->
-> force kconf non-hardware base.cfg
->
-> which adds those config options. I thought the non-hardware would prevent the specified_non_hdw.cfg warning.
+On Thu, 2013-08-29 at 11:36 -0400, Jate Sujjavanich wrote:
+> It appears that the yocto-bsp script generates a kernel configuration that creates some warnings during kern-tools' kconf_check. The {{machine}}.cfg file has many non-hardware options, therefore the script warns.
+> 
+> It seems like many of these should be in the standard kernel configuration. Is this correct, and does the yocto-bsp data need to be updated?
+> 
 
-It should, unless there's a bug. Can you send me the steps to
-reproduce the config ? i.e. just your generated BSP layer in a
-.tgz should be enough.
+The templates in yocto-bsp are derived from the reference and qemu BSPs,
+and have basically inherited the kernel config from those.
 
-Bruce
+Now that the new kernel has landed, I've started updating the templates
+for 3.10, and yes, if all the reference and qemu BSPs have been fixed in
+this regard, I need to update the yocto-bsp templates with the new
+options as well.
 
->
->
-> Any ideas?
->
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Thursday, August 29, 2013 11:52 AM
->> To: Jate Sujjavanich
->> Cc: 'yocto@yoctoproject.org'
->> Subject: Re: [yocto] yocto-bsp and kconf-check
->>
->> On 13-08-29 11:36 AM, Jate Sujjavanich wrote:
->>> It appears that the yocto-bsp script generates a kernel configuration
->> that creates some warnings during kern-tools' kconf_check. The
->> {{machine}}.cfg file has many non-hardware options, therefore the script
->> warns.
->>>
->>> It seems like many of these should be in the standard kernel
->> configuration. Is this correct, and does the yocto-bsp data need to be
->> updated?
->>
->> Which kernel version ? But the answer is not necessarily, if a machine
->> config is specifying something that hasn't been tagged "hardware" or
->> that has a specified exception, you get a warning.
->>
->> It's not about them being common or not, it's about BSPs following a
->> base policy versus having wild, per-board behaviour.
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> - Jate
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->
+BTW, which arch did you use to generate your BSP?
+
+Tom
+
+> - Jate
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
 
