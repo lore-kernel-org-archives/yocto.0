@@ -1,33 +1,24 @@
-Return-Path: <navani.srivastava@gmail.com>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45721E015A9
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 01:27:33 -0700 (PDT)
-Received: by mail-ob0-f176.google.com with SMTP id uz19so122687obc.35
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 01:27:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=JqAs4u4E8nxGTGlbnmlFRSsW4w9te1fvq65I3iOGr0w=;
-	b=o8j9rRRVtCIIhRDJWu13lfQ+FDoMw+KWTIe4W5tLFfjtKXysiLN5MfmJwkOVGD6XFl
-	cngJ/sBSYtYKKeTWuZ2DZbDvN3OEsVBOt5e6zH5YZEpORxqN141BF5OkObrxsNRVgTtG
-	QRQ378PJMIbI1OXD0yE9LaLG56bFYA6f6ftwB+YHFGdoyM/fVraO+uRuVpgVWdLLCdpX
-	5UYgHt4jinDj1kz6k2wDnIjL5k3XMSoChOg6BCYi/jBg/8xDExnn9S+bGxDqmluZQ86j
-	HzPRvOND94bYpS7quJOMrKHRyeQ9m14NIwNTTfErGSKh8MKQsRzjs9WjPMF/L3wDMj7p
-	D9vw==
-X-Received: by 10.60.42.3 with SMTP id j3mr73165oel.70.1377764852741; Thu, 29
-	Aug 2013 01:27:32 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.182.227.138 with HTTP; Thu, 29 Aug 2013 01:27:12 -0700 (PDT)
-In-Reply-To: <1595398.sI48yF1pnG@helios>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F075E01570
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 01:39:20 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 29 Aug 2013 01:38:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,981,1367996400"; d="scan'208";a="370279958"
+Received: from unknown (HELO helios.localnet) ([10.252.123.55])
+	by orsmga001.jf.intel.com with ESMTP; 29 Aug 2013 01:38:51 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Thu, 29 Aug 2013 09:38:44 +0100
+Message-ID: <6594787.TOYfR4Y2ta@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CA+Z6RkV4Ep3QkHJApRSwLU4i7vRO2KJ-kqm7F2ydki_XWtgeGQ@mail.gmail.com>
 References: <CA+Z6RkUS6gZw3-fzW_muVBC5Cq5Wz7Bo3P+YEVJKf+1OV9=sKg@mail.gmail.com>
-	<29315361.frJshNW40m@helios>
-	<CA+Z6RkU+5fY9DAz_RCstCj1f_L9PvVEWC1pMaahKjFjjLgkrvQ@mail.gmail.com>
 	<1595398.sI48yF1pnG@helios>
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Thu, 29 Aug 2013 13:57:12 +0530
-Message-ID: <CA+Z6RkV4Ep3QkHJApRSwLU4i7vRO2KJ-kqm7F2ydki_XWtgeGQ@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+	<CA+Z6RkV4Ep3QkHJApRSwLU4i7vRO2KJ-kqm7F2ydki_XWtgeGQ@mail.gmail.com>
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
 Subject: Re: bitbake -c populate_sdk -v poky-image
@@ -42,295 +33,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2013 08:27:35 -0000
-X-Groupsio-MsgNum: 15750
-Content-Type: multipart/mixed; boundary=089e01495402a1bd2e04e511e0a0
+X-List-Received-Date: Thu, 29 Aug 2013 08:39:28 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---089e01495402a1bd2e04e511e0a0
-Content-Type: multipart/alternative; boundary=089e01495402a1bd2a04e511e09e
+On Thursday 29 August 2013 13:57:12 Navani Srivastava wrote:
+> >>You should set SDKMACHINE if you need the machine that runs the SDK to be
+> 
+> a
+> different architecture from the machine
+> Please find the local.conf file which clearly shows SDKMACHINE is i686 and
+> I want to build for arm1136 arch.. So MACHINE ??= "EBboard" is given where
+> EBboard refers to arm1136 architecture..
+> Not able to find any problem in configurations..
 
---089e01495402a1bd2a04e511e09e
-Content-Type: text/plain; charset=ISO-8859-1
+OK. I think it's unlikely that that would be able to cause this kind of 
+problem anyway.
 
->>You should set SDKMACHINE if you need the machine that runs the SDK to be
-a
-different architecture from the machine
-Please find the local.conf file which clearly shows SDKMACHINE is i686 and
-I want to build for arm1136 arch.. So MACHINE ??= "EBboard" is given where
-EBboard refers to arm1136 architecture..
-Not able to find any problem in configurations..
+> /opt/poky/1.3.2/sysroots/i686-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnu
+> eabi/arm-poky-linux-gnueabi-gcc test.c
+> test.c:3:19: fatal error: stdio.h: No such file or directory
+> 
+> error shows that I have problem in cross toolchain...  Have yocto ever
+> faced such kind of issue with populate_sdk before ?
 
-/opt/poky/1.3.2/sysroots/i686-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
-test.c
-test.c:3:19: fatal error: stdio.h: No such file or directory
+Not that I'm aware of. Could you please file a bug in bugzilla for this? It 
+would really help if you had a simple test case we can use to reproduce it 
+with the SDK as well.
 
-error shows that I have problem in cross toolchain...  Have yocto ever
-faced such kind of issue with populate_sdk before ?
+Thanks,
+Paul
 
+-- 
 
-On Thu, Aug 29, 2013 at 1:43 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
+Paul Eggleton
+Intel Open Source Technology Centre
 
-> On Thursday 29 August 2013 10:11:31 Navani Srivastava wrote:
-> > In order to execute
-> > "bitbake -c populate_sdk poky-image" are we supposed to declare
-> > BUILD_ARCH or SDK_ARCH somewhere in local.conf file?
-> > Yocto Documentation has not mentioned anything like that. Just a doubt as
-> > "bitbake poky-image" is working fine though populate_sdk is giving
-> problem..
->
-> You should set SDKMACHINE if you need the machine that runs the SDK to be a
-> different architecture from the machine that you're running the build on,
-> otherwise it will just use the same one.
->
-> We're aware the documentation is lacking on -c populate_sdk, and we're
-> addressing that in the documentation for the next release.
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---089e01495402a1bd2a04e511e09e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>&gt;&gt;You should set SDKMACHINE if you ne=
-ed the machine that runs the SDK to be a<br>
-different architecture from the machine<br></div>Please find the local.conf=
- file which clearly shows SDKMACHINE is i686 and I want to build for arm113=
-6 arch.. So MACHINE ??=3D &quot;EBboard&quot; is given where EBboard refers=
- to arm1136 architecture..<br>
-
-</div>Not able to find any problem in configurations.. <br><br>/opt/poky/1.=
-3.2/sysroots/i686-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-po=
-ky-linux-gnueabi-gcc test.c<br>test.c:3:19: fatal error: stdio.h: No such f=
-ile or directory<br>
-
-<br></div>error shows that I have problem in cross toolchain...=A0 Have yoc=
-to ever faced such kind of issue with populate_sdk before ?<br></div><div c=
-lass=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu, Aug 29, 201=
-3 at 1:43 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eg=
-gleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>=
-&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On Thursday 29 August 2013=
- 10:11:31 Navani Srivastava wrote:<br>
-&gt; In order to execute<br>
-&gt; &quot;bitbake -c populate_sdk poky-image&quot; are we supposed to decl=
-are<br>
-&gt; BUILD_ARCH or SDK_ARCH somewhere in local.conf file?<br>
-&gt; Yocto Documentation has not mentioned anything like that. Just a doubt=
- as<br>
-&gt; &quot;bitbake poky-image&quot; is working fine though populate_sdk is =
-giving problem..<br>
-<br>
-</div>You should set SDKMACHINE if you need the machine that runs the SDK t=
-o be a<br>
-different architecture from the machine that you&#39;re running the build o=
-n,<br>
-otherwise it will just use the same one.<br>
-<br>
-We&#39;re aware the documentation is lacking on -c populate_sdk, and we&#39=
-;re<br>
-addressing that in the documentation for the next release.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
-
---089e01495402a1bd2a04e511e09e--
-
---089e01495402a1bd2e04e511e0a0
-Content-Type: application/octet-stream; name="local.conf"
-Content-Disposition: attachment; filename="local.conf"
-Content-Transfer-Encoding: base64
-X-Attachment-Id: f_hkxpi2y50
-
-IwojIFRoaXMgZmlsZSBpcyB5b3VyIGxvY2FsIGNvbmZpZ3VyYXRpb24gZmlsZSBhbmQgaXMgd2hl
-cmUgYWxsIGxvY2FsIHVzZXIgc2V0dGluZ3MKIyBhcmUgcGxhY2VkLiBUaGUgY29tbWVudHMgaW4g
-dGhpcyBmaWxlIGdpdmUgc29tZSBndWlkZSB0byB0aGUgb3B0aW9ucyBhIG5ldyB1c2VyCiMgdG8g
-dGhlIHN5c3RlbSBtaWdodCB3YW50IHRvIGNoYW5nZSBidXQgcHJldHR5IG11Y2ggYW55IGNvbmZp
-Z3VyYXRpb24gb3B0aW9uIGNhbgojIGJlIHNldCBpbiB0aGlzIGZpbGUuIE1vcmUgYWR2ZW50dXJv
-dXMgdXNlcnMgY2FuIGxvb2sgYXQgbG9jYWwuY29uZi5leHRlbmRlZCAKIyB3aGljaCBjb250YWlu
-cyBvdGhlciBleGFtcGxlcyBvZiBjb25maWd1cmF0aW9uIHdoaWNoIGNhbiBiZSBwbGFjZWQgaW4g
-dGhpcyBmaWxlCiMgYnV0IG5ldyB1c2VycyBsaWtlbHkgd29uJ3QgbmVlZCBhbnkgb2YgdGhlbSBp
-bml0aWFsbHkuCiMKIyBMaW5lcyBzdGFydGluZyB3aXRoIHRoZSAnIycgY2hhcmFjdGVyIGFyZSBj
-b21tZW50ZWQgb3V0IGFuZCBpbiBzb21lIGNhc2VzIHRoZSAKIyBkZWZhdWx0IHZhbHVlcyBhcmUg
-cHJvdmlkZWQgYXMgY29tbWVudHMgdG8gc2hvdyBwZW9wbGUgZXhhbXBsZSBzeW50YXguIEVuYWJs
-aW5nCiMgdGhlIG9wdGlvbiBpcyBhIHF1ZXN0aW9uIG9mIHJlbW92aW5nIHRoZSAjIGNoYXJhY3Rl
-ciBhbmQgbWFraW5nIGFueSBjaGFuZ2UgdG8gdGhlCiMgdmFyaWFibGUgYXMgcmVxdWlyZWQuCgoj
-CiMgUGFyYWxsZWxpc20gT3B0aW9ucwojCiMgVGhlc2UgdHdvIG9wdGlvbnMgY29udHJvbCBob3cg
-bXVjaCBwYXJhbGxlbGlzbSBCaXRCYWtlIHNob3VsZCB1c2UuIFRoZSBmaXJzdCAKIyBvcHRpb24g
-ZGV0ZXJtaW5lcyBob3cgbWFueSB0YXNrcyBiaXRiYWtlIHNob3VsZCBydW4gaW4gcGFyYWxsZWw6
-CiMKQkJfTlVNQkVSX1RIUkVBRFMgPSAiNCIKIyAKIyBUaGUgc2Vjb25kIG9wdGlvbiBjb250cm9s
-cyBob3cgbWFueSBwcm9jZXNzZXMgbWFrZSBzaG91bGQgcnVuIGluIHBhcmFsbGVsIHdoZW4KIyBy
-dW5uaW5nIGNvbXBpbGUgdGFza3M6CiMKUEFSQUxMRUxfTUFLRSA9ICItaiA0IgojCiMgRm9yIGEg
-cXVhZC1jb3JlIG1hY2hpbmUsIEJCX05VTUJFUl9USFJFQURTID0gIjQiLCBQQVJBTExFTF9NQUtF
-ID0gIi1qIDQiIHdvdWxkCiMgYmUgYXBwcm9wcmlhdGUgZm9yIGV4YW1wbGUuCgojCiMgTWFjaGlu
-ZSBTZWxlY3Rpb24KIwojIFlvdSBuZWVkIHRvIHNlbGVjdCBhIHNwZWNpZmljIG1hY2hpbmUgdG8g
-dGFyZ2V0IHRoZSBidWlsZCB3aXRoLiBUaGVyZSBhcmUgYSBzZWxlY3Rpb24KIyBvZiBlbXVsYXRl
-ZCBtYWNoaW5lcyBhdmFpbGFibGUgd2hpY2ggY2FuIGJvb3QgYW5kIHJ1biBpbiB0aGUgUUVNVSBl
-bXVsYXRvcjoKIwojTUFDSElORSA/PSAicWVtdWFybSIKI01BQ0hJTkUgPz0gInFlbXVtaXBzIgoj
-TUFDSElORSA/PSAicWVtdXBwYyIKI01BQ0hJTkUgPz0gInFlbXV4ODYiCiNNQUNISU5FID89ICJx
-ZW11eDg2LTY0IgojCiMgVGhlcmUgYXJlIGFsc28gdGhlIGZvbGxvd2luZyBoYXJkd2FyZSBib2Fy
-ZCB0YXJnZXQgbWFjaGluZXMgaW5jbHVkZWQgZm9yIAojIGRlbW9uc3RyYXRpb24gcHVycG9zZXM6
-CiMKI01BQ0hJTkUgPz0gImF0b20tcGMiCiNNQUNISU5FID89ICJiZWFnbGVib2FyZCIKI01BQ0hJ
-TkUgPz0gIm1wYzgzMTVlLXJkYiIKI01BQ0hJTkUgPz0gInJvdXRlcnN0YXRpb25wcm8iCiMKIyBU
-aGlzIHNldHMgdGhlIGRlZmF1bHQgbWFjaGluZSB0byBiZSBxZW11eDg2IGlmIG5vIG90aGVyIG1h
-Y2hpbmUgaXMgc2VsZWN0ZWQ6CiNNQUNISU5FID8/PSAicWVtdXg4NiIKTUFDSElORSA/Pz0gIkVC
-Ym9hcmQiCgojCiMgV2hlcmUgdG8gcGxhY2UgZG93bmxvYWRzCiMKIyBEdXJpbmcgYSBmaXJzdCBi
-dWlsZCB0aGUgc3lzdGVtIHdpbGwgZG93bmxvYWQgbWFueSBkaWZmZXJlbnQgc291cmNlIGNvZGUg
-dGFyYmFsbHMKIyBmcm9tIHZhcmlvdXMgdXBzdHJlYW0gcHJvamVjdHMuIFRoaXMgY2FuIHRha2Ug
-YSB3aGlsZSwgcGFydGljdWxhcmx5IGlmIHlvdXIgbmV0d29yawojIGNvbm5lY3Rpb24gaXMgc2xv
-dy4gVGhlc2UgYXJlIGFsbCBzdG9yZWQgaW4gRExfRElSLiBXaGVuIHdpcGluZyBhbmQgcmVidWls
-ZGluZyB5b3UKIyBjYW4gcHJlc2VydmUgdGhpcyBkaXJlY3RvcnkgdG8gc3BlZWQgdXAgdGhpcyBw
-YXJ0IG9mIHN1YnNlcXVlbnQgYnVpbGRzLiBUaGlzIGRpcmVjdG9yeQojIGlzIHNhZmUgdG8gc2hh
-cmUgYmV0d2VlbiBtdWx0aXBsZSBidWlsZHMgb24gdGhlIHNhbWUgbWFjaGluZSB0b28uCiMKIyBU
-aGUgZGVmYXVsdCBpcyBhIGRvd25sb2FkcyBkaXJlY3RvcnkgdW5kZXIgVE9QRElSIHdoaWNoIGlz
-IHRoZSBidWlsZCBkaXJlY3RvcnkuCiMKI0RMX0RJUiA/PSAiJHtUT1BESVJ9L2Rvd25sb2FkcyIK
-CiMKIyBXaGVyZSB0byBwbGFjZSBzaGFyZWQtc3RhdGUgZmlsZXMKIwojIEJpdEJha2UgaGFzIHRo
-ZSBjYXBhYmlsaXR5IHRvIGFjY2VsZXJhdGUgYnVpbGRzIGJhc2VkIG9uIHByZXZpb3VzbHkgYnVp
-bHQgb3V0cHV0LgojIFRoaXMgaXMgZG9uZSB1c2luZyAic2hhcmVkIHN0YXRlIiBmaWxlcyB3aGlj
-aCBjYW4gYmUgdGhvdWdodCBvZiBhcyBjYWNoZSBvYmplY3RzCiMgYW5kIHRoaXMgb3B0aW9uIGRl
-dGVybWluZXMgd2hlcmUgdGhvc2UgZmlsZXMgYXJlIHBsYWNlZC4KIwojIFlvdSBjYW4gd2lwZSBv
-dXQgVE1QRElSIGxlYXZpbmcgdGhpcyBkaXJlY3RvcnkgaW50YWN0IGFuZCB0aGUgYnVpbGQgd291
-bGQgcmVnZW5lcmF0ZQojIGZyb20gdGhlc2UgZmlsZXMgaWYgbm8gY2hhbmdlcyB3ZXJlIG1hZGUg
-dG8gdGhlIGNvbmZpZ3VyYXRpb24uIElmIGNoYW5nZXMgd2VyZSBtYWRlCiMgdG8gdGhlIGNvbmZp
-Z3VyYXRpb24sIG9ubHkgc2hhcmVkIHN0YXRlIGZpbGVzIHdoZXJlIHRoZSBzdGF0ZSB3YXMgc3Rp
-bGwgdmFsaWQgd291bGQKIyBiZSB1c2VkIChkb25lIHVzaW5nIGNoZWNrc3VtcykuCiMKIyBUaGUg
-ZGVmYXVsdCBpcyBhIHNzdGF0ZS1jYWNoZSBkaXJlY3RvcnkgdW5kZXIgVE9QRElSLgojCiNTU1RB
-VEVfRElSID89ICIke1RPUERJUn0vc3N0YXRlLWNhY2hlIgoKIwojIFdoZXJlIHRvIHBsYWNlIHRo
-ZSBidWlsZCBvdXRwdXQKIwojIFRoaXMgb3B0aW9uIHNwZWNpZmllcyB3aGVyZSB0aGUgYnVsayBv
-ZiB0aGUgYnVpbGRpbmcgd29yayBzaG91bGQgYmUgZG9uZSBhbmQKIyB3aGVyZSBCaXRCYWtlIHNo
-b3VsZCBwbGFjZSBpdHMgdGVtcG9yYXJ5IGZpbGVzIGFuZCBvdXRwdXQuIEtlZXAgaW4gbWluZCB0
-aGF0CiMgdGhpcyBpbmNsdWRlcyB0aGUgZXh0cmFjdGlvbiBhbmQgY29tcGlsYXRpb24gb2YgbWFu
-eSBhcHBsaWNhdGlvbnMgYW5kIHRoZSB0b29sY2hhaW4KIyB3aGljaCBjYW4gdXNlIEdpZ2FieXRl
-cyBvZiBoYXJkIGRpc2sgc3BhY2UuCiMKIyBUaGUgZGVmYXVsdCBpcyBhIHRtcCBkaXJlY3Rvcnkg
-dW5kZXIgVE9QRElSLgojCiNUTVBESVIgPSAiJHtUT1BESVJ9L3RtcCIKCiMKIyBEZWZhdWx0IHBv
-bGljeSBjb25maWcKIwojIFRoZSBkaXN0cmlidXRpb24gc2V0dGluZyBjb250cm9scyB3aGljaCBw
-b2xpY3kgc2V0dGluZ3MgYXJlIHVzZWQgYXMgZGVmYXVsdHMuCiMgVGhlIGRlZmF1bHQgdmFsdWUg
-aXMgZmluZSBmb3IgZ2VuZXJhbCBZb2N0byBwcm9qZWN0IHVzZSwgYXQgbGVhc3QgaW5pdGlhbGx5
-LgojIFVsdGltYXRlbHkgd2hlbiBjcmVhdGluZyBjdXN0b20gcG9saWN5LCBwZW9wbGUgd2lsbCBs
-aWtlbHkgZW5kIHVwIHN1YmNsYXNzaW5nIAojIHRoZXNlIGRlZmF1bHRzLgojCkRJU1RSTyA/PSAi
-cG9reSIKIyBBcyBhbiBleGFtcGxlIG9mIGEgc3ViY2xhc3MgdGhlcmUgaXMgYSAiYmxlZWRpbmci
-IGVkZ2UgcG9saWN5IGNvbmZpZ3VyYXRpb24KIyB3aGVyZSBtYW55IHZlcnNpb25zIGFyZSBzZXQg
-dG8gdGhlIGFic29sdXRlIGxhdGVzdCBjb2RlIGZyb20gdGhlIHVwc3RyZWFtIAojIHNvdXJjZSBj
-b250cm9sIHN5c3RlbXMuIFRoaXMgaXMganVzdCBtZW50aW9uZWQgaGVyZSBhcyBhbiBleGFtcGxl
-LCBpdHMgbm90CiMgdXNlZnVsIHRvIG1vc3QgbmV3IHVzZXJzLgojIERJU1RSTyA/PSAicG9reS1i
-bGVlZGluZyIKU0FOSVRZX1RFU1RFRF9ESVNUUk9TICs9ICJVYnVudHUgMTIuMDQuMiBMVFMiCgoj
-CiMgUGFja2FnZSBNYW5hZ2VtZW50IGNvbmZpZ3VyYXRpb24KIwojIFRoaXMgdmFyaWFibGUgbGlz
-dHMgd2hpY2ggcGFja2FnaW5nIGZvcm1hdHMgdG8gZW5hYmxlLiBNdWx0aXBsZSBwYWNrYWdlIGJh
-Y2tlbmRzIAojIGNhbiBiZSBlbmFibGVkIGF0IG9uY2UgYW5kIHRoZSBmaXJzdCBpdGVtIGxpc3Rl
-ZCBpbiB0aGUgdmFyaWFibGUgd2lsbCBiZSB1c2VkIAojIHRvIGdlbmVyYXRlIHRoZSByb290IGZp
-bGVzeXN0ZW1zLgojIE9wdGlvbnMgYXJlOgojICAtICdwYWNrYWdlX2RlYicgZm9yIGRlYmlhbiBz
-dHlsZSBkZWIgZmlsZXMKIyAgLSAncGFja2FnZV9pcGsnIGZvciBpcGsgZmlsZXMgYXJlIHVzZWQg
-Ynkgb3BrZyAoYSBkZWJpYW4gc3R5bGUgZW1iZWRkZWQgcGFja2FnZSBtYW5hZ2VyKQojICAtICdw
-YWNrYWdlX3JwbScgZm9yIHJwbSBzdHlsZSBwYWNrYWdlcwojIEUuZy46IFBBQ0tBR0VfQ0xBU1NF
-UyA/PSAicGFja2FnZV9ycG0gcGFja2FnZV9kZWIgcGFja2FnZV9pcGsiCiMgV2UgZGVmYXVsdCB0
-byBycG06CiNQQUNLQUdFX0NMQVNTRVMgPz0gInBhY2thZ2VfcnBtIgpQQUNLQUdFX0NMQVNTRVMg
-Pz0gInBhY2thZ2VfaXBrIgoKIwojIFNESy9BRFQgdGFyZ2V0IGFyY2hpdGVjdHVyZQojCiMgVGhp
-cyB2YXJpYWJsZSBzcGVjaWZpZWQgdGhlIGFyY2hpdGVjdHVyZSB0byBidWlsZCBTREsvQURUIGl0
-ZW1zIGZvciBhbmQgbWVhbnMKIyB5b3UgY2FuIGJ1aWxkIHRoZSBTREsgcGFja2FnZXMgZm9yIGFy
-Y2hpdGVjdHVyZXMgb3RoZXIgdGhhbiB0aGUgbWFjaGluZSB5b3UgYXJlIAojIHJ1bm5pbmcgdGhl
-IGJ1aWxkIG9uIChpLmUuIGJ1aWxkaW5nIGk2ODYgcGFja2FnZXMgb24gYW4geDg2XzY0IGhvc3Qu
-XwojIFN1cHBvcnRlZCB2YWx1ZXMgYXJlIGk2ODYgYW5kIHg4Nl82NApTREtNQUNISU5FID89ICJp
-Njg2IgoKIwojIEV4dHJhIGltYWdlIGNvbmZpZ3VyYXRpb24gZGVmYXVsdHMKIwojIFRoZSBFWFRS
-QV9JTUFHRV9GRUFUVVJFUyB2YXJpYWJsZSBhbGxvd3MgZXh0cmEgcGFja2FnZXMgdG8gYmUgYWRk
-ZWQgdG8gdGhlIGdlbmVyYXRlZCAKIyBpbWFnZXMuIFNvbWUgb2YgdGhlc2Ugb3B0aW9ucyBhcmUg
-YWRkZWQgdG8gY2VydGFpbiBpbWFnZSB0eXBlcyBhdXRvbWF0aWNhbGx5LiBUaGUKIyB2YXJpYWJs
-ZSBjYW4gY29udGFpbiB0aGUgZm9sbG93aW5nIG9wdGlvbnM6CiMgICJkYmctcGtncyIgICAgICAg
-LSBhZGQgLWRiZyBwYWNrYWdlcyBmb3IgYWxsIGluc3RhbGxlZCBwYWNrYWdlcwojICAgICAgICAg
-ICAgICAgICAgICAgKGFkZHMgc3ltYm9sIGluZm9ybWF0aW9uIGZvciBkZWJ1Z2dpbmcvcHJvZmls
-aW5nKQojICAiZGV2LXBrZ3MiICAgICAgIC0gYWRkIC1kZXYgcGFja2FnZXMgZm9yIGFsbCBpbnN0
-YWxsZWQgcGFja2FnZXMKIyAgICAgICAgICAgICAgICAgICAgICh1c2VmdWwgaWYgeW91IHdhbnQg
-dG8gZGV2ZWxvcCBhZ2FpbnN0IGxpYnMgaW4gdGhlIGltYWdlKQojICAidG9vbHMtc2RrIiAgICAg
-IC0gYWRkIGRldmVsb3BtZW50IHRvb2xzIChnY2MsIG1ha2UsIHBrZ2NvbmZpZyBldGMuKQojICAi
-dG9vbHMtZGVidWciICAgIC0gYWRkIGRlYnVnZ2luZyB0b29scyAoZ2RiLCBzdHJhY2UpCiMgICJ0
-b29scy1wcm9maWxlIiAgLSBhZGQgcHJvZmlsaW5nIHRvb2xzIChvcHJvZmlsZSwgZXhtYXAsIGx0
-dG5nLCB2YWxncmluZCkKIyAgInRvb2xzLXRlc3RhcHBzIiAtIGFkZCB1c2VmdWwgdGVzdGluZyB0
-b29scyAodHNfcHJpbnQsIGFwbGF5LCBhcmVjb3JkIGV0Yy4pCiMgICJkZWJ1Zy10d2Vha3MiICAg
-LSBtYWtlIGFuIGltYWdlIHN1aXRhYmxlIGZvciBkZXZlbG9wbWVudAojICAgICAgICAgICAgICAg
-ICAgICAgZS5nLiBzc2ggcm9vdCBhY2Nlc3MgaGFzIGEgYmxhbmsgcGFzc3dvcmQKIyBUaGVyZSBh
-cmUgb3RoZXIgYXBwbGljYXRpb24gdGFyZ2V0cyB0aGF0IGNhbiBiZSB1c2VkIGhlcmUgdG9vLCBz
-ZWUKIyBtZXRhL2NsYXNzZXMvaW1hZ2UuYmJjbGFzcyBhbmQgbWV0YS9jbGFzc2VzL2NvcmUtaW1h
-Z2UuYmJjbGFzcyBmb3IgbW9yZSBkZXRhaWxzLgojIFdlIGRlZmF1bHQgdG8gZW5hYmxpbmcgdGhl
-IGRlYnVnZ2luZyB0d2Vha3MuCkVYVFJBX0lNQUdFX0ZFQVRVUkVTID0gImRlYnVnLXR3ZWFrcyIK
-CiMKIyBBZGRpdGlvbmFsIGltYWdlIGZlYXR1cmVzCiMKIyBUaGUgZm9sbG93aW5nIGlzIGEgbGlz
-dCBvZiBhZGRpdGlvbmFsIGNsYXNzZXMgdG8gdXNlIHdoZW4gYnVpbGRpbmcgaW1hZ2VzIHdoaWNo
-CiMgZW5hYmxlIGV4dHJhIGZlYXR1cmVzLiBTb21lIGF2YWlsYWJsZSBvcHRpb25zIHdoaWNoIGNh
-biBiZSBpbmNsdWRlZCBpbiB0aGlzIHZhcmlhYmxlIAojIGFyZToKIyAgIC0gJ2J1aWxkc3RhdHMn
-IGNvbGxlY3QgYnVpbGQgc3RhdGlzdGljcwojICAgLSAnaW1hZ2UtbWtsaWJzJyB0byByZWR1Y2Ug
-c2hhcmVkIGxpYnJhcnkgZmlsZXMgc2l6ZSBmb3IgYW4gaW1hZ2UKIyAgIC0gJ2ltYWdlLXByZWxp
-bmsnIGluIG9yZGVyIHRvIHByZWxpbmsgdGhlIGZpbGVzeXN0ZW0gaW1hZ2UKIyAgIC0gJ2ltYWdl
-LXN3YWInIHRvIHBlcmZvcm0gaG9zdCBzeXN0ZW0gaW50cnVzaW9uIGRldGVjdGlvbgojIE5PVEU6
-IGlmIGxpc3RpbmcgbWtsaWJzICYgcHJlbGluayBib3RoLCB0aGVuIG1ha2Ugc3VyZSBta2xpYnMg
-aXMgYmVmb3JlIHByZWxpbmsKIyBOT1RFOiBta2xpYnMgYWxzbyBuZWVkcyB0byBiZSBleHBsaWNp
-dGx5IGVuYWJsZWQgZm9yIGEgZ2l2ZW4gaW1hZ2UsIHNlZSBsb2NhbC5jb25mLmV4dGVuZGVkClVT
-RVJfQ0xBU1NFUyA/PSAiYnVpbGRzdGF0cyBpbWFnZS1ta2xpYnMgaW1hZ2UtcHJlbGluayIKCiMK
-IyBSdW50aW1lIHRlc3Rpbmcgb2YgaW1hZ2VzCiMKIyBUaGUgYnVpbGQgc3lzdGVtIGNhbiB0ZXN0
-IGJvb3RpbmcgdmlydHVhbCBtYWNoaW5lIGltYWdlcyB1bmRlciBxZW11IChhbiBlbXVsYXRvcikK
-IyBhZnRlciBhbnkgcm9vdCBmaWxlc3lzdGVtcyBhcmUgY3JlYXRlZCBhbmQgcnVuIHRlc3RzIGFn
-YWluc3QgdGhvc2UgaW1hZ2VzLiBUbwojIGVuYWJsZSB0aGlzIHVuY29tbWVudCB0aGlzIGxpbmUK
-I0lNQUdFVEVTVCA9ICJxZW11IgojCiMgVGhpcyB2YXJpYWJsZSBjb250cm9scyB3aGljaCB0ZXN0
-cyBhcmUgcnVuIGFnYWluc3QgdmlydHVhbCBpbWFnZXMgaWYgZW5hYmxlZAojIGFib3ZlLiBUaGUg
-Zm9sbG93aW5nIHdvdWxkIGVuYWJsZSBiYXQsIGJvb3QgdGhlIHRlc3QgY2FzZSB1bmRlciB0aGUg
-c2FuaXR5IHN1aXRlCiMgYW5kIHBlcmZvcm0gdG9vbGNoYWluIHRlc3RzCiNURVNUX1NDRU4gPSAi
-c2FuaXR5IGJhdCBzYW5pdHk6Ym9vdCB0b29sY2hhaW4iCiMKIyBCZWNhdXNlIG9mIHRoZSBRRU1V
-IGJvb3Rpbmcgc2xvd25lc3MgaXNzdWUgKHNlZSBidWcgIzY0NiBhbmQgIzYxOCksIHRoZQojIGF1
-dG9idWlsZGVyIG1heSBzdWZmZXIgYSB0aW1lb3V0IGlzc3VlIHdoZW4gcnVubmluZyBzYW5pdHkg
-dGVzdHMuIFdlIGludHJvZHVjZQojIHRoZSB2YXJpYWJsZSBURVNUX1NFUklBTElaRSBoZXJlIHRv
-IHJlZHVjZSB0aGUgdGltZSB0YWtlbiBieSB0aGUgc2FuaXR5IHRlc3RzLgojIEl0IGlzIHNldCB0
-byAxIGJ5IGRlZmF1bHQsIHdoaWNoIHdpbGwgYm9vdCB0aGUgaW1hZ2UgYW5kIHJ1biBjYXNlcyBp
-biB0aGUgc2FtZQojIGltYWdlIHdpdGhvdXQgcmVib290aW5nIG9yIGtpbGxpbmcgdGhlIG1hY2hp
-bmUgaW5zdGFuY2UuIElmIGl0IGlzIHNldCB0byAwLCB0aGUKIyBpbWFnZSB3aWxsIGJlIGNvcGll
-ZCBhbmQgdGVzdGVkIGZvciBlYWNoIGNhc2UsIHdoaWNoIHdpbGwgdGFrZSBsb25nZXIgYnV0IGJl
-CiMgbW9yZSBwcmVjaXNlLgojVEVTVF9TRVJJQUxJWkUgPSAiMSIKCiMKIyBJbnRlcmFjdGl2ZSBz
-aGVsbCBjb25maWd1cmF0aW9uCiMKIyBVbmRlciBjZXJ0YWluIGNpcmN1bXN0YW5jZXMgdGhlIHN5
-c3RlbSBtYXkgbmVlZCBpbnB1dCBmcm9tIHlvdSBhbmQgdG8gZG8gdGhpcyBpdCAKIyBjYW4gbGF1
-bmNoIGFuIGludGVyYWN0aXZlIHNoZWxsLiBJdCBuZWVkcyB0byBkbyB0aGlzIHNpbmNlIHRoZSBi
-dWlsZCBpcyAKIyBtdWx0aXRocmVhZGVkIGFuZCBuZWVkcyB0byBiZSBhYmxlIHRvIGhhbmRsZSB0
-aGUgY2FzZSB3aGVyZSBtb3JlIHRoYW4gb25lIHBhcmFsbGVsCiMgcHJvY2VzcyBtYXkgcmVxdWly
-ZSB0aGUgdXNlcidzIGF0dGVudGlvbi4gVGhlIGRlZmF1bHQgaXMgaXRlcmF0ZSBvdmVyIHRoZSBh
-dmFpbGFibGUKIyB0ZXJtaW5hbCB0eXBlcyB0byBmaW5kIG9uZSB0aGF0IHdvcmtzLgojCiMgRXhh
-bXBsZXMgb2YgdGhlIG9jY2FzaW9ucyB0aGlzIG1heSBoYXBwZW4gYXJlIHdoZW4gcmVzb2x2aW5n
-IHBhdGNoZXMgd2hpY2ggY2Fubm90CiMgYmUgYXBwbGllZCwgdG8gdXNlIHRoZSBkZXZzaGVsbCBv
-ciB0aGUga2VybmVsIG1lbnVjb25maWcKIwojIFN1cHBvcnRlZCB2YWx1ZXMgYXJlIGF1dG8sIGdu
-b21lLCB4ZmNlLCByeHZ0LCBzY3JlZW4sIGtvbnNvbGUgKEtERSAzLnggb25seSksIG5vbmUKIyBO
-b3RlOiBjdXJyZW50bHksIEtvbnNvbGUgc3VwcG9ydCBvbmx5IHdvcmtzIGZvciBLREUgMy54IGR1
-ZSB0byB0aGUgd2F5CiMgbmV3ZXIgS29uc29sZSB2ZXJzaW9ucyBiZWhhdmUKI09FX1RFUk1JTkFM
-ID0gImF1dG8iCiMgQnkgZGVmYXVsdCBkaXNhYmxlIGludGVyYWN0aXZlIHBhdGNoIHJlc29sdXRp
-b24gKHRhc2tzIHdpbGwganVzdCBmYWlsIGluc3RlYWQpOgpQQVRDSFJFU09MVkUgPSAibm9vcCIK
-CiMKIyBTaGFyZWQtc3RhdGUgZmlsZXMgZnJvbSBvdGhlciBsb2NhdGlvbnMKIwojIEFzIG1lbnRp
-b25lZCBhYm92ZSwgc2hhcmVkIHN0YXRlIGZpbGVzIGFyZSBwcmVidWlsdCBjYWNoZSBkYXRhIG9i
-amVjdHMgd2hpY2ggY2FuIAojIHVzZWQgdG8gYWNjZWxlcmF0ZSBidWlsZCB0aW1lLiBUaGlzIHZh
-cmlhYmxlIGNhbiBiZSB1c2VkIHRvIGNvbmZpZ3VyZSB0aGUgc3lzdGVtCiMgdG8gc2VhcmNoIG90
-aGVyIG1pcnJvciBsb2NhdGlvbnMgZm9yIHRoZXNlIG9iamVjdHMgYmVmb3JlIGl0IGJ1aWxkcyB0
-aGUgZGF0YSBpdHNlbGYuCiMKIyBUaGlzIGNhbiBiZSBhIGZpbGVzeXN0ZW0gZGlyZWN0b3J5LCBv
-ciBhIHJlbW90ZSB1cmwgc3VjaCBhcyBodHRwIG9yIGZ0cC4gVGhlc2UKIyB3b3VsZCBjb250YWlu
-IHRoZSBzc3RhdGUtY2FjaGUgcmVzdWx0cyBmcm9tIHByZXZpb3VzIGJ1aWxkcyAocG9zc2libHkg
-ZnJvbSBvdGhlciAKIyBtYWNoaW5lcykuIFRoaXMgdmFyaWFibGUgd29ya3MgbGlrZSBmZXRjaGVy
-IE1JUlJPUlMvUFJFTUlSUk9SUyBhbmQgcG9pbnRzIHRvIHRoZSAKIyBjYWNoZSBsb2NhdGlvbnMg
-dG8gY2hlY2sgZm9yIHRoZSBzaGFyZWQgb2JqZWN0cy4KIyBOT1RFOiBpZiB0aGUgbWlycm9yIHVz
-ZXMgdGhlIHNhbWUgc3RydWN0dXJlIGFzIFNTVEFURV9ESVIsIHlvdSBuZWVkIHRvIGFkZCBQQVRI
-CiMgYXQgdGhlIGVuZCBhcyBzaG93biBpbiB0aGUgZXhhbXBsZXMgYmVsb3cuIFRoaXMgd2lsbCBi
-ZSBzdWJzdGl0dXRlZCB3aXRoIHRoZQojIGNvcnJlY3QgcGF0aCB3aXRoaW4gdGhlIGRpcmVjdG9y
-eSBzdHJ1Y3R1cmUuCiNTU1RBVEVfTUlSUk9SUyA/PSAiXAojZmlsZTovLy4qIGh0dHA6Ly9zb21l
-c2VydmVyLnRsZC9zaGFyZS9zc3RhdGUvUEFUSCBcbiBcCiNmaWxlOi8vLiogZmlsZTovLy9zb21l
-L2xvY2FsL2Rpci9zc3RhdGUvUEFUSCIKCiMgQ09ORl9WRVJTSU9OIGlzIGluY3JlYXNlZCBlYWNo
-IHRpbWUgYnVpbGQvY29uZi8gY2hhbmdlcyBpbmNvbXBhdGlibHkgYW5kIGlzIHVzZWQgdG8KIyB0
-cmFjayB0aGUgdmVyc2lvbiBvZiB0aGlzIGZpbGUgd2hlbiBpdCB3YXMgZ2VuZXJhdGVkLiBUaGlz
-IGNhbiBzYWZlbHkgYmUgaWdub3JlZCBpZgojIHRoaXMgZG9lc24ndCBtZWFuIGFueXRoaW5nIHRv
-IHlvdS4KQ09ORl9WRVJTSU9OID0gIjEiCkRFQlVHX0ZMQUdTID0gIiIK
-
---089e01495402a1bd2e04e511e0a0--
