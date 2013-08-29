@@ -1,35 +1,27 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3071E015B8
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 21:42:59 -0700 (PDT)
-Received: by mail-qa0-f41.google.com with SMTP id hu16so950318qab.14
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 21:42:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:content-type;
-	bh=nyeGaRIEOLrA2eu7hABIIi1wYRcsxdIiMFRhUQsbB5I=;
-	b=b/mVtvnkkIYCzcqLbUaxczjqup9mAppFe7+AdB/UvodhHuftoCAeMgqSytT5BAQnG9
-	Wr0jabWqH1mj0qGSLM+7fgJYA5dfGMhH4Tbe7KDk9+8pXrKyCbOh4hGoxNF6BwH8ajJ2
-	xGjXHpoQzcGNLNQy/sV8fvCpacZWw07OSlTDfTPNDmzCy1hY+3y9vnWcQ4op0eVwO2fM
-	mBPdSFU5UMeLk0Q9ofglAK4cx13kR5OPDZu9IKuDPn7Iotc/uzD7BqN4uxTjuNxfNGwI
-	vphnr4Rbm1go4m83JsDgAepiHVB/ShgJEY4qqGhQueq1pRTMnU1qKozvqTyuFF/qayyJ
-	oN5w==
-X-Gm-Message-State: ALoCoQlZwBDZpBUAGH5lKmA36EwsBQ87zSteuGraOLhR7nhVavJkNV9k8+H/CWUqiCwNIpslQRb8
+Return-Path: <Liezhi.Yang@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74C0CE01493
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 23:53:13 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r7T6r5Ww029996
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 28 Aug 2013 23:53:05 -0700 (PDT)
+Received: from [128.224.162.224] (128.224.162.224) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.2.347.0;
+	Wed, 28 Aug 2013 23:53:03 -0700
+Message-ID: <521EEFB1.4040809@windriver.com>
+Date: Thu, 29 Aug 2013 14:52:33 +0800
+From: Robert Yang <liezhi.yang@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130404 Thunderbird/17.0.5
 MIME-Version: 1.0
-X-Received: by 10.49.116.4 with SMTP id js4mr1604959qeb.14.1377751378246; Wed,
-	28 Aug 2013 21:42:58 -0700 (PDT)
-Received: by 10.49.104.109 with HTTP; Wed, 28 Aug 2013 21:42:58 -0700 (PDT)
-In-Reply-To: <CAPhnLPDx0iC4Gp0dn4b5deQ7przwNOLtGZgVAMydVnQ_=8vx5g@mail.gmail.com>
-References: <CAPhnLPDx0iC4Gp0dn4b5deQ7przwNOLtGZgVAMydVnQ_=8vx5g@mail.gmail.com>
-Date: Wed, 28 Aug 2013 21:42:58 -0700
-Message-ID: <CAPhnLPDoyyB-W2=Qr_4Ek61itAYZ2dAt60vAaSLzzPAVKvH+Fg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Otavio Salvador <otavio@ossystems.com.br>, Zhao Yi <yi.zhao@windriver.com>
-Subject: Re: Status of 1.5_M4 release candidate.
+To: Li Zhijian <lizhijian@cn.fujitsu.com>
+References: <521EA7EC.80302@cn.fujitsu.com>
+In-Reply-To: <521EA7EC.80302@cn.fujitsu.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>,
+	openembedded-core@lists.openembedded.org
+Subject: Re: [OE-core] [Question] libxml: How about add --with-catalog to EXTRA_OECONF ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,51 +33,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2013 04:43:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 29 Aug 2013 06:53:14 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-An update on where we are at:
 
-rc1 is still churning. There was one autobuilder issue with regards to
-genericx86 in nightly-x86-lsb. I've built this out by hand and
-populated the release with it as well as corrected the ab issue. We're
-seeing a lot of sanity issues, but so far no build failures (other
-than the above known issue).
+I took a look at the libxml's git log, didn't see the explicit reason
+that why use the --without-catalog, so it seems reasonable to use the
+--with-catalog which will make the xmlcatalog work (if it can be built
+well with the option.)
 
--b
+// Robert
 
-On Wed, Aug 28, 2013 at 5:41 PM, Flanagan, Elizabeth
-<elizabeth.flanagan@intel.com> wrote:
-> All,
+On 08/29/2013 09:46 AM, Li Zhijian wrote:
+> Hi,
 >
-> Earlier today we attempted a spin of rc1. This attempt ended up having
-> multiple issues. Due to that, we decided to end the build, tag and
-> spin an rc2.
+> I had build libxml and executed xmlcatalog
+> It shows follow messages
+> # xmlcatalog --help
+> libxml was not compiled with catalog and output support
 >
-> So far, things are looking ok. I did drop the number of buildslaves on
-> the autobuilder down from 3 to 2, so things might take a bit longer.
-> The build should be available in a few hours at:
+> meta/recipes-core/libxml/libxml2.inc: 32
+> EXTRA_OECONF = "--without-python --without-debug --without-legacy --without-catalog --without-docbook --with-c14n --without-lzma --with-fexceptions"
 >
-> http://autobuilder.yoctoproject.org/pub/releases/1.5_M4.rc2
+> Is it reasonable to add --without-catalog EXTRA_OECONF ?
 >
-> meta-fsl-arm f2805add77f9e9d5f7a114ee99a632172d8f3ff6
-> meta-fsl-ppc 58a57096e4b7e2ceca3c33d3e7100c5434966cd9
-> meta-intel 164067980e18e8ba60b317677ced2d75c3725dbe
-> meta-minnow 7719e114bd0c2118c3d4c2a1a7c06e966103ab09
-> meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
-> poky 5745e45b18e5099e94b4d5a73bc97dc6d4cdc91f
+> Thanks
 >
-> -b
+> Best regards.
+> Li Zhijian
 >
-> --
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
-
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+>
+>
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+>
 
