@@ -1,35 +1,41 @@
-Return-Path: <eren@hambedded.org>
-Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FDA4E005B4
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 09:20:18 -0700 (PDT)
-Received: by mail-ee0-f52.google.com with SMTP id c41so361060eek.11
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 09:20:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-	:content-type:content-disposition:user-agent;
-	bh=F1FvpO1obDS6RZAjPmN5uwpcmPzs3B6IL2ioLgYxZVk=;
-	b=G2ZpII5JdoRIOAfvz6u/kuAuHhHFu1eBsHl9ITeNnt1WxpdvagD2l15zvFt//Bfh1b
-	UjHfrHeopv/swDFEeAzxs5w1m/imwFLKDtpa1wFSpzCdQFpcwwwFmj/g/LPRk+JVwgJs
-	qokX1IGS0R2Fknp8KpxiSAMJCfdA7MpFt/p1m2SjtDk6s7B5M1Bzn4zj0X8elGvgXl0o
-	jkGtizl7ol1LDa8HoFPNPr7ANuYTkDxuZOu+3HLGQ4Onelf2GFKFYbAACq5ymCIPtupO
-	ygfZOwMwNBCS4aJiyIGADKuANUyovYTBrmxxFFeeo5izE6x2QIwiiSfVRMPsVZDizhjk
-	5+kA==
-X-Gm-Message-State: ALoCoQm6A4RRHMiF5CP3y9uySp/sUzWv3C6U/i332WmVC/3S/tkPo/GhRuzePMz1qY2nklvnz1tX
-X-Received: by 10.14.223.134 with SMTP id v6mr127255eep.88.1377793217996;
-	Thu, 29 Aug 2013 09:20:17 -0700 (PDT)
-Received: from localhost ([132.231.11.113])
-	by mx.google.com with ESMTPSA id p5sm47363873eeg.5.1969.12.31.16.00.00
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 29 Aug 2013 09:20:17 -0700 (PDT)
-Date: Thu, 29 Aug 2013 18:20:14 +0200
-From: Eren =?iso-8859-1?Q?T=FCrkay?= <eren@hambedded.org>
-To: openembedded-devel <openembedded-devel@lists.openembedded.org>
-Message-ID: <20130829162014.GA52370@airo.local>
+Return-Path: <Amit.Kumar@lntinfotech.com>
+Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com
+	[216.82.254.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05353E005B4
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 11:35:15 -0700 (PDT)
+Received: from [216.82.254.20:3001] by server-14.bemta-7.messagelabs.com id
+	61/C9-32719-1649F125; Thu, 29 Aug 2013 18:35:13 +0000
+X-Env-Sender: Amit.Kumar@lntinfotech.com
+X-Msg-Ref: server-15.tower-47.messagelabs.com!1377801309!7425393!1
+X-Originating-IP: [203.101.96.7]
+X-StarScan-Received: 
+X-StarScan-Version: 6.9.11; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 1473 invoked from network); 29 Aug 2013 18:35:12 -0000
+Received: from unknown (HELO BLRINMSHTCAS01.bglrodc.lntinfotech.com)
+	(203.101.96.7)
+	by server-15.tower-47.messagelabs.com with AES128-SHA encrypted SMTP;
+	29 Aug 2013 18:35:12 -0000
+Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.2.40]) by
+	BLRINMSHTCAS01.bglrodc.lntinfotech.com ([172.28.0.81]) with mapi;
+	Fri, 30 Aug 2013 00:04:43 +0530
+From: Amit Kumar <Amit.Kumar@lntinfotech.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Fri, 30 Aug 2013 00:00:47 +0530
+Thread-Topic: [yocto] OE recipes- linphone build error in poky-9.0.0 build
+	environment
+Thread-Index: Ac6jxsGNyXzokiORRNKSfy60euc/dQBHxB2B
+Message-ID: <AF0985D076EB244693F2CCD71AAB10BC2C5E1101C6@BLRINMSMBX01.bglrodc.lntinfotech.com>
+References: <AF0985D076EB244693F2CCD71AAB10BC2C5E1101C5@BLRINMSMBX01.bglrodc.lntinfotech.com>,
+	<3808315.9VeeB8TmeS@helios>
+In-Reply-To: <3808315.9VeeB8TmeS@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Partitioned Image Creation and Initramfs Problem for ALIX3D3
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: OE recipes- linphone build error in poky-9.0.0 build environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,84 +47,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2013 16:20:22 -0000
-X-Groupsio-MsgNum: 15758
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="LZvS9be/3tNcYl/X"
-Content-Disposition: inline
-
---LZvS9be/3tNcYl/X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 29 Aug 2013 18:35:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello all,
+Thanks for replay,
 
-As you may already know, I have been working on a BSP for ALIX3D3[0]. I
-enabled specific kernel configurations and reached to the point of
-booting the board with its features enabled. I can boot the board with
-"live" image type. However, what I want to have is a direct partitioned
-hdd image which we can dd it into CF Card. So, /dev/sda1 will contain
-kernel and initrd, /dev/sda2 will contain extracted rootfs. I expect /
-to be mounted to /dev/sda2.  Currently, live image extracts the rootfs
-to /dev/ram0 and the configuration is gone after reboot.
+                 I have follow the steps suggested by Mr. Paul, but still i=
+ am facing an error.
+I wants to build the linphone along with my Yocto Project build environment=
+ setup. I found linphone recipes in openembedded git. I have added that rec=
+ipe and also add the dependancy recipes libosip2 and also modify .bb files.=
+ But still i am getting build error.
+/********/
+Loading cache: 100% |######################################################=
+###########################################| ETA:  00:00:00
+Loaded 1128 entries from dependency cache.
 
-I looked at the existing solutions and found out that
-"boot-directdisk.bbclass", which is inherited by image-vmdk, does a
-similar job.  However, it does not include initramfs image and it looks
-like it was specifically written to enable vmdk image, not for this
-purpose.
+Build Configuration:
+BB_VERSION        =3D "1.18.0"
+BUILD_SYS         =3D "i686-linux"
+NATIVELSBSTRING   =3D "Ubuntu-12.04"
+TARGET_SYS        =3D "arm-poky-linux-gnueabi"
+MACHINE           =3D "qemuarm"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "1.4"
+TUNE_FEATURES     =3D "armv5 thumb dsp"
+TARGET_FPU        =3D "soft"
+meta
+meta-yocto
+meta-yocto-bsp
+meta-linphone     =3D "<unknown>:<unknown>"
 
-The possible solution that came to my mind is to get
-"boot-directdisk.bbclass", add initramfs installation, put the code
-in a seperate bbclass, rename the function as IMAGE_CMD_alix-hddimage,
-and add "alix-hddimage" to IMAGE_FSTYPES. The same technique is used by
-meta-raspberrypi layer [1]
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: Fetcher failure for URL: 'http://download.savannah.nongnu.org/releas=
+es/linphone/1.6.x/sources/linphone-1.6.0.tar.gz'. No checksum specified for=
+ /home/yocto/YOCTO/poky-dylan-9.0.0/build/downloads/linphone-1.6.0.tar.gz, =
+please add at least one to the recipe:
+SRC_URI[md5sum] =3D "fb345125e23c787df0818ff7caad5515"
+SRC_URI[sha256sum] =3D "ba1c32207fd62d374c9397a81fb1247da93edb859e30d0d855d=
+c65e5457f690b"
+ERROR: Function failed: Fetcher failure for URL: 'http://download.savannah.=
+nongnu.org/releases/linphone/1.6.x/sources/linphone-1.6.0.tar.gz'. No check=
+sum specified for /home/yocto/YOCTO/poky-dylan-9.0.0/build/downloads/linpho=
+ne-1.6.0.tar.gz, please add at least one to the recipe:
+SRC_URI[md5sum] =3D "fb345125e23c787df0818ff7caad5515"
+SRC_URI[sha256sum] =3D "ba1c32207fd62d374c9397a81fb1247da93edb859e30d0d855d=
+c65e5457f690b"
+ERROR: Logfile of failure stored in: /home/yocto/YOCTO/poky-dylan-9.0.0/bui=
+ld/tmp/work/armv5te-poky-linux-gnueabi/linphone/1.6.0-r3/temp/log.do_fetch.=
+3098
+ERROR: Task 358 (/home/yocto/YOCTO/poky-dylan-9.0.0/meta-linphone/recipes-l=
+inphone/linphone/linphone_1.6.0.bb, do_fetch) failed with exit code '1'
+ERROR: libosip2: Recipe file does not have license file information (LIC_FI=
+LES_CHKSUM)
+ERROR: Licensing Error: LIC_FILES_CHKSUM does not match, please fix
+ERROR: Function failed: do_qa_configure
+ERROR: Logfile of failure stored in: /home/yocto/YOCTO/poky-dylan-9.0.0/bui=
+ld/tmp/work/armv5te-poky-linux-gnueabi/libosip2/3.5.0-r0/temp/log.do_config=
+ure.3078
+ERROR: Task 1024 (/home/yocto/YOCTO/poky-dylan-9.0.0/meta-linphone/recipes-=
+linphone/libosip2/libosip2_3.5.0.bb, do_configure) failed with exit code '1=
+'
+NOTE: Tasks Summary: Attempted 4749 tasks of which 4747 didn't need to be r=
+erun and 2 failed.
+Waiting for 0 running tasks to finish:
 
-However, the problem with this is that "core-image-minimal-initramfs"
-includes "initramfs-live-boot" by default. This script tries to find
-rootfs.img and if it cannot find, it fails to boot the board. In this
-case, we will have extracted rootfs in /dev/sda2, so rootfs.img will not
-be there.
+Summary: 2 tasks failed:
+/********/
 
-I looked at "initramfs-framework" recipe and it seems to fit for it. For
-initramfs problem, should I create "alix3d3-minimal-initramfs" recipe,
-add "initramfs-framework-base initramfs-module-udev" to IMAGE_INSTALL
-and make "IMAGE_CMD_alix-hddimage" depend on
-"alix3d3-minimal-initramfs"? Would it be a proper solution?
+Do anyone knows how to fix the LIC_FILES_CHKSUM for libosip2 .bb file or li=
+nphone .bb file.
+Please suggest me how to fix this error.
 
-I am stuck here. Any help is appreciated especially on partitioning the
-image and copying.
+Thanks & Regards
+Amit K.
 
-My best regards,
-Eren
 
-[0] https://github.com/eren/meta-alix3d3
-[1] http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi
+________________________________________
+From: Paul Eggleton [paul.eggleton@linux.intel.com]
+Sent: Wednesday, August 28, 2013 1:43 PM
+To: Amit Kumar
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] OE recipes- linphone build error in poky-9.0.0 build e=
+nvironment
 
---=20
-    . 73! DE TA1AET
-      http://linkedin.com/in/erenturkay
+Hi Amit,
 
---LZvS9be/3tNcYl/X
-Content-Type: application/pgp-signature
+On Wednesday 28 August 2013 09:05:28 Amit Kumar wrote:
+>      I wants to build the recipes name linphone(SIP-based IP phone) with
+> poky-9.0.0 build environment. I found he linphone recipes under the
+> "angstrom-openembedded". In my poky build environment I have created the
+> new layer, name linphone, and copy the .bb files. But when i am building =
+it
+> through an dependency error.
+>
+> Do anyone have done it before, please guide me how to fix this error.
+>
+> /////////////////////////////////////////////////////////////////////////=
+///
+> //////////////////// yocto@yocto-HP:~/YOCTO/poky-dylan-9.0.0/build$ bitba=
+ke
+> linphone-image Loading cache: 100%
+> |########################################################################=
+##
+> #######################| ETA:  00:00:00 Loaded 1126 entries from dependen=
+cy
+> cache.
+>
+> Build Configuration:
+> BB_VERSION        =3D "1.18.0"
+> BUILD_SYS         =3D "i686-linux"
+> NATIVELSBSTRING   =3D "Ubuntu-12.04"
+> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
+> MACHINE           =3D "qemuarm"
+> DISTRO            =3D "poky"
+> DISTRO_VERSION    =3D "1.4"
+> TUNE_FEATURES     =3D "armv5 thumb dsp"
+> TARGET_FPU        =3D "soft"
+> meta
+> meta-yocto
+> meta-yocto-bsp
+> meta-linphone     =3D "<unknown>:<unknown>"
+>
+> NOTE: Resolving any missing task queue dependencies
+> ERROR: Nothing PROVIDES 'libosip2' (but
+> /home/yocto/YOCTO/poky-dylan-9.0.0/meta-linphone/recipes-linphone/linphon=
+e/
+> linphone_1.6.0.bb DEPENDS on or otherwise requires it) NOTE: Runtime targ=
+et
+> 'linphone' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['linphone', 'libosip2']
+> ERROR: Required build target 'linphone-image' has no buildable providers.
+> Missing or unbuildable dependency chain was: ['linphone-image', 'linphone=
+',
+> 'libosip2']
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (Darwin)
+Looks like you've copied the linphone recipe and not its dependencies.
 
-iQIcBAEBAgAGBQJSH3S+AAoJEOM7bMm6HhcTdSoP/3qgxbw8Pld0c536rmJwCWIm
-v1sScPsGED9v4Vb5TulXsJMqf3HJeljsRLtDdd62igJRWgG5UnqI+8EZ0Ip7aUtd
-SNNA6FKl4jZ2bHI0oLqAaIPQxqYUhpUvqXQW2gWasuuBMJuAYsNSiwfMPNP7E6MG
-qJ2QmCW6BEI9xrjdk/lRW2EVpdLvavzNBspgUi9FGw6i6kY7nZxrqOvikD0lalV6
-3KPgi+FFLdZTw27xN5/YLlBMO0TfC8jYj8eXBcJJFPxs/qdF3auLvJhNRoeP5SP0
-F/2v+aXa23kveSEi0Lpe13I7qK7EAGJlmmXIFmfXHQpYVNWeEYAskPFCt5FUgqMH
-2XD3did+xZLSPWo3jjgPioAwsH5L+3SYBeu+C/CBbZ59C0dYUiyIAr7gN+/IQAt8
-OtLYhFGhVERfFxVga4dLKKVRo8kYXgbBRgGu9TrYLuPqxwO4fOZlnd3b9Z1qO8R9
-0phc9UMRlreoqsL3W+pKqkarjvoe7mDR2fL02fPy4RROatcDheijqHHdkXiwXwxj
-u+XwhiYcONjAlQ1Sv7ONR8s7WCPlz4MfTjBk9p0V38CgsugE9qvVQWB/xBJJTMLr
-pq+PKCZCVTn4d0GI9dJj/g1GFTz6nl72l5TjayITdrW4sJdtcUuc14EVM4RLpKHq
-rH3CwsZ+WtEk+1ez/Wbt
-=8Nuj
------END PGP SIGNATURE-----
+As far as I know this is an OE-Classic recipe so it won't be a straight cop=
+y -
+it will need to be migrated. See here for information on what you will need=
+ to
+do:
 
---LZvS9be/3tNcYl/X--
+http://www.openembedded.org/wiki/Migrating_metadata_to_OE-Core
+
+Cheers,
+Paul
+
+--
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+The contents of this e-mail and any attachment(s) may contain confidential =
+or privileged information for the intended recipient(s). Unintended recipie=
+nts are prohibited from taking action on the basis of information in this e=
+-mail and  using or disseminating the information,  and must notify the sen=
+der and delete it from their system. L&T Infotech will not accept responsib=
+ility or liability for the accuracy or completeness of, or the presence of =
+any virus or disabling code in this e-mail"
+
