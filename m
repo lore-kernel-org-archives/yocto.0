@@ -1,38 +1,26 @@
-Return-Path: <Jate.Sujjavanich@myfuelmaster.com>
-Received: from stspspam.syntech.org (exchsrvr.syntech-fuelmaster.com
-	[199.44.250.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71C5FE005B4
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 08:36:44 -0700 (PDT)
-Received: from pps.filterd (stspspam [127.0.0.1])
-	by stspspam.syntech.org (8.14.5/8.14.5) with SMTP id r7TFV4m6022541
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 11:36:42 -0400
-Received: from courier.syntech-fuelmaster.com (courier.syntech.org
-	[172.16.10.30]) by stspspam.syntech.org with ESMTP id 1eh3b7rv0v-1
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 11:36:42 -0400
-Received: from Courier.syntech.org ([::1]) by Courier.syntech.org ([::1]) with
-	mapi; Thu, 29 Aug 2013 11:36:42 -0400
-From: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Date: Thu, 29 Aug 2013 11:36:41 -0400
-Thread-Topic: yocto-bsp and kconf-check
-Thread-Index: Ac6kzY8TaFjziI/oSXG0UkxtvXAVTA==
-Message-ID: <6C2434209962DC46B88345CA85C334A201CAAD7035ED@Courier.syntech.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 0FF4FEBC0051F20FF50009
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14895E005B4
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 08:51:58 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r7TFpvQG009876
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 29 Aug 2013 08:51:57 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Thu, 29 Aug 2013 08:51:56 -0700
+Message-ID: <521F6E10.3090704@windriver.com>
+Date: Thu, 29 Aug 2013 11:51:44 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	suspectscore=0 phishscore=0
-	adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1
-	engine=7.0.1-1305240000 definitions=main-1308290076
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.10.8794, 1.0.431,
-	0.0.0000
-	definitions=2013-08-29_05:2013-08-29, 2013-08-29,
-	1970-01-01 signatures=0
-Subject: yocto-bsp and kconf-check
+To: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>
+References: <6C2434209962DC46B88345CA85C334A201CAAD7035ED@Courier.syntech.org>
+In-Reply-To: <6C2434209962DC46B88345CA85C334A201CAAD7035ED@Courier.syntech.org>
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Subject: Re: yocto-bsp and kconf-check
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,17 +32,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2013 15:36:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 29 Aug 2013 15:51:59 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-It appears that the yocto-bsp script generates a kernel configuration that =
-creates some warnings during kern-tools' kconf_check. The {{machine}}.cfg f=
-ile has many non-hardware options, therefore the script warns.
+On 13-08-29 11:36 AM, Jate Sujjavanich wrote:
+> It appears that the yocto-bsp script generates a kernel configuration that creates some warnings during kern-tools' kconf_check. The {{machine}}.cfg file has many non-hardware options, therefore the script warns.
+>
+> It seems like many of these should be in the standard kernel configuration. Is this correct, and does the yocto-bsp data need to be updated?
 
-It seems like many of these should be in the standard kernel configuration.=
- Is this correct, and does the yocto-bsp data need to be updated?
+Which kernel version ? But the answer is not necessarily, if a machine 
+config
+is specifying something that hasn't been tagged "hardware" or that
+has a specified exception, you get a warning.
 
-- Jate
+It's not about them being common or not, it's about BSPs following a
+base policy versus having wild, per-board behaviour.
+
+Cheers,
+
+Bruce
+
+>
+> - Jate
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
