@@ -1,27 +1,27 @@
-Return-Path: <Liezhi.Yang@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74C0CE01493
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2013 23:53:13 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r7T6r5Ww029996
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 28 Aug 2013 23:53:05 -0700 (PDT)
-Received: from [128.224.162.224] (128.224.162.224) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.2.347.0;
-	Wed, 28 Aug 2013 23:53:03 -0700
-Message-ID: <521EEFB1.4040809@windriver.com>
-Date: Thu, 29 Aug 2013 14:52:33 +0800
-From: Robert Yang <liezhi.yang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130404 Thunderbird/17.0.5
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61D5FE01493
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2013 01:13:18 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 29 Aug 2013 01:13:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,981,1367996400"; d="scan'208";a="393829877"
+Received: from unknown (HELO helios.localnet) ([10.252.123.55])
+	by fmsmga002.fm.intel.com with ESMTP; 29 Aug 2013 01:13:17 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Thu, 29 Aug 2013 09:13:01 +0100
+Message-ID: <1595398.sI48yF1pnG@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-27-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CA+Z6RkU+5fY9DAz_RCstCj1f_L9PvVEWC1pMaahKjFjjLgkrvQ@mail.gmail.com>
+References: <CA+Z6RkUS6gZw3-fzW_muVBC5Cq5Wz7Bo3P+YEVJKf+1OV9=sKg@mail.gmail.com>
+	<29315361.frJshNW40m@helios>
+	<CA+Z6RkU+5fY9DAz_RCstCj1f_L9PvVEWC1pMaahKjFjjLgkrvQ@mail.gmail.com>
 MIME-Version: 1.0
-To: Li Zhijian <lizhijian@cn.fujitsu.com>
-References: <521EA7EC.80302@cn.fujitsu.com>
-In-Reply-To: <521EA7EC.80302@cn.fujitsu.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	openembedded-core@lists.openembedded.org
-Subject: Re: [OE-core] [Question] libxml: How about add --with-catalog to EXTRA_OECONF ?
+Cc: yocto@yoctoproject.org,
+	"navani.srivastava@lnties.com" <navani.srivastava@lnties.com>
+Subject: Re: bitbake -c populate_sdk -v poky-image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,42 +33,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2013 06:53:14 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 29 Aug 2013 08:13:19 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Thursday 29 August 2013 10:11:31 Navani Srivastava wrote:
+> In order to execute
+> "bitbake -c populate_sdk poky-image" are we supposed to declare
+> BUILD_ARCH or SDK_ARCH somewhere in local.conf file?
+> Yocto Documentation has not mentioned anything like that. Just a doubt as
+> "bitbake poky-image" is working fine though populate_sdk is giving problem..
 
-I took a look at the libxml's git log, didn't see the explicit reason
-that why use the --without-catalog, so it seems reasonable to use the
---with-catalog which will make the xmlcatalog work (if it can be built
-well with the option.)
+You should set SDKMACHINE if you need the machine that runs the SDK to be a 
+different architecture from the machine that you're running the build on, 
+otherwise it will just use the same one.
 
-// Robert
+We're aware the documentation is lacking on -c populate_sdk, and we're 
+addressing that in the documentation for the next release.
 
-On 08/29/2013 09:46 AM, Li Zhijian wrote:
-> Hi,
->
-> I had build libxml and executed xmlcatalog
-> It shows follow messages
-> # xmlcatalog --help
-> libxml was not compiled with catalog and output support
->
-> meta/recipes-core/libxml/libxml2.inc: 32
-> EXTRA_OECONF = "--without-python --without-debug --without-legacy --without-catalog --without-docbook --with-c14n --without-lzma --with-fexceptions"
->
-> Is it reasonable to add --without-catalog EXTRA_OECONF ?
->
-> Thanks
->
-> Best regards.
-> Li Zhijian
->
->
->
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
->
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
