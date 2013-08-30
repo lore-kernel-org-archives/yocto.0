@@ -1,28 +1,26 @@
-Return-Path: <atamayoarbide@gmail.com>
-Received: from mail-ie0-f195.google.com (mail-ie0-f195.google.com
-	[209.85.223.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2734E0073F
-	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 03:34:25 -0700 (PDT)
-Received: by mail-ie0-f195.google.com with SMTP id f4so590681iea.2
-	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 03:34:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=POXspewKdq8aoKshrZlsNkpwgavQvr+Q6Q3wZw8ph7c=;
-	b=SvJL3wAzlHBXkIcphqI7+R+zzSmcyWHEkgw23uHGERNjv7CeeRQGZNw1PiDrqDeEwv
-	GtHVunOLVdqFtCEH4w8zRrCgDK5sAssJ1ZFYp5zr/S+YWLHDLwPwKbaoaIVNUdZLAwHr
-	tPDlfbbIqljKeck3Ogt6i31WVXE6twpU936mQLHz0zL1IRceCJtBrd83Ot9LWM6uWVQp
-	iKLGsR6snf6/qRVU7uwhBM/5I0k6yI44Lo88nankO3d3S+gt9e1yLZsuF0xOJOiXFuH8
-	+pmZVN+IEj2PrRUH0Anj3gww1bYAtm5VBhq5soG0dkvGnBaFD0xidQYJE0bcNT+pOF+/
-	6oog==
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB370E0073F
+	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 05:34:50 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r7UCYlVc026771
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 30 Aug 2013 05:34:47 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Fri, 30 Aug 2013 05:34:45 -0700
+Message-ID: <52209159.8070705@windriver.com>
+Date: Fri, 30 Aug 2013 08:34:33 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Received: by 10.42.113.197 with SMTP id d5mr3899053icq.46.1377858864632;
-	Fri, 30 Aug 2013 03:34:24 -0700 (PDT)
-Received: by 10.50.85.76 with HTTP; Fri, 30 Aug 2013 03:34:24 -0700 (PDT)
-Date: Fri, 30 Aug 2013 12:34:24 +0200
-Message-ID: <CAMZj-5MD+kLf3JVS7Mmyq-JfREKPdcoam0NFCTrqsFw4bnrx4A@mail.gmail.com>
-From: Asier <atamayoarbide@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Embedded Linux with Xenomai support
+To: arun kumar <arunkr.linux@gmail.com>
+References: <CABG0-3wCYaJ2Xxt3djtpBrgAW3BBAwU3BcpqewDBQ8GHoM=4vw@mail.gmail.com>
+In-Reply-To: <CABG0-3wCYaJ2Xxt3djtpBrgAW3BBAwU3BcpqewDBQ8GHoM=4vw@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: build stuck at cloning GIT Repo.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,62 +32,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2013 10:34:27 -0000
-Content-Type: multipart/alternative; boundary=001a11c3522c2d58ba04e527c402
+X-List-Received-Date: Fri, 30 Aug 2013 12:34:50 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11c3522c2d58ba04e527c402
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+On 13-08-30 02:42 AM, arun kumar wrote:
+> My YOcto Project build, The first build is stuck here
+> --------------------------------------------------------------------------------------------------
+> Loading cache: 100%
+> |#################################################################################################################|
+> ETA: 00:00:00
+> Loaded 1181 entries from dependency cache.
+>
+> Build Configuration:
+> BB_VERSION = "1.19.1"
+> BUILD_SYS = "x86_64-linux"
+> NATIVELSBSTRING = "openSUSE-project-12.3"
+> TARGET_SYS = "arm-poky-linux-gnueabi"
+> MACHINE = "qemuarm"
+> DISTRO = "poky"
+> DISTRO_VERSION = "1.4+snapshot-20130827"
+> TUNE_FEATURES = "armv5 thumb dsp"
+> TARGET_FPU = "soft"
+> meta
+> meta-yocto
+> meta-yocto-bsp = "master:b2ff1add530b1fec2fb7f385227a03db47015c37"
+>
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: multiple providers are available for runtime
+> libasound-module-bluez (bluez4, bluez5)
+> NOTE: consider defining a PREFERRED_PROVIDER entry to match
+> libasound-module-bluez
+> NOTE: Preparing runqueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> Currently 1 running tasks (1587 of 5917):
+> *0: linux-yocto-3.8.13+gitAUTOINC+e7f42a416a_aa76cc2840-r4.2 do_fetch
+> (pid 2006)*
+> *--------------------------------------------------------------------------------------------------------------*
+> **
+> and has been so for the past 4-5 Tries, The size of the GIT2 Directory
+> seems to increase for sometine,
+> The maximum it has gone is 681 MB after which it stopped growing in
+> size, i checked wether my Internet was down, but it was all fine as i
+> started an OpenWRT build along with it and it was downloading its
+> packages smoothly.
+> Is there some problem with the GIT server on the Project Side or my ISP ?
+> How can i know?
 
-Hello all,
+Have you tried cloning the repository manually ? It'll be easier to
+pick up on unexpected exits, with the error message from local or
+remote being clear.
 
-I've just started studying the Yocto project, so I beg your pardon if this
-question has been already solved or it's just too easy (RT*M).
+Cheers,
 
-I've got a working embedded system running Xenomai v2.5.5. The user
-interface has been developed with Qt Embedded. The kernel has been compiled
-using the ELinOS Embedded Linux distribution.
+Bruce
 
-Now, I want to change that interface to X11 so that I can use a desktop
-manager as well as some other X11 applications. The ELinOS distribution has
-an XServer, but it lacks a way of easily adding any desktop manager. Thus,
-I=92m thinking about using another Linux distribution.
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-That is how I have found the Yocto project. I think this can be the best
-solution for my new system.
 
-Is there any Linux distribution based on the Yocto project that lets me
-configure my embedded kernel with Xenomai? If not, has anybody got any
-experinece in adding Xenomai to the Yocto project?
-
-I'm using an Atom N270 chipset.
-
-Thanks in advance, best regards,
-
-Asier
-
---001a11c3522c2d58ba04e527c402
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div>Hello all,<br><br></div>I&#39;ve =
-just started studying the Yocto project, so I beg your pardon if this quest=
-ion has been already solved or it&#39;s just too easy (RT*M).<br><br></div>
-I&#39;ve got a working embedded system running Xenomai v2.5.5. The user=20
-interface has been developed with Qt Embedded. The kernel has been=20
-compiled using the ELinOS Embedded Linux distribution.<br><br>Now, I want t=
-o change that interface to X11 so that I can use a desktop=20
-manager as well as some other X11 applications. The ELinOS distribution has=
- an
- XServer, but it lacks a way of easily adding any desktop manager. Thus,
- I=92m thinking about using another Linux distribution.<br><br></div>That i=
-s how I have found the Yocto project. I think this can be the best solution=
- for my new system.<br><br></div>Is there any Linux distribution based on t=
-he Yocto project that lets me configure my embedded kernel with Xenomai? If=
- not, has anybody got any experinece in adding Xenomai to the Yocto project=
-? <br>
-<br></div><div>I&#39;m using an Atom N270 chipset.<br><div><div><div><br><d=
-iv>Thanks in advance, best regards,<br><br></div><div>Asier<br></div><div><=
-br></div></div></div></div></div></div>
-
---001a11c3522c2d58ba04e527c402--
