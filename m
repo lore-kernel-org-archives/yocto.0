@@ -1,26 +1,23 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB370E0073F
-	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 05:34:50 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r7UCYlVc026771
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 30 Aug 2013 05:34:47 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
-	Fri, 30 Aug 2013 05:34:45 -0700
-Message-ID: <52209159.8070705@windriver.com>
-Date: Fri, 30 Aug 2013 08:34:33 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
-MIME-Version: 1.0
-To: arun kumar <arunkr.linux@gmail.com>
-References: <CABG0-3wCYaJ2Xxt3djtpBrgAW3BBAwU3BcpqewDBQ8GHoM=4vw@mail.gmail.com>
-In-Reply-To: <CABG0-3wCYaJ2Xxt3djtpBrgAW3BBAwU3BcpqewDBQ8GHoM=4vw@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: build stuck at cloning GIT Repo.
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EBE8E003FA
+	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 08:20:06 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 30 Aug 2013 08:20:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,991,1367996400"; d="scan'208";a="288945259"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by AZSMGA002.ch.intel.com with ESMTP; 30 Aug 2013 08:20:05 -0700
+Received: from thunderbird.rb.intel.com (thunderbird.rb.intel.com
+	[10.237.105.57])
+	by linux.intel.com (Postfix) with ESMTP id A3E346A4093;
+	Fri, 30 Aug 2013 08:20:02 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 30 Aug 2013 18:19:23 +0300
+Message-Id: <1377875963-7282-1-git-send-email-stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [PATCH][yocto-autobuilder] nightly-x32.conf: make use of new test
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,68 +29,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2013 12:34:50 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 30 Aug 2013 15:20:06 -0000
 
-On 13-08-30 02:42 AM, arun kumar wrote:
-> My YOcto Project build, The first build is stuck here
-> --------------------------------------------------------------------------------------------------
-> Loading cache: 100%
-> |#################################################################################################################|
-> ETA: 00:00:00
-> Loaded 1181 entries from dependency cache.
->
-> Build Configuration:
-> BB_VERSION = "1.19.1"
-> BUILD_SYS = "x86_64-linux"
-> NATIVELSBSTRING = "openSUSE-project-12.3"
-> TARGET_SYS = "arm-poky-linux-gnueabi"
-> MACHINE = "qemuarm"
-> DISTRO = "poky"
-> DISTRO_VERSION = "1.4+snapshot-20130827"
-> TUNE_FEATURES = "armv5 thumb dsp"
-> TARGET_FPU = "soft"
-> meta
-> meta-yocto
-> meta-yocto-bsp = "master:b2ff1add530b1fec2fb7f385227a03db47015c37"
->
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: multiple providers are available for runtime
-> libasound-module-bluez (bluez4, bluez5)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match
-> libasound-module-bluez
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> Currently 1 running tasks (1587 of 5917):
-> *0: linux-yocto-3.8.13+gitAUTOINC+e7f42a416a_aa76cc2840-r4.2 do_fetch
-> (pid 2006)*
-> *--------------------------------------------------------------------------------------------------------------*
-> **
-> and has been so for the past 4-5 Tries, The size of the GIT2 Directory
-> seems to increase for sometine,
-> The maximum it has gone is 681 MB after which it stopped growing in
-> size, i checked wether my Internet was down, but it was all fine as i
-> started an OpenWRT build along with it and it was downloading its
-> packages smoothly.
-> Is there some problem with the GIT server on the Project Side or my ISP ?
-> How can i know?
+Needs to be added only to sato, no ssh in minimal.
 
-Have you tried cloning the repository manually ? It'll be easier to
-pick up on unexpected exits, with the error message from local or
-remote being clear.
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
+ buildset-config/nightly-x32.conf | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Cheers,
-
-Bruce
-
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+diff --git a/buildset-config/nightly-x32.conf b/buildset-config/nightly-x32.conf
+index f4dcbca..cd43a88 100644
+--- a/buildset-config/nightly-x32.conf
++++ b/buildset-config/nightly-x32.conf
+@@ -15,4 +15,6 @@ steps: [{'SetDest':{}},
+         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+         {'PublishLayerTarballs':{}},
+         {'BuildImages': {'images': 'core-image-minimal core-image-sato'}},
+-        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato'}}]
++        {'RunSanityTests': {'images': 'core-image-minimal'}},
++        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64', 'x32': True, 'distro': 'poky'}},
++        {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'x32lib'}}]
+-- 
+1.8.1.4
 
 
