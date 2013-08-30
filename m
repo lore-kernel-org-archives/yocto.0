@@ -1,24 +1,32 @@
-Return-Path: <dvhart@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A615E003FA
-	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 09:56:07 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 30 Aug 2013 09:56:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,992,1367996400"; d="scan'208";a="371157999"
-Received: from dvhart-mobl4.jf.intel.com (HELO [10.7.201.58]) ([10.7.201.58])
-	by orsmga001.jf.intel.com with ESMTP; 30 Aug 2013 09:56:06 -0700
-Message-ID: <1377881765.14029.4.camel@dvhart-mobl4.amr.corp.intel.com>
-From: Darren Hart <dvhart@linux.intel.com>
-To: Asier <atamayoarbide@gmail.com>
-Date: Fri, 30 Aug 2013 09:56:05 -0700
-In-Reply-To: <CAMZj-5MD+kLf3JVS7Mmyq-JfREKPdcoam0NFCTrqsFw4bnrx4A@mail.gmail.com>
-References: <CAMZj-5MD+kLf3JVS7Mmyq-JfREKPdcoam0NFCTrqsFw4bnrx4A@mail.gmail.com>
-Organization: Intel
-X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Embedded Linux with Xenomai support
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
+	[209.85.217.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5B96E00408
+	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 15:36:46 -0700 (PDT)
+Received: by mail-lb0-f171.google.com with SMTP id u14so2350093lbd.16
+	for <yocto@yoctoproject.org>; Fri, 30 Aug 2013 15:36:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:message-id:subject:to:cc:content-type
+	:content-transfer-encoding;
+	bh=M40PFnG9PfDelmnpOUw5iSjOScsFRUQMevWTtaQpWxo=;
+	b=XkkSMUeYHjlrv0Du+t/2dL8hwQZdry3654ZqnFPvxpR9HY2LZWenKztlhjh+6Do1m1
+	/KEn95x6wEJZbAMlHs+BF6Kffl1OLGOZ1liEp6d6iPYv7nZjVUr6j3cGzCeC0ywatVfM
+	e4LPJfMjB2tjXcmjqbnUj/aubhbgqyjE0t5nTnIgnrLHd8YMA9nJoecm8LmdZCXgQsCJ
+	r9ybu6vhNNs4JeV/hlLrYX4uYN20MlBCgTBOFSrwjOd/0J2JA9M5a24TPlqpvHUBGwRG
+	Ql0BU2W+WcTED6ieN7HGiSYLjQSzi5MlvKh9ChnA9AoRmNS7TqphJHdt35X9hg56JXDx
+	OVpA==
+X-Received: by 10.152.115.242 with SMTP id jr18mr39239lab.40.1377902205141;
+	Fri, 30 Aug 2013 15:36:45 -0700 (PDT)
+MIME-Version: 1.0
+Sender: jefro.net@gmail.com
+Received: by 10.112.57.105 with HTTP; Fri, 30 Aug 2013 15:36:25 -0700 (PDT)
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Fri, 30 Aug 2013 15:36:25 -0700
+X-Google-Sender-Auth: Hkf3ps2gKjKtX4KWHUoRvzJ-N7Y
+Message-ID: <CA+YB3rafdyhkJdOTNOS57vFuFe6NTkCwYTdDdCTg=3S=iCjpnQ@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Cc: openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Developer Day at ELCE 2013
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,60 +38,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2013 16:56:09 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 30 Aug 2013 22:36:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hi Asier,
+The Yocto Project is pleased to announce a Developer Day event at
+ELCE, the Embedded Linux Conference Europe organized by the Linux
+Foundation and co-located with LinuxCon Europe. This year, ELCE is in
+Edinburgh, Scotland.
 
-On Fri, 2013-08-30 at 12:34 +0200, Asier wrote:
-> Hello all,
-> 
-> 
-> I've just started studying the Yocto project, so I beg your pardon if
-> this question has been already solved or it's just too easy (RT*M).
-> 
-> 
-> I've got a working embedded system running Xenomai v2.5.5. The user
-> interface has been developed with Qt Embedded. The kernel has been
-> compiled using the ELinOS Embedded Linux distribution.
-> 
-> Now, I want to change that interface to X11 so that I can use a
-> desktop manager as well as some other X11 applications. The ELinOS
-> distribution has an XServer, but it lacks a way of easily adding any
-> desktop manager. Thus, I’m thinking about using another Linux
-> distribution.
-> 
-> 
-> That is how I have found the Yocto project. I think this can be the
-> best solution for my new system.
-> 
-> 
-> Is there any Linux distribution based on the Yocto project that lets
-> me configure my embedded kernel with Xenomai? If not, has anybody got
-> any experinece in adding Xenomai to the Yocto project? 
+Developer Day, or DevDay, is scheduled for Wednesday, 23 October, 9am
+- 6pm at the Edinburgh International Conference Centre in downtown
+Edinburgh. This is a full day of Yocto Project content, including
+separate tracks for new users and advanced users, and a hands-on lab
+session for each. We are particularly pleased with the labs this year,
+as they will be presented via our new virtual private cloud - just
+bring your laptop and a willingness to learn.
 
-I am not aware of anyone using Xenomai with Yocto to date (although that
-doesn't mean nobody is). Our Real-Time focus has been on the PREEMPT_RT
-Linux kernel, which we do have recipes for.
+DevDay is free for LinuxCon EU or ELCE attendees. If you are not
+attending either conference, you can still attend DevDay for US$199,
+or about =A3129. Register for DevDay along with ELCE or LinuxCon, or if
+you are registering separately, you can use this link:
+https://www.regonline.com/ypddeu13
 
-It appears as though Xenomai has changed quite a bit over the years. If
-my quick re-reading of their material is correct, the Xenomai core is
-implemented as a Linux kernel module which can built in to a standard
-Linux kernel?
+A schedule for DevDay will be announced next week.
 
-If that is the case, consider having a look at the hello-mod example for
-a recipe building an out of tree kernel module. Then have a look at the
-Yocto project Linux kernel development manual:
+Hope to see you there!
 
-http://www.yoctoproject.org/docs/1.4/kernel-dev/kernel-dev.html
-
-Out of curiosity, what sort of real-time requirements do you have?
-
--- 
-Darren Hart
-Intel Open Source Technology Center
-Yocto Project - Linux Kernel
-
-
+--=20
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
 
