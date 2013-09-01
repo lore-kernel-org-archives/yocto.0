@@ -1,66 +1,33 @@
-Return-Path: <baker@usgs.gov>
-Received: from smtp1.doi.gov (SMTP1.doi.gov [137.227.82.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CF6DE003FB
-	for <yocto@yoctoproject.org>; Sat, 31 Aug 2013 00:16:24 -0700 (PDT)
-Received: from smtp4.smgd.doi.gov (10.10.82.14) by smtp1.doi.gov (10.10.82.21)
-	with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Sat, 31 Aug 2013 01:16:23 -0600
-X-AuditID: 89e35218-b7f716d000003f2d-bd-52219844d8af
-Received: from gsmtp2.doi.gov ( [10.10.82.16])	(using TLS with cipher
-	AES128-SHA (128/128 bits))	(Client did not present a certificate)	by
-	smtp4.smgd.doi.gov (Hello) with SMTP id CC.27.16173.44891225;
-	Sat, 31 Aug 2013 01:16:20 -0600 (MDT)
-Received: from mail-pd0-f170.google.com (209.85.192.170) by gsmtp2.doi.gov
-	(137.227.82.16) with Microsoft SMTP Server (TLS) id 14.2.318.4;
-	Sat, 31 Aug 2013 01:16:19 -0600
-Received: by mail-pd0-f170.google.com with SMTP id x10so2746377pdj.1
-	for <yocto@yoctoproject.org>; Sat, 31 Aug 2013 00:16:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:content-type:content-transfer-encoding
-	:subject:date:message-id:cc:to:mime-version;
-	bh=ms5+1C75bVflyo4PE/sXVrh2OLyqixe7bN38AceWEp0=;
-	b=Q6KCCissaBMFhToBrY3SNDVFf2vfMnQtPm3uRhlD135mkR7dC+T+ccLlx64a8lmMD8
-	oGp86tIyopL5tBJn7Vqf3ybRRynltwDtsRZkj5u783fFbnSNAd8l9aytqFBIxkwESZvk
-	wBl0tt5Y+l0WHatgzB/7xOHSYnWWlV1MFJ5PO/QYr5lqIY4vxiipl2yVD3/w9w9pnKrZ
-	4LDCHwgfsK+1WfzrVh489yHc5IGp4h39CXNbCULjLNTl7YhxKVBmix6Ae4G5//9S1Xs7
-	qSqAppY1M5InCQLQ5lzA8o6wGXs6PVnNioKEE1FFUTRdpyV0RtDIoCQYMvohccp5qYvB
-	EzJA==
-X-Gm-Message-State: ALoCoQktbtxspwbZJ/jnIkiu1LDFB8SQmz06khT18TJqAqJoTGiYfZpqUyHAaoVgVDT6sNwgRf6qw1lSdSjHIzhQ2mq5qU2dOCNvjtqKXzEF4+jzgO5+FDloODnYckgKm7xFD40dgOzqtEKee3PFdBe1fJr/7+4hZr2W5FFy+gSKwY/Q6QAjGGHV+YGOJOuzgSE21Nsv6kGNKexGeKJ1rwvGafEMOIg3RA==
-X-Received: by 10.68.220.1 with SMTP id ps1mr14212071pbc.30.1377933379104;
-	Sat, 31 Aug 2013 00:16:19 -0700 (PDT)
-X-Received: by 10.68.220.1 with SMTP id ps1mr14212046pbc.30.1377933378792;
-	Sat, 31 Aug 2013 00:16:18 -0700 (PDT)
-Received: from [192.168.1.112] (adsl-71-135-44-131.dsl.pltn13.pacbell.net.
-	[71.135.44.131])        by mx.google.com with ESMTPSA id
-	nv6sm2417105pbc.6.1969.12.31.16.00.00        (version=TLSv1
-	cipher=ECDHE-RSA-RC4-SHA bits=128/128); Sat, 31 Aug 2013 00:16:18
-	-0700 (PDT)
-From: Larry Baker <baker@usgs.gov>
-Date: Sat, 31 Aug 2013 00:16:16 -0700
-Message-ID: <64A67EA8-DDE1-4860-BB09-8596DB7996B7@usgs.gov>
-To: <yocto@yoctoproject.org>
-MIME-Version: 1.0 (Apple Message framework v1085)
-X-Mailer: Apple Mail (2.1085)
-X-Gm-Spam: 0
-Received-SPF: Pass (gSMTP2.doi.gov: domain of baker@usgs.gov designates
-	209.85.192.170 as permitted sender) receiver=gSMTP2.doi.gov;
-	client-ip=209.85.192.170; helo=mail-pd0-f170.google.com;
-X-CFilter-Loop: Reflected
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuphkeLIzCtJLcpLzFFi42LhYvr1TtdlhmKQwcVJUhaTXq5hc2D0aD/R
-	xxbAGMVlk5Kak1mWWqRvl8CVsWhNE3PBJqaKN++/sTcw/mbsYuTkkBAwkTg44wEThC0mceHe
-	erYuRi4OIYEvjBJLm2ezgSSEBNYxSuw9YA+RmMgocf/aRRYQR0JgG6vEh8+ToJwfjBJP33dB
-	zaqUeHKohxXGvr9kPgvEKFmJhc/PQdlzmCRmHowHsdkElCSeT1kM1sssoCOxYPcnNghbW2LZ
-	wtfMILawgKrElBOzwGpYgOynN5+CzeEVsJZY2b8U7AhmgSWMEosPfAV7TkRARuL41dlQRYYS
-	E/4chjpOVmLnndMsEDaPxJS5F9khfjvIKLH29XI2iISkxMEVN1gmMErMQnLULCRHzUIydwEj
-	8ypGoeLckgITveLc9BS9lPxMvfT8sk2MwDjqfBwksYPx1y7LQ4wCHIxKPLw/7ysECbEmlhVX
-	5h5ilOBgVhLhTTJRDBLiTUmsrEotyo8vKs1JLT7EKM3BoiTOe9V/dqCQQHpiSWp2ampBahFM
-	lomDU6qBMWRKUk4T74vb6hsuN4nUrRSu075RrpbqEbpEe+mbis8HQzUT1HYtPaiyRk7zf7Gj
-	k8RFhzlym78+SlkpGXq/4cd653V1Xataqg9H8KWFXP0qwL59pUXXnQ7/g99O65vlipbOU3V7
-	7vkjhaFPLGddwv8S50P3AsX4Z5zo23tO3+FagY/TzY2NSizFGYmGWsxFxYkAcd7Oip8CAAA=
-Cc: mvalleavila@gmail.com, dtran11@gmail.com, paul.eggleton@linux.intel.com,
-	vidal.develone@gmail.com
-Subject: gcc enable-languages
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 339BBE00282
+	for <yocto@yoctoproject.org>; Sun,  1 Sep 2013 08:07:27 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1VG9FN-0001yl-Cb
+	for yocto@yoctoproject.org; Sun, 01 Sep 2013 17:07:25 +0200
+Received: from ppp089210245158.access.hol.gr ([89.210.245.158])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 01 Sep 2013 17:07:25 +0200
+Received: from gmane by ppp089210245158.access.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sun, 01 Sep 2013 17:07:25 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Sun, 01 Sep 2013 18:07:13 +0300
+Message-ID: <52235821.3070302@reliableembeddedsystems.com>
+References: <CAMZj-5MD+kLf3JVS7Mmyq-JfREKPdcoam0NFCTrqsFw4bnrx4A@mail.gmail.com>
+	<1377881765.14029.4.camel@dvhart-mobl4.amr.corp.intel.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp089210245158.access.hol.gr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
+In-Reply-To: <1377881765.14029.4.camel@dvhart-mobl4.amr.corp.intel.com>
+Cc: Asier <public-atamayoarbide-Re5JQEeQqe8AvxtiuMwx3w@plane.gmane.org>,
+	public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
+Subject: Re: Embedded Linux with Xenomai support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,21 +39,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 31 Aug 2013 07:16:25 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 01 Sep 2013 15:07:29 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-See core-fortran.patch, "Fixes to build a gfortran cross compiler and =
-the gfortran runtime libraries", which is an attachment at =
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5091.  My bbappend =
-files are there too.
+Hi,
 
-Larry Baker
-US Geological Survey
-650-329-5608
-baker@usgs.gov
+On 08/30/2013 07:56 PM, Darren Hart wrote:
+
+>> Is there any Linux distribution based on the Yocto project that lets
+>> me configure my embedded kernel with Xenomai? If not, has anybody got
+>> any experinece in adding Xenomai to the Yocto project? 
+> 
+> I am not aware of anyone using Xenomai with Yocto to date (although that
+> doesn't mean nobody is). Our Real-Time focus has been on the PREEMPT_RT
+> Linux kernel, which we do have recipes for.
+
+googling for meta-xenomai reveals:
+
+[1][2]
+
+> 
+> It appears as though Xenomai has changed quite a bit over the years. If
+> my quick re-reading of their material is correct, the Xenomai core is
+> implemented as a Linux kernel module which can built in to a standard
+> Linux kernel?
+
+... kind of ...
+
+kernel space:
+
+You need to apply a patch to a certain kernel version and configure the
+kernel afterwards.
+
+So for an ARM architecture there is a patch for the 3.8 kernel[3]
+
+user land:
+
+But unlike with preempt-rt you also need to build the Xenomai userland
+stuff.
+
+> 
+> Out of curiosity, what sort of real-time requirements do you have?
+> 
+
+That's a good point. Shameless self promotion [4].
+
+Regards,
+
+Robert
+
+[1] https://github.com/nojgosu/meta-xenomai
+[2] https://github.com/DrunkenInfant/beaglebone-xenomai
+[3]
+http://git.xenomai.org/?p=xenomai-head.git;a=tree;f=ksrc/arch/arm/patches;h=c6045f00819318970d6bba65c397609052c9414e;hb=HEAD
+[4] http://www.reliableembeddedsystems.com/pdfs/2010_03_04_rt_linux.pdf
 
 
+..."A language that doesn't affect the way you think about programming
+is not worth knowing." - Anonymous
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
 
