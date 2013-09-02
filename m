@@ -1,34 +1,38 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3400FE006E5
-	for <yocto@yoctoproject.org>; Mon,  2 Sep 2013 05:35:31 -0700 (PDT)
-Received: by mail-vc0-f174.google.com with SMTP id gd11so2884596vcb.19
-	for <yocto@yoctoproject.org>; Mon, 02 Sep 2013 05:35:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=22Gnk63MuMTcjHSzqmfxF7tTPjDAh7PldNFcHLBpL18=;
-	b=ffJekTovhYgEWr+lU6uyiROnKr5aaqLXlcxQK3EQhKn9sHw5gtztlN/f8AGqrpUxDN
-	BYKujSWi1Mw0gsQqIDhhjLHWA7+XLDm214pT1998e/BrYmvEqmJM3Al26S+Yf57eHpZY
-	PcCMjH79mONZOQ904+KpGM3ktu40O7nBYUbOciiMc2Iwntag7NyXwUm88k/jXLjjaxJy
-	3bTbLSzVjR4qPqKse0OWGNtpxMBBi0GaLwqNqxvw+CBFLZr2M2FNWumgOdSuB6e8Hh8m
-	PxtlaaFb5bZA3j3Q7xnIH05PgHmCkfTj8IDR2EHLfh0QUc9re1P+pu0sUr3o9PTu5LV3
-	G/sg==
-X-Gm-Message-State: ALoCoQkEZ0WDMLW8OWc+j1jxHUbkicqQ2DB4bzCIJuUXFky4ZWG1jj7V5Te251vhGBVtfwEeT9Cy
-X-Received: by 10.221.56.194 with SMTP id wd2mr23433901vcb.7.1378125331069;
-	Mon, 02 Sep 2013 05:35:31 -0700 (PDT)
+Return-Path: <lothar@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC4E6E0073F
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2013 06:17:32 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3cTBff3Zrtz3hhyN
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2013 15:17:29 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3cTBfd6jljzbbjV
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2013 15:17:29 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id otDzsjc1XD9T for <yocto@yoctoproject.org>;
+	Mon,  2 Sep 2013 15:17:28 +0200 (CEST)
+X-Auth-Info: IbSOF05mnC0VxDuz321WG7F/mD77HdltXQjLpT3Iyu8=
+Received: from webmail.mnet-online.de (webmail1.mnet-online.de
+	[62.245.181.162]) by mail.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2013 15:17:28 +0200 (CEST)
+Received: from host-82-135-33-74.customer.m-online.net ([82.135.33.74])
+	by webmail.mnet-online.de
+	with HTTP (HTTP/1.1 POST); Mon, 02 Sep 2013 13:17:28 +0000
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Mon, 2 Sep 2013 05:35:10 -0700 (PDT)
-In-Reply-To: <52241C84.2090605@gna.org>
-References: <52241C84.2090605@gna.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 2 Sep 2013 13:35:10 +0100
-Message-ID: <CAJTo0LZSkA5Gr4AkaFEAuG0irsLWfeUkO2jXmmBXHJ6qcaGN_w@mail.gmail.com>
-To: Christian Gagneraud <chgans@gna.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Server specs for a continuous integration system
+Date: Mon, 02 Sep 2013 15:17:28 +0200
+From: lothar@denx.de
+To: yocto@yoctoproject.org
+In-Reply-To: <2462918.0uoppbURnB@helios>
+References: <CAFyqS9qRgLBFThnAETs1KXnMingG10U3o+3cooVeR4Zi8o5JVQ@mail.gmail.com>
+	<CAP71Wjx3uF=FFGfypOqw9w5HF0N6KEH9KJ6sGE_0zQ2AX3Dk6w@mail.gmail.com>
+	<634B5BDC80D342ABA055FCF109BBDE9C@PAULD> <2462918.0uoppbURnB@helios>
+Message-ID: <c3cd39f7562ccd925f1d7fd7d9929305@denx.de>
+X-Sender: lothar@denx.de
+User-Agent: Roundcube Webmail/0.9.3
+Subject: Re: confusion about DEPENDS vs RDEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,23 +44,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Sep 2013 12:35:32 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 02 Sep 2013 13:17:37 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2 September 2013 06:05, Christian Gagneraud <chgans@gna.org> wrote:
-> So right now, I'm thinking about:
-> - CPU: Xeon E5, maybe 2 x E5-2670/90, for a total of 16 cores (32 threads)
-> - Hard drives: 500GB, 1 TB or 2 TB (ideally with RAID if it can speed up the
-> builds)
-> - RAM: i don't really know, maybe 8 or 16 GB or more?
+Hello Paul,
 
-At least 16GB of RAM for the vast amount of disk cache that will give
-you.  32GB or more will mean you can easily put the TMPDIR or WORKDIR
-into a tmpfs (there's been discussion about this a few weeks ago).
-I've 16GB of RAM and a 8GB tmpfs with rm_work was sufficient for
-WORKDIR which gave a 10% speedup (and massive reduction on disk wear).
- Others have machines with 64GB RAM and use it for all of TMPDIR, at
-which point you'll be almost entirely CPU-bound.
+I followed this very interesting thread, and have a question on the last 
+statement, just for understanding:
 
-Ross
+Are the limitations you are explaining here, the same as mentioned in...
+http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html
+...under "Checksums (Signatures)", telling that:
+"Consider a case with in-line Python, for example, where BitBake is not 
+able to figure out dependencies."   ? So to speak, are those limitations 
+the cases, where bitbake is not able to figure out dependencies 
+correctly?
+
+Thanks in advance,
+Lothar
+
+
+> Hi Paul / Nicolas,
+> 
+> On Wednesday 28 August 2013 15:15:27 Paul D. DeRocco wrote:
+>> From: Nicolas Dechesne
+>> > if the source code changes, the version of the recipe needs
+>> > to change too. if you change the source code without bumping
+>> > the version, the package might not be rebuilt properly
+>> > indeed. and that can explain the behavior you are seeing. if
+>> > 'someapp' does not change, it would be rebuilt only if one of
+>> > its dependencies was rebuilt.
+>> 
+>> If you're making lots of changes in the course of debugging, isn't it
+>> reasonable just to do a cleansstate on the recipe to force it to be
+>> rebuilt?
+> 
+> Current versions of the build system (denzil/1.2+, although refinements 
+> have
+> been made since then) are task signature-based. That means as far as 
+> the build
+> system is able to determine its inputs, if those change it should be 
+> able to
+> rebuild all of the output to match. Known limitations:
+> 
+> * Upstream software that doesn't properly rebuild when reconfigured. In 
+> most
+> cases this should be considered as a bug in the recipe. Separating S 
+> from B
+> can help here as I mentioned earlier, and you can see in dylan/1.4+ in
+> meta/conf/distro/include/seperatebuilddir.inc that we've been enabling
+> separate recipe build dirs for a number of recipes to help with this.
+> 
+> * Editing the unpacked/patched source code in the recipe's work 
+> directory
+> (i.e. tmp/work/...). Note that this is not something that is 
+> discouraged - in
+> fact it can be a very useful development aid. However, you do need to 
+> be aware
+> of the need to force the appropriate tasks to re-execute after you have 
+> made
+> changes in there i.e. bitbake -c compile -f <recipe> or bitbake -C 
+> compile
+> <recipe>, since the build system cannot detect these kinds of changes 
+> on its
+> own.
+> 
+> * Items remaining in the sysroot when recipes are completely renamed 
+> (i.e.
+> when PN changes) or when a recipe is removed. We saw this recently with 
+> the
+> mesa-dri -> mesa rename. Currently there's no way for the system to 
+> know what
+> replaces what when PN changes or what to do when a recipe completely 
+> vanishes,
+> you just have to clean out the old recipe's files in the sysroot. This 
+> can of
+> course happen if you add and remove layers without deleting TMPDIR, so 
+> care
+> should be taken when doing that. This is an difficult issue to solve
+> practically; there is discussion of this issue here for those 
+> interested:
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=4102
+> 
+> * If you use runtime packaging ("package-management" in IMAGE_FEATURES) 
+> and
+> you're putting the packages into a feed and expect on-target upgrades 
+> to work
+> consistently from those feeds without manually bumping PR in recipes on 
+> every
+> material change, you need to enable the PR service as described in the
+> development manual so that PR increments automatically.
+> 
+> * Changes on the host system affecting native recipes - less likely to 
+> cause
+> issues, but worth being aware of. It can happen that adding or removing
+> packages on the host system changes the configuration of native recipes 
+> without
+> automatically triggering a rebuild - a good example is how we allow 
+> qemu-
+> native to build on systems with and without X11; if you added SDL and 
+> X11 to a
+> system on which you'd already built qemu-native beforehand, in the 
+> absence of
+> other changes you'd have to cleansstate or otherwise force a rebuild of 
+> qemu-
+> native to have a native QEMU that supported graphical output.
+> 
+> 
+> However, with the caveats above, most of the time you can rely upon the 
+> build
+> system to determine what to do when things change. Of course, yes, if 
+> you want
+> to just force a recipe to rebuild you have the option of bitbake -c
+> cleansstate <recipe> before building it again, but most of the time 
+> that's
+> going to be more than is needed.
+> 
+> Cheers,
+> Paul
 
