@@ -1,33 +1,17 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 339BBE00282
-	for <yocto@yoctoproject.org>; Sun,  1 Sep 2013 08:07:27 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1VG9FN-0001yl-Cb
-	for yocto@yoctoproject.org; Sun, 01 Sep 2013 17:07:25 +0200
-Received: from ppp089210245158.access.hol.gr ([89.210.245.158])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sun, 01 Sep 2013 17:07:25 +0200
-Received: from gmane by ppp089210245158.access.hol.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sun, 01 Sep 2013 17:07:25 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEAD5E006AD
+	for <yocto@yoctoproject.org>; Sun,  1 Sep 2013 19:00:26 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id ED8F840B27; Mon,  2 Sep 2013 02:00:26 +0000 (UTC)
+Date: Mon, 2 Sep 2013 02:00:26 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
 To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Sun, 01 Sep 2013 18:07:13 +0300
-Message-ID: <52235821.3070302@reliableembeddedsystems.com>
-References: <CAMZj-5MD+kLf3JVS7Mmyq-JfREKPdcoam0NFCTrqsFw4bnrx4A@mail.gmail.com>
-	<1377881765.14029.4.camel@dvhart-mobl4.amr.corp.intel.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp089210245158.access.hol.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130106 Thunderbird/17.0.2
-In-Reply-To: <1377881765.14029.4.camel@dvhart-mobl4.amr.corp.intel.com>
-Cc: Asier <public-atamayoarbide-Re5JQEeQqe8AvxtiuMwx3w@plane.gmane.org>,
-	public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
-Subject: Re: Embedded Linux with Xenomai support
+Message-ID: <20130902020026.GA32465@ab01.i.yoctoproject.org>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,68 +23,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Sep 2013 15:07:29 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 02 Sep 2013 02:00:27 -0000
+X-Groupsio-MsgNum: 15777
+Content-Type: multipart/mixed; boundary="HlL+5n6rz5pIUxbD"
+Content-Disposition: inline
 
-Hi,
+--HlL+5n6rz5pIUxbD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 08/30/2013 07:56 PM, Darren Hart wrote:
-
->> Is there any Linux distribution based on the Yocto project that lets
->> me configure my embedded kernel with Xenomai? If not, has anybody got
->> any experinece in adding Xenomai to the Yocto project? 
-> 
-> I am not aware of anyone using Xenomai with Yocto to date (although that
-> doesn't mean nobody is). Our Real-Time focus has been on the PREEMPT_RT
-> Linux kernel, which we do have recipes for.
-
-googling for meta-xenomai reveals:
-
-[1][2]
-
-> 
-> It appears as though Xenomai has changed quite a bit over the years. If
-> my quick re-reading of their material is correct, the Xenomai core is
-> implemented as a Linux kernel module which can built in to a standard
-> Linux kernel?
-
-... kind of ...
-
-kernel space:
-
-You need to apply a patch to a certain kernel version and configure the
-kernel afterwards.
-
-So for an ARM architecture there is a patch for the 3.8 kernel[3]
-
-user land:
-
-But unlike with preempt-rt you also need to build the Xenomai userland
-stuff.
-
-> 
-> Out of curiosity, what sort of real-time requirements do you have?
-> 
-
-That's a good point. Shameless self promotion [4].
-
-Regards,
-
-Robert
-
-[1] https://github.com/nojgosu/meta-xenomai
-[2] https://github.com/DrunkenInfant/beaglebone-xenomai
-[3]
-http://git.xenomai.org/?p=xenomai-head.git;a=tree;f=ksrc/arch/arm/patches;h=c6045f00819318970d6bba65c397609052c9414e;hb=HEAD
-[4] http://www.reliableembeddedsystems.com/pdfs/2010_03_04_rt_linux.pdf
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
 
-..."A language that doesn't affect the way you think about programming
-is not worth knowing." - Anonymous
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+ccache                        3.1.8                         3.1.9                         Wenzong Fan <wenzong.fan@windriver.com>           
+gettext                       0.18.2                        0.18.3.1                      Wenzong Fan <wenzong.fan@windriver.com>           
+puzzles                       r9765                         9976                          Valentin Popa <valentin.popa@intel.com>           
+gtk+                          2.24.18                       3.9.10                        Valentin Popa <valentin.popa@intel.com>           Do not upgrade to version: 2....
+libx11                        1.5.0                         1.6.1                         Valentin Popa <valentin.popa@intel.com>           
+libsoup-2.4                   2.42.1                        2.43.5                        Valentin Popa <valentin.popa@intel.com>           
+gtk-update-icon-cache-native  3.4.4                         3.9.10                        Valentin Popa <valentin.popa@intel.com>           
+gnome-desktop                 2.32.1                        3.9.5                         Valentin Popa <valentin.popa@intel.com>           waiting for the sato gtk3 port
+gnome-icon-theme              2.31.0                        3.9.5                         Valentin Popa <valentin.popa@intel.com>           waiting for the sato gtk3 port
+liberation-fonts              1.04                          1.05.2.20091019               Valentin Popa <valentin.popa@intel.com>           2.00.0 - fontforge package re...
+xdg-utils                     1.1.0-rc1                     1.0.2                         Valentin Popa <valentin.popa@intel.com>           only release candidates avail...
+gtk+3                         3.8.2                         3.9.10                        Valentin Popa <valentin.popa@intel.com>           
+matchbox-panel-2              2.0+gitAUTOINC+26a3a67b41     2.0+gitAUTOINC+bd69c21        Valentin Popa <valentin.popa@intel.com>           
+pcmanfm                       1.1.0                         1.1.2                         Valentin Popa <valentin.popa@intel.com>           
+webkit-gtk                    1.8.3                         2.1.4                         Valentin Popa <valentin.popa@intel.com>           >= 1.10.2 needs ruby          
+matchbox-desktop              2.0+gitAUTOINC+71e3e6e042     2.0+gitAUTOINC+09170f4        Valentin Popa <valentin.popa@intel.com>           
+libfm                         1.1.0                         1.1.2                         Valentin Popa <valentin.popa@intel.com>           
+matchbox-keyboard             0.0+gitAUTOINC+b38f24036c     0.0+gitAUTOINC+a17b113        Valentin Popa <valentin.popa@intel.com>           
+blktrace                      1.0.5+gitAUTOINC+d6918c8      1.0.5+gitAUTOINC+0a915aa      Tom Zanussi <tom.zanussi@intel.com>               
+systemtap-uprobes             2.3+gitAUTOINC+e58138572e     2.3+gitAUTOINC+3f873e5        Tom Zanussi <tom.zanussi@intel.com>               
+sysprof                       1.2.0+gitAUTOINC+cd44ee6      1.2.0+gitAUTOINC+6901897      Tom Zanussi <tom.zanussi@intel.com>               
+acl                           2.2.51                        2.2.52                        Saul Wold <sgw@linux.intel.com>                   
+mkelfimage                    4.0+gitAUTOINC+686a48a339     4.0+gitAUTOINC+4159a80        Saul Wold <sgw@linux.intel.com>                   
+kbd                           1.15.2                        2.0.0                         Saul Wold <sgw@linux.intel.com>                   
+glib-networking               2.36.2                        2.37.5                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
+guilt-native                  0.33                          0.35                          Saul Wold <sgw@linux.intel.com>                   
+gnupg                         2.0.20                        2.0.21                        Saul Wold <sgw@linux.intel.com>                   
+vte                           0.28.2                        0.34.7                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
+mx-1.0                        1.4.7+gitAUTOINC+9b1db6b      1.99.4+gitAUTOINC+6a43d10     Saul Wold <sgw@linux.intel.com>                   PRS 1.99 is dev version       
+attr                          2.4.46                        2.4.47                        Saul Wold <sgw@linux.intel.com>                   
+base-passwd                   3.5.26                        3.5.27                        Saul Wold <sgw@linux.intel.com>                   
+librsvg                       2.32.1                        2.39.0                        Ross Burton <ross.burton@intel.com>               
+gdk-pixbuf                    2.28.2                        2.29.3                        Ross Burton <ross.burton@intel.com>               2.27.2 is unstable            
+pixman                        0.30.0                        0.30.2                        Ross Burton <ross.burton@intel.com>               
+freetype                      2.4.12                        2.5.0                         Ross Burton <ross.burton@intel.com>               
+clutter-gst-1.0               1.6.0                         2.0.6                         Ross Burton <ross.burton@intel.com>               
+wayland                       1.1.0                         1.2.0                         Ross Burton <ross.burton@intel.com>               
+clutter-gtk-1.0               1.4.2                         1.4.4                         Ross Burton <ross.burton@intel.com>               
+mtdev                         1.1.2                         1.1.4                         Ross Burton <ross.burton@intel.com>               
+weston                        1.1.0                         1.2.0                         Ross Burton <ross.burton@intel.com>               
+gpgme                         1.4.2                         1.4.3                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+libav                         0.8.8                         9.8                           Paul Eggleton <paul.eggleton@linux.intel.com>     
+openjade-native               1.3.2                         1.3.3                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+x264                          r2265+gitAUTOINC+585324f      r2265+gitAUTOINC+f0c1c53      Paul Eggleton <paul.eggleton@linux.intel.com>     
+createrepo                    0.4.11                        0.9.9                         Paul Eggleton <paul.eggleton@linux.intel.com>     Versions after 0.9.* use YUM,...
+clutter-1.0                   1.14.4                        1.15.2                        No Maintainer info                                
+cogl-1.0                      1.14.0                        1.15.4                        No Maintainer info                                
+bluez5                        5.7                           5.8                           No Maintainer info                                
+gsettings-desktop-schemas     3.7.3                         3.9.5                         No Maintainer info                                
+at-spi2-core                  2.8.0                         2.9.5                         No Maintainer info                                
+libbsd                        0.5.2                         0.6.0                         No Maintainer info                                
+at-spi2-atk                   2.8.1                         2.9.5                         No Maintainer info                                
+xinput-calibrator             0.7.5+gitAUTOINC+c01c5af      0.7.5+gitAUTOINC+c8ba270      No Maintainer info                                
+rpm                           5.4.9                         5.4.13-0.20130819             Mark Hatle <mark.hatle@windriver.com>             
+xserver-xorg                  1.14.0                        1.14.99.1                     Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xset                          1.2.2                         1.2.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+lttng-modules                 2.2.0+gitAUTOINC+1b26381      2.3.0+gitAUTOINC+a8da488      Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-intel              2.21.13                       2.21.14                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
+python                        2.7.3                         3.4.0a1                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xprop                         1.2.1                         1.2.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+tcf-agent                     0.4.0+gitAUTOINC+4ef94ec      8.0+gitAUTOINC+f78457d        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+fontconfig                    2.10.2                        2.10.93                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
+autogen-native                5.17.4                        5.17.4-5                      Laurentiu Palcu <laurentiu.palcu@intel.com>       
+bison                         2.7.1                         3.0                           Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-omap               0.4.2+gitrAUTOINC+ae0394      0.4.3+gitrAUTOINC+d48d09c     Laurentiu Palcu <laurentiu.palcu@intel.com>       
+python-pygobject              2.27.91                       3.9.90                        Laurentiu Palcu <laurentiu.palcu@intel.com>       Newer versions of python-pygo...
+subversion                    1.7.10                        1.8.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+automake                      1.12.6                        1.14                          Laurentiu Palcu <laurentiu.palcu@intel.com>       
+oprofile                      0.9.8                         0.9.9                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+bind                          9.8.1                         9.9.3-P2                      Kai Kang <kai.kang@windriver.com>                 
+libarchive                    2.8.5                         3.1.2                         Kai Kang <kai.kang@windriver.com>                 
+libsdl                        1.2.15                        1.2.15-1                      Kai Kang <kai.kang@windriver.com>                 
+qmmp                          0.6.6                         0.7.1                         Kai Kang <kai.kang@windriver.com>                 
+alsa-tools                    1.0.26.1                      1.0.27                        Kai Kang <kai.kang@windriver.com>                 
+libx11-diet                   1.5.0                         1.6.1                         Kai Kang <kai.kang@windriver.com>                 
+directfb                      1.6.1                         1.6.3                         Kai Kang <kai.kang@windriver.com>                 
+directfb-examples             1.6.0                         1.7.0                         Kai Kang <kai.kang@windriver.com>                 
+adt-installer                 0.1.8+svnr596                 0.1.8+svnr677                 Jessica Zhang <jessica.zhang@intel.com>           
+lsb                           4.1                           1.4                           Hongxu Jia <hongxu.jia@windriver.com>             
+trace-cmd                     1.2+gitAUTOINC+7055ffd37b     2.2.1+gitAUTOINC+07f0eee      Darren Hart <dvhart@linux.intel.com>              
+kernelshark                   1.2+gitAUTOINC+7055ffd37b     2.2.1+gitAUTOINC+07f0eee      Darren Hart <dvhart@linux.intel.com>              0.2 is the latest version.    
+elfutils                      0.148                         1.7.4                         Cristiana Voicu <cristiana.voicu@intel.com>       
+apt                           0.9.9.4                       0.9.10                        Cristiana Voicu <cristiana.voicu@intel.com>       
+pango                         1.32.5                        1.35.0                        Cristiana Voicu <cristiana.voicu@intel.com>       Version 1.35.2 requires fontc...
+opkg                          0.1.8+svnr653                 0.1.8+svnr677                 Cristiana Voicu <cristiana.voicu@intel.com>       
+u-boot-fw-utils               2011.06                       2013.07                       Cristiana Voicu <cristiana.voicu@intel.com>       
+u-boot-mkimage                2011.06                       2013.07                       Cristiana Voicu <cristiana.voicu@intel.com>       
+imake                         1.0.5                         1.0.6                         Cristiana Voicu <cristiana.voicu@intel.com>       
+kmod                          9+gitAUTOINC+62081c0f68       14+gitAUTOINC+493dc65         Cristiana Voicu <cristiana.voicu@intel.com>       
+systemtap                     2.3+gitAUTOINC+e58138572e     2.3+gitAUTOINC+3f873e5        Cristiana Voicu <cristiana.voicu@intel.com>       
+libunique                     1.1.6                         3.0.2                         Cristiana Voicu <cristiana.voicu@intel.com>       Do not upgrade to version: 2....
+babeltrace                    1.1+gitAUTOINC+a386e24609     1.1.1+gitAUTOINC+cf7be03      Cristiana Voicu <cristiana.voicu@intel.com>       
+shadow                        4.1.4.3                       4.1.5.1                       Cristiana Voicu <cristiana.voicu@intel.com>       
+curl                          7.31.0                        7.32.0                        Cristiana Voicu <cristiana.voicu@intel.com>       
+mobile-broadband-provider-info20120614+gitrAUTOINC+4ed      20120614+gitrAUTOINC+b1f      Cristiana Voicu <cristiana.voicu@intel.com>       
+tremor                        20120314                      18906                         Cristian Iorga <cristian.iorga@intel.com>         Same revision on different SV...
+qemu                          1.5.0                         1.6.0                         Cristian Iorga <cristian.iorga@intel.com>         
+bluez4                        4.101                         5.8                           Cristian Iorga <cristian.iorga@intel.com>         BlueZ 5.x is not backward-com...
+iptables                      1.4.19.1                      1.4.20                        Cristian Iorga <cristian.iorga@intel.com>         
+neard                         0.10+gitAUTOINC+eb486bf3      0.12+gitAUTOINC+e5147f4       Cristian Iorga <cristian.iorga@intel.com>         
+dbus                          1.6.10                        1.7.4                         Cristian Iorga <cristian.iorga@intel.com>         D-BUS 1.7.x is the developmen...
+harfbuzz                      0.9.17                        0.9.19                        Cristian Iorga <cristian.iorga@intel.com>         
+glib-2.0                      2.36.3                        2.37.5                        Cristian Iorga <cristian.iorga@intel.com>         2.35.8 is unstable            
+telepathy-glib                0.20.4                        0.21.1                        Cristian Iorga <cristian.iorga@intel.com>         
+db                            5.3.21                        6.0.20                        Cristian Iorga <cristian.iorga@intel.com>         API compatibility issue       
+gst-plugin-bluetooth          4.101                         5.8                           Cristian Iorga <cristian.iorga@intel.com>         
+rpcbind                       0.2.0                         0.2.1                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-fluendo-mp3               0.10.19                       0.10.22                       Cristian Iorga <cristian.iorga@intel.com>         
+js                            1.7.0+1.8.0rc1                185-1.0.0                     Cristian Iorga <cristian.iorga@intel.com>         
+linux-firmware                0.0+gitAUTOINC+c530a75c1e     0.0+gitAUTOINC+600caef        Cristian Iorga <cristian.iorga@intel.com>         
+dbus-ptest                    1.6.10                        1.7.4                         Cristian Iorga <cristian.iorga@intel.com>         
+linux-libc-headers-yocto      3.4+git-AUTOINC+a1cdb607      3.4.52+git-AUTOINC+7eb5f      Bruce Ashfield <bruce.ashfield@windriver.com>     
+linux-libc-headers            3.8                           3.10.7                        Bruce Ashfield <bruce.ashfield@windriver.com>     
+Upgradable Count: 93
+Upgrade Total Count: 113
+The based commit merge time is:
+Sun Sep 1 16:25:15 2013 +0100
+The based commit is:
+commit 5894ac1f38cdbc74b8197710bd64fc79b05aec87
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Sun Sep 1 16:19:32 2013 +0100
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+--HlL+5n6rz5pIUxbD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
 
+recipe_color.inc/17: RECIPE_COLOR = "green"
 
-
+--HlL+5n6rz5pIUxbD--
