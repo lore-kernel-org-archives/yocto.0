@@ -1,30 +1,83 @@
 Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08DBDE01358
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 13:31:11 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D09FE00734
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 13:31:00 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 03 Sep 2013 13:31:08 -0700
+	by orsmga102.jf.intel.com with ESMTP; 03 Sep 2013 13:27:42 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.89,1016,1367996400"; 
-	d="scan'208,217";a="372944694"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga001.jf.intel.com with ESMTP; 03 Sep 2013 13:31:07 -0700
+	d="scan'208,217";a="372944489"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+	by orsmga001.jf.intel.com with ESMTP; 03 Sep 2013 13:30:37 -0700
+Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
+	ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 3 Sep 2013 13:30:37 -0700
 Received: from orsmsx108.amr.corp.intel.com ([169.254.4.144]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.216]) with mapi id
-	14.03.0123.003; Tue, 3 Sep 2013 13:31:07 -0700
+	ORSMSX157.amr.corp.intel.com ([169.254.9.234]) with mapi id
+	14.03.0123.003; Tue, 3 Sep 2013 13:30:36 -0700
 From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
+	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
+	<kishore.k.bodke@intel.com>,
+	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
+	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
+	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
+	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
+	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
+	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
+	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
+	<joshua.lock@intel.com>, "Moeller, Thorsten" <thorsten.moeller@intel.com>, 
+	'Sanjay Raina' <sraina@mvista.com>, "Osier-mixon, Jeffrey"
+	<jeffrey.osier-mixon@intel.com>, "'Polk,
+	Jeffrey'" <jeff.polk@windriver.com>, 
+	"Purdie, Richard" <richard.purdie@intel.com>, "'Ranslam, Rob'"
+	<Rob.Ranslam@windriver.com>, "Saxena, Rahul" <rahul.saxena@intel.com>, 
+	"Stewart, David C" <david.c.stewart@intel.com>, "Wold, Saul"
+	<saul.wold@intel.com>, "Zanussi, Tom" <tom.zanussi@intel.com>, "Zhang, 
+	Jessica" <jessica.zhang@intel.com>, "Rifenbark, Scott M"
+	<scott.m.rifenbark@intel.com>, "'Hudson, Sean'" <Sean_Hudson@mentor.com>,
+	"Serban, Laurentiu" <laurentiu.serban@intel.com>, "Petrisor, Ileana"
+	<ileana.petrisor@intel.com>, "Damian, Alexandru"
+	<alexandru.damian@intel.com>, "Burton, Ross" <ross.burton@intel.com>,
+	"Mueller, Robert" <robert.mueller@intel.com>, "Arce Moreno, Abraham"
+	<abraham.arce.moreno@intel.com>,
+	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
+	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
+	<mario.a.santana.lopez@intel.com>, "Patel, Keyur R"
+	<keyur.r.patel@intel.com>, "'achaudha@mvista.com'" <achaudha@mvista.com>,
+	"Popa, Valentin" <valentin.popa@intel.com>, "Moses, Fred"
+	<fred.moses@intel.com>, "Iorga, Cristian" <cristian.iorga@intel.com>,
+	"Palalau, AlexandruX" <alexandrux.palalau@intel.com>, "'Butler, Paul'"
+	<Paul.Butler@windriver.com>, "Mirea, Viorel" <viorel.mirea@intel.com>, 
+	"Kamble, Nitin A" <nitin.a.kamble@intel.com>, "Szankin, Maciej"
+	<maciej.szankin@intel.com>, "Moisan, Radu" <radu.moisan@intel.com>,
+	"Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>, Olivia Salisbury
+	<olivia.salisbury@tobias.tv>, 'Chris Kaminski' <chris.kaminski@tobias.tv>, 
+	"'Maupin, Chase'" <chase.maupin@ti.com>, "Georgescu, Alexandru C"
+	<alexandru.c.georgescu@intel.com>, "Gavaz, Ionut A"
+	<ionut.a.gavaz@intel.com>, "Pruteanu, Codrin C"
+	<codrin.c.pruteanu@intel.com>, "Letnes, Thaddeus C"
+	<thaddeus.c.letnes@intel.com>, "Ong,
+	Boon Leong" <boon.leong.ong@intel.com>, 
+	"Seow, Chen Yong" <chen.yong.seow@intel.com>, "Haw, Foo Chien"
+	<foo.chien.haw@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"steve.long@windriver.com" <steve.long@windriver.com>
 Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
 	September 03,
 	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac6o5GrrDMy5R1b5RPeTuHEbedHpigAAA83w
-Date: Tue, 3 Sep 2013 20:31:07 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF32A0A@ORSMSX108.amr.corp.intel.com>
+Thread-Index: Ac6o5GrrDMy5R1b5RPeTuHEbedHpig==
+Date: Tue, 3 Sep 2013 20:30:35 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF329E6@ORSMSX108.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
+X-Mailman-Approved-At: Tue, 03 Sep 2013 15:13:40 -0700
+Cc: 'Chris Kaminski' <chris.kaminski@tobiasandtobias.com>
 Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, September 03, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,12 +90,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 20:31:12 -0000
+X-List-Received-Date: Tue, 03 Sep 2013 20:31:03 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_"
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -110,7 +163,7 @@ r as the build directory is set in BBPath.
 
 
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -203,4 +256,4 @@ he file system as far as the build directory is set in BBPath.</div>
 </body>
 </html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_--
