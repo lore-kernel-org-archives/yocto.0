@@ -1,33 +1,28 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA251E01493
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 05:27:15 -0700 (PDT)
-Received: by mail-wi0-f180.google.com with SMTP id hj3so1838561wib.1
-	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 05:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=i3abxD+yp2q3f8A4R6B1VrEUHkzJV2SArrmajwjdhEA=;
-	b=WZlkI2KsSPrwXNDPaybqoamIOiS8g+HNOnFWyRRgPAxRj9omxdeRmQ3Yo+VQQ9rc0T
-	gBtfvoy0E/Z71zQmxJ/x5SixJUi/qrv8I4AlaECd4aB0H0Aea+5rMzykKUOLa++H/AwY
-	2C2L1x0kkL6ZNMQ2k4MmcArSeUD8L2laJMk4dWx0L7+Pzv3IQY8GhqeVz73ahoMMdyfo
-	Bp5hZNj8WsRaW7w2YkQ7TCabJ2vDhqyOz9I7ctanmIb+mrCcej+FRYbUGCr89ESTXHnA
-	tCvnkBQgzQXqHi5bao4aXPPNdA0IVHYcJj20H8ATxlcFCCPTDdvrCiAIEqUOA5L37o/k
-	Ei9Q==
-X-Received: by 10.180.75.239 with SMTP id f15mr18023670wiw.43.1378211234812;
-	Tue, 03 Sep 2013 05:27:14 -0700 (PDT)
-Received: from turn.betafive.co.uk (94-192-12-83.zone6.bethere.co.uk.
-	[94.192.12.83]) by mx.google.com with ESMTPSA id
-	fv10sm23338282wic.0.1969.12.31.16.00.00
-	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 03 Sep 2013 05:27:14 -0700 (PDT)
-Sender: Paul Barker <paul.betafive@gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-To: yocto@yoctoproject.org
-Date: Tue,  3 Sep 2013 13:26:44 +0100
-Message-Id: <1378211205-4866-1-git-send-email-paul@paulbarker.me.uk>
-X-Mailer: git-send-email 1.8.4
-Subject: [meta-raspberrypi][PATCH] 3.8.y series linux-raspberrypi kernel
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D7FAE0149D
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 05:37:37 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r83CbbG2022587
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 3 Sep 2013 05:37:37 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Tue, 3 Sep 2013 05:37:36 -0700
+Message-ID: <5225D802.4000802@windriver.com>
+Date: Tue, 3 Sep 2013 08:37:22 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+MIME-Version: 1.0
+To: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+References: <CAFyqS9o02b7W4LBhuPkRzo09yR74g71gEWyEvVJ5Ug-0XMD3yQ@mail.gmail.com>
+	<52254404.4040602@windriver.com>
+	<CAFyqS9qav1k5ChXdy=vKJuXyYj4uMyFO-JJmm1nCLTkwhpMK_w@mail.gmail.com>
+In-Reply-To: <CAFyqS9qav1k5ChXdy=vKJuXyYj4uMyFO-JJmm1nCLTkwhpMK_w@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: header file missing in populated SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,21 +34,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 12:27:21 -0000
+X-List-Received-Date: Tue, 03 Sep 2013 12:37:44 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Build and boot tested.
+On 13-09-03 04:27 AM, Hans Beckérus wrote:
+> On Tue, Sep 3, 2013 at 4:05 AM, ChenQi <Qi.Chen@windriver.com> wrote:
+>> On 09/02/2013 10:56 PM, Hans Beckérus wrote:
+>>>
+>>> Hi. We are having some issues figuring out why one of our header files
+>>> fails to be installed properly into the SDK. The header file is
+>>> currently installed using a few lines in one of our recipe:
+>>>
+>>> do_install_append() {
+>>>           install -m 0644 ${S}/foo.h
+>>> ${STAGING_DIR}/${MACHINE}${includedir}/linux/foo.h
+>>> }
+>>
+>> Please don't do that.
+>> I think just installing the foo.h into the ${D}${includedir} would do. And
+>> foo.h will end up in the FOO-dev package.
+>> Make sure that the FOO package is in the IMAGE_INSTALL list, and then use
+>> 'bitbake <your-image-recipe> -cpopulate_sdk' command to populate the SDK.
+>>
+> Note taken ;) Actually this was a very old recipe so I guess that
+> could be one of the reason why it was done this way. Changing
+> do_install_append to:
+>
+> do_install_append() {
+>          install -d ${D}${includedir}/linux
+>          install -m 644 ${S}/foo.h ${D}${includedir}/linux/foo.h
+> }
+>
+> solves the problem!
+> The staging dir is automatically updated and the SDK is also populated
+> as it should.
 
-Andrei: I'm unsure if you want this to be the new preferred kernel version, I'll
-leave that up to you.
+I do have another word of caution here. "/usr/include/linux" is where the
+linux-libc-headers are installed and occupy. Individual packages and
+applications shouldn't be installing into that infrastructure unless
+they know what they are doing.
 
-Paul Barker (1):
-  linux-raspberrypi: Add version 3.8.13
+If you are creating a new file, you'll be ok, but never modify an
+existing exported .h file from the linux kernel, your results won't be
+what you expect.
 
- recipes-kernel/linux/linux-raspberrypi_3.8.13.bb | 35 ++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
+Cheers,
 
--- 
-1.8.4
+Bruce
+
+> Actually, I did not need to add package FOO to the IMAGE_INSTALL since
+> it is a kernel module and installed as part of 'kernel-modules'.
+> I think we once tried to solve the same issue without
+> do_install_append() instead using FILES,
+> but to me FILES is still a piece of black magic. I have never really
+> managed to figure out how FILES_${PN} manages to locate the actual
+> source file since it only lists destination targets?
+>
+> Thanks,
+> Hans
+>
+>
+>
+>>
+>>> foo.h ends up ok in our build/tmp/sysroots,
+>>
+>> sysroots != SDK
+>> The files under build/tmp/sysroots are usually generated by the
+>> do_populate_sysroot task of each recipe.
+>>
+>>  From my understanding, SDK is composed of two parts, the target part and the
+>> nativesdk part.
+>> The nativesdk part is determined by the TOOLCHAIN_HOST_TASK.
+>> And the target part is determined by the TOOLCHAIN_TARGET_TASK.
+>> The reason that we could only ensure that FOO is in IMAGE_INSTALL is because
+>> in image.bbclass, we have:
+>> TOOLCHAIN_TARGET_TASK += "${PACKAGE_INSTALL}"
+>> export PACKAGE_INSTALL ?= "${IMAGE_INSTALL} ${ROOTFS_BOOTSTRAP_INSTALL}
+>> ${FEATURE_INSTALL}"
+>>
+>> The process of populating SDK is also composed of two parts, installing the
+>> target packages and installing the nativesdk packages. See
+>> populate_sdk_xxx.bbclass for more details.
+>>
+>> Best Regards,
+>> Chen Qi
+>>
+>>>    but it does not make it to the SDK.
+>>> Is our do_install_append wrong in some way, does it have to be updated
+>>> to support SDK builds? Maybe it is wrong to use ${MACHINE} here?
+>>>
+>>> Thanks.
+>>> Hans
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
