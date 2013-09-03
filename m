@@ -1,32 +1,41 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
-	[209.85.212.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFB1BE00715
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 12:15:36 -0700 (PDT)
-Received: by mail-vb0-f44.google.com with SMTP id e13so4229503vbg.17
-	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 12:15:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=N7ZyDTHoMQZRZKHF01Q1MfTsGc5VkQGe+9A8hJP3mGI=;
-	b=gYsCPWUznvBQx8lF/3Sn+rt5uPPS0CqUSmvGeBEC6yVNyFB+laC9Hn+lDoJZIDpQSi
-	W+kMmIQaoWRLjHsDzRtd7CiUP7ujhwEogxGM+251eFgs6a0LtRiVEmLKeYvb5UCAtnWo
-	kUpRH7oWnGPA6Fmjhv0d+F8NURA6cvMhcUEQ5QCebFEgGS2asn6mvxZSxIWZItSSnI1J
-	H8C5sqTlCDUbRjrRzxJC2fOpizMYCcWUkXycUB2HRd+bt/30uJ5g1lzTBAlstTELIAv/
-	sIKfs8LKeOKw9exqUPiTXynL6yyu+Ix+YSQJ1w/htSUqDB3YwtDDZXHSsB2rkVnk8ZyB
-	Bz3w==
-X-Gm-Message-State: ALoCoQmJY4e4ZMHOodIIwXJzFinQAWBFJo457S1MTNnq+vilCXXorOUvERWV8lVI5RaBPLEpeNRz
-MIME-Version: 1.0
-X-Received: by 10.58.73.202 with SMTP id n10mr30008540vev.7.1378235735589;
-	Tue, 03 Sep 2013 12:15:35 -0700 (PDT)
-Received: by 10.52.28.109 with HTTP; Tue, 3 Sep 2013 12:15:35 -0700 (PDT)
-Date: Tue, 3 Sep 2013 12:15:35 -0700
-Message-ID: <CAPhnLPDM-9Kw-0Ooftm+wAfhzN1iRGbaagWRBvozeRYUvsWMDA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-announce@yoctoproject.org
-Subject: [Announcement] Yocto Project 1.4.2 (Dylan 9.0.2) Released
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6622BE01358
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 12:18:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=HN0JPcDCIwtWfd2DV9Aqzxd/3qSl+p4XA5S7jrD4bRs=; 
+	b=jA/5XLA6zuvey8vpRX8L8FaTOkqsdxL21Rdbdvu/k6jLBAoOB+/MSKdCsfW10+h0wBUJ2Mw1P8rgHC6qbeV0yfmV2epx2zDNnh7TKQJjJys8KpFNT3CK2YNmIJ2LIv/q3K51X96hIYBciJdmBXHZhhtaNWa8E+xvraIZmsK0wu4=;
+Received: from [82.113.183.55] (port=53385
+	helo=macbook-pro.crosscountrywifi.co.uk)
+	by r109.websiteservername.com with esmtpa (Exim 4.80.1)
+	(envelope-from <opensource@keylevel.com>)
+	id 1VGw73-002KgK-L6; Tue, 03 Sep 2013 20:18:06 +0100
+Mime-Version: 1.0 (Apple Message framework v1283)
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <0124f45705241361176f9e323c716763@denx.de>
+Date: Tue, 3 Sep 2013 20:17:59 +0100
+Message-Id: <461B573D-2F12-4625-9A30-680C423ED01C@keylevel.com>
+References: <52241C84.2090605@gna.org>
+	<CAJTo0LZSkA5Gr4AkaFEAuG0irsLWfeUkO2jXmmBXHJ6qcaGN_w@mail.gmail.com>
+	<522506F8.8060706@gna.org>
+	<0C95222C-9247-4FDD-837C-83FB03A314AC@keylevel.com>
+	<0124f45705241361176f9e323c716763@denx.de>
+To: lothar@denx.de
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Cc: yocto@yoctoproject.org
+Subject: Re: Server specs for a continuous integration system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,153 +47,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 19:15:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-
-The latest point release of the Yocto Project, 1.4.2 (dylan 9.0.2) is now
-available for download at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.2/poky-dylan-9.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.4.2/poky-dylan-9.0.2.tar.gz
-
-A gpg signed version of these release notes is available at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.2/RELEASENOTES
-
-Thanks go out to everyone for all their hard work during this release!
-
-Sincerely,
-
-Elizabeth Flanagan
-Yocto Build and Release
-<elizabeth.flanagan@intel.com>
+X-List-Received-Date: Tue, 03 Sep 2013 19:18:08 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
 
---------------------
-yocto-1.4.2 Errata
---------------------
+On 3 Sep 2013, at 12:57, lothar@denx.de wrote:
 
-Release Name: poky-dylan-9.0.2
-Branch:  dylan
-Tag:  dylan-9.0.2
-Hash:  d734ab491a30078d43dee5440c03acce2d251425
-md5: a8cfa7440bdef4e5f8de68ac9bc256c9
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.2/poky-dylan-9.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.4.2/poky-dylan-9.0.2.tar.bz2
+> Am 2013-09-03 00:16, schrieb Chris Tapp:
+>> On 2 Sep 2013, at 22:45, Christian Gagneraud wrote:
+>>> On 03/09/13 00:35, Burton, Ross wrote:
+>>> Hi Ross,
+>>>> On 2 September 2013 06:05, Christian Gagneraud <chgans@gna.org> =
+wrote:
+>>>>> So right now, I'm thinking about:
+>>>>> - CPU: Xeon E5, maybe 2 x E5-2670/90, for a total of 16 cores (32 =
+threads)
+>>>>> - Hard drives: 500GB, 1 TB or 2 TB (ideally with RAID if it can =
+speed up the
+>>>>> builds)
+>>> RAID-5 seems to be what i am after.
+>> Isn't RAID-5 going to be slower, especially if it's software? RAID 1
+>> is probably better as you'll potentially double the write speed to
+>> disk. I use a couple of Vertex SSDs in RAID 1 giving a theoretical
+>> write speed near to 1GBs. Write endurance is possibly a concern, but
+>> I've not had any issues using them on a local build machine. I would
+>> probably look at some higher end models if I was going to run a lot =
+of
+>> builds. A lot less noise than hard drives ;-)
+>=20
+> Hi, this sounds interesting to me.
+>=20
+> Having a brief look into wikipedia ( http://en.wikipedia.org/wiki/RAID =
+)  tells me that RAID-1 gives no increase in write speed at all (for =
+sequentioal operations), by theory: 1x   ...while a RAID-5 at least in =
+theory, should give you: (n-1)x, assumed the hardware is fast enough to =
+support it (RAID controller!).
 
-Release Name: eclipse-poky-juno-dylan-9.0.2
-Branch:  dylan
-Tag:  dylan-9.0.2
-Hash:  dc9a609c68fe4a6bbbf34d418fd6611489c1d6f7
-md5: eaf8eda342051e0530ff80d7ae015ecc
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.2/eclipse-poky-juno-dylan-9.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.4.2/eclipse-poky-juno-dylan-9.0.2.tar.bz2
+Quite right. That'll teach me to hack out an e-mail late at night whilst =
+packing for a road-trip :-( I meant to say RAID 0.
 
-Release Name: meta-qt3-dylan-9.0.2
-Branch:  dylan
-Tag:  dylan-9.0.2
-Hash:  4c27cce6688aa39852f3cba5e7b80ec279019605
-md5: 97b0bfaace7d5534530e7b56faa99aac
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.2/meta-qt3-dylan-9.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.4.2/meta-qt3-dylan-9.0.2.tar.bz2
+>=20
+> Having had a small conversation here, I was told we even made =
+experiences on having HW RAID being slowed down by the RAID controller, =
+and its limitation of I/O-operations, that still could be handled. So, =
+it seems to me one motivation why using SW RAID instead of HW RAID is =
+exactly to overcome this limitations of having the bottleneck of a RAID =
+controllers.
+>=20
+> Question, running RAID-5, have you tried to adjust the chunck size? In =
+our case most I/O operations are on relatively small text files and may =
+require some adjustment to the RAID chunck size value in respect to that =
+fact.
 
-Release Name: meta-intel-dylan-9.0.2
-Branch:  dylan
-Tag:  dylan-9.0.2
-Hash:  048def7bae8e3e1a11c91f5071f99bdcf8e6dd16
-md5: 69253e666f73dd74d309ae922bb0f091
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.2/meta-intel-dylan-9.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.4.2/meta-intel-dylan-9.0.2.tar.bz2
+No, mainly because two SSDs for RAID 0 was enough cash to spend ;-)
 
-Release Name: meta-minnow-dylan-9.0.2
-Branch:  dylan
-Tag:  dylan-9.0.2
-Hash:  bde2e79fdb35851ee1f855a41a536fe741d6294d
-md5: b4d0131c5e087d0fa6dbb58ffee79b9b
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.2/meta-minnow-dylan-9.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.4.2/meta-minnow-dylan-9.0.2.tar.bz2
+>=20
+> BR,
+> Lothar Rubusch
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+Chris Tapp
 
---------------------
-Notable Fixes
---------------------
-- A large number of build-time deterministic dependency fixes
-- A couple of fixes for build problems on Fedora 19 and other newer host
-  distributions (although some issues may still be present)
-- Several fixes for ADT / SDK installer runtime failures
-- Correctly mark the current version of groff as GPLv3, and add a GPLv2
-  version
-
-
---------------------
-Security fixes
---------------------
-bind: fix for CVE-2012-5166, CVE-2011-4313, CVE-2012-1667, CVE-2012-3817,
-CVE-2013-2266, CVE-2012-4244
-grep: fix for CVE-2012-5667
-libpam: fix for CVE-2010-4708
-logrotate: fix for CVE-2011-1548
-gnutls: fix for CVE-2013-1619 (upgraded to 2.12.23)
+opensource@keylevel.com
+www.keylevel.com
 
 
---------------------
-Known Issues
---------------------
-The following known issues are present in this release:
-* runqemu sometimes fails on Fedora 19 due to build-time configuration issue
-* (bug #5040)
-* Intermittent error when building packages in Hob (bug #5053)
 
-The following have fixes in master which will be integrated for the
-next 1.4 point release:
-* "ERROR: Nothing RPROVIDES 'ncurses-libtinfo'" when ncurses is being
-* installed from Hob
-
-
---------------------
-Bug Fixes
---------------------
-349: qt4: add eglibc-gconv-utf-16 to QtCore RRECOMMENDS when using glibc to
-fix runtime warnings
-4225: Ensure finalised data is displayed in build banner to fix incorrect
-display of TUNE_FEATURES
-4474: bind: use /var/run/named instead of /var/run/bind/run to fix error on
-startup
-4746: systemd-udevd: fix invoking init script failed
-4630: archiver.bbclass: check if package contains a copyleft license
-4372: sstate.bbclass: make hard links for staging files to save disk space
-4632: only use devtmpfs for udev
-4550: adt_installer_internal: fix perl module relocation failure on older
-distributions
-4758: adt_installer_internal: fix perl lib version mismatch
-4760: adt_installer_internal: add sudo when permission deny on installation
-directory
-4735: yocto-bsp: filter out 'layer' from arch list
-4743: yocto-kernel: enforce exact match for BBLAYERS
-4488: populate_sdk_base, adt_installer: abort install if path contains spaces
-4853: populate_sdk_base.bbclass: use new perm option for find
-4815: tar: remove an erroneous patch
-4385: remake: fix insufficient gettext dependency
-4627: bitbake: data_smart: Ensure variable flags are accounted for in config
-data hash
-4908: external-sourcery: add missing providers
-4439: devshell fails to open a new tmux session
-4997: grub_0.97: Fix to correctly ship files under /usr/lib
-
-Fixes without associated bug numbers:
-openssl: fix documentation build errors with Perl 5.18 pod2man
-openssl: Add fix for cipher des-ede3-cfb1
-linux-yocto: Fix SRCREVs in linux-yocto_3.2 kernel
-mesa: fix EGL compilation without X11 headers
-directfb: avoid build failures by not patching pkg-config files
-packagegroup-core-tools-testapps: exclude X11 dependent tools when x11 is not
-in DISTRO_FEATURES
-dpkg-native: fix include header causing compile error with gcc 4.8
 
