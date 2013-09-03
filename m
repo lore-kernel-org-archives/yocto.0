@@ -1,34 +1,44 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 155CCE01440
-	for <yocto@yoctoproject.org>; Mon,  2 Sep 2013 21:41:03 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 02 Sep 2013 21:41:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,1011,1367996400"; 
-	d="scan'208,217";a="397319195"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga002.jf.intel.com with ESMTP; 02 Sep 2013 21:41:02 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 2 Sep 2013 21:41:02 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.144]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.234]) with mapi id
-	14.03.0123.003; Mon, 2 Sep 2013 21:41:02 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
-	September 03,
-	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac6oX7XbNFFBTOYfTA63FYY0t3to9wAAAVow
-Date: Tue, 3 Sep 2013 04:41:01 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF31C94@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail3c40.carrierzone.com (mail3c40.carrierzone.com
+	[209.235.156.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CEEDE01422
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2013 22:20:47 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail3c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r835Kg8u025793; Tue, 3 Sep 2013 05:20:44 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "'Katu Txakur'" <katutxakurra@gmail.com>
+References: <CAM1ZcoVgAgPYTrGzHVYcYt+qwhzqTHne9gjNhhWS75oD0HhFFg@mail.gmail.com>	<000601cea807$0893e270$19bba750$@annabooks.com>
+	<CAM1ZcoUuqJai9s3588RcG5+H-TAfWGo=Ua7zhzQQeEFLTt6FCg@mail.gmail.com>
+In-Reply-To: <CAM1ZcoUuqJai9s3588RcG5+H-TAfWGo=Ua7zhzQQeEFLTt6FCg@mail.gmail.com>
+Date: Mon, 2 Sep 2013 22:20:41 -0700
+Message-ID: <001801cea865$56914f90$03b3eeb0$@annabooks.com>
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, September 03, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQDDmldSC4lseo3IDY0PJOgOATmbmwM1RjASAw9BQtSbl3BMwA==
+X-CSC: 0
+X-CHA: v=2.0 cv=f8v/8pOM c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=jeXnFUrUOPUA:10 a=_DgR7O7FQkkA:10 a=IjdlZ_XXAAAA:8 a=Q2_vi_79zCsA:10
+	a=pGLkceISAAAA:8 a=iGHA9ds3AAAA:8 a=lO6N1Cc3wATk0LC5ZPYA:9
+	a=CjuIK1q_8ugA:10 a=FCaQVidmf_IA:10 a=nHK3ipOpxeAA:10 a=MSl-tDqOz04A:10
+	a=XDKM753qmDAA:10 a=PAfwrr6pMpkA:10 a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8
+	a=tfh4jgtQZzw_Mq00G9oA:9 a=gKO2Hq4RSVkA:10 a=UiCQ7L4-1S4A:10
+	a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10 a=tXsnliwV7b4A:10
+	a=_OOadc8-XHmxmOG1:21
+	a=vrtpD_qjSwHea3sYWLsA:9 a=KQqxNPgzF0kA:10 a=ucH7BwLj_I8A:10
+	a=WDYU2s7p4Hx7m9Zq:18 a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020201.522571AD.00D3, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Cc: yocto@yoctoproject.org
+Subject: Re: Intel(R) Core(TM) i7-3612QM CPU @ 2.10GHz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,552 +50,424 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 04:41:05 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 03 Sep 2013 05:20:49 -0000
+X-Groupsio-MsgNum: 15805
+Content-Type: multipart/related;
+	boundary="----=_NextPart_000_0019_01CEA82A.AA34E890"
+Content-Language: en-us
+
+------=_NextPart_000_0019_01CEA82A.AA34E890
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF31C94ORSMSX108amrcor_"
+	boundary="----=_NextPart_001_001A_01CEA82A.AA34E890"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF31C94ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
+------=_NextPart_001_001A_01CEA82A.AA34E890
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Katu,
+
+ 
+
+It has been awhile since I looked this one up. I believe the installer
+script is called init-install.sh under the /meta/recipes-core. If you don't
+use a serial debug port with a terminal to catch the boot menu, you will
+have to modify the syslinux.cfg file (or grub.cfg for EFI boot) to run the
+install option rather than boot option.
+
+ 
+
+ 
+
+Regards,
+
+ 
+
+Sean Liming
+
+Owner
+
+ <http://www.annabooks.com/> ablogo color - 500
+
+Tel: 714-970-7523 / Cell: 858-774-3176
+
+ 
+
+From: Katu Txakur [mailto:katutxakurra@gmail.com] 
+Sent: Monday, September 02, 2013 3:45 PM
+To: Sean Liming
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Intel(R) Core(TM) i7-3612QM CPU @ 2.10GHz
+
+ 
+
+Thanks Sean,
+
+that's great help. Do you know where the installer script is located? I was
+hoping to find it in the yocto project scripts folder but I haven't seen any
+helpful script for partitioning the hard drive and installing the yocto
+distro.
+
+Regards,
+
+Katu
+
+ 
+
+2013/9/2 Sean Liming <sean.liming@annabooks.com>
+
+The BSP for  3rd Generation iCore is this one:
+https://www.yoctoproject.org/download/intel-3rd-generation-core-platforms-co
+re-i3-i5-i7-ivy-bridge . of course, you will need the core Yocto Project
+release - https://www.yoctoproject.org/downloads 
+
+ 
+
+Yes, you can install the distro on the machine. There is an installer script
+that does the partitioning and formatting. 
+
+ 
+
+Regards,
+
+ 
+
+Sean Liming
+
+Owner
+
+ <http://www.annabooks.com/> 
+
+ <http://www.annabooks.com/> Tel: 714-970-7523 / Cell: 858-774-3176
+
+ <http://www.annabooks.com/>  
+
+ <http://www.annabooks.com/> From: yocto-bounces@yoctoproject.org
+[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Katu Txakur
+Sent: Monday, September 02, 2013 10:29 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Intel(R) Core(TM) i7-3612QM CPU @ 2.10GHz
+
+ <http://www.annabooks.com/>  
+
+ <http://www.annabooks.com/> Hello,
+
+ <http://www.annabooks.com/>  
+
+ <http://www.annabooks.com/> What is the best stable BSP for a Intel(R)
+Core(TM) i7-3612QM CPU @ 2.10GHz?
+
+ <http://www.annabooks.com/> I have a computer with 4 cpus and I would like
+to compile a Linux distro with the Yocto project.
+
+ <http://www.annabooks.com/> I've read about booting with a live usb but,
+how can I install the distro in the machine? Can I automatize the hard drive
+partitions too?
+
+ <http://www.annabooks.com/>  
+
+ <http://www.annabooks.com/> Thanks a lot
+
+ <http://www.annabooks.com/>  
+
+
+------=_NextPart_001_001A_01CEA82A.AA34E890
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Agenda:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><!--[if !mso]><style>v\:* =
+{behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Katu,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>It has been awhile since I looked this one up. I believe the =
+installer script is called init-install.sh under the /meta/recipes-core. =
+If you don&#8217;t use a serial debug port with a terminal to catch the =
+boot menu, you will have to modify the syslinux.cfg file (or grub.cfg =
+for EFI boot) to run the install option rather than boot =
+option.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Regards,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Sean Liming<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Owner<o:p></o:p></span></p><p class=3DMsoNormal><a =
+href=3D"http://www.annabooks.com/"><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";text-decorat=
+ion:none'><img border=3D0 width=3D160 height=3D34 id=3D"Picture_x0020_1" =
+src=3D"cid:image003.jpg@01CEA82A.A8A4F9C0" alt=3D"ablogo color - =
+500"></span></a><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Tel: 714-970-7523 / Cell: 858-774-3176<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><o:p>&nbsp;</o:p></span></p><div =
+style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt'><div><div style=3D'border:none;border-top:solid #B5C4DF =
+1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+Katu Txakur [mailto:katutxakurra@gmail.com] <br><b>Sent:</b> Monday, =
+September 02, 2013 3:45 PM<br><b>To:</b> Sean Liming<br><b>Cc:</b> =
+yocto@yoctoproject.org<br><b>Subject:</b> Re: [yocto] Intel(R) Core(TM) =
+i7-3612QM CPU @ 2.10GHz<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><div><p =
+class=3DMsoNormal style=3D'margin-bottom:12.0pt'>Thanks =
+Sean,<o:p></o:p></p></div><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt'>that's great help. Do you know where the =
+installer script is located? I was hoping to find it in the yocto =
+project scripts folder but I haven't seen any helpful script for =
+partitioning the hard drive and installing the yocto =
+distro.<o:p></o:p></p></div><p =
+class=3DMsoNormal>Regards,<o:p></o:p></p></div><p =
+class=3DMsoNormal>Katu<o:p></o:p></p></div><div><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt'><o:p>&nbsp;</o:p></p><div><p =
+class=3DMsoNormal>2013/9/2 Sean Liming &lt;<a =
+href=3D"mailto:sean.liming@annabooks.com" =
+target=3D"_blank">sean.liming@annabooks.com</a>&gt;<o:p></o:p></p><div><d=
+iv><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>The BSP for &nbsp;3<sup>rd</sup> Generation iCore is this one: <a =
+href=3D"https://www.yoctoproject.org/download/intel-3rd-generation-core-p=
+latforms-core-i3-i5-i7-ivy-bridge" =
+target=3D"_blank">https://www.yoctoproject.org/download/intel-3rd-generat=
+ion-core-platforms-core-i3-i5-i7-ivy-bridge</a> . of course, you will =
+need the core Yocto Project release - <a =
+href=3D"https://www.yoctoproject.org/downloads" =
+target=3D"_blank">https://www.yoctoproject.org/downloads</a> =
+</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Yes, you can install the distro on the machine. There is an installer =
+script that does the partitioning and formatting. =
+</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Regards,</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Sean Liming</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'>Owner</span><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'><o:p></o:p></span></a></p=
+><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><a href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:#1F497D;text-decoration:none'>Tel: <u><span =
+style=3D'color:blue'>714-970-7523</span></u> / Cell: <u><span =
+style=3D'color:blue'>858-774-3176</span></u></span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman","serif";color:windowtext;text-decoration:none'><o:p></o:p></span><=
+/a></span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri","sans-serif";color:#1F497=
+D'><a href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:#1F497D;text-decoration:none'>&nbsp;</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman","serif";color:windowtext;text-decoration:none'><o:p></o:p></span><=
+/a></span></p><div style=3D'border:none;border-left:solid blue =
+1.5pt;padding:0in 0in 0in 4.0pt'><div><div =
+style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>From:</span><span =
+style=3D'color:windowtext;font-weight:normal;text-decoration:none'> =
+<u><span style=3D'color:blue'>yocto-bounces@yoctoproject.org</span></u> =
+[mailto:<u><span =
+style=3D'color:blue'>yocto-bounces@yoctoproject.org</span></u>] =
+</span><span style=3D'color:windowtext;text-decoration:none'>On Behalf =
+Of </span><span =
+style=3D'color:windowtext;font-weight:normal;text-decoration:none'>Katu =
+Txakur<br></span><span =
+style=3D'color:windowtext;text-decoration:none'>Sent:</span><span =
+style=3D'color:windowtext;font-weight:normal;text-decoration:none'> =
+Monday, September 02, 2013 10:29 AM<br></span><span =
+style=3D'color:windowtext;text-decoration:none'>To:</span><span =
+style=3D'color:windowtext;font-weight:normal;text-decoration:none'> =
+<u><span =
+style=3D'color:blue'>yocto@yoctoproject.org</span></u><br></span><span =
+style=3D'color:windowtext;text-decoration:none'>Subject:</span><span =
+style=3D'color:windowtext;font-weight:normal;text-decoration:none'> =
+[yocto] Intel(R) Core(TM) i7-3612QM CPU @ 2.10GHz</span><span =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman","serif";color:windowtext;font-weight:normal;text-decoration:none'>=
+<o:p></o:p></span></a></span></b></p></div></div><div><div><p =
+class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>&nbsp;<o:p></o:p></span><=
+/a></p><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>Hello,<o:p></o:p></span><=
+/a></p><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>&nbsp;<o:p></o:p></span><=
+/a></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>What is the best stable =
+BSP for a&nbsp;Intel(R) Core(TM) i7-3612QM CPU @ =
+2.10GHz?<o:p></o:p></span></a></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>I have a computer with 4 =
+cpus&nbsp;and I would like to compile a Linux distro&nbsp;with the Yocto =
+project.<o:p></o:p></span></a></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>I've read about booting =
+with a live usb but, how can I install the distro in the machine? Can I =
+automatize the hard drive partitions =
+too?<o:p></o:p></span></a></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>&nbsp;<o:p></o:p></span><=
+/a></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><a =
+href=3D"http://www.annabooks.com/" target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'>Thanks a =
+lot<o:p></o:p></span></a></p></div></div></div></div></div></div></div></=
+div><p class=3DMsoNormal><a href=3D"http://www.annabooks.com/" =
+target=3D"_blank"><span =
+style=3D'color:windowtext;text-decoration:none'><o:p>&nbsp;</o:p></span><=
+/a></p></div></div></div></body></html>
 
-* Opens collection - 5 min (Song)
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-* SWAT team rotation: Nitin -> Beth
-* Opens - 10 min
-* Team Sharing - 20 min
+------=_NextPart_001_001A_01CEA82A.AA34E890--
 
+------=_NextPart_000_0019_01CEA82A.AA34E890
+Content-Type: image/jpeg;
+	name="image003.jpg"
+Content-Transfer-Encoding: base64
+Content-ID: <image003.jpg@01CEA82A.A8A4F9C0>
 
------Original Appointment-----
+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
+AKUpQBis0pQgFKUoA//Z
 
-
-We encourage people attending the meeting to logon the Yocto IRC chancel du=
-ring the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-Conference details
-Conference name:        Yocto Project Technical Team
-Conference date/start time:     Tue Jun 25, 2013 at 11:00 AM Eastern Daylig=
-ht Time (GMT-0400)
-Participants:   30
-Duration:       60 minutes
-Participant passcode:   42001078
-Dial-in number: 1.972.995.7777
-US Toll Free number:    1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:=
-     1.972.995.7777x42001078#
-        Depending on where you are dialing from, either your BlackBerry wil=
-l pause and enter the passcode automatically or you will be prompted to cli=
-ck again to dial the passcode.
-
-
-Local and Global Access Numbers
-
-
-
-
-Country
-Dial-in number
-
-Australia:
-1800 636 843
-
-Czech Republic:
-242 430 350
-
-China (Beijing):
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-
-China (Shanghai):
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-
-China (Shenzen):
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-
-China (Other Cities):
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-
-Denmark:
-8060 1400
-
-Finland:
-09 41333477
-
-France:
-0497 275888
-
-Germany:
-08161 803232
-
-Holland:
-030 2417490
-
-India:
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-
-Israel:
-09 790 6715
-
-Italy:
-039 69061234 (039 is local city code not country code)
-
-Japan:
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-
-Malaysia:
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-
-Norway:
-2 295 8744
-
-Philippines:
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-
-Singapore:
-From IP phone dial 3894777
-Outside TI use 6389 4777
-
-South Korea:
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-
-Sweden:
-08 58755577
-
-Taiwan:
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-
-Turkey:
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-
-UK:
-01908 355599
-
-US:
-972 995 7777 or 1877 561 6828
-
-
-Recurring conferences
-First scheduled conference:     Tue Jun 25, 2013
-Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:        End after 52 occurrences
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF31C94ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>* SWAT team rotation: Nitin -&gt; Beth</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
-Original Appointment-----</span></font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
- attending the meeting to logon the Yocto IRC chancel during the meeting (o=
-ptional):</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
-=3D"http://webchat.freenode.net/?channels=3D#yocto"><font color=3D"blue"><u=
->http://webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
-ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
-><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
-/font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Conference deta=
-ils</b></span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference name:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Yocto Project Technical Team</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference date/start time:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 25, 2013 at 11:00 AM Eastern Daylight Time (GMT-04=
-00)</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participants:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>30</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Duration:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>60 minutes</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participant passcode:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>42001078</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Dial-in number:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">US Toll Free number:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.877.561.6828</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BlackBerry users, click this link to join your conference as =
-a&nbsp;<b>participant</b>:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777x42001078#</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">&nbsp;</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
-ry will pause and enter the passcode automatically or you will be prompted =
-to click again to dial the passcode.</span></font></td>
-</tr>
-<tr>
-<td colspan=3D"2">
-<table width=3D"273" style=3D"width:164.25pt;margin-left:5.55pt;">
-<col width=3D"273" style=3D"width:164.25pt;">
-<tr>
-<td><font face=3D"Times New Roman"></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#428CC6;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#CFCFCF"><span style=3D"font-size:8.5pt;background-color:#428CC6;">=
-<b>Local and Global Access Numbers</b></span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
-<table width=3D"576" style=3D"width:345.6pt;margin-left:5.55pt;">
-<col width=3D"172" style=3D"width:103.4pt;">
-<col width=3D"403" style=3D"width:242.2pt;">
-<tr>
-<td><font face=3D"Times New Roman"></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-ountry</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
-ial-in number</b></span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Australia:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-1800 636 843</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Czech Republic:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">242 430 350</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Beijing):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 8784277&nbsp;<br>
-
-Beijing Out of Office dial 5878 4277</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shanghai):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 3073322&nbsp;<br>
-
-Shanghai Out of Office dial 2307 3322</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shenzen):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 6007877&nbsp;<br>
-
-Shenzen Out of Office dial 2600 7877</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Other Cities):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 8-9957777&nbsp;<br>
-
-Other cities - Non IP phone dial 021-23073322</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Denmark:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">8060 1400</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Finland:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-09 41333477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>France:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">0497 275888</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Germany:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-08161 803232</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Holland:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">030 2417490</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>India:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-BSNL subscribers use 1800 425 9996 (Toll Free)<br>
-
-Airtel subscribers use 0008 009 861 212 (Toll Free)<br>
-
-From TI Campus use 89957777<br>
-
-Others use 2509 9555 (Landline within Bangalore) or<br>
-
-80 2509 9555 (Outside Bangalore)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Israel:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 790 6715</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Italy:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-039 69061234 (039 is local city code not country code)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Japan:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From TI Campus use 8 995 7777&nbsp;<br>
-
-Outside TI use 03 4331 3777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Malaysia:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 2643799&nbsp;<br>
-
-From Kuala Lumpur dial 4264 3799&nbsp;<br>
-
-Outside Kuala Lumpur dial (03)4264 3799</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Norway:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">2 295 8744</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Philippines:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From Baguio City use 4471177&nbsp;<br>
-
-From Metro Manila area use 8702477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Singapore:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 3894777&nbsp;<br>
-
-Outside TI use 6389 4777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>South Korea:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 5606998&nbsp;<br>
-
-From Seoul dial 5606998&nbsp;<br>
-
-Outside Seoul dial (02)5606998</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Sweden:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08 58755577</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Taiwan:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 1363&nbsp;<br>
-
-From Taipei dial 2241 1363&nbsp;<br>
-
-Outside Taipei dial (02)2241 1363</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Turkey:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Landline Only</b>&nbsp;dial 0811 288 0001&nbsp;<br>
-
-then enter 877 633 1123</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>UK:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-01908 355599</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>US:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
-</td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Recurring confe=
-rences</b></span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">First scheduled conference:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 25, 2013</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence frequency:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence ends:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>End after 52 occurrences</b></span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF31C94ORSMSX108amrcor_--
+------=_NextPart_000_0019_01CEA82A.AA34E890--
