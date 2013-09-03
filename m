@@ -1,28 +1,31 @@
-Return-Path: <andreas2025@gmail.com>
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1437EE00734
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 12:53:52 -0700 (PDT)
-Received: by mail-we0-f172.google.com with SMTP id n5so4688249wev.17
-	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 12:53:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=TlTtK8iBHmBiaETrF4gAnZNYeiT/eX5zq7Fu6GgxwI8=;
-	b=W70uykuLar3GFzt5Zlb1++kkKMVR7V8HuNYXVJOh7iR+j+6dFxGsOJziwxtlTOiPWD
-	Xtz2MV5snP80yJb97e+0n8nB0uIf/mYt1iBkh0sgGW88oEOygLXIt67hLbyEBKOcxMje
-	+IwrpYNPIuX9ElUhFoqDnlyiIKG4sndBXvTEI7emlqc6pem/UCyfr5t56yb4WSeKkA93
-	IkFVecIfDavp6dTDADJbhOY3GtFS/7RXGkKnN4W41jJ7gP1Ax8owvN9kfkt2pGrWJu6F
-	ZRnE7mb6iR348rAvEe/vhi2KgkfULDJVoHeSdtmiuN3UgIoWXDS/kATk+PQdnZ021w51
-	9AQg==
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08DBDE01358
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 13:31:11 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 03 Sep 2013 13:31:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.89,1016,1367996400"; 
+	d="scan'208,217";a="372944694"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga001.jf.intel.com with ESMTP; 03 Sep 2013 13:31:07 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.144]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.216]) with mapi id
+	14.03.0123.003; Tue, 3 Sep 2013 13:31:07 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
+	September 03,
+	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac6o5GrrDMy5R1b5RPeTuHEbedHpigAAA83w
+Date: Tue, 3 Sep 2013 20:31:07 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF32A0A@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.194.175.66 with SMTP id by2mr2922276wjc.59.1378238031583;
-	Tue, 03 Sep 2013 12:53:51 -0700 (PDT)
-Received: by 10.216.164.71 with HTTP; Tue, 3 Sep 2013 12:53:51 -0700 (PDT)
-Date: Tue, 3 Sep 2013 20:53:51 +0100
-Message-ID: <CAAVaN8w1JugqyyKKXJyeroqTqA8HzWw=oN5JhnPYejyvRi7oxQ@mail.gmail.com>
-From: Andy Ng <andreas2025@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto-9.0 Lttng-modules fails to build.
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, September 03, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,139 +37,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 19:54:04 -0000
-Content-Type: multipart/alternative; boundary=089e013d19f849df9c04e5800cd5
+X-List-Received-Date: Tue, 03 Sep 2013 20:31:12 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_"
 
---089e013d19f849df9c04e5800cd5
-Content-Type: text/plain; charset=ISO-8859-1
-
-Dear List,
-
-I try to build lttng by calling the package group for profiling, and I've
-got this error:
-Does anyone has tried profile package group lately?
-
-
-ERROR: Error executing a python function in
-/opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/
-lttng-modules_2.1.1.bb:
-ExpansionError: Failure expanding variable SUMMARY, expression was
-${SUMMARY} - Debugging files which triggered exception Exception: variable
-SUMMARY references itself!
-
-ERROR: The stack trace of python calls that resulted in this
-exception/failure was:
-ERROR:   File "write_specfile", line 508, in <module>
-ERROR:
-ERROR:   File "write_specfile", line 211, in write_specfile
-ERROR:
-ERROR:   File
-"/opt/projects/yocto/yocto-9.0/sources/poky/bitbake/lib/bb/data_smart.py",
-line 503, in getVar
-ERROR:     return self.expand(value, var)
-ERROR:
-ERROR:   File
-"/opt/projects/yocto/yocto-9.0/sources/poky/bitbake/lib/bb/data_smart.py",
-line 336, in expand
-ERROR:     return self.expandWithRefs(s, varname).value
-ERROR:
-ERROR:   File
-"/opt/projects/yocto/yocto-9.0/sources/poky/bitbake/lib/bb/data_smart.py",
-line 326, in expandWithRefs
-ERROR:     raise ExpansionError(varname, s, exc)
-ERROR:
-ERROR: The code that was being executed was:
-ERROR:      0504:
-ERROR:      0505:    specfile.close()
-ERROR:      0506:
-ERROR:      0507:
-ERROR:  *** 0508:write_specfile(d)
-ERROR:      0509:
-ERROR: [From file: 'write_specfile', lineno: 508, function: <module>]
-ERROR:      0207:        conffiles = (localdata.getVar('CONFFILES', True)
-or "").split()
-ERROR:      0208:
-ERROR:      0209:        splitname    = strip_multilib(pkgname, d)
-ERROR:      0210:
-ERROR:  *** 0211:        splitsummary = (localdata.getVar('SUMMARY', True)
-or localdata.getVar('DESCRIPTION', True) or ".")
-ERROR:      0212:        splitversion = (localdata.getVar('PKGV', True) or
-"").replace('-', '+')
-ERROR:      0213:        splitrelease = (localdata.getVar('PKGR', True) or
-"")
-ERROR:      0214:        splitepoch   = (localdata.getVar('PKGE', True) or
-"")
-ERROR:      0215:        splitlicense = (localdata.getVar('LICENSE', True)
-or "")
-ERROR: [From file: 'write_specfile', lineno: 211, function: write_specfile]
-ERROR: Function failed: write_specfile
-ERROR: Logfile of failure stored in:
-/opt/projects/yocto/yocto-9.0/build-imx6qsabresdrt/tmp/work/imx6qsabresdrt-poky-linux-gnueabi/lttng-modules/2.1.1-r0/temp/log.do_package_write_rpm.9007
-ERROR: Task 13
-(/opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/
-lttng-modules_2.1.1.bb, do_package_write_rpm) failed with exit code '1'
-
-
-Best regards,
-Andreas
-
---089e013d19f849df9c04e5800cd5
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Dear List,<br><br>I try to build lttng by calling the=
- package group for profiling, and I&#39;ve got this error:<br></div>Does an=
-yone has tried profile package group lately?<br><div><div><br><br>ERROR: Er=
-ror executing a python function in /opt/projects/yocto/yocto-9.0/sources/po=
-ky/meta/recipes-kernel/lttng/<a href=3D"http://lttng-modules_2.1.1.bb">lttn=
-g-modules_2.1.1.bb</a>:<br>
-ExpansionError: Failure expanding variable SUMMARY, expression was ${SUMMAR=
-Y} - Debugging files which triggered exception Exception: variable SUMMARY =
-references itself!<br><br>ERROR: The stack trace of python calls that resul=
-ted in this exception/failure was:<br>
-ERROR:=A0=A0 File &quot;write_specfile&quot;, line 508, in &lt;module&gt;<b=
-r>ERROR: <br>ERROR:=A0=A0 File &quot;write_specfile&quot;, line 211, in wri=
-te_specfile<br>ERROR: <br>ERROR:=A0=A0 File &quot;/opt/projects/yocto/yocto=
--9.0/sources/poky/bitbake/lib/bb/data_smart.py&quot;, line 503, in getVar<b=
-r>
-ERROR:=A0=A0=A0=A0 return self.expand(value, var)<br>ERROR: <br>ERROR:=A0=
-=A0 File &quot;/opt/projects/yocto/yocto-9.0/sources/poky/bitbake/lib/bb/da=
-ta_smart.py&quot;, line 336, in expand<br>ERROR:=A0=A0=A0=A0 return self.ex=
-pandWithRefs(s, varname).value<br>
-ERROR: <br>ERROR:=A0=A0 File &quot;/opt/projects/yocto/yocto-9.0/sources/po=
-ky/bitbake/lib/bb/data_smart.py&quot;, line 326, in expandWithRefs<br>ERROR=
-:=A0=A0=A0=A0 raise ExpansionError(varname, s, exc)<br>ERROR: <br>ERROR: Th=
-e code that was being executed was:<br>
-ERROR:=A0=A0=A0=A0=A0 0504:<br>ERROR:=A0=A0=A0=A0=A0 0505:=A0=A0=A0 specfil=
-e.close()<br>ERROR:=A0=A0=A0=A0=A0 0506:<br>ERROR:=A0=A0=A0=A0=A0 0507:<br>=
-ERROR:=A0 *** 0508:write_specfile(d)<br>ERROR:=A0=A0=A0=A0=A0 0509:<br>ERRO=
-R: [From file: &#39;write_specfile&#39;, lineno: 508, function: &lt;module&=
-gt;]<br>
-ERROR:=A0=A0=A0=A0=A0 0207:=A0=A0=A0=A0=A0=A0=A0 conffiles =3D (localdata.g=
-etVar(&#39;CONFFILES&#39;, True) or &quot;&quot;).split()<br>ERROR:=A0=A0=
-=A0=A0=A0 0208:<br>ERROR:=A0=A0=A0=A0=A0 0209:=A0=A0=A0=A0=A0=A0=A0 splitna=
-me=A0=A0=A0 =3D strip_multilib(pkgname, d)<br>ERROR:=A0=A0=A0=A0=A0 0210:<b=
-r>
-ERROR:=A0 *** 0211:=A0=A0=A0=A0=A0=A0=A0 splitsummary =3D (localdata.getVar=
-(&#39;SUMMARY&#39;, True) or localdata.getVar(&#39;DESCRIPTION&#39;, True) =
-or &quot;.&quot;)<br>ERROR:=A0=A0=A0=A0=A0 0212:=A0=A0=A0=A0=A0=A0=A0 split=
-version =3D (localdata.getVar(&#39;PKGV&#39;, True) or &quot;&quot;).replac=
-e(&#39;-&#39;, &#39;+&#39;)<br>
-ERROR:=A0=A0=A0=A0=A0 0213:=A0=A0=A0=A0=A0=A0=A0 splitrelease =3D (localdat=
-a.getVar(&#39;PKGR&#39;, True) or &quot;&quot;)<br>ERROR:=A0=A0=A0=A0=A0 02=
-14:=A0=A0=A0=A0=A0=A0=A0 splitepoch=A0=A0 =3D (localdata.getVar(&#39;PKGE&#=
-39;, True) or &quot;&quot;)<br>ERROR:=A0=A0=A0=A0=A0 0215:=A0=A0=A0=A0=A0=
-=A0=A0 splitlicense =3D (localdata.getVar(&#39;LICENSE&#39;, True) or &quot=
-;&quot;)<br>
-ERROR: [From file: &#39;write_specfile&#39;, lineno: 211, function: write_s=
-pecfile]<br>ERROR: Function failed: write_specfile<br>ERROR: Logfile of fai=
-lure stored in: /opt/projects/yocto/yocto-9.0/build-imx6qsabresdrt/tmp/work=
-/imx6qsabresdrt-poky-linux-gnueabi/lttng-modules/2.1.1-r0/temp/log.do_packa=
-ge_write_rpm.9007<br>
-ERROR: Task 13 (/opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-ker=
-nel/lttng/<a href=3D"http://lttng-modules_2.1.1.bb">lttng-modules_2.1.1.bb<=
-/a>, do_package_write_rpm) failed with exit code &#39;1&#39;<br><br><br></d=
-iv>
-<div>Best regards,<br>Andreas<br></div></div></div>
+Attendees:
+Nitin, JeffP, Belen, Cristiana, AlexD, AlexG, Paul, Saul, Richard, TomZ, Be=
+len, DaveST, Corneliu, LaurentiuP, Jefro, ScottR, Bj=F6rn, PeterB, Jessica,=
+  MatthewW, Bruce,  Eren, MihaiL, MichaelH, Simar(?), Song
 
---089e013d19f849df9c04e5800cd5--
+Agenda:
+
+* Opens collection - 5 min (Song)
+* Congratulations to the team on 1.4.2 release. Thanks to Paul and others t=
+o make this happen.
+* Yocto 1.5 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
+  - Bug fixing: Had RC2 for M4. QA is running full pass. More bugs opened l=
+ast week than we fixed. WDD number is up.
+  - Had CCB meeting last week. Approved:
+    . 1950 downgrade to Medium from High. Not possible.
+    . 3847 move to M5, Let Tom focus on it.
+    . Meta-security layer. A layer to improve binary security, tools to sca=
+n ports, etc. to improve system security. Bastille Linux is not usable, usi=
+ng other set of tools. Saul will follow up and document a solution. Dave wi=
+ll write a new feature for 1.6. There will also be patches coming in the ne=
+xt week or so for this layer.
+    . 1.4.2 release
+  - A handful of patches on the mailing list. RP is looking into it. Deploy=
+ment changes may need to be reworked. Package BB class change, those are wo=
+rth looking at, moving forward, will merge.
+* SWAT team rotation: Nitin -> Beth ( Song will follow up with Beth).
+* Opens - 10 min
+  - AlexG- hardware for generic BSP, can we run the BSP on qemu?
+    . Already started testing on existing hardware for the generic BSP.
+    . For weekly testing: test it on two or three hardware. 64bit and 32 bi=
+t. Which hardware shall we choose?
+    . Alex will start an email thread with Ross, Darren, and Tom.
+    . Generic BSP should run on qemu. Run it outside the AB first, then ask=
+ Beth to include in AB.
+  - Michael - downtime this week for power upgrade.
+    . Moving to a new rack. Would like to have it done before school season=
+ starts.
+    . Today is the best day for this. Michael will try to do it this aftern=
+oon. All YP services will be down for 1 hour. AB will be down longer (4-5 h=
+ours). Will have everything backup be the end of the working day.
+  - Dave: YP 1.6
+    . (RP) Features for 1.6. Feature submission is ongoing. Would like to r=
+emind people, if you have specific things, please put in bugzilla. If it's =
+more generic, please talk to Richard.
+  - RP: PR server
+    . Bitbake was timing out. PR server had issues. Response time was 60 se=
+conds. Using 4GB of memory. Addressed most of them, query time down to mili=
+seconds! Encourage people to use the latest master.
+    . Doing select call on the open pipes for bitbake idle handlers. Things=
+ are more responsive now.
+    . _remove operator to avoid adding too much code for each variable. Add=
+ressed Chris' concern, _remove becomes a keyword. Any function name or vari=
+able that has '_remove' in it will have problems. This should be in the rel=
+ease note.
+    . Change to bitbake: Fixed a problem. Now bit bake can be run in any di=
+rectory containing a build directory. Or, anywhere in the file system as fa=
+r as the build directory is set in BBPath.
+* Team Sharing - 20 min
+
+
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Attendees:</div>
+<div>Nitin, JeffP, Belen, Cristiana, AlexD, AlexG, Paul, Saul, Richard, Tom=
+Z, Belen, DaveST, Corneliu, LaurentiuP, Jefro, ScottR, Bj=F6rn, PeterB, Jes=
+sica,&nbsp; MatthewW, Bruce,&nbsp; Eren, MihaiL, MichaelH, Simar(?), Song</=
+div>
+<div>&nbsp;</div>
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Congratulations to the team on 1.4.2 release. Thanks to Paul and oth=
+ers to make this happen.</div>
+<div>* Yocto 1.5 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status</u></font></a></div>
+<div>&nbsp; - Bug fixing: Had RC2 for M4. QA is running full pass. More bug=
+s opened last week than we fixed. WDD number is up. </div>
+<div>&nbsp; - Had CCB meeting last week. Approved:</div>
+<div>&nbsp;&nbsp;&nbsp; . 1950 downgrade to Medium from High. Not possible.=
+</div>
+<div>&nbsp;&nbsp;&nbsp; . 3847 move to M5, Let Tom focus on it.</div>
+<div>&nbsp;&nbsp;&nbsp; . Meta-security layer. A layer to improve binary se=
+curity, tools to scan ports, etc. to improve system security. Bastille Linu=
+x is not usable, using other set of tools. Saul will follow up and document=
+ a solution. Dave will write a new feature for
+1.6. There will also be patches coming in the next week or so for this laye=
+r.</div>
+<div>&nbsp;&nbsp;&nbsp; . 1.4.2 release</div>
+<div>&nbsp; - A handful of patches on the mailing list. RP is looking into =
+it. Deployment changes may need to be reworked. Package BB class change, th=
+ose are worth looking at, moving forward, will merge.</div>
+<div>* SWAT team rotation: Nitin -&gt; Beth ( Song will follow up with Beth=
+).</div>
+<div>* Opens - 10 min </div>
+<div>&nbsp; - AlexG- hardware for generic BSP, can we run the BSP on qemu?<=
+/div>
+<div>&nbsp;&nbsp;&nbsp; . Already started testing on existing hardware for =
+the generic BSP.</div>
+<div>&nbsp;&nbsp;&nbsp; . For weekly testing: test it on two or three hardw=
+are. 64bit and 32 bit. Which hardware shall we choose?</div>
+<div>&nbsp;&nbsp;&nbsp; . Alex will start an email thread with Ross, Darren=
+, and Tom.</div>
+<div>&nbsp;&nbsp;&nbsp; . Generic BSP should run on qemu. Run it outside th=
+e AB first, then ask Beth to include in AB.</div>
+<div>&nbsp; - Michael - downtime this week for power upgrade.</div>
+<div>&nbsp;&nbsp;&nbsp; . Moving to a new rack. Would like to have it done =
+before school season starts.</div>
+<div>&nbsp;&nbsp;&nbsp; . Today is the best day for this. Michael will try =
+to do it this afternoon. All YP services will be down for 1 hour. AB will b=
+e down longer (4-5 hours). Will have everything backup be the end of the wo=
+rking day.</div>
+<div>&nbsp; - Dave: YP 1.6</div>
+<div>&nbsp;&nbsp;&nbsp; . (RP) Features for 1.6. Feature submission is ongo=
+ing. Would like to remind people, if you have specific things, please put i=
+n bugzilla. If it's more generic, please talk to Richard.</div>
+<div>&nbsp; - RP: PR server</div>
+<div>&nbsp;&nbsp;&nbsp; . Bitbake was timing out. PR server had issues. Res=
+ponse time was 60 seconds. Using 4GB of memory. Addressed most of them, que=
+ry time down to miliseconds! Encourage people to use the latest master.</di=
+v>
+<div>&nbsp;&nbsp;&nbsp; . Doing select call on the open pipes for bitbake i=
+dle handlers. Things are more responsive now. </div>
+<div>&nbsp;&nbsp;&nbsp; . _remove operator to avoid adding too much code fo=
+r each variable. Addressed Chris' concern, _remove becomes a keyword. Any f=
+unction name or variable that has '_remove' in it will have problems. This =
+should be in the release note.</div>
+<div>&nbsp;&nbsp;&nbsp; . Change to bitbake: Fixed a problem. Now bit bake =
+can be run in any directory containing a build directory. Or, anywhere in t=
+he file system as far as the build directory is set in BBPath.</div>
+<div>* Team Sharing - 20 min</div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF32A0AORSMSX108amrcor_--
