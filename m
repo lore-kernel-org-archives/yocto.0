@@ -1,37 +1,35 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f175.google.com (mail-ea0-f175.google.com
-	[209.85.215.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E025E0148D
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 05:43:59 -0700 (PDT)
-Received: by mail-ea0-f175.google.com with SMTP id m14so2986081eaj.34
-	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 05:43:59 -0700 (PDT)
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
+	[209.85.219.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E35DEE01493
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 05:46:02 -0700 (PDT)
+Received: by mail-oa0-f44.google.com with SMTP id l17so6570332oag.31
+	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 05:46:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=5JFKeyBXpHioQ6SzsMzEBiYCO3tsZ2VKT9tsmbl6Lto=;
-	b=Qez2L7bc/gm1t9hTISu8thMhMkJPk22u8JGyjmbHK2LlP+9M3myh8rTXiY6FLf/BYC
-	YAIR5PnqlWjiiAamO1SBgvDe7QBqtgJiQXcFYxC8xodIFjydQOLaTfzSRAQ/YX+YQVxB
-	UpNoASxLHR51JiKeVk/jT0nqNnTw8UvNhDEbUKYxqj1brKxooBswdoGG/LtCgR/T2Cb3
-	vUE4ilBpnH1ojgjC06uvSLaaRaLKeZETEwNNYWskGdccySx9bD3d/+XKO0SFHKLFA8zR
-	EesR6j9di2pxFNhZ9lqaFSHGjWQwpvKVbI/wJUmlAAMK7Q8jw1rd+Z1T3hUG0NBCaW+3
-	Dokw==
-X-Received: by 10.14.99.193 with SMTP id x41mr4024077eef.52.1378212239059;
-	Tue, 03 Sep 2013 05:43:59 -0700 (PDT)
-Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
-	by mx.google.com with ESMTPSA id
-	x47sm31180093eea.16.1969.12.31.16.00.00
-	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 03 Sep 2013 05:43:58 -0700 (PDT)
-Date: Tue, 3 Sep 2013 14:45:16 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Andy Ng <andreas2025@gmail.com>
-Message-ID: <20130903124516.GD3544@jama>
-References: <CAAVaN8x9a3avwfkaUSs72vCpoaxMEsynJqHht8sBUUFCuHrP2A@mail.gmail.com>
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=JVSbVTE1pbidB0YGaDimIz5fyzUzio4psYygOt1c7qU=;
+	b=G8Z0bvsld1Ej22LIjGCrw0TM3TPzHsc+r+HCGS0hYeEIio2zcDQwSzBhFvDclQV/7T
+	ohkYrgPItr+Tw918uUihfE7RVOQouahS7toQoEwvMinb5eg1FS68K41CnnZfj3Duk6tN
+	/byGfdoUKcSlB4ZY3P4GC184eSAt4FBPYpHzGRnggv12RSFSkAtRv1dki8VYTdCJvccU
+	I0NA+SQ6nMp8+jv70hRW9Hg4QkjxdwFL1CPZBjY0JBhp92mbFmZxiC65vMwJOdAIz8kq
+	4m29sXGplPxs0jWv+2qQne79WcNSfLyU3irPDoEfHLaeSi7cL/0z3zEP40iQQdu7KSYz
+	xpFA==
 MIME-Version: 1.0
-In-Reply-To: <CAAVaN8x9a3avwfkaUSs72vCpoaxMEsynJqHht8sBUUFCuHrP2A@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto-9.0 Fails to produce lttng-modules package
+X-Received: by 10.60.96.169 with SMTP id dt9mr20525629oeb.27.1378212361872;
+	Tue, 03 Sep 2013 05:46:01 -0700 (PDT)
+Received: by 10.182.44.8 with HTTP; Tue, 3 Sep 2013 05:46:01 -0700 (PDT)
+In-Reply-To: <5225D802.4000802@windriver.com>
+References: <CAFyqS9o02b7W4LBhuPkRzo09yR74g71gEWyEvVJ5Ug-0XMD3yQ@mail.gmail.com>
+	<52254404.4040602@windriver.com>
+	<CAFyqS9qav1k5ChXdy=vKJuXyYj4uMyFO-JJmm1nCLTkwhpMK_w@mail.gmail.com>
+	<5225D802.4000802@windriver.com>
+Date: Tue, 3 Sep 2013 14:46:01 +0200
+Message-ID: <CAFyqS9q_1kc2fopJx-w49ef2RgQOj1u_Lqhgk7UXX3fgLyJZyg@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: header file missing in populated SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,93 +41,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 12:44:02 -0000
-X-Groupsio-MsgNum: 15816
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="d9BE6hEQsVwTEwBv"
-Content-Disposition: inline
-
---d9BE6hEQsVwTEwBv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 03 Sep 2013 12:46:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 03, 2013 at 12:38:34PM +0100, Andy Ng wrote:
-> Hello
->=20
-> I try to produce opkg packages for my system, and I have activated the
-> lttng-modules for tracing. After the build and I have the following error.
-> Does anyone have seen something similar?
->=20
->=20
-> ERROR: Error executing a python function in
-> /opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/
-> lttng-modules_2.1.1.bb:
-> OSError: [Errno 2] No such file or directory:
-> '/opt/projects/yocto/yocto-9.0/build-6qsabresdrt/tmp/work/imx6qsabresdrt-=
-poky-linux-gnueabi/lttng-modules/2.1.1-r1/packages-split/lttng-modules-dbg'
+On Tue, Sep 3, 2013 at 2:37 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 13-09-03 04:27 AM, Hans Beck=E9rus wrote:
+>>
+>> On Tue, Sep 3, 2013 at 4:05 AM, ChenQi <Qi.Chen@windriver.com> wrote:
+>>>
+>>> On 09/02/2013 10:56 PM, Hans Beck=E9rus wrote:
+>>>>
+>>>>
+>>>> Hi. We are having some issues figuring out why one of our header files
+>>>> fails to be installed properly into the SDK. The header file is
+>>>> currently installed using a few lines in one of our recipe:
+>>>>
+>>>> do_install_append() {
+>>>>           install -m 0644 ${S}/foo.h
+>>>> ${STAGING_DIR}/${MACHINE}${includedir}/linux/foo.h
+>>>> }
+>>>
+>>>
+>>> Please don't do that.
+>>> I think just installing the foo.h into the ${D}${includedir} would do.
+>>> And
+>>> foo.h will end up in the FOO-dev package.
+>>> Make sure that the FOO package is in the IMAGE_INSTALL list, and then u=
+se
+>>> 'bitbake <your-image-recipe> -cpopulate_sdk' command to populate the SD=
+K.
+>>>
+>> Note taken ;) Actually this was a very old recipe so I guess that
+>> could be one of the reason why it was done this way. Changing
+>> do_install_append to:
+>>
+>> do_install_append() {
+>>          install -d ${D}${includedir}/linux
+>>          install -m 644 ${S}/foo.h ${D}${includedir}/linux/foo.h
+>> }
+>>
+>> solves the problem!
+>> The staging dir is automatically updated and the SDK is also populated
+>> as it should.
+>
+>
+> I do have another word of caution here. "/usr/include/linux" is where the
+> linux-libc-headers are installed and occupy. Individual packages and
+> applications shouldn't be installing into that infrastructure unless
+> they know what they are doing.
+>
+Definitely not. This is a unique header bound to a kernel module that
+is needed by user-space for ioctl() handling etc. In this case I think
+/usr/include/linux is actually the proper place for this.
 
-Read
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4102
-maybe it's the same cause and find command in last comment will help
-you.
+Thanks.
+Hans
 
->=20
-> ERROR: The stack trace of python calls that resulted in this
-> exception/failure was:
-> ERROR:   File "do_package_ipk", line 194, in <module>
-> ERROR:
-> ERROR:   File "do_package_ipk", line 45, in do_package_ipk
-> ERROR:
-> ERROR: The code that was being executed was:
-> ERROR:      0190:        bb.utils.unlockfile(lf)
-> ERROR:      0191:
-> ERROR:      0192:
-> ERROR:      0193:
-> ERROR:  *** 0194:do_package_ipk(d)
-> ERROR:      0195:
-> ERROR: [From file: 'do_package_ipk', lineno: 194, function: <module>]
-> ERROR:      0041:        basedir =3D os.path.join(os.path.dirname(root))
-> ERROR:      0042:        arch =3D localdata.getVar('PACKAGE_ARCH', True)
-> ERROR:      0043:        pkgoutdir =3D "%s/%s" % (outdir, arch)
-> ERROR:      0044:        bb.mkdirhier(pkgoutdir)
-> ERROR:  *** 0045:        os.chdir(root)
-> ERROR:      0046:        from glob import glob
-> ERROR:      0047:        g =3D glob('*')
-> ERROR:      0048:        try:
-> ERROR:      0049:            del g[g.index('CONTROL')]
-> ERROR: [From file: 'do_package_ipk', lineno: 45, function: do_package_ipk]
-> ERROR: Function failed: do_package_ipk
-> ERROR: Logfile of failure stored in:
-> /opt/projects/yocto/yocto-9.0/build-imx6qsabresdrt/tmp/work/imx6qsabresdr=
-t-poky-linux-gnueabi/lttng-modules/2.1.1-r1/temp/log.do_package_write_ipk.2=
-6873
-> ERROR: Task 13
-> (/opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/
-> lttng-modules_2.1.1.bb, do_package_write_ipk) failed with exit code '1'
->=20
-> Best regards,
-> Andreas
+> If you are creating a new file, you'll be ok, but never modify an
+> existing exported .h file from the linux kernel, your results won't be
+> what you expect.
+>
+> Cheers,
+>
+> Bruce
+>
+>
+>> Actually, I did not need to add package FOO to the IMAGE_INSTALL since
+>> it is a kernel module and installed as part of 'kernel-modules'.
+>> I think we once tried to solve the same issue without
+>> do_install_append() instead using FILES,
+>> but to me FILES is still a piece of black magic. I have never really
+>> managed to figure out how FILES_${PN} manages to locate the actual
+>> source file since it only lists destination targets?
+>>
+>> Thanks,
+>> Hans
+>>
+>>
+>>
+>>>
+>>>> foo.h ends up ok in our build/tmp/sysroots,
+>>>
+>>>
+>>> sysroots !=3D SDK
+>>> The files under build/tmp/sysroots are usually generated by the
+>>> do_populate_sysroot task of each recipe.
+>>>
+>>>  From my understanding, SDK is composed of two parts, the target part a=
+nd
+>>> the
+>>> nativesdk part.
+>>> The nativesdk part is determined by the TOOLCHAIN_HOST_TASK.
+>>> And the target part is determined by the TOOLCHAIN_TARGET_TASK.
+>>> The reason that we could only ensure that FOO is in IMAGE_INSTALL is
+>>> because
+>>> in image.bbclass, we have:
+>>> TOOLCHAIN_TARGET_TASK +=3D "${PACKAGE_INSTALL}"
+>>> export PACKAGE_INSTALL ?=3D "${IMAGE_INSTALL} ${ROOTFS_BOOTSTRAP_INSTAL=
+L}
+>>> ${FEATURE_INSTALL}"
+>>>
+>>> The process of populating SDK is also composed of two parts, installing
+>>> the
+>>> target packages and installing the nativesdk packages. See
+>>> populate_sdk_xxx.bbclass for more details.
+>>>
+>>> Best Regards,
+>>> Chen Qi
+>>>
+>>>>    but it does not make it to the SDK.
+>>>> Is our do_install_append wrong in some way, does it have to be updated
+>>>> to support SDK builds? Maybe it is wrong to use ${MACHINE} here?
+>>>>
+>>>> Thanks.
+>>>> Hans
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>>
+>>>>
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---d9BE6hEQsVwTEwBv
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.21 (GNU/Linux)
-
-iEYEARECAAYFAlIl2dwACgkQN1Ujt2V2gBxN5ACfZV5mm6tIwrwDILXnq25MIK+W
-6m4AoID0b3lpCYB+rsbERXGaab5oR0aP
-=tn/2
------END PGP SIGNATURE-----
-
---d9BE6hEQsVwTEwBv--
