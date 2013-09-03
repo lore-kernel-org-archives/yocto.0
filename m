@@ -1,28 +1,38 @@
-Return-Path: <andreas2025@gmail.com>
-Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
-	[209.85.212.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58424E0148D
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 04:38:36 -0700 (PDT)
-Received: by mail-wi0-f172.google.com with SMTP id c10so3165378wiw.11
-	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 04:38:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=08FILzGt8nMAdjvKYu6rBC6QbTFeSvQXHy8HsywdZkA=;
-	b=FUwYhNjErOQMcmGABgVSJjL1TMB7bCyzyKkTcbZa2JiI51kQC/Xpi0MRLUlJ89k0ZU
-	bKh0kkTXCn+lq/rBV1MuBG+Gq7RQ24Nw9+2m+zm5IIw2GNr4HrO4pG3bQvgP719cWs7B
-	F9nJXY4p/0bg87IcwwVHuF8x7RsuNndGsZAlcXvp8akOARD/IpTuxMFeweAlXNVTGW5g
-	BhPT3wEvQ/ZaX2ByMAH9V8gR3oDEExYJ4OSYHdkw/t3KNXY0qQi2owuGD6CkW773wkZm
-	ugVoSeJgQxEmCovx7rJQ21L23+701co0g1ihVCTq/MZ1mdfGb/FvtMrDxrVGvBMNfWTN
-	p4xQ==
+Return-Path: <lothar@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B2C6E0148D
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 04:57:32 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3cTmqt3F5Vz4KK2p
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 13:57:30 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3cTmqt1mqpzbblg
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 13:57:30 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id lmkDX5RKaBZK for <yocto@yoctoproject.org>;
+	Tue,  3 Sep 2013 13:57:28 +0200 (CEST)
+X-Auth-Info: ByaD2zyGVwA+SlymTpBmeqid15nk1MnXQ3PVckJLjDU=
+Received: from webmail.mnet-online.de (webmail1.mnet-online.de
+	[62.245.181.162]) by mail.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 13:57:28 +0200 (CEST)
+Received: from host-82-135-33-74.customer.m-online.net ([82.135.33.74])
+	by webmail.mnet-online.de
+	with HTTP (HTTP/1.1 POST); Tue, 03 Sep 2013 11:57:25 +0000
 MIME-Version: 1.0
-X-Received: by 10.180.75.15 with SMTP id y15mr17773608wiv.12.1378208314801;
-	Tue, 03 Sep 2013 04:38:34 -0700 (PDT)
-Received: by 10.216.164.71 with HTTP; Tue, 3 Sep 2013 04:38:34 -0700 (PDT)
-Date: Tue, 3 Sep 2013 12:38:34 +0100
-Message-ID: <CAAVaN8x9a3avwfkaUSs72vCpoaxMEsynJqHht8sBUUFCuHrP2A@mail.gmail.com>
-From: Andy Ng <andreas2025@gmail.com>
+Date: Tue, 03 Sep 2013 13:57:25 +0200
+From: lothar@denx.de
 To: yocto@yoctoproject.org
-Subject: Yocto-9.0 Fails to produce lttng-modules package
+In-Reply-To: <0C95222C-9247-4FDD-837C-83FB03A314AC@keylevel.com>
+References: <52241C84.2090605@gna.org>
+	<CAJTo0LZSkA5Gr4AkaFEAuG0irsLWfeUkO2jXmmBXHJ6qcaGN_w@mail.gmail.com>
+	<522506F8.8060706@gna.org>
+	<0C95222C-9247-4FDD-837C-83FB03A314AC@keylevel.com>
+Message-ID: <0124f45705241361176f9e323c716763@denx.de>
+X-Sender: lothar@denx.de
+User-Agent: Roundcube Webmail/0.9.3
+Subject: Re: Server specs for a continuous integration system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,103 +44,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 11:38:38 -0000
-Content-Type: multipart/alternative; boundary=f46d043c7b6207c4b004e57921fe
+X-List-Received-Date: Tue, 03 Sep 2013 11:57:35 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
---f46d043c7b6207c4b004e57921fe
-Content-Type: text/plain; charset=ISO-8859-1
+Am 2013-09-03 00:16, schrieb Chris Tapp:
+> On 2 Sep 2013, at 22:45, Christian Gagneraud wrote:
+> 
+>> 
+>> On 03/09/13 00:35, Burton, Ross wrote:
+>> 
+>> Hi Ross,
+>> 
+>>> On 2 September 2013 06:05, Christian Gagneraud <chgans@gna.org> 
+>>> wrote:
+>>>> So right now, I'm thinking about:
+>>>> - CPU: Xeon E5, maybe 2 x E5-2670/90, for a total of 16 cores (32 
+>>>> threads)
+>>>> - Hard drives: 500GB, 1 TB or 2 TB (ideally with RAID if it can 
+>>>> speed up the
+>>>> builds)
+>> 
+>> RAID-5 seems to be what i am after.
+> 
+> Isn't RAID-5 going to be slower, especially if it's software? RAID 1
+> is probably better as you'll potentially double the write speed to
+> disk. I use a couple of Vertex SSDs in RAID 1 giving a theoretical
+> write speed near to 1GBs. Write endurance is possibly a concern, but
+> I've not had any issues using them on a local build machine. I would
+> probably look at some higher end models if I was going to run a lot of
+> builds. A lot less noise than hard drives ;-)
 
-Hello
+Hi, this sounds interesting to me.
 
-I try to produce opkg packages for my system, and I have activated the
-lttng-modules for tracing. After the build and I have the following error.
-Does anyone have seen something similar?
+Having a brief look into wikipedia ( http://en.wikipedia.org/wiki/RAID ) 
+  tells me that RAID-1 gives no increase in write speed at all (for 
+sequentioal operations), by theory: 1x   ...while a RAID-5 at least in 
+theory, should give you: (n-1)x, assumed the hardware is fast enough to 
+support it (RAID controller!).
 
+Having had a small conversation here, I was told we even made 
+experiences on having HW RAID being slowed down by the RAID controller, 
+and its limitation of I/O-operations, that still could be handled. So, 
+it seems to me one motivation why using SW RAID instead of HW RAID is 
+exactly to overcome this limitations of having the bottleneck of a RAID 
+controllers.
 
-ERROR: Error executing a python function in
-/opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/
-lttng-modules_2.1.1.bb:
-OSError: [Errno 2] No such file or directory:
-'/opt/projects/yocto/yocto-9.0/build-6qsabresdrt/tmp/work/imx6qsabresdrt-poky-linux-gnueabi/lttng-modules/2.1.1-r1/packages-split/lttng-modules-dbg'
+Question, running RAID-5, have you tried to adjust the chunck size? In 
+our case most I/O operations are on relatively small text files and may 
+require some adjustment to the RAID chunck size value in respect to that 
+fact.
 
-ERROR: The stack trace of python calls that resulted in this
-exception/failure was:
-ERROR:   File "do_package_ipk", line 194, in <module>
-ERROR:
-ERROR:   File "do_package_ipk", line 45, in do_package_ipk
-ERROR:
-ERROR: The code that was being executed was:
-ERROR:      0190:        bb.utils.unlockfile(lf)
-ERROR:      0191:
-ERROR:      0192:
-ERROR:      0193:
-ERROR:  *** 0194:do_package_ipk(d)
-ERROR:      0195:
-ERROR: [From file: 'do_package_ipk', lineno: 194, function: <module>]
-ERROR:      0041:        basedir = os.path.join(os.path.dirname(root))
-ERROR:      0042:        arch = localdata.getVar('PACKAGE_ARCH', True)
-ERROR:      0043:        pkgoutdir = "%s/%s" % (outdir, arch)
-ERROR:      0044:        bb.mkdirhier(pkgoutdir)
-ERROR:  *** 0045:        os.chdir(root)
-ERROR:      0046:        from glob import glob
-ERROR:      0047:        g = glob('*')
-ERROR:      0048:        try:
-ERROR:      0049:            del g[g.index('CONTROL')]
-ERROR: [From file: 'do_package_ipk', lineno: 45, function: do_package_ipk]
-ERROR: Function failed: do_package_ipk
-ERROR: Logfile of failure stored in:
-/opt/projects/yocto/yocto-9.0/build-imx6qsabresdrt/tmp/work/imx6qsabresdrt-poky-linux-gnueabi/lttng-modules/2.1.1-r1/temp/log.do_package_write_ipk.26873
-ERROR: Task 13
-(/opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/
-lttng-modules_2.1.1.bb, do_package_write_ipk) failed with exit code '1'
+BR,
+Lothar Rubusch
 
-Best regards,
-Andreas
-
---f46d043c7b6207c4b004e57921fe
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello<br><br>I try to produce opkg packages for my sy=
-stem, and I have activated the=A0 lttng-modules for tracing. After the buil=
-d and I have the following error.<br></div>Does anyone have seen something =
-similar? <br>
-<div><div><div><div><div><br><br>ERROR: Error executing a python function i=
-n /opt/projects/yocto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/<a h=
-ref=3D"http://lttng-modules_2.1.1.bb">lttng-modules_2.1.1.bb</a>:<br>OSErro=
-r: [Errno 2] No such file or directory: &#39;/opt/projects/yocto/yocto-9.0/=
-build-6qsabresdrt/tmp/work/imx6qsabresdrt-poky-linux-gnueabi/lttng-modules/=
-2.1.1-r1/packages-split/lttng-modules-dbg&#39;<br>
-<br>ERROR: The stack trace of python calls that resulted in this exception/=
-failure was:<br>ERROR:=A0=A0 File &quot;do_package_ipk&quot;, line 194, in =
-&lt;module&gt;<br>ERROR: <br>ERROR:=A0=A0 File &quot;do_package_ipk&quot;, =
-line 45, in do_package_ipk<br>
-ERROR: <br>ERROR: The code that was being executed was:<br>ERROR:=A0=A0=A0=
-=A0=A0 0190:=A0=A0=A0=A0=A0=A0=A0 bb.utils.unlockfile(lf)<br>ERROR:=A0=A0=
-=A0=A0=A0 0191:<br>ERROR:=A0=A0=A0=A0=A0 0192:<br>ERROR:=A0=A0=A0=A0=A0 019=
-3:<br>ERROR:=A0 *** 0194:do_package_ipk(d)<br>ERROR:=A0=A0=A0=A0=A0 0195:<b=
-r>
-ERROR: [From file: &#39;do_package_ipk&#39;, lineno: 194, function: &lt;mod=
-ule&gt;]<br>ERROR:=A0=A0=A0=A0=A0 0041:=A0=A0=A0=A0=A0=A0=A0 basedir =3D os=
-.path.join(os.path.dirname(root))<br>ERROR:=A0=A0=A0=A0=A0 0042:=A0=A0=A0=
-=A0=A0=A0=A0 arch =3D localdata.getVar(&#39;PACKAGE_ARCH&#39;, True)<br>
-ERROR:=A0=A0=A0=A0=A0 0043:=A0=A0=A0=A0=A0=A0=A0 pkgoutdir =3D &quot;%s/%s&=
-quot; % (outdir, arch)<br>ERROR:=A0=A0=A0=A0=A0 0044:=A0=A0=A0=A0=A0=A0=A0 =
-bb.mkdirhier(pkgoutdir)<br>ERROR:=A0 *** 0045:=A0=A0=A0=A0=A0=A0=A0 os.chdi=
-r(root)<br>ERROR:=A0=A0=A0=A0=A0 0046:=A0=A0=A0=A0=A0=A0=A0 from glob impor=
-t glob<br>ERROR:=A0=A0=A0=A0=A0 0047:=A0=A0=A0=A0=A0=A0=A0 g =3D glob(&#39;=
-*&#39;)<br>
-ERROR:=A0=A0=A0=A0=A0 0048:=A0=A0=A0=A0=A0=A0=A0 try:<br>ERROR:=A0=A0=A0=A0=
-=A0 0049:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 del g[g.index(&#39;CONTROL&#39;)=
-]<br>ERROR: [From file: &#39;do_package_ipk&#39;, lineno: 45, function: do_=
-package_ipk]<br>ERROR: Function failed: do_package_ipk<br>
-ERROR: Logfile of failure stored in: /opt/projects/yocto/yocto-9.0/build-im=
-x6qsabresdrt/tmp/work/imx6qsabresdrt-poky-linux-gnueabi/lttng-modules/2.1.1=
--r1/temp/log.do_package_write_ipk.26873<br>ERROR: Task 13 (/opt/projects/yo=
-cto/yocto-9.0/sources/poky/meta/recipes-kernel/lttng/<a href=3D"http://lttn=
-g-modules_2.1.1.bb">lttng-modules_2.1.1.bb</a>, do_package_write_ipk) faile=
-d with exit code &#39;1&#39;<br>
-<br></div><div>Best regards,<br>Andreas<br></div></div></div></div></div></=
-div>
-
---f46d043c7b6207c4b004e57921fe--
