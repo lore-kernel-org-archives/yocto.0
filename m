@@ -1,33 +1,42 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f54.google.com (mail-oa0-f54.google.com
-	[209.85.219.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E0F2E01445
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 01:27:10 -0700 (PDT)
-Received: by mail-oa0-f54.google.com with SMTP id j10so1197366oah.27
-	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 01:27:10 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-bk0-f46.google.com (mail-bk0-f46.google.com
+	[209.85.214.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 043FEE01445
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 02:01:35 -0700 (PDT)
+Received: by mail-bk0-f46.google.com with SMTP id 6so1985185bkj.33
+	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 02:01:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=YUFLy8+gOmVUDgwk0K89ioVKyKorAeyGryiD+r2lijk=;
-	b=DNKmmi2qrcYZdXVVtcNrXRKTMPteG/SaSrJZ/UZW4d1AVbUG8Tj1MGJUfO5U5kSdUl
-	tzHQD8Bh0jSI6oAqA5zLn6WNa+OW/PBTTvaRsVlaUZxlr1VlSrrq0JDPb+kobs7NRmSv
-	Z965EvorXVEj5oymGOQjONjlRqFycbvXE4LyhAr9p6T1FIGg9jHreXDp8FKtIVTB5bp6
-	nV0vpxkYIQ/goFqea3Mm0FhgOPY67mreVpLiG16djQS+SPy97BQ/34TtoCq4MeMsLq/c
-	559ywA8JVnC7NMLZ+310/hLCbEjs0NKfeCDDPSOtVZ4ciyoIh3e5rhKu4OM/UQ9+9voZ
-	2bbw==
-MIME-Version: 1.0
-X-Received: by 10.60.52.81 with SMTP id r17mr20177779oeo.3.1378196829929; Tue,
-	03 Sep 2013 01:27:09 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Tue, 3 Sep 2013 01:27:09 -0700 (PDT)
-In-Reply-To: <52254404.4040602@windriver.com>
-References: <CAFyqS9o02b7W4LBhuPkRzo09yR74g71gEWyEvVJ5Ug-0XMD3yQ@mail.gmail.com>
-	<52254404.4040602@windriver.com>
-Date: Tue, 3 Sep 2013 10:27:09 +0200
-Message-ID: <CAFyqS9qav1k5ChXdy=vKJuXyYj4uMyFO-JJmm1nCLTkwhpMK_w@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: ChenQi <Qi.Chen@windriver.com>
+	h=references:mime-version:in-reply-to:content-type
+	:content-transfer-encoding:message-id:cc:from:subject:date:to;
+	bh=nx8qmHFmkJlNmkJZsknxR52+9KoMgmnQrwdzmqDAbxg=;
+	b=Xh0p0yW7NPSAlNZl6k2Fg1qcDStOVPqdD+EcEg8INTL2ePSJN9L5HsBJJ3H+4+FQyM
+	iiRsbztZKxnWsBrwYv4X74LOWqVfPW59ZhbmQRlOfIZE9yc/wAbltfAOnbUVErGagna3
+	TNtSW5N8veSHNKbE5OCCh/A1uM0cWJ6/UeVRwaaVnRWHqRHJernJD8O1nAlJNJzqtM1D
+	bmkDnEhh8qRZ8daIMRySVtdEGfVDhf6WFO0RVXNE1guaSbJFY36ZLREtYfh+ZpXVsm3N
+	LMj6wPxicSQ0ZULlBf3IWwgl5kU4vOpyKHujr6SWdUTBj6NZL3q79Jxul6ETWyJG2Bda
+	V13Q==
+X-Received: by 10.204.102.71 with SMTP id f7mr28800bko.57.1378198894316;
+	Tue, 03 Sep 2013 02:01:34 -0700 (PDT)
+Received: from [94.58.158.210] ([94.58.158.210])
+	by mx.google.com with ESMTPSA id kk2sm3938816bkb.10.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 03 Sep 2013 02:01:33 -0700 (PDT)
+References: <52241C84.2090605@gna.org>
+	<CAJTo0LZSkA5Gr4AkaFEAuG0irsLWfeUkO2jXmmBXHJ6qcaGN_w@mail.gmail.com>
+	<522506F8.8060706@gna.org>
+	<0C95222C-9247-4FDD-837C-83FB03A314AC@keylevel.com>
+	<52251F60.9060804@gna.org>
+	<B3347AE5-6200-4E3D-9A7F-8BC683568F98@gmail.com>
+	<52255245.9090609@gna.org>
+Mime-Version: 1.0 (1.0)
+In-Reply-To: <52255245.9090609@gna.org>
+Message-Id: <BE638486-774D-46AE-B84C-9733813BBFC2@gmail.com>
+X-Mailer: iPhone Mail (11A4449d)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Tue, 3 Sep 2013 12:55:54 +0400
+To: Christian Gagneraud <chgans@gna.org>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: header file missing in populated SDK
+Subject: Re: Server specs for a continuous integration system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,96 +48,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 08:27:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 03 Sep 2013 09:01:39 -0000
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 3, 2013 at 4:05 AM, ChenQi <Qi.Chen@windriver.com> wrote:
-> On 09/02/2013 10:56 PM, Hans Beck=E9rus wrote:
->>
->> Hi. We are having some issues figuring out why one of our header files
->> fails to be installed properly into the SDK. The header file is
->> currently installed using a few lines in one of our recipe:
->>
->> do_install_append() {
->>          install -m 0644 ${S}/foo.h
->> ${STAGING_DIR}/${MACHINE}${includedir}/linux/foo.h
->> }
->
-> Please don't do that.
-> I think just installing the foo.h into the ${D}${includedir} would do. An=
-d
-> foo.h will end up in the FOO-dev package.
-> Make sure that the FOO package is in the IMAGE_INSTALL list, and then use
-> 'bitbake <your-image-recipe> -cpopulate_sdk' command to populate the SDK.
->
-Note taken ;) Actually this was a very old recipe so I guess that
-could be one of the reason why it was done this way. Changing
-do_install_append to:
 
-do_install_append() {
-        install -d ${D}${includedir}/linux
-        install -m 644 ${S}/foo.h ${D}${includedir}/linux/foo.h
-}
+>>=20
+>> I use a 3770K i7 quad-core processor, 16GB RAM, with a liquid cooled
+>> solution running at 3.8GHz. I've overclocked the CPU to 4.5GHz, but I
+>> end up shaving only 2 minutes off build times, so I just run it at 3.8GHz=
+.
+>>=20
+>> A core-image-minimal build takes around 22 minutes for me, for a Xilinx
+>> ZC702 machine configuration (Dual ARM Cortex A9 processor + FPGA).
+>=20
+> Is it a full build from scratch (cross-toolchain, native stuff, etc...)? I=
+f so, it's quite impressive to me!
 
-solves the problem!
-The staging dir is automatically updated and the SDK is also populated
-as it should.
-Actually, I did not need to add package FOO to the IMAGE_INSTALL since
-it is a kernel module and installed as part of 'kernel-modules'.
-I think we once tried to solve the same issue without
-do_install_append() instead using FILES,
-but to me FILES is still a piece of black magic. I have never really
-managed to figure out how FILES_${PN} manages to locate the actual
-source file since it only lists destination targets?
+Yes, it is a full build from scratch, and the core-image-minimal builds the c=
+ross tool chain, kernel and root file system. A full kernel build from scrat=
+ch completes in under 1 or 2 minutes, can't remember exactly, will let u kno=
+w in a while. This represents approximately 1600 tasks. A full meta-toolchai=
+n-sdk task takes about 40 minutes and executes around 3600 tasks. I'll send s=
+ome precise figures later on.
 
-Thanks,
-Hans
+Best regards,
 
-
-
->
->> foo.h ends up ok in our build/tmp/sysroots,
->
-> sysroots !=3D SDK
-> The files under build/tmp/sysroots are usually generated by the
-> do_populate_sysroot task of each recipe.
->
-> From my understanding, SDK is composed of two parts, the target part and =
-the
-> nativesdk part.
-> The nativesdk part is determined by the TOOLCHAIN_HOST_TASK.
-> And the target part is determined by the TOOLCHAIN_TARGET_TASK.
-> The reason that we could only ensure that FOO is in IMAGE_INSTALL is beca=
-use
-> in image.bbclass, we have:
-> TOOLCHAIN_TARGET_TASK +=3D "${PACKAGE_INSTALL}"
-> export PACKAGE_INSTALL ?=3D "${IMAGE_INSTALL} ${ROOTFS_BOOTSTRAP_INSTALL}
-> ${FEATURE_INSTALL}"
->
-> The process of populating SDK is also composed of two parts, installing t=
-he
-> target packages and installing the nativesdk packages. See
-> populate_sdk_xxx.bbclass for more details.
->
-> Best Regards,
-> Chen Qi
->
->>   but it does not make it to the SDK.
->> Is our do_install_append wrong in some way, does it have to be updated
->> to support SDK builds? Maybe it is wrong to use ${MACHINE} here?
->>
->> Thanks.
->> Hans
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Elvis Dowson=
 
