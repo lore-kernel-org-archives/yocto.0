@@ -1,30 +1,43 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEB0CE013D1
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 08:27:54 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r83FRtBs025180
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 3 Sep 2013 08:27:55 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
-	Tue, 3 Sep 2013 08:27:53 -0700
-Message-ID: <5225FFEB.4010605@windriver.com>
-Date: Tue, 3 Sep 2013 11:27:39 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <sean.liming@annabooks.com>
+Received: from mail3c40.carrierzone.com (mail69c40.carrierzone.com
+	[209.235.156.209])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1247AE00715
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 08:54:18 -0700 (PDT)
+X-Authenticated-User: sean.liming.annabooks.com
+Received: from Sean7 (cpe-76-95-171-22.socal.res.rr.com [76.95.171.22])
+	(authenticated bits=0)
+	by mail3c40.carrierzone.com (8.13.6/8.13.1) with ESMTP id
+	r83FsBql021055; Tue, 3 Sep 2013 15:54:13 +0000
+From: "Sean Liming" <sean.liming@annabooks.com>
+To: "=?iso-8859-1?Q?'Eren_T=FCrkay'?=" <eren@hambedded.org>
+References: <CAM1ZcoVgAgPYTrGzHVYcYt+qwhzqTHne9gjNhhWS75oD0HhFFg@mail.gmail.com>
+	<000601cea807$0893e270$19bba750$@annabooks.com>
+	<CAM1ZcoUuqJai9s3588RcG5+H-TAfWGo=Ua7zhzQQeEFLTt6FCg@mail.gmail.com>
+	<001801cea865$56914f90$03b3eeb0$@annabooks.com>
+	<20130903094758.GA70238@airo.local>
+In-Reply-To: <20130903094758.GA70238@airo.local>
+Date: Tue, 3 Sep 2013 08:54:10 -0700
+Message-ID: <004101cea8bd$d5c70b80$81552280$@annabooks.com>
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-References: <CAFyqS9o02b7W4LBhuPkRzo09yR74g71gEWyEvVJ5Ug-0XMD3yQ@mail.gmail.com>
-	<52254404.4040602@windriver.com>
-	<CAFyqS9qav1k5ChXdy=vKJuXyYj4uMyFO-JJmm1nCLTkwhpMK_w@mail.gmail.com>
-	<5225D802.4000802@windriver.com>
-	<CAFyqS9q_1kc2fopJx-w49ef2RgQOj1u_Lqhgk7UXX3fgLyJZyg@mail.gmail.com>
-In-Reply-To: <CAFyqS9q_1kc2fopJx-w49ef2RgQOj1u_Lqhgk7UXX3fgLyJZyg@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: header file missing in populated SDK
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AQDDmldSC4lseo3IDY0PJOgOATmbmwM1RjASAw9BQtQBLifXTwFxbi1Nm4Mk3kA=
+X-CSC: 0
+X-CHA: v=2.0 cv=f8v/8pOM c=1 sm=1 a=RqNIojzclRO/fVsPhA7IgQ==:17
+	a=jeXnFUrUOPUA:10 a=_DgR7O7FQkkA:10 a=8nJEP1OIZ-IA:10 a=IjdlZ_XXAAAA:8
+	a=Q2_vi_79zCsA:10 a=TdI1UJzWAAAA:8 a=iGHA9ds3AAAA:8 a=jU4qhlNgAAAA:8
+	a=tlbzX-FDWbuvoBNeRcsA:9 a=wPNLvfGTeEIA:10 a=FCaQVidmf_IA:10
+	a=nHK3ipOpxeAA:10 a=-BaL3vmj3ssA:10 a=XDKM753qmDAA:10
+	a=RqNIojzclRO/fVsPhA7IgQ==:117
+X-CTCH-RefID: str=0001.0A020202.52260626.01D3, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+X-CTCH-VOD: Unknown
+X-CTCH-Spam: Unknown
+X-CTCH-Score: 0.000
+X-CTCH-Rules: 
+X-CTCH-Flags: 0
+X-CTCH-ScoreCust: 0.000
+Cc: yocto@yoctoproject.org
+Subject: Re: Intel(R) Core(TM) i7-3612QM CPU @ 2.10GHz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,146 +49,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 15:27:54 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 03 Sep 2013 15:54:20 -0000
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-us
 
-On 13-09-03 08:46 AM, Hans Beckérus wrote:
-> On Tue, Sep 3, 2013 at 2:37 PM, Bruce Ashfield
-> <bruce.ashfield@windriver.com> wrote:
->> On 13-09-03 04:27 AM, Hans Beckérus wrote:
->>>
->>> On Tue, Sep 3, 2013 at 4:05 AM, ChenQi <Qi.Chen@windriver.com> wrote:
->>>>
->>>> On 09/02/2013 10:56 PM, Hans Beckérus wrote:
->>>>>
->>>>>
->>>>> Hi. We are having some issues figuring out why one of our header files
->>>>> fails to be installed properly into the SDK. The header file is
->>>>> currently installed using a few lines in one of our recipe:
->>>>>
->>>>> do_install_append() {
->>>>>            install -m 0644 ${S}/foo.h
->>>>> ${STAGING_DIR}/${MACHINE}${includedir}/linux/foo.h
->>>>> }
->>>>
->>>>
->>>> Please don't do that.
->>>> I think just installing the foo.h into the ${D}${includedir} would do.
->>>> And
->>>> foo.h will end up in the FOO-dev package.
->>>> Make sure that the FOO package is in the IMAGE_INSTALL list, and then use
->>>> 'bitbake <your-image-recipe> -cpopulate_sdk' command to populate the SDK.
->>>>
->>> Note taken ;) Actually this was a very old recipe so I guess that
->>> could be one of the reason why it was done this way. Changing
->>> do_install_append to:
->>>
->>> do_install_append() {
->>>           install -d ${D}${includedir}/linux
->>>           install -m 644 ${S}/foo.h ${D}${includedir}/linux/foo.h
->>> }
->>>
->>> solves the problem!
->>> The staging dir is automatically updated and the SDK is also populated
->>> as it should.
->>
->>
->> I do have another word of caution here. "/usr/include/linux" is where the
->> linux-libc-headers are installed and occupy. Individual packages and
->> applications shouldn't be installing into that infrastructure unless
->> they know what they are doing.
->>
-> Definitely not. This is a unique header bound to a kernel module that
-> is needed by user-space for ioctl() handling etc. In this case I think
-> /usr/include/linux is actually the proper place for this.
+> -----Original Message-----
+> From: Eren T=FCrkay [mailto:eren@hambedded.org]
+> Sent: Tuesday, September 03, 2013 2:48 AM
+> To: Sean Liming
+> Cc: 'Katu Txakur'; yocto@yoctoproject.org
+> Subject: Re: [yocto] Intel(R) Core(TM) i7-3612QM CPU @ 2.10GHz
+>=20
+> On Mon, Sep 02, 2013 at 10:20:41PM -0700, Sean Liming wrote:
+> > It has been awhile since I looked this one up. I believe the =
+installer
+> > script is called init-install.sh under the /meta/recipes-core. If =
+you
+> > don't use a serial debug port with a terminal to catch the boot =
+menu,
+> > you will have to modify the syslinux.cfg file (or grub.cfg for EFI
+> > boot) to run the install option rather than boot option.
+>=20
+> I believe that you do not have to edit syslinux.cfg for "boot" and
+"install"
+> option. "live" image type adds "boot" and "install" labels to =
+syslinux.cfg
+while
+> creating the image. When you add "live" to IMAGE_FSTYPES, "image-
+> live.bbclass" is run and it sets related labels.
+>=20
+> Regards,
+> Eren
+>=20
+> --
+>     . 73! DE TA1AET
+>       http://linkedin.com/in/erenturkay
 
-If you need it in the SDK, then absolutely. The other options to solve
-this issue for tightly coupled packages is to have them look at the
-kernel source directly (the staged version), since by definition if
-they are dependent on a kernel header, they are already machine specific.
 
-Cheers,
+True, the live image adds these options already, but the default menu =
+option
+is set to 'boot'. If you don't have a serial console output setup and =
+you
+only have a VGA / HDMI monitor output, you would never see the menu. If =
+you
+know you're going to do an install, just edit the files to change the
+default to 'install'.
 
-Bruce
+Regards,
 
->
-> Thanks.
-> Hans
->
->> If you are creating a new file, you'll be ok, but never modify an
->> existing exported .h file from the linux kernel, your results won't be
->> what you expect.
->>
->> Cheers,
->>
->> Bruce
->>
->>
->>> Actually, I did not need to add package FOO to the IMAGE_INSTALL since
->>> it is a kernel module and installed as part of 'kernel-modules'.
->>> I think we once tried to solve the same issue without
->>> do_install_append() instead using FILES,
->>> but to me FILES is still a piece of black magic. I have never really
->>> managed to figure out how FILES_${PN} manages to locate the actual
->>> source file since it only lists destination targets?
->>>
->>> Thanks,
->>> Hans
->>>
->>>
->>>
->>>>
->>>>> foo.h ends up ok in our build/tmp/sysroots,
->>>>
->>>>
->>>> sysroots != SDK
->>>> The files under build/tmp/sysroots are usually generated by the
->>>> do_populate_sysroot task of each recipe.
->>>>
->>>>   From my understanding, SDK is composed of two parts, the target part and
->>>> the
->>>> nativesdk part.
->>>> The nativesdk part is determined by the TOOLCHAIN_HOST_TASK.
->>>> And the target part is determined by the TOOLCHAIN_TARGET_TASK.
->>>> The reason that we could only ensure that FOO is in IMAGE_INSTALL is
->>>> because
->>>> in image.bbclass, we have:
->>>> TOOLCHAIN_TARGET_TASK += "${PACKAGE_INSTALL}"
->>>> export PACKAGE_INSTALL ?= "${IMAGE_INSTALL} ${ROOTFS_BOOTSTRAP_INSTALL}
->>>> ${FEATURE_INSTALL}"
->>>>
->>>> The process of populating SDK is also composed of two parts, installing
->>>> the
->>>> target packages and installing the nativesdk packages. See
->>>> populate_sdk_xxx.bbclass for more details.
->>>>
->>>> Best Regards,
->>>> Chen Qi
->>>>
->>>>>     but it does not make it to the SDK.
->>>>> Is our do_install_append wrong in some way, does it have to be updated
->>>>> to support SDK builds? Maybe it is wrong to use ${MACHINE} here?
->>>>>
->>>>> Thanks.
->>>>> Hans
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>>
->>>>>
->>>>
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
+Sean Liming
+Owner
+Annabooks
+Tel: 714-970-7523 / Cell: 858-774-3176
 
 
