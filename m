@@ -1,84 +1,44 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D09FE00734
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 13:31:00 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 03 Sep 2013 13:27:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.89,1016,1367996400"; 
-	d="scan'208,217";a="372944489"
-Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
-	by orsmga001.jf.intel.com with ESMTP; 03 Sep 2013 13:30:37 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 3 Sep 2013 13:30:37 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.144]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.234]) with mapi id
-	14.03.0123.003; Tue, 3 Sep 2013 13:30:36 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: 'Anders Darander' <anders@chargestorm.se>, "Barros Pena, Belen"
-	<belen.barros.pena@intel.com>, "Bodke, Kishore K"
-	<kishore.k.bodke@intel.com>,
-	'Bruce Ashfield' <bruce.ashfield@windriver.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "'deVries, Alex'"
-	<Alex.deVries@windriver.com>, "'Dixon, Brad'" <Brad_Dixon@mentor.com>, 
-	"Dmytriyenko, Denys" <denys@ti.com>, "Erway, Tracey M"
-	<tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Hart, Darren" <darren.hart@intel.com>, 
-	"'Hatle, Mark'" <mark.hatle@windriver.com>, 'Jeremy Puhlman'
-	<jpuhlman@gmail.com>, "Kridner, Jason" <jdk@ti.com>,
-	"'Lieu.Ta@windriver.com'" <'Lieu.Ta@windriver.com'>, "Lock, Joshua"
-	<joshua.lock@intel.com>, "Moeller, Thorsten" <thorsten.moeller@intel.com>, 
-	'Sanjay Raina' <sraina@mvista.com>, "Osier-mixon, Jeffrey"
-	<jeffrey.osier-mixon@intel.com>, "'Polk,
-	Jeffrey'" <jeff.polk@windriver.com>, 
-	"Purdie, Richard" <richard.purdie@intel.com>, "'Ranslam, Rob'"
-	<Rob.Ranslam@windriver.com>, "Saxena, Rahul" <rahul.saxena@intel.com>, 
-	"Stewart, David C" <david.c.stewart@intel.com>, "Wold, Saul"
-	<saul.wold@intel.com>, "Zanussi, Tom" <tom.zanussi@intel.com>, "Zhang, 
-	Jessica" <jessica.zhang@intel.com>, "Rifenbark, Scott M"
-	<scott.m.rifenbark@intel.com>, "'Hudson, Sean'" <Sean_Hudson@mentor.com>,
-	"Serban, Laurentiu" <laurentiu.serban@intel.com>, "Petrisor, Ileana"
-	<ileana.petrisor@intel.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>, "Burton, Ross" <ross.burton@intel.com>,
-	"Mueller, Robert" <robert.mueller@intel.com>, "Arce Moreno, Abraham"
-	<abraham.arce.moreno@intel.com>,
-	'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>, 
-	"'Sadiq, Irfan'" <Irfan_Sadiq@mentor.com>, "Santana Lopez, Mario A"
-	<mario.a.santana.lopez@intel.com>, "Patel, Keyur R"
-	<keyur.r.patel@intel.com>, "'achaudha@mvista.com'" <achaudha@mvista.com>,
-	"Popa, Valentin" <valentin.popa@intel.com>, "Moses, Fred"
-	<fred.moses@intel.com>, "Iorga, Cristian" <cristian.iorga@intel.com>,
-	"Palalau, AlexandruX" <alexandrux.palalau@intel.com>, "'Butler, Paul'"
-	<Paul.Butler@windriver.com>, "Mirea, Viorel" <viorel.mirea@intel.com>, 
-	"Kamble, Nitin A" <nitin.a.kamble@intel.com>, "Szankin, Maciej"
-	<maciej.szankin@intel.com>, "Moisan, Radu" <radu.moisan@intel.com>,
-	"Grigoropol, IoanaX" <ioanax.grigoropol@intel.com>, Olivia Salisbury
-	<olivia.salisbury@tobias.tv>, 'Chris Kaminski' <chris.kaminski@tobias.tv>, 
-	"'Maupin, Chase'" <chase.maupin@ti.com>, "Georgescu, Alexandru C"
-	<alexandru.c.georgescu@intel.com>, "Gavaz, Ionut A"
-	<ionut.a.gavaz@intel.com>, "Pruteanu, Codrin C"
-	<codrin.c.pruteanu@intel.com>, "Letnes, Thaddeus C"
-	<thaddeus.c.letnes@intel.com>, "Ong,
-	Boon Leong" <boon.leong.ong@intel.com>, 
-	"Seow, Chen Yong" <chen.yong.seow@intel.com>, "Haw, Foo Chien"
-	<foo.chien.haw@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	"steve.long@windriver.com" <steve.long@windriver.com>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	September 03,
-	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac6o5GrrDMy5R1b5RPeTuHEbedHpig==
-Date: Tue, 3 Sep 2013 20:30:35 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF329E6@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <chgans@googlemail.com>
+Received: from mail-pd0-f176.google.com (mail-pd0-f176.google.com
+	[209.85.192.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96847E013AB
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2013 19:45:58 -0700 (PDT)
+Received: by mail-pd0-f176.google.com with SMTP id q10so6788320pdj.7
+	for <yocto@yoctoproject.org>; Tue, 03 Sep 2013 19:45:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=IQsaJee++yqzhUo0h460Sbt7D4ZnB6NPydtV2Hyg9Co=;
+	b=GLXZMtTPGfsKsm0n8W4SGCPlWX9RqOTP7F1D95gIvWyLkpqYHveAxhcwxT3InIU1mi
+	8PYFTBa0pdoTEgVU/FAsji1nplCsSc7rtZe52Prfn9Y0fYjqQ/4FmEX4WzUZsWUJTbzE
+	NeYQU344eoVXA40AHNgVcJWtafoU353O0gdKDcpjg0fnzlVDLk+3w+0la+173B8rZfQR
+	WBarBHWxco0SNq7QJz/si2NT3jGctr82VJRw2C7fEMR6pnQh2g32ewXCB8eSz7l1IDnp
+	gvum1MrUcL66XPaxMKVQn6ClldnfCWSCAbJDdkAK95V4tWy3enLtf0NlBXhwvGXCGqDF
+	0qlA==
+X-Received: by 10.66.219.200 with SMTP id pq8mr661725pac.123.1378262758582;
+	Tue, 03 Sep 2013 19:45:58 -0700 (PDT)
+Received: from [0.0.0.0] ([210.48.94.225])
+	by mx.google.com with ESMTPSA id qa9sm25772613pbc.7.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 03 Sep 2013 19:45:57 -0700 (PDT)
+Sender: Chris Gagneraud <chgans@googlemail.com>
+Message-ID: <52269EE1.5040801@gna.org>
+Date: Wed, 04 Sep 2013 14:45:53 +1200
+From: Christian Gagneraud <chgans@gna.org>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 03 Sep 2013 15:13:40 -0700
-Cc: 'Chris Kaminski' <chris.kaminski@tobiasandtobias.com>
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, September 03, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: Chris Tapp <opensource@keylevel.com>
+References: <52241C84.2090605@gna.org>
+	<CAJTo0LZSkA5Gr4AkaFEAuG0irsLWfeUkO2jXmmBXHJ6qcaGN_w@mail.gmail.com>
+	<522506F8.8060706@gna.org>
+	<0C95222C-9247-4FDD-837C-83FB03A314AC@keylevel.com>
+	<52251F60.9060804@gna.org>
+	<90830908-76F2-4548-97F1-E9BF53E16597@keylevel.com>
+In-Reply-To: <90830908-76F2-4548-97F1-E9BF53E16597@keylevel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Server specs for a continuous integration system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,170 +50,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2013 20:31:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_"
+X-List-Received-Date: Wed, 04 Sep 2013 02:46:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 04/09/13 07:22, Chris Tapp wrote:
+>
+> On 3 Sep 2013, at 00:29, Christian Gagneraud wrote:
+>
+>> On 03/09/13 10:16, Chris Tapp wrote:
+>>> On 2 Sep 2013, at 22:45, Christian Gagneraud wrote:
+>>>
+>>>>
+>>>> On 03/09/13 00:35, Burton, Ross wrote:
+>>>>
+>>>> Hi Ross,
+>>>>
+>>>>> On 2 September 2013 06:05, Christian Gagneraud <chgans@gna.org> wrote:
+>>>>>> So right now, I'm thinking about:
+>>>>>> - CPU: Xeon E5, maybe 2 x E5-2670/90, for a total of 16 cores (32 threads)
+>>>>>> - Hard drives: 500GB, 1 TB or 2 TB (ideally with RAID if it can speed up the
+>>>>>> builds)
+>>>>
+>>>> RAID-5 seems to be what i am after.
+>>
+>> Hi Chris,
+>>
+>>> Isn't RAID-5 going to be slower, especially if it's software? RAID 1
+>>> is probably better as you'll potentially double the write speed to disk.
+>>> I use a couple of Vertex SSDs in RAID 1 giving a theoretical write speed
+>>> near to 1GBs. Write endurance is possibly a concern, but I've not had
+>>> any issues using them on a local build machine. I would probably look at
+>>> some higher end models if I was going to run a lot of builds. A lot less
+>>> noise than hard drives ;-)
+>>
+>> Thanks for the info, i will have a look at RAID-1, as you can see, I know absolutely nothing about RAID! ;)
+>
+> Did you see my correction to this? I meant to say RAID 0. Sorry for the confusion.
 
-Attendees:
-Nitin, JeffP, Belen, Cristiana, AlexD, AlexG, Paul, Saul, Richard, TomZ, Be=
-len, DaveST, Corneliu, LaurentiuP, Jefro, ScottR, Bj=F6rn, PeterB, Jessica,=
-  MatthewW, Bruce,  Eren, MihaiL, MichaelH, Simar(?), Song
+No problem, at least it forces me to look at RAID-5, RAID-1 and now 
+RAID-0, thanks! ;)
 
-Agenda:
+>
+>> Does SSD really help with disk throughput? Then what's the point of using ramdisk for TMPDIR/WORKDIR? If you "fully" work in RAM, the disk bottleneck shouldn't be such a problem anymore (basically, on disk, you should only have your yocto source tree and your download directory?).
+>
+> Running from RAM would be fastest - it really comes down to how much you have and how much you want to keep.
+>
+>>
+>>>
+>>>>>> - RAM: i don't really know, maybe 8 or 16 GB or more?
+>>>>>
+>>>>> At least 16GB of RAM for the vast amount of disk cache that will give
+>>>>> you.  32GB or more will mean you can easily put the TMPDIR or WORKDIR
+>>>>> into a tmpfs (there's been discussion about this a few weeks ago).
+>>>>
+>>>> Yes, I remember that one now, well spotted!
+>>>>
+>>>>> I've 16GB of RAM and a 8GB tmpfs with rm_work was sufficient for
+>>>>> WORKDIR which gave a 10% speedup (and massive reduction on disk wear).
+>>>>
+>>>> I'm a bit surprise to see only a 10% speedup.
+>>>
+>>> I looked at this a while back on a quad core + hyper-threading
+>>> system(so 8 cores). Depending on what you're building, there are significant
+>>> periods of the build where even 8 cores aren't maxed out as there's not
+>>> enough on the ready list to feed to them - basically there are times
+>>> when you're not CPU, memory or I/O bound. I've estimated that being able
+>>> to max out the CPUs would cut 20-25% of the build time, but the
+>>> build-time dependencies mean this isn't easy/possible. At one point I
+>>> inverted the priority scheme used by the bitbake scheduler and it (very
+>>> surprisingly) made no difference to the overall build time!
+>>
+>> I have the same configuration here (4 cores, 8 threads), although, i didn't try to tweak bitbake, but i've noticed the same phenomenon as you: even with "aggressive" parallelism settings, the machine wasn't optimally loaded over time.
+>>
+>>>
+>>> I ran builds with 16 threads and 16 parallel makes and the peak
+>>> memory usage I see is something like 8GB during intensive
+>>> compile/link phases, so 16GB for RAM and tmpfs sounds like a
+>>> reasonable minimum. The tmpfs would reduce SSD wear quite a bit ;-)
+>>
+>> The quantity of RAM boils down to the budget, after a (very) quick search, i have estimated the cost of 64GB of RAM to be 1500 to 2000 US$.
+>
+> That sounds high - I generally get 16GB DDR 1600 for less that 150 US$ - it was quite a bit lower a year back!
+>
+>>
+>> Thanks.
+>> Chris
+>>
+>>
+>>>
+>>>>
+>>>>>   Others have machines with 64GB RAM and use it for all of TMPDIR, at
+>>>>> which point you'll be almost entirely CPU-bound.
+>>>>
+>>>> OK, so 16GB sounds like a minimum, 32GB or 64GB being even better, at that size, this is not that cheap...
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Chris
+>>>>
+>>>>>
+>>>>> Ross
+>>>>>
+>>>>
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>> Chris Tapp
+>>>
+>>> opensource@keylevel.com
+>>> www.keylevel.com
+>>>
+>>>
+>>>
+>>
+>
+> Chris Tapp
+>
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
 
-* Opens collection - 5 min (Song)
-* Congratulations to the team on 1.4.2 release. Thanks to Paul and others t=
-o make this happen.
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-  - Bug fixing: Had RC2 for M4. QA is running full pass. More bugs opened l=
-ast week than we fixed. WDD number is up.
-  - Had CCB meeting last week. Approved:
-    . 1950 downgrade to Medium from High. Not possible.
-    . 3847 move to M5, Let Tom focus on it.
-    . Meta-security layer. A layer to improve binary security, tools to sca=
-n ports, etc. to improve system security. Bastille Linux is not usable, usi=
-ng other set of tools. Saul will follow up and document a solution. Dave wi=
-ll write a new feature for 1.6. There will also be patches coming in the ne=
-xt week or so for this layer.
-    . 1.4.2 release
-  - A handful of patches on the mailing list. RP is looking into it. Deploy=
-ment changes may need to be reworked. Package BB class change, those are wo=
-rth looking at, moving forward, will merge.
-* SWAT team rotation: Nitin -> Beth ( Song will follow up with Beth).
-* Opens - 10 min
-  - AlexG- hardware for generic BSP, can we run the BSP on qemu?
-    . Already started testing on existing hardware for the generic BSP.
-    . For weekly testing: test it on two or three hardware. 64bit and 32 bi=
-t. Which hardware shall we choose?
-    . Alex will start an email thread with Ross, Darren, and Tom.
-    . Generic BSP should run on qemu. Run it outside the AB first, then ask=
- Beth to include in AB.
-  - Michael - downtime this week for power upgrade.
-    . Moving to a new rack. Would like to have it done before school season=
- starts.
-    . Today is the best day for this. Michael will try to do it this aftern=
-oon. All YP services will be down for 1 hour. AB will be down longer (4-5 h=
-ours). Will have everything backup be the end of the working day.
-  - Dave: YP 1.6
-    . (RP) Features for 1.6. Feature submission is ongoing. Would like to r=
-emind people, if you have specific things, please put in bugzilla. If it's =
-more generic, please talk to Richard.
-  - RP: PR server
-    . Bitbake was timing out. PR server had issues. Response time was 60 se=
-conds. Using 4GB of memory. Addressed most of them, query time down to mili=
-seconds! Encourage people to use the latest master.
-    . Doing select call on the open pipes for bitbake idle handlers. Things=
- are more responsive now.
-    . _remove operator to avoid adding too much code for each variable. Add=
-ressed Chris' concern, _remove becomes a keyword. Any function name or vari=
-able that has '_remove' in it will have problems. This should be in the rel=
-ease note.
-    . Change to bitbake: Fixed a problem. Now bit bake can be run in any di=
-rectory containing a build directory. Or, anywhere in the file system as fa=
-r as the build directory is set in BBPath.
-* Team Sharing - 20 min
 
-
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>Nitin, JeffP, Belen, Cristiana, AlexD, AlexG, Paul, Saul, Richard, Tom=
-Z, Belen, DaveST, Corneliu, LaurentiuP, Jefro, ScottR, Bj=F6rn, PeterB, Jes=
-sica,&nbsp; MatthewW, Bruce,&nbsp; Eren, MihaiL, MichaelH, Simar(?), Song</=
-div>
-<div>&nbsp;</div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Congratulations to the team on 1.4.2 release. Thanks to Paul and oth=
-ers to make this happen.</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>&nbsp; - Bug fixing: Had RC2 for M4. QA is running full pass. More bug=
-s opened last week than we fixed. WDD number is up. </div>
-<div>&nbsp; - Had CCB meeting last week. Approved:</div>
-<div>&nbsp;&nbsp;&nbsp; . 1950 downgrade to Medium from High. Not possible.=
-</div>
-<div>&nbsp;&nbsp;&nbsp; . 3847 move to M5, Let Tom focus on it.</div>
-<div>&nbsp;&nbsp;&nbsp; . Meta-security layer. A layer to improve binary se=
-curity, tools to scan ports, etc. to improve system security. Bastille Linu=
-x is not usable, using other set of tools. Saul will follow up and document=
- a solution. Dave will write a new feature for
-1.6. There will also be patches coming in the next week or so for this laye=
-r.</div>
-<div>&nbsp;&nbsp;&nbsp; . 1.4.2 release</div>
-<div>&nbsp; - A handful of patches on the mailing list. RP is looking into =
-it. Deployment changes may need to be reworked. Package BB class change, th=
-ose are worth looking at, moving forward, will merge.</div>
-<div>* SWAT team rotation: Nitin -&gt; Beth ( Song will follow up with Beth=
-).</div>
-<div>* Opens - 10 min </div>
-<div>&nbsp; - AlexG- hardware for generic BSP, can we run the BSP on qemu?<=
-/div>
-<div>&nbsp;&nbsp;&nbsp; . Already started testing on existing hardware for =
-the generic BSP.</div>
-<div>&nbsp;&nbsp;&nbsp; . For weekly testing: test it on two or three hardw=
-are. 64bit and 32 bit. Which hardware shall we choose?</div>
-<div>&nbsp;&nbsp;&nbsp; . Alex will start an email thread with Ross, Darren=
-, and Tom.</div>
-<div>&nbsp;&nbsp;&nbsp; . Generic BSP should run on qemu. Run it outside th=
-e AB first, then ask Beth to include in AB.</div>
-<div>&nbsp; - Michael - downtime this week for power upgrade.</div>
-<div>&nbsp;&nbsp;&nbsp; . Moving to a new rack. Would like to have it done =
-before school season starts.</div>
-<div>&nbsp;&nbsp;&nbsp; . Today is the best day for this. Michael will try =
-to do it this afternoon. All YP services will be down for 1 hour. AB will b=
-e down longer (4-5 hours). Will have everything backup be the end of the wo=
-rking day.</div>
-<div>&nbsp; - Dave: YP 1.6</div>
-<div>&nbsp;&nbsp;&nbsp; . (RP) Features for 1.6. Feature submission is ongo=
-ing. Would like to remind people, if you have specific things, please put i=
-n bugzilla. If it's more generic, please talk to Richard.</div>
-<div>&nbsp; - RP: PR server</div>
-<div>&nbsp;&nbsp;&nbsp; . Bitbake was timing out. PR server had issues. Res=
-ponse time was 60 seconds. Using 4GB of memory. Addressed most of them, que=
-ry time down to miliseconds! Encourage people to use the latest master.</di=
-v>
-<div>&nbsp;&nbsp;&nbsp; . Doing select call on the open pipes for bitbake i=
-dle handlers. Things are more responsive now. </div>
-<div>&nbsp;&nbsp;&nbsp; . _remove operator to avoid adding too much code fo=
-r each variable. Addressed Chris' concern, _remove becomes a keyword. Any f=
-unction name or variable that has '_remove' in it will have problems. This =
-should be in the release note.</div>
-<div>&nbsp;&nbsp;&nbsp; . Change to bitbake: Fixed a problem. Now bit bake =
-can be run in any directory containing a build directory. Or, anywhere in t=
-he file system as far as the build directory is set in BBPath.</div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF329E6ORSMSX108amrcor_--
