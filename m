@@ -1,40 +1,31 @@
-Return-Path: <jc@vtkloud.com>
-Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
-	[74.125.82.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE8AFE01549
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2013 13:10:14 -0700 (PDT)
-Received: by mail-we0-f175.google.com with SMTP id q59so897117wes.34
-	for <yocto@yoctoproject.org>; Wed, 04 Sep 2013 13:10:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=OGW0NuC6S588DVSi50HSUKhytDOjHxb9LvSvVNYdE4k=;
-	b=bwJzvqFjEaLVPNNsgvJmZSxYC264UiYu11T/HBgc8vGg+U+qNe9N3TNpNypVx6BGMV
-	tt8BlLz+xBn2TsG1fdlvre92bTgcStc+bGlmpwmp+jjS2yo0cmD0wLz+oDpPsnoazBXz
-	cetJB8nqXZjGhrm6AUDDEY4gtuu81wmSp+9q1LAPJmSwYfWZjoXG2u36sOa4RFvkylcA
-	9od1xZzvHirDTGlk43BzFT6YHG3iEJHo4rco2VtGXoulAhxO3ZcQgI6nBoQL/6JSXF5n
-	Mia8xNMRiSDD3sD6bpDi9XL3G5hlF4GbD+mkglRxydn83JsYqM5t46563lL8N3wVAZSH
-	VzIA==
-X-Gm-Message-State: ALoCoQmzUFyRKUYfRiULPj/QQlfwzDS0lLT94Wm4Nx0xS48ZjSTaRmT5DjFi0dMsNhq5OmLCYVBE
-X-Received: by 10.194.19.5 with SMTP id a5mr3121300wje.48.1378325413716;
-	Wed, 04 Sep 2013 13:10:13 -0700 (PDT)
-Received: from [192.168.0.50] (aig34-1-88-167-231-94.fbx.proxad.net.
-	[88.167.231.94])
-	by mx.google.com with ESMTPSA id p8sm6662454wij.8.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 04 Sep 2013 13:10:12 -0700 (PDT)
-Message-ID: <522793A2.3000207@vtkloud.com>
-Date: Wed, 04 Sep 2013 22:10:10 +0200
-From: JC <jc@vtkloud.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-banded.atl.sa.earthlink.net
+	(elasmtp-banded.atl.sa.earthlink.net [209.86.89.70])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BCCDE0044E
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2013 16:50:25 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=F7sj3I671IktR4GhK9tOWbQupOaGRFs1qbK6HanstG4vDrk4DuuvS6+1l+D1hywH;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-banded.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VHMq8-000349-0t; Wed, 04 Sep 2013 19:50:24 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Samuel Stirtzel'" <s.stirtzel@googlemail.com>
+References: <2C94F567F1334C30A5BBD2CA59576460@PAULD><521D354E.1020909@mlbassoc.com><8EB78E64DFE9436EAFB462E357C464EC@PAULD>
+	<20130828072025.GC3544@jama><DB63579B404D457F9DF825A744067092@PAULD><CAGiJk9eztTXvCR4UjbtXTqRbjN+nKR6KKGgrFqKAvO4TSzSCAg@mail.gmail.com>
+	<CAGiJk9chSv2CdBq4-TFJ77zeCtF-2QXjjh+WriQcUXJ5GgEEvA@mail.gmail.com>
+In-Reply-To: <CAGiJk9chSv2CdBq4-TFJ77zeCtF-2QXjjh+WriQcUXJ5GgEEvA@mail.gmail.com>
+Date: Wed, 4 Sep 2013 16:50:23 -0700
+Message-ID: <779B7C6AC95A460FB7D94F91EAF86DF9@PAULD>
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <522782E7.8080509@vtkloud.com> <522790E3.5080708@vtkloud.com>
-In-Reply-To: <522790E3.5080708@vtkloud.com>
-Subject: Re: adding specific config files
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6j4hReYKiL4rESR1eFxh3gsKD22wF5njQw
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606880636a836d1db4374c70429482a022204350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org
+Subject: Re: Can anything be done about do_rootfs speed?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,56 +37,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2013 20:10:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Wed, 04 Sep 2013 23:50:28 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On 04/09/2013 21:58, JC wrote:
-> On 04/09/2013 20:58, JC wrote:
->> Hi,
->>
->> In my project, we have our own rpm repository and we use smartpm on 
->> the target.
->> In order to have the target setup with the repo out of the box, we of 
->> course have added "package-management" in IMAGE_FEATURES. Now I'd 
->> like the target to have our repo address already configured.
->>
->> The best way I found was to create a recipe in my overlay and hacking 
->> the system a little bit this way :
->> do_install() {
->>    if 
->> ${@base_contains('IMAGE_FEATURES','package-management','true','false',d)}; 
->> then
->>         install -d ${D}/${sysconfdir}
->>         install -m 644 ${WORKDIR}/config.in ${D}/var/lib/smart/config
->>    fi
->> }
->>
->> where "config.in" is a simple copy of the non-human readable version 
->> of smartpm config file, generated manually on the target.
->>
->> I was wondering if there would be a better way such as do not test in 
->> the do_install, but rather make the recipe dependent on the 
->> "package-management" image feature ? (so that do_install wouldn't 
->> even be considered if the option is not set), or any other smarter idea.
->>
->
-> Actually I _need_ a better idea because mine doesn't work: it actually 
-> creates what I want (/var/lib/smart/config) but since do_rootfs also 
-> uses this directory to install packages, it wipes it out at the end of 
-> the process... so my installation is removed :(
->
-> I'm sure someone else did something like this (but succeeded) ?
->
+> From: Samuel Stirtzel
+> 
+> If you change:
+> 
+> COMPRESS_CMD_gz = "gzip -f -9 -c ${IMAGE_NAME}.rootfs.${type} >
+> ${IMAGE_NAME}.rootfs.${type}.gz"
+> COMPRESS_CMD_bz2 = "bzip2 -f -k ${IMAGE_NAME}.rootfs.${type}"
+> 
+> in [...]/meta/classes/image_types.bbclass, then can try 
+> pbzip2 / pigz.
 
-The guilty line is in /sources/poky/meta/classes/rootfs_rpm.bbclass
+This raises a question that has come up for me before: is there a way to
+override something in a .bbclass, without just editing the file and
+therefore losing it whenever new metadata is released? I really have
+little sense of the order in which things are read or obeyed in the whole
+bitbake process. Those variables look like they're read by the
+get_imagecmds() script; is there an opportunity for a recipe to change the
+value of COMPRESS_CMD_gz or _bz2 after it's defined, but before that
+script gets called?
 
-145:         rm -rf ${IMAGE_ROOTFS}/var/lib/smart
+-- 
 
-:(
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
-Whatever I want to do with packages, It'll be removed. There's probably 
-an alternate way :(
-
-Jay
 
