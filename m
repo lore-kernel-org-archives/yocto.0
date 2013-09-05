@@ -1,39 +1,32 @@
-Return-Path: <mulhern@gmail.com>
-Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14816E013AE;
-	Thu,  5 Sep 2013 11:56:04 -0700 (PDT)
-Received: by mail-qc0-f181.google.com with SMTP id q4so1176940qcx.26
-	for <multiple recipients>; Thu, 05 Sep 2013 11:56:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:references:in-reply-to
-	:references; bh=R6wrEysNI8Y9RU4+ywGTa6i4IZnBu/GuEKDf9pyv6jc=;
-	b=EMXLuIhNf+k6Rkj4MkFtajd7HUynq9T4H3+wVHXa/IkoKM4abnpkON9gCSQwd2Ahyq
-	dEonwyrl5/gYkgw0lpK9M1HMjndbsHaNJSBtCENejK0oSKyRBd2gjBG3GrMRQ7jET2mB
-	DCoufE8e7tz+9UECdeAu0DWqTYCWRj/NE1ahr4GVDoRlEGypVphgWgEriDqywASV7zQr
-	FkiVsdVgxooaOjAWfPKxW31YO1kXDwUj5kFRURcfsPJhiwAfFX0DDJkK6L81W6fjcHVq
-	etfK5CCn+QUq+v/BdOshToFyEPHWFG2dc/p77M8YpNAIBFR5JSYVxZYwNFDYGATZXNNp
-	1Vbw==
-X-Received: by 10.49.127.116 with SMTP id nf20mr3140445qeb.90.1378407364165;
-	Thu, 05 Sep 2013 11:56:04 -0700 (PDT)
-Received: from mulhern-2010-ubuntu (c-67-186-188-203.hsd1.ma.comcast.net.
-	[67.186.188.203])
-	by mx.google.com with ESMTPSA id a7sm1431105qew.2.1969.12.31.16.00.00
-	(version=TLSv1 cipher=RC4-SHA bits=128/128);
-	Thu, 05 Sep 2013 11:56:03 -0700 (PDT)
-Received: by mulhern-2010-ubuntu (sSMTP sendmail emulation);
-	Thu, 05 Sep 2013 14:56:02 -0400
-From: mulhern <mulhern@gmail.com>
-To: yocto@yoctoproject.org,
-	mulhern@yoctoproject.org
-Date: Thu,  5 Sep 2013 14:55:54 -0400
-Message-Id: <acf8d44f706ab9682d294fabe31ca04486e8fe5a.1378407198.git.mulhern@yoctoproject.org>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <cover.1378407198.git.mulhern@yoctoproject.org>
-References: <cover.1378407198.git.mulhern@yoctoproject.org>
-In-Reply-To: <cover.1378407198.git.mulhern@yoctoproject.org>
-References: <cover.1378407198.git.mulhern@yoctoproject.org>
-Subject: [PATCH 1/1] libcap-ng: omit an unnecessary build time dependency.
+Return-Path: <joe.slater@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4190E00747
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 10:41:39 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r85HfdT5011316
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 5 Sep 2013 10:41:39 -0700 (PDT)
+Received: from ALA-MBB.corp.ad.wrs.com ([169.254.1.103]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.02.0347.000;
+	Thu, 5 Sep 2013 10:41:37 -0700
+From: "Slater, Joseph" <joe.slater@windriver.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] [PATCH 1/1] tar: add acl dependency information
+Thread-Index: AQHOqlgwUA2Ch5P9m0GrluOTtAlIkpm31MQA//+Ul4A=
+Date: Thu, 5 Sep 2013 17:41:37 +0000
+Message-ID: <007BD92917A2324FA403BCF9A464CF843C508FCE@ALA-MBB.corp.ad.wrs.com>
+References: <1378399896-28502-1-git-send-email-jslater@windriver.com>
+	<3573701.ovexZDZeie@helios>
+In-Reply-To: <3573701.ovexZDZeie@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.152.80]
+MIME-Version: 1.0
+X-Mailman-Approved-At: Thu, 05 Sep 2013 13:30:17 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/1] tar: add acl dependency information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,32 +38,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 18:56:05 -0000
+X-List-Received-Date: Thu, 05 Sep 2013 17:41:39 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-[YOCTO #5084]
+Oops, I was so worried about sending to the right address, I forgot about
+marking it meta-selinux.
 
-libcap has been removed from the list of DEPENDS packages. Since libcap was the
-only package in the list the DEPENDS variable has been removed from the recipe
-file.
+Joe
 
-Signed-off-by: mulhern <mulhern@yoctoproject.org>
----
- recipes-security/libcap-ng/libcap-ng_0.7.3.bb |    1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-index a377ddd..ef70207 100644
---- a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-+++ b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-@@ -1,7 +1,6 @@
- DESCRIPTION = "The libcap-ng library is intended to make programming with posix capabilities much easier than the traditional libcap library."
- HOMEPAGE = "http://people.redhat.com/sgrubb/libcap-ng/index.html"
- LICENSE = "GPL-2.0"
--DEPENDS = "libcap"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- 
- SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/${PN}-${PV}.tar.gz"
--- 
-1.7.10.4
-
+> -----Original Message-----
+> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> Sent: Thursday, September 05, 2013 10:05 AM
+> To: Slater, Joseph
+> Cc: Ouyang, Xin; Slater, Joseph; yocto@yoctoproject.org
+> Subject: Re: [yocto] [PATCH 1/1] tar: add acl dependency information
+>=20
+> Hi Joe,
+>=20
+> On Thursday 05 September 2013 09:51:36 Joe Slater wrote:
+> > If acl is a distro feature, we want to depend
+> > on it.  Note that without the xattrs patch, tar
+> > cannot deal with acl information.
+> >
+> > Signed-off-by: Joe Slater <jslater@windriver.com>
+> > ---
+> >  recipes-extended/tar/tar_1.26.bbappend |   10 +++++++++-
+> >  1 files changed, 9 insertions(+), 1 deletions(-)
+> >
+> > diff --git a/recipes-extended/tar/tar_1.26.bbappend
+> > b/recipes-extended/tar/tar_1.26.bbappend index 4b971c5..972a7b8 100644
+> > --- a/recipes-extended/tar/tar_1.26.bbappend
+> > +++ b/recipes-extended/tar/tar_1.26.bbappend
+> > @@ -1,7 +1,15 @@
+> > -PR .=3D ".2"
+> > +PR .=3D ".selinux3"
+> >
+> >  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> >
+> >  SRC_URI +=3D "file://tar-1.24-xattrs.patch"
+> >
+> >  inherit enable-selinux
+> > +
+> > +
+> > +PACKAGECONFIG +=3D "${@base_contains('DISTRO_FEATURES', 'acl', 'acl', =
+'',
+> > d)}" +
+> > +# configure has no acl enable/disable options!
+> > +#
+> > +PACKAGECONFIG[acl] =3D ",,acl,"
+> > +
+>=20
+> Should this have been marked as [meta-selinux] ?
+>=20
+> Cheers,
+> Paul
+>=20
+> --
+>=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
