@@ -1,46 +1,24 @@
-Return-Path: <jc@vtkloud.com>
-Received: from mail-bk0-f51.google.com (mail-bk0-f51.google.com
-	[209.85.214.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAD1DE01542
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 01:20:45 -0700 (PDT)
-Received: by mail-bk0-f51.google.com with SMTP id mx10so597079bkb.24
-	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 01:20:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=rWxEOc/j9M11HSGxHEYXRl0ZkXNajnyMYdH9D+jHzFU=;
-	b=PP1sd6BtCWENLVljmyyXNFZ4I+d3YEe1RH/w/ieFLoZGxnuaEZLMIA6WA9VGWB4qB6
-	itlMw6zLWDqwkqBONmX7HFB7tcyS8L0TbPZH3y5sPwesHz6S2sOU6qCAodHoT8ROUetJ
-	rRPHnN8uo+VcxLMZ+6ve/oMjQkJR+sSS2B+FdhTAHkw7CLvsBss8t76Ado7p9vbN1yv1
-	6sYWvcEQlA9X8iBdygqAYXkFy6ydiodmSdo9EXcS6e2Z9aao1fxaokUlcDgpVtFMz2w4
-	h/LzTEYlrlXnRRMFMAoDA+F/P5JZo1G/02IDt1QRvELDGyRocQUxNqKcX1X478XC91s4
-	lf2A==
-X-Gm-Message-State: ALoCoQnP8GmkgUv7gZTkX7hYs28GsR/jKmjZE5LqGI/ira+OHbcZ8zThV7d7vD/2oJBDOlXSWqqw
-X-Received: by 10.204.121.201 with SMTP id i9mr6054428bkr.13.1378369244069;
-	Thu, 05 Sep 2013 01:20:44 -0700 (PDT)
-Received: from [172.24.63.121] ([94.103.137.126])
-	by mx.google.com with ESMTPSA id pn6sm7458608bkb.14.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 05 Sep 2013 01:20:43 -0700 (PDT)
-Message-ID: <52283ED9.2070708@vtkloud.com>
-Date: Thu, 05 Sep 2013 10:20:41 +0200
-From: JC <jc@vtkloud.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92DD9E0155D
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 01:20:58 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 05 Sep 2013 01:20:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,845,1371106800"; d="scan'208";a="291077508"
+Received: from unknown (HELO helios.localnet) ([10.252.123.106])
+	by AZSMGA002.ch.intel.com with ESMTP; 05 Sep 2013 01:20:56 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Date: Thu, 05 Sep 2013 09:20:55 +0100
+Message-ID: <3107150.CumXHZvvrO@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-29-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <20130905080407.GH11500@jama>
+References: <1497435.xtb1AxO9Wj@helios> <20130905080407.GH11500@jama>
 MIME-Version: 1.0
-To: Paul Barker <paul@paulbarker.me.uk>
-References: <5227629A.5090505@vtkloud.com> <52276400.6070307@mlbassoc.com>
-	<522830FF.6090100@vtkloud.com>
-	<CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com>
-	<522838E7.1060007@vtkloud.com>
-	<CANyK_8f0bwoB8sd6PdN4ZV=bZtw6E-6AqQAQnMB9j7QgAypmtA@mail.gmail.com>
-	<52283BEE.9020504@vtkloud.com>
-	<CANyK_8c=yXSFuaU7JT2i5PP7K=QfoVe0x62mh9Ax+KQk9shvVg@mail.gmail.com>
-In-Reply-To: <CANyK_8c=yXSFuaU7JT2i5PP7K=QfoVe0x62mh9Ax+KQk9shvVg@mail.gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: raspberry layer
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: Re: [OE-core] OpenEmbedded Layer Index updated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,73 +30,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 08:20:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 Sep 2013 08:20:58 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-In the log you posted is the line:
->> ERROR: Failed to parse recipe: /media/yocto/yocto/openembedded-core/meta/recipes-gnome/gdk-pixbuf/gdk-pixbuf_2.28.2.bb
-> So something was adding the path
-> /media/yocto/yocto/openembedded-core/meta to BBLAYERS. If you've just
-> removed that, give it another try.
->
+Hi Martin,
 
-I did remove that and gave another try *before* sending the mail :) so 
-some cache were present.
-In order to make sure everything with fine I sourced oe-init-build-env 
-to a new directory
+On Thursday 05 September 2013 10:04:07 Martin Jansa wrote:
+> On Thu, Sep 05, 2013 at 01:10:47AM +0100, Paul Eggleton wrote:
+> > As always, feedback is welcome.
+> 
+> Great job!
+> 
+> One more suggestion (maybe I've overlooked it):
+> 
+> It would be nice to be able to search recipe across all branches
+> (including oe-classic)
+> 
+> e.g. if someone asks me to include ace in our builds I would like to
+> just search for ace, like:
+> http://layers.openembedded.org/layerindex/branch/master/recipes/?q=ace
+> 
+> and find it's not in master/dylan/danny, but that it still is in
+> oe-classic
+> http://layers.openembedded.org/layerindex/oe-classic/recipe/13881/
+> 
+> Now I have to run the same search in 2-4 different branches to be sure
+> there isn't recipe for ace already.
+> 
+> In many cases we can assume that if something isn't in master then it
+> isn't in danny/dylan, but that's not true for e.g. mysql5 which should
+> correctly show availability in oe-classic/danny/dylan (and master has
+> mariadb).
 
-As a reminder here's how my stuff is installed:
+Right, this would be the next step. I think we'd have to be careful about how 
+we present search results from other branches / OE-Classic (so it's clear what 
+is being shown) but now we actually have the data it's certainly technically 
+possible. I'll be continuing to work on this application as my spare time 
+allows.
 
-from a directory /media/yocto/yocto I performed a git clone of poky, 
-meta-raspberrypi and meta-openembedded so I now have :
-$ ls
-meta-openembedded  meta-raspberrypi  poky  rpi
+Cheers,
+Paul
 
-(rpi is the name of the directory I oe-init'd)
+-- 
 
-
-Here are the steps:
-
-1. local.conf is unmodified, except for MACHINE set to raspberrypi
-
-2. bblayers.conf is:
-LCONF_VERSION = "6"
-
-BBPATH = "${TOPDIR}"
-BBFILES ?= ""
-
-BBLAYERS ?= " \
-   /media/yocto/yocto/poky/meta \
-   /media/yocto/yocto/poky/meta-yocto \
-   /media/yocto/yocto/poky/meta-yocto-bsp \
-   /media/yocto/yocto/meta-openembedded/meta-oe \
-   /media/yocto/yocto/meta-raspberrypi \
-   "
-BBLAYERS_NON_REMOVABLE ?= " \
-   /media/yocto/yocto/poky/meta \
-   /media/yocto/yocto/poky/meta-yocto \
-   "
-
-
-3. bitbake rpi-image-basic
-
-Pseudo is not present but is required, building this first before the 
-main build
-Loading cache: 100% 
-|##########################################################################################################| 
-ETA:  00:00:00
-Loaded 202 entries from dependency cache.
-ERROR: ParseError at 
-/media/yocto/yocto/meta-openembedded/meta-oe/recipes-devtools/libgee/libgee.inc:12: 
-Could not inherit file classes/vala.bbclass
-ERROR: Command execution failed: Exited with 1
-
-
-If this is not something you get with a head checkout of poky, 
-meta-raspberrypi and meta-openembedded, I can retry a new fresh git 
-clone to test again...
-
-Jay
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
