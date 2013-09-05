@@ -1,32 +1,35 @@
-Return-Path: <joe.slater@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4190E00747
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 10:41:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r85HfdT5011316
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 5 Sep 2013 10:41:39 -0700 (PDT)
-Received: from ALA-MBB.corp.ad.wrs.com ([169.254.1.103]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.02.0347.000;
-	Thu, 5 Sep 2013 10:41:37 -0700
-From: "Slater, Joseph" <joe.slater@windriver.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] [PATCH 1/1] tar: add acl dependency information
-Thread-Index: AQHOqlgwUA2Ch5P9m0GrluOTtAlIkpm31MQA//+Ul4A=
-Date: Thu, 5 Sep 2013 17:41:37 +0000
-Message-ID: <007BD92917A2324FA403BCF9A464CF843C508FCE@ALA-MBB.corp.ad.wrs.com>
-References: <1378399896-28502-1-git-send-email-jslater@windriver.com>
-	<3573701.ovexZDZeie@helios>
-In-Reply-To: <3573701.ovexZDZeie@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.152.80]
-MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 05 Sep 2013 13:30:17 -0700
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/1] tar: add acl dependency information
+Return-Path: <mulhern@gmail.com>
+Received: from mail-qe0-f50.google.com (mail-qe0-f50.google.com
+	[209.85.128.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BF94E003BF;
+	Thu,  5 Sep 2013 14:56:12 -0700 (PDT)
+Received: by mail-qe0-f50.google.com with SMTP id a11so1284089qen.23
+	for <multiple recipients>; Thu, 05 Sep 2013 14:56:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=tY72kaE0ORhW2u50i0fWI1NPHB1nAdAv38CzSFNF4fU=;
+	b=hLWFUP1nf5b8I6+IbEOz/vNoVsSLDoZ6pmtYK0LHWMM1Ef2PFSj757bIYm3pyyk/tI
+	+vxRMrnCHnmfj93J+/qJCMoHPwen7ahtepGfNzSEw9Ru9PPGP9N+doiXfGpZ1ljzXKtz
+	rm/AokSkdVAeEzgQqrgAtVLwvZbsgiVQOOkuhBCgwODTp+ezAwqwlVWPKikp+XGXUu6M
+	jEdlI/+T5fzaOnPE/9Gm6n4s4GBXuH0/5ibBEZb/b7n6pdGx+Tk4Yzh30QUpRTL02Vlp
+	C/6dFH5asesOh+/e5fJFa5ux1/JLR/A6hmHTfy3jWGaEUm5ku6dTs0Kz6j+H390jEw0a
+	Nl9Q==
+X-Received: by 10.49.2.68 with SMTP id 4mr12459996qes.64.1378418171733;
+	Thu, 05 Sep 2013 14:56:11 -0700 (PDT)
+Received: from mulhern-2010-ubuntu (c-67-186-188-203.hsd1.ma.comcast.net.
+	[67.186.188.203]) by mx.google.com with ESMTPSA id
+	p10sm44321205qat.10.1969.12.31.16.00.00
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Thu, 05 Sep 2013 14:56:11 -0700 (PDT)
+Received: by mulhern-2010-ubuntu (sSMTP sendmail emulation);
+	Thu, 05 Sep 2013 17:56:09 -0400
+From: mulhern <mulhern@gmail.com>
+To: yocto@yoctoproject.org,
+	mulhern@yoctoproject.org
+Date: Thu,  5 Sep 2013 17:56:05 -0400
+Message-Id: <cover.1378412801.git.mulhern@yoctoproject.org>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [PATCH 0/2] [meta-security] Cleanup of perl recipes.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,66 +41,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 17:41:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 05 Sep 2013 21:56:12 -0000
 
-Oops, I was so worried about sending to the right address, I forgot about
-marking it meta-selinux.
+Cleanup of perl recipes for CPAN modules in meta-security layer. One is
+renamed, one is removed because a recipe already exists in core.
+The following changes since commit 5ec81ec5b117de41ed56eb05df271f103213d7be:
 
-Joe
+  Bastille: document the current status and usability of the Bastille install. (2013-08-30 15:42:10 -0400)
 
+are available in the git repository at:
 
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: Thursday, September 05, 2013 10:05 AM
-> To: Slater, Joseph
-> Cc: Ouyang, Xin; Slater, Joseph; yocto@yoctoproject.org
-> Subject: Re: [yocto] [PATCH 1/1] tar: add acl dependency information
->=20
-> Hi Joe,
->=20
-> On Thursday 05 September 2013 09:51:36 Joe Slater wrote:
-> > If acl is a distro feature, we want to depend
-> > on it.  Note that without the xattrs patch, tar
-> > cannot deal with acl information.
-> >
-> > Signed-off-by: Joe Slater <jslater@windriver.com>
-> > ---
-> >  recipes-extended/tar/tar_1.26.bbappend |   10 +++++++++-
-> >  1 files changed, 9 insertions(+), 1 deletions(-)
-> >
-> > diff --git a/recipes-extended/tar/tar_1.26.bbappend
-> > b/recipes-extended/tar/tar_1.26.bbappend index 4b971c5..972a7b8 100644
-> > --- a/recipes-extended/tar/tar_1.26.bbappend
-> > +++ b/recipes-extended/tar/tar_1.26.bbappend
-> > @@ -1,7 +1,15 @@
-> > -PR .=3D ".2"
-> > +PR .=3D ".selinux3"
-> >
-> >  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> >
-> >  SRC_URI +=3D "file://tar-1.24-xattrs.patch"
-> >
-> >  inherit enable-selinux
-> > +
-> > +
-> > +PACKAGECONFIG +=3D "${@base_contains('DISTRO_FEATURES', 'acl', 'acl', =
-'',
-> > d)}" +
-> > +# configure has no acl enable/disable options!
-> > +#
-> > +PACKAGECONFIG[acl] =3D ",,acl,"
-> > +
->=20
-> Should this have been marked as [meta-selinux] ?
->=20
-> Cheers,
-> Paul
->=20
-> --
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
+  git://git.yoctoproject.org/poky-contrib mulhern/bug5081
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=mulhern/bug5081
+
+mulhern (2):
+  libenv-perl: Remove redundant recipe in meta-security layer.
+  libcurses-perl: curses-perl renamed to libcurses-perl.
+
+ recipes-security/bastille/bastille_3.2.1.bb        |    2 +-
+ .../checksecurity/checksecurity_2.0.14.bb          |    2 +-
+ recipes-security/perl/env-perl_1.04.bb             |   25 --------------------
+ ...{curses-perl_1.28.bb => libcurses-perl_1.28.bb} |    0
+ 4 files changed, 2 insertions(+), 27 deletions(-)
+ delete mode 100644 recipes-security/perl/env-perl_1.04.bb
+ rename recipes-security/perl/{curses-perl_1.28.bb => libcurses-perl_1.28.bb} (100%)
+
+-- 
+1.7.10.4
+
 
