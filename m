@@ -1,39 +1,22 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f42.google.com (mail-vb0-f42.google.com
-	[209.85.212.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18AB5E01554
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 01:12:55 -0700 (PDT)
-Received: by mail-vb0-f42.google.com with SMTP id e12so921812vbg.1
-	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 01:12:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=XP9FpfttG5xztyaKzahUtYJAL/aVmyRR2UUvLrP8BCo=;
-	b=e/LY84TGCgHuEWo7g5SZeEoTlQIiEWCbjxMxwTc1IXZS8gHJOfHWyAq460HQdPhytT
-	yOexS2eKoG+Bc6CPZkFE20/d94UTuYgIQCBeHgF/Urffp5FONKut5d80HwEbpi+gKGJr
-	HpOBDfeEtlbGacgQC/tioup4YnKLC4bcm6AqwFJ7nMg/IYW+aIIr2wYVAmMi6VU/M9lV
-	nqgv0Nd/bdB7GjQ6OBUyVKJ8PkOTlawTk3nmVSsergqTZr5I27aRMrumPbQjuC+5Ucvu
-	0gVQIgkFXARmZ7GGChI0zbvty8kHfBYQY6LIC1MOTAbL+FOy3ZPedZn/Kq8bMS1kVaSD
-	UdUA==
-X-Received: by 10.58.218.225 with SMTP id pj1mr5585586vec.24.1378368775026;
-	Thu, 05 Sep 2013 01:12:55 -0700 (PDT)
-MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.155.17 with HTTP; Thu, 5 Sep 2013 01:12:14 -0700 (PDT)
-In-Reply-To: <52283BEE.9020504@vtkloud.com>
-References: <5227629A.5090505@vtkloud.com> <52276400.6070307@mlbassoc.com>
-	<522830FF.6090100@vtkloud.com>
-	<CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com>
-	<522838E7.1060007@vtkloud.com>
-	<CANyK_8f0bwoB8sd6PdN4ZV=bZtw6E-6AqQAQnMB9j7QgAypmtA@mail.gmail.com>
-	<52283BEE.9020504@vtkloud.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 5 Sep 2013 09:12:14 +0100
-X-Google-Sender-Auth: PRaZtKGCcjGLvE-lrhYtSqc5Z3s
-Message-ID: <CANyK_8c=yXSFuaU7JT2i5PP7K=QfoVe0x62mh9Ax+KQk9shvVg@mail.gmail.com>
-To: JC <jc@vtkloud.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: raspberry layer
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1622E01542
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 01:15:00 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 05 Sep 2013 01:14:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,845,1371106800"; d="scan'208";a="291075989"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by AZSMGA002.ch.intel.com with ESMTP; 05 Sep 2013 01:14:58 -0700
+Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.73])
+	by linux.intel.com (Postfix) with ESMTP id 192792C8001;
+	Thu,  5 Sep 2013 01:14:55 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org
+Date: Thu,  5 Sep 2013 11:15:03 +0300
+Message-Id: <1378368903-28966-1-git-send-email-stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.3.1
+Subject: [meta-security][PATCH] meta-security: add a basic runtime test for scanelf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,43 +28,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 08:12:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 05 Sep 2013 08:15:03 -0000
 
-On 5 September 2013 09:08, JC <jc@vtkloud.com> wrote:
-> On 05/09/2013 10:04, Paul Barker wrote:
->> The log you've attached shows paths for poky as well as
->> openembedded-core. Poky is basically a combination of
->> openembedded-core, meta-yocto and bitbake so you don't want to add
->> openembedded-core again. Could you post your full bblayers.conf?
->>
->
-> Yes that's strange. Do you think it could be an issue with trunk ?
->
-> Here's my bblayers:
->
+Now that the testimage class from core has the ability to run tests from other
+layers it makes sens to add a basic runtime test here.
+This uses scanelf from the pax-utils package and scans the binaries in PATH
+for TEXTREL and RPATH information.
 
->
-> BBLAYERS ?= " \
->   /media/yocto/yocto/poky/meta \
->   /media/yocto/yocto/poky/meta-yocto \
->   /media/yocto/yocto/poky/meta-yocto-bsp \
->   /media/yocto/yocto/meta-openembedded/meta-oe \
->   /media/yocto/yocto/meta-raspberrypi \
->   "
->
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
+ lib/oeqa/runtime/__init__.py |  0
+ lib/oeqa/runtime/scanelf.py  | 26 ++++++++++++++++++++++++++
+ 2 files changed, 26 insertions(+)
+ create mode 100644 lib/oeqa/runtime/__init__.py
+ create mode 100644 lib/oeqa/runtime/scanelf.py
 
-In the log you posted is the line:
-
-> ERROR: Failed to parse recipe: /media/yocto/yocto/openembedded-core/meta/recipes-gnome/gdk-pixbuf/gdk-pixbuf_2.28.2.bb
-
-So something was adding the path
-/media/yocto/yocto/openembedded-core/meta to BBLAYERS. If you've just
-removed that, give it another try.
-
+diff --git a/lib/oeqa/runtime/__init__.py b/lib/oeqa/runtime/__init__.py
+new file mode 100644
+index 0000000..e69de29
+diff --git a/lib/oeqa/runtime/scanelf.py b/lib/oeqa/runtime/scanelf.py
+new file mode 100644
+index 0000000..b9abf24
+--- /dev/null
++++ b/lib/oeqa/runtime/scanelf.py
+@@ -0,0 +1,26 @@
++import unittest
++from oeqa.oetest import oeRuntimeTest, skipModule
++from oeqa.utils.decorators import *
++
++def setUpModule():
++    if not oeRuntimeTest.hasPackage("pax-utils"):
++        skipModule("pax-utils package not installed")
++
++class ScanelfTest(oeRuntimeTest):
++
++    def setUp(self):
++        self.scancmd = 'scanelf --quiet --recursive --mount --ldpath --path'
++
++    @skipUnlessPassed('test_ssh')
++    def test_scanelf_textrel(self):
++        # print TEXTREL information
++        self.scancmd += " --textrel"
++        (status, output) = self.target.run(self.scancmd)
++        self.assertEqual(output.strip(), "", "\n".join([self.scancmd, output]))
++
++    @skipUnlessPassed('test_ssh')
++    def test_scanelf_rpath(self):
++        # print RPATH information
++        self.scancmd += " --rpath"
++        (status, output) = self.target.run(self.scancmd)
++        self.assertEqual(output.strip(), "", "\n".join([self.scancmd, output]))
 -- 
-Paul Barker
+1.8.3.1
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
