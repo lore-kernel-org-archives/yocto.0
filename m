@@ -1,39 +1,41 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f47.google.com (mail-oa0-f47.google.com
-	[209.85.219.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54DDCE01415
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 00:41:00 -0700 (PDT)
-Received: by mail-oa0-f47.google.com with SMTP id g12so1776100oah.20
-	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 00:40:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=9wuWXCL2tjxpICpk37qAsqGc+o+XSRtFZmb13C3JGwA=;
-	b=sWkrrrOjoo/8gk5ePgCNMPsoTe8HCXinLlESoVl1ByCq/r21EKvnBCXIxx4BIp5Bmb
-	q3CF1dHsi6+xNKa6K0+eD1UoA9zgRe81V19A7ScKDFCm6QGb2rSANXnlPRujixOgyNqg
-	j8buGwjk1bJExKygJrK+7e9fDKVHhvmQmRUHGFAs+im9SxwAZq1dwbu2cf4twojoLPjX
-	8mzyFCjJGSPzjKhhf0ITBIQCnLMBDlUS3droSn2bEoPnpJ8WiRGscsG1zmMDcF6hpikr
-	TxUl6nMY6opD2BcMFm53iolv1dPLDbp+FB43757iDQCnxeXPtcANqZ5ZHwrRUNmejQK3
-	P2yg==
+Return-Path: <jc@vtkloud.com>
+Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
+	[209.85.212.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67B99E01415
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 00:55:23 -0700 (PDT)
+Received: by mail-wi0-f181.google.com with SMTP id c10so1457840wiw.14
+	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 00:55:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:cc:subject:references:in-reply-to:content-type;
+	bh=uTRaFjyTY/AOfDzuFSyblNizj/a6IvhvE42zL2f42pE=;
+	b=VjgENi6+mnXGxhESfaljp/dkn7akHDSZt6q7gf1Fl7dxNYTtktXxSnqa5EdSAONyoD
+	EkYCflPziBp/LT9oM/aOh7cRmFhG4tB/HrtvSvL8gQ1KH0ZAE3YM7Zt2MA50HqagtIvh
+	oN7sCDzYaa34eSC3aHi1gjKg/xLdhm7delummnNMuMsgVhfaRI0DSSLg9NrjLiaBSCum
+	9A09IGRkkd9wKGDn7LB0/8U/DRkomvkLCw/AneFosBQ7A1afuPL+3yc0FrqNcHNO8sqJ
+	yDYO0rGvrqVm21CQ4sFu+tDzpHdYdTBnmJmtUJkMl4Bk+RVxUbUKJWNjAi/lJU6fYmmi
+	kdrg==
+X-Gm-Message-State: ALoCoQmWjtdphEV83mbs7aCb5txPGtHyNnNpF6VvVMbwBsyiHp8AgcAXya6xB7bxb6VFnrIGzYDN
+X-Received: by 10.180.100.202 with SMTP id fa10mr5226612wib.8.1378367722684;
+	Thu, 05 Sep 2013 00:55:22 -0700 (PDT)
+Received: from [172.24.63.121] ([94.103.137.126])
+	by mx.google.com with ESMTPSA id dr11sm9602595wid.3.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 05 Sep 2013 00:55:21 -0700 (PDT)
+Message-ID: <522838E7.1060007@vtkloud.com>
+Date: Thu, 05 Sep 2013 09:55:19 +0200
+From: JC <jc@vtkloud.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.182.101.198 with SMTP id fi6mr5313594obb.79.1378366859277;
-	Thu, 05 Sep 2013 00:40:59 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Thu, 5 Sep 2013 00:40:59 -0700 (PDT)
-In-Reply-To: <CAFyqS9o+HWcMBBD_=E4Bm-XSO5U0yKmJRtE4RbotiKCdABWO2Q@mail.gmail.com>
-References: <CAFyqS9ph4qdURC517N7cDr_05KS3kQJMgoQ-tMV+vLUXwMd70A@mail.gmail.com>
-	<CAFyqS9qZAsFnXn2CF7-K6fWK3yEMLAZbDTkx_a81=s+Nj=ugUw@mail.gmail.com>
-	<5226FF30.9010000@vtkloud.com>
-	<CAFyqS9r=urMtznxZphVbnKEHiOrPVBGDtVFH1a8hisY2rcqrDQ@mail.gmail.com>
-	<CAFyqS9pRok8XEurH+r0Z6jTNiqADML1b1+xmPRzY49WMjVc6ww@mail.gmail.com>
-	<CAFyqS9pWkNq6-yH8DVgqYXZrZKdUBdghogs6iyh+_1AbDdeYKA@mail.gmail.com>
-	<CAFyqS9rQ8vNtCtQO-MYQ2Jbr8xHmH-k1JjS6D__ic6PrOfN5Dg@mail.gmail.com>
-	<CAFyqS9o+HWcMBBD_=E4Bm-XSO5U0yKmJRtE4RbotiKCdABWO2Q@mail.gmail.com>
-Date: Thu, 5 Sep 2013 09:40:59 +0200
-Message-ID: <CAFyqS9rvkdVYnAb2tJdaNaoxav5_5QcPNG0-mxrWN1-qamHcKw@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: JC <jc@vtkloud.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: libtool problem?
+To: Paul Barker <paul@paulbarker.me.uk>
+References: <5227629A.5090505@vtkloud.com> <52276400.6070307@mlbassoc.com>
+	<522830FF.6090100@vtkloud.com>
+	<CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com>
+In-Reply-To: <CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: raspberry layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,254 +47,184 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 07:41:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 05 Sep 2013 07:55:24 -0000
+X-Groupsio-MsgNum: 15864
+Content-Type: multipart/mixed; boundary="------------050401090109020509070002"
 
-On Wed, Sep 4, 2013 at 6:06 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> w=
-rote:
-> On Wed, Sep 4, 2013 at 5:02 PM, Hans Beck=E9rus <hans.beckerus@gmail.com>=
- wrote:
->> On Wed, Sep 4, 2013 at 12:21 PM, Hans Beck=E9rus <hans.beckerus@gmail.co=
-m> wrote:
->>> On Wed, Sep 4, 2013 at 12:03 PM, Hans Beck=E9rus <hans.beckerus@gmail.c=
-om> wrote:
->>>> On Wed, Sep 4, 2013 at 11:56 AM, Hans Beck=E9rus <hans.beckerus@gmail.=
-com> wrote:
->>>>> On Wed, Sep 4, 2013 at 11:36 AM, JC <jc@vtkloud.com> wrote:
->>>>>> On 04/09/2013 11:24, Hans Beck=E9rus wrote:
->>>>>>>
->>>>>>> On Wed, Sep 4, 2013 at 9:53 AM, Hans Beck=E9rus <hans.beckerus@gmai=
-l.com>
->>>>>>> wrote:
->>>>>>>>
->>>>>>>> Hi. I recently discovered that our populated SDK can not properly
->>>>>>>> build much at all :(
->>>>>>>> libtool complains about .la files that have been moved and not bei=
-ng
->>>>>>>> able to find dito.
->>>>>>>> The rootfs builds fine however. What I did noticed was that in our=
- .la
->>>>>>>> files we get lines like this:
->>>>>>>>
->>>>>>>> dependency_libs=3D' =3D/usr/lib/libxcb.la =3D/usr/lib/libXau.la
->>>>>>>> =3D/usr/lib/libXdmcp.la'
->>>>>>>>
->>>>>>>> Is that '=3D'-sign really supposed to be there? Is that why many b=
-uilds
->>>>>>>> fails to properly locate the .la files?
->>>>>>>>
->>>>>>> The '=3D'-sign is still a mystery to me. But it does not seem to ma=
-tter
->>>>>>> much.
->>>>>>> If I configure my packages (built from the SDK toolchain) using
->>>>>>>
->>>>>>> '--with-libtool-sysroot=3D/home/toolchain/sysroots/cortexa9-vfp-pok=
-y-linux-gnueabi/'
->>>>>>> it works! But should that really be needed? Is the path to be used =
-by
->>>>>>> libtool not supposed to be automatically resolved to point at the
->>>>>>> toolchain sysroot in cross-compilation environment?
->>>>>>
->>>>>>
->>>>>> In my case '--with-libtool-sysroot' is correctly resolved by the SDK=
- setup,
->>>>>> but ./configure complains it does not recognize it, so I end up not =
-being
->>>>>> able to test generated (dynamically linked) binaries. The common "he=
-llo
->>>>>> world" template says it cannot find ld-linux, and indeed it's in the=
- path of
->>>>>> libtool-sysroot.
->>>>>>
->>>>>> Googling it did not helped me to resolve the issue :(
->>>>>>
->>>>> Yes, in my case the script sourced also resolves the path correct to
->>>>> CONFIGURE_FLAGS, but that is not automatically used by a generated
->>>>> configure script is it!? I guess that is why I need to add it manuall=
-y
->>>>> each time. You should not to do that, or?
->>>>>
->>>> According to generated 'configure' the option should not be needed.
->>>>
->>>>   --with-libtool-sysroot=3DDIR Search for dependent libraries within D=
-IR
->>>>                         (or the compiler's sysroot if not specified).
->>>>
->>>> So, if --with-libtool-sysroot is not set it should pick it up from
->>>> whatever the compiler is using.
->>>> That does not seem to work :(
->>>>
->>> Ah. Is not the problem here that the cross-compiler is broken?
->>>
->>> Configured with:
->>> /home/poky/build/tmp/work-shared/gcc-4.7.2-r20/gcc-4.7.2/configure
->>> --build=3Dx86_64-linux --host=3Dx86_64-pokysdk-linux
->>> --target=3Darm-poky-linux-gnueabi
->>> --prefix=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/u=
-sr
->>> --exec_prefix=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-li=
-nux/usr
->>> --bindir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/u=
-sr/bin/cortexa9-vfp-poky-linux-gnueabi
->>> --sbindir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/=
-usr/bin/cortexa9-vfp-poky-linux-gnueabi
->>> --libexecdir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-lin=
-ux/usr/libexec/cortexa9-vfp-poky-linux-gnueabi
->>> --datadir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/=
-usr/share
->>> --sysconfdir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-lin=
-ux/etc
->>> --sharedstatedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk=
--linux/com
->>> --localstatedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-=
-linux/var
->>> --libdir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/u=
-sr/lib/cortexa9-vfp-poky-linux-gnueabi
->>> --includedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-lin=
-ux/usr/include
->>> --oldincludedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-=
-linux/usr/include
->>> --infodir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/=
-usr/share/info
->>> --mandir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/u=
-sr/share/man
->>> --disable-silent-rules --disable-dependency-tracking
->>> --with-libtool-sysroot=3D/home/poky/build/tmp/sysroots/x86_64-nativesdk=
--pokysdk-linux
->>> --with-gnu-ld --enable-shared --enable-languages=3Dc,c++
->>> --enable-threads=3Dposix --enable-multilib --enable-c99
->>> --enable-long-long --enable-symvers=3Dgnu --enable-libstdcxx-pch
->>> --program-prefix=3Darm-poky-linux-gnueabi- --without-local-prefix
->>> --enable-target-optspace --enable-lto --enable-libssp
->>> --disable-bootstrap --disable-libmudflap --with-system-zlib
->>> --with-linker-hash-style=3Dgnu --enable-linker-build-id --with-ppl=3Dno
->>> --with-cloog=3Dno --enable-checking=3Drelease --enable-cheaders=3Dc_glo=
-bal
->>> --with-gxx-include-dir=3D/opt/poky-chris/1.4+snapshot/sysroots/cortexa9=
--vfp-poky-linux-gnueabi/usr/include/c++
->>> --with-build-time-tools=3D/home/poky/build/tmp/sysroots/x86_64-linux/us=
-r/arm-poky-linux-gnueabi/bin
->>> --with-sysroot=3D/opt/poky-chris/1.4+snapshot/sysroots/cortexa9-vfp-pok=
-y-linux-gnueabi
->>> --with-build-sysroot=3D/home/poky/build/tmp/sysroots/zynq-zc706
->>> --disable-libunwind-exceptions --disable-libssp --disable-libgomp
->>> --disable-libmudflap
->>> --with-mpfr=3D/home/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-li=
-nux
->>> --with-mpc=3D/home/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-lin=
-ux
->>> --enable-nls
->>>
->>> There are several hardcoded paths to /opt/...!?
->>> That is not where my toolchain is installed I am afraid :( Have I done
->>> something wrong in my configuration that is causing populate_sdk to
->>> produce a broken toolchain like this?
->>> Also, there are several 'sysroots' pointed to. And one of those is my
->>> actual Yocto build location?
->>> This looks really messed up :(
->>>
->>>
->> Ok. I have done some further tests now and my conclusion is that
->> something is definitely broken in the way the toolchain is prepared.
->> The references to /opt/... in the case above comes due to having the
->> default SDKPATH as set by meta-yocto/conf/distro/poky.conf. Fine. I
->> then changed our distro to override SDKPATH to point to the actual
->> path for which we install the SDK and rebuilt. About an hour later I
->> tried it out just to find that it is still not handling libtool things
->> properly :( I still have to force the use of --with-libtool-sysroot
->> when configuring packages to make the build stage pass without errors!
->> Can someone confirm if this is a bug in libtool, in the way Yocto sets
->> it up, or if I am doing something wrong? As a workaround I guess it is
->> possible to always do "./configure $CONFIGURE_FLAGS <other options>",
->> but surely, this can not be how it was supposed to work?
+--------------050401090109020509070002
+Content-Type: multipart/alternative;
+ boundary="------------090808040108000606050807"
+
+--------------090808040108000606050807
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+On 05/09/2013 09:31, Paul Barker wrote:
+> That looks like a parse error so the full log shouldn't be very long 
+> as that point, may be helpful to post it. 
+
+I attached rpibuild.log to this email
+
+>> my local.conf changes: just added raspberrypi machine
+>> bblayers.conf:
+>> added
+>>    /media/yocto/yocto/openembedded-core/meta \
+>>    /media/yocto/yocto/meta-raspberrypi \
 >>
->> Thanks.
->> Hans
->>
->>
-> First of all. I am really sorry for spamming this forum and this
-> subject. But I really need to sort this out and I have some new
-> information I would like to share. I believe I have found the root
-> cause of the problem, at least the one that we have with improper
-> resolution of .la files.
-> In the generated '<host-target>-libtool' file the variable
-> 'lt_sysroot' remains unset unless --with-libtool-sysroot is set to
-> something! That I believe is the bug! It should in the case of
-> omitting --with-libtool-sysroot be set to the output from e.g. 'gcc
-> --print-sysroot'! Or maybe more correctly:
->
->     if test "$GCC" =3D yes; then
->       lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
->     fi
->
-> Also, I now discovered the purpose of prefixing dependency paths in
-> .la files with '=3D' ;) It is used to flag the libtool script to replace
-> =3D with $lt_sysroot. Never seen that before ;)
->
-> Someone that can comment on this? Is this a know bug in our running
-> version of Yocto?
-> Any clues how this could be fixed otherwise? What is generating the
-> actual libtool script?
->
-> Build Configuration:
-> BB_VERSION        =3D "1.19.0"
-> BUILD_SYS         =3D "x86_64-linux"
-> NATIVELSBSTRING   =3D "SUSE-LINUX-11"
-> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-> MACHINE           =3D "zynq-zc706"
-> DISTRO            =3D "poky-chris"
-> DISTRO_VERSION    =3D "1.4+snapshot-20130904"
-> TUNE_FEATURES     =3D "armv7a vfp cortexa9"
-> TARGET_FPU        =3D "vfp"
-> meta
-> meta-yocto
-> meta-yocto-bsp    =3D "master:0c0bb02f5104e3856c9d90088e1ece08652cc19f"
-> meta-oe           =3D "master:7c292ce28756824b1fa377d516aedd979fa41f19"
->
-> Thanks.
-> Hans
->
-Ok, the problem is in the generated configure script! I saw Khem had a
-patch in Yocto to change --with-sysroot to --with-libtool-sysroot, but
-there is one more error in the code below
+> The README in meta-raspberrypi states that you need meta-openembedded
+> as well (specifically, the meta-oe layer). I'm not sure that this is
+> the cause of your error though.
 
-lt_sysroot=3D
-case ${with_libtool_sysroot} in #(
- yes)
-   if test "$GCC" =3D yes; then
-     lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
-   fi
-   ;; #(
- /*)
-   lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
-   ;; #(
- no|'')
-   ;; #(
- *)
-   { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${with_libtool_sysroot}=
-" >&5
-$as_echo "${with_libtool_sysroot}" >&6; }
-   as_fn_error $? "The sysroot must be an absolute path." "$LINENO" 5
-   ;;
-esac
+Sorry, it is indeed added (otherwise it complains about mesa, anyway)
 
-The yes) and no) switch cases should be swapped! Now if
--with-libtool-sysroot=3Dyes it will pick up lt_sysroot from the
-compiler! And not vice versa! This is definitely wrong.
-Please advice. Is this something that can be fixed in the scope of
-Yocto or must a solution to this come from autotools? Can I patch this
-somehow in Yocto? The patch I guess must be in the code that generates
-the configure script.
-
-Thanks.
-Hans
+> What branches of the different layers are you using? I just want to
+> make sure they're all the same. Also, what version or branch of
+> bitbake are you using?
+>
 
 
->>>>>> Jay
->>>>>>
->>>>>> _______________________________________________
->>>>>> yocto mailing list
->>>>>> yocto@yoctoproject.org
->>>>>> https://lists.yoctoproject.org/listinfo/yocto
+As a reference, following this link 
+http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7 I got successful 
+(well the image is not yet finished but I hadn't that specific parsing 
+error)
 
+I followed the exact README steps in a fresh directory for the checkout, 
+so I am on the trunk for poky & meta-raspberrypi...
+
+Jay
+
+
+
+
+--------------090808040108000606050807
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">Hi,<br>
+      <br>
+      On 05/09/2013 09:31, Paul Barker wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com"
+      type="cite"> That looks like a parse error so the full log
+      shouldn't be very long as that point, may be helpful to post it. </blockquote>
+    <br>
+    I attached rpibuild.log to this email<br>
+    <br>
+    <blockquote
+cite="mid:CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com"
+      type="cite">
+      <blockquote type="cite">
+        <pre wrap="">my local.conf changes: just added raspberrypi machine
+bblayers.conf:
+added
+  /media/yocto/yocto/openembedded-core/meta \
+  /media/yocto/yocto/meta-raspberrypi \
+
+</pre>
+      </blockquote>
+      <pre wrap="">The README in meta-raspberrypi states that you need meta-openembedded
+as well (specifically, the meta-oe layer). I'm not sure that this is
+the cause of your error though.</pre>
+    </blockquote>
+    <br>
+    Sorry, it is indeed added (otherwise it complains about mesa,
+    anyway)<br>
+    <br>
+    <blockquote
+cite="mid:CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com"
+      type="cite">
+      <pre wrap="">What branches of the different layers are you using? I just want to
+make sure they're all the same. Also, what version or branch of
+bitbake are you using?
+
+</pre>
+    </blockquote>
+    <br>
+    <br>
+    As a reference, following this link
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-1">
+    <a href="http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7">http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7</a>
+    I got successful (well the image is not yet finished but I hadn't
+    that specific parsing error)<br>
+    <br>
+    I followed the exact README steps in a fresh directory for the
+    checkout, so I am on the trunk for poky &amp; meta-raspberrypi...<br>
+    <br>
+    Jay<br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------090808040108000606050807--
+
+--------------050401090109020509070002
+Content-Type: text/x-log;
+ name="rpibuild.log"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="rpibuild.log"
+
+ERROR: Error executing a python function in <code>:#                                                                           | ETA:  00:00:57
+ExpansionError: Failure expanding variable MAJ_VER, expression was ${@oe.utils.trim_version("2.28.2", 2)} which triggered exception AttributeError: 'module' object has no attribute 'trim_version'
+
+ERROR: The stack trace of python calls that resulted in this exception/failure was:
+ERROR:   File "<code>", line 1, in <module>
+ERROR: 
+ERROR:   File "__anon_637__media_yocto_yocto_poky_meta_classes_base_bbclass", line 169, in __anon_637__media_yocto_yocto_poky_meta_classes_base_bbclass
+ERROR: 
+ERROR:   File "/media/yocto/yocto/poky/bitbake/lib/bb/data_smart.py", line 503, in getVar
+ERROR:     return self.expand(value, var)
+ERROR: 
+ERROR:   File "/media/yocto/yocto/poky/bitbake/lib/bb/data_smart.py", line 336, in expand
+ERROR:     return self.expandWithRefs(s, varname).value
+ERROR: 
+ERROR:   File "/media/yocto/yocto/poky/bitbake/lib/bb/data_smart.py", line 317, in expandWithRefs
+ERROR:     s = __expand_var_regexp__.sub(varparse.var_sub, s)
+ERROR: 
+ERROR:   File "/media/yocto/yocto/poky/bitbake/lib/bb/data_smart.py", line 97, in var_sub
+ERROR:     var = self.d.getVar(key, True)
+ERROR: 
+ERROR:   File "/media/yocto/yocto/poky/bitbake/lib/bb/data_smart.py", line 503, in getVar
+ERROR:     return self.expand(value, var)
+ERROR: 
+ERROR:   File "/media/yocto/yocto/poky/bitbake/lib/bb/data_smart.py", line 336, in expand
+ERROR:     return self.expandWithRefs(s, varname).value
+ERROR: 
+ERROR:   File "/media/yocto/yocto/poky/bitbake/lib/bb/data_smart.py", line 326, in expandWithRefs
+ERROR:     raise ExpansionError(varname, s, exc)
+ERROR: 
+ERROR: The code that was being executed was:
+ERROR:  *** 0001:__anon_637__media_yocto_yocto_poky_meta_classes_base_bbclass(d)
+ERROR:      0002:__anon_227__media_yocto_yocto_poky_meta_classes_package_bbclass(d)
+ERROR:      0003:__anon_1137__media_yocto_yocto_poky_meta_classes_package_rpm_bbclass(d)
+ERROR:      0004:__anon_914__media_yocto_yocto_poky_meta_classes_insane_bbclass(d)
+ERROR:      0005:__anon_20__media_yocto_yocto_poky_meta_classes_debian_bbclass(d)
+ERROR: [From file: '<code>', lineno: 1, function: <module>]
+ERROR:      0165:                elif all_skipped or incompatible_license(d, bad_licenses):
+ERROR:      0166:                    bb.debug(1, "SKIPPING recipe %s because it's %s" % (pn, recipe_license))
+ERROR:      0167:                    raise bb.parse.SkipPackage("incompatible with license %s" % recipe_license)
+ERROR:      0168:
+ERROR:  *** 0169:    srcuri = d.getVar('SRC_URI', True)
+ERROR:      0170:    # Svn packages should DEPEND on subversion-native
+ERROR:      0171:    if "svn://" in srcuri:
+ERROR:      0172:        d.appendVarFlag('do_fetch', 'depends', ' subversion-native:do_populate_sysroot')
+ERROR:      0173:
+ERROR: [From file: '__anon_637__media_yocto_yocto_poky_meta_classes_base_bbclass', lineno: 169, function: __anon_637__media_yocto_yocto_poky_meta_classes_base_bbclass]
+ERROR: Failed to parse recipe: /media/yocto/yocto/openembedded-core/meta/recipes-gnome/gdk-pixbuf/gdk-pixbuf_2.28.2.bb
+ERROR: Command execution failed: Exited with 1
+
+
+
+--------------050401090109020509070002--
