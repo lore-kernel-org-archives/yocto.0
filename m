@@ -1,24 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17FCDE00747
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 10:06:07 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 05 Sep 2013 10:02:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,848,1371106800"; d="scan'208";a="391603226"
-Received: from unknown (HELO helios.localnet) ([10.252.123.106])
-	by fmsmga001.fm.intel.com with ESMTP; 05 Sep 2013 10:05:03 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Joe Slater <jslater@windriver.com>
-Date: Thu, 05 Sep 2013 18:05 +0100
-Message-ID: <3573701.ovexZDZeie@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-29-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <1378399896-28502-1-git-send-email-jslater@windriver.com>
-References: <1378399896-28502-1-git-send-email-jslater@windriver.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, joe.slater@windriver.com
-Subject: Re: [PATCH 1/1] tar: add acl dependency information
+Return-Path: <mulhern@gmail.com>
+Received: from mail-qe0-f41.google.com (mail-qe0-f41.google.com
+	[209.85.128.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C94C9E0122C;
+	Thu,  5 Sep 2013 11:56:00 -0700 (PDT)
+Received: by mail-qe0-f41.google.com with SMTP id ff1so1197415qeb.28
+	for <multiple recipients>; Thu, 05 Sep 2013 11:55:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=A2GMyZRkoqLvGFeFbRp/yNaPakO1pCdxwNUaDF72wo0=;
+	b=SqKkkX5URFo/xpaKoCTI6alwn8SJV1IxGZPpVJe+EFIt589ccBn48LwZ293kiy8Uja
+	qA3OUtA0sCdAVCjOBAAkkf+YWXCyx8v7jbxFc2Fwy4sDUqmWjmBsqkBBvOIz4z6bEJp+
+	u4GrLZqp/d/0LQnsCwBgFwyoVuKLj2ifB/xMYOTAcKyPZIDbsAx8GRA7CfOQg0v71jNN
+	tthOOseXs6z9/IpgoTC7uEHYWFwuTzbIsxSXWldAW2Q1inh0CaPRLFOJd2eVZ1oxM9mX
+	9vlwOCCYYkejhla/NbomMtbxbVJdwEyxygU3/XoOiqxELunC2ykyy+3G8CZOOKTQCuCP
+	0OhQ==
+X-Received: by 10.224.8.129 with SMTP id h1mr11732092qah.1.1378407359045;
+	Thu, 05 Sep 2013 11:55:59 -0700 (PDT)
+Received: from mulhern-2010-ubuntu (c-67-186-188-203.hsd1.ma.comcast.net.
+	[67.186.188.203])
+	by mx.google.com with ESMTPSA id u9sm4472008qar.4.1969.12.31.16.00.00
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Thu, 05 Sep 2013 11:55:58 -0700 (PDT)
+Received: by mulhern-2010-ubuntu (sSMTP sendmail emulation);
+	Thu, 05 Sep 2013 14:55:56 -0400
+From: mulhern <mulhern@gmail.com>
+To: yocto@yoctoproject.org,
+	mulhern@yoctoproject.org
+Date: Thu,  5 Sep 2013 14:55:53 -0400
+Message-Id: <cover.1378407198.git.mulhern@yoctoproject.org>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [PATCH 0/1] [meta-security] Remove dependency from libcap-ng.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,51 +41,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 17:06:08 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 05 Sep 2013 18:56:03 -0000
 
-Hi Joe,
+The erroneous dependency of libcap-ng on libcap is deleted. Note that libcap-ng
+provides Python bindings, but that this package does not. Currently, the only
+recipe that depends on libcap-ng is redhat-security which does not require 
+Python bindings. If Python bindings are needed subsequently a swig dependency
+will have to be introduced.
+The following changes since commit 5ec81ec5b117de41ed56eb05df271f103213d7be:
 
-On Thursday 05 September 2013 09:51:36 Joe Slater wrote:
-> If acl is a distro feature, we want to depend
-> on it.  Note that without the xattrs patch, tar
-> cannot deal with acl information.
-> 
-> Signed-off-by: Joe Slater <jslater@windriver.com>
-> ---
->  recipes-extended/tar/tar_1.26.bbappend |   10 +++++++++-
->  1 files changed, 9 insertions(+), 1 deletions(-)
-> 
-> diff --git a/recipes-extended/tar/tar_1.26.bbappend
-> b/recipes-extended/tar/tar_1.26.bbappend index 4b971c5..972a7b8 100644
-> --- a/recipes-extended/tar/tar_1.26.bbappend
-> +++ b/recipes-extended/tar/tar_1.26.bbappend
-> @@ -1,7 +1,15 @@
-> -PR .= ".2"
-> +PR .= ".selinux3"
-> 
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> 
->  SRC_URI += "file://tar-1.24-xattrs.patch"
-> 
->  inherit enable-selinux
-> +
-> +
-> +PACKAGECONFIG += "${@base_contains('DISTRO_FEATURES', 'acl', 'acl', '',
-> d)}" +
-> +# configure has no acl enable/disable options!
-> +#
-> +PACKAGECONFIG[acl] = ",,acl,"
-> +
+  Bastille: document the current status and usability of the Bastille install. (2013-08-30 15:42:10 -0400)
 
-Should this have been marked as [meta-selinux] ?
+are available in the git repository at:
 
-Cheers,
-Paul
+  git://git.yoctoproject.org/poky-contrib mulhern/bug5084
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=mulhern/bug5084
+
+mulhern (1):
+  libcap-ng: omit an unnecessary build time dependency.
+
+ recipes-security/libcap-ng/libcap-ng_0.7.3.bb |    1 -
+ 1 file changed, 1 deletion(-)
 
 -- 
+1.7.10.4
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
