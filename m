@@ -1,40 +1,38 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
-	[209.85.214.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43728E01415
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2013 23:56:43 -0700 (PDT)
-Received: by mail-ob0-f181.google.com with SMTP id dn14so1524900obc.40
-	for <yocto@yoctoproject.org>; Wed, 04 Sep 2013 23:56:43 -0700 (PDT)
+Return-Path: <jc@vtkloud.com>
+Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 359CDE01415
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 00:21:39 -0700 (PDT)
+Received: by mail-wg0-f46.google.com with SMTP id k14so1335944wgh.13
+	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 00:21:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=jms15C9wpH6CsENvtdXXRvKvrPW93l4NypD6WGbL1HI=;
-	b=ZCPUQZUhFpuLSBNR19WAieCie/pQdcQVsTGrs4yAkjF5llREHwHFsr0V1SSY+I9nQS
-	GfIv1jpF8oviOjCx9bxq15dJzu0xSmyLTBztrQ/zSFFApe5QPE0z2h1BDenDek4ZKaOX
-	n5FA9tKoeKGORt3B6s8UYBYWq/5xEAAyDmQk2oDvQElAv0oqsHom0pXtIKCL6V+E9oSS
-	tNvfpg6x0GL9F00FCHRYgqX6GI/hvrMAwGisynyARB9GbDYwAsUIYPB7lyrXmGSm0FPY
-	7sG+UsRUznI015e6TXU0asuOHix65S0mStEZVyjkTDYpxIZ1mETHEsiyMGfMbBhE16kJ
-	18pQ==
-X-Gm-Message-State: ALoCoQk8D/XS/8QEB42Pb+2YEcTMGZTEExYOkTu45ZHWXiQrvjRDiSgxaQdP9SXvs7vHshInJdkl
-X-Received: by 10.60.62.38 with SMTP id v6mr5214174oer.45.1378364203192; Wed,
-	04 Sep 2013 23:56:43 -0700 (PDT)
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=QBsEiCtAK9cVLvMBAgQdIeGORm8dCmpk8R7I37soznc=;
+	b=Wz5n9u6Cyx/TS/8j0Uyq6hflpdsGW0GsSJ3uRW4+Mk2OhypuJ7q/ldN90GOKZ5RIw6
+	glVDxLWl/TBdZQdDdFZx+cE0Vb2yTxinWKZzEfoX4J2L8vLdX6LNjSTcvS8ABHyAldbq
+	OjCDDMbQ3snvRq28dI2nDkA5fcZMqkjWgncqwvD/ItmxyLdbM0Cp5y3byA4WdhsMPJQI
+	3p72D2stRzk2JPk8qm108QJD0vVhalrjFgwqzKbauoQaZn53EGhPp7N0HiaD64TSEbKh
+	nWeQGMgtWcl8qfadOZRaOSpsjfMNN/m6PbWY6SpoYnnR8yO8yrLXWGaLK54B2cVmf4Eq
+	9moQ==
+X-Gm-Message-State: ALoCoQmfTFgq4H5c/vk42LBBI5wwLMEyh578DVKrse8rpHw49iTg0aDDhhB07Y0DzfGFoaU7sL2a
+X-Received: by 10.194.80.39 with SMTP id o7mr562624wjx.39.1378365698126;
+	Thu, 05 Sep 2013 00:21:38 -0700 (PDT)
+Received: from [172.24.63.121] ([94.103.137.126])
+	by mx.google.com with ESMTPSA id fv10sm9258239wic.0.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 05 Sep 2013 00:21:37 -0700 (PDT)
+Message-ID: <522830FF.6090100@vtkloud.com>
+Date: Thu, 05 Sep 2013 09:21:35 +0200
+From: JC <jc@vtkloud.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
 MIME-Version: 1.0
-Received: by 10.76.172.4 with HTTP; Wed, 4 Sep 2013 23:56:22 -0700 (PDT)
-In-Reply-To: <779B7C6AC95A460FB7D94F91EAF86DF9@PAULD>
-References: <2C94F567F1334C30A5BBD2CA59576460@PAULD>
-	<521D354E.1020909@mlbassoc.com>
-	<8EB78E64DFE9436EAFB462E357C464EC@PAULD> <20130828072025.GC3544@jama>
-	<DB63579B404D457F9DF825A744067092@PAULD>
-	<CAGiJk9eztTXvCR4UjbtXTqRbjN+nKR6KKGgrFqKAvO4TSzSCAg@mail.gmail.com>
-	<CAGiJk9chSv2CdBq4-TFJ77zeCtF-2QXjjh+WriQcUXJ5GgEEvA@mail.gmail.com>
-	<779B7C6AC95A460FB7D94F91EAF86DF9@PAULD>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 5 Sep 2013 08:56:22 +0200
-Message-ID: <CAP71Wjx8BeMn8PxwLVbzU58Pht=0P-9gcx95sKz6YTzrO-e5tQ@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Can anything be done about do_rootfs speed?
+To: yocto@yoctoproject.org
+References: <5227629A.5090505@vtkloud.com> <52276400.6070307@mlbassoc.com>
+In-Reply-To: <52276400.6070307@mlbassoc.com>
+Subject: Re: raspberry layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,153 +44,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 06:56:46 -0000
-Content-Type: multipart/alternative; boundary=089e0153761eb3e6b104e59d6c9c
+X-List-Received-Date: Thu, 05 Sep 2013 07:21:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0153761eb3e6b104e59d6c9c
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Thu, Sep 5, 2013 at 1:50 AM, Paul D. DeRocco <pderocco@ix.netcom.com>wrote:
-
-> > From: Samuel Stirtzel
-> >
-> > If you change:
-> >
-> > COMPRESS_CMD_gz = "gzip -f -9 -c ${IMAGE_NAME}.rootfs.${type} >
-> > ${IMAGE_NAME}.rootfs.${type}.gz"
-> > COMPRESS_CMD_bz2 = "bzip2 -f -k ${IMAGE_NAME}.rootfs.${type}"
-> >
-> > in [...]/meta/classes/image_types.bbclass, then can try
-> > pbzip2 / pigz.
+On 04/09/2013 18:46, Gary Thomas wrote:
+> On 2013-09-04 10:40, JC wrote:
+>> Hi,
+>>
+>> I am maintaining a small project based on yocto and would like to 
+>> check to what extent I can port it to Raspberry.
+>> It seems there's an ongoing rapsberry layer but I couldn't find which 
+>> is the right URL to point to in order to get started.
+>>
+>> Can someone tell me ?
 >
-> This raises a question that has come up for me before: is there a way to
-> override something in a .bbclass, without just editing the file and
-> therefore losing it whenever new metadata is released?
+>   git://git.yoctoproject.org/meta-raspberrypi
 >
+Thanks. I checked out everything (including a "fresh" poky) and I get 
+this error:
+ERROR: Error executing a python function in <code>:# | ETA:  00:00:57
+ExpansionError: Failure expanding variable MAJ_VER, expression was 
+${@oe.utils.trim_version("2.28.2", 2)} which triggered exception 
+AttributeError: 'module' object has no attribute 'trim_version'
 
-yes, you can ;-)
-
-
->  I really have
-> little sense of the order in which things are read or obeyed in the whole
-> bitbake process. Those variables look like they're read by the
-> get_imagecmds() script; is there an opportunity for a recipe to change the
-> value of COMPRESS_CMD_gz or _bz2 after it's defined, but before that
-> script gets called?
->
-
-there are 2 types of 'files'. Configuration files and recipes (.bb,
-.bbclass, .bbappend). Configuration files are read in the order defined in
-meta/conf/bitbake.conf (see toward the end, all .conf files are being
-included). The order there will dicdacte "who overrides what". Then you can
-use the various operators ( =, ?=, +=, ...).
-
-For 'recipes' my understanding is that they are parsed line by line from
-the beginning of the .bb file till the end. When reading a .bb file when
-the parser encounters a 'require/include' or a 'inherit' it then parses the
-corresponding file.
-
-in your specific case, COMPRESS_CMD_gz is set in
- meta/classes/image_types.bbclass, which is inherited in image.bbclass. So
-if you want to override it, you need to do it *after* your inherit "image"
-in your own image .bb file (or core-image, if that's what you use).
-
-you can how bitbake parsed a variable with:
-
-bitbake -e <image> | grep ^VARIABLE.
-
-E.g. in my image, after adding:
-
-inherit core-image
-+COMPRESS_CMD_gz="my_own_gz"
+my local.conf changes: just added raspberrypi machine
+bblayers.conf:
+added
+   /media/yocto/yocto/openembedded-core/meta \
+   /media/yocto/yocto/meta-raspberrypi \
 
 
+(i had to add meta otherwise it complained it didn't have the mesa recipe)
 
-$ bitbake -e my-generic-image | grep ^COMPRESS_CMD_gz
-COMPRESS_CMD_gz="my_own_gz"
+Any idea? Do you need the complete failure log or is this something known ?
 
---089e0153761eb3e6b104e59d6c9c
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Jay
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Sep 5, 2013 at 1:50 AM, Paul D. DeRocco <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:pderocco@ix.netcom.com" target=3D"_blank">pderocco@ix.netcom.c=
-om</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div id=3D":23y" style=3D"overflow:hidden">&gt; From: Samu=
-el Stirtzel<br>
-
-
-<div class=3D"im">&gt;<br>
-&gt; If you change:<br>
-&gt;<br>
-&gt; COMPRESS_CMD_gz =3D &quot;gzip -f -9 -c ${IMAGE_NAME}.rootfs.${type} &=
-gt;<br>
-&gt; ${IMAGE_NAME}.rootfs.${type}.gz&quot;<br>
-&gt; COMPRESS_CMD_bz2 =3D &quot;bzip2 -f -k ${IMAGE_NAME}.rootfs.${type}&qu=
-ot;<br>
-&gt;<br>
-&gt; in [...]/meta/classes/image_types.bbclass, then can try<br>
-&gt; pbzip2 / pigz.<br>
-<br>
-</div>This raises a question that has come up for me before: is there a way=
- to<br>
-override something in a .bbclass, without just editing the file and<br>
-therefore losing it whenever new metadata is released?</div></blockquote><d=
-iv><br></div><div>yes, you can ;-)</div><div>=A0</div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border=
--left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
-
-<div id=3D":23y" style=3D"overflow:hidden"> I really have<br>
-little sense of the order in which things are read or obeyed in the whole<b=
-r>
-bitbake process. Those variables look like they&#39;re read by the<br>
-get_imagecmds() script; is there an opportunity for a recipe to change the<=
-br>
-value of COMPRESS_CMD_gz or _bz2 after it&#39;s defined, but before that<br=
->
-script gets called?<div class=3D""><div id=3D":23o" class=3D"" tabindex=3D"=
-0"></div></div></div></blockquote></div><br></div><div class=3D"gmail_extra=
-">there are 2 types of &#39;files&#39;. Configuration files and recipes (.b=
-b, .bbclass, .bbappend). Configuration files are read in the order defined =
-in meta/conf/bitbake.conf (see toward the end, all .conf files are being in=
-cluded). The order there will dicdacte &quot;who overrides what&quot;. Then=
- you can use the various operators ( =3D, ?=3D, +=3D, ...).</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">For &#39;re=
-cipes&#39; my understanding is that they are parsed line by line from the b=
-eginning of the .bb file till the end. When reading a .bb file when the par=
-ser encounters a &#39;require/include&#39; or a &#39;inherit&#39; it then p=
-arses the corresponding file.=A0</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">in your spe=
-cific case, COMPRESS_CMD_gz is set in =A0meta/classes/image_types.bbclass, =
-which is inherited in image.bbclass. So if you want to override it, you nee=
-d to do it *after* your inherit &quot;image&quot; in your own image .bb fil=
-e (or core-image, if that&#39;s what you use).=A0</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">you can how=
- bitbake parsed a variable with:</div><div class=3D"gmail_extra"><br></div>=
-<div class=3D"gmail_extra">bitbake -e &lt;image&gt; | grep ^VARIABLE.</div>=
-<div class=3D"gmail_extra">
-
-<br></div><div class=3D"gmail_extra">E.g. in my image, after adding:</div><=
-div class=3D"gmail_extra"><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">inherit core-image</div><div class=3D"gmail_extra">+COMPRE=
-SS_CMD_gz=3D&quot;my_own_gz&quot; =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</div>
-
-<div><br></div></div><div class=3D"gmail_extra">$ bitbake -e my-generic-ima=
-ge | grep ^COMPRESS_CMD_gz=A0</div><div class=3D"gmail_extra">COMPRESS_CMD_=
-gz=3D&quot;my_own_gz&quot;</div><div class=3D"gmail_extra"><br></div><div c=
-lass=3D"gmail_extra">
-
-<br></div></div>
-
---089e0153761eb3e6b104e59d6c9c--
