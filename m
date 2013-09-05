@@ -1,36 +1,37 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f45.google.com (mail-ee0-f45.google.com [74.125.83.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C649EE01415
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 01:02:48 -0700 (PDT)
-Received: by mail-ee0-f45.google.com with SMTP id c50so696065eek.32
-	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 01:02:47 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
+	[209.85.128.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6C9BE01415
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 01:05:38 -0700 (PDT)
+Received: by mail-ve0-f171.google.com with SMTP id pa12so927136veb.2
+	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 01:05:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=Ka0Iho0vYKiq4IP95pWKlIDM0TbvElxYqCOJoLwqhFA=;
-	b=OAFw8yl09XkQ5NAMkWOhNmrkM4QgAgeWJU3aGjBtvCp/uPrOZDVT6ZpSW6NFPPuKfM
-	DpcP84ItIZhrNeImUZ/OKfUfY2KWT7MhQ94I/oPpX5PFGulyEDG4QXK7Jmv5gr+edvrY
-	ViQVwQIBiDEOyfRDMeJNeSNpP/p2K8ZBCqAfm2SxzlChohbP370VBnRGcbdEGHdYpub7
-	wmI1kVoLs4AjNC0sn8RVo2MUyv4Z8FUCDEnORQ5LptI3g9MiqYYKmahGat7SdU3H3mEA
-	CR41UUSrZgSkl++R+jyKqeGkOSb6AuTDax3ju07h0ha6gQb/sKvxf1GQTBEe040ZKUWP
-	RigQ==
-X-Received: by 10.14.225.199 with SMTP id z47mr11678945eep.24.1378368167778;
-	Thu, 05 Sep 2013 01:02:47 -0700 (PDT)
-Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
-	by mx.google.com with ESMTPSA id
-	j7sm46434607eeo.15.1969.12.31.16.00.00
-	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 05 Sep 2013 01:02:47 -0700 (PDT)
-Date: Thu, 5 Sep 2013 10:04:07 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-ID: <20130905080407.GH11500@jama>
-References: <1497435.xtb1AxO9Wj@helios>
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=cH1PYJvO5xVI+fv5fagKhHAibSXVIU/LIgdTZdPsZyo=;
+	b=JKDvls2rSDcVxEwT7QWz4+hzLOAcMCKI/pOAifHC2PT75zzizx3Qic+M3xmVtYd8ZZ
+	2TT/Eg4qwUWCesfz/CqUpI/cka4q+aiA3dfX4EeVsbPEp22dO7cyDRi4eb9ETivZeYNK
+	Lk9F1y13onXEiV2171ya1DGezbkMnKY+3TCzLzgpYsOyFTFwRVcMxe1bnzkFHX+Yaur/
+	18pAWUx63/dXrdaWxt7snxCF2TcDK0nxiaJPpqHuUyUR3UtAyP4CySiNTaxSV2WGDmIT
+	8lNxatXWQ80B1U8HBJQNU3/kBQDnyiL2LSwsmdGfgs4VJrKBKrTh1wxWJd4MNOg6WQVZ
+	FKuQ==
+X-Received: by 10.221.44.136 with SMTP id ug8mr1080721vcb.13.1378368337642;
+	Thu, 05 Sep 2013 01:05:37 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1497435.xtb1AxO9Wj@helios>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: [OE-core] OpenEmbedded Layer Index updated
+Sender: paul.betafive@gmail.com
+Received: by 10.220.155.17 with HTTP; Thu, 5 Sep 2013 01:04:56 -0700 (PDT)
+In-Reply-To: <522838E7.1060007@vtkloud.com>
+References: <5227629A.5090505@vtkloud.com> <52276400.6070307@mlbassoc.com>
+	<522830FF.6090100@vtkloud.com>
+	<CANyK_8fN2_OYy6nRvud7udkS0Sp+gqWkaO7xHvJ9X5mZJ-ZC5Q@mail.gmail.com>
+	<522838E7.1060007@vtkloud.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Thu, 5 Sep 2013 09:04:56 +0100
+X-Google-Sender-Auth: wyuyWSjx76CrFWddS10RZ0F17vs
+Message-ID: <CANyK_8f0bwoB8sd6PdN4ZV=bZtw6E-6AqQAQnMB9j7QgAypmtA@mail.gmail.com>
+To: JC <jc@vtkloud.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: raspberry layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,58 +43,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 08:02:50 -0000
-X-Groupsio-MsgNum: 15865
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="3ecMC0kzqsE2ddMN"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 05 Sep 2013 08:05:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---3ecMC0kzqsE2ddMN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 5 September 2013 08:55, JC <jc@vtkloud.com> wrote:
+>
+> As a reference, following this link
+> http://www.pimpmypi.com/blog/blogPost.php?blogPostID=7 I got successful
+> (well the image is not yet finished but I hadn't that specific parsing
+> error)
+>
+> I followed the exact README steps in a fresh directory for the checkout, so
+> I am on the trunk for poky & meta-raspberrypi...
+>
 
-On Thu, Sep 05, 2013 at 01:10:47AM +0100, Paul Eggleton wrote:
-> As always, feedback is welcome.
+The log you've attached shows paths for poky as well as
+openembedded-core. Poky is basically a combination of
+openembedded-core, meta-yocto and bitbake so you don't want to add
+openembedded-core again. Could you post your full bblayers.conf?
 
-Great job!
+-- 
+Paul Barker
 
-One more suggestion (maybe I've overlooked it):
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
-It would be nice to be able to search recipe across all branches
-(including oe-classic)
-
-e.g. if someone asks me to include ace in our builds I would like to
-just search for ace, like:
-http://layers.openembedded.org/layerindex/branch/master/recipes/?q=3Dace
-
-and find it's not in master/dylan/danny, but that it still is in
-oe-classic
-http://layers.openembedded.org/layerindex/oe-classic/recipe/13881/
-
-Now I have to run the same search in 2-4 different branches to be sure
-there isn't recipe for ace already.
-
-In many cases we can assume that if something isn't in master then it
-isn't in danny/dylan, but that's not true for e.g. mysql5 which should
-correctly show availability in oe-classic/danny/dylan (and master has
-mariadb).
-
-Regards,
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---3ecMC0kzqsE2ddMN
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.21 (GNU/Linux)
-
-iEYEARECAAYFAlIoOvcACgkQN1Ujt2V2gBwBvQCfWggLASgqAFoEd1TJmtRETXc8
-4egAn0f5Mu4I8XKXVlgpSx036MpJBFV+
-=Dm2u
------END PGP SIGNATURE-----
-
---3ecMC0kzqsE2ddMN--
