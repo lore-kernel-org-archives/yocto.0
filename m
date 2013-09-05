@@ -1,35 +1,39 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
-	[209.85.128.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4AD2E00747
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 08:42:35 -0700 (PDT)
-Received: by mail-ve0-f169.google.com with SMTP id db12so689026veb.28
-	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 08:42:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=3Ec5Pq3f76w7xCYsvUBTP8Bwrq7GKvnd8dWVAXouZ5E=;
-	b=MGVJxzXj/goLL/9o3ynpAf1Df7uZ32HldCB2yBul/b8jSQvQsGce5YSK6LFY/kiMOd
-	2CTpHSY/arqDdrGFAUqqc8n4wTTg+U7/XLOd3B13V/oKHwNw+m7Ajzwz2fo+XBAFjTs9
-	EJjC4TkRspwril3x1kqutShilIg23+dKrRvR84iDk1/r2o9uIBTvYvS63XK0ExHqwmDV
-	hFIoNYhTzTmV4sQh+WBZRrwrnmhBz9v4oSZ7kpw8cERlGW2QkJKbmx8yEnIx9HHoygvf
-	IQmbtZfZjF5o7ziYSgyfAm+W7W5R+Xb7oxeZAjpn5q2QZHhnrem1divgVOvw/vhdenJG
-	UtAw==
-X-Gm-Message-State: ALoCoQmkv6WLknc5MoshQApuH3j6yb5fxspyr3FsghCs5I1m6BPmbxs2PKltGG4UeAr4T2aEP5dk
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
+	[209.85.214.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8FA3E013AD
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 08:44:47 -0700 (PDT)
+Received: by mail-ob0-f170.google.com with SMTP id eh20so2184751obb.15
+	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 08:44:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=iOXtPJaWEO+uUiJ73dZ4V5T4eACAsoXL84zSUQ+n0cA=;
+	b=nB5bYxXeAUCjVT4C6P2WDMs8XuhtcXGTEnjuje8lFjjM7DtZFnZCDVvtDaKqG67EqU
+	3IObsXdYnE3LsU9nCEhxpr8zEs2onAxpIGFdByH2LuiYlZt4kd22MgT/3ZgM6jFdMmpH
+	tXcI7kQZWd5Nqul0sopJXae8iB2CvMNyEKsqVasYBhNBS6nURBk4hDIhU2g/SkwTlR1f
+	LPrmaBZQth/nnc+XaOAoiCAGOJIXIFvFGpWYHqUoVwEu8kKFdMDPrrL3KibsbnDBdExK
+	5tz2aOE3JkAY/K8PKbbL0Ux0aRpHLq89EHlXf2lQgJNTx2aZx7vusxXmDnUFyhIUyqP9
+	2jSg==
 MIME-Version: 1.0
-X-Received: by 10.58.73.202 with SMTP id n10mr8518503vev.7.1378395754766; Thu,
-	05 Sep 2013 08:42:34 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Thu, 5 Sep 2013 08:42:34 -0700 (PDT)
-In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153AF66130B@pluto.melinkcorp.local>
-References: <91586D499ADFD74FBCFB8425266A5DE40153AF66130B@pluto.melinkcorp.local>
-Date: Thu, 5 Sep 2013 08:42:34 -0700
-Message-ID: <CAPhnLPDn+4uqhhv-4-BVKqGOMtmQJSzHOEshhZnVzuCn9+9xVQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Bryan Evenson <bevenson@melinkcorp.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto-autobuilder: Questions on autobuilder setup
+X-Received: by 10.182.225.162 with SMTP id rl2mr6889668obc.72.1378395886345;
+	Thu, 05 Sep 2013 08:44:46 -0700 (PDT)
+Received: by 10.182.44.8 with HTTP; Thu, 5 Sep 2013 08:44:46 -0700 (PDT)
+In-Reply-To: <CAFyqS9rvkdVYnAb2tJdaNaoxav5_5QcPNG0-mxrWN1-qamHcKw@mail.gmail.com>
+References: <CAFyqS9ph4qdURC517N7cDr_05KS3kQJMgoQ-tMV+vLUXwMd70A@mail.gmail.com>
+	<CAFyqS9qZAsFnXn2CF7-K6fWK3yEMLAZbDTkx_a81=s+Nj=ugUw@mail.gmail.com>
+	<5226FF30.9010000@vtkloud.com>
+	<CAFyqS9r=urMtznxZphVbnKEHiOrPVBGDtVFH1a8hisY2rcqrDQ@mail.gmail.com>
+	<CAFyqS9pRok8XEurH+r0Z6jTNiqADML1b1+xmPRzY49WMjVc6ww@mail.gmail.com>
+	<CAFyqS9pWkNq6-yH8DVgqYXZrZKdUBdghogs6iyh+_1AbDdeYKA@mail.gmail.com>
+	<CAFyqS9rQ8vNtCtQO-MYQ2Jbr8xHmH-k1JjS6D__ic6PrOfN5Dg@mail.gmail.com>
+	<CAFyqS9o+HWcMBBD_=E4Bm-XSO5U0yKmJRtE4RbotiKCdABWO2Q@mail.gmail.com>
+	<CAFyqS9rvkdVYnAb2tJdaNaoxav5_5QcPNG0-mxrWN1-qamHcKw@mail.gmail.com>
+Date: Thu, 5 Sep 2013 17:44:46 +0200
+Message-ID: <CAFyqS9rJG0T1EAVZ=eTBpoOhO-FVjs28S8eWRtohF3hLzZg1+A@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: libtool problem?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,146 +45,569 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 15:42:38 -0000
+X-List-Received-Date: Thu, 05 Sep 2013 15:44:47 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 5, 2013 at 6:53 AM, Bryan Evenson <bevenson@melinkcorp.com> wro=
-te:
-> I am working on getting the Yocto Autobuilder setup on a machine to do ni=
-ghtly builds of my image (I'm using yocto-autobuilder/dylan).  However, I'm=
- running into a few problems and I'm looking for some help.
+On Thu, Sep 5, 2013 at 9:40 AM, Hans Beck=E9rus <hans.beckerus@gmail.com> w=
+rote:
+> On Wed, Sep 4, 2013 at 6:06 PM, Hans Beck=E9rus <hans.beckerus@gmail.com>=
+ wrote:
+>> On Wed, Sep 4, 2013 at 5:02 PM, Hans Beck=E9rus <hans.beckerus@gmail.com=
+> wrote:
+>>> On Wed, Sep 4, 2013 at 12:21 PM, Hans Beck=E9rus <hans.beckerus@gmail.c=
+om> wrote:
+>>>> On Wed, Sep 4, 2013 at 12:03 PM, Hans Beck=E9rus <hans.beckerus@gmail.=
+com> wrote:
+>>>>> On Wed, Sep 4, 2013 at 11:56 AM, Hans Beck=E9rus <hans.beckerus@gmail=
+.com> wrote:
+>>>>>> On Wed, Sep 4, 2013 at 11:36 AM, JC <jc@vtkloud.com> wrote:
+>>>>>>> On 04/09/2013 11:24, Hans Beck=E9rus wrote:
+>>>>>>>>
+>>>>>>>> On Wed, Sep 4, 2013 at 9:53 AM, Hans Beck=E9rus <hans.beckerus@gma=
+il.com>
+>>>>>>>> wrote:
+>>>>>>>>>
+>>>>>>>>> Hi. I recently discovered that our populated SDK can not properly
+>>>>>>>>> build much at all :(
+>>>>>>>>> libtool complains about .la files that have been moved and not be=
+ing
+>>>>>>>>> able to find dito.
+>>>>>>>>> The rootfs builds fine however. What I did noticed was that in ou=
+r .la
+>>>>>>>>> files we get lines like this:
+>>>>>>>>>
+>>>>>>>>> dependency_libs=3D' =3D/usr/lib/libxcb.la =3D/usr/lib/libXau.la
+>>>>>>>>> =3D/usr/lib/libXdmcp.la'
+>>>>>>>>>
+>>>>>>>>> Is that '=3D'-sign really supposed to be there? Is that why many =
+builds
+>>>>>>>>> fails to properly locate the .la files?
+>>>>>>>>>
+>>>>>>>> The '=3D'-sign is still a mystery to me. But it does not seem to m=
+atter
+>>>>>>>> much.
+>>>>>>>> If I configure my packages (built from the SDK toolchain) using
+>>>>>>>>
+>>>>>>>> '--with-libtool-sysroot=3D/home/toolchain/sysroots/cortexa9-vfp-po=
+ky-linux-gnueabi/'
+>>>>>>>> it works! But should that really be needed? Is the path to be used=
+ by
+>>>>>>>> libtool not supposed to be automatically resolved to point at the
+>>>>>>>> toolchain sysroot in cross-compilation environment?
+>>>>>>>
+>>>>>>>
+>>>>>>> In my case '--with-libtool-sysroot' is correctly resolved by the SD=
+K setup,
+>>>>>>> but ./configure complains it does not recognize it, so I end up not=
+ being
+>>>>>>> able to test generated (dynamically linked) binaries. The common "h=
+ello
+>>>>>>> world" template says it cannot find ld-linux, and indeed it's in th=
+e path of
+>>>>>>> libtool-sysroot.
+>>>>>>>
+>>>>>>> Googling it did not helped me to resolve the issue :(
+>>>>>>>
+>>>>>> Yes, in my case the script sourced also resolves the path correct to
+>>>>>> CONFIGURE_FLAGS, but that is not automatically used by a generated
+>>>>>> configure script is it!? I guess that is why I need to add it manual=
+ly
+>>>>>> each time. You should not to do that, or?
+>>>>>>
+>>>>> According to generated 'configure' the option should not be needed.
+>>>>>
+>>>>>   --with-libtool-sysroot=3DDIR Search for dependent libraries within =
+DIR
+>>>>>                         (or the compiler's sysroot if not specified).
+>>>>>
+>>>>> So, if --with-libtool-sysroot is not set it should pick it up from
+>>>>> whatever the compiler is using.
+>>>>> That does not seem to work :(
+>>>>>
+>>>> Ah. Is not the problem here that the cross-compiler is broken?
+>>>>
+>>>> Configured with:
+>>>> /home/poky/build/tmp/work-shared/gcc-4.7.2-r20/gcc-4.7.2/configure
+>>>> --build=3Dx86_64-linux --host=3Dx86_64-pokysdk-linux
+>>>> --target=3Darm-poky-linux-gnueabi
+>>>> --prefix=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/=
+usr
+>>>> --exec_prefix=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-l=
+inux/usr
+>>>> --bindir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/=
+usr/bin/cortexa9-vfp-poky-linux-gnueabi
+>>>> --sbindir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux=
+/usr/bin/cortexa9-vfp-poky-linux-gnueabi
+>>>> --libexecdir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-li=
+nux/usr/libexec/cortexa9-vfp-poky-linux-gnueabi
+>>>> --datadir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux=
+/usr/share
+>>>> --sysconfdir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-li=
+nux/etc
+>>>> --sharedstatedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysd=
+k-linux/com
+>>>> --localstatedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk=
+-linux/var
+>>>> --libdir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/=
+usr/lib/cortexa9-vfp-poky-linux-gnueabi
+>>>> --includedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-li=
+nux/usr/include
+>>>> --oldincludedir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk=
+-linux/usr/include
+>>>> --infodir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux=
+/usr/share/info
+>>>> --mandir=3D/opt/poky-chris/1.4+snapshot/sysroots/x86_64-pokysdk-linux/=
+usr/share/man
+>>>> --disable-silent-rules --disable-dependency-tracking
+>>>> --with-libtool-sysroot=3D/home/poky/build/tmp/sysroots/x86_64-nativesd=
+k-pokysdk-linux
+>>>> --with-gnu-ld --enable-shared --enable-languages=3Dc,c++
+>>>> --enable-threads=3Dposix --enable-multilib --enable-c99
+>>>> --enable-long-long --enable-symvers=3Dgnu --enable-libstdcxx-pch
+>>>> --program-prefix=3Darm-poky-linux-gnueabi- --without-local-prefix
+>>>> --enable-target-optspace --enable-lto --enable-libssp
+>>>> --disable-bootstrap --disable-libmudflap --with-system-zlib
+>>>> --with-linker-hash-style=3Dgnu --enable-linker-build-id --with-ppl=3Dn=
+o
+>>>> --with-cloog=3Dno --enable-checking=3Drelease --enable-cheaders=3Dc_gl=
+obal
+>>>> --with-gxx-include-dir=3D/opt/poky-chris/1.4+snapshot/sysroots/cortexa=
+9-vfp-poky-linux-gnueabi/usr/include/c++
+>>>> --with-build-time-tools=3D/home/poky/build/tmp/sysroots/x86_64-linux/u=
+sr/arm-poky-linux-gnueabi/bin
+>>>> --with-sysroot=3D/opt/poky-chris/1.4+snapshot/sysroots/cortexa9-vfp-po=
+ky-linux-gnueabi
+>>>> --with-build-sysroot=3D/home/poky/build/tmp/sysroots/zynq-zc706
+>>>> --disable-libunwind-exceptions --disable-libssp --disable-libgomp
+>>>> --disable-libmudflap
+>>>> --with-mpfr=3D/home/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-l=
+inux
+>>>> --with-mpc=3D/home/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-li=
+nux
+>>>> --enable-nls
+>>>>
+>>>> There are several hardcoded paths to /opt/...!?
+>>>> That is not where my toolchain is installed I am afraid :( Have I done
+>>>> something wrong in my configuration that is causing populate_sdk to
+>>>> produce a broken toolchain like this?
+>>>> Also, there are several 'sysroots' pointed to. And one of those is my
+>>>> actual Yocto build location?
+>>>> This looks really messed up :(
+>>>>
+>>>>
+>>> Ok. I have done some further tests now and my conclusion is that
+>>> something is definitely broken in the way the toolchain is prepared.
+>>> The references to /opt/... in the case above comes due to having the
+>>> default SDKPATH as set by meta-yocto/conf/distro/poky.conf. Fine. I
+>>> then changed our distro to override SDKPATH to point to the actual
+>>> path for which we install the SDK and rebuilt. About an hour later I
+>>> tried it out just to find that it is still not handling libtool things
+>>> properly :( I still have to force the use of --with-libtool-sysroot
+>>> when configuring packages to make the build stage pass without errors!
+>>> Can someone confirm if this is a bug in libtool, in the way Yocto sets
+>>> it up, or if I am doing something wrong? As a workaround I guess it is
+>>> possible to always do "./configure $CONFIGURE_FLAGS <other options>",
+>>> but surely, this can not be how it was supposed to work?
+>>>
+>>> Thanks.
+>>> Hans
+>>>
+>>>
+>> First of all. I am really sorry for spamming this forum and this
+>> subject. But I really need to sort this out and I have some new
+>> information I would like to share. I believe I have found the root
+>> cause of the problem, at least the one that we have with improper
+>> resolution of .la files.
+>> In the generated '<host-target>-libtool' file the variable
+>> 'lt_sysroot' remains unset unless --with-libtool-sysroot is set to
+>> something! That I believe is the bug! It should in the case of
+>> omitting --with-libtool-sysroot be set to the output from e.g. 'gcc
+>> --print-sysroot'! Or maybe more correctly:
+>>
+>>     if test "$GCC" =3D yes; then
+>>       lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+>>     fi
+>>
+>> Also, I now discovered the purpose of prefixing dependency paths in
+>> .la files with '=3D' ;) It is used to flag the libtool script to replace
+>> =3D with $lt_sysroot. Never seen that before ;)
+>>
+>> Someone that can comment on this? Is this a know bug in our running
+>> version of Yocto?
+>> Any clues how this could be fixed otherwise? What is generating the
+>> actual libtool script?
+>>
+>> Build Configuration:
+>> BB_VERSION        =3D "1.19.0"
+>> BUILD_SYS         =3D "x86_64-linux"
+>> NATIVELSBSTRING   =3D "SUSE-LINUX-11"
+>> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
+>> MACHINE           =3D "zynq-zc706"
+>> DISTRO            =3D "poky-chris"
+>> DISTRO_VERSION    =3D "1.4+snapshot-20130904"
+>> TUNE_FEATURES     =3D "armv7a vfp cortexa9"
+>> TARGET_FPU        =3D "vfp"
+>> meta
+>> meta-yocto
+>> meta-yocto-bsp    =3D "master:0c0bb02f5104e3856c9d90088e1ece08652cc19f"
+>> meta-oe           =3D "master:7c292ce28756824b1fa377d516aedd979fa41f19"
+>>
+>> Thanks.
+>> Hans
+>>
+> Ok, the problem is in the generated configure script! I saw Khem had a
+> patch in Yocto to change --with-sysroot to --with-libtool-sysroot, but
+> there is one more error in the code below
 >
-> First, here is the configuration that I have setup so far for my nightly =
-build.  I would like to build core-image-minimal for qemuarm and for the at=
-91sam9x5ek machine that is provided by the meta-atmel layer.
+> lt_sysroot=3D
+> case ${with_libtool_sysroot} in #(
+>  yes)
+>    if test "$GCC" =3D yes; then
+>      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+>    fi
+>    ;; #(
+>  /*)
+>    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"=
+`
+>    ;; #(
+>  no|'')
+>    ;; #(
+>  *)
+>    { $as_echo "$as_me:${as_lineno-$LINENO}: result: ${with_libtool_sysroo=
+t}" >&5
+> $as_echo "${with_libtool_sysroot}" >&6; }
+>    as_fn_error $? "The sysroot must be an absolute path." "$LINENO" 5
+>    ;;
+> esac
 >
-> [nightly-atmel]
-> builders: 'builder1'
-> repos: [{'poky':
->             {'repourl':'git://git.yoctoproject.org/poky',
->                  'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bs=
-p'},
->              'branch':'dylan'}},
->         {'meta-atmel':
->             {'repourl':'git://github.com/evensonbryan/meta-atmel',
->              'branch':'master'}},
->         {'meta-openembedded':
->             {'repourl':'git://git.openembedded.org/meta-openembedded',
->              'branch':'dylan'}}]
-> steps: [{'SetDest':{}},
->         {'CheckOutLayers': {}},
->         {'RunPreamble': {}},
->         {'GetDistroVersion' : {'distro': 'poky'}},
->         {'CreateAutoConf': {'machine': 'qemuarm', 'SDKMACHINE' : 'i686', =
-'distro': 'poky', 'buildhistory' : True}},
->         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
->         {'SyncPersistDB' : {'distro' : 'poky'}},
->         {'BuildImages': {'images': 'core-image-minimal'}},
->         {'RunSanityTests': {'images': 'core-image-minimal'}},
->         {'CreateAutoConf': {'machine': 'at91sam9x5ek', 'SDKMACHINE' : 'i6=
-86', 'distro': 'poky'}},
->         {'BuildImages': {'images': 'core-image-minimal'}},
->         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
->         {'PublishLayerTarballs':{}},
->         {'PublishArtifacts': {'artifacts': ['qemuarm', 'at91sam9x5ek', 'i=
-pk']}}]
+> The yes) and no) switch cases should be swapped! Now if
+> -with-libtool-sysroot=3Dyes it will pick up lt_sysroot from the
+> compiler! And not vice versa! This is definitely wrong.
+> Please advice. Is this something that can be fixed in the scope of
+> Yocto or must a solution to this come from autotools? Can I patch this
+> somehow in Yocto? The patch I guess must be in the code that generates
+> the configure script.
 >
-> I modified yoctoAB.conf to only include this build in its build sets.  Ot=
-her than I have not modified any other configuration.
+> Thanks.
+> Hans
 >
-> 1. Besides the README files that comes with Autobuilder, is there any mor=
-e documentation somewhere that details how to setup Autobuilder?
-
-There isn't much documentation other than reading lib/autobuilder/*.
-It's something I'm working on fixing over the next few weeks.
-
-One thing to not though. This looks like old autobuilder config. You
-should update the ab to current master.
-
-> Most of the details I've seen on the Yocto Project website discuss the ou=
-tput from the Yocto Project's own Autobuilder instance, but not much for de=
-tails on what the different variables in the .conf files mean and what the =
-> options are (and a place to contribute answers to the following questions=
-).
-
-Right here. I more than welcome patches.
-
 >
-> 2. The resulting local.conf for the nightly-atmel build has MACHINE set t=
-o "qemux86" (MACHINE ??=3D "qemux86" is the only MACHINE definition in loca=
-l.conf).  I thought the CreateAutoConf settings should have been
-setting this variable to something else. What did I miss?
 
-We don't care about local.conf in autobuilder land. We use auto.conf.
-The difference? None really, just parse order.
+I have now prepared a patch that will fix this problem i Yocto. Since
+no one (so far) commented on this issue I interpreted the silence as
+that nothing has been done about this bug. But I am very surprised, to
+say the least, that this problem has passed unnoticed!
+The patch goes into meta/recipes-development/libtool/libtool. This
+patch *must* be applied after Khems patch that renames --with-sysroot
+to --with-libtool-sysroot (rename-with-sysroot.patch).
+After applying the patch (and added it to libtool-2.4.2.inc) the
+populated SDK toolchain works as expected also when
+--with-libtool-sysroot is not provided, instead it is picked up from
+$CC --print-sysroot. I have filed a bug report to bug-libtool since
+the real problem is in libtool itself, not Yocto.
 
->
-> 3. The resulting bblayer.conf for this build only includes meta, meta-yoc=
-to and meta-yocto-bsp.  I want to add the layers meta-atmel, meta-openembed=
-ded/meta-oe and meta-openembedded/meta-networking.  How do I get these laye=
-rs added to bblayers.conf, and how do I set the order?
+Thanks.
+Hans
+
+---
+
+diff -ur libtool-2.4.2.orig/configure libtool-2.4.2/configure
+--- libtool-2.4.2.orig/configure 2013-09-05 10:37:50.982677000 +0200
++++ libtool-2.4.2/configure 2013-09-05 10:12:24.551681000 +0200
+@@ -6814,7 +6814,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -6822,7 +6822,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/libltdl/configure libtool-2.4.2/libltdl/configu=
+re
+--- libtool-2.4.2.orig/libltdl/configure 2013-09-05 10:37:24.738048000 +020=
+0
++++ libtool-2.4.2/libltdl/configure 2013-09-05 10:38:44.540026000 +0200
+@@ -6027,7 +6027,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -6035,7 +6035,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/libltdl/m4/libtool.m4
+libtool-2.4.2/libltdl/m4/libtool.m4
+--- libtool-2.4.2.orig/libltdl/m4/libtool.m4 2013-09-05 10:37:24.690013000 =
++0200
++++ libtool-2.4.2/libltdl/m4/libtool.m4 2013-09-05 12:05:51.560281000 +0200
+@@ -1234,7 +1234,7 @@
+ dnl in case the user passed a directory name.
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -1242,7 +1242,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    AC_MSG_RESULT([${with_libtool_sysroot}])
+diff -ur libtool-2.4.2.orig/tests/cdemo/configure
+libtool-2.4.2/tests/cdemo/configure
+--- libtool-2.4.2.orig/tests/cdemo/configure 2013-09-05 10:37:24.793021000 =
++0200
++++ libtool-2.4.2/tests/cdemo/configure 2013-09-05 10:39:01.039463000 +0200
+@@ -5907,7 +5907,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -5915,7 +5915,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/demo/configure
+libtool-2.4.2/tests/demo/configure
+--- libtool-2.4.2.orig/tests/demo/configure 2013-09-05 10:37:24.878048000 +=
+0200
++++ libtool-2.4.2/tests/demo/configure 2013-09-05 10:39:15.357833000 +0200
+@@ -5905,7 +5905,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -5913,7 +5913,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/depdemo/configure
+libtool-2.4.2/tests/depdemo/configure
+--- libtool-2.4.2.orig/tests/depdemo/configure 2013-09-05
+10:37:25.003086000 +0200
++++ libtool-2.4.2/tests/depdemo/configure 2013-09-05 10:39:33.424217000 +02=
+00
+@@ -5902,7 +5902,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -5910,7 +5910,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/f77demo/configure
+libtool-2.4.2/tests/f77demo/configure
+--- libtool-2.4.2.orig/tests/f77demo/configure 2013-09-05
+10:37:25.232029000 +0200
++++ libtool-2.4.2/tests/f77demo/configure 2013-09-05 12:02:54.749911000 +02=
+00
+@@ -6887,7 +6887,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -6895,7 +6895,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/fcdemo/configure
+libtool-2.4.2/tests/fcdemo/configure
+--- libtool-2.4.2.orig/tests/fcdemo/configure 2013-09-05
+10:37:25.320032000 +0200
++++ libtool-2.4.2/tests/fcdemo/configure 2013-09-05 12:03:34.350859000 +020=
+0
+@@ -6986,7 +6986,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -6994,7 +6994,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/mdemo/configure
+libtool-2.4.2/tests/mdemo/configure
+--- libtool-2.4.2.orig/tests/mdemo/configure 2013-09-05 10:37:25.458028000 =
++0200
++++ libtool-2.4.2/tests/mdemo/configure 2013-09-05 12:04:04.233622000 +0200
+@@ -5934,7 +5934,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -5942,7 +5942,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/mdemo2/configure
+libtool-2.4.2/tests/mdemo2/configure
+--- libtool-2.4.2.orig/tests/mdemo2/configure 2013-09-05
+10:37:25.564096000 +0200
++++ libtool-2.4.2/tests/mdemo2/configure 2013-09-05 12:04:36.688447000 +020=
+0
+@@ -5907,7 +5907,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -5915,7 +5915,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/pdemo/configure
+libtool-2.4.2/tests/pdemo/configure
+--- libtool-2.4.2.orig/tests/pdemo/configure 2013-09-05 10:37:25.619085000 =
++0200
++++ libtool-2.4.2/tests/pdemo/configure 2013-09-05 12:04:50.578801000 +0200
+@@ -5910,7 +5910,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -5918,7 +5918,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
+diff -ur libtool-2.4.2.orig/tests/tagdemo/configure
+libtool-2.4.2/tests/tagdemo/configure
+--- libtool-2.4.2.orig/tests/tagdemo/configure 2013-09-05
+10:37:25.727040000 +0200
++++ libtool-2.4.2/tests/tagdemo/configure 2013-09-05 12:05:11.896353000 +02=
+00
+@@ -6926,7 +6926,7 @@
+
+ lt_sysroot=3D
+ case ${with_libtool_sysroot} in #(
+- yes)
++ no)
+    if test "$GCC" =3D yes; then
+      lt_sysroot=3D`$CC --print-sysroot 2>/dev/null`
+    fi
+@@ -6934,7 +6934,7 @@
+  /*)
+    lt_sysroot=3D`echo "$with_libtool_sysroot" | sed -e "$sed_quote_subst"`
+    ;; #(
+- no|'')
++ yes|'')
+    ;; #(
+  *)
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+${with_libtool_sysroot}" >&5
 
 
-{'CreateBBLayersConf': {'buildprovider' : 'yocto', 'layerdirs':
-['meta-atmel', 'meta-openembedded/meta-oe',
-'meta-openembedded/meta-networking']}},
-
-
->
-> 4. I am using poky/dylan-9.0.1 as a base, but I have a few patches that I=
- applied myself.  Namely, there is a 10 patch series applied to poky/master=
- by Chen Qi that I am using to remove tinylogin and use Busybox for passwor=
-d management.  How do I tell Autobuilder to apply these patches on top of p=
-oky/dylan-9.0.1?
-
-I assume you have a git repo with 9.0.1 and these 10 patches? If so,
-do it in the repo definition for poky
-
->
-> 5. I am getting the following errors when the autobuilder attempts to bui=
-ld qemu-native:
-> In file included from /media/sda3/yocto-autobuilder/yocto-slave/nightly-a=
-tmel/build/build/tmp/work/i686-linux/qemu-native/1.4.0-r0/qemu-1.4.0/linux-=
-user/syscall.c:3705:0:
-> /media/sda3/yocto-autobuilder/yocto-slave/nightly-atmel/build/build/tmp/w=
-ork/i686-linux/qemu-native/1.4.0-r0/qemu-1.4.0/linux-user/ioctls.h:189:1: e=
-rror: 'SNDCTL_DSP_MAPINBUF' undeclared here (not in a function)
-> /media/sda3/yocto-autobuilder/yocto-slave/nightly-atmel/build/build/tmp/w=
-ork/i686-linux/qemu-native/1.4.0-r0/qemu-1.4.0/linux-user/ioctls.h:190:1: e=
-rror: 'SNDCTL_DSP_MAPOUTBUF' undeclared here (not in a function)
-> /media/sda3/yocto-autobuilder/yocto-slave/nightly-atmel/build/build/tmp/w=
-ork/i686-linux/qemu-native/1.4.0-r0/qemu-1.4.0/linux-user/ioctls.h:245:1: e=
-rror: 'SOUND_MIXER_ACCESS' undeclared here (not in a function)
->
-> I remember having similar issues when trying to setup Yocto ADT for my sy=
-stem and that I had to do "bitbake -c populate_sdk core-image-minimal" firs=
-t.  Do I need to do something similar before building for qemuarm?
-
-You shouldn't. This sounds like you're not using the toolchain you
-built out maybe?
-
-> If so, how do I tell the Autobuilder to do it?
-
-You'll need to source the env setup for the toolchain in your bashrc
-
->
-> 6. I have not included it yet, but I have my own layer for a few of my ow=
-n applications.  We are using Subversion for our version control system, so=
- my layer is stored in a Subversion repository.  After looking at yocto-aut=
-obuilder/lib/python-2.7/site-packages/autobuilder/buildsteps/CheckOutLayers=
-.py, it looks like the Autobuilder requires all layers to be in a Git repos=
-itory.  What would it take to add compatiblity for a layer residing in a Su=
-bversion repository?
-
-Hrmmm.... CheckOutLayers is a bit special and only supports git right
-now. Let me think about the best way to do this. It will take a little
-bit of work to do it right. Could you open a bug on this?
-
--b
-
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+>>>>>>> Jay
+>>>>>>>
+>>>>>>> _______________________________________________
+>>>>>>> yocto mailing list
+>>>>>>> yocto@yoctoproject.org
+>>>>>>> https://lists.yoctoproject.org/listinfo/yocto
 
