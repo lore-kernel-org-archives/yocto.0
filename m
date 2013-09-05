@@ -1,30 +1,34 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
-	[209.85.215.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BC13E01412
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2013 18:09:27 -0700 (PDT)
-Received: by mail-la0-f52.google.com with SMTP id ev20so976219lab.25
-	for <yocto@yoctoproject.org>; Wed, 04 Sep 2013 18:09:26 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA828E01415
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2013 23:49:48 -0700 (PDT)
+Received: by mail-vc0-f175.google.com with SMTP id ia10so830776vcb.20
+	for <yocto@yoctoproject.org>; Wed, 04 Sep 2013 23:49:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=02dLnXgg3uvzXtkrrhviD8tmWok2q+Gwpuc+hupFDh4=;
-	b=jyG0JHQDoIEUWyY/HQUXI7rLTn+PRUVSZ6otpjuxjERZuI0wXKYGAe0SXkS5MgsHmO
-	DD388JgSQrfDJ4jC47hzi8WmZLWJ6qJAb5OeMkluR3INUe37to8st6BQpIkvAAGu4yMN
-	dWWfjAOhCX199Im3b/4tBYavNv3lFCMoLR47s0B2S2h0syNArMoyzarFJKTWC6jmIdt1
-	bILauACJRu/0u/pWJ/MX4mciihWV015FglD86hbQ9sjqk5tYFwNk02sdwrztphRMUYfB
-	oQayjP4uEkW3rVf0Ds/ruBrwUvXRCsuOypmvo66bbIB9O0mSF9Cl6CKNgw9hpn+WMgc0
-	Comw==
-X-Received: by 10.152.19.1 with SMTP id a1mr4901165lae.8.1378343366288; Wed,
-	04 Sep 2013 18:09:26 -0700 (PDT)
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=zZW1GhTN37qXHKGDFDGjNkqkFHpzB2vfDAZMFlADWPs=;
+	b=qZX54gH/kh5AD6G99L9MZzbgKVKdP19qqNhPeVS4y1PKeO2oyJzf+bH9htMq1osxqX
+	AufqYTLdRPDw/Fa76KbKKZl6LBfm6GPQK8rg2MMP3j7ZbU9BMqynLgyYuQ9EE9PiT8Ey
+	SLPiL0u0IsgaNEmqaBq0vNUsRwwjhdNFB2YFeUKW92k6lKc/man4KC5p4L/Yb0MtKaHY
+	fHi+IGUU7oYUyt8mDyXkq+8gwm6Lyl2H2ntlWRRqI6edgEJk7SETBb1uZK/nnENFk3F6
+	qz/tmZRPdD0micha3AJCeLcpfu6G1+MfajJtoFoCz/psDrlVjoamzPhHfoSf/oWPHgPK
+	GGmg==
+X-Received: by 10.52.173.165 with SMTP id bl5mr2642162vdc.18.1378363787531;
+	Wed, 04 Sep 2013 23:49:47 -0700 (PDT)
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.57.105 with HTTP; Wed, 4 Sep 2013 18:09:06 -0700 (PDT)
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Wed, 4 Sep 2013 18:09:06 -0700
-X-Google-Sender-Auth: K1XP6jkfP3pASFgctfVaM19GHn0
-Message-ID: <CA+YB3rYF7DvMEe0xt=_J0OeSPbj9E+9g4e-8h24XuHeMoq77QQ@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Yocto Project Challenge from Intel
+Sender: paul.betafive@gmail.com
+Received: by 10.220.155.17 with HTTP; Wed, 4 Sep 2013 23:49:07 -0700 (PDT)
+In-Reply-To: <CA+YB3rYF7DvMEe0xt=_J0OeSPbj9E+9g4e-8h24XuHeMoq77QQ@mail.gmail.com>
+References: <CA+YB3rYF7DvMEe0xt=_J0OeSPbj9E+9g4e-8h24XuHeMoq77QQ@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Thu, 5 Sep 2013 07:49:07 +0100
+X-Google-Sender-Auth: GmznayNoBasQNUVzy0gVneFtRmM
+Message-ID: <CANyK_8fU38x2EvEBybue_6_VmUWHnN6GAviKR8GbBKPK35OFwA@mail.gmail.com>
+To: Jeff Osier-Mixon <jefro@jefro.net>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Yocto Project Challenge from Intel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,17 +40,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Sep 2013 01:09:30 -0000
+X-List-Received-Date: Thu, 05 Sep 2013 06:49:51 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Intel is sponsoring a program called the Yocto Project Challenge
-(https://yoctoprojectchallenge.intel.com/). This is a contest in which
-you can win various prizes and gain international recognition as a
-Yoctoid. Your job in this case is to come up with a compelling idea
-based in embedded Linux, and make it sound great in a small space.
-Videos and images are welcome. Check it out at the link above.
+On 5 September 2013 02:09, Jeff Osier-Mixon <jefro@jefro.net> wrote:
+> Intel is sponsoring a program called the Yocto Project Challenge
+> (https://yoctoprojectchallenge.intel.com/). This is a contest in which
+> you can win various prizes and gain international recognition as a
+> Yoctoid. Your job in this case is to come up with a compelling idea
+> based in embedded Linux, and make it sound great in a small space.
+> Videos and images are welcome. Check it out at the link above.
+>
+
+Damn, my current project is based around the Beagleboard xM and is
+pretty heavily reliant on the TI/ARM architecture.
+
+I'll have a think and see if I can come up with an adapted idea that
+would run on something like the Minnowboard to enter the first part of
+the challenge. Not going to be able to enter part 2 though which is a
+shame, you won't find many other people using the Yocto Project to
+benefit marine conservation! (If anyone else is, I'd definitely like
+to hear from them)
 
 -- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
