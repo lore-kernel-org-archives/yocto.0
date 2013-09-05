@@ -1,23 +1,29 @@
-Return-Path: <joe.slater@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ABDFE00282
-	for <yocto@yoctoproject.org>; Fri,  6 Sep 2013 10:44:06 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r86Hi5H0019276
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 6 Sep 2013 10:44:05 -0700 (PDT)
-Received: from ala-jslater-lx3.wrs.com (147.11.152.42) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.2.342.3; Fri, 6 Sep 2013 10:44:04 -0700
-From: Joe Slater <jslater@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 6 Sep 2013 10:44:04 -0700
-Message-ID: <1378489444-22731-1-git-send-email-jslater@windriver.com>
-X-Mailer: git-send-email 1.7.3.4
+Return-Path: <dtran11@gmail.com>
+Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
+	[209.85.219.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 536F1E0122C
+	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 15:33:26 -0700 (PDT)
+Received: by mail-oa0-f49.google.com with SMTP id i7so3096777oag.8
+	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 15:33:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=UTuhOsU0WhhKwnqTIzIUYh7pefxaoEzOV/uELJ2LMew=;
+	b=bNRCOfWkyqVNC2wdA3Qw+Re/WF9uhyiE+ycUTfqRfPDrxnCZUNXXlW4I0ITmWvR1a+
+	PHAW0ty5T0xY6XOAPbRsdJeiOVB6ygxI2OAAH4Ve+SbD0zw6IWzZB6hhn0Lp3+5yrS9D
+	hTcfNwdGObQUD3Y45CdpFAvHoCk66N1IoSLiLGj6eJnCM+jv9Lr8DjJfA9RygpZW8LSB
+	G3gYW8zRDvOKqBzLHjMiNlPJOVUuDaeMp6Ze4pAcwPrTeqDAF6R6SRcX1gxCtK18vcc4
+	C8tAajgYsaUYQ8Mj9J5aPpPqojHoP9XMv1nqFsgQX8sItGQTrWP+tKk19zUcl16d7AO7
+	YR3g==
 MIME-Version: 1.0
-Cc: joe.slater@windriver.com
-Subject: [meta-selinux][PATCH 1/1] openssh: add PACKAGECONFIG data regarding audit
+X-Received: by 10.182.250.163 with SMTP id zd3mr8299194obc.20.1378420405825;
+	Thu, 05 Sep 2013 15:33:25 -0700 (PDT)
+Received: by 10.76.116.170 with HTTP; Thu, 5 Sep 2013 15:33:25 -0700 (PDT)
+Date: Thu, 5 Sep 2013 17:33:25 -0500
+Message-ID: <CAMCSx6b4YyA42tbmvddh-Ukc-90EhdQn14qMqHhR_ETrjL4AZw@mail.gmail.com>
+From: Dat Tran <dtran11@gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Fri, 06 Sep 2013 13:06:49 -0700
+Subject: Remove udev completely
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,37 +35,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Sep 2013 17:44:08 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 05 Sep 2013 22:33:29 -0000
+Content-Type: multipart/alternative; boundary=089e01634ec2a3f8d304e5aa827b
 
-Define audit related parameters, but do not enable
-audit support by default.
+--089e01634ec2a3f8d304e5aa827b
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Joe Slater <jslater@windriver.com>
----
- .../openssh/openssh_6.2p2.bbappend                 |   10 +++++++++-
- 1 files changed, 9 insertions(+), 1 deletions(-)
+Is there a way to remove udev completely? I am using sysvinit instead of
+systemd if that makes it any easier.
 
-diff --git a/recipes-connectivity/openssh/openssh_6.2p2.bbappend b/recipes-connectivity/openssh/openssh_6.2p2.bbappend
-index 43d459c..1e919b1 100644
---- a/recipes-connectivity/openssh/openssh_6.2p2.bbappend
-+++ b/recipes-connectivity/openssh/openssh_6.2p2.bbappend
-@@ -1,5 +1,13 @@
--PR .= ".4"
-+PR .= ".selinux4"
- 
- inherit with-selinux
- 
- FILESEXTRAPATHS_prepend := "${@target_selinux(d, '${THISDIR}/files:')}"
-+
-+# There is no distro feature just for audit.  If we want it,
-+# uncomment the following.
-+#
-+#PACKAGECONFIG += "${@target_selinux(d, 'audit')}"
-+
-+PACKAGECONFIG[audit] = "--with-audit=linux,--without-audit,audit,"
-+
--- 
-1.7.3.4
+Thanks
 
+--089e01634ec2a3f8d304e5aa827b
+Content-Type: text/html; charset=ISO-8859-1
 
+<div dir="ltr">Is there a way to remove udev completely? I am using sysvinit instead of systemd if that makes it any easier.<div><br></div><div>Thanks</div></div>
+
+--089e01634ec2a3f8d304e5aa827b--
