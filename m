@@ -1,34 +1,38 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACBEDE003BF
-	for <yocto@yoctoproject.org>; Thu,  5 Sep 2013 17:24:15 -0700 (PDT)
-Received: by mail-vc0-f175.google.com with SMTP id ia10so1687166vcb.34
-	for <yocto@yoctoproject.org>; Thu, 05 Sep 2013 17:24:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=MKzwuOCNXsNNgfwiVhD3bBbRs8h8VoPhjMQuYWlVGnQ=;
-	b=gec9GYCTJABTx7VaUHS/BLIrM7W5bTYizoI9ISn3C745AzSn/ZA7YUOMFS/RPiXg0D
-	6BXOb7cw5xlrYNIEJMGObi1wfsOYXRTATks+3N9Z+0wE4lBbLWvSOFn22vQND3VhK64U
-	Pv7bYbIxrTFHFR/+tMHZoyjpOOP9SB6Ouqoo9dGII7HZuedmuJyP4oOSThz6bDQr5QE2
-	RzF67GyD7Uh5kX9uOHgWK/UpFHMKquCCXkFwhLs/10IL4DihPTYqwVUBqzH/PSOT9Hrl
-	bwHp+WfstDLRpbcjyiEq07L+LKKe4D6hOxh5XwYuAcB0T9sPiRVuCZ17LjF5j5s5oDAK
-	d4UA==
-X-Gm-Message-State: ALoCoQkIZeZC6IQQ9Ra2w0bqXUNWu9tIWYwBjJiQ1JH8x0eSB2UZGxXx2n2tjGuVoEmXLYguPqSC
-MIME-Version: 1.0
-X-Received: by 10.52.75.165 with SMTP id d5mr4865678vdw.1.1378427055448; Thu,
-	05 Sep 2013 17:24:15 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Thu, 5 Sep 2013 17:24:15 -0700 (PDT)
-Date: Thu, 5 Sep 2013 17:24:15 -0700
-Message-ID: <CAPhnLPDDo1iU=CDoANPJp6sm=STk1fom=YqoTR4+VLNwM2CPrg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio@ossystems.com.br>, 
-	Zhao Yi <yi.zhao@windriver.com>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>
-Subject: 1.5_M4.rc3 buildout available
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0AECE013AD
+	for <yocto@yoctoproject.org>; Fri,  6 Sep 2013 01:26:09 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r868dHIq010058; Fri, 6 Sep 2013 09:39:17 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id lNWmhI3JoQxj; Fri,  6 Sep 2013 09:39:17 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	r868dCwa010050
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-CAMELLIA256-SHA bits=256
+	verify=NOT); Fri, 6 Sep 2013 09:39:14 +0100
+Message-ID: <1378455954.32427.92.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Hans =?ISO-8859-1?Q?Beck=E9rus?= <hans.beckerus@gmail.com>
+Date: Fri, 06 Sep 2013 09:25:54 +0100
+In-Reply-To: <CAFyqS9rJG0T1EAVZ=eTBpoOhO-FVjs28S8eWRtohF3hLzZg1+A@mail.gmail.com>
+References: <CAFyqS9ph4qdURC517N7cDr_05KS3kQJMgoQ-tMV+vLUXwMd70A@mail.gmail.com>
+	<CAFyqS9qZAsFnXn2CF7-K6fWK3yEMLAZbDTkx_a81=s+Nj=ugUw@mail.gmail.com>
+	<5226FF30.9010000@vtkloud.com>
+	<CAFyqS9r=urMtznxZphVbnKEHiOrPVBGDtVFH1a8hisY2rcqrDQ@mail.gmail.com>
+	<CAFyqS9pRok8XEurH+r0Z6jTNiqADML1b1+xmPRzY49WMjVc6ww@mail.gmail.com>
+	<CAFyqS9pWkNq6-yH8DVgqYXZrZKdUBdghogs6iyh+_1AbDdeYKA@mail.gmail.com>
+	<CAFyqS9rQ8vNtCtQO-MYQ2Jbr8xHmH-k1JjS6D__ic6PrOfN5Dg@mail.gmail.com>
+	<CAFyqS9o+HWcMBBD_=E4Bm-XSO5U0yKmJRtE4RbotiKCdABWO2Q@mail.gmail.com>
+	<CAFyqS9rvkdVYnAb2tJdaNaoxav5_5QcPNG0-mxrWN1-qamHcKw@mail.gmail.com>
+	<CAFyqS9rJG0T1EAVZ=eTBpoOhO-FVjs28S8eWRtohF3hLzZg1+A@mail.gmail.com>
+X-Mailer: Evolution 3.6.4-0ubuntu1 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: libtool problem?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +44,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Sep 2013 00:24:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 06 Sep 2013 08:26:12 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-All,
+On Thu, 2013-09-05 at 17:44 +0200, Hans Beckérus wrote:
+> I have now prepared a patch that will fix this problem i Yocto. Since
+> no one (so far) commented on this issue I interpreted the silence as
+> that nothing has been done about this bug. 
 
-The buildout of rc3 will be complete in a few hours and available at:
-http://autobuilder.yoctoproject.org/pub/releases/1.5_M4.rc3
+I think that coming up to release, we've all be focusing on that. Once
+you'd identified a specific issue like this, filing a bug report in the
+bugzilla can be a good way of getting people's attention, particularly
+when you have a patch.
 
-The one issue we're seeing at this time is sanity failures in qemuppc
-and qemumips. They appear to be slow/hung boot issues. This seems to
-be a new issue (https://bugzilla.yoctoproject.org/show_bug.cgi?id=5131)
+The key question is the help message:
 
-poky ed3ef0823fde89371a473d20c0127c0bd16d062b
-meta-fsl-arm c3c1d2616e59ba314c6ff602b99909da632a11d5
-meta-fsl-ppc 1ddf5e66c635e086864ce15931628ce1a2d6ff0a
-meta-intel a30089ab6a38541f729c680f1b3f05c3fbdc6ecf
-meta-minnow 7719e114bd0c2118c3d4c2a1a7c06e966103ab09
-meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
-eclipse-poky-juno e9f450883a4df106dd84dd85644753ced1aa40d9
-eclipse-poky-kepler e21e4285ecffa30e0931bc09d04fb8585618043c
+ --with-libtool-sysroot=DIR Search for dependent libraries within DIR
+                       (or the compiler's sysroot if not specified).
 
-Please begin testing as soon as possible.
+so yes, this sounds like a genuine bug in libtool. Would you like to
+send a patch to the OE-Core mailing list which adds your patch, along
+with a description of the problem in the commit messages, a proper patch
+header (description and Upstream-Status:) and signed-off-by line?
 
-Thanks.
+If you do, I think we'll likely include it. If not, it will need to wait
+for someone to turn this into a full commit which might take a little
+longer but it does look like a good change.
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Cheers,
+
+Richard
+
+
+
+> But I am very surprised, to
+> say the least, that this problem has passed unnoticed!
+> The patch goes into meta/recipes-development/libtool/libtool. This
+> patch *must* be applied after Khems patch that renames --with-sysroot
+> to --with-libtool-sysroot (rename-with-sysroot.patch).
+> After applying the patch (and added it to libtool-2.4.2.inc) the
+> populated SDK toolchain works as expected also when
+> --with-libtool-sysroot is not provided, instead it is picked up from
+> $CC --print-sysroot. I have filed a bug report to bug-libtool since
+> the real problem is in libtool itself, not Yocto.
+
+
+
 
