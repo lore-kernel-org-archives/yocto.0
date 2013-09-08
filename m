@@ -1,19 +1,37 @@
-Return-Path: <kgy@teledigit.eu>
-Received: from teledigit.eu (teledigit.eu [195.56.148.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00D66E00405
-	for <yocto@yoctoproject.org>; Sat,  7 Sep 2013 12:46:10 -0700 (PDT)
-X-AuthUser: kgy@teledigit.eu
-Received: from kgy-pc.localnet ([46.107.59.216]:52785)
-	by teledigit.eu with [XMail 1.27 ESMTP Server]
-	id <S2DF64> for <yocto@yoctoproject.org> from <kgy@teledigit.eu>;
-	Sat, 7 Sep 2013 21:45:31 +0200
-From: Kovesdi Gyorgy <kgy@teledigit.eu>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sat, 07 Sep 2013 22:44:48 +0200
-Message-ID: <1693905.0sQlXRy0ks@kgy-pc>
-User-Agent: KMail/4.8.5 (Linux/3.4.47-2.38-desktop; KDE/4.8.5; i686; ; )
+Return-Path: <lists@philipp-wagner.com>
+Received: from turboconrad.planet-school.de (mail.planet-school.de
+	[194.116.187.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 131F5E00405
+	for <yocto@yoctoproject.org>; Sun,  8 Sep 2013 03:24:37 -0700 (PDT)
+Received: from turboconrad.planet-school.de (srv004.service.ps-server.net
+	[194.116.186.79])
+	by turboconrad.planet-school.de (Postfix) with ESMTP id A2E00B6A0C0;
+	Sun,  8 Sep 2013 12:24:34 +0200 (CEST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	srv004.service.ps-server.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-101.1 required=5.0 tests=ALL_TRUSTED,AWL,
+	LOCAL_USER_RULE autolearn=unavailable version=3.3.2
+Received: from poweramy.site (ppp-188-174-11-106.dynamic.mnet-online.de
+	[188.174.11.106])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: mail@philipp-wagner.com)
+	by turboconrad.planet-school.de (Postfix) with ESMTPSA id 5A877B6A0BE; 
+	Sun,  8 Sep 2013 12:24:34 +0200 (CEST)
+Message-ID: <522C5052.8080600@philipp-wagner.com>
+Date: Sun, 08 Sep 2013 12:24:18 +0200
+From: Philipp Wagner <lists@philipp-wagner.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
 MIME-Version: 1.0
-Subject: Problems with Hungarian locale and eglibc-2.18
+To: Paul Barker <paul@paulbarker.me.uk>, 
+	Yocto Project <yocto@yoctoproject.org>
+References: <1378211205-4866-1-git-send-email-paul@paulbarker.me.uk>
+	<1378211205-4866-2-git-send-email-paul@paulbarker.me.uk>
+In-Reply-To: <1378211205-4866-2-git-send-email-paul@paulbarker.me.uk>
+X-Virus-Scanned: ClamAV using ClamSMTP
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Add version 3.8.13
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,36 +43,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Sep 2013 19:46:14 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Sun, 08 Sep 2013 10:24:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-I built a recent Poky with eglibc-2.18 on my Beagleboard-C4.
+a general question to start: 3.11.0 is out now as well (and it works, at
+least in my tests), should we add that as well?
 
-I don't know if this is the proper mailing list for this question, bu a=
-t least=20
-i could not find any eglibc-related mailing list. Please tell me if the=
-re is=20
-any.
+Am 03.09.2013 14:26, Paul Barker wrote:
+> Upstream commit d996a1b91b2bf3dc06f4f4f822a56f4496457aa1, dated 2013-08-07.
+> 
+> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+> ---
+>  recipes-kernel/linux/linux-raspberrypi_3.8.13.bb | 35 ++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
+> 
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb b/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
+> new file mode 100644
+> index 0000000..b482939
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
+> @@ -0,0 +1,35 @@
+> +require linux.inc
+> +
+> +DESCRIPTION = "Linux kernel for the RaspberryPi board"
+> +COMPATIBLE_MACHINE = "raspberrypi"
+> +
+> +PR = "r6"
 
-I installed eglibc-binary-localedata-hu-hu and found a very strange beh=
-avior=20
-of the functions towupper() and towlower(). All Hungarian-specific char=
-acters=20
-are converted correctly, except the character '=D6/=F6'. If i exit the=20=
+I guess this does not matter, but would r1 not be more natural?
 
-application, and start it second time, only the ASCII characters are co=
-nverted=20
-correcly (until next reboot). I have never seen such behavior and i can=
-'t=20
-imagine what can be wrong (config/install problem, missing package, bug=
- in=20
-eglibc, etc). Any help would be appreciated.
-Running the same code on my desktop works perfectly.
+> +PV_append = "+git${SRCREV}"
+> +
+> +SRCREV = "d996a1b91b2bf3dc06f4f4f822a56f4496457aa1"
+> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y \
+> +           file://sl030raspberrypii2ckernel.patch \
+> +          "
+> +S = "${WORKDIR}/git"
+> +
+> +# NOTE: For now we pull in the default config from the RPi kernel GIT tree.
+> +KERNEL_DEFCONFIG = "bcmrpi_defconfig"
+> +
+> +# CMDLINE for raspberrypi
+> +CMDLINE_raspberrypi = "dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait"
+> +
+> +UDEV_GE_141 ?= "1"
 
-Thanx in advance
-Gy=F6rgy K=F6vesdi
+This is already part of linux.inc, is it necessary here again?
 
+> +
+> +do_configure_prepend() {
+> +	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / ${KERNEL_DEFCONFIG} available."
+> +}
+> +
+> +do_install_prepend() {
+> +	install -d ${D}/lib/firmware
+> +}
+> +
+> +do_deploy_append() {
+> +	# Deploy cmdline.txt
+> +	install -d ${DEPLOYDIR}/bcm2835-bootfiles
+> +	echo "${CMDLINE}" > ${DEPLOYDIR}/bcm2835-bootfiles/cmdline.txt
+> +}
+> 
 
