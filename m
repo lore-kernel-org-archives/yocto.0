@@ -1,20 +1,33 @@
-Return-Path: <jose.ferreiro@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEE0BE00404
-	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 09:30:31 -0700 (PDT)
-Received: from [172.30.250.61] (172.30.250.61) by horus27 (Axigen)
-	with (CAMELLIA256-SHA encrypted) ESMTPSA id 2C1761;
-	Mon, 9 Sep 2013 18:30:27 +0200
-Message-ID: <522DF7A2.5050109@horus.es>
-Date: Mon, 09 Sep 2013 18:30:26 +0200
-From: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
-User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:16.0)
-	Gecko/20121005 Thunderbird/16.0
-MIME-Version: 1.0
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A4E1E00404
+	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 11:10:04 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1VJ5uU-0003P4-OJ
+	for yocto@yoctoproject.org; Mon, 09 Sep 2013 20:10:02 +0200
+Received: from correo.horus.es ([2.139.157.236])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 20:10:02 +0200
+Received: from jose.ferreiro by correo.horus.es with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 20:10:02 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 2
-Subject: Yocto + QT: python lost modules
+From: jfc <jose.ferreiro@horus.es>
+Date: Mon, 9 Sep 2013 18:05:31 +0000 (UTC)
+Message-ID: <loom.20130909T200332-57@post.gmane.org>
+References: <4F02005F.4080705@algarvio.me>
+	<20120104055803.GL31275@sakrah.homelinux.org>
+	<4F0454F0.3000107@algarvio.me>
+	<20120104133608.GE6485@jama.jama.net>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 2.139.157.236 (Mozilla/5.0 (Windows NT 5.1;
+	rv:23.0) Gecko/20100101 Firefox/23.0)
+Subject: Re: Python Math Module
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,35 +39,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2013 16:30:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Mon, 09 Sep 2013 18:10:04 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-Hello
+Martin Jansa <martin.jansa@...> writes:
 
-We have compiled meta-toolchain-qt on a Yocto dylan configured for iMX6 sabre lite board. We can compile and run QT applications locally and on the remote target. The problem comes with the debugger. We can start it and put breakpoints, but variables are not showed in the QT environment.
+> 
+> On Wed, Jan 04, 2012 at 01:32:32PM +0000, Pedro Algarvio wrote:
+> > First of all, Thanks!
+> > 
+> > So basically, for a smaller space, python is split into several
+> > packages, how can I known which packages exist?
+> 
 
-QT is launching python commands to represent the variables but some commands fails because the python compiled for meta-toolchain-qt is not complete (module subprocces is no included, for example).
+Hi
 
-We have compiled another image from this same dylan, fsl-image-gui, that has a complete python in it. We tried to see what the difference is between the two images, but I can not find the reference to python on fsl-image-gui.
+bitbake -e python | grep "PACKAGES"
 
-I found only one reference to this problem at OpenEmbeded. It got solved there adding several lines to python-setuptools_0.6c11.bb recipe:
-  
-RDEPENDS_${PN} = "\
-   python-distutils \
-   python-subprocess \
-   python-compression \
-"
+Correct?
 
-RDEPENDS_${PN}_class-native = "\
-   python-distutils \
-   python-compression \
-"
+Good luck
 
-but i did the change and nothing changed. Any idea why has it not worked? Any other better way to do it?
+PF: testing post.gname.org
 
-Thanks and best regards,
-
-jose
 
 
