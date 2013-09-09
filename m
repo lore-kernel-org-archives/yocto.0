@@ -1,35 +1,36 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
-	[209.85.212.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31227E014E4
-	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 05:45:33 -0700 (PDT)
-Received: by mail-wi0-f178.google.com with SMTP id hn9so3316689wib.17
-	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 05:45:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=pKflQQHrG6yh4IlsO9uMafGtCFCmLTD+zYvJZqXObBU=;
-	b=PmYYr2tW4KizYnQ5OAWkUSH3SkZDhIhJdIj1/APGvmO5KKW898HA6Df8WIvyoBWura
-	tGdLjuhcmEBxL6jL0ybRen1VGRXbLTJvlxRXU8XWjkwXHaEU6EwGiayKTKrm1l8augi6
-	wiwTh5c+sb86upBmcoxbYvH8Kz1eqjeXItEdxV9FGc4FcAcscffwKy+1OI1g1ufWW7TH
-	A3w9kwDTJE6yN+s1fi8EEntQ5mE6tpmYrGGcJCpRgBp/nBJxf2tCs2pMvV1glZlwAgIo
-	sX4sply/rcnL+lRC/pohydRcxxvOFe1uDWG8EGdca6NI+AhkZgLsvD62zr5q/AHpHbzU
-	iDRw==
-X-Gm-Message-State: ALoCoQlihOwzpuUJSGrwtoAbifpA1ZD+iUj2XJXM4N2fzIwv5vmDCXxFO8vmpHTaKjvya9EvU9rJ
-X-Received: by 10.180.74.164 with SMTP id u4mr8313068wiv.17.1378730732789;
-	Mon, 09 Sep 2013 05:45:32 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vb0-f52.google.com (mail-vb0-f52.google.com
+	[209.85.212.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E843E006B5
+	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 07:24:14 -0700 (PDT)
+Received: by mail-vb0-f52.google.com with SMTP id f12so4083920vbg.11
+	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 07:24:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=kBGgwiIxvXO4zh62WpmQ1X23DtF6yN1LAmTQpdpNyhg=;
+	b=Qc4WOA6NyEdn0dl1nL9c5lxeEj/zBm6udI2rwqoRB+5qpxwKChOoImMHSH/beTViZE
+	1xLg/4tkhHIu1aqxnDAJuc4EGdw5HRXMloQGawwJ8NXEUIV6jKyraOemaHxTIQ/oiulA
+	sCZvE1OJY29OGwmEoRAgifbpxMDKHSA8QBmIAG+KPdoXBuu+T71BwnFYDFsA4b1LDqTK
+	Y5asBVAspOSsHyKh0bEJqcslUt9WRA1+GKZtwJ7k+ZMZGONCp0qk/3XPZzo3kZYOl30b
+	4kT8y1TLl6cpjbf9FAnvN9iMjlT8kbeZE9AyA1EbI8yOXXvuVj07O1X6XLSe/qS4VRqZ
+	lgYQ==
+X-Received: by 10.220.84.65 with SMTP id i1mr43580vcl.51.1378736653359; Mon,
+	09 Sep 2013 07:24:13 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.180.218.200 with HTTP; Mon, 9 Sep 2013 05:45:12 -0700 (PDT)
-In-Reply-To: <17797116383D4341B029FDF34C22BF6A5D7F5F6077@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.7042.1376600669.19864.yocto@yoctoproject.org>
-	<17797116383D4341B029FDF34C22BF6A5D7F5F6077@GUREXMB01.ASIAN.AD.ARICENT.COM>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Mon, 9 Sep 2013 14:45:12 +0200
-Message-ID: <CAP71WjxsyY39wb3tnBUMV=AuURNi1DrpRBB-aG0qPOA220Fw_g@mail.gmail.com>
-To: Rohit2 Jindal <rohit2.jindal@aricent.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto query on SR_URI creation
+Sender: paul.betafive@gmail.com
+Received: by 10.220.155.17 with HTTP; Mon, 9 Sep 2013 07:23:33 -0700 (PDT)
+In-Reply-To: <522C5052.8080600@philipp-wagner.com>
+References: <1378211205-4866-1-git-send-email-paul@paulbarker.me.uk>
+	<1378211205-4866-2-git-send-email-paul@paulbarker.me.uk>
+	<522C5052.8080600@philipp-wagner.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Mon, 9 Sep 2013 15:23:33 +0100
+X-Google-Sender-Auth: FVQm6PfHO_TwVcCKO-8oEPlXEyU
+Message-ID: <CANyK_8feZmbfna1Yt4+cqs4jVhkF=_+wwqkpfhE0yd+oAHZYDQ@mail.gmail.com>
+To: Philipp Wagner <lists@philipp-wagner.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Add version 3.8.13
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,123 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2013 12:45:40 -0000
-Content-Type: multipart/alternative; boundary=f46d043c7f5691ba3104e5f2c380
-
---f46d043c7f5691ba3104e5f2c380
+X-List-Received-Date: Mon, 09 Sep 2013 14:24:16 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, Sep 9, 2013 at 9:47 AM, Rohit2 Jindal <rohit2.jindal@aricent.com>wrote:
-
-> Actually I want to access external git server of our client using yocto
-> SRC_URI. But I am not able to create path to git server .
+On 8 September 2013 11:24, Philipp Wagner <lists@philipp-wagner.com> wrote:
+> Hi,
 >
->
-> I just have following info of external server with me
->
-> 1)~/.ssh/config file
->
-> host xyz
-> user epuser
-> hostname ep-code.xyz.com
-> port 22
-> identityfile ~/.ssh/abc_r.j
->
->
-> 2)abc_r.j.pub file
-> 3)abc_r.j file
->
-> I am not able to understand which URI protocols will work for me to set
-> path in SRC_URI of .bb file
->
->
-> Same thing on linux prompt works like this
-> $git clone xyz:sysconfig
->
->
->
-> $buildroot>make git-checkout
-> Available tag used is xxx-ep-20130823-3.0-alpha
-> Available server epuser@ep-code.xyz.com:/
+> a general question to start: 3.11.0 is out now as well (and it works, at
+> least in my tests), should we add that as well?
 >
 
+I think 3.10 would be a better choice first, as Greg Kroah-Hartman has
+indicated that this will be the next Long-Term Support kernel
+(http://www.kroah.com/log/blog/2013/08/04/longterm-kernel-3-dot-10/)
+and oe-core also has a 3.10 series linux-yocto kernel. I threw in a
+recipe for 3.8 as it's what I was playing with at the time and it
+matches with oe-core also having a 3.8 series kernel.
 
-The following should work:
+> Am 03.09.2013 14:26, Paul Barker wrote:
+>> +PR = "r6"
+>
+> I guess this does not matter, but would r1 not be more natural?
 
-SRC_URI = "git://foo.xyz.com/folder/project.git;protocol=ssh"
+We can probably drop PR completely.
 
-And in ~/.ssh/config
+>> +UDEV_GE_141 ?= "1"
+>
+> This is already part of linux.inc, is it necessary here again?
 
-Host foo.xyz.com
-  User <your username>
-  IdentityFile ~/.ssh/abc_r.j
+I just copied the previous kernel recipe and made my changes. If this
+is unnecessary here (which it looks to be), it'll also want removing
+from the 3.6 and 3.2 recipes.
 
-You would need to ssh once to that server outside of OE so that i records
-the server in ~/.ssh/known_hosts first.
+-- 
+Paul Barker
 
---f46d043c7f5691ba3104e5f2c380
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Mon, Sep 9, 2013 at 9:47 AM, Rohit2 Jindal <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:rohit2.jindal@aricent.com" target=3D"_blank">rohit2.jindal@arice=
-nt.com</a>&gt;</span> wrote:<br>
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div style=3D"overflow:hidden">Actually I want to access e=
-xternal git server of our client using yocto SRC_URI. But I am not able to =
-create path to git server .<br>
-
-
-
-<br>
-<br>
-I just have following info of external server with me<br>
-<br>
-1)~/.ssh/config file<br>
-<br>
-host xyz<br>
-user epuser<br>
-hostname <a href=3D"http://ep-code.xyz.com" target=3D"_blank">ep-code.xyz.c=
-om</a><br>
-port 22<br>
-identityfile ~/.ssh/abc_r.j<br>
-<br>
-<br>
-2)abc_r.j.pub file<br>
-3)abc_r.j file<br>
-<br>
-I am not able to understand which URI protocols will work for me to set pat=
-h in SRC_URI of .bb file<br>
-<br>
-<br>
-Same thing on linux prompt works like this<br>
-$git clone xyz:sysconfig<br>
-<br>
-<br>
-<br>
-$buildroot&gt;make git-checkout<br>
-Available tag used is xxx-ep-20130823-3.0-alpha<br>
-Available server epuser@ep-code.xyz.com:/<br></div></blockquote></div><div =
-class=3D"gmail_extra"><br></div><br>The following should work:</div><div cl=
-ass=3D"gmail_extra">
-<br></div><div class=3D"gmail_extra"><div class=3D"gmail_extra">SRC_URI =3D=
- &quot;git://<a href=3D"http://foo.xyz.com/folder/project.git;protocol=3Dss=
-h" target=3D"_blank">foo.xyz.com/folder/project.git;protocol=3Dssh</a>&quot=
-;</div><div>
-
-<br></div><div>
-And in ~/.ssh/config</div><div><br></div><div>Host <a href=3D"http://foo.xy=
-z.com" target=3D"_blank">foo.xyz.com</a></div><div>=A0 User &lt;your userna=
-me&gt;</div><div>=A0=A0IdentityFile ~/.ssh/abc_r.j</div></div><div class=3D=
-"gmail_extra">
-
-<br></div><div class=3D"gmail_extra">You would need to ssh once to that ser=
-ver outside of OE so that i records the server in ~/.ssh/known_hosts first.=
-</div>
-<div class=3D"gmail_extra"><br></div></div>
-
---f46d043c7f5691ba3104e5f2c380--
