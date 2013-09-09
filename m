@@ -1,37 +1,35 @@
-Return-Path: <jc@vtkloud.com>
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CE99E006B5
-	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 12:33:19 -0700 (PDT)
-Received: by mail-wi0-f169.google.com with SMTP id hj3so3785647wib.4
-	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 12:33:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:subject:content-type:content-transfer-encoding;
-	bh=szPfwD8LwgFYoPzsxHohZ8A818H+faVxTe8KRNvcTq4=;
-	b=He2xU4Fr54zQaEyskXM20N0GSB1BdJO4tUEkIK+ajpXpDy2iNx2hF2rm7N5RJhhfFQ
-	gN35RnlTVkyWKJj46HVhFE77o0BFQ5jkb1nxVEz91qHwjRQ0ci//U2c1/UlKmGNjYSpa
-	lEX5FEsYxMGxcJDJ6M6hiQdzM1k7LVSJkzCf9R+w1tpud5cQWU4nlt8LMI/4i6FtJhML
-	ZhAIIyt/w35pBbkAqD4P/soNbrhgGQXyxUFkzGsiqlIOBMSDiH8XqvtG5cqs9tc+DFPj
-	GSQ3MzRh/SJlyaxklnle37OVCxkrp4tDttD9XoSBlZ24qfLgsqUAkzSUMCebwhRG7XtS
-	I7WA==
-X-Gm-Message-State: ALoCoQmV00Po42SKILtscAE2kRovtiHQ9g3VnXPgAVQCgNsAPhi2M0xDUF6Hw3X/UsBaYAZ4Quoe
-X-Received: by 10.180.206.42 with SMTP id ll10mr9781713wic.50.1378755198644;
-	Mon, 09 Sep 2013 12:33:18 -0700 (PDT)
-Received: from [192.168.0.50] (aig34-1-88-167-231-94.fbx.proxad.net.
-	[88.167.231.94])
-	by mx.google.com with ESMTPSA id dx7sm14268709wib.8.1969.12.31.16.00.00
+Return-Path: <arunkr.linux@gmail.com>
+Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D08FBE006B5
+	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 13:00:52 -0700 (PDT)
+Received: by mail-pd0-f182.google.com with SMTP id r10so6641158pdi.13
+	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 13:00:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=PatI9A+jE8aKzMAfSUr7mrNt7UT7Sk/mhg6nlapvtbo=;
+	b=Ka7CLRWnFQKkntjbQyQNYXyUNGf6cEZMLbH4feYHt/qt3kaR3BZSEcXpXEg4yi2Pkt
+	SkY7jVv2scZjDp+RPKxnz9WecExUPr/9QXfP6JlodTDgOWMiQQJMP0RQaSCyrOTt3Tv3
+	wbnyHhfI7vCKjP0moB4NDBX0yE9DMPABbhLVyX8pIf3fXmtrdILdHeBa6L7K2G/Dna1J
+	U5UYNt4TBdWAF4wn3/dz2w8Ipe13EIGrvGTdpKvaVOQjs1F4TpLd0QcX1oMovYWtYz4V
+	qV8aq3Vwkc+Y2ZepAb+wI8b0TA5yGVjngC9WTdOF6kCAdAhhDrcUCTtKUjKEbaF7yOq8
+	gvxw==
+X-Received: by 10.66.20.166 with SMTP id o6mr5216521pae.149.1378756852610;
+	Mon, 09 Sep 2013 13:00:52 -0700 (PDT)
+Received: from [192.168.0.100] ([219.91.250.52])
+	by mx.google.com with ESMTPSA id
+	sy2sm18021768pbc.16.1969.12.31.16.00.00
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 09 Sep 2013 12:33:17 -0700 (PDT)
-Message-ID: <522E227C.1080700@vtkloud.com>
-Date: Mon, 09 Sep 2013 21:33:16 +0200
-From: JC <jc@vtkloud.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	Mon, 09 Sep 2013 13:00:51 -0700 (PDT)
+Message-ID: <522E28ED.5000807@gmail.com>
+Date: Tue, 10 Sep 2013 01:30:45 +0530
+From: Arun M Kumar <arunkr.linux@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Issue with SmartPM install from file
+To: yocto@yoctoproject.org
+Subject: error in : $ runqemu qemux86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,34 +41,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2013 19:33:24 -0000
+X-List-Received-Date: Mon, 09 Sep 2013 20:00:55 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
+I have built my first image with the Yocto Project build environment, I 
+have the image ready.
 
-I'm trying to get a better hand on how smart work. I've been successful 
-to create a repo, update and install from it. Now I want to go further. 
-Let's assume:
-- I have a working repo and a working device
-- I build a new recipe (here, git) and update my repo
-- I "smart update" on my device
-Now instead of installing, I choose to "download" the package :
+when I do.
 
-# smart download git
+$ runqemu qemux86
 
-It's successful. Now I want to install it :
+I get the following error.
 
-# smart install ./git-1.8.1.4-r0.armv6_vfp.rpm
-Loading cache...
-error: Unable to create channel for file: ./git-1.8.1.4-r0.armv6_vfp.rpm
+--------------------------------------------------------------------------------
+There was an error running bitbake to determine TMPDIR
+Here is the output from 'bitbake -e':
+ERROR: Unable to parse conf/bitbake.conf: conf/bitbake.conf:18: unparsed 
+line: 'xport exec_prefix = "/usr"'
+_____________________________________________________________
 
-Whatever I do I end up with this error.
 
-Does it ring a bell to anyone? Is this the right place to ask?
+What could be the possible causes to this.
 
-Thanks a lot for your help
-Regards
-Jay
-
+I had to add the scripts directory in Poky to my PATH variable, does 
+this gives any hints to my problem ?
 
