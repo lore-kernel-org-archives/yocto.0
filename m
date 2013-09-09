@@ -1,36 +1,37 @@
 Return-Path: <jc@vtkloud.com>
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3884AE006B5
-	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 12:28:50 -0700 (PDT)
-Received: by mail-wg0-f44.google.com with SMTP id b12so4657261wgh.35
-	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 12:28:49 -0700 (PDT)
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CE99E006B5
+	for <yocto@yoctoproject.org>; Mon,  9 Sep 2013 12:33:19 -0700 (PDT)
+Received: by mail-wi0-f169.google.com with SMTP id hj3so3785647wib.4
+	for <yocto@yoctoproject.org>; Mon, 09 Sep 2013 12:33:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
 	:subject:content-type:content-transfer-encoding;
 	bh=szPfwD8LwgFYoPzsxHohZ8A818H+faVxTe8KRNvcTq4=;
-	b=mUOEHBLnevuDpLcVWoobeBx2I2kQF2d04X2uDeIHKbnvq+xQG86ke5A36jMPFtSqim
-	m164AOhhTIV1PtYfoKh8oFZivEJT2fOqfF3CZlvXTzE7XXqdmDmnuGfgwp/10tIdIjUS
-	2sNswHufEYnB3Z+0/jVd0QxOFWNM2dAGjkoFi1TsXgB3WRj7uLk0UadbFTKaXCLSo+Xj
-	d2VA30sXRwIGNpBGgkDGZ7RdhVXpWp2XUcHPa05NyD9uWnFEks5EJ7+9FDM/EkY4oDxN
-	Ey1yN0wlZ2tPPqle9RtcGBuUor4C5h9ZMEKb+gtrbTX4sqvRHR2Z5Z8KoPQNfkudy7lu
-	5spw==
-X-Gm-Message-State: ALoCoQkqSYq6GEyNontx3/qTmT159SrL9rsQvf1y91rhhiWMlBQBytiIPzk0kQaBF8mODChRtCEL
-X-Received: by 10.181.12.75 with SMTP id eo11mr9746179wid.24.1378754929094;
-	Mon, 09 Sep 2013 12:28:49 -0700 (PDT)
+	b=He2xU4Fr54zQaEyskXM20N0GSB1BdJO4tUEkIK+ajpXpDy2iNx2hF2rm7N5RJhhfFQ
+	gN35RnlTVkyWKJj46HVhFE77o0BFQ5jkb1nxVEz91qHwjRQ0ci//U2c1/UlKmGNjYSpa
+	lEX5FEsYxMGxcJDJ6M6hiQdzM1k7LVSJkzCf9R+w1tpud5cQWU4nlt8LMI/4i6FtJhML
+	ZhAIIyt/w35pBbkAqD4P/soNbrhgGQXyxUFkzGsiqlIOBMSDiH8XqvtG5cqs9tc+DFPj
+	GSQ3MzRh/SJlyaxklnle37OVCxkrp4tDttD9XoSBlZ24qfLgsqUAkzSUMCebwhRG7XtS
+	I7WA==
+X-Gm-Message-State: ALoCoQmV00Po42SKILtscAE2kRovtiHQ9g3VnXPgAVQCgNsAPhi2M0xDUF6Hw3X/UsBaYAZ4Quoe
+X-Received: by 10.180.206.42 with SMTP id ll10mr9781713wic.50.1378755198644;
+	Mon, 09 Sep 2013 12:33:18 -0700 (PDT)
 Received: from [192.168.0.50] (aig34-1-88-167-231-94.fbx.proxad.net.
 	[88.167.231.94])
-	by mx.google.com with ESMTPSA id i3sm20005158wiw.7.1969.12.31.16.00.00
+	by mx.google.com with ESMTPSA id dx7sm14268709wib.8.1969.12.31.16.00.00
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 09 Sep 2013 12:28:48 -0700 (PDT)
-Message-ID: <522E216E.6000808@vtkloud.com>
-Date: Mon, 09 Sep 2013 21:28:46 +0200
+	Mon, 09 Sep 2013 12:33:17 -0700 (PDT)
+Message-ID: <522E227C.1080700@vtkloud.com>
+Date: Mon, 09 Sep 2013 21:33:16 +0200
 From: JC <jc@vtkloud.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
 MIME-Version: 1.0
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: question about SmartPM install from local file
+Subject: Issue with SmartPM install from file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,7 +43,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2013 19:28:51 -0000
+X-List-Received-Date: Mon, 09 Sep 2013 19:33:24 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
