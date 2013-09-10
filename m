@@ -1,37 +1,24 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
-	[74.125.82.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C45BE0051D
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 08:03:05 -0700 (PDT)
-Received: by mail-we0-f175.google.com with SMTP id q59so6875475wes.34
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 08:03:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=fJ4KZY/6134spioRphIwuvO0MB1U40SCmLJSh0niPug=;
-	b=WKFBExr/pBUVSc1HDo5/3rpd6BnU96QLUYxCwP35sAT0dygFfYkzkBtI5waDF37nLb
-	K71jvTjcoHx+fpHma7r58p3Lj5k37Yx/XbwHxuvgTeAtMUSG6/CDckb2ncRzWvq4A67T
-	QQkS/BH6K6Shd79AYWoPWT9uSKlepejnsOuLp1YT7OXjBnK3NNneIP+z3EwSWO8lEv2b
-	9yS3SeEOIt9nKdWJzLw4UCOGzv+flA0sGaoPxZHYlr5DPT2eHgn8SgOITdDv6nhMmUM6
-	cKigT3dkSlQQuQA6xIwLnu2LIvHp4xZZ+WyZmPrDYgexAqsaT1xcbsBIw5NVNOLN9xKw
-	ZLsQ==
-X-Gm-Message-State: ALoCoQkEe/bc/6dq8le5ipmmgUCzlx5xiHUyv9EMpGARxYXGRlHPCJykZN3+ZLMMyCvLWAl/Hv22
-X-Received: by 10.180.160.229 with SMTP id xn5mr13340379wib.62.1378825349722; 
-	Tue, 10 Sep 2013 08:02:29 -0700 (PDT)
+Return-Path: <jose.ferreiro@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B6CE0051D
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 10:26:17 -0700 (PDT)
+Received: from [172.30.250.61] (172.30.250.61) by horus27 (Axigen)
+	with (CAMELLIA256-SHA encrypted) ESMTPSA id 199CD6;
+	Tue, 10 Sep 2013 19:26:14 +0200
+Message-ID: <522F5635.3040803@horus.es>
+Date: Tue, 10 Sep 2013 19:26:13 +0200
+From: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:16.0)
+	Gecko/20121005 Thunderbird/16.0
 MIME-Version: 1.0
-Received: by 10.180.218.200 with HTTP; Tue, 10 Sep 2013 08:02:09 -0700 (PDT)
-In-Reply-To: <17797116383D4341B029FDF34C22BF6A5D7F5F632C@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.7042.1376600669.19864.yocto@yoctoproject.org>
-	<17797116383D4341B029FDF34C22BF6A5D7F5F6077@GUREXMB01.ASIAN.AD.ARICENT.COM>
-	<CAP71WjxsyY39wb3tnBUMV=AuURNi1DrpRBB-aG0qPOA220Fw_g@mail.gmail.com>
-	<17797116383D4341B029FDF34C22BF6A5D7F5F632C@GUREXMB01.ASIAN.AD.ARICENT.COM>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 10 Sep 2013 17:02:09 +0200
-Message-ID: <CAP71WjyQa-Ozds+fQT=93+kTTdh33F4yW2NvZo8K1=hC=f2Uxw@mail.gmail.com>
-To: Rohit2 Jindal <rohit2.jindal@aricent.com>
+To: Jegan Chandru <pcjegan@gmail.com>
+References: <522F013F.7070002@horus.es>
+	<CAAA4K6JvKPBSUZAwYwUVFCj_n64B-L1N3xN5cwuUs4Cg6ijPNg@mail.gmail.com>
+In-Reply-To: <CAAA4K6JvKPBSUZAwYwUVFCj_n64B-L1N3xN5cwuUs4Cg6ijPNg@mail.gmail.com>
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 4
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto query on SR_URI creation
+Subject: Re: Add new module to recipe + meta-toolchain-qt: add gdb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,145 +30,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2013 15:03:07 -0000
-Content-Type: multipart/alternative; boundary=047d7b60408a41329a04e608cbe3
+X-List-Received-Date: Tue, 10 Sep 2013 17:26:22 -0000
+Content-Type: multipart/alternative;
+	boundary="------------000509060100070004080704"
 
---047d7b60408a41329a04e608cbe3
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+--------------000509060100070004080704
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 10, 2013 at 4:35 PM, Rohit2 Jindal <rohit2.jindal@aricent.com>w=
-rote:
+Hi Jegan
 
->  **
+El 10/09/2013 16:05, Jegan Chandru escribió:
+> Hello,
 >
-> Thanks for your prompt reply.****
+> On Tue, Sep 10, 2013 at 4:53 PM, Jose Mª Ferreiro 
+> <jose.ferreiro@horus.es <mailto:jose.ferreiro@horus.es>> wrote:
 >
-> ** **
+>     Hello
 >
-> Actually I am able to create my own SRC_URI on your guided lines as****
+>     We have compiled meta-toolchain-qt (Yocto dylan). Now we can run
+>     QT applications on Desktop (Ubuntu 12.04) and on target (iMX6
+>     sabre Lite board). We can also debug the applications on board,
+>     but we can not debug on desktop.
 >
-> #SRC_URI =3D "git://
-> ep-code.xyz.com/sysconfig;branch=3Dxxx-ep-20130823-3.0-alpha;protocol=3Ds=
-sh"**
-> **
+>     When /usr/bin/gdb is started it starts automatically
+>     /usr/bin/python. It fails because Ubuntu python does not recognize
+>     sys.lib variable from /op/poky...python. We have found no way to
+>     tell gdb to start changing PYTHONHOME to Ubuntu python home to
+>     avoid the problem.
 >
-> But when do_fetch task starts executing it prompts me to input the
-> passphrase for the same server when I am not able to pass . Please sugges=
-t
-> me is the way I mentioned the path is need to be modified or ****
+>     So we need to add gdb to the toolchain. If we get it to work, we
+>     suppose the /op/poky...gdb will start the /opt/poky...python (we
+>     test it and that python knows what sys.lib is).
 >
-> ** **
->
-> There is something that enable me to pass password for git server ie
-> username and password are possible to be passed as argument to git path o=
-r
-> some other way exist to give input to bitbake do_fetch task as runtime I
-> don=92t think we can pass any input.****
->
-> ** **
->
-> Please suggest me the way.****
->
-> ** **
+>     We try to add to conf/local.conf: TOOLCHAIN_HOST_TASK_append = "
+>     nativesdk-gdb". But nativesdk-gdb is not a defined name.
 >
 >
-you need to be able to use 'password-less' connection to your ssh server
-that hosts the private trees. typically that means using a pair of SSH keys
-(private/public).  if you are not familiar with that, i suggest you read
-this first:
+> try adding packagegroup-cross-canadian-${TRANSLATED_TARGET_ARCH} in 
+> TOOLCHAIN_HOST_TASK_append which will add cross toolchain to your sdk 
+> which includes cross gdb as well. There is no nativesdk-gdb afaik 
+> unless if someone says otherwise. 
+> see ./recipes-core/packagegroups/packagegroup-cross-canadian.bb 
+> <http://packagegroup-cross-canadian.bb> for details.
 
-http://www.debian-administration.org/article/SSH_with_authentication_key_in=
-stead_of_password
+I am lost. We added that but it did not work as we expected. In fact, I 
+think that must be included in meta-toolchain-qt because we do not see 
+any differences. Perhaps I explained it badly.
 
-with such a method SSH authentication can be done 'automatically' without
-the need for prompting user's passwd.
+I think we already have the cross tools compiled. They are installed at:
+/opt/poky/1.4.2/sysroots/i686-pokysdk-linux/usr/bin/armv7a-vfp-neon-poky-linux-gnueabi
+There is a arm-...-gdb there, but this is not the failing gdb.
 
-if you actually decide to use passphrase for your SSH (private) key, you
-might be able to setup SSH agent to do that, but you would need to do that
-each time you log, iirc. But i am not familiar with this, to be honest. You
-can read more about that here:
+We expect/want to have a gdb compiled for the host machine at
+/opt/poky/1.4.2/sysroots/i686-pokysdk-linux/usr/bin/
 
-http://www.solomonson.com/content/setting-ssh-agent-ask-passphrase-only-onc=
-e
+QT Desktop mode is starting /usr/bin/gdb but using the /opt/poky... 
+directory as PYTHONHOME. We think if we have our 
+/opt/poky/../usr/bin/gdb and we tell QT to use it, it will avoid ths 
+sys.lib conflict.
 
-cheers
+Thanks and best regards
 
---047d7b60408a41329a04e608cbe3
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+--------------000509060100070004080704
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Sep 10, 2013 at 4:35 PM, Rohit2 Jindal <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:rohit2.jindal@aricent.com" target=3D"_blank">rohit2.jindal@aric=
-ent.com</a>&gt;</span> wrote:<br>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Hi Jegan<br>
+    <br>
+    <div class="moz-cite-prefix">El 10/09/2013 16:05, Jegan Chandru
+      escribi&oacute;:<br>
+    </div>
+    <blockquote
+cite="mid:CAAA4K6JvKPBSUZAwYwUVFCj_n64B-L1N3xN5cwuUs4Cg6ijPNg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">Hello,<br>
+        <div class="gmail_extra"><br>
+          <div class="gmail_quote">On Tue, Sep 10, 2013 at 4:53 PM, Jose
+            M&ordf; Ferreiro <span dir="ltr">&lt;<a moz-do-not-send="true"
+                href="mailto:jose.ferreiro@horus.es" target="_blank">jose.ferreiro@horus.es</a>&gt;</span>
+            wrote:<br>
+            <blockquote class="gmail_quote" style="margin:0px 0px 0px
+0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">Hello<br>
+              <br>
+              We have compiled meta-toolchain-qt (Yocto dylan). Now we
+              can run QT applications on Desktop (Ubuntu 12.04) and on
+              target (iMX6 sabre Lite board). We can also debug the
+              applications on board, but we can not debug on desktop.<br>
+              <br>
+              When /usr/bin/gdb is started it starts automatically
+              /usr/bin/python. It fails because Ubuntu python does not
+              recognize sys.lib variable from /op/poky...python. We have
+              found no way to tell gdb to start changing PYTHONHOME to
+              Ubuntu python home to avoid the problem.<br>
+              <br>
+              So we need to add gdb to the toolchain. If we get it to
+              work, we suppose the /op/poky...gdb will start the
+              /opt/poky...python (we test it and that python knows what
+              sys.lib is).<br>
+              <br>
+              We try to add to conf/local.conf:
+              TOOLCHAIN_HOST_TASK_append = " nativesdk-gdb". But
+              nativesdk-gdb is not a defined name.<br>
+            </blockquote>
+            <div><br>
+            </div>
+            <div>try
+              adding&nbsp;packagegroup-cross-canadian-${TRANSLATED_TARGET_ARCH}
+              in TOOLCHAIN_HOST_TASK_append which will add cross
+              toolchain to your sdk which includes cross gdb as well.
+              There is no nativesdk-gdb afaik unless if someone says
+              otherwise. see&nbsp;./recipes-core/packagegroups/<a
+                moz-do-not-send="true"
+                href="http://packagegroup-cross-canadian.bb">packagegroup-cross-canadian.bb</a>
+              for details.</div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    I am lost. We added that but it did not work as we expected. In
+    fact, I think that must be included in meta-toolchain-qt because we
+    do not see any differences. Perhaps I explained it badly.<br>
+    <br>
+    I think we already have the cross tools compiled. They are installed
+    at: <br>
+/opt/poky/1.4.2/sysroots/i686-pokysdk-linux/usr/bin/armv7a-vfp-neon-poky-linux-gnueabi<br>
+    There is a arm-...-gdb there, but this is not the failing gdb.<br>
+    <br>
+    We expect/want to have a gdb compiled for the host machine at <br>
+    /opt/poky/1.4.2/sysroots/i686-pokysdk-linux/usr/bin/<br>
+    <br>
+    QT Desktop mode is starting /usr/bin/gdb but using the /opt/poky...
+    directory as PYTHONHOME. We think if we have our
+    /opt/poky/../usr/bin/gdb and we tell QT to use it, it will avoid ths
+    sys.lib conflict.<br>
+    <br>
+    Thanks and best regards
+  </body>
+</html>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><p class=3D""><span style=3D"font-size:11pt;font-family:Ca=
-libri,sans-serif;color:rgb(31,73,125)">=A0<u></u></span></p>
-
-
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)">Thanks for your prompt reply.<u></u><u></u></span></p=
->
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)"><u></u>=A0<u></u></span></p>
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)">Actually I am able to create my own SRC_URI on your g=
-uided lines as<u></u><u></u></span></p>
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)">#SRC_URI =3D &quot;git://<a href=3D"http://ep-code.xy=
-z.com/sysconfig;branch=3Dxxx-ep-20130823-3.0-alpha;protocol=3Dssh" target=
-=3D"_blank">ep-code.xyz.com/sysconfig;branch=3Dxxx-ep-20130823-3.0-alpha;pr=
-otocol=3Dssh</a>&quot;<u></u><u></u></span></p>
-
-
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)">But when do_fetch task starts executing it prompts me=
- to input the passphrase for the same server when I am not able to pass . P=
-lease suggest me is the way
- I mentioned the path is need to be modified or <u></u><u></u></span></p>
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)"><u></u>=A0<u></u></span></p>
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)">There is something that enable me to pass password fo=
-r git server ie username and password are possible to be passed as argument=
- to git path or some other way
- exist to give input to bitbake do_fetch task as runtime I don=92t think we=
- can pass any input.<u></u><u></u></span></p>
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)"><u></u>=A0<u></u></span></p>
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)">Please suggest me the way.<u></u><u></u></span></p>
-<p class=3D""><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;=
-color:rgb(31,73,125)"><u></u>=A0<u></u></span></p>
-<p class=3D""></p></blockquote></div><br>you need to be able to use &#39;pa=
-ssword-less&#39; connection to your ssh server that hosts the private trees=
-. typically that means using a pair of SSH keys (private/public). =A0if you=
- are not familiar with that, i suggest you read this first:=A0</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><a href=3D"=
-http://www.debian-administration.org/article/SSH_with_authentication_key_in=
-stead_of_password">http://www.debian-administration.org/article/SSH_with_au=
-thentication_key_instead_of_password</a></div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">with such a=
- method SSH authentication can be done &#39;automatically&#39; without the =
-need for prompting user&#39;s passwd.</div><div class=3D"gmail_extra"><br><=
-/div>
-
-<div class=3D"gmail_extra">if you actually decide to use passphrase for you=
-r SSH (private) key, you might be able to setup SSH agent to do that, but y=
-ou would need to do that each time you log, iirc. But i am not familiar wit=
-h this, to be honest. You can read more about that here:</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><a href=3D"=
-http://www.solomonson.com/content/setting-ssh-agent-ask-passphrase-only-onc=
-e">http://www.solomonson.com/content/setting-ssh-agent-ask-passphrase-only-=
-once</a><br>
-
-</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">cheer=
-s</div><div class=3D"gmail_extra"><br></div></div>
-
---047d7b60408a41329a04e608cbe3--
+--------------000509060100070004080704--
