@@ -1,40 +1,23 @@
-Return-Path: <jc@vtkloud.com>
-Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
-	[74.125.82.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F0A8E01549
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:42:05 -0700 (PDT)
-Received: by mail-we0-f174.google.com with SMTP id q58so5130409wes.5
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:42:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=HcAUyCQVx+HnwWoOzIieqCvg0nYWaAxOJXApFGYA8pI=;
-	b=U0cfJ1n/tByYsr0u3BVOpSy7YZqK7Zq437Hn4OKC4HXk/hS6L79VGR3iKYuZBlU3ox
-	YvqO0cNwtExn3opmr6IrUFb97zgDcLz2owL+pfBNvRbGUXH8yMV4J4Mf9u9IpXMGVOND
-	UnBJ0C/sNbKq4DLmXB5IAkyfufxxpdiPAvjJCpk0MNRrM/HCJbJWLAkRMU/620rukBQm
-	2yWHO7fGL7O8AxjG8JXhdHL4JWC1CtRqUQMCIet4z4AcYpriYRjBQtwTJ4s6Ms2MrbEB
-	fXAy0DIq3GuXRHbQaE9Q+H8JfNfONjE2unQjqRd+T3j7Kh3FCZVMyiByfC+GDnd6J1yP
-	RxEA==
-X-Gm-Message-State: ALoCoQlMiDqCsFm39+76w0qjO20OIbGJXK5EXYNOlWuNuWNgdmsSVW2clx/gqWk6mHKm7VblE7Qc
-X-Received: by 10.180.99.100 with SMTP id ep4mr12308834wib.1.1378798924309;
-	Tue, 10 Sep 2013 00:42:04 -0700 (PDT)
-Received: from [172.24.63.121] ([94.103.137.126])
-	by mx.google.com with ESMTPSA id b13sm1371347wiv.1.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 10 Sep 2013 00:42:03 -0700 (PDT)
-Message-ID: <522ECD47.8020704@vtkloud.com>
-Date: Tue, 10 Sep 2013 09:41:59 +0200
-From: JC <jc@vtkloud.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
+Return-Path: <prvs=958d07d94=Richard.Leitner@skidata.com>
+Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02C91E01549
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:42:27 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AhEKAPfLLlKsEApK/2dsb2JhbABbhBCWDawkgTx0gicFOlEBFRUULxMmAQQbyWiPKoNVgQADjkqQAox4gT2CKg
+From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+To: "Yocto Project Discussion ML (yocto@yoctoproject.org)"
+	<yocto@yoctoproject.org>
+Thread-Topic: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d
+	purge (use -f to force)
+Thread-Index: Ac6t+Unp9V7yb7I4Ty2dvFEJHhw5EQ==
+Date: Tue, 10 Sep 2013 07:42:24 +0000
+Message-ID: <F7680723A1CA6840825A59020FA77064FACB0C@sdexmbx1srv.skidata.net>
+Accept-Language: en-US, de-AT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.112.215]
 MIME-Version: 1.0
-To: Yi Zhao <yi.zhao@windriver.com>
-References: <522E227C.1080700@vtkloud.com> <522ECA37.1080302@windriver.com>
-In-Reply-To: <522ECA37.1080302@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issue with SmartPM install from file
+Subject: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d purge (use -f to force)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,45 +29,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2013 07:42:06 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 10 Sep 2013 07:42:28 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/09/2013 09:28, Yi Zhao wrote:
->
-> 于 2013年09月10日 03:33, JC 写道:
->> Hi,
->>
->> I'm trying to get a better hand on how smart work. I've been 
->> successful to create a repo, update and install from it. Now I want 
->> to go further. Let's assume:
->> - I have a working repo and a working device
->> - I build a new recipe (here, git) and update my repo
->> - I "smart update" on my device
->> Now instead of installing, I choose to "download" the package :
->>
->> # smart download git
->>
->> It's successful. Now I want to install it :
->>
->> # smart install ./git-1.8.1.4-r0.armv6_vfp.rpm
->> Loading cache...
->> error: Unable to create channel for file: ./git-1.8.1.4-r0.armv6_vfp.rpm
->
-> That because there is no rpm-sys channel in your target. You could run 
-> "smart channel --show" to check it.
->
-> # smart channel --show
-> [rpmsys]
-> type = rpm-sys
->
-> The rpm-sys channel is a default channel. It should be created when 
-> build the rootfs.
->
+Hi,
+I have problems with the update-rc.d class in my recipes.
 
-It is present :(
+When I want to update a package which inherits update-rc.d (in my case samb=
+a) using dpkg -i I get the following error:
+>root@host:~# dpkg -i /media/USBSTICK/samba-ads_3.5.22-r4_armel.deb=20
+>(Reading database ... 11931 files and directories currently installed.)
+>Preparing to replace samba-ads 3.5.22-r3 (using .../samba-ads_3.5.22-r4_ar=
+mel.deb) ...
+>Stopping Samba: smbd nmbd winbindd
+>Unpacking replacement samba-ads ...
+>update-rc.d: /etc/init.d/samba exists during rc.d purge (use -f to force)
+>dpkg: warning: subprocess old post-removal script returned error exit stat=
+us 1
+>dpkg: trying script from the new package instead ...
+>update-rc.d: /etc/init.d/samba exists during rc.d purge (use -f to force)
+>dpkg: error processing /media/USBSTICK/samba-ads_3.5.22-r4_armel.deb (--in=
+stall):
+> subprocess new post-removal script returned error exit status 1
+>update-rc.d: /etc/init.d/samba exists during rc.d purge (use -f to force)
+>dpkg: error while cleaning up:
+> subprocess new post-removal script returned error exit status 1
+>Errors were encountered while processing:
+> /media/USBSTICK/samba-ads_3.5.22-r4_armel.deb
 
 
-Jay
+When I afterwards want to remove/purge the package it fails with the follow=
+ing message:
+>root@host:~# dpkg -P samba-ads
+>dpkg: error processing samba-ads (--purge):
+> Package is in a very bad inconsistent state - you should
+> reinstall it before attempting a removal.
+>Errors were encountered while processing:
+> samba-ads
 
+The only way how to fix that problem is to manually remove the initscript a=
+nd then install the update:
+>root@000C320C08C0:~# rm /etc/init.d/samba=20
+>root@000C320C08C0:~# dpkg -i /media/USBSTICK/samba-ads_3.5.22-r4_armel.deb=
+=20
+>(Reading database ... 11931 files and directories currently installed.)
+>Preparing to replace samba-ads 3.5.22-r3 (using .../samba-ads_3.5.22-r4_ar=
+mel.deb) ...
+>Unpacking replacement samba-ads ...
+> Removing any system startup links for samba ...
+>  /etc/rc0.d/K20samba
+>  /etc/rc1.d/K20samba
+>  /etc/rc2.d/S20samba
+>  /etc/rc3.d/S20samba
+>  /etc/rc4.d/S20samba
+>  /etc/rc5.d/S20samba
+>  /etc/rc6.d/K20samba
+>Setting up samba-ads (3.5.22-r4) ...
+> Adding system startup for /etc/init.d/samba.
+>Starting Samba: smbd nmbd winbindd.
+
+The update-rc.d part of my recipe is shown below.
+>inherit autotools update-rc.d
+>...
+>INITSCRIPT_NAME =3D "samba"
+>INITSCRIPT_PARAMS =3D "defaults"
+>...
+>do_install_append() {
+>	...
+>	install -D -m 755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/samba
+>	...
+>}
+
+Does anybody have an idea how to fix that issue? Would be really great!
+
+Thank you!
+
+Regards,
+Richard
 
