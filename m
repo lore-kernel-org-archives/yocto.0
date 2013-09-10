@@ -1,25 +1,38 @@
-Return-Path: <Yi.Zhao@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63048E0153B
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:38:38 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r8A7cZcQ002127
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 10 Sep 2013 00:38:35 -0700 (PDT)
-Received: from [128.224.159.157] (128.224.159.157) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.347.0;
-	Tue, 10 Sep 2013 00:38:35 -0700
-Message-ID: <522ECC78.7030700@windriver.com>
-Date: Tue, 10 Sep 2013 15:38:32 +0800
-From: Yi Zhao <yi.zhao@windriver.com>
+Return-Path: <jc@vtkloud.com>
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5C8EE01549
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:40:27 -0700 (PDT)
+Received: by mail-we0-f171.google.com with SMTP id t61so5291378wes.30
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:40:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:cc:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=9w/xN9KRk/eQH4moOkLg4HsqLpCBYdsDWDzEhOAd16k=;
+	b=T10NG7uaJJkoeVX9ASi6NBFpFuvhjrj0aVhwxpjLhVZH+fuwNoNoExoNAxZrruilmT
+	ZHO+rb73OxWsAwRfNm6QJOJOy7SzmI9H/o6IOpYM3k2WKcBRQYDEnLvXX8PhGUmwyI9S
+	RQarbJ2VqEHghpYJ67vc7wWQ3OIqiOV75x+Qapn0mjdQxcSqEqNd5t29hw5qmTR2ZUYb
+	03MazX2CcZuzH12cva9VCCFm7NXKPAe+CuBk/opolHCWQNZNlVt/sJBEuG6Bd2yP8hul
+	PyMjyQqUBrAP1UQHKxDya/yCJjhjNtkInEfpiUXjjBOYyed924NX3IfwAhuYtTePN2gg
+	7QAQ==
+X-Gm-Message-State: ALoCoQlFsE3pvUkaqOE+OU7pCyCkgsr1ZHuMPXAb0+Q5rJocxV8gnZaLNuRuhMRJGAfveIvj8g4p
+X-Received: by 10.194.21.131 with SMTP id v3mr661487wje.44.1378798826251;
+	Tue, 10 Sep 2013 00:40:26 -0700 (PDT)
+Received: from [172.24.63.121] ([94.103.137.126])
+	by mx.google.com with ESMTPSA id jf2sm1522436wic.2.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 10 Sep 2013 00:40:25 -0700 (PDT)
+Message-ID: <522ECCE7.3010606@vtkloud.com>
+Date: Tue, 10 Sep 2013 09:40:23 +0200
+From: JC <jc@vtkloud.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
+	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
 MIME-Version: 1.0
-To: JC <jc@vtkloud.com>
-References: <522EBE6C.5060108@vtkloud.com>
-In-Reply-To: <522EBE6C.5060108@vtkloud.com>
-X-Originating-IP: [128.224.159.157]
+To: Yi Zhao <yi.zhao@windriver.com>
+References: <522EBE6C.5060108@vtkloud.com> <522ECC78.7030700@windriver.com>
+In-Reply-To: <522ECC78.7030700@windriver.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: misleading dependencies between packages
 X-BeenThere: yocto@yoctoproject.org
@@ -33,75 +46,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2013 07:38:39 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 10 Sep 2013 07:40:28 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Dear Yi,
 
-于 2013年09月10日 14:38, JC 写道:
-> Hi,
+> 1. If your remote repo has updated, you need to recreate the repodata 
+> by using createrepo
+> 2. You need to run "smart update" to update the information before run 
+> "smart install package". If you want to install package from remote 
+> repo, "smart update" is required because "smart install package" 
+> doesn't update the information automatically.
 >
-> I have many issues with Apache2 package so I thought I would reinstall 
-> it. I used smart (smart install apache2) and here is the very strange 
-> issue I got:
->
-> Installing packages (20):
-> apache2-2.4.3-r1@armv6_vfp libgdbm4-1.10-r3@armv6_vfp
-> busybox-1.20.2-r8@armv6_vfp libpcre1-8.32-r1@armv6_vfp
-> busybox-syslog-1.20.2-r8@armv6_vfp libperl5-5.14.3-r1@armv6_vfp
-> busybox-udhcpc-1.20.2-r8@armv6_vfp libssl1.0.0-1.0.1e-r15.0@armv6_vfp
-> libapr-1-0-1.4.6-r2@armv6_vfp libuuid1-2.22.2-r3@armv6_vfp
-> libaprutil-1-0-1.5.1-r0@armv6_vfp libz1-1.2.7-r0@armv6_vfp
-> libc6-2.17-r3@armv6_vfp openssl-1.0.1e-r15.0@armv6_vfp
-> libcrypto1.0.0-1.0.1e-r15.0@armv6_vfp perl-5.14.3-r1@armv6_vfp
-> libexpat1-2.1.0-r0@armv6_vfp 
-> update-alternatives-cworth-1:0.1.8+svnr649-r13.0@armv6_vfp
-> libgcc1-4.7.2-r20@armv6_vfp update-rc.d-0.7-r5@all
->
-> 4.8MB of package files are needed. 9.7MB will be used.
->
-> Confirm changes? (Y/n): Y
->
-> Fetching packages...
-> [Snip lots of downloads]
-> -> http://192.168.0.50:81/rpm/armv6_vfp/apache2-2.4.3-r1.armv6_vfp.rpm
-> apache2-2.4.3-r1.armv6_vfp.rpm 
-> ############################################################################## 
-> [ 95%]
->
-> error: Failed to download packages:
-> error: 
-> http://192.168.0.50:81/rpm/armv6_vfp/libuuid1-2.22.2-r3.armv6_vfp.rpm: 
-> File not found
 
-1. If your remote repo has updated, you need to recreate the repodata by 
-using createrepo
-2. You need to run "smart update" to update the information before run 
-"smart install package". If you want to install package from remote 
-repo, "smart update" is required because "smart install package" doesn't 
-update the information automatically.
+Yep. I did both of course. But even without it: an update would go from 
+r3 to r5, probably not the reverse :(
 
+But yes, I ran both commands prior to this failure
 
-Thanks,
-Yi
+Best regards,
+Jay
 
 >
+> Thanks,
+> Yi
 >
-> And indeed, I do not have r3 of libuuid1 but r5. This is not the first 
-> time I run in this issue, it's unfortunately quite common. And I can't 
-> even figure who is generating libuuid1 :(
->
-> Any idea?
->
-> Regards
-> Jay
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+>>
+>>
+>> And indeed, I do not have r3 of libuuid1 but r5. This is not the 
+>> first time I run in this issue, it's unfortunately quite common. And 
+>> I can't even figure who is generating libuuid1 :(
+>>
+>> Any idea?
+>>
+>> Regards
+>> Jay
+>>
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
 >
 
 
