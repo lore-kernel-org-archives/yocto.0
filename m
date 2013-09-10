@@ -1,30 +1,44 @@
-Return-Path: <pcjegan@gmail.com>
-Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6344AE0153B
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:03:30 -0700 (PDT)
-Received: by mail-wg0-f51.google.com with SMTP id a12so6073118wgh.18
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:03:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-type; bh=A8pRFZ4pv6R0NiTMHl1bxhQ55EDBcXcEcMFX3+kKvA0=;
-	b=Nu+zeIgqZRjE9yhVsUmt7zP8XSugTdT2b2DLhgH6orbMQc+1UCZQnKvtnt8lKVSr+6
-	58iC4M5GHnuDJnwHJysQasaFKXJDdJuIO4t/7wy3vlstvFB5fbXqxIgeurUnwiAGsMVq
-	Xw6tGO9sKPgKBK+vUWu4cZ2nNv3sO7QyfuJME970ze+ThLfob8ZMzEvvywob/lnX2Z2b
-	N091xOIOTAeE2oz6gXxhGBCu9LCjJltL4XgAFN/R1b/wk+rBh9dAzBxTrSsc/rS/E0w8
-	Mct7o5kZQ8w4BoWxJJuioAiDUG4O0r8+qlXPV5I0Ri5ZshEJvQNXPVai85QPHW/ST2dU
-	LWKQ==
-X-Received: by 10.194.110.138 with SMTP id ia10mr16354843wjb.3.1378796609425; 
-	Tue, 10 Sep 2013 00:03:29 -0700 (PDT)
+Return-Path: <jc@vtkloud.com>
+Received: from mail-qc0-f180.google.com (mail-qc0-f180.google.com
+	[209.85.216.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 859B8E0156E
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:11:21 -0700 (PDT)
+Received: by mail-qc0-f180.google.com with SMTP id p19so3752075qcv.25
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2013 00:11:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:in-reply-to
+	:references:from:to:cc:subject:content-type;
+	bh=sUgGN90vLQ5LiQNTzTupmILa0YGpu3NME2Jt2CeD+hw=;
+	b=fqGpbtEaKNzJE8KXJ23Lefj5JefmFcDa5aglVCL8ao1/FWQbuGjkF9UFnIUMxKo0cM
+	FsBI4yK3m9tJYLStgByDaNr+MCQv6E46Pk5D7TiFPvQx1kNOOVdG/1Oo3sqepQ/wevLh
+	Pllp5zyLGHuOvSI/DpxTPdWeRskeLb6DXUGgWaTxFmPr98qoCoHaMkFflM/WycVgb5OD
+	+Kild6X0FshgwxABMSNNrlAejCvh+1bItnlSzXmILjQVVRGlWr7h5HomyATW+OtUk8/E
+	WDz2+Sf4+UFTOLKU0ByCbuYjqiCjRIfHoePV76T045mtlcHMl/GcQNGOXz2ps287ZpvY
+	5eKg==
+X-Gm-Message-State: ALoCoQkViR0tUbugyhK6OpotcVTAg/bLfaM66arICYGBPoEVOkh73yQ5B1ly+MuJNgGtbQd8j5SS
+X-Received: by 10.49.71.78 with SMTP id s14mr9195335qeu.82.1378797080398;
+	Tue, 10 Sep 2013 00:11:20 -0700 (PDT)
+Received: from [127.0.0.1] (ec2-54-235-159-142.compute-1.amazonaws.com.
+	[54.235.159.142])
+	by mx.google.com with ESMTPSA id fy7sm31897391qeb.1.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 10 Sep 2013 00:11:19 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.194.94.101 with HTTP; Tue, 10 Sep 2013 00:03:09 -0700 (PDT)
-In-Reply-To: <CAAA4K6JaJF=wO3EZQMVsDTZsJS5DwZx0wv5wmKaSHegn_iPrEw@mail.gmail.com>
-References: <522EBE6C.5060108@vtkloud.com>
-	<CAAA4K6JaJF=wO3EZQMVsDTZsJS5DwZx0wv5wmKaSHegn_iPrEw@mail.gmail.com>
-From: Jegan Chandru <pcjegan@gmail.com>
-Date: Tue, 10 Sep 2013 12:33:09 +0530
-Message-ID: <CAAA4K6KUttDhNFn7ygOOvmcpKhfDCTb_OUjULwRrwr0zQOGPdw@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, JC <jc@vtkloud.com>
-Subject: misleading dependencies between packages
+X-Mailer: Nodemailer (0.5.0; +http://www.nodemailer.com/)
+Date: Tue, 10 Sep 2013 00:11:19 -0700 (PDT)
+Message-Id: <1378797078844.a48f150b@Nodemailer>
+In-Reply-To: <522E28ED.5000807@gmail.com>
+References: <522E28ED.5000807@gmail.com>
+X-Orchestra-Oid: 682600EB-CE96-4033-94AF-C76E991D00EA
+X-Orchestra-Sig: ad2342e0068dd5e412307bbe0342630b10c52a73
+X-Orchestra-Thrid: TDF50CD80-D5BE-4DE9-9446-44DAF41E57D4_1445731364809247728
+X-Orchestra-Thrid-Sig: f9c516245aac4bee6c045c5308ad4ccfd3e8ba21
+X-Orchestra-Account: 3bd0ec2367a8fcbcb5d29073f5e6935021f48a33
+From: "JC" <jc@vtkloud.com>
+To: "Arun M Kumar" <arunkr.linux@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: error in : $ runqemu qemux86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,171 +50,171 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2013 07:03:33 -0000
-Content-Type: multipart/alternative; boundary=047d7bf10aa81f54a204e6021a28
+X-List-Received-Date: Tue, 10 Sep 2013 07:11:21 -0000
+Content-Type: multipart/alternative;
+	boundary="----Nodemailer-0.5.0-?=_1-1378797079728"
 
---047d7bf10aa81f54a204e6021a28
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello,
-
-libuuid is provided by util-linux. Check in meta/recipes-core/util-linux
-for more details.
-r3 is PR that util-linux has in dylan 9.0.1. Unless you change the PR, it
-will be r3 only. I am not sure how you end up with r5.
-May be you need to (re)build util-linux if you need libuuid. Also You
-should check with the dependencies,
-I see apr package which depends on util-linux.
-
-Hope this helps.
-
-Cheers,
-
-
-On Tue, Sep 10, 2013 at 12:08 PM, JC <jc@vtkloud.com> wrote:
-
-> Hi,
->
-> I have many issues with Apache2 package so I thought I would reinstall it.
-> I used smart (smart install apache2) and here is the very strange issue I
-> got:
->
-> Installing packages (20):
-> apache2-2.4.3-r1@armv6_vfp libgdbm4-1.10-r3@armv6_vfp
-> busybox-1.20.2-r8@armv6_vfp libpcre1-8.32-r1@armv6_vfp
-> busybox-syslog-1.20.2-r8@**armv6_vfp libperl5-5.14.3-r1@armv6_vfp
-> busybox-udhcpc-1.20.2-r8@**armv6_vfp libssl1.0.0-1.0.1e-r15.0@**armv6_vfp
-> libapr-1-0-1.4.6-r2@armv6_vfp libuuid1-2.22.2-r3@armv6_vfp
-> libaprutil-1-0-1.5.1-r0@armv6_**vfp libz1-1.2.7-r0@armv6_vfp
-> libc6-2.17-r3@armv6_vfp openssl-1.0.1e-r15.0@armv6_vfp
-> libcrypto1.0.0-1.0.1e-r15.0@**armv6_vfp perl-5.14.3-r1@armv6_vfp
-> libexpat1-2.1.0-r0@armv6_vfp update-alternatives-cworth-1:**
-> 0.1.8+svnr649-r13.0@armv6_vfp
-> libgcc1-4.7.2-r20@armv6_vfp update-rc.d-0.7-r5@all
->
-> 4.8MB of package files are needed. 9.7MB will be used.
->
-> Confirm changes? (Y/n): Y
->
-> Fetching packages...
-> [Snip lots of downloads]
-> -> http://192.168.0.50:81/rpm/**armv6_vfp/apache2-2.4.3-r1.**armv6_vfp.rpm<http://192.168.0.50:81/rpm/armv6_vfp/apache2-2.4.3-r1.armv6_vfp.rpm>
-> apache2-2.4.3-r1.armv6_vfp.rpm ##############################**
-> ##############################**################## [ 95%]
->
-> error: Failed to download packages:
-> error: http://192.168.0.50:81/rpm/**armv6_vfp/libuuid1-2.22.2-r3.**
-> armv6_vfp.rpm<http://192.168.0.50:81/rpm/armv6_vfp/libuuid1-2.22.2-r3.armv6_vfp.rpm>:
-> File not found
->
->
-> And indeed, I do not have r3 of libuuid1 but r5. This is not the first
-> time I run in this issue, it's unfortunately quite common. And I can't even
-> figure who is generating libuuid1 :(
->
-> Any idea?
->
-> Regards
-> Jay
->
->
-> ______________________________**_________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
-
-
-
--- 
-JCP
-
-
-
--- 
-JCP
-
---047d7bf10aa81f54a204e6021a28
-Content-Type: text/html; charset=ISO-8859-1
+------Nodemailer-0.5.0-?=_1-1378797079728
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello,<br><div class=3D"gmail_quote"><div dir=3D"ltr"><div=
-><br></div><div>libuuid is provided by util-linux. Check in meta/recipes-co=
-re/util-linux for more details.</div><div>r3 is PR that util-linux has in d=
-ylan 9.0.1. Unless you change the PR, it will be r3 only. I am not sure how=
- you end up with r5.</div>
+On lun., sept. 9, 2013 at 10:01 PM, Arun M Kumar <arunkr.linux@gmail.=
+com=3D=22mailto:arunkr.linux@gmail.com=22>> wrote:
+
+    I have built my first image with the Yocto Project build environment, =
+I=20
+
+have the image ready.
 
 
-<div>May be you need to (re)build util-linux if you need libuuid. Also You =
-should check with the dependencies,=A0</div><div>I see apr package which de=
-pends on util-linux.</div><div><br></div><div>Hope this helps.</div><div>
+when I do.
 
 
-<br></div><div>Cheers,</div></div><div class=3D"gmail_extra"><div><div clas=
-s=3D"h5"><br><br><div class=3D"gmail_quote">On Tue, Sep 10, 2013 at 12:08 P=
-M, JC <span dir=3D"ltr">&lt;<a href=3D"mailto:jc@vtkloud.com" target=3D"_bl=
-ank">jc@vtkloud.com</a>&gt;</span> wrote:<br>
+$ runqemu qemux86
 
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi,<br>
-<br>
-I have many issues with Apache2 package so I thought I would reinstall it. =
-I used smart (smart install apache2) and here is the very strange issue I g=
-ot:<br>
-<br>
-Installing packages (20):<br>
-apache2-2.4.3-r1@armv6_vfp libgdbm4-1.10-r3@armv6_vfp<br>
-busybox-1.20.2-r8@armv6_vfp libpcre1-8.32-r1@armv6_vfp<br>
-busybox-syslog-1.20.2-r8@<u></u>armv6_vfp libperl5-5.14.3-r1@armv6_vfp<br>
-busybox-udhcpc-1.20.2-r8@<u></u>armv6_vfp libssl1.0.0-1.0.1e-r15.0@<u></u>a=
-rmv6_vfp<br>
-libapr-1-0-1.4.6-r2@armv6_vfp libuuid1-2.22.2-r3@armv6_vfp<br>
-libaprutil-1-0-1.5.1-r0@armv6_<u></u>vfp libz1-1.2.7-r0@armv6_vfp<br>
-libc6-2.17-r3@armv6_vfp openssl-1.0.1e-r15.0@armv6_vfp<br>
-libcrypto1.0.0-1.0.1e-r15.0@<u></u>armv6_vfp perl-5.14.3-r1@armv6_vfp<br>
-libexpat1-2.1.0-r0@armv6_vfp update-alternatives-cworth-1:<u></u>0.1.8+svnr=
-649-r13.0@armv6_vfp<br>
-libgcc1-4.7.2-r20@armv6_vfp update-rc.d-0.7-r5@all<br>
-<br>
-4.8MB of package files are needed. 9.7MB will be used.<br>
-<br>
-Confirm changes? (Y/n): Y<br>
-<br>
-Fetching packages...<br>
-[Snip lots of downloads]<br>
--&gt; <a href=3D"http://192.168.0.50:81/rpm/armv6_vfp/apache2-2.4.3-r1.armv=
-6_vfp.rpm" target=3D"_blank">http://192.168.0.50:81/rpm/<u></u>armv6_vfp/ap=
-ache2-2.4.3-r1.<u></u>armv6_vfp.rpm</a><br>
-apache2-2.4.3-r1.armv6_vfp.rpm ##############################<u></u>#######=
-#######################<u></u>################## [ 95%]<br>
-<br>
-error: Failed to download packages:<br>
-error: <a href=3D"http://192.168.0.50:81/rpm/armv6_vfp/libuuid1-2.22.2-r3.a=
-rmv6_vfp.rpm" target=3D"_blank">http://192.168.0.50:81/rpm/<u></u>armv6_vfp=
-/libuuid1-2.22.2-r3.<u></u>armv6_vfp.rpm</a>: File not found<br>
-<br>
-<br>
-And indeed, I do not have r3 of libuuid1 but r5. This is not the first time=
- I run in this issue, it&#39;s unfortunately quite common. And I can&#39;t =
-even figure who is generating libuuid1 :(<br>
-<br>
-Any idea?<br>
-<br>
-Regards<br>
-Jay<br>
-<br>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</blockquote></div><br><br clear=3D"all"><div><br></div></div></div><span c=
-lass=3D"HOEnZb"><font color=3D"#888888">-- <br>JCP
-</font></span></div>
-</div><br><br clear=3D"all"><div><br></div>-- <br>JCP
-</div>
+I get the following error.
 
---047d7bf10aa81f54a204e6021a28--
+
+---------------------------------------------------------------------------=
+-----
+
+There was an error running bitbake to determine TMPDIR
+
+Here is the output from 'bitbake -e':
+
+ERROR: Unable to parse conf/bitbake.conf: conf/bitbake.conf:18: =
+unparsed=20
+
+line: 'xport exec=5Fprefix =3D =22/usr=22'
+
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+
+
+
+What could be the possible causes to this.=C2=A0
+    =E2=80=8B
+
+=20=20=20=20
+      How did you generate your image=3F
+      Did you run the oe-.. Script first =3F
+
+=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20
+
+
+      Jay
+
+=20=20=20=20=20=20
+
+=20=20=20=20
+
+    =E2=80=8B
+
+=20=20=20=20
+=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20
+
+
+=20=20=20=20
+
+=20=20=20=20
+=20=20=20=20=20=20
+
+=20=20=20=20
+
+I had to add the scripts directory in Poky to my PATH variable, does=20
+
+this gives any hints to my problem =3F
+
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+
+yocto mailing list
+
+yocto@yoctoproject.org
+
+https://lists.yoctoproject.org/listinfo/yocto
+
+------Nodemailer-0.5.0-?=_1-1378797079728
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <body>
+    <br/>
+    <br/>
+    <br/>
+    <div id=3D=22orc-email-signature=22 style=3D=22display: block; =22>
+      <div class=3D=22mailbox=5Fsignature=22>
+        <br/>
+      </div>
+    </div>
+    <span id=3D=22orc-full-body-initial-text=22 style=3D=22display: inline;=
+ =22>On lun., sept. 9, 2013 at 10:01 PM, Arun M Kumar &lt;<a><href =
+target=3D=22=5Fblank=22>arunkr.linux@gmail.com</href>=3D=22mailto:arunkr.=
+linux@gmail.com=22&gt;</a>&gt; wrote:<br/></span>
+    <blockquote class=3D=22gmail=5Fquote=22>I have built my first image =
+with the Yocto Project build environment, I=20
+<br/>have the image ready.
+<br/><br/>when I do.
+<br/><br/>$ runqemu qemux86
+<br/><br/>I get the following error.
+<br/><br/>-----------------------------------------------------------------=
+---------------
+<br/>There was an error running bitbake to determine TMPDIR
+<br/>Here is the output from 'bitbake -e':
+<br/>ERROR: Unable to parse conf/bitbake.conf: conf/bitbake.conf:18: =
+unparsed=20
+<br/>line: 'xport exec=5Fprefix =3D =22/usr=22'
+<br/>=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+<br/><br/><br/>What could be the possible causes to this.=
+=C2=A0</blockquote>
+    <div id=3D=22mb-inline-edit=22>=E2=80=8B</div>
+    <div id=3D=22mb-inline-edit=22>
+      <span style=3D=22-webkit-composition-fill-color: rgba(175, 192, 227, =
+0.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); =
+=22>How did you generate your image=3F</span>
+      <div style=3D=22-webkit-composition-fill-color: rgba(175, 192, 227, 0=
+.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); =
+=22>Did you run the oe-.. Script first =3F</div>
+      <div style=3D=22-webkit-composition-fill-color: rgba(175, 192, 227, 0=
+.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); =
+=22>
+        <br/>
+      </div>
+      <div style=3D=22-webkit-composition-fill-color: rgba(175, 192, 227, 0=
+.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); =
+=22>Jay</div>
+      <div style=3D=22-webkit-composition-fill-color: rgba(175, 192, 227, 0=
+.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); =
+=22/>
+    </div>
+    <div id=3D=22mb-inline-edit=22>=E2=80=8B</div>
+    <div id=3D=22mb-inline-edit=22>
+      <div style=3D=22-webkit-composition-fill-color: rgba(175, 192, 227, 0=
+.230469); -webkit-composition-frame-color: rgba(77, 128, 180, 0.230469); =
+=22>
+        <br/>
+      </div>
+    </div>
+    <blockquote class=3D=22gmail=5Fquote=22>
+      <br/>
+    </blockquote>
+    <blockquote class=3D=22gmail=5Fquote=22><br/><br/>I had to add the =
+scripts directory in Poky to my PATH variable, does=20
+<br/>this gives any hints to my problem =3F
+<br/>=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+<br/>yocto mailing list
+<br/>yocto@yoctoproject.org
+<br/>https://lists.yoctoproject.org/listinfo/yocto
+<br/></blockquote>
+  </body>
+</html>
+
+------Nodemailer-0.5.0-?=_1-1378797079728--
