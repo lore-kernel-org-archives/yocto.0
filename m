@@ -1,32 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27A5CE015AC
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 00:31:36 -0700 (PDT)
-Received: by mail-ie0-f170.google.com with SMTP id 17so9546103iea.1
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 00:31:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=EChKoDPJNqJCeI9wIIKk0chUnBsuDNBKLHMfDTEpxYI=;
-	b=BVB+YA+nPwLR5s2HNNT5hCqmwe/L8mOnocEB8Pw8ZKU0Zq5h+CqYn+JFDMt4RD24h1
-	GET90zScH2Eg1PXlcZSiio6KmewufcMjZmMc8RhABKJiCCYpGvW/Lkk6Um+4hhoJKlcW
-	qvo8Vtwz2l2NlF0g1BrgmhXZS93/K5IcoRvCo6BQpJPyaQwSShM/zZViu0YPnw6KBiot
-	Hfn9jQvnA4IkyMSKZKvM2DdkHi7FQfGXqvyXC5SyQrVWP3tJCo4ibBzus6iG29uHbxhL
-	GSOxNY9lYoktic1AY3htcBUnV3br0RfFN1n2VJrC9PSF3piTvUhjannYgNGknsX2J2IP
-	MERA==
-X-Received: by 10.42.64.74 with SMTP id f10mr29626ici.86.1378884695798; Wed,
-	11 Sep 2013 00:31:35 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.50.216.195 with HTTP; Wed, 11 Sep 2013 00:31:05 -0700 (PDT)
-In-Reply-To: <CALmOhg=-=y_TDAbaSgSn1rjv1c1QB2iLe3z0EUYe17gTmxWU4g@mail.gmail.com>
-References: <CALmOhg=-=y_TDAbaSgSn1rjv1c1QB2iLe3z0EUYe17gTmxWU4g@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 11 Sep 2013 00:31:05 -0700
-Message-ID: <CAMKF1sphfs0d487nwL0q6mPDMnCHTZb+LtEEM9N9TQp=BJmOrg@mail.gmail.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: CFLAGS and configurations
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5070E01561
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 03:20:23 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1VJhX1-0004T4-7w
+	for yocto@yoctoproject.org; Wed, 11 Sep 2013 12:20:19 +0200
+Received: from 14.Red-2-139-162.staticIP.rima-tde.net ([2.139.162.14])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 12:20:19 +0200
+Received: from jose.ferreiro by 14.Red-2-139-162.staticIP.rima-tde.net with
+	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 12:20:19 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: jfc <jose.ferreiro@horus.es>
+Date: Wed, 11 Sep 2013 10:20:01 +0000 (UTC)
+Message-ID: <loom.20130911T102526-294@post.gmane.org>
+References: <522F013F.7070002@horus.es>
+	<CAAA4K6JvKPBSUZAwYwUVFCj_n64B-L1N3xN5cwuUs4Cg6ijPNg@mail.gmail.com>
+	<522F5635.3040803@horus.es> <522F7000.5030103@philipp-wagner.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 2.139.162.14 (Mozilla/5.0 (Windows NT 5.1;
+	rv:23.0) Gecko/20100101 Firefox/23.0)
+Subject: Re: Add new module to recipe + meta-toolchain-qt: add gdb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,53 +38,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Sep 2013 07:31:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 11 Sep 2013 10:20:28 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 11, 2013 at 12:10 AM, Trevor Woerner
-<trevor.woerner@linaro.org> wrote:
-> Hi Khem,
->
-> Sorry if this has been asked too many times before, but is there is an
-> advantage to specifying a whole bunch of CFLAGS for every invocation
-> of the compiler versus specifying them during the ./configure?
->
+Philipp Wagner <lists@...> writes:
 
-Keep in mind that all packages we build are not autotooled. There are other
-component build systems besides autotools that come into play like scons, cmake
-and so on and we have to be consistent across all of them.
+> 
+> Hi Jose,
+> 
+  ...
+> 
+> To do that, just start a new console, do *not* source the
+> /opt/poky/1.4.2/environment-* file. This should give you an empty
+> PYTHONHOME variable and an unmodified PATH, so you can just use the
+> regular tools on the desktop.
+> 
+> Philipp
+> 
 
-> For example, if one ./configures their cross-compiler with things like
-> -march, -mtune, --sysroot, etc then those will be the defaults. If
-> nothing is otherwise specified, these ./configure options are what
-> will be used. But if these things aren't specified at ./configure
-> time, then every time the cross-compiler is invoked these options need
-> to be specified.
->
-> Looking, roughly, through some of the log.do_compile logs when
-> cross-compiling applications for the target, and looking at the output
-> of invoking the cross-compile with the "-v" flag, it appears most of
-> these flags need to be specified for each invocation of the compiler.
-> The ./configure specifies the sysroot, for example, but doesn't try to
-> specify any of the -mtune or -march (etc) flags.
->
-> Wouldn't it be easier the other way? That way we don't have to worry
-> that some component's build isn't clobbering our required CFLAGS?
+Hello Philipp
 
-yes for packages using autotools may be but I dont see a big downside
-of using CFLAGS
-either. It gives you same functionality but is a bit more homogenous
-across all kind of components.
+That works. But then we have to use a qtcreator.sh with the poky PYTHOHOME
+to debug Target and another qtcreator2.sh without it to debug Desktop.
 
->
-> Do the SDK cross-compilers work the same way? Are they ./configure'd similarly?
+There is another workaround also: we can add to the
+QTCreator-Project-Options-Desktop-Environment a new PYTHONHOME value and it
+seems to have preference over the environment.sh value. This is to be done
+for every project. 
 
-We now have relocatable SDKs and one feature that we use it making
-sure the we have
-the ability to change sysroot on install. So this will have to be
-passed via CFLAGS.
+However we are new to Yocto and have problems finding and understanding
+things. For example this gdb/pythons thing:
+  Why python is recompiled and created on /opt/poky sdk environment? 
+  Why not use host python? 
+  What are the steps to create gdb (or any other utlity) on the sdk
+directory  (/opt/poky/..)? 
+  Where is the python recipe to introduce it in host sdk to follow as an
+example?
 
->
-> Best regards,
->     Trevor
+Thanks and best regards.
+
+
 
