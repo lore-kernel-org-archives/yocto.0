@@ -1,31 +1,34 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC7AAE013AE
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 00:10:14 -0700 (PDT)
-Received: by mail-ee0-f48.google.com with SMTP id l10so4381590eei.35
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 00:10:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=i6u7YPQZBD3voOrPeA+4fo0lRhU8JVLAvgzEqBcHgWQ=;
-	b=Y2g2iiDw8eWjWU0Y3zm7+T9mqfqDKVHvD+421tapsWDLWT7et2TVeb+bTIohTqgHD5
-	MGWivHMsGym2Ge802iNNITRkgLVqyIJQB0ck5s0uyTdYIFqMC6Ol/QmobG0a+k41+aUu
-	B6ayoaX16eiGimNmtHsts4TF/vUw5xDb8+tJO7+jEdIu+buCPPzuZBFusM7Angs6nKnM
-	YGegeZ8Np6zdYENUl4zJ1hPBPzHFnZ6VrWkEGwJ+yS4BDBOT3FtfFVmLbR4b1X64vijb
-	lX0snfLY8rA3stGV/l+H+A0w0ogoR972lXUC2KaL2NsjniR2tC2Z9hGUMrIFRkw8bK6g
-	0qkQ==
-X-Gm-Message-State: ALoCoQmEu09UdIrmmwZNy0ItCzkjIH0Da8k0DHkfTgry1WkuK2Anf0vc1+XETNRKAGXKgclpQXEs
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
+	[209.85.128.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93F58E013AE
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 00:29:52 -0700 (PDT)
+Received: by mail-ve0-f180.google.com with SMTP id jz11so5521608veb.11
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 00:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=STOPgzzev1BJKuU4qBCHah8sYpsMTEz9vGfO/KYGsSQ=;
+	b=EQkUzULZXLeHhU1Rxsim7r3Du8vik7QXqRJlg3Prh7LZ5uKErJ4Fn0PjKc5X75/7AW
+	5BkRV7mfA+AJ6I5pHztgnJh3rOl53j9sjtyPW9CKu73ZzYNVGDNkZ9LLbeaYysijEDCQ
+	E0XPIvX/kEvXJWFHTs72Az/OyZd+1pfjjCRtIPxXrlxAtE91F50527wljQdFcnjVRt0j
+	TPAiRz8aup+0ly0HOwBfeVSqQsIrkVdlM5e9x/x5Q0XDbHgg7zl2qkOJkZplquW7yn5k
+	H9GKdHGtL9KQ2w2vc3xAklMDkkI1HbcIg7gIBz5LxW1oVgMyhdhnfeRjstjcYjcYiF3e
+	WggA==
+X-Received: by 10.58.28.147 with SMTP id b19mr41753veh.27.1378884591568; Wed,
+	11 Sep 2013 00:29:51 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.14.204.5 with SMTP id g5mr130183eeo.110.1378883413518; Wed,
-	11 Sep 2013 00:10:13 -0700 (PDT)
-Received: by 10.14.117.67 with HTTP; Wed, 11 Sep 2013 00:10:13 -0700 (PDT)
-Date: Wed, 11 Sep 2013 03:10:13 -0400
-Message-ID: <CALmOhg=-=y_TDAbaSgSn1rjv1c1QB2iLe3z0EUYe17gTmxWU4g@mail.gmail.com>
-From: Trevor Woerner <trevor.woerner@linaro.org>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Khem Raj <raj.khem@gmail.com>
-Subject: CFLAGS and configurations
+Sender: paul.betafive@gmail.com
+Received: by 10.220.155.17 with HTTP; Wed, 11 Sep 2013 00:29:11 -0700 (PDT)
+In-Reply-To: <1378852594-13307-1-git-send-email-lists@philipp-wagner.com>
+References: <1378852594-13307-1-git-send-email-lists@philipp-wagner.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Wed, 11 Sep 2013 08:29:11 +0100
+X-Google-Sender-Auth: B8TjDEpHrLpqW3O8I0rbXQ4k_f0
+Message-ID: <CANyK_8edT=meYgopAMkSJvYUn-VNLYqZiDVmuqcNf=7dn-bRjw@mail.gmail.com>
+To: Philipp Wagner <mail@philipp-wagner.com>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 0/4] Refactor kernel recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,34 +40,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Sep 2013 07:10:15 -0000
+X-List-Received-Date: Wed, 11 Sep 2013 07:29:52 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Khem,
+On 10 September 2013 23:36,  <lists@philipp-wagner.com> wrote:
+> From: Philipp Wagner <mail@philipp-wagner.com>
+>
+> Hi,
+>
+> as follow-up to the discussion in
+> [yocto] [meta-raspberrypi][PATCH] linux-raspberrypi: Add version 3.8.13
+> I've refactored the kernel recipes a bit and included all discussed
+> kernel versions. The default is now 3.6.
+>
+> I've left linux.inc as-is, as this seems to be copied from meta-oe. Should
+> we include this directly instead of copying it here?
+>
+> Philipp
+>
+> Philipp Wagner (4):
+>   Refactor kernel recipes to reduce code duplication
+>   Remove tabs from recipe
+>   Make Linux 3.6 the default for Raspberry Pi
+>   Add kernel 3.8 and 3.11 for Raspberry Pi
+>
+>  conf/machine/include/rpi-default-providers.inc   |   3 +
+>  recipes-kernel/linux/linux-raspberrypi.inc       |  34 +++++
+>  recipes-kernel/linux/linux-raspberrypi_3.11.0.bb |   6 +
+>  recipes-kernel/linux/linux-raspberrypi_3.2.27.bb |  33 +----
+>  recipes-kernel/linux/linux-raspberrypi_3.6.11.bb |  33 +----
+>  recipes-kernel/linux/linux-raspberrypi_3.8.13.bb |   6 +
+>  recipes-kernel/linux/linux.inc                   | 174 +++++++++++------------
+>  7 files changed, 140 insertions(+), 149 deletions(-)
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi.inc
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.11.0.bb
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
+>
+> --
+> 1.8.1.4
 
-Sorry if this has been asked too many times before, but is there is an
-advantage to specifying a whole bunch of CFLAGS for every invocation
-of the compiler versus specifying them during the ./configure?
+Testing this now with PREFERRED_VERSION_linux-raspberrypi = "3.8%".
 
-For example, if one ./configures their cross-compiler with things like
--march, -mtune, --sysroot, etc then those will be the defaults. If
-nothing is otherwise specified, these ./configure options are what
-will be used. But if these things aren't specified at ./configure
-time, then every time the cross-compiler is invoked these options need
-to be specified.
+-- 
+Paul Barker
 
-Looking, roughly, through some of the log.do_compile logs when
-cross-compiling applications for the target, and looking at the output
-of invoking the cross-compile with the "-v" flag, it appears most of
-these flags need to be specified for each invocation of the compiler.
-The ./configure specifies the sysroot, for example, but doesn't try to
-specify any of the -mtune or -march (etc) flags.
-
-Wouldn't it be easier the other way? That way we don't have to worry
-that some component's build isn't clobbering our required CFLAGS?
-
-Do the SDK cross-compilers work the same way? Are they ./configure'd similarly?
-
-Best regards,
-    Trevor
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
