@@ -1,32 +1,24 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f49.google.com (mail-oa0-f49.google.com
-	[209.85.219.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 419FDE015BC
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 07:56:52 -0700 (PDT)
-Received: by mail-oa0-f49.google.com with SMTP id i7so9381788oag.8
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 07:56:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=pk9U/qVDqAfEJh/sFx+opro2Nbu/2DKlE0JyaJ/6dfM=;
-	b=cQbByKruO/bGN1x2KjoO/2KOYrfphxIAewKqN2OHTJFtAzzs9X4Vp4XtL2upRHFpTF
-	s6qk/XtuwQbrbt9Fsx8s+b/nlwQ7jeKFvRis4ar9/lx/CP3v+JAO6ByAUMzF7gm0uNNc
-	P/I7rhi6602JOwHs1r0foktfm1hkYGkjvFD15xGAJK5G5SrDjOqzGr0zNZIA2F8s/lVQ
-	9Ei+40qIOvVgcyKKqAoU874djpf56Ouk4iju8D2+WenHNmsXQcuD34Ty2KB+9vlIBxOQ
-	HzSS72LRVHx23Alhi+YPKfTAUmAMc0kmTtOAZEk5oGeA8/0A6koOJb5FyObvLJnfoFqn
-	UpUA==
+Return-Path: <sgw@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C45E005B3;
+	Wed, 11 Sep 2013 10:50:32 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga102.ch.intel.com with ESMTP; 11 Sep 2013 10:50:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,885,1371106800"; d="scan'208";a="293641526"
+Received: from unknown (HELO [10.255.14.99]) ([10.255.14.99])
+	by AZSMGA002.ch.intel.com with ESMTP; 11 Sep 2013 10:50:20 -0700
+Message-ID: <5230AD5B.3050000@linux.intel.com>
+Date: Wed, 11 Sep 2013 10:50:19 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130805 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.182.251.199 with SMTP id zm7mr723009obc.99.1378911412150;
-	Wed, 11 Sep 2013 07:56:52 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Wed, 11 Sep 2013 07:56:52 -0700 (PDT)
-In-Reply-To: <CABHD4K9QJO=OOojPX4KmHXBMgfDK1wX-nWasJ82CL3m1ZzoZUg@mail.gmail.com>
-References: <CABHD4K9QJO=OOojPX4KmHXBMgfDK1wX-nWasJ82CL3m1ZzoZUg@mail.gmail.com>
-Date: Wed, 11 Sep 2013 16:56:52 +0200
-Message-ID: <CAFyqS9qQd1mcQ1OYxjRbRZnwezA=V8bvCLb+uvMBDYS1EwM-dA@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: amit tomer <amittomer25@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to change machine name in yocto
+To: b40290@freescale.com
+References: <1378872408-16125-1-git-send-email-b40290@freescale.com>
+In-Reply-To: <1378872408-16125-1-git-send-email-b40290@freescale.com>
+Cc: yocto@yoctoproject.org, mulhern <mulhern@yoctoproject.org>
+Subject: Re: [Meta-security][PATCH 3/3] barnyard: add recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,77 +30,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Sep 2013 14:56:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 11 Sep 2013 17:50:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The MACHINE is simply a pointer to a machine specific configuration
-file. So if you set your MACHINE=foo, then somewhere in your bblayer
-path(s) you need to make sure that a conf/machine/foo.conf is
-available. Then it will use that.
-Typically, I think you should do this in your own bsp meta, eg.
-meta-foo/conf/machine/foo.conf and then add meta-foo to your
-build/conf/bblayers.conf file.
+On 09/10/2013 09:06 PM, b40290@freescale.com wrote:
+> From: Chunrong Guo <B40290@freescale.com>
+>
+>     *Barnyard is a output system for Snort
+>
+> Signed-off-by: Chunrong Guo <B40290@freescale.com>
+> ---
+>   recipes-security/barnyard/barnyard_0.2.0.bb |   22 ++++++++++++++++++++++
+>   1 files changed, 22 insertions(+), 0 deletions(-)
+>   create mode 100644 recipes-security/barnyard/barnyard_0.2.0.bb
+>
+> diff --git a/recipes-security/barnyard/barnyard_0.2.0.bb b/recipes-security/barnyard/barnyard_0.2.0.bb
+> new file mode 100644
+> index 0000000..a13ebdc
+> --- /dev/null
+> +++ b/recipes-security/barnyard/barnyard_0.2.0.bb
+> @@ -0,0 +1,22 @@
+> +DESCRIPTION = "Barnyard is a output system for Snort."
+> +HOMEPAGE = "http://www.snort.org/"
+> +LICENSE = "QPL"
+> +LIC_FILES_CHKSUM = "file://LICENSE.QPL;md5=1b8ff8c0012b5a2d647357699bf44b41"
+> +
+> +DEPENDS = "libpcap"
+> +RDEPENDS_${PN} = "libpcap"
+DEPENDS are also RDEPENDS so this is extra and not needed.
+> +
+> +SRC_URI = " ${GENTOO_MIRROR}/${P}.tar.gz;name=tarball \
+You don't want to use ${P} as it will be prefixed with any multilib type 
+of extension, it's better to use ${BP} which won't be expanded.
 
-Thanks,
-Hans
+> +          "
+> +SRC_URI[tarball.md5sum] = "be3283028cf414b52b220308ceb411e9"
+> +SRC_URI[tarball.sha256sum] = "09e0f8e095e79cfe70ea069d13e7d02521a504a1f400a45556a634dccfd31a3a"
+> +
+> +
+> +S = "${WORKDIR}/${P}"
+Same as above, this is also the default, so you should not need to 
+specify this item.
 
-
-
-On Wed, Sep 11, 2013 at 4:30 PM, amit tomer <amittomer25@gmail.com> wrote:
->  I am new to opensource build framework Yocto and have a requirement wherein
-> wanted to change the machine name ,when I do BITBAKE image-name
->
-> Build Configuration:
->
-> BB_VERSION        = "1.18.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "RedHatEnterpriseServer-5.6"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "pyp-ii"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.4.1"
-> TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa15"
-> TARGET_FPU        = "vfp-neon"
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "(nobranch):beda5013e46da16a3d76f095869a5a5c5b1bc08a"
-> meta-linaro-toolchain =
-> "(nobranch):0f679485b945c1b929a44d1865eb517a096ac4ef"
-> meta-ti           = "(nobranch):3eb71003af3ebb025285493721332111ac581a42
->
-> Now MACHIEN name I wanted to change something like k2 from pyp-ii ,I tried
-> changing it in local.conf file but I am getting error like
->
-> ERROR: OE-core's config sanity checker detected a potential
-> misconfiguration. Either fix the cause of this error or at your own risk
-> disable the checker (see sanity.conf). Following is the list of potential
-> problems / advisories:
->
-> Please set a valid MACHINE in your local.conf or environment
->
-> ERROR: Execution of event handler 'check_sanity_eventhandler' failed
->
-> I also tried setting up export MACHINE="k2" but I am getting the same error
-> message
->
-> In my /var/fpwork/tomar_yocto1/snz-yocto/meta-xyz/conf/machine there exist a
-> pyp-ii.conf file.
->
-> I tried renaming it to k2.conf but it also didn't work out.
->
->
-> Can anybody let me know what needs to be done in order to change MACHINE
-> name here.
->
->
-> Thanks
->
-> Amit Singh Tomar
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> +inherit autotools pkgconfig
+> +
+> +do_configure_prepend () {
+> +	#fix hardcoded include path
+> +	sed -i -e 's:extra_incl=-I/usr/include/pcap::g' ${S}/configure.in
+> +}
+> +
 >
 
