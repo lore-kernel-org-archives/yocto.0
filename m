@@ -1,32 +1,33 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5070E01561
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 03:20:23 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1VJhX1-0004T4-7w
-	for yocto@yoctoproject.org; Wed, 11 Sep 2013 12:20:19 +0200
-Received: from 14.Red-2-139-162.staticIP.rima-tde.net ([2.139.162.14])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 12:20:19 +0200
-Received: from jose.ferreiro by 14.Red-2-139-162.staticIP.rima-tde.net with
-	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 12:20:19 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+Return-Path: <ross.burton@intel.com>
+Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
+	[74.125.82.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5C84E015B6
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 06:44:26 -0700 (PDT)
+Received: by mail-we0-f174.google.com with SMTP id q58so6825010wes.5
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 06:44:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=SZstJ/Msa83/FFhbt6XY1r/Ng+mEN7FVcO+jGvp9FgI=;
+	b=h++ptGbfsGhMqbyxykkVmxtJwNpOVczuRvgqX/BiIT8cbRD842HvUB0agLHjLme9IX
+	PzP4JvI21TWb8olR7IrKgrwjQbQFyOgqOR351i6fOL2PNVVFy9RRrSVTkWQeew2b6JiZ
+	kBluAaov6oY1ir4ccGMoiwkgqOO+BSpMic6Qo6Im9BpmlorAjTJE8TYb0Tg0nd0a85ah
+	sodpy95hUavZS02FzJRFdu6bLjZEPID8/4eoiGQjiHYwZPwQ1tqB830Sk9zGon5LCS2K
+	0D3qjNzJdOrX2u0aLD+wnybIUv4KxKD6a5OH0ilu2mfN2ODsNEJ2jSEiJRfmRi8CCb+P
+	LF+w==
+X-Gm-Message-State: ALoCoQm2GE5q9zRmQIV3hzqzzeMyuU3R2qW5THZ/+BNwZML4TTuuRJm66gZy7qgB5hMRW+aIjk+z
+X-Received: by 10.180.189.49 with SMTP id gf17mr17258841wic.23.1378907065987; 
+	Wed, 11 Sep 2013 06:44:25 -0700 (PDT)
+Received: from melchett.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+	by mx.google.com with ESMTPSA id e5sm10762844wiy.2.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 11 Sep 2013 06:44:25 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
 To: yocto@yoctoproject.org
-From: jfc <jose.ferreiro@horus.es>
-Date: Wed, 11 Sep 2013 10:20:01 +0000 (UTC)
-Message-ID: <loom.20130911T102526-294@post.gmane.org>
-References: <522F013F.7070002@horus.es>
-	<CAAA4K6JvKPBSUZAwYwUVFCj_n64B-L1N3xN5cwuUs4Cg6ijPNg@mail.gmail.com>
-	<522F5635.3040803@horus.es> <522F7000.5030103@philipp-wagner.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 2.139.162.14 (Mozilla/5.0 (Windows NT 5.1;
-	rv:23.0) Gecko/20100101 Firefox/23.0)
-Subject: Re: Add new module to recipe + meta-toolchain-qt: add gdb
+Date: Wed, 11 Sep 2013 14:44:18 +0100
+Message-Id: <1378907058-15114-1-git-send-email-ross.burton@intel.com>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [PATCH] dev-manual: use ##OEROOT## instead of ##COREBASE##
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,45 +39,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Sep 2013 10:20:28 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 11 Sep 2013 13:44:30 -0000
 
-Philipp Wagner <lists@...> writes:
+The variable ##COREBASE## has been deprecated, so use ##OEROOT## instead.
 
-> 
-> Hi Jose,
-> 
-  ...
-> 
-> To do that, just start a new console, do *not* source the
-> /opt/poky/1.4.2/environment-* file. This should give you an empty
-> PYTHONHOME variable and an unmodified PATH, so you can just use the
-> regular tools on the desktop.
-> 
-> Philipp
-> 
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ documentation/dev-manual/dev-manual-common-tasks.xml |   12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Hello Philipp
-
-That works. But then we have to use a qtcreator.sh with the poky PYTHOHOME
-to debug Target and another qtcreator2.sh without it to debug Desktop.
-
-There is another workaround also: we can add to the
-QTCreator-Project-Options-Desktop-Environment a new PYTHONHOME value and it
-seems to have preference over the environment.sh value. This is to be done
-for every project. 
-
-However we are new to Yocto and have problems finding and understanding
-things. For example this gdb/pythons thing:
-  Why python is recompiled and created on /opt/poky sdk environment? 
-  Why not use host python? 
-  What are the steps to create gdb (or any other utlity) on the sdk
-directory  (/opt/poky/..)? 
-  Where is the python recipe to introduce it in host sdk to follow as an
-example?
-
-Thanks and best regards.
-
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index 7fa9149..9fadd7b 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -4980,15 +4980,15 @@
+      BBFILES ?= ""
+ 
+      BBLAYERS ?= " \
+-       ##COREBASE##/meta \
+-       ##COREBASE##/meta-yocto \
+-       ##COREBASE##/meta-yocto-bsp \
+-       ##COREBASE##/meta-mylayer \
++       ##OEROOT##/meta \
++       ##OEROOT##/meta-yocto \
++       ##OEROOT##/meta-yocto-bsp \
++       ##OEROOT##/meta-mylayer \
+        "
+ 
+      BBLAYERS_NON_REMOVABLE ?= " \
+-       ##COREBASE##/meta \
+-       ##COREBASE##/meta-yocto \
++       ##OEROOT##/meta \
++       ##OEROOT##/meta-yocto \
+        "
+                 </literallayout>
+                 Creating and providing an archive of the
+-- 
+1.7.10.4
 
 
