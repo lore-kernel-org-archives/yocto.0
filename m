@@ -1,28 +1,50 @@
-Return-Path: <ashish.dalela@gmail.com>
-Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EF02E013DA
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 04:22:53 -0700 (PDT)
-Received: by mail-la0-f54.google.com with SMTP id ea20so8734426lab.27
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 04:22:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=peJC9JSGw7IKFQMyRAKipGigpknaKe8mcP62AskV6pY=;
-	b=wf/WGmhYatdJuF+X8gDt4QhKwbW0wvkwSbd7rZejm2BQGOoSmbD2p4/Q6RNQlSeLkF
-	CEvXhM/xRadQJQ022Hkf4OpcDdZCepKF8oB3vZwlj7gI+oUef3qmlZI/E22fdafi5LjC
-	irb9g3NG0ININUhGQ5cN5hGCH0DPvTKAn1VAipkA9WQcFw1MzJdDw6VySUuIOd8AECnz
-	xHiFkIqcarBfmzCxCorbfiBxLMcdS9Ku3ff7LlpAALP6XLcNYxL7vX2jeY8GEauVhyvs
-	t44NlLYBUzTlb+i7EXIrVCdCcSOIwV+F9xqFfbs97okEjZYWVq9j4KiLSb3p5q2ByaQl
-	HpVw==
+Return-Path: <B19406@freescale.com>
+Received: from tx2outboundpool.messaging.microsoft.com
+	(tx2ehsobe002.messaging.microsoft.com [65.55.88.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23C19E013DA;
+	Thu, 12 Sep 2013 04:34:06 -0700 (PDT)
+Received: from mail84-tx2-R.bigfish.com (10.9.14.228) by
+	TX2EHSOBE006.bigfish.com (10.9.40.26) with Microsoft SMTP Server id
+	14.1.225.22; Thu, 12 Sep 2013 11:34:05 +0000
+Received: from mail84-tx2 (localhost [127.0.0.1])	by mail84-tx2-R.bigfish.com
+	(Postfix) with ESMTP id 157231E0170;
+	Thu, 12 Sep 2013 11:34:05 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -6
+X-BigFish: VS-6(z5109h5105hzbb2dI98dI9371Ic89bh1432I1418I4015Izz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hz8dhz1de098h1de097h186068h8275bh8275dhz2dh2a8h839h93fhd25he5bhf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h1765h18e1h190ch1946h19b4h19c3h1ad9h1b0ah1b2fh1fb3h1d0ch1d2eh1d3fh1dfeh1dffh1f5fh1fe8h1ff5h209eh1155h)
+Received: from mail84-tx2 (localhost.localdomain [127.0.0.1]) by mail84-tx2
+	(MessageSwitch) id 1378985642610241_6995;
+	Thu, 12 Sep 2013 11:34:02 +0000 (UTC)
+Received: from TX2EHSMHS015.bigfish.com (unknown [10.9.14.235])	by
+	mail84-tx2.bigfish.com (Postfix) with ESMTP id 8E54812005C;
+	Thu, 12 Sep 2013 11:34:02 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS015.bigfish.com
+	(10.9.99.115) with Microsoft SMTP Server (TLS) id 14.16.227.3;
+	Thu, 12 Sep 2013 11:34:02 +0000
+Received: from tx30smr01.am.freescale.net (10.81.153.31) by
+	039-SN1MMR1-005.039d.mgd.msft.net (10.84.1.17) with Microsoft SMTP
+	Server (TLS) id 14.3.158.2; Thu, 12 Sep 2013 11:34:01 +0000
+Received: from [10.29.244.63] ([10.29.244.63])	by tx30smr01.am.freescale.net
+	(8.14.3/8.14.0) with ESMTP id r8CBXxNv019258;
+	Thu, 12 Sep 2013 04:34:00 -0700
+Message-ID: <5231A5B3.2040804@freescale.com>
+Date: Thu, 12 Sep 2013 08:29:55 -0300
+From: Daiane Angolini <daiane.angolini@freescale.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.112.50.109 with SMTP id b13mr92124lbo.47.1378984971813; Thu,
-	12 Sep 2013 04:22:51 -0700 (PDT)
-Received: by 10.112.11.195 with HTTP; Thu, 12 Sep 2013 04:22:51 -0700 (PDT)
-Date: Thu, 12 Sep 2013 16:52:51 +0530
-Message-ID: <CABhkJRdQQ2HaXCrah=544uAn6Ys=gspTdmuSOa2VHv_gJASmKA@mail.gmail.com>
-From: Ashish Dalela <ashish.dalela@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Error while building a custom image
+To: jojo <rjiejie@gmail.com>
+References: <666645F4EAA9483CB526943CA6FA6428@gmail.com>
+	<CA+AhUGxEebNBYp64mBh3TbCrn2_n4GDsi1KB3O_Tk0mpwj7jMQ@mail.gmail.com>
+	<8AFAD819783F4C2CB04F1D5A9CA05C48@gmail.com>
+	<B009182FF2944A11AD49E18C5954CCBE@gmail.com>
+In-Reply-To: <B009182FF2944A11AD49E18C5954CCBE@gmail.com>
+X-OriginatorOrg: freescale.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: =?UTF-8?B?UmU6IFttZXRhLWZyZWVzY2FsZV0g5Zue5aSN77yaIGhvdyB0byBpbnN0YWxsIHB1bHNlYXVkaW8gY29tcGxldGVseQ==?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,51 +56,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 11:22:54 -0000
-Content-Type: multipart/alternative; boundary=001a11336ce26547cd04e62df569
-
---001a11336ce26547cd04e62df569
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi,
-
-I am new to the Yocto project and trying to build a custom image (I have
-built the standard images - e.g. core-image-basic and run them).
-
-I added a meta-mylayer directory in the poky directory and added a recipe
-for a component "tpmc". Then I modified the core-image-basic recipe and
-added a packagegroup-tpmc. This packagegroup is defined to build and
-package my component "tpmc". The packagegroup is defined in the
-yocto:~/poky-dylan-9.0.2/meta/recipes-extended/packagegroups directory.
-
-When I build the core-image-basic, at the end (while executing do_rootfs) I
-see the below error:
-
-*| Computing transaction...error: Can't install packagegroup-tpmc-1.0-r6@all:
-no package provides tpmc*
-
-What am I doing wrong? Any hints anyone can give me?
-
-Thanks
--Ashish
-
---001a11336ce26547cd04e62df569
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 12 Sep 2013 11:34:07 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am new to the Yocto project and t=
-rying to build a custom image (I have built the standard images - e.g. core=
--image-basic and run them).</div><div><br></div><div>I added a meta-mylayer=
- directory in the poky directory and added a recipe for a component &quot;t=
-pmc&quot;. Then I modified the core-image-basic recipe and added a packageg=
-roup-tpmc. This packagegroup is defined to build and package my component &=
-quot;tpmc&quot;. The packagegroup is defined in the yocto:~/poky-dylan-9.0.=
-2/meta/recipes-extended/packagegroups directory.</div>
-<div><br></div><div>When I build the core-image-basic, at the end (while ex=
-ecuting do_rootfs) I see the below error:</div><div><br></div><div><div><b>=
-| Computing transaction...error: Can&#39;t install packagegroup-tpmc-1.0-r6=
-@all: no package provides tpmc</b></div>
-</div><div><br></div><div>What am I doing wrong? Any hints anyone can give =
-me?</div><div><br></div><div>Thanks</div><div>-Ashish</div></div>
+On 09/12/2013 07:07 AM, jojo wrote:
+> Hi,
 
---001a11336ce26547cd04e62df569--
+Hi Jojo,
+
+> I installed pulse audio server in IMX6QSD of FSL, but there is no outpu=
+t
+> of audio with HDMI :(
+
+Please, double check if pulseaudio is in your DISTRO_FEATURES (i think=20
+it's default, but I cannot remember exactly)
+
+bitbake -e | grep ^DISTRO_FEATURES
+
+How are you configuring HDMI audio? I know there is a doc in=20
+imx-community with the audio configuration if you want to change it from=20
+default to HDMI.
+
+
+>
+> how to track the log of the pulse audio ?
+>
+> Thanks,
+>
+> - Jojo
+>
+> =E5=9C=A8 2013=E5=B9=B47=E6=9C=8816=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=8C=
+=EF=BC=8C=E4=B8=8B=E5=8D=8811:32=EF=BC=8Cjojo =E5=86=99=E9=81=93=EF=BC=9A
+>
+>> Hi,
+>> Ok & i will have a try, thanks for your reply :)
+>>
+>> Thanks,
+>>
+>> - Jojo
+>>
+>> =E5=9C=A8 2013=E5=B9=B47=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=94=
+=EF=BC=8C=E4=B8=8B=E5=8D=886:45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=93=
+=EF=BC=9A
+>>
+>>> Hi,
+>>> On Fri, Jul 12, 2013 at 12:35 PM, jojo <rjiejie@gmail.com
+>>> <mailto:rjiejie@gmail.com>> wrote:
+>>>> Hi,
+>>>> My yocto version/tag is dylan.
+>>>> I have compiled fsl-image-gui to testing the the audio output, but i
+>>>> can not find
+>>>> anything about for pulseaudio server to start up daemon.
+>>>>
+>>>> I saw the build code in the path about for
+>>>> "build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/pulseaudio/3.0-r0=
+/image/"
+>>>> and it really have built all things of pulseaudio. but when i create
+>>>> the fsl-image-gui to start up, i just find "libpulse*" in the
+>>>> rootfs.
+>>>>
+>>>> I think that something wrong with pulseaudio configure so that it do
+>>>> not install completely by default.
+>>>
+>>> The pulseaudio daemon is packaged as pulseaudio-server, maybe the
+>>> image doesn't install that package by default?
+>>> Cheers,
+>>> Erik Bot=C3=B6
+>>>
+>>>>
+>>>> someone know about that how to install pulseaudio completely ?
+>>>>
+>>>> Thanks,
+>>>>
+>>>> - Jojo
+>>>>
+>>>>
+>>>> _______________________________________________
+>>>> meta-freescale mailing list
+>>>> meta-freescale@yoctoproject.org <mailto:meta-freescale@yoctoproject.=
+org>
+>>>> https://lists.yoctoproject.org/listinfo/meta-freescale
+>>>>
+>>>
+>>
+>
+>
+>
+> _______________________________________________
+> meta-freescale mailing list
+> meta-freescale@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/meta-freescale
+>
+
+
+--=20
+Daiane
+
+
