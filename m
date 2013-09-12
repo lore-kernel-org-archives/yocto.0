@@ -1,32 +1,48 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EA17E014B5
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 15:04:51 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 12 Sep 2013 15:04:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,893,1371106800"; 
-	d="scan'208,217";a="400848034"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by fmsmga002.fm.intel.com with ESMTP; 12 Sep 2013 15:04:50 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 12 Sep 2013 15:04:49 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.62]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.82]) with mapi id
-	14.03.0123.003; Thu, 12 Sep 2013 15:04:49 -0700
-From: "Liu, Song" <song.liu@intel.com>
+Return-Path: <brad@evidence.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FC10E014F7
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 16:53:07 -0700 (PDT)
+X-ASG-Debug-ID: 1379029985-0499bf605c11a360001-yzSStA
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id huKfO8N2YbrCkMrN for <yocto@yoctoproject.org>;
+	Thu, 12 Sep 2013 16:53:05 -0700 (MST)
+X-Barracuda-Envelope-From: brad@evidence.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Thu, 12 Sep 2013 16:53:05 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Thu, 12 Sep 2013 16:53:04 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+From: Brad Litterell <brad@evidence.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project 1.5 M4 release readiness meeting
-Thread-Index: Ac6wBBkOLJ8PBZtLSTKPO2vxssYKRgAAAABg
-Date: Thu, 12 Sep 2013 22:04:49 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF4C52D@ORSMSX108.amr.corp.intel.com>
+Thread-Topic: Bitbake on live (uncommitted) code
+X-ASG-Orig-Subj: Bitbake on live (uncommitted) code
+Thread-Index: AQHOsBM42+OV1hSNyk6eEv5km5a1Jw==
+Date: Thu, 12 Sep 2013 23:53:04 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8DEFDB66@TI-ODIN.tasernet.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
-Subject: Yocto Project 1.5 M4 release readiness meeting
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1379029985
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.140560
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Bitbake on live (uncommitted) code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,76 +54,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 22:04:54 -0000
-X-Groupsio-MsgNum: 16012
+X-List-Received-Date: Thu, 12 Sep 2013 23:53:07 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_"
+	boundary="_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_"
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_
+--_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status#Milestone_4<ht=
-tps://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status>
+Hi,
+
+I've grown to really appreciate bitbake for compiling code from a myriad of=
+ sources, however, what is the recommended course for source I am currently=
+ doing live development on?  My code base lives in a couple of git repos th=
+at do NOT map one-to-one with recipes and I don't really want to store the =
+source mixed in with the recipe meta data anyway, nor do I want to be force=
+d to commit it to git just to do a build.
+
+Currently I run a pre-bitbake script that creates a tarball out of the sour=
+ce, but that is easy to forget and makes building a new image a two step pr=
+oces.  Since it is a build step I'd like it to be done by bitbake.
+
+Is there a recommended way to go about this?
+
+Thanks,
+Brad
 
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_
+--_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
+<html dir=3D"ltr">
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
+<style type=3D"text/css" id=3D"owaParaStyle"></style>
 </head>
-<body>
-<font face=3D"Times New Roman" size=3D"2"><span style=3D"font-size:11pt;">
-<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Statu=
-s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
-iki/Yocto_Project_v1.5_Status#Milestone_4</u></font></a></div>
-<div>&nbsp;</div>
-</span></font>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hi,
+<div><br>
+</div>
+<div>I've grown to really appreciate bitbake for compiling code from a myri=
+ad of sources, however, what is the recommended course for source I am curr=
+ently doing live development on? &nbsp;My code base lives in a couple of gi=
+t repos that do NOT map one-to-one with
+ recipes and I&nbsp;<span style=3D"font-size: 10pt;">don't really want to s=
+tore the source mixed in with the recipe meta data anyway, nor do I want to=
+ be forced to commit it to git just to do a build.</span></div>
+<div><br>
+</div>
+<div>Currently I run a pre-bitbake script that creates a tarball out of the=
+ source, but that is easy to forget and makes building a new image a two st=
+ep proces. &nbsp;Since it is a build step I'd like it to be done by bitbake=
+. &nbsp;</div>
+<div><br>
+</div>
+<div>Is there a recommended way to go about this?</div>
+<div><br>
+</div>
+<div>Thanks,<br>
+Brad</div>
+<div><br>
+</div>
+</div>
 </body>
 </html>
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=REQUEST
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
-ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
-IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
-VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
-TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
-R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
-VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
-PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
-Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
-b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
-VElPTjtMQU5HVUFHRT1lbi1VUzpodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lv
-Y3RvX1Byb2plY3QNCiBfdjEuNV9TdGF0dXMjTWlsZXN0b25lXzQ8aHR0cHM6Ly93aWtpLnlvY3Rv
-cHJvamVjdC5vcmcvd2lraS9Zb2N0b19Qcm9qZWN0Xw0KIHYxLjVfU3RhdHVzPlxuXG4NClNVTU1B
-Ulk7TEFOR1VBR0U9ZW4tVVM6WW9jdG8gUHJvamVjdCAxLjUgTTQgcmVsZWFzZSByZWFkaW5lc3Mg
-bWVldGluZw0KRFRTVEFSVDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEzMDkxM1QwOTAw
-MDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTMwOTEzVDA5MzAwMA0KVUlE
-OjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJFMDA4MDAwMDAwMDBGMDE0RkE3QkM4QUZDRTAx
-MDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwREMzQzZERjU4NDg1MzQ0M0JFMTZFMTREMkRDRjM0
-QjANCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6NQ0KRFRTVEFNUDoyMDEzMDkxMlQyMjA0NDhaDQpU
-UkFOU1A6T1BBUVVFDQpTVEFUVVM6Q09ORklSTUVEDQpTRVFVRU5DRTowDQpMT0NBVElPTjtMQU5H
-VUFHRT1lbi1VUzo5MTYtMzU2LTI2NjNcLCA4LTM1Ni0yNjYzXCwgQnJpZGdlOiAxXCwgUGFzc2Nv
-ZGU6IDMNCiAyODIyODANClgtTUlDUk9TT0ZULUNETy1BUFBULVNFUVVFTkNFOjANClgtTUlDUk9T
-T0ZULUNETy1PV05FUkFQUFRJRDoxMjI1NTYyMDc3DQpYLU1JQ1JPU09GVC1DRE8tQlVTWVNUQVRV
-UzpURU5UQVRJVkUNClgtTUlDUk9TT0ZULUNETy1JTlRFTkRFRFNUQVRVUzpCVVNZDQpYLU1JQ1JP
-U09GVC1DRE8tQUxMREFZRVZFTlQ6RkFMU0UNClgtTUlDUk9TT0ZULUNETy1JTVBPUlRBTkNFOjEN
-ClgtTUlDUk9TT0ZULUNETy1JTlNUVFlQRTowDQpYLU1JQ1JPU09GVC1ESVNBTExPVy1DT1VOVEVS
-OkZBTFNFDQpCRUdJTjpWQUxBUk0NCkFDVElPTjpESVNQTEFZDQpERVNDUklQVElPTjpSRU1JTkRF
-Ug0KVFJJR0dFUjtSRUxBVEVEPVNUQVJUOi1QVDE1TQ0KRU5EOlZBTEFSTQ0KRU5EOlZFVkVOVA0K
-RU5EOlZDQUxFTkRBUg0K
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_--
+--_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_--
