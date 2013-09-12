@@ -1,25 +1,32 @@
-Return-Path: <diego.gonzalez@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58F64E013DF
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 09:00:06 -0700 (PDT)
-Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 294996; 
-	Thu, 12 Sep 2013 18:00:02 +0200
-Received: from [172.30.250.254] by horus.es with HTTP;
-	Thu, 12 Sep 2013 18:00:02 +0200
-From: Diego Gonzalez <diego.gonzalez@horus.es>
-Date: Thu, 12 Sep 2013 18:00:02 +0200
-X-Mailer: Axigen WebMail
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-Message-ID: <1379001602144053500@horus.es>
-In-Reply-To: <CE575EB7.323DD%belen.barros.pena@intel.com>
-References: <1378983784294065500@horus.es>
-	<CE575EB7.323DD%belen.barros.pena@intel.com>
-Importance: Normal
+Return-Path: <song.liu@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EA17E014B5
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 15:04:51 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Sep 2013 15:04:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,893,1371106800"; 
+	d="scan'208,217";a="400848034"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Sep 2013 15:04:50 -0700
+Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
+	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 12 Sep 2013 15:04:49 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.62]) by
+	ORSMSX157.amr.corp.intel.com ([169.254.9.82]) with mapi id
+	14.03.0123.003; Thu, 12 Sep 2013 15:04:49 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project 1.5 M4 release readiness meeting
+Thread-Index: Ac6wBBkOLJ8PBZtLSTKPO2vxssYKRgAAAABg
+Date: Thu, 12 Sep 2013 22:04:49 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF4C52D@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 4
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hob Question
+Subject: Yocto Project 1.5 M4 release readiness meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,152 +38,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 16:00:12 -0000
+X-List-Received-Date: Thu, 12 Sep 2013 22:04:54 -0000
+X-Groupsio-MsgNum: 16012
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="===axigen=5946846407574264319585668790536012061054=axigen==="
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_"
 
---===axigen=5946846407574264319585668790536012061054=axigen===
-Content-Type: text/plain;
-	charset="utf-8"
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
 
-Hola Bel=C3=A9n,
-
-Thank you for your answer! You assumed wrong , I'm=20
-building with Yocto Project Dylan release, so I think that's why I can't=20
-see the button...
-However I have a newbie question . What is the difference between Dylan and=
- Master branch ?
-
-Saludos,
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status#Milestone_4<ht=
+tps://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status>
 
 
-
-Diego Gonz=C3=A1lez Gonz=C3=A1lez
-Dpto. de Control Industrial HORUS HARDWARE S.A.
-Pol Ind Europolis C/Berna n=C2=BA4
-28232 Las Rozas de Madrid
-diego.gonzalez@horus.es
-On Thu, 09/12/2013 05:01 PM, "Barros Pena, Belen" <belen.barros.pena@intel.=
-com> wrote:
-> On 12/09/2013 12:03, "Diego Gonzalez" <diego.gonzalez@horus.es> wrote:
->=20
-> >Hello,
->=20
-> Hola Diego
->=20
-> >
-> >I just read this blog
-> >https://www.yoctoproject.org/blogs/belenbarrospena/2013/saving-your-hob-=
-cu
-> >stomised-builds-image-recipes , which explains how to save your hob
-> >customized images . However when it finished to build my image I can't
-> >save it because there's
-> > not Save Image recipe button. How I can save it? Why I can't see this
-> >button?
->=20
-> I am assuming you are building with the Yocto Project master branch: the
-> feature is not available on the Dylan release.
->=20
-> If you are, the 'Save image recipe' button will display only when you edi=
-t
-> the Yocto Project image recipe you are starting from (I.e. If you add
-> /remove some packages to / from it). If you build one of the Yocto Projec=
-t
-> image recipes as they come, without making any changes to the package
-> list, the save option will not show.
->=20
-> If you are changing the package list and still cannot see the save option=
-,
-> something is not working as it should. Can I ask you to open a bug if
-> that's the case? You can do so at http://bugzilla.yoctoproject.org/
->=20
-> Saludos,
->=20
-> Bel=C3=A9n
->=20
-> >
-> >
-> >Diego Gonz=C3=A1lez Gonz=C3=A1lez
-> >Dpto. de Control Industrial
-> >=20
-> >HORUS HARDWARE S.A.
-> >Pol Ind Europolis C/Berna n=C2=BA4
-> >28232 Las Rozas de Madrid
-> >diego.gonzalez@horus.es <enrique.fernandez@horus.es>
-> >
-> >
->=20
-> ---------------------------------------------------------------------
-> Intel Corporation (UK) Limited
-> Registered No. 1134945 (England)
-> Registered Office: Pipers Way, Swindon SN3 1RJ
-> VAT No: 860 2173 47
->=20
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
->=20
-> 
-
---===axigen=5946846407574264319585668790536012061054=axigen===
-Content-Type: text/html;
-	charset="utf-8"
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
 
-<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
-: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
-background-image: none; background-repeat: repeat; background-attachment: f=
-ixed;">Hola Bel=C3=A9n,<br><br>Thank you for your answer! You assumed wrong=
- , I'm=20
-building with Yocto Project Dylan release, so I think that's why I can't=20
-see the button...<br>However I have a newbie question . What is the differe=
-nce between Dylan and Master branch ?<br><br>Saludos,<br><br><div class=3D"=
-x-axi-signature"><br><div class=3D"x-axi-signature" style=3D"; font-size: 1=
-0pt; font-family: Arial;"><br>Diego Gonz=C3=A1lez Gonz=C3=A1lez<br><div sty=
-le=3D"text-align: left;">Dpto. de Control Industrial</div><div style=3D"tex=
-t-align: left;">&nbsp;</div><div style=3D"text-align: left;">HORUS HARDWARE=
- S.A.<br>Pol Ind Europolis C/Berna n=C2=BA4<br>28232 Las Rozas de Madrid<br=
-><a id=3D"ext-gen5000" href=3D"mailto:enrique.fernandez@horus.es">diego.gon=
-zalez@horus.es</a></div></div></div><br>On Thu, 09/12/2013 05:01 PM, "Barro=
-s&nbsp;Pena,&nbsp;Belen"&nbsp;&lt;belen.barros.pena@intel.com&gt; wrote:<br=
-><blockquote style=3D"border-left: 2px solid rgb(00, 00, 204); padding-left=
-: 4px; margin-left: 16px;"><div style=3D"font-family: Arial; font-size: 10p=
-t;">On 12/09/2013 12:03, "Diego Gonzalez" &lt;<a href=3D"mailto:diego.gonza=
-lez@horus.es" target=3D"_blank">diego.gonzalez@horus.es</a>&gt; wrote:<br><=
-br>&gt;Hello,<br><br>Hola Diego<br><br>&gt;<br>&gt;I just read this blog<br=
->&gt;<a href=3D"https://www.yoctoproject.org/blogs/belenbarrospena/2013/sav=
-ing-your-hob-cu" target=3D"_blank">https://www.yoctoproject.org/blogs/belen=
-barrospena/2013/saving-your-hob-cu</a><br>&gt;stomised-builds-image-recipes=
- , which explains how to save your hob<br>&gt;customized images . However w=
-hen it finished to build my image I can't<br>&gt;save it because there's<br=
->&gt; not Save Image recipe button. How I can save it? Why I can't see this=
-<br>&gt;button?<br><br>I am assuming you are building with the Yocto Projec=
-t master branch: the<br>feature is not available on the Dylan release.<br><=
-br>If you are, the 'Save image recipe' button will display only when you ed=
-it<br>the Yocto Project image recipe you are starting from (I.e. If you add=
-<br>/remove some packages to / from it). If you build one of the Yocto Proj=
-ect<br>image recipes as they come, without making any changes to the packag=
-e<br>list, the save option will not show.<br><br>If you are changing the pa=
-ckage list and still cannot see the save option,<br>something is not workin=
-g as it should. Can I ask you to open a bug if<br>that's the case? You can =
-do so at <a href=3D"http://bugzilla.yoctoproject.org/" target=3D"_blank">ht=
-tp://bugzilla.yoctoproject.org/</a><br><br>Saludos,<br><br>Bel=C3=A9n<br><b=
-r>&gt;<br>&gt;<br>&gt;Diego Gonz=C3=A1lez Gonz=C3=A1lez<br>&gt;Dpto. de Con=
-trol Industrial<br>&gt; <br>&gt;HORUS HARDWARE S.A.<br>&gt;Pol Ind Europoli=
-s C/Berna n=C2=BA4<br>&gt;28232 Las Rozas de Madrid<br>&gt;<a href=3D"mailt=
-o:diego.gonzalez@horus.es" target=3D"_blank">diego.gonzalez@horus.es</a> &l=
-t;<a href=3D"mailto:enrique.fernandez@horus.es" target=3D"_blank">enrique.f=
-ernandez@horus.es</a>&gt;<br>&gt;<br>&gt;<br><br>--------------------------=
--------------------------------------------<br>Intel Corporation (UK) Limit=
-ed<br>Registered No. 1134945 (England)<br>Registered Office: Pipers Way, Sw=
-indon SN3 1RJ<br>VAT No: 860 2173 47<br><br>This e-mail and any attachments=
- may contain confidential material for<br>the sole use of the intended reci=
-pient(s). Any review or distribution<br>by others is strictly prohibited. I=
-f you are not the intended<br>recipient, please contact the sender and dele=
-te all copies.<br><br></div></blockquote></body></html>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Times New Roman" size=3D"2"><span style=3D"font-size:11pt;">
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Statu=
+s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
+iki/Yocto_Project_v1.5_Status#Milestone_4</u></font></a></div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
 
---===axigen=5946846407574264319585668790536012061054=axigen===--
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_
+Content-Type: text/calendar; charset="utf-8"; method=REQUEST
+Content-Transfer-Encoding: base64
+
+QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
+ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
+IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
+VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
+TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
+R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
+VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
+PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
+Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
+RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
+b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
+VElPTjtMQU5HVUFHRT1lbi1VUzpodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lv
+Y3RvX1Byb2plY3QNCiBfdjEuNV9TdGF0dXMjTWlsZXN0b25lXzQ8aHR0cHM6Ly93aWtpLnlvY3Rv
+cHJvamVjdC5vcmcvd2lraS9Zb2N0b19Qcm9qZWN0Xw0KIHYxLjVfU3RhdHVzPlxuXG4NClNVTU1B
+Ulk7TEFOR1VBR0U9ZW4tVVM6WW9jdG8gUHJvamVjdCAxLjUgTTQgcmVsZWFzZSByZWFkaW5lc3Mg
+bWVldGluZw0KRFRTVEFSVDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEzMDkxM1QwOTAw
+MDANCkRURU5EO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTMwOTEzVDA5MzAwMA0KVUlE
+OjA0MDAwMDAwODIwMEUwMDA3NEM1QjcxMDFBODJFMDA4MDAwMDAwMDBGMDE0RkE3QkM4QUZDRTAx
+MDAwMDAwMDAwMDAwMDAwDQogMDEwMDAwMDAwREMzQzZERjU4NDg1MzQ0M0JFMTZFMTREMkRDRjM0
+QjANCkNMQVNTOlBVQkxJQw0KUFJJT1JJVFk6NQ0KRFRTVEFNUDoyMDEzMDkxMlQyMjA0NDhaDQpU
+UkFOU1A6T1BBUVVFDQpTVEFUVVM6Q09ORklSTUVEDQpTRVFVRU5DRTowDQpMT0NBVElPTjtMQU5H
+VUFHRT1lbi1VUzo5MTYtMzU2LTI2NjNcLCA4LTM1Ni0yNjYzXCwgQnJpZGdlOiAxXCwgUGFzc2Nv
+ZGU6IDMNCiAyODIyODANClgtTUlDUk9TT0ZULUNETy1BUFBULVNFUVVFTkNFOjANClgtTUlDUk9T
+T0ZULUNETy1PV05FUkFQUFRJRDoxMjI1NTYyMDc3DQpYLU1JQ1JPU09GVC1DRE8tQlVTWVNUQVRV
+UzpURU5UQVRJVkUNClgtTUlDUk9TT0ZULUNETy1JTlRFTkRFRFNUQVRVUzpCVVNZDQpYLU1JQ1JP
+U09GVC1DRE8tQUxMREFZRVZFTlQ6RkFMU0UNClgtTUlDUk9TT0ZULUNETy1JTVBPUlRBTkNFOjEN
+ClgtTUlDUk9TT0ZULUNETy1JTlNUVFlQRTowDQpYLU1JQ1JPU09GVC1ESVNBTExPVy1DT1VOVEVS
+OkZBTFNFDQpCRUdJTjpWQUxBUk0NCkFDVElPTjpESVNQTEFZDQpERVNDUklQVElPTjpSRU1JTkRF
+Ug0KVFJJR0dFUjtSRUxBVEVEPVNUQVJUOi1QVDE1TQ0KRU5EOlZBTEFSTQ0KRU5EOlZFVkVOVA0K
+RU5EOlZDQUxFTkRBUg0K
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF4C52DORSMSX108amrcor_--
