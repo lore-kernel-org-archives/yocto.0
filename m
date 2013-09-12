@@ -1,27 +1,21 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 507C7E01358
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 03:48:55 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 12 Sep 2013 03:48:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,890,1371106800"; d="scan'208";a="394673429"
-Received: from ks-mobl3.gar.corp.intel.com (HELO helios.localnet)
-	([10.252.123.176])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Sep 2013 03:48:54 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Hans =?ISO-8859-1?Q?Beck=E9rus?= <hans.beckerus@gmail.com>,
-	Karl Hiramoto <karl@hiramoto.org>
-Date: Thu, 12 Sep 2013 11:48:53 +0100
-Message-ID: <12314943.3pqejBoTbM@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-29-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAFyqS9oOY4pyaM63XQnTrh8Qh4pik=b35n78_H76+ifm-qrC=Q@mail.gmail.com>
-References: <5231901B.8090801@hiramoto.org>
-	<CAFyqS9oOY4pyaM63XQnTrh8Qh4pik=b35n78_H76+ifm-qrC=Q@mail.gmail.com>
+Return-Path: <diego.gonzalez@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C91E01358
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 04:03:09 -0700 (PDT)
+Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 1BB32B; 
+	Thu, 12 Sep 2013 13:03:04 +0200
+Received: from [172.30.250.254] by horus.es with HTTP;
+	Thu, 12 Sep 2013 13:03:04 +0200
+From: Diego Gonzalez <diego.gonzalez@horus.es>
+Date: Thu, 12 Sep 2013 13:03:04 +0200
+X-Mailer: Axigen WebMail
+To: yocto@yoctoproject.org
+Message-ID: <1378983784294065500@horus.es>
+Importance: Normal
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: package development recompile and install to rootfs
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 4
+Subject: Hob Question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,95 +27,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 10:48:56 -0000
+X-List-Received-Date: Thu, 12 Sep 2013 11:03:11 -0000
+Content-Type: multipart/alternative;
+	boundary="===axigen=0167943451388719680513811979375653010637=axigen==="
+
+--===axigen=0167943451388719680513811979375653010637=axigen===
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 
-Hi Karl / Hans,
+Hello,
 
-On Thursday 12 September 2013 12:28:16 Hans Beck=E9rus wrote:
-> On Thu, Sep 12, 2013 at 11:57 AM, Karl Hiramoto <karl@hiramoto.org> w=
-rote:
-> > So to compile and reinstall mypackage i do:
-> > bitbake -v mypackage -c clean -f  && bitbake -v mypackage -c instal=
-l -f &&
-> > bitbake -v mymachine-image
-> >=20
-> >=20
-> > The mymachine-image  deletes and recreates the rootfs, which is len=
-gthly.
-> > After i do this, I need to reboot my  target board, so the nfsroot =
-gets
-> > remounted.
-> >=20
-> > Is there any way to quickly get  mypackage  installed on the rootfs=
-?  =20
-> > I'd like to be able to quickly recompile/link mypackage after chang=
-ing a
-> > few lines of code.
-> >=20
-> > I could write a script to copy the binaries over but I'm wondering =
-if
-> > there is an easier way.
->=20
-> AFAIK there is no quick way of updating a rootfs image with a new
-> version of a package. If there is then please tell us because I would=
+I just read this blog https://www.yoctoproject.org/blogs/belenbarrospena/20=
+13/saving-your-hob-customised-builds-image-recipes , which explains how to =
+save your hob customized images . However when it finished to build my imag=
+e I can't save it because there's not Save Image recipe button. How I can s=
+ave it? Why I can't see this button?
 
-> like to know too ;)
 
-Well, assuming you're prepared to enable package management in the targ=
-et
-image (can just be temporary during development), you can share your
-packages as a feed over http and install/update from there from the tar=
-get.=20
-There's a section of the manual that covers this (for rpm, but can be
-adapted for ipk):
+Diego Gonz=C3=A1lez Gonz=C3=A1lez
+Dpto. de Control Industrial HORUS HARDWARE S.A.
+Pol Ind Europolis C/Berna n=C2=BA4
+28232 Las Rozas de Madrid
+diego.gonzalez@horus.es
 
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#set=
-ting-up-runtime-package-management
+--===axigen=0167943451388719680513811979375653010637=axigen===
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-> If your are only after package development and testing it on target I=
+<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
+: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
+background-image: none; background-repeat: repeat; background-attachment: f=
+ixed;">Hello,<br><br>I just read this blog https://www.yoctoproject.org/blo=
+gs/belenbarrospena/2013/saving-your-hob-customised-builds-image-recipes , w=
+hich explains how to save your hob customized images . However when it fini=
+shed to build my image I can't save it because there's not Save Image recip=
+e button. How I can save it? Why I can't see this button?<br><div class=3D"=
+x-axi-signature"><br><div class=3D"x-axi-signature" style=3D"; font-size: 1=
+0pt; font-family: Arial;"><br>Diego Gonz=C3=A1lez Gonz=C3=A1lez<br><div sty=
+le=3D"text-align: left;">Dpto. de Control Industrial</div><div style=3D"tex=
+t-align: left;">&nbsp;</div><div style=3D"text-align: left;">HORUS HARDWARE=
+ S.A.<br>Pol Ind Europolis C/Berna n=C2=BA4<br>28232 Las Rozas de Madrid<br=
+><a id=3D"ext-gen5000" href=3D"mailto:enrique.fernandez@horus.es">diego.gon=
+zalez@horus.es</a></div></div></div></body></html>
 
-> would use the SDK. That is why it exists. The poky tree is so much
-> more than a simple cross-compilation toolchain. It is a complete
-> integration/build and package management environment, not a
-> development tool for individual packages. In our case we build our
-> packages stand-alone using the SDK toolchain and then upload them to
-> the board using scp or a special dedicated NFS mount for testing. It
-> is a very quick way to try out those few lines of code you changed.
->=20
-> To build the SDK, you do bitbake -c populate_sdk <your image>
-> The result will be a huge .sh script that you run to install the
-> toolchain somewhere on your host/build machine.
-> After install you source an environment setup script in the root of
-> the install path and that is it. Now you can configure/compile your
-> package from anywhere. The SDK will provide exactly the same header
-> files and libraries as used when building your rootfs so output from
-> the build is 100% binary compatible. Just throw it onto the board and=
-
-> run :)
-
-This is definitely an option. Personally I prefer something closer to t=
-he build
-system like the package method I mentioned above; however it depends on=
- what
-you're doing. The SDK is great for people developing applications that =
-just
-want to be able to build their apps so they can run on the target and d=
-on't
-want or need to deal with the complexities of building the entire OS, b=
-ut on
-the other hand it doesn't automate building the application like the bu=
-ild
-system can (on the assumption that you have your own means to do that, =
-e.g. an
-IDE that you're integrating the SDK with).
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--===axigen=0167943451388719680513811979375653010637=axigen===--
