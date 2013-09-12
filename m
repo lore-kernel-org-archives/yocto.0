@@ -1,21 +1,28 @@
-Return-Path: <diego.gonzalez@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C91E01358
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 04:03:09 -0700 (PDT)
-Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 1BB32B; 
-	Thu, 12 Sep 2013 13:03:04 +0200
-Received: from [172.30.250.254] by horus.es with HTTP;
-	Thu, 12 Sep 2013 13:03:04 +0200
-From: Diego Gonzalez <diego.gonzalez@horus.es>
-Date: Thu, 12 Sep 2013 13:03:04 +0200
-X-Mailer: Axigen WebMail
-To: yocto@yoctoproject.org
-Message-ID: <1378983784294065500@horus.es>
-Importance: Normal
+Return-Path: <ashish.dalela@gmail.com>
+Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EF02E013DA
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 04:22:53 -0700 (PDT)
+Received: by mail-la0-f54.google.com with SMTP id ea20so8734426lab.27
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 04:22:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=peJC9JSGw7IKFQMyRAKipGigpknaKe8mcP62AskV6pY=;
+	b=wf/WGmhYatdJuF+X8gDt4QhKwbW0wvkwSbd7rZejm2BQGOoSmbD2p4/Q6RNQlSeLkF
+	CEvXhM/xRadQJQ022Hkf4OpcDdZCepKF8oB3vZwlj7gI+oUef3qmlZI/E22fdafi5LjC
+	irb9g3NG0ININUhGQ5cN5hGCH0DPvTKAn1VAipkA9WQcFw1MzJdDw6VySUuIOd8AECnz
+	xHiFkIqcarBfmzCxCorbfiBxLMcdS9Ku3ff7LlpAALP6XLcNYxL7vX2jeY8GEauVhyvs
+	t44NlLYBUzTlb+i7EXIrVCdCcSOIwV+F9xqFfbs97okEjZYWVq9j4KiLSb3p5q2ByaQl
+	HpVw==
 MIME-Version: 1.0
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 4
-Subject: Hob Question
+X-Received: by 10.112.50.109 with SMTP id b13mr92124lbo.47.1378984971813; Thu,
+	12 Sep 2013 04:22:51 -0700 (PDT)
+Received: by 10.112.11.195 with HTTP; Thu, 12 Sep 2013 04:22:51 -0700 (PDT)
+Date: Thu, 12 Sep 2013 16:52:51 +0530
+Message-ID: <CABhkJRdQQ2HaXCrah=544uAn6Ys=gspTdmuSOa2VHv_gJASmKA@mail.gmail.com>
+From: Ashish Dalela <ashish.dalela@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Error while building a custom image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,51 +34,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 11:03:11 -0000
-Content-Type: multipart/alternative;
-	boundary="===axigen=0167943451388719680513811979375653010637=axigen==="
+X-List-Received-Date: Thu, 12 Sep 2013 11:22:54 -0000
+Content-Type: multipart/alternative; boundary=001a11336ce26547cd04e62df569
 
---===axigen=0167943451388719680513811979375653010637=axigen===
-Content-Type: text/plain;
-	charset="utf-8"
+--001a11336ce26547cd04e62df569
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+I am new to the Yocto project and trying to build a custom image (I have
+built the standard images - e.g. core-image-basic and run them).
+
+I added a meta-mylayer directory in the poky directory and added a recipe
+for a component "tpmc". Then I modified the core-image-basic recipe and
+added a packagegroup-tpmc. This packagegroup is defined to build and
+package my component "tpmc". The packagegroup is defined in the
+yocto:~/poky-dylan-9.0.2/meta/recipes-extended/packagegroups directory.
+
+When I build the core-image-basic, at the end (while executing do_rootfs) I
+see the below error:
+
+*| Computing transaction...error: Can't install packagegroup-tpmc-1.0-r6@all:
+no package provides tpmc*
+
+What am I doing wrong? Any hints anyone can give me?
+
+Thanks
+-Ashish
+
+--001a11336ce26547cd04e62df569
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
 
-Hello,
+<div dir=3D"ltr">Hi,<div><br></div><div>I am new to the Yocto project and t=
+rying to build a custom image (I have built the standard images - e.g. core=
+-image-basic and run them).</div><div><br></div><div>I added a meta-mylayer=
+ directory in the poky directory and added a recipe for a component &quot;t=
+pmc&quot;. Then I modified the core-image-basic recipe and added a packageg=
+roup-tpmc. This packagegroup is defined to build and package my component &=
+quot;tpmc&quot;. The packagegroup is defined in the yocto:~/poky-dylan-9.0.=
+2/meta/recipes-extended/packagegroups directory.</div>
+<div><br></div><div>When I build the core-image-basic, at the end (while ex=
+ecuting do_rootfs) I see the below error:</div><div><br></div><div><div><b>=
+| Computing transaction...error: Can&#39;t install packagegroup-tpmc-1.0-r6=
+@all: no package provides tpmc</b></div>
+</div><div><br></div><div>What am I doing wrong? Any hints anyone can give =
+me?</div><div><br></div><div>Thanks</div><div>-Ashish</div></div>
 
-I just read this blog https://www.yoctoproject.org/blogs/belenbarrospena/20=
-13/saving-your-hob-customised-builds-image-recipes , which explains how to =
-save your hob customized images . However when it finished to build my imag=
-e I can't save it because there's not Save Image recipe button. How I can s=
-ave it? Why I can't see this button?
-
-
-Diego Gonz=C3=A1lez Gonz=C3=A1lez
-Dpto. de Control Industrial HORUS HARDWARE S.A.
-Pol Ind Europolis C/Berna n=C2=BA4
-28232 Las Rozas de Madrid
-diego.gonzalez@horus.es
-
---===axigen=0167943451388719680513811979375653010637=axigen===
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
-
-<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
-: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
-background-image: none; background-repeat: repeat; background-attachment: f=
-ixed;">Hello,<br><br>I just read this blog https://www.yoctoproject.org/blo=
-gs/belenbarrospena/2013/saving-your-hob-customised-builds-image-recipes , w=
-hich explains how to save your hob customized images . However when it fini=
-shed to build my image I can't save it because there's not Save Image recip=
-e button. How I can save it? Why I can't see this button?<br><div class=3D"=
-x-axi-signature"><br><div class=3D"x-axi-signature" style=3D"; font-size: 1=
-0pt; font-family: Arial;"><br>Diego Gonz=C3=A1lez Gonz=C3=A1lez<br><div sty=
-le=3D"text-align: left;">Dpto. de Control Industrial</div><div style=3D"tex=
-t-align: left;">&nbsp;</div><div style=3D"text-align: left;">HORUS HARDWARE=
- S.A.<br>Pol Ind Europolis C/Berna n=C2=BA4<br>28232 Las Rozas de Madrid<br=
-><a id=3D"ext-gen5000" href=3D"mailto:enrique.fernandez@horus.es">diego.gon=
-zalez@horus.es</a></div></div></div></body></html>
-
---===axigen=0167943451388719680513811979375653010637=axigen===--
+--001a11336ce26547cd04e62df569--
