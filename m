@@ -1,34 +1,31 @@
-Return-Path: <ashish.dalela@gmail.com>
-Received: from mail-lb0-f182.google.com (mail-lb0-f182.google.com
-	[209.85.217.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF171E01420
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 07:02:00 -0700 (PDT)
-Received: by mail-lb0-f182.google.com with SMTP id c11so947902lbj.27
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 07:01:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=AMuUN3yKgX1jBWB/rh2g0d4ZuzvaW647jlaZpnQfSuA=;
-	b=Nd1uFs7ou584uSmdLuair0P+XzZVkZfdzwbXUMGl8/YWaHUl1JWdn2jXdXn1yr/W+E
-	9El/mzWdNT+mIfGdIP4aQn7ji++5Bz/U+jkTXeaFE7zbRfE+Mg3anezTHIruzbZ+PxQD
-	24+ozo3QeYkUF6Slaem/3Um6Fiq4zdl8G9iwzDvkTYp2mL9LSxVDc3iEAK42NvoNvGfe
-	Rppa+gS5G+UabfirAZDkYNYMIKoUv5KmxtL6GZiaGYvLu5ITgiDXzI1EMoJEdhg7jOYF
-	OaxaiQREUVg+VQt2GmzxCQfkBxMkOF44/8V4XOtJm8fUz9fB+Jwr4KtW/9AcKvCxWcLX
-	ir6g==
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75F1EE005B3
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 08:01:57 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga102.ch.intel.com with ESMTP; 12 Sep 2013 08:01:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,891,1371106800"; d="scan'208";a="394783840"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Sep 2013 08:01:54 -0700
+Received: from irsmsx106.ger.corp.intel.com ([169.254.8.226]) by
+	IRSMSX103.ger.corp.intel.com ([163.33.3.157]) with mapi id
+	14.03.0123.003; Thu, 12 Sep 2013 16:01:51 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Diego Gonzalez <diego.gonzalez@horus.es>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Hob Question
+Thread-Index: AQHOr8kCTFOn5UG53EWRFr+NXZsjGA==
+Date: Thu, 12 Sep 2013 15:01:51 +0000
+Message-ID: <CE575EB7.323DD%belen.barros.pena@intel.com>
+In-Reply-To: <1378983784294065500@horus.es>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.2.130206
+x-originating-ip: [10.237.224.163]
 MIME-Version: 1.0
-X-Received: by 10.152.7.100 with SMTP id i4mr1637717laa.35.1378994519379; Thu,
-	12 Sep 2013 07:01:59 -0700 (PDT)
-Received: by 10.112.11.195 with HTTP; Thu, 12 Sep 2013 07:01:59 -0700 (PDT)
-In-Reply-To: <CAP71WjwqPUS3JTZAswd6ULWXX8CTh4_F1X_MLjJO8tAw47mOYg@mail.gmail.com>
-References: <CABhkJRdQQ2HaXCrah=544uAn6Ys=gspTdmuSOa2VHv_gJASmKA@mail.gmail.com>
-	<CABhkJRcxDY13w5fWcSVg1Bv6cD-=h1rUTm557JqLB8U3FD=NCw@mail.gmail.com>
-	<CAP71WjwqPUS3JTZAswd6ULWXX8CTh4_F1X_MLjJO8tAw47mOYg@mail.gmail.com>
-Date: Thu, 12 Sep 2013 19:31:59 +0530
-Message-ID: <CABhkJRc+Ae1oYAP8821rYU8z0d5C9cHpoXVXL3vXdVnzSbx2jA@mail.gmail.com>
-From: Ashish Dalela <ashish.dalela@gmail.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Error while building a custom image
+Subject: Re: Hob Question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,94 +37,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 14:02:01 -0000
-Content-Type: multipart/alternative; boundary=001a11c27d827994ac04e6302e0a
-
---001a11c27d827994ac04e6302e0a
-Content-Type: text/plain; charset=ISO-8859-1
-
-Yes, bitbake tpmc is successful.
-
-Also, I added my layer to the BBLAYERS in the build/conf/bblayers.conf file.
-
-Thanks for responding
-
--Ashish
-
-
-
-On Thu, Sep 12, 2013 at 7:27 PM, Nicolas Dechesne <
-nicolas.dechesne@linaro.org> wrote:
-
->
-> On Thu, Sep 12, 2013 at 3:52 PM, Ashish Dalela <ashish.dalela@gmail.com>wrote:
->
->> I tried a small change. I removed the packagegroup entry and added the
->> following to meta/recipes-extended/images/core-image-basic.bb
->>
->> IMAGE_INSTALL += "tpmc"
->>
->> Now, when I do a bitbake core-image-basic, I get this error:
->>
->> *Error: tpmc not found in the base feeds (qemux86 i586 i486 i386 x86
->> noarch any all).*
->> *
->> *
->> Can someone please help? It's probably something quite simple but I'm not
->> getting it.
->>
->
-> did you add your layer to BBLAYERS in conf/bblayer.conf file?
->
-> does "bitbake tpmc" actually build your recipe?
->
->
->
-
---001a11c27d827994ac04e6302e0a
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 12 Sep 2013 15:01:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <B8BF88D1D9B02A4B97FE64AA1D0F58CD@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Yes, bitbake tpmc is successful.<div><br></div><div>Also, =
-I added my layer to the BBLAYERS in the build/conf/bblayers.conf file.</div=
-><div><br></div><div>Thanks for responding</div><div><br></div><div>-Ashish=
-</div>
-<div><br></div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Thu, Sep 12, 2013 at 7:27 PM, Nicolas Dechesne <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">nicol=
-as.dechesne@linaro.org</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra">=
-<br><div class=3D"gmail_quote"><div class=3D"im">On Thu, Sep 12, 2013 at 3:=
-52 PM, Ashish Dalela <span dir=3D"ltr">&lt;<a href=3D"mailto:ashish.dalela@=
-gmail.com" target=3D"_blank">ashish.dalela@gmail.com</a>&gt;</span> wrote:<=
-br>
+On 12/09/2013 12:03, "Diego Gonzalez" <diego.gonzalez@horus.es> wrote:
+
+>Hello,
+
+Hola Diego
+
+>
+>I just read this blog
+>https://www.yoctoproject.org/blogs/belenbarrospena/2013/saving-your-hob-cu
+>stomised-builds-image-recipes , which explains how to save your hob
+>customized images . However when it finished to build my image I can't
+>save it because there's
+> not Save Image recipe button. How I can save it? Why I can't see this
+>button?
+
+I am assuming you are building with the Yocto Project master branch: the
+feature is not available on the Dylan release.
+
+If you are, the 'Save image recipe' button will display only when you edit
+the Yocto Project image recipe you are starting from (I.e. If you add
+/remove some packages to / from it). If you build one of the Yocto Project
+image recipes as they come, without making any changes to the package
+list, the save option will not show.
+
+If you are changing the package list and still cannot see the save option,
+something is not working as it should. Can I ask you to open a bug if
+that's the case? You can do so at http://bugzilla.yoctoproject.org/
+
+Saludos,
+
+Bel=E9n
+
+>
+>
+>Diego Gonz=E1lez Gonz=E1lez
+>Dpto. de Control Industrial
+> =
+
+>HORUS HARDWARE S.A.
+>Pol Ind Europolis C/Berna n=BA4
+>28232 Las Rozas de Madrid
+>diego.gonzalez@horus.es <mailto:enrique.fernandez@horus.es>
+>
+>
+
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
-</div><div class=3D"im"><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>I tried a small=
- change. I removed the packagegroup entry and added the following to meta/r=
-ecipes-extended/images/<a href=3D"http://core-image-basic.bb" target=3D"_bl=
-ank">core-image-basic.bb</a>=A0</div>
-
-
-<div><br></div><div>
-<div>IMAGE_INSTALL +=3D &quot;tpmc&quot;</div></div><div><br></div><div>Now=
-, when I do a bitbake core-image-basic, I get this error:</div><div><br></d=
-iv><div><div><b>Error: tpmc not found in the base feeds (qemux86 i586 i486 =
-i386 x86 noarch any all).</b></div>
-
-
-
-</div><div><b><br></b></div><div>Can someone please help? It&#39;s probably=
- something quite simple but I&#39;m not getting it.</div><div></div></block=
-quote></div></div><br>did you add your layer to BBLAYERS in conf/bblayer.co=
-nf file?</div>
-
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">does &quot;=
-bitbake tpmc&quot; actually build your recipe?</div><div class=3D"gmail_ext=
-ra"><br></div><div class=3D"gmail_extra"><br></div></div>
-</blockquote></div><br></div>
-
---001a11c27d827994ac04e6302e0a--
