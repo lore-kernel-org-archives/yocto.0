@@ -1,43 +1,42 @@
-Return-Path: <B40290@freescale.com>
-Received: from am1outboundpool.messaging.microsoft.com
-	(am1ehsobe003.messaging.microsoft.com [213.199.154.206])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5D85E0122C
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 23:21:33 -0700 (PDT)
-Received: from mail15-am1-R.bigfish.com (10.3.201.245) by
-	AM1EHSOBE006.bigfish.com (10.3.204.26) with Microsoft SMTP Server id
-	14.1.225.22; Thu, 12 Sep 2013 06:21:31 +0000
-Received: from mail15-am1 (localhost [127.0.0.1])	by mail15-am1-R.bigfish.com
-	(Postfix) with ESMTP id 8E22618013B	for <yocto@yoctoproject.org>;
-	Thu, 12 Sep 2013 06:21:31 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 0
-X-BigFish: VS0(zzzz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz1de098h17326ah1de097h186068h8275bh8275dhz2dh2a8h839hd24he5bhf0ah1288h12a5h12a9h12bdh12e5h137ah139eh13b6h1441h1504h1537h162dh1631h1758h1898h18e1h1946h19b5h1ad9h1b0ah1b2fh1fb3h1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e23h1fe8h1ff5h1155h)
-Received: from mail15-am1 (localhost.localdomain [127.0.0.1]) by mail15-am1
-	(MessageSwitch) id 1378966889895576_17008;
-	Thu, 12 Sep 2013 06:21:29 +0000 (UTC)
-Received: from AM1EHSMHS004.bigfish.com (unknown [10.3.201.225])	by
-	mail15-am1.bigfish.com (Postfix) with ESMTP id D69792A0059	for
-	<yocto@yoctoproject.org>; Thu, 12 Sep 2013 06:21:29 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by AM1EHSMHS004.bigfish.com
-	(10.3.207.104) with Microsoft SMTP Server (TLS) id 14.16.227.3;
-	Thu, 12 Sep 2013 06:21:29 +0000
-Received: from tx30smr01.am.freescale.net (10.81.153.31) by
-	039-SN1MMR1-005.039d.mgd.msft.net (10.84.1.17) with Microsoft SMTP
-	Server (TLS) id 14.3.158.2; Thu, 12 Sep 2013 06:21:27 +0000
-Received: from sbuilder136.ap.freescale.net (sun.ap.freescale.net
-	[10.192.208.136])	by tx30smr01.am.freescale.net (8.14.3/8.14.0) with
-	ESMTP id r8C6LNwe016210;	Wed, 11 Sep 2013 23:21:24 -0700
-From: <b40290@freescale.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 12 Sep 2013 14:21:19 +0800
-Message-ID: <1378966879-4370-1-git-send-email-b40290@freescale.com>
-X-Mailer: git-send-email 1.7.5.4
+Return-Path: <rohit.borse@einfochips.com>
+Received: from out14.sjc.mx.trendmicro.com (out14.sjc.mx.trendmicro.com
+	[216.99.131.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4657E0122C
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2013 23:40:37 -0700 (PDT)
+Received: from relay07.sjc.mx.trendmicro.com (unknown [10.30.239.129])
+	by out14.sjc.mx.trendmicro.com (Postfix) with ESMTP id B5F4E9804A7
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 06:40:35 +0000 (UTC)
+Received: from pune.einfochips.com (unknown [121.241.186.85])
+	by relay07.sjc.mx.trendmicro.com (Postfix) with ESMTP id 3D264980439
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 06:40:35 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by pune.einfochips.com (Postfix) with ESMTP id 25B854DE0004
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 12:24:09 +0530 (IST)
+X-Virus-Scanned: amavisd-new at pune.einfochips.com
+Received: from pune.einfochips.com ([127.0.0.1])
+	by localhost (pune.einfochips.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id AWaH5loiOuPQ for <yocto@yoctoproject.org>;
+	Thu, 12 Sep 2013 12:24:09 +0530 (IST)
+Received: from [10.110.2.106] (unknown [10.110.2.106])
+	by pune.einfochips.com (Postfix) with ESMTPSA id 0AD404DE0001
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 12:24:09 +0530 (IST)
+Message-ID: <523161DD.5080600@einfochips.com>
+Date: Thu, 12 Sep 2013 12:10:29 +0530
+From: Rohit Borse <rohit.borse@einfochips.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
-Cc: Chunrong Guo <B40290@freescale.com>
-Subject: [Meta-security][PATCH v2] barnyard: add recipe
+To: yocto <yocto@yoctoproject.org>
+X-TM-AS-Product-Ver: IMHS-1.0.0.1422-7.0.0.1014-20144.005
+X-TM-AS-Result: No--1.3809-5.0-31-10
+X-TM-AS-Result-Detail: Spam:No-Score:-1.3809-Baseline:ModeratelyHigh-Other:Lowest
+X-TMASE-MatchedRID: alNhoJufFSTBBJREZwyRwoxSc6X/yxTJLoYOuiLW+uVLUtDBUNxpGPNO
+	7flRFqXmIGSHKu90xKWSU848M/hs6KB9tgA5VSl4BxsweNg3EaGFkCkkB0UMNq9dKZJ2VxiaLnu
+	FYfaWSqZ95l0nVeyiuHxoE2XK1UNl0C1sQRfQzEGcfuxsiY4QFABDiGhZh5nOEnEZKPck/dtvCe
+	8eHsd+yWQ56pgWNNWpQbLty0HGQOzNuh2xjqv2Ec87VeGwYTv9upNL7pwzillSfzg9sDIwTUl8w
+	9fVawJyrJ3t7vF5h2g313h15xrRZ7FZ8aNnY+nc4k4JpZi7wBM=
+X-TM-Deliver-Signature: 4581e56757570ab39c56f8f0e1276b00
+Subject: Support for monit utility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,46 +48,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 06:21:34 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 12 Sep 2013 06:40:38 -0000
+Content-Type: multipart/alternative;
+	boundary="------------070908090706080506030006"
 
-From: Chunrong Guo <B40290@freescale.com>
+--------------070908090706080506030006
+Content-Type: text/plain;
+	charset="ISO-8859-1";
+	format="flowed"
+Content-Transfer-Encoding: 7bit
 
-  *Barnyard is a output system for Snort
+Hi,
+      I am trying to find /monit/ utility in Yocto BSP. I tried with 
+/bitbake monit /command but it failed.
+Does yocto supports /monit/ or similar utility to monitor threads and 
+processes on system?
 
-Signed-off-by: Chunrong Guo <B40290@freescale.com>
----
- recipes-security/barnyard/barnyard_0.2.0.bb |   19 +++++++++++++++++++
- 1 files changed, 19 insertions(+), 0 deletions(-)
- create mode 100644 recipes-security/barnyard/barnyard_0.2.0.bb
+Regards,
+Rohit
 
-diff --git a/recipes-security/barnyard/barnyard_0.2.0.bb b/recipes-security/barnyard/barnyard_0.2.0.bb
-new file mode 100644
-index 0000000..c5e0e78
---- /dev/null
-+++ b/recipes-security/barnyard/barnyard_0.2.0.bb
-@@ -0,0 +1,19 @@
-+DESCRIPTION = "Barnyard is a output system for Snort."
-+HOMEPAGE = "http://www.snort.org/"
-+LICENSE = "QPL"
-+LIC_FILES_CHKSUM = "file://LICENSE.QPL;md5=1b8ff8c0012b5a2d647357699bf44b41"
-+
-+DEPENDS = "libpcap"
-+
-+SRC_URI = " ${GENTOO_MIRROR}/${BP}.tar.gz;name=tarball \
-+          "
-+SRC_URI[tarball.md5sum] = "be3283028cf414b52b220308ceb411e9"
-+SRC_URI[tarball.sha256sum] = "09e0f8e095e79cfe70ea069d13e7d02521a504a1f400a45556a634dccfd31a3a"
-+
-+inherit autotools pkgconfig
-+
-+do_configure_prepend () {
-+	#fix hardcoded include path
-+	sed -i -e 's:extra_incl=-I/usr/include/pcap::g' ${S}/configure.in
-+}
-+
--- 
-1.7.5.4
+---------------------------------------------------------------------------------------------
+Notice: 
+This message has been scanned by Trend Micro Mail Security scanner and is believed to be clean
+---------------------------------------------------------------------------------------------
 
+--------------070908090706080506030006
+Content-Type: text/html;
+	charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
+<html>
+  <head>
 
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Hi,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; I am trying to find <i>monit</i> utility in Yocto BSP. I tried
+    with <i>bitbake monit </i>command but it failed.<br>
+    Does yocto supports <i>monit</i> or similar utility to monitor
+    threads and processes on system?<br>
+    <br>
+    Regards,<br>
+    Rohit<br>
+  </body>
+</html>
+
+<table><tr><td bgcolor=#ffffff><font color=#000000><pre>---------------------------------------------------------------------------------------------
+Notice: 
+This message has been scanned by Trend Micro Mail Security scanner and is believed to be clean
+---------------------------------------------------------------------------------------------</pre></font></td></tr></table>
+
+--------------070908090706080506030006--
