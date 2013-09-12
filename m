@@ -1,35 +1,37 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E386E00747
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 02:08:31 -0700 (PDT)
-Received: by mail-vc0-f171.google.com with SMTP id ij15so7295211vcb.30
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 02:08:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=vwzJv03gWXiY9twvcvBxLwksHwmv39K3YgvaNCajtfk=;
-	b=0IVqbpR9iNvMRWYu9a1Ca5+l+6YHN/qw3y7eiA29kdvFYqtu4XM6y+fP5kWXj/hymP
-	Iz0qthWgZpH9dRhxgDNnzAUyepDQv2z0C+3kmjd56ckDWsEa3eoWOt6wI0KLtG2MFlFl
-	WVKiTqAi9oQwLslBcT4Xvvd/jMXEeM4CbD0KMtPG+bRd08funLlMmo4C6WIUy/B1JoJb
-	HMIJuSpz0z5PQX8St/r2I8iASFkibiAhFDwwdJ3wGfsDrN6dfwIYHrS5SgDW/PI/iNmP
-	S5f97NPEjbU3GmiQpzgKcUEkJRI5Tt1wmxte0iF4fDZ+0sTX8OffIDxW3hPlqHhRnb0U
-	mKWQ==
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ve0-f176.google.com (mail-ve0-f176.google.com
+	[209.85.128.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFDEBE00747
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 02:18:16 -0700 (PDT)
+Received: by mail-ve0-f176.google.com with SMTP id jx11so6582281veb.21
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 02:18:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=OPD6rKyvla1Zm7jvJvsGFpQmZE/mjm4d5cE0aH+Fdys=;
+	b=AQ/NzuG/VK6hUn5Lx2IAa4XUej8V0ZY2ICAuUKHvZ1j860dlxkI1I1keD5LPgraG1B
+	c4ks4QYLKXEUbQbWKz6oUcdmSfY52Ai3S1HTEnJW8d2BCVdKm1Hjwhx5UMSzTyojK10C
+	HHsOQkazNthEAYJNZAYjI/MnN4l2vbD6jwMkP4zZYLIHCDzijnbR8q8sMGHoCshRBGy+
+	9zLaF5ZOVm3EGB4xSRfyuNzpnlckRXydRxus3ljPvc0FX6FsEOgR6R3XIFrqa3si9gtb
+	rXJQ83Jmdxc3I+hIsrnyTBOqeTgFORcc+yKrMVLmJN0YBYldVBu9NSBWuHY2nSqFKRWu
+	TlAA==
+X-Gm-Message-State: ALoCoQmTP/t+2sAoCVXJv9EpA3mGiqAq3kZ1p+5+ErHqH1X+ATzXNb9mvHjlomWm62r41c5BHzwB
+X-Received: by 10.52.229.73 with SMTP id so9mr583161vdc.27.1378977496386; Thu,
+	12 Sep 2013 02:18:16 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.52.173.165 with SMTP id bl5mr4939570vdc.18.1378976909932;
-	Thu, 12 Sep 2013 02:08:29 -0700 (PDT)
-Received: by 10.58.215.79 with HTTP; Thu, 12 Sep 2013 02:08:29 -0700 (PDT)
-In-Reply-To: <CAFyqS9rMfTRP9zT0-99fUgyPhr0fxHNKR=ozVAZa4HbH+1Or+g@mail.gmail.com>
-References: <CABHD4K9QJO=OOojPX4KmHXBMgfDK1wX-nWasJ82CL3m1ZzoZUg@mail.gmail.com>
-	<CAFyqS9qQd1mcQ1OYxjRbRZnwezA=V8bvCLb+uvMBDYS1EwM-dA@mail.gmail.com>
-	<CABHD4K9m06Rd3NNbB3ha4xz_ohFicXaQTBuOPzj4fkgA19Bg0g@mail.gmail.com>
-	<CAFyqS9rMfTRP9zT0-99fUgyPhr0fxHNKR=ozVAZa4HbH+1Or+g@mail.gmail.com>
-Date: Thu, 12 Sep 2013 14:38:29 +0530
-Message-ID: <CABHD4K_Xp5aCs2B_nZ52TfTw8mnSk1J=7TXZHUvVhU4uTBDeDQ@mail.gmail.com>
-From: amit tomer <amittomer25@gmail.com>
-To: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+Received: by 10.221.49.202 with HTTP; Thu, 12 Sep 2013 02:17:56 -0700 (PDT)
+In-Reply-To: <17797116383D4341B029FDF34C22BF6A5D7F898497@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <mailman.7042.1376600669.19864.yocto@yoctoproject.org>
+	<17797116383D4341B029FDF34C22BF6A5D7F5F6077@GUREXMB01.ASIAN.AD.ARICENT.COM>
+	<CAP71WjxsyY39wb3tnBUMV=AuURNi1DrpRBB-aG0qPOA220Fw_g@mail.gmail.com>
+	<17797116383D4341B029FDF34C22BF6A5D7F898497@GUREXMB01.ASIAN.AD.ARICENT.COM>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 12 Sep 2013 11:17:56 +0200
+Message-ID: <CAP71WjwK0PNte7PLW2PDfQviwm=VB=Gqm7xOtSb_n7CDRtBjzA@mail.gmail.com>
+To: Rohit2 Jindal <rohit2.jindal@aricent.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to change machine name in yocto
+Subject: Re: yocto query on SR_URI creation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,535 +43,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 09:08:33 -0000
-Content-Type: multipart/alternative; boundary=bcaec51b9cfddebe7d04e62c14c8
+X-List-Received-Date: Thu, 12 Sep 2013 09:18:24 -0000
+Content-Type: multipart/alternative; boundary=089e0115fe0ed3667004e62c3798
 
---bcaec51b9cfddebe7d04e62c14c8
+--089e0115fe0ed3667004e62c3798
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-Hans, there are couple issue I have seen after I changed machine name to k2=
-.
-First issue was->
+On Thu, Sep 12, 2013 at 10:39 AM, Rohit2 Jindal
+<rohit2.jindal@aricent.com>wrote:
 
-NOTE: make -j 16 CROSS_COMPILE=3Darm-poky-linux-gnueabi-
-CC=3Darm-poky-linux-gnueabi-gcc  --sysroot=3D/build/tmp/sysroots/k2
-argon_k2_config
-| make: *** No rule to make target `argon_k2_config'.  Stop.
-| make: *** [argon_k2_config] Error 1
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_compile (see
-/build/tmp/work/k2-poky-linux-gnueabi/u-boot/2013.01-r3+gitrAUTOINC+64c3aae=
-8986eb05aa9b7c326a9432810839120b1/temp/log.do_compile.19901
-for further information)
-ERROR: Task 74 (/meta-ti/recipes-bsp/u-boot/u-boot_2013.01.bb, do_compile)
-failed with exit code '1'
-
-
-Now what I did was i replace pyp-ii to k2 at various places in
-:meta-xyz/recipes-bsp/u-boot/uboot.bbappend
-
-like below
-
-SRCREV_pyp-ii =3D "0ecb4d63c273abc395d11906ebf59d80263394e3" to SRCREV_k2 =
-=3D
-"0ecb4d63c273abc395d11906ebf59d80263394e3"
-
-And this issue was resolved.
-
-Second issue I faced was->
-
-ERROR: Task 324 (/meta-xyz/recipes-kernel/linux/linux-pyp-ii.bb,
-do_compile) failed with exit code '1'
-
-Now to resolve it I renamed
-/meta-xyz/recipes-kernel/linux/linux-pyp-ii.bbto
-/meta-xyz/recipes-kernel/linux/
-linux-k2.bb
-
-and its fixed now
-
-But now I run into another problem after doing bitbake
-
-
-Build Configuration:
-BB_VERSION        =3D "1.18.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "RedHatEnterpriseServer-5.6"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "zzz_ii"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.4.1"
-TUNE_FEATURES     =3D "armv7a vfp neon callconvention-hard cortexa15"
-TARGET_FPU        =3D "vfp-neon"
-meta
-meta-yocto
-meta-yocto-bsp    =3D "(nobranch):beda5013e46da16a3d76f095869a5a5c5b1bc08a"
-meta-linaro-toolchain =3D
-"(nobranch):0f679485b945c1b929a44d1865eb517a096ac4ef"
-meta-ti           =3D "(nobranch):3eb71003af3ebb025285493721332111ac581a42"
-meta-nsn          =3D "master:d2f9cf6bc90df95d53db0973e07a52394191faf5"
-
-NOTE: Resolving any missing task queue dependencies
-NOTE: multiple providers are available for runtime kernel-image
-(linux-keystone, linux-k2)
-NOTE: consider defining a PREFERRED_PROVIDER entry to match kernel-image
-NOTE: multiple providers are available for runtime kernel-devicetree
-(linux-keystone, linux-k2)
-NOTE: consider defining a PREFERRED_PROVIDER entry to match
-kernel-devicetree
-
-
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-Currently 1 running tasks (3160 of 3233):
-0: linux-keystone-3.6.6-r0 do_fetch (pid 27433)
-
-and this job is hagging here for last 20 mins
-
-Could you tell me is it expected or what??
-
-
-
-
-
-
-On Thu, Sep 12, 2013 at 1:25 PM, Hans Beck=E9rus <hans.beckerus@gmail.com>w=
-rote:
-
-> On Thu, Sep 12, 2013 at 9:11 AM, amit tomer <amittomer25@gmail.com> wrote=
-:
-> > Thanks Hans for kind reply
-> >
-> > I somehow manage to change the machine name in build confriguation
-> >
-> > Build Configuration:
-> > BB_VERSION        =3D "1.18.0"
-> > BUILD_SYS         =3D "x86_64-linux"
-> > NATIVELSBSTRING   =3D "RedHatEnterpriseServer-5.6"
-> > TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-> > MACHINE           =3D "k2"
-> > DISTRO            =3D "poky"
-> > DISTRO_VERSION    =3D "1.4.1"
-> > TUNE_FEATURES     =3D "armv7a vfp neon callconvention-hard cortexa15"
-> > TARGET_FPU        =3D "vfp-neon"
-> > meta
-> > meta-yocto
-> >
-> >
-> > Now machine name is K2 for me,what I did is rename the
-> > "/meta-xyz/conf/machine/pyp-ii.conf  to k2.conf and set  MACHINE=3Dk2 i=
-n
-> > build/conf/local.conf .
-> >
-> >
-> > But my bitbake is still failing with different error this time.
-> >
-> > Could you please let me know whats needs to be changed in
-> > "build/conf/bblayers.conf file"  in order to change machine name. below
-> is
-> > my "build/conf/bblayers.conf" file
-> >
-> Since your MACHINE is presented as "k2", the .conf file has been
-> picked up correctly. So far so good.
-> You should not need to add anything else in your bblayers.conf.
-> The new errors you are referring to might have nothing to do with your
-> current MACHINE setting.
-> You need to show the actual error you get. Not much we can do to help
-> otherwise.
+> host xyz
+> user epuser
+> hostname ep-code.xyz.com
+> port 22
+> identityfile ~/.ssh/abc_r.j
 >
-> Thanks.
-> Hans
+> ****
 >
-> >
-> > # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
-> > # changes incompatibly
-> > LCONF_VERSION =3D "6"
-> >
-> > BBPATH =3D "${TOPDIR}"
-> > BBFILES ?=3D ""
-> >
-> > BBLAYERS ?=3D " \
-> >   ${TOPDIR}/../poky/meta \
-> >   ${TOPDIR}/../poky/meta-yocto \
-> >   ${TOPDIR}/../poky/meta-yocto-bsp \
-> >   ${TOPDIR}/../linaro/meta-linaro-toolchain \
-> >   ${TOPDIR}/../meta-ti \
-> >   ${TOPDIR}/../meta-nsn \
-> >   "
-> > BBLAYERS_NON_REMOVABLE ?=3D " \
-> >   ${TOPDIR}/../poky/meta \
-> >   ${TOPDIR}/../poky/meta-yocto \
-> >   "
-> >
-> > BBMASK =3D "meta-ti/recipes-misc"
-> > BBMASK .=3D "|meta-ti/recipes-graphics"
-> >
-> > # meta-linaro is only able to supply linaro-4.7 without
-> > # toolchain-layer, therefore mask out linaro-4.6.  Note
-> > # that an associated change in local.conf to remove
-> > # toolchain-layer from LAYERDEPENDS_linaro is required.
-> > BBMASK .=3D "|gcc.*_linaro-4\.[^7]"
-> >
-> > # mask out lrc specific layer(s)
-> > BBMASK .=3D "|meta-nsn/recipes-connectivity-lrc"
-> >
-> >
-> >
-> >
-> > On Wed, Sep 11, 2013 at 8:26 PM, Hans Beck=E9rus <hans.beckerus@gmail.c=
-om>
-> > wrote:
-> >>
-> >> The MACHINE is simply a pointer to a machine specific configuration
-> >> file. So if you set your MACHINE=3Dfoo, then somewhere in your bblayer
-> >> path(s) you need to make sure that a conf/machine/foo.conf is
-> >> available. Then it will use that.
-> >> Typically, I think you should do this in your own bsp meta, eg.
-> >> meta-foo/conf/machine/foo.conf and then add meta-foo to your
-> >> build/conf/bblayers.conf file.
-> >>
-> >> Thanks,
-> >> Hans
-> >>
-> >>
-> >>
-> >> On Wed, Sep 11, 2013 at 4:30 PM, amit tomer <amittomer25@gmail.com>
-> wrote:
-> >> >  I am new to opensource build framework Yocto and have a requirement
-> >> > wherein
-> >> > wanted to change the machine name ,when I do BITBAKE image-name
-> >> >
-> >> > Build Configuration:
-> >> >
-> >> > BB_VERSION        =3D "1.18.0"
-> >> > BUILD_SYS         =3D "x86_64-linux"
-> >> > NATIVELSBSTRING   =3D "RedHatEnterpriseServer-5.6"
-> >> > TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-> >> > MACHINE           =3D "pyp-ii"
-> >> > DISTRO            =3D "poky"
-> >> > DISTRO_VERSION    =3D "1.4.1"
-> >> > TUNE_FEATURES     =3D "armv7a vfp neon callconvention-hard cortexa15=
-"
-> >> > TARGET_FPU        =3D "vfp-neon"
-> >> > meta
-> >> > meta-yocto
-> >> > meta-yocto-bsp    =3D
-> >> > "(nobranch):beda5013e46da16a3d76f095869a5a5c5b1bc08a"
-> >> > meta-linaro-toolchain =3D
-> >> > "(nobranch):0f679485b945c1b929a44d1865eb517a096ac4ef"
-> >> > meta-ti           =3D
-> "(nobranch):3eb71003af3ebb025285493721332111ac581a42
-> >> >
-> >> > Now MACHIEN name I wanted to change something like k2 from pyp-ii ,I
-> >> > tried
-> >> > changing it in local.conf file but I am getting error like
-> >> >
-> >> > ERROR: OE-core's config sanity checker detected a potential
-> >> > misconfiguration. Either fix the cause of this error or at your own
-> risk
-> >> > disable the checker (see sanity.conf). Following is the list of
-> >> > potential
-> >> > problems / advisories:
-> >> >
-> >> > Please set a valid MACHINE in your local.conf or environment
-> >> >
-> >> > ERROR: Execution of event handler 'check_sanity_eventhandler' failed
-> >> >
-> >> > I also tried setting up export MACHINE=3D"k2" but I am getting the s=
-ame
-> >> > error
-> >> > message
-> >> >
-> >> > In my /var/fpwork/tomar_yocto1/snz-yocto/meta-xyz/conf/machine there
-> >> > exist a
-> >> > pyp-ii.conf file.
-> >> >
-> >> > I tried renaming it to k2.conf but it also didn't work out.
-> >> >
-> >> >
-> >> > Can anybody let me know what needs to be done in order to change
-> MACHINE
-> >> > name here.
-> >> >
-> >> >
-> >> > Thanks
-> >> >
-> >> > Amit Singh Tomar
-> >> >
-> >> >
-> >> > _______________________________________________
-> >> > yocto mailing list
-> >> > yocto@yoctoproject.org
-> >> > https://lists.yoctoproject.org/listinfo/yocto
-> >> >
-> >
-> >
+> we can only access our servers using xyz:component way in ****
 >
+> git clone xyz:sysconfig ****
+>
+> but  in bitbake this doesnot work.****
+>
+> ** **
+>
+> Please suggest me the solution****
+>
+>
+hmm. have you tried what I suggested? That .ssh/config above is not what I
+suggested. I think your problem is because you use short alias instead of
+host. but i am not sure since i haven't tried. can you please try to use
+full host name in SRC_URI and modify .ssh/config accordingly? the config i
+shared is the one i use for my projects.
 
---bcaec51b9cfddebe7d04e62c14c8
+--089e0115fe0ed3667004e62c3798
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hans, there are couple issue I have seen after I changed m=
-achine name to k2.<div style>First issue was-&gt;</div><div style><br></div=
-><div style><div>NOTE: make -j 16 CROSS_COMPILE=3Darm-poky-linux-gnueabi- C=
-C=3Darm-poky-linux-gnueabi-gcc =A0--sysroot=3D/build/tmp/sysroots/k2 argon_=
-k2_config</div>
-<div>| make: *** No rule to make target `argon_k2_config&#39;. =A0Stop.</di=
-v><div>| make: *** [argon_k2_config] Error 1</div><div>| ERROR: oe_runmake =
-failed</div><div>| ERROR: Function failed: do_compile (see /build/tmp/work/=
-k2-poky-linux-gnueabi/u-boot/2013.01-r3+gitrAUTOINC+64c3aae8986eb05aa9b7c32=
-6a9432810839120b1/temp/log.do_compile.19901 for further information)</div>
-<div>ERROR: Task 74 (/meta-ti/recipes-bsp/u-boot/<a href=3D"http://u-boot_2=
-013.01.bb">u-boot_2013.01.bb</a>, do_compile) failed with exit code &#39;1&=
-#39;</div></div><div style><br></div><div style><br></div><div style>Now wh=
-at I did was i replace pyp-ii to k2 at various places in :meta-xyz/recipes-=
-bsp/u-boot/uboot.bbappend</div>
-<div style><br></div><div style>like below=A0</div><div style><br></div><di=
-v style>SRCREV_pyp-ii =3D &quot;0ecb4d63c273abc395d11906ebf59d80263394e3&qu=
-ot; to=A0SRCREV_k2 =3D &quot;0ecb4d63c273abc395d11906ebf59d80263394e3&quot;=
-</div>
-<div style><br></div><div style>And this issue was resolved.</div><div styl=
-e><br></div><div style>Second issue I faced was-&gt;</div><div style><br></=
-div><div style><div>ERROR: Task 324 (/meta-xyz/recipes-kernel/linux/<a href=
-=3D"http://linux-pyp-ii.bb">linux-pyp-ii.bb</a>, do_compile) failed with ex=
-it code &#39;1&#39;</div>
-<div><br></div><div style>Now to resolve it I renamed=A0/meta-xyz/recipes-k=
-ernel/linux/<a href=3D"http://linux-pyp-ii.bb">linux-pyp-ii.bb</a> to=A0/me=
-ta-xyz/recipes-kernel/linux/<a href=3D"http://linux-k2.bb">linux-k2.bb</a><=
-/div>
-<div style>=A0</div><div style>and its fixed now</div><div style><br></div>=
-<div style>But now I run into another problem after doing bitbake</div><div=
- style><br></div><div style><br></div><div style><div>Build Configuration:<=
-/div>
-<div>BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.18.0&quot;</div><div>BUILD_SYS =
-=A0 =A0 =A0 =A0 =3D &quot;x86_64-linux&quot;</div><div>NATIVELSBSTRING =A0 =
-=3D &quot;RedHatEnterpriseServer-5.6&quot;</div><div>TARGET_SYS =A0 =A0 =A0=
- =A0=3D &quot;arm-poky-linux-gnueabi&quot;</div>
-<div>MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;zzz_ii&quot;</div><div>DISTRO =
-=A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;</div><div>DISTRO_VERSION =A0 =
-=A0=3D &quot;1.4.1&quot;</div><div>TUNE_FEATURES =A0 =A0 =3D &quot;armv7a v=
-fp neon callconvention-hard cortexa15&quot;</div>
-<div>TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp-neon&quot;</div><div>meta</div=
-><div>meta-yocto</div><div>meta-yocto-bsp =A0 =A0=3D &quot;(nobranch):beda5=
-013e46da16a3d76f095869a5a5c5b1bc08a&quot;</div><div>meta-linaro-toolchain =
-=3D &quot;(nobranch):0f679485b945c1b929a44d1865eb517a096ac4ef&quot;</div>
-<div>meta-ti =A0 =A0 =A0 =A0 =A0 =3D &quot;(nobranch):3eb71003af3ebb0252854=
-93721332111ac581a42&quot;</div><div>meta-nsn =A0 =A0 =A0 =A0 =A0=3D &quot;m=
-aster:d2f9cf6bc90df95d53db0973e07a52394191faf5&quot;</div><div><br></div><d=
-iv>NOTE: Resolving any missing task queue dependencies</div>
-<div>NOTE: multiple providers are available for runtime kernel-image (linux=
--keystone, linux-k2)</div><div>NOTE: consider defining a PREFERRED_PROVIDER=
- entry to match kernel-image</div><div>NOTE: multiple providers are availab=
-le for runtime kernel-devicetree (linux-keystone, linux-k2)</div>
-<div>NOTE: consider defining a PREFERRED_PROVIDER entry to match kernel-dev=
-icetree</div><div><br></div><div><br></div><div>NOTE: Preparing runqueue</d=
-iv><div>NOTE: Executing SetScene Tasks</div><div>NOTE: Executing RunQueue T=
-asks</div>
-<div>Currently 1 running tasks (3160 of 3233):</div><div>0: linux-keystone-=
-3.6.6-r0 do_fetch (pid 27433)</div><div><br></div><div style>and this job i=
-s hagging here for last 20 mins</div><div style><br></div><div style>Could =
-you tell me is it expected or what??</div>
-</div><div style><br></div><div><br></div></div><div>=A0</div><div><br></di=
-v></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Th=
-u, Sep 12, 2013 at 1:25 PM, Hans Beck=E9rus <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:hans.beckerus@gmail.com" target=3D"_blank">hans.beckerus@gmail.c=
-om</a>&gt;</span> wrote:<br>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Thu, Sep 12, 2013 at 10:39 AM, Rohit2 Jindal <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:rohit2.jindal@aricent.com" target=3D"_blank">rohit2.jindal@ari=
+cent.com</a>&gt;</span> wrote:<br>
+
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On Thu, Sep 12, 2013 at 9:=
-11 AM, amit tomer &lt;<a href=3D"mailto:amittomer25@gmail.com">amittomer25@=
-gmail.com</a>&gt; wrote:<br>
-
-&gt; Thanks Hans for kind reply<br>
-&gt;<br>
-&gt; I somehow manage to change the machine name in build confriguation<br>
-&gt;<br>
-&gt; Build Configuration:<br>
-&gt; BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.18.0&quot;<br>
-&gt; BUILD_SYS =A0 =A0 =A0 =A0 =3D &quot;x86_64-linux&quot;<br>
-&gt; NATIVELSBSTRING =A0 =3D &quot;RedHatEnterpriseServer-5.6&quot;<br>
-&gt; TARGET_SYS =A0 =A0 =A0 =A0=3D &quot;arm-poky-linux-gnueabi&quot;<br>
-&gt; MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;k2&quot;<br>
-&gt; DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
-&gt; DISTRO_VERSION =A0 =A0=3D &quot;1.4.1&quot;<br>
-&gt; TUNE_FEATURES =A0 =A0 =3D &quot;armv7a vfp neon callconvention-hard co=
-rtexa15&quot;<br>
-&gt; TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp-neon&quot;<br>
-&gt; meta<br>
-&gt; meta-yocto<br>
-&gt;<br>
-&gt;<br>
-&gt; Now machine name is K2 for me,what I did is rename the<br>
-&gt; &quot;/meta-xyz/conf/machine/pyp-ii.conf =A0to k2.conf and set =A0MACH=
-INE=3Dk2 in<br>
-&gt; build/conf/local.conf .<br>
-&gt;<br>
-&gt;<br>
-&gt; But my bitbake is still failing with different error this time.<br>
-&gt;<br>
-&gt; Could you please let me know whats needs to be changed in<br>
-&gt; &quot;build/conf/bblayers.conf file&quot; =A0in order to change machin=
-e name. below is<br>
-&gt; my &quot;build/conf/bblayers.conf&quot; file<br>
-&gt;<br>
-</div>Since your MACHINE is presented as &quot;k2&quot;, the .conf file has=
- been<br>
-picked up correctly. So far so good.<br>
-You should not need to add anything else in your bblayers.conf.<br>
-The new errors you are referring to might have nothing to do with your<br>
-current MACHINE setting.<br>
-You need to show the actual error you get. Not much we can do to help other=
-wise.<br>
+x #ccc solid;padding-left:1ex"><div class=3D"im"><p class=3D"MsoNormal">hos=
+t xyz<br>
+user epuser<br>
+hostname <a href=3D"http://ep-code.xyz.com" target=3D"_blank">ep-code.xyz.c=
+om</a><br>
+port 22<br>
+identityfile ~/.ssh/abc_r.j<br>
 <br>
-Thanks.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">Hans<br>
-</font></span><div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt;<br>
-&gt; # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf<b=
-r>
-&gt; # changes incompatibly<br>
-&gt; LCONF_VERSION =3D &quot;6&quot;<br>
-&gt;<br>
-&gt; BBPATH =3D &quot;${TOPDIR}&quot;<br>
-&gt; BBFILES ?=3D &quot;&quot;<br>
-&gt;<br>
-&gt; BBLAYERS ?=3D &quot; \<br>
-&gt; =A0 ${TOPDIR}/../poky/meta \<br>
-&gt; =A0 ${TOPDIR}/../poky/meta-yocto \<br>
-&gt; =A0 ${TOPDIR}/../poky/meta-yocto-bsp \<br>
-&gt; =A0 ${TOPDIR}/../linaro/meta-linaro-toolchain \<br>
-&gt; =A0 ${TOPDIR}/../meta-ti \<br>
-&gt; =A0 ${TOPDIR}/../meta-nsn \<br>
-&gt; =A0 &quot;<br>
-&gt; BBLAYERS_NON_REMOVABLE ?=3D &quot; \<br>
-&gt; =A0 ${TOPDIR}/../poky/meta \<br>
-&gt; =A0 ${TOPDIR}/../poky/meta-yocto \<br>
-&gt; =A0 &quot;<br>
-&gt;<br>
-&gt; BBMASK =3D &quot;meta-ti/recipes-misc&quot;<br>
-&gt; BBMASK .=3D &quot;|meta-ti/recipes-graphics&quot;<br>
-&gt;<br>
-&gt; # meta-linaro is only able to supply linaro-4.7 without<br>
-&gt; # toolchain-layer, therefore mask out linaro-4.6. =A0Note<br>
-&gt; # that an associated change in local.conf to remove<br>
-&gt; # toolchain-layer from LAYERDEPENDS_linaro is required.<br>
-&gt; BBMASK .=3D &quot;|gcc.*_linaro-4\.[^7]&quot;<br>
-&gt;<br>
-&gt; # mask out lrc specific layer(s)<br>
-&gt; BBMASK .=3D &quot;|meta-nsn/recipes-connectivity-lrc&quot;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; On Wed, Sep 11, 2013 at 8:26 PM, Hans Beck=E9rus &lt;<a href=3D"mailto=
-:hans.beckerus@gmail.com">hans.beckerus@gmail.com</a>&gt;<br>
-&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; The MACHINE is simply a pointer to a machine specific configuratio=
-n<br>
-&gt;&gt; file. So if you set your MACHINE=3Dfoo, then somewhere in your bbl=
-ayer<br>
-&gt;&gt; path(s) you need to make sure that a conf/machine/foo.conf is<br>
-&gt;&gt; available. Then it will use that.<br>
-&gt;&gt; Typically, I think you should do this in your own bsp meta, eg.<br=
->
-&gt;&gt; meta-foo/conf/machine/foo.conf and then add meta-foo to your<br>
-&gt;&gt; build/conf/bblayers.conf file.<br>
-&gt;&gt;<br>
-&gt;&gt; Thanks,<br>
-&gt;&gt; Hans<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, Sep 11, 2013 at 4:30 PM, amit tomer &lt;<a href=3D"mailto:=
-amittomer25@gmail.com">amittomer25@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt; =A0I am new to opensource build framework Yocto and have a re=
-quirement<br>
-&gt;&gt; &gt; wherein<br>
-&gt;&gt; &gt; wanted to change the machine name ,when I do BITBAKE image-na=
-me<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Build Configuration:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.18.0&quot;<br>
-&gt;&gt; &gt; BUILD_SYS =A0 =A0 =A0 =A0 =3D &quot;x86_64-linux&quot;<br>
-&gt;&gt; &gt; NATIVELSBSTRING =A0 =3D &quot;RedHatEnterpriseServer-5.6&quot=
-;<br>
-&gt;&gt; &gt; TARGET_SYS =A0 =A0 =A0 =A0=3D &quot;arm-poky-linux-gnueabi&qu=
-ot;<br>
-&gt;&gt; &gt; MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;pyp-ii&quot;<br>
-&gt;&gt; &gt; DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
-&gt;&gt; &gt; DISTRO_VERSION =A0 =A0=3D &quot;1.4.1&quot;<br>
-&gt;&gt; &gt; TUNE_FEATURES =A0 =A0 =3D &quot;armv7a vfp neon callconventio=
-n-hard cortexa15&quot;<br>
-&gt;&gt; &gt; TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp-neon&quot;<br>
-&gt;&gt; &gt; meta<br>
-&gt;&gt; &gt; meta-yocto<br>
-&gt;&gt; &gt; meta-yocto-bsp =A0 =A0=3D<br>
-&gt;&gt; &gt; &quot;(nobranch):beda5013e46da16a3d76f095869a5a5c5b1bc08a&quo=
-t;<br>
-&gt;&gt; &gt; meta-linaro-toolchain =3D<br>
-&gt;&gt; &gt; &quot;(nobranch):0f679485b945c1b929a44d1865eb517a096ac4ef&quo=
-t;<br>
-&gt;&gt; &gt; meta-ti =A0 =A0 =A0 =A0 =A0 =3D &quot;(nobranch):3eb71003af3e=
-bb025285493721332111ac581a42<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Now MACHIEN name I wanted to change something like k2 from ls=
-p-k2 ,I<br>
-&gt;&gt; &gt; tried<br>
-&gt;&gt; &gt; changing it in local.conf file but I am getting error like<br=
->
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; ERROR: OE-core&#39;s config sanity checker detected a potenti=
-al<br>
-&gt;&gt; &gt; misconfiguration. Either fix the cause of this error or at yo=
-ur own risk<br>
-&gt;&gt; &gt; disable the checker (see sanity.conf). Following is the list =
-of<br>
-&gt;&gt; &gt; potential<br>
-&gt;&gt; &gt; problems / advisories:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Please set a valid MACHINE in your local.conf or environment<=
-br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; ERROR: Execution of event handler &#39;check_sanity_eventhand=
-ler&#39; failed<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; I also tried setting up export MACHINE=3D&quot;k2&quot; but I=
- am getting the same<br>
-&gt;&gt; &gt; error<br>
-&gt;&gt; &gt; message<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; In my /var/fpwork/tomar_yocto1/snz-yocto/meta-xyz/conf/machin=
-e there<br>
-&gt;&gt; &gt; exist a<br>
-&gt;&gt; &gt; pyp-ii.conf file.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; I tried renaming it to k2.conf but it also didn&#39;t work ou=
-t.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Can anybody let me know what needs to be done in order to cha=
-nge MACHINE<br>
-&gt;&gt; &gt; name here.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Thanks<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Amit Singh Tomar<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt; yocto mailing list<br>
-&gt;&gt; &gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.=
-org</a><br>
-&gt;&gt; &gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" tar=
-get=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
-</div></div></blockquote></div><br></div>
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d"><u></u><u></u></span></p>
+</div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&q=
+uot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">we can only access =
+our servers using xyz:component way in
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">git clone xyz:sysconfig
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">but=A0 in bitbake this do=
+esnot work.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Please suggest me the sol=
+ution<u></u><u></u></span></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>hmm. have you tried what =
+I suggested? That .ssh/config above is not what I suggested. I think your p=
+roblem is because you use short alias instead of host. but i am not sure si=
+nce i haven&#39;t tried. can you please try to use full host name in SRC_UR=
+I and modify .ssh/config accordingly? the config i shared is the one i use =
+for my projects.</div>
 
---bcaec51b9cfddebe7d04e62c14c8--
+<div class=3D"gmail_extra"><br></div></div>
+
+--089e0115fe0ed3667004e62c3798--
