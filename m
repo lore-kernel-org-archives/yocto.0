@@ -1,31 +1,27 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75F1EE005B3
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 08:01:57 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74464E005B3
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 08:12:35 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga102.ch.intel.com with ESMTP; 12 Sep 2013 08:01:55 -0700
+	by azsmga101.ch.intel.com with ESMTP; 12 Sep 2013 08:12:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,891,1371106800"; d="scan'208";a="394783840"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Sep 2013 08:01:54 -0700
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.226]) by
-	IRSMSX103.ger.corp.intel.com ([163.33.3.157]) with mapi id
-	14.03.0123.003; Thu, 12 Sep 2013 16:01:51 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Diego Gonzalez <diego.gonzalez@horus.es>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Hob Question
-Thread-Index: AQHOr8kCTFOn5UG53EWRFr+NXZsjGA==
-Date: Thu, 12 Sep 2013 15:01:51 +0000
-Message-ID: <CE575EB7.323DD%belen.barros.pena@intel.com>
-In-Reply-To: <1378983784294065500@horus.es>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.3.2.130206
-x-originating-ip: [10.237.224.163]
+X-IronPort-AV: E=Sophos;i="4.90,891,1371106800"; d="scan'208";a="394789959"
+Received: from ks-mobl3.gar.corp.intel.com (HELO helios.localnet)
+	([10.252.123.176])
+	by fmsmga001.fm.intel.com with ESMTP; 12 Sep 2013 08:12:33 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Ashish Dalela <ashish.dalela@gmail.com>
+Date: Thu, 12 Sep 2013 16:12:32 +0100
+Message-ID: <2226787.84MgiCFZLh@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-29-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CABhkJRc+Ae1oYAP8821rYU8z0d5C9cHpoXVXL3vXdVnzSbx2jA@mail.gmail.com>
+References: <CABhkJRdQQ2HaXCrah=544uAn6Ys=gspTdmuSOa2VHv_gJASmKA@mail.gmail.com>
+	<CAP71WjwqPUS3JTZAswd6ULWXX8CTh4_F1X_MLjJO8tAw47mOYg@mail.gmail.com>
+	<CABhkJRc+Ae1oYAP8821rYU8z0d5C9cHpoXVXL3vXdVnzSbx2jA@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: Hob Question
+Cc: yocto@yoctoproject.org
+Subject: Re: Error while building a custom image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,66 +33,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 15:01:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <B8BF88D1D9B02A4B97FE64AA1D0F58CD@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 12 Sep 2013 15:12:36 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 12/09/2013 12:03, "Diego Gonzalez" <diego.gonzalez@horus.es> wrote:
-
->Hello,
-
-Hola Diego
-
+On Thursday 12 September 2013 19:31:59 Ashish Dalela wrote:
+> On Thu, Sep 12, 2013 at 7:27 PM, Nicolas Dechesne <
+> nicolas.dechesne@linaro.org> wrote:
+> > On Thu, Sep 12, 2013 at 3:52 PM, Ashish Dalela
+> > <ashish.dalela@gmail.com>wrote:
+> >> I tried a small change. I removed the packagegroup entry and added the
+> >> following to meta/recipes-extended/images/core-image-basic.bb
+> >> 
+> >> IMAGE_INSTALL += "tpmc"
+> >> 
+> >> Now, when I do a bitbake core-image-basic, I get this error:
+> >> 
+> >> *Error: tpmc not found in the base feeds (qemux86 i586 i486 i386 x86
+> >> noarch any all).*
+> >> *
+> >> *
+> >> Can someone please help? It's probably something quite simple but I'm not
+> >> getting it.
+> > 
+> > did you add your layer to BBLAYERS in conf/bblayer.conf file?
+> > 
+> > does "bitbake tpmc" actually build your recipe?
 >
->I just read this blog
->https://www.yoctoproject.org/blogs/belenbarrospena/2013/saving-your-hob-cu
->stomised-builds-image-recipes , which explains how to save your hob
->customized images . However when it finished to build my image I can't
->save it because there's
-> not Save Image recipe button. How I can save it? Why I can't see this
->button?
+> Yes, bitbake tpmc is successful.
+> 
+> Also, I added my layer to the BBLAYERS in the build/conf/bblayers.conf file.
 
-I am assuming you are building with the Yocto Project master branch: the
-feature is not available on the Dylan release.
+Without further details it sounds like a "tpmc" package is being provided by a 
+recipe, but when it came to packaging for that recipe, the "tpmc" package was 
+empty. Check that the "tpmc" recipe has appropriate PACKAGES / FILES values 
+and that files are being installed into the correct paths within in do_install.
 
-If you are, the 'Save image recipe' button will display only when you edit
-the Yocto Project image recipe you are starting from (I.e. If you add
-/remove some packages to / from it). If you build one of the Yocto Project
-image recipes as they come, without making any changes to the package
-list, the save option will not show.
+Cheers,
+Paul
 
-If you are changing the package list and still cannot see the save option,
-something is not working as it should. Can I ask you to open a bug if
-that's the case? You can do so at http://bugzilla.yoctoproject.org/
+-- 
 
-Saludos,
-
-Bel=E9n
-
->
->
->Diego Gonz=E1lez Gonz=E1lez
->Dpto. de Control Industrial
-> =
-
->HORUS HARDWARE S.A.
->Pol Ind Europolis C/Berna n=BA4
->28232 Las Rozas de Madrid
->diego.gonzalez@horus.es <mailto:enrique.fernandez@horus.es>
->
->
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
