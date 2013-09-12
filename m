@@ -1,50 +1,22 @@
-Return-Path: <B19406@freescale.com>
-Received: from tx2outboundpool.messaging.microsoft.com
-	(tx2ehsobe002.messaging.microsoft.com [65.55.88.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23C19E013DA;
-	Thu, 12 Sep 2013 04:34:06 -0700 (PDT)
-Received: from mail84-tx2-R.bigfish.com (10.9.14.228) by
-	TX2EHSOBE006.bigfish.com (10.9.40.26) with Microsoft SMTP Server id
-	14.1.225.22; Thu, 12 Sep 2013 11:34:05 +0000
-Received: from mail84-tx2 (localhost [127.0.0.1])	by mail84-tx2-R.bigfish.com
-	(Postfix) with ESMTP id 157231E0170;
-	Thu, 12 Sep 2013 11:34:05 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -6
-X-BigFish: VS-6(z5109h5105hzbb2dI98dI9371Ic89bh1432I1418I4015Izz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hz8dhz1de098h1de097h186068h8275bh8275dhz2dh2a8h839h93fhd25he5bhf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h1765h18e1h190ch1946h19b4h19c3h1ad9h1b0ah1b2fh1fb3h1d0ch1d2eh1d3fh1dfeh1dffh1f5fh1fe8h1ff5h209eh1155h)
-Received: from mail84-tx2 (localhost.localdomain [127.0.0.1]) by mail84-tx2
-	(MessageSwitch) id 1378985642610241_6995;
-	Thu, 12 Sep 2013 11:34:02 +0000 (UTC)
-Received: from TX2EHSMHS015.bigfish.com (unknown [10.9.14.235])	by
-	mail84-tx2.bigfish.com (Postfix) with ESMTP id 8E54812005C;
-	Thu, 12 Sep 2013 11:34:02 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by TX2EHSMHS015.bigfish.com
-	(10.9.99.115) with Microsoft SMTP Server (TLS) id 14.16.227.3;
-	Thu, 12 Sep 2013 11:34:02 +0000
-Received: from tx30smr01.am.freescale.net (10.81.153.31) by
-	039-SN1MMR1-005.039d.mgd.msft.net (10.84.1.17) with Microsoft SMTP
-	Server (TLS) id 14.3.158.2; Thu, 12 Sep 2013 11:34:01 +0000
-Received: from [10.29.244.63] ([10.29.244.63])	by tx30smr01.am.freescale.net
-	(8.14.3/8.14.0) with ESMTP id r8CBXxNv019258;
-	Thu, 12 Sep 2013 04:34:00 -0700
-Message-ID: <5231A5B3.2040804@freescale.com>
-Date: Thu, 12 Sep 2013 08:29:55 -0300
-From: Daiane Angolini <daiane.angolini@freescale.com>
+Return-Path: <tf+lists.yocto@r-finger.com>
+Received: from r-finger.com (r-finger.com [178.79.160.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 404B7E013E8
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 04:43:50 -0700 (PDT)
+Received: from [192.168.0.2] (host86-137-81-79.range86-137.btcentralplus.com
+	[86.137.81.79]) (using TLSv1 with cipher AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by r-finger.com (Postfix) with ESMTPSA id B19CD9527
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 12:43:48 +0100 (BST)
+Message-ID: <5231A8F3.4050509@r-finger.com>
+Date: Thu, 12 Sep 2013 12:43:47 +0100
+From: Tomas Frydrych <tf+lists.yocto@r-finger.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
+	rv:17.0) Gecko/20130630 Icedove/17.0.7
 MIME-Version: 1.0
-To: jojo <rjiejie@gmail.com>
-References: <666645F4EAA9483CB526943CA6FA6428@gmail.com>
-	<CA+AhUGxEebNBYp64mBh3TbCrn2_n4GDsi1KB3O_Tk0mpwj7jMQ@mail.gmail.com>
-	<8AFAD819783F4C2CB04F1D5A9CA05C48@gmail.com>
-	<B009182FF2944A11AD49E18C5954CCBE@gmail.com>
-In-Reply-To: <B009182FF2944A11AD49E18C5954CCBE@gmail.com>
-X-OriginatorOrg: freescale.com
-X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
-Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: =?UTF-8?B?UmU6IFttZXRhLWZyZWVzY2FsZV0g5Zue5aSN77yaIGhvdyB0byBpbnN0YWxsIHB1bHNlYXVkaW8gY29tcGxldGVseQ==?=
+To: yocto@yoctoproject.org
+References: <E51394554A503C4E852F9BEE46B03E8DEFCD05@TI-ODIN.tasernet.com>
+In-Reply-To: <E51394554A503C4E852F9BEE46B03E8DEFCD05@TI-ODIN.tasernet.com>
+Subject: Re: How to customize a file coming from another recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,101 +28,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 11:34:07 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 12 Sep 2013 11:43:51 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 09/12/2013 07:07 AM, jojo wrote:
-> Hi,
+Hi,
 
-Hi Jojo,
+On 11/09/13 20:24, Brad Litterell wrote:
+> This installs a default configuration file for the service which I now
+> want to customize.  What is the recommended way to overwrite or
+> customize files in another package?
+> 
+> Is the best course to create a recipe bbappend for the
+> lighttpd_1.4.31.bb file that is being used?
 
-> I installed pulse audio server in IMX6QSD of FSL, but there is no outpu=
-t
-> of audio with HDMI :(
+Yes.
 
-Please, double check if pulseaudio is in your DISTRO_FEATURES (i think=20
-it's default, but I cannot remember exactly)
+> And can I just include a
+> new file with the same name in my append and will it overwrite the old
+> one, or do I need to create an actual patch file?
 
-bitbake -e | grep ^DISTRO_FEATURES
-
-How are you configuring HDMI audio? I know there is a doc in=20
-imx-community with the audio configuration if you want to change it from=20
-default to HDMI.
+Assuming you set up the FILESEXTRAPATHS in the bbappend correctly (as
+per documentation), you can just provide the whole file, it just takes
+the first instance of the file it locates in the files path.
 
 
->
-> how to track the log of the pulse audio ?
->
+> Or is it better to create a new separate  recipe that just ships my
+> version of the configuration file? How are conflicts handled when two
+> recipes attempt to install the same file?
+
+No, do not do this, two packages can't install the same file (if the
+file is being staged to the sysroot, bitbake will catch that, but I am
+not sure if currently that throws and error or just a warning; in your
+case with a file that is not staged in a sysroot the problem would only
+become apparent at rootfs time, but I am not sure how the different
+package managers handle this).
+
+Tomas
+
+> 
 > Thanks,
->
-> - Jojo
->
-> =E5=9C=A8 2013=E5=B9=B47=E6=9C=8816=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=8C=
-=EF=BC=8C=E4=B8=8B=E5=8D=8811:32=EF=BC=8Cjojo =E5=86=99=E9=81=93=EF=BC=9A
->
->> Hi,
->> Ok & i will have a try, thanks for your reply :)
->>
->> Thanks,
->>
->> - Jojo
->>
->> =E5=9C=A8 2013=E5=B9=B47=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=94=
-=EF=BC=8C=E4=B8=8B=E5=8D=886:45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=93=
-=EF=BC=9A
->>
->>> Hi,
->>> On Fri, Jul 12, 2013 at 12:35 PM, jojo <rjiejie@gmail.com
->>> <mailto:rjiejie@gmail.com>> wrote:
->>>> Hi,
->>>> My yocto version/tag is dylan.
->>>> I have compiled fsl-image-gui to testing the the audio output, but i
->>>> can not find
->>>> anything about for pulseaudio server to start up daemon.
->>>>
->>>> I saw the build code in the path about for
->>>> "build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/pulseaudio/3.0-r0=
-/image/"
->>>> and it really have built all things of pulseaudio. but when i create
->>>> the fsl-image-gui to start up, i just find "libpulse*" in the
->>>> rootfs.
->>>>
->>>> I think that something wrong with pulseaudio configure so that it do
->>>> not install completely by default.
->>>
->>> The pulseaudio daemon is packaged as pulseaudio-server, maybe the
->>> image doesn't install that package by default?
->>> Cheers,
->>> Erik Bot=C3=B6
->>>
->>>>
->>>> someone know about that how to install pulseaudio completely ?
->>>>
->>>> Thanks,
->>>>
->>>> - Jojo
->>>>
->>>>
->>>> _______________________________________________
->>>> meta-freescale mailing list
->>>> meta-freescale@yoctoproject.org <mailto:meta-freescale@yoctoproject.=
-org>
->>>> https://lists.yoctoproject.org/listinfo/meta-freescale
->>>>
->>>
->>
->
->
->
+> Brad
+> 
+> 
+> 
 > _______________________________________________
-> meta-freescale mailing list
-> meta-freescale@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-freescale
->
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
 
---=20
-Daiane
-
+-- 
+http://sleepfive.com
 
