@@ -1,34 +1,24 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0027E01565
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 04:32:31 -0700 (PDT)
-Received: by mail-vc0-f179.google.com with SMTP id ht10so798881vcb.24
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 04:32:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=ONL/xwPMZnh+LE/kRuKmam/NGkcSLE/frREwO2Gz3xk=;
-	b=YEyjrlSIr8qDY3cD9ib/KfOxgbJ+Fz865Ijj/Yw0kUTgFumuYPQ1BUwZmNQTegdauc
-	OPVLzHJ4nb56Yb75PG30cZZHV752WrAf+o7tcWIfhCKDjGZ94j+R2HJgsqlKKByEErqz
-	QTrssSTy+sYKZa+EopMfa5xAZzYASa/YTpzfzJ+kctb9QtXCm6KAUAq+GSKjhwNPbT55
-	KzdyNbC435lTPk2Z95gqHmbB+CFxpUKxK8t+W7UpEo5nRLkrM5Nm9pcWWmGBWyUE5XK9
-	cPtFvJvOxg7lH3rxG319pffJFJNbdYDz1rQJQiZcV4NG3Jg+ExZvcxFLW3vKHM1P46bh
-	EkTA==
-X-Received: by 10.52.157.134 with SMTP id wm6mr5507153vdb.26.1379071950265;
-	Fri, 13 Sep 2013 04:32:30 -0700 (PDT)
-MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.109.72 with HTTP; Fri, 13 Sep 2013 04:31:50 -0700 (PDT)
-In-Reply-To: <CABG0-3xHSyGoctj8tt4oHRXbVxwdubUsEFX2m2gkN6p9Fk6E6w@mail.gmail.com>
-References: <CABG0-3xHSyGoctj8tt4oHRXbVxwdubUsEFX2m2gkN6p9Fk6E6w@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 13 Sep 2013 12:31:50 +0100
-X-Google-Sender-Auth: ZP67g8vHLB4BvYyfB2DScVomxYM
-Message-ID: <CANyK_8d43RNUgwatiz2gaTWX_Gw7sQr=i6dRPx2pRbpBpgMxQA@mail.gmail.com>
-To: arun kumar <arunkr.linux@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: meta-raspberrypi layer
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F9FFE01565
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 04:35:58 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga102.ch.intel.com with ESMTP; 13 Sep 2013 04:35:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,897,1371106800"; d="scan'208";a="359991985"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by azsmga001.ch.intel.com with ESMTP; 13 Sep 2013 04:35:54 -0700
+Received: from thunderbird.rb.intel.com (thunderbird.rb.intel.com
+	[10.237.105.57])
+	by linux.intel.com (Postfix) with ESMTP id 0E0546A4092;
+	Fri, 13 Sep 2013 04:35:50 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: elizabeth.flanagan@intel.com,
+	yocto@yoctoproject.org
+Date: Fri, 13 Sep 2013 14:34:51 +0300
+Message-Id: <1379072091-28016-1-git-send-email-stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [yocto-autobuilder][PATCH] buildset-config/nightly-qa-extras: make it simpler and usable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,32 +30,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 11:32:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 13 Sep 2013 11:35:59 -0000
 
-On 13 September 2013 10:35, arun kumar <arunkr.linux@gmail.com> wrote:
-> I am new to Yocto Project and have built the basic minimal and the sato
-> images as of now,
->
-> I am trying to build an Image for the Raspberry Pi, supporting ssh.
->
-> what layers would be required apart from the  "meta-raspberrypi" layer.
->
-> I tried the blog post in pimpmypi.com but that doesnt seem to work with the
-> current version of poky.
->
-> anybody has any links for the updated layer for the raspberry Pi.
+This target was missing from the nightly target for some reason.
+Also, it wasn't up to date with latest changes. I've simplified it a bit,
+so it has only two builds of core-image-minimal with features that are known to work.
+And these being core-image-minimal the sanity tests are just boot+ping.
 
-The official source for meta-raspberrypi is now
-git://git.yoctoproject.org/meta-raspberrypi
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
+ buildset-config/nightly-qa-extras.conf | 12 ++++++------
+ buildset-config/nightly.conf           |  2 +-
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
-There's also a README file at the root of this layer, that should
-contain the instructions you need. If you have any problems with it
-let us know.
-
+diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/nightly-qa-extras.conf
+index 8fddbc6..3239fda 100644
+--- a/buildset-config/nightly-qa-extras.conf
++++ b/buildset-config/nightly-qa-extras.conf
+@@ -8,10 +8,10 @@ steps: [{'SetDest':{}},
+         {'CheckOutLayers': {}},
+         {'RunPreamble': {}},
+         {'GetDistroVersion' : {'distro': 'poky'}},
+-        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nROOT_HOME = "/root"\nIMAGE_FSTYPES = "btrfs"\nKERNEL_FEATURES_append = " cfg/fs/btrfs"\n'}},
+-        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+-        {'BuildImages': {'images': 'core-image-sato'}},
+-        {'RunSanityTests': {'images': 'core-image-sato', 'timeout' : 2400}},
+         {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nIMAGE_FEATURES_append = " read-only-rootfs"\n'}},
+-        {'BuildImages': {'images': 'core-image-sato'}},
+-        {'RunSanityTests': {'images': 'core-image-sato', 'scene' : 'sanity:boot sanity:ssh'}}]
++        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
++        {'BuildImages': {'images': 'core-image-minimal'}},
++        {'RunSanityTests': {'images': 'core-image-minimal'}},
++        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nROOT_HOME = "/root"\n'}},
++        {'BuildImages': {'images': 'core-image-minimal'}},
++        {'RunSanityTests': {'images': 'core-image-minimal'}}]
+diff --git a/buildset-config/nightly.conf b/buildset-config/nightly.conf
+index 0c6615a..5641772 100644
+--- a/buildset-config/nightly.conf
++++ b/buildset-config/nightly.conf
+@@ -71,7 +71,7 @@ steps: [{'SetDest':{}},
+                               'nightly-x86-64': {}, 'nightly-x86-64-lsb': {},
+                               'nightly-x86': {}, 'nightly-x86-lsb': {},
+                               'poky-tiny': {}, 'buildtools': {},
+-                              'nightly-qa-systemd': {}}}},
++                              'nightly-qa-systemd': {}, 'nightly-qa-extras': {}}}},
+         {'PrepPkgIndex' : {}},
+         {'BuildImages': {'images': 'package-index'}},
+         {'CreateAutoConf': {'machine': 'atom-pc', 'SDKMACHINE' : 'x86_64', 
 -- 
-Paul Barker
+1.8.1.4
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
