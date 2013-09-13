@@ -1,34 +1,45 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-lb0-f181.google.com (mail-lb0-f181.google.com
-	[209.85.217.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8855AE014F7
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 17:24:14 -0700 (PDT)
-Received: by mail-lb0-f181.google.com with SMTP id u14so1547013lbd.12
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 17:24:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=OiReJZT/10PLNJhgNRoXp9hwfDxPb5rPGzApIPSZNAk=;
-	b=S/79PFtRs+4efM1Esx/ilqPD4/l6qu/rL2x6gkMAB128VOTWLt8g+mwtzEVa3M+jsA
-	eWXkVOFhCN2WF1UAhVpOrA8oHGIsWiNF0FE5DqyQ06utaqeK3MxSfnEtGkx/NsFZQlDr
-	9gBknUyXySQjW4y74keEojL1Pkd1tbXCcj5E9wVpxdU9yWq9ZZUxJrI1qb2WPhHS92S6
-	u458cuUp7GzwfoyvNYc50wndMxvsBrGsE12wjMoaZPKIbAneH9xKqTf0N2YF+9np7//+
-	omyo6s5YMzjTxrJfGf7AnSOBQvY8vhYdYGbjwknKOKqiRV1zCiPUIodKoQ9YTTIT6vUD
-	DPNg==
-X-Received: by 10.112.51.101 with SMTP id j5mr9359748lbo.17.1379031853300;
-	Thu, 12 Sep 2013 17:24:13 -0700 (PDT)
+Return-Path: <B19537@freescale.com>
+Received: from co1outboundpool.messaging.microsoft.com
+	(co1ehsobe005.messaging.microsoft.com [216.32.180.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F8C6E014F8
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 19:29:46 -0700 (PDT)
+Received: from mail29-co1-R.bigfish.com (10.243.78.253) by
+	CO1EHSOBE038.bigfish.com (10.243.66.103) with Microsoft SMTP Server id
+	14.1.225.22; Fri, 13 Sep 2013 02:29:45 +0000
+Received: from mail29-co1 (localhost [127.0.0.1])	by mail29-co1-R.bigfish.com
+	(Postfix) with ESMTP id 64A01AC00B8;
+	Fri, 13 Sep 2013 02:29:45 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 13
+X-BigFish: VS13(z5621hzda00hdc73hddf5rzz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz17326ah1de097h186068h8275dh17598djz2dh2a8h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1b2fh1fb3h1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e1dh1fe8h1ff5hbe9i1155h)
+Received: from mail29-co1 (localhost.localdomain [127.0.0.1]) by mail29-co1
+	(MessageSwitch) id 1379039383774084_8571;
+	Fri, 13 Sep 2013 02:29:43 +0000 (UTC)
+Received: from CO1EHSMHS020.bigfish.com (unknown [10.243.78.233])	by
+	mail29-co1.bigfish.com (Postfix) with ESMTP id AF6AD800040;
+	Fri, 13 Sep 2013 02:29:43 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CO1EHSMHS020.bigfish.com
+	(10.243.66.30) with Microsoft SMTP Server (TLS) id 14.16.227.3;
+	Fri, 13 Sep 2013 02:29:43 +0000
+Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.137]) by
+	039-SN1MMR1-001.039d.mgd.msft.net ([10.84.1.13]) with mapi id
+	14.03.0158.002; Fri, 13 Sep 2013 02:29:42 +0000
+From: Luo Zhenhua-B19537 <B19537@freescale.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: "tree" link is broken for some layers in
+	http://layers.openembedded.org/layerindex/branch/master/layers/
+Thread-Index: Ac6wKRhWCCr9X4c6SruJISue/6xVYw==
+Date: Fri, 13 Sep 2013 02:29:41 +0000
+Message-ID: <CA452391058F6D4E9715FB2C29D9312A0171C4BD@039-SN2MPN1-021.039d.mgd.msft.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.192.208.71]
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.35.200 with HTTP; Thu, 12 Sep 2013 17:23:53 -0700 (PDT)
-In-Reply-To: <E51394554A503C4E852F9BEE46B03E8DEFDB66@TI-ODIN.tasernet.com>
-References: <E51394554A503C4E852F9BEE46B03E8DEFDB66@TI-ODIN.tasernet.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Thu, 12 Sep 2013 17:23:53 -0700
-X-Google-Sender-Auth: 9QEgRGYjzzVroCmRjiNcllN50GU
-Message-ID: <CABcZAN=QM=Tj=vtsdXERZy=9gcs6vBr1cpw+4Fr9USHuthCxkQ@mail.gmail.com>
-To: Brad Litterell <brad@evidence.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Bitbake on live (uncommitted) code
+X-OriginatorOrg: freescale.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+Subject: "tree" link is broken for some layers in http://layers.openembedded.org/layerindex/branch/master/layers/
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,69 +51,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 00:24:16 -0000
-Content-Type: multipart/alternative; boundary=001a11336460bfffbc04e638dfc9
-
---001a11336460bfffbc04e638dfc9
-Content-Type: text/plain; charset=UTF-8
-
-On Thu, Sep 12, 2013 at 4:53 PM, Brad Litterell <brad@evidence.com> wrote:
-
-> I've grown to really appreciate bitbake for compiling code from a myriad
-> of sources, however, what is the recommended course for source I am
-> currently doing live development on?  My code base lives in a couple of git
-> repos that do NOT map one-to-one with recipes and I don't really want to
-> store the source mixed in with the recipe meta data anyway, nor do I want
-> to be forced to commit it to git just to do a build.
->
->  Currently I run a pre-bitbake script that creates a tarball out of the
-> source, but that is easy to forget and makes building a new image a two
-> step proces.  Since it is a build step I'd like it to be done by bitbake.
->
->  Is there a recommended way to go about this?
->
-
-See externalsrc.bbclass.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a11336460bfffbc04e638dfc9
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 13 Sep 2013 02:29:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Sep 12, 2013 at 4:53 PM, Brad Litterell <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:brad@evidence.com" target=3D"_blank">brad@evidence.com</a>&gt;=
-</span> wrote:<br>
+Hi,=20
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>I&#39;ve grown to really appreciate bit=
-bake for compiling code from a myriad of sources, however, what is the reco=
-mmended course for source I am currently doing live development on? =C2=A0M=
-y code base lives in a couple of git repos that do NOT map one-to-one with
- recipes and I=C2=A0<span style=3D"font-size:10pt">don&#39;t really want to=
- store the source mixed in with the recipe meta data anyway, nor do I want =
-to be forced to commit it to git just to do a build.</span></div>
-<div><br>
-</div>
-<div>Currently I run a pre-bitbake script that creates a tarball out of the=
- source, but that is easy to forget and makes building a new image a two st=
-ep proces. =C2=A0Since it is a build step I&#39;d like it to be done by bit=
-bake. =C2=A0</div>
+When I click the "tree" links of some layers in http://layers.openembedded.=
+org/layerindex/branch/master/layers/, "400 Bad Request" error appears, can =
+somebody take a look?
+Meta-intel
+Meta-fsl-arm
+Meta-fsl-ppc
+Meta-lsi
+Meta-ti
+...
 
 
-<div><br>
-</div>
-<div>Is there a recommended way to go about this?</div></blockquote></div><=
-br>See externalsrc.bbclass.<br>-- <br>Christopher Larson<br>clarson at kerg=
-oth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - =
-Tslib<br>
+Best Regards,
 
-Senior Software Engineer, Mentor Graphics
-</div></div>
+Zhenhua
 
---001a11336460bfffbc04e638dfc9--
+
