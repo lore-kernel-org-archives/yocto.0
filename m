@@ -1,33 +1,28 @@
 Return-Path: <carlo.caione@gmail.com>
-Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4FD9E01554
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 08:26:31 -0700 (PDT)
-Received: by mail-vc0-f179.google.com with SMTP id ht10so1063849vcb.10
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 08:26:31 -0700 (PDT)
+Received: from mail-vb0-f41.google.com (mail-vb0-f41.google.com
+	[209.85.212.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FD3BE01565
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 08:32:14 -0700 (PDT)
+Received: by mail-vb0-f41.google.com with SMTP id g17so1079536vbg.28
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 08:32:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=DqhAu9/BYMmHeRooxSQv9GVMA/dCxF9z6j/72mzEeq0=;
-	b=PwcbqULzaYFv5RiwZmW48je6x1fmB+5l4GGUAXhbNTSzWx9qLGZ3yBXJBw9XCssquc
-	cAKOPqw3hFy2ssy+I/QSbA6oTV9TYtr5lY1GFbLt5oFJWK5AmSZBnB21gmhogue58GH/
-	Z4qIemkZZaOJ975WBAMpd6+J55Y7UBHPih2RLTkq61Dunwt0AYmnqV0xeVA2fDcl+6Ui
-	btdDiow8KG31fPoSd8uTdrvjmDZnsGJVT9ZPHLioo4EQTW82PprOPwpXc6/cAGOn6HxA
-	qScmumPjd70oklwgfZfiLtWuQSTJ1+EBHaXnxe/ilQGTOb/YHS8Jg7peyg8THdvTaqTX
-	kSJg==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=toLqem50EuSXQnhy3Vm98/8haVbgQ/d8nZ07giUJdJo=;
+	b=qXiTVJdEst5qU87Pw8tobAhg7CesDNseOFOzs9+tfM79+LyDRoMiBSy1Oh1hLRq53D
+	Ct4SfnZqmHUAjGkVMmK2xZhWvYotbY8gmg44h1djzDH71T4N2FeBID3aKNFEfMLANJBH
+	cWORqtJ+YQnn6EyGRWPTypn8pHJ21CwEdfUeGflpsc+dtmZp9jKC5FX9FhuCrOe4JV5P
+	AtvgjrWIp+7gbiPsBJPN04yn2B5eeO2haA16ByN/DBFFiLp/kDL8MFm2T1i8/Ryi8gIZ
+	yXnPzS4VaF9r9olq014JqgQ2QlR5t7mYvsYA/wbzQL7MlqRw8Z6oePww5b5HfVi79evt
+	kBbw==
 MIME-Version: 1.0
-X-Received: by 10.52.230.202 with SMTP id ta10mr550518vdc.41.1379085991047;
-	Fri, 13 Sep 2013 08:26:31 -0700 (PDT)
-Received: by 10.220.220.138 with HTTP; Fri, 13 Sep 2013 08:26:30 -0700 (PDT)
-In-Reply-To: <CADkTA4N21uh1UGMU1ZeUuhkE-Z3wU-YTynyhb2eYR3PqiSgZHA@mail.gmail.com>
-References: <CAOQ7t2b-UphcCwiQrbKqJmzjdGo=fyfQ7mh0UgWdeUTyUQEb=g@mail.gmail.com>
-	<CADkTA4N21uh1UGMU1ZeUuhkE-Z3wU-YTynyhb2eYR3PqiSgZHA@mail.gmail.com>
-Date: Fri, 13 Sep 2013 17:26:30 +0200
-Message-ID: <CAOQ7t2abVKDp=e-zoxaXGcdOW66koPY+PFWDpSg5KDFM4qGJVw@mail.gmail.com>
+X-Received: by 10.52.107.134 with SMTP id hc6mr10152723vdb.10.1379086334388;
+	Fri, 13 Sep 2013 08:32:14 -0700 (PDT)
+Received: by 10.220.220.138 with HTTP; Fri, 13 Sep 2013 08:32:14 -0700 (PDT)
+Date: Fri, 13 Sep 2013 17:32:14 +0200
+Message-ID: <CAOQ7t2bMdc5Wqeb0_b7M+wBCgVv6LtrEHpLfN5YS5Kgk-y=_mw@mail.gmail.com>
 From: Carlo Caione <carlo.caione@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: linux-yocto-custom error on do_validate_branches()
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: do_kernel_configme error with poky-tiny distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,15 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 15:26:34 -0000
+X-List-Received-Date: Fri, 13 Sep 2013 15:32:15 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, Sep 9, 2013 at 4:12 AM, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
-[cut]
+Hi,
+when I try to compile a poky-tiny distro this is what I get:
 
-> Your upstream. The one in ~/work/linux-stable isn't Linus's tree :){
+ERROR: Function failed: do_kernel_configme (see
+/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+for further information)
+ERROR: Logfile of failure stored in:
+/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+Log data follows:
+| DEBUG: Executing shell function do_kernel_configme
+| [INFO] doing kernel configme
+| [INFO] Configuring target/machine combo: "tiny/qemux86"
+| [INFO] collecting configs in ./meta/meta-series
+| mv: cannot stat
+`/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/linux-qemux86-tiny-build/.tmp.config*':
+No such file or directory
+| creation of pre-processed config data failed
+| config of "tiny/qemux86" failed
+| ERROR: Function failed: do_kernel_configme (see
+/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+for further information)
+ERROR: Task 678
+(/home/carlo/work/RSR/yocto/meta/recipes-kernel/linux/linux-yocto-tiny_3.8.bb,
+do_kernel_configme) failed with exit code '1'
 
-Oooops :) thank you!
+Any hint? it seems like the config file for the BSP is missing.
+
+Thank you,
 
 --
 Carlo Caione
