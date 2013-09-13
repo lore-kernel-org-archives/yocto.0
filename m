@@ -1,34 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D3CDE01440
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 01:26:46 -0700 (PDT)
-Received: by mail-ve0-f174.google.com with SMTP id jy13so714135veb.19
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 01:26:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=Pml3FnKwPfazqZocst8lXw6Dw53c4J23LJfXM2S6oaA=;
-	b=MyW0FvJ1gjA8iXhgOG4VSQm3Da0M4Z2J/n+SuLCnAYEyAN80vF6MnSPJzZPSN78bMk
-	J/RxnLAzvJlXeVDAHZ0CUQMCsYsoC2LsKBH9teaod1flbgSPNhDYILUWorqMxnu5WIBS
-	IjBHduXe2Zd8MHnNoBz5di2io8UIdKfqK1U3xLh0IcD/VgT6Q912t0TTAczOpOSVUbxM
-	Ij6vjF1a/ot1RzCBolhEcij7NgPwAEGnLULzlxai/cqoJAz2D8EgqfbaHB3S5WQR4sQG
-	SaDxkPn2C4NwdB3YMjtbQV7mOaap3m9OqKrhDJXQz+mGfyDXiphAsJ2EtBjRsRj7Zh9W
-	EXpQ==
-X-Gm-Message-State: ALoCoQk8cmN0gMquG41MeFGl0260qYBg3PYkWICqMTBmLmu2MrtEIkz0zB7WggyYXW0BDSkdA4X1
-X-Received: by 10.220.46.72 with SMTP id i8mr11032764vcf.10.1379060806022;
-	Fri, 13 Sep 2013 01:26:46 -0700 (PDT)
+Return-Path: <arunkr.linux@gmail.com>
+Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF76FE0154E
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 02:35:20 -0700 (PDT)
+Received: by mail-vc0-f178.google.com with SMTP id ha12so729880vcb.37
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 02:35:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=SFJ0Y4mBb5lJl0BK6w873SybzAFwxs7+ykEpLR5jHZ0=;
+	b=b9EKOFXdIN/kfD2wI/63O/YrmsjktQyZFT8VbeNiCcV+cXZvKNu6ZgqcgFqMn7CRXz
+	Us+aQY+f2N6yBdociTX5f8Crxh9Q30/mSY703j8X+DFDOsUHyKHOeebDKyd8lwWUeh2g
+	kQQpVfUiupPXSi9qzgMbj9NMzXnT0WHW9wtuf9D4poGZYBqkmYFt8K/YhxMZre8wUEmF
+	ZlvQJtGYoNsddD9s/QcuVhiv/zujPcdNiWjwsE7CdrN7hXXAD6WTRk3+mnMylkX5wE3L
+	ZV3KzBEPJciYPuY5D65JNEZZWrhmGI93dBUzP0y+TwuXcwZaqkh9pk64ffu+xp2VZFtY
+	smvA==
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Fri, 13 Sep 2013 01:26:25 -0700 (PDT)
-In-Reply-To: <A790EB169C7F954ABA26B79E28628A62A600B0B3@TAIMBX1.dmntai.intra>
-References: <A790EB169C7F954ABA26B79E28628A62A600B0B3@TAIMBX1.dmntai.intra>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 13 Sep 2013 09:26:25 +0100
-Message-ID: <CAJTo0LZgpsPtoBcWztP_mMPnX9RnMO6p_kLFngDowNznSfsKPQ@mail.gmail.com>
-To: =?UTF-8?Q?Serdar_Topalo=C4=9Flu?= <stopaloglu@tai.com.tr>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: working with less known x86 compatible CPUs
+X-Received: by 10.52.114.231 with SMTP id jj7mr9466811vdb.2.1379064918866;
+	Fri, 13 Sep 2013 02:35:18 -0700 (PDT)
+Received: by 10.58.198.167 with HTTP; Fri, 13 Sep 2013 02:35:18 -0700 (PDT)
+Date: Fri, 13 Sep 2013 15:05:18 +0530
+Message-ID: <CABG0-3xHSyGoctj8tt4oHRXbVxwdubUsEFX2m2gkN6p9Fk6E6w@mail.gmail.com>
+From: arun kumar <arunkr.linux@gmail.com>
+To: yocto@yoctoproject.org
+Subject: meta-raspberrypi layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,59 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 08:26:47 -0000
-Content-Type: multipart/alternative; boundary=001a11c2c6747791ca04e63f9d72
+X-List-Received-Date: Fri, 13 Sep 2013 09:35:21 -0000
+Content-Type: multipart/alternative; boundary=bcaec547ccc79d31e704e64092a1
 
---001a11c2c6747791ca04e63f9d72
-Content-Type: text/plain; charset=UTF-8
+--bcaec547ccc79d31e704e64092a1
+Content-Type: text/plain; charset=ISO-8859-1
+
+I am new to Yocto Project and have built the basic minimal and the sato
+images as of now,
+
+I am trying to build an Image for the Raspberry Pi, supporting ssh.
+
+what layers would be required apart from the  "meta-raspberrypi" layer.
+
+I tried the blog post in pimpmypi.com but that doesnt seem to work with the
+current version of poky.
+
+anybody has any links for the updated layer for the raspberry Pi.
+
+--bcaec547ccc79d31e704e64092a1
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On 13 September 2013 08:54, Serdar Topalo=C4=9Flu <stopaloglu@tai.com.tr> w=
-rote:
+<div dir=3D"ltr"><div>I am new to Yocto Project and have built the basic mi=
+nimal and the sato images as of now,</div><div>=A0</div><div>I am trying to=
+ build an Image for the Raspberry Pi, supporting ssh.</div><div>=A0</div><d=
+iv>
+what layers would be required apart from the=A0 &quot;meta-raspberrypi&quot=
+; layer.</div><div>=A0</div><div>I tried the blog post in <a href=3D"http:/=
+/pimpmypi.com">pimpmypi.com</a> but that doesnt seem to work with the curre=
+nt version of poky.</div>
+<div>=A0</div><div>anybody has any links for the updated layer for the rasp=
+berry Pi.</div></div>
 
-> **
->
-> Is there any compatibility problem in Yocto Linux with less popular x86
-> compatible CPUs like Vortex86DX, AMD Geode LX800, AMD T44R, VIA Eden,  et=
-c
-> ? Now they are getting popular in different form factor SBCs as PC/104,
-> PC/104+, ComExpress,etc. Especially, can I use Vortex86DX CPUs in my yoct=
-o
-> linux based projects without problem? We are currently working with Intel
-> Atom n450 without problem.
->
-
-You'll probably want to create a specific machine for your target hardware
-so that the kernel and gcc are tuned appropriately, but there's no known
-compatibility problems with any x86 processors as far as I'm aware in Yocto
-itself, assuming the kernel and gcc themselves have no problems.
-
-Ross
-
---001a11c2c6747791ca04e63f9d72
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra">On 13 September 2013 08:54, Ser=
-dar Topalo=C4=9Flu <span dir=3D"ltr">&lt;<a href=3D"mailto:stopaloglu@tai.c=
-om.tr" target=3D"_blank">stopaloglu@tai.com.tr</a>&gt;</span> wrote:<br><di=
-v class=3D"gmail_quote">
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><p class=3D"MsoNormal"><u></u></p>
-<p class=3D"MsoNormal">Is there any compatibility problem in Yocto Linux wi=
-th less popular x86 compatible CPUs like Vortex86DX, AMD Geode LX800, AMD T=
-44R, VIA Eden, =C2=A0etc ? Now they are getting popular in different form f=
-actor SBCs as PC/104, PC/104+, ComExpress,etc.
- Especially, can I use Vortex86DX CPUs in my yocto linux based projects wit=
-hout problem? We are currently working with Intel Atom n450 without problem=
-.</p></blockquote></div><br>You&#39;ll probably want to create a specific m=
-achine for your target hardware so that the kernel and gcc are tuned approp=
-riately, but there&#39;s no known compatibility problems with any x86 proce=
-ssors as far as I&#39;m aware in Yocto itself, assuming the kernel and gcc =
-themselves have no problems.</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div><=
-/div>
-
---001a11c2c6747791ca04e63f9d72--
+--bcaec547ccc79d31e704e64092a1--
