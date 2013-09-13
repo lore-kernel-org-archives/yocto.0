@@ -1,22 +1,46 @@
-Return-Path: <stopaloglu@tai.com.tr>
-Received: from taismtpGW1.tai.com.tr (taismtpgw1.tai.com.tr [88.255.59.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AD07E01440
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 00:55:01 -0700 (PDT)
-Received: from TAICAS1.dmntai.intra (unknown) by taismtpGW1.tai.com.tr with
-	smtp id 5671_d9f0_1a73bbf6_010e_4c2e_855d_23f43c0033f0;
-	Fri, 13 Sep 2013 10:54:46 +0300
-From: =?iso-8859-9?Q?Serdar_Topalo=F0lu?= <stopaloglu@tai.com.tr>
+Return-Path: <B38611@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe002.messaging.microsoft.com [216.32.181.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B36DE014F7
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 01:03:13 -0700 (PDT)
+Received: from mail183-ch1-R.bigfish.com (10.43.68.243) by
+	CH1EHSOBE015.bigfish.com (10.43.70.65) with Microsoft SMTP Server id
+	14.1.225.22; Fri, 13 Sep 2013 08:03:12 +0000
+Received: from mail183-ch1 (localhost [127.0.0.1])	by
+	mail183-ch1-R.bigfish.com (Postfix) with ESMTP id 1A9A6320106	for
+	<yocto@yoctoproject.org>; Fri, 13 Sep 2013 08:03:12 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 0
+X-BigFish: VS0(zzc85fh4015Izz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz1d7338h1de098h17326ah18c673h1c8fb4h1de097h186068h8275bh8275dhz2dh2a8h839h8e2h8e3hd25hf0ah1288h12a5h12bdh137ah1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1b2fh1bceh1fb3h1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e1dh1fe8h1ff5h20f0hbe9i1155h)
+Received: from mail183-ch1 (localhost.localdomain [127.0.0.1]) by mail183-ch1
+	(MessageSwitch) id 1379059389959105_26958;
+	Fri, 13 Sep 2013 08:03:09 +0000 (UTC)
+Received: from CH1EHSMHS028.bigfish.com (snatpool2.int.messaging.microsoft.com
+	[10.43.68.235])	by mail183-ch1.bigfish.com (Postfix) with ESMTP id
+	E56811C0093	for <yocto@yoctoproject.org>;
+	Fri, 13 Sep 2013 08:03:09 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS028.bigfish.com
+	(10.43.70.28) with Microsoft SMTP Server (TLS) id 14.16.227.3;
+	Fri, 13 Sep 2013 08:03:09 +0000
+Received: from 039-SN2MPN1-022.039d.mgd.msft.net ([169.254.2.191]) by
+	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.03.0158.002;
+	Fri, 13 Sep 2013 08:03:08 +0000
+From: Duan Fugang-B38611 <B38611@freescale.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: working with less known x86 compatible CPUs
-Thread-Index: Ac6vwZfvt5eDvfwQTYmYzWGMAW9ljw==
-Date: Fri, 13 Sep 2013 07:54:00 +0000
-Message-ID: <A790EB169C7F954ABA26B79E28628A62A600B0B3@TAIMBX1.dmntai.intra>
-Accept-Language: tr-TR, en-US
+Thread-Topic: Yacto rootfs: multi-touch message cannot handled by "close"
+	button
+Thread-Index: AQHOsFeuJ3NudX8qKU6pVAPCPA6F9A==
+Date: Fri, 13 Sep 2013 08:03:08 +0000
+Message-ID: <9848F2DB572E5649BA045B288BE08FBE016E148F@039-SN2MPN1-022.039d.mgd.msft.net>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.17.93.9]
+x-originating-ip: [10.192.242.233]
 MIME-Version: 1.0
-Subject: working with less known x86 compatible CPUs
+X-OriginatorOrg: freescale.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+Subject: Yacto rootfs: multi-touch message cannot handled by "close" button
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,178 +52,209 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 07:55:03 -0000
+X-List-Received-Date: Fri, 13 Sep 2013 08:03:17 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_A790EB169C7F954ABA26B79E28628A62A600B0B3TAIMBX1dmntaiin_"
+	boundary="_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_"
 
---_000_A790EB169C7F954ABA26B79E28628A62A600B0B3TAIMBX1dmntaiin_
-Content-Type: text/plain;
-  charset="utf-8"
-Content-Transfer-Encoding: base64
-X-NAIMIME-Disclaimer: 1
-X-NAIMIME-Modified: 1
+--_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgYWxsLAoKSSBkb24ndCBrbm93IGlmIGhlcmUgaXMgdGhlIHBsYWNlIG9mIHRoaXMgcXVlc3Rp
-b24gYnV0IGl0IGlzIGFsc28gWW9jdG8gcmVsZXZhbnQgaW4gbXkgb3Bpbmlvbi4KCklzIHRoZXJl
-IGFueSBjb21wYXRpYmlsaXR5IHByb2JsZW0gaW4gWW9jdG8gTGludXggd2l0aCBsZXNzIHBvcHVs
-YXIgeDg2IGNvbXBhdGlibGUgQ1BVcyBsaWtlIFZvcnRleDg2RFgsIEFNRCBHZW9kZSBMWDgwMCwg
-QU1EIFQ0NFIsIFZJQSBFZGVuLCAgZXRjID8gTm93IHRoZXkgYXJlIGdldHRpbmcgcG9wdWxhciBp
-biBkaWZmZXJlbnQgZm9ybSBmYWN0b3IgU0JDcyBhcyBQQy8xMDQsIFBDLzEwNCssIENvbUV4cHJl
-c3MsZXRjLiBFc3BlY2lhbGx5LCBjYW4gSSB1c2UgVm9ydGV4ODZEWCBDUFVzIGluIG15IHlvY3Rv
-IGxpbnV4IGJhc2VkIHByb2plY3RzIHdpdGhvdXQgcHJvYmxlbT8gV2UgYXJlIGN1cnJlbnRseSB3
-b3JraW5nIHdpdGggSW50ZWwgQXRvbSBuNDUwIHdpdGhvdXQgcHJvYmxlbS4KClRoYW5rcyBpbiBh
-ZHZhbmNlLCBiZXN0IHJlZ2FyZHMsCgpTZXJkYXIKCgoKCgoK
+Hi, all,
 
---_000_A790EB169C7F954ABA26B79E28628A62A600B0B3TAIMBX1dmntaiin_
-Content-Type: text/HTML;
-  charset="utf-8"
-Content-Transfer-Encoding: base64
-X-NAIMIME-Disclaimer: 1
-X-NAIMIME-Modified: 1
+We use the X.Org X Server 1.14.0 + QT4.8.5 to do one demo, but I  catch one=
+ issue: multi-touch message is not handled by "close" button.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6eD0idXJuOnNjaGVtYXMtbWljcm9z
-b2Z0LWNvbTpvZmZpY2U6ZXhjZWwiIHhtbG5zOm09Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5j
-b20vb2ZmaWNlLzIwMDQvMTIvb21tbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1o
-dG1sNDAiPgo8aGVhZD4KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0
-ZXh0L2h0bWw7IGNoYXJzZXQ9aXNvLTg4NTktOSI+CjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29u
-dGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPgo8c3R5bGU+PCEtLQov
-KiBGb250IERlZmluaXRpb25zICovCkBmb250LWZhY2UKCXtmb250LWZhbWlseTpDYWxpYnJpOwoJ
-cGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLwpw
-Lk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsCgl7bWFyZ2luOjBjbTsKCW1h
-cmdpbi1ib3R0b206LjAwMDFwdDsKCWZvbnQtc2l6ZToxMS4wcHQ7Cglmb250LWZhbWlseToiQ2Fs
-aWJyaSIsInNhbnMtc2VyaWYiOwoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQphOmxpbmss
-IHNwYW4uTXNvSHlwZXJsaW5rCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5OwoJY29sb3I6Ymx1ZTsK
-CXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5r
-Rm9sbG93ZWQKCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7Cgljb2xvcjpwdXJwbGU7Cgl0ZXh0LWRl
-Y29yYXRpb246dW5kZXJsaW5lO30KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdy
-YXBoLCBkaXYuTXNvTGlzdFBhcmFncmFwaAoJe21zby1zdHlsZS1wcmlvcml0eTozNDsKCW1hcmdp
-bi10b3A6MGNtOwoJbWFyZ2luLXJpZ2h0OjBjbTsKCW1hcmdpbi1ib3R0b206MGNtOwoJbWFyZ2lu
-LWxlZnQ6MzYuMHB0OwoJbWFyZ2luLWJvdHRvbTouMDAwMXB0OwoJZm9udC1zaXplOjExLjBwdDsK
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7Cgltc28tZmFyZWFzdC1sYW5ndWFn
-ZTpFTi1VUzt9CnNwYW4uRW1haWxTdHlsZTE4Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29t
-cG9zZTsKCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7Cgljb2xvcjp3aW5kb3d0
-ZXh0O30KLk1zb0NocERlZmF1bHQKCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsKCWZvbnQt
-c2l6ZToxMC4wcHQ7Cglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOwoJbXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQpAcGFnZSBXb3JkU2VjdGlvbjEKCXtzaXplOjYxMi4wcHQg
-NzkyLjBwdDsKCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0O30KZGl2Lldv
-cmRTZWN0aW9uMQoJe3BhZ2U6V29yZFNlY3Rpb24xO30KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
-c28gOV0+PHhtbD4KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIg
-Lz4KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+CjxvOnNoYXBlbGF5
-b3V0IHY6ZXh0PSJlZGl0Ij4KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+Cjwvbzpz
-aGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4KPC9oZWFkPgo8Ym9keSBsYW5nPSJUUiIgbGlu
-az0iYmx1ZSIgdmxpbms9InB1cnBsZSI+CjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+CjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPkhpIGFsbCw8bzpwPjwvbzpwPjwvcD4KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgZG9uJiM4MjE3
-O3Qga25vdyBpZiBoZXJlIGlzIHRoZSBwbGFjZSBvZiB0aGlzIHF1ZXN0aW9uIGJ1dCBpdCBpcyBh
-bHNvIFlvY3RvIHJlbGV2YW50IGluIG15IG9waW5pb24uPG86cD48L286cD48L3A+CjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPgo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
-cyB0aGVyZSBhbnkgY29tcGF0aWJpbGl0eSBwcm9ibGVtIGluIFlvY3RvIExpbnV4IHdpdGggbGVz
-cyBwb3B1bGFyIHg4NiBjb21wYXRpYmxlIENQVXMgbGlrZSBWb3J0ZXg4NkRYLCBBTUQgR2VvZGUg
-TFg4MDAsIEFNRCBUNDRSLCBWSUEgRWRlbiwgJm5ic3A7ZXRjID8gTm93IHRoZXkgYXJlIGdldHRp
-bmcgcG9wdWxhciBpbiBkaWZmZXJlbnQgZm9ybSBmYWN0b3IgU0JDcyBhcyBQQy8xMDQsIFBDLzEw
-NCYjNDM7LCBDb21FeHByZXNzLGV0Yy4KIEVzcGVjaWFsbHksIGNhbiBJIHVzZSBWb3J0ZXg4NkRY
-IENQVXMgaW4gbXkgeW9jdG8gbGludXggYmFzZWQgcHJvamVjdHMgd2l0aG91dCBwcm9ibGVtPyBX
-ZSBhcmUgY3VycmVudGx5IHdvcmtpbmcgd2l0aCBJbnRlbCBBdG9tIG40NTAgd2l0aG91dCBwcm9i
-bGVtLjxvOnA+PC9vOnA+PC9wPgo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzIGluIGFkdmFuY2UsIGJlc3QgcmVnYXJk
-cyw8bzpwPjwvbzpwPjwvcD4KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
-L3A+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPlNlcmRhcjxvOnA+PC9vOnA+PC9wPgo8cCBjbGFzcz0i
-TXNvTGlzdFBhcmFncmFwaCI+PG86cD4mbmJzcDs8L286cD48L3A+CjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPgo8L2Rpdj4KCjxESVY+PFA+PEhSPgo8VEFCTEUgc3R5
-bGU9IldJRFRIOiAxMDAlIiBjbGFzcz1Nc29Ob3JtYWxUYWJsZSBib3JkZXI9MCBjZWxsU3BhY2lu
-Zz0wIGNlbGxQYWRkaW5nPTAgd2lkdGg9IjEwMCUiPg0KPFRCT0RZPg0KPFRSPg0KPFREIHN0eWxl
-PSJQQURESU5HLUJPVFRPTTogMGNtOyBQQURESU5HLUxFRlQ6IDBjbTsgUEFERElORy1SSUdIVDog
-MGNtOyBQQURESU5HLVRPUDogMGNtIj48L1REPjwvVFI+DQo8VFI+DQo8VEQgc3R5bGU9IlBBRERJ
-TkctQk9UVE9NOiAwY207IFBBRERJTkctTEVGVDogMGNtOyBQQURESU5HLVJJR0hUOiAwY207IFBB
-RERJTkctVE9QOiAwY20iPg0KPFRBQkxFIHN0eWxlPSJXSURUSDogMTAwJSIgY2xhc3M9TXNvTm9y
-bWFsVGFibGUgYm9yZGVyPTAgY2VsbFNwYWNpbmc9MCBjZWxsUGFkZGluZz0wIHdpZHRoPSIxMDAl
-Ij4NCjxUQk9EWT4NCjxUUj4NCjxURCBzdHlsZT0iUEFERElORy1CT1RUT006IDcuNXB0OyBQQURE
-SU5HLUxFRlQ6IDcuNXB0OyBQQURESU5HLVJJR0hUOiA3LjVwdDsgQkFDS0dST1VORDogIzAxMzY5
-YzsgUEFERElORy1UT1A6IDcuNXB0IiB2QWxpZ249dG9wPg0KPFAgc3R5bGU9IlRFWFQtQUxJR046
-IHJpZ2h0OyBURVhULUlOREVOVDogNy41cHQiIGFsaWduPXJpZ2h0PjxTUEFOIHN0eWxlPSJGT05U
-LUZBTUlMWTogJ1ZlcmRhbmEnLCdzYW5zLXNlcmlmJzsgQ09MT1I6IHdoaXRlOyBGT05ULVNJWkU6
-IDdwdCI+VFVTQSYjMzUwOyAtIFQmdXVtbDtyayBIYXZhYyYjMzA1O2wmIzMwNTtrIHZlIFV6YXkg
-U2FuLiBBLiYjMzUwOy4gPEJSPkZldGhpeWUgTWFoYWxsZXNpIEhhdmFjJiMzMDU7bCYjMzA1O2sg
-QnVsdmFyJiMzMDU7IE5vOjE3IDA2OTgwIEthemFuIEFua2FyYSBUJnV1bWw7cmtpeWUgPEJSPlRl
-bDogKDAzMTIpIDgxMSAxOCAwMCAocGJ4KTxCUj5GYWtzOiAoMDMxMikgODExIDE0IDI1IDxCUj48
-QSBocmVmPSJodHRwOi8vd3d3LnRhaS5jb20udHIiPjxTUEFOIHN0eWxlPSJDT0xPUjogd2hpdGUi
-Pnd3dy50YWkuY29tLnRyPC9BPiAvIDxBIGhyZWY9Imh0dHA6Ly93d3cudHVzYXMuY29tLnRyIj48
-U1BBTiBzdHlsZT0iQ09MT1I6IHdoaXRlIj53d3cudHVzYXMuY29tLnRyPC9BPiA8QlI+VGljYXJl
-dCBTaWNpbCBObzogODcxLUthemFuIC8gS2F5JiMzMDU7dGwmIzMwNTsgT2xkdSYjMjg3O3UgWWVy
-OiBBbmthcmE8L1NQQU4+PD9YTUw6TkFNRVNQQUNFIFBSRUZJWCA9IE8gLz48TzpQPjwvTzpQPjwv
-U1BBTj48L1A+PC9TUEFOPjwvVEQ+PC9UUj48L1RCT0RZPjwvVEFCTEU+PC9URD48L1RSPjwvVEJP
-RFk+PC9UQUJMRT4NCjxQIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6IGF1dG87IG1zby1tYXJn
-aW4tYm90dG9tLWFsdDogYXV0byIgY2xhc3M9TXNvTm9ybWFsPjxTUEFOIHN0eWxlPSJGT05ULUZB
-TUlMWTogJ0FyaWFsJywnc2Fucy0NCnNlcmlmJyI+PE86UD4mbmJzcDs8L086UD48L1NQQU4+PEZP
-TlQgc2l6ZT0xIGZhY2U9VmVyZGFuYT4iQnUgbWVzYWogdmUgZWtsZXJpIG1lc2FqZGEgZyZvdW1s
-O25kZXJpbGRpJiMyODc7aSBiZWxpcnRpbGVuIGtpJiMzNTE7aSB5YSBkYSBraSYjMzUxO2lsZXJl
-ICZvdW1sO3plbCBvbHVwIGdpemxpIGJpbGdpbGVyIGkmY2NlZGlsO2VyaXlvciBvbGFiaWxpci4g
-TWVzYWomIzMwNTtuIG11aGF0YWImIzMwNTsgaWxnaWxpc2kgeWEgZGEgZyZvdW1sO25kZXJpbGVu
-aSBkZSYjMjg3O2lsc2VuaXogbCZ1dW1sO3RmZW4gbWVzYWomIzMwNTsgaGVyaGFuZ2kgYmlyICYj
-MzUxO2VraWxkZSBrdWxsYW5tYXkmIzMwNTtuJiMzMDU7eiAmY2NlZGlsO28mIzI4NzthbHRtYXkm
-IzMwNTtuJiMzMDU7eiB2ZSBiYSYjMzUxO2thbGFyJiMzMDU7bmEgaWYmIzM1MTthIGV0bWV5aW5p
-ei4gRSYjMjg3O2VyIG1lc2FqIHlhbmwmIzMwNTsmIzM1MTtsJiMzMDU7a2xhIHNpemUgdWxhJiMz
-NTE7bSYjMzA1OyYjMzUxO3NhIGFuJiMzMDU7bGFuIG1lc2FqIHZlIGVraW5kZSB5ZXIgYWxhbiBi
-aWxnaWxlcmkgZ2l6bGkgdHV0dW51eiB2ZSBtZXNhaiYjMzA1OyBnJm91bWw7bmRlcmVuIGtpJiMz
-NTE7aXlpIGJpbGdpbGVuZGlyZXJlayBzJm91bWw7eiBrb251c3UgbWVzYWogaWxlIGVrbGVyaW5p
-IGRlcmhhbCBpbWhhIGVkaW5pei4gQnUgbWVzYWogdmUgZWtpbmRla2kgYmVsZ2VsZXJpbiBiaWxp
-bmVuIHZpciZ1dW1sO3NsZXJlIGthciYjMzUxOyYjMzA1OyBrb250cm9sJnV1bWw7IHlhcCYjMzA1
-O2xtJiMzMDU7JiMzNTE7dCYjMzA1O3IuIEFuY2FrIGUtcG9zdGEgc2lzdGVtbGVyaW5pbiB0YSYj
-MzUxOyYjMzA1O2QmIzMwNTsmIzI4NzsmIzMwNTsgcmlza2xlcmRlbiBkb2xheSYjMzA1OyAmIzM1
-MTtpcmtldGltaXogYnUgbWVzYWomIzMwNTtuIHZlIGkmY2NlZGlsO2VyZGkmIzI4NztpIGJpbGdp
-bGVyaW4gc2l6ZSBkZSYjMjg3O2kmIzM1MTtpa2xpJiMyODc7ZSB1JiMyODc7cmF5YXJhayB2ZXlh
-IGdlJmNjZWRpbDsgdWxhJiMzNTE7bWFzJiMzMDU7bmRhbiBiJnV1bWw7dCZ1dW1sO25sJnV1bWw7
-JiMyODc7JnV1bWw7biZ1dW1sO24gdmUgZ2l6bGlsaSYjMjg3O2luaW4ga29ydW5hbWFtYXMmIzMw
-NTtuZGFuIHZpciZ1dW1sO3MgaSZjY2VkaWw7ZXJtZXNpbmRlbiB2ZSBoZXJoYW5naSBiaXIgc2Vi
-ZXBsZSBiaWxnaXNheWFyJiMzMDU7biYjMzA1O3phIHZlIHNpc3RlbWluaXplIHZlcmViaWxlY2Um
-IzI4NztpIHphcmFybGFyZGFuIHNvcnVtbHUgdHV0dWxhbWF6LjxCUj4mIzM1MDtpcmtldGltaXog
-aGFrayYjMzA1O25kYSBiaWxnaSBhbG1hayBpJmNjZWRpbDtpbiBsJnV1bWw7dGZlbiB3ZWIgc2l0
-ZW1pemkgeml5YXJldCBlZGluaXouICg8QSBocmVmPSJodHRwOi8vd3d3LnRhaS5jb20udHIiPmh0
-dHA6Ly93d3cudGFpLmNvbS50cjwvQT4pJiM4MjIxOzwvRk9OVD48L1A+DQo8VEFCTEUgc3R5bGU9
-IldJRFRIOiAxMDAlIiBjbGFzcz1Nc29Ob3JtYWxUYWJsZSBib3JkZXI9MCBjZWxsU3BhY2luZz0w
-IGNlbGxQYWRkaW5nPTAgd2lkdGg9IjEwMCUiPg0KPFRCT0RZPg0KPFRSPg0KPFREIHN0eWxlPSJQ
-QURESU5HLUJPVFRPTTogMGNtOyBQQURESU5HLUxFRlQ6IDBjbTsgUEFERElORy1SSUdIVDogMGNt
-OyBQQURESU5HLVRPUDogMGNtIj48L1REPjwvVFI+DQo8VFI+DQo8VEQgc3R5bGU9IlBBRERJTkct
-Qk9UVE9NOiAwY207IFBBRERJTkctTEVGVDogMGNtOyBQQURESU5HLVJJR0hUOiAwY207IFBBRERJ
-TkctVE9QOiAwY20iPg0KPFRBQkxFIHN0eWxlPSJXSURUSDogMTAwJSIgY2xhc3M9TXNvTm9ybWFs
-VGFibGUgYm9yZGVyPTAgY2VsbFNwYWNpbmc9MCBjZWxsUGFkZGluZz0wIHdpZHRoPSIxMDAlIj4N
-CjxUQk9EWT4NCjxUUj4NCjxURCBzdHlsZT0iUEFERElORy1CT1RUT006IDcuNXB0OyBQQURESU5H
-LUxFRlQ6IDcuNXB0OyBQQURESU5HLVJJR0hUOiA3LjVwdDsgQkFDS0dST1VORDogIzAxMzY5Yzsg
-UEFERElORy1UT1A6IDcuNXB0IiB2QWxpZ249dG9wPg0KPFAgc3R5bGU9IlRFWFQtQUxJR046IHJp
-Z2h0OyBURVhULUlOREVOVDogNy41cHQiIGFsaWduPXJpZ2h0PjxTUEFOIHN0eWxlPSJGT05ULUZB
-TUlMWTogJ1ZlcmRhbmEnLCdzYW5zLXNlcmlmJzsgQ09MT1I6IHdoaXRlOyBGT05ULVNJWkU6IDdw
-dCI+VHVya2lzaCBBZXJvc3BhY2UgSW5kdXN0cmllcywgSW5jLiA8QlI+RmV0aGl5ZSBNaC4gSGF2
-YWNpbGlrIEJsdi4gTm86MTcgMDY5ODAgS2F6YW4gQW5rYXJhIFR1cmtleSA8QlI+VGVsOiAoOTAz
-MTIpIDgxMSAxOCAwMCAocGJ4KTxCUj5GYXg6ICg5MDMxMikgODExIDE0IDI1IDxCUj48QSBocmVm
-PSJodHRwOi8vd3d3LnRhaS5jb20udHIiPjxTUEFOIHN0eWxlPSJDT0xPUjogd2hpdGUiPnd3dy50
-YWkuY29tLnRyIDwvQT4vIDxBIGhyZWY9Imh0dHA6Ly93d3cudHVzYXMuY29tLnRyIj48U1BBTiBz
-dHlsZT0iQ09MT1I6IHdoaXRlIj53d3cudHVzYXMuY29tLnRyPC9BPiA8QlI+Q29tbWVyY2lhbCBS
-ZWdpc3RyeSBObzogODcxLUthemFuIC8gUmVnaXN0ZXJlZCBhdCB0aGUgQ29tbWVyY2lhbCBSZWdp
-c3RyeSBvZiBBbmthcmE8L1NQQU4+PE86UD48L086UD48L1NQQU4+PC9QPjwvU1BBTj48L1REPjwv
-VFI+PC9UQk9EWT48L1RBQkxFPjwvVEQ+PC9UUj48L1RCT0RZPjwvVEFCTEU+DQo8UCBzdHlsZT0i
-bXNvLW1hcmdpbi10b3AtYWx0OiBhdXRvOyBtc28tbWFyZ2luLWJvdHRvbS1hbHQ6IGF1dG8iIGNs
-YXNzPU1zb05vcm1hbD48Rk9OVCBzaXplPTEgZmFjZT1WZXJkYW5hPiYjODIyMDtUaGlzIG1lc3Nh
-Z2UgdG9nZXRoZXIgd2l0aCBpdHMgYXR0YWNobWVudHMgaXMgaW50ZW5kZWQgc29sZWx5IGZvciB0
-aGUgYWRkcmVzcyhlcykgYW5kIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBvciBwcml2aWxlZ2Vk
-IGluZm9ybWF0aW9uLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50IHBsZWFz
-ZSBkbyBub3QgdXNlIGNvcHkgb3IgZGlzY2xvc2UgdGhlIG1lc3NhZ2UgZm9yIGFueSBwdXJwb3Nl
-LiBTaG91bGQgeW91IHJlY2VpdmUgdGhpcyBtZXNzYWdlIGJ5IG1pc3Rha2UgcGxlYXNlIGtlZXAg
-YWxsIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0aGUgbWVzc2FnZSBvciBpdHMgYXR0YWNobWVu
-dHMgc3RyaWN0bHkgY29uZmlkZW50aWFsIGFuZCBhZHZpc2UgdGhlIHNlbmRlciBhbmQgZGVsZXRl
-IGl0IGltbWVkaWF0ZWx5IHdpdGhvdXQgcmV0YWluaW5nIGEgY29weS4gVGhpcyBtZXNzYWdlIGFu
-ZCBpdHMgYXR0YWNobWVudHMgaGF2ZSBiZWVuIHN3ZXB0IGJ5IGFudGktdmlydXMgc3lzdGVtcyBm
-b3IgdGhlIHByZXNlbmNlIG9mIGtub3duIHZpcnVzZXMuIEhvd2V2ZXIgZHVlIHRvIHRoZSByaXNr
-cyBvZiBlLW1haWwgc3lzdGVtcyBvdXIgY29tcGFueSBjYW5ub3QgYWNjZXB0IGxpYWJpbGl0eSBm
-b3IgYW55IGNoYW5nZXMgb3IgZGVsYXkgaW4gcmVjZWl2aW5nIGxvc3Mgb2YgaW50ZWdyaXR5IGFu
-ZCBjb25maWRlbnRpYWxpdHkgY29udGFpbmluZyB2aXJ1c2VzIGFuZCBhbnkgZGFtYWdlcyBjYXVz
-ZWQgaW4gYW55IHdheSB0byB5b3VyIGNvbXB1dGVyIGFuZCBzeXN0ZW0uIDxCUj5UbyBnZXQgaW5m
-b3JtYXRpb24gYWJvdXQgb3VyIGNvbXBhbnkgcGxlYXNlIHZpc2l0IG91ciB3ZWIgc2l0ZS4gKDxB
-IGhyZWY9Imh0dHA6Ly93d3cudGFpLmNvbS50ciI+aHR0cDovL3d3dy50YWkuY29tLnRyPC9BPikm
-IzgyMjE7PC9GT05UPjxTUEFOIHN0eWxlPSJGT05ULUZBTUlMWTogJ0FyaWFsJywnc2Fucy0NCnNl
-cmlmJyI+PE86UD4mbmJzcDs8L086UD48TzpQPiZuYnNwOzwvTzpQPjwvU1BBTj48L1A+DQo8RElW
-PjwvRElWPg0KPERJVj48L0RJVj4KPC9QPjwvRElWPgo8L2JvZHk+CjwvaHRtbD4K
+I use egalax touchscreen for the multi-touch test.
+After kernel up, evtest test the multi-touch message, all pass. Use xinput =
+to do the test, also pass.
 
---_000_A790EB169C7F954ABA26B79E28628A62A600B0B3TAIMBX1dmntaiin_--
+Open one QT app, all multi-touch message can be processed, but the window o=
+f the app cannot be closed by click the "X" button in the right-up region.
+I test GNOME destop with the same kernel,  any apps' window can be closed.
+
+So, It is strange, maybe it is KDE issue for multi-touch ?
+Current KDE is matchbox-window-manager.
+Current multi-touch support messages:
+root@imx6qsabresd:/# mtdev-test /dev/input/event0
+supported mt events:
+                                 ABS_MT_TOUCH_MAJOR
+                                ABS_MT_WIDTH_MAJOR
+                                ABS_MT_POSITION_X
+                                ABS_MT_POSITION_Y
+                                ABS_MT_TRACKING_ID
+
+
+
+Any response is appreciative.
+
+Thanks,
+Andy
+
+
+
+
+
+
+--_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle24
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi, all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We use the X.Org X Server 1.14.0 &#43; QT4.8.5 to do=
+ one demo, but I &nbsp;catch one issue:
+<span style=3D"color:#1F497D">multi-touch message is not handled by &#8220;=
+close&#8221; button.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal">I use egalax touchscreen for the multi-touch test.<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">After kernel up, evtest test the multi-touch message=
+, all pass. Use xinput to do the test, also pass.<span style=3D"color:#1F49=
+7D"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Open one QT app, all multi-touch message can be proc=
+essed, but the window of the app cannot be closed by click the &#8220;X&#82=
+21;
+<span style=3D"color:#1F497D">button </span>in the right-up region.<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">I test GNOME destop with the same kernel,&nbsp; any =
+apps&#8217; window can be closed.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So, It is strange, maybe it is KDE issue for multi-t=
+ouch ?<o:p></o:p></p>
+<p class=3D"MsoNormal">Current KDE is matchbox-window-manager.<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">Current multi-touch support messages:<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"color:#1F4=
+97D">root@imx6qsabresd:/# mtdev-test /dev/input/event0<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in;text-indent:.5in"><span st=
+yle=3D"color:#1F497D">supported mt events:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp; &nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; &nbsp;ABS_MT_TOUCH_MAJOR<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp; &nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; ABS_MT_WIDTH_MAJOR<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp; &nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; ABS_MT_POSITION_X<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp; &nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; ABS_MT_POSITION_Y<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp; &nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; ABS_MT_TRACKING_ID<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal">Any response is appreciative.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Andy <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_--
