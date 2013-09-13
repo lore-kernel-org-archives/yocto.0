@@ -1,31 +1,49 @@
-Return-Path: <atanas.gegov.oss@gmail.com>
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5E5DE0155F
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 04:40:39 -0700 (PDT)
-Received: by mail-we0-f172.google.com with SMTP id w61so1025479wes.31
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 04:40:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=c3rYKv7bQ/rRVOtJ/HMEKfVSEjboB3Cqi9VWOpQDgCo=;
-	b=ka86L2//aBNKye6ZodmG93XKw2TpdOxED93Epx9kWdHH0ValB+YyyrxlRCf5c6+W2U
-	VioZncct6T9FA5JsAG4LEpbauZis0I6NnvSlanXhcuAvQiATgL/G+ev74rAMFxgdOpt0
-	wceYeIIZ4LrRcPflKWIHP49Vz+5QAwI4aM7lEPIa6cZjmFCW911Uo+6vx2FHxP6awP0Y
-	wgPxUGfJCQMluNZxsjjOJpklrtTTlovcwadhGGtJCzll9mU/qC5LD3TgIRHQ+ogq1Pc8
-	xxYNY2pejCq8ZOzzu2mPzKNbiltJgLIUBMkYpgMKiKKFwps2sdngs6VPfsx7K9TSNFxr
-	wbkw==
-X-Received: by 10.194.77.167 with SMTP id t7mr10511736wjw.27.1379072438120;
-	Fri, 13 Sep 2013 04:40:38 -0700 (PDT)
-Received: from ubuntu.bmw-carit.intra (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPSA id b11sm2920808wik.1.1969.12.31.16.00.00
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 13 Sep 2013 04:40:37 -0700 (PDT)
-From: Atanas Gegov <atanas.gegov.oss@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 13 Sep 2013 13:40:23 +0200
-Message-Id: <1379072423-3315-1-git-send-email-atanas.gegov.oss@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [eclipse-poky][PATCH] plugins/cmake: Added warning dialog on missing cmake
+Return-Path: <B19537@freescale.com>
+Received: from ch1outboundpool.messaging.microsoft.com
+	(ch1ehsobe006.messaging.microsoft.com [216.32.181.186])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02BE6E0155F
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 06:18:02 -0700 (PDT)
+Received: from mail216-ch1-R.bigfish.com (10.43.68.235) by
+	CH1EHSOBE005.bigfish.com (10.43.70.55) with Microsoft SMTP Server id
+	14.1.225.22; Fri, 13 Sep 2013 13:18:00 +0000
+Received: from mail216-ch1 (localhost [127.0.0.1])	by
+	mail216-ch1-R.bigfish.com (Postfix) with ESMTP id C5DD04001E1;
+	Fri, 13 Sep 2013 13:18:00 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: 4
+X-BigFish: VS4(z5621hz98dI9371I542I1432I4015Izz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz1de098h17326ah1de097h186068h8275dhz2dh2a8h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h19ceh1ad9h1b0ah1b2fh1fb3h1d0ch1d2eh1d3fh1dfeh1dffh1e1dh1fe8h1ff5hbe9i531p1155h)
+Received: from mail216-ch1 (localhost.localdomain [127.0.0.1]) by mail216-ch1
+	(MessageSwitch) id 1379078279459823_23402;
+	Fri, 13 Sep 2013 13:17:59 +0000 (UTC)
+Received: from CH1EHSMHS006.bigfish.com (snatpool1.int.messaging.microsoft.com
+	[10.43.68.245])	by mail216-ch1.bigfish.com (Postfix) with ESMTP id
+	6B7654E0054;	Fri, 13 Sep 2013 13:17:59 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS006.bigfish.com
+	(10.43.70.6) with Microsoft SMTP Server (TLS) id 14.16.227.3;
+	Fri, 13 Sep 2013 13:17:58 +0000
+Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.137]) by
+	039-SN1MMR1-004.039d.mgd.msft.net ([::1]) with mapi id 14.03.0158.002;
+	Fri, 13 Sep 2013 13:17:57 +0000
+From: Luo Zhenhua-B19537 <B19537@freescale.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] "tree" link is broken for some layers in
+	http://layers.openembedded.org/layerindex/branch/master/layers/
+Thread-Index: Ac6wKRhWCCr9X4c6SruJISue/6xVYwARaM4AAAUkGnA=
+Date: Fri, 13 Sep 2013 13:17:56 +0000
+Message-ID: <CA452391058F6D4E9715FB2C29D9312A0172B158@039-SN2MPN1-021.039d.mgd.msft.net>
+References: <CA452391058F6D4E9715FB2C29D9312A0171C4BD@039-SN2MPN1-021.039d.mgd.msft.net>
+	<3458929.5fRdMb9cIz@helios>
+In-Reply-To: <3458929.5fRdMb9cIz@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [111.199.78.71]
+MIME-Version: 1.0
+X-OriginatorOrg: freescale.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: "tree" link is broken for some layers in http://layers.openembedded.org/layerindex/branch/master/layers/
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,82 +55,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 11:40:40 -0000
+X-List-Received-Date: Fri, 13 Sep 2013 13:18:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Atanas Gegov <atanas.gegov@bmw-carit.de>
+Thanks, Paul.=20
 
-If the system is not able to run the command
-"cmake", the user is prompted with a MessageDialog
-to check the correctness of the cmake
-installation.
----
-Hi,
 
-this patch creates a MessageDialog to warn the user when the system was not able
-to run "cmake". This happens if cmake is not installed on the build machine
-(where the IDE itself is running).
+Best Regards,
 
-Cheers,
-Atanas
+Zhenhua
 
-P.S: This patch applies on the current eclipse-poky master.
 
- .../managedbuilder/YoctoCMakeMessages.properties   |    2 ++
- .../managedbuilder/job/ExecuteConfigureJob.java    |   20 +++++++++++++++++---
- 2 files changed, 19 insertions(+), 3 deletions(-)
+> -----Original Message-----
+> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> Sent: Friday, September 13, 2013 6:48 PM
+> To: Luo Zhenhua-B19537
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] "tree" link is broken for some layers in
+> http://layers.openembedded.org/layerindex/branch/master/layers/
+>=20
+> Hi Zhenhua,
+>=20
+> On Friday 13 September 2013 02:29:41 Luo Zhenhua-B19537 wrote:
+> > When I click the "tree" links of some layers in
+> > http://layers.openembedded.org/layerindex/branch/master/layers/, "400
+> > Bad Request" error appears, can somebody take a look? Meta-intel
+> > Meta-fsl-arm Meta-fsl-ppc Meta-lsi Meta-ti ...
+>=20
+> Oops, this was my fault. The generated URL is now correct, and I also
+> fixed a bug where the URL fields were being cleared when editing a layer
+> (and the change history showed that meta-kde was affected by this; I've
+> now restored the values for its entry as well).
+>=20
+> Cheers,
+> Paul
+>=20
+> --
+>=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
-diff --git a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties
-index 82a5c79..55773ac 100644
---- a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties
-+++ b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties
-@@ -16,6 +16,8 @@ ExecuteConfigureJob.buildingMakefile=Building Makefile
- ExecuteConfigureJob.warning.aborted=Build of project has been aborted
- ExecuteConfigureJob.error.couldNotStart=Build of project could not be started
- ExecuteConfigureJob.error.buildFailed=Build of project failed
-+ExecuteConfigureJob.cmakeWarning.dialogTitle=Unable to run command "cmake"
-+ExecuteConfigureJob.cmakeWarning.dialogMessage=Please make sure that cmake is installed properly on this machine.
- 
- # File generator
- YoctoCMakeMakefileGenerator.configureJob.name=Configuring project
-diff --git a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java
-index 347843e..354d930 100644
---- a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java
-+++ b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java
-@@ -32,6 +32,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
- import org.eclipse.core.runtime.IStatus;
- import org.eclipse.core.runtime.Status;
- import org.eclipse.core.runtime.jobs.Job;
-+import org.eclipse.jface.dialogs.MessageDialog;
-+import org.eclipse.swt.widgets.Display;
- import org.eclipse.ui.console.IOConsoleOutputStream;
- import org.yocto.cmake.managedbuilder.Activator;
- import org.yocto.cmake.managedbuilder.YoctoCMakeMessages;
-@@ -126,9 +128,21 @@ public class ExecuteConfigureJob extends Job {
- 		try {
- 			return buildProject(monitor, cos);
- 		} catch (IOException e) {
--			return new Status(Status.ERROR,
--					Activator.PLUGIN_ID, Status.OK,
--					YoctoCMakeMessages.getString("ExecuteConfigureJob.error.couldNotStart"), e); //$NON-NLS-1$
-+			if(e.getMessage().startsWith("Cannot run program \"cmake\"")) { //$NON-NLS-1$
-+				Display.getDefault().asyncExec(new Runnable() {
-+					@Override
-+					public void run() {
-+						MessageDialog.openWarning(null,
-+								YoctoCMakeMessages.getString("ExecuteConfigureJob.cmakeWarning.dialogTitle"), //$NON-NLS-1$
-+								YoctoCMakeMessages.getString("ExecuteConfigureJob.cmakeWarning.dialogMessage")); //$NON-NLS-1$
-+					}
-+				});
-+				return Status.OK_STATUS;
-+			} else {
-+				return new Status(Status.ERROR,
-+						Activator.PLUGIN_ID, Status.OK,
-+						YoctoCMakeMessages.getString("ExecuteConfigureJob.error.couldNotStart"), e); //$NON-NLS-1$	
-+			}
- 		} catch (InterruptedException e) {
- 			return new Status(Status.WARNING,
- 					Activator.PLUGIN_ID,
--- 
-1.7.9.5
 
 
