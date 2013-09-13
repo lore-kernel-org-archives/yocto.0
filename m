@@ -1,48 +1,34 @@
-Return-Path: <brad@evidence.com>
-Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FC10E014F7
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 16:53:07 -0700 (PDT)
-X-ASG-Debug-ID: 1379029985-0499bf605c11a360001-yzSStA
-Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
-	with ESMTP id huKfO8N2YbrCkMrN for <yocto@yoctoproject.org>;
-	Thu, 12 Sep 2013 16:53:05 -0700 (MST)
-X-Barracuda-Envelope-From: brad@evidence.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
-	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Thu, 12 Sep 2013 16:53:05 -0700
-Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
-	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
-	14.02.0342.003; Thu, 12 Sep 2013 16:53:04 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-From: Brad Litterell <brad@evidence.com>
-X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Bitbake on live (uncommitted) code
-X-ASG-Orig-Subj: Bitbake on live (uncommitted) code
-Thread-Index: AQHOsBM42+OV1hSNyk6eEv5km5a1Jw==
-Date: Thu, 12 Sep 2013 23:53:04 +0000
-Message-ID: <E51394554A503C4E852F9BEE46B03E8DEFDB66@TI-ODIN.tasernet.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.103]
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f181.google.com (mail-lb0-f181.google.com
+	[209.85.217.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8855AE014F7
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 17:24:14 -0700 (PDT)
+Received: by mail-lb0-f181.google.com with SMTP id u14so1547013lbd.12
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2013 17:24:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=OiReJZT/10PLNJhgNRoXp9hwfDxPb5rPGzApIPSZNAk=;
+	b=S/79PFtRs+4efM1Esx/ilqPD4/l6qu/rL2x6gkMAB128VOTWLt8g+mwtzEVa3M+jsA
+	eWXkVOFhCN2WF1UAhVpOrA8oHGIsWiNF0FE5DqyQ06utaqeK3MxSfnEtGkx/NsFZQlDr
+	9gBknUyXySQjW4y74keEojL1Pkd1tbXCcj5E9wVpxdU9yWq9ZZUxJrI1qb2WPhHS92S6
+	u458cuUp7GzwfoyvNYc50wndMxvsBrGsE12wjMoaZPKIbAneH9xKqTf0N2YF+9np7//+
+	omyo6s5YMzjTxrJfGf7AnSOBQvY8vhYdYGbjwknKOKqiRV1zCiPUIodKoQ9YTTIT6vUD
+	DPNg==
+X-Received: by 10.112.51.101 with SMTP id j5mr9359748lbo.17.1379031853300;
+	Thu, 12 Sep 2013 17:24:13 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: magni.atmoss[10.10.20.112]
-X-Barracuda-Start-Time: 1379029985
-X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at taser.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.140560
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Subject: Bitbake on live (uncommitted) code
+Sender: kergoth@gmail.com
+Received: by 10.112.35.200 with HTTP; Thu, 12 Sep 2013 17:23:53 -0700 (PDT)
+In-Reply-To: <E51394554A503C4E852F9BEE46B03E8DEFDB66@TI-ODIN.tasernet.com>
+References: <E51394554A503C4E852F9BEE46B03E8DEFDB66@TI-ODIN.tasernet.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Thu, 12 Sep 2013 17:23:53 -0700
+X-Google-Sender-Auth: 9QEgRGYjzzVroCmRjiNcllN50GU
+Message-ID: <CABcZAN=QM=Tj=vtsdXERZy=9gcs6vBr1cpw+4Fr9USHuthCxkQ@mail.gmail.com>
+To: Brad Litterell <brad@evidence.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Bitbake on live (uncommitted) code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,73 +40,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2013 23:53:07 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_"
+X-List-Received-Date: Fri, 13 Sep 2013 00:24:16 -0000
+Content-Type: multipart/alternative; boundary=001a11336460bfffbc04e638dfc9
 
---_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a11336460bfffbc04e638dfc9
+Content-Type: text/plain; charset=UTF-8
+
+On Thu, Sep 12, 2013 at 4:53 PM, Brad Litterell <brad@evidence.com> wrote:
+
+> I've grown to really appreciate bitbake for compiling code from a myriad
+> of sources, however, what is the recommended course for source I am
+> currently doing live development on?  My code base lives in a couple of git
+> repos that do NOT map one-to-one with recipes and I don't really want to
+> store the source mixed in with the recipe meta data anyway, nor do I want
+> to be forced to commit it to git just to do a build.
+>
+>  Currently I run a pre-bitbake script that creates a tarball out of the
+> source, but that is easy to forget and makes building a new image a two
+> step proces.  Since it is a build step I'd like it to be done by bitbake.
+>
+>  Is there a recommended way to go about this?
+>
+
+See externalsrc.bbclass.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--001a11336460bfffbc04e638dfc9
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Thu, Sep 12, 2013 at 4:53 PM, Brad Litterell <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:brad@evidence.com" target=3D"_blank">brad@evidence.com</a>&gt;=
+</span> wrote:<br>
 
-I've grown to really appreciate bitbake for compiling code from a myriad of=
- sources, however, what is the recommended course for source I am currently=
- doing live development on?  My code base lives in a couple of git repos th=
-at do NOT map one-to-one with recipes and I don't really want to store the =
-source mixed in with the recipe meta data anyway, nor do I want to be force=
-d to commit it to git just to do a build.
-
-Currently I run a pre-bitbake script that creates a tarball out of the sour=
-ce, but that is easy to forget and makes building a new image a two step pr=
-oces.  Since it is a build step I'd like it to be done by bitbake.
-
-Is there a recommended way to go about this?
-
-Thanks,
-Brad
-
-
---_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Hi,
-<div><br>
-</div>
-<div>I've grown to really appreciate bitbake for compiling code from a myri=
-ad of sources, however, what is the recommended course for source I am curr=
-ently doing live development on? &nbsp;My code base lives in a couple of gi=
-t repos that do NOT map one-to-one with
- recipes and I&nbsp;<span style=3D"font-size: 10pt;">don't really want to s=
-tore the source mixed in with the recipe meta data anyway, nor do I want to=
- be forced to commit it to git just to do a build.</span></div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>I&#39;ve grown to really appreciate bit=
+bake for compiling code from a myriad of sources, however, what is the reco=
+mmended course for source I am currently doing live development on? =C2=A0M=
+y code base lives in a couple of git repos that do NOT map one-to-one with
+ recipes and I=C2=A0<span style=3D"font-size:10pt">don&#39;t really want to=
+ store the source mixed in with the recipe meta data anyway, nor do I want =
+to be forced to commit it to git just to do a build.</span></div>
 <div><br>
 </div>
 <div>Currently I run a pre-bitbake script that creates a tarball out of the=
  source, but that is easy to forget and makes building a new image a two st=
-ep proces. &nbsp;Since it is a build step I'd like it to be done by bitbake=
-. &nbsp;</div>
-<div><br>
-</div>
-<div>Is there a recommended way to go about this?</div>
-<div><br>
-</div>
-<div>Thanks,<br>
-Brad</div>
-<div><br>
-</div>
-</div>
-</body>
-</html>
+ep proces. =C2=A0Since it is a build step I&#39;d like it to be done by bit=
+bake. =C2=A0</div>
 
---_000_E51394554A503C4E852F9BEE46B03E8DEFDB66TIODINtasernetcom_--
+
+<div><br>
+</div>
+<div>Is there a recommended way to go about this?</div></blockquote></div><=
+br>See externalsrc.bbclass.<br>-- <br>Christopher Larson<br>clarson at kerg=
+oth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - =
+Tslib<br>
+
+Senior Software Engineer, Mentor Graphics
+</div></div>
+
+--001a11336460bfffbc04e638dfc9--
