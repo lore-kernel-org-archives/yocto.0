@@ -1,36 +1,31 @@
-Return-Path: <gizero@gmail.com>
-Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B243E0154E
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 02:38:59 -0700 (PDT)
-Received: by mail-ve0-f174.google.com with SMTP id jy13so760693veb.19
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 02:38:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=t4gjkb2QcG6ihGt9XdAYAyS01ppKeYm9Oq28V9gGw3U=;
-	b=gFtUI95tPp2KCd8DSciF4BOxU8Z/c2qIyTGmUgjw6irmmHwFTLzeYNqZ0l5Mu6jfV1
-	6nWzm4Sv4Tolhkc6PFTCpPQaEPhAyEDhUfGxRgBpcUlxrQoJ1+cBH4clmkIHcthbpQ2z
-	IgcNULG6jY4JdYyGbIMucAOFLwzFYpxUAQ5/2qCV8BZUTVMhXThwoHlWxHJSatEVEskF
-	ylheo0mR0p5Xq6zqG7joGzt5fjXu/bqiO/CxGPByQJDgF8EINTFEcSvgaeSt0fFP9Qtp
-	J+SxXuF+4iiLlPWanagDbos9Y61806F+fnouhpP0UpxLImxPdoHWhAQqs9D1IKj576Hw
-	Mw5Q==
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 186A4E0154E
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 02:49:03 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 13 Sep 2013 02:46:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,897,1371106800"; d="scan'208";a="377641724"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by orsmga001.jf.intel.com with ESMTP; 13 Sep 2013 02:49:00 -0700
+Received: from irsmsx106.ger.corp.intel.com ([169.254.8.226]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.234]) with mapi id
+	14.03.0123.003; Fri, 13 Sep 2013 10:47:00 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Diego Gonzalez <diego.gonzalez@horus.es>
+Thread-Topic: [yocto] Hob Question
+Thread-Index: AQHOsGYv1mf81nrQHECa8SGdQJfg0Q==
+Date: Fri, 13 Sep 2013 09:47:00 +0000
+Message-ID: <CE589A64.32899%belen.barros.pena@intel.com>
+In-Reply-To: <1379001602144053500@horus.es>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.2.130206
+x-originating-ip: [10.237.224.163]
 MIME-Version: 1.0
-X-Received: by 10.58.73.202 with SMTP id n10mr11198519vev.7.1379065139026;
-	Fri, 13 Sep 2013 02:38:59 -0700 (PDT)
-Received: by 10.220.215.2 with HTTP; Fri, 13 Sep 2013 02:38:58 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1306040952080.21331@oneiric>
-References: <alpine.DEB.2.02.1306040727200.4915@oneiric>
-	<51ADD7C0.60707@communistcode.co.uk>
-	<alpine.DEB.2.02.1306040814300.5416@oneiric>
-	<51ADDCE1.9020400@communistcode.co.uk>
-	<alpine.DEB.2.02.1306040952080.21331@oneiric>
-Date: Fri, 13 Sep 2013 11:38:58 +0200
-Message-ID: <CAC+thW22d3bfKEGDOn_wHGPk4=cmMAq7d4fvteZ+tzGu_5h+=Q@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: anyone building for the arrow sockit eval board?
+Subject: Re: Hob Question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,62 +37,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 09:39:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 13 Sep 2013 09:49:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <9F0A1A327EDE2B42AA6C9DA1E338D5FA@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Robert,
-Hi Jack,
+On 12/09/2013 17:00, "Diego Gonzalez" <diego.gonzalez@horus.es> wrote:
 
-On Tue, Jun 4, 2013 at 3:59 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> On Tue, 4 Jun 2013, Jack Mitchell wrote:
+>Hola Bel=E9n,
 >
->> The interesting ones in there are meta-altera and meta-linaro; it
->> would also be interesting to see if anything else is modified or if
->> it is vanilla Yocto. I have a sinking feeling it may not be...
->> mainly due to the tightly coupled DT and socfpga implementation with
->> the Altera tools.
+>Thank you for your answer! You assumed wrong , I'm building with Yocto
+>Project Dylan release, so I think that's why I can't see the button...
+>However I have a newbie question . What is the difference between Dylan
+>and Master branch ?
+
+Dylan is the latest stable release of the Yocto Project:
+
+https://www.yoctoproject.org/downloads
+
+Master is the Git branch where active development takes place, which you
+can clone from:
+
+http://git.yoctoproject.org/git/poky
+
+
+I hope this explains,
+
+Bel=E9n
+
+>
+>Saludos,
+>
+>
+>
+>Diego Gonz=E1lez Gonz=E1lez
+>Dpto. de Control Industrial
+> =
+
+>HORUS HARDWARE S.A.
+>Pol Ind Europolis C/Berna n=BA4
+>28232 Las Rozas de Madrid
+>diego.gonzalez@horus.es <mailto:enrique.fernandez@horus.es>
+>
+>
+>
+>On Thu, 09/12/2013 05:01 PM, "Barros Pena, Belen"
+><belen.barros.pena@intel.com> wrote:
+>
+>On 12/09/2013 12:03, "Diego Gonzalez" <diego.gonzalez@horus.es> wrote:
+>
+>>Hello,
+>
+>Hola Diego
+>
 >>
->> Could you post the altera-init script; I would imagine that hides
->> the demons ;)
+>>I just read this blog
+>>https://www.yoctoproject.org/blogs/belenbarrospena/2013/saving-your-hob-c
+>>u
+>>stomised-builds-image-recipes , which explains how to save your hob
+>>customized images . However when it finished to build my image I can't
+>>save it because there's
+>> not Save Image recipe button. How I can save it? Why I can't see this
+>>button?
 >
->   i've finished adding a couple more things to this page:
+>I am assuming you are building with the Yocto Project master branch: the
+>feature is not available on the Dylan release.
 >
-> http://www.crashcourse.ca/wiki/index.php/SoCKit_Yocto_bsx_build
+>If you are, the 'Save image recipe' button will display only when you edit
+>the Yocto Project image recipe you are starting from (I.e. If you add
+>/remove some packages to / from it). If you build one of the Yocto Project
+>image recipes as they come, without making any changes to the package
+>list, the save option will not show.
 >
-> showing a successful build of an "altera-image-minimal" image, at
-> least with respect to the artifacts that show up in the "images/"
-> directory, so that's a good sign (although i haven't boot-tested that
-> stuff yet).
+>If you are changing the package list and still cannot see the save option,
+>something is not working as it should. Can I ask you to open a bug if
+>that's the case? You can do so at
+>http://bugzilla.yoctoproject.org/ <http://bugzilla.yoctoproject.org/>
 >
->   i may spend some time perusing the contents of the meta-altera/
-> directory to see how easy it would be to just extract that as a
-> separate layer and use stock layers for everything else -- doesn't
-> look like it would be hard as i would prefer to use the latest "git
-> pull" content when possible.
+>Saludos,
 >
-> rday
+>Bel=E9n
 >
-> p.s. i know nothing about the issues involving the combination of the
-> device tree and FPGA, but the build process did generate dtb files, so
-> maybe it really is self-contained. feel free to follow along with that
-> page and see if it all works for you as well.
+>>
+>>
+>>Diego Gonz=E1lez Gonz=E1lez
+>>Dpto. de Control Industrial
+>> =
 
-Just started to poke around with Yocto trees from rocketboards in
-these days and Yocto ml archives returned this thread. I'm still
-waiting for the real hardware (Altera's EVB) to go hands-on. After
-reading Robert's wiki page documenting his tests, I noticed that
-poky-socfpga.git also include a dylan-altera branch. I guess this
-should bring Altera's stuff to the next Yocto release. Did you try
-building against this branch and do you have any boot tests report
-also? I did try a build and it worked after applying a trivial fix to
-a failing recipe (gatord).
+>>HORUS HARDWARE S.A.
+>>Pol Ind Europolis C/Berna n=BA4
+>>28232 Las Rozas de Madrid
+>>diego.gonzalez@horus.es <enrique.fernandez@horus.es>
+>>
+>>
+>
+>---------------------------------------------------------------------
+>Intel Corporation (UK) Limited
+>Registered No. 1134945 (England)
+>Registered Office: Pipers Way, Swindon SN3 1RJ
+>VAT No: 860 2173 47
+>
+>This e-mail and any attachments may contain confidential material for
+>the sole use of the intended recipient(s). Any review or distribution
+>by others is strictly prohibited. If you are not the intended
+>recipient, please contact the sender and delete all copies.
+>
+>
+>
+>
 
-This branch is not referenced yet by official documentation, but it
-might be a better bet for starting new developments. I'm also a little
-bit concerned by the approach of providing a full 'clone' of the yocto
-instead of confining Altera specifics in a dedicated meta-altera layer
-only. Did you get any new insight on the topic? Maybe Jack also can
-provide new details after attending training days on the topic...
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
 
-Very curious to road-test the socfpga with Yocto!
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
 
