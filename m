@@ -1,46 +1,34 @@
-Return-Path: <B38611@freescale.com>
-Received: from ch1outboundpool.messaging.microsoft.com
-	(ch1ehsobe002.messaging.microsoft.com [216.32.181.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B36DE014F7
-	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 01:03:13 -0700 (PDT)
-Received: from mail183-ch1-R.bigfish.com (10.43.68.243) by
-	CH1EHSOBE015.bigfish.com (10.43.70.65) with Microsoft SMTP Server id
-	14.1.225.22; Fri, 13 Sep 2013 08:03:12 +0000
-Received: from mail183-ch1 (localhost [127.0.0.1])	by
-	mail183-ch1-R.bigfish.com (Postfix) with ESMTP id 1A9A6320106	for
-	<yocto@yoctoproject.org>; Fri, 13 Sep 2013 08:03:12 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: 0
-X-BigFish: VS0(zzc85fh4015Izz1f42h208ch1ee6h1de0h1fdah2073h1202h1e76h1d1ah1d2ah1fc6hzz1d7338h1de098h17326ah18c673h1c8fb4h1de097h186068h8275bh8275dhz2dh2a8h839h8e2h8e3hd25hf0ah1288h12a5h12bdh137ah1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1b2fh1bceh1fb3h1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e1dh1fe8h1ff5h20f0hbe9i1155h)
-Received: from mail183-ch1 (localhost.localdomain [127.0.0.1]) by mail183-ch1
-	(MessageSwitch) id 1379059389959105_26958;
-	Fri, 13 Sep 2013 08:03:09 +0000 (UTC)
-Received: from CH1EHSMHS028.bigfish.com (snatpool2.int.messaging.microsoft.com
-	[10.43.68.235])	by mail183-ch1.bigfish.com (Postfix) with ESMTP id
-	E56811C0093	for <yocto@yoctoproject.org>;
-	Fri, 13 Sep 2013 08:03:09 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CH1EHSMHS028.bigfish.com
-	(10.43.70.28) with Microsoft SMTP Server (TLS) id 14.16.227.3;
-	Fri, 13 Sep 2013 08:03:09 +0000
-Received: from 039-SN2MPN1-022.039d.mgd.msft.net ([169.254.2.191]) by
-	039-SN1MMR1-005.039d.mgd.msft.net ([::1]) with mapi id 14.03.0158.002;
-	Fri, 13 Sep 2013 08:03:08 +0000
-From: Duan Fugang-B38611 <B38611@freescale.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yacto rootfs: multi-touch message cannot handled by "close"
-	button
-Thread-Index: AQHOsFeuJ3NudX8qKU6pVAPCPA6F9A==
-Date: Fri, 13 Sep 2013 08:03:08 +0000
-Message-ID: <9848F2DB572E5649BA045B288BE08FBE016E148F@039-SN2MPN1-022.039d.mgd.msft.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.192.242.233]
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
+	[209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D3CDE01440
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 01:26:46 -0700 (PDT)
+Received: by mail-ve0-f174.google.com with SMTP id jy13so714135veb.19
+	for <yocto@yoctoproject.org>; Fri, 13 Sep 2013 01:26:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=Pml3FnKwPfazqZocst8lXw6Dw53c4J23LJfXM2S6oaA=;
+	b=MyW0FvJ1gjA8iXhgOG4VSQm3Da0M4Z2J/n+SuLCnAYEyAN80vF6MnSPJzZPSN78bMk
+	J/RxnLAzvJlXeVDAHZ0CUQMCsYsoC2LsKBH9teaod1flbgSPNhDYILUWorqMxnu5WIBS
+	IjBHduXe2Zd8MHnNoBz5di2io8UIdKfqK1U3xLh0IcD/VgT6Q912t0TTAczOpOSVUbxM
+	Ij6vjF1a/ot1RzCBolhEcij7NgPwAEGnLULzlxai/cqoJAz2D8EgqfbaHB3S5WQR4sQG
+	SaDxkPn2C4NwdB3YMjtbQV7mOaap3m9OqKrhDJXQz+mGfyDXiphAsJ2EtBjRsRj7Zh9W
+	EXpQ==
+X-Gm-Message-State: ALoCoQk8cmN0gMquG41MeFGl0260qYBg3PYkWICqMTBmLmu2MrtEIkz0zB7WggyYXW0BDSkdA4X1
+X-Received: by 10.220.46.72 with SMTP id i8mr11032764vcf.10.1379060806022;
+	Fri, 13 Sep 2013 01:26:46 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
-Subject: Yacto rootfs: multi-touch message cannot handled by "close" button
+Received: by 10.220.71.201 with HTTP; Fri, 13 Sep 2013 01:26:25 -0700 (PDT)
+In-Reply-To: <A790EB169C7F954ABA26B79E28628A62A600B0B3@TAIMBX1.dmntai.intra>
+References: <A790EB169C7F954ABA26B79E28628A62A600B0B3@TAIMBX1.dmntai.intra>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 13 Sep 2013 09:26:25 +0100
+Message-ID: <CAJTo0LZgpsPtoBcWztP_mMPnX9RnMO6p_kLFngDowNznSfsKPQ@mail.gmail.com>
+To: =?UTF-8?Q?Serdar_Topalo=C4=9Flu?= <stopaloglu@tai.com.tr>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: working with less known x86 compatible CPUs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,209 +40,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2013 08:03:17 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_"
+X-List-Received-Date: Fri, 13 Sep 2013 08:26:47 -0000
+Content-Type: multipart/alternative; boundary=001a11c2c6747791ca04e63f9d72
 
---_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_
-Content-Type: text/plain; charset="us-ascii"
+--001a11c2c6747791ca04e63f9d72
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi, all,
+On 13 September 2013 08:54, Serdar Topalo=C4=9Flu <stopaloglu@tai.com.tr> w=
+rote:
 
-We use the X.Org X Server 1.14.0 + QT4.8.5 to do one demo, but I  catch one=
- issue: multi-touch message is not handled by "close" button.
+> **
+>
+> Is there any compatibility problem in Yocto Linux with less popular x86
+> compatible CPUs like Vortex86DX, AMD Geode LX800, AMD T44R, VIA Eden,  et=
+c
+> ? Now they are getting popular in different form factor SBCs as PC/104,
+> PC/104+, ComExpress,etc. Especially, can I use Vortex86DX CPUs in my yoct=
+o
+> linux based projects without problem? We are currently working with Intel
+> Atom n450 without problem.
+>
 
-I use egalax touchscreen for the multi-touch test.
-After kernel up, evtest test the multi-touch message, all pass. Use xinput =
-to do the test, also pass.
+You'll probably want to create a specific machine for your target hardware
+so that the kernel and gcc are tuned appropriately, but there's no known
+compatibility problems with any x86 processors as far as I'm aware in Yocto
+itself, assuming the kernel and gcc themselves have no problems.
 
-Open one QT app, all multi-touch message can be processed, but the window o=
-f the app cannot be closed by click the "X" button in the right-up region.
-I test GNOME destop with the same kernel,  any apps' window can be closed.
+Ross
 
-So, It is strange, maybe it is KDE issue for multi-touch ?
-Current KDE is matchbox-window-manager.
-Current multi-touch support messages:
-root@imx6qsabresd:/# mtdev-test /dev/input/event0
-supported mt events:
-                                 ABS_MT_TOUCH_MAJOR
-                                ABS_MT_WIDTH_MAJOR
-                                ABS_MT_POSITION_X
-                                ABS_MT_POSITION_Y
-                                ABS_MT_TRACKING_ID
-
-
-
-Any response is appreciative.
-
-Thanks,
-Andy
-
-
-
-
-
-
---_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_
-Content-Type: text/html; charset="us-ascii"
+--001a11c2c6747791ca04e63f9d72
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle23
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle24
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi, all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We use the X.Org X Server 1.14.0 &#43; QT4.8.5 to do=
- one demo, but I &nbsp;catch one issue:
-<span style=3D"color:#1F497D">multi-touch message is not handled by &#8220;=
-close&#8221; button.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">I use egalax touchscreen for the multi-touch test.<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">After kernel up, evtest test the multi-touch message=
-, all pass. Use xinput to do the test, also pass.<span style=3D"color:#1F49=
-7D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Open one QT app, all multi-touch message can be proc=
-essed, but the window of the app cannot be closed by click the &#8220;X&#82=
-21;
-<span style=3D"color:#1F497D">button </span>in the right-up region.<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">I test GNOME destop with the same kernel,&nbsp; any =
-apps&#8217; window can be closed.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So, It is strange, maybe it is KDE issue for multi-t=
-ouch ?<o:p></o:p></p>
-<p class=3D"MsoNormal">Current KDE is matchbox-window-manager.<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">Current multi-touch support messages:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"color:#1F4=
-97D">root@imx6qsabresd:/# mtdev-test /dev/input/event0<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal" style=3D"margin-left:.5in;text-indent:.5in"><span st=
-yle=3D"color:#1F497D">supported mt events:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp; &nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; &nbsp;ABS_MT_TOUCH_MAJOR<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp; &nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; ABS_MT_WIDTH_MAJOR<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp; &nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; ABS_MT_POSITION_X<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp; &nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; ABS_MT_POSITION_Y<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp; &nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp; ABS_MT_TRACKING_ID<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">Any response is appreciative.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Andy <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr"><div class=3D"gmail_extra">On 13 September 2013 08:54, Ser=
+dar Topalo=C4=9Flu <span dir=3D"ltr">&lt;<a href=3D"mailto:stopaloglu@tai.c=
+om.tr" target=3D"_blank">stopaloglu@tai.com.tr</a>&gt;</span> wrote:<br><di=
+v class=3D"gmail_quote">
 
---_000_9848F2DB572E5649BA045B288BE08FBE016E148F039SN2MPN102203_--
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><p class=3D"MsoNormal"><u></u></p>
+<p class=3D"MsoNormal">Is there any compatibility problem in Yocto Linux wi=
+th less popular x86 compatible CPUs like Vortex86DX, AMD Geode LX800, AMD T=
+44R, VIA Eden, =C2=A0etc ? Now they are getting popular in different form f=
+actor SBCs as PC/104, PC/104+, ComExpress,etc.
+ Especially, can I use Vortex86DX CPUs in my yocto linux based projects wit=
+hout problem? We are currently working with Intel Atom n450 without problem=
+.</p></blockquote></div><br>You&#39;ll probably want to create a specific m=
+achine for your target hardware so that the kernel and gcc are tuned approp=
+riately, but there&#39;s no known compatibility problems with any x86 proce=
+ssors as far as I&#39;m aware in Yocto itself, assuming the kernel and gcc =
+themselves have no problems.</div>
+
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div><=
+/div>
+
+--001a11c2c6747791ca04e63f9d72--
