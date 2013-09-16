@@ -1,35 +1,36 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
-	[209.85.215.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EAD8E0159E
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:37:47 -0700 (PDT)
-Received: by mail-la0-f51.google.com with SMTP id lv10so3417436lab.24
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:37:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=loMLiAE2rm++6QF7nMmR1OmXykYQlzCQWa9rrTNl2g8=;
-	b=OdZsnwOplV/CHUkQHQq0mDLxHM2O1HYhlJd0STJEck7bbINRQyRRUg644OCncoCGe8
-	R1cwqm/Zfjs2UHwZ9ZBvX3Cqb/A7mS9/F0n3NOHHkSiHWw0gtGGVbrkLKLOntt/JKe2L
-	FDEqyRZJD41NW6QQXTbSpoSc61G+/pD/zo5eIpKac44neyjsuIHL1CFvoyLPclSweKLK
-	OpUiQFRDbr1JYjO1lDxs0XpBM+GVPRYhYZp9o1rUsJ+mctnhCWhmAJ7EJM1iiL1PqsgJ
-	JJpR1+4c3dJKy/1hUOPbBpbYLBZ37rOG2zFBG9LVJDOZfyRtRHzadLPx1GXqv5vE8wUR
-	Fizw==
-X-Received: by 10.152.29.103 with SMTP id j7mr25437920lah.7.1379356665929;
-	Mon, 16 Sep 2013 11:37:45 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
+	[209.85.212.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C721E0159E
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:40:48 -0700 (PDT)
+Received: by mail-vb0-f49.google.com with SMTP id w16so3116900vbb.22
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:40:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=lp45EWriKf4URxKAw6KyD6ekB1sNSeFX9bL7mysl7nc=;
+	b=QBFIudfwE58NqJkRgPwtAlHnU3QDGphcUa8gkzjXfJmzH5fcdvR9kVY2MOYXWQItEO
+	zOyA5fKdd2+rCdNnao9yF2ADM06RX0h7Vw1iMjYMZk3UkEIzkFR06+ISBxqK4iZPspUt
+	6N6L3B2MmHlyZzGOmJVAtV5YL7rRO7xCQ5O1ucwkOawF6UHlyzMchJ0J7cH93ejVIB4c
+	sBw6fFHAXm29/Hzac7em6Z6a4CzChvVFC33ABZ/GkpJPKV1jFodWSTC8+uYGUMGPZVqP
+	OJSmqTTYI0R+Tk2YZOgqBHw+zmBrvuYHcGnZ4elwWU8VaRKB7Tnpyqas3f54XWY2elkS
+	vY7g==
+X-Gm-Message-State: ALoCoQmz/goUQjdc75SUe9EM54oPkFnHndYoaNDEpJssQR+T01ywEsK6gjT3PkpE6MR5Xb23pvhy
+X-Received: by 10.58.133.66 with SMTP id pa2mr7730754veb.18.1379356847925;
+	Mon, 16 Sep 2013 11:40:47 -0700 (PDT)
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.53.197 with HTTP; Mon, 16 Sep 2013 11:37:25 -0700 (PDT)
+Received: by 10.220.71.201 with HTTP; Mon, 16 Sep 2013 11:40:27 -0700 (PDT)
 In-Reply-To: <A713D66A57B545848DDD45415085C8D0@PAULD>
 References: <A8F6DAF6C594463B96E491611B8DF873@PAULD>
 	<CABcZAN=hjjwAG=J-a+9N9cVyG1h_wLaN=baEd0c1fpPwt1Y+Nw@mail.gmail.com>
 	<A713D66A57B545848DDD45415085C8D0@PAULD>
-From: Chris Larson <clarson@kergoth.com>
-Date: Mon, 16 Sep 2013 11:37:25 -0700
-X-Google-Sender-Auth: yMMGkRCfxi_tqIjrMvpXTc5TzaQ
-Message-ID: <CABcZANnJY5-6PM2_QR-Jygxq10TQQB5ct_2BrFvC7HqBhAH2QQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 16 Sep 2013 19:40:27 +0100
+Message-ID: <CAJTo0LbPx7Gvg8iSqkfesBr9JKZT3E7GovdxjDen5-UwrQfE+g@mail.gmail.com>
 To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: yocto <yocto@yoctoproject.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Chris Larson <clarson@kergoth.com>
 Subject: Re: How to find the source of a variable value?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,33 +43,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2013 18:37:48 -0000
-Content-Type: multipart/alternative; boundary=089e0160b82817658404e6848027
-
---089e0160b82817658404e6848027
+X-List-Received-Date: Mon, 16 Sep 2013 18:40:50 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Sep 16, 2013 at 11:34 AM, Paul D. DeRocco <pderocco@ix.netcom.com>wrote:
-
-> > > On Mon, Sep 16, 2013 at 10:02 AM, Paul D. DeRocco
-> > > <pderocco@ix.netcom.com> wrote:
-> > >
-> > > This image recipe has some Python that complains
-> > > because "x11" is in
-> > > DISTRO_FEATURES. How do I find out where that "x11" is
-> > > coming from? This
-> > > is a Gumstix build, so I suspect it's indirectly
-> > > related to my selecting
-> > > "overo" as the MACHINE, because otherwise building this
-> > > image would never
-> > > have worked with the plain Yocto meta-data. So how do I
-> > > track this down?
->
-> > From: Chris Larson
-> >
-> > Assuming you're using recent metadata, bitbake -e somerecipe
-> > will show you this.
->
+On 16 September 2013 19:34, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
 > This isn't working for me. The image I'm trying to build is
 > core-image-gtk-directfb. The recipe is in meta/recipes-graphics/images. If
 > I just type "bitbake -k core-image-gtk-directfb", I get two errors:
@@ -81,103 +59,20 @@ On Mon, Sep 16, 2013 at 11:34 AM, Paul D. DeRocco <pderocco@ix.netcom.com>wrote:
 > I don't understand the "Nothing PROVIDES" error. Doesn't a recipe called
 > x.bb PROVIDE x by default? The second error comes from the bit of Python
 > in that recipe, which at least proves that it's reading that recipe.
->
 
-It does, but in this case it 'skips' itself, telling bitbake it's not
-available to be built given the current context, hence isn't provided by
-that recipe.
+The default DISTRO_FEATURES includes x11, so that's where it's coming
+from.  If you're using oe-core/poky from git master, you can do
+DISTRO_FEATURES_remove="x11" in your configuration, or else you'll
+need to set DISTRO_FEATURES to the current value, minus x11.
 
-If I type "bitbake -e core-image-gtk-directfb", I just get the first
-> error. This happens almost instantly, before it's done any real work, so
-> I'm not getting any further output.
+The order of messages is a bit backwards there - nothing provides
+core-image-gtk-directfb because the recipe caused itself to be
+skipped.
 
+To be honest I'm not sure why that recipe forces itself to be skipped
+if x11 is present - it should work with x11 present - but if you're
+not using X then it makes sense to remove it from DISTRO_FEATURES so
+that you don't get unusable X dependences in your images.
 
-It's raising that error to bitbake in the parsing process, unfortunately,
-which means it can't be used as a target even for informational purposes
-like -e.
+Ross
 
-To look at a global variable like DISTRO_FEATURES, use bitbake -e without
-any arguments.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---089e0160b82817658404e6848027
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Mon, Sep 16, 2013 at 11:34 AM, Paul D. DeRocco <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:pderocco@ix.netcom.com" target=3D"_blank">pderocco@ix.netcom=
-.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">&gt; &gt; On Mon, Sep 16, =
-2013 at 10:02 AM, Paul D. DeRocco<br>
-&gt; &gt; &lt;<a href=3D"mailto:pderocco@ix.netcom.com">pderocco@ix.netcom.=
-com</a>&gt; wrote:<br>
-&gt; &gt;<br>
-&gt; &gt; This image recipe has some Python that complains<br>
-&gt; &gt; because &quot;x11&quot; is in<br>
-&gt; &gt; DISTRO_FEATURES. How do I find out where that &quot;x11&quot; is<=
-br>
-&gt; &gt; coming from? This<br>
-&gt; &gt; is a Gumstix build, so I suspect it&#39;s indirectly<br>
-&gt; &gt; related to my selecting<br>
-&gt; &gt; &quot;overo&quot; as the MACHINE, because otherwise building this=
-<br>
-&gt; &gt; image would never<br>
-&gt; &gt; have worked with the plain Yocto meta-data. So how do I<br>
-&gt; &gt; track this down?<br>
-<br>
-</div>&gt; From: Chris Larson<br>
-<div class=3D"im">&gt;<br>
-&gt; Assuming you&#39;re using recent metadata, bitbake -e somerecipe<br>
-&gt; will show you this.<br>
-<br>
-</div>This isn&#39;t working for me. The image I&#39;m trying to build is<b=
-r>
-core-image-gtk-directfb. The recipe is in meta/recipes-graphics/images. If<=
-br>
-I just type &quot;bitbake -k core-image-gtk-directfb&quot;, I get two error=
-s:<br>
-<br>
-ERROR: Nothing PROVIDES &#39;core-image-gtk-directfb&#39;<br>
-ERROR: core-image-gtk-directfb was skipped: FEATURE &quot;x11&quot; is in<b=
-r>
-DISTRO_FEATURES, Please remove &quot;x11&quot; from DISTRO_FEATURES, use<br=
->
-&quot;gtk-directfb&quot; instead of it<br>
-<br>
-I don&#39;t understand the &quot;Nothing PROVIDES&quot; error. Doesn&#39;t =
-a recipe called<br>
-<a href=3D"http://x.bb" target=3D"_blank">x.bb</a> PROVIDE x by default? Th=
-e second error comes from the bit of Python<br>
-in that recipe, which at least proves that it&#39;s reading that recipe.<br=
-></blockquote><div><br></div><div style>It does, but in this case it &#39;s=
-kips&#39; itself, telling bitbake it&#39;s not available to be built given =
-the current context, hence isn&#39;t provided by that recipe.</div>
-
-<div style><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
-0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-If I type &quot;bitbake -e core-image-gtk-directfb&quot;, I just get the fi=
-rst<br>
-error. This happens almost instantly, before it&#39;s done any real work, s=
-o<br>
-I&#39;m not getting any further output.</blockquote><div><br></div><div sty=
-le>It&#39;s raising that error to bitbake in the parsing process, unfortuna=
-tely, which means it can&#39;t be used as a target even for informational p=
-urposes like -e.</div>
-
-</div><br>To look at a global variable like DISTRO_FEATURES, use bitbake -e=
- without any arguments.<br>-- <br>Christopher Larson<br>clarson at kergoth =
-dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tsli=
-b<br>
-
-Senior Software Engineer, Mentor Graphics
-</div></div>
-
---089e0160b82817658404e6848027--
