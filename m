@@ -1,20 +1,26 @@
-Return-Path: <jose.ferreiro@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EE82E014EA
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 09:14:13 -0700 (PDT)
-Received: from [172.30.250.61] (172.30.250.61) by horus27 (Axigen)
-	with (CAMELLIA256-SHA encrypted) ESMTPSA id 3197E7;
-	Mon, 16 Sep 2013 18:14:09 +0200
-Message-ID: <52372E51.7020006@horus.es>
-Date: Mon, 16 Sep 2013 18:14:09 +0200
-From: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
-User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:16.0)
-	Gecko/20121005 Thunderbird/16.0
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-spurfowl.atl.sa.earthlink.net
+	(elasmtp-spurfowl.atl.sa.earthlink.net [209.86.89.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8574E0140D
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 10:02:17 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=sxAj61I+te8kdys+9SdsBOBP9fO8C4eBTFJDIOYCBBBF84WzvcW7xhG8ZI/cUOC1;
+	h=Received:From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-spurfowl.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>) id 1VLcBk-00043x-1W
+	for yocto@yoctoproject.org; Mon, 16 Sep 2013 13:02:16 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 16 Sep 2013 10:02:14 -0700
+Message-ID: <A8F6DAF6C594463B96E491611B8DF873@PAULD>
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 4
-Subject: Media players: recipes and packages
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6y/n4BCRSYddFnQrmjpUXzfRWkIw==
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606887ae1f987e1771c369dce50e26db63187350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Subject: How to find the source of a variable value?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,32 +32,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2013 16:14:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Mon, 16 Sep 2013 17:02:17 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Hello
+This image recipe has some Python that complains because "x11" is in
+DISTRO_FEATURES. How do I find out where that "x11" is coming from? This
+is a Gumstix build, so I suspect it's indirectly related to my selecting
+"overo" as the MACHINE, because otherwise building this image would never
+have worked with the plain Yocto meta-data. So how do I track this down?
 
-Here is: iMX6 Sabre Lite + Yocto dylan
+-- 
 
-We want to reproduce some music and video files to test the board 
-behaviour.
-
-With fsl-image-gui:
-   - Video player: a mp4 file is well reproduced. Image is good. Sound 
-is low but I can hear it with headphones connected to board.
-   - Music player: when we select a mp3 file, the window closes
-
-With core-image-sato-sdk:
-   - Video player: when we select a mp4 file, an error comes: a plug-in 
-is needed
-   - Music player: when we select a mp3 file, the player shows it, but 
-the play does not start
-
-How can I find what package/recipe in fsl-image-gui does mp4 work?
-Is there any way to know what kind of files can play each image by default?
-
-Thanks,
-Jose
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+ 
 
 
