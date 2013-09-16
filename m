@@ -1,17 +1,43 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D5F6E014EA
-	for <yocto@yoctoproject.org>; Sun, 15 Sep 2013 19:02:36 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id F3C8440CCC; Mon, 16 Sep 2013 02:02:35 +0000 (UTC)
-Date: Mon, 16 Sep 2013 02:02:35 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20130916020235.GA20859@ab01.i.yoctoproject.org>
+Return-Path: <rjiejie@gmail.com>
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64EB6E014EA;
+	Mon, 16 Sep 2013 01:02:38 -0700 (PDT)
+Received: by mail-pa0-f53.google.com with SMTP id lb1so5069588pab.12
+	for <multiple recipients>; Mon, 16 Sep 2013 01:02:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:message-id:in-reply-to:references:subject
+	:mime-version:content-type;
+	bh=AGkNUJFbrXh4VlfWIPkNJ8ZJ3JwWl39LhLrlkBo/9T4=;
+	b=N5XPJ7Ddsbc5KBFj6XJKvbbBmV1rKKlHM9JvbBdsbhTxPyFFvOcwISy8r3oHXOULqe
+	rXcBZnMSPQGwHJ1pZItaDXj1m1fey/OEIXPJaxCH6iYRt3k14MA5Li4WtrvtPs++ZEbP
+	C6UsDmN9XbJsAEXAdDOJ26cuWz0QZSvNvcJyVyCNlx91EfR/v294+V8IwSFTP0USw9fg
+	Y3QE9OW/Yinb4pQ5ES2oDZ8YwKqWkTTC3GKGFI/v+ClDNCOShhd97dgfA3PrNjsOhc5k
+	JXM6ZSFCPU+CMjtpMdUPyVd8X3aRYAo8QVqvAr0eXAq0w2KR7vG5K87PqdhyKQfUj9ox
+	Pj0g==
+X-Received: by 10.68.220.193 with SMTP id py1mr1409592pbc.150.1379318558511;
+	Mon, 16 Sep 2013 01:02:38 -0700 (PDT)
+Received: from [192.168.10.162] ([115.236.28.243])
+	by mx.google.com with ESMTPSA id
+	pu5sm36735214pac.21.1969.12.31.16.00.00
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Mon, 16 Sep 2013 01:02:37 -0700 (PDT)
+Date: Mon, 16 Sep 2013 16:02:29 +0800
+From: jojo <rjiejie@gmail.com>
+To: Daiane Angolini <daiane.angolini@freescale.com>
+Message-ID: <5A4E1DA77C324A4BA0D8162E247C809A@gmail.com>
+In-Reply-To: <5231A5B3.2040804@freescale.com>
+References: <666645F4EAA9483CB526943CA6FA6428@gmail.com>
+	<CA+AhUGxEebNBYp64mBh3TbCrn2_n4GDsi1KB3O_Tk0mpwj7jMQ@mail.gmail.com>
+	<8AFAD819783F4C2CB04F1D5A9CA05C48@gmail.com>
+	<B009182FF2944A11AD49E18C5954CCBE@gmail.com>
+	<5231A5B3.2040804@freescale.com>
+X-Mailer: sparrow 1.6.4 (build 1176)
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Upgrade recipes name list
+Cc: "=?utf-8?Q?meta-freescale=40yoctoproject.org?="
+	<meta-freescale@yoctoproject.org>,
+	"=?utf-8?Q?yocto=40yoctoproject.org?=" <yocto@yoctoproject.org>
+Subject: =?UTF-8?B?5Zue5aSN77yaIG1ldGEtZnJlZXNjYWxlXSDlm57lpI3vvJogb3cgdG8gaW5zdGFsbCBwdWxzZWF1ZGlvIGNvbXBsZXRlbHk=?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,186 +49,347 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2013 02:02:36 -0000
-X-Groupsio-MsgNum: 16050
-Content-Type: multipart/mixed; boundary="9amGYk9869ThD9tj"
+X-List-Received-Date: Mon, 16 Sep 2013 08:02:39 -0000
+Content-Type: multipart/alternative; boundary="5236bb15_3dc240fb_24a"
+
+--5236bb15_3dc240fb_24a
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 Content-Disposition: inline
 
---9amGYk9869ThD9tj
-Content-Type: text/plain; charset=us-ascii
+Hi, =20
+I need to install the =22pulseaudio-server=22 really & start up pulseaudi=
+o in daemon mode,
+
+  hdmi output is ok :)
+
+bitbake -e =7C grep =5EDISTRO=5F=46EATURES
+DISTRO=5F=46EATURES=3D=22alsa argp bluetooth ext2 irda largefile pcmcia u=
+sbgadget usbhost wifi xattr nfs zeroconf pci 3g nfc x11 ipv4 ipv6 libc-ba=
+cktrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charset=
+s libc-crypt                                    libc-crypt-ufc libc-db-al=
+iases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse          =
+libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big libc-locales=
+ libc-locale-code                                       libc-memusage lib=
+c-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams lib=
+c-sunrpc                                         libc-utmp libc-utmpx lib=
+c-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glib=
+c                                         libc-posix-wchar-io pulseaudio =
+sysvinit largefile opengl multiarch wayland=22
+DISTRO=5F=46EATURES=5FLIBC=5Fclass-nativesdk=3D=22ipv4 ipv6 libc-backtrac=
+e libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc=
+-crypt                                    libc-crypt-ufc libc-db-aliases =
+libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse                =
+                   libc-getlogin libc-idn libc-inet-anl libc-libm libc-li=
+bm-big libc-locales libc-locale-code                                     =
+    libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-s=
+pawn libc-streams libc-sunrpc        libc-utmp libc-utmpx libc-wordexp li=
+bc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc           =
+                            libc-posix-wchar-io=22
+DISTRO=5F=46EATURES=5FBACK=46ILL=3D=22pulseaudio sysvinit=22
+DISTRO=5F=46EATURES=5FLIBC=3D=22ipv4 ipv6 libc-backtrace libc-big-macros =
+libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt            =
+                        libc-crypt-ufc libc-db-aliases libc-envz libc-fcv=
+t libc-fmtmsg libc-fstab libc-ftraverse                                  =
+ libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big libc-locale=
+s libc-locale-code                                         libc-memusage =
+libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams =
+libc-sunrpc                        libc-utmp libc-utmpx libc-wordexp libc=
+-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc             =
+                          libc-posix-wchar-io=22
+DISTRO=5F=46EATURES=5FLIBC=5FDE=46AULT=3D=22ipv4 ipv6 libc-backtrace libc=
+-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt=
+                                    libc-crypt-ufc libc-db-aliases libc-e=
+nvz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse                      =
+             libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big=
+ libc-locales libc-locale-code                                         li=
+bc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn l=
+ibc-streams libc-sunrpc                libc-utmp libc-utmpx libc-wordexp =
+libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc         =
+                              libc-posix-wchar-io=22
+
+Thanks,
+
+- Jojo
+
+
+=E5=9C=A8 2013=E5=B9=B49=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E5=9B=9B=EF=
+=BC=8C=E4=B8=8B=E5=8D=887:29=EF=BC=8CDaiane Angolini =E5=86=99=E9=81=93=EF=
+=BC=9A
+
+> On 09/12/2013 07:07 AM, jojo wrote:
+> > Hi,
+> =20
+> =20
+> Hi Jojo,
+> =20
+> > I installed pulse audio server in IMX6QSD of =46SL, but there is no o=
+utput
+> > of audio with HDMI :(
+> > =20
+> =20
+> =20
+> Please, double check if pulseaudio is in your DISTRO=5F=46EATURES (i th=
+ink =20
+> it's default, but I cannot remember exactly)
+> =20
+> bitbake -e =7C grep =5EDISTRO=5F=46EATURES
+> =20
+> How are you configuring HDMI audio=3F I know there is a doc in =20
+> imx-community with the audio configuration if you want to change it fro=
+m =20
+> default to HDMI.
+> =20
+> =20
+> > =20
+> > how to track the log of the pulse audio =3F
+> > =20
+> > Thanks,
+> > =20
+> > - Jojo
+> > =20
+> > =E5=9C=A8 2013=E5=B9=B47=E6=9C=8816=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=8C=
+=EF=BC=8C=E4=B8=8B=E5=8D=8811:32=EF=BC=8Cjojo =E5=86=99=E9=81=93=EF=BC=9A=
+
+> > =20
+> > > Hi,
+> > > Ok & i will have a try, thanks for your reply :)
+> > > =20
+> > > Thanks,
+> > > =20
+> > > - Jojo
+> > > =20
+> > > =E5=9C=A8 2013=E5=B9=B47=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=
+=94=EF=BC=8C=E4=B8=8B=E5=8D=886:45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=
+=93=EF=BC=9A
+> > > =20
+> > > > Hi,
+> > > > On =46ri, Jul 12, 2013 at 12:35 PM, jojo <rjiejie=40gmail.com (ma=
+ilto:rjiejie=40gmail.com)
+> > > > <mailto:rjiejie=40gmail.com>> wrote:
+> > > > > Hi,
+> > > > > My yocto version/tag is dylan.
+> > > > > I have compiled fsl-image-gui to testing the the audio output, =
+but i
+> > > > > can not find
+> > > > > anything about for pulseaudio server to start up daemon.
+> > > > > =20
+> > > > > I saw the build code in the path about for
+> > > > > =22build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/pulseaudio=
+/3.0-r0/image/=22
+> > > > > and it really have built all things of pulseaudio. but when i c=
+reate
+> > > > > the fsl-image-gui to start up, i just find =22libpulse*=22 in t=
+he
+> > > > > rootfs.
+> > > > > =20
+> > > > > I think that something wrong with pulseaudio configure so that =
+it do
+> > > > > not install completely by default.
+> > > > > =20
+> > > > =20
+> > > > =20
+> > > > The pulseaudio daemon is packaged as pulseaudio-server, maybe the=
+
+> > > > image doesn't install that package by default=3F
+> > > > Cheers,
+> > > > Erik Bot=C3=B6
+> > > > =20
+> > > > > =20
+> > > > > someone know about that how to install pulseaudio completely =3F=
+
+> > > > > =20
+> > > > > Thanks,
+> > > > > =20
+> > > > > - Jojo
+> > > > > =20
+> > > > > =20
+> > > > > =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F
+> > > > > meta-freescale mailing list
+> > > > > meta-freescale=40yoctoproject.org <mailto:meta-freescale=40yoct=
+oproject.org>
+> > > > > https://lists.yoctoproject.org/listinfo/meta-freescale
+> > > > > =20
+> > > > =20
+> > > > =20
+> > > =20
+> > > =20
+> > =20
+> > =20
+> > =20
+> > =20
+> > =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+> > meta-freescale mailing list
+> > meta-freescale=40yoctoproject.org (mailto:meta-freescale=40yoctoproje=
+ct.org)
+> > https://lists.yoctoproject.org/listinfo/meta-freescale
+> > =20
+> =20
+> =20
+> =20
+> -- =20
+> Daiane
+> =20
+> =20
+
+
+
+--5236bb15_3dc240fb_24a
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 Content-Disposition: inline
 
-This mail was sent out by Package Report System.
-This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
-You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
+                <div>
+                    Hi,
+                </div><div><span class=3D=22Apple-tab-span=22 style=3D=22=
+white-space:pre=22>	</span>I need to install the =22pulseaudio-server=22 =
+really &amp; start up pulseaudio in daemon mode,</div><div><br></div><div=
+>&nbsp;<span class=3D=22Apple-tab-span=22 style=3D=22white-space:pre=22>	=
+</span>hdmi&nbsp;output is ok&nbsp;:)</div><div><br></div><div>bitbake -e=
+ =7C grep =5EDISTRO=5F=46EATURES</div><div>DISTRO=5F=46EATURES=3D=22alsa =
+argp bluetooth ext2 irda largefile pcmcia usbgadget usbhost wifi xattr nf=
+s zeroconf pci 3g nfc x11 ipv4 ipv6 libc-backtrace libc-big-macros libc-b=
+sd libc-cxx-tests libc-catgets libc-charsets libc-crypt &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;libc-crypt-ufc libc-db-aliases libc-en=
+vz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big =
+libc-locales libc-locale-code &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld=
+-debug libc-spawn libc-streams libc-sunrpc &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-utmp libc-utmpx libc-wordexp li=
+bc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-posix-wchar=
+-io pulseaudio sysvinit largefile opengl multiarch wayland=22</div><div>D=
+ISTRO=5F=46EATURES=5FLIBC=5Fclass-nativesdk=3D=22ipv4 ipv6 libc-backtrace=
+ libc-big-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-=
+crypt &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;libc-crypt-ufc =
+libc-db-aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-getlogin libc-idn lib=
+c-inet-anl libc-libm libc-libm-big libc-locales libc-locale-code &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-memusage =
+libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams =
+libc-sunrpc &nbsp; &nbsp; &nbsp; &nbsp;libc-utmp libc-utmpx libc-wordexp =
+libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-posix-wchar-io=22=
+</div><div>DISTRO=5F=46EATURES=5FBACK=46ILL=3D=22pulseaudio sysvinit=22</=
+div><div>DISTRO=5F=46EATURES=5FLIBC=3D=22ipv4 ipv6 libc-backtrace libc-bi=
+g-macros libc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;libc-crypt-ufc libc-db-=
+aliases libc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-getlogin libc-idn libc-inet-a=
+nl libc-libm libc-libm-big libc-locales libc-locale-code &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-memusage libc-nis=
+ libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sun=
+rpc &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp;libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar li=
+bc-posix-regexp libc-posix-regexp-glibc &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; libc-posix-wchar-io=22</div><div>DISTRO=5F=46E=
+ATURES=5FLIBC=5FDE=46AULT=3D=22ipv4 ipv6 libc-backtrace libc-big-macros l=
+ibc-bsd libc-cxx-tests libc-catgets libc-charsets libc-crypt &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;libc-crypt-ufc libc-db-aliases li=
+bc-envz libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; libc-getlogin libc-idn libc-inet-anl libc-li=
+bm libc-libm-big libc-locales libc-locale-code &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-memusage libc-nis libc-nssw=
+itch libc-rcmd libc-rtld-debug libc-spawn libc-streams libc-sunrpc &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;libc-utmp libc-utmpx lib=
+c-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glib=
+c &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libc-posix-=
+wchar-io=22</div>
+                <div><div><br></div><div>Thanks,</div><div><br></div><div=
+>- Jojo</div><div><br></div></div>
+                =20
+                <p style=3D=22color: =23A0A0A8;=22>=E5=9C=A8 2013=E5=B9=B4=
+9=E6=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E5=9B=9B=EF=BC=8C=E4=B8=8B=E5=8D=88=
+7:29=EF=BC=8CDaiane Angolini =E5=86=99=E9=81=93=EF=BC=9A</p>
+                <blockquote type=3D=22cite=22 style=3D=22border-left-styl=
+e:solid;border-width:1px;margin-left:0px;padding-left:10px;=22>
+                    <span><div><div><div>On 09/12/2013 07:07 AM, jojo wro=
+te:</div><blockquote type=3D=22cite=22><div>Hi,</div></blockquote><div><b=
+r></div><div>Hi Jojo,</div><div><br></div><blockquote type=3D=22cite=22><=
+div><div>I installed pulse audio server in IMX6QSD of =46SL, but there is=
+ no output</div><div>of audio with HDMI :(</div></div></blockquote><div><=
+br></div><div>Please, double check if pulseaudio is in your DISTRO=5F=46E=
+ATURES (i think </div><div>it's default, but I cannot remember exactly)</=
+div><div><br></div><div>bitbake -e =7C grep =5EDISTRO=5F=46EATURES</div><=
+div><br></div><div>How are you configuring HDMI audio=3F I know there is =
+a doc in </div><div>imx-community with the audio configuration if you wan=
+t to change it from </div><div>default to HDMI.</div><div><br></div><div>=
+<br></div><blockquote type=3D=22cite=22><div><div><br></div><div>how to t=
+rack the log of the pulse audio =3F</div><div><br></div><div>Thanks,</div=
+><div><br></div><div>- Jojo</div><div><br></div><div>=E5=9C=A8 2013=E5=B9=
+=B47=E6=9C=8816=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=8C=EF=BC=8C=E4=B8=8B=E5=8D=
+=8811:32=EF=BC=8Cjojo =E5=86=99=E9=81=93=EF=BC=9A</div><div><br></div><bl=
+ockquote type=3D=22cite=22><div><div>Hi,</div><div>Ok &amp; i will have a=
+ try, thanks for your reply :)</div><div><br></div><div>Thanks,</div><div=
+><br></div><div>- Jojo</div><div><br></div><div>=E5=9C=A8 2013=E5=B9=B47=E6=
+=9C=8812=E6=97=A5=E6=98=9F=E6=9C=9F=E4=BA=94=EF=BC=8C=E4=B8=8B=E5=8D=886:=
+45=EF=BC=8CErik Bot=C3=B6 =E5=86=99=E9=81=93=EF=BC=9A</div><div><br></div=
+><blockquote type=3D=22cite=22><div><div>Hi,</div><div>On =46ri, Jul 12, =
+2013 at 12:35 PM, jojo &lt;<a href=3D=22mailto:rjiejie=40gmail.com=22>rji=
+ejie=40gmail.com</a></div><div>&lt;<a href=3D=22mailto:rjiejie=40gmail.co=
+m=22>mailto:rjiejie=40gmail.com</a>&gt;&gt; wrote:</div><blockquote type=3D=
+=22cite=22><div><div>Hi,</div><div>My yocto version/tag is dylan.</div><d=
+iv>I have compiled fsl-image-gui to testing the the audio output, but i</=
+div><div>can not find</div><div>anything about for pulseaudio server to s=
+tart up daemon.</div><div><br></div><div>I saw the build code in the path=
+ about for</div><div>=22build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi=
+/pulseaudio/3.0-r0/image/=22</div><div>and it really have built all thing=
+s of pulseaudio. but when i create</div><div>the fsl-image-gui to start u=
+p, i just find =22libpulse*=22 in the</div><div>rootfs.</div><div><br></d=
+iv><div>I think that something wrong with pulseaudio configure so that it=
+ do</div><div>not install completely by default.</div></div></blockquote>=
+<div><br></div><div>The pulseaudio daemon is packaged as pulseaudio-serve=
+r, maybe the</div><div>image doesn't install that package by default=3F</=
+div><div>Cheers,</div><div>Erik Bot=C3=B6</div><div><br></div><blockquote=
+ type=3D=22cite=22><div><div><br></div><div>someone know about that how t=
+o install pulseaudio completely =3F</div><div><br></div><div>Thanks,</div=
+><div><br></div><div>- Jojo</div><div><br></div><div><br></div><div>=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F</div><div>me=
+ta-freescale mailing list</div><div>meta-freescale=40yoctoproject.org &lt=
+;<a href=3D=22mailto:meta-freescale=40yoctoproject.org=22>mailto:meta-fre=
+escale=40yoctoproject.org</a>&gt;</div><div><a href=3D=22https://lists.yo=
+ctoproject.org/listinfo/meta-freescale=22>https://lists.yoctoproject.org/=
+listinfo/meta-freescale</a></div></div></blockquote></div></blockquote></=
+div></blockquote><div><br></div><div><br></div><div><br></div><div>=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F</div><div>me=
+ta-freescale mailing list</div><div><a href=3D=22mailto:meta-freescale=40=
+yoctoproject.org=22>meta-freescale=40yoctoproject.org</a></div><div><a hr=
+ef=3D=22https://lists.yoctoproject.org/listinfo/meta-freescale=22>https:/=
+/lists.yoctoproject.org/listinfo/meta-freescale</a></div></div></blockquo=
+te><div><br></div><div><br></div><div>-- </div><div>Daiane</div></div></d=
+iv></span>
+                =20
+                =20
+                =20
+                =20
+                </blockquote>
+                =20
+                <div>
+                    <br>
+                </div>
+            
 
-PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
-Upgradable Count: 0
-Upgrade Total Count: 0
-The based commit merge time is:
-Sat Sep 14 08:36:26 2013 +0100
-The based commit is:
-commit 5fca4d286eec240ad57d90defa43cd0ff24f88ed
-Author: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date:   Fri Sep 13 12:54:58 2013 -0400
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
-
---9amGYk9869ThD9tj
-Content-Type: image/png
-Content-Disposition: attachment; filename="weekly_upgrde_history_chart.png"
-Content-Transfer-Encoding: base64
-
-iVBORw0KGgoAAAANSUhEUgAAARgAAAEsCAIAAACXBztgAAAABmJLR0QA/wD/AP+gvaeTAAAfX0lE
-QVR4nO3ceVhTV94H8MOiwbAKCBpBBByCbNJBBRl2CLbuWos81N0ROtStpXVtrXXUBxesVtvSWnmq
-BdwAO2rd0BZRQAWVVdYIBbSCMUJiEJKQvH/cd+7kBYKIR9/pzPfzV3Jy7++ee5PvveceEnTUajUB
-gJej+//dAYD/BAgSAAUIEgAFCBIABf8K0scff7x06dJ+lMjPz580aVL39m3btm3fvr2PRS5cuBAc
-HKxSqZ7b+Krt2rWr790mhCQmJgZrCA8PX7FiRUZGxqvrIUvbkWlra/vggw8CAgJ+//33/lWeMWNG
-cHBwXV1dl/Y1a9YEBwdfuHCBEPLVV1+tX7+eEFJVVRUcHCyTyfqxodf55l69ejUzM1PbqxcvXtyo
-YdOmTd2XSUpKCg4O/vLLL7u05+Tk/G+Q1Gp1fn6+s7NzP/qnVCqfPn3avb29vb29vb2PRRQKhVQq
-7Uvjq/ZC3SaEdHR0GBgY/P2fVqxYMWjQoG3btp0/f/7VdZKxcOHCI0eOdG/Pzc29cePGxo0bra2t
-+1f56dOnMpns4sWLmo1SqTQ7O1smkykUCkKIg4ODq6srIaSzs1MqlfZv+jc6OvrQoUP96+QLkcvl
-O3bsqKys1LZAVlZWWVlZxz/J5fLuy3R0dMhksnPnznXZ2QsXLugzj4RC4dOnT8eOHav5slKp1NfX
-716us7NTT0+vP3tDw4v2SqVSyeVyAwMD5qlarVar1bq6Xce02tp7qcwyMDDw8/Njn06ePHnq1Kkn
-T5588803+1LnRfdIrVa3t7cPGjRIW3/EYrGtrW1YWFhfqqlUKqVSOXDgwC7tbm5umZmZ0dHRbEtW
-VtbIkSPv37/PPH3rrbe0dYBo3ylt7S/TVealHt87QohEIklISMjPz29ubu5lo42NjW+//XZUVFTv
-fbO3t3/48OGdO3f+/Oc/My0KhSI7O/t/t11cXKyrq8u+duTIkQULFvj6+s6ePfvq1atsldu3b69Z
-syYwMFAgEOzZs6ezs7PLZmpra6Oiov7xj39oNkZHR586dYp9unPnzhcaOxFCVCrVzJkzCwoKFi1a
-9Je//GXGjBnp6ensq+fOnVuyZImfn9/y5csvX768fPlyQohYLJ45c2ZlZeU777zz2WefEUKEQuHu
-3bsnTZoUFBQUHR3NjltaW1t37dr11ltvBQUFbd68WfNUVFJSsn79+uDg4NDQ0B07djBn4ufS0dFx
-cXHhcDjMU4lE8uWXX06bNs3f3z86OrqhoYFpj4qKysvLi46O9vPzmzZt2o8//shWyMnJYdqnT5++
-b98+prGjo2PmzJllZWVRUVFxcXExMTE1NTVJSUldBiEZGRkHDhxoaGiYOXNmU1MTIeTUqVPz58+f
-MGFCRETE0aNHmcXq6uoiIiLKy8unT5+ekJDQfS+Cg4MbGxtramrYlszMTIFAwD49dOjQtm3buqyl
-VqsPHz48d+5cX1/fiIiImzdvMu1SqXT9+vWhoaEBAQELFiz47bffCCHLly8vLy//8ccfmSGiUqnc
-sWPH1KlTmQNVXFzMrJuWlrZz5860tDSBQODn57dw4cKHDx8yLz169CghIWHSpEkBAQHLly/vMSp6
-enqurq4LFy7k8Xg9v2GEEEIaGxttbW17WYDB4XACAwM1h4h5eXlGRka6zLaLioqcnJyMjY0JIamp
-qQcPHly6dGlaWpqvr29cXFxBQQEhpL6+ftWqVY6OjseOHVu9enVGRkaXPNTW1sbExDBvv2b7n/70
-pzNnzjCP29vbT58+zSa27xoaGlavXj158uTjx49PnTp1+/btWVlZhJDc3NxNmzZNmzYtPT3dzc1t
-06ZNzI2BUqlsaGj49NNPJ02atHDhQkLI6tWrRSLR119/nZqayuVyt27dylT++9//np2dvXnz5u+/
-/76lpYUdkj18+HDlypU8Hi81NXXDhg3nz5/fvHnzc/upVCqvXbt29erVKVOmMC0bN24sLCyMj4//
-/vvv9fX1Fy9ezIxXGxsb161bFxAQcOzYscjIyH379jFHqaqqau3atZ6enidOnIiLiztx4sSBAwcI
-ISqVitmjoKCg9957b+PGjba2tjNnzoyNjdXsQFhY2Ntvvz106NA9e/ZYWlpeu3Zt69atU6ZM+emn
-n6Kior744gtmB+VyeX19/eeff/7OO+9ERER03xETExMfHx92dCeVSvPz8zWvci0tLY8ePeqy1sGD
-B1NTU5ctW3bixIk33nhj2bJlZWVlhJAvvviivLz8o48+Sk5ONjY2XrduHSFk3bp1Dg4OU6ZMWbly
-JSFkx44dV65c+eSTT44dOzZ8+PC4uDjmrZRIJJmZmQUFBcnJyT/88ENVVdW3337LHJA1a9bU1dXt
-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
-69evv3btWpcNrF27VigUHjt2rPs+W1hYJCUl9Xg5IoTY2dnZ2dnt3r2bGVLK5fLz588zEzXsMocP
-H66uriaElJWVnT59mjkThISEpKSk1NfXM729fPlylwwzlEqlVCplPqDV1dUpKSmdnZ1yudzCwsLe
-3n7btm0SiYQQkpyczI4MfXx88vPzmXknmUz26aef/vLLL9qObBdcLpe5W+Xz+WZmZomJiWq1WqVS
-HT58eOvWrWyojh8/XlJSQggRCoXHjx9n9sjb2/uXX37Jy8tjjnNiYqK/v7+2+fe2trbee+Lt7X38
-+HFmx+/fv5+cnMyeIvvC399fLBYfOHDguZcjQoienp6Xl1dSUtKzZ88IITdv3vzggw+YP9SePHly
-7969T58+VSqVSqWSEMKOkJkFDA0NXVxcEhISOjo6CCFnz54tKysLCAjoZXNjxowhhDBDu87Ozm++
-+WbPnj19v2Kr1erdu3czn+EhQ4YkJSWlp6erVKrOzs59+/YZGBiMGzeOEJKXl7d7926mzyxdXd2Q
-kJBdu3aZmpoyydefMGHC3bt3NYO0YcOG999/XyAQmJubNzU1zZ0719/fnxASHBxcUVGxdOlSKysr
-kUjk7OzMTLZosrGxWbJkyTfffBMSEtLlpbCwsJSUFG1BIoR8/fXXH3/88ezZs01MTGQymampaWRk
-pObfMQQCwYIFC0xMTEQiUUhIyLx58wghvr6+oaGhc+fONTEx0dHRmTJlChO2LkJCQo4ePfrhhx9a
-WVm1tLQsWrQoNTX1/fffP3DgQEJCAjM3YGxsbGxsPGvWLGaI4u3tHR0dvWzZsiFDhojFYnt7+x7/
-2t0jR0fHjIyM5uZmKyur/fv3x8bGnj59Wl9fXy6Xb9q0ydTUlFksPDw8NjbW0NBQJBL5+PjExMQQ
-QkJDQysrK1euXMkc59GjR2/cuLHHrdja2iYnJz958uSjjz7S1pMFCxZUV1dHRUVZW1s3Nzf7+fmx
-w9q+GDRokJ+fX19ukBibN29+7733QkNDzczMRCLRokWLmKtTTEzM6tWrBQIBl8tlxjUODg6EkBEj
-Rhw7dqy1tXXdunU7d+5cunRpSEiIsbEx8+WM3q9IXC53z549q1atOnLkiFqt1tHR2bJlS98vtmq1
-OjU1deDAgX5+fqNHj16zZk1aWtpXX32lUCjs7e3j4+MHDx5MCCkpKUlNTf3b3/7W5c9fAoEgIyNj
-/vz5/yrXo99++y0nJ+f333/v0t7a2pqbm1tRUdHZ2alt3R4lJCQsWbLkuYs1NTXl5ubeu3dPs7Gz
-s9PLy4uZ+svJyampqdHsT1tbG9MruVy+Zs2auLi4Hit3dHQUFRXdunWrvb1drVZLJJLbt2+z9UtK
-SvLz87vvlEQiycvLu3v3rlKpfKH91aRUKktLS2/evNna2so2+vv7X716lT2e3bd7/fr1pqamXsq2
-tbXl5eWVl5c/twMikSgvL09z66/UvXv3cnJyune+qqqqoKDg6dOnbEt7e/v169fLysrYFqFQeOvW
-LYVC0cdtyeVy5m2VyWQv3/PKysrGxsZ+rKg1SHRVVFSEhoaeOnWqf6uzQer+0ueffz5v3jzmvbl1
-65ZAIEhPT3+pvr4uTJD+v3sBdDznyxpUJCYmJiUljRs3burUqdSLr1ixYuXKlaGhoUOGDFGpVHPm
-zGH/Egrw2uioX/1PzSUSSXNz86hRo16myM2bN11dXbvMbrOam5ubmppcXV21feHq39Dt27cdHR3Z
-+yX4Q3sdQQL4j/eHOX8D/DtDkAAoQJAAKECQAChAkAAoQJAAKPg/Qero6EhOTmafymSyjIyMH3/8
-sZdfCwIA0QxSYWHhgQMHmN8eMhISEjgcjru7+86dO/v3z5YA/kv8K0htbW2a//yB+bXj5MmTPT09
-33jjjR5/rgcAjH8FydfXV/OHVo8fPx42bBjzeNiwYb38QzAA0Pql1fb2dvaLbaampkKhsKqqirku
-cbnc7j83AvhvpjVIJiYmzH9FI4S0tLRYW1s7OTk5OTkRQtj/rQUADK3T33w+XyKRML9kLioqeu7v
-9QH+m2m9InE4nLCwsO3bt5uamlpYWDC/jweAHj3nZxQdHR1isXjo0KGa/1HkzJkz+PEcgKbn/EKW
-w+Gwc3cAoA2+IgRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEAB
-ggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGC
-BEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIE
-QAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRA
-AYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEAB
-ggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGC
-BEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIE
-QAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRA
-AYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEAB
-ggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGC
-BEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIE
-QAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRA
-AYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEAB
-ggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGC
-BEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIE
-QAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRA
-AYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBEABggRAAYIEQAGCBECB
-fi+vtba2/vzzzwMGDAgPDzc1NX1tfQL4w9F6RVIoFPHx8Twez8bGJj4+Xq1Wv85uAfyxaL0ilZaW
-DhkyJCgoiBBSWFhYV1dnb2//+voF8Iei9YokEomGDRvGPObxeJWVla+rSwB/PFqvSB0dHYaGhsxj
-U1PTJ0+eVFVVVVVVEUIeP3585syZvm/j8ePHFhYWL9lRFEfx11zcycnJycmpr6XVWmRlZX333XfM
-44yMjJycHG1LPtfp06f7vS6Ko/gforjWoZ2Hh8f9+/flcjkhpLi42MbGpq/RBPjvo7dp06YeXxg0
-aJBUKk1PT8/NzXV3d/f29n6Zzby6izWKo/i/Q3Edda/z2jKZTCaTWVlZvYptA/zHeE6Q6CosLMzO
-zuZyuSEhIQ4ODkxjR0dHWlrau+++S714RUXFlStXBg0aFBwcbGtrS7d4eXn5r7/+qqur6+fn5+bm
-Rrc448aNGzKZLCQkhG7xxMTEJ0+eMK8uWLCAx+NRLK5QKM6cOdPQ0DBhwoRx48ZR7Hl2dnZOTg77
-6qhRo9555x2KPa+pqcnOzmY+LUOHDn3Rgq/vK0JCofDChQvTpk1zd3ffu3evUqkkhNy5c+e7776r
-r6+nXvzJkyeHDh0aN26cQCDYv3//rVu3KBYXi8XHjh0LDQ0NDAzU/FxSKc60Nzc3Hzly5GUq91hc
-rVbX1tYu/qeXGWv02PMdO3YMHz588uTJKSkpv/32G8XiXl5ebLd5PB77txkqxZVKZVpa2pgxY8aO
-Hbt169bW1tYXran1Hum5fvjhBxsbGy6Xe+LEiYcPHzo4OFRUVOTl5WVlZfH5fA6Hk5ycLJFIRowY
-UVRUVFxcrFarXVxc+Hy+jY1Ndna2l5cXl8utra3V19cXiUT+/v50i9fX1zPnG2Nj446ODrFYPHr0
-aFrFm5qabGxsPD09hwwZUlJSMnLkSHNzc4qHpbOz87vvvnN1ddXV1XVxcaF4WNrb28vLywUCwaBB
-g0xMTHR1dSkWl8vl9+7dmz59urm5uZeXl5GREYfDoVXc1NTUyMjIyMhIIpEUFBTMmTOHYs8bGxvv
-3r07Z84cCwuLqqoqW1tb9g3to/5fkbhcbnl5uVqtLiwsvHnzJiGkuLjYzMyMw+FUVlYqFIri4uKC
-ggJCyJ07d8zNzcePH+/u7n7nzp1vv/3WwcGBuefz9fUdP378qyju6ek5a9YsQsizZ89KSkrYFFEp
-7uLiMmHChPLy8qSkJAMDg5EjR9I9LD/99JO3t7e1tTX1w/Lo0aPHjx9v3749ISHh3Llz7AWQSnGh
-UGhubn727NnExMTW1lYTExO6h4Vx9OjRyMhIuoeFz+dbWVl9//33e/fuJYQ4Ojr2IQH/R/+D5Obm
-VlFR0dDQMGrUqI6Ojvb29srKSjc3N6ZdKBR6eXmJRKLOzs6amhr2tDpw4EAjI6MBAwaoVKrXULyw
-sDA+Pj4wMFAzSLSKDxgwgDnpau7LyxcvLy8XiUR+fn6v4rCYmprOmTNn7dq1cXFx2dnZxcXFFIs3
-NTUVFBRYW1tHRkYmJiaWl5dTP+Z1dXUmJiZdxnUvX1wsFj948MDIyMjNza21tVUkEvXy4exR/4d2
-gwcPPnnypLGx8bBhw/T09J49e1ZXVzdx4kQzM7NTp04ZGBjY29s/e/ZMLpeLRKLAwMD6+noOh8Pj
-8Tw8PG7cuKFQKJgJAKlUWlRU1GVoR6V4enp6SUlJTExMl79Pv3xxfX19QsiwYcNcXV3v3bvX0NDA
-buLli1+/fr21tfXWrVsVFRWNjY0ymYzP59MqPnr0aB6Pp6Ojo6urq1KpRCKRs7MzreKWlpb6+vrh
-4eEGBgYKhaK5uZlicebTcv78+bFjxw4ZMoTuG1pdXW1raztjxgwHB4fm5uaHDx+yx7yP+n9F0tfX
-Hz58+JUrV5ycnPh8/tmzZ5nJKy6Xa2xsfPPmTbbd3d2dEHLjxg1m1qWtrU0ikWhe919F8fr6+gcP
-Hixfvnzw4MHUi5eWll68eJEQolAoxGKx5m9MXr74vHnzoqOj582bN27cOFdX1+DgYIrFr169mp6e
-TgiRy+W1tbWa4+qXL+7o6FhaWqpSqdRqdXNzs+ZkJpVPS2dnZ3V1tebgglZxc3Nz5tukarVaoVBo
-jtX7qLffIz2Xu7t7Y2OjpaUlh8N5/Pgxe+Dc3Nzy8/MNDQ2dnZ1TUlKY9jfffHPXrl3V1dVCoZDP
-52veQ7+K4ufOnausrPzggw+YtUJCQqZPn06rOJ/P37lz5/79++/fv29tbd3lNu8li7MTAIaGhu3t
-7cbGxhSLt7W1HT58eO/evc3NzXw+v8vc98v33N/ff9++fVKp1NLSctSoUXQ/LSUlJba2tjo6OtQ/
-LQqFora29uuvv25ubrawsGDy9kJe69+RCCHNzc2Ghobs12H/0MXFYrG+vn7vl9Z+F6eoe3GJRKKn
-p0dlc92LM3cpVH4J+poPS1tbm0Kh6F/PX3eQAP4j4X82AFCAIAFQgCABUIAgAVDwP1eGViFrRqgP
-AAAAAElFTkSuQmCC
-
---9amGYk9869ThD9tj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="potential_format_problem.log"
-
-recipe_color.inc/17: RECIPE_COLOR = "green"
-
---9amGYk9869ThD9tj--
+--5236bb15_3dc240fb_24a--
