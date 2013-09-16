@@ -1,36 +1,29 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C721E0159E
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:40:48 -0700 (PDT)
-Received: by mail-vb0-f49.google.com with SMTP id w16so3116900vbb.22
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:40:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=lp45EWriKf4URxKAw6KyD6ekB1sNSeFX9bL7mysl7nc=;
-	b=QBFIudfwE58NqJkRgPwtAlHnU3QDGphcUa8gkzjXfJmzH5fcdvR9kVY2MOYXWQItEO
-	zOyA5fKdd2+rCdNnao9yF2ADM06RX0h7Vw1iMjYMZk3UkEIzkFR06+ISBxqK4iZPspUt
-	6N6L3B2MmHlyZzGOmJVAtV5YL7rRO7xCQ5O1ucwkOawF6UHlyzMchJ0J7cH93ejVIB4c
-	sBw6fFHAXm29/Hzac7em6Z6a4CzChvVFC33ABZ/GkpJPKV1jFodWSTC8+uYGUMGPZVqP
-	OJSmqTTYI0R+Tk2YZOgqBHw+zmBrvuYHcGnZ4elwWU8VaRKB7Tnpyqas3f54XWY2elkS
-	vY7g==
-X-Gm-Message-State: ALoCoQmz/goUQjdc75SUe9EM54oPkFnHndYoaNDEpJssQR+T01ywEsK6gjT3PkpE6MR5Xb23pvhy
-X-Received: by 10.58.133.66 with SMTP id pa2mr7730754veb.18.1379356847925;
-	Mon, 16 Sep 2013 11:40:47 -0700 (PDT)
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-galgo.atl.sa.earthlink.net
+	(elasmtp-galgo.atl.sa.earthlink.net [209.86.89.61])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 303D8E0159E
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:59:18 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=amwObJ+zQOuA1Mn5C7G8IKAGAbQoKn8ZwnRmxP712PpxN/toaEYiE7E810JoPjTe;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-galgo.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VLe0y-00068q-Av; Mon, 16 Sep 2013 14:59:16 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Burton, Ross'" <ross.burton@intel.com>
+References: <A8F6DAF6C594463B96E491611B8DF873@PAULD><CABcZAN=hjjwAG=J-a+9N9cVyG1h_wLaN=baEd0c1fpPwt1Y+Nw@mail.gmail.com><A713D66A57B545848DDD45415085C8D0@PAULD>
+	<CAJTo0LbPx7Gvg8iSqkfesBr9JKZT3E7GovdxjDen5-UwrQfE+g@mail.gmail.com>
+In-Reply-To: <CAJTo0LbPx7Gvg8iSqkfesBr9JKZT3E7GovdxjDen5-UwrQfE+g@mail.gmail.com>
+Date: Mon, 16 Sep 2013 11:59:15 -0700
+Message-ID: <E11EA2803F3A48F9A3E9C59006A9E37B@PAULD>
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Mon, 16 Sep 2013 11:40:27 -0700 (PDT)
-In-Reply-To: <A713D66A57B545848DDD45415085C8D0@PAULD>
-References: <A8F6DAF6C594463B96E491611B8DF873@PAULD>
-	<CABcZAN=hjjwAG=J-a+9N9cVyG1h_wLaN=baEd0c1fpPwt1Y+Nw@mail.gmail.com>
-	<A713D66A57B545848DDD45415085C8D0@PAULD>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 16 Sep 2013 19:40:27 +0100
-Message-ID: <CAJTo0LbPx7Gvg8iSqkfesBr9JKZT3E7GovdxjDen5-UwrQfE+g@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Chris Larson <clarson@kergoth.com>
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6zDEptRSS54ycUQCCcsPVmELVa4wAARglA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606887322e89b03f8311f7086b4130a6c1a6c350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: yocto@yoctoproject.org, 'Chris Larson' <clarson@kergoth.com>
 Subject: Re: How to find the source of a variable value?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,36 +36,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2013 18:40:50 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 16 Sep 2013 18:59:19 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On 16 September 2013 19:34, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
-> This isn't working for me. The image I'm trying to build is
-> core-image-gtk-directfb. The recipe is in meta/recipes-graphics/images. If
-> I just type "bitbake -k core-image-gtk-directfb", I get two errors:
->
-> ERROR: Nothing PROVIDES 'core-image-gtk-directfb'
-> ERROR: core-image-gtk-directfb was skipped: FEATURE "x11" is in
-> DISTRO_FEATURES, Please remove "x11" from DISTRO_FEATURES, use
-> "gtk-directfb" instead of it
->
-> I don't understand the "Nothing PROVIDES" error. Doesn't a recipe called
-> x.bb PROVIDE x by default? The second error comes from the bit of Python
-> in that recipe, which at least proves that it's reading that recipe.
+> From: Burton, Ross
+> 
+> The default DISTRO_FEATURES includes x11, so that's where it's coming
+> from.  If you're using oe-core/poky from git master, you can do
+> DISTRO_FEATURES_remove="x11" in your configuration, or else you'll
+> need to set DISTRO_FEATURES to the current value, minus x11.
 
-The default DISTRO_FEATURES includes x11, so that's where it's coming
-from.  If you're using oe-core/poky from git master, you can do
-DISTRO_FEATURES_remove="x11" in your configuration, or else you'll
-need to set DISTRO_FEATURES to the current value, minus x11.
+Thanks, but that doesn't work. I still get the same error messages. In the
+bitbake -e output I can see my entry:
 
-The order of messages is a bit backwards there - nothing provides
-core-image-gtk-directfb because the recipe caused itself to be
-skipped.
+# DISTRO_FEATURES_remove=x11
+DISTRO_FEATURES_remove="x11"
 
-To be honest I'm not sure why that recipe forces itself to be skipped
-if x11 is present - it should work with x11 present - but if you're
-not using X then it makes sense to remove it from DISTRO_FEATURES so
-that you don't get unusable X dependences in your images.
+and I can see the same old DISTRO_FEATURES further down:
 
-Ross
+# DISTRO_FEATURES=alsa argp bluetooth ext2 irda largefile
+pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g
+x11 ${DISTRO_FEATURES_LIBC} largefile
+opengl${@oe.utils.features_backfill("DISTRO_FEATURES",d)}
+DISTRO_FEATURES="alsa argp bluetooth ext2 irda largefile
+pcmcia usbgadget usbhost wifi xattr nfs zeroconf pci 3g
+x11 ipv4 ipv6 libc-backtrace libc-big-macros libc-bsd
+libc-cxx-tests libc-catgets libc-charsets libc-crypt
+libc-crypt-ufc libc-db-aliases libc-envz libc-fcvt
+libc-fmtmsg libc-fstab libc-ftraverse
+libc-getlogin libc-idn libc-inet-anl libc-libm
+libc-libm-big libc-locales libc-locale-code
+libc-memusage libc-nis libc-nsswitch libc-rcmd
+libc-rtld-debug libc-spawn libc-streams libc-sunrpc
+libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar
+libc-posix-regexp libc-posix-regexp-glibc
+libc-posix-wchar-io largefile opengl pulseaudio"
+
+Any other ideas?
+
+-- 
+
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
+
 
