@@ -1,34 +1,48 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F26CE015A4
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 16:48:18 -0700 (PDT)
-Received: by mail-vc0-f170.google.com with SMTP id kw10so3484001vcb.15
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 16:48:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=fdNIcE+vi1XCt6IHHr1hyxJZL/4T0q8eT2UdgeKqOQo=;
-	b=InqeBU7K4TJ1ukH1v/ebDHi3kKm4YaF3Y9dpngQI5xH/IC8198w+MPuUp57go+AKVd
-	ES77GFp0PbmdHZQiZ7fIWt+fbCkcioMFA34qEOSXL/PIOL/YOaPMBKdMe6RqHqlD/KHN
-	v7BtfhzBGXCZ0i1yXZUBx/OQ9niPfjbYLnAyAXXyCM/H2pp5pc28KhkW8JZORFeC8hPX
-	YS3q/D0BPW4j1066FyE6edywDJDkMDpN/fgOqMeP/5YxiAh1Bw98wAxHVb99XH+qUoCf
-	67Sgxk7yHY2+AP+K71GjBwjf3hewbm17B+wOPIRqAhp2u/jOBffH5LunIXKjruRUskBQ
-	D1MQ==
-X-Gm-Message-State: ALoCoQnW7ZK93e7CSUTVUWN//jPJ4VA49vq6CiHzpmTbKDnQzd+U/sR/+JYtxPTE6OH61+MbC7YV
+Return-Path: <brad@evidence.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6537E015A9
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 16:49:30 -0700 (PDT)
+X-ASG-Debug-ID: 1379375367-0499bf605a1601d0001-yzSStA
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id 7G3hZpk37MAufZpc for <yocto@yoctoproject.org>;
+	Mon, 16 Sep 2013 16:49:27 -0700 (MST)
+X-Barracuda-Envelope-From: brad@evidence.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Mon, 16 Sep 2013 16:49:27 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Mon, 16 Sep 2013 16:49:26 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+From: Brad Litterell <brad@evidence.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Identify Target for a given binary
+X-ASG-Orig-Subj: Identify Target for a given binary
+Thread-Index: Ac6zNunR4hWS3a2kQgOulDlrOGz0EA==
+Date: Mon, 16 Sep 2013 23:49:25 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8DEFE44D@TI-ODIN.tasernet.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
-X-Received: by 10.52.118.73 with SMTP id kk9mr24567015vdb.13.1379375297675;
-	Mon, 16 Sep 2013 16:48:17 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Mon, 16 Sep 2013 16:48:17 -0700 (PDT)
-In-Reply-To: <1379072091-28016-1-git-send-email-stefanx.stanacar@intel.com>
-References: <1379072091-28016-1-git-send-email-stefanx.stanacar@intel.com>
-Date: Mon, 16 Sep 2013 16:48:17 -0700
-Message-ID: <CAPhnLPCZZ3OzO6M3Rr6Ox3uERfVneOrhnTN2CdZNgbADKY4R5Q@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Stefan Stanacar <stefanx.stanacar@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH] buildset-config/nightly-qa-extras: make it simpler and usable
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1379375367
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.140674
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Identify Target for a given binary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,182 +54,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2013 23:48:21 -0000
-Content-Type: multipart/alternative; boundary=089e0122f0f2a1524204e688d67b
+X-List-Received-Date: Mon, 16 Sep 2013 23:49:30 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_E51394554A503C4E852F9BEE46B03E8DEFE44DTIODINtasernetcom_"
 
---089e0122f0f2a1524204e688d67b
-Content-Type: text/plain; charset=ISO-8859-1
-
-pulled into master
-
-
-On Fri, Sep 13, 2013 at 4:34 AM, Stefan Stanacar <stefanx.stanacar@intel.com
-> wrote:
-
-> This target was missing from the nightly target for some reason.
-> Also, it wasn't up to date with latest changes. I've simplified it a bit,
-> so it has only two builds of core-image-minimal with features that are
-> known to work.
-> And these being core-image-minimal the sanity tests are just boot+ping.
->
-> Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
-> ---
->  buildset-config/nightly-qa-extras.conf | 12 ++++++------
->  buildset-config/nightly.conf           |  2 +-
->  2 files changed, 7 insertions(+), 7 deletions(-)
->
-> diff --git a/buildset-config/nightly-qa-extras.conf
-> b/buildset-config/nightly-qa-extras.conf
-> index 8fddbc6..3239fda 100644
-> --- a/buildset-config/nightly-qa-extras.conf
-> +++ b/buildset-config/nightly-qa-extras.conf
-> @@ -8,10 +8,10 @@ steps: [{'SetDest':{}},
->          {'CheckOutLayers': {}},
->          {'RunPreamble': {}},
->          {'GetDistroVersion' : {'distro': 'poky'}},
-> -        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' :
-> 'i686', 'distro': 'poky', 'atextappend' : '\nROOT_HOME =
-> "/root"\nIMAGE_FSTYPES = "btrfs"\nKERNEL_FEATURES_append = "
-> cfg/fs/btrfs"\n'}},
-> -        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-> -        {'BuildImages': {'images': 'core-image-sato'}},
-> -        {'RunSanityTests': {'images': 'core-image-sato', 'timeout' :
-> 2400}},
->          {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' :
-> 'i686', 'distro': 'poky', 'atextappend' : '\nIMAGE_FEATURES_append = "
-> read-only-rootfs"\n'}},
-> -        {'BuildImages': {'images': 'core-image-sato'}},
-> -        {'RunSanityTests': {'images': 'core-image-sato', 'scene' :
-> 'sanity:boot sanity:ssh'}}]
-> +        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-> +        {'BuildImages': {'images': 'core-image-minimal'}},
-> +        {'RunSanityTests': {'images': 'core-image-minimal'}},
-> +        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' :
-> 'i686', 'distro': 'poky', 'atextappend' : '\nROOT_HOME = "/root"\n'}},
-> +        {'BuildImages': {'images': 'core-image-minimal'}},
-> +        {'RunSanityTests': {'images': 'core-image-minimal'}}]
-> diff --git a/buildset-config/nightly.conf b/buildset-config/nightly.conf
-> index 0c6615a..5641772 100644
-> --- a/buildset-config/nightly.conf
-> +++ b/buildset-config/nightly.conf
-> @@ -71,7 +71,7 @@ steps: [{'SetDest':{}},
->                                'nightly-x86-64': {}, 'nightly-x86-64-lsb':
-> {},
->                                'nightly-x86': {}, 'nightly-x86-lsb': {},
->                                'poky-tiny': {}, 'buildtools': {},
-> -                              'nightly-qa-systemd': {}}}},
-> +                              'nightly-qa-systemd': {},
-> 'nightly-qa-extras': {}}}},
->          {'PrepPkgIndex' : {}},
->          {'BuildImages': {'images': 'package-index'}},
->          {'CreateAutoConf': {'machine': 'atom-pc', 'SDKMACHINE' : 'x86_64',
-> --
-> 1.8.1.4
->
->
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
---089e0122f0f2a1524204e688d67b
-Content-Type: text/html; charset=ISO-8859-1
+--_000_E51394554A503C4E852F9BEE46B03E8DEFE44DTIODINtasernetcom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">pulled into master<br></div><div class=3D"gmail_extra"><br=
-><br><div class=3D"gmail_quote">On Fri, Sep 13, 2013 at 4:34 AM, Stefan Sta=
-nacar <span dir=3D"ltr">&lt;<a href=3D"mailto:stefanx.stanacar@intel.com" t=
-arget=3D"_blank">stefanx.stanacar@intel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">This target was missing from the nightly tar=
-get for some reason.<br>
-Also, it wasn&#39;t up to date with latest changes. I&#39;ve simplified it =
-a bit,<br>
-so it has only two builds of core-image-minimal with features that are know=
-n to work.<br>
-And these being core-image-minimal the sanity tests are just boot+ping.<br>
-<br>
-Signed-off-by: Stefan Stanacar &lt;<a href=3D"mailto:stefanx.stanacar@intel=
-.com">stefanx.stanacar@intel.com</a>&gt;<br>
----<br>
-=A0buildset-config/nightly-qa-extras.conf | 12 ++++++------<br>
-=A0buildset-config/nightly.conf =A0 =A0 =A0 =A0 =A0 | =A02 +-<br>
-=A02 files changed, 7 insertions(+), 7 deletions(-)<br>
-<br>
-diff --git a/buildset-config/nightly-qa-extras.conf b/buildset-config/night=
-ly-qa-extras.conf<br>
-index 8fddbc6..3239fda 100644<br>
---- a/buildset-config/nightly-qa-extras.conf<br>
-+++ b/buildset-config/nightly-qa-extras.conf<br>
-@@ -8,10 +8,10 @@ steps: [{&#39;SetDest&#39;:{}},<br>
-=A0 =A0 =A0 =A0 =A0{&#39;CheckOutLayers&#39;: {}},<br>
-=A0 =A0 =A0 =A0 =A0{&#39;RunPreamble&#39;: {}},<br>
-=A0 =A0 =A0 =A0 =A0{&#39;GetDistroVersion&#39; : {&#39;distro&#39;: &#39;po=
-ky&#39;}},<br>
-- =A0 =A0 =A0 =A0{&#39;CreateAutoConf&#39;: {&#39;machine&#39;: &#39;qemux8=
-6-64&#39;, &#39;SDKMACHINE&#39; : &#39;i686&#39;, &#39;distro&#39;: &#39;po=
-ky&#39;, &#39;atextappend&#39; : &#39;\nROOT_HOME =3D &quot;/root&quot;\nIM=
-AGE_FSTYPES =3D &quot;btrfs&quot;\nKERNEL_FEATURES_append =3D &quot; cfg/fs=
-/btrfs&quot;\n&#39;}},<br>
+I'm trying to rebuild uImage into my deploy folder (minimally) and so I tri=
+ed:
 
-- =A0 =A0 =A0 =A0{&#39;CreateBBLayersConf&#39;: {&#39;buildprovider&#39; : =
-&#39;yocto&#39;}},<br>
-- =A0 =A0 =A0 =A0{&#39;BuildImages&#39;: {&#39;images&#39;: &#39;core-image=
--sato&#39;}},<br>
-- =A0 =A0 =A0 =A0{&#39;RunSanityTests&#39;: {&#39;images&#39;: &#39;core-im=
-age-sato&#39;, &#39;timeout&#39; : 2400}},<br>
-=A0 =A0 =A0 =A0 =A0{&#39;CreateAutoConf&#39;: {&#39;machine&#39;: &#39;qemu=
-x86-64&#39;, &#39;SDKMACHINE&#39; : &#39;i686&#39;, &#39;distro&#39;: &#39;=
-poky&#39;, &#39;atextappend&#39; : &#39;\nIMAGE_FEATURES_append =3D &quot; =
-read-only-rootfs&quot;\n&#39;}},<br>
+bitbake linux-am335x-psp -c clean
+bitbake linux-am335x-psp
 
-- =A0 =A0 =A0 =A0{&#39;BuildImages&#39;: {&#39;images&#39;: &#39;core-image=
--sato&#39;}},<br>
-- =A0 =A0 =A0 =A0{&#39;RunSanityTests&#39;: {&#39;images&#39;: &#39;core-im=
-age-sato&#39;, &#39;scene&#39; : &#39;sanity:boot sanity:ssh&#39;}}]<br>
-+ =A0 =A0 =A0 =A0{&#39;CreateBBLayersConf&#39;: {&#39;buildprovider&#39; : =
-&#39;yocto&#39;}},<br>
-+ =A0 =A0 =A0 =A0{&#39;BuildImages&#39;: {&#39;images&#39;: &#39;core-image=
--minimal&#39;}},<br>
-+ =A0 =A0 =A0 =A0{&#39;RunSanityTests&#39;: {&#39;images&#39;: &#39;core-im=
-age-minimal&#39;}},<br>
-+ =A0 =A0 =A0 =A0{&#39;CreateAutoConf&#39;: {&#39;machine&#39;: &#39;qemux8=
-6-64&#39;, &#39;SDKMACHINE&#39; : &#39;i686&#39;, &#39;distro&#39;: &#39;po=
-ky&#39;, &#39;atextappend&#39; : &#39;\nROOT_HOME =3D &quot;/root&quot;\n&#=
-39;}},<br>
+This works great for most of my recipes, but for the kernel something odd i=
+s happening.  I keep getting a uImage with an old date in my deploy folder =
+so it appears that the file is being cached somewhere.
 
-+ =A0 =A0 =A0 =A0{&#39;BuildImages&#39;: {&#39;images&#39;: &#39;core-image=
--minimal&#39;}},<br>
-+ =A0 =A0 =A0 =A0{&#39;RunSanityTests&#39;: {&#39;images&#39;: &#39;core-im=
-age-minimal&#39;}}]<br>
-diff --git a/buildset-config/nightly.conf b/buildset-config/nightly.conf<br=
->
-index 0c6615a..5641772 100644<br>
---- a/buildset-config/nightly.conf<br>
-+++ b/buildset-config/nightly.conf<br>
-@@ -71,7 +71,7 @@ steps: [{&#39;SetDest&#39;:{}},<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0&#39;nightly=
--x86-64&#39;: {}, &#39;nightly-x86-64-lsb&#39;: {},<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0&#39;nightly=
--x86&#39;: {}, &#39;nightly-x86-lsb&#39;: {},<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0&#39;poky-ti=
-ny&#39;: {}, &#39;buildtools&#39;: {},<br>
-- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0&#39;nightly-q=
-a-systemd&#39;: {}}}},<br>
-+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0&#39;nightly-q=
-a-systemd&#39;: {}, &#39;nightly-qa-extras&#39;: {}}}},<br>
-=A0 =A0 =A0 =A0 =A0{&#39;PrepPkgIndex&#39; : {}},<br>
-=A0 =A0 =A0 =A0 =A0{&#39;BuildImages&#39;: {&#39;images&#39;: &#39;package-=
-index&#39;}},<br>
-=A0 =A0 =A0 =A0 =A0{&#39;CreateAutoConf&#39;: {&#39;machine&#39;: &#39;atom=
--pc&#39;, &#39;SDKMACHINE&#39; : &#39;x86_64&#39;,<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.8.1.4<br>
-<br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br>Elizabeth=
- Flanagan<br>Yocto Project<br>Build and Release
+If I perform a -c cleanall it works, but then the entire project is redownl=
+oaded over git which is rather slow.
+
+So, what I want to do is figure out which -c <command> targets I need to gi=
+ve to rebuild the kernel and not get these cached versions.  (I notice that=
+ there are also several sysroot commands and such.)
+
+Is there an easy way to figure out from the logs which step is creating a p=
+articular binary on disk?  With that I could trace back by finding the cach=
+ed version in the work tree, and then rerun that step, etc...
+
+
+
+
+
+--_000_E51394554A503C4E852F9BEE46B03E8DEFE44DTIODINtasernetcom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle"></style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">I'm trying to rebuild uImage into my deploy folder (minimally) and s=
+o I tried:
+<div><br>
 </div>
+<div>bitbake linux-am335x-psp -c clean</div>
+<div>bitbake linux-am335x-psp&nbsp;</div>
+<div><br>
+</div>
+<div><span style=3D"font-size: 10pt;">This works great for most of my recip=
+es, but for the kernel something odd is happening. &nbsp;I keep getting a u=
+Image with an old date in my deploy folder so it appears that the file is b=
+eing cached somewhere.</span></div>
+<div><br>
+</div>
+<div><span style=3D"font-size: 10pt;">If I perform a -c cleanall it works, =
+but then the entire project is redownloaded over git which is rather slow.<=
+/span></div>
+<div><br>
+</div>
+<div>So, what I want to do is figure out which -c &lt;command&gt; targets I=
+ need to give to rebuild the kernel and not get these cached versions. &nbs=
+p;(I notice that there are also several sysroot commands and such.)</div>
+<div><br>
+</div>
+<div>Is there an easy way to figure out from the logs which step is creatin=
+g a particular binary on disk? &nbsp;With that I could trace back by findin=
+g the cached version in the work tree, and then rerun that step, etc...</di=
+v>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+</div>
+</body>
+</html>
 
---089e0122f0f2a1524204e688d67b--
+--_000_E51394554A503C4E852F9BEE46B03E8DEFE44DTIODINtasernetcom_--
