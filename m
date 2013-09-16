@@ -1,39 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f48.google.com (mail-pb0-f48.google.com
-	[209.85.160.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DD2FE014EA
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 10:06:48 -0700 (PDT)
-Received: by mail-pb0-f48.google.com with SMTP id ma3so4295989pbc.7
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 10:06:48 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f169.google.com (mail-lb0-f169.google.com
+	[209.85.217.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B437E014EA
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 10:54:17 -0700 (PDT)
+Received: by mail-lb0-f169.google.com with SMTP id z5so4630216lbh.28
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 10:54:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=1LeRUUXhqdl8M8ghqNZrjrF0Ihx4tXkdvPayXF+5mkg=;
-	b=00+2Ja3gC4f44kF1ovlYkB3saFe8zkK0eQ7+5lpqp6fLC6+fSiEV5mrkuqk3YeLfdn
-	Ig2wFcYfMoqS2GN1MogvmzklD3o1YGtk+Qj2CDlQoBTR5TCXUgGhDsebAYkZl6PSfP43
-	5xp/GTIqvrjHADAXUYwnMTCN1A6hviApbZ0XBa1XVaBKrrV4RvweiJBNjPT3D4wztwYd
-	jbmGbdFJoJlvMoDf5VSZ9rVa0cXaQS+q2w9m1xAFee/YcqvOJLp9PvqQVJ4Tmtvu/62Z
-	Trsb6xLqu/pRolHcHskNExnR7w28K8o6wM8gqkvFHXK9AWnjEK+vk4ux7RucMpMP0vcR
-	0psQ==
-X-Received: by 10.68.178.227 with SMTP id db3mr1729065pbc.202.1379351208198;
-	Mon, 16 Sep 2013 10:06:48 -0700 (PDT)
-Received: from kraj-sslvpn-nc.jnpr.net (natint3.juniper.net. [66.129.224.36])
-	by mx.google.com with ESMTPSA id
-	ct4sm32384691pbb.41.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 16 Sep 2013 10:06:47 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.6 \(1510\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <loom.20130916T125631-411@post.gmane.org>
-Date: Mon, 16 Sep 2013 10:06:50 -0700
-Message-Id: <F333D337-0522-4164-9704-6B56C20F7AC9@gmail.com>
-References: <loom.20130916T112434-834@post.gmane.org>
-	<CAAA4K6KgpiL+Y1U2Ui3YGm8nV_Y+2bvCjAocw3j=CHQTRhTyvA@mail.gmail.com>
-	<loom.20130916T125631-411@post.gmane.org>
-To: Jack <jackrubby2010@gmail.com>
-X-Mailer: Apple Mail (2.1510)
-Cc: yocto@yoctoproject.org
-Subject: Re: Add nfs package to image minimal for atom-pc
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=UW880JV1vJb5tSSRtTN1Wva7ACXEAl9QLzG7h7bI5Zg=;
+	b=Qn/GQsPHCIf7+4NgmxGFdzdyKgk8kk6eGxRq4XwBeUGjtKL0msRtHbHxiflJaH6pkJ
+	JqrS5L+zO3NlhQrP/8hA5UHAOcxXQvDdToCFs8YjBkeYBfk5La4bk2C3gqyBS8tMk5+G
+	1onZfqZbaR+OTczOSrk1wrTWfNuin/Jxru96ohQDrsHfCgxdMgd3HFG8zO5BT63McDVW
+	780cCnUdsZQgKQX97yqi43+8Z/mZtJsRb6Eh9gjfrJJFuPTyBuAWGDVE4PpfdO3+UoLx
+	hlVFmis4c78JS8FPXaXt1n3NHlRSPfMYu6TA82aKRoIS6XrM0QUegzm5ZXfSbHJo+h1F
+	8aZA==
+X-Received: by 10.152.2.74 with SMTP id 10mr2406014las.36.1379354055797; Mon,
+	16 Sep 2013 10:54:15 -0700 (PDT)
+MIME-Version: 1.0
+Sender: kergoth@gmail.com
+Received: by 10.112.53.197 with HTTP; Mon, 16 Sep 2013 10:53:55 -0700 (PDT)
+In-Reply-To: <A8F6DAF6C594463B96E491611B8DF873@PAULD>
+References: <A8F6DAF6C594463B96E491611B8DF873@PAULD>
+From: Chris Larson <clarson@kergoth.com>
+Date: Mon, 16 Sep 2013 10:53:55 -0700
+X-Google-Sender-Auth: vtXJIsnAisZPT0lvAGAie-KjkSk
+Message-ID: <CABcZAN=hjjwAG=J-a+9N9cVyG1h_wLaN=baEd0c1fpPwt1Y+Nw@mail.gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: How to find the source of a variable value?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,33 +40,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2013 17:06:51 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Mon, 16 Sep 2013 17:54:18 -0000
+Content-Type: multipart/alternative; boundary=089e01228e5a83ef9704e683e4b4
+
+--089e01228e5a83ef9704e683e4b4
+Content-Type: text/plain; charset=UTF-8
+
+On Mon, Sep 16, 2013 at 10:02 AM, Paul D. DeRocco <pderocco@ix.netcom.com>wrote:
+
+> This image recipe has some Python that complains because "x11" is in
+> DISTRO_FEATURES. How do I find out where that "x11" is coming from? This
+> is a Gumstix build, so I suspect it's indirectly related to my selecting
+> "overo" as the MACHINE, because otherwise building this image would never
+> have worked with the plain Yocto meta-data. So how do I track this down?
+>
+
+Assuming you're using recent metadata, bitbake -e somerecipe will show you
+this.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--089e01228e5a83ef9704e683e4b4
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Mon, Sep 16, 2013 at 10:02 AM, Paul D. DeRocco <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:pderocco@ix.netcom.com" target=3D"_blank">pderocco@ix.netcom=
+.com</a>&gt;</span> wrote:<br>
 
-On Sep 16, 2013, at 4:04 AM, Jack <jackrubby2010@gmail.com> wrote:
-
-> I have already tested it. But I got error again. Error is :
->=20
-> Computing transaction...error: Can't install nfs-utils-1.2.7-r0@core2: =
-no
-> package provides /bin/bash
->=20
-> What can I do?=20
-
-well, you can add bash to your image using IMAGE_INSTALL or something =
-however that might
-hide potential problem where may be there is one script in nfs-utils =
-wanting bash which
-can be split into a package of its own. If you can file a bug in yocto =
-bugzilla to track it as well
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div id=3D":c5" style=3D"overflow:hidden">Th=
+is image recipe has some Python that complains because &quot;x11&quot; is i=
+n<br>
 
 
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+DISTRO_FEATURES. How do I find out where that &quot;x11&quot; is coming fro=
+m? This<br>
+is a Gumstix build, so I suspect it&#39;s indirectly related to my selectin=
+g<br>
+&quot;overo&quot; as the MACHINE, because otherwise building this image wou=
+ld never<br>
+have worked with the plain Yocto meta-data. So how do I track this down?<br=
+></div></blockquote><div>=C2=A0</div></div>Assuming you&#39;re using recent=
+ metadata, bitbake -e somerecipe will show you this.<br>-- <br>Christopher =
+Larson<br>
 
+clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<b=
+r>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics
+</div></div>
 
+--089e01228e5a83ef9704e683e4b4--
