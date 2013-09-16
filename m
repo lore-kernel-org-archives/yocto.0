@@ -1,33 +1,29 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-lb0-f169.google.com (mail-lb0-f169.google.com
-	[209.85.217.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B437E014EA
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 10:54:17 -0700 (PDT)
-Received: by mail-lb0-f169.google.com with SMTP id z5so4630216lbh.28
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 10:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=UW880JV1vJb5tSSRtTN1Wva7ACXEAl9QLzG7h7bI5Zg=;
-	b=Qn/GQsPHCIf7+4NgmxGFdzdyKgk8kk6eGxRq4XwBeUGjtKL0msRtHbHxiflJaH6pkJ
-	JqrS5L+zO3NlhQrP/8hA5UHAOcxXQvDdToCFs8YjBkeYBfk5La4bk2C3gqyBS8tMk5+G
-	1onZfqZbaR+OTczOSrk1wrTWfNuin/Jxru96ohQDrsHfCgxdMgd3HFG8zO5BT63McDVW
-	780cCnUdsZQgKQX97yqi43+8Z/mZtJsRb6Eh9gjfrJJFuPTyBuAWGDVE4PpfdO3+UoLx
-	hlVFmis4c78JS8FPXaXt1n3NHlRSPfMYu6TA82aKRoIS6XrM0QUegzm5ZXfSbHJo+h1F
-	8aZA==
-X-Received: by 10.152.2.74 with SMTP id 10mr2406014las.36.1379354055797; Mon,
-	16 Sep 2013 10:54:15 -0700 (PDT)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.53.197 with HTTP; Mon, 16 Sep 2013 10:53:55 -0700 (PDT)
-In-Reply-To: <A8F6DAF6C594463B96E491611B8DF873@PAULD>
+Return-Path: <pderocco@ix.netcom.com>
+Received: from elasmtp-scoter.atl.sa.earthlink.net
+	(elasmtp-scoter.atl.sa.earthlink.net [209.86.89.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8294AE0159E
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 11:35:03 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk20050327; d=ix.netcom.com;
+	b=ENRKtAYgwa1q24JbXSALdyXB9xef4Ah3+7jLBA5wuaOZOaUwDMFXo+grzeIvDjln;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [76.173.239.98] (helo=PAULD)
+	by elasmtp-scoter.atl.sa.earthlink.net with esmtpa (Exim 4.67)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1VLddR-0004kN-T3; Mon, 16 Sep 2013 14:34:58 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: <yocto@yoctoproject.org>
 References: <A8F6DAF6C594463B96E491611B8DF873@PAULD>
-From: Chris Larson <clarson@kergoth.com>
-Date: Mon, 16 Sep 2013 10:53:55 -0700
-X-Google-Sender-Auth: vtXJIsnAisZPT0lvAGAie-KjkSk
-Message-ID: <CABcZAN=hjjwAG=J-a+9N9cVyG1h_wLaN=baEd0c1fpPwt1Y+Nw@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: yocto <yocto@yoctoproject.org>
+	<CABcZAN=hjjwAG=J-a+9N9cVyG1h_wLaN=baEd0c1fpPwt1Y+Nw@mail.gmail.com>
+In-Reply-To: <CABcZAN=hjjwAG=J-a+9N9cVyG1h_wLaN=baEd0c1fpPwt1Y+Nw@mail.gmail.com>
+Date: Mon, 16 Sep 2013 11:34:56 -0700
+Message-ID: <A713D66A57B545848DDD45415085C8D0@PAULD>
+MIME-Version: 1.0
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: Ac6zBdFr4iQaAAHOQrKlndyZJVlABQABHGXA
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.17609
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e5196068856d4fadf1f7ab6b06160d97b4dd3de5a350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 76.173.239.98
+Cc: 'Chris Larson' <clarson@kergoth.com>
 Subject: Re: How to find the source of a variable value?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,58 +36,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2013 17:54:18 -0000
-Content-Type: multipart/alternative; boundary=089e01228e5a83ef9704e683e4b4
+X-List-Received-Date: Mon, 16 Sep 2013 18:35:04 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
---089e01228e5a83ef9704e683e4b4
-Content-Type: text/plain; charset=UTF-8
+> > On Mon, Sep 16, 2013 at 10:02 AM, Paul D. DeRocco 
+> > <pderocco@ix.netcom.com> wrote:
+> > 
+> > This image recipe has some Python that complains 
+> > because "x11" is in
+> > DISTRO_FEATURES. How do I find out where that "x11" is 
+> > coming from? This
+> > is a Gumstix build, so I suspect it's indirectly 
+> > related to my selecting
+> > "overo" as the MACHINE, because otherwise building this 
+> > image would never
+> > have worked with the plain Yocto meta-data. So how do I 
+> > track this down?
 
-On Mon, Sep 16, 2013 at 10:02 AM, Paul D. DeRocco <pderocco@ix.netcom.com>wrote:
+> From: Chris Larson
+> 
+> Assuming you're using recent metadata, bitbake -e somerecipe 
+> will show you this.
 
-> This image recipe has some Python that complains because "x11" is in
-> DISTRO_FEATURES. How do I find out where that "x11" is coming from? This
-> is a Gumstix build, so I suspect it's indirectly related to my selecting
-> "overo" as the MACHINE, because otherwise building this image would never
-> have worked with the plain Yocto meta-data. So how do I track this down?
->
+This isn't working for me. The image I'm trying to build is
+core-image-gtk-directfb. The recipe is in meta/recipes-graphics/images. If
+I just type "bitbake -k core-image-gtk-directfb", I get two errors:
 
-Assuming you're using recent metadata, bitbake -e somerecipe will show you
-this.
+ERROR: Nothing PROVIDES 'core-image-gtk-directfb'
+ERROR: core-image-gtk-directfb was skipped: FEATURE "x11" is in
+DISTRO_FEATURES, Please remove "x11" from DISTRO_FEATURES, use
+"gtk-directfb" instead of it
+
+I don't understand the "Nothing PROVIDES" error. Doesn't a recipe called
+x.bb PROVIDE x by default? The second error comes from the bit of Python
+in that recipe, which at least proves that it's reading that recipe.
+
+If I type "bitbake -e core-image-gtk-directfb", I just get the first
+error. This happens almost instantly, before it's done any real work, so
+I'm not getting any further output.
+
 -- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
 
---089e01228e5a83ef9704e683e4b4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Mon, Sep 16, 2013 at 10:02 AM, Paul D. DeRocco <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:pderocco@ix.netcom.com" target=3D"_blank">pderocco@ix.netcom=
-.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":c5" style=3D"overflow:hidden">Th=
-is image recipe has some Python that complains because &quot;x11&quot; is i=
-n<br>
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com 
 
 
-DISTRO_FEATURES. How do I find out where that &quot;x11&quot; is coming fro=
-m? This<br>
-is a Gumstix build, so I suspect it&#39;s indirectly related to my selectin=
-g<br>
-&quot;overo&quot; as the MACHINE, because otherwise building this image wou=
-ld never<br>
-have worked with the plain Yocto meta-data. So how do I track this down?<br=
-></div></blockquote><div>=C2=A0</div></div>Assuming you&#39;re using recent=
- metadata, bitbake -e somerecipe will show you this.<br>-- <br>Christopher =
-Larson<br>
-
-clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<b=
-r>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics
-</div></div>
-
---089e01228e5a83ef9704e683e4b4--
