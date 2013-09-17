@@ -1,32 +1,34 @@
 Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ee0-f43.google.com (mail-ee0-f43.google.com [74.125.83.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1143CE015A4
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 18:23:44 -0700 (PDT)
-Received: by mail-ee0-f43.google.com with SMTP id e52so2400574eek.30
-	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 18:23:44 -0700 (PDT)
+Received: from mail-ea0-f182.google.com (mail-ea0-f182.google.com
+	[209.85.215.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDAFEE015A6
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 18:34:18 -0700 (PDT)
+Received: by mail-ea0-f182.google.com with SMTP id o10so2440275eaj.27
+	for <yocto@yoctoproject.org>; Mon, 16 Sep 2013 18:34:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
 	:message-id:subject:from:to:cc:content-type;
-	bh=rCD5RFYfjKaMa+nh4YynNMLVjpMBjaOO1UP5A0Fc53Q=;
-	b=T0BrS+eTsAcsp8G/uf6pvyoVEw/ATTDRbcGGd/HAPeS9qIPSM5adCNg/isq4NfVNGd
-	YrJt3CIzi7ZaL9kBCZxh6ggn9YaBH6L08g4xHt3YIpz30ecQlnBN+rccC2ZyA0v0fbVJ
-	XB4EMs+aRmoRi7Sys1KfO9fb6CRagVB1PRhiiQyMINzAy2eQY2P4o0RVpFjjeMUZ+yES
-	bCU34rwtYzxMGKMiReb7NTHJW9lyaMdmRH2hP+cI5p50Ex/881cFocycfbbDeD1Ydyqb
-	a04cKJZY8xQm7bDPBvGzfVFDK4BtUJtexzYUZ27onsxgPfKPwKkq33QExqEHaegyGacE
-	3WIQ==
-X-Gm-Message-State: ALoCoQlOsgXKh4Lq1JXcmL6qI0MDn8NWB2qUrW75cU76VIT/Ry3CufUM1Y8nEycOr1taZTJQ2RzM
+	bh=bw23tRzMQ+kPecih0i2N5wI642J+SSnB8hqGo3x/L6Q=;
+	b=Jm9od9pGDxzQISvRO0h/lMWdl7b99jhFEKwin40fQLzJbTVpM/raZtPf13W08Dd8Ae
+	AL2RWA2h8tmrLSvNnocHkYopxrsaUmctwC7j8Cz0FOuyz0oFqkMV/Wq1rfpr5axjecfm
+	6dZbfewdPZLOf3gyFSd0y6z0jDWBYf2cXpNXd9A71rmryz8z3Fhkmn08ZVykltetbwCX
+	5vPkIqkTtwiIs6yGD4XhQr2RXm/zc0eoHvj9ZEQke7wf4U0zYxy70kOYEDHG3AXLXpq7
+	h0zID/1g7jDxO5elzknysOreBMGmGWjTYr517tW5e31mUuQ2v1HD73ujaaznI90pwsG1
+	hOsw==
+X-Gm-Message-State: ALoCoQlfAaKe180HWOQpIngW9ocLZVGk7+dS3uiYYzXkv5l+bQhNiZto7DhFSxnDa1nc1O2OHWIl
 MIME-Version: 1.0
-X-Received: by 10.15.35.196 with SMTP id g44mr47493363eev.18.1379381023763;
-	Mon, 16 Sep 2013 18:23:43 -0700 (PDT)
-Received: by 10.14.117.67 with HTTP; Mon, 16 Sep 2013 18:23:43 -0700 (PDT)
-In-Reply-To: <CAGNsrLCvcW2WNSfmMm-DLQMxFXC5=rr9Sknj6ECdmuiZc=gHgg@mail.gmail.com>
+X-Received: by 10.15.22.67 with SMTP id e43mr7920636eeu.47.1379381658137; Mon,
+	16 Sep 2013 18:34:18 -0700 (PDT)
+Received: by 10.14.117.67 with HTTP; Mon, 16 Sep 2013 18:34:18 -0700 (PDT)
+In-Reply-To: <20130824141107.GG3544@jama>
 References: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
-	<CAGNsrLCvcW2WNSfmMm-DLQMxFXC5=rr9Sknj6ECdmuiZc=gHgg@mail.gmail.com>
-Date: Mon, 16 Sep 2013 21:23:43 -0400
-Message-ID: <CALmOhgkPb8KC5iCYZ+FWhzcPmZG9Vpr3Zw3CurdtUn7b2L4WYA@mail.gmail.com>
+	<CA+AhUGz7SqxrfrmfDk+421viOUm3K=AbO-rAZF1+YqW7B=YB2A@mail.gmail.com>
+	<20130824141107.GG3544@jama>
+Date: Mon, 16 Sep 2013 21:34:18 -0400
+Message-ID: <CALmOhgn0tvpdSPs4RnJGy0HnRz2i_87Woww=B=bfoyWMNLxCQQ@mail.gmail.com>
 From: Trevor Woerner <trevor.woerner@linaro.org>
-To: Fathi Boudra <fathi.boudra@linaro.org>
+To: Martin Jansa <martin.jansa@gmail.com>, marek.belisko@gmail.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [DYLAN] RPATH issue with qt5's qtwebkit
 X-BeenThere: yocto@yoctoproject.org
@@ -40,18 +42,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2013 01:23:46 -0000
+X-List-Received-Date: Tue, 17 Sep 2013 01:34:21 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Fathi,
+Hi Martin,
 
-On 26 August 2013 07:11, Fathi Boudra <fathi.boudra@linaro.org> wrote:
-> I haven't checked how qtwebkit is built or meta-qt5, but the Qt's
-> configure has -no-rpath option. A grep on meta-qt5 doesn't show any
-> usage of it.
+On 24 August 2013 10:11, Martin Jansa <martin.jansa@gmail.com> wrote:
+> You can see do_configure_append in qtwebkit.inc which is removing bad
+> rpath from qmake generated Makefile, this sometimes doesn't work
 
-A "-no-rpath" option looks like something that might be passed to
-./configure? I'm not sure if things are done differently on master,
-but on dylan qmake is used to generate the Makefiles. Or is
-"-no-rpath" something that can be passed to "qmake"?
+Yes, I've been seeing the exact same thing. Although this _append
+claims to be fixing the rpath issue, I'm still seeing QA issues (which
+lead to errors) build packaging qtwebkit.
+
+Interestingly enough, the _append you mention is only trying to fix
+QtWebProcess but I'm seeing this rpath error occur on both it and
+QtWebPluginProcess.
+
+> Of course the real fix for both issues would be to fix .pri/.prf files
+> to prevent incorrect Makefile to be generated at all.
+
+As you, Richard, and everyone else has mentioned it would be nice to
+have a "proper" fix instead of things which patch up files afterward.
+This is why I like Marek's proposal since it fixes the *.prf file
+before the build. Looking through that patch, however, I'm wondering
+if it couldn't be a little cleaner? Marek's patch simply comments out
+a couple lines. I think it would be cleaner to just remove the lines
+that are causing problems and/or investigate whether or not that *.prf
+file is actually needed at all in this build environment.
+
+Are there any comments on what Marek has targetted? Would others
+consider this a "proper" fix (if the patch were cleaned up)?
+
+Best regards,
+    Trevor
 
