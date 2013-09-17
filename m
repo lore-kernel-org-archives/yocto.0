@@ -1,28 +1,36 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
-	[209.85.214.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0200CE015AB
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 02:04:23 -0700 (PDT)
-Received: by mail-ob0-f170.google.com with SMTP id va2so5023326obc.29
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 02:04:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=p+x0tB4RuItmxa2HN1NZIw7mgyh+N/ipzTMfgcQ60Ac=;
-	b=jSiKO4EXpJVvKLEni+Qj24vXq64DU2ORkUJtMtn3azm0e9ROLS4fRiG2aPhBJmlyVg
-	l8fQQBFlDQHHOjPsuHDJTJCZ6454Eb14q5+bbjAOj4b+A5EfWCj2Dvnx5hH/kU72xXlA
-	JfW1+Kr5C9MB/RzSLiYJlkgt3m0/8op9pGmRBSyNWxEJlM4ImfAbD5BR7i787FLNu2Dd
-	Qg1vXGtMW0Dz3Wm/tPphjpqaaYjjbrUHp4ijl0obqXkUubtq/+tkAVbh5bl5FgHWmKnS
-	xyIquRO5FBfADaVN1bbw817bfMKGe1mkjWUnN+tayj544Dr36eUfe0yKR1XPnpVYi1hA
-	wxaQ==
+Return-Path: <rohit2.jindal@aricent.com>
+Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73AEDE015AB
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 02:06:14 -0700 (PDT)
+Received: from jaguar.aricent.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 6340E36B85;
+	Tue, 17 Sep 2013 14:35:54 +0530 (IST)
+Received: from GUREXHT02.ASIAN.AD.ARICENT.COM (gurexht02.asian.ad.aricent.com
+	[10.203.171.138])
+	by jaguar.aricent.com (Postfix) with ESMTP id 578B136B63;
+	Tue, 17 Sep 2013 14:35:54 +0530 (IST)
+Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
+	GUREXHT02.ASIAN.AD.ARICENT.COM ([10.203.171.138]) with mapi;
+	Tue, 17 Sep 2013 14:35:54 +0530
+From: Rohit2 Jindal <rohit2.jindal@aricent.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Tue, 17 Sep 2013 14:35:53 +0530
+Thread-Topic: [yocto] yocto query on SR_URI creation
+Thread-Index: Ac6zhJyZOAkY1mIPTt6O+lLzdwsQCwAACOaw
+Message-ID: <17797116383D4341B029FDF34C22BF6A5D7F898B2A@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <mailman.7042.1376600669.19864.yocto@yoctoproject.org>
+	<4616187.FgK0ETbC70@helios>
+	<17797116383D4341B029FDF34C22BF6A5D7F898B21@GUREXMB01.ASIAN.AD.ARICENT.COM>
+	<16622177.NMr0mASBTi@helios>
+In-Reply-To: <16622177.NMr0mASBTi@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.60.17.136 with SMTP id o8mr29348232oed.7.1379408662961; Tue,
-	17 Sep 2013 02:04:22 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Tue, 17 Sep 2013 02:04:21 -0700 (PDT)
-Date: Tue, 17 Sep 2013 11:04:21 +0200
-Message-ID: <CAFyqS9ock8ydDEd0SE5whhWRKuRnQmTKOzq6Ad7rTYHHtosEuA@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: DISTRO_FEATURES_append, anyway to override?
+X-TM-AS-MML: No
+Subject: Re: yocto query on SR_URI creation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +42,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2013 09:04:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 17 Sep 2013 09:06:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-We are using a user defined distro, based on poky-tiny. That is, we
-'require' poky-tiny.conf.
-It is done this way in order not clutter our distro configuration with
-too much magics and defaults.
-However, one problem now is that poky-tiny also 'require' poky.conf,
-and implicitly is doing
+Hi,
 
-DISTRO_FEATURES_append = " largefile opengl multiarch wayland"
+SRC_URI  =3D "git://ep-code.xtz.com/u-boot.git;branch=3Dxxx-ep-20130823-3.0=
+-alpha;protocol=3Dssh;subpath=3Duboot"
+SRC_URI  =3D "git://ep-code.xtz.com/x-load.git;branch=3Dxxx-ep-20130823-3.0=
+-alpha;protocol=3Dssh;subpath=3Dxload"
 
-In our configuration we do
+Regards,
+Rohit Jindal
+-----Original Message-----
+From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+Sent: Tuesday, September 17, 2013 2:32 PM
+To: Rohit2 Jindal
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] yocto query on SR_URI creation
 
-DISTRO_FEATURES_append = "nfs"
+On Tuesday 17 September 2013 14:28:36 Rohit2 Jindal wrote:
+> The way you mentioned to put option inSRC_URI doesnot work it allows
+> to download first repository in SRC_URI and gives error not allowing
+> to download Second one. Gives error branch checkout id is not a valid
+> id for second src_uri.
+>
+> Please suggest me the alternative to handle the same.
 
-The resulting DISTRO_FEATURES (as checked by bitbake -e) shows that
-everything appended by poky is also added to the custom distro.
-Now, we would like to remove everything but the large file support as
-added by poky. How do we do that? Is the only practical way to copy
-everything from poky.conf and poky-tiny.conf into the custom distro? I
-really would like to avoid that if possible.
-I guess that the new feature DISTRO_FEATURES_remove might help us
-here, but unfortunately we can no step up to such a late version in
-a foreseeable future.
+Could you please show the SRC_URI lines you are using now?
 
-Thanks.
-Hans
+Thanks,
+Paul
+
+PS Please also keep the discussion on the mailing list, thanks.
+
+--
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+Please refer to http://www.aricent.com/legal/email_disclaimer.html
+for important disclosures regarding this electronic communication.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
 
