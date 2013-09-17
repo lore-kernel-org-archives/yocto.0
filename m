@@ -1,35 +1,25 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-we0-f179.google.com (mail-we0-f179.google.com
-	[74.125.82.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5989EE013AB
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 04:21:06 -0700 (PDT)
-Received: by mail-we0-f179.google.com with SMTP id x55so5019366wes.10
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 04:21:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=LuczbLJSbWHNhtT+ntSg+sF2tGltZUE63td+gLV5Tsc=;
-	b=aMErr/dbXjt2TvzVxVStOnBTlwAQizew/kbYiIJgU6ihJIbQcOOPzUq9t4LE4im/4i
-	32H7GTt74iNUuZnhTp/mVskVCBw1m4nODqS6F8TvZQZYCrD2GENNdMfMzpcNYLtqkVKa
-	oaTlx0yeqj3Y89hW+9tsfpQXeGPr9/PUncIPqihDio/UK6Wv215gGTBZZlJiV7g0n9OQ
-	ofXviw0y8a28I0lrM4xgZprhq9P+gWnWRJm7oyPUA87LKHV3Kh/j6pPdPs/plNLRtXQE
-	UFOg/IEtQu8egYYldyjTE3/kwfPeRDnvzAN7JO/NDVOHfXgc7Ag83QjPJDp/YCHaJXUf
-	D8cg==
-X-Gm-Message-State: ALoCoQmWrJm4MUBOcdFursJJKAVL0Gw9gejyyxpWXeA2FEHVKnWgd1yDKVTFCHTIitLthq80xLeZ
-X-Received: by 10.194.176.163 with SMTP id cj3mr26388393wjc.8.1379416864639;
-	Tue, 17 Sep 2013 04:21:04 -0700 (PDT)
+Return-Path: <giuseppe.bitonti@external.magnetimarelli.com>
+Received: from mx2.ex2007.fiatgroup.com (mx1.ex2007.fiatgroup.com
+	[129.35.118.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 304D6E013D6
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 05:32:39 -0700 (PDT)
+Received: from cshu05.fgremc.it (151.92.204.178) by mx1.ex2007.fiatgroup.com
+	(151.88.80.13) with Microsoft SMTP Server (TLS) id 8.3.279.5;
+	Tue, 17 Sep 2013 14:32:36 +0200
+Received: from MXCL21.fgremc.it ([151.92.205.90]) by cshu05.fgremc.it
+	([151.92.204.178]) with mapi; Tue, 17 Sep 2013 14:32:36 +0200
+From: "BITONTI Giuseppe (MM)" <giuseppe.bitonti@external.magnetimarelli.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 17 Sep 2013 14:32:34 +0200
+Thread-Topic: [yocto] Kernel debugging over serial console?
+Thread-Index: Ac6zoYgHqWrsbQ9UT2mK6QhqMHwvPg==
+Message-ID: <9E1CA21291B3664A8E8F31523A10D6BE160CFB9AC3@MXCL21.fgremc.it>
+Accept-Language: it-IT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: it-IT
 MIME-Version: 1.0
-Received: by 10.180.91.132 with HTTP; Tue, 17 Sep 2013 04:20:44 -0700 (PDT)
-In-Reply-To: <CAFyqS9omDS6s-si0U6WKB-m2BnPZnicd+H8uQg7vp+mo454ZEw@mail.gmail.com>
-References: <CAFyqS9ock8ydDEd0SE5whhWRKuRnQmTKOzq6Ad7rTYHHtosEuA@mail.gmail.com>
-	<CAFyqS9omDS6s-si0U6WKB-m2BnPZnicd+H8uQg7vp+mo454ZEw@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 17 Sep 2013 13:20:44 +0200
-Message-ID: <CAP71WjxqCC0SUXEVqLvBcnG5KjsewhUur1+t+=+F+tSxL0UBbw@mail.gmail.com>
-To: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: DISTRO_FEATURES_append, anyway to override?
+Subject: Kernel debugging over serial console?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,67 +31,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2013 11:21:09 -0000
-Content-Type: multipart/alternative; boundary=089e013cbfea36de6b04e6928404
+X-List-Received-Date: Tue, 17 Sep 2013 12:32:41 -0000
+Content-Language: it-IT
+Content-Type: multipart/alternative;
+	boundary="_000_9E1CA21291B3664A8E8F31523A10D6BE160CFB9AC3MXCL21fgremci_"
 
---089e013cbfea36de6b04e6928404
-Content-Type: text/plain; charset=ISO-8859-1
+--_000_9E1CA21291B3664A8E8F31523A10D6BE160CFB9AC3MXCL21fgremci_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 17, 2013 at 12:15 PM, Hans Beck=E9rus <hans.beckerus@gmail.com>=
-wrote:
+I am trying to debug the kernel through kgdb for an imx6 sabre lite board w=
+ith the following kernel built from poky 1.4:
 
-> > The resulting DISTRO_FEATURES (as checked by bitbake -e) shows that
-> > everything appended by poky is also added to the custom distro.
-> > Now, we would like to remove everything but the large file support as
-> > added by poky. How do we do that? Is the only practical way to copy
-> > everything from poky.conf and poky-tiny.conf into the custom distro? I
-> > really would like to avoid that if possible.
-> > I guess that the new feature DISTRO_FEATURES_remove might help us
-> > here, but unfortunately we can no step up to such a late version in
-> > a foreseeable future.
-> >
-> Maybe this is the patch we need, it seems to adress exactly this problem.
-> http://www.mail-archive.com/yocto@yoctoproject.org/msg14784.html
->
+root@imx6qsabrelite:~# uname -a
+Linux imx6qsabrelite 3.0.35-1.1.0+g2dc5560 #1 SMP PREEMPT Thu Aug 8 15:15:3=
+9 CEST 2013 armv7l GNU/Linux
 
-i agree with this conclusion. this has been 'fixed' in master, but needs to
-be backported to dylan (and danny), i believe.
+The system boot well but when I try to enter in debugging mode it returns:
 
---089e013cbfea36de6b04e6928404
-Content-Type: text/html; charset=ISO-8859-1
+root@imx6qsabrelite:~# echo g > /proc/sysrq-trigger
+SysRq : HELP : loglevel(0-9) reBoot Crash terminate-all-tasks(E) memory-ful=
+l-oom-kill(F) kill-all-tasks(I) thaw-filesystems(J) saK show-backtrace-all-=
+active-cpus(L) show-memory-usage(M) nice-all-RT-tasks(N) powerOff show-regi=
+sters(P) show-all-timers(Q) unRaw Sync show-task-states(T) Unmount ETM buff=
+er dump show-blocked-tasks(W)
+root@imx6qsabrelite:~#
+
+I have configured the kernel with the command:
+
+bitbake -c menuconfig linux-imx
+
+enabling:
+
+-*- Magic SysRq key
+[*] Kernel debugging
+[*] Compile the kernel with debug info
+[*] KGDB: kernel debugger
+<*> KGDB: use kgdb over the serial console
+
+I have also edited defconfig file in fsl-community-bsp-dylan/sources/meta-f=
+sl-arm/recipes-kernel/linux/linux-imx-3.0.35/mx6q/ adding:
+
+CONFIG_FRAME_POINTER=3Dy
+CONFIG_DEBUG_KERNEL=3Dy
+CONFIG_KGDB=3Dy
+CONFIG_DEBUG_INFO=3Dy
+CONFIG_KGDB_SERIAL_CONSOLE=3Dy
+CONFIG_MAGIC_SYSRQ=3Dy
+
+and added kernel parameter to bootargs with:
+
+MX6QSABRELITE U-Boot > editenv mmcargs
+edit: setenv bootargs console=3D${console},${baudrate} root=3D${mmcroot} kg=
+dboc=3Dttymxc1,115200
+MX6QSABRELITE U-Boot > saveenv
+Saving Environment to MMC...
+Writing to MMC(0)... done
+MX6QSABRELITE U-Boot > boot
+
+but it still does not work.
+
+Thank You.
+
+Giuseppe
+
+
+
+--_000_9E1CA21291B3664A8E8F31523A10D6BE160CFB9AC3MXCL21fgremci_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Sep 17, 2013 at 12:15 PM, Hans Beck=E9rus <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:hans.beckerus@gmail.com" target=3D"_blank">hans.beckerus@gma=
-il.com</a>&gt;</span> wrote:<br>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
+=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
+oft Word 14 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.StileMessaggioDiPostaElettronica17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.hps
+	{mso-style-name:hps;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>I am trying to d=
+ebug the kernel through kgdb for an imx6 sabre lite board with the followin=
+g kernel built from poky 1.4:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp=
+;</o:p></p><p class=3DMsoNormal>root@imx6qsabrelite:~# uname -a<o:p></o:p><=
+/p><p class=3DMsoNormal>Linux imx6qsabrelite 3.0.35-1.1.0+g2dc5560 #1 SMP P=
+REEMPT Thu Aug 8 15:15:39 CEST 2013 armv7l GNU/Linux<o:p></o:p></p><p class=
+=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>The system boot well=
+ but when I try to enter in debugging mode it returns:<o:p></o:p></p><p cla=
+ss=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>root@imx6qsabrelit=
+e:~# echo g &gt; /proc/sysrq-trigger<o:p></o:p></p><p class=3DMsoNormal>Sys=
+Rq : HELP : loglevel(0-9) reBoot Crash terminate-all-tasks(E) memory-full-o=
+om-kill(F) kill-all-tasks(I) thaw-filesystems(J) saK show-backtrace-all-act=
+ive-cpus(L) show-memory-usage(M) nice-all-RT-tasks(N) powerOff show-registe=
+rs(P) show-all-timers(Q) unRaw Sync show-task-states(T) Unmount ETM buffer =
+dump show-blocked-tasks(W) <o:p></o:p></p><p class=3DMsoNormal>root@imx6qsa=
+brelite:~#<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=
+=3DMsoNormal>I have configured the kernel with the command:<o:p></o:p></p><=
+p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>bitbake -c me=
+nuconfig linux-imx<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p>=
+<p class=3DMsoNormal>enabling:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbs=
+p;</o:p></p><p class=3DMsoNormal>-*- Magic SysRq key<o:p></o:p></p><p class=
+=3DMsoNormal>[*] Kernel debugging<o:p></o:p></p><p class=3DMsoNormal>[*] Co=
+mpile the kernel with debug info<o:p></o:p></p><p class=3DMsoNormal>[*] KGD=
+B: kernel debugger<o:p></o:p></p><p class=3DMsoNormal>&lt;*&gt; KGDB: use k=
+gdb over the serial console<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;<=
+/o:p></p><p class=3DMsoNormal>I have also edited defconfig file in fsl-comm=
+unity-bsp-dylan/sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/=
+mx6q/ adding:<o:p></o:p></p><p>CONFIG_FRAME_POINTER=3Dy<br>CONFIG_DEBUG_KER=
+NEL=3Dy<br>CONFIG_KGDB=3Dy<br>CONFIG_DEBUG_INFO=3Dy<br>CONFIG_KGDB_SERIAL_C=
+ONSOLE=3Dy<br>CONFIG_MAGIC_SYSRQ=3Dy<o:p></o:p></p><p>and added kernel para=
+meter to bootargs with:<o:p></o:p></p><p>MX6QSABRELITE U-Boot &gt; editenv =
+mmcargs<br>edit: setenv bootargs console=3D${console},${baudrate} root=3D${=
+mmcroot} kgdboc=3Dttymxc1,115200<br>MX6QSABRELITE U-Boot &gt; saveenv<br>Sa=
+ving Environment to MMC...<br>Writing to MMC(0)... done<br>MX6QSABRELITE U-=
+Boot &gt; boot<o:p></o:p></p><p>but it still <span class=3Dhps><span lang=
+=3DEN>does not work.<o:p></o:p></span></span></p><p><span class=3Dhps><span=
+ lang=3DEN>Thank You.<o:p></o:p></span></span></p><p><span class=3Dhps><spa=
+n lang=3DEN>Giuseppe</span></span><o:p></o:p></p><p class=3DMsoNormal><o:p>=
+&nbsp;</o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></ht=
+ml>=
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">&gt; The resulting DISTRO_=
-FEATURES (as checked by bitbake -e) shows that<br>
-&gt; everything appended by poky is also added to the custom distro.<br>
-&gt; Now, we would like to remove everything but the large file support as<=
-br>
-&gt; added by poky. How do we do that? Is the only practical way to copy<br=
->
-&gt; everything from poky.conf and poky-tiny.conf into the custom distro? I=
-<br>
-&gt; really would like to avoid that if possible.<br>
-&gt; I guess that the new feature DISTRO_FEATURES_remove might help us<br>
-&gt; here, but unfortunately we can no step up to such a late version in<br=
->
-&gt; a foreseeable future.<br>
-&gt;<br>
-</div>Maybe this is the patch we need, it seems to adress exactly this prob=
-lem.<br>
-<a href=3D"http://www.mail-archive.com/yocto@yoctoproject.org/msg14784.html=
-" target=3D"_blank">http://www.mail-archive.com/yocto@yoctoproject.org/msg1=
-4784.html</a><div class=3D"yj6qo ajU"><div id=3D":tg" class=3D"ajR" tabinde=
-x=3D"0">
-
-</div></div></blockquote></div><br>i agree with this conclusion. this has b=
-een &#39;fixed&#39; in master, but needs to be backported to dylan (and dan=
-ny), i believe.</div></div>
-
---089e013cbfea36de6b04e6928404--
+--_000_9E1CA21291B3664A8E8F31523A10D6BE160CFB9AC3MXCL21fgremci_--
