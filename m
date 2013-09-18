@@ -1,26 +1,26 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 605C0E014C1
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 01:12:35 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 18 Sep 2013 01:12:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,929,1371106800"; d="scan'208";a="296288992"
-Received: from bensonmi-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.123.212])
-	by AZSMGA002.ch.intel.com with ESMTP; 18 Sep 2013 01:12:34 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Hans Beckerus <hans.beckerus@gmail.com>
-Date: Wed, 18 Sep 2013 09:12:32 +0100
-Message-ID: <8312953.BrE7t8V9ee@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-30-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <5238AA2A.8020302@gmail.com>
-References: <CAFyqS9oT-y6p7=xs22iYNvs0bv1J7AKTA5Wrg_piStiWF+z9cg@mail.gmail.com>
-	<5238AA2A.8020302@gmail.com>
+Return-Path: <anders@chargestorm.se>
+Received: from STOEXHUB01.domain01.net (STOEXHUB01.domain01.net
+	[83.145.59.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43C5AE014C1
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 01:48:01 -0700 (PDT)
+Received: from ad.chargestorm.se (83.252.255.124) by STOEXHUB01.domain01.net
+	(10.12.10.1) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Wed, 18 Sep 2013 10:47:57 +0200
+Date: Wed, 18 Sep 2013 10:47:56 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: <yocto@yoctoproject.org>
+Message-ID: <20130918084756.GA12397@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <E51394554A503C4E852F9BEE46B03E8DEFE76C@TI-ODIN.tasernet.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Problems building util-linux when wide character support is disabled in distro
+In-Reply-To: <E51394554A503C4E852F9BEE46B03E8DEFE76C@TI-ODIN.tasernet.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Re: QMake & externalsrc incompatible?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,32 +32,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2013 08:12:36 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 18 Sep 2013 08:48:02 -0000
 Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Hi Hans,
+* Brad Litterell <brad@evidence.com> [130917 21:20]:
+> I have a number of QT components that have qmake style .pro files.
 
-On Tuesday 17 September 2013 21:14:50 Hans Beckerus wrote:
-> The way forward as I can see right
-> now is to revert and put back the wide character support in libc. Unless I
-> can figure out why util-linux is actually being built in the first place?
-> What can cause dependencies to this package? It is not part of our
-> IMAGE_FEATURES directly, nor indirectly and is not installed in our rootfs.
-> But something requires it. Any hints on how to trace this back?
+> In my recipe I inherit both externalsrc & qmake2.  I'm using qmake2 based on
+> the quicky sample recipe since I don't need X11 or the other GUI libraries.
 
-Look at the dot graphs produced by bitbake -g (too large to be viewed in a 
-viewer, but you can look at them in text form) or use bitbake -g -u depexp 
-which provides a UI for exploring dependencies.
+I've got a similar recipe setup for some of my coworkers. The main
+difference being that we're inheriting qt4e instead of qmake2.
 
-FWIW, looking at the graphs here for core-image-minimal, udev is the most 
-likely culprit unless you have something else that needs it (e.g. e2fsprogs).
+> In the bitbake work folder, the generated run.do_configure script resembles
+> this:
+
+> cd /home/brad/ecom/build/toolchain/work/.../ecomapi-2.0-r0/ecomapi-2.0/
+> ...
+> PROFILES="`ls *.pro`"
+
+> This is the location where a tarball would normally be unpacked, but in this
+> case I'm using externalsrc and the source files are not here.  Therefore the ls
+> *.pro doesn't return anything for the automatic profile detection and the build
+> fails.
+
+> My recipe is very simple (removing the description & licensing):
+
+> PV = "2.0"
+> inherit externalsrc qmake2
+> S = "${OEBASE}/ecomapi"
+
+To make it work correctly, I used:
+
+S := "${THISDIR}/chargemanager"
+B := "${S}"
+
+You shouldn't need to use :=, I was required to do that as I needed to
+use THISDIR (and thus I need the expansion to occur immediately).
+
+Just setting S wasn't enough for me, I needed to also define B. Note,
+though, that this means that you can't build your recipe for multiple
+arch's etc.
 
 Cheers,
-Paul
+Anders
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Anders Darander
+ChargeStorm AB / eStorm AB
 
