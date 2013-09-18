@@ -1,33 +1,26 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
-	[209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99915E01507
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 02:00:11 -0700 (PDT)
-Received: by mail-ob0-f173.google.com with SMTP id vb8so6995911obc.18
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 02:00:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=/GQF0CAC3AAuCo4YXWBD2kCKpLxzLxJnC0SjLMjIPSg=;
-	b=WkuEP5e3gFTIX4Bpp6bf/cYIsyVD99O2Zedp4JHBFT2gBHoE2o3ahhFA2vMUWKsPZn
-	yoQLfm0owtmmRHyMCl+La4EriX4c3WRrdGDJ7bxZGfLCtcqMSDqrmvV1G3rUZ0i2E/V6
-	0rB7hbTeaFv7MsBksqMwD7IxOG/MJnDBoaWAbkJQO5L+jLqCMY8K5q8Ge/zsBVPw6GOZ
-	CgCGhdOKnh1sAhYAvume8qEdJhnYrxPVMxy5emsZ7HvbWFXITdFsT86xr3fom3bPWqpi
-	NRW+zKNH6ZLCUko+FyY+7ENaVNuRNySKUnM5ws/nRiwFbCVGx0GL3lYhWcOm2A39n3g3
-	J+PA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FCFDE01507
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 02:41:25 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 18 Sep 2013 02:38:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,929,1371106800"; d="scan'208";a="379942422"
+Received: from bensonmi-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.123.212])
+	by orsmga001.jf.intel.com with ESMTP; 18 Sep 2013 02:41:23 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Anders Darander <anders@chargestorm.se>, Brad Litterell <brad@evidence.com>
+Date: Wed, 18 Sep 2013 10:41:22 +0100
+Message-ID: <3955475.5Ihbqp1Ot3@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-30-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <20130918084756.GA12397@ad.chargestorm.se>
+References: <E51394554A503C4E852F9BEE46B03E8DEFE76C@TI-ODIN.tasernet.com>
+	<20130918084756.GA12397@ad.chargestorm.se>
 MIME-Version: 1.0
-X-Received: by 10.182.226.199 with SMTP id ru7mr33491692obc.12.1379494811006; 
-	Wed, 18 Sep 2013 02:00:11 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Wed, 18 Sep 2013 02:00:10 -0700 (PDT)
-In-Reply-To: <8312953.BrE7t8V9ee@helios>
-References: <CAFyqS9oT-y6p7=xs22iYNvs0bv1J7AKTA5Wrg_piStiWF+z9cg@mail.gmail.com>
-	<5238AA2A.8020302@gmail.com> <8312953.BrE7t8V9ee@helios>
-Date: Wed, 18 Sep 2013 11:00:10 +0200
-Message-ID: <CAFyqS9q6S9ih1jiTQnaAgP4EC6u_xok9rej754H8B43K+8sg2g@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problems building util-linux when wide character support is disabled in distro
+Cc: yocto@yoctoproject.org
+Subject: Re: QMake & externalsrc incompatible?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,44 +32,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2013 09:00:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 18 Sep 2013 09:41:26 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, Sep 18, 2013 at 10:12 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> Hi Hans,
+On Wednesday 18 September 2013 10:47:56 Anders Darander wrote:
+> * Brad Litterell <brad@evidence.com> [130917 21:20]:
+> > I have a number of QT components that have qmake style .pro files.
+> > 
+> > In my recipe I inherit both externalsrc & qmake2.  I'm using qmake2 based
+> > on the quicky sample recipe since I don't need X11 or the other GUI
+> > libraries.
 >
-> On Tuesday 17 September 2013 21:14:50 Hans Beckerus wrote:
->> The way forward as I can see right
->> now is to revert and put back the wide character support in libc. Unless I
->> can figure out why util-linux is actually being built in the first place?
->> What can cause dependencies to this package? It is not part of our
->> IMAGE_FEATURES directly, nor indirectly and is not installed in our rootfs.
->> But something requires it. Any hints on how to trace this back?
->
-> Look at the dot graphs produced by bitbake -g (too large to be viewed in a
-> viewer, but you can look at them in text form) or use bitbake -g -u depexp
-> which provides a UI for exploring dependencies.
->
-> FWIW, looking at the graphs here for core-image-minimal, udev is the most
-> likely culprit unless you have something else that needs it (e.g. e2fsprogs).
->
-Thanks Paul. I think it is e2fsprogs.
-Actually, now after I enabled wide support again, I am having problems
-building e2fsprogs instead.
+> I've got a similar recipe setup for some of my coworkers. The main
+> difference being that we're inheriting qt4e instead of qmake2.
+> 
+> > In the bitbake work folder, the generated run.do_configure script
+> > resembles
+> > this:
+> > 
+> > cd /home/brad/ecom/build/toolchain/work/.../ecomapi-2.0-r0/ecomapi-2.0/
+> > ...
+> > PROFILES="`ls *.pro`"
+> > 
+> > This is the location where a tarball would normally be unpacked, but in
+> > this case I'm using externalsrc and the source files are not here. 
+> > Therefore the ls *.pro doesn't return anything for the automatic profile
+> > detection and the build fails.
+> > 
+> > My recipe is very simple (removing the description & licensing):
+> > 
+> > PV = "2.0"
+> > inherit externalsrc qmake2
+> > S = "${OEBASE}/ecomapi"
+> 
+> To make it work correctly, I used:
+> 
+> S := "${THISDIR}/chargemanager"
+> B := "${S}"
+> 
+> You shouldn't need to use :=, I was required to do that as I needed to
+> use THISDIR (and thus I need the expansion to occur immediately).
+> 
+> Just setting S wasn't enough for me, I needed to also define B. Note,
+> though, that this means that you can't build your recipe for multiple
+> arch's etc.
 
-e4defrag.c:1906: undefined reference to `nftw64'
+This just looks like the value of PROFILES in qmake_base.bbclass needs to be 
+fixed to look in ${S} instead of the current directory (which would be ${B}). 
+I'm not sure if any other tweaks would be needed for qmake to allow S != B 
+though.
 
-AFAIK, nftw64 is part of the large file support, but that we have not
-changed in our DISTRO_FEATURES so that came as a surprise really :(
+Cheers,
+Paul
 
-Hans
+-- 
 
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
+Paul Eggleton
+Intel Open Source Technology Centre
 
