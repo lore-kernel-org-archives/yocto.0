@@ -1,33 +1,25 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f51.google.com (mail-vb0-f51.google.com
-	[209.85.212.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48BF5E0150A
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 17:22:17 -0700 (PDT)
-Received: by mail-vb0-f51.google.com with SMTP id x16so4594053vbf.24
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 17:22:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=qU9w4lXefkMac/ZXf8UVdNuAH8DCHpYtGAJgAzXY7Ko=;
-	b=GxyUZNbbGh9K1vOyZ3GGQgdDFUdoOQfpRRJ0t6FQUFFE6393xfhLe8/nT+phgfISg8
-	8jn6mJZ0Ez4h/vIOzKD32aBpJQNTNb3FdwZBhNSZJyrPS5YsEwEryIdKj1tCpm0sOx8g
-	ik6MCEhi1nVHauLlB9Y6Ql4CjLxD5T1khCQJsqmP29WFQriZmf83SG4o6G4wnKNgA/J2
-	ObEeDQf5irBiM8XNun46mW7c2NJwTZqCbyjRl4SXOxn2gGHKow2BH+9vTX98qS2mc4vU
-	vCDZASo3ETe6fV1ahbHSuIpnp3wF6pq8lt/4uMjPMDfrnBDDQY6zhgk1UNamGabStEWb
-	HzOg==
-X-Gm-Message-State: ALoCoQn0zQVAabm3tANUSId07TJH0CxaoYtT0ZK0vNubaqUHgsfAbQA/ge36FF50ei23EUO4t9rJ
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5A93E0155E
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 18:21:42 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=[10.79.148.145])
+	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VM6P8-00074P-Ct; Wed, 18 Sep 2013 01:21:41 +0000
+Message-ID: <5238FF44.6000502@twobit.us>
+Date: Tue, 17 Sep 2013 21:17:56 -0400
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130828 Icedove/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.220.186.202 with SMTP id ct10mr35593421vcb.14.1379463736989; 
-	Tue, 17 Sep 2013 17:22:16 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Tue, 17 Sep 2013 17:22:16 -0700 (PDT)
-Date: Tue, 17 Sep 2013 17:22:16 -0700
-Message-ID: <CAPhnLPAs8vq5aF4+jfZZsZsMDY8RLOgKS1u4=xKhKnACu_frVw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: 1.5_M5.rc2 status
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.5.1
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: No (on www.twobit.us); Unknown failure
+Subject: [meta-selinux] Install policy headers and include them in the refpolicy dev package.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,22 +31,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2013 00:22:18 -0000
+X-List-Received-Date: Wed, 18 Sep 2013 01:21:43 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-All,
+This patch is pretty straight forward: All we do is call the
+'install-headers' make target at the end of do_install. We then add
+the interface 'include' directory to the dev package. This allows
+projects that ship their own SELinux policy (not in the refpolicy)
+to build against the refpolicy headers / interface files by using
+the Makefile supplied by refpolicy.
 
-We attempted a spin of rc2 today and found issues that make it
-necessary for an rc3 spin which will probably happen tomorrow
-afternoon PST. We are going to let the build continue so that we can
-identify any other issues, but so far, the main issue seems to be
-libxml-parser-perl qa check complaining about a bad RPATH and
-poky-tiny deploy (which I have a fix I'm testing right now)
+Signed-off-by: Philip Tricca <flihp@twobit.us>                                 
+---
+ recipes-security/refpolicy/refpolicy_common.inc |    6 +++++-                 
+ 1 file changed, 5 insertions(+), 1 deletion(-)                                
+                                                                               
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc                                               
+index 2c8891a..0f9f83b 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -12,7 +12,8 @@ SRC_URI += "file://customizable_types \
+ S = "${WORKDIR}/refpolicy"
 
--b
+ FILES_${PN} = "${sysconfdir}/selinux/${POLICY_NAME}/ \
+-       ${datadir}/selinux/${POLICY_NAME}/"
++       ${datadir}/selinux/${POLICY_NAME}/*.pp"
++FILES_${PN}-dev =+ "${datadir}/selinux/${POLICY_NAME}/include/"
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+ DEPENDS += "checkpolicy-native policycoreutils-native m4-native"
+ RDEPENDS_${PN} += "policycoreutils selinux-config"
+@@ -75,4 +76,7 @@ EOF
+
+        cat ${WORKDIR}/customizable_types >> \
+                ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/customizable_types
++
++       # install policy headers
++       oe_runmake install-headers DESTDIR=${D}
+ }
+--                                                                             
+1.7.10.4
 
