@@ -1,28 +1,28 @@
-Return-Path: <arunkr.linux@gmail.com>
-Received: from mail-vb0-f41.google.com (mail-vb0-f41.google.com
-	[209.85.212.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0520EE01530
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 05:36:50 -0700 (PDT)
-Received: by mail-vb0-f41.google.com with SMTP id g17so5340634vbg.28
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 05:36:50 -0700 (PDT)
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
+	[209.85.214.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB880E0154F
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 06:17:42 -0700 (PDT)
+Received: by mail-ob0-f180.google.com with SMTP id wm4so7130050obc.39
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 06:17:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=7rJSCJbVHM8NJwLHitIlfSqTW1ybWtBWheATxkVggyA=;
-	b=e630jd8OrnIek4hG9ka8JWvvRIP5rMcjtTCZhtJZsEjdtWP/Y6I3In51/R1CVF9zaZ
-	T496ZIDnmpx9ZyFAaUz3gDLnlgi2znLgrayqlvN4nwbgO5ubl/dFGzBEDEtEBuR9z/eC
-	F/fdTJDj72Kdgslz6+u6bTpaAZDJbp76Y/vivZ+D5g7nN8HG0buSxvzBDQTJ/AJRiSZN
-	wWhgh/LHlakDls2vsVfs5mVruHxPYKsOhknBv2oHw5C2LGEC8B96/ErYvtTF24q2JG4G
-	PAtF1MQPUj0b+iBOhxnTO+Wjn9gKD1RVPVuoDC6H68vAhfh60upx2kiChnIwkzU6zs7E
-	cgxg==
+	bh=bABxQO1k4fq3F2ObT1SgGCbQ41n8gorIplJcyTsUgGY=;
+	b=1AlqPdVJv9IPWKIUjiOv1hawkwhJNwgZtthSHi8FAA9EHoO/xXefR3XzFIOY6RQ0/x
+	jsVeLhpKM1qvYiqpZDiw7Am/sr3cdTORpyWFF1BtVkKnb0QzoH7PsZGlUslk3UzN51WX
+	9RTWcGBKmrCFamZLTIXyI+7HaExVDVfTk3h/e4OpaYYfB0448/C9Gm39cNVjc35xRZ/E
+	V9CulJa/7uISlue0vaHzuVXH6j483pD3rjEu6P+WdNeEh4+kdxFKBPzLiP3rfHLZEmnA
+	2wymlj5kJZL2AVkLEg5sMMOqp+sRNxkoKuXSzPIoFRR2sKEo9HsyvaSQXrU1K94PowHZ
+	djLQ==
 MIME-Version: 1.0
-X-Received: by 10.58.190.34 with SMTP id gn2mr35785vec.34.1379507810083; Wed,
-	18 Sep 2013 05:36:50 -0700 (PDT)
-Received: by 10.58.198.167 with HTTP; Wed, 18 Sep 2013 05:36:50 -0700 (PDT)
-Date: Wed, 18 Sep 2013 18:06:50 +0530
-Message-ID: <CABG0-3x9b=VgfV95ONo2Gwxje+FiDbM=sVP8JtNyYqdDNWrnwA@mail.gmail.com>
-From: arun kumar <arunkr.linux@gmail.com>
-To: yocto@yoctoproject.org
-Subject: adding custom packages to Yocto build
+X-Received: by 10.60.52.81 with SMTP id r17mr34817339oeo.3.1379510262383; Wed,
+	18 Sep 2013 06:17:42 -0700 (PDT)
+Received: by 10.182.44.8 with HTTP; Wed, 18 Sep 2013 06:17:42 -0700 (PDT)
+Date: Wed, 18 Sep 2013 15:17:42 +0200
+Message-ID: <CAFyqS9pcF-JXmoZd=eH1FWb+j1LmqYB_uE=s=eraCN+uPgn7zw@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: What libc features are needed for proper large file support?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,31 +34,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2013 12:36:52 -0000
-Content-Type: multipart/alternative; boundary=089e0158bee8fc292f04e6a7b068
-
---089e0158bee8fc292f04e6a7b068
+X-List-Received-Date: Wed, 18 Sep 2013 13:17:45 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-I recently built my first build using Yocto and am new to OpenEmbedded
-based build systems.
+We are having some problems building e2fsprogs using our custom distro
+based on poky-tiny.
+The error we get is typically:
 
-How can i add/ configure what packages are built into the image?
-I want OpenCV to be present in the image that i build, what is the
-procedure to do that.
+e4defrag.c:1958: undefined reference to `nftw64'
 
-Links to appropriate documents shall be appreciated.
+So, it seems some libc feature in addition is missing to get proper
+working support for the large file API.
+Below is a comparison between standard poky and our distro.
 
---089e0158bee8fc292f04e6a7b068
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+poky:
+DISTRO_FEATURES="alsa argp bluetooth ext2 irda largefile pcmcia
+usbgadget usbhost wifi xattr nfs zeroconf pci 3g nfc x11 ipv4 ipv6
+libc-backtrace libc-big-macros libc-bsd libc-cxx-tests libc-catgets
+libc-charsets libc-crypt libc-crypt-ufc libc-db-aliases libc-envz
+libc-fcvt libc-fmtmsg libc-fstab libc-ftraverse libc-getlogin libc-idn
+libc-inet-anl libc-libm libc-libm-big libc-locales libc-locale-code
+libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug
+libc-spawn libc-streams libc-sunrpc libc-utmp libc-utmpx libc-wordexp
+libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-glibc
+libc-posix-wchar-io largefile opengl multiarch wayland pulseaudio
+sysvinit"
 
-<div dir=3D"ltr"><div><div><div>I recently built my first build using Yocto=
- and am new to OpenEmbedded based build systems.<br><br></div>How can i add=
-/ configure what packages are built into the image?<br></div>I want OpenCV =
-to be present in the image that i build, what is the procedure to do that.<=
-br>
-</div><div><br></div>Links to appropriate documents shall be appreciated.<b=
-r></div>
+poky-custom (based on tiny)
+DISTRO_FEATURES="ipv4 usbhost usbgadget ${DISTRO_FEATURES_WIFI}
+libc-libm libc-crypt libc-utmp libc-getlogin libc-posix-regexp
+libc-inet libc-nis   libc-posix-clang-wchar libc-posix-wchar-io
+libc-locale-code sysvinit largefile nfs"
 
---089e0158bee8fc292f04e6a7b068--
+A huge difference indeed, which is sort of the whole point ;) Anyone
+have the slightest idea what of the libc features we need to enable
+additionally to get full large file support?
+A trial and error approach playing a guess game to figure this out
+would become a very tedious task :( It is probably obvious once
+it/they are identified but right now it is complete darkness.
+
+Thanks.
+Hans
+
