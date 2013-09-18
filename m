@@ -1,25 +1,26 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5A93E0155E
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2013 18:21:42 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=[10.79.148.145])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VM6P8-00074P-Ct; Wed, 18 Sep 2013 01:21:41 +0000
-Message-ID: <5238FF44.6000502@twobit.us>
-Date: Tue, 17 Sep 2013 21:17:56 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130828 Icedove/17.0.8
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 605C0E014C1
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 01:12:35 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 18 Sep 2013 01:12:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,929,1371106800"; d="scan'208";a="296288992"
+Received: from bensonmi-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.123.212])
+	by AZSMGA002.ch.intel.com with ESMTP; 18 Sep 2013 01:12:34 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Hans Beckerus <hans.beckerus@gmail.com>
+Date: Wed, 18 Sep 2013 09:12:32 +0100
+Message-ID: <8312953.BrE7t8V9ee@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-30-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <5238AA2A.8020302@gmail.com>
+References: <CAFyqS9oT-y6p7=xs22iYNvs0bv1J7AKTA5Wrg_piStiWF+z9cg@mail.gmail.com>
+	<5238AA2A.8020302@gmail.com>
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.5.1
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: No (on www.twobit.us); Unknown failure
-Subject: [meta-selinux] Install policy headers and include them in the refpolicy dev package.
+Cc: yocto@yoctoproject.org
+Subject: Re: Problems building util-linux when wide character support is disabled in distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,44 +32,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2013 01:21:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 18 Sep 2013 08:12:36 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-This patch is pretty straight forward: All we do is call the
-'install-headers' make target at the end of do_install. We then add
-the interface 'include' directory to the dev package. This allows
-projects that ship their own SELinux policy (not in the refpolicy)
-to build against the refpolicy headers / interface files by using
-the Makefile supplied by refpolicy.
+Hi Hans,
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>                                 
----
- recipes-security/refpolicy/refpolicy_common.inc |    6 +++++-                 
- 1 file changed, 5 insertions(+), 1 deletion(-)                                
-                                                                               
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc                                               
-index 2c8891a..0f9f83b 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -12,7 +12,8 @@ SRC_URI += "file://customizable_types \
- S = "${WORKDIR}/refpolicy"
+On Tuesday 17 September 2013 21:14:50 Hans Beckerus wrote:
+> The way forward as I can see right
+> now is to revert and put back the wide character support in libc. Unless I
+> can figure out why util-linux is actually being built in the first place?
+> What can cause dependencies to this package? It is not part of our
+> IMAGE_FEATURES directly, nor indirectly and is not installed in our rootfs.
+> But something requires it. Any hints on how to trace this back?
 
- FILES_${PN} = "${sysconfdir}/selinux/${POLICY_NAME}/ \
--       ${datadir}/selinux/${POLICY_NAME}/"
-+       ${datadir}/selinux/${POLICY_NAME}/*.pp"
-+FILES_${PN}-dev =+ "${datadir}/selinux/${POLICY_NAME}/include/"
+Look at the dot graphs produced by bitbake -g (too large to be viewed in a 
+viewer, but you can look at them in text form) or use bitbake -g -u depexp 
+which provides a UI for exploring dependencies.
 
- DEPENDS += "checkpolicy-native policycoreutils-native m4-native"
- RDEPENDS_${PN} += "policycoreutils selinux-config"
-@@ -75,4 +76,7 @@ EOF
+FWIW, looking at the graphs here for core-image-minimal, udev is the most 
+likely culprit unless you have something else that needs it (e.g. e2fsprogs).
 
-        cat ${WORKDIR}/customizable_types >> \
-                ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/customizable_types
-+
-+       # install policy headers
-+       oe_runmake install-headers DESTDIR=${D}
- }
---                                                                             
-1.7.10.4
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
