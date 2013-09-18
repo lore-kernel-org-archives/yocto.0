@@ -1,34 +1,25 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
-	[74.125.82.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E25AE01419
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 07:38:22 -0700 (PDT)
-Received: by mail-we0-f181.google.com with SMTP id p61so6504934wes.40
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 07:38:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=eweGW7k5mD9MbfJYK77H14o6W713KImhOOWKSQs3ZZA=;
-	b=POH775jKF4OiWWyavqQit1V4bFXbZQwIy6gKM/O1KAnjkjm3nxo0Q4RuFet0E9Gv9e
-	gzedvQ0N4P7CoB5BOncRVTProLzT7O8tKbSyRCcT0lRMvfjEvKBdIgM9u5ZF/pUH8eq2
-	TeMESSDof3Sl2vLdZIgLhctJAE4DcpwW5rQrDgtmNN4CilfFwkhjxlWW5mJcbytkdWga
-	oORcCSk0k2c97Xv8SLLz6wIs/3nomnj09+DHKIXiIxJb9UufCroSqmnjv1J8cRRbhmZN
-	8bHPyH0DeYv/4DwYnXRw0ZxS13SqxiO7nAMiLQTLW2G64Ls1jEqQmpmUG2BF+0iCa+0R
-	Q6qQ==
-X-Gm-Message-State: ALoCoQkF4GxGM6u1kWdE8bbmq46+ArdJykI71AYYA6oQ2CWw5qGcXV+T8+1cVcrokYDvzFGw04t4
-X-Received: by 10.180.208.45 with SMTP id mb13mr7338203wic.27.1379515101305;
-	Wed, 18 Sep 2013 07:38:21 -0700 (PDT)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1462CE01422
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 10:34:45 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 18 Sep 2013 10:31:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,930,1371106800"; d="scan'208";a="397688588"
+Received: from bensonmi-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.123.212])
+	by fmsmga001.fm.intel.com with ESMTP; 18 Sep 2013 10:34:39 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: arun kumar <arunkr.linux@gmail.com>
+Date: Wed, 18 Sep 2013 18:34:38 +0100
+Message-ID: <3888748.3kOcTSHL8K@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-30-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CABG0-3x9b=VgfV95ONo2Gwxje+FiDbM=sVP8JtNyYqdDNWrnwA@mail.gmail.com>
+References: <CABG0-3x9b=VgfV95ONo2Gwxje+FiDbM=sVP8JtNyYqdDNWrnwA@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.180.91.132 with HTTP; Wed, 18 Sep 2013 07:38:01 -0700 (PDT)
-In-Reply-To: <CANwz6nzOp-VJgaf-dxhfVYwgrRF2tDA2hRdnJkLosiNQDBXyQQ@mail.gmail.com>
-References: <CANwz6nzOp-VJgaf-dxhfVYwgrRF2tDA2hRdnJkLosiNQDBXyQQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 18 Sep 2013 16:38:01 +0200
-Message-ID: <CAP71WjwzvYFvDm1Akso8nKq6ycfOjz40CYve3TRr_MSw5e-bgg@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto armhf & armel on zedboard
+Cc: yocto@yoctoproject.org
+Subject: Re: adding custom packages to Yocto build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +31,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2013 14:38:23 -0000
-Content-Type: multipart/alternative; boundary=001a11c37be493734004e6a963de
+X-List-Received-Date: Wed, 18 Sep 2013 17:34:46 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a11c37be493734004e6a963de
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Arun,
 
-On Wed, Sep 18, 2013 at 4:35 PM, Edward Vidal <vidal.develone@gmail.com>wrote:
+On Wednesday 18 September 2013 18:06:50 arun kumar wrote:
+> I recently built my first build using Yocto and am new to OpenEmbedded
+> based build systems.
+> 
+> How can i add/ configure what packages are built into the image?
+> I want OpenCV to be present in the image that i build, what is the
+> procedure to do that.
+> 
+> Links to appropriate documents shall be appreciated.
 
-> While trying to add additional software I came across a problem.  Ubuntu
-> uses armhf and the packages I had built with Yocto use armel.
-> Is there a license issue with building with armhf instead of armel with
-> Yocto?
->
->
-not at all. it is unrelated. armhf vs armel is 'just' a build configuration
-change, it is the same source code that is being built, just different
-binary produced out of it.
+The best documentation for this is in the following Yocto Project Development
+Manual section:
 
---001a11c37be493734004e6a963de
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Sep 18, 2013 at 4:35 PM, Edward Vidal <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:vidal.develone@gmail.com" target=3D"_blank">vidal.develone@gmail=
-.com</a>&gt;</span> wrote:<br>
+Cheers,
+Paul
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">While trying to add additio=
-nal software I came across a problem.=A0 Ubuntu
- uses armhf and the packages I had built with Yocto use armel.<br>Is there =
-a license issue with building with armhf instead of armel with Yocto?=A0 <b=
-r><br></div></blockquote></div><br>not at all. it is unrelated. armhf vs ar=
-mel is &#39;just&#39; a build configuration change, it is the same source c=
-ode that is being built, just different binary produced out of it.</div>
+-- 
 
-<div class=3D"gmail_extra"><br></div></div>
+Paul Eggleton
+Intel Open Source Technology Centre
 
---001a11c37be493734004e6a963de--
