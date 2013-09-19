@@ -1,31 +1,37 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A6AE015E5
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 18:10:34 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=[172.16.1.10])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VMSlL-0008TD-76; Thu, 19 Sep 2013 01:10:32 +0000
-Message-ID: <523A4EFA.1040907@twobit.us>
-Date: Wed, 18 Sep 2013 21:10:18 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130828 Icedove/17.0.8
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
+	[209.85.215.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B275E015E5
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 18:36:08 -0700 (PDT)
+Received: by mail-ea0-f170.google.com with SMTP id h14so3833498eak.15
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 18:36:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=6ERGNtrOXkdzH5z/fjChHQYUgtZWorMRFf7E1JUXYp4=;
+	b=PlsDPLf2swnwoV6JXnZXWjmquWBgW16LGIEGBxrkcJRapFAKrSGUeNHh1AgONckHHF
+	MeCNsTZwsE/4ejYnYCLZoFVxdc+sBvEcjFCFgmvJ/29+6Fmv2HtmRq5CkYxiCBsZDyjd
+	tcf/RpdQGcpW7WQKoZnljZDpwSRZKlpPC0iUHeKP/jVkm62OS35qNCxdkgsBfGcsfGrA
+	qkodC8t5KYYNVjPVdVbPnBKJoh1T4rCI9XMWGJdJQ5pWDGvfEZNfyLewwZNQdKO8ozQS
+	/TlP9hE30U4BoR2dKs9WVk3xtbu/off0d1VOpYPVymeFdNanX1kWFWKQIuSTgezjzbrt
+	Nz9A==
+X-Gm-Message-State: ALoCoQl8JJCzlbdltDH8u3hGmJyMEHAKZd0rSV8VXxH5lVaExD/zl2Lptr1Rg4MHUPWD+t4/z02a
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <5238FF44.6000502@twobit.us>
-In-Reply-To: <5238FF44.6000502@twobit.us>
-X-Enigmail-Version: 1.5.1
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: Re: [meta-selinux] Install policy headers and include them in the refpolicy dev package.
+X-Received: by 10.14.88.65 with SMTP id z41mr32580912eee.38.1379554567129;
+	Wed, 18 Sep 2013 18:36:07 -0700 (PDT)
+Received: by 10.14.117.67 with HTTP; Wed, 18 Sep 2013 18:36:06 -0700 (PDT)
+In-Reply-To: <CAGNsrLDmJDvT3X_7=V+RTiHkG9kZoadXvAnW5WU19EJeO-yO2Q@mail.gmail.com>
+References: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
+	<CAGNsrLCvcW2WNSfmMm-DLQMxFXC5=rr9Sknj6ECdmuiZc=gHgg@mail.gmail.com>
+	<CALmOhgkPb8KC5iCYZ+FWhzcPmZG9Vpr3Zw3CurdtUn7b2L4WYA@mail.gmail.com>
+	<CAGNsrLDmJDvT3X_7=V+RTiHkG9kZoadXvAnW5WU19EJeO-yO2Q@mail.gmail.com>
+Date: Wed, 18 Sep 2013 21:36:06 -0400
+Message-ID: <CALmOhgk_5mSaG4mHWMAegiL6FE8aU27ssW_NOytLYNA-v4GYuA@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: Fathi Boudra <fathi.boudra@linaro.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [DYLAN] RPATH issue with qt5's qtwebkit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,47 +43,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2013 01:10:36 -0000
+X-List-Received-Date: Thu, 19 Sep 2013 01:36:09 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 09/17/2013 09:17 PM, Philip Tricca wrote:
-> This patch is pretty straight forward: All we do is call the
-> 'install-headers' make target at the end of do_install. We then add
-> the interface 'include' directory to the dev package. This allows
-> projects that ship their own SELinux policy (not in the refpolicy)
-> to build against the refpolicy headers / interface files by using
-> the Makefile supplied by refpolicy.
+Hi Fathi,
 
-Apologies, I let my MUA mangle that last patch something awful. Fixed below:
+On 18 September 2013 17:52, Fathi Boudra <fathi.boudra@linaro.org> wrote:
+> afaics, most distro are using chrpath hack to get rid of it in
+> QtWebProcess and QtWebPluginProcess.
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>
----
- recipes-security/refpolicy/refpolicy_common.inc |    6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+That's good to know. For some odd reason (as Martin pointed out) the
+chrpath hack in OE doesn't always seem to kick in. In my case it
+always fails so I'll try to target the "proper" fix.
 
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index 2c8891a..07c05aa 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -12,7 +12,8 @@ SRC_URI += "file://customizable_types \
- S = "${WORKDIR}/refpolicy"
- 
- FILES_${PN} = "${sysconfdir}/selinux/${POLICY_NAME}/ \
--	${datadir}/selinux/${POLICY_NAME}/"
-+	${datadir}/selinux/${POLICY_NAME}/*.pp"
-+FILES_${PN}-dev =+ "${datadir}/selinux/${POLICY_NAME}/include/""
- 
- DEPENDS += "checkpolicy-native policycoreutils-native m4-native"
- RDEPENDS_${PN} += "policycoreutils selinux-config"
-@@ -75,4 +76,7 @@ EOF
- 
- 	cat ${WORKDIR}/customizable_types >> \
- 		${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/customizable_types
-+
-+	# install policy headers
-+	oe_runmake install-headers DESTDIR=${D}
- }
--- 
-1.7.10.
+> A "proper" fix ins't available yet... it doesn't seem trivial, see
+> https://github.com/WebKit/webkit/commit/069ee433aba1ae8ae5107784b22bd6ade830a012
+
+Excellent! Thanks for digging this up :-)
+
+It *appears*, however, that this patch has already been applied to the
+sources obtained from meta-qt5's 5.0.2 build (although I can't seem to
+verify that conclusively via the ChangeLog). If I look through the
+sources the comments at the bottom of, and lack of qt4 specifics in,
+Tools/qmake/mkspecs/features/rpath.prf would appear to match.
+
+I'll create a patch based on what Marek had done and see what people
+think of it. In this case, though, I'm not sure how to assign credit
+(is there a "based-on-the-previous-work-of SOB-type line?).
+
+Best regards,
+    Trevor
 
