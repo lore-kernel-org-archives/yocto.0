@@ -1,42 +1,27 @@
-Return-Path: <Noor_Ahsan@mentor.com>
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36158E0156D;
-	Thu, 19 Sep 2013 11:20:25 -0700 (PDT)
-Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
-	by relay1.mentorg.com with esmtp 
-	id 1VMiq0-0002cz-EE from Noor_Ahsan@mentor.com ;
-	Thu, 19 Sep 2013 11:20:24 -0700
-Received: from SVR-IES-FEM-04.mgc.mentorg.com ([137.202.0.110]) by
-	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
-	Microsoft SMTPSVC(6.0.3790.4675); Thu, 19 Sep 2013 11:20:20 -0700
-Received: from EU-MBX-01.mgc.mentorg.com ([169.254.1.178]) by
-	SVR-IES-FEM-04.mgc.mentorg.com ([137.202.0.110]) with mapi id
-	14.02.0247.003; Thu, 19 Sep 2013 19:20:19 +0100
-From: "Ahsan, Noor" <Noor_Ahsan@mentor.com>
-To: Otavio Salvador <otavio@ossystems.com.br>
-Thread-Topic: [OE-core] Building a Poky distribution based on Wayland/Weston
-	1.2
-Thread-Index: AQHOtWRPuNbtzgDnXEKPexvwgvFlCZnNXpCg
-Date: Thu, 19 Sep 2013 18:20:17 +0000
-Message-ID: <365E1805BC95084CBE82381A0B869994DE50C7F0@EU-MBX-01.mgc.mentorg.com>
-References: <552A140193B5B04F9B5027CA06300D85C47CD6@44c-mariner.eurogiciel.fr>
-	<CAP9ODKr8LsbuFvfWcCJonpHvMa82EWH95mtLjW5x75-R2B2BCw@mail.gmail.com>
-	<365E1805BC95084CBE82381A0B869994DE50C7CF@EU-MBX-01.mgc.mentorg.com>
-	<CAP9ODKq8KnBxA_wEWabTPMYk+daBUwUZots0ixrcBmcWz1WZ1A@mail.gmail.com>
-In-Reply-To: <CAP9ODKq8KnBxA_wEWabTPMYk+daBUwUZots0ixrcBmcWz1WZ1A@mail.gmail.com>
+Return-Path: <bevenson@melinkcorp.com>
+Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
+	[98.100.91.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC45AE01570
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 11:28:50 -0700 (PDT)
+Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
+	([10.0.2.4]) with mapi; Thu, 19 Sep 2013 14:28:46 -0400
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: Paul Barker <paul@paulbarker.me.uk>, Yocto discussion list
+	<yocto@yoctoproject.org>, openembedded-core
+	<openembedded-core@lists.openembedded.org>
+Date: Thu, 19 Sep 2013 14:26:26 -0400
+Thread-Topic: [yocto] RFC: Janitorial tasks
+Thread-Index: Ac61PQnljy9IKCqPTvaQhSFak5MZ5QAJW+5A
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153B26E1373@pluto.melinkcorp.local>
+References: <CANyK_8fTtdxWXPf9eSgpQWvvPspaashL14vi-h8x15FtJOQ0DA@mail.gmail.com>
+In-Reply-To: <CANyK_8fTtdxWXPf9eSgpQWvvPspaashL14vi-h8x15FtJOQ0DA@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [137.202.0.76]
+x-vipre-scanned: 03C5AFA300547603C5B0F0
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-OriginalArrivalTime: 19 Sep 2013 18:20:20.0626 (UTC)
-	FILETIME=[E658CF20:01CEB564]
-Cc: yocto <yocto@yoctoproject.org>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>, "Potnis,
-	Abhijit" <Abhijit_Potnis@mentor.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Building a Poky distribution based on Wayland/Weston 1.2
+Subject: Re: RFC: Janitorial tasks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,36 +33,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2013 18:20:26 -0000
+X-List-Received-Date: Thu, 19 Sep 2013 18:28:53 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I'll let Abhjit share what we have done. We can share it after some time co=
-z we are at the end of our release.
+Paul,
 
-Noor
+Is the plan to move toward the YP wiki task list, the YP bugzilla, or both =
+for Janitorial task entry?  If one would be preferred over the other, it'd =
+probably be good to state that at the top of the wiki page.
 
------Original Message-----
-From: otavio.salvador@gmail.com [mailto:otavio.salvador@gmail.com] On Behal=
-f Of Otavio Salvador
-Sent: Thursday, September 19, 2013 11:16 PM
-To: Ahsan, Noor
-Cc: Ewan LE BIDEAU-CANEVET; yocto; poky@yoctoproject.org; Patches and discu=
-ssions about the oe-core layer; Potnis, Abhijit
-Subject: Re: [OE-core] Building a Poky distribution based on Wayland/Weston=
- 1.2
+For the wiki task list, maybe add an "Assignee:" line, so that someone know=
+s if the task is being worked on?  Would be frustrating to work on a task o=
+nly to find someone else did the same thing.
 
-On Thu, Sep 19, 2013 at 3:06 PM, Ahsan, Noor <Noor_Ahsan@mentor.com> wrote:
-> Hello,
->
-> We will also be interested in this. Mentor Graphics is also working on th=
-is.
+-Bryan
 
-So let's avoid work duplication.
 
---=20
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://code.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Paul Barker
+> Sent: Thursday, September 19, 2013 9:34 AM
+> To: Yocto discussion list; openembedded-core
+> Subject: [yocto] RFC: Janitorial tasks
+>=20
+> Hi all,
+>=20
+> After discussions at the last TSC meeting I've merged the OpenEmbedded
+> wiki page for janitorial tasks
+> (http://www.openembedded.org/wiki/OpenEmbeddedJanitors) in to the
+> equivalent page on the Yocto Project wiki
+> (https://wiki.yoctoproject.org/wiki/Janitors). In addition to keeping
+> everything in one place, the benefit here is that the page on the YP
+> wiki can integrate with the YP bugzilla.
+>=20
+> To quote the page: "[Janitorial] tasks are intended to help people get
+> started working with the Yocto Project. These tasks should not require
+> a lot of context. Anyone with basic programming skills, experience
+> working with Open Source software, and some time on their hands should
+> be able to complete these."
+>=20
+> If anyone has any suggestions for tasks which could be added to this
+> list, please propose them in reply to this email or go ahead and add
+> them to the wiki in the existing format. It would also be beneficial to
+> add some hints and tips on where to start with the existing tasks that
+> are already on the page. Suggestions of who to talk to/what mailing
+> list to post on for each task may also be a good idea.
+>=20
+> If you've previously posted tasks on the janitors page, now would be a
+> good time to quickly review them and ensure they're still relevant.
+>=20
+> Any comments about the organisation of janitorial/newbie friendly tasks
+> in general are also welcome.
+>=20
+> --
+> Paul Barker
+>=20
+> Email: paul@paulbarker.me.uk
+> http://www.paulbarker.me.uk
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
