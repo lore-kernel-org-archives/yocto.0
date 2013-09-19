@@ -1,23 +1,21 @@
-Return-Path: <mihaix.lindner@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCA67E01479
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 01:09:08 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 19 Sep 2013 01:08:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,935,1371106800"; d="scan'208";a="404011723"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga002.fm.intel.com with ESMTP; 19 Sep 2013 01:08:38 -0700
-Received: from mlindnex-mobl1.ger.corp.intel.com (unknown [10.237.105.140])
-	by linux.intel.com (Postfix) with ESMTP id B48526A4007;
-	Thu, 19 Sep 2013 01:08:35 -0700 (PDT)
-From: Mihai Lindner <mihaix.lindner@linux.intel.com>
-To: elizabeth.flanagan@intel.com,
-	yocto@yoctoproject.org
-Date: Thu, 19 Sep 2013 11:07:43 +0300
-Message-Id: <1379578063-14038-1-git-send-email-mihaix.lindner@linux.intel.com>
-X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH] [yocto-autobuilder] BuildImages: fix description
+Return-Path: <diego.gonzalez@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83540E01479
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 01:27:48 -0700 (PDT)
+Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 23DA5E; 
+	Thu, 19 Sep 2013 10:27:45 +0200
+Received: from [172.30.250.254] by horus.es with HTTP;
+	Thu, 19 Sep 2013 10:27:45 +0200
+From: Diego Gonzalez <diego.gonzalez@horus.es>
+Date: Thu, 19 Sep 2013 10:27:45 +0200
+X-Mailer: Axigen WebMail
+To: yocto@yoctoproject.org
+Message-ID: <1379579265426525500@horus.es>
+Importance: Normal
+MIME-Version: 1.0
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 4
+Subject: problem with sft in fsl-image-gui
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +27,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2013 08:09:08 -0000
+X-List-Received-Date: Thu, 19 Sep 2013 08:27:51 -0000
+Content-Type: multipart/alternative;
+	boundary="===axigen=9097639517529638340684191496943882857126=axigen==="
 
-The description of shell commands is printed as a list of characters
-separated by spaces.
-The description needs to be in a list, when it's set after
-ShellCommand.__init__().
+--===axigen=9097639517529638340684191496943882857126=axigen===
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
----
- lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hello everybody,
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-index 0a9c3fc..3063bef 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
-@@ -39,7 +39,7 @@ class BuildImages(ShellCommand):
-             self.command = "echo 'Skipping Step.'"
-         else:
-             self.command = ". ./oe-init-build-env; bitbake " + self.images
--            self.description = "Building " + str(self.images)
-+            self.description = ["Building " + str(self.images)]
-         ShellCommand.start(self)
- 
-     def describe(self, done=False):
--- 
-1.8.3.2
+we have an issue with sftp server in our fsl-image-gui. When we try to conn=
+ect using sftp, then we get an error saying connection closed.
+After a closer look inside  the fsl-image-gui , we saw that /usr/bin/sftp-s=
+erver directory  is not installed in this image. Also, we vericated that ss=
+h connection works good.=20
+
+We already now that this work fine in fsl-core-image-sato-sdk. In fact you =
+can find out that /usr/bin/sftp-server directory exists.=20
+Trying to fix it we put several commands inside the local.conf . However we=
+ didn't fix it.
+
+How can I solve it?.=20
+
+Cheers
 
 
+Diego Gonz=C3=A1lez Gonz=C3=A1lez
+Dpto. de Control Industrial HORUS HARDWARE S.A.
+Pol Ind Europolis C/Berna n=C2=BA4
+28232 Las Rozas de Madrid
+diego.gonzalez@horus.es
+
+--===axigen=9097639517529638340684191496943882857126=axigen===
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
+: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
+background-image: none; background-repeat: repeat; background-attachment: f=
+ixed;">Hello everybody,<br><br>we have an issue with sftp server in our fsl=
+-image-gui. When we try to connect using sftp, then we get an error saying =
+connection closed.<br>After a closer look inside&nbsp; the fsl-image-gui , =
+we saw that /usr/bin/sftp-server directory&nbsp; is not installed in this i=
+mage. Also, we vericated that ssh connection works good. <br><br>We already=
+ now that this work fine in fsl-core-image-sato-sdk. In fact you can find o=
+ut that /usr/bin/sftp-server directory exists. <br>Trying to fix it we put =
+several commands inside the local.conf . However we didn't fix it.<br><br><=
+pre class=3D"bz_comment_text"><font face=3D"arial">How can I solve it?. <br=
+><br>Cheers</font><br></pre><div class=3D"x-axi-signature"><div class=3D"x-=
+axi-signature" style=3D"; font-size: 10pt; font-family: Arial;"><br>Diego G=
+onz=C3=A1lez Gonz=C3=A1lez<br><div style=3D"text-align: left;">Dpto. de Con=
+trol Industrial</div><div style=3D"text-align: left;">&nbsp;</div><div styl=
+e=3D"text-align: left;">HORUS HARDWARE S.A.<br>Pol Ind Europolis C/Berna n=
+=C2=BA4<br>28232 Las Rozas de Madrid<br><a id=3D"ext-gen5000" href=3D"mailt=
+o:enrique.fernandez@horus.es">diego.gonzalez@horus.es</a></div></div></div>=
+</body></html>
+
+--===axigen=9097639517529638340684191496943882857126=axigen===--
