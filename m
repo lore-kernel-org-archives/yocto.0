@@ -1,28 +1,30 @@
-Return-Path: <xertz.yocto@gmail.com>
-Received: from mail-vc0-f195.google.com (mail-vc0-f195.google.com
-	[209.85.220.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5696E01587
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 13:45:59 -0700 (PDT)
-Received: by mail-vc0-f195.google.com with SMTP id gd11so1321594vcb.10
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 13:45:59 -0700 (PDT)
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C97D1E01587
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 16:09:41 -0700 (PDT)
+Received: by mail-la0-f41.google.com with SMTP id ec20so7445186lab.14
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 16:09:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=cSTJDBqmdzTmJtMNrwxXObr4oYRrFNcxyJ51afyqQpU=;
-	b=zdRaxLAgP2g3+VcI3NNrsJWgx8vCMILjc1Y87N+ufj6ZuyfY5tMfdhECSdcvAcbH/g
-	GeZtHPRb7S0Q+sPCZY05T4YBiXUJgzyiE8vU4kk/f/bAWJ1Ml1/Vz3wfZ/DsK5rP4kpp
-	RcPzF9hF9EyIcTpmeg9nnC6AVqKnigTlkE3xeftt2R/vb4FBMk59u74b0Hj9FveHbbl6
-	hveWNgD9jEe/zZQhB0AmWDmBsye/9nRP3xEW9Afa2VZoI7VogcTTSeqaPGcMsy94jMht
-	P4DZdViwV/dSkGqji19mEAyQSjGbkWixEkEYMoMyAgrMbrQ/y4KpeaU06QKpClTZGm7A
-	5lCQ==
+	h=mime-version:sender:from:date:message-id:subject:to:content-type;
+	bh=+uMeTe7l238IQvvefDxxj8/Hp5c73ZCH1IrHPkG7qng=;
+	b=IMw2GqrX/+0cdK7uKTlg6tUYUaLjX7uRVA+BIlVtYkAvK9EmYGLo+IPZMmkFEMMiCC
+	N/sc12S4R4OVAOOMUxQ6+treNsX264qLH9sUqqoQ+RTXpllzYZPgcmU1MZM6NjCy//6C
+	qGHsP1VQinnIWodQg40KoQYt8DbqawGZPE4APmHEQzrRgXTnPRlzbqbfdPlvWKvffaLX
+	4vRz3OYBqmlChWXZZTE5QT22Pv/TTR49C9f55fzy/Y8f2Nb3tpi0+mXZw/YVzZ6H7DMO
+	qshTmPYouiVtiCgfo5Spw0LdUuL2il3N1X9xyJdyji5v/oVCjLAJ2sW2POdvtFteJgjL
+	vOFQ==
+X-Received: by 10.112.126.37 with SMTP id mv5mr3717598lbb.20.1379632180347;
+	Thu, 19 Sep 2013 16:09:40 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.52.170.232 with SMTP id ap8mr5208vdc.40.1379623559184; Thu,
-	19 Sep 2013 13:45:59 -0700 (PDT)
-Received: by 10.220.251.82 with HTTP; Thu, 19 Sep 2013 13:45:59 -0700 (PDT)
-Date: Thu, 19 Sep 2013 21:45:59 +0100
-Message-ID: <CAEo3mJVoEW6kUSkD53jptvSx5+3cA94xt7jtJXwOC_pPkmJOLQ@mail.gmail.com>
-From: John Doe <xertz.yocto@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Building a linux module into modules.tgz
+Sender: jefro.net@gmail.com
+Received: by 10.112.57.105 with HTTP; Thu, 19 Sep 2013 16:09:20 -0700 (PDT)
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Thu, 19 Sep 2013 16:09:20 -0700
+X-Google-Sender-Auth: 40sEgMldkXdJ1SH9hwgciGs1Eu4
+Message-ID: <CA+YB3rbT-MQJXvCb0wu3xMbA6F+hoaQAstq=6UP_8SBRo6kk+Q@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: ELCE survey request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,40 +36,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2013 20:46:01 -0000
-Content-Type: multipart/alternative; boundary=047d7b6d7aae2b4b9d04e6c2a47b
-
---047d7b6d7aae2b4b9d04e6c2a47b
+X-List-Received-Date: Thu, 19 Sep 2013 23:09:43 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hello,
+Hi all - Tim Bird is working on an embedded Linux community survey for
+the ELCE end game. He and I would both be very grateful if you would
+take a few minutes to complete this survey. Here is his note with a
+link:
+________________________________
+Hello everyone,
 
-Hopefully this is the right forum to post this message. I would like to
-build a linux module for example drivers/net/wireless/rtl8187:
+I'm asking a personal favor of everyone on this list...
 
-http://wireless.kernel.org/en/users/Drivers/rtl8187
+We are now preparing for Embedded Linux Conference Europe,
+and as part of this event we will be presenting the results of
+a survey (as part of a game).
 
-using yocto. Do I have to setup a standalone toolchain with ADT in eclipse
-OR is there a simpler way to get rtl8187 to build with core-image-minimal?
+Please go the URL below, and answer the 20 questions.
+Each answer should be a short word or phrase, and should
+be the first thing you think of.  Please do NOT research the
+answer to the question, but just type the first thing that pops
+in your head.
 
-I am using poky 1.4. 9.0.0 "dylan".
+http://www.embeddedlinuxconference.com/cgi-bin/survey.cgi
 
-Regards,
-J
+This should take less than 10 minutes.  Please answer all the questions.
+Answers are completely anonymous. (Not that it matters, since
+there is no personal information requested.)
 
---047d7b6d7aae2b4b9d04e6c2a47b
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+I need at least 100 people to respond, so please help me out!
 
-<div dir=3D"ltr">Hello,<div><br></div><div>Hopefully this is the right foru=
-m to post this message. I would like to build a linux module for example dr=
-ivers/net/wireless/rtl8187:</div><div><br></div><div><a href=3D"http://wire=
-less.kernel.org/en/users/Drivers/rtl8187">http://wireless.kernel.org/en/use=
-rs/Drivers/rtl8187</a></div>
-<div>=A0</div><div>using yocto. Do I have to setup a standalone toolchain w=
-ith ADT in eclipse OR is there a simpler way to get rtl8187 to build with c=
-ore-image-minimal?</div><div><br></div><div>I am using poky 1.4. 9.0.0 &quo=
-t;dylan&quot;.</div>
-<div><br></div><div>Regards,</div><div>J</div></div>
+Thanks very much.
 
---047d7b6d7aae2b4b9d04e6c2a47b--
+I'm looking forward to a fun time in Edinburgh this year, meeting
+with many of you and talking with you about embedded Linux.
+________________________________
+-- 
+Jeff Osier-Mixon http://jefro.net/blog
+Yocto Project Community Manager @Intel http://yoctoproject.org
+
