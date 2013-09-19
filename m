@@ -1,32 +1,31 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f47.google.com (mail-vb0-f47.google.com
-	[209.85.212.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EADEFE015B8
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 15:31:51 -0700 (PDT)
-Received: by mail-vb0-f47.google.com with SMTP id h10so5660957vbh.20
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 15:31:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=kccE1q57YvmpoqbljRMFSTfqokH0hYzC2EqMjOXvH/Y=;
-	b=EhsIYYUK2XMtiIbadnqfas7Km/ZUdRI9fK2sNLsF6vZmM+oiUZSh1YvUiEsIoQCdSE
-	etnOQKzsI0IFRN8V326og8uKy6yVCVp55649i0t0Xw6Z5uttV86rEbPo47wltvMneu9/
-	UqgMYfjOaKb9bshI2ja5R3UNUNRfViOl1stJbgLf8uwenrFj1nJsYekEh5fTZT9riaBl
-	KSdWIOGQsVrWjED4WpKg3mjLoT+eVdrVba83s7DqxVGMQgtC8LppIloOASWOhAG+7L/E
-	ziKVNzSFQMVw9FEwkNWPD55yawnaXjRKf2Alkdphot1gsRpgwgBsK9qZ3aFp413qTAYV
-	p/Lw==
-X-Gm-Message-State: ALoCoQmAXZv+19476DT2kQfQ1hTzbzwU120YcPVkmjQTFimpLxf0EnbB7qefAcFaThlnV5IDBCWB
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A6AE015E5
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 18:10:34 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=[172.16.1.10])
+	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VMSlL-0008TD-76; Thu, 19 Sep 2013 01:10:32 +0000
+Message-ID: <523A4EFA.1040907@twobit.us>
+Date: Wed, 18 Sep 2013 21:10:18 -0400
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130828 Icedove/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.58.67.9 with SMTP id j9mr26706622vet.3.1379543511092; Wed,
-	18 Sep 2013 15:31:51 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Wed, 18 Sep 2013 15:31:51 -0700 (PDT)
-Date: Wed, 18 Sep 2013 15:31:51 -0700
-Message-ID: <CAPhnLPBuUPybJqvuDVou_bJqXpdVQaV4aUXPQcBO1DBbW5=s0w@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-announce@yoctoproject.org
-Subject: [ANNOUNCEMENT] 1.5_M4 released
+To: yocto@yoctoproject.org
+References: <5238FF44.6000502@twobit.us>
+In-Reply-To: <5238FF44.6000502@twobit.us>
+X-Enigmail-Version: 1.5.1
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
+Subject: Re: [meta-selinux] Install policy headers and include them in the refpolicy dev package.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,65 +37,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2013 22:31:54 -0000
+X-List-Received-Date: Thu, 19 Sep 2013 01:10:36 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On 09/17/2013 09:17 PM, Philip Tricca wrote:
+> This patch is pretty straight forward: All we do is call the
+> 'install-headers' make target at the end of do_install. We then add
+> the interface 'include' directory to the dev package. This allows
+> projects that ship their own SELinux policy (not in the refpolicy)
+> to build against the refpolicy headers / interface files by using
+> the Makefile supplied by refpolicy.
 
-The latest milestone release of the Yocto Project's upcoming 1.5 release is now
-available for download at:
+Apologies, I let my MUA mangle that last patch something awful. Fixed below:
 
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m4/poky-1.5_M4.tar.bz2
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-security/refpolicy/refpolicy_common.inc |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Thanks go out to everyone for all their hard work during this release!
-
-Sincerely,
-
-Elizabeth Flanagan
-Yocto Build and Release
-<elizabeth.flanagan@intel.com>
-
---------------------
-yocto-1.5_M4 Errata
---------------------
-
-Release Name: poky-1.5_M4
-Branch:  master
-Tag:  1.5_M4
-Hash:  63a5d00bc01b2ec475dc3bcfe5720e76436fdac3
-md5: 1e85c342788ab2308ddae625bf00b2f5
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m4/poky-1.5_M4.tar.bz2
-
-Release Name: eclipse-poky-kepler-1.5_M4
-Branch:  master
-Tag:  1.5_M4
-Hash:  0cf5246b85ff3e7b08cd2d851ce9fd942acd7ef7
-md5: 4059d198768f9f8dc9372dc1c54bc3c3
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m4/eclipse-poky-kepler-1.5_M4.tar.bz2
-
-Release Name: eclipse-poky-juno-1.5_M4
-Branch:  master
-Tag:  1.5_M4
-Hash:  cae2ba2cfce2da152581e7e987ae1850c8883181
-md5: 4059d198768f9f8dc9372dc1c54bc3c3
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m4/eclipse-poky-juno-1.5_M4.tar.bz2
-
-Release Name: meta-qt3-1.5_M4
-Branch:  master
-Tag:  1.5_M4
-Hash:  ea02e2867783dca5e7768d6712b3ff3287788139
-md5: 4a8d5475c9fd619092405aeaed92e959
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m4/meta-qt3-1.5_M4.tar.bz2
-
-Release Name: meta-intel-1.5_M4
-Branch:  master
-Tag:  1.5_M4
-Hash:  f01b89cf6c0560845f08d4a11fb2654b8da27183
-md5: 87aa6f3b185dfdd18441d2ad541fcd69
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.5-m4/meta-intel-1.5_M4.tar.bz2
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index 2c8891a..07c05aa 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -12,7 +12,8 @@ SRC_URI += "file://customizable_types \
+ S = "${WORKDIR}/refpolicy"
+ 
+ FILES_${PN} = "${sysconfdir}/selinux/${POLICY_NAME}/ \
+-	${datadir}/selinux/${POLICY_NAME}/"
++	${datadir}/selinux/${POLICY_NAME}/*.pp"
++FILES_${PN}-dev =+ "${datadir}/selinux/${POLICY_NAME}/include/""
+ 
+ DEPENDS += "checkpolicy-native policycoreutils-native m4-native"
+ RDEPENDS_${PN} += "policycoreutils selinux-config"
+@@ -75,4 +76,7 @@ EOF
+ 
+ 	cat ${WORKDIR}/customizable_types >> \
+ 		${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/customizable_types
++
++	# install policy headers
++	oe_runmake install-headers DESTDIR=${D}
+ }
+-- 
+1.7.10.
 
