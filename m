@@ -1,33 +1,23 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 037B8E015E7
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 21:59:57 -0700 (PDT)
-Received: by mail-vc0-f170.google.com with SMTP id kw10so6094367vcb.15
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2013 21:59:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=MHIW7P6deq8QhiMZcFH3R2ENVnDve3SCB+83APAUekE=;
-	b=hbJl+Pgxl7yLmClbpzNPOOOsnfdCEI/OLPm6wFAWhPBR0mFNR6LEkd50VmznD6CBr+
-	HJQeY0/3koBUbekcm3/Bnxuhugo3yXl3QOxuJDpkNnwdPAd+hUeJIUR71Z5R6xvzGbLa
-	APfRMJ2LljyVgU+Mrumue3ACK1wtt8HbfKyjb2gnOZq026mL3nyxt/s70jC2TWc0M9O7
-	xpMBLD8k3QcRYnu4+oxuIRWl7IoG/MN0nEFOOD5KUJE+cdl68A1ekGIo+46HElCCNuhE
-	cvvWvjn2IW+Ahrev3YUkJfAOugfSYms8CkdwnXVdlX17nXEP1Vzyua4q1JkbXcXIhATQ
-	LgvA==
-X-Gm-Message-State: ALoCoQnSNflps3Skkjsj/xt5i6agGMfmQE3obpND2sVni4mf6oDUEJUFHnSRPmPyWyzGdwukoFR3
-MIME-Version: 1.0
-X-Received: by 10.58.73.202 with SMTP id n10mr41621230vev.7.1379566796377;
-	Wed, 18 Sep 2013 21:59:56 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Wed, 18 Sep 2013 21:59:56 -0700 (PDT)
-Date: Wed, 18 Sep 2013 21:59:56 -0700
-Message-ID: <CAPhnLPC2YssA9EugP7xKw-C59o=nS2rT_-GZ8McFcg0G4uR8=g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: 1.5_M5 status
+Return-Path: <mihaix.lindner@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCA67E01479
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 01:09:08 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 19 Sep 2013 01:08:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,935,1371106800"; d="scan'208";a="404011723"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Sep 2013 01:08:38 -0700
+Received: from mlindnex-mobl1.ger.corp.intel.com (unknown [10.237.105.140])
+	by linux.intel.com (Postfix) with ESMTP id B48526A4007;
+	Thu, 19 Sep 2013 01:08:35 -0700 (PDT)
+From: Mihai Lindner <mihaix.lindner@linux.intel.com>
+To: elizabeth.flanagan@intel.com,
+	yocto@yoctoproject.org
+Date: Thu, 19 Sep 2013 11:07:43 +0300
+Message-Id: <1379578063-14038-1-git-send-email-mihaix.lindner@linux.intel.com>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] [yocto-autobuilder] BuildImages: fix description
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,31 +29,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2013 04:59:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 19 Sep 2013 08:09:08 -0000
 
-All,
+The description of shell commands is printed as a list of characters
+separated by spaces.
+The description needs to be in a list, when it's set after
+ShellCommand.__init__().
 
-Today we attempted a build of rc3. The build had obvious immediate
-issues. We are now building out our rc4 build. It should be available
-soon at:
+Signed-off-by: Mihai Lindner <mihaix.lindner@linux.intel.com>
+---
+ lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc4
-
-Please begin QA testing on this as soon as possible.
-
-poky 853bc53cd58a621918f0e5ce662dba263d1befb4
-meta-fsl-arm 3743f36eb25e3215d79fb135d07a3d76760ff2ee
-meta-fsl-ppc 1ddf5e66c635e086864ce15931628ce1a2d6ff0a
-meta-intel 66def4d09cbdf1614622a7ab1d84bef312b5f55d
-meta-minnow 7719e114bd0c2118c3d4c2a1a7c06e966103ab09
-meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
-eclipse-poky-juno 2fa1c58940141a3c547c8790b8a6832167e8eb66
-eclipse-poky-kepler ad74249895f882a8f00bdeef7a0f7c18998cc43e
-
-
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
+index 0a9c3fc..3063bef 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/BuildImages.py
+@@ -39,7 +39,7 @@ class BuildImages(ShellCommand):
+             self.command = "echo 'Skipping Step.'"
+         else:
+             self.command = ". ./oe-init-build-env; bitbake " + self.images
+-            self.description = "Building " + str(self.images)
++            self.description = ["Building " + str(self.images)]
+         ShellCommand.start(self)
+ 
+     def describe(self, done=False):
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+1.8.3.2
+
 
