@@ -1,34 +1,37 @@
 Return-Path: <joe@deserted.net>
-Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78C2CE015AB
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 23:53:44 -0700 (PDT)
-Received: by mail-ie0-f177.google.com with SMTP id qd12so61347ieb.36
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 23:53:44 -0700 (PDT)
+Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFD02E015EF
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 23:57:51 -0700 (PDT)
+Received: by mail-ie0-f172.google.com with SMTP id x13so71929ief.17
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 23:57:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=2JMY2HlX1vO1jcBzNELfO1ZiynSEg9dD1wk9FvwFboE=;
-	b=WGneilMoxlHU7u65SS5/nuQbArDyUA78ukMzSOdlaTDZlxWAY8LF3deCsHGQaOLgsw
-	HOXBuQM/i6MLAWRAhPA5VIbZJ2ME1az+zMfOoAgB5UiY7IpSYC0D4AXFt7+0pGA5HC5c
-	45rbWfFY/5yqDKTQvJWih/Anf49wg82aN9EMtWBmVkd0ZBgL5kk1q6/ReK/l/kic9++b
-	BAIZ72hcDXI8c8tJauFP2fyMgRXTeNDp7YPnkPP80eVm6KWygW2K5e3kdxoifv7kySBV
-	bpeR/l1Bwnw1Z81xfyMeQqQYS9vQsPyaP6RuyQubYashgzKfY7WKC/gCGd/1qTXT4Z8A
-	GCoQ==
-X-Gm-Message-State: ALoCoQk1Vd0FUt4RliZsbDb7cjuVL2i6liCBUEMHiOyZdLnxBZwN4ldPJq1+S96LDpyUDjsCLgjL
-X-Received: by 10.50.62.211 with SMTP id a19mr1150304igs.18.1379650819498;
-	Thu, 19 Sep 2013 21:20:19 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=wIPnvyyOx36uTRhBr1qk7k+MCdxe51hw1XQnnTomKMM=;
+	b=dwz075+krmqwGCTTTgJiSIOSMcUGMktz2h4BH4AvSm5RwHWhkx1lwvgzyj6LdFQId4
+	T8OmPsFtbFMZf3pTA3jQBOASL/RVZlujL8CIeeWFlI4OlA1+z1s7GMI3aCcUZdZZVyve
+	BfHUC78FE/JHAegcWudy4hkl65GLn6FqSiCLDsPY2fkOlj+iZgEXIOj96vuyORL+Xts8
+	wlGahW1NlxcMoyxxTuKYU1urSA5OMuBhuBiennrw2ryNxCiXLj5LPZbVHJ0TjdU8J3Nt
+	Cfb5B6fhItVECrloTvJugxqSG0cv3IK6CEuIKbO6uZkC+i/0Nht7oWTQeyfcUk3JUVMc
+	CF7Q==
+X-Gm-Message-State: ALoCoQmNwnlqnZx/IMe8mDuSkK0TPccay0mpyPUxHBtZuUAQ9LsuB5oXHVODWO3u5Cmq4C9VUt4r
+X-Received: by 10.50.66.66 with SMTP id d2mr1135100igt.28.1379650820321;
+	Thu, 19 Sep 2013 21:20:20 -0700 (PDT)
 Received: from burninator.deserted.net (198-84-238-35.cpe.teksavvy.com.
 	[198.84.238.35])
 	by mx.google.com with ESMTPSA id y10sm1025512igl.4.1969.12.31.16.00.00
 	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 19 Sep 2013 21:20:18 -0700 (PDT)
+	Thu, 19 Sep 2013 21:20:19 -0700 (PDT)
 From: Joe MacDonald <joe@deserted.net>
 To: yocto@yoctoproject.org
-Date: Fri, 20 Sep 2013 00:20:12 -0400
-Message-Id: <1379650814-18256-1-git-send-email-joe@deserted.net>
+Date: Fri, 20 Sep 2013 00:20:13 -0400
+Message-Id: <1379650814-18256-2-git-send-email-joe@deserted.net>
 X-Mailer: git-send-email 1.7.10.4
-Subject: [meta-security][PATCH 0/2] Bastille updates
+In-Reply-To: <1379650814-18256-1-git-send-email-joe@deserted.net>
+References: <1379650814-18256-1-git-send-email-joe@deserted.net>
+Subject: [meta-security][PATCH 1/2] Bastille: make questions files writable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,23 +43,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 06:53:47 -0000
+X-List-Received-Date: Fri, 20 Sep 2013 06:57:53 -0000
 
-I started out planning to eliminate the dependency on lib-perl in Bastille
-since it really doesn't need it anyway.  The initial step in this is to
-provide exactly the same functionality in Bastille simply without the
-dependency on the external lib, which really does a lot more than Bastille
-uses or shows any intention of using.  I submitted this back to the
-maintainers and if there's any sign of life and interest, I'll probably
-follow this up with another update that will simplify the construct I
-introduced.  Most places simply don't need it at all.
+do_install would fail when trying to update the questions files during the
+set_required_questions.py stage since the default permissions in the
+Questions/ did not allow writing.  So the shutil.move() in
+set_required_questions.py would raise and IOError:
 
-In testing this, though, I discovered an install issue with Bastille that
-was simpler and more pervasive, so that's 1/2.  2/2 is the big "let's dump
-lib-perl" change.
+Fatal error reading config file: [Errno 13] Permission denied: '[...]/bastille/3.2.1-r0/Bastille/Questions/AccountSecurity.txt'
 
+for each Questions file.  The most direct approach seems to work
+reasonably well here, jump in before set_required_questions.py gets run
+and make sure we have write permission on the files we're going to write.
+
+Signed-off-by: Joe MacDonald <joe@deserted.net>
+---
+ recipes-security/bastille/bastille_3.2.1.bb |    1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/recipes-security/bastille/bastille_3.2.1.bb b/recipes-security/bastille/bastille_3.2.1.bb
+index ef697d7..d506399 100644
+--- a/recipes-security/bastille/bastille_3.2.1.bb
++++ b/recipes-security/bastille/bastille_3.2.1.bb
+@@ -143,6 +143,7 @@ do_install () {
+ 	install -m 0644 OSMap/OSX.bastille    ${D}${datadir}/Bastille/OSMap
+ 	install -m 0644 OSMap/OSX.system    ${D}${datadir}/Bastille/OSMap
+ 
++	chmod +w Questions/*.txt
+ 	${THISDIR}/files/set_required_questions.py ${WORKDIR}/config Questions
+ 
+ 	install -m 0777 ${WORKDIR}/config ${D}${sysconfdir}/Bastille/config
 -- 
--Joe MacDonald.
-:wq
+1.7.10.4
 
 
