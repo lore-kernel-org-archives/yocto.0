@@ -1,28 +1,23 @@
-Return-Path: <rahul.ravi26@gmail.com>
-Received: from mail-lb0-f196.google.com (mail-lb0-f196.google.com
-	[209.85.217.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD107E015AB
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 00:19:32 -0700 (PDT)
-Received: by mail-lb0-f196.google.com with SMTP id w6so84942lbh.7
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 00:19:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=dc5FW4IqQmiWoKW1toJvxyNEk5bO8hecsO8/8TgYl0A=;
-	b=vtn4Re+9rxw8Aa6dlm8QT12to5Fj9jEuq+oXYEHYLWmFjOgJ0/zVHK/vM6pOYzFmbr
-	czBqK/iMy7Qq9Iuqq108w5sCJyLkbpijFSA9qZv4fgWSKiLEPRwxJDfmZv1scYCPArg2
-	/TSo8yPEgo7KYX1kbXAbW430S0VG+jRtgLetry6GlePZVMRhcK0CSERMjfDC3om0THit
-	fyHud1/FiMP/w9tkgTh3hZsZm8WvePAvbLYHkmNCrx9au5Vm+i3cZjhZWNk5WHoddK5W
-	zx5ZzQKRKAuGihmPa2tJ3XXfnec4X5kiynj6AIyuX33AVHqGNu+rCsquE5HMnv6MI80h
-	NqeA==
+Return-Path: <laurentiu.palcu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AC77E01561;
+	Fri, 20 Sep 2013 01:43:34 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 20 Sep 2013 01:43:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,941,1371106800"; d="scan'208";a="406313128"
+Received: from lpalcu-linux.rb.intel.com (HELO lpalcu-linux) ([10.237.105.165])
+	by orsmga002.jf.intel.com with ESMTP; 20 Sep 2013 01:43:31 -0700
+Date: Fri, 20 Sep 2013 11:43:31 +0300
+From: Laurentiu Palcu <laurentiu.palcu@intel.com>
+To: Li Zhijian <lizhijian@cn.fujitsu.com>
+Message-ID: <20130920084330.GA14107@lpalcu-linux>
+References: <523BEF04.5070308@cn.fujitsu.com>
 MIME-Version: 1.0
-X-Received: by 10.112.51.101 with SMTP id j5mr5205352lbo.17.1379661571322;
-	Fri, 20 Sep 2013 00:19:31 -0700 (PDT)
-Received: by 10.114.97.199 with HTTP; Fri, 20 Sep 2013 00:19:31 -0700 (PDT)
-Date: Fri, 20 Sep 2013 12:49:31 +0530
-Message-ID: <CAHoQjEf-ybOvCn4hBOyHgH32WEa+vOqzRMSEu+Dip=bVwgF0hg@mail.gmail.com>
-From: Rahul Ravi <rahul.ravi26@gmail.com>
-To: yocto@yoctoproject.org
-Subject: how to use already provided kernel tar file of mini2440 with yocto project
+In-Reply-To: <523BEF04.5070308@cn.fujitsu.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto list discussion <yocto@yoctoproject.org>, poky@yoctoproject.org
+Subject: Re: Is this a bug of binutils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,33 +29,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 07:19:34 -0000
-Content-Type: multipart/alternative; boundary=001a11336460de75fb04e6cb7d67
+X-List-Received-Date: Fri, 20 Sep 2013 08:43:37 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---001a11336460de75fb04e6cb7d67
-Content-Type: text/plain; charset=ISO-8859-1
+Hi,
 
-sir/ma'm;
+On Fri, Sep 20, 2013 at 02:45:24PM +0800, Li Zhijian wrote:
+> Hi，all
+> 
+> I got a big problem when using the cross-toolchain to compile a simple C program.
+> This problem since 3ae71c74c71f13a390b21b4c3ead04e51aaa82b8
+> which is to upgrade the binutils from 2.22 to 2.23.1
+> 
+> what I do is as follows, any help or ideas ?
+> 
+> I) Build my cross-toolchain
+> # git clone http://git.yoctoproject.org/git/poky/.git
+> # cd poky
+> # git checkout 3ae71c74c71f13a390b21b4c3ead04e51aaa82b8 -b tcmode-default
+> ...skip some steps...
+> # bitbake meta-toolchain
+> Loading cache: 100% |############################################################################################| ETA: 00:00:00
+> Loaded 1122 entries from dependency cache.
+> 
+> Build Configuration:
+> BB_VERSION = "1.17.0"
+> BUILD_SYS = "x86_64-linux"
+> NATIVELSBSTRING = "CentOS-6.3"
+> TARGET_SYS = "x86_64-poky-linux"
+> MACHINE = "qemux86-64"
+> DISTRO = "poky"
+> DISTRO_VERSION = "1.3+snapshot-20130912"
+> TUNE_FEATURES = "m64"
+> TARGET_FPU = ""
+> meta
+> meta-yocto
+> meta-yocto-bsp = "tcmode-default:3ae71c74c71f13a390b21b4c3ead04e51aaa82b8"
+> 
+> ..cost a long time..
+> all of the build work successfully
+> 
+> II) Install my cross-toolchain
+> # ./poky-eglibc-x86_64-x86_64-toolchain-1.3+snapshot-20130912.sh
+> Enter target directory for SDK (default: /opt/poky/1.3+snapshot): toolchain-1.3-tcmode-default
+> 
+> III） compile a simple C program
+> # cat test.c
+> int main ()
+> {
+> printf("hello world\n");
+> return 0;
+> }
+> # source toolchain-1.3-tcmode-default/environment-setup-x86_64-poky-linux
+> # $CC -o test test.c -L tmp/sysroots/qemux86-64/usr/lib/ -lm
+Technically, for this simple program, it's enough to do:
 
-Please tell me the way how to use already provided kernel tar file of
-mini2440 with yocto project.
+$CC -o test test.c
 
-I want to use linux-2.6.32 provided with mini2440 board.
+The $CC contains the sysroot option and the linker will automatically
+prefix /lib and /usr/lib with the target sysroot. So, it should be able
+to compile just fine.
 
+The -L option just adds another search path for libraries which will be
+searched before the default ones. So, it shouldn't be a problem.
 
+Somehow, it looks like it tries to link against the host's libraries.
 
-With regards
-Rahul Ravi
+Before compiling, do a 'echo $CC' and make sure the --sysroot points to
+the correct directory.
 
---001a11336460de75fb04e6cb7d67
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Laurentiu
 
-<div dir=3D"ltr">sir/ma&#39;m;<div><br></div><div style>Please tell me the =
-way how to use=A0already provided kernel tar file of mini2440 with yocto pr=
-oject.</div><div style><br></div><div style>I want to use linux-2.6.32 prov=
-ided with mini2440 board.</div>
-<div style><br></div><div style><br></div><div style><br></div><div style>W=
-ith regards</div><div style>Rahul Ravi</div></div>
+> test.c: In function 'main':
+> test.c:3:9: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
+> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: skipping incompatible /lib/libc.so.6 when searching for /lib/libc.so.6
+> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: cannot find /lib/libc.so.6
+> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: skipping incompatible /usr/lib/libc_nonshared.a when searching for /usr/lib/libc_nonshared.a
+> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: cannot find /usr/lib/libc_nonshared.a
+> collect2: error: ld returned 1 exit status
+> 
+> 
+> #cat toolchain-1.3-tcmode-default/environment-setup-x86_64-poky-linux
+> export PATH=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin:/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux:$PATH
+> export PKG_CONFIG_SYSROOT_DIR=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux
+> export PKG_CONFIG_PATH=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux/usr/lib/pkgconfig
+> export CONFIG_SITE=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/site-config-x86_64-poky-linux
+> export CC="x86_64-poky-linux-gcc -m64 --sysroot=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux"
+> export CXX="x86_64-poky-linux-g++ -m64 --sysroot=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux"
+> export CPP="x86_64-poky-linux-gcc -E -m64 --sysroot=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux"
+> export AS="x86_64-poky-linux-as "
+> export LD="x86_64-poky-linux-ld --sysroot=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux"
+> export GDB=x86_64-poky-linux-gdb
+> export STRIP=x86_64-poky-linux-strip
+> export RANLIB=x86_64-poky-linux-ranlib
+> export OBJCOPY=x86_64-poky-linux-objcopy
+> export OBJDUMP=x86_64-poky-linux-objdump
+> export AR=x86_64-poky-linux-ar
+> export NM=x86_64-poky-linux-nm
+> export M4=m4
+> export TARGET_PREFIX=x86_64-poky-linux-
+> export CONFIGURE_FLAGS="--target=x86_64-poky-linux --host=x86_64-poky-linux --build=x86_64-linux --with-libtool-sysroot=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux"
+> export CFLAGS=" -O2 -pipe -g -feliminate-unused-debug-types"
+> export CXXFLAGS=" -O2 -pipe -g -feliminate-unused-debug-types -fpermissive"
+> export LDFLAGS="-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed"
+> export CPPFLAGS=""
+> export OECORE_NATIVE_SYSROOT="/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux"
+> export OECORE_TARGET_SYSROOT="/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux"
+> export OECORE_ACLOCAL_OPTS="-I /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/share/aclocal"
+> export OECORE_DISTRO_VERSION="1.3+snapshot-20130912"
+> export OECORE_SDK_VERSION="1.3+snapshot"
+> 
+> -- 
+> Best regards.
+> Li Zhijian (8555)
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---001a11336460de75fb04e6cb7d67--
