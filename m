@@ -1,28 +1,34 @@
-Return-Path: <ashish.dalela@gmail.com>
-Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
-	[209.85.217.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FC0CE01445
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 07:07:32 -0700 (PDT)
-Received: by mail-lb0-f178.google.com with SMTP id z5so601530lbh.9
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 07:07:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Tr41iMqmsGQV2jqaTFdJr9SqqIBFMTE8sowZRDr5KCY=;
-	b=hyPmZFPyWD6ap7n+TxBWpScD2v9veS5EUTrK+h92pL9Npqtf//T4zdc+uV732w2wrP
-	9hblD4rmsuo/ijrF+iq4GiEjKLnUOTJldTplcSVrXQxTjkyZNrs+e4GuXyxHw/RQsMgZ
-	QSIYkzTRzjxx0xC6oGskrqLl0DiOFFC5t3OaT5N3GJ2NI1GpZTTvwF1M1UsYCOxlWx7r
-	sEaxRBkjJqmZY3z3NN1CZ8CZSARn5R+x9v7q4u9GlMxi03zaz8mlmDGDTNRCuLHE4IEj
-	7Gf7u5aPxCSV6nc6rKXO/7YFL5eY0JR8etLr+UhRpe41Th/FbuvVapG5I5lye8ISzurB
-	199A==
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43555E01481
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 08:25:04 -0700 (PDT)
+Received: by mail-vc0-f170.google.com with SMTP id kw10so429242vcb.1
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 08:25:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=0+H1v8+kPuH4EQV1zIVpto/d2vgJtOuFiX4eqPqBaIU=;
+	b=SX1I6U2jX6zBbttkLWF5EeohoLVMkqpz5MW+wpwAW1T/gmPe4Lzfq0RoCQTW6SVHeK
+	Z7AeRLjemJfcv8ihV+kGELHXaCiZ/17ygaKGIITSQmABdbN2wvh4a1OpKr2+C9TtDug2
+	FbcfET/LTlItfPN7o+AGmukZLQwS/FhEwck6wqLOkwgzmKOaMe4B5COLDWdnhpbvgr+n
+	blsNi+SCXElMBEwHnTp+dVb1xIkgyDxU7DVKo9GQB6LqrVBsQsJJc85l/pAK2rjjqPA2
+	wqE1k5VY/xj06BlipREC7FSkvHwu0NS5KrS/E2kX2xM45o0ijbnIbX7Sf16esVofmH/i
+	wa5g==
+X-Gm-Message-State: ALoCoQkbvgCse62bzZdtFpIQWJ4N4iIkTbmJOxWmDo0mYcTwLdMW+H4X8dedipqepuEr1L2V0Njv
 MIME-Version: 1.0
-X-Received: by 10.112.52.225 with SMTP id w1mr6409168lbo.31.1379686051382;
-	Fri, 20 Sep 2013 07:07:31 -0700 (PDT)
-Received: by 10.112.11.195 with HTTP; Fri, 20 Sep 2013 07:07:31 -0700 (PDT)
-Date: Fri, 20 Sep 2013 19:37:31 +0530
-Message-ID: <CABhkJRe2AAZFWiXGB53NN2EBVByvb3wUz_HJfbu0FeLzTdia4Q@mail.gmail.com>
-From: Ashish Dalela <ashish.dalela@gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: TCP Window Issue while doing SSH
+X-Received: by 10.58.108.74 with SMTP id hi10mr7061205veb.14.1379690703735;
+	Fri, 20 Sep 2013 08:25:03 -0700 (PDT)
+Received: by 10.52.147.201 with HTTP; Fri, 20 Sep 2013 08:25:03 -0700 (PDT)
+In-Reply-To: <1379595865-22999-1-git-send-email-alexandrux.palalau@intel.com>
+References: <1379595865-22999-1-git-send-email-alexandrux.palalau@intel.com>
+Date: Fri, 20 Sep 2013 08:25:03 -0700
+Message-ID: <CAPhnLPBkr6vB_Yvs8cmi03BLVsjmQhyd0kenP2=kjuhHZ4i3Vg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Alexandru Palalau <alexandrux.palalau@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-autobuilder][PATCH] buildset-config: small improvement to nightly-qa-logrotate scenario
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,76 +40,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 14:07:34 -0000
-Content-Type: multipart/alternative; boundary=001a11c3fe90fe899204e6d1300e
-
---001a11c3fe90fe899204e6d1300e
+X-List-Received-Date: Fri, 20 Sep 2013 15:25:05 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Pulled into master. In production today. Thanks.
 
-I'm seeing a TCP window issue while doing a SSH. Below is TCPDUMP capture
-of SSH from Yocto to an external Linux server. Yocto sends a SYN window of
-14600 (10x of MSS) and external Linux server ACKs with Window of 5792 (4x
-of MSS). Now, Yocto Linux drops the ACK.
+-b
 
-When I do the SSH from external Linux server the same thing happens and
-Yocto Linux never sends out a SYN ACK.
+On Thu, Sep 19, 2013 at 6:04 AM, Alexandru Palalau
+<alexandrux.palalau@intel.com> wrote:
+> Replaced DISTRO_EXTRA_RDEPENDS (which applies only for images that
+> include packagegroup-base) with IMAGE_INSTALL_append in order to add
+> logrotate package to the image.
+>
+> Signed-off-by: Alexandru Palalau <alexandrux.palalau@intel.com>
+> ---
+>  buildset-config/nightly-qa-logrotate.conf | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/buildset-config/nightly-qa-logrotate.conf b/buildset-config/nightly-qa-logrotate.conf
+> index c82206e..1a60bd3 100644
+> --- a/buildset-config/nightly-qa-logrotate.conf
+> +++ b/buildset-config/nightly-qa-logrotate.conf
+> @@ -8,7 +8,7 @@ steps: [{'SetDest':{}},
+>          {'CheckOutLayers': {}},
+>          {'RunPreamble': {}},
+>          {'GetDistroVersion' : {'distro': 'poky'}},
+> -        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nDISTRO_EXTRA_RDEPENDS += "logrotate"\n'}},
+> +        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'atextappend' : '\nIMAGE_INSTALL_append = " logrotate"\n'}},
+>          {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+>          {'BuildImages': {'images': 'core-image-sato'}},
+>          {'RunSanityTests': {'images': 'core-image-sato', 'suitesappend' : 'logrotate'}}]
+> --
+> 1.7.11.7
+>
 
-19:00:17.309270 IP 9.1.2.1.40144 > 9.1.1.5.ssh: S 1858484743:1858484743(0)
-win 14600 <mss 1460,sackOK,timestamp 130112 0,nop,wscale 5>
-19:00:17.309282 IP 9.1.1.5.ssh > 9.1.2.1.40144: S 606474867:606474867(0)
-ack 1858484744 win 5792 <mss 1460,sackOK,timestamp 3722481670
-115037,nop,wscale 7>
 
-I'm using 9.0.1 but I have faced the same issue with 9.0.2 as well. I tried
-turning off TCP window scaling with sysctl -w
-"net.ipv4.tcp_window_scaling=0" but it does not help.
 
-Any suggestions on how I can fix this problem? The SSH works fine when the
-peer accepts the Window size proposed by Yocto Linux but fails when the
-peer proposes an alternate Win size.
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-Thanks
--Ashish
-
---001a11c3fe90fe899204e6d1300e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div>Hi,</div><div><br></div><div>I&#39;m seeing a TCP=
- window issue while doing a SSH. Below is TCPDUMP capture of SSH from Yocto=
- to an external Linux server. Yocto sends a SYN window of 14600 (10x of MSS=
-) and external Linux server ACKs with Window of 5792 (4x of MSS). Now, Yoct=
-o Linux drops the ACK.</div>
-<div><br></div><div>When I do the SSH from external Linux server the same t=
-hing happens and Yocto Linux never sends out a SYN ACK.=A0</div><div><br></=
-div><div><div>19:00:17.309270 IP 9.1.2.1.40144 &gt; 9.1.1.5.ssh: S 18584847=
-43:1858484743(0) win 14600 &lt;mss 1460,sackOK,timestamp 130112 0,nop,wscal=
-e 5&gt;</div>
-<div>19:00:17.309282 IP 9.1.1.5.ssh &gt; 9.1.2.1.40144: S 606474867:6064748=
-67(0) ack 1858484744 win 5792 &lt;mss 1460,sackOK,timestamp 3722481670 1150=
-37,nop,wscale 7&gt;</div></div><div><br></div><div>I&#39;m using 9.0.1 but =
-I have faced the same issue with 9.0.2 as well. I tried turning off TCP win=
-dow scaling with=A0<tt style=3D"font-size:13px;font-family:monospace,Courie=
-r;color:rgb(0,0,0);line-height:19.1875px">sysctl -w &quot;net.ipv4.tcp_wind=
-ow_scaling=3D0&quot;</tt><span style=3D"font-size:13px;color:rgb(0,0,0);fon=
-t-family:sans-serif;line-height:19.1875px">=A0but it does not help.</span><=
-/div>
-<div><span style=3D"font-size:13px;color:rgb(0,0,0);font-family:sans-serif;=
-line-height:19.1875px"><br></span></div><div><span style=3D"font-size:13px;=
-color:rgb(0,0,0);font-family:sans-serif;line-height:19.1875px">Any suggesti=
-ons on how I can fix this problem? The SSH works fine when the peer accepts=
- the Window size proposed by Yocto Linux but fails when the peer proposes a=
-n alternate Win size.</span></div>
-<div><span style=3D"font-size:13px;color:rgb(0,0,0);font-family:sans-serif;=
-line-height:19.1875px"><br></span></div><div><span style=3D"font-size:13px;=
-color:rgb(0,0,0);font-family:sans-serif;line-height:19.1875px">Thanks</span=
-></div>
-<div><span style=3D"font-size:13px;color:rgb(0,0,0);font-family:sans-serif;=
-line-height:19.1875px">-Ashish</span></div><div><span style=3D"font-size:13=
-px;color:rgb(0,0,0);font-family:sans-serif;line-height:19.1875px"><br></spa=
-n></div>
-</div>
-
---001a11c3fe90fe899204e6d1300e--
