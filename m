@@ -1,36 +1,18 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f46.google.com (mail-vb0-f46.google.com
-	[209.85.212.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 523E6E015FD
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 13:24:29 -0700 (PDT)
-Received: by mail-vb0-f46.google.com with SMTP id p13so677900vbe.19
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 13:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=hTfDb0ZAyIQXGu9F7HjedhwYmMOCsBMXUDlhPGYr8NE=;
-	b=cvfRLuUBrLL+WiLVqwqo6AsOUf6xNeQQE+NalVs9Ac5Y7PbEa+L7V7wvxFN3sQeICm
-	xRVsNH+/qWqi75kg3w5zw4MeWOU+0W0whel59bHa9QP9uv+Q/mzCd6gtWiJU4RFYzRqo
-	r8z2yFMK06BVMDDkNeQKym+6YAAbssOJLw8Lb3Dyz5a/KxadjAzTFS1fLMSCszR7zZkP
-	F8E/RMrt7lSddK7cnWiSCttCVCdjvsg4eU5VtC1wPFX0pxXBvsTbTuWHKaAJ9AOiQchi
-	HYGD8gCVYWMRvkesI0HHKLn+vwSqWOjkcpeEVMupLuho6fIDbM/Y09G/TeDLhUcibAGY
-	WemA==
-X-Received: by 10.52.108.230 with SMTP id hn6mr2055031vdb.28.1379708668984;
-	Fri, 20 Sep 2013 13:24:28 -0700 (PDT)
+Return-Path: <linux@rkirkpat.net>
+Received: from saratoga.rkirkpat.net (saratoga.rkirkpat.net [206.196.156.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D9D8E015FD
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 16:44:59 -0700 (PDT)
+Received: from magellan.rkirkpat.net (magellan.rkirkpat.net [192.168.7.5])
+	by saratoga.rkirkpat.net (Postfix) with ESMTP
+	id 81E6A71767; Fri, 20 Sep 2013 17:44:58 -0600 (MDT)
+Date: Fri, 20 Sep 2013 17:44:58 -0600 (MDT)
+From: Ryan Kirkpatrick <linux@rkirkpat.net>
+X-X-Sender: rkirkpat@magellan.rkirkpat.net
+To: yocto@yoctoproject.org
+Message-ID: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
+User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.109.72 with HTTP; Fri, 20 Sep 2013 13:23:48 -0700 (PDT)
-In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153B26E1373@pluto.melinkcorp.local>
-References: <CANyK_8fTtdxWXPf9eSgpQWvvPspaashL14vi-h8x15FtJOQ0DA@mail.gmail.com>
-	<91586D499ADFD74FBCFB8425266A5DE40153B26E1373@pluto.melinkcorp.local>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 20 Sep 2013 21:23:48 +0100
-X-Google-Sender-Auth: SVJ9Rhu1eI27L6y_1t8BspdGb5w
-Message-ID: <CANyK_8ds-F1Y2gPjKezDJW0NY5nixpCAOjBWow_J=jsLOLKwWg@mail.gmail.com>
-To: Bryan Evenson <bevenson@melinkcorp.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: RFC: Janitorial tasks
+Subject: Mono 2.10.8.1 (meta-mono) Corelib not in sync with runtime...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,25 +24,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 20:24:30 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 20 Sep 2013 23:45:02 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 19 September 2013 19:26, Bryan Evenson <bevenson@melinkcorp.com> wrote:
-> Paul,
->
-> Is the plan to move toward the YP wiki task list, the YP bugzilla, or both for Janitorial task entry?  If one would be preferred over the other, it'd probably be good to state that at the top of the wiki page.
->
 
-Currently it's both as both can be seen from the YP wiki page.
+I am trying to get Mono 2.10 working on a core-image-basic running on 
+qemux86 machine. I am using pokay-dylan-9.0.2 on a Debian 6.0.7 system for 
+the builds and been able to build and run images without issue. Yet, when 
+I went to add the meta-mono layer from git.yoctoporject.org, I started 
+running into problems.
 
-> For the wiki task list, maybe add an "Assignee:" line, so that someone knows if the task is being worked on?  Would be frustrating to work on a task only to find someone else did the same thing.
->
+I first had to add these lines to the mono_2.10.8.1.bb recipe, and move 
+the mono-2.10.8.1/ folder into the files/ folder to get the build to 
+succeed. I also added the EXTRA_OECONF line to disable X support (don't 
+want winforms, just Mono for console and services).
 
-Probably a good idea.
+EXTRA_OECONF += "--without-x --without-moonlight --without-libgdiplus"
+FILES_${PN} += "${datadir}/mono-2.0"
+FILES_${PN} += "${datadir}/libgc-mono"
+INSANE_SKIP_${PN} = "arch dev-so debug-files ldflags"
 
--- 
-Paul Barker
+After that, I built and booted an image with the 'mono' package installed 
+and was able to run Mono simply:
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+$ mono --version
+Mono JIT compiler version 2.10.8.1 (tarball Fri Sep 20 14:23:43 MDT 2013)
+Copyright (C) 2002-2011 Novell, Inc, Xamarin, Inc and Contributors. 
+www.mono-project.com
+	TLS:           normal
+	SIGSEGV:       normal
+	Notifications: epoll
+	Architecture:  x86
+	Disabled:      none
+	Misc:          debugger softdebug 
+	LLVM:          supported, not enabled.
+	GC:            Included Boehm (with typed GC and Parallel Mark)
+
+Yet when I actually tried to run a Mono application (simple console only 
+application already compiled on another system), I got this error:
+
+Corlib not in sync with this runtime: expected corlib version 96, found 100.
+Loaded from: /usr/lib/mono/2.0/mscorlib.dll
+Download a newer corlib or a newer runtime at http://www.go-mono.com/daily.
+
+It looks like this error indicates some sort mismatch in Mono, as if one 
+was mixing between a release and a development version. But there is no 
+Mono on my build machine to cause confusion, everything came from the Mono 
+recipe. Further, given the issues I encountered above in getting Mono 
+built, it appears this recipe has not been tested with more recent version 
+of Yocto.
+
+Is there a more current Mono recipe available? Does anyone have any ideas 
+on what in this Mono recipe could cause that error? Or do I get to dig in 
+and untangle the Mono build? Thanks!
+
+---------------------------------------------------------------------------
+| Ryan Kirkpatrick | Boulder, CO | rkirkpat.net | twitter.com/rkirkpatnet |
+---------------------------------------------------------------------------
+
 
