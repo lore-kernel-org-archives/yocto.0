@@ -1,37 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
-	[209.85.220.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8535AE01481
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 08:49:16 -0700 (PDT)
-Received: by mail-pa0-f45.google.com with SMTP id bg4so868604pad.4
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 08:49:15 -0700 (PDT)
+Return-Path: <xertz.yocto@gmail.com>
+Received: from mail-ve0-f194.google.com (mail-ve0-f194.google.com
+	[209.85.128.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84E7BE015FD
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 12:53:19 -0700 (PDT)
+Received: by mail-ve0-f194.google.com with SMTP id c14so137329vea.1
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 12:53:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=j78rfL9F0RQEbJ+9T08Ynk5cSkX1FwU+ZLSLg1wUuiw=;
-	b=qQow881vn/W+uDyGSSCAazw2G8SouJUdXMMYsZn+w3yQ9eQcwgoPZ8ICV8N/7WugNm
-	dPmBuEqBEIzzOa8S8cwrTvXtE0au6WiWqMO7JXzs63jJvuJ+7dMi+kkdPRcI09Rl27va
-	ifqvLFhOT4Ow+F2fmFtMhUXIY7oxMCJUBZT25cKEw38zDwJiG5wWA98Q/dfhUEanWwuG
-	6NJ6onzHKxR2e6H333nqamEguP2SjD2jiZHHHgJb9QpulBG8f4rJ8irdgeuW262u5mWB
-	E46PO98WXaQwJE4EQXzL60nlaVu1qSrw65022FiKGprIkcviEX7HrcGpTULmh7iOEGfx
-	XqxA==
-X-Received: by 10.68.232.134 with SMTP id to6mr8682362pbc.163.1379692155774;
-	Fri, 20 Sep 2013 08:49:15 -0700 (PDT)
-Received: from kraj-sslvpn-nc.jnpr.net (natint3.juniper.net. [66.129.224.36])
-	by mx.google.com with ESMTPSA id
-	f2sm16532987pbg.44.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 20 Sep 2013 08:49:15 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.6 \(1510\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CABG0-3yLMy5PCiMPvuTkbeeXhDL4Lm9SJOdegu0s6s9F9RbHdA@mail.gmail.com>
-Date: Fri, 20 Sep 2013 08:49:12 -0700
-Message-Id: <6D9E6E38-88DA-489D-A761-A74EC896708A@gmail.com>
-References: <CABG0-3yLMy5PCiMPvuTkbeeXhDL4Lm9SJOdegu0s6s9F9RbHdA@mail.gmail.com>
-To: arun kumar <arunkr.linux@gmail.com>
-X-Mailer: Apple Mail (2.1510)
-Cc: yocto@yoctoproject.org
-Subject: Re: running core-image-sato on the development host
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=EBLGUmEwRz6Iw5TwT5B7BV0Xw7Dxg1eFwXBu+vaxEv4=;
+	b=mPPhk+AVDW+IxlFvtrjo0IqxUSZM1oFVX+y6dYp7k9OSh9fephv/U24jjPBbzV+W1/
+	T3MfLYhMaOfMnc2gdjCf4ShI/+PbgClcwS0k3Ai8Jcq8FSpCA/B8lR5avGSMu1nwXkLP
+	htmzIErghpBkMl6/51aqT6YCXLKxxPRsC9s7zujA9f22yqFUu66rW+WZr63qVTuQxQfY
+	MbY2p+rprRGNf/GSDqOUqH9ZLwyY0v1TNLICr6befTB/nhjB9nDWtgwrys6F5fChqR3I
+	zvdw+X0gO5mAn19+CB+1l9U59sMzjrDkqkynk9MAh6rbHWh+e1aphw0wN0Bzio2u78nA
+	mVwg==
+MIME-Version: 1.0
+X-Received: by 10.52.98.131 with SMTP id ei3mr6691385vdb.4.1379706798435; Fri,
+	20 Sep 2013 12:53:18 -0700 (PDT)
+Received: by 10.220.251.82 with HTTP; Fri, 20 Sep 2013 12:53:18 -0700 (PDT)
+Date: Fri, 20 Sep 2013 20:53:18 +0100
+Message-ID: <CAEo3mJUri=-cHU7cKdJLspWrb_k2irEFx47+npb2TBRKMLcCPw@mail.gmail.com>
+From: John Doe <xertz.yocto@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Configuring linux-yocto-custom to build specific kernel modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,25 +34,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 15:49:16 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 20 Sep 2013 19:53:20 -0000
+Content-Type: multipart/alternative; boundary=20cf307d03f49d76bd04e6d60544
 
+--20cf307d03f49d76bd04e6d60544
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Sep 19, 2013, at 10:51 PM, arun kumar <arunkr.linux@gmail.com> wrote:
+Hi,
 
-> can i run the image built using the quickstart guide on my x86 host, =
-the machine was set to qemux86, is there a way to use the files =
-generated in /tmp/deploy to boot on my host /
+I would like to know how I can build a specific kernel module (one that is
+already in the linux kernel). Do I have to create a custom bitbake recipe
+for the module or can I simply configure linux-yocto-custom?
 
-Execute
-runqemu qemux86
+My specific aim is to build the kernel module
+drivers/net/wireless/rtl818x/rtl8187 as part of the core-image-minimal
+build.
 
-with in a shell where you have sourced env script oe-init-build-env
+Regards,
+J
 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+--20cf307d03f49d76bd04e6d60544
+Content-Type: text/html; charset=ISO-8859-1
 
+<div dir="ltr">Hi,<div><br></div><div>I would like to know how I can build a specific kernel module (one that is already in the linux kernel). Do I have to create a custom bitbake recipe for the module or can I simply configure linux-yocto-custom?</div>
+<div><br></div><div>My specific aim is to build the kernel module drivers/net/wireless/rtl818x/rtl8187 as part of the core-image-minimal build.</div><div><br></div><div>Regards,</div><div>J</div></div>
 
+--20cf307d03f49d76bd04e6d60544--
