@@ -1,30 +1,28 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
-	[209.85.215.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C97D1E01587
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 16:09:41 -0700 (PDT)
-Received: by mail-la0-f41.google.com with SMTP id ec20so7445186lab.14
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 16:09:40 -0700 (PDT)
+Return-Path: <arunkr.linux@gmail.com>
+Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
+	[209.85.128.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D17F5E015AB
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 22:51:52 -0700 (PDT)
+Received: by mail-ve0-f181.google.com with SMTP id oy12so7783467veb.12
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2013 22:51:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=+uMeTe7l238IQvvefDxxj8/Hp5c73ZCH1IrHPkG7qng=;
-	b=IMw2GqrX/+0cdK7uKTlg6tUYUaLjX7uRVA+BIlVtYkAvK9EmYGLo+IPZMmkFEMMiCC
-	N/sc12S4R4OVAOOMUxQ6+treNsX264qLH9sUqqoQ+RTXpllzYZPgcmU1MZM6NjCy//6C
-	qGHsP1VQinnIWodQg40KoQYt8DbqawGZPE4APmHEQzrRgXTnPRlzbqbfdPlvWKvffaLX
-	4vRz3OYBqmlChWXZZTE5QT22Pv/TTR49C9f55fzy/Y8f2Nb3tpi0+mXZw/YVzZ6H7DMO
-	qshTmPYouiVtiCgfo5Spw0LdUuL2il3N1X9xyJdyji5v/oVCjLAJ2sW2POdvtFteJgjL
-	vOFQ==
-X-Received: by 10.112.126.37 with SMTP id mv5mr3717598lbb.20.1379632180347;
-	Thu, 19 Sep 2013 16:09:40 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=gypjzvnEaAsV/CfcGqrywF3jlILYDXcnw+PHH+T8F6U=;
+	b=VZ0Uhq69SmTORQMyfA4tvJn+4zRgVZryONxJy+a6suC2Ny85TT36qf7SYDOCTnqZ48
+	hKXdxZHz5OljNek2AHP1ufPgOvNVJYZ5M3TpHqgnDVWtln13vrjA3kCktX46vPGTGNZw
+	z88O4T2LKKhc3PbjFldFtjStn2QDhCr1De6VA6HrkyQBbB1HIgk5dtoti6nrFlR2bK9Z
+	IlO3+CozVk856SkdXaxulpBMeCzPqwEs0ZYFMPKs7/J5jsO5+DvfPwPuGR21IjLOtUWb
+	xxog96BmGwTXP7YUsWN7R8csP+DCpYoKSpPDMg4ER0ygxy77/1smVceqBJciE8mS+nJq
+	t82g==
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.57.105 with HTTP; Thu, 19 Sep 2013 16:09:20 -0700 (PDT)
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Thu, 19 Sep 2013 16:09:20 -0700
-X-Google-Sender-Auth: 40sEgMldkXdJ1SH9hwgciGs1Eu4
-Message-ID: <CA+YB3rbT-MQJXvCb0wu3xMbA6F+hoaQAstq=6UP_8SBRo6kk+Q@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: ELCE survey request
+X-Received: by 10.52.32.37 with SMTP id f5mr283981vdi.17.1379656312282; Thu,
+	19 Sep 2013 22:51:52 -0700 (PDT)
+Received: by 10.58.198.167 with HTTP; Thu, 19 Sep 2013 22:51:52 -0700 (PDT)
+Date: Fri, 20 Sep 2013 11:21:52 +0530
+Message-ID: <CABG0-3yLMy5PCiMPvuTkbeeXhDL4Lm9SJOdegu0s6s9F9RbHdA@mail.gmail.com>
+From: arun kumar <arunkr.linux@gmail.com>
+To: yocto@yoctoproject.org
+Subject: running core-image-sato on the development host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,42 +34,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2013 23:09:43 -0000
+X-List-Received-Date: Fri, 20 Sep 2013 05:51:54 -0000
+Content-Type: multipart/alternative; boundary=bcaec51d255267e61c04e6ca44a9
+
+--bcaec51d255267e61c04e6ca44a9
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all - Tim Bird is working on an embedded Linux community survey for
-the ELCE end game. He and I would both be very grateful if you would
-take a few minutes to complete this survey. Here is his note with a
-link:
-________________________________
-Hello everyone,
+can i run the image built using the quickstart guide on my x86 host, the
+machine was set to qemux86, is there a way to use the files generated in
+/tmp/deploy to boot on my host /
 
-I'm asking a personal favor of everyone on this list...
+--bcaec51d255267e61c04e6ca44a9
+Content-Type: text/html; charset=ISO-8859-1
 
-We are now preparing for Embedded Linux Conference Europe,
-and as part of this event we will be presenting the results of
-a survey (as part of a game).
+<div dir="ltr">can i run the image built using the quickstart guide on my x86 host, the machine was set to qemux86, is there a way to use the files generated in /tmp/deploy to boot on my host /<br></div>
 
-Please go the URL below, and answer the 20 questions.
-Each answer should be a short word or phrase, and should
-be the first thing you think of.  Please do NOT research the
-answer to the question, but just type the first thing that pops
-in your head.
-
-http://www.embeddedlinuxconference.com/cgi-bin/survey.cgi
-
-This should take less than 10 minutes.  Please answer all the questions.
-Answers are completely anonymous. (Not that it matters, since
-there is no personal information requested.)
-
-I need at least 100 people to respond, so please help me out!
-
-Thanks very much.
-
-I'm looking forward to a fun time in Edinburgh this year, meeting
-with many of you and talking with you about embedded Linux.
-________________________________
--- 
-Jeff Osier-Mixon http://jefro.net/blog
-Yocto Project Community Manager @Intel http://yoctoproject.org
-
+--bcaec51d255267e61c04e6ca44a9--
