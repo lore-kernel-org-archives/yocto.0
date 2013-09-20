@@ -1,26 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E753E015FD
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 12:56:44 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r8KJuflN013143
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 20 Sep 2013 12:56:41 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
-	Fri, 20 Sep 2013 12:56:41 -0700
-Message-ID: <523CA864.7020105@windriver.com>
-Date: Fri, 20 Sep 2013 15:56:20 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vb0-f46.google.com (mail-vb0-f46.google.com
+	[209.85.212.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 523E6E015FD
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 13:24:29 -0700 (PDT)
+Received: by mail-vb0-f46.google.com with SMTP id p13so677900vbe.19
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 13:24:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=hTfDb0ZAyIQXGu9F7HjedhwYmMOCsBMXUDlhPGYr8NE=;
+	b=cvfRLuUBrLL+WiLVqwqo6AsOUf6xNeQQE+NalVs9Ac5Y7PbEa+L7V7wvxFN3sQeICm
+	xRVsNH+/qWqi75kg3w5zw4MeWOU+0W0whel59bHa9QP9uv+Q/mzCd6gtWiJU4RFYzRqo
+	r8z2yFMK06BVMDDkNeQKym+6YAAbssOJLw8Lb3Dyz5a/KxadjAzTFS1fLMSCszR7zZkP
+	F8E/RMrt7lSddK7cnWiSCttCVCdjvsg4eU5VtC1wPFX0pxXBvsTbTuWHKaAJ9AOiQchi
+	HYGD8gCVYWMRvkesI0HHKLn+vwSqWOjkcpeEVMupLuho6fIDbM/Y09G/TeDLhUcibAGY
+	WemA==
+X-Received: by 10.52.108.230 with SMTP id hn6mr2055031vdb.28.1379708668984;
+	Fri, 20 Sep 2013 13:24:28 -0700 (PDT)
 MIME-Version: 1.0
-To: John Doe <xertz.yocto@gmail.com>
-References: <CAEo3mJUri=-cHU7cKdJLspWrb_k2irEFx47+npb2TBRKMLcCPw@mail.gmail.com>
-In-Reply-To: <CAEo3mJUri=-cHU7cKdJLspWrb_k2irEFx47+npb2TBRKMLcCPw@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Configuring linux-yocto-custom to build specific kernel modules
+Sender: paul.betafive@gmail.com
+Received: by 10.220.109.72 with HTTP; Fri, 20 Sep 2013 13:23:48 -0700 (PDT)
+In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153B26E1373@pluto.melinkcorp.local>
+References: <CANyK_8fTtdxWXPf9eSgpQWvvPspaashL14vi-h8x15FtJOQ0DA@mail.gmail.com>
+	<91586D499ADFD74FBCFB8425266A5DE40153B26E1373@pluto.melinkcorp.local>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 20 Sep 2013 21:23:48 +0100
+X-Google-Sender-Auth: SVJ9Rhu1eI27L6y_1t8BspdGb5w
+Message-ID: <CANyK_8ds-F1Y2gPjKezDJW0NY5nixpCAOjBWow_J=jsLOLKwWg@mail.gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: RFC: Janitorial tasks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,44 +42,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2013 19:56:47 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 20 Sep 2013 20:24:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 13-09-20 03:53 PM, John Doe wrote:
-> Hi,
+On 19 September 2013 19:26, Bryan Evenson <bevenson@melinkcorp.com> wrote:
+> Paul,
 >
-> I would like to know how I can build a specific kernel module (one that
-> is already in the linux kernel). Do I have to create a custom bitbake
-> recipe for the module or can I simply configure linux-yocto-custom?
-
-Is your kernel already building from linux-yocto-custom ? Or are you
-using the default linux-yocto kernel and recipes already ?
-
-If you are using one of the standard qemu machines, or a BSP that
-is already working with linux-yocto*, you can simply enable the module
-by creating a configuration fragment, and putting it on the SRC_URI.
-
-config fragments and how to add them to the SRC_URI are covered in
-the kernel development manuals found off the yocto site.
-
-Cheers,
-
-Bruce
-
->
-> My specific aim is to build the kernel module
-> drivers/net/wireless/rtl818x/rtl8187 as part of the core-image-minimal
-> build.
->
-> Regards,
-> J
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Is the plan to move toward the YP wiki task list, the YP bugzilla, or both for Janitorial task entry?  If one would be preferred over the other, it'd probably be good to state that at the top of the wiki page.
 >
 
+Currently it's both as both can be seen from the YP wiki page.
+
+> For the wiki task list, maybe add an "Assignee:" line, so that someone knows if the task is being worked on?  Would be frustrating to work on a task only to find someone else did the same thing.
+>
+
+Probably a good idea.
+
+-- 
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
