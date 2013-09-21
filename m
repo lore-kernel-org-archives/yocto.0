@@ -1,29 +1,24 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19E58E015FF
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2013 23:21:22 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1VNGZ5-0007W6-Vr
-	for yocto@yoctoproject.org; Sat, 21 Sep 2013 08:21:12 +0200
-Received: from 212.50.246.122 ([212.50.246.122])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 21 Sep 2013 08:21:11 +0200
-Received: from jackrubby2010 by 212.50.246.122 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 21 Sep 2013 08:21:11 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD899E01508
+	for <yocto@yoctoproject.org>; Sat, 21 Sep 2013 01:29:36 -0700 (PDT)
+Received: from [127.0.0.1] (cpc16-live22-2-0-cust180.know.cable.virginmedia.com
+	[82.42.220.181])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id D1C338610D;
+	Sat, 21 Sep 2013 08:29:33 +0000 (UTC)
+Message-ID: <523D5964.5020501@dynamicdevices.co.uk>
+Date: Sat, 21 Sep 2013 09:31:32 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64;
+	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-From: Jack <jackrubby2010@gmail.com>
-Date: Sat, 21 Sep 2013 06:20:50 +0000 (UTC)
-Message-ID: <loom.20130921T074759-77@post.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 212.50.246.122 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
-	rv:21.0) Gecko/20100101 Firefox/21.0)
-Subject: Adding kernel module to minimal image
+References: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
+In-Reply-To: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
+Subject: [meta-mono] Xaramarin no longer providing mono-tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,24 +30,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Sep 2013 06:21:24 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Sat, 21 Sep 2013 08:29:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hello,
+Hi,
 
-How can I add kernel module to fsl-image-minimal?
-I want to add hello-mod module in
-/yocto/meta-skeleton/recipes-kerne/hello-mod path 
-to my fsl-image-minimal.
-Then I read the Kernel Development Manual document and add
-MACHINE_EXTRA_RRECOMMENDS += "kernel-module-hello-mod" 
-to local.conf file.
-After building the image, hello-mod dosen't exist in fsl-image-minimal in
-/yocto/build_p1022ds_release/tmp/work
-/p1022ds-fsl-linux-gnuspe/fsl-image-minimal-1.0-r0
-path.
- 
-What can I do to add hello-mod module to my fsl-image-minimal?
+I'm about to start testing the meta-mono layer with Yocto on the 
+Freescale i.MX6 Sabre board.
+
+I'll feed-back my results testing some simple command line and Windows 
+Forms applications
+for the readme, assuming this hasn't already been done.
+
+As I setup for this I see that Xamarin are no longer providing 
+mono-tools, which is unfortunate
+as I can't see a way to develop and debug within Visual Studio, whilst 
+targetting a an application
+running on Mono/Embedded Linux. Their replacement "Xamarin Studio" seems 
+to be targetted
+at Android and iOS only.
+
+Is anybody aware of a way to develop/debug on Mono/Yocto with Visual 
+Studio with the new
+Xamarin plugin?
+
+If not, does anybody happen to have an archived copy of the Mono Tools 
+plugin they could
+make available to me? (I have a license from Xamarin for this, just need 
+the executable)
+
+Many thanks,
+
+Alex Lennon
+Director
+Dynamic Devices Ltd
+http://www.dynamicdevices.co.uk
 
 
