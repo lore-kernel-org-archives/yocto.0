@@ -1,24 +1,33 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD899E01508
-	for <yocto@yoctoproject.org>; Sat, 21 Sep 2013 01:29:36 -0700 (PDT)
-Received: from [127.0.0.1] (cpc16-live22-2-0-cust180.know.cable.virginmedia.com
-	[82.42.220.181])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id D1C338610D;
-	Sat, 21 Sep 2013 08:29:33 +0000 (UTC)
-Message-ID: <523D5964.5020501@dynamicdevices.co.uk>
-Date: Sat, 21 Sep 2013 09:31:32 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64;
-	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+Return-Path: <xertz.yocto@gmail.com>
+Received: from mail-vc0-f193.google.com (mail-vc0-f193.google.com
+	[209.85.220.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA2D0E014F4
+	for <yocto@yoctoproject.org>; Sun, 22 Sep 2013 09:05:01 -0700 (PDT)
+Received: by mail-vc0-f193.google.com with SMTP id hz10so381593vcb.8
+	for <yocto@yoctoproject.org>; Sun, 22 Sep 2013 09:05:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=xJN6Ej/UxkfwC7w8VJsP5ypdDeVfr3aVMn2HlwHX8R4=;
+	b=PYZjkT72kQPFnT6Z0qJvlV7nImmgnuN6FcS+eRZ7h7WNXGRPkSRdMXwzAXKAk72mZn
+	7e9UebJejjLI4n/eK8Y54B7vB15XHEQcbK4sp/TLdCNsKMofMQOZIt97S9seKnJRas3r
+	fE8RBVHaBNr/xt6/BoCIJ0t2B6e9oFl5tMv/W+taPgAe2MuZpXZjL/vxeftYo733hs3s
+	u0sDNj/N6bYx+6ATRe1hmpz10f6kLI9lYG4+W4Fzjp+9NuI0fAS4Aq7xIZJxtcBBCR1/
+	btI2ysz4fIDXA9/QvldQsPpSHw2g80ouovDUxA5IgOinu99WP5s7FAmdxIPWsmP1Phlq
+	oj7A==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
-In-Reply-To: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
-Subject: [meta-mono] Xaramarin no longer providing mono-tools
+X-Received: by 10.58.118.130 with SMTP id km2mr17174423veb.0.1379865900649;
+	Sun, 22 Sep 2013 09:05:00 -0700 (PDT)
+Received: by 10.220.196.69 with HTTP; Sun, 22 Sep 2013 09:05:00 -0700 (PDT)
+In-Reply-To: <523CA864.7020105@windriver.com>
+References: <CAEo3mJUri=-cHU7cKdJLspWrb_k2irEFx47+npb2TBRKMLcCPw@mail.gmail.com>
+	<523CA864.7020105@windriver.com>
+Date: Sun, 22 Sep 2013 17:05:00 +0100
+Message-ID: <CAEo3mJVqezmQM5o8+=EozeHbU2O=WM91TGnZ=AJkGWRofbQ7yw@mail.gmail.com>
+From: John Doe <xertz.yocto@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Configuring linux-yocto-custom to build specific kernel modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,41 +39,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Sep 2013 08:29:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 22 Sep 2013 16:05:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+> Is your kernel already building from linux-yocto-custom ? Or are you
+> using the default linux-yocto kernel and recipes already ?
 
-I'm about to start testing the meta-mono layer with Yocto on the 
-Freescale i.MX6 Sabre board.
+I have a project that is using linux-yocto-custom and another project
+which is using the default linux-yocto kernel.
 
-I'll feed-back my results testing some simple command line and Windows 
-Forms applications
-for the readme, assuming this hasn't already been done.
+> If you are using one of the standard qemu machines, or a BSP that
+> is already working with linux-yocto*, you can simply enable the module
+> by creating a configuration fragment, and putting it on the SRC_URI.
 
-As I setup for this I see that Xamarin are no longer providing 
-mono-tools, which is unfortunate
-as I can't see a way to develop and debug within Visual Studio, whilst 
-targetting a an application
-running on Mono/Embedded Linux. Their replacement "Xamarin Studio" seems 
-to be targetted
-at Android and iOS only.
+The problem is that I can not find the driver (rtl8187 under
+drivers/net/wireless/rtl818x) in the menuconfig. It seems all device
+drivers are missing despite them being in the repository or tarball.
 
-Is anybody aware of a way to develop/debug on Mono/Yocto with Visual 
-Studio with the new
-Xamarin plugin?
-
-If not, does anybody happen to have an archived copy of the Mono Tools 
-plugin they could
-make available to me? (I have a license from Xamarin for this, just need 
-the executable)
-
-Many thanks,
-
-Alex Lennon
-Director
-Dynamic Devices Ltd
-http://www.dynamicdevices.co.uk
-
+Cheers
+J
 
