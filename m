@@ -1,34 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6234E015C6
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 01:51:30 -0700 (PDT)
-Received: by mail-ve0-f174.google.com with SMTP id jy13so2014809veb.5
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 01:51:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=8xabDU2ssAtLR6OMl2Jv2zctu3is2bwaTY7y+2QV3nY=;
-	b=VT0hfPRJMR1cAoNPH2nse3H4tlFxBCTShbvYHhPFMHmPSEWD5+QDTdYjEjopi2RS6m
-	VVWCYfVelSql6q4lrVx1CNp4hKvyaF+0uvN4YfzlHAhT9J7N9ELgk0QI16BgzeFJdM+v
-	Mb3XZF5/s/w6ZMt32Uz1Qe2JRcNhd3t+rRzwUnJfxMWfBlBEgPBgXVq8UchoZRa8Yif2
-	aArBMZjwsYIUAfyjlx5p3RCmsbT7UCtE5J8/Q49ymu0S+QgZqXJ+/SA9OAIgsIheH6SG
-	8sBnC50ZnjVlNYHk1MtpQ0CIE8zUazsSMB3t0JSaVpIGxcTHkV/QeWlV3kYsO5TXN6k8
-	Y0oQ==
-X-Gm-Message-State: ALoCoQlWchnYa0ffnpUZeVdNZH7YPdsuwtofaWN9/TYrRiGJk7Q2rk02jC5wwJDifYViVhIvNuzs
-X-Received: by 10.220.46.72 with SMTP id i8mr21491490vcf.10.1379926289409;
-	Mon, 23 Sep 2013 01:51:29 -0700 (PDT)
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54198E015D1
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 03:00:18 -0700 (PDT)
+Received: by mail-wi0-f180.google.com with SMTP id hj3so2030036wib.7
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 03:00:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=e0vD9WGNZLMs4twjBRgN8ymtAjj9nltyyewP/8eEQOc=;
+	b=RfGvt4F5Fl0/qK6n1Ne3MnGZuteqUU2LiTS0r/zpz3aQIfVAbgoKQdJO9E1X5QqHYX
+	d6z9pZmIhROMtsAfADh32EcuDOsCgFRpE/vEM8FEM89yEY5O0lRW+gA9g/8zpVBLqI1f
+	UCYJ++i7sqHunYnwuGo0tCJNvUC+2n152CjEx+0zoRgddlxYMYEzfRzTHizt1e8fsUDQ
+	i4Nms1XzmxSzFpmOO1Bz0wawQOWbin/2R0WaMoJOnop8R40F3BTxGIT/CcImIOftrzc+
+	mTQGoajqNyw4Ijyu6Fj8xMBfBC7JRPD12uw654qZB1PPf48N+o/qgLQJ8z63cp4Sd7Aq
+	bb8A==
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Mon, 23 Sep 2013 01:51:09 -0700 (PDT)
-In-Reply-To: <20130923042418.GA17195@longhaul.twobit.us>
-References: <20130923042418.GA17195@longhaul.twobit.us>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 23 Sep 2013 09:51:09 +0100
-Message-ID: <CAJTo0LaKEQW3NGJLguns72Y2Vic48edxN9MjOoTe_L4izJsE4w@mail.gmail.com>
-To: Philip Tricca <flihp@twobit.us>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux] Add sysvinit to DISTRO_FEATURES in oe-selinux distro.
+X-Received: by 10.180.187.51 with SMTP id fp19mr12505599wic.1.1379930413748;
+	Mon, 23 Sep 2013 03:00:13 -0700 (PDT)
+Received: by 10.227.196.7 with HTTP; Mon, 23 Sep 2013 03:00:13 -0700 (PDT)
+Date: Mon, 23 Sep 2013 15:30:13 +0530
+Message-ID: <CABHD4K8VcQHZSzO2Ch1mEeMNMzHXNTVw7DxqDYdO5VriOtxrWg@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: How to pack non striped valgrind image into squashfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,18 +34,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 08:51:33 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 23 Sep 2013 10:00:21 -0000
+Content-Type: multipart/alternative; boundary=001a11c37ba22058c004e70a163a
 
-On 23 September 2013 05:24, Philip Tricca <flihp@twobit.us> wrote:
-> -DISTRO_FEATURES_append = "pam selinux"
-> +DISTRO_FEATURES_append = "pam selinux sysvinit"
+--001a11c37ba22058c004e70a163a
+Content-Type: text/plain; charset=ISO-8859-1
 
-sysvinit is a backfilled distro feature so you shouldn't need this.  I
-can see two cases where you may need it: either you're setting
-DISTRO_FEATURES_BACKFILL_CONSIDERED to sysvinit (in which case don't),
-or you're cherry-picking pieces from different releases (in which case
-this probably isn't the fix you're after).
+I am new to OpenEmbedded and facing an issue where our valgrind is not
+working,
+Valgrind bin comes as non striped image after compilation but while packing
+it to squashfs image ,it become striped one and fails to run on target.
 
-Ross
+So how do we pack it as non striped one ??
 
+One more thing I noticed in our local.conf
+
+EXTRA_IMAGE_FEATURES = "debug-tweaks"
+
+Do It need to have EXTRA_IMAGE_FEATURES = "debug-tweaks tools-profile"??
+
+Please correct me if I am asking something wrong.
+
+--001a11c37ba22058c004e70a163a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I am new to OpenEmbedded and facing an issue where our val=
+grind is not working,<div style>Valgrind bin comes as non striped image aft=
+er compilation but while packing it to squashfs image ,it become striped on=
+e and fails to run on target.</div>
+<div style><br></div><div style>So how do we pack it as non striped one ??<=
+/div><div style><br></div><div style>One more thing I noticed in our local.=
+conf=A0</div><div style><br></div><div style>EXTRA_IMAGE_FEATURES =3D &quot=
+;debug-tweaks&quot;<br>
+</div><div style><br></div><div style>Do It need to have=A0EXTRA_IMAGE_FEAT=
+URES =3D &quot;debug-tweaks tools-profile&quot;??</div><div style><br></div=
+><div style>Please correct me if I am asking something wrong.=A0</div></div=
+>
+
+--001a11c37ba22058c004e70a163a--
