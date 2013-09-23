@@ -1,23 +1,21 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD28BE0161F
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 06:07:24 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 23 Sep 2013 06:04:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,962,1371106800"; d="scan'208";a="399711512"
-Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.120.20])
-	by fmsmga001.fm.intel.com with ESMTP; 23 Sep 2013 06:07:22 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 23 Sep 2013 14:07:03 +0100
-Message-Id: <39866861a66d62aada6c0dae07521aedb6fe2d35.1379941403.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.8.1.2
-In-Reply-To: <cover.1379941403.git.paul.eggleton@linux.intel.com>
-References: <cover.1379941403.git.paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1379941403.git.paul.eggleton@linux.intel.com>
-References: <cover.1379941403.git.paul.eggleton@linux.intel.com>
-Subject: [meta-baryon][PATCH 4/4] samba: fix QA error due to volatiles presence
+Return-Path: <David.Nystrom@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 87814E0161A
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 06:11:36 -0700 (PDT)
+Received: from [172.16.141.168] (172.16.141.168) by smtp.enea.com
+	(172.21.1.209) with Microsoft SMTP Server id 14.2.318.1;
+	Mon, 23 Sep 2013 15:11:35 +0200
+Message-ID: <52403DFF.1060608@enea.com>
+Date: Mon, 23 Sep 2013 15:11:27 +0200
+From: =?ISO-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+References: <52403C3A.2010605@enea.com>
+In-Reply-To: <52403C3A.2010605@enea.com>
+X-Originating-IP: [172.16.141.168]
+Subject: Re: libpam libprelude issues.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,33 +27,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 13:07:25 -0000
+X-List-Received-Date: Mon, 23 Sep 2013 13:11:39 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-Adapted from a meta-oe change by Jonathan Liu <net147@gmail.com>.
+On 09/23/2013 03:03 PM, David Nystr=F6m wrote:
+> Hi,
+>
+> I'm on:
+>
+> Build Configuration:
+> BB_VERSION        =3D "1.19.1"
+> BUILD_SYS         =3D "x86_64-linux"
+> NATIVELSBSTRING   =3D "Ubuntu-13.10"
+> TARGET_SYS        =3D "x86_64-poky-linux"
+> MACHINE           =3D "qemux86-64"
+> DISTRO            =3D "poky"
+> DISTRO_VERSION    =3D "1.4+snapshot-20130923"
+> TUNE_FEATURES     =3D "m64"
+> TARGET_FPU        =3D ""
+> meta
+> meta-yocto
+> meta-yocto-bsp    =3D "master:bf6b0d95db3863a2cfbccb154c0c7ad5b3bbf0b0"
+>
+> Have had these problems for a while, but noone else seems to notice it.
+> See attachment for compiler error and configure mistakenly detecting
+> libprelude, its installed on my build machine.
+>
+> Works fine if I EXTRA_OECONF +=3D "--without-libprelude".
+>
+> What do you think ?, should I send that patch ?
+> I guess the real bug lies somewhere in the autodetection of libprelude
+> from my build machine, right ?
+>
+> Br,
+> David
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- recipes-connectivity/samba/samba_3.6.8.bb | 6 ++++++
- 1 file changed, 6 insertions(+)
+Oh, forgot to mention that I'm on Ubuntu 13.10.
+And I meant EXTRA_OECONF +=3D "--disable-prelude"
 
-diff --git a/recipes-connectivity/samba/samba_3.6.8.bb b/recipes-connectivity/samba/samba_3.6.8.bb
-index 55bed1e..d2722a3 100644
---- a/recipes-connectivity/samba/samba_3.6.8.bb
-+++ b/recipes-connectivity/samba/samba_3.6.8.bb
-@@ -58,6 +58,12 @@ do_compile () {
- 	base_do_compile
- }
- 
-+do_install_append() {
-+	rmdir "${D}${localstatedir}/lock"
-+	rmdir "${D}${localstatedir}/run"
-+	rmdir --ignore-fail-on-non-empty "${D}${localstatedir}"
-+}
-+
- pkg_postinst_${PN} () {
- 	if [ "x$D" != "x" ] ; then
- 		exit 1
--- 
-1.8.1.2
-
+Br,
+David
 
