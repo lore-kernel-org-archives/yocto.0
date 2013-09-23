@@ -1,21 +1,33 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id A2666E01618
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 06:51:59 -0700 (PDT)
-Received: from [172.16.141.168] (172.16.141.168) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.318.1;
-	Mon, 23 Sep 2013 15:51:56 +0200
-Message-ID: <52404773.5040202@enea.com>
-Date: Mon, 23 Sep 2013 15:51:47 +0200
-From: =?ISO-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130803 Thunderbird/17.0.8
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFD47E013E5
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 07:37:04 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=[10.79.148.145])
+	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VO7G0-0003Io-86; Mon, 23 Sep 2013 14:37:00 +0000
+Message-ID: <52405205.4070701@twobit.us>
+Date: Mon, 23 Sep 2013 10:36:53 -0400
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130828 Icedove/17.0.8
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <52403C3A.2010605@enea.com> <52403DFF.1060608@enea.com>
-In-Reply-To: <52403DFF.1060608@enea.com>
-X-Originating-IP: [172.16.141.168]
-Subject: Re: libpam libprelude issues.
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <20130923042418.GA17195@longhaul.twobit.us>
+	<CAJTo0LaKEQW3NGJLguns72Y2Vic48edxN9MjOoTe_L4izJsE4w@mail.gmail.com>
+In-Reply-To: <CAJTo0LaKEQW3NGJLguns72Y2Vic48edxN9MjOoTe_L4izJsE4w@mail.gmail.com>
+X-Enigmail-Version: 1.5.1
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux] Add sysvinit to DISTRO_FEATURES in oe-selinux distro.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,55 +39,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 13:52:02 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 23 Sep 2013 14:37:05 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-http://lists.openembedded.org/pipermail/openembedded-devel/2012-March/08380=
-4.html
+On 09/23/2013 04:51 AM, Burton, Ross wrote:
+> On 23 September 2013 05:24, Philip Tricca <flihp@twobit.us> wrote:
+>> -DISTRO_FEATURES_append = "pam selinux"
+>> +DISTRO_FEATURES_append = "pam selinux sysvinit"
+> 
+> sysvinit is a backfilled distro feature so you shouldn't need this.  I
+> can see two cases where you may need it: either you're setting
+> DISTRO_FEATURES_BACKFILL_CONSIDERED to sysvinit (in which case don't),
 
-This bug seems a bit ripe :), patch sent with --disable-prelude on
-the oe-core mailinglist.
+I'm not even sure what DISTRO_FEATURES_BACKFILL_CONSIDERED is so we can
+rule that out. Finding it in the docs now ...
 
-Br,
-David
+> or you're cherry-picking pieces from different releases (in which case
+> this probably isn't the fix you're after).
 
-On 09/23/2013 03:11 PM, David Nystr=F6m wrote:
-> On 09/23/2013 03:03 PM, David Nystr=F6m wrote:
->> Hi,
->>
->> I'm on:
->>
->> Build Configuration:
->> BB_VERSION        =3D "1.19.1"
->> BUILD_SYS         =3D "x86_64-linux"
->> NATIVELSBSTRING   =3D "Ubuntu-13.10"
->> TARGET_SYS        =3D "x86_64-poky-linux"
->> MACHINE           =3D "qemux86-64"
->> DISTRO            =3D "poky"
->> DISTRO_VERSION    =3D "1.4+snapshot-20130923"
->> TUNE_FEATURES     =3D "m64"
->> TARGET_FPU        =3D ""
->> meta
->> meta-yocto
->> meta-yocto-bsp    =3D "master:bf6b0d95db3863a2cfbccb154c0c7ad5b3bbf0b0"
->>
->> Have had these problems for a while, but noone else seems to notice it.
->> See attachment for compiler error and configure mistakenly detecting
->> libprelude, its installed on my build machine.
->>
->> Works fine if I EXTRA_OECONF +=3D "--without-libprelude".
->>
->> What do you think ?, should I send that patch ?
->> I guess the real bug lies somewhere in the autodetection of libprelude
->> from my build machine, right ?
->>
->> Br,
->> David
->
-> Oh, forgot to mention that I'm on Ubuntu 13.10.
-> And I meant EXTRA_OECONF +=3D "--disable-prelude"
->
-> Br,
-> David
+I'm not doing anything so sophisticated (misguided?). I ran into this
+while setting up a build to test unrelated patches. Regardless this is
+the type of feedback I need so thank you. I'll go back and pull fresh
+from upstream and re-test.
+
+Regards,
+- Philip
+
 
