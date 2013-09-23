@@ -1,27 +1,28 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C60CDE013D6
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 10:46:37 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=longhaul.twobit.us)
-	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VOADT-0003YL-GJ; Mon, 23 Sep 2013 17:46:35 +0000
-Date: Mon, 23 Sep 2013 17:46:26 +0000
-From: Philip Tricca <flihp@twobit.us>
-To: yocto@yoctoproject.org
-Message-ID: <20130923174626.GA25141@longhaul.twobit.us>
+Return-Path: <billmartin544@gmail.com>
+Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B167E014DB
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 14:18:48 -0700 (PDT)
+Received: by mail-ie0-f181.google.com with SMTP id tp5so7104382ieb.26
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 14:18:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=wAHeX9GihkQQrXw1Pm6PRnBgKWk0qqUWl8IqRgZ0suU=;
+	b=USCee7F8n8TUEtnsaIRJ02uSPLHUQKheBGg8ySW21xzXwnrMo8z5UoGLXLrB7oSHD4
+	ykPkKeto0agi07Dj+IVJATO9LNY1SW0xomOcjgmDvmdgzL2FWNzbAsBlR66REpn+A1Nw
+	1h9JpF1EQWTlcMACsnpEItKIwPniC05SY1aw3EXvGZXfHwPJJsOFllBkhfDsuYyKNfte
+	2dmLTr5Q0GOsglkRUnW8y9PQtAxH/FYuaqW2lWy+9ZWAI+PBOUELPa0tOiAnMQpk/Tpu
+	QvC6QC2JWauW0Nw7FXXHEPobCtZuOhUx8drGUdABVVlftPlFP/ee/H5nRr0Ix762d7b/
+	7hhg==
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: [meta-selinux] Add leading whitespace to DISTRO_FEATURES_append in oe-selinux.conf
+X-Received: by 10.42.36.196 with SMTP id v4mr1911935icd.114.1379971127862;
+	Mon, 23 Sep 2013 14:18:47 -0700 (PDT)
+Received: by 10.64.129.225 with HTTP; Mon, 23 Sep 2013 14:18:47 -0700 (PDT)
+Date: Mon, 23 Sep 2013 14:18:47 -0700
+Message-ID: <CAJGS5=H8cdMPyzYiZkf=mucPs82yFBuOZ4PQj6GzpbYgd+kn2w@mail.gmail.com>
+From: Bill Martin <billmartin544@gmail.com>
+To: yocto@yoctoproject.org
+Subject: [meta] (crownbay) rpmbuild and install-sh not being shipped in recipes-devtools/rpm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,32 +34,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 17:46:37 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 23 Sep 2013 21:18:49 -0000
+Content-Type: multipart/alternative; boundary=001a11c3a7e4e06be004e71390f3
 
-The lack of leading whitespace was causing two values in the
-DISTRO_FEATURES variable to be combined. This was causing 'sysvinit'
-from DISTRO_FEATURES_BACKFILL and 'pam' (from oe-selinux) to be
-combined into 'sysvinitpam' thus dropping both from the
-DISTRO_FEATURES.
+--001a11c3a7e4e06be004e71390f3
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>
----
- conf/distro/oe-selinux.conf |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I notice rpm_5.4.9.bb in my Yocto 9.0.2 (poky-dylan-9.02) does explicitly
+have rpmbuild and install-sh in FILES_${PN}-build section but somehow those
+don't get shipped into my deployed image. I see them in sysroots. in the
+recipe I moved these to the section under FILES_${PN}. After that those two
+files have been put into my image:
 
-diff --git a/conf/distro/oe-selinux.conf b/conf/distro/oe-selinux.conf
-index 9523abf..5ae2179 100644
---- a/conf/distro/oe-selinux.conf
-+++ b/conf/distro/oe-selinux.conf
-@@ -1,4 +1,4 @@
- DISTRO = "oe-selinux"
- DISTROOVERRIDES .= ":selinux"
- 
--DISTRO_FEATURES_append = "pam selinux"
-+DISTRO_FEATURES_append = " pam selinux"
--- 
-1.7.10.4
+/usr/bin/rpmbuild
+/usr/lib/rpm/bin/install-sh
 
+I do not know what the real fix is. The original recipe looks right but my
+changes caused these two files to be shipped.
 
+thanks
+
+Bill Martin
+Valicore Technologies
+
+--001a11c3a7e4e06be004e71390f3
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I notice <a href=3D"http://rpm_5.4.9.bb">rpm_5.4.9.bb</a> =
+in my Yocto 9.0.2 (poky-dylan-9.02) does explicitly have rpmbuild and insta=
+ll-sh in FILES_${PN}-build section but somehow those don&#39;t get shipped =
+into my deployed image. I see them in sysroots. in the recipe I moved these=
+ to the section under FILES_${PN}. After that those two files have been put=
+ into my image:<div>
+<br></div><div style>/usr/bin/rpmbuild</div><div style>/usr/lib/rpm/bin/ins=
+tall-sh</div><div style><br></div><div style>I do not know what the real fi=
+x is. The original recipe looks right but my changes caused these two files=
+ to be shipped.</div>
+<div style><br></div><div style>thanks</div><div style><br></div><div style=
+>Bill Martin</div><div style>Valicore Technologies</div></div>
+
+--001a11c3a7e4e06be004e71390f3--
