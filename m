@@ -1,28 +1,34 @@
-Return-Path: <billmartin544@gmail.com>
-Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B167E014DB
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 14:18:48 -0700 (PDT)
-Received: by mail-ie0-f181.google.com with SMTP id tp5so7104382ieb.26
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 14:18:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=wAHeX9GihkQQrXw1Pm6PRnBgKWk0qqUWl8IqRgZ0suU=;
-	b=USCee7F8n8TUEtnsaIRJ02uSPLHUQKheBGg8ySW21xzXwnrMo8z5UoGLXLrB7oSHD4
-	ykPkKeto0agi07Dj+IVJATO9LNY1SW0xomOcjgmDvmdgzL2FWNzbAsBlR66REpn+A1Nw
-	1h9JpF1EQWTlcMACsnpEItKIwPniC05SY1aw3EXvGZXfHwPJJsOFllBkhfDsuYyKNfte
-	2dmLTr5Q0GOsglkRUnW8y9PQtAxH/FYuaqW2lWy+9ZWAI+PBOUELPa0tOiAnMQpk/Tpu
-	QvC6QC2JWauW0Nw7FXXHEPobCtZuOhUx8drGUdABVVlftPlFP/ee/H5nRr0Ix762d7b/
-	7hhg==
+Return-Path: <song.liu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 655C8E013D6
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 15:54:24 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 23 Sep 2013 15:51:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,966,1371106800"; 
+	d="scan'208,217";a="399976150"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga001.fm.intel.com with ESMTP; 23 Sep 2013 15:53:54 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 23 Sep 2013 15:53:54 -0700
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.175]) by
+	ORSMSX151.amr.corp.intel.com ([169.254.7.149]) with mapi id
+	14.03.0123.003; Mon, 23 Sep 2013 15:53:53 -0700
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	September 24,
+	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac64r4IzRMGEYtEvTeueNZxlI56IkQAAAhfA
+Date: Mon, 23 Sep 2013 22:53:53 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF6D1FE@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Received: by 10.42.36.196 with SMTP id v4mr1911935icd.114.1379971127862;
-	Mon, 23 Sep 2013 14:18:47 -0700 (PDT)
-Received: by 10.64.129.225 with HTTP; Mon, 23 Sep 2013 14:18:47 -0700 (PDT)
-Date: Mon, 23 Sep 2013 14:18:47 -0700
-Message-ID: <CAJGS5=H8cdMPyzYiZkf=mucPs82yFBuOZ4PQj6GzpbYgd+kn2w@mail.gmail.com>
-From: Bill Martin <billmartin544@gmail.com>
-To: yocto@yoctoproject.org
-Subject: [meta] (crownbay) rpmbuild and install-sh not being shipped in recipes-devtools/rpm
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, September 24, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,44 +40,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 21:18:49 -0000
-Content-Type: multipart/alternative; boundary=001a11c3a7e4e06be004e71390f3
+X-List-Received-Date: Mon, 23 Sep 2013 22:54:25 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6D1FEORSMSX108amrcor_"
 
---001a11c3a7e4e06be004e71390f3
-Content-Type: text/plain; charset=ISO-8859-1
-
-I notice rpm_5.4.9.bb in my Yocto 9.0.2 (poky-dylan-9.02) does explicitly
-have rpmbuild and install-sh in FILES_${PN}-build section but somehow those
-don't get shipped into my deployed image. I see them in sysroots. in the
-recipe I moved these to the section under FILES_${PN}. After that those two
-files have been put into my image:
-
-/usr/bin/rpmbuild
-/usr/lib/rpm/bin/install-sh
-
-I do not know what the real fix is. The original recipe looks right but my
-changes caused these two files to be shipped.
-
-thanks
-
-Bill Martin
-Valicore Technologies
-
---001a11c3a7e4e06be004e71390f3
-Content-Type: text/html; charset=ISO-8859-1
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6D1FEORSMSX108amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I notice <a href=3D"http://rpm_5.4.9.bb">rpm_5.4.9.bb</a> =
-in my Yocto 9.0.2 (poky-dylan-9.02) does explicitly have rpmbuild and insta=
-ll-sh in FILES_${PN}-build section but somehow those don&#39;t get shipped =
-into my deployed image. I see them in sysroots. in the recipe I moved these=
- to the section under FILES_${PN}. After that those two files have been put=
- into my image:<div>
-<br></div><div style>/usr/bin/rpmbuild</div><div style>/usr/lib/rpm/bin/ins=
-tall-sh</div><div style><br></div><div style>I do not know what the real fi=
-x is. The original recipe looks right but my changes caused these two files=
- to be shipped.</div>
-<div style><br></div><div style>thanks</div><div style><br></div><div style=
->Bill Martin</div><div style>Valicore Technologies</div></div>
+Agenda:
 
---001a11c3a7e4e06be004e71390f3--
+* Opens collection - 5 min (Song)
+* Yocto 1.5 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
+  https://wiki.yoctoproject.org/charts/combo.html
+* SWAT team rotation: Saul
+* Opens - 10 min
+* Team Sharing - 20 min
+
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6D1FEORSMSX108amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.5 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.5_Status</u></font></a></div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/charts/combo.html"><fo=
+nt color=3D"blue"><u>https://wiki.yoctoproject.org/charts/combo.html</u></f=
+ont></a></div>
+<div>* SWAT team rotation: Saul</div>
+<div>* Opens - 10 min </div>
+<div>* Team Sharing - 20 min</div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6D1FEORSMSX108amrcor_--
