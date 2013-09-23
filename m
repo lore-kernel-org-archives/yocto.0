@@ -1,31 +1,34 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3A66E015C2
-	for <yocto@yoctoproject.org>; Sun, 22 Sep 2013 21:25:43 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=[10.79.148.145])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VNxiQ-0002Zr-VB; Mon, 23 Sep 2013 04:25:43 +0000
-Message-ID: <523FC2BD.5050905@twobit.us>
-Date: Mon, 23 Sep 2013 00:25:33 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130828 Icedove/17.0.8
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
+	[209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6234E015C6
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 01:51:30 -0700 (PDT)
+Received: by mail-ve0-f174.google.com with SMTP id jy13so2014809veb.5
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2013 01:51:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=8xabDU2ssAtLR6OMl2Jv2zctu3is2bwaTY7y+2QV3nY=;
+	b=VT0hfPRJMR1cAoNPH2nse3H4tlFxBCTShbvYHhPFMHmPSEWD5+QDTdYjEjopi2RS6m
+	VVWCYfVelSql6q4lrVx1CNp4hKvyaF+0uvN4YfzlHAhT9J7N9ELgk0QI16BgzeFJdM+v
+	Mb3XZF5/s/w6ZMt32Uz1Qe2JRcNhd3t+rRzwUnJfxMWfBlBEgPBgXVq8UchoZRa8Yif2
+	aArBMZjwsYIUAfyjlx5p3RCmsbT7UCtE5J8/Q49ymu0S+QgZqXJ+/SA9OAIgsIheH6SG
+	8sBnC50ZnjVlNYHk1MtpQ0CIE8zUazsSMB3t0JSaVpIGxcTHkV/QeWlV3kYsO5TXN6k8
+	Y0oQ==
+X-Gm-Message-State: ALoCoQlWchnYa0ffnpUZeVdNZH7YPdsuwtofaWN9/TYrRiGJk7Q2rk02jC5wwJDifYViVhIvNuzs
+X-Received: by 10.220.46.72 with SMTP id i8mr21491490vcf.10.1379926289409;
+	Mon, 23 Sep 2013 01:51:29 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <20130923035119.GA17078@longhaul.twobit.us>
-In-Reply-To: <20130923035119.GA17078@longhaul.twobit.us>
-X-Enigmail-Version: 1.5.1
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: Re: [meta-selinux] Stage SELinux config file in the sysroot.
+Received: by 10.220.71.201 with HTTP; Mon, 23 Sep 2013 01:51:09 -0700 (PDT)
+In-Reply-To: <20130923042418.GA17195@longhaul.twobit.us>
+References: <20130923042418.GA17195@longhaul.twobit.us>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 23 Sep 2013 09:51:09 +0100
+Message-ID: <CAJTo0LaKEQW3NGJLguns72Y2Vic48edxN9MjOoTe_L4izJsE4w@mail.gmail.com>
+To: Philip Tricca <flihp@twobit.us>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux] Add sysvinit to DISTRO_FEATURES in oe-selinux distro.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,37 +40,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 04:25:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 23 Sep 2013 08:51:33 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Cc'ing Mark.
+On 23 September 2013 05:24, Philip Tricca <flihp@twobit.us> wrote:
+> -DISTRO_FEATURES_append = "pam selinux"
+> +DISTRO_FEATURES_append = "pam selinux sysvinit"
 
-On 09/22/2013 11:51 PM, Philip Tricca wrote:
-> This is needed to build policy modules outside of the refpolicy.
-> Policy module build systems need to determine the name of the policy
-> that will be in effect on the target host. This allows them to
-> locate the policy headers that will be under
-> $sysroot/usr/share/selinux/$name/include. Given that there *could*
-> be more than one policy installed in the sysroot we can't assume
-> that the policy installed there is the only policy to build against.
-> 
-> Signed-off-by: Philip Tricca <flihp@twobit.us>
-> ---
->  recipes-security/selinux/selinux-config_0.1.bb |    3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
-> index 9521dcf..ad0d647 100644
-> --- a/recipes-security/selinux/selinux-config_0.1.bb
-> +++ b/recipes-security/selinux/selinux-config_0.1.bb
-> @@ -43,3 +43,6 @@ SELINUXTYPE=${DEFAULT_POLICY}
->  	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
->  }
->  
-> +sysroot_stage_all_append () {
-> +	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
-> +}
-> 
+sysvinit is a backfilled distro feature so you shouldn't need this.  I
+can see two cases where you may need it: either you're setting
+DISTRO_FEATURES_BACKFILL_CONSIDERED to sysvinit (in which case don't),
+or you're cherry-picking pieces from different releases (in which case
+this probably isn't the fix you're after).
 
+Ross
 
