@@ -1,16 +1,16 @@
 Return-Path: <flihp@twobit.us>
 Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14B4BE015C2
-	for <yocto@yoctoproject.org>; Sun, 22 Sep 2013 20:51:29 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7545AE015C2
+	for <yocto@yoctoproject.org>; Sun, 22 Sep 2013 21:24:28 -0700 (PDT)
 Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
 	helo=longhaul.twobit.us)
 	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>) id 1VNxBI-0002XS-0t
-	for yocto@yoctoproject.org; Mon, 23 Sep 2013 03:51:28 +0000
-Date: Mon, 23 Sep 2013 03:51:19 +0000
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VNxhD-0002Zb-0P; Mon, 23 Sep 2013 04:24:27 +0000
+Date: Mon, 23 Sep 2013 04:24:18 +0000
 From: Philip Tricca <flihp@twobit.us>
 To: yocto@yoctoproject.org
-Message-ID: <20130923035119.GA17078@longhaul.twobit.us>
+Message-ID: <20130923042418.GA17195@longhaul.twobit.us>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.21 (2010-09-15)
 X-SA-Exim-Connect-IP: 76.24.20.220
@@ -21,7 +21,7 @@ X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
 	autolearn=ham version=3.3.1
 X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
 X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: [meta-selinux] Stage SELinux config file in the sysroot.
+Subject: [meta-selinux] Add sysvinit to DISTRO_FEATURES in oe-selinux distro.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,34 +33,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2013 03:51:30 -0000
+X-List-Received-Date: Mon, 23 Sep 2013 04:24:31 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-This is needed to build policy modules outside of the refpolicy.
-Policy module build systems need to determine the name of the policy
-that will be in effect on the target host. This allows them to
-locate the policy headers that will be under
-$sysroot/usr/share/selinux/$name/include. Given that there *could*
-be more than one policy installed in the sysroot we can't assume
-that the policy installed there is the only policy to build against.
+The oe-selinux distro won't build against the master branch of
+oe-core unless sysvinit is in DISTRO_FEATURES.
+Commit c72ec4b52827f75351790eab483d258b2e87611a in oe-core adds a
+sanity check to the packagegroup class that requires the
+VIRTUAL-RUNTIME_init_manager explicitly be set in DISTRO_FEATURES.
 
 Signed-off-by: Philip Tricca <flihp@twobit.us>
 ---
- recipes-security/selinux/selinux-config_0.1.bb |    3 +++
- 1 file changed, 3 insertions(+)
+ conf/distro/oe-selinux.conf |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
-index 9521dcf..ad0d647 100644
---- a/recipes-security/selinux/selinux-config_0.1.bb
-+++ b/recipes-security/selinux/selinux-config_0.1.bb
-@@ -43,3 +43,6 @@ SELINUXTYPE=${DEFAULT_POLICY}
- 	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
- }
+diff --git a/conf/distro/oe-selinux.conf b/conf/distro/oe-selinux.conf
+index 9523abf..061529c 100644
+--- a/conf/distro/oe-selinux.conf
++++ b/conf/distro/oe-selinux.conf
+@@ -1,4 +1,4 @@
+ DISTRO = "oe-selinux"
+ DISTROOVERRIDES .= ":selinux"
  
-+sysroot_stage_all_append () {
-+	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
-+}
+-DISTRO_FEATURES_append = "pam selinux"
++DISTRO_FEATURES_append = "pam selinux sysvinit"
 -- 
 1.7.10.4
 
