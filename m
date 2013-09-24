@@ -1,33 +1,31 @@
-Return-Path: <joe@deserted.net>
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55807E01595
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 11:41:05 -0700 (PDT)
-Received: by mail-we0-f172.google.com with SMTP id w61so5105031wes.3
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 11:41:04 -0700 (PDT)
+Return-Path: <dclark@mmto.org>
+Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE913E01307
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 12:08:14 -0700 (PDT)
+Received: by mail-ob0-f176.google.com with SMTP id uy5so5374030obc.7
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 12:08:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=nSR7NtmkQInomK9LChaCBBk4ZlBBwG19kFjvOE4Tzoc=;
-	b=Xkl3Abd+0zCsUwKoqfgEGTlYrS6YIWiCMu6g0vaUcV83VXHuePRKkOjxeBRhcGMeyD
-	gSL2adrLIwavSA10hmi/JWOH5/OL4oaZGcGO7cJmMLiH/GRL0KCvZEalM6ftMCLPWKbg
-	ghPUKbhh0dZOdWUlhXeujRSPhZ5HK8EHE5HPdQ+wxFLtPQdBzUQnpI+4JG/rnZ5SNov/
-	oo6TTTvQGV7pbMCT8WF6jOS+q4bZTe/fAd8vmcPMdhpIM3VyYfUEAbpyyKj/zgRLQrmw
-	oeN0lT1lAfBcy4bCnTT+RBxyq1+leVClyOhAolYd1TNC44qRePzVfJ/Zh3R/Mryfocc0
-	isuQ==
-X-Gm-Message-State: ALoCoQkucCYkVVhCZI2Xlk+cD5fcg8yyEI1J/0vOU6KP/5YLsWFMDPT0THlLE76xTH5ij+XFDeSt
-X-Received: by 10.180.39.134 with SMTP id p6mr19460246wik.9.1380048064444;
-	Tue, 24 Sep 2013 11:41:04 -0700 (PDT)
-Received: from burninator.wrs.com ([128.224.252.2])
-	by mx.google.com with ESMTPSA id gp9sm10116244wib.8.1969.12.31.16.00.00
-	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 24 Sep 2013 11:41:03 -0700 (PDT)
-From: Joe MacDonald <joe@deserted.net>
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=eJlYsCSB2t0NsYOkU68D19we3PpwjoYed7C8n/tZ9ps=;
+	b=kRNonZKszpCbJE+VOltqSwqfAiayx0SbYPdctwBiVon3+tPpxo7RiA3rmkWmmMnFTD
+	uQ4k13hLCsgi5BmLvZa7KOISi8v3YaIW4MizkF7cVJ6Hw44FQfWSAnFWazeCGHGwAApX
+	YjcYpN1rTsMvM25SYen+EL8o9rzSfMit1GHZCfv8lOymvn5JsnbLMn57fiCc4m9FnEg5
+	aBvAum/OqiSYa6q3Gcs4n6T2JH+j4CeHaj2/iCC3kaX9N4wjN0CJs0Ox97lNp7Ki/hz1
+	0E2LJ7XengkhEKsMY/bDH6KkgOqR5MCXKMw2/Pg+FO8pbPYsOjLDp2YUsF3D+RHV0/3x
+	HzVA==
+X-Gm-Message-State: ALoCoQndjg/bJu0eGCAENOJIpmEBkuFsWTl26AJoa71ssQH8O2wS1heKxb49RDsd9ZAIWWb9jUBI
+MIME-Version: 1.0
+X-Received: by 10.60.60.5 with SMTP id d5mr26898941oer.0.1380049692487; Tue,
+	24 Sep 2013 12:08:12 -0700 (PDT)
+Received: by 10.182.55.10 with HTTP; Tue, 24 Sep 2013 12:08:12 -0700 (PDT)
+Date: Tue, 24 Sep 2013 12:08:12 -0700
+Message-ID: <CABYvHN7hqRob6p_DxOQNuOjSOHXNft2OH94jApnFWW3fHK09Pg@mail.gmail.com>
+From: Dusty Clark <dclark@mmto.org>
 To: yocto@yoctoproject.org
-Date: Tue, 24 Sep 2013 14:41:00 -0400
-Message-Id: <1380048060-25037-1-git-send-email-joe@deserted.net>
-X-Mailer: git-send-email 1.7.10.4
-Subject: [meta-selinux][PATCH] documentation: update guidance for runqemu
+Subject: Problems with the ADT installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,37 +37,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2013 18:41:09 -0000
+X-List-Received-Date: Tue, 24 Sep 2013 19:08:14 -0000
+Content-Type: multipart/alternative; boundary=089e0149c3c0b1882a04e725dbf2
 
-Testing SELinux on QEMU occasionally results in OOM conditions during a
-relabel from time to time.  Update the documentation to warn about this
-and suggest a way to avoid the situation.
+--089e0149c3c0b1882a04e725dbf2
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Joe MacDonald <joe@deserted.net>
----
- SELinux-FAQ |    8 ++++++++
- 1 file changed, 8 insertions(+)
+Reading the Quick Start and ADT manuals, it was recommended to use the ADT
+installer script as the easiest method to get the tools and the Eclipse
+plugin in place. I'm running a Fedora 17 VM as the development host, and
+would like to target Beaglebone and vanilla x86 devices using Eclipse.
+However, I ran into some issues:
 
-diff --git a/SELinux-FAQ b/SELinux-FAQ
-index 5894626..b6a0df9 100644
---- a/SELinux-FAQ
-+++ b/SELinux-FAQ
-@@ -111,6 +111,14 @@ For example, when you are using qemu targets,
- 
-   $ runqemu qemumips core-image-selinux ext3 nographic bootparams="selinux=0"
- 
-+The initial filesystem relabel step requires considerable memory and can result
-+in unexpected, sometimes impossible to reproduce, failures if an OOM condition
-+occurs while it is in progress.  Therefore you should consider allocating at a
-+minimum 512MB of RAM to your qemu image.  1GB or more is recommended.  This is
-+accomplished by adding qemuparams="-m 1024" to your runqemu options.
-+
-+The defaults for various platforms vary, though it is usually around 256MB.
-+
- 3.2 - How do I turn enforcing mode on/off?
- 
- You can specify the SELinux mode in /etc/selinux/config.
--- 
-1.7.10.4
+First, the prerequisites lists a package "eglibc-devel" that does not seem
+to exist as a yum package, although it looks like the poky tarball has it
+inside -- so it should be built from the source tarball during installation
+of poky -- e.g. NOT using the ADT installation? The ADT guide warns against
+mixing installation methods, building ADT from poky vs. the ADT installer,
+etc. So, what is the recommended method for having this prerequisite
+library for Yocto?
 
+Second, the ADT installer script is pointing to 404s when getting packages:
+the YOCTOADT_REPO variable is pointing to a repo at
+http://adtrepo-dev.yoctoproject.org//$VERSION that doesn't exist. I edited
+adt_installer.conf to point to what I thought was the appropriate master as
+/1.4+snapshot-$hash-master, but the install script failed with a message
+about wget trying to get the opkg portion of the repo. There appears to be
+no opkg folder at all to be found there...so is the ADT installer now
+deprecated and one should just install poky and build the ADT stuff from
+there on?
 
+Thanks for any help!
+
+--089e0149c3c0b1882a04e725dbf2
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Reading the Quick Start and ADT manuals, it was recommende=
+d to use the ADT installer script as the easiest method to get the tools an=
+d the Eclipse plugin in place. I&#39;m running a Fedora 17 VM as the develo=
+pment host, and would like to target Beaglebone and vanilla x86 devices usi=
+ng Eclipse. However, I ran into some issues:<div>
+<br></div><div>First, the prerequisites lists a package &quot;eglibc-devel&=
+quot; that does not seem to exist as a yum package, although it looks like =
+the poky tarball has it inside -- so it should be built from the source tar=
+ball during installation of poky -- e.g. NOT using the ADT installation? Th=
+e ADT guide warns against mixing installation methods, building ADT from po=
+ky vs. the ADT installer, etc. So, what is the recommended method for havin=
+g this prerequisite library for Yocto?</div>
+<div><br></div><div>Second, the ADT installer script is pointing to 404s wh=
+en getting packages: the YOCTOADT_REPO variable is pointing to a repo at <a=
+ href=3D"http://adtrepo-dev.yoctoproject.org//$VERSION">http://adtrepo-dev.=
+yoctoproject.org//$VERSION</a> that doesn&#39;t exist. I edited adt_install=
+er.conf to point to what I thought was the appropriate master as /1.4+snaps=
+hot-$hash-master, but the install script failed with a message about wget t=
+rying to get the opkg portion of the repo. There appears to be no opkg fold=
+er at all to be found there...so is the ADT installer now deprecated and on=
+e should just install poky and build the ADT stuff from there on?</div>
+<div><br></div><div>Thanks for any help!</div><div><br></div></div>
+
+--089e0149c3c0b1882a04e725dbf2--
