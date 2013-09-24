@@ -1,36 +1,33 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9128DE01595
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 09:04:05 -0700 (PDT)
-Received: by mail-ee0-f46.google.com with SMTP id c13so2594324eek.33
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 09:04:04 -0700 (PDT)
+Return-Path: <joe@deserted.net>
+Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
+	[74.125.82.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55807E01595
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 11:41:05 -0700 (PDT)
+Received: by mail-we0-f172.google.com with SMTP id w61so5105031wes.3
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 11:41:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=2VuMF1Zmm1xQOvcCyzUL8pyacphDa5cDr4TNe9v3/oM=;
-	b=bq34zKnJuHbFKYGTol1I3ujKZLOJEu3mcwFdMhQm8fJIds48gIu5Bhp5JqVes7cZ+k
-	sUMQ5kdFzwy4CuUbrqOl7WYLN/qxaF/gpyAXxK4wDgPkCVJIaplSGLieJZGbzIyBsYkj
-	N3iyXFDMib+y0d1PHK8ZbMaQuMHFxPCAVGbdSfIB2KDsbCHx4FoVQQCahIn+fmHOHHZ6
-	oGHFW+nSKh9dvjcjBmKAE9Ryl6zurWunyxiF1yBOCu8IFoTFIZvB+Jeggg8uC8wbrZkV
-	7GbK1uEDtTKhmTds6GuOP5BL2rWS5ygHCgdisTzAVZyyVb3xdFgCyzR6B5wYXH4xcNOT
-	WJnw==
-X-Gm-Message-State: ALoCoQnzZqOHQN0GteQzX9YfxgagdkCosF07V8o6xcT1IvLDo5YFCzfNEK39Tl2yCS/Fq5W+iGGs
-MIME-Version: 1.0
-X-Received: by 10.14.212.72 with SMTP id x48mr3368077eeo.73.1380038644525;
-	Tue, 24 Sep 2013 09:04:04 -0700 (PDT)
-Received: by 10.14.117.67 with HTTP; Tue, 24 Sep 2013 09:04:04 -0700 (PDT)
-In-Reply-To: <CALmOhgk_5mSaG4mHWMAegiL6FE8aU27ssW_NOytLYNA-v4GYuA@mail.gmail.com>
-References: <CALmOhgkofBhyjM_MyFQ8tYYoVHtMNTY4S6G2oNuj+NEMw0GtCw@mail.gmail.com>
-	<CAGNsrLCvcW2WNSfmMm-DLQMxFXC5=rr9Sknj6ECdmuiZc=gHgg@mail.gmail.com>
-	<CALmOhgkPb8KC5iCYZ+FWhzcPmZG9Vpr3Zw3CurdtUn7b2L4WYA@mail.gmail.com>
-	<CAGNsrLDmJDvT3X_7=V+RTiHkG9kZoadXvAnW5WU19EJeO-yO2Q@mail.gmail.com>
-	<CALmOhgk_5mSaG4mHWMAegiL6FE8aU27ssW_NOytLYNA-v4GYuA@mail.gmail.com>
-Date: Tue, 24 Sep 2013 12:04:04 -0400
-Message-ID: <CALmOhgksN8zscF8bLJ7h0xK0uE+z_zNdM9cu38mqdU6PT0AE7Q@mail.gmail.com>
-From: Trevor Woerner <trevor.woerner@linaro.org>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [DYLAN] RPATH issue with qt5's qtwebkit
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=nSR7NtmkQInomK9LChaCBBk4ZlBBwG19kFjvOE4Tzoc=;
+	b=Xkl3Abd+0zCsUwKoqfgEGTlYrS6YIWiCMu6g0vaUcV83VXHuePRKkOjxeBRhcGMeyD
+	gSL2adrLIwavSA10hmi/JWOH5/OL4oaZGcGO7cJmMLiH/GRL0KCvZEalM6ftMCLPWKbg
+	ghPUKbhh0dZOdWUlhXeujRSPhZ5HK8EHE5HPdQ+wxFLtPQdBzUQnpI+4JG/rnZ5SNov/
+	oo6TTTvQGV7pbMCT8WF6jOS+q4bZTe/fAd8vmcPMdhpIM3VyYfUEAbpyyKj/zgRLQrmw
+	oeN0lT1lAfBcy4bCnTT+RBxyq1+leVClyOhAolYd1TNC44qRePzVfJ/Zh3R/Mryfocc0
+	isuQ==
+X-Gm-Message-State: ALoCoQkucCYkVVhCZI2Xlk+cD5fcg8yyEI1J/0vOU6KP/5YLsWFMDPT0THlLE76xTH5ij+XFDeSt
+X-Received: by 10.180.39.134 with SMTP id p6mr19460246wik.9.1380048064444;
+	Tue, 24 Sep 2013 11:41:04 -0700 (PDT)
+Received: from burninator.wrs.com ([128.224.252.2])
+	by mx.google.com with ESMTPSA id gp9sm10116244wib.8.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 24 Sep 2013 11:41:03 -0700 (PDT)
+From: Joe MacDonald <joe@deserted.net>
+To: yocto@yoctoproject.org
+Date: Tue, 24 Sep 2013 14:41:00 -0400
+Message-Id: <1380048060-25037-1-git-send-email-joe@deserted.net>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [meta-selinux][PATCH] documentation: update guidance for runqemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,38 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2013 16:04:06 -0000
-Content-Type: multipart/alternative; boundary=047d7b621e402f270204e7234991
+X-List-Received-Date: Tue, 24 Sep 2013 18:41:09 -0000
 
---047d7b621e402f270204e7234991
-Content-Type: text/plain; charset=ISO-8859-1
+Testing SELinux on QEMU occasionally results in OOM conditions during a
+relabel from time to time.  Update the documentation to warn about this
+and suggest a way to avoid the situation.
 
-On 18 September 2013 21:36, Trevor Woerner <trevor.woerner@linaro.org>
-wrote:
-> I'll create a patch
+Signed-off-by: Joe MacDonald <joe@deserted.net>
+---
+ SELinux-FAQ |    8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-I have created two patches:
-- one for dylan:
-http://article.gmane.org/gmane.comp.handhelds.openembedded/59766
-- one for master:
-http://article.gmane.org/gmane.comp.handhelds.openembedded/59795
+diff --git a/SELinux-FAQ b/SELinux-FAQ
+index 5894626..b6a0df9 100644
+--- a/SELinux-FAQ
++++ b/SELinux-FAQ
+@@ -111,6 +111,14 @@ For example, when you are using qemu targets,
+ 
+   $ runqemu qemumips core-image-selinux ext3 nographic bootparams="selinux=0"
+ 
++The initial filesystem relabel step requires considerable memory and can result
++in unexpected, sometimes impossible to reproduce, failures if an OOM condition
++occurs while it is in progress.  Therefore you should consider allocating at a
++minimum 512MB of RAM to your qemu image.  1GB or more is recommended.  This is
++accomplished by adding qemuparams="-m 1024" to your runqemu options.
++
++The defaults for various platforms vary, though it is usually around 256MB.
++
+ 3.2 - How do I turn enforcing mode on/off?
+ 
+ You can specify the SELinux mode in /etc/selinux/config.
+-- 
+1.7.10.4
 
-Which I'm hoping will be found acceptable for merging.
 
---047d7b621e402f270204e7234991
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>On 18 September 2013 21:36, Trevor Woerner &lt;<a hre=
-f=3D"mailto:trevor.woerner@linaro.org">trevor.woerner@linaro.org</a>&gt; wr=
-ote:<br>&gt; I&#39;ll create a patch<br><br>I have created two patches:<br>=
-- one for dylan: <a href=3D"http://article.gmane.org/gmane.comp.handhelds.o=
-penembedded/59766">http://article.gmane.org/gmane.comp.handhelds.openembedd=
-ed/59766</a><span class=3D""></span><span class=3D""></span><br>
-- one for master: <a href=3D"http://article.gmane.org/gmane.comp.handhelds.=
-openembedded/59795">http://article.gmane.org/gmane.comp.handhelds.openembed=
-ded/59795</a><br><br></div>Which I&#39;m hoping will be found acceptable fo=
-r merging.<br>
-</div>
-
---047d7b621e402f270204e7234991--
