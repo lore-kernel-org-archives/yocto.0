@@ -1,31 +1,27 @@
-Return-Path: <dclark@mmto.org>
-Received: from mail-ob0-f176.google.com (mail-ob0-f176.google.com
-	[209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE913E01307
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 12:08:14 -0700 (PDT)
-Received: by mail-ob0-f176.google.com with SMTP id uy5so5374030obc.7
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 12:08:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=eJlYsCSB2t0NsYOkU68D19we3PpwjoYed7C8n/tZ9ps=;
-	b=kRNonZKszpCbJE+VOltqSwqfAiayx0SbYPdctwBiVon3+tPpxo7RiA3rmkWmmMnFTD
-	uQ4k13hLCsgi5BmLvZa7KOISi8v3YaIW4MizkF7cVJ6Hw44FQfWSAnFWazeCGHGwAApX
-	YjcYpN1rTsMvM25SYen+EL8o9rzSfMit1GHZCfv8lOymvn5JsnbLMn57fiCc4m9FnEg5
-	aBvAum/OqiSYa6q3Gcs4n6T2JH+j4CeHaj2/iCC3kaX9N4wjN0CJs0Ox97lNp7Ki/hz1
-	0E2LJ7XengkhEKsMY/bDH6KkgOqR5MCXKMw2/Pg+FO8pbPYsOjLDp2YUsF3D+RHV0/3x
-	HzVA==
-X-Gm-Message-State: ALoCoQndjg/bJu0eGCAENOJIpmEBkuFsWTl26AJoa71ssQH8O2wS1heKxb49RDsd9ZAIWWb9jUBI
+Return-Path: <gschmottlach@gmail.com>
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE0FDE01595
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 13:17:11 -0700 (PDT)
+Received: by mail-wg0-f50.google.com with SMTP id f12so5227824wgh.29
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 13:17:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Vrz4LVg5R/LPQX2f2Qxp+gJ3hTdhqFLuSWf1kWIEC/8=;
+	b=iOeFwVqEA6oRBWfpy5DhATOhsnFBWYoRcEOi5IQLdXFFwmP1JhPP1kbpD/f/25mqCY
+	sU3cV07wmAOVoiDm6lJHV0ShjG8O3ES4SIHtx3chV+Bh52r1YZx/S2bpDG6c2toveCgF
+	U0Dem1tXtEzdk2rNXsxu79vac+4YslRXt1fmhb+L2clSIGMy2SS7oBLKiCAD3gTLtr06
+	wQPOs/0qu/1BHs9tawZZarVCG9Ppamp6HEAohMrX7SnsK8qeL13ezSj/C2yjlKcHBWWm
+	jCr5H/O0/8hL37WuUd5fK+Vmxqv0pEDHnQWo8Rj6vRWXHawE4IanV0H3eyj5CeJtg2UR
+	CYLQ==
 MIME-Version: 1.0
-X-Received: by 10.60.60.5 with SMTP id d5mr26898941oer.0.1380049692487; Tue,
-	24 Sep 2013 12:08:12 -0700 (PDT)
-Received: by 10.182.55.10 with HTTP; Tue, 24 Sep 2013 12:08:12 -0700 (PDT)
-Date: Tue, 24 Sep 2013 12:08:12 -0700
-Message-ID: <CABYvHN7hqRob6p_DxOQNuOjSOHXNft2OH94jApnFWW3fHK09Pg@mail.gmail.com>
-From: Dusty Clark <dclark@mmto.org>
+X-Received: by 10.180.187.236 with SMTP id fv12mr11312626wic.20.1380053830207; 
+	Tue, 24 Sep 2013 13:17:10 -0700 (PDT)
+Received: by 10.216.152.9 with HTTP; Tue, 24 Sep 2013 13:17:10 -0700 (PDT)
+Date: Tue, 24 Sep 2013 16:17:10 -0400
+Message-ID: <CAMS2kBF1Ha6tEWpkny1DZRXW5Z3T5YKBkd-GhhBrT3aVmjS8-Q@mail.gmail.com>
+From: Glenn Schmottlach <gschmottlach@gmail.com>
 To: yocto@yoctoproject.org
-Subject: Problems with the ADT installation
+Subject: IPK naming oddity for ipkg's containing archived ${PN}-dev files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,63 +33,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2013 19:08:14 -0000
-Content-Type: multipart/alternative; boundary=089e0149c3c0b1882a04e725dbf2
+X-List-Received-Date: Tue, 24 Sep 2013 20:17:15 -0000
+Content-Type: multipart/alternative; boundary=001a11c25cec5212c204e726d295
 
---089e0149c3c0b1882a04e725dbf2
+--001a11c25cec5212c204e726d295
 Content-Type: text/plain; charset=ISO-8859-1
 
-Reading the Quick Start and ADT manuals, it was recommended to use the ADT
-installer script as the easiest method to get the tools and the Eclipse
-plugin in place. I'm running a Fedora 17 VM as the development host, and
-would like to target Beaglebone and vanilla x86 devices using Eclipse.
-However, I ran into some issues:
+I've run across what appears to be a naming inconsistency (not sure if it's
+intentional or a bug) that seems to impact the name given to the ipk file
+for recipe's "dev" files.
 
-First, the prerequisites lists a package "eglibc-devel" that does not seem
-to exist as a yum package, although it looks like the poky tarball has it
-inside -- so it should be built from the source tarball during installation
-of poky -- e.g. NOT using the ADT installation? The ADT guide warns against
-mixing installation methods, building ADT from poky vs. the ADT installer,
-etc. So, what is the recommended method for having this prerequisite
-library for Yocto?
 
-Second, the ADT installer script is pointing to 404s when getting packages:
-the YOCTOADT_REPO variable is pointing to a repo at
-http://adtrepo-dev.yoctoproject.org//$VERSION that doesn't exist. I edited
-adt_installer.conf to point to what I thought was the appropriate master as
-/1.4+snapshot-$hash-master, but the install script failed with a message
-about wget trying to get the opkg portion of the repo. There appears to be
-no opkg folder at all to be found there...so is the ADT installer now
-deprecated and one should just install poky and build the ADT stuff from
-there on?
+Let me be more clear. My recipe produces a shared object library called:
 
-Thanks for any help!
+libtts_engine.so
 
---089e0149c3c0b1882a04e725dbf2
+This shared library is deployed in /usr/lib and the package-split directory
+structure looks like the following in my recipe workdir:
+
+package-split/tts-sdk-dev
+package-split/tts-sdk-dev/usr
+package-split/tts-sdk-dev/usr/lib
+package-split/tts-sdk-dev/usr/lib/libtts_engine.so
+package-split/tts-sdk-dev/usr/include
+package-split/tts-sdk-dev/usr/include/tts.h
+
+So, when Yocto generates my ipk archive I would expect it to be named
+something like:
+
+tts-sdk-dev_${PV}_${PACKAGE_ARCH}.ipk
+
+Instead, Yocto is generating the following name for the "dev" ipk:
+
+libtts_engine-dev_${PV}_${PACKAGE_ARCH}.ipk
+
+This is *not* consistent with how the other ipk are named by Yocto, e.g.
+
+tts-sdk_${PV}_${PACKAGE_ARCH}.ipk
+tts-sdk-doc_${PV}_${PACKAGE_ARCH}.ipk
+tts-sdk-dbg_${PV}_${PACKAGE_ARCH}.ipk
+
+In the poky class file (package_ipk.bbclass) I looked at the
+do_package_ipk() python function and see that there is an explicit query
+for the following variable to determine the base name of the ipk file:
+
+pkgname = localdata.getVar('PKG_%s' % pkg, True)
+
+In most cases, this look-up returns the expected name, e.g. tts-sdk-doc,
+tts-sdk-dbg, etc.... But for some reason, the "dev" package name is
+remapped from tts-sdk to libtts_engine. My only counter-measure to correct
+this is to add the following explicit assignment in my recipe:
+
+PKG_${PN}-dev = "${PN}-dev"
+
+This seems to "correct" the name. Can anyone explain to me the behavior I
+am observing? Is there some reason the "dev" package (and only the "dev"
+package) is named differently when the ipk is created. Am I breaking an
+expected behavior by forcing it to use the more consistent
+tts-sdk-dev_${PV}_${PACKAGE_ARCH}.ipk name? I can't find any documentation
+that answers this question.
+
+Thanks . . .
+
+--001a11c25cec5212c204e726d295
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Reading the Quick Start and ADT manuals, it was recommende=
-d to use the ADT installer script as the easiest method to get the tools an=
-d the Eclipse plugin in place. I&#39;m running a Fedora 17 VM as the develo=
-pment host, and would like to target Beaglebone and vanilla x86 devices usi=
-ng Eclipse. However, I ran into some issues:<div>
-<br></div><div>First, the prerequisites lists a package &quot;eglibc-devel&=
-quot; that does not seem to exist as a yum package, although it looks like =
-the poky tarball has it inside -- so it should be built from the source tar=
-ball during installation of poky -- e.g. NOT using the ADT installation? Th=
-e ADT guide warns against mixing installation methods, building ADT from po=
-ky vs. the ADT installer, etc. So, what is the recommended method for havin=
-g this prerequisite library for Yocto?</div>
-<div><br></div><div>Second, the ADT installer script is pointing to 404s wh=
-en getting packages: the YOCTOADT_REPO variable is pointing to a repo at <a=
- href=3D"http://adtrepo-dev.yoctoproject.org//$VERSION">http://adtrepo-dev.=
-yoctoproject.org//$VERSION</a> that doesn&#39;t exist. I edited adt_install=
-er.conf to point to what I thought was the appropriate master as /1.4+snaps=
-hot-$hash-master, but the install script failed with a message about wget t=
-rying to get the opkg portion of the repo. There appears to be no opkg fold=
-er at all to be found there...so is the ADT installer now deprecated and on=
-e should just install poky and build the ADT stuff from there on?</div>
-<div><br></div><div>Thanks for any help!</div><div><br></div></div>
+<div dir=3D"ltr"><div>I&#39;ve run across what appears to be a naming incon=
+sistency (not sure if it&#39;s intentional or a bug) that seems to impact t=
+he name given to the ipk file for recipe&#39;s &quot;dev&quot; files.<br><b=
+r>
+<br></div><div>Let me be more clear. My recipe produces a shared object lib=
+rary called:<br><br></div><div>libtts_engine.so<br><br></div><div>This shar=
+ed library is deployed in /usr/lib and the package-split directory structur=
+e looks like the following in my recipe workdir:<br>
+<br></div><div>package-split/tts-sdk-dev<br></div><div>package-split/tts-sd=
+k-dev/usr<br></div><div>package-split/tts-sdk-dev/usr/lib<br></div><div>pac=
+kage-split/tts-sdk-dev/usr/lib/libtts_engine.so<br>package-split/tts-sdk-de=
+v/usr/include<br>
+package-split/tts-sdk-dev/usr/include/tts.h<br><br></div><div>So, when Yoct=
+o generates my ipk archive I would expect it to be named something like:<br=
+><br></div><div>tts-sdk-dev_${PV}_${PACKAGE_ARCH}.ipk<br><br></div><div>
+Instead, Yocto is generating the following name for the &quot;dev&quot; ipk=
+:<br><br></div><div>libtts_engine-dev_${PV}_${PACKAGE_ARCH}.ipk<br><br></di=
+v><div>This is *not* consistent with how the other ipk are named by Yocto, =
+e.g.<br>
+<br>tts-sdk_${PV}_${PACKAGE_ARCH}.ipk<br>tts-sdk-doc_${PV}_${PACKAGE_ARCH}.=
+ipk<br>tts-sdk-dbg_${PV}_${PACKAGE_ARCH}.ipk<br><br></div><div>In the poky =
+class file (package_ipk.bbclass) I looked at the do_package_ipk() python fu=
+nction and see that there is an explicit query for the following variable t=
+o determine the base name of the ipk file:<br>
+<br>pkgname =3D localdata.getVar(&#39;PKG_%s&#39; % pkg, True)<br><br></div=
+><div>In most cases, this look-up returns the expected name, e.g. tts-sdk-d=
+oc, tts-sdk-dbg, etc.... But for some reason, the &quot;dev&quot; package n=
+ame is remapped from tts-sdk to libtts_engine. My only counter-measure to c=
+orrect this is to add the following explicit assignment in my recipe:<br>
+<br>PKG_${PN}-dev =3D &quot;${PN}-dev&quot;<br><br></div><div>This seems to=
+ &quot;correct&quot; the name. Can anyone explain to me the behavior I am o=
+bserving? Is there some reason the &quot;dev&quot; package (and only the &q=
+uot;dev&quot; package) is named differently when the ipk is created. Am I b=
+reaking an expected behavior by forcing it to use the more consistent tts-s=
+dk-dev_${PV}_${PACKAGE_ARCH}.ipk name? I can&#39;t find any documentation t=
+hat answers this question.<br>
+<br></div><div>Thanks . . .<br></div></div>
 
---089e0149c3c0b1882a04e725dbf2--
+--001a11c25cec5212c204e726d295--
