@@ -1,34 +1,31 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5E0CE015BD
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 16:35:47 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 24 Sep 2013 16:32:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,974,1371106800"; 
-	d="scan'208,217";a="408627416"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by orsmga002.jf.intel.com with ESMTP; 24 Sep 2013 16:35:45 -0700
-Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
-	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 24 Sep 2013 16:35:44 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.175]) by
-	ORSMSX152.amr.corp.intel.com ([169.254.8.106]) with mapi id
-	14.03.0123.003; Tue, 24 Sep 2013 16:35:44 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	September 24,
-	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac65frRCs6oaPfpRQs2fwzqSgaee2QAAAn9A
-Date: Tue, 24 Sep 2013 23:35:44 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF6DDF6@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A014E015BD
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
+Received: by mail-vc0-f181.google.com with SMTP id hz10so3842196vcb.40
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=Mh4dbjeZsyfq+4rNHbW6Y6QIkwg/ZibbiMP9ComT4mU=;
+	b=Tqro1DEW+2OqLfuAMaNiizKhmbom5gcxzXJHaQKOVmrHDkOloc1d0+k+WAJy+3N4y9
+	fL+pn0Hct4L0j0Y+vbnNUqoQuSRyTnL4eDL0TenNafyaidnHcscSoanYKFFgI1aGvh5+
+	dItQ42elsS6BgdgdxFK8XM8eUPko4GDVNZ7HFKh8wDYhmsuInMtpeXs+n2qZJFighaXv
+	Ro20f78ZWgYqENGihfylN+8gX5n54thU9ZxLZHt9omKpwq8PH8s92mHoeW68ZzvdPiFm
+	NPeuTYrG3Wyh/7V4K9jfKyldj/06n2w2AIxprK35Ttx08zZEOXZKiKWcMVjs97MTdeNt
+	1PkQ==
+X-Gm-Message-State: ALoCoQl3wu97fncKFZ9kpF5DUzRyQibmji55Q3gH0a62ZtmFCejMtMt6KfEIKi7yELM+6e//+PvV
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, September 24, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.58.118.130 with SMTP id km2mr30099729veb.0.1380071140103;
+	Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
+Received: by 10.52.147.201 with HTTP; Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
+Date: Tue, 24 Sep 2013 18:05:40 -0700
+Message-ID: <CAPhnLPAoka8_e3fhLEpUzTo4FbmKFngjmvu=u7q3k3RZ0WiMMQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Yocto Project 1.5_M5.rc5 availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,108 +37,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2013 23:35:47 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6DDF6ORSMSX108amrcor_"
+X-List-Received-Date: Wed, 25 Sep 2013 01:05:42 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6DDF6ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+The rc5 build for the upcoming 1.5 release should be available in a
+few hours at:
 
-Attendees:
-Nitin, Beth, JeffP, MichaelH, MarkH, Saul, Jessica, Darren, ScottR, Tom, Be=
-len, Paul, Ross, Richard, AlexG, Song
+http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc5
 
-Agenda:
+Please being testing as soon as it is available.
 
-* Opens collection - 5 min (Song)
-* Yocto 1.5 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status
-  https://wiki.yoctoproject.org/charts/combo.html
-  - Bug fixing: WDD is going up, but shows signs of stabilizing. Resolved 4=
-0+ bugs last week. Let's keep up the good work and bring WDD down.
-  - QA: Running the full pass on last RC. Will have the report out tomorrow=
-. Some issues on the generic x86 BSP, Ross will do some triage and look int=
-o them.
-  - Build: the build last week has some instability issue. Most of them are=
- timeout issues. Merged some priority setting code. Seems to work really we=
-ll. Master's only issue is for meta-freescale ppc failure. No concern on th=
-at. Much better than before. Proposal is to branching today for the release=
-. RP will take care of that when we are ready. We will be more strict on wh=
-at patches we can merge after we branch. At the same time, we understand th=
-at many people are working on bug fixes to bring WDD down. It's a balance.
-  - Partitioning patches: Tom has not posted anything yet. Cleaning up func=
-tionality. Will send out the patches this week. RP: We might be able to squ=
-eeze it in for this release, as long as it's standalone, nothing breaks bec=
-ause of it.
-* SWAT team rotation: Saul
-* Opens - 10 min
-* Team Sharing - 20 min
-  - Michael: working on the YP dev day server, get it out asap. Working har=
-d on it.
+poky 4d8ab87d25ea6e59dc88375813ef88ee0ac813d0
+meta-fsl-arm 561842ac3e1e9f59536dbbbc4a81876f9e0df97b
+meta-fsl-ppc 28b7ac5a37a9705d090d7303a024d84efef61b89
+meta-intel 67b58a79279ad1beaf8dc0c68fb411f1d440abe4
+meta-minnow ad469d78a1f56abd3b7d5103f1e0344cb10684b1
+meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
+eclipse-poky-juno 2fa1c58940141a3c547c8790b8a6832167e8eb66
+eclipse-poky-kepler ad74249895f882a8f00bdeef7a0f7c18998cc43e
 
 
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6DDF6ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>Nitin, Beth, JeffP, MichaelH, MarkH, Saul, Jessica, Darren, ScottR, To=
-m, Belen, Paul, Ross, Richard, AlexG, Song</div>
-<div>&nbsp;</div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.5 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-5_Status"><font color=3D"blue"><u>https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.5_Status</u></font></a></div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/charts/combo.html"><fo=
-nt color=3D"blue"><u>https://wiki.yoctoproject.org/charts/combo.html</u></f=
-ont></a></div>
-<div>&nbsp; - Bug fixing: WDD is going up, but shows signs of stabilizing. =
-Resolved 40&#43; bugs last week. Let&#8217;s keep up the good work and brin=
-g WDD down.</div>
-<div>&nbsp; - QA: Running the full pass on last RC. Will have the report ou=
-t tomorrow. Some issues on the generic x86 BSP, Ross will do some triage an=
-d look into them.</div>
-<div>&nbsp; - Build: the build last week has some instability issue. Most o=
-f them are timeout issues. Merged some priority setting code. Seems to work=
- really well. Master's only issue is for meta-freescale ppc failure. No con=
-cern on that. Much better than before.
-Proposal is to branching today for the release. RP will take care of that w=
-hen we are ready. We will be more strict on what patches we can merge after=
- we branch. At the same time, we understand that many people are working on=
- bug fixes to bring WDD down. It's
-a balance.</div>
-<div>&nbsp; - Partitioning patches: Tom has not posted anything yet. Cleani=
-ng up functionality. Will send out the patches this week. RP: We might be a=
-ble to squeeze it in for this release, as long as it's standalone, nothing =
-breaks because of it. </div>
-<div>* SWAT team rotation: Saul</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div>&nbsp; - Michael: working on the YP dev day server, get it out asap. W=
-orking hard on it.</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF6DDF6ORSMSX108amrcor_--
