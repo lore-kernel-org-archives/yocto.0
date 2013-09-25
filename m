@@ -1,23 +1,28 @@
-Return-Path: <alexandrux.palalau@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96FDDE015BD
-	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 02:15:30 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 25 Sep 2013 02:12:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,977,1371106800"; d="scan'208";a="408997602"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga002.jf.intel.com with ESMTP; 25 Sep 2013 02:15:29 -0700
-Received: from localhost.localdomain (unknown [10.237.112.121])
-	by linux.intel.com (Postfix) with ESMTP id C60A32C8001;
-	Wed, 25 Sep 2013 02:15:26 -0700 (PDT)
-From: Alexandru Palalau <alexandrux.palalau@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 25 Sep 2013 12:16:54 +0300
-Message-Id: <1380100614-15516-1-git-send-email-alexandrux.palalau@intel.com>
-X-Mailer: git-send-email 1.7.11.7
-Cc: Alexandru Palalau <alexandrux.palalau@intel.com>, paul.eggleton@intel.com
-Subject: [meta-yocto][PATCH] meta-yocto: updated SANITY_TESTED_DISTROS in poky.conf
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1962DE015DF;
+	Wed, 25 Sep 2013 03:36:43 -0700 (PDT)
+Received: by mail-wg0-f43.google.com with SMTP id z12so5987467wgg.22
+	for <multiple recipients>; Wed, 25 Sep 2013 03:36:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=VtyLVoRnYSF9RXypEIZekzBgT02b5zNSWpIFuZIjJLg=;
+	b=JRF7ZqmqUV5nhlyzfy6WADlaayQ+wqI0aDiMwtM8//TmSRtvJIgAIDZCwYmNIHXSvD
+	99xbr1WFOlz0tNpFQQx8co8Y7BMpp0H6LTomF9uRVB8xU4ePj2lsQAA4VWTVZCcFmzdL
+	cVjGo515mSIMjLcRjKLAYn46Ii6htJ66VdQcR7UR4v8pFglfZTo9bYQ5t6elkH3ocno7
+	Sb2tyF6tfiIChq6CV4chMEUxoBSqyeW4BbbZmLsEHIyPcmWhatMKspIxyuy1n6YA4g5+
+	i8zYup8xpKb3qPwJXY14KqQXIw4PFyOcN4E8ia/eQT15oI3/dD7L3iCc5/Mw7goBz6+k
+	Tgfg==
+MIME-Version: 1.0
+X-Received: by 10.194.71.72 with SMTP id s8mr1012272wju.52.1380105402097; Wed,
+	25 Sep 2013 03:36:42 -0700 (PDT)
+Received: by 10.227.196.7 with HTTP; Wed, 25 Sep 2013 03:36:42 -0700 (PDT)
+Date: Wed, 25 Sep 2013 16:06:42 +0530
+Message-ID: <CABHD4K_EEiR4UPOcJM=vXWud+uk44=hZW38-D-RL+T6auiBJDg@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: yocto-request@yoctoproject.org, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: How env.sh sets up the build environment path
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,39 +34,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2013 09:15:30 -0000
+X-List-Received-Date: Wed, 25 Sep 2013 10:36:44 -0000
+Content-Type: multipart/alternative; boundary=047d7bd91a043ea88f04e732d433
 
-Added Fedora-19 and Debian-6.0.7 to SANITY_TESTED_DISTROS.
-No more warnings regarding sanity for these two host distros
+--047d7bd91a043ea88f04e732d433
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Alexandru Palalau <alexandrux.palalau@intel.com>
----
- meta-yocto/conf/distro/poky.conf | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+I am new to Open Embedded and have a requirement where have to set new
+build path
+while running env.sh script
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index 269ce8a..4752356 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -80,14 +80,16 @@ SANITY_TESTED_DISTROS ?= " \
-             Ubuntu-13.04 \n \
-             Fedora-17 \n \
-             Fedora-18 \n \
-+            Fedora-19 \n \
-             CentOS-6.3 \n \
-             CentOS-6.4 \n \
-             Debian-6.0 \n \
-+            Debian-6.0.7 \n \
-             Debian-7.0 \n \
-             Debian-7.1 \n \
-             SUSE-LINUX-12.2 \n \
-             openSUSE-project-12.3 \n \
--	    "
-+            "
- 
- # Default hash policy for distro
- BB_SIGNATURE_HANDLER ?= 'OEBasicHash'
--- 
-1.7.11.7
+Now when I do ./env.sh build-xyz-abd
 
+I do get the Directory with name "build-xyz-abd"
 
+which will having local.conf at path build-xyz-abd/conf/local.conf
+
+Now, how do I change build-xyz-abd to build-abd.
+
+What I tried is ,run "./env.sh build-abd"
+
+After that I got the build-abd folder having defualt local.conf file.
+
+But "bitbake image-name"is faling now.
+
+I tried copying "build-xyz-abd/conf/local.conf" to build-abd/conf/local.conf
+
+Do I need to copy the old bblayer file as well??
+
+But still facing the same issue.
+
+Could anybody tell me how can I achieve this??
+
+I
+
+--047d7bd91a043ea88f04e732d433
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I am new to Open Embedded and have a requirement where hav=
+e to set new build path<div style>while running env.sh script</div><div sty=
+le><br></div><div style>Now when I do ./env.sh build-xyz-abd</div><div styl=
+e>
+<br></div><div style>I do get the Directory with name &quot;build-xyz-abd&q=
+uot;</div><div style><br></div><div style>which will having local.conf at p=
+ath build-xyz-abd/conf/local.conf</div><div style><br></div><div style>
+Now, how do I change=A0build-xyz-abd to=A0build-abd.</div><div style><br></=
+div><div style>What I tried is ,run &quot;./env.sh build-abd&quot;</div><di=
+v style><br></div><div style>After that I got the build-abd folder having d=
+efualt local.conf file.</div>
+<div style><br></div><div style>But &quot;bitbake image-name&quot;is faling=
+ now.</div><div style><br></div><div style>I tried copying &quot;build-xyz-=
+abd/conf/local.conf&quot; to=A0build-abd/conf/local.conf</div><div style>
+<br></div><div style>Do I need to copy the old bblayer file as well??</div>=
+<div style><br></div><div style>But still facing the same issue.</div><div =
+style><br></div><div style>Could anybody tell me how can I achieve this??</=
+div>
+<div style><br></div><div style>I=A0</div></div>
+
+--047d7bd91a043ea88f04e732d433--
