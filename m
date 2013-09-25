@@ -1,31 +1,23 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A014E015BD
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
-Received: by mail-vc0-f181.google.com with SMTP id hz10so3842196vcb.40
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=Mh4dbjeZsyfq+4rNHbW6Y6QIkwg/ZibbiMP9ComT4mU=;
-	b=Tqro1DEW+2OqLfuAMaNiizKhmbom5gcxzXJHaQKOVmrHDkOloc1d0+k+WAJy+3N4y9
-	fL+pn0Hct4L0j0Y+vbnNUqoQuSRyTnL4eDL0TenNafyaidnHcscSoanYKFFgI1aGvh5+
-	dItQ42elsS6BgdgdxFK8XM8eUPko4GDVNZ7HFKh8wDYhmsuInMtpeXs+n2qZJFighaXv
-	Ro20f78ZWgYqENGihfylN+8gX5n54thU9ZxLZHt9omKpwq8PH8s92mHoeW68ZzvdPiFm
-	NPeuTYrG3Wyh/7V4K9jfKyldj/06n2w2AIxprK35Ttx08zZEOXZKiKWcMVjs97MTdeNt
-	1PkQ==
-X-Gm-Message-State: ALoCoQl3wu97fncKFZ9kpF5DUzRyQibmji55Q3gH0a62ZtmFCejMtMt6KfEIKi7yELM+6e//+PvV
+Return-Path: <diego.gonzalez@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF614E015BD
+	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 00:08:19 -0700 (PDT)
+Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 1FAD13; 
+	Wed, 25 Sep 2013 09:08:14 +0200
+Received: from [172.30.250.254] by horus.es with HTTP;
+	Wed, 25 Sep 2013 09:08:14 +0200
+From: Diego Gonzalez <diego.gonzalez@horus.es>
+Date: Wed, 25 Sep 2013 09:08:14 +0200
+X-Mailer: Axigen WebMail
+To: yocto@yoctoproject.org
+Message-ID: <1380092894836405500@horus.es>
+In-Reply-To: <1379579265426525500@horus.es>
+References: <1379579265426525500@horus.es>
+Importance: Normal
 MIME-Version: 1.0
-X-Received: by 10.58.118.130 with SMTP id km2mr30099729veb.0.1380071140103;
-	Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Tue, 24 Sep 2013 18:05:40 -0700 (PDT)
-Date: Tue, 24 Sep 2013 18:05:40 -0700
-Message-ID: <CAPhnLPAoka8_e3fhLEpUzTo4FbmKFngjmvu=u7q3k3RZ0WiMMQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Yocto Project 1.5_M5.rc5 availability
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 4
+Subject: Re: problem with sft in fsl-image-gui
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,28 +29,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2013 01:05:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 25 Sep 2013 07:08:21 -0000
+Content-Type: multipart/alternative;
+	boundary="===axigen=9994330796400620303106786290719940498691=axigen==="
 
-The rc5 build for the upcoming 1.5 release should be available in a
-few hours at:
-
-http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc5
-
-Please being testing as soon as it is available.
-
-poky 4d8ab87d25ea6e59dc88375813ef88ee0ac813d0
-meta-fsl-arm 561842ac3e1e9f59536dbbbc4a81876f9e0df97b
-meta-fsl-ppc 28b7ac5a37a9705d090d7303a024d84efef61b89
-meta-intel 67b58a79279ad1beaf8dc0c68fb411f1d440abe4
-meta-minnow ad469d78a1f56abd3b7d5103f1e0344cb10684b1
-meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
-eclipse-poky-juno 2fa1c58940141a3c547c8790b8a6832167e8eb66
-eclipse-poky-kepler ad74249895f882a8f00bdeef7a0f7c18998cc43e
+--===axigen=9994330796400620303106786290719940498691=axigen===
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
 
+
+=09
+=09
+=09
+=09
+
+
+Hello,
+
+
+
+
+
+we  discovered how to add sftp function
+in our customizable image. There's a package called eclipse-debug
+(~/poky/meta/recipes-core/packagegroup), which you can find a RDPENDS
+to openssh-sftp-server.
+
+
+So you have at
+least 4 possibilities to add it in your image (select just one) :
+
+
+
+ * In a
+	customizable image or in the local.conf : IMAGE_FEATURES +=3D " =E2=80=A6
+	eclipse-debug"
+
+=09
+ * In a
+	customizable image : IMAGE_INSTALL +=3D " \
+
+	=E2=80=A6. \
+openssh-sftp-server
+										\
+"
+
+=09
+ * In the
+	local.conf : IMAGE_INSTALL_append =3D " openssh-sftp-server"
+
+=09
+ * In the
+	local.conf : CORE_IMAGE_EXTRA_INSTALL +=3D " openssh-sftp-server"
+
+
+
+
+
+
+I'm asking my self : why ?
+
+Thank you,
+
+
+
+
+Cheers
+
+
+
+
+Diego Gonz=C3=A1lez Gonz=C3=A1lez
+Dpto. de Control Industrial HORUS HARDWARE S.A.
+Pol Ind Europolis C/Berna n=C2=BA4
+28232 Las Rozas de Madrid
+diego.gonzalez@horus.es
+On Thu, 09/19/2013 10:27 AM, Diego Gonzalez <diego.gonzalez@horus.es> wrote=
+:
+> Hello everybody,
+>=20
+> we have an issue with sftp server in our fsl-image-gui. When we try to co=
+nnect using sftp, then we get an error saying connection closed.
+> After a closer look inside  the fsl-image-gui , we saw that /usr/bin/sftp=
+-server directory  is not installed in this image. Also, we vericated that =
+ssh connection works good.=20
+>=20
+> We already now that this work fine in fsl-core-image-sato-sdk. In fact yo=
+u can find out that /usr/bin/sftp-server directory exists.=20
+> Trying to fix it we put several commands inside the local.conf . However =
+we didn't fix it.
+>=20
+> How can I solve it?.=20
+>=20
+> Cheers
+>=20
+
+> Diego Gonz=C3=A1lez Gonz=C3=A1lez
+> Dpto. de Control Industrial HORUS HARDWARE S.A.
+> Pol Ind Europolis C/Berna n=C2=BA4
+> 28232 Las Rozas de Madrid
+> diego.gonzalez@horus.es
+
+--===axigen=9994330796400620303106786290719940498691=axigen===
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
+: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
+background-image: none; background-repeat: repeat; background-attachment: f=
+ixed;">
+
+
+=09
+=09
+=09
+	<style type=3D"text/css">P { margin-bottom: 0.08in; }</style>
+
+
+<p style=3D"margin-bottom: 0in">Hello,</p>
+<p style=3D"margin-bottom: 0in"><br>
+</p>
+<p style=3D"margin-bottom: 0in">we  discovered how to add <b>sftp</b> funct=
+ion
+in our customizable image. There's a package called eclipse-debug
+(~/poky/meta/recipes-core/packagegroup), which you can find a RDPENDS
+to o<b>penssh-sftp-server.</b></p>
+
+<p style=3D"margin-bottom: 0in; font-weight: normal">So you have at
+least 4 possibilities to add it in your image (select just one) :</p>
+
+<ol><li><p style=3D"margin-bottom: 0in; font-weight: normal">In a
+	customizable image or in the local.conf : IMAGE_FEATURES +=3D " =E2=80=A6
+	eclipse-debug"</p>
+	</li><li><p style=3D"margin-bottom: 0in; font-weight: normal">In a
+	customizable image : IMAGE_INSTALL +=3D " \</p>
+	<ol><ol><ol><ol><ol><ol><ol><ol><ol><p style=3D"margin-bottom: 0in; font-w=
+eight: normal">=E2=80=A6. \</p><p style=3D"margin-bottom: 0in; font-weight:=
+ normal">openssh-sftp-server
+										\</p><p style=3D"margin-bottom: 0in; font-weight: normal">"</p></=
+ol></ol></ol></ol></ol></ol></ol></ol></ol>
+	</li><li><p style=3D"margin-bottom: 0in; font-weight: normal">In the
+	local.conf : IMAGE_INSTALL_append =3D " openssh-sftp-server"</p>
+	</li><li><p style=3D"margin-bottom: 0in; font-weight: normal">In the
+	local.conf : CORE_IMAGE_EXTRA_INSTALL +=3D " openssh-sftp-server"</p>
+</li></ol>
+<p style=3D"margin-bottom: 0in; font-weight: normal"><br>
+</p>
+<p style=3D"margin-bottom: 0in; font-weight: normal">I'm asking my self : w=
+hy ?</p>
+<p style=3D"margin-bottom: 0in; font-weight: normal">Thank you,
+</p><p style=3D"margin-bottom: 0in; font-weight: normal"><br>
+</p>Cheers
+<p style=3D"margin-bottom: 0in; font-weight: normal"><br>
+</p><div class=3D"x-axi-signature"><div class=3D"x-axi-signature" style=3D"=
+; font-size: 10pt; font-family: Arial;"><br>Diego Gonz=C3=A1lez Gonz=C3=A1l=
+ez<br><div style=3D"text-align: left;">Dpto. de Control Industrial</div><di=
+v style=3D"text-align: left;">&nbsp;</div><div style=3D"text-align: left;">=
+HORUS HARDWARE S.A.<br>Pol Ind Europolis C/Berna n=C2=BA4<br>28232 Las Roza=
+s de Madrid<br><a id=3D"ext-gen5000" href=3D"mailto:enrique.fernandez@horus=
+.es">diego.gonzalez@horus.es</a></div></div></div><br>On Thu, 09/19/2013 10=
+:27 AM, Diego&nbsp;Gonzalez&nbsp;&lt;diego.gonzalez@horus.es&gt; wrote:<br>=
+<blockquote style=3D"border-left: 2px solid rgb(00, 00, 204); padding-left:=
+ 4px; margin-left: 16px;"><div style=3D"font-family: Arial; font-size: 10pt=
+;"><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin: 0px; }<=
+/style>Hello everybody,<br><br>we have an issue with sftp server in our fsl=
+-image-gui. When we try to connect using sftp, then we get an error saying =
+connection closed.<br>After a closer look inside&nbsp; the fsl-image-gui , =
+we saw that /usr/bin/sftp-server directory&nbsp; is not installed in this i=
+mage. Also, we vericated that ssh connection works good. <br><br>We already=
+ now that this work fine in fsl-core-image-sato-sdk. In fact you can find o=
+ut that /usr/bin/sftp-server directory exists. <br>Trying to fix it we put =
+several commands inside the local.conf . However we didn't fix it.<br><br><=
+pre class=3D"bz_comment_text"><font face=3D"arial">How can I solve it?. <br=
+><br>Cheers</font><br></pre><div class=3D"x-axi-signature"><div class=3D"x-=
+axi-signature" style=3D"; font-size: 10pt; font-family: Arial;"><br>Diego G=
+onz=C3=A1lez Gonz=C3=A1lez<br><div style=3D"text-align: left;">Dpto. de Con=
+trol Industrial</div><div style=3D"text-align: left;">&nbsp;</div><div styl=
+e=3D"text-align: left;">HORUS HARDWARE S.A.<br>Pol Ind Europolis C/Berna n=
+=C2=BA4<br>28232 Las Rozas de Madrid<br><a id=3D"ext-gen5000" href=3D"mailt=
+o:enrique.fernandez@horus.es">diego.gonzalez@horus.es</a></div></div></div>=
+</div></blockquote></body></html>
+
+--===axigen=9994330796400620303106786290719940498691=axigen===--
