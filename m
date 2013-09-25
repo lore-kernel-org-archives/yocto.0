@@ -1,23 +1,39 @@
-Return-Path: <diego.gonzalez@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF614E015BD
-	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 00:08:19 -0700 (PDT)
-Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 1FAD13; 
-	Wed, 25 Sep 2013 09:08:14 +0200
-Received: from [172.30.250.254] by horus.es with HTTP;
-	Wed, 25 Sep 2013 09:08:14 +0200
-From: Diego Gonzalez <diego.gonzalez@horus.es>
-Date: Wed, 25 Sep 2013 09:08:14 +0200
-X-Mailer: Axigen WebMail
-To: yocto@yoctoproject.org
-Message-ID: <1380092894836405500@horus.es>
-In-Reply-To: <1379579265426525500@horus.es>
-References: <1379579265426525500@horus.es>
-Importance: Normal
+Return-Path: <felix01.fischer@iav.de>
+Received: from mailout03.rmx.de (mailout03.rmx.de [217.111.120.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F4A3E015BD
+	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 01:20:14 -0700 (PDT)
+Received: from cryptout01.retarus.com ([172.19.21.78])
+	by mailout03.rmx.de (8.14.4/8.14.5/retarus.custom) with ESMTP id
+	r8P8K87c012310; Wed, 25 Sep 2013 10:20:09 +0200
+Received: from cryptout01 (localhost [127.0.0.1])
+	by cryptout01.retarus.com (Postfix) with ESMTP id 1766337048C;
+	Wed, 25 Sep 2013 10:20:07 +0200 (CEST)
+Received: from cryptrouter01.dmz2.retloc (unknown [172.19.21.36])
+	by cryptout01.retarus.com (Postfix) with SMTP id B0AAA370489;
+	Wed, 25 Sep 2013 10:20:05 +0200 (CEST)
+X-RMX-Split: 2013-09-25 10:20:01 +0200
+In-Reply-To: <2378070.oljIghCm7B@helios>
+References: <OFC7737DE7.A32DB5E9-ONC1257BEF.0059D095-C1257BEF.005B946E@retarus.de>
+	<2378070.oljIghCm7B@helios>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
 MIME-Version: 1.0
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 4
-Subject: Re: problem with sft in fsl-image-gui
+X-KeepSent: 09452752:EFA3380A-C1257BF1:002CFBA5;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP1 March 08, 2012
+From: Felix01 Fischer <felix01.fischer@iav.de>
+Message-ID: <OF09452752.EFA3380A-ONC1257BF1.002CFBA5-C1257BF1.002DBD31@retarus.de>
+Date: Wed, 25 Sep 2013 10:19:41 +0200
+X-RouteServers: CN=SRVB02M/O=IAV;CN=SRVHUB1/O=IAV
+X-MIMETrack: Serialize by Router on jaja/RetarusMail(Release 8.5.3FP3|November
+	15, 2012) at 09/25/2013 10:19:54,
+	Serialize complete at 09/25/2013 10:19:54
+X-RMX-ID: 20130925-101954-r8P8Jroo031313-0@kdin02
+X-RMX-TRACE: 2013-09-25 10:19:54 KdIn2013@kdin02/mailcc07 [0.2s]
+	20130925-101954-r8P8Jroo031313-0@kdin02 0:00:00
+X-RMX-TRACE: 2013-09-25 10:19:54 RmxMSO@kdin02/mailcc06 [0.1s]
+	20130925-101954-r8P8Jroo031313-0@kdin02 0:00:00
+Cc: yocto@yoctoproject.org
+Subject: Antwort: Re: Is it possible to add machine specific changes in a separate custom layer?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,191 +45,222 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2013 07:08:21 -0000
+X-List-Received-Date: Wed, 25 Sep 2013 08:20:18 -0000
 Content-Type: multipart/alternative;
-	boundary="===axigen=9994330796400620303106786290719940498691=axigen==="
+	boundary="=_alternative 002DBD31C1257BF1_="
 
---===axigen=9994330796400620303106786290719940498691=axigen===
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+--=_alternative 002DBD31C1257BF1_=
+Content-Type: text/plain; charset="US-ASCII"
 
+Great! Thank you Paul!
+I didn't get the "Variable_$machine" part from the documentation.
 
+One Question: I want to add changes to a %MACHINE.conf via my layer
+(to be specific: I want to add "APPEND += "video=LVDS-1:d" to 
+meta-intel/meta-chiefriver/conf/machine/chiefriver.conf)
+Is this also possible via a separate layer? Once again, I didn't find out 
+via the documentation. ATM I have to modify the chiefriver.conf directly 
+:-(
+Thank you for your help so far,
+Regards,
+Felix
 
+Paul Eggleton <paul.eggleton@linux.intel.com> schrieb am 24.09.2013 
+10:52:00:
 
-=09
-=09
-=09
-=09
+> Von: Paul Eggleton <paul.eggleton@linux.intel.com>
+> An: Felix01 Fischer <felix01.fischer@iav.de>, 
+> Kopie: yocto@yoctoproject.org
+> Datum: 24.09.2013 10:52
+> Betreff: Re: [yocto] Is it possible to add machine specific changes 
+> in a separate custom layer?
+> 
+> Hi Felix,
+> 
+> On Monday 23 September 2013 18:40:19 Felix01 Fischer wrote:
+> > My goal is to build a custom-layer which supports 2 devices building 
+on
+> > top of the meta-intel and meta-ivi layer without changing anything 
+except
+> > my meta-custom layer.
+> > 
+> > Is it possible to have machine specific changes in a separate layer
+> > building on top of  another layer?
+> > I want to costumise meta-intel/meta-crownbay and
+> > meta-intel/meta-chiefriver without changing something inside the
+> > meta-intel layer.
+> > My goal is to have modifications for the meta-intel layer in a 
+meta-custom
+> > layer, which only get considered if a certain MACHINE ?= "XXXX" 
+(crownbay
+> > or chiefriver) from the meta-intel layer is set.
+> > Is this possible?
+> 
+> This is definitely possible - the key is to make use of bbappends and 
+machine
+> overrides. Append files are covered here:
+> 
+> http://www.yoctoproject.org/docs/current/dev-manual/dev-
+> manual.html#using-bbappend-files
+> 
+> Overrides effectively make an assignment statement apply only when the
+> specified override appears in the value of the OVERRIDES variable. For
+> example:
+> 
+> VARIABLENAME = "the default value"
+> VARIABLENAME_crownbay = "value specific to crownbay machine"
+> 
+> You can use append/prepend to add to the variable value instead of just
+> setting it:
+> 
+> ANOTHERVARIABLE_append_chiefriver = " appended only for chiefriver"
+> ANOTHERVARIABLE_prepend_crownbay = "prepended only for crownbay "
+> 
+> By default, the value of OVERRIDES includes the value of MACHINE, 
+DISTRO, etc.
+> If you run bitbake -e | less and then search (with /) for OVERRIDES= you 
+can
+> see how how OVERRIDES is constructed.
+> 
+> > I have the same question regarding DISTRO. I want some changes to be
+> > considered if DISTRO = poky and some other changes when DISTRO =
+> > poky-ivi-systemd.
+> 
+> Same as above only you'd be using the distro name as the override e.g.
+> 
+> SOMETHING_append_poky = " whatever poky-specific additions are needed"
+> 
+> > Is it possible to maintain these modifications in ONE custom layer or 
+do I
+> > need to have seperate layers (one for poky, one for poky-ivi-systemd 
+and
+> > machine specific changes inside the meta-intel layer)?
+> 
+> You don't have to, but generally we recommend keeping the machine
+> customisations separate from policy (distro) customisations. This can 
+make
+> things easier if you have to change the machine later.
+> 
+> Cheers,
+> Paul
+> 
+> -- 
+> 
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
+--=_alternative 002DBD31C1257BF1_=
+Content-Type: text/html; charset="US-ASCII"
 
-Hello,
+<font size=2 face="sans-serif">Great! Thank you Paul!</font>
+<br><font size=2 face="sans-serif">I didn't get the &quot;Variable_$machine&quot;
+part from the documentation.<br>
+<br>
+One Question: I want to add changes to a %MACHINE.conf via my layer</font>
+<br><font size=2 face="sans-serif">(to be specific: I want to add &quot;APPEND
++= &quot;video=LVDS-1:d&quot; to meta-intel/meta-chiefriver/conf/machine/chiefriver.conf)<br>
+Is this also possible via a separate layer? Once again, I didn't find out
+via the documentation. ATM I have to modify the chiefriver.conf directly
+:-(<br>
+Thank you for your help so far,<br>
+Regards,<br>
+Felix</font>
+<br>
+<br><tt><font size=2>Paul Eggleton &lt;paul.eggleton@linux.intel.com&gt;
+schrieb am 24.09.2013 10:52:00:<br>
+<br>
+&gt; Von: Paul Eggleton &lt;paul.eggleton@linux.intel.com&gt;</font></tt>
+<br><tt><font size=2>&gt; An: Felix01 Fischer &lt;felix01.fischer@iav.de&gt;,
+</font></tt>
+<br><tt><font size=2>&gt; Kopie: yocto@yoctoproject.org</font></tt>
+<br><tt><font size=2>&gt; Datum: 24.09.2013 10:52</font></tt>
+<br><tt><font size=2>&gt; Betreff: Re: [yocto] Is it possible to add machine
+specific changes <br>
+&gt; in a separate custom layer?</font></tt>
+<br><tt><font size=2>&gt; <br>
+&gt; Hi Felix,<br>
+&gt; <br>
+&gt; On Monday 23 September 2013 18:40:19 Felix01 Fischer wrote:<br>
+&gt; &gt; My goal is to build a custom-layer which supports 2 devices building
+on<br>
+&gt; &gt; top of the meta-intel and meta-ivi layer without changing anything
+except<br>
+&gt; &gt; my meta-custom layer.<br>
+&gt; &gt; <br>
+&gt; &gt; Is it possible to have machine specific changes in a separate
+layer<br>
+&gt; &gt; building on top of &nbsp;another layer?<br>
+&gt; &gt; I want to costumise meta-intel/meta-crownbay and<br>
+&gt; &gt; meta-intel/meta-chiefriver without changing something inside
+the<br>
+&gt; &gt; meta-intel layer.<br>
+&gt; &gt; My goal is to have modifications for the meta-intel layer in
+a meta-custom<br>
+&gt; &gt; layer, which only get considered if a certain MACHINE ?= &quot;XXXX&quot;
+&nbsp;(crownbay<br>
+&gt; &gt; or chiefriver) from the meta-intel layer is set.<br>
+&gt; &gt; Is this possible?<br>
+&gt; <br>
+&gt; This is definitely possible - the key is to make use of bbappends
+and machine<br>
+&gt; overrides. Append files are covered here:<br>
+&gt; <br>
+&gt; </font></tt><a href="http://www.yoctoproject.org/docs/current/dev-manual/dev-"><tt><font size=2>http://www.yoctoproject.org/docs/current/dev-manual/dev-</font></tt></a><tt><font size=2><br>
+&gt; manual.html#using-bbappend-files<br>
+&gt; <br>
+&gt; Overrides effectively make an assignment statement apply only when
+the<br>
+&gt; specified override appears in the value of the OVERRIDES variable.
+For<br>
+&gt; example:<br>
+&gt; <br>
+&gt; VARIABLENAME = &quot;the default value&quot;<br>
+&gt; VARIABLENAME_crownbay = &quot;value specific to crownbay machine&quot;<br>
+&gt; <br>
+&gt; You can use append/prepend to add to the variable value instead of
+just<br>
+&gt; setting it:<br>
+&gt; <br>
+&gt; ANOTHERVARIABLE_append_chiefriver = &quot; appended only for chiefriver&quot;<br>
+&gt; ANOTHERVARIABLE_prepend_crownbay = &quot;prepended only for crownbay
+&quot;<br>
+&gt; <br>
+&gt; By default, the value of OVERRIDES includes the value of MACHINE,
+DISTRO, etc.<br>
+&gt; If you run bitbake -e | less and then search (with /) for OVERRIDES=
+you can<br>
+&gt; see how how OVERRIDES is constructed.<br>
+&gt; <br>
+&gt; &gt; I have the same question regarding DISTRO. I want some changes
+to be<br>
+&gt; &gt; considered if DISTRO = poky and some other changes when DISTRO
+=<br>
+&gt; &gt; poky-ivi-systemd.<br>
+&gt; <br>
+&gt; Same as above only you'd be using the distro name as the override
+e.g.<br>
+&gt; <br>
+&gt; SOMETHING_append_poky = &quot; whatever poky-specific additions are
+needed&quot;<br>
+&gt; <br>
+&gt; &gt; Is it possible to maintain these modifications in ONE custom
+layer or do I<br>
+&gt; &gt; need to have seperate layers (one for poky, one for poky-ivi-systemd
+and<br>
+&gt; &gt; machine specific changes inside the meta-intel layer)?<br>
+&gt; <br>
+&gt; You don't have to, but generally we recommend keeping the machine<br>
+&gt; customisations separate from policy (distro) customisations. This
+can make<br>
+&gt; things easier if you have to change the machine later.<br>
+&gt; <br>
+&gt; Cheers,<br>
+&gt; Paul<br>
+&gt; <br>
+&gt; -- <br>
+&gt; <br>
+&gt; Paul Eggleton<br>
+&gt; Intel Open Source Technology Centre<br>
+</font></tt>
 
-
-
-
-
-we  discovered how to add sftp function
-in our customizable image. There's a package called eclipse-debug
-(~/poky/meta/recipes-core/packagegroup), which you can find a RDPENDS
-to openssh-sftp-server.
-
-
-So you have at
-least 4 possibilities to add it in your image (select just one) :
-
-
-
- * In a
-	customizable image or in the local.conf : IMAGE_FEATURES +=3D " =E2=80=A6
-	eclipse-debug"
-
-=09
- * In a
-	customizable image : IMAGE_INSTALL +=3D " \
-
-	=E2=80=A6. \
-openssh-sftp-server
-										\
-"
-
-=09
- * In the
-	local.conf : IMAGE_INSTALL_append =3D " openssh-sftp-server"
-
-=09
- * In the
-	local.conf : CORE_IMAGE_EXTRA_INSTALL +=3D " openssh-sftp-server"
-
-
-
-
-
-
-I'm asking my self : why ?
-
-Thank you,
-
-
-
-
-Cheers
-
-
-
-
-Diego Gonz=C3=A1lez Gonz=C3=A1lez
-Dpto. de Control Industrial HORUS HARDWARE S.A.
-Pol Ind Europolis C/Berna n=C2=BA4
-28232 Las Rozas de Madrid
-diego.gonzalez@horus.es
-On Thu, 09/19/2013 10:27 AM, Diego Gonzalez <diego.gonzalez@horus.es> wrote=
-:
-> Hello everybody,
->=20
-> we have an issue with sftp server in our fsl-image-gui. When we try to co=
-nnect using sftp, then we get an error saying connection closed.
-> After a closer look inside  the fsl-image-gui , we saw that /usr/bin/sftp=
--server directory  is not installed in this image. Also, we vericated that =
-ssh connection works good.=20
->=20
-> We already now that this work fine in fsl-core-image-sato-sdk. In fact yo=
-u can find out that /usr/bin/sftp-server directory exists.=20
-> Trying to fix it we put several commands inside the local.conf . However =
-we didn't fix it.
->=20
-> How can I solve it?.=20
->=20
-> Cheers
->=20
-
-> Diego Gonz=C3=A1lez Gonz=C3=A1lez
-> Dpto. de Control Industrial HORUS HARDWARE S.A.
-> Pol Ind Europolis C/Berna n=C2=BA4
-> 28232 Las Rozas de Madrid
-> diego.gonzalez@horus.es
-
---===axigen=9994330796400620303106786290719940498691=axigen===
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
-
-<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
-: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
-background-image: none; background-repeat: repeat; background-attachment: f=
-ixed;">
-
-
-=09
-=09
-=09
-	<style type=3D"text/css">P { margin-bottom: 0.08in; }</style>
-
-
-<p style=3D"margin-bottom: 0in">Hello,</p>
-<p style=3D"margin-bottom: 0in"><br>
-</p>
-<p style=3D"margin-bottom: 0in">we  discovered how to add <b>sftp</b> funct=
-ion
-in our customizable image. There's a package called eclipse-debug
-(~/poky/meta/recipes-core/packagegroup), which you can find a RDPENDS
-to o<b>penssh-sftp-server.</b></p>
-
-<p style=3D"margin-bottom: 0in; font-weight: normal">So you have at
-least 4 possibilities to add it in your image (select just one) :</p>
-
-<ol><li><p style=3D"margin-bottom: 0in; font-weight: normal">In a
-	customizable image or in the local.conf : IMAGE_FEATURES +=3D " =E2=80=A6
-	eclipse-debug"</p>
-	</li><li><p style=3D"margin-bottom: 0in; font-weight: normal">In a
-	customizable image : IMAGE_INSTALL +=3D " \</p>
-	<ol><ol><ol><ol><ol><ol><ol><ol><ol><p style=3D"margin-bottom: 0in; font-w=
-eight: normal">=E2=80=A6. \</p><p style=3D"margin-bottom: 0in; font-weight:=
- normal">openssh-sftp-server
-										\</p><p style=3D"margin-bottom: 0in; font-weight: normal">"</p></=
-ol></ol></ol></ol></ol></ol></ol></ol></ol>
-	</li><li><p style=3D"margin-bottom: 0in; font-weight: normal">In the
-	local.conf : IMAGE_INSTALL_append =3D " openssh-sftp-server"</p>
-	</li><li><p style=3D"margin-bottom: 0in; font-weight: normal">In the
-	local.conf : CORE_IMAGE_EXTRA_INSTALL +=3D " openssh-sftp-server"</p>
-</li></ol>
-<p style=3D"margin-bottom: 0in; font-weight: normal"><br>
-</p>
-<p style=3D"margin-bottom: 0in; font-weight: normal">I'm asking my self : w=
-hy ?</p>
-<p style=3D"margin-bottom: 0in; font-weight: normal">Thank you,
-</p><p style=3D"margin-bottom: 0in; font-weight: normal"><br>
-</p>Cheers
-<p style=3D"margin-bottom: 0in; font-weight: normal"><br>
-</p><div class=3D"x-axi-signature"><div class=3D"x-axi-signature" style=3D"=
-; font-size: 10pt; font-family: Arial;"><br>Diego Gonz=C3=A1lez Gonz=C3=A1l=
-ez<br><div style=3D"text-align: left;">Dpto. de Control Industrial</div><di=
-v style=3D"text-align: left;">&nbsp;</div><div style=3D"text-align: left;">=
-HORUS HARDWARE S.A.<br>Pol Ind Europolis C/Berna n=C2=BA4<br>28232 Las Roza=
-s de Madrid<br><a id=3D"ext-gen5000" href=3D"mailto:enrique.fernandez@horus=
-.es">diego.gonzalez@horus.es</a></div></div></div><br>On Thu, 09/19/2013 10=
-:27 AM, Diego&nbsp;Gonzalez&nbsp;&lt;diego.gonzalez@horus.es&gt; wrote:<br>=
-<blockquote style=3D"border-left: 2px solid rgb(00, 00, 204); padding-left:=
- 4px; margin-left: 16px;"><div style=3D"font-family: Arial; font-size: 10pt=
-;"><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin: 0px; }<=
-/style>Hello everybody,<br><br>we have an issue with sftp server in our fsl=
--image-gui. When we try to connect using sftp, then we get an error saying =
-connection closed.<br>After a closer look inside&nbsp; the fsl-image-gui , =
-we saw that /usr/bin/sftp-server directory&nbsp; is not installed in this i=
-mage. Also, we vericated that ssh connection works good. <br><br>We already=
- now that this work fine in fsl-core-image-sato-sdk. In fact you can find o=
-ut that /usr/bin/sftp-server directory exists. <br>Trying to fix it we put =
-several commands inside the local.conf . However we didn't fix it.<br><br><=
-pre class=3D"bz_comment_text"><font face=3D"arial">How can I solve it?. <br=
-><br>Cheers</font><br></pre><div class=3D"x-axi-signature"><div class=3D"x-=
-axi-signature" style=3D"; font-size: 10pt; font-family: Arial;"><br>Diego G=
-onz=C3=A1lez Gonz=C3=A1lez<br><div style=3D"text-align: left;">Dpto. de Con=
-trol Industrial</div><div style=3D"text-align: left;">&nbsp;</div><div styl=
-e=3D"text-align: left;">HORUS HARDWARE S.A.<br>Pol Ind Europolis C/Berna n=
-=C2=BA4<br>28232 Las Rozas de Madrid<br><a id=3D"ext-gen5000" href=3D"mailt=
-o:enrique.fernandez@horus.es">diego.gonzalez@horus.es</a></div></div></div>=
-</div></blockquote></body></html>
-
---===axigen=9994330796400620303106786290719940498691=axigen===--
+--=_alternative 002DBD31C1257BF1_=--
