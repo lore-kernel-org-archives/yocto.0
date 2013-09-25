@@ -1,25 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DB6DE015FF
-	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 06:26:07 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r8PDQ5S2022267
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 25 Sep 2013 06:26:05 -0700 (PDT)
-Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
-	Wed, 25 Sep 2013 06:26:04 -0700
-Message-ID: <5242E46B.6070006@windriver.com>
-Date: Wed, 25 Sep 2013 09:26:03 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
-MIME-Version: 1.0
-To: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Return-Path: <alexandru.c.georgescu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A66DDE015FF
+	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 06:36:06 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Sep 2013 06:36:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,978,1371106800"; 
+	d="gif'147?jpg'147,145?png'147,145,150?scan'147,145,150,208,217,147,150,145";
+	a="409150654"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga002.jf.intel.com with ESMTP; 25 Sep 2013 06:36:01 -0700
+Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
+	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 25 Sep 2013 14:36:00 +0100
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.69]) by
+	IRSMSX153.ger.corp.intel.com ([169.254.9.47]) with mapi id
+	14.03.0123.003; Wed, 25 Sep 2013 14:35:59 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto 1.5_M5.rc4 Full pass test results.
+Thread-Index: Ac654shbvcpw7sIeS8infsLChAGSpwAB53uAAAIub5A=
+Date: Wed, 25 Sep 2013 13:35:59 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F6A89C@IRSMSX104.ger.corp.intel.com>
 References: <1FFB62CE8AEB0D4298B51122D8903E9619F6A751@IRSMSX104.ger.corp.intel.com>
-In-Reply-To: <1FFB62CE8AEB0D4298B51122D8903E9619F6A751@IRSMSX104.ger.corp.intel.com>
+	<5242E46B.6070006@windriver.com>
+In-Reply-To: <5242E46B.6070006@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.181]
+MIME-Version: 1.0
 Subject: Re: Yocto 1.5_M5.rc4 Full pass test results.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -32,32 +43,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2013 13:26:08 -0000
-X-Groupsio-MsgNum: 16215
-Content-Type: multipart/alternative;
-	boundary="------------060605090100070801040108"
+X-List-Received-Date: Wed, 25 Sep 2013 13:36:09 -0000
+X-Groupsio-MsgNum: 16216
+Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_006_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_";
+	type="multipart/alternative"
 
---------------060605090100070801040108
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+--_006_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_
+Content-Type: multipart/alternative;
+	boundary="_000_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_"
+
+--_000_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+I know that Yi's team is testing on Beagleboard HW (in CC). RO QA team does=
+n't have any Beagleboards.
+Yi, do you have any updates regarding Beagleboard?
+
+Regards,
+--
+Alexandru Georgescu
+
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+Sent: Wednesday, September 25, 2013 16:26
+To: Georgescu, Alexandru C; yocto@yoctoproject.org
+Subject: Re: [yocto] Yocto 1.5_M5.rc4 Full pass test results.
 
 On 13-09-25 07:33 AM, Georgescu, Alexandru C wrote:
->
-> Hello,
->
-> Here is the Full Pass for 1.5_M5.rc4 build.
->
-> Highlights:
->
-> -#5223 - The testing for BSP P0122DS is blocked because there is no 
-> image build out.
->
-> -#5259 - adt-installer uses wrong permissions when extracting the sysroot
->
-> -#5223 - [autobuilder] u-boot-fw-utils does not build correctly
->
-> -#5205 -- runtime tests blocked due to a meta-intel build fail
->
+Hello,
+Here is the Full Pass for 1.5_M5.rc4 build.
+
+Highlights:
+
+-          #5223 - The testing for BSP P0122DS is blocked because there is =
+no image build out.
+
+-          #5259 - adt-installer uses wrong permissions when extracting the=
+ sysroot
+
+-          #5223 - [autobuilder] u-boot-fw-utils does not build correctly
+
+-          #5205 - runtime tests blocked due to a meta-intel build fail
 FYI: I'm hunting up someone and the right hardware to look into the
 three beagleboard issues that popped up with the 3.10 update.
 
@@ -68,1572 +96,894 @@ Cheers,
 
 Bruce
 
->
->   Testing data
->
->   Test type: Full Pass Release
->   Branch: Master
->   Milestone: M5
->   Build name: 1.5_M5.rc4
->   poky commit: 853bc53cd58a621918f0e5ce662dba263d1befb4
->   Eclipse Plugin commit Kepler:  ad74249895f882a8f00bdeef7a0f7c18998cc43e
->   Autobuilder images repository: http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc4/
->   Distributions tested: Ubuntu 12.04 64bit, Ubuntu 13.10 64bit beta, Fedora 19 64bit, Fedora 19 32bit, Fedora 18 64bit, OpenSuse 12.3 64bit, OpenSuse 12.2 64bit, CentOS 6.4 64bit, CentOS 6.4 32bit, Debian 7 64bit
->   
->
->
->   Summary Report
->
-> *Testing Summary Report*
->
-> *Test Run*
->
-> 	
->
-> *Test Plan*
->
-> 	
->
-> *Environment*
->
-> 	
->
-> *Passed*
->
-> 	
->
-> *Other issues*
->
-> 	
->
-> *Failed*
->
-> 	
->
-> *Failing bugs*
->
-> 	
->
-> *Blocked*
->
-> 	
->
-> *Blocking bugs*
->
-> 	
->
-> *Complete*
->
-> 1313 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1313>1314 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1314>
->
-> 	
->
-> ADT: master branch
->
-> 	
->
-> Fedora 19 x86_64
->
-> 	
->
-> 100.0%
->
-> 	
->
-> 5259 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5259>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1311 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1311>1312 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1312>
->
-> 	
->
-> ADT: master branch
->
-> 	
->
-> Ubuntu 13.04 x86_64
->
-> 	
->
-> 100.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1333 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333>1334 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> Beagleboard
->
-> 	
->
-> 50.7%
->
-> 	
->
-> none
->
-> 	
->
-> 14.5%
->
-> 	
->
-> 5182 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5182>3936 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3936>5211 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5211>5183 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5183>
->
-> 	
->
-> 34.8%
->
-> 	
->
-> 5183 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5183>5182 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5182>
->
-> 	
->
-> 100.0%
->
-> 1280 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1280>1281 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1281>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> generic-x86 on AtomPC
->
-> 	
->
-> 92.3%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 7.7%
->
-> 	
->
-> 5238 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5238>
->
-> 	
->
-> 100.0%
->
-> 1278 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1278>1279 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1279>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> genericx86-64 on Sugarbay
->
-> 	
->
-> 71.1%
->
-> 	
->
-> none
->
-> 	
->
-> 3.9%
->
-> 	
->
-> 5235 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5235>5108 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5108>5117 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5117>
->
-> 	
->
-> 25.0%
->
-> 	
->
-> 5108 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5108>
->
-> 	
->
-> 100.0%
->
-> 1329 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1329>1330 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1330>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> MPC8315e-rdb
->
-> 	
->
-> 100.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1323 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1323>1324 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1324>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> P1022ds
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 2.1%
->
-> 	
->
-> 5223 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5223>
->
-> 	
->
-> 97.9%
->
-> 	
->
-> 5223 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5223>
->
-> 	
->
-> 100.0%
->
-> 1288 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1288>1291 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1291>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> qemu-x86
->
-> 	
->
-> 98.1%
->
-> 	
->
-> none
->
-> 	
->
-> 1.9%
->
-> 	
->
-> 4832 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1316 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1316>1290 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1290>1293 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1293>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> qemuarm
->
-> 	
->
-> 97.6%
->
-> 	
->
-> none
->
-> 	
->
-> 2.4%
->
-> 	
->
-> 5133 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133>4832 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1318 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1318>1319 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1319>1321 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1321>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> qemumips
->
-> 	
->
-> 97.6%
->
-> 	
->
-> none
->
-> 	
->
-> 2.4%
->
-> 	
->
-> 5133 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133>4832 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1317 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1317>1320 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1320>1322 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1322>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> qemuppc
->
-> 	
->
-> 97.6%
->
-> 	
->
-> none
->
-> 	
->
-> 2.4%
->
-> 	
->
-> 5133 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133>4832 
-> <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1289 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1289>1292 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1292>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> qemux86-64
->
-> 	
->
-> 98.1%
->
-> 	
->
-> none
->
-> 	
->
-> 1.9%
->
-> 	
->
-> 4832 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1331 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1331>1332 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1332>
->
-> 	
->
-> BSP/QEMU: master branch
->
-> 	
->
-> Routerstationpro
->
-> 	
->
-> 100.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1325 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1325>1326 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1326>1327 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1327>
->
-> 	
->
-> Eclipse Plugin: master branch
->
-> 	
->
-> Fedora 19 x86_64
->
-> 	
->
-> 100.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1270 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1270>1271 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1271>1328 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1328>
->
-> 	
->
-> Eclipse Plugin: master branch
->
-> 	
->
-> Ubuntu 13.04 x86_64
->
-> 	
->
-> 100.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1303 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1303>1304 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1304>
->
-> 	
->
-> Meta-yocto: master branch
->
-> 	
->
-> Ubuntu 13.04 x86-64
->
-> 	
->
-> 96.3%
->
-> 	
->
-> none
->
-> 	
->
-> 3.7%
->
-> 	
->
-> 3908 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3908>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1306 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1306>1302 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1302>
->
-> 	
->
-> Hob: master branch
->
-> 	
->
-> Ubuntu 13.04 x86_64
->
-> 	
->
-> 100.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1275 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1275>1277 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1277>
->
-> 	
->
-> OE-Core: master branch
->
-> 	
->
-> Multiple environments
->
-> 	
->
-> 97.4%
->
-> 	
->
-> none
->
-> 	
->
-> 2.6%
->
-> 	
->
-> 5146 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5146>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1273 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1273>1274 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1274>
->
-> 	
->
-> BitBake: master branch
->
-> 	
->
-> Ubuntu 13.04 x86_64
->
-> 	
->
-> 100.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> 1305 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1305>
->
-> 	
->
-> Runtime: master branch
->
-> 	
->
-> Multiple Environments
->
-> 	
->
-> 62.5%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 37.5%
->
-> 	
->
-> 5205 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5205>
->
-> 	
->
-> 100.0%
->
-> 1310 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1310>
->
-> 	
->
-> Build Appliance: master branch
->
-> 	
->
-> qemu-kvm on Ubuntu 12.04 libvirt
->
-> 	
->
-> 100.0%
->
-> 	
->
-> 4727 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4727>
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 0.0%
->
-> 	
->
-> none
->
-> 	
->
-> 100.0%
->
-> *Total: 21*
->
-> 	
->
-> *Test Case Status Report*
->
-> *Status*
->
-> 	
->
-> *Count*
->
-> BLOCKED
->
-> 	
->
-> 99
->
-> FAILED
->
-> 	
->
-> 24
->
-> PASSED
->
-> 	
->
-> 1041
->
-> *Total: 1164*
->
-> 	
->
-> http://chart.apis.google.com/chart?cht=p3&chs=432x120&chd=t:&chd=t:99,24,1041&chco=FFFF66|FF9933|00FF00&chl=BLOCKED(99)+9%25|FAILED(24)+2%25|PASSED(1041)+89%25
->
-> *Bug Status Report*
->
->
-> *ID**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Priority**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Status**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Resolution**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Test Runs**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Description**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Version**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Target Milestone**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 	
->
-> *Age (days)**$B* 
-> <https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4>**
->
-> 3908 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3908>
->
-> 	
->
-> Medium+
->
-> 	
->
-> REOPENED
->
-> 	
-> 	
->
-> 1303 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1303>
->
-> 	
->
-> Kernel panic on qemux86-64 when using runqemu kvm and cpu host
->
-> 	
->
-> 1.4
->
-> 	
->
-> 1.5 M2
->
-> 	
->
-> 211
->
-> 3936 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=3936>
->
-> 	
->
-> Medium
->
-> 	
->
-> ACCEPTED
->
-> 	
-> 	
->
-> 1333 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333>
->
-> 	
->
-> [beagleobard xM] Some error message with usbhs_omap in dmesg
->
-> 	
->
-> 1.4
->
-> 	
->
-> 1.5
->
-> 	
->
-> 204
->
-> 4727 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4727>
->
-> 	
->
-> Medium
->
-> 	
->
-> IN PROGRESS DESIGN
->
-> 	
-> 	
->
-> 1310 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1310>
->
-> 	
->
-> Opening build logs does not work in HOB under Build Appliance
->
-> 	
->
-> unspecified
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> 98
->
-> 4832 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832>
->
-> 	
->
-> Medium
->
-> 	
->
-> NEW
->
-> 	
-> 	
->
-> 1293 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1293>1292 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1292>1322 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1322>1291 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1291>1321 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1321>
->
-> 	
->
-> [Test Case 225] ethernet static ip set in connman
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> 71
->
-> 5108 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5108>
->
-> 	
->
-> Medium
->
-> 	
->
-> NEEDINFO
->
-> 	
-> 	
->
-> 1279 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1279>1278 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1278>
->
-> 	
->
-> Lack of xf86-video-mga package in genericX86-64/genericX86
->
-> 	
->
-> 1.5.2
->
-> 	
->
-> Future
->
-> 	
->
-> 14
->
-> 5117 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5117>
->
-> 	
->
-> Medium
->
-> 	
->
-> IN PROGRESS REVIEW
->
-> 	
-> 	
->
-> 1279 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1279>
->
-> 	
->
-> generic-x86-64 image does not recover display after standby
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> 14
->
-> 5133 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133>
->
-> 	
->
-> Medium+
->
-> 	
->
-> ACCEPTED
->
-> 	
-> 	
->
-> 1322 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1322>1321 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1321>1293 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1293>
->
-> 	
->
-> [Test Case 207] sudoku-savant project compile in sdk image
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> 12
->
-> 5146 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5146>
->
-> 	
->
-> Medium
->
-> 	
->
-> ACCEPTED
->
-> 	
-> 	
->
-> 1275 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1275>
->
-> 	
->
-> btrfs image build fails at do_rootfs
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> 9
->
-> 5182 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5182>
->
-> 	
->
-> Undecided
->
-> 	
->
-> NEW
->
-> 	
-> 	
->
-> 1334 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334>1333 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333>
->
-> 	
->
-> [Beagleboard xM]X can not startup with 3.10 kernel
->
-> 	
->
-> 1.5
->
-> 	
->
-> ---
->
-> 	
->
-> 5(Recent)
->
-> 5183 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5183>
->
-> 	
->
-> Undecided
->
-> 	
->
-> NEW
->
-> 	
-> 	
->
-> 1333 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333>1334 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334>
->
-> 	
->
-> [Beagleboard xM] Network interface doesn't work with 3.10 kernel
->
-> 	
->
-> 1.5
->
-> 	
->
-> ---
->
-> 	
->
-> 5(Recent)
->
-> 5205 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5205>
->
-> 	
->
-> Medium+
->
-> 	
->
-> RESOLVED
->
-> 	
->
-> FIXED
->
-> 	
->
-> 1305 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1305>
->
-> 	
->
-> meta-intel: some images fail to build -sdk image
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> 2(Recent)
->
-> 5211 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5211>
->
-> 	
->
-> Undecided
->
-> 	
->
-> NEW
->
-> 	
-> 	
->
-> 1334 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334>
->
-> 	
->
-> [Beagleboard xM] USB doesn't work with 3.10 kernel
->
-> 	
->
-> 1.5
->
-> 	
->
-> ---
->
-> 	
->
-> 1(Recent)
->
-> 5223 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5223>
->
-> 	
->
-> High
->
-> 	
->
-> RESOLVED
->
-> 	
->
-> FIXED
->
-> 	
->
-> 1324 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1324>1323 
-> <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1323>
->
-> 	
->
-> [autobuilder] u-boot-fw-utils does not build correctly
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> NEW
->
-> 5235 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5235>
->
-> 	
->
-> Medium
->
-> 	
->
-> NEEDINFO
->
-> 	
-> 	
->
-> 1278 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1278>
->
-> 	
->
-> generic-x86_64 dmesg errors on Sugarbay
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5
->
-> 	
->
-> NEW
->
-> 5238 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5238>
->
-> 	
->
-> Medium
->
-> 	
->
-> IN PROGRESS REVIEW
->
-> 	
-> 	
->
-> 1281 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1281>
->
-> 	
->
-> generic-x86 image does not have broadcom wifi modules enabled
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> NEW
->
-> 5259 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=5259>
->
-> 	
->
-> Medium+
->
-> 	
->
-> NEW
->
-> 	
-> 	
->
-> 1313 <https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1313>
->
-> 	
->
-> adt-installer uses wrong permissions when extracting the sysroot
->
-> 	
->
-> 1.5
->
-> 	
->
-> 1.5 M5
->
-> 	
->
-> NEW
->
-> *Total: 16*
->
-> *Build Performance Status:*
->
-> Below you can find the Milestone build performance charts. Data taken 
-> from: Data taken from: 
-> https://wiki.yoctoproject.org/wiki/Performance_Test#1.5_Milestones_only_results. 
-> Attached you can find the detailed report with all the measurements. 
-> Overall, I can see that the build time is stable, no.
->
-> cid:image003.jpg@01CEB872.01433F90
->
-> Regards,
->
-> *--*
->
-> *Alexandru Georgescu*
->
-> *Yocto QA Engineer*
->
-> *SSG/SSD Open Source Technology Center Romania*
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
 
---------------060605090100070801040108
-Content-Type: multipart/related;
-	boundary="------------040002040707060701020107"
 
---------------040002040707060701020107
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 13-09-25 07:33 AM, Georgescu,
-      Alexandru C wrote:<br>
-    </div>
-    <blockquote
-cite="mid:1FFB62CE8AEB0D4298B51122D8903E9619F6A751@IRSMSX104.ger.corp.intel.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=ISO-8859-1">
-      <meta name="Generator" content="Microsoft Word 14 (filtered
-        medium)">
-      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+Testing data
+
+ Test type: Full Pass Release
+
+ Branch: Master
+
+ Milestone: M5
+
+ Build name: 1.5_M5.rc4
+
+ poky commit: 853bc53cd58a621918f0e5ce662dba263d1befb4
+
+ Eclipse Plugin commit Kepler:  ad74249895f882a8f00bdeef7a0f7c18998cc43e
+
+ Autobuilder images repository: http://autobuilder.yoctoproject.org/pub/rel=
+eases/1.5_M5.rc4/
+
+ Distributions tested: Ubuntu 12.04 64bit, Ubuntu 13.10 64bit beta, Fedora =
+19 64bit, Fedora 19 32bit, Fedora 18 64bit, OpenSuse 12.3 64bit, OpenSuse 1=
+2.2 64bit, CentOS 6.4 64bit, CentOS 6.4 32bit, Debian 7 64bit
+
+
+
+Summary Report
+Testing Summary Report
+
+Test Run
+
+Test Plan
+
+Environment
+
+Passed
+
+Other issues
+
+Failed
+
+Failing bugs
+
+Blocked
+
+Blocking bugs
+
+Complete
+
+1313<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1313> 1314<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1314>
+
+ADT: master branch
+
+Fedora 19 x86_64
+
+100.0%
+
+5259<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5259>
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1311<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1311> 1312<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1312>
+
+ADT: master branch
+
+Ubuntu 13.04 x86_64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1333<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1333> 1334<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1334>
+
+BSP/QEMU: master branch
+
+Beagleboard
+
+50.7%
+
+none
+
+14.5%
+
+5182<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5182> 3936<https:/=
+/bugzilla.yoctoproject.org/show_bug.cgi?id=3D3936> 5211<https://bugzilla.yo=
+ctoproject.org/show_bug.cgi?id=3D5211>5183<https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5183>
+
+34.8%
+
+5183<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5183> 5182<https:/=
+/bugzilla.yoctoproject.org/show_bug.cgi?id=3D5182>
+
+100.0%
+
+1280<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1280> 1281<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1281>
+
+BSP/QEMU: master branch
+
+generic-x86 on AtomPC
+
+92.3%
+
+none
+
+0.0%
+
+none
+
+7.7%
+
+5238<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5238>
+
+100.0%
+
+1278<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1278> 1279<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1279>
+
+BSP/QEMU: master branch
+
+genericx86-64 on Sugarbay
+
+71.1%
+
+none
+
+3.9%
+
+5235<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5235> 5108<https:/=
+/bugzilla.yoctoproject.org/show_bug.cgi?id=3D5108> 5117<https://bugzilla.yo=
+ctoproject.org/show_bug.cgi?id=3D5117>
+
+25.0%
+
+5108<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5108>
+
+100.0%
+
+1329<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1329> 1330<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1330>
+
+BSP/QEMU: master branch
+
+MPC8315e-rdb
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1323<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1323> 1324<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1324>
+
+BSP/QEMU: master branch
+
+P1022ds
+
+0.0%
+
+none
+
+2.1%
+
+5223<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5223>
+
+97.9%
+
+5223<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5223>
+
+100.0%
+
+1288<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1288> 1291<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1291>
+
+BSP/QEMU: master branch
+
+qemu-x86
+
+98.1%
+
+none
+
+1.9%
+
+4832<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4832>
+
+0.0%
+
+none
+
+100.0%
+
+1316<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1316> 1290<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1290>1293<https:=
+//bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1293>
+
+BSP/QEMU: master branch
+
+qemuarm
+
+97.6%
+
+none
+
+2.4%
+
+5133<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5133> 4832<https:/=
+/bugzilla.yoctoproject.org/show_bug.cgi?id=3D4832>
+
+0.0%
+
+none
+
+100.0%
+
+1318<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1318> 1319<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1319>1321<https:=
+//bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1321>
+
+BSP/QEMU: master branch
+
+qemumips
+
+97.6%
+
+none
+
+2.4%
+
+5133<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5133> 4832<https:/=
+/bugzilla.yoctoproject.org/show_bug.cgi?id=3D4832>
+
+0.0%
+
+none
+
+100.0%
+
+1317<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1317> 1320<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1320>1322<https:=
+//bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1322>
+
+BSP/QEMU: master branch
+
+qemuppc
+
+97.6%
+
+none
+
+2.4%
+
+5133<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5133> 4832<https:/=
+/bugzilla.yoctoproject.org/show_bug.cgi?id=3D4832>
+
+0.0%
+
+none
+
+100.0%
+
+1289<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1289> 1292<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1292>
+
+BSP/QEMU: master branch
+
+qemux86-64
+
+98.1%
+
+none
+
+1.9%
+
+4832<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4832>
+
+0.0%
+
+none
+
+100.0%
+
+1331<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1331> 1332<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1332>
+
+BSP/QEMU: master branch
+
+Routerstationpro
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1325<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1325> 1326<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1326>1327<https:=
+//bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1327>
+
+Eclipse Plugin: master branch
+
+Fedora 19 x86_64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1270<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1270> 1271<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1271>1328<https:=
+//bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1328>
+
+Eclipse Plugin: master branch
+
+Ubuntu 13.04 x86_64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1303<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1303> 1304<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1304>
+
+Meta-yocto: master branch
+
+Ubuntu 13.04 x86-64
+
+96.3%
+
+none
+
+3.7%
+
+3908<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3908>
+
+0.0%
+
+none
+
+100.0%
+
+1306<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1306> 1302<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1302>
+
+Hob: master branch
+
+Ubuntu 13.04 x86_64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1275<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1275> 1277<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1277>
+
+OE-Core: master branch
+
+Multiple environments
+
+97.4%
+
+none
+
+2.6%
+
+5146<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5146>
+
+0.0%
+
+none
+
+100.0%
+
+1273<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1273> 1274<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1274>
+
+BitBake: master branch
+
+Ubuntu 13.04 x86_64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+1305<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1305>
+
+Runtime: master branch
+
+Multiple Environments
+
+62.5%
+
+none
+
+0.0%
+
+none
+
+37.5%
+
+5205<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5205>
+
+100.0%
+
+1310<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1310>
+
+Build Appliance: master branch
+
+qemu-kvm on Ubuntu 12.04 libvirt
+
+100.0%
+
+4727<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4727>
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+Total: 21
+
+
+
+Test Case Status Report
+
+Status
+
+Count
+
+BLOCKED
+
+99
+
+FAILED
+
+24
+
+PASSED
+
+1041
+
+Total: 1164
+
+
+[http://chart.apis.google.com/chart?cht=3Dp3&chs=3D432x120&chd=3Dt:&chd=3Dt=
+:99,24,1041&chco=3DFFFF66|FF9933|00FF00&chl=3DBLOCKED(99)+9%25|FAILED(24)+2=
+%25|PASSED(1041)+89%25]
+
+
+
+Bug Status Report
+
+
+ID[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Fu=
+ll_Pass_Release_1.5_M5.rc4>
+
+Priority[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-1=
+8_-_Full_Pass_Release_1.5_M5.rc4>
+
+Status[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_=
+-_Full_Pass_Release_1.5_M5.rc4>
+
+Resolution[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09=
+-18_-_Full_Pass_Release_1.5_M5.rc4>
+
+Test Runs[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-=
+18_-_Full_Pass_Release_1.5_M5.rc4>
+
+Description[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-0=
+9-18_-_Full_Pass_Release_1.5_M5.rc4>
+
+Version[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18=
+_-_Full_Pass_Release_1.5_M5.rc4>
+
+Target Milestone[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2=
+013-09-18_-_Full_Pass_Release_1.5_M5.rc4>
+
+Age (days)[=1B$B]<https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09=
+-18_-_Full_Pass_Release_1.5_M5.rc4>
+
+3908<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3908>
+
+Medium+
+
+REOPENED
+
+1303<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1303>
+
+Kernel panic on qemux86-64 when using runqemu kvm and cpu host
+
+1.4
+
+1.5 M2
+
+211
+
+3936<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3936>
+
+Medium
+
+ACCEPTED
+
+1333<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1333>
+
+[beagleobard xM] Some error message with usbhs_omap in dmesg
+
+1.4
+
+1.5
+
+204
+
+4727<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4727>
+
+Medium
+
+IN PROGRESS DESIGN
+
+1310<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1310>
+
+Opening build logs does not work in HOB under Build Appliance
+
+unspecified
+
+1.5 M5
+
+98
+
+4832<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4832>
+
+Medium
+
+NEW
+
+1293<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1293> 1292<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1292> 1322<https=
+://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1322> 1291<https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1291> 1321<https://bugzill=
+a.yoctoproject.org/tr_show_run.cgi?run_id=3D1321>
+
+[Test Case 225] ethernet static ip set in connman
+
+1.5
+
+1.5 M5
+
+71
+
+5108<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5108>
+
+Medium
+
+NEEDINFO
+
+1279<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1279> 1278<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1278>
+
+Lack of xf86-video-mga package in genericX86-64/genericX86
+
+1.5.2
+
+Future
+
+14
+
+5117<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5117>
+
+Medium
+
+IN PROGRESS REVIEW
+
+1279<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1279>
+
+generic-x86-64 image does not recover display after standby
+
+1.5
+
+1.5 M5
+
+14
+
+5133<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5133>
+
+Medium+
+
+ACCEPTED
+
+1322<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1322> 1321<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1321> 1293<https=
+://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1293>
+
+[Test Case 207] sudoku-savant project compile in sdk image
+
+1.5
+
+1.5 M5
+
+12
+
+5146<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5146>
+
+Medium
+
+ACCEPTED
+
+1275<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1275>
+
+btrfs image build fails at do_rootfs
+
+1.5
+
+1.5 M5
+
+9
+
+5182<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5182>
+
+Undecided
+
+NEW
+
+1334<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1334> 1333<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1333>
+
+[Beagleboard xM]X can not startup with 3.10 kernel
+
+1.5
+
+---
+
+5 (Recent)
+
+5183<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5183>
+
+Undecided
+
+NEW
+
+1333<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1333> 1334<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1334>
+
+[Beagleboard xM] Network interface doesn't work with 3.10 kernel
+
+1.5
+
+---
+
+5 (Recent)
+
+5205<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5205>
+
+Medium+
+
+RESOLVED
+
+FIXED
+
+1305<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1305>
+
+meta-intel: some images fail to build -sdk image
+
+1.5
+
+1.5 M5
+
+2 (Recent)
+
+5211<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5211>
+
+Undecided
+
+NEW
+
+1334<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1334>
+
+[Beagleboard xM] USB doesn't work with 3.10 kernel
+
+1.5
+
+---
+
+1 (Recent)
+
+5223<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5223>
+
+High
+
+RESOLVED
+
+FIXED
+
+1324<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1324> 1323<=
+https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1323>
+
+[autobuilder] u-boot-fw-utils does not build correctly
+
+1.5
+
+1.5 M5
+
+NEW
+
+5235<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5235>
+
+Medium
+
+NEEDINFO
+
+1278<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1278>
+
+generic-x86_64 dmesg errors on Sugarbay
+
+1.5
+
+1.5
+
+NEW
+
+5238<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5238>
+
+Medium
+
+IN PROGRESS REVIEW
+
+1281<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1281>
+
+generic-x86 image does not have broadcom wifi modules enabled
+
+1.5
+
+1.5 M5
+
+NEW
+
+5259<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5259>
+
+Medium+
+
+NEW
+
+1313<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1313>
+
+adt-installer uses wrong permissions when extracting the sysroot
+
+1.5
+
+1.5 M5
+
+NEW
+
+Total: 16
+
+
+
+
+
+
+Build Performance Status:
+
+Below you can find the Milestone build performance charts. Data taken from:=
+ Data taken from: https://wiki.yoctoproject.org/wiki/Performance_Test#1.5_M=
+ilestones_only_results. Attached you can find the detailed report with all =
+the measurements. Overall, I can see that the build time is stable, no.
+
+
+
+[cid:image003.jpg@01CEB872.01433F90]
+
+Regards,
+--
+Alexandru Georgescu
+Yocto QA Engineer
+SSG/SSD Open Source Technology Center Romania
+
+
+
+
+
+_______________________________________________
+
+yocto mailing list
+
+yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+
+https://lists.yoctoproject.org/listinfo/yocto
+
+
+--_000_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
 o\:* {behavior:url(#default#VML);}
 w\:* {behavior:url(#default#VML);}
 .shape {behavior:url(#default#VML);}
-</style><![endif]-->
-      <style><!--
+</style><![endif]--><style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Wingdings;
@@ -1652,7 +1002,8 @@ p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
+	font-family:"Calibri","sans-serif";
+	color:black;}
 h1
 	{mso-style-priority:9;
 	mso-style-link:"Heading 1 Char";
@@ -1661,7 +1012,8 @@ h1
 	mso-margin-bottom-alt:auto;
 	margin-left:0in;
 	font-size:24.0pt;
-	font-family:"Times New Roman","serif";}
+	font-family:"Times New Roman","serif";
+	color:black;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:blue;
@@ -1676,14 +1028,16 @@ pre
 	margin:0in;
 	margin-bottom:.0001pt;
 	font-size:10.0pt;
-	font-family:"Courier New";}
+	font-family:"Courier New";
+	color:black;}
 p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
 	{mso-style-priority:99;
 	mso-style-link:"Balloon Text Char";
 	margin:0in;
 	margin-bottom:.0001pt;
 	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
+	font-family:"Tahoma","sans-serif";
+	color:black;}
 p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	{mso-style-priority:34;
 	margin-top:0in;
@@ -1692,37 +1046,41 @@ p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
 	margin-left:.5in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
-	color:windowtext;}
+	color:black;}
 span.Heading1Char
 	{mso-style-name:"Heading 1 Char";
 	mso-style-priority:9;
 	mso-style-link:"Heading 1";
 	font-family:"Times New Roman","serif";
 	font-weight:bold;}
-span.mw-headline
-	{mso-style-name:mw-headline;}
 span.HTMLPreformattedChar
 	{mso-style-name:"HTML Preformatted Char";
 	mso-style-priority:99;
 	mso-style-link:"HTML Preformatted";
 	font-family:"Courier New";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.mw-headline
+	{mso-style-name:mw-headline;}
 span.apple-converted-space
 	{mso-style-name:apple-converted-space;}
 span.sortarrow
 	{mso-style-name:sortarrow;}
+span.EmailStyle27
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri","sans-serif";}
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -1732,7 +1090,8 @@ div.WordSection1
 @list l0
 	{mso-list-id:1100880217;
 	mso-list-type:hybrid;
-	mso-list-template-ids:-761897728 470874660 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+	mso-list-template-ids:-761897728 470874660 67698691 67698693 67698689 6769=
+8691 67698693 67698689 67698691 67698693;}
 @list l0:level1
 	{mso-level-start-at:0;
 	mso-level-number-format:bullet;
@@ -1803,4038 +1162,2989 @@ ol
 ul
 	{margin-bottom:0in;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hello,<o:p></o:p></p>
-        <p class="MsoNormal">Here is the Full Pass for 1.5_M5.rc4 build.
-          <o:p></o:p></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-        <p class="MsoNormal">Highlights:<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times
-              New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </span></span><!--[endif]-->#5223 - The testing for BSP
-          P0122DS is blocked because there is no image build out.<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times
-              New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </span></span><!--[endif]-->#5259 - adt-installer uses wrong
-          permissions when extracting the sysroot<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times
-              New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </span></span><!--[endif]-->#5223 - [autobuilder]
-          u-boot-fw-utils does not build correctly<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">-<span style="font:7.0pt &quot;Times
-              New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </span></span><!--[endif]-->#5205 &#8211; runtime tests blocked
-          due to a meta-intel build fail</p>
-      </div>
-    </blockquote>
-    FYI: I'm hunting up someone and the right hardware to look into the<br>
-    three beagleboard issues that popped up with the 3.10 update.<br>
-    <br>
-    The bugs will be updated accordingly when someone starts looking<br>
-    at them.<br>
-    <br>
-    Cheers,<br>
-    <br>
-    Bruce<br>
-    <br>
-    <blockquote
-cite="mid:1FFB62CE8AEB0D4298B51122D8903E9619F6A751@IRSMSX104.ger.corp.intel.com"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoListParagraph"
-          style="text-indent:-.25in;mso-list:l0 level1 lfo2"><o:p></o:p></p>
-        <p class="MsoListParagraph"><o:p>&nbsp;</o:p></p>
-        <div
-          style="mso-element:para-border-div;border:none;border-bottom:solid
-          #AAAAAA 1.0pt;padding:0in 0in 2.0pt 0in;background:white">
-          <h1
-style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:.1in;margin-left:0in;mso-line-height-alt:14.3pt;background:white;border:none;padding:0in"><span
-              class="mw-headline"><span
-style="font-size:17.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black;font-weight:normal">Testing
-                data</span></span><span
-style="font-size:17.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black;font-weight:normal"><o:p></o:p></span></h1>
-        </div>
-        <div style="mso-element:para-border-div;border:dashed #2F6FAB
-          1.0pt;padding:12.0pt 12.0pt 12.0pt 12.0pt;background:#F9F9F9">
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in;orphans: auto;text-align:start;widows: auto;-webkit-text-stroke-width: 0px;word-spacing:0px"><span style="color:black"> Test type: Full Pass Release<o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> Branch: Master<o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> Milestone: M5<o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> Build name: 1.5_M5.rc4<o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> poky commit: 853bc53cd58a621918f0e5ce662dba263d1befb4<o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> Eclipse Plugin commit Kepler:&nbsp; ad74249895f882a8f00bdeef7a0f7c18998cc43e<o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> Autobuilder images repository: <a class="moz-txt-link-freetext" href="http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc4/">http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc4/</a><o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> Distributions tested: Ubuntu 12.04 64bit, Ubuntu 13.10 64bit beta, Fedora 19 64bit, Fedora 19 32bit, Fedora 18 64bit, OpenSuse 12.3 64bit, OpenSuse 12.2 64bit, CentOS 6.4 64bit, CentOS 6.4 32bit, Debian 7 64bit<o:p></o:p></span></pre>
-          <pre style="line-height:13.2pt;background:#F9F9F9;border:none;padding:0in"><span style="color:black"> <o:p></o:p></span></pre>
-        </div>
-        <div
-          style="mso-element:para-border-div;border:none;border-bottom:solid
-          #AAAAAA 1.0pt;padding:0in 0in 2.0pt 0in;background:white">
-          <h1
-            style="mso-margin-top-alt:0in;margin-right:0in;margin-bottom:.1in;margin-left:0in;mso-line-height-alt:14.3pt;background:white;border:none;padding:0in;orphans:
+</head>
+<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I know that Yi&#8217;s=
+ team is testing on Beagleboard HW (in CC). RO QA team doesn&#8217;t have a=
+ny Beagleboards.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Yi, do you have any up=
+dates regarding Beagleboard?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Regards,<o:p></o:p></s=
+pan></p>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">--<=
+o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">Ale=
+xandru Georgescu<o:p></o:p></span></b></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext">From:</span></b><spa=
+n style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif=
+&quot;;color:windowtext"> Bruce Ashfield [mailto:bruce.ashfield@windriver.c=
+om]
+<br>
+<b>Sent:</b> Wednesday, September 25, 2013 16:26<br>
+<b>To:</b> Georgescu, Alexandru C; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] Yocto 1.5_M5.rc4 Full pass test results.<o:p></=
+o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 13-09-25 07:33 AM, Georgescu, Alexandru C wrote:<=
+o:p></o:p></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal">Here is the Full Pass for 1.5_M5.rc4 build. <o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Highlights:<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>#5223 - The testing for BSP P0122DS is blocked beca=
+use there is no image build out.<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>#5259 - adt-installer uses wrong permissions when e=
+xtracting the sysroot<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>#5223 - [autobuilder] u-boot-fw-utils does not buil=
+d correctly<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">-<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>#5205 &#8211; runtime tests blocked due to a meta-i=
+ntel build fail<o:p></o:p></p>
+</blockquote>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;">FYI: I'm hunting up someone and the =
+right hardware to look into the<br>
+three beagleboard issues that popped up with the 3.10 update.<br>
+<br>
+The bugs will be updated accordingly when someone starts looking<br>
+at them.<br>
+<br>
+Cheers,<br>
+<br>
+Bruce<br>
+<br>
+<br>
+<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph">&nbsp;<o:p></o:p></p>
+<div style=3D"border:none;border-bottom:solid #AAAAAA 1.0pt;padding:0in 0in=
+ 2.0pt 0in">
+<h1 style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:.1in;mar=
+gin-left:0in;mso-line-height-alt:14.3pt;background:white">
+<span class=3D"mw-headline"><span style=3D"font-size:17.5pt;font-family:&qu=
+ot;Arial&quot;,&quot;sans-serif&quot;;font-weight:normal">Testing data</spa=
+n></span><o:p></o:p></h1>
+</div>
+<div style=3D"border:dashed #2F6FAB 1.0pt;padding:12.0pt 12.0pt 12.0pt 12.0=
+pt">
+<pre style=3D"line-height:13.2pt;background:#F9F9F9;orphans: auto;text-alig=
+n:start;widows: auto;-webkit-text-stroke-width: 0px;word-spacing:0px"> Test=
+ type: Full Pass Release<o:p></o:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> Branch: Master<o:p></=
+o:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> Milestone: M5<o:p></o=
+:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> Build name: 1.5_M5.rc=
+4<o:p></o:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> poky commit: 853bc53c=
+d58a621918f0e5ce662dba263d1befb4<o:p></o:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> Eclipse Plugin commit=
+ Kepler:&nbsp; ad74249895f882a8f00bdeef7a0f7c18998cc43e<o:p></o:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> Autobuilder images re=
+pository: <a href=3D"http://autobuilder.yoctoproject.org/pub/releases/1.5_M=
+5.rc4/">http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc4/</a><o:=
+p></o:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> Distributions tested:=
+ Ubuntu 12.04 64bit, Ubuntu 13.10 64bit beta, Fedora 19 64bit, Fedora 19 32=
+bit, Fedora 18 64bit, OpenSuse 12.3 64bit, OpenSuse 12.2 64bit, CentOS 6.4 =
+64bit, CentOS 6.4 32bit, Debian 7 64bit<o:p></o:p></pre>
+<pre style=3D"line-height:13.2pt;background:#F9F9F9"> <o:p></o:p></pre>
+</div>
+<div style=3D"border:none;border-bottom:solid #AAAAAA 1.0pt;padding:0in 0in=
+ 2.0pt 0in">
+<h1 style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:.1in;mar=
+gin-left:0in;mso-line-height-alt:14.3pt;background:white;orphans:
             auto;text-align:start;widows:
             auto;-webkit-text-stroke-width:
             0px;background-position:initial
             initial;background-repeat:initial
             initial;overflow:hidden;word-spacing:0px">
-            <span class="mw-headline"><span
-style="font-size:17.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black;font-weight:normal">Summary
-                Report</span></span><span
-style="font-size:17.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black;font-weight:normal"><o:p></o:p></span></h1>
-        </div>
-        <table class="MsoNormalTable" style="background:white;orphans:
+<span class=3D"mw-headline"><span style=3D"font-size:17.5pt;font-family:&qu=
+ot;Arial&quot;,&quot;sans-serif&quot;;font-weight:normal">Summary Report</s=
+pan></span><o:p></o:p></h1>
+</div>
+<table class=3D"MsoNormalTable" border=3D"0" cellpadding=3D"0" style=3D"bac=
+kground:white;orphans:
           auto;text-align:start;widows: auto;-webkit-text-stroke-width:
-          0px;word-spacing:0px" cellpadding="0" border="0">
-          <tbody>
-            <tr>
-              <td style="padding:.75pt .75pt .75pt .75pt">
-                <table class="MsoNormalTable"
-                  style="background:#EEEEEE;border-collapse:collapse;border:none;background-position:initial
-                  initial;background-repeat:initial initial"
-                  cellpadding="0" cellspacing="0" border="1">
-                  <tbody>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;background:#BBBBBB;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Testing Summary
-                              Report<o:p></o:p></span></b></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <table class="MsoNormalTable"
-                          style="margin-left:7.5pt;background:#EEEEEE;border-collapse:collapse;border:none;background-position:initial
-                          initial;background-repeat:initial initial"
-                          cellpadding="0" cellspacing="0" border="1">
-                          <tbody>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Test
-                                      Run<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Test
-                                      Plan<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Environment<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Passed<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Other
-                                      issues<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Failed<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Failing
-                                      bugs<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Blocked<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Blocking
-                                      bugs<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Complete<o:p></o:p></span></b></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1313"><span
-                                        style="color:#5A3696">1313</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1314"><span
-                                        style="color:#5A3696">1314</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">ADT: master
-                                    branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Fedora 19
-                                    x86_64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5259"><span
-                                        style="color:#5A3696">5259</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1311"><span
-                                        style="color:#5A3696">1311</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1312"><span
-                                        style="color:#5A3696">1312</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">ADT: master
-                                    branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Ubuntu 13.04
-                                    x86_64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333"><span
-                                        style="color:#5A3696">1333</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334"><span
-                                        style="color:#5A3696">1334</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Beagleboard<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDD00;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span
-                                    style="font-size:9.5pt;color:black">50.7%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">14.5%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5182"><span
-                                        style="color:#5A3696">5182</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=3936"><span
-                                        style="color:#5A3696">3936</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5211"><span
-                                        style="color:#5A3696">5211</span></a><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5183"><span
-                                        style="color:#5A3696">5183</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDD00;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span
-                                    style="font-size:9.5pt;color:black">34.8%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5183"><span
-                                        style="color:#5A3696">5183</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5182"><span
-                                        style="color:#5A3696">5182</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1280"><span
-                                        style="color:#5A3696">1280</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1281"><span
-                                        style="color:#5A3696">1281</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">generic-x86
-                                    on AtomPC<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">92.3%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">7.7%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5238"><span
-                                        style="color:#5A3696">5238</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1278"><span
-                                        style="color:#5A3696">1278</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1279"><span
-                                        style="color:#5A3696">1279</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">genericx86-64
-                                    on Sugarbay<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDD00;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span
-                                    style="font-size:9.5pt;color:black">71.1%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">3.9%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5235"><span
-                                        style="color:#5A3696">5235</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5108"><span
-                                        style="color:#5A3696">5108</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5117"><span
-                                        style="color:#5A3696">5117</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">25.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5108"><span
-                                        style="color:#5A3696">5108</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1329"><span
-                                        style="color:#5A3696">1329</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1330"><span
-                                        style="color:#5A3696">1330</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">MPC8315e-rdb<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1323"><span
-                                        style="color:#5A3696">1323</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1324"><span
-                                        style="color:#5A3696">1324</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">P1022ds<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:red;padding:2.4pt 2.4pt
-                                2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">2.1%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5223"><span
-                                        style="color:#5A3696">5223</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:red;padding:2.4pt 2.4pt
-                                2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">97.9%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5223"><span
-                                        style="color:#5A3696">5223</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1288"><span
-                                        style="color:#5A3696">1288</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1291"><span
-                                        style="color:#5A3696">1291</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">qemu-x86<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">98.1%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">1.9%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832"><span
-                                        style="color:#5A3696">4832</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1316"><span
-                                        style="color:#5A3696">1316</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1290"><span
-                                        style="color:#5A3696">1290</span></a><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1293"><span
-                                        style="color:#5A3696">1293</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">qemuarm<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">97.6%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">2.4%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133"><span
-                                        style="color:#5A3696">5133</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832"><span
-                                        style="color:#5A3696">4832</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1318"><span
-                                        style="color:#5A3696">1318</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1319"><span
-                                        style="color:#5A3696">1319</span></a><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1321"><span
-                                        style="color:#5A3696">1321</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">qemumips<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">97.6%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">2.4%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133"><span
-                                        style="color:#5A3696">5133</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832"><span
-                                        style="color:#5A3696">4832</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1317"><span
-                                        style="color:#5A3696">1317</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1320"><span
-                                        style="color:#5A3696">1320</span></a><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1322"><span
-                                        style="color:#5A3696">1322</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">qemuppc<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">97.6%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">2.4%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133"><span
-                                        style="color:#5A3696">5133</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832"><span
-                                        style="color:#5A3696">4832</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1289"><span
-                                        style="color:#5A3696">1289</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1292"><span
-                                        style="color:#5A3696">1292</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">qemux86-64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">98.1%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">1.9%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832"><span
-                                        style="color:#5A3696">4832</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1331"><span
-                                        style="color:#5A3696">1331</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1332"><span
-                                        style="color:#5A3696">1332</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BSP/QEMU:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Routerstationpro<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1325"><span
-                                        style="color:#5A3696">1325</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1326"><span
-                                        style="color:#5A3696">1326</span></a><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1327"><span
-                                        style="color:#5A3696">1327</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Eclipse
-                                    Plugin: master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Fedora 19
-                                    x86_64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1270"><span
-                                        style="color:#5A3696">1270</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1271"><span
-                                        style="color:#5A3696">1271</span></a><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1328"><span
-                                        style="color:#5A3696">1328</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Eclipse
-                                    Plugin: master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Ubuntu 13.04
-                                    x86_64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1303"><span
-                                        style="color:#5A3696">1303</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1304"><span
-                                        style="color:#5A3696">1304</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Meta-yocto:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Ubuntu 13.04
-                                    x86-64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">96.3%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">3.7%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=3908"><span
-                                        style="color:#5A3696">3908</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1306"><span
-                                        style="color:#5A3696">1306</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1302"><span
-                                        style="color:#5A3696">1302</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Hob: master
-                                    branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Ubuntu 13.04
-                                    x86_64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1275"><span
-                                        style="color:#5A3696">1275</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1277"><span
-                                        style="color:#5A3696">1277</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">OE-Core:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Multiple
-                                    environments<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">97.4%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">2.6%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5146"><span
-                                        style="color:#5A3696">5146</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1273"><span
-                                        style="color:#5A3696">1273</span></a><span
-                                      class="apple-converted-space">&nbsp;</span><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1274"><span
-                                        style="color:#5A3696">1274</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BitBake:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Ubuntu 13.04
-                                    x86_64<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1305"><span
-                                        style="color:#5A3696">1305</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Runtime:
-                                    master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Multiple
-                                    Environments<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDD00;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span
-                                    style="font-size:9.5pt;color:black">62.5%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDD00;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span
-                                    style="font-size:9.5pt;color:black">37.5%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5205"><span
-                                        style="color:#5A3696">5205</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1310"><span
-                                        style="color:#5A3696">1310</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">Build
-                                    Appliance: master branch<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">qemu-kvm on
-                                    Ubuntu 12.04 libvirt<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt"><a
-                                      moz-do-not-send="true"
-                                      href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4727"><span
-                                        style="color:#5A3696">4727</span></a><o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">0.0%<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">none<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:lime;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <span style="font-size:9.5pt">100.0%<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colspan="10" style="border:solid
-                                #AAAAAA
-                                1.0pt;border-top:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><b><span
-                                      style="font-size:9.5pt">Total: 21</span></b><span
-                                    style="font-size:9.5pt"><o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-              <td style="padding:.75pt .75pt .75pt .75pt">
-                <table class="MsoNormalTable"
-                  style="background:#EEEEEE;border-collapse:collapse;border:none;background-position:initial
-                  initial;background-repeat:initial initial"
-                  cellpadding="0" cellspacing="0" border="1">
-                  <tbody>
-                    <tr>
-                      <td colspan="2" style="border:solid #AAAAAA
-                        1.0pt;background:#BBBBBB;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Test Case Status
-                              Report<o:p></o:p></span></b></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:white;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <table class="MsoNormalTable"
-                          style="margin-left:7.5pt;background:#EEEEEE;border-collapse:collapse;border:none;background-position:initial
-                          initial;background-repeat:initial initial"
-                          cellpadding="0" cellspacing="0" border="1">
-                          <tbody>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Status<o:p></o:p></span></b></p>
-                              </td>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center"
-                                  align="center">
-                                  <b><span style="font-size:9.5pt">Count<o:p></o:p></span></b></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">BLOCKED<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">99<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">FAILED<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;background:#DDDDDD;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">24<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td style="border:solid #AAAAAA
-                                1.0pt;border-top:none;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">PASSED<o:p></o:p></span></p>
-                              </td>
-                              <td
-                                style="border-top:none;border-left:none;border-bottom:solid
-                                #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                                1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><span
-                                    style="font-size:9.5pt">1041<o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colspan="2" style="border:solid
-                                #AAAAAA
-                                1.0pt;border-top:none;background:#BBBBBB;padding:2.4pt
-                                2.4pt 2.4pt 2.4pt">
-                                <p class="MsoNormal"
-style="mso-margin-top-alt:7.5pt;margin-right:0in;margin-bottom:7.5pt;margin-left:0in"><b><span
-                                      style="font-size:9.5pt">Total:
-                                      1164</span></b><span
-                                    style="font-size:9.5pt"><o:p></o:p></span></p>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:white;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><img
-                              id="Picture_x0020_11"
-                              src="cid:part72.05010704.05080901@windriver.com"
-alt="http://chart.apis.google.com/chart?cht=p3&amp;chs=432x120&amp;chd=t:&amp;chd=t:99,24,1041&amp;chco=FFFF66|FF9933|00FF00&amp;chl=BLOCKED(99)+9%25|FAILED(24)+2%25|PASSED(1041)+89%25"
-                              border="0" width="432" height="120"></span><span
-                            style="font-size:9.5pt"><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="MsoNormal"><span style="display:none"><o:p>&nbsp;</o:p></span></p>
-        <table class="MsoNormalTable"
-          style="background:#EEEEEE;border-collapse:collapse;border:none;orphans:
+          0px;word-spacing:0px">
+<tbody>
+<tr>
+<td style=3D"padding:.75pt .75pt .75pt .75pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"background:#EEEEEE;border-collapse:collapse;background-posi=
+tion:initial
+                  initial;background-repeat:initial initial">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Testing Summary Report</span></b><o:p></o:p></p=
+>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"margin-left:7.5pt;background:#EEEEEE;border-collapse:collap=
+se;background-position:initial
+                          initial;background-repeat:initial initial">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Test Run</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Test Plan</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Environment</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Passed</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Other issues</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Failed</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Failing bugs</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Blocked</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Blocking bugs</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Complete</span></b><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1313"><span style=3D"color:#5A3696">1313</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1314"><span style=3D"color=
+:#5A3696">1314</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">ADT: master branch</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Fedora 19 x86_64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5259"><span style=3D"color:#5A3696">5259</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1311"><span style=3D"color:#5A3696">1311</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1312"><span style=3D"color=
+:#5A3696">1312</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">ADT: master branch</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Ubuntu 13.04 x86_64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1333"><span style=3D"color:#5A3696">1333</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1334"><span style=3D"color=
+:#5A3696">1334</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Beagleboard</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDD00;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">50.7%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">14.5%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5182"><span style=3D"color:#5A3696">5182</span></a><spa=
+n class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bugzilla.=
+yoctoproject.org/show_bug.cgi?id=3D3936"><span style=3D"color:#5A3696">3936=
+</span></a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"ht=
+tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5211"><span style=3D"colo=
+r:#5A3696">5211</span></a><a href=3D"https://bugzilla.yoctoproject.org/show=
+_bug.cgi?id=3D5183"><span style=3D"color:#5A3696">5183</span></a></span><o:=
+p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDD00;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">34.8%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5183"><span style=3D"color:#5A3696">5183</span></a><spa=
+n class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bugzilla.=
+yoctoproject.org/show_bug.cgi?id=3D5182"><span style=3D"color:#5A3696">5182=
+</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1280"><span style=3D"color:#5A3696">1280</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1281"><span style=3D"color=
+:#5A3696">1281</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">generic-x86 on AtomPC</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">92.3%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">7.7%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5238"><span style=3D"color:#5A3696">5238</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1278"><span style=3D"color:#5A3696">1278</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1279"><span style=3D"color=
+:#5A3696">1279</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">genericx86-64 on Sugarbay</span><o:p></o:p>=
+</p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDD00;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">71.1%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">3.9%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5235"><span style=3D"color:#5A3696">5235</span></a><spa=
+n class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bugzilla.=
+yoctoproject.org/show_bug.cgi?id=3D5108"><span style=3D"color:#5A3696">5108=
+</span></a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"ht=
+tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5117"><span style=3D"colo=
+r:#5A3696">5117</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">25.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5108"><span style=3D"color:#5A3696">5108</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1329"><span style=3D"color:#5A3696">1329</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1330"><span style=3D"color=
+:#5A3696">1330</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">MPC8315e-rdb</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1323"><span style=3D"color:#5A3696">1323</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1324"><span style=3D"color=
+:#5A3696">1324</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">P1022ds</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:red;padding:2.4pt 2.4pt 2.=
+4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">2.1%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5223"><span style=3D"color:#5A3696">5223</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:red;padding:2.4pt 2.4pt 2.=
+4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">97.9%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5223"><span style=3D"color:#5A3696">5223</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1288"><span style=3D"color:#5A3696">1288</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1291"><span style=3D"color=
+:#5A3696">1291</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">qemu-x86</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">98.1%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">1.9%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D4832"><span style=3D"color:#5A3696">4832</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1316"><span style=3D"color:#5A3696">1316</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1290"><span style=3D"color=
+:#5A3696">1290</span></a><a href=3D"https://bugzilla.yoctoproject.org/tr_sh=
+ow_run.cgi?run_id=3D1293"><span style=3D"color:#5A3696">1293</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">qemuarm</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">97.6%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">2.4%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5133"><span style=3D"color:#5A3696">5133</span></a><spa=
+n class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bugzilla.=
+yoctoproject.org/show_bug.cgi?id=3D4832"><span style=3D"color:#5A3696">4832=
+</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1318"><span style=3D"color:#5A3696">1318</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1319"><span style=3D"color=
+:#5A3696">1319</span></a><a href=3D"https://bugzilla.yoctoproject.org/tr_sh=
+ow_run.cgi?run_id=3D1321"><span style=3D"color:#5A3696">1321</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">qemumips</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">97.6%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">2.4%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5133"><span style=3D"color:#5A3696">5133</span></a><spa=
+n class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bugzilla.=
+yoctoproject.org/show_bug.cgi?id=3D4832"><span style=3D"color:#5A3696">4832=
+</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1317"><span style=3D"color:#5A3696">1317</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1320"><span style=3D"color=
+:#5A3696">1320</span></a><a href=3D"https://bugzilla.yoctoproject.org/tr_sh=
+ow_run.cgi?run_id=3D1322"><span style=3D"color:#5A3696">1322</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">qemuppc</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">97.6%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">2.4%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5133"><span style=3D"color:#5A3696">5133</span></a><spa=
+n class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bugzilla.=
+yoctoproject.org/show_bug.cgi?id=3D4832"><span style=3D"color:#5A3696">4832=
+</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1289"><span style=3D"color:#5A3696">1289</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1292"><span style=3D"color=
+:#5A3696">1292</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">qemux86-64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">98.1%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">1.9%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D4832"><span style=3D"color:#5A3696">4832</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1331"><span style=3D"color:#5A3696">1331</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1332"><span style=3D"color=
+:#5A3696">1332</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BSP/QEMU: master branch</span><o:p></o:p></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Routerstationpro</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1325"><span style=3D"color:#5A3696">1325</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1326"><span style=3D"color=
+:#5A3696">1326</span></a><a href=3D"https://bugzilla.yoctoproject.org/tr_sh=
+ow_run.cgi?run_id=3D1327"><span style=3D"color:#5A3696">1327</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Eclipse Plugin: master branch</span><o:p></=
+o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Fedora 19 x86_64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1270"><span style=3D"color:#5A3696">1270</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1271"><span style=3D"color=
+:#5A3696">1271</span></a><a href=3D"https://bugzilla.yoctoproject.org/tr_sh=
+ow_run.cgi?run_id=3D1328"><span style=3D"color:#5A3696">1328</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Eclipse Plugin: master branch</span><o:p></=
+o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Ubuntu 13.04 x86_64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1303"><span style=3D"color:#5A3696">1303</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1304"><span style=3D"color=
+:#5A3696">1304</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Meta-yocto: master branch</span><o:p></o:p>=
+</p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Ubuntu 13.04 x86-64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">96.3%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">3.7%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D3908"><span style=3D"color:#5A3696">3908</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1306"><span style=3D"color:#5A3696">1306</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1302"><span style=3D"color=
+:#5A3696">1302</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Hob: master branch</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Ubuntu 13.04 x86_64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1275"><span style=3D"color:#5A3696">1275</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1277"><span style=3D"color=
+:#5A3696">1277</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">OE-Core: master branch</span><o:p></o:p></p=
+>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Multiple environments</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">97.4%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">2.6%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5146"><span style=3D"color:#5A3696">5146</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1273"><span style=3D"color:#5A3696">1273</span><=
+/a><span class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bu=
+gzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1274"><span style=3D"color=
+:#5A3696">1274</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BitBake: master branch</span><o:p></o:p></p=
+>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Ubuntu 13.04 x86_64</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1305"><span style=3D"color:#5A3696">1305</span><=
+/a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Runtime: master branch</span><o:p></o:p></p=
+>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Multiple Environments</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDD00;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">62.5%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDD00;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">37.5%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D5205"><span style=3D"color:#5A3696">5205</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/tr_show_run.cgi?run_id=3D1310"><span style=3D"color:#5A3696">1310</span><=
+/a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">Build Appliance: master branch</span><o:p><=
+/o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">qemu-kvm on Ubuntu 12.04 libvirt</span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D4727"><span style=3D"color:#5A3696">4727</span></a></sp=
+an><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">0.0%</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">none</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:9.5pt">100.0%</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td colspan=3D"10" style=3D"border:solid #AAAAAA 1.0pt;border-top:none;back=
+ground:#BBBBBB;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<b><span style=3D"font-size:9.5pt">Total: 21</span></b><o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"padding:.75pt .75pt .75pt .75pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"background:#EEEEEE;border-collapse:collapse;background-posi=
+tion:initial
+                  initial;background-repeat:initial initial">
+<tbody>
+<tr>
+<td colspan=3D"2" style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Test Case Status Report</span></b><o:p></o:p></=
+p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:white;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"margin-left:7.5pt;background:#EEEEEE;border-collapse:collap=
+se;background-position:initial
+                          initial;background-repeat:initial initial">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Status</span></b><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:9.5pt">Count</span></b><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">BLOCKED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">99</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">FAILED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">24</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">PASSED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:9.5pt">1041</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td colspan=3D"2" style=3D"border:solid #AAAAAA 1.0pt;border-top:none;backg=
+round:#BBBBBB;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<b><span style=3D"font-size:9.5pt">Total: 1164</span></b><o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:white;padding:2.4pt 2.4pt =
+2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><img border=3D"0" wi=
+dth=3D"432" height=3D"120" id=3D"Picture_x0020_11" src=3D"cid:image001.png@=
+01CEBA0C.C103AAE0" alt=3D"http://chart.apis.google.com/chart?cht=3Dp3&amp;c=
+hs=3D432x120&amp;chd=3Dt:&amp;chd=3Dt:99,24,1041&amp;chco=3DFFFF66|FF9933|0=
+0FF00&amp;chl=3DBLOCKED(99)&#43;9%25|FAILED(24)&#43;2%25|PASSED(1041)&#43;8=
+9%25"></span><o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"background:#EEEEEE;border-collapse:collapse;orphans:
           auto;text-align:start;widows: auto;-webkit-text-stroke-width:
           0px;background-position:initial
-          initial;background-repeat:initial initial;word-spacing:0px"
-          cellpadding="0" cellspacing="0" border="1">
-          <tbody>
-            <tr>
-              <td style="border:solid #AAAAAA
-                1.0pt;background:#BBBBBB;padding:2.4pt 2.4pt 2.4pt
-                2.4pt">
-                <p class="MsoNormal"
-                  style="text-align:center;line-height:14.3pt"
-                  align="center">
-                  <b><span
-style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Bug
-                      Status Report<o:p></o:p></span></b></p>
-              </td>
-            </tr>
-            <tr>
-              <td style="border:solid #AAAAAA
-                1.0pt;border-top:none;background:white;padding:2.4pt
-                2.4pt 2.4pt 2.4pt">
-                <br>
-              </td>
-            </tr>
-            <tr>
-              <td style="border:solid #AAAAAA
-                1.0pt;border-top:none;background:white;padding:2.4pt
-                2.4pt 2.4pt 2.4pt">
-                <table class="MsoNormalTable"
-                  style="margin-left:7.5pt;background:#EEEEEE;border-collapse:collapse;border:none;background-position:initial
-                  initial;background-repeat:initial initial"
-                  id="sortable_table_id_0" cellpadding="0"
-                  cellspacing="0" border="1">
-                  <tbody>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;background:#BBBBBB;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">ID</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_10"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Priority</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_9"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Status</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_8"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Resolution</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_7"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Test Runs</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_6"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Description</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_5"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Version</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_4"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Target Milestone</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_3"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-left:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><b><span
-                              style="font-size:9.5pt">Age (days)</span></b><a
-                            moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><span
-style="font-size:9.5pt;color:#5A3696;text-decoration:none"><img
-                                  id="Picture_x0020_2"
-                                  src="cid:part73.05050509.03060006@windriver.com"
-                                  alt="$B" -(b"="" border="0"
-                                  width="12" height="14"></span></b></a><b><span
-                              style="font-size:9.5pt"><o:p></o:p></span></b></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=3908"><span
-                                style="color:#5A3696">3908</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium+<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">REOPENED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1303"><span
-                                style="color:#5A3696">1303</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">Kernel panic on
-                            qemux86-64 when using runqemu kvm and cpu
-                            host<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.4<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M2<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">211<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=3936"><span
-                                style="color:#5A3696">3936</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">ACCEPTED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333"><span
-                                style="color:#5A3696">1333</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">[beagleobard xM]
-                            Some error message with usbhs_omap in dmesg<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.4<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">204<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4727"><span
-                                style="color:#5A3696">4727</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">IN
-                            PROGRESS DESIGN<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1310"><span
-                                style="color:#5A3696">1310</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">Opening build logs
-                            does not work in HOB under Build Appliance<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">unspecified<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">98<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=4832"><span
-                                style="color:#5A3696">4832</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">NEW<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1293"><span
-                                style="color:#5A3696">1293</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1292"><span
-                                style="color:#5A3696">1292</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1322"><span
-                                style="color:#5A3696">1322</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1291"><span
-                                style="color:#5A3696">1291</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1321"><span
-                                style="color:#5A3696">1321</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">[Test Case 225]
-                            ethernet static ip set in connman<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">71<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5108"><span
-                                style="color:#5A3696">5108</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">NEEDINFO<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1279"><span
-                                style="color:#5A3696">1279</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1278"><span
-                                style="color:#5A3696">1278</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">Lack of
-                            xf86-video-mga package in
-                            genericX86-64/genericX86<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5.2<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Future<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">14<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5117"><span
-                                style="color:#5A3696">5117</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">IN
-                            PROGRESS REVIEW<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1279"><span
-                                style="color:#5A3696">1279</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">generic-x86-64 image
-                            does not recover display after standby<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">14<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5133"><span
-                                style="color:#5A3696">5133</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium+<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">ACCEPTED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1322"><span
-                                style="color:#5A3696">1322</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1321"><span
-                                style="color:#5A3696">1321</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1293"><span
-                                style="color:#5A3696">1293</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">[Test Case 207]
-                            sudoku-savant project compile in sdk image<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">12<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5146"><span
-                                style="color:#5A3696">5146</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">ACCEPTED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1275"><span
-                                style="color:#5A3696">1275</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">btrfs image build
-                            fails at do_rootfs<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">9<o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5182"><span
-                                style="color:#5A3696">5182</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Undecided<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">NEW<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334"><span
-                                style="color:#5A3696">1334</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333"><span
-                                style="color:#5A3696">1333</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">[Beagleboard xM]X
-                            can not startup with 3.10 kernel<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">---<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">5<span
-                              class="apple-converted-space"><span
-                                style="color:#236EDE">&nbsp;</span></span><span
-                              style="color:#236EDE">(Recent)</span><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5183"><span
-                                style="color:#5A3696">5183</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Undecided<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">NEW<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1333"><span
-                                style="color:#5A3696">1333</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334"><span
-                                style="color:#5A3696">1334</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">[Beagleboard xM]
-                            Network interface doesn't work with 3.10
-                            kernel<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">---<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">5<span
-                              class="apple-converted-space"><span
-                                style="color:#236EDE">&nbsp;</span></span><span
-                              style="color:#236EDE">(Recent)</span><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5205"><span
-                                style="color:#5A3696">5205</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium+<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">RESOLVED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">FIXED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1305"><span
-                                style="color:#5A3696">1305</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">meta-intel: some
-                            images fail to build -sdk image<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">2<span
-                              class="apple-converted-space"><span
-                                style="color:#236EDE">&nbsp;</span></span><span
-                              style="color:#236EDE">(Recent)</span><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5211"><span
-                                style="color:#5A3696">5211</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Undecided<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">NEW<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1334"><span
-                                style="color:#5A3696">1334</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">[Beagleboard xM] USB
-                            doesn't work with 3.10 kernel<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">---<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1<span
-                              class="apple-converted-space"><span
-                                style="color:#236EDE">&nbsp;</span></span><span
-                              style="color:#236EDE">(Recent)</span><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5223"><span
-                                style="color:#5A3696">5223</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">High<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">RESOLVED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">FIXED<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1324"><span
-                                style="color:#5A3696">1324</span></a><span
-                              class="apple-converted-space">&nbsp;</span><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1323"><span
-                                style="color:#5A3696">1323</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">[autobuilder]
-                            u-boot-fw-utils does not build correctly<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span
-                            style="font-size:9.5pt;color:#FF4000">NEW</span><span
-                            style="font-size:9.5pt"><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5235"><span
-                                style="color:#5A3696">5235</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">NEEDINFO<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1278"><span
-                                style="color:#5A3696">1278</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">generic-x86_64 dmesg
-                            errors on Sugarbay<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span
-                            style="font-size:9.5pt;color:#FF4000">NEW</span><span
-                            style="font-size:9.5pt"><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;padding:2.4pt 2.4pt 2.4pt
-                        2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5238"><span
-                                style="color:#5A3696">5238</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">IN
-                            PROGRESS REVIEW<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1281"><span
-                                style="color:#5A3696">1281</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">generic-x86 image
-                            does not have broadcom wifi modules enabled<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span
-                            style="font-size:9.5pt;color:#FF4000">NEW</span><span
-                            style="font-size:9.5pt"><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#DDDDDD;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=5259"><span
-                                style="color:#5A3696">5259</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">Medium+<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">NEW<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <br>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt"><a
-                              moz-do-not-send="true"
-                              href="https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=1313"><span
-                                style="color:#5A3696">1313</span></a><o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal"><span
-                            style="font-size:9.5pt">adt-installer uses
-                            wrong permissions when extracting the
-                            sysroot<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span style="font-size:9.5pt">1.5
-                            M5<o:p></o:p></span></p>
-                      </td>
-                      <td
-                        style="border-top:none;border-left:none;border-bottom:solid
-                        #AAAAAA 1.0pt;border-right:solid #AAAAAA
-                        1.0pt;background:#DDDDDD;padding:2.4pt 2.4pt
-                        2.4pt 2.4pt">
-                        <p class="MsoNormal" style="text-align:center"
-                          align="center"><span
-                            style="font-size:9.5pt;color:#FF4000">NEW</span><span
-                            style="font-size:9.5pt"><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="9" style="border:solid #AAAAAA
-                        1.0pt;border-top:none;background:#BBBBBB;padding:2.4pt
-                        2.4pt 2.4pt 2.4pt">
-                        <p class="MsoNormal"><b><span
-                              style="font-size:9.5pt">Total: 16</span></b><span
-                            style="font-size:9.5pt"><o:p></o:p></span></p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="MsoListParagraph" style="margin-left:0in"><o:p>&nbsp;</o:p></p>
-        <p class="MsoListParagraph"><o:p>&nbsp;</o:p></p>
-        <p class="MsoNormal"><b>Build Performance Status:<o:p></o:p></b></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-        <p class="MsoNormal">Below you can find the Milestone build
-          performance charts. Data taken from: Data taken from:
-          <a moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Performance_Test#1.5_Milestones_only_results">https://wiki.yoctoproject.org/wiki/Performance_Test#1.5_Milestones_only_results</a>.
-          Attached you can find the detailed report with all the
-          measurements. Overall, I can see that the build time is
-          stable, no.<o:p></o:p></p>
-        <p class="MsoListParagraph" style="margin-left:0in"><o:p>&nbsp;</o:p></p>
-        <p class="MsoListParagraph" style="margin-left:0in"><img
-            id="Picture_x0020_1"
-            src="cid:part134.08070301.01060406@windriver.com"
-            alt="cid:image003.jpg@01CEB872.01433F90" border="0"
-            width="865" height="501"><o:p></o:p></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-        <p class="MsoNormal">Regards,<o:p></o:p></p>
-        <p class="MsoNormal"><b><span
-              style="font-size:8.0pt;color:#7F7F7F">--<o:p></o:p></span></b></p>
-        <p class="MsoNormal"><b><span
-              style="font-size:8.0pt;color:#7F7F7F">Alexandru Georgescu<o:p></o:p></span></b></p>
-        <p class="MsoNormal"><b><span
-              style="font-size:8.0pt;color:#7F7F7F">Yocto QA Engineer<o:p></o:p></span></b></p>
-        <p class="MsoNormal"><b><span
-              style="font-size:8.0pt;color:#7F7F7F">SSG/SSD Open Source
-              Technology Center Romania</span></b><o:p></o:p></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap="">_______________________________________________
-yocto mailing list
-<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
-<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+          initial;background-repeat:initial initial;word-spacing:0px">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;line-hei=
+ght:14.3pt">
+<b><span style=3D"font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-=
+serif&quot;">Bug Status Report</span></b><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:white;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:white;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"margin-left:7.5pt;background:#EEEEEE;border-collapse:collap=
+se;background-position:initial
+                  initial;background-repeat:initial initial" id=3D"sortable=
+_table_id_0">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">ID</span></b><a href=3D"https://wiki.yoctoproje=
+ct.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><b><s=
+pan style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><img borde=
+r=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_10" src=3D"cid:image=
+002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Priority</span></b><a href=3D"https://wiki.yoct=
+oproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"=
+><b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><img=
+ border=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_9" src=3D"cid:=
+image002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:p><=
+/p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Status</span></b><a href=3D"https://wiki.yoctop=
+roject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4"><=
+b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><img b=
+order=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_8" src=3D"cid:im=
+age002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:p></p=
+>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Resolution</span></b><a href=3D"https://wiki.yo=
+ctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc=
+4"><b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><i=
+mg border=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_7" src=3D"ci=
+d:image002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:p=
+></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Test Runs</span></b><a href=3D"https://wiki.yoc=
+toproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4=
+"><b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><im=
+g border=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_6" src=3D"cid=
+:image002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:p>=
+</p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Description</span></b><a href=3D"https://wiki.y=
+octoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.r=
+c4"><b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><=
+img border=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_5" src=3D"c=
+id:image002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:=
+p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Version</span></b><a href=3D"https://wiki.yocto=
+project.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc4">=
+<b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><img =
+border=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_4" src=3D"cid:i=
+mage002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:p></=
+p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Target Milestone</span></b><a href=3D"https://w=
+iki.yoctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5=
+_M5.rc4"><b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:no=
+ne"><img border=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_3" src=
+=3D"cid:image002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p=
+></o:p></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:9.5pt">Age (days)</span></b><a href=3D"https://wiki.yo=
+ctoproject.org/wiki/Editing_WW38_-_2013-09-18_-_Full_Pass_Release_1.5_M5.rc=
+4"><b><span style=3D"font-size:9.5pt;color:#5A3696;text-decoration:none"><i=
+mg border=3D"0" width=3D"12" height=3D"14" id=3D"Picture_x0020_2" src=3D"ci=
+d:image002.gif@01CEBA0C.C103AAE0" alt=3D"&#27;$B"></span></b></a><o:p></o:p=
+></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D3908"><span style=3D"color:#5A3696">3908</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium&#43;</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">REOPENED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1303"><span style=3D"colo=
+r:#5A3696">1303</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">Kernel panic on qemu=
+x86-64 when using runqemu kvm and cpu host</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.4</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M2</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">211</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D3936"><span style=3D"color:#5A3696">3936</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">ACCEPTED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1333"><span style=3D"colo=
+r:#5A3696">1333</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">[beagleobard xM] Som=
+e error message with usbhs_omap in dmesg</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.4</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">204</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D4727"><span style=3D"color:#5A3696">4727</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">IN PROGRESS DESIGN</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1310"><span style=3D"colo=
+r:#5A3696">1310</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">Opening build logs d=
+oes not work in HOB under Build Appliance</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">unspecified</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">98</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D4832"><span style=3D"color:#5A3696">4832</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">NEW</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1293"><span style=3D"colo=
+r:#5A3696">1293</span></a><span class=3D"apple-converted-space">&nbsp;</spa=
+n><a href=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D129=
+2"><span style=3D"color:#5A3696">1292</span></a><span class=3D"apple-conver=
+ted-space">&nbsp;</span><a href=3D"https://bugzilla.yoctoproject.org/tr_sho=
+w_run.cgi?run_id=3D1322"><span style=3D"color:#5A3696">1322</span></a><span=
+ class=3D"apple-converted-space">&nbsp;</span><a href=3D"https://bugzilla.y=
+octoproject.org/tr_show_run.cgi?run_id=3D1291"><span style=3D"color:#5A3696=
+">1291</span></a><span class=3D"apple-converted-space">&nbsp;</span><a href=
+=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1321"><span =
+style=3D"color:#5A3696">1321</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">[Test Case 225] ethe=
+rnet static ip set in connman</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">71</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5108"><span style=3D"color:#5A3696">5108</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">NEEDINFO</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1279"><span style=3D"colo=
+r:#5A3696">1279</span></a><span class=3D"apple-converted-space">&nbsp;</spa=
+n><a href=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D127=
+8"><span style=3D"color:#5A3696">1278</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">Lack of xf86-video-m=
+ga package in genericX86-64/genericX86</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5.2</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Future</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">14</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5117"><span style=3D"color:#5A3696">5117</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">IN PROGRESS REVIEW</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1279"><span style=3D"colo=
+r:#5A3696">1279</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">generic-x86-64 image=
+ does not recover display after standby</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">14</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5133"><span style=3D"color:#5A3696">5133</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium&#43;</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">ACCEPTED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1322"><span style=3D"colo=
+r:#5A3696">1322</span></a><span class=3D"apple-converted-space">&nbsp;</spa=
+n><a href=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D132=
+1"><span style=3D"color:#5A3696">1321</span></a><span class=3D"apple-conver=
+ted-space">&nbsp;</span><a href=3D"https://bugzilla.yoctoproject.org/tr_sho=
+w_run.cgi?run_id=3D1293"><span style=3D"color:#5A3696">1293</span></a></spa=
+n><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">[Test Case 207] sudo=
+ku-savant project compile in sdk image</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">12</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5146"><span style=3D"color:#5A3696">5146</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">ACCEPTED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1275"><span style=3D"colo=
+r:#5A3696">1275</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">btrfs image build fa=
+ils at do_rootfs</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">9</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5182"><span style=3D"color:#5A3696">5182</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Undecided</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">NEW</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1334"><span style=3D"colo=
+r:#5A3696">1334</span></a><span class=3D"apple-converted-space">&nbsp;</spa=
+n><a href=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D133=
+3"><span style=3D"color:#5A3696">1333</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">[Beagleboard xM]X ca=
+n not startup with 3.10 kernel</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">---</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">5</span><span class=3D"apple-converted-space"><spa=
+n style=3D"font-size:9.5pt;color:#236EDE">&nbsp;</span></span><span style=
+=3D"font-size:9.5pt;color:#236EDE">(Recent)</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5183"><span style=3D"color:#5A3696">5183</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Undecided</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">NEW</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1333"><span style=3D"colo=
+r:#5A3696">1333</span></a><span class=3D"apple-converted-space">&nbsp;</spa=
+n><a href=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D133=
+4"><span style=3D"color:#5A3696">1334</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">[Beagleboard xM] Net=
+work interface doesn't work with 3.10 kernel</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">---</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">5</span><span class=3D"apple-converted-space"><spa=
+n style=3D"font-size:9.5pt;color:#236EDE">&nbsp;</span></span><span style=
+=3D"font-size:9.5pt;color:#236EDE">(Recent)</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5205"><span style=3D"color:#5A3696">5205</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium&#43;</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">RESOLVED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">FIXED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1305"><span style=3D"colo=
+r:#5A3696">1305</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">meta-intel: some ima=
+ges fail to build -sdk image</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">2</span><span class=3D"apple-converted-space"><spa=
+n style=3D"font-size:9.5pt;color:#236EDE">&nbsp;</span></span><span style=
+=3D"font-size:9.5pt;color:#236EDE">(Recent)</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5211"><span style=3D"color:#5A3696">5211</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Undecided</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">NEW</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1334"><span style=3D"colo=
+r:#5A3696">1334</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">[Beagleboard xM] USB=
+ doesn't work with 3.10 kernel</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">---</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1</span><span class=3D"apple-converted-space"><spa=
+n style=3D"font-size:9.5pt;color:#236EDE">&nbsp;</span></span><span style=
+=3D"font-size:9.5pt;color:#236EDE">(Recent)</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5223"><span style=3D"color:#5A3696">5223</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">High</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">RESOLVED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">FIXED</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1324"><span style=3D"colo=
+r:#5A3696">1324</span></a><span class=3D"apple-converted-space">&nbsp;</spa=
+n><a href=3D"https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D132=
+3"><span style=3D"color:#5A3696">1323</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">[autobuilder] u-boot=
+-fw-utils does not build correctly</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt;color:#FF4000">NEW</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5235"><span style=3D"color:#5A3696">5235</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">NEEDINFO</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1278"><span style=3D"colo=
+r:#5A3696">1278</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">generic-x86_64 dmesg=
+ errors on Sugarbay</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt;color:#FF4000">NEW</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5238"><span style=3D"color:#5A3696">5238</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">IN PROGRESS REVIEW</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1281"><span style=3D"colo=
+r:#5A3696">1281</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">generic-x86 image do=
+es not have broadcom wifi modules enabled</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt;color:#FF4000">NEW</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt"><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D5259"><span style=3D"color:#5A3696">5259</span></a></span><o:p=
+></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">Medium&#43;</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">NEW</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt"><a href=3D"https://b=
+ugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D1313"><span style=3D"colo=
+r:#5A3696">1313</span></a></span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:9.5pt">adt-installer uses w=
+rong permissions when extracting the sysroot</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt">1.5 M5</span><o:p></o:p></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:9.5pt;color:#FF4000">NEW</span><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td colspan=3D"9" style=3D"border:solid #AAAAAA 1.0pt;border-top:none;backg=
+round:#BBBBBB;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.5pt">Total: 16</span><=
+/b><o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoListParagraph" style=3D"margin-left:0in">&nbsp;<o:p></o:p></=
+p>
+<p class=3D"MsoListParagraph">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><b>Build Performance Status:</b><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Below you can find the Milestone build performance c=
+harts. Data taken from: Data taken from:
+<a href=3D"https://wiki.yoctoproject.org/wiki/Performance_Test#1.5_Mileston=
+es_only_results">
+https://wiki.yoctoproject.org/wiki/Performance_Test#1.5_Milestones_only_res=
+ults</a>. Attached you can find the detailed report with all the measuremen=
+ts. Overall, I can see that the build time is stable, no.<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:0in">&nbsp;<o:p></o:p></=
+p>
+<p class=3D"MsoListParagraph" style=3D"margin-left:0in"><img border=3D"0" w=
+idth=3D"865" height=3D"501" id=3D"Picture_x0020_1" src=3D"cid:image003.jpg@=
+01CEBA0C.C103AAE0" alt=3D"cid:image003.jpg@01CEB872.01433F90"><o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">--<=
+/span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">Ale=
+xandru Georgescu</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">Yoc=
+to QA Engineer</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;color:#7F7F7F">SSG=
+/SSD Open Source Technology Center Romania</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;"><br>
+<br>
+<br>
+<o:p></o:p></span></p>
+<pre>_______________________________________________<o:p></o:p></pre>
+<pre>yocto mailing list<o:p></o:p></pre>
+<pre><a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><o=
+:p></o:p></pre>
+<pre><a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
+s.yoctoproject.org/listinfo/yocto</a><o:p></o:p></pre>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
 </html>
 
---------------040002040707060701020107
-Content-Type: image/png
+--_000_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_--
+
+--_006_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"; size=10390;
+	creation-date="Wed, 25 Sep 2013 13:35:58 GMT";
+	modification-date="Wed, 25 Sep 2013 13:35:58 GMT"
+Content-ID: <image001.png@01CEBA0C.C103AAE0>
 Content-Transfer-Encoding: base64
-Content-ID: <part72.05010704.05080901@windriver.com>
 
 iVBORw0KGgoAAAANSUhEUgAAAbAAAAB4CAIAAAAc4DAQAAAABmJLR0QA/wD/AP+gvaeTAAAgAElE
 QVR4nO3deVhTZ9438N9ZsoeEJIRNFgEFFxQVBHesa1XG3bpMl2nVaUdnpm/bp515ZtpeXR6nte07
@@ -6020,10 +4330,14 @@ JoaxMIyJYWwsa2cYG8M4Oc7FshzHsRzHcBzNssB1fLmZ+/kSKiTfl8QwHMPEBCHGMAmOS0lSQZJy
 gSBQLA6TSoeg4EP6HQpEBEGQDuhvLIIgSAcUiAiCIB1QICIIgnRAgYggCNIBBSKCIEiH/w8Lv9lJ
 fUH6vwAAAABJRU5ErkJggg==
 
---------------040002040707060701020107
-Content-Type: image/gif
+--_006_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_
+Content-Type: image/gif; name="image002.gif"
+Content-Description: image002.gif
+Content-Disposition: inline; filename="image002.gif"; size=462;
+	creation-date="Wed, 25 Sep 2013 13:35:58 GMT";
+	modification-date="Wed, 25 Sep 2013 13:35:58 GMT"
+Content-ID: <image002.gif@01CEBA0C.C103AAE0>
 Content-Transfer-Encoding: base64
-Content-ID: <part73.05050509.03060006@windriver.com>
 
 R0lGODlhDAAOAMZxAAAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCwwMDA0NDQ4O
 Dg8PDxAQEBERERISEhMTExQUFBUVFRYWFhcXFxgYGBkZGRoaGhsbGxwcHB0dHR4eHh8fHyAgICEh
@@ -6035,10 +4349,14 @@ bW5ubm9vb3BwcP///////////////////////////////////////////////////////////yH5
 BAEKAH8ALAAAAAAMAAwAAAcrgHCCg4SDf4eIiYKJin+LcIyPkIuHhpKTlpiXjpqIkpyRoJCMlaOk
 pYWpgQA7
 
---------------040002040707060701020107
-Content-Type: image/jpeg
+--_006_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_
+Content-Type: image/jpeg; name="image003.jpg"
+Content-Description: image003.jpg
+Content-Disposition: inline; filename="image003.jpg"; size=52582;
+	creation-date="Wed, 25 Sep 2013 13:35:58 GMT";
+	modification-date="Wed, 25 Sep 2013 13:35:58 GMT"
+Content-ID: <image003.jpg@01CEBA0C.C103AAE0>
 Content-Transfer-Encoding: base64
-Content-ID: <part134.08070301.01060406@windriver.com>
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
 IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
@@ -6824,6 +5142,4 @@ qelf0wmZqelf0wiIGZqelf0wmZqelf0wiIGZqelf0wmZqelf0wiIGZqelf0wmZqelf0wiIGZqelf
 0wmZqelf0wiIGZqelf0wmZqelf0wiIGZqelf0wmZqelf0wiIGZqelf0wmZqelf0wiIGZqelf0wmZ
 qelf0wiIGZqelf0wmZqelf0wiIGZqelf0wsX0s80b2OqjZwLTaMbCiIKskIiIP/Z
 
---------------040002040707060701020107--
-
---------------060605090100070801040108--
+--_006_1FFB62CE8AEB0D4298B51122D8903E9619F6A89CIRSMSX104gercor_--
