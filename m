@@ -1,28 +1,26 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f43.google.com (mail-oa0-f43.google.com
-	[209.85.219.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4627E01643
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 03:44:19 -0700 (PDT)
-Received: by mail-oa0-f43.google.com with SMTP id f4so455040oah.30
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 03:44:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=bLGRMJcZEH3MbQ254qJSw0zrKzWHubqoSyiIyHrD3qY=;
-	b=MCZh5MJuUvmgV9qml8AvdHb7/z28/Id38ZgWRJmwVpj3cCF8h/sneFYmDlr6hwK2+b
-	yJnpqVaSkK3pWaFlPVIirrf+YRWbVFYLpU6l6Ufv6dcKdjRupXIYUvhdCey3y6Swq5jO
-	WliJ91dP3Se0XElORVtubKUKgBMzX47yK5j96yIbSj3WdbPEnnIgSAS4NP1i2H9keOEO
-	UKnxEK1ZYs1MaK8+TDf4D7O20aNrEmYVUFkK4lVKKC/OfpuSH34CTf+iFqJV0xQZ3Bg5
-	4QnSK1Y5XLGC+pD3Vo7EhFsSv5TThcxWHYFrVUegFYjKQCK+GcQEqHfcQ35o6DX6mZ4V
-	uYkg==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CD5DE01640
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 03:48:20 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 26 Sep 2013 03:48:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,984,1371106800"; d="scan'208";a="407440003"
+Received: from unknown (HELO helios.localnet) ([10.252.120.50])
+	by fmsmga002.fm.intel.com with ESMTP; 26 Sep 2013 03:48:04 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Hans =?ISO-8859-1?Q?Beck=E9rus?= <hans.beckerus@gmail.com>
+Date: Thu, 26 Sep 2013 11:48:03 +0100
+Message-ID: <1675887.iRGCGyzpnN@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-30-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAFyqS9q54HXgcCPvhUodqYXLZ9oqmZA4+mhOX958CyeG7VL3Gg@mail.gmail.com>
+References: <CAFyqS9pb0aXUVgKH7vANiNxhrXMtfVxGRd9FDVj8Y1Rk=0XgFw@mail.gmail.com>
+	<15510684.X3bYELTYuV@helios>
+	<CAFyqS9q54HXgcCPvhUodqYXLZ9oqmZA4+mhOX958CyeG7VL3Gg@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.182.73.136 with SMTP id l8mr112494obv.53.1380192259236; Thu,
-	26 Sep 2013 03:44:19 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Thu, 26 Sep 2013 03:44:19 -0700 (PDT)
-Date: Thu, 26 Sep 2013 12:44:19 +0200
-Message-ID: <CAFyqS9pyyWQ29B+V7Bu8j6s6CgO4y3UwiefL4BTnAhwKbXNraQ@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: BBCLASSEXTEND nativesdk vs native weirdness?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to combine BBCLASSEXTEND and variable export
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,19 +32,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 10:44:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 26 Sep 2013 10:48:21 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-For a recipe that extends to native and nativesdk, why are these not
-resolved in the same way when trying to build the packages?
-To build native you do 'bitbake foo-native' but for nativesdk that
-does not work, but instead 'bitbake nativesdk-foo' is possible?
-This is really confusing! Does this mix up also apply to DEPEND etc.
-In that case this must be really error prone? Or is it some old legacy
-that
-can not be changed until all existing nativesdk-<pkg>.bb files have
-been replaced, either with <pkg>-nativesdk.bb or using BBCLASSEXTENDs?
+On Thursday 26 September 2013 12:38:13 Hans Beck=E9rus wrote:
+> On Thu, Sep 26, 2013 at 12:13 PM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+> > On Wednesday 25 September 2013 17:39:04 Hans Beck=E9rus wrote:
+> >> Hi. I have a recipe that use BBCLASSEXTEND to extend native. For t=
+he
+> >> normal/base version I wish to set/export an environment variable t=
+o be
+> >> picked up by configure.
+> >> But I do not wish this variable to be set by the native package. H=
+ow
+> >> would I accomplish that? It was ok before when I had a package-nat=
+ive
+> >> recipe but since that is obsolete in favor for BBCLASSEXTEND I wis=
+h to
+> >> remove it. I think I covered all the other caveats like DEPEND and=
 
-Thanks.
-Hans
+> >> PACKAGE/FILES. But this one is not as straight forward, or is it?
+> >=20
+> > If I'm understanding the requirements correctly think you could do
+> > something like:
+> >=20
+> > do_configure_prepend_class_target() {
+> >=20
+> >         export VARIABLE=3Dvalue
+> >=20
+> > }
+>=20
+> Yes, I believe I tried that, but then the export does not persist ove=
+r
+> do_configure(), does it?
+> It is only alive during the scope of do_configure_prepend() or?
+
+The _prepend is just prepended to the function before running it, so it=
+ will=20
+be applied for the entire function. If you have a look at=20
+temp/run.do_configure.* in the workdir for the recipe, you'll be able t=
+o verify=20
+this.
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
