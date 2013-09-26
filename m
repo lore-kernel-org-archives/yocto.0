@@ -1,30 +1,21 @@
-Return-Path: <laurentiu.palcu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3C82E01637;
-	Thu, 26 Sep 2013 00:36:44 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 26 Sep 2013 00:36:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,983,1371106800"; d="scan'208";a="299536574"
-Received: from lpalcu-linux.rb.intel.com (HELO lpalcu-linux) ([10.237.105.165])
-	by AZSMGA002.ch.intel.com with ESMTP; 26 Sep 2013 00:36:42 -0700
-Date: Thu, 26 Sep 2013 10:36:41 +0300
-From: Laurentiu Palcu <laurentiu.palcu@intel.com>
-To: Li Zhijian <lizhijian@cn.fujitsu.com>
-Message-ID: <20130926073641.GA8711@lpalcu-linux>
-References: <523BEF04.5070308@cn.fujitsu.com>
-	<20130920084330.GA14107@lpalcu-linux>
-	<20130920085039.GB14107@lpalcu-linux>
-	<523C1BC9.5070303@cn.fujitsu.com>
-	<20130920100227.GC14107@lpalcu-linux>
-	<523C228F.7060700@cn.fujitsu.com>
-	<20130920110021.GD14107@lpalcu-linux>
-	<5243B0A2.2060001@cn.fujitsu.com>
+Return-Path: <diego.gonzalez@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63CE0E01637
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 01:14:21 -0700 (PDT)
+Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 1657CD; 
+	Thu, 26 Sep 2013 10:14:15 +0200
+Received: from [172.30.250.254] by horus.es with HTTP;
+	Thu, 26 Sep 2013 10:14:15 +0200
+From: Diego Gonzalez <diego.gonzalez@horus.es>
+Date: Thu, 26 Sep 2013 10:14:15 +0200
+X-Mailer: Axigen WebMail
+To: yocto@yoctoproject.org
+Message-ID: <1380183255689466500@horus.es>
+Importance: Normal
 MIME-Version: 1.0
-In-Reply-To: <5243B0A2.2060001@cn.fujitsu.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Yocto list discussion <yocto@yoctoproject.org>, poky@yoctoproject.org
-Subject: Re: [poky] Is this a bug of binutils
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 6
+Subject: Gstreamer mfw_isink
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,105 +27,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 07:36:44 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 26 Sep 2013 08:14:24 -0000
+Content-Type: multipart/alternative;
+	boundary="===axigen=2295045613682705478358131940253947767513=axigen==="
+
+--===axigen=2295045613682705478358131940253947767513=axigen===
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 
-Hi Li Zhijian,
+Hello,
 
-On Thu, Sep 26, 2013 at 11:57:22AM +0800, Li Zhijian wrote:
-> Hi，Laurentiu
-> 
-> I think it could be something wrong with binutils(2.23.1 or later)
-> there is different behavior at binutils-2.23.1/ld/ldfile.c（ldfile_open_file_search) from binutils-2.22
-> 
-> If both --sysroot directory and -L directory include libc.so , ld don't work
-> In my case， there are double libc.so(/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux/usr/lib/libc.so and tmp/sysroots/qemux86-64/usr/lib/libc.so)
-> 
-> ld will link tmp/sysroots/qemux86-64/usr/lib/libc.so（ld always searchs -L directory at first)
-> then link /lib/libc.so.6 specified at tmp/sysroots/qemux86-64/usr/lib/libc.so instead of
-> append sysroot directory path before /lib/libc.so.6
-> 
-> here is a sample method reproduce it
-> 
-> lizj@suika x86-64-yocto-1.3]$ source toolchain-1.3-tcmode-default/environment-setup-x86_64-poky-linux
-> [lizj@suika x86-64-yocto-1.3]$ echo $CC
-> x86_64-poky-linux-gcc -m64 --sysroot=/yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux
-> [lizj@suika x86-64-yocto-1.3]$ $LD --version
-> GNU ld (GNU Binutils) 2.23.1.20121113
-> [lizj@suika x86-64-yocto-1.3]$ mkdir -p fake_rootfs/usr/lib
-> [lizj@suika x86-64-yocto-1.3]$ cp /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-poky-linux/usr/lib/libc.so fake_rootfs/usr/lib/
-This libc.so is actually a linker script with the following contents:
+I'm working with gstreamer using fsl-image-gui  and I tried  the next tutor=
+ial (Multi-Overlay) https://community.freescale.com/docs/DOC-93788  . Howev=
+er when I try to use mfw_isink,  gstreamer tells me :
 
-/* GNU ld script
-   Use the shared library, but some functions are only in
-   the static library, so try that secondarily.  */
-OUTPUT_FORMAT(elf64-x86-64)
-GROUP ( /lib/libc.so.6 /usr/lib/libc_nonshared.a  AS_NEEDED (/lib/ld-linux-x86-64.so.2 ) )
+WARNING: erroneous pipeline: no element "mfw_isink"
 
-So, the /lib/libc.so.6 and /usr/lib/libc_nonshared.a will be searched until no
-undefined references are created. So, it looks like this linker script
-overrides the --sysroot behavior. To be honest (even though I'm not an expert in
-binutils), I think this is right behavior. I don't know why this works with the
-previous binutils...
+So if I inspect (gst-inspect | grep "isink"), you'll see this element is no=
+t installed:
 
-Thanks,
-Laurentiu
+alsa:  alsasink: Audio sink (ALSA)
+soup:  souphttpclientsink: HTTP client sink
+xvimagesink:  xvimagesink: Video sink
+playback:  playsink: Player Sink
+gio:  giosink: GIO sink
+gio:  giostreamsink: GIO stream sink
+autodetect:  autovideosink: Auto video sink
+autodetect:  autoaudiosink: Auto audio sink
+v4lsink.imx:  mfw_v4lsink: v4l2 video sink
+coreelements:  fakesink: Fake Sink
+coreelements:  fdsink: Filedescriptor Sink
+coreelements:  filesink: File Sink
+tcp:  tcpclientsink: TCP client sink
+tcp:  tcpserversink: TCP server sink
+tcp:  multifdsink: Multi filedescriptor sink
+fbdevsink:  fbdevsink: fbdev video sink
 
-> [lizj@suika x86-64-yocto-1.3]$ ls fake_rootfs/usr/lib/
-> libc.so
-> [lizj@suika x86-64-yocto-1.3]$ $CC -o test test.c -L ./fake_rootfs/usr/lib/
-> test.c: In function 'main':
-> test.c:3:9: warning: incompatible implicit declaration of built-in function 'printf' [enabled by default]
-> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: skipping incompatible /lib/libc.so.6 when searching for /lib/libc.so.6
-> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: cannot find /lib/libc.so.6
-> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: skipping incompatible /usr/lib/libc_nonshared.a when searching for /usr/lib/libc_nonshared.a
-> /yocto/fnst/lizj/build_yocto/x86-64-yocto-1.3/toolchain-1.3-tcmode-default/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/4.7.2/ld: cannot find /usr/lib/libc_nonshared.a
-> collect2: error: ld returned 1 exit status
-> -------------------------------------------------------------------------
-> 
-> It seems that ld don‘t  really reasonable to do like that，which binutils-2.22 can handle correctly
-> Does poky mind this behavior
-> 
-> 
-> 以上
-> 
-> -- 
-> Best regards.
-> Li Zhijian
-> 
-> 
-> 
-> at 2013-9-20 19:00, Laurentiu Palcu wrote:
-> >Hi,
-> >
-> >On Fri, Sep 20, 2013 at 06:25:19PM +0800, Li Zhijian wrote:
-> >>>>>>>III） compile a simple C program
-> >>>>>>># cat test.c
-> >>>>>>>int main ()
-> >>>>>>>{
-> >>>>>>>printf("hello world\n");
-> >>>>>>>return 0;
-> >>>>>>>}
-> >>>>>>># source toolchain-1.3-tcmode-default/environment-setup-x86_64-poky-linux
-> >>>>>>># $CC -o test test.c -L tmp/sysroots/qemux86-64/usr/lib/ -lm
-> >OK, it looks like something strange happens in your setup.
-> >
-> >To debug it, let's add '-Wl,--verbose' at the end of your command and you
-> >should be able to see where the linker is looking for libraries. Also,
-> >the linker script will be printed.
-> >
-> >You should see it try your directory first
-> >tmp/sysroots/qemux86-64/usr/lib/, and then fall through the default ones
-> >with the sysroot prefix added and, at the end, the system ones:
-> >/lib:/usr/lib.
-> >
-> >Thanks,
-> >Laurentiu
-> >
-> >
-> 
-> 
-> 
+How can I add it ? =20
 
+Regards,
+
+Diego Gonz=C3=A1lez Gonz=C3=A1lez
+
+diego.gonzalez@horus.es
+
+--===axigen=2295045613682705478358131940253947767513=axigen===
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
+: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
+background-image: none; background-repeat: repeat; background-attachment: f=
+ixed;">Hello,<br><br>I'm working with gstreamer using fsl-image-gui&nbsp; a=
+nd I tried&nbsp; the next tutorial (Multi-Overlay) https://community.freesc=
+ale.com/docs/DOC-93788&nbsp; . However when I try to use <span style=3D"col=
+or: #000000;"><strong>mfw_isink,&nbsp; </strong>gstreamer tells me :<br><br=
+>WARNING: erroneous pipeline: no element "mfw_isink"<br><br>So if I inspect=
+ (gst-inspect | grep "isink"), you'll see this element is not installed:<br=
+><br></span><div class=3D"x-axi-signature">alsa:&nbsp; alsasink: Audio sink=
+ (ALSA)<br>soup:&nbsp; souphttpclientsink: HTTP client sink<br>xvimagesink:=
+&nbsp; xvimagesink: Video sink<br>playback:&nbsp; playsink: Player Sink<br>=
+gio:&nbsp; giosink: GIO sink<br>gio:&nbsp; giostreamsink: GIO stream sink<b=
+r>autodetect:&nbsp; autovideosink: Auto video sink<br>autodetect:&nbsp; aut=
+oaudiosink: Auto audio sink<br>v4lsink.imx:&nbsp; mfw_v4lsink: v4l2 video s=
+ink<br>coreelements:&nbsp; fakesink: Fake Sink<br>coreelements:&nbsp; fdsin=
+k: Filedescriptor Sink<br>coreelements:&nbsp; filesink: File Sink<br>tcp:&n=
+bsp; tcpclientsink: TCP client sink<br>tcp:&nbsp; tcpserversink: TCP server=
+ sink<br>tcp:&nbsp; multifdsink: Multi filedescriptor sink<br>fbdevsink:&nb=
+sp; fbdevsink: fbdev video sink<br><br>How can I add it ?&nbsp; <br><strong=
+></strong><div class=3D"x-axi-signature" style=3D"; font-size: 10pt; font-f=
+amily: Arial;"><br>Regards,<br><br>Diego Gonz=C3=A1lez Gonz=C3=A1lez<br><br=
+><div style=3D"text-align: left;"><a id=3D"ext-gen5000" href=3D"mailto:enri=
+que.fernandez@horus.es">diego.gonzalez@horus.es</a></div></div></div></body=
+></html>
+
+--===axigen=2295045613682705478358131940253947767513=axigen===--
