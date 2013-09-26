@@ -1,27 +1,52 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1D6DE01623
-	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 21:58:42 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=longhaul.twobit.us)
-	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VP3ex-0007j5-VC; Thu, 26 Sep 2013 04:58:40 +0000
-Date: Thu, 26 Sep 2013 04:58:27 +0000
-From: Philip Tricca <flihp@twobit.us>
-To: yocto@yoctoproject.org
-Message-ID: <20130926045827.GA1541@longhaul.twobit.us>
+Return-Path: <Qianjun.Zhang@alcatel-lucent.com>
+Received: from cnshjsmin03.alcatel-sbell.com.cn
+	(cnshjsmin03.alcatel-sbell.com.cn [211.144.215.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 146D7E01623
+	for <yocto@yoctoproject.org>; Wed, 25 Sep 2013 22:04:06 -0700 (PDT)
+X-AuditID: ac189297-b7f1b6d000002f2e-5d-5243c0436cce
+Received: from CNSHJCASHUB03.ad4.ad.alcatel.com (Unknown_Domain
+	[135.251.50.73])
+	by cnshjsmin03.alcatel-sbell.com.cn (Symantec Messaging Gateway) with
+	SMTP id 2C.9F.12078.340C3425; Thu, 26 Sep 2013 13:04:03 +0800 (HKT)
+Received: from CNSHJMBX02.ad4.ad.alcatel.com ([169.254.2.224]) by
+	CNSHJCASHUB03.ad4.ad.alcatel.com ([135.251.50.73]) with mapi id
+	14.03.0123.003; Thu, 26 Sep 2013 13:04:03 +0800
+From: ZHANG Qianjun <Qianjun.Zhang@alcatel-lucent.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: why alsa cannot be supported by libsdl
+Thread-Index: Ac66ddGMVK9hsJR0TGqM6WGNmQudEg==
+X-CallingTelephoneNumber: IPM.Note
+X-VoiceMessageDuration: 1
+X-FaxNumberOfPages: 0
+Date: Thu, 26 Sep 2013 05:04:03 +0000
+Message-ID: <29D7627EB179634FB9F1BA6EB7828B211C54A5@CNSHJMBX02.ad4.ad.alcatel.com>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: hec= Bqp6 CGNz CfGO E9S9 FDmo FM/u F9eR GM5f HKFu H6wj
+	IwTw I2bI Juy4 KEEo
+	KO+S; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {D44DAB04-2137-4C05-BD7F-771084FF89E7};
+	cQBpAGEAbgBqAHUAbgAuAHoAaABhAG4AZwBAAGEAbABjAGEAdABlAGwALQBsAHUAYwBlAG4AdAAuAGMAbwBtAA==;
+	Thu, 26 Sep 2013 05:04:01 GMT;
+	UgBlAGMAYQBsAGwAOgAgAHcAaAB5ACAAYQBsAHMAYQAgAGMAYQBuAG4AbwB0ACAAYgBlACAAcwB1AHAAcABvAHIAdABlAGQAIABiAHkAIABsAGkAYgBzAGQAbAA=
+x-cr-puzzleid: {D44DAB04-2137-4C05-BD7F-771084FF89E7}
+x-originating-ip: [135.251.222.177]
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: [meta-selinux] Add util-linux-agetty to core-image-selinux IMAGE_INSTALL.
+X-CFilter-Loop: Reflected
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrDIsWRmVeSWpSXmKPExsXS/ltRStf5gHOQweYPRhaTXq5hc2D0aD/R
+	xxbAGMVlk5Kak1mWWqRvl8CV8WbaFuaC+IoT5/YwNjD6djFyckgImEgcOt/FCmGLSVy4t56t
+	i5GLQ0jgDqNEw8XXLBDOVkaJm2/mMINUsQmYSfzc+pYFxBYRMJV4cewLG4gtLGAu0fTlCitE
+	3ERiQ+sydghbT+LGnE1MEBuUJKauugMU5wCyJSX2TNCDCItKXD03CWwMi4CqRMfeT2A2r0CQ
+	xN6F98FWMQrISlxt2QYWZxYQl7j1ZD7USAGJJXvOM8PMefn4HyvIzRICF5gldt3fC/WZqcT2
+	S7sYIWxliYlTH7NADNKRWLD7E9RQbYllC18zQywWlDg58wkLRL2kxMEVN1gmMErOQrJ7FpL2
+	WUjaZyFpX8DIsopRITmvOCOrODczz8BQLzEnObEkNUe3OCk1J0cvOT9XLzlvEyMwDtdITJq+
+	g3HXfstDjAIcjEo8vA3BzkFCrIllxZW5hxglOJiVRHi/GQGFeFMSK6tSi/Lji0pzUosPMUpz
+	sCiJ8z6wyQsUEkgHmp2dmlqQWgSTZeLglGpgnDNRl6Wu5tbi9QmLFsVe3Xe7fYWw3lmDSwKr
+	t9x9yDXz3+7KVXU+ya3PffYz/dVtzUia6bq4LLJ8chHTzYNiv1dU8WmkaExo9r/t9nbmk5iS
+	qVJzNvj37tyVlSsmfv/nrCm8teYS9wIepVWLdEalH6irLW+s/dXf+G1NxvH1M/418v7fuFVi
+	txJLcUaioRZzUXEiAKC8hOu/AgAA
+Subject: Recall: why alsa cannot be supported by libsdl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,35 +58,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 04:58:45 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 26 Sep 2013 05:04:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Currently logins to core-image-selinux images through a getty (serial)
-fail. This is caused by the use of the busybox getty. SELinux depends
-on executable files and their labels to transition between types.
-The symlink to busybox is not sufficient to cause the getty processes
-to transition to the right SELinux context. Using a getty binary
-like the one provided by util-linux fixes this.
-
-Signed-off-by: Philip Tricca <flihp@twobit.us>
----
- recipes-security/images/core-image-selinux.bb |    1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/recipes-security/images/core-image-selinux.bb b/recipes-security/images/core-image-selinux.bb
-index 0109933..1ec7b08 100644
---- a/recipes-security/images/core-image-selinux.bb
-+++ b/recipes-security/images/core-image-selinux.bb
-@@ -6,6 +6,7 @@ LICENSE = "MIT"
- 
- IMAGE_INSTALL = "\
- 	${CORE_IMAGE_BASE_INSTALL} \
-+	util-linux-agetty \
- 	packagegroup-core-basic \
- 	packagegroup-core-selinux \
- "   
--- 
-1.7.10.4
-
+ZHANG Qianjun would like to recall the message, "why alsa cannot be support=
+ed by libsdl".=
 
