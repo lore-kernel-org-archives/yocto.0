@@ -1,28 +1,34 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8470E0044C
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 05:41:46 -0700 (PDT)
-Received: by mail-oa0-f48.google.com with SMTP id m6so570922oag.7
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 05:41:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=nO+TTPDqdsFheBYgd3FWg2Vs2yugaHR2I/srkUiEB3M=;
-	b=vTz5At1LTShz/cfH2c79vnBP3aE0vSELDCmRujNRS7ZCw/COQoMMdMNxV/ZUpXjxuG
-	6lYkpJikchu5wGLe+e7xg9uLU9FZmAHw6Nt0I19+dKnM1mwPqRhTKZCdLIfadiRqkNvh
-	21lATtto0AHXRNv5yl9ApBXYw3E8onPn9EFfaD2UbonpdlnjjEeUUgI1+n0HyI4OL7z5
-	3Jc0Gu2+O93Bx5vEoIhdOp9H1VLwtmzFpD0DUYjNrXgeyS7N9kwRLokhlF9RcAHldGfE
-	FNyMS7O+b6smkcR5ooAIVcg0p+SZAXD+V6Ey4Lj7OHT+OSCg6Kn3UwuHmkH+ivOaO6UF
-	dlUw==
+Return-Path: <Joe.MacDonald@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45ACCE0044C
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 05:47:47 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r8QCln94003048
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 05:47:49 -0700 (PDT)
+Received: from yow-jmacdona-d1.ottawa.wrs.com (128.224.146.66) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server
+	(TLS) id 14.2.347.0; Thu, 26 Sep 2013 05:47:46 -0700
+Received: from yow-jmacdona-l1 (yow-jmacdona-d2.wrs.com [128.224.146.166])	by
+	yow-jmacdona-d1.ottawa.wrs.com (Postfix) with ESMTP id 4A37F7FE9;
+	Thu, 26 Sep 2013 08:47:23 -0400 (EDT)
+Received: by yow-jmacdona-l1 (Postfix, from userid 1000)	id 3B6C640499; Thu,
+	26 Sep 2013 08:47:46 -0400 (EDT)
+Date: Thu, 26 Sep 2013 08:47:46 -0400
+From: Joe MacDonald <Joe.MacDonald@windriver.com>
+To: Xin Ouyang <Xin.Ouyang@windriver.com>, Mark Hatle
+	<mark.hatle@windriver.com>
+Message-ID: <20130926124745.GC4151@windriver.com>
+References: <20130926045827.GA1541@longhaul.twobit.us>
 MIME-Version: 1.0
-X-Received: by 10.182.143.5 with SMTP id sa5mr136393obb.80.1380199304883; Thu,
-	26 Sep 2013 05:41:44 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Thu, 26 Sep 2013 05:41:44 -0700 (PDT)
-Date: Thu, 26 Sep 2013 14:41:44 +0200
-Message-ID: <CAFyqS9oDjhiKNr3gPYtNmgkqfC82J-OiG1hX4TG3L3AqbjABCA@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Question about DEPENDS and eg. DEPENDS_class-native
+In-Reply-To: <20130926045827.GA1541@longhaul.twobit.us>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux] Add util-linux-agetty to core-image-selinux IMAGE_INSTALL.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,17 +40,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 12:41:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 26 Sep 2013 12:47:48 -0000
+X-Groupsio-MsgNum: 16243
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="KN5l+BnMqAQyZLvT"
+Content-Disposition: inline
 
-Hi. Browsing through the existing recipes really did not answer this
-since I have no clue what was the initial intent.
-So my quick question is if a .inc file has a DEPENDS = "foo" and a
-recipe that includes it has DEPENDS_class-native = "fee", will the
-resulting depend be merged from the two or will DEPENDS_class-native
-completely override DEPENDS? If it overrides, is the correct way to
-merge them to do DEPENDS_append_class-native = "fee"?
+--KN5l+BnMqAQyZLvT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks.
-Hans
+All opposed?  If the motion is carried, I'll merge it both into master
+and what will soon become master-next.
 
+-J.
+
+[[yocto] [meta-selinux] Add util-linux-agetty to core-image-selinux IMAGE_I=
+NSTALL.] On 13.09.26 (Thu 04:58) Philip Tricca wrote:
+
+> Currently logins to core-image-selinux images through a getty (serial)
+> fail. This is caused by the use of the busybox getty. SELinux depends
+> on executable files and their labels to transition between types.
+> The symlink to busybox is not sufficient to cause the getty processes
+> to transition to the right SELinux context. Using a getty binary
+> like the one provided by util-linux fixes this.
+>=20
+> Signed-off-by: Philip Tricca <flihp@twobit.us>
+> ---
+>  recipes-security/images/core-image-selinux.bb |    1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/recipes-security/images/core-image-selinux.bb b/recipes-secu=
+rity/images/core-image-selinux.bb
+> index 0109933..1ec7b08 100644
+> --- a/recipes-security/images/core-image-selinux.bb
+> +++ b/recipes-security/images/core-image-selinux.bb
+> @@ -6,6 +6,7 @@ LICENSE =3D "MIT"
+> =20
+>  IMAGE_INSTALL =3D "\
+>  	${CORE_IMAGE_BASE_INSTALL} \
+> +	util-linux-agetty \
+>  	packagegroup-core-basic \
+>  	packagegroup-core-selinux \
+>  "  =20
+--=20
+-Joe MacDonald.
+:wq
+
+--KN5l+BnMqAQyZLvT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEARECAAYFAlJELPEACgkQPN8S4W6ZZndoNACeOhFI1eVIKTy4yr+KrTyX2pqw
+34EAn0GpMw6vc4nMxZ7yBQPz+2+Fi1FX
+=w5jw
+-----END PGP SIGNATURE-----
+
+--KN5l+BnMqAQyZLvT--
