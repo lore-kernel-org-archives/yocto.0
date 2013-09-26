@@ -1,28 +1,24 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14E6DE01638
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 01:37:26 -0700 (PDT)
-Received: by mail-ob0-f179.google.com with SMTP id wn1so1508579obc.10
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 01:37:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=TWYJC/jFa7IT4I+Y8YK1K1hAJGg+n3SzBMbFkp5ouVI=;
-	b=F5hu6XeHkf4+grB1srk0iOSfUxf2ZAftZhnSj0Mq8svLFBoaSlKH97VnlTwPrntCid
-	l4N2YP94XlrCIPeFQL3JOUxbc8c8U3I7nz/sBjYGCMzJdc2cPvfmKq7nXLJxTP93yP6L
-	gQXNC91EI9GrHiN3fWTNUnDmcXRgF8aaSODKsI3cjUH/jyb91mAYTBV41hP6ErDW1JYh
-	K6PPf/ikSlIfMEKwkmDLOBAWaYcVlT2MynScfMgWiht+ddQXLYYThFfqK9In1Itjbwus
-	VBJjcxFTEYLDmrWnVhz+PGUgT6lyTNbUOhatusAbiT8kGUo3ZDudb8NfrMm0ZWCV1Pqu
-	tcVA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 121B5E01640
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 03:13:37 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 26 Sep 2013 03:10:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,984,1371106800"; d="scan'208";a="409700519"
+Received: from unknown (HELO helios.localnet) ([10.252.120.50])
+	by orsmga002.jf.intel.com with ESMTP; 26 Sep 2013 03:13:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Hans =?ISO-8859-1?Q?Beck=E9rus?= <hans.beckerus@gmail.com>
+Date: Thu, 26 Sep 2013 11:13:35 +0100
+Message-ID: <15510684.X3bYELTYuV@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-30-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAFyqS9pb0aXUVgKH7vANiNxhrXMtfVxGRd9FDVj8Y1Rk=0XgFw@mail.gmail.com>
+References: <CAFyqS9pb0aXUVgKH7vANiNxhrXMtfVxGRd9FDVj8Y1Rk=0XgFw@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.60.160.197 with SMTP id xm5mr349928oeb.53.1380184645518;
-	Thu, 26 Sep 2013 01:37:25 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Thu, 26 Sep 2013 01:37:25 -0700 (PDT)
-Date: Thu, 26 Sep 2013 10:37:25 +0200
-Message-ID: <CAFyqS9qkBO+NOEOYH7O5-XY1kM5qdLPEHEb-W_y-1eKmqKsc3A@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: problem with perl and locale support in SDK
+Cc: yocto@yoctoproject.org
+Subject: Re: How to combine BBCLASSEXTEND and variable export
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,38 +30,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 08:37:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 26 Sep 2013 10:13:38 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Hi. We get following problem when trying to execute any perl programs
-in the SDK environment.
-This is an example of running 'perl -v'
+Hi Hans,
 
-perl: warning: Setting locale failed.
-perl: warning: Please check that your locale settings:
-LANGUAGE = (unset),
-LC_ALL = (unset),
-LC_MESSAGES = "C",
-LC_COLLATE = "C",
-LC_TIME = "C",
-LANG = "en_US"
-    are supported and installed on your system.
-perl: warning: Falling back to the standard locale ("C").
+On Wednesday 25 September 2013 17:39:04 Hans Beck=E9rus wrote:
+> Hi. I have a recipe that use BBCLASSEXTEND to extend native. For the
+> normal/base version I wish to set/export an environment variable to b=
+e
+> picked up by configure.
+> But I do not wish this variable to be set by the native package. How
+> would I accomplish that? It was ok before when I had a package-native=
 
-This is perl 5, version 14, subversion 3 (v5.14.3) built for x86_64-linux
+> recipe but since that is obsolete in favor for BBCLASSEXTEND I wish t=
+o
+> remove it. I think I covered all the other caveats like DEPEND and
+> PACKAGE/FILES. But this one is not as straight forward, or is it?
 
->which perl
-/opt/poky/1.4+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/perl
+If I'm understanding the requirements correctly think you could do some=
+thing=20
+like:
 
-Running this from inside the Yocto sysroot does not render the same problem.
->/home/poky/build/tmp/sysroots/x86_64-linux/usr/bin/perl-native/perl -v
+do_configure_prepend_class_target() {
+=09export VARIABLE=3Dvalue
+}
 
-This is perl 5, version 14, subversion 3 (v5.14.3) built for
-x86_64-linux-thread-multi
+Cheers,
+Paul
 
-Why is perl built differently for native and nativesdk? Is this
-something that we can control?
+--=20
 
-Thanks.
-Hans
+Paul Eggleton
+Intel Open Source Technology Centre
 
