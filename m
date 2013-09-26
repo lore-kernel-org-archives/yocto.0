@@ -1,35 +1,37 @@
 Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
-	[209.85.219.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3264CE01613
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 07:32:02 -0700 (PDT)
-Received: by mail-oa0-f45.google.com with SMTP id o17so771099oag.32
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 07:32:01 -0700 (PDT)
+Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
+	[209.85.217.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB3EAE01508
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 10:10:27 -0700 (PDT)
+Received: by mail-lb0-f171.google.com with SMTP id u14so1334888lbd.16
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 10:10:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=4kaPbH83JI8gSsQjA1vmd5YiGXHRp+rCGFBqRImGyx0=;
-	b=Px5woQtGHpVLwipPuFkEVwdS92hmxo6rkCHd+Z/JxG2qkyZ30FCU5zQJwvQq+94+H8
-	6DlCxYNXhaMK49HehZfBRI6dUkzXKgFxGsvWLQ9//BDJ2tHQ+/5n0gip47h+a5VJ4+1R
-	YhrwJ4IZt9LlLSTpqd+CKZlQtVUMmQc5NEbSe2JPWwnUQXdpQ4RCNaHqqGJz497uXOsf
-	D791NkXsoyWaOTGqrYY9V565mzqJ0BMY0TIxUVhT/Zj4Z8mMqAofU6rFl2BpvpHXan11
-	U7z2mImhoae2+1cfasQyP4v/UfcVFl0fuv2ZGl8oW7mZI6vBVaAGexagS0GM3LYwHQgO
-	WJnA==
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=thqoQDHDxVDRPCIYw7BmF9e3qBxnr6iQbhmvr8tyMxs=;
+	b=zVZ2PjtjEXMpq3Dx4INpmj+09IpU/o7KXChDEKdObCZxGN3wXfdhFe3eyzacBz5t5S
+	cXfFPGMENpC1nHzcbhM3ZkM+K67ftmJ7OrjTNgw9Wf6ogn7XhMecwA37u+P3YLoCHqG+
+	Xhgh2E51OrlRoSRzPysLijrwX/qPZ/9s/Dkx2mYBW0uxWt8JY8B5yLSRUKENAKUuysVq
+	7Yb+hBxIVsYUGUXPDbjXNG5RLranYdi9UhPcgYDtWqwYbC3vaEY1yesAsOp0hTAnAsvF
+	t6mbGtbyFJjvaD+X9gIlK+tGA3U6IEK8R7Sm8e14aeaTF4lB0is7lXErW5f/1aUMjeQa
+	hN0A==
+X-Received: by 10.152.22.65 with SMTP id b1mr29837laf.46.1380215425799;
+	Thu, 26 Sep 2013 10:10:25 -0700 (PDT)
+Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
+	[217.209.54.135])
+	by mx.google.com with ESMTPSA id ac2sm2988043lbc.10.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 26 Sep 2013 10:10:24 -0700 (PDT)
+Message-ID: <52446A7F.4080005@gmail.com>
+Date: Thu, 26 Sep 2013 19:10:23 +0200
+From: Hans Beckerus <hans.beckerus@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.2;
+	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.60.44.9 with SMTP id a9mr949549oem.67.1380205921021; Thu, 26
-	Sep 2013 07:32:01 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Thu, 26 Sep 2013 07:32:00 -0700 (PDT)
-In-Reply-To: <1675887.iRGCGyzpnN@helios>
-References: <CAFyqS9pb0aXUVgKH7vANiNxhrXMtfVxGRd9FDVj8Y1Rk=0XgFw@mail.gmail.com>
-	<15510684.X3bYELTYuV@helios>
-	<CAFyqS9q54HXgcCPvhUodqYXLZ9oqmZA4+mhOX958CyeG7VL3Gg@mail.gmail.com>
-	<1675887.iRGCGyzpnN@helios>
-Date: Thu, 26 Sep 2013 16:32:00 +0200
-Message-ID: <CAFyqS9rJDHwzuLdg=tL=SN+vY5KvYC4-w0caOmD4GOM5HASo7w@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to combine BBCLASSEXTEND and variable export
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAFyqS9oDjhiKNr3gPYtNmgkqfC82J-OiG1hX4TG3L3AqbjABCA@mail.gmail.com>
+In-Reply-To: <CAFyqS9oDjhiKNr3gPYtNmgkqfC82J-OiG1hX4TG3L3AqbjABCA@mail.gmail.com>
+Subject: Re: Question about DEPENDS and eg. DEPENDS_class-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,56 +43,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 14:32:03 -0000
+X-List-Received-Date: Thu, 26 Sep 2013 17:10:28 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 26, 2013 at 12:48 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> On Thursday 26 September 2013 12:38:13 Hans Beck=E9rus wrote:
->> On Thu, Sep 26, 2013 at 12:13 PM, Paul Eggleton
->> <paul.eggleton@linux.intel.com> wrote:
->> > On Wednesday 25 September 2013 17:39:04 Hans Beck=E9rus wrote:
->> >> Hi. I have a recipe that use BBCLASSEXTEND to extend native. For the
->> >> normal/base version I wish to set/export an environment variable to b=
-e
->> >> picked up by configure.
->> >> But I do not wish this variable to be set by the native package. How
->> >> would I accomplish that? It was ok before when I had a package-native
->> >> recipe but since that is obsolete in favor for BBCLASSEXTEND I wish t=
-o
->> >> remove it. I think I covered all the other caveats like DEPEND and
->> >> PACKAGE/FILES. But this one is not as straight forward, or is it?
->> >
->> > If I'm understanding the requirements correctly think you could do
->> > something like:
->> >
->> > do_configure_prepend_class_target() {
->> >
->> >         export VARIABLE=3Dvalue
->> >
->> > }
->>
->> Yes, I believe I tried that, but then the export does not persist over
->> do_configure(), does it?
->> It is only alive during the scope of do_configure_prepend() or?
->
-> The _prepend is just prepended to the function before running it, so it w=
-ill
-> be applied for the entire function. If you have a look at
-> temp/run.do_configure.* in the workdir for the recipe, you'll be able to =
-verify
-> this.
->
-Ah, yes. Of course it works like that. What was I thinking :)
-Thanks for the help Paul. I must have done some mistake before which
-made it go wrong.
+On 2013-09-26 2:41, Hans Beckérus wrote:
+> Hi. Browsing through the existing recipes really did not answer this
+> since I have no clue what was the initial intent.
+> So my quick question is if a .inc file has a DEPENDS = "foo" and a
+> recipe that includes it has DEPENDS_class-native = "fee", will the
+> resulting depend be merged from the two or will DEPENDS_class-native
+> completely override DEPENDS? If it overrides, is the correct way to
+> merge them to do DEPENDS_append_class-native = "fee"?
+Ok, this one I managed to figure out by doing some trial and error.
+What I have learned from that exercise is that if you wish to extend DEPENDS specifically you need to do DEPENDS_append_class-native = " <pkg>"
+Doing DEPENDS_class-native = "<pkg> will override DEPENDS completely for native builds. Please correct me if I am wrong.
 
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
+> Thanks.
+> Hans
+
 
