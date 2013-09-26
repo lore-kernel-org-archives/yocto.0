@@ -1,21 +1,28 @@
-Return-Path: <diego.gonzalez@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63CE0E01637
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 01:14:21 -0700 (PDT)
-Received: from horus27 (127.0.0.1) by horus27 (Axigen) with ESMTPSA id 1657CD; 
-	Thu, 26 Sep 2013 10:14:15 +0200
-Received: from [172.30.250.254] by horus.es with HTTP;
-	Thu, 26 Sep 2013 10:14:15 +0200
-From: Diego Gonzalez <diego.gonzalez@horus.es>
-Date: Thu, 26 Sep 2013 10:14:15 +0200
-X-Mailer: Axigen WebMail
-To: yocto@yoctoproject.org
-Message-ID: <1380183255689466500@horus.es>
-Importance: Normal
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14E6DE01638
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 01:37:26 -0700 (PDT)
+Received: by mail-ob0-f179.google.com with SMTP id wn1so1508579obc.10
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 01:37:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=TWYJC/jFa7IT4I+Y8YK1K1hAJGg+n3SzBMbFkp5ouVI=;
+	b=F5hu6XeHkf4+grB1srk0iOSfUxf2ZAftZhnSj0Mq8svLFBoaSlKH97VnlTwPrntCid
+	l4N2YP94XlrCIPeFQL3JOUxbc8c8U3I7nz/sBjYGCMzJdc2cPvfmKq7nXLJxTP93yP6L
+	gQXNC91EI9GrHiN3fWTNUnDmcXRgF8aaSODKsI3cjUH/jyb91mAYTBV41hP6ErDW1JYh
+	K6PPf/ikSlIfMEKwkmDLOBAWaYcVlT2MynScfMgWiht+ddQXLYYThFfqK9In1Itjbwus
+	VBJjcxFTEYLDmrWnVhz+PGUgT6lyTNbUOhatusAbiT8kGUo3ZDudb8NfrMm0ZWCV1Pqu
+	tcVA==
 MIME-Version: 1.0
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 6
-Subject: Gstreamer mfw_isink
+X-Received: by 10.60.160.197 with SMTP id xm5mr349928oeb.53.1380184645518;
+	Thu, 26 Sep 2013 01:37:25 -0700 (PDT)
+Received: by 10.182.44.8 with HTTP; Thu, 26 Sep 2013 01:37:25 -0700 (PDT)
+Date: Thu, 26 Sep 2013 10:37:25 +0200
+Message-ID: <CAFyqS9qkBO+NOEOYH7O5-XY1kM5qdLPEHEb-W_y-1eKmqKsc3A@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: problem with perl and locale support in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,82 +34,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 08:14:24 -0000
-Content-Type: multipart/alternative;
-	boundary="===axigen=2295045613682705478358131940253947767513=axigen==="
+X-List-Received-Date: Thu, 26 Sep 2013 08:37:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---===axigen=2295045613682705478358131940253947767513=axigen===
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
+Hi. We get following problem when trying to execute any perl programs
+in the SDK environment.
+This is an example of running 'perl -v'
 
-Hello,
+perl: warning: Setting locale failed.
+perl: warning: Please check that your locale settings:
+LANGUAGE = (unset),
+LC_ALL = (unset),
+LC_MESSAGES = "C",
+LC_COLLATE = "C",
+LC_TIME = "C",
+LANG = "en_US"
+    are supported and installed on your system.
+perl: warning: Falling back to the standard locale ("C").
 
-I'm working with gstreamer using fsl-image-gui  and I tried  the next tutor=
-ial (Multi-Overlay) https://community.freescale.com/docs/DOC-93788  . Howev=
-er when I try to use mfw_isink,  gstreamer tells me :
+This is perl 5, version 14, subversion 3 (v5.14.3) built for x86_64-linux
 
-WARNING: erroneous pipeline: no element "mfw_isink"
+>which perl
+/opt/poky/1.4+snapshot/sysroots/x86_64-pokysdk-linux/usr/bin/perl
 
-So if I inspect (gst-inspect | grep "isink"), you'll see this element is no=
-t installed:
+Running this from inside the Yocto sysroot does not render the same problem.
+>/home/poky/build/tmp/sysroots/x86_64-linux/usr/bin/perl-native/perl -v
 
-alsa:  alsasink: Audio sink (ALSA)
-soup:  souphttpclientsink: HTTP client sink
-xvimagesink:  xvimagesink: Video sink
-playback:  playsink: Player Sink
-gio:  giosink: GIO sink
-gio:  giostreamsink: GIO stream sink
-autodetect:  autovideosink: Auto video sink
-autodetect:  autoaudiosink: Auto audio sink
-v4lsink.imx:  mfw_v4lsink: v4l2 video sink
-coreelements:  fakesink: Fake Sink
-coreelements:  fdsink: Filedescriptor Sink
-coreelements:  filesink: File Sink
-tcp:  tcpclientsink: TCP client sink
-tcp:  tcpserversink: TCP server sink
-tcp:  multifdsink: Multi filedescriptor sink
-fbdevsink:  fbdevsink: fbdev video sink
+This is perl 5, version 14, subversion 3 (v5.14.3) built for
+x86_64-linux-thread-multi
 
-How can I add it ? =20
+Why is perl built differently for native and nativesdk? Is this
+something that we can control?
 
-Regards,
+Thanks.
+Hans
 
-Diego Gonz=C3=A1lez Gonz=C3=A1lez
-
-diego.gonzalez@horus.es
-
---===axigen=2295045613682705478358131940253947767513=axigen===
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
-
-<html><head><style id=3D"axi-htmleditor-style" type=3D"text/css">p { margin=
-: 0px; }</style></head><body style=3D"font-size: 10pt; font-family: Arial; =
-background-image: none; background-repeat: repeat; background-attachment: f=
-ixed;">Hello,<br><br>I'm working with gstreamer using fsl-image-gui&nbsp; a=
-nd I tried&nbsp; the next tutorial (Multi-Overlay) https://community.freesc=
-ale.com/docs/DOC-93788&nbsp; . However when I try to use <span style=3D"col=
-or: #000000;"><strong>mfw_isink,&nbsp; </strong>gstreamer tells me :<br><br=
->WARNING: erroneous pipeline: no element "mfw_isink"<br><br>So if I inspect=
- (gst-inspect | grep "isink"), you'll see this element is not installed:<br=
-><br></span><div class=3D"x-axi-signature">alsa:&nbsp; alsasink: Audio sink=
- (ALSA)<br>soup:&nbsp; souphttpclientsink: HTTP client sink<br>xvimagesink:=
-&nbsp; xvimagesink: Video sink<br>playback:&nbsp; playsink: Player Sink<br>=
-gio:&nbsp; giosink: GIO sink<br>gio:&nbsp; giostreamsink: GIO stream sink<b=
-r>autodetect:&nbsp; autovideosink: Auto video sink<br>autodetect:&nbsp; aut=
-oaudiosink: Auto audio sink<br>v4lsink.imx:&nbsp; mfw_v4lsink: v4l2 video s=
-ink<br>coreelements:&nbsp; fakesink: Fake Sink<br>coreelements:&nbsp; fdsin=
-k: Filedescriptor Sink<br>coreelements:&nbsp; filesink: File Sink<br>tcp:&n=
-bsp; tcpclientsink: TCP client sink<br>tcp:&nbsp; tcpserversink: TCP server=
- sink<br>tcp:&nbsp; multifdsink: Multi filedescriptor sink<br>fbdevsink:&nb=
-sp; fbdevsink: fbdev video sink<br><br>How can I add it ?&nbsp; <br><strong=
-></strong><div class=3D"x-axi-signature" style=3D"; font-size: 10pt; font-f=
-amily: Arial;"><br>Regards,<br><br>Diego Gonz=C3=A1lez Gonz=C3=A1lez<br><br=
-><div style=3D"text-align: left;"><a id=3D"ext-gen5000" href=3D"mailto:enri=
-que.fernandez@horus.es">diego.gonzalez@horus.es</a></div></div></div></body=
-></html>
-
---===axigen=2295045613682705478358131940253947767513=axigen===--
