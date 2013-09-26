@@ -1,34 +1,35 @@
-Return-Path: <Joe.MacDonald@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45ACCE0044C
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 05:47:47 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id r8QCln94003048
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 05:47:49 -0700 (PDT)
-Received: from yow-jmacdona-d1.ottawa.wrs.com (128.224.146.66) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server
-	(TLS) id 14.2.347.0; Thu, 26 Sep 2013 05:47:46 -0700
-Received: from yow-jmacdona-l1 (yow-jmacdona-d2.wrs.com [128.224.146.166])	by
-	yow-jmacdona-d1.ottawa.wrs.com (Postfix) with ESMTP id 4A37F7FE9;
-	Thu, 26 Sep 2013 08:47:23 -0400 (EDT)
-Received: by yow-jmacdona-l1 (Postfix, from userid 1000)	id 3B6C640499; Thu,
-	26 Sep 2013 08:47:46 -0400 (EDT)
-Date: Thu, 26 Sep 2013 08:47:46 -0400
-From: Joe MacDonald <Joe.MacDonald@windriver.com>
-To: Xin Ouyang <Xin.Ouyang@windriver.com>, Mark Hatle
-	<mark.hatle@windriver.com>
-Message-ID: <20130926124745.GC4151@windriver.com>
-References: <20130926045827.GA1541@longhaul.twobit.us>
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
+	[209.85.219.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3264CE01613
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 07:32:02 -0700 (PDT)
+Received: by mail-oa0-f45.google.com with SMTP id o17so771099oag.32
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 07:32:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=4kaPbH83JI8gSsQjA1vmd5YiGXHRp+rCGFBqRImGyx0=;
+	b=Px5woQtGHpVLwipPuFkEVwdS92hmxo6rkCHd+Z/JxG2qkyZ30FCU5zQJwvQq+94+H8
+	6DlCxYNXhaMK49HehZfBRI6dUkzXKgFxGsvWLQ9//BDJ2tHQ+/5n0gip47h+a5VJ4+1R
+	YhrwJ4IZt9LlLSTpqd+CKZlQtVUMmQc5NEbSe2JPWwnUQXdpQ4RCNaHqqGJz497uXOsf
+	D791NkXsoyWaOTGqrYY9V565mzqJ0BMY0TIxUVhT/Zj4Z8mMqAofU6rFl2BpvpHXan11
+	U7z2mImhoae2+1cfasQyP4v/UfcVFl0fuv2ZGl8oW7mZI6vBVaAGexagS0GM3LYwHQgO
+	WJnA==
 MIME-Version: 1.0
-In-Reply-To: <20130926045827.GA1541@longhaul.twobit.us>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux] Add util-linux-agetty to core-image-selinux IMAGE_INSTALL.
+X-Received: by 10.60.44.9 with SMTP id a9mr949549oem.67.1380205921021; Thu, 26
+	Sep 2013 07:32:01 -0700 (PDT)
+Received: by 10.182.44.8 with HTTP; Thu, 26 Sep 2013 07:32:00 -0700 (PDT)
+In-Reply-To: <1675887.iRGCGyzpnN@helios>
+References: <CAFyqS9pb0aXUVgKH7vANiNxhrXMtfVxGRd9FDVj8Y1Rk=0XgFw@mail.gmail.com>
+	<15510684.X3bYELTYuV@helios>
+	<CAFyqS9q54HXgcCPvhUodqYXLZ9oqmZA4+mhOX958CyeG7VL3Gg@mail.gmail.com>
+	<1675887.iRGCGyzpnN@helios>
+Date: Thu, 26 Sep 2013 16:32:00 +0200
+Message-ID: <CAFyqS9rJDHwzuLdg=tL=SN+vY5KvYC4-w0caOmD4GOM5HASo7w@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to combine BBCLASSEXTEND and variable export
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,64 +41,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 12:47:48 -0000
-X-Groupsio-MsgNum: 16243
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="KN5l+BnMqAQyZLvT"
-Content-Disposition: inline
-
---KN5l+BnMqAQyZLvT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 26 Sep 2013 14:32:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-All opposed?  If the motion is carried, I'll merge it both into master
-and what will soon become master-next.
+On Thu, Sep 26, 2013 at 12:48 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Thursday 26 September 2013 12:38:13 Hans Beck=E9rus wrote:
+>> On Thu, Sep 26, 2013 at 12:13 PM, Paul Eggleton
+>> <paul.eggleton@linux.intel.com> wrote:
+>> > On Wednesday 25 September 2013 17:39:04 Hans Beck=E9rus wrote:
+>> >> Hi. I have a recipe that use BBCLASSEXTEND to extend native. For the
+>> >> normal/base version I wish to set/export an environment variable to b=
+e
+>> >> picked up by configure.
+>> >> But I do not wish this variable to be set by the native package. How
+>> >> would I accomplish that? It was ok before when I had a package-native
+>> >> recipe but since that is obsolete in favor for BBCLASSEXTEND I wish t=
+o
+>> >> remove it. I think I covered all the other caveats like DEPEND and
+>> >> PACKAGE/FILES. But this one is not as straight forward, or is it?
+>> >
+>> > If I'm understanding the requirements correctly think you could do
+>> > something like:
+>> >
+>> > do_configure_prepend_class_target() {
+>> >
+>> >         export VARIABLE=3Dvalue
+>> >
+>> > }
+>>
+>> Yes, I believe I tried that, but then the export does not persist over
+>> do_configure(), does it?
+>> It is only alive during the scope of do_configure_prepend() or?
+>
+> The _prepend is just prepended to the function before running it, so it w=
+ill
+> be applied for the entire function. If you have a look at
+> temp/run.do_configure.* in the workdir for the recipe, you'll be able to =
+verify
+> this.
+>
+Ah, yes. Of course it works like that. What was I thinking :)
+Thanks for the help Paul. I must have done some mistake before which
+made it go wrong.
 
--J.
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
-[[yocto] [meta-selinux] Add util-linux-agetty to core-image-selinux IMAGE_I=
-NSTALL.] On 13.09.26 (Thu 04:58) Philip Tricca wrote:
-
-> Currently logins to core-image-selinux images through a getty (serial)
-> fail. This is caused by the use of the busybox getty. SELinux depends
-> on executable files and their labels to transition between types.
-> The symlink to busybox is not sufficient to cause the getty processes
-> to transition to the right SELinux context. Using a getty binary
-> like the one provided by util-linux fixes this.
->=20
-> Signed-off-by: Philip Tricca <flihp@twobit.us>
-> ---
->  recipes-security/images/core-image-selinux.bb |    1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/recipes-security/images/core-image-selinux.bb b/recipes-secu=
-rity/images/core-image-selinux.bb
-> index 0109933..1ec7b08 100644
-> --- a/recipes-security/images/core-image-selinux.bb
-> +++ b/recipes-security/images/core-image-selinux.bb
-> @@ -6,6 +6,7 @@ LICENSE =3D "MIT"
-> =20
->  IMAGE_INSTALL =3D "\
->  	${CORE_IMAGE_BASE_INSTALL} \
-> +	util-linux-agetty \
->  	packagegroup-core-basic \
->  	packagegroup-core-selinux \
->  "  =20
---=20
--Joe MacDonald.
-:wq
-
---KN5l+BnMqAQyZLvT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEARECAAYFAlJELPEACgkQPN8S4W6ZZndoNACeOhFI1eVIKTy4yr+KrTyX2pqw
-34EAn0GpMw6vc4nMxZ7yBQPz+2+Fi1FX
-=w5jw
------END PGP SIGNATURE-----
-
---KN5l+BnMqAQyZLvT--
