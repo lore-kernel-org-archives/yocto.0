@@ -1,48 +1,38 @@
-Return-Path: <brad@evidence.com>
-Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 178C3E015D6
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 11:09:26 -0700 (PDT)
-X-ASG-Debug-ID: 1380218965-0499bf1062f3f80001-yzSStA
-Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
-	with ESMTP id zF1doChk0iv8UqyU for <yocto@yoctoproject.org>;
-	Thu, 26 Sep 2013 11:09:25 -0700 (MST)
-X-Barracuda-Envelope-From: brad@evidence.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
-	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
-	Thu, 26 Sep 2013 11:09:25 -0700
-Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
-	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
-	14.02.0342.003; Thu, 26 Sep 2013 11:09:24 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
-From: Brad Litterell <brad@evidence.com>
-X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Best way to reuse install scripts across multiple recipes?
-X-ASG-Orig-Subj: Best way to reuse install scripts across multiple recipes?
-Thread-Index: AQHOuuOHun0iqPO+C0qxYFWw6bomZw==
-Date: Thu, 26 Sep 2013 18:09:23 +0000
-Message-ID: <E51394554A503C4E852F9BEE46B03E8DF038D8@TI-ODIN.tasernet.com>
+Return-Path: <Jate.Sujjavanich@myfuelmaster.com>
+Received: from stspspam.syntech.org (exchsrvr.syntech-fuelmaster.com
+	[199.44.250.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23313E015D6
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 11:48:25 -0700 (PDT)
+Received: from pps.filterd (stspspam [127.0.0.1])
+	by stspspam.syntech.org (8.14.5/8.14.5) with SMTP id r8QIlNV6031194
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 14:48:24 -0400
+Received: from courier.syntech-fuelmaster.com (courier.syntech.org
+	[172.16.10.30]) by stspspam.syntech.org with ESMTP id 1euk2cfbu0-1
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 14:48:24 -0400
+Received: from Courier.syntech.org ([::1]) by Courier.syntech.org ([::1]) with
+	mapi; Thu, 26 Sep 2013 14:48:24 -0400
+From: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Date: Thu, 26 Sep 2013 14:48:23 -0400
+Thread-Topic: Yocto Bitbake Commander New Project Bug
+Thread-Index: Ac666N4fx6mXRgzkQUqpM4cJDzRrYw==
+Message-ID: <6C2434209962DC46B88345CA85C334A201CAB0AB2006@Courier.syntech.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.103]
+x-vipre-scanned: 1216186E00554E121619BB
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Barracuda-Connect: magni.atmoss[10.10.20.112]
-X-Barracuda-Start-Time: 1380218965
-X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at taser.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.140947
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Subject: Best way to reuse install scripts across multiple recipes?
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+	suspectscore=0 phishscore=0
+	adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1
+	engine=7.0.1-1305240000 definitions=main-1309260104
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.10.8794, 1.0.431,
+	0.0.0000
+	definitions=2013-09-26_08:2013-09-26, 2013-09-26,
+	1970-01-01 signatures=0
+Subject: Yocto Bitbake Commander New Project Bug
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,91 +44,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 18:09:27 -0000
+X-List-Received-Date: Thu, 26 Sep 2013 18:48:26 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_"
-
---_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I'm finding that I use a pattern like this in a number of recipes to instal=
-l all the files that exist in a particular folder, generally scripts or dat=
-a files:
+Creating a Yocto Bitbake Commander project using an existing poky directory=
+ is a little buggy. I usually do this to avoid downloading poky from the In=
+ternet.
 
-    # copy scripts
-    pushd ${S}/files/bin
-    # note that failure in the exec is not always captured here, so this ne=
-eds to be enhanced
-    # to catch that kind of build failure.
-    find . -type f -exec install -m 0644 {} ${D}/bin/{} \;
-    popd
+The plugin wizard implies that you can use a poky directory in your workspa=
+ce with its clone from yocto repository option.
 
-As the comment exists, I need to expand this to a real loop with error hand=
-ing, so I'm wondering if (a) there already exists a similar call that I can=
- reuse in yocto (similar to oe_libinstall), or (b) whether I should add it =
-to utils.bbclass, or a private recipe.  Would it be useful to submit back t=
-o the project?  Or am I just going about a common task the wrong way?
+Attempting to use a cloned poky in workspace/poky results in the wizard rep=
+orting that ".../workspace/poky overlaps the location of another project: p=
+oky." Changing the name of the project merely results in the error "Directo=
+ry ...workspace/poky2 does not exist, please select git clone".
 
-I'm thinking of adding a function like this:
+The workaround is to open a separate dummy workspace, and then run the wiza=
+rd with Project Location pointing to your desired Project Location. You wil=
+l then be able to hit Finish. Eclipse will create the .metadata and .eclips=
+e-data files.
 
-oe_folderinstall <source> <dest> <mode>
+You can then switch to your desired workspace and use "Import an Existing P=
+roject."
 
-Thanks,
-Brad
+Is this a bug?
 
---_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<div>I'm finding that I use a pattern like this in a number of recipes to i=
-nstall all the files that exist in a particular folder, generally scripts o=
-r data files:</div>
-<div><br>
-</div>
-<div>
-<div>&nbsp; &nbsp; # copy scripts</div>
-<div>&nbsp; &nbsp; pushd ${S}/files/bin</div>
-<div><span style=3D"font-size: 10pt;">&nbsp; &nbsp; # note that failure in =
-the exec is not always captured here, so this needs to be enhanced&nbsp;</s=
-pan></div>
-<div>&nbsp; &nbsp; # to catch that kind of build failure.</div>
-<div>&nbsp; &nbsp; find . -type f -exec install -m 0644 {} ${D}/bin/{} \;</=
-div>
-<div>&nbsp; &nbsp; popd</div>
-</div>
-<div><br>
-</div>
-<div>As the comment exists, I need to expand this to a real loop with error=
- handing, so&nbsp;<span style=3D"font-size: 10pt;">I'm wondering if (a) the=
-re already exists a similar call that I can reuse in yocto (similar to oe_l=
-ibinstall), or (b) whether I should add
- it to utils.bbclass, or a private recipe. &nbsp;Would it be useful to subm=
-it back to the project? &nbsp;Or am I just going about a common task the wr=
-ong way?</span></div>
-<div><span style=3D"font-size: 10pt;"><br>
-</span></div>
-<div><span style=3D"font-size: 10pt;">I'm thinking of adding a function lik=
-e this:</span></div>
-<div><br>
-</div>
-<div>oe_folderinstall &lt;source&gt; &lt;dest&gt; &lt;mode&gt;</div>
-<div><br>
-</div>
-<div><span style=3D"font-size: 10pt;">Thanks,</span></div>
-<div>Brad</div>
-</div>
-</body>
-</html>
+-Jate S.
 
---_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_--
