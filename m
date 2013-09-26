@@ -1,38 +1,27 @@
-Return-Path: <Jate.Sujjavanich@myfuelmaster.com>
-Received: from stspspam.syntech.org (exchsrvr.syntech-fuelmaster.com
-	[199.44.250.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23313E015D6
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 11:48:25 -0700 (PDT)
-Received: from pps.filterd (stspspam [127.0.0.1])
-	by stspspam.syntech.org (8.14.5/8.14.5) with SMTP id r8QIlNV6031194
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 14:48:24 -0400
-Received: from courier.syntech-fuelmaster.com (courier.syntech.org
-	[172.16.10.30]) by stspspam.syntech.org with ESMTP id 1euk2cfbu0-1
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 14:48:24 -0400
-Received: from Courier.syntech.org ([::1]) by Courier.syntech.org ([::1]) with
-	mapi; Thu, 26 Sep 2013 14:48:24 -0400
-From: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Date: Thu, 26 Sep 2013 14:48:23 -0400
-Thread-Topic: Yocto Bitbake Commander New Project Bug
-Thread-Index: Ac666N4fx6mXRgzkQUqpM4cJDzRrYw==
-Message-ID: <6C2434209962DC46B88345CA85C334A201CAB0AB2006@Courier.syntech.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 1216186E00554E121619BB
-acceptlanguage: en-US
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D735E015D6
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 13:49:57 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=longhaul.twobit.us)
+	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VPIVR-0000qv-L0; Thu, 26 Sep 2013 20:49:55 +0000
+Date: Thu, 26 Sep 2013 20:49:39 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Message-ID: <20130926204939.GA2107@longhaul.twobit.us>
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	suspectscore=0 phishscore=0
-	adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1
-	engine=7.0.1-1305240000 definitions=main-1309260104
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.10.8794, 1.0.431,
-	0.0.0000
-	definitions=2013-09-26_08:2013-09-26, 2013-09-26,
-	1970-01-01 signatures=0
-Subject: Yocto Bitbake Commander New Project Bug
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
+Subject: [meta-selinux] Check for the availability of 'secon' and 'setenforce' in the selinux-init.sh script.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,33 +33,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 18:48:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 26 Sep 2013 20:49:58 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Creating a Yocto Bitbake Commander project using an existing poky directory=
- is a little buggy. I usually do this to avoid downloading poky from the In=
-ternet.
+This is for consistency and to aid in debugging.
 
-The plugin wizard implies that you can use a poky directory in your workspa=
-ce with its clone from yocto repository option.
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-security/selinux/selinux-config/selinux-init.sh |    8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-Attempting to use a cloned poky in workspace/poky results in the wizard rep=
-orting that ".../workspace/poky overlaps the location of another project: p=
-oky." Changing the name of the project merely results in the error "Directo=
-ry ...workspace/poky2 does not exist, please select git clone".
+diff --git a/recipes-security/selinux/selinux-config/selinux-init.sh b/recipes-security/selinux/selinux-config/selinux-init.sh
+index 1cdc3dd..8f3efac 100644
+--- a/recipes-security/selinux/selinux-config/selinux-init.sh
++++ b/recipes-security/selinux/selinux-config/selinux-init.sh
+@@ -6,8 +6,10 @@ CHCON=/usr/bin/chcon
+ MATCHPATHCON=/usr/sbin/matchpathcon
+ FIXFILES=/sbin/fixfiles
+ RESTORECON=/sbin/restorecon
++SECON=/usr/bin/secon
++SETENFORCE=/usr/sbin/setenforce
+ 
+-for i in ${CHCON} ${MATCHPATHCON} ${FIXFILES} ${RESTORECON} ; do
++for i in ${CHCON} ${MATCHPATHCON} ${FIXFILES} ${RESTORECON} ${SECON} ${SETENFORCE}; do
+ 	test -x $i && continue
+ 	echo "$i is missing in the system."
+ 	echo "Please add \"selinux=0\" in the kernel command line to disable SELinux."
+@@ -51,12 +53,12 @@ fi
+ 
+ # If first booting, the security context type of init would be
+ # "kernel_t", and the whole file system should be relabeled.
+-if [ "`/usr/bin/secon -t --pid 1`" = "kernel_t" ]; then
++if [ "`${SECON} -t --pid 1`" = "kernel_t" ]; then
+ 	echo "Checking SELinux security contexts:"
+ 	check_rootfs
+ 	echo " * First booting, filesystem will be relabeled..."
+ 	test -x /etc/init.d/auditd && /etc/init.d/auditd start
+-	/usr/sbin/setenforce 0
++	${SETENFORCE} 0
+ 	${RESTORECON} -R /
+ 	${RESTORECON} /
+ 	echo " * Relabel done, rebooting the system."
+-- 
+1.7.10.4
 
-The workaround is to open a separate dummy workspace, and then run the wiza=
-rd with Project Location pointing to your desired Project Location. You wil=
-l then be able to hit Finish. Eclipse will create the .metadata and .eclips=
-e-data files.
-
-You can then switch to your desired workspace and use "Import an Existing P=
-roject."
-
-Is this a bug?
-
-
--Jate S.
 
