@@ -1,37 +1,48 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
-	[209.85.217.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB3EAE01508
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 10:10:27 -0700 (PDT)
-Received: by mail-lb0-f171.google.com with SMTP id u14so1334888lbd.16
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 10:10:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=thqoQDHDxVDRPCIYw7BmF9e3qBxnr6iQbhmvr8tyMxs=;
-	b=zVZ2PjtjEXMpq3Dx4INpmj+09IpU/o7KXChDEKdObCZxGN3wXfdhFe3eyzacBz5t5S
-	cXfFPGMENpC1nHzcbhM3ZkM+K67ftmJ7OrjTNgw9Wf6ogn7XhMecwA37u+P3YLoCHqG+
-	Xhgh2E51OrlRoSRzPysLijrwX/qPZ/9s/Dkx2mYBW0uxWt8JY8B5yLSRUKENAKUuysVq
-	7Yb+hBxIVsYUGUXPDbjXNG5RLranYdi9UhPcgYDtWqwYbC3vaEY1yesAsOp0hTAnAsvF
-	t6mbGtbyFJjvaD+X9gIlK+tGA3U6IEK8R7Sm8e14aeaTF4lB0is7lXErW5f/1aUMjeQa
-	hN0A==
-X-Received: by 10.152.22.65 with SMTP id b1mr29837laf.46.1380215425799;
-	Thu, 26 Sep 2013 10:10:25 -0700 (PDT)
-Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
-	[217.209.54.135])
-	by mx.google.com with ESMTPSA id ac2sm2988043lbc.10.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 26 Sep 2013 10:10:24 -0700 (PDT)
-Message-ID: <52446A7F.4080005@gmail.com>
-Date: Thu, 26 Sep 2013 19:10:23 +0200
-From: Hans Beckerus <hans.beckerus@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.2;
-	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
-MIME-Version: 1.0
+Return-Path: <brad@evidence.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 178C3E015D6
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 11:09:26 -0700 (PDT)
+X-ASG-Debug-ID: 1380218965-0499bf1062f3f80001-yzSStA
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id zF1doChk0iv8UqyU for <yocto@yoctoproject.org>;
+	Thu, 26 Sep 2013 11:09:25 -0700 (MST)
+X-Barracuda-Envelope-From: brad@evidence.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+Received: from TI-THOR.tasernet.com (172.16.1.113) by email.taser.com
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.342.3;
+	Thu, 26 Sep 2013 11:09:25 -0700
+Received: from TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8]) by
+	TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789%22]) with mapi id
+	14.02.0342.003; Thu, 26 Sep 2013 11:09:24 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+From: Brad Litterell <brad@evidence.com>
+X-Barracuda-BWL-IP: fe80::64ff:7320:e6e7:27c8
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <CAFyqS9oDjhiKNr3gPYtNmgkqfC82J-OiG1hX4TG3L3AqbjABCA@mail.gmail.com>
-In-Reply-To: <CAFyqS9oDjhiKNr3gPYtNmgkqfC82J-OiG1hX4TG3L3AqbjABCA@mail.gmail.com>
-Subject: Re: Question about DEPENDS and eg. DEPENDS_class-native
+Thread-Topic: Best way to reuse install scripts across multiple recipes?
+X-ASG-Orig-Subj: Best way to reuse install scripts across multiple recipes?
+Thread-Index: AQHOuuOHun0iqPO+C0qxYFWw6bomZw==
+Date: Thu, 26 Sep 2013 18:09:23 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8DF038D8@TI-ODIN.tasernet.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
+MIME-Version: 1.0
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1380218965
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.140947
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Best way to reuse install scripts across multiple recipes?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,23 +54,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 17:10:28 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 26 Sep 2013 18:09:27 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_"
 
-On 2013-09-26 2:41, Hans Beckérus wrote:
-> Hi. Browsing through the existing recipes really did not answer this
-> since I have no clue what was the initial intent.
-> So my quick question is if a .inc file has a DEPENDS = "foo" and a
-> recipe that includes it has DEPENDS_class-native = "fee", will the
-> resulting depend be merged from the two or will DEPENDS_class-native
-> completely override DEPENDS? If it overrides, is the correct way to
-> merge them to do DEPENDS_append_class-native = "fee"?
-Ok, this one I managed to figure out by doing some trial and error.
-What I have learned from that exercise is that if you wish to extend DEPENDS specifically you need to do DEPENDS_append_class-native = " <pkg>"
-Doing DEPENDS_class-native = "<pkg> will override DEPENDS completely for native builds. Please correct me if I am wrong.
+--_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-> Thanks.
-> Hans
+I'm finding that I use a pattern like this in a number of recipes to instal=
+l all the files that exist in a particular folder, generally scripts or dat=
+a files:
 
+    # copy scripts
+    pushd ${S}/files/bin
+    # note that failure in the exec is not always captured here, so this ne=
+eds to be enhanced
+    # to catch that kind of build failure.
+    find . -type f -exec install -m 0644 {} ${D}/bin/{} \;
+    popd
 
+As the comment exists, I need to expand this to a real loop with error hand=
+ing, so I'm wondering if (a) there already exists a similar call that I can=
+ reuse in yocto (similar to oe_libinstall), or (b) whether I should add it =
+to utils.bbclass, or a private recipe.  Would it be useful to submit back t=
+o the project?  Or am I just going about a common task the wrong way?
+
+I'm thinking of adding a function like this:
+
+oe_folderinstall <source> <dest> <mode>
+
+Thanks,
+Brad
+
+--_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle"></style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">
+<div>I'm finding that I use a pattern like this in a number of recipes to i=
+nstall all the files that exist in a particular folder, generally scripts o=
+r data files:</div>
+<div><br>
+</div>
+<div>
+<div>&nbsp; &nbsp; # copy scripts</div>
+<div>&nbsp; &nbsp; pushd ${S}/files/bin</div>
+<div><span style=3D"font-size: 10pt;">&nbsp; &nbsp; # note that failure in =
+the exec is not always captured here, so this needs to be enhanced&nbsp;</s=
+pan></div>
+<div>&nbsp; &nbsp; # to catch that kind of build failure.</div>
+<div>&nbsp; &nbsp; find . -type f -exec install -m 0644 {} ${D}/bin/{} \;</=
+div>
+<div>&nbsp; &nbsp; popd</div>
+</div>
+<div><br>
+</div>
+<div>As the comment exists, I need to expand this to a real loop with error=
+ handing, so&nbsp;<span style=3D"font-size: 10pt;">I'm wondering if (a) the=
+re already exists a similar call that I can reuse in yocto (similar to oe_l=
+ibinstall), or (b) whether I should add
+ it to utils.bbclass, or a private recipe. &nbsp;Would it be useful to subm=
+it back to the project? &nbsp;Or am I just going about a common task the wr=
+ong way?</span></div>
+<div><span style=3D"font-size: 10pt;"><br>
+</span></div>
+<div><span style=3D"font-size: 10pt;">I'm thinking of adding a function lik=
+e this:</span></div>
+<div><br>
+</div>
+<div>oe_folderinstall &lt;source&gt; &lt;dest&gt; &lt;mode&gt;</div>
+<div><br>
+</div>
+<div><span style=3D"font-size: 10pt;">Thanks,</span></div>
+<div>Brad</div>
+</div>
+</body>
+</html>
+
+--_000_E51394554A503C4E852F9BEE46B03E8DF038D8TIODINtasernetcom_--
