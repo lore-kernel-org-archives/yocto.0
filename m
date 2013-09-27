@@ -1,42 +1,42 @@
 Return-Path: <joe@deserted.net>
-Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
-	[74.125.82.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 948DEE015B8
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 10:55:18 -0700 (PDT)
-Received: by mail-we0-f174.google.com with SMTP id q58so3014658wes.19
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 10:55:17 -0700 (PDT)
+Received: from mail-we0-f179.google.com (mail-we0-f179.google.com
+	[74.125.82.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3709BE015B8
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 10:56:15 -0700 (PDT)
+Received: by mail-we0-f179.google.com with SMTP id x55so3000557wes.38
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 10:56:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=UpqKTkRga5Xk3W+qWDGFoab6PqCIXWs8dMF9BnuQxQ4=;
-	b=fBUWRbsuPWn3HElERyCnKMnVfQt+WcKy0uZiKtMuJ//aWrZ/NqTOpjX5Rr8p2+u4un
-	nanxveEPEFyQzQOE1jCK101lpGi9z7hszt8tzlP5gGRKMNOKeYvckpZHawRg1uVobWxY
-	dTTymBWBaFUgMw+vxi8+yeTp7ClzqL7Kizfl3ozu5QXesO1M6s4BhbT37/IPkbBLBOmE
-	Vf+iUIy60k8vHnCSfAYg6JfXkorlhlh/w/ywxRGBNjQHn6TaALAVqtsr5rLcCm5Kbvds
-	DJZQ6u5PvlS5Sev4mluk0+Dx/cgLdtdllMKW5ks394a1//CRiOQJkCrsy44Hexqhkh0J
-	rV0Q==
-X-Gm-Message-State: ALoCoQk1k3/8pDhfUjsuUbsAiCfCutLl6QkphwqcpPQlPnaZ4HGcyKbjfCHThrchs99tIwm8waIN
-X-Received: by 10.180.9.69 with SMTP id x5mr3589340wia.41.1380304517254;
-	Fri, 27 Sep 2013 10:55:17 -0700 (PDT)
+	bh=rVoy9fxXIiGGbQdmoeMa3/fESBaZmDFAFsIQdClRN84=;
+	b=lWu99CKi3ao3RVTtJDk5X9wtSMO0cp2X0qiF8wOC2xsaTiV+7zdxtIn38CfDoSg9nW
+	LVGkhBt3jesz+VN0usVMpUb9PkQt/rxHRq0aMV5+0qByiSfmf2UexFcQu4GKNa1Onhis
+	WgwDZH0t3gaQIV027m2v1/0aGM1WT8PdN2TS4OZ8dGu/UN8xtqSBn4zRQyRpD5xNSGAv
+	bnaWHDkIqRBX2n/B10nNHbL9DI9XtJ9sESoiQy4R4YgUWIXmliF4IdQfllzknZOcHuv2
+	1yECYIlf9k6l3QRf2GKk98pAjWwS1xfea69+b/qn0/URUne32KbD3QNc9Llf3RzKUJA8
+	NwWA==
+X-Gm-Message-State: ALoCoQlmObAag5NAtC4pTsf08MXKKTPkhzGvxz3CT1idFQTScPi/7jcaJKkMprQwFr8xV8xJ1fMw
+X-Received: by 10.180.182.68 with SMTP id ec4mr3644492wic.40.1380304575002;
+	Fri, 27 Sep 2013 10:56:15 -0700 (PDT)
 Received: from deserted.net ([128.224.252.2])
-	by mx.google.com with ESMTPSA id e1sm40741435wij.6.1969.12.31.16.00.00
+	by mx.google.com with ESMTPSA id d11sm40719940wic.4.1969.12.31.16.00.00
 	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Fri, 27 Sep 2013 10:55:16 -0700 (PDT)
-Date: Fri, 27 Sep 2013 13:55:12 -0400
+	Fri, 27 Sep 2013 10:56:14 -0700 (PDT)
+Date: Fri, 27 Sep 2013 13:56:10 -0400
 From: Joe MacDonald <joe@deserted.net>
 To: Philip Tricca <flihp@twobit.us>
-Message-ID: <20130927175510.GB7238@deserted.net>
-References: <20130923035119.GA17078@longhaul.twobit.us>
+Message-ID: <20130927175608.GC7238@deserted.net>
+References: <20130926045827.GA1541@longhaul.twobit.us>
 MIME-Version: 1.0
-In-Reply-To: <20130923035119.GA17078@longhaul.twobit.us>
+In-Reply-To: <20130926045827.GA1541@longhaul.twobit.us>
 X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
 X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
 X-Editor: Vim-703 http://www.vim.org
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux] Stage SELinux config file in the sysroot.
+Subject: Re: [meta-selinux] Add util-linux-agetty to core-image-selinux IMAGE_INSTALL.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,13 +48,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2013 17:55:20 -0000
-X-Groupsio-MsgNum: 16271
+X-List-Received-Date: Fri, 27 Sep 2013 17:56:16 -0000
+X-Groupsio-MsgNum: 16272
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="eJnRUKwClWJh1Khz"
+	protocol="application/pgp-signature"; boundary="2JFBq9zoW8cOFH7v"
 Content-Disposition: inline
 
---eJnRUKwClWJh1Khz
+--2JFBq9zoW8cOFH7v
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -62,48 +62,48 @@ Content-Transfer-Encoding: quoted-printable
 Merged, thanks.
 -J.
 
-[[yocto] [meta-selinux] Stage SELinux config file in the sysroot.] On 13.09=
-=2E23 (Mon 03:51) Philip Tricca wrote:
+[[yocto] [meta-selinux] Add util-linux-agetty to core-image-selinux IMAGE_I=
+NSTALL.] On 13.09.26 (Thu 04:58) Philip Tricca wrote:
 
-> This is needed to build policy modules outside of the refpolicy.
-> Policy module build systems need to determine the name of the policy
-> that will be in effect on the target host. This allows them to
-> locate the policy headers that will be under
-> $sysroot/usr/share/selinux/$name/include. Given that there *could*
-> be more than one policy installed in the sysroot we can't assume
-> that the policy installed there is the only policy to build against.
+> Currently logins to core-image-selinux images through a getty (serial)
+> fail. This is caused by the use of the busybox getty. SELinux depends
+> on executable files and their labels to transition between types.
+> The symlink to busybox is not sufficient to cause the getty processes
+> to transition to the right SELinux context. Using a getty binary
+> like the one provided by util-linux fixes this.
 >=20
 > Signed-off-by: Philip Tricca <flihp@twobit.us>
 > ---
->  recipes-security/selinux/selinux-config_0.1.bb |    3 +++
->  1 file changed, 3 insertions(+)
+>  recipes-security/images/core-image-selinux.bb |    1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-sec=
-urity/selinux/selinux-config_0.1.bb
-> index 9521dcf..ad0d647 100644
-> --- a/recipes-security/selinux/selinux-config_0.1.bb
-> +++ b/recipes-security/selinux/selinux-config_0.1.bb
-> @@ -43,3 +43,6 @@ SELINUXTYPE=3D${DEFAULT_POLICY}
->  	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
->  }
+> diff --git a/recipes-security/images/core-image-selinux.bb b/recipes-secu=
+rity/images/core-image-selinux.bb
+> index 0109933..1ec7b08 100644
+> --- a/recipes-security/images/core-image-selinux.bb
+> +++ b/recipes-security/images/core-image-selinux.bb
+> @@ -6,6 +6,7 @@ LICENSE =3D "MIT"
 > =20
-> +sysroot_stage_all_append () {
-> +	sysroot_stage_dir ${D}${sysconfdir} ${SYSROOT_DESTDIR}${sysconfdir}
-> +}
+>  IMAGE_INSTALL =3D "\
+>  	${CORE_IMAGE_BASE_INSTALL} \
+> +	util-linux-agetty \
+>  	packagegroup-core-basic \
+>  	packagegroup-core-selinux \
+>  "  =20
 --=20
 -Joe MacDonald.
 :wq
 
---eJnRUKwClWJh1Khz
+--2JFBq9zoW8cOFH7v
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iEYEARECAAYFAlJFxn4ACgkQwFvcllog0XzmKwCghnbMmKJMu4Nw6c46ZyNkosbb
-ePMAn3Yrn9prQNm7HPbGNtJsAVm5Xaby
-=sJZ1
+iEYEARECAAYFAlJFxrgACgkQwFvcllog0XwutwCgiqKDrX4at9OZaUgx8jJtGJqZ
+lU4AnRG6RUztHTAp/xwmvS51CboGOaxF
+=X7aG
 -----END PGP SIGNATURE-----
 
---eJnRUKwClWJh1Khz--
+--2JFBq9zoW8cOFH7v--
