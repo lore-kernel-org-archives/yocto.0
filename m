@@ -1,34 +1,20 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-we0-f180.google.com (mail-we0-f180.google.com
-	[74.125.82.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0F81E0164A
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 15:29:26 -0700 (PDT)
-Received: by mail-we0-f180.google.com with SMTP id u57so1837927wes.39
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 15:29:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=GdB1d99wseuDaMj7TpxdVwQIwqhmp1aM2QOoFveKeY8=;
-	b=CiWF8WJMUo38P7lX5ljY3zuXl4w9TxM9SDfubWZR70E6ikuydUWzgjYU7AAoUw76aH
-	5GXZ+xMngxjl1w2vYwyBp+SVB3AqwKgs9aDjqWYFeMMMJSmSl3yutWJSNbDJn1/6l7Yd
-	k45nHXWcIK8JyTb3m1+R27tlqfnJRZaN5UeYfG55DbCasrdW3LNO++um2JclSo0rQa88
-	OZeYHmqY8sTaNLUlXD+XLCpqiUn2zP47q7KErl4dipRnXuhYHmEHGBLldUXNpsDj6DrK
-	xQVUr91185Do7D84KCN1s9Eydkm/a9h/dfx39TIxGwBsWnQmSTR++Q0NkcchOxD+negZ
-	0ixQ==
-X-Gm-Message-State: ALoCoQnKyACNa9ScBJyE7pLjplnRph/6ulhryULJKlqnK8D5Zylvd0W0ah5TeGRMwPup0KPoC6AR
-X-Received: by 10.194.123.227 with SMTP id md3mr2897134wjb.17.1380234565644;
-	Thu, 26 Sep 2013 15:29:25 -0700 (PDT)
+Return-Path: <linux@rkirkpat.net>
+Received: from saratoga.rkirkpat.net (saratoga.rkirkpat.net [206.196.156.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A15C4E0164A
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 17:04:05 -0700 (PDT)
+Received: from magellan.rkirkpat.net (magellan.rkirkpat.net [192.168.7.5])
+	by saratoga.rkirkpat.net (Postfix) with ESMTP
+	id EF70871767; Thu, 26 Sep 2013 18:04:03 -0600 (MDT)
+Date: Thu, 26 Sep 2013 18:04:03 -0600 (MDT)
+From: Ryan Kirkpatrick <linux@rkirkpat.net>
+X-X-Sender: rkirkpat@magellan.rkirkpat.net
+To: yocto@yoctoproject.org
+In-Reply-To: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
+Message-ID: <alpine.DEB.2.00.1309261742510.27991@magellan.rkirkpat.net>
+References: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
+User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
 MIME-Version: 1.0
-Received: by 10.180.74.46 with HTTP; Thu, 26 Sep 2013 15:29:05 -0700 (PDT)
-In-Reply-To: <E51394554A503C4E852F9BEE46B03E8DF039C2@TI-ODIN.tasernet.com>
-References: <E51394554A503C4E852F9BEE46B03E8DF039C2@TI-ODIN.tasernet.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 27 Sep 2013 00:29:05 +0200
-Message-ID: <CAP71Wjx4KQtfiEG4a4kin6XAtu9fMwZON6cNDgHDwJksef_H4w@mail.gmail.com>
-To: Brad Litterell <brad@evidence.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Question about automatic debug package generation
+Subject: Re: Mono 2.10.8.1 (meta-mono) Corelib not in sync with runtime...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,123 +26,219 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2013 22:29:28 -0000
-Content-Type: multipart/alternative; boundary=089e01229a58fe065804e750e650
+X-List-Received-Date: Fri, 27 Sep 2013 00:04:06 -0000
+X-Groupsio-MsgNum: 16252
+Content-Type: MULTIPART/MIXED;
+	BOUNDARY="-1463810809-1370607321-1380240243=:27991"
 
---089e01229a58fe065804e750e650
-Content-Type: text/plain; charset=ISO-8859-1
+---1463810809-1370607321-1380240243=:27991
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Fri, Sep 27, 2013 at 12:00 AM, Brad Litterell <brad@evidence.com> wrote:
+On Fri, 20 Sep 2013, Ryan Kirkpatrick wrote:
 
-> My recipe builds and ships an executable in /foo/bin/fooapp
->
->  FILES_${PN} += "/foo/bin/*"
->
->  WARNING: QA Issue: foo: Files/directories were installed but not shipped
->   /foo/bin/.debug
->   /foo/bin/.debug/fooapp
->
->  This file doesn't appear in the image, but is in the package folder:
->  ./package/foo/bin/.debug/fooapp
->
->  It appears something is automatically creating these .debug files during
-> the packaging steps, but the corresponding file isn't under packages-split.
->
->
->  Can someone point me to a place to learn more about how these are
-> created and packaged?
->
+> I am trying to get Mono 2.10 working on a core-image-basic running on 
+> qemux86 machine. I am using pokay-dylan-9.0.2 on a Debian 6.0.7 system for 
+> the builds and been able to build and run images without issue. Yet, when 
+> I went to add the meta-mono layer from git.yoctoporject.org, I started 
+> running into problems.
+> 
+> Corlib not in sync with this runtime: expected corlib version 96, found 100.
+> Loaded from: /usr/lib/mono/2.0/mscorlib.dll
+> Download a newer corlib or a newer runtime at http://www.go-mono.com/daily.
 
-this is done in meta/classes/package.bbclass. at the beginning of that
-file, you will find an overall description of what the 'packaging' steps
-are, and you can see, among many things:
+I dug into the mono build and figured out that I had a version mismatch 
+between 'mono' (builds the runtime for the target) and 'mono-native' 
+(builds a runtime for the build system and uses it to build the corlib). 
+The key was defining both of the following in local.conf, not just the 
+first line which is all I had originally.
 
-# d) split_and_strip_files - split the files into runtime and debug and
-strip them.
+PREFERRED_VERSION_mono = "2.10.8.1"
+PREFERRED_VERSION_mono-native = "2.10.8.1"
 
-#    Debug files include debug info split, and associated sources that end
-up in -dbg packages
+Anyway, attached is a patch against meta-mono (from 
+git://git.yoctoproject.org/meta-mono) that makes these changes:
+ - Adds a comment to the README about the two configs above.
+ - Reconfigures mono to be built without X support, skip as desired.
+ - A few packaging tweaks, namely moving the bulky *.mdb (Mono debug 
+   databases) to the -dbg package.
+ - Adjustment to QA packaging checks to resolve errors encountered.
+ - Moved the mono-2.10.8.1 folder in meta-mono/recipes/mono to 
+   meta-mono/recipes/mono/files so the contents can be found.
+ - Quick fix to mono-xsp recipe to avoid parsing error, probably not the 
+   fix to make if mono-xsp was going to be built (but I am not).
 
-you can then check the source code for the function split_and_strip_files.
+Hope that helps some one, it does myself as I can now run Mono apps in my 
+qemux86 target. Next challenge is to do the same with a qemuarm target 
+(actual hardware comes later :)!
 
-Now, about 'packaging' the files, you need to look at
-meta/conf/bitbake.conf and search for FILES_{PN}-dbg. this is the default
-variable that specifies which files go into the -dbg package. Your issue
-above is because the 'default' path for binary is /usr/bin, hence the
-'default' path for debug variants is /usr/bin/.debug. But if you need
-'/foo' , you can change these default in your recipe, by modifying
-FILES_{PN}xxx in your .bb file.
+---------------------------------------------------------------------------
+| Ryan Kirkpatrick | Boulder, CO | rkirkpat.net | twitter.com/rkirkpatnet |
+---------------------------------------------------------------------------
 
---089e01229a58fe065804e750e650
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+---1463810809-1370607321-1380240243=:27991
+Content-Type: TEXT/x-diff; name=meta-mono-fixes.patch
+Content-Transfer-Encoding: BASE64
+Content-ID: <alpine.DEB.2.00.1309261804030.27991@magellan.rkirkpat.net>
+Content-Description: 
+Content-Disposition: attachment; filename=meta-mono-fixes.patch
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Fri, Sep 27, 2013 at 12:00 AM, Brad Litterell <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:brad@evidence.com" target=3D"_blank">brad@evidence.com</a>&gt=
-;</span> wrote:<br>
+SW5kZXg6IG1ldGEtbW9uby9SRUFETUUNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vUkVBRE1F
+CShyZXZpc2lvbiA0NzA0KQ0KKysrIG1ldGEtbW9uby9SRUFETUUJKHdvcmtpbmcgY29weSkNCkBA
+IC0zNCw4ICszNCwxNyBAQA0KIFdpbmRvd3MgRm9ybXMgYXBwbGljYXRpb25zLiBXaGlsZSBtb25v
+IGNhbiBydW4gdy9vIFgsIHRoYXQgcmVjaXBlDQogaXMgbm90IHN1cHBvcnRlZCBjdXJyZW50bHku
+IEl0IGlzIHVubGlrZWx5IHRvIGJlIHN1cHBvcnRlZC4NCiANCitXQVJOSU5HOg0KK0lmIG5vdCBi
+dWlsZGluZyB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgTW9ubywgbWFrZSBzdXJlIHRoYXQNCitQUkVG
+RVJSRURfVkVSU0lPTl8qIGlzIGRlZmluZWQgZm9yIGJvdGggbW9ubyBhbmQgbW9uby1uYXRpdmUu
+DQorT3RoZXJ3aXNlIHRoZSBydW50aW1lIChidWlsdCBieSBtb25vIHJlY2lwZSkgYW5kIGNvcmxp
+YiAoYnVpbHQgYnkNCittb25vLW5hdGl2ZSByZWNpcGUpIHdpbGwgbm90IGJlIGluIHN5bmMhIFRo
+YXQgaXMsIHRvIGJ1aWxkIE1vbm8NCit2Mi4xMC44LjEsIHB1dCB0aGlzIGluIGxvY2FsLmNvbmYg
+b3IgYSBkaXN0cm8gY29uZjoNCiANCitQUkVGRVJSRURfVkVSU0lPTl9tb25vID0gIjIuMTAuOC4x
+Ig0KK1BSRUZFUlJFRF9WRVJTSU9OX21vbm8tbmF0aXZlID0gIjIuMTAuOC4xIg0KIA0KKw0KIDMp
+IE1haW50YWluZXIocykgJiBQYXRjaCBwb2xpY3kNCiANCiBBdXRpZiBLaGFuIChhdXRpZi5tbGlz
+dEBnbWFpbC5jb20pDQpJbmRleDogbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm9fMi4x
+MC44LjEuYmINCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9u
+b18yLjEwLjguMS5iYgkocmV2aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBlcy1tb25v
+L21vbm8vbW9ub18yLjEwLjguMS5iYgkod29ya2luZyBjb3B5KQ0KQEAgLTIsMTEgKzIsMTIgQEAN
+CiANCiBpbmhlcml0IGF1dG90b29scyBwa2djb25maWcNCiANCi1ERVBFTkRTID0rICJtb25vLW5h
+dGl2ZSBsaWJnZGlwbHVzIg0KK0RFUEVORFMgPSsgIm1vbm8tbmF0aXZlIg0KIA0KLVBSID0gInIw
+Ig0KK1BSID0gInIxIg0KIA0KIEVYVFJBX09FQ09ORiArPSAiLS1kaXNhYmxlLW1jcy1idWlsZCBt
+b25vX2N2X3VzY29yZT1ubyAtLXdpdGgtdGxzPXB0aHJlYWQgLS13aXRoLXNpZ2FsdHN0YWNrPW5v
+IC0td2l0aC1tY3MtZG9jcz1ubyINCitFWFRSQV9PRUNPTkYgKz0gIi0td2l0aG91dC14IC0td2l0
+aG91dC1tb29ubGlnaHQgLS13aXRob3V0LWxpYmdkaXBsdXMiDQogDQogZG9fY29uZmlndXJlX3By
+ZXBlbmQoKSB7DQogCWF1dG9yZWNvbmYgLVdjcm9zcyAtLXZlcmJvc2UgLS1pbnN0YWxsIC0tZm9y
+Y2UgfHwgYmJub3RlICJtb25vIGZhaWxlZCB0byBhdXRvcmVjb25mIg0KQEAgLTI1LDYgKzI2LDkg
+QEANCiBGSUxFU18ke1BOfSArPSAiJHtsaWJkaXJ9L2xpYmlrdm0tbmF0aXZlLnNvIg0KIEZJTEVT
+XyR7UE59ICs9ICIke2xpYmRpcn0vbGliTW9ub1Bvc2l4SGVscGVyLnNvIg0KIEZJTEVTXyR7UE59
+ICs9ICIke2xpYmRpcn0vbGliTW9ub1N1cHBvcnRXLnNvIg0KK0ZJTEVTXyR7UE59ICs9ICIke2Rh
+dGFkaXJ9L21vbm8tMi4wIg0KK0ZJTEVTXyR7UE59ICs9ICIke2RhdGFkaXJ9L2xpYmdjLW1vbm8i
+DQorRklMRVNfJHtQTn0tZGJnICs9ICJ1c3IvbGliL21vbm8vKi8qLm1kYiB1c3IvbGliL21vbm8v
+Ki8qLyoubWRiIHVzci9saWIvbW9uby8qLyovKi8qLm1kYiINCiANCi1JTlNBTkVfU0tJUF8ke1BO
+fSA9ICJhcmNoIGRldi1zbyBkZWJ1Zy1maWxlcyINCitJTlNBTkVfU0tJUF8ke1BOfSA9ICJhcmNo
+IGRldi1zbyBkZWJ1Zy1maWxlcyBsZGZsYWdzIg0KIA0KSW5kZXg6IG1ldGEtbW9uby9yZWNpcGVz
+LW1vbm8vbW9uby9maWxlcy9tb25vLTIuMTAuOC4xL01ha2VmaWxlLmFtLmRpZmYNCj09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vZmlsZXMvbW9uby0yLjEwLjguMS9N
+YWtlZmlsZS5hbS5kaWZmCShyZXZpc2lvbiAwKQ0KKysrIG1ldGEtbW9uby9yZWNpcGVzLW1vbm8v
+bW9uby9maWxlcy9tb25vLTIuMTAuOC4xL01ha2VmaWxlLmFtLmRpZmYJKHJldmlzaW9uIDQ3NjUp
+DQpAQCAtMCwwICsxLDE1IEBADQorLS0tIG1vbm8tMi4xMC44LjEub3JpZy9NYWtlZmlsZS5hbQky
+MDEyLTAxLTI1IDE0OjI0OjQzLjU2NDAwMjIzMiAtMDUwMA0KKysrKyBtb25vLTIuMTAuOC4xL01h
+a2VmaWxlLmFtCTIwMTItMDEtMjUgMTQ6MjU6MDIuMDM2MDAyMjE4IC0wNTAwDQorQEAgLTQsMTAg
+KzQsMTAgQEANCisgTU9PTkxJR0hUX1NVQkRJUlMgPSAkKGxpYmdjX2RpcikgZWdsaWIvc3JjIG1v
+bm8NCisgDQorIGlmIENST1NTX0NPTVBJTElORw0KKy1TVUJESVJTID0gcG8gJChsaWJnY19kaXIp
+IGVnbGliIG1vbm8gJChpa3ZtX25hdGl2ZV9kaXIpIGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBz
+YW1wbGVzIG1zdmMgJChkb2NzX2RpcikNCisrU1VCRElSUyA9IHBvICQobGliZ2NfZGlyKSBlZ2xp
+YiBtb25vICQoaWt2bV9uYXRpdmVfZGlyKSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1h
+biBzYW1wbGVzIG1zdmMgJChkb2NzX2RpcikNCisgIyBLZWVwIGluIHN5bmMgd2l0aCBTVUJESVJT
+DQorICMjICd0b29scycgaXMgbm90IG5vcm1hbGx5IGJ1aWx0DQorLURJU1RfU1VCRElSUyA9IHBv
+IGxpYmdjIGVnbGliIG1vbm8gaWt2bS1uYXRpdmUgICAgICAgICBkYXRhIHJ1bnRpbWUgc2NyaXB0
+cyBtYW4gc2FtcGxlcyB0b29scyBtc3ZjIGRvY3MNCisrRElTVF9TVUJESVJTID0gcG8gbGliZ2Mg
+ZWdsaWIgbW9ubyBpa3ZtLW5hdGl2ZSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBz
+YW1wbGVzIHRvb2xzIG1zdmMgZG9jcw0KKyBlbHNlDQorIGlmIE9OTFlfTU9PTkxJR0hUDQorIFNV
+QkRJUlMgPSAkKE1PT05MSUdIVF9TVUJESVJTKSBydW50aW1lDQpJbmRleDogbWV0YS1tb25vL3Jl
+Y2lwZXMtbW9uby9tb25vL2ZpbGVzL21vbm8tMi4xMC44LjEvbWNzL2NsYXNzL01ha2VmaWxlLmRp
+ZmYNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vZmlsZXMvbW9u
+by0yLjEwLjguMS9tY3MvY2xhc3MvTWFrZWZpbGUuZGlmZgkocmV2aXNpb24gMCkNCisrKyBtZXRh
+LW1vbm8vcmVjaXBlcy1tb25vL21vbm8vZmlsZXMvbW9uby0yLjEwLjguMS9tY3MvY2xhc3MvTWFr
+ZWZpbGUuZGlmZgkocmV2aXNpb24gNDc2NSkNCkBAIC0wLDAgKzEsMTMgQEANCistLS0gbW9uby0y
+LjEwLjguMS5vcmlnL21jcy9jbGFzcy9NYWtlZmlsZQkyMDEyLTAxLTI3IDE2OjIwOjM2LjMxOTI5
+Nzk5OSAtMDUwMA0KKysrKyBtb25vLTIuMTAuOC4xL21jcy9jbGFzcy9NYWtlZmlsZQkyMDEyLTAx
+LTI3IDIwOjM3OjMwLjg2NzU5MzgyNSAtMDUwMA0KK0BAIC01NSwxMCArNTUsOCBAQA0KKyAJTm92
+ZWxsLkRpcmVjdG9yeS5MZGFwCQlcDQorIAlNb25vLlNlY3VyaXR5LldpbjMyCQlcDQorIAlTeXN0
+ZW0uRGlyZWN0b3J5U2VydmljZXMJXA0KKy0JUmFiYml0TVEuQ2xpZW50CQkJXA0KKyAJTW9uby5N
+ZXNzYWdpbmcJCQlcDQorIAlTeXN0ZW0uTWVzc2FnaW5nCSAgICAgICAgXA0KKy0JTW9uby5NZXNz
+YWdpbmcuUmFiYml0TVEJCVwNCisgCVN5c3RlbS5TZXJ2aWNlUHJvY2VzcyAgICAgICAgICAgXA0K
+KyAJU3lzdGVtLkRyYXdpbmcuRGVzaWduCQlcDQorIAlTeXN0ZW0uRGVzaWduCQkJXA0KSW5kZXg6
+IG1ldGEtbW9uby9yZWNpcGVzLW1vbm8vbW9uby9maWxlcy9tb25vLTIuMTAuOC4xL2RhdGEvY29u
+ZmlnLmluLmRpZmYNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8v
+ZmlsZXMvbW9uby0yLjEwLjguMS9kYXRhL2NvbmZpZy5pbi5kaWZmCShyZXZpc2lvbiAwKQ0KKysr
+IG1ldGEtbW9uby9yZWNpcGVzLW1vbm8vbW9uby9maWxlcy9tb25vLTIuMTAuOC4xL2RhdGEvY29u
+ZmlnLmluLmRpZmYJKHJldmlzaW9uIDQ3NjUpDQpAQCAtMCwwICsxLDExIEBADQorLS0tIG1vbm8t
+Mi4xMC44LjEub3JpZy9kYXRhL2NvbmZpZy5pbgkyMDEyLTAxLTI3IDA5OjI5OjA3LjA3MjAwMTky
+NCAtMDUwMA0KKysrKyBtb25vLTIuMTAuOC4xL2RhdGEvY29uZmlnLmluCTIwMTItMDEtMjcgMDk6
+MzA6NTkuNzQwMDAxOTMzIC0wNTAwDQorQEAgLTE1LDcgKzE1LDcgQEANCisgCTxkbGxtYXAgZGxs
+PSJpOm1zdmNydC5kbGwiIHRhcmdldD0iQExJQkNAIiBvcz0iIXdpbmRvd3MiLz4NCisgCTxkbGxt
+YXAgZGxsPSJzcWxpdGUiIHRhcmdldD0iQFNRTElURUAiIG9zPSIhd2luZG93cyIvPg0KKyAJPGRs
+bG1hcCBkbGw9InNxbGl0ZTMiIHRhcmdldD0iQFNRTElURTNAIiBvcz0iIXdpbmRvd3MiLz4NCist
+CTxkbGxtYXAgZGxsPSJsaWJYMTEiIHRhcmdldD0iQFgxMUAiIG9zPSIhd2luZG93cyIgLz4NCisr
+CTxkbGxtYXAgZGxsPSJsaWJYMTEiIHRhcmdldD0ibGliWDExLnNvLjYiIG9zPSIhd2luZG93cyIg
+Lz4NCisgCTxkbGxtYXAgZGxsPSJsaWJjYWlyby0yLmRsbCIgdGFyZ2V0PSJsaWJjYWlyby5zby4y
+IiBvcz0iIXdpbmRvd3MiLz4NCisgCTxkbGxtYXAgZGxsPSJsaWJjYWlyby0yLmRsbCIgdGFyZ2V0
+PSJsaWJjYWlyby4yLmR5bGliIiBvcz0ib3N4Ii8+DQorIAk8ZGxsbWFwIGRsbD0ibGliY3VwcyIg
+dGFyZ2V0PSJsaWJjdXBzLnNvLjIiIG9zPSIhd2luZG93cyIvPg0KSW5kZXg6IG1ldGEtbW9uby9y
+ZWNpcGVzLW1vbm8vbW9uby9tb25vLW5hdGl2ZV8yLjEwLjguMS5iYg0KPT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KLS0t
+IG1ldGEtbW9uby9yZWNpcGVzLW1vbm8vbW9uby9tb25vLW5hdGl2ZV8yLjEwLjguMS5iYgkocmV2
+aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9uby1uYXRpdmVf
+Mi4xMC44LjEuYmIJKHdvcmtpbmcgY29weSkNCkBAIC01LDYgKzUsNyBAQA0KIFBSID0gInIxIg0K
+IA0KIEVYVFJBX09FQ09ORiArPSAibW9ub19jdl91c2NvcmU9bm8gLS13aXRoLXRscz1wdGhyZWFk
+IC0td2l0aC1zaWdhbHRzdGFjaz1ubyAtLXdpdGgtbWNzLWRvY3M9bm8iDQorRVhUUkFfT0VDT05G
+ICs9ICItLXdpdGhvdXQteCAtLXdpdGhvdXQtbW9vbmxpZ2h0IC0td2l0aG91dC1saWJnZGlwbHVz
+Ig0KIA0KIGRvX2NvbmZpZ3VyZV9wcmVwZW5kKCkgew0KICAgICBhdXRvcmVjb25mIC1XY3Jvc3Mg
+LS12ZXJib3NlIC0taW5zdGFsbCAtLWZvcmNlIHx8IGJibm90ZSAibW9uby1uYXRpdmUgZmFpbGVk
+IHRvIGF1dG9yZWNvbmYiDQpJbmRleDogbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm8t
+Mi4xMC44LjEvZGF0YS9jb25maWcuaW4uZGlmZg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KLS0tIG1ldGEtbW9uby9y
+ZWNpcGVzLW1vbm8vbW9uby9tb25vLTIuMTAuOC4xL2RhdGEvY29uZmlnLmluLmRpZmYJKHJldmlz
+aW9uIDQ3MDQpDQorKysgbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm8tMi4xMC44LjEv
+ZGF0YS9jb25maWcuaW4uZGlmZgkod29ya2luZyBjb3B5KQ0KQEAgLTEsMTEgKzAsMCBAQA0KLS0t
+LSBtb25vLTIuMTAuOC4xLm9yaWcvZGF0YS9jb25maWcuaW4JMjAxMi0wMS0yNyAwOToyOTowNy4w
+NzIwMDE5MjQgLTA1MDANCi0rKysgbW9uby0yLjEwLjguMS9kYXRhL2NvbmZpZy5pbgkyMDEyLTAx
+LTI3IDA5OjMwOjU5Ljc0MDAwMTkzMyAtMDUwMA0KLUBAIC0xNSw3ICsxNSw3IEBADQotIAk8ZGxs
+bWFwIGRsbD0iaTptc3ZjcnQuZGxsIiB0YXJnZXQ9IkBMSUJDQCIgb3M9IiF3aW5kb3dzIi8+DQot
+IAk8ZGxsbWFwIGRsbD0ic3FsaXRlIiB0YXJnZXQ9IkBTUUxJVEVAIiBvcz0iIXdpbmRvd3MiLz4N
+Ci0gCTxkbGxtYXAgZGxsPSJzcWxpdGUzIiB0YXJnZXQ9IkBTUUxJVEUzQCIgb3M9IiF3aW5kb3dz
+Ii8+DQotLQk8ZGxsbWFwIGRsbD0ibGliWDExIiB0YXJnZXQ9IkBYMTFAIiBvcz0iIXdpbmRvd3Mi
+IC8+DQotKwk8ZGxsbWFwIGRsbD0ibGliWDExIiB0YXJnZXQ9ImxpYlgxMS5zby42IiBvcz0iIXdp
+bmRvd3MiIC8+DQotIAk8ZGxsbWFwIGRsbD0ibGliY2Fpcm8tMi5kbGwiIHRhcmdldD0ibGliY2Fp
+cm8uc28uMiIgb3M9IiF3aW5kb3dzIi8+DQotIAk8ZGxsbWFwIGRsbD0ibGliY2Fpcm8tMi5kbGwi
+IHRhcmdldD0ibGliY2Fpcm8uMi5keWxpYiIgb3M9Im9zeCIvPg0KLSAJPGRsbG1hcCBkbGw9Imxp
+YmN1cHMiIHRhcmdldD0ibGliY3Vwcy5zby4yIiBvcz0iIXdpbmRvd3MiLz4NCkluZGV4OiBtZXRh
+LW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9uby0yLjEwLjguMS9NYWtlZmlsZS5hbS5kaWZmDQo9
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09DQotLS0gbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm8tMi4xMC44LjEv
+TWFrZWZpbGUuYW0uZGlmZgkocmV2aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBlcy1t
+b25vL21vbm8vbW9uby0yLjEwLjguMS9NYWtlZmlsZS5hbS5kaWZmCSh3b3JraW5nIGNvcHkpDQpA
+QCAtMSwxNSArMCwwIEBADQotLS0tIG1vbm8tMi4xMC44LjEub3JpZy9NYWtlZmlsZS5hbQkyMDEy
+LTAxLTI1IDE0OjI0OjQzLjU2NDAwMjIzMiAtMDUwMA0KLSsrKyBtb25vLTIuMTAuOC4xL01ha2Vm
+aWxlLmFtCTIwMTItMDEtMjUgMTQ6MjU6MDIuMDM2MDAyMjE4IC0wNTAwDQotQEAgLTQsMTAgKzQs
+MTAgQEANCi0gTU9PTkxJR0hUX1NVQkRJUlMgPSAkKGxpYmdjX2RpcikgZWdsaWIvc3JjIG1vbm8N
+Ci0gDQotIGlmIENST1NTX0NPTVBJTElORw0KLS1TVUJESVJTID0gcG8gJChsaWJnY19kaXIpIGVn
+bGliIG1vbm8gJChpa3ZtX25hdGl2ZV9kaXIpIGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBzYW1w
+bGVzIG1zdmMgJChkb2NzX2RpcikNCi0rU1VCRElSUyA9IHBvICQobGliZ2NfZGlyKSBlZ2xpYiBt
+b25vICQoaWt2bV9uYXRpdmVfZGlyKSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBz
+YW1wbGVzIG1zdmMgJChkb2NzX2RpcikNCi0gIyBLZWVwIGluIHN5bmMgd2l0aCBTVUJESVJTDQot
+ICMjICd0b29scycgaXMgbm90IG5vcm1hbGx5IGJ1aWx0DQotLURJU1RfU1VCRElSUyA9IHBvIGxp
+YmdjIGVnbGliIG1vbm8gaWt2bS1uYXRpdmUgICAgICAgICBkYXRhIHJ1bnRpbWUgc2NyaXB0cyBt
+YW4gc2FtcGxlcyB0b29scyBtc3ZjIGRvY3MNCi0rRElTVF9TVUJESVJTID0gcG8gbGliZ2MgZWds
+aWIgbW9ubyBpa3ZtLW5hdGl2ZSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBzYW1w
+bGVzIHRvb2xzIG1zdmMgZG9jcw0KLSBlbHNlDQotIGlmIE9OTFlfTU9PTkxJR0hUDQotIFNVQkRJ
+UlMgPSAkKE1PT05MSUdIVF9TVUJESVJTKSBydW50aW1lDQpJbmRleDogbWV0YS1tb25vL3JlY2lw
+ZXMtbW9uby9tb25vL21vbm8tMi4xMC44LjEvbWNzL2NsYXNzL01ha2VmaWxlLmRpZmYNCj09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9uby0yLjEwLjguMS9tY3Mv
+Y2xhc3MvTWFrZWZpbGUuZGlmZgkocmV2aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBl
+cy1tb25vL21vbm8vbW9uby0yLjEwLjguMS9tY3MvY2xhc3MvTWFrZWZpbGUuZGlmZgkod29ya2lu
+ZyBjb3B5KQ0KQEAgLTEsMTMgKzAsMCBAQA0KLS0tLSBtb25vLTIuMTAuOC4xLm9yaWcvbWNzL2Ns
+YXNzL01ha2VmaWxlCTIwMTItMDEtMjcgMTY6MjA6MzYuMzE5Mjk3OTk5IC0wNTAwDQotKysrIG1v
+bm8tMi4xMC44LjEvbWNzL2NsYXNzL01ha2VmaWxlCTIwMTItMDEtMjcgMjA6Mzc6MzAuODY3NTkz
+ODI1IC0wNTAwDQotQEAgLTU1LDEwICs1NSw4IEBADQotIAlOb3ZlbGwuRGlyZWN0b3J5LkxkYXAJ
+CVwNCi0gCU1vbm8uU2VjdXJpdHkuV2luMzIJCVwNCi0gCVN5c3RlbS5EaXJlY3RvcnlTZXJ2aWNl
+cwlcDQotLQlSYWJiaXRNUS5DbGllbnQJCQlcDQotIAlNb25vLk1lc3NhZ2luZwkJCVwNCi0gCVN5
+c3RlbS5NZXNzYWdpbmcJICAgICAgICBcDQotLQlNb25vLk1lc3NhZ2luZy5SYWJiaXRNUQkJXA0K
+LSAJU3lzdGVtLlNlcnZpY2VQcm9jZXNzICAgICAgICAgICBcDQotIAlTeXN0ZW0uRHJhd2luZy5E
+ZXNpZ24JCVwNCi0gCVN5c3RlbS5EZXNpZ24JCQlcDQpJbmRleDogbWV0YS1tb25vL3JlY2lwZXMt
+bW9uby9tb25vLXhzcC9tb25vLXhzcF8xLjIuNS5iYg0KPT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KLS0tIG1ldGEtbW9u
+by9yZWNpcGVzLW1vbm8vbW9uby14c3AvbW9uby14c3BfMS4yLjUuYmIJKHJldmlzaW9uIDQ3MDQp
+DQorKysgbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vLXhzcC9tb25vLXhzcF8xLjIuNS5iYgko
+d29ya2luZyBjb3B5KQ0KQEAgLTkxLDcgKzkxLDcgQEANCiAJL3Vzci9saWIvbW9uby8yLjAvbW9k
+LW1vbm8tc2VydmVyMi5leGUgXA0KIAkvdXNyL2Jpbi9tb2QtbW9uby1zZXJ2ZXIyIFwNCiAJIg0K
+LUZJTEVTX21vbm8teHNwLWRldiA9ICJcDQorRklMRVNfbW9uby14c3AyLWRldiA9ICJcDQogCS91
+c3IvbGliL3BrZ2NvbmZpZy94c3AucGMgXA0KIAkvdXNyL2xpYi9wa2djb25maWcveHNwLTIucGMg
+XA0KIAkiDQo=
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>My recipe builds and ships an executable in /foo/bin/=
-fooapp</div>
-
-
-<div>
-<div><br>
-</div>
-<div>FILES_${PN} +=3D &quot;/foo/bin/*&quot;</div>
-</div>
-<div><br>
-</div>
-<div>WARNING: QA Issue: foo: Files/directories were installed but not shipp=
-ed</div>
-<div>=A0 /foo/bin/.debug</div>
-<div>=A0 /foo/bin/.debug/fooapp</div>
-<div><br>
-</div>
-<div>This file doesn&#39;t appear in the image, but is in the package folde=
-r:</div>
-<div>
-<div>./package/foo/bin/.debug/fooapp</div>
-</div>
-<div><br>
-</div>
-<div>It appears something is automatically creating these .debug files duri=
-ng the packaging steps, but the corresponding file isn&#39;t under packages=
--split. =A0</div>
-<div><br>
-</div>
-<div>Can someone point me to a place to learn more about how these are crea=
-ted and packaged?</div>
-<div></div></blockquote></div><br>this is done in meta/classes/package.bbcl=
-ass. at the beginning of that file, you will find an overall description of=
- what the &#39;packaging&#39; steps are, and you can see, among many things=
-:</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=
-=3D"gmail_extra"># d) split_and_strip_files - split the files into runtime =
-and debug and strip them. =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=A0</div>
-
-<div class=3D"gmail_extra"># =A0 =A0Debug files include debug info split, a=
-nd associated sources that end up in -dbg packages =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0</div><div =
-class=3D"gmail_extra">
-
-you can then check the source code for the function split_and_strip_files.<=
-/div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Now, a=
-bout &#39;packaging&#39; the files, you need to look at meta/conf/bitbake.c=
-onf and search for FILES_{PN}-dbg. this is the default variable that specif=
-ies which files go into the -dbg package. Your issue above is because the &=
-#39;default&#39; path for binary is /usr/bin, hence the &#39;default&#39; p=
-ath for debug variants is /usr/bin/.debug. But if you need &#39;/foo&#39; ,=
- you can change these default in your recipe, by modifying FILES_{PN}xxx in=
- your .bb file.</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br></div><=
-div><br></div></div><div class=3D"gmail_extra"><br></div></div>
-
---089e01229a58fe065804e750e650--
+---1463810809-1370607321-1380240243=:27991--
