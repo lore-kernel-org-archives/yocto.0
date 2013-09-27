@@ -1,20 +1,28 @@
-Return-Path: <linux@rkirkpat.net>
-Received: from saratoga.rkirkpat.net (saratoga.rkirkpat.net [206.196.156.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A15C4E0164A
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 17:04:05 -0700 (PDT)
-Received: from magellan.rkirkpat.net (magellan.rkirkpat.net [192.168.7.5])
-	by saratoga.rkirkpat.net (Postfix) with ESMTP
-	id EF70871767; Thu, 26 Sep 2013 18:04:03 -0600 (MDT)
-Date: Thu, 26 Sep 2013 18:04:03 -0600 (MDT)
-From: Ryan Kirkpatrick <linux@rkirkpat.net>
-X-X-Sender: rkirkpat@magellan.rkirkpat.net
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0349EE0164A
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2013 18:40:29 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=longhaul.twobit.us)
+	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VPN2h-00014z-AR; Fri, 27 Sep 2013 01:40:27 +0000
+Date: Fri, 27 Sep 2013 01:40:17 +0000
+From: Philip Tricca <flihp@twobit.us>
 To: yocto@yoctoproject.org
-In-Reply-To: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
-Message-ID: <alpine.DEB.2.00.1309261742510.27991@magellan.rkirkpat.net>
-References: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
-User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
+Message-ID: <20130927014017.GA11590@longhaul.twobit.us>
 MIME-Version: 1.0
-Subject: Re: Mono 2.10.8.1 (meta-mono) Corelib not in sync with runtime...
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
+Cc: Joe.MacDonald@windriver.com
+Subject: [meta-selinux] Add ${bindir}/sepolgen to system-config-selinux package.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,219 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2013 00:04:06 -0000
-X-Groupsio-MsgNum: 16252
-Content-Type: MULTIPART/MIXED;
-	BOUNDARY="-1463810809-1370607321-1380240243=:27991"
+X-List-Received-Date: Fri, 27 Sep 2013 01:40:30 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
----1463810809-1370607321-1380240243=:27991
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+Currently the policycoreutils package has a broken link from
+${bindir}/sepolgen to ${datadir}/system-config-selinux/polgen.py.
+All of the other polgen stuff is in system-config-selinux so
+adding sepolgen to same package seems like the right thing to do.
 
-On Fri, 20 Sep 2013, Ryan Kirkpatrick wrote:
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-security/selinux/policycoreutils.inc |    5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> I am trying to get Mono 2.10 working on a core-image-basic running on 
-> qemux86 machine. I am using pokay-dylan-9.0.2 on a Debian 6.0.7 system for 
-> the builds and been able to build and run images without issue. Yet, when 
-> I went to add the meta-mono layer from git.yoctoporject.org, I started 
-> running into problems.
-> 
-> Corlib not in sync with this runtime: expected corlib version 96, found 100.
-> Loaded from: /usr/lib/mono/2.0/mscorlib.dll
-> Download a newer corlib or a newer runtime at http://www.go-mono.com/daily.
+diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
+index 08b14eb..7939095 100644
+--- a/recipes-security/selinux/policycoreutils.inc
++++ b/recipes-security/selinux/policycoreutils.inc
+@@ -48,7 +48,10 @@ FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+ FILES_${PN}-sandbox = "${datadir}/sandbox/*"
+ FILES_${PN}-sandbox += "${bindir}/sandbox"
+ FILES_${PN}-sandbox += "${sbindir}/seunshare"
+-FILES_system-config-selinux = "${datadir}/system-config-selinux/*"
++FILES_system-config-selinux = " \
++    ${bindir}/sepolgen \
++    ${datadir}/system-config-selinux/* \
++"
+ 
+ inherit pythonnative
+ 
+-- 
+1.7.10.4
 
-I dug into the mono build and figured out that I had a version mismatch 
-between 'mono' (builds the runtime for the target) and 'mono-native' 
-(builds a runtime for the build system and uses it to build the corlib). 
-The key was defining both of the following in local.conf, not just the 
-first line which is all I had originally.
 
-PREFERRED_VERSION_mono = "2.10.8.1"
-PREFERRED_VERSION_mono-native = "2.10.8.1"
-
-Anyway, attached is a patch against meta-mono (from 
-git://git.yoctoproject.org/meta-mono) that makes these changes:
- - Adds a comment to the README about the two configs above.
- - Reconfigures mono to be built without X support, skip as desired.
- - A few packaging tweaks, namely moving the bulky *.mdb (Mono debug 
-   databases) to the -dbg package.
- - Adjustment to QA packaging checks to resolve errors encountered.
- - Moved the mono-2.10.8.1 folder in meta-mono/recipes/mono to 
-   meta-mono/recipes/mono/files so the contents can be found.
- - Quick fix to mono-xsp recipe to avoid parsing error, probably not the 
-   fix to make if mono-xsp was going to be built (but I am not).
-
-Hope that helps some one, it does myself as I can now run Mono apps in my 
-qemux86 target. Next challenge is to do the same with a qemuarm target 
-(actual hardware comes later :)!
-
----------------------------------------------------------------------------
-| Ryan Kirkpatrick | Boulder, CO | rkirkpat.net | twitter.com/rkirkpatnet |
----------------------------------------------------------------------------
-
----1463810809-1370607321-1380240243=:27991
-Content-Type: TEXT/x-diff; name=meta-mono-fixes.patch
-Content-Transfer-Encoding: BASE64
-Content-ID: <alpine.DEB.2.00.1309261804030.27991@magellan.rkirkpat.net>
-Content-Description: 
-Content-Disposition: attachment; filename=meta-mono-fixes.patch
-
-SW5kZXg6IG1ldGEtbW9uby9SRUFETUUNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vUkVBRE1F
-CShyZXZpc2lvbiA0NzA0KQ0KKysrIG1ldGEtbW9uby9SRUFETUUJKHdvcmtpbmcgY29weSkNCkBA
-IC0zNCw4ICszNCwxNyBAQA0KIFdpbmRvd3MgRm9ybXMgYXBwbGljYXRpb25zLiBXaGlsZSBtb25v
-IGNhbiBydW4gdy9vIFgsIHRoYXQgcmVjaXBlDQogaXMgbm90IHN1cHBvcnRlZCBjdXJyZW50bHku
-IEl0IGlzIHVubGlrZWx5IHRvIGJlIHN1cHBvcnRlZC4NCiANCitXQVJOSU5HOg0KK0lmIG5vdCBi
-dWlsZGluZyB0aGUgbGF0ZXN0IHZlcnNpb24gb2YgTW9ubywgbWFrZSBzdXJlIHRoYXQNCitQUkVG
-RVJSRURfVkVSU0lPTl8qIGlzIGRlZmluZWQgZm9yIGJvdGggbW9ubyBhbmQgbW9uby1uYXRpdmUu
-DQorT3RoZXJ3aXNlIHRoZSBydW50aW1lIChidWlsdCBieSBtb25vIHJlY2lwZSkgYW5kIGNvcmxp
-YiAoYnVpbHQgYnkNCittb25vLW5hdGl2ZSByZWNpcGUpIHdpbGwgbm90IGJlIGluIHN5bmMhIFRo
-YXQgaXMsIHRvIGJ1aWxkIE1vbm8NCit2Mi4xMC44LjEsIHB1dCB0aGlzIGluIGxvY2FsLmNvbmYg
-b3IgYSBkaXN0cm8gY29uZjoNCiANCitQUkVGRVJSRURfVkVSU0lPTl9tb25vID0gIjIuMTAuOC4x
-Ig0KK1BSRUZFUlJFRF9WRVJTSU9OX21vbm8tbmF0aXZlID0gIjIuMTAuOC4xIg0KIA0KKw0KIDMp
-IE1haW50YWluZXIocykgJiBQYXRjaCBwb2xpY3kNCiANCiBBdXRpZiBLaGFuIChhdXRpZi5tbGlz
-dEBnbWFpbC5jb20pDQpJbmRleDogbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm9fMi4x
-MC44LjEuYmINCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9u
-b18yLjEwLjguMS5iYgkocmV2aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBlcy1tb25v
-L21vbm8vbW9ub18yLjEwLjguMS5iYgkod29ya2luZyBjb3B5KQ0KQEAgLTIsMTEgKzIsMTIgQEAN
-CiANCiBpbmhlcml0IGF1dG90b29scyBwa2djb25maWcNCiANCi1ERVBFTkRTID0rICJtb25vLW5h
-dGl2ZSBsaWJnZGlwbHVzIg0KK0RFUEVORFMgPSsgIm1vbm8tbmF0aXZlIg0KIA0KLVBSID0gInIw
-Ig0KK1BSID0gInIxIg0KIA0KIEVYVFJBX09FQ09ORiArPSAiLS1kaXNhYmxlLW1jcy1idWlsZCBt
-b25vX2N2X3VzY29yZT1ubyAtLXdpdGgtdGxzPXB0aHJlYWQgLS13aXRoLXNpZ2FsdHN0YWNrPW5v
-IC0td2l0aC1tY3MtZG9jcz1ubyINCitFWFRSQV9PRUNPTkYgKz0gIi0td2l0aG91dC14IC0td2l0
-aG91dC1tb29ubGlnaHQgLS13aXRob3V0LWxpYmdkaXBsdXMiDQogDQogZG9fY29uZmlndXJlX3By
-ZXBlbmQoKSB7DQogCWF1dG9yZWNvbmYgLVdjcm9zcyAtLXZlcmJvc2UgLS1pbnN0YWxsIC0tZm9y
-Y2UgfHwgYmJub3RlICJtb25vIGZhaWxlZCB0byBhdXRvcmVjb25mIg0KQEAgLTI1LDYgKzI2LDkg
-QEANCiBGSUxFU18ke1BOfSArPSAiJHtsaWJkaXJ9L2xpYmlrdm0tbmF0aXZlLnNvIg0KIEZJTEVT
-XyR7UE59ICs9ICIke2xpYmRpcn0vbGliTW9ub1Bvc2l4SGVscGVyLnNvIg0KIEZJTEVTXyR7UE59
-ICs9ICIke2xpYmRpcn0vbGliTW9ub1N1cHBvcnRXLnNvIg0KK0ZJTEVTXyR7UE59ICs9ICIke2Rh
-dGFkaXJ9L21vbm8tMi4wIg0KK0ZJTEVTXyR7UE59ICs9ICIke2RhdGFkaXJ9L2xpYmdjLW1vbm8i
-DQorRklMRVNfJHtQTn0tZGJnICs9ICJ1c3IvbGliL21vbm8vKi8qLm1kYiB1c3IvbGliL21vbm8v
-Ki8qLyoubWRiIHVzci9saWIvbW9uby8qLyovKi8qLm1kYiINCiANCi1JTlNBTkVfU0tJUF8ke1BO
-fSA9ICJhcmNoIGRldi1zbyBkZWJ1Zy1maWxlcyINCitJTlNBTkVfU0tJUF8ke1BOfSA9ICJhcmNo
-IGRldi1zbyBkZWJ1Zy1maWxlcyBsZGZsYWdzIg0KIA0KSW5kZXg6IG1ldGEtbW9uby9yZWNpcGVz
-LW1vbm8vbW9uby9maWxlcy9tb25vLTIuMTAuOC4xL01ha2VmaWxlLmFtLmRpZmYNCj09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vZmlsZXMvbW9uby0yLjEwLjguMS9N
-YWtlZmlsZS5hbS5kaWZmCShyZXZpc2lvbiAwKQ0KKysrIG1ldGEtbW9uby9yZWNpcGVzLW1vbm8v
-bW9uby9maWxlcy9tb25vLTIuMTAuOC4xL01ha2VmaWxlLmFtLmRpZmYJKHJldmlzaW9uIDQ3NjUp
-DQpAQCAtMCwwICsxLDE1IEBADQorLS0tIG1vbm8tMi4xMC44LjEub3JpZy9NYWtlZmlsZS5hbQky
-MDEyLTAxLTI1IDE0OjI0OjQzLjU2NDAwMjIzMiAtMDUwMA0KKysrKyBtb25vLTIuMTAuOC4xL01h
-a2VmaWxlLmFtCTIwMTItMDEtMjUgMTQ6MjU6MDIuMDM2MDAyMjE4IC0wNTAwDQorQEAgLTQsMTAg
-KzQsMTAgQEANCisgTU9PTkxJR0hUX1NVQkRJUlMgPSAkKGxpYmdjX2RpcikgZWdsaWIvc3JjIG1v
-bm8NCisgDQorIGlmIENST1NTX0NPTVBJTElORw0KKy1TVUJESVJTID0gcG8gJChsaWJnY19kaXIp
-IGVnbGliIG1vbm8gJChpa3ZtX25hdGl2ZV9kaXIpIGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBz
-YW1wbGVzIG1zdmMgJChkb2NzX2RpcikNCisrU1VCRElSUyA9IHBvICQobGliZ2NfZGlyKSBlZ2xp
-YiBtb25vICQoaWt2bV9uYXRpdmVfZGlyKSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1h
-biBzYW1wbGVzIG1zdmMgJChkb2NzX2RpcikNCisgIyBLZWVwIGluIHN5bmMgd2l0aCBTVUJESVJT
-DQorICMjICd0b29scycgaXMgbm90IG5vcm1hbGx5IGJ1aWx0DQorLURJU1RfU1VCRElSUyA9IHBv
-IGxpYmdjIGVnbGliIG1vbm8gaWt2bS1uYXRpdmUgICAgICAgICBkYXRhIHJ1bnRpbWUgc2NyaXB0
-cyBtYW4gc2FtcGxlcyB0b29scyBtc3ZjIGRvY3MNCisrRElTVF9TVUJESVJTID0gcG8gbGliZ2Mg
-ZWdsaWIgbW9ubyBpa3ZtLW5hdGl2ZSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBz
-YW1wbGVzIHRvb2xzIG1zdmMgZG9jcw0KKyBlbHNlDQorIGlmIE9OTFlfTU9PTkxJR0hUDQorIFNV
-QkRJUlMgPSAkKE1PT05MSUdIVF9TVUJESVJTKSBydW50aW1lDQpJbmRleDogbWV0YS1tb25vL3Jl
-Y2lwZXMtbW9uby9tb25vL2ZpbGVzL21vbm8tMi4xMC44LjEvbWNzL2NsYXNzL01ha2VmaWxlLmRp
-ZmYNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vZmlsZXMvbW9u
-by0yLjEwLjguMS9tY3MvY2xhc3MvTWFrZWZpbGUuZGlmZgkocmV2aXNpb24gMCkNCisrKyBtZXRh
-LW1vbm8vcmVjaXBlcy1tb25vL21vbm8vZmlsZXMvbW9uby0yLjEwLjguMS9tY3MvY2xhc3MvTWFr
-ZWZpbGUuZGlmZgkocmV2aXNpb24gNDc2NSkNCkBAIC0wLDAgKzEsMTMgQEANCistLS0gbW9uby0y
-LjEwLjguMS5vcmlnL21jcy9jbGFzcy9NYWtlZmlsZQkyMDEyLTAxLTI3IDE2OjIwOjM2LjMxOTI5
-Nzk5OSAtMDUwMA0KKysrKyBtb25vLTIuMTAuOC4xL21jcy9jbGFzcy9NYWtlZmlsZQkyMDEyLTAx
-LTI3IDIwOjM3OjMwLjg2NzU5MzgyNSAtMDUwMA0KK0BAIC01NSwxMCArNTUsOCBAQA0KKyAJTm92
-ZWxsLkRpcmVjdG9yeS5MZGFwCQlcDQorIAlNb25vLlNlY3VyaXR5LldpbjMyCQlcDQorIAlTeXN0
-ZW0uRGlyZWN0b3J5U2VydmljZXMJXA0KKy0JUmFiYml0TVEuQ2xpZW50CQkJXA0KKyAJTW9uby5N
-ZXNzYWdpbmcJCQlcDQorIAlTeXN0ZW0uTWVzc2FnaW5nCSAgICAgICAgXA0KKy0JTW9uby5NZXNz
-YWdpbmcuUmFiYml0TVEJCVwNCisgCVN5c3RlbS5TZXJ2aWNlUHJvY2VzcyAgICAgICAgICAgXA0K
-KyAJU3lzdGVtLkRyYXdpbmcuRGVzaWduCQlcDQorIAlTeXN0ZW0uRGVzaWduCQkJXA0KSW5kZXg6
-IG1ldGEtbW9uby9yZWNpcGVzLW1vbm8vbW9uby9maWxlcy9tb25vLTIuMTAuOC4xL2RhdGEvY29u
-ZmlnLmluLmRpZmYNCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8v
-ZmlsZXMvbW9uby0yLjEwLjguMS9kYXRhL2NvbmZpZy5pbi5kaWZmCShyZXZpc2lvbiAwKQ0KKysr
-IG1ldGEtbW9uby9yZWNpcGVzLW1vbm8vbW9uby9maWxlcy9tb25vLTIuMTAuOC4xL2RhdGEvY29u
-ZmlnLmluLmRpZmYJKHJldmlzaW9uIDQ3NjUpDQpAQCAtMCwwICsxLDExIEBADQorLS0tIG1vbm8t
-Mi4xMC44LjEub3JpZy9kYXRhL2NvbmZpZy5pbgkyMDEyLTAxLTI3IDA5OjI5OjA3LjA3MjAwMTky
-NCAtMDUwMA0KKysrKyBtb25vLTIuMTAuOC4xL2RhdGEvY29uZmlnLmluCTIwMTItMDEtMjcgMDk6
-MzA6NTkuNzQwMDAxOTMzIC0wNTAwDQorQEAgLTE1LDcgKzE1LDcgQEANCisgCTxkbGxtYXAgZGxs
-PSJpOm1zdmNydC5kbGwiIHRhcmdldD0iQExJQkNAIiBvcz0iIXdpbmRvd3MiLz4NCisgCTxkbGxt
-YXAgZGxsPSJzcWxpdGUiIHRhcmdldD0iQFNRTElURUAiIG9zPSIhd2luZG93cyIvPg0KKyAJPGRs
-bG1hcCBkbGw9InNxbGl0ZTMiIHRhcmdldD0iQFNRTElURTNAIiBvcz0iIXdpbmRvd3MiLz4NCist
-CTxkbGxtYXAgZGxsPSJsaWJYMTEiIHRhcmdldD0iQFgxMUAiIG9zPSIhd2luZG93cyIgLz4NCisr
-CTxkbGxtYXAgZGxsPSJsaWJYMTEiIHRhcmdldD0ibGliWDExLnNvLjYiIG9zPSIhd2luZG93cyIg
-Lz4NCisgCTxkbGxtYXAgZGxsPSJsaWJjYWlyby0yLmRsbCIgdGFyZ2V0PSJsaWJjYWlyby5zby4y
-IiBvcz0iIXdpbmRvd3MiLz4NCisgCTxkbGxtYXAgZGxsPSJsaWJjYWlyby0yLmRsbCIgdGFyZ2V0
-PSJsaWJjYWlyby4yLmR5bGliIiBvcz0ib3N4Ii8+DQorIAk8ZGxsbWFwIGRsbD0ibGliY3VwcyIg
-dGFyZ2V0PSJsaWJjdXBzLnNvLjIiIG9zPSIhd2luZG93cyIvPg0KSW5kZXg6IG1ldGEtbW9uby9y
-ZWNpcGVzLW1vbm8vbW9uby9tb25vLW5hdGl2ZV8yLjEwLjguMS5iYg0KPT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KLS0t
-IG1ldGEtbW9uby9yZWNpcGVzLW1vbm8vbW9uby9tb25vLW5hdGl2ZV8yLjEwLjguMS5iYgkocmV2
-aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9uby1uYXRpdmVf
-Mi4xMC44LjEuYmIJKHdvcmtpbmcgY29weSkNCkBAIC01LDYgKzUsNyBAQA0KIFBSID0gInIxIg0K
-IA0KIEVYVFJBX09FQ09ORiArPSAibW9ub19jdl91c2NvcmU9bm8gLS13aXRoLXRscz1wdGhyZWFk
-IC0td2l0aC1zaWdhbHRzdGFjaz1ubyAtLXdpdGgtbWNzLWRvY3M9bm8iDQorRVhUUkFfT0VDT05G
-ICs9ICItLXdpdGhvdXQteCAtLXdpdGhvdXQtbW9vbmxpZ2h0IC0td2l0aG91dC1saWJnZGlwbHVz
-Ig0KIA0KIGRvX2NvbmZpZ3VyZV9wcmVwZW5kKCkgew0KICAgICBhdXRvcmVjb25mIC1XY3Jvc3Mg
-LS12ZXJib3NlIC0taW5zdGFsbCAtLWZvcmNlIHx8IGJibm90ZSAibW9uby1uYXRpdmUgZmFpbGVk
-IHRvIGF1dG9yZWNvbmYiDQpJbmRleDogbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm8t
-Mi4xMC44LjEvZGF0YS9jb25maWcuaW4uZGlmZg0KPT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KLS0tIG1ldGEtbW9uby9y
-ZWNpcGVzLW1vbm8vbW9uby9tb25vLTIuMTAuOC4xL2RhdGEvY29uZmlnLmluLmRpZmYJKHJldmlz
-aW9uIDQ3MDQpDQorKysgbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm8tMi4xMC44LjEv
-ZGF0YS9jb25maWcuaW4uZGlmZgkod29ya2luZyBjb3B5KQ0KQEAgLTEsMTEgKzAsMCBAQA0KLS0t
-LSBtb25vLTIuMTAuOC4xLm9yaWcvZGF0YS9jb25maWcuaW4JMjAxMi0wMS0yNyAwOToyOTowNy4w
-NzIwMDE5MjQgLTA1MDANCi0rKysgbW9uby0yLjEwLjguMS9kYXRhL2NvbmZpZy5pbgkyMDEyLTAx
-LTI3IDA5OjMwOjU5Ljc0MDAwMTkzMyAtMDUwMA0KLUBAIC0xNSw3ICsxNSw3IEBADQotIAk8ZGxs
-bWFwIGRsbD0iaTptc3ZjcnQuZGxsIiB0YXJnZXQ9IkBMSUJDQCIgb3M9IiF3aW5kb3dzIi8+DQot
-IAk8ZGxsbWFwIGRsbD0ic3FsaXRlIiB0YXJnZXQ9IkBTUUxJVEVAIiBvcz0iIXdpbmRvd3MiLz4N
-Ci0gCTxkbGxtYXAgZGxsPSJzcWxpdGUzIiB0YXJnZXQ9IkBTUUxJVEUzQCIgb3M9IiF3aW5kb3dz
-Ii8+DQotLQk8ZGxsbWFwIGRsbD0ibGliWDExIiB0YXJnZXQ9IkBYMTFAIiBvcz0iIXdpbmRvd3Mi
-IC8+DQotKwk8ZGxsbWFwIGRsbD0ibGliWDExIiB0YXJnZXQ9ImxpYlgxMS5zby42IiBvcz0iIXdp
-bmRvd3MiIC8+DQotIAk8ZGxsbWFwIGRsbD0ibGliY2Fpcm8tMi5kbGwiIHRhcmdldD0ibGliY2Fp
-cm8uc28uMiIgb3M9IiF3aW5kb3dzIi8+DQotIAk8ZGxsbWFwIGRsbD0ibGliY2Fpcm8tMi5kbGwi
-IHRhcmdldD0ibGliY2Fpcm8uMi5keWxpYiIgb3M9Im9zeCIvPg0KLSAJPGRsbG1hcCBkbGw9Imxp
-YmN1cHMiIHRhcmdldD0ibGliY3Vwcy5zby4yIiBvcz0iIXdpbmRvd3MiLz4NCkluZGV4OiBtZXRh
-LW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9uby0yLjEwLjguMS9NYWtlZmlsZS5hbS5kaWZmDQo9
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09DQotLS0gbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vL21vbm8tMi4xMC44LjEv
-TWFrZWZpbGUuYW0uZGlmZgkocmV2aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBlcy1t
-b25vL21vbm8vbW9uby0yLjEwLjguMS9NYWtlZmlsZS5hbS5kaWZmCSh3b3JraW5nIGNvcHkpDQpA
-QCAtMSwxNSArMCwwIEBADQotLS0tIG1vbm8tMi4xMC44LjEub3JpZy9NYWtlZmlsZS5hbQkyMDEy
-LTAxLTI1IDE0OjI0OjQzLjU2NDAwMjIzMiAtMDUwMA0KLSsrKyBtb25vLTIuMTAuOC4xL01ha2Vm
-aWxlLmFtCTIwMTItMDEtMjUgMTQ6MjU6MDIuMDM2MDAyMjE4IC0wNTAwDQotQEAgLTQsMTAgKzQs
-MTAgQEANCi0gTU9PTkxJR0hUX1NVQkRJUlMgPSAkKGxpYmdjX2RpcikgZWdsaWIvc3JjIG1vbm8N
-Ci0gDQotIGlmIENST1NTX0NPTVBJTElORw0KLS1TVUJESVJTID0gcG8gJChsaWJnY19kaXIpIGVn
-bGliIG1vbm8gJChpa3ZtX25hdGl2ZV9kaXIpIGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBzYW1w
-bGVzIG1zdmMgJChkb2NzX2RpcikNCi0rU1VCRElSUyA9IHBvICQobGliZ2NfZGlyKSBlZ2xpYiBt
-b25vICQoaWt2bV9uYXRpdmVfZGlyKSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBz
-YW1wbGVzIG1zdmMgJChkb2NzX2RpcikNCi0gIyBLZWVwIGluIHN5bmMgd2l0aCBTVUJESVJTDQot
-ICMjICd0b29scycgaXMgbm90IG5vcm1hbGx5IGJ1aWx0DQotLURJU1RfU1VCRElSUyA9IHBvIGxp
-YmdjIGVnbGliIG1vbm8gaWt2bS1uYXRpdmUgICAgICAgICBkYXRhIHJ1bnRpbWUgc2NyaXB0cyBt
-YW4gc2FtcGxlcyB0b29scyBtc3ZjIGRvY3MNCi0rRElTVF9TVUJESVJTID0gcG8gbGliZ2MgZWds
-aWIgbW9ubyBpa3ZtLW5hdGl2ZSBzdXBwb3J0IGRhdGEgcnVudGltZSBzY3JpcHRzIG1hbiBzYW1w
-bGVzIHRvb2xzIG1zdmMgZG9jcw0KLSBlbHNlDQotIGlmIE9OTFlfTU9PTkxJR0hUDQotIFNVQkRJ
-UlMgPSAkKE1PT05MSUdIVF9TVUJESVJTKSBydW50aW1lDQpJbmRleDogbWV0YS1tb25vL3JlY2lw
-ZXMtbW9uby9tb25vL21vbm8tMi4xMC44LjEvbWNzL2NsYXNzL01ha2VmaWxlLmRpZmYNCj09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT0NCi0tLSBtZXRhLW1vbm8vcmVjaXBlcy1tb25vL21vbm8vbW9uby0yLjEwLjguMS9tY3Mv
-Y2xhc3MvTWFrZWZpbGUuZGlmZgkocmV2aXNpb24gNDcwNCkNCisrKyBtZXRhLW1vbm8vcmVjaXBl
-cy1tb25vL21vbm8vbW9uby0yLjEwLjguMS9tY3MvY2xhc3MvTWFrZWZpbGUuZGlmZgkod29ya2lu
-ZyBjb3B5KQ0KQEAgLTEsMTMgKzAsMCBAQA0KLS0tLSBtb25vLTIuMTAuOC4xLm9yaWcvbWNzL2Ns
-YXNzL01ha2VmaWxlCTIwMTItMDEtMjcgMTY6MjA6MzYuMzE5Mjk3OTk5IC0wNTAwDQotKysrIG1v
-bm8tMi4xMC44LjEvbWNzL2NsYXNzL01ha2VmaWxlCTIwMTItMDEtMjcgMjA6Mzc6MzAuODY3NTkz
-ODI1IC0wNTAwDQotQEAgLTU1LDEwICs1NSw4IEBADQotIAlOb3ZlbGwuRGlyZWN0b3J5LkxkYXAJ
-CVwNCi0gCU1vbm8uU2VjdXJpdHkuV2luMzIJCVwNCi0gCVN5c3RlbS5EaXJlY3RvcnlTZXJ2aWNl
-cwlcDQotLQlSYWJiaXRNUS5DbGllbnQJCQlcDQotIAlNb25vLk1lc3NhZ2luZwkJCVwNCi0gCVN5
-c3RlbS5NZXNzYWdpbmcJICAgICAgICBcDQotLQlNb25vLk1lc3NhZ2luZy5SYWJiaXRNUQkJXA0K
-LSAJU3lzdGVtLlNlcnZpY2VQcm9jZXNzICAgICAgICAgICBcDQotIAlTeXN0ZW0uRHJhd2luZy5E
-ZXNpZ24JCVwNCi0gCVN5c3RlbS5EZXNpZ24JCQlcDQpJbmRleDogbWV0YS1tb25vL3JlY2lwZXMt
-bW9uby9tb25vLXhzcC9tb25vLXhzcF8xLjIuNS5iYg0KPT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KLS0tIG1ldGEtbW9u
-by9yZWNpcGVzLW1vbm8vbW9uby14c3AvbW9uby14c3BfMS4yLjUuYmIJKHJldmlzaW9uIDQ3MDQp
-DQorKysgbWV0YS1tb25vL3JlY2lwZXMtbW9uby9tb25vLXhzcC9tb25vLXhzcF8xLjIuNS5iYgko
-d29ya2luZyBjb3B5KQ0KQEAgLTkxLDcgKzkxLDcgQEANCiAJL3Vzci9saWIvbW9uby8yLjAvbW9k
-LW1vbm8tc2VydmVyMi5leGUgXA0KIAkvdXNyL2Jpbi9tb2QtbW9uby1zZXJ2ZXIyIFwNCiAJIg0K
-LUZJTEVTX21vbm8teHNwLWRldiA9ICJcDQorRklMRVNfbW9uby14c3AyLWRldiA9ICJcDQogCS91
-c3IvbGliL3BrZ2NvbmZpZy94c3AucGMgXA0KIAkvdXNyL2xpYi9wa2djb25maWcveHNwLTIucGMg
-XA0KIAkiDQo=
-
----1463810809-1370607321-1380240243=:27991--
