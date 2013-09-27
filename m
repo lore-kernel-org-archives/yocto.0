@@ -1,31 +1,49 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from hrndva-omtalb.mail.rr.com (hrndva-omtalb.mail.rr.com
-	[71.74.56.122])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87EC2E015A6
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 06:50:10 -0700 (PDT)
-X-Authority-Analysis: v=2.0 cv=R/aB6KtX c=1 sm=0 a=oH/T31WtClCaBcnw0WEUzA==:17
-	a=GDJcWSoBFrAA:10 a=u0wVhyBbg9UA:10 a=p0Hsp6PJnzcA:10
-	a=qixkpPymAAAA:8 a=KGjhK52YXX0A:10 a=8Pm0Rrj0-aoA:10
-	a=OlQVsI4-gmbWftCPNboA:9 a=C3B5OrDE1XEA:10
-	a=oH/T31WtClCaBcnw0WEUzA==:117
-X-Cloudmark-Score: 0
-X-Authenticated-User: 
-X-Originating-IP: 98.100.91.242
-Received: from [98.100.91.242] ([98.100.91.242:47484]
-	helo=ih3-development.melinkcorp.local)
-	by hrndva-oedge02.mail.rr.com (envelope-from <bevenson@melinkcorp.com>)
-	(ecelerity 2.2.3.46 r()) with ESMTP
-	id AF/F2-01080-21D85425; Fri, 27 Sep 2013 13:50:10 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: yocto@yoctoproject.org,
-	elizabeth.flanagan@intel.com
-Date: Fri, 27 Sep 2013 09:49:34 -0400
-Message-Id: <1380289774-26237-1-git-send-email-bevenson@melinkcorp.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [yocto-autobuilder][RFC PATCH 1/1] Document CreateBBLayersConf
+Return-Path: <petertornel@yahoo.com>
+Received: from nm36.bullet.mail.bf1.yahoo.com (nm36.bullet.mail.bf1.yahoo.com
+	[72.30.239.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D328CE015A6
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 07:16:11 -0700 (PDT)
+Received: from [98.139.212.146] by nm36.bullet.mail.bf1.yahoo.com with NNFMP;
+	27 Sep 2013 14:16:10 -0000
+Received: from [98.139.212.207] by tm3.bullet.mail.bf1.yahoo.com with NNFMP;
+	27 Sep 2013 14:16:10 -0000
+Received: from [127.0.0.1] by omp1016.mail.bf1.yahoo.com with NNFMP;
+	27 Sep 2013 14:16:10 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 9154.32734.bm@omp1016.mail.bf1.yahoo.com
+Received: (qmail 3742 invoked by uid 60001); 27 Sep 2013 14:16:09 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1380291369; bh=89B6WMS+fBcQHJeIGKozXqjeFzR2Kz4Wd4Chj5vF7GA=;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=Rowrb9XWdHACo14KNpYK6Oj9dlMMqN9IMIBUIQxbEihILRMk1O4gjzm4byRi/EJT9fzzpzRBtuKrhibATBpXOkZ4x6Wm2Dmj8VXLsx1l+aYb58Gtz0sGdP8PJ/sczQYXILB2P5azqNth0+Bgow6ErRPAPz8hE9+rMeNAePo1Hs8=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=rcf+XJKV14BiGT+3kavZXPVke9tYhmzqBVpSO7M8GDm1IrAGQSHHx/rhOD1tSa7keJzmi0qCqQADiGn4Jrqfr2QsoU2AHd4NwUZqCB4F8xzbgcJ8xajYJHcRxIDLmSDOk3G1t+XTkNU4V6wmTvSSuoiF3taLavqxrQB1jw8nogk=;
+X-YMail-OSG: JntuqPkVM1msQIXjUgKb3i2OwaXPVzncR52CaBBgbOkLWgp
+	zIFRowmzr1hIvULMA7DYyTz4m_vOhGagABLJgsV8l_cP6dPupMNhtOYQnQR3
+	GiH4woXW3hGWZ48VpajFh5k8QzfANjyDL.hiCJor4COudw93u3S2V1VWY1oZ
+	zR41AD22rKuTwxmgWKxS8fvvzt28JlN66ZDEoTVoU8pvC37SuYE5UX9qqzod
+	bCfE5wWgpe5PzX0LDQAgxcKy4rnQPI2cr1sHgppII6f77nNItBxaaQ7Uoxr3
+	erOtZXVuT_62noB0lWs8SKjAzblWcNYOXozHianUQrMTkHOmz69V6pUBdL9K
+	Q8lSEW94mhF.eHCp1CWjDa_TrdUCGljoZJ9m9Js90d49c.kAGJZzQS463JiE
+	nRxNogLkvJa9Dn5HT6225_xypIdfhj4qYi2OSlCMU3QKReKuitsMUSQxUrqd
+	mnAJ59sa7Y1VueTAmbU3B2LjRC6MAM6bxQUo4JV4deKYBCdVUVpM467H7ixg
+	pfP9QrHQuFji42VdQ
+Received: from [68.38.40.177] by web161504.mail.bf1.yahoo.com via HTTP;
+	Fri, 27 Sep 2013 07:16:09 PDT
+X-Rocket-MIMEInfo: 002.001,
+	SGkgWW9jdG8sCgpJJ20gZG9pbmcgc29tZSBpdGVyYXRpdmUgYnVpbGRpbmcgb2YgdGhlIGtlcm5lbCAobW9kdWxlcyksIGFuZCBJIG5lZWQgdG8gdGVzdCBpdCBvbiBteSBzeXN0ZW0uCgpJIGRvIHRoZSBmb2xsb3dpbmc6CgpiaXRiYWtlIHZpcnR1YWwva2VybmVsIC1jIG1lbnVjb25maWcKYml0YmFrZSB2aXJ0dWFsL2tlcm5lbAoKSSBjb3B5IG92ZXIgdGhlIG1vZHVsZXN4eHh4LnRneiBmaWxlIGluIGRlcGxveS9pbWFnZXMgdG8gbXkgdGFyZ2V0ICYgZXh0cmFjdCwgYnV0IHRoZXJlIGlzIG5vIG1vZHVsZXMBMAEBAQE-
+X-Mailer: YahooMailWebService/0.8.160.587
+Message-ID: <1380291369.3171.YahooMailNeo@web161504.mail.bf1.yahoo.com>
+Date: Fri, 27 Sep 2013 07:16:09 -0700 (PDT)
+From: Peter Tornel <petertornel@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+MIME-Version: 1.0
+Subject: the yocto way to generate modules.dep when rebuilding the kernel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -34,74 +52,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2013 13:50:11 -0000
+X-List-Received-Date: Fri, 27 Sep 2013 14:16:14 -0000
+Content-Type: multipart/alternative;
+	boundary="1835785293-627146454-1380291369=:3171"
 
-Adds details on how to use CreateBBLayersConf to
-README-NEW-AUTOBUILDER.  Details on usage were gathered from
-code inspection of CreateBBLayersConf.py and from personal
-usage experience.  Sent as an RFC to request comments on
-section placement and wording.
+--1835785293-627146454-1380291369=:3171
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
----
- README-NEW-AUTOBUILDER |   43 ++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 42 insertions(+), 1 deletion(-)
+Hi Yocto,=0A=0AI'm doing some iterative building of the kernel (modules), a=
+nd I need to test it on my system.=0A=0AI do the following:=0A=0Abitbake vi=
+rtual/kernel -c menuconfig=0Abitbake virtual/kernel=0A=0AI copy over the mo=
+dulesxxxx.tgz file in deploy/images to my target & extract, but there is no=
+ modules.dep file included.=A0 =0A=0AHow do I generate modules.dep using yo=
+cto / bitbake?=0A=0AThank you,=0A=0APeter
 
-diff --git a/README-NEW-AUTOBUILDER b/README-NEW-AUTOBUILDER
-index ae1852c..27f892f 100644
---- a/README-NEW-AUTOBUILDER
-+++ b/README-NEW-AUTOBUILDER
-@@ -90,7 +90,48 @@ props: A list of dicts. This is used when you need to add properties to a
- 
- steps: A list of dicts. These steps can be either custom buildsteps or basic 
-        buildbot buildsteps with args passed as dict pairs. Custom buildsteps
--       that we utilize are in lib/python2.7/site-packages/autobuilder/buildsteps
-+       that we utilize are in lib/python2.7/site-packages/autobuilder/buildsteps.
-+
-+       CreateBBLayersConf: This build step creates the bblayers.conf used by the
-+       build system to determine which layers to use and where to find them.
-+
-+          {'CreateBBLayersConf': {'buildprovider' : 'yocto',
-+            'bsplayer':'True',
-+            'bspprovider':'intel',
-+            'bbtextprepend':'text_to_prepend',
-+            'bbtextappend':'text_to_append',
-+            'layerdirs': ['layerdir1', 'layerdir2', ...]}}
-+
-+          buildprovider: Optional and defaults to 'yocto'.  If this is set to
-+          'yocto', then it adds the layers' 'meta', 'meta-yocto' and
-+          'meta-yocto-bsp' to BBLAYERS. If set to 'oe', then only 'meta' is
-+          added to BBLAYERS.
-+
-+          bsplayer: Optional and defaults to False.  Set this to 'True' if you
-+          want to use an established BSP layer and include its default layers.
-+
-+          bspprovider: Required if bsplayer is set to True.  Defines the BSP
-+          provider so the default layers can be included.  At this time only
-+          'intel', 'fsl-ppc' and 'fsl-arm' are recognized.
-+
-+          bbtextprepend: Prepends the given text to bblayers.conf.  Use \n in
-+          the text to start a new line and always end the text with a \n.  For
-+          example:
-+              'bbtextprepend': '#Adding one comment line\nAdding a second comment line\n'
-+
-+          bbtextappend: Appends the given text to bblayers.conf.  Same format
-+          as bbtextprepend.
-+
-+          layerdirs: Used to add layers to BBLAYERS.  Layers are added in the
-+          order specified and are added after the layers created by the
-+          buildprovider.  For example:
-+              'layerdirs': ['meta-openembedded/meta-oe',
-+                  'meta-openembedded/meta-networking',
-+                  'meta-openembedded/meta-gnome']
-+          will append the layers meta-openembedded/meta-oe,
-+          meta-openembedded/meta-networking, and meta-openembedded/meta-gnome to
-+          BBLAYERS.  Note that this will override any default layers from a
-+          bspprovider.
- 
- scheduler: A list of dicts. Each item defines a scheduler associated with this
-        buildset:
--- 
-1.7.9.5
+--1835785293-627146454-1380291369=:3171
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
+mes new roman, new york, times, serif;font-size:12pt">Hi Yocto,<br><br>I'm =
+doing some iterative building of the kernel (modules), and I need to test i=
+t on my system.<br><br>I do the following:<br><br>bitbake virtual/kernel -c=
+ menuconfig<br>bitbake virtual/kernel<br><br>I copy over the modulesxxxx.tg=
+z file in deploy/images to my target &amp; extract, but there is no modules=
+.dep file included.&nbsp; <br><br>How do I generate modules.dep using yocto=
+ / bitbake?<br><br>Thank you,<br><br>Peter<br><div><br></div></div></body><=
+/html>
 
+--1835785293-627146454-1380291369=:3171--
