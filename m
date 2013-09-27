@@ -1,36 +1,37 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-wg0-f48.google.com (mail-wg0-f48.google.com [74.125.82.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73B3FE01652
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 00:11:58 -0700 (PDT)
-Received: by mail-wg0-f48.google.com with SMTP id n12so2215715wgh.3
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 00:11:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=69+erdl4KOz5gMx2FdQXkdQniocG5IParp2gkELqZVw=;
-	b=FHOOln0Qr20+xNQaEHbboUFxXqPgE1/GWiNmwIwBnLhoDLtEPeIKv55tWi4FGjtFM2
-	41gYH3e8V5qaMAarsKwLWmhIY/OvlarGAUUpI7pBylHWadjEdTPE9nSlnmG+fEbYbgYn
-	6aQ14FDosoEuI0M7G42Rise9dDgelbE7sDLay0d+/AQLt5Mp2qZzHAkrOhjmbKWGINkK
-	3Wq6lcKzsdwRilZmBypYLnl4puGYWFnh+OkyRxVGOpNZVf6ELlZFAQdknGZGcex92YFi
-	vukwtlZDj3yxWnwZbJhm8h9ntEvGlbf/gj3nm/1tSX0obJW+wdwwMAGIs2xqn2ic1cxa
-	RNhA==
-X-Gm-Message-State: ALoCoQlFWsQX/udACvYHyM2SR6emQA4CX8uzx8JlmXk34X0cnB81o2BOcxr1b/x818L+eO2cwxau
-X-Received: by 10.180.160.240 with SMTP id xn16mr1301280wib.62.1380265916919; 
-	Fri, 27 Sep 2013 00:11:56 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ea0-f173.google.com (mail-ea0-f173.google.com
+	[209.85.215.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96A77E01653
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 00:32:01 -0700 (PDT)
+Received: by mail-ea0-f173.google.com with SMTP id g10so1015809eak.18
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 00:32:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=v29oB4eR8Fcwsjgwq7j5M4o4tb3XObsjNEoge+UG1TA=;
+	b=vcVs2kFxX1A4K/2YHHoHEgRuD8jFJcSNSHAUhBZx/laPli8lBk9uH5rYLK+KsXkAqA
+	sqWh/vFDeXJMau/J7mtwuF1w7N3y3a2rpCgCMfk8h9c9ApHBzN+3ck4pN7zGvpNqYJUY
+	74hbVK3HbR8j8flJ6YzEwXfigoWd2edwRWyYxV1A/HgIgfUQU/0mMm+Yfg3anb6kfZu4
+	k4LE8OAwXkmQTVXcnooAjohDlHmnAUo/jVm5LA8WnCzpDAY+oQVhdia2mEtZftcr7RvL
+	SuG/IhVpLAvH3ctgQNAV3TanEzsoJovguMMXK9TtusbriJ1o1B4kq/P10LxhydAx1Zq8
+	nQMQ==
+X-Received: by 10.14.251.5 with SMTP id a5mr164440ees.91.1380267120933;
+	Fri, 27 Sep 2013 00:32:00 -0700 (PDT)
+Received: from localhost (ip-62-24-80-145.net.upcbroadband.cz. [62.24.80.145])
+	by mx.google.com with ESMTPSA id
+	f49sm12921643eec.7.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 27 Sep 2013 00:32:00 -0700 (PDT)
+Date: Fri, 27 Sep 2013 09:31:59 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: =?utf-8?B?5pu55b+X56CU?= <czyhit@126.com>
+Message-ID: <20130927073159.GA3575@jama>
+References: <bfe9b2.4f09.1415dea90ad.Coremail.czyhit@126.com>
 MIME-Version: 1.0
-Received: by 10.180.74.46 with HTTP; Fri, 27 Sep 2013 00:11:36 -0700 (PDT)
-In-Reply-To: <CAFyqS9qLLgCd=dCKQB436XxHar8uKFUZzgDSEoHb-EMPf+3DSQ@mail.gmail.com>
-References: <E51394554A503C4E852F9BEE46B03E8DF039C2@TI-ODIN.tasernet.com>
-	<CAP71Wjx4KQtfiEG4a4kin6XAtu9fMwZON6cNDgHDwJksef_H4w@mail.gmail.com>
-	<E51394554A503C4E852F9BEE46B03E8DF03B46@TI-ODIN.tasernet.com>
-	<CAFyqS9qLLgCd=dCKQB436XxHar8uKFUZzgDSEoHb-EMPf+3DSQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 27 Sep 2013 09:11:36 +0200
-Message-ID: <CAP71WjzYWGwLBpOzXF7q=R4YOx_++Ef_JGM1=j44FoUr1omKLQ@mail.gmail.com>
-To: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Question about automatic debug package generation
+In-Reply-To: <bfe9b2.4f09.1415dea90ad.Coremail.czyhit@126.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: how to add a new bb(xerces-c)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,71 +43,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2013 07:12:01 -0000
-Content-Type: multipart/alternative; boundary=047d7b6251b0adfae804e7583385
+X-List-Received-Date: Fri, 27 Sep 2013 07:32:06 -0000
+X-Groupsio-MsgNum: 16259
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="h31gzZEtNLTqOjlF"
+Content-Disposition: inline
 
---047d7b6251b0adfae804e7583385
-Content-Type: text/plain; charset=ISO-8859-1
+--h31gzZEtNLTqOjlF
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 27, 2013 at 8:49 AM, Hans Beck=E9rus <hans.beckerus@gmail.com>w=
-rote:
+On Fri, Sep 27, 2013 at 01:35:55PM +0800, =E6=9B=B9=E5=BF=97=E7=A0=94 wrote:
+> Hello, everyone!
+> I try to add a new bb(xerces-c) to my image, bb is as followings:
+>=20
 
-> Actually, I have a related question. If you choose to install -dbg
-> variants, you will get a .debug folder copied to the target.
-> That .debug folder can then be pointed out by debuggers etc. to get
-> the symbol information, right?
-> How can the package handler know what files to strip? Does it use some
-> simple file magic match? I have a case now for which I made a set of
-> working recipes for Erlang. Erlang .beam files also contain symbols
-> that can be stripped, but not the conventional way. I guess I need to
-> add something to the do_package phase to compensate for that, but will
-> it interfere with what is done in package.bbclass?
->
+Check oe-classic recipes
+http://cgit.openembedded.org/cgit.cgi/openembedded/tree/recipes/xerces-c/xe=
+rces-c_3.1.1.bb
+http://cgit.openembedded.org/cgit.cgi/openembedded/tree/recipes/xerces-c/xe=
+rces-c_2.8.0.bb
 
-it would strip 'unstripped ELF files' that are found in the install
-directory, and kernel modules too. there is some logic to get the list of
-all files that need to be stripped in the function i mentioned above. you
-cannot give a list of 'additional' files that need to be stripped.
+maybe it was fixed there..
 
-if you need to strip with unconventional strip tools, you can surely do
-that in your own recipe (or class), and modify FILES_{PN}-dbg to include
-those, assuming you don't process the same files than package.bbclass,
-there shouldn't be any issue.
+>=20
+> DESCRIPTION =3D "Xerces-C++ is a validating XML parser written in a porta=
+ble subset of C++."
+> HOMEPAGE =3D "http://xerces.apache.org/xerces-c/"
+> LICENSE =3D "Apache"
+> LIC_FILES_CHKSUM =3D "file://src/xercesc/dom/DOM.hpp;endline=3D22;md5=3D9=
+986d741cab88a8b7bc4a19d3c1b8106 \
+> file://src/xercesc/parsers/XercesDOMParser.hpp;endline=3D21;md5=3D85be7b6=
+e587aa51e4f30c262f1cd695e \
+> file://src/xercesc/xinclude/XIncludeDOMDocumentProcessor.hpp;endline=3D23=
+;md5=3D4236d3c0f2537b3df547a97d60f93dc0"
+>=20
+>=20
+> PR =3D "r1"
+>=20
+>=20
+> DEPENDS =3D "curl icu"
+>=20
+>=20
+> SRC_URI =3D "http://mirror.bit.edu.cn/apache//xerces/c/3/sources/xerces-c=
+-${PV}.tar.gz"
+>=20
+>=20
+> SRC_URI[md5sum] =3D "6a8ec45d83c8cfb1584c5a5345cb51ae"
+> SRC_URI[sha256sum] =3D "a42785f71e0b91d5fd273831c87410ce60a73ccfdd207de1b=
+805d26d44968736"
+>=20
+>=20
+> inherit autotools
+>=20
+>=20
+> S =3D "${WORKDIR}/xerces-c-${PV}/"
+>=20
+>=20
+> EXTRA_OECONF =3D "\
+> --enable-netaccessor-curl \
+> --enable-transcoder-icu \
+> --enable-msgloader-icu \
+> "
+>=20
+>=20
+> but when configure come into the error:
+> ERROR: This autoconf log indicates errors, it looked at host include and/=
+or library paths while determining system capabilities.
+> Rerun configure task after fixing this. The path was '/home/caozhiyan/fsl=
+-community-bsp/build-hc1200/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/xer=
+ces-c/3.1.1-r1/xerces-c-3.1.1'
+> ERROR: Function failed: do_qa_configure
+> ERROR: Logfile of failure stored in: /home/caozhiyan/fsl-community-bsp/bu=
+ild-hc1200/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/xerces-c/3.1.1-r1/te=
+mp/log.do_configure.19932
+> ERROR: Task 5 (/home/caozhiyan/fsl-community-bsp/sources/meta-fsl-hc1200/=
+recipes-hc1200/xerces-c/xerces-c_3.1.1.bb, do_configure) failed with exit c=
+ode '1'
+>=20
+>=20
+> who can show me how to port the autotools-based project? Thanks.
 
---047d7b6251b0adfae804e7583385
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Fri, Sep 27, 2013 at 8:49 AM, Hans Beck=E9rus <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:hans.beckerus@gmail.com" target=3D"_blank">hans.beckerus@gmai=
-l.com</a>&gt;</span> wrote:<br>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":13j" style=3D"overflow:hidden">A=
-ctually, I have a related question. If you choose to install -dbg<br>
-variants, you will get a .debug folder copied to the target.<br>
-That .debug folder can then be pointed out by debuggers etc. to get<br>
-the symbol information, right?<br>
-How can the package handler know what files to strip? Does it use some<br>
-simple file magic match? I have a case now for which I made a set of<br>
-working recipes for Erlang. Erlang .beam files also contain symbols<br>
-that can be stripped, but not the conventional way. I guess I need to<br>
-add something to the do_package phase to compensate for that, but will<br>
-it interfere with what is done in package.bbclass?</div></blockquote></div>=
-<br>it would strip &#39;unstripped ELF files&#39; that are found in the ins=
-tall directory, and kernel modules too. there is some logic to get the list=
- of all files that need to be stripped in the function i mentioned above. y=
-ou cannot give a list of &#39;additional&#39; files that need to be strippe=
-d.</div>
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">if you need=
- to strip with unconventional strip tools, you can surely do that in your o=
-wn recipe (or class), and modify FILES_{PN}-dbg to include those, assuming =
-you don&#39;t process the same files than package.bbclass, there shouldn&#3=
-9;t be any issue.</div>
+--h31gzZEtNLTqOjlF
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-<div class=3D"gmail_extra"><br></div></div>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.21 (GNU/Linux)
 
---047d7b6251b0adfae804e7583385--
+iEYEARECAAYFAlJFNG8ACgkQN1Ujt2V2gBws2wCgnaP1eJEEFMzb3POhRE95faTm
+POEAnA4fqjZwf88vZaChCOUjwuFgBRwK
+=anDr
+-----END PGP SIGNATURE-----
+
+--h31gzZEtNLTqOjlF--
