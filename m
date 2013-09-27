@@ -1,25 +1,24 @@
 Return-Path: <alexandru.c.georgescu@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A059CE01653
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 03:03:33 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59D72E01653
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 03:04:56 -0700 (PDT)
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 27 Sep 2013 03:00:24 -0700
+	by orsmga102.jf.intel.com with ESMTP; 27 Sep 2013 03:01:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,991,1371106800"; d="scan'208";a="384340040"
+X-IronPort-AV: E=Sophos;i="4.90,991,1371106800"; d="scan'208";a="384340535"
 Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga001.jf.intel.com with ESMTP; 27 Sep 2013 03:03:24 -0700
+	by orsmga001.jf.intel.com with ESMTP; 27 Sep 2013 03:04:55 -0700
 Received: from irsmsx104.ger.corp.intel.com ([169.254.5.69]) by
 	IRSMSX101.ger.corp.intel.com ([163.33.3.153]) with mapi id
-	14.03.0123.003; Fri, 27 Sep 2013 11:03:24 +0100
+	14.03.0123.003; Fri, 27 Sep 2013 11:04:54 +0100
 From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
 To: Jate Sujjavanich <Jate.Sujjavanich@myfuelmaster.com>,
 	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
 Thread-Topic: Yocto Bitbake Commander New Project Bug
-Thread-Index: Ac666N4fx6mXRgzkQUqpM4cJDzRrYwAf56Pw
-Date: Fri, 27 Sep 2013 10:03:23 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F6B551@IRSMSX104.ger.corp.intel.com>
+Thread-Index: Ac666N4fx6mXRgzkQUqpM4cJDzRrYwAf56PwAAAcmpA=
+Date: Fri, 27 Sep 2013 10:04:53 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F6B578@IRSMSX104.ger.corp.intel.com>
 References: <6C2434209962DC46B88345CA85C334A201CAB0AB2006@Courier.syntech.org>
-In-Reply-To: <6C2434209962DC46B88345CA85C334A201CAB0AB2006@Courier.syntech.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -37,10 +36,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2013 10:03:33 -0000
+X-List-Received-Date: Fri, 27 Sep 2013 10:04:56 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+There's also a bug that may address this problem: https://bugzilla.yoctopro=
+ject.org/show_bug.cgi?id=3D5203
+
+--
+Alexandru Georgescu
+
+
+-----Original Message-----
+From: Georgescu, Alexandru C=20
+Sent: Friday, September 27, 2013 13:03
+To: 'Jate Sujjavanich'; 'yocto@yoctoproject.org'
+Subject: RE: Yocto Bitbake Commander New Project Bug
 
 Hi Jate,
 You can try mentioning in the project name the actual poky directory name (=
