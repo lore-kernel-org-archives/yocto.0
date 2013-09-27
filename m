@@ -1,34 +1,32 @@
 Return-Path: <jessica.zhang@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54278E01536
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 09:04:46 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74285E01536
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2013 09:19:06 -0700 (PDT)
 Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 27 Sep 2013 09:04:46 -0700
+	by azsmga101.ch.intel.com with ESMTP; 27 Sep 2013 09:19:06 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="4.90,994,1371106800"; 
-	d="p7s'?scan'208";a="300182223"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by AZSMGA002.ch.intel.com with ESMTP; 27 Sep 2013 09:04:45 -0700
+	d="p7s'?scan'208,217";a="300187934"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+	by AZSMGA002.ch.intel.com with ESMTP; 27 Sep 2013 09:19:05 -0700
 Received: from orsmsx103.amr.corp.intel.com ([169.254.2.14]) by
-	ORSMSX108.amr.corp.intel.com ([169.254.4.164]) with mapi id
-	14.03.0123.003; Fri, 27 Sep 2013 09:04:45 -0700
+	ORSMSX110.amr.corp.intel.com ([169.254.3.84]) with mapi id
+	14.03.0123.003; Fri, 27 Sep 2013 09:19:04 -0700
 From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>, "Jate
-	Sujjavanich" <Jate.Sujjavanich@myfuelmaster.com>,
-	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Bitbake Commander New Project Bug
-Thread-Index: Ac666N4fx6mXRgzkQUqpM4cJDzRrYwAf56PwAAyRfnA=
-Date: Fri, 27 Sep 2013 16:04:45 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73CB8232@ORSMSX103.amr.corp.intel.com>
-References: <6C2434209962DC46B88345CA85C334A201CAB0AB2006@Courier.syntech.org>
-	<1FFB62CE8AEB0D4298B51122D8903E9619F6B551@IRSMSX104.ger.corp.intel.com>
-In-Reply-To: <1FFB62CE8AEB0D4298B51122D8903E9619F6B551@IRSMSX104.ger.corp.intel.com>
+To: Tudor Florea <Tudor.Florea@enea.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto]  [eclipse-poky] Issue in TerminalHandler
+Thread-Index: Ac67YFco/qkQSfrqRtup+DfeVfe79QAPMlQg
+Date: Fri, 27 Sep 2013 16:19:05 +0000
+Message-ID: <C6510F6D410BB64A8C15398EDC6B847C73CB8270@ORSMSX103.amr.corp.intel.com>
+References: <26724FB0BFCB3D4C91BDE184751AA3A428939DDB@sestoex09.enea.se>
+In-Reply-To: <26724FB0BFCB3D4C91BDE184751AA3A428939DDB@sestoex09.enea.se>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: Yocto Bitbake Commander New Project Bug
+Subject: Re: [eclipse-poky] Issue in TerminalHandler
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,86 +38,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2013 16:04:49 -0000
-X-Groupsio-MsgNum: 16268
+X-List-Received-Date: Fri, 27 Sep 2013 16:19:09 -0000
+X-Groupsio-MsgNum: 16269
 Content-Language: en-US
 Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_0058_01CEBB60.9B8B3850"
+	micalg=SHA1; boundary="----=_NextPart_000_0061_01CEBB62.9C5D6A80"
 
-------=_NextPart_000_0058_01CEBB60.9B8B3850
+------=_NextPart_000_0061_01CEBB62.9C5D6A80
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_0062_01CEBB62.9C5D9190"
+
+------=_NextPart_001_0062_01CEBB62.9C5D9190
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-This is a bug that due to upstream code.  To avoid the bug, don't use the
-directory to host the poky directory under workspace or ~/runtime-Eclipse,
-but instead use your home directory $HOME...
+The TerminalHandler is used across board, if it's just some special case for
+latencytop, can you just change the latencytop usage from vt100 to xterm?
 
-Also, as Alex mentioned, for project put the name of directory of your
-cloned yocto metadata, e.g. poky, for the location, choose the directory
-where the metadata directory is under.  For example, if your metadata is
-$HOME/poky, put poky as project name, the location as $HOME.
+ 
 
-Thanks,
-Jessica
------Original Message-----
 From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Georgescu, Alexandru C
-Sent: Friday, September 27, 2013 3:03 AM
-To: Jate Sujjavanich; 'yocto@yoctoproject.org'
-Subject: Re: [yocto] Yocto Bitbake Commander New Project Bug
+On Behalf Of Tudor Florea
+Sent: Friday, September 27, 2013 2:10 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [eclipse-poky] Issue in TerminalHandler
 
-Hi Jate,
-You can try mentioning in the project name the actual poky directory name
-(in your case: poky) and in the project path the location where "poky" is
-located (your case: ~/workspace/). That should work.
+ 
+
+Hello
+
+I'd like to have change the terminal emulator in TerminalHandler to xterm
+instead of current vt100 in order to avoid having unreadable output for
+latencytop due to some control characters.
+
+Please let me know if you have some concern about this change.
 
 Regards,
---
-Alexandru Georgescu
+
+  Tudor.
 
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-On Behalf Of Jate Sujjavanich
-Sent: Thursday, September 26, 2013 21:48
-To: 'yocto@yoctoproject.org'
-Subject: [yocto] Yocto Bitbake Commander New Project Bug
+------=_NextPart_001_0062_01CEBB62.9C5D9190
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Creating a Yocto Bitbake Commander project using an existing poky directory
-is a little buggy. I usually do this to avoid downloading poky from the
-Internet.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>The TerminalHandler is used across board, if =
+it&#8217;s just some special case for latencytop, can you just change =
+the latencytop usage from vt100 to xterm?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'>From:</span>=
+</b><span style=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif"'> =
+yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] =
+<b>On Behalf Of </b>Tudor Florea<br><b>Sent:</b> Friday, September 27, =
+2013 2:10 AM<br><b>To:</b> yocto@yoctoproject.org<br><b>Subject:</b> =
+[yocto] [eclipse-poky] Issue in =
+TerminalHandler<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Hello<o:p></o:p></p><p class=3DMsoNormal>I&#8217;d =
+like to have change the terminal emulator in TerminalHandler to xterm =
+instead of current vt100 in order to avoid having unreadable output for =
+latencytop due to some control characters.<o:p></o:p></p><p =
+class=3DMsoNormal>Please let me know if you have some concern about this =
+change.<o:p></o:p></p><p class=3DMsoNormal>Regards,<o:p></o:p></p><p =
+class=3DMsoNormal>&nbsp; Tudor.<o:p></o:p></p></div></body></html>
 
-The plugin wizard implies that you can use a poky directory in your
-workspace with its clone from yocto repository option.
+------=_NextPart_001_0062_01CEBB62.9C5D9190--
 
-Attempting to use a cloned poky in workspace/poky results in the wizard
-reporting that ".../workspace/poky overlaps the location of another project:
-poky." Changing the name of the project merely results in the error
-"Directory ...workspace/poky2 does not exist, please select git clone".
-
-The workaround is to open a separate dummy workspace, and then run the
-wizard with Project Location pointing to your desired Project Location. You
-will then be able to hit Finish. Eclipse will create the .metadata and
-.eclipse-data files.
-
-You can then switch to your desired workspace and use "Import an Existing
-Project."
-
-Is this a bug?
-
-
--Jate S.
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
-------=_NextPart_000_0058_01CEBB60.9B8B3850
+------=_NextPart_000_0061_01CEBB62.9C5D6A80
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -281,17 +332,17 @@ NdiwigbAOfAtRmbyHPEpmQ0Z3enZWiYrw+VXNzCW4WL1WADt/9c4aAdfGcY75bI3oEK3oG8InWmZ
 MRQwEgYDVQQHEwtTYW50YSBDbGFyYTEaMBgGA1UEChMRSW50ZWwgQ29ycG9yYXRpb24xKzApBgNV
 BAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3VpbmcgQ0EgNEECCh/NfwEAAgAAF2UwCQYFKw4D
 AhoFAKCCAb0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTMwOTI3
-MTYwNDQ0WjAjBgkqhkiG9w0BCQQxFgQUbCiqlWopHwuoD39kqh3yWrDfz6QwcgYJKoZIhvcNAQkP
+MTYxOTA0WjAjBgkqhkiG9w0BCQQxFgQUyesqKTdKn69vDLljnP5Bu7wAILowcgYJKoZIhvcNAQkP
 MWUwYzALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAoGCCqGSIb3DQMHMAsGCWCGSAFlAwQBAjAH
 BgUrDgMCGjALBglghkgBZQMEAgMwCwYJYIZIAWUDBAICMAsGCWCGSAFlAwQCATBzBgkrBgEEAYI3
 EAQxZjBkMFYxCzAJBgNVBAYTAlVTMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UE
 AxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSAzQQIKFJNZ9wABAABfRjB1BgsqhkiG
 9w0BCRACCzFmoGQwVjELMAkGA1UEBhMCVVMxGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSsw
 KQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDNBAgoUk1n3AAEAAF9GMA0G
-CSqGSIb3DQEBAQUABIIBAKQXtIKWt+H5JcGguzXKyKsBjLCX+034WLcuGp5gvyDkH4Me+VJ/ZZm4
-mRwkp0UhfZXMucJWff+BZP7NLPEVkujrDUSwaVSzcz2sHiv/SQuLCD9Kgs9z6nige6RW5xo6O/gu
-pPbX14YgdNoCg/geqpKOagwpcJHf+/aP/JzvyI2yvuthLu/NlzoxuIEZIumOrYIi8+aRXydcj4dN
-mdlpzLkHSg5acanwqd+uAxvqVhYoG8VtrvjTSX4yXln79ISzvaeTjDrA92SUjy8CuUtdyQJEpCOV
-t0q5xmkmk+VLMxwGdXTG6KaxgdfCl1ehp7JtvMzfL3QXlUMPdCNeXtIc4rgAAAAAAAA=
+CSqGSIb3DQEBAQUABIIBAK7uAvLigA3k7coWgIwALbHqqKk5gje/nS64jlBTyQKSW+BD7NzT8z/1
+0RH4tKZQzs9y30+TLb/D6rsSYlIvEeNp9xV7pKVHmguFM73MQxT9nnph4uTlRmQdUyD+3gFykNCX
+ccH7vUrkpZn527iYvWENWYYP+gw7tJSVdO7IiCLIDgW8/hq0H4Ap/kzQSkHeZU1eSBhv1TiOYxJH
+dunNrwlFy42vggUhA9/hPxTs2bnI1CnrGV23QCRworpDTGPzsyf6LmR3KYEST8qCbqctO7mGRKeN
+UTgQ2wRjiFE5Xg2QFaT8EJFMa6hlnAugujEmHHl2s72L3nt8YEns1COCZeMAAAAAAAA=
 
-------=_NextPart_000_0058_01CEBB60.9B8B3850--
+------=_NextPart_000_0061_01CEBB62.9C5D6A80--
