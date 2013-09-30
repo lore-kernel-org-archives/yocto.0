@@ -1,38 +1,35 @@
-Return-Path: <karl@hiramoto.org>
-Received: from homiemail-a77.g.dreamhost.com (caiajhbdccah.dreamhost.com
-	[208.97.132.207])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C573E0167A
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:06:37 -0700 (PDT)
-Received: from homiemail-a77.g.dreamhost.com (localhost [127.0.0.1])
-	by homiemail-a77.g.dreamhost.com (Postfix) with ESMTP id A8D8C9406B
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:06:36 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=hiramoto.org; h=message-id:date
-	:from:mime-version:to:subject:content-type:
-	content-transfer-encoding; q=dns; s=hiramoto.org; b=RXhX0hKG8qxp
-	QT1kdzAAMzy1UT0n4pmCSjBJFPBX5k6CRkruEnvkHbDFVaF5Af7YijjaWwWnia+x
-	6vjOU/mwYiy11xVjNN5O4ZVeEe66wwm+W5eJwR/1Fk6OCBhdIRbmNY95MhCmGZll
-	E8KRh29i38rjzo0tVGQIovx6BmU7vwU=
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=hiramoto.org; h=message-id
-	:date:from:mime-version:to:subject:content-type:
-	content-transfer-encoding; s=hiramoto.org; bh=a+RCBBN7313WhnSlkP
-	r4Aw0igoI=; b=KaxgYgVj7HOsUdOmeKUFoH/If1E9VPK+69GuPyJnAsI0ywy21L
-	ZGfTwps70jEhkh0kBu4SAcFt3ebMdfEU3QerOtbgksmFJlWXzebzZ8rqobhvKSsm
-	47Uevt6ZS9Wj2/q25NVRJ3EVZhVQ2Km6Uh5axF4yV5jvjHM0CLBRry/gU=
-Received: from [10.64.1.2] (167.Red-79-155-47.dynamicIP.rima-tde.net
-	[79.155.47.167])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: karl@hiramoto.org)
-	by homiemail-a77.g.dreamhost.com (Postfix) with ESMTPSA id 045C894065
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:06:35 -0700 (PDT)
-Message-ID: <524976BA.2000707@hiramoto.org>
-Date: Mon, 30 Sep 2013 15:03:54 +0200
-From: Karl Hiramoto <karl@hiramoto.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130921 Thunderbird/17.0.9
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B5C4E0167E
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:10:00 -0700 (PDT)
+Received: by mail-ie0-f170.google.com with SMTP id x13so10258815ief.15
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:09:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=2M/L+hFD6vOR3rxiM5cC9CasSaQ+b3bEsd6lySZnoM0=;
+	b=Of+oeUeBJmvnlGqoJnkYp/2c+dlVQ1xxhYYTNTsbILiUERmYgxlZy+dgWYk5lHcbyl
+	E2z660LpfUQGoF4065X/bGuU1rw6zQrytRgd3lH6xdH9rSb619DyDq2U4Kr3UyHll0M2
+	M/dzd34psCqWNS7Mdemo5BXsGQzPQzozHAOxF0JV5mf903eog4M3n8UtJW+dEJspHI6K
+	EGGPSFVc35mTo9nhLgG/Dm8LCXIZTxgfvfv/PjatDL6RUTeW9QqNBqgXWJH27tmC4gpE
+	N4EZBsDeOTk+d7Lm5D+etKvoYCwPQzCXXgGCK/sD/ZTd+AH/FFlXGIaDSnHB5B/II+w1
+	oKfg==
+X-Received: by 10.42.62.196 with SMTP id z4mr1290521ich.49.1380546597930; Mon,
+	30 Sep 2013 06:09:57 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: firmware image combining rootfs and kernel
+Received: by 10.64.15.137 with HTTP; Mon, 30 Sep 2013 06:09:37 -0700 (PDT)
+In-Reply-To: <CAMCfZKEJc8=_iNEZbnHqmVJqPQwUYkoRqb0DzOjHOPsCBcwupQ@mail.gmail.com>
+References: <CAMCfZKFWU43x4-2qua2CFG8cTNHk3XbDg6-zpooVThBGXS-uBg@mail.gmail.com>
+	<000601cebca7$0a377510$1ea65f30$@annabooks.com>
+	<CAMCfZKEexAqUoQ_2mYM4VzsMhy7z+d8w+mYCPey681p5AKoJMA@mail.gmail.com>
+	<CAMCfZKEJc8=_iNEZbnHqmVJqPQwUYkoRqb0DzOjHOPsCBcwupQ@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Mon, 30 Sep 2013 10:09:37 -0300
+Message-ID: <CAMCfZKF0UMybGD7Pjh_F-DgJM+n0CNTwfH2saP74XtDycGSxPw@mail.gmail.com>
+To: Sean Liming <sean.liming@annabooks.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Issues on booting cedartrail image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,28 +41,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 13:06:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 30 Sep 2013 13:10:01 -0000
+Content-Type: multipart/alternative; boundary=90e6ba614a769b589204e7998d21
+
+--90e6ba614a769b589204e7998d21
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+2013/9/29 Diego Sueiro <diego.sueiro@gmail.com>
+
+>
+> Folks,
+>
+> Serial console issue solved. On this board the DB9 connector is mapped on
+> ttyS1.
+>
+> But I can't still get logged on system with images generated with
+> meta-cedartrail on danny branch.
+>
+> Any hint about udev reported error?
+>
+>
+Folks,
+
+I'm really sorry about the buzz.
+The solution for udev issue was in this thread:
+https://lists.yoctoproject.org/pipermail/yocto/2012-December/013262.html
+
+Now the system is booting.
+
+Regards,
 
 
-Hi on my board, I build my  squashfs rootfs  and kernel image, and that 
-works fine on yocto 9.0.1
+--
+*dS
+Diego Sueiro
 
-How do i make my-image.bb   recipe,   build  a combined image? This 
-would be similar to what openwrt does where you have a firmware.img   
-that combines rootfs and kernel.
-In openwrt there are different image file formats  for example: 
-http://wiki.openwrt.org/doc/techref/header that contain  rootfs and kernel.
+Administrador do Embarcados
+www.embarcados.com.br
 
-Does anyone know of any OE  recipies to handle this?  I need to have my 
-own script build the firmware.img  that has dependencies of the 
-virtual/kernel  and rootfs
-And has variables that point  to  $DEPLOY_DIR / uImage  and $DEPLOY_DIR 
-/ my-image.squashfs
+Engenheiro de Controle e Automa=E7=E3o
+UNIVERSIDADE FEDERAL DE ITAJUB=C0
 
+/*long live rock 'n roll*/
 
-Thanks,
+--90e6ba614a769b589204e7998d21
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-karl
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div><div dir=3D"ltr">2013/9/29=
+ Diego Sueiro <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.co=
+m" target=3D"_blank">diego.sueiro@gmail.com</a>&gt;</span><br></div></div><=
+div class=3D"gmail_quote">
 
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><div><div dir=
+=3D"ltr">
+
+<div><br></div></div></div><div class=3D"gmail_quote"><div><div dir=3D"ltr"=
+><div>Folks,</div><div><br></div><div>Serial console issue solved. On this =
+board the DB9 connector is mapped on ttyS1.</div>
+<div><br></div><div>But I can&#39;t still get logged on system with images =
+generated with meta-cedartrail on danny branch.</div><div><br></div><div>An=
+y hint about udev reported error?</div><div><div class=3D"h5"><div><br></di=
+v>
+
+</div></div></div></div></div></div></div></blockquote><div><br></div><div =
+style>Folks,</div><div style><br></div><div style>I&#39;m really sorry abou=
+t the buzz.</div><div style>The solution for udev issue was in this thread:=
+</div>
+
+<div style><a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2012-D=
+ecember/013262.html">https://lists.yoctoproject.org/pipermail/yocto/2012-De=
+cember/013262.html</a><br></div><div><br></div><div style>Now the system is=
+ booting.</div>
+
+<div><br></div><div>Regards,</div><div><br></div><div><br></div>--<br>*dS<b=
+r>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=3D"http://www.=
+embarcados.com.br/" target=3D"_blank">www.embarcados.com.br</a><br><br>Enge=
+nheiro de Controle e Automa=E7=E3o<br>
+
+UNIVERSIDADE FEDERAL DE ITAJUB=C0<br><br><div>/*long live rock &#39;n roll*=
+/=A0</div></div></div></div>
+
+--90e6ba614a769b589204e7998d21--
