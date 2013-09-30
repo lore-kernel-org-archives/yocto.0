@@ -1,35 +1,32 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B5C4E0167E
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:10:00 -0700 (PDT)
-Received: by mail-ie0-f170.google.com with SMTP id x13so10258815ief.15
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:09:59 -0700 (PDT)
+Return-Path: <gmshastri@gmail.com>
+Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CFEBE01426
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 07:16:35 -0700 (PDT)
+Received: by mail-la0-f42.google.com with SMTP id ep20so4593914lab.1
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 07:16:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=2M/L+hFD6vOR3rxiM5cC9CasSaQ+b3bEsd6lySZnoM0=;
-	b=Of+oeUeBJmvnlGqoJnkYp/2c+dlVQ1xxhYYTNTsbILiUERmYgxlZy+dgWYk5lHcbyl
-	E2z660LpfUQGoF4065X/bGuU1rw6zQrytRgd3lH6xdH9rSb619DyDq2U4Kr3UyHll0M2
-	M/dzd34psCqWNS7Mdemo5BXsGQzPQzozHAOxF0JV5mf903eog4M3n8UtJW+dEJspHI6K
-	EGGPSFVc35mTo9nhLgG/Dm8LCXIZTxgfvfv/PjatDL6RUTeW9QqNBqgXWJH27tmC4gpE
-	N4EZBsDeOTk+d7Lm5D+etKvoYCwPQzCXXgGCK/sD/ZTd+AH/FFlXGIaDSnHB5B/II+w1
-	oKfg==
-X-Received: by 10.42.62.196 with SMTP id z4mr1290521ich.49.1380546597930; Mon,
-	30 Sep 2013 06:09:57 -0700 (PDT)
+	bh=tk7JEMijSCaU9OVkehAZ3DQ/Gx11403uBAS74cpGUsc=;
+	b=XnnPOZmHfcn4RvJKGATUgZxCTjOWcKh03C/WFFADPC1rT/MGYWVmKbxJcr514yHyU2
+	Hns5Nj8xyIMMsi9EiyxGU2FzJyfy2Xb3vMx2qkKh/vT5jjF/Wq5NtbHhPF01cwd7UtFK
+	wAxY9Xzvxod5JD3H0E7omRQg0bYf4yw5TqF7zpNuQTozK2Wpp6xSeQZYyCqr99HEooln
+	itJQvcnDuOBt6jBX1G5MCktq7cFq95RU32PORabc65l59Zjpqz0X7tdHTbawQ5kCzYmC
+	2aIaebGWvO/xjmc1tB2wN4Nc5fSWhDsVGn/0NWZEsl3aaw8kn/+c9EMsGixZQmRyIChy
+	q6BA==
 MIME-Version: 1.0
-Received: by 10.64.15.137 with HTTP; Mon, 30 Sep 2013 06:09:37 -0700 (PDT)
-In-Reply-To: <CAMCfZKEJc8=_iNEZbnHqmVJqPQwUYkoRqb0DzOjHOPsCBcwupQ@mail.gmail.com>
-References: <CAMCfZKFWU43x4-2qua2CFG8cTNHk3XbDg6-zpooVThBGXS-uBg@mail.gmail.com>
-	<000601cebca7$0a377510$1ea65f30$@annabooks.com>
-	<CAMCfZKEexAqUoQ_2mYM4VzsMhy7z+d8w+mYCPey681p5AKoJMA@mail.gmail.com>
-	<CAMCfZKEJc8=_iNEZbnHqmVJqPQwUYkoRqb0DzOjHOPsCBcwupQ@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Mon, 30 Sep 2013 10:09:37 -0300
-Message-ID: <CAMCfZKF0UMybGD7Pjh_F-DgJM+n0CNTwfH2saP74XtDycGSxPw@mail.gmail.com>
-To: Sean Liming <sean.liming@annabooks.com>
+X-Received: by 10.112.0.173 with SMTP id 13mr22314239lbf.8.1380550593989; Mon,
+	30 Sep 2013 07:16:33 -0700 (PDT)
+Received: by 10.114.62.115 with HTTP; Mon, 30 Sep 2013 07:16:33 -0700 (PDT)
+In-Reply-To: <2749DF61-2F0B-4979-99A1-79ED463DA601@include7.ch>
+References: <2749DF61-2F0B-4979-99A1-79ED463DA601@include7.ch>
+Date: Mon, 30 Sep 2013 19:46:33 +0530
+Message-ID: <CAE_REAvNLXNhnEMQpB+-wEUmxyB5YKkv6f1auYj=3mw_=xyn4Q@mail.gmail.com>
+From: Gaurang Shastri <gmshastri@gmail.com>
+To: Jonas Schnelli <jonas.schnelli@include7.ch>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issues on booting cedartrail image
+Subject: Re: meta-raspberrypi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,88 +38,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 13:10:01 -0000
-Content-Type: multipart/alternative; boundary=90e6ba614a769b589204e7998d21
+X-List-Received-Date: Mon, 30 Sep 2013 14:16:40 -0000
+Content-Type: multipart/alternative; boundary=f46d042c65a7bfd27a04e79a7b53
 
---90e6ba614a769b589204e7998d21
+--f46d042c65a7bfd27a04e79a7b53
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-2013/9/29 Diego Sueiro <diego.sueiro@gmail.com>
+Hi Jonas,
 
+I hope you have did below things before starting:
+==
+
+How to use it:
+
+1. source poky/oe-init-build-env rpi-build
+2. Add needed layer to bblayers.conf:
+    - meta-raspberrypi
+3  Set MACHINE to raspberrypi in local.conf
+4. bitbake rpi-hwup-image
+5. dd to a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is used)
+6. Boot your RPI.
+==
+
+//Gaurang Shastri
+
+
+
+
+On Mon, Sep 30, 2013 at 4:30 PM, Jonas Schnelli
+<jonas.schnelli@include7.ch>wrote:
+
+> Hi
 >
-> Folks,
+> While building with meta-raspberrypi i encounter the following error:
 >
-> Serial console issue solved. On this board the DB9 connector is mapped on
-> ttyS1.
+> ERROR: Could not inherit file classes/ sdcard_image-rpi.bbclass
 >
-> But I can't still get logged on system with images generated with
-> meta-cedartrail on danny branch.
+>                        | ETA:  00:01:03
+> ERROR: Command execution failed: Exited with 1
 >
-> Any hint about udev reported error?
+> Any ideas?
+>
+> i've tried with:
+> https://github.com/djwillis/meta-raspberrypi
+> and
+> git://git.yoctoproject.org/meta-raspberrypi
+>
+> thanks
+> --
+> /jonas
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 >
-Folks,
 
-I'm really sorry about the buzz.
-The solution for udev issue was in this thread:
-https://lists.yoctoproject.org/pipermail/yocto/2012-December/013262.html
-
-Now the system is booting.
-
-Regards,
-
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br
-
-Engenheiro de Controle e Automa=E7=E3o
-UNIVERSIDADE FEDERAL DE ITAJUB=C0
-
-/*long live rock 'n roll*/
-
---90e6ba614a769b589204e7998d21
+--f46d042c65a7bfd27a04e79a7b53
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div><div dir=3D"ltr">2013/9/29=
- Diego Sueiro <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.co=
-m" target=3D"_blank">diego.sueiro@gmail.com</a>&gt;</span><br></div></div><=
-div class=3D"gmail_quote">
+<div dir=3D"ltr">Hi Jonas,<br><br>I hope you have did below things before s=
+tarting:<br>=3D=3D<br><pre>How to use it:
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><div><div dir=
-=3D"ltr">
+1. source poky/oe-init-build-env rpi-build
+2. Add needed layer to bblayers.conf:
+    - meta-raspberrypi
+3  Set MACHINE to raspberrypi in local.conf
+4. bitbake rpi-hwup-image
+5. dd to a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is u=
+sed)
+6. Boot your RPI.<br>=3D=3D<br><br></pre><pre>//Gaurang Shastri<br></pre><b=
+r></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mo=
+n, Sep 30, 2013 at 4:30 PM, Jonas Schnelli <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:jonas.schnelli@include7.ch" target=3D"_blank">jonas.schnelli@includ=
+e7.ch</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi<br>
+<br>
+While building with meta-raspberrypi i encounter the following error:<br>
+<br>
+ERROR: Could not inherit file classes/ sdcard_image-rpi.bbclass =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0| ETA: =A000:01=
+:03<br>
+ERROR: Command execution failed: Exited with 1<br>
+<br>
+Any ideas?<br>
+<br>
+i&#39;ve tried with:<br>
+<a href=3D"https://github.com/djwillis/meta-raspberrypi" target=3D"_blank">=
+https://github.com/djwillis/meta-raspberrypi</a><br>
+and<br>
+git://<a href=3D"http://git.yoctoproject.org/meta-raspberrypi" target=3D"_b=
+lank">git.yoctoproject.org/meta-raspberrypi</a><br>
+<br>
+thanks<br>
+--<br>
+/jonas<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
 
-<div><br></div></div></div><div class=3D"gmail_quote"><div><div dir=3D"ltr"=
-><div>Folks,</div><div><br></div><div>Serial console issue solved. On this =
-board the DB9 connector is mapped on ttyS1.</div>
-<div><br></div><div>But I can&#39;t still get logged on system with images =
-generated with meta-cedartrail on danny branch.</div><div><br></div><div>An=
-y hint about udev reported error?</div><div><div class=3D"h5"><div><br></di=
-v>
-
-</div></div></div></div></div></div></div></blockquote><div><br></div><div =
-style>Folks,</div><div style><br></div><div style>I&#39;m really sorry abou=
-t the buzz.</div><div style>The solution for udev issue was in this thread:=
-</div>
-
-<div style><a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2012-D=
-ecember/013262.html">https://lists.yoctoproject.org/pipermail/yocto/2012-De=
-cember/013262.html</a><br></div><div><br></div><div style>Now the system is=
- booting.</div>
-
-<div><br></div><div>Regards,</div><div><br></div><div><br></div>--<br>*dS<b=
-r>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=3D"http://www.=
-embarcados.com.br/" target=3D"_blank">www.embarcados.com.br</a><br><br>Enge=
-nheiro de Controle e Automa=E7=E3o<br>
-
-UNIVERSIDADE FEDERAL DE ITAJUB=C0<br><br><div>/*long live rock &#39;n roll*=
-/=A0</div></div></div></div>
-
---90e6ba614a769b589204e7998d21--
+--f46d042c65a7bfd27a04e79a7b53--
