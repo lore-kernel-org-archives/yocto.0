@@ -1,22 +1,38 @@
-Return-Path: <zubrick@number6.ch>
-Received: from caprica.number6.ch (caprica.number6.ch [46.105.121.107])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F082E01665
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 04:06:44 -0700 (PDT)
-Received: from localhost ([127.0.0.1] helo=[10.22.2.50])
-	by caprica.number6.ch with esmtpa (Exim 4.72)
-	(envelope-from <zubrick@number6.ch>) id 1VQbJI-0001tO-Ca
-	for yocto@yoctoproject.org; Mon, 30 Sep 2013 13:06:41 +0200
-Message-ID: <52495B45.1010902@number6.ch>
-Date: Mon, 30 Sep 2013 13:06:45 +0200
-From: Zubrick <zubrick@number6.ch>
+Return-Path: <karl@hiramoto.org>
+Received: from homiemail-a77.g.dreamhost.com (caiajhbdccah.dreamhost.com
+	[208.97.132.207])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C573E0167A
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:06:37 -0700 (PDT)
+Received: from homiemail-a77.g.dreamhost.com (localhost [127.0.0.1])
+	by homiemail-a77.g.dreamhost.com (Postfix) with ESMTP id A8D8C9406B
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:06:36 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=hiramoto.org; h=message-id:date
+	:from:mime-version:to:subject:content-type:
+	content-transfer-encoding; q=dns; s=hiramoto.org; b=RXhX0hKG8qxp
+	QT1kdzAAMzy1UT0n4pmCSjBJFPBX5k6CRkruEnvkHbDFVaF5Af7YijjaWwWnia+x
+	6vjOU/mwYiy11xVjNN5O4ZVeEe66wwm+W5eJwR/1Fk6OCBhdIRbmNY95MhCmGZll
+	E8KRh29i38rjzo0tVGQIovx6BmU7vwU=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=hiramoto.org; h=message-id
+	:date:from:mime-version:to:subject:content-type:
+	content-transfer-encoding; s=hiramoto.org; bh=a+RCBBN7313WhnSlkP
+	r4Aw0igoI=; b=KaxgYgVj7HOsUdOmeKUFoH/If1E9VPK+69GuPyJnAsI0ywy21L
+	ZGfTwps70jEhkh0kBu4SAcFt3ebMdfEU3QerOtbgksmFJlWXzebzZ8rqobhvKSsm
+	47Uevt6ZS9Wj2/q25NVRJ3EVZhVQ2Km6Uh5axF4yV5jvjHM0CLBRry/gU=
+Received: from [10.64.1.2] (167.Red-79-155-47.dynamicIP.rima-tde.net
+	[79.155.47.167])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: karl@hiramoto.org)
+	by homiemail-a77.g.dreamhost.com (Postfix) with ESMTPSA id 045C894065
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 06:06:35 -0700 (PDT)
+Message-ID: <524976BA.2000707@hiramoto.org>
+Date: Mon, 30 Sep 2013 15:03:54 +0200
+From: Karl Hiramoto <karl@hiramoto.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+	rv:17.0) Gecko/20130921 Thunderbird/17.0.9
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-X-SA-Exim-Connect-IP: 127.0.0.1
-X-SA-Exim-Mail-From: zubrick@number6.ch
-X-SA-Exim-Scanned: No (on caprica.number6.ch); SAEximRunCond expanded to false
-Subject: installing external rpm
+Subject: firmware image combining rootfs and kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,83 +44,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 11:06:45 -0000
-Content-Type: multipart/alternative;
-	boundary="------------000500020304090506080809"
-
---------------000500020304090506080809
+X-List-Received-Date: Mon, 30 Sep 2013 13:06:39 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hello,
 
-I'm migrating from yocto 1.2 to yocto 1.4.2 and have some external 
-prebuilt rpm to install in the rootfs.
-On 1.2 I used to add a bb file with a RPROVIDES containing all the 
-packages I want to install,placing them in the deploy rpm directory and 
-add them in my IMAGE_INSTALL variable.
-But with 1.4.2, it doesn't install them without saying anything.
-I tried patching with this: http://patches.openembedded.org/patch/34635/ 
-but it didn't change anything. I also tried invoking smart directly in a 
-ROOTFS_POSTPROCESS_COMMAND.
-In the logs it says it will install the packages that he found correctly 
-in the repo, but nothing is really installed, and nothing is in the 
-logs, even in verbose mode.
+Hi on my board, I build my  squashfs rootfs  and kernel image, and that 
+works fine on yocto 9.0.1
 
-Anyone has an idea on how to proceed?
+How do i make my-image.bb   recipe,   build  a combined image? This 
+would be similar to what openwrt does where you have a firmware.img   
+that combines rootfs and kernel.
+In openwrt there are different image file formats  for example: 
+http://wiki.openwrt.org/doc/techref/header that contain  rootfs and kernel.
 
-Thanks
+Does anyone know of any OE  recipies to handle this?  I need to have my 
+own script build the firmware.img  that has dependencies of the 
+virtual/kernel  and rootfs
+And has variables that point  to  $DEPLOY_DIR / uImage  and $DEPLOY_DIR 
+/ my-image.squashfs
 
-Zubrick
 
---------------000500020304090506080809
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Thanks,
 
-<html>
-  <head>
+karl
 
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <font size="-1">Hello,<br>
-      <br>
-      <font size="-1">I'm migrating from yocto 1.2 to yo<font size="-1">cto
-          1.4<font size="-1">.2 and <font size="-1">ha<font size="-1">ve
-                some external prebuilt rpm to install in the rootfs.<br>
-                <font size="-1">On 1.2 I used to <font size="-1">add a
-                    bb file with a RPROV<font size="-1">IDES containing
-                      all the packages I <font size="-1">want to
-                        install,<font size="-1"> <font size="-1">placing
-                            them in the <font size="-1">deploy rpm <font
-                                size="-1"><font size="-1">directory</font>
-                                and add them <font size="-1">in my <font
-                                    size="-1">IMAGE_INSTALL variable</font></font></font></font></font></font></font></font></font></font>.<br>
-                <font size="-1">But with 1.4.2<font size="-1">, it
-                    doesn't install them without <font size="-1">saying
-                      anything. <br>
-                      I tried <font size="-1">patching <font size="-1">with
-                          this:
-                          <a class="moz-txt-link-freetext" href="http://patches.openembedded.org/patch/34635/">http://patches.openembedded.org/patch/34635/</a></font></font></font></font>
-                  but <font size="-1">it didn't change anything<font
-                      size="-1">. I also tried invokin<font size="-1">g
-                        smart <font size="-1">directly in a
-                          ROOTFS_POSTPROCESS_COMMAND<font size="-1">.<br>
-                            In the logs it says it will install the
-                            packages <font size="-1">that he found
-                              correctly in the repo, but nothing is
-                              really installed<font size="-1"><font
-                                  size="-1">, and nothing is in the
-                                  logs, even in verbose mode.</font><br>
-                              </font><br>
-                              <font size="-1">Anyone has an idea on how
-                                to <font size="-1">proceed</font>?<br>
-                                <br>
-                                Thanks<font size="-1"><br>
-                                  <br>
-                                  <font size="-1">Zubrick</font><br>
-                                </font></font></font></font></font></font></font></font></font></font></font></font></font></font></font>
-  </body>
-</html>
-
---------------000500020304090506080809--
