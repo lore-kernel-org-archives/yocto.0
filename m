@@ -1,37 +1,28 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 440A5E01647
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 01:39:58 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 30 Sep 2013 01:39:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,1007,1371106800"; d="scan'208";a="385599549"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga001.jf.intel.com with ESMTP; 30 Sep 2013 01:39:42 -0700
-Received: from irsmsx105.ger.corp.intel.com (163.33.3.28) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 30 Sep 2013 09:37:24 +0100
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.69]) by
-	IRSMSX105.ger.corp.intel.com ([169.254.7.29]) with mapi id
-	14.03.0123.003; Mon, 30 Sep 2013 09:37:24 +0100
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: "Zhang, Jessica" <jessica.zhang@intel.com>, Jate Sujjavanich
-	<Jate.Sujjavanich@myfuelmaster.com>, "'yocto@yoctoproject.org'"
-	<yocto@yoctoproject.org>
-Thread-Topic: Yocto Bitbake Commander New Project Bug
-Thread-Index: Ac666N4fx6mXRgzkQUqpM4cJDzRrYwAf56PwAAyRfnAAh1YR8A==
-Date: Mon, 30 Sep 2013 08:37:24 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F6C02B@IRSMSX104.ger.corp.intel.com>
-References: <6C2434209962DC46B88345CA85C334A201CAB0AB2006@Courier.syntech.org>
-	<1FFB62CE8AEB0D4298B51122D8903E9619F6B551@IRSMSX104.ger.corp.intel.com>
-	<C6510F6D410BB64A8C15398EDC6B847C73CB8232@ORSMSX103.amr.corp.intel.com>
-In-Reply-To: <C6510F6D410BB64A8C15398EDC6B847C73CB8232@ORSMSX103.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+Return-Path: <vaduva.jan.alexandru@gmail.com>
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8534FE01652
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 01:53:58 -0700 (PDT)
+Received: by mail-pa0-f54.google.com with SMTP id kx10so5639517pab.27
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 01:53:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=+5KQq38oQyiDey7o3zvmQqBS6RRm4wr3aeM0vzRk59o=;
+	b=bkXqdFbeeXIpqQAj4Awm6Ra/Ji/PWCusA2WAwk7UAWqz7iWyx4PHxGAeRvtjAiKW23
+	zLDxHH5JrqjGsc0IVWqZLS4e7IySZtN19OHs6T5O9R2Qtj6CRpa79YLasasa3VkbiVv9
+	/LRji2apqeRsc89Ih72SllotL73CLKqDxADogNnUIKyNjO7nZys6a1a2/e1ZPoLaDRPC
+	p448eRZEis+fKwtLLSncDBVB2GovESTrhJeycf9zi5/tRQgos4b1sz2PvxGysVMpqWL3
+	iV3DK20rip/jXqnJfMBF0zqxYR8N/hCCDh2s3SUybj5rBPhvO0LX5kjQ6n6ZlHV5XSia
+	yedQ==
 MIME-Version: 1.0
-Subject: Re: Yocto Bitbake Commander New Project Bug
+X-Received: by 10.68.252.33 with SMTP id zp1mr22661424pbc.95.1380531238348;
+	Mon, 30 Sep 2013 01:53:58 -0700 (PDT)
+Received: by 10.68.232.195 with HTTP; Mon, 30 Sep 2013 01:53:58 -0700 (PDT)
+Date: Mon, 30 Sep 2013 11:53:58 +0300
+Message-ID: <CABwVrCp5cG1ZuGNZn_HChbCs8MFnoTfDTSvbAU6KvJ9Avp5TsQ@mail.gmail.com>
+From: jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto external toolchain problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,91 +34,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 08:40:04 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 30 Sep 2013 08:54:03 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e3cec102d6504e795fa6a
+
+--047d7b2e3cec102d6504e795fa6a
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello all,
+
+I am trying to use a toochain from meta-sourcery layer  - Mentor
+Graphics(Code Sourcery) - and I get the following error when building a
+recipe:
+            ERROR: ExpansionError during parsing
+/media/sdc1/fb/alvd/test/broadcom/poky/meta-sourcery/recipes/meta/external-
+sourcery-toolchain.bb: Failure expanding variable sysroot_stage_all:
+ShellSyntaxError: LexToken(LPARENS,'(',0,0) followed by:
+LexToken(TOKEN,'GCC-r22/sysroot-destdir/',0,0)
+
+Can you offer some suggestions, or hints for solving this error.
+
+
+Thank you,
+Alex
+
+--047d7b2e3cec102d6504e795fa6a
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I don't know if I mentioned, but "Clone from Yocto Project Git Repository" =
-must be unchecked in the case the sources are already downloaded.
+<div dir=3D"ltr"><div>Hello all,<br><br><span>I am trying to use a toochain=
+ from meta-sourcery layer<span>=A0=A0</span>-
+ Mentor Graphics(Code Sourcery) - and I get the following error when=20
+building a recipe: <br>=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 ERROR: ExpansionEr=
+ror during parsing=20
+/media/sdc1/fb/alvd/test/broadcom/poky/meta-sourcery/recipes/meta/external-=
+ <a href=3D"http://sourcery-toolchain.bb">sourcery-toolchain.bb</a>:
+ Failure expanding variable sysroot_stage_all: ShellSyntaxError:=20
+LexToken(LPARENS,&#39;(&#39;,0,0) followed by:<span>=A0=A0</span> LexToken(=
+TOKEN,&#39;GCC-r22/sysroot-destdir/&#39;,0,0)<span></span></span><br><br><s=
+pan>Can you offer some suggestions, or hints for solving this error.<br><br=
+>
+<br></span></div><span>Thank you,<br>Alex<br></span></div>
 
---
-Alexandru Georgescu
-
------Original Message-----
-From: Zhang, Jessica=20
-Sent: Friday, September 27, 2013 19:05
-To: Georgescu, Alexandru C; Jate Sujjavanich; 'yocto@yoctoproject.org'
-Subject: RE: Yocto Bitbake Commander New Project Bug
-
-This is a bug that due to upstream code.  To avoid the bug, don't use the
-directory to host the poky directory under workspace or ~/runtime-Eclipse,
-but instead use your home directory $HOME...
-
-Also, as Alex mentioned, for project put the name of directory of your
-cloned yocto metadata, e.g. poky, for the location, choose the directory
-where the metadata directory is under.  For example, if your metadata is
-$HOME/poky, put poky as project name, the location as $HOME.
-
-Thanks,
-Jessica
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-]
-On Behalf Of Georgescu, Alexandru C
-Sent: Friday, September 27, 2013 3:03 AM
-To: Jate Sujjavanich; 'yocto@yoctoproject.org'
-Subject: Re: [yocto] Yocto Bitbake Commander New Project Bug
-
-Hi Jate,
-You can try mentioning in the project name the actual poky directory name
-(in your case: poky) and in the project path the location where "poky" is
-located (your case: ~/workspace/). That should work.
-
-Regards,
---
-Alexandru Georgescu
-
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-]
-On Behalf Of Jate Sujjavanich
-Sent: Thursday, September 26, 2013 21:48
-To: 'yocto@yoctoproject.org'
-Subject: [yocto] Yocto Bitbake Commander New Project Bug
-
-Creating a Yocto Bitbake Commander project using an existing poky directory
-is a little buggy. I usually do this to avoid downloading poky from the
-Internet.
-
-The plugin wizard implies that you can use a poky directory in your
-workspace with its clone from yocto repository option.
-
-Attempting to use a cloned poky in workspace/poky results in the wizard
-reporting that ".../workspace/poky overlaps the location of another project=
-:
-poky." Changing the name of the project merely results in the error
-"Directory ...workspace/poky2 does not exist, please select git clone".
-
-The workaround is to open a separate dummy workspace, and then run the
-wizard with Project Location pointing to your desired Project Location. You
-will then be able to hit Finish. Eclipse will create the .metadata and
-.eclipse-data files.
-
-You can then switch to your desired workspace and use "Import an Existing
-Project."
-
-Is this a bug?
-
-
--Jate S.
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--047d7b2e3cec102d6504e795fa6a--
