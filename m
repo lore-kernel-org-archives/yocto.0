@@ -1,28 +1,25 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qc0-f182.google.com (mail-qc0-f182.google.com
-	[209.85.216.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C85E0E01630
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 06:16:06 -0700 (PDT)
-Received: by mail-qc0-f182.google.com with SMTP id n4so4767604qcx.13
-	for <yocto@yoctoproject.org>; Tue, 01 Oct 2013 06:16:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=qp5+hJfh7Kt9YsIt7QbR+7PIJvTd+f9Ljw7ueVWWYXY=;
-	b=pICOps39r6Lh0n7Fziv7dZaTIxnvC1UmX0QuYedpdPFy9wntDIFTgaDTwK0kQpSihx
-	Q4vnFTDb08mSHchzbAxIMm39b9MAD5dCJeX5zU3kJNmafb4j2cHuNOdWUMypjmw2gVZm
-	GFFukU0FHlh4LNYNlvmJxFzbjSg3WgYbvaKRyyrR2BXkzJ9oR7n4pVaOX1XTjprSLCId
-	xNIjXETDZi2NTz/eTzOaIZy4+aICbiwIiknS9ZQ5s3RN6WG1uWauVespx5ScsApmMb+7
-	AaU1SLt47+fmiHzczpQffYNtBirJMvtsDEvNqkVLBYK9gHUgryflqJZQzDndstMu81+B
-	PSmQ==
+Return-Path: <anders@chargestorm.se>
+Received: from STOEXHUB02.domain01.net (STOEXHUB02.domain01.net
+	[83.145.59.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CD93E01602
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 07:07:43 -0700 (PDT)
+Received: from [192.168.0.100] (37.250.222.0) by stoexhub02.domain01.net
+	(10.12.10.2) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Tue, 1 Oct 2013 16:07:40 +0200
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CABHD4K-4Y3EwtJrVpqWp-Y_GxBHXCvhqBNYrLeBEf==eT0ge=w@mail.gmail.com>
+References: <CABHD4K-2dfbGYj6p13C=uYXS4pzLGQ+NZaV_PkqahKu_zknJjg@mail.gmail.com>
+	<CABHD4K-1p9Va1_+xjtLsiKkMX8ak1hUvZikNFMnU7BZsZ49WEg@mail.gmail.com>
+	<20131001132628.GB6493@ad.chargestorm.se>
+	<CABHD4K-4Y3EwtJrVpqWp-Y_GxBHXCvhqBNYrLeBEf==eT0ge=w@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.49.27.226 with SMTP id w2mr35356699qeg.32.1380633365377;
-	Tue, 01 Oct 2013 06:16:05 -0700 (PDT)
-Received: by 10.49.57.197 with HTTP; Tue, 1 Oct 2013 06:16:05 -0700 (PDT)
-Date: Tue, 1 Oct 2013 15:16:05 +0200
-Message-ID: <CAFyqS9qRodbORexXqZNQESh+iiXyhs9Zi+pHBOLdxiipR0_aAQ@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Problem finding -lgcc when using SDK toolchain
+From: Anders Darander <anders@chargestorm.se>
+Date: Tue, 1 Oct 2013 16:07:34 +0200
+To: Amit Tomer <amittomer25@gmail.com>
+Message-ID: <6d6111d1-28f2-40d5-a55c-ae04ab2911b4@email.android.com>
+X-GFI-SMTP-Submission: 1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Provide sftp-client support in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,30 +31,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 13:16:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 01 Oct 2013 14:07:44 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 
-Hello. We have stumbled into a problem when using ld directly instead
-of going through the gcc frontend.
-A simple operation like this fails:
 
->${CC} -c hello_world.c
->${LD} hello_world.o -lgcc
-arm-poky-linux-gnueabi-ld: cannot find -lgcc
 
-And yes, I know -lgcc is not required in this case to compile this
-one, but this is only a simple reproducer.
-The real issue was discovered when trying to build U-Boot from the SDK.
+Amit Tomer <amittomer25@gmail.com> wrote:
+>Thansk Anders for your kind response
+>
+>
+>Yes we are created our image and can see there are some IMAGE_INSTALL
+>already used
 
-To resolve this problem we are forced to provide
--L<sysroot>/usr/lib/arm-poky-linux-gnueabi/4.7.2 to LDFLAGS.
-But that should not be needed, should it? Anyone else bumped into this
-problem? Are there any "real" solutions.
-I am starting to think it has to do with the hardcoded installation
-path in the binaries maybe? If you choose not to install
-the SDK where Yocto assumes it to be installed things break, even if
---sysroot is used.
+Good. 
 
-Thanks.
-Hans
+>But when I add  IMAGE_INSTALL += "openssh-sftp"
+>
+>
+>Getting below error
+>
+>
+>Error: openssh-sftp not found in the base feeds (zzz_pyp_ii
+>cortexa15hf-vfp-neon cortexa15hf-vfp armv7ahf-vfp-neon armv7ahf-vfp
+>armv6hf-vfp armv5ehf-vfp armv5hf-vfp noarch any all).
+>
+>
+>Do we need to do something more here
+
+That should have been enough. 
+
+If you look in tmp/work/fkm-poky-linux-gnueabi/openssh/6.1p1-r3/packages-split, do you see openssh-sftp there, or which packages do you have there? 
+
+Which version of Yocto / Poky are you using? What layers do you have enabled? 
+
+Cheers, 
+Anders 
+
+>Thanks 
+>
+>Amit
+>
+>
+>
+>
+>
+>On Tue, Oct 1, 2013 at 6:56 PM, Anders Darander <anders@chargestorm.se>
+>wrote:
+>
+>* Amit Tomer <amittomer25@gmail.com> [131001 14:57]:
+>
+>> Just now I have seen your responses ,didn't get any notification of
+>your
+>> responses on my mail-id.
+>
+>> Let me present my problem again to you guys.
+>
+>> We have stfp-server running fine on put target machine and is running
+>as part
+>> of sshd daemon.
+>
+>Ok, that sounds good. Then the server is apparantly no problem for you.
+>
+>
+>> But when we try to connect to other machine from target board, sftp
+>is not
+>> working becaue our borad is set to run as sftp -client.
+>
+>> An SFTP client program called sftp is already insatlled to tmp/work/
+>> fkm-poky-linux-gnueabi/openssh/6.1p1-r3/package/usr/bin.
+>
+>The build process built sftp (the client) as a part of building
+>openssh.
+>The client was packaged into a separate package, called openssh-sftp.
+>
+>
+>> But on Target I could not find this sftp .bins.
+>
+>Now you need to install that package, openssh-sftp, to your image.
+>
+>If you have created your own image, just add openssh-sftp to
+>IMAGE_INSTALL.
+>
+>If you're not creating your own images, I'd strongly suggest that you
+>do
+>that. (It'll make all your customizations a lot easier in the end). See
+>http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage-custombb
+>for more information.
+>
+>I hope this answers your question.
+>
+>Cheers,
+>Anders
+>
+>
+>> Now we want this stfp run as some daemon or part of sshd daemon
+>itself.
+>
+>> Anders: It's already being installed to a package named openssh-sftp
+>
+>> We don't have package named openssh-sftp ,we have package named with
+>openssh
+>> only
+>
+>> Thanks
+>> Amit
+>
+>
+>
+>
+>
+>
+>
+>> On Tue, Oct 1, 2013 at 1:22 PM, Amit Tomer <amittomer25@gmail.com>
+>wrote:
+>
+>>     I am new to OpenEmbedded Yocto project and have a requirement to
+>provide
+>>     sftp-client support on my target board.
+>
+>>     Sftp-server bins are already packed into final image and is
+>installed at
+>
+>>    
+>tmp/work/fkm-poky-linux-gnueabi/openssh/6.1p1-r3/package/usr/lib/openssh/
+>>     sftp-server
+>
+>>     Now ,same way Do I have to install stfp client bins also or is
+>there any
+>>     other way to go about it??
+>
+>>     Thanks
+>>     Amit 
+>
+>
+>
+>
+>
+>
+>
+>--
+>Anders Darander
+>ChargeStorm AB / eStorm AB
+
+-- 
+Anders Darander
+ChargeStorm AB          Tel: +46 702 44 84 36
+Laxholmstorget 3        Email: anders@chargestorm.se
+602 21 Norrköping       Web: www.chargestorm.se
+
+Sent from my Android phone with K-9 Mail. Please excuse my brevity.
 
