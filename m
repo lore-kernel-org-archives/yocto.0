@@ -1,29 +1,22 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6623E01626;
-	Tue,  1 Oct 2013 00:52:05 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id hu8so4668941vcb.31
-	for <multiple recipients>; Tue, 01 Oct 2013 00:52:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=j9henMVmWBd8ozFLSU/COi+d1Ei5O88ozL2/lOaA0VI=;
-	b=LojelnX7uBlRQGy/V0ke9+/VK+5k5hyDFN6/53bng1AYCK2xupadf44SiFozG32PUO
-	QOL6kzp/JglJ/UvGkcwOWElJBtkwb0np/4AFLE/kBaO5C1A7kk1egjAWnDVXGkeODLlN
-	nByP6fso8VT5ls9yHPJ5U3ZpxjFd7gFfYLx0UMEvmY9mKt6d0pAU4A7bYeAI0/0AXPkH
-	5zrFZTHaAEmH/q3LcEdnQa2mHdd67gtHYfJND/+Cm8vIZ/Oq3PnD2lfNZ13ygRAOIFSp
-	qvXP/rU1pTeOi1ilqPQ1fvKRnKddqelC16uoSwSFHvX6XqvNPjQIvM6aAWP39XFBX5+1
-	lhog==
+Return-Path: <diego.gonzalez@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3F59E01626
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 01:12:07 -0700 (PDT)
+Received: from [172.30.250.16] (172.30.250.254) by horus27 (Axigen)
+	with (CAMELLIA256-SHA encrypted) ESMTPSA id 0FFAC3;
+	Tue, 1 Oct 2013 10:12:04 +0200
+Message-ID: <524A83D1.70705@horus.es>
+Date: Tue, 01 Oct 2013 10:12:01 +0200
+From: diego <diego.gonzalez@horus.es>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0)
+	Gecko/20130801 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-Received: by 10.58.74.38 with SMTP id q6mr26972563vev.9.1380613924322; Tue,
-	01 Oct 2013 00:52:04 -0700 (PDT)
-Received: by 10.58.215.79 with HTTP; Tue, 1 Oct 2013 00:52:04 -0700 (PDT)
-Date: Tue, 1 Oct 2013 13:22:04 +0530
-Message-ID: <CABHD4K-2dfbGYj6p13C=uYXS4pzLGQ+NZaV_PkqahKu_zknJjg@mail.gmail.com>
-From: Amit Tomer <amittomer25@gmail.com>
-To: yocto-request@yoctoproject.org, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Provide sftp-client support in yocto
+To: yocto@yoctoproject.org
+References: <CABHD4K-2dfbGYj6p13C=uYXS4pzLGQ+NZaV_PkqahKu_zknJjg@mail.gmail.com>
+In-Reply-To: <CABHD4K-2dfbGYj6p13C=uYXS4pzLGQ+NZaV_PkqahKu_zknJjg@mail.gmail.com>
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 4
+Subject: Re: Provide sftp-client support in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,39 +28,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 07:52:07 -0000
-Content-Type: multipart/alternative; boundary=047d7bacbedc88030104e7a93a06
+X-List-Received-Date: Tue, 01 Oct 2013 08:12:10 -0000
+Content-Type: multipart/alternative;
+	boundary="------------030102090402010702030108"
 
---047d7bacbedc88030104e7a93a06
-Content-Type: text/plain; charset=ISO-8859-1
+--------------030102090402010702030108
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I am new to OpenEmbedded Yocto project and have a requirement to provide
-sftp-client support on my target board.
+El 01/10/2013 9:52, Amit Tomer escribió:
+> I am new to OpenEmbedded Yocto project and have a requirement to provide
+> sftp-client support on my target board.
+>
+> Sftp-server bins are already packed into final image and is installed at
+>
+> tmp/work/fkm-poky-linux-gnueabi/openssh/6.1p1-r3/package/usr/lib/openssh/sftp-server
+>
+> Now ,same way Do I have to install stfp client bins also or is there 
+> any other way to go about it??
+>
+> Thanks
+> Amit
+>
+>
+>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Sftp-server bins are already packed into final image and is installed at
+I had the same problem and I posted this solution:
 
-tmp/work/fkm-poky-linux-gnueabi/openssh/6.1p1-r3/package/usr/lib/openssh/sftp-server
+https://lists.yoctoproject.org/pipermail/yocto/2013-September/018477.html
 
-Now ,same way Do I have to install stfp client bins also or is there any
-other way to go about it??
+Regards
 
-Thanks
-Amit
 
---047d7bacbedc88030104e7a93a06
+
+-- 
+Diego González González
+Dpto. de Control Industrial
+HORUS HARDWARE S.A.
+diego.gonzalez@horus.es
+
+
+--------------030102090402010702030108
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-<div dir=3D"ltr">I am new to OpenEmbedded Yocto project and have a requirem=
-ent to provide<div style>sftp-client support on my target board.</div><div =
-style><br></div><div style>Sftp-server bins are already packed into final i=
-mage and is installed at</div>
-<div style><br></div><div style>tmp/work/fkm-poky-linux-gnueabi/openssh/6.1=
-p1-r3/package/usr/lib/openssh/sftp-server<br></div><div style><br></div><di=
-v style>Now ,same way Do I have to install stfp client bins also or is ther=
-e any other way to go about it??</div>
-<div style><br></div><div style>Thanks</div><div style>Amit=A0</div><div st=
-yle><br></div><div style><br></div><div style><br></div><div style><br></di=
-v></div>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">El 01/10/2013 9:52, Amit Tomer
+      escribi&oacute;:<br>
+    </div>
+    <blockquote
+cite="mid:CABHD4K-2dfbGYj6p13C=uYXS4pzLGQ+NZaV_PkqahKu_zknJjg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">I am new to OpenEmbedded Yocto project and have a
+        requirement to provide
+        <div style="">sftp-client support on my target board.</div>
+        <div style=""><br>
+        </div>
+        <div style="">Sftp-server bins are already packed into final
+          image and is installed at</div>
+        <div style=""><br>
+        </div>
+        <div style="">tmp/work/fkm-poky-linux-gnueabi/openssh/6.1p1-r3/package/usr/lib/openssh/sftp-server<br>
+        </div>
+        <div style=""><br>
+        </div>
+        <div style="">Now ,same way Do I have to install stfp client
+          bins also or is there any other way to go about it??</div>
+        <div style=""><br>
+        </div>
+        <div style="">Thanks</div>
+        <div style="">Amit&nbsp;</div>
+        <div style=""><br>
+        </div>
+        <div style=""><br>
+        </div>
+        <div style=""><br>
+        </div>
+        <div style=""><br>
+        </div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+    </blockquote>
+    <br>
+    I had the same problem and I posted this solution:<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/pipermail/yocto/2013-September/018477.html">https://lists.yoctoproject.org/pipermail/yocto/2013-September/018477.html</a><br>
+    <br>
+    Regards<br>
+    <br>
+    <br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Diego Gonz&aacute;lez Gonz&aacute;lez
+Dpto. de Control Industrial
+HORUS HARDWARE S.A.
+<a class="moz-txt-link-abbreviated" href="mailto:diego.gonzalez@horus.es">diego.gonzalez@horus.es</a></pre>
+  </body>
+</html>
 
---047d7bacbedc88030104e7a93a06--
+--------------030102090402010702030108--
