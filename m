@@ -1,20 +1,21 @@
-Return-Path: <jose.ferreiro@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBA32E01602
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 07:59:23 -0700 (PDT)
-Received: from [172.30.250.61] (172.30.250.61) by horus27 (Axigen)
-	with (CAMELLIA256-SHA encrypted) ESMTPSA id 28AC41;
-	Tue, 1 Oct 2013 16:59:20 +0200
-Message-ID: <524AE34E.4000303@horus.es>
-Date: Tue, 01 Oct 2013 16:59:26 +0200
-From: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
-User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:16.0)
-	Gecko/20121005 Thunderbird/16.0
+Return-Path: <Tudor.Florea@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id AF925E01602
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 08:15:27 -0700 (PDT)
+Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
+	(172.21.1.209) with Microsoft SMTP Server id 14.2.318.1; Tue, 1 Oct 2013
+	17:15:25 +0200
+Received: by sestofb10.enea.se (Postfix, from userid 4200)	id 24CB228C24E;
+	Tue,  1 Oct 2013 17:15:25 +0200 (CEST)
+From: Tudor Florea <tudor.florea@enea.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 1 Oct 2013 17:15:17 +0200
+Message-ID: <1380640517-8681-1-git-send-email-tudor.florea@enea.com>
+X-Mailer: git-send-email 1.7.10.4
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 2
-Subject: nativesdk-dbus not shipped for meta-toolchain-qt
+Received-SPF: None (SESTOEX03.enea.se: tudor.florea@enea.com does not
+	designate permitted sender hosts)
+Subject: [PATCH] [eclipse-poky-juno] sdk.remotetools: use xterm for latencytop
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,32 +27,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 14:59:25 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 01 Oct 2013 15:15:31 -0000
+Content-Type: text/plain
 
-Hello
+Use xterm instead of vt100 in order to avoid having 
+unreadable output for latencytop due to some control characters.
 
-We are trying to bitbake meta-toolchain-qt with master and dora. Both 
-launch this error:
+Signed-off-by: Tudor Florea <tudor.florea@enea.com>
+---
+ .../src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java     |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-ERROR: QA Issue: nativesdk-dbus: Files/directories were installed but 
-not shipped
-   /run
-   /run/dbus
-ERROR: QA run found fatal errors. Please consider fixing them.
+diff --git a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
+index e931388..1ef34cb 100644
+--- a/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
++++ b/plugins/org.yocto.sdk.remotetools/src/org/yocto/sdk/remotetools/actions/LatencytopHandler.java
+@@ -13,7 +13,7 @@ package org.yocto.sdk.remotetools.actions;
+ 
+ public class LatencytopHandler extends DialogHandler {
+ 	
+-	private static String initCmd="export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin; cd; sudo latencytop\r";
++	private static String initCmd="export TERM=xterm; export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin; cd; sudo latencytop\r";
+ 	
+ 	@Override
+ 	protected String getInitCmd() {
+-- 
+1.7.10.4
 
-We compare it to dylan dbus. We found that dora is creating a 
-package-split named nativesdk-dbus with the symbolink link run at
-build/tmp/work/i686-nativesdk-pokysdk-linux/nativesdk-dbus/1.6.10-r6.0/packages-split/nativesdk-dbus/opt/poky/1.5/sysroots/i686-pokysdk-linux/var. 
-That link is pointing to /run host directory (a bad thing, we suppose).
-That link in dylan is pointing to volatile/run (a folder inside the 
-package-split)
-
-We try to manually delete the link and recreate it  and the folders, but 
-bitbake clean everything and it create again.
-
-Any clue about how to solve this?
-
-Thank you
 
