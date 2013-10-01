@@ -1,24 +1,25 @@
-Return-Path: <alexandrux.palalau@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16470E01602
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 09:28:45 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 01 Oct 2013 09:25:35 -0700
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C925E01612
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 09:34:45 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 01 Oct 2013 09:34:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,1014,1371106800"; d="scan'208";a="412498180"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga002.jf.intel.com with ESMTP; 01 Oct 2013 09:28:45 -0700
-Received: from localhost.localdomain (unknown [10.237.112.123])
-	by linux.intel.com (Postfix) with ESMTP id 25CD02C8001;
-	Tue,  1 Oct 2013 09:28:41 -0700 (PDT)
-From: Alexandru Palalau <alexandrux.palalau@intel.com>
-To: yocto@yoctoproject.org
-Date: Tue,  1 Oct 2013 19:40:04 +0300
-Message-Id: <1380645604-6411-1-git-send-email-alexandrux.palalau@intel.com>
-X-Mailer: git-send-email 1.8.1.4
-Cc: paul.eggleton@linux.intel.com,
-	Alexandru Palalau <alexandrux.palalau@intel.com>
-Subject: [PATCH] meta-yocto: Removed obsolete distros from SANITY_TESTED_DISTROS in poky.conf
+X-IronPort-AV: E=Sophos;i="4.90,1014,1371106800"; d="scan'208";a="386306112"
+Received: from timevans-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.120.75])
+	by orsmga001.jf.intel.com with ESMTP; 01 Oct 2013 09:34:10 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Alexandru Palalau <alexandrux.palalau@intel.com>
+Date: Tue, 01 Oct 2013 17:34:09 +0100
+Message-ID: <1445453.WIDZ7kv1lg@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-30-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <1380645604-6411-1-git-send-email-alexandrux.palalau@intel.com>
+References: <1380645604-6411-1-git-send-email-alexandrux.palalau@intel.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] meta-yocto: Removed obsolete distros from SANITY_TESTED_DISTROS in poky.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,39 +31,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 16:28:46 -0000
+X-List-Received-Date: Tue, 01 Oct 2013 16:34:46 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Removed CentOS-6.3, Fedora-17, Debian-6.0 and Poky-1.3 from SANITY_TESTED_DISTROS.
+Hi Alex,
 
-Signed-off-by: Alexandru Palalau <alexandrux.palalau@intel.com>
----
- meta-yocto/conf/distro/poky.conf | 4 ----
- 1 file changed, 4 deletions(-)
+On Tuesday 01 October 2013 19:40:04 Alexandru Palalau wrote:
+> Removed CentOS-6.3, Fedora-17, Debian-6.0 and Poky-1.3 from
+> SANITY_TESTED_DISTROS.
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index 4752356..465dbb9 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -72,18 +72,14 @@ CONNECTIVITY_CHECK_URIS ?= " \
-              http://bugzilla.yoctoproject.org/report.cgi"
- 
- SANITY_TESTED_DISTROS ?= " \
--            Poky-1.3 \n \
-             Poky-1.4 \n \
-             Poky-1.5 \n \
-             Ubuntu-12.04 \n \
-             Ubuntu-12.10 \n \
-             Ubuntu-13.04 \n \
--            Fedora-17 \n \
-             Fedora-18 \n \
-             Fedora-19 \n \
--            CentOS-6.3 \n \
-             CentOS-6.4 \n \
--            Debian-6.0 \n \
-             Debian-6.0.7 \n \
-             Debian-7.0 \n \
-             Debian-7.1 \n \
+Sorry, I forgot to mention last time, these patches should go to the poky 
+mailing list. Also, this is somewhat pedantic, but the shortlog prefix should 
+be "poky.conf:" rather than "meta-yocto:".
+
+Cheers,
+Paul
+
 -- 
-1.8.1.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
