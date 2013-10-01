@@ -1,31 +1,29 @@
-Return-Path: <008dilip@gmail.com>
-Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85743E01626
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
-Received: by mail-qc0-f178.google.com with SMTP id r5so4368969qcx.37
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
+	[209.85.220.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6623E01626;
+	Tue,  1 Oct 2013 00:52:05 -0700 (PDT)
+Received: by mail-vc0-f172.google.com with SMTP id hu8so4668941vcb.31
+	for <multiple recipients>; Tue, 01 Oct 2013 00:52:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=fim4WfkI+bAXzGWgEpjrCUTrHKYJR186Q/bNKmdNcA8=;
-	b=SHryrHmC4Y9W+QVbT48sbyQxOgBvRXTrEwJIsG/0GQ9x9Z2cqBaaoTLzKKsLPmD95r
-	QkiPyR66RDmnBOr0L6Ed3HaJMi46gV4Ra/nE+s/NKljMJMv8uFzNyiqkSi7J7EZFfHJZ
-	MzPI65P7jxNGr8YeMKl9+Xag/zHCICrfE+yUfhuplzI+32JNufuniVDXC8yXgplTqi9y
-	hGwQ6j0pcW7dbEHv8jmhGxBGic5A5O/1AAGmXj9Ghg17lEP0jfJWSfYoQVl1Nim1IuFQ
-	gNLJVFEw273hn9daytJC6V9tbjmr6HgmwYDR67Q85B3TT6x4/wKQqyiRULG2zQWHEroU
-	wMyA==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=j9henMVmWBd8ozFLSU/COi+d1Ei5O88ozL2/lOaA0VI=;
+	b=LojelnX7uBlRQGy/V0ke9+/VK+5k5hyDFN6/53bng1AYCK2xupadf44SiFozG32PUO
+	QOL6kzp/JglJ/UvGkcwOWElJBtkwb0np/4AFLE/kBaO5C1A7kk1egjAWnDVXGkeODLlN
+	nByP6fso8VT5ls9yHPJ5U3ZpxjFd7gFfYLx0UMEvmY9mKt6d0pAU4A7bYeAI0/0AXPkH
+	5zrFZTHaAEmH/q3LcEdnQa2mHdd67gtHYfJND/+Cm8vIZ/Oq3PnD2lfNZ13ygRAOIFSp
+	qvXP/rU1pTeOi1ilqPQ1fvKRnKddqelC16uoSwSFHvX6XqvNPjQIvM6aAWP39XFBX5+1
+	lhog==
 MIME-Version: 1.0
-X-Received: by 10.224.10.202 with SMTP id q10mr37899168qaq.8.1380608324371;
-	Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
-Received: by 10.49.120.133 with HTTP; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
-Received: by 10.49.120.133 with HTTP; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
-In-Reply-To: <368D4D1DD61B4E4A97BC63E95AC9EB8727005DA769@BLRINMSMBX01.bglrodc.lntinfotech.com>
-References: <368D4D1DD61B4E4A97BC63E95AC9EB8727005DA769@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Date: Tue, 1 Oct 2013 11:48:44 +0530
-Message-ID: <CABmxB3MiTszCC4f0c9zKzy-obwtj2oNEueS1npsE8FXrwaRvww@mail.gmail.com>
-From: Dilip Kumar <008dilip@gmail.com>
-To: yocto@yoctoproject.org
-Subject: FW: Creating BSP without using git
+X-Received: by 10.58.74.38 with SMTP id q6mr26972563vev.9.1380613924322; Tue,
+	01 Oct 2013 00:52:04 -0700 (PDT)
+Received: by 10.58.215.79 with HTTP; Tue, 1 Oct 2013 00:52:04 -0700 (PDT)
+Date: Tue, 1 Oct 2013 13:22:04 +0530
+Message-ID: <CABHD4K-2dfbGYj6p13C=uYXS4pzLGQ+NZaV_PkqahKu_zknJjg@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: yocto-request@yoctoproject.org, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Provide sftp-client support in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,141 +35,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 06:18:45 -0000
-Content-Type: multipart/alternative; boundary=001a11c2cce6bf892504e7a7ec74
+X-List-Received-Date: Tue, 01 Oct 2013 07:52:07 -0000
+Content-Type: multipart/alternative; boundary=047d7bacbedc88030104e7a93a06
 
---001a11c2cce6bf892504e7a7ec74
+--047d7bacbedc88030104e7a93a06
 Content-Type: text/plain; charset=ISO-8859-1
 
->
->
->
->
-> Hi,
->
->             I need to create a local BSP layer using Yocto-bsp create
-command without the use of Git.
->
->
->
->
->
-> yocto-bsp create mylayers qemu -s
->
-> Which qemu architecture would you like to use? [default: i386]
->
->             1) i386    (32-bit)
->
->             2) x86_64  (64-bit)
->
->             3) ARM     (32-bit)
->
->             4) PowerPC (32-bit)
->
->             5) MIPS    (32-bit)
->
-> 3
->
-> Would you like to use the default (3.8) kernel? (y/n) [default: y] y
->
-> Do you need a new machine branch for this BSP (the alternative is to
-re-use an existing branch)? [y/n] [default: y] n
->
-> Getting branches from remote repo git://
-git.yoctoproject.org/linux-yocto-3.8.git...
->
->
->
->
->
-> Thanks with Regards
->
->
----------------------------------------------------------------------------------------------
-> Dilip Kumar b
->
---------------------------------------------------------------------------------------------
->
->
->
->
-> ________________________________
-> The contents of this e-mail and any attachment(s) may contain
-confidential or privileged information for the intended recipient(s).
-Unintended recipients are prohibited from taking action on the basis of
-information in this e-mail and using or disseminating the information, and
-must notify the sender and delete it from their system. L&T Infotech will
-not accept responsibility or liability for the accuracy or completeness of,
-or the presence of any virus or disabling code in this e-mail"
+I am new to OpenEmbedded Yocto project and have a requirement to provide
+sftp-client support on my target board.
 
---001a11c2cce6bf892504e7a7ec74
+Sftp-server bins are already packed into final image and is installed at
+
+tmp/work/fkm-poky-linux-gnueabi/openssh/6.1p1-r3/package/usr/lib/openssh/sftp-server
+
+Now ,same way Do I have to install stfp client bins also or is there any
+other way to go about it??
+
+Thanks
+Amit
+
+--047d7bacbedc88030104e7a93a06
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<p dir=3D"ltr"><br>
-&gt; =A0<br>
-&gt;<br>
-&gt; <br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 I need to create a local BSP layer u=
-sing Yocto-bsp create command without the use of Git.<br>
-&gt;<br>
-&gt; =A0<br>
-&gt;<br>
-&gt; =A0<br>
-&gt;<br>
-&gt; yocto-bsp create mylayers qemu -s<br>
-&gt;<br>
-&gt; Which qemu architecture would you like to use? [default: i386]<br>
-&gt;<br>
-&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 1) i386=A0=A0=A0 (32-bit)<br>
-&gt;<br>
-&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2) x86_64=A0 (64-bit)<br>
-&gt;<br>
-&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 3) ARM=A0=A0=A0=A0 (32-bit)<br>
-&gt;<br>
-&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 4) PowerPC (32-bit)<br>
-&gt;<br>
-&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 5) MIPS=A0=A0=A0 (32-bit)<br>
-&gt;<br>
-&gt; 3<br>
-&gt;<br>
-&gt; Would you like to use the default (3.8) kernel? (y/n) [default: y] y<b=
-r>
-&gt;<br>
-&gt; Do you need a new machine branch for this BSP (the alternative is to r=
-e-use an existing branch)? [y/n] [default: y] n<br>
-&gt;<br>
-&gt; Getting branches from remote repo git://<a href=3D"http://git.yoctopro=
-ject.org/linux-yocto-3.8.git.">git.yoctoproject.org/linux-yocto-3.8.git.</a=
->..<br>
-&gt;<br>
-&gt; =A0<br>
-&gt;<br>
-&gt; =A0<br>
-&gt;<br>
-&gt; Thanks with Regards<br>
-&gt;<br>
-&gt; ----------------------------------------------------------------------=
------------------------<br>
-&gt; Dilip Kumar b<br>
-&gt; ----------------------------------------------------------------------=
-----------------------<br>
-&gt;<br>
-&gt; =A0<br>
-&gt;<br>
-&gt;<br>
-&gt; ________________________________<br>
-&gt; The contents of this e-mail and any attachment(s) may contain confiden=
-tial or privileged information for the intended recipient(s). Unintended re=
-cipients are prohibited from taking action on the basis of information in t=
-his e-mail and using or disseminating the information, and must notify the =
-sender and delete it from their system. L&amp;T Infotech will not accept re=
-sponsibility or liability for the accuracy or completeness of, or the prese=
-nce of any virus or disabling code in this e-mail&quot;<br>
+<div dir=3D"ltr">I am new to OpenEmbedded Yocto project and have a requirem=
+ent to provide<div style>sftp-client support on my target board.</div><div =
+style><br></div><div style>Sftp-server bins are already packed into final i=
+mage and is installed at</div>
+<div style><br></div><div style>tmp/work/fkm-poky-linux-gnueabi/openssh/6.1=
+p1-r3/package/usr/lib/openssh/sftp-server<br></div><div style><br></div><di=
+v style>Now ,same way Do I have to install stfp client bins also or is ther=
+e any other way to go about it??</div>
+<div style><br></div><div style>Thanks</div><div style>Amit=A0</div><div st=
+yle><br></div><div style><br></div><div style><br></div><div style><br></di=
+v></div>
 
-</p>
-
---001a11c2cce6bf892504e7a7ec74--
+--047d7bacbedc88030104e7a93a06--
