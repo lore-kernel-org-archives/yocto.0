@@ -1,24 +1,24 @@
-Return-Path: <prvs=979498b18=Richard.Leitner@skidata.com>
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C7DDE01687
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 05:54:12 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqIEALzFSlKsEApK/2dsb2JhbABagz9SwQKBRXSCJQEBAQQBAQE3NBcEAgEIDQQEAQELFAkHHwgBChQJCAEBBBMIiAq8QASOBgGBGTgGgxmBAwOOTYZniSWORIFoQg
-From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-To: "Yocto Project Discussion ML (yocto@yoctoproject.org)"
-	<yocto@yoctoproject.org>
-Thread-Topic: [psplash][PATCH] Add option to read message from file
-Thread-Index: Ac6+pHIymGSUvZ+1TVuSvsCdsMelrwAAMFdg
-Date: Tue, 1 Oct 2013 12:53:57 +0000
-Message-ID: <F7680723A1CA6840825A59020FA77064FAEF5E@sdexmbx1srv.skidata.net>
-References: <F7680723A1CA6840825A59020FA77064FAEF32@sdexmbx1srv.skidata.net>
-In-Reply-To: <F7680723A1CA6840825A59020FA77064FAEF32@sdexmbx1srv.skidata.net>
-Accept-Language: en-US, de-AT
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.112.215]
-MIME-Version: 1.0
-Subject: Re: [psplash][PATCH] Add option to read message from file
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE45AE01630
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 06:01:16 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 01 Oct 2013 06:01:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,1013,1371106800"; d="scan'208";a="368217604"
+Received: from unknown (HELO [10.255.15.164]) ([10.255.15.164])
+	by azsmga001.ch.intel.com with ESMTP; 01 Oct 2013 06:01:13 -0700
+Message-ID: <1380632473.23361.2.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Dilip Kumar <008dilip@gmail.com>
+Date: Tue, 01 Oct 2013 08:01:13 -0500
+In-Reply-To: <CABmxB3MiTszCC4f0c9zKzy-obwtj2oNEueS1npsE8FXrwaRvww@mail.gmail.com>
+References: <368D4D1DD61B4E4A97BC63E95AC9EB8727005DA769@BLRINMSMBX01.bglrodc.lntinfotech.com>
+	<CABmxB3MiTszCC4f0c9zKzy-obwtj2oNEueS1npsE8FXrwaRvww@mail.gmail.com>
+X-Mailer: Evolution 3.4.1 (3.4.1-2.fc17) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: FW: Creating BSP without using git
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,122 +30,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 12:54:13 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 Oct 2013 13:01:19 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi everybody,
-I recently sent a patch for psplash to add the ability to read the displaye=
-d message from a file.
+On Tue, 2013-10-01 at 11:48 +0530, Dilip Kumar wrote:
+> 
+> >  
+> >
+> > 
+> >
+> > Hi,
+> >
+> >             I need to create a local BSP layer using Yocto-bsp
+> create command without the use of Git.
+> >
+> >  
+> >
+> >  
+> >
+> > yocto-bsp create mylayers qemu -s
+> >
+> > Which qemu architecture would you like to use? [default: i386]
+> >
+> >             1) i386    (32-bit)
+> >
+> >             2) x86_64  (64-bit)
+> >
+> >             3) ARM     (32-bit)
+> >
+> >             4) PowerPC (32-bit)
+> >
+> >             5) MIPS    (32-bit)
+> >
+> > 3
+> >
+> > Would you like to use the default (3.8) kernel? (y/n) [default: y] y
+> >
+> > Do you need a new machine branch for this BSP (the alternative is to
+> re-use an existing branch)? [y/n] [default: y] n
+> >
+> > Getting branches from remote repo
+> git://git.yoctoproject.org/linux-yocto-3.8.git...
+> >
+> >  
 
-I'd appreciate any comments on it!
+You can use the -i param with JSON to feed it the answers you want to
+give it, and then it won't try to generate and display a branch list,
+etc.
 
-Thanks and best regards,
-Richard Leitner
+From the help:
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
-rg] On
-> Behalf Of Richard Leitner - SKIDATA
-> Sent: Tuesday, October 01, 2013 2:51 PM
-> To: Yocto Project Discussion ML (yocto@yoctoproject.org)
-> Subject: [yocto] [psplash][PATCH] Add option to read message from file
->=20
-> Add an option to read the displayed message from a file.
-> Additionally the maximum length for the read string can be defined.
-> The string will then be cut after the given number of chars.
-> It is also possible to define a prefix which is displayed in front of the=
- read file content.
->=20
-> If no file is defined a hardcoded message (using MSG like before) can be =
-displayed.
->=20
-> For these changes the following defines were introduced:
-> MSG_FILE_PATH ...... path to the file
-> MSG_FILE_MAX_LEN ... number of chars read from file MSG_FILE_PREFIX .... =
-text
-> displayed in front of the file content
->=20
-> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-> ---
->  psplash.c |   41 ++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 40 insertions(+), 1 deletion(-)
->=20
-> diff --git a/psplash.c b/psplash.c
-> index 09cf0d0..093a99a 100644
-> --- a/psplash.c
-> +++ b/psplash.c
-> @@ -23,6 +23,20 @@
->  #include "psplash-bar-img.h"
->  #include "radeon-font.h"
->=20
-> +/* Here you can define a message which will be displayed above the
-> + * progress bar.
-> + * The message can be either read from a file:
-> + *    Set MSG_FILE_PATH (and if needed MSG_FILE_{MAX_LEN,PREFIX})
-> + *    to display the first MSG_FILE_MAX_LEN characters
-> + *    of the first line from MSG_FILE_PATH as message.
-> + *    Additionally the content of MSG_FILE_PREFIX will be displayed
-> + *    before the read message. */
-> +#define MSG_FILE_PATH ""
-> +#define MSG_FILE_MAX_LEN 32
-> +#define MSG_FILE_PREFIX ""
-> +/* Or a fixed string can be used:
-> + *    If MSG_FILE is not set or not readable
-> + *    the content of MSG will be used as message. */
->  #define MSG ""
->=20
->  void
-> @@ -204,6 +218,8 @@ main (int argc, char** argv)
->    int        pipe_fd, i =3D 0, angle =3D 0, ret =3D 0;
->    PSplashFB *fb;
->    bool       disable_console_switch =3D FALSE;
-> +  FILE      *fd_msg;
-> +  char      *str_msg;
->=20
->    signal(SIGHUP, psplash_exit);
->    signal(SIGINT, psplash_exit);
-> @@ -287,7 +303,30 @@ main (int argc, char** argv)
->=20
->    psplash_draw_progress (fb, 0);
->=20
-> -  psplash_draw_msg (fb, MSG);
-> +  /* Draw message from file or defined MSG */
-> +  fd_msg =3D fopen (MSG_FILE_PATH, "r");
-> +  if (fd_msg=3D=3DNULL) {
-> +    psplash_draw_msg (fb, MSG);
-> +  } else {
-> +    str_msg =3D (char*) malloc (
-> +              (MSG_FILE_MAX_LEN + strlen(MSG_FILE_PREFIX) + 1)*sizeof(ch=
-ar));
-> +    if (str_msg !=3D NULL && fgets (str_msg, MSG_FILE_MAX_LEN, fd_msg)!=
-=3DNULL) {
-> +      if (strlen (MSG_FILE_PREFIX) > 0) {
-> +        /* if MSG_FILE_PREFIX is set, prepend it to str_msg */
-> +        memmove (str_msg + strlen(MSG_FILE_PREFIX) + 1, str_msg,
-> strlen(str_msg));
-> +        strcpy (str_msg, MSG_FILE_PREFIX);
-> +		/* replace \0 after MSG_FILE_PREFIX with a space */
-> +        str_msg[strlen(MSG_FILE_PREFIX)] =3D ' ';
-> +      }
-> +      psplash_draw_msg (fb, str_msg);
-> +      free (str_msg);
-> +    } else {
-> +      /* MSG_FILE_PATH is empty (or malloc failed)
-> +	   *    so display MSG_FILE_PREFIX only */
-> +      psplash_draw_msg (fb, MSG_FILE_PREFIX);
-> +    }
-> +    fclose (fd_msg);
-> +  }
->=20
->    psplash_main (fb, pipe_fd, 0);
->=20
-> --
-> 1.7.10.4
->=20
+yocto-bsp create <bsp-name> <karch> [-o <DIRNAME> | --outdir <DIRNAME>]
+        [-i <JSON PROPERTY FILE> | --infile <JSON PROPERTY_FILE>]
+
+The BSP-specific properties that define the values that will be
+    used to generate a particular BSP can be specified on the
+    command-line using the -i option and supplying a JSON object
+    consisting of the set of name:value pairs needed by the BSP.
+
+    If the -i option is not used, the user will be interactively
+    prompted for each of the required property values, which will then
+    be used as values for BSP generation.
+
+    The set of properties available for a given architecture can be
+    listed using the 'yocto-bsp list' command.
+
+> >
+> >  
+> >
+> > Thanks with Regards
+> >
+> >
+> ---------------------------------------------------------------------------------------------
+> > Dilip Kumar b
+> >
+> --------------------------------------------------------------------------------------------
+> >
+> >  
+> >
+> >
+> > ________________________________
+> > The contents of this e-mail and any attachment(s) may contain
+> confidential or privileged information for the intended recipient(s).
+> Unintended recipients are prohibited from taking action on the basis
+> of information in this e-mail and using or disseminating the
+> information, and must notify the sender and delete it from their
+> system. L&T Infotech will not accept responsibility or liability for
+> the accuracy or completeness of, or the presence of any virus or
+> disabling code in this e-mail"
+> 
+> 
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+
+
 
