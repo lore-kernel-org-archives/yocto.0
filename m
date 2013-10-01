@@ -1,22 +1,20 @@
-Return-Path: <anders@chargestorm.se>
-Received: from stoexhubfe02.domain01.net (STOEXHUBFE02.domain01.net
-	[83.145.59.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C591E01602
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 07:39:59 -0700 (PDT)
-Received: from [192.168.0.100] (37.250.222.0) by stoexhubfe02.domain01.net
-	(10.12.10.7) with Microsoft SMTP Server (TLS) id 8.3.279.1;
-	Tue, 1 Oct 2013 16:39:53 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <loom.20131001T154728-532@post.gmane.org>
-References: <loom.20131001T154728-532@post.gmane.org>
+Return-Path: <jose.ferreiro@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBA32E01602
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2013 07:59:23 -0700 (PDT)
+Received: from [172.30.250.61] (172.30.250.61) by horus27 (Axigen)
+	with (CAMELLIA256-SHA encrypted) ESMTPSA id 28AC41;
+	Tue, 1 Oct 2013 16:59:20 +0200
+Message-ID: <524AE34E.4000303@horus.es>
+Date: Tue, 01 Oct 2013 16:59:26 +0200
+From: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:16.0)
+	Gecko/20121005 Thunderbird/16.0
 MIME-Version: 1.0
-From: Anders Darander <anders@chargestorm.se>
-Date: Tue, 1 Oct 2013 16:39:44 +0200
-To: Jack <jackrubby2010@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Message-ID: <4607a605-12cd-476d-92fa-47ded39e2905@email.android.com>
-X-GFI-SMTP-Submission: 1
-Subject: Re: "Kernel access of bad area" in kernel module
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 2
+Subject: nativesdk-dbus not shipped for meta-toolchain-qt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,103 +26,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 14:40:00 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 01 Oct 2013 14:59:25 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hello
 
+We are trying to bitbake meta-toolchain-qt with master and dora. Both 
+launch this error:
 
-Jack <jackrubby2010@gmail.com> wrote:
->Hi,
->I want to set/reset GPIO registers in freescale p1022 processor. I saw
->a
->hello-mod kernel module in yocto and I added it to my image and it
->worked.
->According to hello-mod kernel module, I created GPIO module like
->hello-mod.
->But it GPIO module failed when I run it in kernel level. I checked
->several
->times addresses of registers and it seems accurate. 
->My code is here :
->
->
->#include <linux/module.h>
->
->int init_module(void)
->{
->	volatile uint32_t * Guts_Pmuxcr;
->	volatile uint32_t * Gpio3_Gpdir;
->	volatile uint32_t * Gpio3_Gpdat;
->	
->	// e500 Core View To Power Architecture CCSR: 0x0_FF70_0000
->
->    // GUTS_PMUXCR:Alternate Function Signal Multiplex Control Register
->	Guts_Pmuxcr = (volatile uint32_t *)(0xFF7E0060);
->      
->        // GPIO3_GPDIR: GPIO3 direction register
->	Gpio3_Gpdir = (volatile uint32_t *)(0xFF70F200);
->
->        // GPIO3_GPDAT: GPIO3 data register
->	Gpio3_Gpdat = (volatile uint32_t *)(0xFF70F208); 
+ERROR: QA Issue: nativesdk-dbus: Files/directories were installed but 
+not shipped
+   /run
+   /run/dbus
+ERROR: QA run found fatal errors. Please consider fixing them.
 
-You should generally a of trying to dereference physical addresses, or you should explicitly declare them as such. 
+We compare it to dylan dbus. We found that dora is creating a 
+package-split named nativesdk-dbus with the symbolink link run at
+build/tmp/work/i686-nativesdk-pokysdk-linux/nativesdk-dbus/1.6.10-r6.0/packages-split/nativesdk-dbus/opt/poky/1.5/sysroots/i686-pokysdk-linux/var. 
+That link is pointing to /run host directory (a bad thing, we suppose).
+That link in dylan is pointing to volatile/run (a folder inside the 
+package-split)
 
-If suggest looking for some info on using GPIO on your CPU. Unfortunately, I've not used the p1022, so I can't really help you. 
+We try to manually delete the link and recreate it  and the folders, but 
+bitbake clean everything and it create again.
 
-http://linuxppc.10917.n7.nabble.com/Re-GPIO-IRQ-on-P1022-td59356.html discusses some IRQ issues, though you should be able to use the codes as an example of the GPIO framework and how to use it. 
+Any clue about how to solve this?
 
-Cheers, 
-Anders 
-
->
->	// Enable GPIO3[10]: IRQ_DEBUG1_GPIO FIELD [BIT 26] set to "1"
->	*(Guts_Pmuxcr) = 0x00000010;
->
-
-
->
->	// Set Direction for GPIO3[10] to Output: FIELD DR10 [BIT 10] set to
->'1'
->	*(Gpio3_Gpdir) = 0x00200000;
->	
->	 
->	// Set GPIO3[10] to '0': FIELD D10 [BIT 10] set to '0'
->	*(Gpio3_Gpdat) = 0x00000000;
->	
->	printk("Hello World!\n");
->	return 0;
->}
->
->void cleanup_module(void)
->{
->	printk("Goodbye Cruel World!\n");
->}
->
->MODULE_LICENSE("GPL");
->
->
->When I write insmod GPIO.ko in the terminal I get error these errors:
->
->Unable to handle kernel paging request for data at address 0xff7e0060
->faulting instruction address: 0xf107e05c
->Oops: Kernel access of bad area, sig: 11 [#1]
->..........
->.........
->
->
->How can I solve this problem?
->
->
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
-
--- 
-Anders Darander
-ChargeStorm AB          Tel: +46 702 44 84 36
-Laxholmstorget 3        Email: anders@chargestorm.se
-602 21 Norrköping       Web: www.chargestorm.se
-
-Sent from my Android phone with K-9 Mail. Please excuse my brevity.
+Thank you
 
