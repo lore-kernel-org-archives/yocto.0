@@ -1,32 +1,31 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CFEBE01426
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 07:16:35 -0700 (PDT)
-Received: by mail-la0-f42.google.com with SMTP id ep20so4593914lab.1
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 07:16:34 -0700 (PDT)
+Return-Path: <008dilip@gmail.com>
+Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85743E01626
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
+Received: by mail-qc0-f178.google.com with SMTP id r5so4368969qcx.37
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=tk7JEMijSCaU9OVkehAZ3DQ/Gx11403uBAS74cpGUsc=;
-	b=XnnPOZmHfcn4RvJKGATUgZxCTjOWcKh03C/WFFADPC1rT/MGYWVmKbxJcr514yHyU2
-	Hns5Nj8xyIMMsi9EiyxGU2FzJyfy2Xb3vMx2qkKh/vT5jjF/Wq5NtbHhPF01cwd7UtFK
-	wAxY9Xzvxod5JD3H0E7omRQg0bYf4yw5TqF7zpNuQTozK2Wpp6xSeQZYyCqr99HEooln
-	itJQvcnDuOBt6jBX1G5MCktq7cFq95RU32PORabc65l59Zjpqz0X7tdHTbawQ5kCzYmC
-	2aIaebGWvO/xjmc1tB2wN4Nc5fSWhDsVGn/0NWZEsl3aaw8kn/+c9EMsGixZQmRyIChy
-	q6BA==
+	:content-type; bh=fim4WfkI+bAXzGWgEpjrCUTrHKYJR186Q/bNKmdNcA8=;
+	b=SHryrHmC4Y9W+QVbT48sbyQxOgBvRXTrEwJIsG/0GQ9x9Z2cqBaaoTLzKKsLPmD95r
+	QkiPyR66RDmnBOr0L6Ed3HaJMi46gV4Ra/nE+s/NKljMJMv8uFzNyiqkSi7J7EZFfHJZ
+	MzPI65P7jxNGr8YeMKl9+Xag/zHCICrfE+yUfhuplzI+32JNufuniVDXC8yXgplTqi9y
+	hGwQ6j0pcW7dbEHv8jmhGxBGic5A5O/1AAGmXj9Ghg17lEP0jfJWSfYoQVl1Nim1IuFQ
+	gNLJVFEw273hn9daytJC6V9tbjmr6HgmwYDR67Q85B3TT6x4/wKQqyiRULG2zQWHEroU
+	wMyA==
 MIME-Version: 1.0
-X-Received: by 10.112.0.173 with SMTP id 13mr22314239lbf.8.1380550593989; Mon,
-	30 Sep 2013 07:16:33 -0700 (PDT)
-Received: by 10.114.62.115 with HTTP; Mon, 30 Sep 2013 07:16:33 -0700 (PDT)
-In-Reply-To: <2749DF61-2F0B-4979-99A1-79ED463DA601@include7.ch>
-References: <2749DF61-2F0B-4979-99A1-79ED463DA601@include7.ch>
-Date: Mon, 30 Sep 2013 19:46:33 +0530
-Message-ID: <CAE_REAvNLXNhnEMQpB+-wEUmxyB5YKkv6f1auYj=3mw_=xyn4Q@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Jonas Schnelli <jonas.schnelli@include7.ch>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-raspberrypi
+X-Received: by 10.224.10.202 with SMTP id q10mr37899168qaq.8.1380608324371;
+	Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
+Received: by 10.49.120.133 with HTTP; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
+Received: by 10.49.120.133 with HTTP; Mon, 30 Sep 2013 23:18:44 -0700 (PDT)
+In-Reply-To: <368D4D1DD61B4E4A97BC63E95AC9EB8727005DA769@BLRINMSMBX01.bglrodc.lntinfotech.com>
+References: <368D4D1DD61B4E4A97BC63E95AC9EB8727005DA769@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Date: Tue, 1 Oct 2013 11:48:44 +0530
+Message-ID: <CABmxB3MiTszCC4f0c9zKzy-obwtj2oNEueS1npsE8FXrwaRvww@mail.gmail.com>
+From: Dilip Kumar <008dilip@gmail.com>
+To: yocto@yoctoproject.org
+Subject: FW: Creating BSP without using git
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,109 +37,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2013 14:16:40 -0000
-Content-Type: multipart/alternative; boundary=f46d042c65a7bfd27a04e79a7b53
+X-List-Received-Date: Tue, 01 Oct 2013 06:18:45 -0000
+Content-Type: multipart/alternative; boundary=001a11c2cce6bf892504e7a7ec74
 
---f46d042c65a7bfd27a04e79a7b53
+--001a11c2cce6bf892504e7a7ec74
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Jonas,
-
-I hope you have did below things before starting:
-==
-
-How to use it:
-
-1. source poky/oe-init-build-env rpi-build
-2. Add needed layer to bblayers.conf:
-    - meta-raspberrypi
-3  Set MACHINE to raspberrypi in local.conf
-4. bitbake rpi-hwup-image
-5. dd to a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is used)
-6. Boot your RPI.
-==
-
-//Gaurang Shastri
-
-
-
-
-On Mon, Sep 30, 2013 at 4:30 PM, Jonas Schnelli
-<jonas.schnelli@include7.ch>wrote:
-
-> Hi
->
-> While building with meta-raspberrypi i encounter the following error:
->
-> ERROR: Could not inherit file classes/ sdcard_image-rpi.bbclass
->
->                        | ETA:  00:01:03
-> ERROR: Command execution failed: Exited with 1
->
-> Any ideas?
->
-> i've tried with:
-> https://github.com/djwillis/meta-raspberrypi
-> and
-> git://git.yoctoproject.org/meta-raspberrypi
->
-> thanks
-> --
-> /jonas
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
 >
+>
+>
+> Hi,
+>
+>             I need to create a local BSP layer using Yocto-bsp create
+command without the use of Git.
+>
+>
+>
+>
+>
+> yocto-bsp create mylayers qemu -s
+>
+> Which qemu architecture would you like to use? [default: i386]
+>
+>             1) i386    (32-bit)
+>
+>             2) x86_64  (64-bit)
+>
+>             3) ARM     (32-bit)
+>
+>             4) PowerPC (32-bit)
+>
+>             5) MIPS    (32-bit)
+>
+> 3
+>
+> Would you like to use the default (3.8) kernel? (y/n) [default: y] y
+>
+> Do you need a new machine branch for this BSP (the alternative is to
+re-use an existing branch)? [y/n] [default: y] n
+>
+> Getting branches from remote repo git://
+git.yoctoproject.org/linux-yocto-3.8.git...
+>
+>
+>
+>
+>
+> Thanks with Regards
+>
+>
+---------------------------------------------------------------------------------------------
+> Dilip Kumar b
+>
+--------------------------------------------------------------------------------------------
+>
+>
+>
+>
+> ________________________________
+> The contents of this e-mail and any attachment(s) may contain
+confidential or privileged information for the intended recipient(s).
+Unintended recipients are prohibited from taking action on the basis of
+information in this e-mail and using or disseminating the information, and
+must notify the sender and delete it from their system. L&T Infotech will
+not accept responsibility or liability for the accuracy or completeness of,
+or the presence of any virus or disabling code in this e-mail"
 
---f46d042c65a7bfd27a04e79a7b53
+--001a11c2cce6bf892504e7a7ec74
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jonas,<br><br>I hope you have did below things before s=
-tarting:<br>=3D=3D<br><pre>How to use it:
+<p dir=3D"ltr"><br>
+&gt; =A0<br>
+&gt;<br>
+&gt; <br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 I need to create a local BSP layer u=
+sing Yocto-bsp create command without the use of Git.<br>
+&gt;<br>
+&gt; =A0<br>
+&gt;<br>
+&gt; =A0<br>
+&gt;<br>
+&gt; yocto-bsp create mylayers qemu -s<br>
+&gt;<br>
+&gt; Which qemu architecture would you like to use? [default: i386]<br>
+&gt;<br>
+&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 1) i386=A0=A0=A0 (32-bit)<br>
+&gt;<br>
+&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2) x86_64=A0 (64-bit)<br>
+&gt;<br>
+&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 3) ARM=A0=A0=A0=A0 (32-bit)<br>
+&gt;<br>
+&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 4) PowerPC (32-bit)<br>
+&gt;<br>
+&gt; =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 5) MIPS=A0=A0=A0 (32-bit)<br>
+&gt;<br>
+&gt; 3<br>
+&gt;<br>
+&gt; Would you like to use the default (3.8) kernel? (y/n) [default: y] y<b=
+r>
+&gt;<br>
+&gt; Do you need a new machine branch for this BSP (the alternative is to r=
+e-use an existing branch)? [y/n] [default: y] n<br>
+&gt;<br>
+&gt; Getting branches from remote repo git://<a href=3D"http://git.yoctopro=
+ject.org/linux-yocto-3.8.git.">git.yoctoproject.org/linux-yocto-3.8.git.</a=
+>..<br>
+&gt;<br>
+&gt; =A0<br>
+&gt;<br>
+&gt; =A0<br>
+&gt;<br>
+&gt; Thanks with Regards<br>
+&gt;<br>
+&gt; ----------------------------------------------------------------------=
+-----------------------<br>
+&gt; Dilip Kumar b<br>
+&gt; ----------------------------------------------------------------------=
+----------------------<br>
+&gt;<br>
+&gt; =A0<br>
+&gt;<br>
+&gt;<br>
+&gt; ________________________________<br>
+&gt; The contents of this e-mail and any attachment(s) may contain confiden=
+tial or privileged information for the intended recipient(s). Unintended re=
+cipients are prohibited from taking action on the basis of information in t=
+his e-mail and using or disseminating the information, and must notify the =
+sender and delete it from their system. L&amp;T Infotech will not accept re=
+sponsibility or liability for the accuracy or completeness of, or the prese=
+nce of any virus or disabling code in this e-mail&quot;<br>
 
-1. source poky/oe-init-build-env rpi-build
-2. Add needed layer to bblayers.conf:
-    - meta-raspberrypi
-3  Set MACHINE to raspberrypi in local.conf
-4. bitbake rpi-hwup-image
-5. dd to a SD card the generated sdimg file (use xzcat if rpi-sdimg.xz is u=
-sed)
-6. Boot your RPI.<br>=3D=3D<br><br></pre><pre>//Gaurang Shastri<br></pre><b=
-r></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Mo=
-n, Sep 30, 2013 at 4:30 PM, Jonas Schnelli <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:jonas.schnelli@include7.ch" target=3D"_blank">jonas.schnelli@includ=
-e7.ch</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi<br>
-<br>
-While building with meta-raspberrypi i encounter the following error:<br>
-<br>
-ERROR: Could not inherit file classes/ sdcard_image-rpi.bbclass =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=
- =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0| ETA: =A000:01=
-:03<br>
-ERROR: Command execution failed: Exited with 1<br>
-<br>
-Any ideas?<br>
-<br>
-i&#39;ve tried with:<br>
-<a href=3D"https://github.com/djwillis/meta-raspberrypi" target=3D"_blank">=
-https://github.com/djwillis/meta-raspberrypi</a><br>
-and<br>
-git://<a href=3D"http://git.yoctoproject.org/meta-raspberrypi" target=3D"_b=
-lank">git.yoctoproject.org/meta-raspberrypi</a><br>
-<br>
-thanks<br>
---<br>
-/jonas<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
+</p>
 
---f46d042c65a7bfd27a04e79a7b53--
+--001a11c2cce6bf892504e7a7ec74--
