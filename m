@@ -1,35 +1,45 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
-	[209.85.216.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07EBFE0164B
-	for <yocto@yoctoproject.org>; Wed,  2 Oct 2013 01:21:41 -0700 (PDT)
-Received: by mail-qa0-f42.google.com with SMTP id cm18so4155225qab.1
-	for <yocto@yoctoproject.org>; Wed, 02 Oct 2013 01:21:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=55+6/40rrRL7PFenofKe7Ug/uGo+XU2xsao/ztpcu7I=;
-	b=lcqfJWEpqCfzL89gJiTk9osverTpRsjYiqlPLLTcJjbGTdOQ7LM/ILJRcIf4eO2L1i
-	4DM39OPP6nMC8FE5LS/PYhIKnUToj6ilYrRt0gzLUn6sxk1e8dlfU8SNj/24YCQyngcg
-	5v0JyLrw+4gRx1yrY00srsiC4Bf2BemDumPwNx4Gn9VSJk5vebHH4o5dcsmi4IqFx3rs
-	BvGlvyaT+FdL37CgXFXSXsbqIyD2siKi1Z+tMREZJx639SX4nOz+FVMpEnF+m/e2IiVW
-	KgKYiuVCZMk0Nqu89iqI+wavlNSKwduIeLhUxTPXCcE64QEGHGvrFfKT1zfUbuZkPwUi
-	7w9A==
+Return-Path: <joe@deserted.net>
+Received: from mail-wi0-f174.google.com (mail-wi0-f174.google.com
+	[209.85.212.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96312E015F8
+	for <yocto@yoctoproject.org>; Wed,  2 Oct 2013 07:07:47 -0700 (PDT)
+Received: by mail-wi0-f174.google.com with SMTP id hj3so7341010wib.7
+	for <yocto@yoctoproject.org>; Wed, 02 Oct 2013 07:07:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=jpgoI0mXDXl64FIXkZqc4CLLe6UwymIDqoy/uj2Wyj8=;
+	b=CTAlT2uBUrDurBZSStyCmICjoLTq0WCOYaIP2KyK+nSx1brqKJBUKgPHNDhw0QgiMP
+	k1cA6ADR/0sllSoqbbQ6U+Gr+30syD2psubBW7UFD4QVWf9862rDrAV4p9DJPBoOGaOe
+	2K8q9ptYb2tCbeQQQMM5RvC68ib2bzhDQAXgfHo+ctCYhy/gzW9o5kbvqE6+Sfc0HcvN
+	9AyXub0we0dbXePTJtAjyyTLeMixORwWKNdixzmfxxl1AMwHRXYCzfA6h1Uc6Aqgyi42
+	UBO0JQ+m518BrWT+HNxnouFd31L+1XS9R+Vj/RkrmVwB5pqLMPU+nUuKFCuuuzsaBLKw
+	8tWw==
+X-Gm-Message-State: ALoCoQkl44nJL2sXtp0OrazvkdNO7+HZDpsEqwO+QlD+ddpfDzpXCmcJhccA2rdFBL0npxljcp4X
+X-Received: by 10.194.143.18 with SMTP id sa18mr1023827wjb.70.1380722866573;
+	Wed, 02 Oct 2013 07:07:46 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2])
+	by mx.google.com with ESMTPSA id ey2sm3914534wib.5.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Wed, 02 Oct 2013 07:07:45 -0700 (PDT)
+Date: Wed, 2 Oct 2013 10:07:40 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: "Slater, Joseph" <joe.slater@windriver.com>
+Message-ID: <20131002140737.GB7433@deserted.net>
+References: <1378399896-28502-1-git-send-email-jslater@windriver.com>
+	<3573701.ovexZDZeie@helios>
+	<007BD92917A2324FA403BCF9A464CF843C508FCE@ALA-MBB.corp.ad.wrs.com>
 MIME-Version: 1.0
-X-Received: by 10.49.47.50 with SMTP id a18mr1140323qen.61.1380702100636; Wed,
-	02 Oct 2013 01:21:40 -0700 (PDT)
-Received: by 10.49.57.197 with HTTP; Wed, 2 Oct 2013 01:21:40 -0700 (PDT)
-In-Reply-To: <EA778B47-2D9F-49C9-8EAB-0BBE93EB12B6@gmail.com>
-References: <CAFyqS9qRodbORexXqZNQESh+iiXyhs9Zi+pHBOLdxiipR0_aAQ@mail.gmail.com>
-	<DFDCC371-D349-41A8-BE06-CDD2F7996BDF@gmail.com>
-	<524B0E56.3040903@gmail.com>
-	<EA778B47-2D9F-49C9-8EAB-0BBE93EB12B6@gmail.com>
-Date: Wed, 2 Oct 2013 10:21:40 +0200
-Message-ID: <CAFyqS9qGX4cB9okhimTwWDx=mYVKtP=syT1eydjzO3KDistfng@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem finding -lgcc when using SDK toolchain
+In-Reply-To: <007BD92917A2324FA403BCF9A464CF843C508FCE@ALA-MBB.corp.ad.wrs.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/1] tar: add acl dependency information
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,108 +51,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2013 08:21:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 02 Oct 2013 14:07:50 -0000
+X-Groupsio-MsgNum: 16326
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="7iMSBzlTiPOCCT2k"
+Content-Disposition: inline
+
+--7iMSBzlTiPOCCT2k
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 2, 2013 at 8:13 AM, Khem Raj <raj.khem@gmail.com> wrote:
->
-> On Oct 1, 2013, at 11:03 AM, Hans Beckerus <hans.beckerus@gmail.com> wrot=
-e:
->
->> On 2013-10-01 7:35, Khem Raj wrote:
->>> On Oct 1, 2013, at 6:16 AM, Hans Beck=E9rus <hans.beckerus@gmail.com> w=
-rote:
->>>
->>>> Hello. We have stumbled into a problem when using ld directly instead
->>>> of going through the gcc frontend.
->>>> A simple operation like this fails:
->>>>
->>>>> ${CC} -c hello_world.c
->>>>> ${LD} hello_world.o -lgcc
->>>> arm-poky-linux-gnueabi-ld: cannot find -lgcc
->>>>
->>>> And yes, I know -lgcc is not required in this case to compile this
->>>> one, but this is only a simple reproducer.
->>>> The real issue was discovered when trying to build U-Boot from the SDK=
-.
->>>>
->>>> To resolve this problem we are forced to provide
->>>> -L<sysroot>/usr/lib/arm-poky-linux-gnueabi/4.7.2 to LDFLAGS.
->>>> But that should not be needed, should it? Anyone else bumped into this
->>>> problem? Are there any "real" solutions.
->>>> I am starting to think it has to do with the hardcoded installation
->>>> path in the binaries maybe?
->>> I doubt that infact we try hard to keep it relocatable. The problem is =
-you are interpreting
->>> --sysroot option to do more than what its supposed to do. when linking =
-it only affects INPUT,  GROUP
->>> and SEARCH_DIR linker script variables and if you look at the linker sc=
-ript path to libgcc is not
->>> specified in SEARCH_DIR, thats where gcc driver comes handy in figuring=
- out where the right libgcc is installed
->>> and sometimes when you have complex multilib environments thats very ha=
-ndy. linker does not know
->>> anything about libgcc its just another library for it.
->> Hi Khem, thanks for your time. I am sure I put too much value into --sys=
-root, but what still strikes me a bit odd is why the simple reproducer I sh=
-owed before works just fine using the local host gcc and ld? It seems to ha=
-ve no issues in finding libgcc.a?
->
-> Does it ? what distro are you using on build host. gcc -c hello.c;ld hell=
-o.o -lgcc , does that work ?
-No, it does not. Whatever I tried before must have been wrong ;)
+[Re: [yocto] [PATCH 1/1] tar: add acl dependency information] On 13.09.05 (=
+Thu 17:41) Slater, Joseph wrote:
 
-> on my Ubuntu based system it fails exact same way as OE SDK, and for the =
-reasons I described
-> if you use bare ld to do linking then you can not assume it to resolve al=
-l kind of environment for you
-> gcc driver is there for a reason.
->
->> So what you are saying is that it is actually expected that U-Boot build=
- will fail when compiled through the SDK toolchain directly without adding =
-additional options to the linker? Is that also what the u-boot recipe is do=
-ing? After all, it works fine to bitbake u-boot.
->
-> No, the magic is in u-boot itself see in top level Makefile
->
->
-> PLATFORM_LIBGCC :=3D -L $(shell dirname `$(CC) $(CFLAGS) -print-libgcc-fi=
-le-name`) -lgcc
->
-Ok, but here is were it fails! The above call gets resolved to "-L .",
-and we do not have USE_PRIVATE_LIBGCC defined.
-Doing ${CC} -print-libgcc-file-name shows the proper value. The reason
-for this I now realize is that U-Boot does not pickup $CC from our
-environment (which is including the --sysroot option). Without this
-option -print-libgcc-file-name resolve to a simple file name without a
-path. And thus dirname resolve it further to "." :(
+> Oops, I was so worried about sending to the right address, I forgot about
+> marking it meta-selinux.
 
-So the fix for us is to do:
->make LDFLAGS=3D"" CC=3D"$CC"
+And I missed this on my missing patch sweep through the list last week.
+Thanks Joe.  Merged to both master and master-next.
 
-Now it works.
-I assume that is also what the U-Boot recipe is doing.
+-J.
 
-Thanks.
-Hans
+>=20
+> Joe
+>=20
+>=20
+> > -----Original Message-----
+> > From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> > Sent: Thursday, September 05, 2013 10:05 AM
+> > To: Slater, Joseph
+> > Cc: Ouyang, Xin; Slater, Joseph; yocto@yoctoproject.org
+> > Subject: Re: [yocto] [PATCH 1/1] tar: add acl dependency information
+> >=20
+> > Hi Joe,
+> >=20
+> > On Thursday 05 September 2013 09:51:36 Joe Slater wrote:
+> > > If acl is a distro feature, we want to depend
+> > > on it.  Note that without the xattrs patch, tar
+> > > cannot deal with acl information.
+> > >
+> > > Signed-off-by: Joe Slater <jslater@windriver.com>
+> > > ---
+> > >  recipes-extended/tar/tar_1.26.bbappend |   10 +++++++++-
+> > >  1 files changed, 9 insertions(+), 1 deletions(-)
+> > >
+> > > diff --git a/recipes-extended/tar/tar_1.26.bbappend
+> > > b/recipes-extended/tar/tar_1.26.bbappend index 4b971c5..972a7b8 100644
+> > > --- a/recipes-extended/tar/tar_1.26.bbappend
+> > > +++ b/recipes-extended/tar/tar_1.26.bbappend
+> > > @@ -1,7 +1,15 @@
+> > > -PR .=3D ".2"
+> > > +PR .=3D ".selinux3"
+> > >
+> > >  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> > >
+> > >  SRC_URI +=3D "file://tar-1.24-xattrs.patch"
+> > >
+> > >  inherit enable-selinux
+> > > +
+> > > +
+> > > +PACKAGECONFIG +=3D "${@base_contains('DISTRO_FEATURES', 'acl', 'acl'=
+, '',
+> > > d)}" +
+> > > +# configure has no acl enable/disable options!
+> > > +#
+> > > +PACKAGECONFIG[acl] =3D ",,acl,"
+> > > +
+> >=20
+> > Should this have been marked as [meta-selinux] ?
+> >=20
+> > Cheers,
+> > Paul
+> >=20
+> > --
+> >=20
+> > Paul Eggleton
+> > Intel Open Source Technology Centre
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+--=20
+-Joe MacDonald.
+:wq
 
->
->
->>
->>> however you could do  something like
->>>
->>> ${CC} -print-libgcc-file-name or ${CC} -print-file-name=3Dlibgcc.a
->>>
->>> to get to the library
->>>
->>> and specify that in your linker cmdline
->> Ok, guess it will simply give me the same path as we are currently hardc=
-oding, but if the toolchain moves your solution is definitely to prefer.
->> Thanks for the tip. Did only not know about the --print-sysroot command =
-until now.
->>> -Khem
->>
->
+--7iMSBzlTiPOCCT2k
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEARECAAYFAlJMKIgACgkQwFvcllog0XxjqACgmGX0//JK9JcOhQhUEJxOpjaQ
+dmMAn1Wj0bHZ1U8IhPdrSOuD5wYsRnlT
+=G2L2
+-----END PGP SIGNATURE-----
+
+--7iMSBzlTiPOCCT2k--
