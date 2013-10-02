@@ -1,29 +1,28 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F265CE01686
-	for <yocto@yoctoproject.org>; Wed,  2 Oct 2013 12:20:36 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 0333AF811DA; Wed,  2 Oct 2013 13:20:35 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id C5482F811DA;
-	Wed,  2 Oct 2013 13:20:33 -0600 (MDT)
-Message-ID: <524C720E.1090009@mlbassoc.com>
-Date: Wed, 02 Oct 2013 13:20:46 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Return-Path: <dryawgmoth@gmail.com>
+Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
+	[209.85.217.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5763EE01687
+	for <yocto@yoctoproject.org>; Wed,  2 Oct 2013 14:26:30 -0700 (PDT)
+Received: by mail-lb0-f171.google.com with SMTP id u14so1277674lbd.2
+	for <yocto@yoctoproject.org>; Wed, 02 Oct 2013 14:26:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=wVc3kFvLeP1kYFVPIcDnKmS7Uz65zcSvCsATHO44RQU=;
+	b=m77DH9NGmOrx4YYKEJmVBy20G5K4GeT3xzWEleDvYxgpWEL/PArIWbZus7FsFbpdvg
+	Z7F0JaNRAgBMqJ1ccWn4zxioiGYpJxqBNSrDnAdwLuk/5jkeUDYpqD3Y1pzSsL5NUpKY
+	TH3PiW0gIqXZDRZ926X753qs9gD9Fhq0YtwWB40AggC/r1ShVH9ZCcmn+C9b7l4CcHMp
+	bWkOv958DxbLspKAyu6VgLpd9XrlvGPsRWv3tVkEI+6g06IXpqcQOxmtheY5hGawQwLN
+	UZMEpyVhHNbJqBuvvldvbqD8aqZzwCG4R2g/kG5814rJCD9qWXofJiSh9f5B8wNbbTy8
+	17Eg==
 MIME-Version: 1.0
-To: Trevor Woerner <trevor.woerner@linaro.org>
-References: <2C94F567F1334C30A5BBD2CA59576460@PAULD>	<521D354E.1020909@mlbassoc.com>	<8EB78E64DFE9436EAFB462E357C464EC@PAULD>	<521DD72D.2020102@mlbassoc.com>
-	<CALmOhgnU1vHzM263H=CtXxayw4GaTGdTxdB5gG9=CQpe8+DMXg@mail.gmail.com>
-In-Reply-To: <CALmOhgnU1vHzM263H=CtXxayw4GaTGdTxdB5gG9=CQpe8+DMXg@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can anything be done about do_rootfs speed?
+X-Received: by 10.112.77.134 with SMTP id s6mr3180552lbw.38.1380749188980;
+	Wed, 02 Oct 2013 14:26:28 -0700 (PDT)
+Received: by 10.152.3.99 with HTTP; Wed, 2 Oct 2013 14:26:28 -0700 (PDT)
+Date: Wed, 2 Oct 2013 14:26:28 -0700
+Message-ID: <CAOEdsErrXc4J-27Qq7v5wSVg63vx3=d1RJZ2C=bMW2SWdFa+TQ@mail.gmail.com>
+From: Dan B <dryawgmoth@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: nativesdk-dbus not shipped for meta-toolchain-qt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,30 +34,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2013 19:20:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 02 Oct 2013 21:26:31 -0000
+Content-Type: multipart/alternative; boundary=001a11c3dfbaeee5bf04e7c8b872
 
-On 2013-10-02 10:37, Trevor Woerner wrote:
-> On 28 August 2013 06:55, Gary Thomas <gary@mlbassoc.com> wrote:
->> Hopefully
->> someone will document all of this in great detail some day. (in fact I filed
->> a
->> bug to this end many years ago...)
->
-> It would appear that
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=1088 can now be
-> closed as a result of commit 581778c52493b662f449bbbed36453f161501c18
-> in git://git.yoctoproject.org/yocto-docs.
+--001a11c3dfbaeee5bf04e7c8b872
+Content-Type: text/plain; charset=ISO-8859-1
 
-Technically, yes, but the section on IPK based systems is incredibly
-thin.  I would be hard pressed to figure this out if I didn't know how
-to do it already.  I can't really comment on the RPM section as I don't
-use that method.
+I was having a similar error, and sgw_ in the #yocto irc channel helped me
+out. It looks like there is some bug in nativesdk-dbus
+A quick-fix until someone can figure out what's going on is to add the
+following line to your local.conf:
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+INSANE_SKIP_nativesdk-dbus = "installed-vs-shipped"
 
+
+All this does is skip the QA test that is failing. I haven't yet checked
+the result to see if it's working, but it at least was able to skip that QA
+test and build successfully.
+
+Good luck
+
+--001a11c3dfbaeee5bf04e7c8b872
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I was having a similar error, and=A0sgw_ in the #yocto irc=
+ channel helped me out. It looks like there is some bug in nativesdk-dbus=
+=A0<div>A quick-fix until someone can figure out what&#39;s going on is to =
+add the following line to your local.conf:</div>
+<div><br></div><div>INSANE_SKIP_nativesdk-dbus =3D &quot;installed-vs-shipp=
+ed&quot;<br></div><div><br></div><div><br></div><div>All this does is skip =
+the QA test that is failing. I haven&#39;t yet checked the result to see if=
+ it&#39;s working, but it at least was able to skip that QA test and build =
+successfully.</div>
+<div><br></div><div>Good luck</div></div>
+
+--001a11c3dfbaeee5bf04e7c8b872--
