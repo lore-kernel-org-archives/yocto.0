@@ -1,28 +1,32 @@
-Return-Path: <dryawgmoth@gmail.com>
-Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
-	[209.85.217.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5763EE01687
-	for <yocto@yoctoproject.org>; Wed,  2 Oct 2013 14:26:30 -0700 (PDT)
-Received: by mail-lb0-f171.google.com with SMTP id u14so1277674lbd.2
-	for <yocto@yoctoproject.org>; Wed, 02 Oct 2013 14:26:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=wVc3kFvLeP1kYFVPIcDnKmS7Uz65zcSvCsATHO44RQU=;
-	b=m77DH9NGmOrx4YYKEJmVBy20G5K4GeT3xzWEleDvYxgpWEL/PArIWbZus7FsFbpdvg
-	Z7F0JaNRAgBMqJ1ccWn4zxioiGYpJxqBNSrDnAdwLuk/5jkeUDYpqD3Y1pzSsL5NUpKY
-	TH3PiW0gIqXZDRZ926X753qs9gD9Fhq0YtwWB40AggC/r1ShVH9ZCcmn+C9b7l4CcHMp
-	bWkOv958DxbLspKAyu6VgLpd9XrlvGPsRWv3tVkEI+6g06IXpqcQOxmtheY5hGawQwLN
-	UZMEpyVhHNbJqBuvvldvbqD8aqZzwCG4R2g/kG5814rJCD9qWXofJiSh9f5B8wNbbTy8
-	17Eg==
+Return-Path: <joe@deserted.net>
+Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEDB7E01694
+	for <yocto@yoctoproject.org>; Wed,  2 Oct 2013 17:57:49 -0700 (PDT)
+Received: by mail-ie0-f182.google.com with SMTP id aq17so3890551iec.27
+	for <yocto@yoctoproject.org>; Wed, 02 Oct 2013 17:57:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to:cc
+	:content-type:content-transfer-encoding;
+	bh=c5eEisHl55snZgbfe7Be3PdXpKvdL6t1ZxY0fB8EcMk=;
+	b=kR2M8guxfn1Q05TS4pN1yMqhQC/NwpaFpIbg84tww+hqY4LLdOj2baHVaPdT5WDHHc
+	ss9v6PCkrlixok2pRWfv072mNDkoiq5rscElR1UbPZKTHBqohQadXDyHIQsx5M3ojPa5
+	HWOvqA9lBnkqAjVPvO2KmymfNAGnRHSe+hVjUPizopjZbQFDafFNIR/S2MxK2O3ORqAl
+	Lcf4Yw4Bu5MAwu02YWgnleyk4y4ytCQVxwbkkSgvev92Y587T45oNGxA+V3rWe3Q06Zf
+	GGFZJMG0uM9IB3xEBs7+FeDdLsDgMTdgZ9VEowkUfyXzFzCPXkfTFU2aeIwxS0nCbjwY
+	SLVA==
+X-Gm-Message-State: ALoCoQlB3YFxC8K8j9bqhaIcUB6kzPUyUWGm/uULkvVhQht54dguI0xL7ISHLuEwvfS5dbJfuRBM
 MIME-Version: 1.0
-X-Received: by 10.112.77.134 with SMTP id s6mr3180552lbw.38.1380749188980;
-	Wed, 02 Oct 2013 14:26:28 -0700 (PDT)
-Received: by 10.152.3.99 with HTTP; Wed, 2 Oct 2013 14:26:28 -0700 (PDT)
-Date: Wed, 2 Oct 2013 14:26:28 -0700
-Message-ID: <CAOEdsErrXc4J-27Qq7v5wSVg63vx3=d1RJZ2C=bMW2SWdFa+TQ@mail.gmail.com>
-From: Dan B <dryawgmoth@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: nativesdk-dbus not shipped for meta-toolchain-qt
+X-Received: by 10.50.1.84 with SMTP id 20mr40237igk.17.1380761869184; Wed, 02
+	Oct 2013 17:57:49 -0700 (PDT)
+Received: by 10.42.152.71 with HTTP; Wed, 2 Oct 2013 17:57:49 -0700 (PDT)
+Date: Wed, 2 Oct 2013 20:57:49 -0400
+Message-ID: <CANBf+V1KsPcfEaJUL8fxyrk_V+bBuZ2HFSHkSy8sYMEkqsrw0A@mail.gmail.com>
+From: Joe MacDonald <joe@deserted.net>
+To: Philip Tricca <flihp@twobit.us>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [meta-selinux] Updated meta-selinux -- master (was: master-next)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,39 +38,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2013 21:26:31 -0000
-Content-Type: multipart/alternative; boundary=001a11c3dfbaeee5bf04e7c8b872
-
---001a11c3dfbaeee5bf04e7c8b872
+X-List-Received-Date: Thu, 03 Oct 2013 00:57:55 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-
-I was having a similar error, and sgw_ in the #yocto irc channel helped me
-out. It looks like there is some bug in nativesdk-dbus
-A quick-fix until someone can figure out what's going on is to add the
-following line to your local.conf:
-
-INSANE_SKIP_nativesdk-dbus = "installed-vs-shipped"
-
-
-All this does is skip the QA test that is failing. I haven't yet checked
-the result to see if it's working, but it at least was able to skip that QA
-test and build successfully.
-
-Good luck
-
---001a11c3dfbaeee5bf04e7c8b872
-Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I was having a similar error, and=A0sgw_ in the #yocto irc=
- channel helped me out. It looks like there is some bug in nativesdk-dbus=
-=A0<div>A quick-fix until someone can figure out what&#39;s going on is to =
-add the following line to your local.conf:</div>
-<div><br></div><div>INSANE_SKIP_nativesdk-dbus =3D &quot;installed-vs-shipp=
-ed&quot;<br></div><div><br></div><div><br></div><div>All this does is skip =
-the QA test that is failing. I haven&#39;t yet checked the result to see if=
- it&#39;s working, but it at least was able to skip that QA test and build =
-successfully.</div>
-<div><br></div><div>Good luck</div></div>
+Philip / Mark / all,
 
---001a11c3dfbaeee5bf04e7c8b872--
+Earlier today I updated master with a rebased version of what was in
+master-next.  I apologize for not sending this out earlier.  Today's
+been a bit turbo.
+
+This update should have been a fast-forward update to master, so if
+that's not the case, or if the updates cause any unexpected behaviour,
+please let me know.
+
+The only outstanding issue I'm aware of right now is basically what I
+related in my earlier mail, but less severe.  The initial boot and
+auto-relabelling hums along fine.  The second boot produces a few
+issues about /dev/vcs* and /dev/fb* having their label applications
+denied due to an invalid context.  Logging in to the system and
+manually doing a restorecon on those devices as root/secadm_r/secadm_t
+applies the correct label until the next boot.  Then you're back to
+the default labels and have to restore them again.
+
+The current state of affairs works around the more serious problem I
+mentioned previously by not using the udev device cache.  I'd like to
+fix that, but since it was the approach used in master previously, I
+didn't think it was worth holding off on the update just for that.
+
+-J.
+
+On Sat, Sep 28, 2013 at 3:46 PM, Philip Tricca <flihp@twobit.us> wrote:
+> On 09/27/2013 03:58 PM, Joe MacDonald wrote:
+>> [[yocto] [meta-selinux] Updated meta-selinux -- master-next] On 13.09.19=
+ (Thu 13:41) Mark Hatle wrote:
+>>
+>>> I have updated meta-selinux, and placed the update into the 'master-nex=
+t' branch.
+>>>
+>>> This was locally tested with Poky as of commit
+>>> 853bc53cd58a621918f0e5ce662dba263d1befb4.
+>>>
+>>> Note, when building the core-image-selinux, the internal refpolicies
+>>> cause a lot of failures.  I'm not an expert on how this should be
+>>> configured, so I'm looking for help/patches from others.
+>>>
+>>> If you know of any other additional patches that should be applied,
+>>> or are able to help with the refpolicies, please let me know!
+>>>
+>>> Thanks!
+>>> --Mark
+>>
+>> I just pushed a new (non-ff!) update to master-next.  It includes the
+>> following:
+>>
+>>    - Mark Hatle: policycoreutils: avoid shell for checking target-specia=
+l actions
+>>    - Mark Hatle: setools: Uprev setools
+>>    - Mark Hatle: README: Update status
+>>    - Mark Hatle: libcap-ng: Uprev libcap-ng
+>>    - Mark Hatle: audit: Uprev to audit 2.3.2
+>>    - Mark Hatle: swig: Update to latest swig from meta-openembedded
+>>    - Mark Hatle: python-ipy: Uprev to latest 0.81 version
+>>    - Mark Hatle: distro/*: Update the distro files
+>>    - Christopher Larson: layer.conf: avoid unnecessary early expansion w=
+ith :=3D
+>>    - Qiang Chen: selinux: remove reference to locale env files from logi=
+n
+>>    - Mark Hatle: linux-yocto: Add support for the 3.10 kernel
+>>    - Xin Ouyang: kernel: add BBAPPEND for linux 3.10
+>
+> Can I put in a request to cherry-pick the 3.10 kernel update down to mast=
+er? This is independent from all of the tools / policy updates and it would=
+ be very convenient for those of us building against master oe-core. As of =
+now a build of meta-selinux master against oe-core master results in an ima=
+ge that will panic on boot as linux-yocto builds the 3.10 kernel and the se=
+linux distros don't prefer a kernel with an available selinux config (3.8 i=
+s the most recent).
+>
+> Thanks,
+> - Philip
+>
+
+
+
+--=20
+Joe MacDonald
+:wq
+
