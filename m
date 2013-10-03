@@ -1,36 +1,37 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-wg0-f48.google.com (mail-wg0-f48.google.com [74.125.82.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4061E0161B
-	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 07:41:21 -0700 (PDT)
-Received: by mail-wg0-f48.google.com with SMTP id n12so2554990wgh.3
-	for <yocto@yoctoproject.org>; Thu, 03 Oct 2013 07:41:20 -0700 (PDT)
+Return-Path: <munoz0raul@gmail.com>
+Received: from mail-bk0-f53.google.com (mail-bk0-f53.google.com
+	[209.85.214.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A048E0161B
+	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 08:37:06 -0700 (PDT)
+Received: by mail-bk0-f53.google.com with SMTP id d7so983924bkh.26
+	for <yocto@yoctoproject.org>; Thu, 03 Oct 2013 08:37:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=SOjAOZOditMTgwscBmpIsdn8yN0OTB5M2oKDs88Li4g=;
-	b=MejJke3T3cKM9vd/TUpOPNmz+u6sFXu4AepWioqF2R2yx1nl7Vd0YaOD526O4hIxgJ
-	jN96fQn22EjvKQCVZ0/vRYesb/uAF4YFFSJEyfwLY1GZYCGv9HPfKcS2jSI+6cfNkPqV
-	6Sh2JTVlCLJ1At7Qqf3hzJirLf3lrM+Jx1mKb4K1ko00CjDrHGYZGXvvj4mf9KiIHfu8
-	9Gsk04nM38aJYTLAhQx1QgxjvlOaBNSHK0MOkXn1gVylhULZSQhDtma+DmW/F2O/ETgE
-	yLWrwcqC8STX2wlFL7XwH6123ojQhCkt2iN5Kc11Du5AKVaFL2LNIKisjim0Bhs5v5H0
-	0rOQ==
+	:cc:content-type;
+	bh=W2GOY7OhUlyFohxcJQztnsh6kOYGlpyO5cDL/OKDOos=;
+	b=0MUCXfE+Vzl/UVkqE1H2bmgAEkX7HgTSirN+nygJgcLeTsvjWLm1SzGzd+8iRmnG6v
+	FiVjfDTmZCn1QDB3bpQipWKWk9Xb6/0cLN03h/Mx9hKmrtOKWTqrDVgx34BmjdmRhM96
+	o23nrWbPA7a+FlJD5IPwut59obsKS70whRcMucHYKb3Wfj5fmpcHO77Uv+Kwapv9WTtr
+	bFRkXxJh2QJQ4BSvwcKb4EW+IKjVSs8Z41zHZxwN7gdVS0M93mwjp4/ww0Gds45s3vYd
+	Rq0UmyyyW+dMSM/5XWoqe9FYiJpE+W45XAHyMhGTIjOLMD+a8pOp2pYZ4CNhQerRlSA/
+	nuIw==
 MIME-Version: 1.0
-X-Received: by 10.194.119.132 with SMTP id ku4mr2212912wjb.51.1380811280405;
-	Thu, 03 Oct 2013 07:41:20 -0700 (PDT)
-Received: by 10.227.196.7 with HTTP; Thu, 3 Oct 2013 07:41:20 -0700 (PDT)
-In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153B898C3F9@pluto.melinkcorp.local>
-References: <CABHD4K8q9q3Gb4B1E35G8qk+Bp=RLVW7ZhngNYvW=0ZV_v=RKA@mail.gmail.com>
-	<CABHD4K8ggfe+MVzUDuK0dNs82=9dYT-iCyxGTOKNrLm8En2wGQ@mail.gmail.com>
-	<91586D499ADFD74FBCFB8425266A5DE40153B898C345@pluto.melinkcorp.local>
-	<CABHD4K-_9E3qN9exOPkdOoGzEjgskHE6EMNvTkNndbAGC5dcAA@mail.gmail.com>
-	<91586D499ADFD74FBCFB8425266A5DE40153B898C3AF@pluto.melinkcorp.local>
-	<CABHD4K-KW7wMrm+ceLyzGMyyuL0nN=KXmexNmq4yt5RD+yW9og@mail.gmail.com>
-	<91586D499ADFD74FBCFB8425266A5DE40153B898C3F9@pluto.melinkcorp.local>
-Date: Thu, 3 Oct 2013 20:11:20 +0530
-Message-ID: <CABHD4K8Ha3J3QOK+JLQuwzmCJdDMDH_WVMUuEn99F2TYpmk82Q@mail.gmail.com>
-From: Amit Tomer <amittomer25@gmail.com>
-To: Bryan Evenson <bevenson@melinkcorp.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: OpenSSH pre login banner
+X-Received: by 10.204.168.197 with SMTP id v5mr8275159bky.24.1380814625307;
+	Thu, 03 Oct 2013 08:37:05 -0700 (PDT)
+Received: by 10.205.19.197 with HTTP; Thu, 3 Oct 2013 08:37:05 -0700 (PDT)
+In-Reply-To: <524D7D94.10401@windriver.com>
+References: <CANmVirhM7Lo1_ZCfqJw1-U2oqu0b3DueWY71euz27GRz__3hkg@mail.gmail.com>
+	<524D6529.90802@windriver.com>
+	<CANmVirhtHb+fS=SSyMKu053DQq3tiTfX-V1nyA+ak44tFGdaPg@mail.gmail.com>
+	<524D7809.5040700@windriver.com>
+	<CANmVirgN+tS+g_2bCxeSMbQf67x-=GZPxF50CPnSP7QL1OrwSg@mail.gmail.com>
+	<524D7D94.10401@windriver.com>
+Date: Thu, 3 Oct 2013 12:37:05 -0300
+Message-ID: <CANmViriLvOkVbrVtVcASeNLHc77kD-1Y6T=Wmnn+=ZW0r3mg2w@mail.gmail.com>
+From: Raul Rosetto Munoz <munoz0raul@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Install Kernel Modules in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,807 +43,528 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Oct 2013 14:41:25 -0000
-Content-Type: multipart/alternative; boundary=089e01228d72ded9f104e7d72d7d
+X-List-Received-Date: Thu, 03 Oct 2013 15:37:07 -0000
+Content-Type: multipart/alternative; boundary=bcaec52c5efb3e3eb904e7d7f551
 
---089e01228d72ded9f104e7d72d7d
-Content-Type: text/plain; charset=windows-1252
+--bcaec52c5efb3e3eb904e7d7f551
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Fine Bryan,Thanks for your Suggestion
+Bruce, I don't know if i did the correct thing but works.
 
-Not sure should I Share it with you or not but I have seen very weird
-behaviour on my Targer board regarding Openssh Banner.
-
-When I login to my Hardware Board(after freash boot) and do ssh
-some_ip_address ,I am able to see Banner message
-But in /etc/ssh/sshd_config file
-
-#Banner is set to nothing
-
-Then when I do ssh some_ip_address again ,I could not see any banner as it
-is expected behaviour.
-
-Hope you would provide any pointer on the same .
-
-Thanks
-Amit
+I found in my tmp some thing about kernel 3.8 fslc and I deleted it.
 
 
 
+/tmp$ find . -name "*3.8*" | grep fslc
+./stamps/imx28evk-poky-linux-gnueabi/linux-fslc/3.8+gitAUTOINC+720534092422=
+44eaa59497e665945ddeea69c397-r5.do_cleansstate.sigdata.fff4fea9e1722790f7eb=
+22d5d464b82a
+./stamps/imx28evk-poky-linux-gnueabi/linux-fslc/3.8+gitAUTOINC+720534092422=
+44eaa59497e665945ddeea69c397-r5.do_cleansstate.fff4fea9e1722790f7eb22d5d464=
+b82a
+./work/imx28evk-poky-linux-gnueabi/linux-fslc/3.8+gitAUTOINC+72053409242244=
+eaa59497e665945ddeea69c397-r5
+./work/imx28evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/rootfs/lib/mod=
+ules/3.8.13-fslc+g7205340
+./work/imx28evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/rootfs/boot/uI=
+mage-3.8.13-fslc+g7205340
+./work/imx28evk-poky-linux-gnueabi/core-image-minimal/1.0-r0/rootfs/etc/rpm=
+-postinsts/kernel-image-3.8.13-fslc+g7205340
+./buildstats/virtual/kernel-imx28evk/201310011528/linux-fslc-3.8+gitAUTOINC=
++72053409242244eaa59497e665945ddeea69c397-r5
 
 
-On Thu, Oct 3, 2013 at 7:40 PM, Bryan Evenson <bevenson@melinkcorp.com>wrot=
-e:
+After that I returned my prefered kernel version for 3.8, and did a bitbake
+cleanall virtual/kernel.
 
-> Amit,****
->
-> ** **
->
-> Good to hear you got your recipe in order.  Best way to learn more about
-> the Yocto Project and the Poky distribution is through watching this
-> mailing list and the Poky mailing list (poky@yoctoproject.org) to see how
-> other people solve their problems they come across.  And, by reading the
-> documentation over at http://www.yoctoproject.org/documentation/current/.=
-*
-> ***
->
-> ** **
->
-> -Bryan ****
->
-> ** **
->
-> *From:* Amit Tomer [mailto:amittomer25@gmail.com]
-> *Sent:* Thursday, October 03, 2013 10:03 AM
->
-> *To:* Bryan Evenson
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Fwd: OpenSSH pre login banner****
->
-> ** **
->
-> Thanks again Bryan for your kind response ****
->
-> ** **
->
-> The reason for having the PRINC =3D"4" is becaue when I started modifying
-> this already existing file****
->
-> value of PRINC is set 3 ,so for my changes I Incremented it to One.****
->
-> ** **
->
-> Change****
->
-> SRC_URI =3D =93file://banner=94****
->
-> To****
->
-> SRC_URI +=3D =93file://banner=93****
->
-> ** **
->
-> I am really feeling bit stupid here ,I just in hurry forgot to put + sign=
-*
-> ***
->
-> Though I learned a new point ****
->
-> ** **
->
-> "With your line, you are overriding all the SRC_URI for the entire openss=
-h
-> recipe and the openssh recipe will only include the banner file ".****
->
-> ** **
->
-> Change****
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/openssh-6.1p1:"****
->
-> to****
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}:"****
->
->  ****
->
-> We already had openssh-6.1p1 folder where our sshd_config file is placed
-> ,So I guess it won't harm****
->
-> much if I put FILESEXTRAPATHS_prepend :=3D "${THISDIR}/openssh-6.1p1:" wi=
-th
-> banner file in openssh-6.1p1 folder****
->
-> ** **
->
-> One more point wanted from your end,what is best way to learn Yocto****
->
-> How can improve my knowledge in Yocto?****
->
-> ** **
->
-> Thanks ****
->
-> Amit.****
->
-> ** **
->
-> ** **
->
-> ** **
->
-> ** **
->
-> On Thu, Oct 3, 2013 at 7:05 PM, Bryan Evenson <bevenson@melinkcorp.com>
-> wrote:****
->
-> Amit,****
->
->  ****
->
-> First, I suggest you change****
->
-> PRINC =3D =934=94****
->
-> to****
->
-> PRINC :=3D "${@int(PRINC) + 1}"****
->
->  ****
->
-> This way your bbappend will always increment the PR to one more than the
-> PR called out by the main recipe.  So if the openssh recipe would get
-> updated and increment the PR, you do not have to change your bbappend.***=
-*
->
->  ****
->
-> Change****
->
-> SRC_URI =3D =93file://banner=94****
->
-> To****
->
-> SRC_URI +=3D =93file://banner=93****
->
->  ****
->
-> The +=3D appends your banner file to the SRC_URI for the openssh recipe.
-> With your line, you are overriding all the SRC_URI for the entire openssh
-> recipe and the openssh recipe will only include the banner file.  I=92ve
-> taken to the habit of writing the SRC_URI as follows:****
->
->  ****
->
-> SRC_URI +=3D =93 \****
->
-> file://banner \****
->
-> =93****
->
-> just to ensure that words aren=92t joined together when my SRC_URI is
-> appended to the existing one.  I don=92t know if this is strictly necessa=
-ry,
-> but it=92s not a bad habit.****
->
->  ****
->
-> Change****
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/openssh-6.1p1:"****
->
-> to****
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}:"****
->
->  ****
->
-> so Bitbake can find your banner file and sshd_config that you have in the
-> same directory as the bbappend.****
->
->  ****
->
-> I can=92t remember if you get a warning if Bitbake can=92t find the licen=
-se
-> file at all or if it fails on each attempt through the filepath.  Since
-> your new path is first, it won=92t find LICENCE in your layer since you
-> didn=92t copy it.  Once way to quiet this warning would be to copy the
-> license file to your directory.****
->
->  ****
->
-> -Bryan****
->
->  ****
->
-> *From:* Amit Tomer [mailto:amittomer25@gmail.com]
-> *Sent:* Thursday, October 03, 2013 8:23 AM
-> *To:* Bryan Evenson
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Fwd: OpenSSH pre login banner****
->
->  ****
->
-> Hi Brayan****
->
->  ****
->
-> Thanks for your help****
->
->  ****
->
-> The way I modify .bbapend file is below****
->
->  ****
->
-> PRINC =3D "4"****
->
-> SRC_URI =3D "file://banner"****
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/openssh-6.1p1:"****
->
-> do_install_append() {****
->
->  ****
->
-> Install -m 755 ${WORKDIR}/banner ${D}${sysconfdir}/ssh****
->
-> }****
->
->  ****
->
->  ****
->
->  ****
->
-> But it gives me ****
->
->  ****
->
-> Below problem****
->
->  ****
->
-> WARNING:
-> /tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/openssh/6.1p1-r3/openss=
-h-6.1p1/LICENCE
-> could not be copied for some reason. It may not exist. WARN for now.****
->
->  ****
->
-> And my build process is really got slow and sometimes I am getting the
-> error also****
->
->  ****
->
-> What could be the reason for above??****
->
->  ****
->
->  ****
->
->  ****
->
->  ****
->
->  ****
->
->  ****
->
-> On Thu, Oct 3, 2013 at 5:49 PM, Bryan Evenson <bevenson@melinkcorp.com>
-> wrote:****
->
-> Amit,****
->
->  ****
->
-> From your message, I=92m assuming you have a bbappend file for openssh.
-> Following the example in section of 5.1.4 of the Mega Manual (located at
-> http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#usi=
-ng-bbappend-files)
-> and from personal experience, put the following in your bbappend file:***=
-*
->
->  ****
->
-> FILESEXTRAPATHS_prepend :=3D " ${THISDIR}: "****
->
-> SRC_URI +=3D =93 file://banner =94****
->
-> FILES_${PN} +=3D =93 /etc/ssh/banner =94****
->
->  ****
->
-> do_install_append() {****
->
->                 install =96d ${D}${sysconfdir}/ssh****
->
->                 install =96m 0644 ${WORKDIR}/banner
-> ${D}${sysconfdir/ssh/banner****
->
-> }****
->
-> PRINC :=3D "${@int(PRINC) + 1}"****
->
->  ****
->
-> then place your banner file and sshd_config in the same directory as your
-> bbappend.  When openssh gets built, Bitbake will find your sshd_config
-> first and use and install that file instead of the one from the main
-> layer.  The recipe also tells it how to handle the new banner file that i=
+And change again my kernel version for default 2.6.35 and works perfect.
+
+Thanks For all help, did you help me a lot!
+
+
+
+On Thu, Oct 3, 2013 at 11:22 AM, Bruce Ashfield <
+bruce.ashfield@windriver.com> wrote:
+
+> On 13-10-03 10:09 AM, Raul Rosetto Munoz wrote:
+>
+>> Look all the time the modules of kernel 3.8 come.
+>>
+>> My /lib/modules is like this:
+>>
+>
+> That's where ? In your booted target ? What BSP are you using, how did
+> you install the image ?
+>
+> Answering that question, will likely get you your answer. If you previous=
+ly
+> generated a rootfs and installed it. You'd need to do the same thing
+> and do it with a clean install with the new kernel to remove all
+> remnants of the old package.
+>
+> (That's assuming you aren't using package management on the target,
+> or package feeds. I don't, so manually look after this sort of thing).
+>
+> Cheers,
+>
+> Bruce
+>
+>
+>> /lib/modules$ ll
+>> total 16
+>> drwxr-xr-x 4 raul raul 4096 Oct  3 10:09 ./
+>> drwxr-xr-x 7 raul raul 4096 Oct  3 10:09 ../
+>> drwxr-xr-x 2 raul raul 4096 Oct  3 10:09 2.6.35.3-1.1.0+yocto+g914558e/
+>> drwxr-xr-x 3 raul raul 4096 Oct  1 15:45 3.8.13-fslc+g7205340/
+>>
+>>
+>> /lib/modules$ ll 2.6.35.3-1.1.0+yocto+g914558e/
+>> total 36
+>> drwxr-xr-x 2 raul raul 4096 Oct  3 10:09 ./
+>> drwxr-xr-x 4 raul raul 4096 Oct  3 10:09 ../
+>> -rw-r--r-- 1 raul raul   45 Oct  3 10:09 modules.alias
+>> -rw-r--r-- 1 raul raul   12 Oct  3 10:09 modules.alias.bin
+>> -rw-r--r-- 1 raul raul    0 Oct  3 10:09 modules.builtin.bin
+>> -rw-r--r-- 1 raul raul    0 Oct  3 10:09 modules.dep
+>> -rw-r--r-- 1 raul raul   12 Oct  3 10:09 modules.dep.bin
+>> -rw-r--r-- 1 raul raul   52 Oct  3 10:09 modules.devname
+>> -rw-r--r-- 1 raul raul  131 Oct  3 10:09 modules.softdep
+>> -rw-r--r-- 1 raul raul   49 Oct  3 10:09 modules.symbols
+>> -rw-r--r-- 1 raul raul   12 Oct  3 10:09 modules.symbols.bin
+>>
+>> /lib/modules$ ll 3.8.13-fslc+g7205340/
+>> total 24
+>> drwxr-xr-x 3 raul raul 4096 Oct  1 15:45 ./
+>> drwxr-xr-x 4 raul raul 4096 Oct  3 10:09 ../
+>> drwxr-xr-x 6 raul raul 4096 Oct  1 15:45 kernel/
+>> -rw-r--r-- 1 raul raul 5153 Oct  1 15:45 modules.builtin
+>> -rw-r--r-- 1 raul raul  391 Oct  1 15:45 modules.order
+>>
+>> I have no idea how to remove the remains of the kernel 3.8.
+>>
+>> I dont want to delete all the /tmp
+>>
+>> =3D/
+>>
+>> Take so much time.
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> On Thu, Oct 3, 2013 at 10:58 AM, Bruce Ashfield
+>> <bruce.ashfield@windriver.com <mailto:bruce.ashfield@**windriver.com<bru=
+ce.ashfield@windriver.com>>>
+>> wrote:
+>>
+>>
+>>     On 13-10-03 09 <tel:13-10-03%2009>:32 AM, Raul Rosetto Munoz wrote:
+>>
+>>         I think that I found my problem,
+>>
+>>         I tryed to use the kernel 3.8 before in this build system, but I
+>>         decided
+>>         to go back to the 2.6.35.3.
+>>
+>>         But now I did bitbake -c cleanall virtual/kernel, I tryed to
+>> delete
+>>         every thing about kernel 3.8 but the modules that are instaled i=
+n
+>> my
+>>         /lib/modules/ still be the modules of kernel 3.8.
+>>
+>>         How I clean the modules and force to use no 2.6.35.3 again.
+>>
+>>         Which package or command do that?
+>>
+>>
+>>     If you reconstruct your image, the old module package shouldn't be
+>>     re-used, since you would now have a dependency on the 2.6.35.x kerne=
+l.
+>>
+>>     How exactly are they installed in /lib/modules ? Did you do anything
+>>     in particular ?
+>>
+>>     Bruce
+>>
+>>
+>>         Thanks for all Help.
+>>
+>>
+>>         On Thu, Oct 3, 2013 at 9:38 AM, Bruce Ashfield
+>>         <bruce.ashfield@windriver.com
+>>         <mailto:bruce.ashfield@**windriver.com<bruce.ashfield@windriver.=
+com>
+>> >
+>>         <mailto:bruce.ashfield@__windr**iver.com <http://windriver.com>
+>>         <mailto:bruce.ashfield@**windriver.com<bruce.ashfield@windriver.=
+com>>>>
+>> wrote:
+>>
+>>
+>>              On 13-10-03 08 <tel:13-10-03%2008> <tel:13-10-03%2008>:34
+>>
+>>         AM, Raul Rosetto Munoz wrote:
+>>
+>>                  Hello All,
+>>
+>>                  I'm Trying to install the kernel modules inside my
+>>         rootfs but I
+>>                  couldn't
+>>                  find an especific information that help me to do that!
+>>
+>>                  I have in my /tmp/images/ the tgz with all the modules
+>>         that I need.
+>>
+>>                  modules--2.6.35.3-r32.23-____**
+>> imx28evk-20131002210958.tgz
+>>
+>>
+>>
+>>                  I just want that this tzg was extracted inside my rootf=
 s
-> not part of the original recipe; you do not need to put these rules in
-> place for sshd_config because that is already part of the original recipe=
-.
-> Then in the future every time you make a change to the openssh package in
-> your layer, increment the PRINC so your package management tools will see
-> it as an upgrade.  For example, if you change the contents of the banner
-> file, then change the =93+ 1=94 to =93+ 2=94.****
+>>                  /lib/modules.
+>>
+>>                  Please some one can help me with this?
+>>
+>>
+>>              Does your image type have a RDEPENDS on "kernel-modules",
+>>         or do you
+>>              have IMAGE_INSTALL_append =3D " kernel-modules", in your
+>>         local.conf ?
+>>
+>>              If you do either of the above, the entire set of built
+>>         modules will
+>>              be installed.
+>>
+>>              You can also install / require individual modules via
+>>              kernel-module-<module name>.
+>>
+>>              The Yocto docs should have details on this as well.
+>>
+>>              Cheers,
+>>
+>>              Bruce
+>>
+>>
+>>                  Thanks so much.
+>>
+>>                  --
+>>                  *Raul Rosetto Mu=F1oz*
+>>
+>>
+>>                  ______________________________**_____________________
+>>
+>>                  yocto mailing list
+>>         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org**>
+>>         <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org**
+>> >__>
+>>         https://lists.yoctoproject.___**_org/listinfo/yocto
+>>
+>>
+>>                  <https://lists.yoctoproject.__**org/listinfo/yocto
+>>         <https://lists.yoctoproject.**org/listinfo/yocto<https://lists.y=
+octoproject.org/listinfo/yocto>
+>> >>
+>>
+>>
+>>
+>>
+>>
+>>         --
+>>         *Raul Rosetto Mu=F1oz*
+>>
+>>
+>>
+>>
+>>
+>> --
+>> *Raul Rosetto Mu=F1oz*
+>>
 >
->  ****
->
-> -Bryan****
->
->  ****
->
-> *From:* yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org] *On Behalf Of *Amit Tomer
-> *Sent:* Thursday, October 03, 2013 7:05 AM
-> *To:* yocto@yoctoproject.org
-> *Subject:* [yocto] Fwd: OpenSSH pre login banner****
->
->  ****
->
->  ****
->
-> ---------- Forwarded message ----------
-> From: *Amit Tomer* <amittomer25@gmail.com>
-> Date: Thu, Oct 3, 2013 at 1:50 PM
-> Subject: OpenSSH pre login banner
-> To: "yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>****
->
-> I am new to OpenEmbedded Yocto and have a requirement where OpenSSH pre
-> login banner****
->
-> should come when do ssh from target board****
->
->  ****
->
-> Now I know I have to create a simple .txt file(banner) and put my banner
-> in to it and add the following to sshd_config****
->
->  ****
->
-> Banner /etc/ssh/banner ****
->
->  ****
->
-> But now  wanted to know where should I keep my banner file in yocto so
-> that Yocto build infrastructure will pack banner file  to /etc/ssh/banner
-> into final image.****
->
->  ****
->
-> I do have receipes for openssh in meta-xyz/recipes-connectivity/openssh
->  folder****
->
->  ****
->
-> Thanks ****
->
-> Amit ****
->
->  ****
->
->  ****
->
->  ****
->
->  ****
->
->  ****
->
-> ** **
 >
 
---089e01228d72ded9f104e7d72d7d
-Content-Type: text/html; charset=windows-1252
+
+--=20
+*Raul Rosetto Mu=F1oz*
+
+--bcaec52c5efb3e3eb904e7d7f551
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Fine Bryan,Thanks for your Suggestion<div><br></div><div s=
-tyle>Not sure should I Share it with you or not but I have seen very weird =
-behaviour on my Targer board regarding Openssh Banner.</div><div style><br>
-</div><div style>When I login to my Hardware Board(after freash boot) and d=
-o ssh some_ip_address ,I am able to see Banner message</div><div style>But =
-in /etc/ssh/sshd_config file=A0</div><div style><br></div><div style>#Banne=
-r is set to nothing</div>
-<div style><br></div><div style>Then when I do ssh=A0some_ip_address again =
-,I could not see any banner as it is expected behaviour.</div><div style><b=
-r></div><div style>Hope you would provide any pointer on the same .</div>
-<div style><br></div><div style>Thanks=A0</div><div style>Amit=A0</div><div=
- style><br></div><div style><br></div><div style><br></div></div><div class=
-=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu, Oct 3, 2013 at =
-7:40 PM, Bryan Evenson <span dir=3D"ltr">&lt;<a href=3D"mailto:bevenson@mel=
-inkcorp.com" target=3D"_blank">bevenson@melinkcorp.com</a>&gt;</span> wrote=
-:<br>
+<div dir=3D"ltr"><div>Bruce, I don&#39;t know if i did the correct thing bu=
+t works.</div><div><br></div><div>I found in my tmp some thing about kernel=
+ 3.8 fslc and I deleted it.</div><div><br></div><div><br></div><div style>
+<br></div><div style><div><font face=3D"courier new, monospace">/tmp$=A0fin=
+d . -name &quot;*3.8*&quot; | grep fslc</font></div><div><font face=3D"cour=
+ier new, monospace">./stamps/imx28evk-poky-linux-gnueabi/linux-fslc/3.8+git=
+AUTOINC+72053409242244eaa59497e665945ddeea69c397-r5.do_cleansstate.sigdata.=
+fff4fea9e1722790f7eb22d5d464b82a</font></div>
+<div><font face=3D"courier new, monospace">./stamps/imx28evk-poky-linux-gnu=
+eabi/linux-fslc/3.8+gitAUTOINC+72053409242244eaa59497e665945ddeea69c397-r5.=
+do_cleansstate.fff4fea9e1722790f7eb22d5d464b82a</font></div><div><font face=
+=3D"courier new, monospace">./work/imx28evk-poky-linux-gnueabi/linux-fslc/3=
+.8+gitAUTOINC+72053409242244eaa59497e665945ddeea69c397-r5</font></div>
+<div><font face=3D"courier new, monospace">./work/imx28evk-poky-linux-gnuea=
+bi/core-image-minimal/1.0-r0/rootfs/lib/modules/3.8.13-fslc+g7205340</font>=
+</div><div><font face=3D"courier new, monospace">./work/imx28evk-poky-linux=
+-gnueabi/core-image-minimal/1.0-r0/rootfs/boot/uImage-3.8.13-fslc+g7205340<=
+/font></div>
+<div><font face=3D"courier new, monospace">./work/imx28evk-poky-linux-gnuea=
+bi/core-image-minimal/1.0-r0/rootfs/etc/rpm-postinsts/kernel-image-3.8.13-f=
+slc+g7205340</font></div><div><font face=3D"courier new, monospace">./build=
+stats/virtual/kernel-imx28evk/201310011528/linux-fslc-3.8+gitAUTOINC+720534=
+09242244eaa59497e665945ddeea69c397-r5</font></div>
+<div><br></div><div><br></div><div style><div>After that I returned my pref=
+ered kernel version for 3.8, and did a bitbake cleanall virtual/kernel.</di=
+v><div><br></div><div>And change again my kernel version for default 2.6.35=
+ and works perfect.</div>
+<div><br></div><div>Thanks For all help, did you help me a lot!</div></div>=
+<div style><br></div></div></div><div class=3D"gmail_extra"><br><br><div cl=
+ass=3D"gmail_quote">On Thu, Oct 3, 2013 at 11:22 AM, Bruce Ashfield <span d=
+ir=3D"ltr">&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_b=
+lank">bruce.ashfield@windriver.com</a>&gt;</span> wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div lang=3D"EN-US" link=3D"blue" vlink=3D"p=
-urple"><div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-fam=
-ily:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Amit,<u></u><=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Good to hear you got y=
-our recipe in order.=A0 Best way to learn more about the Yocto Project and =
-the Poky distribution is through watching this mailing list and the Poky ma=
-iling list (<a href=3D"mailto:poky@yoctoproject.org" target=3D"_blank">poky=
-@yoctoproject.org</a>) to see how other people solve their problems they co=
-me across.=A0 And, by reading the documentation over at <a href=3D"http://w=
-ww.yoctoproject.org/documentation/current/" target=3D"_blank">http://www.yo=
-ctoproject.org/documentation/current/</a>.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">-Bryan <u></u><u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p><div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0=
-in 4.0pt">
-<div><div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt=
- 0in 0in 0in"><p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;fon=
-t-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span s=
-tyle=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&qu=
-ot;"> Amit Tomer [mailto:<a href=3D"mailto:amittomer25@gmail.com" target=3D=
-"_blank">amittomer25@gmail.com</a>] <br>
-<b>Sent:</b> Thursday, October 03, 2013 10:03 AM</span></p><div><div class=
-=3D"h5"><br><b>To:</b> Bryan Evenson<br><b>Cc:</b> <a href=3D"mailto:yocto@=
-yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org</a><br><b>Subjec=
-t:</b> Re: [yocto] Fwd: OpenSSH pre login banner<u></u><u></u></div>
-</div><p></p></div></div><div><div class=3D"h5"><p class=3D"MsoNormal"><u><=
-/u>=A0<u></u></p><div><p class=3D"MsoNormal">Thanks again Bryan for your ki=
-nd response=A0<u></u><u></u></p><div><p class=3D"MsoNormal"><u></u>=A0<u></=
-u></p></div>
-<div><p class=3D"MsoNormal">The reason for having the PRINC =3D&quot;4&quot=
-; is becaue when I started modifying this already existing file<u></u><u></=
-u></p></div><div><p class=3D"MsoNormal">value of PRINC is set 3 ,so for my =
-changes I Incremented it to One.<u></u><u></u></p>
-</div><div><p class=3D"MsoNormal"><u></u>=A0<u></u></p></div><div><p class=
-=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&qu=
-ot;,&quot;sans-serif&quot;;color:#1f497d">Change</span><u></u><u></u></p><p=
- class=3D"MsoNormal">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">SRC_URI =3D =93<a>file://banner</a>=94</span><u>=
-</u><u></u></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-=
-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">To</span><=
-u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">SRC_URI +=3D =93file://ba=
-nner=93</span><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=A0<u></u></p=
-><p class=3D"MsoNormal">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;">I am really</span><span style=3D"font-size:11.0pt;font-family:=
-&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"> </span><span sty=
-le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quo=
-t;">feeling bit stupid here ,I just in hurry forgot to put + sign</span><u>=
-</u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">Though I learned a new point=A0</span><=
-u></u><u></u></p><p class=3D"MsoNormal"><u></u>=A0<u></u></p><p class=3D"Ms=
-oNormal">
-<span style=3D"font-size:11.5pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">&quot;With your line, you are overriding all the=
- SRC_URI for the entire openssh recipe and the openssh recipe will only inc=
-lude the banner file</span>=A0&quot;.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p><p class=3D"MsoNormal"><span st=
-yle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&qu=
-ot;;color:#1f497d">Change</span><u></u><u></u></p><div><p class=3D"MsoNorma=
-l"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
-ns-serif&quot;;color:#1f497d">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}=
-/openssh-6.1p1:&quot;</span><u></u><u></u></p>
-</div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&q=
-uot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">to</span><u></u><u>=
-</u></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:=
-&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">FILESEXTRAPATHS_p=
-repend :=3D &quot;${THISDIR}:&quot;</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.5pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;">We already had=A0openssh-6.1p1 folde=
-r where our sshd_config file is placed ,So I guess it won&#39;t harm</span>=
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">much if I put=A0FILESEXTRAPATHS_prepend=
- :=3D &quot;${THISDIR}/openssh-6.1p1:&quot; with banner file in=A0openssh-6=
-.1p1 folder</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p><p class=3D"MsoNormal"><span st=
-yle=3D"font-size:11.5pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&qu=
-ot;">One more point wanted from your end,what is best way to learn Yocto</s=
-pan><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.5pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;">How can improve my knowledge in Yocto?<=
-/span><u></u><u></u></p><p class=3D"MsoNormal"><u></u>=A0<u></u></p><p clas=
-s=3D"MsoNormal">
-<span style=3D"font-size:11.5pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;">Thanks=A0</span><u></u><u></u></p><p class=3D"MsoNormal"><span=
- style=3D"font-size:11.5pt;font-family:&quot;Calibri&quot;,&quot;sans-serif=
-&quot;">Amit.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=A0<u></u></p><p class=3D"MsoNormal"><u></u>=
-=A0<u></u></p><p class=3D"MsoNormal"><u></u>=A0<u></u></p></div></div><div>=
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><u></u>=A0<u></u></p>=
-<div><p class=3D"MsoNormal">
-On Thu, Oct 3, 2013 at 7:05 PM, Bryan Evenson &lt;<a href=3D"mailto:bevenso=
-n@melinkcorp.com" target=3D"_blank">bevenson@melinkcorp.com</a>&gt; wrote:<=
-u></u><u></u></p><div><div><p class=3D"MsoNormal"><span style=3D"font-size:=
-11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d=
-">Amit,</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">First, I suggest you c=
-hange</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">PRINC =3D =934=94</span><=
-u></u><u></u></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;fon=
-t-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">to</span=
-><u></u><u></u></p>
-<div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&qu=
-ot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">PRINC :=3D &quot;${@=
-int(PRINC) + 1}&quot;</span><u></u><u></u></p><p class=3D"MsoNormal"><span =
-style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&=
-quot;;color:#1f497d">=A0</span><u></u><u></u></p>
-</div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&q=
-uot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">This way your bbapp=
-end will always increment the PR to one more than the PR called out by the =
-main recipe.=A0 So if the openssh recipe would get updated and increment th=
-e PR, you do not have to change your bbappend.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Change</span><u></u><u=
-></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">SRC_URI =3D =93<a>file://=
-banner</a>=94</span><u></u><u></u></p><p class=3D"MsoNormal"><span style=3D=
-"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;co=
-lor:#1f497d">To</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">SRC_URI +=3D =93file://ba=
-nner=93</span><u></u><u></u></p><p class=3D"MsoNormal"><span style=3D"font-=
-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1=
-f497d">=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">The +=3D appends your ban=
-ner file to the SRC_URI for the openssh recipe.=A0 With your line, you are =
-overriding all the SRC_URI for the entire openssh recipe and the openssh re=
-cipe will only include the banner file.=A0 I=92ve taken to the habit of wri=
-ting the SRC_URI as follows:</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">SRC_URI +=3D =93 \</sp=
-an><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d=
-"><a>file://banner</a> \</span><u></u><u></u></p><p class=3D"MsoNormal" sty=
-le=3D"text-indent:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">=93</span><u></u><u></u></p><p class=3D"MsoNorma=
-l"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
-ns-serif&quot;;color:#1f497d">just to ensure that words aren=92t joined tog=
-ether when my SRC_URI is appended to the existing one.=A0 I don=92t know if=
- this is strictly necessary, but it=92s not a bad habit.</span><u></u><u></=
-u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Change</span><u></u><u=
-></u></p>
-<div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&qu=
-ot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">FILESEXTRAPATHS_prep=
-end :=3D &quot;${THISDIR}/openssh-6.1p1:&quot;</span><u></u><u></u></p></di=
-v>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">to</span><u></u><u></u></=
-p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;=
-Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">FILESEXTRAPATHS_prepend=
- :=3D &quot;${THISDIR}:&quot;</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">so Bitbake can find yo=
-ur banner file and sshd_config that you have in the same directory as the b=
-bappend.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">I can=92t remember if =
-you get a warning if Bitbake can=92t find the license file at all or if it =
-fails on each attempt through the filepath.=A0 Since your new path is first=
-, it won=92t find LICENCE in your layer since you didn=92t copy it.=A0 Once=
- way to quiet this warning would be to copy the license file to your direct=
-ory.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">-Bryan</span><u></u><u=
-></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0=
-in 4.0pt">
-<div><div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt=
- 0in 0in 0in"><p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;fon=
-t-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span s=
-tyle=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&qu=
-ot;"> Amit Tomer [mailto:<a href=3D"mailto:amittomer25@gmail.com" target=3D=
-"_blank">amittomer25@gmail.com</a>] <br>
-<b>Sent:</b> Thursday, October 03, 2013 8:23 AM<br><b>To:</b> Bryan Evenson=
-<br><b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">=
-yocto@yoctoproject.org</a><br><b>Subject:</b> Re: [yocto] Fwd: OpenSSH pre =
-login banner</span><u></u><u></u></p>
-</div></div><div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p><div><p c=
-lass=3D"MsoNormal">Hi Brayan<u></u><u></u></p><div><p class=3D"MsoNormal">=
-=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Thanks for your help=
-<u></u><u></u></p>
-</div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p></div><div><p class=
-=3D"MsoNormal">The way I modify .bbapend file is below<u></u><u></u></p></d=
-iv><div><p class=3D"MsoNormal">=A0<u></u><u></u></p></div><div><div><p clas=
-s=3D"MsoNormal">
-PRINC =3D &quot;4&quot;<u></u><u></u></p></div><div><p class=3D"MsoNormal">=
-SRC_URI =3D &quot;<a>file://banner</a>&quot;<u></u><u></u></p></div><div><p=
- class=3D"MsoNormal">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/openssh-=
-6.1p1:&quot;<u></u><u></u></p>
-</div><div><p class=3D"MsoNormal">do_install_append() {<u></u><u></u></p></=
-div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p></div><div><p class=3D=
-"MsoNormal">Install -m 755 ${WORKDIR}/banner ${D}${sysconfdir}/ssh<u></u><u=
-></u></p>
-</div><div><p class=3D"MsoNormal">}<u></u><u></u></p></div><div><p class=3D=
-"MsoNormal">=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=A0<u></=
-u><u></u></p></div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p></div><=
-div><p class=3D"MsoNormal">
-But it gives me=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=A0<u=
-></u><u></u></p></div><div><p class=3D"MsoNormal">Below problem<u></u><u></=
-u></p></div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p></div><div><di=
-v><p class=3D"MsoNormal">
-WARNING: /tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/openssh/6.1p1-r3=
-/openssh-6.1p1/LICENCE could not be copied for some reason. It may not exis=
-t. WARN for now.<u></u><u></u></p></div><div><p class=3D"MsoNormal">=A0<u><=
-/u><u></u></p>
-</div><div><p class=3D"MsoNormal">And my build process is really got slow a=
-nd sometimes I am getting the error also<u></u><u></u></p></div><div><p cla=
-ss=3D"MsoNormal">=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Wha=
-t could be the reason for above??<u></u><u></u></p>
-</div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p></div><div><p class=
-=3D"MsoNormal">=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=A0<u=
-></u><u></u></p></div></div><div><p class=3D"MsoNormal">=A0<u></u><u></u></=
-p></div><div>
-<p class=3D"MsoNormal">=A0<u></u><u></u></p></div></div></div><div><p class=
-=3D"MsoNormal" style=3D"margin-bottom:12.0pt">=A0<u></u><u></u></p><div><p =
-class=3D"MsoNormal">On Thu, Oct 3, 2013 at 5:49 PM, Bryan Evenson &lt;<a hr=
-ef=3D"mailto:bevenson@melinkcorp.com" target=3D"_blank">bevenson@melinkcorp=
-.com</a>&gt; wrote:<u></u><u></u></p>
-<div><div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-famil=
-y:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Amit,</span><u>=
-</u><u></u></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-=
-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span>=
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">From your message, I=92m =
-assuming you have a bbappend file for openssh.=A0 Following the example in =
-section of 5.1.4 of the Mega Manual (located at <a href=3D"http://www.yocto=
-project.org/docs/current/mega-manual/mega-manual.html#using-bbappend-files"=
- target=3D"_blank">http://www.yoctoproject.org/docs/current/mega-manual/meg=
-a-manual.html#using-bbappend-files</a>) and from personal experience, put t=
-he following in your bbappend file:</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f4=
-97d">FILESEXTRAPATHS_prepend :=3D &quot; ${THISDIR}: &quot;</span><u></u><u=
-></u></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d=
-">SRC_URI +=3D =93 <a>file://banner</a> =94</span><u></u><u></u></p><p clas=
-s=3D"MsoNormal" style=3D"text-indent:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">FILES_${PN} +=3D =93 /etc/ssh/banner =94</span><=
-u></u><u></u></p><p class=3D"MsoNormal" style=3D"text-indent:.5in"><span st=
-yle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&qu=
-ot;;color:#1f497d">=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d=
-">do_install_append() {</span><u></u><u></u></p><p class=3D"MsoNormal" styl=
-e=3D"text-indent:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 in=
-stall =96d ${D}${sysconfdir}/ssh</span><u></u><u></u></p><p class=3D"MsoNor=
-mal" style=3D"text-indent:.5in"><span style=3D"font-size:11.0pt;font-family=
-:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 install =96m 0644 ${WORKDIR}/banner ${D}${sy=
-sconfdir/ssh/banner</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-size:=
-11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d=
-">}</span><u></u><u></u></p><p class=3D"MsoNormal" style=3D"text-indent:.5i=
-n"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
-ns-serif&quot;;color:#1f497d">PRINC :=3D &quot;${@int(PRINC) + 1}&quot;</sp=
-an><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">then place your banner=
- file and sshd_config in the same directory as your bbappend.=A0 When opens=
-sh gets built, Bitbake will find your sshd_config first and use and install=
- that file instead of the one from the main layer.=A0 The recipe also tells=
- it how to handle the new banner file that is not part of the original reci=
-pe; you do not need to put these rules in place for sshd_config because tha=
-t is already part of the original recipe.=A0 Then in the future every time =
-you make a change to the openssh package in your layer, increment the PRINC=
- so your package management tools will see it as an upgrade.=A0 For example=
-, if you change the contents of the banner file, then change the =93+ 1=94 =
-to =93+ 2=94.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">-Bryan</span><u></u><u=
-></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=A0</span><u></u><u></u><=
-/p><div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0=
-in 4.0pt">
-<div><div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt=
- 0in 0in 0in"><p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;fon=
-t-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span s=
-tyle=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&qu=
-ot;"> <a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">y=
-octo-bounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@y=
-octoproject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>] <b>O=
-n Behalf Of </b>Amit Tomer<br>
-<b>Sent:</b> Thursday, October 03, 2013 7:05 AM<br><b>To:</b> <a href=3D"ma=
-ilto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org</a><b=
-r><b>Subject:</b> [yocto] Fwd: OpenSSH pre login banner</span><u></u><u></u=
-></p>
-</div></div><div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p><div><p c=
-lass=3D"MsoNormal" style=3D"margin-bottom:12.0pt">=A0<u></u><u></u></p><div=
-><p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">---------- Forwarded=
- message ----------<br>
-From: <b>Amit Tomer</b> &lt;<a href=3D"mailto:amittomer25@gmail.com" target=
-=3D"_blank">amittomer25@gmail.com</a>&gt;<br>Date: Thu, Oct 3, 2013 at 1:50=
- PM<br>Subject: OpenSSH pre login banner<br>To: &quot;<a href=3D"mailto:yoc=
-to-request@yoctoproject.org" target=3D"_blank">yocto-request@yoctoproject.o=
-rg</a>&quot; &lt;<a href=3D"mailto:yocto-request@yoctoproject.org" target=
-=3D"_blank">yocto-request@yoctoproject.org</a>&gt;<u></u><u></u></p>
-<div><p class=3D"MsoNormal">I am new to OpenEmbedded Yocto and have a requi=
-rement where=A0OpenSSH pre login banner<u></u><u></u></p><div><p class=3D"M=
-soNormal">should come when do ssh from target board<u></u><u></u></p></div>=
-<div>
-<p class=3D"MsoNormal">=A0<u></u><u></u></p></div><div><p class=3D"MsoNorma=
-l">Now I know I have to create a simple .txt file(banner) and put my banner=
- in to it and add the following to=A0sshd_config<u></u><u></u></p></div><di=
-v><p class=3D"MsoNormal">
-=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">Banner /etc/ssh/bann=
-er=A0<u></u><u></u></p></div><div><p class=3D"MsoNormal">=A0<u></u><u></u><=
-/p></div><div><p class=3D"MsoNormal">But now =A0wanted to know where should=
- I keep my banner file in yocto so that Yocto build infrastructure will pac=
-k banner file =A0to /etc/ssh/banner into final image.<u></u><u></u></p>
-</div><div><p class=3D"MsoNormal">=A0<u></u><u></u></p></div><div><p class=
-=3D"MsoNormal">I do have receipes for openssh in meta-xyz/recipes-connectiv=
-ity/openssh =A0folder<u></u><u></u></p></div><div><p class=3D"MsoNormal">=
-=A0<u></u><u></u></p>
-</div><div><p class=3D"MsoNormal">Thanks=A0<u></u><u></u></p></div><div><p =
-class=3D"MsoNormal"><span style=3D"color:#888888">Amit=A0</span><u></u><u><=
-/u></p></div><div><p class=3D"MsoNormal"><span style=3D"color:#888888">=A0<=
-/span><u></u><u></u></p>
-</div><div><p class=3D"MsoNormal"><span style=3D"color:#888888">=A0</span><=
-u></u><u></u></p></div><div><p class=3D"MsoNormal"><span style=3D"color:#88=
-8888">=A0</span><u></u><u></u></p></div></div></div><p class=3D"MsoNormal">=
-=A0<u></u><u></u></p>
-</div></div></div></div></div></div></div><p class=3D"MsoNormal">=A0<u></u>=
-<u></u></p></div></div></div></div></div></div></div><p class=3D"MsoNormal"=
-><u></u>=A0<u></u></p></div></div></div></div></div></div></blockquote></di=
-v><br>
+x #ccc solid;padding-left:1ex"><div class=3D"im">On <a href=3D"tel:13-10-03=
+%2010" value=3D"+13100310" target=3D"_blank">13-10-03 10</a>:09 AM, Raul Ro=
+setto Munoz wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Look all the time the modules of kernel 3.8 come.<br>
+<br>
+My /lib/modules is like this:<br>
+</blockquote>
+<br></div>
+That&#39;s where ? In your booted target ? What BSP are you using, how did<=
+br>
+you install the image ?<br>
+<br>
+Answering that question, will likely get you your answer. If you previously=
+<br>
+generated a rootfs and installed it. You&#39;d need to do the same thing<br=
+>
+and do it with a clean install with the new kernel to remove all<br>
+remnants of the old package.<br>
+<br>
+(That&#39;s assuming you aren&#39;t using package management on the target,=
+<br>
+or package feeds. I don&#39;t, so manually look after this sort of thing).<=
+br>
+<br>
+Cheers,<br>
+<br>
+Bruce<br>
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div><div class=3D"h5">
+<br>
+/lib/modules$ ll<br>
+total 16<br>
+drwxr-xr-x 4 raul raul 4096 Oct =A03 10:09 ./<br>
+drwxr-xr-x 7 raul raul 4096 Oct =A03 10:09 ../<br>
+drwxr-xr-x 2 raul raul 4096 Oct =A03 10:09 2.6.35.3-1.1.0+yocto+g914558e/<b=
+r>
+drwxr-xr-x 3 raul raul 4096 Oct =A01 15:45 3.8.13-fslc+g7205340/<br>
+<br>
+<br>
+/lib/modules$ ll 2.6.35.3-1.1.0+yocto+g914558e/<br>
+total 36<br>
+drwxr-xr-x 2 raul raul 4096 Oct =A03 10:09 ./<br>
+drwxr-xr-x 4 raul raul 4096 Oct =A03 10:09 ../<br>
+-rw-r--r-- 1 raul raul =A0 45 Oct =A03 10:09 modules.alias<br>
+-rw-r--r-- 1 raul raul =A0 12 Oct =A03 10:09 modules.alias.bin<br>
+-rw-r--r-- 1 raul raul =A0 =A00 Oct =A03 10:09 modules.builtin.bin<br>
+-rw-r--r-- 1 raul raul =A0 =A00 Oct =A03 10:09 modules.dep<br>
+-rw-r--r-- 1 raul raul =A0 12 Oct =A03 10:09 modules.dep.bin<br>
+-rw-r--r-- 1 raul raul =A0 52 Oct =A03 10:09 modules.devname<br>
+-rw-r--r-- 1 raul raul =A0131 Oct =A03 10:09 modules.softdep<br>
+-rw-r--r-- 1 raul raul =A0 49 Oct =A03 10:09 modules.symbols<br>
+-rw-r--r-- 1 raul raul =A0 12 Oct =A03 10:09 modules.symbols.bin<br>
+<br>
+/lib/modules$ ll 3.8.13-fslc+g7205340/<br>
+total 24<br>
+drwxr-xr-x 3 raul raul 4096 Oct =A01 15:45 ./<br>
+drwxr-xr-x 4 raul raul 4096 Oct =A03 10:09 ../<br>
+drwxr-xr-x 6 raul raul 4096 Oct =A01 15:45 kernel/<br>
+-rw-r--r-- 1 raul raul 5153 Oct =A01 15:45 modules.builtin<br>
+-rw-r--r-- 1 raul raul =A0391 Oct =A01 15:45 modules.order<br>
+<br>
+I have no idea how to remove the remains of the kernel 3.8.<br>
+<br>
+I dont want to delete all the /tmp<br>
+<br>
+=3D/<br>
+<br>
+Take so much time.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+On Thu, Oct 3, 2013 at 10:58 AM, Bruce Ashfield<br></div></div>
+&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce=
+.ashfield@windriver.com</a> &lt;mailto:<a href=3D"mailto:bruce.ashfield@win=
+driver.com" target=3D"_blank">bruce.ashfield@<u></u>windriver.com</a>&gt;&g=
+t; wrote:<div class=3D"im">
+<br>
+<br>
+=A0 =A0 On <a href=3D"tel:13-10-03%2009" value=3D"+13100309" target=3D"_bla=
+nk">13-10-03 09</a> &lt;tel:13-10-03%2009&gt;:32 AM, Raul Rosetto Munoz wro=
+te:<br>
+<br>
+=A0 =A0 =A0 =A0 I think that I found my problem,<br>
+<br>
+=A0 =A0 =A0 =A0 I tryed to use the kernel 3.8 before in this build system, =
+but I<br>
+=A0 =A0 =A0 =A0 decided<br>
+=A0 =A0 =A0 =A0 to go back to the 2.6.35.3.<br>
+<br>
+=A0 =A0 =A0 =A0 But now I did bitbake -c cleanall virtual/kernel, I tryed t=
+o delete<br>
+=A0 =A0 =A0 =A0 every thing about kernel 3.8 but the modules that are insta=
+led in my<br>
+=A0 =A0 =A0 =A0 /lib/modules/ still be the modules of kernel 3.8.<br>
+<br>
+=A0 =A0 =A0 =A0 How I clean the modules and force to use no 2.6.35.3 again.=
+<br>
+<br>
+=A0 =A0 =A0 =A0 Which package or command do that?<br>
+<br>
+<br>
+=A0 =A0 If you reconstruct your image, the old module package shouldn&#39;t=
+ be<br>
+=A0 =A0 re-used, since you would now have a dependency on the 2.6.35.x kern=
+el.<br>
+<br>
+=A0 =A0 How exactly are they installed in /lib/modules ? Did you do anythin=
+g<br>
+=A0 =A0 in particular ?<br>
+<br>
+=A0 =A0 Bruce<br>
+<br>
+<br>
+=A0 =A0 =A0 =A0 Thanks for all Help.<br>
+<br>
+<br>
+=A0 =A0 =A0 =A0 On Thu, Oct 3, 2013 at 9:38 AM, Bruce Ashfield<br>
+=A0 =A0 =A0 =A0 &lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=
+=3D"_blank">bruce.ashfield@windriver.com</a><br>
+=A0 =A0 =A0 =A0 &lt;mailto:<a href=3D"mailto:bruce.ashfield@windriver.com" =
+target=3D"_blank">bruce.ashfield@<u></u>windriver.com</a>&gt;<br></div>
+=A0 =A0 =A0 =A0 &lt;mailto:<a href=3D"mailto:bruce.ashfield@" target=3D"_bl=
+ank">bruce.ashfield@</a>__<a href=3D"http://windriver.com" target=3D"_blank=
+">windr<u></u>iver.com</a><br>
+=A0 =A0 =A0 =A0 &lt;mailto:<a href=3D"mailto:bruce.ashfield@windriver.com" =
+target=3D"_blank">bruce.ashfield@<u></u>windriver.com</a>&gt;&gt;&gt; wrote=
+:<br>
+<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0On <a href=3D"tel:13-10-03%2008" value=3D"+13100=
+308" target=3D"_blank">13-10-03 08</a> &lt;tel:13-10-03%2008&gt; &lt;tel:13=
+-10-03%2008&gt;:34<div class=3D"im"><br>
+=A0 =A0 =A0 =A0 AM, Raul Rosetto Munoz wrote:<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0Hello All,<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0I&#39;m Trying to install the kernel mod=
+ules inside my<br>
+=A0 =A0 =A0 =A0 rootfs but I<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0couldn&#39;t<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0find an especific information that help =
+me to do that!<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0I have in my /tmp/images/ the tgz with a=
+ll the modules<br>
+=A0 =A0 =A0 =A0 that I need.<br>
+<br></div>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0modules--2.6.35.3-r32.23-____<u></u>imx2=
+8evk-20131002210958.tgz<div class=3D"im"><br>
+<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0I just want that this tzg was extracted =
+inside my rootfs<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0/lib/modules.<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0Please some one can help me with this?<b=
+r>
+<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0Does your image type have a RDEPENDS on &quot;ke=
+rnel-modules&quot;,<br>
+=A0 =A0 =A0 =A0 or do you<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0have IMAGE_INSTALL_append =3D &quot; kernel-modu=
+les&quot;, in your<br>
+=A0 =A0 =A0 =A0 local.conf ?<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0If you do either of the above, the entire set of=
+ built<br>
+=A0 =A0 =A0 =A0 modules will<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0be installed.<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0You can also install / require individual module=
+s via<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0kernel-module-&lt;module name&gt;.<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0The Yocto docs should have details on this as we=
+ll.<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0Cheers,<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0Bruce<br>
+<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0Thanks so much.<br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0--<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0*Raul Rosetto Mu=F1oz*<br>
+<br>
+<br></div>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0______________________________<u></u>___=
+__________________<div class=3D"im"><br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0yocto mailing list<br>
+=A0 =A0 =A0 =A0 <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank"=
+>yocto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@yoctoproject=
+.org" target=3D"_blank">yocto@yoctoproject.org</a><u></u>&gt;<br></div>
+=A0 =A0 =A0 =A0 &lt;mailto:<a href=3D"mailto:yocto@yoctoproject.org" target=
+=3D"_blank">yocto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@y=
+octoproject.org" target=3D"_blank">yocto@yoctoproject.org</a><u></u>&gt;__&=
+gt;<br>
+=A0 =A0 =A0 =A0 <a href=3D"https://lists.yoctoproject." target=3D"_blank">h=
+ttps://lists.yoctoproject.</a>___<u></u>_org/listinfo/yocto<div class=3D"im=
+"><br>
+<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0&lt;<a href=3D"https://lists.yoctoprojec=
+t." target=3D"_blank">https://lists.yoctoproject.</a>__<u></u>org/listinfo/=
+yocto<br>
+=A0 =A0 =A0 =A0 &lt;<a href=3D"https://lists.yoctoproject.org/listinfo/yoct=
+o" target=3D"_blank">https://lists.yoctoproject.<u></u>org/listinfo/yocto</=
+a>&gt;&gt;<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+=A0 =A0 =A0 =A0 --<br>
+=A0 =A0 =A0 =A0 *Raul Rosetto Mu=F1oz*<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+--<br>
+*Raul Rosetto Mu=F1oz*<br>
+</div></blockquote>
+<br>
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>*Raul Rosett=
+o Mu=F1oz*<br>
 </div>
 
---089e01228d72ded9f104e7d72d7d--
+--bcaec52c5efb3e3eb904e7d7f551--
