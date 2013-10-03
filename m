@@ -1,31 +1,22 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4AA4E0169D
-	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 00:48:23 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1VRddy-0007LP-Fs
-	for yocto@yoctoproject.org; Thu, 03 Oct 2013 09:48:18 +0200
-Received: from 212.50.246.122 ([212.50.246.122])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 03 Oct 2013 09:48:18 +0200
-Received: from jackrubby2010 by 212.50.246.122 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 03 Oct 2013 09:48:18 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+Return-Path: <diego.gonzalez@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C617E0169D
+	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 01:47:19 -0700 (PDT)
+Received: from [172.30.250.16] (172.30.250.254) by horus27 (Axigen)
+	with (CAMELLIA256-SHA encrypted) ESMTPSA id 2125FB;
+	Thu, 3 Oct 2013 10:47:15 +0200
+Message-ID: <524D2F12.2050105@horus.es>
+Date: Thu, 03 Oct 2013 10:47:14 +0200
+From: diego <diego.gonzalez@horus.es>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:17.0)
+	Gecko/20130801 Thunderbird/17.0.8
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-From: Jack <jackrubby2010@gmail.com>
-Date: Thu, 3 Oct 2013 07:47:58 +0000 (UTC)
-Message-ID: <loom.20131003T093203-279@post.gmane.org>
-References: <loom.20131001T154728-532@post.gmane.org>
-	<4607a605-12cd-476d-92fa-47ded39e2905@email.android.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 212.50.246.122 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
-	rv:21.0) Gecko/20100101 Firefox/21.0)
-Subject: (No subject)
+References: <CAOEdsErrXc4J-27Qq7v5wSVg63vx3=d1RJZ2C=bMW2SWdFa+TQ@mail.gmail.com>
+In-Reply-To: <CAOEdsErrXc4J-27Qq7v5wSVg63vx3=d1RJZ2C=bMW2SWdFa+TQ@mail.gmail.com>
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 4
+Subject: Re: nativesdk-dbus not shipped for meta-toolchain-qt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,137 +28,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Oct 2013 07:48:26 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 03 Oct 2013 08:47:21 -0000
+Content-Type: multipart/alternative;
+	boundary="------------050202030708050709070201"
+
+--------------050202030708050709070201
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
+
+El 02/10/2013 23:26, Dan B escribió:
+> I was having a similar error, and sgw_ in the #yocto irc channel 
+> helped me out. It looks like there is some bug in nativesdk-dbus
+> A quick-fix until someone can figure out what's going on is to add the 
+> following line to your local.conf:
+>
+> INSANE_SKIP_nativesdk-dbus = "installed-vs-shipped"
+>
+>
+> All this does is skip the QA test that is failing. I haven't yet 
+> checked the result to see if it's working, but it at least was able to 
+> skip that QA test and build successfully.
+>
+> Good luck
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Hello Dryaw,
+
+I just checked what you said and it works! It skipped that QA test and 
+built perfectly. Additionally if you install this sdk into the Qt 
+creator it will work fine. I created, built, compiled and debugged and 
+app in QT 4.8.5  successfully.
+
+Thank you!!
+
+-- 
+Diego González González
+diego.gonzalez@horus.es
+
+
+--------------050202030708050709070201
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Anders Darander <anders@...> writes:
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div class="moz-cite-prefix">El 02/10/2013 23:26, Dan B escribi&oacute;:<br>
+    </div>
+    <blockquote
+cite="mid:CAOEdsErrXc4J-27Qq7v5wSVg63vx3=d1RJZ2C=bMW2SWdFa+TQ@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">I was having a similar error, and&nbsp;sgw_ in the
+        #yocto irc channel helped me out. It looks like there is some
+        bug in nativesdk-dbus&nbsp;
+        <div>A quick-fix until someone can figure out what's going on is
+          to add the following line to your local.conf:</div>
+        <div><br>
+        </div>
+        <div>INSANE_SKIP_nativesdk-dbus = "installed-vs-shipped"<br>
+        </div>
+        <div><br>
+        </div>
+        <div><br>
+        </div>
+        <div>All this does is skip the QA test that is failing. I
+          haven't yet checked the result to see if it's working, but it
+          at least was able to skip that QA test and build successfully.</div>
+        <div><br>
+        </div>
+        <div>Good luck</div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+    </blockquote>
+    <br>
+    Hello Dryaw,<br>
+    <br>
+    I just checked what you said and it works! It skipped that QA test&nbsp;
+    and built perfectly. A<span class="gt-baf-back">dditionally if you
+      install this sdk into the Qt creator it will work fine. I created,
+      built, compiled and debugged and app </span><span
+      class="gt-baf-back">
+      <link rel="File-List"
+href="file:///C:%5CUsers%5CHorusHP%5CAppData%5CLocal%5CTemp%5Cmsohtmlclip1%5C02%5Cclip_filelist.xml">
+      <link rel="themeData"
+href="file:///C:%5CUsers%5CHorusHP%5CAppData%5CLocal%5CTemp%5Cmsohtmlclip1%5C02%5Cclip_themedata.thmx">
+      <link rel="colorSchemeMapping"
+href="file:///C:%5CUsers%5CHorusHP%5CAppData%5CLocal%5CTemp%5Cmsohtmlclip1%5C02%5Cclip_colorschememapping.xml">
+      in QT 4.8.5&nbsp; successfully.<br>
+      <br>
+      Thank you!!</span><br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Diego Gonz&aacute;lez Gonz&aacute;lez
+<a class="moz-txt-link-abbreviated" href="mailto:diego.gonzalez@horus.es">diego.gonzalez@horus.es</a></pre>
+  </body>
+</html>
 
-> 
-> 
-> Jack <jackrubby2010 <at> gmail.com> wrote:
-> >Hi,
-> >I want to set/reset GPIO registers in freescale p1022 processor. I saw
-> >a
-> >hello-mod kernel module in yocto and I added it to my image and it
-> >worked.
-> >According to hello-mod kernel module, I created GPIO module like
-> >hello-mod.
-> >But it GPIO module failed when I run it in kernel level. I checked
-> >several
-> >times addresses of registers and it seems accurate. 
-> >My code is here :
-> >
-> >
-> >#include <linux/module.h>
-> >
-> >int init_module(void)
-> >{
-> >	volatile uint32_t * Guts_Pmuxcr;
-> >	volatile uint32_t * Gpio3_Gpdir;
-> >	volatile uint32_t * Gpio3_Gpdat;
-> >	
-> >	// e500 Core View To Power Architecture CCSR: 0x0_FF70_0000
-> >
-> >    // GUTS_PMUXCR:Alternate Function Signal Multiplex Control Register
-> >	Guts_Pmuxcr = (volatile uint32_t *)(0xFF7E0060);
-> >      
-> >        // GPIO3_GPDIR: GPIO3 direction register
-> >	Gpio3_Gpdir = (volatile uint32_t *)(0xFF70F200);
-> >
-> >        // GPIO3_GPDAT: GPIO3 data register
-> >	Gpio3_Gpdat = (volatile uint32_t *)(0xFF70F208); 
-> 
-> You should generally a of trying to dereference physical addresses, or you
-should explicitly declare them
-> as such. 
-> 
-> If suggest looking for some info on using GPIO on your CPU. Unfortunately,
-I've not used the p1022, so I can't
-> really help you. 
-> 
-> http://linuxppc.10917.n7.nabble.com/Re-GPIO-IRQ-on-P1022-td59356.html
-discusses some IRQ
-> issues, though you should be able to use the codes as an example of the
-GPIO framework and how to use it. 
-> 
-> Cheers, 
-> Anders 
-> 
-> >
-> >	// Enable GPIO3[10]: IRQ_DEBUG1_GPIO FIELD [BIT 26] set to "1"
-> >	*(Guts_Pmuxcr) = 0x00000010;
-> >
-> 
-> >
-> >	// Set Direction for GPIO3[10] to Output: FIELD DR10 [BIT 10] set to
-> >'1'
-> >	*(Gpio3_Gpdir) = 0x00200000;
-> >	
-> >	 
-> >	// Set GPIO3[10] to '0': FIELD D10 [BIT 10] set to '0'
-> >	*(Gpio3_Gpdat) = 0x00000000;
-> >	
-> >	printk("Hello World!\n");
-> >	return 0;
-> >}
-> >
-> >void cleanup_module(void)
-> >{
-> >	printk("Goodbye Cruel World!\n");
-> >}
-> >
-> >MODULE_LICENSE("GPL");
-> >
-> >
-> >When I write insmod GPIO.ko in the terminal I get error these errors:
-> >
-> >Unable to handle kernel paging request for data at address 0xff7e0060
-> >faulting instruction address: 0xf107e05c
-> >Oops: Kernel access of bad area, sig: 11 [#1]
-> >..........
-> >.........
-> >
-> >
-> >How can I solve this problem?
-> >
-> >
-> >_______________________________________________
-> >yocto mailing list
-> >yocto <at> yoctoproject.org
-> >https://lists.yoctoproject.org/listinfo/yocto
-> 
-
-Thanks Anders,
-
-But I have this problem not only for GPIOs, but also for other registers.
-For example, I tried to change DTW bits of PROCTL register in eSDH but I get
-"Kernel access of bad area" again. My simple code is here :
-
-#include <linux/module.h>
-
-int init_module(void)
-{
-	
-	// e500 Core View To Power Architecture CCSR: 0x0_FF70_0000
-	
-	volatile uint32_t * eSDH_PROCTL = (volatile uint32_t *)(0xFF72E028);
-
-	*(eSDH_PROCTL) = 0x00000002;
-
-	return 0;
-}
-
-void cleanup_module(void)
-{
-	printk("Goodbye Cruel World!\n");
-}
-
-MODULE_LICENSE("GPL");
-
-What should I do? Can you help me?
-
-
-
-
-
+--------------050202030708050709070201--
